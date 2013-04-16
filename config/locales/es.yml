@@ -468,7 +468,6 @@ es:
       - !ruby/symbol day
       - !ruby/symbol month
       - !ruby/symbol year
-  "date": Fecha
   datetime: 
     distance_in_words: 
       about_x_hours: 
@@ -1742,7 +1741,9 @@ es:
   view_your_life_lists: "Ver su lista de vida"
   view_your_observations: "Ver sus observaciones"
   views:
-    views: Vistas 
+    shared:
+      views: Vistas 
+      date: Fecha
     help: 
       index: 
         a_check_list_is_html: |

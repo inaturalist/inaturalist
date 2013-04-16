@@ -444,12 +444,12 @@ es-MX:
   data_deficient: "con datos deficientes"
   data_quality_assessment: "Evaluación de calidad de los datos"
   datatype: "Tipo de datos"
-  "date": Fecha
   date_: Fecha
   date?: ¿Fecha?
   date_added: "Fecha añadida"
   date_observed: "Fecha de la observación"
   date_time: Fecha/Hora
+  datetime_: Fecha/Hora
   datetime:
     distance_in_words: 
       about_x_hours: 
@@ -6333,6 +6333,7 @@ es-MX:
   loading_wikipedia_description: "Cargando la descripción de Wikipedia"
   localized_species_accounts: "Contenidos de especies"
   location: Ubicación
+  location_: Ubicación
   location_is_exact: "La ubicación es exacta"
   locked_taxa_will_not_allow_new: "Las especies o grupos con candado no permitirán añadir a nuevas especies. Asi que si pones candado a Anfibios y alguien intenta importar <i>Rana catesbeiana</i> de un proveedor externo de nombres, la nueva especie será creada pero no podrá ser clasificada como un anfibio. Cuando esto sucede, la nueva especie añadida será señalada para atención de los curadores. Esto solo debe usarse para grupos en donde pensamos que ya tenemos a todos los integrantes. Los curadores pueden cambiar esto editando la identificación del grupo directamente, pero por favor considera combinar nuevas especies con las existentes.\n"
   log_in: "Empieza la sesión"
@@ -6963,7 +6964,7 @@ es-MX:
       long: "%B %d, %A %H:%M"
       short: "%d %b %H:%M"
     pm: pm
-  "time": Tiempo
+  time_: Tiempo
   titled_favorites_and_the_most_recent_additions: "titulado \"Favoritos\" y las adiciones más recientes aparecerán en este espacio."
   to: "a "
   to_add_comments: "para añadir comentarios"
@@ -7072,6 +7073,7 @@ es-MX:
   view_your_life_lists: "Ver tu lista de especies de vida"
   view_your_observations: "Ve tus observaciones"
   views:
+    # date: Fecha
     views: Vistas
     help: 
       index: 

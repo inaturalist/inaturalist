@@ -389,12 +389,12 @@ en:
   data_deficient: data deficient
   data_quality_assessment: Data Quality Assessment
   datatype: Datatype
-  date: Date
-  date_: date
+  date_: Date
   date?: Date?
   date_added: Date added
   date_observed: Date observed
   date_time: Date/Time
+  datetime_: Date/Time
   day: Day
   default_invite_comment: "Great photo!  You should post it to %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Default observation license
@@ -765,7 +765,8 @@ en:
   loading_taxa_from_your: "Loading taxa from your observations..."
   loading_wikipedia_description: "Loading Wikipedia description..."
   localized_species_accounts: Localized species accounts
-  location: Locality
+  location: Location
+  location_: Location
   location_is_exact: location is exact
   locked_taxa_will_not_allow_new: Locked taxa will not allow new descendent taxa to be added to them. So if you locked Amphibia and someone tried to import <i>Rana catesbeiana</i> from an external name provider, the new taxon would be created but it could not be classified as an amphibian. When this happens, the newly added taxa should be flagged for curator attention.  This should really only be used for taxa for which we think we already have all the descendants. Curator can override this by editing taxa and entering parent IDs directly, but please consider merging new taxa into existing ones instead.
   log_in: Log In
