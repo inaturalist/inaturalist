@@ -1318,13 +1318,17 @@ class Taxon < ActiveRecord::Base
 
     # if none are grafted, choose the first
     elsif sorted.select{|taxon| taxon.grafted?}.size == 0
-      sorted.first
+      taxon = sorted.detect{|t| t.taxon_names.detect{|tn| tn.name.downcase == name.downcase && tn.is_valid?}}
+      taxon || sorted.first
 
     # if the names are synonymous and share the same parent, choose the first active concept
     elsif taxon_names.map(&:name).uniq.size == 1 && taxa.map(&:parent_id).uniq.size == 1
-      sorted.detect{|taxon| taxon.is_active?}
+      taxon = sorted.detect do |taxon|
+        taxon.is_active? && taxon.taxon_names.detect{|tn| tn.name.downcase == name.downcase && tn.is_valid?}
+      end
+      taxon || sorted.detect {|taxon| taxon.is_active?}
 
-    # else assume there are >1 legit synonyms and refuse to make a decision
+    # else assume there are > 1 legit synonyms and refuse to make a decision
     else
       nil
     end
