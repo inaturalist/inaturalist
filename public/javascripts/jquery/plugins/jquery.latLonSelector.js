@@ -667,7 +667,7 @@
   };
   
   $.fn.latLonSelector.defaults = {
-    buttonImgPath: '/images/silk/world.png',
+    buttonImgPath: '/images/Gnome-emblem-web-16x16.png',
     wrapperCSS: {
       display: 'none',
       position: 'absolute',

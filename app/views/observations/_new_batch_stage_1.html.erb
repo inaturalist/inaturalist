@@ -30,13 +30,13 @@
                          :id => 'place_guess',
                          :class => 'text place_guess' %>
       <div id="coordinates" class="latlonfields status">
-        <%= label('batch[latitude]', t(:lat)) %>
+        <%= label('batch[latitude]', t(:lat), :for => "batch_latitude") %>
         <%= text_field_tag('batch[latitude]', '', :class => 'latitude') %>
             
-        <%= label('batch[longitude]', t(:long)) %>
+        <%= label('batch[longitude]', t(:long), :for => "batch_longitude") %>
         <%= text_field_tag('batch[longitude]', '', :class => 'longitude') %>
 
-        <span class="button"><br><br>
+        <span class="button">
           <%= link_to_function(t(:edit), "$('#coordinates').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
           <%= link_to_function(t(:hide), "$('#coordinates').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
         </span>
