@@ -1,5 +1,6 @@
 <% content_for(:title) do -%>
-  <%= t(:x_journal_archives_for_y, :user => @display_user.login) %>  <%= @target_date.strftime('%B %Y') %>
+  <%= t(:x_journal_archives_for_y, :user => @parent.try_methods(:login, :title)) %>
+  <%= @target_date.strftime('%B %Y') %>
 <%- end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag "posts" %>
