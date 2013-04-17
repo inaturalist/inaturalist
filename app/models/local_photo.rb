@@ -75,7 +75,7 @@ class LocalPhoto < Photo
       end
     end
   rescue EXIFR::MalformedImage, EOFError => e
-    Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{@attachment.instance}: #{e}"
+    Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
   end
   
   def set_urls
