@@ -1573,3 +1573,29 @@ describe Observation, "queue_for_sharing" do
     Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"]).should be_blank
   end
 end
+
+describe Observation, "captive" do
+  it "should vote yes on the wild quality metric if 1" do
+    o = Observation.make!(:captive => "1")
+    o.quality_metrics.should_not be_blank
+    o.quality_metrics.first.user.should eq(o.user)
+    o.quality_metrics.first.should_not be_agree
+  end
+
+  it "should vote no on the wild quality metric if 0 and metric exists" do
+    o = Observation.make!(:captive => "1")
+    o.quality_metrics.should_not be_blank
+    o.update_attributes(:captive => "0")
+    o.quality_metrics.first.should be_agree
+  end
+
+  it "should not alter quality metrics if nil" do
+    o = Observation.make!(:captive => nil)
+    o.quality_metrics.should be_blank
+  end
+
+  it "should not alter quality metrics if 0 and not metrics exist" do
+    o = Observation.make!(:captive => "0")
+    o.quality_metrics.should be_blank
+  end
+end

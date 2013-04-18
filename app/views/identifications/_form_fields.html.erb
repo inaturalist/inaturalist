@@ -14,6 +14,11 @@
       <%= f.label :body, body_label.html_safe %>
       <%= f.text_area :body %>
     </div>
+
+    <div class="field">
+      <%= f.check_box :captive %>
+      <%= f.label :captive, t(:organism_appears_captive_cultivated) %>
+    </div>
   <% end -%>
 
   <%= f.hidden_field :user_id %>
