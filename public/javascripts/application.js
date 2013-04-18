@@ -1016,3 +1016,9 @@ function showJoinProjectDialog(projectId, options) {
     minHeight: 400
   })
 }
+
+
+// http://stackoverflow.com/a/14839776/720268
+function preciseRound(num,decimals) {
+  return Math.round(num*Math.pow(10, decimals)) / Math.pow(10,decimals)
+}
