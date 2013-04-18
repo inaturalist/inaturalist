@@ -304,10 +304,11 @@
     $(findFormField($.fn.latLonSelector._currentInput, 'positioning_device')).val('manual')
     if ($.fn.latLonSelector._circle) {
       $.fn.latLonSelector._circle.setCenter(marker.getPosition())
-      if (!$.fn.latLonSelector._circle.getEditable()) {
-        $.fn.latLonSelector.setAccuracy(null)
-        $.fn.latLonSelector.updateFormAccuracy(null)
-      }
+    }
+    if (!$.fn.latLonSelector._circle || !$.fn.latLonSelector._circle.getEditable()) {
+      var accuracy = $.fn.latLonSelector.boundsToAccuracy(map.getBounds()) / 10
+      $.fn.latLonSelector.setAccuracy(accuracy)
+      $.fn.latLonSelector.updateFormAccuracy(accuracy)  
     }
   }
   
@@ -342,6 +343,8 @@
   }
   
   $.fn.latLonSelector.updateFormLatLon = function(lat, lon) {
+    lat = preciseRound(lat, 6)
+    lon = preciseRound(lon, 6)
     var input = $.fn.latLonSelector._currentInput;
     var latField = findFormField(input, 'latitude');
     var lonField = findFormField(input, 'longitude');
@@ -508,15 +511,20 @@
       )
       
       if (viewport) {
-        var dNorthEast = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
-              viewport.getNorthEast().lat(), viewport.getNorthEast().lng()),
-            dSouthWest = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
-              viewport.getSouthWest().lat(), viewport.getSouthWest().lng()),
-            accuracy = Math.max(dNorthEast, dSouthWest)
+        var accuracy = $.fn.latLonSelector.boundsToAccuracy(viewport, point)
         $.fn.latLonSelector.setAccuracy(accuracy, {lat: point.lat(), lng: point.lng()})
         $.fn.latLonSelector.updateFormAccuracy(accuracy, {positioningMethod: 'google', positioningDevice: 'google'})
       }
     })
+  }
+
+  $.fn.latLonSelector.boundsToAccuracy = function(bounds, point) {
+    point = point || bounds.getCenter()
+    var dNorthEast = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
+          bounds.getNorthEast().lat(), bounds.getNorthEast().lng()),
+        dSouthWest = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
+          bounds.getSouthWest().lat(), bounds.getSouthWest().lng())
+    return Math.max(dNorthEast, dSouthWest)
   }
   
   $.fn.latLonSelector.updateAccuracyWithGeocoderResult = function(result) {
