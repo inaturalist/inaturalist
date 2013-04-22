@@ -10,6 +10,14 @@ shared_examples_for "an ObservationsController" do
     o.species_guess.should eq ("foo")
   end
 
+  it "should include private coordinates in create response" do
+    post :create, :format => :json, :observation => {:latitude => 1.2345, :longitude => 1.2345, :geoprivacy => Observation::PRIVATE}
+    o = Observation.last
+    o.should be_coordinates_obscured
+    response.body.should =~ /#{o.private_latitude}/
+    response.body.should =~ /#{o.private_longitude}/
+  end
+
   it "should destroy" do
     o = Observation.make!(:user => user)
     delete :destroy, :format => :json, :id => o.id
