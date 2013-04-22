@@ -10820,6 +10820,43 @@ ALTER SEQUENCE lists_id_seq OWNED BY lists.id;
 
 
 --
+-- Name: messages; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE messages (
+    id integer NOT NULL,
+    user_id integer,
+    from_user_id integer,
+    to_user_id integer,
+    thread_id integer,
+    subject character varying(255),
+    body text,
+    read_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE messages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE messages_id_seq OWNED BY messages.id;
+
+
+--
 -- Name: oauth_access_grants; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -12814,6 +12851,13 @@ ALTER TABLE lists ALTER COLUMN id SET DEFAULT nextval('lists_id_seq'::regclass);
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE oauth_access_grants ALTER COLUMN id SET DEFAULT nextval('oauth_access_grants_id_seq'::regclass);
 
 
@@ -13331,6 +13375,14 @@ ALTER TABLE ONLY listed_taxa
 
 ALTER TABLE ONLY lists
     ADD CONSTRAINT lists_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY messages
+    ADD CONSTRAINT messages_pkey PRIMARY KEY (id);
 
 
 --
@@ -14050,6 +14102,20 @@ CREATE INDEX index_lists_on_type_and_id ON lists USING btree (type, id);
 --
 
 CREATE INDEX index_lists_on_user_id ON lists USING btree (user_id);
+
+
+--
+-- Name: index_messages_on_user_id_and_from_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_messages_on_user_id_and_from_user_id ON messages USING btree (user_id, from_user_id);
+
+
+--
+-- Name: index_messages_on_user_id_and_to_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_messages_on_user_id_and_to_user_id ON messages USING btree (user_id, to_user_id);
 
 
 --
@@ -15171,3 +15237,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130403235431');
 INSERT INTO schema_migrations (version) VALUES ('20130409225631');
 
 INSERT INTO schema_migrations (version) VALUES ('20130411225629');
+
+INSERT INTO schema_migrations (version) VALUES ('20130418190210');

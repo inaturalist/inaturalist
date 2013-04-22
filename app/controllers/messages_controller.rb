@@ -1,0 +1,96 @@
+class MessagesController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :load_message, :only => [:show, :destroy]
+  before_filter :require_owner, :only => [:show, :destroy]
+  before_filter :load_box, :only => [:show, :new, :index]
+
+  def index
+    @messages = case @box
+    when Message::SENT
+      current_user.messages.sent.order("id desc").page(params[:page])
+    else
+      current_user.messages.inbox.order("id desc").page(params[:page])
+    end
+    if params[:partial]
+      render :partial => "messages"
+    else
+      render
+    end
+  end
+
+  def sent
+    @messages = current_user.messages.sent.page(params[:page])
+  end
+
+  def show
+    @messages = current_user.messages.where(:thread_id => @message.thread_id).order("id asc")
+    Message.update_all(["read_at = ?", Time.now], ["id in (?) AND read_at IS NULL", @messages])
+    @thread_message = @messages.first
+    @reply_to = @thread_message.from_user == current_user ? @thread_message.to_user : @thread_message.from_user
+  end
+
+  def new
+    @message = current_user.messages.build
+    @contacts = User.
+      select("DISTINCT ON (users.id) users.*").
+      joins("JOIN messages ON messages.to_user_id = users.id").
+      where("messages.from_user_id = ?", current_user).
+      limit(100).compact
+    @contacts = current_user.friends.limit(100) if @contacts.blank?
+    unless @contacts.blank?
+      @contacts.each_with_index do |u,i|
+        @contacts[i].html = view_context.render_in_format(:html, :partial => "users/chooser", :object => u).gsub(/\n/, '')
+      end
+    end
+    unless params[:to].blank?
+      @message.to_user = User.find_by_login(params[:to])
+      @message.to_user ||= User.find_by_id(params[:to])
+    end
+  end
+
+  def create
+    @message = current_user.messages.build(params[:message])
+    @message.user = current_user
+    @message.from_user = current_user
+    @message.save unless params[:preview]
+
+    respond_to do |format|
+      format.html do
+        if @message.valid?
+          @message.send_message
+          redirect_to @message
+        else
+          render :new
+        end
+      end
+      format.json do
+        if params[:preview]
+          @message.html = view_context.formatted_user_text(@message.body)
+        end
+        render :json => @message.to_json(:methods => [:html])
+      end
+    end
+  end
+
+  # def edit
+  # end
+
+  # def update
+  #   @message.update_attributes
+  # end
+
+  def destroy
+    @message.destroy
+    redirect_back_or_default messages_url
+  end
+
+  private
+  def load_message
+    render_404 unless @message = Message.find_by_id(params[:id])
+  end
+
+  def load_box
+    @box = params[:box]
+    @box = Message::INBOX unless Message::BOXES.include?(@box)
+  end
+end

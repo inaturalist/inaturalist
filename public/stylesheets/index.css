@@ -252,6 +252,11 @@ img.mini.usericon {
   background: url(/images/follow-icon-nm-15px.png) 0% 50% no-repeat;
 }
 
+#subnav .message_link {background: none;padding-left:5px;}
+#subnav .message_link:hover {background: none;}
+#subnav .message_link .ui-icon {background-image: url(/images/jquery-ui/ui-icons_888888_256x240.png);}
+#subnav .message_link:hover .ui-icon {background-image: url(/images/jquery-ui/ui-icons_454545_256x240.png);}
+
 #breadcrumbs {
   color: #999;
   margin: 0;
@@ -1249,7 +1254,7 @@ table .numeric { text-align: center; }
 }
 
 .iconic_taxon_sprite { vertical-align:middle;}
-.taxon.chooseritem { white-space: nowrap; }
+.chooseritem { white-space: nowrap; }
 .taxon.chooseritem .othernames { display:inline; }
 #taxonchooser_chooser .ui-chooser-choice { padding: 4px 5px 3px;}
 #taxonchooser_chooser .ui-chooser-choice { padding: 5px 5px 4px;}

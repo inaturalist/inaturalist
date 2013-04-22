@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
                   :make_photo_licenses_same, 
                   :preferred_photo_license, 
                   :preferred_observation_license
+  attr_accessor :html
   
   preference :project_journal_post_email_notification, :boolean, :default => true
   preference :comment_email_notification, :boolean, :default => true
@@ -69,6 +70,7 @@ class User < ActiveRecord::Base
   has_many :quality_metrics, :dependent => :destroy
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify
+  has_many :messages, :dependent => :destroy
   
   has_attached_file :icon, 
     :styles => { :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },

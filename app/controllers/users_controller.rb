@@ -209,7 +209,15 @@ class UsersController < ApplicationController
       scope = scope.where(conditions)
     end
     @users = scope.page(params[:page])
-    counts_for_users
+    respond_to do |format|
+      format.html { counts_for_users }
+      format.json do
+        @users.each_with_index do |user, i|
+          @users[i].html = view_context.render_in_format(:html, :partial => "users/chooser", :object => user).gsub(/\n/, '')
+        end
+        render :json => @users.to_json(User.default_json_options.merge(:methods => [:html]))
+      end
+    end
   end
   
   def show
@@ -226,6 +234,7 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       format.html
+      format.json { render :json => @selected_user.to_json(User.default_json_options) }
       format.mobile
     end
   end
