@@ -73,12 +73,13 @@ function loadingClickForLink() {
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
   var loading = $(this).siblings('.loadingclick:first')
   if (loading.length == 0) {
-    loading = $(this).clone()
+    loading = $(this).clone(false)
     loading.unbind()
     loading.attr('onclick', 'return false;')
+    loading.attr('href', '#')
     loading
       .attr('id', '')
-      .addClass('loadingclick')
+      .addClass('loadingclick disabled')
       .css('padding-left', '25px')
       .html(txt)
     loading.click(function(e){

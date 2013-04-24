@@ -128,7 +128,7 @@ button.default {
   border: 0 none;
 }
 .button.disabled { opacity: 0.5; cursor: default;}
-.button.disabled:hover { opacity: 0.5; }
+.button.disabled:hover { opacity: 0.5; background-color: inherit;}
 
 .okcancel.buttons {
   clear: both;

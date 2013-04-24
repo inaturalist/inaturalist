@@ -8,12 +8,12 @@ class LocalPhoto < Photo
   
   # only perform EXIF-based rotation on mobile app contributions
   image_convert_options = Proc.new {|record|
-    record.mobile? ? "-auto-orient -strip" : "-strip"
+    record.rotation.blank? && record.mobile? ? "-auto-orient -strip" : "-strip"
   }
   
   has_attached_file :file, 
     :styles => {
-      :original => {:geometry => "2048x2048>",  :auto_orient => false },
+      :original => {:geometry => "2048x2048>",  :auto_orient => false, :processors => [:rotator] },
       :large    => {:geometry => "1024x1024>",  :auto_orient => false },
       :medium   => {:geometry => "500x500>",    :auto_orient => false },
       :small    => {:geometry => "240x240>",    :auto_orient => false },
@@ -47,6 +47,8 @@ class LocalPhoto < Photo
   validates_presence_of :user
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
+
+  attr_accessor :rotation
   
   # I think this may be impossible using delayed_paperclip
   # validates_attachment_presence :file
@@ -157,6 +159,15 @@ class LocalPhoto < Photo
     tags = to_tags
     return [] if tags.blank?
     Taxon.tags_to_taxa(tags, options).compact
+  end
+
+  def rotate!(degrees = 90)
+    self.rotation = degrees
+    self.rotation -= 360 if self.rotation >= 360
+    self.rotation += 360 if self.rotation <= -360
+    self.file.post_processing = true
+    self.file.reprocess!
+    self.save
   end
   
 end

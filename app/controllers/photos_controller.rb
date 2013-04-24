@@ -2,9 +2,9 @@ class PhotosController < ApplicationController
   MOBILIZED = [:show]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
-  before_filter :load_photo, :only => [:show, :update, :repair, :destroy]
-  before_filter :require_owner, :only => [:update, :destroy]
-  before_filter :authenticate_user!, :only => [:inviter, :update, :destroy]
+  before_filter :load_photo, :only => [:show, :update, :repair, :destroy, :rotate]
+  before_filter :require_owner, :only => [:update, :destroy, :rotate]
+  before_filter :authenticate_user!, :only => [:inviter, :update, :destroy, :repair, :rotate]
   before_filter :return_here, :only => [:show, :invite, :inviter]
 
   cache_sweeper :photo_sweeper, :only => [:update, :repair]
@@ -195,6 +195,16 @@ class PhotosController < ApplicationController
       flash[:notice] = "Photo URLs repaired"
       redirect_back_or_default(@photo.becomes(Photo))
     end
+  end
+
+  def rotate
+    unless @photo.is_a?(LocalPhoto)
+      flash[:error] = "You can't rotate photos hosted outside of iNaturalist."
+      redirect_back_or_default(@photo.becomes(Photo))
+    end
+    rotation = params[:left] ? -90 : 90
+    @photo.rotate!(rotation)
+    redirect_back_or_default(@photo.becomes(Photo))
   end
   
   private
