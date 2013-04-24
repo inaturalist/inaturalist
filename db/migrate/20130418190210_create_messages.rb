@@ -13,7 +13,7 @@ class CreateMessages < ActiveRecord::Migration
     end
 
     add_index :messages, [:user_id, :from_user_id]
-    add_index :messages, [:user_id, :to_user_id]
+    add_index :messages, [:user_id, :to_user_id, :read_at]
     # add_index :messages, [:user_id, :read_at]
   end
 end

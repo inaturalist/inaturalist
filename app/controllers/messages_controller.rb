@@ -84,6 +84,19 @@ class MessagesController < ApplicationController
     redirect_back_or_default messages_url
   end
 
+  def count
+    count = current_user.messages.inbox.unread.count
+    session[:messages_count] = count
+    render :json => {:count => count}
+  end
+
+  def new_messages
+    @messages = current_user.messages.inbox.includes(:from_user).unread.order("id desc").limit(200)
+    @messages = current_user.messages.inbox.includes(:from_user).order("id desc").limit(200) if @messages.blank?
+    session[:messages_count] = 0
+    render :layout => false
+  end
+
   private
   def load_message
     render_404 unless @message = Message.find_by_id(params[:id])
@@ -92,5 +105,18 @@ class MessagesController < ApplicationController
   def load_box
     @box = params[:box]
     @box = Message::INBOX unless Message::BOXES.include?(@box)
+  end
+
+  def require_owner
+    if @message.user != current_user
+      msg = "You don't have permission to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          return redirect_back_or_default(messages_url)
+        end
+        format.json { render :json => {:error => msg} }
+      end
+    end
   end
 end

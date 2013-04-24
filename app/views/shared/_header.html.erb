@@ -112,12 +112,25 @@
         <strong class="inlineblock"><%= link_to current_user.login, main_app.person_path(:id => current_user.login) %></strong>
       </span>
     </li>
-    <li id="updatesnav" class="subnavwrapper">
+    <% if is_admin? -%>
+      <li id="messagesnav" class="subnavwrapper notices">
+        <div class="clear subnavtab">
+          <%= link_to "<span class='inlineblock ui-icon ui-icon-mail-closed'></span><span class='count'>0</span>".html_safe, 
+            home_path, 
+            :id => "headermessagesnotice",
+            :class => "messages headernotice" %>
+        </div>
+        <div id="messagessubnav" class="subnav meta">
+          <div class="loadingwrapper"><%= loading %></div>
+        </div>
+      </li>
+    <% end -%>
+    <li id="updatesnav" class="subnavwrapper notices">
       <div class="clear subnavtab">
         <%= link_to "<span class='ui-icon ui-icon-comment'></span><span class='count'>0</span>".html_safe, 
           home_path, 
           :id => "headerupdatesnotice",
-          :class => "updates" %>
+          :class => "updates headernotice" %>
       </div>
       <div id="updatessubnav" class="subnav meta">
         <div class="loadingwrapper"><%= loading %></div>

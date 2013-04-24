@@ -71,6 +71,8 @@
     <script type="text/javascript" charset="utf-8">
       setUpdatesCount(<%= session[:updates_count].to_i %>)
       setTimeout(getUpdatesCount, 1000)
+      setMessagesCount(<%= session[:messages_count].to_i %>)
+      setTimeout(getMessagesCount, 1000)
     </script>
   <% end -%>
 </body>

@@ -202,6 +202,7 @@ en:
   associations: Associations
   at: at
   at_any_time_change: at any time (<span class="button">change</span>)
+  at_time: "at %{time}"
   atom: Atom
   authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_descriptions_have_been_disabled: Automatic descriptions have been disabled for this taxon.
@@ -977,6 +978,7 @@ en:
   occurrence_status: Occurrence status
   of_it_and_its_descendants: of it and its descendants
   on: on
+  on_date: "at %{date}"
   on_edit_date: "on %{editdate}"
   on_submit_date: "on %{submitdate}"
   on_your_life_list: on your life list

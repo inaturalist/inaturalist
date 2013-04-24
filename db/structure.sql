@@ -14112,10 +14112,10 @@ CREATE INDEX index_messages_on_user_id_and_from_user_id ON messages USING btree 
 
 
 --
--- Name: index_messages_on_user_id_and_to_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_messages_on_user_id_and_to_user_id_and_read_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_messages_on_user_id_and_to_user_id ON messages USING btree (user_id, to_user_id);
+CREATE INDEX index_messages_on_user_id_and_to_user_id_and_read_at ON messages USING btree (user_id, to_user_id, read_at);
 
 
 --

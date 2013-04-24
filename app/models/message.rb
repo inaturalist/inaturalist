@@ -12,6 +12,7 @@ class Message < ActiveRecord::Base
   
   scope :inbox, where("user_id = to_user_id") #.select("DISTINCT ON (thread_id) messages.*")
   scope :sent, where("user_id = from_user_id") #.select("DISTINCT ON (thread_id) messages.*")
+  scope :unread, where("read_at IS NULL")
 
   INBOX = "inbox"
   SENT = "sent"

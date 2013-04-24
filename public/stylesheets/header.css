@@ -212,22 +212,23 @@
 #header .inter.user {padding: 0;}
 #header .inter.user strong {position:relative; top: 1px;}
 #header .inter.user img {height: 29px;}
-#header .navtabs .subnavtab a.updates:first-child,
-#header .navtabs a.updates,
-#header .updates {
+#header .navtabs .subnavtab a.headernotice:first-child,
+#header .navtabs a.headernotice,
+#header .headernotice {
   display:block;
   padding: 0;
   float:left;
   padding: 7px 7px 0px 2px;
   height: 22px;
 }
-#header .updates .count {color: inherit;}
-#header .navtabs #updatessubnav.subnav ul a {display:block; padding:5px;}
-#updatessubnav {display:none; background-color:white;padding:0px;max-height: 400px; overflow-y: auto; overflow-x: hidden;}
-#updatessubnav .loadingwrapper {padding: 10px;}
-#updatessubnav img {max-width: 32px;}
-#header #updatessubnav.subnav ul {list-style:none; padding: 0; margin: 0;}
-#updatessubnav li a {white-space:nowrap;}
-#updatessubnav:hover, #updatessubnav:hover li a { background-color: #FBFBFB;}
-#updatessubnav li:hover a { background-color: white;}
+#header .headernotice .count {color: inherit;}
+#header .navtabs .subnavtab {white-space:nowrap;}
+#header .navtabs .notices .subnav ul a {display:block; padding:5px;}
+.notices .subnav {display:none; background-color:white;padding:0px;max-height: 400px; overflow-y: auto; overflow-x: hidden;}
+.notices .subnav .loadingwrapper {padding: 10px;}
+.notices .subnav img {max-width: 32px;}
+#header .notices .subnav.subnav ul {list-style:none; padding: 0; margin: 0;}
+.notices .subnav li a {white-space:nowrap;}
+.notices .subnav:hover, .notices .subnav:hover li a { background-color: #FBFBFB;}
+.notices .subnav li:hover a { background-color: white;}
 #updatesnav .ui-icon {float: left; position:relative; top: -2px;}
