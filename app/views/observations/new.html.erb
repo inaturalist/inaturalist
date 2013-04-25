@@ -131,13 +131,7 @@
         <span class="inter">
           <%#= link_to "Prefs", edit_user_path(current_user), :class => "small", :target => "_blank" %>
           <%= helptip "(beta)" do %>
-            We're still testing this so Facebook sharing will only work if
-            you're a site admin or a test user, and Twitter sharing might
-            require you to sign in with your Twitter account, even if you've
-            already linked your account. The way this *will* work is that your
-            observations will get shared on social networks if you leave these
-            boxes checked. You can change your defaults by
-            <%= link_to "editing your account", edit_user_path(current_user), :target => "_blank" %>.
+            <%= t :your_observation_will_get_shared_html, :url => edit_user_path(current_user) %>
           <% end -%>
         </span>
       </div>
