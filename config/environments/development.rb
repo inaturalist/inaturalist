@@ -23,7 +23,7 @@ Inaturalist::Application.configure do
   # Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
   # config.action_mailer.delivery_method = :smtp  
 
-  # # Uncomment these to test caching
+  # Uncomment these to test caching
   # config.action_controller.perform_caching             = true
   # config.action_view.cache_template_loading            = true
   # config.cache_classes = true
