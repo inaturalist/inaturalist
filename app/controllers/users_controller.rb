@@ -212,8 +212,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { counts_for_users }
       format.json do
-        @users.each_with_index do |user, i|
-          @users[i].html = view_context.render_in_format(:html, :partial => "users/chooser", :object => user).gsub(/\n/, '')
+        haml_pretty do
+          @users.each_with_index do |user, i|
+            @users[i].html = view_context.render_in_format(:html, :partial => "users/chooser", :object => user).gsub(/\n/, '')
+          end
         end
         render :json => @users.to_json(User.default_json_options.merge(:methods => [:html]))
       end

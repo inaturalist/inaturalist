@@ -49,4 +49,12 @@ module Ambidextrous
   def is_mobile_app?
     is_android_app? || is_iphone_app?
   end
+
+  # haml agreesively removes whitespace in ugly mode. This forces it to look the way you meant it to look
+  def haml_pretty(&block)
+    haml_ugly_was = Haml::Template.options[:ugly]
+    Haml::Template.options[:ugly] = false
+    yield
+    Haml::Template.options[:ugly] = haml_ugly_was
+  end
 end
