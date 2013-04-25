@@ -7,6 +7,7 @@ class Message < ActiveRecord::Base
 
   validates_presence_of :user, :from_user_id, :to_user_id
   validate :validate_to_not_from
+  validates :body, :presence => true
   before_create :set_read_at, :set_subject_for_reply
   after_save :set_thread_id
   after_create :deliver_email

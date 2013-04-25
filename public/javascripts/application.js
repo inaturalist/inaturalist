@@ -294,7 +294,7 @@ $(document).ready(function() {
       html = '<div class="dialog">'+html+'</div>'
       $(html).dialog({
         modal: true, 
-        title: 'Preview',
+        title: I18n.t('preview'),
         width: $(window).width() * 0.7
       })
     })

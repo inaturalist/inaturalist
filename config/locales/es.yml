@@ -51,6 +51,9 @@ es:
       flag: 
         flag: Marca
         reason: Razón
+      message:
+        subject: Asunto
+        body: Texto
       place: 
         latitude: Latitud
         longitude: Longitud
@@ -852,6 +855,7 @@ es:
   import_photos: "Importar fotos"
   importing: Importando...
   in: en
+  inbox: buzón
   in_order_to_login_and_using_site_visit_url: "Con el fin de ingresar y comenzar a utilizar el sitio debe visitar esta url para activar su cuenta"
   in_the_past: "en el pasado"
   in_the_past_week: "durante la semana pasada"
@@ -1053,6 +1057,7 @@ es:
   new_journal_posts: "Nuevo artículo en el diario"
   new_list: "Lista nueva"
   new_members: "Nuevos miembros..."
+  new_message: Nuevo mensaje
   new_observation_field: "Nuevo campo de observación"
   new_observation_rules: "Nuevas reglas de observación"
   new_observations: "Nuevas observaciones..."
@@ -1087,6 +1092,7 @@ es:
   no_matching_species: "No hay especies que concuerden"
   no_matching_users: "No hay usuarios que concuerden"
   no_members_yet: "No hay miembros todavía"
+  no_messages_yet: Ningún mensaje aún
   no_more_mail_from_site: "¿No desea recibir más correos del sitio de %{site_name}? Edita tu configuración de Correo en"
   no_more_updates: "¡No hay más actualizaciones!"
   no_nearby_observations: "No hay observaciones cercanas."
@@ -1112,6 +1118,7 @@ es:
     Usted puede empezar a añadir especies a la lista directamente, o si se
     trata de una lista de la vida, automáticamente se actualizará con las
     especies cuando se <a href="%{url}" class="nobr">agregan observaciones</a>.
+  no_subject_parens: "(No tema)"
   no_summary_has_been_set: "No se ha hecho un resumen"
   no_taxa: "No hay taxones"
   no_taxa_listed: "No hay taxones enlistados"
@@ -1469,6 +1476,7 @@ es:
   send_invites_to: "Enviar invitaciones a"
   send_the_invites: "Enviar las invitaciones"
   sending: Enviando...
+  sent: Enviado
   separate_values_with_a_pipe: "Valores separados por barras, por ejemplo \"1-5|6-10|muchos\" o \"sí|no|tal vez\""
   september: Septiembre
   set_license: "Fijar licencia"
@@ -1532,6 +1540,7 @@ es:
   start_one_now: "¡Comience una ahora!"
   start_typing_field_name: "Comience a digitar el nombre del campo…"
   start_typing_place_name: "Comience a digitar el nombre del lugar…"
+  start_typing_someones_name: "Comience a digitar el nombre de alguien…"
   states: Estados
   stats: Estadísticas
   stats_title: "Estadísticas del sitio"
@@ -1542,6 +1551,7 @@ es:
   stop_following_user: "Dejar de seguir a %{user}"
   stop_updating_position: "Dejar de actualizar posición"
   stuff_just_added: "Lo que usted acaba de agregar..."
+  subject: Asunto
   submit: Enviar
   submit_comment: "Enviar comentario"
   submitted: Enviado
@@ -1648,6 +1658,7 @@ es:
       short: "%d/%m/%Y"
     pm: pm
   titled_favorites_and_the_most_recent_additions: "titulados \"Favoritos\" y las adiciones más recientes aparecerán en este espacio."
+  to: a
   to_add_comments: "para agregar comentarios."
   to_add_identifications: "a agregar identificaciones."
   to_add_ids: "para agregar identificaciones"

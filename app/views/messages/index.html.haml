@@ -1,5 +1,5 @@
 = content_for :title do
-  Messages
+  =t :messages
 = content_for :extracss do
   :css
     td.subject {width:100%;}
@@ -7,15 +7,15 @@
     .unread td {background-color: lightyellow;}
     .tools {position:relative; z-index: 1;}
 .column.prepend-4.span-16.append-4
-  %h2 Messages
+  %h2=t :messages
 
   .tools.right
-    = link_to "New message", new_message_path
+    = link_to t(:new_message), new_message_path
   .tabs
     %ul
       - for box in Message::BOXES
         %li
-          = link_to box.capitalize, @box == box ? "##{box}" : {:box => box}, :title => box
+          = link_to t(box).capitalize, @box == box ? "##{box}" : {:box => box}, :title => box
     %div{:id => @box}
       = render 'messages'
 

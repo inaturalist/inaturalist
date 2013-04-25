@@ -4,7 +4,7 @@
   %tr
     %td.nobr.from{:valign => "top"}
       %p
-        = link_to user_image(@message.from_user, :size => "thumb", :border => 0), @message.from_user
+        = link_to user_image(@message.from_user, :size => "thumb", :border => 0), person_url(@message.from_user)
     %td.body= formatted_user_text(@message.body)
 
 = link_to t(:reply).capitalize, message_url(@message)
