@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   preference :project_journal_post_email_notification, :boolean, :default => true
   preference :comment_email_notification, :boolean, :default => true
   preference :identification_email_notification, :boolean, :default => true
+  preference :message_email_notification, :boolean, :default => true
   preference :no_email, :boolean, :default => false
   preference :project_invitation_email_notification, :boolean, :default => true
   preference :lists_by_login_sort, :string, :default => "id"
@@ -38,7 +39,9 @@ class User < ActiveRecord::Base
   preference :observations_view, :string
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
-  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification project_journal_post_email_notification)
+  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 
+    message_email_notification project_invitation_email_notification 
+    project_journal_post_email_notification)
   
   belongs_to :life_list, :dependent => :destroy
   has_many  :provider_authorizations, :dependent => :delete_all

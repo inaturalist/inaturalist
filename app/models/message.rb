@@ -9,6 +9,7 @@ class Message < ActiveRecord::Base
   validate :validate_to_not_from
   before_create :set_read_at, :set_subject_for_reply
   after_save :set_thread_id
+  after_create :deliver_email
   
   scope :inbox, where("user_id = to_user_id") #.select("DISTINCT ON (thread_id) messages.*")
   scope :sent, where("user_id = from_user_id") #.select("DISTINCT ON (thread_id) messages.*")
@@ -19,6 +20,7 @@ class Message < ActiveRecord::Base
   BOXES = [INBOX, SENT]
 
   attr_accessor :html
+  attr_accessor :skip_email
 
   def to_s
     "<Message #{id} user:#{user_id} from:#{from_user_id} to:#{to_user_id} subject:#{subject.to_s[0..10]}>"
@@ -60,5 +62,12 @@ class Message < ActiveRecord::Base
     if to_user_id == from_user_id
       errors.add(:base, "You can't send a message to yourself")
     end
+  end
+
+  def deliver_email
+    return true if user_id == from_user_id
+    return true if skip_email
+    Emailer.delay(:priority => USER_INTEGRITY_PRIORITY).new_message(id)
+    true
   end
 end

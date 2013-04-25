@@ -1,0 +1,25 @@
+= content_for :title do
+  Messages
+= content_for :extracss do
+  :css
+    td.subject {width:100%;}
+    .unread .subject {font-weight:bold;}
+    .unread td {background-color: lightyellow;}
+    .tools {position:relative; z-index: 1;}
+.column.prepend-4.span-16.append-4
+  %h2 Messages
+
+  .tools.right
+    = link_to "New message", new_message_path
+  .tabs
+    %ul
+      - for box in Message::BOXES
+        %li
+          = link_to box.capitalize, @box == box ? "##{box}" : {:box => box}, :title => box
+    %div{:id => @box}
+      = render 'messages'
+
+  :javascript
+    $('.tabs').tabs({
+      ajaxOptions: {data: "partial=true"}
+    })

@@ -1,0 +1,34 @@
+= content_for :title do
+  = @message.subject
+= content_for :extracss do
+  :css
+    tr.reply td:first-child {vertical-align: top; padding-top:1em;}
+
+.column.prepend-4.span-16.append-4
+  #pageheader
+    .breadcrumbs
+      = link_to "Back to #{@box}", messages_path(:box => @box, :anchor => @box), :class => "back crumb"
+    %h2= @thread_message.subject
+
+  %table
+    = render :partial => "row", :collection => @messages
+    - if @thread_message.user_id == current_user.id && !@messages.detect{|m| m.from_user_id != current_user.id}
+      %tr
+        %td.nobr.from
+          = link_to user_image(@thread_message.to_user, :size => "thumb"), @thread_message.to_user
+          = link_to_user @thread_message.to_user
+        %td.body
+          .nocontent.meta
+            No reply yet
+        %td.nobr.meta.date
+    %tr.reply
+      %td
+        %h3 Reply
+      %td{:colspan => 2}
+        = form_for Message.new(:to_user => @reply_to, :thread_id => @thread_message.thread_id), :builder => DefaultFormBuilder do |f|
+          = f.hidden_field :thread_id
+          = f.hidden_field :to_user_id
+          = f.text_area :body, :label => false
+          = f.submit "Send", :class => "default button", "data-loading-click" => "Sending..."
+          = link_to t(:preview), messages_path, :class => 'button previewbutton commentpreviewbutton'
+          .inter.loading{:style => "display:none;"}=t :loading
