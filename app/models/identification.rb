@@ -28,6 +28,7 @@ class Identification < ActiveRecord::Base
   
   attr_accessor :skip_observation
   attr_accessor :html
+  attr_accessor :captive
   
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
     :queue_if => lambda {|ident| ident.taxon_change_id.blank?}

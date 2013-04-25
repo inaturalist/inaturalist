@@ -467,6 +467,9 @@ class ObservationsController < ApplicationController
       limit(10).
       order("observation_field_values.id DESC")
 
+    if @observation.quality_metrics.detect{|qm| qm.user_id == @observation.user_id && qm.metric == QualityMetric::WILD && !qm.agree?}
+      @observation.captive = true
+    end
     if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
       return render(:partial => params[:partial], :object => @observation,
         :layout => false)

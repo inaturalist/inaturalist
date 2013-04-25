@@ -42,6 +42,8 @@ class Observation < ActiveRecord::Base
 
   attr_accessor :twitter_sharing
   attr_accessor :facebook_sharing
+
+  attr_accessor :captive
   
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
   
@@ -250,7 +252,8 @@ class Observation < ActiveRecord::Base
              :update_out_of_range_later,
              :update_default_license,
              :update_all_licenses,
-             :update_taxon_counter_caches
+             :update_taxon_counter_caches,
+             :update_quality_metrics
   after_create :set_uri,
                :queue_for_sharing
   before_destroy :keep_old_taxon_id
@@ -1355,6 +1358,15 @@ class Observation < ActiveRecord::Base
     taxon_ids = [taxon_id_was, taxon_id].compact.uniq
     unless taxon_ids.blank?
       Taxon.delay(:priority => INTEGRITY_PRIORITY).update_observation_counts(:taxon_ids => taxon_ids)
+    end
+    true
+  end
+
+  def update_quality_metrics
+    if captive == "1"
+      QualityMetric.vote(user, self, QualityMetric::WILD, false)
+    elsif captive == "0" && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
+      qm.update_attributes(:agree => true)
     end
     true
   end

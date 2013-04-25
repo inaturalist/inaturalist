@@ -1261,6 +1261,7 @@ es:
   order: Orden
   order_by: "Ordenar por"
   original: original
+  organism_appears_captive_cultivated: Organismo parece cautivo / cultivado
   other_animals: "otros animales"
   other_annimals: "Otros animales"
   out_of_range: "Fuera del rango"
@@ -1955,6 +1956,14 @@ es:
             de alguien merecen ser marcados y podrán ser borrados, sin embargo evidencia 
             de contaminación o disturbios pueden ser interesantes y probablemente no 
             sean borrados.
+    observations:
+      captive_help_html: |
+        Fue el organismo que observó <strong>cultivado</strong> o en <strong>cautividad</strong>? Por ejemplo,
+        estaba en <strong>un jardín, zoológico, el acuario</strong> o alguna otra situación en
+        la que sólo estaba presente <strong>porque los seres humanos destinados a
+        estar allí</strong>? Todas las observaciones de los seres vivos son
+        bienvenidos, pero nos gustaría saber cuando las cosas no son salvajes
+        / naturalizado.
     photos: 
       inviter: 
         automatically_add_to_project: "Añadir automáticamente al proyecto"
@@ -1988,6 +1997,7 @@ es:
   wait_file_generation: "Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes."
   want_to_add_one: "¿Desea agregar una?"
   want_to_show_off_some_of_your_favorite_taxa: "¿Desea presumir algunos de sus taxones favoritos aquí?"
+  was_it_captive_cultivated?: "¿Fue cautiva / cultivado?"
   we_also_support: |
       Tambien tenemos conexión con <a href="http://flickr.com">Flickr</a>,
       <a href="http://picasaweb.google.com">Picasa</a>, y

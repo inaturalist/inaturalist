@@ -70,7 +70,7 @@ en:
   add_a_new_observation_to_id_please!: Add a New Observation to ID Please!
   add_a_place_raquo: "Add a place &raquo:"
   add_a_single_observation: Add a single observation.
-  add_an_identification: Add an Identification
+  add_an_identification: Add an identification
   add_an_observation: Add an observation
   add_an_observation?: Add an observation?
   add_an_observation_of: "Add an observation of %{taxon}"
@@ -1007,6 +1007,7 @@ en:
   order: Order
   order_by: Order by
   original: original
+  organism_appears_captive_cultivated: Organism appears captive / cultivated
   other_animals: other animals
   other_annimals: Other Animals
   out_of_range: Out of range
@@ -1494,6 +1495,7 @@ en:
   wait_file_generation:  Please hold on while the file is generated.  It can take a couple minutes for large lists.
   want_to_add_one: Want to add one?
   want_to_show_off_some_of_your_favorite_taxa: Want to show off some of your favorite taxa here?
+  was_it_captive_cultivated?: "Was it captive / cultivated?"
   we_can_only_understand_csv_in: We can only understand CSV in the following format
   we_care_privacy: We Care About Your Privacy!
   we_couldnt_find_a_user: We couldn't find a user with that email address.
@@ -1830,6 +1832,14 @@ en:
                 observations, the species will not be added to this list if
                 %{site_name} does not recognize the name you used. We recommend
                 trying alternative names that we might recognize.
+    observations:
+      captive_help_html: |
+        Was the organism you observed <strong>cultivated</strong> or
+        <strong>captive</strong>? For example, was it in a <strong>garden,
+        zoo, aquarium</strong> or some other situation in which it was
+        only present <strong>because human beings intended it to be there</strong>? All
+        observations of living things are welcome, but we'd like to know
+        when things are not wild / naturalized.
     photos:
       inviter:
         automatically_add_to_project: Automatically add to project

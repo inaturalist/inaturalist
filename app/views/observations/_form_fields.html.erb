@@ -22,8 +22,16 @@
         </div>
       </div>
       
-      <div class="field">
+      <!-- <div class="field">
         <%= link_to_function t(:browse_all_species), "$('#taxonchooser').dialog('open')" %>
+      </div> -->
+
+      <div class="field">
+        <%= o.check_box :captive %>
+        <%= o.label :captive, t(:was_it_captive_cultivated?) %>
+        <% helptip_for "captive" do %>
+            <%=t 'views.observations.captive_help_html' %>
+        <% end -%>
       </div>
       
       <div class="field<%= ' error' if observation.errors[:observed_on] && !observation.errors[:observed_on].empty? %>">
