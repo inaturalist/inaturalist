@@ -17,7 +17,8 @@ class Identification < ActiveRecord::Base
                 :expire_caches
                 
   after_save    :update_obs_stats, 
-                :update_curator_identification
+                :update_curator_identification,
+                :update_quality_metrics
                 
   after_destroy :set_last_identification_as_current,
                 :revisit_curator_identification, 
@@ -204,6 +205,15 @@ class Identification < ActiveRecord::Base
     return false if identification.taxon_id.nil?
     return true if self.taxon_id == identification.taxon_id
     self.taxon.in_taxon? identification.taxon
+  end
+
+  def update_quality_metrics
+    if captive == "1"
+      QualityMetric.vote(user, observation, QualityMetric::WILD, false)
+    elsif captive == "0" && (qm = observation.quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
+      qm.update_attributes(:agree => true)
+    end
+    true
   end
   
   # Static ##################################################################
