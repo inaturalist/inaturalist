@@ -1,4 +1,11 @@
 Inaturalist::Application.routes.draw do
+  resources :messages, :except => [:edit, :update] do
+    collection do
+      get :count
+      get :new_messages
+    end
+  end
+
   match '/oauth/assertion_token' => 'provider_oauth#assertion', :via => :post
   match '/oauth/bounce' => 'provider_oauth#bounce', :as => "oauth_bounce"
   match '/oauth/bounce_back' => 'provider_oauth#bounce_back', :as => "oauth_bounce_back"

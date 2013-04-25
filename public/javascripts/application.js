@@ -263,6 +263,18 @@ $(document).ready(function() {
     }
     return false
   })
+
+  $('#headermessagesnotice').click(function() {
+    toggleHeaderSubnav(this)
+    if (!$('#messagessubnav').data('loaded')) {
+      $('#messagessubnav').load('/messages/new_messages', function(data) {
+        $(this).html(data)
+        $('#messagessubnav').data('loaded', true)
+        setMessagesCount(0, {skipAnimation: true})
+      })
+    }
+    return false
+  })
   
   $('.commentpreviewbutton').click(function() {
     var button = this
@@ -804,6 +816,31 @@ function setUpdatesCount(count, options) {
 function getUpdatesCount() {
   $.get('/users/updates_count', function(data) {
     setUpdatesCount(data.count)
+  })
+}
+
+function setMessagesCount(count, options) {
+  options = options || {}
+  if (count > 0) {
+    if (options.skipAnimation) {
+      $('#header .messages').addClass('alert')
+    } else {
+      $('#header .messages').switchClass('', 'alert')
+    }
+    $('#header .messages .count').html(count)
+  } else {
+    if (options.skipAnimation) {
+      $('#header .messages').removeClass('alert')
+    } else {
+      $('#header .messages').switchClass('alert', '')
+    }
+    $('#header .messages .count').html(0)
+  }
+}
+
+function getMessagesCount() {
+  $.get('/messages/count', function(data) {
+    setMessagesCount(data.count)
   })
 }
 

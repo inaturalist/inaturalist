@@ -226,6 +226,7 @@ es:
   associated_taxa: Taxones asociados
   at: en
   at_any_time_change: "en cualquier lugar (<span class=\"button\">change</span>)"
+  at_time: "en %{time}"
   atom: Atom
   authorize_permissions_from_provider: "Autorizar permisos de %{provider}"
   august: Agosto
@@ -1235,6 +1236,7 @@ es:
   october: Octubre
   of_it_and_its_descendants: "de él y sus descendientes"
   on_: el
+  on_date: "en %{date}"
   on_edit_date: "el %{editdate}"
   on_submit_date: "el %{submitdate}"
   on_your_life_list: "en su lista de vida"
@@ -1386,6 +1388,7 @@ es:
   remove_your_existing_id?: "Eliminar la identificación existente?"
   removing: Eliminando...
   replace_parentesis: (reemplazar)
+  reply: Responda
   reptiles: reptiles
   request_id_help: "Solicitar ayuda para identificar"
   request_password: "Solicitar contraseña"
@@ -1750,6 +1753,7 @@ es:
   view_user_observation: "Ver observaciones de %{user}"
   view_user_observations: "Ver observaciones de %{user}"
   view_x_from_x: "Ver %{day_observations} de %{observed_on}"
+  view_your_inbox: Ver tu buzón
   view_your_life_lists: "Ver su lista de vida"
   view_your_observations: "Ver sus observaciones"
   views:

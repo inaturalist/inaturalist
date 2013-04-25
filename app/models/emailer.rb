@@ -47,4 +47,14 @@ class Emailer < ActionMailer::Base
       :subject => "#{SUBJECT_PREFIX} New updates, #{Date.today}"
     )
   end
+
+  def new_message(message)
+    @message = message
+    @message = Message.find_by_id(message) unless message.is_a?(Message)
+    @user = @message.to_user
+    return if @user.email.blank?
+    return unless @user.prefers_message_email_notification
+    return if @user.prefers_no_email
+    mail(:to => @user.email, :subject => "#{SUBJECT_PREFIX} #{@message.subject}")
+  end
 end

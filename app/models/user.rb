@@ -19,10 +19,12 @@ class User < ActiveRecord::Base
                   :make_photo_licenses_same, 
                   :preferred_photo_license, 
                   :preferred_observation_license
+  attr_accessor :html
   
   preference :project_journal_post_email_notification, :boolean, :default => true
   preference :comment_email_notification, :boolean, :default => true
   preference :identification_email_notification, :boolean, :default => true
+  preference :message_email_notification, :boolean, :default => true
   preference :no_email, :boolean, :default => false
   preference :project_invitation_email_notification, :boolean, :default => true
   preference :lists_by_login_sort, :string, :default => "id"
@@ -37,7 +39,9 @@ class User < ActiveRecord::Base
   preference :observations_view, :string
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
-  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification project_journal_post_email_notification)
+  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 
+    message_email_notification project_invitation_email_notification 
+    project_journal_post_email_notification)
   
   belongs_to :life_list, :dependent => :destroy
   has_many  :provider_authorizations, :dependent => :delete_all
@@ -69,6 +73,7 @@ class User < ActiveRecord::Base
   has_many :quality_metrics, :dependent => :destroy
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify
+  has_many :messages, :dependent => :destroy
   
   has_attached_file :icon, 
     :styles => { :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },

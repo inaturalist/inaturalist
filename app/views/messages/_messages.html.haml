@@ -1,0 +1,22 @@
+- fromto = @box == Message::INBOX ? "from" : "to"
+- if @messages.blank?
+  .nocontent.meta
+    No messages yet
+- else
+  %table
+    %thead
+      %tr
+        %th= fromto.capitalize
+        %th Subject
+        %th Date
+    %tbody
+      - for message in @messages
+        %tr{:class => message.read_at ? nil : 'unread'}
+          %td.nobr
+            = user_image message.send("#{fromto}_user")
+            = link_to_user message.send("#{fromto}_user")
+          %td.subject
+            = link_to message.subject.blank? ? "(No subject)" : message.subject, message_path(message, :box => @box)
+          %td.meta.nobr
+            = message.created_at.to_s(:short)
+  = will_paginate @messages, :params => {:box => @box, :anchor => @box, :partial => nil}

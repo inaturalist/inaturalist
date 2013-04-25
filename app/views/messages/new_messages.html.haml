@@ -1,0 +1,18 @@
+%ul
+  - if @messages.blank?
+    %li.meta.nobr{:style => "padding:10px;"} No new messages.
+  - for message in @messages
+    %li
+      %a{:href => url_for(message)}
+        = user_image(message.from_user, :style => "vertical-align:top", :size => 'thumb')
+        %span.inlineblock
+          %span.small.meta
+            = t(:from)
+            = message.from_user.login
+            - date = compact_date(message.created_at)
+            = message.created_at.today? ? t(:at_time, :time => date) : t(:on_date, :date => date)
+          %br/
+          = message.subject
+  %li
+    %center
+      = link_to "View your inbox", messages_url, :class => 'readmore'

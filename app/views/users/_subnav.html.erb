@@ -42,5 +42,10 @@
   <li>
     <%= friend_button current_user, user, {:id => 'follow_button'} %>
   </li>
+  <% if is_admin? -%>
+    <li class="admin">
+      <%= link_to "<span class='inlineblock ui-icon ui-icon-mail-closed'></span> Message".html_safe, new_message_path(:to => user.login), :class => "message_link" %>
+    </li>
+  <% end -%>
   <% end %>
 </ul>
