@@ -336,6 +336,11 @@ form .field .description { margin-bottom: 0.5em;}
   background: url(/images/silk/book-gray.png) 7px 50% no-repeat;
 }
 #header .navtabs .journal_link:hover { background: url(/images/silk/book-light.png) 7px 50% no-repeat; }
+#header .navtabs .messages_link {
+  padding-left: 20px;
+  background: url(/images/silk/email-gray.png) 7px 50% no-repeat;
+}
+#header .navtabs .messages_link:hover { background: url(/images/silk/email.png) 7px 50% no-repeat; }
 #header .formwrapper { padding: 10px; }
 #header form { min-width: 148px; }
 

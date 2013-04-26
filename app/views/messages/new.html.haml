@@ -26,7 +26,7 @@
     .buttonrow
       = f.submit t(:send).capitalize, :class => "default button", "data-loading-click" => "Sending..."
       = link_to t(:preview), @message.new_record? ? messages_path : message_path(@message), :class => 'button previewbutton commentpreviewbutton'
-      .inter.loading{:style => "display:none;"}=t :loading
+      .inter.meta.loading{:style => "display:none;"}=t :loading
       = link_to t(:cancel), :back, :class => "button"
 
 :javascript

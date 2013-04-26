@@ -112,19 +112,17 @@
         <strong class="inlineblock"><%= link_to current_user.login, main_app.person_path(:id => current_user.login) %></strong>
       </span>
     </li>
-    <% if is_admin? -%>
-      <li id="messagesnav" class="subnavwrapper notices">
-        <div class="clear subnavtab">
-          <%= link_to "<span class='inlineblock ui-icon ui-icon-mail-closed'></span><span class='count'>0</span>".html_safe, 
-            home_path, 
-            :id => "headermessagesnotice",
-            :class => "messages headernotice" %>
-        </div>
-        <div id="messagessubnav" class="subnav meta">
-          <div class="loadingwrapper"><%= loading %></div>
-        </div>
-      </li>
-    <% end -%>
+    <li id="messagesnav" class="subnavwrapper notices">
+      <div class="clear subnavtab">
+        <%= link_to "<span class='inlineblock ui-icon ui-icon-mail-closed'></span><span class='count'>0</span>".html_safe, 
+          home_path, 
+          :id => "headermessagesnotice",
+          :class => "messages headernotice" %>
+      </div>
+      <div id="messagessubnav" class="subnav meta">
+        <div class="loadingwrapper"><%= loading %></div>
+      </div>
+    </li>
     <li id="updatesnav" class="subnavwrapper notices">
       <div class="clear subnavtab">
         <%= link_to "<span class='ui-icon ui-icon-comment'></span><span class='count'>0</span>".html_safe, 
@@ -154,6 +152,9 @@
         </li>
         <li><%= link_to t(:lists), lists_by_login_path(current_user.login), :class => 'lists_link' %></li>
         <li><%= link_to t(:journal), journal_by_login_path(current_user.login), :class => 'journal_link' %></li>
+        <li>
+          <%= link_to t(:messages).capitalize, messages_url, :class => "messages_link" %>
+        </li>
         <li><%= link_to t(:profile), person_path(current_user), :class => 'profile_link' %></li>
         <li><%= link_to t(:account), edit_person_path(current_user), :class => 'profile_link' %></li>
         <li><%= link_to t(:sign_out), logout_path %></li>

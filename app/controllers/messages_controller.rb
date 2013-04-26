@@ -91,8 +91,8 @@ class MessagesController < ApplicationController
   end
 
   def new_messages
-    @messages = current_user.messages.inbox.includes(:from_user).unread.order("id desc").limit(10)
-    @messages = current_user.messages.inbox.includes(:from_user).order("id desc").limit(10) if @messages.blank?
+    @messages = current_user.messages.inbox.includes(:from_user).unread.order("id desc").limit(200)
+    @messages = current_user.messages.inbox.includes(:from_user).order("id desc").limit(7) if @messages.blank?
     session[:messages_count] = 0
     render :layout => false
   end
