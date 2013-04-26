@@ -265,6 +265,20 @@
 
 <% content_for(:extrahead) do %>
   <link rel="alternate" type="application/atom+xml" title=<%= t(:recent_atom_observations_by, :login => @login ) %>  href="<%= url_for({:controller => 'observations', :action => 'by_login', :login => @login, :format => 'atom'}) %>" />
+  <meta property="og:title" content="<%=t :observations_by_user, :user => @login %>">
+  <meta property="og:url" content="<%= uri_join CONFIG.site_url, request.fullpath %>"/>
+  <%-
+    desc = t(:users_latest_observations_on_site, :user => @login, :site => SITE_NAME)
+  -%>
+  <meta property="og:description" content="<%= desc %>">
+  <% if @observations && (photo_obs = @observations.detect{|o| o.photos_count > 0}) -%>
+    <% if photo = photo_obs.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/} -%>
+      <meta property="og:image" content="<%= photo.medium_url %>"/> 
+    <% end -%>
+  <% end -%>
+  <% if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
+    <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
+  <% end -%>
 <% end %>
 
 <% unless @proj_obs_errors_obs.blank? -%>

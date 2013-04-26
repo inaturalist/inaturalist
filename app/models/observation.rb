@@ -1693,7 +1693,7 @@ class Observation < ActiveRecord::Base
         # observation aggregation for twitter happens in share_on_twitter.
         # fb aggregation happens on their end via open graph aggregations.
         unless Delayed::Job.exists?(["handler LIKE ?", "%user_id: #{u.id}\n%share_on_#{provider_name}%"])
-          self.delay(:priority => USER_INTEGRITY_PRIORITY, :run_at => 1.minute.from_now).send("share_on_#{provider_name}")
+          self.delay(:priority => USER_INTEGRITY_PRIORITY, :run_at => 10.minute.from_now).send("share_on_#{provider_name}")
         end
       end
     end

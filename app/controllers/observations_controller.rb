@@ -1002,6 +1002,7 @@ class ObservationsController < ApplicationController
     
     respond_to do |format|
       format.html do
+        @observer_provider_authorizations = @selected_user.provider_authorizations
         if logged_in? && @selected_user.id == current_user.id
           @project_users = current_user.project_users.all(:include => :project, :order => "projects.title")
           if @proj_obs_errors = Rails.cache.read("proj_obs_errors_#{current_user.id}") 
