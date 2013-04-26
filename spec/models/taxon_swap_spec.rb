@@ -35,6 +35,15 @@ describe TaxonSwap, "commit" do
     @output_taxon.conservation_status.should eq(Taxon::IUCN_ENDANGERED)
   end
 
+  it "should duplicate conservation statuses" do
+    cs = ConservationStatus.make!(:taxon => @input_taxon)
+    @output_taxon.conservation_statuses.should be_blank
+    @swap.commit
+    @output_taxon.reload
+    @output_taxon.conservation_statuses.first.status.should eq(cs.status)
+    @output_taxon.conservation_statuses.first.authority.should eq(cs.authority)
+  end
+
   it "should duplicate taxon names" do
     name = "Bunny foo foo"
     @input_taxon.taxon_names.create(:name => name, :lexicon => TaxonName::ENGLISH)
@@ -149,7 +158,7 @@ describe TaxonSwap, "commit_records" do
     tr = TaxonRange.make!(:taxon => @input_taxon)
     cl = CheckList.make!
     lt = ListedTaxon.make!(:list => cl, :taxon => @input_taxon, :taxon_range => tr)
-    @swap.commit_records
+    without_delay { @swap.commit_records }
     lt.reload
     lt.taxon.should eq(@output_taxon)
   end
@@ -225,7 +234,7 @@ describe TaxonSwap, "commit_records" do
     lt = ListedTaxon.make!(:taxon => @input_taxon, :list => l)
     lt.update_attributes(:user => nil)
     lt.user.should be_blank
-    @swap.commit_records
+    without_delay { @swap.commit_records }
     lt.reload
     @output_taxon.reload
     lt.taxon_id.should eq(@output_taxon.id)

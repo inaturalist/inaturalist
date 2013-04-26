@@ -55,6 +55,16 @@ class TaxonSwap < TaxonChange
     output_taxon.conservation_status = input_taxon.conservation_status
     output_taxon.conservation_status_source_id = input_taxon.conservation_status_source_id
     output_taxon.conservation_status_source_identifier = input_taxon.conservation_status_source_identifier
+
+    # duplicate conservation_statuses
+    input_taxon.conservation_statuses.each do |cs|
+      new_cs = cs.dup
+      new_cs.taxon_id = output_taxon.id
+      unless new_cs.save
+        Rails.logger.error "[ERROR #{Time.now}] TaxonChange #{id} failed to duplicate #{cs}: " + 
+          new_cs.errors.full_messages.to_sentence
+      end
+    end
     
     # duplicate taxon_names
     input_taxon.taxon_names.each do |taxon_name|

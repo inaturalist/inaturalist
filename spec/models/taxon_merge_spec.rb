@@ -66,6 +66,14 @@ describe TaxonMerge, "commit" do
     @output_taxon.colors.count.should eq(1)
   end
 
+  it "should not duplicate conservation_statuses" do
+    cs1 = ConservationStatus.make!(:taxon => @input_taxon1, :authority => "foo")
+    cs2 = ConservationStatus.make!(:taxon => @input_taxon2, :authority => "bar")
+    @merge.commit
+    @output_taxon.reload
+    @output_taxon.conservation_statuses.should be_blank
+  end
+
   it "should generate updates for observers of the old taxon"
   it "should generate updates for identifiers of the old taxon"
   it "should generate updates for listers of the old taxon"
