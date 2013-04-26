@@ -81,7 +81,7 @@ class Place < ActiveRecord::Base
     3 => 'Nearby Building',
     4 => 'Street',
     5 => 'Intersection',
-    6 => 'Street',
+    #6 => 'Street',
     7 => 'Town',
     8 => 'State',
     9 => 'County',
@@ -118,7 +118,8 @@ class Place < ActiveRecord::Base
   PLACE_TYPES = GEO_PLANET_PLACE_TYPES.merge(INAT_PLACE_TYPES).delete_if do |k,v|
     Place::REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(k)
   end
-  PLACE_TYPE_CODES = PLACE_TYPES.invert
+
+  PLACE_TYPE_CODES = {}
   PLACE_TYPES.each do |code, type|
     PLACE_TYPE_CODES[type.downcase] = code
   end

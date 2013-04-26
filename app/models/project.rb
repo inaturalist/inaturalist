@@ -58,7 +58,7 @@ class Project < ActiveRecord::Base
     :default_url => "/attachment_defaults/general/:style.png"
   
   CONTEST_TYPE = 'contest'
-  OBS_CONTEST_TYPE = 'observation contest'
+  OBS_CONTEST_TYPE = 'observation_contest'
   ASSESSMENT_TYPE = 'assessment'
   PROJECT_TYPES = [CONTEST_TYPE, OBS_CONTEST_TYPE , ASSESSMENT_TYPE]
   RESERVED_TITLES = ProjectsController.action_methods

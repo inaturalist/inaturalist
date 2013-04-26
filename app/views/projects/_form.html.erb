@@ -41,40 +41,33 @@
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
   
   <div class="clear">
-    <%= f.select :project_type, Project::PROJECT_TYPES, {:include_blank => "normal"}, 
+    <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type}", :default => type).downcase, type]}, {:include_blank => t(:normal)},
       :description => t(:contest_projects_description) %>
     <%= f.check_box :prefers_count_from_list, 
-        :label => "Show total listed taxa", 
+        :label => t(:show_total_listed_taxa),
         :label_after => true,
-        :description => 
-          "Show the total number of taxa on the project's list alongside " + 
-          "the number of taxa observed." %>
+        :description => t(:show_the_total_number_of) %>
   </div>
 
   <fieldset class="location">
-    <legend>Location</legend>
+    <legend><%= t :location %></legend>
     <p class="description">
-      If your project is about a particular place, set the coordinates by clicking the map or entering them manually.
+      <%= t :if_your_project_is %>
     </p>
     <div class="column span-7">
-      <%= f.text_field :latitude %>
-      <%= f.text_field :longitude %>
-      <%= f.select :map_type, Project::MAP_TYPES %>
+      <%= f.text_field :latitude, :label => t(:latitude) %>
+      <%= f.text_field :longitude, :label => t(:longitude)%>
+      <%= f.select :map_type, Project::MAP_TYPES.map{|type| [t("#{type}", :default => type).downcase, type]} %>
       <%= f.text_field :zoom_level %>
-      <%= f.text_field :place_id, :placeholder => "Start typing place name...", :label => "#{CONFIG.site_name} place" %>
-      <%= f.check_box :prefers_place_boundary_visible, 
-        :label => "Show place boundary on map", 
-        :label_after => true,
-        :description => 
-          "You can show the boundary of the place on your project page if " + 
-          "the place has a boundary." %>
+      <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => SITE_NAME) %>
+      <%= f.check_box :prefers_place_boundary_visible, :label_after => true, :description => t(:you_can_show_the_boundary_of) %>
       <% if @place -%>
-        <%= link_to "View place", @place, :class => "readmore" %>
+        <%= link_to t(:view_place), @place, :class => "readmore" %>
       <% end -%>
     </div>
     <div class="last column span-16">
       <div class="stacked">
-        <%= text_field_tag :map_search, "", :placeholder => "Search the map", :class => "text" %>
+        <%= text_field_tag :map_search, "", :placeholder => t(:search_the_map), :class => "text" %>
       </div>
       <div id="map"></div>
     </div>
@@ -119,15 +112,15 @@
     <%- new_rule_field = capture do %>
       <fieldset id="new_project_observation_rule">
         <%= f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
-          <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [m.to_s.humanize.gsub('?', '').downcase, m]}, 
+          <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [t("#{m}").to_s.humanize.gsub('?', '').downcase, m]},
             :include_blank => t(:choose_rule),
             :label => t(:rule_must_be) %>
           <%= pu.hidden_field :operand_type, :id => "new_operand_type" %>
           <div id="place_selector">
-            <%= pu.text_field :operand_id, :id => "new_operand_id", :placeholder => "Type place name", :label => "Choose a place" %>
+            <%= pu.text_field :operand_id, :id => "new_operand_id", :placeholder => t(:type_place_name), :label => t(:choose_a_place) %>
             <span class="description">
-              <%=t :place_must_have_a_boundary_defined %>. <%=t :not_finding_place_you_want? %>
-              <%= link_to "Make a new place", new_place_path, :class => "readmore", :target => "_blank" %>
+              <%=t :place_must_have_a_boundary_defined %> <%=t :not_finding_place_you_want? %>
+              <%= link_to t(:make_a_new_place), new_place_path, :class => "readmore", :target => "_blank" %>
             </span>
           </div>
           <div id="taxon_selector">
@@ -141,12 +134,7 @@
     <%= link_to_function t(:add_new_rule), "$(this).before('#{escape_javascript new_rule_field}'); rulify(); $(this).hide()" %>
   </fieldset>
   
-  <%= f.text_field :tracking_codes, :description => 
-    "Comma-separated list of tracking codes. Add these if you want to " + 
-    "append a tracking code when sending people to the new observation form, " + 
-    "e.g. #{root_url}observations/new?project_id=#{@project.id}&tracking_code=yourcode123. " + 
-    "You can use this to track participation from different sources. " + 
-    "You can access these codes when downloading your project's observations as CSV." %>
+  <%= f.text_field :tracking_codes, :description => t(:comma_separated_list_of_tracking_codes, :root_url => root_url, :project_id => @project.id) %>
   
   <% if current_user.is_admin? && !@project.new_record? -%>
     <fieldset id="project_assets">
@@ -190,9 +178,9 @@
   <% end -%>
 
   <fieldset>
-    <legend>Observation fields</legend>
+    <legend><%= t :observation_fields %></legend>
     <p class="description">
-      Suggest or require that contributors fill out these fields for the observations they add to your project.
+      <%= t :suggest_or_require_that %>
     </p>
 
     <ul class="project_observation_fields">
@@ -207,14 +195,14 @@
         <% end -%>
       <% end -%>
       <div class="inline buttonrow">
-        <label>Add a field</label>
+        <label><%= t :add_a_field %></label>
         <input name="observation_field" 
                class="observation_field_chooser" 
                type="text" 
-               placeholder="Start typing field name..."
+               placeholder="<%= t :start_typing_field_name %>"
                data-chooser-default-sources="<%= @observation_fields.to_json %>">
-        <%= link_to_function "Add a field", "newProjectObservationField('#{escape_javascript(new_pof_fields)}')", :class => "button addfieldbutton" %>
-        <%= link_to "Create a new field", new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
+        <%= link_to_function t(:add_a_field), "newProjectObservationField('#{escape_javascript(new_pof_fields)}')", :class => "button addfieldbutton" %>
+        <%= link_to t(:create_a_new_field), new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
       </div>
     </div>
   </fieldset>
