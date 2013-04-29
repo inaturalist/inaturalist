@@ -9,6 +9,9 @@ class Taxon < ActiveRecord::Base
   
   # Allow this taxon to be grafted to locked subtrees
   attr_accessor :skip_locks
+
+  # Skip the more onerous callbacks that happen after grafting a taxon somewhere else
+  attr_accessor :skip_after_move
   
   acts_as_flaggable
   has_ancestry
@@ -331,16 +334,15 @@ class Taxon < ActiveRecord::Base
   # Callbacks ###############################################################
   
   def handle_after_move
-    if ancestry_changed?
-      unless new_record?
-        update_listed_taxa
-        update_life_lists
-        update_obs_iconic_taxa
-        unless Delayed::Job.where("handler LIKE '%update_stats_for_observations_of%- #{id}%'").exists?
-          Observation.delay(:priority => INTEGRITY_PRIORITY).update_stats_for_observations_of(id)
-        end
-      end
-      set_iconic_taxon
+    return true unless ancestry_changed?
+    set_iconic_taxon
+    return true if new_record?
+    return true if skip_after_move
+    update_listed_taxa
+    update_life_lists
+    update_obs_iconic_taxa
+    if observations_count > 0 && !Delayed::Job.where("handler LIKE '%update_stats_for_observations_of%- #{id}%'").exists?
+      Observation.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").update_stats_for_observations_of(id)
     end
     true
   end
@@ -687,7 +689,7 @@ class Taxon < ActiveRecord::Base
     return true if ancestry.blank?
     return true if ancestry_callbacks_disabled?
     return true unless ancestry_changed?
-    Taxon.delay(:priority => INTEGRITY_PRIORITY).update_listed_taxa_for(id, ancestry_was)
+    Taxon.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").update_listed_taxa_for(id, ancestry_was)
     true
   end
   
@@ -850,7 +852,7 @@ class Taxon < ActiveRecord::Base
     end
     
     LifeList.delay(:priority => INTEGRITY_PRIORITY).update_life_lists_for_taxon(self)
-    Taxon.delay(:priority => INTEGRITY_PRIORITY).update_listed_taxa_for(self, reject.ancestry)
+    Taxon.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").update_listed_taxa_for(self, reject.ancestry)
     
     %w(flags taxon_scheme_taxa).each do |association|
       send(association, :reload => true).each do |associate|

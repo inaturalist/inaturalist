@@ -668,6 +668,23 @@ describe Taxon, "moving" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}.should_not be_blank
   end
+
+  it "should not queue a job to update descendant ancetries if skip_after_move set" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    @Calypte.update_attributes(:parent => @Hylidae, :skip_after_move => true)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}.should_not be_blank
+  end
+
+  it "should not queue a job to update observation stats if there are no observations" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    Observation.of(@Calypte).count.should eq(0)
+    @Calypte.update_attributes(:parent => @Hylidae)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}.should be_blank
+  end
   
 end
 
