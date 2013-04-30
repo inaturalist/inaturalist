@@ -301,11 +301,13 @@ class ObservationsController < ApplicationController
               }
             },
             :observation_photos => {
-              :except => [:file_processing, :file_file_size, 
-                :file_content_type, :file_file_name, :user_id, 
-                :native_realname, :mobile, :native_photo_id],
               :include => {
-                :photo => {}
+                :photo => {
+                  :methods => [:license_code, :attribution],
+                  :except => [:original_url, :file_processing, :file_file_size, 
+                    :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
+                    :native_realname, :native_photo_id]
+                }
               }
             }
           })

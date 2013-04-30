@@ -49,6 +49,18 @@ shared_examples_for "an ObservationsController" do
       response.body.should_not =~ /#{o.private_latitude}/
       response.body.should_not =~ /#{o.private_longitude}/
     end
+
+    it "should not include photo metadata" do
+      p = LocalPhoto.make!(:metadata => {:foo => "bar"})
+      p.metadata.should_not be_blank
+      o = Observation.make!(:user => p.user, :taxon => Taxon.make!)
+      op = ObservationPhoto.make!(:photo => p, :observation => o)
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_photo = response_obs['observation_photos'][0]['photo']
+      response_photo.should_not be_blank
+      response_photo['metadata'].should be_blank
+    end
   end
 
   define "update" do
@@ -93,6 +105,20 @@ shared_examples_for "an ObservationsController" do
       response.headers["x-total-entries"].to_i.should eq(total_entries)
       response.headers["x-page"].to_i.should eq(2)
       response.headers["x-per-page"].to_i.should eq(30)
+    end
+
+    it "should not include photo metadata" do
+      p = LocalPhoto.make!(:metadata => {:foo => "bar"})
+      p.metadata.should_not be_blank
+      o = Observation.make!(:user => p.user, :taxon => Taxon.make!)
+      op = ObservationPhoto.make!(:photo => p, :observation => o)
+      get :index, :format => :json, :taxon_id => o.taxon_id
+      json = JSON.parse(response.body)
+      response_obs = json.detect{|obs| obs['id'] == o.id}
+      response_obs.should_not be_blank
+      response_photo = response_obs['photos'].first
+      response_photo.should_not be_blank
+      response_photo['metadata'].should be_blank
     end
   end
 end
