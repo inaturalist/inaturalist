@@ -57,6 +57,22 @@ shared_examples_for "an ObservationsController" do
     json = JSON.parse(response.body)
     json.size.should eq(3)
   end
+
+  it "should filter by hour range" do
+    o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
+    o.time_observed_at.should_not be_blank
+    get :index, :format => :json, :h1 => 13, :h2 => 14
+    json = JSON.parse(response.body)
+    json.detect{|obs| obs['id'] == o.id}.should_not be_blank
+  end
+
+  it "should filter by date range" do
+    o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
+    o.time_observed_at.should_not be_blank
+    get :index, :format => :json, :d1 => "2011-12-31", :d2 => "2012-01-04"
+    json = JSON.parse(response.body)
+    json.detect{|obs| obs['id'] == o.id}.should_not be_blank
+  end
 end
 
 describe ObservationsController, "oauth authentication" do

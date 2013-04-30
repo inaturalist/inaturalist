@@ -11143,6 +11143,7 @@ CREATE TABLE observations (
     photos_count integer DEFAULT 0,
     comments_count integer DEFAULT 0,
     cached_tag_list character varying(768) DEFAULT NULL::character varying,
+    zic_time_zone character varying(255),
     CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
     CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'POINT'::text) OR (geom IS NULL))),
     CONSTRAINT enforce_srid_geom CHECK ((srid(geom) = (-1)))
@@ -15239,3 +15240,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130409225631');
 INSERT INTO schema_migrations (version) VALUES ('20130411225629');
 
 INSERT INTO schema_migrations (version) VALUES ('20130418190210');
+
+INSERT INTO schema_migrations (version) VALUES ('20130429215442');

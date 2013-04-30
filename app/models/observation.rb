@@ -454,6 +454,18 @@ class Observation < ActiveRecord::Base
     scope = scope.where("#{join_name}.value = ?", value) unless value.blank?
     scope
   }
+
+  scope :between_hours, lambda{|h1, h2|
+    h1 = h1.to_i % 24
+    h2 = (h2.to_i - 1) % 24
+    where("EXTRACT(hour FROM ((time_observed_at AT TIME ZONE 'GMT') AT TIME ZONE zic_time_zone)) BETWEEN ? AND ?", h1, h2)
+  }
+
+  scope :between_dates, lambda{|d1, d2|
+    d1 = (Date.parse(d1) rescue Date.today).strftime('%Y-%m-%d')
+    d2 = (Date.parse(d2) rescue Date.today).strftime('%Y-%m-%d')
+    where("observed_on BETWEEN ? AND ?", d1, d2)
+  }
   
   def self.near_place(place)
     place = (Place.find(place) rescue nil) unless place.is_a?(Place)
@@ -523,6 +535,14 @@ class Observation < ActiveRecord::Base
       uri = params[:site]
       uri = "http://#{uri}" unless uri =~ /^http\:\/\//
       scope = scope.where("observations.uri LIKE ?", "#{uri}%")
+    end
+
+    if !params[:h1].blank? && !params[:h2].blank?
+      scope = scope.between_hours(params[:h1], params[:h2])
+    end
+
+    if !params[:d1].blank? && !params[:d2].blank?
+      scope = scope.between_dates(params[:d1], params[:d2])
     end
     
     # return the scope, we can use this for will_paginate calls like:
@@ -881,6 +901,7 @@ class Observation < ActiveRecord::Base
     self.time_zone ||= user.time_zone if user && !user.time_zone.blank?
     self.time_zone ||= Time.zone.try(:name) unless time_observed_at.blank?
     self.time_zone ||= 'UTC'
+    self.zic_time_zone = ActiveSupport::TimeZone::MAPPING[time_zone] unless time_zone.blank?
     true
   end
   
