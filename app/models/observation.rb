@@ -544,6 +544,35 @@ class Observation < ActiveRecord::Base
     if !params[:d1].blank? && !params[:d2].blank?
       scope = scope.between_dates(params[:d1], params[:d2])
     end
+
+    if !params[:cs].blank?
+      scope = scope.includes(:taxon => :conservation_statuses).where("conservation_statuses.status = ?", params[:cs])
+    end
+
+    if !params[:csa].blank?
+      scope = scope.includes(:taxon => :conservation_statuses).where("conservation_statuses.authority = ?", params[:csa])
+    end
+
+    establishment_means = params[:establishment_means] || params[:em]
+    if !params[:place_id].blank? && !establishment_means.blank?
+      place_id = if params[:place_id].to_i > 0
+        params[:place_id]
+      else
+        Place.find(params[:place_id]).try(:id) rescue 0
+      end
+
+      scope = scope.
+        joins("JOIN listed_taxa ON listed_taxa.taxon_id = observations.taxon_id").
+        where("listed_taxa.place_id = ?", place_id)
+      scope = case establishment_means
+      when ListedTaxon::NATIVE
+        scope.where("listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS)
+      when ListedTaxon::INTRODUCED
+        scope.where("listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS)
+      else
+        scope.where("listed_taxa.establishment_means = ?", establishment_means)
+      end
+    end
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()

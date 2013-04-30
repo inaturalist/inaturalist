@@ -120,6 +120,40 @@ shared_examples_for "an ObservationsController" do
       response_photo.should_not be_blank
       response_photo['metadata'].should be_blank
     end
+
+    it "should filter by conservation_status" do
+      cs = without_delay {ConservationStatus.make!}
+      t = cs.taxon
+      o1 = Observation.make!(:taxon => t)
+      o2 = Observation.make!(:taxon => Taxon.make!)
+      get :index, :format => :json, :cs => cs.status
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
+      json.detect{|obs| obs['id'] == o2.id}.should be_blank
+    end
+
+    it "should filter by conservation_status authority" do
+      cs1 = without_delay {ConservationStatus.make!(:authority => "foo")}
+      cs2 = without_delay {ConservationStatus.make!(:authority => "bar", :status => cs1.status)}
+      o1 = Observation.make!(:taxon => cs1.taxon)
+      o2 = Observation.make!(:taxon => cs2.taxon)
+      get :index, :format => :json, :csa => cs1.authority
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
+      json.detect{|obs| obs['id'] == o2.id}.should be_blank
+    end
+
+    it "should filter by establishment means" do
+      p = make_place_with_geom
+      lt1 = without_delay {ListedTaxon.make!(:establishment_means => ListedTaxon::INTRODUCED, :list => p.check_list, :place => p)}
+      lt2 = without_delay {ListedTaxon.make!(:establishment_means => ListedTaxon::NATIVE, :list => p.check_list, :place => p)}
+      o1 = Observation.make!(:taxon => lt1.taxon, :latitude => p.latitude, :longitude => p.longitude)
+      o2 = Observation.make!(:taxon => lt2.taxon, :latitude => p.latitude, :longitude => p.longitude)
+      get :index, :format => :json, :establishment_means => lt1.establishment_means, :place_id => p.id
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
+      json.detect{|obs| obs['id'] == o2.id}.should be_blank
+    end
   end
 end
 
