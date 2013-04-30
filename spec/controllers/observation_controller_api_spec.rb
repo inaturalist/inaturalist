@@ -1,77 +1,99 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "an ObservationsController" do
-  it "should create" do
-    lambda {
-      post :create, :format => :json, :observation => {:species_guess => "foo"}
-    }.should change(Observation, :count).by(1)
-    o = Observation.last
-    o.user_id.should eq(user.id)
-    o.species_guess.should eq ("foo")
+
+  describe "create" do
+    it "should create" do
+      lambda {
+        post :create, :format => :json, :observation => {:species_guess => "foo"}
+      }.should change(Observation, :count).by(1)
+      o = Observation.last
+      o.user_id.should eq(user.id)
+      o.species_guess.should eq ("foo")
+    end
+
+    it "should include private coordinates in create response" do
+      post :create, :format => :json, :observation => {:latitude => 1.2345, :longitude => 1.2345, :geoprivacy => Observation::PRIVATE}
+      o = Observation.last
+      o.should be_coordinates_obscured
+      response.body.should =~ /#{o.private_latitude}/
+      response.body.should =~ /#{o.private_longitude}/
+    end
   end
 
-  it "should include private coordinates in create response" do
-    post :create, :format => :json, :observation => {:latitude => 1.2345, :longitude => 1.2345, :geoprivacy => Observation::PRIVATE}
-    o = Observation.last
-    o.should be_coordinates_obscured
-    response.body.should =~ /#{o.private_latitude}/
-    response.body.should =~ /#{o.private_longitude}/
+  describe "destroy" do
+    it "should destroy" do
+      o = Observation.make!(:user => user)
+      delete :destroy, :format => :json, :id => o.id
+      Observation.find_by_id(o.id).should be_blank
+    end
+
+    it "should not destory other people's observations" do
+      o = Observation.make!
+      delete :destroy, :format => :json, :id => o.id
+      Observation.find_by_id(o.id).should_not be_blank
+    end
   end
 
-  it "should destroy" do
-    o = Observation.make!(:user => user)
-    delete :destroy, :format => :json, :id => o.id
-    Observation.find_by_id(o.id).should be_blank
+  describe "show" do
+    it "should provide private coordinates for user's observation" do
+      o = Observation.make!(:user => user, :latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
+      get :show, :format => :json, :id => o.id
+      response.body.should =~ /#{o.private_latitude}/
+      response.body.should =~ /#{o.private_longitude}/
+    end
+
+    it "should not provide private coordinates for another user's observation" do
+      o = Observation.make!(:latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
+      get :show, :format => :json, :id => o.id
+      response.body.should_not =~ /#{o.private_latitude}/
+      response.body.should_not =~ /#{o.private_longitude}/
+    end
   end
 
-  it "should not destory other people's observations" do
-    o = Observation.make!
-    delete :destroy, :format => :json, :id => o.id
-    Observation.find_by_id(o.id).should_not be_blank
+  define "update" do
+    it "should update" do
+      o = Observation.make!(:user => user)
+      put :update, :format => :json, :id => o.id, :observation => {:species_guess => "i am so updated"}
+      o.reload
+      o.species_guess.should eq("i am so updated")
+    end
   end
 
-  it "should provide private coordinates for user's observation" do
-    o = Observation.make!(:user => user, :latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
-    get :show, :format => :json, :id => o.id
-    response.body.should =~ /#{o.private_latitude}/
-    response.body.should =~ /#{o.private_longitude}/
+  describe "by_login" do
+    it "should get user's observations" do
+      3.times { Observation.make!(:user => user) }
+      get :by_login, :format => :json, :login => user.login
+      json = JSON.parse(response.body)
+      json.size.should eq(3)
+    end
   end
 
-  it "should not provide private coordinates for another user's observation" do
-    o = Observation.make!(:latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
-    get :show, :format => :json, :id => o.id
-    response.body.should_not =~ /#{o.private_latitude}/
-    response.body.should_not =~ /#{o.private_longitude}/
-  end
+  describe "index" do
+    it "should filter by hour range" do
+      o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
+      o.time_observed_at.should_not be_blank
+      get :index, :format => :json, :h1 => 13, :h2 => 14
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o.id}.should_not be_blank
+    end
 
-  it "should update" do
-    o = Observation.make!(:user => user)
-    put :update, :format => :json, :id => o.id, :observation => {:species_guess => "i am so updated"}
-    o.reload
-    o.species_guess.should eq("i am so updated")
-  end
+    it "should filter by date range" do
+      o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
+      o.time_observed_at.should_not be_blank
+      get :index, :format => :json, :d1 => "2011-12-31", :d2 => "2012-01-04"
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o.id}.should_not be_blank
+    end
 
-  it "should get user's observations" do
-    3.times { Observation.make!(:user => user) }
-    get :by_login, :format => :json, :login => user.login
-    json = JSON.parse(response.body)
-    json.size.should eq(3)
-  end
-
-  it "should filter by hour range" do
-    o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
-    o.time_observed_at.should_not be_blank
-    get :index, :format => :json, :h1 => 13, :h2 => 14
-    json = JSON.parse(response.body)
-    json.detect{|obs| obs['id'] == o.id}.should_not be_blank
-  end
-
-  it "should filter by date range" do
-    o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
-    o.time_observed_at.should_not be_blank
-    get :index, :format => :json, :d1 => "2011-12-31", :d2 => "2012-01-04"
-    json = JSON.parse(response.body)
-    json.detect{|obs| obs['id'] == o.id}.should_not be_blank
+    it "should include pagination data in headers" do
+      3.times { Observation.make! }
+      total_entries = Observation.count
+      get :index, :format => :json, :page => 2, :per_page => 30
+      response.headers["x-total-entries"].to_i.should eq(total_entries)
+      response.headers["x-page"].to_i.should eq(2)
+      response.headers["x-per-page"].to_i.should eq(30)
+    end
   end
 end
 

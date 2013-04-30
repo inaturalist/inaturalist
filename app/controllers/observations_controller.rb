@@ -2060,6 +2060,9 @@ class ObservationsController < ApplicationController
         :except => [:original_url, :file_processing, :file_file_size, 
           :file_content_type, :file_file_name, :mobile, :metadata]
       }
+      response.headers['x-total-entries'] = @observations.total_entries.to_s
+      response.headers['x-page'] = @observations.current_page.to_s
+      response.headers['x-per-page'] = @observations.per_page.to_s
       render :json => @observations.to_json(opts)
     end
   end

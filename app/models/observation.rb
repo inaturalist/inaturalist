@@ -605,12 +605,12 @@ class Observation < ActiveRecord::Base
     options[:except] ||= []
     options[:except] += [:user_agent]
     if viewer_id != user_id && !options[:force_coordinate_visibility]
-      options[:except] ||= []
       options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]
-      options[:except].uniq!
       options[:methods] << :coordinates_obscured
-      options[:methods].uniq!
     end
+    options[:except] << :cached_tag_list
+    options[:except].uniq!
+    options[:methods].uniq!
     h = super(options)
     h.each do |k,v|
       h[k] = v.gsub(/<script.*script>/i, "") if v.is_a?(String)
