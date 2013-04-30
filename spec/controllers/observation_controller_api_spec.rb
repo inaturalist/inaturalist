@@ -102,9 +102,9 @@ shared_examples_for "an ObservationsController" do
       3.times { Observation.make! }
       total_entries = Observation.count
       get :index, :format => :json, :page => 2, :per_page => 30
-      response.headers["x-total-entries"].to_i.should eq(total_entries)
-      response.headers["x-page"].to_i.should eq(2)
-      response.headers["x-per-page"].to_i.should eq(30)
+      response.headers["X-Total-Entries"].to_i.should eq(total_entries)
+      response.headers["X-Page"].to_i.should eq(2)
+      response.headers["X-Per-Page"].to_i.should eq(30)
     end
 
     it "should not include photo metadata" do
