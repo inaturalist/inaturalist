@@ -1319,42 +1319,77 @@ es:
   place: Lugar
   place_added_to_inat_by: "Lugar agregado a %{site_name} por"
   place_geo:
-          geo_planet_place_types:
-            undefined: indefinido
-            building: construcción
-            street_segment: segmento de calle
-            nearby_building: cerca de una construcción
-            street: calle
-            intersection: intersección
-            town: pueblo
-            state: estado
-            country: país
-            local_administrative_area: área administrativa local
-            postal_code: código postal
-            island: isla
-            airport: aeropuerto
-            drainage: drenaje
-            land_feature: tierra característica
-            miscellaneous: diverso
-            nationality: nacionalidad
-            supername: super nombre
-            point_of_interest: punto de interes
-            region: región
-            suburb: suburbio
-            sports_team: equipo deportivo
-            colloquial: coloquial
-            zone: zona
-            historical_state: estado histórico
-            historical_county: conadado histórico
-            continent: continente
-            time_zone: zona de tiempo
-            nearby_intersection: interseccion cercana
-            estate: inmuebles
-            historical_town: pueblo histórico
-            aggregate: añadido
-            open_space: espacio abierto
-            territory: territorio
-            county: condado
+        geo_planet_place_types:
+          undefined: indefinido
+          Undefined: Indefinido
+          building: construcción
+          Building: Construcción
+          street_segment: segmento de calle
+          Street_Segment: Segmento de Calle
+          nearby_building: cerca de una construcción
+          Nearby_Building: Cerca de una Construcción
+          street: calle
+          Street: Calle
+          intersection: intersección
+          Intersection: Intersección
+          town: pueblo
+          Town: Pueblo
+          state: estado
+          State: Estado
+          country: país
+          Country: País
+          local_administrative_area: área administrativa local
+          Local_Administrative_Area: Área Administrativa Local
+          postal_code: código postal
+          Postal_Code: Código Postal
+          island: isla
+          Island: Isla
+          airport: aeropuerto
+          Airport: Aeropuerto
+          drainage: drenaje
+          Drainage: Drenaje
+          land_feature: tierra característica
+          Land_Feature: Tierra Característica
+          miscellaneous: diverso
+          Miscellaneous: Diverso
+          nationality: nacionalidad
+          Nationality: Nacionalidad
+          supername: super nombre
+          Supername: Super Nombre
+          point_of_interest: punto de interes
+          Point_of_Interest: Punto de Interes
+          region: región
+          Region: Región
+          suburb: suburbio
+          Suburb: Suburbio
+          sports_team: equipo deportivo
+          Sports_Team: Equipo Deportivo
+          colloquial: coloquial
+          Colloquial: Coloquial
+          zone: zona
+          Zone: Zona
+          historical_state: estado histórico
+          Historical_State: Estado Histórico
+          historical_county: condado histórico
+          Historical_County: Condado Histórico
+          continent: continente
+          Continent: Continente
+          time_zone: zona de tiempo
+          Time_Zone: Zona de Tiempo
+          nearby_intersection: intersección cercana
+          Nearby_Intersection: Intersección Cercana
+          estate: inmuebles
+          Estate: Inmuebles
+          historical_town: pueblo histórico
+          Historical_Town: Pueblo Histórico
+          aggregate: añadido
+          Aggregate: Añadido
+          open_space: espacio abierto
+          Open_Space: Espacio Abierto
+          territory: territorio
+          Territory: Territorio
+          county: condado
+          County: Condado
   place_guess: "Estimación de lugar"
   place_must_have_a_boundary_defined: El lugar debe tener límites definidos.
   place_name: "Colocar nombre"

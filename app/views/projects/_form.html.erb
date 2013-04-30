@@ -41,7 +41,7 @@
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
   
   <div class="clear">
-    <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type}", :default => type).downcase, type]}, {:include_blank => t(:normal)},
+    <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]}, {:include_blank => t(:normal)},
       :description => t(:contest_projects_description) %>
     <%= f.check_box :prefers_count_from_list, 
         :label => t(:show_total_listed_taxa),
