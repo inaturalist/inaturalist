@@ -496,6 +496,7 @@ class ObservationsController < ApplicationController
     end
     
     @observations = params[:observations].map do |fieldset_index, observation|
+      next unless observation
       observation.delete('fieldset_index') if observation[:fieldset_index]
       o = Observation.new(observation)
       o.user = current_user
