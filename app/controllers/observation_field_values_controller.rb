@@ -17,7 +17,7 @@ class ObservationFieldValuesController < ApplicationController
       format.json do
         taxon_json_opts = {:only => [:id, :name, :rank], :include => [:source]}
         if params[:type] == ObservationField::TAXON
-          taxa = Taxon.where("id IN (?)", @ofvs.map(&:value).compact.uniq).index_by(&:id)
+          taxa = Taxon.includes(:source).where("id IN (?)", @ofvs.map{|ofv| ofv.value.to_i}.compact.uniq).index_by(&:id)
           @ofvs.each_with_index do |ofv,i| 
             @ofvs[i].taxon = taxa[@ofvs[i].value.to_i].as_json(taxon_json_opts)
           end
