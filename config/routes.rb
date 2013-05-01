@@ -28,7 +28,7 @@ Inaturalist::Application.routes.draw do
 
   root :to => 'welcome#index'
 
-  resources :observation_field_values, :only => [:create, :update, :destroy]
+  resources :observation_field_values, :only => [:create, :update, :destroy, :index]
   resources :observation_fields
   match '/' => 'welcome#index'
   match '/home' => 'users#dashboard', :as => :home
