@@ -457,8 +457,18 @@ class Observation < ActiveRecord::Base
 
   scope :between_hours, lambda{|h1, h2|
     h1 = h1.to_i % 24
-    h2 = (h2.to_i - 1) % 24
+    h2 = h2.to_i % 24
     where("EXTRACT(hour FROM ((time_observed_at AT TIME ZONE 'GMT') AT TIME ZONE zic_time_zone)) BETWEEN ? AND ?", h1, h2)
+  }
+
+  scope :between_months, lambda{|m1, m2|
+    m1 = m1.to_i % 12
+    m2 = m2.to_i % 12
+    if m1 > m2
+      where("EXTRACT(month FROM observed_on) >= ? OR EXTRACT(month FROM observed_on) <= ?", m1, m2)
+    else
+      where("EXTRACT(month FROM observed_on) BETWEEN ? AND ?", m1, m2)
+    end
   }
 
   scope :between_dates, lambda{|d1, d2|
@@ -545,6 +555,10 @@ class Observation < ActiveRecord::Base
 
     if !params[:h1].blank? && !params[:h2].blank?
       scope = scope.between_hours(params[:h1], params[:h2])
+    end
+
+    if !params[:m1].blank? && !params[:m2].blank?
+      scope = scope.between_months(params[:m1], params[:m2])
     end
 
     if !params[:d1].blank? && !params[:d2].blank?

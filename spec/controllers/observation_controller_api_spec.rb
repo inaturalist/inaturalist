@@ -98,6 +98,15 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == o.id}.should_not be_blank
     end
 
+    it "should filter by month range" do
+      o1 = Observation.make!(:observed_on_string => "2012-01-01 13:13")
+      o2 = Observation.make!(:observed_on_string => "2010-03-01 13:13")
+      get :index, :format => :json, :m1 => 11, :m2 => 3
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
+      json.detect{|obs| obs['id'] == o2.id}.should_not be_blank
+    end
+
     it "should include pagination data in headers" do
       3.times { Observation.make! }
       total_entries = Observation.count
