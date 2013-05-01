@@ -295,7 +295,11 @@ Inaturalist::Application.routes.draw do
   resources :taxon_ranges, :except => [:index, :show]
   match '/calendar/:login' => 'calendars#index', :as => :calendar
   match '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare
-  match '/calendar/:login/:year/:month/:day' => 'calendars#show', :as => :calendar_date
+  match '/calendar/:login/:year/:month/:day' => 'calendars#show', :as => :calendar_date, :constraints => {
+    :year => /\d+/,
+    :month => /\d+/,
+    :day => /\d+/
+  }
   
   resources :subscriptions, :only => [:index, :new, :edit, :create, :update, :destroy]
   match 'subscriptions/:resource_type/:resource_id' => "subscriptions#destroy", :as => :delete_subscription, :via => :delete
