@@ -14050,6 +14050,13 @@ CREATE INDEX index_listed_taxa_on_source_id ON listed_taxa USING btree (source_i
 
 
 --
+-- Name: index_listed_taxa_on_taxon_ancestor_ids; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_listed_taxa_on_taxon_ancestor_ids ON listed_taxa USING btree (taxon_ancestor_ids);
+
+
+--
 -- Name: index_listed_taxa_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15242,3 +15249,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130411225629');
 INSERT INTO schema_migrations (version) VALUES ('20130418190210');
 
 INSERT INTO schema_migrations (version) VALUES ('20130429215442');
+
+INSERT INTO schema_migrations (version) VALUES ('20130501005855');
