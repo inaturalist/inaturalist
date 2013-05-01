@@ -482,6 +482,12 @@ class Observation < ActiveRecord::Base
   #
   def self.query(params = {})
     scope = self.scoped
+
+    place_id = if params[:place_id].to_i > 0
+      params[:place_id]
+    elsif !params[:place_id].blank?
+      Place.find(params[:place_id]).try(:id) rescue 0
+    end
     
     # support bounding box queries
      if (!params[:swlat].blank? && !params[:swlng].blank? && 
@@ -518,7 +524,7 @@ class Observation < ActiveRecord::Base
     end
     scope = scope.by(params[:user_id]) if params[:user_id]
     scope = scope.in_projects(params[:projects]) if params[:projects]
-    scope = scope.in_place(params[:place_id]) unless params[:place_id].blank?
+    scope = scope.in_place(place_id) unless params[:place_id].blank?
     scope = scope.on(params[:on]) if params[:on]
     scope = scope.created_on(params[:created_on]) if params[:created_on]
     scope = scope.out_of_range if params[:out_of_range] == 'true'
@@ -547,20 +553,16 @@ class Observation < ActiveRecord::Base
 
     if !params[:cs].blank?
       scope = scope.includes(:taxon => :conservation_statuses).where("conservation_statuses.status = ?", params[:cs])
+      scope = scope.where("conservation_statuses.place_id = ?", place_id) unless place_id.blank?
     end
 
     if !params[:csa].blank?
       scope = scope.includes(:taxon => :conservation_statuses).where("conservation_statuses.authority = ?", params[:csa])
+      scope = scope.where("conservation_statuses.place_id = ?", place_id) unless place_id.blank?
     end
 
     establishment_means = params[:establishment_means] || params[:em]
-    if !params[:place_id].blank? && !establishment_means.blank?
-      place_id = if params[:place_id].to_i > 0
-        params[:place_id]
-      else
-        Place.find(params[:place_id]).try(:id) rescue 0
-      end
-
+    if !place_id.blank? && !establishment_means.blank?
       scope = scope.
         joins("JOIN listed_taxa ON listed_taxa.taxon_id = observations.taxon_id").
         where("listed_taxa.place_id = ?", place_id)
