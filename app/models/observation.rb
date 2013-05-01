@@ -552,13 +552,31 @@ class Observation < ActiveRecord::Base
     end
 
     if !params[:cs].blank?
-      scope = scope.includes(:taxon => :conservation_statuses).where("conservation_statuses.status = ?", params[:cs])
-      scope = scope.where("conservation_statuses.place_id = ?", place_id) unless place_id.blank?
+      scope = scope.includes(:taxon => :conservation_statuses).where("conservation_statuses.status IN (?)", [params[:cs]].flatten)
+      scope = if place_id.blank?
+        scope.where("conservation_statuses.place_id IS NULL")
+      else
+        scope.where("conservation_statuses.place_id = ? OR conservation_statuses.place_id IS NULL", place_id)
+      end
+    end
+
+    if !params[:csi].blank?
+      iucn_equivs = [params[:csi]].flatten.map{|v| Taxon::IUCN_CODE_VALUES[v.upcase]}.compact.uniq
+      scope = scope.includes(:taxon => :conservation_statuses).where("conservation_statuses.iucn IN (?)", iucn_equivs)
+      scope = if place_id.blank?
+        scope.where("conservation_statuses.place_id IS NULL")
+      else
+        scope.where("conservation_statuses.place_id = ? OR conservation_statuses.place_id IS NULL", place_id)
+      end
     end
 
     if !params[:csa].blank?
       scope = scope.includes(:taxon => :conservation_statuses).where("conservation_statuses.authority = ?", params[:csa])
-      scope = scope.where("conservation_statuses.place_id = ?", place_id) unless place_id.blank?
+      scope = if place_id.blank?
+        scope.where("conservation_statuses.place_id IS NULL")
+      else
+        scope.where("conservation_statuses.place_id = ? OR conservation_statuses.place_id IS NULL", place_id)
+      end
     end
 
     establishment_means = params[:establishment_means] || params[:em]

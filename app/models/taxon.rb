@@ -223,6 +223,9 @@ class Taxon < ActiveRecord::Base
       conservation_status == self.class.const_get("IUCN_#{status_name.upcase}")
     end
   end
+  IUCN_CODE_VALUES = Hash[IUCN_STATUS_VALUES.map{|name,value|
+    [IUCN_STATUS_CODES[name], value]
+  }]
   
   PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect', 'lizard', 'gall', 'pinecone', 'larva']
   
