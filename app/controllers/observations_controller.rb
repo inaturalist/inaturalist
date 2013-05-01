@@ -2088,9 +2088,11 @@ class ObservationsController < ApplicationController
     only = only - except
     unless @ofv_params.blank?
       only += @ofv_params.map{|k,v| "field:#{v[:normalized_name]}"}
-      @observations = @observations.includes(:observation_field_values => :observation_field)
+      if @observations.respond_to?(:scoped)
+        @observations = @observations.includes(:observation_field_values => :observation_field)
+      end
     end
-    @observations = @observations.includes(:tags)
+    @observations = @observations.includes(:tags) if @observations.respond_to?(:scoped)
     render :text => @observations.to_csv(:only => only.map{|c| c.to_sym})
   end
   
