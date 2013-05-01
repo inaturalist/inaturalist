@@ -1,7 +1,46 @@
 class ObservationFieldValuesController < ApplicationController
   doorkeeper_for :show, :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
+  before_filter :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
   before_filter :load_observation_field_value, :only => [:update, :destroy]
+
+  def index
+    per_page = params[:per_page].to_i
+    per_page = 30 if (per_page <= 0 || per_page > 200)
+    @ofvs = ObservationFieldValue.
+      includes(:observation_field, :observation => [{:taxon => [:source]}, :user]).
+      page(params[:page]).per_page(per_page)
+    @ofvs = @ofvs.datatype(params[:type]) unless params[:type].blank?
+    @ofvs = @ofvs.field(params[:field]) unless params[:field].blank?
+    @ofvs = @ofvs.license(params[:license]) unless params[:license].blank?
+    pagination_headers_for(@ofvs)
+    respond_to do |format|
+      format.json do
+        taxon_json_opts = {:only => [:id, :name, :rank], :include => [:source]}
+        if params[:type] == ObservationField::TAXON
+          taxa = Taxon.where("id IN (?)", @ofvs.map(&:value).compact.uniq).index_by(&:id)
+          @ofvs.each_with_index do |ofv,i| 
+            @ofvs[i].taxon = taxa[@ofvs[i].value.to_i].as_json(taxon_json_opts)
+          end
+        end
+        render :json => @ofvs.to_json(
+          :methods => [:taxon],
+          :include => {
+            :observation_field => {
+              :only => [:id, :datatype, :name]
+            }, 
+            :observation => {
+              :only => [:id, :license, :latitude, :longitude, :positional_accuracy, :observed_on],
+              :methods => [:time_observed_at_utc, :coordinates_obscured],
+              :include => {
+                :taxon => taxon_json_opts, 
+                :user => {:only => [:id, :name, :login]}
+              }
+            }
+          }
+        )
+      end
+    end
+  end
   
   def create
     @observation_field_value = ObservationFieldValue.new(params[:observation_field_value])

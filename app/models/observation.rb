@@ -1619,6 +1619,26 @@ class Observation < ActiveRecord::Base
     Observation.expire_components_for(self)
   end
 
+  def method_missing(method, *args, &block)
+    if method.to_s =~ /^field:/
+      of_name = method.to_s.split(':').last
+      ofv = observation_field_values.detect{|ofv| ofv.observation_field.normalized_name == of_name}
+      if ofv
+        return ofv.taxon ? ofv.taxon.name : ofv.value
+      end
+    end
+    super
+  end
+
+  def respond_to?(method, include_private = false)
+    if method.to_s =~ /^field:/
+      of_name = method.to_s.split(':').last
+      ofv = observation_field_values.detect{|ofv| ofv.observation_field.normalized_name == of_name}
+      return !ofv.blank?
+    end
+    super
+  end
+
   def self.expire_components_for(o)
     o = Observation.find_by_id(o) unless o.is_a?(Observation)
     return unless o
@@ -1665,11 +1685,19 @@ class Observation < ActiveRecord::Base
     if record.is_a?(User) && record != options[:user]
       columns = columns.select{|c| c !~ /^private_/} unless record == options[:user]
     end
+    if record.is_a?(User)
+      of_names = ObservationField.
+        includes(:observation_field_values => :observation).
+        where("observations.user_id = ?", record).
+        select("DISTINCT observation_fields.name").
+        map{|of| "field:#{of.normalized_name}"}
+      columns += of_names
+    end
     columns -= %w(user_id user_login) if record.is_a?(User)
     CSV.open(tmp_path, 'w') do |csv|
       csv << columns
       record.observations.includes(:taxon, {:observation_field_values => :observation_field}).find_each do |observation|
-        csv << columns.map{|c| observation.send(c)}
+        csv << columns.map{|c| observation.send(c) rescue nil}
       end
     end
     FileUtils.mkdir_p File.dirname(fpath), :mode => 0755

@@ -20,7 +20,7 @@ class ObservationField < ActiveRecord::Base
   before_validation :strip_allowed_values
   validate :allowed_values_has_pipes
   
-  TYPES = %w(text numeric date time datetime location)
+  TYPES = %w(text numeric date time datetime taxon)
   TYPES.each do |t|
     const_set t.upcase, t
   end

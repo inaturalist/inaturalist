@@ -613,13 +613,15 @@ class Taxon < ActiveRecord::Base
     flickr_chosen_photos = []
     if !options[:skip_external] && chosen_photos.size < options[:limit] && self.auto_photos
       begin
-        flickr_chosen_photos = flickr.photos.search(
+        r = flickr.photos.search(
           :tags => name.gsub(' ', '').strip,
           :per_page => options[:limit] - chosen_photos.size,
           :license => '1,2,3,4,5,6', # CC licenses
           :extras => 'date_upload,owner_name,url_s,url_t,url_s,url_m,url_l,url_o,owner_name,license',
           :sort => 'relevance'
-        ).map{|fp| fp.respond_to?(:url_s) && fp.url_s ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
+        )
+        r = [] if r.blank?
+        flickr_chosen_photos = r.map{|fp| fp.respond_to?(:url_s) && fp.url_s ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
       rescue FlickRaw::FailedResponse => e
         Rails.logger.error "EXCEPTION RESCUE: #{e}"
         Rails.logger.error e.backtrace.join("\n\t")
@@ -701,6 +703,10 @@ class Taxon < ActiveRecord::Base
     old_ancestry = old_ancestry.blank? ? taxon.id : "#{old_ancestry}/#{taxon.id}"
     new_ancestry = taxon.ancestry
     new_ancestry = new_ancestry.blank? ? taxon.id : "#{new_ancestry}/#{taxon.id}"
+    if !ListedTaxon.where("taxon_ancestor_ids = ?", old_ancestry.to_s).exists? &&
+       !ListedTaxon.where("taxon_ancestor_ids LIKE ?", "#{old_ancestry}/%").exists?
+      return
+    end
     ListedTaxon.update_all(
       "taxon_ancestor_ids = regexp_replace(taxon_ancestor_ids, '^#{old_ancestry}', '#{new_ancestry}')", 
       ["taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", old_ancestry.to_s, "#{old_ancestry}/%"]

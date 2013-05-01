@@ -414,16 +414,16 @@
         end
         kml_feed_params[:kml_type] = "network_link"
       -%>
-      <%= link_to("Atom", observations_by_login_feed_path(@login, :format => t(:atom), :params => feed_params),
+      <%= link_to("Atom", observations_by_login_feed_path(@login, :format => 'atom', :params => feed_params),
         :class => 'atomlink') %>
-      <%= link_to("KML",  observations_by_login_feed_path(@login, :format => t(:kml), :params => kml_feed_params),
+      <%= link_to("KML",  observations_by_login_feed_path(@login, :format => 'kml', :params => kml_feed_params),
         :class => 'kmllink') %>
     </span>
 
     <% if is_me?(@selected_user) -%>
       <span class="feeds">
         <%= t :download %>
-        <%= link_to "CSV", observations_by_login_all_url(@login, :format => t(:csv)),
+        <%= link_to "CSV", observations_by_login_all_url(@login, :format => 'csv'),
           :class => "delayedlink csvlink", 
           "data-delayed-link-msg" => 
             "Please hold on while the file is generated.  It can take a couple minutes if you have a lot of observations.",

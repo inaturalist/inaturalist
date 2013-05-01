@@ -11,6 +11,38 @@ class ObservationFieldValue < ActiveRecord::Base
   validate :validate_observation_field_allowed_values
   
   LAT_LON_REGEX = /#{Observation::COORDINATE_REGEX},#{Observation::COORDINATE_REGEX}/
+
+  scope :datatype, lambda {|datatype| includes(:observation_field).where("observation_fields.datatype = ?", datatype)}
+  scope :field, lambda {|field|
+    field = if field.is_a?(ObservationField)
+      field
+    elsif field.to_i > 0
+      ObservationField.find_by_id(field)
+    else
+      ObservationField.where("lower(name) = ?", field.to_s.downcase).first
+    end
+    # includes(:observation_field).where("observation_fields.name = ?", datatype)
+    where(:observation_field_id => field.try(:id))
+  }
+  scope :license, lambda {|license|
+    scope = includes(:observation).scoped
+    if license == 'none'
+      scope.where("observations.license IS NULL")
+    elsif Observation::LICENSE_CODES.include?(license)
+      scope.where("observations.license = ?", license)
+    else
+      scope.where("observations.license IS NOT NULL")
+    end
+  }
+
+  def taxon
+    return nil unless observation_field.datatype == ObservationField::TAXON
+    @taxon ||= Taxon.find_by_id(value)
+  end
+
+  def taxon=(taxon)
+    @taxon = taxon
+  end
   
   def strip_value
     self.value = value.strip unless value.nil?

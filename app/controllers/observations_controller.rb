@@ -2053,6 +2053,16 @@ class ObservationsController < ApplicationController
       opts[:methods] += [:short_description, :user_login, :iconic_taxon_name]
       opts[:methods].uniq!
       opts[:include] ||= {}
+      if @ofv_params
+        opts[:include][:observation_field_values] ||= {
+          :except => [:observation_field_id],
+          :include => {
+            :observation_field => {
+              :only => [:id, :datatype, :name]
+            }
+          }
+        }
+      end
       opts[:include][:taxon] ||= {
         :only => [:id, :name, :rank, :ancestry]
       }
@@ -2063,9 +2073,7 @@ class ObservationsController < ApplicationController
         :except => [:original_url, :file_processing, :file_file_size, 
           :file_content_type, :file_file_name, :mobile, :metadata]
       }
-      response.headers['X-Total-Entries'] = @observations.total_entries.to_s
-      response.headers['X-Page'] = @observations.current_page.to_s
-      response.headers['X-Per-Page'] = @observations.per_page.to_s
+      pagination_headers_for(@observations)
       render :json => @observations.to_json(opts)
     end
   end
@@ -2078,6 +2086,11 @@ class ObservationsController < ApplicationController
       except += %w(private_latitude private_longitude private_positional_accuracy)
     end
     only = only - except
+    unless @ofv_params.blank?
+      only += @ofv_params.map{|k,v| "field:#{v[:normalized_name]}"}
+      @observations = @observations.includes(:observation_field_values => :observation_field)
+    end
+    @observations = @observations.includes(:tags)
     render :text => @observations.to_csv(:only => only.map{|c| c.to_sym})
   end
   

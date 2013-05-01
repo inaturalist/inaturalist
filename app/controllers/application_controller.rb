@@ -383,6 +383,12 @@ class ApplicationController < ActionController::Base
   def authenticated_with_oauth?
     @doorkeeper_for_called && doorkeeper_token && doorkeeper_token.accessible?
   end
+
+  def pagination_headers_for(collection)
+    response.headers['X-Total-Entries'] = collection.total_entries.to_s
+    response.headers['X-Page'] = collection.current_page.to_s
+    response.headers['X-Per-Page'] = collection.per_page.to_s
+  end
 end
 
 # Override the Google Analytics insertion code so it won't track admins
