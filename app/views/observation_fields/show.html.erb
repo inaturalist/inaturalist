@@ -5,6 +5,7 @@
   <style type="text/css">
     td.observations {width:80%;}
     td.observations.mini .observation {border-bottom: 0 transparent;}
+    #allowed_values .extra {display:none;}
   </style>
 <%- end -%>
 <div id="pageheader" class="column span-24">
@@ -34,7 +35,19 @@
   <% unless @observation_field.allowed_values.blank? -%>
     <div class="meta ui">
       <b>Allowed values:</b>
-      <%= @observation_field.allowed_values.split('|').join(', ') %>
+      <%- allowed_values = @observation_field.allowed_values.split('|') -%>
+      <% if allowed_values.size <= 10 -%>
+        <%= @observation_field.allowed_values.split('|').join(', ') %>
+      <% else %>
+        <ul id="allowed_values">
+          <% allowed_values.each_with_index do |v,i| %>
+            <li class="<%= i >= 15 ? 'extra' : '' %>"><%= v %></li>
+          <% end %>
+          <% if allowed_values.size > 15 -%>
+            <li><%= link_to_function "View all", "$('#allowed_values .extra').show(); $(this).parents('li:first').hide()" %></li>
+          <% end -%>
+        </ul>
+      <% end -%>
     </div>
   <% end -%>
   <div class="meta ui">
@@ -47,7 +60,7 @@
 <% if @observation_field.allowed_values.to_s.size > 0 -%>
   <div class="right meta">
     <strong>Values:</strong>
-    <% if @observation_field.allowed_values.size < 100 -%>
+    <% if @observation_field.allowed_values.size < 10 -%>
       <%= @observation_field.allowed_values.split('|').unshift("any").map do |v| 
         if @value == v
           "<strong>#{v}</strong>"

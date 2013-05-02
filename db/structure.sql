@@ -11010,7 +11010,7 @@ CREATE TABLE observation_fields (
     description character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    allowed_values character varying(512)
+    allowed_values text
 );
 
 
@@ -15251,3 +15251,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130418190210');
 INSERT INTO schema_migrations (version) VALUES ('20130429215442');
 
 INSERT INTO schema_migrations (version) VALUES ('20130501005855');
+
+INSERT INTO schema_migrations (version) VALUES ('20130502190619');

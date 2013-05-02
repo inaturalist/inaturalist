@@ -10,7 +10,6 @@ class ObservationField < ActiveRecord::Base
   
   validates_uniqueness_of :name
   validates_presence_of :name
-  validates_length_of :allowed_values, :maximum => 512, :allow_blank => true
   validates_length_of :name, :maximum => 255, :allow_blank => true
   validates_length_of :description, :maximum => 255, :allow_blank => true
   
