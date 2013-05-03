@@ -158,13 +158,22 @@ module Shared::ListsModule
         lt = @listed_taxa_by_id[ft.resource_id]
         unless lt
           name, description, occurrence_status, establishment_means = ft.extra[:row] if ft.extra
-          lt = ListedTaxon.new(
-            :list => @list, 
-            :description => description,
-            :occurrence_status_level => ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[occurrence_status],
-            :establishment_means => establishment_means,
-            :extra => ft.extra
-          )
+          lt = if ft.extra && ft.extra[:error].to_s =~ /already/
+            @list.listed_taxa.find_by_taxon_id(ft.extra[:taxon_id]) unless ft.extra[:taxon_id].blank?
+          end
+          lt ||= ListedTaxon.new(:list => @list)
+          lt.description = description unless description.blank?
+          lt.occurrence_status_level = if ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[occurrence_status.to_s.downcase]
+            ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[occurrence_status.to_s.downcase]
+          else
+            lt.occurrence_status_level
+          end
+          lt.establishment_means = if ListedTaxon::ESTABLISHMENT_MEANS.include?(establishment_means.to_s.downcase)
+            establishment_means.downcase
+          else
+            lt.establishment_means
+          end
+          lt.extra = ft.extra
         end
         @listed_taxa << lt
       end
