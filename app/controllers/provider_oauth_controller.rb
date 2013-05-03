@@ -80,7 +80,7 @@ class ProviderOauthController < ApplicationController
       )
       redirect_to uri.to_s
     else
-      redirect_to oauth_authorization_url(:client_id => client.id, :redirect_uri => client.redirect_uri, :response_type => "code")
+      redirect_to oauth_authorization_url(:client_id => client.uid, :redirect_uri => client.redirect_uri, :response_type => "code")
     end
   end
 
