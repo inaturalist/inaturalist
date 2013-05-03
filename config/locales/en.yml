@@ -169,6 +169,7 @@ en:
   animals: Animals
   announcements: Announcements
   any: any
+  apply_to_selected: Apply to selected
   apply_darr: "Apply &darr;"
   apply_these_settings_to_all: Apply these settings to all the observations below.
   arachnids: arachnids
@@ -186,6 +187,7 @@ en:
   are_you_sure_remove_curator: "Are you sure you want to remove %{user} as a curator?"
   are_you_sure_remove_from_project: "Are you sure you want to remove %{user} from this project?"
   are_you_sure_remove_taxon_from_place: "Are you sure you want to remove this taxon from %{place}'s checklist?"
+  are_you_sure_remove_taxon_from_list: "Are you sure you want to remove this taxon from the list?"
   are_you_sure_unlink_picasa: Are you sure you want to unlink your Picasa account?
   are_you_sure_want_activate_account: Are you sure you want to activate this account?
   are_you_sure_want_delete_account: "Are you sure you want to delete your account?  This will delete all your data and cannot be undone, and we'll be sorry to see you go."
@@ -239,6 +241,7 @@ en:
   back_to_your_profile: Back to your profile
   batch: Batch
   batch_edit: Batch Edit
+  batch_edit_taxa_for_x_html: "Batch edit taxa for %{x}"
   batch_operations: Batch Operations
   beacuse_we_recently_changed_auth_system: Because we recently changed our user authentication system, it was necessary for your password to be reset.
   because: because
@@ -782,6 +785,7 @@ en:
   long: Lon
   longitude: Longitude
   longitude_in_decimal: 'Longitude in decimal degrees, e.g. -122.123'
+  look_up_name: "Look up name"
   looks_like_neither_have!: Looks like neither have any taxa!
   lookup: Lookup
   lookup: Lookup
@@ -798,6 +802,7 @@ en:
   make_taxonomic_flickr_tags_for_taxon_raquo: "Make taxonomic Flickr tags for this taxon &raquo;"
   make_this_your_default_license: "Make this your default %{type} license"
   mammals: mammals
+  managed: managed
   manually_create_new_place: Manually Create a New Place
   map: Map
   map_tooltip: Show map view
@@ -836,6 +841,8 @@ en:
   name_of_the_place_you: Name of the place you made the observation
   named_based_url_might_change: "Name-based URLs might change, but this won't."
   names: Names
+  naturalised: naturalized
+  naturalized: naturalized
   native: native
   nav: Nav
   nav_description:  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -1549,6 +1556,7 @@ en:
   wikipedia_entry: Wikipedia entry
   wikipedia_taxobox_raquo: "Wikipedia taxobox &raquo;"
   with: with
+  with_errors: With errors
   within_inaturalist: "Within %{site_name}"
   wondering_what_to_do_next: Wondering what to do next?  Why not
   would_you_like_to: Would you like to
