@@ -181,6 +181,24 @@ class Project < ActiveRecord::Base
   def managers
     users.where("project_users.role = ?", ProjectUser::MANAGER).scoped
   end
+
+  def duplicate
+    new_project = dup
+    project_observation_fields.each do |pof|
+      new_project.project_observation_fields.build(:position => pof.position, 
+        :observation_field => pof.observation_field, :required => pof.required)
+    end
+    project_observation_rules.each do |por|
+      new_project.project_observation_rules.build(:operand => por.operand, :operator => por.operator)
+    end
+    new_project.title = "#{title} copy"
+    new_project.custom_project = custom_project.dup unless custom_project.blank?
+    new_project.save!
+    listed_taxa.find_each do |lt|
+      ListedTaxon.create(:list => new_project.project_list, :taxon_id => lt.taxon_id, :description => lt.description)
+    end
+    new_project
+  end
   
   def self.default_json_options
     {
