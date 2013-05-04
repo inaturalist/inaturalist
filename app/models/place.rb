@@ -118,6 +118,7 @@ class Place < ActiveRecord::Base
   PLACE_TYPES = GEO_PLANET_PLACE_TYPES.merge(INAT_PLACE_TYPES).delete_if do |k,v|
     Place::REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(k)
   end
+
   PLACE_TYPE_CODES = PLACE_TYPES.invert
   PLACE_TYPES.each do |code, type|
     PLACE_TYPE_CODES[type.downcase] = code
