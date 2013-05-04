@@ -1,9 +1,9 @@
 = form_for @subscription, :builder => DefaultFormBuilder do |f|
   = f.hidden_field :resource_type, :value => @type.camelcase
   = f.text_field :resource_id, :placeholder => "Choose a #{@type.humanize.downcase}", :required => true, :label => @type.humanize
-  = f.text_field :taxon_id, :placeholder => "Choose a taxon (optional)"
+  = f.text_field :taxon_id, :placeholder => t(:choose_a_taxon)
   .inline.stacked.buttonrow
-    = f.submit "Save", :class => "default button", "data-loading-click" => "Saving..."
+    = f.submit t(:save), :class => "default button", "data-loading-click" => t(:saving)
   .required * Required
 
 :javascript
