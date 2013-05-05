@@ -279,6 +279,7 @@
   <% if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
     <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
   <% end -%>
+  <meta name="twitter:card" content="summary">
 <% end %>
 
 <% unless @proj_obs_errors_obs.blank? -%>
