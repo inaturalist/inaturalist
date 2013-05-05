@@ -385,6 +385,7 @@ class ApplicationController < ActionController::Base
   end
 
   def pagination_headers_for(collection)
+    return unless collection.respond_to?(:total_entries)
     response.headers['X-Total-Entries'] = collection.total_entries.to_s
     response.headers['X-Page'] = collection.current_page.to_s
     response.headers['X-Per-Page'] = collection.per_page.to_s
