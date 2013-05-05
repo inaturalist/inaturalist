@@ -16,6 +16,7 @@
   = javascript_include_tag 'inaturalist/map3'
   = javascript_include_tag "observations/uploader"
 - content_for :extracss do
+  = stylesheet_link_tag "observations/edit"
   :css
     .template-upload td {vertical-align: middle;}
     textarea {height: 70px; width: 330px;}
@@ -34,8 +35,11 @@
     .observation .positional_accuracy_field input.text {width: 80px; font-size: smaller;}
     form .id_please_field {margin-bottom:0.2em;}
 
-#pageheader
-  %h2= @title
+#pageheader.clear
+  .column.span-12
+    %h2= @title
+  .last.column.span-12
+    = render :partial => 'new_nav'
 = form_tag "/observations/photo.json", :multipart => true, :id => "fileupload", :remote => true do
   %p.description
     Create observations by uploading photos to #{CONFIG.site_name_short}. When you upload #{CONFIG.site_name_short} will try to extract GPS coordinates and date/time from the photo.
