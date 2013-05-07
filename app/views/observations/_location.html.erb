@@ -99,7 +99,7 @@
       <% if inline_edit && is_me?(observation.user) -%>
         <%= form_for observation, :html => {:style => "display:none;"} do |f| %>
           <%= f.label :geoprivacy, "#{t(:geoprivacy)}: " %>
-          <%= f.select :geoprivacy, Observation::GEOPRIVACIES.map{|g| [t(g), g]}, :include_blank => t(:open) %>
+          <%= f.select :geoprivacy, Observation::GEOPRIVACIES.map{|g| [t(g, :default => g).downcase, g]}, :include_blank => t(:open, :default => "open").downcase %>
           <%= hidden_field_tag :ignore_photos, true %>
           <%= f.submit t(:save), "data-loading-click" => true %>
           <%= link_to_function t(:cancel), 

@@ -152,7 +152,7 @@ class User < ActiveRecord::Base
 
   def user_icon_url
     return nil if icon.blank?
-    "#{FakeView.root_url}#{icon.url}".gsub(/\/\//, '/')
+    "#{FakeView.root_url}#{icon.url(:thumb)}".gsub(/([^\:])\/\//, '\\1/')
   end
 
   def active?

@@ -239,6 +239,21 @@ describe ListedTaxon do
       ListedTaxon.find_by_id(keeper.id).should_not be_blank
       ListedTaxon.find_by_id(reject.id).should be_blank
     end
+
+    it "should work for multiple duplicates" do
+      keeper = ListedTaxon.make!
+      rejects = []
+      3.times do
+        reject = ListedTaxon.make!(:list => keeper.list)
+        ListedTaxon.update_all("taxon_id = #{keeper.taxon_id}", "id = #{reject.id}")
+        rejects << reject
+      end
+      ListedTaxon.merge_duplicates
+      ListedTaxon.find_by_id(keeper.id).should_not be_blank
+      rejects.each do |reject|
+        ListedTaxon.find_by_id(reject.id).should be_blank
+      end
+    end
   end
   
   describe "cache_columns" do

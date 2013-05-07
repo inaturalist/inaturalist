@@ -1094,7 +1094,10 @@ class Taxon < ActiveRecord::Base
   end
   
   def photo_url
-    photos.blank? ? nil : image_url
+    if @default_photo || (taxon_photos.loaded? && taxon_photos.size > 0)
+      return image_url
+    end
+    taxon_photos.blank? ? nil : image_url
   end
 
   def all_names

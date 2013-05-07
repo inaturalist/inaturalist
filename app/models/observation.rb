@@ -411,7 +411,7 @@ class Observation < ActiveRecord::Base
   scope :in_month, lambda {|month| where("EXTRACT(MONTH FROM observed_on) = ?", month)}
   
   scope :in_projects, lambda { |projects|
-    projects = projects.split(',') if projects.is_a?(String)
+    projects = projects.split(',').map(&:to_i) if projects.is_a?(String)
     # NOTE using :include seems to trigger an erroneous eager load of 
     # observations that screws up sorting kueda 2011-07-22
     joins(:project_observations).where("project_observations.project_id IN (?)", projects)

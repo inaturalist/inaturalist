@@ -100,6 +100,9 @@ Inaturalist::Application.routes.draw do
     collection do
       get :upload
       post :photo
+      get :stats
+      get :taxon_stats
+      get :user_stats
     end
   end
 
