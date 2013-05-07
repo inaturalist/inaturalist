@@ -1377,11 +1377,19 @@ class ObservationsController < ApplicationController
     @taxon_counts = ActiveRecord::Base.connection.execute(taxon_counts_sql)
     @taxa = Taxon.where("id in (?)", @taxon_counts.map{|r| r['taxon_id']}).includes({:taxon_photos => :photo}, :taxon_names)
     @taxa_by_taxon_id = @taxa.index_by(&:id)
-    @rank_counts = scope.joins(:taxon).group("taxa.rank").count
+    rank_counts_sql = <<-SQL
+      SELECT
+        o.rank_name,
+        count(*) AS count_all
+      FROM
+        (#{scope.joins(:taxon).select("DISTINCT ON (taxa.id) taxa.rank AS rank_name").to_sql}) AS o
+      GROUP BY o.rank_name
+    SQL
+    @rank_counts = ActiveRecord::Base.connection.execute(rank_counts_sql)
     respond_to do |format|
       format.json do
         render :json => {
-          :total => @rank_counts.map(&:last).sum,
+          :total => @rank_counts.map{|r| r['count_all'].to_i}.sum,
           :taxon_counts => @taxon_counts.map{|row|
             {
               :id => row['taxon_id'],
@@ -1392,7 +1400,10 @@ class ObservationsController < ApplicationController
               )
             }
           },
-          :rank_counts => @rank_counts
+          :rank_counts => @rank_counts.inject({}) {|memo,row|
+            memo[row['rank_name']] = row['count_all']
+            memo
+          }
         }
       end
     end
