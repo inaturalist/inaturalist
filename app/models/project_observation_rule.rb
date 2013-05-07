@@ -8,6 +8,7 @@ class ProjectObservationRule < Rule
   
   before_save :clear_operand
   validate :operand_present
+  validates_uniqueness_of :operator, :scope => [:ruler_type, :ruler_id]
 
   def operand_present
     if OPERAND_OPERATORS.include?(operator)
