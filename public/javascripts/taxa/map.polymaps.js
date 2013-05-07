@@ -266,6 +266,18 @@ function addObservations() {
     .url(observationsGeoJsonUrl)
     .tile(false)
     .on('load', handleObservations)
+    .zoom(function(z) {
+      $('#observations circle').each(function(o) {
+        var r = parseFloat($(this).attr('r')),
+            minDimension = Math.min(window.map.size().x, window.map.size().y)
+        if (r * 2 > minDimension) {
+          $(this).hide()
+        } else {
+          $(this).show()
+        }
+      })
+      return z
+    })
     .clip(false)
   map.add(layers['observations']);
 }
