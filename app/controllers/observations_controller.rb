@@ -99,6 +99,7 @@ class ObservationsController < ApplicationController
       format.html do
         @iconic_taxa ||= []
         if (partial = params[:partial]) && PARTIALS.include?(partial)
+          pagination_headers_for(@observations)
           return render_observations_partial(partial)
         end
       end
@@ -1349,8 +1350,124 @@ class ObservationsController < ApplicationController
     end
   end
 
+  def stats
+    @headless = @footless = true
+    search_params, find_options = get_search_params(params)
+    @stats_adequately_scoped = stats_adequately_scoped?
+  end
+
+  def taxon_stats
+    search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
+    scope = Observation.query(search_params).scoped
+    scope = scope.where("1 = 2") unless stats_adequately_scoped?
+    taxon_counts_scope = scope.
+      joins(:taxon).
+      where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL)
+    taxon_counts_sql = <<-SQL
+      SELECT
+        o.taxon_id,
+        count(*) AS count_all
+      FROM
+        (#{taxon_counts_scope.to_sql}) AS o
+      GROUP BY
+        o.taxon_id
+      ORDER BY count_all desc
+      LIMIT 5
+    SQL
+    @taxon_counts = ActiveRecord::Base.connection.execute(taxon_counts_sql)
+    @taxa = Taxon.where("id in (?)", @taxon_counts.map{|r| r['taxon_id']}).includes({:taxon_photos => :photo}, :taxon_names)
+    @taxa_by_taxon_id = @taxa.index_by(&:id)
+    @rank_counts = scope.joins(:taxon).group("taxa.rank").count
+    respond_to do |format|
+      format.json do
+        render :json => {
+          :total => @rank_counts.map(&:last).sum,
+          :taxon_counts => @taxon_counts.map{|row|
+            {
+              :id => row['taxon_id'],
+              :count => row['count_all'],
+              :taxon => @taxa_by_taxon_id[row['taxon_id'].to_i].as_json(
+                :methods => [:default_name, :image_url, :iconic_taxon_name, :conservation_status_name],
+                :only => [:id, :name, :rank, :rank_level]
+              )
+            }
+          },
+          :rank_counts => @rank_counts
+        }
+      end
+    end
+  end
+
+  def user_stats
+    search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
+    scope = Observation.query(search_params).scoped
+    scope = scope.where("1 = 2") unless stats_adequately_scoped?
+    user_counts_sql = <<-SQL
+      SELECT
+        o.user_id,
+        count(*) AS count_all
+      FROM
+        (#{scope.to_sql}) AS o
+      GROUP BY
+        o.user_id
+      ORDER BY count_all desc
+      LIMIT 5
+    SQL
+    @user_counts = ActiveRecord::Base.connection.execute(user_counts_sql)
+    user_taxon_counts_sql = <<-SQL
+      SELECT
+        o.user_id,
+        count(*) AS count_all
+      FROM
+        (#{scope.select("DISTINCT ON (observations.taxon_id) observations.user_id").joins(:taxon).where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL).to_sql}) AS o
+      GROUP BY
+        o.user_id
+      ORDER BY count_all desc
+      LIMIT 5
+    SQL
+    @user_taxon_counts = ActiveRecord::Base.connection.execute(user_taxon_counts_sql)
+    @users = User.where("id in (?)", [@user_counts.map{|r| r['user_id']}, @user_taxon_counts.map{|r| r['user_id']}].flatten.uniq)
+    @users_by_id = @users.index_by(&:id)
+    respond_to do |format|
+      format.json do
+        render :json => {
+          :total => scope.select("DISTINCT observations.user_id").count,
+          :most_observations => @user_counts.map{|row|
+            {
+              :id => row['user_id'],
+              :count => row['count_all'],
+              :user => @users_by_id[row['user_id'].to_i].as_json(
+                :only => [:id, :name, :login],
+                :methods => [:user_icon_url]
+              )
+            }
+          },
+          :most_species => @user_taxon_counts.map{|row|
+            {
+              :id => row['user_id'],
+              :count => row['count_all'],
+              :user => @users_by_id[row['user_id'].to_i].as_json(
+                :only => [:id, :name, :login],
+                :methods => [:user_icon_url]
+              )
+            }
+          }
+        }
+      end
+    end
+  end
+
 ## Protected / private actions ###############################################
   private
+
+  def stats_adequately_scoped?
+    if params[:d1] && params[:d2]
+      d1 = (Date.parse(params[:d1]) rescue Date.today)
+      d2 = (Date.parse(params[:d2]) rescue Date.today)
+      return false if d2 - d1 > 366
+    end
+    !(params[:d1].blank? && params[:projects].blank? && params[:place_id].blank? && params[:user_id].blank?)
+  end
   
   def retrieve_photos(photo_list = nil, options = {})
     return [] if photo_list.blank?
@@ -1411,7 +1528,7 @@ class ObservationsController < ApplicationController
   
   # Processes params for observation requests.  Designed for use with 
   # will_paginate and standard observations query API
-  def get_search_params(params)
+  def get_search_params(params, options = {})
     # The original params is important for things like pagination, so we 
     # leave it untouched.
     search_params = params.clone
@@ -1437,17 +1554,19 @@ class ObservationsController < ApplicationController
       :include => [:user, {:taxon => [:taxon_names]}, :taggings, {:observation_photos => :photo}],
       :page => search_params[:page]
     }
-    find_options[:page] = 1 if find_options[:page].to_i == 0
-    find_options[:per_page] = @prefs["per_page"] if @prefs
-    
-    if !search_params[:per_page].blank?
-      find_options.update(:per_page => search_params[:per_page])
-    elsif !search_params[:limit].blank?
-      find_options.update(:per_page => search_params[:limit])
-    end
-    
-    if find_options[:per_page] && find_options[:per_page].to_i > 200
-      find_options[:per_page] = 200
+    unless options[:skip_pagination]
+      find_options[:page] = 1 if find_options[:page].to_i == 0
+      find_options[:per_page] = @prefs["per_page"] if @prefs
+      if !search_params[:per_page].blank?
+        find_options.update(:per_page => search_params[:per_page])
+      elsif !search_params[:limit].blank?
+        find_options.update(:per_page => search_params[:limit])
+      end
+      
+      if find_options[:per_page] && find_options[:per_page].to_i > 200
+        find_options[:per_page] = 200
+      end
+      find_options[:per_page] = 30 if find_options[:per_page].to_i == 0
     end
     
     if find_options[:limit] && find_options[:limit].to_i > 200
@@ -1457,8 +1576,6 @@ class ObservationsController < ApplicationController
     unless request.format && request.format.html?
       find_options[:include] = [{:taxon => :taxon_names}, {:observation_photos => :photo}, :user]
     end
-    
-    find_options[:per_page] = 30 if find_options[:per_page].to_i == 0
     
     # iconic_taxa
     if search_params[:iconic_taxa]
@@ -1519,19 +1636,21 @@ class ObservationsController < ApplicationController
     @license = search_params[:license]
     @photo_license = search_params[:photo_license]
     
-    search_params[:order_by] = "created_at" if search_params[:order_by] == "observations.id"
-    if ORDER_BY_FIELDS.include?(search_params[:order_by].to_s)
-      @order_by = search_params[:order_by]
-      @order = if %w(asc desc).include?(search_params[:order].to_s.downcase)
-        search_params[:order]
+    unless options[:skip_order]
+      search_params[:order_by] = "created_at" if search_params[:order_by] == "observations.id"
+      if ORDER_BY_FIELDS.include?(search_params[:order_by].to_s)
+        @order_by = search_params[:order_by]
+        @order = if %w(asc desc).include?(search_params[:order].to_s.downcase)
+          search_params[:order]
+        else
+          'desc'
+        end
       else
-        'desc'
+        @order_by = "observations.id"
+        @order = "desc"
       end
-    else
-      @order_by = "observations.id"
-      @order = "desc"
+      search_params[:order_by] = "#{@order_by} #{@order}"
     end
-    search_params[:order_by] = "#{@order_by} #{@order}"
     
     # date
     date_pieces = [search_params[:year], search_params[:month], search_params[:day]]
@@ -1567,6 +1686,9 @@ class ObservationsController < ApplicationController
     end
 
     @site = params[:site] unless params[:site].blank?
+
+    @user = User.find_by_id(params[:user_id]) unless params[:user_id].blank?
+    @projects = Project.where("id IN (?)", params[:projects]) unless params[:projects].blank?
     
     @filters_open = 
       !@q.nil? ||
