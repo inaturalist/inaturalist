@@ -16,19 +16,19 @@
     <%= f.hidden_field :user_id %>
     <%=t :subscribe_to_x_from_this_y_html, 
       :x => commas_and(resource.class.notifying_associations.keys.map{|k| t(k).downcase}),
-      :y => resource.class.to_s.underscore.humanize.downcase %>
+      :y => t("#{resource.class.to_s.underscore.humanize.downcase}_") %>
   <% end -%>
 
   <%= form_tag delete_subscription_url(resource.class.to_s, resource.id), 
       :method => :delete, 
       :class => 'unsubscribe', 
       :style => "#{'display:none;' unless subscription}" do %>
-    You're subscribed to
-    <%= commas_and resource.class.notifying_associations.keys %>
+    <%= t :you_are_subscribed_to %>
+    <%= commas_and(resource.class.notifying_associations.keys.map{|k| t(k).downcase}) %>
     <% if subscription && subscription.taxon -%>
-      of <%= subscription.taxon.default_name.is_scientific? ? subscription.taxon.default_name.name : subscription.taxon.default_name.name.pluralize.downcase %>
+      <%= t :of %> <%= subscription.taxon.default_name.is_scientific? ? subscription.taxon.default_name.name : subscription.taxon.default_name.name.pluralize.downcase %>
     <% end -%>
-    from this <%= resource.class.to_s.underscore.humanize.downcase %>.
+    <%= t :from_this %> <%= t("#{resource.class.to_s.underscore.humanize.downcase}_") %>.
     <%= hidden_field_tag :resource_type, resource.class.to_s %>
     <%= hidden_field_tag :resource_id, resource.id %>
     <nobr>
@@ -36,7 +36,7 @@
         <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'></span>Settings".html_safe, edit_subscription_by_resource_url(resource.class.to_s, resource.id), 
           :class => "subscriptionsettings" %>
       <% else %>
-        <%= link_to_function "Unsubscribe", "$(this).parents('form:first').submit()" %>
+        <%= link_to_function t(:unsubscribe), "$(this).parents('form:first').submit()" %>
       <% end -%>
     </nobr>
   <% end -%>

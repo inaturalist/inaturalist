@@ -70,7 +70,7 @@ $('a[data-loading-click], input[data-loading-click][type=radio], input[data-load
 
 function loadingClickForLink() {
   var txt = $(this).attr('data-loading-click')
-  if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
+  if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = I18n.t('loading') }
   var loading = $(this).siblings('.loadingclick:first')
   if (loading.length == 0) {
     loading = $(this).clone(false)
@@ -245,7 +245,7 @@ $(document).ready(function() {
             target: 'event'
           },
           content: {
-            text: '<span class="loading status">Loading...</span>',
+            text: '<span class="loading status">' + I18n.t('loading') + '</span>',
             ajax: {
               type: 'GET',
               data: {partial: 'cached_component'}
@@ -572,7 +572,7 @@ $.fn.zoomify = function() {
         $('<div></div>').attr('id', 'zoomable_dialog').addClass('dialog')
       )
     }
-    $('#zoomable_dialog').html('<div class="loading status">Loading...</div>')
+    $('#zoomable_dialog').html('<div class="loading status">' + I18n.t('loading') + '</div>')
     $('#zoomable_dialog').load($(this).attr('href'), "partial=photo", function() {
       
       $('img', this).load(function() {
@@ -857,7 +857,7 @@ $.fn.subscriptionSettings = function() {
       event: 'unfocus'
     },
     content: {
-      text: '<span class="loading status">Loading...</span>',
+      text: '<span class="loading status">' + I18n.t('loading') + '</span>',
       ajax: {
         type: 'GET',
         data: {partial: 'edit_inline'},
@@ -944,7 +944,7 @@ $('.flaglink').live('click', function() {
   $('#flagdialog').remove()
   var dialog = $('<div></div>').attr('id', 'flagdialog')
     .addClass('dialog')
-    .html('<div class="loading status">Loading...</div>')
+    .html('<div class="loading status">' + I18n.t('loading') + '</div>')
   dialog.load($(this).attr('href'), "partial=dialog", function() {
     $(this).centerDialog()
     $('input[type=radio]', this).change(function() {
@@ -958,7 +958,7 @@ $('.flaglink').live('click', function() {
     })
   })
   $(document.body).append(dialog)
-  dialog.dialog({modal: true, title: "Flag an item"})
+  dialog.dialog({modal: true, title: I18n.t('flag_an_item')})
   return false
 })
 
@@ -1012,7 +1012,7 @@ $('.add_matching_link').live('click', function(e) {
   $('#add_matching_link_dialog').remove()
   var dialog = $('<div></div>').attr('id', 'add_matching_link_dialog')
     .addClass('dialog')
-    .html('<div class="loading status">Loading...</div>')
+    .html('<div class="loading status">' + I18n.t('loading') + '</div>')
   $.ajax({url: url, type: 'get'})
     .success(function(data) { dialog.html(data) })
     .fail(function() {
@@ -1027,9 +1027,9 @@ $('.add_matching_link').live('click', function(e) {
 function showJoinProjectDialog(projectId, options) {
   options = options || {}
   var url = options.url || '/projects/'+projectId+'/join?partial=join',
-      title = options.title || 'Join project',
+      title = options.title || I18n.t('join_project'),
       originalInput = options.originalInput
-  var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
+  var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">' + I18n.t('loading') + '</div>')
   dialog.load(url, function() {
     // ajaxify join
     var button = $('.default.button', this),

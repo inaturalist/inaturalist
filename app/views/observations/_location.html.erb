@@ -7,7 +7,11 @@
   end
 -%>
 <label><%=t :location %>:</label>
-<%= observation_place_guess(observation).html_safe %>
+<% if observation_place_guess(observation).include?("Somewhere") %>
+    <%= t(:somewhere) %>
+    <% else  %>
+    <%= observation_place_guess(observation).html_safe %>
+<% end %>
 <% if observation.out_of_range? -%>
   <strong class="out_of_range nobr">
     <span class="ui-icon ui-icon-alert inlineblock"></span>
@@ -48,18 +52,18 @@
     <%= t(:public_coordinates_obscured_by, :distance=> (Observation::M_TO_OBSCURE_THREATENED_TAXA / 1000) ) %>
   <% else %>
     <% if observation.coordinates_obscured? -%>
-      <span class="latitude"><label>Lat:</label> <%= observation.private_latitude %></span>,
-      <span class="longitude"><label>Lon:</label> <%= observation.private_longitude %></span>
+      <span class="latitude"><label><%= t :lat %></label> <%= observation.private_latitude %></span>,
+      <span class="longitude"><label><%= t :long %></label> <%= observation.private_longitude %></span>
       <% if observation.latitude && observation.longitude -%>
         <div class="small meta">
         <%=t :shown_publicly_as %> 
-        <span class="latitude"><label>Lat:</label> <%= observation.latitude %></span>,
-        <span class="longitude"><label>Lon:</label> <%= observation.longitude %></span>
+        <span class="latitude"><label><%= t :lat %></label> <%= observation.latitude %></span>,
+        <span class="longitude"><label><%= t :long %></label> <%= observation.longitude %></span>
         </div>
       <% end -%>
     <% else %>
-      <span class="latitude"><label>Lat:</label> <%= observation.latitude %></span>,
-      <span class="longitude"><label>Lon:</label> <%= observation.longitude %></span>
+      <span class="latitude"><label><%= t :lat %></label> <%= observation.latitude %></span>,
+      <span class="longitude"><label><%= t :long %></label> <%= observation.longitude %></span>
     <% end -%>
     <%- if observation.coordinates_obscured? && observation.geoprivacy.blank? -%>
       <div class="small meta">

@@ -7,10 +7,11 @@
 <%= t(:observed_by).downcase %>
 <%= @observation.user.login %>
 <%- if @observation.time_observed_at -%>
-  at <%=h @observation.time_observed_at.strftime("%I:%M %p %Z") %>
+        <%=h t(:at) %> <%=h @observation.time_observed_at.strftime("%I:%M %p %Z") %>
 <%- end %>
-<%- if @observation.observed_on -%>
-  on <%=h @observation.observed_on.to_s(:long) %>
+<%- if @observation.observed_on
+      date_format = @observation.observed_on.to_s(:long).split(" ") -%>
+        <%= t :on_ %> <%=h t("date_format.date_long.#{date_format.first.downcase}", :day => date_format[1], :year =>date_format.last) %>
 <%- end -%>
 <% end -%>
 
@@ -155,11 +156,11 @@
       <% end -%>
       <%- if @observation.observed_on -%>
         <%=t :on_ %>
-        <%= link_to @observation.observed_on.strftime(@observation.time_observed_at ? '%b' : '%B'), 
+        <%= link_to t("date_format.month.#{@observation.observed_on.strftime(@observation.time_observed_at ? '%b' : '%B').downcase}"),
           observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}") %>
         <%= link_to @observation.observed_on.day, 
           observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}-#{@observation.observed_on.day}") %>,
-        <%= link_to @observation.observed_on.year, 
+        <%= link_to @observation.observed_on.year,
           observations_by_login_path(@observation.user.login, :on => @observation.observed_on.year) %>
       <%- end -%>
     </span>
@@ -168,7 +169,7 @@
   <% if is_me?(@observation.user) %>
     
     <div id="tools">
-      <%= link_to t(:edit), edit_observation_url, 
+      <%= link_to t(:edit), edit_observation_url,
         :id => "edit_list_button", :class => "button" %>
 
       <% unless @projects.blank? %>
@@ -177,7 +178,7 @@
           <ul>
             <% for project in @projects %>
               <li class="inline buttonrow">
-                <%= link_to t(:remove), 
+                <%= link_to t(:remove),
                   remove_project_observation_path(project, :observation_id => @observation.id),
                   :remote => true,
                   :method => :delete,
@@ -274,7 +275,7 @@
   
   <% unless @observation.description.blank? %>
     <div id="observation-description">
-      <h3>Description</h3>
+      <h3><%= t :description %></h3>
       <div class="clear readable description">
         <%= formatted_user_text(@observation.description) %>
       </div>
@@ -302,7 +303,7 @@
 
     <% if @observation.mobile? -%>
       <div id="device" class="description <%= @observation.device_name.to_s.split.join('_').downcase %>">
-        <label>Device:</label>
+        <label><%= t :device %>:</label>
         <% if @observation.device_url -%>
           <%= link_to @observation.device_name, @observation.device_url %>
         <% else %>
@@ -320,11 +321,11 @@
             </label>
             <%= observation_field_value_for(ofv) %>
             <span class="extra small">
-              <%= link_to "Observations w/ field", observations_path("field:#{ofv.observation_field.normalized_name}" => ""),
+              <%= link_to t(:observations_w_field), observations_path("field:#{ofv.observation_field.normalized_name}" => ""),
                 :rel => "nofollow" %>
               <% if ofv.value.to_s.size < 30 -%>
                 |
-                <%= link_to "Observations w/ #{ofv.observation_field.name}=#{ofv.value}", 
+                <%= link_to t(:observations_w) + "#{ofv.observation_field.name}=#{ofv.value}",
                   observations_path("field:#{ofv.observation_field.normalized_name}" => ofv.value),
                   :rel => "nofollow" -%>
               <%- end -%>
@@ -509,7 +510,7 @@
         <% for pi in @project_invitations %>
           <%= render :partial => 'project_invitations/project_invitation', :object => pi, :locals => {:observation => @observation} %>
         <% end %>
-        <%= link_to "Manage your project invitations", project_invitations_path, :class => "right readmore" %>
+        <%= link_to t(:manage_your_project_invitations), project_invitations_path, :class => "right readmore" %>
       <% end %>
     </div>
     
@@ -533,7 +534,7 @@
                       :user_id => current_user.id },
                     :method => :post,
                     :class => "glaucous button",
-                    "data-loading-click" => "inviting..." %>
+                    "data-loading-click" => t(:inviting) %>
                 <% end -%>
                 <%= link_to h(project.title), project, :class => "inter" %>
               </li>
@@ -572,7 +573,7 @@
   
   <div id="data_quality_assessment">
     <h3>
-      <span class="right quality_tip_target description helptip" rel="#quality_tip" data-helptip-title="About the Quality Assessment" data-helptip-width="500" style="margin-top:4px"></span>
+      <span class="right quality_tip_target description helptip" rel="#quality_tip" data-helptip-title="<%= t :about_the_quality_assessment %>" data-helptip-width="500" style="margin-top:4px"></span>
       <%=t :data_quality_assessment %>
     </h3>
     <%= render :partial => "quality_metrics/quality_metrics", :object => @observation %>
