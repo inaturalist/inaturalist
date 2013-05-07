@@ -2207,7 +2207,9 @@ class ObservationsController < ApplicationController
           :file_content_type, :file_file_name, :mobile, :metadata]
       }
       pagination_headers_for(@observations)
-      @observations = @observations.includes({:observation_photos => :photo}, :photos, :iconic_taxon)
+      if @observations.respond_to?(:scoped)
+        @observations = @observations.includes({:observation_photos => :photo}, :photos, :iconic_taxon)
+      end
       render :json => @observations.to_json(opts)
     end
   end
