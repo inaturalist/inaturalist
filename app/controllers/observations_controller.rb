@@ -1024,7 +1024,7 @@ class ObservationsController < ApplicationController
       format.mobile
       
       format.json do
-        render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name])
+        render_observations_to_json
       end
       
       format.kml do
@@ -2183,7 +2183,7 @@ class ObservationsController < ApplicationController
     else
       opts = options
       opts[:methods] ||= []
-      opts[:methods] += [:short_description, :user_login, :iconic_taxon_name]
+      opts[:methods] += [:short_description, :user_login, :iconic_taxon_name, :tag_list]
       opts[:methods].uniq!
       opts[:include] ||= {}
       if @ofv_params
@@ -2207,6 +2207,7 @@ class ObservationsController < ApplicationController
           :file_content_type, :file_file_name, :mobile, :metadata]
       }
       pagination_headers_for(@observations)
+      @observations = @observations.includes({:observation_photos => :photo}, :photos, :iconic_taxon)
       render :json => @observations.to_json(opts)
     end
   end
