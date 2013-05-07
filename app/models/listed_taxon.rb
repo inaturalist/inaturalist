@@ -527,6 +527,10 @@ class ListedTaxon < ActiveRecord::Base
       to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
       lt = ListedTaxon.find_by_id(to_merge_ids.first)
       rejects = ListedTaxon.all(:conditions => ["id IN (?)", to_merge_ids[1..-1]])
+
+      # remove the rejects from the list before merging to avoid alread-on-list validation errors
+      ListedTaxon.update_all("list_id = NULL", ["id IN (?)", rejects])
+      
       rejects.each do |reject|
         lt.merge(reject)
       end
