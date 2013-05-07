@@ -31,8 +31,11 @@ $(document).ready(function() {
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
   } else if (typeof(KML_ASSET_URLS) != 'undefined' && KML_ASSET_URLS != null && KML_ASSET_URLS.length > 0) {
     for (var i=0; i < KML_ASSET_URLS.length; i++) {
-      lyr = new google.maps.KmlLayer(KML_ASSET_URLS[i], {preserveViewport: preserveViewport})
+      lyr = new google.maps.KmlLayer(KML_ASSET_URLS[i], {preserveViewport: preserveViewport, suppressInfoWindows: true})
       map.addOverlay('KML Layer', lyr)
+      google.maps.event.addListener(lyr, 'click', function(e) {
+        $.fn.latLonSelector.handleMapClick(e)
+      })
     }
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
   }
