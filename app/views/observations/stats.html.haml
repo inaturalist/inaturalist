@@ -36,7 +36,7 @@
 - if @stats_adequately_scoped
   #observations.observations.medium.grid
     = loading
-  = link_to t(:view_all_observations), request.path.gsub(/stats\//, ''), :class => "readmore"
+  = link_to t(:view_all_observations), request.fullpath.gsub(/\/stats/, ''), :class => "readmore"
 - else
   You must add one of the following parameters to the URL to use this tool
   %ul
