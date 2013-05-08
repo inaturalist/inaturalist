@@ -346,7 +346,7 @@ class ObservationsController < ApplicationController
           @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
         end
         @tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
-        @kml_assets = @project.project_assets.select{|pa| pa.asset_file_name =~ /\.kml$/}
+        @kml_assets = @project.project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
       end
     end
     options[:time_zone] = current_user.time_zone
@@ -1216,8 +1216,7 @@ class ObservationsController < ApplicationController
       :include => [{:curator_identification => [:taxon, :user]}])
     @project_observations_by_observation_id = @project_observations.index_by(&:observation_id)
     
-    @kml_assets = @project.project_assets.all(:conditions => {
-      :asset_content_type => "application/vnd.google-earth.kml+xml"})
+    @kml_assets = @project.project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
     
     respond_to do |format|
       format.html do

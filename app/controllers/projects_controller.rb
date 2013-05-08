@@ -91,7 +91,7 @@ class ProjectsController < ApplicationController
         @custom_project = @project.custom_project
         @project_assets = @project.project_assets.limit(100)
         @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}    
-        @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.kml$/}
+        @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
         if @place = @project.place
           if @project.prefers_place_boundary_visible
             @place_geometry = PlaceGeometry.without_geom.where(:place_id => @place).first
@@ -129,7 +129,7 @@ class ProjectsController < ApplicationController
 
   def edit
     @project_assets = @project.project_assets.all(:limit => 100)
-    @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.kml$/}
+    @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
     if @place = @project.place
       if @project.prefers_place_boundary_visible
         @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
