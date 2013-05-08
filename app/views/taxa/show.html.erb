@@ -151,18 +151,18 @@
   </span>
   <div id="meta" class="right description">
     <% if @taxon.source && @taxon.source_url %>
-      <%= t(:source)%>: <%= link_to h(truncate(@taxon.source.title, :length => 30)), @taxon.source_url %>
+      <%= t(:source)%>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}"), :length => 30), @taxon.source_url %>
     <% elsif @taxon.source && @taxon.source.url %>
-      <%= t(:source)%>: <%= link_to h(truncate(@taxon.source.title, :length => 30)), @taxon.source.url %>
+      <%= t(:source)%>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}"), :length => 30), @taxon.source.url %>
     <% elsif @taxon.source %>
-      Source: <%= link_to h(truncate(@taxon.source.title, :length => 30)), @taxon.source %>
+      <%= t :source %>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}"), :length => 30), @taxon.source %>
     <% elsif @taxon.creator %>
       <%= t(:added_by) %> <%= link_to h(@taxon.creator.login), @taxon.creator %>
     <% else %>
       <%= t(:source_unknown)%>
     <% end %>
     
-    | <%= link_to "Permalink", url_for(@taxon), :title => t(:named_based_url_might_change)%>
+    | <%= link_to t(:permalink), url_for(@taxon), :title => t(:named_based_url_might_change)%>
     <% if logged_in? -%>
       | <%= link_to t(:map), taxon_map_path(@taxon) %>
     <% end -%>

@@ -71,7 +71,7 @@
     
     if (options.taxonRangeKmlUrl) {
       var taxonRangeLyr = new google.maps.KmlLayer(options.taxonRangeKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
-      map.addOverlay('Taxon Range', taxonRangeLyr, {id: 'taxon_range-'+options.taxonId})
+      map.addOverlay(I18n.t('taxon_range'), taxonRangeLyr, {id: 'taxon_range-'+options.taxonId})
       preserveViewport = true
     }
     
@@ -83,12 +83,12 @@
     
     if (options.gbifKmlUrl) {
       var gbifLyr = new google.maps.KmlLayer(options.gbifKmlUrl, {suppressInfoWindows: true, preserveViewport: true})
-      map.addOverlay('GBIF Occurrences', gbifLyr, {
+      map.addOverlay(I18n.t('taxon_map.gbif_occurrences'), gbifLyr, {
         id: 'gbif-'+options.taxonId, 
         hidden: true,
         description: 
-          'It may take Google a while to load these data, assuming GBIF has any. ' + 
-          '<a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">Data URL</a>'
+          I18n.t('taxon_map.it_may_take_google_a_while_to') +
+          '<a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">' + I18n.t('taxon_map.data_url') + '</a>'
       })
       google.maps.event.addListener(gbifLyr, 'click', function(e) {
         if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}

@@ -376,7 +376,7 @@ google.maps.Map.prototype.showAllObsOverlay = function() {
     google.maps.event.addListener(this._allObsMarker, 'click', function() {
       var observation = this._observation;
       var maxContentDiv = $('<div class="observations mini maxinfowindow"></div>').append(
-        $('<div class="loading status">Loading...</div>')
+        $('<div class="loading status">' + I18n.t('loading') + '</div>')
       ).get(0);
       this.openInfoWindowHtml(
         map.buildObservationInfoWindow(observation),
@@ -724,7 +724,7 @@ iNaturalist.OverlayControl = function(map, options) {
   options = options || {}
   var controlDiv = options.div || document.createElement('DIV')
   controlDiv.style.padding = '5px';
-  var controlUI = $('<div>Overlays</div>').addClass('gmapv3control overlaycontrol')
+  var controlUI = $('<div>' + I18n.t('taxon_map.overlays') + '</div>').addClass('gmapv3control overlaycontrol')
   var ul = $('<ul></ul>').hide()
   controlUI.append(ul)
   controlUI.hover(function() {

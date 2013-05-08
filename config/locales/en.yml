@@ -47,12 +47,14 @@ en:
   about_life!: about life!
   about_places: About Places
   about_the_cc_licenses: About Creative Commons licenses
+  about_the_quality_assessment: About the Quality Assessment
   about_the_taxobox_raquo: "About the taxobox &raquo;"
   about_these_licenses: About these licenses
   about_this_map: About This Map
   about_this_project: About this Project
   about_x: "About %{x}"
   acc: 'Acc (m)'
+  accept: accept
   accuracy: Accuracy
   accuracy_meters: Accuracy (meters)
   accuracy_of_the_coordinates: 'Accuracy of the coordinates in meters. You can edit this by click the "edit" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you are sure you were somewhere inside it.'
@@ -129,12 +131,15 @@ en:
   add_your_photo: Add your photo
   add_your_photo_to: "Add your photo to %{project}"
   added: Added
+  added!: Added!
   added_by: Added by
   added_identifications_to: added identifications to anyone's observations.
   added_on: Added on
   adding: "Adding..."
   adding_observations: Adding observations
   adding_to_your_life_list: "Adding to your life list..."
+  additional_range: Additional range
+  additional_range_data_from_an_unknown_source: Additional range data from an unknown source
   admin: Admin
   admin_tools: Admin Tools
   agree: agree
@@ -151,6 +156,25 @@ en:
   all_places: "&laquo; All Places"
   all_rights_reserved: all rights reserved
   all_species: All Species
+  all_taxa:
+    rank:
+      kingdom: Kingdom
+      class: Class
+      phylum: Phylum
+      species: Specie
+    plants: Plants
+    animals: Animals
+    mollusks: Mollusks
+    amphibians: Amphibians
+    mammals: Mammals
+    ray_finned_fishes: Ray-Finned Fishes
+    reptiles: Reptiles
+    birds: Birds
+    insects: Insects
+    arachnids: Arachnids
+    fungi: Fungi
+    chromista: Chromista
+    protozoans: Protozoans
   all_taxonomic_groups: "&laquo; All Taxonomic Groups"
   all_your_observations_will_default_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   all_your_observations_will_default_to_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
@@ -200,6 +224,8 @@ en:
   are_you_sure_you_want_to_delete_this_photo?: Are you sure you want to delete this photo?
   are_you_sure_want_join: Are you sure you want to join
   are_you_sure_you_want_sync_this: Are you sure you want to sync this observation's data with this Flickr photo? You will lose changes you've made to this form, but you will be able to revert to your saved copy.
+  are_you_sure_you_want_to_delete_this: Are you sure you want to delete this?
+  are_you_sure_you_want_to_remove_this_invitation: Are you sure you want to remove this invitation?
   associated_observations: Associated observations
   associated_taxa: Associated taxa
   you_sure_delete_list: Are you sure you want to delete this list?
@@ -209,6 +235,7 @@ en:
   assessment: assessment
   associations: Associations
   at: at
+  at_: at
   at_any_time_change: at any time (<span class="button">change</span>)
   at_time: "at %{time}"
   atom: Atom
@@ -351,6 +378,7 @@ en:
   comments_by_everyone: Comments by everyone
   comments_by_me: Comments by me
   comments_youve_made_with_others: Comments You've Made (w/ Others)<br/><span class="description">in the past week</span>
+  commercial_solicitation: Commercial solicitation, links to nowhere, etc.
   community_supported_id: Community-supported ID?
   compare_with: Compare with
   comparing: comparing
@@ -410,6 +438,33 @@ en:
   date_: Date
   date?: Date?
   date_added: Date added
+  date_format:
+    date_long:
+      january: January %{day} %{year}
+      february: February %{day} %{year}
+      march: March %{day} %{year}
+      april: April %{day} %{year}
+      may: May %{day} %{year}
+      june: June %{day} %{year}
+      july: July %{day} %{year}
+      august: August %{day} %{year}
+      september: September %{day} %{year}
+      october: October %{day} %{year}
+      november: November %{day} %{year}
+      december: December %{day} %{year}
+    month:
+      january: January
+      february: February
+      march: March
+      april: April
+      may: May
+      june: June
+      july: July
+      august: August
+      september: September
+      october: October
+      november: November
+      december: December
   date_observed: Date observed
   date_time: Date/Time
   datetime_: Date/Time
@@ -437,6 +492,7 @@ en:
   desription: Description
   destroy: Destroy
   details: Details
+  device: Device
   did_not_send_invitations_because: Did not send invites to the following because...
   did_you_mean: 'Did you mean'
   did_you_photos_flickr?: Did you put any photos on Flickr?
@@ -548,6 +604,8 @@ en:
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
   first_inat_observation: "First %{site_name} observation"
   first_observer: 1st observer
+  flag: Flag
+  flag_an_item: Flag an item
   flag_description: Flag this content to let the curators know something is wrong with it.
   flag_for_curation: Flag for curation
   flag_it!: Flag it!
@@ -580,7 +638,8 @@ en:
   from: From
   from_anywhere_change: from anywhere (<span class="button">change</span>)
   from_in_this_place: from in this place
-  from_list: From list
+  from_list: From List
+  from_this: from this
   from_photos: From photos
   from_your_site_observations: "From %{site_name} observations"
   full_id_please: ID Please!
@@ -592,6 +651,7 @@ en:
   fungus:
     one: fungus
     other: fungi
+  gbif_occurrences: GBIF Occurrences
   general: General
   generally_these_come_from_iucn_red_list: Generally these come from IUCN Red List, and if they come from elsewhere they will adhere to the IUCN categories.
   generate_taxonomic_tags_for_flickr: Generate taxonomic tags for your Flickr photos.
@@ -617,6 +677,7 @@ en:
   grid_tooltip: Show grid view
   guess_description: Guess / Description
   guide_colors: Guide Colors
+  has_already_been_flagged_by: has already been flagged by
   hasnt_contributed_any_observations: hasn't contributed any observations to this project.
   hate_me_facebook: "Unlink your Facebook and %{site_name} Accounts"
   hate_me_flickr: "Unlink your Flickr and %{site_name} Accounts"
@@ -641,6 +702,7 @@ en:
   i_something_i: "<i>Something...</i>"
   icon: Icon
   icon_slash_photo: Icon / Photo
+  id: ID
   id_more_in_id_please: ID more in ID Please
   id_please!: ID Please!
   id_please: ID Please
@@ -651,6 +713,7 @@ en:
   identifications_by: "Identifications by %{user}"
   identified?: identified
   identotron: Identotron
+  ids: "ID's"
   ids_made_for_others: IDs made for others
   if_this_is_a_cientific_name: If this is a scientific name, is it currently accepted?
   if_this_link_will_apply_to_descendant: If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
@@ -705,6 +768,7 @@ en:
   invite_your_friends_description: "Help make %{site_name} a bigger, better community by inviting your friends to join!"
   invited: invited
   invited_to_the_following_projects: "Invited to the following projects:"
+  inviting: inviting...
   is_a: 'is a'
   is_a_naturalist: is a naturalist!
   is_an: 'is an'
@@ -748,6 +812,7 @@ en:
   licensing: Licensing
   licensing_your_content_gives_others_legal: "Licensing your content gives others the legal right to use it if they stick to the terms of the license. %{site_name} uses your Creative Commons-licensed content to share with data partners like the "
   life!: Life!
+  life_list: "%{user}'s Life List"
   life_list_updated_we_also_saved_a: Life list updated! We also saved a blank observation of this taxon.
   life_lists_automatically_fill: Life lists automatically fill up with new taxa as you observe them, and they can be restricted to higher level parent taxa, e.g. a life list of birds in the crow family (Corvidae).
   life_list_first: "life list first"
@@ -822,6 +887,7 @@ en:
   make_this_your_default_license: "Make this your default %{type} license"
   mammals: mammals
   manage_all_your_subscriptions: Manage all your subscriptions
+  manage_your_project_invitations: Manage your project invitations
   managed: managed
   manually_create_new_place: Manually Create a New Place
   map: Map
@@ -838,6 +904,7 @@ en:
   message: Message
   messages: Messages
   mixed_licenses: mixed licenses
+  misleading_or_illegal_content: Misleading or illegal content, racial or ethnic slugs, etc.
   mobile_apps_for: Mobile apps for
   mobile_view_available: Mobile view available
   mollusks: mollusks
@@ -1013,6 +1080,8 @@ en:
   observations_saved: Observation(s) saved! 
   observations_specifying_this_field: Observations specifying this field
   observations_title: Observations by Everyone
+  observations_w: Observations w/
+  observations_w_field: Observations w/ field
   observations_week: Observations / Week
   observations_will_revert_to_casual: Observations will revert to "casual" grade if the above conditions aren't met or
   observed: Observed
@@ -1025,8 +1094,10 @@ en:
   observing: observing
   occurence_status_describes_how: Occurence status describes how common or rare a taxon is in a given area.  See DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">more information on terminology</a>.
   occurrence_status: Occurrence status
+  of: of
   of_it_and_its_descendants: of it and its descendants
-  on: on
+  offensive_inappropriate: offensive / inappropriate
+  on_: "on"
   on_date: "at %{date}"
   on_edit_date: "on %{editdate}"
   on_list?: on list
@@ -1054,6 +1125,7 @@ en:
   order_by: Order by
   original: original
   organism_appears_captive_cultivated: Organism appears captive / cultivated
+  other: other
   other_animals: other animals
   other_annimals: Other Animals
   out_of_range: Out of range
@@ -1072,6 +1144,7 @@ en:
   personal_message: Personal message
   personal_message_description: Nobody likes getting email from a machine! Why not let your friends know why you're inviting them?
   per_page: "Per page"
+  permalink: Permalink
   photo: "Photo %{photoid}, %{photoattribution}"
   photo: Photo
   photo?: Photo?
@@ -1215,6 +1288,7 @@ en:
   quality_grade: Quality grade
   quality_grade_colon: "Quality grade:"
   range: Range
+  range_from: 'Range from '
   rank: Rank
   rank_restrictions: Rank restrictions
   ray_finned_fishes: ray-finned fishes
@@ -1222,6 +1296,7 @@ en:
   read_our_getting_started_guide: read our Getting Started guide
   read_the_full_wikipedia: Read the full Wikipedia description
   reason: Reason
+  reason_you_are_flagging_this_item: Reason you're flagging this item.
   receive_email_notifications_when_people_leave_you: Receive email notifications about
   recent_additions: Recent additions
   recent_comments_on_your_stuff: Recent Comments on Your Stuff
@@ -1289,6 +1364,7 @@ en:
   save_comment: Save comment
   save_draft: Save Draft
   save_fields: Save fields
+  save_flag: Save flag
   save_identification: Save identification
   save_observation: Save observation
   save_photos: Save photos
@@ -1368,19 +1444,35 @@ en:
   site_name_place: "%{site_name} place"
   so_meta!: so meta!
   some_agree: some agree
+  some_other_reason: Some other reason you can explain below.
   some_people: Some people
   some_rights_reserved: some rights reserved
   something: Something
   something_went_wrong_adding: Something went wrong adding that species to your list
   something_went_wrong_updating: Something went wrong updating your list!
   somewhere_on_earth: somewhere on Earth
+  somewhere: (Somewhere...)
   sorry_how_about_we_try_repeat: "Sorry! How about we try and repeat your search in some other databases of species names? If we find something, we'll save it so you can find it next time."
   source: Source
   source_: 'Source:'
+  source_list:
+    ubio: uBio
+    catalogue_of_life: Catalogue of Life
+    inaturalist: iNaturalist
+    new_zeland_organisms_register: New Zealand Organisms Register
+    nzbrn_birds: NZBRN Birds
+    nzbrn_fungi: NZBRN Fungi
+    nzbrn_herpetofauna: NZBRN Herpetofauna
+    nzbrn_invertebrates: NZBRN Invertebrates
+    nzbrn_mammals: NZBRN Mammals
+    nzbrn_plants: NZBRN Plants
+    nzbrn_other: NZBRN Other
+    catalogue_of_life_2012_annual_checklist: 'Catalogue of Life: 2012 Annual Checklist'
   source_unknown: "Source unknown"
   source_of_coordinates: 'Source of coordinates and accuracy measure, set automatically.'
   sources: Sources
   sources_youve_added: Sources you've added
+  spam: spam
   species: Species
   species_from_around_the_world: Species from around the world
   species_guess: species guess
@@ -1443,6 +1535,11 @@ en:
   taxa_needing_curation: Taxa Needing Curation
   taxon: Taxon
   taxon_: taxon
+  taxon_map:
+      gbif_occurrences: GBIF Occurrences
+      it_may_take_google_a_while_to: It may take Google a while to load these data, assuming GBIF has any.
+      data_url: Data URL
+      overlays: Overlays
   taxon_name: Taxon name
   taxon_range: Taxon range
   taxon_schemes_raquo_html: "Taxon <nobr>schemes &raquo;</nobr>"
@@ -1501,6 +1598,7 @@ en:
   they_already_have_iNat_accounts: "...they already have %{site_name} accounts"
   they_have_been_invited: ...they've already been invited
   third_person_possessive_singular: "%{object_phrase}'s %{noun}"
+  this: this
   this_is_a_cached_summary_based_on: This is a cached summary of this taxon based on its
   this_is_a_life_list_of: This is a life list of
   this_is_more_convenient_way_find_parent: This is a more convenient way to find a parent ID. It's the parent ID that actually gets saved.
@@ -1560,6 +1658,7 @@ en:
   unknown: Unknown
   unlink_your_picasa_account: Unlink Your Picasa Account
   unpublish: Unpublish
+  unsubscribe: Unsubscribe
   unsuspend_user: Unsuspend user
   update: Update
   update_existing_observations_with_new_license: Update existing observations with new license choices
@@ -1578,6 +1677,7 @@ en:
   user_hasnt:  "%{user} hasnt"
   user_invite_observation_to_project: '%{user} would like to invite your observation "%{observation}" to the %{project} project.'
   user_s: "%{user}'s"
+  user_s_id: "%{user}'s %{id}"
   user_thinks_yours_is: "%{user} %{noun} your observation %{observation} is"
   username: Username
   username_or_email: Username or email
@@ -1695,7 +1795,7 @@ en:
   x_sent_you_a_new_message_on_y_html: "%{x} sent you a new message on %{y}: "
   year: Year
   yellow: yellow
-  "yes": "Yes"
+  'yes': "Yes"
   yes_find_them!: "Yes, find them!"
   yes_i_want_to_join: Yes, I want to join
   yes_license_my_observations_so_scientists_can_use: Yes, license my photos and observations so scientists can use my data!
@@ -1704,6 +1804,7 @@ en:
   you: you
   you_admin: You Admin
   you_are_over_your_invites_quota: ...you're over your monthly quota of 60 invites
+  you_are_subscribed_to: "You're subscribed to "
   you_can_accept_invitations: You can accept the invitation here 
   you_can_also_add_flickr: You can also add Flickr tags when editing an observation, or when batch editing your observations.
   you_can_alwais_add_new: You can always add new observations by clicking the little arrow on the upper right of the page and using the drop down menu.
@@ -2225,6 +2326,7 @@ en:
       default: '%b. %d, %Y %H:%M:%S %z'
       long: '%B %d, %Y %H:%M'
       short: '%d %b %H:%M'
+      observed_at: at %I:%M %p %Z
     pm: pm
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
