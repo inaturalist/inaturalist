@@ -37,7 +37,7 @@
       <ul class="subnav taxon_links" style="display: none">
         <% for taxon in Taxon::ICONIC_TAXA %>
           <li>
-            <%= link_to Taxon::ICONIC_TAXON_NAMES[taxon.name], taxon, :class => "taxon #{taxon.name}" %>
+            <%= link_to t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[taxon.name].gsub(' ','_').gsub('-','_').downcase}"), taxon, :class => "taxon #{taxon.name}" %>
           </li>
         <% end %>
         <li class="formwrapper">

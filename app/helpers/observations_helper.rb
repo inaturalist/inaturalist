@@ -71,7 +71,7 @@ module ObservationsHelper
         observations_path(:lat => observation.private_latitude, :lng => observation.private_longitude)) +
         " (#{google_coords_link}, #{osm_coords_link})".html_safe
     else
-      content_tag(:span, "(Somewhere...)")
+      content_tag(:span, t(:somewhere))
     end
   end
   
