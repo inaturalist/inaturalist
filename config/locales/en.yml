@@ -1047,7 +1047,12 @@ en:
   observation_fields: Observation Fields
   observation_fields_are_additional: Observation fields are additional data fields that can be added to observations.
   observation_rights_html: "Observation %{rights}"
-  observation_rules_description: "You can choose rules to determine what observations can be added to this project, like limiting observations to a certain place. Note&#58; limiting to places currently relies on %{site_name} Places, and can only limit observations to the smallest rectangle that surrounds a place."
+  observation_rules_description: |
+    You can choose rules to determine what observations can be added to this
+    project, like limiting observations to a certain place. Note: limiting to
+    places currently relies on %{site_name} Places, and can only limit
+    observations to the smallest rectangle that surrounds a place. You can
+    only have one of each kind of rule.
   observation_would_like_some_help: "%{user} would like some help identifying this!"
   observations: Observations
   observations_by_everyone: Observations by everyone

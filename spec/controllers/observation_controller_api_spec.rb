@@ -82,6 +82,12 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "index" do
+    it "should allow search" do
+      lambda {
+        get :index, :format => :json, :q => "foo"
+      }.should_not raise_error
+    end
+
     it "should filter by hour range" do
       o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
       o.time_observed_at.should_not be_blank

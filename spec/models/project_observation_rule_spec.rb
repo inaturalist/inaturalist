@@ -7,3 +7,12 @@ describe ProjectObservationRule, "validation" do
     po.should_not be_valid
   end
 end
+
+describe ProjectObservationRule, "creation" do
+  it "should not allow more than one operator per project" do
+    por1 = ProjectObservationRule.make!(:operator => "identified?")
+    por2 = ProjectObservationRule.make(:operator => "identified?", :ruler => por1.ruler)
+    por2.should_not be_valid
+    por2.errors[:operator].should_not be_blank
+  end
+end
