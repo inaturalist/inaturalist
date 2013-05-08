@@ -3,6 +3,7 @@
 - no_box ||= false
 - hide_prefix ||= false
 - hide_place ||= false
+- status_name = cs.status_name
 %div{:class => "conservation_status #{cs.iucn_name.gsub(' ', '_')} #{no_box ? 'inlineblock' : 'box'}"}
   - unless hide_prefix
     =succeed ':' do
@@ -10,8 +11,10 @@
   %strong.csstatus
     - if !cs.place && !hide_place
       =raw t(:globally).capitalize
-    = cs.status_name.titleize
-    - if cs.status_name !~ /#{cs.status}/
+      = status_name
+    - else
+      = status_name[0].upcase + status_name[1..-1]
+    - if status_name !~ /#{cs.status}/
       = surround '(',')' do
         = cs.status
   - if cs.place && !hide_place

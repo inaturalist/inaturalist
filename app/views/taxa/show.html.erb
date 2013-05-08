@@ -151,11 +151,11 @@
   </span>
   <div id="meta" class="right description">
     <% if @taxon.source && @taxon.source_url %>
-      <%= t(:source)%>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}"), :length => 30), @taxon.source_url %>
+      <%= t(:source)%>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}", :default => @taxon.source.title), :length => 30), @taxon.source_url %>
     <% elsif @taxon.source && @taxon.source.url %>
-      <%= t(:source)%>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}"), :length => 30), @taxon.source.url %>
+      <%= t(:source)%>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}", :default => @taxon.source.title), :length => 30), @taxon.source.url %>
     <% elsif @taxon.source %>
-      <%= t :source %>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}"), :length => 30), @taxon.source %>
+      <%= t :source %>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}", :default => @taxon.source.title), :length => 30), @taxon.source %>
     <% elsif @taxon.creator %>
       <%= t(:added_by) %> <%= link_to h(@taxon.creator.login), @taxon.creator %>
     <% else %>
@@ -281,10 +281,12 @@
             </div>
           <% end -%>
           <%= establishment_blob(@listed_taxon, :class => "inlineblock") if @listed_taxon.endemic? || @listed_taxon.invasive? %>
-          <strong><%=raw t(@listed_taxon.establishment_means || "present").capitalize %></strong>
+          <strong><%= t(@listed_taxon.establishment_means || "present", :default => "present").capitalize %></strong>
           <%=t @listed_taxon.native? ? 'to' : 'in' %>
-          <%= link_to @listed_taxon.place.name, @place %>
-          <%= link_to t(:view_details), @listed_taxon, :class => "small" %>
+          <%= link_to @listed_taxon.place.name, @listed_taxon.place %>
+          <span class="small">
+            (<%= link_to t(:view_details), @listed_taxon %>)
+          </span>
         </div>
       </div>
     <% end -%>
