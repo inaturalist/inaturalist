@@ -235,6 +235,7 @@ en:
   assessment: assessment
   associations: Associations
   at: at
+  at_: at
   at_any_time_change: at any time (<span class="button">change</span>)
   at_time: "at %{time}"
   atom: Atom
@@ -1445,7 +1446,7 @@ en:
   something_went_wrong_adding: Something went wrong adding that species to your list
   something_went_wrong_updating: Something went wrong updating your list!
   somewhere_on_earth: somewhere on Earth
-  somewhere: Somewhere...
+  somewhere: (Somewhere...)
   sorry_how_about_we_try_repeat: "Sorry! How about we try and repeat your search in some other databases of species names? If we find something, we'll save it so you can find it next time."
   source: Source
   source_: 'Source:'
@@ -2320,6 +2321,7 @@ en:
       default: '%b. %d, %Y %H:%M:%S %z'
       long: '%B %d, %Y %H:%M'
       short: '%d %b %H:%M'
+      observed_at: at %I:%M %p %Z
     pm: pm
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:

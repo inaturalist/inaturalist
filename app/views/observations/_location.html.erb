@@ -7,11 +7,7 @@
   end
 -%>
 <label><%=t :location %>:</label>
-<% if observation_place_guess(observation).include?("Somewhere") %>
-    <%= t(:somewhere) %>
-    <% else  %>
-    <%= observation_place_guess(observation).html_safe %>
-<% end %>
+<%= observation_place_guess(observation).html_safe %>
 <% if observation.out_of_range? -%>
   <strong class="out_of_range nobr">
     <span class="ui-icon ui-icon-alert inlineblock"></span>

@@ -7,11 +7,11 @@
 <%= t(:observed_by).downcase %>
 <%= @observation.user.login %>
 <%- if @observation.time_observed_at -%>
-        <%=h t(:at) %> <%=h @observation.time_observed_at.strftime("%I:%M %p %Z") %>
+        <%=l @observation.time_observed_at, :format => :observed_at %>
 <%- end %>
 <%- if @observation.observed_on
       date_format = @observation.observed_on.to_s(:long).split(" ") -%>
-        <%= t :on_ %> <%=h t("date_format.date_long.#{date_format.first.downcase}", :day => date_format[1], :year =>date_format.last) %>
+        <%= t :on_ %> <%= t("date_format.date_long.#{date_format.first.downcase}", :day => date_format[1], :year =>date_format.last) %>
 <%- end -%>
 <% end -%>
 
@@ -151,8 +151,7 @@
     <%= link_to @observation.user.login, observations_by_login_path(@observation.user.login) %>
     <span class="meta date">
       <%- if @observation.time_observed_at -%>
-        <%=t :at %>
-        <%=h @observation.time_observed_at.in_time_zone(@observation.time_zone).strftime("%I:%M %p %Z") %>
+        <%=l @observation.time_observed_at, :format => :observed_at %>
       <% end -%>
       <%- if @observation.observed_on -%>
         <%=t :on_ %>
