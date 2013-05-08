@@ -683,29 +683,39 @@ module ApplicationHelper
     case update.resource_type
     when "User"
       if options[:count].to_i == 1
-        "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added an observation".html_safe
+        t(:user_added_an_observation_html, 
+          :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)))
       else
-        "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added #{options[:count]} observations".html_safe
+        t(:user_added_x_observations_html,
+          :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)),
+          :x => options[:count])
       end
     when "Observation", "ListedTaxon", "Post", "AssessmentSection"
-      class_name = update.resource.class.to_s.underscore.humanize.downcase
-      resource_link = options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))
-
-      if notifier.is_a?(ProjectInvitation)
-        return "#{notifier_user_link} invited your #{resource_link} to a project".html_safe
+      class_name_key = update.resource.class.to_s.underscore
+      class_name = class_name_key.humanize.downcase
+      resource_link = if options[:skip_links]
+        t(class_name_key).downcase
+      else
+        link_to(t(class_name_key).downcase, url_for_resource_with_host(resource))
       end
 
-      s = activity_snippet(update, notifier, notifier_user, options)
-      s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{resource_link}"
-      s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
+      if notifier.is_a?(ProjectInvitation)
+        return t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
+      end
+
+      # s = activity_snippet(update, notifier, notifier_user, options)
+      # s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{resource_link}"
+      # s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
+      s = activity_snippet(update, notifier, notifier_user, options.merge(
+        :noun => "#{class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} #{resource_link}".html_safe
+      ))
       s.html_safe
     when "ObservationField"
       class_name = update.resource.class.to_s.underscore.humanize.downcase
       resource_link = options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))      
-      s = activity_snippet(update, notifier, notifier_user, options)
-      # s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{resource_link}"
-      s += "#{resource_link} <strong>\"#{truncate(update.resource.name, :length => 30)}\"</strong>"
-      s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
+      s = activity_snippet(update, notifier, notifier_user, options.merge(
+        :noun => "#{resource_link} <strong>\"#{truncate(update.resource.name, :length => 30)}\"</strong>".html_safe,
+      ))
       s.html_safe
     when "Project"
       project = resource
@@ -717,21 +727,21 @@ module ApplicationHelper
           link_to(project.title, project_journal_post_url(:project_id => project.id, :id => post.id))
         end
         article = if options[:count] && options[:count].to_i == 1
-          "a"
+          t(:x_wrote_a_new_post_html, :x => title)
         else
-          options[:count]
+          t(:x_wrote_y_new_posts_html, :x => title, :y => options[:count])
         end
-        "#{title} wrote #{article} new post#{'s' if options[:count].to_i > 1}".html_safe
       else
         title = if options[:skip_links]
           project.title
         else
           link_to(project.title, project)
         end
-        "Curators changed for #{title}".html_safe
+        t(:curators_changed_for_x_html, :x => title)
       end
     when "Place"
-      "New observations from #{options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource))}".html_safe
+      t(:new_observations_from_place_html, 
+        :place => options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource)))
     when "Taxon"
       name = render( 
         :partial => "shared/taxon", 
@@ -739,24 +749,29 @@ module ApplicationHelper
         :locals => {
           :link_url => (options[:skip_links] == true ? nil : resource)
         })
-      "New observations of #{name}".html_safe
+      t(:new_observations_of_x_html, :x => name)
     when "Flag"
-      noun = "a flag for #{resource.flaggable.try_methods(:name, :title, :to_plain_s)}"
+      noun = t(:a_flag_for_x, :x => resource.flaggable.try_methods(:name, :title, :to_plain_s))
       if notifier.is_a?(Flag)
         subject = options[:skip_links] ? notifier.resolver.login : link_to(notifier.resolver.login, person_url(notifier.resolver))
-        "#{subject} resolved #{noun}".html_safe
+        t(:subject_resolved_noun_html, :subject => subject, :noun => noun)
       else
-        "#{activity_snippet(update, notifier, notifier_user, options)} #{noun}".html_safe
+        activity_snippet(update, notifier, notifier_user, options.merge(:noun => noun))
       end
     when "TaxonChange"
       notifier_user = update_cached(resource, :committer)
       if notifier_user
-        notifier_class_name = resource.class.name.underscore.humanize.downcase
-        subject = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
-        object = "#{notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'} <strong>#{notifier_class_name}</strong>"
-        "#{subject} committed #{object} affecting #{commas_and resource.input_taxa.map(&:name)}".html_safe
+        notifier_class_name = t(resource.class.name.underscore)
+        subject = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)).html_safe
+        object = "#{notifier_class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} <strong>#{notifier_class_name}</strong>".html_safe
+        t(:subject_committed_thing_affecting_stuff_html, 
+          :subject => subject, 
+          :thing => object, 
+          :stuff => commas_and(resource.input_taxa.map(&:name)))
       else
-        "#{resource.class.name.underscore.humanize} affecting #{commas_and resource.input_taxa.map(&:name)}"
+        t(:subject_affecting_stuff_html, 
+          :subject => t(resource.class.name.underscore), 
+          :stuff => commas_and(resource.input_taxa.map(&:name)))
       end
     else
       "update"
@@ -765,12 +780,31 @@ module ApplicationHelper
 
   def activity_snippet(update, notifier, notifier_user, options = {})
     if update.notification == "activity" && notifier_user
-      notifier_class_name = notifier.class.to_s.underscore.humanize.downcase
-      "#{options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))} " + 
-      "added #{notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'} <strong>#{notifier_class_name}</strong> to "
+      notifier_class_name_key = notifier.class.to_s.underscore
+      notifier_class_name = t(notifier_class_name_key).downcase
+      key = "user_added_"
+      opts = {
+        :user => options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
+        :x => notifier_class_name
+      }
+      key += notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'
+      key += '_x_to'
     else
-      s = "New activity on "
+      key = "new_activity_on"
+      opts = {}
     end
+
+    if options[:noun]
+      key += '_noun'
+      opts[:noun] = options[:noun]
+    end
+    if update.resource_owner
+      key += '_by'
+      opts[:by] = you_or_login(update.resource_owner, :capitalize_it => false)
+    end
+    key += '_html'
+
+    t(key, opts)
   end
   
   def url_for_resource_with_host(resource)

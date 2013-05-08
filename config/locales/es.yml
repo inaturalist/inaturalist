@@ -27,6 +27,7 @@ es:
   a_community_for_naturalist: "Una comunidad para naturalistas"
   a_default_taxon_name_will_automatically_created: "Un nombre por defecto del taxón será creado automáticamente del atributo del nombre científico de este taxón. Cuando haya guardado este taxón, podrá agregar otros nombres aquí (nombres comunes, nombres científicos actualizados, etc.)."
   a_few_points_to_make_things_clear: "Algunos puntos para aclarar las cosas un poco mejor"
+  a_flag_for_x: "una marca de %{x}"
   a_greasemonkey_script: "un script de Greasemonkey"
   able_to_connect_flickr: "¡Muy bienPudimos vincular su cuenta de Flickr."
   about: "Acerca de"
@@ -260,6 +261,7 @@ es:
   asc: asc
   aside_from_extraordinary_circumstances: "Aparte de circunstancias extraordinarias, nunca le pediremos su contraseña."
   assessment: valoración
+  assessment_section: sección de valoración
   associations: Asociaciones
   associated_observations: Observaciones asociadas
   associated_taxa: Taxones asociados
@@ -364,16 +366,16 @@ es:
   check_out_my_observations_at: "Si deseas, puedes ver mis observaciones en"
   check_out_your_life_list: "Revise su Lista de Vida"
   check_this_box_if: |
-                         Selecciona esta caja si quieres aplicar una
-                         <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
-                         a tus fotos. Puedes escoger una licencia diferente o quitarla
-                         después, pero esta es la mejor licencia para compartir datos con los investigadores.
+    Selecciona esta caja si quieres aplicar una
+    <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
+    a tus fotos. Puedes escoger una licencia diferente o quitarla
+    después, pero esta es la mejor licencia para compartir datos con los investigadores.
   checklist: "Lista de comprobación"
   checklist_places: "Lugares con lista de verificación"
   checklist_places_absent: "Lugares con lista de verificación (ausentes)"
   checklist_places_confirmed: "Lugares con lista de verificación (confirmados)"
   checklist_places_introduced: "Lugares con lista de verificación (ingresados)"
-  cheklist_places_are_places_with_contain_taxon: "Los \"Lugares con lista de verificación\" son lugares con listas de verificación que contienen este taxón."
+  cheklist_places_are_places_with_contain_taxon: 'Los \"Lugares con lista de verificación\" son lugares con listas de verificación que contienen este taxón.'
   child_taxa: "Taxones hijos"
   choose_a_list_above: "Seleccionar una lista arriba"
   choose_a_place: Selecciona un lugar
@@ -406,6 +408,7 @@ es:
                 cuando descargas las observaciones de tu proyecto con formato CSV.
   comma_separated_please: "Favor separar por comas"
   comment_preview: "Vista previa del comentario"
+  comment: Comentario
   comments: Comentarios
   comments_and_identifications: "Comentarios e identificaciones"
   comments_by_everyone: Comentarios de todos
@@ -461,6 +464,7 @@ es:
   curating: Curando
   curation: Curación
   curator: Curador
+  curators_changed_for_x_html: "Curadores cambiado para %{x}"
   current_password: "Contraseña actual"
   custom_project_fields: "Campos de proyecto personalizados"
   csv: CSV
@@ -810,6 +814,7 @@ es:
   flag_description: "Marcar este contenido para hacer saber a los curadores que algo no anda bien."
   flag_for_curation: "Marcar para curación."
   flag_it!: ¡Márquelo!
+  flag_marked_as_resolved_html: '<span class="meta">Marcar marcado como</span> <strong>resuelto.</strong>'
   flag_reason: "&ldquo; Estoy marcando este %{record} porque"
   flag_this_observation: "Marcar esta observación"
   flagged: marcado
@@ -1113,6 +1118,7 @@ es:
   merge: Combinar
   merge_it_with_another_place: "Combinar con otro lugar"
   merge_two_places_together: "Combinar dos lugares. Todas las especies en las listas de verificación se combinarán, así como los datos geográficos."
+  merged_into: fusionado en
   merging: Combinando
   merging_places: "Combinar Lugares"
   message: Mensaje
@@ -1162,6 +1168,8 @@ es:
   new_observation_field: "Nuevo campo de observación"
   new_observation_rules: "Nuevas reglas de observación"
   new_observations: "Nuevas observaciones..."
+  new_observations_from_place_html: "Nuevas observaciones del %{place}"
+  new_observations_of_x_html: "Nuevas observaciones de %{x}"
   new_password: "Contraseña nueva"
   new_post: "Nuevo ingreso"
   new_project: "Proyecto nuevo"
@@ -1497,6 +1505,7 @@ es:
   placement: Colocación
   places: Lugares
   plants: plantas
+  please_add_this_to_x_html: "Por favor, añada esto a %{x}"
   please_be_aware_project_curators: "Tenga en cuenta que los curadores del proyecto podrán ver cualquier ubicación privada u oculta agregada a este proyecto."
   please_be_aware_that_project_curators: "Tenga en cuenta que los curadores del proyecto podrán ver ubicaciones privadas u ocultas de las observaciones agregadas a este proyecto."
   please_be_careful_particulary_when: "Tenga cuidado, especialmente al eliminar taxones. Si un taxón tiene observaciones, identificadores, taxones enlistados, u otros asociados, por favor"
@@ -1585,6 +1594,7 @@ es:
   remove_your_existing_id?: "Eliminar la identificación existente?"
   removing: Eliminando...
   replace_parentesis: (reemplazar)
+  replaced_with: sustituido con
   reply: Responda
   reptiles: reptiles
   request_id_help: "Solicitar ayuda para identificar"
@@ -1601,6 +1611,7 @@ es:
   resolve_this_flag: "Resolver esta marca"
   resolved: Resuelto
   resolved_by: "Resuelto por"
+  resolver_said_x_html: '<span class="meta">%{resolver} dijo:</span> "%{x}"'
   results: resultados
   roadmap: camino
   rotate_left: Girar a la izquierda
@@ -1740,6 +1751,7 @@ es:
   species_unknown: Epecies Disconocido
   species_taxon_name: "Especie / Nombre del taxón"
   species_unknown: Especies desconocidas
+  split_into: dividido en
   src: Fuente
   start: Inicio
   start_a_new_list: "Comenzar una lista nueva"
@@ -1763,17 +1775,20 @@ es:
   stop_following_user: "Dejar de seguir a %{user}"
   stop_updating_position: "Dejar de actualizar posición"
   stuff_just_added: "Lo que usted acaba de agregar..."
+  subject_affecting_stuff_html: "%{subject} affecta %{stuff}"
+  subject_resolved_noun_html: "%{subject} resuelve %{noun}"
+  subject_committed_thing_affecting_stuff_html: "%{subject} cometió %{thing} affecta %{stuff}"
   subject: Asunto
   submit: Enviar
   submit_comment: "Enviar comentario"
   submitted: Enviado
   subscribe_to_places_to: |
-                              Suscribete a lugares para recibir actualizaciones acerca de nuevas
-                              observaciones, personas que sigues y cosas que has comentado,
-                              todo esto es manejado por las suscripciones, puedes ver a que te has
-                              suscrito y a que no. Seleccionar el enlace de abajo "Administra todas tus suscripciones" y
-                              también si así lo deseas podrás quitar todas las suscripciones de algún sitio que ya no
-                              quieras tener en tus preferencias.
+    Suscribete a lugares para recibir actualizaciones acerca de nuevas
+    observaciones, personas que sigues y cosas que has comentado,
+    todo esto es manejado por las suscripciones, puedes ver a que te has
+    suscrito y a que no. Seleccionar el enlace de abajo "Administra todas tus suscripciones" y
+    también si así lo deseas podrás quitar todas las suscripciones de algún sitio que ya no
+    quieras tener en tus preferencias.
   subscribe_to_x_from_this_y_html: "<a href=\"#\" onclick=\"$(this).parents('form:first').submit(); return false;\">Suscribirse</a> a %{x} de estas %{y}."
   suggest_an_id: "Sugerir un identificador"
   suggest_or_require_that: Se sugiere o solicita que los contribuyentes llenen estos campos para las observaciones que añadan a tu proyecto.
@@ -1797,6 +1812,12 @@ es:
   taxa_needing_curation: "Taxones que necesitan curación"
   taxon: Taxón
   taxon_: Taxón
+  taxon_change: cambio de taxón
+  taxon_split: división de taxón
+  taxon_merge: fusión de taxón
+  taxon_swap: intercambio de taxón
+  taxon_stage: montar de taxón
+  taxon_drop: dejar de taxón
   taxon_map:
       gbif_occurrences: Registros de GBIF
       it_may_take_google_a_while_to: Puede llevarle un rato a Google para cargar estos datos, si existen en GBIF.
@@ -1887,6 +1908,7 @@ es:
       short: "%d/%m/%Y"
       observed_at: a las %I:%M %p %Z
     pm: pm
+  time_ago: "hace %{time}"
   titled_favorites_and_the_most_recent_additions: "titulados \"Favoritos\" y las adiciones más recientes aparecerán en este espacio."
   to: a
   to_add_comments: "para agregar comentarios."
@@ -1943,10 +1965,17 @@ es:
   upload_a_csv_file_with_observation: "Cargar un archivo CSV con datos de observación. Si sus datos están en una hoja de cálculo o base de datos, esta es probablemente la forma de hacerlo."
   ubio: uBio
   use_this_if_the_url_needs_genus_species_separated: "Use esto si la URL debe tener los géneros y especies separados de forma particular. Si el taxón no es una especie o infraespecie, todo lo que esté entre [GÉNERO] y [ESPECIE] será reemplazado por el nombre del taxón, así que úselo con moderación. <br/><br/> <strong>Ejemplo.</strong><br/>"
+  user_added_an_observation_html: "%{user} añadió una observación"
+  user_added_an_x_to_noun_html: "%{user} añadió una %{x} a %{noun}"
+  user_added_a_x_to_noun_html: "%{user} añadió un %{x} a %{noun}"
+  user_added_an_x_to_noun_by_html: "%{user} añadió una %{x} a %{noun} de %{by}"
+  user_added_a_x_to_noun_by_html: "%{user} añadió un %{x} a %{noun} de %{by}"
+  user_added_x_observations_html: "%{user} agregó %{x} observaciones"
   user_commented_on: "%{user} comentó sobre su %{title} %{time}"
   user_follows: "%{user} sigue a"
   user_hasnt: "%{user} no ha"
   user_invite_observation_to_project: "%{user} desea invitar su observación \"%{observation}\" al proyecto %{project}."
+  user_invited_your_x_to_a_project_html: "%{user} invitó a su %{x} a un proyecto"
   user_s: "%{model_name} de %{user}"
   user_s_id: "%{id} de %{user}"
   user_thinks_yours_is: "%{user} %{noun} su observación %{observation} es"
@@ -1970,10 +1999,12 @@ es:
   view_details: "Ver detalles"
   view_flags: "Ver marcas"
   view_full_observation: "Ver observación completa"
+  view_invitation: Ver invitación
   view_journal: "Ver Diario"
   view_leaderboard: "Ver clasificación"
   view_license: "Ver licencia"
   view_lists: "Ver las Listas"
+  view_more_about_x: "Ver más sobre %{x}"
   view_nbsp: "Ver &nbsp;"
   view_non_mobile_site: "Ver el sitio que no es para móviles"
   view_observation: "Ver observación"
@@ -1986,6 +2017,7 @@ es:
   view_original_by: "Ver original %{by} en %{photo}"
   view_original_ccD_photo: "Ver foto original copiada en Flickr por %{owner}"
   view_other_taxa: "Ver otros <nobr> %{taxon_name} &raquo;</nobr>"
+  view_post: Ver ingreso
   view_photos_ranges_observations_more: "¡Ve fotos, distribuciones de especies, observaciones de %{site_name} y más. Hemos recopilado información de muchas fuentes diferentes y las hemos combinado para proporcionar un breve resumen de cada especie en cada lugar."
   view_place: Ver lugar
   view_taxon_page: "Ver página del taxón"
@@ -2232,7 +2264,27 @@ es:
         confirming_identifications: "la confirmación de identificaciones"
         filling_out_checklists: "la actualización de listas de verificación para los lugares que conoces bien"
         you_can_help_out_by: "Usted puede ayudar a mejorar nuestros datos de lugares mediante"
-    users: 
+    users:
+      dashboard:
+        taxon_change_desc: |
+          Cambios de taxón representan cambios en %{site_name}'s taxonomía.
+          La mayor parte del tiempo de %{site_name} mantendrá automáticamente
+          a su contenido hasta al fecha, cuando esos cambios ocurren (a menos que
+          optado por no), pero todavía queremos saber cuándo y cómo sus datos
+          está cambiando.
+        your_content_will_be_updated: Su contenido relacionado con estos taxones se actualizará automáticamente.
+        you_may_want_to_update: Usted tiene algunos contenidos relacionados con estos taxones que es posible que desee actualizar.
+        cannot_update_your_content: "%{site_name} no puede actualizar su contenido de forma automática para que este cambio."
+        new_project_admin_html: |
+          Se pregunta por qué está ahora administrador de este proyecto? El
+          dueño anterior probablemente elimina su cuenta, por lo que el %{site_name}
+          asignado porque usted es un gerente de proyecto o de un curador
+          sitio. Si usted no quiere ser el administrador de un proyecto, por
+          favor póngase en contacto con
+          <a href="mailto:%{help_email}">%{help_email}</a>
+        curators_can_see: |
+          Sólo un recordatorio, los curadores del proyecto pueden ver la privada y oculta 
+          coordenadas de las observaciones que se agregan a este proyecto.
       edit: 
         licensing_desc_html: ""
         taxon_change_desc: ""
@@ -2326,6 +2378,8 @@ es:
   x_species: 
     one: "1 especies"
     other: "%{count} especies"
+  x_wrote_a_new_post_html: "%{x} escribió una nueva ingreso"
+  x_wrote_y_new_posts_html: "%{x} escribió %{y} nuevas ingresos"
   year: Año
   yellow: amarillo
   'yes': Sí
@@ -2337,6 +2391,8 @@ es:
   you: usted
   you_admin: "que usted administra"
   you_are_over_your_invites_quota: "...ya has enviado más de 60 invitaciones este mes."
+  you_are_now_role_for_project_html: "<strong>Ahora</strong> %{role} de %{project}"
+  user_is_now_role_for_project_html: "<strong>%{user}</strong> es ahora %{role} de %{project}"
   you_are_subscribed_to: Estas suscrito a
   you_can_accept_invitations: "Puede aceptar la invitación aquí."
   you_can_also_add_flickr: "También puede agregar etiquetas de Flickr cuando modifique una observación o grupos de observaciones."
