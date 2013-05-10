@@ -151,11 +151,11 @@
   </span>
   <div id="meta" class="right description">
     <% if @taxon.source && @taxon.source_url %>
-      <%= t(:source)%>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}", :default => @taxon.source.title), :length => 30), @taxon.source_url %>
+      <%= t(:source)%>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}", :default => @taxon.source.title), :length => 27), @taxon.source_url %>
     <% elsif @taxon.source && @taxon.source.url %>
-      <%= t(:source)%>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}", :default => @taxon.source.title), :length => 30), @taxon.source.url %>
+      <%= t(:source)%>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}", :default => @taxon.source.title), :length => 27), @taxon.source.url %>
     <% elsif @taxon.source %>
-      <%= t :source %>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}", :default => @taxon.source.title), :length => 30), @taxon.source %>
+      <%= t :source %>: <%=h link_to truncate(t("source_list.#{(@taxon.source.title).gsub(':','').gsub(' ','_').downcase}", :default => @taxon.source.title), :length => 27), @taxon.source %>
     <% elsif @taxon.creator %>
       <%= t(:added_by) %> <%= link_to h(@taxon.creator.login), @taxon.creator %>
     <% else %>
