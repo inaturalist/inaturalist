@@ -20,6 +20,8 @@ class PlaceSweeper < ActionController::Caching::Sweeper
   def remove_geometry_page_cache(place)
     expire_page :controller => "places", :action => "geometry", :id => place.id
     expire_page :controller => "places", :action => "geometry", :id => place.id, :format => "kml"
+    expire_page :controller => "places", :action => "geometry", :id => place.slug
+    expire_page :controller => "places", :action => "geometry", :id => place.slug, :format => "kml"
   end
   
   def expire_tiles(place)    
