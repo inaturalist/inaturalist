@@ -1009,7 +1009,7 @@ class Observation < ActiveRecord::Base
   
   def self.component_cache_key(id, options = {})
     key = "obs_comp_#{id}"
-    key += "_"+options.map{|k,v| "#{k}-#{v}"}.join('_') unless options.blank?
+    key += "_"+options.sort.map{|k,v| "#{k}-#{v}"}.join('_') unless options.blank?
     key
   end
   
@@ -1694,6 +1694,7 @@ class Observation < ActiveRecord::Base
     ctrl.expire_fragment(o.component_cache_key(:for_owner => true))
     I18N_SUPPORTED_LOCALES.each do |locale|
       ctrl.expire_fragment(o.component_cache_key(:locale => locale))
+      ctrl.expire_fragment(o.component_cache_key(:locale => locale, :for_owner => true))
     end
   end
   

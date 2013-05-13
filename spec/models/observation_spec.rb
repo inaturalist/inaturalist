@@ -1644,3 +1644,11 @@ describe Observation, "merge" do
     idents.last.should be_current
   end
 end
+
+describe Observation, "component_cache_key" do
+  it "should be the same regardless of option order" do
+    k1 = Observation.component_cache_key(111, :for_owner => true, :locale => :en)
+    k2 = Observation.component_cache_key(111, :locale => :en, :for_owner => true)
+    k1.should eq(k2)
+  end
+end
