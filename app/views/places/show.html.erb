@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @place.display_name %>
+  <%= t @place.display_name, :default => @place.display_name %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "taxa", "taxa/guide", "barchart", "places/show", "guide" %>
@@ -60,7 +60,7 @@
     <span class="description">&gt;</span>
     <% @place.ancestors.each do |ancestor| %>
       <%- link_txt = capture do -%>
-        <%= ancestor.name %>
+        <%= t ancestor.name, :default => ancestor.name %>
         <span class="small description">(<%=t ancestor.place_type_name %>)</span>
       <%- end -%>
       <%= link_to link_txt, ancestor, :class => 'crumb' %>
@@ -69,7 +69,7 @@
   </div><!-- /#breadcrumbs -->
   <div id="map" style="width: 100%; height: 100px"></div>
   <h2>
-    <%= link_to h(@place.display_name), @place %>
+    <%= link_to t(@place.display_name, :default => @place.display_name), @place %>
     <span class="small description"><%=t @place.place_type_name %></span>
   </h2>
   <div id="placephotos"></div>
@@ -86,8 +86,8 @@
   </div>
   <ul>
     <li><a href="#guidetab"><span><%=t :species_guide %></span></a></li>
-    <li><a href="#observationstab"><span><%=t :observations %></span></a></li>
-    <li><a href="#abouttab"><span><%=t :about_x, :x => @place.name %></span></a></li>
+    <li><a href="#observationstab"><span><%= t(:observations).capitalize %></span></a></li>
+    <li><a href="#abouttab"><span><%=t :about_x, :x => t(@place.name, :default => @place.name) %></span></a></li>
   </ul>
   
   <div id="guidetab">
@@ -124,7 +124,7 @@
         <%= loading "Loading...", :class => "inline" %>
       </div>
     </div>
-    <%= link_to "View more observations from #{@place.name}", observations_url(:place_id => @place.id), :class => "readmore" %>
+    <%= link_to t(:view_more_observations_from_x, :x => t(@place.name, :default => @place.name)), observations_url(:place_id => @place.id), :class => "readmore" %>
   </div>
   
   <div id="abouttab">

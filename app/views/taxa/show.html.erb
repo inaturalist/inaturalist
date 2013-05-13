@@ -259,7 +259,7 @@
                 <strong><%= @listed_taxon.observations_count %></strong>
                 <%=raw t(@listed_taxon.observations_count == 1 ? 'observation' : 'observations').downcase -%>
                 <%=t :in %>
-                <%= @listed_taxon.place.name %>,
+                <%= t @listed_taxon.place.name, :default => @listed_taxon.place.name %>,
                 <strong class="count"><%= @listed_taxon.confirmed_observations_count %></strong>
                 <%=raw t(:research_grade).downcase %>
               </div>
@@ -283,7 +283,7 @@
           <%= establishment_blob(@listed_taxon, :class => "inlineblock") if @listed_taxon.endemic? || @listed_taxon.invasive? %>
           <strong><%= t(@listed_taxon.establishment_means || "present", :default => "present").capitalize %></strong>
           <%=t @listed_taxon.native? ? 'to' : 'in' %>
-          <%= link_to @listed_taxon.place.name, @listed_taxon.place %>
+          <%= link_to t(@listed_taxon.place.name, :default => @listed_taxon.place.name), @listed_taxon.place %>
           <span class="small">
             (<%= link_to t(:view_details), @listed_taxon %>)
           </span>
@@ -411,7 +411,7 @@
         <ul id="places_list">
           <% for lt in @sorted_check_listed_taxa %>
             <li>
-              <%= link_to lt.place.display_name, lt.place %>
+              <%= link_to t(lt.place.display_name, :default => lt.place.display_name), lt.place %>
               <% if logged_in? && lt.editable_by?(current_user) -%>
                 <%= link_to(t(:edit), lt, :class => "small description editlink") %>
               <% end -%>

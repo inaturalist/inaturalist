@@ -19,7 +19,7 @@
         = cs.status
   - if cs.place && !hide_place
     =t :in
-    \#{link_to cs.place.display_name, cs.place}
+    \#{link_to t(cs.place.display_name, :default => cs.place.display_name), cs.place}
   %nobr.small
     = surround '(', ')' do
       = succeed ':' do
