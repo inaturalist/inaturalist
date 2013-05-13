@@ -19,6 +19,13 @@ shared_examples_for "an ObservationsController" do
       response.body.should =~ /#{o.private_latitude}/
       response.body.should =~ /#{o.private_longitude}/
     end
+
+    it "should not fail if species_guess is a question mark" do
+      post :create, :format => :json, :observation => {:species_guess => "?"}
+      response.should be_success
+      o = Observation.last
+      o.species_guess.should eq('?')
+    end
   end
 
   describe "destroy" do
