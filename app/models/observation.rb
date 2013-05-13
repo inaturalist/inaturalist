@@ -1673,6 +1673,19 @@ class Observation < ActiveRecord::Base
     super
   end
 
+  def merge(reject)
+    mutable_columns = self.class.column_names - %w(id created_at updated_at)
+    mutable_columns.each do |column|
+      self.send("#{column}=", reject.send(column)) if send(column).blank?
+    end
+    merge_has_many_associations(reject)
+    reject.destroy
+    identifications.group_by{|ident| [ident.user_id, ident.taxon_id]}.each do |pair, idents|
+      idents.sort_by(&:id).last.update_other_identifications
+    end
+    save!
+  end
+
   def self.expire_components_for(o)
     o = Observation.find_by_id(o) unless o.is_a?(Observation)
     return unless o
