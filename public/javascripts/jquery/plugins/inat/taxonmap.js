@@ -159,7 +159,7 @@
     }
 
     if (options.taxonRangeKmlUrl) {
-      var lyrInfo = map.getOverlay('Taxon Range')
+      var lyrInfo = map.getOverlay(I18n.t('taxon_range'))
       lyrInfo.overlay.setMap(null)
       lyrInfo.overlay.setMap(map)
       return
@@ -171,7 +171,7 @@
       lyrInfo.overlay.setMap(map)
       return
     }
-
+    
     if (options.observationsJsonUrl && map.observationBounds) {
       map.zoomToObservations()
       return
