@@ -502,7 +502,33 @@ class ListedTaxon < ActiveRecord::Base
     ctrl.expire_fragment(guide_taxon_cache_key) #THIS
     ctrl.expire_page("/places/cached_guide/#{place_id}.html")
     ctrl.expire_page("/places/cached_guide/#{place.slug}.html")
+    ctrl.expire_fragment(FakeView.url_for(:controller => 'listed_taxa', :action => 'show', :id => id))
+    ctrl.expire_fragment(FakeView.url_for(:controller => 'listed_taxa', :action => 'show', :id => id, :for_owner => true))
+    ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
+    ListedTaxon::ORDERS.each do |order|
+      ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
+    end
+    unless place_id.blank?
+      ctrl.expire_fragment(guide_taxon_cache_key)
+      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place_id))
+      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug))
+    end
+    ctrl.expire_page FakeView.list_path(list_id, :format => 'csv')
+    ctrl.expire_page FakeView.list_show_formatted_view_path(list_id, :format => 'csv', :view_type => 'taxonomic')
+    if list
+      ctrl.expire_page FakeView.list_path(list, :format => 'csv')
+      ctrl.expire_page FakeView.list_show_formatted_view_path(list, :format => 'csv', :view_type => 'taxonomic')
+    end
+    ctrl.send :expire_action, FakeView.url_for(:controller => 'taxa', :action => 'show', :id => taxon_id)
     true
+  end
+
+  def self.expire_caches_for(taxon)
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    return unless taxon
+    taxon.listed_taxa.includes(:list, :place).find_each do |lt|
+      lt.expire_caches
+    end
   end
   
   def merge(reject)
