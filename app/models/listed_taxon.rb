@@ -502,8 +502,8 @@ class ListedTaxon < ActiveRecord::Base
     ctrl.expire_fragment(guide_taxon_cache_key) #THIS
     ctrl.expire_page("/places/cached_guide/#{place_id}.html")
     ctrl.expire_page("/places/cached_guide/#{place.slug}.html")
-    ctrl.expire_fragment(FakeView.url_for(:controller => 'listed_taxa', :action => 'show', :id => id))
-    ctrl.expire_fragment(FakeView.url_for(:controller => 'listed_taxa', :action => 'show', :id => id, :for_owner => true))
+    ctrl.expire_fragment(FakeView.listed_taxon_path(id))
+    ctrl.expire_fragment(FakeView.listed_taxon_path(id, :for_owner => true))
     ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
     ListedTaxon::ORDERS.each do |order|
       ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
