@@ -24,7 +24,7 @@ Inaturalist::Application.configure do
   # config.action_mailer.delivery_method = :smtp  
 
   # Uncomment these to test caching
-  config.action_controller.perform_caching             = true
+  # config.action_controller.perform_caching             = true
   # config.action_view.cache_template_loading            = true
   # config.cache_classes = true
   config.cache_store = :mem_cache_store, CONFIG.memcached
