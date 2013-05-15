@@ -12,7 +12,11 @@ class WikimediaCommonsController < ApplicationController
     @taxon = Taxon.find_by_id(taxon_id)
     name = params[:q].blank? ? @taxon.try(:name) : params[:q]
     
-    @photos = WikimediaCommonsPhoto.search_wikimedia_for_taxon(name) || []
+    @photos = WikimediaCommonsPhoto.search_wikimedia_for_taxon(name, 
+      :page => params[:page], 
+      :per_page => params[:per_page], 
+      :limit => params[:limit]
+    ) || []
     
     render :partial => 'photos/photo_list_form', :locals => {
       :photos => @photos, 
