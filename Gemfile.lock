@@ -36,6 +36,12 @@ GIT
       nokogiri (~> 1.5.0)
 
 GIT
+  remote: git://github.com/kueda/georuby.git
+  revision: 00a95123977726492a4049eb1c36f98c372cd714
+  specs:
+    georuby (2.0.0)
+
+GIT
   remote: git://github.com/kueda/riparian.git
   revision: a459bfe905d9239c96573506e88140c326133d97
   specs:
@@ -191,7 +197,6 @@ GEM
     geoplanet (0.2.6)
       json (>= 1.1.3)
       rest-client (>= 0.9)
-    georuby (2.0.0)
     girl_friday (0.11.2)
       connection_pool (~> 1.0)
       rubinius-actor
@@ -437,7 +442,7 @@ DEPENDENCIES
   friendly_id (~> 4.0.1)
   gdata!
   geoplanet
-  georuby
+  georuby!
   google-api-client
   haml
   htmlentities

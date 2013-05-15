@@ -30,7 +30,7 @@ gem "friendly_id", "~> 4.0.1"
 gem 'gdata', :git => 'git://github.com/dwaite/gdata.git'
 gem 'geoplanet'
 gem 'google-api-client'
-gem 'georuby'
+gem 'georuby', :git => 'git://github.com/kueda/georuby.git'
 gem 'haml'
 gem 'htmlentities'
 gem 'i18n-js'
