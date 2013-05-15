@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "#{h truncate(@project.title, :length => 85)} Members" %>
+  <%= @title = t(:project_members, :project => h(truncate(@project.title, :length => 85))) %>
 <%- end -%>
 <% content_for(:extracss) do %>
 <style type="text/css" media="screen">
@@ -43,10 +43,10 @@
       <table width="100%">
         <thead>
           <tr>
-            <th>User</th>
+            <th><%= t :user %></th>
             <th></th>
-            <th>Role</th>
-            <th class="nobr"># Obs.</th>
+            <th><%= t :role %></th>
+            <th class="nobr"># <%= t :obs %>.</th>
             <th></th>
             <% if logged_in? && @project_user && @project_user.is_manager? -%>
               <th></th>
@@ -67,9 +67,9 @@
           </td>
           <td>
             <% if project_user.is_admin? %>
-              <span class="description">admin</span>
+              <span class="description"><%= t :admin %></span>
             <% elsif !project_user.role.blank? %>
-              <span class="description"><%= project_user.role.humanize.downcase %></span>
+              <span class="description"><%= t(project_user.role).downcase %></span>
             <% end %>
           </td>
           <td class="nobr numeric">
@@ -77,7 +77,7 @@
               project_show_contributor_path(@project, project_user.user.login) %>
           </td>
           <td class="nobr">
-            <%= link_to "View stats", 
+            <%= link_to t(:view_stats),
               project_show_contributor_path(@project, project_user.user.login),
               :class => "readmore" %>
           </td>
@@ -86,13 +86,13 @@
               <% if @project.user_id != project_user.user.id %>
                 <div class="buttonrow smallbuttons clear">
                   <% if project_user.role == ProjectUser::CURATOR %>
-                    <%= link_to "Remove curator", change_project_user_role_path(@project.id, project_user.id), 
+                    <%= link_to t(:remove_curator), change_project_user_role_path(@project.id, project_user.id),
                       :method => :post,
                       :class => "pale button nobr",
-                      :confirm => "Are you sure you want to remove #{project_user.user.login} as a curator?",
+                      :confirm => t(:are_you_sure_you_want_to_remove_curator, :user => project_user.user.login),
                       "data-loading-click" => true %>
                   <% else %>
-                    <%= link_to "Make curator", change_project_user_role_path(@project.id, project_user.id, :role => ProjectUser::CURATOR), 
+                    <%= link_to t(:make_curator), change_project_user_role_path(@project.id, project_user.id, :role => ProjectUser::CURATOR),
                       :method => :post,
                       :class => "glaucous button nobr",
                       "data-loading-click" => true %>
@@ -102,13 +102,13 @@
               <% if @project.user_id != project_user.user_id %>
                 <div class="smallbuttons buttonrow">
                   <% if project_user.role == ProjectUser::MANAGER %>
-                    <%= link_to "Remove manager", change_project_user_role_path(@project.id, project_user.id), 
+                    <%= link_to t(:remove_manager), change_project_user_role_path(@project.id, project_user.id),
                       :method => :post,
                       :class => "pale button nobr",
-                      :confirm => "Are you sure you want to remove #{project_user.user.login} as a manager?",
+                      :confirm => t(:are_you_sure_you_want_to_remove_manager, :user => project_user.user.login),
                       "data-loading-click" => true %>
                   <% else %>
-                    <%= link_to "Make manager", change_project_user_role_path(@project.id, project_user.id, :role => ProjectUser::MANAGER), 
+                    <%= link_to t(:make_manager), change_project_user_role_path(@project.id, project_user.id, :role => ProjectUser::MANAGER),
                       :method => :post,
                       :class => "glaucous button nobr",
                       "data-loading-click" => true %>
@@ -119,9 +119,9 @@
             
             <td class="smallbuttons buttonrow">
               <% if @project.user_id != project_user.user_id -%>
-                <%= link_to "Remove from project", remove_project_user_path(@project.id, project_user.id), 
-                  "data-loading-click" => "Removing...",
-                  :confirm => "Are you sure you want to remove #{project_user.user.login} from this project?",
+                <%= link_to t(:remove_from_project), remove_project_user_path(@project.id, project_user.id),
+                  "data-loading-click" => t(:removing),
+                  :confirm => t(:are_you_sure_you_want_to_remove_from_project, :user => project_user.user.login),
                   :class => "delete button nobr" %>
               <% end -%>
             </td>
@@ -135,12 +135,9 @@
     <div class="last column span-8">
       <div class="quiet box">
         <div class="stacked">
-          <h3>Curators</h3>
+          <h3><%= t :curators %></h3>
           <p class="ui">
-            Curators can remove observations from the project and their
-            identifications are shown alongside the observations on project-
-            specific views. Curators can also see the true coordinates of
-            private and obscured contributions to this project.
+            <%= t :curators_can_remove_observations_from %>
           </p>
           <% if !@curators.blank? %>
             <ul class="clear plain">
@@ -152,14 +149,14 @@
               <% end %>
             </ul>
           <%- else -%>
-            <div class="nocontent">No curators set</div>
+            <div class="nocontent"><%= t :no_curators_set %></div>
           <% end %>
         </div>
 
         <div class="stacked">
-          <h3>Managers</h3>
+          <h3><%= t :managers %></h3>
           <p class="ui">
-            Managers can do everything curators can do as well as editing project settings and write project journal posts.
+            <%= t :managers_can_do %>
           </p>
 
           <% if !@managers.blank? %>
@@ -172,14 +169,14 @@
               <% end %>
             </ul>
           <%- else -%>
-            <div class="nocontent">No managers set</div>
+            <div class="nocontent"><%= t :no_managers_set %></div>
           <% end %>
         </div>
 
         <div class="stacked">
-          <h3>Admin</h3>
+          <h3><%= t :admin %></h3>
           <p class="ui">
-            The admin is the person who created the project. They can do everything managers and curators can do, as well as delete the project.
+            <%= t :the_admin_is_the_person_who %>
           </p>
 
           <ul class="clear plain">

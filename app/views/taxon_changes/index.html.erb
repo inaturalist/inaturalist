@@ -12,9 +12,9 @@
   <% @title = capture do %>
     <%= t(:taxonomic_changes).titleize %>
     <% if @taxon -%>
-      for
+      <%= t :for %>
       <i><%= link_to @taxon.name, taxon_path(@taxon), "data-taxon-id" => @taxon.id %></i>
-      (<%= @taxon.is_active ? 'active' : 'inactive' %>)"
+      (<%= @taxon.is_active ? t(:active) : t(:inactive) %>)"
     <% end -%>
   <% end -%>
   <%= strip_tags(@title) %>
@@ -53,35 +53,35 @@
   </script>
 <%- end -%>
 
-<%= link_to "New taxon change", new_taxon_change_path, :class => "right button" %>
+<%= link_to t(:new_taxon_change), new_taxon_change_path, :class => "right button" %>
 <h2><%= @title %></h2>
 
 <div class="column span-6">
   <%= form_for :filters, :builder => DefaultFormBuilder, :html => {:method => :get} do |f| %>
     <fieldset id="change_types" class="">
-      <legend><%=t :change_types %></legend>
+      <legend><%= t("change_types.change_types") %></legend>
       <% %w(split merge swap stage drop).each do |type| %>
         <%= f.check_box type, 
           :wrapper => {:class => "inlineblock"}, 
           :label_after => true, 
-          :label => type.capitalize, 
+          :label => t("change_types.#{type}"),
           :checked => @types.include?("Taxon#{type.capitalize}") %>
       <% end -%>
     </fieldset>
     
-    <%= f.select :change_group, @change_groups, :include_blank => "None", :selected => @change_group %>
-    <%= f.select :taxon_scheme_id, @taxon_schemes.map{|ts| [ts.title, ts.id]}, :include_blank => "None", :selected => @taxon_scheme.try(:id) %>
-    <%= f.select :committed, %w(Yes No), :include_blank => "Either", :selected => @committed %>
-    <%= f.select :iconic_taxon_id, Taxon::ICONIC_TAXA.map{|t| [t.name, t.id]}, :include_blank => "Any", :selected => @iconic_taxon.try(:read_attribute, :id) %>
-    <%= f.text_field :taxon_id,  :value => @taxon ? @taxon.id : nil, :placeholder => "Type taxon name" %>
-    <%= f.text_field :source_id, :value => @source ? @source.id : nil, :placeholder => "Type source name" %>
-    <%= f.submit "Filter", :class => "default button", "data-loading-click" => "Filtering..." %>
+    <%= f.select :change_group, @change_groups, :include_blank => t(:none), :selected => @change_group, :label => t(:change_group) %>
+    <%= f.select :taxon_scheme_id, @taxon_schemes.map{|ts| [ts.title, ts.id]}, :include_blank => t(:none), :selected => @taxon_scheme.try(:id), :label => t(:taxon_scheme) %>
+    <%= f.select :committed, [t(:yes), t(:no)], :include_blank => t(:either), :selected => @committed, :label => t(:committed) %>
+    <%= f.select :iconic_taxon_id, Taxon::ICONIC_TAXA.map{|t| [t.name, t.id]}, :include_blank => t(:any), :selected => @iconic_taxon.try(:read_attribute, :id), :label => t(:iconic_taxon) %>
+    <%= f.text_field :taxon_id,  :value => @taxon ? @taxon.id : nil, :placeholder => t(:type_taxon_name), :label => t(:taxon) %>
+    <%= f.text_field :source_id, :value => @source ? @source.id : nil, :placeholder => t(:type_source_name), :label => t(:source) %>
+    <%= f.submit t(:filter), :class => "default button", "data-loading-click" => t(:filtering) %>
   <% end -%>
 </div>
 
 <div class="last column span-18">
   <% if @taxon_changes.empty? %>
-    <p class="description">No taxonomic changes match those criteria</p>
+    <p class="description"><%= t :no_taxonomic_changes_match_those_criteria %></p>
   <% end %>
   <% for taxon_change in @taxon_changes %>
     <%= render :partial => 'show_change_taxon', :object => taxon_change %>

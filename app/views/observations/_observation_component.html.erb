@@ -60,7 +60,7 @@ Some notes:
       "data-small-url" => iconic_taxon_image_url(observation.taxon, :size => 32)) %>
   </div>
   <div class="photos attribute">
-    <h4 class="label">Photos</h4>
+    <h4 class="label"><%= t :photos %></h4>
     <div class="photolist clear">
       <% if observation.photos_count == 0 -%>
         <div class="photo nophoto description">

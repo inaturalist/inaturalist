@@ -91,7 +91,7 @@
     <div id="journal" class="quiet box">
       <% if @project_journal_posts.blank? -%>
         <div class="description noresults">
-          No journal posts have been added to this project yet.
+          <%= t :no_journal_post_have_been %>
         </div>
       <% else %>
         <div class="stacked">
@@ -100,7 +100,7 @@
         
         <% if @project_journal_posts.size > 1 -%>
           <div class="stacked">
-            <label>Recent posts</label>
+            <label><%= t :recent_post %></label>
             <ul class="plain">
               <% for post in @project_journal_posts[1..-1] %>
                 <li>
@@ -110,7 +110,7 @@
               <% end %>
             </ul>
           </div>
-          <%= link_to "More journal posts", project_journal_path(@project), :class => "readmore" %>
+          <%= link_to t(:more_journal_posts), project_journal_path(@project), :class => "readmore" %>
         <% end -%>
       <% end %>
     </div>
@@ -159,15 +159,15 @@
       <% end -%>
       <%= link_to "<span class='lead'>&raquo;</span> #{t(:observations_map)}".html_safe, project_observations_path(@project), :class => "navlink" %>
       <div class="inner feeds">
-        <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
-        <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
-        <%= link_to("CSV",  project_observations_path(@project, :format => 'csv'),  :class => 'csvlink', :rel => "nofollow") %>  
+        <%= link_to(t(:atom), project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
+        <%= link_to(t(:kml),  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
+        <%= link_to(t(:csv),  project_observations_path(@project, :format => 'csv'),  :class => 'csvlink', :rel => "nofollow") %>
         <% if @project.curated_by?(current_user) -%>
           /
           <%= link_to t(:all_csv), all_project_observations_url(@project, :format => 'csv'), 
             :class => "delayedlink csvlink", 
             "data-delayed-link-msg" => 
-              "Please hold on while the file is generated.  It can take a couple minutes if you have a lot of observations.",
+              t(:please_hold_on_while_the_file),
             :rel => "nofollow" %>
         <% end -%>
       </div>
@@ -175,12 +175,12 @@
     <li>
       <% if @project.prefers_count_from_list? -%>
         <span class="right" style="margin: 4px 10px 0 10px">
-          <span class="count"><%= @observed_taxa_count %></span> of <span class="count"><%= @project.project_list.listed_taxa.count %></span> taxa observed
+          <span class="count"><%= @observed_taxa_count %></span> <%= t :of %> <span class="count"><%= @project.project_list.listed_taxa.count %></span> <%= t :taxa_observed %>
         </span>
       <% else -%>
        <% if @observed_taxa_count.to_i > 0 -%>
          <span class="right" style="margin: 4px 10px 0 10px">
-           <span class="count"><%= @observed_taxa_count %></span> taxa observed
+           <span class="count"><%= @observed_taxa_count %></span> <%= t :taxa_observed %>
          </span>
         <% end -%>
       <% end -%>
@@ -189,7 +189,7 @@
     <li>
       <% if @journal_post_count.to_i > 0 -%>
         <span class="right" style="margin: 4px 10px 0 10px">
-          <span class="count"><%= @journal_post_count %></span> posts
+          <span class="count"><%= @journal_post_count %></span> <%= t(:posts).downcase %>
         </span>
       <% end -%>
       <%= link_to "<span class='lead'>&raquo;</span> #{t :journal}".html_safe, project_journal_path(@project), :class => "navlink" %>
@@ -219,8 +219,8 @@
                     <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project, project_user.user.login) %>
                   </div>
                   <div class="small ui">
-                    <span class="count"><%= project_user.taxa_count %></span> species,
-                    <span class="count"><%= project_user.observations_count %></span> observations
+                    <span class="count"><%= project_user.taxa_count %></span> <%= t(:species).downcase %>,
+                    <span class="count"><%= project_user.observations_count %></span> <%= t(:observations).downcase %>
                   </div>
                 </div>
               </li>
@@ -248,10 +248,10 @@
       </li>
       <li>
         <% if @project.curated_by?(current_user) -%>
-          <%= link_to "<span class='lead'>&raquo;</span> Invite observations".html_safe, invitations_path(@project), :class => "navlink" %>
+          <%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_observations)}".html_safe, invitations_path(@project), :class => "navlink" %>
         <% else %>
           <% if @observations_count.to_i > 0 %>
-            <%= link_to "<span class='lead'>&raquo;</span> Add from your observations".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %>
+            <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %>
           <% end -%>
         <% end -%>
       </li>

@@ -61,7 +61,9 @@
     <% @place.ancestors.each do |ancestor| %>
       <%- link_txt = capture do -%>
         <%= t ancestor.name, :default => ancestor.name %>
-        <span class="small description">(<%=t ancestor.place_type_name %>)</span>
+        <span class="small description">
+          (<%= t("place_geo.geo_planet_place_types.#{ancestor.place_type_name.gsub(' ','_')}") %>)
+        </span>
       <%- end -%>
       <%= link_to link_txt, ancestor, :class => 'crumb' %>
       <span class="description">&gt;</span>
@@ -70,7 +72,9 @@
   <div id="map" style="width: 100%; height: 100px"></div>
   <h2>
     <%= link_to t(@place.display_name, :default => @place.display_name), @place %>
-    <span class="small description"><%=t @place.place_type_name %></span>
+    <span class="small description">
+      <%= t("place_geo.geo_planet_place_types.#{@place.place_type_name.gsub(' ','_')}") if @place.place_type_name %>
+    </span>
   </h2>
   <div id="placephotos"></div>
 </div>
@@ -94,7 +98,7 @@
     <% if @place.check_list -%>
       <%- extra = capture do -%>
         <p class="ui">
-          <%= link_to "View check list page", @place.check_list, :class => "readmore" %>
+          <%= link_to t(:view_check_list_page), @place.check_list, :class => "readmore" %>
         </p>
         
         <% if logged_in? -%>
@@ -102,7 +106,7 @@
             <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
           <% else %>
             <div class="meta">
-              Subscriptions aren't available for places without boundaries.
+              <%= t :subscriptions_arent_available_for %>
             </div>
           <% end -%>
         <% end -%>
@@ -110,7 +114,7 @@
       <%= render :partial => 'guides/guide', :locals => {:extra => extra} %>
     <% else %>
       <div class="readable nocontent">
-        This place has no check list, so there is no guide<% if @place_geometry %>, but you can still
+        <%= t :this_place_has_no_check_list %><% if @place_geometry %>, but you can still
         <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
         <% end %>
       </div>
@@ -124,7 +128,7 @@
         <%= loading "Loading...", :class => "inline" %>
       </div>
     </div>
-    <%= link_to t(:view_more_observations_from_x, :x => t(@place.name, :default => @place.name)), observations_url(:place_id => @place.id), :class => "readmore" %>
+    <%= link_to t(:view_more_observations_from) + ' ' + "#{@place.name}", observations_url(:place_id => @place.id), :class => "readmore" %>
   </div>
   
   <div id="abouttab">
@@ -143,7 +147,7 @@
           <div class="loading status"> <%= t(:loading_wikipedia_description) %></div>
           <div class="noresults description" style="display:none">
             <%= t(:there_is_no_wikipedia_page_matching) + " #{@place.wikipedia_name} "+ t(:would_you_like_to) %>
-            <%= link_to t(:start_one), wikipedia_url %>?
+            <%= link_to t(:start_one).downcase, wikipedia_url %>?
           </div>
         </div>
       </div>

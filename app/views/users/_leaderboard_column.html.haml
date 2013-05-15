@@ -5,9 +5,9 @@
 - date ||= @date || Date.today
 %div{:class => "column span-#{span} #{'last' if last}"}
   %h4
-    Most
+    =t(:most)
     = noun
-    in
+    =t(:in)
     - case time_unit
     - when 'month'
       = date.strftime('%B %Y')
@@ -25,7 +25,7 @@
             - else
               = link_to observations_by_login_path(user.login, :on => time_unit == 'month' ? date.strftime("%Y-%m") : date.year) do
                 %span.count= count
-                = count == 1 ? noun.singularize : noun.pluralize
+                = count == 1 ? noun : noun_plural
     - else
       .nocontent.meta
         No
