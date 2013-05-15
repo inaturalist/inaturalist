@@ -62,6 +62,12 @@ GIT
       ym4r
 
 GIT
+  remote: git://github.com/nofxx/georuby.git
+  revision: c0c3a573a0aecbdb6aaa621d919de9fb368e22c8
+  specs:
+    georuby (2.0.0)
+
+GIT
   remote: git://github.com/samoli/acts_as_taggable_on_steroids.git
   revision: de68035542546645998fb6a806aa55b182c5c037
   specs:
@@ -255,7 +261,6 @@ GEM
     net-ssh (2.6.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    nofxx-georuby (1.9.2)
     nokogiri (1.5.6)
     ntlm-http (0.1.1)
     oauth (0.4.7)
@@ -434,6 +439,7 @@ DEPENDENCIES
   friendly_id (~> 4.0.1)
   gdata!
   geoplanet
+  georuby!
   google-api-client
   haml
   htmlentities
@@ -447,7 +453,6 @@ DEPENDENCIES
   memcache-client
   mobile-fu!
   mocha
-  nofxx-georuby
   nokogiri
   objectify-xml
   omniauth-facebook
