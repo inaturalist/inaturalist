@@ -90,7 +90,7 @@
         <div class="inline buttonrow">
           <%= hidden_fields_for_params :without => [:conservation_status, :page] %>
           <%-
-            options = [[t(:conservation_status), nil]] + Taxon::IUCN_STATUS_NAMES.map{|n| [t("#{n}").downcase, n]}
+            options = [[t(:conservation_status), nil]] + Taxon::IUCN_STATUS_NAMES.map{|n| [t(n).downcase, n]}
           -%>
           <%= select_tag "conservation_status", options_for_select(options, @conservation_status), :id => "conservationFilter", :class => "inlineblock" %>
           <%= submit_tag "Filter", :class => "glaucous button" %>
