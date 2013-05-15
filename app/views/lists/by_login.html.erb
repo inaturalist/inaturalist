@@ -74,10 +74,10 @@
             </a>
           <% end %>
           <div class="last column span-8">
-            <div class="readable title attr"><%= link_to t(:life_list, :user => list.title.split("'").first), list_path(list) %></div>
+            <div class="readable title attr"><%= link_to h(list.title), list_path(list) %></div>
 
             <div class="attr readable description">
-              <%= truncate(t(:every_species_seen_by, :user => strip_tags(list.description.split('Every species seen by ')[1])), :length => 75) %>
+              <%= truncate(strip_tags(list.description), :length => 75) %>
               <%= link_to "#{t(:view)} &raquo;".html_safe, list_path(list), :style => "white-space: nowrap" %>
             </div>
 
