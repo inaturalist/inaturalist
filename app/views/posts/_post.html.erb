@@ -20,7 +20,7 @@
     <% else -%>
       <span><%= t(:draft) %></span>
     <% end -%>
-    <span class="label">by</span>
+    <span class="label"><%= t :by %></span>
     <% if post.user -%>
       <%= link_to user_image(post.user), post.user %>
       <%= link_to(post.user.login, observations_by_login_path(post.user.login)) %>
@@ -30,11 +30,11 @@
     <% if post.observations.size > 0 -%>
       |
       <span class="count"><%= post.observations.size %></span>
-      observations
+      <%= t(:observations).downcase %>
     <% end -%>
     |
     <span class="count"><%= post.comments.size %></span>
-    comments
+    <%= t(:comments).downcase %>
     |
     <%= link_to t(:leave_a_comment), post_url + "#new_comment" %>
   </div>

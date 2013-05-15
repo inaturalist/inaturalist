@@ -30,7 +30,7 @@
     <%= f.text_field :title %>
     <%= f.text_area :body %>
     <div class="stacked small meta">
-      <strong>Allowed HTML:</strong>
+      <strong><%= t :allowed_html %>:</strong>
       <%= Post::ALLOWED_TAGS.to_a.sort.join(', ') %>
     </div>
     

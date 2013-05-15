@@ -4,33 +4,33 @@
 <div class="column span-24 taxon_name_fields">
   <div class="column span-8">
     <p class="ui">
-      <%= n.label :name %><br/>
+      <%= n.label t(:name) %><br/>
       <%= n.text_field :name, :class => "text" %>
     </p>
     <p class="ui">
-      <%= n.label :lexicon %><br/>
+      <%= n.label t(:lexicon) %><br/>
       <%= n.text_field :lexicon, :class => "text" %>
     </p>
     <p class="ui">
       <%= label_tag t(:valid_interrogation) %><br/>
-      <%= n.radio_button :is_valid, true.to_s %> <%= n.label :is_valid_true, t(:true) %>
-      <%= n.radio_button :is_valid, false %>  <%= n.label :is_valid_false, t(:false) %>
+      <%= n.radio_button :is_valid, true.to_s %> <%= n.label :is_valid_true, t(:yes) %>
+      <%= n.radio_button :is_valid, false %>  <%= n.label :is_valid_false, t(:no) %>
     </p>
   </div>
 
   <% unless taxon_name.source_identifier.blank? -%>
     <div class="column span-8">
       <p class="ui">
-        <%= n.label :name_provider %><br/>
+        <%= n.label t(:name_provider) %><br/>
         <%= n.text_field :name_provider, :disabled => true, :class => "text" %>
       </p>
       
       <p class="ui">
-        <%= n.label :source_url %><br/>
+        <%= n.label t(:source_url) %><br/>
         <%= n.text_field :source_url, :disabled => true, :class => "text" %>
       </p>
       <p class="ui">
-        <%= n.label :source_identifier %><br/>
+        <%= n.label t(:source_identifier) %><br/>
         <%= n.text_field :source_identifier, :disabled => true, :class => "text" %>
       </p>
       <p class="ui meta">

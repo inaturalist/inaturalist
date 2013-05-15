@@ -13,7 +13,7 @@ $(document).ready(function() {
         $.get(url, function(data, status, xhr) {
           var html = data.replace(/div\>[\n\s]+\<div/g, 'div><div')
           if (html.length == 0) {
-            $('.loading.status', ui.panel).removeClass('loading').html("No observations yet!")
+            $('.loading.status', ui.panel).removeClass('loading').html(I18n.t("no_observations_yet"))
           } else {
             $('.observations', ui.panel).html(html)
             $('.observationcontrols', ui.panel).observationControls()
@@ -89,7 +89,7 @@ $.fn.loadFlickrPlacePhotos = function(options) {
           }
         }
       } else if (options.noPhotosNotice) {
-        $(self).append('<div class="noresults meta">Flickr has no Creative Commons-licensed photos from this place.</div>')
+        $(self).append('<div class="noresults meta">' + I18n.t("flickr_has_no_creative_commons") + '</div>')
       }
     }
   )

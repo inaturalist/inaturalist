@@ -26,9 +26,9 @@
     
     <div class="stacked last column span-23">
       <div class="column span-12">
-        <%= f.text_field :parent_id, :label => "Parent ID", :value => taxon.parent_id, :class => 'text' %><br/>
+        <%= f.text_field :parent_id, :value => taxon.parent_id, :class => 'text' %><br/>
 
-        <%= label_tag :parent_name %><br/>
+        <%= label_tag t(:parent_name) %><br/>
         <%= text_field_tag :parent_name, taxon.parent ? taxon.parent.name : '', :id => 'parent_name', :class => 'text' %>
         <%= link_to_function t(:browse_all_species), "$('#taxonchooser').jqmShow();" %>
         <div class="description">
@@ -74,7 +74,7 @@
     </div>
     
     <p class="ui">
-      or <label><%= t(:add_new_photos_by_their_ids) %></label><br/>
+      <%= t :or %> <label><%= t(:add_new_photos_by_their_ids) %></label><br/>
       <input type="text" class="text" name="flickr_photos[]" />&nbsp;
       <input type="text" class="text" name="flickr_photos[]" />&nbsp;
       <input type="text" class="text" name="flickr_photos[]" />
@@ -153,12 +153,12 @@
           </div>
           <p class="ui">
             <%= f.text_field :source_identifier, :disabled => true, :class => "text" %>
-            <div class="description">Unique identifier of this taxon in the source database.</div>
+            <div class="description"><%= t :unique_identifier_of_this_taxon %></div>
           </p>
           
           <p class="ui">
             <%= f.text_field :source_url, :disabled => true, :class => "text" %>
-            <div class="description">URL of this taxon on the source's website</div>
+            <div class="description"><%= t :url_of_this_taxon_on_the_source_website %></div>
           </p>
         </div>
       <% end -%>
@@ -166,12 +166,11 @@
   </fieldset>
 
   <fieldset class="last column span-11">
-    <legend>Concept Status</legend>
-    <%= f.radio_button :is_active, true, :label_after => true, :label => "Active" %>
-    <%= f.radio_button :is_active, false, :label_after => true, :label => "Inactive" %>
+    <legend><%= t :concept_status %></legend>
+    <%= f.radio_button :is_active, true, :label_after => true, :label => t(:active) %>
+    <%= f.radio_button :is_active, false, :label_after => true, :label => t(:inactive) %>
     <div class="description">
-      Inactive taxon concepts are either taxonomically outdated or being staged for a a taxon change. 
-      Outdated concepts are kept to maintain history and compatability with some partner sites.
+      <%= t :inactive_taxon_concepts_are %>
     </div>
   </fieldset>
 
@@ -192,7 +191,7 @@
   
   <% if @taxon.species_or_lower? -%>
     <fieldset class="column span-24 twocolform">
-      <legend>Conservation Status</legend>
+      <legend><%= t :conservation_status %></legend>
       <div id="conservation_statuses">
         <%= f.fields_for :conservation_statuses, :builder => DefaultFormBuilder do |cs| %>
           <%= render "conservation_status_fields", :f => cs %>

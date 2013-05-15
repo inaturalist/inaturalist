@@ -146,7 +146,7 @@
     <%= link_to t(:all_species), taxa_path, :class => 'back crumb' %>
     <% for iconic_taxon in Taxon::ICONIC_TAXA %>
       <%= link_to "&nbsp;".html_safe, iconic_taxon, :class => "iconic_taxon_sprite #{iconic_taxon.name.downcase} #{'selected' if @taxon.iconic_taxon_id == iconic_taxon.id}", 
-        :title => Taxon::ICONIC_TAXON_NAMES[iconic_taxon.name] %>
+        :title => t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[iconic_taxon.name].gsub(' ','_').gsub('-','_').downcase}") %>
     <% end %>
   </span>
   <div id="meta" class="right description">
@@ -391,7 +391,7 @@
       <h3>
         <%= t(:places) %>
         <% if @check_listed_taxa.total_entries > @check_listed_taxa.size -%>
-          <span class="small description"><%= @check_listed_taxa.size %> of <%= @check_listed_taxa.total_entries %></span>
+          <span class="small description"><%= @check_listed_taxa.size %> <%= t :of %> <%= @check_listed_taxa.total_entries %></span>
         <% end -%>
       </h3>
     
