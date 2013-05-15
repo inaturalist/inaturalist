@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/Empact/spatial_adapter.git
-  revision: d64ac1c03c837d6fffddfac1a0dc0818bf10bce6
-  specs:
-    spatial_adapter (1.2.0)
-      GeoRuby (>= 1.3.0)
-      activerecord (>= 2.2.2)
-
-GIT
   remote: git://github.com/JayTeeSF/translate.git
   revision: 164f9ef6c51ca238c92ae4bb32d098693558f363
   specs:
@@ -55,17 +47,19 @@ GIT
       rdoc
 
 GIT
+  remote: git://github.com/kueda/spatial_adapter.git
+  revision: 524de45a8d218a217471b3f22bf7fe6a624a2156
+  specs:
+    spatial_adapter (1.3.1)
+      activerecord (>= 2.2.2)
+      georuby (>= 1.3.0)
+
+GIT
   remote: git://github.com/modyo/ym4r_gm.git
   revision: a0399d9a966ceb63a32251f90d389bc1bb689b16
   specs:
     ym4r_gm (0.2.3)
       ym4r
-
-GIT
-  remote: git://github.com/nofxx/georuby.git
-  revision: c0c3a573a0aecbdb6aaa621d919de9fb368e22c8
-  specs:
-    georuby (2.0.0)
 
 GIT
   remote: git://github.com/samoli/acts_as_taggable_on_steroids.git
@@ -100,7 +94,6 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    GeoRuby (1.3.4)
     aasm (3.0.15)
     actionmailer (3.2.13)
       actionpack (= 3.2.13)
@@ -195,6 +188,7 @@ GEM
     geoplanet (0.2.6)
       json (>= 1.1.3)
       rest-client (>= 0.9)
+    georuby (2.0.0)
     girl_friday (0.11.2)
       connection_pool (~> 1.0)
       rubinius-actor
@@ -439,7 +433,7 @@ DEPENDENCIES
   friendly_id (~> 4.0.1)
   gdata!
   geoplanet
-  georuby!
+  georuby
   google-api-client
   haml
   htmlentities

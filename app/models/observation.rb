@@ -671,7 +671,7 @@ class Observation < ActiveRecord::Base
       options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]
       options[:methods] << :coordinates_obscured
     end
-    options[:except] << :cached_tag_list
+    options[:except] += [:cached_tag_list, :geom]
     options[:except].uniq!
     options[:methods].uniq!
     h = super(options)
