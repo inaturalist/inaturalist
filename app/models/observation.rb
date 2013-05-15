@@ -671,7 +671,7 @@ class Observation < ActiveRecord::Base
       options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]
       options[:methods] << :coordinates_obscured
     end
-    options[:except] << :cached_tag_list
+    options[:except] += [:cached_tag_list, :geom]
     options[:except].uniq!
     options[:methods].uniq!
     h = super(options)
@@ -1009,7 +1009,7 @@ class Observation < ActiveRecord::Base
   
   def self.component_cache_key(id, options = {})
     key = "obs_comp_#{id}"
-    key += "_"+options.map{|k,v| "#{k}-#{v}"}.join('_') unless options.blank?
+    key += "_"+options.sort.map{|k,v| "#{k}-#{v}"}.join('_') unless options.blank?
     key
   end
   
@@ -1673,6 +1673,19 @@ class Observation < ActiveRecord::Base
     super
   end
 
+  def merge(reject)
+    mutable_columns = self.class.column_names - %w(id created_at updated_at)
+    mutable_columns.each do |column|
+      self.send("#{column}=", reject.send(column)) if send(column).blank?
+    end
+    merge_has_many_associations(reject)
+    reject.destroy
+    identifications.group_by{|ident| [ident.user_id, ident.taxon_id]}.each do |pair, idents|
+      idents.sort_by(&:id).last.update_other_identifications
+    end
+    save!
+  end
+
   def self.expire_components_for(o)
     o = Observation.find_by_id(o) unless o.is_a?(Observation)
     return unless o
@@ -1681,6 +1694,7 @@ class Observation < ActiveRecord::Base
     ctrl.expire_fragment(o.component_cache_key(:for_owner => true))
     I18N_SUPPORTED_LOCALES.each do |locale|
       ctrl.expire_fragment(o.component_cache_key(:locale => locale))
+      ctrl.expire_fragment(o.component_cache_key(:locale => locale, :for_owner => true))
     end
   end
   

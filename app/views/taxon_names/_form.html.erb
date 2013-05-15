@@ -34,7 +34,11 @@
   
   <p class="ui">
     <%= n.label :name %><br/>
-    <%= n.text_field :name, :class => "text" %>
+    <% if @taxon_name.new_record? || is_admin? || is_me?(@taxon_name.creator) -%>
+      <%= n.text_field :name, :class => "text" %>
+    <% else %>
+      <strong><%= @taxon_name.name %></strong>
+    <% end -%>
   </p>
   <p class="ui">
     <%= n.label :lexicon %><br/>

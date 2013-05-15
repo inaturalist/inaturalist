@@ -42,6 +42,7 @@ en:
   a_: a
   a_community_for_naturalist: A Community for Naturalists
   a_few_points_to_make_things_clear: "A few points to make things a bit clearer:"
+  a_flag_for_x: "a flag for %{x}"
   a_greasemonkey_script: a Greasemonkey script
   able_to_connect_flickr: Great!  We were able to link to your Flickr account.
   about: About
@@ -73,7 +74,7 @@ en:
   add_a_link_raquo: "Add a link &raquo;"
   add_a_name: Add a name
   add_a_new_observation_to_id_please!: Add a New Observation to ID Please!
-  add_a_place_raquo: "Add a place &raquo:"
+  add_a_place_raquo: "Add a place &raquo;"
   add_a_single_observation: Add a single observation.
   add_an_identification: Add an identification
   add_an_observation: Add an observation
@@ -167,7 +168,7 @@ en:
       kingdom: Kingdom
       class: Class
       phylum: Phylum
-      species: Specie
+      species: Species
     plants: Plants
     animals: Animals
     mollusks: Mollusks
@@ -403,6 +404,7 @@ en:
   comma_separated_please: Comma-separated, please
   comment_preview: Comment preview
   commented: commented
+  comment: Comment
   comments: Comments
   comments_and_identifications: Comments & Identifications
   comments_by_everyone: Comments by everyone
@@ -470,6 +472,7 @@ en:
     identifications are shown alongside the observations on project-
     specific views. Curators can also see the true coordinates of
     private and obscured contributions to this project.
+  curators_changed_for_x_html: "Curators changed for %{x}"
   current_password: Current Password
   custom_project_fields: Custom Project Fields 
   darr_apply_darr: "&darr; Apply &darr;"
@@ -598,7 +601,7 @@ en:
   email_addresses_to_receive_invites: Email addresses to receive invites
   embed: 'Embed:'
   embed_a_widget_for_this_taxon_on_website: "Embed a widget for this taxon on your website &raquo;"
-  embed_place_widget: embed place widget
+  embed_place_widget: Embed place widget
   embed_widget_project: Embed a widget for this project on your website
   end: End
   endangered: endangered
@@ -670,6 +673,7 @@ en:
   flag_description: Flag this content to let the curators know something is wrong with it.
   flag_for_curation: Flag for curation
   flag_it!: Flag it!
+  flag_marked_as_resolved_html: '<span class="meta">Flag marked as</span> <strong>resolved.</strong>'
   flag_reason: "&ldquo;I'm flagging this %{record} because"
   flag_this_observation: Flag this observation
   flagged: flagged
@@ -1033,6 +1037,8 @@ en:
   new_observation_field: New observation field
   new_observation_rules: New Observation Rules
   new_observations: "New observations..."
+  new_observations_from_place_html: "New observations from %{place}"
+  new_observations_of_x_html: "New observations of %{x}"
   new_password: New Password
   new_post: New Post
   new_project: New Project
@@ -1336,6 +1342,7 @@ en:
   placement: Placement
   places: Places
   plants: plants
+  please_add_this_to_x_html: "Please add this to %{x}"
   please_be_aware_project_curators: Please be aware that project curators will be able to see any private or obscured locations of observations added to this project.
   please_be_aware_that_project_curators: Please be aware that project curators will be able to see any private or obscured locations of observations added to this project.
   please_be_careful_particulary_when: "Please be careful, particularly when deleting taxa. If a taxon has associated observations, ids, listed taxa, etc, please"
@@ -1447,6 +1454,7 @@ en:
   resolve_this_flag: Resolve this flag
   resolved: Resolved
   resolved_by: Resolved by
+  resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
   results: results
   roadmap: roadmap
   role: Role
@@ -1616,6 +1624,9 @@ en:
   stop_following_user: "Stop following %{user}"
   stop_updating_position: Stop updating position
   stuff_just_added: "Stuff you've just added..."
+  subject_resolved_noun_html: "%{subject} resolved %{noun}"
+  subject_affecting_stuff_html: "%{subject} affecting %{stuff}"
+  subject_committed_thing_affecting_stuff_html: "%{subject} committed %{thing} affecting %{stuff}"
   submit: Submit
   submit_comment: Submit comment
   submitted: Submitted
@@ -1651,18 +1662,24 @@ en:
   taxa_observed: taxa observed
   taxon: Taxon
   taxon_: taxon
+  taxon_change: taxon change
+  taxon_drop: taxon drop
   taxon_map:
       gbif_occurrences: GBIF Occurrences
       it_may_take_google_a_while_to: It may take Google a while to load these data, assuming GBIF has any.
       data_url: Data URL
       overlays: Overlays
+  taxon_merge: taxon merge
   taxon_name: Taxon name
   taxon_range: Taxon range
   taxon_scheme: Taxon scheme
   taxon_schemes_raquo_html: "Taxon <nobr>schemes &raquo;</nobr>"
   taxon_search: Taxon Search
   taxon_search_results_for: Taxon Search results for
+  taxon_split: taxon split
+  taxon_stage: taxon stage
   taxon_subscription: taxon subscription
+  taxon_swap: taxon swap
   taxon_to_delete: Taxon to delete
   taxon_to_keep: Taxon to keep
   taxonomic_changes: Taxonomic changes
@@ -1740,6 +1757,7 @@ en:
   thu: Thu
   time_: time
   title: title
+  time_ago: "%{time} ago"
   titled_favorites_and_the_most_recent_additions: titled "Favorites" and the most recent additions will appear in this space.
   to: to
   to_add_comments: to add comments
@@ -1800,10 +1818,17 @@ en:
   US_states: US States
   use_this_if_the_url_needs_genus_species_separated: "Use this if the URL needs to have the genus and species separated in a particular way. If the taxon is not a species or infraspecies, everything between [GENUS] and [SPECIES] will get replaced by the taxon name, so use sparingly. <br/><br/> <strong>Example:</strong><br/>"
   user: User
+  user_added_an_observation_html: "%{user} added an observation"
+  user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
+  user_added_a_x_to_noun_html: "%{user} added a %{x} to %{noun}"
+  user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"
+  user_added_a_x_to_noun_by_html: "%{user} added a %{x} to %{noun} by %{by}"
+  user_added_x_observations_html: "%{user} added %{x} observations"
   user_commented_on: "%{user} commented on your %{title} %{time}"
   user_follows: "%{user} follows"
   user_hasnt:  "%{user} hasnt"
   user_invite_observation_to_project: '%{user} would like to invite your observation "%{observation}" to the %{project} project.'
+  user_invited_your_x_to_a_project_html: "%{user} invited your %{x} to a project"
   user_s: "%{user}'s"
   user_s_id: "%{user}'s %{id}"
   user_thinks_yours_is: "%{user} %{noun} your observation %{observation} is"
@@ -1828,6 +1853,7 @@ en:
   view_details: View details
   view_flags: View flags
   view_full_observation: View full observation
+  view_invitation: View invitation
   view_journal: View Journal
   view_leaderboard: View leaderboard
   view_leaderboard_from_last_month: View leaderboard from last month
@@ -1835,8 +1861,11 @@ en:
   view_license: View license
   view_lists: View Lists
   view_more_observations_from: View more observations from
+  view_more_about_x: "View more about %{x}"
+  view_more_observations_from_x: "View more observations from %{x}"
   view_nbsp: "View &nbsp;"
   view_non_mobile_site: View non-mobile site
+  view_post: View post
   view_observation: View observation
   view_observations: View observations
   view_observations_by_everyone: View observations by everyone
@@ -1926,6 +1955,8 @@ en:
   x_journal_middot: "%{user}'s Journal &middot;"
   x_journal_new_post: "%{user}'s Journal &middot; New Post"
   x_sent_you_a_new_message_on_y_html: "%{x} sent you a new message on %{y}: "
+  x_wrote_a_new_post_html: "%{x} wrote a new post"
+  x_wrote_y_new_posts_html: "%{x} wrote %{y} new posts"
   year: Year
   yellow: yellow
   'yes': "Yes"
@@ -1937,6 +1968,8 @@ en:
   you: you
   you_admin: You Admin
   you_are_over_your_invites_quota: ...you're over your monthly quota of 60 invites
+  you_are_now_role_for_project_html: "<strong>you</strong> are now %{role} for %{project}"
+  user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
   you_are_subscribed_to: "You're subscribed to "
   you_can_accept_invitations: You can accept the invitation here 
   you_can_also_add_flickr: You can also add Flickr tags when editing an observation, or when batch editing your observations.
@@ -2236,6 +2269,25 @@ en:
           special invite URL below. You can also pre-select a taxon and project for 
           the new observation.
     users:
+      dashboard:
+        taxon_change_desc: |
+          Taxon changes represent changes to %{site_name}'s taxonomy.
+          Most of the time %{site_name} will automatically keep
+          your content up-to-date when these changes happen (unless you've
+          opted-out), but we still want to let you know when and how your data
+          is changing.
+        your_content_will_be_updated: Your content related to these taxa will be updated automatically.
+        you_may_want_to_update: You have some content related to these taxa that you may want to update.
+        cannot_update_your_content: "%{site_name} cannot update your content automatically for this change."
+        new_project_admin_html: |
+          Wondering why you're now admin for this project? The previous owner
+          probably deleted their account, so %{site_name} assigned you because
+          you're a project manager or a site curator. If you don't want to be
+          the project admin, please contact 
+          <a href="mailto:%{help_email}">%{help_email}</a>
+        curators_can_see: |
+          Just a reminder, project curators can see the private and obscured
+          coordinates of observations you add to this project.
       edit:
         taxon_change_desc: |
           When taxa are merged or renamed on %{site_name}, your observations, listed

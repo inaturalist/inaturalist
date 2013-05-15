@@ -1599,3 +1599,56 @@ describe Observation, "captive" do
     o.quality_metrics.should be_blank
   end
 end
+
+describe Observation, "merge" do
+  let(:user) { User.make! }
+  let(:reject) { Observation.make!(:user => user) }
+  let(:keeper) { Observation.make!(:user => user) }
+  
+  it "should destroy the reject" do
+    keeper.merge(reject)
+    Observation.find_by_id(reject.id).should be_blank
+  end
+
+  it "should preserve photos" do
+    op = ObservationPhoto.make!(:observation => reject)
+    keeper.merge(reject)
+    op.reload
+    op.observation.should eq(keeper)
+  end
+
+  it "should preserve comments" do
+    c = Comment.make!(:parent => reject)
+    keeper.merge(reject)
+    c.reload
+    c.parent.should eq(keeper)
+  end
+
+  it "should preserve identifications" do
+    i = Identification.make!(:observation => reject)
+    keeper.merge(reject)
+    i.reload
+    i.observation.should eq(keeper)
+  end
+
+  it "should mark duplicate identifications as not current" do
+    t = Taxon.make!
+    without_delay do
+      reject.update_attributes(:taxon => t)
+      keeper.update_attributes(:taxon => t)
+    end
+    keeper.merge(reject)
+    idents = keeper.identifications.where(:user_id => keeper.user_id).order('id asc')
+    idents.size.should eq(2)
+    idents.first.should_not be_current
+    idents.last.should be_current
+  end
+end
+
+describe Observation, "component_cache_key" do
+  it "should be the same regardless of option order" do
+    k1 = Observation.component_cache_key(111, :for_owner => true, :locale => :en)
+    k2 = Observation.component_cache_key(111, :locale => :en, :for_owner => true)
+    k1.should eq(k2)
+  end
+end

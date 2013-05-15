@@ -19,11 +19,12 @@
           :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES), :length => 500) %>
       </div>
       <div class="meta">
-        Posted by <%= link_to(truncate(you_or_login(post.user), :length => 20), person_path(post.user.login)) %>
+        <%=t :posted_by %>
+        <%= link_to(truncate(you_or_login(post.user), :length => 20), person_path(post.user.login)) %>
         <span class="when">
           <abbr class="date timeago" title="<%= post.created_at.iso8601 %>"><%= time_ago_in_words(post.created_at) %> ago</abbr>
         </span> | 
-        <%= link_to "View post", the_post_path %>
+        <%= link_to t(:view_post), the_post_path %>
 
       </div>
     </div>

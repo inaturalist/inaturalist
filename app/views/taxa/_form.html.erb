@@ -6,7 +6,18 @@
   <%= error_messages_for :taxon %>
   <div class="last column span-24">
     <div class="column span-8">
-      <%= f.text_field :name, :class => "text", :required => true %>
+      <% if @taxon.new_record? || is_admin? || is_me?(@taxon.creator) -%>
+        <%= f.text_field :name, :class => "text", :required => true %>
+      <% else %>
+        <%= f.form_field :name do %>
+          <strong><%= @taxon.name %></strong>
+          <div class="meta">
+            Add a
+            <%= link_to "taxon swap", new_taxon_change_path(:type => "TaxonSwap", :input_taxon_ids => @taxon.id) %>
+            if you want to change the name
+          </div>
+        <% end %>
+      <% end -%>
     </div>
     <div class="column span-8">
       <%= f.text_field :rank, :class => "text", :required => true %>

@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @place.display_name %>
+  <%= t @place.display_name, :default => @place.display_name %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "taxa", "taxa/guide", "barchart", "places/show", "guide" %>
@@ -64,6 +64,8 @@
         <span class="small description">
           (<%= t("place_geo.geo_planet_place_types.#{ancestor.place_type_name.gsub(' ','_')}") %>)
         </span>
+        <%= t ancestor.name, :default => ancestor.name %>
+        <span class="small description">(<%=t ancestor.place_type_name %>)</span>
       <%- end -%>
       <%= link_to link_txt, ancestor, :class => 'crumb' %>
       <span class="description">&gt;</span>
@@ -75,6 +77,8 @@
     <span class="small description">
       <%= t("place_geo.geo_planet_place_types.#{@place.place_type_name.gsub(' ','_')}") if @place.place_type_name %>
     </span>
+    <%= link_to t(@place.display_name, :default => @place.display_name), @place %>
+    <span class="small description"><%=t @place.place_type_name %></span>
   </h2>
   <div id="placephotos"></div>
 </div>
@@ -90,8 +94,8 @@
   </div>
   <ul>
     <li><a href="#guidetab"><span><%=t :species_guide %></span></a></li>
-    <li><a href="#observationstab"><span><%=t :observations %></span></a></li>
-    <li><a href="#abouttab"><span><%=t :about_x, :x => @place.name %></span></a></li>
+    <li><a href="#observationstab"><span><%= t(:observations).capitalize %></span></a></li>
+    <li><a href="#abouttab"><span><%=t :about_x, :x => t(@place.name, :default => @place.name) %></span></a></li>
   </ul>
   
   <div id="guidetab">

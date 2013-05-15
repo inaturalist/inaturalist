@@ -12,9 +12,9 @@
               %i= link_to taxon.name, taxon_url(taxon)
     %td{:style => "vertical-align:top;padding-right:5px;"}
       %strong
-        = taxon_change.verb_phrase
+        =t taxon_change.verb_phrase.gsub(/\s+/, '_'), :default => taxon_change.verb_phrase
     %td{:style => "vertical-align:top;"}
-      %table
+      %table{:cellspacing => 0, :cellpadding => 0, :border => 0}
         - for taxon in taxon_change.output_taxa
           %tr
             %td{:style => "vertical-align:top;padding-right:5px;"}
@@ -25,17 +25,15 @@
 = taxon_change.description
 
 %p
-  Taxon changes represent changes to #{CONFIG.site_name}'s taxonomy. Most of the time #{CONFIG.site_name_short} will automatically
-  keep your content up-to-date when these changes happen (unless you've opted-out), but we still want 
-  to let you know when and how your data is changing.
+  =t 'views.users.dashboard.taxon_change_desc', :site_name => SITE_NAME
   - if taxon_change.automatable?
     - if user.prefers_automatic_taxonomic_changes?
-      Your content related to these taxa will be updated automatically.
+      =t 'views.users.dashboard.your_content_will_be_updated'
     - else
-      You have some content related to these taxa that you may want to update.
+      =t 'views.users.dashboard.you_may_want_to_update'
   - else
-    #{CONFIG.site_name_short} cannot update your content automatically for this change.
-= link_to "View details", taxon_change_url(taxon_change), :class => "readmore"
+    =t 'views.users.dashboard.cannot_update_your_content', :site_name => SITE_NAME
+= link_to t(:view_details), taxon_change_url(taxon_change), :class => "readmore"
 - if !taxon_change.automatable? || !user.prefers_automatic_taxonomic_changes?
   &nbsp;
-  = link_to "Update your content", taxon_change_commit_for_user_url(taxon_change), :class => "readmore"
+  = link_to t(:update_your_content), taxon_change_commit_for_user_url(taxon_change), :class => "readmore"

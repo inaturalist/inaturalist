@@ -18,13 +18,13 @@ class WikimediaCommonsPhoto < Photo
       nil
     end
     return unless query_results
-    raw = query_results.at('images')
+    raw = query_results.search('im')
     filenames = if raw.blank?
       taxon = Taxon.find_by_name(taxon_name)
       title = taxon.try(:wikipedia_title) || taxon_name
       [wikipedia_image_filename_for_title(taxon_name)]
     else
-      raw.children.map do |child|
+      raw.map do |child|
         filename = child.attributes["title"].value
         ext = filename.split(".").last.upcase.downcase
         %w(jpg jpef png gif).include?(ext) ? filename.strip.gsub(/\s/, '_') : nil

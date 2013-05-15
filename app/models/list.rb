@@ -225,7 +225,7 @@ class List < ActiveRecord::Base
   
   def self.icon_preview_cache_key(list)
     list_id = list.is_a?(List) ? list.id : list
-    {:controller => "lists", :action => "icon_preview", :list_id => list_id}
+    FakeView.url_for(:controller => "lists", :action => "icon_preview", :list_id => list_id)
   end
   
   def self.refresh_for_user(user, options = {})
