@@ -16,9 +16,9 @@ class LocalPhoto < Photo
       :original => {:geometry => "2048x2048>",  :auto_orient => false, :processors => [:rotator] },
       :large    => {:geometry => "1024x1024>",  :auto_orient => false },
       :medium   => {:geometry => "500x500>",    :auto_orient => false },
-      :small    => {:geometry => "240x240>",    :auto_orient => false },
-      :thumb    => {:geometry => "100x100>",    :auto_orient => false },
-      :square   => {:geometry => "75x75#",      :auto_orient => false }
+      :small    => {:geometry => "240x240>",    :auto_orient => false, :processors => [:deanimator] },
+      :thumb    => {:geometry => "100x100>",    :auto_orient => false, :processors => [:deanimator] },
+      :square   => {:geometry => "75x75#",      :auto_orient => false, :processors => [:deanimator] }
     },
     :convert_options => {
       :large  => image_convert_options,
