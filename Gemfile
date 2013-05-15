@@ -15,6 +15,7 @@ gem 'chronic'
 gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
 gem 'daemons'
 gem 'daemon-spawn'
+gem 'dbf'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'devise'

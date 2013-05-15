@@ -154,6 +154,8 @@ GEM
     daemon-spawn (0.4.2)
     daemons (1.1.9)
     database_cleaner (0.9.1)
+    dbf (2.0.3)
+      fastercsv (~> 1.5.4)
     delayed_job (3.0.4)
       activesupport (~> 3.0)
     delayed_job_active_record (0.3.3)
@@ -183,6 +185,7 @@ GEM
       i18n (~> 0.5)
     faraday (0.8.4)
       multipart-post (~> 1.1)
+    fastercsv (1.5.5)
     flickraw (0.9.6)
     friendly_id (4.0.9)
     geoplanet (0.2.6)
@@ -419,6 +422,7 @@ DEPENDENCIES
   daemon-spawn
   daemons
   database_cleaner
+  dbf
   delayed_job
   delayed_job_active_record
   delayed_paperclip (= 2.4.5.2)!
