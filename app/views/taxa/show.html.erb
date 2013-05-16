@@ -280,7 +280,7 @@
               </div>
             </div>
           <% end -%>
-          <%= establishment_blob(@listed_taxon, :class => "inlineblock") if @listed_taxon.endemic? || @listed_taxon.invasive? %>
+          <%= establishment_blob(@listed_taxon, :class => "inlineblock") if @listed_taxon.endemic? || @listed_taxon.introduced? %>
           <strong><%= t(@listed_taxon.establishment_means || "present", :default => "present").capitalize %></strong>
           <%=t @listed_taxon.native? ? 'to' : 'in' %>
           <%= link_to t(@listed_taxon.place.name, :default => @listed_taxon.place.name), @listed_taxon.place %>
@@ -416,10 +416,8 @@
                 <%= link_to(t(:edit), lt, :class => "small description editlink") %>
               <% end -%>
               
-              <% if %w(introduced naturalised managed).include?(lt.establishment_means) -%>
+              <% if lt.introduced? -%>
                 <div class="small description"><%= lt.establishment_means %></div>
-              <% elsif lt.establishment_means == 'invasive' %>
-                <div class="small description" style="color: deeppink">invasive</div>
               <% end -%>
             </li>
           <% end %>

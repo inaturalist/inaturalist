@@ -14,7 +14,7 @@ module Shared::GuideModule
       is_filter_param && !is_blank
     }].symbolize_keys
     @scope = Taxon.active.of_rank(Taxon::SPECIES).
-      includes({:taxon_photos => :photo}, :taxon_names, :conservation_statuses).scoped
+      includes({:taxon_photos => :photo}, :taxon_names, :conservation_statuses, :taxon_descriptions).scoped
     
     if block_given?
       @scope = yield(@scope)

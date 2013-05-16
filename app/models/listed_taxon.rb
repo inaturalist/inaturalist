@@ -91,14 +91,11 @@ class ListedTaxon < ActiveRecord::Base
   end
   PRESENT_EQUIVALENTS = [PRESENT, COMMON, UNCOMMON]
   
-  ESTABLISHMENT_MEANS = %w(native endemic introduced naturalised invasive managed)
+  ESTABLISHMENT_MEANS = %w(native endemic introduced)
   ESTABLISHMENT_MEANS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
   ESTABLISHMENT_MEANS_DESCRIPTIONS["native"] = "evolved in this region or arrived by non-anthropogenic means"
   ESTABLISHMENT_MEANS_DESCRIPTIONS["endemic"] = "native and occurs nowhere else"
   ESTABLISHMENT_MEANS_DESCRIPTIONS["introduced"] = "arrived in the region via anthropogenic means"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["naturalised"] = "reproduces naturally and forms part of the local ecology"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["invasive"] = "has a deleterious impact on another organism, multiple organisms, or the ecosystem as a whole"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["managed"] = "maintains presence through intentional cultivation or husbandry"
   
   ESTABLISHMENT_MEANS.each do |means|
     const_set means.upcase, means
@@ -108,7 +105,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   NATIVE_EQUIVALENTS = %w(native endemic)
-  INTRODUCED_EQUIVALENTS = %w(introduced naturalised invasive managed)
+  INTRODUCED_EQUIVALENTS = %w(introduced)
   
   validates_inclusion_of :occurrence_status_level, :in => OCCURRENCE_STATUS_LEVELS.keys, :allow_blank => true
   validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true

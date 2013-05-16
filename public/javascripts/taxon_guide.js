@@ -33,6 +33,7 @@ var TaxonGuide = {
       header: false,
       noneSelectedText: I18n.t('colors'),
       minWidth: 130,
+      height: 'auto',
       selectedText: function(selected, total, elts) {
         if (selected > 2) {
           return '<strong>'+selected+' colors</strong>'
@@ -48,6 +49,7 @@ var TaxonGuide = {
       header: false,
       noneSelectedText: "Native/endemic/inroduced",
       minWidth: 110,
+      height: 'auto',
       multiple: false,
       selectedText: function(selected, total, elts) {
         if (elts[0].value) {
@@ -61,6 +63,7 @@ var TaxonGuide = {
       header: false,
       noneSelectedText: "Conservation status",
       minWidth: 140,
+      height: 'auto',
       multiple: false,
       selectedText: function(selected, total, elts) {
         if (elts[0].value) {

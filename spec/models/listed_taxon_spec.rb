@@ -347,16 +347,16 @@ describe ListedTaxon, "establishment means propagation" do
     child_listed_taxon.establishment_means.should be_blank
   end
 
-  it "should trickle down for invasive" do
+  it "should trickle down for introduced" do
     child_listed_taxon.establishment_means.should be_blank
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INVASIVE)
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
     child_listed_taxon.reload
     child_listed_taxon.establishment_means.should eq(place_listed_taxon.establishment_means)
   end
 
-  it "should not bubble up for invasive" do
+  it "should not bubble up for introduced" do
     parent_listed_taxon.establishment_means.should be_blank
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INVASIVE)
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
     parent_listed_taxon.reload
     parent_listed_taxon.establishment_means.should be_blank
   end
