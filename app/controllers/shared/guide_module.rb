@@ -52,8 +52,12 @@ module Shared::GuideModule
       @scope = @scope.colored(@colors)
     end
     
-    if @threatened = @filter_params[:threatened]
-      @scope = @scope.threatened
+    if @threatened = (params[:threatened] == "1")
+      @scope = if @place
+        @scope.threatened_in_place(@place)
+      else
+        @scope.threatened
+      end
     elsif @conservation_status = @filter_params[:conservation_status]
       @scope = if @place
         @scope.has_conservation_status_in_place(@conservation_status, @place)

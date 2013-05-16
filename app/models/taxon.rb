@@ -320,6 +320,11 @@ class Taxon < ActiveRecord::Base
   }
     
   scope :threatened, where("conservation_status >= ?", IUCN_NEAR_THREATENED)
+  scope :threatened_in_place, lambda {|place|
+    includes(:conservation_statuses).
+    where("conservation_statuses.iucn >= ?", IUCN_NEAR_THREATENED).
+    where("(conservation_statuses.place_id = ? OR conservation_statuses.place_id IS NULL)", place)
+  }
   scope :from_place, lambda {|place|
     includes(:listed_taxa).where("listed_taxa.place_id = ?", place)
   }

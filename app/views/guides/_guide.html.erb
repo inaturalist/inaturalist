@@ -86,15 +86,15 @@
         </div>
       <% end %>
       
-      <%= form_tag url_for, :method => :get, :class => "conservationfilter inlineblock" do %>
+      <%= form_tag url_for, :method => :get, :class => "threatenedfilter inlineblock" do %>
         <div class="inline buttonrow">
-          <%= hidden_fields_for_params :without => [:conservation_status, :page] %>
-          <%-
-            options = [[t(:conservation_status), nil]] + Taxon::IUCN_STATUS_NAMES.map{|n| [t(n).downcase, n]}
-          -%>
-          <%= select_tag "conservation_status", options_for_select(options, @conservation_status), :id => "conservationFilter", :class => "inlineblock" %>
+          <%= hidden_fields_for_params :without => [:threatened, :page] %>
+          <span class="inter">
+            <%= hidden_field_tag :threatened, 0 %>
+            <%= check_box_tag :threatened, 1, @threatened, :id => "threatened_box" %>
+          </span>
+          <label for="threatened_box" class="inter"><%= t(:threatened, :default => "threatened").capitalize %></label>
           <%= submit_tag "Filter", :class => "glaucous button" %>
-          <%= link_to "&times;".html_safe, url_for_params(:without => [:conservation_status]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear" %>
         </div>
       <% end %>
     </div>

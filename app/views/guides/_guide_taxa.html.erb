@@ -16,7 +16,7 @@
 
 <%- compact do %>
   <div class="guide_taxa" <%= data_attrs.map{|k,v| "#{k}=\"#{v}\""}.join(' ').html_safe %>>
-    <% if @taxa.total_pages == 0 -%>
+    <% if @taxa.total_entries == 0 -%>
       <div class="noresults meta">
         <% if @filter_params.blank? -%>
           No species have been listed for this place yet!

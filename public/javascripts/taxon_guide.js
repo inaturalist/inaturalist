@@ -9,7 +9,6 @@ var TaxonGuide = {
     'multiselect_colorsFilter[]', 
     'multiselect_colorchooser',
     'multiselect_colorchooser[]',
-    'multiselect_conservationFilter', 
     'multiselect_establishmentFilter'],
   OVERRIDE_EXISTING: 0,
   RESPECT_EXISTING: 1,
@@ -21,7 +20,15 @@ var TaxonGuide = {
       re = new RegExp(TaxonGuide.IGNORE_PARAMS[i]+'=[^\&]*\&?', 'g')
       s = s.replace(re, '')
     }
-    return s
+    if ($.trim(s) == '') { return s }
+    var params = s.split('&')
+    var uniqueParams = {}
+    for (var i = 0; i < params.length; i++) {
+      var kv = params[i].split('=')
+      uniqueParams[kv[0]] = kv[1]
+    }
+    s = $.param(uniqueParams)
+    return $.param(uniqueParams)
   },
   
   init: function(context, options) {
@@ -59,23 +66,9 @@ var TaxonGuide = {
         }
       }
     })
-    $('#filters .conservationfilter select').multiselect({
-      header: false,
-      noneSelectedText: "Conservation status",
-      minWidth: 140,
-      height: 'auto',
-      multiple: false,
-      selectedText: function(selected, total, elts) {
-        if (elts[0].value) {
-          return "<strong>"+elts[0].title+"</strong>"
-        } else {
-          return elts[0].title
-        }
-      }
-    })
 
-    $('#filters select').siblings('input.button').hide()
-    $('#filters select').change(function() {
+    $('#filters select, #filters input:checkbox, #filters .inter').siblings('input.button').hide()
+    $('#filters select, #filters input:checkbox').change(function() {
       $(this).parents('form:first').submit()
     })
     
@@ -118,8 +111,8 @@ var TaxonGuide = {
       return false
     })
     
-    $('#controls form.conservationfilter a').click(function() {
-      $.bbq.removeState('conservation_status')
+    $('#controls form.threatenedfilter input:checkbox').change(function() {
+      if (!this.checked) { $.bbq.removeState('threatened') }
       return false
     })
     
@@ -135,7 +128,7 @@ var TaxonGuide = {
       $('#controls form.searchfilter input[type=text]').val($.bbq.getState('q'))
       $('#controls form.colorfilter select').val($.bbq.getState('colors'))
       $('#controls form.establishmentfilter select').val($.bbq.getState('establishment_means'))
-      $('#controls form.conservationfilter select').val($.bbq.getState('conservation_status'))
+      $('#controls form.threatenedfilter input:checkbox').attr('checked', $.bbq.getState('threatened') == '1')
       $('#controls select:hidden').multiselect('refresh')
       if ($.bbq.getState('colors')) {
         $('#controls form.colorfilter .pale.button').show()
@@ -147,12 +140,6 @@ var TaxonGuide = {
       } else {
         $('#controls form.establishmentfilter .pale.button').hide()
       }
-      if ($.bbq.getState('conservation_status')) {
-        $('#controls form.conservationfilter .pale.button').show()
-      } else {
-        $('#controls form.conservationfilter .pale.button').hide()
-      }
-      
       if ($.bbq.getState('q')) {
         $('#controls form.searchfilter .pale.button').show()
       } else {
