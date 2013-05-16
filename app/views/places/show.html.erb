@@ -62,10 +62,8 @@
       <%- link_txt = capture do -%>
         <%= ancestor.name %>
         <span class="small description">
-          (<%= t("place_geo.geo_planet_place_types.#{ancestor.place_type_name.gsub(' ','_')}", :default => t(:unknown)) %>)
+          (<%= t("place_geo.geo_planet_place_types.#{ancestor.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if ancestor.place_type_name %>)
         </span>
-        <%= t ancestor.name, :default => ancestor.name %>
-        <span class="small description">(<%=t ancestor.place_type_name %>)</span>
       <%- end -%>
       <%= link_to link_txt, ancestor, :class => 'crumb' %>
       <span class="description">&gt;</span>
@@ -77,8 +75,6 @@
     <span class="small description">
       <%= t("place_geo.geo_planet_place_types.#{@place.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if @place.place_type_name %>
     </span>
-    <%= link_to t(@place.display_name, :default => @place.display_name), @place %>
-    <span class="small description"><%=t @place.place_type_name %></span>
   </h2>
   <div id="placephotos"></div>
 </div>
