@@ -8,7 +8,7 @@
 <%- end -%>
 <%- before = capture do %>
   <div class="right inline clear buttonrow">
-    <%= link_to 'All Projects', projects_path, :class => "inter readmore" %>
+    <%= link_to t(:all_projects), projects_path, :class => "inter readmore" %>
   </div>
 <% end %>
 <%= render :partial => 'shared/by_login_header', :locals => { :before => before } %>

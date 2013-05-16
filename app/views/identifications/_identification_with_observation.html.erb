@@ -10,8 +10,8 @@
       
       <%- if @other_id_stats && @other_id_stats[identification.observation_id] -%>
         <a href="<%= url_for(identification.observation) %>">
-          <span class="count"><%= pluralize @other_id_stats[identification.observation_id][:num_agreements], 'person' %></span><%=t :agree %><%= 's' if @other_id_stats[identification.observation_id][:num_agreements] == 1 %>,
-          <span class="count"><%= @other_id_stats[identification.observation_id][:num_disagreements] %></span><%=t :disagree %><%= 's' if @other_id_stats[identification.observation_id][:num_disagreements] == 1 %>
+          <span class="count"><%= pluralize @other_id_stats[identification.observation_id][:num_agreements], t(:person) %> </span><%= t(:agree).downcase %><%= 's' if @other_id_stats[identification.observation_id][:num_agreements] == 1 %>,
+          <span class="count"><%= @other_id_stats[identification.observation_id][:num_disagreements] %> </span><%= t(:disagree).downcase %><%= 's' if @other_id_stats[identification.observation_id][:num_disagreements] == 1 %>
         </a>
       <%- end -%>
     </div>

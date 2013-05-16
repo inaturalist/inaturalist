@@ -14,7 +14,7 @@
       "<span class=\"sciname\">#{taxon.name}</span>"
     end
   elsif taxon.root?
-    sciname = "<span class=\"sciname\">#{taxon.name}</span>"
+    sciname = "<span class=\"sciname\">#{taxon.name == 'Life' ? t(:life) : taxon.name}</span>"
   else
     rank = taxon.rank ? taxon.rank.capitalize : '(Unknown Rank)'
     rank = content_tag(:span, t(rank), :class => 'rank')
