@@ -533,6 +533,7 @@ es-MX:
   curate_observations: "Revisa observaciones"
   curate_taxa: "Revisa taxa"
   curate_users: "Revisa usuarios"
+  curated: curados
   curating: Curando
   curator: Curador
   curators: Curadores
@@ -6243,17 +6244,17 @@ es-MX:
   first_confirmed_inat_observation: "Primera observacipón confirmada de %{site_name} "
   first_inat_observation: "Primera observación de {site_name}"
   first_observer: "1er observador"
-  flag: Reportar
-  flag_an_item: Reporta un contenido
-  flag_description: "Reporta a los curadores que hay algo erróneo en este contenido"
+  flag: Advertencia
+  flag_an_item: Advierte un contenido
+  flag_description: "Advertencia para los curadores que hay algo erróneo en este contenido"
   flag_for_curation: "Advertencia para curación"
-  flag_it!: "¡Reportalo!"
+  flag_it!: "¡Manda advertencia!"
   flag_reason: "&ldquo; Estoy incluyendo una advertencia en este  %{record} porque"
   flag_this_observation: "Incluye una advertencia en esta observación"
   flagged: "Con advertencia"
-  flagged_for_curation: "Reportado para curación"
+  flagged_for_curation: "Advertencia para curación"
   flagger: Señalador
-  flags_explanation: "Los usuarios de %{site_name} reportan contenido cuando encuentran algo que no es correcto. Todavía hay algunos temas que no han sido resueltos por los curadores. Los usuarios han señaldo esta  %{thing} porque\n"
+  flags_explanation: "Los usuarios de %{site_name} mandan una advertencia de un contenido cuando encuentran algo que no es correcto. Todavía hay algunos temas que no han sido resueltos por los curadores. Los usuarios han señaldo esta  %{thing} porque\n"
   flags_for: "Advertencia para"
   flickr_account_information: "La información de tu cuenta de Flickr"
   flickr_description: "Flickr es un servicio para hospedar fotos ¡quizá ya lo conoces!"
@@ -6992,7 +6993,7 @@ es-MX:
   read_our_getting_started_guide: "Lee nuestra guía \"empezando\""
   read_the_full_wikipedia: "Lee la descripción completa de Wikipedia"
   reason: Razón
-  reason_you_are_flagging_this_item: Razón por la cual estas reportando este contenido.
+  reason_you_are_flagging_this_item: Razón por la cual estas poniendo en advertencia este contenido.
   receive_email_notifications_when_people_leave_you: "Recibe una notificación de correo electrónico sobre"
   recent_additions: "Observaciones recientes"
   recent_comments_on_your_stuff: "Comentarios recientes sobre tus cosas"
@@ -7093,7 +7094,7 @@ es-MX:
   searching: Buscando
   second_person_possessive_singular: "Tus %{noun}"
   second_person_possessive_singular_: "Tu %{noun}"
-  see_something_wrong_with_taxon: "¿Ves algo equivocado con esta especie o grupo? Reportalo a los curadores ahora."
+  see_something_wrong_with_taxon: "¿Ves algo equivocado con esta especie o grupo? Manda una advertencia a los curadores ahora."
   seen_it?: "¿Lo han visto?"
   seen_one: "¿Han visto uno?"
   select_all: Marca todos

@@ -31,7 +31,7 @@ var TaxonGuide = {
     $('#observedchart').parent().hide()
     $('#filters select[multiple]').multiselect({
       header: false,
-      noneSelectedText: "Colors",
+      noneSelectedText: I18n.t('colors'),
       minWidth: 130,
       selectedText: function(selected, total, elts) {
         if (selected > 2) {
