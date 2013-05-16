@@ -27,6 +27,7 @@
       - if cs.authority.blank?
         = SITE_NAME
       - elsif !url.blank?
-        = link_to cs.authority, url
+        = link_to t("authority_list.#{(cs.authority).gsub('&','and').gsub(' ','_').downcase}", :default => cs.authority), url
       - else
-        = cs.authority
+        = t("authority_list.#{(cs.authority).gsub('&','and').gsub(' ','_').downcase}", :default => cs.authority)
+        
