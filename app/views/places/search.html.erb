@@ -43,7 +43,7 @@
       <li>
         <%= link_to place.display_name, place %>
         <span class="small description">
-          <%= t("place_geo.geo_planet_place_types.#{place.place_type_name.gsub(' ','_')}") if(place.place_type_name) %>
+          <%= t("place_geo.geo_planet_place_types.#{place.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if(place.place_type_name) %>
         </span>
       </li>
     <% end %>
