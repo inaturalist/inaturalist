@@ -1,20 +1,19 @@
 = content_for :title do
-  = @title = "Leaderboard for #{@time_unit == 'month' ? @date.strftime("%B %Y") : @year}"
+  / = @title = "Leaderboard for #{@time_unit == 'month' ? @date.strftime("%B %Y") : @year}"
+  = @title = t(:leaderboard_for_x, :x => (@time_unit == 'month' ? l(@date, :format => :month_year) : @year))
 - cache @leaderboard_key, :expires_in => 1.day do
   #pageheader
     .right.meta.ui
-      Updated daily
+      =t :updated_daily
       = surround '(', ')' do
-        %abbr.meta.ui.stacked.date.timeago{"data-now" => Time.now.getutc.iso8601, :title => Time.now.getutc.iso8601}>
-          = time_ago_in_words(Time.now)
-          ago
+        %abbr.meta.ui.stacked.date.timeago{"data-now" => Time.now.getutc.iso8601, :title => Time.now.getutc.iso8601}=t :n_ago, :n => time_ago_in_words(Time.now)
     .breadcrumbs
       %strong
-        = link_to "&laquo; Back to people".html_safe, people_path, :class => "crumb"
+        = link_to t(:back_to_people), people_path, :class => "crumb back"
     %h2
       = @title
   .column.span-24.stacked
-    = render 'leaderboard_column', :noun => 'observations', :time_unit => @time_unit, :data => @most_observations, :extra => "<div class='meta'>Observations <em>observed</em> this #{@time_unit}, not added this #{@time_unit}. Get outside!</div>".html_safe
+    = render 'leaderboard_column', :noun => 'observations', :time_unit => @time_unit, :data => @most_observations, :extra => "<div class='meta'>#{t :observations_observed_this_month}</div>".html_safe
     = render 'leaderboard_column', :noun => 'species', :time_unit => @time_unit, :data => @most_species
     = render 'leaderboard_column', :noun => 'identifications',
       :time_unit => @time_unit,
@@ -29,6 +28,6 @@
   - else
     - prev_date = @date - 1.month
     - next_date = @date + 1.month
-    %strong.left= link_to "‹ #{prev_date.strftime('%B %Y')}".html_safe, :year => prev_date.year, :month => prev_date.month
+    %strong.left= link_to "‹ #{l prev_date, :format => :month_year}".html_safe, :year => prev_date.year, :month => prev_date.month
     - unless next_date > Date.today
-      %strong.right= link_to "#{next_date.strftime('%B %Y')} ›".html_safe, :year => next_date.year, :month => next_date.month
+      %strong.right= link_to "#{l next_date, :format => :month_year} ›".html_safe, :year => next_date.year, :month => next_date.month

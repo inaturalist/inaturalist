@@ -562,6 +562,7 @@ es:
       default: "%d/%m/%Y"
       long: "%d de %B de %Y"
       short: "%d de %b"
+      month_year: '%B %Y'
     month_names: 
       - ~
       - enero
@@ -1100,6 +1101,7 @@ es:
   lat: Latitud
   latitude: Latitud
   latitude_in_decimals: 'Latitud en grados con decimales, ej. 38.123'
+  leaderboard_for_x: "Los más activos de %{x}"
   leaderboards: Los más activos
   learn!: ¡Aprenda!
   learn_about_the_species_live_in: "Aprenda sobre las especies que viven en"
@@ -1360,6 +1362,7 @@ es:
   not_on_this_list: "No está en esta lista."
   not_seeing_what_looking_for: "¿No ve lo que está buscando?"
   not_yet: "Todavía no"
+  no_x_this_y: "No hay %{x} de este %{y}"
   noun_by_you: "%{noun} por usted"
   november: Noviembre
   number: 
@@ -1869,7 +1872,7 @@ es:
   sources: Fuentes
   sources_youve_added: "Fuentes que usted ha agregado"
   spam: spam
-  species: Especie
+  species: Especies
   species_from_around_the_world: "Especies de todo el mundo"
   species_guess: "Estimación especial"
   species_guide: "Guía de especies"
@@ -2524,12 +2527,18 @@ es:
   x_observations: 
     one: "1 observación"
     other: "%{count} observaciones"
+  x_observations_html: 
+    one: "<span class='count'>1</span> observación"
+    other: "<span class='count'>%{count}</span> observaciones"
   x_people: 
     one: "1 persona"
     other: "%{count} personas"
   x_species: 
-    one: "1 especies"
+    one: "1 especie"
     other: "%{count} especies"
+  x_species_html: 
+    one: "<span class='count'>1</span> especie"
+    other: "<span class='count'>%{count}</span> especies"
   x_wrote_a_new_post_html: "%{x} escribió una nueva ingreso"
   x_wrote_y_new_posts_html: "%{x} escribió %{y} nuevas ingresos"
   year: Año

@@ -154,7 +154,7 @@ class UsersController < ApplicationController
       @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_3"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_4"
     unless fragment_exist?(@leaderboard_key)
       @most_observations = most_observations(:per => 'month')
       @most_species = most_species(:per => 'month')
@@ -164,7 +164,7 @@ class UsersController < ApplicationController
       @most_identifications_year = most_identifications(:per => 'year')
     end
 
-    @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}"
+    @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}_4"
     unless fragment_exist?(@curators_key)
       @curators = User.curators.limit(500)
       @curators = @curators.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users

@@ -32,12 +32,18 @@ en:
   x_observations:
     one: "1 observation"
     other: "%{count} observations"
+  x_observations_html:
+    one: "<span class='count'>1</span> observation"
+    other: "<span class='count'>%{count}</span> observations"
   x_people:
     one: '1 person'
     other: '%{count} people'
   x_species:
     one: '1 species'
     other: '%{count} species'
+  x_species_html:
+    one: "<span class='count'>1</span> species"
+    other: "<span class='count'>%{count}</span> species"
   a: a
   a_: a
   a_community_for_naturalist: A Community for Naturalists
@@ -880,6 +886,7 @@ en:
   lat: Lat
   latitude: Latitude
   latitude_in_decimals: 'Latitude in decimal degrees, e.g. 38.123'
+  leaderboard_for_x: "Leaderboard for %{x}"
   leaderboards: Leaderboards
   learn!: Learn!
   learn_about_the_species_live_in: Learn about the species that live in
@@ -1115,6 +1122,7 @@ en:
   no_taxa_yet: No taxa yet!
   no_taxonomic_changes_match_those_criteria: No taxonomic changes match those criteria
   no_wikipedia_page_for_taxon: No Wikipedia page for this taxon.
+  no_x_this_y: "No %{x} this %{y}"
   noble_curators: "%{site}'s Noble Curators"
   none: None
   none_of_the_people_you_follow_have_updates: "None of the people you follow have made any updates yet!"
@@ -2354,6 +2362,7 @@ en:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'
       short: '%b %d'
+      month_year: '%B %Y'
     month_names:
       - 
       - January
