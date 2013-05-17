@@ -80,12 +80,12 @@
                 <%= class_name =~ /^[aeiou]/i ? t(:an_) : t(:a_) %>
                 <% if update.parent.is_a? Post -%>
                   <% if update.parent.parent.is_a?(User) -%>
-                    <%= link_to t("#{class_name}").downcase, journal_post_path(update.parent.user.login, update.parent) %>
+                    <%= link_to t(class_name, :default => class_name).downcase, journal_post_path(update.parent.user.login, update.parent) %>
                   <% else %>
-                    <%= link_to t("#{class_name}").downcase, project_journal_post_path(update.parent.parent, update.parent) %>
+                    <%= link_to t(class_name, :default => class_name).downcase, project_journal_post_path(update.parent.parent, update.parent) %>
                   <% end -%>
                 <% else %>
-                  <%= link_to t("#{class_name}").downcase, update.parent %>
+                  <%= link_to t(class_name, :default => class_name).downcase, update.parent %>
                 <% end -%>
                 <% if update.parent.is_a?(Post) && update.parent.parent.is_a?(Project) %>
                       <%= t(:by).downcase %> <%= link_to char_wrap(h(update.parent.parent.title), 50), update.parent.parent %>
