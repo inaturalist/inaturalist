@@ -85,7 +85,7 @@ class PlacesController < ApplicationController
   def show
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
-    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
+    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry, name", :include => [:taxon_names])
     browsing_taxa.delete_if{|t| t.name == "Life"}
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     respond_to do |format|

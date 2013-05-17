@@ -68,7 +68,7 @@
       <%= form_tag url_for, :method => :get, :class => "colorfilter inlineblock" do %>
         <div class="inline buttonrow">
           <%= hidden_fields_for_params :without => [:colors, :page] %>
-          <%= select_tag "colors[]", options_for_select(Color.all.map {|value| [t(value.value), value.value]}, :selected => @colors), :multiple => true, :id => "colorsFilter", :class => "inlineblock" %>
+          <%= select_tag "colors[]", options_for_select(Color.order('value').map {|value| [t(value.value), value.value]}, :selected => @colors), :multiple => true, :id => "colorsFilter", :class => "inlineblock" %>
           <%= submit_tag "Filter", :class => "glaucous button" %>
           <%= link_to "&times;".html_safe, url_for_params(:without => [:colors]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => t(:clear_color_filters) %>
         </div>

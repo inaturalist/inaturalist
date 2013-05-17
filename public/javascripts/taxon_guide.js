@@ -15,6 +15,7 @@ var TaxonGuide = {
   REPLACE_EXISTING: 2,
   
   cleanParamString: function(s) {
+    s = decodeURIComponent(s)
     var re
     for (var i = TaxonGuide.IGNORE_PARAMS.length - 1; i >= 0; i--){
       re = new RegExp(TaxonGuide.IGNORE_PARAMS[i]+'=[^\&]*\&?', 'g')
@@ -23,17 +24,24 @@ var TaxonGuide = {
     if ($.trim(s) == '') { return s }
     var params = s.split('&')
     var uniqueParams = {}
+    var muiltiParams = []
     for (var i = 0; i < params.length; i++) {
       var kv = params[i].split('=')
-      uniqueParams[kv[0]] = kv[1]
+      if (kv[0].match(/\[.*\]/)) {
+        muiltiParams.push(params[i])
+      } else {
+        uniqueParams[kv[0]] = kv[1]
+      }
     }
     s = $.param(uniqueParams)
-    return $.param(uniqueParams)
+    if (muiltiParams.length > 0) s += muiltiParams.join('&')
+    return s
   },
   
   init: function(context, options) {
     options = options || {}
     window.taxa = window.taxa || {}
+    jQuery.param.fragment.noEscape(",/[]");
     
     $('#observedchart').parent().hide()
     $('#filters select[multiple]').multiselect({
@@ -76,6 +84,7 @@ var TaxonGuide = {
     // ensure controls change url state
     function replaceParams() {
       var href = $(this).attr("href") || $(this).serialize()
+      href = href.match(/\?(.+)/)[1]
       href = TaxonGuide.cleanParamString(href)
       var state = href.match(/[\?\&=]/) ? $.deparam.querystring(href) : {}
       $.bbq.pushState(state, TaxonGuide.REPLACE_EXISTING)
