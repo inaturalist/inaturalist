@@ -35,7 +35,7 @@
             "data-loading-click" => t(:committing) %>
         <% end -%>
       <% end %>
-      <%= link_to t(:update_your_contentss), taxon_change_commit_for_user_path(taxon_change), :class => "glaucous inline button" %>
+      <%= link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), :class => "glaucous inline button" %>
     </div>
   <% end -%>
 
@@ -43,7 +43,7 @@
     <h2>
       <%= link_to image_tag("#{taxon_change.class.name.underscore}-aaaaaa-48px.png", :style => "vertical-align:middle;"), taxon_change %>
       <%= link_to "Taxonomic #{taxon_change.class.name.split('Taxon')[1]} #{taxon_change.id}", taxon_change_path(taxon_change) %>
-      (<%= taxon_change.committed_on.nil? ? t(:draft_) : t(:committed) + ' ' + t(:on_) + ' ' + taxon_change.committed_on %>)
+      (<%= taxon_change.committed_on.blank? ? t(:draft_) : t(:committed) + ' ' + t(:on_) + ' ' + l(taxon_change.committed_on) %>)
     </h2>
   <% end -%>
 
@@ -77,7 +77,7 @@
     <% end -%>
     <% if taxon_change.committed? && taxon_change.committer %>
       | <label><%= t(:committed) + ' ' + t(:by) %></label> <%= link_to taxon_change.committer.login, taxon_change.committer %>
-       <%= t(:on_) + ' ' + taxon_change.committed_on %>
+       <%= t(:on_) + ' ' + l(taxon_change.committed_on) %>
     <% end -%>
   </div>
 
