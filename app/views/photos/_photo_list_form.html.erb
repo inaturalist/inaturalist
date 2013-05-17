@@ -83,7 +83,7 @@
   <div class="clear local_photos">
     <% photo_file_field = capture do %>
       <div class="photo_file_field clear quiet box inlineblock">
-        <%= file_field_tag("local_photos[#{index}][]", :accept => "image/jpg,image/jpeg,image/png,image/gif") %>
+        <%= file_field_tag("local_photos[#{index}][]", :accept => "image/jpg,image/jpeg,image/png,image/gif", :multiple => "") %>
         <%= link_to_function t(:clear), "$(this).siblings('input[type=file]').val('')" %>
       </div>
     <% end %>
