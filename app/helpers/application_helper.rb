@@ -694,18 +694,13 @@ module ApplicationHelper
       class_name_key = update.resource.class.to_s.underscore
       class_name = class_name_key.humanize.downcase
       resource_link = if options[:skip_links]
-        t(class_name_key).downcase
+        t(class_name_key, :default => class_name_key).downcase
       else
-        link_to(t(class_name_key).downcase, url_for_resource_with_host(resource))
+        link_to(t(class_name_key, :default => class_name_key).downcase, url_for_resource_with_host(resource))
       end
-
       if notifier.is_a?(ProjectInvitation)
         return t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
       end
-
-      # s = activity_snippet(update, notifier, notifier_user, options)
-      # s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{resource_link}"
-      # s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
       s = activity_snippet(update, notifier, notifier_user, options.merge(
         :noun => "#{class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} #{resource_link}".html_safe
       ))
