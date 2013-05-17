@@ -16,7 +16,7 @@ class WikimediaCommonsController < ApplicationController
       :page => params[:page], 
       :per_page => params[:per_page], 
       :limit => params[:limit]
-    ) || []
+    ).compact || []
     
     render :partial => 'photos/photo_list_form', :locals => {
       :photos => @photos, 
