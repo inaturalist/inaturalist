@@ -191,7 +191,7 @@
         obs_tab_txt = t(:observations_from_this_project)
         obs_url = project_observations_path(@list.project_id, :taxon_id => @listed_taxon.taxon_id)
       else
-        obs_tab_txt = is_me?(@list.user) ? t(:observations_by_you) : t(:observations_by_your, :user=> "#{@list.user.login}")
+        obs_tab_txt = is_me?(@list.user) ? t(:observations_by_you) : t(:observations_by_user, :user => @list.user.login)
         obs_url = observations_by_login_path(@list.user.login, :taxon_id => @listed_taxon.taxon_id)
       end
     -%>
