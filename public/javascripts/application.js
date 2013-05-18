@@ -712,6 +712,7 @@ $.fn.observationsMap = function() {
         id: $(this).attr('id').split('-')[1],
         latitude: $(this).attr('data-latitude'),
         longitude: $(this).attr('data-longitude'),
+        coordinates_obscured: $(this).attr('data-coordinates-obscured'),
         taxonId: $(this).attr('data-taxon-id'),
         iconic_taxon: {
           name: $(this).attr('data-iconic-taxon-name')

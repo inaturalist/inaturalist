@@ -40,14 +40,17 @@ class CalendarsController < ApplicationController
     ).sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
     
     unless @observations.blank?
-      scope = Observation.where([
-        "ST_Intersects(observations.geom, place_geometries.geom) " +
-        "AND places.id = place_geometries.place_id " + 
-        "AND places.place_type NOT IN (?) " +
-        "AND observations.user_id = ? ",
-        [Place::PLACE_TYPE_CODES['Country'], Place::PLACE_TYPE_CODES['State']],
-        @selected_user
+      scope = Observation.where(
+          "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
+          "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
+        )
+      scope = scope.where("places.id = place_geometries.place_id")
+      scope = scope.where("places.place_type NOT IN (?)", [
+        Place::PLACE_TYPE_CODES['Country'], 
+        Place::PLACE_TYPE_CODES['State'],
+        Place::PLACE_TYPE_CODES['Continent']
       ])
+      scope = scope.where("observations.user_id = ? ", @selected_user)
       scope = scope.where(Observation.conditions_for_date("observations.observed_on", @date))
       place_name_counts = scope.count(
         :from => "observations, places, place_geometries", 

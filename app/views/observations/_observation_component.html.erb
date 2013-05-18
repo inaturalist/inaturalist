@@ -45,8 +45,9 @@ Some notes:
 <div id="observation-<%= observation.id rescue rand(999) %>" class="<%= css_class %>" 
     data-taxon-id=<%= observation.taxon_id %>
     data-iconic-taxon-id=<%= observation.iconic_taxon_id %>
-    data-latitude=<%= observation.latitude %>
-    data-longitude=<%= observation.longitude %>
+    data-latitude=<%= is_me?(observation.user) && observation.private_latitude ? observation.private_latitude : observation.latitude %>
+    data-longitude=<%= is_me?(observation.user) && observation.private_longitude ? observation.private_longitude : observation.longitude %>
+    <% if !is_me?(observation.user) && observation.coordinates_obscured? %>data-coordinates-obscured="true"<% end %>
     data-iconic-taxon-name=<%= observation.iconic_taxon_name %>>
   <%= top if top %>
   <% if check_box_name -%>
