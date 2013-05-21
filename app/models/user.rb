@@ -221,7 +221,9 @@ class User < ActiveRecord::Base
   # returns either nil or the appropriate ProviderAuthorization
   def has_provider_auth(provider)
     provider = provider.downcase
-    provider_authorizations.all.select{|p| (p.provider_name == provider || p.provider_uid.match(provider))}.first
+    provider_authorizations.detect do |p| 
+      p.provider_name.match(provider) || p.provider_uid.match(provider)
+    end
   end
 
   def login=(value)

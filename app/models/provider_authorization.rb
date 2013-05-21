@@ -11,13 +11,19 @@ class ProviderAuthorization < ActiveRecord::Base
   # this record is created
   attr_accessor :auth_info
   
-  PROVIDERS = %w(facebook twitter Flickr Google Yahoo)
+  PROVIDERS = %w(facebook twitter flickr google_oauth2 yahoo)
+  PROVIDER_NAMES = PROVIDERS.inject({}) do |memo, provider|
+    if provider == "google_oauth2"
+      memo[provider] = "Google"
+    else
+      memo[provider] = provider.capitalize
+    end
+    memo
+  end
   AUTH_URLS = PROVIDERS.inject({}) do |memo, provider|
     memo.update(provider => "/auth/#{provider.downcase}")
   end
-  AUTH_URLS.merge!(
-    "Google" => "/auth/open_id?openid_url=https://www.google.com/accounts/o8/id",
-    "Yahoo" => "/auth/open_id?openid_url=https://me.yahoo.com")
+  AUTH_URLS.merge!("yahoo" => "/auth/open_id?openid_url=https://me.yahoo.com")
   ALLOWED_SCOPES = %w(read write)
 
   def to_s
