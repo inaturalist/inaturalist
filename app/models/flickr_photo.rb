@@ -83,7 +83,7 @@ class FlickrPhoto < Photo
         f = FlickrPhoto.flickraw_for_user(options[:user])
         sizes = f.photos.getSizes(:photo_id => fp.id)
       end
-      sizes = sizes.index_by{|s| s.label}
+      sizes = sizes.blank? ? {} : sizes.index_by{|s| s.label}
       options[:square_url]   ||= sizes['Square'].source rescue nil
       options[:thumb_url]    ||= sizes['Thumbnail'].source rescue nil
       options[:small_url]    ||= sizes['Small'].source rescue nil
