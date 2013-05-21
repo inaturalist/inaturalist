@@ -50,13 +50,13 @@
     <div class="img">
       {{#linkTo guideTaxon taxon}}<img {{bindAttr src="defaultPhotoUrl"}}>{{/linkTo}}
     </div>
-    <h3>{{#linkTo guideTaxon taxon}}{{taxon.name}}{{/linkTo}}</h3>
+    <h3>{{#linkTo guideTaxon taxon}}{{taxon.displayName}}{{/linkTo}}</h3>
   </div>
 </script>
 
 <script data-template-name="card" type="text/x-handlebars">
   <div class="card">
-    <h3>{{taxon.name}}</h3>
+    <h3>{{taxon.displayName}}</h3>
     <table>
       <tr>
         <td class="img"><img {{bindAttr src="defaultPhotoUrl"}}></td>
@@ -70,7 +70,8 @@
 
 <script data-template-name="page" type="text/x-handlebars">
   <div class="page">
-    <h3>{{name}}</h3>
+    <h3>{{displayName}}</h3>
+    <div class="stacked meta">{{name}}</div>
     <table>
       <tr>
         <td class="img">
