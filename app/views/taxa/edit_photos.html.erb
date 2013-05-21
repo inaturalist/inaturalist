@@ -1,4 +1,5 @@
-<div id="edit_taxon_photos_<%= @taxon.id %>" class="edit_taxon_photos">
+<%- resource ||= @resource || @taxon -%>
+<div id="edit_taxon_photos_<%= resource.id %>" class="edit_taxon_photos">
   <div class="readable description" style="margin-bottom: 1em">
     <%= t(:choose_cc_licensed_photos_html, :site_name => SITE_NAME) %>
   </div>
@@ -15,7 +16,7 @@
       <%= form_tag({:action => 'update_photos'}) do %>
         <div class="taxon_photos clear">
           <%= render :partial => "photos/photo_list_form", :locals => { 
-            :photos => @taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo},
+            :photos => @photos,
             :checked => true } %>
         </div>
         <div class="buttonrow">
@@ -29,7 +30,7 @@
       <%= form_tag({:action => 'update_photos'}) do %>
         <div class="taxon_photos clear">
           <%= render :partial => "photos/photo_list_form", :locals => { 
-            :photos => @taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo},
+            :photos => @photos,
             :checked => true } %>
         </div>
         <div class="buttonrow">
@@ -43,7 +44,7 @@
       <%= form_tag({:action => 'update_photos'}) do %>
         <div class="taxon_photos clear">
           <%= render :partial => "photos/photo_list_form", :locals => { 
-            :photos => @taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo},
+            :photos => @photos,
             :checked => true } %>
         </div>
         <div class="buttonrow">
@@ -57,7 +58,7 @@
       <%= form_tag({:action => 'update_photos'}) do %>
         <div class="taxon_photos clear">
           <%= render :partial => "photos/photo_list_form", :locals => { 
-            :photos => @taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo},
+            :photos => @photos,
             :checked => true } %>
         </div>
         <div class="buttonrow">

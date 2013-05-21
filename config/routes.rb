@@ -1,4 +1,20 @@
 Inaturalist::Application.routes.draw do
+  resources :guide_sections do
+    collection do
+      get :import
+    end
+  end
+  resources :guide_ranges
+  resources :guide_photos
+  resources :guide_taxa do
+    member do
+      get :edit_photos
+      post :update_photos
+    end
+  end
+  resources :guides
+
+
   resources :messages, :except => [:edit, :update] do
     collection do
       get :count
@@ -290,7 +306,7 @@ Inaturalist::Application.routes.draw do
   match 'places/autocomplete' => 'places#autocomplete', :as => :places_autocomplete
   resources :places
   
-  match '/guide' => 'places#guide', :as => :guide
+  # match '/guide' => 'places#guide', :as => :guide
   resources :flags
   match 'admin' => 'admin#index', :as => :admin
   match 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"

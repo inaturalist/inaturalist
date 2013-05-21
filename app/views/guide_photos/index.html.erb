@@ -1,0 +1,29 @@
+<h1>Listing guide_photos</h1>
+
+<table>
+  <tr>
+    <th>Guide taxon</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Photo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @guide_photos.each do |guide_photo| %>
+  <tr>
+    <td><%= guide_photo.guide_taxon_id %></td>
+    <td><%= guide_photo.title %></td>
+    <td><%= guide_photo.description %></td>
+    <td><%= guide_photo.photo_id %></td>
+    <td><%= link_to 'Show', guide_photo %></td>
+    <td><%= link_to 'Edit', edit_guide_photo_path(guide_photo) %></td>
+    <td><%= link_to 'Destroy', guide_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Guide photo', new_guide_photo_path %>

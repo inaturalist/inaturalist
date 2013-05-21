@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Guide taxon:</b>
+  <%= @guide_photo.guide_taxon_id %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @guide_photo.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @guide_photo.description %>
+</p>
+
+<p>
+  <b>Photo:</b>
+  <%= @guide_photo.photo_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_guide_photo_path(@guide_photo) %> |
+<%= link_to 'Back', guide_photos_path %>

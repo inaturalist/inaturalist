@@ -1,0 +1,8 @@
+= form_for @guide, :builder => DefaultFormBuilder do |f|
+  = f.text_field :title
+  = f.text_area :description
+  = f.number_field :latitude
+  = f.number_field :longitude
+  = f.number_field :place_id
+  .actions.buttonrow
+    = f.submit "Save", :class => "default button"

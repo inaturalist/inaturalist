@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Guide:</b>
+  <%= @guide_taxon.guide_id %>
+</p>
+
+<p>
+  <b>Taxon:</b>
+  <%= @guide_taxon.taxon_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @guide_taxon.name %>
+</p>
+
+<p>
+  <b>Display name:</b>
+  <%= @guide_taxon.display_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_guide_taxon_path(@guide_taxon) %> |
+<%= link_to 'Back', guide_taxa_path %>
