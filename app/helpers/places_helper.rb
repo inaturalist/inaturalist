@@ -103,7 +103,7 @@ module PlacesHelper
       candidates = args.first.is_a?(Array) ? args.first.compact.flatten : args.compact.flatten
       places = candidates if candidates.first.is_a?(Place)
       places ||= candidates.map(&:place).compact
-      Place.arrange_nodes(places.sort_by{|p| p.ancestry + "#/0/{#{p.name}}"})
+      Place.arrange_nodes(places.sort_by{|p| p.ancestry.to_s + "#/0/{#{p.name}}"})
     end
     content_tag :ul do
       arranged.map do |place, children|

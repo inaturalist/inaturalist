@@ -109,6 +109,8 @@ class GuideSectionsController < ApplicationController
         :description => data_object.at('description').content
       )
     end
+  rescue Timeout::Error => e
+    []
   end
 
   def import_from_wikipedia
