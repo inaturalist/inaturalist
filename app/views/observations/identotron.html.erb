@@ -123,7 +123,7 @@
       
       $(window).bind("hashchange", function(e) {
         var state = $.bbq.getState()
-        var url = '/guide?' + $.param(state)
+        var url = '/places/guide?' + $.param(state)
         url += '&partial=identotron_taxa&per_page=30'
         $('#taxa').shades('open', {
           css: {'background-color': 'white'}, 

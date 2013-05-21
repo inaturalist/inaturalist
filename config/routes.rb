@@ -302,6 +302,7 @@ Inaturalist::Application.routes.draw do
   match 'places/:id/taxa.:format' => 'places#taxa', :as => :place_taxa, :via => :get
   match 'places/geometry/:id.:format' => 'places#geometry', :as => :place_geometry, :via => :get
   match 'places/guide/:id' => 'places#guide', :as => :place_guide, :via => :get
+  match 'places/guide' => 'places#guide', :as => :idendotron_guide, :via => :get
   match 'places/cached_guide/:id' => 'places#cached_guide', :as => :cached_place_guide, :via => :get
   match 'places/autocomplete' => 'places#autocomplete', :as => :places_autocomplete
   resources :places
