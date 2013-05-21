@@ -34,6 +34,7 @@ class GuideTaxaController < ApplicationController
   # GET /guide_taxa/new.json
   def new
     @guide_taxon = GuideTaxon.new(params[:guide_taxon])
+    @guide = @guide_taxon.guide
 
     respond_to do |format|
       format.html # new.html.erb
@@ -53,7 +54,7 @@ class GuideTaxaController < ApplicationController
 
     respond_to do |format|
       if @guide_taxon.save
-        format.html { redirect_to @guide_taxon, notice: 'Guide taxon was successfully created.' }
+        format.html { redirect_to edit_guide_path(@guide_taxon.guide_id), notice: 'Guide taxon was successfully created.' }
         format.json { render json: @guide_taxon.as_json(:root => true), status: :created, location: @guide_taxon }
       else
         format.html { render action: "new" }

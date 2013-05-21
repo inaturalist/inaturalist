@@ -2,6 +2,7 @@
   = javascript_include_tag :cocoon
   = javascript_include_tag "jquery/plugins/inat/photo_selectors.js"
 = form_for(@guide_taxon, :builder => DefaultFormBuilder) do |f|
+  = f.hidden_field :guide_id
   - if @guide_taxon.errors.any?
     #error_explanation
       %h2
@@ -11,7 +12,7 @@
         - @guide_taxon.errors.full_messages.each do |msg|
           %li= msg
   .column.span-8
-    = f.text_field :taxon_id
+    = f.text_field :taxon_id, :placeholder => "Starting typing taxon name..."
     - unless f.object.taxon_id.blank?
       = link_to "View taxon", taxon_path(f.object.taxon_id)
   .column.span-8= f.text_field :name
@@ -57,6 +58,10 @@
 
 :javascript
   var GUIDE_TAXON = #{raw @guide_taxon.to_json}
+  $('#guide_taxon_taxon_id:visible').chooser({
+    collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
+    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+  })
   $('#edit_photos_dialog').dialog({
     modal: true, 
     title: I18n.t('choose_photos_for_this_taxon'),
