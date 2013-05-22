@@ -1802,6 +1802,11 @@ class Observation < ActiveRecord::Base
         FakeView.observations_by_login_url(u.login)
       end
     end
+    url = if url =~ /\?/
+      "#{url}&#{id}"
+    else
+      "#{url}?#{id}"
+    end
     tweet_text += " to #{SITE_NAME} #{url}"
     twit_api.update(tweet_text)
   end
