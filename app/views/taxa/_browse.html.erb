@@ -28,7 +28,7 @@
     
     <% unless @colors.blank? %>
       <span class="description">| </span>
-      <%= @colors.map{|c| content_tag(:span, c.value, :class => "color #{c.value}")}.join(', ').html_safe %>
+      <%= @colors.map{|c| content_tag(:span, t(c.value, :default=>c.value), :class => "color #{c.value}")}.join(', ').html_safe %>
     <% end %>
   </div>
   
@@ -195,7 +195,7 @@
         <ul class="taxon_links">
           <% for iconic_taxon in @all_iconic_taxa %>
             <li>
-              <%= link_to default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true), 
+              <%= link_to t("all_taxa.#{default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true).downcase.gsub(' ','_').gsub('-','_')}", :default=>default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true)),
                 url_for_params(:taxon_id => iconic_taxon.id), 
                 :rel => "nofollow",
                 :class => "taxon #{iconic_taxon.name}" %>
@@ -211,7 +211,7 @@
           <% for color in @all_colors %>
             <li class="facet_value <%= color.value %>">
               <%= link_to "&nbsp;".html_safe, url_for_params(:colors => color.id), :rel => "nofollow", :class => 'icon' %>
-              <%= link_to color.value, url_for_params(:colors => color.id), :rel => "nofollow" %>
+              <%= link_to t(color.value, :default=>color.value), url_for_params(:colors => color.id), :rel => "nofollow" %>
             </li>
           <% end %>
         </ul>

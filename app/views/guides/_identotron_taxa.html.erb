@@ -8,9 +8,9 @@
   <% if @taxa.blank? -%>
     <div class="noresults meta">
       <% if @filter_params.blank? -%>
-        No species have been listed for this place yet!
+        <%= t :no_species_have_been_listed %>
       <% else %>
-        No matching species.
+        <%= t :no_matching_species %>.
       <% end -%>
     </div>
   <% else %>

@@ -51,11 +51,11 @@ var TaxonGuide = {
       height: 'auto',
       selectedText: function(selected, total, elts) {
         if (selected > 2) {
-          return '<strong>'+selected+' colors</strong>'
+          return '<strong>'+selected+ ' ' +I18n.t('colors')+'</strong>'
         }
         var html = ''
         for (var i=0; i < elts.length; i++) {
-          html += '<span class="colorfield '+elts[i].value+'">'+elts[i].value+'</span>'
+          html += '<span class="colorfield '+elts[i].value+'">'+I18n.t(elts[i].value)+'</span>'
         }
         return html
       }
@@ -328,7 +328,7 @@ var TaxonGuide = {
         var dialog = $('#'+dialogId)
         $(dialog).dialog('open')
         if ($(dialog).html() == '') {
-          $(dialog).append($('<span class="loading status">Loading...</span>'))
+          $(dialog).append($('<span class="loading status">' + I18n.t('loading') + '</span>'))
           $(dialog).load($(this).attr('href') + '?partial=guide', function(foo) {
             var dialog = $('#'+dialogId)
             $(dialog).centerDialog()
