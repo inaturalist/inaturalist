@@ -444,7 +444,7 @@ class Place < ActiveRecord::Base
   #   California Protected Areas Database:
   #     Place.import_from_shapefile('/Users/kueda/Desktop/CPAD_March09/Units_Fee_09_longlat.shp', :source => 'cpad', :skip_woeid => true)
   #
-  def self.import_from_shapefile(shapefile_path, options = {})
+  def self.import_from_shapefile(shapefile_path, options = {}, &block)
     start_time = Time.now
     num_created = num_updated = 0
     GeoRuby::Shp4r::ShpFile.open(shapefile_path).each do |shp|
@@ -505,11 +505,17 @@ class Place < ActiveRecord::Base
         num_created += 1
       end
       
-      if place.valid?
+      place = if block_given?
+        yield place, shp
+      else
+        place
+      end
+      if place && place.valid?
         place.save unless options[:test]
         puts "[INFO] \t\tSaved place: #{place}"
       else
-        puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}"
+        num_created -= 1
+        puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}" if place
         next
       end
       
@@ -536,14 +542,21 @@ class Place < ActiveRecord::Base
   # Make a new Place from a shapefile shape
   #
   def self.new_from_shape(shape, options = {})
+    name_column = options[:name_column] || 'name'
+    name = options[:name] || 
+      shape.data[name_column] || 
+      shape.data[name_column.upcase] || 
+      shape.data[name_column.capitalize] || 
+      shape.data[name_column.downcase]
     place = Place.new(
-      :name => options[:name] || shape.data['NAME'] || shape.data['Name'] || shape.data['name'],
+      :name => name,
       :latitude => shape.geometry.envelope.center.y,
       :longitude => shape.geometry.envelope.center.x,
       :swlat => shape.geometry.envelope.lower_corner.y,
       :swlng => shape.geometry.envelope.lower_corner.x,
       :nelat => shape.geometry.envelope.upper_corner.y,
-      :nelng => shape.geometry.envelope.upper_corner.x
+      :nelng => shape.geometry.envelope.upper_corner.x,
+      :place_type => options[:place_type]
     )
     
     unless options[:skip_woeid]
