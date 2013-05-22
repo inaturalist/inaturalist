@@ -1103,12 +1103,8 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  def ctrl
-    @@ctrl ||= ApplicationController.new
-  end
-  
   def view_context
-    ctrl.view_context
+    FakeView
   end
   
   def image_url
@@ -1120,6 +1116,12 @@ class Taxon < ActiveRecord::Base
       return image_url
     end
     taxon_photos.blank? ? nil : image_url
+  end
+
+  def taxon_range_kml_url
+    return nil unless ranges = taxon_ranges_without_geom
+    tr = ranges.detect{|tr| !tr.range.blank?} || ranges.first
+    tr ? tr.kml_url : nil
   end
 
   def all_names
