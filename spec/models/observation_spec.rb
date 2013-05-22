@@ -705,6 +705,12 @@ describe Observation, "species_guess parsing" do
     o = Observation.make!(:species_guess => name)
     o.taxon_id.should == t.id
   end
+
+  it "should not make a guess if ends in a question mark" do
+    t = Taxon.make!(:name => "Foo bar")
+    o = Observation.make!(:species_guess => "#{t.name}?")
+    o.taxon.should be_blank
+  end
 end
 
 describe Observation, "named scopes" do
