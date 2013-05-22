@@ -12,6 +12,9 @@
     <%= n.label :source_identifier, 'Source Identifier' %>
     <br/>
     <%= n.text_field :source_identifier, :class => 'text', :id => "taxon_scheme_taxon_id" %><br/>
+    <%= n.label :taxon_name_id, 'Taxon Name Id' %>
+    <br/>
+    <%= n.text_field :taxon_name_id, :class => 'text', :id => "taxon_name_id", :value => @taxon_name.id %><br/>
   </p>
 
   <div class="clear buttonrow">

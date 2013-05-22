@@ -840,6 +840,7 @@ class Taxon < ActiveRecord::Base
   def merge(reject)
     raise "Can't merge a taxon with itself" if reject.id == self.id
     reject_taxon_names = reject.taxon_names.all
+    reject_taxon_scheme_taxa = reject.taxon_scheme_taxa.all
     merge_has_many_associations(reject)
     
     # Merge ListRules and other polymorphic assocs
@@ -850,6 +851,21 @@ class Taxon < ActiveRecord::Base
     
     # Move reject child taxa to the keeper
     reject.children.each {|child| child.move_to_child_of(self)}
+    
+    # Update or destroy merged taxon scheme taxa
+    reject_taxon_scheme_taxa.each do |taxon_scheme_taxon|
+      taxon_scheme_taxon.reload
+      tst_name = taxon_scheme_taxon.taxon_name
+      if taxon_name = TaxonName.where(:taxon_id => self.id, :lexicon => "Scientific Names", :name => tst_name.name).first
+        taxon_scheme_taxon.update_attributes(:taxon_name_id => taxon_name.id)
+      end
+      unless taxon_scheme_taxon.valid?
+        Rails.logger.info "[INFO] Destroying #{taxon_scheme_taxon} while merging taxon " + 
+          "#{reject.id} into taxon #{id}: #{taxon_scheme_taxon.errors.full_messages.to_sentence}"
+        taxon_scheme_taxon.destroy 
+        next
+      end
+    end
     
     # Update or destroy merged taxon_names
     reject_taxon_names.each do |taxon_name|
@@ -868,7 +884,7 @@ class Taxon < ActiveRecord::Base
     LifeList.delay(:priority => INTEGRITY_PRIORITY).update_life_lists_for_taxon(self)
     Taxon.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").update_listed_taxa_for(self, reject.ancestry)
     
-    %w(flags taxon_scheme_taxa).each do |association|
+    %w(flags).each do |association|
       send(association, :reload => true).each do |associate|
         associate.destroy unless associate.valid?
       end

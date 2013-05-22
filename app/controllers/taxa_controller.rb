@@ -566,7 +566,7 @@ class TaxaController < ApplicationController
   end
   
   def schemes
-    @scheme_taxa = TaxonSchemeTaxon.all(:conditions => {:taxon_id => @taxon.id})
+    @scheme_taxa = TaxonSchemeTaxon.includes(:taxon_name).where(:taxon_id => @taxon.id)
     respond_to {|format| format.html}
   end
   
