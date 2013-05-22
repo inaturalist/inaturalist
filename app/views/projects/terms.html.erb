@@ -31,7 +31,7 @@
   <% end -%>
 
   <% unless @project_observation_rules.blank? -%>
-    <h4><%= t(:new_observations) %></h4>
+    <h4><%= t(:new_observations_ellispsis) %></h4>
     <ul>
       <% for rule in @project_observation_rules %>
         <li>...<%= rule.terms %></li>
