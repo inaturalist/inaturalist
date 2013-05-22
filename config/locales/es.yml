@@ -1269,7 +1269,8 @@ es:
   new_message: Nuevo mensaje
   new_observation_field: "Nuevo campo de observación"
   new_observation_rules: "Nuevas reglas de observación"
-  new_observations: "Nuevas observaciones..."
+  new_observations: Nuevas observaciones
+  new_observations_ellipsis: "Nuevas observaciones..."
   new_observations_from_place_html: "Nuevas observaciones del %{place}"
   new_observations_of_x_html: "Nuevas observaciones de %{x}"
   new_password: "Contraseña nueva"
@@ -1284,6 +1285,7 @@ es:
   new_taxon_name_for: "Nuevo nombre de taxón para"
   new_taxon_range: "Nuevo Rango de Taxón"
   new_user_rules: "Nuevas reglas de usuario"
+  new_users: Usuarios nuevos
   new_users_week: "Usuarios nuevos / Semana"
   next: Siguiente &raquo;
   next_page: "Página siguiente"
@@ -2093,7 +2095,8 @@ es:
   unfragted_taxa: "Taxones sin injertar"
   uninvite: "cancelar invitación"
   unique_identifier_of_this_taxon: Identificador único para esta especie o grupo en la base de datos.
-  unique_observers: "observadores únicos en los últimos 3 meses,"
+  unique_observers: observadores únicos
+  unique_observers_last_3_months: "observadores únicos en los últimos 3 meses,"
   unknown: Desconocido
   unlink_your_picasa_account: "Desvincular su cuenta de Picasa"
   unpublish: Despublicar
@@ -2539,9 +2542,19 @@ es:
   x_species_html: 
     one: "<span class='count'>1</span> especie"
     other: "<span class='count'>%{count}</span> especies"
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> taxon observado</span>"
+    other: "<span class='count'>%{count}</span> taxones observó</span>"
+  x_research_grade_observations_html:
+    one: "<span class='count'>1</span> observacion grado de la investigación</span>"
+    other: "<span class='count'>%{count}</span> observaciones grado de la investigación</span>"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>1</span> observacion grado de la investigación identificaron a las especies</span>"
+    other: "<span class='count'>%{count}</span> observaciones grado de la investigación identificaron a las especies</span>"
   x_wrote_a_new_post_html: "%{x} escribió una nueva ingreso"
   x_wrote_y_new_posts_html: "%{x} escribió %{y} nuevas ingresos"
   year: Año
+  year_month: año/mes
   yellow: amarillo
   'yes': Sí
   yes_find_them!: "¡Sí, encuéntrelas!"

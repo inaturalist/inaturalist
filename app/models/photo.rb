@@ -3,6 +3,7 @@ class Photo < ActiveRecord::Base
   belongs_to :user
   has_many :observation_photos, :dependent => :destroy
   has_many :taxon_photos, :dependent => :destroy
+  has_many :guide_photos, :dependent => :destroy, :inverse_of => :photo
   has_many :observations, :through => :observation_photos
   has_many :taxa, :through => :taxon_photos
   
@@ -165,9 +166,10 @@ class Photo < ActiveRecord::Base
   end
 
   def orphaned?
-    observation_photos_exist = observation_photos.loaded? ? observation_photos.size > 0 : observation_photos.exists?
-    taxon_photos_exist = taxon_photos.loaded? ? taxon_photos.size > 0 : taxon_photos.exists?
-    !observation_photos_exist && !taxon_photos_exist
+    return false if observation_photos.loaded? ? observation_photos.size > 0 : observation_photos.exists?
+    return false if taxon_photos.loaded? ? taxon_photos.size > 0 : taxon_photos.exists?
+    return false if guide_photos.loaded? ? guide_photos.size > 0 : guide_photos.exists?
+    true
   end
 
   def source_title

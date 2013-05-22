@@ -74,6 +74,7 @@ class User < ActiveRecord::Base
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify
   has_many :messages, :dependent => :destroy
+  has_many :guides, :dependent => :nullify, :inverse_of => :user
   
   has_attached_file :icon, 
     :styles => { :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },
@@ -220,7 +221,9 @@ class User < ActiveRecord::Base
   # returns either nil or the appropriate ProviderAuthorization
   def has_provider_auth(provider)
     provider = provider.downcase
-    provider_authorizations.all.select{|p| (p.provider_name == provider || p.provider_uid.match(provider))}.first
+    provider_authorizations.detect do |p| 
+      p.provider_name.match(provider) || p.provider_uid.match(provider)
+    end
   end
 
   def login=(value)

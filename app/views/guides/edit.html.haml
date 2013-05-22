@@ -1,0 +1,35 @@
+- content_for :title do
+  = @title = t(:editing_this, :elem => @guide.title)
+- content_for :extracss do
+  :css
+    #guide_description {width:300px;}
+    .guide_photo {width:32px; float: left;}
+    .guide_taxa img {max-width:32px; right: 10px; vertical-align: middle;}
+#pageheader
+  .crumbs
+    = link_to "Back to guide", @guide, :class => "back crumb"
+  %h2= @title
+= form_for @guide, :builder => DefaultFormBuilder do |f|
+  .column.span-8
+    = f.text_field :title
+    = f.text_area :description
+  .column.span-16.last
+    %h3 Taxa
+    %ul.guide_taxa
+      - for guide_taxon in @guide.guide_taxa
+        %li.clear.lined
+          - if gp = guide_taxon.guide_photos.first
+            = image_tag guide_taxon.guide_photos.first.photo.square_url
+          - elsif t = guide_taxon.taxon
+            = iconic_taxon_image t, :size => 32
+          = guide_taxon.display_name
+          .right.actions.meta
+            = link_to "edit", edit_guide_taxon_path(guide_taxon)
+            |
+            = link_to "delete", guide_taxon, :method => :delete, :confirm => "Are you sure?"
+    = link_to "Add a taxon", new_guide_taxon_path("guide_taxon[guide_id]" => @guide)
+  .column.span-24
+    .actions.buttonrow
+      = f.submit "Save", :class => "default button"
+      = link_to "Cancel", @guide, :class => "cancel button"
+      = link_to "Delete", @guide, :method => :delete, :confirm => "Are you sure?", :class => "delete button"

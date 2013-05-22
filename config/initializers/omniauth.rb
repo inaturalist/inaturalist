@@ -20,7 +20,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     provider :flickr, FLICKR_API_KEY, FLICKR_SHARED_SECRET, :setup => FLICKR_SETUP
   end
   provider :open_id, :store => OpenID::Store::Filesystem.new('/tmp')
-  provider :open_id, :name => 'google', :identifier => 'https://www.google.com/accounts/o8/id'
   provider :open_id, :name => 'yahoo', :identifier => 'https://me.yahoo.com'
 
   if CONFIG.google

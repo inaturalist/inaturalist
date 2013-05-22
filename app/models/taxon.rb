@@ -227,7 +227,8 @@ class Taxon < ActiveRecord::Base
     [IUCN_STATUS_CODES[name], value]
   }]
   
-  PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect', 'lizard', 'gall', 'pinecone', 'larva']
+  PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect', 
+    'lizard', 'gall', 'pinecone', 'larva', 'cicada']
   
   scope :observed_by, lambda {|user|
     sql = <<-SQL

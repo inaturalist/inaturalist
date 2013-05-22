@@ -1,0 +1,157 @@
+- content_for :extrajs do
+  = javascript_include_tag :cocoon
+  = javascript_include_tag "jquery/plugins/inat/photo_selectors.js"
+= form_for(@guide_taxon, :builder => DefaultFormBuilder) do |f|
+  = f.hidden_field :guide_id
+  - if @guide_taxon.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@guide_taxon.errors.count, "error")
+        prohibited this guide_taxon from being saved:
+      %ul
+        - @guide_taxon.errors.full_messages.each do |msg|
+          %li= msg
+  .column.span-8
+    = f.text_field :taxon_id, :placeholder => "Starting typing taxon name..."
+    - unless f.object.taxon_id.blank?
+      = link_to "View taxon", taxon_path(f.object.taxon_id)
+  .column.span-8= f.text_field :name
+  .column.span-8.last= f.text_field :display_name
+  .column.span-24.stacked
+    %h3 Photos
+    #guide_photos
+      = f.fields_for :guide_photos do |gp|
+        = render "guide_photo_fields", :f => gp
+      / = link_to_add_association 'add photo', f, :guide_photos
+      = link_to_function(t(:edit_photos), "$('#edit_photos_dialog').dialog('open')", :class => 'readmore')
+  .column.span-24.stacked
+    %h3 Description Sections
+    #guide_sections
+      = f.fields_for :guide_sections do |gs|
+        = render "guide_section_fields", :f => gs
+      = link_to_add_association 'add section', f, :guide_sections, "data-association-insertion-method" => "append"
+      |
+      = link_to_function "Import sections", "$('#import_sections_dialog').dialog('open')"
+  .column.span-24.stacked
+    %h3 Ranges
+    #guide_ranges
+      = f.fields_for :guide_ranges do |gs|
+        = render "guide_range_fields", :f => gs
+      = link_to_add_association 'add range', f, :guide_ranges, "data-association-insertion-method" => "append"
+      |
+      / = link_to_function "Import ranges", "$('#import_ranges_dialog').dialog('open')"
+  .actions.buttonrow
+    = f.submit "Save", :class => "button"
+
+#edit_photos_dialog.dialog
+#import_sections_dialog.dialog
+  .tabs
+    %ul
+      %li
+        = link_to "EOL", "#eol_sections"
+      %li
+        = link_to "Wikipedia", "#wikipedia_sections"
+    #eol_sections
+      = loading
+    #wikipedia_sections
+      = loading
+
+:javascript
+  var GUIDE_TAXON = #{raw @guide_taxon.to_json}
+  $('#guide_taxon_taxon_id:visible').chooser({
+    collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
+    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+  })
+  $('#edit_photos_dialog').dialog({
+    modal: true, 
+    title: I18n.t('choose_photos_for_this_taxon'),
+    autoOpen: false,
+    width: 700,
+    open: function( event, ui ) {
+      $('#edit_photos_dialog').loadingShades('Loading...', {cssClass: 'smallloading'})
+      $('#edit_photos_dialog').load('/guide_taxa/'+GUIDE_TAXON.id+'/edit_photos', function() {
+        var photoSelectorOptions = {
+          defaultQuery: GUIDE_TAXON.name,
+          skipLocal: true,
+          baseURL: '/flickr/photo_fields',
+          urlParams: {
+            authenticity_token: $('meta[name=csrf-token]').attr('content'),
+            limit: 14
+          },
+          afterQueryPhotos: function(q, wrapper, options) {
+            $(wrapper).imagesLoaded(function() {
+              $('#edit_photos_dialog').centerDialog()
+            })
+          }
+        }
+        $('.tabs', this).tabs({
+          show: function(event, ui) {
+            if ($(ui.panel).attr('id') == 'flickr_taxon_photos' && !$(ui.panel).hasClass('loaded')) {
+              $('.taxon_photos', ui.panel).photoSelector(photoSelectorOptions)
+            } else if ($(ui.panel).attr('id') == 'inat_obs_taxon_photos' && !$(ui.panel).hasClass('loaded')) {
+              $('.taxon_photos', ui.panel).photoSelector(
+                $.extend(true, {}, photoSelectorOptions, {baseURL: '/taxa/'+GUIDE_TAXON.id+'/observation_photos'})
+              )
+            } else if ($(ui.panel).attr('id') == 'eol_taxon_photos' && !$(ui.panel).hasClass('loaded')) {
+              $('.taxon_photos', ui.panel).photoSelector(
+                $.extend(true, {}, photoSelectorOptions, {baseURL: '/eol/photo_fields'})
+              )
+            } else if ($(ui.panel).attr('id') == 'wikimedia_taxon_photos' && !$(ui.panel).hasClass('loaded')) {
+              $('.taxon_photos', ui.panel).photoSelector(
+                $.extend(true, {}, photoSelectorOptions, {taxon_id: GUIDE_TAXON.id, baseURL: '/wikimedia_commons/photo_fields'})
+              )
+            }
+            $(ui.panel).addClass('loaded')
+            $('#edit_photos_dialog').centerDialog()
+          }
+        })
+      })
+    }
+  })
+  $('#import_sections_dialog').dialog({
+    title: 'Import sections',
+    modal: true,
+    autoOpen: false,
+    width: 700,
+    open: function( event, ui ) {
+      $('.tabs', this).tabs({
+        show: function(event, ui) {
+          if ($(ui.panel).attr('id') == 'eol_sections' && !$(ui.panel).hasClass('loaded')) {
+            $.getJSON('/guide_sections/import?provider=eol&q='+GUIDE_TAXON.name, function(json) {
+              $('#eol_sections').html('')
+              $.each(json, function() {
+                $('#eol_sections').append(sectionToHtml(this))
+              })
+              $('#import_sections_dialog').centerDialog()
+            })
+          } else {
+            $.getJSON('/guide_sections/import?q='+GUIDE_TAXON.name, function(json) {
+              $('#wikipedia_sections').html('')
+              $.each(json, function() {
+                $('#wikipedia_sections').append(sectionToHtml(this))
+              })
+              $('#import_sections_dialog').centerDialog()
+            })
+          }
+          $(ui.panel).addClass('loaded')
+          $('#import_sections_dialog').centerDialog()
+        }
+      })
+    }
+  })
+  function sectionToHtml(section) {
+    var div = $('<div></div>')
+    div.append(
+      $('<a class="right button">Import</a>').click(function() {addSection(section)})
+    )
+    div.append(
+      $('<h3 class="title">'+section.title+'</h3>'),
+      $('<div class="stacked lined description"></div>').html(section.description)
+    )
+    return div
+  }
+  function addSection(section) {
+    $('#guide_sections .add_fields').click()
+    $('.guide-section-fields:last .title_field input').val(section.title)
+    $('.guide-section-fields:last .description_field textarea').val(section.description)
+  }

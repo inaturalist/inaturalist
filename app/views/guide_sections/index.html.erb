@@ -1,0 +1,27 @@
+<h1>Listing guide_sections</h1>
+
+<table>
+  <tr>
+    <th>Guide taxon</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @guide_sections.each do |guide_section| %>
+  <tr>
+    <td><%= guide_section.guide_taxon_id %></td>
+    <td><%= guide_section.title %></td>
+    <td><%= guide_section.description %></td>
+    <td><%= link_to 'Show', guide_section %></td>
+    <td><%= link_to 'Edit', edit_guide_section_path(guide_section) %></td>
+    <td><%= link_to 'Destroy', guide_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Guide section', new_guide_section_path %>

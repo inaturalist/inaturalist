@@ -10694,6 +10694,178 @@ ALTER SEQUENCE goals_id_seq OWNED BY goals.id;
 
 
 --
+-- Name: guide_photos; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE guide_photos (
+    id integer NOT NULL,
+    guide_taxon_id integer,
+    title character varying(255),
+    description character varying(255),
+    photo_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: guide_photos_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE guide_photos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: guide_photos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE guide_photos_id_seq OWNED BY guide_photos.id;
+
+
+--
+-- Name: guide_ranges; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE guide_ranges (
+    id integer NOT NULL,
+    guide_taxon_id integer,
+    medium_url character varying(255),
+    thumb_url character varying(255),
+    original_url character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: guide_ranges_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE guide_ranges_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: guide_ranges_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE guide_ranges_id_seq OWNED BY guide_ranges.id;
+
+
+--
+-- Name: guide_sections; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE guide_sections (
+    id integer NOT NULL,
+    guide_taxon_id integer,
+    title character varying(255),
+    description text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: guide_sections_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE guide_sections_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: guide_sections_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE guide_sections_id_seq OWNED BY guide_sections.id;
+
+
+--
+-- Name: guide_taxa; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE guide_taxa (
+    id integer NOT NULL,
+    guide_id integer,
+    taxon_id integer,
+    name character varying(255),
+    display_name character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: guide_taxa_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE guide_taxa_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: guide_taxa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE guide_taxa_id_seq OWNED BY guide_taxa.id;
+
+
+--
+-- Name: guides; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE guides (
+    id integer NOT NULL,
+    title character varying(255),
+    description text,
+    published_at timestamp without time zone,
+    latitude numeric,
+    longitude numeric,
+    user_id integer,
+    place_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: guides_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE guides_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: guides_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE guides_id_seq OWNED BY guides.id;
+
+
+--
 -- Name: identifications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -12931,7 +13103,42 @@ ALTER TABLE ONLY goal_rules ALTER COLUMN id SET DEFAULT nextval('goal_rules_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY goals ALTER COLUMN id SET DEFAULT nextval('goals_id_seq'::regclass);
+ALTER TABLE guide_photos ALTER COLUMN id SET DEFAULT nextval('guide_photos_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE guide_ranges ALTER COLUMN id SET DEFAULT nextval('guide_ranges_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE guide_sections ALTER COLUMN id SET DEFAULT nextval('guide_sections_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE guide_taxa ALTER COLUMN id SET DEFAULT nextval('guide_taxa_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE guides ALTER COLUMN id SET DEFAULT nextval('guides_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE identifications ALTER COLUMN id SET DEFAULT nextval('identifications_id_seq'::regclass);
 
 
 --
@@ -13479,6 +13686,46 @@ ALTER TABLE ONLY goal_rules
 
 ALTER TABLE ONLY goals
     ADD CONSTRAINT goals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: guide_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY guide_photos
+    ADD CONSTRAINT guide_photos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: guide_ranges_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY guide_ranges
+    ADD CONSTRAINT guide_ranges_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: guide_sections_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY guide_sections
+    ADD CONSTRAINT guide_sections_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: guide_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY guide_taxa
+    ADD CONSTRAINT guide_taxa_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: guides_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY guides
+    ADD CONSTRAINT guides_pkey PRIMARY KEY (id);
 
 
 --
@@ -14116,6 +14363,76 @@ CREATE INDEX index_flow_task_resources_on_resource_type_and_resource_id ON flow_
 --
 
 CREATE INDEX index_flow_tasks_on_user_id ON flow_tasks USING btree (user_id);
+
+
+--
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type ON friendly_id_slugs USING btree (slug, sluggable_type);
+
+
+--
+-- Name: index_friendly_id_slugs_on_sluggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_friendly_id_slugs_on_sluggable_type ON friendly_id_slugs USING btree (sluggable_type);
+
+
+--
+-- Name: index_guide_photos_on_guide_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_photos_on_guide_taxon_id ON guide_photos USING btree (guide_taxon_id);
+
+
+--
+-- Name: index_guide_photos_on_photo_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_photos_on_photo_id ON guide_photos USING btree (photo_id);
+
+
+--
+-- Name: index_guide_ranges_on_guide_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_ranges_on_guide_taxon_id ON guide_ranges USING btree (guide_taxon_id);
+
+
+--
+-- Name: index_guide_sections_on_guide_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_sections_on_guide_taxon_id ON guide_sections USING btree (guide_taxon_id);
+
+
+--
+-- Name: index_guide_taxa_on_guide_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_taxa_on_guide_id ON guide_taxa USING btree (guide_id);
+
+
+--
+-- Name: index_guide_taxa_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_taxa_on_taxon_id ON guide_taxa USING btree (taxon_id);
+
+
+--
+-- Name: index_guides_on_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guides_on_place_id ON guides USING btree (place_id);
+
+
+--
+-- Name: index_guides_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guides_on_user_id ON guides USING btree (user_id);
 
 
 --

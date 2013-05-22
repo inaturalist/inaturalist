@@ -1,0 +1,5 @@
+.nested-fields
+  = image_tag f.object.photo.try(:small_url)
+  = f.hidden_field :photo_id
+  = f.hidden_field :guide_taxon_id
+  = link_to_remove_association "remove photo", f

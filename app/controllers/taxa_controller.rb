@@ -659,6 +659,7 @@ class TaxaController < ApplicationController
   end
   
   def edit_photos
+    @photos = @taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo}
     render :layout => false
   end
   

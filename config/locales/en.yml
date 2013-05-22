@@ -44,6 +44,15 @@ en:
   x_species_html:
     one: "<span class='count'>1</span> species"
     other: "<span class='count'>%{count}</span> species"
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> taxon observed</span>"
+    other: "<span class='count'>%{count}</span> taxa observed</span>"
+  x_research_grade_observations_html:
+    one: "<span class='count'>1</span> research-grade observation</span>"
+    other: "<span class='count'>%{count}</span> research-grade observations</span>"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>1</span> research-grade observation ID'd to species or lower</span>"
+    other: "<span class='count'>%{count}</span> research-grade observations ID'd to species or lower</span>"
   a: a
   a_: a
   a_community_for_naturalist: A Community for Naturalists
@@ -1046,7 +1055,8 @@ en:
   new_message: New message
   new_observation_field: New observation field
   new_observation_rules: New Observation Rules
-  new_observations: "New observations..."
+  new_observations: New observations
+  new_observations_ellispsis: "New observations..."
   new_observations_from_place_html: "New observations from %{place}"
   new_observations_of_x_html: "New observations of %{x}"
   new_password: New Password
@@ -1810,7 +1820,8 @@ en:
   unfragted_taxa: Ungrafted Taxa
   uninvite: uninvite
   unique_identifier_of_this_taxon: Unique identifier of this taxon in the source database.
-  unique_observers: unique observers in the last 3 months,
+  unique_observers: unique observers
+  unique_observers_last_3_months: unique observers in the last 3 months
   unknown: Unknown
   unlink_your_picasa_account: Unlink Your Picasa Account
   unpublish: Unpublish
@@ -1971,6 +1982,7 @@ en:
   x_wrote_a_new_post_html: "%{x} wrote a new post"
   x_wrote_y_new_posts_html: "%{x} wrote %{y} new posts"
   year: Year
+  year_month: year/month
   yellow: yellow
   'yes': "Yes"
   yes_find_them!: "Yes, find them!"
