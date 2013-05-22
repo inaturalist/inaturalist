@@ -657,7 +657,7 @@
         <% unless @conservation_statuses.blank? -%>
           <%= separator %>
           <div id="conservation_statuses">
-            <h3><%= t(:conservation_summary).titleize %></h3>
+            <h3><%= t(:conservation_summary) %></h3>
             <%- global_statuses = @conservation_statuses.select{|cs| cs.place_id.blank?} -%>
             <% unless global_statuses.blank? -%>
               <ul>
