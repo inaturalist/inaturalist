@@ -938,21 +938,22 @@ class TaxaController < ApplicationController
     filters = params[:filters] || {}
     @iconic_taxon = filters[:iconic_taxon]
     @rank = filters[:rank]
+    @within_iconic = filters[:within_iconic]
 
-    scope = Taxon.active.scoped
-    scope = scope.self_and_descendants_of(@iconic_taxon) unless @iconic_taxon.blank?
-    scope = scope.of_rank(@rank) unless @rank.blank?
-    @taxa = scope.paginate(
-      :page => params[:page], 
-      :per_page => 100,
-      :order => "rank_level",
-      :joins => "LEFT OUTER JOIN taxa t ON t.name = taxa.name",
-      :conditions => ["t.id IS NOT NULL AND t.id != taxa.id AND t.is_active = ?", true]
-    )
-    @synonyms = Taxon.active.all(
-      :conditions => ["name IN (?)", @taxa.map{|t| t.name}], 
-      :include => [:taxon_names, :taxon_schemes]
-    )
+    @taxa = Taxon.active.page(params[:page]).
+      per_page(100).
+      order("rank_level").
+      joins("LEFT OUTER JOIN taxa t ON t.name = taxa.name").
+      where("t.id IS NOT NULL AND t.id != taxa.id AND t.is_active = ?", true).
+      scoped
+    @taxa = @taxa.self_and_descendants_of(@iconic_taxon) unless @iconic_taxon.blank?
+    @taxa = @taxa.of_rank(@rank) unless @rank.blank?
+    if @within_iconic == 't'
+      @taxa = @taxa.where("taxa.iconic_taxon_id = t.iconic_taxon_id OR taxa.iconic_taxon_id IS NULL OR t.iconic_taxon_id IS NULL")
+    end
+    @synonyms = Taxon.active.
+      where("name IN (?)", @taxa.map{|t| t.name}).
+      includes(:taxon_names, :taxon_schemes)
     @synonyms_by_name = @synonyms.group_by{|t| t.name}
   end
   
