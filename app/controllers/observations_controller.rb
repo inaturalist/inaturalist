@@ -522,6 +522,12 @@ class ObservationsController < ApplicationController
           o.photos << retrieve_photos(params[klass_key][fieldset_index], 
             :user => current_user, :photo_class => klass)
         end
+        if params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
+          photo_o = o.photos.last.to_observation
+          PHOTO_SYNC_ATTRS.each do |a|
+            o.send("#{a}=", photo_o.send(a))
+          end
+        end
       end
       o
     end

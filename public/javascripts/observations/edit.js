@@ -107,11 +107,11 @@ $(document).ready(function() {
         var c = confirm("You didn't agree to the project's terms, this will still save the observation " +
                       "to iNaturalist, but it won't be added to the project. Is this what you want?"
         );
-        if (!c){
+        if (!c) {
           return false;
         }
       }
-    });
+    })
   }
 })
 
