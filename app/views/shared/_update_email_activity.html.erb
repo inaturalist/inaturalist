@@ -31,7 +31,7 @@
           <% elsif notifier.is_a?(Identification) %>
             <div style="margin-bottom:10px;">
               <%= taxon_image(notifier.taxon, :style => "max-width:32px; vertical-align:middle;") %>
-              <span><%= user.login %>'s ID:</span>
+              <span><%= t(:user_s_id, :user => user.login, :id => t(:id)) %>:</span>
               <%= render :partial => 'shared/taxon', 
                          :locals => { :taxon => notifier.taxon,
                                       :link_url => taxon_url(notifier.taxon) } %>

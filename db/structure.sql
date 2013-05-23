@@ -12711,7 +12711,8 @@ CREATE TABLE users (
     suspended_at timestamp without time zone,
     suspension_reason character varying(255),
     icon_updated_at timestamp without time zone,
-    uri character varying(255)
+    uri character varying(255),
+    locale character varying(255)
 );
 
 
@@ -15578,3 +15579,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130514012120');
 INSERT INTO schema_migrations (version) VALUES ('20130516200016');
 
 INSERT INTO schema_migrations (version) VALUES ('20130521001431');
+
+INSERT INTO schema_migrations (version) VALUES ('20130523203022');

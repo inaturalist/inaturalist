@@ -1,7 +1,7 @@
 <div style="border-top: 1px solid #eee; margin-top: 10px; padding-top:10px; color: #777; font-size:smaller;">
   <p>
-    <%= link_to "Edit your settings", edit_user_url(@user) %> to change the kinds of updates you receive or unsubscribe completely.
+    <%=t :edit_your_settings_to_unsubscribe_html, :url => generic_edit_user_url %>
   </p>
 
-  <a href="<%= root_url %>"><img valign="middle" src="<%= root_url %>/images/logo-small.gif" alt="<%= CONFIG.site_name %>"/></a>
+  <a href="<%= root_url %>"><img valign="middle" src="<%= image_path CONFIG.logo %>" alt="<%= CONFIG.site_name %>"/></a>
 </div>

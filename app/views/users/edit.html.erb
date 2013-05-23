@@ -53,7 +53,8 @@
     <div class="last column span-9">
       <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, 
         {:selected => current_user.time_zone}, 
-        {:class => 'select', :description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
+        {:description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
+      <%= f.select :locale, I18N_SUPPORTED_LOCALES.sort, :include_blank => "default", :description => t(:locale_description) %>
     </div>
     <div class="last column span-18">
       <%= f.text_area(:description, :label => t(:tell_everyone_a_little_about_you)) %>

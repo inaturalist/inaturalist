@@ -40,11 +40,12 @@ class Emailer < ActionMailer::Base
     return if user.email.blank?
     return if user.prefers_no_email
     @user = user
+    I18n.locale = user.locale || I18n.default_locale
     @grouped_updates = Update.group_and_sort(updates, :skip_past_activity => true)
     @update_cache = Update.eager_load_associates(updates)
     mail(
       :to => user.email,
-      :subject => "#{SUBJECT_PREFIX} New updates, #{Date.today}"
+      :subject => t(:updates_notification_email_subject, :prefix => SUBJECT_PREFIX, :date => Date.today)
     )
   end
 
@@ -52,6 +53,7 @@ class Emailer < ActionMailer::Base
     @message = message
     @message = Message.find_by_id(message) unless message.is_a?(Message)
     @user = @message.to_user
+    I18n.locale = user.locale || I18n.default_locale
     return if @user.email.blank?
     return unless @user.prefers_message_email_notification
     return if @user.prefers_no_email
