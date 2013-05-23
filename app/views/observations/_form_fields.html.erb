@@ -126,10 +126,10 @@
             # if the photo was invalid, we can't show new local_photos
             photos = if observation.new_record? && !observation.valid?
               observation.photos.reject do |p|
-                p.is_a?(LocalPhoto)
+                p.is_a?(LocalPhoto) && p.new_record?
               end
             else
-              observation.photos
+              observation.observation_photos.map(&:photo)
             end.compact
           -%>
           <%= render :partial => "photos/photo_list_form", :locals => { 

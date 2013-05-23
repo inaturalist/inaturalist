@@ -168,7 +168,7 @@
   <% if is_me?(@observation.user) %>
     
     <div id="tools">
-      <%= link_to t(:edit), edit_observation_url,
+      <%= link_to "<span class='ui-icon ui-icon-pencil inlineblock'></span> #{t(:edit)}".html_safe, edit_observation_url,
         :id => "edit_list_button", :class => "button" %>
 
       <% unless @projects.blank? %>
@@ -202,11 +202,17 @@
         <% end %>
       <% end %>
       
-      <%= link_to t(:delete), @observation, 
-                  :confirm => t(:you_sure_delete_this_observation), 
-                  :method => :delete, 
-                  :id => "delete_observation_button", 
-                  :class => "minor delete button" %>
+      <%= link_to "<span class='ui-icon ui-icon-copy inlineblock'></span> #{t :copy}".html_safe, 
+        new_observation_path(:copy => @observation.id), 
+        :class => "minor button",
+        "data-tip" => t('views.observations.copy_tip'),
+        "data-tip-show-delay" => 1000 %>
+      <%= link_to "<span class='ui-icon ui-icon-trash inlineblock'></span> #{t(:delete)}".html_safe, 
+        @observation, 
+        :confirm => t(:you_sure_delete_this_observation), 
+        :method => :delete, 
+        :id => "delete_observation_button", 
+        :class => "minor delete button" %>
     </div>
   
   <% elsif logged_in? && current_user.is_admin? && @observation.flagged? %>

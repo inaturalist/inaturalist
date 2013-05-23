@@ -245,7 +245,7 @@ class ObservationsController < ApplicationController
           @identifications).sort_by{|r| r.created_at}
         
         @photos = @observation.observation_photos.sort_by do |op| 
-          op.position || @observation.photos.size + op.id.to_i
+          op.position || @observation.observation_photos.size + op.id.to_i
         end.map{|op| op.photo}
         
         if @observation.observed_on
@@ -324,8 +324,23 @@ class ObservationsController < ApplicationController
   # GET /observations/new.xml
   # An attempt at creating a simple new page for batch add
   def new
-    options = {}
-    options[:id_please] ||= params[:id_please]
+    @observation = Observation.new(:user => current_user)
+    @observation.id_please = params[:id_please]
+    @observation.time_zone = current_user.time_zone
+
+    if params[:copy] && (copy_obs = Observation.find_by_id(params[:copy])) && copy_obs.user_id == current_user.id
+      %w(observed_on_string time_zone place_guess geoprivacy map_scale positional_accuracy).each do |a|
+        @observation.send("#{a}=", copy_obs.send(a))
+      end
+      @observation.latitude = copy_obs.private_latitude || copy_obs.latitude
+      @observation.longitude = copy_obs.private_longitude || copy_obs.longitude
+      copy_obs.observation_photos.each do |op|
+        @observation.observation_photos.build(:photo => op.photo)
+      end
+      copy_obs.observation_field_values.each do |ofv|
+        @observation.observation_field_values.build(:observation_field => ofv.observation_field, :value => ofv.value)
+      end
+    end
     
     @taxon = Taxon.find_by_id(params[:taxon_id].to_i) unless params[:taxon_id].blank?
     unless params[:taxon_name].blank?
@@ -349,8 +364,6 @@ class ObservationsController < ApplicationController
         @kml_assets = @project.project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
       end
     end
-    options[:time_zone] = current_user.time_zone
-    @observation = Observation.new(options)
     
     if params[:facebook_photo_id]
       begin
@@ -1949,8 +1962,8 @@ class ObservationsController < ApplicationController
         # merge facebook_observation with existing observation
         @observation[sync_attr] ||= @facebook_observation[sync_attr]
       end
-      unless @observation.photos.detect {|p| p.native_photo_id == @facebook_photo.native_photo_id}
-        @observation.photos[@observation.photos.size] = @facebook_photo
+      unless @observation.observation_photos.detect {|op| op.photo.native_photo_id == @facebook_photo.native_photo_id}
+        @observation.observation_photos.build(:photo => @facebook_photo)
       end
       unless @observation.new_record?
         flash.now[:notice] = "<strong>Preview</strong> of synced observation.  <a href=\"#{url_for}\">Undo?</a>"
@@ -1994,8 +2007,8 @@ class ObservationsController < ApplicationController
       # need to append a new photo object without saving it, but build() won't
       # work here b/c Photo and its descedents use STI, and type is a
       # protected attributes that can't be mass-assigned.
-      unless @observation.photos.detect {|p| p.native_photo_id == @flickr_photo.native_photo_id}
-        @observation.photos[@observation.photos.size] = @flickr_photo
+      unless @observation.observation_photos.detect {|op| op.photo.native_photo_id == @flickr_photo.native_photo_id}
+        @observation.observation_photos.build(:photo => @flickr_photo)
       end
       
       unless @observation.new_record?
@@ -2038,8 +2051,8 @@ class ObservationsController < ApplicationController
         @observation.send("#{sync_attr}=", @picasa_observation.send(sync_attr))
       end
       
-      unless @observation.photos.detect {|p| p.native_photo_id == @picasa_photo.native_photo_id}
-        @observation.photos[@observation.photos.size] = @picasa_photo
+      unless @observation.observation_photos.detect {|op| op.photo.native_photo_id == @picasa_photo.native_photo_id}
+        @observation.observation_photos.build(:photo => @picasa_photo)
       end
       
       flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
@@ -2063,8 +2076,8 @@ class ObservationsController < ApplicationController
       @observation.send("#{sync_attr}=", o.send(sync_attr)) unless o.send(sync_attr).blank?
     end
 
-    unless @observation.photos.detect {|p| p.id == @local_photo.id}
-      @observation.photos[@observation.photos.size] = @local_photo
+    unless @observation.observation_photos.detect {|op| op.photo_id == @local_photo.id}
+      @observation.observation_photos.build(:photo => @local_photo)
     end
     
     unless @observation.new_record?
@@ -2089,9 +2102,9 @@ class ObservationsController < ApplicationController
       current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
     end.compact
     
-    reference_photo = @observation.try(:photos).try(:first)
-    reference_photo ||= @observations.try(:first).try(:photos).try(:first)
-    reference_photo ||= current_user.photos.last
+    reference_photo = @observation.try(:observation_photos).try(:first).try(:photo)
+    reference_photo ||= @observations.try(:first).try(:observation_photos).try(:first).try(:photo)
+    reference_photo ||= current_user.photos.order("id ASC").last
     if reference_photo
       assoc_name = reference_photo.class.to_s.underscore.split('_').first + "_identity"
       @default_photo_identity = current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
