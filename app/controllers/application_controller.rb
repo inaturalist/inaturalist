@@ -377,6 +377,7 @@ class ApplicationController < ActionController::Base
   def authenticate_with_oauth?
     return false if !session.blank? && !session['warden.user.user.key'].blank?
     return false if request.authorization.to_s =~ /^Basic /
+    return false unless request.authorization.to_s =~ /^Bearer /
     @doorkeeper_for_called = true
   end
 

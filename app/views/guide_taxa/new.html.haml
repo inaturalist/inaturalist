@@ -1,0 +1,8 @@
+#pageheader
+  .crumbs
+    = link_to "Back to #{@guide.title}", @guide
+  %h2
+    New taxon for
+    = @guide.title
+
+= render :partial => "form"

@@ -588,6 +588,7 @@ describe Taxon, "merging" do
     t2 = Taxon.make!
     t2.taxon_schemes << ts
     t1.merge(t2)
+    t1.reload
     t1.taxon_schemes.size.should eq(1)
   end
 

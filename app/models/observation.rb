@@ -1322,6 +1322,7 @@ class Observation < ActiveRecord::Base
   end
   
   def set_taxon_from_species_guess
+    return true if species_guess =~ /\?$/
     return true unless species_guess_changed? && taxon_id.blank?
     return true if species_guess.blank?
     self.taxon_id = single_taxon_id_for_name(species_guess)
@@ -1800,6 +1801,11 @@ class Observation < ActiveRecord::Base
       else
         FakeView.observations_by_login_url(u.login)
       end
+    end
+    url = if url =~ /\?/
+      "#{url}&#{id}"
+    else
+      "#{url}?#{id}"
     end
     tweet_text += " to #{SITE_NAME} #{url}"
     twit_api.update(tweet_text)

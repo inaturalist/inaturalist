@@ -28,6 +28,7 @@ end
 describe ProjectObservationsController, "oauth authentication" do
   let(:token) { stub :accessible? => true, :resource_owner_id => user.id }
   before do
+    request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     controller.stub(:doorkeeper_token) { token }
   end
   it_behaves_like "a ProjectObservationsController"

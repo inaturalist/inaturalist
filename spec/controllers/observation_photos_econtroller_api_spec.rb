@@ -32,6 +32,7 @@ describe ObservationPhotosController, "oauth authentication" do
   let(:token) { stub :accessible? => true, :resource_owner_id => user.id }
   let(:observation) { Observation.make!(:user => user)}
   before do
+    request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     controller.stub(:doorkeeper_token) { token }
   end
   it_behaves_like "an ObservationPhotosController"

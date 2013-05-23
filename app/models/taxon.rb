@@ -854,16 +854,16 @@ class Taxon < ActiveRecord::Base
     reject.children.each {|child| child.move_to_child_of(self)}
     
     # Update or destroy merged taxon scheme taxa
-    reject_taxon_scheme_taxa.each do |taxon_scheme_taxon|
-      taxon_scheme_taxon.reload
-      tst_name = taxon_scheme_taxon.taxon_name
-      if taxon_name = TaxonName.where(:taxon_id => self.id, :lexicon => "Scientific Names", :name => tst_name.name).first
-        taxon_scheme_taxon.update_attributes(:taxon_name_id => taxon_name.id)
+    reject_taxon_scheme_taxa.each do |reject_tst|
+      reject_tst.reload
+      reject_tst_name = reject_tst.taxon_name
+      if taxon_name = self.taxon_names.where(:lexicon => TaxonName::SCIENTIFIC_NAMES, :name => reject_tst_name.name).first
+        reject_tst.update_attributes(:taxon_name_id => taxon_name.id)
       end
-      unless taxon_scheme_taxon.valid?
-        Rails.logger.info "[INFO] Destroying #{taxon_scheme_taxon} while merging taxon " + 
-          "#{reject.id} into taxon #{id}: #{taxon_scheme_taxon.errors.full_messages.to_sentence}"
-        taxon_scheme_taxon.destroy 
+      unless reject_tst.valid?
+        Rails.logger.info "[INFO] Destroying #{reject_tst} while merging taxon " + 
+          "#{reject.id} into taxon #{id}: #{reject_tst.errors.full_messages.to_sentence}"
+        reject_tst.destroy 
         next
       end
     end
@@ -1103,12 +1103,8 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  def ctrl
-    @@ctrl ||= ApplicationController.new
-  end
-  
   def view_context
-    ctrl.view_context
+    FakeView
   end
   
   def image_url
@@ -1120,6 +1116,12 @@ class Taxon < ActiveRecord::Base
       return image_url
     end
     taxon_photos.blank? ? nil : image_url
+  end
+
+  def taxon_range_kml_url
+    return nil unless ranges = taxon_ranges_without_geom
+    tr = ranges.detect{|tr| !tr.range.blank?} || ranges.first
+    tr ? tr.kml_url : nil
   end
 
   def all_names
