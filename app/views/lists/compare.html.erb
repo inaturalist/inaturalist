@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%= t(:comparing_listo_to_list, :list1=> "#{@list.title }", :list2 => "#{@with.title}" ) %>
+  <%= t(:comparing_list_to_list, :list1 => @list.title, :list2 => @with.title ) %>
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'lists', 'barchart', 'lists/show' %>
@@ -107,7 +107,7 @@
           <strong><%=t :only_showing_taxa_from %></strong>
           <%= link_to t(:show_taxa_from_both), url_for_params(:without => [:show]) %>
         <% else %>
-          <%= link_to t(:only_show_taxa_from), url_for_params(:show => "left") %>
+          <%= link_to t(:only_show_taxa_fom_this_list), url_for_params(:show => "left") %>
         <% end -%>
       </div>
       
@@ -119,7 +119,7 @@
           <strong><%=t :only_showing_taxa_from %> </strong>
           <%= link_to t(:show_taxa_from_both) , url_for_params(:without => [:show, :page]) %>
         <% else %>
-          <%= link_to t(:only_show_taxa_from), url_for_params(:show => "right", :without => [:page]) %>
+          <%= link_to t(:only_show_taxa_fom_this_list), url_for_params(:show => "right", :without => [:page]) %>
         <% end -%>
       </div>
     </div>
