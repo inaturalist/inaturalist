@@ -20,7 +20,7 @@ class ConservationStatus < ActiveRecord::Base
     where("ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lon, lat)
   }
 
-  ["IUCN Red List", "NatureServe"].each do |authority|
+  ["IUCN Red List", "NatureServe", "Norma Oficial 059"].each do |authority|
     const_set authority.strip.gsub(/\s+/, '_').underscore.upcase, authority
   end
 
@@ -38,6 +38,8 @@ class ConservationStatus < ActiveRecord::Base
       else
         iucn_name
       end
+    when NORMA_OFICIAL_059
+      norma_oficial_059_status_name
     else 
       case status.downcase
       when 'se', 'fe', 'le', 'e' then 'endangered'
@@ -76,6 +78,17 @@ class ConservationStatus < ActiveRecord::Base
     when "3" then "vulnerable"
     when "4" then "apparently secure"
     when "5" then "secure"
+    else status
+    end
+  end
+
+  def norma_oficial_059_status_name
+    norma_status = status
+    case norma_status
+    when "P" then "en peligro de extinción"
+    when "A" then "amenazada"
+    when "Pr" then "sujeta a protección especial"
+    when "Ex" then "probablemente extinta en el medio silvestre"
     else status
     end
   end

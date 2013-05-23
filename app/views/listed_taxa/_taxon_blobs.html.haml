@@ -9,7 +9,7 @@
     = establishment_blob(listed_taxon, :show_place_name => show_place_name)
   - if cs = conservation_status
     :ruby
-      tip = "Conservation status: <strong>#{cs.status_name} #{"(#{cs.status})" if cs.status_name != cs.status}</strong>"
+      tip = "#{t(:conservation_status)}: <strong>#{cs.status_name} #{"(#{cs.status})" if cs.status_name != cs.status}</strong>"
       tip += " in #{cs.place.display_name}" if show_place_name && cs.place
       tip += " (#{cs.authority})"
       tip += "<br/>#{cs.description}" unless cs.description.blank?
