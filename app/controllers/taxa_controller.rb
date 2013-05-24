@@ -1221,7 +1221,8 @@ class TaxaController < ApplicationController
       @qparams[:limit] = params[:limit]
       find_options[:limit] = params[:limit]
     else
-      find_options[:page] = params[:page] || 1
+      find_options[:page] = params[:page].to_i
+      find_options[:page] = 1 if find_options[:page] <= 0
       find_options[:per_page] = params[:per_page]
     end
     if params[:all_names] == 'true'
