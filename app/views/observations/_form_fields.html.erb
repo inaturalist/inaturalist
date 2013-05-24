@@ -202,7 +202,7 @@
           <% end -%>
         </div>
         <% if @project.project_observation_fields.detect{|pof| pof.required?} -%>
-          <div class="required">* required</div>
+          <div class="required">* <%= t :required %></div>
         <% end -%>
       </fieldset>
     <% end -%>
