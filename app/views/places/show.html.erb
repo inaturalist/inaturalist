@@ -160,8 +160,8 @@
     <%= t(:place_added_to_inat_by, :site_name => SITE_NAME_SHORT) %>
     <%= link_to user_image(@place.user), @place.user %>
     <%= link_to you_or_login(@place.user), @place.user %>
-    on
-    <%= @place.created_at.to_date.to_s(:long) %>
+      <%- date_format = @place.created_at.to_date.to_s(:long).split(" ") %>
+      <%= t :on_ %> <%= t("date_format.date_long.#{date_format.first.downcase}", :day => date_format[1], :year =>date_format.last) %>
     |
   <% end -%>
   <%= link_to t(:add_new_place), new_place_path, :class => "readmore" %>

@@ -101,6 +101,11 @@ es:
               wikipedia_summary: Resumen de wikipedia
               source_identifier: Identificador de la fuente
               source_url: Enlace fuente
+      source:
+              title: Título
+              in_text: Referencia
+              url: Enlace
+              citation: Bibliografía
     preferences: 
       per_page: "Registros por página"
   add: Agregar
@@ -157,6 +162,7 @@ es:
   add_photos: "Agregar fotos"
   add_photos_to_this_observation: "Añadir fotos a esta observación"
   add_several_observations_at_once: "Agregar varias observaciones de una sola vez"
+  add_shape: Añade un límite
   add_some_now: "Agregar algunas ahora"
   add_taxa: "Agregar taxones"
   add_taxa_to_places: "agregar taxones a lugares"
@@ -399,7 +405,11 @@ es:
   check_here_to_autoload_description: "Marque aquí para auto cargar la descripción desde Wikipedia. Podría querer desmarcarlo cuando el nombre científico de un taxón también es una palabra no científica o una falta de ortografía común, como \"Parus\"."
   check_here_to_autoload_photos: "Haga clic aquí para auto-cargar fotos desde Flickr. Podría querer desmarcarlo cuando el nombre científico de un taxón también es una palabra no científica o una falta de ortografía común, como \"Parus\"."
   check_it_out: "Échele un vistazo"
+  check_list: lista de comprobación de
   check_list_description: "Seleccione un taxón de más alto nivel que desee mostrar en esta lista, como \"Aves\" para aves, o \"Amphibia\" para anfibios. Cuando termine, esta lista no permitirá taxones que no estén incluidos. Por ejemplo, si crea una lista de aves, no podrá agregarle ranas."
+  check_list_for_individual_taxa_that: 'Listas de comprobación para una especie o grupo especifico que habitan aquí, ej. "Aves de %{place}".'
+  check_list_of_species_occuring_in: Lista de comprobación de espcies ocurriendo en
+  check_list_place: Lista de comprobación de %{place}
   check_list_source: "Fuente <span class=\"meta\">(opcional)</span>"
   check_lists_for: "Otras listas de verificación para %{place}"
   check_lists_individual_taxa: "Listas de verificación para taxones individuales que viven aquí, por ejemplo \"Aves de %{place}\"."
@@ -435,6 +445,7 @@ es:
   clear: Limpiar
   clear_color_filters: "Limpiar los filtros de color"
   clear_search: "Limpiar búsqueda"
+  clear_shapes: Quita las formas
   click_on_map_to_draw_shape_around_place: "Haga clic en el mapa para dibujar una figura alrededor del lugar"
   click_on_the_map_to: "Haga clic en el mapa para colocar su observación"
   click_the_map: "<strong>Clic al mapa</strong> para agregar una localización."
@@ -449,7 +460,7 @@ es:
                 cuando descargas las observaciones de tu proyecto con formato CSV.
   comma_separated_please: "Favor separar por comas"
   comment_preview: "Vista previa del comentario"
-  comment: Comentario
+  comment: comentario
   commented: comento
   comments: Comentarios
   comments_and_identifications: "Comentarios e identificaciones"
@@ -465,6 +476,8 @@ es:
   comparing: comparando
   comparing_list_to_list: "Comparando %{list1} con %{list2}"
   comparing_observations_from: "Comparación de las observaciones de %{user} en %{fechas}"
+  comprehensive: completa
+  comprehensive?: ¿Completa?
   comprehensive_list: "Lista completa"
   concept_status: Concepto de la situación
   confirm_membership: "Confirmar membresía"
@@ -668,6 +681,7 @@ es:
   delete_this_name: "Eliminar este nombre"
   delete_user: "Eliminar usuario"
   delete_your_account: "Eliminar su cuenta"
+  deleting: Borrando...
   desc: desc
   descendant_taxa: "taxones descendientes"
   describe_purpose: "Describa el propósito de este proyecto"
@@ -757,6 +771,7 @@ es:
   edit_range_raquo: "Modificar rango &raquo;"
   edit_remove: Modificar/Quitar
   edit_selected: "Modificar seleccionados"
+  edit_taxa: Edita la taxa
   edit_taxon_change: Modifica los cambios a la especie o grupo
   edit_taxon_link: "Modificar vínculo del Taxón"
   edit_taxon_range: "Modificar rango del taxón"
@@ -875,6 +890,7 @@ es:
   filtering: Filtrando...
   filtering_observations_that_pass_the: Observaciones filtradas que pasan los terminos y las reglas del proyecto y no han sido añadidas
   filters: Filtros
+  find: Encuentra
   find_a_place: "Encontrar un Lugar"
   find_new_place_to_explore: "¡Encontrar un nuevo lugar para explorar!"
   find_observations: Encuentra observaciones
@@ -1129,6 +1145,7 @@ es:
   life_list: Lista de vida de %{user}
   life_list_first: "vida primera lista"
   life_list_firsts: "primicias de lista"
+  life_list_updated: ¡Lista de vida actualizada!
   life_list_updated_we_also_saved_a: "¡Lista de vida actualizadaTambién guardamos una observación vacía para este taxón."
   life_lists_automatically_fill: "¿Qué desea enlistar?"
   link_or_unlink_your_facebook_account: "Vincular o desvincular su cuenta de Facebook"
@@ -1152,6 +1169,10 @@ es:
   linked_flickr_password_html: "<strong>Nunca le pediremos su contraseña de Flickr</strong> (pero Flickr podría pedírselo, verifique que la dirección a la que el botón le envía sea Flickr.com)."
   linked_flickr_photo_copy_html: "<strong>Nunca guardaremos copias de sus fotos o cambiaremos sus datos de Flickr (a menos que usted nos lo pida).</strong> ¡Nos importan mucho las aves, insectos y babosas para querer meternos con su información!"
   list: Lista
+  list_views:
+      plain: plana
+      taxonomic: taxonómia
+      photo: fotos
   listed_taxon: "Taxón listado"
   listing_announcement: "Anuncio de lista"
   listing_announcements: "Listado de anuncios"
@@ -1483,7 +1504,9 @@ es:
   of_it_and_its_descendants: "de él y sus descendientes"
   offensive_inappropriate: ofensivo / inapropiado
   on_: en
+  on_day: el
   on_date: "en %{date}"
+  on_day: el
   on_edit_date: "el %{editdate}"
   on_list?: en lista
   on_submit_date: "el %{submitdate}"
@@ -1492,6 +1515,7 @@ es:
   only_accepts_taxa: "solamente acepta taxones"
   only_country_state_and_county: "Sólo se muestran lugares de país, estado y equivalentes de país por ahora. Haga un acercamiento para ver lugares más pequeños."
   only_files_with_100_rows_at_a_time: "Solamente archivos con 100 filas cada vez, por favor"
+  only_receive_updates_about_this_taxon: Solo recibir notificaciones de esta especie o grupo
   only_show_active_taxa: Solo muestra especies activas
   only_show_taxa_from: "mostrando taxones de esta lista solamente"
   only_show_taxa_fom_this_list: "Mostrar sólo los taxones de esta lista"
@@ -1501,6 +1525,7 @@ es:
   opcional_columns_note_for_any: "Columnas opcionales (nota. para que cualquiera de estas columnas sea usada en una observación, todas deben estar presentes)"
   open: Transparente
   open_description: "Todo el mundo puede ver las coordenadas a menos que el taxón esté en peligro."
+  optional: opcional
   optional_columns_note_for_any: ""
   or: o
   or_choose_high_level_taxa: "... O seleccione de algunos taxones de alto nivel"
@@ -1809,6 +1834,7 @@ es:
   select_one_or_more_photos: 'Selecciona una o mas fotos'
   select_photos_from_your_photo_stream: "Seleccionar fotos de Photostream para convertirlas en observaciones en %{site_name}. Nosotros completaremos la fecha, hora y ubicación de los metadados de una foto y trataremos de buscar nombres de especies de las etiquetas."
   selected_photos: "Fotos seleccionada"
+  select_photos_to_display: Selecciona las fotos a mostrar
   selected_taxon: "Grupo o especie seleccionada"
   send: enviada(s)
   send_invite: "Enviar invitación"
@@ -1819,6 +1845,7 @@ es:
   separate_values_with_a_pipe: "Valores separados por barras, por ejemplo \"1-5|6-10|muchos\" o \"sí|no|tal vez\""
   september: Septiembre
   set_license: "Fijar licencia"
+  settings: Propiedades
   share_on: "Compartir por"
   share_your_observation_with_researchers_by: "Comparta su observación con investigadores por"
   show: Mostrar
@@ -1873,6 +1900,11 @@ es:
     nzbrn_plants: NZBRN Plantas
     nzbrn_other: NZBRN Otro
     catalogue_of_life_2012_annual_checklist: Lista anual del Catálogo de la vida 2012
+  source_eg:
+      title: 'ej. Serpientes: el misterio de su evolución en la naturaleza'
+      in_text: 'ej. Herrera, 2000'
+      url: 'e.g. http://www.ucpress.edu/book.php?isbn=9780520224872'
+      citation: 'Herrera, H. J. (1992) Iniciación al derecho de autor. México: Limusa, 171 pp.'
   source_identifier: Identificador de la fuente
   source_of_coordinates: 'Fuente de las coordenadas y la exactitud de las medidas, se pone automáticamente.'
   source_unknown: "Fuente desconocida"
@@ -1928,6 +1960,7 @@ es:
     suscrito y a que no. Seleccionar el enlace de abajo "Administra todas tus suscripciones" y
     también si así lo deseas podrás quitar todas las suscripciones de algún sitio que ya no
     quieras tener en tus preferencias.
+  subscribe_to_this: Suscribir a este
   subscribe_to_x_from_this_y_html: "<a href=\"#\" onclick=\"$(this).parents('form:first').submit(); return false;\">Suscribirse</a> a %{x} de estas %{y}."
   subscriptions_arent_available_for:  Las suscripciones no están disponibles para lugares sin límites definidos.
   suggest_an_id: "Sugerir un identificador"
@@ -1975,6 +2008,7 @@ es:
   taxon_subscription: suscripción de especie o grupo
   taxon_to_delete: "Taxón a eliminar"
   taxon_to_keep: "Taxón a mantener"
+  taxonomic: Taxonómia
   taxonomic_changes: "Cambios taxonómicos"
   taxonomic_groups: "Grupos Taxonómicos"
   taxonomic_order: "Orden taxonómico"
@@ -2029,6 +2063,7 @@ es:
   they_have_been_invited: "...ellos ya han sido invitados."
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
+  this_is_a: Esta es una
   this_is_a_cached_summary_based_on: "Este es un resumen en caché de este taxón con base en su"
   this_is_a_life_list_of: "Esta es una lista de vida de"
   this_is_more_convenient_way_find_parent: "Esta es una forma más conveniente de encontrar un Identificador padre. El Identificador padre el que realmente queda guardado."
@@ -2088,6 +2123,7 @@ es:
   try_adding_species_form: "Trate de agregar algunas especies usando el formulario en esta página."
   try_wikipedia: "¿Probar con Wikipedia?"
   tue: mar
+  type_a_taxon_name: Nombre de la especie o grupo
   type_one: Por cada línea pon el nombre de una especie.
   type_place_name: "Digite el nombre del lugar"
   type_project_name: "Digite el nombre del proyecto..."
@@ -2108,6 +2144,7 @@ es:
   updates_notification_email_subject: "%{prefix} Nuevas actualizaciones %{date}"
   unpublish: Despublicar
   unsubscribe: Quitar suscripción
+  unsubscribe_from_this: Quitar suscripción de este
   unsuspend_user: "Reactivar usuario"
   update: Actualizar
   update_existing_observations_with_new_license: "Actualizar las observaciones existentes con la licencia que escogí"

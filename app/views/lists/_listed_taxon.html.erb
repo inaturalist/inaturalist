@@ -49,7 +49,7 @@
     
     <% if listed_taxon.occurrence_status || listed_taxon.establishment_means -%>
       <div class="occurrence description">
-        <label>Status: </label>
+        <label><%= t :status %>: </label>
         <%= [listed_taxon.occurrence_status, listed_taxon.establishment_means].compact.join(' / ') %>
       </div>
     <% end -%>
@@ -74,18 +74,18 @@
             <%= one_line_observation listed_taxon.last_observation, :skip => %w(user taxon) %>
           </a>
           <% if list.is_a?(CheckList) -%>
-            <span class="button"><%= link_to "(View all)", observations_url(:place_id => list.place_id, :taxon_id => listed_taxon.taxon_id) %></span>
+            <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_url(:place_id => list.place_id, :taxon_id => listed_taxon.taxon_id) %></span>
           <% elsif list.is_a?(ProjectList) %>
-            <span class="button"><%= link_to "(View all)", project_observations_url(list.project_id, :taxon_id => listed_taxon.taxon_id) %></span>
+            <span class="button"><%= link_to "(" + t(:view_all) + ")", project_observations_url(list.project_id, :taxon_id => listed_taxon.taxon_id) %></span>
           <% elsif list.user %>
-            <span class="button"><%= link_to "(View all)", observations_by_login_url(list.user.login, :taxon_id => listed_taxon.taxon_id) %></span>
+            <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_by_login_url(list.user.login, :taxon_id => listed_taxon.taxon_id) %></span>
           <% end -%>
         </span>
         |
       <% end %>
 
       <nobr class="counts">
-        <%= link_to color_pluralize(listed_taxon.comments_count, "comment"), listed_taxon %>
+        <%= link_to color_pluralize(listed_taxon.comments_count, t(:comment)), listed_taxon %>
       </nobr>
       
       <% if editable -%>

@@ -1,12 +1,12 @@
 <%- content_for(:title) do -%>
-  <%= @list.title %>
+  <%= @title = t(:check_list_place, :place=>@list.title.chomp('Check List')) %>
 <%- end -%>
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= @list.title %>"/>
   <%-
     og_description = if @list.description.blank?
-      "Check list of species occuring in #{@place.display_name}"
+      t(:check_list_of_species_occuring_in) + " #{@place.display_name}"
     else
       @list.description
     end
@@ -44,20 +44,20 @@
 
         <form action="<%= url_for %>" method="get" style="display: inline-block; margin-left: 10px">
           <input type="text" name="q" value="<%= @q %>" class="text" />
-          <input type="submit" value="Search List" class="default button" style="margin-right: 0"/>
+          <input type="submit" value="<%= t :search_list %>" class="default button" style="margin-right: 0"/>
         </form>
       </div>
     <%- end -%>
     
     <span class="breadcrumbs">    
-      <%= link_to "Back to #{@list.place.name}", 
+      <%= link_to t(:back_to) + " #{@list.place.name}",
                   place_path(@list.place),
                   :class => 'back crumb' %>
     </span>
   </div>
     
   <h2>
-    <%= @list.title %>
+    <%= @title %>
   </h2>
 </div>
 
@@ -72,13 +72,13 @@
     <% if !@list.rules.empty? && (taxon = @list.rules.first.operand) && taxon.is_a?(Taxon) -%>
       <div id="life_list_taxon" class="life_list_taxon description">
         <%= taxon_image(@list.rules.first.operand) %>
-        This is a
+        <%= t :this_is_a %>
         <% if @list.comprehensive? -%>
-          <span class="comprehensive_notice" 
+          <span class="comprehensive_notice"
               data-tip="<strong><%= @list.user || CONFIG.site_name_short %></strong> believes this is a comprehensive list of <strong><%= taxon.species_or_lower? ? "<i>#{taxon.name}</i>" : taxon.name %></strong> in <strong><%= @list.place.name %></strong>">
-            comprehensive</span>
+            <%= t :comprehensive %></span>
         <% end %>
-        check list of
+        <%= t(:check_list) + ' ' + t(:for) %>
         <%= render :partial => 'shared/taxon', 
                    :locals => { :taxon => @list.rules.first.operand,
                                 :link_url => url_for(@list.rules.first.operand) } %>
@@ -93,15 +93,15 @@
   <% if @q -%>
     <div id="searchresults" class="description quiet box">
       <%= render :partial => "shared/page_results", :object => @listed_taxa %>
-      for <strong>"<%= @q %>"</strong>
-      <%= link_to "clear", url_for_params(:without => [:page, :q]) %>
+      <%= t :for %> <strong>"<%= @q %>"</strong>
+      <%= link_to t(:clear), url_for_params(:without => [:page, :q]) %>
     </div>
   <% end -%>
   
   <div id="justadded" style="display: none">
-    <h2 class="title">Just Added!</h2>
+    <h2 class="title"><%= t :just_added! %></h2>
     <ul class="listed_taxa">
-      <li style="display: none">Stuff you've just added...</li>
+      <li style="display: none"><%= t :stuff_just_added %></li>
     </ul>
     
     <div class="column-separator">
@@ -117,8 +117,8 @@
   
   <% if @listed_taxa.empty? %>
     <div id="empty" class="readable description">
-      This list is empty!
-      <% if logged_in? %>Try adding some species using the form on this page.<% end %>
+      <%= t :this_list_is_empty! %>
+      <% if logged_in? %><%= t(:try_adding_species_form) %><% end %>
     </div>
   <% end %>
   
@@ -129,14 +129,14 @@
   <% if @list.source -%>
     <%= separator %>
     <div class="clear meta stacked">
-      <strong>Source:</strong>
+      <strong><%= t :source %>:</strong>
       <%= citation_for @list.source %>
     </div>
   <% end -%>
   
   <% if @list.user -%>
     <div class="clear meta stacked">
-      <strong>Created by </strong>
+      <strong><%= t :created_by %> </strong>
       <%= link_to user_image(@list.user), @list.user %>
       <%= link_to_user @list.user %>
       on
@@ -145,16 +145,16 @@
   <% end -%>
   
   <div class="clear meta feeds">
-    <strong>Download</strong>
+    <strong><%= t :download %></strong>
     <%= link_to "CSV", list_path(@list, :format => 'csv'), 
       :class => "delayedlink csvlink", 
       "data-delayed-link-msg" => "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
       :rel => "nofollow" %>
       
-    <%= link_to "Taxonomic CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"), 
+    <%= link_to t(:taxonomic) + " CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
       :class => "delayedlink csvlink", 
       "data-delayed-link-msg" => 
-        "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
+        t(:wait_file_generation),
       :rel => "nofollow" %>
   </div>
 </div>
@@ -163,11 +163,11 @@
   <div id="sidebar">
     <% if @list.listed_taxa_editable_by?(current_user) %>
       <div id="add" class="clear">
-        <%= link_to_function "Add Batch", "$('#add_batch_dialog').jqmShow()", 
+        <%= link_to_function t(:add_batch), "$('#add_batch_dialog').jqmShow()",
           :class => "right small", :style => 'padding-top: 3px' %>
         <h3>
           <%= link_to_function(
-            'Add to List', 
+            t(:add_to_list),
             "$('#new_listed_taxon').slideToggle();",
             :id => 'addlink') %>
         </h3>
@@ -176,7 +176,7 @@
     <% end %>
     
     <div id="stats" class="clear">
-      <h3><%= link_to_toggle "Stats", "#innerstats", :class => 'open' %></h3>
+      <h3><%= link_to_toggle t(:stats), "#innerstats", :class => 'open' %></h3>
       <div id="innerstats">
         <a href="<%= url_for(params.merge(:page => 1, :taxon => nil)) %>" class="clear stat total<%= ' current' unless @filter_taxon %>">
           <div class="readable title">&nbsp;</div>
@@ -184,7 +184,7 @@
             <%= render :partial => "shared/barchart_datum", :locals => { 
               :value => @total_observed_taxa, 
               :max => @total_listed_taxa, 
-              :label_text => "of #{@total_listed_taxa} observed",
+              :label_text => t(:of) + " #{@total_listed_taxa} " + t(:observed).downcase,
               :min_value_label_width => 28,
               :min_remainder_label_width => 28 } %>
           </div>
@@ -196,9 +196,9 @@
           <% elsif grouper.respond_to?(:name) %>
             <% grouper_name = grouper.name -%>
           <% else %>
-            <% grouper_name = 'Unclassified' -%>
+            <% grouper_name = t(:unclassified) -%>
           <% end -%>
-          <%- grouper_name = 'Other Animals' if grouper_name == 'Animals' -%>
+          <%- grouper_name = t(:other_animals) if grouper_name == 'Animals' -%>
           <%- grouper_class = grouper.name rescue 'Unknown' -%>
           <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params(:taxon => grouper.id, :without => [:page, :q]) %>">
             <div class="readable title">
@@ -218,12 +218,12 @@
     
     <div id="other_check_lists_wrapper">
       <h3>
-        <%= link_to_toggle "Other Check Lists for #{h(@place.name)}", '#other_check_lists', 
+        <%= link_to_toggle t(:check_lists_for, :place=>@place.name), '#other_check_lists',
           :id => 'otherlistslink', :class => 'closed' %>
       </h3>
       <div id="other_check_lists" style="display:none">
         <p class="ui description">
-          Check lists for individual taxa that live here, e.g. "Birds of <%= h(@place.name) %>".
+          <%= t(:check_list_for_individual_taxa_that, :place=>@place.name) %>
         </p>
         <ul>
           <% for list in @other_check_lists.sort_by{|l| l.title.downcase} %>
@@ -231,7 +231,7 @@
           <% end %>
         </ul>
 
-        <%= link_to "Create a new check list for #{h(@place.name)} &raquo;".html_safe, new_check_list_path(:place_id => @place), :style => 'font-weight: bold' %>
+        <%= link_to t(:new_check_list_for, :place=>@place.name).html_safe, new_check_list_path(:place_id => @place), :style => 'font-weight: bold' %>
       </div>
     </div>
   </div><!-- /sidebar -->

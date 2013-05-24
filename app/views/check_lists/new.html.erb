@@ -1,7 +1,7 @@
 <%- @title = capture do -%>
   <%=t :new_check_list %>
   <% if @check_list.place -%>
-    for <%=h @check_list.place.name %>
+    <%= t :for %> <%=h @check_list.place.name %>
   <% end -%>
 <%- end -%>
 <% content_for(:title) do -%>
@@ -17,7 +17,7 @@
 <div id="pageheader" class="column span-24 last">
   <span class="breadcrumbs">
     <% if @place -%>
-      <%= link_to t(:back_to_lists, :name => "#{@place.name}"), @place, :class => 'back crumb' %>
+      <%=raw link_to t(:back_to_lists, :name => @place.name), @place, :class => 'back crumb' %>
     <% end -%>
   </span>
   <h2><%= @title %></h2>

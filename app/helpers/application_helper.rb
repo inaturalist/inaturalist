@@ -356,22 +356,22 @@ module ApplicationHelper
           :include_article => true
         })
       else
-        "something "
+        t(:something)
       end
       txt += " "
     end
     unless skip.include?(:observed_on)
       txt += if o.observed_on.blank?
-        "in the past "
+        t(:in_the_past).downcase
       else
-        "on #{o.observed_on.strftime("%d %b %Y")} "
+        t(:on_day) + " #{o.observed_on.strftime("%d %b %Y")} "
       end
     end
     unless skip.include?(:place_guess)
       txt += if o.place_guess.blank?
-        "somewhere in the Universe"
+        t(:somewhere_on_earth).downcase
       else
-        "in #{o.place_guess}"
+        t(:on_) + " #{o.place_guess}"
       end
     end
     txt

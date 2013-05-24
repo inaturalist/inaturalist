@@ -26,13 +26,13 @@
 <% if f.object.send(assoc_name) -%>
   <%- edit_source_fields = capture do %>
     <%= f.fields_for assoc_name, :builder => DefaultFormBuilder do |s| %>
-      <%= s.text_field :title, :description => "e.g. Snakes: The Evolution of Mystery in Nature" %>
-      <%= s.text_field :in_text, :description => "e.g. Greene, 2000" %>
-      <%= s.text_field :url, :description => "e.g. http://www.ucpress.edu/book.php?isbn=9780520224872" %>
-      <%= s.text_area :citation, :description => "e.g. Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print." %>
+      <%= s.text_field :title, :description => t("source_eg.title") %>
+      <%= s.text_field :in_text, :description => t("source_eg.in_text") %>
+      <%= s.text_field :url, :description => t("source_eg.url") %>
+      <%= s.text_area :citation, :description => t("source_eg.citation") %>
     <% end %>
   <%- end -%>
-  <!-- <%= link_to_function "Edit #{f.object.send(assoc_name).title}...", 
+  <!-- <%= link_to_function t(:edit) + " #{f.object.send(assoc_name).title}...",
     "$(this).after('#{escape_javascript edit_source_fields}'); " +
     "$(this).hide();" +
     "$(this).parents('.source_nested_form_fields').find('select').remove();" +
@@ -45,10 +45,10 @@
     <legend><%= t(:new_source) %></legend>
     <%= f.fields_for assoc_name, :builder => DefaultFormBuilder, :object => f.object.send("build_#{assoc_name}") do |s| %>
       <%= s.hidden_field :user_id, :value => current_user.id %>
-      <%= s.text_field :title, :description => "e.g. Snakes: The Evolution of Mystery in Nature" %>
-      <%= s.text_field :in_text, :description => "e.g. Greene, 2000" %>
-      <%= s.text_field :url, :description => "e.g. http://www.ucpress.edu/book.php?isbn=9780520224872" %>
-      <%= s.text_area :citation, :description => "e.g. Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print." %>
+      <%= s.text_field :title, :description => t("source_eg.title") %>
+      <%= s.text_field :in_text, :description => t("source_eg.in_text") %>
+      <%= s.text_field :url, :description => t("source_eg.url") %>
+      <%= s.text_area :citation, :description => t("source_eg.citation") %>
     <% end %>
     <%= link_to_function t(:cancel), 
       "$(this).parents('.source_nested_form_fields').find('.choicefields').show();" +
@@ -59,8 +59,8 @@
 <div class="source_nested_form_fields">
   <div class="choicefields">
     <%= f.text_field foreign_key, chooser_options %>
-    or 
-    <%= link_to_function t(:add_new_source), 
+    <%= t :or %>
+    <%= link_to_function t(:add_new_source).downcase,
         "$(this).parents('.choicefields').after('#{escape_javascript new_source_fields}'); " +
         "$(this).parents('.choicefields').hide();" +
         "$(this).parents('.source_nested_form_fields').find('.existing').chooser('clear')",
