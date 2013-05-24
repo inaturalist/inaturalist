@@ -393,7 +393,7 @@ module ApplicationHelper
   def image_url(source, options = {})
     abs_path = image_path(source)
     unless abs_path =~ /\Ahttp/
-     abs_path = [request.protocol, request.host_with_port, abs_path].join('')
+     abs_path = uri_join(root_url, abs_path)
     end
     abs_path
   end
