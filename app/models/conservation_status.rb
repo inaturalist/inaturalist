@@ -1,3 +1,4 @@
+#encoding: utf-8
 class ConservationStatus < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :user
