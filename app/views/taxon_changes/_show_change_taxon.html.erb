@@ -73,10 +73,10 @@
     </div>
     <% if taxon_change.user %>
       <label><%= t :added_by %></label> <%= link_to taxon_change.user.login, taxon_change.user %>
-      on <%= taxon_change.created_at.to_date %>
+      <%= t :on_ %> <%= taxon_change.created_at.to_date %>
     <% end -%>
     <% if taxon_change.committed? && taxon_change.committer %>
-      | <label><%= t(:committed) + ' ' + t(:by) %></label> <%= link_to taxon_change.committer.login, taxon_change.committer %>
+      | <label><%= t(:committed) + ' ' + t(:by).downcase %></label> <%= link_to taxon_change.committer.login, taxon_change.committer %>
        <%= t(:on_) + ' ' + l(taxon_change.committed_on) %>
     <% end -%>
   </div>

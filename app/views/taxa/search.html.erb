@@ -65,7 +65,7 @@
       </div>
       <div class="column span-6">
         <% form_tag taxa_path, :method => :get, :class => 'clear buttonrow' do %>
-          <label for="q">Search <a href="http://data.nzor.org.nz">NZOR</a></label>
+          <label for="q"><%= t :search %> <a href="http://data.nzor.org.nz">NZOR</a></label>
           <%= text_field_tag 'q', params[:q], :class => 'text' %>
           <input type="hidden" name="all_names" value="true"/>
           <input type="hidden" name="force_external" value="true"/>

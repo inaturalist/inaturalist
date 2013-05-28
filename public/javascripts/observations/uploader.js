@@ -54,7 +54,7 @@ $(document).ready(function() {
         $('.uploadbutton', data.context).hide()
         $('.deletebutton', data.context).show()
         $('.deletebutton', data.context).after(
-          $('<a target="_blank" class="readmore inter">View observation</a>').attr('href', '/observations/'+obs.id)
+          $('<a target="_blank" class="readmore inter">'+I18n.t('view_observation')+'</a>').attr('href', '/observations/'+obs.id)
         )
         $(':input', data.context).change(function() {
           $('.savebutton', data.context).show()
