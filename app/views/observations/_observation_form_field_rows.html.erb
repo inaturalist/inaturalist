@@ -66,8 +66,8 @@
             <%= o.text_field(:longitude, :class => 'longitude text', "data-tip" => "Longitude in decimal degrees, e.g. -122.123") %>
 
             <span class="button">
-              <%= link_to_function("edit", "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
-              <%= link_to_function("hide", "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
+              <%= link_to_function(t(:edit), "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
+              <%= link_to_function(t(:hide), "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
             </span>
             
             <div>
@@ -87,8 +87,8 @@
             <%- unless observation.new_record? -%>
               or
               <div class="deletelink">
-                <span class="loading status" style="display: none">Deleting...</span>
-                <%= link_to_function 'Delete', 
+                <span class="loading status" style="display: none"><%= t :deleting %></span>
+                <%= link_to_function t(:delete),
                   "iNaturalist.restfulDelete('#{observation_path(observation)}', {" + 
                     "data: {" + 
                       "authenticity_token: encodeURIComponent(#{form_authenticity_token.inspect.html_safe})" + 
@@ -138,7 +138,7 @@
                 </div>
               </div>
               <div class="last column span-20">
-                <label>More fields</label><br/>
+                <label><%= t :more_fields %></label><br/>
                 <%= render 'observation_field_form_fields', :builder => o, :index => i %>
               </div>
             </div>

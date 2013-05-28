@@ -49,16 +49,16 @@
 <%- end -%>
 <div id="tools" class="clear buttonrow">
   <% if list.editable_by?(current_user) %>
-    <%= link_to "Edit", list.is_a?(CheckList) ? edit_check_list_path(list) : edit_list_url(list), :id => "edit_list_button", :class => "button" %>
+    <%= link_to t(:edit), list.is_a?(CheckList) ? edit_check_list_path(list) : edit_list_url(list), :id => "edit_list_button", :class => "button" %>
   <% end -%>
   <% if list.listed_taxa_editable_by?(current_user) -%>
-    <%= link_to "Edit taxa", list_batch_edit_url(list), :id => "batch_edit_list_button", :class => "button" %>
+    <%= link_to t(:edit_taxa), list_batch_edit_url(list), :id => "batch_edit_list_button", :class => "button" %>
   <% end %>
   
   <span class="toolset">
     <label class="description"><%=t :view %></label>
     <% for view in ListsController::LIST_VIEWS %>
-      <%= link_to(view.capitalize, url_for(params.merge(:view => view)), 
+      <%= link_to(t("list_views.#{view}", :default=>view).capitalize, url_for(params.merge(:view => view)),
         :id => "#{view}_view_link", 
         :class => "inter modal_link#{' selected' if @view == view}") %>
     <% end %>

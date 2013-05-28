@@ -150,13 +150,13 @@
     ClearShapesControl.prototype = new GControl();
     ClearShapesControl.prototype.initialize = function(map) {
       var clearButton = $('<div></div>').css(this._buttonWrapperCSS).append(
-        $('<div></div>').css(this._buttonCSS).append('Clear shapes')
+        $('<div></div>').css(this._buttonCSS).append(I18n.t('clear_shapes'))
       ).click(function() {
         clearShapes(map);
       });
       
       var addButton = $('<div></div>').css(this._buttonWrapperCSS).append(
-        $('<div></div>').css(this._buttonCSS).append('Add shape')
+        $('<div></div>').css(this._buttonCSS).append(I18n.t('add_shape'))
       ).click(function() {
         addShape(map);
       });

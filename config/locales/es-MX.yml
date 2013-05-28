@@ -103,6 +103,11 @@ es-MX:
         wikipedia_summary: Resumen de wikipedia
         source_identifier: Identificador de la fuente
         source_url: Enlace fuente
+      source:
+        title: Título
+        in_text: Referencia
+        url: Enlace
+        citation: Bibliografía
     errors: 
       format: "%{attribute} %{message}"
       messages: 
@@ -197,6 +202,7 @@ es-MX:
   add_photos: "Añade fotos"
   add_photos_to_this_observation: "Añade fotos a esta observación"
   add_several_observations_at_once: "Añade varias observaciones al mismo tiempo."
+  add_shape: Añade una forma
   add_some_now: "Añade unas ahora"
   add_taxa: "Añade taxa"
   add_taxa_to_places: "Añade taxa a lugares"
@@ -336,7 +342,7 @@ es-MX:
   back_to_editing_observation: "Regresar a editar la observación"
   back_to_help: "Regresar a ayuda"
   back_to_import: "Regresar a importar"
-  back_to_lists: "Regresar a las listas de %{name}&#39;"
+  back_to_lists: "Regresar a las listas de %{name}"
   back_to_observation: "Regresar a la observación"
   back_to_observation_fields: "De regreso a los campos de observación"
   back_to_people: "De regreso a la gente"
@@ -423,8 +429,12 @@ es-MX:
   check_here_to_autoload_description: "Selecciona aquí para cargar la descripción de Wikipedia. Puedes quitar la selección cuando un nombre científico de la especie también es una palabra no científica o un error común de escritura como \"Parus\"."
   check_here_to_autoload_photos: "Selecciona aquí para cargar tus fotos de  Flickr. Puedes quitar la selección cuando el nombre científico de la especie también es una palabra no científica o un error común de escritura como \"Parus\"."
   check_it_out: Revísalo
+  check_list: lista de comprobación de
   check_list_description: "Selecciona un grupo de especies que te gustaría mostrar en esta lista, como \"Aves\" para pájaros, o \"Anfibios\" para ranas y sapos. Una vez terminada, la lista no permitirá especies que no estén en el grupo. Por ejemplo, si creas una lista de aves, no podrás incluir ninguna rana."
+  check_list_for_individual_taxa_that: 'Listas de comprobación para una especie o grupo especifico que habitan aquí, ej. "Aves de %{place}".'
   check_list_individual_taxa: "Revisa las listas para taxa específícos que viven aqui, por ejemplo \"Aves de %{place}\"."
+  check_list_of_species_occuring_in: Lista de comprobación de espcies ocurriendo en
+  check_list_place: Lista de comprobación de %{place}
   check_list_source: "Fuente<span class=\"meta\">(opcional)</span>"
   check_lists_for: "Otras listas de comprobación para %{place}"
   check_out_my_observations_at: "Si deseas, puedes ver mis observaciones en"
@@ -459,6 +469,7 @@ es-MX:
   clear: Limpiar
   clear_color_filters: "Quita los filtros de colores"
   clear_search: "Limpia la búsqueda"
+  clear_shapes: Quita las formas
   click_on_map_to_draw_shape_around_place: "Selecciona un lugar en el mapa para dibujar una forma alrededor del lugar"
   click_on_the_map_to: "Selecciona el mapa para poner tu observación"
   click_the_map: "<strong>Selecciona el mapa </strong>para añadir una localización."
@@ -474,6 +485,7 @@ es-MX:
   comma_separated_please: "Separadas por una coma, por favor"
   comment_preview: "Vista previa del comentario"
   commented: Comento
+  comment: comentario
   comments: Comentarios
   comments_and_identifications: "Comentarios e identificaciones"
   comments_by_everyone: Comentarios de todos
@@ -488,6 +500,8 @@ es-MX:
   comparing: Comparando
   comparing_list_to_list: "Comparando  %{list1} con %{list2}"
   comparing_observations_from: "Comparando %{user} observaciones de %{dates}"
+  comprehensive: exhaustiva
+  comprehensive?: ¿Es exhaustiva?
   comprehensive_list: "Lista exhaustiva"
   concept_status: Estado del concepto
   confirm_membership: "Confirma membresía"
@@ -639,6 +653,7 @@ es-MX:
   delete_this_name: "Borra este nombre"
   delete_user: "Borra este usuario"
   delete_your_account: "Borra tu cuenta"
+  deleting: Borrando...
   desc: Descendiente
   descendant_taxa: "Taxa descendientes"
   describe_purpose: "Describe el propósito de este proyecto"
@@ -720,7 +735,7 @@ es-MX:
   draft_: Borrador
   drafts: Borradores
   each_place_displays_all_species_inat_knows: "Cada página de Lugares muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Puedes filtrar la especie por grupo taxonómico, color, estado de conservación o por búsqueda sencilla."
-  edit: Modificar
+  edit: Editar
   edit_a_batch_of_observations: "Edita un grupo de observaciones"
   edit_account_settings_and_profile: "Edita la configuración de la cuenta y perfil"
   edit_colors: "Edita los colores"
@@ -735,6 +750,7 @@ es-MX:
   edit_range_raquo: "Edita la distribución  &raquo;"
   edit_remove: "Edita / Borra"
   edit_selected: "Edita los seleccionados"
+  edit_taxa: Edita la especie o grupo
   edit_taxon_change: Modifica los cambios a la especie o grupo
   edit_taxon_link: "Edita el enlace de la especie o grupo"
   edit_taxon_range: "Edita la distribución de la especie o grupo"
@@ -6237,6 +6253,7 @@ es-MX:
   filtering: Filtrando
   filtering_observations_that_pass_the: Observaciones filtradas que pasan los terminos y las reglas del proyecto y no han sido añadidas
   filters: Filtros
+  find: Encuentra
   find_a_place: "Encuentra un lugar"
   find_new_place_to_explore: "¡Encuentra un nuevo lugar para explorar!"
   find_observations: Encuentra observaciones
@@ -6283,7 +6300,7 @@ es-MX:
   from_anywhere_change: "Desde cualquier lado (<span class=\"button\">cambio</span>)"
   from_in_this_place: "De es"
   from_list: "De la lista"
-  from_this: de esta
+  from_this: de este
   full_id_please: "¡Ayuda con la identificación, por favor!"
   full_id_please?: Ayuda con identificación
   fungi: 
@@ -6476,6 +6493,7 @@ es-MX:
   life: Vida
   life!: ¡Vida!
   life_list: Lista de vida de %{user}
+  life_list_updated: ¡Lista de vida actualizada!
   life_list_updated_we_also_saved_a: "¡Tu lista de vida ha sido actualizada! También guardamos una observación en blanco para esta especie o grupo."
   life_lists_automatically_fill: "Las listas de vida se construyen automáticamente a medida que vas observando especies y también pueden restringirse a ciertos grupos, por ejemplo, la lista de vida de las aves en la familia de los cuervos (Corvidae)."
   link_or_unlink_your_facebook_account: "Enlaza o desenlaza tu cuenta de Facebook"
@@ -6498,6 +6516,10 @@ es-MX:
   linked_flickr_password_html: "<strong>Nunca te pediremos por tu contraseña de Flickr </strong> (pero Flickr puede revisar el url que el botón te envía y asegurarse de que es Flickr.com).\n"
   linked_flickr_photo_copy_html: "<strong>Nucna guardaremos copias de tus fotos o cambiaremos tus datos de  Flickr (a menos que nos lo pidas).</strong> ¡Estamos más entretenidos con las aves y otros bichos para querer meternos con tu información!"
   list: Lista
+  list_views:
+      plain: plana
+      taxonomic: taxonómia
+      photo: fotos
   listed_taxon: "Especie o grupo enlistado"
   listing_announcement: "Enlistando noticias"
   listing_announcements: "Enlistando noticias"
@@ -6790,6 +6812,7 @@ es-MX:
   of_it_and_its_descendants: "de élla y sus descendientes"
   offensive_inappropriate: ofensivo / inapropiado
   on_: en
+  on_day: el
   on_edit_date: "sobre %{editdate}"
   on_list?: en lista
   on_submit_date: "sobre %{submitdate}"
@@ -6798,15 +6821,17 @@ es-MX:
   only_accepts_taxa: "Solo acepta taxa"
   only_country_state_and_county: "Solamente se presentan país, estado y municipio o equivalente. Has un zoom para ver lugares más pequeños."
   only_files_with_100_rows_at_a_time: "Solamente archivos con 100 líneas a la vez, por favor"
+  only_receive_updates_about_this_taxon: Solo recibir notificaciones de esta especie o grupo
   only_show_active_taxa: Solo muestra especies activas
   only_showing_taxa_from: "Solamente se muestra taxa de esta lista"
   only_species: "Solo especies"
   only_species_and_subspecies: "Solo especies y subespecies o variedades"
   open: Abierta
   open_description: "Todos pueden ver las coordenadas a menos que la especie esté en riesgo"
+  optional: opcional
   optional_columns_note_for_any: "Columnas opcionales (nota: para que cada una de estas columnas sea usada en una observación deben estar presentes en todas)"
   or: o
-  or_choose_high_level_taxa: "... o escoge de algún taxa con nivel superior"
+  or_choose_high_level_taxa: "... o escoge de algún grupo con nivel superior"
   or_if_you_dont_want_email: "O si no quieres ningún correo electrónico..."
   or_invite_your_friends: "o invita a tus amigos"
   or_invited: o invitadas.
@@ -7082,7 +7107,7 @@ es-MX:
   search_for_new_taxa: "Busca nuevos taxa"
   search_for_place_to_import_from_yahoo: "Busca algún lugar en Yahoo para importar"
   search_for_species: "Busca especies"
-  search_list: "Lista de búsqueda"
+  search_list: "Busca la lista"
   search_obs: "Busca observaciones"
   search_places: "Busca Lugares"
   search_projects: "Busca proyectos"
@@ -7104,6 +7129,7 @@ es-MX:
   select_none: Desmarca todo
   select_one_or_more_photos: 'Selecciona una o mas fotos'
   select_photos_from_your_photo_stream: "Selecciona fotos de tus álbums para convertirlas en observaciones de  %{site_name}. Nosotros incluiremos la fecha, hora y ubicación de los metadatos de la foto e intentaremos buscar el nombre de las especies a partir de las etiquetas."
+  select_photos_to_display: Selecciona las fotos a mostrar
   selected_taxon: "Selecciona una especie o grupo"
   send: Envía
   send_invite: "Envía invitación"
@@ -7113,6 +7139,7 @@ es-MX:
   separate_values_with_a_pipe: "Separa los valores con | , por ejemplo: \"1-5|6-10|muchos\" o \"sí|no|tal vez\""
   september: Septiembre
   set_license: "Escoge la licencia"
+  settings: Propiedades
   share_your_observation_with_researchers_by: "Comparte tu observación con investigadores de "
   show: Muestra
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
@@ -7163,6 +7190,11 @@ es-MX:
     nzbrn_plants: NZBRN Plantas
     nzbrn_other: NZBRN Otro
     catalogue_of_life_2012_annual_checklist: Lista anual del Catálogo de la vida 2012
+  source_eg:
+    title: 'ej. Serpientes: el misterio de su evolución en la naturaleza'
+    in_text: 'ej. Herrera, 2000'
+    url: 'e.g. http://www.ucpress.edu/book.php?isbn=9780520224872'
+    citation: 'Herrera, H. J. (1992) Iniciación al derecho de autor. México: Limusa, 171 pp.'
   source_identifier: Identificador de la fuente
   source_of_coordinates: 'Fuente de las coordenadas y la exactitud de las medidas, se pone automáticamente.'
   source_unknown: "Fuente desconocida"
@@ -7198,7 +7230,7 @@ es-MX:
   stop_editing: "Detén la edición"
   stop_following_user: "No sigas más a %{user}"
   stop_updating_position: "No sigas actualizando la posición"
-  stuff_just_added: "Cosas que acabas de añadir..."
+  stuff_just_added: "Cosas que recientemente has añadido..."
   submit: Someter
   submit_comment: "Enviar comentario"
   submitted: Enviado
@@ -7209,9 +7241,10 @@ es-MX:
                               suscrito y a que no. Seleccionar el enlace de abajo "Administra todas tus suscripciones" y
                               también si así lo deseas podrás quitar todas las suscripciones de algún sitio que ya no
                               quieras tener en tus preferencias.
+  subscribe_to_this: Suscribir a este
   subscribe_to_x_from_this_y_html: |-
       <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Suscribir</a>
-      a %{x} de esta %{y}.
+      a %{x} de este %{y}.
   subscriptions_arent_available_for:  Las suscripciones no están disponibles para lugares sin límites definidos.
   suggest_an_id: "Sugiere una identificación"
   suggest_or_require_that: Se sugiere o solicita que los contribuyentes completen estos campos para las observaciones que añadan a tu proyecto.
@@ -7252,6 +7285,7 @@ es-MX:
   taxon_subscription: suscripción de especie o grupo
   taxon_to_delete: "Borrar la especie o grupo"
   taxon_to_keep: "Mantener la especie o grupo"
+  taxonomic: Taxonómia
   taxonomic_changes: "Cambios taxonómicos"
   taxonomic_changes_raquo_html: "Cambios <nobr>taxonómicos &raquo;</nobr>"
   taxonomic_groups: "Grupos taxonómicos"
@@ -7306,6 +7340,7 @@ es-MX:
   they_have_been_invited: "...ya han sido invitados"
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
+  this_is_a: Esta es una
   this_is_a_cached_summary_based_on: "Hay un resumen guardado sobre esta especie o grupo basado en su "
   this_is_a_life_list_of: "Esta es la lista de vida de"
   this_is_more_convenient_way_find_parent: "Esta es una manera más conveniente para encontrar una identificación padre. Es la identificación padre la que se guarda."
@@ -7359,9 +7394,10 @@ es-MX:
   tree_browser_raquo: "Navegador del árbol &raquo;"
   ? "true"
   : en
-  try_adding_species_form: "Intenta añadir algunas especies utilizando la forma en esta página."
+  try_adding_species_form: 'Intenta añadir algunas especies utilizando el boton "Añadir a la lista".'
   try_wikipedia: "¿Prueba Wikipedia?"
   tue: Mar
+  type_a_taxon_name: Especie o grupo
   type_one: Por cada línea pon el nombre de una especie.
   type_place_name: "Escribe el nombre del lugar"
   type_project_name: "Escribe el nombre del proyecto"
@@ -7382,6 +7418,7 @@ es-MX:
   unlink_your_picasa_account: "Desenlaza tu cuenta Picasa"
   unpublish: "Cancela publicación"
   unsubscribe: Quitar suscripción
+  unsubscribe_from_this: Quitar suscripción de este
   unsuspend_user: "Cancela suspensión a usuario"
   update: Actualización
   update_existing_observations_with_new_license: "Actualiza las observaciones existentes con una nueva selección de licencia"
@@ -7704,7 +7741,7 @@ es-MX:
   what_did_you_see?: <em>¿Qué</em> viste?
   what_do_you_think: "¿Que piensas?"
   what_to_keep: "Qué mantener"
-  what_want_to_list?: "¿Que quieres enlistar?"
+  what_want_to_list?: "¿Que quieres poner en la lista?"
   when: Cuándo
   when_did_you_see_it?: "¿Cuándo lo viste?"
   when_did_you_see_them?: <em>¿Cuándo</em> los viste?
@@ -7799,7 +7836,7 @@ es-MX:
   you_retain_full_copyright: "Tú retienes los derechos de autor sobre tu contenido con reserva de los que conferiste a %{site_name} en nuestras Condiciones de Servicio."
   you_retain_full_copyright_over_your_content: "Tu retienes los derechos de autor sobre tu contenido con reserva de los que conferiste a %{site_name} en nuestras Condiciones de Servicio."
   you_sure_delete_asset?: "¿Estás seguro que quieres borrar este recurso?"
-  you_sure_delete_check_list: "¿Estás seguro que quieres borrar esta lista? Algunas personas pudieron poner mucho trabajo en ella..."
+  you_sure_delete_check_list: "¿Estás seguro que quieres borrar esta lista de comprobación? Algunas personas pudieron poner mucho trabajo en ella..."
   you_sure_delete_comment?: "¿Estás seguro que quieres borrar este comentario?"
   you_sure_delete_custom_field?: "¿Estás seguro que quieres borrar estos campos hechos a la medida?"
   you_sure_delete_flag?: "¿Seguro que quieres borrar esta advertencia?"
