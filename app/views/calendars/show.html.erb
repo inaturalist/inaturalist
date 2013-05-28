@@ -32,10 +32,19 @@
   <%-
     desc = ""
     unless @iconic_taxon_counts.blank?
-      desc += commas_and(@iconic_taxon_counts.map {|id,c| pluralize(c, default_taxon_name(Taxon::ICONIC_TAXA_BY_ID[id]).singularize.downcase) })
+      desc += commas_and(@iconic_taxon_counts.map {|id,c| 
+        if @iconic_taxon_counts.size > 1 && (id == Taxon::ICONIC_TAXA_BY_NAME['Animalia'])
+          t("all_taxa.x_other_animals", :count => c)
+        else
+          t("all_taxa.x_#{Taxon::ICONIC_TAXA_BY_ID[id].name.downcase}",
+            :count => c, 
+            :default => default_taxon_name(Taxon::ICONIC_TAXA_BY_ID[id]).downcase.pluralize
+          ).downcase
+        end
+      })
     end
     unless @place_name_counts.blank?
-      desc += " from #{commas_and @place_name_counts.uniq{|n,c| c}.map{|n,c| n.split('-').first.split(',').first}}"
+      desc += " #{t(:from).downcase} #{commas_and @place_name_counts.uniq{|n,c| c}.map{|n,c| n.split('-').first.split(',').first}}"
     end
   -%>
   <meta property="og:description" content="<%= desc %>">
@@ -82,8 +91,13 @@
           <% @iconic_taxon_counts.each do |id, count| %>
             <div class="taxon %>">
               <span class="iconic_taxon_sprite selected <%= Taxon::ICONIC_TAXA_BY_ID[id].name.downcase %>"></span>
-              <%= count %>
-              <%= t(default_taxon_name(Taxon::ICONIC_TAXA_BY_ID[id]).downcase.pluralize, :count => count).downcase.html_safe %>
+              <% if @iconic_taxon_counts.size > 1 && id == Taxon::ICONIC_TAXA_BY_NAME['Animalia'].id -%>
+                <%= t("all_taxa.x_other_animals", :count => count) %>
+              <% else %>
+                <%= 
+                  t("all_taxa.x_#{Taxon::ICONIC_TAXA_BY_ID[id].name.downcase}", :count => count)
+                %>
+              <% end -%>
             </div>
           <% end -%>
         </div>

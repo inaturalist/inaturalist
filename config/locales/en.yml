@@ -199,6 +199,48 @@ en:
     chromista: Chromista
     protozoans: Protozoans
     other_animals: Other Animals
+    x_plantae: 
+      one: "1 plant"
+      other: "%{count} plants"
+    x_animalia: 
+      one: "1 animal"
+      other: "%{count} animals"
+    x_mollusca: 
+      one: "1 mollusk"
+      other: "%{count} mollusks"
+    x_amphibia: 
+      one: "1 amphibian"
+      other: "%{count} amphibians"
+    x_mammalia: 
+      one: "1 mammal"
+      other: "%{count} mammals"
+    x_actinopterygii: 
+      one: "1 ray-finned fish"
+      other: "%{count} ray-finned fishes"
+    x_reptilia: 
+      one: "1 reptile"
+      other: "%{count} reptiles"
+    x_aves: 
+      one: "1 bird"
+      other: "%{count} birds"
+    x_insecta: 
+      one: "1 insect"
+      other: "%{count} insects"
+    x_arachnida: 
+      one: "1 arachnid"
+      other: "%{count} arachnids"
+    x_fungi: 
+      one: "1 fungus"
+      other: "%{count} fungi"
+    x_chromista: 
+      one: "1 chromist"
+      other: "%{count} chromists"
+    x_protozoa:
+      one: "1 protozoan"
+      other: "%{count} protozoa"
+    x_other_animals: 
+      one: "1 other animal"
+      other: "%{count} other animals"
   all_taxonomic_groups: "&laquo; All Taxonomic Groups"
   all_your_observations_will_default_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   all_your_observations_will_default_to_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
@@ -1275,6 +1317,9 @@ en:
   organism_appears_captive_cultivated: Organism appears captive / cultivated
   other: other
   other_animals: other animals
+  other_animals_plural:
+    one: other animal
+    other: other animals
   other_annimals: Other Animals
   out_of_range: Out of range
   owner: Owner

@@ -230,6 +230,48 @@ es:
      chromista: Algas pardas y parientes
      protozoans: Protozoarios
      other_animals: Otros animales
+     x_plantae: 
+       one: "1 planta"
+       other: "%{count} plantas"
+     x_animalia: 
+       one: "1 animal"
+       other: "%{count} animales"
+     x_mollusca: 
+       one: "1 molusco"
+       other: "%{count} moluscos"
+     x_amphibia: 
+       one: "1 anfibio"
+       other: "%{count} anfibios"
+     x_mammalia: 
+       one: "1 mamífero"
+       other: "%{count} mamíferos"
+     x_actinopterygii: 
+       one: "1 pescado con aletas radiadas"
+       other: "%{count} peces con aletas radiadas"
+     x_reptilia: 
+       one: "1 reptil"
+       other: "%{count} reptiles"
+     x_aves: 
+       one: "1 ave"
+       other: "%{count} aves"
+     x_insecta: 
+       one: "1 insectos"
+       other: "%{count} insectos"
+     x_arachnida: 
+       one: "1 arácnido"
+       other: "%{count} arácnidos"
+     x_fungi: 
+       one: "1 hongo"
+       other: "%{count} hongos"
+     x_chromista: 
+       one: "1 alga pardas y parientes"
+       other: "%{count} algas pardas y parientes"
+     x_protozoa:
+       one: "1 protozoario"
+       other: "%{count} protozoarios"
+     x_other_animals: 
+       one: "1 otro animal"
+       other: "%{count} otros animales"
   all_taxonomic_groups: "&laquo; Todos los Grupos Taxonómicos"
   all_your_observations_will_default_this_time_zone: "Todas sus observaciones se harán en esta zona horaria a menos que usted especifique lo contrario."
   all_your_observations_will_default_to_this_time_zone: "Todas sus observaciones se harán en esta zona horaria a menos que usted especifique lo contrario."
@@ -1313,7 +1355,7 @@ es:
   new_user_rules: "Nuevas reglas de usuario"
   new_users: Usuarios nuevos
   new_users_week: "Usuarios nuevos / Semana"
-  next: Siguiente &raquo;
+  next: Siguiente
   next_page: "Página siguiente"
   'no': 'No'
   no_activity_in_the_past_week: "No ha habido actividad en la semana anterior. !Es hora de"
@@ -1542,6 +1584,9 @@ es:
   other: otro
   other_animals: "otros animales"
   other_annimals: "Otros animales"
+  other_animals_plural:
+    one: otro animal
+    other: otros animales
   out_of_range: "Fuera del rango"
   owner: Propietario
   parent: Padre
