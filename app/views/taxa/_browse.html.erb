@@ -5,7 +5,7 @@
   <%= hidden_field_tag :view, @view %>
   <%= hidden_field_tag :is_active, @is_active %>
   <%= text_field_tag 'q', params[:q], :class => 'text' %>
-  <input type="submit" class="default button" value="Go" />
+  <input type="submit" class="default button" value="<%= t :go %>" />
   <%= link_to t(:clear), url_for_params(:without => :q), :class => 'delete button' %>
   <div class="inter">
     <%= render(:partial => "shared/page_results", :object => @taxa) unless @taxa.nil? %>
@@ -70,7 +70,7 @@
           <%- selected = @iconic_taxa_ids && @iconic_taxa_ids.include?(iconic_taxon.id) -%>
           <div class="facet_value<%= ' selected' if selected %>">
             <%= link_to('&times;'.html_safe, url_for_params(:without => [:iconic_taxa, :page]), :rel => "nofollow", :class => 'right description') if selected %>
-            <%= link_to default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true), 
+            <%= link_to t("all_taxa.#{default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true).gsub(' ','_').gsub('-','_').downcase}", :default=>default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true)),
               url_for_params(:iconic_taxa => iconic_taxon.id, :without => :page), 
               :rel => "nofollow",
               :class => "taxon #{iconic_taxon.name}" %>
