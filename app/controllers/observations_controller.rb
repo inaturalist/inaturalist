@@ -2079,7 +2079,7 @@ class ObservationsController < ApplicationController
     end
     o = @local_photo.to_observation
     PHOTO_SYNC_ATTRS.each do |sync_attr|
-      @observation.send("#{sync_attr}=", o.send(sync_attr)) unless o.send(sync_attr).blank?
+      @observation.send("#{sync_attr}=", o.send(sync_attr))
     end
 
     unless @observation.observation_photos.detect {|op| op.photo_id == @local_photo.id}
