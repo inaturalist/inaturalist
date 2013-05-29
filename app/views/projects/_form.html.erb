@@ -2,7 +2,7 @@
   <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css", "projects/form" %>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= google_maps_js %>
   <script type="text/javascript">
     var PROJECT = <%= @project.to_json.html_safe %>,
         RULE_PLACE = <%= @project.rule_place.to_json.html_safe %>,

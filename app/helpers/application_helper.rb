@@ -879,5 +879,10 @@ module ApplicationHelper
   rescue URI::InvalidURIError
     args.join('/').gsub(/\/+/, '/')
   end
+
+  def google_maps_js(options = {})
+    sensor = options[:sensor] ? 'true' : 'false'
+    "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?sensor=#{sensor}'></script>".html_safe
+  end
   
 end
