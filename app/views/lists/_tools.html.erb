@@ -13,7 +13,7 @@
     }
     function startDelayed(url, maxTries) {
       if (refreshTries > maxTries) {
-        alert(<%=t :reload_timed_out %>)
+        alert(I18n.t('reload_timed_out'))
       } else {
         $.ajax({
           data:'tries='+refreshTries+'&authenticity_token=' + $('meta[name=csrf-token]').attr('content'), 
