@@ -34,9 +34,9 @@
         <%= link_to t(:range), taxon_path(change_taxon, :anchor => 'taxon_range') %>
       <% end -%>
       <% if change_taxon.is_active? -%>
-        | <span class='active'><%= t :active %></span>
+        | <span class='active'><%= t(:active).humanize %></span>
       <% else %>
-        | <span class='inactive'><%= t :inactive %></span>
+        | <span class='inactive'><%= t(:inactive).humanize %></span>
       <% end -%>
       <% if change_taxon.flagged? %>
         | <span id="flaggings_heads_up" class="description">
