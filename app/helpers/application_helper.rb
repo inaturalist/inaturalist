@@ -857,9 +857,9 @@ module ApplicationHelper
   def establishment_blob(listed_taxon, options = {})
     icon_class = listed_taxon.introduced? ? 'ui-icon-notice' : 'ui-icon-star'
     tip_class = listed_taxon.introduced? ? 'ui-tooltip-error' : 'ui-tooltip-success'
-    tip = "<strong>#{listed_taxon.establishment_means.capitalize}"
-    tip += " in #{listed_taxon.place.display_name}" if options[:show_place_name] && listed_taxon.place
-    tip += ":</strong> #{ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[listed_taxon.establishment_means]}"
+    tip = "<strong>#{t("establishment.#{(listed_taxon.establishment_means)}", :default => listed_taxon.establishment_means).capitalize}"
+    tip += " #{t(:in)} #{listed_taxon.place.display_name}" if options[:show_place_name] && listed_taxon.place
+    tip += ":</strong> #{t("establishment_means_descriptions.#{ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[listed_taxon.establishment_means].gsub('-','_').gsub(' ','_').downcase}", :default => ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[listed_taxon.establishment_means])}"
     blob_attrs = {
       :class => "blob #{listed_taxon.introduced? ? 'introduced' : listed_taxon.establishment_means.underscore} #{options[:class]}", 
       "data-tip" => tip, 
