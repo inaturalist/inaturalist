@@ -124,6 +124,19 @@ describe Ratatosk, "searching" do
     taxon.reload
     taxon.unique_name.should_not be_nil
   end
+
+  it "should add names to existing taxa" do
+    load_test_taxa
+    ratatosk = Ratatosk::Ratatosk.new(:name_providers => [:col])
+    existing = Taxon.find_by_name('Calypte anna')
+    existing.should_not be_blank
+    results = ratatosk.find('Calypte anna')
+    puts "existing: #{existing}"
+    results.each do |tn|
+      puts "tn: #{tn}"
+      tn.taxon.should eq(existing)
+    end
+  end
 end
 
 describe Ratatosk, "grafting" do
