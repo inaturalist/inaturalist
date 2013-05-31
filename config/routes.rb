@@ -26,7 +26,8 @@ Inaturalist::Application.routes.draw do
   match '/oauth/bounce' => 'provider_oauth#bounce', :as => "oauth_bounce"
   match '/oauth/bounce_back' => 'provider_oauth#bounce_back', :as => "oauth_bounce_back"
   use_doorkeeper do
-    controllers :applications => 'oauth_applications'
+    controllers :applications => 'oauth_applications',
+                :authorizations => 'oauth_authorizations'
   end
 
   wiki_root '/pages'

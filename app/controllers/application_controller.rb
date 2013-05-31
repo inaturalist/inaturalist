@@ -1,8 +1,6 @@
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
-  # include AuthenticatedSystem
-  # include RoleRequirementSystem
   include Ambidextrous
   
   has_mobile_fu :ignore_formats => [:tablet, :json]
@@ -137,21 +135,6 @@ class ApplicationController < ActionController::Base
   def set_time_zone
     Time.zone = self.current_user.time_zone if logged_in?
     Chronic.time_class = Time.zone
-  end
-  
-  #
-  # Filter to set a return url
-  #
-  def return_here
-    ie_needs_return_to = false
-    if request.user_agent =~ /msie/i && params[:format].blank? && 
-        ![Mime::JS, Mime::JSON, Mime::XML, Mime::KML, Mime::ATOM].map(&:to_s).include?(request.format.to_s)
-      ie_needs_return_to = true
-    end
-    if (ie_needs_return_to || request.format.blank? || request.format.html?) && !params.keys.include?('partial')
-      session[:return_to] = request.fullpath
-    end
-    true
   end
   
   def return_here_from_url
