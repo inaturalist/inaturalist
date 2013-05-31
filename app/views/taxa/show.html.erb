@@ -281,7 +281,13 @@
             </div>
           <% end -%>
           <%= establishment_blob(@listed_taxon, :class => "inlineblock") if @listed_taxon.endemic? || @listed_taxon.introduced? %>
-          <strong><%= t("establishment.#{@listed_taxon.establishment_means}" || "present", :default => "present").capitalize %></strong>
+          <strong>
+            <% if @listed_taxon.establishment_means.blank? -%>
+              <%= t(:present).capitalize %>
+            <% else %>
+              <%= t("establishment.#{@listed_taxon.establishment_means}", :default => "present").capitalize %>
+            <% end -%>
+          </strong>
           <%=t @listed_taxon.native? ? 'to' : 'in' %>
           <%= link_to t(@listed_taxon.place.name, :default => @listed_taxon.place.name), @listed_taxon.place %>
           <span class="small">
