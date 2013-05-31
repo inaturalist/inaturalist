@@ -221,4 +221,12 @@ class Photo < ActiveRecord::Base
     LICENSE_INFO[number].try(:[], :code)
   end
   
+  def self.default_json_options
+    {
+      :methods => [:license_code, :attribution],
+      :except => [:original_url, :file_processing, :file_file_size, 
+        :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
+        :native_realname, :native_photo_id]
+    }
+  end
 end

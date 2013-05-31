@@ -108,7 +108,7 @@ Inaturalist::Application.routes.draw do
   end
   match 'picasa/unlink' => 'picasa#unlink', :method => :delete
 
-  resources :observation_photos, :only => :create
+  resources :observation_photos, :only => [:show, :create, :update, :destroy]
   match 'flickr/photos.:format' => 'flickr#photos', :via => :get
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags

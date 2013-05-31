@@ -720,7 +720,7 @@ class ObservationsController < ApplicationController
           flash[:error] = msg
           redirect_back_or_default(observations_by_login_path(current_user.login))
         end
-        format.json { render :json => msg, :status => :gone }
+        format.json { render :json => {:error => msg}, :status => :gone }
       else
         format.html do
           flash[:notice] = "Observation(s) was successfully updated. #{extra_msg}"
