@@ -202,7 +202,7 @@
       <div id="calendar" class="clear stacked">
         <%= render :partial => "calendars/calendar", :locals => { 
           :observations => @month_observations, 
-          :month_name => "Your #{Date::MONTHNAMES[Date.today.month]} Observations" } %>
+          :month_name => t(:your_month_observations, :month => t("date_format.month.#{Date::MONTHNAMES[Date.today.month].downcase}")) } %>
         <%= link_to t(:view_your_calendar), calendar_path(current_user.login), :class => "readmore" %>
       </div>
 
