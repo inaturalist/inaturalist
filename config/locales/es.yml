@@ -1338,6 +1338,8 @@ es:
   most_agree: "La mayoría la apoya"
   most_disagree: "La mayoría no la apoyan"
   multiple_taxa: Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)
+  must_be_observed_in: deben ser observaciones en
+  must_have_observation_field: "debe completar el campo '%{operand}' en la observación"
   n_ago: "hace %{n}"
   n_people_agrees: "%{amount} personas concuerdan"
   n_people_disagrees: "%{amount} personas no concuerdan "
@@ -1864,6 +1866,12 @@ es:
   rules_amp_formating: "Reglas &amp; Formato"
   rules_for_adding_observations: "Reglas para agregar observaciones"
   rules_for_becoming_a_member: "Reglas para ser miembro"
+  rules_types:
+        must_be_georeferenced: deben estar con georeferencia
+        must_be_identified: deben estar idenfiticadas
+        must_be_on_list: deben estar en la lista
+        must_be_observed_in_place: deben ser observaciones en este lugar
+        must_be_in: deben estar dentro de la especie o grupo
   sat: sáb
   satellite: satélite
   save: Guardar

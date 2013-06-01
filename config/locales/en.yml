@@ -1115,6 +1115,8 @@ en:
   most_agree: most agree
   most_disagree: most disagree
   multiple_taxa: Multiple taxa (input for swap/merge, output for split)
+  must_be_observed_in: must_be_observed_in
+  must_have_observation_field: "must have observation field '%{operand}' filled out"
   n_ago: "%{n} ago"
   n_people_agrees: "%{amount} people agree"
   n_people_disagrees: "%{amount} people disagree"
@@ -1595,6 +1597,12 @@ en:
   rules_for_adding_observations: Rules for Adding Observations
   rules_for_becoming_a_member: Rules for Becoming a Member
   rules_for_becoming_memner: Rules for Becoming a Member
+  rules_types:
+        must_be_georeferenced: must be georeferenced
+        must_be_identified: must be identified
+        must_be_on_list: must be on list
+        must_be_observed_in_place: must be observed in Place
+        must_be_in: must be in taxon
   sat: Sat
   satellite: satellite
   save: Save
