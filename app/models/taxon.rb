@@ -1359,6 +1359,10 @@ class Taxon < ActiveRecord::Base
       taxon = sorted.detect{|t| t.taxon_names.detect{|tn| tn.name.downcase == name.downcase && tn.is_valid?}}
       taxon || sorted.first
 
+    # if only one is active, choose the active one
+    elsif sorted.select{|taxon| taxon.is_active?}.size == 1
+      sorted.detect{|taxon| taxon.is_active?}
+
     # if the names are synonymous and share the same parent, choose the first active concept
     elsif taxon_names.map(&:name).uniq.size == 1 && taxa.map(&:parent_id).uniq.size == 1
       taxon = sorted.detect do |taxon|
