@@ -365,9 +365,9 @@
       
       <div id="new_identification_form">
         <% if !logged_in? -%>
-          <%= link_to "Sign in", login_path %>
-          or <%= link_to "sign up", signup_path %>
-          to add identifications.
+          <%= link_to t(:sign_in), login_path %>
+          <%= t :or %> <%= link_to t(:sign_up), signup_path %>
+          <%= t :to_add_identifications %>
         <% else %>
           <%- new_identification = Identification.new(:user => current_user, :observation => @observation) -%>
           <%= form_for new_identification do |f| %>
@@ -376,7 +376,7 @@
               :f => f,
               :show_body => true
             } %>
-            <%= f.submit 'Save Identification', :class => 'default button', "data-loading-click" => "Saving..." %>
+            <%= f.submit t(:save_identification), :class => 'default button', "data-loading-click" => t(:saving) %>
           <% end %>
         <% end -%>
       </div>
