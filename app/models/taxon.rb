@@ -1046,13 +1046,14 @@ class Taxon < ActiveRecord::Base
   # in memory.  It's database agnostic but massively ineffecient
   def update_descendants_with_new_ancestry
     return true if ancestry_callbacks_disabled?
-    return true unless changed.include?(self.base_class.ancestry_column.to_s) && !new_record? && valid?
-    old_ancestry = send("#{base_class.ancestry_column}_was")
+    ancestry_column = self.class.base_class.ancestry_column.to_s
+    return true unless changed.include?(ancestry_column) && !new_record? && valid?
+    old_ancestry = send("#{ancestry_column}_was")
     old_ancestry = old_ancestry.blank? ? id : "#{old_ancestry}/#{id}"
-    new_ancestry = send(base_class.ancestry_column)
+    new_ancestry = send(ancestry_column)
     new_ancestry = new_ancestry.blank? ? id : "#{new_ancestry}/#{id}"
-    base_class.update_all(
-      "#{base_class.ancestry_column} = regexp_replace(#{base_class.ancestry_column}, '^#{old_ancestry}', '#{new_ancestry}')", 
+    self.class.base_class.update_all(
+      "#{ancestry_column} = regexp_replace(#{ancestry_column}, '^#{old_ancestry}', '#{new_ancestry}')", 
       descendant_conditions
     )
     Taxon.delay(:priority => INTEGRITY_PRIORITY).update_descendants_with_new_ancestry(id, child_ancestry)
