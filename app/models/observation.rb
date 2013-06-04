@@ -1638,8 +1638,6 @@ class Observation < ActiveRecord::Base
       "http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8"
     elsif user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
       "https://market.android.com/details?id=org.inaturalist.android"
-    else
-      "/"
     end
   end
   

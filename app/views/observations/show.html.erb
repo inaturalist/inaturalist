@@ -306,7 +306,7 @@
       </span>
     </div>
 
-    <% if (a = @observation.oauth_application) || @observation.device_name -%>
+    <% if (a = @observation.oauth_application) || !@observation.device_url.blank? -%>
       <div id="app" class="description">
         <label>App:</label>
         <% if a -%>
@@ -318,10 +318,8 @@
             <%= link_to(image_tag("http://www.google.com/s2/u/0/favicons?domain=#{uri.host}"), url) %>
           <% end -%>
           <%= link_to a.name, url %>
-        <% elsif @observation.device_url -%>
+        <% elsif !@observation.device_url.blank? -%>
           <%= link_to @observation.device_name, @observation.device_url %>
-        <% else %>
-          <%= @observation.device_name %>
         <% end -%>
       </div>
     <% end -%>
