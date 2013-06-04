@@ -311,7 +311,7 @@
         <label>App:</label>
         <% if a -%>
           <%-
-            url = a.url || url_for(a)
+            url = a.url.blank? ? oauth_application_url(a) : a.url
             uri = URI.parse(url) rescue nil
           -%>
           <% if uri -%>
