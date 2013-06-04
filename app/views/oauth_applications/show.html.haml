@@ -1,19 +1,35 @@
 = link_to "&laquo; Back to applications".html_safe, oauth_applications_path, :class => "crumb"
-%h2
-  Application: #{@application.name}
-.ui
-  %h4 Callback url:
-  %p
-    %code#callback_url= @application.redirect_uri
-  %h4 Application Id:
-  %p
-    %code#application_id= @application.uid
-  %h4 Secret:
-  %p
-    %code#secret= @application.secret
-  %h4 Link to authorization code:
-  %p= link_to 'Authorize', oauth_authorization_path(:client_id => @application.uid, :redirect_uri => @application.redirect_uri, :response_type => 'code' )
-  %h3 Actions
-  .inline.buttonrow
-    = link_to 'Edit', edit_oauth_application_path(@application), :class => "inline button"
-    = link_to 'Remove', [:oauth, @application], :method => :delete, :data => { :confirm => "Are you sure?" }, :class => "inline button"
+%h2= @application.name
+.column.span-8
+  = image_tag @application.image.url(:medium), :style => "width:310px;"
+.column.span-16.last
+  .stacked
+    - if @application.description.blank?
+      %p.meta.nocontent This application has no description
+    = formatted_user_text @application.description
+    - unless @application.url.blank?
+      .stacked
+        = link_to "Website", @application.url, :class => "readmore"
+    .meta
+      =t :created_by
+      = link_to_user @application.owner
+      %span.when
+        %abbr.date.timeago{:title => @application.created_at.iso8601}
+          =t :n_ago, :n => time_ago_in_words(@application.created_at)
+  - if (is_admin? || is_me?(@application.user))
+    .ui.notice.box
+      %h4 Callback url:
+      %p
+        %code#callback_url= @application.redirect_uri
+      %h4 Application Id:
+      %p
+        %code#application_id= @application.uid
+      %h4 Secret:
+      %p
+        %code#secret= @application.secret
+      %h4 Link to authorization code:
+      %p= link_to 'Authorize', oauth_authorization_path(:client_id => @application.uid, :redirect_uri => @application.redirect_uri, :response_type => 'code' )
+      %h3 Actions
+      .inline.buttonrow
+        = link_to 'Edit', edit_oauth_application_path(@application), :class => "inline button"
+        = link_to 'Remove', [:oauth, @application], :method => :delete, :data => { :confirm => "Are you sure?" }, :class => "inline button"

@@ -123,6 +123,7 @@ class Observation < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
+  belongs_to :oauth_application
   has_many :observation_photos, :dependent => :destroy, :order => "id asc"
   has_many :photos, :through => :observation_photos
   

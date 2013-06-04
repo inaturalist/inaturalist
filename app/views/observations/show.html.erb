@@ -306,10 +306,19 @@
       </span>
     </div>
 
-    <% if @observation.mobile? -%>
-      <div id="device" class="description <%= @observation.device_name.to_s.split.join('_').downcase %>">
-        <label><%= t :device %>:</label>
-        <% if @observation.device_url -%>
+    <% if (a = @observation.oauth_application) || @observation.device_name -%>
+      <div id="app" class="description">
+        <label>App:</label>
+        <% if a -%>
+          <%-
+            url = a.url || url_for(a)
+            uri = URI.parse(url) rescue nil
+          -%>
+          <% if uri -%>
+            <%= link_to(image_tag("http://www.google.com/s2/u/0/favicons?domain=#{uri.host}"), url) %>
+          <% end -%>
+          <%= link_to a.name, url %>
+        <% elsif @observation.device_url -%>
           <%= link_to @observation.device_name, @observation.device_url %>
         <% else %>
           <%= @observation.device_name %>

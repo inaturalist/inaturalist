@@ -81,6 +81,13 @@ LocalPhoto.blueprint do
   user { User.make }
 end
 
+OauthApplication.blueprint do
+  name { Faker::Lorem.sentence }
+  owner { User.make }
+  url { "http://#{Faker::Internet.domain_name}" }
+  redirect_uri { Doorkeeper.configuration.test_redirect_uri }
+end
+
 Observation.blueprint do
   user { User.make! }
 end

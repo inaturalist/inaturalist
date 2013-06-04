@@ -515,6 +515,9 @@ class ObservationsController < ApplicationController
       o = Observation.new(observation)
       o.user = current_user
       o.user_agent = request.user_agent
+      if doorkeeper_token && (a = doorkeeper_token.application)
+        o.oauth_application = a.becomes(OauthApplication)
+      end
       # Get photos
       Photo.descendent_classes.each do |klass|
         klass_key = klass.to_s.underscore.pluralize.to_sym
