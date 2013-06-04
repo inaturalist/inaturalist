@@ -1340,6 +1340,8 @@ es:
   most_agree: "La mayoría la apoya"
   most_disagree: "La mayoría no la apoyan"
   multiple_taxa: Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)
+  must_be_observed_in: deben ser observaciones en
+  must_have_observation_field: "debe completar el campo '%{operand}' en la observación"
   n_ago: "hace %{n}"
   n_people_agrees: "%{amount} personas concuerdan"
   n_people_disagrees: "%{amount} personas no concuerdan "
@@ -1373,7 +1375,7 @@ es:
   new_observation_field: "Nuevo campo de observación"
   new_observation_rules: "Nuevas reglas de observación"
   new_observations: Nuevas observaciones
-  new_observations_ellipsis: "Nuevas observaciones..."
+  new_observations_ellispsis: "Nuevas observaciones..."
   new_observations_from_place_html: "Nuevas observaciones del %{place}"
   new_observations_of_x_html: "Nuevas observaciones de %{x}"
   new_password: "Contraseña nueva"
@@ -1821,6 +1823,7 @@ es:
   regenerate_url: "Regenerar URL"
   reload_from_observations: "Volver a cargar sus observaciones"
   reload_timed_out: "El tiempo de carga expiró.  Por favor trate de nuevo en un momento."
+  remarks_optional: 'Comentarios <span class="small description">(opcionales)</span>'
   remember_its_a_lot_easier_to_id: "Recuerde, es mucho más fácil identificar algo si usted brinda tanta información descriptiva como sea posible. Más importante aún, por favor brinde un <strong>lugar</fuerte>, una <strong>fecha/time</fuerte>, y alguna información acerca del <strong>tamaño</fuerte>."
   remember_me: Recuérdeme
   remove: Quitar
@@ -1866,6 +1869,12 @@ es:
   rules_amp_formating: "Reglas &amp; Formato"
   rules_for_adding_observations: "Reglas para agregar observaciones"
   rules_for_becoming_a_member: "Reglas para ser miembro"
+  rules_types:
+        must_be_georeferenced: deben estar con georeferencia
+        must_be_identified: deben estar idenfiticadas
+        must_be_on_list: deben estar en la lista
+        must_be_observed_in_place: deben ser observaciones en este lugar
+        must_be_in: deben estar dentro de la especie o grupo
   sat: sáb
   satellite: satélite
   save: Guardar
@@ -2777,6 +2786,7 @@ es:
   your_home: "Su página de inicio"
   your_identification: "Su identificación"
   your_inat_account_has_been_activated: "Su cuenta %{inat} ha sido activada."
+  your_month_observations: Tus observaciones de %{month}
   your_new_password_is: "Su nueva contraseña es"
   your_observation_will_get_shared_html: "Su observación será compartido con redes sociales si se deja estes cajas marcados. Puedes cambiar por <a href='%{url}' target='_blank'>edita tu configuración</a>."
   your_observation_wont_get: "su observación no será asociada con otras observaciones de esta especie y su lista de vida no será actualizada."

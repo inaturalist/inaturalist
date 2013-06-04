@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "#{h truncate(@project.title, :length => 85)}" %> <%=t :terms_and_rules %>
+  <%= @title = "#{h truncate(@project.title, :length => 85)}" %> <%=t(:terms_and_rules).html_safe %>
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">

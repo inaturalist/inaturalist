@@ -6399,7 +6399,7 @@ es-MX:
   id_please: "Identificación por favor"
   id_please!: "¡Identificación por favor!"
   identification: Identificación
-  identification_summary: "Resumen de identifiaciones"
+  identification_summary: "Resumen de identificaciones"
   identifications: Identificaciones
   identifications_by: "Las identificaciones por %{user}"
   identified?: con identificación
@@ -6470,7 +6470,7 @@ es-MX:
   is_an: "es un"
   is_not_following_anyone: "No está siguiendo a nadie"
   is_the_organism_wild: "¿El organismo es silvestre / naturalizado?"
-  is_this_observation_offensive_html: "¿Es la observación <a href=\"/help#inappropriate\">inappropriade</a>, ofensiva o spam?"
+  is_this_observation_offensive_html: "¿Es la observación <a href=\"/help#inappropriate\">inapropiada</a>, ofensiva o spam?"
   is_this_place_a_duplicate: "¿Está duplicado este lugar?"
   it_has: Tiene
   it_instead: "en lugar."
@@ -6635,6 +6635,8 @@ es-MX:
   most_disagree: "La mayoría no está de acuerdo"
   most: Más
   multiple_taxa: Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)
+  must_be_observed_in: deben ser observaciones en
+  must_have_observation_field: "debe completar el campo '%{operand}' en la observación"
   n_ago: "hace %{n}"
   n_people_agrees: "%{amount} personas están de acuerdo"
   n_people_disagrees: "%{amount} personas no están de acuerdo"
@@ -6665,6 +6667,7 @@ es-MX:
   new_observation_field: "Nuevo campo de observación"
   new_observation_rules: "Nuevas reglas de observación"
   new_observations: "Nuevas observaciones..."
+  new_observations_ellispsis: Reglas de las observaciones
   new_password: "Nueva contraseña"
   new_post: "Nueva nota"
   new_project: "Nuevo proyecto"
@@ -7072,6 +7075,7 @@ es-MX:
   regenerate_url: "Regenera el URL"
   reload_from_observations: "Vuelve a cargar a partir de las observaciones"
   reload_timed_out: "El tiempo de carga se terminó. Por favor inténtalo otra vez más tarde."
+  remarks_optional: 'Comentarios <span class="small description">(opcionales)</span>'
   remember_its_a_lot_easier_to_id: "Recuerda, es mucho más facil identificar algo si proporcionas la información descriptiva que más puedas. De mayor importancia es que por favor proporciones un <strong>lugar</strong>, una <strong>fecha/tiempo</strong>, y algo de información acerca de su <strong>tamaño</strong>."
   remember_me: Recuérdame
   remove: Quitar
@@ -7112,6 +7116,12 @@ es-MX:
   rules_for_adding_observations: "Reglas para añadir observaciones"
   rules_for_becoming_a_member: "Reglas para convertirse en miembro"
   rules_for_becoming_memner: "Reglas para convertirse en miembro"
+  rules_types:
+      must_be_georeferenced: deben estar con georeferencia
+      must_be_identified: deben estar idenfiticadas
+      must_be_on_list: deben estar en la lista
+      must_be_observed_in_place: deben ser observaciones en este lugar
+      must_be_in: deben estar dentro de la especie o grupo
   sat: Sáb
   satellite: satélite
   save: Guardar
@@ -7921,6 +7931,7 @@ es-MX:
   your_home: "Tu inicio"
   your_identification: "Tu identificación"
   your_inat_account_has_been_activated: "Tu cuenta de %{inat} ha sido activada"
+  your_month_observations: Tus observaciones de %{month}
   your_new_password_is: "Tu nueva contraseña es"
   your_observation_wont_get: "Tu observación no será asociada con otras observaciones de esta especie, y tu lista de vida no será actualizada."
   your_observations: "Tus observaciones"
