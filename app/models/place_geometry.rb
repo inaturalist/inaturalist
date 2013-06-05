@@ -21,8 +21,11 @@ class PlaceGeometry < ActiveRecord::Base
   end
   
   def refresh_place_check_list
-    self.place.check_list.delay(:priority => 1).refresh unless new_record?
-    self.place.check_list.delay(:priority => 1).add_observed_taxa
+    if place.check_list
+      priority = place.user_id.blank? ? INTEGRITY_PRIORITY : USER_PRIORITY
+      self.place.check_list.delay(:priority => priority, :queue => "slow").refresh unless new_record?
+      self.place.check_list.delay(:priority => priority, :queue => "slow").add_observed_taxa
+    end
     true
   end
 end

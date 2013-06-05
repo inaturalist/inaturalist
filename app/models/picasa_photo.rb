@@ -1,3 +1,4 @@
+#encoding: utf-8
 class PicasaPhoto < Photo
   
   Photo.descendent_classes ||= []
@@ -8,7 +9,7 @@ class PicasaPhoto < Photo
   
   def user_owns_photo
     if self.user
-      unless native_username == self.user.picasa_identity.picasa_user_id
+      unless self.user.picasa_identity && native_username == self.user.picasa_identity.picasa_user_id
         errors.add(:user, "must own the photo on Picasa.")
       end
     end
@@ -25,7 +26,7 @@ class PicasaPhoto < Photo
     # Setup the observation
     observation = Observation.new
     observation.user = self.user if self.user
-    observation.photos << self
+    observation.observation_photos.build(:photo => self, :observation => observation)
     observation.description = api_response.description
     if timestamp = api_response.exif_time || api_response.timestamp
       observation.observed_on_string = Time.at(timestamp / 1000).to_s(:long)
@@ -45,7 +46,7 @@ class PicasaPhoto < Photo
       begin
         places = Place.search(:geo => [latrads,lonrads], :order => "@geodist asc", :limit => 5)
         places = places.compact.select {|p| p.contains_lat_lng?(observation.latitude, observation.longitude)}
-        places = places.sort_by(&:bbox_area)
+        places = places.sort_by{|p| p.bbox_area || 0}
         if place = places.first
           observation.place_guess = place.display_name
         end
@@ -102,6 +103,14 @@ class PicasaPhoto < Photo
       native_username = api_response.user
       native_realname = api_response.nickname
     end
+    license = case api_response.license.try(:url)
+    when /by\//       then Photo.license_number_for_code(Observation::CC_BY)
+    when /by-nc\//    then Photo.license_number_for_code(Observation::CC_BY_NC)
+    when /by-sa\//    then Photo.license_number_for_code(Observation::CC_BY_SA)
+    when /by-nd\//    then Photo.license_number_for_code(Observation::CC_BY_ND)
+    when /by-nc-sa\// then Photo.license_number_for_code(Observation::CC_BY_NC_SA)
+    when /by-nc-nd\// then Photo.license_number_for_code(Observation::CC_BY_NC_ND)
+    end
     options.update(
       :user            => options[:user],
       :native_photo_id => api_response.link('self').href,
@@ -114,7 +123,7 @@ class PicasaPhoto < Photo
       :native_page_url => api_response.link('alternate').href,
       :native_username => native_username,
       :native_realname => native_realname,
-      :license         => api_response.license
+      :license         => license
     )
     picasa_photo = PicasaPhoto.new(options)
     if !picasa_photo.native_username && matches = picasa_photo.native_photo_id.match(/user\/(.+?)\//)
@@ -131,15 +140,19 @@ class PicasaPhoto < Photo
     return [] unless user.picasa_identity
     picasa = user.picasa_client
     # to access a friend's album, you need the full url rather than just album id. grrr.
-    if options[:picasa_user_id]  
-      picasa_album_url = "https://picasaweb.google.com/data/feed/api/user/#{options[:picasa_user_id]}/albumid/#{picasa_album_id}"
+    picasa_album_url = if options[:picasa_user_id]  
+      "https://picasaweb.google.com/data/feed/api/user/#{options[:picasa_user_id]}/albumid/#{picasa_album_id}"
     end
     album_data = picasa.album((picasa_album_url || picasa_album_id.to_s), 
       :max_results => options[:max_results], 
       :start_index => options[:start_index],
       :thumbsize => RubyPicasa::Photo::VALID.join(','))  # this also fetches photo data
-    photos = album_data.photos.map do |pp|
-      PicasaPhoto.new_from_api_response(pp, :thumb_sizes=>['thumb']) 
+    photos = if album_data
+      album_data.photos.map do |pp|
+        PicasaPhoto.new_from_api_response(pp, :thumb_sizes=>['thumb']) 
+      end
+    else
+      []
     end
   end
 

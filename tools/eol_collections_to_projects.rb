@@ -8,12 +8,10 @@ This script is meant to keep the EOL projects on iNaturalist in sync with the
 EOL collections in an EOL collection (yes, EOL has collections of collections)
 
 Usage:
-  script/runner tools/eol_collections_to_projects.rb <EOL collection url>
+  rails runner tools/eol_collections_to_projects.rb <EOL collection url>
 
 The script:
-   1) makes projects for collections if they don't already exist but doesn't
-     automatically add the icon, descripton, terms, or custom header - that
-     would be nice
+   1) makes projects for collections if they don't already exist
    2) adds listed_taxa to the list for the project for taxa in the EOL 
       collection
    3) removes any listed_taxa on the list for the project for taxa that 
@@ -21,10 +19,6 @@ The script:
    4) records the names of taxa in the EOL collection that aren't represented 
       by any iNat taxon_names (these taxa or taxon_names will be manually
       added)
-
-Improvements:
-  How would I automatically create the project_icon from the EOL logo_url?
-  More elegant way for stripping author of EOL Sci Name?
 
 Options:
 EOS
@@ -58,12 +52,20 @@ eol_source ||= Source.create(
   :title => 'Encyclopedia of Life'
 )
 
-#Get the Collections in the iNaturalist Collection from EOL
-unless response = Net::HTTP.get_response(URI.parse(eol_collection_url))
+# Get the Collections in the iNaturalist Collection from EOL
+response = Net::HTTP.get_response(URI.parse(eol_collection_url))
+unless response.is_a?(Net::HTTPOK)
   puts "couldn't access iNat Collection on EOL"
-  break
+  exit(0)
 end
+
 doc = Nokogiri::XML(response.body)
+
+if error_elt = doc.at('error')
+  puts "Error retrieving collection: #{error_elt.inner_text}"
+  exit(0)
+end
+
 eol_collection_ids = doc.xpath('//object_id[../object_type/text() = "Collection"]').map(&:text)
 eol_collection_ids.each do |eol_collection_id|
   # sleep(5)
@@ -71,6 +73,7 @@ eol_collection_ids.each do |eol_collection_id|
   taxa_removed = []         #in the project_list as a listed_taxa but no longer in the eol collection
   taxa_added = []    #in the eol collection so added to the the project_list as a listed_taxa
   taxa_missing = []  #in the eol collection but not added because it doesn't exist as a taxon in iNat (make manually)
+  taxa_skipped = []
   url = "http://eol.org/api/collections/1.0/#{eol_collection_id}/?per_page=1000"
   puts url
   begin
@@ -114,7 +117,7 @@ eol_collection_ids.each do |eol_collection_id|
     project.title = project_name
     project.source_url = collection_url if project.source_url.blank?
     project.description = col.at('description').try(:text)
-    project.save
+    project.save unless opts[:test]
   else
     project = Project.new(
       :user_id => the_user.id, 
@@ -123,14 +126,14 @@ eol_collection_ids.each do |eol_collection_id|
       :description => col.at('description').try(:text),
       :project_type => "contest")
     project.project_observation_rules.build(:operator => "on_list?")
-    if logo_url
+    unless logo_url.blank?
       io = open(URI.parse(logo_url))
       project.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
     end
     if opts[:test]
       project.build_project_list
     else
-      if project.save
+      if !opts[:test] && project.save
         if opts[:header] || opts[:css]
           cp = project.build_custom_project
           if opts[:header] && tpl = (open(opts[:header]).read rescue nil)
@@ -152,7 +155,7 @@ eol_collection_ids.each do |eol_collection_id|
   #so we can later see if any of these listed_taxa aren't on the collection anymore
   #and must be removed
   the_list = project.project_list
-  listed_taxa_taxon_ids = the_list.listed_taxa.map{|lt| lt.taxon_id}
+  listed_taxa_taxon_ids = the_list.listed_taxa.all(:select => "id, taxon_id").map{|lt| lt.taxon_id}
   
   collection_item_dwc_names = []
   
@@ -184,17 +187,22 @@ eol_collection_ids.each do |eol_collection_id|
       collection_item_dwc_names << list_item
       annotation = node.at('annotation').try(:text)
       puts "\t name: #{list_item}"
+
+      if list_item.downcase =~ /unidentified/
+        puts "\t\tSkipping non-taxon..."
+        taxa_skipped << list_item
+        next
+      end
       
-      #Check to see if the list_item is a taxon_name associated with a taxon_id that already has a listed_taxon
+      # Check to see if the list_item is a taxon_name associated with a taxon_id that already has a listed_taxon
       existing = the_list.listed_taxa.first(:include => {:taxon => :taxon_names}, :conditions => [
-        "taxon_names.lexicon = ? AND LOWER(taxon_names.name) = ? AND listed_taxa.taxon_id IN (?)",
+        "taxon_names.lexicon = ? AND LOWER(taxon_names.name) = ?",
         TaxonName::SCIENTIFIC_NAMES,
-        list_item.strip.downcase,
-        listed_taxa_taxon_ids
+        list_item.strip.downcase
       ])
       if existing
         puts "\t\t#{list_item} already on #{the_list}, updating..."
-        existing.update_attributes(:description => annotation)
+        existing.update_attributes(:description => annotation) unless opts[:test]
         listed_taxa_taxon_ids.delete(existing.taxon_id)
       else
         #find the taxon to make a listed taxon
@@ -203,7 +211,7 @@ eol_collection_ids.each do |eol_collection_id|
         taxon = nil if taxon && taxon.taxon_names.detect{|tn| tn.name == list_item}.blank?
         unless taxon
           begin
-            external_names = Ratatosk.find(list_item)
+            external_names = ratatosk.find(list_item)
           rescue Timeout::Error, StandardError, Exception => exc
             puts "\t\tFailed to import #{taxon}: #{exc.message}"
             taxon = nil
@@ -214,7 +222,7 @@ eol_collection_ids.each do |eol_collection_id|
               taxon = match.taxon
               if taxon.valid? && !taxon.new_record?
                 puts "\t\tImported new taxon: #{taxon}"
-                taxon.send_later(:graft) unless opts[:test]
+                taxon.delay.graft_silently unless opts[:test]
               else
                 puts "\t\tFailed to import #{taxon}: #{taxon.errors.full_messages.to_sentence}"
                 taxon = nil
@@ -238,9 +246,15 @@ eol_collection_ids.each do |eol_collection_id|
             :source_identifier => object_id,
             :source => eol_source
           )
-          taxon.save unless opts[:test]
-          puts "\t\tCreated new taxon: #{taxon}"
-          taxon.send_later(:graft) unless opts[:test]
+          unless opts[:test]
+            if taxon.save
+              puts "\t\tCreated new taxon: #{taxon}"
+              taxon.delay.graft_silently
+            else
+              puts "\t\tFailed to create taxon: #{taxon.errors.full_messages.to_sentence}"
+              next
+            end
+          end
         end
         
         lt = ListedTaxon.new(:taxon_id => taxon.id, :list_id => the_list.id, :manually_added => true)
@@ -264,7 +278,7 @@ eol_collection_ids.each do |eol_collection_id|
       thelt = the_list.listed_taxa.first(:conditions => { :taxon_id => lt_taxon_id } )
       thelt.destroy unless opts[:test]
       # Record the taxon we just destroyed the listed_taxon for under 'taxa_removed'
-      taxa_removed << Taxon.find_by_id(lt_taxon_id).name
+      taxa_removed << (Taxon.find_by_id(lt_taxon_id).try(:name) || lt_taxon_id)
       puts "\tRemoved #{thelt} with taxon_id #{lt_taxon_id} which is no longer in the collection"
     end
   end
@@ -290,12 +304,21 @@ eol_collection_ids.each do |eol_collection_id|
       puts "\t\t#{t_m}"
     end
   end
+  if taxa_skipped.size > 0
+    puts "\tskipped:"
+    taxa_skipped.each do |n|
+      puts "\t\t#{n}"
+    end
+  end
   puts
 end
 
-Project.all(:conditions => "source_url LIKE 'http://eol.org/collections%'").each do |p|
-  unless p.source_url =~ /collections\/(#{eol_collection_ids.join('|')})$/
-    p.destroy unless opts[:test]
-    puts "Destroyed #{p}, no longer an EOL iNat collection"
+# Delete EOL projects that aren't in the response.  Skip if response was blank, which was probably erroneous.
+unless eol_collection_ids.blank?
+  Project.all(:conditions => "source_url LIKE 'http://eol.org/collections%'").each do |p|
+    unless p.source_url =~ /collections\/(#{eol_collection_ids.join('|')})$/
+      p.destroy unless opts[:test]
+      puts "Destroyed #{p}, no longer an EOL iNat collection"
+    end
   end
 end

@@ -8,3 +8,7 @@
     </tr>
   <% end %>
 </table>
+
+<% if @source.editable_by?(current_user) %>
+  <%= link_to "edit", edit_source_path(@source) %>
+<% end -%>

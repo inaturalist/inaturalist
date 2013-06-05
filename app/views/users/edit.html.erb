@@ -1,7 +1,7 @@
-<% content_for(:title) do %>Edit your account &amp; profile<% end %>
+<% content_for(:title) do %> <%= t(:edit_your_account_and_profile_html) %><% end %>
 <% content_for(:extracss) do %>
 <style type="text/css" media="screen">
-  textarea{width:330px;}
+  textarea{width:690px; height: 200px;}
   .usericon{float:left;margin-right:1em;border:2px solid #ddd;}
   #preferencescol .field label{display:inline;}
   #providercol ul{margin:0;padding:0;}
@@ -29,13 +29,13 @@
 <div id="pageheader">
   <div id="nav" class="clear">
     <div class="breadcrumbs">
-      <%= link_to 'Back to your profile', 
+      <%= link_to t(:back_to_your_profile), 
                   person_by_login_path(:login => current_user.login),
                   :class => 'back crumb' %>
     </div><!-- /#breadcrumbs -->
   </div>
   
-  <h2>Edit your account &amp; profile</h2>  
+  <h2><%= t(:edit_your_account_and_profile_html) %></h2>  
 </div>
 
 <div class="column span-18">
@@ -43,8 +43,8 @@
     <%= error_messages_for :current_user %>
     <div class="column span-18 stacked">
       <%= image_tag(current_user.icon.url(:thumb), :class => 'usericon left') %>
-      <%= f.file_field(:icon, :label => 'Icon/Photo', :class => 'text', :style => 'display: none', :accept => "image/jpg,image/jpeg,image/png,image/gif") %>
-      <%= link_to_function('change', "$('#user_icon').show(); $(this).hide()", :class => 'button inlineblock') %>
+      <%= f.file_field(:icon, :label => t(:icon_slash_photo), :class => 'text', :style => 'display: none', :accept => "image/jpg,image/jpeg,image/png,image/gif") %>
+      <%= link_to_function(t(:change), "$('#user_icon').show(); $(this).hide()", :class => 'button inlineblock') %>
     </div>
     <div class="column span-9">
       <%= f.text_field(:email, :class => "text", :required => true) %>
@@ -53,82 +53,102 @@
     <div class="last column span-9">
       <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, 
         {:selected => current_user.time_zone}, 
-        {:class => 'select', :description => "All your observations will default to this time zone unless you specify otherwise."}) %>
+        {:description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
+      <%= f.select :locale, I18N_SUPPORTED_LOCALES.sort, :include_blank => "default", :description => t(:locale_description) %>
     </div>
-    <div class="column span-9">
-      <%= f.text_area(:description, :label => "Tell everyone a little about yourself") %>
+    <div class="last column span-18">
+      <%= f.text_area(:description, :label => t(:tell_everyone_a_little_about_you)) %>
     </div>
-    <div id="preferencescol" class="last column span-9">
+    <div id="preferencescol" class="column span-9 stacked">
+      <%- if !current_user.provider_authorizations.blank? %>
+        <h3>Sharing Settings</h3>
+        <div id="observationsharingpreferences" class="stacked">
+          <label>Automatically share your observations on</label>
+          <% for attr_name in User::SHARING_PREFERENCES %>
+            <%- service = attr_name.gsub(/share_observations_on_/, '') %>
+            <%- if current_user.has_provider_auth(service) %>
+              <%= f.check_box "prefers_#{attr_name}", 
+                :label => service.capitalize, 
+                :label_after => true %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <h3><%= t :email_settings %></h3>
       <div id="notificationpreferences" class="stacked">
-        <label>Receive email notifications when people leave you</label>
+        <label><%=t :receive_email_notifications_when_people_leave_you %></label>
         <% for attr_name in User::NOTIFICATION_PREFERENCES %>
           <%= f.check_box "prefers_#{attr_name}", 
-            :label => attr_name.humanize.capitalize.gsub(/ email notification/, '').pluralize, 
+            :label => t(attr_name.gsub(/_email_notification/, '').pluralize).mb_chars.capitalize, 
             :label_after => true %>
         <% end %>
       </div>
       
       <div class="stacked">
-        <label>Or if you just don't want any email...</label>
+        <label><%= t :or_if_you_dont_want_email %></label>
         <%= f.check_box "prefers_no_email", 
-          :label => "Don't send me any email!", 
+          :label => t(:dont_send_me_email), 
           :label_after => true %>
       </div>
-      
+    </div>
+
+    <div class="last column span-9 stacked">
+      <h3><%= t :taxon_change_settings %></h3>
+      <div class="stacked">
+        <%= f.check_box "prefers_automatic_taxonomic_changes", 
+          :label => "Automatically update my content for taxon changes", 
+          :label_after => true,
+          :description => t('views.users.edit.taxon_change_desc', :site_name => SITE_NAME_SHORT) %>
+      </div>
     </div>
     
     <div class="column span-18">
       <div id="licenses" class="stacked">
-        <h3>Licensing</h3>
+        <h3><%= t(:licensing) %></h3>
         <p class="ui description">
-          Licensing your content gives other people the legal right to use it
-          without asking your permission if they stick to the terms of the
-          license. iNat uses your Creative Commons-licensed content to share
-          with data partners like
-          the <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> 
-          (GBIF), an international, inter-governmental organization that
-          compiles and distributes biodiversity information from around the
-          world.
-          <%= link_to_function "Learn what these licenses mean", 
-            "$('#aboutlicenses').dialog({width:'auto', modal:true, title: 'About Creative Commons licenses'})" %>
+          <%= t('views.users.edit.licensing_desc_html', :site_name => SITE_NAME_SHORT) %>
+          <%= link_to_function t(:learn_what_these_licenses_mean), 
+            "$('#aboutlicenses').dialog({width:'auto', modal:true, title: '#{t(:about_the_cc_licenses)}'})" %>
         </p>
         
         <div class="column span-9 verticalmiddle licensechoices">
-          <h4>Default observation license</h4>
+          <h4><%= t(:default_observation_license) %></h4>
           <% for code, name, description in Observation::LICENSES %>
             <%= f.radio_button :preferred_observation_license, code, 
-              :label => "#{image_tag("#{code}.png")} #{name}", :label_after => true %>
+              :id => "preferred_observation_license_#{code.to_s.parameterize}",
+              :label => "#{image_tag("#{code}.png")} #{t(name)}", :label_after => true %>
           <% end %>
-          <%= f.radio_button :preferred_observation_license, nil, :label => "No license (all rights reserved)", :label_after => true,
-            :description => "You retain full copyright over your content aside from those rights granted to iNat in our Terms of Service." %>
-          <%= f.check_box :make_observation_licenses_same, :label => "Update existing observations with new license choices", :label_after => true %>
+          <%= f.radio_button :preferred_observation_license, nil, :label => t(:no_license_all_rights_reserved), :label_after => true,
+            :description => t(:you_retain_full_copyright_over_your_content, :site_name => SITE_NAME_SHORT) %>
+          <%= f.check_box :make_observation_licenses_same, :label => t(:update_existing_observations_with_new_license), :label_after => true %>
         </div>
         
         <div class="last column span-9 verticalmiddle licensechoices">
-          <h4>Default photo license</h4>
+          <h4><%= t(:default_photo_license) %></h4>
           <% for code, name, description in Observation::LICENSES %>
             <%= f.radio_button :preferred_photo_license, code, 
-              :label => "#{image_tag("#{code}.png")} #{name}", :label_after => true %>
+              :id => "preferred_photo_license_#{code.to_s.parameterize}",
+              :label => "#{image_tag("#{code}.png")} #{t(name)}", :label_after => true %>
           <% end %>
-          <%= f.radio_button :preferred_photo_license, nil, :label => "No license  (all rights reserved)", :label_after => true,
-            :description => "You retain full copyright over your content aside from those rights granted to iNat in our Terms of Service." %>
-          <%= f.check_box :make_photo_licenses_same, :label => "Update existing photos with new license choices", :label_after => true %>
+          <%= f.radio_button :preferred_photo_license, nil, :label => t(:no_license_all_rights_reserved), :label_after => true,
+            :description =>t(:you_retain_full_copyright_over_your_content, :site_name => SITE_NAME_SHORT) %>
+          <%= f.check_box :make_photo_licenses_same, :label => t(:update_existing_photos_with_new_license), :label_after => true %>
         </div>
         
         <div class="last column span-18">
           <%= link_to_function "<span class='helptip'></span> About these licenses".html_safe, 
-            "$('#aboutlicenses').dialog({width:'auto', modal:true, title: 'About Creative Commons licenses'})" %>
+            "$('#aboutlicenses').dialog({width:'auto', modal:true, title: '#{t(:about_the_cc_licenses)}'})" %>
           <div id="aboutlicenses" class="dialog" style="display:none">
             <div class="column span-18 verticalmiddle">
               <% for code, name, description in Observation::LICENSES %>
                 <div class="column span-9 <%= cycle '', 'last' %>">
                   <h4>
                     <%= image_tag("#{code}.png") %>
-                    <%= name %>
+                    <%= t(name) %>
                   </h4>
                   <div class="stacked description">
-                    <%= description %>
-                    <%= link_to "View license", url_for_license(code), :class => "readmore" %>
+                    <%= t(description) %>
+                    <%= link_to t(:view_license), url_for_license(code), :class => "readmore" %>
                   </div>
                 </div>
               <% end %>
@@ -136,17 +156,17 @@
           </div>
           
           <p class="ui description">
-            License descriptions and images 
-            &copy; <%= Date.today.year %> Creative Commons, used under a <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons &mdash; Attribution 3.0 Unported
-              &mdash; CC BY 3.0">Creative Commons Attribution license</a>
-            (so meta!)
+            <%= t(:license_descriptions_and_images) %>
+            &copy; <%= Date.today.year %> <%= t(:cc_used_under_a) %> <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons &mdash; Attribution 3.0 Unported
+              &mdash; CC BY 3.0"><%= t(:cc_attribution_license) %></a>
+            (<%= t :so_meta! %>)
           </p>
         </div>
       </div>
     </div>
     
     <div class="column span-18">
-      <%= f.submit("Save", :class => 'default button', "data-loading-click" => "Saving...") %>
+      <%= f.submit(t(:save), :class => 'default button', "data-loading-click" => t(:saving)) %>
     </div>
   <% end %>
   
@@ -154,55 +174,56 @@
 
 <div class="column last span-6">
   <div id="providercol" class="stacked">
-    <h3>Connected Accounts</h3>
+    <h3><%= t(:connected_accounts) %></h3>
     <ul>
       <% ProviderAuthorization::PROVIDERS.each do |provider| %>
         <% if current_user.has_provider_auth(provider) %>
           <li class="clear">
-            <%= button_to "Disconnect #{provider.capitalize}", omniauth_disconnect_path(provider.downcase),
-              :class => "providerlink #{provider.downcase} disabled button", :method => "delete" %>
+            <%= button_to t(:disconnect_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
+              omniauth_disconnect_path(provider),
+              :class => "providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase} disabled button", :method => "delete" %>
           </li>
         <% else %>
           <li class="clear">
-            <%= link_to "Connect to #{provider.capitalize}", auth_url_for(provider.downcase), 
-              :class => "providerlink #{provider.downcase} button" %>
+            <%= link_to t(:connect_to_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
+              auth_url_for(provider), 
+              :class => "providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase} button" %>
           </li>
         <% end %>
       <% end %>
     </ul>
     <p class="ui description">
-      Connecting your iNat account to accounts on other sites will allow you
-      to login to iNat using your credentials from those sites.
+      <%= t(:connecting_your_inat_account_to_accounts_other_sites, :site_name => SITE_NAME_SHORT) %>
     </p>
   </div>
   
-  <h3>Photo Hosting Accounts</h3>
+  <h3><%= t(:photo_hosting_accounts) %></h3>
   <ul>
-    <li><%= link_to "Link or unlink your Flickr account", {:controller => "flickr", :action => 'options'}, :class => 'readmore' %></li>
-    <li><%= link_to "Link or unlink your Picasa account", {:controller => "picasa", :action => 'options'}, :class => 'readmore' %></li>
-    <li><%= link_to "Link or unlink your Facebook account", {:controller => "facebook", :action => 'options'}, :class => 'readmore' %></li>
+    <li><%= link_to t(:link_or_unlink_your_flickr_account), {:controller => "flickr", :action => 'options'}, :class => 'readmore' %></li>
+    <li><%= link_to t(:link_or_unlink_your_picasa_account), {:controller => "picasa", :action => 'options'}, :class => 'readmore' %></li>
+    <li><%= link_to t(:link_or_unlink_your_facebook_account), {:controller => "facebook", :action => 'options'}, :class => 'readmore' %></li>
   </ul>
   
   <%= separator %>
   
   <div class="clear box">
-    <%= link_to_toggle current_user.encrypted_password ? "Change your password" : "Set a password", "#passwordform", :class => "ui" %>
+    <%= link_to_toggle current_user.encrypted_password ? t(:change_your_password) : "Set a password", "#passwordform", :class => "ui" %>
     <%= form_for(current_user, :html => {:id => "passwordform", :style => "display:none"}) do %>
       <div class="stacked">
         <%= label(:password, 'New Password') %>
         <%= password_field_tag(:password, '', :class => 'text') %>
       </div>
       <div class="stacked">
-        <%= label(:password_confirmation, 'Confirm New Password') %>
+        <%= label(:password_confirmation, t(:confirm_new_password)) %>
         <%= password_field_tag(:password_confirmation, '', :class => 'text') %>
       </div>
       
       <div class="clear">
-        <%= submit_tag("Change Password", :class => 'button') %>
+        <%= submit_tag(t(:change_password), :class => 'button') %>
       </div>
     <% end %>
   </div>
-  <%= button_to "Delete your account", current_user, :method => :delete, 
-    :confirm => "Are you sure you want to delete your account?  This will delete all your data and cannot be undone, and we'll be sorry to see you go.", 
+  <%= button_to t(:delete_your_account), current_user, :method => :delete, 
+    :confirm => t(:are_you_sure_want_delete_account), 
     :class => "minor delete button" %>
 </div><!-- end side col -->

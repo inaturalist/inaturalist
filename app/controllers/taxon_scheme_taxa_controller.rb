@@ -4,6 +4,7 @@ class TaxonSchemeTaxaController < ApplicationController
     @taxon_schemes = TaxonScheme.all(:limit => 100).sort_by{|ts| ts.title}
     @taxon = Taxon.find(params[:taxon_id])
     @taxon_scheme_taxon = TaxonSchemeTaxon.new(:taxon => @taxon)
+    @taxon_name = TaxonName.where(:taxon_id => @taxon.id, :lexicon => "Scientific Names", :is_valid => true).first
   end
   
   def create
@@ -23,10 +24,11 @@ class TaxonSchemeTaxaController < ApplicationController
     @taxon_schemes = TaxonScheme.all(:limit => 100).sort_by{|ts| ts.title}
     @taxon_scheme_taxon = TaxonSchemeTaxon.find(params[:id])
     @taxon = Taxon.find_by_id(@taxon_scheme_taxon.taxon_id)
+    @taxon_name = @taxon_scheme_taxon.taxon_name
   end
   
   def update
-     @taxon_scheme_taxon = TaxonSchemeTaxon.find(params[:id])
+    @taxon_scheme_taxon = TaxonSchemeTaxon.find(params[:id])
     respond_to do |format|
       if @taxon_scheme_taxon.update_attributes(params[:taxon_scheme_taxon])
         flash[:notice] = 'Taxon scheme taxon was successfully updated.'

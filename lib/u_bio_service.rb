@@ -8,12 +8,12 @@
 # that do this later...
 #
 class UBioService < MetaService
-  def initialize(key_code)
+  def initialize(key_code, options = {})
     unless key_code
       throw UBioAuthorizationError, 
         "You must supply a valid keyCode to call uBio"
     end
-    super()
+    super(options)
     @service_name           = 'uBio'
     @endpoint               = 'http://www.ubio.org/webservices/service.php?'
     @lsid_endpoint          = 'http://www.ubio.org/authority/metadata.php?'
@@ -21,6 +21,7 @@ class UBioService < MetaService
     @default_params = { :keyCode => key_code }
     @method_param = 'function'
     @timeout = 10 # uBio can be sloooooowww
+    @debug = options[:debug] || false
   end
   
   #
@@ -55,6 +56,7 @@ class UBioService < MetaService
     response = nil
     begin
       timed_out = Timeout::timeout(@timeout) do
+        puts "uBio: #{url}" if @debug
         response  = Net::HTTP.get_response(URI.parse(uri))
       end
     rescue Timeout::Error
@@ -78,6 +80,7 @@ class UBioService < MetaService
     response = nil
     begin
       timed_out = Timeout::timeout(@timeout) do
+        puts "uBio: #{url}" if @debug
         response  = Net::HTTP.get_response(URI.parse(uri))
       end
     rescue Timeout::Error, Errno::ECONNRESET

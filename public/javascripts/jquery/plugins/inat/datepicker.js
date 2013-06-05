@@ -13,12 +13,13 @@
       'vertical-align': 'middle'
     })
     options = options || {}
-    options = $.extend({
+    options = $.extend({}, {
       showOn: 'both',
       buttonImage: "/images/silk/date.png",
       buttonImageOnly: true,
       showButtonPanel: true,
       showAnim: 'fadeIn',
+      yearRange: "c-100:c+0",
       maxDate: '+0d',
       constrainInput: false,
       firstDay: 0,

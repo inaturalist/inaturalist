@@ -1,0 +1,55 @@
+<%- content_for(:title) do -%>
+  <%= t(:sign_in) %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    .providerlink, .button.providerlink { width: 140px; }
+  </style>
+<%- end -%>
+<div class="column span-8 prepend-2">
+  <%= image_tag CONFIG.logo_icon_square_big, :width => 300  %>
+</div>
+<div class="column span-7">
+  
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :builder => DefaultFormBuilder, :html => {:class => "clear"}) do |f| %>
+    <%= f.text_field :email, :label => t(:username_or_email), :class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off" %>
+    <%= f.password_field :password, :class => "text", :tabindex => 2, :label => t(:password) %>
+
+    <% if devise_mapping.rememberable? -%>
+      <%= f.check_box :remember_me, :label_after => true, :label => t(:remember_me) %>
+    <% end -%>
+    
+    <div class="clear buttonrow">
+      <%= f.submit t(:sing_in_exclamation), :class => "default button" %>
+      <span class="small inter ui nobr description" style="line-height: 1.6">
+        <%= t :or %>
+        <%= link_to t(:start_new_account), new_user_path, :class => "readmore" %>
+      </span>
+    </div>
+  <% end %>
+  
+  <p class="ui">
+    <%= link_to t(:forgot_your_password), new_password_path(resource_name) %><br />
+  </p>
+  
+</div>
+
+<div class="last column span-6">
+  <div class="clear stacked">
+    <div style="margin-bottom: 0.5em;">
+      <label> <%= t(:or_you_can) %></label>
+    </div>
+    <%- ProviderAuthorization::AUTH_URLS.each do |provider, url| -%>
+      <%= link_to t(:sign_in_with_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
+        url, 
+        :class => "button providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase}" %>
+    <%- end -%>
+  </div>
+  
+  <%= link_to_toggle t(:if_you_already_have_an_account, 
+    :article => %w(a e i o u).include?(SITE_NAME_SHORT[0]) ? t(:an) : t(:a), 
+    :site_name => SITE_NAME_SHORT), "#already" %>
+  <p id="already" class="ui description" style="display: none;">
+    <%= t(:and_you_havent_linked, :site_name => SITE_NAME_SHORT) %>
+  </p>
+</div>

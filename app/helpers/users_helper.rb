@@ -43,13 +43,17 @@ module UsersHelper
   #   link_to_user @user, :content_text => 'Your user page'
   #   # => <a href="/users/3" title="barmy" class="nickname">Your user page</a>
   #
-  def link_to_user(user, options={})
-    raise "Invalid user" unless user
+  def link_to_user(user, options = {}, &block)
+    return "deleted user" unless user
     options.reverse_merge! :content_method => :login, :title_method => :login, :class => :nickname
-    content_text      = options.delete(:content_text)
-    content_text    ||= user.send(options.delete(:content_method))
+    if block_given?
+      content_text = capture(&block)
+    else
+      content_text      = options.delete(:content_text)
+      content_text    ||= user.send(options.delete(:content_method))
+    end
     options[:title] ||= user.send(options.delete(:title_method))
-    link_to h(content_text), person_path(user.login), options
+    link_to content_text, person_url(user.login), options
   end
 
   #
@@ -108,19 +112,27 @@ module UsersHelper
     capitalize_it = options.delete(:capitalize)
     if logged_in? && current_user == user
       if capitalize_it
-        "Your"
+        t(:your, :default => "your").capitalize
       else
-        "your"
+        t(:your, :default => "your")
       end
     else
       "#{user.login}'s"
     end
   end
+
+  def possessive_noun(user, noun, options = {})
+    if is_me?(user)
+      t(:second_person_possessive_singular, :noun => noun)
+    else
+      t(:third_person_possessive_singular, :noun => noun, :object_phrase => user.login)
+    end
+  end
   
   def you_or_login(user, options = {})
     capitalize_it = options.delete(:capitalize)
-    if method_exists?(:user_signed_in?) && logged_in? && method_exists?(:current_user) && current_user == user
-      capitalize_it ? 'You' : 'you'
+    if respond_to?(:user_signed_in?) && logged_in? && respond_to?(:current_user) && current_user == user
+      capitalize_it ? t(:you).capitalize : t(:you).downcase
     else
       user.login
     end

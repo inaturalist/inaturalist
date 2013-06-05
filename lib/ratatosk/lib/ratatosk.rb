@@ -1,3 +1,4 @@
+#encoding: utf-8
 # Ratatosk
 #
 # Ratatosk is a facade for dealing with taxa from external name providers.  It
@@ -34,9 +35,9 @@ module Ratatosk
     #
     # Alias for Ratatosk::Ratatosk#graft
     #
-    def graft(taxon)
+    def graft(taxon, options = {})
       @ratatosk ||= Ratatosk.new
-      @ratatosk.graft(taxon)
+      @ratatosk.graft(taxon, options)
     end
     
     #
@@ -51,12 +52,28 @@ module Ratatosk
   class Ratatosk
     attr_reader :name_providers
 
+    # Create a new Ratatosk instance
+    #
+    # * [name_providers] array of NameProvider instances to use as providers.  Can also be specified as an array of prefixes, e.g. ['col', 'ubio']
     def initialize(params = {})
-      @name_providers = params[:name_providers]
-      @name_providers ||= [
-        NameProviders::ColNameProvider.new,
-        NameProviders::UBioNameProvider.new
-      ]
+      @name_providers = if params[:name_providers] && !params[:name_providers].first.respond_to?(:get_lineage_for)
+        params[:name_providers].map do |prefix|
+          if class_name = NameProviders.constants.detect{|c| c.to_s.downcase == "#{prefix}NameProvider".downcase}
+            NameProviders.const_get(class_name).new
+          end
+        end.compact
+      else
+        params[:name_providers]
+      end
+      # include all name providers by default, starting with the most taxonomically 
+      # and geographically general
+      if @name_providers.blank?
+        @name_providers = [
+          NameProviders::ColNameProvider.new,
+          NameProviders::UBioNameProvider.new,
+          NameProviders::NZORNameProvider.new
+        ]
+      end
     end
 
     def to_s
@@ -80,8 +97,6 @@ module Ratatosk
           end
         end
         
-        # puts "[DEBUG] Found names: #{names.map(&:name).join(', ')}"
-        
         # make sure names are unique on name and lexicon
         # This is sort of a duplication of the validation that should occur in
         # TaxonName, but since all the adapters hold NEW objects at this
@@ -96,17 +111,16 @@ module Ratatosk
         unique_taxa = {}
         names.each do |n| 
           phylum_name = name_provider.get_phylum_for(n.taxon).name rescue nil
-          # puts "[DEBUG] #{n.name}'s phylum: #{phylum_name}"
           unique_taxa[[n.taxon.name, phylum_name]] ||= n.taxon
           n.taxon = unique_taxa[[n.taxon.name, phylum_name]]
           unique_names[[n.name, n.lexicon, n.taxon.name, phylum_name]] = n
         end
         names = unique_names.values
         
-        # puts "[DEBUG] Unique names: #{names.map(&:name).join(', ')}"
-        
         names = names.map do |name|
-          if existing_taxon = find_existing_taxon(name.taxon)
+          if name.taxon && 
+              name.taxon.new_record? &&
+              (existing_taxon = find_existing_taxon(name.taxon))
             name.taxon = existing_taxon
           end
           
@@ -114,11 +128,12 @@ module Ratatosk
             # If the name was invalid b/c its taxon was saved first, and the
             # taxon made a TaxonName from its own scientific name already,
             # just use that scientific name
-            # puts "[DEBUG] #{name} was invalid: #{name.errors.full_messages.to_sentence}"
             if name.taxon.valid?
-              # puts "name.taxon.taxon_names: #{name.taxon.taxon_names.inspect}"
-              name = TaxonName.first(:conditions => ["name = ? AND taxon_id = ?", name.name, name.taxon_id])
-              name ||= name.taxon.taxon_names.detect{|tn| tn.name == name.name}
+              name = if existing = TaxonName.where("name = ? AND taxon_id = ?", name.name, name.taxon_id).first
+                existing
+              else
+                name.taxon.taxon_names.detect{|tn| tn.name == name.name}
+              end
             
             # If the taxon was invalid, try to see if something similar has 
             # already been saved
@@ -135,7 +150,6 @@ module Ratatosk
           name
         end.compact.uniq
         
-        # puts "[DEBUG] Returning names: #{names.map(&:name).join(', ')}"
         return names unless names.empty?
       end
       []
@@ -146,20 +160,19 @@ module Ratatosk
     # existing taxon in our tree, saving any new members of this branch and
     # attaching it to the existing taxon (the graft point).
     #
-    def graft(taxon)
-      # puts "[DEBUG] Grafting #{taxon}..."
+    def graft(taxon, options = {})
       # if this is an adapter of some kind, just get the underlying Taxon
       # object. It will smooth the way with nested_set...
       taxon = taxon.taxon unless taxon.is_a? Taxon
       raise RatatoskGraftError, "Can't graft unsaved taxa" if taxon.new_record?
 
-      graft_point, lineage = graft_point_and_lineage(taxon)
+      graft_point, lineage = graft_point_and_lineage(taxon, options)
 
       # Return an empty lineage if this has already been grafted
+      return [] if lineage.blank?
       return [] if lineage.first.parent == lineage.last
       return [] if lineage.size == 1 && lineage.first.grafted?
-
-      # puts "[DEBUG] Grafting [#{lineage.map(&:to_s).join(', ')}] to #{graft_point}..."
+      return [] if lineage.size == 1 && lineage.first == graft_point
 
       # For each new taxon (starting with the highest), move it to the graft
       # point, moving the point as we walk along the branch
@@ -169,7 +182,7 @@ module Ratatosk
         unless new_taxon.valid?
           msg = "Failed to graft #{new_taxon} because it was invalid: " + 
             new_taxon.errors.full_messages.join(', ')
-          new_taxon.logger.error "[ERROR] #{msg}"
+          new_taxon.logger.error "[ERROR] #{msg}" if new_taxon.logger
           raise RatatoskGraftError, msg
         end
         new_taxon.set_scientific_taxon_name
@@ -190,9 +203,9 @@ module Ratatosk
       lineage
     end
     
-    def graft_point_and_lineage(taxon)
+    def graft_point_and_lineage(taxon, options = {})
       # Try a simple polynom lookup first
-      if parent = polynom_parent(taxon.name)
+      if parent = polynom_parent(taxon.name, options)
         return [parent, [taxon]]
       end
       
@@ -206,7 +219,6 @@ module Ratatosk
       if name_provider.nil?
         raise RatatoskGraftError, "Couldn't graft that taxon without a name provider"
       end
-      
       begin
         lineage = name_provider.get_lineage_for(taxon)
       rescue NameProviderError => e
@@ -214,7 +226,18 @@ module Ratatosk
       end
       
       # This basically means the name provider wasn't able to find a lineage
-      return [lineage.first, lineage] if lineage.size == 1 && lineage.first.rank_level < Taxon::RANK_LEVELS['phylum']
+      if lineage.size == 1 && lineage.first.rank_level < Taxon::RANK_LEVELS['phylum']
+        # try retrieving an external parent based on a polynon, e.g. if the
+        # name is Homo sapiens and there's no Homo taxon, try to get Homo from
+        # the NameProvider
+        if parent = polynom_parent(taxon.name, options.merge(:external_parent => true))
+          taxon_phylum = name_provider.get_phylum_for(taxon)
+          if parent.phylum.blank? || taxon_phylum.blank? || parent.phylum.name == taxon_phylum.name
+            return [parent, [taxon]]
+          end
+        end
+        return [lineage.first, lineage]
+      end
       
       # Set the point on the tree to which we will graft, default is root
       get_graft_point_for(lineage)
@@ -236,21 +259,16 @@ module Ratatosk
       
       ancestor_phylum = name_provider.get_phylum_for(lineage.first, lineage)
       lineage.each do |ancestor|
-        # puts "\t[DEBUG] Inspecting ancestor: #{ancestor}"
-        
         existing_homonyms = if ancestor.new_record?
           Taxon.all(:conditions => ["name = ?", ancestor.name])
         else
           Taxon.all(:conditions => ["id != ? AND name = ?", ancestor.id, ancestor.name])
         end
         
-        # puts "\t\t[DEBUG] Found homonyms: #{existing_homonyms.join(', ')}"
-        
         if existing_homonyms.size == 1 && 
             %w"kingdom phylum".include?(existing_homonyms.first.rank)
           graft_point = existing_homonyms.first
           lineage = new_lineage
-          # puts "\t\t\t[DEBUG] Found a homonymous kingdom/phylum: #{graft_point}"
           break
         end
         
@@ -259,42 +277,29 @@ module Ratatosk
         end.first
         
         if graft_point
-          # puts "\t\t\t[DEBUG] Found a homonymous taxon: #{graft_point}"
           lineage = new_lineage
           break
         end
         
         new_lineage << ancestor
       end
-      # puts "\t\t[DEBUG] GAARRGGHH graft_point pre default: #{graft_point}"
       graft_point ||= Taxon.find_by_name('Life') rescue Taxon.root
       [graft_point, lineage.compact]
     end
     
     def find_existing_taxon(taxon_adapter, name_provider = nil)
-      # puts "[DEBUG] Looking for an existing taxon"
       name_provider ||= NameProviders.const_get(taxon_adapter.name_provider).new
-      if phylum = name_provider.get_phylum_for(taxon_adapter)
-        existing_phylum = Taxon.find(:first, :conditions => [
-          "name = ? AND rank = 'phylum'", phylum.name
+      existing_phylum = if (phylum = name_provider.get_phylum_for(taxon_adapter))
+        Taxon.first(:conditions => [
+          "lower(name) = ? AND rank = 'phylum'", phylum.name.downcase
         ])
-      else
-        existing_phylum = nil
       end
 
-      existing_taxon = nil
       if existing_phylum
-        # puts "[DEBUG] Found existing phylum: #{existing_phylum}"
-        existing_taxon = existing_phylum.descendants.first(
-          :conditions => ["name = ?", taxon_adapter.name])
+        existing_phylum.descendants.first(:conditions => ["lower(name) = ?", taxon_adapter.name.downcase])
       else
-        existing_taxon = Taxon.first(
-          :conditions => ["name = ?", taxon_adapter.name])
+        Taxon.first(:conditions => ["lower(name) = ?", taxon_adapter.name.downcase])
       end
-
-      # puts "[DEBUG] Found existing taxon: #{existing_taxon}"
-
-      existing_taxon
     end
     
     protected
@@ -304,10 +309,27 @@ module Ratatosk
     # sapiens" (a binom) or "Ensatina eschscholtzii xanthoptica" (a trinom). 
     # Returns nil if none found or if not a polynom.
     #
-    def polynom_parent(name)
-      parent_name = name.split[0..-2].join(' ')
+    def polynom_parent(name, options = {})
+      parent_name = if name =~ /\s+×\s+/
+        name.split.first
+      else
+        name.split[0..-2].join(' ')
+      end
       return nil if parent_name.blank?
-      Taxon.find_by_name(parent_name)
+      parent = if options[:ancestor]
+        Taxon.where(options[:ancestor].descendant_conditions).where("name = ?", parent_name).first
+      else
+        Taxon.find_by_name(parent_name)
+      end
+      if parent.blank? && options[:external_parent]
+        names = find(parent_name)
+        if match = names.detect{|n| n.taxon.name == parent_name}
+          match.save
+          parent = match.taxon
+          parent.graft_silently
+        end
+      end
+      parent
     end
   end # class Ratatosk
 end # module Ratatosk

@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= is_me?(@selected_user) ? "Your " : "#{@login}'s " %> Projects
+  <%= is_me?(@selected_user) ? t(:your) : t(:user_s, :user => " #{@login} ", :model_name => t(:projects)) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
@@ -8,7 +8,7 @@
 <%- end -%>
 <%- before = capture do %>
   <div class="right inline clear buttonrow">
-    <%= link_to 'All Projects', projects_path, :class => "inter readmore" %>
+    <%= link_to t(:all_projects), projects_path, :class => "inter readmore" %>
   </div>
 <% end %>
 <%= render :partial => 'shared/by_login_header', :locals => { :before => before } %>
@@ -16,12 +16,7 @@
 <div class="column span-16">
   <div id="started" class="projects clear">
     <% if @projects.blank? -%>
-      <p class="meta noresults">
-        <%= is_me? ? "You haven't" : "#{@login} hasn't" %> joined any projects.
-        <% if is_me? -%>
-          <%= link_to "Join a project!", projects_path %>
-        <% end -%>
-      </p>
+        <%= is_me? ? t(:you_havent) : t(:x_hasnt, :login => "#{@login}") %> <%= t(:joined_any_projects) %>
     <% else %>
       <% @project_users.each_with_index do |project_user, i| %>
         <%= render :partial => 'project', :object => project_user.project, :locals => {
@@ -36,15 +31,15 @@
 
 <div class="last column span-8">
   <div id="started" class="projects clear box">
-    <h3>Projects <%= is_me? ? "you admin" : "#{@login} admins" %></h3>
+    <h3> <%= t(:projects) %> <%= is_me? ? t(:you_admin) : t(:x_admin, :login => "#{@login}") %></h3>
     <% if @started.blank? -%>
-      <p class="meta noresults"><%= is_me? ? "You don't" : "#{@login} doesn't" %> admin any projects.</p>
+      <p class="meta noresults"><%= is_me? ? t(:you_dont) : t(:x_doesnt, :login => "#{@login}") %> <%= t(:admin_any_projects) %></p>
     <% else %>
       <% @started.each_with_index do |project, i| %>
         <%= render :partial => 'project', :object => project, :locals => {:last => true} %>
       <% end %>
     <% end -%>
     
-    <%= link_to "Start a project", new_project_path, :class => "readmore" if is_me? %>
+    <%= link_to t(:start_a_project), new_project_path, :class => "default button" %>
   </div>
 </div>

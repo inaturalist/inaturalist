@@ -1,0 +1,39 @@
+- taxon_change = update_email_committed || taxon_change
+- user = updates.first.subscriber
+%table
+  %tr
+    %td{:style => "vertical-align:top;"}
+      %table{:cellspacing => 0, :cellpadding => 0, :border => 0}
+        - for taxon in taxon_change.input_taxa
+          %tr
+            %td{:style => "vertical-align:top;padding-right:5px;"}
+              %center= link_to taxon_image(taxon), taxon_url(taxon)
+            %td{:style => "vertical-align:top;padding-right:5px;"}
+              %i= link_to taxon.name, taxon_url(taxon)
+    %td{:style => "vertical-align:top;padding-right:5px;"}
+      %strong
+        =t taxon_change.verb_phrase.gsub(/\s+/, '_'), :default => taxon_change.verb_phrase
+    %td{:style => "vertical-align:top;"}
+      %table{:cellspacing => 0, :cellpadding => 0, :border => 0}
+        - for taxon in taxon_change.output_taxa
+          %tr
+            %td{:style => "vertical-align:top;padding-right:5px;"}
+              %center= link_to taxon_image(taxon), taxon_url(taxon)
+            %td{:style => "vertical-align:top;"}
+              %i= link_to taxon.name, taxon_url(taxon)
+
+= taxon_change.description
+
+%p
+  =t 'views.users.dashboard.taxon_change_desc', :site_name => SITE_NAME
+  - if taxon_change.automatable?
+    - if user.prefers_automatic_taxonomic_changes?
+      =t 'views.users.dashboard.your_content_will_be_updated'
+    - else
+      =t 'views.users.dashboard.you_may_want_to_update'
+  - else
+    =t 'views.users.dashboard.cannot_update_your_content', :site_name => SITE_NAME
+= link_to t(:view_details), taxon_change_url(taxon_change), :class => "readmore"
+- if !taxon_change.automatable? || !user.prefers_automatic_taxonomic_changes?
+  &nbsp;
+  = link_to t(:update_your_content), taxon_change_commit_for_user_url(taxon_change), :class => "readmore"

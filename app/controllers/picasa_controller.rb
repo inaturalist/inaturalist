@@ -48,7 +48,7 @@ class PicasaController < ApplicationController
           "your Picasa user ID. The issue has been reported, so we'll look " + 
           "into it. In the meantime, you might try uploading photos " + 
           "directly, or linking your Flickr or Facebook accounts."
-        HoptoadNotifier.notify(
+        Airbrake.notify(
           Exception.new("Failed to extract Picasa user ID from user response (#{@picasa_user})"), 
           :request => request, :session => session)
         redirect_to :action => "options"
@@ -58,7 +58,7 @@ class PicasaController < ApplicationController
     
     @picasa_identity.save
     
-    flash[:notice] = "Congrats, your iNaturalist and Picasa accounts have been linked!"
+    flash[:notice] = "Congrats, your #{CONFIG.site_name} and Picasa accounts have been linked!"
     if !session[:return_to].blank?
       @landing_path = session[:return_to]
       session[:return_to] = nil
@@ -76,7 +76,7 @@ class PicasaController < ApplicationController
   def unlink
     if current_user.picasa_identity
       current_user.picasa_identity.destroy
-      flash[:notice] = "We've dissassociated your Picasa account from your iNaturalist account."
+      flash[:notice] = "We've dissassociated your Picasa account from your #{CONFIG.site_name} account."
       redirect_to :action => 'options'
     else
       flash[:notice] = "Your Picasa account has not been linked before!"
@@ -156,7 +156,7 @@ class PicasaController < ApplicationController
 
   # Return an HTML fragment containing photos in the album with the given fb native album id (i.e., params[:id])
   def album
-    @friend_id = params[:object_id] unless params[:object_id]=='null'
+    @friend_id = params[:object_id] unless (params[:object_id] == 'null' || params[:object_id].blank?)
     if @friend_id
       friend_data = current_user.picasa_client.user(@friend_id)
       @friend_name = friend_data.author.name 
@@ -195,7 +195,7 @@ class PicasaController < ApplicationController
     user_data = picasa.user(picasa_user_id) 
     albums = []
     unless user_data.nil?
-      user_data.albums.select{|a| a.numphotos > 0}.each do |a|
+      user_data.albums.select{|a| a.numphotos.to_i > 0}.each do |a|
         albums << {
           'aid' => a.id,
           'name' => a.title,

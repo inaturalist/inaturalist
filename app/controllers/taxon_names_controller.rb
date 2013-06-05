@@ -38,28 +38,11 @@ class TaxonNamesController < ApplicationController
     @status = nil
     if params[:include_external]
       if params[:force_external] or (@taxon_names.empty? and params[:q])
-        logger.info("DEBUG: Making an external lookup...")
         begin
-          @external_taxon_names = [] # Ratatosk.find(params[:q])
-          ratatosk = Ratatosk::Ratatosk.new
-          ratatosk.find(params[:q]).each do |ext_name|
-            if existing_taxon = ratatosk.find_existing_taxon(ext_name.taxon)
-              ext_name.taxon = existing_taxon
-            end
-            ext_name.save
-            @external_taxon_names << ext_name if ext_name.valid?
-          end
+          @external_taxon_names = TaxonName.find_external(params[:q])
           @taxon_names += @external_taxon_names
-          
-          # graft in the background at a lower priority than the parent proc
-          unless @external_taxon_names.empty?
-            @external_taxon_names.map(&:taxon).each do |taxon|
-              taxon.delay.graft unless taxon.grafted?
-            end
-          end
         rescue Timeout::Error => e
-          if @taxon_names.empty? and 
-             not @taxon_names.map {|tn| tn.taxon}.include? nil
+          if @taxon_names.empty? && !@taxon_names.map{|tn| tn.taxon}.include?(nil)
             @status = e.message
           end
         end
@@ -147,14 +130,20 @@ class TaxonNamesController < ApplicationController
   end
   
   def destroy
-    if @taxon_name.destroy
+    if @taxon_name == @taxon_name.taxon.scientific_name
+      msg = <<-EOT
+        You can't delete the default scientific name of a taxon. You might
+        want to add a new name or create a taxon change instead. See the
+        Curator Guide under Help for tips.
+      EOT
+      flash[:error] = msg
+    elsif @taxon_name.destroy
       flash[:notice] = "Taxon name was deleted."
     else
       flash[:error] = "Something went wrong deleting the taxon name '#{@taxon_name.name}'!"
     end
     respond_to do |format|
       format.html { redirect_to(taxon_path(@taxon_name.taxon)) }
-      format.xml  { head :ok }
     end
   end
   

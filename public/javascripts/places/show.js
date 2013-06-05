@@ -8,6 +8,17 @@ $(document).ready(function() {
         $('#abouttab .photos').loadFlickrPlacePhotos({urlType: 'url_m', showAttribution: true, noPhotosNotice: true})
         $('#abouttab .wikipedia_description').loadWikipediaDescription()
         $(ui.panel).addClass('loaded')
+      } else if ($(ui.panel).attr('id') == 'observationstab' && !$(ui.panel).hasClass('loaded')) {
+        var url = '/observations?partial=cached_component&limit=98&place_id='+PLACE.id
+        $.get(url, function(data, status, xhr) {
+          var html = data.replace(/div\>[\n\s]+\<div/g, 'div><div')
+          if (html.length == 0) {
+            $('.loading.status', ui.panel).removeClass('loading').html(I18n.t("no_observations_yet"))
+          } else {
+            $('.observations', ui.panel).html(html)
+            $('.observationcontrols', ui.panel).observationControls()
+          }
+        })
       }
     },
     load: function(event, ui) {
@@ -56,10 +67,16 @@ $.fn.loadFlickrPlacePhotos = function(options) {
     flickrOptions.lon = PLACE.longitude
   }
   
-  $.getJSON(
-    "http://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&jsoncallback=?",
-    flickrOptions,
-    function(json) {
+  $.ajax({
+    dataType: "json",
+    url: "http://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&jsoncallback=?",
+    data: flickrOptions,
+    error: function() {
+      if (options.noPhotosNotice) {
+        $(self).append('<div class="noresults meta">' + I18n.t("flickr_has_no_creative_commons") + '</div>')
+      }
+    },
+    success: function(json) {
       $(self).html('')
       if (json.photos && json.photos.photo && json.photos.photo.length > 0) {
         for (var i = json.photos.photo.length - 1; i >= 0; i--){
@@ -78,10 +95,10 @@ $.fn.loadFlickrPlacePhotos = function(options) {
           }
         }
       } else if (options.noPhotosNotice) {
-        $(self).append('<div class="noresults meta">Flickr has no Creative Commons-licensed photos from this place.</div>')
+        $(self).append('<div class="noresults meta">' + I18n.t("flickr_has_no_creative_commons") + '</div>')
       }
     }
-  )
+  })
 }
 
 $.fn.loadWikipediaDescription = function() {

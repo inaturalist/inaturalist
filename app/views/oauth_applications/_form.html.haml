@@ -1,0 +1,22 @@
+= form_for([:oauth, application], :builder => DefaultFormBuilder, :html => { :multipart => true }) do |f|
+  .stacked
+    = f.file_field :image
+    = f.text_field :name
+    = errors_for application, :name
+    = f.text_field :redirect_uri
+    = errors_for application, :redirect_uri
+    = f.text_area :description
+    = errors_for application, :description
+    = f.text_field :url, :description => "URL for your app outside of iNaturalist"
+    = errors_for application, :url
+  - if is_admin?
+    .admin.stacked
+      = f.check_box :trusted, :label_after => true
+      - if Doorkeeper.configuration.test_redirect_uri
+        .meta
+          Use
+          %strong= Doorkeeper.configuration.test_redirect_uri
+          for local tests
+  .actions.inline.buttonrow
+    = f.submit "Save", :class => "default button"
+    = link_to "Cancel", oauth_applications_path, :class => "button"

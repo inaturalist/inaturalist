@@ -6,7 +6,7 @@
     .photos .main img {margin-bottom: 5px;}
     .other_photos {float:none;display:inline;}
     .taxon .othernames {display:block;}
-    .identification img {max-width:48px;}
+    .identification img, .identification img.square.photo {max-width:48px;}
     .identification .button {margin:0 0 0 10px; float:right; text-align:center;}
     .buttonrow.inline .prevlink {float:left;}
     .buttonrow.inline .nextlink {float:right;}
@@ -46,8 +46,8 @@
         ID
       </div>
       <div class="boxbody ui-helper-clearfix">
-        <% image_and_content link_to(user_image(@observation.user, :size => "thumb"), @observation.user) do %>
-          <% image_and_content taxon_image(@observation.taxon) do %>
+        <%= image_and_content link_to(user_image(@observation.user, :size => "thumb"), @observation.user) do %>
+          <%= image_and_content taxon_image(@observation.taxon) do %>
             <div class="stacked">
               <%= @observation.species_guess || "Unknown" %>
             </div>
@@ -58,6 +58,17 @@
   <% end -%>
   
   <%= render :partial => 'identifications/box', :collection => @observation.identifications.sort_by{|ident| ident.id} %>
+
+  <% if !@project_invitations.blank? && (is_me?(current_user) || @project_invitations.map(&:user_id).include?(current_user.try(&:id))) %>
+    <p class="ui description">Invited to the following projects:</p>
+    <% for pi in @project_invitations %>
+      <%= render :partial => 'project_invitations/project_invitation', :object => pi, :locals => {
+        :observation => @observation,
+        :non_remote => true
+      } %>
+    <% end %>
+    <%= link_to "Manage your project invitations", project_invitations_path, :class => "right readmore" %>
+  <% end %>
 <% end -%>
 
 <% unless @observation.description.blank? -%>
@@ -66,18 +77,18 @@
 <% end -%>
 
 <div class="stacked details">
-  <h3>Details</h3>
+  <h3><%=t :details %></h3>
   <% unless @observation.tags.blank? %>
     <div id="tags" class="description">
-      <label>Tags:</label>
-        <%= @observation.tags.map{|tag| 
+      <label><%=t :tags %>:</label>
+        <%=raw @observation.tags.map{|tag| 
           link_to(h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags"))
         }.join(', ') %>
     </div>
   <% end -%>
 
   <div id="dates" class="description date nobr">
-    <label>Added:</label>
+    <label><%=t :added %></label>
     <span class="date">
       <%= @observation.created_at.strftime("%b. %e, %Y") %>
     </span>
@@ -88,7 +99,7 @@
   
   <% if @observation.observed_on -%>
     <div class="description date nobr">
-      <label>Observed:</label>
+      <label><%=t :observed %></label>
       <span class="date">
         <%= @observation.observed_on.strftime("%b. %e, %Y") %>
       </span>
@@ -108,7 +119,7 @@
 
   <% if @observation.mobile? -%>
     <div id="device" class="description <%= @observation.device_name.to_s.split.join('_').downcase %>">
-      <label>Device:</label>
+      <label><%=t :device %></label>
       <% if @observation.device_url -%>
         <%= link_to @observation.device_name, @observation.device_url %>
       <% else %>
@@ -123,8 +134,8 @@
 <% end -%>
 
 <div class="inline buttonrow" style="text-align:center;">
-  <%= link_to("Prev", @prev, :class => "prevlink button inlineblock") if @prev %>
-  <%= link_to "#{truncate possessive(@observation.user, :capitalize => true), :length => 16} observations", 
+  <%= link_to(t(:prev), @prev, :class => "prevlink button inlineblock") if @prev %>
+  <%= link_to "#{truncate possessive(@observation.user, :capitalize => true), :length => 16} "+ t(:observations), 
     observations_by_login_path(@observation.user.login), :class => "inlineblock button uplink" %>
   <%= link_to("Next", @next, :class => "nextlink button inlineblock") if @next %>
 </div>

@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Observations by everyone" %>
+  <%= @title = t(:observations_by_everyone) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "observations" %>
@@ -17,5 +17,4 @@
     <% end -%>
   <% end -%>
 </div>
-
-<%= will_paginate @observations %>
+<%= will_paginate @observations, :renderer => INatLinkRenderer %>

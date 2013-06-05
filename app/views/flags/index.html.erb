@@ -1,12 +1,13 @@
 <%- content_for(:title) do -%>
   <% @title = capture do %>
-    Flags for <%= link_to @object.to_plain_s, @object %>
+    <%=t :flags_for %>
+    <%= link_to @object.try_methods(:to_plain_s, :to_s), @object %>
   <% end %>
   <%= strip_tags @title %>
 <%- end -%>
 <div id="pageheader" class="column span-24">
   <span class="breadcrumbs">
-    <%= link_to "Back to #{@object.to_plain_s}", 
+    <%= link_to t(:back_to_this , :place=> "#{@object.try_methods(:to_plain_s, :to_s)}"),
                 @object,
                 :class => 'back crumb' %>
   </span>
@@ -16,24 +17,13 @@
 
 <div class="description">
   <p>
-    iNaturalist users flag things when they find something that's right. Here
-    are some issues that haven't been resolved by the curators yet. Users have
-    flagged this <%= @model.name.downcase %> because:
+  <%=t :flags_explanation, :thing => @model.name.downcase, :site_name => SITE_NAME %>
   </p>
 </div>
 
-<ul class="readable">
+<ul>
   <% if @flags.empty? %>
-    <li class="quiet description">No flags at this time!</li>
-  <% end %>
-  
-  <% if logged_in? && current_user.is_curator? %>
-    <%= render :partial => "flag_list", :locals => { :flags => @flags } %>
-  <% else %>
-    <% for flag in @flags %>
-      <li>
-       "<%= flag.flag %>"
-      </li>
-    <% end %>
-  <% end %>
+    <li class="quiet description"><%=t :no_flags %></li>
+  <% end %>  
+  <%= render :partial => "flag_list", :locals => { :flags => @flags } %>
 </ul>

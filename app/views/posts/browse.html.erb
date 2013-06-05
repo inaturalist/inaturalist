@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  Everyone's Journal Posts
+  <%= t(:everyone_journal_posts) %>
 <%- end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag "posts" %>
@@ -39,7 +39,7 @@
 <% end -%>
 
 <div id="pageheader" class="column span-24">
-  <h2>Everyone's Journal Posts</h2>
+  <h2><%= t(:everyone_journal_posts) %></h2>
 </div>
 
 <div class="column span-24">
@@ -61,12 +61,12 @@
           <%= formatted_user_text(truncate(strip_tags(post.body), :length => 200)) %>
         </div>
         <div class="morecol column readable">
-          <p><%= link_to "More &raquo;".html_safe, journal_post_path(post.user.login, post) %></p>
+          <p><%= link_to "#{t(:more)} &raquo;".html_safe, journal_post_path(post.user.login, post) %></p>
         </div>
       </div>
     <% end %>
   <% else %>
-    <div id="noposts" class="description">No one's posted anything yet!</div>
+    <div id="noposts" class="description"><%= t(:no_one_posted_anything_yet) %></div>
   <% end %>
   
   <%= will_paginate @posts, :renderer => INatLinkRenderer %>

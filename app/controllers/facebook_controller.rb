@@ -1,6 +1,14 @@
 class FacebookController < ApplicationController
   before_filter :return_here, :only => [:options]
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index]
+
+  def index
+    @headless = @footless = true
+    unless params[:by].blank?
+      @selected_user = User.find_by_id(params[:by])
+      @selected_user ||= User.find_by_login(params[:by])
+    end
+  end
 
   # This is the endpoint which allows a user to manager their facebook account
   # settings.  They use this endpoint after they have already gone through the
@@ -15,11 +23,11 @@ class FacebookController < ApplicationController
     if e.message =~ /OAuthException/
       redirect_to ProviderAuthorization::AUTH_URLS['facebook']
     else
-      logger.error "[Error #{Time.now}] Facebook connection failed, error ##{e.type} (#{e}):  #{e.message}"
-      HoptoadNotifier.notify(e, :request => request, :session => session) # testing
-      flash[:error] = "Ack! Something went horribly wrong, like a giant " + 
+      Rails.logger.error "[Error #{Time.now}] Facebook connection failed, error ##{e.type} (#{e}):  #{e.message}"
+      Airbrake.notify(e, :request => request, :session => session) # testing
+      flash[:error] = "Ack! Something went horribly wrong, like a giant " +
                        "squid ate your Facebook info.  You can contact us at " +
-                       "help@inaturalist.org if you still can't get this " + 
+                       "#{CONFIG.help_email} if you still can't get this " +
                        "working.  Error: #{e.message}"
     end
   end
@@ -38,7 +46,7 @@ class FacebookController < ApplicationController
       render :partial => 'facebook/groups' and return
     elsif @context == 'friends'
       @friend_id = params[:object_id]
-      @friend_id = nil if @friend_id == 'null'
+      @friend_id = nil if @friend_id == 'null' || @friend_id.blank?
       if @friend_id.blank?  # if context is friends, but no friend id specified, we want to show the friend selector
         @friends = facebook_friends(current_user)
         render :partial => 'facebook/friends' and return
@@ -73,7 +81,7 @@ class FacebookController < ApplicationController
   def album
     limit = (params[:limit] || 10).to_i
     offset = ((params[:page] || 1).to_i - 1) * limit
-    @friend_id = params[:object_id] unless params[:object_id]=='null'
+    @friend_id = params[:object_id] unless (params[:object_id] == 'null' || params[:object_id].blank?)
     if @friend_id
       friend_data = current_user.facebook_api.get_object(@friend_id)
       @friend_name = friend_data['first_name']
@@ -133,7 +141,7 @@ class FacebookController < ApplicationController
           "https://graph.facebook.com/#{a['cover_photo']}/picture?type=album&access_token=#{user.facebook_token}"
       }
     end
-  rescue OpenSSL::SSL::SSLError, Timeout::Error => e
+  rescue OpenSSL::SSL::SSLError, Timeout::Error, Errno::ENETUNREACH => e
     Rails.logger.error "[ERROR #{Time.now}] #{e}"
     return []
   end
@@ -142,7 +150,7 @@ class FacebookController < ApplicationController
     return [] unless user.facebook_api
     friends_data = user.facebook_api.get_connections('me','friends').sort_by{|f| f['name']}
     return friends_data
-  rescue OpenSSL::SSL::SSLError, Timeout::Error => e
+  rescue OpenSSL::SSL::SSLError, Timeout::Error, Errno::ENETUNREACH => e
     Rails.logger.error "[ERROR #{Time.now}] #{e}"
     return []
   end
@@ -151,7 +159,7 @@ class FacebookController < ApplicationController
     return [] unless user.facebook_api
     groups_data = user.facebook_api.get_connections('me','groups').sort_by{|f| f['name']}
     return groups_data
-  rescue OpenSSL::SSL::SSLError, Timeout::Error => e
+  rescue OpenSSL::SSL::SSLError, Timeout::Error, Errno::ENETUNREACH => e
     Rails.logger.error "[ERROR #{Time.now}] #{e}"
     return []
   end

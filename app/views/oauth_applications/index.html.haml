@@ -1,0 +1,22 @@
+%header.page-header
+  = link_to 'New Application', new_oauth_application_path, :class => "right button"
+  %h2
+    3rd Party #{CONFIG.site_name_short} Applications
+%table.zebra-striped
+  %thead
+    %tr
+      %th Name
+      %th Callback url
+      %th Owner
+      %th
+      %th
+  %tbody
+    - @applications.each do |application|
+      %tr{:id => "application_#{application.id}"}
+        %td= link_to application.name, [:oauth, application]
+        %td= application.redirect_uri
+        %td= link_to_user(application.owner) if application.owner
+        %td= link_to 'Edit', edit_oauth_application_path(application) if is_admin? || is_me?(application.owner)
+        %td
+          - if is_admin? || is_me?(application.owner)
+            = link_to 'Destroy', [:oauth, application], :data => { :confirm => 'Are you sure?' }, :method => :delete

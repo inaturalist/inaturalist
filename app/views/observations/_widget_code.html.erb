@@ -1,6 +1,6 @@
 <%- 
   widget_url ||= @widget_url || observations_by_login_feed_url(current_user.login, :format => "widget", :limit => 5)
-  base_url = Rails.env.production? ? "http://inaturalist.org" : "http://localhost:3000"
+  base_url = CONFIG.site_url
   place ||= @place
   taxon ||= @taxon
   project ||= @project
@@ -16,8 +16,7 @@
 .inat-observation-image, .inat-user-image { width: 48px; display: inline-block; }
 .inat-observation-image img, .inat-user-image img { max-width: 48px; }
 .inat-observation-image img { vertical-align: middle; }
-.inat-widget-small .inat-observation-image { margin: 0 5px 5px 0; }
-.inat-widget-small { margin-bottom: 10px; }
+.inat-widget-small .inat-observation-image { display:block; float: left; margin: 0 3px 3px 0; height:48px;}
 .inat-label, .inat-value, .inat-user { font-family: "Trebuchet MS", Arial, sans-serif; }
 .inat-user-body {vertical-align: middle;}
 .inat-widget td.inat-user-body {vertical-align: middle;}
@@ -38,11 +37,11 @@
       <td class="inat-user-body"<%= ' colspan="2"' if place %>>
         <strong>
           <% if place -%>
-            <%= link_to "View more observations near #{place.name} on <nobr>iNaturalist &raquo;</nobr>".html_safe, place_url(place) %>
+            <%= link_to "View more observations near #{place.name} on <nobr>#{CONFIG.site_name} &raquo;</nobr>".html_safe, place_url(place) %>
           <% elsif taxon -%>
-            <%= link_to "View more observations of #{taxon.name} on <nobr>iNaturalist &raquo;</nobr>".html_safe, taxon_url(taxon) %>
+            <%= link_to "View more observations of #{taxon.name} on <nobr>#{CONFIG.site_name} &raquo;</nobr>".html_safe, taxon_url(taxon) %>
           <% elsif project -%>
-            <%= link_to "View more observations from #{project.title} on <nobr>iNaturalist &raquo;</nobr>".html_safe, project_observations_url(project.id) %>
+            <%= link_to "View more observations from #{project.title} on <nobr>#{CONFIG.site_name} &raquo;</nobr>".html_safe, project_observations_url(project.id) %>
           <% else %>
             <%= link_to "View #{current_user.login}'s <nobr>observations &raquo;</nobr>".html_safe, 
               observations_by_login_url(current_user.login) %>

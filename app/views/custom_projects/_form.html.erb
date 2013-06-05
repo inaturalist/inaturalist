@@ -9,36 +9,25 @@
   <%= f.error_messages %>
   <%= f.hidden_field :project_id %>
   <div class="quiet box">
-    <label>Breadcrumbs</label>
+    <label><%=t :breadcrumbs %></label>
   </div>
   <div class="column span-24">
-    <%= f.text_area :head, :description => "This will replace the h1 and default calls to action, so make sure to include them if they're important to this project." %>
+    <%= f.text_area :head, :description => t(:breadcrumbs_description )%>
   </div>
   
   <div class="column span-15 append-1">
     <div class="quiet box">
-      <label>Main content</label>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-      occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-      mollit anim id est laborum.
+      <label><%=t :main_content %></label>
+      <%=t :main_content_description %>
     </div>
     
-    <%= f.text_area :css, :description => "This will get included after all other css on the page." %>
+    <%= f.text_area :css, :description => t(:css_description) %>
   </div>
   <div class="last column span-8">
     <div class="quiet box">
-      <label>Nav</label>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-      occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-      mollit anim id est laborum.
+      <label><%=t :nav %></label>
+
+      <%=t :nav_description %>
     </div>
     
     <%= f.text_area :side %>
@@ -46,9 +35,9 @@
   
   <div class="column span-24 actions">
     <%= f.submit f.object.new_record? ? "Create" : "Update", :class => "default button" %>
-    <%= link_to "Cancel", :back, :class => "button" %>
+    <%= link_to t(:cancel), :back, :class => "button" %>
     <% unless f.object.new_record? -%>
-      <%= link_to "Delete", f.object, :method => :delete, :confirm => "Are you sure you want to delete these custom fields?",
+      <%= link_to t(:delete), f.object, :method => :delete, :confirm => t(:you_sure_delete_custom_field?),
         :class => "minor delete button" %>
     <% end -%>
   </div>

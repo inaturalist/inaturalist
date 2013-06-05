@@ -1,0 +1,34 @@
+- cols = %w(id created_at type updated_at started_at finished_at inputs outputs)
+%h1 Flow Tasks
+
+%table
+  %thead
+    %tr
+      - cols.each do |col|
+        %th= col.humanize
+  %tbody
+    - for flow_task in @flow_tasks
+      %tr
+        %td
+          = link_to "##{flow_task.id}", flow_task_path(flow_task)
+        - for col in cols - %w(inputs outputs id)
+          %td
+            = flow_task.send(col)
+        %td
+          %ul
+            - for input in flow_task.inputs
+              %li
+                - if input.resource
+                  = link_to "#{input.resource_type}: #{input.resource.to_param}", input.resource
+                - else
+                  = link_to input.file_file_name, input.file.url
+        %td
+          %ul
+            - for output in flow_task.outputs
+              %li
+                - if output.resource
+                  = link_to "#{output.resource_type}: #{output.resource.to_param}", input.resource
+                - else
+                  = link_to output.file_file_name, output.file.url
+
+= will_paginate @flow_tasks

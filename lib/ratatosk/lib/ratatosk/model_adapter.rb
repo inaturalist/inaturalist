@@ -17,11 +17,9 @@
 #
 module ModelAdapter
   attr_accessor :adaptee
-  UNADAPTED_METHODS = %w"class"
   
   def method_missing(method, *args)
     if @adaptee.respond_to? method
-      # puts "[DEBUG] Redirecting call for #{method} to #{@adaptee}"
       @adaptee.send(method, *args)
     else
       raise NoMethodError, "#{self.class} hasn't implemented #{method}"
@@ -30,7 +28,6 @@ module ModelAdapter
   
   # Redirect calls to public methods in Object to the adaptee
   Object.methods.each do |method_name|
-    next if UNADAPTED_METHODS.include?(method_name)
     define_method(method_name.to_sym) do |*args|
       @adaptee.send(method_name.to_sym, *args)
     end

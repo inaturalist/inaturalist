@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= strip_tags(@pagetitle = "Add Taxon Batch to #{link_to(@list.title, @list)}".html_safe) %>
+  <%= strip_tags(@pagetitle = t(:add_taxon_batch_to, :list => link_to(@list.title, @list)).html_safe) %>
 <%- end -%>
 <% content_for(:extracss) do %>
   <%= render :partial => 'lists/show_css' %>
@@ -26,7 +26,7 @@
     .added { background-color: #E6EFC2; }
     .already { background-color: #eee; }
     table { width: 100%; }
-    td.actions { min-width: 550px; }
+    td.actions { min-width: 550px; width: 100%; }
     .actions form {
       display: inline;
       margin: 0;
@@ -37,6 +37,9 @@
       background: none;
       border-color: transparent;
     }
+
+    .listed_taxon .details {width: 460px;}
+    tr.removed {opacity: 0.5;color:#666;}
   </style>
 <% end -%>
 
@@ -56,6 +59,16 @@
       .live('ajax:error', function(event, request, settings) {
         var json = eval('(' + request.responseText + ')')
         alert(json.full_messages)
+      })
+    $('.listed_taxon .removelink')
+      .live('ajax:success', function(event, json, status, request) {
+        $(this).parents('tr:first').removeClass('added').addClass('removed')
+        $(this).parents('tr:first').find('td.ltstatus').html('removed')
+        $(this).hide()
+      })
+      .live('ajax:error', function(event, request, settings) {
+        var json = eval('(' + request.responseText + ')')
+        alert(json.full_messages || json.error)
       })
     
     function loadNextBatch() {
@@ -85,18 +98,18 @@
 
 <div id="pagheader">
   <div class="breadcrumbs">
-    <%= link_to "Back to #{@list.title}", list_path(@list), :class => "back crumb" %>
+    <%= link_to t(:back_to_this, :place=> "#{@list.title}"), list_path(@list), :class => "back crumb" %>
   </div>
   <h2><%= @pagetitle %></h2>
 </div>
 
 <table id="#nametable" border="0">
   <tr>
-    <th class="linecol">Name entered</th>
-    <th class="statuscol">Status</th>
-    <th class="actionscol">Actions</th>
+    <th class="linecol"><%=t :name_entered %></th>
+    <th class="statuscol"><%=t :status %></th>
+    <th class="actionscol"><%=t :actions %></th>
   </tr>
   <%= render :partial => 'lists/add_taxon_batch_line', :collection => @lines_taxa %>
 </table>
 
-<%= link_to "Back to #{@list.title}", list_path(@list), :class => "back crumb" %>
+<%= link_to t(:back_to_this, :place=> "#{@list.title}"), list_path(@list), :class => "back crumb" %>

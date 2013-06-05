@@ -3,6 +3,23 @@
     var options = $.extend({}, $.fn.latLonSelector.defaults, options);
     $.fn.latLonSelector._options = options;
     
+    if ($('#latLonSelector').length == 0) {
+      setupMap(options)
+    }
+    
+    // Setup each input
+    $(this).each(function() {
+      setup(this, options);
+    });
+    
+    // If embedded map, show the wrapper on the first input
+    if (typeof(options.mapDiv) != 'undefined') {
+      $.fn.latLonSelector.showMap($(this).get(0));
+      $.fn.latLonSelector.hideMap($(this).get(0));
+    };
+  }
+
+  function setupMap(options) {
     // Insert a SINGLE map div at the bottom of the page    
     var wrapper = $('<div id="latLonSelector"></div>');
     if (typeof(options.mapDiv) == 'undefined') {
@@ -141,20 +158,10 @@
       $('<label for="latLonSelectorExactFlag">Exact location</label>').hide()
     );
     $(wrapper).append(dataControls);
-    
-    // Setup each input
-    $(this).each(function() {
-      setup(this, options);
-    });
-    
-    // If embedded map, show the wrapper on the first input
-    if (typeof(options.mapDiv) != 'undefined') {
-      $.fn.latLonSelector.showMap($(this).get(0));
-      $.fn.latLonSelector.hideMap($(this).get(0));
-    };
-  };
+  }
   
   function setup(input, options) {
+    $(input).data('latLonSelectorOptions', options)
     // Give it some class
     $(input).addClass('latLonSelectorInput');
     
@@ -243,6 +250,14 @@
     if ($(field).length == 0) {
       field = $(context).parent().find(tagName+'[name*="['+name+']"]:first');
     };
+
+    // hack!
+    if ($(field).length == 0) {
+      field = $(context).parents('.observation:first').find(tagName+'[name="'+name+'"]:first');
+    }
+    if ($(field).length == 0) {
+      field = $(context).parents('.observation:first').find(tagName+'[name*="['+name+']"]:first');
+    }
     
     // Try to find within the same form
     if ($(field).length == 0) {
@@ -250,7 +265,7 @@
     }
     if ($(field).length == 0) {
       field = $(context).parents('form').find(tagName+'[name*="['+name+']"]:first');
-    };
+    }
     
     return field;
   }
@@ -289,10 +304,11 @@
     $(findFormField($.fn.latLonSelector._currentInput, 'positioning_device')).val('manual')
     if ($.fn.latLonSelector._circle) {
       $.fn.latLonSelector._circle.setCenter(marker.getPosition())
-      if (!$.fn.latLonSelector._circle.getEditable()) {
-        $.fn.latLonSelector.setAccuracy(null)
-        $.fn.latLonSelector.updateFormAccuracy(null)
-      }
+    }
+    if (!$.fn.latLonSelector._circle || !$.fn.latLonSelector._circle.getEditable()) {
+      var accuracy = $.fn.latLonSelector.boundsToAccuracy(map.getBounds()) / 10
+      $.fn.latLonSelector.setAccuracy(accuracy)
+      $.fn.latLonSelector.updateFormAccuracy(accuracy)  
     }
   }
   
@@ -327,6 +343,8 @@
   }
   
   $.fn.latLonSelector.updateFormLatLon = function(lat, lon) {
+    lat = preciseRound(lat, 6)
+    lon = preciseRound(lon, 6)
     var input = $.fn.latLonSelector._currentInput;
     var latField = findFormField(input, 'latitude');
     var lonField = findFormField(input, 'longitude');
@@ -354,8 +372,10 @@
     var isExact = isExact || $('#latLonSelector').find(
                               '#latLonSelectorExactFlag:checked').length == 1;
     var locExactField = findFormField(input, 'location_is_exact');
-    $(locExactField).val(isExact);
-    $(locExactField).get(0).checked = isExact;
+    if ($(locExactField).get(0)) {
+      $(locExactField).val(isExact);
+      $(locExactField).get(0).checked = isExact;
+    }
   };
   
   $.fn.latLonSelector.updateFormAccuracy = function(accuracy, options) {
@@ -405,7 +425,7 @@
     };
     
     // Get marker, exact or approx based on exactField
-    var isExact = $(exactField).get(0).checked == true;
+    var isExact = $(exactField).get(0) ? $(exactField).get(0).checked == true : true;
     var marker = getMarker({exact: isExact});
     setExact(isExact)
     
@@ -462,36 +482,50 @@
         alert("Google couldn't find '" + q + "'");
         return;
       }
+
+      // try to choose a result that actually contains the query
+      var result = results[0],
+          re = new RegExp(q, 'gi')
+      for (var i = 0; i < results.length; i++) {
+        if (results[i].formatted_address.match(re)) {
+          result = results[i]
+          break
+        }
+      }
       
-      var result = results[0]
-      
-      if (results[0].geometry.location_type == google.maps.GeocoderLocationType.ROOFTOP) {
+      if (result.geometry.location_type == google.maps.GeocoderLocationType.ROOFTOP) {
         marker = getMarker.call(self, {exact: true})
         setExact.call(self, true)
       }
-      var point = results[0].geometry.location
-      marker.setPosition(point);
-
-      $.fn.latLonSelector._map.setCenter(point);
-      $.fn.latLonSelector._map.fitBounds(results[0].geometry.viewport)
+      
+      var point = result.geometry.location,
+          viewport = result.geometry.viewport || result.geometry.bounds
+      
+      marker.setPosition(point)
+      $.fn.latLonSelector._map.fitBounds(viewport)
+      $.fn.latLonSelector._map.setCenter(point)
       
       $.fn.latLonSelector.updateFormLatLon(
         marker.getPosition().lat(), 
         marker.getPosition().lng()
       )
       
-      var bounds = result.geometry.bounds || result.geometry.viewport
-      if (bounds) {
-        var dNorthEast = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
-              bounds.getNorthEast().lat(), bounds.getNorthEast().lng()),
-            dSouthWest = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
-              bounds.getSouthWest().lat(), bounds.getSouthWest().lng()),
-            accuracy = Math.max(dNorthEast, dSouthWest)
+      if (viewport) {
+        var accuracy = $.fn.latLonSelector.boundsToAccuracy(viewport, point)
         $.fn.latLonSelector.setAccuracy(accuracy, {lat: point.lat(), lng: point.lng()})
         $.fn.latLonSelector.updateFormAccuracy(accuracy, {positioningMethod: 'google', positioningDevice: 'google'})
       }
-    });
-  };
+    })
+  }
+
+  $.fn.latLonSelector.boundsToAccuracy = function(bounds, point) {
+    point = point || bounds.getCenter()
+    var dNorthEast = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
+          bounds.getNorthEast().lat(), bounds.getNorthEast().lng()),
+        dSouthWest = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
+          bounds.getSouthWest().lat(), bounds.getSouthWest().lng())
+    return Math.max(dNorthEast, dSouthWest)
+  }
   
   $.fn.latLonSelector.updateAccuracyWithGeocoderResult = function(result) {
     var d = iNaturalist.Map.distanceInMeters(
@@ -501,6 +535,8 @@
   }
   
   $.fn.latLonSelector.editAccuracy = function() {
+    var options = $(getCurrentInput()).data('latLonSelectorOptions')
+    if (options.noAccuracy) {return}
     if (!$.fn.latLonSelector._circle) { 
       $.fn.latLonSelector.setAccuracy(null)
     }
@@ -542,6 +578,8 @@
   
   $.fn.latLonSelector.setAccuracy = function(accuracy, options) {
     options = options || {}
+    var inputOptions = $(getCurrentInput()).data('latLonSelectorOptions')
+    if (inputOptions.noAccuracy) {return};
     if (!$.fn.latLonSelector._circle) {
       $.fn.latLonSelector._circle = new google.maps.Circle({
         strokeColor: "#882A28",
@@ -637,7 +675,7 @@
   };
   
   $.fn.latLonSelector.defaults = {
-    buttonImgPath: '/images/silk/world.png',
+    buttonImgPath: '/images/Gnome-emblem-web-16x16.png',
     wrapperCSS: {
       display: 'none',
       position: 'absolute',

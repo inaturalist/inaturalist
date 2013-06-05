@@ -19,11 +19,12 @@ Inaturalist::Application.configure do
   # If you have no front-end server that supports something like X-Sendfile,
   # just comment this out and Rails will serve the files
 
-  # Set the logger to roll over monthly
-  config.logger = Logger.new("#{Rails.root}/log/#{ENV['Rails.env']}.log", 10, 10485760)
+  # Not sure why this is necessary, but settings the custom logger above 
+  # seems to cause ActiveRecord to log db statements
+  config.active_record.logger = nil
 
   # Use a different cache store in production
-  config.cache_store = :mem_cache_store, INAT_CONFIG["memcached"]
+  config.cache_store = :mem_cache_store, CONFIG.memcached
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
@@ -34,9 +35,13 @@ Inaturalist::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'inaturalist.org' }
+  config.action_mailer.default_url_options = { :host => URI.parse(CONFIG.site_url).host }
   smtp_config_path = File.open("#{Rails.root}/config/smtp.yml")
-  ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path)
+  ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path).symbolize_keys
+  Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default :charset => "utf-8"
 
   # Enable threaded mode
   # config.threadsafe!
@@ -48,7 +53,7 @@ Inaturalist::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  if INAT_CONFIG['google_analytics'] && INAT_CONFIG['google_analytics']['tracker_id']
-    config.middleware.use "Rack::GoogleAnalytics", :web_property_id => INAT_CONFIG['google_analytics']['tracker_id']
+  if CONFIG.google_analytics && CONFIG.google_analytics.tracker_id
+    config.middleware.use "Rack::GoogleAnalytics", :web_property_id => CONFIG.google_analytics.tracker_id
   end
 end

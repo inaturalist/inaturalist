@@ -1,59 +1,19 @@
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
-  <style type="text/css" media="screen">
-    .title_field,.description_field,.project_type_field{margin-right:20px;}
-    .description_field,.terms_field,.title_field, .preference_fields, .project_type_field{float:left;width:465px;}
-    .project_icon_field{float:left;width:225px;}
-    .description_field,.project_type_field{clear:left;}
-    .title_field input{width:390px;}
-    .description_field textarea,.terms_field textarea{width:450px;}
-    #place_q,#taxon_q{width:300px;}
-    .observationrules{clear:left;}
-  </style>
+  <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css", "projects/form" %>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <script type="text/javascript" charset="utf-8">
-    function rulify() {
-      $('#new_operand_id').chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
-        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
-        chosen: eval('(' + $('new_operand_id').attr('data-json') + ')'),
-        afterSelect: function(item) {
-          $('#new_operand_type').val("Place")
-        },
-        afterClear: function() {
-          $('#new_operand_type').val('')
-        }
-      })
-      
-      $('#taxon_q').simpleTaxonSelector({
-        taxonIDField: $('#new_operand_id'),
-        afterSelect: function() {
-          $('#new_operand_type').val("Taxon")
-        },
-        afterUnselect: function() {
-          $('#new_operand_type').val('')
-        }
-      })
-      $('#taxon_selector').hide()
-      
-      $('.observationrules .togglelink').click()
-      
-      $('.operator_field select').change(function() {
-        if ($(this).val() == 'observed_in_place?') {
-          $('#place_selector').show()
-        } else {
-          $('#place_selector').hide()
-        }
-        if ($(this).val() == 'in_taxon?') {
-          $('#taxon_selector').show()
-        } else {
-          $('#taxon_selector').hide()
-        }
-      })
-      $('.operator_field select').change()
-    }
+  <%= google_maps_js %>
+  <script type="text/javascript">
+    var PROJECT = <%= @project.to_json.html_safe %>,
+        RULE_PLACE = <%= @project.rule_place.to_json.html_safe %>,
+        PLACE = <%= @project.place.to_json(:methods => [:kml_url]).html_safe %>,
+        PLACE_GEOMETRY_KML_URL = <%=raw @place_geometry ? place_geometry_kml_url.inspect : nil.to_json %>,
+        KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : "[]" %>
   </script>
+  <%= javascript_include_tag "observations/observation_fields", 
+                             'inaturalist/map3',
+                             "jquery/plugins/jquery.latLonSelector.js",
+                             "projects/form" %>
 <%- end -%>
 <%- project ||= @project -%>
 <%= form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
@@ -61,14 +21,14 @@
   
   <%= f.text_field :title, :required => true %>
   
-  <% f.form_field :project_icon, :wrapper => {:class => 'clear'} do %>
+  <%= f.form_field :project_icon, :wrapper => {:class => 'clear'} do %>
     <% if project.icon.file? -%>
       <%= image_tag(project.icon.url(:thumb), :class => "left") %>
       <div>
         <%= check_box_tag :icon_delete %>
-        <label for="icon_delete">Delete icon?</label>
+        <label for="icon_delete"><%=t :delete_icon? %></label>
       </div>
-      <%= link_to_toggle "Change icon", "#iconfield" %>
+      <%= link_to_toggle t(:change_icon), "#iconfield" %>
       <div id="iconfield" style="display: none">
         <%= f.file_field :icon, :label => false %>
       </div>
@@ -77,53 +37,64 @@
     <% end -%>
   <% end %>
   
-  <%= f.text_area :description, :description => "Describe the purpose of this project." %>
-  <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
+  <%= f.text_area :description, :description => t(:describe_purpose) %>
+  <%= f.text_area :terms, :description => t(:terms_new_users) %>
   
-  <%= f.select :project_type, Project::PROJECT_TYPES, {:include_blank => "normal"},
-    :description => "Contest projects will rank contributors base on how many unique species they've observed." %>
-  
-  <div class="preference_fields">
+  <div class="clear">
+    <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]}, {:include_blank => t(:normal)},
+      :description => t(:contest_projects_description) %>
     <%= f.check_box :prefers_count_from_list, 
-      :label => "Show total listed taxa", 
-      :label_after => true,
-      :description => 
-        "Show the total number of taxa on the project's list alongside " + 
-        "the number of taxa observed." %>
-    <%= f.check_box :prefers_place_boundary_visible, 
-      :label => "Show place boundary on map", 
-      :label_after => true,
-      :description => 
-        "If you have an observation rule specifying a place (see below), " + 
-        "you can show the boundary of that place on your project page, if " + 
-        "the place has a boundary." %>
+        :label => t(:show_total_listed_taxa),
+        :label_after => true,
+        :description => t(:show_the_total_number_of) %>
   </div>
+
+  <fieldset class="location">
+    <legend><%= t :location %></legend>
+    <p class="description">
+      <%= t :if_your_project_is %>
+    </p>
+    <div class="column span-7">
+      <%= f.text_field :latitude, :label => t(:latitude) %>
+      <%= f.text_field :longitude, :label => t(:longitude)%>
+      <%= f.select :map_type, Project::MAP_TYPES.map{|type| [t("#{type}", :default => type).downcase, type]} %>
+      <%= f.text_field :zoom_level %>
+      <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => SITE_NAME) %>
+      <%= f.check_box :prefers_place_boundary_visible, :label_after => true, :description => t(:you_can_show_the_boundary_of) %>
+      <% if @place -%>
+        <%= link_to t(:view_place), @place, :class => "readmore" %>
+      <% end -%>
+    </div>
+    <div class="last column span-16">
+      <div class="stacked">
+        <%= text_field_tag :map_search, "", :placeholder => t(:search_the_map), :class => "text" %>
+      </div>
+      <div id="map"></div>
+    </div>
+  </fieldset>
   
   <!-- <fieldset class="userrules">
-    <legend>New User Rules</legend>
+    <legend><%= t(:new_user_rules) %></legend>
     
     <%= f.fields_for :project_user_rules do |pu| %>
       <div>
-        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => "Choose a rule" %>
+        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => t(:choose_rule) %>
         <%= pu.hidden_field :_destroy, :class => "destroyer" %>
-        <%= link_to_function "remove", "$(this).parent().fadeTo('fast', 0.5); $(this).parent().find('.destroyer').val(true)" %>
+        <%= link_to_function t(:remove), "$(this).parent().fadeTo('fast', 0.5); $(this).parent().find('.destroyer').val(true)" %>
       </div>
     <% end %>
     <%= f.fields_for :project_user_rules, [Rule.new] do |pu| %>
       <div>
-        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => "Choose a rule" %>
-        <%= link_to_function "add another", "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
+        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => t(:choose_rule) %>
+        <%= link_to_function t(:add_another), "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
       </div>
     <% end %>
   </fieldset> -->
   
   <fieldset class="observationrules">
-    <legend>New Observation Rules</legend>
+    <legend><%=t :new_observation_rules %></legend>
     <p class="description">
-      You can choose rules to determine what observations can be added to this
-      project, like limiting observations to a certain place. Note: limiting
-      to places currently relies on iNat Places, and can only limit
-      observations to the smallest rectangle that surrounds a place.
+      <%= raw t(:observation_rules_description, :site_name => SITE_NAME_SHORT) %> 
     </p>
     
     <ul>
@@ -131,7 +102,7 @@
         <li>
           <%= por.object.terms %>
           <%= por.hidden_field :_destroy, :class => "destroyer" %>
-          <%= link_to_function "remove", 
+          <%= link_to_function t(:remove), 
             "$(this).parent().fadeTo('fast', 0.5).css('text-decoration', 'line-through');" + 
             "$(this).parent().find('.destroyer').val(true)" %>
         </li>
@@ -141,62 +112,57 @@
     <%- new_rule_field = capture do %>
       <fieldset id="new_project_observation_rule">
         <%= f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
-          <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [m.to_s.humanize.gsub('?', '').downcase, m]}, 
-            :include_blank => "Choose a rule",
-            :label => "Rule: must be..." %>
+          <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [t("#{m}").to_s.humanize.gsub('?', '').downcase, m]},
+            :include_blank => t(:choose_rule),
+            :label => t(:rule_must_be) %>
           <%= pu.hidden_field :operand_type, :id => "new_operand_type" %>
           <div id="place_selector">
-            <%= pu.text_field :operand_id, :id => "new_operand_id", :placeholder => "Type place name", :label => "Choose a place" %>
+            <%= pu.text_field :operand_id, :id => "new_operand_id", :placeholder => t(:type_place_name), :label => t(:choose_a_place) %>
             <span class="description">
-              Not finding the place you want?
-              <%= link_to "Make a new place", new_place_path, :class => "readmore", :target => "_blank" %>
+              <%=t :place_must_have_a_boundary_defined %> <%=t :not_finding_place_you_want? %>
+              <%= link_to t(:make_a_new_place), new_place_path, :class => "readmore", :target => "_blank" %>
             </span>
           </div>
           <div id="taxon_selector">
-            <label for="taxon_q">Choose a taxon</label><br/>
+            <label for="taxon_q"><%=t :choose_taxon %></label><br/>
             <input type="text" name="taxon_q" value="" id="taxon_q" class="text">
           </div>
         <% end %>
-        <%= link_to_function "remove", "$(this).parent().next('a').show();$(this).parent().remove() " %>
+        <%= link_to_function t(:remove), "$(this).parent().next('a').show();$(this).parent().remove() " %>
       </fieldset>
     <% end -%>
-    <%= link_to_function "add a new rule", "$(this).before('#{escape_javascript new_rule_field}'); rulify(); $(this).hide()" %>
+    <%= link_to_function t(:add_new_rule), "$(this).before('#{escape_javascript new_rule_field}'); rulify(); $(this).hide()" %>
   </fieldset>
   
-  <%= f.text_field :tracking_codes, :description => 
-    "Comma-separated list of tracking codes. Add these if you want to " + 
-    "append a tracking code when sending people to the new observation form, " + 
-    "e.g. #{root_url}observations/new?project_id=#{@project.id}&tracking_code=yourcode123. " + 
-    "You can use this to track participation from different sources. " + 
-    "You can access these codes when downloading your project's observations as CSV." %>
+  <%= f.text_field :tracking_codes, :description => t(:comma_separated_list_of_tracking_codes, :root_url => root_url, :project_id => @project.id) %>
   
   <% if current_user.is_admin? && !@project.new_record? -%>
-    <fieldset id="project_assets" class="admin">
-      <legend>Project Assets</legend>
+    <fieldset id="project_assets">
+      <legend><%=t :project_assets %></legend>
       
       <ul>
         <% for project_asset in @project.project_assets %>
         <li>
           <%= link_to project_asset.asset.url, project_asset.asset.url %>
           <small style="margin-left: 10px">
-            <%= link_to "edit", edit_project_asset_path(project_asset) %>
-            <%= link_to "delete", project_asset, :method => :delete, :confirm => "Are you sure you want to delete this asset?", 
+            <%= link_to t(:edit), edit_project_asset_path(project_asset) %>
+            <%= link_to t(:delete), project_asset, :method => :delete, :confirm => t(:you_sure_delete_asset?), 
               :class => 'description' %>
           </small>
         </li>
         <% end %>
       </ul>
       
-      <%= link_to "Add asset", new_project_asset_path(:project_id => @project.id), :class => "readmore" %>
+      <%= link_to t(:add_asset), new_project_asset_path(:project_id => @project.id), :class => "readmore" %>
     </fieldset>
     
-    <fieldset id="custom_project_fields" class="admin">
-      <legend>Custom Project Fields</legend>
+    <fieldset id="custom_project_fields">
+      <legend><%=t :custom_project_fields %></legend>
       
       <% if @project.custom_project -%>
-        <%= link_to "Edit custom project fields", edit_custom_project_path(@project.custom_project), :class => "readmore" %>
+        <%= link_to t(:edit_custom_project_fields), edit_custom_project_path(@project.custom_project), :class => "readmore" %>
       <% else %>
-        <%= link_to "Add custom project fields", new_custom_project_path(:project_id => @project.id), :class => "readmore" %>
+        <%= link_to t(:add_custom_project_fields), new_custom_project_path(:project_id => @project.id), :class => "readmore" %>
       <% end -%>
     </fieldset>
     
@@ -211,12 +177,42 @@
     </fieldset>
   <% end -%>
 
+  <fieldset>
+    <legend><%= t :observation_fields %></legend>
+    <p class="description">
+      <%= t :suggest_or_require_that %>
+    </p>
+
+    <ul class="project_observation_fields">
+      <%= f.fields_for :project_observation_fields do |pof| %>
+        <%= render 'project_observation_field_row', :builder => pof %>
+      <% end -%>
+    </ul>
+    <div>
+      <%- new_pof_fields = capture do %>
+        <%= f.fields_for :project_observation_fields, f.object.project_observation_fields.build do |pof| %>
+          <%= render 'project_observation_field_row', :builder => pof %>
+        <% end -%>
+      <% end -%>
+      <div class="inline buttonrow">
+        <label><%= t :add_a_field %></label>
+        <input name="observation_field" 
+               class="observation_field_chooser" 
+               type="text" 
+               placeholder="<%= t :start_typing_field_name %>"
+               data-chooser-default-sources="<%= @observation_fields.to_json %>">
+        <%= link_to_function t(:add_a_field), "newProjectObservationField('#{escape_javascript(new_pof_fields)}')", :class => "button addfieldbutton" %>
+        <%= link_to t(:create_a_new_field), new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
+      </div>
+    </div>
+  </fieldset>
+
   <div class="buttons">
-    <%= f.submit project.new_record? ? "Create" : "Save", :class => "default button", "data-loading-click" => "Saving..." %>
-    <%= link_to "Cancel", projects_path, :class => "button" %>
+    <%= f.submit project.new_record? ? t(:create) : t(:save), :class => "default button", "data-loading-click" => "Saving..." %>
+    <%= link_to t(:cancel), projects_path, :class => "button" %>
     <% if @project_user && @project_user.is_admin? && !project.new_record? -%>
-      <%= link_to "Delete this project", project, :method => :delete, 
-        :confirm => "Are you sure you want to delete this project?",
+      <%= link_to t(:delete_project), project, :method => :delete, 
+        :confirm => t(:you_sure_delete_project?),
         :class => "minor delete button" %>
     <% end -%>
   </div>

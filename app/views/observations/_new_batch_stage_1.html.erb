@@ -2,9 +2,9 @@
   <%= form_tag(new_observation_batch_path, :id => 'new_batch_form', :class => 'observationform') do %>
   <div class="column span-16 field">
     <div class="column span-6">
-      <h3><label for="taxa"><em>What</em> did you see?</label></h3>
+      <h3><label for="taxa"><%=raw t :what_did_you_see? %></label></h3>
       <div class="description">
-        Type one species name per line.
+        <%= t :type_one %>
       </div>
     </div>
     <div class="last column span-10">
@@ -13,7 +13,7 @@
   </div>
   <div class="column span-16 field">
     <div class="column span-6">
-      <h3><label for="observed_on_string"><em>When</em> did you see them?</label></h3>
+      <h3><label for="observed_on_string"><%=raw t :when_did_you_see_them? %></label></h3>
     </div>
     <div class="last column span-10">
       <%= text_field_tag 'batch[observed_on_string]', '', 
@@ -23,35 +23,35 @@
   </div>
   <div class="column span-16 field">
     <div class="column span-6">
-      <h3><label for="place_guess"><em>Where</em> were they?</label></h3>
+      <h3><label for="place_guess"><%=raw t :where_were_they? %></label></h3>
     </div>
     <div class="last column span-10">
       <%= text_field_tag 'batch[place_guess]', '', 
                          :id => 'place_guess',
                          :class => 'text place_guess' %>
       <div id="coordinates" class="latlonfields status">
-        <%= label('batch[latitude]', 'Lat') %>
+        <%= label('batch[latitude]', t(:lat), :for => "batch_latitude") %>
         <%= text_field_tag('batch[latitude]', '', :class => 'latitude') %>
             
-        <%= label('batch[longitude]', 'Lon') %>
+        <%= label('batch[longitude]', t(:long), :for => "batch_longitude") %>
         <%= text_field_tag('batch[longitude]', '', :class => 'longitude') %>
 
         <span class="button">
-          <%= link_to_function("edit", "$('#coordinates').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
-          <%= link_to_function("hide", "$('#coordinates').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
+          <%= link_to_function(t(:edit), "$('#coordinates').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
+          <%= link_to_function(t(:hide), "$('#coordinates').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
         </span>
       </div>
-      <%= hidden_field_tag('batch[map_scale]', :class => 'map_scale') %>
-      <%= hidden_field_tag('batch[location_is_exact]', :class => 'location_is_exact') %>
-      <%= hidden_field_tag('batch[positional_accuracy]', :class => 'positional_accuracy') %>
-      <%= hidden_field_tag('batch[positioning_method]', :class => 'positioning_method') %>
-      <%= hidden_field_tag('batch[positioning_device]', :class => 'positioning_device') %>
+      <%= hidden_field_tag('batch[map_scale]', nil, :class => 'map_scale') %>
+      <%= hidden_field_tag('batch[location_is_exact]', nil, :class => 'location_is_exact') %>
+      <%= hidden_field_tag('batch[positional_accuracy]', nil, :class => 'positional_accuracy') %>
+      <%= hidden_field_tag('batch[positioning_method]', nil, :class => 'positioning_method') %>
+      <%= hidden_field_tag('batch[positioning_device]', nil, :class => 'positioning_device') %>
     </div>
   </div>
 
   <div class="column span-16">
     <div id="observation_form_links" class="buttonrow">
-      <%= submit_tag "Next &raquo;".html_safe, :class => 'default button', "data-loading-click" => "Creating observations..." -%>
+      <%= submit_tag t(:next).html_safe, :class => 'default button', "data-loading-click" => "Creating observations..." -%>
     </div>
   </div>
   <% end %>

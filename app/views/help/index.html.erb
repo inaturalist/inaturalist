@@ -13,288 +13,207 @@
 
 <div class="last column span-20">
   <p>
-    Howdy. If you're just getting started with iNat, check out
-    <%= link_to "Getting Started", :action => "getting_started" %> guide to tour some of the site's features. If you have a
-    question about the site, please peruse the FAQ below. If you're still
-    looking for answers, please 
-    <a href="http://groups.google.com/group/inaturalist" title="iNaturalist | Google Groups">post your question to our Google Group</a>.
+  <%=t 'views.help.index.welcome_message_html', 
+    :url => url_for(:action => "getting_started"), 
+    :site_name => SITE_NAME,
+    :getting_started => t(:getting_started),
+    :feedback_url => CONFIG.feedback_url %>
   </p>
   
-  <h3>Frequently Asked Questions</h3>
+  <h3><%=t :faq %></h3>
   
   <div id="toc" class="box">
     <h4>
-      General
+      <%=t :general %>
     </h4>
     <ol>
-      <li><a href="#general1">What is iNaturalist?</a></li>
-      <li><a href="#general2">Who is behind iNaturalist?</a></li>
-      <li><a href="#general3">What technologies and data sources does the project use?</a></li>
-      <li><a href="#general4">What can I do to help iNaturalist?</a></li>
-      <li><a href="#general5">How do I contact iNaturalist?</a></li>
-      <li><a href="#general6">What are admins and curators?</a></li>
-      <li><a href="#inappropriate">What is considered inappropriate content?</a></li>
+      <li><a href="#general1"><%=t 'views.help.index.what_is_inaturalist?', :site_name => SITE_NAME %></a></li>
+      <li><a href="#general2"><%=t 'views.help.index.who_is_behind_inaturalist?', :site_name => SITE_NAME %></a></li>
+      <li><a href="#general3"><%=t 'views.help.index.what_technologies_does_the_project_use?' %></a></li>
+      <li><a href="#general4"><%=t 'views.help.index.what_can_i_do_to_help_inaturalist?', :site_name => SITE_NAME %></a></li>
+      <li><a href="#general5"><%=t 'views.help.index.how_do_i_contact_inaturalist?', :site_name => SITE_NAME %></a></li>
+      <li><a href="#general6"><%=t 'views.help.index.what_are_admins_and_curators?' %></a></li>
+      <li><a href="#inappropriate"><%=t 'views.help.index.what_is_considered_inappropriate_content?' %></a></li>
     </ol>
     <h4>
-      Observations
+      <%=t :observations %>
     </h4>
     <ol>
-      <li><a href="#observations1">What is an observation?</a></li>
-      <li><a href="#observations2">Why doesn't iNaturalist recognize the name I've entered?</a></li>
-      <li><a href="#observations3">How can I get help identifying what I saw?</a></li>
-      <li><a href="#observations4">What does it mean to link iNaturalist to my Flickr account?</a></li>
-      <li><a href="#observations5">Can I add photos without a Flickr account?</a></li>
-      <li><a href="#observations6">What are tags?</a></li>
-      <li><a href="#observations7">Can I include my iNat observations on my own website of blog?</a></li>
-      <li><a href="#observations8">What kind of photos should I attach to observations?  Can I attach photos I didn't take?</a></li>
-      <li><a href="#geoprivacy">What is geoprivacy?</a></li>
-      <li><a href="#obscured">What is does it mean for an observation to be obscured?</a></li>
-      <li><a href="#quality">What is the quality assessment and how do observations qualify to become "research" grade?</a></li>
+      <li><a href="#observations1"><%=t 'views.help.index.what_is_an_observation?' %></a></li>
+      <li><a href="#observations2"><%=t 'views.help.index.why_doesnt_inaturalist_recognize_the_name_ive_entered?', :site_name => SITE_NAME %></a></li>
+      <li><a href="#observations3"><%=t 'views.help.index.how_can_i_get_help_identifying_what_i_saw?' %></a></li>
+      <li><a href="#observations4"><%=t 'views.help.index.what_does_it_mean_to_link_inaturalist_to_my_flickr_account?', :site_name => SITE_NAME %></a></li>
+      <li><a href="#observations5"><%=t 'views.help.index.can_i_add_photos_without_a_flickr_account?' %></a></li>
+      <li><a href="#observations6"><%=t 'views.help.index.what_are_tags?' %></a></li>
+      <li><a href="#observations7"><%=t 'views.help.index.can_i_include_my_observations_on_my_blog?', :site_name => SITE_NAME_SHORT %></a></li>
+      <li><a href="#observations8"><%=t 'views.help.index.what_kind_of_photos_should_i_attach' %></a></li>
+      <li><a href="#geoprivacy"><%=t 'views.help.index.what_is_geoprivacy?' %></a></li>
+      <li><a href="#obscured"><%=t 'views.help.index.what_is_does_it_mean_for' %></a></li>
+      <li><a href="#quality"><%=t 'views.help.index.what_is_the_quality_assessment' %></a></li>
     </ol>
 
     <h4>
-      Lists
+      <%=t :lists %>
     </h4>
     <ol>
-      <li><a href="#lists1">What are lists?</a></li>
-      <li><a href="#lists2">I observed a species, why isn't it showing up in my life list?</a></li>
+      <li><a href="#lists1"><%=t 'views.help.index.what_is_a_life_list?' %></a></li>
+      <li><a href="#lists2"><%=t 'views.help.index.i_observed_a_species' %></a></li>
     </ol>
   </div>
        
   <h4>
-    General
+    <%=t :general %>
   </h4>
   <ol>
     <li>
-      <h5><a name="general1">What is iNaturalist?</a></h5>
+      <h5><a name="general1"><%=t 'views.help.index.what_is_inaturalist?', :site_name => SITE_NAME %></a></h5>
       <p>
-        iNaturalist provides a place to record and organize nature findings,
-        meet other nature enthusiasts, and learn about the natural world. It
-        encourages the participation of a wide variety of nature
-        enthusiasts, including, but not exclusive to, hikers, hunters,
-        birders, beach combers, mushroom foragers, park rangers, ecologists,
-        and fishermen. Through connecting these different perceptions and
-        expertise of the natural world, iNaturalist hopes to create
-        extensive community awareness of local biodiversity and promote
-        further exploration of local environments.
+        <%=t 'views.help.index.inaturalist_provides_a_place_to', :site_name => SITE_NAME %>
       </p>
     </li>
     <li>
-      <h5><a name="general2">Who is behind iNaturalist?</a></h5>
+      <h5><a name="general2"><%=t 'views.help.index.who_is_behind_inaturalist?', :site_name => SITE_NAME %></a></h5>
       <p>
-        iNaturalist was originally the Master'ss Final Project of Nathan Agrin,
-        Jessica Kline, and Ken-ichi Ueda at UC Berkeley's 
-        <a href="http://www.ischool.berkeley.edu">School of Information</a>.
-        Currently Ken-ichi maintains the project, with occasional help
-        and guidance from Nate.
+        <%=t 'views.help.index.inaturalist_was_originally_the_masters_final_html', :site_name => SITE_NAME %>
       </p>
     </li>
     <li>
-      <h5><a name="general3">What technologies and data sources does the project use?</a></h5>
+      <h5><a name="general3"><%=t 'views.help.index.what_technologies_does_the_project_use?' %></a></h5>
       <p>
-        iNaturalist is built using <a
-        href="http://www.rubyonrails.org/">Ruby on Rails</a>, <a
-        href="http://mysql.com/">MySQL</a>, <a
-        href="http://jquery.com/">jQuery</a> and <a
-        href="http://code.google.com/apis/maps//">Google Maps</a>, and <a
-        href="http://flickr.com/">Flickr</a>. It also utilizes the <a
-        href="http://www.catalogueoflife.org">Catalogue of Life</a> and
-        <a href="http://ubio.org/">uBio</a> data sources for taxonomic data.
+        <%=t 'views.help.index.inaturalist_is_built_using_html', :site_name => SITE_NAME_SHORT %> 
       </p>
     </li>
     <li>
-      <h5><a name="general4">What can I do to help iNaturalist?</a></h5>
+      <h5><a name="general4"><%=t 'views.help.index.what_can_i_do_to_help_inaturalist?', :site_name => SITE_NAME %></a></h5>
       <p>
-        You can help iNaturalist by giving us your feedback; join our 
-        <a href="http://groups.google.com/group/inaturalist">Google group</a> 
-        to sign up for usability studies, report bugs, and request new
-        features. You can also help iNaturalist by adding your observations
-        and helping other community members identify their unidentified
-        observations. If you know how to code and want to help work on some
-        features,
-        <a href="http://github.com/inaturalist/inaturalist" title="inaturalist's inaturalist at master - GitHub">fork us on GitHub</a>!
+        <%=t 'views.help.index.you_can_help_inaturalist_by_giving_us_your_feedback_html', :site_name => SITE_NAME, :feedback_url => CONFIG.feedback_url %>
       </p>
     </li>
     <li>
-      <h5><a name="general5">How do I contact iNaturalist?</a></h5>
+      <h5><a name="general5"><%=t 'views.help.index.how_do_i_contact_inaturalist?', :site_name => SITE_NAME %></a></h5>
       <p>
-        You can contact us at <a href="mailto:<%= APP_CONFIG[:help_email] %>"><%= APP_CONFIG[:help_email] %></a>
+        <%=t 'views.help.index.you_can_contact_us_at_html', :help_email => CONFIG.help_email %>
       </p>
     </li>
     
     <a name="curators"></a>
     <li>
-      <h5><a name="general6">What are admins and curators?</a></h5>
+      <h5><a name="general6"><%=t 'views.help.index.what_are_admins_and_curators?' %></a></h5>
       <p>
-        iNat admins are the people who run the site. They have direct access
-        to the underlying code and the database, and they can change anything
-        on the site.
+        <%=t 'views.help.index.inat_admins_are_the_people_who', :site_name => SITE_NAME_SHORT %>
       </p>
       <p>
-        Curators are iNat users who volunteer to help keep our taxonomic data
-        up to date. If you're interested in becoming a curator, please 
-        <a href="mailto:<%= APP_CONFIG[:help_email] %>">contact us</a>. Curators can
-        also promote other users to curator status. Please only promote people
-        you trust and that you know to have some taxonomic knowledge.
+        <%=t 'views.help.index.curators_are_inat_users_who_volunteer_to_html', :site_name => CONFIG.site_name_short, :help_email => CONFIG.help_email %>
       </p>
     </li>
     
     <li>
-      <h5><a name="inappropriate">What is considered inappropriate content?</a></h5>
+      <h5><a name="inappropriate"><%=t 'views.help.index.what_is_considered_inappropriate_content?' %></a></h5>
       <p>
-        You <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">know it when you see it</a>, 
-        right?  Stuff that violates Section 2 of our <a href="/terms.html">Terms of Service</a> 
-        is definitely inappropriate and worth flagging or otherwise notifying
-        the admins about. Milder forms of rudeness are unfortunate, but
-        probably not something we'll delete. Observations of pets, captive
-        animals, humans, and other organisms most naturalists may not find
-        interesting are ok (they're alive, after all). Observations of things
-        that aren't organisms are a gray area. Things that clearly have
-        nothing to do with nature, like what someone had for lunch, are worth
-        flagging and may be deleted, but evidence of pollution or disturbance
-        could be interesting, and probably won't be removed.
+        <%=t 'views.help.index.you_know_it_when_you_see_it_html' %>
       </p>
     </li>
   </ol>
   
   <h4>
-    Observations
+    <%=t :observations %>
   </h4>
   <ol>
     <li>
-      <h5><a name="observations1">What is an observation?</a></h5>
-      <p>An observation is the what, where, and when of a finding in nature. iNaturalist provides a place to add this information along with associated text, photos, and tags. iNaturalist encourages the recording of all nature findings, whether they feature identified species or simple narrative descriptions. (In iNaturalist the same lizard can be described as a Desert Horned Lizard as well as &quot;Mystery Lizard of Death Valley&quot;.)</p>
-    </li>
-    <li>
-      <h5><a name="observations2">Why doesn't iNaturalist recognize the name I've entered?</a></h5>
+      <h5><a name="observations1"><%=t 'views.help.index.what_is_an_observation?' %></a></h5>
       <p>
-        iNaturalist has name information for mammals, birds, reptiles,
-        and amphibians, and continues to add new species names into our
-        database. If we do not recognize a particular name, try
-        alternative names that we might recognize and add the original
-        name to the tags or description fields.
+        <%=t 'views.help.index.an_observation_is_the_what_where_and_when_html', :site_name => SITE_NAME %>
       </p>
     </li>
     <li>
-      <h5><a name="observations3">How can I get help identifying what I saw?</a></h5>
+      <h5><a name="observations2"><%=t 'views.help.index.why_doesnt_inaturalist_recognize_the_name_ive_entered?', :site_name => SITE_NAME %></a></h5>
       <p>
-        Check the "ID Please" checkbox when adding / editing your
-        observation and your observation will appear in
-        <a href="http://inaturalist.org/observations/id_please" title="<%= APP_CONFIG[:site_name] %> &middot; ID Please!">ID Please</a>.
+        <%=t 'views.help.index.inaturalist_has_name_information_for_mammals', :site_name => SITE_NAME %> 
       </p>
     </li>
     <li>
-      <h5><a name="observations4">What does it mean to link iNaturalist to my Flickr account?</a></h5>
+      <h5><a name="observations3"><%=t 'views.help.index.how_can_i_get_help_identifying_what_i_saw?' %></a></h5>
       <p>
-        iNaturalist can link directly to the Flickr photo service so
-        that you can add your Flickr photos to your observations. When
-        you agree to link your Flickr account, you are simply linking
-        two accounts; we do not have access to your Flickr password and
-        you are not forsaking your copyright nor giving us the ability
-        to use any of your photos in ways that you do not want.
+        <%=t 'views.help.index.check_the_id_please_checkbox_when_html', :url => id_please_url %>
       </p>
     </li>
     <li>
-      <h5><a name="observations5">Can I add photos without a Flickr account?</a></h5>
+      <h5><a name="observations4"><%=t 'views.help.index.what_does_it_mean_to_link_inaturalist_to_my_flickr_account?', :site_name => SITE_NAME %></a></h5>
       <p>
-        We also support Picasa: <a href="http://inaturalist.org/picasa/options">Configure your Picasa account &raquo;</a>
-      </p>
-      <p>
-        We also support uploading photos directly to iNat, but it can be a bit
-        slow, so we only allow one upload at a time. Using Flickr or Picasa is
-        probably faster if you already use those services.
+        <%=t 'views.help.index.inaturalist_can_link_directly_to_the_flickr_photo_service', :site_name => SITE_NAME %>
       </p>
     </li>
     <li>
-      <h5><a name="observations6">What are tags?</a></h5>
-      <p>Tags are keywords you can add to an observation to make them easier to find. For example, if a barracuda followed you on a scuba diving trip in Turks and Caicos, you might tag the observation &quot;scary, barracuda, scuba diving, vacation, turks and caicos&quot;.</p>
-    </li>
-    <li>
-      <h5><a name="observations7">Can I include my iNat observations on my own website of blog?</a></h5>
+      <h5><a name="observations5"><%=t 'views.help.index.can_i_add_photos_without_a_flickr_account?' %></a></h5>
       <p>
-        Sure, check out our <a href="http://inaturalist.org/observations/widget" title="Observations Widget">Observations Widget</a>.
+        <%=t 'views.help.index.we_also_support_picasa_html', :url => url_for(:controller => :picasa, :action => 'options') %></a>
+      </p>
+      <p>
+        <%=t 'views.help.index.we_also_support_uploading_photos', :site_name => SITE_NAME %>
       </p>
     </li>
     <li>
-      <h5><a name="observations8">What kind of photos should I attach to observations?  Can I attach photos I didn't take?</a></h5>
+      <h5><a name="observations6"><%=t 'views.help.index.what_are_tags?' %></a></h5>
       <p>
-        Photos attached to observations should be of the individual observed
-        at the time of the observation. If you record an observation of a
-        tree, then go back a day later to take a picture, please add a new
-        observation for the picture, because it represents the tree at a
-        different point in time.
+        <%=t 'views.help.index.tags_are_keywords_you_can_add_to_an_html' %>
+      </p>
+    </li>
+    <li>
+      <h5><a name="observations7"><%=t 'views.help.index.can_i_include_my_observations_on_my_blog?', :site_name => SITE_NAME %></a></h5>
+      <p>
+        <%=t 'views.help.index.sure_check_out_our_widget_html', :url => observations_widget_url %>
+      </p>
+    </li>
+    <li>
+      <h5><a name="observations8"><%=t 'views.help.index.what_kind_of_photos_should_i_attach' %></a></h5>
+      <p>
+        <%=t 'views.help.index.photos_attached_to_observations_should_be' %>
       </p>
       
       <p>
-        Please <em>do not upload pictures you didn't take</em> unless you have
-        obtained permission from the photographer. It is illegal to publish
-        copyrighted works without some form of license granted by the creator
-        of the work, and all photographers have full copyright over their
-        photos by default. If the photo was of the thing you observed, and
-        someone else took it and you've obtained their permission to publish
-        it, you should also note the name of the photographer in the
-        observation's description.
+        <%=t 'views.help.index.please_do_not_upload_pictures_you_didnt_take_html' %>
       </p>
     </li>
     
     <li>
-      <h5><a name="geoprivacy">What is geoprivacy?</a></h5>
+      <h5><a name="geoprivacy"><%=t 'views.help.index.what_is_geoprivacy?' %></a></h5>
       <p>
-        Geoprivacy is a setting you can make on your observations that
-        controls how the spatial coordinates (latitude and longitude) are 
-        displayed. Here are the options:
-      </p>
-      <dl>
+        <%=t 'views.help.index.geoprivacy_is_a_setting_you_can' %>       </p>
+      <dl class="readable">
         <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
-          <dt><%= privacy || "open" %></dt>
-          <dd><p><%= description %></p></dd>
+          <dt><%= t(privacy || "open").downcase %></dt>
+          <dd><%=t description %></dd>
         <% end %>
       </dl>
       <p>
-        Note that curators of individual projects can always see the
-        coordinates regardless of your geoprivacy setting, so if you are
-        concerned about who has access to the coordinates you should be sure
-        you trust the curators of the projects in which you participate.
+        <%=t 'views.help.index.note_that_curators_of' %>
       </p>
     </li>
     
     <li>
-      <h5><a name="obscured">What is does it mean for an observation to be obscured?</a></h5>
+      <h5><a name="obscured"><%=t 'views.help.index.what_is_does_it_mean_for' %> </a></h5>
       <p>
-        When coordinates are obscured it means that a random point within
-        <%= Observation::M_TO_OBSCURE_THREATENED_TAXA / 1000 %>KM of the true coordinates 
-        is shown publicly (i.e. on the home page, the observations page, and 
-        project pages), while the true coordinates are only visible when you
-        are viewing your own observations (i.e. on the individual project
-        pages and the list of your own observations). Note that curators of
-        the projects to which you've added an observation can also see the
-        true coordinates. Obscured coordinates should always be symbolized by
-        circular marker without stems on maps and in geospatial feeds.
+        <%=t 'views.help.index.when_coordinates_are_obscured_it_means_that', :km => Observation::M_TO_OBSCURE_THREATENED_TAXA / 1000 %>
       </p>
       
       <p>
-        Coordinates are automatically obscured for all taxa that are "NEAR
-        THREATENED" or worse according to the IUCN Red List. Some taxa may be
-        declared threatened according to other conservation authorities, and
-        some may be simply marked as threatened by iNat site curators if they
-        believe it merits protection.
+        <%=t 'views.help.index.coordinates_are_obscured_for_all_taxa', :site_name => SITE_NAME_SHORT %>
       </p>
       
       <p>
-        You can also obscure the coordinates of your own observations 
-        regardless of what the taxon is.  See <a href="#geoprivacy">geoprivacy</a> above.
+        <%=t 'views.help.index.you_can_also_obscure_the_coordinates_html' %>
       </p>
     </li>
     
     <li>
-      <h5><a name="quality">What is the quality assessment and how do observations qualify to become "research" grade?</a></h5>
+      <h5><a name="quality"><%=t 'views.help.index.what_is_the_quality_assessment' %></a></h5>
       <%= render :partial => 'quality_metrics/quality_assessment_help' %>
     </li>
   </ol>
   
   
   <h4>
-    Lists
+    <%=t :lists %>
   </h4>
   <ol>
     <li>
@@ -307,62 +226,42 @@
       </p>
       
       <dl>
-        <dt>List</dt>
-        <dd><p>Just a simple list of taxa with no special behavior.</p></dd>
+        <dt><%=t :list %></dt>
+        <dd><p><%=t 'views.help.index.just_a_simple_list' %></p></dd>
         
         <dt>Life List</dt>
         <dd>
           <p>
-            Automatically updates based on your observations. Everyone on iNat
-            has a default life list that contains every species that person has
-            observed. If you delete an observation or change your ID, the
-            species will get removed. You can also manually add taxa to your
-            life list just like you can with an ordinary list. The species you
-            add manually won't get removed if you observe them and then delete
-            the observation.
+            <%=t 'views.help.index.automatically_updates_based_on_your_observations' %>
           </p>
           <p>
-            You can also make additional life lists for specific groups of
-            organisms, like a life list of birds, or a life list of milkweeds.
+            <%=t 'views.help.index.you_can_also_make_additional_life_lists' %>
           </p>
         </dd>
         
-        <dt>Project List</dt>
+        <dt><%=t :project_list %></dt>
         <dd>
           <p>
-            A project list belongs to a project and lists all the taxa
-            observed by members of that project. Project lists can also be
-            populated manually by the admin of that project, and can be used
-            to restrict project contributions to taxa that are on the list.
+            <%=t 'views.help.index.a_project_list_belongs' %>
           </p>
         </dd>
         
-        <dt>Check List</dt>
+        <dt><%=t 'views.help.index.check_list' %></dt>
         <dd>
           <p>
-            A check list is a list of taxa that occur in a place. Every place
-            has a default check list, and whenever an observation is made
-            within the place's boundaries <em>and</em> it has achieved
-            research-grade status, the species observed will get automatically
-            added to the place's check list.
+            <%=t 'views.help.index.a_check_list_is_html' %>
           </p>
           
           <p>
-            iNat users can also add additional check lists to places, but
-            these check lists are not automatically updated. They mainly
-            provide a way for people to bring in outside sources of data or
-            just list things based on their own experience.
+            <%=t 'views.help.index.inat_users_can_also', :site_name => SITE_NAME_SHORT %>
           </p>
         </dd>
       </dl>
     </li>
     <li>
-      <h5><a name="lists2">I observed a species, why isn't it showing up in my life list?</a></h5>
+      <h5><a name="lists2"><%=t 'views.help.index.i_observed_a_species' %></a></h5>
       <p>
-        While the life list is automatically populated from added
-        observations, the species will not be added to this list if
-        iNaturalist does not recognize the name you used. We recommend
-        trying alternative names that we might recognize.
+        <%=t 'views.help.index.while_the_life_list_is_automatically_populated', :site_name => SITE_NAME_SHORT %>
       </p>
     </li>
   </ol>

@@ -31,7 +31,7 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#placechooser input[type=text]').chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json?with_geom=t',
         resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
         afterSelect: function(item) {
           $('#placechooser .default.button').attr('disabled', false).removeClass('disabled').focus()
@@ -78,7 +78,7 @@
   
   <h2>Observations Widget</h2>
   <p class="description">
-    Configure a widget to show iNaturalist observations on your website or
+    Configure a widget to show <%= CONFIG.site_name %> observations on your website or
     blog. You may have to include the embedded CSS in the
     <code>&lt;head&gt;</code> of your HTML.  Feel free to re-write the CSS.
   </p>
@@ -102,7 +102,8 @@
         <input type="hidden" name="taxon_id" value="<%= @taxon.id if @taxon %>"/>
       <%end -%>
       <% if @project -%>
-        <input type="text" id="project_title" value="<%= @project.title if @project %>"/>
+        <label>Project</label><br/>
+        <%= link_to @project.title, @project %>
         <input type="hidden" name="project_id" value="<%= @project.id if @project %>"/>
       <%end -%>
 

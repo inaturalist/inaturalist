@@ -1,14 +1,15 @@
 class ObservationPhotosController < ApplicationController
-  before_filter :authenticate_user!
+  doorkeeper_for :show, :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
+  before_filter :load_record, :only => [:update, :destroy]
+  before_filter :require_owner, :only => [:update, :destroy]
   
   def show
     @observation_photo = ObservationPhoto.find_by_id(params[:id])
     respond_to do |format|
       format.json do
-        render :json => @observation_photo.to_json(:include => {
-          :photo => {
-            :methods => %w(license_code)
-          }
+        render :json => @observation_photo.as_json(:include => {
+          :photo => Photo.default_json_options
         })
       end
     end
@@ -20,8 +21,8 @@ class ObservationPhotosController < ApplicationController
       respond_to do |format|
         format.json do
           if params[:observation_photo] && params[:observation_photo][:observation_id]
-            Rails.logger.error "[ERROR #{Time.now}] Observation hasn't been added to iNaturalist"
-            render :json => {:errors => "Observation hasn't been added to iNaturalist"}, 
+            Rails.logger.error "[ERROR #{Time.now}] Observation hasn't been added to #{CONFIG.site_name}"
+            render :json => {:errors => "Observation hasn't been added to #{CONFIG.site_name}"}, 
               :status => :unprocessable_entity
           else
             Rails.logger.error "[ERROR #{Time.now}] No observation specified"
@@ -61,17 +62,9 @@ class ObservationPhotosController < ApplicationController
   end
   
   def update
-    unless @observation_photo = ObservationPhoto.find_by_id(params[:id])
-      respond_to do |format|
-        Rails.logger.error "[ERROR #{Time.now}] No photo specified"
-        format.json { render :json => {:errors => "No photo specified"}, :status => :unprocessable_entity }
-      end
-      return
-    end
-    
     @observation_photo.photo.file = params[:file] if params[:file]
     respond_to do |format|
-      if @observation_photo.save
+      if @observation_photo.update_attributes(params[:observation_photo])
         format.json { render :json => @observation_photo.to_json(:include => [:photo]) }
       else
         Rails.logger.error "[ERROR #{Time.now}] Failed to update observation photo: #{@observation_photo.errors.full_messages.to_sentence}"
@@ -80,6 +73,35 @@ class ObservationPhotosController < ApplicationController
             :status => :unprocessable_entity
         end
       end
+    end
+  end
+
+  def destroy
+    @observation_photo.destroy
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Observation photo destroyed"
+        redirect_to @observation_photo.observation
+      end
+      format.json  { head :ok }
+    end
+  end
+
+  private
+
+  def require_owner
+    if @observation_photo.observation && @observation_photo.observation.user_id != current_user.id
+      msg = "You don't have permission to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          return redirect_to record
+        end
+        format.json do
+          return render :json => {:error => msg}
+        end
+      end
+      return false
     end
   end
 end

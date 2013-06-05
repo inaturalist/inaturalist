@@ -1,0 +1,42 @@
+= content_for :title do
+  =t :new_message
+  - if @message.to_user
+    =t :to
+    = @message.to_user.login
+= content_for :extracss do
+  :css
+    #new_message .text_field input.text {width: 400px;}
+.column.prepend-6.span-18
+  %h2
+    =t :new_message
+    - if @message.to_user
+      =t :to
+      = link_to user_image(@message.to_user, :size => "thumb"), @message.to_user
+      = link_to_user @message.to_user
+  = error_messages_for @message
+
+  = form_for @message, :builder => DefaultFormBuilder do |f|
+    - if @message.to_user
+      = f.hidden_field :to_user_id
+    - else
+      = f.text_field :to_user_id, :label => t(:to).capitalize, :placeholder => t(:start_typing_someones_name)
+    = f.text_field :subject
+    = f.text_area :body
+
+    .buttonrow
+      = f.submit t(:send).capitalize, :class => "default button", "data-loading-click" => "Sending..."
+      = link_to t(:preview), @message.new_record? ? messages_path : message_path(@message), :class => 'button previewbutton commentpreviewbutton'
+      .inter.meta.loading{:style => "display:none;"}=t :loading
+      = link_to t(:cancel), :back, :class => "button"
+
+:javascript
+  var CONTACTS = #{raw @contacts.to_json(User.default_json_options.merge(:methods => [:html]))}
+  if ($('#message_to_user_id:visible').length > 0) {
+    $('#message_to_user_id').chooser({
+      queryParam: 'q',
+      defaultSources: CONTACTS,
+      collectionUrl: 'http://'+window.location.host + '/people/search.json',
+      resourceUrl: 'http://'+window.location.host + '/people/{{id}}.json'
+    })
+  }
+  

@@ -1,0 +1,33 @@
+- rules = @project.matching_project_observation_rule_terms.gsub(/must have/, 'has').gsub(/must be/, '').split('|')
+- if @observations.total_entries == 0
+  = image_and_content image_tag(@project.icon.url(:thumb)), :class => "stacked" do
+    Looks like you don't have any observations relevant to
+    = link_to @project.title, @project
+    .inline.buttonrow.centered
+      = link_to_function "OK", "$('.dialog').dialog('close')", :class => "button"
+- else
+  = image_and_content image_tag(@project.icon.url(:thumb)), :class => "stacked" do
+    This will add
+    %strong
+      = @observations.total_entries
+    of your observations to
+    = link_to @project.title, @project
+    - if @taxon
+      of
+      = render 'shared/taxon', :taxon => @taxon
+    - unless rules.blank?
+      that match these rules:
+      %ul
+        - for rule in rules
+          %li= rule
+
+  .inline.buttonrow.clear.stacked.centered
+    = link_to "Add all your matching observations to this project", add_matching_to_project_url(@project, :taxon_id => @taxon), 
+      :method => :post, 
+      :class => "button",
+      "data-loading-click" => "Adding..."
+
+  %p.ui
+    Here's a preview of what you'll be adding:
+  .observations.compact.mini
+    = render :partial => 'observations/cached_component', :collection => @observations

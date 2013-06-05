@@ -3,8 +3,8 @@ class QualityMetric < ActiveRecord::Base
   belongs_to :observation
   
   METRIC_QUESTIONS = {
-    "wild" => "Is the organism wild/naturalized?",
-    "location" => "Does the location seem accurate?"
+    "wild" => :is_the_organism_wild,
+    "location" => :does_the_location_seem_accurate
   }
   METRICS = METRIC_QUESTIONS.keys
   METRICS.each do |metric|
@@ -22,8 +22,14 @@ class QualityMetric < ActiveRecord::Base
     return true unless observation
     new_quality_grade = observation.get_quality_grade
     Observation.update_all(["quality_grade = ?", new_quality_grade], ["id = ?", observation_id])
-    CheckList.delay(:priority => 1).refresh_with_observation(observation.id, 
+    return true if Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{observation.id}\n%'").exists?
+    CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh_with_observation(observation.id, 
       :taxon_id => observation.taxon_id)
     true
+  end
+
+  def self.vote(user, observation, metric, agree)
+    qm = observation.quality_metrics.find_or_initialize_by_metric_and_user_id(metric, user.id)
+    qm.update_attributes(:agree => agree)
   end
 end

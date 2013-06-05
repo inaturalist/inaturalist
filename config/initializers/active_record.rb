@@ -31,6 +31,33 @@ module ActiveRecord
       options[:methods] += [:created_at_utc, :updated_at_utc]
       super(options)
     end
+
+    def self.conditions_for_date(column, date)
+      year, month, day = date.to_s.split('-').map do |d|
+        d = d.blank? ? nil : d.to_i
+        d == 0 ? nil : d
+      end
+      if date.to_s =~ /^\d{4}/ && year && month && day
+        ["#{column}::DATE = ?", "#{year}-#{month}-#{day}"]
+      elsif year || month || day
+        conditions, values = [[],[]]
+        if year
+          conditions << "EXTRACT(YEAR FROM #{column}) = ?"
+          values << year
+        end
+        if month
+          conditions << "EXTRACT(MONTH FROM #{column}) = ?"
+          values << month
+        end
+        if day
+          conditions << "EXTRACT(DAY FROM #{column}) = ?"
+          values << day
+        end
+        [conditions.join(' AND '), *values]
+      else
+        "1 = 2"
+      end
+    end
   end
 
   # MONKEY PATCH

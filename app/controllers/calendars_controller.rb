@@ -12,9 +12,12 @@ class CalendarsController < ApplicationController
     @month  = params[:month] if params[:month].to_i != 0
     @day    = params[:day] if params[:day].to_i != 0
     @date = [@year, @month, @day].compact.join('-')
+    @observations = @selected_user.observations.
+      on(@date).
+      limit(500).
+      order_by("observed_on")
     if @day
-      scope = @selected_user.observations.on(@date).scoped
-      @observations = scope.paginate(:include => [{:taxon => :taxon_names}], :per_page => 500, :page => params[:page])
+      @observations = @observations.includes(:taxon => :taxon_names, :observation_photos => :photo)
       @taxa = @observations.map{|o| o.taxon}.uniq.compact
       @taxa_count = @taxa.size
       @taxa_by_iconic_taxon_id = @taxa.group_by{|t| t.iconic_taxon_id}
@@ -23,9 +26,6 @@ class CalendarsController < ApplicationController
         [iconic_taxon.id, @taxa_by_iconic_taxon_id[iconic_taxon.id].size]
       end.compact
     else
-      scope = @selected_user.observations.on(@date)
-      @observations = scope.
-        paginate(:page => params[:page], :per_page => 500)
       iconic_counts_conditions = Observation.conditions_for_date("o.observed_on", @date)
       iconic_counts_conditions[0] += " AND o.user_id = ?"
       iconic_counts_conditions << @selected_user
@@ -40,21 +40,32 @@ class CalendarsController < ApplicationController
     ).sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
     
     unless @observations.blank?
-      scope = Observation.where([
-        "ST_Intersects(observations.geom, place_geometries.geom) " +
-        "AND places.id = place_geometries.place_id " + 
-        "AND places.place_type NOT IN (?) " +
-        "AND observations.user_id = ? ",
-        [Place::PLACE_TYPE_CODES['Country'], Place::PLACE_TYPE_CODES['State']],
-        @selected_user
+      scope = Observation.where(
+          "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
+          "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
+        )
+      scope = scope.where("places.id = place_geometries.place_id")
+      scope = scope.where("places.place_type NOT IN (?)", [
+        Place::PLACE_TYPE_CODES['Country'], 
+        Place::PLACE_TYPE_CODES['State'],
+        Place::PLACE_TYPE_CODES['Continent']
       ])
+      scope = scope.where("observations.user_id = ? ", @selected_user)
       scope = scope.where(Observation.conditions_for_date("observations.observed_on", @date))
-      @place_name_counts = scope.count(
+      place_name_counts = scope.count(
         :from => "observations, places, place_geometries", 
         :group => "(places.display_name || '-' || places.id)")
+      @places = Place.where("id IN (?)", place_name_counts.map{|n,c| n.split('-').last})
+      @place_name_counts = @places.sort_by(&:bbox_area).map do |place|
+        Rails.logger.debug "[DEBUG] place: #{place}"
+        n = "#{place.display_name}-#{place.id}"
+        [n, place_name_counts[n]]
+      end
       @previous = @selected_user.observations.first(:conditions => ["observed_on < ?", @observations.first.observed_on], :order => "observed_on DESC")
       @next = @selected_user.observations.first(:conditions => ["observed_on > ?", @observations.first.observed_on], :order => "observed_on ASC")
     end
+
+    @observer_provider_authorizations = @selected_user.provider_authorizations
   end
   
   def compare

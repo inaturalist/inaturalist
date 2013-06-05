@@ -64,6 +64,23 @@ describe ListedTaxon do
       lt = @user_check_list.listed_taxa.create(:taxon => Taxon.make!, :user => @user)
       lt.source_id.should be(@user_check_list.source_id)
     end
+
+    it "should set establishment_means to native if there is a native listing for a child place" do
+      child_place = Place.make!(:parent => @place)
+      t = Taxon.make!
+      child_place.check_list.add_taxon(t, :establishment_means => ListedTaxon::NATIVE)
+      lt = @check_list.add_taxon(t)
+      lt.establishment_means.should eq(ListedTaxon::NATIVE)
+    end
+
+    it "should set establishment_means to introduced if there is a introduced listing for a parent place" do
+      parent_place = Place.make!
+      place = Place.make!(:parent => parent_place)
+      t = Taxon.make!
+      parent_place.check_list.add_taxon(t, :establishment_means => ListedTaxon::INTRODUCED)
+      lt = place.check_list.add_taxon(t)
+      lt.establishment_means.should eq(ListedTaxon::INTRODUCED)
+    end
   end
   
   describe "check list auto removal" do
@@ -222,6 +239,21 @@ describe ListedTaxon do
       ListedTaxon.find_by_id(keeper.id).should_not be_blank
       ListedTaxon.find_by_id(reject.id).should be_blank
     end
+
+    it "should work for multiple duplicates" do
+      keeper = ListedTaxon.make!
+      rejects = []
+      3.times do
+        reject = ListedTaxon.make!(:list => keeper.list)
+        ListedTaxon.update_all("taxon_id = #{keeper.taxon_id}", "id = #{reject.id}")
+        rejects << reject
+      end
+      ListedTaxon.merge_duplicates
+      ListedTaxon.find_by_id(keeper.id).should_not be_blank
+      rejects.each do |reject|
+        ListedTaxon.find_by_id(reject.id).should be_blank
+      end
+    end
   end
   
   describe "cache_columns" do
@@ -284,24 +316,104 @@ describe ListedTaxon, "validation for comprehensive check lists" do
     lt = @place.check_list.add_taxon(t, :first_observation => o)
     lt.should be_valid
   end
-  
-  it "should fail if occurence_status changed from absent and there is a comprehensive list of a parent taxon for this place that doesn't contain this taxon" do
-    p1 = Taxon.make!
-    p2 = Taxon.make!(:parent => p1)
-    t1 = Taxon.make!(:parent => p1)
-    t2 = Taxon.make!(:parent => p2)
-    # puts "p1: #{p1.id}, p2: #{p2.id}, t1: #{t1.id}, t2: #{t2.id}"
-    cl1 = CheckList.make!(:place => @place, :taxon => p1)
-    cl2 = CheckList.make!(:place => @place, :taxon => p2)
-    lt1 = cl1.add_taxon(t1)
-    lt2 = cl2.add_taxon(t2)
-    # puts "lt2.errors.full_messages: #{lt2.errors.full_messages.to_sentence}" unless lt2.valid?
-    cl1.update_attributes(:comprehensive => true)
-    lt2.reload
-    lt2.should be_absent
-    lt2.occurrence_status_level = ListedTaxon::PRESENT
-    # puts "lt2.errors.full_messages: #{lt2.errors.full_messages.to_sentence}" unless lt2.valid?
-    lt2.should_not be_valid
-    lt2.errors[:occurrence_status_level].should_not be_blank
+end
+
+describe ListedTaxon, "establishment means propagation" do
+  let(:parent) { Place.make! }
+  let(:place) { Place.make!(:parent => parent) }
+  let(:child) { Place.make!(:parent => place) }
+  let(:taxon) { Taxon.make! }
+  let(:parent_listed_taxon) { parent.check_list.add_taxon(taxon) }
+  let(:place_listed_taxon) { place.check_list.add_taxon(taxon) }
+  let(:child_listed_taxon) { child.check_list.add_taxon(taxon) }
+  it "should bubble up for native" do
+    parent_listed_taxon.establishment_means.should be_blank
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+    parent_listed_taxon.reload
+    parent_listed_taxon.establishment_means.should eq(place_listed_taxon.establishment_means)
+  end
+
+  it "should bubble up for endemic" do
+    parent_listed_taxon.establishment_means.should be_blank
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::ENDEMIC)
+    parent_listed_taxon.reload
+    parent_listed_taxon.establishment_means.should eq(place_listed_taxon.establishment_means)
+  end
+
+  it "should not trickle down for native" do
+    child_listed_taxon.establishment_means.should be_blank
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+    child_listed_taxon.reload
+    child_listed_taxon.establishment_means.should be_blank
+  end
+
+  it "should trickle down for introduced" do
+    child_listed_taxon.establishment_means.should be_blank
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+    child_listed_taxon.reload
+    child_listed_taxon.establishment_means.should eq(place_listed_taxon.establishment_means)
+  end
+
+  it "should not bubble up for introduced" do
+    parent_listed_taxon.establishment_means.should be_blank
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+    parent_listed_taxon.reload
+    parent_listed_taxon.establishment_means.should be_blank
+  end
+
+  it "should not alter previous settings" do
+    parent_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+    parent_listed_taxon.reload
+    parent_listed_taxon.establishment_means.should eq(ListedTaxon::INTRODUCED)
+  end
+
+  it "should not alter est means of other taxa" do
+    new_parent_listed_taxon = parent.check_list.add_taxon(Taxon.make!)
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+    new_parent_listed_taxon.reload
+    new_parent_listed_taxon.establishment_means.should be_blank
+  end
+end
+
+
+describe ListedTaxon, "cache column setting for check lists" do
+  before do
+    without_delay do
+      @place = make_place_with_geom
+      @check_list = @place.check_list
+    end
+  end
+  it "should be queued" do
+    lt = ListedTaxon.make!(:list => @check_list)
+    Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").exists?.should be_true
+  end
+
+  it "should not be queued if there's an existing job" do
+    lt = ListedTaxon.make!(:list => @check_list)
+    Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").count.should eq(1)
+    lt.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+    Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").count.should eq(1)
+  end
+end
+
+describe ListedTaxon, "parent check list syncing" do
+  before do
+    without_delay do
+      @parent = Place.make!
+      @place = make_place_with_geom(:parent => @parent)
+      @check_list = @place.check_list
+    end
+  end
+  it "should be queued" do
+    lt = ListedTaxon.make!(:list => @check_list)
+    Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").exists?.should be_true
+  end
+
+  it "should not be queued if existing job" do
+    lt = ListedTaxon.make!(:list => @check_list)
+    Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count.should eq(1)
+    lt2 = ListedTaxon.make!(:list => @check_list)
+    Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count.should eq(1)
   end
 end

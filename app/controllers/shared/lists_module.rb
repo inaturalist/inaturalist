@@ -24,8 +24,8 @@ module Shared::ListsModule
 
         if @q = params[:q]
           @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
-          @find_options[:conditions] = List.merge_conditions(
-            @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @search_taxon_ids])
+          @find_options[:conditions] = update_conditions(
+            @find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
         end
 
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
@@ -42,7 +42,7 @@ module Shared::ListsModule
         case @view
         when TAXONOMIC_VIEW
           @unclassified = @listed_taxa.select {|lt| !lt.taxon.grafted? }
-          @listed_taxa.delete_if {|lt| !lt.taxon.grafted? }
+          @listed_taxa = @listed_taxa.delete_if {|lt| !lt.taxon.grafted? }
           ancestor_ids = @listed_taxa.map{|lt| lt.taxon.ancestor_ids[1..-1]}.flatten.uniq
           ancestors = Taxon.find_all_by_id(ancestor_ids, :include => :taxon_names)
           taxa_to_arrange = (ancestors + @listed_taxa.map(&:taxon)).sort_by{|t| "#{t.ancestry}/#{t.id}"}
@@ -63,30 +63,51 @@ module Shared::ListsModule
         @listed_taxa_editble_by_current_user = @list.listed_taxa_editable_by?(current_user)
         @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?' && lr.operand.is_a?(Taxon)}
 
-        load_listed_taxon_photos
+        if @list.show_obs_photos
+          load_listed_taxon_photos
+        end
         
         if logged_in?
           @current_user_lists = current_user.lists.all(:limit => 100)
         end
+
+        if @representative_listed_taxon = @list.listed_taxa.order("listed_taxa.observations_count DESC").includes(:taxon => {:taxon_photos => :photo}).first
+          @representative_photo = if @photos_by_listed_taxon_id && (p = @photos_by_listed_taxon_id[@representative_listed_taxon.id])
+            p
+          else
+            @representative_listed_taxon.taxon.default_photo
+          end
+        end
       end
       
       format.csv do
-        job_id = Rails.cache.read(@list.generate_csv_cache_key(:view => @view))
-        job = Delayed::Job.find_by_id(job_id)
-        if job
-          # Still working
-        else
-          # no job id, no job, let's get this party started
-          Rails.cache.delete(@list.generate_csv_cache_key(:view => @view))
-          job = if @view == "taxonomic"
-            @list.delay.generate_csv(:path => "public/lists/#{@list.to_param}.taxonomic.csv", :taxonomic => true)
+        path_for_taxonomic_csv = "public/lists/#{@list.to_param}.taxonomic.csv"
+        path_for_normal_csv = "public/lists/#{@list.to_param}.csv"
+        if @list.listed_taxa.count < 1000
+          path = if @view == "taxonomic"
+            @list.generate_csv(:path => path_for_taxonomic_csv, :taxonomic => true)
           else
-            @list.delay.generate_csv(:path => "public/lists/#{@list.to_param}.csv")
+            @list.generate_csv(:path => path_for_normal_csv)
           end
-          Rails.cache.write(@list.generate_csv_cache_key(:view => @view), job.id, :expires_in => 1.hour)
+          render :file => path
+        else
+          job_id = Rails.cache.read(@list.generate_csv_cache_key(:view => @view))
+          job = Delayed::Job.find_by_id(job_id)
+          if job
+            # Still working
+          else
+            # no job id, no job, let's get this party started
+            Rails.cache.delete(@list.generate_csv_cache_key(:view => @view))
+            job = if @view == "taxonomic"
+              @list.delay.generate_csv(:path => path_for_taxonomic_csv, :taxonomic => true)
+            else
+              @list.delay.generate_csv(:path => path_for_normal_csv)
+            end
+            Rails.cache.write(@list.generate_csv_cache_key(:view => @view), job.id, :expires_in => 1.hour)
+          end
+          prevent_caching
+          render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
         end
-        prevent_caching
-        render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
       end
       
       format.json do
@@ -124,6 +145,41 @@ module Shared::ListsModule
   # GET /lists/1/edit
   def edit
     @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?'}
+  end
+
+  def batch_edit
+    if params[:flow_task_id] && @flow_task = FlowTask.find_by_id(params[:flow_task_id])
+      @flow_task_outputs = @flow_task.outputs.order(:id)
+      @listed_taxa_by_id = ListedTaxon.includes(:taxon => :taxon_names).
+        where("id IN (?)", @flow_task_outputs.map(&:resource_id).compact).
+        index_by(&:id)
+      @listed_taxa = []
+      @flow_task_outputs.each do |ft|
+        lt = @listed_taxa_by_id[ft.resource_id]
+        unless lt
+          name, description, occurrence_status, establishment_means = ft.extra[:row] if ft.extra
+          lt = if ft.extra && ft.extra[:error].to_s =~ /already/
+            @list.listed_taxa.find_by_taxon_id(ft.extra[:taxon_id]) unless ft.extra[:taxon_id].blank?
+          end
+          lt ||= ListedTaxon.new(:list => @list)
+          lt.description = description unless description.blank?
+          lt.occurrence_status_level = if ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[occurrence_status.to_s.downcase]
+            ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[occurrence_status.to_s.downcase]
+          else
+            lt.occurrence_status_level
+          end
+          lt.establishment_means = if ListedTaxon::ESTABLISHMENT_MEANS.include?(establishment_means.to_s.downcase)
+            establishment_means.downcase
+          else
+            lt.establishment_means
+          end
+          lt.extra = ft.extra
+        end
+        @listed_taxa << lt
+      end
+    else
+      @listed_taxa = @list.listed_taxa.includes(:taxon => :taxon_names).page(params[:page]).per_page(200)
+    end
   end
   
   def create
@@ -213,8 +269,9 @@ module Shared::ListsModule
         next
       end
       
-      taxon_names = TaxonName.paginate(:page => 1, :include => :taxon,
-        :conditions => ["lower(name) = ?", name.to_s.downcase])
+      taxon_names = TaxonName.includes(:taxon).
+        where("lower(taxon_names.name) = ?", name.to_s.downcase).
+        page(1)
       case taxon_names.size
       when 0
         @lines_taxa << [name, "not found"]
@@ -294,6 +351,7 @@ module Shared::ListsModule
   
   def load_list
     @list = List.find_by_id(params[:id].to_i)
+    @list ||= List.find_by_id(params[:list_id].to_i)
     render_404 && return unless @list
     true
   end
@@ -326,10 +384,9 @@ module Shared::ListsModule
       # TODO: somehow make the following not cause a filesort...
       :order => "taxon_ancestor_ids || '/' || listed_taxa.taxon_id"
     }
-    if params[:taxon]
-      @filter_taxon = Taxon.find_by_id(params[:taxon].to_i)
+    if params[:taxon] && @filter_taxon = Taxon.find_by_id(params[:taxon].to_i)
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
-      @find_options[:conditions] = ["taxon_ancestor_ids LIKE ?", "#{self_and_ancestor_ids}/%"]
+      @find_options[:conditions] = ["(taxon_id = ? OR taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?)", @filter_taxon.id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%"]
       
       # The above condition on a joined table will trigger an eager load, 
       # which won't load all 2nd order associations (e.g. taxon names), so 
@@ -346,6 +403,10 @@ module Shared::ListsModule
   
   def require_editor
     @list.editable_by?(current_user)
+  end
+
+  def require_listed_taxa_editor
+    @list.listed_taxa_editable_by?(current_user)
   end
   
   def load_listed_taxon_photos

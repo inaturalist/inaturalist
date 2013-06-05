@@ -1,10 +1,15 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Photo #{@photo.id}, #{@photo.attribution}"  %>
+  <%= @title = t(:photo_by_id_attribution, :id => @photo.id, :attribution => @photo.attribution) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "taxa" %>
   <style type="text/css" media="screen">
     th, td { vertical-align: top;}
+    .photocell {min-width: 500px;}
+    .mini.observations .observation {border: 0 transparent;}
+    th {border-bottom: 1px solid #DDD;}
+    .button.rotateleft {padding-left:25px; background: url(/images/silk/arrow_turn_left.png) 5px 5px no-repeat;}
+    .button.rotateright {padding-left:25px; background: url(/images/silk/arrow_turn_right.png) 5px 5px no-repeat;}
   </style>
 <%- end -%>
 
@@ -12,26 +17,30 @@
 
 <table>
   <tr>
-    <td>
-      <%= image_tag @photo.send("#{@size}_url"), :class => "#{@size} photo" %>
+    <td class="photocell">
+      <% if @photo.send("#{@size}_url") -%>
+        <%= image_tag @photo.send("#{@size}_url"), :class => "#{@size} photo" %>
+      <% else %>
+        <div class="nocontent meta">
+          No photo of that size.
+        </div>
+      <% end -%>
     </td>
     
     <td style="width: 100%">
       <table width="100%">
         <tr>
-          <th>Attribution</th>
+          <th><%=t :attribution %></th>
           <td width="100%">
             <%= rights @photo %>
             <% if @photo.editable_by?(current_user) -%>
               <span class="button">
-                <%= link_to_function "edit license", "$('#editlicense').dialog({modal:true, width:'auto', title: 'Edit license'})" %>
+                <%= link_to_function t(:edit_license), "$('#editlicense').dialog({modal:true, width:'auto', title: I18n.t('edit_license')})" %>
               </span>
               <div id="editlicense" class="dialog" style="display:none">
                 <div class="column span-18 verticalmiddle licensechoices">
                   <p class="ui description">
-                    Licensing your content gives others the legal right to use it if
-                    they stick to the terms of the license. iNat uses your Creative
-                    Commons-licensed content to share with data partners like the 
+                  <%= t(:licensing_your_content_gives_others_legal, :site_name => SITE_NAME_SHORT) %>
                     <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
                     (GBIF).
                   </p>
@@ -43,17 +52,17 @@
         </tr>
         <% unless @photo.is_a?(LocalPhoto) -%>
           <tr>
-            <th>Source</th>
-            <td><%= @photo.class.to_s.gsub(/Photo$/, '') %></td>
+            <th><%=t :source %></th>
+            <td><%= @photo.source_title %></td>
           </tr>
           <tr>
-            <th>Original</th>
+            <th><%= :original %></th>
             <td><%= link_to @photo.native_page_url, @photo.native_page_url %></td>
           </tr>
         <% end -%>
         <% unless @observations.blank? -%>
           <tr>
-            <th>Associated observations</th>
+            <th><%=t :associated_observations %></th>
             <td class="mini observations">
               <%= render :partial => "observations/cached_component", :collection => @observations %>
             </td>
@@ -62,7 +71,7 @@
 
         <% unless @taxa.blank? -%>
           <tr>
-            <th>Associated taxa</th>
+            <th><%= t(:associated_taxa) %></th>
             <td class="taxa grid">
               <%= render :partial => "taxa/taxon", :collection => @taxa, :locals => {
                 :hide_wikipedia_summary => true,
@@ -74,18 +83,38 @@
         <% end -%>
         
         <tr>
-          <th>Sizes</th>
+          <th><%= t(:sizes).capitalize %></th>
           <td>
             <ul>
               <% %w(small medium large original).each do |size| %>
                 <%- next if @photo.send("#{size}_url").blank? -%>
                 <li>
-                  <%= link_to size, url_for(:size => size) %>
+                  <%= link_to t(size), url_for(:size => size) %>
                 </li>
               <% end -%>
             </ul>
+            
+            <% if @photo.respond_to?(:repair) && (is_me?(@photo.user) || is_curator?) -%>
+              <span class="button">
+                <%= link_to "Repair broken URLs", photo_repair_path(@photo), :method => :put, :confirm => "This might delete the photo if it was deleted from the external site or the owner has revoked permission.  Proceed?" %>
+              </span>
+            <% end -%>
           </td>
         </tr>
+        <% if is_me?(@photo.user) -%>
+          <tr>
+            <th><%= t(:actions).capitalize %></th>
+            <td>
+              <% if @photo.is_a?(LocalPhoto) -%>
+                <%= link_to t(:rotate_left), rotate_photo_path(@photo, :left => true), :method => :put, :class => "button rotateleft", "data-loading-click" => "Rotating..." %>
+                <%= link_to t(:rotate_right), rotate_photo_path(@photo), :method => :put, :class => "button rotateright", "data-loading-click" => "Rotating..." %>
+              <% end -%>
+              <%= link_to t(:delete_photo), @photo.becomes(Photo), :method => :delete, 
+                :confirm => t(:are_you_sure_you_want_to_delete_this_photo?), "data-loading-click" => "Deleting...", 
+                :class => "delete button" %>
+            </td>
+          </tr>
+        <% end -%>
       </table>
     </td>
   </tr>

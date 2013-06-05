@@ -1,11 +1,9 @@
 <% content_for(:extrajs) do %>
   <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>
 <% end %>
-<h2>Invite Flickr Photos to iNaturalist</h2>
+<h2><%=t :invite_flickr_photos, :site_name => SITE_NAME %></h2>
 <p class="description">
-  You can make it super easy for people on Flickr to add their photos as iNat
-  observations. Just leave a comment including this special invite URL below.
-  You can also pre-select a taxon and project for the new observation.
+  <%=t :invite_your_friends_description, :site_name => SITE_NAME %>
 </p>
 
 <div class="stacked">
@@ -13,13 +11,13 @@
 </div>
 
 <%= form_tag url_for, :method => :get do %>
-  <label for="taxonchooser">Automatically ID the new obs as</label>
-  <%= text_field_tag :taxon_id, @taxon.try(:id), :class => "chooser text", :id => "taxonchooser", :placeholder => "Type species name..." %>
+  <label for="taxonchooser"><%=t :automatically_id_new %></label>
+  <%= text_field_tag :taxon_id, @taxon.try(:id), :class => "chooser text", :id => "taxonchooser", :placeholder => t(:type_species_name) %>
   &nbsp;
-  <label for="taxonchooser">Automatically add to project</label>
-  <%= text_field_tag :project_id, @project.try(:id), :class => "chooser text", :id => "projectchooser", :placeholder => "Type project name..." %>
+  <label for="taxonchooser"><%=t :automatically_add_to_project %></label>
+  <%= text_field_tag :project_id, @project.try(:id), :class => "chooser text", :id => "projectchooser", :placeholder => t(:type_project_name) %>
   
-  <%= submit_tag "Regenerate URL" %>
+  <%= submit_tag t(:regenerate_url) %>
 
   <div class='observation_photos'>
   </div>

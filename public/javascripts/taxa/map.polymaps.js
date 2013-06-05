@@ -266,6 +266,18 @@ function addObservations() {
     .url(observationsGeoJsonUrl)
     .tile(false)
     .on('load', handleObservations)
+    .zoom(function(z) {
+      $('#observations circle').each(function(o) {
+        var r = parseFloat($(this).attr('r')),
+            minDimension = Math.min(window.map.size().x, window.map.size().y)
+        if (r * 2 > minDimension) {
+          $(this).hide()
+        } else {
+          $(this).show()
+        }
+      })
+      return z
+    })
     .clip(false)
   map.add(layers['observations']);
 }
@@ -373,8 +385,7 @@ function loadLayers() {
       if ($(this).attr('href') == '#') {
         return
       }
-      parent.location = $(this).attr('href')
-      return false;
+      $(this).attr('target', '_blank')
     })
   }
 }
@@ -420,6 +431,7 @@ function loadLayersForTaxa(taxa) {
     })
     var nameContent = addIds ? taxon.name + ' ' + taxon.id : taxon.name
     var label = $('<label></label>').attr('for', inputId).html(nameContent)
+    if (taxon.is_active == false) {label.addClass('inactive').attr("title", "Inacive taxon concept")};
     var link = $('<a></a>').attr('href', '/taxa/'+taxon.id).html('(view)').addClass('small')
     var li = $('<li></li>').append(input, ' ', symbol, ' ', label, ' ', link)
     $('#legend ul').append(li)

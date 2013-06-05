@@ -1,4 +1,8 @@
-<div class='photoSelectorAlbums facebookAlbums' <%= "data-friend_id='#{@friend_id}'" if @friend_id %>>
+<%-
+  opts = {:class => "photoSelectorAlbums facebookAlbums"}
+  opts["data-friend_id"] = @friend_id if @friend_id
+-%>
+<%= content_tag :div, opts do %>
   <% if @friend_name %>
     <a href='#' class="back_to_friends" data-friend_id="<%= @friend_id %>">&laquo; Back to friends</a>
   <% end %>
@@ -16,5 +20,4 @@
     <% end %>
     </table>
   <% end %>
-</div>
-
+<% end %>

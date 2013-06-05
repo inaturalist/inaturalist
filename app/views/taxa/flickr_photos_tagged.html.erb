@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Your Flickr photos have been tagged!
+  <%= t(:your_flickr_photos_have_been_tagged) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
@@ -88,14 +88,14 @@
   <div class="toolset" style="float: right">
     <%= link_to "Tag more photos", flickr_tagger_path, :class => 'readmore' %>
   </div>
-  <h2>Your Flickr photos have been tagged!</h2>
-  <p class="description">The following photos have been tagged:</p>
+  <h2><%= t(:your_flickr_photos_have_been_tagged) %></h2>
+  <p class="description"><%= t(:the_following_photos_have_been_tagged) %></p>
 </div>
 
 <table>
   <tr>
-    <th>Flickr Photo</th>
-    <th>Flickr Tags</th>
+    <th><%= t(:flickr_photo) %></th>
+    <th><%= t(:flickr_tags) %></th>
     <th>&nbsp;</th>
   </tr>
   <% for flickr_photo in @flickr_photos %>
@@ -119,8 +119,7 @@
           -%>
           <% unless duplicate_predicates.empty? -%>
             <div class="notice">
-              Heads up: You have multiple taxonomic machine tags for
-              identicical ranks. They're color-coded below by rank.
+              <%= t(:heads_up_you_have_multiple) %>
             </div>
           <% end -%>
           <% for tag_group in halves.compact %>
@@ -150,15 +149,15 @@
         <% end -%>
       </td>
       <td class="actions">
-        <%= link_to "View on Flickr", flickr_photo.native_page_url, :class => 'readmore' %>
+        <%= link_to t(:view_on_flickr), flickr_photo.native_page_url, :class => 'readmore' %>
         <% if observation = @observations_by_native_photo_id[flickr_photo.native_photo_id] -%>
           <div class="description" style="margin-top: 10px">
-            This photo is already associated with one of your observations.
+            <%= t(:this_photo_is_already_associated) %>
           </div>
           
-          <%= link_to "View observation", observation, :class => 'readmore' %> <br/>
+          <%= link_to t(:view_observation), observation, :class => 'readmore' %> <br/>
           
-          <%= link_to "Import as another observation?", 
+          <%= link_to t(:import_as_another_observation), 
             {:controller => "observations", :action => 'import_photos', 
               :flickr_photos => [flickr_photo.native_photo_id]}, 
             :method => :post, :class => 'readmore' %>
@@ -166,7 +165,7 @@
           <div class="description">
             or
           </div>
-          <%= link_to "Import as an observation", 
+          <%= link_to t(:import_as_an_observation), 
             new_observation_path(:flickr_photo_id => flickr_photo.native_photo_id),
             :class => "button", :rel => "nofollow" %>
         <% end -%>
@@ -176,7 +175,7 @@
 </table>
 
 <div class="toolset" style="float: right">
-  <%= link_to "Import all photos as observations", 
+  <%= link_to t(:import_all_photos_as_observations), 
     {:controller => "observations", :action => 'import_photos', 
       :flickr_photos => @flickr_photos.map(&:native_photo_id)}, 
     :method => :post, :class => 'inter readmore' %>

@@ -4,6 +4,9 @@ class ObservationSweeper < ActionController::Caching::Sweeper
   
   def after_create(observation)
     expire_taxon_caches_for_observation(observation)
+    FileUtils.rm(private_page_cache_path(
+      FakeView.observations_by_login_all_path(observation.user.login, :format => 'csv')
+    ), :force => true)
     true
   end
   
@@ -11,6 +14,9 @@ class ObservationSweeper < ActionController::Caching::Sweeper
     expire_observation_components(observation)
     expire_taxon_caches_for_observation(observation)
     observation.listed_taxa.each {|lt| expire_listed_taxon(lt) }
+    FileUtils.rm(private_page_cache_path(
+      FakeView.observations_by_login_all_path(observation.user.login, :format => 'csv')
+    ), :force => true)
     true
   end
   
@@ -18,6 +24,9 @@ class ObservationSweeper < ActionController::Caching::Sweeper
     expire_observation_components(observation)
     expire_taxon_caches_for_observation(observation)
     observation.listed_taxa.each {|lt| expire_listed_taxon(lt) }
+    FileUtils.rm(private_page_cache_path(
+      FakeView.observations_by_login_all_path(observation.user.login, :format => 'csv')
+    ), :force => true)
     true
   end 
   
@@ -34,9 +43,11 @@ class ObservationSweeper < ActionController::Caching::Sweeper
   end
   
   def expire_taxon_caches_for_taxon(t)
-    expire_action(:controller => 'taxa', :action => 'show', :id => t.to_param)
-    expire_action(:controller => 'taxa', :action => 'show', :id => t.id)
-    expire_action(:controller => 'observations', :action => 'of', :id => t.id, :format => "json")
-    expire_action(:controller => 'observations', :action => 'of', :id => t.id, :format => "geojson")
+    I18N_SUPPORTED_LOCALES.each do |locale|
+      expire_action(:controller => 'taxa', :action => 'show', :id => t.to_param, :locale => locale)
+      expire_action(:controller => 'taxa', :action => 'show', :id => t.id, :locale => locale)
+      expire_action(:controller => 'observations', :action => 'of', :id => t.id, :format => "json", :locale => locale)
+      expire_action(:controller => 'observations', :action => 'of', :id => t.id, :format => "geojson", :locale => locale)
+    end
   end
 end

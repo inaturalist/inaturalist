@@ -1,9 +1,9 @@
 <%-
-  @title = "Add your photo to #{@project ? h(@project.title) : 'iNaturalist'}"
+  @title = <%= t(:add_your_photo_to, :project => "#{@project ? h(@project.title) : CONFIG.site_name}" %>
   @img = if @project && @project.icon.file?
     image_url @project.icon.url(:span2)
   else
-    image_url "bird.png"
+    image_url CONFIG.logo_icon_square_big
   end
 -%>
 <%- @description = capture do %>
@@ -11,17 +11,16 @@
     <%= formatted_user_text @project.description %>
   <% else %>
     <p>
-      iNaturalist is an online community for naturalists! By adding your photo,
-      you can help researchers learn more about
+      <%_ t(:inaturalist_is_an_online_community, :site_name => SITE_NAME)
       <% if @taxon -%>
         <% if @taxon.species_or_lower? && @taxon.common_name && @taxon.common_name.to_s !~/'/ -%>
-          the
+          <%= t(:the) %>
         <% end -%>
         <%= render(:partial => "shared/taxon", :object => @taxon, :locals => {:link_url => taxon_url(@taxon)}) %>
       <% else %>
-        this species
+        <%= t(>this_species) %>
       <% end -%>
-      and help the iNaturalist community grow.
+      <%= t(:and_help_the_inaturalist_community_grow, :site_name => SITE_NAME) %>
     </p>
   <% end -%>
 <% end %>
@@ -32,10 +31,10 @@
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= @title %>"/> 
-  <meta property="og:image" content="<%= @img %>"/> 
-  <meta property="og:site_name" content="iNaturalist.org"/> 
-  <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027" /> 
+  <meta property="og:image" content="<%= @img %>"/>
+  <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
+    <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
+  <% end -%>
   <% og_description = h strip_tags(@description) %>
   <meta property="og:description" content="<%= og_description %>"/>
 <%- end -%>
@@ -48,5 +47,5 @@
 
 <p>
   <%- url = url_for(params.reject{|k,v| k.to_s == 'test'}.merge(:only_path => false)) -%>
-  <%= link_to "Add your photo", url, :class => "default button" %>
+  <%= link_to t(:add_your_photo), url, :class => "default button" %>
 </p>

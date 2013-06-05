@@ -35,7 +35,6 @@
       <%= link_to comment.parent.taxon do %>
         <%= render :partial => "shared/taxon", :object => comment.parent.taxon %>
       <% end %>
-      <%= link_to comment.parent.taxon, comment.parent %> 
     <%- else %>
       <div class="commenttype">
         <%= link_to comment.parent.class.to_s.underscore.humanize, comment.parent %> 

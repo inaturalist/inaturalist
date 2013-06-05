@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Taxonomic Tree Browser
+  <%= t(:taxonomic_tree_browser) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
@@ -208,27 +208,26 @@
 <div id="pageheader">
   <div class="breadcrumbs clear">
     <% if @taxon.root? -%>
-      <%= link_to 'Back to All Species', taxa_path, :class => 'back crumb' %>
+      <%= link_to t(:back_to_all_species), taxa_path, :class => 'back crumb' %>
     <% else %>
-      <%= link_to "Back to #{render(:partial => "shared/taxon")}".html_safe, @taxon, :class => 'back crumb' %>
+      <%= link_to t(:back_to_shared_taxon, :sharedtaxon => "#{render(:partial => "shared/taxon")}").html_safe, @taxon, :class => 'back crumb' %>
     <% end -%>
   </div>
 
   <div id="zoomlinks" class="right">
-    <%= link_to_function "Zoom to <strong>#{render(:partial => "shared/taxon")}</strong>".html_safe, "window.st.onClick(#{@taxon.id})",
-      :class => "inter" %>
+    <%= link_to_function t(:zoom_to_x, :x => "<strong>#{render(:partial => "shared/taxon")}</strong>"), "window.st.onClick(#{@taxon.id})".html_safe, :class => "inter" %>
     <span class="inter">|</span>
     <% for taxon in @iconic_taxa %>
       <%= link_to_function iconic_taxon_image(taxon, :size => 20), 
         "if (window.st.graph.getNode([#{taxon.id}])) {window.st.onClick(#{taxon.id});} " + 
         "else {window.location='#{url_for(:taxon_id => taxon)}'}",
         :class => "inter",
-        :title => "Zoom to #{Taxon::ICONIC_TAXON_NAMES[taxon.name] || taxon.name}" %>
+        :title => t(:zoom_to_taxon_name, :taxonname => "#{Taxon::ICONIC_TAXON_NAMES[taxon.name] || taxon.name}") %>
     <% end %>
   </div>
-  <h2>Tree Browser</h2>
+  <h2><%= t(:tree_browser) %></h2>
 </div>
 
 <div id="treevis">
-  <div id="loading_status" class="loading status" style="display: none">Loading...</div>
+  <div id="loading_status" class="loading status" style="display: none"><%= t(:loading) %></div>
 </div>

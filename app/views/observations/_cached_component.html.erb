@@ -1,11 +1,14 @@
-<%- observation ||= cached_component -%>
+<%- 
+  observation ||= cached_component
+  return unless observation
+-%>
 <% if logged_in? && current_user.id == observation.user_id -%>
-  <% cache(observation.component_cache_key(:for_owner => true)) do %>
+  <% cache(observation.component_cache_key(:for_owner => true, :locale => I18n.locale)) do %>
     <%= render :partial => 'observations/observation_component', 
                :locals => {:observation => observation} %>
   <% end %>
 <% else %>
-  <% cache(observation.component_cache_key) do %>
+  <% cache(observation.component_cache_key(:locale => I18n.locale)) do %>
     <%= render :partial => 'observations/observation_component', 
                :locals => {:observation => observation} %>
   <% end %>

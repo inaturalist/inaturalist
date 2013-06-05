@@ -57,6 +57,14 @@ describe Observation, "creation" do
     zone = ActiveSupport::TimeZone[@observation.time_zone]
     zone.formatted_offset.should == "-05:00"
   end
+
+  it "should parse datetime like September 27, 2012 8:09:50 AM GMT+01:00" do
+    o = Observation.make!(:observed_on_string => "September 27, 2012 8:09:50 AM GMT+01:00")
+    o.time_observed_at.in_time_zone(o.time_zone).hour.should be(8)
+    zone = ActiveSupport::TimeZone[o.time_zone]
+    zone.formatted_offset.should == "+01:00"
+    o.observed_on.day.should be(27)
+  end
   
   it "should parse a time zone from a code" do
     @observation.observed_on_string = 'October 30, 2008 10:31PM EST'
@@ -91,9 +99,8 @@ describe Observation, "creation" do
   end
   
   it "should not have an identification if taxon is not known" do
-    @observation.taxon = nil
-    @observation.save
-    @observation.identifications.empty?.should be(true)
+    o = Observation.make!
+    o.identifications.to_a.should be_blank
   end
   
   it "should have an identification that maches the taxon" do
@@ -239,6 +246,48 @@ describe Observation, "creation" do
       o.quality_grade.should == Observation::CASUAL_GRADE
     end
   end
+
+  it "should trim to the user_agent to 255 char" do
+    user_agent = <<-EOT
+      Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR
+      1.0.3705; .NET CLR 1.1.4322; Media Center PC 4.0; .NET CLR 2.0.50727;
+      .NET CLR 3.0.04506.30; .NET CLR 3.0.04506.648; .NET CLR 3.0.4506.2152;
+      .NET CLR 3.5.30729; PeoplePal 7.0; PeoplePal 7.3; .NET4.0C; .NET4.0E;
+      OfficeLiveConnector.1.5; OfficeLivePatch.1.3) w:PACBHO60
+    EOT
+    o = Observation.make!(:user_agent => user_agent)
+    o.user_agent.size.should be < 256
+  end
+
+  it "should set the URI" do
+    o = Observation.make!
+    o.reload
+    o.uri.should eq(FakeView.observation_url(o))
+  end
+
+  it "should not set the URI if already set" do
+    uri = "http://www.somewhereelse.com/users/4"
+    o = Observation.make!(:uri => uri)
+    o.reload
+    o.uri.should eq(uri)
+  end
+
+  it "should increment the taxon's counter cache" do
+    t = Taxon.make!
+    t.observations_count.should eq(0)
+    o = without_delay {Observation.make!(:taxon => t)}
+    t.reload
+    t.observations_count.should eq(1)
+  end
+
+  it "should increment the taxon's ancestors' counter caches" do
+    p = Taxon.make!
+    t = Taxon.make!(:parent => p)
+    p.observations_count.should eq(0)
+    o = without_delay {Observation.make!(:taxon => t)}
+    p.reload
+    p.observations_count.should eq(1)
+  end
 end
 
 describe Observation, "updating" do
@@ -248,29 +297,15 @@ describe Observation, "updating" do
       :observed_on_string => 'yesterday at 1pm', 
       :time_zone => 'UTC')
   end
-  
-  it "should destroy the owner's identifications if the taxon has been removed" do
-    @observation.identifications.select do |ident|
-      ident.user_id == @observation.user_id
-    end.empty?.should_not be(true)
-    @observation.taxon_id = nil
-    @observation.save
-    @observation.reload
-    @observation.identifications.select do |ident|
-      ident.user_id == observation.user_id
-    end.empty?.should be(true)
-  end
-  
-  it "should replace the owner's identification if the taxon has changed" do
+
+  it "should not destroy the owner's old identification if the taxon has changed" do
     t1 = Taxon.make!
     t2 = Taxon.make!
     o = Observation.make!(:taxon => t1)
     old_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
     o.update_attributes(:taxon => t2)
     o.reload
-    new_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
-    new_owners_ident.should_not be_blank
-    new_owners_ident.id.should_not be(old_owners_ident.id)
+    Identification.find_by_id(old_owners_ident.id).should_not be_blank
   end
 
   # # Handled by DJ
@@ -328,10 +363,11 @@ describe Observation, "updating" do
     obs.reload
     obs.iconic_taxon.should be_blank
   end
-  
+
   it "should queue refresh jobs for associated project lists if the taxon changed" do
     o = Observation.make!(:taxon => Taxon.make!)
-    po = ProjectObservation.make!(:observation => o)
+    pu = ProjectUser.make!(:user => o.user)
+    po = ProjectObservation.make!(:observation => o, :project => pu.project)
     Delayed::Job.delete_all
     stamp = Time.now
     o.update_attributes(:taxon => Taxon.make!)
@@ -348,6 +384,41 @@ describe Observation, "updating" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
     jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.should_not be_blank
+  end
+
+  it "should only queue one job to refresh life lists if taxon changed" do
+    o = Observation.make!(:taxon => Taxon.make!)
+    Delayed::Job.delete_all
+    stamp = Time.now
+    3.times do
+      o.update_attributes(:taxon => Taxon.make!)
+    end
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size.should eq(1)
+  end
+
+  it "should only queue one job to refresh project lists if taxon changed" do
+    po = make_project_observation(:taxon => Taxon.make!)
+    o = po.observation
+    Delayed::Job.delete_all
+    stamp = Time.now
+    3.times do
+      o.update_attributes(:taxon => Taxon.make!)
+    end
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.size.should eq(1)
+  end
+
+  it "should only queue one check list refresh job" do
+    o = make_research_grade_observation
+    Delayed::Job.delete_all
+    stamp = Time.now
+    3.times do
+      o.update_attributes(:latitude => o.latitude + 1)
+    end
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
+    jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.size.should eq(1)
   end
   
   it "should queue refresh job for check lists if the taxon changed" do
@@ -420,6 +491,68 @@ describe Observation, "updating" do
   
   it "should queue a job to update user lists"
   it "should queue a job to update check lists"
+
+  describe "obscuring for conservation status" do
+    it "should obscure coordinates if taxon has a conservation status in the place observed" do
+      p = make_place_with_geom
+      t = Taxon.make!(:rank => Taxon::SPECIES)
+      cs = ConservationStatus.make!(:place => p, :taxon => t)
+      o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
+      o.should_not be_coordinates_obscured
+      o.update_attributes(:taxon => t)
+      o.should be_coordinates_obscured
+    end
+
+    it "should not obscure coordinates if taxon has a conservation status in another place" do
+      p = make_place_with_geom
+      t = Taxon.make!(:rank => Taxon::SPECIES)
+      cs = ConservationStatus.make!(:place => p, :taxon => t)
+      o = Observation.make!(:latitude => -1*p.latitude, :longitude => p.longitude)
+      o.should_not be_coordinates_obscured
+      o.update_attributes(:taxon => t)
+      o.should_not be_coordinates_obscured
+    end
+  end
+
+  it "should increment the taxon's counter cache" do
+    o = Observation.make!
+    t = Taxon.make!
+    t.observations_count.should eq(0)
+    o = without_delay {o.update_attributes(:taxon => t)}
+    t.reload
+    t.observations_count.should eq(1)
+  end
+  
+  it "should increment the taxon's ancestors' counter caches" do
+    o = Observation.make!
+    p = Taxon.make!
+    t = Taxon.make!(:parent => p)
+    p.observations_count.should eq(0)
+    o = without_delay {o.update_attributes(:taxon => t)}
+    p.reload
+    p.observations_count.should eq(1)
+  end
+
+  it "should decrement the taxon's counter cache" do
+    t = Taxon.make!
+    o = without_delay {Observation.make!(:taxon => t)}
+    t.reload
+    t.observations_count.should eq(1)
+    o = without_delay {o.update_attributes(:taxon => nil)}
+    t.reload
+    t.observations_count.should eq(0)
+  end
+  
+  it "should decrement the taxon's ancestors' counter caches" do
+    p = Taxon.make!
+    t = Taxon.make!(:parent => p)
+    o = without_delay {Observation.make!(:taxon => t)}
+    p.reload
+    p.observations_count.should eq(1)
+    o = without_delay {o.update_attributes(:taxon => nil)}
+    p.reload
+    p.observations_count.should eq(0)
+  end
 end
 
 describe Observation, "destruction" do
@@ -439,6 +572,46 @@ describe Observation, "destruction" do
     Observation.make!(:taxon => Taxon.make!)
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}.should_not be_blank
+  end
+
+  it "should delete associated updates" do
+    subscriber = User.make!
+    user = User.make!
+    s = Subscription.make!(:user => subscriber, :resource => user)
+    o = Observation.make(:user => user)
+    without_delay { o.save! }
+    update = Update.where(:subscriber_id => subscriber).last
+    update.should_not be_blank
+    o.destroy
+    Update.find_by_id(update.id).should be_blank
+  end
+
+  it "should delete associated project observations" do
+    po = make_project_observation
+    o = po.observation
+    o.destroy
+    ProjectObservation.find_by_id(po.id).should be_blank
+  end
+
+  it "should decrement the taxon's counter cache" do
+    t = Taxon.make!
+    o = without_delay{Observation.make!(:taxon => t)}
+    t.reload
+    t.observations_count.should eq(1)
+    o = without_delay {o.destroy}
+    t.reload
+    t.observations_count.should eq(0)
+  end
+  
+  it "should decrement the taxon's ancestors' counter caches" do
+    p = Taxon.make!
+    t = Taxon.make!(:parent => p)
+    o = without_delay {Observation.make!(:taxon => t)}
+    p.reload
+    p.observations_count.should eq(1)
+    o = without_delay {o.destroy}
+    p.reload
+    p.observations_count.should eq(0)
   end
 end
 
@@ -532,6 +705,12 @@ describe Observation, "species_guess parsing" do
     o = Observation.make!(:species_guess => name)
     o.taxon_id.should == t.id
   end
+
+  it "should not make a guess if ends in a question mark" do
+    t = Taxon.make!(:name => "Foo bar")
+    o = Observation.make!(:species_guess => "#{t.name}?")
+    o.taxon.should be_blank
+  end
 end
 
 describe Observation, "named scopes" do
@@ -624,7 +803,7 @@ describe Observation, "named scopes" do
   end
   
   it "should find observations with photos" do
-    @pos.photos << FlickrPhoto.new(:native_photo_id => 1)
+    ObservationPhoto.make!(:observation => @pos)
     obs = Observation.has_photos.all
     obs.should include(@pos)
     obs.should_not include(@neg)
@@ -729,13 +908,13 @@ describe Observation, "named scopes" do
   end
   
   it "should order observations by created_at" do
-    last_obs = Observation.all(:order => 'created_at desc').first
-    Observation.order_by('created_at').to_a.last.should === last_obs
+    last_obs = Observation.make!
+    Observation.order_by('created_at').to_a.last.should eq last_obs
   end
   
   it "should reverse order observations by created_at" do
-    last_obs = Observation.all(:order => 'created_at desc').first
-    Observation.order_by('created_at DESC').first.should === last_obs
+    last_obs = Observation.make!
+    Observation.order_by('created_at DESC').first.should eq last_obs
   end
   
   it "should not find anything for a non-existant taxon ID" do
@@ -793,15 +972,24 @@ describe Observation do
     end
     
     it "should not be included in json" do
-      observation = Observation.make!(:taxon => @taxon, :latitude => 38, :longitude => -122)
+      observation = Observation.make!(:taxon => @taxon, :latitude => 38.1234, :longitude => -122.1234)
       observation.to_json.should_not match(/private_latitude/)
     end
     
     it "should not be included in a json array" do
-      observation = Observation.make!(:taxon => @taxon, :latitude => 38, :longitude => -122)
+      observation = Observation.make!(:taxon => @taxon, :latitude => 38.1234, :longitude => -122.1234)
       Observation.make!
       observations = Observation.paginate(:page => 1, :per_page => 2, :order => "id desc")
       observations.to_json.should_not match(/private_latitude/)
+    end
+
+    it "should not be included in by_login_all csv generated for others" do
+      observation = Observation.make!(:taxon => @taxon, :latitude => 38.1234, :longitude => -122.1234)
+      Observation.make!
+      path = Observation.generate_csv_for(observation.user)
+      txt = open(path).read
+      txt.should_not match(/private_latitude/)
+      txt.should_not match(/#{observation.private_latitude}/)
     end
   end
   
@@ -838,8 +1026,8 @@ describe Observation do
       o.should be_coordinates_obscured
       o.obscure_coordinates
       o.reload
-      o.latitude.to_f.should == lat
-      o.private_latitude.to_f.should == private_lat
+      o.latitude.to_f.should == lat.to_f
+      o.private_latitude.to_f.should == private_lat.to_f
     end
     
     it "should not affect already coordinates of a protected taxon" do
@@ -894,6 +1082,7 @@ describe Observation do
       o.should be_coordinates_obscured
       o.latitude.should be_blank
     end
+
   end
   
   describe "obscure_coordinates_for_observations_of" do
@@ -991,6 +1180,22 @@ describe Observation do
       o.should be_coordinates_obscured
       o.latitude.should be_blank
     end
+
+    it "should unobscure observations matching conservation status in a place"
+    it "should not obscure observations not matching conservation status in a place"
+  end
+
+  describe "obscure_coordinates_for_threatened_taxa" do
+    it "should not unobscure previously obscured observations of threatened taxa" do
+      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      o = Observation.make!(:latitude => 38, :longitude => -122, :taxon => taxon)
+      o.should be_coordinates_obscured
+      o.obscure_coordinates_for_threatened_taxa
+      o.should be_coordinates_obscured
+    end
+
+    it "should obscure coordinates for observations of taxa with concervation status in place"
+    it "should not obscure coordinates for observations of taxa with concervation status of another place"
   end
   
   describe "geoprivacy" do
@@ -1179,6 +1384,34 @@ describe Observation, "license" do
   end
 end
 
+describe Observation, "places" do
+  # need to switch from geometry to geography to really get this working
+  # it "should work across the date line" do
+  #   wkt = <<-WKT
+  #     MULTIPOLYGON(((-152.09473 20.81363,-169.49708
+  #     28.00992,-177.44019 30.24388,-179.52485 28.65781,141.65771
+  #     25.45121,140.95458 18.32115,140.95458 10.02078,-170.39795
+  #     -16.45927,-168.81592 -16.88025,-158.18116 0.44823,-152.09473
+  #     20.81363)),((-152.09473 20.81363,-169.49708 28.00992,-177.44019
+  #     30.24388,-179.52485 28.65781,141.65771 25.45121,140.95458
+  #     18.32115,140.95458 10.02078,-170.39795 -16.45927,-168.81592
+  #     -16.88025,-158.18116 0.44823,-152.09473 20.81363)),((-152.09473
+  #     20.81363,-169.49708 28.00992,-177.44019 30.24388,-179.52485
+  #     28.65781,141.65771 25.45121,140.95458 18.32115,140.95458
+  #     10.02078,-170.39795 -16.45927,-168.81592 -16.88025,-158.18116
+  #     0.44823,-152.09473 20.81363)))      
+  #   WKT
+  #   place = Place.make
+  #   place.save_geom(MultiPolygon.from_ewkt(wkt))
+  #   place.reload
+  #   inside = Observation.make(:latitude => place.latitude, :longitude => place.longitude)
+  #   inside.should be_georeferenced
+  #   outside = Observation.make(:latitude => 24, :longitude => 92)
+  #   outside.places.should_not include(place)
+  #   inside.places.should include(place)
+  # end
+end
+
 describe Observation, "update_stats" do
   it "should not consider outdated observations as agreements" do
     o = Observation.make!(:taxon => Taxon.make!)
@@ -1191,5 +1424,238 @@ describe Observation, "update_stats" do
     old_ident.should_not be_current
     o.num_identification_agreements.should eq(0)
     o.num_identification_disagreements.should eq(1)
+  end
+end
+
+describe Observation, "nested observation_field_values" do
+  it "should create a new record if ID set but existing not found" do
+    ofv = ObservationFieldValue.make!
+    of = ofv.observation_field
+    o = ofv.observation
+    attrs = {
+      "observation_field_values_attributes" => {
+        "0" => {
+          "_destroy" => "false", 
+          "observation_field_id" => ofv.observation_field_id, 
+          "value" => ofv.value,
+          "id" => ofv.id
+        }
+      }
+    }
+    ofv.destroy
+    lambda { o.update_attributes(attrs) }.should_not raise_error(ActiveRecord::RecordNotFound)
+    o.reload
+    o.observation_field_values.last.observation_field_id.should eq(of.id)
+  end
+
+  it "should remove records if ID set but existing not found" do
+    ofv = ObservationFieldValue.make!
+    of = ofv.observation_field
+    o = ofv.observation
+    attrs = {
+      "observation_field_values_attributes" => {
+        "0" => {
+          "_destroy" => "true", 
+          "observation_field_id" => ofv.observation_field_id, 
+          "value" => ofv.value,
+          "id" => ofv.id
+        }
+      }
+    }
+    ofv.destroy
+    lambda { o.update_attributes(attrs) }.should_not raise_error(ActiveRecord::RecordNotFound)
+    o.reload
+    o.observation_field_values.should be_blank
+  end
+end
+
+describe Observation, "taxon updates" do
+  it "should generate an update" do
+    t = Taxon.make!
+    s = Subscription.make!(:resource => t)
+    o = Observation.make(:taxon => t)
+    without_delay do
+      o.save!
+    end
+    u = Update.last
+    u.should_not be_blank
+    u.notifier.should eq(o)
+    u.subscriber.should eq(s.user)
+  end
+
+  it "should generate an update for descendent taxa" do
+    t1 = Taxon.make!
+    t2 = Taxon.make!(:parent => t1)
+    s = Subscription.make!(:resource => t1)
+    o = Observation.make(:taxon => t2)
+    without_delay do
+      o.save!
+    end
+    u = Update.last
+    u.should_not be_blank
+    u.notifier.should eq(o)
+    u.subscriber.should eq(s.user)
+  end
+end
+
+describe Observation, "update_for_taxon_change" do
+  before(:each) do
+    @taxon_swap = TaxonSwap.make
+    @input_taxon = Taxon.make!
+    @output_taxon = Taxon.make!
+    @taxon_swap.add_input_taxon(@input_taxon)
+    @taxon_swap.add_output_taxon(@output_taxon)
+    @taxon_swap.save!
+    @obs_of_input = Observation.make!(:taxon => @input_taxon)
+  end
+
+  it "should add new identifications" do
+    @obs_of_input.identifications.size.should eq(1)
+    @obs_of_input.identifications.first.taxon.should eq(@input_taxon)
+    Observation.update_for_taxon_change(@taxon_swap, @output_taxon)
+    @obs_of_input.reload
+    @obs_of_input.identifications.size.should eq(2)
+    @obs_of_input.identifications.detect{|i| i.taxon_id == @output_taxon.id}.should_not be_blank
+  end
+
+  it "should not update old identifications" do
+    old_ident = @obs_of_input.identifications.first
+    old_ident.taxon.should eq(@input_taxon)
+    Observation.update_for_taxon_change(@taxon_swap, @output_taxon)
+    old_ident.reload
+    old_ident.taxon.should eq(@input_taxon)
+  end
+end
+
+describe Observation, "reassess_coordinates_for_observations_of" do
+  it "should obscure coordinates for observations of threatened taxa" do
+    t = Taxon.make!
+    o = Observation.make!(:taxon => t, :latitude => 1, :longitude => 1)
+    cs = ConservationStatus.make!(:taxon => t)
+    o.should_not be_coordinates_obscured
+    Observation.reassess_coordinates_for_observations_of(t)
+    o.reload
+    o.should be_coordinates_obscured
+  end
+  
+  it "should not unobscure coordinates of obs of unthreatened if geoprivacy is set" do
+    t = Taxon.make!
+    o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::OBSCURED, :taxon => t)
+    old_lat = o.latitude
+    o.should be_coordinates_obscured
+    Observation.reassess_coordinates_for_observations_of(t)
+    o.reload
+    o.should be_coordinates_obscured
+    o.latitude.should eq(old_lat)
+  end
+end
+
+describe Observation, "queue_for_sharing" do
+  it "should queue a job if twitter ProviderAuthorization present" do
+    pa = ProviderAuthorization.make!(:provider_name => "twitter")
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_twitter%"]).should be_blank
+    o = Observation.make!(:user => pa.user)
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_twitter%"]).should_not be_blank
+  end
+  it "should queue a job if facebook ProviderAuthorization present" do
+    pa = ProviderAuthorization.make!(:provider_name => "facebook")
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_facebook%"]).should be_blank
+    o = Observation.make!(:user => pa.user)
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"]).should_not be_blank
+  end
+  it "should not queue a job if no ProviderAuthorizations present" do
+    o = Observation.make!
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"]).should be_blank
+  end
+  it "should not queue a twitter job if twitter_sharing is 0" do
+    pa = ProviderAuthorization.make!(:provider_name => "twitter")
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_twitter%"]).should be_blank
+    o = Observation.make!(:user => pa.user, :twitter_sharing => "0")
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_twitter%"]).should be_blank
+  end
+  it "should not queue a facebook job if facebook_sharing is 0" do
+    pa = ProviderAuthorization.make!(:provider_name => "facebook")
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_facebook%"]).should be_blank
+    o = Observation.make!(:user => pa.user, :facebook_sharing => "0")
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"]).should be_blank
+  end
+end
+
+describe Observation, "captive" do
+  it "should vote yes on the wild quality metric if 1" do
+    o = Observation.make!(:captive => "1")
+    o.quality_metrics.should_not be_blank
+    o.quality_metrics.first.user.should eq(o.user)
+    o.quality_metrics.first.should_not be_agree
+  end
+
+  it "should vote no on the wild quality metric if 0 and metric exists" do
+    o = Observation.make!(:captive => "1")
+    o.quality_metrics.should_not be_blank
+    o.update_attributes(:captive => "0")
+    o.quality_metrics.first.should be_agree
+  end
+
+  it "should not alter quality metrics if nil" do
+    o = Observation.make!(:captive => nil)
+    o.quality_metrics.should be_blank
+  end
+
+  it "should not alter quality metrics if 0 and not metrics exist" do
+    o = Observation.make!(:captive => "0")
+    o.quality_metrics.should be_blank
+  end
+end
+
+describe Observation, "merge" do
+  let(:user) { User.make! }
+  let(:reject) { Observation.make!(:user => user) }
+  let(:keeper) { Observation.make!(:user => user) }
+  
+  it "should destroy the reject" do
+    keeper.merge(reject)
+    Observation.find_by_id(reject.id).should be_blank
+  end
+
+  it "should preserve photos" do
+    op = ObservationPhoto.make!(:observation => reject)
+    keeper.merge(reject)
+    op.reload
+    op.observation.should eq(keeper)
+  end
+
+  it "should preserve comments" do
+    c = Comment.make!(:parent => reject)
+    keeper.merge(reject)
+    c.reload
+    c.parent.should eq(keeper)
+  end
+
+  it "should preserve identifications" do
+    i = Identification.make!(:observation => reject)
+    keeper.merge(reject)
+    i.reload
+    i.observation.should eq(keeper)
+  end
+
+  it "should mark duplicate identifications as not current" do
+    t = Taxon.make!
+    without_delay do
+      reject.update_attributes(:taxon => t)
+      keeper.update_attributes(:taxon => t)
+    end
+    keeper.merge(reject)
+    idents = keeper.identifications.where(:user_id => keeper.user_id).order('id asc')
+    idents.size.should eq(2)
+    idents.first.should_not be_current
+    idents.last.should be_current
+  end
+end
+
+describe Observation, "component_cache_key" do
+  it "should be the same regardless of option order" do
+    k1 = Observation.component_cache_key(111, :for_owner => true, :locale => :en)
+    k2 = Observation.component_cache_key(111, :locale => :en, :for_owner => true)
+    k1.should eq(k2)
   end
 end

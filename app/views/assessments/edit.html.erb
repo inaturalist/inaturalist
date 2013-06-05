@@ -1,0 +1,16 @@
+<%- content_for(:title) do -%>
+  Edit assessment
+<%- end -%>
+<% content_for(:extracss) { stylesheet_link_tag "assessments" } %>
+
+<%# see /app/assets/javascripts for this - added manually instead of via gem since we're not using the asset pipeline - JY %>
+
+<% if params[:iframe].blank? && params[:preview].blank? %>
+  <%= link_to "Back to #{@assessment.display_name}".html_safe, project_assessment_path(@assessment.project, @assessment), :class => "back crumb" %>
+<% end -%>
+
+<h2>Edit assessment</h2>
+
+<div class="clear" style="margin-bottom: 30px;"></div>
+
+<%= render :partial => 'form' %>

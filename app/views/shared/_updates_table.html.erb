@@ -17,6 +17,8 @@
       <td valign="top" align="center" style="border-bottom:1px solid #ccc;padding: 10px 10px 10px 0;">
         <% if resource.is_a?(User) -%>
           <%= update_image_for(updates.first, :width => 48, :height => 48) %>
+        <% elsif resource.is_a?(Project) %>
+          <%= image_tag("#{root_url}#{resource.icon.url(:thumb)}", :style => "max-width: 48px;") %>
         <% else %>
           <%= update_image_for(updates.first, :style => "max-width:48px;") %>
         <% end -%>
@@ -31,8 +33,8 @@
               render_in_format :html, :partial => "shared/update_email_activity", :object => resource, :locals => {:updates => updates}
             else
               begin
-                render_in_format :html, :partial => "#{resource.class.to_s.underscore.pluralize}/update_email_#{notification}", 
-                  :object => resource, :locals => {:updates => updates}
+                render_in_format :html, :partial => "#{resource_type.underscore.pluralize}/update_email_#{notification}", 
+                  :object => resource, :locals => {:updates => updates, :resource => resource}
               rescue ActionView::MissingTemplate, Errno::ENOENT
                 "#{resource_type} #{notification}"
               end

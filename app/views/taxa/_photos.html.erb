@@ -13,7 +13,7 @@
       <% photo_url = "http://flickr.com/photos/#{photos[0].photo_xml[:owner]}/#{photos[0].id}" %>
       <%= link_to image_tag(photos[0].source_url(:medium)), photo_url %>
       <div class="description">
-        Photo: <%= link_to "View original CC'd photo on Flickr by #{photos[0].photo_xml[:ownername]}", photos[0].page_url %>
+        Photo: <%= link_to t(:view_original_ccD_photo, :owner => "#{photos[0].photo_xml[:ownername]}"), photos[0].page_url %>
       </div>
     <% end %>
   <% else %>
@@ -31,12 +31,11 @@
       <% end %>
     </div>
     <% unless photos.empty? %>
-      <div class="description">Creative Commons Flickr photos tagged "<%= taxon.name %>."</div>
+      <div class="description"><%= t(:creative_commons_flickr_tagged) %> "<%= taxon.name %>."</div>
       <div>
-        <%= link_to "Invite photos to <nobr>iNat &raquo;</nobr>".html_safe, photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
+        <%= link_to t(:invite_photos_to_raquo_html, :site_name => SITE_NAME_SHORT), photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
         <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-          View all photos tagged "<%=h taxon.name %>" on 
-          <nobr>Flickr &raquo;</nobr>
+          <%= t(:view_all_photos_tagged_taxon_html, :taxon => h(taxon.name) ) %>
         </a>
       </div>
     <% end %>
@@ -44,13 +43,13 @@
 <% else %>
   <div class="description">
     <h3 class="description">
-      No Creative Commons Flickr Photos Tagged "<%= taxon.name %>"
+      <%=t :no_creative_commons_flickr_photos_tagged_x, :x => taxon.name %>
     </h3>
-    <%= link_to "Invite photos to <nobr>iNat &raquo;</nobr>".html_safe, photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
+    <%= link_to t(:invite_photos_to_raquo_html, :site_name => SITE_NAME_SHORT), photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
     <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-      View all photos tagged "<%=h taxon.name %>" on <nobr>Flickr &raquo;</nobr>
+      <%= t(:view_all_photos_tagged_taxon_html, :taxon => taxon.name).html_safe %>
     </a><br/>
-    (not just Creative Commons-licensed)
+    (<%=t :not_just_creative_commons_licensed %>)
   </div>
 <% end %>
 
@@ -71,9 +70,9 @@
       <% end %>
     </div>
     <div class="description">
-      <%= link_to "Invite photos to <nobr>iNat &raquo;</nobr>".html_safe, photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
+      <%= link_to t(:invite_photos_to_raquo_html, :site_name => SITE_NAME_SHORT), photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
       <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-        View all photos tagged "<%=h taxon.name %>" on <nobr>Flickr &raquo;</nobr>
+        <%= t(:view_all_photos_tagged_taxon_html, :taxon => h(taxon.name) ) %>
       </a>
     </div>
   <% end %>

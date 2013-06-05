@@ -1,10 +1,10 @@
 <div id="header" class="clear">
   <% if logged_in? -%>
-    <%= link_to("Welcome, #{current_user.login}", dashboard_path, :class => "right") %>
+    <%= link_to( t(:welcome_login, :login => "#{current_user.login}"), dashboard_path, :class => "right") %>
   <% else %>
-    <%= link_to("Sign in", new_session_path, :class => "right") %>
+    <%= link_to(t(:sign_in), new_user_session_path, :class => "right") %>
   <% end -%>
-  <a href="/" title="<%= APP_CONFIG[:site_name] %>" class="logolink">
-    <img src="/images/logo-small.gif" alt="iNaturalist logo" width="118" height="22"/>
+  <a href="/" title="<%= CONFIG.site_name %>" class="logolink">
+    <%= image_tag CONFIG.logo, :alt => SITE_NAME, :width => 118 %>
   </a>
 </div>

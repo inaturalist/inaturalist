@@ -1,4 +1,7 @@
 <% content_for(:title) do %>Project Invitations<% end %>
+<%- content_for(:extrajs) do -%>
+  <%= javascript_include_tag 'observations/observation_fields' %>
+<%- end -%>
 
 <h2>Project Invitations</h2>
 
@@ -21,30 +24,9 @@
           </div>
         </div>
         <div class="last column span-16">
-          <div class="notice box clear inline buttonrow">
-            <span class="inter">
-              <%= image_tag pi.project.icon.url(:mini), :width => 16, :height => 16, :style => "vertical-align: middle" %>
-              <%= link_to truncate(h(pi.project.title), :length => (is_me?(pi.observation.user) || is_me?(pi.user) || curator_of?(pi.project) ? 50 : 65)), pi.project %>
-            </span>
-            <span class="date">
-              <%= pi.created_at.in_time_zone(pi.user.time_zone || 'UTC').strftime("%b. %e, %Y") %>
-            </span>
-            <nobr class="inlineblock right">
-              <% if is_me?(pi.observation.user) -%>
-                <%= link_to "accept", accept_project_invitation_path(pi),
-                  :method => :post,
-                  :class => "glaucous button",
-                  "data-loading-click" => "" %>
-              <% end -%>
-              <% if is_me?(pi.observation.user) || is_me?(pi.user)  || curator_of?(pi.project) -%>
-                <%= link_to (is_me?(pi.observation.user) ? "ignore" : "uninvite"), pi,
-                  :method => :delete,
-                  :confirm => "Are you sure you want to remove this invitation?",
-                  :class => "pale button",
-                  "data-loading-click" => "" %>
-              <% end -%>
-            </nobr>
-          </div>
+          <%= render :partial => "project_invitations/project_invitation", 
+            :object => pi,
+            :locals => { :truncation_length => 48 } %>
         </div>
       </div>
     <% end %>

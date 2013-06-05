@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Forgot your password?" %>
+  <%= @title = t(:forgot_your_password)  %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type='text/css'>
@@ -17,14 +17,14 @@
       link_to((image_tag(p.downcase+"_favicon.jpg")+" "+p), auth_url_for(p))
     end.to_sentence(:last_word_connector => ', or ')
   -%>
-  <%= f.error_messages(:header_message => "We couldn't find a user with that email address.", 
-    :message => "Maybe you signed in with your #{omniauth_links} account?") %>
+  <%= f.error_messages(:header_message => t(:we_couldnt_find_a_user), 
+    :message => t(:maybe_your_signed_in_with, :omniauth => "#{omniauth_links}") ) %>
 
   <p>
-    That's okay! We forget ours too. Send us the email address you used to
-    create your account and we'll email you a link to reset your password.
+  <%= t(:thats_okay_we_forget) %>
+    
   </p>
   
   <%= f.text_field :email %>
-  <%= f.submit 'Request Password', :class => 'default button' %>
+  <%= f.submit t(:request_password), :class => 'default button' %>
 <% end %>

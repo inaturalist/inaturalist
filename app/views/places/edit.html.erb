@@ -58,7 +58,9 @@
     <%= error_messages_for :place %>
     <%= f.text_field :name, :required => true, :class => 'text' %>
     <%= f.text_field :display_name, :class => 'text' %>
-    <%= f.select :place_type, Place::PLACE_TYPE_CODES.sort, :include_blank => "Unknown", :class => 'select' %>
+    <%= f.text_field :code, :class => 'text', :description => "Short code for this place, e.g. US for the United States" %>
+    <%= f.select :place_type, Place::PLACE_TYPE_CODES.sort.uniq{|k,v| k.downcase}, :include_blank => "Unknown", :class => 'select' %>
+    <%= f.check_box :prefers_check_lists, :label_after => true, :label => "Check lists allowed?" %>
     
     <div class="last column span-11">
       <div class="column span-5 append-1">
@@ -70,10 +72,10 @@
     </div>
     
     <%= f.text_field :woeid %>
-    <%= f.text_field :parent_id, :placeholder => "Type place name" %>
+    <%= f.text_field :parent_id, :placeholder => "Type place name", "data-chooser-chosen" => @place.parent.to_json %>
     
     <div class="field">
-      <%= link_to_function "Show KML", "$('#kmlfield').show(); $('#kmlfieldlink').hide();", :id => "kmlfieldlink" %>
+      <%= link_to_function t(:show_kml), "$('#kmlfield').show(); $('#kmlfieldlink').hide();", :id => "kmlfieldlink" %>
       <div id="kmlfield" style="display: none">
         <label for="place_geometry">KML <%= link_to_function "(hide)", "$('#kmlfield').hide(); $('#kmlfieldlink').show();" %></label>
         <textarea id="place_geometry" name="kml" rows="8" cols="40"></textarea>
@@ -81,10 +83,10 @@
     </div>
     
     <div class="clear buttonrow">
-      <%= f.submit 'Save', :class => 'default button' %>
-      <%= link_to "Cancel", @place, :class => 'button' %>
-      <%= link_to "Delete", @place, :method => :delete, 
-        :confirm => "Are you sure you want to delete this place?", 
+      <%= f.submit t(:save), :class => 'default button', "data-loading-click" => t(:saving) %>
+      <%= link_to t(:cancel), @place, :class => 'button' %>
+      <%= link_to t(:delete), @place, :method => :delete, 
+        :confirm => t(:are_you_sure_delete_this_place), 
         :class => 'minor delete button' %>
     </div>
   <% end %>
@@ -96,7 +98,7 @@
 
 <div class="column span-24">
   <div class="small description">
-    Is this place a duplicate?  
-    <%= link_to "Merge it with another place", {:action => 'merge', :id => @place}, :class => 'readmore' %>
+    <%= t(:is_this_place_a_duplicate) %>
+    <%= link_to t(:merge_it_with_another_place), {:action => 'merge', :id => @place}, :class => 'readmore' %>
   </div>
 </div>

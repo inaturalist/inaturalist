@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%= @title = "#{possessive(@selected_user, :capitalize => @selected_user == current_user)} Lists" %>
+  <%= @title = "#{possessive(@selected_user, :capitalize => @selected_user == current_user)} "+  t(:lists) %>
 <% end -%>
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'barchart', 'lists' %>
@@ -51,7 +51,7 @@
 <%- tools = capture do -%>
   <% if logged_in? && current_user == @selected_user %>
     <div id="tools" class="buttonrow">
-      <%= link_to 'New List', new_list_path, :id => 'newlistbutton', :class => 'default button'%>
+      <%= link_to t(:new_list), new_list_path, :id => 'newlistbutton', :class => 'default button'%>
     </div>
   <% end %>
 <% end %>
@@ -65,7 +65,7 @@
           <% cache List.icon_preview_cache_key(list) do %>
             <a href="<%= list_path(list) %>" class="attr photos column span-3 <%= 'empty' if @iconic_taxa_for[list.id].blank? %>">
               <% if @iconic_taxa_for[list.id].blank? %>
-                No taxon images
+                <%=t :no_taxa_listed %>
               <% else %>
                 <% for taxon in @iconic_taxa_for[list.id] %>
                   <%= taxon_image(taxon, :width => 32) %>
@@ -78,14 +78,14 @@
 
             <div class="attr readable description">
               <%= truncate(strip_tags(list.description), :length => 75) %>
-              <%= link_to "View &raquo;".html_safe, list_path(list), :style => "white-space: nowrap" %>
+              <%= link_to "#{t(:view)} &raquo;".html_safe, list_path(list), :style => "white-space: nowrap" %>
             </div>
 
             <div class="barchart">
               <%= render :partial => "shared/barchart_datum", :locals => { 
                 :value => list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL"), 
                 :max => list.listed_taxa.count, 
-                :label_text => "of #{list.listed_taxa.count} observed",
+                :label_text => t(:of) + " #{list.listed_taxa.count} " + t(:observed).downcase,
                 :min_value_label_width => 30 } %>
               <div class="clear"></div>
             </div>
@@ -93,7 +93,7 @@
             <% if list.is_a?(LifeList) && !list.rules.empty? && list.rules.first.operand.is_a?(Taxon) -%>
               <div class="life_list_taxon description">
                 <%= taxon_image(list.rules.first.operand) %>
-                Life list of
+                <%=t :life_list_of %>
                 <%= render :partial => 'shared/taxon', 
                            :locals => { :taxon => list.rules.first.operand,
                                         :link_url => url_for(list.rules.first.operand) } %>
@@ -107,19 +107,19 @@
   
   <% if logged_in? -%>
     <%= form_for :preferences, :url => url_for do |f| %>
-      <%= f.label :per_page %>
+      <%= f.label :per_page, t(:per_page) %>
       <%= f.select :per_page, ApplicationController::PER_PAGES, {}, 
         :onchange => "$(this).parents('form:first').submit()" %>
       <span class="meta">&middot;</span>
-      <%= f.label :lists_by_login_sort, "Order" %>
+      <%= f.label :list_by_login_sort, t(:order) %>
       <%= f.select :lists_by_login_sort, 
-        [['date created', 'id'], 'title'],
+        [[t(:date_created), 'id'], [t(:title), 'title']],
         {},
         :onchange => "$(this).parents('form:first').submit()" %>
       <%= f.radio_button :lists_by_login_order, "asc", :onchange => "$(this).parents('form:first').submit()" %>
-      <%= f.label :lists_by_login_order_asc, "asc" %>
+      <%= f.label :lists_by_login_order_asc, t(:asc) %>
       <%= f.radio_button :lists_by_login_order, "desc", :onchange => "$(this).parents('form:first').submit()" %>
-      <%= f.label :lists_by_login_order_desc, "desc" %>
+      <%= f.label :lists_by_login_order_desc, t(:desc) %>
     <% end %>
   <% end -%>
   

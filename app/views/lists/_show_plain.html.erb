@@ -13,7 +13,7 @@
       <div class="listed_taxa_group <%= grouper_class %>">
         <h2 class="title">
           <%= grouper_name %>
-          <span class="small description"><%= listed_taxa.size %> total</span>
+          <span class="small description"><%= listed_taxa.size %> <%=t :total %></span>
         </h2>
         <ul class="listed_taxa plain_view">
           <% for listed_taxon in listed_taxa %>

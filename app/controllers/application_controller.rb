@@ -1,24 +1,24 @@
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
-  # include AuthenticatedSystem
-  # include RoleRequirementSystem
   include Ambidextrous
   
-  has_mobile_fu
+  has_mobile_fu :ignore_formats => [:tablet, :json]
   around_filter :catch_missing_mobile_templates
   
   helper :all # include all helpers, all the time
   protect_from_forgery
-  # before_filter :login_from_cookie, :get_user, :set_time_zone
+  before_filter :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
   before_filter :user_logging
+  after_filter :user_request_logging
   before_filter :remove_header_and_footer_for_apps
   before_filter :login_from_param
+  before_filter :set_locale
   
-  PER_PAGES = [10,30,50,100]
-  HEADER_VERSION = 8
+  PER_PAGES = [10,30,50,100,200]
+  HEADER_VERSION = 13
   
   alias :logged_in? :user_signed_in?
   
@@ -31,6 +31,12 @@ class ApplicationController < ActionController::Base
     session[:return_to] = request.fullpath
   end
 
+  def set_locale
+    I18n.locale = params[:locale] || current_user.try(:locale) || I18n.default_locale
+    I18n.locale = current_user.try(:locale) if I18n.locale.blank?
+    I18n.locale = I18n.default_locale if I18n.locale.blank?
+  end
+
   # Redirect to the URI stored by the most recent store_location call or
   # to the passed default.  Set an appropriately modified
   #   after_filter :store_location, :only => [:index, :new, :show, :edit]
@@ -38,9 +44,9 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     back_url = session[:return_to] # || request.env['HTTP_REFERER']
     if back_url && ![request.path, request.url].include?(back_url)
-      redirect_to(back_url)
+      redirect_to back_url, :status => :see_other
     else
-      redirect_to default
+      redirect_to default, :status => :see_other
     end
     session[:return_to] = nil
   end
@@ -91,13 +97,13 @@ class ApplicationController < ActionController::Base
     if logged_in? && current_user.flickr_identity
       true
     else
-      redirect_to(:controller => 'flickr', :action => 'link')
+      redirect_to(:controller => 'flickr', :action => 'options')
     end
   end
   
   def photo_identities_required
     return true if logged_in? && !@photo_identities.blank?
-    redirect_to(:controller => 'flickr', :action => 'link')
+    redirect_to(:controller => 'flickr', :action => 'options')
   end
   
   #
@@ -115,7 +121,13 @@ class ApplicationController < ActionController::Base
     end
   end
   
-
+  # Override Devise implementation so we can set this for oauth2 / doorkeeper requests
+  def current_user
+    cu = super
+    return cu unless cu.blank?
+    return nil unless doorkeeper_token && doorkeeper_token.accessible?
+    @current_user ||= User.find_by_id(doorkeeper_token.resource_owner_id)
+  end
   
   #
   # Grab current user's time zone and set it as the default
@@ -123,21 +135,6 @@ class ApplicationController < ActionController::Base
   def set_time_zone
     Time.zone = self.current_user.time_zone if logged_in?
     Chronic.time_class = Time.zone
-  end
-  
-  #
-  # Filter to set a return url
-  #
-  def return_here
-    ie_needs_return_to = false
-    if request.user_agent =~ /msie/i && params[:format].blank? && 
-        ![Mime::JS, Mime::JSON, Mime::XML, Mime::KML, Mime::ATOM].map(&:to_s).include?(request.format.to_s)
-      ie_needs_return_to = true
-    end
-    if (ie_needs_return_to || request.format.blank? || request.format.html?) && !params.keys.include?('partial')
-      session[:return_to] = request.fullpath
-    end
-    true
   end
   
   def return_here_from_url
@@ -149,12 +146,21 @@ class ApplicationController < ActionController::Base
     return true unless logged_in?
     Rails.logger.info "  User: #{current_user.login} #{current_user.id}"
   end
+
+  def user_request_logging
+    msg = "Finished #{request.method} #{request.path} from #{request.ip}"
+    msg += " for user: #{current_user.login} #{current_user.id}" if logged_in?
+    Rails.logger.info msg
+  end
   
   #
   # Return a 404 response with our default 404 page
   #
   def render_404
-    return render(:file => "#{Rails.root}/public/404.html", :status => 404)
+    respond_to do |format|
+      format.any(:html, :mobile) { render(:file => "#{Rails.root}/public/404.html", :status => 404, :layout => false) }
+      format.json { render :json => {:error => "Not found"}, :status => 404 }
+    end
   end
   
   #
@@ -163,7 +169,7 @@ class ApplicationController < ActionController::Base
   def redirect_to_hell
     flash[:notice] = "You tried to do something you shouldn't, like edit " + 
       "someone else's data without permission.  Don't be evil."
-    redirect_to root_path
+    redirect_to root_path, :status => :see_other
   end
   
   # Caching
@@ -176,6 +182,33 @@ class ApplicationController < ActionController::Base
     @login = params[:login].to_s.downcase
     unless @selected_user = User.first(:conditions => ["lower(login) = ?", @login])
       return render_404
+    end
+  end
+
+  def load_record(options = {})
+    class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
+    class_name = class_name.to_s.underscore.camelcase
+    klass = Object.const_get(class_name)
+    record = klass.find(params[:id] || params["#{class_name}_id"], options) rescue nil
+    instance_variable_set "@#{class_name.underscore}", record
+    render_404 unless record
+  end
+
+  def require_owner(options = {})
+    class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
+    class_name = class_name.to_s.underscore.camelcase
+    record = instance_variable_get("@#{class_name.underscore}")
+    unless logged_in? && current_user.id == record.user_id
+      msg = "You don't have permission to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          return redirect_to record
+        end
+        format.json do
+          return render :json => {:error => msg}
+        end
+      end
     end
   end
   
@@ -197,7 +230,7 @@ class ApplicationController < ActionController::Base
     if logged_in? && @places.blank?
       if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
         new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}
-        @places = Place.paginate(new_places.map(&:id).compact, :page => 1)
+        @places = Place.where("id in (?)", new_places.map(&:id).compact).page(1).to_a
       end
     end
     @places.compact!
@@ -210,8 +243,8 @@ class ApplicationController < ActionController::Base
       if in_mobile_view?
         flash[:notice] = "No mobilized version of that view."
         session[:mobile_view] = false
-        logger.debug "[DEBUG] Caught missing mobile template: #{e}: \n#{e.backtrace.join("\n")}"
-        return redirect_to request.path
+        Rails.logger.debug "[DEBUG] Caught missing mobile template: #{e}: \n#{e.backtrace.join("\n")}"
+        return redirect_to request.path.gsub(/\.mobile/, '')
       end
       raise e
     end
@@ -262,7 +295,7 @@ class ApplicationController < ActionController::Base
     end
     
     if logged_in?
-      current_user.save
+      current_user.save if current_user.preferences_changed?
       current_user.preferences
     else
       session[:preferences] = prefs
@@ -284,10 +317,6 @@ class ApplicationController < ActionController::Base
       flash[:notice] = "Only administrators may access that page"
       redirect_to observations_path
     end
-  end
-  
-  def sanitize_sphinx_query(q)
-    q.gsub(/[^\w\s\.\'\-]+/, '').gsub(/\-/, '\-')
   end
   
   def remove_header_and_footer_for_apps
@@ -321,6 +350,34 @@ class ApplicationController < ActionController::Base
     end
     redirect_to url if url
     true
+  end
+
+  # When a user tries to load a page that requires login, we assume they want
+  # to land there after signing up. See RegistrationsController for the
+  # redirect.
+  def authenticate_user!(*args)
+    if request.get? && !logged_in?
+      session[:return_to_for_new_user] = request.fullpath
+    end
+    super
+  end
+
+  def authenticate_with_oauth?
+    return false if !session.blank? && !session['warden.user.user.key'].blank?
+    return false if request.authorization.to_s =~ /^Basic /
+    return false unless request.authorization.to_s =~ /^Bearer /
+    @doorkeeper_for_called = true
+  end
+
+  def authenticated_with_oauth?
+    @doorkeeper_for_called && doorkeeper_token && doorkeeper_token.accessible?
+  end
+
+  def pagination_headers_for(collection)
+    return unless collection.respond_to?(:total_entries)
+    response.headers['X-Total-Entries'] = collection.total_entries.to_s
+    response.headers['X-Page'] = collection.current_page.to_s
+    response.headers['X-Per-Page'] = collection.per_page.to_s
   end
 end
 

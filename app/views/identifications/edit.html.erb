@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Edit Your Identification
+  <%=t :edit_your_identification %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'identifications' %>
@@ -15,7 +15,7 @@
     }
   </style>
 <%- end -%>
-<h2>Edit Your Identification</h2>
+<h2><%=t :edit_your_identification %></h2>
 <div class="column prepend-3 span-8 append-1 mini observations">
   <h3><%= @identification.observation.user.login %>'s Observation</h3>
   <%= render :partial => "observations/cached_component", :locals => { 
@@ -23,7 +23,7 @@
   } %>
 </div>
 <div class="last column span-9 append-3">
-  <h3>Your Identification</h3>
+  <h3><%=t :your_identification %></h3>
   <%= render :partial => "identifications/identification", :locals => { 
     :identification => @identification,
     :hide_actions => true } %>
@@ -33,12 +33,12 @@
       <%= f.text_area :body %>
     </div>
     <div class="buttonrow">
-      <%= submit_tag 'Save Identification', :class => 'default button' %>
+      <%= submit_tag t(:save_identification), :class => 'default button' %>
       <%- unless @identification.new_record? -%>
         <span class="description inter">or</span>
-        <%= link_to 'Cancel', url_for(@identification.observation) + "##{id_for(@identification)}", :class => 'button' %>
+        <%= link_to t(:cancel), url_for(@identification.observation) + "##{id_for(@identification)}", :class => 'button' %>
       <%- end -%>
-      <%= link_to "Delete", identification_path(@identification), 
+      <%= link_to t(:delete), identification_path(@identification), 
         :method => :delete, :class => 'minor delete button' %>
     </div>
   <% end %>

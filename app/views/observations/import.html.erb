@@ -1,4 +1,4 @@
-<% content_for(:title) do -%>Import Observations<% end -%>
+<% content_for(:title) do -%><%=t :import_observations %><% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'observations/new', 
                           "jquery/ui.tabs.css" %>
@@ -33,22 +33,22 @@
         skipLocal: true,
         urlParams: {
           authenticity_token: AUTH_TOKEN,
-          limit: 24
+          limit: 30
         }
-      });
-    });
+      })
+    })
   </script>
 <% end -%>
 <div id="pageheader" class="column span-24">
   <div class="column span-12">
-    <h2>Import Observations</h2>
+    <h2><%=t :import_observations %></h2>
   </div>
   <div class="last column span-12">
     <%= render :partial => 'new_nav' %>
   </div>
   <div class="column span-24">
     <p class="description">
-      Got your data somewhere else?  We can help.
+      <%=t :got_your_data_somewhere_else? %>
     </p>
   </div>
 </div>
@@ -56,8 +56,8 @@
 <div class="column span-24">
   <div id="tabs" class="ui-tabs">
     <ul>
-      <li><a href="#photo_import"><span>Import from Photos</span></a></li>
-      <li><a href="#csv_import"><span>Import from CSV</span></a></li>
+      <li><a href="#photo_import"><span><%=t :import_from_photos %></span></a></li>
+      <li><a href="#csv_import"><span><%=t :import_from_csv %></span></a></li>
     </ul>
     
     <div id="photo_import">
@@ -65,27 +65,24 @@
         <%= form_tag({:action => 'import_photos'}) do %>
         
           <div class="readable description">
-            Select photos from your photo stream to convert into iNaturalist
-            observations. We'll fill in the date, time, and location from a
-            photo's metadata, and try to look up species names from the tags.
+            <%=t :select_photos_from_your_photo_stream, :site_name => SITE_NAME %>
           </div>
           <div id="photos" class="clear stacked"></div>
-          <%= submit_tag("Import photos", :class => 'default button', "data-loading-click" => "Importing...") %>
+          <%= submit_tag(t(:import_photos), :class => 'default button', "data-loading-click" => t(:importing)) %>
         <% end %>
       <% else %>
         <div class="notice">
-          You'll need to link
-          <%= link_to('your Flickr account', :controller => 'flickr', :action => 'link') %> or
-          <%= link_to('your Picasa account', :controller => 'picasa', :action => 'options') %>
-          before importing photos.
+          <%=t :youll_need_to_link %>
+          <%= link_to(t(:your_flickr_account), :controller => 'flickr', :action => 'options') %> <%=t :or %>
+          <%= link_to(t(:your_picasa_account), :controller => 'picasa', :action => 'options') %>
+          <%=t :before_importing_photos %>
         </div>
       <% end %>
     </div>
 
     <div id="csv_import">
       <div class="readable description">
-        Upload a CSV file with observation data. If you have your data in a
-        spreadsheet or database, this is probably the way to go.
+        <%=t :upload_a_csv_file_with_observation %>
       </div>
       
       <div class="box">
@@ -96,29 +93,29 @@
           <div class="buttonrow">
             <label for="upload_file">Upload CSV file</label>
             <%= file_field 'upload', 'datafile', :class => 'text' %>
-            <%= submit_tag "Upload", :class => 'default button', "data-loading-click" => "Importing..." %>
+            <%= submit_tag t(:upload), :class => 'default button', "data-loading-click" => t(:importing) %>
           </div>
         <% end %>
       </div>
       
       <div class="description">
-        <h3>Rules &amp; Formatting</h3>
+        <h3><%= raw t(:rules_amp_formatting) %></h3>
         <ol>
-          <li>No header row</li>
-          <li>Only files with 100 rows at a time, please</li>
-          <li>Surround any cells containing commas with double quotes</li>
-          <li>Don't use double quotes anywhere else</li>
+          <li><%=t :no_header_row %></li>
+          <li><%=t :only_files_with_100_rows_at_a_time %></li>
+          <li><%=t :surround_any_cells_containing_commas %> </li>
+          <li><%=t :dont_use_double_quotes %> </li>
           <li>
-            <p class="ui">We can only understand CSV in the following format:</p>
+            <p class="ui"><%=t :we_can_only_understand_csv_in %>:</p>
             <table cellspacing="0" border="0" cellpadding="0">
               <tr>
-                <th>Taxon name</th>
-                <th>Date observed</th>
-                <th>Description</th>
-                <th>Place name</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-                <th>Tags</th>
+                <th><%=t :taxon_name %></th>
+                <th><%=t :date_observed %></th>
+                <th><%=t :description %></th>
+                <th><%=t :place_name %></th>
+                <th><%=t :latitude %></th>
+                <th><%=t :longitude %></th>
+                <th><%=t :tags %></th>
               </tr>
               <tr>
                 <td>text</td>
@@ -131,7 +128,7 @@
               </tr>
             </table>
 
-            <p class="ui">Here are 3 examples of well-formed data:</p>
+            <p class="ui"><%=t :here_are_3_examples %> of well-formed data:</p>
             
 <code>Anna's Hummingbird,2008-03-03 2:54pm,"An aggressive male dive-bombed my head, so I took cover.","Tilden Regional Park, Berkeley, CA, USA",37.8953,-122.249,"attack, danger"
 Sharp-tailed Snake,2007-08-20,"Beautiful little creature","Leona Canyon Regional Park, Oakland, CA, USA",37.7454,-122.111,"cute, snakes"

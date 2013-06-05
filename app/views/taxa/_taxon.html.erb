@@ -14,7 +14,7 @@
   taxon_class = "clear taxon #{taxon.rank}"
   iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
   taxon_class << " #{iconic_taxon.name}" if iconic_taxon
-  taxon_class << (taxon.photos.empty? ? ' noimg' : ' img')
+  taxon_class << (taxon.taxon_photos.blank? ? ' noimg' : ' img')
   taxon_class << " #{extra_class}" if extra_class
   include_full_name ||= false
   taxon_name_str = if include_full_name
@@ -32,7 +32,7 @@
 -%>
 
 <div id="<%= dom_id(taxon) unless no_ids %>" class="<%= taxon_class %>">
-  <div class="image inlineblock taxonimage <%= 'nophoto' if taxon.photos.blank? %>">
+  <div class="image inlineblock taxonimage <%= 'nophoto' if photo.blank? %>">
     <% if link_image -%>
       <% if js_link -%>
         <%= link_to_function taxon_image(taxon, image_options), "handleTaxonClick(event, #{taxon_json})" %>
@@ -71,9 +71,9 @@
         <span class="name <%= name_class %>"><%= taxon_name_str %></span>
     <% end -%>
     <% if js_link -%>
-      <%= link_to_function "info", "handleTaxonClick(event, #{taxon_json})", :class => 'small infolink' %>
+      <%= link_to_function t(:info), "handleTaxonClick(event, #{taxon_json})", :class => 'small infolink' %>
     <% else %>
-      <%= link_to "info", taxon, :class => 'small infolink' %>
+      <%= link_to t(:info), taxon, :class => 'small infolink' %>
     <% end -%>
 
     <% if !hide_child_count && taxon.children.size > 0 -%>
@@ -83,7 +83,7 @@
     <% end -%>
     
     <% if @month_counts && data = @month_counts[taxon.id.to_s] -%>
-      <h4>Observations / Month</h4>
+      <h4><%= t(:observations_per_month) %></h4>
       <div class="monthgraph graph">
         <%- max = @counts.values.max -%>
         <%- %w(? J F M A M J J A S O N D).each_with_index do |name, month| -%>
@@ -100,10 +100,10 @@
       <div class="wikipedia_summary">
         <% if summary = taxon.wikipedia_summary -%>
           <%= summary.html_safe %>
-          <span class="small description">(From <%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
+          <span class="small description">(<%= t(:from) %> <%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
         <% else %>
           <span class="description">
-            No Wikipedia page for this taxon. <%= link_to "Start one now!", "http://wikipedia.org/wiki/#{taxon.name}" %>
+            <%= t(:no_wikipedia_page_for_taxon) %> <%= link_to t(:start_one_now), "http://wikipedia.org/wiki/#{taxon.name}" %>
           </span>
         <% end -%>
       </div>
@@ -112,7 +112,7 @@
   </div>
   <% if photo -%>
     <div id="<%= dom_id(photo, "attribution") %>" class="meta attribution <%= photo.license_short.gsub(/\W/, ' ').strip.gsub(/\s+/, '_') %>" style="<%= 'display: none' unless include_image_attribution %>">
-      Photo <%= link_to photo.attribution, photo.native_page_url %>
+      <%= t(:photo) %> <%= link_to photo.attribution, photo.native_page_url %>
     </div>
   <% end -%>
 </div>

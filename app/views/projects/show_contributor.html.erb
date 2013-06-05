@@ -13,7 +13,7 @@
 <% end %>
 
 <%- content_for(:extrajs) do -%>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= google_maps_js %>
   <%= javascript_include_tag 'inaturalist/map3' %>
 <%- end -%>
 
@@ -22,7 +22,9 @@
     <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <h2>
-    Contributions from <%= link_to h(@contributor.user.login), observations_by_login_path(@contributor.user.login) %> to
+    <%= t(:contributions_from) %>
+    <%= link_to h(@contributor.user.login), observations_by_login_path(@contributor.user.login) %>
+    <%=t :to %>
     <% if @project.icon.file? -%>
       <%= image_tag @project.icon.url(:span1), :style => "vertical-align: middle" %>
     <% end -%>
@@ -35,7 +37,7 @@
     <% if @project_observations.blank? -%>
       <div class="description noresults">
         <%= link_to h(@contributor.user.login), observations_by_login_path(@contributor.user.login) %> 
-        hasn't contributed any observations to this project.
+        <%= t(:hasnt_contributed_any_observations) %>
       </div>
     <% else %>
       <div class="stacked observationcontrols"></div>
@@ -53,19 +55,11 @@
 </div>
 
 <div class="last column span-6">
-  <h3>Stats</h3>
+  <h3><%= t(:stats) %></h3>
   <ul class="meta">
-    <li>
-      <span class="count"><%= number_with_delimiter @contributor.taxa_count %></span> taxa observed</span>
-    </li>
-    <li>
-      <span class="count"><%= number_with_delimiter @contributor.observations_count %></span> total observations</span>
-    </li>
-    <li>
-      <span class="count"><%= number_with_delimiter @research_grade_count %></span> research-grade observations</span>
-    </li>
-    <li>
-      <span class="count"><%= number_with_delimiter @research_grade_species_count %></span> research-grade observations ID'd to species or lower</span>
-    </li>
+    <li><%= t :x_taxa_observed_html, :count => number_with_delimiter(@contributor.taxa_count) %></li>
+    <li><%= t :x_observations_html, :count => number_with_delimiter(@contributor.taxa_count) %></li>
+    <li><%= t :x_research_grade_observations_html, :count => number_with_delimiter(@contributor.taxa_count) %></li>
+    <li><%= t :x_research_grade_observations_to_species_html, :count => number_with_delimiter(@contributor.taxa_count) %></li>
   </ul>
 </div>

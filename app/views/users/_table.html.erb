@@ -1,6 +1,6 @@
 <% if @users.blank? -%>
   <div class="noresults description" style="margin: 50px auto">
-    No matching users.
+    <%= t(:no_matching_users) %>
   </div>
 <% end -%>
 
@@ -24,7 +24,7 @@
         </div>
       </td>
       <td>
-        <%= link_to 'View Observations', observations_by_login_path(person.login), :class => "readable" %>
+        <%= link_to t(:view_observations), observations_by_login_path(person.login), :class => "readable" %>
         <% if observations_count > 0 -%>
           <div class="meta">
             <span class="count"><%= number_with_delimiter(observations_count) %></span>
@@ -33,7 +33,7 @@
         <% end -%>
       </td>
       <td>
-        <%= link_to 'View Lists', lists_by_login_path(person.login), :class => "readable" %>
+        <%= link_to t(:view_lists), lists_by_login_path(person.login), :class => "readable" %>
         <% if listed_taxa_count > 0 %>
           <div class="meta">
             <span class="count"><%= number_with_delimiter(listed_taxa_count) %></span> known species total
@@ -41,7 +41,7 @@
         <% end %>
       </td>
       <td>
-        <%= link_to 'View Journal', journal_by_login_path(person.login), :class => "readable" %>
+        <%= link_to t(:view_journal), journal_by_login_path(person.login), :class => "readable" %>
         <% unless post_count == 0 %>
           <div class="meta">
             <span class="count"><%= number_with_delimiter(post_count) %></span>

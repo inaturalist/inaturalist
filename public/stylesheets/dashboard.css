@@ -18,3 +18,60 @@
   display: inline-block;
   max-width: 75px;
 }
+
+#obsbutton {width: 290px; text-align:center;}
+.update {position:relative; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee; overflow:hidden;}
+.updateresource {width: 48px; position: absolute; text-align:center;left: 0; top:0;}
+.updateresource img {max-width: 48px;}
+.updateheader {padding-top: 5px;}
+.updatebody {margin-left: 56px;}
+.updateimage { width: 100px; float:left; margin-right: 10px;}
+.updateimage img { max-width: 100px; }
+.updatewithimage .updatecontent {float: left; width: 420px;}
+.updatewithimage .updatecontent .photos.attribute {display:none;}
+
+.item_content, .item_content img {max-width: 475px;}
+.item_content .identification {
+  padding: 5px;
+  background-color: #EEE;
+  margin-bottom: 5px;
+}
+
+.activity.update:before {
+  content: ' ';
+  display:block;
+  position:absolute;
+  left:-21px;
+  top: 5px;
+  width:16px;
+  height: 16px;
+  background-position: -128px -96px;
+  background-image: url(/images/jquery-ui/ui-icons_888888_256x240.png);
+  z-index:1;
+}
+.new.activity.update:before {
+  background-image: url(/images/jquery-ui/ui-icons_cd0a0a_256x240.png);
+}
+
+.stub { opacity: 0.5; }
+.stub:hover { opacity: 1; }
+
+.observations.mini .observation:last-child {border: 0 transparent;}
+#calendar .calendar {float: none; width: 100%;}
+
+#explore .observations.grid .observation {margin: 0 2px 5px 0;}
+#explore .observations.medium.grid .observation, 
+#explore .observations.medium.grid .photos, 
+#explore .observations.medium.grid .photos a, 
+#explore .observations.medium.grid .icon {
+  width: 153px;
+  height: 153px;
+}
+
+#comments .commentitem { border-bottom: 1px solid #eee; margin-bottom: 10px; padding-bottom: 10px;}
+.updatebody td {border: 0 transparent;}
+.updatebody table {margin: 0;}
+.updatebody .image_and_content .image {background-color: #eee; width: 75px; height: 75px;}
+.updatebody .image_and_content .image img {max-width: 75px;}
+.updatebody .image_and_content .image img.iconic {margin-top: 20px;}
+.updatebody .curatorupdate .image_and_content .image {background-color: transparent; height: auto;}

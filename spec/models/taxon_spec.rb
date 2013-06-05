@@ -48,21 +48,14 @@ describe Taxon, "creation" do
     @taxon.taxon_names.should_not be_empty
     @taxon.taxon_names.map(&:name).should include(@taxon.name)
   end
-  
-  # it "should NOT create a DUPLICATE taxon name with the same name after save" do
-  #   @new_taxon = Taxon.new(:name => 'Homo imaginarius', :rank => 'species')
-  #   @new_taxon.taxon_names << TaxonName.new(
-  #     :name => 'Pseudacris imaginarius',
-  #     :is_valid => true
-  #   )
-  #   
-  #   @new_taxon.save
-  #   @new_taxon.reload
-  #   
-  #   @new_taxon.taxon_names.select do |tn| 
-  #     tn.name == @new_taxon.name
-  #   end.size.should be(1)
-  # end
+
+  it "should create a taxon name with the same name after save even if invalid on source_identifier" do
+    source_identifier = "foo"
+    source = Source.make!
+    existing = TaxonName.make!(:source => source, :source_identifier => source_identifier)
+    t = Taxon.make!(:source => source, :source_identifier => source_identifier)
+    t.taxon_names.map(&:name).should include(t.name)
+  end
   
   it "should capitalize its name" do
     taxon = Taxon.new(:name => 'balderdash', :rank => 'genus')
@@ -224,7 +217,7 @@ describe Taxon, "set_iconic_taxon_for_observations_of" do
   end
   
   it "should set the iconic taxon for observations of descendant taxa" do
-    obs = Observation.make!(:taxon => @Calypte_anna)
+    obs = without_delay { Observation.make!(:taxon => @Calypte_anna) }
     @Calypte_anna.iconic_taxon.name.should == @Aves.name
     obs.iconic_taxon.name.should == @Calypte_anna.iconic_taxon.name
     @Calypte.update_attributes(:iconic_taxon => @Amphibia)
@@ -325,6 +318,27 @@ describe Taxon, "unique name" do
   end
 end
 
+describe Taxon, "common_name" do
+  it "should default to English if present" do
+    t = Taxon.make!
+    tn_en = TaxonName.make!(:taxon => t, :name => "Red Devil", :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    tn_es = TaxonName.make!(:taxon => t, :name => "Diablo Rojo", :lexicon => TaxonName::LEXICONS[:SPANISH])
+    tn_un = TaxonName.make!(:taxon => t, :name => "run away!", :lexicon => 'unspecified')
+    t.common_name.should eq(tn_en)
+  end
+  it "should default to unknown if no English" do
+    t = Taxon.make!
+    tn_es = TaxonName.make!(:taxon => t, :name => "Diablo Rojo", :lexicon => TaxonName::LEXICONS[:SPANISH])
+    tn_un = TaxonName.make!(:taxon => t, :name => "run away!", :lexicon => 'unspecified')
+    t.common_name.should eq(tn_un)
+  end
+  it "should default to first common if no English or unknown" do
+    t = Taxon.make!
+    tn_es = TaxonName.make!(:taxon => t, :name => "Diablo Rojo", :lexicon => TaxonName::LEXICONS[:SPANISH])
+    t.common_name.should eq(tn_es)
+  end
+end
+
 describe Taxon, "tags_to_taxa" do
   
   before(:each) do
@@ -349,6 +363,22 @@ describe Taxon, "tags_to_taxa" do
     taxa = Taxon.tags_to_taxa([active_taxon.name])
     taxa.should include(active_taxon)
     taxa.should_not include(inactive_taxon)
+  end
+
+  it "should work for sp" do
+    taxa = Taxon.tags_to_taxa(['Calypte sp'])
+    taxa.should include(@Calypte)
+  end
+
+  it "should work for sp." do
+    taxa = Taxon.tags_to_taxa(['Calypte sp.'])
+    taxa.should include(@Calypte)
+  end
+
+  it "should not strip out sp from Spizella" do
+    t = Taxon.make!(:name => 'Spizella')
+    taxa = Taxon.tags_to_taxa(['Spizella'])
+    taxa.should include(t)
   end
 end
 
@@ -550,6 +580,26 @@ describe Taxon, "merging" do
     @keeper.reload
     @keeper.flags.size.should eq(1)
   end
+
+  it "should remove duplicate schemes" do
+    ts = TaxonScheme.make!
+    t1 = Taxon.make!
+    t1.taxon_schemes << ts
+    t2 = Taxon.make!
+    t2.taxon_schemes << ts
+    t1.merge(t2)
+    t1.reload
+    t1.taxon_schemes.size.should eq(1)
+  end
+
+  it "should set iconic taxon for observations of reject" do
+    reject = Taxon.make!
+    o = without_delay {Observation.make!(:taxon => reject)}
+    o.iconic_taxon.should be_blank
+    without_delay {@keeper.merge(reject)}
+    o.reload
+    o.iconic_taxon.should eq(@keeper.iconic_taxon)
+  end
 end
 
 describe Taxon, "moving" do
@@ -570,7 +620,7 @@ describe Taxon, "moving" do
   end
   
   it "should queue a job to set iconic taxon on observations of descendants" do
-    obs = Observation.make!(:taxon => @Calypte_anna)
+    obs = without_delay { Observation.make!(:taxon => @Calypte_anna) }
     old_iconic_id = obs.iconic_taxon_id
     taxon = obs.taxon
     Delayed::Job.delete_all
@@ -578,6 +628,29 @@ describe Taxon, "moving" do
     taxon.parent.move_to_child_of(@Amphibia)
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
+  end
+
+  it "should set iconic taxon on observations of descendants" do
+    obs = without_delay { Observation.make!(:taxon => @Calypte_anna) }
+    old_iconic_id = obs.iconic_taxon_id
+    taxon = obs.taxon
+    without_delay do
+      taxon.parent.move_to_child_of(@Amphibia)
+    end
+    obs.reload
+    obs.iconic_taxon.should eq(@Amphibia)
+  end
+
+  it "should set iconic taxon on observations of descendants if grafting for the first time" do
+    parent = Taxon.make!
+    taxon = Taxon.make!(:parent => parent)
+    obs = without_delay { Observation.make!(:taxon => taxon) }
+    obs.iconic_taxon.should be_blank
+    without_delay do
+      parent.move_to_child_of(@Amphibia)
+    end
+    obs.reload
+    obs.iconic_taxon.should eq(@Amphibia)
   end
   
   it "should not raise an exception if the new parent doesn't exist" do
@@ -595,6 +668,23 @@ describe Taxon, "moving" do
     @Calypte.update_attributes(:parent => @Hylidae)
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}.should_not be_blank
+  end
+
+  it "should not queue a job to update descendant ancetries if skip_after_move set" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    @Calypte.update_attributes(:parent => @Hylidae, :skip_after_move => true)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}.should_not be_blank
+  end
+
+  it "should not queue a job to update observation stats if there are no observations" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    Observation.of(@Calypte).count.should eq(0)
+    @Calypte.update_attributes(:parent => @Hylidae)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}.should be_blank
   end
   
 end
@@ -626,14 +716,6 @@ describe Taxon do
   end
   
   describe "conservation status" do
-    it "should set conervation_status_source to IUCN by default" do
-      taxon = Taxon.make!
-      taxon.conservation_status_source.should be_blank
-      taxon.update_attributes(:conservation_status => Taxon::IUCN_VULNERABLE)
-      taxon.conservation_status_source.should_not be_blank
-      taxon.conservation_status_source.title.should == 'IUCN Red List of Threatened Species'
-    end
-    
     it "should define boolean methods" do
       taxon = Taxon.make!(:conservation_status => Taxon::IUCN_VULNERABLE)
       taxon.should be_iucn_vulnerable
@@ -670,11 +752,8 @@ describe Taxon, "grafting" do
   
   it "should set iconic taxa on descendants" do
     taxon = Taxon.make!(:name => "Craptaculous", :parent => @graftee)
-    puts
-    puts "starting test, created taxon: #{taxon}, ancestry: #{taxon.ancestry}, iconic_taxon_id: #{taxon.iconic_taxon_id.inspect}"
     @graftee.update_attributes(:parent => @Pseudacris)
     taxon.reload
-    puts "taxon.iconic_taxon_id now #{taxon.iconic_taxon_id}, ancestry now #{taxon.ancestry}"
     taxon.iconic_taxon_id.should == @Pseudacris.iconic_taxon_id
   end
   
@@ -684,5 +763,61 @@ describe Taxon, "grafting" do
     @graftee.update_attributes(:parent => @Pseudacris)
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
+  end
+
+  it "should set the parent of a species based on the polynom genus" do
+    t = Taxon.make!(:name => "Pseudacris foo", :rank => Taxon::SPECIES)
+    t.graft
+    t.parent.should eq(@Pseudacris)
+  end
+end
+
+describe Taxon, "single_taxon_for_name" do
+  it "should find varieties" do
+    name = "Abies magnifica var. magnifica"
+    t = Taxon.make!(:name => name, :rank => Taxon::VARIETY)
+    t.should be_variety
+    t.name.should eq("Abies magnifica magnifica")
+    Taxon.single_taxon_for_name(name).should eq(t)
+  end
+
+  it "should not choke on parens" do
+    t = Taxon.make!(:name => "Foo")
+    lambda {
+      Taxon.single_taxon_for_name("(Foo").should eq(t)
+    }.should_not raise_error
+  end
+
+  it "should find a valid name, not invalid synonyms" do
+    name = "Foo bar"
+    parent = Taxon.make!
+    valid = Taxon.make!(:name => name, :parent => parent)
+    invalid = Taxon.make!(:parent => parent)
+    invalid.taxon_names.create(:name => name, :is_valid => false, :lexicon => TaxonName::SCIENTIFIC_NAMES)
+    Taxon.single_taxon_for_name(name).should eq(valid)
+  end
+end
+
+describe Taxon, "update_life_lists" do
+  it "should not queue jobs if they already exist" do
+    t = Taxon.make!
+    l = make_life_list_for_taxon(t)
+    Delayed::Job.delete_all
+    lambda {
+      2.times do
+        t.update_life_lists
+      end
+    }.should change(Delayed::Job, :count).by(1)
+  end
+end
+
+describe Taxon, "threatened?" do
+  it "should work for a place"
+  it "should work for lat/lon" do
+    p = make_place_with_geom
+    cs = ConservationStatus.make!(:place => p)
+    p.contains_lat_lng?(p.latitude, p.longitude).should be_true
+    t = cs.taxon
+    t.threatened?(:latitude => p.latitude, :longitude => p.longitude).should be_true
   end
 end

@@ -3,7 +3,7 @@
 <%- end -%>
 <h2><%= @title %></h2>
 
-<% form_for @source, :builder => DefaultFormBuilder do |f| %>
+<%= form_for @source, :builder => DefaultFormBuilder do |f| %>
   <%= f.text_field :title, :description => "e.g. Snakes: The Evolution of Mystery in Nature" %>
   <%= f.text_field :in_text, :description => "e.g. Greene, 2000" %>
   <%= f.text_field :url, :description => "e.g. http://www.ucpress.edu/book.php?isbn=9780520224872" %>

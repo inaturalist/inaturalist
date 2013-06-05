@@ -1,0 +1,17 @@
+%h2 Taxon Links
+
+%table
+  %tr
+    %th id
+    %th taxon
+    %th url
+    %th actions
+  - for taxon_link in @taxon_links
+    %tr
+      %td= taxon_link.id
+      %td
+        = render 'shared/taxon', :taxon => taxon_link.taxon, :link_url => taxon_link.taxon
+      %td= taxon_link.url
+      %td
+        = link_to "edit", edit_taxon_link_url(taxon_link)
+= will_paginate(@taxon_links)

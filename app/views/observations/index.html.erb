@@ -1,5 +1,5 @@
 <% content_for(:title) do %>
-Observations by Everyone
+    <%=t :observations_title %>
 <% end %>
 
 <% content_for(:extracss) do %>
@@ -14,7 +14,7 @@ Observations by Everyone
 <% end %>
 
 <%= render :partial => 'map_header', :locals => {
-  :title => "Observations by Everyone"
+  :title =>  t(:observations_title)
 } %>
 
 <div class="last clear column span-24">
@@ -22,6 +22,14 @@ Observations by Everyone
 </div>
 
 <div id="pagination" class="last column span-24">
+  <% if logged_in? -%>
+    <%= form_for :preferences, :url => url_for, :html => {:style => "float: left", :method => :get} do |f| %>
+      <%= hidden_fields_for_params(:without => [:per_page, :page, :preferences]) %>
+      <%= f.label t(:per_page) %>
+      <%= f.select :per_page, ApplicationController::PER_PAGES, 
+        {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
+    <% end %>
+  <% end -%>
   <div id="feeds" class="clear right small ui description feeds">
     <%= render :partial => 'feed_links' %>
   </div>

@@ -81,4 +81,40 @@ module PlacesHelper
       tag_options
     )
   end
+
+  def place_geometry_kml_url(options = {})
+    place = options[:place] || @place
+    return '' if place.blank?
+    place_geometry = options[:place_geometry]
+    place_geometry ||= place.place_geometry_without_geom if place.association(:place_geometry_without_geom).loaded?
+    place_geometry ||= place.place_geometry if place.association(:place_geometry).loaded?
+    place_geometry ||= PlaceGeometry.without_geom.where(:place_id => place).first
+    if place_geometry.blank?
+      ''.html_safe
+    else
+      "#{place_geometry_url(place, :format => "kml")}?#{place_geometry.updated_at.to_i}".html_safe
+    end
+  end
+
+  def nested_place_list(*args, &block)
+    arranged = if args.first.is_a?(ActiveSupport::OrderedHash)
+      args.first
+    else
+      candidates = args.first.is_a?(Array) ? args.first.compact.flatten : args.compact.flatten
+      places = candidates if candidates.first.is_a?(Place)
+      places ||= candidates.map(&:place).compact
+      Place.arrange_nodes(places.sort_by{|p| p.ancestry.to_s + "#/0/{#{p.name}}"})
+    end
+    content_tag :ul do
+      arranged.map do |place, children|
+        li = if block_given?
+          capture(place, &block)
+        else
+          link_to(place.display_name, place)
+        end
+        li += nested_place_list(children, &block) unless children.blank?
+        content_tag :li, li
+      end.join(' ').html_safe
+    end.html_safe
+  end
 end

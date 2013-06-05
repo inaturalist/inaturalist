@@ -1,27 +1,37 @@
 <% content_for(:title) do %>
-  Add an Observation
+  <%=t :add_an_observation %>
 <% end -%>
 
-<%= form_for @observation, :builder => DefaultFormBuilder do |o| %>
-  <%= o.text_field :species_guess, :label => "What did you see?", :placeholder => "Species name" %>
-  <%= o.check_box :id_please, :label_after => true, :label => "Request ID help" %>
-  <%= o.text_area :description, :placeholder => "Brief description of what you saw" %>
-  <% o.form_field :observed_on_string, :label => "Date/Time" do %>
+<%= form_for @observation, :builder => DefaultFormBuilder, :html => {:multipart => true} do |o| %>
+  <div id="photos" class="clear stacked">
+    <label>Add a photo</label><br/>
+    <%= file_field_tag "local_photos[0][]", :accept => "image/jpg,image/jpeg,image/png,image/gif" %>
+  </div>
+  <%= o.text_field :species_guess, :label => t(:what_did_you_see?), :placeholder => t(:species_name) %>
+  <%= o.check_box :id_please, :label_after => true, :label => t(:request_id_help) %>
+  <%= o.text_area :description, :placeholder => t(:brief_description_of_what_you_saw) %>
+  <% o.form_field :observed_on_string, :label => t(:date_time) do %>
     <input type="datetime-local" id="observation_observed_on_string" name="observation[observed_on_string]" class="text" value="<%= Time.now %>"/>
   <% end -%>
   <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone select'} %>
   <%= o.text_field :latitude %>
   <%= o.text_field :longitude %>
-  <%= o.text_field :positional_accuracy, :label => "Accuracy (meters)" %>
+  <%= o.text_field :positional_accuracy, :label => t(:accuracy_meters) %>
   <div style="text-align:center;" class="ui-helper-clearfix inline buttonrow stacked">
-    <%= link_to_function "Get current position", "getLocation()", :class => "button", :id => "positionbutton" %>
-    <%= link_to_function "Stop updating position", "stopGetLocation()", :class => "pale button", :style => "display:none", :id => "stoppositionbutton" %>
-    <%= link_to_function "Map", "viewMap()", :class => "button", :style => "display:none", :id => "mapbutton" %>
+    <%= link_to_function t(:get_current_position), "getLocation()", :class => "button", :id => "positionbutton" %>
+    <%= link_to_function t(:stop_updating_position), "stopGetLocation()", :class => "pale button", :style => "display:none", :id => "stoppositionbutton" %>
+    <%= link_to_function t(:map), "viewMap()", :class => "button", :style => "display:none", :id => "mapbutton" %>
   </div>
-  <%= submit_tag "Save observation", :class => "default button", "data-loading-click" => "Saving..." %>
+  <%= o.select :geoprivacy, Observation::GEOPRIVACIES, {:include_blank => "open"}, {:class => "select full"} %>
+  <%= submit_tag t(:save_observation), :class => "default button", "data-loading-click" => t(:saving) %>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
+  if(/(iPhone|iPad|iPod)\sOS\s[6789]/.test(navigator.userAgent) || /Android [456789]/.test(navigator.userAgent)) {
+    $('#photos').show()
+  } else {
+    $('#photos').hide()
+  }
   function setLocation(loc) {
     $('#observation_latitude').val(loc.coords.latitude)
     $('#observation_longitude').val(loc.coords.longitude)

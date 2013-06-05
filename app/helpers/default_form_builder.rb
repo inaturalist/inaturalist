@@ -4,16 +4,19 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
             %w{date_select datetime_select time_select} +
             %w{collection_select select country_select time_zone_select} -
             %w{hidden_field label fields_for} # Don't decorate these
-  
+  custom_params = %w(description label label_after wrapper label_class field_value)
   helpers.each do |name|
     define_method(name) do |field, *args|
-      options = if args[-2].is_a?(Hash)
+      options = if name.to_s == "select"
+        args.last.is_a?(Hash) ? args.last : {}
+      elsif args[-2].is_a?(Hash)
         args.pop
       elsif args.last.is_a?(Hash)
         args.last
       else
         args.reverse.detect{|a| a.is_a?(Hash)} || {}
       end
+      options = options.clone
       options[:field_name] = name
       if name == 'radio_button'
         options[:field_value] = args[0]
@@ -24,6 +27,13 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
         css_class = [css_class, 'file'].flatten.uniq.join(' ') if name.to_s == "file_field"
         args << {} unless args.last.is_a?(Hash)
         args.last[:class] = css_class
+        options[:wrapper] ||= {}
+        options[:wrapper][:class] = "#{options[:wrapper][:class]} #{name}".strip
+      end
+      args.each_with_index do |a,i|
+        custom_params.each do |p|
+          args[i].delete(p.to_sym) if a.is_a?(Hash)
+        end
       end
       content = super(field, *args)
       form_field(field, content, options)
@@ -88,7 +98,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       if options[:field_name] == 'radio_button'
         label_field = [label_field, options[:field_value]].compact.join('_').gsub(/\W/, '').downcase
       end
-      label_tag = label(label_field, options[:label].to_s.html_safe, :class => options[:label_class])
+      label_tag = label(label_field, options[:label].to_s.html_safe, :class => options[:label_class], :for => options[:id])
       if options[:required]
         label_tag += content_tag(:span, " *", :class => 'required')
       end
@@ -100,15 +110,13 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     
     content = if options[:label_after]
       "#{content} #{label_content} #{description}"
+    elsif options[:description_after]
+      "#{label_content} #{content} #{description}"
     else
       "#{label_content} #{description} #{content}"
     end
     
-    if block_given?
-      @template.concat @template.content_tag(:div, content.html_safe, wrapper_options)
-    else
-      @template.content_tag(:div, content.html_safe, wrapper_options)
-    end
+    @template.content_tag(:div, content.html_safe, wrapper_options)
   end
   
 end

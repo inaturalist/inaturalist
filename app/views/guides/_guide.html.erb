@@ -1,5 +1,5 @@
 <%-
-  grid ||= "fluid"
+  grid ||= "grid"
   size ||= "medium"
   labeled ||= nil
   guide_url ||= @guide_url || place_guide_url(@place)
@@ -10,7 +10,7 @@
     <%= render :partial => "shared/barchart_datum", :locals => {
       :value => @confirmed_listed_taxa_count.to_i, 
       :max => @listed_taxa_count.to_i, 
-      :label_text => "of #{@listed_taxa_count.to_i} confirmed",
+      :label_text => t(:of) + "#{@listed_taxa_count.to_i}" + t(:confirmed),
       :min_remainder_label_width => 50
     } %>
   </div>
@@ -20,14 +20,14 @@
         <%= render :partial => "shared/barchart_datum", :locals => {
           :value => @current_user_observed_count.to_i, 
           :max => @listed_taxa_count.to_i, 
-          :label_text => "of #{@listed_taxa_count.to_i}" } %>
+          :label_text => t(:of) + " #{@listed_taxa_count.to_i}" } %>
       </div>
       <div class="extralabel">
         <%-
           percent = @listed_taxa_count.to_i == 0 ? 0 : (@current_user_observed_count.to_f / @listed_taxa_count.to_f * 100).round
         -%>
         <strong><span class="value"><%= percent %></span>%</strong>
-        <%= link_to "on your life list", compare_lists_url(@place.check_list_id, :with => current_user.life_list_id) %>
+        <%= link_to t(:on_your_life_list), compare_lists_url(@place.check_list_id, :with => current_user.life_list_id) %>
       </div>
     </div>
   <% end -%>
@@ -35,7 +35,7 @@
   <div id="browsingtaxa" class="stacked">
     <ul class="taxon_links">
       <li>
-        <%= link_to "All life", url_for(:taxon => nil), :class => "default_taxon taxon #{'selected' if @taxon.blank?}" %>
+        <%= link_to t(:all_life), url_for(:taxon => nil), :class => "default_taxon taxon #{'selected' if @taxon.blank?}" %>
         <ul>
           <% taxonomic_taxon_list(@arranged_taxa, :class => "clear") do |taxon| %>
             <%-
@@ -59,18 +59,18 @@
     <div id="filters">
       <%= form_tag url_for, :method => :get, :class => "searchfilter inlineblock" do %>
         <div class="inline buttonrow">
-          <%= text_field_tag :q, @q, :class => "text", :placeholder => "Search for species", :id => "searchFilter" %>
-          <%= submit_tag "Search", :class => "glaucous button" %>
-          <%= link_to "&times;".html_safe, url_for_params(:without => [:q]), :class => "pale button", :style => "#{'display:none' if @q.blank?}", :title => "Clear search" %>
+          <%= text_field_tag :q, @q, :class => "text", :placeholder => t(:search_for_species), :id => "searchFilter" %>
+          <%= submit_tag t(:search), :class => "glaucous button" %>
+          <%= link_to "&times;".html_safe, url_for_params(:without => [:q]), :class => "pale button", :style => "#{'display:none' if @q.blank?}", :title => t(:clear_search) %>
         </div>
       <% end %>
 
       <%= form_tag url_for, :method => :get, :class => "colorfilter inlineblock" do %>
         <div class="inline buttonrow">
           <%= hidden_fields_for_params :without => [:colors, :page] %>
-          <%= select_tag "colors[]", options_for_select(Color.all.map(&:value).sort, :selected => @colors), :multiple => true, :id => "colorsFilter", :class => "inlineblock" %>
+          <%= select_tag "colors[]", options_for_select(Color.order('value').map {|value| [t(value.value), value.value]}, :selected => @colors), :multiple => true, :id => "colorsFilter", :class => "inlineblock" %>
           <%= submit_tag "Filter", :class => "glaucous button" %>
-          <%= link_to "&times;".html_safe, url_for_params(:without => [:colors]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear color filters" %>
+          <%= link_to "&times;".html_safe, url_for_params(:without => [:colors]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => t(:clear_color_filters) %>
         </div>
       <% end %>
       
@@ -78,23 +78,23 @@
         <div class="inline buttonrow">
           <%= hidden_fields_for_params :without => [:establishment_means, :page] %>
           <%-
-            options = [['Establishment', nil]] + ListedTaxon::ESTABLISHMENT_MEANS.map {|em| [em,em]}
+            options = [[t("establishment.establishment"), nil]] + ListedTaxon::ESTABLISHMENT_MEANS.map {|em| [t("establishment.#{em}"),em]}
           -%>
           <%= select_tag "establishment_means", options_for_select(options, @establishment_means), :id => "establishmentFilter", :class => "inlineblock" %>
           <%= submit_tag "Filter", :class => "glaucous button" %>
-          <%= link_to "&times;".html_safe, url_for_params(:without => [:establishment_means]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear" %>
+          <%= link_to "&times;".html_safe, url_for_params(:without => [:establishment_means]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => t(:clear) %>
         </div>
       <% end %>
       
-      <%= form_tag url_for, :method => :get, :class => "conservationfilter inlineblock" do %>
+      <%= form_tag url_for, :method => :get, :class => "threatenedfilter inlineblock" do %>
         <div class="inline buttonrow">
-          <%= hidden_fields_for_params :without => [:conservation_status, :page] %>
-          <%-
-            options = [['Conservation status', nil]] + Taxon::IUCN_STATUS_NAMES.map{|n| [n.humanize.downcase, n]}
-          -%>
-          <%= select_tag "conservation_status", options_for_select(options, @conservation_status), :id => "conservationFilter", :class => "inlineblock" %>
+          <%= hidden_fields_for_params :without => [:threatened, :page] %>
+          <span class="inter">
+            <%= hidden_field_tag :threatened, 0 %>
+            <%= check_box_tag :threatened, 1, @threatened, :id => "threatened_box" %>
+          </span>
+          <label for="threatened_box" class="inter"><%= t(:threatened, :default => "threatened").capitalize %></label>
           <%= submit_tag "Filter", :class => "glaucous button" %>
-          <%= link_to "&times;".html_safe, url_for_params(:without => [:conservation_status]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear" %>
         </div>
       <% end %>
     </div>

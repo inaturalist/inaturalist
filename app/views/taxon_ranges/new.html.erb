@@ -1,5 +1,5 @@
 <h2>
-  New Taxon Range 
+  <%= t(:new_taxon_range) %>
   <% if @taxon_range.taxon -%>
     for <%= link_to @taxon_range.taxon.name, @taxon_range.taxon %>
   <% end -%>
@@ -10,7 +10,7 @@
   
   <%= render :partial => 'form_fields', :locals => {:f => f} %>
 
-  <%= f.submit 'Create', :class => "default button" %>
+  <%= f.submit t(:create), :class => "default button" %>
 <% end %>
 
-<%= link_to 'Back', @taxon_range.taxon || taxa_path, :class => "button" %>
+<%= link_to t(:back), @taxon_range.taxon || taxa_path, :class => "button" %>

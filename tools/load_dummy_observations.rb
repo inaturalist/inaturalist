@@ -1,7 +1,7 @@
 # Loads a bunch of dummy observations, random users, taxa, and locations.  Run
 # with script/runner
 
-if ENV['RAILS_ENV'] == 'production' || RAILS_ENV == 'production'
+if Rails.env == 'production'
   puts "Dude, you should NOT be running this in production"
   exit
 end

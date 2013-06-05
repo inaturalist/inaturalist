@@ -4,14 +4,14 @@ class Emailer < ActionMailer::Base
   helper :taxa
   helper :users
 
-  SUBJECT_PREFIX = "[#{APP_CONFIG[:site_name]}]"
+  SUBJECT_PREFIX = "[#{CONFIG.site_name}]"
 
-  default :from =>     "#{APP_CONFIG[:site_name]} <#{APP_CONFIG[:noreply_email]}>",
-          :reply_to => APP_CONFIG[:noreply_email]
+  default :from =>     "#{CONFIG.site_name} <#{CONFIG.noreply_email}>",
+          :reply_to => CONFIG.noreply_email
   
   def invite(address, params, current_user) 
     Invite.create(:user => current_user, :invite_address => address)
-    @subject = "#{SUBJECT_PREFIX} #{params[:sender_name]} wants you to join them on iNaturalist" 
+    @subject = "#{SUBJECT_PREFIX} #{params[:sender_name]} wants you to join them on #{CONFIG.site_name}" 
     @personal_message = params[:personal_message]
     @sending_user = params[:sender_name]
     @current_user = current_user
@@ -40,11 +40,23 @@ class Emailer < ActionMailer::Base
     return if user.email.blank?
     return if user.prefers_no_email
     @user = user
+    I18n.locale = user.locale || I18n.default_locale
     @grouped_updates = Update.group_and_sort(updates, :skip_past_activity => true)
     @update_cache = Update.eager_load_associates(updates)
     mail(
       :to => user.email,
-      :subject => "#{SUBJECT_PREFIX} New updates, #{Date.today}"
+      :subject => t(:updates_notification_email_subject, :prefix => SUBJECT_PREFIX, :date => Date.today)
     )
+  end
+
+  def new_message(message)
+    @message = message
+    @message = Message.find_by_id(message) unless message.is_a?(Message)
+    @user = @message.to_user
+    I18n.locale = user.locale || I18n.default_locale
+    return if @user.email.blank?
+    return unless @user.prefers_message_email_notification
+    return if @user.prefers_no_email
+    mail(:to => @user.email, :subject => "#{SUBJECT_PREFIX} #{@message.subject}")
   end
 end

@@ -1,8 +1,8 @@
-<% content_for(:title) do %>New Taxonomic Change (Draft)<% end %>
+<% content_for(:title) do %><%= @title=t(:new_taxonomic_change) %><% end %>
 
 <%= render :partial => 'form_head' %>
 
-<h2>New Taxonomic Change (Draft)</h2>
-<p class="description">Use this form to create a new draft taxonomic change describing a proposed split, merge or swap on active taxa to be later committed.</p>
+<h2><%= @title %></h2>
+<p class="description"><%= t :use_this_form_to_create_a_new %></p>
 
 <%= render :partial => 'form' %>

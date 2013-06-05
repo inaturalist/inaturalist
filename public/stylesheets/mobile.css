@@ -1,7 +1,6 @@
-body {line-height: 1.4 !important;}
+body {line-height: 1.4 !important; font-size: 80%;}
 body.mobile,
 p,.p,h1,h2,h3,h4,h5,h6,.readable{font-family:"Trebuchet MS",Arial,sans-serif;font-weight:bold;}
-p,.p,.readable{font-size:100%;}
 body.mobile #wrapper,
 body.mobile #header,
 body.mobile #footer{padding:5px;width:auto;}
@@ -26,18 +25,20 @@ input[type=password]{float:none;display:inline-block;}
 .pagination .prev_page,
 .pagination .next_page{white-space:nowrap;}
 #mobiletogglelink{font-size:300%;}
-.default.button { margin: 0 auto; float:none; display:block;}
+.buttonrow .button { margin: 0 auto; float:none; display:block; text-align:center; display:block; margin-bottom:10px;}
 h2 {margin: 0 0 0.5em;}
 .description label, .meta label {color:#666;}
 .small {font-size: 0.8em;}
-.comment {padding:0; border-bottom: 1px solid #eee; margin-bottom:10px;}
+.comment {padding:0; margin-bottom:10px;}
 .comment .meta {float:none; width:auto;}
 .comment .body {padding:0;}
+.item_content{width:auto;}
 .comment_actions {display:inline;}
 #new-comment {margin-bottom:10px;padding-bottom:10px;}
 #new_comment #comment_body {width:auto;}
 #new-comment .meta {position:relative;}
 #new-comment .previewbutton {display:none;}
+.button.full {text-align: center;}
 
 @media all and (orientation: landscape) {
   textarea {max-width:460px;max-height:200px;}
@@ -51,9 +52,11 @@ h2 {margin: 0 0 0.5em;}
   input[type=button],
   input[type=text],
   input[type=password],
+  select,
   textarea{width:450px !important;}
   .button.full { width:450px; }
   .iconified.button.full { width:428px; }
+  .comment.item .item_content {width:400px;}
 }
 
 @media all and (orientation: portrait) {
@@ -68,7 +71,17 @@ h2 {margin: 0 0 0.5em;}
   input[type=button],
   input[type=text],
   input[type=password],
+  select,
   textarea{width:290px !important;}
   .button.full { width:290px; }
   .iconified.button.full { width:268px; }
+  .comment.item .item_content {width:250px;}
 }
+
+.observations.infowindow .observation { width: 260px;}
+.observations.infowindow .observation .full { display:none;}
+
+.comment.item {white-space: nowrap;}
+.comment.item .item_user { vertical-align: top; margin-right:5px;}
+.comment.item .item_user, .comment.item .item_content {white-space: normal; display:inline-block; float:none;}
+.comment.item .item_content p {margin-top:0;}

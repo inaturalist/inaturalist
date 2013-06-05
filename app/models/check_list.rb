@@ -7,8 +7,9 @@ class CheckList < List
   accepts_nested_attributes_for :source
   
   before_validation :set_title
-  before_create :set_last_synced_at, :create_taxon_list_rule
-  after_save :mark_non_comprehensive_listed_taxa_as_absent
+  before_create :set_last_synced_at
+  before_save :update_taxon_list_rule
+  # after_save :mark_non_comprehensive_listed_taxa_as_absent
   
   validates_presence_of :place_id
   validates_uniqueness_of :taxon_id, :scope => :place_id, :allow_nil => true,
@@ -16,6 +17,10 @@ class CheckList < List
   
   # TODO: the following should work through list rules
   # validates_uniqueness_of :taxon_id, :scope => :place_id
+
+  def to_s
+    "<#{self.class} #{id}: #{title} taxon_id: #{taxon_id} place_id: #{place_id}>"
+  end
   
   def editable_by?(user)
     user && (self.user == user || user.is_curator?)
@@ -37,10 +42,13 @@ class CheckList < List
     self.place.check_list_id == self.id
   end
   
-  def create_taxon_list_rule
-    unless taxon.nil? || rules.map{|r| r.operand_id}.include?(taxon_id)
-      self.rules << ListRule.new(:operand => taxon, :operator => 'in_taxon?')
-    end
+  def update_taxon_list_rule
+    # unless taxon.nil? || rules.map{|r| r.operand_id}.include?(taxon_id)
+    #   self.rules << ListRule.new(:operand => taxon, :operator => 'in_taxon?')
+    # end
+    return true unless taxon_id_changed?
+    rules.each(&:destroy)
+    rules.build(:operand => taxon, :operator => 'in_taxon?')
     true
   end
   
@@ -66,8 +74,8 @@ class CheckList < List
       time_since_last_sync = options.delete(:time_since_last_sync) || 1.hour.ago
       scope = scope.where("listed_taxa.created_at > ?", time_since_last_sync)
     end
-    return unless self.place.parent_id
-    parent_check_list = self.place.parent.check_list
+    return if self.place.parent.blank?
+    return unless parent_check_list = self.place.parent.check_list
     scope.find_each do |lt|
       Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, working on #{lt}"
       if parent_check_list.listed_taxa.exists?(:taxon_id => lt.taxon_id)
@@ -97,13 +105,16 @@ class CheckList < List
     scope = Taxon.intersecting_place(place).scoped
     scope = scope.descendants_of(ancestor) if ancestor
     scope.find_each(:select => "taxa.*, taxon_ranges.id AS taxon_range_id") do |taxon|
-      delay.add_taxon(taxon.id, :taxon_range_id => taxon.taxon_range_id, 
-        :skip_update_cache_columns => options[:sskip_update_cache_columns],
+      add_taxon(taxon.id, :taxon_range_id => taxon.taxon_range_id, 
+        :skip_update_cache_columns => options[:skip_update_cache_columns],
         :skip_sync_with_parent => options[:skip_sync_with_parent])
     end
   end
   
   def add_observed_taxa
+    # TODO remove this when we move to GEOGRAPHIES and our dateline woes have (hopefully) ended
+    return if place.straddles_date_line?
+
     options = {
       :select => "DISTINCT ON (observations.taxon_id) observations.*",
       :order => "observations.taxon_id",
@@ -157,6 +168,8 @@ class CheckList < List
     SQL
   end
   
+  # not sure why I originally added this.  Doesn't make sense for taxa on non-comprehensive list 
+  # to be "absent," since they're obviously present if they're on the comprehensive list.
   def mark_non_comprehensive_listed_taxa_as_absent
     return true unless comprehensive_changed?
     return true unless comprehensive?
@@ -187,7 +200,7 @@ class CheckList < List
       listed_taxon.force_update_cache_columns = true
       listed_taxon.save
       if !listed_taxon.valid?
-        logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
+        Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
           "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
         listed_taxon.destroy
       elsif listed_taxon.auto_removable_from_check_list?
@@ -200,7 +213,7 @@ class CheckList < List
   def self.sync_check_lists_with_parents(options = {})
     time_since_last_sync = options[:time_since_last_sync] || 1.hour.ago
     start_time = Time.now
-    logger.info "[INFO] Starting CheckList.sync_check_lists_with_parents " + 
+    Rails.logger.info "[INFO] Starting CheckList.sync_check_lists_with_parents " + 
       "at #{start_time}..."
 
     ListedTaxon.all(
@@ -216,7 +229,7 @@ class CheckList < List
     end
     parent_check_list.update_attribute(:last_synced_at, Time.now)
 
-    logger.info "[INFO] Finished CheckList.sync_check_lists_with_parents " + 
+    Rails.logger.info "[INFO] Finished CheckList.sync_check_lists_with_parents " + 
       "at #{Time.now} (#{Time.now - start_time}s)"
   end
   
@@ -243,13 +256,8 @@ class CheckList < List
     unless listed_taxa.blank?
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, updating #{listed_taxa.size} existing listed taxa"
       listed_taxa.each do |lt|
-        lt.force_update_cache_columns = true
-        lt.save # sets all observation associates, months stats, etc.
-        unless lt.valid?
-          Rails.logger.error "[ERROR #{Time.now}] Couldn't save #{lt}: #{lt.errors.full_messages.to_sentence}"
-        end
-        if lt.auto_removable_from_check_list? && !options[:new]
-          lt.destroy
+        unless Delayed::Job.where("handler LIKE '%CheckList%refresh_listed_taxon% #{lt.id}\n%'").exists?
+          CheckList.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").refresh_listed_taxon(lt.id, options)
         end
       end
     end
@@ -258,6 +266,19 @@ class CheckList < List
       add_new_listed_taxa(observation.taxon, new_place_ids)
     end
     Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, finished"
+  end
+
+  def self.refresh_listed_taxon(lt, options = {})
+    lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
+    return unless lt
+    lt.force_update_cache_columns = true
+    lt.save # sets all observation associates, months stats, etc.
+    unless lt.valid?
+      Rails.logger.error "[ERROR #{Time.now}] Couldn't save #{lt}: #{lt.errors.full_messages.to_sentence}"
+    end
+    if lt.auto_removable_from_check_list? && !options[:new]
+      lt.destroy
+    end
   end
   
   def self.get_observation_to_refresh(observation)
@@ -279,20 +300,8 @@ class CheckList < List
   end
   
   def self.get_current_place_ids_to_refresh(observation, options = {})
-    observation_id = observation.try(:id) || options[:observation_id]
-    place_ids = if observation && observation.georeferenced?
-      conditions = if observation.coordinates_obscured?
-        "ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude))"
-      else
-        "ST_Intersects(place_geometries.geom, observations.geom)"
-      end
-      PlaceGeometry.all(:select => "place_geometries.id, place_id",
-        :joins => "JOIN observations ON observations.id = #{observation_id}",
-        :conditions => conditions).map{|pg| pg.place_id}
-    else
-      []
-    end
-    place_ids.compact.uniq
+    return [] unless observation
+    observation.places.map{|p| p.id}
   end
   
   def self.get_old_place_ids_to_refresh(observation, options = {})

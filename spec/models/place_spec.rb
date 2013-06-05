@@ -17,21 +17,41 @@ describe Place, "creation" do
   it "should create a default check_list" do
     @place.check_list.should_not be_nil
   end
+
+  it "should not create a default check list if not preferred" do
+    p = Place.make!(:prefers_check_lists => false)
+    p.check_list.should be_blank
+  end
   
   it "should have no default type" do
     @place.place_type_name.should be_blank
+  end
+
+  it "should add observed taxa to the checklist if geom set" do
+    t = Taxon.make!
+    o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
+    p = without_delay do 
+      make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+    end
+    p.check_list.taxa.should include(t)
+  end
+
+  it "should not allow titles that start with numbers" do
+    p = Place.make(:name => "14")
+    p.should_not be_valid
+    p.errors[:name].should_not be_blank
   end
 end
 
 describe Place, "updating" do
   before(:each) do
-    @place = Place.make
+    @place = Place.make!
   end
   
   it "should not have itself as a parent" do
-    @place.parent_id = @place.id
+    @place.parent = @place
     @place.should_not be_valid
-    @place.errors.on(:parent_id).should_not be_blank
+    @place.errors[:parent_id].should_not be_blank
   end
 end
 
@@ -149,6 +169,33 @@ describe Place, "bbox_contains_lat_lng?" do
     place.bbox_contains_lat_lng?(0.5, -179.5).should be_true
     place.bbox_contains_lat_lng?(0, 0).should be_false
   end
-  
 end
 
+describe Place do
+  it "should be editable by curators" do
+    p = Place.make!
+    u = make_curator
+    p.should be_editable_by(u)
+  end
+  it "should be editable by the creator" do
+    u = User.make!
+    p = Place.make!(:user => u)
+    p.should be_editable_by(u)
+  end
+
+  it "should not be editable by non-curators who aren't the creator" do
+    u = User.make!
+    p = Place.make!(:user => User.make!)
+    p.should_not be_editable_by(u)
+  end
+end
+
+describe Place, "display_name" do
+  it "should be in correct order" do
+    country = Place.make!(:code => "cn", :place_type => Place::PLACE_TYPE_CODES['country'])
+    state = Place.make!(:code => "st", :place_type => Place::PLACE_TYPE_CODES['state'], :parent => country)
+    place = Place.make!(:parent => state)
+    place.parent.should eq(state)
+    place.display_name(:reload => true).should =~ /, #{state.code}, #{country.code}$/
+  end
+end

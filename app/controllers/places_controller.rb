@@ -1,3 +1,4 @@
+#encoding: utf-8
 class PlacesController < ApplicationController
   include Shared::WikipediaModule
   include Shared::GuideModule
@@ -20,10 +21,15 @@ class PlacesController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        place_ids = Rails.cache.fetch('random_place_ids', :expires_in => 15.minutes) do
-          place_types = [Place::PLACE_TYPE_CODES['Country']]
-          places = Place.all(:select => "id", :order => "RANDOM()", :limit => 50, 
-            :conditions => ["place_type IN (?)", place_types])
+        place = (Place.find(CONFIG.place_id) rescue nil) unless CONFIG.place_id.blank?
+        key = place ? "random_place_ids_#{place.id}" : 'random_place_ids'
+        place_ids = Rails.cache.fetch(key, :expires_in => 15.minutes) do
+          places = if place
+            place.children.select('id').order("RANDOM()").limit(50)
+          else
+            Place.all(:select => "id", :order => "RANDOM()", :limit => 50, 
+              :conditions => ["place_type IN (?)", [Place::PLACE_TYPE_CODES['Country']]])
+          end
           places.map{|p| p.id}
         end
         place_ids = place_ids.sort_by{rand}[0..4]
@@ -31,7 +37,40 @@ class PlacesController < ApplicationController
       end
       
       format.json do
-        render :json => Place.search((params[:q] || params[:term]).to_s)
+        @ancestor = Place.find_by_id(params[:ancestor_id].to_i) unless params[:ancestor_id].blank?
+        scope = if @ancestor
+          @ancestor.descendants.scoped
+        else
+          Place.scoped
+        end
+        if params[:q] || params[:term]
+          q = (params[:q] || params[:term]).to_s.sanitize_encoding
+          scope = scope.dbsearch(q)
+        end
+        if !params[:place_type].blank?
+          scope = scope.place_type(params[:place_type])
+        elsif !params[:place_types].blank?
+          scope = scope.place_types(params[:place_types])
+        end
+        unless params[:taxon].blank?
+          if !params[:place_type].blank? && params[:place_type].downcase == 'continent'
+            country_scope = Place.place_types(['country']).listing_taxon(params[:taxon])
+            if ListedTaxon::ESTABLISHMENT_MEANS.include?(params[:establishment_means])
+              country_scope = country_scope.with_establishment_means(params[:establishment_means])
+            end
+            continent_ids = country_scope.select("ancestry").map(&:parent_id)
+            scope = scope.where("places.id IN (?)", continent_ids)
+          else
+            scope = scope.listing_taxon(params[:taxon])
+            if ListedTaxon::ESTABLISHMENT_MEANS.include?(params[:establishment_means])
+              scope = scope.with_establishment_means(params[:establishment_means])
+            end
+          end
+        end
+        per_page = params[:per_page].to_i
+        per_page = 200 if per_page > 200
+        per_page = 30 if per_page < 1
+        render :json => scope.paginate(:page => params[:page], :per_page => per_page).to_a
       end
     end
   end
@@ -45,19 +84,13 @@ class PlacesController < ApplicationController
   
   def show
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
-    # if logged_in?
-    #   scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({:select => "DISTINCT ON (ancestry, taxa.id) taxa.*"})
-    #   @listed_taxa_count = scope.count
-    #   @current_user_observed_count = scope.count(
-    #     :joins => "JOIN listed_taxa ult ON ult.taxon_id = listed_taxa.taxon_id", 
-    #     :conditions => ["ult.list_id = ?", current_user.life_list_id])
-    # end
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
-    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
+    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry, name", :include => [:taxon_names])
     browsing_taxa.delete_if{|t| t.name == "Life"}
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     respond_to do |format|
       format.html do
+        @wikipedia = WikipediaService.new
         if logged_in?
           @subscription = @place.update_subscriptions.first(:conditions => {:user_id => current_user})
         end
@@ -165,23 +198,26 @@ class PlacesController < ApplicationController
   
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
-    @places = Place.paginate(:page => params[:page], 
-      :conditions => ["lower(display_name) LIKE ?", "#{@q.to_s.downcase}%"])
+    scope = Place.where("lower(name) = ? OR lower(display_name) LIKE ?", @q, "#{@q.to_s.downcase}%").
+      includes(:place_geometry_without_geom).
+      limit(30).scoped
+    scope = scope.with_geom if params[:with_geom]
+    @places = scope.sort_by{|p| p.bbox_area || 0}.reverse
     respond_to do |format|
       format.html do
         render :layout => false, :partial => 'autocomplete' 
       end
       format.json do
         @places.each_with_index do |place, i|
-          @places[i].html = render_to_string(:partial => 'places/autocomplete_item.html.erb', :object => place)
+          @places[i].html = view_context.render_in_format(:html, :partial => 'places/autocomplete_item.html.erb', :object => place)
         end
-        render :json => @places.to_json(:methods => [:html])
+        render :json => @places.to_json(:methods => [:html, :kml_url])
       end
     end
   end
   
   def merge
-    @merge_target = Place.find_by_id(params[:with].to_i)
+    @merge_target = Place.find(params[:with]) rescue nil
     
     if request.post?
       keepers = params.map do |k,v|
@@ -267,10 +303,15 @@ class PlacesController < ApplicationController
   def guide
     place_id = params[:id] || params[:place_id] || params[:place]
     @place ||= if place_id.to_i == 0
-      Place.search(place_id).first
+      begin
+        Place.find(place_id)
+      rescue ActiveRecord::RecordNotFound
+        Place.search(place_id).first
+      end
     else
       Place.find_by_id(place_id.to_i)
     end
+    return render_404 unless @place
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
     
     show_guide do |scope|
@@ -289,7 +330,7 @@ class PlacesController < ApplicationController
       end
       
       if @filter_params.blank?
-        scope = scope.has_photos
+        # scope = scope.has_photos
         @order = "listed_taxa.observations_count DESC, listed_taxa.id ASC"
       end
       scope
@@ -326,8 +367,14 @@ class PlacesController < ApplicationController
   private
   
   def load_place
-    render_404 unless @place = Place.find_by_id(params[:id], 
-      :include => [:check_list])
+    @place = Place.find(params[:id], :include => [:check_list]) rescue nil
+    if @place.blank?
+      if params[:id].to_i > 0 || params[:id] == "0"
+        return render_404
+      else
+        return redirect_to place_search_path(:q => params[:id])
+      end
+    end
   end
   
   def filter_wikipedia_content
@@ -341,8 +388,22 @@ class PlacesController < ApplicationController
   
   def geometry_from_messy_kml(kml)
     geometry = GeoRuby::SimpleFeatures::MultiPolygon.new
-    Hpricot.XML(kml).search('Polygon').each do |hpoly|
-      geometry << GeoRuby::SimpleFeatures::Geometry.from_kml(hpoly.to_s)
+    doc = kml =~ /\<kml / ? Nokogiri::XML(kml) : Nokogiri::XML.fragment(kml)
+    doc.search('Polygon').each_with_index do |hpoly,i|
+      poly = GeoRuby::SimpleFeatures::Geometry.from_kml(hpoly.to_s)
+
+      # make absolutely sure there are no z coordinates. iNat is strictly 2D, 
+      # so PostGIS will raise db exception if you try to save z
+      poly.rings.each_with_index do |r,i|
+        poly.rings[i].points.each_with_index do |p,j|
+          poly.rings[i].points[j].z = nil
+          poly.rings[i].points[j].with_z = false
+        end
+        poly.rings[i].with_z = false
+      end
+      poly.with_z = false
+
+      geometry << poly
     end
     geometry.empty? ? nil : geometry
   end

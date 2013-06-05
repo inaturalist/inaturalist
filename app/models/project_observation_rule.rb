@@ -1,19 +1,21 @@
 class ProjectObservationRule < Rule
   OPERAND_OPERATORS_CLASSES = {
     "observed_in_place?" => "Place",
-    "in_taxon?" => "Taxon"
+    "in_taxon?" => "Taxon",
+    "has_observation_field?" => "ObservationField"
   }
   OPERAND_OPERATORS = OPERAND_OPERATORS_CLASSES.keys
   
   before_save :clear_operand
   validate :operand_present
+  validates_uniqueness_of :operator, :scope => [:ruler_type, :ruler_id]
 
   def operand_present
     if OPERAND_OPERATORS.include?(operator)
       if operand.blank? || !operand.is_a?(Object.const_get(OPERAND_OPERATORS_CLASSES[operator]))
-        errors.add_to_base("Must select a " + 
+        errors[:base] << "Must select a " + 
           OPERAND_OPERATORS_CLASSES[operator].underscore.humanize.downcase + 
-          " for that rule.")
+          " for that rule."
       end
     end
   end
@@ -26,8 +28,15 @@ class ProjectObservationRule < Rule
   
   def terms
     if operator == "observed_in_place?" && operand
-      return "must be observed in #{send(:operand).display_name}"
+      "#{I18n.t(:must_be_observed_in)} #{send(:operand).display_name}"
+    elsif operator == "has_observation_field?" && operand
+      I18n.t(:must_have_observation_field, :operand=>operand.name)
+    elsif super.include? 'must be in taxon'
+      taxon_rule=super.split(' taxon ')
+      I18n.t("rules_types.#{taxon_rule.first.gsub(' ','_')}", :default=>super) + ' ' + taxon_rule.last
+    else
+      I18n.t("rules_types.#{super.gsub(' ','_')}", :default=>super)
     end
-    super
   end
 end
+

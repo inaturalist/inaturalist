@@ -10,7 +10,6 @@ module Gonzo
       module ClassMethods
         def acts_as_flaggable
           has_many :flags, :as => :flaggable, :dependent => :destroy
-          validates_associated :flags, :message => 'failed to validate'
           include Gonzo::Acts::Flaggable::InstanceMethods
           extend Gonzo::Acts::Flaggable::SingletonMethods
         end

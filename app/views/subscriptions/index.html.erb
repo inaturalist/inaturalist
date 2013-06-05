@@ -1,28 +1,52 @@
-<h2>Your Subscriptions</h2>
-<table border="0" cellspacing="5" cellpadding="5">
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>resource</th>
-      <th>actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% for subscription in @subscriptions %>
-      <tr>
-        <td><%= subscription.id %></td>
-        <td>
-          <%= subscription.resource_type %> <%= subscription.resource_id %>:
-          <% name = subscription.resource.try_methods(:to_plain_s, :login, :name, :title, :to_s) %>
-          <%= link_to name, subscription.resource %>
-        </td>
-        <td>
-          <%#= link_to "edit", edit_subscription_url(subscription) %>
-          <%= link_to "delete", subscription_url(subscription), :method => "delete", :confirm => "Are you sure you want to delete this?" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%- content_for(:title) do -%>
+  <%= @title = "Manage Your Subscriptions" %>
+<%- end -%>
+<div id="pageheader" class="clear">
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo Back to #{possessive(current_user)} dashboard".html_safe, dashboard_path, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+  <h2><%= @title %></h2>
+</div>
 
-<%= will_paginate @subscriptions %>
+<div class="column span-4">
+  <ul class="leftmenu">
+    <% for klass in Subscription.subscribable_classes.sort %>
+      <li><%= link_to klass.underscore.humanize.pluralize, url_for(:type => klass.underscore), :class => @type == klass.underscore ? "active" : nil %></li>  
+    <% end %>
+  </ul>
+</div>
+<div class="last column span-20">
+  <% if @subscriptions.blank? -%>
+    <div class="noresults meta">No subscriptions to <%= @type.underscore.humanize.underscore.pluralize %></div>
+  <%- else %>
+    <table border="0" cellspacing="5" cellpadding="5" width="100%">
+      <thead>
+        <tr>
+          <th>Resource</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for subscription in @subscriptions %>
+          <tr>
+            <td>
+              <%= subscription.resource_type %> <%= subscription.resource_id %>:
+              <% name = subscription.resource.try_methods(:to_plain_s, :login, :name, :title, :to_s) %>
+              <%= link_to name, subscription.resource %>
+            </td>
+            <td class="nobr meta">
+              <% if subscription.resource_type == "Place" -%>
+                <%= link_to "edit", edit_subscription_url(subscription) %>
+                |
+              <% end -%>
+              <%= link_to "unsubscribe", subscription_url(subscription), :method => "delete", 
+                :confirm => "Are you sure you want to unsubscribe from this?" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= will_paginate @subscriptions %>
+  <% end -%>
+</div>

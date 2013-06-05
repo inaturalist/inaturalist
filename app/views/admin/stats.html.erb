@@ -44,12 +44,12 @@
 <h2>Site Stats</h2>
 
 <p id="summary">
-  <span class="count"><%= number_with_delimiter @total_users %></span> total users,
-  <span class="count"><%= number_with_delimiter @active_observers %></span> unique observers in the last 3 months,
-  <span class="count"><%= number_with_delimiter @total_observations %></span> total observations
+  <span class="count"><%= number_with_delimiter @total_users %></span> <%=t :total_users %>,
+  <span class="count"><%= number_with_delimiter @active_observers %></span> <%=t :unique_observers_last_3_months %>,
+  <span class="count"><%= number_with_delimiter @total_observations %></span> <%=t :total_observations %>
 </p>
 
-<h3>Observations / Week (<span class="last_year"><span class="count"><%= Time.now.year - 1 %></span></span> <span class="count"><%= Time.now.year %></span>)</h3>
+<h3><%=t :observations_week %> (<span class="last_year"><span class="count"><%= Time.now.year - 1 %></span></span> <span class="count"><%= Time.now.year %></span>)</h3>
 <div class="graph">
 <% for week in 1..52 %>
   <%- count = @observation_weeks_last_year[week.to_s] || 0 %>
@@ -66,7 +66,7 @@
 <% end %>
 </div>
 
-<h3>New Users / Week (<span class="last_year"><span class="count"><%= Time.now.year - 1 %></span></span> <span class="count"><%= Time.now.year %></span>)</h3>
+<h3><%=t :new_users_week %> (<span class="last_year"><span class="count"><%= Time.now.year - 1 %></span></span> <span class="count"><%= Time.now.year %></span>)</h3>
 <div class="graph">
 <% for week in 1..52 %>
   <%- count = @user_weeks_last_year[week.to_s] || 0 %>
@@ -83,7 +83,7 @@
 <% end %>
 </div>
 
-<h3>Country stats for observations created on <%= @daily_date %></h3>
+<h3><%=t :country_stats %><%= @daily_date %></h3>
 <%= table_for @daily_country_stats.to_a.sort_by{|stat| stat["display_name"] || ""} do |t| %>
   <%= t.head do %>
     <%= t.r do %>
@@ -99,7 +99,7 @@
       <%= t.d row['code'] %>
       <%= t.d row['count'] %>
       <%= t.d do %>
-        <%= link_to "View observations", observations_path(:place_id => row['id'], :created_on => @daily_date.to_s) %>
+        <%= link_to t(:view_observations), observations_path(:place_id => row['id'], :created_on => @daily_date.to_s) %>
       <% end -%>
     <% end -%>
   <% end -%>

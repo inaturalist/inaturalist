@@ -2,19 +2,22 @@ class PhotosController < ApplicationController
   MOBILIZED = [:show]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
-  before_filter :load_photo, :only => [:show, :update]
-  before_filter :require_owner, :only => [:update]
-  before_filter :login_required, :only => [:inviter]
+  before_filter :load_photo, :only => [:show, :update, :repair, :destroy, :rotate]
+  before_filter :require_owner, :only => [:update, :destroy, :rotate]
+  before_filter :authenticate_user!, :only => [:inviter, :update, :destroy, :repair, :rotate]
   before_filter :return_here, :only => [:show, :invite, :inviter]
+
+  cache_sweeper :photo_sweeper, :only => [:update, :repair]
   
   def show
     @size = params[:size]
     @size = "medium" if !%w(small medium large original).include?(@size)
+    @size = "small" if @photo.send("#{@size}_url").blank?
     respond_to do |format|
       format.html do
         if params[:partial]
           partial = params[:partial] || 'photo'
-          render :layout => false, :partial => partial, :object => @photo
+          render :layout => false, :partial => partial, :object => @photo, :size => @size
           return
         end
         @taxa = @photo.taxa.all(:limit => 100)
@@ -54,20 +57,27 @@ class PhotosController < ApplicationController
     end
   end
 
+  def destroy
+    resource = @photo.observations.first || @photo.taxa.first
+    @photo.destroy
+    flash[:notice] = "Photo deleted"
+    redirect_back_or_default(resource || '/')
+  end
+
   # this is the action for *accepting* an invite (e.g. coming from a url posted as a flickr/fb/picasa photo comment)
   # params should include '#{flickr || facebook || picasa}_photo_id' and whatever else you want to add
   # to the observation, e.g. taxon_id, project_id, etc
   def invite
     invite_params = params
     [:controller,:action].each{|k| invite_params.delete(k)}  # so, later on, new_observation_url(invite_params) doesn't barf
-    provider = invite_params.delete(:provider)
+    provider = invite_params.delete(:provider) || request.fullpath[/\/(.+)\/invite/, 1]
     session[:invite_params] = invite_params
     if request.user_agent =~ /facebookexternalhit/ || params[:test]
       @project = Project.find_by_id(params[:project_id].to_i)
       @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     else
       # we're not using omniauth for picasa, so it needs a special auth url.  
-      if provider=='picasa'
+      if provider == 'picasa'
         if current_user.nil?
           session[:return_to] = Picasa.authorization_url(url_for(:controller => "picasa", :action => "authorize")) 
           redirect_to signup_url and return
@@ -75,7 +85,15 @@ class PhotosController < ApplicationController
           redirect_to Picasa.authorization_url(url_for(:controller => "picasa", :action => "authorize")) and return
         end
       else
-        redirect_to "/auth/#{provider}"
+        pa = if logged_in?
+          current_user.provider_authorizations.where(:provider_name => provider).first
+        end
+        opts = if pa && !pa.scope.blank?
+          {:scope => pa.scope}
+        else
+          {}
+        end
+        redirect_to auth_url_for(provider, opts)
       end
     end
   end
@@ -97,13 +115,13 @@ class PhotosController < ApplicationController
 
       # params[:facebook_photos] looks like {"0" => ['fb_photo_id_1','fb_photo_id_2'],...} to accomodate multiple photo-selectors on the same page
       fb_photos = (params[:facebook_photos] || [])
-      fb_photo_ids = (fb_photos.is_a?(Hash) && fb_photos.has_key?('0') ? fb_photos['0'] : [])
+      fb_photo_ids = (fb_photos.is_a?(Hash) && fb_photos.has_key?('0') ? fb_photos['0'] : []).uniq
       
       flickr_photos = (params[:flickr_photos] || [])
-      flickr_photo_ids = (flickr_photos.is_a?(Hash) && flickr_photos.has_key?('0') ? flickr_photos['0'] : [])
+      flickr_photo_ids = (flickr_photos.is_a?(Hash) && flickr_photos.has_key?('0') ? flickr_photos['0'] : []).uniq
 
       picasa_photos = (params[:picasa_photos] || [])
-      picasa_photo_urls = (picasa_photos.is_a?(Hash) && picasa_photos.has_key?('0') ? picasa_photos['0'] : [])
+      picasa_photo_urls = (picasa_photos.is_a?(Hash) && picasa_photos.has_key?('0') ? picasa_photos['0'] : []).uniq
 
       if (fb_photo_ids.empty? && flickr_photo_ids.empty? && picasa_photo_urls.empty?)
         flash[:notice] = "You need to select at least one photo!"
@@ -137,8 +155,11 @@ class PhotosController < ApplicationController
           )
           @successful_ids += [flickr_photo_id]
         rescue FlickRaw::FailedResponse => e
-          raise e unless e.message =~ /Insufficient permission to comment/
-          @errors[flickr_photo_id] = "photo doesn't allow comments"
+          if e.message =~ /Insufficient permission to comment/
+            @errors[flickr_photo_id] = "photo doesn't allow comments"
+          else
+            @errors[flickr_photo_id] = "couldn't add comment: #{e.message}"
+          end
         end
       }
 
@@ -156,6 +177,35 @@ class PhotosController < ApplicationController
       flash[:notice] = [success_msg, error_msg].compact.join(', ').capitalize
     end
   end
+
+  def repair
+    unless @photo.respond_to?(:repair)
+      Rails.logger.debug "[DEBUG] @photo: #{@photo}"
+      flash[:error] = "Repair doesn't work for that kind of photo"
+      redirect_back_or_default(@photo.becomes(Photo))
+      return
+    end
+
+    url = @photo.taxa.first || @photo.observations.first || '/'
+    repaired, errors = @photo.repair
+    if repaired.destroyed?
+      flash[:error] = "Photo destroyed b/c it was deleted from the external site or #{CONFIG.site_name_short} no longer has permission to view it"
+      redirect_to url
+    else
+      flash[:notice] = "Photo URLs repaired"
+      redirect_back_or_default(@photo.becomes(Photo))
+    end
+  end
+
+  def rotate
+    unless @photo.is_a?(LocalPhoto)
+      flash[:error] = "You can't rotate photos hosted outside of iNaturalist."
+      redirect_back_or_default(@photo.becomes(Photo))
+    end
+    rotation = params[:left] ? -90 : 90
+    @photo.rotate!(rotation)
+    redirect_back_or_default(@photo.becomes(Photo))
+  end
   
   private
   
@@ -168,7 +218,7 @@ class PhotosController < ApplicationController
   def require_owner
     unless logged_in? && @photo.editable_by?(current_user)
       flash[:error] = "You don't have permission to do that"
-      return redirect_to @photo
+      return redirect_to @photo.becomes(Photo)
     end
   end
 

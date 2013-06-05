@@ -25,24 +25,27 @@ class ListedTaxon < ActiveRecord::Base
   belongs_to :source # if added b/c of a published source
   
   before_validation :nilify_blanks
+  before_validation :set_ancestor_taxon_ids
   before_validation :update_cache_columns
-  before_create :set_ancestor_taxon_ids
   before_create :set_place_id
   before_create :set_updater_id
   before_save :set_user_id
   before_save :set_source_id
+  before_save :set_establishment_means
   after_save :update_cache_columns_for_check_list
-  after_save :expire_caches
+  after_save :propagate_establishment_means
+  after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :delta_index_taxon
+  before_destroy :set_old_list
   after_destroy :update_user_life_list_taxa_count
   after_destroy :expire_caches
   
-  validates_presence_of :list, :taxon
+  validates_presence_of :list_id, :taxon_id
   validates_uniqueness_of :taxon_id, 
                           :scope => :list_id, 
-                          :message => "is already in this list"
+                          :message => "is already on this list"
   
   scope :by_user, lambda {|user| includes(:list).where("lists.user_id = ?", user)}
   
@@ -70,6 +73,7 @@ class ListedTaxon < ActiveRecord::Base
     20 => "doubtful",
     10 => "absent"
   }
+  OCCURRENCE_STATUS_LEVELS_BY_NAME = OCCURRENCE_STATUS_LEVELS.invert
   OCCURRENCE_STATUSES = OCCURRENCE_STATUS_LEVELS.values
   OCCURRENCE_STATUS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
   OCCURRENCE_STATUS_DESCRIPTIONS["present" ] =  "occurs in the area"
@@ -87,14 +91,11 @@ class ListedTaxon < ActiveRecord::Base
   end
   PRESENT_EQUIVALENTS = [PRESENT, COMMON, UNCOMMON]
   
-  ESTABLISHMENT_MEANS = %w(native endemic introduced naturalised invasive managed)
+  ESTABLISHMENT_MEANS = %w(native endemic introduced)
   ESTABLISHMENT_MEANS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
   ESTABLISHMENT_MEANS_DESCRIPTIONS["native"] = "evolved in this region or arrived by non-anthropogenic means"
   ESTABLISHMENT_MEANS_DESCRIPTIONS["endemic"] = "native and occurs nowhere else"
   ESTABLISHMENT_MEANS_DESCRIPTIONS["introduced"] = "arrived in the region via anthropogenic means"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["naturalised"] = "reproduces naturally and forms part of the local ecology"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["invasive"] = "has a deleterious impact on another organism, multiple organisms, or the ecosystem as a whole"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["managed"] = "maintains presence through intentional cultivation or husbandry"
   
   ESTABLISHMENT_MEANS.each do |means|
     const_set means.upcase, means
@@ -104,13 +105,12 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   NATIVE_EQUIVALENTS = %w(native endemic)
-  INTRODUCED_EQUIVALENTS = %w(introduced naturalised invasive managed)
+  INTRODUCED_EQUIVALENTS = %w(introduced)
   
   validates_inclusion_of :occurrence_status_level, :in => OCCURRENCE_STATUS_LEVELS.keys, :allow_blank => true
   validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true
   validate :not_on_a_comprehensive_check_list, :on => :create
   validate :absent_only_if_not_confirming_observations
-  validate :preserve_absense_if_not_on_a_comprehensive_list
   validate :list_rules_pass
   validate :taxon_matches_observation
   validate :check_list_editability
@@ -119,15 +119,18 @@ class ListedTaxon < ActiveRecord::Base
   
   attr_accessor :skip_sync_with_parent,
                 :skip_update_cache_columns,
-                :force_update_cache_columns
+                :skip_update_user_life_list_taxa_count,
+                :force_update_cache_columns,
+                :extra,
+                :html,
+                :old_list
   
   def ancestry
     taxon_ancestor_ids
   end
   
   def to_s
-    "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
-    "list_id: #{self.list_id}>"
+    "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id} list_id: #{self.list_id} place_id: #{place_id}>"
   end
   
   def to_plain_s
@@ -135,6 +138,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def not_on_a_comprehensive_check_list
+    return true unless taxon
     return true unless list.is_a?(CheckList)
     return true if first_observation_id || last_observation_id
     target_place = place || list.place
@@ -171,19 +175,10 @@ class ListedTaxon < ActiveRecord::Base
     end
     true
   end
-  
-  def preserve_absense_if_not_on_a_comprehensive_list
-    return true unless occurrence_status_level_changed?
-    return true if absent?
-    return true unless existing_comprehensive_list
-    return true if existing_comprehensive_listed_taxon
-    errors.add(:occurrence_status_level, "can't be changed from absent if this taxon is not on the comprehensive list of #{existing_comprehensive_list.taxon.name}")
-    true
-  end
 
   def list_rules_pass
     # don't bother if validates_presence_of(:taxon) has already failed
-    if !errors.include?(:taxon)
+    if !errors.include?(:taxon) && taxon
       list.rules.each do |rule|
         errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(taxon)
       end
@@ -191,8 +186,13 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def taxon_matches_observation
-    if last_observation && !(taxon_id == last_observation.taxon_id || taxon.ancestor_of?(last_observation.taxon) || last_observation.taxon.ancestor_of?(taxon))
-      errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
+    if last_observation
+      if last_observation.taxon_id.blank? || !(
+          taxon_id == last_observation.taxon_id || 
+          taxon.ancestor_of?(last_observation.taxon) || 
+          last_observation.taxon.ancestor_of?(taxon))
+        errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
+      end
     end
   end
 
@@ -209,6 +209,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def set_ancestor_taxon_ids
+    return true unless taxon
     unless taxon.ancestry.blank?
       self.taxon_ancestor_ids = taxon.ancestry
     else
@@ -216,13 +217,20 @@ class ListedTaxon < ActiveRecord::Base
     end
     true
   end
+
+  def set_old_list
+    @old_list = self.list
+  end
   
   # Update the counter cache in users.
   def update_user_life_list_taxa_count
-    if self.list.user && self.list.user.life_list_id == self.list_id
-      User.update_all("life_list_taxa_count = #{self.list.listed_taxa.count}", 
-        "id = #{self.list.user_id}")
-    end
+    return true if skip_update_user_life_list_taxa_count
+    l = self.list || @old_list
+    return true unless l
+    return true unless l.is_a?(LifeList)
+    return true unless l.user
+    return true unless l.user.life_list_id == self.list_id 
+    User.update_all("life_list_taxa_count = #{l.listed_taxa.count}", "id = #{l.user_id}")
     true
   end
   
@@ -245,12 +253,31 @@ class ListedTaxon < ActiveRecord::Base
     self.place_id = self.list.place_id
     true
   end
+
+  def set_establishment_means
+    return true unless establishment_means.blank?
+    return true if place.blank?
+    if introduced_ancestor_listed_taxon = ListedTaxon.
+        where("place_id IN (?)", place.ancestor_ids).
+        where(:taxon_id => taxon_id).
+        where("establishment_means IN (?)", INTRODUCED_EQUIVALENTS).
+        first
+      self.establishment_means = introduced_ancestor_listed_taxon.establishment_means
+    elsif native_child_listed_taxon = ListedTaxon.joins(:place).
+        where(place.descendant_conditions).
+        where(:taxon_id => taxon_id).
+        where("establishment_means IN (?)", NATIVE_EQUIVALENTS).
+        first
+      self.establishment_means = native_child_listed_taxon.establishment_means
+    end
+    true
+  end
   
   def sync_parent_check_list
     return true unless list.is_a?(CheckList)
     return true if @skip_sync_with_parent
-    unless Delayed::Job.exists?(["handler LIKE E'%CheckList;?\n%sync_with_parent%'", list_id])
-      list.delay(:priority => 1).sync_with_parent
+    unless Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{list_id}''\n%sync_with_parent%'").exists?
+      list.delay(:priority => INTEGRITY_PRIORITY).sync_with_parent(:time_since_last_sync => updated_at)
     end
     true
   end
@@ -268,6 +295,15 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def set_cache_columns
+    return unless taxon_id
+
+    # HACK these queries are killing us for places with very complex
+    # geometries. Until I figure out a better way to do this calculation,
+    # we're using bbox area as a proxy for complexity and setting a cutoff
+    if place && place.bbox_area.to_i > 5000
+      return
+    end
+
     self.first_observation_id, self.last_observation_id, self.observations_count, self.observations_month_counts = cache_columns
   end
   
@@ -276,8 +312,34 @@ class ListedTaxon < ActiveRecord::Base
     return true unless list.is_a?(CheckList)
     if @force_update_cache_columns
       # this should have already happened in update_cache_columns
+    elsif !Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{id}\n'").exists?
+      ListedTaxon.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").update_cache_columns_for(id)
+    end
+    true
+  end
+
+  def propagate_establishment_means
+    return true unless establishment_means_changed? && !establishment_means.blank?
+    return true unless list.is_a?(CheckList)
+    if native?
+      # bubble up for native equivalents
+      ListedTaxon.update_all(
+        ["establishment_means = ?", establishment_means],
+        ["taxon_id = ? AND establishment_means IS NULL AND place_id IN (?)", taxon_id, place.ancestor_ids]
+      )
     else
-      ListedTaxon.delay(:priority => 1).update_cache_columns_for(id)
+      # trickle down for introduced
+      sql = <<-SQL
+        UPDATE listed_taxa
+        SET establishment_means = '#{establishment_means}'
+        FROM places
+        WHERE 
+          listed_taxa.place_id = places.id
+          AND establishment_means IS NULL
+          AND listed_taxa.taxon_id = #{taxon_id}
+          AND (places.ancestry LIKE '#{place.ancestry}/%' OR places.ancestry = '#{place.ancestry}')
+      SQL
+      ActiveRecord::Base.connection.execute(sql)
     end
     true
   end
@@ -396,7 +458,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def native?
-    NATIVE_EQIVALENTS.include?(establishment_means)
+    NATIVE_EQUIVALENTS.include?(establishment_means)
   end
   
   def endemic?
@@ -405,6 +467,10 @@ class ListedTaxon < ActiveRecord::Base
   
   def taxon_name
     taxon.name
+  end
+
+  def taxon_common_name
+    taxon.common_name.try(:name)
   end
   
   def user_login
@@ -415,11 +481,11 @@ class ListedTaxon < ActiveRecord::Base
   # slow and memory intensive, so it should only be run from a script.
   def self.update_all_taxon_attributes
     start_time = Time.now
-    logger.info "[INFO] Starting ListedTaxon.update_all_taxon_attributes..."
+    Rails.logger.info "[INFO] Starting ListedTaxon.update_all_taxon_attributes..."
     Taxon.do_in_batches(:conditions => "listed_taxa_count IS NOT NULL") do |taxon|
       taxon.update_listed_taxa
     end
-    logger.info "[INFO] Finished ListedTaxon.update_all_taxon_attributes " +
+    Rails.logger.info "[INFO] Finished ListedTaxon.update_all_taxon_attributes " +
       "(#{Time.now - start_time}s)"
   end
   
@@ -430,9 +496,36 @@ class ListedTaxon < ActiveRecord::Base
   def expire_caches
     return true unless place_id
     ctrl = ActionController::Base.new
-    ctrl.expire_fragment(guide_taxon_cache_key)
+    ctrl.expire_fragment(guide_taxon_cache_key) #THIS
     ctrl.expire_page("/places/cached_guide/#{place_id}.html")
+    ctrl.expire_page("/places/cached_guide/#{place.slug}.html")
+    ctrl.expire_fragment(FakeView.listed_taxon_path(id))
+    ctrl.expire_fragment(FakeView.listed_taxon_path(id, :for_owner => true))
+    ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
+    ListedTaxon::ORDERS.each do |order|
+      ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
+    end
+    unless place_id.blank?
+      ctrl.expire_fragment(guide_taxon_cache_key)
+      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place_id))
+      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug))
+    end
+    ctrl.expire_page FakeView.list_path(list_id, :format => 'csv')
+    ctrl.expire_page FakeView.list_show_formatted_view_path(list_id, :format => 'csv', :view_type => 'taxonomic')
+    if list
+      ctrl.expire_page FakeView.list_path(list, :format => 'csv')
+      ctrl.expire_page FakeView.list_show_formatted_view_path(list, :format => 'csv', :view_type => 'taxonomic')
+    end
+    ctrl.send :expire_action, FakeView.url_for(:controller => 'taxa', :action => 'show', :id => taxon_id)
     true
+  end
+
+  def self.expire_caches_for(taxon)
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    return unless taxon
+    taxon.listed_taxa.includes(:list, :place).find_each do |lt|
+      lt.expire_caches
+    end
   end
   
   def merge(reject)
@@ -457,9 +550,27 @@ class ListedTaxon < ActiveRecord::Base
       to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
       lt = ListedTaxon.find_by_id(to_merge_ids.first)
       rejects = ListedTaxon.all(:conditions => ["id IN (?)", to_merge_ids[1..-1]])
+
+      # remove the rejects from the list before merging to avoid alread-on-list validation errors
+      ListedTaxon.update_all("list_id = NULL", ["id IN (?)", rejects])
+      
       rejects.each do |reject|
         lt.merge(reject)
       end
+    end
+  end
+
+  def self.update_for_taxon_change(taxon_change, taxon, options = {})
+    input_taxon_ids = taxon_change.input_taxa.map(&:id)
+    scope = ListedTaxon.where("listed_taxa.taxon_id IN (?)", input_taxon_ids).scoped
+    scope = scope.where(:user_id => options[:user]) if options[:user]
+    scope = scope.where("listed_taxa.id IN (?)", options[:records]) unless options[:records].blank?
+    scope = scope.where(options[:conditions]) if options[:conditions]
+    scope = scope.includes(options[:include]) if options[:include]
+    scope.find_each do |lt|
+      lt.force_update_cache_columns = true
+      lt.update_attributes(:taxon => taxon)
+      yield(lt) if block_given?
     end
   end
   

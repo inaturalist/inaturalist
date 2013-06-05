@@ -2,7 +2,8 @@
 class ProviderAuthorization < ActiveRecord::Base
   belongs_to  :user
   validates_presence_of :user_id, :provider_uid, :provider_name
-  validates_uniqueness_of :provider_uid, :scope => :provider_name  
+  validates_uniqueness_of :provider_uid, :scope => :provider_name
+  validate :uniqueness_of_authorization_per_user
   after_save :create_photo_identity
   
   # Hash that comes back from the provider through omniauth.  Should be set 
@@ -10,14 +11,45 @@ class ProviderAuthorization < ActiveRecord::Base
   # this record is created
   attr_accessor :auth_info
   
-  PROVIDERS = %w(facebook twitter Flickr Google Yahoo) 
+  PROVIDERS = %w(facebook twitter flickr google_oauth2 yahoo)
+  PROVIDER_NAMES = PROVIDERS.inject({}) do |memo, provider|
+    if provider == "google_oauth2"
+      memo[provider] = "Google"
+    else
+      memo[provider] = provider.capitalize
+    end
+    memo
+  end
   AUTH_URLS = PROVIDERS.inject({}) do |memo, provider|
     memo.update(provider => "/auth/#{provider.downcase}")
   end
-  AUTH_URLS.merge!(
-    "Google" => "/auth/open_id?openid_url=https://www.google.com/accounts/o8/id",
-    "Yahoo" => "/auth/open_id?openid_url=https://me.yahoo.com")
+  AUTH_URLS.merge!("yahoo" => "/auth/open_id?openid_url=https://me.yahoo.com")
   ALLOWED_SCOPES = %w(read write)
+
+  def to_s
+    "<ProviderAuthorization #{id} user_id: #{user_id} provider_name: #{provider_name}>"
+  end
+
+  def uniqueness_of_authorization_per_user
+    existing_scope = if provider_uid =~ /google.com\/accounts/
+      ProviderAuthorization.
+        where(:provider_name => 'openid').
+        where("provider_uid LIKE 'https://www.google.com/accounts%'").
+        scoped
+    elsif provider_uid =~ /me.yahoo.com/
+      ProviderAuthorization.
+        where(:provider_name => 'openid').
+        where("provider_uid LIKE 'https://me.yahoo.com%'").
+        scoped
+    else
+      ProviderAuthorization.where(:provider_name => provider_name).scoped
+    end
+    existing_scope = existing_scope.where("id != ?", id) if id
+    if existing_scope.where(:user_id => user_id).exists?
+      errors.add(:user_id, "has already linked an account with #{provider}")
+    end
+    true
+  end
   
   def provider
     if provider_uid =~ /google.com\/accounts/
@@ -63,16 +95,20 @@ class ProviderAuthorization < ActiveRecord::Base
   def update_photo_identities
     return unless token
     return unless provider_name == "flickr"
-    return unless user.flickr_identity
-    return if user.flickr_identity.token == token
-    user.flickr_identity.update_attribute(:token, token)
+    return unless fi = user.flickr_identity
+    fi.token = token
+    secret = auth_info.try(:[], 'credentials').try(:[], 'secret')
+    fi.secret = secret unless secret.blank?
+    fi.save
+    true
   end
   
   def update_with_auth_info(auth_info)
     @auth_info = auth_info
     return unless auth_info["credentials"] # open_id (google, yahoo, etc) doesn't provide a token
     token = auth_info["credentials"]["token"] || auth_info["credentials"]["secret"]
-    update_attribute(:token, token)
+    secret = auth_info["credentials"]["secret"]
+    update_attributes({:token => token, :secret => secret})
     update_photo_identities
   end
 

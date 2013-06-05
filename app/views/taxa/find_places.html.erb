@@ -1,6 +1,6 @@
 <% if @places.blank? -%>
   <div class="description">
-    No matching places.
+    <%= t(:no_matching_places) %>
   </div>
 <% else %>
   <% for place in @places %>
@@ -11,7 +11,7 @@
         :size => '75x75',
         :markers => "size:tiny|color:blue|#{place.latitude},#{place.longitude}"
       }, {:class => 'left'}), url %>
-      <%= link_to "Search", url, :class => "button inline glaucous", :style => "float: right; margin-left: 10px;" %>
+      <%= link_to t(:search), url, :class => "button inline glaucous", :style => "float: right; margin-left: 10px;" %>
       <strong><%= link_to place.name, url %></strong>
       <div class="small description">
         <%= place.place_type_name %>

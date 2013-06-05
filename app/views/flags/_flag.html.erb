@@ -2,38 +2,41 @@
   flaggable = flag.flaggable
   flaggable_class = flaggable.class
 -%>
-<div class="flag <%= 'resolved' if flag.resolved? %>">
+<div class="flag <%= t(:resolved) if flag.resolved? %>">
   <% if flag.user -%>
     <%= link_to flag.user.login, flag.user %>
   <% else %>
-    iNat
+    <%= CONFIG.site_name_short %>
   <% end -%>
-  <%= link_to "flagged", flag, :action=>"show" %>
+  <%= link_to t(:flagged), flag, :action=>"show" %>
   <%= 
-    if flaggable.methods.include?("user")
-      link_to "#{flaggable.user.login}'s'", :controller => "users", :action => "show", :id => flaggable.user_id 
+    if flaggable.respond_to?(:user)
+      link_to "#{flaggable.user.login}'s", :controller => "users", :action => "show", :id => flaggable.user_id 
     else
-      "the"
+      t(:the)
     end
   %>
-  <%= flaggable_class.name %>
-  <%= link_to flaggable.to_plain_s, flaggable %> 
-  because 
+  <%= flaggable_class.name.humanize.downcase %>
+  <%= link_to(flaggable.to_plain_s, flaggable) if flaggable.respond_to?(:to_plain_s) %> 
+  <%=t :because %> 
   "<%= flag.flag %>"
   <span class="small meta ui">
-    <%= link_to "resolve", flag %> |
-    <%= link_to "delete", flag, 
-      :confirm => "Are you sure you want to delete this flag?", 
-      :method => :delete %>
+    <%= link_to is_curator? ? t(:resolve) : "Details", flag %>
+    <% if is_me?(flag.user) || is_curator? -%>
+      |
+      <%= link_to t(:delete), flag, 
+        :confirm => t(:you_sure_delete_flag?), 
+        :method => :delete %>
+    <% end -%>
   </span>
 </div>
 <% if flag.resolved? && !flag.comment.blank? -%>
   <div class="resolution description">
     <strong> 
       <% if flag.resolver -%>
-        Resolved by <%= link_to flag.resolver.login, flag.resolver %>:
+        <%=t :resolved_by %> <%= link_to flag.resolver.login, flag.resolver %>:
       <% else %>
-        Resolved:
+        <%=t :resolved %>:
       <% end -%>
     </strong>
     <%= h flag.comment %>

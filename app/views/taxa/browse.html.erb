@@ -1,5 +1,5 @@
 <% content_for(:title) do %>
-  <%= @title = "Species Search" %>
+  <%= @title = t(:species_search) %>
 <% end -%>
 
 <% content_for(:extrajs) do %>
@@ -27,7 +27,7 @@
 <%= stylesheet_link_tag 'taxa', 'taxa/index', 'taxon_browser' %>
 <% end -%>
 
-<h2>Species Search</h2>
+<h2><%= t(:species_search) %></h2>
 
 <div id="taxon_browser" class="clear">
   <%= render :partial => 'browse' %>

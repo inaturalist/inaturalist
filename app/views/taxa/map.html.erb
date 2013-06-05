@@ -1,22 +1,22 @@
+<%- @title = capture do %>
+  Map for
+  <% if @taxon -%>
+    <%=raw link_to @taxon.name, @taxon %>
+  <% elsif @taxa %>
+    <%=raw @taxa.map {|t| link_to(t.name, t)}.join(', ') %>
+  <% else %>
+    Taxa
+  <% end -%>
+<%- end -%>
 <%- content_for(:title) do -%>
-  <%- @title = capture do %>
-    Map for
-    <% if @taxon -%>
-      <%= link_to @taxon.name, @taxon %>
-    <% elsif @taxa %>
-      <%= @taxa.map {|t| link_to(t.name, t)} %>
-    <% else %>
-      Taxa
-    <% end -%>
-  <%- end -%>
   <%= strip_tags(@title) %>
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= google_maps_js %>
   <%= javascript_include_tag "polymaps.min", "polymaps.extra", "polymaps.kml", 'd3.min', 'inaturalist/map3' %>
   <script type="text/javascript" charset="utf-8">
-    var TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect.html_safe %>
+    var TILESTACHE_SERVER = <%= CONFIG.tile_servers.tilestache.inspect.html_safe %>
     var CLOUDMADE_KEY = <%= @cloudmade_key ? @cloudmade_key.inspect.html_safe : 'null' %>
     var BING_KEY = <%= @bing_key ? @bing_key.inspect.html_safe : 'null' %>
     var M_TO_OBSCURE_THREATENED_TAXA = <%= Observation::M_TO_OBSCURE_THREATENED_TAXA %>
@@ -63,9 +63,9 @@
 <div id="controls" class="floating">
   <div id="basemap">
     <input type="radio" name="basemap" value="map" id="basemap_map" checked="checked">
-    <label for="basemap_map">Map</label>
+    <label for="basemap_map"><%= t(:map) %></label>
     <input type="radio" name="basemap" value="sat" id="basemap_sat">
-    <label for="basemap_sat">Sat</label>
+    <label for="basemap_sat"><%= t(:Sat) %></label>
   </div>
 </div>
 <div id="copyright"></div>
@@ -74,7 +74,7 @@
   <% if @taxon -%>
     <div class="breadcrumbs nobr">
       <%= link_to @taxon, :class => "back crumb" do %>
-        Back to
+        <%= t(:back_to) %>
         <%= render :partial => "shared/taxon", :object => @taxon, :locals => {:link => false} %>
       <% end %>
     </div>
@@ -91,58 +91,58 @@
             <li class="putative observations" rel="observations">
               <input type="checkbox" checked="checked" id="observations_check"/>
               <div class="symbol"></div>
-              <label for="observations_check">Observations (last 500)</label>
+              <label for="observations_check"><%= t(:observations_last500) %></label>
 
               <div class="confirmed">
                 <input type="checkbox" checked="checked" style="visibility: hidden"/>
                 <div class="symbol"></div>
-                <label for="observations_check">Observations (confirmed)</label>
+                <label for="observations_check"><%= t(:observations_confirmed) %></label>
               </div>
 
               <div class="obscured">
                 <input type="checkbox" checked="checked" style="visibility: hidden"/>
                 <div class="symbol"></div>
-                <label for="observations_check">Observations (obscured)</label>
+                <label for="observations_check"><%= t(:observations_obscured) %></label>
               </div>
             </li>
             <li class="range" rel="range">
               <input type="checkbox" checked="checked" id="range_check"/>
               <div class="symbol"></div>
-              <label for="range_check">Range</label>
+              <label for="range_check"><%= t(:range) %></label>
             </li>
             <li class="putative places" rel="countries_simple states_simple counties_simple counties">
               <input type="checkbox" checked="checked" id="places_check" />
               <div class="symbol"></div>
-              <label for="places_check">Checklist places</label>
+              <label for="places_check"><%= t(:checklist_places) %></label>
               <div class="confirmed">
                 <input type="checkbox" checked="checked" style="visibility: hidden"/>
                 <div class="symbol"></div>
-                <label for="places_check">Checklist places (confirmed)</label>
+                <label for="places_check"><%= t(:checklist_places_confirmed) %></label>
               </div>
               <div class="absent">
                 <input type="checkbox" checked="checked" style="visibility: hidden"/>
                 <div class="symbol"></div>
-                <label for="places_check">Checklist places (absent)</label>
+                <label for="places_check"><%= t(:checklist_places_absent) %></label>
               </div>
               <div class="introduced">
                 <input type="checkbox" checked="checked" style="visibility: hidden"/>
                 <div class="symbol"></div>
-                <label for="places_check">Checklist places (introduced)</label>
+                <label for="places_check"><%= t(:checklist_places_introduced) %></label>
               </div>
 
               <%= link_to_toggle "Toggle place types", "#place_types", :style => "margin-left: 40px" %>
               <ul id="place_types" style="display:none">
                 <li class="place_type" rel="countries_simple">
                   <input name="place_type" type="radio" id="place_type_countries"/>
-                  <label for="place_type_countries">Countries</label>
+                  <label for="place_type_countries"><%= t(:countries) %></label>
                 </li>
                 <li class="place_type" rel="states_simple">
                   <input name="place_type" type="radio" id="place_type_states"/>
-                  <label for="place_type_states">States</label>
+                  <label for="place_type_states"><%= t(:states) %></label>
                 </li>
                 <li class="place_type" rel="counties_simple">
                   <input name="place_type" type="radio" id="place_type_counties"/>
-                  <label for="place_type_counties">Counties</label>
+                  <label for="place_type_counties"><%= t(:countries) %></label>
                 </li>
               </ul>
             </li>
@@ -153,10 +153,10 @@
   </div>
       
   <div id="legendfooter" class="clear small meta">
-    <a href="/" title="<%= APP_CONFIG[:site_name] %>"><img src="/images/logo-mini.png" alt="iNaturalist logo" class="left" style="width: 75px"></a>
+    <a href="/" title="<%= CONFIG.site_name %>"><img src="/images/logo-mini.png" alt="#{CONFIG.site_name} logo" class="left" style="width: 75px"></a>
     <div class="last right column">
       <%= link_to_function "<span class='ui-icon ui-icon-help inlineblock'>help</span>About this map".html_safe, 
-        "$('#maphelp').dialog({modal: true, title: 'About This Map', width: 500})", 
+        "$('#maphelp').dialog({modal: true, title: '#{t(:about_this_map)}', width: 500})", 
         :class => "helplink right" %>
     </div>
   </div>
@@ -165,29 +165,22 @@
 <div id="maphelp" class="dialog" style="display:none">
   <ul>
     <li>
-      "Check-list places" are places with check lists that contain this taxon.
+      <%= t(:cheklist_places_are_places_with_contain_taxon) %>
     </li>
     <li>
-      Confirmed observations are
-      <%= link_to '"research-grade"', help_url(:anchor => "quality") %>
-      observations on iNat. Check list places that have been confirmed have at
-      least 1 confirmed observation within their boundaries.
+      <%= t(:confirmed_observations_are) %>
+      <%= link_to t(:research_grade), help_url(:anchor => "quality") %>
+      <%= t(:observations_on_inat_check_list, :site_name => SITE_NAME_SHORT) %>
     </li>
     <li>
-      <%= link_to "Obscured", help_url(:anchor => "obscured") %>
-      observations have had their coordinates shifted to a random
-      point within <%= Observation::M_TO_OBSCURE_THREATENED_TAXA / 1000 %> km,
-      either because the taxon is threatened or because the observer chose to
-      obscure the coordinates.
+      <%= link_to t(:obscured), help_url(:anchor => "obscured") %>
+      <%= t(:observations_have_had_their_coordinates, :km => Observation::M_TO_OBSCURE_THREATENED_TAXA / 1000 ) %>
     </li>
     <li>
-      Observation circles have their radii scaled proportionally to their
-      positional accuracy. Observations without positional accuracy data are
-      shown at the minimum size.
+      <%= t(:observations_circle_have_their_radii_scaled) %>
     </li>
     <li>
-      Only country, state, and county equivalent places shown for now. Zoom in
-      to see smaller places.
+      <%= t(:only_country_state_and_county) %>
     </li>
   </ul>
 </div>

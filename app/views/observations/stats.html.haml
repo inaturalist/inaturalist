@@ -1,0 +1,187 @@
+= content_for(:title) do
+  = [@place.try(:name), @user.try(:login), @project.try(:title)].compact.join(' / ')
+  Real Time Stats
+#stats.clear
+  #count.stat.numerical
+    .count ?
+    observations
+  #species.stat.numerical
+    .count ?
+    species
+  #people.stat.numerical
+    .count ?
+    people
+  #most_observations.stat
+    %label Most observations
+    %table
+      %tr
+        %td.image= image_tag('/attachment_defaults/users/icons/defaults/thumb.png')
+        %td.user
+          .meta Unknown
+  #most_species.stat
+    %label Most species
+    %table
+      %tr
+        %td.image= image_tag('/attachment_defaults/users/icons/defaults/thumb.png')
+        %td.user
+          .meta Unknown
+  #most_observed.stat
+    %label Most observed species
+    %table
+      %tr
+        %td.image= image_tag('iconic_taxa/unknown-32px.png')
+        %td.taxon
+          .meta Unknown
+
+- if @stats_adequately_scoped
+  #observations.observations.medium.grid
+    = loading
+  = link_to t(:view_all_observations), request.fullpath.gsub(/\/stats/, ''), :class => "readmore"
+- else
+  You must add one of the following parameters to the URL to use this tool
+  %ul
+    %li
+      %code place_id
+      %div
+        Example:
+        %code= stats_observations_url(:place_id => 'belgium')
+    %li
+      %code user_id
+      %div
+        Example:
+        %code= stats_observations_url(:user_id => 1)
+    %li
+      %code projects
+      %div
+        Example:
+        %code= stats_observations_url(:projects => 10)
+    %li
+      %code d1
+      and
+      %code d2
+      (max date range 1 year)
+      %div
+        Example:
+        %code= stats_observations_url(:d1 => "2012-01-01", :d2 => "2012-01-30")
+
+= content_for(:extracss) do
+  :css
+    #stats {width:200px;float:right;margin-left:10px;}
+    .stat {margin-bottom: 10px;}
+    .stat .count {font-size: 300%;}
+    #wrapper { width: auto; padding: 0 10px; position: relative;padding:10px;}
+    .stat img {max-width:36px;}
+    .numerical.stat .count {line-height: 1;}
+    td {border:none; vertical-align:top;}
+    table {margin:0;}
+
+:javascript
+  function refreshObservations() {
+    var url = '/observations'+window.location.search+'&partial=cached_component'
+    var req
+    req = $.ajax({
+      type: "GET",
+      url: url,
+      success: function (data, status) {
+        window.headers = req.getAllResponseHeaders()
+        var html = data.replace(/\/div>[\s\n]+?<div/g, '/div><div')
+        var oldObsId = $('#observations .observation:first').attr('id')
+        if (oldObsId) {
+          var r = new RegExp('^[^>]+'+oldObsId, 'g')
+          if (r.test(html)) {
+            return
+          }
+        }
+        $('#observations').html(html)
+        $('#observations').observationsGrid('medium')
+        var matches = headers.match(/X-Total-Entries: (\d+)/) || [],
+            totalEntries = matches[1]
+        if (totalEntries) {
+          $('#count .count').html(totalEntries)
+        }
+      }
+    })
+    setTimeout('refreshObservations()', 10*1000)
+  }
+  if ($('#observations').length == 1) { refreshObservations() }
+
+  function refreshTaxa() {
+    var url = '/observations/taxon_stats.json'+window.location.search
+    $.getJSON(url, function(json) {
+      $('#species .count').html(json.rank_counts.species || 0)
+      if (json.taxon_counts.length > 0) {
+        var most
+        $('#most_observed table').html('')
+        for (var i = 0; i < json.taxon_counts.length; i++) {
+          if (json.taxon_counts[i].taxon) {
+            most = json.taxon_counts[i]
+            var tr = $('<tr></tr>'),
+                taxonTD = $('<td class="taxon"></td>'),
+                imageTD = $('<td class="image"></td>')
+            taxonTD.html(
+              $('<a></a>').
+                addClass('nobr '+most.taxon.default_name.lexicon).
+                attr('href', '/taxa/'+most.id).
+                html(most.taxon.default_name.name)
+            )
+            imageTD.append($('<img/>').attr('src', most.taxon.image_url))
+            taxonTD.append(
+              $('<div class="meta"></div>').append(
+                $('<a></a>').
+                  attr('href', '/observations'+window.location.search+'&taxon_id='+most.id).
+                  html(most.count),
+                ' observation'+(most.count == 1 ? '' : 's')
+              )
+            )
+            tr.append(imageTD, taxonTD)
+            $('#most_observed table').append(tr)
+          }
+        }
+      }
+      setTimeout('refreshTaxa()', 10*1000)
+    })
+  }
+  if ($('#observations').length == 1) { refreshTaxa() }
+
+  function refreshUsers() {
+    var url = '/observations/user_stats.json'+window.location.search
+    $.getJSON(url, function(json) {
+      $('#people .count').html(json.total || 0)
+      if (json.most_observations.length > 0) {
+        $('#most_observations table').html('')
+        for (var i = 0; i < json.most_observations.length; i++) {
+          var most = json.most_observations[i],
+              img_url = most.user.user_icon_url || '/attachment_defaults/users/icons/defaults/thumb.png',
+              tr = $('<tr></tr>'),
+              imageTD = $('<td class="image"></td>'),
+              userTD = $('<td class="user"></td>')
+          imageTD.append($('<img/>').attr('src', img_url))
+          userTD.html($('<a>'+most.user.login+'</a>').attr('href', '/people/'+most.id))
+          userTD.append(
+            $('<div></div>').addClass('meta').html(most.count + " observations")
+          )
+          tr.append(imageTD, userTD)
+          $('#most_observations table').append(tr)
+        }
+      }
+      if (json.most_species.length > 0) {
+        $('#most_species table').html('')
+        for (var i = 0; i < json.most_species.length; i++) {
+          var row = json.most_species[i]
+              img_url = row.user.user_icon_url || '/attachment_defaults/users/icons/defaults/thumb.png',
+              tr = $('<tr></tr>'),
+              imageTD = $('<td class="image"></td>'),
+              userTD = $('<td class="user"></td>')
+          imageTD.append($('<img/>').attr('src', img_url))
+          userTD.html($('<a>'+row.user.login+'</a>').attr('href', '/people/'+row.id))
+          userTD.append(
+            $('<div></div>').addClass('meta').html(row.count + " species")
+          )
+          tr.append(imageTD, userTD)
+          $('#most_species table').append(tr)
+        }
+      }
+      setTimeout('refreshUsers()', 20*1000)
+    })
+  }
+  if ($('#observations').length == 1) { refreshUsers() }

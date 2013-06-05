@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Sign up!
+  <%= t(:sign_up) %>
 <%- end -%>
 <% content_for(:extracss) do -%>
   <style type="text/css" media="screen">
@@ -15,18 +15,18 @@
   </script>
 <%- end -%>
 <div class="column prepend-2 span-8">
-  <img src="/images/bird.png" width="300" height="239" />
+  <%= image_tag CONFIG.logo_icon_square_big, :width => 300  %>
   
   <div style="margin: 20px 0 0 80px">
     <div style="margin-bottom: 0.5em;">
-      <label>Or you can...</label>
+      <label><%= t(:or_you_can) %></label>
     </div>
     <%- ProviderAuthorization::AUTH_URLS.each do |provider, url| -%>
-      <%= link_to "Sign in with #{provider.capitalize}", url, :class => "button providerlink #{provider.downcase}" %>
+      <%= link_to t(:sign_in_with_provider, :provider => "#{provider}"), url, :class => "button providerlink #{provider.downcase}" %>
     <%- end -%>
   </div>
 </div>
 <div class="column span-12 append-2 last">
-  <h2>Join iNaturalist!</h2>
+  <h2><%= t(:join) %> <%= SITE_NAME_SHORT %></h2>
   <%= render :partial => 'new_form' %>
 </div>

@@ -12,7 +12,11 @@
   
   function setup(elt, options) {
     var options = $.extend({}, options)
-    options.taxonId = options.taxonId || $(elt).attr('data-taxon-id')
+    if (options.taxon) {
+      options.taxonId = options.taxon.id
+    } else {
+      options.taxonId = options.taxonId || $(elt).attr('data-taxon-id')
+    }
     if (!options.taxonId) { return }
     options.latitude = options.latitude || $(elt).attr('data-latitude')
     options.longitude = options.longitude || $(elt).attr('data-longitude')
@@ -67,7 +71,7 @@
     
     if (options.taxonRangeKmlUrl) {
       var taxonRangeLyr = new google.maps.KmlLayer(options.taxonRangeKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
-      map.addOverlay('Taxon Range', taxonRangeLyr, {id: 'taxon_range-'+options.taxonId})
+      map.addOverlay(I18n.t('taxon_range'), taxonRangeLyr, {id: 'taxon_range-'+options.taxonId})
       preserveViewport = true
     }
     
@@ -79,14 +83,12 @@
     
     if (options.gbifKmlUrl) {
       var gbifLyr = new google.maps.KmlLayer(options.gbifKmlUrl, {suppressInfoWindows: true, preserveViewport: true})
-      map.addOverlay('GBIF Occurrences', gbifLyr, {
+      map.addOverlay(I18n.t('taxon_map.gbif_occurrences'), gbifLyr, {
         id: 'gbif-'+options.taxonId, 
         hidden: true,
         description: 
-          ['It may take Google a while ',
-          'to load these data, ',
-          'assuming GBIF has any. ',
-          '<a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">Data URL</a>'].join('<br/>')
+          I18n.t('taxon_map.it_may_take_google_a_while_to') +
+          '<a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">' + I18n.t('taxon_map.data_url') + '</a>'
       })
       google.maps.event.addListener(gbifLyr, 'click', function(e) {
         if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}
@@ -126,7 +128,9 @@
       fit(elt)
     }
     
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
+    var overlayControlDiv = document.createElement('DIV')
+    map._overlayControl = new iNaturalist.OverlayControl(map, {div: overlayControlDiv})
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(overlayControlDiv)
     
     $(elt).data('taxonMap', map)
   }
@@ -155,7 +159,7 @@
     }
 
     if (options.taxonRangeKmlUrl) {
-      var lyrInfo = map.getOverlay('Taxon Range')
+      var lyrInfo = map.getOverlay(I18n.t('taxon_range'))
       lyrInfo.overlay.setMap(null)
       lyrInfo.overlay.setMap(map)
       return
@@ -167,7 +171,7 @@
       lyrInfo.overlay.setMap(map)
       return
     }
-
+    
     if (options.observationsJsonUrl && map.observationBounds) {
       map.zoomToObservations()
       return

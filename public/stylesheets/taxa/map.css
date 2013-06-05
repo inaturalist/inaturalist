@@ -97,7 +97,9 @@ path.range:hover {
 #legend .confirmed .symbol { border: 1px solid #55721F; background-color: #84A92F; }
 #legend .obscured .symbol { border: 1px dashed black; background-color: #ccc; width: 11px; height: 11px; margin: 2px; -moz-border-raidus: 11px; -webkit-border-radius:11px; border-radius: 11px;}
 #legend .absent .symbol { border: 1px solid #666; background-color: #999; }
+#legend .introduced {background-color: transparent; color:#333;}
 #legend .introduced .symbol { border: 1px dashed black; background-color: #ccc; }
+#legend .square.photo {width:75px;}
 
 .compass path{visibility:visible; opacity: 1;}
 .compass circle {opacity: 1;}
@@ -142,3 +144,4 @@ li.place_type { padding-left: 40px; }
 #legend table { margin-top: 10px; }
 #legend td { vertical-align: top; border: 0 transparent;}
 .observations.compact.infowindow .observation { width: 240px; }
+label.inactive {opacity: 0.5;}

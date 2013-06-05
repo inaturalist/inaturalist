@@ -1,4 +1,4 @@
-<div class='photoSelectorAlbums picasaAlbums' <%= "data-friend_id='#{@friend_id}'" if @friend_id %>>
+<div class='photoSelectorAlbums picasaAlbums' <%= "data-friend_id='#{@friend_id}'".html_safe if @friend_id %>>
   <% if @friend_name %>
     <a href='#' class="back_to_friends" data-friend_id="<%= @friend_id %>">&laquo; Back to friends</a>
   <% end %>

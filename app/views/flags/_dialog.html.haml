@@ -1,0 +1,35 @@
+= form_for @flag, :builder => DefaultFormBuilder do |f|
+  - unless @flags.blank?
+    .notice.box
+      %strong= t(:heads_up)
+      = t(:this)
+      = @object.class.name.underscore.humanize.downcase
+      = t(:has_already_been_flagged_by)
+      %ul
+        - @flags.each do |flag|
+          %li
+            = surround '', ':' do
+              = link_to user_image(flag.user), flag.user
+              = link_to_user flag.user
+            = flag.flag
+            - unless flag.comment.blank?
+              = surround '"', '"' do
+                = flag.comment
+  = f.hidden_field :flaggable_type
+  = f.hidden_field :flaggable_id
+  = f.radio_button :flag, "spam", 
+    :label => t(:spam),
+    :label_after => true, 
+    :description => t(:commercial_solicitation)
+  = f.radio_button :flag, "inappropriate", 
+    :label => t(:offensive_inappropriate),
+    :label_after => true, 
+    :description => t(:misleading_or_illegal_content)
+  = f.radio_button :flag, "other",
+    :label => t(:other),
+    :label_after => true, 
+    :description => t(:some_other_reason)
+
+  = text_area_tag :flag_explanation, "", :placeholder => t(:reason_you_are_flagging_this_item),
+    :style => "display:none;"
+  = f.submit t(:save_flag), "data-loading-click" => t(:saving), :class => "default button"

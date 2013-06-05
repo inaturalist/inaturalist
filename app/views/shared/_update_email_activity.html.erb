@@ -2,6 +2,7 @@
   resource = update_email_activity || resource
   updates ||= []
   class_name = resource.class.to_s.underscore
+  viewing_user = current_user rescue @user
 -%>
 
 <div class="updatecontent">
@@ -13,6 +14,12 @@
           @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
         end
         notifier ||= update.notifier
+        next unless notifier
+        user = if notifier.is_a?(Flag)
+          update_cached(notifier, :resolver)
+        elsif notifier.respond_to?(:user)
+          update_cached(notifier, :user)
+        end
       -%>
       <tr>
         <td valign="top" style="padding-right:10px;">
@@ -24,23 +31,36 @@
           <% elsif notifier.is_a?(Identification) %>
             <div style="margin-bottom:10px;">
               <%= taxon_image(notifier.taxon, :style => "max-width:32px; vertical-align:middle;") %>
-              <span><%= notifier.user.login %>'s ID:</span>
+              <span><%= t(:user_s_id, :user => user.login, :id => t(:id)) %>:</span>
               <%= render :partial => 'shared/taxon', 
                          :locals => { :taxon => notifier.taxon,
                                       :link_url => taxon_url(notifier.taxon) } %>
             </div>
+          <% elsif notifier.is_a?(ProjectInvitation) %>
+            <p>
+              <%=t :please_add_this_to_x_html, :x => "<strong>#{notifier.project.title}</strong>".html_safe %>
+              <br/>
+              <%= link_to t(:view_invitation), observation_url(resource) %>
+            </p>
+          <% elsif notifier.is_a? Flag %>
+            <div class="stacked body">
+              <%=t :flag_marked_as_resolved_html %>
+              <% unless notifier.comment.blank? %>
+                <%=t :resolver_said_x_html, :resolver => notifier.resolver.login, :x => notifier.comment %>
+              <% end -%>
+            </div>
           <% end -%>
           <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
-            Posted by 
-            <%= link_to(truncate(notifier.user_id == @user.id ? "you" : notifier.user.login, :length => 20), 
-              person_url(notifier.user)) %>
+            <%=t :posted_by %>
+            <%= link_to(truncate(user.id == viewing_user.id ? t(:you).downcase : user.login, :length => 20), 
+              person_url(user)) %>
             <span class="when">
-              <span class="date"><%= time_ago_in_words(notifier.created_at) %></span> ago
+              <span class="date"><%=t :time_ago, :time => time_ago_in_words(notifier.created_at) %></span>
             </span>
           </div>
         </td>
       </tr>
     <% end %>
   </table>
-  <%= link_to "View #{class_name.humanize.downcase}", url_for_resource_with_host(resource), :class => "readmore" %>
+  <%= link_to "#{t(:view)} #{class_name.humanize.downcase}", url_for_resource_with_host(resource), :class => "readmore" %>
 </div>

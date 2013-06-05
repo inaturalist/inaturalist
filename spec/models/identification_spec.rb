@@ -184,6 +184,14 @@ describe Identification, "creation" do
     o.should be_research_grade
   end
 
+  it "should obscure the observation's coordinates if the taxon is threatened" do
+    o = Observation.make!(:latitude => 1, :longitude => 1)
+    o.should_not be_coordinates_obscured
+    i = Identification.make!(:taxon => Taxon.make!(:threatened), :observation => o, :user => o.user)
+    o.reload
+    o.should be_coordinates_obscured
+  end
+
   # it "should set curator_identification"
 end
 
@@ -302,6 +310,7 @@ describe Identification, "deletion" do
     o.reload
     o.quality_grade.should == Observation::CASUAL_GRADE
     stamp = Time.now
+    Delayed::Job.delete_all
     Identification.make!(:taxon => o.taxon, :observation => o)
     o.reload
     o.quality_grade.should == Observation::RESEARCH_GRADE
@@ -367,5 +376,36 @@ describe Identification, "deletion" do
     ident3.destroy
     o.reload
     o.taxon_id.should eq(ident2.taxon_id)
+  end
+end
+
+describe Identification, "captive" do
+  it "should vote yes on the wild quality metric if 1" do
+    i = Identification.make!(:captive => "1")
+    o = i.observation
+    o.quality_metrics.should_not be_blank
+    o.quality_metrics.first.user.should eq(i.user)
+    o.quality_metrics.first.should_not be_agree
+  end
+
+  it "should vote no on the wild quality metric if 0 and metric exists" do
+    i = Identification.make!(:captive => "1")
+    o = i.observation
+    o.quality_metrics.should_not be_blank
+    i.update_attributes(:captive => "0")
+    o.reload
+    o.quality_metrics.first.should be_agree
+  end
+
+  it "should not alter quality metrics if nil" do
+    i = Identification.make!(:captive => nil)
+    o = i.observation
+    o.quality_metrics.should be_blank
+  end
+
+  it "should not alter quality metrics if 0 and not metrics exist" do
+    i = Identification.make!(:captive => "0")
+    o = i.observation
+    o.quality_metrics.should be_blank
   end
 end

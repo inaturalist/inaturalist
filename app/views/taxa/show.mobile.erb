@@ -20,7 +20,7 @@
 <%- end -%> 
 <% in_format :html do %>
   <div class="small stacked crumbs">
-    <%= @taxon.self_and_ancestors.map{|t| link_to(t.name, t.name == 'Life' ? taxa_path : t)}.join(' > ') %>
+    <%= @taxon.self_and_ancestors.map{|t| link_to(t.name, t.name == 'Life' ? taxa_path : t)}.join(' > ').html_safe %>
   </div>
   <div id="photo" class="stacked">
     <%= render :partial => "taxa/taxon", :object => @taxon, :locals => {
@@ -29,13 +29,14 @@
     } %>
   </div>
   
-  <%= link_to "View observations &raquo;".html_safe, observations_path(:taxon_id => @taxon), 
+  <%= link_to t(:view_observations_raquo).html_safe, observations_path(:taxon_id => @taxon), 
     :id => "obslink",
-    :class => "iconified full button inlineblock stacked " %>
+    :class => "iconified full button inlineblock stacked ",
+    :rel => "nofollow" %>
   
   <% if !@siblings.blank? -%>
     <div class="siblings">
-      <h3>Similar species</h3>
+      <h3><%= t(:similar_species) %></h3>
       <div class="taxa grid">
         <% for taxon in @siblings %>
           <%= render :partial => "taxa/taxon", :object => taxon, :locals => {
@@ -49,7 +50,7 @@
     </div>
   <% elsif !@children.blank? %>
     <div class="children">
-      <h3>Child taxa</h3>
+      <h3><%= t(:child_taxa) %></h3>
       <div class="taxa grid">
         <% for taxon in @children %>
           <%= render :partial => "taxa/taxon", :object => taxon, :locals => {

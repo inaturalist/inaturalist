@@ -1,7 +1,10 @@
+
 class Identification < ActiveRecord::Base
+  acts_as_flaggable
   belongs_to :observation
   belongs_to :user
   belongs_to :taxon
+  belongs_to :taxon_change
   has_many :project_observations, :foreign_key => :curator_identification_id, :dependent => :nullify
   validates_presence_of :observation, :user
   validates_presence_of :taxon, 
@@ -14,7 +17,8 @@ class Identification < ActiveRecord::Base
                 :expire_caches
                 
   after_save    :update_obs_stats, 
-                :update_curator_identification
+                :update_curator_identification,
+                :update_quality_metrics
                 
   after_destroy :set_last_identification_as_current,
                 :revisit_curator_identification, 
@@ -25,8 +29,10 @@ class Identification < ActiveRecord::Base
   
   attr_accessor :skip_observation
   attr_accessor :html
+  attr_accessor :captive
   
-  notifies_subscribers_of :observation, :notification => "activity", :include_owner => true
+  notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
+    :queue_if => lambda {|ident| ident.taxon_change_id.blank?}
   auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
     ident.user_id != observation.user_id
   }
@@ -35,12 +41,19 @@ class Identification < ActiveRecord::Base
     includes(:observation).where("observation.user_id = ?", user)
   }
   scope :for_others, includes(:observation).where("observations.user_id != identifications.user_id")
+  scope :for_self, includes(:observation).where("observations.user_id = identifications.user_id")
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
+  scope :of, lambda {|taxon| where("identifications.taxon_id = ?", taxon)}
+  scope :on, lambda {|date| where(Identification.conditions_for_date("identifications.created_at", date)) }
   scope :current, where(:current => true)
   scope :outdated, where(:current => false)
   
   def to_s
     "<Identification #{id} observation_id: #{observation_id} taxon_id: #{taxon_id} user_id: #{user_id}"
+  end
+
+  def to_plain_s(options = {})
+    "Identification #{id} by #{user.login}"
   end
 
   # Validations ###############################################################
@@ -78,7 +91,7 @@ class Identification < ActiveRecord::Base
     end
     observation.skip_identifications = true
     observation.update_attributes(:species_guess => species_guess, :taxon_id => taxon_id, :iconic_taxon_id => taxon.iconic_taxon_id)
-    ProjectUser.delay.update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+    ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
     true
   end
   
@@ -100,7 +113,7 @@ class Identification < ActiveRecord::Base
     
     observation.skip_identifications = true
     observation.update_attributes(:species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil)
-    ProjectUser.delay.update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+    ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
     true
   end
   
@@ -117,8 +130,8 @@ class Identification < ActiveRecord::Base
   # Set the project_observation curator_identification_id if the
   #identifier is a curator of a project that the observation is submitted to
   def update_curator_identification
-    return true if self.observation.id.blank?
-    Identification.delay.run_update_curator_identification(self)
+    return true if self.observation.blank?
+    Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(self)
     true
   end
   
@@ -140,14 +153,6 @@ class Identification < ActiveRecord::Base
     true
   end
   
-  def notify_observer
-    if self.observation.user_id != self.user_id && 
-        !self.observation.user.email.blank? && self.observation.user.prefers_identification_email_notification?
-      Emailer.delay.deliver_identification_notification(self)
-    end
-    true
-  end
-  
   def expire_caches
     Identification.delay.expire_caches(self.id)
     true
@@ -164,7 +169,7 @@ class Identification < ActiveRecord::Base
   # Revise the project_observation curator_identification_id if the
   # a curator's identification is deleted to be nil or that of another curator
   def revisit_curator_identification
-    Identification.delay.run_revisit_curator_identification(self.observation_id, self.user_id)
+    Identification.delay(:priority => INTEGRITY_PRIORITY).run_revisit_curator_identification(self.observation_id, self.user_id)
     true
   end
   
@@ -201,15 +206,22 @@ class Identification < ActiveRecord::Base
     return true if self.taxon_id == identification.taxon_id
     self.taxon.in_taxon? identification.taxon
   end
+
+  def update_quality_metrics
+    if captive == "1"
+      QualityMetric.vote(user, observation, QualityMetric::WILD, false)
+    elsif captive == "0" && (qm = observation.quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
+      qm.update_attributes(:agree => true)
+    end
+    true
+  end
   
   # Static ##################################################################
   
   def self.expire_caches(ident)
     ident = Identification.find_by_id(ident) unless ident.is_a?(Identification)
     return unless ident
-    ctrl = ActionController::Base.new
-    ctrl.expire_fragment(ident.observation.component_cache_key(:for_owner => true))
-    ctrl.expire_fragment(ident.observation.component_cache_key)
+    Observation.expire_components_for(ident.observation_id)
   rescue => e
     puts "[DEBUG] Failed to expire caches for #{ident}: #{e}"
     puts e.backtrace.join("\n")
@@ -254,6 +266,21 @@ class Identification < ActiveRecord::Base
         ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
         Project.delay.update_observed_taxa_count(po.project_id)
       end
+    end
+  end
+
+  def self.update_for_taxon_change(taxon_change, taxon, options = {})
+    input_taxon_ids = taxon_change.input_taxa.map(&:id)
+    scope = Identification.current.where("identifications.taxon_id IN (?)", input_taxon_ids).scoped
+    scope = scope.where(:user_id => options[:user]) if options[:user]
+    scope = scope.where("identifications.id IN (?)", options[:records]) unless options[:records].blank?
+    scope = scope.where(options[:conditions]) if options[:conditions]
+    scope = scope.includes(options[:include]) if options[:include]
+    scope = scope.where("identifications.created_at < ?", Time.now)
+    scope.find_each do |ident|
+      new_ident = Identification.create(:observation => ident.observation, :taxon => taxon, 
+        :user => ident.user, :taxon_change => taxon_change)
+      yield(new_ident) if block_given?
     end
   end
   

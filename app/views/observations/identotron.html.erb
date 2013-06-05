@@ -17,7 +17,7 @@
 -%>
 
 <%- content_for(:title) do -%>
-  Identotron
+  <%=t :identotron %>
 <%- end -%>
 
 <%- content_for(:extracss) do -%>
@@ -33,7 +33,8 @@
     .identotron_taxa .headercol .taxon .othernames { display: inline; }
     .photos .nophoto {padding: 50px; text-align: center; background-color: #eee;}
     #controls .ui-chooser { vertical-align: top; }
-    #observation {background-color:white; box-shadow: #aaa 0px 1px 10px; border-radius: 10px; padding:10px; z-index:100;}
+    #controls .text, #controls select {display:block; width: 275px; margin-bottom: 10px;}
+    #observationbox, #controlsbox {background-color:white; box-shadow: #aaa 0px 1px 10px; border-radius: 10px; padding:10px; z-index:100;}
     #observation .observation {border: 0 transparent;}
     .comprehensive_notice { padding: 5px 10px; box-shadow: #aaa 0px 1px 3px; border-radius: 5px;}
     .identotron_taxa .listed_taxon {
@@ -41,17 +42,21 @@
       padding-bottom:10px;
       border-bottom: 1px solid #eee;
     }
+    .identotron_taxa .map { background: #eee url(/images/spinner-small-on_eeeeee.gif) center center no-repeat; }
+    .sticky {position:fixed; top: 10px;}
+    #side {width:310px;}
   </style>
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= google_maps_js %>
   <%= javascript_include_tag 'jquery/plugins/jqModal',
                              'modal_image',
                              "jquery/plugins/jquery.ba-bbq.min", 
                              'inaturalist/map3', 
+                             'taxon_guide',
                              "jquery/plugins/inat/taxonmap",
-                             "jquery/plugins/inat/fixed_follower.js" %>
+                             'jquery/plugins/waypoints.min' %>
     
   <script type="text/javascript" charset="utf-8">
     window.taxon = <%= @taxon.to_json(:methods => [:html]).html_safe %>
@@ -65,7 +70,11 @@
     var REPLACE_EXISTING = 2
     
     $(document).ready(function() {
-      $('#observation').fixedFollower()
+      $.waypoints.settings.scrollThrottle = 30;
+      $('#side').waypoint(function(event, direction) {
+        $(this).toggleClass('sticky', direction === "down")
+        event.stopPropagation()
+      })
       var currentState = $.deparam.fragment()
       $('#placechooser').chooser({
         collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
@@ -79,15 +88,30 @@
         defaultSources: defaultTaxa,
         chosen: currentState.taxon ? taxon : null
       })
+      $('#controls select[multiple]').val(currentState.colors)
+      $('#controls select[multiple]').multiselect({
+        header: false,
+        noneSelectedText: I18n.t('none'),
+        selectedText: function(selected, total, elts) {
+          if (selected > 2) {
+            return '<strong>'+selected+' '+I18n.t('colors')+'</strong>'
+          }
+          var html = ''
+          for (var i=0; i < elts.length; i++) {
+            html += '<span class="colorfield '+elts[i].value+'">'+I18n.t(elts[i].value)+'</span>'
+          }
+          return html
+        }
+      })
       
       $('#controls').submit(function() {
-        var state = $.deparam.querystring($(this).serialize())
+        var state = $.deparam.querystring(TaxonGuide.cleanParamString($(this).serialize()))
         delete state.page
         $.bbq.pushState(state, REPLACE_EXISTING)
         return false
       })
       
-      $('#placechooser, #taxonchooser').change(function() {
+      $('#placechooser, #taxonchooser, #colorchooser').change(function() {
         $(this).parents('form:first').submit()
       })
       $('#guidesearch').keypress(function(e) {
@@ -99,11 +123,11 @@
       
       $(window).bind("hashchange", function(e) {
         var state = $.bbq.getState()
-        var url = '/guide?' + $.param(state)
+        var url = '/places/guide?' + $.param(state)
         url += '&partial=identotron_taxa&per_page=30'
         $('#taxa').shades('open', {
           css: {'background-color': 'white'}, 
-          content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">Loading...</span></center>'
+          content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">'+I18n.t('loading')+'</span></center>'
         })
         
         $('#guidesearch').val(state.q)
@@ -151,9 +175,9 @@
                   link        = $('<a></a>').attr('href', url).html(content)
               $('#taxa').prepend(
                 $('<div class="success status comprehensive_notice stacked"></div>').append(
-                  "<strong>Comprehensive list: </strong>",
+                  "<strong><%=t :comprehensive_list %>: </strong>",
                   link,
-                  $('<span class="helptip right"></span>').attr('rel', "iNat believes this is a complete listing of this taxon in this place.")
+                  $('<span class="helptip right"></span>').attr('rel', '<%=t :inat_believes_this_is_a_complete_listing, :site_name => SITE_NAME_SHORT %>')
                 )
               )
               buildHelpTips()
@@ -161,23 +185,30 @@
           } else {
             $('#taxa .comprehensive_notice').remove()
           }
-          $('#taxa .map').taxonMap({
-            observationsJsonUrl: false,
-            preserveViewport: true,
-            latitude:  observation ? observation.latitude : null,
-            longitude: observation ? observation.longitude : null
-          })
-          if (observation) {
-            $('#taxa .map').each(function() {
+          $('#taxa .map').waypoint(function() {
+            if ($(this).data('taxonMap')) return
+            $(this).taxonMap({
+              observationsJsonUrl: false,
+              preserveViewport: true,
+              latitude:  observation ? observation.latitude : null,
+              longitude: observation ? observation.longitude : null
+            })
+            if (observation) {
               $(this).data('taxonMap').addObservation(observation)
               if (observation.latitude) {
                 $(this).data('taxonMap').setCenter(new google.maps.LatLng(observation.latitude, observation.longitude))
               }
-            })
+            }
+          }, {
+            triggerOnce: true,
+            offset: '100%'
+          })
+
+          if (observation) {
             $('#taxa .headercol').each(function() {
               var taxonId = $(this).parents('.listed_taxon:first').attr('data-taxon-id')
               $(this).prepend(
-                $('<a class="glaucous right button">Add ID</a>')
+                $('<a class="glaucous right button"><%=t :add_id %></a>')
                   .attr('href', '/identifications/agree?observation_id='+observation.id+'&taxon_id=')
                   .attr('data-loading-click', true)
                   .click(loadingClickForLink)
@@ -211,48 +242,97 @@
 <%- end -%>
 
 <div id="pageheader">
+  <div class="right">
+    <%= link_to_dialog t(:identotron_help), :width => 600 do %>
+
+        <%= t(:the_identotron_is_a_tool_to, :place=>CONFIG.site_name_short).html_safe %>
+
+      <table style="width:100%">
+        <tr>
+          <td width="30%">
+            <div class="quiet box">
+              <%= t :filter_by_place_taxon_and_color %>
+            </div>
+
+            <div class="quiet box">
+              <%= t :check_out_what_the_observation %>
+            </div>
+          </td>
+          <td width="70%">
+            <div class="success status comprehensive_notice stacked">
+              <%= t :if_matches_come_from_a_comprehensive_list %>
+            </div>
+
+            <div class="quiet box" style="height:200px;">
+              <%= t(:matching_species_will_shown_up_here, :place=>CONFIG.site_name_short) %>
+            </div>
+          </td>
+        </tr>
+      </table>
+    <% end -%>
+  </div>
   <% if @observation -%>
     <div class="breadcrumbs">
-      <%= link_to 'Back to observation', @observation, :class => 'back crumb' %>
+      <%= link_to t(:back_to_observation), @observation, :class => 'back crumb' %>
     </div><!-- /#breadcrumbs -->
   <% end -%>
-  <h2 class="fadednowrap">Identotron <%= "for #{@observation.to_plain_s}" if @observation %></h2>
-  <p class="description">Browse species that occur near this observation.</p>
+  <h2 class="fadednowrap"><%= t :identotron %> <%= t(:for) + ' ' + @observation.to_plain_s if @observation %></h2>
+  <p class="description"><%= t :browse_species_that_occur_near_this_observation %></p>
 </div>
 
 <div class="column span-8 append-1">
-  <% if @observation -%>
-    <div id="observation">
-      <div class="photos">
-        <%- photos = @observation.observation_photos.sort_by{|o| o.id}.map{|o| o.photo} -%>
-        <% unless photos.blank? -%>
-          <div class="stacked">
-            <%= link_to image_tag(photos[0].medium_url), photos[0].becomes(Photo), :class => "zoomable",
-              :title => "Photo #{photos[0].id}, #{photos[0].attribution}" %>
-          </div>
-          <% for photo in photos[1..-1] %>
-            <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable", :title => "Photo #{photo.id}, #{photo.attribution}" %>
-          <% end %>
-        <% end -%>
-      </div>
-      <div class="observations mini">
-        <%= render :partial => "observations/cached_component", :object => @observation %>
-      </div>
-      
+  <div id="side">
+    <div class="stacked" id="controlsbox">
+      <%= link_to_function t(:hide).humanize, "$(this).siblings('form').slideToggle(); $(this).text(function() { return $(this).text() == '#{t(:hide).humanize}' ? '#{t(:show).humanize}' : '#{t(:hide).humanize}'})", :class => "right" %>
+      <h3><%= t :controls %></h3>
+      <%= form_tag url_for, :method => :get, :id => "controls" do %>
+        <div class="field">
+          <label><%= t :search %></label><br/>
+          <%= text_field_tag :q, @q, :id => "guidesearch", :class => "text", :placeholder => t(:search_species) %>
+        </div>
+        <div class="field">
+          <label><%= t :place %></label><br/>
+          <%= text_field_tag :place, "", :id => "placechooser", :class => "text", :placeholder => t(:type_place_name) %>
+        </div>
+        <div class="field">
+          <label><%= t :taxon %></label><br/>
+          <%= text_field_tag :taxon, "", :id => "taxonchooser", :class => "text", :placeholder => t(:type_taxon_name) %>
+        </div>
+        <div class="field">
+          <label><%= t :colors %></label><br/>
+          <%= select_tag "colors[]", options_for_select(Color.order('value').map {|value| [t(value.value), value.value]}, :selected => @colors), :multiple => true, :id => "colorchooser" %>
+        </div>
+        <%= submit_tag "Filter", :class => "glaucous button" %>
+      <% end -%>
     </div>
-  <% end -%>
+    <% if @observation -%>
+      <div id="observationbox">
+        <%= link_to_function t(:hide).humanize, "$(this).siblings('#observation').slideToggle(); $(this).text(function() { return $(this).text() == '#{t(:hide).humanize}' ? '#{t(:show).humanize}' : '#{t(:hide).humanize}'})", :class => "right" %>
+        <h3><%= t :observation %></h3>
+        <div id="observation">
+          <div class="photos">
+            <%- photos = @observation.observation_photos.sort_by{|o| o.id}.map{|o| o.photo} -%>
+            <% unless photos.blank? -%>
+              <div class="stacked">
+                <%= link_to image_tag(photos[0].try_methods(:medium_url, :small_url)), photos[0].becomes(Photo), :class => "zoomable",
+                  :title => t(:photo_by_id_attribution, :id=> "#{photos[0].id}", :attribution=> "#{photos[0].attribution}") %>
+              </div>
+              <% for photo in photos[1..-1] %>
+                <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable", :title => t(:photo_by_id_attribution, :id=> "#{photos[0].id}", :attribution=> "#{photos[0].attribution}") %>
+              <% end %>
+            <% end -%>
+          </div>
+          <div class="observations mini">
+            <%= render :partial => "observations/cached_component", :object => @observation %>
+          </div>
+        </div>
+      </div>
+    <% end -%>
+  </div>
   &nbsp;
 </div>
 
 <div class="last column span-15">
-  <div class="stacked">
-    <%= form_tag url_for, :method => :get, :id => "controls", :class => "inline buttonrow" do %>
-      <%= text_field_tag :q, @q, :id => "guidesearch", :class => "text", :placeholder => "Search" %>
-      <%= text_field_tag :place, "", :id => "placechooser", :class => "text", :placeholder => "Type place name" %>
-      <%= text_field_tag :taxon, "", :id => "taxonchooser", :class => "text", :placeholder => "Type taxon name" %>
-      <%= submit_tag "Filter", :class => "glaucous button" %>
-    <% end -%>
-  </div>
   <div id="listed_taxa">
     <div id="taxa" class="clear taxa fluid medium grid">
     </div>

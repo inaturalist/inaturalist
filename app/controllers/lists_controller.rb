@@ -2,14 +2,16 @@ class ListsController < ApplicationController
   include Shared::ListsModule
   include Shared::GuideModule
 
-  before_filter :authenticate_user!, :except => [:index, :show, :by_login, :taxa]  
+  before_filter :authenticate_user!, :except => [:index, :show, :by_login, :taxa, :guide,
+  :cached_guide, :guide_widget, :batch_edit]  
   before_filter :load_list, :except => [:index, :new, :create, :by_login]
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
-    :remove_taxon, :add_taxon_batch, :reload_from_observations]
+    :remove_taxon, :reload_from_observations]
+  before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
   before_filter :load_find_options, :only => [:show]
   before_filter :load_user_by_login, :only => :by_login
   
-  caches_page :show, :if => Proc.new {|c| c.request.format.csv?}
+  caches_page :show, :if => Proc.new {|c| c.request.format == :csv}
   
   LIST_SORTS = %w"id title"
   LIST_ORDERS = %w"asc desc"
@@ -263,7 +265,7 @@ class ListsController < ApplicationController
       :done => "Success!",
       :error => "Something went wrong",
       :timeout => "Request timed out, please try again later",
-      :processing => "Processing..."
+      :processing => t(:processing3p)
     }.merge(messages)
     
     respond_to do |format|
@@ -293,7 +295,7 @@ class ListsController < ApplicationController
         return false
       end
     else
-      unless @list.user.id == current_user.id || current_user.is_admin?
+      unless @list.user_id == current_user.id || current_user.is_admin?
         flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
         redirect_back_or_default('/')
         return false

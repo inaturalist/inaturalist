@@ -8,40 +8,40 @@
   <table class="quality_assessment">
     <tbody>
       <tr>
-        <td>Community-supported ID?</td>
+        <td> <%= t(:community_supported_id) %></td>
         <td>
           <% if o.community_supported_id? %>
-            <span class="good">yes</span>
+            <span class="good"><%=t :yes %></span>
           <% else %>
-            no
+            <%=t :no %>
           <% end -%>
           <div class="small meta">
-            <%= o.num_identification_agreements == 1 ? "#{o.num_identification_agreements} person agrees" : "#{o.num_identification_agreements} people agree" %>
+            <%= o.num_identification_agreements == 1 ? t(:n_person_agrees, :amount => o.num_identification_agreements) : t(:n_people_agrees, :amount=>"#{o.num_identification_agreements}")  %>
           </div>
           <div class="small meta">
-            <%=  o.num_identification_disagreements %> disagree<%= 's' if o.num_identification_disagreements == 1 %>
+            <%= o.num_identification_disagreements == 1 ? t(:n_person_disagrees, :amount => o.num_identification_disagreements) : t(:n_people_disagrees, :amount=>"#{o.num_identification_disagreements}")  %>
           </div>
         </td>
       </tr>
 
       <tr>
-        <td>Date?</td>
+        <td><%= t(:observation_date) %></td>
         <td>
-          <%= o.observed_on? ? '<span class="good">yes</span>'.html_safe : 'no' %>
+          <%= o.observed_on? ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : t(:no) %>
         </td>
       </tr>
 
       <tr>
-        <td>Georeferenced?</td>
+        <td><%= t(:georeferenced) %></td>
         <td>
-          <%= o.georeferenced? ? '<span class="good">yes</span>'.html_safe : 'no' %>
+          <%= o.georeferenced? ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : t(:no) %>
         </td>
       </tr>
 
       <tr>
-        <td>Photo?</td>
+        <td> <%= t(:photo) %></td>
         <td>
-          <%= o.photos.exists? ? '<span class="good">yes</span>'.html_safe : 'no' %>
+          <%= o.photos.exists? ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : t(:no) %>
         </td>
       </tr>
 
@@ -56,12 +56,12 @@
     </tbody>
     <tfoot>
       <tr>
-        <td>Quality grade</td>
+        <td><%= t(:quality_grade) %></td>
         <td>
           <% if o.research_grade? -%>
-            <span class="research_grade_notice"><%= o.quality_grade %></span>
+            <span class="research_grade_notice"><%=t o.quality_grade %></span>
           <% else %>
-            <%= o.quality_grade %>
+            <%=t o.quality_grade %>
           <% end -%>
         </td>
       </tr>
@@ -70,17 +70,17 @@
 </div>
 
 <div class="summary inlineblock">
-  <label>Quality grade: </label>
+  <label><%= t(:quality_grade_colon) %></label>
   <% if o.research_grade? -%>
-    <span class="research_grade_notice"><%= o.quality_grade %></span>
+    <span class="research_grade_notice"><%=t o.quality_grade %></span>
   <% else %>
-    <%= o.quality_grade %>
+    <%=t o.quality_grade %>
   <% end -%>
 </div>
 
 <span class="button">
-  <%= link_to_function "details", "$(this).parent().siblings('.summary').hide().siblings('.details').slideDown(); $(this).hide().next().show();" %>
-  <%= link_to_function "hide details", "$(this).parent().siblings('.summary').show().siblings('.details').slideUp();   $(this).hide().prev().show();", :style => "display:none" %>
+  <%= link_to_function t(:details), "$(this).parent().siblings('.summary').hide().siblings('.details').slideDown(); $(this).hide().next().show();" %>
+  <%= link_to_function t(:hide_details), "$(this).parent().siblings('.summary').show().siblings('.details').slideUp();   $(this).hide().prev().show();", :style => "display:none" %>
 </span>
 
 <div id="quality_tip" style="display:none">

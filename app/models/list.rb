@@ -72,7 +72,7 @@ class List < ActiveRecord::Base
       # re-apply list rules to the listed taxa
       listed_taxon.save
       unless listed_taxon.valid?
-        logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
+        Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
           "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
         listed_taxon.destroy
       end
@@ -146,7 +146,7 @@ class List < ActiveRecord::Base
   
   def generate_csv(options = {})
     controller = options[:controller] || FakeView.new
-    attrs = %w(taxon_name occurrence_status establishment_means adding_user_login first_observation last_observation url created_at updated_at)
+    attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation last_observation url created_at updated_at taxon_common_name)
     ranks = %w(kingdom phylum class sublcass superorder order suborder superfamily family subfamily tribe genus)
     headers = options[:taxonomic] ? ranks + attrs : attrs
     fname = options[:fname] || "#{to_param}.csv"
@@ -161,14 +161,14 @@ class List < ActiveRecord::Base
       :include => [:taxon, :user]
     }
     if is_a?(CheckList) && is_default?
-      find_options[:select] = "DISTINCT (taxon_ancestor_ids || '/' || listed_taxa.taxon_id), listed_taxa.*"
+      find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
       find_options[:conditions] = ["place_id = ?", place_id]
     else
       find_options[:conditions] = ["list_id = ?", id]
     end
     
     ancestor_cache = {}
-    FasterCSV.open(tmp_path, 'w') do |csv|
+    CSV.open(tmp_path, 'w') do |csv|
       csv << headers
       ListedTaxon.do_in_batches(find_options) do |lt|
         row = []
@@ -225,7 +225,7 @@ class List < ActiveRecord::Base
   
   def self.icon_preview_cache_key(list)
     list_id = list.is_a?(List) ? list.id : list
-    {:controller => "lists", :action => "icon_preview", :list_id => list_id}
+    FakeView.url_for(:controller => "lists", :action => "icon_preview", :list_id => list_id)
   end
   
   def self.refresh_for_user(user, options = {})
@@ -249,19 +249,34 @@ class List < ActiveRecord::Base
     end
     
     target_lists.each do |list|
-      logger.debug "[DEBUG] refreshing #{list}..."
+      Rails.logger.debug "[DEBUG] refreshing #{list}..."
       list.refresh(options)
     end
     true
   end
   
-  def self.refresh(list, options = {})
-    list = List.find_by_id(list) unless list.is_a?(List)
-    if list.blank?
-      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh list #{list} because it doesn't exist."
-    else
-      list.refresh(options)
+  def self.refresh(options = {})
+    start = Time.now
+    log_key = "#{name}.refresh #{start}"
+    Rails.logger.info "[INFO #{Time.now}] Starting #{log_key}, options: #{options.inspect}"
+    lists = options.delete(:lists)
+    lists ||= [options] if options.is_a?(self)
+    lists ||= [find_by_id(options)] unless options.is_a?(Hash)
+    if options[:taxa]
+      lists ||= self.joins(:listed_taxa).
+        where("lists.type = ? AND listed_taxa.taxon_id IN (?)", self.name, options[:taxa])
     end
+
+    if lists.blank?
+      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh lists for #{options.inspect} " + 
+        "because there are no matching lists."
+    else
+      lists.each do |list|
+        Rails.logger.info "[INFO #{Time.now}] #{log_key}, refreshing #{list}"
+        list.delay(:priority => INTEGRITY_PRIORITY).refresh(options)
+      end
+    end
+    Rails.logger.info "[INFO #{Time.now}] #{log_key}, finished in #{Time.now - start}s"
   end
   
   def self.refresh_with_observation(observation, options = {})

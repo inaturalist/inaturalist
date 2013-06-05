@@ -1,28 +1,32 @@
 <% observations ||= @observations -%>
+
 <% observations.each_with_index do |observation, i| %>
   <% i = observation.id unless observation.new_record? -%>
   <%= fields_for("observations[]", observation, :index => i) do |o| %>
-    <div class="column span-24 observation" <%= "id='observation-#{observation.id}'" unless observation.new_record? %>>
+    <div class="column span-24 observation" <%= raw "id='observation-#{observation.id}'" unless observation.new_record? %>>
       <% unless observation.errors.empty? %>
         <div class="errorcol last column span-21 prepend-1 append-2">
           <div class="error">
-            <strong>There were some problems saving this observation:</strong>
+            <strong><%=t :there_were_some_problems_saving_this_observation %>:</strong>
             <ul>
               <% for error in observation.errors %>
-              <li><%= error.first.humanize %> <%= error.last %></li>
+              <li><%= error %></li>
               <% end %>
             </ul>
           </div>
         </div>
       <% end %>
       <% if @observation_photos -%>
-        <% existing_observation_photo = @observation_photos.detect do |op|
-          observation.photos.map(&:native_photo_id).include?(op.photo.native_photo_id)
-        end %>
+        <% 
+          existing_observation_photo = @observation_photos.detect do |op|
+            native_photo_ids = observation.observation_photos.map{|op| op.photo.native_photo_id}
+            native_photo_ids.include?(op.photo.native_photo_id)
+          end
+        %>
         <% if existing_observation_photo -%>
           <div class="clear notice existing_obs_notice">
             <%= image_tag existing_observation_photo.photo.thumb_url %>
-            <strong>Heads up:</strong> this photo is already associated with an
+            <strong><%=t :heads_up %>:</strong> this photo is already associated with an
             <%= link_to "existing observation", existing_observation_photo.observation, :class => "readmore", :target => "_blank" %>
           </div>
         <% end -%>
@@ -45,7 +49,7 @@
           
           <div class="id_please_field">
             <%= o.check_box :id_please %>
-            <%= o.label :id_please, "ID Please!", :class => 'description' %>
+            <%= o.label :id_please, t(:full_id_please?), :class => 'description' %>
           </div>
         </div>
         <div class="column span-7">
@@ -62,8 +66,8 @@
             <%= o.text_field(:longitude, :class => 'longitude text', "data-tip" => "Longitude in decimal degrees, e.g. -122.123") %>
 
             <span class="button">
-              <%= link_to_function("edit", "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
-              <%= link_to_function("hide", "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
+              <%= link_to_function(t(:edit), "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
+              <%= link_to_function(t(:hide), "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
             </span>
             
             <div>
@@ -83,8 +87,8 @@
             <%- unless observation.new_record? -%>
               or
               <div class="deletelink">
-                <span class="loading status" style="display: none">Deleting...</span>
-                <%= link_to_function 'Delete', 
+                <span class="loading status" style="display: none"><%= t :deleting %></span>
+                <%= link_to_function t(:delete),
                   "iNaturalist.restfulDelete('#{observation_path(observation)}', {" + 
                     "data: {" + 
                       "authenticity_token: encodeURIComponent(#{form_authenticity_token.inspect.html_safe})" + 
@@ -108,7 +112,7 @@
         <div id="detailscol" class="column span-21">
           <div class="clear compactfield field">
             <a href="#" onclick="$('#descriptiontags_<%= i %>').slideToggle(); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
-              Description, Tags, &amp; More
+              <%= raw t(:description_tags_more) %>
             </a>
             <div id="descriptiontags_<%= i %>" style="display: none" class="compactfieldcontent">
               <div class="column span-14">
@@ -133,6 +137,10 @@
                   </dl>
                 </div>
               </div>
+              <div class="last column span-20">
+                <label><%= t :more_fields %></label><br/>
+                <%= render 'observation_field_form_fields', :builder => o, :index => i %>
+              </div>
             </div>
           </div>
         </div>
@@ -148,7 +156,7 @@
         <div class="column span-21">
           <div class="clear compactfield">
             <a href="#" onclick="$(this).next().slideToggle(); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
-              Photos
+              <%=t :photos %>
             </a>
             <div id="photos_<%= i %>" style="display: none" class="compactfieldcontent observation_photos photo_list">
               <%= render :partial => "photos/photo_list_form", :locals => { 
@@ -159,11 +167,10 @@
               } %>
             </div>
             <div class="compactfieldcontent" style="display: none">
-              <span>We currently support Flickr for image hosting.</span>
-              <%= link_to "You can activate your Flickr account with " + 
-                          "iNaturalist to add photos by clicking on this link.",
-                          :controller => 'flickr',
-                          :action => 'link' %>
+              <span><%=t :we_currently_support_flickr_for_image_hosting %></span>
+              <%= link_to t(:linked_flickr_hotwo, :site_name => SITE_NAME),
+                          auth_url_for('flickr'),
+                          :target => "_blank" %>
             </div>
           </div>
         </div>

@@ -1,0 +1,29 @@
+<h1>Listing guide_taxa</h1>
+
+<table>
+  <tr>
+    <th>Guide</th>
+    <th>Taxon</th>
+    <th>Name</th>
+    <th>Display name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @guide_taxa.each do |guide_taxon| %>
+  <tr>
+    <td><%= guide_taxon.guide_id %></td>
+    <td><%= guide_taxon.taxon_id %></td>
+    <td><%= guide_taxon.name %></td>
+    <td><%= guide_taxon.display_name %></td>
+    <td><%= link_to 'Show', guide_taxon %></td>
+    <td><%= link_to 'Edit', edit_guide_taxon_path(guide_taxon) %></td>
+    <td><%= link_to 'Destroy', guide_taxon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Guide taxon', new_guide_taxon_path %>

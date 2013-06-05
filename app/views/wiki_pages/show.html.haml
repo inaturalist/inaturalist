@@ -1,0 +1,18 @@
+- content_for :title do
+  = @title = @page.title
+- content_for :extrajs do
+  = google_maps_js
+  = javascript_include_tag 'inaturalist/map3'
+  :javascript
+    $(document).ready(function() {
+      $('#tabs, .tabs').tabs()
+    })
+%h2=h @title
+  
+= wiki_content @page.content
+
+.meta.ui
+  - if is_curator?
+    .right
+      = wiki_page_actions
+  = wiki_page_info

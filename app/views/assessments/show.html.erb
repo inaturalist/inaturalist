@@ -1,0 +1,108 @@
+<%- content_for(:title) do -%>
+  <%=h @parent_display_name %>'s assessments
+<%- end -%>
+<% if params[:iframe].present? %>
+  <% content_for(:extrajs) do %>
+    <script>
+      $(document).ready(function(){
+        $('a').live('click', function() {
+          if ($(this).attr('href') && !$(this).attr('href').match(/^\#/)) {
+            $(this).attr('target', '_blank')
+          }
+        })
+      })
+    </script>
+  <% end %>
+  <%- content_for(:extracss) do -%>
+    <style type="text/css" media="screen">
+      .container {width:auto;padding:10px;}
+      #imagecol {display:none;}
+    </style>
+  <% end -%>
+<% end %>
+
+<% content_for(:extracss) { stylesheet_link_tag "assessments" } %>
+<%# JY: This JS is used to show the extra comments on assessment sections %>
+<% content_for :extrajs do %>
+  <script>
+    $(document).ready(function(){
+      $('.assessment-section-comments-remainder').css('display', 'none');
+      $('a')
+      $('.assessment-section-comments-show-remainder-button').toggle(function(){
+        $(this).text('Show Fewer Comments');
+        $(this).parent().find('.assessment-section-comments-remainder').slideDown();
+      }, function() {
+        $(this).text('Show All Comments');
+        $(this).parent().find('.assessment-section-comments-remainder').slideUp();
+      });
+    });
+  </script>
+<% end %>
+
+<div class="clear <%= 'assessment-iframe' if params[:iframe].present? %> ">
+  <div class="column span-24 assessment-show">
+    <div class="clear">
+      <% if params[:iframe].blank? %>
+        <%- before = capture do %>
+          <div class="crumbs clear">
+            <% if params[:preview].blank? %>
+              <%= link_to("Back to #{@assessment.project.title} assessments", 
+                project_assessments_path(@assessment.project), 
+                :class => "back crumb") %>
+            <% end -%>
+            <% if @project.curated_by?(current_user) %>
+              <%= link_to 'edit assessment', edit_assessment_path(@assessment), :class => 'edit-button' %>
+            <% end %>
+          </div>
+        <% end -%>
+        <%= render :partial => "shared/by_project_header", :locals => {
+          :model_name => "Assessment", 
+          :project => @assessment.project,
+          :before => before } %>
+      <% else %>
+        <%= link_to "View On #{CONFIG.site_name}", assessment_path(@assessment), :class => 'edit-button' %>
+        <h3>
+          <%= @assessment.display_name %>
+          Assessment
+        </h3>
+      <% end %>
+    </div>
+
+    <div class="column span-16">
+      <div class="page-section">
+        <%= formatted_user_text(@assessment.description, 
+          :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES) %>
+        <% if @assessment.completed_at %>
+          <label for="completed_at">
+            Completed At
+          </label>
+          <p>
+            <%= @assessment.completed_at || '<i>Not Completed</i>'.html_safe %>
+          </p>
+        <% end %>
+      </div>
+      <%= render :partial => 'asssessment_sections_toc', :locals => {:assessment => @assessment} %>
+    </div>
+    <div id="imagecol" class="last column span-8">
+      <% if photo = @assessment.taxon.default_photo %>
+        <div class="stacked"><%= link_to taxon_image(@assessment.taxon, :size => "medium"), @assessment.taxon %></div>
+        <div class="meta">
+          Photo: <%= link_to photo.attribution, native_url_for_photo(photo) %>
+        </div>
+      <% else -%>
+        <%= render :partial => 'taxa/nophoto', :object => @assessment.taxon %>
+      <% end -%>
+    </div>
+  </div>
+
+  <div class="column span-24">   
+    <%= render :partial => 'asssessment_sections', :locals => {:assessment => @assessment} %>
+  </div>
+
+  <% if params[:iframe].blank? %>
+    <div class="column prepend-4 span-16 append-4 <%= 'assessment-iframe' if params[:iframe].present? %>">
+      <%= separator %>
+      <%= render :partial => 'embed_iframe', :locals => {:assessment => @assessment} %>
+    </div>
+  <% end %>
+</div>

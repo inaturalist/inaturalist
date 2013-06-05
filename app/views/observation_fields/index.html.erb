@@ -1,16 +1,23 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Observation Fields" %>
+  <%= @title = t(:observation_fields) %>
 <%- end -%>
+<%= form_tag(observation_fields_path, :method => :get, :class => "right smallbuttons buttonrow") do %>
+  <%= text_field_tag :q, @q, :class => 'text' %>
+  <% unless @q.blank? -%>
+    <%= link_to t(:clear).capitalize, observation_fields_path, :class => "glaucous button" %>
+  <% end -%>
+  <%= submit_tag t(:search), :class => 'last default button' %>
+<% end %>
 <h2><%= @title %></h2>
 <p class="description">
-  Observation fields are additional data fields that can be added to observations.
+  <%=t :observation_fields_are_additional %> 
 </p>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Datatype</th>
-    <th>Description</th>
+    <th><%=t :name %></th>
+    <th><%=t :datatype %></th>
+    <th><%=t :description %></th>
   </tr>
 
 <% @observation_fields.each do |observation_field| %>
@@ -18,9 +25,13 @@
     <td><%=h link_to observation_field.name, observation_field %></td>
     <td><%=h observation_field.datatype %></td>
     <td><%=h observation_field.description %></td>
-    <% if logged_in? && (current_user.id == observation_field.id || current_user.is_curator?) -%>
-      <td><%= link_to 'Edit', edit_observation_field_path(observation_field) %></td>
-      <td><%= link_to 'Destroy', observation_field, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if observation_field.editable_by?(current_user) -%>
+      <td><%= link_to t(:edit), edit_observation_field_path(observation_field) %></td>
+      <td>
+        <%= link_to t(:delete), observation_field, 
+          :confirm => 'Are you sure? Other people may be using this field too.', 
+          :method => :delete %>
+      </td>
     <% end -%>
   </tr>
 <% end %>
@@ -28,4 +39,4 @@
 
 <%= will_paginate @observation_fields %>
 
-<%= link_to 'New observation field', new_observation_field_path, :class => "button" %>
+<%= link_to t(:new_observation_field), new_observation_field_path, :class => "button" %>

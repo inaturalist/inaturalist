@@ -1,15 +1,14 @@
+#encoding: utf-8
 class Photo < ActiveRecord::Base
-  # comment that's posted to invite someone to upload that photo to inat
-  # {{INVITE_LINK}} gets replaced with the url
-  DEFAULT_INVITE_COMMENT = "Great photo!  You should post it to iNaturalist.org: {{INVITE_LINK}}"
-
   belongs_to :user
   has_many :observation_photos, :dependent => :destroy
   has_many :taxon_photos, :dependent => :destroy
+  has_many :guide_photos, :dependent => :destroy, :inverse_of => :photo
   has_many :observations, :through => :observation_photos
   has_many :taxa, :through => :taxon_photos
   
   attr_accessor :api_response
+  serialize :metadata
   
   # licensing extras
   attr_accessor :make_license_default
@@ -19,7 +18,7 @@ class Photo < ActiveRecord::Base
   cattr_accessor :descendent_classes
   cattr_accessor :remote_descendent_classes
   
-  before_save :set_license
+  before_save :set_license, :trim_fields
   after_save :update_default_license,
              :update_all_licenses
   
@@ -34,9 +33,19 @@ class Photo < ActiveRecord::Base
     4 => {:code => Observation::CC_BY,        :short => "CC BY",        :name => "Attribution License", :url => "http://creativecommons.org/licenses/by/3.0/"},
     5 => {:code => Observation::CC_BY_SA,     :short => "CC BY-SA",     :name => "Attribution-ShareAlike License", :url => "http://creativecommons.org/licenses/by-sa/3.0/"},
     6 => {:code => Observation::CC_BY_ND,     :short => "CC BY-ND",     :name => "Attribution-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nd/3.0/"},
-    7 => {:code => "PD",                      :short => "PD",           :name => "Public domain, no known copyright restrictions", :url => "http://flickr.com/commons/usage/"}
+    7 => {:code => "PD",                      :short => "PD",           :name => "Public domain", :url => "http://en.wikipedia.org/wiki/Public_domain"},
+    8 => {:code => "GFDL",                    :short => "GFDL",         :name => "GNU Free Documentation License", :url => "http://www.gnu.org/copyleft/fdl.html"}
   }
   LICENSE_NUMBERS = LICENSE_INFO.keys
+  LICENSE_INFO.each do |number, info|
+    const_set info[:code].upcase.gsub(/\-/, '_'), number
+  end
+
+  SQUARE = 75
+  THUMB = 100
+  SMALL = 240
+  MEDIUM = 500
+  LARGE = 1024
 
   validate :licensed_if_no_user
   
@@ -45,10 +54,10 @@ class Photo < ActiveRecord::Base
   end
   
   def licensed_if_no_user
-    if user.blank? && self.license == 0
+    if user.blank? && (license == COPYRIGHT || license.blank?)
       errors.add(
         :license, 
-        "must be a Creative Commons license if the photo wasn't added by an iNaturalist user.")
+        "must be set if the photo wasn't added by an #{CONFIG.site_name_short} user.")
     end
   end
   
@@ -56,6 +65,13 @@ class Photo < ActiveRecord::Base
     return true unless license.blank?
     return true unless user
     self.license = Photo.license_number_for_code(user.preferred_photo_license)
+    true
+  end
+
+  def trim_fields
+    %w(native_realname native_username).each do |c|
+      self.send("#{c}=", read_attribute(c).to_s[0..254]) if read_attribute(c)
+    end
     true
   end
   
@@ -68,9 +84,15 @@ class Photo < ActiveRecord::Base
     elsif (o = observations.first)
       o.user.name || o.user.login
     else
-      "anonymous Flickr user"
+      "anonymous"
     end
-    "#{license_short} #{name}"
+    if license == PD
+      "#{name}, no known copyright restrictions (#{license_name})"
+    elsif open_licensed?
+      "(c) #{name}, some rights reserved (#{license_short})"
+    else
+      "(c) #{name}, all rights reserved"
+    end
   end
   
   def license_short
@@ -96,23 +118,20 @@ class Photo < ActiveRecord::Base
   def creative_commons?
     license.to_i > COPYRIGHT && license.to_i < NO_COPYRIGHT
   end
+
+  def open_licensed?
+    license.to_i > COPYRIGHT && license != PD
+  end
   
   # Try to choose a single taxon for this photo.  Only works if class has 
   # implemented to_taxa
   def to_taxon
-    photo_taxa_from_scinames = try(:to_taxa, :lexicon => TaxonName::SCIENTIFIC_NAMES)
-    unless photo_taxa_from_scinames.blank?
-      unless photo_taxa_from_scinames.detect{|t| t.rank_level.blank?}
-        photo_taxa_from_scinames = photo_taxa_from_scinames.sort_by(&:rank_level)
-      end
-      return photo_taxa_from_scinames.detect(&:species_or_lower?) || photo_taxa_from_scinames.first
-    end
-    
-    photo_taxa = try(:to_taxa)
-    return nil if photo_taxa.blank?
-    unless photo_taxa.detect{|t| t.rank_level.blank?}
-      photo_taxa = photo_taxa.sort_by(&:rank_level)
-    end
+    return unless respond_to?(:to_taxa)
+    photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES, :valid => true, :active => true)
+    photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES) if photo_taxa.blank?
+    photo_taxa = to_taxa if photo_taxa.blank?
+    return if photo_taxa.blank?
+    photo_taxa = photo_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
     photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
   end
   
@@ -145,6 +164,32 @@ class Photo < ActiveRecord::Base
     return false if user.blank?
     user.id == user_id || observations.exists?(:user_id => user.id)
   end
+
+  def orphaned?
+    return false if observation_photos.loaded? ? observation_photos.size > 0 : observation_photos.exists?
+    return false if taxon_photos.loaded? ? taxon_photos.size > 0 : taxon_photos.exists?
+    return false if guide_photos.loaded? ? guide_photos.size > 0 : guide_photos.exists?
+    true
+  end
+
+  def source_title
+    self.class.to_s.gsub(/Photo$/, '').underscore.humanize.titleize
+  end
+
+  def best_url(size = "medium")
+    size = size.to_s
+    sizes = %w(original large medium small thumb square)
+    size = "medium" unless sizes.include?(size)
+    size_index = sizes.index(size)
+    methods = sizes[size_index.to_i..-1].map{|s| "#{s}_url"} + ['original']
+    try_methods(*methods)
+  end
+
+  def as_json(options = {})
+    options[:except] ||= []
+    options[:except] << :metadata
+    super(options)
+  end
   
   # Retrieve info about a photo from its native source given its native id.  
   # Should be implemented by descendents
@@ -163,9 +208,7 @@ class Photo < ActiveRecord::Base
     photos = Photo.all(:conditions => ["id IN (?)", [ids].flatten])
     return if photos.blank?
     photos.each do |photo|
-      if !photo.observation_photos.exists? && !photo.taxon_photos.exists?
-        photo.destroy
-      end
+      photo.destroy if photo.orphaned?
     end
   end
   
@@ -178,4 +221,12 @@ class Photo < ActiveRecord::Base
     LICENSE_INFO[number].try(:[], :code)
   end
   
+  def self.default_json_options
+    {
+      :methods => [:license_code, :attribution],
+      :except => [:original_url, :file_processing, :file_file_size, 
+        :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
+        :native_realname, :native_photo_id]
+    }
+  end
 end

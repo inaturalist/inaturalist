@@ -3,17 +3,6 @@ class FlickrController < ApplicationController
   before_filter :ensure_has_no_flickr_identity, :only => ['link']
   before_filter :return_here, :only => [:index, :show, :by_login, :options]
   
-  # This is the endpoint the user visits to link their iNaturalist account to
-  # their Flickr account directly after signup. Luckly we don't have to manage a
-  # whole lot from Flickr, they either have an account or don't, and Flickr
-  # handles the process of creating Flickr accounts and then authorizing the
-  # user.
-  def link
-    perms = params[:perms] || :write
-    token = flickr.get_request_token
-    @flickr_url = flickr.get_authorize_url(token['oauth_token'], :perms => perms)
-  end
-  
   # Finds photos for the logged-in user
   def photos
     f = get_flickraw
@@ -84,13 +73,13 @@ class FlickrController < ApplicationController
       end
     else
       @friend_id = params[:object_id]
-      @friend_id = nil if @friend_id=='null'
-
+      @friend_id = nil if @friend_id == 'null' || @friend_id.blank?
       search_params = {}
       if context == 'user'
         search_params['user_id'] = current_user.flickr_identity.flickr_user_id
+        @friend_id = nil
       elsif context == 'friends'
-        if @friend_id.nil? # if context is friends, but no friend id specified, we want to show the friend selector
+        if @friend_id.blank? # if context is friends, but no friend id specified, we want to show the friend selector
           @friends = flickr_friends
           render :partial => 'flickr/friends' and return
         end
@@ -106,7 +95,7 @@ class FlickrController < ApplicationController
       search_params['per_page'] = params[:limit] ||= 10
       search_params['text'] = params[:q]
       search_params['page'] = params[:page] ||= 1
-      search_params['extras'] = 'date_upload,owner_name,url_sq'
+      search_params['extras'] = 'date_upload,owner_name,url_sq,url_t'
       search_params['sort'] = 'relevance'
       begin
         @photos = @flickr.photos.search(search_params).map{|fp| FlickrPhoto.new_from_api_response(fp) }
@@ -161,12 +150,13 @@ class FlickrController < ApplicationController
         @flickr_url = auth_url_for('flickr')
       end
     rescue FlickRaw::FailedResponse => e
-      logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
-      HoptoadNotifier.notify(e, :request => request, :session => session)
-      flash[:notice] = "Ack! Something went horribly wrong, like a giant " + 
-                       "squid ate your Flickr info.  You can contact us at " +
-                       "#{APP_CONFIG[:help_email]} if you still can't get this " +
-                       "working.  Error: #{e.message}"
+      Rails.logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
+      Airbrake.notify(e, :request => request, :session => session)
+      flash[:notice] = <<-EOT
+        Ack! Something went wrong connecting to Flickr. You might try unlinking 
+        and re-linking your account. You can contact us at 
+        #{CONFIG.help_email} if that doesn't work.  Error: #{e.message}
+      EOT
     end
   end
   
@@ -175,7 +165,7 @@ class FlickrController < ApplicationController
   def unlink_flickr_account
     if current_user.flickr_identity
       current_user.flickr_identity.destroy
-      flash[:notice] = "We've dissassociated your Flickr account from your iNaturalist account."
+      flash[:notice] = "We've dissassociated your Flickr account from your #{CONFIG.site_name} account."
       redirect_to :action => 'options'
     else
       flash[:notice] = "Your Flickr account has not been linked before!"
@@ -235,7 +225,10 @@ class FlickrController < ApplicationController
     invite_params[:flickr_photo_id] ||= request.env['HTTP_REFERER'].to_s[/flickr.com\/photos\/[^\/]+\/(\d+)/,1]
     [:controller,:action].each{|k| invite_params.delete(k)}  # so, later on, new_observation_url(invite_params) doesn't barf
     session[:invite_params] = invite_params
-    redirect_to "/auth/flickr"
+    pa = if logged_in?
+      current_user.provider_authorizations.where(:provider_name => :flickr)
+    end
+    redirect_to auth_url_for(:flickr, :scope => pa.try(:scope))
   end
   
   private
@@ -244,7 +237,7 @@ class FlickrController < ApplicationController
   end
 
   def flickr_friends
-    flickr.contacts.getList(:auth_token=>current_user.flickr_identity.token)
+    get_flickraw.contacts.getList
   end
 
 end

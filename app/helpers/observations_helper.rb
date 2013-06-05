@@ -1,6 +1,6 @@
 module ObservationsHelper
   def observation_image_url(observation, params = {})
-    return nil if observation.photos.empty?
+    return nil if observation.observation_photos.blank?
     size = params[:size] ? "#{params[:size]}_url" : 'square_url'
     photo = observation.observation_photos.sort_by do |op|
       op.position || observation.observation_photos.size + op.id.to_i
@@ -16,7 +16,7 @@ module ObservationsHelper
     order_by ||= @order_by
     pairs = ObservationsController::ORDER_BY_FIELDS.map do |f|
       value = %w(created_at observations.id id).include?(f) ? 'observations.id' : f
-      [ObservationsController::DISPLAY_ORDER_BY_FIELDS[f], value]
+      [t(ObservationsController::DISPLAY_ORDER_BY_FIELDS[f].to_s.parameterize.underscore), value]
     end
     order_by = 'observations.id' if order_by.blank?
     options_for_select(pairs, order_by)
@@ -71,7 +71,7 @@ module ObservationsHelper
         observations_path(:lat => observation.private_latitude, :lng => observation.private_longitude)) +
         " (#{google_coords_link}, #{osm_coords_link})".html_safe
     else
-      content_tag(:span, "(Somewhere...)")
+      content_tag(:span, t(:somewhere))
     end
   end
   

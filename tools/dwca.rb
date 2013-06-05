@@ -7,15 +7,15 @@ Exports a Darwin Core Archive from observations.  Archives will be gzip'd tarbal
 
 Usage:
 
-  script/runner dwca.rb
+  rails runner dwca.rb
 
 will output licensed observations to public/observations/dwca.zip.
 
-  script/runner tools/dwca.rb -f public/observations/calflora.dwca.zip -t 123635 -p 14
+  rails runner tools/dwca.rb -f public/observations/calflora.dwca.zip -t 123635 -p 14
 
 will output licensed observations of taxon 123635 from place 14 to calflora.dwca.zip
   
-  script/runner tools/dwca.rb \
+  rails runner tools/dwca.rb \
     -f public/taxa/eol_media.dwca.zip \
     --core taxon \
     --extensions EolMedia \
@@ -50,9 +50,9 @@ puts "Photo licenses: #{@opts[:photo_licenses].inspect}" if opts[:debug]
 class Metadata < FakeView
   def initialize(options = {})
     super()
-    @contact = INAT_CONFIG["general"]["contact"] || {}
-    @creator = INAT_CONFIG["general"]["creator"] || @contact || {}
-    @metadata_provider = INAT_CONFIG["general"]["metadata_provider"] || @contact || {}
+    @contact = CONFIG.contact || {}
+    @creator = CONFIG.creator || @contact || {}
+    @metadata_provider = CONFIG.metadata_provider || @contact || {}
     scope = Observation.scoped({})
     if options[:quality] == "research"
       scope = scope.has_quality_grade(Observation::RESEARCH_GRADE)
@@ -144,7 +144,7 @@ def make_occurrence_data
       ")"
   end
   
-  FasterCSV.open(tmp_path, 'w') do |csv|
+  CSV.open(tmp_path, 'w') do |csv|
     csv << headers
     Observation.do_in_batches(find_options) do |o|
       next unless o.user.prefers_gbif_sharing?
@@ -185,7 +185,7 @@ def make_taxon_data
     find_options[:conditions] += @taxon.descendant_conditions[1..-1]
   end
   
-  FasterCSV.open(tmp_path, 'w') do |csv|
+  CSV.open(tmp_path, 'w') do |csv|
     csv << headers
     Taxon.do_in_batches(find_options) do |t|
       DarwinCore::Taxon.adapt(t)
@@ -233,7 +233,7 @@ def make_eol_media_data
       ")"
   end
   
-  FasterCSV.open(tmp_path, 'w') do |csv|
+  CSV.open(tmp_path, 'w') do |csv|
     csv << headers
     Photo.do_in_batches(find_options) do |t|
       EolMedia.adapt(t)

@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @pagetitle = "Edit photos for Observation #{@observation.id}" %>
+  <%= @pagetitle = t(:edit_photos_for_observation_id, :obs_id=>"#{@observation.id}")  %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
@@ -16,7 +16,7 @@
 
 <div id="pageheader">
   <div class="breadcrumbs">
-    <%= link_to "Back to editing observation", edit_observation_path(@observation), :class => 'back crumb' %>
+    <%= link_to t(:back_to_editing_observation), edit_observation_path(@observation), :class => 'back crumb' %>
   </div>
   <h2><%= @pagetitle %></h2>
   <div class="meta">
@@ -26,8 +26,8 @@
 <%= form_tag update_observation_photos_path(@observation) do %>
 <ul>
   <li class="clear header">
-    <label class="position">Position</label>
-    <label class="photo">Photo</label>
+    <label class="position"><%=t :position %></label>
+    <label class="photo"><%=t :photo %></label>
   </li>
   <% for op in @observation_photos %>
     <li class="clear">
@@ -38,5 +38,5 @@
     </li>
   <% end %>
 </ul>
-<%= submit_tag "Update photos", :class => "default button" %>
+<%= submit_tag t(:update_photos), :class => "default button", "data-loading-click" => "Saving..." %>
 <% end %>

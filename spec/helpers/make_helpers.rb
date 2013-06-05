@@ -22,20 +22,22 @@ module MakeHelpers
     list
   end
   
-  def make_observation_of_threatened
-    Observation.make!(
+  def make_observation_of_threatened(options = {})
+    Observation.make!(options.merge(
       :latitude => 38.333, :longitude => -122.111,
       :taxon => Taxon.make!(:threatened),
       :created_at => Time.now.to_date
-    )
+    ))
   end
   
   # It's important that the lat & lon don't show up in the date when doing 
   # simple regex tests
-  def make_private_observation
-    Observation.make!(:latitude => 38.888, :longitude => -122.222, 
+  def make_private_observation(options = {})
+    Observation.make!(options.merge(
+      :latitude => 38.888, :longitude => -122.222, 
       :geoprivacy => Observation::PRIVATE, 
-      :created_at => Time.now.to_date)
+      :created_at => Time.now.to_date
+    ))
   end
   
   def make_research_grade_observation(options = {})
@@ -56,6 +58,33 @@ module MakeHelpers
     lp
   end
   
+  def make_project_invitation(options = {})
+    pu = ProjectUser.make!
+    o = Observation.make!
+    pi = ProjectInvitation.create!(options.merge(:user => pu.user, :project => pu.project, :observation => o))
+    pi
+  end
+
+  def make_project_observation(options = {})
+    p = options[:project] || Project.make!
+    t = options.delete(:taxon)
+    pu = ProjectUser.make!(:project => p)
+    o = Observation.make!(:user => pu.user, :taxon => t)
+    ProjectObservation.make!({:project => pu.project, :observation => o}.merge(options))
+  end
+
+  def make_place_with_geom(options = {})
+    wkt = options.delete(:wkt) || options.delete(:ewkt) || "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
+    place = Place.make!(options)
+    place.save_geom(MultiPolygon.from_ewkt(wkt))
+    place
+  end
+
+  def make_taxon_range_with_geom(options = {})
+    wkt = options.delete(:wkt) || options.delete(:ewkt) || "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
+    tr = TaxonRange.make!(options.merge(:geom => MultiPolygon.from_ewkt(wkt)))
+    tr
+  end
   
   # creating the tree is a bit tricky
   def load_test_taxa
@@ -119,6 +148,21 @@ module MakeHelpers
         :lexicon => TaxonName::LEXICONS[:ENGLISH])
     end
     @Calypte_anna.update_attributes(:parent => @Calypte)
+
+    unless @Plantae = Taxon.iconic_taxa.find_by_name('Plantae')
+      @Plantae = Taxon.make!(:name => "Plantae", :rank => "kingdom")
+    end
+    @Plantae.update_attributes(:parent => @Life)
+
+    unless @Magnoliophyta = Taxon.iconic_taxa.find_by_name('Magnoliophyta')
+      @Magnoliophyta = Taxon.make!(:name => "Magnoliophyta", :rank => "phylum")
+    end
+    @Magnoliophyta.update_attributes(:parent => @Plantae)
+
+    unless @Magnoliopsida = Taxon.iconic_taxa.find_by_name('Magnoliopsida')
+      @Magnoliopsida = Taxon.make!(:name => "Magnoliopsida", :rank => "class")
+    end
+    @Magnoliopsida.update_attributes(:parent => @Magnoliophyta)
 
     Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
   end

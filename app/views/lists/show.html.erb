@@ -8,6 +8,24 @@
   <%= strip_tags(@title) %>
 <% end %>
 
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @list.title %>"/>
+  <%-
+    og_description = if @list.description.blank?
+      @list.title
+    else
+      @list.description
+    end
+  -%>
+  <% if @representative_photo -%>
+    <%- og_description += " &mdash; Photo: #{@representative_photo.attribution}" -%>
+    <meta property="og:image" content="<%= image_url @representative_photo.medium_url %>"/> 
+  <% elsif @representative_listed_taxon %>
+    <meta property="og:image" content="<%= image_url iconic_taxon_image_url(@representative_listed_taxon.taxon, :size => 200) %>"/> 
+  <% end -%>
+  <meta property="og:description" content="<%= html_attributize og_description %>"/> 
+<%- end -%>
+
 <% content_for(:extracss) do %>
   <%= render :partial => 'show_css' %>
 <% end -%>
@@ -55,7 +73,7 @@
   <% if @taxon_rule -%>
     <div id="life_list_taxon" class="life_list_taxon description">
       <%= taxon_image(@taxon_rule.operand) %>
-      This is a life list of
+      <%=t :this_is_a_life_list_of %>
       <%= render :partial => 'shared/taxon', 
                  :locals => { :taxon => @taxon_rule.operand,
                               :link_url => url_for(@taxon_rule.operand) } %>
@@ -63,7 +81,7 @@
   <% end -%>
   <% if @list.rank_rule != "any" -%>
     <div id="life_list_rank_rule" class="description">
-      This list only accepts taxa that are <%= @list.rank_rule.gsub(/[_?]+/, ' ').strip %>.
+      <%=t :this_list_only_accepts_taxa_that_are %> <%= @list.rank_rule.gsub(/[_?]+/, ' ').strip %>.
     </div>
   <% end -%>
   
@@ -80,9 +98,9 @@
   <% end -%>
   
   <div id="justadded" style="display: none">
-    <h2 class="title">Just Added!</h2>
+    <h2 class="title"><%=t :just_added! %></h2>
     <ul class="listed_taxa">
-      <li style="display: none">Stuff you've just added...</li>
+      <li style="display: none"><%=t :stuff_just_added %></li>
     </ul>
     
     <div class="column-separator">
@@ -99,18 +117,17 @@
   <% if @listed_taxa.empty? %>
     <div id="empty" class="readable description">
       <% if @add_taxa_from_observations_job && @add_taxa_from_observations_job.last_error.blank? -%>
-        <div class="loading status">Loading taxa from your observations...</div>
+        <div class="loading status"><%=t :loading_taxa_from_your %></div>
         <script type="text/javascript" charset="utf-8">
           setTimeout("window.location.reload()", 5000);
         </script>
       <% elsif logged_in? && current_user.id == @list.user_id %>
-        You haven't observed any species to list yet! Try 
-        <%= link_to "adding some observations", new_observation_path %>
-        or just adding species using the form on this page.
+        <%=t :no_species_on_this_list %>
+        <%=t :no_species_on_this_list_for_owner_html, :url => new_observation_url %>
       <% elsif @q %>
-        No results matching "<%= @q %>"
+        <%=t :no_results_matching %> "<%= @q %>"
       <% else %>
-        No species on this list yet!
+        <%=t :no_species_on_this_list %>
       <% end %>
     </div>
   <% end %>
@@ -121,13 +138,13 @@
   
   <div class="clear meta feeds">
     <%= separator %>
-    <strong>Download</strong>
-    <%= link_to "CSV", list_path(@list, :format => 'csv'), 
+  <strong><%=t :download %></strong>
+    <%= link_to t(:csv), list_path(@list, :format => 'csv'), 
       :class => "delayedlink csvlink", 
       "data-delayed-link-msg" => 
-        "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
+        t(:please_hold_on_while_the_file),
       :rel => "nofollow" %>
-      
+
     <%= link_to "Taxonomic CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"), 
       :class => "delayedlink csvlink", 
       "data-delayed-link-msg" => 
@@ -140,10 +157,10 @@
   <div id="sidebar">
     <% if @list.editable_by?(current_user) %>
     <div id="add" class="clear">
-      <%= link_to_function "Add Batch", "$('#add_batch_dialog').jqmShow()", :class => "right small", :style => 'padding-top: 3px' %>
+      <%= link_to_function t(:add_batch), "$('#add_batch_dialog').jqmShow()", :class => "right small", :style => 'padding-top: 3px' %>
       <h3>
         <%= link_to_function(
-          'Add to Your List', 
+          t(:add_to_your_list), 
           "$('#new_listed_taxon').slideToggle();",
           :id => 'addlink') %>
       </h3>

@@ -1,0 +1,36 @@
+= content_for :title do
+  = @message.subject
+= content_for :extracss do
+  :css
+    tr.reply td:first-child {vertical-align: top; padding-top:1em;}
+    td.body {width:100%;}
+
+.column.prepend-4.span-16.append-4
+  #pageheader
+    .breadcrumbs
+      = link_to t(:back_to_x, :noun => t(@box)), messages_path(:box => @box, :anchor => @box), :class => "back crumb"
+    %h2= @thread_message.subject
+
+  %table.messages
+    = render :partial => "row", :collection => @messages
+    - if @thread_message.user_id == current_user.id && !@messages.detect{|m| m.from_user_id != current_user.id}
+      %tr
+        %td.nobr.from
+          = link_to user_image(@thread_message.to_user, :size => "thumb"), @thread_message.to_user
+          = link_to_user @thread_message.to_user
+        %td.body
+          .nocontent.meta
+            =t :no_reply_yet
+        %td.nobr.meta.date
+    %tr.reply
+      %td
+        %h3=t :reply
+      %td
+        = form_for Message.new(:to_user => @reply_to, :thread_id => @thread_message.thread_id), :builder => DefaultFormBuilder do |f|
+          = f.hidden_field :thread_id
+          = f.hidden_field :to_user_id
+          = f.text_area :body, :label => false
+          = f.submit t(:send).capitalize, :class => "default button", "data-loading-click" => "Sending..."
+          = link_to t(:preview), messages_path, :class => 'button previewbutton commentpreviewbutton'
+          .inter.loading{:style => "display:none;"}=t :loading
+      %td

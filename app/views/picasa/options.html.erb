@@ -1,7 +1,7 @@
 <%- content_for(:title) do -%>
-  Your Picasa Account
+  <%= t(:your_picasa_account) %>
 <%- end -%>
-<h2>Your Picasa Account Information</h2>
+<h2> <%= t(:your_picasa_account_info) %> </h2>
 
 <div class="column span-13">
   <% if @picasa_identity -%>
@@ -13,25 +13,22 @@
     </div>
 
     <p>
-      You've linked your iNaturalist account and your Picasa account. This
-      will allow you to associate your Picasa photos with your iNat
-      observations.
+    <%= t(:youve_linked_your_inaturalist_picasa_account, :site_name => SITE_NAME) %>
     </p>
   <% else %>
-    <p>You haven't linked your iNaturalist account and your Picasa account yet.</p>
+    <p>
+     <%= t(:you_havent_linked_your_inaturalist_picasa_account, :site_name => SITE_NAME_SHORT) %></p>
     <p class="description">
-      To include your Picasa photos with your iNat observations, click the
-      button to the right to link your two accounts. You'll be taken to
-      Google, where you'll be asked to authorize this connection.
+      <%= t(:to_include_your_picassa_with_inat, :site_name => SITE_NAME_SHORT) %>
     </p>
   <% end -%>
 </div>
 
 <div class="last column span-11">
   <% if @picasa_identity -%>
-    <%= link_to "Unlink Your Picasa Account", {:action => "unlink"}, :class => "delete button", 
-      :method => :delete, :confirm => "Are you sure you want to unlink your Picasa account?" %>
+    <%= link_to t(:unlink_your_picasa_account), {:action => "unlink"}, :class => "delete button", 
+      :method => :delete, :confirm => t(:are_you_sure_unlink_picasa) %>
   <% else %>
-    <%= link_to "Link Your Picasa Account", @auth_url, :class => "default button" %>
+    <%= link_to t(:link_your_picasa_account), @auth_url, :class => "default button" %>
   <% end -%>
 </div>

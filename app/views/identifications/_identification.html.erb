@@ -3,6 +3,7 @@
   taxon ||= identification.taxon
   observation ||= identification.observation
   user ||= identification.user
+  viewers_identification ||= @viewers_identification
   identification_classes = ''
   if logged_in? && identification.user_id == current_user.id
     identification_classes += ' yours'
@@ -14,36 +15,36 @@
   hide_actions ||= false
   extra ||= nil
 -%>
-<div id="<%= id_for(identification) %>" class="clear identification <%= identification_classes %>">
+<div id="<%= id_for(identification) %>" class="clear identification <%= identification_classes %>" data-taxon-id="<%= taxon.id if taxon %>">
   <div class="identification_image">
     <%= link_to taxon_image(taxon), taxon %>
   </div>
   <div class="identification_body">
     <span class="user_and_taxon">
       <% if is_me?(user) %>
-        <strong>Your</strong>
+        <strong><%=t(:your) %></strong> <%= t :id %>:
       <% else %>
-        <%= link_to("#{user.login}'s", person_path(user)) %>
+        <%= link_to(t(:user_s_id, :user => user.login, :id => t(:id)), person_path(user)) %>:
       <% end %>
-      ID:
       <%= render :partial => 'shared/taxon', 
                  :locals => { :taxon => taxon,
                               :link_url => taxon } %>
     </span>
     <% unless hide_actions -%>
-      <% if logged_in? && identification.user_id != current_user.id %>
+      <% if logged_in? && identification.user_id != current_user.id && (viewers_identification.blank? || viewers_identification.taxon_id != identification.taxon_id) %>
         <span class="agree button">
-          <%= link_to "Agree?", {
+          <%= link_to t(:agree?), {
                :controller => 'identifications',
                :action => 'agree',
                :observation_id => identification.observation_id,
                :taxon_id => identification.taxon_id },
-             :method => :post -%></span>
+             :method => :post,
+             "data-loading-click" => "Agreeing..." -%></span>
       <% end %>
       <% if logged_in? && identification.user_id == current_user.id && identification.current? %>
-        <span class="button"><%= link_to "Remove", identification_path(identification), 
+        <span class="button"><%= link_to t(:remove), identification_path(identification),
             :method => :delete,
-            "data-loading-click" => "Removing...",
+            "data-loading-click" => t(:removing),
             :class => "removelink" -%></span>
       <% end %>
     <% end -%>
@@ -51,9 +52,15 @@
     <%= extra if extra %>
     
     <% unless taxon.is_active -%>
-      <span class="small">
-        (<%= link_to "inactive taxon", taxon_changes_path(:taxon_id => taxon.id) -%>)
-      </small>
+      <span class="small meta">
+        (<%= link_to t(:inactive_taxon), taxon_changes_path(:taxon_id => taxon.id) -%>)
+      </span>
+    <% end -%>
+
+    <% if tc = identification.taxon_change -%>
+      <span class="small meta nobr">
+        Added as part of a <%= link_to tc.class.name.underscore.humanize.downcase, taxon_change_path(tc) -%>
+      </span>
     <% end -%>
   </div>
 </div>

@@ -1,21 +1,28 @@
 <div id="footer" class="clear">
-  <div id="footer_text" class="stacked">
-    <a href="/about">About iNaturalist</a> &nbsp;
-    <a href="/help">Help</a> &nbsp;
-    <a href="http://groups.google.com/group/inaturalist">Feedback</a> &nbsp;
-    <a href="http://inaturalist.org/terms.html">Terms of Service</a> &nbsp;
-    <a href="http://inaturalist.org/privacy.html">Privacy Policy</a> &nbsp;
-    <span class="description">|&nbsp; Follow us on</span>
-    <a href="http://twitter.com/inaturalist">Twitter</a> <span class="description">&amp;</span>
-    <a href="http://www.facebook.com/pages/iNaturalistorg/63336575498">Facebook</a> &nbsp;
+  <div class="meta stacked">
+    <span class="meta"><%=t :follow_us %></span>
+    <%=raw [
+      link_to('Twitter', CONFIG.twitter.try(:url)),
+      link_to('Facebook', CONFIG.facebook.try(:url))
+    ].join('  <span class="meta">&amp;</span> ') %>
+    <span class="meta">|&nbsp; <%= t(:mobile_apps_for) %></span>
+    <a href="<%= CONFIG.iphone_app_url %>">iPhone</a>
+    <span class="meta">&amp;</span>
+    <a href="<%= CONFIG.android_app_url %>">Android</a>
+    |
+    <%=t :powered_by_inaturalist_open_source_software_html %>
   </div>
-  <div>
-    <a href="http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8"><img src="/images/apple_app_store.png"></a> &nbsp;
-    <a href="https://market.android.com/details?id=org.inaturalist.android"><img src="/images/android_market.png"></a>
+
+  <div class="meta">
+    <a href="<%= CONFIG.about_url %>"><%= t(:about_x, :x => SITE_NAME) %></a> &nbsp;
+    <a href="<%= CONFIG.help_url %>"><%=t :help %></a> &nbsp;
+    <a href="<%= CONFIG.feedback_url %>"><%=t :feedback %></a> &nbsp;
+    <a href="<%= CONFIG.terms_url %>"><%=t :terms_service %></a> &nbsp;
+    <a href="<%= CONFIG.privacy_url %>"><%=t :privacy%></a> &nbsp;
   </div>
 </div>
-<%- if is_mobile_device? && @mobilized -%>
+<%- if defined?(is_mobile_device?) && is_mobile_device? && @mobilized -%>
   <div class="flash notice">
-    <%= link_to "Mobile view available", toggle_mobile_path, :id => "mobiletogglelink" %>
+    <%= link_to t(:mobile_view_available), toggle_mobile_path, :id => "mobiletogglelink" %>
   </div>
 <% end -%>

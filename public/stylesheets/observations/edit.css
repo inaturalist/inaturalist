@@ -55,19 +55,10 @@ input.place_guess { width: 336px; }
   max-height:none;
   overflow: none;
 }
-
-.local_photos .photo_file_field {
-  width:auto;
-  margin:0;
-}
-
-form .species_guess_field { margin-bottom: 0px; }
+.local_photos .photo_file_field {width:auto;}
+.local_photos .photo_file_field label {display:inline;}
 .photo .synclink { float: right; }
 .photoSelectorControls .findbutton { margin-right: 0; }
-
-.observation_field { border-bottom: 1px solid #eee; padding-bottom:10px;}
-.observation_field.disabled {opacity: 0.5;}
-#morefields .buttonrow .button, #morefields .buttonrow label { padding-top: 4px; padding-bottom:3px;vertical-align:top;}
-#morefields {margin-bottom:20px;}
-
 #taxonchooser {margin-left: 0;}
+fieldset {width: 910px;}
+#newobsnav {text-align:right; margin-top:0.25em;}

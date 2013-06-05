@@ -4,7 +4,7 @@
 
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{@project.title}".html_safe, @project, :class => 'crumb' %></strong>
   </div>
   
   <h2>
@@ -21,7 +21,7 @@
     <thead>
       <tr>
         <%- @headers.each do |header| %>
-          <th><%= header %></th>
+          <th><%= t(header.parameterize.underscore, :default => header).downcase %></th>
         <% end %>
       </tr>
     </thead>
@@ -36,27 +36,28 @@
     </tbody>
   </table>
   
-  <%= link_to "Download CSV", formatted_project_stats_path(@project, 'csv') %>
+  <%= link_to t(:download_csv), formatted_project_stats_path(@project, 'csv') %>
 </div>
 
 <div class="last column span-12">
   <table>
     <tr>
-      <td>Total members</td>
+      <td><%= t(:total_members) %></td>
       <td><%= @total_project_users %></td>
     </tr>
     <tr>
-      <td>Total observations</td>
+      <td><%= t(:total_observations) %></td>
       <td><%= @total_project_observations %></td>
     </tr>
     <tr>
-      <td>Total unique observers</td>
+      <td><%= t(:total_unique_observers) %></td>
       <td><%= @total_unique_observers %></td>
     </tr>
   </table>
   
   <% if @project_user -%>
-    <%= link_to "View #{possessive(@project_user.user)} contributions", 
+    <%- txt = is_me?(@project_user.user) ? t(:view_your_observations) : t(:view_user_observations, :user => possessive(@project_user.user)) -%>
+    <%= link_to txt, 
       project_show_contributor_path(@project, @project_user.user.login),
       :class => "readmore" %>
   <% end -%>

@@ -19,7 +19,7 @@
       <li class="native_page_url">
         <%- photographer_name = (photo.native_realname || photo.native_username) -%>
         <% unless photo.native_page_url.blank? -%>
-          <%= link_to "View original #{'by '+photographer_name if !photographer_name.blank?} on #{photo_source}", 
+          <%= link_to t(:view_original_by, :by => "#{photographer_name if !photographer_name.blank?}", :photo => photo.source_title), 
             photo.native_page_url %>
         <% end -%>
       </li>
@@ -42,7 +42,7 @@
     <% end %>
   </div>
   <div class="attribution description">
-    <%= link_to "View details", photo.becomes(Photo), :class => "readmore right" %>
+    <%= link_to t(:view_details), photo.becomes(Photo), :class => "readmore right" %>
     <%= photo.attribution %>
   </div>
 </div>

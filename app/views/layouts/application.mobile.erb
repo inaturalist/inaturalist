@@ -5,10 +5,13 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=<%= @user_scalable.blank? ? '1' : @user_scalable %>" />
-    <title><%= APP_CONFIG[:site_name] %> &middot; <%= yield :title %></title>
+    <% if CONFIG.ios_app_id && !@headless -%>
+      <meta name="apple-itunes-app" content="app-id=<%= CONFIG.ios_app_id %>">
+    <% end -%>
+    <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <%= stylesheet_link_tag 'blueprint/plugins/buttons/buttons' %>
-    <%= stylesheet_link_tag 'index', 'jquery-ui', 'mobile' %>
+    <%= stylesheet_link_tag 'index', 'jquery-ui', 'jquery/ui.tabs', 'observations', 'mobile' %>
     <% if is_android_app? -%>
       <%= stylesheet_link_tag "black" %>
     <% end -%>
@@ -16,9 +19,13 @@
       'jquery/jquery-ui-1.8.11.min.js', 
       'jquery/plugins/jquery.chooser', 
       "jquery/plugins/jquery.qtip2.min", 
+      "i18n.min",
+      "translations",
+      'rails',
       'application', 
       'inaturalist', 
       'mobile' %>
+    <%= csrf_meta_tag %>
     <%= yield :extracss %>
     <%= yield :extrajs %>
     <%= yield :extrahead %>

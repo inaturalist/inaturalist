@@ -1,0 +1,31 @@
+<% content_for(:title) do %>
+  <% @title = capture do %>
+    <h2>Mapped Inactive Taxa</h2>
+    <p class="description">Showing all inactive taxa in <%= @taxon_scheme.title %> mapped through taxon changes.</p>
+  <% end -%>
+  <%= strip_tags(@title) %>
+<% end %>
+
+<%- content_for(:extracss) do %>
+  <%= stylesheet_link_tag 'taxon_schemes' %>
+  <style type="text/css" media="screen">
+    .ui-chooser-choice {max-width:190px;}
+    .scheme_taxon {margin-bottom: 10px; width: 310px;}
+    form .text {width:200px;}
+</style>
+<% end %>
+
+<div id="pageheader" class="clear">
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo #{h @taxon_scheme.title}".html_safe, @taxon_scheme, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+  
+  <%= @title %>
+  
+  <ul>
+    <% for taxon_change in @taxon_changes -%>
+      <%= render :partial => 'show_change_taxon', :object => taxon_change %>
+    <% end %>
+  </ul>
+  <%= will_paginate @inactive_taxa %>
+</div>

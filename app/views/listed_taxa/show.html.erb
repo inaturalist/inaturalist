@@ -4,10 +4,10 @@
     <%= link_to @taxon do %>
       <%= render :partial => "shared/taxon" %>
     <% end %>
-    on
-    <%= link_to truncate(h(@list.title), :length => 85), @list %>
+    <%=raw t(:on).downcase %>
+    <%= link_to truncate(@list.title, :length => 85), @list %>
   <% end -%>
-  <%= strip_tags @title %>
+  <%= strip_tags(@title).html_safe %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "lists", "jquery/ui.tabs" %>
@@ -38,7 +38,7 @@
         },
         load: function(event, ui) {
           $(ui.panel).append(
-            $('<a>View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('rel'))
+            $('<a rel="nofollow">View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('href'))
           )
         }
       })
@@ -58,7 +58,7 @@
     <% if @photo -%>
       <%= link_to image_tag(@photo.small_url, :class => "small photo"), @taxon %>
       <p class="ui attribution description">
-        Photo: 
+        <%=t :photo %>: 
         <%= link_to @photo.attribution, @photo.native_page_url %>
       </p>
     <% else %>
@@ -69,45 +69,41 @@
   <div class="observationcounts stacked">
     <div class="ui description">
       <strong><%= @listed_taxon.observations_count %></strong>
-      <%= @listed_taxon.observations_count == 1 ? 'observation' : 'observations' -%>
-      <%- if @list.is_a?(CheckList) -%>,
-        <strong class="count"><%= @listed_taxon.confirmed_observations_count %></strong>
-        research grade
-      <% end -%>
+      <%= @listed_taxon.observations_count == 1 ? t(:observation) : t(:observations) -%>
+      <strong class="count"><%= @listed_taxon.confirmed_observations_count %></strong>
+      <%=t :research_grade %>
     </div>
     <% unless @listed_taxon.observation_month_stats.blank? -%>
       <div class="statsgraphs stacked">
         <div class="observedgraph">
           <%= month_graph @listed_taxon.observation_month_stats %>
         </div>
-        <% if @list.is_a?(CheckList) -%>
-          <div class="confirmedgraph">
-            <%= month_graph @listed_taxon.confirmed_observation_month_stats, :max => @listed_taxon.observation_month_stats.values.max %>
-          </div>
-        <% end -%>
+        <div class="confirmedgraph">
+          <%= month_graph @listed_taxon.confirmed_observation_month_stats, :max => @listed_taxon.observation_month_stats.values.max %>
+        </div>
       </div>
     <% end -%>
   </div>
   
   <% if @listed_taxon.first_observation -%>
     <p class="ui description">
-      First iNat observation
+      <%=t :first_inat_observation, :site_name => SITE_NAME_SHORT %>
       <%= link_to one_line_observation(@listed_taxon.first_observation, :skip => %w(user taxon)), @listed_taxon.first_observation %>
       <% if is_not_me?(@list.user) -%>
-        by 
+       <%=t :by %> 
         <%= link_to user_image(@listed_taxon.first_observation.user), @listed_taxon.first_observation.user %>
         <%= link_to you_or_login(@listed_taxon.first_observation.user), @listed_taxon.first_observation.user %>,
-        added <%= @listed_taxon.first_observation.created_at.to_date.to_s(:long) %>
+        <%=t :added %> <%= @listed_taxon.first_observation.created_at.to_date.to_s(:long) %>
       <% end -%>
     </p>
   <% end -%>
   
   <% if @listed_taxon.last_observation -%>
     <p class="ui description">
-      Last observation
+      <%=t :last_observation %>
       <%= link_to one_line_observation(@listed_taxon.last_observation, :skip => %w(user taxon)), @listed_taxon.last_observation %>
       <% if is_not_me?(@list.user) -%>
-        by 
+        <%=t :by %> 
         <%= link_to user_image(@listed_taxon.last_observation.user), @listed_taxon.last_observation.user %>
         <%= link_to you_or_login(@listed_taxon.last_observation.user), @listed_taxon.last_observation.user %>
       <% end -%>
@@ -117,45 +113,45 @@
   <%= separator %>
   
   <p class="ui description">
-    Added 
+    <%=t :added %> 
     <% if @listed_taxon.user %>
-      by 
+      <%=t :by %> 
       <%= link_to user_image(@listed_taxon.user), @listed_taxon.user %>
       <%= link_to you_or_login(@listed_taxon.user), @listed_taxon.user %>
     <% end %>
-    on <%= @listed_taxon.created_at.to_s(:long) %>
+    <%=t :on %> <%= @listed_taxon.created_at.to_s(:long) %>
   </p>
   
   <p class="ui description">
-    Updated
+    <%=t :updated %>
     <% if @listed_taxon.updater %>
-      by 
+      <%=t :by %> 
       <%= link_to user_image(@listed_taxon.updater), @listed_taxon.updater %>
       <%= link_to you_or_login(@listed_taxon.updater), @listed_taxon.updater %>
     <% end %>
-    on <%= @listed_taxon.updated_at.to_s(:long) %>
+    <%=t :on %> <%= @listed_taxon.updated_at.to_s(:long) %>
   </p>
   
   <div class="meta">
-    <strong>Source:</strong> <%= citation_for @listed_taxon.citation_object %>
+    <strong><%=t :source %>:</strong> <%= citation_for @listed_taxon.citation_object %>
   </div>
   
   <% if @listed_taxon.removable_by?(current_user) -%>
     <p class="ui description" style="margin-top: 10px">
-      <%= link_to "Remove from #{h(@list.title)}", @listed_taxon, :method => :delete, 
-        :confirm => "Are you sure you want to remove this taxon from #{h(@list.title)}?",
+      <%= link_to "#{t(:remove_from)} #{@list.title}", @listed_taxon, :method => :delete, 
+        :confirm => t(:you_sure_remove_taxon_from?, :list => @list.title),
         :class => "small description" %>
     </p>
   <% end -%>
   
 </div>
 
-<%- description_name = @list.is_a?(CheckList) ? "place notes" : "description" %>
+<%- description_name = @list.is_a?(CheckList) ? t(:place_notes) : t(:description) %>
 <div class="last column span-17">  
   <div id="description" class="description">
     <% if @listed_taxon.description.blank? && @list.listed_taxa_editable_by?(current_user) -%>
       <p class="ui description inplaceedit">
-        <%= link_to_function "Add #{description_name}", "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit_description")}').show()" %>
+      <%= link_to_function t(:add_description, :description_name=>"#{description_name}"), "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit_description")}').show()" %>
       </p>
     <% else %>
       <div class="clear readable">
@@ -171,9 +167,9 @@
     <%= form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {
         :id => dom_id(@listed_taxon, "edit_description"), :class => "clear box listed_taxon_form", :style => "display: none"} do |f| %>
       <%= f.text_area :description, :label => description_name.capitalize,
-        :placeholder => "Add notes about this taxon in this place, e.g. where and when it occurs." %>
-      <%= f.submit "Save", :class => "default button" %>
-      <%= link_to_function "Cancel", "$('#description').show(); $('##{dom_id(@listed_taxon, "edit_description")}').hide()", 
+        :placeholder => t(:add_notes_about_this_taxon) %>
+      <%= f.submit t(:save), :class => "default button" %>
+      <%= link_to_function t(:cancel), "$('#description').show(); $('##{dom_id(@listed_taxon, "edit_description")}').hide()", 
         :class => "minor button" %>
     <% end %>
   <% end -%>
@@ -189,19 +185,19 @@
     <%-
       case @list.class.to_s
       when 'CheckList'
-        obs_tab_txt = "Observations from this place"
+        obs_tab_txt = t(:observations_from_this_place)
         obs_url = observations_path(:place_id => @listed_taxon.place_id, :taxon_id => @listed_taxon.taxon_id)
       when 'ProjectList'
-        obs_tab_txt = "Observations from this project"
+        obs_tab_txt = t(:observations_from_this_project)
         obs_url = project_observations_path(@list.project_id, :taxon_id => @listed_taxon.taxon_id)
       else
-        obs_tab_txt = is_me?(@list.user) ? "Observations by you" : "Observations by #{@list.user.login}"
+        obs_tab_txt = is_me?(@list.user) ? t(:observations_by_you) : t(:observations_by_user, :user => @list.user.login)
         obs_url = observations_by_login_path(@list.user.login, :taxon_id => @listed_taxon.taxon_id)
       end
     -%>
     <ul>
-      <li><%= link_to content_tag(:span, "Comments"), '#comments' %></li>
-      <li><%= link_to content_tag(:span, obs_tab_txt), obs_url, :rel => obs_url, :title => "observations" %></li>
+      <li><%= link_to content_tag(:span, t(:comments)), '#comments' %></li>
+      <li><%= link_to content_tag(:span, obs_tab_txt), obs_url, :title => "observations" %></li>
     </ul>
     <div id="comments">
       <%= render :partial => "comments/comments", :object => @listed_taxon %>

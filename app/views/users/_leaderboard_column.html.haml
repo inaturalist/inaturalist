@@ -1,0 +1,30 @@
+- extra ||= nil
+- span ||= 8
+- last ||= false
+- sub ||= nil
+- date ||= @date || Date.today
+%div{:class => "column span-#{span} #{'last' if last}"}
+  %h4
+    =t(:most)
+    =t(noun).pluralize.downcase
+    =t(:in)
+    - case time_unit
+    - when 'month'
+      =l date, :format => :month_year
+    - else
+      = date.year
+  %ol
+    - if !data.blank?
+      - for user, count in data
+        %li.stacked
+          = image_and_content user_image(user, :size => 'thumb') do
+            %div
+              = link_to_user user, :class => "large"
+            - if sub
+              = sub.call(user, count)
+            - else
+              = link_to observations_by_login_path(user.login, :on => time_unit == 'month' ? date.strftime("%Y-%m") : date.year) do
+                =t "x_#{noun.camelize.parameterize.pluralize}_html", :count => count.to_i
+    - else
+      .nocontent.meta=t :no_x_this_y, :x => t(noun).downcase, :y => t(time_unit).downcase
+  = extra

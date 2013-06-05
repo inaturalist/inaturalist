@@ -5,19 +5,38 @@ class Place < ActiveRecord::Base
   has_many :check_lists, :dependent => :destroy
   has_many :listed_taxa
   has_many :taxa, :through => :listed_taxa
+  has_many :taxon_links, :dependent => :delete_all
   has_one :place_geometry, :dependent => :destroy
+  has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
+    :select => (PlaceGeometry.column_names - ['geom']).join(', ')
   
-  before_save :calculate_bbox_area
-  after_create :create_default_check_list
+  before_save :calculate_bbox_area, :set_display_name
+  after_save :check_default_check_list
   
   validates_presence_of :latitude, :longitude
   validates_length_of :name, :within => 2..500, 
     :message => "must be between 2 and 500 characters"
-  validates_uniqueness_of :name, :scope => :parent_id
+  validates_uniqueness_of :name, :scope => :ancestry, :unless => Proc.new {|p| p.ancestry.blank?}
+  validate :validate_parent_is_not_self
+  validate :validate_name_does_not_start_with_a_number
   
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
   }
+
+  preference :check_lists, :boolean, :default => true
+
+  extend FriendlyId
+  friendly_id :name, :use => :history, :reserved_words => PlacesController.action_methods.to_a
+  def normalize_friendly_id(string)
+    super_candidate = super(string)
+    candidate = display_name.to_s.split(',').first.parameterize
+    candidate = super_candidate if candidate.blank? || candidate == super_candidate
+    if Place.where(:slug => candidate).exists? && !display_name.blank?
+      candidate = display_name.parameterize
+    end
+    candidate
+  end
   
   # Place to put a GeoPlanet response to avoid re-querying
   attr_accessor :geoplanet_response
@@ -93,15 +112,31 @@ class Place < ActiveRecord::Base
   }
   GEO_PLANET_PLACE_TYPE_CODES = GEO_PLANET_PLACE_TYPES.invert
   INAT_PLACE_TYPES = {
-    100 => 'Open Space'
+    100 => 'Open Space',
+    101 => 'Territory'
   }
   PLACE_TYPES = GEO_PLANET_PLACE_TYPES.merge(INAT_PLACE_TYPES).delete_if do |k,v|
     Place::REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(k)
   end
+
   PLACE_TYPE_CODES = PLACE_TYPES.invert
+  PLACE_TYPES.each do |code, type|
+    PLACE_TYPE_CODES[type.downcase] = code
+  end
+
+  scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
   scope :containing_lat_lng, lambda {|lat, lng|
     joins(:place_geometry).where("ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lng, lat)
+  }
+
+  scope :bbox_containing_lat_lng, lambda {|lat, lng|
+    where(
+      "(swlng > 0 AND nelng < 0 AND swlat <= ? AND nelat >= ? AND (swlng <= ? OR nelng >= ?)) " +
+      "OR (swlng * nelng >= 0 AND swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?)", 
+      lat, lat, lng, lng,
+      lat, lat, lng, lng
+    )
   }
   
   scope :containing_bbox, lambda {|swlat, swlng, nelat, nelng|
@@ -114,6 +149,31 @@ class Place < ActiveRecord::Base
     joins("JOIN place_geometries ON place_geometries.place_id = places.id").
     joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}").
     where("ST_Intersects(place_geometries.geom, taxon_ranges.geom)")
+  }
+
+  scope :listing_taxon, lambda {|taxon|
+    taxon_id = if taxon.is_a?(Taxon)
+      taxon
+    elsif taxon.to_i == 0
+      Taxon.single_taxon_for_name(taxon)
+    else
+      taxon
+    end
+    select("DISTINCT places.id, places.*").
+    joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id").
+    where("listed_taxa.taxon_id = ?", taxon_id)
+  }
+
+  scope :with_establishment_means, lambda {|establishment_means|
+    scope = joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id").scoped
+    case establishment_means
+    when ListedTaxon::NATIVE
+      scope.where("listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS)
+    when ListedTaxon::INTRODUCED
+      scope.where("listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS)
+    else
+      scope.where("listed_taxa.establishment_means = ?", establishment_means)
+    end
   }
   
   scope :place_type, lambda {|place_type|
@@ -129,6 +189,8 @@ class Place < ActiveRecord::Base
     end
     where("place_type IN (?)", place_types)
   }
+
+  scope :with_geom, joins(:place_geometry).where("place_geometries.id IS NOT NULL")
   
   def to_s
     "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 
@@ -136,9 +198,15 @@ class Place < ActiveRecord::Base
     "lng: #{longitude}, parent_id: #{parent_id}>"
   end
   
-  def validate
-    if !id.blank? && id == parent_id
+  def validate_parent_is_not_self
+    if !id.blank? && id == ancestor_ids.last
       errors.add(:parent_id, "cannot be the same as the place itself")
+    end
+  end
+
+  def validate_name_does_not_start_with_a_number
+    if name.to_i > 0
+      errors.add(:name, "cannot start with a number")
     end
   end
   
@@ -154,7 +222,7 @@ class Place < ActiveRecord::Base
   def display_name(options = {})
     return read_attribute(:display_name) unless read_attribute(:display_name).blank? || options[:reload]
     
-    ancestor_names = self.ancestors.select do |a|
+    ancestor_names = ancestors.reverse.select do |a|
       %w"town state country".include?(PLACE_TYPES[a.place_type].to_s.downcase)
     end.map do |a|
       a.code.blank? ? a.name : a.code.split('-').last
@@ -171,6 +239,12 @@ class Place < ActiveRecord::Base
     end
     
     new_display_name
+  end
+
+  def set_display_name
+    return true unless ancestry_changed?
+    display_name(:reload => true)
+    true
   end
   
   def wikipedia_name
@@ -198,7 +272,7 @@ class Place < ActiveRecord::Base
   end
   
   def straddles_date_line?
-    self.swlng > 0 && self.nelng < 0
+    self.swlng.to_f > 0 && self.nelng.to_f < 0
   end
   
   def contains_lat_lng?(lat, lng)
@@ -209,8 +283,8 @@ class Place < ActiveRecord::Base
     return false if user.blank?
     return true if user.is_curator?
     return true if self.user_id == user.id
-    return false if %(country state county).include?(place_type_name.to_s.downcase)
-    true
+    return false if %w(country state county).include?(place_type_name.to_s.downcase)
+    false
   end
   
   # Import a place from Yahoo GeoPlanet using the WOEID (Where On Earth ID)
@@ -222,22 +296,24 @@ class Place < ActiveRecord::Base
     begin
       ydn_place = GeoPlanet::Place.new(woeid.to_i)
     rescue GeoPlanet::NotFound => e
-      logger.error "[ERROR] #{e.class}: #{e.message}"
+      Rails.logger.error "[ERROR] #{e.class}: #{e.message}"
       return nil
     end
     place = Place.new_from_geo_planet(ydn_place)
+    if place.valid?
+      place.save!
+    else
+      Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
+      return
+    end
     place.parent = options[:parent]
     
     unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
       ancestors = []
-      logger.debug "[DEBUG] Saving ancestors..."
       ydn_place.ancestors.reverse_each do |ydn_ancestor|
-        next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(
-          ydn_ancestor.placetype_code)
-        ancestor = Place.import_by_woeid(ydn_ancestor.woeid, 
-          :ignore_ancestors => true, :parent => ancestors.last)
+        next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
+        ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
         ancestors << ancestor
-        logger.debug "[DEBUG] \t\tSaved #{ancestor}."
         place.parent = ancestors.last
       end
     end
@@ -285,14 +361,22 @@ class Place < ActiveRecord::Base
   end
   
   # Create a CheckList associated with this place
-  def create_default_check_list
-    self.create_check_list(:place => self)
-    save(:validate => false)
-    unless check_list.valid?
-      logger.info "[INFO] Failed to create a default check list on " + 
-        "creation of #{self}: " + 
-        check_list.errors.full_messages.join(', ')
+  def check_default_check_list
+    if place_type == PLACE_TYPE_CODES['Continent']
+      self.prefers_check_lists = false
     end
+    if prefers_check_lists && check_list.blank?
+      self.create_check_list(:place => self)
+      save(:validate => false)
+      unless check_list.valid?
+        Rails.logger.info "[INFO] Failed to create a default check list on " + 
+          "creation of #{self}: " + 
+          check_list.errors.full_messages.join(', ')
+      end
+    else
+      # TODO destroy existing check lists?
+    end
+    true
   end
   
   # Update the associated place_geometry or create a new one
@@ -308,8 +392,7 @@ class Place < ActiveRecord::Base
       end
       update_bbox_from_geom(geom) if self.place_geometry.valid?
     rescue ActiveRecord::StatementInvalid => e
-      puts "[ERROR] \tCouldn't save #{self.place_geometry}: " + 
-        e.message[0..200]
+      Rails.logger.error "[ERROR] \tCouldn't save #{self.place_geometry}: #{e.message[0..200]}"
     end
   end
   
@@ -327,12 +410,19 @@ class Place < ActiveRecord::Base
   # Update this place's bbox from a geometry.  Note this skips validations, 
   # but explicitly recalculates the bbox area
   def update_bbox_from_geom(geom)
-    self.latitude = geom.envelope.center.y
     self.longitude = geom.envelope.center.x
+    self.latitude = geom.envelope.center.y
     self.swlat = geom.envelope.lower_corner.y
-    self.swlng = geom.envelope.lower_corner.x
     self.nelat = geom.envelope.upper_corner.y
-    self.nelng = geom.envelope.upper_corner.x
+    if geom.spans_dateline?
+      self.longitude = geom.envelope.center.x + 180*(geom.envelope.center.x > 0 ? -1 : 1)
+      self.swlng = geom.envelope.upper_corner.x
+      self.nelng = geom.envelope.lower_corner.x
+    else
+      # self.longitude = geom.envelope.center.x
+      self.swlng = geom.envelope.lower_corner.x
+      self.nelng = geom.envelope.upper_corner.x
+    end
     calculate_bbox_area
     save(:validate => false)
   end
@@ -354,7 +444,7 @@ class Place < ActiveRecord::Base
   #   California Protected Areas Database:
   #     Place.import_from_shapefile('/Users/kueda/Desktop/CPAD_March09/Units_Fee_09_longlat.shp', :source => 'cpad', :skip_woeid => true)
   #
-  def self.import_from_shapefile(shapefile_path, options = {})
+  def self.import_from_shapefile(shapefile_path, options = {}, &block)
     start_time = Time.now
     num_created = num_updated = 0
     GeoRuby::Shp4r::ShpFile.open(shapefile_path).each do |shp|
@@ -415,11 +505,17 @@ class Place < ActiveRecord::Base
         num_created += 1
       end
       
-      if place.valid?
+      place = if block_given?
+        yield place, shp
+      else
+        place
+      end
+      if place && place.valid?
         place.save unless options[:test]
         puts "[INFO] \t\tSaved place: #{place}"
       else
-        puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}"
+        num_created -= 1
+        puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}" if place
         next
       end
       
@@ -446,14 +542,21 @@ class Place < ActiveRecord::Base
   # Make a new Place from a shapefile shape
   #
   def self.new_from_shape(shape, options = {})
+    name_column = options[:name_column] || 'name'
+    name = options[:name] || 
+      shape.data[name_column] || 
+      shape.data[name_column.upcase] || 
+      shape.data[name_column.capitalize] || 
+      shape.data[name_column.downcase]
     place = Place.new(
-      :name => options[:name] || shape.data['NAME'] || shape.data['Name'] || shape.data['name'],
+      :name => name,
       :latitude => shape.geometry.envelope.center.y,
       :longitude => shape.geometry.envelope.center.x,
       :swlat => shape.geometry.envelope.lower_corner.y,
       :swlng => shape.geometry.envelope.lower_corner.x,
       :nelat => shape.geometry.envelope.upper_corner.y,
-      :nelng => shape.geometry.envelope.upper_corner.x
+      :nelng => shape.geometry.envelope.upper_corner.x,
+      :place_type => options[:place_type]
     )
     
     unless options[:skip_woeid]
@@ -533,14 +636,55 @@ class Place < ActiveRecord::Base
   def bbox_contains_lat_lng?(lat, lng)
     return false if lat.blank? || lng.blank?
     return nil unless swlng && swlat && nelat && nelng
-    if swlng.to_f > 0 && nelng.to_f < 0
+    if straddles_date_line?
       lat > swlat && lat < nelat && (lng > swlng || lng < nelng)
     else
       lat > swlat && lat < nelat && lng > swlng && lng < nelng
     end
   end
+
+  def bbox_contains_lat_lng_acc?(lat, lng, acc)
+    f = RGeo::Geographic.simple_mercator_factory
+    bbox = f.polygon(
+      f.linear_ring([
+        f.point(swlng, swlat),
+        f.point(swlng, nelat),
+        f.point(nelng, nelat),
+        f.point(nelng, swlat),
+        f.point(swlng, swlat)
+      ])
+    )
+    pt = f.point(lng,lat)
+
+    # buffer the point to make a circle if accuracy set. Note that the method
+    # takes accuracy in meters, not sure if it makes a conversion to degrees
+    # with latitude in mind.
+    pt = pt.buffer(acc) if acc.to_f > 0
+
+    bbox.contains?(pt)
+  end
+
+  def kml_url
+    FakeView.place_geometry_kml_url(:place => self)
+  end
   
   def self.guide_cache_key(id)
     "place_guide_#{id}"
+  end
+  
+  def as_json(options = {})
+    options[:methods] ||= []
+    options[:methods] << :place_type_name
+    options[:except] ||= []
+    options[:except] += [:source_filename, :delta, :bbox_area]
+    super(options)
+  end
+
+  def self_and_ancestors
+    [ancestors, self].flatten
+  end
+
+  def self_and_ancestor_ids
+    [ancestor_ids, id].flatten
   end
 end

@@ -6,16 +6,18 @@ class IdentificationsController < ApplicationController
   cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
     
   def show
-    redirect_to @identification.observation
+    redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.id}")
   end
   
   def by_login
-    @identifications = @selected_user.identifications.for_others.paginate(
-      :page => params[:page],
-      :per_page => 20,
-      :include => [:observation, :taxon],
-      :order => "identifications.created_at DESC"
-    )
+    scope = @selected_user.identifications.for_others.
+      includes(:observation, :taxon).
+      order("identifications.created_at DESC").
+      scoped
+    unless params[:on].blank?
+      scope = scope.on(params[:on])
+    end
+    @identifications = scope.page(params[:page]).per_page(20)
     @identifications_by_obs_id = @identifications.index_by(&:observation_id)
     @observations = @identifications.collect(&:observation)
     @other_ids = Identification.all(
@@ -40,7 +42,7 @@ class IdentificationsController < ApplicationController
   # POST identification_url
   def create
     @identification = Identification.new(params[:identification])
-    if @identification.taxon.nil? and params[:taxa_search_form_taxon_name]
+    if @identification.taxon.blank? && params[:taxa_search_form_taxon_name]
       taxon_name = TaxonName.find_by_name(params[:taxa_search_form_taxon_name])
       @identification.taxon = taxon_name.taxon if taxon_name
     end
@@ -66,7 +68,8 @@ class IdentificationsController < ApplicationController
           if params[:return_to]
             return redirect_to(params[:return_to])
           end
-          redirect_to @identification.observation and return
+          redirect_to @identification.observation || root_url
+          return
         end
         
         format.json do
@@ -100,6 +103,7 @@ class IdentificationsController < ApplicationController
         redirect_to observation
       end
       format.js { render :status => :ok, :json => nil }
+      format.json { render :status => :ok, :json => nil }
     end
   end
   

@@ -2,9 +2,10 @@ class CheckListsController < ApplicationController
   include Shared::ListsModule
   
   before_filter :authenticate_user!, :except => [:index, :show, :taxa]
-  before_filter :load_list, :only => [:show, :edit, :update, :destroy, :compare, :remove_taxon, :add_taxon_batch, :taxa]
-  before_filter :require_editor, :only => [:edit, :update, :destroy, :remove_taxon, :add_taxon_batch]
-  before_filter :lock_down_default_check_lists, :only => [:edit, :update, :destroy]
+  before_filter :load_list, :only => [:show, :edit, :update, :destroy, :compare, :remove_taxon, :add_taxon_batch, :taxa, :batch_edit]
+  before_filter :require_editor, :only => [:edit, :update, :destroy, :remove_taxon]
+  before_filter :require_listed_taxa_editor, :only => [:batch_edit, :add_taxon_batch]
+  before_filter :lock_down_default_check_lists, :only => [:edit, :update, :destroy, :batch_edit]
   before_filter :load_find_options, :only => [:show]
   
   # Not supporting any of these just yet
@@ -12,7 +13,7 @@ class CheckListsController < ApplicationController
   
   def show
     @place = @list.place
-    @other_check_lists = @place.check_lists.paginate(:page => 1)
+    @other_check_lists = @place.check_lists.limit(1000)
     @other_check_lists.delete_if {|l| l.id == @list.id}
     
     # If this is a place's default check list, load ALL the listed taxa
@@ -25,14 +26,14 @@ class CheckListsController < ApplicationController
         @find_options[:conditions], ["AND place_id = ?", @list.place_id])
       
       # Make sure we don't get duplicate taxa from check lists other than the default
-      @find_options[:select] = "DISTINCT (taxon_ancestor_ids || '/' || listed_taxa.taxon_id), listed_taxa.*"
+      @find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
       
       # Searches must use place_id instead of list_id for default checklists 
       # so we can search items in other checklists for this place
       if @q = params[:q]
         @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
-        @find_options[:conditions] = List.merge_conditions(
-          @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @search_taxon_ids])
+        @find_options[:conditions] = update_conditions(
+          @find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
       end
       
       @listed_taxa = ListedTaxon.paginate(@find_options)
@@ -44,7 +45,8 @@ class CheckListsController < ApplicationController
   end
   
   def new
-    unless @place = Place.find_by_id(params[:place_id])
+    @place = Place.find(params[:place_id]) rescue nil
+    unless @place
       flash[:notice] = <<-EOT
         Check lists must belong to a place. To create a new check list, visit
         a place's default check list and click the 'Create a new check list'
@@ -61,17 +63,8 @@ class CheckListsController < ApplicationController
   def create
     @check_list = CheckList.new(params[:check_list])
     @check_list.user = current_user
-    
-    # Override taxon choice with iconic taxon choice
-    if params[:iconic_taxon] && (iconic_taxon = Taxon.find_by_id(params[:iconic_taxon][:id].to_i))
-      @check_list.taxon = iconic_taxon
-    end
-    
-    # add rules for all selected taxa
-    if @check_list.taxon_id
-      update_rules(@check_list, {:taxa => [{:taxon_id => @check_list.taxon_id}]})
-    end
-    
+    update_list_rules
+
     respond_to do |format|
       if @check_list.save
         flash[:notice] = 'List was successfully created.'
@@ -89,6 +82,8 @@ class CheckListsController < ApplicationController
   end
   
   def update
+    @check_list = @list
+    update_list_rules
     if @list.update_attributes(params[:check_list])
       flash[:notice] = "Check list updated!"
       return redirect_to @list
@@ -99,6 +94,18 @@ class CheckListsController < ApplicationController
   end
   
   private
+
+  def update_list_rules
+    # Override taxon choice with iconic taxon choice
+    if params[:iconic_taxon] && (iconic_taxon = Taxon.find_by_id(params[:iconic_taxon][:id].to_i))
+      @check_list.taxon = iconic_taxon
+    end
+    
+    # add rules for all selected taxa
+    if @check_list.taxon_id
+      update_rules(@check_list, {:taxa => [{:taxon_id => @check_list.taxon_id}]})
+    end
+  end
   
   def load_list
     @list = CheckList.find_by_id(params[:id].to_i)

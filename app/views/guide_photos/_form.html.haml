@@ -1,0 +1,15 @@
+= form_for(@guide_photo, :builder => DefaultFormBuilder) do |f|
+  - if @guide_photo.errors.any?
+    #error_explanation
+      %h3
+        = pluralize(@guide_photo.errors.count, "error")
+        prohibited this guide_photo from being saved:
+      %ul
+        - @guide_photo.errors.full_messages.each do |msg|
+          %li= msg
+  = f.number_field :guide_taxon_id
+  = f.text_field :title
+  = f.text_field :description
+  = f.number_field :photo_id
+  .actions
+    = f.submit

@@ -1,4 +1,5 @@
-require 'test_helper'
+# require 'test_helper'
+require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 
 class ObservationsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
@@ -61,8 +62,9 @@ class ObservationsControllerTest < ActionController::TestCase
   end
   
   def test_coordinates_obscured_for_threatened_for_project
-    o = make_observation_of_threatened
     p = Project.make!
+    pu = ProjectUser.make!(:project => p)
+    o = make_observation_of_threatened(:user => pu.user)
     p.observations << o
     get :project, :id => p.id
     assert_private_coordinates_obscured(o)
@@ -122,8 +124,9 @@ class ObservationsControllerTest < ActionController::TestCase
   end
   
   def test_geoprivacy_private_hides_coordinates_for_project
-    o = make_private_observation
     p = Project.make!
+    pu = ProjectUser.make!(:project => p)
+    o = make_private_observation(:user => pu.user)
     p.observations << o
     get :project, :id => p.id
     assert_private_coordinates_hidden(o)
@@ -145,6 +148,21 @@ class ObservationsControllerTest < ActionController::TestCase
   end
   # the obs spec tests whether manual obscuring really obscures, so I'm not 
   # too concerned about testing all the other endpoints here
+
+  def test_csv_download_under_1000
+    o = Observation.make!(:species_guess => 'flubbernutter')
+    sign_in o.user
+    get :by_login_all, :login => o.user.login, :format => "csv"
+    assert_response :success
+    assert_match /flubbernutter/, @response.body
+  end
+
+  def test_no_user_agent_in_csv
+    o = Observation.make!(:user_agent => 'flubbernutter')
+    get :index, :format => "csv"
+    assert_response :success
+    assert_no_match /flubbernutter/, @response.body
+  end
   
   def assert_private_coordinates_obscured(observation)
     assert_response :success

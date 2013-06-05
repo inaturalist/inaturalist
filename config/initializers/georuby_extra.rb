@@ -16,11 +16,28 @@ module GeoRuby
       def south_of?(point)
         y < point.y
       end
+      def across_dateline_from?(point)
+        (x < 0 && point.x > 0 || x > 0 && point.x < 0) && (x.abs > 90 || point.x.abs > 90)
+      end
+
+      def self.points_span_dateline?(pts)
+        pts.each_with_index do |pt,i|
+          next_pt = pts[i+1] || pts[0]
+          return true if pt.across_dateline_from?(next_pt)
+        end
+        false
+      end
     end
     
     class MultiPolygon
       def num_points
         geometries.sum {|r| r.num_points}
+      end
+
+      def spans_dateline?
+        return true if geometries.detect{|g| g.spans_dateline?}
+        pts = geometries.map {|g| g.envelope.center}
+        Point.points_span_dateline?(pts)
       end
     end
     
@@ -53,6 +70,13 @@ module GeoRuby
           result[1].z, result[0].z = max_z, min_z
           result
         end
+      end
+
+      def spans_dateline?
+        rings.each do |ring|
+          return true if Point.points_span_dateline?(ring.points)
+        end
+        false
       end
     end
   end

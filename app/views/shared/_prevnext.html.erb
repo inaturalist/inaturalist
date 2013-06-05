@@ -9,7 +9,7 @@
     <% if prev_item %>
       <a id="prevlink" href="<%= prev_url %>">
         <span class="arrow">&lsaquo;</span>
-        Previous
+        <%= t(:previous) %>
         <div class="title">            
           <div><%= prev_title %></div>
         </div>
@@ -23,7 +23,7 @@
     <% if next_item %>
     <a id="nextlink" href="<%= next_url %>">
       <span class="arrow">&rsaquo;</span>
-      Next
+      <%= t(:next) %>
       <div class="title">
         <div><%= next_title %></div>
       </div>

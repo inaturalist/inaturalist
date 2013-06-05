@@ -1,9 +1,13 @@
-<%- remote ||= false -%>
-<%- unique_id ||= "new_comment_form-#{comment.parent.id}" -%>
+<%- 
+  remote ||= false
+  comment ||= comment_form || @comment
+  unique_id ||= "new_comment_form-#{comment.parent_id}"
+  partial ||= nil
+-%>
 <div class="clear">
   <% if logged_in? %>
     <% if remote -%>
-      <div id="<%= unique_id %>-loading" class="loading status" style="display:none">Saving...</div>
+      <div id="<%= unique_id %>-loading" class="loading status" style="display:none"><%= t :saving %></div>
       <%= form_for(comment, 
         :remote => true,
         :html => {
@@ -11,6 +15,9 @@
           :class => "commentform",
           "data-type" => "json"
         }) do |f| %>
+        <% if partial -%>
+          <%= hidden_field_tag :partial, partial %>
+        <% end -%>
         <%= render :partial => 'comments/comment_form_fields', :locals => {
           :f => f, 
           :comment => comment,
@@ -27,8 +34,8 @@
       <% end %>
     <% end -%>
   <% else %>
-    <%= link_to "Sign in", login_path %>
-    or <%= link_to "sign up", signup_path %>
-    to add comments.
+    <%= link_to t(:sign_in), login_path %>
+    <%=t :or %> <%= link_to t(:sign_up), signup_path %>
+    <%=t :to_add_comments %>
   <% end %>
 </div>

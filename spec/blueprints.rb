@@ -9,6 +9,19 @@ require 'faker'
 # Sham.body  { Faker::Lorem.paragraph }
 # Sham.url { "http://#{Faker::Internet.domain_name}" }
 
+Assessment.blueprint do
+  taxon { Taxon.make! }
+  user { User.make! }
+  project { Project.make! }
+end
+
+AssessmentSection.blueprint do
+  assessment { Assessment.make! }
+  user { User.make! }
+  title { Faker::Lorem.sentence }
+  body { Faker::Lorem.paragraph }
+end
+
 CheckList.blueprint do
   place { Place.make! }
 end
@@ -16,6 +29,19 @@ end
 Comment.blueprint do
   user { User.make }
   body { Faker::Lorem.paragraph }
+end
+
+ConservationStatus.blueprint do
+  user { User.make! }
+  taxon { Taxon.make! }
+  status { "E" }
+  iucn { Taxon::IUCN_ENDANGERED }
+  geoprivacy { Observation::OBSCURED }
+end
+
+Flag.blueprint do
+  user { User.make! }
+  flag { Faker::Name.name }
 end
 
 FlickrIdentity.blueprint do
@@ -55,6 +81,13 @@ LocalPhoto.blueprint do
   user { User.make }
 end
 
+OauthApplication.blueprint do
+  name { Faker::Lorem.sentence }
+  owner { User.make }
+  url { "http://#{Faker::Internet.domain_name}" }
+  redirect_uri { Doorkeeper.configuration.test_redirect_uri }
+end
+
 Observation.blueprint do
   user { User.make! }
 end
@@ -66,8 +99,8 @@ ObservationField.blueprint do
 end
 
 ObservationFieldValue.blueprint do
-  observation { Observation.make }
-  observation_field { ObservationField.make }
+  observation { Observation.make! }
+  observation_field { ObservationField.make! }
   value {"foo"}
 end
 
@@ -104,8 +137,19 @@ Project.blueprint do
   title { Faker::Lorem.sentence }
 end
 
+ProjectInvitation.blueprint do
+  user { User.make! }
+  project { Project.make! }
+  observation { Observation.make! }
+end
+
 ProjectList.blueprint do
   project { Project.make }
+end
+
+ProjectObservationField.blueprint do
+  project { Project.make }
+  observation_field { ObservationField.make }
 end
 
 ProjectUser.blueprint do
@@ -116,6 +160,18 @@ end
 ProjectObservation.blueprint do
   observation { Observation.make }
   project { Project.make }
+end
+
+ProjectObservationRule.blueprint do
+  ruler { Project.make }
+  operator { "identified?" }
+end
+
+ProviderAuthorization.blueprint do
+  user { User.make! }
+  provider_name { 'flickr' }
+  provider_uid { 'xxx@000' }
+  token { 'foo' }
 end
 
 QualityMetric.blueprint do
@@ -156,6 +212,16 @@ Taxon.blueprint(:threatened) do
   is_active { true }
 end
 
+TaxonChange.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
+TaxonDrop.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
 TaxonLink.blueprint do
   user { User.make! }
   taxon { Taxon.make! }
@@ -168,6 +234,11 @@ TaxonPhoto.blueprint do
   photo { Photo.make }
 end
 
+TaxonMerge.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
 TaxonName.blueprint do
   name { Faker::Name.name }
   taxon { Taxon.make! }
@@ -178,10 +249,30 @@ TaxonRange.blueprint do
   source { Source.make }
 end
 
+TaxonScheme.blueprint do
+  title { Faker::Lorem.sentence }
+  source { Source.make! }
+end
+
+TaxonSplit.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
+TaxonStage.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
+TaxonSwap.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
 Update.blueprint do
-  subscriber { User.make }
-  resource { Observation.make }
-  notifier { Comment.make(:parent => self.resource) }
+  subscriber { User.make! }
+  resource { Observation.make! }
+  notifier { Comment.make!(:parent => self.resource) }
 end
 
 User.blueprint do
@@ -197,4 +288,3 @@ User.blueprint do
   state { "active" }
   time_zone { "Pacific Time (US & Canada)" }
 end
-

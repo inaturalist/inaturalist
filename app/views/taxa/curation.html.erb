@@ -1,4 +1,4 @@
-<% content_for(:title) do %>Curation<% end %>
+<% content_for(:title) do %><%= t(:curation) %><% end %>
 <% content_for(:extracss) do -%>
   <style type="text/css" media="screen">
     #tools {
@@ -16,11 +16,13 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('.grafting_link')
-        .bind('ajax:success', function(e, response, status) {
-          $(this).text(response).addClass('success')
+        .bind('ajax:success', function(e, json, status) {
+          $(this).text(json.msg).addClass('success status')
         })
         .bind('ajax:error', function(event, request, settings) {
-          alert(request.responseText)
+          var json = $.parseJSON(request.responseText)
+          if (json) { alert(json.error) }
+          else { alert('Something went wrong') }
         })
     })
   </script>
@@ -29,15 +31,15 @@
 <div id="tools" class="buttonrow">
   <%= link_to "New Taxon", new_taxon_path, :class => 'button' %>
 </div>
-<h2>Taxa Needing Curation</h2>
+<h2><%= t(:taxa_needing_curation) %></h2>
 
 <table>
   <tr>
-    <th>Created</th>
+    <th><%= t(:created) %></th>
     <th>Taxon</th>
-    <th>Reason</th>
-    <th>Flagger</th>
-    <th>Actions</th>
+    <th><%= t(:reason) %></th>
+    <th><%= t(:flagger) %></th>
+    <th><%= t(:actions) %></th>
   </tr>
   <% for flagging in @flags %>
   <% rendered_taxon =  render(:partial => 'shared/taxon', 
@@ -50,20 +52,20 @@
       <% if flagging.user -%>
         <%= link_to h(flagging.user.login), flagging.user %>
       <% else %>
-        iNat
+        <%= CONFIG.site_name_short %>
       <% end -%>
     </td>
     <td>
-      <%= link_to "View", taxon_path(:id => flagging.flaggable_id) %> /
-      <%= link_to "Edit", edit_taxon_path(:id => flagging.flaggable_id) %> /
-      <%= link_to "Merge", merge_taxon_path(:id => flagging.flaggable_id) %>
+      <%= link_to t(:view), taxon_path(:id => flagging.flaggable_id) %> /
+      <%= link_to t(:edit), edit_taxon_path(:id => flagging.flaggable_id) %> /
+      <%= link_to t(:merge), merge_taxon_path(:id => flagging.flaggable_id) %>
       <%= form_for(flagging, :action => "update", :html => {:class => "inline buttonrow"}) do |f| %>
         <fieldset>
-          <legend>Resolve this flag</legend>
+          <legend><%= t(:resolve_this_flag) %></legend>
           <%= f.text_field :comment, :class => 'text', :placeholder => "Explain your decision" %>
-          <%= f.hidden_field :resolver_id, :value => @user.id %>
+          <%= f.hidden_field :resolver_id, :value => current_user.id %>
           <%= f.hidden_field :resolved, :value => true %>
-          <%= f.submit 'Resolve', :class => 'inline button' %>
+          <%= f.submit t(:resolve), :class => 'inline button' %>
         </fieldset>
       <% end %>
       
@@ -74,7 +76,7 @@
 
 <% unless @resolved_flags.blank? -%>
   <div class="stacked">
-    <h3>Recently Resolved</h3>
+    <h3><%= t(:recently_resolved) %></h3>
     <% for flag in @resolved_flags %>
       <%= render :partial => "flags/flag", :object => flag %>
     <% end %>
@@ -84,14 +86,14 @@
 
 <%= will_paginate @flags %>
 
-<h3>Ungrafted Taxa</h3>
+<h3><%= t(:unfragted_taxa) %></h3>
 <% if @ungrafted.empty? %>
   <p class="success">
-    w00t!  No ungrafted taxa!
+    <%= t(:w00t_no_unfragted_taxa) %>
   </p>
 <% elsif @ungrafted.total_entries > @ungrafted.size %>
   <p class="description">
-    Showing 1 - <%= @ungrafted.size %> of <%= @ungrafted.total_entries %>
+  <%= t(:showing_one_to) %> <%= @ungrafted.size %> of <%= @ungrafted.total_entries %>
   </p>
 <% end %>
 
@@ -106,18 +108,19 @@
       </td>
       
       <td>
-        <span class="button"> <%= link_to 'edit', edit_taxon_path(taxon) %></span>
+        <span class="button"> <%= link_to t(:edit), edit_taxon_path(taxon) %></span>
         |
-        <span class="button"> <%= link_to 'merge', merge_taxon_path(taxon) %></span>
+        <span class="button"> <%= link_to t(:merge), merge_taxon_path(taxon) %></span>
         |
-        <span class="button"> <%= link_to 'delete', taxon, :method => :delete, :confirm => "Are you sure you want to delete this? You should probably check to see if it has observations or listed taxa first." %></span>
+        <span class="button"> <%= link_to t(:add_taxon_change), new_taxon_change_path("input_taxon_ids[]" => taxon.id, :type => "TaxonSwap") %></span>
         |
         <span class="button">
-          <%= link_to 'graft', graft_taxon_path(taxon), 
+          <%= link_to t(:graft), graft_taxon_path(taxon, :format => 'json'), 
             :id => "grafting_link_#{taxon.id}",
             :class => "grafting_link",
             :remote => true,
             :method => 'post',
+            "data-type" => 'json',
             "data-loading-click" => "Grafting..."
            %>
         </span>

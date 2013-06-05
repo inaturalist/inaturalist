@@ -1,22 +1,33 @@
+#encoding: utf-8
 class TaxonName < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :source
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
+  has_many :taxon_scheme_taxa, :dependent => :destroy
   validates_presence_of :taxon
-  validates_associated :taxon
   validates_length_of :name, :within => 1..256
   validates_uniqueness_of :name, 
                           :scope => [:lexicon, :taxon_id], 
                           :message => "already exists for this taxon in this lexicon",
                           :case_sensitive => false
+  validates_uniqueness_of :source_identifier,
+                          :scope => [:taxon_id, :source_id],
+                          :message => "already exists",
+                          :allow_blank => true,
+                          :unless => Proc.new {|taxon_name|
+                            taxon_name.source && taxon_name.source.title =~ /Catalogue of Life/
+                          }
+
+  #TODO is the validates uniqueness correct?  Allows duplicate TaxonNames to be created with same 
+  #source_url but different taxon_ids
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
   before_validation do |tn|
     tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
   end
   after_create {|name| name.taxon.set_scientific_taxon_name}
   after_save :update_unique_names
-  after_destroy {|name| name.taxon.delay(:priority => 1).update_unique_name if name.taxon}
+  after_destroy {|name| name.taxon.delay(:priority => OPTIONAL_PRIORITY).update_unique_name if name.taxon}
   
   LEXICONS = {
     :SCIENTIFIC_NAMES    =>  'Scientific Names',
@@ -112,15 +123,30 @@ class TaxonName < ActiveRecord::Base
     return nil if common_names.blank?
     common_names = common_names.sort_by(&:id)
     
+    language_name = language_for_locale || 'english'
+    locale_names = common_names.select {|n| n.lexicon.to_s.downcase == language_name}
     engnames = common_names.select {|n| n.is_english?}
     unknames = common_names.select {|n| n.lexicon == 'unspecified'}
     
-    if engnames.length > 0
+    if locale_names.length > 0
+      locale_names.first
+    elsif engnames.length > 0
       engnames.first
     elsif unknames.length > 0
       unknames.first
     else
       common_names.first
+    end
+  end
+
+  def self.language_for_locale(locale = nil)
+    locale ||= I18n.locale
+    lang_code = locale.to_s.split('-').first.to_s.downcase
+    case lang_code
+    when 'es' then return 'spanish'
+    when 'fr' then return 'french'
+    else
+      return 'english'
     end
   end
   
@@ -138,19 +164,12 @@ class TaxonName < ActiveRecord::Base
   end
   
   def self.find_external(q, options = {})
-    ratatosk = case options[:src]
-    when 'ubio'
-      Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::UBioNameProvider.new])
-    when 'col'
-      Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::ColNameProvider.new])
-    else
-      Ratatosk
-    end
+    r = ratatosk(options)
     
     # fetch names and save them
-    ratatosk.find(q).map do |ext_name|
+    r.find(q).map do |ext_name|
       unless ext_name.valid?
-        if existing_taxon = ratatosk.find_existing_taxon(ext_name.taxon)
+        if existing_taxon = r.find_existing_taxon(ext_name.taxon)
           ext_name.taxon = existing_taxon
         end
       end
@@ -168,7 +187,7 @@ class TaxonName < ActiveRecord::Base
       taxon_names = TaxonName.all(:conditions => conditions, :limit => 10, :include => :taxon)
     rescue ActiveRecord::StatementInvalid => e
       raise e unless e.message =~ /invalid byte sequence/
-      conditions[:name] = Iconv.iconv('UTF8', 'LATIN1', name).first
+      conditions[:name] = name.encode('UTF-8')
       taxon_names = TaxonName.all(:conditions => conditions, :limit => 10, :include => :taxon)
     end
     unless options[:iconic_taxa].blank?

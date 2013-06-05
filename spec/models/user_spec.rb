@@ -6,7 +6,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 include AuthenticatedTestHelper
 
 describe User do
-  describe 'being created' do
+  describe 'creation' do
     before do
       @user = nil
       @creating_user = lambda do
@@ -42,6 +42,24 @@ describe User do
       lambda {
         User.make!(:login => 'FOO')
       }.should raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "should require email under normal circumstances" do
+      u = User.make
+      u.email = nil
+      u.should_not be_valid
+    end
+    
+    it "should allow skipping email validation" do
+      u = User.make
+      u.email = nil
+      u.skip_email_validation = true
+      u.should be_valid
+    end
+
+    it "should set the URI" do
+      u = User.make!
+      u.uri.should eq(FakeView.user_url(u))
     end
   end
 
@@ -150,8 +168,8 @@ describe User do
     end
   end
   describe "disallows illegitimate names" do
-    ["tab\t", "newline\n",
-     '1234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_',
+    [
+     '1234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_234567890_'
      ].each do |name_str|
       it "'#{name_str}'" do
         lambda do
@@ -243,6 +261,157 @@ describe User do
       deleted_user.user_id.should == @user.id
       deleted_user.login.should == @user.login
       deleted_user.email.should == @user.email
+    end
+  end
+
+  describe "sane_destroy" do
+    before(:each) do
+      without_delay do
+        @user = User.make!
+        @place = make_place_with_geom
+        3.times do
+          Observation.make!(:user => @user, :taxon => Taxon.make!, 
+            :latitude => @place.latitude, :longitude => @place.longitude)
+        end
+      end
+    end
+
+    it "should destroy the user" do
+      @user.sane_destroy
+      User.find_by_id(@user.id).should be_blank
+    end
+
+    it "should not queue jobs to refresh the users lists" do
+      Delayed::Job.delete_all
+      @user.sane_destroy
+      jobs = Delayed::Job.all
+      # jobs.map(&:handler).each{|h| puts h}
+      jobs.select{|j| j.handler =~ /'List'.*\:refresh/m}.should be_blank
+    end
+
+    it "should not queue refresh_with_observation jobs" do
+      Delayed::Job.delete_all
+      @user.sane_destroy
+      Delayed::Job.all.select{|j| j.handler =~ /refresh_with_observation/m}.should be_blank
+    end
+
+    it "should queue jobs to refresh check lists" do
+      Delayed::Job.delete_all
+      @user.sane_destroy
+      jobs = Delayed::Job.all
+      # jobs.map(&:handler).each{|h| puts h}
+      jobs.select{|j| j.handler =~ /'CheckList'.*\:refresh/m}.should_not be_blank
+    end
+
+    it "should refresh check lists" do
+      t = Taxon.make!
+      without_delay do
+        make_research_grade_observation(:taxon => t, :user => @user, :latitude => @place.latitude, :longitude => @place.longitude)
+      end
+      @place.check_list.listed_taxa.find_by_taxon_id(t.id).should_not be_blank
+      without_delay do
+        @user.sane_destroy
+      end
+      @place.check_list.listed_taxa.find_by_taxon_id(t.id).should be_blank
+    end
+
+    it "should queue jobs to refresh project lists" do
+      project = without_delay {Project.make!(:user => @user)}
+      project.project_list.should_not be_blank
+      Delayed::Job.delete_all
+      @user.sane_destroy
+      jobs = Delayed::Job.all
+      # jobs.map(&:handler).each{|h| puts h}
+      jobs.select{|j| j.handler =~ /'ProjectList'.*\:refresh/m}.should_not be_blank
+    end
+
+    it "should remove remove taxa from check lists that were only confirmed by the user's observations" do
+      o = without_delay do
+        make_research_grade_observation(:user => @user, :latitude => @place.latitude, :longitude => @place.longitude)
+      end
+      t = o.taxon
+      ListedTaxon.where(:place_id => @place, :taxon_id => t).should_not be_blank
+      without_delay { @user.sane_destroy }
+      ListedTaxon.where(:place_id => @place, :taxon_id => t).should be_blank
+    end
+
+    it "should destroy projects with no observations" do
+      p = Project.make!(:user => @user)
+      @user.sane_destroy
+      Project.find_by_id(p.id).should be_blank
+    end
+
+    it "should not destroy projects with observations" do
+      p = Project.make!(:user => @user)
+      po = make_project_observation(:project => p)
+      @user.sane_destroy
+      Project.find_by_id(p.id).should_not be_blank
+    end
+
+    it "should assign projects to a manager" do
+      p = Project.make!(:user => @user)
+      po = make_project_observation(:project => p)
+      m = ProjectUser.make!(:role => ProjectUser::MANAGER, :project => p)
+      @user.sane_destroy
+      p.reload
+      p.user_id.should eq(m.user_id)
+    end
+
+    it "should assign projects to a site admin if no manager" do
+      a = make_admin
+      User.admins.count.should eq(1)
+      p = Project.make!(:user => @user)
+      po = make_project_observation(:project => p)
+      @user.sane_destroy
+      p.reload
+      p.user_id.should eq(a.id)
+    end
+
+    it "should generate a notification update for new project owners" do
+      p = Project.make!(:user => @user)
+      po = make_project_observation(:project => p)
+      m = without_delay do
+        ProjectUser.make!(:role => ProjectUser::MANAGER, :project => p)
+      end
+      Update.delete_all
+      old_count = Update.count
+      start = Time.now
+      without_delay { @user.sane_destroy }
+      new_updates = Update.where("created_at >= ?", start).to_a
+      new_updates.size.should eq p.project_users.count
+      # new_updates.each{|u| puts "u.subscriber_id: #{u.subscriber_id}, u.notification: #{u.notification}"}
+      u = new_updates.detect{|o| o.subscriber_id == m.user_id}
+      u.should_not be_blank
+      u.resource.should eq(p)
+    end
+
+    it "should generate a notification update for new project owners even if they're new members" do
+      p = Project.make!(:user => @user)
+      po = make_project_observation(:project => p)
+      a = without_delay do
+        make_admin
+      end
+      Update.delete_all
+      old_count = Update.count
+      start = Time.now
+
+      puts "destroying user"
+      without_delay { @user.sane_destroy }
+      p.reload
+      new_updates = Update.where("created_at >= ?", start).to_a
+      new_updates.size.should eq p.project_users.count
+      # new_updates.each{|u| puts "u.subscriber_id: #{u.subscriber_id}, u.notification: #{u.notification}"}
+      u = new_updates.detect{|o| o.subscriber_id == a.id}
+      u.should_not be_blank
+      u.resource.should eq(p)
+    end
+
+    it "should not destroy project journal posts" do
+      p = Project.make!(:user => @user)
+      po = make_project_observation(:project => p)
+      pjp = Post.make!(:parent => p, :user => @user)
+      @user.sane_destroy
+      Post.find_by_id(pjp.id).should_not be_blank
     end
   end
 

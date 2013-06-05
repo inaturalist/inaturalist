@@ -1,18 +1,14 @@
 <%-
-  user = update_created_observations|| resource
+  user = update_created_observations || resource
   updates ||= []
   observations = if @update_cache && @update_cache[:observations]
     updates.map{|u| @update_cache[:observations][u.notifier_id]}
-  else
-    updates.map{|u| u.notifier}
-  end
+  end.compact
+  observations = updates.map{|u| u.notifier}.compact if observations.blank?
   default_observation = observations.first
--%>
-
-
-<%- 
+  return if observations.blank? # this really shouldn't happen
   place_guesses = observations.map{|o| o.place_guess.blank? ? nil : o.place_guess }.compact.uniq
-  login = observations.first.user.login
+  login = default_observation.user.login
 -%>
 
 <div class="updatecontent">

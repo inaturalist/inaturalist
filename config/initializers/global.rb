@@ -11,8 +11,9 @@ end
 
 def log_timer(name = nil)
   start_log_timer(name)
-  yield
+  r = yield
   end_log_timer
+  r
 end
 
 class Object
@@ -24,4 +25,37 @@ class Object
     end
     nil
   end
+end
+
+def ratatosk(options = {})
+  src = options[:src]
+  if CONFIG.ratatosk && CONFIG.ratatosk.name_providers
+    if CONFIG.ratatosk.name_providers.include?(src.to_s.downcase)
+      Ratatosk::Ratatosk.new(:name_providers => [src])
+    else
+      @@ratatosk ||= Ratatosk::Ratatosk.new(:name_providers => CONFIG.ratatosk.name_providers)
+    end
+  else
+    Ratatosk
+  end
+end
+
+class String
+  def sanitize_encoding
+    begin
+      blank?
+    rescue ArgumentError => e
+      raise e unless e.message =~ /invalid byte sequence in UTF-8/
+      return encode('utf-8', 'iso-8859-1')
+    end
+    self
+  end
+end
+
+def sanitize_sphinx_query(q)
+  q.gsub(/[^\w\s\.\'\-]+/, '').gsub(/\-/, '\-')
+end
+
+def private_page_cache_path(path)
+  File.join(Rails.root, 'tmp', 'page_cache', path)
 end

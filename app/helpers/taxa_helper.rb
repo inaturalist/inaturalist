@@ -1,3 +1,4 @@
+#encoding: utf-8
 module TaxaHelper
   include ActionView::Helpers::AssetTagHelper
   
@@ -51,11 +52,12 @@ module TaxaHelper
   # otherwise the iconic taxon icon.
   #
   def taxon_image(taxon, params = {})
-    if taxon.blank? || taxon.photos.blank?
+    if taxon.blank? || taxon.default_photo.blank?
       return iconic_taxon_image(taxon, params)
     end
+    params[:size] ||= "square"
     image_params = params.merge(:alt => default_taxon_name(taxon))
-    unless taxon.photos.blank?
+    unless taxon.default_photo.blank?
       image_params[:alt] += " - Photo #{taxon.default_photo.attribution}"
     end
     image_params[:title] = image_params[:alt]
@@ -63,20 +65,15 @@ module TaxaHelper
     [:id, :class, :style, :alt, :title, :width, :height].each do |attr_name|
       image_params[attr_name] = params.delete(attr_name) if params[attr_name]
     end
-    image_params[:class] ||= ""
-    image_params[:class] += " #{params[:size]} photo" if params[:size]
-    image_tag(taxon_image_url(taxon, params), image_params)
+    image_params[:class] = "#{image_params[:class]} #{params[:size]} photo".strip
+    image_tag(taxon_image_url(taxon, params), image_params).force_encoding('utf-8')
   end
   
   def taxon_image_url(taxon, params = {})
-    return iconic_taxon_image_url(taxon, params) if taxon.blank? || taxon.photos.blank?
-    size = params[:size] ? "#{params[:size]}_url" : 'square_url'
+    return iconic_taxon_image_url(taxon, params) if taxon.blank? || taxon.default_photo.blank?
+    size = params[:size].blank? ? 'square' : params[:size]
     photo = taxon.default_photo
-    if photo.respond_to?(size)
-      photo.send(size)
-    else
-      photo.square_url
-    end
+    photo.best_url(size)
   end
   
   #
@@ -90,7 +87,7 @@ module TaxaHelper
     params[:class] = params[:class] ? "#{params[:class]} iconic" : 'iconic'
     params[:title] ||= Taxon::ICONIC_TAXON_DISPLAY_NAMES[taxon.try(:name)]
     params[:alt] ||= Taxon::ICONIC_TAXON_DISPLAY_NAMES[taxon.try(:name)]
-    image_tag(path, params)
+    image_tag(path, params).force_encoding('utf-8')
   end
   
   #
@@ -120,7 +117,7 @@ module TaxaHelper
     else
       nil
     end
-    path = APP_CONFIG[:site_url]
+    path = CONFIG.site_url
     path += '/images/iconic_taxa/'
     if iconic_taxon
       path += iconic_taxon.name.downcase
@@ -148,6 +145,7 @@ module TaxaHelper
   end
   
   def common_taxon_name(taxon)
+    return nil if taxon.blank?
     TaxonName.choose_common_name(
       @taxon_names_by_taxon_id ? @taxon_names_by_taxon_id[taxon.id] : taxon.taxon_names
     )
@@ -182,7 +180,7 @@ module TaxaHelper
     root = jit_taxon_node(ancestors.first)
     previous_node = root
     ancestors[1..-1].each do |ancestor|
-      logger.debug "[DEBUG] Trying to place #{ancestor} among the children of #{previous_node[:name]}..."
+      Rails.logger.debug "[DEBUG] Trying to place #{ancestor} among the children of #{previous_node[:name]}..."
       ancestor_node = jit_taxon_node(ancestor)
       # Replace the child with a child with its own children
       previous_node[:children].each_with_index do |child, i|
@@ -214,7 +212,7 @@ module TaxaHelper
         $('##{element_id}').removeClass('loading status');
       });
     JS
-    html += content_tag(:script, js, :type => "text/javascript")
+    html += content_tag(:script, js.html_safe, :type => "text/javascript")
     html
   end
   
@@ -244,6 +242,16 @@ module TaxaHelper
     when "Fungi" then "FF1493"
     when "Protozoa" then "691776"
     else nil
+    end
+  end
+  
+  def taxon_range_kml_url(options = {})
+    taxon_range = options[:taxon_range] || @taxon_range
+    return nil if taxon_range.blank?
+    if taxon_range.range.blank?
+      taxon_range.kml_url
+    else
+      "#{taxon_range.kml_url}?#{taxon_range.updated_at.to_i}".html_safe
     end
   end
 end

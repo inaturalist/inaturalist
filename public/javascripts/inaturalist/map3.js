@@ -10,8 +10,7 @@
  */
 
 // requires GoogleMap classes
-if (!google && !google.maps)
- throw "The Google Maps libraries must be loaded to use the iNaturalist Map extensions.";
+if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') throw "The Google Maps libraries must be loaded to use the iNaturalist Map extensions.";
 
 // extend parts of the Google Marker class
 google.maps.Marker.prototype.observation_id = null;
@@ -147,6 +146,9 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   
 google.maps.Map.prototype.removeObservation = function(observation) {
   this.removeMarker(this.observations[observation.id]);
+  if (this.observations[observation.id]) {
+    this.observations[observation.id].setMap(null)
+  }
   delete this.observations[observation.id];
 };
   
@@ -162,9 +164,10 @@ google.maps.Map.prototype.removeObservations = function(observations) {
   var map = this;
   if (typeof(observations) == "undefined") {
     $.each(map.observations, function(k,v) {
-      map.removeMarker(v);
-      delete map.observations[k];
-      delete map.observationBounds;
+      map.removeMarker(v)
+      v.setMap(null)
+      delete map.observations[k]
+      delete map.observationBounds
     });
   } else {
     $.each(observations, function() {
@@ -245,7 +248,10 @@ google.maps.Map.prototype.setPlace = function(place, options) {
   }
   
   if (options.kml && options.kml.length > 0) {
-    var kml = new google.maps.KmlLayer(options.kml, {suppressInfoWindows: true, preserveViewport: true})
+    var kml = new google.maps.KmlLayer(options.kml, {
+      suppressInfoWindows: true, 
+      preserveViewport: options.preserveViewport
+    })
     this.addOverlay(place.name + " boundary", kml)
     if (options.click) {
       google.maps.event.addListener(kml, 'click', options.click)
@@ -370,7 +376,7 @@ google.maps.Map.prototype.showAllObsOverlay = function() {
     google.maps.event.addListener(this._allObsMarker, 'click', function() {
       var observation = this._observation;
       var maxContentDiv = $('<div class="observations mini maxinfowindow"></div>').append(
-        $('<div class="loading status">Loading...</div>')
+        $('<div class="loading status">' + I18n.t('loading') + '</div>')
       ).get(0);
       this.openInfoWindowHtml(
         map.buildObservationInfoWindow(observation),
@@ -442,6 +448,7 @@ if (typeof iNaturalist.Map === 'undefined') this.iNaturalist.Map = {};
 
 // static functions
 iNaturalist.Map.createMap = function(options) {
+  options = options || {}
   options = $.extend({}, {
     div: 'map',
     center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
@@ -462,9 +469,21 @@ iNaturalist.Map.createMap = function(options) {
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
   map._observationsTileServer = options.observationsTileServer
   // map.overlayMapTypes.insertAt(0, iNaturalist.Map.buildObservationsMapType(map))
+
+  if (options.bounds) {
+    if (typeof(options.bounds.getCenter) == 'function') {
+      map.setBounds(options.bounds)
+    } else {
+      var bounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(options.bounds.swlat, options.bounds.swlng),
+        new google.maps.LatLng(options.bounds.nelat, options.bounds.nelng)
+      )
+      map.fitBounds(bounds)
+    }
+  }
   
   return map;
-};
+}
 
 // The following code should be abstracted out a bit more
 iNaturalist.Map.createPlaceIcon = function(options) {
@@ -680,7 +699,7 @@ iNaturalist.Map.distanceInMeters = function(lat1, lon1, lat2, lon2) {
 iNaturalist.FullScreenControl = function(map) {
   var controlDiv = document.createElement('DIV'),
       enter = '<span class="ui-icon ui-icon-extlink">Full screen</span>',
-      exit = '<span class="ui-icon ui-icon-arrow-1-sw inlineblock"></span> Exit full screen'
+      exit = '<span class="ui-icon ui-icon-arrow-1-sw inlineblock"></span> ' + I18n.t('exit_full_screen')
   controlDiv.style.padding = '5px';
   var controlUI = $('<div></div>').html(enter).addClass('gmapv3control')
   controlDiv.appendChild(controlUI.get(0))
@@ -701,10 +720,11 @@ iNaturalist.FullScreenControl = function(map) {
   return controlDiv;
 }
 
-iNaturalist.OverlayControl = function(map) {
-  var controlDiv = document.createElement('DIV')
+iNaturalist.OverlayControl = function(map, options) {
+  options = options || {}
+  var controlDiv = options.div || document.createElement('DIV')
   controlDiv.style.padding = '5px';
-  var controlUI = $('<div>Overlays</div>').addClass('gmapv3control overlaycontrol')
+  var controlUI = $('<div>' + I18n.t('taxon_map.overlays') + '</div>').addClass('gmapv3control overlaycontrol')
   var ul = $('<ul></ul>').hide()
   controlUI.append(ul)
   controlUI.hover(function() {
@@ -720,7 +740,9 @@ iNaturalist.OverlayControl = function(map) {
       this.addOverlay(map.overlays[i])
     }
   }
-  return controlDiv;
+  if (!options.div) {
+    return controlDiv
+  }
 }
 iNaturalist.OverlayControl.prototype.addOverlay = function(lyr) {
   var map = this.map,
@@ -750,18 +772,23 @@ iNaturalist.OverlayControl.prototype.addOverlay = function(lyr) {
 google.maps.Map.prototype.addOverlay = function(name, overlay, options) {
   options = options || {}
   this.overlays = this.overlays || []
-  this.overlays.push({
+  var overlayOpts = {
     name: name,
     overlay: overlay,
     id: options.id,
     description: options.description
-  })
+  }
+  this.overlays.push(overlayOpts)
   if (overlay.setMap && !options.hidden) { overlay.setMap(this) }
+  if (this._overlayControl) {this._overlayControl.addOverlay(overlayOpts)};
 }
 google.maps.Map.prototype.removeOverlay = function(name) {
   if (!this.overlays) { return }
   for (var i=0; i < this.overlays.length; i++) {
-    if (this.overlays[i].name == name) { this.overlays.splice(i) }
+    if (this.overlays[i].name == name) { 
+      this.overlays[i].overlay.setMap(null)
+      this.overlays.splice(i)
+    }
   }
 }
 google.maps.Map.prototype.getOverlay = function(name) {

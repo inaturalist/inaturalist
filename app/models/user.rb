@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :suspendable,
          :recoverable, :rememberable, :confirmable, :validatable, 
          :encryptable, :encryptor => :restful_authentication_sha1
+  handle_asynchronously :send_devise_notification
   
   # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
   attr_accessor :skip_email_validation
@@ -14,11 +15,16 @@ class User < ActiveRecord::Base
   # licensing extras
   attr_accessor   :make_observation_licenses_same
   attr_accessor   :make_photo_licenses_same
-  attr_accessor   :preferred_photo_license
-  MASS_ASSIGNABLE_ATTRIBUTES = [:make_observation_licenses_same, :make_photo_licenses_same, :preferred_photo_license]
+  attr_accessible :make_observation_licenses_same, 
+                  :make_photo_licenses_same, 
+                  :preferred_photo_license, 
+                  :preferred_observation_license
+  attr_accessor :html
   
+  preference :project_journal_post_email_notification, :boolean, :default => true
   preference :comment_email_notification, :boolean, :default => true
   preference :identification_email_notification, :boolean, :default => true
+  preference :message_email_notification, :boolean, :default => true
   preference :no_email, :boolean, :default => false
   preference :project_invitation_email_notification, :boolean, :default => true
   preference :lists_by_login_sort, :string, :default => "id"
@@ -27,13 +33,20 @@ class User < ActiveRecord::Base
   preference :gbif_sharing, :boolean, :default => true
   preference :observation_license, :string
   preference :photo_license, :string
+  preference :share_observations_on_facebook, :boolean, :default => true
+  preference :share_observations_on_twitter, :boolean, :default => true
+  preference :automatic_taxonomic_changes, :boolean, :default => true
+  preference :observations_view, :string
   
-  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification)
+  SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
+  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 
+    message_email_notification project_invitation_email_notification 
+    project_journal_post_email_notification)
   
   belongs_to :life_list, :dependent => :destroy
-  has_many  :provider_authorizations, :dependent => :destroy
-  has_one  :flickr_identity, :dependent => :destroy
-  has_one  :picasa_identity, :dependent => :destroy
+  has_many  :provider_authorizations, :dependent => :delete_all
+  has_one  :flickr_identity, :dependent => :delete
+  has_one  :picasa_identity, :dependent => :delete
   has_many :observations, :dependent => :destroy
   
   # Some interesting ways to map self-referential relationships in rails
@@ -45,44 +58,27 @@ class User < ActiveRecord::Base
   has_many :lists, :dependent => :destroy
   has_many :life_lists
   has_many :identifications, :dependent => :destroy
+  has_many :identifications_for_others, :class_name => "Identification", 
+    :include => [:observation],
+    :conditions => "identifications.user_id != observations.user_id AND identifications.current = true"
   has_many :photos, :dependent => :destroy
-  has_many :goal_participants, :dependent => :destroy
-  has_many :goals, :through => :goal_participants
-  has_many :incomplete_goals,
-           :source =>  :goal,
-           :through => :goal_participants,
-           :conditions => ["goal_participants.goal_completed = 0 " + 
-                           "AND goals.completed = 0 " +
-                           "AND (goals.ends_at IS NULL " +
-                           "OR goals.ends_at > ?)", Time.now]
-  has_many :completed_goals,
-           :source => :goal,
-           :through => :goal_participants,
-           :conditions => "goal_participants.goal_completed = 1 " +
-                          "OR goals.completed = 1"
-  has_many :goal_participants_for_incomplete_goals,
-           :class_name => "GoalParticipant",
-           :include => :goal,
-           :conditions => ["goal_participants.goal_completed = 0 " + 
-                           "AND goals.completed = 0 " +
-                           "AND (goals.ends_at IS NULL " +
-                           "OR goals.ends_at > ?)", Time.now]
-  has_many :goal_contributions, :through => :goal_participants
-  
-  has_many :posts, :dependent => :destroy
-  has_many :journal_posts, :class_name => Post.to_s, :as => :parent
+  has_many :posts #, :dependent => :destroy
+  has_many :journal_posts, :class_name => Post.to_s, :as => :parent, :dependent => :destroy
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
-  has_many :projects, :dependent => :destroy
+  has_many :projects #, :dependent => :nullify
   has_many :project_users, :dependent => :destroy
   has_many :listed_taxa, :dependent => :nullify
   has_many :invites, :dependent => :nullify
   has_many :quality_metrics, :dependent => :destroy
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify
+  has_many :messages, :dependent => :destroy
+  has_many :guides, :dependent => :nullify, :inverse_of => :user
   
   has_attached_file :icon, 
     :styles => { :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },
+    :processors => [:deanimator],
     :path => ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",
     :url => "/attachments/:class/:attachment/:id-:style.:icon_type_extension",
     :default_url => "/attachment_defaults/:class/:attachment/defaults/:style.png"
@@ -91,14 +87,16 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   
   has_subscribers
-  has_many :subscriptions
-  has_many :updates, :foreign_key => :subscriber_id
+  has_many :subscriptions, :dependent => :delete_all
+  has_many :updates, :foreign_key => :subscriber_id, :dependent => :delete_all
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
+  before_validation :strip_name
   before_save :whitelist_licenses
   after_save :update_observation_licenses
   after_save :update_photo_licenses
-  after_create :create_life_list
+  after_create :create_default_life_list
+  after_create :set_uri
   after_destroy :create_deleted_user
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
@@ -113,8 +111,6 @@ class User < ActiveRecord::Base
   # Regexes from restful_authentication
   login_regex       = /\A[A-z][\w\-_]+\z/                          # ASCII, strict
   bad_login_message = "use only letters, numbers, and -_ please.".freeze
-  name_regex        = /\A[^[:cntrl:]\\<>\/&]*\z/              # Unicode, permissive
-  bad_name_message  = "avoid non-printing characters and \\&gt;&lt;&amp;/ please.".freeze
   email_name_regex  = '[\w\.%\+\-]+'.freeze
   domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze
   domain_tld_regex  = '(?:[A-Z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|jobs|museum)'.freeze
@@ -125,13 +121,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login
   validates_format_of       :login,    :with => login_regex, :message => bad_login_message
 
-  validates_format_of       :name,     :with => name_regex,  :message => bad_name_message, :allow_nil => true
   validates_length_of       :name,     :maximum => 100, :allow_blank => true
 
-  # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
-  # you can also force skipping email validation by setting u.skip_email_validation=true before you save
-  # (this option is necessary because the User is created before the associated ProviderAuthorization)
-  validates_presence_of     :email,    :unless => Proc.new{|u| (u.skip_email_validation || (u.provider_authorizations.count > 0))}
   validates_format_of       :email,    :with => email_regex, :message => bad_email_message, :allow_blank => true
   validates_length_of       :email,    :within => 6..100, :allow_blank => true #r@a.wk
   validates_uniqueness_of   :email,    :allow_blank => true
@@ -139,27 +130,60 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, :time_zone, :icon_url
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, :time_zone, :icon_url, :locale
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
     order("? ?", sort_by, sort_dir)
   }
-  scope :curators, includes(:roles).where("roles.name = 'curator'")
+  scope :curators, includes(:roles).where("roles.name IN ('curator', 'admin')")
+  scope :admins, includes(:roles).where("roles.name = 'admin'")
   scope :active, where("suspended_at IS NULL")
+
+  # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
+  # you can also force skipping email validation by setting u.skip_email_validation=true before you save
+  # (this option is necessary because the User is created before the associated ProviderAuthorization)
+  # This is not a normal validation b/c email validation happens in Devise, which looks for this method
+  def email_required?
+    !(skip_email_validation || provider_authorizations.count > 0)
+  end
   
   def icon_url_provided?
-    !self.icon_url.blank?
+    !self.icon.present? && !self.icon_url.blank?
+  end
+
+  def user_icon_url
+    return nil if icon.blank?
+    "#{FakeView.root_url}#{icon.url(:thumb)}".gsub(/([^\:])\/\//, '\\1/')
   end
 
   def active?
     !suspended?
   end
 
+  # This is a dangerous override in that it doesn't call super, thereby
+  # ignoring the results of all the devise modules like confirmable. We do
+  # this b/c we want all users to be able to sign in, even if unconfirmed, but
+  # not if suspended.
+  def active_for_authentication?
+    active?
+  end
+
   def download_remote_icon
     io = open(URI.parse(self.icon_url))
-    self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
-    rescue # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
+    Timeout::timeout(10) do
+      self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
+    end
+    true
+  rescue => e # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
+    Rails.logger.error "[ERROR #{Time.now}] Failed to download_remote_icon for #{id}: #{e}"
+    true
+  end
+
+  def strip_name
+    return true unless name
+    self.name = name.gsub(/[\s\n\t]+/, ' ').strip
+    true
   end
   
   def whitelist_licenses
@@ -180,8 +204,11 @@ class User < ActiveRecord::Base
       :provider_name => auth_info['provider'], 
       :provider_uid => auth_info['uid']
     }
-    unless auth_info["credentials"].nil? # open_id (google, yahoo, etc) doesn't provide a token
-      provider_auth_info.merge!({ :token => (auth_info["credentials"]["token"] || auth_info["credentials"]["secret"]) }) 
+    unless auth_info["credentials"].blank? # open_id (google, yahoo, etc) doesn't provide a token
+      provider_auth_info.merge!(
+        :token => auth_info["credentials"]["token"],
+        :secret => auth_info["credentials"]["secret"]
+      ) 
     end
     pa = self.provider_authorizations.build(provider_auth_info) 
     pa.auth_info = auth_info
@@ -194,7 +221,9 @@ class User < ActiveRecord::Base
   # returns either nil or the appropriate ProviderAuthorization
   def has_provider_auth(provider)
     provider = provider.downcase
-    provider_authorizations.all.select{|p| (p.provider_name == provider || p.provider_uid.match(provider))}.first
+    provider_authorizations.detect do |p| 
+      p.provider_name.match(provider) || p.provider_uid.match(provider)
+    end
   end
 
   def login=(value)
@@ -270,6 +299,21 @@ class User < ActiveRecord::Base
   def facebook_token
     facebook_identity.try(:token)
   end
+
+  # returns a Twitter object to make (authenticated) api calls
+  # see twitter gem docs for available methods: https://github.com/sferik/twitter
+  def twitter_api
+    return nil unless twitter_identity
+    @twitter_api ||= Twitter::Client.new(
+      :oauth_token => twitter_identity.token,
+      :oauth_token_secret => twitter_identity.secret
+    )
+  end
+
+  # returns nil or the twitter ProviderAuthorization
+  def twitter_identity
+    @twitter_identity ||= has_provider_auth('twitter')
+  end
   
   def update_observation_licenses
     return true unless [true, "1", "true"].include?(@make_observation_licenses_same)
@@ -285,14 +329,6 @@ class User < ActiveRecord::Base
     true
   end
   
-  def update_attributes(attributes)
-    MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-      self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-      self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-    end
-    super(attributes)
-  end
-  
   def merge(reject)
     raise "Can't merge a user with itself" if reject.id == id
     life_list_taxon_ids_to_move = reject.life_list.taxon_ids - life_list.taxon_ids
@@ -304,6 +340,13 @@ class User < ActiveRecord::Base
     merge_has_many_associations(reject)
     reject.destroy
     LifeList.delay.reload_from_observations(life_list_id)
+  end
+
+  def set_uri
+    if uri.blank?
+      User.update_all(["uri = ?", FakeView.user_url(id)], ["id = ?", id])
+    end
+    true
   end
   
   def self.query(params={}) 
@@ -332,48 +375,38 @@ class User < ActiveRecord::Base
   # note that this bypasses validation and immediately activates the new user
   # see https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema for details of auth_info data
   def self.create_from_omniauth(auth_info)
-    email = auth_info["user_info"].try(:[], "email")
+    email = auth_info["info"].try(:[], "email")
     email ||= auth_info["extra"].try(:[], "user_hash").try(:[], "email")
     # see if there's an existing inat user with this email. if so, just link the accounts and return the existing user.
     if email && u = User.find_by_email(email)
       u.add_provider_auth(auth_info)
       return u
     end
-    autogen_login = User.suggest_login(
-      auth_info["user_info"]["nickname"] || 
-      auth_info["user_info"]["first_name"] || 
-      auth_info["user_info"]["name"])
+    auth_info_name = auth_info["info"]["nickname"]
+    auth_info_name = auth_info["info"]["first_name"] if auth_info_name.blank?
+    auth_info_name = auth_info["info"]["name"] if auth_info_name.blank?
+    autogen_login = User.suggest_login(auth_info_name)
     autogen_login = User.suggest_login(email.split('@').first) if autogen_login.blank? && !email.blank?
     autogen_login = User.suggest_login('naturalist') if autogen_login.blank?
     autogen_pw = SecureRandom.hex(6) # autogenerate a random password (or else validation fails)
     u = User.new(
       :login => autogen_login,
       :email => email,
-      :name => auth_info["user_info"]["name"],
+      :name => auth_info["info"]["name"],
       :password => autogen_pw,
       :password_confirmation => autogen_pw,
-      :icon_url => auth_info["user_info"]["image"]
+      :icon_url => auth_info["info"]["image"]
     )
-    if u
-      u.skip_email_validation = true
-      u.skip_registration_email = true
-      begin
-        u.save!
-      rescue ActiveRecord::StatementInvalid => e
-        raise e unless e.message =~ /unique constraint/
-        suggestion = User.suggest_login(u.login)
-        Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
-        u.login = suggestion
-        u.register! unless u.pending?
-        u.activate!
-      end
-      u.add_provider_auth(auth_info)
-      # TODO: do something useful with location?  -> time zone, perhaps
+    u.skip_email_validation = true
+    u.skip_confirmation!
+    unless u.save
+      suggestion = User.suggest_login(u.login)
+      Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
+      u.update_attributes(:login => suggestion)
     end
+    u.add_provider_auth(auth_info)
     u
   end
-
-  protected
 
   # given a requested login, will try to find existing users with that login
   # and suggest handle2, handle3, handle4, etc if the login's taken
@@ -400,17 +433,77 @@ class User < ActiveRecord::Base
     
     (MIN_LOGIN_SIZE..MAX_LOGIN_SIZE).include?(suggested_login.size) ? suggested_login : nil
   end  
-  
-  def make_activation_code
-    self.deleted_at = nil
-    self.activation_code = self.class.make_token
+
+  # Destroying a user triggers a giant, slow, costly cascade of deletions that
+  # all occur within a transaction. This method tries to circumvent some of
+  # that madness by assigning communal assets to new users and pre-destroying
+  # some associates
+  def sane_destroy(options = {})
+    start_log_timer "sane_destroy user #{id}"
+    taxon_ids = life_list.taxon_ids
+    project_ids = self.project_ids
+
+    # transition ownership of projects with observations, delete the rest
+    Project.where(:user_id => id).find_each do |p|
+      if p.observations.exists?
+        if manager = p.project_users.managers.where("user_id != ?", id).first
+          p.user = manager.user
+          manager.role_will_change!
+          manager.save
+        else
+          pu = ProjectUser.create(:user => User.admins.first, :project => p)
+          p.user = pu.user
+        end
+        p.save
+      else
+        p.destroy
+      end
+    end
+
+    # delete lists without triggering most of the callbacks
+    lists.where("type = 'List'").find_each do |l|
+      l.listed_taxa.find_each do |lt|
+        lt.skip_sync_with_parent = true
+        lt.skip_update_cache_columns = true
+        lt.skip_update_user_life_list_taxa_count = true
+        lt.destroy
+      end
+      l.destroy
+    end
+
+    # delete observations without onerous callbacks
+    observations.find_each do |o|
+      o.skip_refresh_lists = true
+      o.skip_refresh_check_lists = true
+      o.skip_identifications = true
+      o.destroy
+    end
+
+    # delete the user
+    destroy
+
+    # refresh check lists with relevant taxa
+    taxon_ids.in_groups_of(100) do |group|
+      CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh(:taxa => group.compact)
+    end
+
+    # refresh project lists
+    project_ids.in_groups_of(100) do |group|
+      ProjectList.delay(:priority => INTEGRITY_PRIORITY).refresh(:taxa => group.compact)
+    end
+
+    end_log_timer
   end
   
-  # Everything below here was added for iNaturalist
-  def create_life_list
-    life_list = LifeList.create(:user => self)
-    self.life_list = life_list
-    self.save
+  def create_default_life_list
+    return true if life_list
+    new_life_list = if (existing = self.lists.includes(:rules).where("lists.type = 'LifeList' AND list_rules.id IS NULL").first)
+      self.life_list = existing
+    else
+      LifeList.create(:user => self)
+    end
+    User.update_all(["life_list_id = ?", new_life_list], ["id = ?", self])
+    true
   end
   
   def create_deleted_user
@@ -423,6 +516,13 @@ class User < ActiveRecord::Base
       :observations_count => observations_count
     )
     true
+  end
+
+  def self.default_json_options
+    {
+      :except => [:crypted_password, :salt, :old_preferences, :activation_code, :remember_token, :last_ip,
+        :suspended_at, :suspension_reason, :state, :deleted_at, :remember_token_expires_at, :email]
+    }
   end
 
 end

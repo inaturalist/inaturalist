@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Comparing #{possessive(@selected_user)} observations from #{@dates.join(', ')}" %>
+  <%= @title = t(:comparing_observations_from, :user=>"#{possessive(@selected_user)}", :dates=>"#{@dates.join(', ')}") %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
@@ -10,7 +10,7 @@
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= google_maps_js %>
   <%= javascript_include_tag 'inaturalist/map3' %>
   <script type="text/javascript" charset="utf-8">
     var DATES = <%= @dates.to_json.html_safe %>
@@ -28,7 +28,7 @@
 
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo Back to #{possessive(@selected_user)} calendar".html_safe, calendar_path(@login), :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{t(:back_to_calendar, :user=> possessive(@selected_user))}".html_safe, calendar_path(@login), :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <h2><%= @title %></h2>
@@ -85,7 +85,7 @@
 <div class="last column span-8">
   <% @dates.each do |date| %>
     <div class="stacked">
-      <h3>Observations from <%= date %></h3>
+      <h3><%= t(:observations_from, :date =>date) %></h3>
       <div id="map-<%= date %>" class="map"></div>
     </div>
     

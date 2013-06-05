@@ -4,11 +4,11 @@ class ProviderAuthorizationsController < ApplicationController
 
   # change the /auth/:provider/callback route to point to this if you want to examine the rack data returned by omniauth
   def auth_callback_test
-    render(:text=>request.env['omniauth.auth'].to_yaml)
+    # render(:text=>request.env['omniauth.auth'].to_yaml)
   end
 
   def failure
-    flash[:notice] = "Hm, that didn't work. Try again or choose another login option."
+    flash[:notice] = params[:message] || "Sorry, that login provider couldn't sign you in."
     redirect_back_or_default login_url
   end
 
@@ -22,7 +22,6 @@ class ProviderAuthorizationsController < ApplicationController
 
   def create
     auth_info = request.env['omniauth.auth']
-    # Rails.logger.debug "[DEBUG] auth_info: #{JSON.pretty_generate(auth_info.as_json)}"
     
     case auth_info["provider"]
     when 'facebook'
@@ -34,14 +33,15 @@ class ProviderAuthorizationsController < ApplicationController
       # (maybe cause our version of omniauth was pre- fb graph api?)
       auth_info["info"]["image"] = "http://graph.facebook.com/#{auth_info["uid"]}/picture?type=large"
     when 'flickr'
-      # construct the url for the user's flickr buddy icon
-      #nsid = auth_info['extra']['user_hash']['nsid']
-      nsid = auth_info['uid']
-      flickr_info = flickr.people.getInfo(:user_id=>nsid) # we make this api call to get the icon-farm and icon-server
-      iconfarm = flickr_info['iconfarm']
-      iconserver = flickr_info['iconserver']
-      unless (iconfarm==0 || iconserver==0)
-        auth_info["info"]["image"] = "http://farm#{iconfarm}.static.flickr.com/#{iconserver}/buddyicons/#{nsid}.jpg"
+      if auth_info["info"]["image"].blank?
+        # construct the url for the user's flickr buddy icon
+        nsid = auth_info['uid']
+        flickr_info = flickr.people.getInfo(:user_id => nsid) # we make this api call to get the icon-farm and icon-server
+        iconfarm = flickr_info['iconfarm']
+        iconserver = flickr_info['iconserver']
+        unless (iconfarm == 0 || iconserver == 0)
+          auth_info["info"]["image"] = "http://farm#{iconfarm}.static.flickr.com/#{iconserver}/buddyicons/#{nsid}.jpg"
+        end
       end
     end
     
@@ -52,9 +52,15 @@ class ProviderAuthorizationsController < ApplicationController
       create_provider_authorization(auth_info)
     end
     
-    if @provider_authorization && (scope = get_session_omniauth_scope)
-      @provider_authorization.update_attribute(:scope, scope.to_s)
+    if @provider_authorization && @provider_authorization.valid? && (scope = get_session_omniauth_scope)
+      @provider_authorization.update_attributes(:scope => scope.to_s)
       session["omniauth_#{request.env['omniauth.strategy'].name}_scope"] = nil
+    end
+
+    # if this is a direct oauth bounce sign in, go directly to bounce_back
+    if !session[:oauth_bounce].blank?
+      redirect_to oauth_bounce_back_url
+      return
     end
     
     if !session[:return_to].blank? && session[:return_to] != login_url
@@ -65,14 +71,13 @@ class ProviderAuthorizationsController < ApplicationController
     if session[:invite_params]
       invite_params = session[:invite_params]
       session[:invite_params] = nil
-      if @provider_authorization && @provider_authorization.created_at > 15.minutes.ago
-        flash[:notice] = "Welcome to iNaturalist! If these options look good, " + 
+      if @provider_authorization && @provider_authorization.valid? && @provider_authorization.created_at > 15.minutes.ago
+        flash[:notice] = "Welcome to #{CONFIG.site_name}! If these options look good, " + 
           "click \"Save observation\" below and you'll be good to go!"
         invite_params.merge!(:welcome => true)
       end
       @landing_path = new_observation_url(invite_params)
     end
-    
     redirect_to @landing_path || home_url
   end
   
@@ -83,20 +88,30 @@ class ProviderAuthorizationsController < ApplicationController
   end
   
   def get_session_omniauth_scope
-    Rails.logger.debug "[DEBUG] session[omniauth_#{request.env['omniauth.strategy'].name}_scope]: #{session["omniauth_#{request.env['omniauth.strategy'].name}_scope"]}"
     session["omniauth_#{request.env['omniauth.strategy'].name}_scope"]
   end
   
   def create_provider_authorization(auth_info)
     email = auth_info.try(:[], 'info').try(:[], 'email')
     email ||= auth_info.try(:[], 'extra').try(:[], 'user_hash').try(:[], 'email')
+
+    existing_user = current_user
+    existing_user ||= User.where("lower(email) = ?", email.downcase).first unless email.blank?
+    if auth_info['provider'] == 'flickr' && !auth_info['uid'].blank?
+      existing_user ||= User.includes(:flickr_identity).where("flickr_identities.flickr_user_id = ?", auth_info['uid']).first
+    end
     
     # if logged in or user with this email exists, link provider to existing inat user
-    if current_user || (!email.blank? && user = User.find_by_email(email))
-      sign_in(user) unless logged_in?
+    if existing_user
+      sign_in(existing_user) unless logged_in?
       @provider_authorization = current_user.add_provider_auth(auth_info)
-      provider_name = auth_info['provider'].capitalize unless auth_info['provider']=='open_id'
-      flash[:notice] = "You've successfully linked your #{provider_name} account."
+      if @provider_authorization && @provider_authorization.valid?
+        flash[:notice] = "You've successfully linked your #{@provider_authorization.provider.to_s.capitalize} account."
+      else
+        msg = "There were problems linking your account"
+        msg += ": #{@provider_authorization.errors.full_messages.to_sentence}" if @provider_authorization
+        flash[:error] = msg
+      end
       
     # create a new inat user and link provider to that user
     else
@@ -117,11 +132,11 @@ class ProviderAuthorizationsController < ApplicationController
   
   def update_existing_provider_authorization(auth_info)
     sign_in @provider_authorization.user
-    current_user.remember_me!
+    @provider_authorization.user.remember_me
     @provider_authorization.update_with_auth_info(auth_info)
-    flash[:notice] = "Welcome back!"
+    flash[:notice] = t(:welcome_back)
     if get_session_omniauth_scope.to_s == 'write' && @provider_authorization.scope != 'write'
-      flash[:notice] = "You just authorized iNat to write to your account " +
+      flash[:notice] = "You just authorized #{CONFIG.site_name_short} to write to your account " +
         "on #{@provider_authorization.provider_name}. Thanks! Please try " +
         "what you were doing again.  We promise to be careful!"
     end

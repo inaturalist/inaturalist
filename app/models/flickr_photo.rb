@@ -1,3 +1,4 @@
+#encoding: utf-8
 class FlickrPhoto < Photo
   
   Photo.descendent_classes ||= []
@@ -11,7 +12,10 @@ class FlickrPhoto < Photo
       @api_response ||= FlickrPhoto.get_api_response(native_photo_id, :user => user)
       fp_flickr_user_id = @api_response.owner.nsid
       
-      if user.flickr_identity.blank? || fp_flickr_user_id != user.flickr_identity.flickr_user_id
+      if user.flickr_identity.blank? && self.observations.by(user).exists?
+        # assume the user used to have a FlickrIdentity and used it to import this photo, 
+        # but has since removed the FlickrIdentity
+      elsif user.flickr_identity.blank? || fp_flickr_user_id != user.flickr_identity.flickr_user_id
         errors.add(:user, "must own the photo on Flickr.")
       end
     end
@@ -27,7 +31,18 @@ class FlickrPhoto < Photo
   
   def self.get_api_response(native_photo_id, options = {})
     f = options[:user] ? flickraw_for_user(options[:user]) : flickr
-    f.photos.getInfo(:photo_id => native_photo_id)
+    user_id = options[:user].id if options[:user] && options[:user].is_a?(User)
+    Rails.cache.fetch("flickr_photos_getInfo_#{native_photo_id}_#{user_id}", :expires_in => 5.minutes) do
+      f.photos.getInfo(:photo_id => native_photo_id)
+    end
+  rescue FlickRaw::FailedResponse => e
+    if e.message =~ /Invalid auth token/
+      flickr.photos.getInfo(:photo_id => native_photo_id)
+    elsif e.message =~ /invalid ID/
+      nil
+    else
+      raise e
+    end
   end
   
   def self.new_from_api_response(api_response, options = {})
@@ -68,7 +83,7 @@ class FlickrPhoto < Photo
         f = FlickrPhoto.flickraw_for_user(options[:user])
         sizes = f.photos.getSizes(:photo_id => fp.id)
       end
-      sizes = sizes.index_by{|s| s.label}
+      sizes = sizes.blank? ? {} : sizes.index_by{|s| s.label}
       options[:square_url]   ||= sizes['Square'].source rescue nil
       options[:thumb_url]    ||= sizes['Thumbnail'].source rescue nil
       options[:small_url]    ||= sizes['Small'].source rescue nil
@@ -87,21 +102,16 @@ class FlickrPhoto < Photo
   # the URLs.
   #
   def sync
-    fp = self.api_response || FlickrPhoto.get_api_response(self.native_photo_id, :user => self.user)
-    old_urls = [self.square_url, self.thumb_url, self.small_url, 
-                self.medium_url, self.large_url, self.original_url]
-    new_urls = [fp.source_url(:square), fp.source_url(:thumb), 
-                fp.source_url(:small), fp.source_url(:medium), 
-                fp.source_url(:large), fp.source_url(:original)]
-    if old_urls != new_urls
-      self.square_url    = fp.source_url(:square)
-      self.thumb_url     = fp.source_url(:thumb)
-      self.small_url     = fp.source_url(:small)
-      self.medium_url    = fp.source_url(:medium)
-      self.large_url     = fp.source_url(:large)
-      self.original_url  = fp.source_url(:original)
-      self.save
-    end
+    f = FlickrPhoto.flickraw_for_user(user)
+    sizes = f.photos.getSizes(:photo_id => native_photo_id)
+    sizes = sizes.index_by{|s| s.label}
+    self.square_url   = sizes['Square'].source rescue nil
+    self.thumb_url    = sizes['Thumbnail'].source rescue nil
+    self.small_url    = sizes['Small'].source rescue nil
+    self.medium_url   = sizes['Medium'].source rescue nil
+    self.large_url    = sizes['Large'].source rescue nil
+    self.original_url = sizes['Original'].source rescue nil
+    save
   end
   
   def to_observation  
@@ -120,8 +130,8 @@ class FlickrPhoto < Photo
     
     # Get the geo fields
     if fp.respond_to?(:location)
-      observation.place_guess = %w"locality region country".map do |tag|
-        fp.location[tag]._content
+      observation.place_guess = %w"locality region country".map do |level|
+        fp.location[level].try(:_content)
       end.compact.join(', ').strip
       observation.latitude  = fp.location.latitude
       observation.longitude = fp.location.longitude
@@ -145,24 +155,107 @@ class FlickrPhoto < Photo
     else
       # First try to find taxa matching taxonomic machine tags, then default 
       # to all tags
-      tags = api_response.tags.map{|t| t._content}
+      tags = api_response.tags.map{|t| t.raw}
       machine_tags = tags.select{|t| t =~ /taxonomy\:/}
-      taxa = Taxon.tags_to_taxa(machine_tags) unless machine_tags.blank?
+      taxa = Taxon.tags_to_taxa(machine_tags, options) unless machine_tags.blank?
       taxa ||= Taxon.tags_to_taxa(tags, options)
       taxa
     end
     taxa.compact
   end
 
+  def repair
+    errors = {}
+    f = FlickrPhoto.flickraw_for_user(user)
+    begin
+      sizes = begin
+        f.photos.getSizes(:photo_id => native_photo_id)
+      rescue FlickRaw::FailedResponse => e
+        raise e unless e.message =~ /Invalid auth token/
+        flickr.photos.getSizes(:photo_id => native_photo_id)
+      end
+      self.square_url    = sizes.detect{|s| s.label == 'Square'}.try(:source)
+      self.thumb_url     = sizes.detect{|s| s.label == 'Thumbnail'}.try(:source)
+      self.small_url     = sizes.detect{|s| s.label == 'Small'}.try(:source)
+      self.medium_url    = sizes.detect{|s| s.label == 'Medium'}.try(:source)
+      self.large_url     = sizes.detect{|s| s.label == 'Large'}.try(:source)
+      self.original_url  = sizes.detect{|s| s.label == 'Original'}.try(:source)
+      if changed?
+        puts "[DEBUG] updated #{self}, changed: #{changed.join(', ')}"
+        save
+      end
+    rescue FlickRaw::FailedResponse => e
+      if e.message =~ /Photo not found/
+        errors[:photo_missing_from_flickr] = "photo not found #{self}"
+      else
+        raise e
+      end
+    rescue NoMethodError => e
+      raise e unless e.message =~ /token/
+      errors[:flickr_authorization_missing] = "missing FlickrIdentity for #{user}"
+    end
+
+    if errors[:photo_missing_from_flickr] || (errors[:flickr_authorization_missing] && orphaned?)
+      destroy
+    end
+    [self, errors]
+  end
+
   def self.add_comment(user, flickr_photo_id, comment_text)
     return nil if user.flickr_identity.nil?
-    flickr = FlickRaw::Flickr.new
+    flickr = FlickrPhoto.flickraw_for_user(user)
     flickr.photos.comments.addComment(
       :user_id => user.flickr_identity.flickr_user_id, 
       :auth_token => user.flickr_identity.token,
       :photo_id => flickr_photo_id, 
       :comment_text => comment_text
     )
+  end
+
+  def self.repair(find_options = {})
+    puts "[INFO #{Time.now}] starting FlickrPhoto.repair, options: #{find_options.inspect}"
+    find_options[:include] ||= [{:user => :flickr_identity}, :taxon_photos, :observation_photos]
+    find_options[:batch_size] ||= 100
+    find_options[:sleep] ||= 10
+    flickr = FlickRaw::Flickr.new
+    updated = 0
+    destroyed = 0
+    invalids = 0
+    skipped = 0
+    start_time = Time.now
+    FlickrPhoto.script_do_in_batches(find_options) do |p|
+      r = begin
+        uri = URI.parse(p.square_url)
+        Net::HTTP.new(uri.host).request_head(uri.path)
+      rescue URI::InvalidURIError
+        puts "[ERROR] Failed to retrieve #{p.square_url}, skipping..."
+        skipped += 1
+        next
+      rescue Timeout::Error
+        puts "[ERROR] Timeout requesting photo, skipping..."
+        skipped += 1
+        next
+      end
+      unless r.is_a?(Net::HTTPBadRequest) || r.is_a?(Net::HTTPRedirection)
+        skipped += 1
+        next
+      end
+      repaired, errors = p.repair
+      if errors.blank?
+        updated += 1
+      else
+        puts "[ERROR] #{errors.values.to_sentence}"
+        if repaired.frozen?
+          destroyed += 1 
+          puts "[ERROR] destroyed #{repaired}"
+        end
+        if errors[:flickr_authorization_missing]
+          invalids += 1
+          puts "[ERROR] authorization missing #{repaired}"
+        end
+      end
+    end
+    puts "[INFO #{Time.now}] finished FlickrPhoto.repair, #{updated} updated, #{destroyed} destroyed, #{invalids} invalid, #{skipped} skipped, #{Time.now - start_time}s"
   end
 
 end

@@ -1,5 +1,9 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Observations by #{you_or_login(@selected_user)} on #{Date.parse(@date).to_s(:long) rescue @date}" %>
+  <%= @title = if is_me?(@selected_user)
+    t(:observations_by_you_on_date, :date => l(Date.parse(@date), :format => :long))
+  else
+    t(:observations_by_user_on_date, :user => @selected_user.login, :date => l(Date.parse(@date), :format => :long))
+  end %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
@@ -18,9 +22,41 @@
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= google_maps_js %>
   <%= javascript_include_tag 'inaturalist/map3' %>
 <%- end -%>
+
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @title %>">
+  <meta property="og:url" content="<%= uri_join CONFIG.site_url, request.fullpath %>"/>
+  <%-
+    desc = ""
+    unless @iconic_taxon_counts.blank?
+      desc += commas_and(@iconic_taxon_counts.map {|id,c| 
+        if @iconic_taxon_counts.size > 1 && (id == Taxon::ICONIC_TAXA_BY_NAME['Animalia'])
+          t("all_taxa.x_other_animals", :count => c)
+        else
+          t("all_taxa.x_#{Taxon::ICONIC_TAXA_BY_ID[id].name.downcase}",
+            :count => c, 
+            :default => default_taxon_name(Taxon::ICONIC_TAXA_BY_ID[id]).downcase.pluralize
+          ).downcase
+        end
+      })
+    end
+    unless @place_name_counts.blank?
+      desc += " #{t(:from).downcase} #{commas_and @place_name_counts.uniq{|n,c| c}.map{|n,c| n.split('-').first.split(',').first}}"
+    end
+  -%>
+  <meta property="og:description" content="<%= desc %>">
+  <% if photo_obs = @observations.select{|o| o.photos_count > 0}.sort_by{|o| [o.comments_count.to_i, o.id]}.last -%>
+    <% if photo = photo_obs.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/} -%>
+      <meta property="og:image" content="<%= photo.medium_url %>"/> 
+    <% end -%>
+  <% end -%>
+  <% if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
+    <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
+  <% end -%>
+<% end -%>
 
 <div id="pageheader" class="clear">
   <%= render :partial => 'shared/prevnext', :locals => {
@@ -30,7 +66,10 @@
     :next_url => @next ? calendar_date_path(@login, @next.observed_on.year, @next.observed_on.month, @next.observed_on.day) : nil
   } %>
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo Back to #{possessive(@selected_user)} calendar".html_safe, calendar_path(@login), :class => 'crumb' %></strong>
+    <strong>
+      <%= link_to "&laquo #{t :back_to_x, :noun => possessive_noun(@selected_user, t(:calendar)).downcase}".html_safe, 
+        calendar_path(@login), :class => 'crumb' %>
+    </strong>
   </div><!-- /#breadcrumbs -->
   
   <h2><%= @title %></h2>
@@ -43,7 +82,7 @@
         <div class="bigun">
           <div class="inner">
             <div class="count"><%= number_with_delimiter @taxa_count %></div>
-            <div class="meta label"><%= @taxa_count == 1 ? 'taxon' : 'taxa' %></div>
+            <div class="meta label"><%=t(@taxa_count == 1 ? 'taxon' : 'taxa').downcase %></div>
           </div>
         </div>
       </div>
@@ -52,8 +91,13 @@
           <% @iconic_taxon_counts.each do |id, count| %>
             <div class="taxon %>">
               <span class="iconic_taxon_sprite selected <%= Taxon::ICONIC_TAXA_BY_ID[id].name.downcase %>"></span>
-              <%= count %>
-              <%= default_taxon_name(Taxon::ICONIC_TAXA_BY_ID[id]).downcase %>
+              <% if @iconic_taxon_counts.size > 1 && id == Taxon::ICONIC_TAXA_BY_NAME['Animalia'].id -%>
+                <%= t("all_taxa.x_other_animals", :count => count) %>
+              <% else %>
+                <%= 
+                  t("all_taxa.x_#{Taxon::ICONIC_TAXA_BY_ID[id].name.downcase}", :count => count)
+                %>
+              <% end -%>
             </div>
           <% end -%>
         </div>
@@ -66,7 +110,7 @@
           <div class="inner">
             <%- count = @observations.total_entries rescue @observations.size -%>
             <div class="count"><%= number_with_delimiter(count) %></div>
-            <div class="meta label">observation<%= 's' unless count == 1 %></div>
+            <div class="meta label"><%= t(count == 1 ? 'observation' : 'observations').downcase %></div>
           </div>
         </div>
       </div>
@@ -76,7 +120,7 @@
             <%- name, id = [place_name.split('-')[0..-2].join('-'), place_name.split('-').last] -%>
             <div>
               <span class="count"><%= count %></span>
-              from
+              <%= t(:from).downcase %>
               <% if place_name.blank? -%>
                 somewhere
               <% elsif id.blank? %>
@@ -96,7 +140,9 @@
           <div class="bigun">
             <div class="inner">
               <div class="count"><%= number_with_delimiter(@life_list_firsts.size) %></div>
-              <div class="meta label">life list first<%= 's' unless @life_list_firsts.size == 1 %></div>
+              <div class="meta label">
+                <%=t @life_list_firsts.size == 1 ? :life_list_first : :life_list_firsts %>
+              </div>
             </div>
           </div>
         </div>
@@ -117,7 +163,7 @@
             </div>
             <% if @life_list_firsts.size > 5 -%>
               <div class="buttonrow smallbuttons">
-                <%= link_to_function "View all #{@life_list_firsts.size}", 
+                <%= link_to_function t(:view_all_n, :n => @life_list_firsts.size), 
                   "$('#life_list_first_dialog').dialog({modal: true, width: 'auto', title: 'Life List Firsts'})",
                   :class => "small inline glaucous button" %>
               </div>
