@@ -738,15 +738,11 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render :json => @projects.to_json(
-          :methods => [:icon_url], 
-          :include => [
-            :project_list, 
-            {
-              :project_observation_fields => {:include => :observation_field}
-            }
-          ]
-        )
+        opts = Project.default_json_options.merge(:include => [
+          :project_list, 
+          {:project_observation_fields => ProjectObservationField.default_json_options}
+        ])
+        render :json => @projects.to_json(opts)
       end
     end
   end
