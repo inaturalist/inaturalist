@@ -181,6 +181,11 @@ Role.blueprint(:admin) do
   name { User::JEDI_MASTER_ROLE }
 end
 
+Sound.blueprint do
+  user { User.make }
+  native_sound_id { rand(1000) }
+end
+
 Source.blueprint do
   title { Faker::Lorem.sentence }
 end

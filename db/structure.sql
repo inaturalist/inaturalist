@@ -939,7 +939,7 @@ BEGIN
 
 
 	-- Verify dimension
-	IF ( (new_dim >4) OR (new_dim <0) ) THEN
+	IF ( (new_dim >4) OR (new_dim <2) ) THEN
 		RAISE EXCEPTION 'invalid dimension';
 		RETURN 'fail';
 	END IF;
@@ -1945,7 +1945,7 @@ BEGIN
 		' f_table_name = ' || quote_literal(table_name);
 
 	-- Remove table
-	EXECUTE 'DROP TABLE '
+	EXECUTE 'DROP TABLE IF EXISTS '
 		|| quote_ident(real_schema) || '.' ||
 		quote_ident(table_name);
 
@@ -2914,7 +2914,7 @@ CREATE FUNCTION geomfromwkb(bytea) RETURNS geometry
 
 CREATE FUNCTION geomfromwkb(bytea, integer) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT setSRID(GeomFromWKB($1), $2)$_$;
+    AS $_$SELECT ST_SetSRID(GeomFromWKB($1), $2)$_$;
 
 
 --
@@ -4379,7 +4379,7 @@ BEGIN
 		 AND s.consrc LIKE '%ndims(% = %');
 	IF (gndims IS NULL) THEN
 		-- Try to find ndims from the geometry itself
-		EXECUTE 'SELECT ndims(' || quote_ident(gcs.attname) || ')
+		EXECUTE 'SELECT st_ndims(' || quote_ident(gcs.attname) || ') As ndims
 				 FROM ONLY ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
 				 WHERE ' || quote_ident(gcs.attname) || ' IS NOT NULL LIMIT 1'
 			INTO gc;
@@ -4390,10 +4390,10 @@ BEGIN
 			BEGIN
 				EXECUTE 'ALTER TABLE ONLY ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
 						 ADD CONSTRAINT ' || quote_ident('enforce_dims_' || gcs.attname) || '
-						 CHECK (ndims(' || quote_ident(gcs.attname) || ') = '||gndims||')';
+						 CHECK (st_ndims(' || quote_ident(gcs.attname) || ') = '||gndims||')';
 			EXCEPTION
 				WHEN check_violation THEN
-					RAISE WARNING 'Not inserting ''%'' in ''%.%'' into geometry_columns: could not apply constraint CHECK (ndims(%) = %)', quote_ident(gcs.attname), quote_ident(gcs.nspname), quote_ident(gcs.relname), quote_ident(gcs.attname), gndims;
+					RAISE WARNING 'Not inserting ''%'' in ''%.%'' into geometry_columns: could not apply constraint CHECK (st_ndims(%) = %)', quote_ident(gcs.attname), quote_ident(gcs.nspname), quote_ident(gcs.relname), quote_ident(gcs.attname), gndims;
 					gc_is_valid := false;
 			END;
 		END IF;
@@ -4413,7 +4413,7 @@ BEGIN
 		 AND s.consrc LIKE '%geometrytype(% = %');
 	IF (gtype IS NULL) THEN
 		-- Try to find geotype from the geometry itself
-		EXECUTE 'SELECT geometrytype(' || quote_ident(gcs.attname) || ')
+		EXECUTE 'SELECT geometrytype(' || quote_ident(gcs.attname) || ') As geometrytype
 				 FROM ONLY ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
 				 WHERE ' || quote_ident(gcs.attname) || ' IS NOT NULL LIMIT 1'
 			INTO gc;
@@ -4475,19 +4475,19 @@ BEGIN
 	  AND f_table_name = gcs.relname
 	  AND f_geometry_column = gcs.attname;
 	  
-		EXECUTE 'SELECT ndims(' || quote_ident(gcs.attname) || ')
+		EXECUTE 'SELECT st_ndims(' || quote_ident(gcs.attname) || ') As ndims
 				 FROM ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
 				 WHERE ' || quote_ident(gcs.attname) || ' IS NOT NULL LIMIT 1'
 			INTO gc;
 		gndims := gc.ndims;
 
-		EXECUTE 'SELECT srid(' || quote_ident(gcs.attname) || ')
+		EXECUTE 'SELECT st_srid(' || quote_ident(gcs.attname) || ') As srid
 				 FROM ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
 				 WHERE ' || quote_ident(gcs.attname) || ' IS NOT NULL LIMIT 1'
 			INTO gc;
 		gsrid := gc.srid;
 
-		EXECUTE 'SELECT geometrytype(' || quote_ident(gcs.attname) || ')
+		EXECUTE 'SELECT geometrytype(' || quote_ident(gcs.attname) || ') As geometrytype
 				 FROM ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
 				 WHERE ' || quote_ident(gcs.attname) || ' IS NOT NULL LIMIT 1'
 			INTO gc;
@@ -4691,7 +4691,7 @@ CREATE FUNCTION postgis_proj_version() RETURNS text
 
 CREATE FUNCTION postgis_scripts_build_date() RETURNS text
     LANGUAGE sql IMMUTABLE
-    AS $$SELECT '2012-03-20 20:38:58'::text AS version$$;
+    AS $$SELECT '2013-05-31 17:21:06'::text AS version$$;
 
 
 --
@@ -4700,7 +4700,7 @@ CREATE FUNCTION postgis_scripts_build_date() RETURNS text
 
 CREATE FUNCTION postgis_scripts_installed() RETURNS text
     LANGUAGE sql IMMUTABLE
-    AS $$SELECT '1.5 r7360'::text AS version$$;
+    AS $$SELECT '1.5 r10612'::text AS version$$;
 
 
 --
@@ -4767,7 +4767,7 @@ BEGIN
 		AND sridcheck.connamespace = n.oid
 		AND typecheck.connamespace = n.oid
 		AND sridcheck.conrelid = c.oid
-		AND sridcheck.consrc LIKE '(srid('||a.attname||') = %)'
+		AND sridcheck.consrc LIKE '(%srid('||a.attname||') = %)'
 		AND typecheck.conrelid = c.oid
 		AND typecheck.consrc LIKE
 		'((geometrytype('||a.attname||') = ''%''::text) OR (% IS NULL))'
@@ -8943,7 +8943,7 @@ BEGIN
 		SELECT INTO real_schema current_schema()::text;
 	END IF;
 
-	-- Find out if the column is in the geometry_columns table
+	-- Ensure that column_name is in geometry_columns
 	okay = 'f';
 	FOR myrec IN SELECT * from geometry_columns where f_table_schema = text(real_schema) and f_table_name = table_name and f_geometry_column = column_name LOOP
 		okay := 't';
@@ -8951,6 +8951,14 @@ BEGIN
 	IF (okay <> 't') THEN
 		RAISE EXCEPTION 'column not found in geometry_columns table';
 		RETURN 'f';
+	END IF;
+
+	-- Ensure that new_srid is valid
+	IF ( new_srid != -1 ) THEN
+		IF ( SELECT count(*) = 0 from spatial_ref_sys where srid = new_srid ) THEN
+			RAISE EXCEPTION 'invalid SRID: % not found in spatial_ref_sys', new_srid;
+			RETURN false;
+		END IF;
 	END IF;
 
 	-- Update ref from geometry_columns table
@@ -8972,14 +8980,14 @@ BEGIN
 	EXECUTE 'UPDATE ' || quote_ident(real_schema) ||
 		'.' || quote_ident(table_name) ||
 		' SET ' || quote_ident(column_name) ||
-		' = setSRID(' || quote_ident(column_name) ||
+		' = ST_SetSRID(' || quote_ident(column_name) ||
 		', ' || new_srid::text || ')';
 
 	-- Reset enforce_srid constraint
 	EXECUTE 'ALTER TABLE ' || quote_ident(real_schema) ||
 		'.' || quote_ident(table_name) ||
 		' ADD constraint ' || quote_ident(cname) ||
-		' CHECK (srid(' || quote_ident(column_name) ||
+		' CHECK (st_srid(' || quote_ident(column_name) ||
 		') = ' || new_srid::text || ')';
 
 	RETURN real_schema || '.' || table_name || '.' || column_name ||' SRID changed to ' || new_srid::text;
@@ -9627,14 +9635,7 @@ CREATE OPERATOR CLASS btree_geography_ops
     OPERATOR 3 =(geography,geography) ,
     OPERATOR 4 >=(geography,geography) ,
     OPERATOR 5 >(geography,geography) ,
-    FUNCTION 1 geography_cmp(geography,geography);
-
-
---
--- Name: btree_geometry_ops; Type: OPERATOR FAMILY; Schema: public; Owner: -
---
-
-CREATE OPERATOR FAMILY btree_geometry_ops USING btree;
+    FUNCTION 1 (geography, geography) geography_cmp(geography,geography);
 
 
 --
@@ -9648,7 +9649,7 @@ CREATE OPERATOR CLASS btree_geometry_ops
     OPERATOR 3 =(geometry,geometry) ,
     OPERATOR 4 >=(geometry,geometry) ,
     OPERATOR 5 >(geometry,geometry) ,
-    FUNCTION 1 geometry_cmp(geometry,geometry);
+    FUNCTION 1 (geometry, geometry) geometry_cmp(geometry,geometry);
 
 
 --
@@ -9659,20 +9660,13 @@ CREATE OPERATOR CLASS gist_geography_ops
     DEFAULT FOR TYPE geography USING gist AS
     STORAGE gidx ,
     OPERATOR 3 &&(geography,geography) ,
-    FUNCTION 1 geography_gist_consistent(internal,geometry,integer) ,
-    FUNCTION 2 geography_gist_union(bytea,internal) ,
-    FUNCTION 3 geography_gist_compress(internal) ,
-    FUNCTION 4 geography_gist_decompress(internal) ,
-    FUNCTION 5 geography_gist_penalty(internal,internal,internal) ,
-    FUNCTION 6 geography_gist_picksplit(internal,internal) ,
-    FUNCTION 7 geography_gist_same(box2d,box2d,internal);
-
-
---
--- Name: gist_geometry_ops; Type: OPERATOR FAMILY; Schema: public; Owner: -
---
-
-CREATE OPERATOR FAMILY gist_geometry_ops USING gist;
+    FUNCTION 1 (geography, geography) geography_gist_consistent(internal,geometry,integer) ,
+    FUNCTION 2 (geography, geography) geography_gist_union(bytea,internal) ,
+    FUNCTION 3 (geography, geography) geography_gist_compress(internal) ,
+    FUNCTION 4 (geography, geography) geography_gist_decompress(internal) ,
+    FUNCTION 5 (geography, geography) geography_gist_penalty(internal,internal,internal) ,
+    FUNCTION 6 (geography, geography) geography_gist_picksplit(internal,internal) ,
+    FUNCTION 7 (geography, geography) geography_gist_same(box2d,box2d,internal);
 
 
 --
@@ -9694,13 +9688,13 @@ CREATE OPERATOR CLASS gist_geometry_ops
     OPERATOR 10 <<|(geometry,geometry) ,
     OPERATOR 11 |>>(geometry,geometry) ,
     OPERATOR 12 |&>(geometry,geometry) ,
-    FUNCTION 1 lwgeom_gist_consistent(internal,geometry,integer) ,
-    FUNCTION 2 lwgeom_gist_union(bytea,internal) ,
-    FUNCTION 3 lwgeom_gist_compress(internal) ,
-    FUNCTION 4 lwgeom_gist_decompress(internal) ,
-    FUNCTION 5 lwgeom_gist_penalty(internal,internal,internal) ,
-    FUNCTION 6 lwgeom_gist_picksplit(internal,internal) ,
-    FUNCTION 7 lwgeom_gist_same(box2d,box2d,internal);
+    FUNCTION 1 (geometry, geometry) lwgeom_gist_consistent(internal,geometry,integer) ,
+    FUNCTION 2 (geometry, geometry) lwgeom_gist_union(bytea,internal) ,
+    FUNCTION 3 (geometry, geometry) lwgeom_gist_compress(internal) ,
+    FUNCTION 4 (geometry, geometry) lwgeom_gist_decompress(internal) ,
+    FUNCTION 5 (geometry, geometry) lwgeom_gist_penalty(internal,internal,internal) ,
+    FUNCTION 6 (geometry, geometry) lwgeom_gist_picksplit(internal,internal) ,
+    FUNCTION 7 (geometry, geometry) lwgeom_gist_same(box2d,box2d,internal);
 
 
 SET search_path = pg_catalog;
@@ -11338,6 +11332,38 @@ ALTER SEQUENCE observation_photos_id_seq OWNED BY observation_photos.id;
 
 
 --
+-- Name: observation_sounds; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_sounds (
+    id integer NOT NULL,
+    observation_id integer,
+    sound_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: observation_sounds_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE observation_sounds_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_sounds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE observation_sounds_id_seq OWNED BY observation_sounds.id;
+
+
+--
 -- Name: observations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -11546,8 +11572,7 @@ CREATE TABLE place_geometries (
     geom geometry NOT NULL,
     source_filename character varying(255),
     CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL)))
 );
 
 
@@ -12069,6 +12094,44 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: sounds; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sounds (
+    id integer NOT NULL,
+    user_id integer,
+    native_username character varying(255),
+    native_realname character varying(255),
+    native_sound_id character varying(255),
+    native_page_url character varying(255),
+    license integer,
+    type character varying(255),
+    sound_url character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: sounds_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sounds_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sounds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sounds_id_seq OWNED BY sounds.id;
+
+
+--
 -- Name: sources; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -12562,8 +12625,7 @@ CREATE TABLE taxon_ranges (
     range_updated_at timestamp without time zone,
     url character varying(255),
     CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL)))
 );
 
 
@@ -13237,6 +13299,13 @@ ALTER TABLE ONLY observation_photos ALTER COLUMN id SET DEFAULT nextval('observa
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY observation_sounds ALTER COLUMN id SET DEFAULT nextval('observation_sounds_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY observations ALTER COLUMN id SET DEFAULT nextval('observations_id_seq'::regclass);
 
 
@@ -13357,6 +13426,13 @@ ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regcl
 --
 
 ALTER TABLE ONLY rules ALTER COLUMN id SET DEFAULT nextval('rules_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sounds ALTER COLUMN id SET DEFAULT nextval('sounds_id_seq'::regclass);
 
 
 --
@@ -13834,6 +13910,14 @@ ALTER TABLE ONLY observation_photos
 
 
 --
+-- Name: observation_sounds_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY observation_sounds
+    ADD CONSTRAINT observation_sounds_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: observations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -13991,6 +14075,14 @@ ALTER TABLE ONLY schema_migrations
 
 ALTER TABLE ONLY friendly_id_slugs
     ADD CONSTRAINT slugs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sounds_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sounds
+    ADD CONSTRAINT sounds_pkey PRIMARY KEY (id);
 
 
 --
@@ -14675,6 +14767,20 @@ CREATE INDEX index_observation_photos_on_photo_id ON observation_photos USING bt
 
 
 --
+-- Name: index_observation_sounds_on_observation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_sounds_on_observation_id ON observation_sounds USING btree (observation_id);
+
+
+--
+-- Name: index_observation_sounds_on_sound_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_sounds_on_sound_id ON observation_sounds USING btree (sound_id);
+
+
+--
 -- Name: index_observations_on_comments_count; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15001,6 +15107,20 @@ CREATE UNIQUE INDEX index_slugs_on_n_s_s_and_s ON friendly_id_slugs USING btree 
 --
 
 CREATE INDEX index_slugs_on_sluggable_id ON friendly_id_slugs USING btree (sluggable_id);
+
+
+--
+-- Name: index_sounds_on_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_sounds_on_type ON sounds USING btree (type);
+
+
+--
+-- Name: index_sounds_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_sounds_on_user_id ON sounds USING btree (user_id);
 
 
 --
@@ -15864,6 +15984,8 @@ INSERT INTO schema_migrations (version) VALUES ('20130516200016');
 INSERT INTO schema_migrations (version) VALUES ('20130521001431');
 
 INSERT INTO schema_migrations (version) VALUES ('20130523203022');
+
+INSERT INTO schema_migrations (version) VALUES ('20130604012213');
 
 INSERT INTO schema_migrations (version) VALUES ('21');
 

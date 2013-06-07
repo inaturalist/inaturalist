@@ -15,10 +15,13 @@ class User < ActiveRecord::Base
   # licensing extras
   attr_accessor   :make_observation_licenses_same
   attr_accessor   :make_photo_licenses_same
+  attr_accessor   :make_sound_licenses_same
   attr_accessible :make_observation_licenses_same, 
-                  :make_photo_licenses_same, 
+                  :make_photo_licenses_same,
+                  :make_sound_licenses_same, 
                   :preferred_photo_license, 
-                  :preferred_observation_license
+                  :preferred_observation_license,
+                  :preferred_sound_license
   attr_accessor :html
   
   preference :project_journal_post_email_notification, :boolean, :default => true
@@ -33,10 +36,12 @@ class User < ActiveRecord::Base
   preference :gbif_sharing, :boolean, :default => true
   preference :observation_license, :string
   preference :photo_license, :string
+  preference :sound_license, :string
   preference :share_observations_on_facebook, :boolean, :default => true
   preference :share_observations_on_twitter, :boolean, :default => true
   preference :automatic_taxonomic_changes, :boolean, :default => true
   preference :observations_view, :string
+
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 
@@ -95,6 +100,7 @@ class User < ActiveRecord::Base
   before_save :whitelist_licenses
   after_save :update_observation_licenses
   after_save :update_photo_licenses
+  after_save :update_sound_licenses
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
@@ -326,6 +332,14 @@ class User < ActiveRecord::Base
     number = Photo.license_number_for_code(preferred_photo_license)
     return true unless number
     Photo.update_all(["license = ?", number], ["user_id = ?", id])
+    true
+  end
+
+  def update_sound_licenses
+    return true unless [true, "1", "true"].include?(@make_sound_licenses_same)
+    number = Photo.license_number_for_code(preferred_sound_license)
+    return true unless number
+    Sound.update_all(["license = ?", number], ["user_id = ?", id])
     true
   end
   
