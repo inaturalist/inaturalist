@@ -193,6 +193,15 @@ describe Identification, "creation" do
   end
 
   # it "should set curator_identification"
+  it "should set the observation's community taxon" do
+    t = Taxon.make!
+    o = Observation.make!(:taxon => t)
+    o.community_taxon.should be_blank
+    i = Identification.make!(:observation => o, :taxon => t)
+    o.reload
+    o.community_taxon.should eq(t)
+  end
+
 end
 
 describe Identification, "deletion" do
@@ -376,6 +385,29 @@ describe Identification, "deletion" do
     ident3.destroy
     o.reload
     o.taxon_id.should eq(ident2.taxon_id)
+  end
+
+  it "should set the observation's community taxon if remaining identifications" do
+    load_test_taxa
+    o = Observation.make!(:taxon => @Calypte_anna)
+    o.community_taxon.should be_blank
+    i1 = Identification.make!(:observation => o, :taxon => @Calypte_anna)
+    i2 = Identification.make!(:observation => o, :taxon => @Pseudacris_regilla)
+    o.reload
+    o.community_taxon.should eq(@Calypte_anna) # majority
+    i1.destroy
+    o.reload
+    o.community_taxon.should eq(@Chordata) # consensus
+  end
+
+  it "should remove the observation's community taxon if no more identifications" do
+    o = Observation.make!(:taxon => Taxon.make!)
+    i = Identification.make!(:observation => o, :taxon => o.taxon)
+    o.reload
+    o.community_taxon.should eq o.taxon
+    i.destroy
+    o.reload
+    o.community_taxon.should be_blank
   end
 end
 

@@ -476,6 +476,7 @@ describe Observation, "updating" do
     
     it "should become casual when taxon changes" do
       o = make_research_grade_observation
+      o.quality_grade.should == Observation::RESEARCH_GRADE
       new_taxon = Taxon.make!
       o.update_attributes(:taxon => new_taxon)
       o.quality_grade.should == Observation::CASUAL_GRADE
@@ -1657,5 +1658,133 @@ describe Observation, "component_cache_key" do
     k1 = Observation.component_cache_key(111, :for_owner => true, :locale => :en)
     k2 = Observation.component_cache_key(111, :locale => :en, :for_owner => true)
     k1.should eq(k2)
+  end
+end
+
+describe Observation, "majority taxon" do
+  it "should be the majority taxon" do
+    majority_taxon = Taxon.make!
+    minority_taxon = Taxon.make!
+    o = Observation.make!(:taxon => minority_taxon)
+    i1 = Identification.make!(:observation => o, :taxon => majority_taxon)
+    i2 = Identification.make!(:observation => o, :taxon => majority_taxon)
+    o.majority_taxon.id.should eq(majority_taxon.id)
+  end
+
+  it "should be nil if no majority" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o)
+    o.majority_taxon.should be_blank
+  end
+
+  it "should not consider outdated identifications" do
+    majority_taxon = Taxon.make!
+    minority_taxon = Taxon.make!
+    o = Observation.make!(:taxon => minority_taxon)
+    i1 = Identification.make!(:observation => o, :taxon => majority_taxon)
+    i2 = Identification.make!(:observation => o)
+    i3 = Identification.make!(:observation => o, :taxon => majority_taxon, :user => i2.user)
+    o.majority_taxon.id.should eq(majority_taxon.id)
+  end
+
+  it "should not consider 50% to be a majority" do
+    t1 = Taxon.make!
+    t2 = Taxon.make!
+    o = Observation.make!
+    2.times { Identification.make!(:observation => o, :taxon => t1)}
+    2.times { Identification.make!(:observation => o, :taxon => t2)}
+    o.reload
+    o.majority_taxon.should be_blank
+  end
+  
+  it "should consider a majority to be votes exceeding the number of all other votes" do
+    t1 = Taxon.make!
+    o = Observation.make!
+    2.times { Identification.make!(:observation => o, :taxon => t1)}
+    2.times { Identification.make!(:observation => o)}
+    o.reload
+    o.majority_taxon.should be_blank
+  end
+end
+
+describe Observation, "consensus taxon" do
+  it "should be one taxon if all agree" do
+    t = Taxon.make!
+    o = Observation.make!(:taxon => t)
+    i = Identification.make!(:taxon => t, :observation => o)
+    o.consensus_taxon.should eq(t)
+  end
+
+  it "should be a common ancestor if one exists" do
+    a = Taxon.make!(:rank => Taxon::GENUS)
+    t1 = Taxon.make!(:parent => a, :rank => Taxon::SPECIES)
+    t2 = Taxon.make!(:parent => a, :rank => Taxon::SPECIES)
+    o = Observation.make!(:taxon => t1)
+    i = Identification.make!(:observation => o, :taxon => t2)
+    o.consensus_taxon.should eq(a)
+  end
+
+  it "should be a distant common ancestor if one exists" do
+    f = Taxon.make!(:rank => Taxon::FAMILY)
+    g = Taxon.make!(:rank => Taxon::GENUS, :parent => f)
+    s = Taxon.make!(:rank => Taxon::SPECIES, :parent => g)
+    o = Observation.make!(:taxon => s)
+    i = Identification.make!(:observation => o, :taxon => f)
+    o.consensus_taxon.should eq(f)
+  end
+
+  it "should be nil if there's no monophyletic agreement" do
+    o = Observation.make!(:taxon => Taxon.make!)
+    i = Identification.make(:observation => o)
+    o.consensus_taxon.should be_blank
+  end
+
+  it "should not consider outdated identifications" do
+    a = Taxon.make!(:rank => Taxon::GENUS)
+    t1 = Taxon.make!(:parent => a, :rank => Taxon::SPECIES)
+    o = Observation.make!(:taxon => a)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => t1, :user => i1.user)
+    o.consensus_taxon.should eq(a)
+  end
+
+  it "should never be life" do
+    load_test_taxa
+    i1 = Identification.make!(:taxon => @Plantae)
+    o = i1.observation
+    i2 = Identification.make!(:taxon => @Aves, :observation => o)
+    o.reload
+    o.consensus_taxon.should be_blank
+  end
+end
+
+describe Observation, "community taxon" do
+  it "should be majority taxon if one exists" do
+    o = Observation.make!(:taxon => Taxon.make!)
+    i1 = Identification.make!(:observation => o, :taxon => o.taxon)
+    i2 = Identification.make!(:observation => o)
+    o.reload
+    o.community_taxon.should eq(o.taxon)
+  end
+
+  it "should be consensus taxon if no majority" do
+    g = Taxon.make!(:rank => Taxon::GENUS)
+    s1 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g)
+    s2 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g)
+    o = Observation.make!(:taxon => g)
+    i1 = Identification.make!(:taxon => s1, :observation => o)
+    i2 = Identification.make!(:taxon => s2, :observation => o)
+    o.reload
+    o.majority_taxon.should be_blank
+    o.community_taxon.should eq(g)
+  end
+
+  it "should be blank if no majority and no consensus" do
+    o = Observation.make!(:taxon => Taxon.make!)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o)
+    o.reload
+    o.community_taxon.should be_blank
   end
 end

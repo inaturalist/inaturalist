@@ -206,6 +206,11 @@ class ObservationsController < ApplicationController
         @owners_identification = @current_identifications.detect do |ident|
           ident.user_id == @observation.user_id
         end
+        Rails.logger.debug "[DEBUG] @observation.community_taxon: #{@observation.community_taxon}"
+        @community_identification = if @observation.community_taxon
+          Identification.new(:taxon => @observation.community_taxon, :observation => @observation)
+        end
+
         if logged_in?
           @viewers_identification = @current_identifications.detect do |ident|
             ident.user_id == current_user.id
@@ -215,20 +220,11 @@ class ObservationsController < ApplicationController
         @current_identifications_by_taxon = @current_identifications.select do |ident|
           ident.user_id != ident.observation.user_id
         end.group_by{|i| i.taxon}
-        @current_identifications_by_taxon = @current_identifications_by_taxon.sort_by do |row|
+        @sorted_current_identifications_by_taxon = @current_identifications_by_taxon.sort_by do |row|
           row.last.size
         end.reverse
         
         if logged_in?
-          # Make sure the viewer's ID is first in its group
-          @current_identifications_by_taxon.each_with_index do |pair, i|
-            if pair.last.map(&:user_id).include?(current_user.id)
-              pair.last.delete(@viewers_identification)
-              identifications = [@viewers_identification] + pair.last
-              @current_identifications_by_taxon[i] = [pair.first, identifications]
-            end
-          end
-          
           @projects = Project.all(
             :joins => [:project_users], 
             :limit => 1000, 

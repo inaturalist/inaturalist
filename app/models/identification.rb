@@ -1,4 +1,4 @@
-
+#encoding: utf-8
 class Identification < ActiveRecord::Base
   acts_as_flaggable
   belongs_to :observation
@@ -81,23 +81,32 @@ class Identification < ActiveRecord::Base
   # Update the observation if you're adding an ID to your own obs
   def update_observation
     return true unless observation
-    return true unless self.user_id == self.observation.user_id
+    # return true unless self.user_id == self.observation.user_id
     return true if @skip_observation
 
-    # update the species_guess
-    species_guess = observation.species_guess
-    unless taxon.taxon_names.exists?(:name => species_guess)
-      species_guess = taxon.to_plain_s
+    attrs = {}
+
+    if user_id == observation.user_id
+      observation.skip_identifications = true
+      # update the species_guess
+      species_guess = observation.species_guess
+      unless taxon.taxon_names.exists?(:name => species_guess)
+        species_guess = taxon.to_plain_s
+      end
+      attrs = {:species_guess => species_guess, :taxon_id => taxon_id, :iconic_taxon_id => taxon.iconic_taxon_id}
+      ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
     end
-    observation.skip_identifications = true
-    observation.update_attributes(:species_guess => species_guess, :taxon_id => taxon_id, :iconic_taxon_id => taxon.iconic_taxon_id)
-    ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+
+    observation.identifications.reload
+    attrs[:community_taxon] = observation.majority_taxon || observation.consensus_taxon
+
+    observation.update_attributes(attrs)
     true
   end
   
   def update_observation_after_destroy
     return true unless self.observation
-    return true unless self.observation.user_id == self.user_id
+    # return true unless self.observation.user_id == self.user_id
     return true if @skip_observation
 
     if last_current = observation.identifications.current.by(user_id).order("id ASC").last
@@ -105,15 +114,21 @@ class Identification < ActiveRecord::Base
       return true
     end
     
-    # update the species_guess
-    species_guess = observation.species_guess
-    if !taxon.blank? && !taxon.taxon_names.exists?(:name => species_guess)
-      species_guess = nil
+    attrs = {}
+    if user_id == observation.user_id
+      # update the species_guess
+      species_guess = observation.species_guess
+      if !taxon.blank? && !taxon.taxon_names.exists?(:name => species_guess)
+        species_guess = nil
+      end
+      attrs = {:species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil}
+      ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+    else
     end
-    
     observation.skip_identifications = true
-    observation.update_attributes(:species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil)
-    ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+    observation.identifications.reload
+    attrs[:community_taxon] = observation.majority_taxon || observation.consensus_taxon
+    observation.update_attributes(attrs)
     true
   end
   

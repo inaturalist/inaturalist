@@ -399,7 +399,9 @@
 <div class="column span-7 last">  
 
   <div id="identifications" class="identifications clear">
-    <h3><%=t :identification_summary %></h3>
+    <h3>
+      <%=t :identification_summary %>
+    </h3>
     
     <% if @owners_identification %>
       <div id="owners-identification" class="box <%= 'withupperright' if @listed_taxon || @conservation_status %>">
@@ -410,23 +412,38 @@
         <% end -%>
       </div>
     <% end %>
+
+    <% if @community_identification -%>
+      <div class="identification_group">
+        <div id="community-identification" class="box <%= @observation.identification_summary %>">
+          <%= render :partial => 'identifications/identification',
+                     :locals => {
+                      :identification => @community_identification,
+                      :usertext => "<strong>Community</strong> ID (#{@observation.identification_summary}): ".html_safe
+                    } %>
+        </div>
+        <% if identifications = @current_identifications_by_taxon[@community_identification.taxon] -%>
+          <div class="agreers description">
+            <% for agreement in identifications %>
+              <%= link_to user_image(agreement.user, :size => :mini), agreement.user %>
+            <% end %>
+            <nobr><%=t :x_people_agree_html, :count => identifications.size %></nobr>
+          </div>
+        <% end -%>
+      </div>
+    <% end -%>
+
     <div id="identifications-list-<%= @observation.id %>" class="identifications-list">
-      <% for taxon, identifications in @current_identifications_by_taxon %>
+      <% for taxon, identifications in @sorted_current_identifications_by_taxon %>
+        <%- next if @community_identification && @community_identification.taxon === taxon -%>
         <div class="identification_group">
           <%= render :partial => "identifications/identification", :locals => { :identification => identifications.first }%>
-          <% if identifications.size == 2 %>
+          <% if identifications.size > 1 -%>
             <div class="agreers description">
-              <%= link_to you_or_login(identifications.last.user), identifications.last.user %> agrees
-            </div>
-          <% elsif identifications.size > 2 -%>
-            <div class="agreers description">
-              <%= identifications.size - 1 %> <%=t :people_agree %>
-              <span class="button"><%= link_to_function t(:show), "$(this).parent().next('ul').slideToggle()" %></span>
-              <ul style="display: none">
-                <% for agreement in identifications[1..-1] %>
-                  <li><%= link_to you_or_login(agreement.user), agreement.user %></li>
-                <% end %>
-              </ul>
+              <% for agreement in identifications[1..-1] %>
+                <%= link_to user_image(agreement.user, :size => :mini), agreement.user %>
+              <% end %>
+              <%=t :x_people_agree_html, :count => identifications.size - 1 %>
             </div>
           <% end -%>
         </div>

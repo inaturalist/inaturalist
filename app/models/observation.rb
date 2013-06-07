@@ -121,6 +121,7 @@ class Observation < ActiveRecord::Base
   
   belongs_to :user, :counter_cache => true
   belongs_to :taxon
+  belongs_to :community_taxon, :class_name => 'Taxon'
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
   belongs_to :oauth_application
@@ -1208,6 +1209,88 @@ class Observation < ActiveRecord::Base
   
   def iconic_taxon_name
     Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id].try(:name)
+  end
+
+  ##### Community Taxon #########################################################
+
+  # majority here means having more votes that all other taxa combined, so
+  # votes of 3,4,5 would not make 5 a majority, b/c 5 < 3+4 (7 people don't
+  # think it's whatever 5 people thought it was)
+  def majority_taxon(options = {})
+    if @majority_taxon && options[:force].blank?
+      return @majority_taxon
+    end
+    current_idents = identifications.current
+    return nil if current_idents.size < 2
+    votes = current_idents.inject({}) do |memo, ident|
+      memo[ident.taxon_id] ||= 0
+      memo[ident.taxon_id] += 1
+      memo
+    end
+    sorted = current_idents.group_by{|ident| ident.taxon_id}.sort_by{|taxon_id, idents| 0 - idents.size}
+    majority_taxon_id, majority_idents = sorted.detect{|taxon_id, idents| idents.size > current_idents.size - idents.size}
+    majority_idents ? majority_idents.first.taxon : nil
+  end
+
+  # lowest rank taxon that everyone can agree on, e.g. consensus of Homo
+  # sapiens and Passer domesticus is Chordata
+  def consensus_taxon(options = {})
+    if @consensus_taxon && options[:force].blank?
+      return @consensus_taxon
+    end
+    current_idents = identifications.current
+    return nil if current_idents.size < 2
+    return current_idents.first.taxon if current_idents.map{|ident| ident.taxon_id}.uniq.size == 1
+
+    # take ancestries of all identified taxa and their ancestors and arrange
+    # them in a matrix where each row is a taxon and each column is an
+    # ancestor taxon id for that taxon, ranked from highest (phylum) on the
+    # left, lowest on the right. Fill missing ranks with nils. 
+    ancestries = current_idents.map{|ident| ident.taxon.self_and_ancestor_ids}.sort_by{|a| a.size}
+    width = ancestries.last.size
+    matrix = ancestries.map do |a|
+      a + ([nil]*(width-a.size))
+    end
+
+    # start at the right col (lowest rank), look for the first occurrence of
+    # consensus within a rank
+    consensus_taxon_id = nil
+    width.downto(0) do |c|
+      next if c == width
+      column_taxon_ids = matrix.map{|ancestry| ancestry[c]}
+      if column_taxon_ids.uniq.size == 1 && !column_taxon_ids.first.blank?
+        consensus_taxon_id = column_taxon_ids.first
+        break
+      end
+    end
+    return nil if consensus_taxon_id.blank?
+    @consensus_taxon = if ident = current_idents.detect{|ident| ident.taxon_id == consensus_taxon_id}
+      ident.taxon
+    else
+      Taxon.find_by_id(consensus_taxon_id)
+    end
+    if @consensus_taxon.root? && @consensus_taxon.name == "Life"
+      @consensus_taxon = nil
+    else
+      @consensus_taxon
+    end
+  end
+
+  def set_community_taxon
+    self.community_taxon = majority_taxon || consensus_taxon
+    true
+  end
+
+  def identification_summary
+    # if taxon_id.blank? || identifications.current.size == 1
+    #   "unconfirmed"
+    if majority_taxon # && taxon_id == majority_taxon.id
+      "majority"
+    elsif consensus_taxon # && taxon.descendant_of?(consensus_taxon)
+      "consensus"
+    else
+      "disputed"
+    end
   end
   
   def self.obscure_coordinates_for_observations_of(taxon, options = {})

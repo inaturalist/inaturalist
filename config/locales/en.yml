@@ -38,6 +38,9 @@ en:
   x_people:
     one: '1 person'
     other: '%{count} people'
+  x_people_agree_html:
+    one: '<span class="count">1</span> person agrees'
+    other: '<span class="count">%{count}</span> people agree'
   x_species:
     one: '1 species'
     other: '%{count} species'
