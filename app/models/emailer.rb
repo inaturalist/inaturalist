@@ -40,7 +40,7 @@ class Emailer < ActionMailer::Base
     return if user.email.blank?
     return if user.prefers_no_email
     @user = user
-    I18n.locale = user.locale || I18n.default_locale
+    I18n.locale = user.locale.blank? ? I18n.default_locale : user.locale
     @grouped_updates = Update.group_and_sort(updates, :skip_past_activity => true)
     @update_cache = Update.eager_load_associates(updates)
     mail(
