@@ -187,7 +187,11 @@ class Photo < ActiveRecord::Base
 
   def as_json(options = {})
     options[:except] ||= []
-    options[:except] << :metadata
+    options[:except] += [:metadata, :file_content_type, :file_file_name,
+      :file_file_size, :file_processing, :file_updated_at, :mobile,
+      :original_url]
+    options[:methods] ||= []
+    options[:methods] += [:license_name, :license_url, :attribution]
     super(options)
   end
   
