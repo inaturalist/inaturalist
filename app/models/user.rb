@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
   has_many  :provider_authorizations, :dependent => :delete_all
   has_one  :flickr_identity, :dependent => :delete
   has_one  :picasa_identity, :dependent => :delete
+  has_one  :soundcloud_identity, :dependent => :delete
   has_many :observations, :dependent => :destroy
   
   # Some interesting ways to map self-referential relationships in rails

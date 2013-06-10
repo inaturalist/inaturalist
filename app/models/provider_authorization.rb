@@ -4,17 +4,19 @@ class ProviderAuthorization < ActiveRecord::Base
   validates_presence_of :user_id, :provider_uid, :provider_name
   validates_uniqueness_of :provider_uid, :scope => :provider_name
   validate :uniqueness_of_authorization_per_user
-  after_save :create_photo_identity
+  after_save :create_photo_identity, :create_sound_identity
   
   # Hash that comes back from the provider through omniauth.  Should be set 
   # after the callback gets fired, so in theory should only be available when 
   # this record is created
   attr_accessor :auth_info
   
-  PROVIDERS = %w(facebook twitter flickr google_oauth2 yahoo)
+  PROVIDERS = %w(facebook twitter flickr google_oauth2 yahoo soundcloud)
   PROVIDER_NAMES = PROVIDERS.inject({}) do |memo, provider|
     if provider == "google_oauth2"
       memo[provider] = "Google"
+    elsif provider == "soundcloud"
+      memo[provider] = "SoundCloud"
     else
       memo[provider] = provider.capitalize
     end
@@ -62,7 +64,7 @@ class ProviderAuthorization < ActiveRecord::Base
   end
 
   def self.find_from_omniauth(auth_info)
-    find_by_provider_name_and_provider_uid(auth_info['provider'], auth_info['uid'])
+    find_by_provider_name_and_provider_uid(auth_info['provider'], auth_info['uid'].to_s)
   end
   
   # Try to create a photo identity if the auth provider has/is a photo 
@@ -89,6 +91,15 @@ class ProviderAuthorization < ActiveRecord::Base
         photo_identity.errors.full_messages.to_sentence
     end
     true
+  end
+
+  def create_sound_identity
+    return unless provider_name == "soundcloud"
+    return if user.soundcloud_identity || !auth_info
+    user.create_soundcloud_identity(
+      :native_username => auth_info['info']['nickname'],
+      :native_realname => auth_info['info']['name']
+    )
   end
   
   # right now this only needs to happen for flickr

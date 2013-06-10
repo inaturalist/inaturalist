@@ -8,6 +8,10 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     opts[:client_options] = {:ssl => {:ca_path => "/etc/ssl/certs"}} if File.exists?("/etc/ssl/certs")
     provider :facebook, fb_cfg["app_id"], fb_cfg["app_secret"], opts
   end
+
+  if CONFIG.soundcloud
+    provider :soundcloud, CONFIG.soundcloud.client_id, CONFIG.soundcloud.secret
+  end
   
   if CONFIG.flickr
     FLICKR_SETUP = lambda do |env|
