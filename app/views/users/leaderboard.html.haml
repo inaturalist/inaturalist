@@ -1,5 +1,4 @@
 = content_for :title do
-  / = @title = "Leaderboard for #{@time_unit == 'month' ? @date.strftime("%B %Y") : @year}"
   = @title = t(:leaderboard_for_x, :x => (@time_unit == 'month' ? l(@date, :format => :month_year) : @year))
 - cache @leaderboard_key, :expires_in => 1.day do
   #pageheader

@@ -123,6 +123,7 @@ class Observation < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
+  belongs_to :oauth_application
   has_many :observation_photos, :dependent => :destroy, :order => "id asc"
   has_many :photos, :through => :observation_photos
   
@@ -1637,8 +1638,6 @@ class Observation < ActiveRecord::Base
       "http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8"
     elsif user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
       "https://market.android.com/details?id=org.inaturalist.android"
-    else
-      "/"
     end
   end
   

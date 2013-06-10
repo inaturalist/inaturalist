@@ -13,7 +13,7 @@ class OauthApplicationsController < ApplicationController
   end
 
   def create
-    @application = Doorkeeper::Application.new(params[:application])
+    @application = Doorkeeper::Application.new(params[:application] || params[:oauth_application])
     @application.owner = current_user
     if @application.save
       flash[:notice] = I18n.t(:notice, :scope => [:doorkeeper, :flash, :applications, :create])
@@ -30,7 +30,7 @@ class OauthApplicationsController < ApplicationController
   end
 
   def update
-    if @application.update_attributes(params[:application])
+    if @application.update_attributes(params[:application] || params[:oauth_application])
       flash[:notice] = I18n.t(:notice, :scope => [:doorkeeper, :flash, :applications, :update])
       respond_with [:oauth, @application]
     else
@@ -47,6 +47,7 @@ class OauthApplicationsController < ApplicationController
 
   def load_application
     render_404 unless @application = Doorkeeper::Application.find_by_id(params[:id])
+    @application = @application.becomes(OauthApplication)
   end
 
   def require_owner_or_admin

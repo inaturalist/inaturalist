@@ -181,12 +181,23 @@ end
 
 describe ObservationsController, "oauth authentication" do
   let(:user) { User.make! }
-  let(:token) { stub :accessible? => true, :resource_owner_id => user.id }
+  let(:token) { stub :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     controller.stub(:doorkeeper_token) { token }
   end
   it_behaves_like "an ObservationsController"
+end
+
+describe ObservationsController, "oauth authentication with param" do
+  let(:user) { User.make! }
+  it "should create" do
+    app = OauthApplication.make!
+    token = Doorkeeper::AccessToken.create(:application_id => app.id, :resource_owner_id => user.id)
+    lambda {
+      post :create, :format => :json, :access_token => token.token, :observation => {:species_guess => "foo"}
+    }.should change(Observation, :count).by(1)
+  end
 end
 
 describe ObservationsController, "devise authentication" do

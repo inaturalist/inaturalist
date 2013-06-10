@@ -306,13 +306,20 @@
       </span>
     </div>
 
-    <% if @observation.mobile? -%>
-      <div id="device" class="description <%= @observation.device_name.to_s.split.join('_').downcase %>">
-        <label><%= t :device %>:</label>
-        <% if @observation.device_url -%>
+    <% if (a = @observation.oauth_application) || !@observation.device_url.blank? -%>
+      <div id="app" class="description">
+        <label>App:</label>
+        <% if a -%>
+          <%-
+            url = a.url.blank? ? oauth_application_url(a) : a.url
+            uri = URI.parse(url) rescue nil
+          -%>
+          <% if uri -%>
+            <%= link_to(image_tag("http://www.google.com/s2/u/0/favicons?domain=#{uri.host}"), url) %>
+          <% end -%>
+          <%= link_to a.name, url %>
+        <% elsif !@observation.device_url.blank? -%>
           <%= link_to @observation.device_name, @observation.device_url %>
-        <% else %>
-          <%= @observation.device_name %>
         <% end -%>
       </div>
     <% end -%>
@@ -365,9 +372,9 @@
       
       <div id="new_identification_form">
         <% if !logged_in? -%>
-          <%= link_to "Sign in", login_path %>
-          or <%= link_to "sign up", signup_path %>
-          to add identifications.
+          <%= link_to t(:sign_in), login_path %>
+          <%= t :or %> <%= link_to t(:sign_up), signup_path %>
+          <%= t :to_add_identifications %>
         <% else %>
           <%- new_identification = Identification.new(:user => current_user, :observation => @observation) -%>
           <%= form_for new_identification do |f| %>
@@ -376,7 +383,7 @@
               :f => f,
               :show_body => true
             } %>
-            <%= f.submit 'Save Identification', :class => 'default button', "data-loading-click" => "Saving..." %>
+            <%= f.submit t(:save_identification), :class => 'default button', "data-loading-click" => t(:saving) %>
           <% end %>
         <% end -%>
       </div>

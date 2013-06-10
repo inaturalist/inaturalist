@@ -11173,7 +11173,13 @@ CREATE TABLE oauth_applications (
     updated_at timestamp without time zone NOT NULL,
     owner_id integer,
     owner_type character varying(255),
-    trusted boolean DEFAULT false
+    trusted boolean DEFAULT false,
+    image_file_name character varying(255),
+    image_content_type character varying(255),
+    image_file_size integer,
+    image_updated_at timestamp without time zone,
+    url character varying(255),
+    description text
 );
 
 
@@ -11407,6 +11413,7 @@ CREATE TABLE observations (
     comments_count integer DEFAULT 0,
     cached_tag_list character varying(768) DEFAULT NULL::character varying,
     zic_time_zone character varying(255),
+    oauth_application_id integer,
     CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
     CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'POINT'::text) OR (geom IS NULL)))
 );
@@ -11572,7 +11579,8 @@ CREATE TABLE place_geometries (
     geom geometry NOT NULL,
     source_filename character varying(255),
     CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL)))
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
 );
 
 
@@ -12091,6 +12099,39 @@ ALTER SEQUENCE rules_id_seq OWNED BY rules.id;
 CREATE TABLE schema_migrations (
     version character varying(255) NOT NULL
 );
+
+
+--
+-- Name: soundcloud_identities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE soundcloud_identities (
+    id integer NOT NULL,
+    native_username character varying(255),
+    native_realname character varying(255),
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: soundcloud_identities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE soundcloud_identities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: soundcloud_identities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE soundcloud_identities_id_seq OWNED BY soundcloud_identities.id;
 
 
 --
@@ -12625,7 +12666,8 @@ CREATE TABLE taxon_ranges (
     range_updated_at timestamp without time zone,
     url character varying(255),
     CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL)))
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
 );
 
 
@@ -13432,6 +13474,13 @@ ALTER TABLE ONLY rules ALTER COLUMN id SET DEFAULT nextval('rules_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY soundcloud_identities ALTER COLUMN id SET DEFAULT nextval('soundcloud_identities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY sounds ALTER COLUMN id SET DEFAULT nextval('sounds_id_seq'::regclass);
 
 
@@ -14075,6 +14124,14 @@ ALTER TABLE ONLY schema_migrations
 
 ALTER TABLE ONLY friendly_id_slugs
     ADD CONSTRAINT slugs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: soundcloud_identities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY soundcloud_identities
+    ADD CONSTRAINT soundcloud_identities_pkey PRIMARY KEY (id);
 
 
 --
@@ -14792,6 +14849,13 @@ CREATE INDEX index_observations_on_comments_count ON observations USING btree (c
 --
 
 CREATE INDEX index_observations_on_geom ON observations USING gist (geom);
+
+
+--
+-- Name: index_observations_on_oauth_application_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_oauth_application_id ON observations USING btree (oauth_application_id);
 
 
 --
@@ -15985,7 +16049,13 @@ INSERT INTO schema_migrations (version) VALUES ('20130521001431');
 
 INSERT INTO schema_migrations (version) VALUES ('20130523203022');
 
+INSERT INTO schema_migrations (version) VALUES ('20130603221737');
+
+INSERT INTO schema_migrations (version) VALUES ('20130603234330');
+
 INSERT INTO schema_migrations (version) VALUES ('20130604012213');
+
+INSERT INTO schema_migrations (version) VALUES ('20130607221500');
 
 INSERT INTO schema_migrations (version) VALUES ('21');
 

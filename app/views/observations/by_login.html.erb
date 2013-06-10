@@ -326,13 +326,13 @@
             <ul>
               <% for project_user in @project_users %>
                 <li class="inline buttonrow">
-                    <%= link_to_function "add", 
+                    <%= link_to_function t(:add),
                       "actOnSelected('#{add_project_observation_batch_path(project_user.project)}', {method: 'post'})",
                       "data-loading-click" => "Adding...",
                       :class => "glaucous button" %>
-                    <%= link_to_function "remove", 
+                    <%= link_to_function t(:remove),
                       "actOnSelected('#{remove_project_observation_batch_path(project_user.project)}', {method: 'post'})",
-                      "data-loading-click" => "Removing...",
+                      "data-loading-click" => t(:removing),
                       :class => "pale button" %>
                   <%= link_to h(project_user.project.title), project_user.project, :class => "inter" %>
                 </li>
@@ -392,7 +392,7 @@
   <%= link_to_function t(:redo_search_in_map_area),
     "redoSearchInMapArea()", 
     :id => 'redo_search_in_map_area_button',
-    "data-loading-click" => "Loading..." %>
+    "data-loading-click" => t(:loading) %>
 </div>
 
 <div class="last column span-24">

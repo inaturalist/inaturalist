@@ -666,6 +666,7 @@ en:
   edit_range_raquo: "Edit range &raquo;"
   edit_remove: Edit/Remove
   edit_selected: Edit selected
+  edit_source: Edit source
   edit_taxa: Edit taxa
   edit_taxon_change: edit taxon change
   edit_taxon_link: Edit taxon link
@@ -1002,6 +1003,7 @@ en:
   life_lists_automatically_fill: Life lists automatically fill up with new taxa as you observe them, and they can be restricted to higher level parent taxa, e.g. a life list of birds in the crow family (Corvidae).
   life_list_first: "life list first"
   life_list_firsts: "life list firsts"
+  link: Link
   link_or_unlink_your_facebook_account: Link or unlink your Facebook account
   link_or_unlink_your_flickr_account: Link or unlink your Flickr account
   link_or_unlink_your_picasa_account: Link or unlink your Picasa account
@@ -1115,6 +1117,8 @@ en:
   most_agree: most agree
   most_disagree: most disagree
   multiple_taxa: Multiple taxa (input for swap/merge, output for split)
+  must_be_observed_in: must be observed in
+  must_have_observation_field: "must have observation field '%{operand}' filled out"
   n_ago: "%{n} ago"
   n_people_agrees: "%{amount} people agree"
   n_people_disagrees: "%{amount} people disagree"
@@ -1549,9 +1553,11 @@ en:
   regenerate_url: Regenate URL
   reload_from_observations: Reload from observations
   reload_timed_out: 'Reload timed out.  Please try again later.'
+  remarks_optional: 'Remarks <span class="small description">(optional)</span>'
   remember_its_a_lot_easier_to_id: "Remember, it's a lot easier to ID something if you provide as much descriptive information as possible. Most importantly, please provide a <strong>place</strong>, a <strong>date/time</strong>, and some information about the <strong>size</strong>."
   remember_me: Remember me
   remove: Remove
+  remove_from: Remove from
   remove_curator: Remove curator
   remove_curator_role: Remove curator role
   remove_curator_status: Remove curator status
@@ -1594,6 +1600,12 @@ en:
   rules_for_adding_observations: Rules for Adding Observations
   rules_for_becoming_a_member: Rules for Becoming a Member
   rules_for_becoming_memner: Rules for Becoming a Member
+  rules_types:
+        must_be_georeferenced: must be georeferenced
+        must_be_identified: must be identified
+        must_be_on_list: must be on list
+        must_be_observed_in_place: must be observed in Place
+        must_be_in: must be in taxon
   sat: Sat
   satellite: satellite
   save: Save
@@ -1944,6 +1956,7 @@ en:
   type: Type
   type_a_name_and_click: Type a name and click LOOKUP
   type_a_place_name_and_click_search: Type a place name and click SEARCH to search
+  type_date_time_or_use_the_calendar: Type date/time or use the calendar
   type_place_name: Type place name
   type_project_name: Type project name
   type_source_name: Type source name
@@ -2180,6 +2193,7 @@ en:
   your_home: Your Home
   your_identification: Your Identification
   your_inat_account_has_been_activated: "Your %{inat} account has been activated."
+  your_month_observations: your %{month} observations
   your_new_password_is: Your new password is
   your_observation_will_get_shared_html: "Your observation will get shared on social networks if you leave these boxes checked. You can change your defaults by <a href='%{url}' target='_blank'>editing your account settings</a>. If you linked your Facebook or Twitter account before this feature was added, you may need to re-link to Twitter or Facebook from your account to get this working."
   your_observation_wont_get: "your observation won't get associated with other observations of this species, and your life list won't get updated."

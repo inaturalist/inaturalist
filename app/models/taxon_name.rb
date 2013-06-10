@@ -141,7 +141,7 @@ class TaxonName < ActiveRecord::Base
 
   def self.language_for_locale(locale = nil)
     locale ||= I18n.locale
-    lang_code = locale.to_s.split('-').first.downcase
+    lang_code = locale.to_s.split('-').first.to_s.downcase
     case lang_code
     when 'es' then return 'spanish'
     when 'fr' then return 'french'
