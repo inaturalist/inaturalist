@@ -172,7 +172,7 @@
                       <%= render :partial => "shared/activity_item", :object => notifier %>
                     </div>
                   <% end %>
-                  <%= link_to "View #{resource.class.to_s.underscore.humanize.downcase}", resource, :class => "readmore" %>
+                  <%= link_to "#{t(:view)} #{resource.class.to_s.underscore.humanize.downcase}", resource, :class => "readmore" %>
                 </div>
               <% else %>
                 <%= 
@@ -209,29 +209,17 @@
       <% if current_user.is_curator? -%>
         <div id="curatorbox" class="box">
           <h3>
-            Curation
+            <%= t :curation %>
             <% helptip_for "curation" do %>
-              You're a site curator, which means you've volunteered to help
-              curate our data and monitor content. Please don't feel obliged
-              to deal with all these issues, but if you have the time to check
-              some of them out, we'd appreciate all the help we can get. If
-              you have any questions about curating content or don't want to
-              be a curator anymore, please contact us at 
+              <%= t :youre_a_site_curator_which_means %>
               <%= link_to CONFIG.help_email, "mailto:#{CONFIG.help_email}" %>.
             <% end -%>
           </h3>
           <% unless @flags.blank? -%>
             <h4>
-              Flags
+              <%= t(:flag).pluralize %>
               <% helptip_for "flags" do %>
-                These are items people on the site have flagged for curation.
-                Spam comments should be deleted and users who add spam should
-                be suspended (go to their profile page and click "Suspend
-                user" in the lower right to prevent them from logging in).
-                Other flagged items should only be deleted if they are clearly
-                hateful, illegal, etc. Rudeness, offensive language, etc,
-                should be handled with a polite comment. Repeat offenders
-                should be reported to a site admin or <%=
+                <%= t :these_are_items_people_on %> <%=
                 CONFIG.help_email %>.
               <% end -%>
             </h4>
@@ -246,14 +234,9 @@
 
           <% unless @ungrafted_taxa.blank? -%>
             <h4>
-              Ungrafted taxa
-                <% helptip_for "flags" do %>
-                  These are taxa that <%= CONFIG.site_name_short %> couldn't automatically add to our
-                  taxonomic tree for some reason. You can add them to the tree
-                  by editing the taxon and choosing a parent record. For
-                  example, the parent of <i>Homo sapiens</i> would be the
-                  genus <i>Homo</i>. You might also want to check for synonymous 
-                  taxa and merge them.
+              <%= t :ungrafted_taxa %>
+                <% helptip_for "ungrafted_taxa" do %>
+                  <%=raw t :these_are_taxa_that, :site => CONFIG.site_name_short %>
                 <% end -%>
               </h4>
             </h4>
@@ -261,14 +244,14 @@
               <% for taxon in @ungrafted_taxa %>
                 <li>
                   <%= link_to_taxon taxon %>
-                  <%= link_to "edit", edit_taxon_path(taxon) %>
+                  <%= link_to t(:edit), edit_taxon_path(taxon) %>
                 </li>
               <% end %>
             </ul>
           <% end -%>
 
-          <%= link_to "Curate taxa", curate_taxa_path %> |
-          <%= link_to "Create a new taxon", new_taxon_path %>
+          <%= link_to t(:curate_taxa), curate_taxa_path %> |
+          <%= link_to t(:create_a_new_taxon), new_taxon_path %>
         </div>
       <% end -%>
 
@@ -297,7 +280,7 @@
                         <% if subscription.taxon -%>
                           (<%= subscription.taxon.name %>)
                         <% end -%>
-                        <%= link_to "edit", edit_subscription_path(subscription), :class => "small subscriptionsettings" %>
+                        <%= link_to t(:edit), edit_subscription_path(subscription), :class => "small subscriptionsettings" %>
                       </nobr>
                     </li>
                   <% end %>
@@ -331,7 +314,7 @@
     <div class="medium observations grid stacked">
       <%= loading %>
     </div>
-    <%= link_to "View more recent observations", observations_url, :class => "readmore" %>
+    <%= link_to t(:view_more_recent_observations), observations_url, :class => "readmore" %>
   </div>
   
   <div id="comments">
