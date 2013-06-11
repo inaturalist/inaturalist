@@ -81,6 +81,13 @@ LocalPhoto.blueprint do
   user { User.make }
 end
 
+Message.blueprint do
+  from_user { User.make! }
+  to_user { User.make! }
+  subject { Faker::Lorem.sentence }
+  body { Faker::Lorem.paragraph }
+end
+
 OauthApplication.blueprint do
   name { Faker::Lorem.sentence }
   owner { User.make }

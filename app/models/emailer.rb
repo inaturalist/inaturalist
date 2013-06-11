@@ -53,7 +53,7 @@ class Emailer < ActionMailer::Base
     @message = message
     @message = Message.find_by_id(message) unless message.is_a?(Message)
     @user = @message.to_user
-    I18n.locale = user.locale || I18n.default_locale
+    I18n.locale = @user.locale || I18n.default_locale
     return if @user.email.blank?
     return unless @user.prefers_message_email_notification
     return if @user.prefers_no_email
