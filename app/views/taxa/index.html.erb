@@ -245,7 +245,7 @@
       </div>
       <% if photo = taxon.photos.first -%>
         <div id="photocredit">
-          Photo: <%= link_to photo.attribution, photo.native_page_url %>
+          <%= t :photo %>: <%= link_to photo.attribution, photo.native_page_url %>
         </div>
       <% end -%>
       <%= link_to taxon_image(taxon, :size => "large", :class => "taxonimage"), taxon %>
@@ -286,7 +286,7 @@
       <%= link_to(observation.taxon) do %>
         <%= render :partial => 'shared/taxon', :object => observation.taxon %>
       <% end %>
-      <span class="description date"><%= t(:on_) %> <%= observation.observed_on.to_s(:long) %></span>
+      <span class="description date"><%= t(:on_day) %> <%=l observation.observed_on, :format => :long %></span>
     </p>
     <% end %>
   </div>

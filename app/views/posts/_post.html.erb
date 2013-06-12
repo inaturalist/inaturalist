@@ -16,11 +16,11 @@
   <div class="meta">
     <span class="label"><%= t(:posted_on) %></span>
     <% if post.published_at -%>
-      <span class="date"><%= post.published_at.to_s(:long) %></span>
+      <span class="date"><%=l post.published_at, :format => :long %></span>
     <% else -%>
       <span><%= t(:draft) %></span>
     <% end -%>
-    <span class="label"><%= t :by %></span>
+    <span class="label"><%= t(:by).downcase %></span>
     <% if post.user -%>
       <%= link_to user_image(post.user), post.user %>
       <%= link_to(post.user.login, observations_by_login_path(post.user.login)) %>

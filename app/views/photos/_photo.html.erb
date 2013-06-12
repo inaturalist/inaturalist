@@ -10,7 +10,7 @@
       <% for photo_size in %w"small medium large original" %>
         <%- next if photo.send("#{photo_size}_url").blank? %>
         <li class="<%= photo_size %>_link <%= 'selected' if photo_size == size %>">
-          <%= link_to_function photo_size, 
+          <%= link_to_function t("photos_size.#{photo_size}"),
             "$('#photo_wrapper_#{photo.id} img').hide().removeClass('small medium large').addClass('#{photo_size} photo'); " +
             "$('#photo_#{photo.id}_#{photo_size}').css('display', 'block').attr('src', '#{photo.send("#{photo_size}_url")}'); " +
             "$(this).parents('li').addClass('selected').siblings('li').removeClass('selected')" %>

@@ -330,6 +330,7 @@ es:
   are_you_sure_you_want_sync_this: "¿Está seguro que desea sincronizar los datos de esta observación con esta foto de Flickr ? Usted perderá los cambios que le haya hecho a este formulario, pero podrá regresar a su copia guardada."
   are_you_sure_you_want_to_commit_this_change: ¿Estás seguro de querer guardar este cambio? Esta acción no puede ser revertida.
   are_you_sure_you_want_to_delete_this: ¿Estás seguro que quieres borrar esto?
+  are_you_sure_you_want_to_delete_this_post: ¿Estás seguro que quieres borrar esta nota?
   are_you_sure_you_want_to_delete_this_taxon_change: ¿Estás seguro que quieres borrar este cambio en la especieo o grupo?
   are_you_sure_you_want_to_delete_this_photo?: "¿Estás seguro de que quieres eliminar esta foto?"
   are_you_sure_you_want_to_remove_curator: ¿Estás seguro que deseas quitar a %{user} de curador?
@@ -2164,6 +2165,19 @@ es:
   there_were_some_problems_with: "Hubo algunos problemas con su archivo CSV.  Por favor revise las filas erróneas. Por supuesto que el problema pudo también haber sido nuestro. Si ese es el caso, por favor háganoslo saber"
   there_were_some_problems_with_fields: "Hubo algunos problemas con los siguientes campos"
   theres_also: "también hay"
+  these_are_items_people_on:
+                      Son contenidos que la gente a puesto como advertencia para curación. Contenidos de spam serán borrados y el
+                      usuario que lo puso debería ser suspendido (ve a la pagina de su perfil y en la parte inferior izquierda
+                      selecciona el enlace "suspender usuario" para que ya no pueda entrar al sitio). Otro tipo de contenidos como
+                      que sea ilegal, engañoso, racial, étnico, etc, deberán ser borrados y respondidos con un comentario de una manera atenta.
+                      Gente que repita estos comentarios deberán ser reportados a
+  these_are_taxa_that: |
+                      Son especies o grupos que %{site} no pudo añadir automáticamente
+                      al árbol taxonómico. Tu puedes añadirlos al árbol seleccionando el
+                      en lace "editar" y escogiendo un clase padre a la cual pertenezca.
+                      Por ejemplo el padre de <i>Homo sapiens</i> podría ser
+                      <i>Homo</i>. También puede buscar por especie o grupos que sean
+                      sinónimos y mezclarla.
   these_arent_necessarily_relevant_to: Estas observaciones no necesariamente son relevantes para el proyecto. Porfavor checa los
   these_folks_kindly_volunteer_to: Estas personas amablemente son voluntarios para mantener la taxonomia y resolver otros problemas.
   they_already_have_iNat_accounts: "...que ya tienen cuentas %{site_name}"
@@ -2206,6 +2220,7 @@ es:
       long: "%d de %B de %Y"
       short: "%d/%m/%Y"
       observed_at: a las %I:%M %p %Z
+      rfc: "%d %B %Y"
     pm: pm
   title: título
   time_ago: "hace %{time}"
@@ -2252,7 +2267,7 @@ es:
   type_taxon_name_and_click_lookup: "Digite el nombre del taxón y click lookup"
   uicn_red_list_status: "Estado de la Lista Roja de UICN"
   unclassified: "Sin clasificar"
-  unfragted_taxa: "Taxones sin injertar"
+  ungrafted_taxa: "Taxones sin injertar"
   uninvite: "cancelar invitación"
   unique_identifier_of_this_taxon: Identificador único para esta especie o grupo en la base de datos.
   unique_observers: observadores únicos
@@ -2324,6 +2339,7 @@ es:
   view_more_about_x: "Ver más sobre %{x}"
   view_more_observations_from_x: "Ver más observaciones de %{x}"
   view_more_observations_from: Ve mas observaciones de
+  view_more_recent_observations: Ver mas observaciones recientes
   view_nbsp: "Ver &nbsp;"
   view_non_mobile_site: "Ver el sitio que no es para móviles"
   view_observation: "Ver observación"
@@ -2800,6 +2816,11 @@ es:
   your_sure_delete_list?: "¿Está seguro que desea eliminar esta lista?"
   your_sure_delete_taxon_from_list?: "¿Está seguro que desea eliminar %{taxon} de esta lista?"
   your_world!: "Su país"
+  youre_a_site_curator_which_means:
+                    Eres un curador del sitio, lo que significa que eres voluntario para ayudar a curar los datos
+                    y monitorear el contenido del mismo. Por favor no te sientas obligado con todo lo que esto implica,
+                    pero si tienes tiempo de revisar algunos contenidos de antemano lo apreciamos. Si tienes alguna duda, comentario o
+                    simplemente ya no quieres ser un curador, contáctanos a
   youre_following: "usted está siguiendo"
   youre_not_following_anyone: "Usted no sigue a nadie. Seguir a otros naturalistas le permitirá llevar un control de sus observaciones más recientes. Averigüe lo que la gente está"
   youve_already_added_an_identification: "ya agregó una identificación, y sólo puede agregar una"

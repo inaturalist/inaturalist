@@ -10,9 +10,9 @@
     <% for year, month_num, month_name, count in archives %>
       <li class="clear">
         <% if @parent.is_a?(Project) %>
-          <%= link_to "#{month_name} #{year}", project_journal_archives_by_month_path(@parent_slug, year, month_num) %>
+          <%= link_to "#{t("date_format.month."+month_name.downcase).humanize} #{year}", project_journal_archives_by_month_path(@parent_slug, year, month_num) %>
         <% else %>
-          <%= link_to "#{month_name} #{year}", journal_archives_by_month_path(@parent_slug, year, month_num) %>
+          <%= link_to "#{t("date_format.month."+month_name.downcase).humanize} #{year}", journal_archives_by_month_path(@parent_slug, year, month_num) %>
         <% end %>
         <span class="count"><%= count %></span></li>
     <% end %>

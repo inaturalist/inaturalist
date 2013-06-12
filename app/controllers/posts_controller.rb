@@ -57,7 +57,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @post.parent ||= current_user
     @display_user = current_user
-    @post.published_at = Time.now if params[:commit] == 'Publish'
+    @post.published_at = Time.now if params[:commit] == t(:publish)
     if params[:observations]
       @post.observations << Observation.by(current_user).find(params[:observations])
     end
@@ -83,15 +83,15 @@ class PostsController < ApplicationController
   end
   
   def update
-    @post.published_at = Time.now if params[:commit] == 'Publish'
-    @post.published_at = nil if params[:commit] == 'Unpublish'
+    @post.published_at = Time.now if params[:commit] == t(:publish)
+    @post.published_at = nil if params[:commit] == t(:unpublish)
     if params[:observations]
       params[:observations] = params[:observations].map(&:to_i)
       params[:observations] = ((params[:observations] & @post.observation_ids) + params[:observations]).uniq
       @observations = Observation.by(current_user).all(
         :conditions => ["id IN (?)", params[:observations]])
     end
-    if params[:commit] == 'Preview'
+    if params[:commit] == t(:preview)
       @post.attributes = params[:post]
       @preview = @post
       @observations ||= @post.observations.all(:include => [:taxon, :photos])
