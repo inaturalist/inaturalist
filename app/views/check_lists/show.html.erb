@@ -213,6 +213,16 @@
             </div>
           </a>
         <% end %>
+        <div class="clear stat <%= ' current' if @filter_taxon && !@filter_taxon.is_iconic? %>">
+          <div class="readable title">
+            &nbsp;
+          </div>
+          <div class="barchart">
+            <form>
+              <input id="taxonchooser" name="taxon" type="text" class="text" placeholder="<%=t :type_species_name %>" value="<%= @filter_taxon.try(&:id) unless (@filter_taxon && @filter_taxon.is_iconic?) %>" style="width:200px"/>
+            </form>
+          </div>
+        </div>
       </div><!-- / innerstats -->
     </div><!-- /stats -->
     
