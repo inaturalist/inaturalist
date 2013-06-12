@@ -10,4 +10,14 @@ $(document).ready(function() {
   $('.actions .removelink').bind('ajax:before', function() {
     $(this).parents('.listed_taxon:first').fadeOut().parents('.listed_taxon_photo:first').fadeOut()
   })
+
+  $('#taxonchooser').chooser({
+    collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
+    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+    afterSelect: function(taxon) {
+      if (!FILTER_TAXON || FILTER_TAXON.id != taxon.id) {
+        $('#taxonchooser').parents('form:first').submit()
+      }
+    }
+  })
 })
