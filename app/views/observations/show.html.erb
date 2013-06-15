@@ -276,9 +276,9 @@
             <%= link_to_toggle t(:'sounds.view_all_soundcount_sounds', :sound_count => @observation.sounds.size), "#moresounds" %>
             <div id="moresounds" style="display: none">
           <% end %>
-          
+
           <%= sound.embed_html.html_safe %>
-          
+
         <% end -%>
         <% if sounds.size > above_the_fold_sounds %>
             </div>

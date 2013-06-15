@@ -43,17 +43,17 @@ $(document).ready(function() {
       }
       if (newWidth) {
         newWidth -= 11;
-        $('#where').width(newWidth)
-        $('#map').width(newWidth) 
+        $('#where').width(newWidth);
+        $('#map').width(newWidth);
       }
       if (newHeight) {
-        $('#map').height(newHeight)
+        $('#map').height(newHeight);
       }
       if (map && observation) {
-        google.maps.event.trigger(map, 'resize')
-        map.setCenter(center)
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter(center);
       }
-    })
+    });
   }
   
   $('.identification_form_wrapper input.text').simpleTaxonSelector({

@@ -1391,7 +1391,8 @@ en:
       medium: medium
       large: large
       original: original
-  photos_size_photos: "%{photos_size} photos "
+  photos_size_photos: "%{photos_size} Photos"
+  photos_size_photo: "%{photos_size} Photo"
   picasa_identity: Picasa Identity
   pick_a_username: Pick a username
   pink: pink
@@ -1731,12 +1732,16 @@ en:
     selected_sounds: Selected sounds
     sounds: Sounds
     view_all_soundcount_sounds: "View all %{sound_count} sounds"
+    sounds_size_sounds: "%{sounds_size} Sounds"
+    sounds_size_sound: "%{sounds_size} Sound"
     sound: Sound
     import_from_sounds: Import from Sounds
     import_sounds: Import Sounds
     import_from_soundcloud_description: Select sounds from your SoundCloud account to convert into iNaturalist observations. We'll fill in the date and time from a sound's metadata, and try to look up species names from the tags.
     your_soundcloud_account: your SoundCloud account
     before_importing_sounds: before importing sounds
+    photos_sounds: Photos / Sounds
+    no_photos_sounds: No photos or sounds
   source: Source
   source_: 'Source:'
   source_list:
