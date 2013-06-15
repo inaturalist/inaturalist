@@ -11323,6 +11323,7 @@ CREATE TABLE observations (
     cached_tag_list character varying(768) DEFAULT NULL::character varying,
     zic_time_zone character varying(255),
     oauth_application_id integer,
+    community_taxon_id integer,
     CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
     CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'POINT'::text) OR (geom IS NULL))),
     CONSTRAINT enforce_srid_geom CHECK ((srid(geom) = (-1)))
@@ -11488,6 +11489,7 @@ CREATE TABLE place_geometries (
     updated_at timestamp without time zone,
     geom geometry NOT NULL,
     source_filename character varying(255),
+    source_id integer,
     CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
     CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
     CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
@@ -11541,7 +11543,8 @@ CREATE TABLE places (
     user_id integer,
     source_filename character varying(255),
     ancestry character varying(255),
-    slug character varying(255)
+    slug character varying(255),
+    source_id integer
 );
 
 
@@ -14530,6 +14533,13 @@ CREATE INDEX index_observations_on_comments_count ON observations USING btree (c
 
 
 --
+-- Name: index_observations_on_community_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_community_taxon_id ON observations USING btree (community_taxon_id);
+
+
+--
 -- Name: index_observations_on_geom; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -14642,6 +14652,13 @@ CREATE INDEX index_place_geometries_on_place_id ON place_geometries USING btree 
 
 
 --
+-- Name: index_place_geometries_on_source_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_place_geometries_on_source_id ON place_geometries USING btree (source_id);
+
+
+--
 -- Name: index_places_on_ancestry; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -14688,6 +14705,13 @@ CREATE INDEX index_places_on_place_type ON places USING btree (place_type);
 --
 
 CREATE UNIQUE INDEX index_places_on_slug ON places USING btree (slug);
+
+
+--
+-- Name: index_places_on_source_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_places_on_source_id ON places USING btree (source_id);
 
 
 --
@@ -15492,6 +15516,8 @@ INSERT INTO schema_migrations (version) VALUES ('20120810053551');
 
 INSERT INTO schema_migrations (version) VALUES ('20120821195023');
 
+INSERT INTO schema_migrations (version) VALUES ('20120830020828');
+
 INSERT INTO schema_migrations (version) VALUES ('20120902210558');
 
 INSERT INTO schema_migrations (version) VALUES ('20120904064231');
@@ -15599,3 +15625,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130523203022');
 INSERT INTO schema_migrations (version) VALUES ('20130603221737');
 
 INSERT INTO schema_migrations (version) VALUES ('20130603234330');
+
+INSERT INTO schema_migrations (version) VALUES ('20130613223707');
