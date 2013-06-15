@@ -159,10 +159,6 @@ class Sound < ActiveRecord::Base
     raise "This method needs to be implemented by all Sound subclasses"
   end
 
-  def embed_html
-    raise "This method needs to be implemented by all Sound subclasses"
-  end
-
   def to_taxon
     return unless respond_to?(:to_taxa)
     sound_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES, :valid => true, :active => true)

@@ -14,7 +14,7 @@ class SoundcloudSound < Sound
     "no-rights-reserved" => 7
   }
 
-  after_create :collect_embed_html
+  after_save :set_embed_html
 
   def self.client_for_user(user)
     return nil unless user and user.soundcloud_identity
@@ -42,11 +42,9 @@ class SoundcloudSound < Sound
     return sound
   end
 
+  # grab embed html from soundcloud if there was a previous error storing it in the db
   def embed_html
-    client = SoundcloudSound.client_for_user(user) || SoundcloudSound.non_user_client
-    uri = native_response["secret_uri"] || native_page_url
-    oembed = client.get("/oembed", :url => uri)
-    return oembed.html
+    read_attribute(:embed_html) || collect_embed_html
   end
 
   def to_observation
@@ -90,11 +88,17 @@ class SoundcloudSound < Sound
   
   private
 
+  def set_embed_html(delay = true)
+    return self.delay.set_embed_html(false) if delay #lets us use the same method for sync/asyc execution
+    return if read_attribute(:embed_html)
+    oembed_response = collect_embed_html
+    self.update_attributes!(:embed_html => oembed_response) if oembed_response
+    true
+  end
+
   def collect_embed_html
     return unless client = SoundcloudSound.client_for_user(user)
-    oembed_response = client.get('/oembed', :url => self.native_response["secret_uri"] || native_page_url)
-    self.update_attributes!(:embed_html => oembed_response.html) if oembed_response
-    true
+    client.get('/oembed', :url => self.native_response["secret_uri"] || native_page_url).html
   end
 
 end
