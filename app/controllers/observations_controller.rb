@@ -47,7 +47,10 @@ class ObservationsController < ApplicationController
   before_filter :curator_required, :only => [:curation]
   before_filter :load_photo_identities, :only => [:new, :new_batch, :show,
     :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
-    :import_photos, :new_from_list]
+    :import_photos, :import_sounds, :new_from_list]
+  before_filter :load_sound_identities, :only => [:new, :new_batch, :show,
+    :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
+    :import_photos, :import_sounds, :new_from_list]
   before_filter :photo_identities_required, :only => [:import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
   
@@ -534,6 +537,7 @@ class ObservationsController < ApplicationController
           end
         end
       end
+      o.sounds << Sound.from_observation_params(params, fieldset_index, current_user)
       o
     end
     
@@ -652,7 +656,9 @@ class ObservationsController < ApplicationController
     hashed_params = Hash[*params[:observations].to_a.flatten]
     errors = false
     extra_msg = nil
-    @observations.each do |observation|      
+    @observations.each do |observation|
+      fieldset_index = observation.id.to_s      
+      
       # Update the flickr photos
       # Note: this ignore photos thing is a total hack and should only be
       # included if you are updating observations but aren't including flickr
@@ -663,8 +669,8 @@ class ObservationsController < ApplicationController
         old_photo_ids = observation.photo_ids
         Photo.descendent_classes.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
-          if params[klass_key] && params[klass_key][observation.id.to_s]
-            updated_photos += retrieve_photos(params[klass_key][observation.id.to_s], 
+          if params[klass_key] && params[klass_key][fieldset_index]
+            updated_photos += retrieve_photos(params[klass_key][fieldset_index], 
               :user => current_user, :photo_class => klass, :sync => true)
           end
         end
@@ -681,6 +687,17 @@ class ObservationsController < ApplicationController
           Photo.delay.destroy_orphans(doomed_photo_ids)
         end
       end
+
+
+      # Kind of like :ignore_photos, but :editing_sounds makes it opt-in rather than opt-out
+      # If editing sounds and no sound parameters are present, assign to an empty array 
+      # This way, sounds will be removed
+      if params[:editing_sounds]
+        params[:soundcloud_sounds] ||= {fieldset_index => []} 
+        params[:soundcloud_sounds][fieldset_index] ||= []
+      end
+      observation.sounds = Sound.from_observation_params(params, fieldset_index, current_user)
+
       
       unless observation.update_attributes(hashed_params[observation.id.to_s])
         errors = true
@@ -972,6 +989,13 @@ class ObservationsController < ApplicationController
     flash[:error] = "Sorry, that photo provider isn't responding at the moment. Please try again later."
     Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
     redirect_to :action => "import"
+  end
+
+  def import_sounds
+      sounds = Sound.from_observation_params(params, 0, current_user)
+      @observations = sounds.map{|s| s.to_observation}
+      @step = 2
+      render :template => 'observations/new_batch'
   end
   
   def add_from_list
@@ -2161,6 +2185,16 @@ class ObservationsController < ApplicationController
       end
       memo
     end
+  end
+
+  def load_sound_identities
+    unless logged_in?
+      logger.info "not logged in"
+      @sound_identities = []
+      return true
+    end
+
+    @sound_identities = current_user.soundcloud_identity ? [current_user.soundcloud_identity] : []
   end
   
   def load_observation

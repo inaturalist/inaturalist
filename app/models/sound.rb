@@ -1,12 +1,13 @@
 class Sound < ActiveRecord::Base
 	belongs_to :user
-	has_many :observation_sounds, :dependent => :destroy
-	has_many :observations, :through => :observation_sounds
+	has_and_belongs_to_many :observations
 
+  serialize :native_response
   ############### licensing
   attr_accessor :make_license_default
   attr_accessor :make_licenses_same
-  
+  cattr_accessor :descendent_classes
+
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
   
   def update_attributes(attributes)
@@ -132,5 +133,43 @@ class Sound < ActiveRecord::Base
   def self.license_code_for_number(number)
     LICENSE_INFO[number].try(:[], :code)
   end
+
+  def self.from_observation_params(params, fieldset_index, owner)
+    sounds = []
+    
+    self.descendent_classes.each do |klass|
+      klass_key = klass.to_s.underscore.pluralize.to_sym
+      if params[klass_key] && params[klass_key][fieldset_index.to_s]
+        params[klass_key][fieldset_index.to_s].each do |sid|
+          sound = klass.new_from_native_sound_id(sid, owner)
+          sound.user = owner
+          sound.native_realname = owner.soundcloud_identity.native_realname if klass == SoundcloudSound
+          sounds << sound
+        end
+      end
+    end
+    sounds
+  end
+
+  def self.new_from_native_sound_id(sid, user)
+    raise "This method needs to be implemented by all Sound subclasses"
+  end
+
+  def to_observation
+    raise "This method needs to be implemented by all Sound subclasses"
+  end
+
+  def to_taxon
+    return unless respond_to?(:to_taxa)
+    sound_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES, :valid => true, :active => true)
+    sound_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES) if sound_taxa.blank?
+    sound_taxa = to_taxa if sound_taxa.blank?
+    
+    return if sound_taxa.blank?
+
+    sound_taxa = sound_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
+    sound_taxa.detect(&:species_or_lower?) || sound_taxa.first
+  end
+
 
 end

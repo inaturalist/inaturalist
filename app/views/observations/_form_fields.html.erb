@@ -176,6 +176,29 @@
           <% end -%>
         </div>
       </div>
+
+      <div class="field">
+        <label>
+          <%=t :'sounds.add_sounds' %>
+        </label>
+        
+        <div id="sounds_<%= i %>" class="observation_sounds">
+          <%= render :partial => "sounds/sound_list_form", :locals => { 
+            :sounds => observation.sounds, 
+            :index => i,
+            :checked => true,
+            :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation),
+            :sound_identity => @sound_identities.first,
+          } %>
+        </div>
+        
+        <% if @sound_identities.blank? %>
+          <div class="clear buttons">
+            <%= link_to t(:'sounds.link_your_soundcloud_account'), "/auth/soundcloud", :class => "button" %>
+          </div>
+        <% end %>
+      </div>
+
     </div>
 
 

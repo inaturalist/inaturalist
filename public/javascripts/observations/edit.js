@@ -99,6 +99,11 @@ $(document).ready(function() {
     }
     $(this).photoSelector(options)
   })
+
+  $('.observation_sounds').each(function(){
+    var index = (window.location.href.match(/\/observations\/(\d+)/) || [])[1] || 0
+    $(this).soundSelector({index: index});
+  })
   
   if ($('#accept_terms').length != 0) {
     $("input[type=submit].default").attr("exception", "true");

@@ -12,14 +12,13 @@ class CreateSounds < ActiveRecord::Migration
   		t.timestamps
   	end
 
-  	create_table :observation_sounds do |t|
+  	create_table :observations_sounds do |t|
   		t.integer :observation_id
   		t.integer :sound_id
-  		t.timestamps
   	end
   	add_index :sounds, :user_id
   	add_index :sounds, :type
-  	add_index :observation_sounds, :observation_id
-    add_index :observation_sounds, :sound_id
+  	add_index :observations_sounds, :observation_id
+    add_index :observations_sounds, :sound_id
   end
 end
