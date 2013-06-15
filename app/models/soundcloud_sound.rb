@@ -14,9 +14,15 @@ class SoundcloudSound < Sound
     "no-rights-reserved" => 7
   }
 
+  after_create :collect_embed_html
+
   def self.client_for_user(user)
-    return nil unless user.soundcloud_identity
+    return nil unless user and user.soundcloud_identity
     Soundcloud.new(:access_token => user.soundcloud_identity.token)
+  end
+
+  def self.non_user_client
+    Soundcloud.new(:client_id => CONFIG["soundcloud"]["client_id"])
   end
 
   def self.new_from_api_response(response)
@@ -31,9 +37,16 @@ class SoundcloudSound < Sound
 
   def self.new_from_native_sound_id(sid, user)
     client = self.client_for_user(user)
-      response = client.get("/tracks/#{sid}")
-      sound = self.new_from_api_response(response)
-      return sound
+    response = client.get("/tracks/#{sid}")
+    sound = self.new_from_api_response(response)
+    return sound
+  end
+
+  def embed_html
+    client = SoundcloudSound.client_for_user(user) || SoundcloudSound.non_user_client
+    uri = native_response["secret_uri"] || native_page_url
+    oembed = client.get("/oembed", :url => uri)
+    return oembed.html
   end
 
   def to_observation
@@ -75,5 +88,13 @@ class SoundcloudSound < Sound
       taxa.compact
     end
   
+  private
+
+  def collect_embed_html
+    return unless client = SoundcloudSound.client_for_user(user)
+    oembed_response = client.get('/oembed', :url => self.native_response["secret_uri"] || native_page_url)
+    self.update_attributes!(:embed_html => oembed_response.html) if oembed_response
+    true
+  end
 
 end

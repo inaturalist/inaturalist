@@ -12150,7 +12150,8 @@ CREATE TABLE sounds (
     sound_url character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    native_response text
+    native_response text,
+    embed_html text
 );
 
 
@@ -16075,6 +16076,8 @@ INSERT INTO schema_migrations (version) VALUES ('20130607221500');
 INSERT INTO schema_migrations (version) VALUES ('20130611025612');
 
 INSERT INTO schema_migrations (version) VALUES ('20130613223707');
+
+INSERT INTO schema_migrations (version) VALUES ('20130615071724');
 
 INSERT INTO schema_migrations (version) VALUES ('21');
 

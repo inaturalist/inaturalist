@@ -3,13 +3,13 @@
 #identifications h3{margin-bottom:0.5em;}
 .identifications-list .identification.yours{padding:10px;}
 #photos{max-width:350px; margin-right:10px;}
-#photos .first, #photos .first img {vertical-align:top;float:left;margin:0 10px 10px 0;max-width:350px;max-height:350px;}
+#photos .first, #photos .first img {vertical-align:top;float:left;margin:0 10px 20px 0;max-width:350px;max-height:350px;}
 #photos .first img{float:none;margin:0;}
 #photos .smallphoto {width:61px; height:61px; overflow:hidden; margin: 0 7px 10px 0;vertical-align:top;}
 #photos .smallphoto.last {margin-right:0;}
 #photos .smallphoto img {width:61px;}
 #photos .smallphoto img.zoom_icon {width:auto;}
-#photos,#where{float:left;}
+#photos, #sounds ,#where{float:left;}
 #map{height:245px;overflow:hidden;}
 #where, #map {width: 310px;}
 #observation-description .description{color:#666;}
@@ -21,3 +21,5 @@
 .field .observation_photos label {display:block;}
 #where .places .hidden {display:none;}
 #app img {position:relative; top:4px;}
+#sounds {max-width:300px; margin-right: 10px; margin-bottom: 10px;}
+#sounds iframe+iframe {margin-top: 5px;}
