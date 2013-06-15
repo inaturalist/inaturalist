@@ -1,4 +1,6 @@
 class TaxonSchemesController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :curator_required, :except => [:index, :show]
   before_filter :load_taxon_scheme, :except => [:index]
   
   def index
