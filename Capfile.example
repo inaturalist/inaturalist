@@ -103,6 +103,7 @@ namespace :deploy do
     run "ln -s #{shared_path}/system/page_cache/taxa #{latest_release}/public/taxa"
     run "ln -s #{shared_path}/system/page_cache/places #{latest_release}/public/places"
     run "ln -s #{shared_path}/system/page_cache/lists #{latest_release}/public/lists"
+    run "ln -s #{shared_path}/system/page_cache/tmp #{latest_release}/tmp/page_cache"
   end
   
   desc "Symlink the path to tilelite"

@@ -364,14 +364,14 @@ module ApplicationHelper
       txt += if o.observed_on.blank?
         t(:in_the_past).downcase
       else
-        t(:on_day) + " #{o.observed_on.strftime("%d %b %Y")} "
+        "#{t(:on_day, :default => "on")} #{o.observed_on.strftime("%d %b %Y")} "
       end
     end
     unless skip.include?(:place_guess)
       txt += if o.place_guess.blank?
         t(:somewhere_on_earth).downcase
       else
-        t(:on_) + " #{o.place_guess}"
+        "#{t(:in, :default => "in")} #{o.place_guess}"
       end
     end
     txt

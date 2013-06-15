@@ -49,11 +49,11 @@
 
     <span class="breadcrumbs">
       <% if @list.user -%>
-        <%= link_to "Back to #{possessive(@list.user)} lists", 
+        <%= link_to t(:back_to_lists, :name => possessive(@list.user).downcase),
                     lists_by_login_path(:login => @list.user.login),
                     :class => 'back crumb' %>
       <% else %>
-        <%= link_to "Back to #{@list.owner_name}", @list.owner, :class => "back crumb" %>
+        <%= link_to t(:back_to_x, :noun => @list.owner_name), @list.owner, :class => "back crumb" %>
       <% end -%>
     </span>
   </div>
@@ -92,8 +92,16 @@
   <% if @q -%>
     <div id="searchresults" class="description quiet box">
       <%= render :partial => "shared/page_results", :object => @listed_taxa %>
-      for <strong>"<%= @q %>"</strong>
+      <%=t :for %> <strong>"<%= @q %>"</strong>
       <%= link_to "clear", url_for_params(:without => [:page, :q]) %>
+    </div>
+  <% elsif @filter_taxon %>
+    <div id="searchresults" class="description quiet box">
+      <%= render :partial => "shared/page_results", :object => @listed_taxa %>
+      <%=t :for %>
+      <%= render :partial => 'shared/taxon', 
+                 :locals => { :taxon => @filter_taxon, :link_url => @filter_taxon } %>
+      <%= link_to "clear", url_for_params(:without => [:page, :taxon]) %>
     </div>
   <% end -%>
   
@@ -214,6 +222,16 @@
             </div>
           </a>
         <% end %>
+        <div class="clear stat <%= ' current' if @filter_taxon && !@filter_taxon.is_iconic? %>">
+          <div class="readable title">
+            &nbsp;
+          </div>
+          <div class="barchart">
+            <form>
+              <input id="taxonchooser" name="taxon" type="text" class="text" placeholder="<%=t :type_species_name %>" value="<%= @filter_taxon.try(&:id) unless (@filter_taxon && @filter_taxon.is_iconic?) %>" style="width:200px"/>
+            </form>
+          </div>
+        </div>
       </div><!-- /stats -->
     <% end -%>
   </div><!-- /sidebar -->

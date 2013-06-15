@@ -30,6 +30,7 @@ EOS
   opt :css, "Path to an CSS file.", :type => :string, :short => "-c"
   opt :test, "Don't actually touch the db", :short => "-t", :type => :boolean
 end
+@opts = opts
 
 #unless eol_collection_url = "http://eol.org/api/collections/1.0/14791"
 unless eol_collection_url = ARGV[0]
@@ -37,37 +38,23 @@ unless eol_collection_url = ARGV[0]
   exit(0)
 end
 
-the_user = User.find_by_login(opts[:user])
-the_user ||= User.find_by_id(opts[:user].to_i)
-unless the_user
+@the_user = User.find_by_login(opts[:user])
+@the_user ||= User.find_by_id(opts[:user].to_i)
+unless @the_user
   puts "There is no iNat user with a login or ID matching '#{opts[:user]}'.  You must specify a user to own these projects."
   exit(0)
 end
 
-eol_source = Source.find_by_in_text('EOL')
-eol_source ||= Source.create(
+@eol_source = Source.find_by_in_text('EOL')
+@eol_source ||= Source.create(
   :in_text => 'EOL',
   :citation => "Encyclopedia of Life. Available from http://www.eol.org.",
   :url => "http://www.eol.org",
   :title => 'Encyclopedia of Life'
 )
 
-# Get the Collections in the iNaturalist Collection from EOL
-response = Net::HTTP.get_response(URI.parse(eol_collection_url))
-unless response.is_a?(Net::HTTPOK)
-  puts "couldn't access iNat Collection on EOL"
-  exit(0)
-end
-
-doc = Nokogiri::XML(response.body)
-
-if error_elt = doc.at('error')
-  puts "Error retrieving collection: #{error_elt.inner_text}"
-  exit(0)
-end
-
-eol_collection_ids = doc.xpath('//object_id[../object_type/text() = "Collection"]').map(&:text)
-eol_collection_ids.each do |eol_collection_id|
+def work_on_collection(eol_collection_id)
+  opts = @opts
   # sleep(5)
   taxa_unchanged = [] 
   taxa_removed = []         #in the project_list as a listed_taxa but no longer in the eol collection
@@ -80,7 +67,7 @@ eol_collection_ids.each do |eol_collection_id|
     #Get the collection
     unless response = Net::HTTP.get_response(URI.parse(url))
       puts "\tcouldn't access Collection #{eol_collection_id} on EOL"
-      next
+      return
     end
     col = Nokogiri::XML(response.body)
   rescue Timeout::Error => e
@@ -89,21 +76,26 @@ eol_collection_ids.each do |eol_collection_id|
       #Get the collection
       unless response = Net::HTTP.get_response(URI.parse(url))
         puts "\tcouldn't access Collection #{eol_collection_id} on EOL"
-        next
+        return
       end
       col = Nokogiri::XML(response.body)
     rescue Timeout::Error => e
       puts "\t#{e.message}"
-      break
+      return
     end
   end
   
   begin
     collection_title = col.xpath('//name').first.text
-    project_name = "#{collection_title} EOL Collection"
+    project_name = collection_title.gsub(/\s+/, ' ').strip
+    while project_name.size > 85
+      pieces = project_name.split
+      project_name = pieces[0..-2].join(' ').strip.gsub(/,$/, '')
+    end
+    project_name = "#{project_name} EOL Collection"
   rescue => e
     puts "\t Woah, couldn't find a name! Skipping... error: #{e}"
-    next
+    return
   end
   collection_image_url = col.xpath('//logo_url').first.try(:text)
   logo_url = opts[:logo] || collection_image_url
@@ -120,7 +112,7 @@ eol_collection_ids.each do |eol_collection_id|
     project.save unless opts[:test]
   else
     project = Project.new(
-      :user_id => the_user.id, 
+      :user_id => @the_user.id, 
       :title => project_name,
       :source_url => "http://eol.org/collections/#{eol_collection_id}",
       :description => col.at('description').try(:text),
@@ -143,9 +135,11 @@ eol_collection_ids.each do |eol_collection_id|
             cp.css = open(opts[:css]).read rescue nil
           end
           cp.save
+          project.reload
         end
       else
         puts "\t\t Failed to create project: #{project.errors.full_messages.to_sentence}"
+        return
       end
     end
     puts "\t\t Created iNat project '#{project_name}'"
@@ -154,7 +148,11 @@ eol_collection_ids.each do |eol_collection_id|
   #Find the project list and loop through the listed_taxa taxon_ids
   #so we can later see if any of these listed_taxa aren't on the collection anymore
   #and must be removed
-  the_list = project.project_list
+  unless the_list = project.project_list
+    project.create_the_project_list
+    project.reload
+    the_list = project.project_list
+  end
   listed_taxa_taxon_ids = the_list.listed_taxa.all(:select => "id, taxon_id").map{|lt| lt.taxon_id}
   
   collection_item_dwc_names = []
@@ -182,11 +180,13 @@ eol_collection_ids.each do |eol_collection_id|
   
   all_taxon_concepts.each do |taxon_concepts|
     taxon_concepts.each do |node|
-      list_item = TaxonName.strip_author(node.at('name').text)
+      name = node.at('name').text
+      puts "\t #{name}"
+      list_item = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))
+      puts "\t #{list_item}"
       object_id = node.at(:object_id).text
       collection_item_dwc_names << list_item
       annotation = node.at('annotation').try(:text)
-      puts "\t name: #{list_item}"
 
       if list_item.downcase =~ /unidentified/
         puts "\t\tSkipping non-taxon..."
@@ -240,11 +240,11 @@ eol_collection_ids.each do |eol_collection_id|
           taxon = Taxon.new(
             :name => list_item,
             :rank => rank,
-            :creator_id => the_user.id,
-            :updater_id => the_user.id,
+            :creator_id => @the_user.id,
+            :updater_id => @the_user.id,
             :source_url => "http://eol.org/pages/#{object_id}",
             :source_identifier => object_id,
-            :source => eol_source
+            :source => @eol_source
           )
           unless opts[:test]
             if taxon.save
@@ -313,12 +313,52 @@ eol_collection_ids.each do |eol_collection_id|
   puts
 end
 
+# Get the Collections in the iNaturalist Collection from EOL
+collections_page = 1
+all_eol_collection_ids = []
+begin
+  collections_url = if eol_collection_url =~ /\?/
+    "#{eol_collection_url}&page=#{collections_page}"
+  else
+    "#{eol_collection_url}?page=#{collections_page}"
+  end
+  puts "GETTING COLLECTIONS: #{collections_url}"
+  response = Net::HTTP.get_response(URI.parse(collections_url))
+  unless response.is_a?(Net::HTTPOK)
+    puts "couldn't access iNat Collection on EOL"
+    break
+  end
+  doc = Nokogiri::XML(response.body)
+  if error_elt = doc.at('error')
+    puts "Error retrieving collection: #{error_elt.inner_text}"
+    break
+  end
+  eol_collection_ids = doc.xpath('//object_id[../object_type/text() = "Collection"]').map(&:text)
+  eol_collection_ids.each do |eol_collection_id|
+    work_on_collection(eol_collection_id)
+  end
+  all_eol_collection_ids += eol_collection_ids
+  collections_page += 1
+  puts
+  puts
+end while eol_collection_ids.size > 0
+
 # Delete EOL projects that aren't in the response.  Skip if response was blank, which was probably erroneous.
-unless eol_collection_ids.blank?
-  Project.all(:conditions => "source_url LIKE 'http://eol.org/collections%'").each do |p|
-    unless p.source_url =~ /collections\/(#{eol_collection_ids.join('|')})$/
+puts "CHECKING FOR DELETED PROJECTS..."
+puts
+keepers = 0
+fatalities = 0
+if all_eol_collection_ids.blank?
+  puts "No collections to delete, looks like we're done."
+else
+  Project.where("source_url LIKE 'http://eol.org/collections%'").each do |p|
+    if p.source_url =~ /collections\/(#{all_eol_collection_ids.join('|')})$/
+      keepers += 1
+    else
       p.destroy unless opts[:test]
       puts "Destroyed #{p}, no longer an EOL iNat collection"
+      fatalities += 1
     end
   end
 end
+puts "Kept #{keepers} projects, deleted #{fatalities}"

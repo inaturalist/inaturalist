@@ -54,6 +54,9 @@ Inaturalist::Application.configure do
   config.active_support.deprecation = :notify
   
   if CONFIG.google_analytics && CONFIG.google_analytics.tracker_id
-    config.middleware.use "Rack::GoogleAnalytics", :web_property_id => CONFIG.google_analytics.tracker_id
+    config.middleware.use Rack::GoogleAnalytics, 
+      :tracker => CONFIG.google_analytics.tracker_id,
+      :domain => CONFIG.google_analytics.domain_name,
+      :multiple => true
   end
 end

@@ -85,6 +85,13 @@ module MakeHelpers
     tr = TaxonRange.make!(options.merge(:geom => MultiPolygon.from_ewkt(wkt)))
     tr
   end
+
+  def make_message(options = {})
+    m = Message.make(options)
+    m.user ||= m.to_user
+    m.save!
+    m
+  end
   
   # creating the tree is a bit tricky
   def load_test_taxa

@@ -297,6 +297,7 @@ en:
   are_you_sure_you_want_sync_this: Are you sure you want to sync this observation's data with this Flickr photo? You will lose changes you've made to this form, but you will be able to revert to your saved copy.
   are_you_sure_you_want_to_commit_this_change: Are you sure you want to commit this change? This cannot be undone.
   are_you_sure_you_want_to_delete_this: Are you sure you want to delete this?
+  are_you_sure_you_want_to_delete_this_post: Are you sure you want to delete this post?
   are_you_sure_you_want_to_delete_this_taxon_change: Are you sure you want to delete this taxon change?
   are_you_sure_you_want_to_remove_curator: Are you sure you want to remove %{user} as a curator?
   are_you_sure_you_want_to_remove_from_project: Are you sure you want to remove %{user} from this project?
@@ -555,6 +556,7 @@ en:
   curate_users: Curate users
   curated: curated
   curating: Curating
+  curation: Curation
   curator: Curator
   curators_changed_for_x_html: "Curators changed for %{x}"
   curators: Curators
@@ -1321,7 +1323,7 @@ en:
   offensive_inappropriate: offensive / inappropriate
   on_: "on"
   on_date: "at %{date}"
-  on_day: el
+  on_day: "on"
   on_edit_date: "on %{editdate}"
   on_list?: on list
   on_submit_date: "on %{submitdate}"
@@ -1384,6 +1386,11 @@ en:
   photo_hosting_accounts: Photo Hosting Accounts
   photo_integration: Photo Integration
   photos: Photos
+  photos_size:
+      small: small
+      medium: medium
+      large: large
+      original: original
   photos_size_photos: "%{photos_size} photos "
   picasa_identity: Picasa Identity
   pick_a_username: Pick a username
@@ -1891,6 +1898,22 @@ en:
   there_were_some_problems_with: There were some problems with your CSV file.  Please revise the failed rows. Of course the problem could always be on our side. If that is the case, please let us know.
   there_were_some_problems_with_fields: "There were some problems with the following fields:"
   theres_also: there's also
+  these_are_items_people_on:
+                  These are items people on the site have flagged for curation.
+                  Spam comments should be deleted and users who add spam should
+                  be suspended (go to their profile page and click "Suspend
+                  user" in the lower right to prevent them from logging in).
+                  Other flagged items should only be deleted if they are clearly
+                  hateful, illegal, etc. Rudeness, offensive language, etc,
+                  should be handled with a polite comment. Repeat offenders
+                  should be reported to a site admin or
+  these_are_taxa_that: |
+                    These are taxa that %{site} couldn't automatically add to our
+                    taxonomic tree for some reason. You can add them to the tree
+                    by editing the taxon and choosing a parent record. For
+                    example, the parent of <i>Homo sapiens</i> would be the
+                    genus <i>Homo</i>. You might also want to check for synonymous
+                    taxa and merge them.
   these_arent_necessarily_relevant_to: "These aren't necessarily relevant to this project. Please check the"
   these_folks_kindly_volunteer_to: These folks kindly volunteer to maintain our taxonomy and deal with other issues.
   they_already_have_iNat_accounts: "...they already have %{site_name} accounts"
@@ -1966,7 +1989,7 @@ en:
   type_taxon_name_and_click_lookup: "Type taxon name and click lookup"
   uicn_red_list_status: "IUCN Red List status:"
   unclassified: Unclassified
-  unfragted_taxa: Ungrafted Taxa
+  ungrafted_taxa: Ungrafted Taxa
   uninvite: uninvite
   unique_identifier_of_this_taxon: Unique identifier of this taxon in the source database.
   unique_observers: unique observers
@@ -2039,6 +2062,7 @@ en:
   view_more_about_x: "View more about %{x}"
   view_more_observations_from_x: "View more observations from %{x}"
   view_more_observations_from: View more observations from
+  view_more_recent_observations: View more recent observations
   view_nbsp: "View &nbsp;"
   view_non_mobile_site: View non-mobile site
   view_post: View post
@@ -2145,6 +2169,13 @@ en:
   yesterday_at: ', yesterday at 4pm'
   you: you
   you_admin: You Admin
+  youre_a_site_curator_which_means:
+                You're a site curator, which means you've volunteered to help
+                curate our data and monitor content. Please don't feel obliged
+                to deal with all these issues, but if you have the time to check
+                some of them out, we'd appreciate all the help we can get. If
+                you have any questions about curating content or don't want to
+                be a curator anymore, please contact us at
   you_are_over_your_invites_quota: ...you're over your monthly quota of 60 invites
   you_are_now_role_for_project_html: "<strong>you</strong> are now %{role} for %{project}"
   user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
@@ -2695,6 +2726,7 @@ en:
       long: '%B %d, %Y %H:%M'
       short: '%d %b %H:%M'
       observed_at: at %I:%M %p %Z
+      rfc: "%d %B %Y"
     pm: pm
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
