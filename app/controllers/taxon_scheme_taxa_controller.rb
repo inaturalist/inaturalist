@@ -1,10 +1,15 @@
 class TaxonSchemeTaxaController < ApplicationController
-  
+  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :curator_required, :except => [:index, :show]
+    
   def new
     @taxon_schemes = TaxonScheme.all(:limit => 100).sort_by{|ts| ts.title}
-    @taxon = Taxon.find(params[:taxon_id])
-    @taxon_scheme_taxon = TaxonSchemeTaxon.new(:taxon => @taxon)
-    @taxon_name = TaxonName.where(:taxon_id => @taxon.id, :lexicon => "Scientific Names", :is_valid => true).first
+    @taxon = Taxon.find(params[:taxon_id]) unless params[:taxon_id].blank?
+    @taxon_name = TaxonName.where(:taxon_id => @taxon.id, :lexicon => "Scientific Names", :is_valid => true).first if @taxon
+    @taxon_scheme_taxon = TaxonSchemeTaxon.new(
+      :taxon => @taxon, 
+      :taxon_name => @taxon_name
+    )
   end
   
   def create
@@ -24,7 +29,6 @@ class TaxonSchemeTaxaController < ApplicationController
     @taxon_schemes = TaxonScheme.all(:limit => 100).sort_by{|ts| ts.title}
     @taxon_scheme_taxon = TaxonSchemeTaxon.find(params[:id])
     @taxon = Taxon.find_by_id(@taxon_scheme_taxon.taxon_id)
-    @taxon_name = @taxon_scheme_taxon.taxon_name
   end
   
   def update
