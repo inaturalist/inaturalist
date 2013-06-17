@@ -50,4 +50,5 @@ require "bundler/capistrano"
 
 set :whenever_command, "bundle exec whenever"
 set :whenever_roles, [:bg]
+set :whenever_identifier, "inaturalist"
 require "whenever/capistrano"
