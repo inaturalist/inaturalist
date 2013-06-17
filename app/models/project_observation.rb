@@ -118,7 +118,7 @@ class ProjectObservation < ActiveRecord::Base
   end
   
   def georeferenced?
-    !observation.latitude.blank? && !observation.longitude.blank?
+    observation.georeferenced?
   end
   
   def identified?
