@@ -1336,8 +1336,8 @@ class Taxon < ActiveRecord::Base
           :order => :observations_count,
           :sort_mode => :desc
         ).compact
-        taxa = search_results.select{|t| t.taxon_names.detect{|tn| tn.name.downcase =~ /#{name}/}}
-        taxa = search_results if taxa.blank? && search_results.size == 1
+        taxa = search_results.select{|t| t.taxon_names.detect{|tn| tn.name.downcase == name}}
+        taxa = search_results if taxa.blank? && search_results.size == 1 && search_results.first.taxon_names.detect{|tn| tn.name.downcase == name}
       rescue Riddle::ConnectionError => e
         return
       end
