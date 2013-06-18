@@ -50,7 +50,7 @@ class IdentificationsController < ApplicationController
     respond_to do |format|
       if @identification.save
         format.html do
-          flash[:notice] = "Identification saved!"
+          flash[:notice] = t(:identification_saved)
           if params[:return_to]
             return redirect_to(params[:return_to])
           end
@@ -63,8 +63,7 @@ class IdentificationsController < ApplicationController
         end
       else
         format.html do
-          flash[:error] = "There was a problem saving your identification: " +
-            @identification.errors.full_messages.join(', ')
+          flash[:error] = t(:there_was_a_problem_saving_your_identification, :error => @identification.errors.full_messages.join(', '))
           if params[:return_to]
             return redirect_to(params[:return_to])
           end
@@ -84,10 +83,9 @@ class IdentificationsController < ApplicationController
   
   def update
     if @identification.update_attributes(params[:identification])
-      flash[:notice] = "Identification updated!"
+      flash[:notice] = t(:identification_updated)
     else
-      flash[:error] = "There was a problem saving your identification: " +
-        @identification.errors.full_messages.join(', ')
+      flash[:error] = t(:there_was_a_problem_saving_your_identification, :error => @identification.errors.full_messages.join(', '))
     end
     redirect_to @identification.observation
   end
@@ -99,7 +97,7 @@ class IdentificationsController < ApplicationController
     @identification.destroy
     respond_to do |format|
       format.html do
-        flash[:notice] = "Identification deleted."
+        flash[:notice] = t(:identification_deleted)
         redirect_to observation
       end
       format.js { render :status => :ok, :json => nil }
@@ -144,7 +142,7 @@ class IdentificationsController < ApplicationController
   private
   
   def agree_respond_to_html
-    flash[:notice] = "Identification saved!"
+    flash[:notice] = t(:identification_saved)
     if params[:return_to]
       return redirect_to(params[:return_to])
     end
@@ -152,8 +150,7 @@ class IdentificationsController < ApplicationController
   end
   
   def agree_respond_to_html_failure
-    flash[:notice] = "There was a problem saving your identification: " +
-      @identification.errors.full_messages.join(', ')
+    flash[:error] = t(:there_was_a_problem_saving_your_identification, :error => @identification.errors.full_messages.join(', '))
     if params[:return_to]
       return redirect_to(params[:return_to])
     end

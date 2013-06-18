@@ -84,14 +84,14 @@ class Photo < ActiveRecord::Base
     elsif (o = observations.first)
       o.user.name || o.user.login
     else
-      "anonymous"
+      I18n.t('copyright.anonymous')
     end
     if license == PD
-      "#{name}, no known copyright restrictions (#{license_name})"
+      I18n.t('copyright.no_known_copyright_restrictions', :name => name, :license_name => I18n.t("copyright.#{license_name.gsub(' ','_').gsub('-','_').downcase}", :default => license_name))
     elsif open_licensed?
-      "(c) #{name}, some rights reserved (#{license_short})"
+      I18n.t('copyright.some_rights_reserved_by', :name => name, :license_short => license_short)
     else
-      "(c) #{name}, all rights reserved"
+      I18n.t('copyright.all_rigths_reserved', :name => name)
     end
   end
   

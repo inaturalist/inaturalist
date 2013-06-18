@@ -6,7 +6,7 @@
 %div{:class => "column span-#{span} #{'last' if last}"}
   %h4
     =t(:most)
-    =t(noun).pluralize.downcase
+    =t(noun_plural).downcase
     =t(:in)
     - case time_unit
     - when 'month'

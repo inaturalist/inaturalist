@@ -501,7 +501,7 @@ class ObservationsController < ApplicationController
     if params[:observations].blank? && params[:observation].blank?
       respond_to do |format|
         format.html do
-          flash[:error] = "No observations submitted!"
+          flash[:error] = t(:no_observations_submitted)
           redirect_to new_observation_path
         end
         format.json { render :status => :unprocessable_entity, :json => "No observations submitted!" }
@@ -552,7 +552,7 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html do
         unless errors
-          flash[:notice] = params[:success_msg] || "Observation(s) saved!"
+          flash[:notice] = params[:success_msg] || t(:observations_saved)
           if params[:commit] == "Save and add another"
             o = @observations.first
             redirect_to :action => 'new', 
@@ -625,7 +625,7 @@ class ObservationsController < ApplicationController
     if params[:observations].blank? && params[:observation].blank?
       respond_to do |format|
         format.html do
-          flash[:error] = "No observations submitted!"
+          flash[:error] = t(:no_observations_submitted)
           redirect_to new_observation_path
         end
         format.json { render :status => :unprocessable_entity, :json => "No observations submitted!" }
@@ -644,7 +644,7 @@ class ObservationsController < ApplicationController
     # Make sure there's no evil going on
     unique_user_ids = @observations.map(&:user_id).uniq
     if unique_user_ids.size > 1 || unique_user_ids.first != observation_user.id && !current_user.has_role?(:admin)
-      flash[:error] = "You don't have permission to edit that observation."
+      flash[:error] = t(:you_dont_have_permission_to_edit_that_observation)
       return redirect_to(@observation || observations_path)
     end
     
@@ -728,7 +728,7 @@ class ObservationsController < ApplicationController
         format.json { render :json => {:error => msg}, :status => :gone }
       else
         format.html do
-          flash[:notice] = "Observation(s) was successfully updated. #{extra_msg}"
+          flash[:notice] = "#{t(:observations_was_successfully_updated)} #{extra_msg}"
           if @observations.size == 1
             redirect_to observation_path(@observations.first)
           else
@@ -1078,7 +1078,7 @@ class ObservationsController < ApplicationController
 
   def by_login_all
     if @selected_user.id != current_user.id
-      flash[:error] = "You don't have permission to do that."
+      flash[:error] = t(:you_dont_have_permission_to_do_that)
       redirect_back_or_default(root_url)
       return
     end
@@ -2175,7 +2175,7 @@ class ObservationsController < ApplicationController
   
   def require_owner
     unless logged_in? && current_user.id == @observation.user_id
-      msg = "You don't have permission to do that"
+      msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do
           flash[:error] = msg
