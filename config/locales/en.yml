@@ -158,6 +158,7 @@ en:
   added_by: Added by
   added_identifications_to: added identifications to anyone's observations.
   added_on: Added on
+  added_to: Added to
   adding: "Adding..."
   adding_observations: Adding observations
   adding_to_your_life_list: "Adding to your life list..."
@@ -303,6 +304,7 @@ en:
   are_you_sure_you_want_to_remove_from_project: Are you sure you want to remove %{user} from this project?
   are_you_sure_you_want_to_remove_manager: Are you sure you want to remove %{user} as a manager?
   are_you_sure_you_want_to_remove_this_invitation: Are you sure you want to remove this invitation?
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Are you sure you want to remove this taxon from %{place}'s checklist?"
   associated_observations: Associated observations
   associated_taxa: Associated taxa
   you_sure_delete_list: Are you sure you want to delete this list?
@@ -529,6 +531,20 @@ en:
   coordinates_private: (coordinates private)
   copy: Copy
   copy_and_paste_this_into_your_own_html: Copy and paste this into your own HTML.
+  copyright:
+        some_rights_reserved_by: (c) %{name}, some rights reserved (%{license_short})
+        all_rigths_reserved: (c) %{name}, all rights reserved
+        no_known_copyright_restrictions: "%{name}, no known copyright restrictions (%{license_name})"
+        anonymous: anonymous
+        public_domain: public domain
+        copyright: copyright
+        attribution_noncommercial_sharealike_license: Attribution-NonCommercial-ShareAlike License
+        attribution_noncommercial_license: Attribution-NonCommercial License
+        attribution_noncommercial_noderivs_license: Attribution-NonCommercial-NoDerivs License
+        attribution_license: Attribution License
+        attribution_sharealike_license: Attribution-ShareAlike License
+        attribution_noderivs_license: Attribution-NoDerivs License
+        gnu_free_documentation_license: GNU Free Documentation License
   couldnt_log_you_in_x: "Couldn't log you in as '%{x}'"
   countries: Countries
   country_stats: Country stats for observations created on
@@ -636,8 +652,10 @@ en:
   did_you_photos_flickr?: Did you put any photos on Flickr?
   disagree: disagree
   disconnect_provider: "Disconnect %{provider}"
+  do: do
   do_you_know_where_this_species_lives: Do you know where this species lives?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Do you study nematodes? Are you the world's foremost expert on barnacle taxonomy? Do you just like looking at pretty flowers? Filling out your profile adds some personality and helps establish your credibility when helping people out with identifications.
+  does: does
   does_the_location_seem_accurate: "Does the location seem accurate?"
   doesnt_have_default_photo: doesn't have a default photo yet.
   doh_something_went_wrong: D'oh, something went wrong.
@@ -650,6 +668,7 @@ en:
   drag_and_drop_photos: drag and drop photos onto this window or
   draft: DRAFT!
   draft_: Draft
+  draft_saved: Draft saved!
   drafts: Drafts
   each_place_displays_all_species_inat_knows: "Each place page displays all the species %{site_name} knows about from that place, including information about their abundance, conservation status, and who was first to observe that species from that place on %{site_name}. You can filter the species by taxonomic group, color, conservation status, or plain old search."
   edit: Edit
@@ -880,7 +899,10 @@ en:
   id_please: ID Please
   id_please_expandable_html: "ID<span class='full'> Please</span>!"
   identification: identification
+  identification_deleted: Identification deleted.
+  identification_saved: "Identification saved!"
   identification_summary: Identification Summary
+  identification_updated: Identification updated!
   identifications: Identifications
   identifications_by: "Identifications by %{user}"
   identified?: identified
@@ -971,6 +993,7 @@ en:
   journal: Journal
   journal_archives_for: Journal archives for
   journal_post: Journal post
+  journal_post_deleted: Journal post deleted.
   jump_to_letter: Jump to letter
   just_added!: Just added!
   kelp_diatoms_and_allies: "kelp, diatoms, and allies"
@@ -1041,6 +1064,7 @@ en:
   lists: Lists
   lists_are_lists_of_species: "Lists are lists of species (or other taxa), like a life list of all the birds you've seen or a list of your favorite salamanders.  They are <em>not</em> lists of observations."
   lists_come_in_three: "Lists come in three varieties:"
+  live: live
   load: Load
   loading: "Loading..."
   loading_flickr_photos: "Loading Flickr photos..."
@@ -1204,6 +1228,7 @@ en:
   no_nearby_observations: "No nearby observations."
   no_observations: no observations
   no_observations_need_an_id: No observations need an ID right now.  Amazing!
+  no_observations_submitted: "No observations submitted!"
   no_observations_suitable_for_this_project: "No observations suitable for this project that haven't yet been contributed or invited."
   no_observations_yet: No observations yet
   no_one_has_added_any: No one has added any notes for this place
@@ -1306,6 +1331,7 @@ en:
   observations_title: Observations by Everyone
   observations_w: Observations w/
   observations_w_field: Observations w/ field
+  observations_was_successfully_updated: Observation(s) was successfully updated.
   observations_week: Observations / Week
   observations_will_revert_to_casual: Observations will revert to "casual" grade if the above conditions aren't met or
   observed: Observed
@@ -1338,6 +1364,7 @@ en:
   only_showing_taxa_from: only showing taxa from this list
   only_species: only species
   only_species_and_subspecies: only species and subspecies/varieties
+  only_the_author_of_this_post_can_do_that: Only the author of this post can do that. Don't be evil.
   open: open
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
   optional: optional
@@ -1489,6 +1516,7 @@ en:
   position: Position
   positional_accuracy: Positional accuracy
   post: Post
+  post_published: Post published!
   post_some_new_stuff: post some new stuff
   posted_by: Posted by
   posted_on: Posted on
@@ -1750,6 +1778,7 @@ en:
   sources_youve_added: Sources you've added
   sourcing: Sourcing
   spam: spam
+  spanish: Spanish
   species: Species
   species_from_around_the_world: Species from around the world
   species_guess: species guess
@@ -1893,6 +1922,7 @@ en:
   there_is_no_wikipedia_page_matching: There is no Wikipedia page matching
   there_isnt_wiki_article: "There isn't a Wikipedia article or redirect titled '<i>%{taxon}</i>'.  Perhaps you'd like to"
   there_isnt_a_wikipedia_article_titled_x_html: "There isn't a Wikipedia article or redirect titled '%{x}'.  Perhaps you'd like to <a href='http://en.wikipedia.org/wiki/%{x}'>make one</a>?"
+  there_was_a_problem_saving_your_identification: "There was a problem saving your identification: %{error}"
   there_were_errors: There were errors.
   there_were_some_problems_saving_this_observation: There were some problems saving this observation
   there_were_some_problems_with: There were some problems with your CSV file.  Please revise the failed rows. Of course the problem could always be on our side. If that is the case, please let us know.
@@ -2133,6 +2163,7 @@ en:
   when_did_you_see_it?: When did you see it?
   when_did_you_see_them?: <em>When</em> did you see them?
   where: Where
+  where_: Where
   where_did_you_see_it: Where did you see it?
   where_were_they?: Where were they?
   where_were_you?: Where were you?
@@ -2191,6 +2222,8 @@ en:
   you_can_sign_free_at: "You can sign up for a free %{site_name} account at"
   you_dont: You don't
   you_dont_have_any: "You don't have any place or taxon subscriptions"
+  you_dont_have_permission_to_do_that: You don't have permission to do that.
+  you_dont_have_permission_to_edit_that_observation: You don't have permission to edit that observation.
   you_have_logget_out: "You have been logged out. Come back soon!"
   you_have_to: You have to
   you_havent: You haven't
