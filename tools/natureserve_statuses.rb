@@ -53,11 +53,14 @@ def rank2iucn(rank)
   when "3" then Taxon::IUCN_VULNERABLE
   when "4" then Taxon::IUCN_LEAST_CONCERN
   when "5" then Taxon::IUCN_LEAST_CONCERN
+  when "N" then Taxon::IUCN_NOT_EVALUATED
+  when "U" then Taxon::IUCN_DATA_DEFICIENT
   else Taxon::IUCN_LEAST_CONCERN
   end
 end
 
 def get_xml(url)
+  puts "getting #{url}" if OPTS[:debug]
   Nokogiri::XML(open(url))
 rescue Timeout::Error => e
   puts "  Timeout requesting #{url}, trying again..."
@@ -75,7 +78,6 @@ rescue OpenURI::HTTPError => e
 end
 
 def natureServeStatus2iNatStatus(status_node, taxon, name, url, place = nil)
-  # puts "status_node: #{status_node}"
   iucn = rank2iucn(status_node.at('roundedRank/code').text)
   existing = ConservationStatus.where(:taxon_id => taxon, :authority => "NatureServe", :place_id => place).first
 
@@ -90,9 +92,10 @@ def natureServeStatus2iNatStatus(status_node, taxon, name, url, place = nil)
   end
 
   if iucn < Taxon::IUCN_NEAR_THREATENED && existing.blank?
-    # puts "\tTaxon globally secure"
+    puts "\tTaxon secure or data deficient, skipping conservation status..."
   else
     desc = [status_node.at('roundedRank/description').try(:text), status_node.at('reasons').try(:text)].compact.join('. ').strip
+    puts "\tstatus: #{status_node.at('rank/code').text}" if OPTS[:debug]
     attrs = {
       :taxon => taxon,
       :place => place,
@@ -121,7 +124,7 @@ def natureServeStatus2iNatStatus(status_node, taxon, name, url, place = nil)
 end
 
 def work_on_uid(uid, options = {})
-  puts uid
+  print uid
   doc = options[:doc]
   unless doc
     uid_url = "https://services.natureserve.org/idd/rest/ns/v1.1/globalSpecies/comprehensive?uid=#{uid}&NSAccessKeyId=#{KEY}"
@@ -129,10 +132,14 @@ def work_on_uid(uid, options = {})
     doc = get_xml(uid_url)
   end
   unless doc
+    puts
     puts "\tCouldn't get response from NatureServe for #{uid}, skipping..."
     return
   end
-  unless name = doc.at('scientificName/unformattedName').text
+  if name = doc.at('scientificName/unformattedName').text
+    puts " (#{name})"
+  else
+    puts
     puts "\tCouldn't parse name for #{uid}"
     return
   end
