@@ -99,6 +99,13 @@ $(document).ready(function() {
     }
     $(this).photoSelector(options)
   })
+
+  $('.observation_sounds').each(function(){
+    var index = (window.location.href.match(/\/observations\/(\d+)/) || [])[1] || 0
+    $(this).soundSelector({index: index});
+  })
+
+  $('.ui-tabs').tabs();
   
   if ($('#accept_terms').length != 0) {
     $("input[type=submit].default").attr("exception", "true");

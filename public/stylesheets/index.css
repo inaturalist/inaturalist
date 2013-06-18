@@ -1,5 +1,6 @@
 @import 'buttons.css';
 @import 'jquery/plugins/inat/photo_selectors.css';
+@import 'jquery/plugins/inat/sound_selectors.css';
 @import 'statuses.css';
 @import 'prevnext.css';
 @import 'flickr_photos.css';
@@ -1263,6 +1264,7 @@ ul .providerlink, ul .button.providerlink { width: 190px; }
 .providerlink.google { background-image: url(/images/external/google_favicon.png); }
 .providerlink.yahoo { background-image: url(/images/external/yahoo_favicon.png); }
 .providerlink.flickr { background-image: url(/images/external/flickr_favicon.png); }
+.providerlink.soundcloud { background-image: url(/images/external/soundcloud_favicon.png);}
 
 .quality_assessment .loading.status { padding-left: 16px;}
 .quality_assessment .status { margin: 0;}

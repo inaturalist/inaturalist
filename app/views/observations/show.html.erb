@@ -64,7 +64,7 @@
 <%- end -%>
 
 <% content_for(:extracss) do %>
-  <%= stylesheet_link_tag 'identifications', 'observations/show', "jquery/ui.tabs.css", 'observations/observation_fields', 'jquery/plugins/inat/photo_selectors' %>
+  <%= stylesheet_link_tag 'identifications', 'observations/show', "jquery/ui.tabs.css", 'observations/observation_fields', 'jquery/plugins/inat/photo_selectors', 'jquery/plugins/inat/photo_selectors' %>
   <style type="text/css" media="screen">  
     .identification_form_wrapper{background-color:#eee;padding:10px;}
     .identification_form_wrapper input.text{width:236px;margin-top:0;}
@@ -105,7 +105,6 @@
                              'inaturalist/map3',
                              "jquery/plugins/inat/photo_selectors.js",
                              "observations/show" %>
-  
   <script type="text/javascript" charset="utf-8">
     var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
         PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
@@ -267,7 +266,7 @@
         <% end -%>
       </div>
     <%- end -%>
-    
+
     <div id="where">
       <% if show_observation_coordinates?(@observation) %>
         <div id="map" class="stacked"></div>
@@ -276,6 +275,42 @@
         <%= render :partial => 'location', :locals => {:inline_edit => true, :places => @places} %>
       </div>
     </div><!-- end where -->
+
+    <% if (sounds = @observation.sounds).present? -%>
+      <div id="sounds">
+        <% above_the_fold_sounds = 2 %>
+        <% sounds.each_with_index do |sound, i| -%>
+          <% if i == above_the_fold_sounds %>
+            <div class='moresounds' style="clear: both">
+            <%= link_to_toggle t(:'sounds.view_all_soundcount_sounds', :sound_count => @observation.sounds.size), "#moresounds" %>
+            <div id="moresounds" style="display: none">
+          <% end %>
+
+          <% embed_link = "https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F#{sound.native_sound_id}&show_artwork=false&secret_token=#{sound.secret_token}" %>
+          
+          <iframe width="100%" height="166" scrolling="no" frameborder="no" src="<%= embed_link%>"></iframe>
+          
+
+
+        <% end -%>
+        <% if sounds.size > above_the_fold_sounds %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="meta" style="clear:both;">
+          <%=t(:'sounds.sound').capitalize %>
+          <% if sounds.map{|s| s.license}.compact.uniq.size <= 1 -%>
+            <%= rights sounds.first, :skip_image => true, :separator => " " %>
+          <% else %>
+            &copy;
+            <%= @observation.user.name.blank? ? @observation.user.login : @observation.user.name %>,
+            <%=t :mixed_licenses %>
+          <% end -%>
+        </div>
+      </div>
+    <%- end -%>
+
   </div><!-- end where-and-photos -->
   
   <% unless @observation.description.blank? %>
