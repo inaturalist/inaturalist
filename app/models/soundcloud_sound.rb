@@ -74,7 +74,7 @@ class SoundcloudSound < Sound
       end
       tags = tags_string.split(' ') + multiword_tags
 
-      tags += self.native_response["title"]
+      tags << self.native_response["title"]
 
       # First try to find taxa matching taxonomic machine tags, then default 
       # to all tags
