@@ -107,7 +107,7 @@
   padding: 0.5em;
 }
 
-.observations.table .photos .sound-icon {
+.observations.table .photos .sound-icon, .observations.mini .photos .sound-icon {
   background: url(/images/sound-icon.png) no-repeat;
   height: 52px;
   width: 40px;
@@ -115,10 +115,22 @@
   display: block;
 }
 
+.observations.mini .photos .sound-icon {
+  float: right;
+  margin-right: 12px;
+}
+
 .observations.table .photos .sound-icon.with-photo {
   position: absolute;
   top: 10px;
   left: 5px;
+  opacity: .8;
+}
+
+.observations.mini .photos .sound-icon.with-photo {
+  position: absolute;
+  top: 15px;
+  right: 2px;
   opacity: .8;
 }
 

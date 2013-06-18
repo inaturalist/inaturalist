@@ -62,3 +62,8 @@ input.place_guess { width: 336px; }
 #taxonchooser {margin-left: 0;}
 fieldset {width: 910px;}
 #newobsnav {text-align:right; margin-top:0.25em;}
+
+.ui-tabs .ui-tab-content.hidden {display: none;}
+.ui-tabs .ui-tab-control {display: block;}
+.ui-tabs .field {clear: both;}
+.ui-tabs .ui-tab-control.selected {background-color: #dff4ff;}

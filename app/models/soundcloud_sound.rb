@@ -14,8 +14,6 @@ class SoundcloudSound < Sound
     "no-rights-reserved" => 7
   }
 
-  after_save :set_embed_html
-
   def self.client_for_user(user)
     return nil unless user and user.soundcloud_identity
     Soundcloud.new(:access_token => user.soundcloud_identity.token)
@@ -42,11 +40,10 @@ class SoundcloudSound < Sound
     return sound
   end
 
-  # grab embed html from soundcloud if there was a previous error storing it in the db
-  def embed_html
-    read_attribute(:embed_html) || collect_embed_html
+  def secret_token
+    self.native_response["secret_token"]
   end
-
+  
   def to_observation
       # Setup the observation
       observation = Observation.new
@@ -75,7 +72,9 @@ class SoundcloudSound < Sound
         tags_string.gsub!(t, '') #remove from original set
         t.gsub!("\"",'') #clean up the quotes
       end
-      tags = tags_string.split(' ') + multiword_tags 
+      tags = tags_string.split(' ') + multiword_tags
+
+      tags += self.native_response["title"]
 
       # First try to find taxa matching taxonomic machine tags, then default 
       # to all tags
@@ -85,20 +84,5 @@ class SoundcloudSound < Sound
       taxa
       taxa.compact
     end
-  
-  private
-
-  def set_embed_html(delay = true)
-    return self.delay.set_embed_html(false) if delay #lets us use the same method for sync/asyc execution
-    return if read_attribute(:embed_html)
-    oembed_response = collect_embed_html
-    self.update_attributes!(:embed_html => oembed_response) if oembed_response
-    true
-  end
-
-  def collect_embed_html
-    return unless client = SoundcloudSound.client_for_user(user)
-    client.get('/oembed', :url => self.native_response["secret_uri"] || native_page_url).html
-  end
 
 end

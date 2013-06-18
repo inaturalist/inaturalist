@@ -267,6 +267,15 @@
       </div>
     <%- end -%>
 
+    <div id="where">
+      <% if show_observation_coordinates?(@observation) %>
+        <div id="map" class="stacked"></div>
+      <% end %>
+      <div class="description">
+        <%= render :partial => 'location', :locals => {:inline_edit => true, :places => @places} %>
+      </div>
+    </div><!-- end where -->
+
     <% if (sounds = @observation.sounds).present? -%>
       <div id="sounds">
         <% above_the_fold_sounds = 2 %>
@@ -277,7 +286,11 @@
             <div id="moresounds" style="display: none">
           <% end %>
 
-          <%= sound.embed_html.html_safe %>
+          <% embed_link = "https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F#{sound.native_sound_id}&show_artwork=false&secret_token=#{sound.secret_token}" %>
+          
+          <iframe width="100%" height="166" scrolling="no" frameborder="no" src="<%= embed_link%>"></iframe>
+          
+
 
         <% end -%>
         <% if sounds.size > above_the_fold_sounds %>
@@ -298,14 +311,6 @@
       </div>
     <%- end -%>
 
-    <div id="where">
-      <% if show_observation_coordinates?(@observation) %>
-        <div id="map" class="stacked"></div>
-      <% end %>
-      <div class="description">
-        <%= render :partial => 'location', :locals => {:inline_edit => true, :places => @places} %>
-      </div>
-    </div><!-- end where -->
   </div><!-- end where-and-photos -->
   
   <% unless @observation.description.blank? %>

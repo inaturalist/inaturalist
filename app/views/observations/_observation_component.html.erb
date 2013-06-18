@@ -89,7 +89,7 @@ Some notes:
           <%= link_to '', observation, :class => "sound-icon#{' with-photo' if photo}" %>
           <% link_text << t(sound_count > 1 ? :'sounds.sounds_size_sounds' : :'sounds.sounds_size_sound', :sounds_size => sound_count) %>
         <% end %>
-        <%= link_to link_text.join(', ').html_safe, observation, :class => 'readmore' %>
+        <%= link_to link_text.join(',<br/>').html_safe, observation, :class => 'readmore' %>
       <% end -%>
     </div>
   </div>

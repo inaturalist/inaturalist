@@ -31,12 +31,11 @@ $(document).ready(function() {
       var photos_height = $('#photos .first img').height();
       var sounds_height = $('#sounds').height() - $('#sounds .moresounds').height() - $('#sounds .meta').height();
       var newWidth, newHeight;
-      if (photos_height && sounds_height) {
-        newWidth = $('#where-and-photos').width();
-        $('#map').css("clear: left;")
-      } else if (photos_height) {
+      
+      if (photos_height) {
         newWidth = $('#where-and-photos').width() - $("#photos").width()
         newHeight = photos_height;
+        $('#sounds').width($('#where-and-photos').width() - 8).css({'max-width':"1000px", 'margin-left': '0px','margin-top':'10px'})
       } else if (sounds_height) {
         newWidth = $('#where-and-photos').width() - $("#sounds").width()
         newHeight = sounds_height;
