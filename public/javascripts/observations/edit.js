@@ -105,14 +105,7 @@ $(document).ready(function() {
     $(this).soundSelector({index: index});
   })
 
-  $('.ui-tabs .ui-tab-control').click(function(){
-    $(this).parent().find('.ui-tab-control').removeClass('selected');
-    $(this).addClass('selected')
-    var el_id = $(this).attr("href");
-    $('.ui-tab-content').addClass('hidden');
-    $(el_id).removeClass('hidden');
-    return false;
-  });
+  $('.ui-tabs').tabs();
   
   if ($('#accept_terms').length != 0) {
     $("input[type=submit].default").attr("exception", "true");

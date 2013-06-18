@@ -55,6 +55,23 @@ input.place_guess { width: 336px; }
   max-height:none;
   overflow: none;
 }
+
+.ui-tabs .ui-tabs-nav {
+  margin-right: 3px;
+}
+.ui-tabs .ui-tabs-panel {
+  padding-top: 0px;
+  width: 100%;
+  margin-right: 0px;
+}
+.soundSelector, .photoSelector {
+  padding-top: 0;
+  margin-top: 0;
+  margin-right: -3px;
+  border-radius: 0;
+  border-color: #ccc;
+  border-top: none;
+}
 .local_photos .photo_file_field {width:auto;}
 .local_photos .photo_file_field label {display:inline;}
 .photo .synclink { float: right; }
