@@ -2,6 +2,7 @@ class Place < ActiveRecord::Base
   has_ancestry
   belongs_to :user
   belongs_to :check_list, :dependent => :destroy
+  belongs_to :source
   has_many :check_lists, :dependent => :destroy
   has_many :listed_taxa
   has_many :taxa, :through => :listed_taxa
@@ -436,6 +437,7 @@ class Place < ActiveRecord::Base
   #   <tt>source</tt>: specify a type of handler for certain shapefiles.  Current options are 'census', 'esriworld', and 'cpad'
   #   <tt>skip_woeid</tt>: (boolean) Whether or not to require that the shape matches a unique WOEID.  This is based querying GeoPlanet for the name of the shape.
   #   <tt>test</tt>: (boolean) setting this to +true+ will do everything other than saving places and geometries.
+  #   <tt>ancestor_place</tt>: (Place) scope searches for exissting records to descendents of this place. Matching will be based on name and place_type
   #
   # Examples:
   #   Census:
@@ -467,6 +469,7 @@ class Place < ActiveRecord::Base
       end
       
       new_place.source_filename = options[:source_filename] || File.basename(shapefile_path)
+      new_place.source ||= options[:source]
         
       puts "[INFO] \t\tMade new place: #{new_place}"
       unless new_place.woeid || options[:skip_woeid]
@@ -487,6 +490,10 @@ class Place < ActiveRecord::Base
           "source_filename = ? AND source_name = ?", 
           new_place.source_filename, new_place.source_name])
       end
+      if options[:ancestor_place]
+        existing ||= options[:ancestor_place].descendants.
+          where("lower(name) = ? AND place_type = ?", new_place.name.downcase, new_place.place_type).first
+      end
       
       if existing
         puts "[INFO] \t\tFound existing place: #{existing}"
@@ -504,6 +511,10 @@ class Place < ActiveRecord::Base
         end
         num_created += 1
       end
+
+      if options[:ancestor_place]
+        place.parent ||= options[:ancestor_place]
+      end
       
       place = if block_given?
         yield place, shp
@@ -511,7 +522,7 @@ class Place < ActiveRecord::Base
         place
       end
       if place && place.valid?
-        place.save unless options[:test]
+        place.save! unless options[:test]
         puts "[INFO] \t\tSaved place: #{place}"
       else
         num_created -= 1
@@ -524,14 +535,16 @@ class Place < ActiveRecord::Base
       if existing && PlaceGeometry.exists?(
           ["place_id = ? AND updated_at >= ?", existing, start_time.utc])
         puts "[INFO] \t\tAppending to existing geom..."
-        place.append_geom(shp.geometry)
+        place.append_geom(shp.geometry, :source => options[:source])
       else
         puts "[INFO] \t\tAdding geom..."
         place.save_geom(shp.geometry, 
+          :source => options[:source],
           :source_filename => place.source_filename,
           :source_name => place.source_name, 
           :source_identifier => place.source_identifier)
       end
+      place.place_geometry_without_geom.dissolve_geometry
     end
     
     puts "\n[INFO] Finished importing places.  #{num_created} created, " + 

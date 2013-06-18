@@ -914,7 +914,7 @@ en:
   if_this_is_a_cientific_name: If this is a scientific name, is it currently accepted?
   if_this_link_will_apply_to_descendant: If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
   if_you_already_have_an_account: "If you already have %{article} %{site_name} account..."
-  if_you_have_any_trouble_with_the_site_check_out: 'If you have any trouble with the site, please check out our %{help} or post a message to our <a href="http://groups.google.com/group/inaturalist">Google Group</a>.'
+  if_you_have_any_trouble_with_the_site_check_out: 'If you have any trouble with the site, please check out our <a href="%{help_url}">help section</a> or post a message to our <a href="%{feedback_url}">feedback group</a>.'
   if_you_have_trouble_with_the_site: "If you have any trouble with the site, please check out our help section:"
   if_you_use: If you use
   if_your_project_is: If your project is about a particular place, set the coordinates by clicking the map or entering them manually.
@@ -1511,6 +1511,7 @@ en:
   please_be_careful_particulary_when: "Please be careful, particularly when deleting taxa. If a taxon has associated observations, ids, listed taxa, etc, please"
   please_cite_the_published_source_of_taxon: Please cite the published source of this taxon.
   please_confirm_your_inat_username: "Please confirm your %{site_name} username"
+  please_confirm_your_account_html: 'Please take a second to <a href="%{url}">confirm your account</a>.'
   please_enter_a_new_pass: Please enter a new password and confirm it.
   please_hold_on_while_the_file: Please hold on while the file is generated. It can take a couple minutes if you have a lot of observations.
   position: Position

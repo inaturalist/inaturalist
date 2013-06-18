@@ -1124,7 +1124,7 @@ es:
   if_this_is_a_cientific_name: "Si este es un nombre científico, ¿está aceptado actualmente?"
   if_this_link_will_apply_to_descendant: "Si este vínculo aplicará a los taxones descendientes, puede usar sus plantillas de etiquetas para llenar el nombre del taxón en la URL"
   if_you_already_have_an_account: "Si usted ya tiene una cuenta de %{site_name}..."
-  if_you_have_any_trouble_with_the_site_check_out: "Si tuviera algún problema con el sitio, por favor revise nuestro %{help} o escriba un mensaje a nuestro <a href=\"http: //groups.google.com/group/inaturalist\">Google Group</a>."
+  if_you_have_any_trouble_with_the_site_check_out: 'Si tuviera algún problema con el sitio, por favor revise nuestro <a href="%{help_url}">sección de ayuda</a> o escriba un mensaje a nuestro <a href="%{feedback_url}">grupo de retroalimentación</a>.'
   if_you_have_trouble_with_the_site: "Si tuviera algún problema con el sitio, por favor revise nuestra sección de ayuda"
   if_you_use: "Si usted usa"
   if_your_project_is: Si tu proyecto es acerca de un lugar especifico, añade las coordenadas seleccionando el enlace del mapa o añadelas manualmente.
@@ -1774,6 +1774,7 @@ es:
   please_be_careful_particulary_when: "Tenga cuidado, especialmente al eliminar taxones. Si un taxón tiene observaciones, identificadores, taxones enlistados, u otros asociados, por favor"
   please_cite_the_published_source_of_taxon: "Por favor mencione la fuente publicada de este taxón."
   please_confirm_your_inat_username: "Por favor confirme su nombre de usuario con %{site_name}"
+  please_confirm_your_account_html: 'Por favor tómate un segundo para <a href="%{url}">confirmar su cuenta</a>.'
   please_enter_a_new_pass: "Por favor digite una nueva contraseña y confírmela."
   please_hold_on_while_the_file: "Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes."
   plural_species: Especies
@@ -1997,7 +1998,7 @@ es:
   similar_species: "Especies similares"
   sing_in_exclamation: ¡Ingresar!
   single_observation: "Observación sencilla"
-  single_taxon: Una especie o grupo(entrada de datos para separar/eliminar/etapa, salida de datos para mezclar/intercambiar)
+  single_taxon: Una especie o grupo (entrada de datos para separar/eliminar/etapa, salida de datos para mezclar/intercambiar)
   singular_species: Especie
   sizes: Tamaños
   small: pequeño

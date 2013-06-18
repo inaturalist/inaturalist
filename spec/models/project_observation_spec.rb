@@ -118,6 +118,14 @@ describe ProjectObservation, "georeferenced?" do
     project_observation.reload
     project_observation.should be_georeferenced
   end
+
+  it "should be true if observation coordinates are private" do
+    project_observation = make_project_observation
+    o = project_observation.observation
+    o.update_attributes(:latitude => 0.5, :longitude => 0.5, :geoprivacy => Observation::PRIVATE)
+    project_observation.reload
+    project_observation.should be_georeferenced
+  end
   
 end
 
