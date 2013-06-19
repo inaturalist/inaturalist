@@ -16,7 +16,7 @@
       %span.when
         %abbr.date.timeago{:title => @application.created_at.iso8601}
           =t :n_ago, :n => time_ago_in_words(@application.created_at)
-  - if (is_admin? || is_me?(@application.user))
+  - if (is_admin? || is_me?(@application.owner))
     .ui.notice.box
       %h4 Callback url:
       %p
