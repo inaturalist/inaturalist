@@ -158,6 +158,7 @@ en:
   added_by: Added by
   added_identifications_to: added identifications to anyone's observations.
   added_on: Added on
+  added_to: Added to
   adding: "Adding..."
   adding_observations: Adding observations
   adding_to_your_life_list: "Adding to your life list..."
@@ -303,6 +304,7 @@ en:
   are_you_sure_you_want_to_remove_from_project: Are you sure you want to remove %{user} from this project?
   are_you_sure_you_want_to_remove_manager: Are you sure you want to remove %{user} as a manager?
   are_you_sure_you_want_to_remove_this_invitation: Are you sure you want to remove this invitation?
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Are you sure you want to remove this taxon from %{place}'s checklist?"
   associated_observations: Associated observations
   associated_taxa: Associated taxa
   you_sure_delete_list: Are you sure you want to delete this list?
@@ -374,6 +376,7 @@ en:
   browse_projects: Browse Projects
   browse_species_that_occur_near_this_observation: Browse species that occur near this observation.
   browse_your_observations: Browse your observations
+  but_we_didnt_add_this_observation_to_the_x_project: "But we didn't add this observation to the %{project} project because you didn't agree to the project terms."
   by: by
   by_adding_ids_to_observations: by adding IDs to observations
   by_editedby: "by %{editedby}"
@@ -529,6 +532,20 @@ en:
   coordinates_private: (coordinates private)
   copy: Copy
   copy_and_paste_this_into_your_own_html: Copy and paste this into your own HTML.
+  copyright:
+        some_rights_reserved_by: (c) %{name}, some rights reserved (%{license_short})
+        all_rights_reserved: (c) %{name}, all rights reserved
+        no_known_copyright_restrictions: "%{name}, no known copyright restrictions (%{license_name})"
+        anonymous: anonymous
+        public_domain: public domain
+        copyright: copyright
+        attribution_noncommercial_sharealike_license: Attribution-NonCommercial-ShareAlike License
+        attribution_noncommercial_license: Attribution-NonCommercial License
+        attribution_noncommercial_noderivs_license: Attribution-NonCommercial-NoDerivs License
+        attribution_license: Attribution License
+        attribution_sharealike_license: Attribution-ShareAlike License
+        attribution_noderivs_license: Attribution-NoDerivs License
+        gnu_free_documentation_license: GNU Free Documentation License
   couldnt_log_you_in_x: "Couldn't log you in as '%{x}'"
   countries: Countries
   country_stats: Country stats for observations created on
@@ -650,6 +667,7 @@ en:
   drag_and_drop_photos: drag and drop photos onto this window or
   draft: DRAFT!
   draft_: Draft
+  draft_saved: Draft saved!
   drafts: Drafts
   each_place_displays_all_species_inat_knows: "Each place page displays all the species %{site_name} knows about from that place, including information about their abundance, conservation status, and who was first to observe that species from that place on %{site_name}. You can filter the species by taxonomic group, color, conservation status, or plain old search."
   edit: Edit
@@ -852,7 +870,9 @@ en:
   hate_me_facebook: "Unlink your Facebook and %{site_name} Accounts"
   hate_me_flickr: "Unlink your Flickr and %{site_name} Accounts"
   heads_up: Heads up
+  heads_up_observation_search_can_only_load: "Heads up: observation search can only load up to 50 pages"
   heads_up_this_observation_has_been_flagged: "HEADS UP: this observation has been flagged."
+  heads_up_this_photo_is_already_associated_with: "Heads up: this photo is already associated with <a target='_blank' href='%{url}'>another observation</a>"
   heads_up_this_taxon_locked_users_cant_add_descendants: "<strong>Heads up:</strong> this taxon is locked, which means that most users can't add new descendants to it by importing taxa. Curators can still do so by editing taxa and choosing a parent, but please consider merging taxa instead."
   heads_up_you_have_multiple: "Heads up: You have multiple taxonomic machine tags for identicical ranks. They're color-coded below by rank."
   hello: <test> 
@@ -880,7 +900,10 @@ en:
   id_please: ID Please
   id_please_expandable_html: "ID<span class='full'> Please</span>!"
   identification: identification
+  identification_deleted: Identification deleted.
+  identification_saved: "Identification saved!"
   identification_summary: Identification Summary
+  identification_updated: Identification updated!
   identifications: Identifications
   identifications_by: "Identifications by %{user}"
   identified?: identified
@@ -971,6 +994,7 @@ en:
   journal: Journal
   journal_archives_for: Journal archives for
   journal_post: Journal post
+  journal_post_deleted: Journal post deleted.
   jump_to_letter: Jump to letter
   just_added!: Just added!
   kelp_diatoms_and_allies: "kelp, diatoms, and allies"
@@ -1204,6 +1228,7 @@ en:
   no_nearby_observations: "No nearby observations."
   no_observations: no observations
   no_observations_need_an_id: No observations need an ID right now.  Amazing!
+  no_observations_submitted: "No observations submitted!"
   no_observations_suitable_for_this_project: "No observations suitable for this project that haven't yet been contributed or invited."
   no_observations_yet: No observations yet
   no_one_has_added_any: No one has added any notes for this place
@@ -1230,6 +1255,7 @@ en:
   no_summary_has_been_set: No summary has been set.
   no_taxa: No taxa
   no_taxa_listed: No taxa listed
+  no_taxa_selected: No taxa selected!
   no_taxa_yet: No taxa yet!
   no_taxonomic_changes_match_those_criteria: No taxonomic changes match those criteria
   no_wikipedia_page_for_taxon: No Wikipedia page for this taxon.
@@ -1276,12 +1302,14 @@ en:
     places currently relies on %{site_name} Places, and can only limit
     observations to the smallest rectangle that surrounds a place. You can
     only have one of each kind of rule.
+  observation_was_deleted: Observation was deleted.
   observation_would_like_some_help: "%{user} would like some help identifying this!"
   observations: Observations
   observations_by_everyone: Observations by everyone
   observations_by_user: "Observations by %{user}"
   observations_circle_have_their_radii_scaled: Observation circles have their radii scaled proportionally to their positional accuracy. Observations without positional accuracy data are shown at the minimum size.
   observations_confirmed: Observations (confirmed)
+  observations_deleted: Observations deleted.
   observations_fields_are: |
                Observation fields are extra pieces of data associated with an
                observation, like number of individuals observed, habitat
@@ -1306,6 +1334,7 @@ en:
   observations_title: Observations by Everyone
   observations_w: Observations w/
   observations_w_field: Observations w/ field
+  observations_was_successfully_updated: Observation(s) was successfully updated.
   observations_week: Observations / Week
   observations_will_revert_to_casual: Observations will revert to "casual" grade if the above conditions aren't met or
   observed: Observed
@@ -1332,12 +1361,14 @@ en:
   only_accepts_taxa: only accepts taxa
   only_country_state_and_county: "Only country, state, and county equivalent places shown for now. Zoom in to see smaller places."
   only_files_with_100_rows_at_a_time: Only files with 100 rows at a time, please
+  only_project_curators_can_do_that: Only project curators can do that.
   only_receive_updates_about_this_taxon: Only receive updates about this taxon
   only_show_active_taxa: Only show active taxa
   only_show_taxa_fom_this_list: "Only show taxa from this list"
   only_showing_taxa_from: only showing taxa from this list
   only_species: only species
   only_species_and_subspecies: only species and subspecies/varieties
+  only_the_author_of_this_post_can_do_that: Only the author of this post can do that. Don't be evil.
   open: open
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
   optional: optional
@@ -1392,6 +1423,7 @@ en:
       large: large
       original: original
   photos_size_photos: "%{photos_size} photos "
+  photos_updated: Photos updated.
   picasa_identity: Picasa Identity
   pick_a_username: Pick a username
   pink: pink
@@ -1490,12 +1522,14 @@ en:
   position: Position
   positional_accuracy: Positional accuracy
   post: Post
+  post_published: Post published!
   post_some_new_stuff: post some new stuff
   posted_by: Posted by
   posted_on: Posted on
   posts: Posts
   powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a> open source software'
   preview: Preview
+  preview_of_synced_observation: "<strong>Preview</strong> of synced observation.  <a href=\"%{url}\">Undo?</a>"
   preview_personal_message:  "I'd like you to join me on %{site}, a website where you can record your observations of plants and animals, keep track of your life list, and learn about the natural world!"
   preview_your_message: Preview your message
   previewing: "Previewing..."
@@ -1722,7 +1756,12 @@ en:
   something_went_wrong_updating: Something went wrong updating your list!
   somewhere_on_earth: somewhere on Earth
   somewhere: (Somewhere...)
+  sorry_flickr_isnt_responding_at_the_moment: "Sorry, Flickr isn't responding at the moment."
   sorry_how_about_we_try_repeat: "Sorry! How about we try and repeat your search in some other databases of species names? If we find something, we'll save it so you can find it next time."
+  sorry_picasa_isnt_responding_at_the_moment: "Sorry, Picasa isn't responding at the moment."
+  sorry_that_photo_provider_isnt_responding: "Sorry, that photo provider isn't responding at the moment. Please try again later."
+  sorry_we_didnt_find_that_photo: "Sorry, we didn't find that photo."
+  sorry_we_dont_have_any_metadata_for_that_photo: "Sorry, we don't have any metadata for that photo that we can use to set observation properties."
   source: Source
   source_: 'Source:'
   source_list:
@@ -1751,6 +1790,7 @@ en:
   sources_youve_added: Sources you've added
   sourcing: Sourcing
   spam: spam
+  spanish: Spanish
   species: Species
   species_from_around_the_world: Species from around the world
   species_guess: species guess
@@ -1861,6 +1901,10 @@ en:
   thanks_for_signing_up: Thanks for signing up!
   thanks_for_signing_up: Thanks for signing up!
   thanks_for_using: Thanks for using
+  that_photo_doesnt_exist: That photo doesn't exist.
+  that_observation_doesnt_have_any_photos: "That observation doesn't have any photos."
+  that_observation_no_longer_exists: That observation no longer exists.
+  that_project_doesnt_exist: "That project doesn't exist."
   that_will_insert_a_link_to: that will insert a link to this tool on every Flickr photo page.
   thats_okay_we_forget: That's okay! We forget ours too. Send us the email address you used to create your account and we'll email you a link to reset your password.
   the: the
@@ -1894,6 +1938,7 @@ en:
   there_is_no_wikipedia_page_matching: There is no Wikipedia page matching
   there_isnt_wiki_article: "There isn't a Wikipedia article or redirect titled '<i>%{taxon}</i>'.  Perhaps you'd like to"
   there_isnt_a_wikipedia_article_titled_x_html: "There isn't a Wikipedia article or redirect titled '%{x}'.  Perhaps you'd like to <a href='http://en.wikipedia.org/wiki/%{x}'>make one</a>?"
+  there_was_a_problem_saving_your_identification: "There was a problem saving your identification: %{error}"
   there_were_errors: There were errors.
   there_were_some_problems_saving_this_observation: There were some problems saving this observation
   there_were_some_problems_with: There were some problems with your CSV file.  Please revise the failed rows. Of course the problem could always be on our side. If that is the case, please let us know.
@@ -1947,6 +1992,7 @@ en:
   this_will_try_to_add_tags_to_your_flickr: This will try to add tags to your Flickr photos.  Continue?
   this_will_update_all_last_observations: This will update all last observations and add new taxa from 
   those_are_the_basics_of: Those are the basics of adding observations! There are plent of other things you can do, like searching and filtering your observations or editing them as a batch, but they should be pretty self-explanatory.
+  those_observations_no_longer_exist: Those observations no longer exist.
   threatened: threatened
   thu: Thu
   time_: time
@@ -2135,6 +2181,8 @@ en:
   when_did_you_see_them?: <em>When</em> did you see them?
   where: Where
   where_did_you_see_it: Where did you see it?
+  where_do_x_live: Where do %{taxa} live?
+  where_does_x_live: Where does %{taxa} live?
   where_were_they?: Where were they?
   where_were_you?: Where were you?
   white: white
@@ -2192,12 +2240,15 @@ en:
   you_can_sign_free_at: "You can sign up for a free %{site_name} account at"
   you_dont: You don't
   you_dont_have_any: "You don't have any place or taxon subscriptions"
+  you_dont_have_permission_to_do_that: You don't have permission to do that.
+  you_dont_have_permission_to_edit_that_observation: "You don't have permission to edit that observation."
   you_have_logget_out: "You have been logged out. Come back soon!"
   you_have_to: You have to
   you_havent: You haven't
   you_havent_left_any_comments_recently: You haven't left any comments recently.  Go leave someone a note!
   you_havent_linked_your_inaturalist_picasa_account: "You haven't linked your %{site_name} account and your Picasa account yet"
   you_may_have: you may have. It will probably only work in modern, standards-compliant browsers like
+  you_must_select_a_csv_file_to_upload: You must select a CSV file to upload.
   you_need_to_have_linked_flickr_account: You need to have a linked Flickr account to tag your photos.
   you_need_to_select_some_observations_first: You need to select some observations first.
   you_retain_full_copyright: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
@@ -2230,6 +2281,7 @@ en:
   your_observation_will_get_shared_html: "Your observation will get shared on social networks if you leave these boxes checked. You can change your defaults by <a href='%{url}' target='_blank'>editing your account settings</a>. If you linked your Facebook or Twitter account before this feature was added, you may need to re-link to Twitter or Facebook from your account to get this working."
   your_observation_wont_get: "your observation won't get associated with other observations of this species, and your life list won't get updated."
   your_observations: Your observations
+  your_observations_couldnt_be_added_to_that_project: "Your observations couldn't be added to that project: %{errors}"
   your_picasa_account: Your Picasa Account
   your_picasa_account_info: Your Picasa Account Information
   your_should_recognize: You should recognize some of these photos

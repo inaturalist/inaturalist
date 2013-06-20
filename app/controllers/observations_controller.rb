@@ -501,7 +501,7 @@ class ObservationsController < ApplicationController
     if params[:observations].blank? && params[:observation].blank?
       respond_to do |format|
         format.html do
-          flash[:error] = "No observations submitted!"
+          flash[:error] = t(:no_observations_submitted)
           redirect_to new_observation_path
         end
         format.json { render :status => :unprocessable_entity, :json => "No observations submitted!" }
@@ -540,7 +540,7 @@ class ObservationsController < ApplicationController
     current_user.observations << @observations
     
     if request.format != :json && !params[:accept_terms] && params[:project_id] && !current_user.project_users.find_by_project_id(params[:project_id])
-      flash[:error] = "But we didn't add this observation to the #{Project.find_by_id(params[:project_id]).title} project because you didn't agree to the project terms."
+      flash[:error] = t(:but_we_didnt_add_this_observation_to_the_x_project, :project => Project.find_by_id(params[:project_id]).title)
     else
       create_project_observations
     end
@@ -552,7 +552,7 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html do
         unless errors
-          flash[:notice] = params[:success_msg] || "Observation(s) saved!"
+          flash[:notice] = params[:success_msg] || t(:observations_saved)
           if params[:commit] == "Save and add another"
             o = @observations.first
             redirect_to :action => 'new', 
@@ -625,7 +625,7 @@ class ObservationsController < ApplicationController
     if params[:observations].blank? && params[:observation].blank?
       respond_to do |format|
         format.html do
-          flash[:error] = "No observations submitted!"
+          flash[:error] = t(:no_observations_submitted)
           redirect_to new_observation_path
         end
         format.json { render :status => :unprocessable_entity, :json => "No observations submitted!" }
@@ -644,7 +644,7 @@ class ObservationsController < ApplicationController
     # Make sure there's no evil going on
     unique_user_ids = @observations.map(&:user_id).uniq
     if unique_user_ids.size > 1 || unique_user_ids.first != observation_user.id && !current_user.has_role?(:admin)
-      flash[:error] = "You don't have permission to edit that observation."
+      flash[:error] = t(:you_dont_have_permission_to_edit_that_observation)
       return redirect_to(@observation || observations_path)
     end
     
@@ -717,9 +717,9 @@ class ObservationsController < ApplicationController
         end
       elsif @observations.empty?
         msg = if params[:id]
-          "That observation no longer exists."
+          t(:that_observation_no_longer_exists)
         else
-          "Those observations no longer exist."
+          t(:those_observations_no_longer_exist)
         end
         format.html do
           flash[:error] = msg
@@ -728,7 +728,7 @@ class ObservationsController < ApplicationController
         format.json { render :json => {:error => msg}, :status => :gone }
       else
         format.html do
-          flash[:notice] = "Observation(s) was successfully updated. #{extra_msg}"
+          flash[:notice] = "#{t(:observations_was_successfully_updated)} #{extra_msg}"
           if @observations.size == 1
             redirect_to observation_path(@observations.first)
           else
@@ -772,7 +772,7 @@ class ObservationsController < ApplicationController
   def edit_photos
     @observation_photos = @observation.observation_photos
     if @observation_photos.blank?
-      flash[:error] = "That observation doesn't have any photos."
+      flash[:error] = t(:that_observation_doesnt_have_any_photos)
       return redirect_to edit_observation_path(@observation)
     end
   end
@@ -785,7 +785,7 @@ class ObservationsController < ApplicationController
       op.update_attributes(params[:observation_photos][op.id.to_s])
     end
     
-    flash[:notice] = "Photos updated."
+    flash[:notice] = t(:photos_updated)
     redirect_to edit_observation_path(@observation)
   end
   
@@ -795,7 +795,7 @@ class ObservationsController < ApplicationController
     @observation.destroy
     respond_to do |format|
       format.html do
-        flash[:notice] = "Observation was deleted."
+        flash[:notice] = t(:observation_was_deleted)
         redirect_to(observations_by_login_path(current_user.login))
       end
       format.xml  { head :ok }
@@ -848,7 +848,7 @@ class ObservationsController < ApplicationController
 
   def new_batch_csv
     if params[:upload].blank? || params[:upload] && params[:upload][:datafile].blank?
-      flash[:error] = "You must select a CSV file to upload."
+      flash[:error] = t(:you_must_select_a_csv_file_to_upload)
       return redirect_to :action => "import"
     end
 
@@ -947,7 +947,7 @@ class ObservationsController < ApplicationController
     
     respond_to do |format|
       format.html do
-        flash[:notice] = "Observations deleted."
+        flash[:notice] = t(:observations_deleted)
         redirect_to observations_by_login_path(current_user.login)
       end
       format.js { render :text => "Observations deleted.", :status => 200 }
@@ -969,7 +969,7 @@ class ObservationsController < ApplicationController
     @step = 2
     render :template => 'observations/new_batch'
   rescue Timeout::Error => e
-    flash[:error] = "Sorry, that photo provider isn't responding at the moment. Please try again later."
+    flash[:error] = t(:sorry_that_photo_provider_isnt_responding)
     Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
     redirect_to :action => "import"
   end
@@ -1006,7 +1006,7 @@ class ObservationsController < ApplicationController
   def new_from_list
     @taxa = Taxon.all(:conditions => ["id in (?)", params[:taxa]], :include => :taxon_names)
     if @taxa.blank?
-      flash[:error] = "No taxa selected!"
+      flash[:error] = t(:no_taxa_selected)
       return redirect_to :action => :add_from_list
     end
     @observations = @taxa.map do |taxon|
@@ -1078,7 +1078,7 @@ class ObservationsController < ApplicationController
 
   def by_login_all
     if @selected_user.id != current_user.id
-      flash[:error] = "You don't have permission to do that."
+      flash[:error] = t(:you_dont_have_permission_to_do_that)
       redirect_back_or_default(root_url)
       return
     end
@@ -1220,7 +1220,7 @@ class ObservationsController < ApplicationController
   def project
     @project = Project.find(params[:id]) rescue nil
     unless @project
-      flash[:error] = "That project doesn't exist."
+      flash[:error] = t(:that_project_doesnt_exist)
       redirect_to request.env["HTTP_REFERER"] || projects_path
       return
     end
@@ -1286,13 +1286,13 @@ class ObservationsController < ApplicationController
   def project_all
     @project = Project.find(params[:id]) rescue nil
     unless @project
-      flash[:error] = "That project doesn't exist."
+      flash[:error] = t(:that_project_doesnt_exist)
       redirect_to request.env["HTTP_REFERER"] || projects_path
       return
     end
     
     unless @project.curated_by?(current_user)
-      flash[:error] = "Only project curators can do that."
+      flash[:error] = t(:only_project_curators_can_do_that)
       redirect_to request.env["HTTP_REFERER"] || @project
       return
     end
@@ -1778,7 +1778,7 @@ class ObservationsController < ApplicationController
     
     if sphinx_options[:page] && sphinx_options[:page].to_i > 50
       if request.format && request.format.html?
-        flash.now[:notice] = "Heads up: observation search can only load up to 50 pages"
+        flash.now[:notice] = t(:heads_up_observation_search_can_only_load)
       end
       sphinx_options[:page] = 50
       find_options[:page] = 50
@@ -1977,10 +1977,10 @@ class ObservationsController < ApplicationController
         @observation.observation_photos.build(:photo => @facebook_photo)
       end
       unless @observation.new_record?
-        flash.now[:notice] = "<strong>Preview</strong> of synced observation.  <a href=\"#{url_for}\">Undo?</a>"
+        flash.now[:notice] = t(:preview_of_synced_observation, :url => url_for)
       end
     else
-      flash.now[:error] = "Sorry, we didn't find that photo."
+      flash.now[:error] = t(:sorry_we_didnt_find_that_photo)
     end
   end
 
@@ -1996,7 +1996,7 @@ class ObservationsController < ApplicationController
         "#{params[:flickr_photo_id]}: #{e}\n#{e.backtrace.join("\n")}"
       @flickr_photo = nil
     rescue Timeout::Error => e
-      flash.now[:error] = "Sorry, Flickr isn't responding at the moment."
+      flash.now[:error] = t(:sorry_flickr_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
       Airbrake.notify(e, :request => request, :session => session)
       return
@@ -2023,17 +2023,16 @@ class ObservationsController < ApplicationController
       end
       
       unless @observation.new_record?
-        flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
-          "<a href=\"#{url_for}\">Undo?</a>"
+        flash.now[:notice] = t(:preview_of_synced_observation, :url => url_for)
       end
       
       if (@existing_photo = Photo.find_by_native_photo_id(@flickr_photo.native_photo_id)) && 
           (@existing_photo_observation = @existing_photo.observations.first) && @existing_photo_observation.id != @observation.id
-        msg = "Heads up: this photo is already associated with <a target='_blank' href='#{url_for(@existing_photo_observation)}'>another observation</a>"
+        msg = t(:heads_up_this_photo_is_already_associated_with, :url => url_for(@existing_photo_observation))
         flash.now[:notice] = flash.now[:notice].blank? ? msg : "#{flash.now[:notice]}<br/>#{msg}"
       end
     else
-      flash.now[:error] = "Sorry, we didn't find that photo."
+      flash.now[:error] = t(:sorry_we_didnt_find_that_photo)
     end
   end
   
@@ -2041,7 +2040,7 @@ class ObservationsController < ApplicationController
     begin
       api_response = PicasaPhoto.get_api_response(params[:picasa_photo_id], :user => current_user)
     rescue Timeout::Error => e
-      flash.now[:error] = "Sorry, Picasa isn't responding at the moment."
+      flash.now[:error] = t(:sorry_picasa_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
       Airbrake.notify(e, :request => request, :session => session)
       return
@@ -2066,20 +2065,19 @@ class ObservationsController < ApplicationController
         @observation.observation_photos.build(:photo => @picasa_photo)
       end
       
-      flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
-        "<a href=\"#{url_for}\">Undo?</a>"
+      flash.now[:notice] = t(:preview_of_synced_observation, :url => url_for)
     else
-      flash.now[:error] = "Sorry, we didn't find that photo."
+      flash.now[:error] = t(:sorry_we_didnt_find_that_photo)
     end
   end
 
   def sync_local_photo
     unless @local_photo = Photo.find_by_id(params[:local_photo_id])
-      flash.now[:error] = "That photo doesn't exist."
+      flash.now[:error] = t(:that_photo_doesnt_exist)
       return
     end
     if @local_photo.metadata.blank?
-      flash.now[:error] = "Sorry, we don't have any metadata for that photo that we can use to set observation properties."
+      flash.now[:error] = t(:sorry_we_dont_have_any_metadata_for_that_photo)
       return
     end
     o = @local_photo.to_observation
@@ -2092,12 +2090,11 @@ class ObservationsController < ApplicationController
     end
     
     unless @observation.new_record?
-      flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
-        "<a href=\"#{url_for}\">Undo?</a>"
+      flash.now[:notice] = t(:preview_of_synced_observation, :url => url_for)
     end
     
     if @existing_photo_observation = @local_photo.observations.where("observations.id != ?", @observation).first
-      msg = "Heads up: this photo is already associated with <a target='_blank' href='#{url_for(@existing_photo_observation)}'>another observation</a>"
+      msg = t(:heads_up_this_photo_is_already_associated_with, :url => url_for(@existing_photo_observation))
       flash.now[:notice] = flash.now[:notice].blank? ? msg : "#{flash.now[:notice]}<br/>#{msg}"
     end
   end
@@ -2175,7 +2172,7 @@ class ObservationsController < ApplicationController
   
   def require_owner
     unless logged_in? && current_user.id == @observation.user_id
-      msg = "You don't have permission to do that"
+      msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do
           flash[:error] = msg
@@ -2293,7 +2290,7 @@ class ObservationsController < ApplicationController
      
     if !errors.blank?
       if request.format.html?
-        flash[:error] = "Your observations couldn't be added to that project: #{errors.to_sentence}"
+        flash[:error] = t(:your_observations_couldnt_be_added_to_that_project, :errors => errors.to_sentence)
       else
         Rails.logger.error "[ERROR #{Time.now}] Failed to add #{@observations.size} obs to #{@project}: #{errors.to_sentence}"
       end

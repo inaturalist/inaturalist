@@ -630,18 +630,18 @@ class Observation < ActiveRecord::Base
   end
   
   def to_plain_s(options = {})
-    s = self.species_guess.blank? ? 'something' : self.species_guess
+    s = self.species_guess.blank? ? I18n.t(:something) : self.species_guess
     if options[:verb]
-      s += options[:verb] == true ? " observed" : " #{options[:verb]}"
+      s += options[:verb] == true ? I18n.t(:observed).downcase : " #{options[:verb]}"
     end
     unless self.place_guess.blank? || options[:no_place_guess]
-      s += " in #{self.place_guess}"
+      s += " #{I18n.t(:on_)} #{self.place_guess}"
     end
-    s += " on #{self.observed_on.to_s(:long)}" unless self.observed_on.blank?
+    s += " #{I18n.t(:on_day)}  #{I18n.l(self.observed_on, :format => :long)}" unless self.observed_on.blank?
     unless self.time_observed_at.blank? || options[:no_time]
-      s += " at #{self.time_observed_at_in_zone.to_s(:plain_time)}"
+      s += " #{I18n.t(:at_)} #{self.time_observed_at_in_zone.to_s(:plain_time)}"
     end
-    s += " by #{self.user.try(:login)}" unless options[:no_user]
+    s += " #{I18n.t(:by).downcase} #{self.user.try(:login)}" unless options[:no_user]
     s
   end
 

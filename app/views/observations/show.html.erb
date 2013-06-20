@@ -437,7 +437,7 @@
       <div id="idplease" class="clear inline buttonrow">
         <div id="added_to_id_please" class="box id_please_notice" style="display: <%= @observation.id_please? ? 'block' : 'none' %>">
           <span class="inter">
-            Added to <%= link_to t(:id_please), id_please_path %>
+            <%= t :added_to %> <%= link_to t(:id_please).truncate(18), id_please_path %>
           </span>
           <%= link_to t(:remove), @observation,
             :remote => true,
@@ -565,13 +565,13 @@
             <%= link_to observation_image(o, :size => "square"), o, :title => o.to_plain_s %>
           <% end %>
         </div>
-        <%= link_to t(:view_x_from_x, :day_observations=>"#{@day_observations.total_entries}", :observed_on => "#{@observation.observed_on.to_s(:long)}"), calendar_date_path(@observation.user.login, @observation.observed_on.year, @observation.observed_on.month, @observation.observed_on.day), :class => "right readmore" %>
+        <%= link_to t(:view_x_from_x, :day_observations=>"#{@day_observations.total_entries}", :observed_on => "#{l(@observation.observed_on, :format => :long)}"), calendar_date_path(@observation.user.login, @observation.observed_on.year, @observation.observed_on.month, @observation.observed_on.day), :class => "right readmore" %>
       </div>
     <%= separator %>
   <% end -%>
 
   <% unless @posts.blank? -%>
-    <h3>Journal Posts</h3>
+    <h3><%= t :journal_post %></h3>
     <ul class="plain">
       <% for post in @posts %>
         <li>
