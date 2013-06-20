@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%= t(:x_journal_middot, :user => @parent_display_name) %> <%= @post.title %>
+  <%= t(:x_journal_middot, :user => @parent_display_name).html_safe %> <%= @post.title %>
 <%- end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag "lists" %>

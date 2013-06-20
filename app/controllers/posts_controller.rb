@@ -63,12 +63,12 @@ class PostsController < ApplicationController
     end
     if @post.save
       if @post.published_at
-        flash[:notice] = "Post published!"
+        flash[:notice] = t(:post_published)
         redirect_to (@post.parent.is_a?(Project) ?
                      project_journal_post_path(@post.parent.slug, @post) :
                      journal_post_path(@post.user.login, @post))
       else
-        flash[:notice] = "Draft saved!"
+        flash[:notice] = t(:draft_saved)
         redirect_to (@post.parent.is_a?(Project) ?
                      edit_project_journal_post_path(@post.parent.slug, @post) :
                      edit_journal_post_path(@post.user.login, @post))
@@ -112,12 +112,12 @@ class PostsController < ApplicationController
     
     if @post.update_attributes(params[:post])
       if @post.published_at
-        flash[:notice] = "Post published!"
+        flash[:notice] = t(:post_published)
         redirect_to (@post.parent.is_a?(Project) ?
                      project_journal_post_path(@post.parent.slug, @post) :
                      journal_post_path(@post.user.login, @post))
       else
-        flash[:notice] = "Draft saved!"
+        flash[:notice] = t(:draft_saved)
         redirect_to (@post.parent.is_a?(Project) ?
                      edit_project_journal_post_path(@post.parent.slug, @post) :
                      edit_journal_post_path(@post.user.login, @post))
@@ -129,7 +129,7 @@ class PostsController < ApplicationController
   
   def destroy
     @post.destroy
-    flash[:notice] = "Journal post deleted."
+    flash[:notice] = t(:journal_post_deleted)
     redirect_to (@post.parent.is_a?(Project) ?
                  project_journal_path(@post.parent.slug) :
                  journal_by_login_path(@post.user.login))
@@ -198,8 +198,7 @@ class PostsController < ApplicationController
   def author_required
     if ((@post.parent.is_a?(Project) && !@post.parent.editable_by?(current_user)) ||
         !(logged_in? && @post.user.id == current_user.id))
-        flash[:notice] = "Only the author of this post can do that.  " + 
-                         "Don't be evil."
+        flash[:notice] = t(:only_the_author_of_this_post_can_do_that)
       redirect_to (@post.parent.is_a?(Project) ?
                    project_journal_path(@post.parent.slug) :
                    journal_by_login_path(@post.user.login))

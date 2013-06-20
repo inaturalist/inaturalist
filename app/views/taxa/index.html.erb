@@ -224,7 +224,7 @@
             person_by_login_path(observation.user.login)) %>
           <%= link_to observation.user.login, person_path(observation.user) %>
           <%= t(:observed_one) %>
-          <%= observation.observed_on? ? t(:at).." #{observation.observed_on.to_s(:long)}" : t(:in_the_past) -%>
+          <%= observation.observed_on? ? t(:on_day).." #{l(observation.observed_on, :format => :long)}" : t(:in_the_past) -%>
           <%= observation.place_guess.blank? ? t(:somewhere_on_earth) : " #{t(:in)} #{observation.place_guess}" %>.
 
           <div>
@@ -262,7 +262,7 @@
           <%- photo_tag = image_tag(
             photo.is_a?(Photo) ? photo.square_url : "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}",
             :width => 75, :height => 75, 
-            :title => photo.is_a?(Photo) ? "Photo: #{photo.native_username}" : "Photo: #{photo.photo_xml['ownername']}"
+            :title => photo.is_a?(Photo) ? "#{t(:photo)}: #{photo.native_username}" : "#{t(:photo)}: #{photo.photo_xml['ownername']}"
           ) -%>
           <%= link_to(photo_tag, iconic_taxon, :class => cycle('', '', 'last')) %>
         <% end %>
