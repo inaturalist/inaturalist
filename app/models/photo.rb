@@ -91,7 +91,7 @@ class Photo < ActiveRecord::Base
     elsif open_licensed?
       I18n.t('copyright.some_rights_reserved_by', :name => name, :license_short => license_short)
     else
-      I18n.t('copyright.all_rigths_reserved', :name => name)
+      I18n.t('copyright.all_rights_reserved', :name => name)
     end
   end
   
