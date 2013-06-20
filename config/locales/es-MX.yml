@@ -391,6 +391,7 @@ es-MX:
   browse_projects: "Échale un ojo a los proyectos"
   browse_species_that_occur_near_this_observation: Busca especies que ocurran cerca de esta observación.
   browse_your_observations: "Échale un ojo a tus observaciones"
+  but_we_didnt_add_this_observation_to_the_x_project: "Esta observación no se añadio al proyecto %{project}, porque no aceptaste los terminos del proyetco."
   by: Por
   by_adding_ids_to_observations: "Añadiendo identificación a las observaciones"
   by_editedby: "por  %{editedby}"
@@ -549,7 +550,7 @@ es-MX:
   copy_and_paste_this_into_your_own_html: "Copia y pega esto en tu propio HTML."
   copyright:
       some_rights_reserved_by: (c) %{name}, algunos derechos reservados (%{license_short})
-      all_rigths_reserved: (c) %{name}, todos los derechos reservados
+      all_rights_reserved: (c) %{name}, todos los derechos reservados
       no_known_copyright_restrictions: "%{name}, sin restricciones conocidas de derechos (%{license_name})"
       anonymous: anónimo
       public_domain: dominio publico
@@ -758,10 +759,8 @@ es-MX:
   did_you_photos_flickr?: "¿Pusiste algunas fotos en Flickr?"
   disagree: "En desacuerdo"
   disconnect_provider: "Desconecta  %{provider}"
-  do: los(as)
   do_you_know_where_this_species_lives: "¿Sabes en donde vive esta especie?"
   do_you_study_nematodes_worlds_foremost_expert_barnacle: "¿Estudiaste a los nemátodos? ¿Eres uno de los expertos mundiales en la taxonomía de los percebes? ¿Te gusta admirar flores bonitas? La descripción en tu perfil proporciona personalidad y ayuda a establecer tu credibilidad cuando ayudas a otras personas a las identificaciones."
-  does: el(la)
   does_the_location_seem_accurate: "¿Parece precisa la ubicación?"
   doesnt_have_default_photo: "Todavía no tiene foto predeterminada"
   doh_something_went_wrong: "Algo no sucedió bien."
@@ -6380,7 +6379,9 @@ es-MX:
   hate_me_facebook: "Desenlaza tu cuenta de Facebook y de  %{site_name} "
   hate_me_flickr: "Desenlaza tus cuentas de Flickr y de %{site_name} "
   heads_up: Atención
+  heads_up_observation_search_can_only_load: "ATENCIÓN: La búsqueda de observaciones solo puede cargar como máximo 50 paginas"
   heads_up_this_observation_has_been_flagged: "ATENCIÓN: esta observación ha sido marcada "
+  heads_up_this_photo_is_already_associated_with: "ATENCIÓN: esta foto ya esta asociada con <a target='_blank' href='%{url}'>otra observación</a>"
   heads_up_this_taxon_locked_users_cant_add_descendants: "<strong>Atención:</strong>esta especie o grupo tienen candado, lo que significa que la mayoría de los usuarios no pueden añadir nuevos descendientes importando grupos. Los curadores pueden hacerlo editando grupos y seleccionando un grupo superior, pero por favor considera la opción de combinar grupos."
   heads_up_you_have_multiple: "Atención: tienes etiquetas taxonómicas múltiples para identificar rangos. Tienen código de color abajo del rango."
   hello: <prueba>
@@ -6581,7 +6582,6 @@ es-MX:
   lists: Listas
   lists_are_lists_of_species: "Las listas son listas de especies (u otros taxa), como una lista de vida de todas las aves que hayas visto, o la lista de tus salamandras favoritas. <em>No</em> son listas de observaciones."
   lists_come_in_three: "Las listas pueden ser de tres tipos:"
-  live: vive(n)
   load: Carga
   loading: Cargando...
   loading_flickr_photos: "Cargando fotos de Flickr..."
@@ -6759,6 +6759,7 @@ es-MX:
   no_summary_has_been_set: "No se ha incluido un resumen"
   no_taxa: "No hay taxa"
   no_taxa_listed: "No hay ningún grupo o especie en la lista"
+  no_taxa_selected: ¡No has seleccionado ninguna especie o grupo!
   no_taxa_yet: "¡Aún no hay taxa!"
   no_taxonomic_changes_match_those_criteria: No hay cambios taxonómicos con ese criterio de búsqueda
   no_wikipedia_page_for_taxon: "No hay página de Wikipedia para esta especie o grupo."
@@ -6831,6 +6832,7 @@ es-MX:
   observation_rights_html: "Observacion %{rights}"
   observation_rules_description: "Puedes escoger las reglas que determinan que observaciones pueden ser añadidas a este proyecto, y limitarlas a cierto lugar. Nota&#58; La limitación de lugares solo abarca los lugares de %{site_name}, y solo se pueden limitar las observaciones de acuerdo a los límites que rodean el lugar.\n"
   observation_would_like_some_help: "A %{user} agradecería su ayuda para identificar esto!"
+  observation_was_deleted: La observación fue borrada.
   observations: Observaciones
   observations_by_everyone: "Observaciones de todos"
   observations_by_user: "Observaciones de %{user}"
@@ -6838,6 +6840,7 @@ es-MX:
   observations_by_you_on_date: "Tus observaciones en %{date}"
   observations_circle_have_their_radii_scaled: "El radio de los círculos de observación es proporcional a la precisión de la ubicación. Las observaciones sin precisión de posición se muestran al mínimo tamaño."
   observations_confirmed: "Observaciones (confirmadas)"
+  observations_deleted: Las observaciones se han eliminado.
   observations_for_project: "Observaciones de %{project}"
   observations_from: "Observaciones de %{date}"
   observations_from_this_place: "Observaciones de este lugar"
@@ -6882,6 +6885,7 @@ es-MX:
   only_accepts_taxa: "Solo acepta taxa"
   only_country_state_and_county: "Solamente se presentan país, estado y municipio o equivalente. Has un zoom para ver lugares más pequeños."
   only_files_with_100_rows_at_a_time: "Solamente archivos con 100 líneas a la vez, por favor"
+  only_project_curators_can_do_that: Solo los curadores del proyecto pueden hacer eso.
   only_receive_updates_about_this_taxon: Solo recibir notificaciones de esta especie o grupo
   only_show_active_taxa: Solo muestra especies activas
   only_showing_taxa_from: "Solamente se muestra taxa de esta lista"
@@ -6937,6 +6941,7 @@ es-MX:
     large: larga
     original: original
   photos_size_photos: "%{photos_size} fotos"
+  photos_updated: Fotos actualizadas.
   picasa_identity: "Identificación de Picasa"
   pick_a_username: "Escoge un nombre de usuario"
   pink: Rosa
@@ -7041,6 +7046,7 @@ es-MX:
   powered_by_inaturalist_open_source_software_html: "Propulsado por <a href=\"https://github.com/inaturalist/inaturalist\" target=\"_new\" >iNaturalist</a> programa de código abierto"
   prev: Ant
   preview: "Vista previa"
+  preview_of_synced_observation: "<strong>Previo</strong> de la observación.  <a href=\"%{url}\">¿Revertir?</a>"
   preview_personal_message: "Me gustaría que participaras en en %{site}, un sitio web en donde puedes registrar tus observaciones de plantas y animales de México y el mundo, mantener una lista de las especies que has observado durante tu vida y ¡aprender sobre el mundo natural !"
   preview_your_message: "Vista previa del mensaje"
   previewing: "Vista previa..."
@@ -7257,7 +7263,12 @@ es-MX:
   something_went_wrong_updating: "¡Algo incorrecto sucedió al actualizar tu lista!"
   somewhere: En algún lugar...
   somewhere_on_earth: "En algún lugar del Planeta"
+  sorry_flickr_isnt_responding_at_the_moment: "Lo sentimos, Flickr de momento no esta respondiendo."
   sorry_how_about_we_try_repeat: "¡Disculpas! ¿Que tal si intentamos la búsqueda en otras bases de datos de nombres de especies? Si encontramos algo, lo guardaremos para que lo encuentres la próxima vez."
+  sorry_picasa_isnt_responding_at_the_moment: "Lo sentimos, Picasa de momento no esta respondiendo."
+  sorry_that_photo_provider_isnt_responding: Lo sentimos, esa foto de momento no esta respondiendo. Por favor inténtalo más tarde.
+  sorry_we_didnt_find_that_photo: "Lo sentimos, la foto no se encuentra"
+  sorry_we_dont_have_any_metadata_for_that_photo: "Lo sentimos, no tenemos ningún meta dato de la foto que se pueda utilizar para poner las características de la observación."
   source: Fuente
   source_list:
     ubio: uBio
@@ -7389,6 +7400,10 @@ es-MX:
   text_: Texto
   thanks_for_signing_up: "¡Gracias por inscribirte!"
   thanks_for_using: "Gracias por usar"
+  that_photo_doesnt_exist: Esa foto no existe.
+  that_observation_doesnt_have_any_photos: Esa observación no tiene ninguna foto.
+  that_observation_no_longer_exists: Esa observació ya no existe.
+  that_project_doesnt_exist: Ese proyecto ya no existe.
   that_will_insert_a_link_to: "que insertará un enlace en esta herramienta en cada página de fotos de Flickr"
   thats_okay_we_forget: "¡No hay problema! Nosotros también olvidamos la nuestra. Envíanos la dirección de correo electrónico que usaste para crear tu cuenta y te enviaremos un enlace para volver a cargar tu contraseña."
   the: El
@@ -7472,6 +7487,7 @@ es-MX:
   this_will_try_to_add_tags_to_your_flickr: "Esto intentará añadir etiquetas a tus fotos de Flickr. ¿Continuas?"
   this_will_update_all_last_observations: "Esto actualizará todas las últimas observaciones y añadirá nuevos taxa de"
   those_are_the_basics_of: "¡Esas son las bases para añadir observaciones! Hay muchas otras cosas que puedes hacer, como buscar y filtrar tus observaciones o editarlas en grupo, pero son fáciles de entender cuando las practicas."
+  those_observations_no_longer_exist: Esas observaciones ya no existen.
   threatened: En riesgo
   thu: Jue
   time: 
@@ -7868,8 +7884,9 @@ es-MX:
   when_did_you_see_it?: "¿Cuándo lo viste?"
   when_did_you_see_them?: <em>¿Cuándo</em> los viste?
   where: Dónde
-  where_: ¿En que parte
   where_did_you_see_it: "¿Dónde lo viste?"
+  where_do_x_live: ¿Donde viven los %{taxa}?
+  where_does_x_live: ¿Donde vive el %{taxa}?
   where_were_they?: <em>¿Dónde</em> se encontraban?
   where_were_you?: <em>¿Dónde</em> estabas?
   white: Blanco
@@ -7957,6 +7974,7 @@ es-MX:
   you_havent_linked_your_inaturalist_picasa_account: "Todavía no has enlazado tu cuenta de %{site_name} a tu cuenta de  Picasa"
   you_havent_observed_any_species: "¡Todavía no has observado ninguna especie esta lista! Inténtalo"
   you_may_have: 'que puedas tener. Probablemente solo funcione en buscadores modernos:'
+  you_must_select_a_csv_file_to_upload: Debes seleccionar un archivo CSV para subir.
   you_need_to_have_linked_flickr_account: "Necesitas tener enlazada tu cuenta Flickr para etiquetar tus fotos."
   you_need_to_select_some_observations_first: "Primero, necesitas seleccionar algunas observaciones."
   you_retain_full_copyright: "Tú retienes los derechos de autor sobre tu contenido con reserva de los que conferiste a %{site_name} en nuestras Condiciones de Servicio."
@@ -7992,6 +8010,7 @@ es-MX:
   your_new_password_is: "Tu nueva contraseña es"
   your_observation_wont_get: "Tu observación no será asociada con otras observaciones de esta especie, y tu lista de vida no será actualizada."
   your_observations: "Tus observaciones"
+  your_observations_couldnt_be_added_to_that_project: "Tus observaciones no pueden ser añadidas a este proyecto: %{errors}"
   your_picasa_account: "Tu cuenta de Picasa"
   your_picasa_account_info: "La información de tu cuenta de Picasa"
   your_should_recognize: "Deberías reconocer algunas de estas fotos"
