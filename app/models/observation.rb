@@ -953,7 +953,7 @@ class Observation < ActiveRecord::Base
   # Trim whitespace around species guess
   #
   def strip_species_guess
-    self.species_guess.strip! unless species_guess.nil?
+    self.species_guess.to_s.strip! unless species_guess.blank?
     true
   end
   
