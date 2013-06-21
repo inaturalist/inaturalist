@@ -125,17 +125,25 @@
                   <%= o.text_field :tag_list, :class => "text", :style => "margin-top: 8px" %>
                 </div>
                 
-                <%= o.label :geoprivacy, "Geoprivacy" %>
-                <%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %>
-                <span class="geoprivacy_tip_target description helptip" rel="#geoprivacy_<%= i %>_tip"></span>
-                <div id="geoprivacy_<%= i %>_tip" class="geoprivacy_tip" style="display:none">
-                  <dl>
-                    <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
-                      <dt><%= privacy || "open" %></dt>
-                      <dd><%= description %></dd>
-                    <% end %>
-                  </dl>
+                <div class="stacked">
+                  <%= o.label :geoprivacy, "Geoprivacy" %>
+                  <%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %>
+                  <span class="geoprivacy_tip_target description helptip" rel="#geoprivacy_<%= i %>_tip"></span>
+                  <div id="geoprivacy_<%= i %>_tip" class="geoprivacy_tip" style="display:none">
+                    <dl>
+                      <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
+                        <dt><%= privacy || "open" %></dt>
+                        <dd><%= description %></dd>
+                      <% end %>
+                    </dl>
+                  </div>
                 </div>
+
+                <div><label><%= t(:was_it_captive_cultivated?) %></label></div>
+                <%= o.radio_button :captive, 1 %> <%= o.label :captive, t(:yes), :value => 1 %>
+                <%= o.radio_button :captive, 0 %> <%= o.label :captive, t(:no), :value => 0 %>
+                <%= o.radio_button :captive, nil %> <%= o.label :captive, t(:unknown), :value => nil %>
+
               </div>
               <div class="last column span-20">
                 <label><%= t :more_fields %></label><br/>

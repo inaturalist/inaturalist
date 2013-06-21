@@ -73,7 +73,7 @@
         </div>
         
         <div class="last column prepend-1 span-21">
-          <%= link_to_toggle "More fields", "#morebatchcontrols" %>
+          <%= link_to_toggle t(:more_fields), "#morebatchcontrols" %>
           <div id="morebatchcontrols" style="display:none;">
             <table>
               <tr class="inline buttonrow">
@@ -84,13 +84,22 @@
               <tr class="inline buttonrow">
                 <td><%= o.label :geoprivacy, t(:geoprivacy) %></td>
                 <td><%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %></td>
-                <td><%= link_to_function "Apply geoprivacy &darr;".html_safe, "applyBatch(['geoprivacy'])", :class => "default button" %></td>
+                <td><%= link_to_function "#{t :apply_geoprivacy} &darr;".html_safe, "applyBatch(['geoprivacy'])", :class => "default button" %></td>
+              </tr>
+              <tr class="inline buttonrow">
+                <td><label><%= t(:was_it_captive_cultivated?) %></label></td>
+                <td>
+                  <%= o.radio_button :captive, 1 %> <%= o.label :captive, t(:yes), :value => 1 %>
+                  <%= o.radio_button :captive, 0 %> <%= o.label :captive, t(:no), :value => 0 %>
+                  <%= o.radio_button :captive, nil %> <%= o.label :captive, t(:unknown), :value => nil %>
+                </td>
+                <td><%= link_to_function "#{t :apply_captive_cultivated} &darr;".html_safe, "applyBatch(['captive'])", :class => "default button" %></td>
               </tr>
               <tr>
                 <td colspan="2">
                   <%= render 'observation_field_form_fields', :builder => o %>
                 </td>
-                <td class="inline buttonrow"><%= link_to_function "Apply fields &darr;".html_safe, "batchObservationFields()", :class => "default button nobr" %></td>
+                <td class="inline buttonrow"><%= link_to_function "#{t :apply_fields} &darr;".html_safe, "batchObservationFields()", :class => "default button nobr" %></td>
               </tr>
             </table>
           </div>

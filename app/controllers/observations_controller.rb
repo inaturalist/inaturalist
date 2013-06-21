@@ -925,13 +925,15 @@ class ObservationsController < ApplicationController
   # Edit a batch of observations
   def edit_batch
     observation_ids = params[:o].is_a?(String) ? params[:o].split(',') : []
-    @observations = Observation.all(
-      :conditions => [
-        "id in (?) AND user_id = ?", observation_ids, current_user])
+    @observations = Observation.where("id in (?) AND user_id = ?", observation_ids, current_user).
+      includes(:quality_metrics, {:observation_photos => :photo}, :taxon)
     @observations.map do |o|
       if o.coordinates_obscured?
         o.latitude = o.private_latitude
         o.longitude = o.private_longitude
+      end
+      if qm = o.quality_metrics.detect{|qm| qm.user_id == o.user_id}
+        o.captive = qm.metric == QualityMetric::WILD && !qm.agree? ? 1 : 0
       end
       o
     end

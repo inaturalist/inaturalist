@@ -1,8 +1,19 @@
 function applyBatch(inputNames) {
   $.each(inputNames, function() {
-    var batchVal = $('#batchform :input[name="observation['+this+']"]').val()
+    var checkedInput, input = $('#batchform :input[name="observation['+this+']"]')
+    if (input.length > 1) { 
+      checkedInput = $('#batchform :input[name="observation['+this+']"]:checked')
+      if (checkedInput.length > 0) {
+        input = checkedInput
+      }
+    }
+    var batchVal = input.val()
     if ($.trim(batchVal) != '') {
-      $('#batchcol :input[name*="['+this+']"]').val(batchVal)
+      if (checkedInput) {
+        $('#batchcol :input[name*="['+this+']"][value='+batchVal+']').click()
+      } else {
+        $('#batchcol :input[name*="['+this+']"]').val(batchVal)
+      }
     }
   })
 }
