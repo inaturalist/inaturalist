@@ -599,7 +599,7 @@ module ApplicationHelper
           c + link_to(t(:some_rights_reserved), url_for_license(record.license))
         end
       end
-    elsif record.is_a? Photo
+    elsif record.is_a?(Photo) || record.is_a?(Sound)
       if record.user.blank?
         s = record.attribution
       else

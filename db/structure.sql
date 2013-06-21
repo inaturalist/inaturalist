@@ -11360,6 +11360,36 @@ CREATE TABLE observations_posts (
 
 
 --
+-- Name: observations_sounds; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observations_sounds (
+    id integer NOT NULL,
+    observation_id integer,
+    sound_id integer
+);
+
+
+--
+-- Name: observations_sounds_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE observations_sounds_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observations_sounds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE observations_sounds_id_seq OWNED BY observations_sounds.id;
+
+
+--
 -- Name: passwords; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -12031,6 +12061,78 @@ CREATE SEQUENCE slugs_id_seq
 --
 
 ALTER SEQUENCE slugs_id_seq OWNED BY friendly_id_slugs.id;
+
+
+--
+-- Name: soundcloud_identities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE soundcloud_identities (
+    id integer NOT NULL,
+    native_username character varying(255),
+    native_realname character varying(255),
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: soundcloud_identities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE soundcloud_identities_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: soundcloud_identities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE soundcloud_identities_id_seq OWNED BY soundcloud_identities.id;
+
+
+--
+-- Name: sounds; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sounds (
+    id integer NOT NULL,
+    user_id integer,
+    native_username character varying(255),
+    native_realname character varying(255),
+    native_sound_id character varying(255),
+    native_page_url character varying(255),
+    license integer,
+    type character varying(255),
+    sound_url character varying(255),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    native_response text
+);
+
+
+--
+-- Name: sounds_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sounds_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sounds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sounds_id_seq OWNED BY sounds.id;
 
 
 --
@@ -13134,6 +13236,13 @@ ALTER TABLE observations ALTER COLUMN id SET DEFAULT nextval('observations_id_se
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE observations_sounds ALTER COLUMN id SET DEFAULT nextval('observations_sounds_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE passwords ALTER COLUMN id SET DEFAULT nextval('passwords_id_seq'::regclass);
 
 
@@ -13247,6 +13356,20 @@ ALTER TABLE roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regclass);
 --
 
 ALTER TABLE rules ALTER COLUMN id SET DEFAULT nextval('rules_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE soundcloud_identities ALTER COLUMN id SET DEFAULT nextval('soundcloud_identities_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE sounds ALTER COLUMN id SET DEFAULT nextval('sounds_id_seq'::regclass);
 
 
 --
@@ -13710,6 +13833,14 @@ ALTER TABLE ONLY observations
 
 
 --
+-- Name: observations_sounds_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY observations_sounds
+    ADD CONSTRAINT observations_sounds_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: passwords_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -13851,6 +13982,22 @@ ALTER TABLE ONLY rules
 
 ALTER TABLE ONLY friendly_id_slugs
     ADD CONSTRAINT slugs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: soundcloud_identities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY soundcloud_identities
+    ADD CONSTRAINT soundcloud_identities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sounds_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sounds
+    ADD CONSTRAINT sounds_pkey PRIMARY KEY (id);
 
 
 --
@@ -14617,6 +14764,20 @@ CREATE INDEX index_observations_posts_on_post_id ON observations_posts USING btr
 
 
 --
+-- Name: index_observations_sounds_on_observation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_sounds_on_observation_id ON observations_sounds USING btree (observation_id);
+
+
+--
+-- Name: index_observations_sounds_on_sound_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_sounds_on_sound_id ON observations_sounds USING btree (sound_id);
+
+
+--
 -- Name: index_observations_user_datetime; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -14880,6 +15041,20 @@ CREATE UNIQUE INDEX index_slugs_on_n_s_s_and_s ON friendly_id_slugs USING btree 
 --
 
 CREATE INDEX index_slugs_on_sluggable_id ON friendly_id_slugs USING btree (sluggable_id);
+
+
+--
+-- Name: index_sounds_on_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_sounds_on_type ON sounds USING btree (type);
+
+
+--
+-- Name: index_sounds_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_sounds_on_user_id ON sounds USING btree (user_id);
 
 
 --
@@ -15625,5 +15800,11 @@ INSERT INTO schema_migrations (version) VALUES ('20130523203022');
 INSERT INTO schema_migrations (version) VALUES ('20130603221737');
 
 INSERT INTO schema_migrations (version) VALUES ('20130603234330');
+
+INSERT INTO schema_migrations (version) VALUES ('20130604012213');
+
+INSERT INTO schema_migrations (version) VALUES ('20130607221500');
+
+INSERT INTO schema_migrations (version) VALUES ('20130611025612');
 
 INSERT INTO schema_migrations (version) VALUES ('20130613223707');

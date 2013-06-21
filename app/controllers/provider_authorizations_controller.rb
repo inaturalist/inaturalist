@@ -4,7 +4,7 @@ class ProviderAuthorizationsController < ApplicationController
 
   # change the /auth/:provider/callback route to point to this if you want to examine the rack data returned by omniauth
   def auth_callback_test
-    # render(:text=>request.env['omniauth.auth'].to_yaml)
+    #render(:json=>request.env['omniauth.auth'].to_json)
   end
 
   def failure

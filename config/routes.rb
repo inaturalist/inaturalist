@@ -111,6 +111,7 @@ Inaturalist::Application.routes.draw do
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
   match 'flickr/photos.:format' => 'flickr#photos', :via => :get
+  resources :soundcloud_sounds, :only => [:index]
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'fields', :as => 'extra_fields'
@@ -131,6 +132,7 @@ Inaturalist::Application.routes.draw do
   match 'observations/delete_batch' => 'observations#delete_batch', :as => :delete_observation_batch, :via => :delete
   match 'observations/import' => 'observations#import', :as => :import_observations
   match 'observations/import_photos' => 'observations#import_photos', :as => :import_photos
+  post 'observations/import_sounds' => 'observations#import_sounds', :as => :import_sounds
   match 'observations/id_please' => 'observations#id_please', :as => :id_please, :via => :get
   match 'observations/selector' => 'observations#selector', :as => :observation_selector, :via => :get
   match '/observations/curation' => 'observations#curation', :as => :curate_observations

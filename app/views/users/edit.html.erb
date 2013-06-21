@@ -134,6 +134,18 @@
             :description =>t(:you_retain_full_copyright_over_your_content, :site_name => SITE_NAME_SHORT) %>
           <%= f.check_box :make_photo_licenses_same, :label => t(:update_existing_photos_with_new_license), :label_after => true %>
         </div>
+
+        <div class="last column span-9 verticalmiddle licensechoices">
+          <h4><%= t(:default_sound_license) %></h4>
+          <% for code, name, description in Observation::LICENSES %>
+            <%= f.radio_button :preferred_sound_license, code, 
+              :id => "preferred_sound_license_#{code.to_s.parameterize}",
+              :label => "#{image_tag("#{code}.png")} #{t(name)}", :label_after => true %>
+          <% end %>
+          <%= f.radio_button :preferred_sound_license, nil, :label => t(:no_license_all_rights_reserved), :label_after => true,
+            :description =>t(:you_retain_full_copyright_over_your_content, :site_name => SITE_NAME_SHORT) %>
+          <%= f.check_box :make_sound_licenses_same, :label => t(:update_existing_sounds_with_new_license), :label_after => true %>
+        </div>
         
         <div class="last column span-18">
           <%= link_to_function "<span class='helptip'></span> About these licenses".html_safe, 
