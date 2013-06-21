@@ -979,7 +979,7 @@ function setPreference(pref, value) {
   $.ajax(url, {
     type: 'POST',
     data: data,
-    dataType: 'json',    
+    dataType: 'json'    
   })
 }
 
