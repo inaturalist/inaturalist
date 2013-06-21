@@ -515,7 +515,7 @@
       </ul>
       <% if @taxon.locked? -%>
         <div class="notice">
-          <%= t(:heads_up_this_taxon_locked_users_cant_add_descendants) %>
+          <%= t(:heads_up_this_taxon_locked_users_cant_add_descendants).html_safe %>
         </div>
       <% end -%>
     </div>

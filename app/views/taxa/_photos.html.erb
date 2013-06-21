@@ -7,13 +7,13 @@
     <% if [Photo, Photo.descendent_classes].flatten.include?(photos[0].class) %>
       <%= photos.first.id ? modal_image(photos.first, :size => :medium) : link_to(image_tag(photos.first.medium_url || photos.first.small_url), photos.first.native_page_url) %>
       <div class="clear description" style="clear: both">
-        Photo: <%= link_to photos[0].attribution, native_url_for_photo(photos[0]) %>
+        <%= t(:photo).titleize %>: <%= link_to photos[0].attribution, native_url_for_photo(photos[0]) %>
       </div>
     <% else %>
       <% photo_url = "http://flickr.com/photos/#{photos[0].photo_xml[:owner]}/#{photos[0].id}" %>
       <%= link_to image_tag(photos[0].source_url(:medium)), photo_url %>
       <div class="description">
-        Photo: <%= link_to t(:view_original_ccD_photo, :owner => "#{photos[0].photo_xml[:ownername]}"), photos[0].page_url %>
+        <%= t(:photo).titleize %>: <%= link_to t(:view_original_ccD_photo, :owner => "#{photos[0].photo_xml[:ownername]}"), photos[0].page_url %>
       </div>
     <% end %>
   <% else %>
@@ -25,7 +25,7 @@
         <% else %>
           <% photo_url = "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}" %>
           <a href="<%= photo_url %>" class="<%= photo_pos_class %>">
-            <%= image_tag(photo.source_url(:square), :width => 75, :height => 75, :title => "Photo: #{photo.photo_xml['ownername']}") %>
+            <%= image_tag(photo.source_url(:square), :width => 75, :height => 75, :title => "#{t(:photo).titleize}: #{photo.photo_xml['ownername']}") %>
           </a>
         <% end %>
       <% end %>
@@ -64,7 +64,7 @@
         <% else %>
           <% photo_url = "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}" %>
           <a href="<%= photo_url %>" class="<%= photo_pos_class %>">
-            <%= image_tag(photo.source_url(:square), :width => 75, :height => 75, :title => "Photo: #{photo.photo_xml['ownername']}") %>
+            <%= image_tag(photo.source_url(:square), :width => 75, :height => 75, :title => "#{t(:photo).titleize}: #{photo.photo_xml['ownername']}") %>
           </a>
         <% end %>
       <% end %>

@@ -2,13 +2,11 @@
   <span class="close corner">&times;</span>
   <h3>
     <%- default_name = @taxon.default_name -%>
-    Where
     <% if default_name.is_scientific_names? %>
-    does <%= @taxon.default_name.name %>
+    <%= t(:where_does_x_live, :taxa => @taxon.default_name.name) %>
     <% else %>
-    do <%= @taxon.default_name.name.pluralize %>
+    <%= t(:where_do_x_live, :taxa => @taxon.default_name.name.pluralize) %>
     <% end %>
-    live?
   </h3>
   <div id="place_selector" class="ui-tabs">
     
@@ -26,7 +24,7 @@
         <div class="clear buttonrow">
           <%= text_field_tag :q, '', :class => 'text', :id => dom_id(@taxon, 'place_selector_q') %>
           <%= submit_tag t(:find_places), :class => 'button', :id => dom_id(@taxon, 'place_selector_q'),
-            "data-loading=-click" => "Searching..."%>
+            "data-loading=-click" => t(:searching) %>
         </div>
       <% end %>
       <ul id="<%= dom_id(@taxon, 'place_selector_places') %>" style="margin: 0" class="place_selector_places"></ul>
@@ -38,7 +36,7 @@
           :method => :post,
           :remote => true do %>
         <textarea name="paste_places" class="stacked"></textarea>
-        <%= submit_tag "Add Countries", :class => "default button", "data-loading-click" => t(:adding) %>
+        <%= submit_tag t(:add_countries), :class => "default button", "data-loading-click" => t(:adding) %>
       <% end %>
       <ul id="<%= dom_id(@taxon, 'place_selector_paste_places') %>" class="places">
         <li class="description" style="list-style: none">

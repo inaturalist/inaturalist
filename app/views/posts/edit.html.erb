@@ -14,7 +14,7 @@
     <% if @post.parent.is_a?(Project) -%>
       <%= link_to @post.parent.title, @post.parent %>'s journal
     <% else %>
-      <%= link_to t(:your).downcase + ' ' + t(:journal).downcase, journal_by_login_path(current_user.login) %>
+      <%= link_to t(:your).downcase.singularize + ' ' + t(:journal).downcase, journal_by_login_path(current_user.login) %>
     <% end -%>
   </div>
 </div>

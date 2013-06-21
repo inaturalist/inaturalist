@@ -21,9 +21,11 @@
     
     <% unless @iconic_taxa.blank? %>
       <span class="description">| </span>
-      <%= @iconic_taxa.map do |it|
-        link_to(default_taxon_name(it, :use_iconic_taxon_display_name => true), it, :class => "taxon #{it.name}")
-      end.join(', ') %>
+      <%- @iconic_taxa.map do |it| -%>
+
+        <%= link_to(t("all_taxa.#{default_taxon_name(it, :use_iconic_taxon_display_name => true).gsub(' ','_').gsub('-','_').downcase}",
+                        :default => default_taxon_name(it, :use_iconic_taxon_display_name => true)), it, :class => "taxon #{it.name}") %>
+      <%- end.join(', ') -%>
     <% end %>
     
     <% unless @colors.blank? %>
@@ -80,7 +82,7 @@
       </div>
     </div>
   <% end %>
-  
+
   <% unless @faceted_colors.blank? && @colors.blank? -%>
     <div id="colors_facet" class="facet">
       <strong>
@@ -110,7 +112,7 @@
               <%= link_to "+", url_for_params(:colors => (@color_ids + [color.id]).uniq.join(','), :without => :page), :rel => "nofollow", :class => 'right' %>
             <% end %>
             <%= link_to "&nbsp;".html_safe, url_for_params(:colors => color.id, :without => :page), :rel => "nofollow", :class => 'icon' %>
-            <%= link_to color.value, url_for_params(:colors => color.id, :without => :page), :rel => "nofollow" %>
+            <%= link_to t(color.value, :default=>color.value), url_for_params(:colors => color.id, :without => :page), :rel => "nofollow" %>
             (<span class="count"><%= number_with_delimiter @facets[:colors][color.id] %></span>)
           </div>
         <% end %>
