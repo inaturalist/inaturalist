@@ -651,7 +651,7 @@ class TaxaController < ApplicationController
     else
       Observation.search(params[:q], :page => params[:page], :per_page => per_page, :with => {:has_photos => true})
     end
-    @photos = observations.map(&:photos).flatten
+    @photos = observations.compact.map(&:photos).flatten
     render :partial => 'photos/photo_list_form', :locals => {
       :photos => @photos, 
       :index => params[:index],
