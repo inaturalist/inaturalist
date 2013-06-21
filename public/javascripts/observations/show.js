@@ -32,14 +32,9 @@ $(document).ready(function() {
       var sounds_height = $('#sounds').height() - $('#sounds .moresounds').height() - $('#sounds .meta').height();
       var newWidth, newHeight;
       
-      if (photos_height) {
-        newWidth = $('#where-and-photos').width() - $("#photos").width()
-        newHeight = photos_height;
-        $('#sounds').width($('#where-and-photos').width() - 8).css({'max-width':"1000px", 'margin-left': '0px','margin-top':'10px'})
-      } else if (sounds_height) {
-        newWidth = $('#where-and-photos').width() - $("#sounds").width()
-        newHeight = sounds_height;
-      }
+      if (photos_height && sounds_height) { newHeight = sounds_height + $('#photos').height() }
+      else if (photos_height) { newHeight = photos_height }
+      else if (sounds_height) { newHeight = sounds_height - 10 }
       if (newWidth) {
         newWidth -= 11;
         $('#where').width(newWidth);

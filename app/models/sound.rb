@@ -171,5 +171,4 @@ class Sound < ActiveRecord::Base
     sound_taxa.detect(&:species_or_lower?) || sound_taxa.first
   end
 
-
 end

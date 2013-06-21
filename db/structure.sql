@@ -4,22 +4,16 @@
 
 SET statement_timeout = 0;
 SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
+SET standard_conforming_strings = off;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET escape_string_warning = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+-- Name: plpgsql; Type: PROCEDURAL LANGUAGE; Schema: -; Owner: -
 --
 
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+CREATE OR REPLACE PROCEDURAL LANGUAGE plpgsql;
 
 
 SET search_path = public, pg_catalog;
@@ -939,7 +933,7 @@ BEGIN
 
 
 	-- Verify dimension
-	IF ( (new_dim >4) OR (new_dim <2) ) THEN
+	IF ( (new_dim >4) OR (new_dim <0) ) THEN
 		RAISE EXCEPTION 'invalid dimension';
 		RETURN 'fail';
 	END IF;
@@ -1945,7 +1939,7 @@ BEGIN
 		' f_table_name = ' || quote_literal(table_name);
 
 	-- Remove table
-	EXECUTE 'DROP TABLE IF EXISTS '
+	EXECUTE 'DROP TABLE '
 		|| quote_ident(real_schema) || '.' ||
 		quote_ident(table_name);
 
@@ -2914,7 +2908,7 @@ CREATE FUNCTION geomfromwkb(bytea) RETURNS geometry
 
 CREATE FUNCTION geomfromwkb(bytea, integer) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT ST_SetSRID(GeomFromWKB($1), $2)$_$;
+    AS $_$SELECT setSRID(GeomFromWKB($1), $2)$_$;
 
 
 --
@@ -4325,9 +4319,9 @@ BEGIN
 	RAISE DEBUG 'Processing table %.%.%', gcs.nspname, gcs.relname, gcs.attname;
 
 	DELETE FROM geometry_columns
-	  WHERE f_table_schema = gcs.nspname
-	  AND f_table_name = gcs.relname
-	  AND f_geometry_column = gcs.attname;
+	  WHERE f_table_schema = quote_ident(gcs.nspname)
+	  AND f_table_name = quote_ident(gcs.relname)
+	  AND f_geometry_column = quote_ident(gcs.attname);
 
 	gc_is_valid := true;
 
@@ -4379,7 +4373,7 @@ BEGIN
 		 AND s.consrc LIKE '%ndims(% = %');
 	IF (gndims IS NULL) THEN
 		-- Try to find ndims from the geometry itself
-		EXECUTE 'SELECT st_ndims(' || quote_ident(gcs.attname) || ') As ndims
+		EXECUTE 'SELECT ndims(' || quote_ident(gcs.attname) || ')
 				 FROM ONLY ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
 				 WHERE ' || quote_ident(gcs.attname) || ' IS NOT NULL LIMIT 1'
 			INTO gc;
@@ -4390,10 +4384,10 @@ BEGIN
 			BEGIN
 				EXECUTE 'ALTER TABLE ONLY ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
 						 ADD CONSTRAINT ' || quote_ident('enforce_dims_' || gcs.attname) || '
-						 CHECK (st_ndims(' || quote_ident(gcs.attname) || ') = '||gndims||')';
+						 CHECK (ndims(' || quote_ident(gcs.attname) || ') = '||gndims||')';
 			EXCEPTION
 				WHEN check_violation THEN
-					RAISE WARNING 'Not inserting ''%'' in ''%.%'' into geometry_columns: could not apply constraint CHECK (st_ndims(%) = %)', quote_ident(gcs.attname), quote_ident(gcs.nspname), quote_ident(gcs.relname), quote_ident(gcs.attname), gndims;
+					RAISE WARNING 'Not inserting ''%'' in ''%.%'' into geometry_columns: could not apply constraint CHECK (ndims(%) = %)', quote_ident(gcs.attname), quote_ident(gcs.nspname), quote_ident(gcs.relname), quote_ident(gcs.attname), gndims;
 					gc_is_valid := false;
 			END;
 		END IF;
@@ -4413,7 +4407,7 @@ BEGIN
 		 AND s.consrc LIKE '%geometrytype(% = %');
 	IF (gtype IS NULL) THEN
 		-- Try to find geotype from the geometry itself
-		EXECUTE 'SELECT geometrytype(' || quote_ident(gcs.attname) || ') As geometrytype
+		EXECUTE 'SELECT geometrytype(' || quote_ident(gcs.attname) || ')
 				 FROM ONLY ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
 				 WHERE ' || quote_ident(gcs.attname) || ' IS NOT NULL LIMIT 1'
 			INTO gc;
@@ -4470,24 +4464,19 @@ BEGIN
 	LOOP
 		RAISE DEBUG 'Processing view %.%.%', gcs.nspname, gcs.relname, gcs.attname;
 
-	DELETE FROM geometry_columns
-	  WHERE f_table_schema = gcs.nspname
-	  AND f_table_name = gcs.relname
-	  AND f_geometry_column = gcs.attname;
-	  
-		EXECUTE 'SELECT st_ndims(' || quote_ident(gcs.attname) || ') As ndims
+		EXECUTE 'SELECT ndims(' || quote_ident(gcs.attname) || ')
 				 FROM ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
 				 WHERE ' || quote_ident(gcs.attname) || ' IS NOT NULL LIMIT 1'
 			INTO gc;
 		gndims := gc.ndims;
 
-		EXECUTE 'SELECT st_srid(' || quote_ident(gcs.attname) || ') As srid
+		EXECUTE 'SELECT srid(' || quote_ident(gcs.attname) || ')
 				 FROM ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
 				 WHERE ' || quote_ident(gcs.attname) || ' IS NOT NULL LIMIT 1'
 			INTO gc;
 		gsrid := gc.srid;
 
-		EXECUTE 'SELECT geometrytype(' || quote_ident(gcs.attname) || ') As geometrytype
+		EXECUTE 'SELECT geometrytype(' || quote_ident(gcs.attname) || ')
 				 FROM ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
 				 WHERE ' || quote_ident(gcs.attname) || ' IS NOT NULL LIMIT 1'
 			INTO gc;
@@ -4691,7 +4680,7 @@ CREATE FUNCTION postgis_proj_version() RETURNS text
 
 CREATE FUNCTION postgis_scripts_build_date() RETURNS text
     LANGUAGE sql IMMUTABLE
-    AS $$SELECT '2013-05-31 17:21:06'::text AS version$$;
+    AS $$SELECT '2011-03-03 00:45:57'::text AS version$$;
 
 
 --
@@ -4700,7 +4689,7 @@ CREATE FUNCTION postgis_scripts_build_date() RETURNS text
 
 CREATE FUNCTION postgis_scripts_installed() RETURNS text
     LANGUAGE sql IMMUTABLE
-    AS $$SELECT '1.5 r10612'::text AS version$$;
+    AS $$SELECT '1.5 r5976'::text AS version$$;
 
 
 --
@@ -4767,7 +4756,7 @@ BEGIN
 		AND sridcheck.connamespace = n.oid
 		AND typecheck.connamespace = n.oid
 		AND sridcheck.conrelid = c.oid
-		AND sridcheck.consrc LIKE '(%srid('||a.attname||') = %)'
+		AND sridcheck.consrc LIKE '(srid('||a.attname||') = %)'
 		AND typecheck.conrelid = c.oid
 		AND typecheck.consrc LIKE
 		'((geometrytype('||a.attname||') = ''%''::text) OR (% IS NULL))'
@@ -6268,7 +6257,7 @@ CREATE FUNCTION st_dump(geometry) RETURNS SETOF geometry_dump
 --
 
 CREATE FUNCTION st_dumppoints(geometry) RETURNS SETOF geometry_dump
-    LANGUAGE sql STRICT
+    LANGUAGE sql
     AS $_$
   SELECT * FROM _ST_DumpPoints($1, NULL);
 $_$;
@@ -8943,7 +8932,7 @@ BEGIN
 		SELECT INTO real_schema current_schema()::text;
 	END IF;
 
-	-- Ensure that column_name is in geometry_columns
+	-- Find out if the column is in the geometry_columns table
 	okay = 'f';
 	FOR myrec IN SELECT * from geometry_columns where f_table_schema = text(real_schema) and f_table_name = table_name and f_geometry_column = column_name LOOP
 		okay := 't';
@@ -8951,14 +8940,6 @@ BEGIN
 	IF (okay <> 't') THEN
 		RAISE EXCEPTION 'column not found in geometry_columns table';
 		RETURN 'f';
-	END IF;
-
-	-- Ensure that new_srid is valid
-	IF ( new_srid != -1 ) THEN
-		IF ( SELECT count(*) = 0 from spatial_ref_sys where srid = new_srid ) THEN
-			RAISE EXCEPTION 'invalid SRID: % not found in spatial_ref_sys', new_srid;
-			RETURN false;
-		END IF;
 	END IF;
 
 	-- Update ref from geometry_columns table
@@ -8980,14 +8961,14 @@ BEGIN
 	EXECUTE 'UPDATE ' || quote_ident(real_schema) ||
 		'.' || quote_ident(table_name) ||
 		' SET ' || quote_ident(column_name) ||
-		' = ST_SetSRID(' || quote_ident(column_name) ||
+		' = setSRID(' || quote_ident(column_name) ||
 		', ' || new_srid::text || ')';
 
 	-- Reset enforce_srid constraint
 	EXECUTE 'ALTER TABLE ' || quote_ident(real_schema) ||
 		'.' || quote_ident(table_name) ||
 		' ADD constraint ' || quote_ident(cname) ||
-		' CHECK (st_srid(' || quote_ident(column_name) ||
+		' CHECK (srid(' || quote_ident(column_name) ||
 		') = ' || new_srid::text || ')';
 
 	RETURN real_schema || '.' || table_name || '.' || column_name ||' SRID changed to ' || new_srid::text;
@@ -9635,7 +9616,7 @@ CREATE OPERATOR CLASS btree_geography_ops
     OPERATOR 3 =(geography,geography) ,
     OPERATOR 4 >=(geography,geography) ,
     OPERATOR 5 >(geography,geography) ,
-    FUNCTION 1 (geography, geography) geography_cmp(geography,geography);
+    FUNCTION 1 geography_cmp(geography,geography);
 
 
 --
@@ -9649,7 +9630,7 @@ CREATE OPERATOR CLASS btree_geometry_ops
     OPERATOR 3 =(geometry,geometry) ,
     OPERATOR 4 >=(geometry,geometry) ,
     OPERATOR 5 >(geometry,geometry) ,
-    FUNCTION 1 (geometry, geometry) geometry_cmp(geometry,geometry);
+    FUNCTION 1 geometry_cmp(geometry,geometry);
 
 
 --
@@ -9660,13 +9641,13 @@ CREATE OPERATOR CLASS gist_geography_ops
     DEFAULT FOR TYPE geography USING gist AS
     STORAGE gidx ,
     OPERATOR 3 &&(geography,geography) ,
-    FUNCTION 1 (geography, geography) geography_gist_consistent(internal,geometry,integer) ,
-    FUNCTION 2 (geography, geography) geography_gist_union(bytea,internal) ,
-    FUNCTION 3 (geography, geography) geography_gist_compress(internal) ,
-    FUNCTION 4 (geography, geography) geography_gist_decompress(internal) ,
-    FUNCTION 5 (geography, geography) geography_gist_penalty(internal,internal,internal) ,
-    FUNCTION 6 (geography, geography) geography_gist_picksplit(internal,internal) ,
-    FUNCTION 7 (geography, geography) geography_gist_same(box2d,box2d,internal);
+    FUNCTION 1 geography_gist_consistent(internal,geometry,integer) ,
+    FUNCTION 2 geography_gist_union(bytea,internal) ,
+    FUNCTION 3 geography_gist_compress(internal) ,
+    FUNCTION 4 geography_gist_decompress(internal) ,
+    FUNCTION 5 geography_gist_penalty(internal,internal,internal) ,
+    FUNCTION 6 geography_gist_picksplit(internal,internal) ,
+    FUNCTION 7 geography_gist_same(box2d,box2d,internal);
 
 
 --
@@ -9688,13 +9669,13 @@ CREATE OPERATOR CLASS gist_geometry_ops
     OPERATOR 10 <<|(geometry,geometry) ,
     OPERATOR 11 |>>(geometry,geometry) ,
     OPERATOR 12 |&>(geometry,geometry) ,
-    FUNCTION 1 (geometry, geometry) lwgeom_gist_consistent(internal,geometry,integer) ,
-    FUNCTION 2 (geometry, geometry) lwgeom_gist_union(bytea,internal) ,
-    FUNCTION 3 (geometry, geometry) lwgeom_gist_compress(internal) ,
-    FUNCTION 4 (geometry, geometry) lwgeom_gist_decompress(internal) ,
-    FUNCTION 5 (geometry, geometry) lwgeom_gist_penalty(internal,internal,internal) ,
-    FUNCTION 6 (geometry, geometry) lwgeom_gist_picksplit(internal,internal) ,
-    FUNCTION 7 (geometry, geometry) lwgeom_gist_same(box2d,box2d,internal);
+    FUNCTION 1 lwgeom_gist_consistent(internal,geometry,integer) ,
+    FUNCTION 2 lwgeom_gist_union(bytea,internal) ,
+    FUNCTION 3 lwgeom_gist_compress(internal) ,
+    FUNCTION 4 lwgeom_gist_decompress(internal) ,
+    FUNCTION 5 lwgeom_gist_penalty(internal,internal,internal) ,
+    FUNCTION 6 lwgeom_gist_picksplit(internal,internal) ,
+    FUNCTION 7 lwgeom_gist_same(box2d,box2d,internal);
 
 
 SET search_path = pg_catalog;
@@ -10103,6 +10084,20 @@ ALTER SEQUENCE counties_simplified_01_id_seq OWNED BY counties_simplified_01.id;
 
 
 --
+-- Name: counties_simplified_1; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE counties_simplified_1 (
+    id integer,
+    place_id integer,
+    geom geometry,
+    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
+);
+
+
+--
 -- Name: countries_large_polygons; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -10271,42 +10266,6 @@ ALTER SEQUENCE deleted_users_id_seq OWNED BY deleted_users.id;
 
 
 --
--- Name: flaggings; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE flaggings (
-    id integer NOT NULL,
-    user_id integer,
-    taxon_id integer,
-    reason character varying(255),
-    resolver_id integer,
-    resolved boolean DEFAULT false,
-    resolution_note character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: flaggings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE flaggings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: flaggings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE flaggings_id_seq OWNED BY flaggings.id;
-
-
---
 -- Name: flags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -10471,25 +10430,6 @@ CREATE TABLE friendly_id_slugs (
     scope character varying(255),
     created_at timestamp without time zone
 );
-
-
---
--- Name: friendly_id_slugs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE friendly_id_slugs_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: friendly_id_slugs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE friendly_id_slugs_id_seq OWNED BY friendly_id_slugs.id;
 
 
 --
@@ -10986,6 +10926,7 @@ CREATE TABLE listed_taxa (
     observations_month_counts character varying(255),
     taxon_range_id integer,
     source_id integer,
+    comprehensive boolean DEFAULT false,
     manually_added boolean DEFAULT false
 );
 
@@ -11369,8 +11310,8 @@ CREATE TABLE observations (
     private_longitude numeric(15,10),
     private_positional_accuracy integer,
     geoprivacy character varying(255),
-    geom geometry,
     quality_grade character varying(255) DEFAULT 'casual'::character varying,
+    geom geometry,
     user_agent character varying(255),
     positioning_method character varying(255),
     positioning_device character varying(255),
@@ -11382,8 +11323,10 @@ CREATE TABLE observations (
     cached_tag_list character varying(768) DEFAULT NULL::character varying,
     zic_time_zone character varying(255),
     oauth_application_id integer,
+    community_taxon_id integer,
     CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'POINT'::text) OR (geom IS NULL)))
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'POINT'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((srid(geom) = (-1)))
 );
 
 
@@ -12102,6 +12045,25 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: slugs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE slugs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: slugs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE slugs_id_seq OWNED BY friendly_id_slugs.id;
+
+
+--
 -- Name: soundcloud_identities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -12251,33 +12213,10 @@ CREATE TABLE states_simplified (
 --
 
 CREATE TABLE states_simplified_1 (
-    id integer NOT NULL,
-    place_geometry_id integer,
+    id integer,
     place_id integer,
-    geom geometry NOT NULL,
-    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
+    geom geometry
 );
-
-
---
--- Name: states_simplified_1_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE states_simplified_1_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: states_simplified_1_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE states_simplified_1_id_seq OWNED BY states_simplified_1.id;
 
 
 --
@@ -12441,8 +12380,8 @@ CREATE TABLE taxon_change_taxa (
     id integer NOT NULL,
     taxon_change_id integer,
     taxon_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -12476,8 +12415,8 @@ CREATE TABLE taxon_changes (
     source_id integer,
     user_id integer,
     type character varying(255),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     committed_on date,
     change_group character varying(255),
     committer_id integer
@@ -12699,8 +12638,8 @@ CREATE TABLE taxon_scheme_taxa (
     id integer NOT NULL,
     taxon_scheme_id integer,
     taxon_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
     source_identifier character varying(255),
     taxon_name_id integer
 );
@@ -12734,8 +12673,8 @@ CREATE TABLE taxon_schemes (
     title character varying(255),
     description text,
     source_id integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -12865,7 +12804,7 @@ CREATE TABLE users (
     state character varying(255) DEFAULT 'passive'::character varying,
     deleted_at timestamp without time zone,
     time_zone character varying(255),
-    description text,
+    description character varying(255),
     icon_file_name character varying(255),
     icon_content_type character varying(255),
     icon_file_size integer,
@@ -12906,51 +12845,6 @@ CREATE SEQUENCE users_id_seq
 --
 
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
-
-
---
--- Name: users_old; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE users_old (
-    id integer NOT NULL,
-    login character varying(255),
-    email character varying(255),
-    crypted_password character varying(40),
-    salt character varying(40),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone,
-    remember_token character varying(255),
-    remember_token_expires_at timestamp without time zone,
-    password_reset_code character varying(40),
-    description text,
-    favorite_thing_1 character varying(255),
-    favorite_thing_2 character varying(255),
-    favorite_thing_3 character varying(255),
-    time_zone character varying(255) DEFAULT 'UTC'::character varying,
-    icon_file_name character varying(255),
-    icon_content_type character varying(255),
-    icon_file_size integer
-);
-
-
---
--- Name: users_old_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE users_old_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: users_old_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE users_old_id_seq OWNED BY users_old.id;
 
 
 --
@@ -13062,581 +12956,560 @@ ALTER SEQUENCE wiki_pages_id_seq OWNED BY wiki_pages.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY announcements ALTER COLUMN id SET DEFAULT nextval('announcements_id_seq'::regclass);
+ALTER TABLE announcements ALTER COLUMN id SET DEFAULT nextval('announcements_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY assessment_sections ALTER COLUMN id SET DEFAULT nextval('assessment_sections_id_seq'::regclass);
+ALTER TABLE assessment_sections ALTER COLUMN id SET DEFAULT nextval('assessment_sections_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY assessments ALTER COLUMN id SET DEFAULT nextval('assessments_id_seq'::regclass);
+ALTER TABLE assessments ALTER COLUMN id SET DEFAULT nextval('assessments_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY colors ALTER COLUMN id SET DEFAULT nextval('colors_id_seq'::regclass);
+ALTER TABLE colors ALTER COLUMN id SET DEFAULT nextval('colors_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
+ALTER TABLE comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY conservation_statuses ALTER COLUMN id SET DEFAULT nextval('conservation_statuses_id_seq'::regclass);
+ALTER TABLE conservation_statuses ALTER COLUMN id SET DEFAULT nextval('conservation_statuses_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY counties_simplified_01 ALTER COLUMN id SET DEFAULT nextval('counties_simplified_01_id_seq'::regclass);
+ALTER TABLE counties_simplified_01 ALTER COLUMN id SET DEFAULT nextval('counties_simplified_01_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY countries_simplified_1 ALTER COLUMN id SET DEFAULT nextval('countries_simplified_1_id_seq'::regclass);
+ALTER TABLE countries_simplified_1 ALTER COLUMN id SET DEFAULT nextval('countries_simplified_1_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY custom_projects ALTER COLUMN id SET DEFAULT nextval('custom_projects_id_seq'::regclass);
+ALTER TABLE custom_projects ALTER COLUMN id SET DEFAULT nextval('custom_projects_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_id_seq'::regclass);
+ALTER TABLE delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY deleted_users ALTER COLUMN id SET DEFAULT nextval('deleted_users_id_seq'::regclass);
+ALTER TABLE deleted_users ALTER COLUMN id SET DEFAULT nextval('deleted_users_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY flaggings ALTER COLUMN id SET DEFAULT nextval('flaggings_id_seq'::regclass);
+ALTER TABLE flags ALTER COLUMN id SET DEFAULT nextval('flags_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY flags ALTER COLUMN id SET DEFAULT nextval('flags_id_seq'::regclass);
+ALTER TABLE flickr_identities ALTER COLUMN id SET DEFAULT nextval('flickr_identities_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY flickr_identities ALTER COLUMN id SET DEFAULT nextval('flickr_identities_id_seq'::regclass);
+ALTER TABLE flow_task_resources ALTER COLUMN id SET DEFAULT nextval('flow_task_resources_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY flow_task_resources ALTER COLUMN id SET DEFAULT nextval('flow_task_resources_id_seq'::regclass);
+ALTER TABLE flow_tasks ALTER COLUMN id SET DEFAULT nextval('flow_tasks_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY flow_tasks ALTER COLUMN id SET DEFAULT nextval('flow_tasks_id_seq'::regclass);
+ALTER TABLE friendly_id_slugs ALTER COLUMN id SET DEFAULT nextval('slugs_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY friendly_id_slugs ALTER COLUMN id SET DEFAULT nextval('friendly_id_slugs_id_seq'::regclass);
+ALTER TABLE friendships ALTER COLUMN id SET DEFAULT nextval('friendships_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY friendships ALTER COLUMN id SET DEFAULT nextval('friendships_id_seq'::regclass);
+ALTER TABLE goal_contributions ALTER COLUMN id SET DEFAULT nextval('goal_contributions_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY goal_contributions ALTER COLUMN id SET DEFAULT nextval('goal_contributions_id_seq'::regclass);
+ALTER TABLE goal_participants ALTER COLUMN id SET DEFAULT nextval('goal_participants_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY goal_participants ALTER COLUMN id SET DEFAULT nextval('goal_participants_id_seq'::regclass);
+ALTER TABLE goal_rules ALTER COLUMN id SET DEFAULT nextval('goal_rules_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY goal_rules ALTER COLUMN id SET DEFAULT nextval('goal_rules_id_seq'::regclass);
+ALTER TABLE goals ALTER COLUMN id SET DEFAULT nextval('goals_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY goals ALTER COLUMN id SET DEFAULT nextval('goals_id_seq'::regclass);
+ALTER TABLE guide_photos ALTER COLUMN id SET DEFAULT nextval('guide_photos_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY guide_photos ALTER COLUMN id SET DEFAULT nextval('guide_photos_id_seq'::regclass);
+ALTER TABLE guide_ranges ALTER COLUMN id SET DEFAULT nextval('guide_ranges_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY guide_ranges ALTER COLUMN id SET DEFAULT nextval('guide_ranges_id_seq'::regclass);
+ALTER TABLE guide_sections ALTER COLUMN id SET DEFAULT nextval('guide_sections_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY guide_sections ALTER COLUMN id SET DEFAULT nextval('guide_sections_id_seq'::regclass);
+ALTER TABLE guide_taxa ALTER COLUMN id SET DEFAULT nextval('guide_taxa_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY guide_taxa ALTER COLUMN id SET DEFAULT nextval('guide_taxa_id_seq'::regclass);
+ALTER TABLE guides ALTER COLUMN id SET DEFAULT nextval('guides_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY guides ALTER COLUMN id SET DEFAULT nextval('guides_id_seq'::regclass);
+ALTER TABLE identifications ALTER COLUMN id SET DEFAULT nextval('identifications_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY identifications ALTER COLUMN id SET DEFAULT nextval('identifications_id_seq'::regclass);
+ALTER TABLE invites ALTER COLUMN id SET DEFAULT nextval('invites_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY invites ALTER COLUMN id SET DEFAULT nextval('invites_id_seq'::regclass);
+ALTER TABLE list_rules ALTER COLUMN id SET DEFAULT nextval('list_rules_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY list_rules ALTER COLUMN id SET DEFAULT nextval('list_rules_id_seq'::regclass);
+ALTER TABLE listed_taxa ALTER COLUMN id SET DEFAULT nextval('listed_taxa_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY listed_taxa ALTER COLUMN id SET DEFAULT nextval('listed_taxa_id_seq'::regclass);
+ALTER TABLE lists ALTER COLUMN id SET DEFAULT nextval('lists_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY lists ALTER COLUMN id SET DEFAULT nextval('lists_id_seq'::regclass);
+ALTER TABLE messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
+ALTER TABLE oauth_access_grants ALTER COLUMN id SET DEFAULT nextval('oauth_access_grants_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY oauth_access_grants ALTER COLUMN id SET DEFAULT nextval('oauth_access_grants_id_seq'::regclass);
+ALTER TABLE oauth_access_tokens ALTER COLUMN id SET DEFAULT nextval('oauth_access_tokens_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY oauth_access_tokens ALTER COLUMN id SET DEFAULT nextval('oauth_access_tokens_id_seq'::regclass);
+ALTER TABLE oauth_applications ALTER COLUMN id SET DEFAULT nextval('oauth_applications_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY oauth_applications ALTER COLUMN id SET DEFAULT nextval('oauth_applications_id_seq'::regclass);
+ALTER TABLE observation_field_values ALTER COLUMN id SET DEFAULT nextval('observation_field_values_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY observation_field_values ALTER COLUMN id SET DEFAULT nextval('observation_field_values_id_seq'::regclass);
+ALTER TABLE observation_fields ALTER COLUMN id SET DEFAULT nextval('observation_fields_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY observation_fields ALTER COLUMN id SET DEFAULT nextval('observation_fields_id_seq'::regclass);
+ALTER TABLE observation_links ALTER COLUMN id SET DEFAULT nextval('observation_links_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY observation_links ALTER COLUMN id SET DEFAULT nextval('observation_links_id_seq'::regclass);
+ALTER TABLE observation_photos ALTER COLUMN id SET DEFAULT nextval('observation_photos_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY observation_photos ALTER COLUMN id SET DEFAULT nextval('observation_photos_id_seq'::regclass);
+ALTER TABLE observations ALTER COLUMN id SET DEFAULT nextval('observations_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY observations ALTER COLUMN id SET DEFAULT nextval('observations_id_seq'::regclass);
+ALTER TABLE observations_sounds ALTER COLUMN id SET DEFAULT nextval('observations_sounds_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY observations_sounds ALTER COLUMN id SET DEFAULT nextval('observations_sounds_id_seq'::regclass);
+ALTER TABLE passwords ALTER COLUMN id SET DEFAULT nextval('passwords_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY passwords ALTER COLUMN id SET DEFAULT nextval('passwords_id_seq'::regclass);
+ALTER TABLE photos ALTER COLUMN id SET DEFAULT nextval('photos_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY photos ALTER COLUMN id SET DEFAULT nextval('photos_id_seq'::regclass);
+ALTER TABLE picasa_identities ALTER COLUMN id SET DEFAULT nextval('picasa_identities_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY picasa_identities ALTER COLUMN id SET DEFAULT nextval('picasa_identities_id_seq'::regclass);
+ALTER TABLE place_geometries ALTER COLUMN id SET DEFAULT nextval('place_geometries_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY place_geometries ALTER COLUMN id SET DEFAULT nextval('place_geometries_id_seq'::regclass);
+ALTER TABLE places ALTER COLUMN id SET DEFAULT nextval('places_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY places ALTER COLUMN id SET DEFAULT nextval('places_id_seq'::regclass);
+ALTER TABLE posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regclass);
+ALTER TABLE preferences ALTER COLUMN id SET DEFAULT nextval('preferences_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY preferences ALTER COLUMN id SET DEFAULT nextval('preferences_id_seq'::regclass);
+ALTER TABLE project_assets ALTER COLUMN id SET DEFAULT nextval('project_assets_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY project_assets ALTER COLUMN id SET DEFAULT nextval('project_assets_id_seq'::regclass);
+ALTER TABLE project_invitations ALTER COLUMN id SET DEFAULT nextval('project_invitations_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY project_invitations ALTER COLUMN id SET DEFAULT nextval('project_invitations_id_seq'::regclass);
+ALTER TABLE project_observation_fields ALTER COLUMN id SET DEFAULT nextval('project_observation_fields_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY project_observation_fields ALTER COLUMN id SET DEFAULT nextval('project_observation_fields_id_seq'::regclass);
+ALTER TABLE project_observations ALTER COLUMN id SET DEFAULT nextval('project_observations_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY project_observations ALTER COLUMN id SET DEFAULT nextval('project_observations_id_seq'::regclass);
+ALTER TABLE project_users ALTER COLUMN id SET DEFAULT nextval('project_users_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY project_users ALTER COLUMN id SET DEFAULT nextval('project_users_id_seq'::regclass);
+ALTER TABLE projects ALTER COLUMN id SET DEFAULT nextval('projects_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY projects ALTER COLUMN id SET DEFAULT nextval('projects_id_seq'::regclass);
+ALTER TABLE provider_authorizations ALTER COLUMN id SET DEFAULT nextval('provider_authorizations_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY provider_authorizations ALTER COLUMN id SET DEFAULT nextval('provider_authorizations_id_seq'::regclass);
+ALTER TABLE quality_metrics ALTER COLUMN id SET DEFAULT nextval('quality_metrics_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY quality_metrics ALTER COLUMN id SET DEFAULT nextval('quality_metrics_id_seq'::regclass);
+ALTER TABLE roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regclass);
+ALTER TABLE rules ALTER COLUMN id SET DEFAULT nextval('rules_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY rules ALTER COLUMN id SET DEFAULT nextval('rules_id_seq'::regclass);
+ALTER TABLE soundcloud_identities ALTER COLUMN id SET DEFAULT nextval('soundcloud_identities_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY soundcloud_identities ALTER COLUMN id SET DEFAULT nextval('soundcloud_identities_id_seq'::regclass);
+ALTER TABLE sounds ALTER COLUMN id SET DEFAULT nextval('sounds_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY sounds ALTER COLUMN id SET DEFAULT nextval('sounds_id_seq'::regclass);
+ALTER TABLE sources ALTER COLUMN id SET DEFAULT nextval('sources_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY sources ALTER COLUMN id SET DEFAULT nextval('sources_id_seq'::regclass);
+ALTER TABLE subscriptions ALTER COLUMN id SET DEFAULT nextval('subscriptions_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY states_simplified_1 ALTER COLUMN id SET DEFAULT nextval('states_simplified_1_id_seq'::regclass);
+ALTER TABLE taggings ALTER COLUMN id SET DEFAULT nextval('taggings_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY subscriptions ALTER COLUMN id SET DEFAULT nextval('subscriptions_id_seq'::regclass);
+ALTER TABLE tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taggings ALTER COLUMN id SET DEFAULT nextval('taggings_id_seq'::regclass);
+ALTER TABLE taxa ALTER COLUMN id SET DEFAULT nextval('taxa_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
+ALTER TABLE taxon_change_taxa ALTER COLUMN id SET DEFAULT nextval('taxon_change_taxa_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taxa ALTER COLUMN id SET DEFAULT nextval('taxa_id_seq'::regclass);
+ALTER TABLE taxon_changes ALTER COLUMN id SET DEFAULT nextval('taxon_changes_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taxon_change_taxa ALTER COLUMN id SET DEFAULT nextval('taxon_change_taxa_id_seq'::regclass);
+ALTER TABLE taxon_descriptions ALTER COLUMN id SET DEFAULT nextval('taxon_descriptions_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taxon_changes ALTER COLUMN id SET DEFAULT nextval('taxon_changes_id_seq'::regclass);
+ALTER TABLE taxon_links ALTER COLUMN id SET DEFAULT nextval('taxon_links_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taxon_descriptions ALTER COLUMN id SET DEFAULT nextval('taxon_descriptions_id_seq'::regclass);
+ALTER TABLE taxon_names ALTER COLUMN id SET DEFAULT nextval('taxon_names_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taxon_links ALTER COLUMN id SET DEFAULT nextval('taxon_links_id_seq'::regclass);
+ALTER TABLE taxon_photos ALTER COLUMN id SET DEFAULT nextval('taxon_photos_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taxon_names ALTER COLUMN id SET DEFAULT nextval('taxon_names_id_seq'::regclass);
+ALTER TABLE taxon_ranges ALTER COLUMN id SET DEFAULT nextval('taxon_ranges_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taxon_photos ALTER COLUMN id SET DEFAULT nextval('taxon_photos_id_seq'::regclass);
+ALTER TABLE taxon_scheme_taxa ALTER COLUMN id SET DEFAULT nextval('taxon_scheme_taxa_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taxon_ranges ALTER COLUMN id SET DEFAULT nextval('taxon_ranges_id_seq'::regclass);
+ALTER TABLE taxon_schemes ALTER COLUMN id SET DEFAULT nextval('taxon_schemes_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taxon_scheme_taxa ALTER COLUMN id SET DEFAULT nextval('taxon_scheme_taxa_id_seq'::regclass);
+ALTER TABLE taxon_versions ALTER COLUMN id SET DEFAULT nextval('taxon_versions_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taxon_schemes ALTER COLUMN id SET DEFAULT nextval('taxon_schemes_id_seq'::regclass);
+ALTER TABLE updates ALTER COLUMN id SET DEFAULT nextval('updates_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taxon_versions ALTER COLUMN id SET DEFAULT nextval('taxon_versions_id_seq'::regclass);
+ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY updates ALTER COLUMN id SET DEFAULT nextval('updates_id_seq'::regclass);
+ALTER TABLE wiki_page_attachments ALTER COLUMN id SET DEFAULT nextval('wiki_page_attachments_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+ALTER TABLE wiki_page_versions ALTER COLUMN id SET DEFAULT nextval('wiki_page_versions_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY users_old ALTER COLUMN id SET DEFAULT nextval('users_old_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY wiki_page_attachments ALTER COLUMN id SET DEFAULT nextval('wiki_page_attachments_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY wiki_page_versions ALTER COLUMN id SET DEFAULT nextval('wiki_page_versions_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY wiki_pages ALTER COLUMN id SET DEFAULT nextval('wiki_pages_id_seq'::regclass);
+ALTER TABLE wiki_pages ALTER COLUMN id SET DEFAULT nextval('wiki_pages_id_seq'::regclass);
 
 
 --
@@ -13725,14 +13598,6 @@ ALTER TABLE ONLY delayed_jobs
 
 ALTER TABLE ONLY deleted_users
     ADD CONSTRAINT deleted_users_pkey PRIMARY KEY (id);
-
-
---
--- Name: flaggings_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY flaggings
-    ADD CONSTRAINT flaggings_pkey PRIMARY KEY (id);
 
 
 --
@@ -14112,14 +13977,6 @@ ALTER TABLE ONLY rules
 
 
 --
--- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY schema_migrations
-    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
-
-
---
 -- Name: slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -14157,14 +14014,6 @@ ALTER TABLE ONLY sources
 
 ALTER TABLE ONLY spatial_ref_sys
     ADD CONSTRAINT spatial_ref_sys_pkey PRIMARY KEY (srid);
-
-
---
--- Name: states_simplified_1_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY states_simplified_1
-    ADD CONSTRAINT states_simplified_1_pkey PRIMARY KEY (id);
 
 
 --
@@ -14288,14 +14137,6 @@ ALTER TABLE ONLY updates
 
 
 --
--- Name: users_old_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY users_old
-    ADD CONSTRAINT users_old_pkey PRIMARY KEY (id);
-
-
---
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -14367,13 +14208,6 @@ CREATE INDEX index_assessments_on_taxon_id ON assessments USING btree (taxon_id)
 --
 
 CREATE INDEX index_assessments_on_user_id ON assessments USING btree (user_id);
-
-
---
--- Name: index_colors_taxa_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_colors_taxa_on_taxon_id ON colors_taxa USING btree (taxon_id);
 
 
 --
@@ -14517,6 +14351,20 @@ CREATE INDEX index_flow_tasks_on_user_id ON flow_tasks USING btree (user_id);
 
 
 --
+-- Name: index_friendly_id_slugs_on_slug_and_sluggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_friendly_id_slugs_on_slug_and_sluggable_type ON friendly_id_slugs USING btree (slug, sluggable_type);
+
+
+--
+-- Name: index_friendly_id_slugs_on_sluggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_friendly_id_slugs_on_sluggable_type ON friendly_id_slugs USING btree (sluggable_type);
+
+
+--
 -- Name: index_guide_photos_on_guide_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -14639,7 +14487,7 @@ CREATE INDEX index_listed_taxa_on_list_id_and_taxon_id ON listed_taxa USING btre
 -- Name: index_listed_taxa_on_place_id_and_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_listed_taxa_on_place_id_and_created_at ON listed_taxa USING btree (created_at);
+CREATE INDEX index_listed_taxa_on_place_id_and_created_at ON listed_taxa USING btree (place_id, created_at);
 
 
 --
@@ -14829,6 +14677,13 @@ CREATE INDEX index_observation_photos_on_photo_id ON observation_photos USING bt
 --
 
 CREATE INDEX index_observations_on_comments_count ON observations USING btree (comments_count);
+
+
+--
+-- Name: index_observations_on_community_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_community_taxon_id ON observations USING btree (community_taxon_id);
 
 
 --
@@ -15217,20 +15072,6 @@ CREATE INDEX index_states_simplified_1_on_geom ON states_simplified_1 USING gist
 
 
 --
--- Name: index_states_simplified_1_on_place_geometry_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_states_simplified_1_on_place_geometry_id ON states_simplified_1 USING btree (place_geometry_id);
-
-
---
--- Name: index_states_simplified_1_on_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_states_simplified_1_on_place_id ON states_simplified_1 USING btree (place_id);
-
-
---
 -- Name: index_subscriptions_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15553,13 +15394,6 @@ CREATE INDEX index_users_on_uri ON users USING btree (uri);
 
 
 --
--- Name: index_wiki_page_attachments_on_page_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_wiki_page_attachments_on_page_id ON wiki_page_attachments USING btree (page_id);
-
-
---
 -- Name: index_wiki_page_versions_on_page_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15595,13 +15429,6 @@ CREATE INDEX pof_projid_ofid ON project_observation_fields USING btree (project_
 
 
 --
--- Name: pof_projid_pos; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX pof_projid_pos ON project_observation_fields USING btree (project_id, "position");
-
-
---
 -- Name: taxon_names_lower_name_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15625,102 +15452,6 @@ CREATE UNIQUE INDEX updates_unique_key ON updates USING btree (resource_type, re
 --
 -- PostgreSQL database dump complete
 --
-
-INSERT INTO schema_migrations (version) VALUES ('1');
-
-INSERT INTO schema_migrations (version) VALUES ('10');
-
-INSERT INTO schema_migrations (version) VALUES ('11');
-
-INSERT INTO schema_migrations (version) VALUES ('12');
-
-INSERT INTO schema_migrations (version) VALUES ('13');
-
-INSERT INTO schema_migrations (version) VALUES ('14');
-
-INSERT INTO schema_migrations (version) VALUES ('15');
-
-INSERT INTO schema_migrations (version) VALUES ('16');
-
-INSERT INTO schema_migrations (version) VALUES ('17');
-
-INSERT INTO schema_migrations (version) VALUES ('18');
-
-INSERT INTO schema_migrations (version) VALUES ('19');
-
-INSERT INTO schema_migrations (version) VALUES ('2');
-
-INSERT INTO schema_migrations (version) VALUES ('20');
-
-INSERT INTO schema_migrations (version) VALUES ('20080818015807');
-
-INSERT INTO schema_migrations (version) VALUES ('20080904055035');
-
-INSERT INTO schema_migrations (version) VALUES ('20081014044856');
-
-INSERT INTO schema_migrations (version) VALUES ('20081101044013');
-
-INSERT INTO schema_migrations (version) VALUES ('20081108014127');
-
-INSERT INTO schema_migrations (version) VALUES ('20081211073046');
-
-INSERT INTO schema_migrations (version) VALUES ('20081211080000');
-
-INSERT INTO schema_migrations (version) VALUES ('20081211085000');
-
-INSERT INTO schema_migrations (version) VALUES ('20081212064650');
-
-INSERT INTO schema_migrations (version) VALUES ('20081212065458');
-
-INSERT INTO schema_migrations (version) VALUES ('20090109184902');
-
-INSERT INTO schema_migrations (version) VALUES ('20090126043548');
-
-INSERT INTO schema_migrations (version) VALUES ('20090131034447');
-
-INSERT INTO schema_migrations (version) VALUES ('20090206225340');
-
-INSERT INTO schema_migrations (version) VALUES ('20090220180304');
-
-INSERT INTO schema_migrations (version) VALUES ('20090301014918');
-
-INSERT INTO schema_migrations (version) VALUES ('20090313233049');
-
-INSERT INTO schema_migrations (version) VALUES ('20090405171934');
-
-INSERT INTO schema_migrations (version) VALUES ('20090408052116');
-
-INSERT INTO schema_migrations (version) VALUES ('20090410154951');
-
-INSERT INTO schema_migrations (version) VALUES ('20090418020926');
-
-INSERT INTO schema_migrations (version) VALUES ('20090423051305');
-
-INSERT INTO schema_migrations (version) VALUES ('20090425061024');
-
-INSERT INTO schema_migrations (version) VALUES ('20090504004452');
-
-INSERT INTO schema_migrations (version) VALUES ('20090508221226');
-
-INSERT INTO schema_migrations (version) VALUES ('20090518052953');
-
-INSERT INTO schema_migrations (version) VALUES ('20090522165436');
-
-INSERT INTO schema_migrations (version) VALUES ('20090522235809');
-
-INSERT INTO schema_migrations (version) VALUES ('20090525034911');
-
-INSERT INTO schema_migrations (version) VALUES ('20090527001859');
-
-INSERT INTO schema_migrations (version) VALUES ('20090605061057');
-
-INSERT INTO schema_migrations (version) VALUES ('20090605071142');
-
-INSERT INTO schema_migrations (version) VALUES ('20090606000444');
-
-INSERT INTO schema_migrations (version) VALUES ('20090619052851');
-
-INSERT INTO schema_migrations (version) VALUES ('20090814043502');
 
 INSERT INTO schema_migrations (version) VALUES ('20090820033338');
 
@@ -15960,6 +15691,8 @@ INSERT INTO schema_migrations (version) VALUES ('20120810053551');
 
 INSERT INTO schema_migrations (version) VALUES ('20120821195023');
 
+INSERT INTO schema_migrations (version) VALUES ('20120830020828');
+
 INSERT INTO schema_migrations (version) VALUES ('20120902210558');
 
 INSERT INTO schema_migrations (version) VALUES ('20120904064231');
@@ -16075,93 +15808,3 @@ INSERT INTO schema_migrations (version) VALUES ('20130607221500');
 INSERT INTO schema_migrations (version) VALUES ('20130611025612');
 
 INSERT INTO schema_migrations (version) VALUES ('20130613223707');
-
-INSERT INTO schema_migrations (version) VALUES ('21');
-
-INSERT INTO schema_migrations (version) VALUES ('22');
-
-INSERT INTO schema_migrations (version) VALUES ('23');
-
-INSERT INTO schema_migrations (version) VALUES ('24');
-
-INSERT INTO schema_migrations (version) VALUES ('25');
-
-INSERT INTO schema_migrations (version) VALUES ('26');
-
-INSERT INTO schema_migrations (version) VALUES ('27');
-
-INSERT INTO schema_migrations (version) VALUES ('28');
-
-INSERT INTO schema_migrations (version) VALUES ('29');
-
-INSERT INTO schema_migrations (version) VALUES ('3');
-
-INSERT INTO schema_migrations (version) VALUES ('30');
-
-INSERT INTO schema_migrations (version) VALUES ('31');
-
-INSERT INTO schema_migrations (version) VALUES ('32');
-
-INSERT INTO schema_migrations (version) VALUES ('33');
-
-INSERT INTO schema_migrations (version) VALUES ('34');
-
-INSERT INTO schema_migrations (version) VALUES ('35');
-
-INSERT INTO schema_migrations (version) VALUES ('36');
-
-INSERT INTO schema_migrations (version) VALUES ('37');
-
-INSERT INTO schema_migrations (version) VALUES ('38');
-
-INSERT INTO schema_migrations (version) VALUES ('39');
-
-INSERT INTO schema_migrations (version) VALUES ('4');
-
-INSERT INTO schema_migrations (version) VALUES ('40');
-
-INSERT INTO schema_migrations (version) VALUES ('41');
-
-INSERT INTO schema_migrations (version) VALUES ('42');
-
-INSERT INTO schema_migrations (version) VALUES ('43');
-
-INSERT INTO schema_migrations (version) VALUES ('44');
-
-INSERT INTO schema_migrations (version) VALUES ('45');
-
-INSERT INTO schema_migrations (version) VALUES ('46');
-
-INSERT INTO schema_migrations (version) VALUES ('47');
-
-INSERT INTO schema_migrations (version) VALUES ('48');
-
-INSERT INTO schema_migrations (version) VALUES ('49');
-
-INSERT INTO schema_migrations (version) VALUES ('5');
-
-INSERT INTO schema_migrations (version) VALUES ('50');
-
-INSERT INTO schema_migrations (version) VALUES ('51');
-
-INSERT INTO schema_migrations (version) VALUES ('52');
-
-INSERT INTO schema_migrations (version) VALUES ('53');
-
-INSERT INTO schema_migrations (version) VALUES ('54');
-
-INSERT INTO schema_migrations (version) VALUES ('55');
-
-INSERT INTO schema_migrations (version) VALUES ('56');
-
-INSERT INTO schema_migrations (version) VALUES ('57');
-
-INSERT INTO schema_migrations (version) VALUES ('58');
-
-INSERT INTO schema_migrations (version) VALUES ('6');
-
-INSERT INTO schema_migrations (version) VALUES ('7');
-
-INSERT INTO schema_migrations (version) VALUES ('8');
-
-INSERT INTO schema_migrations (version) VALUES ('9');

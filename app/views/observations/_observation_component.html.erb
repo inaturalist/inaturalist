@@ -82,12 +82,12 @@ Some notes:
               "data-small-url" => photo.small_url,
               "data-medium-url" => photo.medium_url
             ), observation_url(observation), :class => 'flickr photo'%>
-            <% link_text << t(photos.size > 1 ? :photos_size_photos : :photos_size_photo, :photos_size => photos.size) %>
+            <% link_text << t(photos.size > 1 ? :photos_size_photos : :photos_size_photo, :photos_size => photos.size).downcase %>
           <% end %>
         <% end -%>
         <% if sound_count > 0 %>
-          <%= link_to '', observation, :class => "sound-icon#{' with-photo' if photo}" %>
-          <% link_text << t(sound_count > 1 ? :'sounds.sounds_size_sounds' : :'sounds.sounds_size_sound', :sounds_size => sound_count) %>
+          <%= link_to '<i class="icon-volume-up icon-4x"></i>'.html_safe, observation, :class => "sound-icon#{' with-photo' if photo}" %>
+          <% link_text << t(sound_count > 1 ? :'sounds.sounds_size_sounds' : :'sounds.sounds_size_sound', :sounds_size => sound_count).downcase %>
         <% end %>
         <%= link_to link_text.join(',<br/>').html_safe, observation, :class => 'readmore' %>
       <% end -%>

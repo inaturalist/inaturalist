@@ -250,6 +250,7 @@ class ObservationsController < ApplicationController
         @photos = @observation.observation_photos.sort_by do |op| 
           op.position || @observation.observation_photos.size + op.id.to_i
         end.map{|op| op.photo}
+        @sounds = @observation.sounds.all
         
         if @observation.observed_on
           @day_observations = Observation.by(@observation.user).on(@observation.observed_on).
