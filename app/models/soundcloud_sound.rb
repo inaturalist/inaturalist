@@ -50,7 +50,11 @@ class SoundcloudSound < Sound
       observation.user = self.user if self.user
       observation.sounds.build(self.attributes)
       observation.description = self.native_response["description"]
-      observation.observed_on_string = self.native_response["created_at"]
+      if d = Chronic.parse(native_response['created_at'])
+        observation.observed_on_string = d.in_time_zone(observation.user.time_zone || Time.zone).iso8601
+      else
+        observation.observed_on_string = self.native_response["created_at"]
+      end
       observation.munge_observed_on_with_chronic
       observation.time_zone = observation.user.time_zone if observation.user
       
