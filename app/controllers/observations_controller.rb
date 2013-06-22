@@ -1782,7 +1782,7 @@ class ObservationsController < ApplicationController
       end
     end
     if @observations.blank?
-      @observations = Observation.query(search_params).includes(:observation_photos => :photo).paginate(find_options)
+      @observations = Observation.query(search_params).includes({:observation_photos => :photo}, :sounds).paginate(find_options)
     end
     @observations
   rescue ThinkingSphinx::ConnectionError
