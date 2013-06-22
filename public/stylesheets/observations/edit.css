@@ -43,35 +43,34 @@ input.place_guess { width: 336px; }
   right: 5px;
 }
 
-.photoSelector, .soundSelector { width: 285px; }
+.photoSelector, .soundSelector { width: 288px; }
 .photoSelectorControls .button, .soundSelectorControls .button { padding: 5px; }
 .photoSelectorControls .prevlink, .soundSelectorControls .prevlink {
   float: left;
   clear: left;
 }
 .photoSelectorControls select, .soundSelectorControls select { font-size: 90%; }
-.photoSelectorPhotos { margin: 0 auto; min-height:75px; max-height: 440px; overflow-y: auto; overflow-x: visible;}
+.photoSelectorPhotos { margin: 0 auto; min-height:120px; max-height: 440px; overflow-y: auto; overflow-x: visible;}
 .photoSelectorAlbums{
   max-height:none;
   overflow: none;
 }
 
-.ui-tabs .ui-tabs-nav {
-  margin-right: 3px;
-}
 .ui-tabs .ui-tabs-panel {
   padding-top: 0px;
   width: 100%;
   margin-right: 0px;
 }
-.soundSelector, .photoSelector {
-  padding-top: 0;
+.soundSelector, 
+.photoSelector {
+  padding-top: 1px;
   margin-top: 0;
   margin-right: -3px;
   border-radius: 0;
   border-color: #ccc;
   border-top: none;
 }
+.nosounds {padding:10px; border: 1px solid #ccc; border-top:none;}
 .local_photos .photo_file_field {width:auto;}
 .local_photos .photo_file_field label {display:inline;}
 .photo .synclink { float: right; }

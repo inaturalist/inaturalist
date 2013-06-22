@@ -188,7 +188,7 @@
   
   $.fn.soundSelector.defaults = {
     baseURL: '/soundcloud_sounds',
-    limit: 10,
+    limit: 20,
     offset: 0,
     index: 0,
     queryOnLoad: true,

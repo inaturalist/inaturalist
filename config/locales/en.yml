@@ -1767,7 +1767,7 @@ en:
   sorry_we_didnt_find_that_photo: "Sorry, we didn't find that photo."
   sorry_we_dont_have_any_metadata_for_that_photo: "Sorry, we don't have any metadata for that photo that we can use to set observation properties."
   sounds:
-    we_didnt_find_any_sounds: Sorry! We couldn't get any sounds from your soundcloud account. 
+    we_didnt_find_any_sounds: Sorry! We couldn't get any sounds from your SoundCloud account. 
     add_sounds: Add sounds
     link_your_soundcloud_account: Link your SoundCloud account
     select_one_or_more_sounds: Select one or more sounds
@@ -1780,7 +1780,8 @@ en:
     sound: Sound
     import_from_sounds: Import from Sounds
     import_sounds: Import Sounds
-    import_from_soundcloud_description: Select sounds from your SoundCloud account to convert into iNaturalist observations. We'll fill in the date and time from a sound's metadata, and try to look up species names from the tags.
+    import_from_soundcloud_description: "Select sounds from your SoundCloud account to convert into iNaturalist observations. We'll fill in the date and time from a sound's metadata, and try to look up species names from the tags."
+    you_need_to_link_your_soundcloud_account: You need to link your SoundCloud account to add sounds.
     your_soundcloud_account: your SoundCloud account
     before_importing_sounds: before importing sounds
     photos_sounds: Photos / Sounds
