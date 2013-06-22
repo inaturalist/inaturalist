@@ -25,7 +25,7 @@
       </tr>
 
       <tr>
-        <td><%= t(:observation_date) %></td>
+        <td><%= t(:observation_date?) %></td>
         <td>
           <%= o.observed_on? ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : t(:no) %>
         </td>
@@ -39,9 +39,9 @@
       </tr>
 
       <tr>
-        <td> <%= t(:photo) %></td>
+        <td> <%= t(:photos_or_sounds?) %></td>
         <td>
-          <%= o.photos.exists? ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : t(:no) %>
+          <%= (o.photos? || o.sounds?) ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : t(:no) %>
         </td>
       </tr>
 

@@ -1074,11 +1074,15 @@ class Observation < ActiveRecord::Base
   end
   
   def research_grade?
-    georeferenced? && community_supported_id? && quality_metrics_pass? && observed_on? && photos?
+    georeferenced? && community_supported_id? && quality_metrics_pass? && observed_on? && (photos? || sounds?)
   end
   
   def photos?
     observation_photos.exists?
+  end
+
+  def sounds?
+    sounds.exists?
   end
   
   def casual_grade?
