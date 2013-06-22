@@ -696,9 +696,8 @@ class ObservationsController < ApplicationController
       if params[:editing_sounds]
         params[:soundcloud_sounds] ||= {fieldset_index => []} 
         params[:soundcloud_sounds][fieldset_index] ||= []
+        observation.sounds = Sound.from_observation_params(params, fieldset_index, current_user)
       end
-      observation.sounds = Sound.from_observation_params(params, fieldset_index, current_user)
-
       
       unless observation.update_attributes(hashed_params[observation.id.to_s])
         errors = true
