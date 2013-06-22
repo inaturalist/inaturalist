@@ -21,7 +21,7 @@
   
   <%= f.text_field :title, :required => true %>
   
-  <%= f.form_field :project_icon, :wrapper => {:class => 'clear'} do %>
+  <%= f.form_field :project_icon, :label => "Project icon (PNG, JPG, or GIF)", :wrapper => {:class => 'clear'} do %>
     <% if project.icon.file? -%>
       <%= image_tag(project.icon.url(:thumb), :class => "left") %>
       <div>
@@ -30,10 +30,10 @@
       </div>
       <%= link_to_toggle t(:change_icon), "#iconfield" %>
       <div id="iconfield" style="display: none">
-        <%= f.file_field :icon, :label => false %>
+        <%= f.file_field :icon, :label => false, :accept => "image/jpg,image/jpeg,image/png,image/gif" %>
       </div>
     <% else %>
-      <%= f.file_field :icon, :label => false, :size => 20 %>
+      <%= f.file_field :icon, :label => false, :size => 20, :accept => "image/jpg,image/jpeg,image/png,image/gif" %>
     <% end -%>
   <% end %>
   

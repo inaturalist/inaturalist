@@ -56,6 +56,8 @@ class Project < ActiveRecord::Base
     :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :default_url => "/attachment_defaults/general/:style.png"
+  validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
+    :message => "must be JPG, PNG, or GIF"
   
   CONTEST_TYPE = 'contest'
   OBS_CONTEST_TYPE = 'observation contest'
