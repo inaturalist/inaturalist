@@ -142,8 +142,8 @@
                 <div><label><%= t(:was_it_captive_cultivated?) %></label></div>
                 <%= o.radio_button :captive, 1 %> <%= o.label :captive, t(:yes), :value => 1 %>
                 <%= o.radio_button :captive, 0 %> <%= o.label :captive, t(:no), :value => 0 %>
-                <%= o.radio_button :captive, nil %> <%= o.label :captive, t(:unknown), :value => nil %>
-
+                <%= o.radio_button :captive, "unknown" %> <%= o.label :captive, t(:unknown), :value => "unknown" %>
+                <%= o.hidden_field :force_quality_metrics, :value => true %>
               </div>
               <div class="last column span-20">
                 <label><%= t :more_fields %></label><br/>

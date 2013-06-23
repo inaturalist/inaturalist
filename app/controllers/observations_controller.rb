@@ -951,6 +951,8 @@ class ObservationsController < ApplicationController
       end
       if qm = o.quality_metrics.detect{|qm| qm.user_id == o.user_id}
         o.captive = qm.metric == QualityMetric::WILD && !qm.agree? ? 1 : 0
+      else
+        o.captive = "unknown"
       end
       o
     end

@@ -44,6 +44,7 @@ class Observation < ActiveRecord::Base
   attr_accessor :facebook_sharing
 
   attr_accessor :captive
+  attr_accessor :force_quality_metrics
   
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
   
@@ -1456,8 +1457,12 @@ class Observation < ActiveRecord::Base
   def update_quality_metrics
     if captive == "1"
       QualityMetric.vote(user, self, QualityMetric::WILD, false)
+    elsif captive == "0" && force_quality_metrics
+      QualityMetric.vote(user, self, QualityMetric::WILD, true)
     elsif captive == "0" && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
       qm.update_attributes(:agree => true)
+    elsif force_quality_metrics && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
+      qm.destroy
     end
     true
   end

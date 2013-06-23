@@ -91,7 +91,7 @@
                 <td>
                   <%= o.radio_button :captive, 1 %> <%= o.label :captive, t(:yes), :value => 1 %>
                   <%= o.radio_button :captive, 0 %> <%= o.label :captive, t(:no), :value => 0 %>
-                  <%= o.radio_button :captive, nil %> <%= o.label :captive, t(:unknown), :value => nil %>
+                  <%= o.radio_button :captive, "unknown" %> <%= o.label :captive, t(:unknown), :value => "unknown" %>
                 </td>
                 <td><%= link_to_function "#{t :apply_captive_cultivated} &darr;".html_safe, "applyBatch(['captive'])", :class => "default button" %></td>
               </tr>
