@@ -19,7 +19,6 @@
   <% sounds.each do |sound| %>
     <%- 
       unique_id = serial_id
-
       input_name = "soundcloud_sounds#{"["+index.to_s+"]" if index}[]"
       input_id = "soundcloud_sound#{"_"+index.to_s if index}#{sound.native_sound_id}_#{unique_id}"
     -%>

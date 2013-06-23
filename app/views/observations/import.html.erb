@@ -20,6 +20,7 @@
   <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js", "jquery/plugins/inat/sound_selectors.js" %>
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect.html_safe};" if protect_against_forgery? %>
   <script type="text/javascript" charset="utf-8">
+    var SOUNDCLOUD_IDENTITY = <%=raw current_user.soundcloud_identity.to_json(:only => [:id]) %>
     $(document).ready(function() {
       $('#tabs').tabs();
       
@@ -36,8 +37,9 @@
           limit: 30
         }
       });
-
-      $('#sounds').soundSelector({limit: 30})
+      if (SOUNDCLOUD_IDENTITY) {
+        $('#sounds').soundSelector({limit: 30})
+      }
     })
   </script>
 <% end -%>

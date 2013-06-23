@@ -10,8 +10,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   end
 
   if CONFIG.soundcloud
-    provider :soundcloud, CONFIG.soundcloud.client_id, CONFIG.soundcloud.secret
-    scope = "non-expiring"
+    provider :soundcloud, CONFIG.soundcloud.client_id, CONFIG.soundcloud.secret, {
+      :scope => "non-expiring"
+    }
   end
   
   if CONFIG.flickr
