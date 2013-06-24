@@ -1,0 +1,45 @@
+= content_for :title do
+  = "#{@guide_taxon.display_name} (#{@guide.title})"
+= content_for :extracss do
+  :css
+    #photos {white-space: nowrap; overflow-x:scroll; overflow-y:hidden;}
+    #photos img {max-height:200px;}
+= content_for :extrajs do
+  = google_maps_js
+  = javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js"
+  :javascript
+    $('.taxonmap').taxonMap()
+.container-fluid
+  %ul.breadcrumb
+    %li
+      = link_to t(:guides), guides_path
+      %span.divider /
+    %li
+      = link_to @guide.title, @guide
+      %span.divider /
+    %li.active= @guide_taxon.display_name
+
+  .btn-grp.pull-right
+    = link_to "Edit", edit_guide_taxon_path(@guide_taxon), :class => "btn"
+  .row-fluid.stacked
+    %h2= @guide_taxon.display_name
+    %em= @guide_taxon.name
+
+  #photos.row-fluid.stacked
+    - for guide_photo in @guide_taxon.guide_photos
+      = image_tag guide_photo.medium_url
+
+  .row-fluid
+    .span8
+      - if @guide_taxon.guide_sections.size == 1
+        = formatted_user_text @guide_taxon.guide_sections.first.description
+      - else
+        - for s in @guide_taxon.guide_sections
+          %h3= s.title
+          = formatted_user_text s.description
+    .span4
+      .map
+        - if @guide_taxon.guide_ranges.blank?
+          .taxonmap{"data-taxon-id" => @guide_taxon.taxon_id, :style => "height:200px;"}
+        - else
+          = image_tag @guide_taxon.guide_ranges.first.original_url

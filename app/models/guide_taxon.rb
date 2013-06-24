@@ -13,6 +13,16 @@ class GuideTaxon < ActiveRecord::Base
   before_save :set_names_from_taxon
   before_create :set_default_photo
 
+  scope :in_taxon, lambda {|taxon| 
+    taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
+    return where("1 = 2") unless taxon
+    c = taxon.descendant_conditions
+    c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
+    joins(:taxon).where(c)
+  }
+
+  scope :dbsearch, lambda {|q| where("name ILIKE ? OR display_name ILIKE ?", "%#{q}%", "%#{q}%")}
+
   def set_names_from_taxon
     return true unless taxon
     self.name = taxon.name if name.blank?

@@ -2,6 +2,8 @@ class GuideTaxaController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :admin_required
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos]
+  before_filter :load_guide, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos]
+  layout "bootstrap", :except => [:edit]
 
   # GET /guide_taxa
   # GET /guide_taxa.json
@@ -133,5 +135,9 @@ class GuideTaxaController < ApplicationController
       end
     end
     photos
+  end
+
+  def load_guide
+    @guide = @guide_taxon.guide
   end
 end

@@ -1,0 +1,16 @@
+= content_for :title do
+  Guides
+.container-fluid
+  .hero-unit
+    %h1 Welcome to iNaturalist Guides
+    %p
+      iNaturalist Guides help you learn about biodiversity all around the
+      world. Whether you're exploring the Serengeti or just your local park
+      (which might be the Serengeti), iNaturalist Guides can help you make
+      sense of our planet's stunning diversity of life.
+  - for row in @guides.in_groups_of(3)
+    .row-fluid
+      - for guide in row.compact
+        .span4
+          %h2= link_to guide.title, guide
+          = simple_format guide.description
