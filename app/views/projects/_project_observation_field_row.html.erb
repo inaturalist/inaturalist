@@ -8,7 +8,7 @@
   <div class="title"><%= observation_field.name if observation_field %></div>
   <div class="description"><%= observation_field.description if observation_field %></div>
   <div class="allowed meta">
-    <label>Allowed values:</label>
+    <label><%= t :allowed_values %>:</label>
     <span><%= observation_field.allowed_values if observation_field %></span>
   </div>
   <%= builder.hidden_field :project_id %>
