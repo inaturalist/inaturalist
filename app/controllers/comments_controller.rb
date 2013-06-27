@@ -93,7 +93,7 @@ class CommentsController < ApplicationController
   
   def destroy
     unless @comment.deletable_by?(current_user)
-      msg = "You don't have permission to do that"
+      msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do
           flash[:error] = msg
@@ -110,7 +110,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     respond_to do |format|
       format.html do
-        flash[:notice] = "Comment deleted"
+        flash[:notice] = t(:comment_deleted)
         redirect_back_or_default(parent)
       end
       format.js do
@@ -136,10 +136,10 @@ class CommentsController < ApplicationController
   
   def respond_to_create
     if @comment.valid?
-      flash[:notice] = "Your comment was saved."
+      flash[:notice] = t(:your_comment_was_saved)
       return redirect_to(params[:return_to]) unless params[:return_to].blank?
     else
-      flash[:error] = "We had trouble saving your comment: #{@comment.errors.full_messages.join(', ')}"
+      flash[:error] = "#{t(:we_had_trouble_saving_comment)} #{@comment.errors.full_messages.join(', ')}"
     end
     redirect_to_parent
   end
@@ -150,7 +150,7 @@ class CommentsController < ApplicationController
   
   def owner_required
     unless logged_in? && (current_user.is_admin? || current_user.id == @comment.user_id)
-      msg = "You don't have permission to do that"
+      msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do
           flash[:error] = msg

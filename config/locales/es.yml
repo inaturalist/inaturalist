@@ -525,6 +525,7 @@ es:
   comma_separated_please: "Favor separar por comas"
   comment_preview: "Vista previa del comentario"
   comment: comentario
+  comment_deleted: El comentario ha sido borrado
   commented: comento
   comments: Comentarios
   comments_and_identifications: "Comentarios e identificaciones"
@@ -1230,6 +1231,7 @@ es:
   least_concern: "preocupación menor"
   leave_a_comment: "Dejar un comentario"
   leave_this_project: "Salir de este proyecto"
+  less: Menos
   lexicon: Léxico
   license_descriptions_and_images: "Descripción de las licenciaas y sus respectivas imágenes"
   licensing: Licencias
@@ -1350,6 +1352,7 @@ es:
   messages: Mensajes
   Mexico: México
   misleading_or_illegal_content: Contenido ilegal, engañoso, racial, étnico, etc.
+  mixed_licenses: Licencia combinada
   mobile_apps_for: "Las aplicaciones móviles para"
   mobile_view_available: "Vista para teléfonos móviles disponible"
   mollusks: moluscos
@@ -2022,6 +2025,27 @@ es:
   something_went_wrong_updating: "¡Algo salió mal al actualizar su lista!"
   somewhere: En algun lugar...
   somewhere_on_earth: "en algún lugar de la Tierra"
+  sounds:
+        we_didnt_find_any_sounds: Lo sentimos, no pudimos encontrar ningún sonido de tu cuenta de SoundCloud.
+        add_sounds: Añade un sonido
+        link_your_soundcloud_account: Enlaza tu cuenta de SoundCloud
+        select_one_or_more_sounds: Selecciona uno o más sonidos
+        listen: Escucha
+        selected_sounds: Sonidos seleccionados
+        sounds: Sonidos
+        view_all_soundcount_sounds: "Ver los %{sound_count} sonidos"
+        sounds_size_sounds: "%Peso del sonido: {sounds_size}"
+        sounds_size_sound: "%Duración del sonido: {sounds_size}"
+        sound: Sonido
+        import_from_sounds: Importa de los sonidos
+        import_sounds: Importa sonidos
+        import_from_soundcloud_description: "Selecciona sonidos de tu cuenta de SoundCloud para ponerlos como observaciones. Completaremos los datos con la fecha y hora de los metadatos, y trataremos de buscar el nombre de las etiquetas."
+        you_need_to_link_your_soundcloud_account: Necesitas enlazar tu cuenta de SoundCloud para poder subir sonidos.
+        your_soundcloud_account: tu cuenta de SoundCloud
+        before_importing_sounds: antes de importar sonidos
+        photos_sounds: Fotos / Sonidos
+        no_photos_sounds: No hay fotos o sonidos
+        add_media: Añade contenido digital
   sorry_flickr_isnt_responding_at_the_moment: "Lo sentimos, Flickr de momento no esta respondiendo."
   sorry_how_about_we_try_repeat: "¡Lo sentimos ¿Por qué no tratamos de repetir su búsqueda en algunas de nuestras bases de datos o nombres de especies? Si encontramos algo, lo guardaremos para que pueda encontrarlo la próxima vez."
   sorry_picasa_isnt_responding_at_the_moment: "Lo sentimos, Picasa de momento no esta respondiendo."
