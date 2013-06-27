@@ -1,6 +1,26 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "a TaxaController" do
+  describe "index" do
+    it "should filter by place_id" do
+      t = Taxon.make!
+      p = Place.make!
+      p.check_list.add_taxon(t)
+      get :index, :format => :json, :place_id => p.id
+      response.headers['X-Total-Entries'].to_i.should eq(1)
+    end
+
+    it "should show iconic taxa if no search params" do
+      t = Taxon.make!(:is_iconic => true)
+      d = Taxon.make!
+      get :index, :format => :json
+      json = JSON.parse(response.body)
+      json.each do |json_taxon|
+        json_taxon['is_iconic'].should be_true
+      end
+    end
+  end
+
   describe "show" do
     it "should include range kml url" do
       tr = TaxonRange.make!(:url => "http://foo.bar/range.kml")

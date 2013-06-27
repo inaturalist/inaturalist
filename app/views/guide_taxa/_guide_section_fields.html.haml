@@ -1,5 +1,5 @@
-.nested-fields.guide-section-fields
+.nested-fields.guide-section-fields.stacked
   = f.hidden_field :guide_taxon_id
-  = f.text_field :title
-  = f.text_area :description
+  = f.text_field :title, :class => "input-xxlarge"
+  = f.text_area :description, :class => "input-xxlarge"
   = link_to_remove_association "remove section", f

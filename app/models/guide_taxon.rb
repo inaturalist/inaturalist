@@ -1,6 +1,7 @@
 class GuideTaxon < ActiveRecord::Base
+  attr_accessor :html
   attr_accessible :display_name, :guide_id, :name, :taxon_id, :taxon, :guide_photos_attributes, 
-    :guide_sections_attributes, :guide_ranges_attributes
+    :guide_sections_attributes, :guide_ranges_attributes, :html
   belongs_to :guide, :inverse_of => :guide_taxa
   belongs_to :taxon
   has_many :guide_sections, :inverse_of => :guide_taxon, :dependent => :destroy
@@ -12,6 +13,19 @@ class GuideTaxon < ActiveRecord::Base
   accepts_nested_attributes_for :guide_ranges, :allow_destroy => true
   before_save :set_names_from_taxon
   before_create :set_default_photo
+  before_create :set_default_section
+
+  validates_uniqueness_of :taxon_id, :scope => :guide_id
+
+  scope :in_taxon, lambda {|taxon| 
+    taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
+    return where("1 = 2") unless taxon
+    c = taxon.descendant_conditions
+    c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
+    joins(:taxon).where(c)
+  }
+
+  scope :dbsearch, lambda {|q| where("guide_taxa.name ILIKE ? OR guide_taxa.display_name ILIKE ?", "%#{q}%", "%#{q}%")}
 
   def set_names_from_taxon
     return true unless taxon
@@ -25,6 +39,14 @@ class GuideTaxon < ActiveRecord::Base
     return true if taxon.blank?
     return true if taxon.photos.blank?
     self.guide_photos.build(:photo => taxon.photos.first)    
+    true
+  end
+
+  def set_default_section
+    return true if taxon.blank?
+    return true unless guide_sections.blank?
+    return true if taxon.wikipedia_summary.blank?
+    self.guide_sections.build(:title => "Summary", :description => taxon.wikipedia_summary)
     true
   end
 end

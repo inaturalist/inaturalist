@@ -12,7 +12,11 @@ Inaturalist::Application.routes.draw do
       post :update_photos
     end
   end
-  resources :guides
+  resources :guides do
+    member do
+      post :import_taxa
+    end
+  end
 
 
   resources :messages, :except => [:edit, :update] do

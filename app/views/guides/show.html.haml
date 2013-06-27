@@ -1,0 +1,92 @@
+= content_for :title do
+  = @guide.title
+= content_for :extracss do
+  :css
+    .span2 { background-color: #eee; }
+    .tile .img { display:block;height:200px; text-align:center; background-color:#eee;position:relative;overflow:hidden;}
+    #actions {margin-top:15px;}
+= content_for :extrajs do
+  = google_maps_js
+  = javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js", 'jquery/plugins/waypoints.min'
+  :javascript
+    $('.tile .img').imagesLoaded(function() {
+      $('img', this).not('.iconic').centerInContainer()
+    })
+    $('.clearbtn').click(function() {
+      $(this).siblings(':input').val(null)
+    })
+    $('.taxonmap').waypoint(function() {
+      if ($(this).data('taxonMap')) return
+      $(this).taxonMap()
+    }, {
+      triggerOnce: true,
+      offset: '100%'
+    })
+.container-fluid
+  %ul.breadcrumb
+    %li
+      = link_to t(:guides), guides_path
+      %span.divider /
+      %li.active= @guide.title
+  .row-fluid
+    .span12
+      #actions.btn-group.right
+        = link_to t(:edit), edit_guide_path(@guide), :class => "btn"
+        / %button.btn=t :print
+      %h1= @guide.title
+  .row-fluid
+    .span12
+      = truncate_with_more formatted_user_text(@guide.description), :length => 300
+  .row-fluid
+    .span3
+      %ul.nav.nav-list
+        %li.nav-header Iconic Taxa
+        - for taxon in Taxon::ICONIC_TAXA
+          %li{:class => @taxon.try(:id) == taxon.id ? "active" : nil}
+            = link_to taxon.name, {:taxon => taxon.name}
+    .span9
+      .row-fluid.stacked
+        .navbar
+          .nabar-inner
+            %form.navbar-search.pull-left
+              .input-append
+                %input{:type => "text", :placeholder => "Search", :name => "q", :value => @q}
+                - unless @q.blank?
+                  %button.btn.clearbtn= t(:clear).capitalize
+                %button.btn=t :search
+            .btn-grp.pull-right{"data-toggle" => "buttons-radio"}
+              = link_to t(:grid), {:view => "grid"}, :class => "btn #{'active' if @view == "grid"}"
+              = link_to t(:card), {:view => "card"}, :class => "btn #{'active' if @view == "card"}"
+      - if @view == "card"
+        - for guide_taxon in @guide_taxa
+          .card.row-fluid.stacked
+            .span3
+              = link_to guide_taxon, :class => "img" do
+                - if gp = guide_taxon.guide_photos.first
+                  = image_tag gp.photo.small_url
+                - elsif guide_taxon.taxon
+                  = taxon_image guide_taxon.taxon
+            .span6
+              %h4.name
+                = link_to guide_taxon.display_name, guide_taxon
+              - if gs = guide_taxon.guide_sections.first
+                = truncate_with_more formatted_user_text(gs.description), :length => 400
+            .span3
+              .map
+                - if guide_taxon.guide_ranges.blank?
+                  .taxonmap{"data-taxon-id" => guide_taxon.taxon_id, :style => "height:200px;"}
+                - else
+                  = image_tag guide_taxon.guide_ranges.first.original_url
+      - else
+        - for row in @guide_taxa.in_groups_of(4)
+          .row-fluid.stacked
+            %ul.thumbnails
+              - for guide_taxon in row.compact
+                %li.span3
+                  = link_to guide_taxon, :class => "thumbnail" do
+                    - if gp = guide_taxon.guide_photos.first
+                      = image_tag gp.photo.small_url
+                    - elsif guide_taxon.taxon
+                      = taxon_image guide_taxon.taxon
+                  %h5= link_to guide_taxon.display_name, guide_taxon
+        = will_paginate @guide_taxa
