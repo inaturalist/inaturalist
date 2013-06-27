@@ -859,7 +859,7 @@
           var transition = $.support.transition && that.$element.hasClass('fade')
 
           if (!that.$element.parent().length) {
-            that.$element.appendTo(document.body) //don't move modals dom position
+            that.$element.appendTo($('.bootstrap:first')) //don't move modals dom position
           }
 
           that.$element.show()
@@ -962,7 +962,7 @@
           var doAnimate = $.support.transition && animate
 
           this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
-            .appendTo(document.body)
+            .appendTo($('.bootstrap:first'))
 
           this.$backdrop.click(
             this.options.backdrop == 'static' ?

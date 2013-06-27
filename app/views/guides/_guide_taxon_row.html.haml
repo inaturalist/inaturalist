@@ -1,0 +1,21 @@
+= form_for guide_taxon do |f|
+  .row-fluid.guide_taxon.lined{"data-search-name" => (guide_taxon.display_name.to_s + guide_taxon.name.to_s).gsub(/\W/, '').downcase}
+    .check.pull-left
+      = check_box_tag :batch, guide_taxon.id
+    = link_to edit_guide_taxon_path(guide_taxon), :class => "pull-left" do
+      - gp = guide_taxon.guide_photos.first
+      = image_tag gp ? gp.square_url : taxon_image_url(guide_taxon.taxon, :size => "square"), :class => "img-circle", :style => "max-width:32px"
+    = link_to edit_guide_taxon_path(guide_taxon), :class => "names pull-left" do
+      %span.display_name= guide_taxon.display_name
+      %i.name= guide_taxon.name
+    .ctrl.pull-right.nobr
+      = link_to "x", guide_taxon, :method => :delete, :class => "btn btn-danger delete", :confirm => "Are you sure?", :remote => true, "data-type" => :json
+      = f.text_field :position, :class => "position"
+      %span.ui-icon.ui-icon-arrowthick-2-n-s.inlineblock.grip
+  .more
+    .row-fluid
+      .row12
+        = f.text_field :display_name
+      .row12
+        - for guide_photo in guide_taxon.guide_photos
+          = image_tag guide_photo.thumb_url

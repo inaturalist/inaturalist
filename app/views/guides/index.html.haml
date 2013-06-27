@@ -8,6 +8,9 @@
       world. Whether you're exploring the Serengeti or just your local park
       (which might be the Serengeti), iNaturalist Guides can help you make
       sense of our planet's stunning diversity of life.
+    %p
+      Ready to get started?
+      = link_to "Create a guide", new_guide_path, :class => "btn btn-primary"
   - for row in @guides.in_groups_of(3)
     .row-fluid
       - for guide in row.compact

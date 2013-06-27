@@ -99,7 +99,8 @@ class TaxaController < ApplicationController
           :include => :taxon_names, :methods => [:common_name]))
       end
       format.json do
-        @taxa = Taxon::ICONIC_TAXA if @taxa.blank? && params[:q].blank?
+        @taxa = Taxon::ICONIC_TAXA if params[:q].blank? && params[:taxon_id].blank? && params[:place_id].blank?
+        pagination_headers_for @taxa
         options = Taxon.default_json_options
         options[:include].merge!(
           :iconic_taxon => {:only => [:id, :name]}, 
@@ -168,29 +169,7 @@ class TaxaController < ApplicationController
           ).uniq{|p| p.id}
         end
 
-        @taxon_links = if @taxon.species_or_lower?
-          # fetch all relevant links
-          TaxonLink.for_taxon(@taxon).includes(:taxon)
-        else
-          # fetch links without species only
-          TaxonLink.for_taxon(@taxon).where(:species_only => false).includes(:taxon)
-        end
-        tl_place_ids = @taxon_links.map(&:place_id).compact
-        if !tl_place_ids.blank? # && !@places.blank?
-          if @places.blank?
-            @taxon_links.reject! {|tl| tl.place_id}
-          else
-            # fetch listed taxa for this taxon with places matching the links
-            place_listed_taxa = ListedTaxon.where("place_id IN (?)", tl_place_ids).where(:taxon_id => @taxon)
-
-            # remove links that have a place_id set but don't have a corresponding listed taxon
-            @taxon_links.reject! do |tl|
-              tl.place_id && place_listed_taxa.detect{|lt| lt.place_id == tl.place_id}.blank?
-            end
-          end
-        end
-        @taxon_links.uniq!{|tl| tl.url}
-        @taxon_links = @taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
+        @taxon_links = TaxonLink.by_taxon(@taxon, :reject_places => @places.blank?)
 
         @observations = Observation.of(@taxon).recently_added.limit(12)
         
@@ -438,6 +417,7 @@ class TaxaController < ApplicationController
         end
       end
       format.json do
+        pagination_headers_for(@taxa)
         options = Taxon.default_json_options
         options[:include].merge!(
           :iconic_taxon => {:only => [:id, :name]}, 
@@ -1192,19 +1172,28 @@ class TaxaController < ApplicationController
   private
   
   def find_taxa
-    find_options = {
-      :order => "#{Taxon.table_name}.name ASC",
-      :include => :taxon_names
-    }
+    @taxa = Taxon.order("taxa.name ASC").includes(:taxon_names, :taxon_photos, :taxon_descriptions).scoped
+    @taxa = @taxa.from_place(params[:place_id]) unless params[:place_id].blank?
+    @taxa = @taxa.self_and_descendants_of(params[:taxon_id]) unless params[:taxon_id].blank?
+    if params[:rank] == "species_or_lower"
+      @taxa = @taxa.where("rank_level <= ?", Taxon::SPECIES_LEVEL)
+    elsif !params[:rank].blank?
+      @taxa = @taxa.of_rank(params[:rank])
+    end
     
     @qparams = {}
-    if params[:q]
+    if !params[:q].blank?
       @qparams[:q] = params[:q]
-      find_options[:conditions] =  [ "#{Taxon.table_name}.name LIKE ?", 
-                                      '%' + params[:q].split(' ').join('%') + '%' ]
+      where =  [ "taxon_names.name LIKE ?", '%' + params[:q].split(' ').join('%') + '%' ]
+      if params[:all_names] == 'true'
+        @qparams[:all_names] = params[:all_names]
+        where[0] += " OR taxon_names.name LIKE ?"
+        where << ('%' + params[:q].split(' ').join('%') + '%')
+      end
+      @taxa = @taxa.where(where).includes(:taxon_names)
     elsif params[:name]
       @qparams[:name] = params[:name]
-      find_options[:conditions] = [ "name = ?", params[:name] ]
+      @taxa = @taxa.where("name = ?", params[:name])
     elsif params[:names]
       names = if params[:names].is_a?(String)
         params[:names].split(',')
@@ -1212,32 +1201,15 @@ class TaxaController < ApplicationController
         params[:names]
       end
       taxon_names = TaxonName.where("name IN (?)", names).limit(100)
-      find_options[:conditions] = ["taxa.is_active = ? AND taxa.id IN (?)", true, taxon_names.map(&:taxon_id).uniq]
-    else
-      find_options[:conditions] = ["is_iconic = ?", true]
-      find_options[:order] = :ancestry
+      @taxa = @taxa.where("taxa.is_active = ? AND taxa.id IN (?)", true, taxon_names.map(&:taxon_id).uniq)
     end
     if params[:limit]
       @qparams[:limit] = params[:limit]
-      find_options[:limit] = params[:limit]
+      @taxa = @taxa.limit(params[:limit])
     else
-      find_options[:page] = params[:page].to_i
-      find_options[:page] = 1 if find_options[:page] <= 0
-      find_options[:per_page] = params[:per_page]
+      @taxa = @taxa.page(params[:page]) if params[:page].to_i <= 0
+      @taxa = @taxa.per_page(params[:per_page]) unless params[:per_page].blank?
     end
-    if params[:all_names] == 'true'
-      @qparams[:all_names] = params[:all_names]
-      find_options[:include] = [:taxon_names]
-      if find_options[:conditions]
-        find_options[:conditions][0] += " OR #{TaxonName.table_name}.name LIKE ?"
-        find_options[:conditions] << ('%' + params[:q].split(' ').join('%') + '%')
-      else
-        find_options[:conditions] =  [ "#{TaxonName.table_name}.name LIKE ?", 
-                                        '%' + params[:q].split(' ').join('%') + '%' ]
-      end
-    end
-    
-    @taxa = Taxon.paginate(find_options)
     do_external_lookups
   end
   

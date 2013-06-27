@@ -4,20 +4,24 @@
   :css
     .span2 { background-color: #eee; }
     .tile .img { display:block;height:200px; text-align:center; background-color:#eee;position:relative;overflow:hidden;}
-    /*.tile .img img {max-height:200px;}*/
     #actions {margin-top:15px;}
 = content_for :extrajs do
   = google_maps_js
-  = javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js"
+  = javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js", 'jquery/plugins/waypoints.min'
   :javascript
     $('.tile .img').imagesLoaded(function() {
       $('img', this).not('.iconic').centerInContainer()
     })
     $('.clearbtn').click(function() {
       $(this).siblings(':input').val(null)
-      // $(this).parents('form:first').submit()
     })
-    $('.taxonmap').taxonMap()
+    $('.taxonmap').waypoint(function() {
+      if ($(this).data('taxonMap')) return
+      $(this).taxonMap()
+    }, {
+      triggerOnce: true,
+      offset: '100%'
+    })
 .container-fluid
   %ul.breadcrumb
     %li
@@ -28,8 +32,7 @@
     .span12
       #actions.btn-group.right
         = link_to t(:edit), edit_guide_path(@guide), :class => "btn"
-        %button.btn=t :sync
-        %button.btn=t :print
+        / %button.btn=t :print
       %h1= @guide.title
   .row-fluid
     .span12
@@ -49,7 +52,7 @@
               .input-append
                 %input{:type => "text", :placeholder => "Search", :name => "q", :value => @q}
                 - unless @q.blank?
-                  %button.btn.clearbtn=t :clear
+                  %button.btn.clearbtn= t(:clear).capitalize
                 %button.btn=t :search
             .btn-grp.pull-right{"data-toggle" => "buttons-radio"}
               = link_to t(:grid), {:view => "grid"}, :class => "btn #{'active' if @view == "grid"}"
@@ -77,13 +80,13 @@
       - else
         - for row in @guide_taxa.in_groups_of(4)
           .row-fluid.stacked
-            - for guide_taxon in row.compact
-              .span3
-                .tile
-                  = link_to guide_taxon, :class => "img" do
+            %ul.thumbnails
+              - for guide_taxon in row.compact
+                %li.span3
+                  = link_to guide_taxon, :class => "thumbnail" do
                     - if gp = guide_taxon.guide_photos.first
                       = image_tag gp.photo.small_url
                     - elsif guide_taxon.taxon
                       = taxon_image guide_taxon.taxon
-                  .name
-                    = link_to guide_taxon.display_name, guide_taxon
+                  %h5= link_to guide_taxon.display_name, guide_taxon
+        = will_paginate @guide_taxa

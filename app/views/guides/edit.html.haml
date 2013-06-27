@@ -2,34 +2,276 @@
   = @title = t(:editing_this, :elem => @guide.title)
 - content_for :extracss do
   :css
-    #guide_description {width:300px;}
-    .guide_photo {width:32px; float: left;}
-    .guide_taxa img {max-width:32px; right: 10px; vertical-align: middle;}
-#pageheader
-  .crumbs
-    = link_to "Back to guide", @guide, :class => "back crumb"
-  %h2= @title
-= form_for @guide, :builder => DefaultFormBuilder do |f|
-  .column.span-8
-    = f.text_field :title
-    = f.text_area :description
-  .column.span-16.last
-    %h3 Taxa
-    %ul.guide_taxa
-      - for guide_taxon in @guide.guide_taxa
-        %li.clear.lined
-          - if gp = guide_taxon.guide_photos.first
-            = image_tag guide_taxon.guide_photos.first.photo.square_url
-          - elsif t = guide_taxon.taxon
-            = iconic_taxon_image t, :size => 32
-          = guide_taxon.display_name
-          .right.actions.meta
-            = link_to "edit", edit_guide_taxon_path(guide_taxon)
-            |
-            = link_to "delete", guide_taxon, :method => :delete, :confirm => "Are you sure?"
-    = link_to "Add a taxon", new_guide_taxon_path("guide_taxon[guide_id]" => @guide)
-  .column.span-24
-    .actions.buttonrow
-      = f.submit "Save", :class => "default button"
-      = link_to "Cancel", @guide, :class => "cancel button"
-      = link_to "Delete", @guide, :method => :delete, :confirm => "Are you sure?", :class => "delete button"
+    input.position {width:1em;}
+    .more {display:none;}
+    .guide_taxon .check, .guide_taxon .names {padding:4px 6px;}
+    .names .display_name {font-size:140%;}
+    .grip {margin-bottom:-4px;}
+    .bootstrap form.edit_guide_taxon {margin-bottom:0;}
+    .bootstrap .ctrl input {margin-bottom:0;}
+    #addtaxa input {width:400px;}
+    #addtaxa-single .ui-chooser {margin-bottom: 10px;}
+    .edit_guide input[type=text], 
+    .edit_guide textarea{ min-width:250px;}
+    #controls .navbar .btn,
+    #controls .navbar .navbar-search,
+    #controls .navbar .btn-group {margin-top:0;}
+    #controls .navbar .navbar-search input {margin-bottom:0;}
+    #controls.affix {top:0px; z-index: 1;}
+    #controls.affix .navbar {box-shadow: #777 7px 0 10px; padding:10px 0 10px 0; background-color:white;}
+    #controls .pull-left {margin-right:10px;}
+    .guide_taxon.warning { background-color: #fcf8e3;}
+    .guide_taxon {margin-bottom:0;padding-top:10px;}
+- content_for :extrajs do
+  = javascript_include_tag 'jquery/plugins/jquery.labelize'
+  :javascript
+    var GUIDE = #{raw @guide.to_json}
+    $('#addtaxa').modal({
+      backdrop: true,
+      show: false
+    })
+    $('#addtaxa-place .taxonchooser').chooser({
+      collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
+      resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser'
+    })
+    $('#addtaxa-place .placechooser').chooser({
+      collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+      resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item'
+    })
+    $('#addtaxa-place .chooser').change(function() {
+      $('#addtaxa-place .status').addClass('loading').html('Counting matches...')
+      if (window.matchingTaxaRequest) {
+        window.matchingTaxaRequest.abort()
+      }
+      var params = "place_id=" + $('#addtaxa-place .placechooser').val() + 
+                    "&taxon_id=" + $('#addtaxa-place .taxonchooser').val()
+      window.matchingTaxaRequest = $.getJSON('/taxa.json', params, function(taxa, status, xhr) {
+        var c = xhr.getResponseHeader('x-total-entries') || 0,
+            names = $.map(taxa, function(t) { return t.name }),
+            msg = '<span class="count">' + c + '</span> matching taxa'
+        if (names.length == 1) {
+          msg += ": " + names.join(', ')
+        } else if (names.length > 0){
+          msg += ", including " + names.join(', ')
+        }
+        $('#addtaxa-place .status').removeClass('loading').html(msg)
+      })
+    })
+    window.addTaxonField = function() {
+      var newInput = $('<input type="text" name="taxon_id" placeholder="Start typing taxon name..."/>')
+      $('#addtaxa-single').append(newInput)
+      newInput.chooser({
+        collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+        afterSelect: function(taxon) {
+          window.addTaxonField()
+        }
+      })
+      $('#addtaxa-single input:visible:last').focus()
+    }
+    addTaxonField()
+    $('#addtaxa .modal-footer .btn-primary').click(function() {
+      if ($('#addtaxa-single:visible').length > 0) {
+        addTaxaSingle()
+      } else {
+        addTaxaFromPlace()
+      }
+    })
+    function addTaxaSingle() {
+      $('#addtaxa-single input[name=taxon_id]').each(function() {
+        var taxonId = $(this).val()
+        if (!parseInt(taxonId) || parseInt(taxonId) <= 0) return
+        $.post("/guide_taxa.json", {"guide_taxon[guide_id]": GUIDE.id, "guide_taxon[taxon_id]": taxonId, partial: "guides/guide_taxon_row"})
+          .success(function(json, status, xhr) {
+            $('#guide_taxa .nocontent').remove()
+            $('#guide_taxa').prepend(json.guide_taxon.html)
+          })
+          .error(function(xhr) {
+            var errors = $.parseJSON(xhr.responseText)
+            alert("There were problems adding those taxa: ", errors)
+          })
+      })
+      $('#addtaxa-single').html('')
+      addTaxonField()
+      $('#addtaxa').modal('hide')
+    }
+    function addTaxaFromPlace() {
+      var placeId = $('#addtaxa-place .placechooser').val(),
+          taxonId = $('#addtaxa-place .taxonchooser').val()
+      $('#addtaxa .modal-footer .btn-primary').addClass('disabled').text('Adding...')
+      $.post('/guides/'+GUIDE.id+'/import_taxa', {taxon_id: taxonId, place_id: placeId, partial: "guides/guide_taxon_row"}, function(json) {
+        $.each(json.guide_taxa, function(gt) {
+          if (this.html) {
+            $('#guide_taxa .nocontent').remove()
+            $('#guide_taxa').prepend(this.html)
+          }
+        })
+      }, 'json').complete(function() {
+        $('#addtaxa .modal-footer .btn-primary').removeClass('disabled').text('Add taxa')
+        $('#addtaxa').modal('hide')
+      })
+    }
+    $('.guide_taxon .delete').bind('ajax:before', function() {
+      $(this).parents('.guide_taxon').slideUp()
+    })
+    $('.guide_taxon').labelize();
+    $('.check input').change(function() {
+      if (this.checked) {
+        $(this).parents('.guide_taxon:first').addClass('warning')
+        $('#editbutton').removeClass('disabled')
+      } else {
+        $(this).parents('.guide_taxon:first').removeClass('warning')
+        if ($('.guide_taxon.warning').length == 0) {
+          $('#editbutton').addClass('disabled')
+        }
+      }
+    })
+    function incrementLoadingStatus(options) {
+      options = options || {}
+      var status = $('.bigloading.status').text(),
+          matches = status.match(/ (\d+) of (\d+)/),
+          current = parseInt(matches[1]),
+          total = matches[2],
+          verb = options.verb || "Saving"
+      $('.bigloading.status').text(verb + " " + (current + 1) + " of " + total + "...")
+    }
+    function deleteGuideTaxon(options) {
+      var options = options || {}
+      var container = $('#guide_taxa'),
+          recordContainer = $(this).parents('form:first'),
+          params = '',
+          recordId = $(this).data('guide-taxon-id') || $(this).attr('href').match(/\d+$/)[0]
+      var nextMethod = function() {
+        if (options.chain) {
+          var link = recordContainer.nextAll().has('input[type=checkbox]:checked').find('.delete').get(0)
+          if (link) {
+            incrementLoadingStatus({verb: 'Deleting'})
+            deleteGuideTaxon.apply(link, [options])
+          } else {
+            container.shades('close')
+          }
+        }
+      }
+      if (recordId && recordId != '') {
+        params += '&_method=DELETE'
+        url = '/guide_taxa/'+recordId
+      } else {
+        recordContainer.hide()
+        nextMethod()
+        recordContainer.remove()
+        return
+      }
+      $.post(url, params, function(data, status) {
+        recordContainer.slideUp(function() {
+          nextMethod()
+          recordContainer.remove()
+        })
+      }, 'json').error(function(xhr) {
+        var json = eval('(' + xhr.responseText + ')')
+        recordContainer.removeClass('success')
+        recordContainer.addClass('error')
+        if (json.full_messages) {
+          errors = json.full_messages
+        } else {
+          var errors = ""
+          for (var key in json.errors) {
+            errors += key.replace(/_/, ' ') + ' ' + json.errors[key]
+          }
+        }
+        recordContainer.find('.message td').html(errors)
+        recordContainer.effect('highlight', {color: 'lightpink'}, 1000)
+        nextMethod()
+      })
+    }
+    function removeSelected() {
+      $selection = $('.guide_taxon').has('input[type=checkbox]:checked')
+      if ($selection.length == 0) return false
+      if (confirm('Are you sure you want to remove these ' + $selection.length + ' taxa?')) {
+        var msg = "Deleting 1 of " + $selection.length + "..."
+        $('#guide_taxa').loadingShades(msg, {cssClass: 'bigloading'})
+        var link = $selection.find('.delete:first').get(0)
+        deleteGuideTaxon.apply(link, [{chain: true}])
+      }
+    }
+    $('.navbar-search input').keyup(function(e) {
+      var q = $(this).val()
+      if (!q || q == '') {
+        $('.guide_taxon').show()
+        return
+      }
+      $('.guide_taxon').each(function() {
+        if ($(this).data('search-name').match(q)) {
+          $(this).show()
+        } else {
+          $(this).hide()
+        }
+      })
+    })
+    $('#selectall').click(function() {
+      $('.guide_taxon input:checkbox:visible').attr('checked', true).change()
+    })
+    $('#selectnone').click(function() {
+      $('.guide_taxon input:checkbox').attr('checked', false).change()
+    })
+.container-fluid
+  %ul.breadcrumb
+    %li
+      = link_to t(:back_to_x, :noun => @guide.title), @guide, :class => "back"
+
+  %h1= @title
+
+  .row-fluid
+    .span3
+      = form_for @guide do |f|
+        = f.text_field :title, :placeholder => t(:title)
+        = f.text_area :description, :placeholder => t(:description)
+        / %h3 Navigation
+        / - for opt in @nav_options
+        /   = check_box_tag opt
+        = f.submit t(:save), :class => "btn btn-primary"
+
+    .span9
+      #controls.clearfix.row-fluid{"data-spy" => "affix", "data-offset-top" => 148}
+        .navbar.clearfix
+          .pull-left
+            .btn-group
+              %button#editbutton.disabled.btn.warning.dropdown-toggle{"data-toggle" => "dropdown"}
+                Edit
+                %span.caret
+              %ul.dropdown-menu
+                %li= link_to_function "Remove selected", "removeSelected()"
+            %button#selectall.btn{:type => "button", :role => "button"}=t :select_all
+            %button#selectnone.btn{:type => "button", :role => "button"}=t :select_none
+            %button.btn-primary.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#addtaxa"} Add taxa
+          %form.navbar-search
+            %input{:type => "text", :placeholder => "Search", :name => "q", :value => @q}
+      #guide_taxa
+        - if @guide_taxa.blank?
+          .nocontent.alert
+            %p
+              Looks like you don't have an species in your guide yet.
+            %button.btn-primary.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#addtaxa"} Add some taxa
+        - else
+          - for guide_taxon in @guide_taxa
+            = render "guide_taxon_row", :guide_taxon => guide_taxon
+
+#addtaxa.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
+  .modal-header
+    %button.close{:type => "button", "data-dismiss" => "modal"} x
+    %h3 Add Taxa
+  .modal-body
+    %ul.nav.nav-pills
+      %li.active= link_to "One-by-one", "#addtaxa-single", "data-toggle" => "pill"
+      %li= link_to "From place", "#addtaxa-place", "data-toggle" => "pill"
+    .tab-content
+      #addtaxa-single.tab-pane.active.fade.in
+      #addtaxa-place.tab-pane.fade
+        .stacked
+          %input.placechooser.chooser{:placeholder => "Start typing place name..."}
+        .stacked
+          %input.taxonchooser.chooser{:placeholder => "Start typing taxon name..."}
+          %span.muted (optional)
+        .status.muted 0 matching taxa
+  .modal-footer
+    %button.btn{"data-dismiss" => "modal"} Close
+    %button.btn.btn-primary Add taxa

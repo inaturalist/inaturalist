@@ -1,13 +1,13 @@
 class GuidesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :admin_required
-  layout "bootstrap", :except => [:edit]
+  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa]
+  layout "bootstrap"
   
   # GET /guides
   # GET /guides.json
   def index
-    @guides = Guide.page(1)
-
+    @guides = Guide.page(params[:page])
     respond_to do |format|
       format.html
       format.json { render json: {:guides => @guides.as_json} }
@@ -17,7 +17,6 @@ class GuidesController < ApplicationController
   # GET /guides/1
   # GET /guides/1.json
   def show
-    @guide = Guide.find(params[:id])
     unless params[:taxon].blank?
       @taxon = Taxon::ICONIC_TAXA_BY_ID[params[:taxon]]
       @taxon ||= Taxon::ICONIC_TAXA_BY_NAME[params[:taxon]]
@@ -25,7 +24,7 @@ class GuidesController < ApplicationController
     end
     @q = params[:q]
     
-    @guide_taxa = @guide.guide_taxa.includes(:guide_photos).page(params[:page]).per_page(100)
+    @guide_taxa = @guide.guide_taxa.order("position, taxa.ancestry, guide_taxa.name").includes(:taxon, :guide_photos).page(params[:page]).per_page(100)
     @guide_taxa = @guide_taxa.in_taxon(@taxon) if @taxon
     @guide_taxa = @guide_taxa.dbsearch(@q) unless @q.blank?
     @view = params[:view] || "grid"
@@ -40,7 +39,6 @@ class GuidesController < ApplicationController
   # GET /guides/new.json
   def new
     @guide = Guide.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @guide.as_json(:root => true) }
@@ -49,7 +47,8 @@ class GuidesController < ApplicationController
 
   # GET /guides/1/edit
   def edit
-    @guide = Guide.find(params[:id])
+    @nav_options = %w(iconic tag)
+    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_photos => [:photo]], :guide_photos => [:photo])
   end
 
   # POST /guides
@@ -61,7 +60,7 @@ class GuidesController < ApplicationController
     respond_to do |format|
       if @guide.save
         create_default_guide_taxa
-        format.html { redirect_to @guide, notice: 'Guide was successfully created.' }
+        format.html { redirect_to edit_guide_path(@guide), notice: 'Guide was successfully created.' }
         format.json { render json: @guide.as_json(:root => true), status: :created, location: @guide }
       else
         format.html { render action: "new" }
@@ -73,8 +72,7 @@ class GuidesController < ApplicationController
   # PUT /guides/1
   # PUT /guides/1.json
   def update
-    @guide = Guide.find(params[:id])
-
+    create_default_guide_taxa
     respond_to do |format|
       if @guide.update_attributes(params[:guide])
         format.html { redirect_to @guide, notice: 'Guide was successfully updated.' }
@@ -89,7 +87,6 @@ class GuidesController < ApplicationController
   # DELETE /guides/1
   # DELETE /guides/1.json
   def destroy
-    @guide = Guide.find(params[:id])
     @guide.destroy
 
     respond_to do |format|
@@ -98,35 +95,24 @@ class GuidesController < ApplicationController
     end
   end
 
+  def import_taxa
+    @guide_taxa = @guide.import_taxa(params)
+    respond_to do |format|
+      format.json do
+        if partial = params[:partial]
+          @guide_taxa.each_with_index do |gt, i|
+            next if gt.new_record?
+            @guide_taxa[i].html = view_context.render_in_format(:html, partial, :guide_taxon => gt)
+          end
+        end
+        render :json => {:guide_taxa => @guide_taxa.as_json(:root => false, :methods => [:errors, :html, :valid?])}
+      end
+    end
+  end
+
   private
 
   def create_default_guide_taxa
-    return if params[:place_id].blank? && params[:list_id].blank? && params[:taxon_id].blank?
-    scope = if !params[:place_id].blank?
-      Taxon.from_place(params[:place_id]).scoped
-    elsif !params[:list_id].blank?
-      Taxon.on_list(params[:list_id]).scoped
-    else
-      Taxon.scoped
-    end
-    if t = Taxon.find_by_id(params[:taxon_id])
-      scope = scope.descendants_of(t)
-    end
-    scope.limit(100).each do |taxon|
-      gt = @guide.guide_taxa.build(
-        :taxon_id => taxon.id,
-        :name => taxon.name,
-        :display_name => taxon.default_name.name
-      )
-      if p = taxon.default_photo
-        gt.guide_photos.build(:photo => p)
-      end
-      unless taxon.wikipedia_summary.blank?
-        gt.guide_sections.build(:title => "Summary", :description => taxon.wikipedia_summary)
-      end
-      unless gt.save
-        Rails.logger.error "[ERROR #{Time.now}] Failed to save #{gt}: #{gt.errors.full_messages.to_sentence}"
-      end
-    end
+    @guide.import_taxa(params)
   end
 end

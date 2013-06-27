@@ -2,7 +2,7 @@
   = "#{@guide_taxon.display_name} (#{@guide.title})"
 = content_for :extracss do
   :css
-    #photos {white-space: nowrap; overflow-x:scroll; overflow-y:hidden;}
+    #photos {white-space: nowrap; overflow-x:auto; overflow-y:hidden;}
     #photos img {max-height:200px;}
 = content_for :extrajs do
   = google_maps_js
@@ -27,7 +27,7 @@
 
   #photos.row-fluid.stacked
     - for guide_photo in @guide_taxon.guide_photos
-      = image_tag guide_photo.medium_url
+      = image_tag guide_photo.medium_url, :class => "img-rounded"
 
   .row-fluid
     .span8
@@ -37,6 +37,11 @@
         - for s in @guide_taxon.guide_sections
           %h3= s.title
           = formatted_user_text s.description
+      %h3 More info
+      %ul
+        %li= link_to "#{SITE_NAME} taxon page", @guide_taxon.taxon
+        - for tl in @taxon_links
+          %li= link_to tl.site_title, tl.url_for_taxon(@guide_taxon.taxon)
     .span4
       .map
         - if @guide_taxon.guide_ranges.blank?
