@@ -27,6 +27,10 @@ class GuideTaxon < ActiveRecord::Base
 
   scope :dbsearch, lambda {|q| where("guide_taxa.name ILIKE ? OR guide_taxa.display_name ILIKE ?", "%#{q}%", "%#{q}%")}
 
+  def default_guide_photo
+    guide_photos.sort_by(&:id).first
+  end
+
   def set_names_from_taxon
     return true unless taxon
     self.name = taxon.name if name.blank?
