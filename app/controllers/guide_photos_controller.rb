@@ -1,7 +1,10 @@
 class GuidePhotosController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :admin_required
   before_filter :load_record, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_guide, :except => [:index, :new, :create]
+  before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos] do |c|
+    require_owner :klass => "Guide"
+  end
 
   # GET /guide_photos
   # GET /guide_photos.json
@@ -76,5 +79,10 @@ class GuidePhotosController < ApplicationController
       format.html { redirect_to guide_photos_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def load_guide
+    @guide = @guide_section.guide
   end
 end

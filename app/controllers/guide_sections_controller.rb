@@ -1,7 +1,10 @@
 class GuideSectionsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :admin_required
   before_filter :load_record, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_guide, :except => [:index, :new, :create, :import, :import_from_eol, :import_from_wikipedia]
+  before_filter :only => [:edit, :update, :destroy] do |c|
+    require_owner :klass => "Guide"
+  end
 
   # GET /guide_sections
   # GET /guide_sections.json
@@ -127,5 +130,10 @@ class GuideSectionsController < ApplicationController
         :description => txt
       )
     end.compact
+  end
+
+  private
+  def load_guide
+    @guide = @guide_section.guide
   end
 end

@@ -1,7 +1,7 @@
 class GuidesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :admin_required
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa]
+  before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa]
   layout "bootstrap"
   
   # GET /guides

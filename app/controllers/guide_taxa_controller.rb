@@ -1,8 +1,10 @@
 class GuideTaxaController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :admin_required
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos]
   before_filter :load_guide, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos]
+  before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos] do |c|
+    require_owner :klass => "Guide"
+  end
   layout "bootstrap", :except => [:edit]
 
   # GET /guide_taxa

@@ -13,6 +13,7 @@ class GuideTaxon < ActiveRecord::Base
   accepts_nested_attributes_for :guide_ranges, :allow_destroy => true
   before_save :set_names_from_taxon
   before_create :set_default_photo
+  before_create :set_default_section
 
   validates_uniqueness_of :taxon_id, :scope => :guide_id
 
@@ -45,6 +46,7 @@ class GuideTaxon < ActiveRecord::Base
     return true if taxon.blank?
     return true unless guide_sections.blank?
     return true if taxon.wikipedia_summary.blank?
-    gt.guide_sections.build(:title => "Summary", :description => taxon.wikipedia_summary)
+    self.guide_sections.build(:title => "Summary", :description => taxon.wikipedia_summary)
+    true
   end
 end
