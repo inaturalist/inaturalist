@@ -6,8 +6,11 @@
     <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/stylesheets/index.css" rel="stylesheet" media="screen">
-    <link href="/stylesheets/jquery-ui.css" rel="stylesheet" media="screen">
+    <%= stylesheet_link_tag 'jquery-ui',
+                            "jquery/ui.tabs.css",
+                            'index',
+                            'observations'
+                            %>
     <!-- Bootstrap -->
     <link href="/stylesheets/bootstrap.css" rel="stylesheet" media="screen">
     <style type="text/css">
@@ -23,6 +26,13 @@
       .readable, p {line-height: 1.6em;}
       .readable, p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
       .bootstrap .ui-chooser input.ui-chooser-input {padding:5px 6px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
+      .bootstrap .thumbnail.borderless { padding: 0; overflow:hidden;}
+      .bootstrap .overlaycontrol { text-align: right; max-width: 400px;}
+      .bootstrap .overlaycontrol ul { list-style: none; margin: 0; text-align: left;}
+      .bootstrap .overlaycontrol li { line-height: 1; }
+      .bootstrap .overlaycontrol label { display: inline-block; }
+      .bootstrap .overlaycontrol input[type="checkbox"] { margin: 0 5px 0 0; }
+      .bootstrap .taxonmap img {max-width: none;}
     </style>
     <%= csrf_meta_tag %>
     <% if CONFIG.twitter && CONFIG.twitter.username -%>

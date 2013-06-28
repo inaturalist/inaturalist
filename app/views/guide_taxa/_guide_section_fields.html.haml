@@ -1,5 +1,10 @@
-.nested-fields.guide-section-fields.stacked
+.nested-fields.guide-section-fields.stacked.row-fluid.clearfix.lined
   = f.hidden_field :guide_taxon_id
-  = f.text_field :title, :class => "input-xxlarge"
-  = f.text_area :description, :class => "input-xxlarge"
-  = link_to_remove_association "remove section", f
+  = f.text_field :position, :class => "sortable-position pull-left"
+  .pull-left
+    .title_field
+      = f.text_field :title, :class => "input-xxlarge"
+    = link_to_toggle "Edit body", "#"+dom_id(f.object, "body")
+    .description_field{:id => dom_id(f.object, "body"), :style => "display:none"}
+      = f.text_area :description, :class => "input-xxlarge"
+  = link_to_remove_association "remove section", f, :class => "pull-right btn btn-mini"

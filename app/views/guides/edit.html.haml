@@ -1,6 +1,7 @@
 - content_for :title do
   = @title = t(:editing_this, :elem => @guide.title)
 - content_for :extracss do
+  = stylesheet_link_tag "guides"
   :css
     input.position {width:1em;}
     .more {display:none;}
@@ -11,8 +12,6 @@
     .bootstrap .ctrl input {margin-bottom:0;}
     #addtaxa input {width:400px;}
     #addtaxa-single .ui-chooser {margin-bottom: 10px;}
-    .edit_guide input[type=text], 
-    .edit_guide textarea{ min-width:250px;}
     #controls .navbar .btn,
     #controls .navbar .navbar-search,
     #controls .navbar .btn-group {margin-top:0;}
@@ -22,6 +21,7 @@
     #controls .pull-left {margin-right:10px;}
     .guide_taxon.warning { background-color: #fcf8e3;}
     .guide_taxon {margin-bottom:0;padding-top:10px;}
+    .sorttarget { height: 50px;}
 - content_for :extrajs do
   = javascript_include_tag 'jquery/plugins/jquery.labelize'
   :javascript
@@ -215,6 +215,52 @@
     $('#selectnone').click(function() {
       $('.guide_taxon input:checkbox').attr('checked', false).change()
     })
+    function updatePositions(container, sortable) {
+      $selection = $(sortable+':visible', container)
+      $selection.each(function() {
+        $('input[name*="position"]', this).val($selection.index(this) + 1)
+      })
+    }
+    $('#guide_taxa').sortable({
+      items: "> form",
+      cursor: "move",
+      placeholder: 'row-fluid stacked sorttarget',
+      update: function(event, ui) {
+        updatePositions("#guide_taxa", "form")  
+        if (!window.updateGuideTaxaTimeout) {
+          window.updateGuideTaxaTimeout = setTimeout('updateGuideTaxa()', 5000)
+        };
+      }
+    })
+    function updateGuideTaxa() {
+      window.updateGuideTaxaTimeout = null
+      saveGuideTaxon.apply($('#guide_taxa form:first').get(0), [{chain: true}])
+    }
+    function saveGuideTaxon(options) {
+      var options = options || {}
+      var container = $('#guide_taxa'),
+          recordContainer = $(this) //.parents('form:first'),
+      var nextMethod = function() {
+        if (options.chain) {
+          var next = recordContainer.nextAll('form').get(0)
+          if (next) {
+            saveGuideTaxon.apply(next, [options])
+          } else {
+            container.shades('close')
+          }
+        }
+      }
+      var url = $(this).attr('action'),
+          params = $(this).serialize()
+      $.post(url, params, function(data, status) {
+        // console.log("[DEBUG] success: ", this)
+        nextMethod()
+      }, 'json').error(function(xhr) {
+        var json = eval('(' + xhr.responseText + ')')
+        // console.log("[DEBUG] error: ", json)
+        nextMethod()
+      })
+    }
 .container-fluid
   %ul.breadcrumb
     %li
@@ -225,8 +271,8 @@
   .row-fluid
     .span3
       = form_for @guide do |f|
-        = f.text_field :title, :placeholder => t(:title)
-        = f.text_area :description, :placeholder => t(:description)
+        = f.text_field :title, :placeholder => t(:title), :class => "span12"
+        = f.text_area :description, :placeholder => t(:description), :class => "span12"
         / %h3 Navigation
         / - for opt in @nav_options
         /   = check_box_tag opt

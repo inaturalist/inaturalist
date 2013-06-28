@@ -10638,7 +10638,8 @@ CREATE TABLE guide_photos (
     description character varying(255),
     photo_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    "position" integer DEFAULT 0
 );
 
 
@@ -10705,7 +10706,8 @@ CREATE TABLE guide_sections (
     title character varying(255),
     description text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    "position" integer DEFAULT 0
 );
 
 
@@ -15811,3 +15813,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130611025612');
 INSERT INTO schema_migrations (version) VALUES ('20130613223707');
 
 INSERT INTO schema_migrations (version) VALUES ('20130624022309');
+
+INSERT INTO schema_migrations (version) VALUES ('20130628035929');

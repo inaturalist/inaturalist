@@ -5,6 +5,7 @@
     .span2 { background-color: #eee; }
     .tile .img { display:block;height:200px; text-align:center; background-color:#eee;position:relative;overflow:hidden;}
     #actions {margin-top:15px;}
+    .taxonmap {height: 200px;}
 = content_for :extrajs do
   = google_maps_js
   = javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js", 'jquery/plugins/waypoints.min'
@@ -62,7 +63,7 @@
           .card.row-fluid.stacked
             .span3
               = link_to guide_taxon, :class => "img" do
-                - if gp = guide_taxon.guide_photos.first
+                - if gp = guide_taxon.default_guide_photo
                   = image_tag gp.photo.small_url
                 - elsif guide_taxon.taxon
                   = taxon_image guide_taxon.taxon
@@ -74,7 +75,7 @@
             .span3
               .map
                 - if guide_taxon.guide_ranges.blank?
-                  .taxonmap{"data-taxon-id" => guide_taxon.taxon_id, :style => "height:200px;"}
+                  .taxonmap{setup_map_tag_attrs(guide_taxon.taxon, :taxon_range => guide_taxon.taxon.taxon_ranges_without_geom.first)}
                 - else
                   = image_tag guide_taxon.guide_ranges.first.original_url
       - else
@@ -83,10 +84,9 @@
             %ul.thumbnails
               - for guide_taxon in row.compact
                 %li.span3
-                  = link_to guide_taxon, :class => "thumbnail" do
-                    - if gp = guide_taxon.guide_photos.first
-                      = image_tag gp.photo.small_url
-                    - elsif guide_taxon.taxon
-                      = taxon_image guide_taxon.taxon
+                  - if gp = guide_taxon.default_guide_photo
+                    = link_to image_tag(gp.photo.small_url), guide_taxon, :class => "thumbnail borderless"
+                  - elsif guide_taxon.taxon
+                    = link_to taxon_image(guide_taxon.taxon), guide_taxon, :class => "thumbnail"
                   %h5= link_to guide_taxon.display_name, guide_taxon
         = will_paginate @guide_taxa

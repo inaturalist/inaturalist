@@ -5,7 +5,7 @@ class GuideTaxaController < ApplicationController
   before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos] do |c|
     require_owner :klass => "Guide"
   end
-  layout "bootstrap", :except => [:edit]
+  layout "bootstrap"
 
   # GET /guide_taxa
   # GET /guide_taxa.json
@@ -51,6 +51,8 @@ class GuideTaxaController < ApplicationController
   # GET /guide_taxa/1/edit
   def edit
     @guide = @guide_taxon.guide
+    @guide_photos = @guide_taxon.guide_photos.order(:position)
+    @guide_sections = @guide_taxon.guide_sections.order(:position)
   end
 
   # POST /guide_taxa
