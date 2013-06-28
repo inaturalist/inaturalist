@@ -1,5 +1,5 @@
 class GuidePhoto < ActiveRecord::Base
-  attr_accessible :description, :guide_taxon_id, :photo_id, :title, :photo, :guide_taxon
+  attr_accessible :description, :guide_taxon_id, :photo_id, :title, :photo, :guide_taxon, :position
   belongs_to :guide_taxon, :inverse_of => :guide_photos
   belongs_to :photo, :inverse_of => :guide_photos
   validates :photo, :presence => true

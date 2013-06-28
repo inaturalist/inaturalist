@@ -1,7 +1,7 @@
 class GuideTaxon < ActiveRecord::Base
   attr_accessor :html
   attr_accessible :display_name, :guide_id, :name, :taxon_id, :taxon, :guide_photos_attributes, 
-    :guide_sections_attributes, :guide_ranges_attributes, :html
+    :guide_sections_attributes, :guide_ranges_attributes, :html, :position
   belongs_to :guide, :inverse_of => :guide_taxa
   belongs_to :taxon
   has_many :guide_sections, :inverse_of => :guide_taxon, :dependent => :destroy
@@ -28,7 +28,7 @@ class GuideTaxon < ActiveRecord::Base
   scope :dbsearch, lambda {|q| where("guide_taxa.name ILIKE ? OR guide_taxa.display_name ILIKE ?", "%#{q}%", "%#{q}%")}
 
   def default_guide_photo
-    guide_photos.sort_by(&:id).first
+    guide_photos.sort_by(&:position).first
   end
 
   def set_names_from_taxon

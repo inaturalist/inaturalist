@@ -24,7 +24,7 @@ class GuidesController < ApplicationController
     end
     @q = params[:q]
     
-    @guide_taxa = @guide.guide_taxa.order("position, taxa.ancestry, guide_taxa.name").
+    @guide_taxa = @guide.guide_taxa.order("guide_taxa.position, taxa.ancestry, guide_taxa.name").
       includes({:taxon => [:taxon_ranges_without_geom]}, :guide_photos).
       page(params[:page]).per_page(100)
     @guide_taxa = @guide_taxa.in_taxon(@taxon) if @taxon
@@ -50,7 +50,7 @@ class GuidesController < ApplicationController
   # GET /guides/1/edit
   def edit
     @nav_options = %w(iconic tag)
-    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_photos => [:photo]], :guide_photos => [:photo])
+    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_photos => [:photo]], :guide_photos => [:photo]).order("guide_taxa.position")
   end
 
   # POST /guides

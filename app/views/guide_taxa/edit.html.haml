@@ -1,7 +1,8 @@
 - content_for :title do
   = @title = "Editing #{@guide_taxon.name} in #{@guide.title}"
-#pagheader
-  .crumbs
-    = link_to "Back to #{@guide.title}", edit_guide_path(@guide), :class => "back crumb"
+.container-fluid
+  %ul.breadcrumb
+    %li
+      = link_to t(:back_to_x, :noun => @guide.title), edit_guide_path(@guide), :class => "back"
   %h2= @title
-= render 'form'
+  = render 'form'
