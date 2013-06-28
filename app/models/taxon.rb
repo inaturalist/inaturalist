@@ -327,7 +327,7 @@ class Taxon < ActiveRecord::Base
     where("(conservation_statuses.place_id = ? OR conservation_statuses.place_id IS NULL)", place)
   }
   scope :from_place, lambda {|place|
-    joins(:listed_taxa).where("listed_taxa.place_id = ?", place)
+    includes(:listed_taxa).where("listed_taxa.place_id = ?", place)
   }
   scope :on_list, lambda {|list|
     includes(:listed_taxa).where("listed_taxa.list_id = ?", list)
