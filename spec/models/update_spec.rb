@@ -33,6 +33,7 @@ describe Update, "user_viewed_updates" do
     end
     Update.find_by_id(old_update.id).should be_blank
   end
+
   it "should delete activity updates that aren't the last update on the subscribables viewed" do
     old_update = Update.make!(:notification => "activity")
     new_update = Update.make!(:notification => "activity", :subscriber => old_update.subscriber, :resource => old_update.resource)
@@ -40,5 +41,6 @@ describe Update, "user_viewed_updates" do
       Update.user_viewed_updates([new_update])
     end
     Update.find_by_id(old_update.id).should be_blank
+    Update.find_by_id(new_update.id).should_not be_blank
   end
 end

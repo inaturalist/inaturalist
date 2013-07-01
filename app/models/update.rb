@@ -222,16 +222,9 @@ class Update < ActiveRecord::Base
     update_ids = []
     updates.each do |update|
       next unless update.notification == 'activity'
-      update_ids << update.id
-      clauses << "(subscriber_id = #{update.subscriber_id} AND resource_type = '#{update.resource_type}' AND resource_id = #{update.resource_id})"
-    end
-    unless clauses.blank?
-      update_ids.compact!
-      update_ids.uniq!
       Update.delay(:priority => USER_INTEGRITY_PRIORITY).delete_all([
-        "id < ? AND id NOT IN (?) AND notification = 'activity' AND (#{clauses.join(' OR ')})",
-        update_ids.min,
-        update_ids
+        "id < ? AND notification = 'activity' AND subscriber_id = ? AND resource_type = ? AND resource_id = ?", 
+        update.id, update.subscriber_id, update.resource_type, update.resource_id
       ])
     end
     Update.delay(:priority => USER_INTEGRITY_PRIORITY).delete_all(["subscriber_id = ? AND created_at < ?", subscriber_id, 6.months.ago])
