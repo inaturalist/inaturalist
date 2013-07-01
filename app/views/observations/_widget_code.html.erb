@@ -23,7 +23,7 @@
 </style>
 <div class="inat-widget">
   <% if @logo != "none" -%>
-    <div class="inat-widget-header"><%= link_to image_tag("#{base_url}/images/#{@logo}"), root_url %></div>
+    <div class="inat-widget-header"><%= link_to image_tag(CONFIG.logo, :alt => SITE_NAME), root_url %></div>
   <% end -%>
   <script type="text/javascript" charset="utf-8" src="<%= widget_url %>"></script>
   <table>
@@ -37,13 +37,13 @@
       <td class="inat-user-body"<%= ' colspan="2"' if place %>>
         <strong>
           <% if place -%>
-            <%= link_to "View more observations near #{place.name} on <nobr>#{CONFIG.site_name} &raquo;</nobr>".html_safe, place_url(place) %>
+            <%= link_to t(:view_more_observations_near_x_place, :place => place.name, :site_name => CONFIG.site_name).html_safe, place_url(place) %>
           <% elsif taxon -%>
-            <%= link_to "View more observations of #{taxon.name} on <nobr>#{CONFIG.site_name} &raquo;</nobr>".html_safe, taxon_url(taxon) %>
+            <%= link_to t(:view_more_observations_of_x_taxon, :taxon => taxon.name, :site_name => CONFIG.site_name).html_safe, taxon_url(taxon) %>
           <% elsif project -%>
-            <%= link_to "View more observations from #{project.title} on <nobr>#{CONFIG.site_name} &raquo;</nobr>".html_safe, project_observations_url(project.id) %>
+            <%= link_to t(:view_more_observations_of_x_project, :project => project.title, :site_name => CONFIG.site_name).html_safe, project_observations_url(project.id) %>
           <% else %>
-            <%= link_to "View #{current_user.login}'s <nobr>observations &raquo;</nobr>".html_safe, 
+            <%= link_to "#{t(:view_user_observations, :user => current_user.login)} &raquo;".html_safe,
               observations_by_login_url(current_user.login) %>
           <% end -%>
         </strong>

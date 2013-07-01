@@ -340,6 +340,7 @@ es:
   are_you_sure_you_want_to_remove_this_invitation: ¿Está seguro que deseas cancelar la invitación?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Estás seguro que deseas quitar a esta especie o grupo de la lista de comprobación de %{place}?"
   asc: asc
+  ascending: ascendente
   aside_from_extraordinary_circumstances: "Aparte de circunstancias extraordinarias, nunca le pediremos su contraseña."
   assessment: valoración
   assessment_section: sección de valoración
@@ -422,6 +423,7 @@ es:
   calendar: Calendario
   can_you_help_your_friends_id_these: "¿Puedes ayudar a identificar estas observaciones?"
   cancel: Cancelar
+  cant_merge_a_taxon_with_itself: No puedes combinar ese taxón consigo mismo.
   casual: casual
   catalogue_of_life: "Catálogo de la Vida"
   cc_attribution_license: "Licencia de atribución de Creative Commons"
@@ -510,6 +512,7 @@ es:
   clear_color_filters: "Limpiar los filtros de color"
   clear_search: "Limpiar búsqueda"
   clear_shapes: Quita las formas
+  click_add_an_observation_to_the_lower_right: "Bienvenido a %{site_name_short}! Selecciona el enlace 'Añade una observación'. Serás llevado a Registrarse / Entrar si aún no lo has hecho "
   click_on_map_to_draw_shape_around_place: "Haga clic en el mapa para dibujar una figura alrededor del lugar"
   click_on_the_map_to: "Haga clic en el mapa para colocar su observación"
   click_the_map: "<strong>Clic al mapa</strong> para agregar una localización."
@@ -545,6 +548,11 @@ es:
   comprehensive?: ¿Completa?
   comprehensive_list: "Lista completa"
   concept_status: Concepto de la situación
+  configure: Configurar
+  configure_a_widget_to_show:
+      Configura el widget para mostrar las observaciones de %{site_name} en tu sitio web o
+      blog. También puedes incluir el estilo CSS en la
+      <code>&lt;head&gt;</code> de tu código HTML. Sienteté libre de nodificar el CSS.
   confirm_membership: "Confirmar membresía"
   confirm_new_password: "Confirmar contraseña nueva"
   confirm_now: "Confirmar ahora"
@@ -751,6 +759,7 @@ es:
       second: Segundos
       year: Año
   date_created: fecha de creación
+  date_observed_on: fecha que se observo
   day: Día
   december: Diciembre
   default_invite_comment: "La gran foto! Usted debe enviar a %{site_name}: {{INVITE_LINK}}"
@@ -768,6 +777,7 @@ es:
   deleting: Borrando...
   desc: desc
   descendant_taxa: "taxones descendientes"
+  descending: descendente
   describe_purpose: "Describa el propósito de este proyecto"
   describe_your_interest_in_nature: "¡Describa su interés en la naturaleza!"
   description: Descripción
@@ -956,6 +966,7 @@ es:
   extras: Extras
   facebook_account_information: "Información de su cuenta de Facebook"
   facebook_confirmation: "Facebook desea confirmar que usted desea conectar su cuenta a %{site_name}."
+  facebook_needs_the_owner_of_that_photo_to: Facebook necesita la confirmación del propietario de esa foto para poder realizar la conexión a %{site_name_short}.
   facebook_options: "Opciones de Facebook"
   faq: "Preguntas Frecuentes"
   favorite_taxa: "taxones favoritos"
@@ -1025,10 +1036,12 @@ es:
   followers: seguidores
   following: Siguiendo
   for: para
+  for_a_taxon: de un taxon
   for_more_information: para más información.
   forgot_your_password: "¿Olvidó su contraseña?"
   fri: vie
   from: de
+  from_a_place: de un lugar
   from_anywhere_change: "de cualquier lugar (<span class=\"button\">change</span>)"
   from_in_this_place: "de este lugar"
   from_list: "De la lista"
@@ -1047,6 +1060,7 @@ es:
   general: General
   generally_these_come_from_uicn_red_list: "Vienen generalmente de la Lista Roja de UICN y si vienen de otro lugar se adherirán a las categorías de UICN."
   generate_taxonomic_tags_for_flickr: "Generar etiquetas taxonómicas para sus fotos de Flickr."
+  generate_widget: Genera el widget
   genus_slash_species: "[GÉNERO] / [ESPECIE]"
   geoprivacy: Geoprivacidad
   georeferenced: "¿Geo referenciado?"
@@ -1221,6 +1235,7 @@ es:
   lat: Latitud
   latitude: Latitud
   latitude_in_decimals: 'Latitud en grados con decimales, ej. 38.123'
+  layout: Disposición
   leaderboard_for_x: "Los más activos de %{x}"
   leaderboards: Los más activos
   learn!: ¡Aprenda!
@@ -1292,6 +1307,7 @@ es:
   loading_full_description_html: "Cargando la descripción completa... No hay un artículo ni una redirección en Wikipedia titulado <i>%{taxon}</i>. Talvez podría:"
   loading_more_photos: "Cargando más fotos..."
   loading_observations: "Cargando observaciones..."
+  loading_preview_and_code: Cargando el código...
   loading_tags: "Cargando etiquetas..."
   loading_taxa_from_your: "Cargando taxones de sus observaciones..."
   loading_wikipedia_description: "Cargando descripción de Wikipedia..."
@@ -1304,6 +1320,12 @@ es:
   logged_in_as: "Inició sesión como"
   logged_in_successfuly: "Ha iniciado sesión exitosamente"
   login_slash_username: "Registro / nombre de usuario"
+  logo:
+      logo: Logotipo
+      white_bg_gif: Fondo blanco con imagen GIF
+      transparent_png: imagen PNG transparente
+      white_text_transparent_png: Texto con letras blancas e imagen PNG transparente
+      none: Ninguno
   long: Longitud
   longitude: Longitud
   longitude_in_decimal: 'Longitud en grados con decimales, ej. -122.123'
@@ -1405,6 +1427,8 @@ es:
   new_observations: Nuevas observaciones
   new_observations_ellispsis: "Nuevas observaciones..."
   new_observations_from_place_html: "Nuevas observaciones del %{place}"
+  new_observations_may_take_up_to:
+      Las nuevas observaciones pueden tardar alrededor de %{widget_expiration} minutos en aparecer en el widget.
   new_observations_of_x_html: "Nuevas observaciones de %{x}"
   new_password: "Contraseña nueva"
   new_post: "Nuevo ingreso"
@@ -1436,6 +1460,7 @@ es:
   no_curators_yet: ¡No hay curadores aún!
   no_facebook_photos: "No podemos encontrar fotos en Facebook."
   no_flags: "No hay marcas"
+  no_flickr_photos_tagged: "¡No hay fotos etiquetadas con Flickr!"
   no_header_row: "No hay encabezado de fila"
   no_journal_post_have_been: Ninguna nota de diario ha sido añadida a este proyecto.
   no_license_all_rights_reserved: "No hay licencia (todos los derechos reservados)"
@@ -1452,6 +1477,7 @@ es:
   no_more_updates: "¡No hay más actualizaciones!"
   no_nearby_observations: "No hay observaciones cercanas."
   no_observations: "no hay observaciones"
+  no_observations_matching_those_ids: No hay observaciones que coincidan con esos Identificadores.
   no_observations_need_an_id: "Ninguna observación requiere identificador en este momento. ¡Asombroso!"
   no_observations_submitted: "No se envió ninguna observación"
   no_observations_suitable_for_this_project: No hay observaciones que puedas añadir o invitar al proyecto.
@@ -1503,6 +1529,7 @@ es:
   not_seeing_what_looking_for: "¿No ve lo que está buscando?"
   not_yet: "Todavía no"
   no_x_this_y: "No hay %{x} de este %{y}"
+  note: Nota
   noun_by_you: "%{noun} por usted"
   november: Noviembre
   number: 
@@ -1552,6 +1579,7 @@ es:
     precision: 
       format: 
         delimiter: ""
+  number_of_observations: Número de observaciones
   "numeric": Númerico
   obs: Obs
   obscured: Difusa
@@ -1593,6 +1621,11 @@ es:
   observations_it_may_take_a_few: "observaciones. Esto podría tardar unos minutos."
   observations_last500: "Observaciones (últimas 500)"
   observations_map: "Observaciones / Mapa"
+  observations_near_a_place_are:
+      Observaciones "cercanas" a un lugar que esten con un rectangulo alrededor
+      de los limites de la figura, puede dar de resultado algunos datos imprecisos para
+      lugares que no parezcan rectangulos. Esto es debido a una limitación con
+      nuestra base de datos que estamos trabajando para resolver.
   observations_needing_curation: "Observaciones que necesitan curación"
   observations_obscured: "Observaciones (ocultas)"
   observations_observed_this_month: Observaciones <em>hechas</em> este mes, no se añaden al mes en curso. ¡Sal y haz más observaciones!
@@ -1605,6 +1638,7 @@ es:
   observations_w_field: Búsqueda de observaciones con campo
   observations_was_successfully_updated: La observación(es) fue actualizada exitosamente.
   observations_week: "Observaciones / Semana"
+  observations_widget: Observaciones del widget
   observations_will_revert_to_casual: "Las observaciones volverán al grado \"casual\" si no se cumplen las condiciones anteriores o"
   observed: "Observado el"
   observed_by: "Observado por"
@@ -1887,6 +1921,7 @@ es:
   reptiles: reptiles
   request_id_help: "Solicitar ayuda para identificar"
   request_password: "Solicitar contraseña"
+  request_timed_out: "¡La petición excedio el tiempo de espera!"
   required: obligatorio
   required_columns_in_order: "Columnas requeridas en orden"
   research: investigación
@@ -1978,6 +2013,7 @@ es:
   send: enviada(s)
   send_invite: "Enviar invitación"
   send_invites_to: "Enviar invitaciones a"
+  send_me_reset_password_instructions: Eviarme las instrucciones para restablecer mi contraseña
   send_the_invites: "Enviar las invitaciones"
   sending: Enviando...
   sent: Enviado
@@ -2015,6 +2051,7 @@ es:
   small: pequeño
   site_name_place: "Lugares de %{site_name}"
   some_agree: "Algunos la apoyan"
+  some_of_those_photos_couldnt_be_saved: "Algunas de las fotos no pudierón ser guardadas: %{error}"
   some_other_reason: Otra razón que puedes explicar después.
   some_people: "Algunas personas"
   some_people_that: "Algunas personas que"
@@ -2048,10 +2085,12 @@ es:
         add_media: Añade contenido digital
   sorry_flickr_isnt_responding_at_the_moment: "Lo sentimos, Flickr de momento no esta respondiendo."
   sorry_how_about_we_try_repeat: "¡Lo sentimos ¿Por qué no tratamos de repetir su búsqueda en algunas de nuestras bases de datos o nombres de especies? Si encontramos algo, lo guardaremos para que pueda encontrarlo la próxima vez."
+  sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Lo sentimos, alguna de esas fotos de Flickr no existen o no tienes permisos para verlas."
   sorry_picasa_isnt_responding_at_the_moment: "Lo sentimos, Picasa de momento no esta respondiendo."
   sorry_that_photo_provider_isnt_responding: Lo sentimos, esa foto de momento no esta respondiendo. Por favor inténtalo más tarde.
   sorry_we_didnt_find_that_photo: "Lo sentimos, la foto no se encuentra"
   sorry_we_dont_have_any_metadata_for_that_photo: "Lo sentimos, no tenemos ningún meta dato de la foto que se pueda utilizar para poner las características de la observación."
+  sorry_you_need_to_be_signed_in_and: Lo sentimos, necesitas ingresar al sistema y tener una cuenta enlazada de Flickr para poder publicar etiquetas directamente desde Flickr.
   source: Fuente
   source_list:
     ubio: uBio
@@ -2162,6 +2201,8 @@ es:
   taxon_merge: fusión de taxón
   taxon_swap: intercambio de taxón
   taxon_stage: montar de taxón
+  taxon_deleted: Taxon fue borrado.
+  taxon_doesnt_have_a_range: El taxon no tiene un rango
   taxon_drop: dejar de taxón
   taxon_map:
       gbif_occurrences: Registros de GBIF
@@ -2169,6 +2210,7 @@ es:
       data_url: Enlace de datos
       overlays: Capas
   taxon_name: "Nombre del taxón"
+  taxon_photos_updated: "¡Las fotos del taxón fueron actualizadas!"
   taxon_range: "Rango de taxón"
   taxon_scheme: Esquema de taxonómia
   taxon_schemes_raquo_html: "Esquemas <nobr>taxonómicos &raquo;</nobr>"
@@ -2177,6 +2219,8 @@ es:
   taxon_subscription: suscripción de especie o grupo
   taxon_to_delete: "Taxón a eliminar"
   taxon_to_keep: "Taxón a mantener"
+  taxon_was_successfully_created: El Taxon fue creado exitosamente.
+  taxon_was_successfully_updated: El Taxon fue actualizado exitosamente.
   taxonomic: Taxonómia
   taxonomic_changes: "Cambios taxonómicos"
   taxonomic_groups: "Grupos Taxonómicos"
@@ -2234,6 +2278,7 @@ es:
   there_was_a_problem_saving_your_identification: "Hubo un problema al salvar tu identificación: %{error}"
   there_were_errors: "Hubo errores."
   there_were_some_problems_saving_this_observation: "Hubo algunos problemas al guardar esta observación"
+  there_were_some_problems_saving_those_colors: "Hubo algunos problemas al guardar esos colores: %{error}"
   there_were_some_problems_with: "Hubo algunos problemas con su archivo CSV.  Por favor revise las filas erróneas. Por supuesto que el problema pudo también haber sido nuestro. Si ese es el caso, por favor háganoslo saber"
   there_were_some_problems_with_fields: "Hubo algunos problemas con los siguientes campos"
   theres_also: "también hay"
@@ -2303,6 +2348,7 @@ es:
   to_add_identifications: "a agregar identificaciones."
   to_add_ids: "para agregar identificaciones"
   to_an: a una
+  to_configure_your_widget: para configurar tu widget.
   to_include_your_picassa_with_inat: "Para incluir sus fotos de Picasa fotos con sus observaciones %{site_name}, haga clic en el botón a la derecha para vincular ambas cuentas. Será dirigido a Google, donde se le preguntará si autoriza esta conexión"
   to_tag_your_flickr_from_here: "para etiqutar sus fotos de Flickr desde aquí sin cortar y pegar."
   to_the_bat_cave: "A la Bati-cueva!"
@@ -2412,6 +2458,9 @@ es:
   view_more_about_x: "Ver más sobre %{x}"
   view_more_observations_from_x: "Ver más observaciones de %{x}"
   view_more_observations_from: Ve mas observaciones de
+  view_more_observations_near_x_place: "Ver mas observaciones cerca de %{place} en <nobr>%{site_name} &raquo;</nobr>"
+  view_more_observations_of_x_project: "Ver mas observaciones del proyecto %{project} en <nobr>%{site_name} &raquo;</nobr>"
+  view_more_observations_of_x_taxon: "Ver mas observaciones de %{taxon} en <nobr>%{site_name} &raquo;</nobr>"
   view_more_recent_observations: Ver mas observaciones recientes
   view_nbsp: "Ver &nbsp;"
   view_non_mobile_site: "Ver el sitio que no es para móviles"
@@ -2833,10 +2882,13 @@ es:
   you_can_see_these_coordinates_because: "Usted puede ver estas coordenadas porque usted cura uno de los proyectos a los cuales se agregó esta observación."
   you_can_show_the_boundary_of: Puedes mostrar los límetes del lugar en la pagina de tu proyecto solo si el lugar tiene límites.
   you_can_sign_free_at: "Usted puede registrar una cuenta gratis con %{site_name} en"
+  you_didnt_select_any_observations: No seleccionaste ninguna observación.
+  you_didnt_select_any_photos_to_tag: ¡No seleccionaste ninguna foto para etiquetar!
   you_dont: "Usted no"
   you_dont_have_any: No tienes ningún lugar o suscripción de especie o grupo
   you_dont_have_permission_to_do_that: No tienes permisos para hacer eso.
   you_dont_have_permission_to_edit_that_observation: No tienes permisos para editar esa observación.
+  you_dont_have_permission_to_edit_those_photos: No tienes permisos para editar esas fotos.
   you_have_logget_out: "Usted se ha desconectado, vuelva pronto"
   you_have_to: Tienes que
   you_havent: "Usted no ha"
@@ -2886,6 +2938,7 @@ es:
   your_observation_wont_get: "su observación no será asociada con otras observaciones de esta especie y su lista de vida no será actualizada."
   your_observations: "Sus observaciones"
   your_observations_couldnt_be_added_to_that_project: "Tus observaciones no pueden ser añadidas a este proyecto: %{errors}"
+  your_photos_have_been_tagged: ¡Tus fotos han sido etiquetadas!
   your_picasa_account: "Su cuenta Picasa"
   your_picasa_account_info: "Información de su cuenta Picasa"
   your_should_recognize: "Usted debería reconocer algunas de estas fotos"
