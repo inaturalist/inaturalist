@@ -4,7 +4,11 @@ Inaturalist::Application.routes.draw do
       get :import
     end
   end
-  resources :guide_ranges
+  resources :guide_ranges do
+    collection do
+      get :import
+    end
+  end
   resources :guide_photos
   resources :guide_taxa do
     member do

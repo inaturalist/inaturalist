@@ -39,6 +39,7 @@ class Photo < ActiveRecord::Base
   LICENSE_NUMBERS = LICENSE_INFO.keys
   LICENSE_INFO.each do |number, info|
     const_set info[:code].upcase.gsub(/\-/, '_'), number
+    const_set info[:code].upcase.gsub(/\-/, '_') + "_CODE", info[:code]
   end
 
   SQUARE = 75

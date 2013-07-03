@@ -1,6 +1,13 @@
-.nested-fields.guide-range-fields
-  = f.hidden_field :guide_taxon_id
-  = f.text_field :thumb_url
-  = f.text_field :medium_url
-  = f.text_field :original_url
-  = link_to_remove_association "remove range", f
+.nested-fields.guide-range-fields.lined.stacked.row-fluid
+  .media.span10
+    = f.hidden_field :guide_taxon_id
+    .pull-left
+      = image_tag f.object.medium_url, :class => "media-object"
+    .media-body
+      - %w(thumb_url medium_url original_url rights_holder license source_url).each do |a|
+        .readonly_field{:class => "#{a}_field"}
+          = f.label a
+          = f.hidden_field a, :class => "input-xxlarge"
+          %span.mirror= f.object.send(a) || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
+  .controls.span2
+    = link_to_remove_association t(:remove_range), f, :class => "btn btn-small btn-mini pull-right"

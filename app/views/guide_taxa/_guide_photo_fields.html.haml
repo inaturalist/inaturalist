@@ -3,6 +3,6 @@
   = image_tag f.object.photo.try(:square_url), :class => "img-rounded pull-left"
   = f.hidden_field :photo_id
   = f.hidden_field :guide_taxon_id
-  = f.text_area :description, :placeholder => "Brief caption", :class => "pull-left"
+  = f.text_area :description, :placeholder => t(:brief_caption), :class => "pull-left"
   .actions.pull-right
-    = link_to_remove_association "remove photo", f, :class => "btn btn-mini"
+    = link_to_remove_association t(:remove_photo), f, :class => "btn btn-mini"

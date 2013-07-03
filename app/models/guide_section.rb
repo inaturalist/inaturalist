@@ -4,8 +4,9 @@ class GuideSection < ActiveRecord::Base
   has_one :guide, :through => :guide_taxon
 
   def attribution
+    return I18n.t(:public_domain) if license == Photo::PD_CODE
     rights_holder_name ||= rights_holder unless rights_holder.blank?
-    if guide
+    if guide && source_url.blank?
       rights_holder_name ||= guide.user.name unless guide.user.name.blank?
       rights_holder_name ||= guide.user.login
     end
@@ -30,8 +31,9 @@ class GuideSection < ActiveRecord::Base
     when /\/by-nd\// then Observation::CC_BY_ND
     when /\/by-nc-sa\// then Observation::CC_BY_NC_SA
     when /\/by-nc-nd\// then Observation::CC_BY_NC_ND
+    when /\/publicdomain\// then Photo::PD_CODE
     else
-      nil
+      data_object.at('license').to_s
     end
     gs.source_url = if (verson_id = data_object.at('dataObjectVersionID').try(:content))
       "http://eol.org/data_objects/#{verson_id}"
