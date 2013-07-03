@@ -5,6 +5,7 @@ require 'rspec/rails'
 require File.expand_path(File.dirname(__FILE__) + "/blueprints")
 require File.expand_path(File.dirname(__FILE__) + "/helpers/make_helpers")
 require File.expand_path(File.dirname(__FILE__) + "/helpers/example_helpers")
+require File.expand_path(File.dirname(__FILE__) + "/../lib/eol_service.rb")
 
 include MakeHelpers
 
@@ -66,3 +67,18 @@ def http_login(user)
     user.login, "monkey")
 end
 
+# inject a fixture check into CoL service wrapper.  Need to stop making HTTP requests in tests
+class EolService
+  alias :real_request :request
+  def request(method, *args)
+    uri = get_uri(method, *args)
+    fname = "#{uri.path}_#{uri.query}".gsub(/[\/\.]+/, '_')
+    fixture_path = File.expand_path(File.dirname(__FILE__) + "/fixtures/eol_service/#{fname}")
+    if File.exists?(fixture_path)
+      Nokogiri::XML(open(fixture_path))
+    else
+      puts "[DEBUG] Couldn't find EOL response fixture, you should probably do this:\n wget -O #{fixture_path} \"#{uri}\""
+      real_request(method, *args)
+    end
+  end
+end

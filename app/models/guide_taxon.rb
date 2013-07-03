@@ -50,7 +50,13 @@ class GuideTaxon < ActiveRecord::Base
     return true if taxon.blank?
     return true unless guide_sections.blank?
     return true if taxon.wikipedia_summary.blank?
-    self.guide_sections.build(:title => "Summary", :description => taxon.wikipedia_summary)
+    self.guide_sections.build(
+      :title => "Summary", 
+      :description => taxon.wikipedia_summary,
+      :rights_holder => "Wikipedia",
+      :license => Observation::CC_BY_SA,
+      :source_url => TaxonDescribers::Wikipedia.page_url(taxon)
+    )
     true
   end
 end

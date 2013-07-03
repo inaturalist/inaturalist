@@ -13,6 +13,9 @@
     .photoSelector {margin-bottom:10px;}
     #guide_photos input.sortable-position { background-color: orange; }
     #guide_sections input.sortable-position { background-color: DodgerBlue; }
+    .readonly_field, .readonly_field label {font-size: 12px;}
+    .readonly_field label { display: inline;}
+    .readonly_field label:after { content: ':';}
 - content_for :extrajs do
   :javascript
     var GUIDE_TAXON = #{raw @guide_taxon.to_json}
@@ -81,20 +84,28 @@
       current.addClass('loaded')
     })
     function sectionToHtml(section) {
-      var div = $('<div></div>')
+      var div = $('<div></div>').addClass('lined stacked')
       div.append(
-        $('<a class="right btn">Import</a>').click(function() {addSection(section)})
+        $('<a class="right btn">'+I18n.t('import')+'</a>').click(function() {addSection(section)})
       )
+      var attribution = $('<div class="small meta"></div>').html(section.attribution)
+      if (section.source_url) {
+        var link = $('<a></a>').attr('href', section.source_url).attr('target', '_blank')
+        attribution = attribution.wrap(link)
+      }
       div.append(
         $('<h3 class="title">'+section.title+'</h3>'),
-        $('<div class="stacked lined description"></div>').html(section.description)
+        $('<div class="stacked"></div>').html(section.description),
+        attribution
       )
       return div
     }
     function addSection(section) {
       $('#guide_sections_row .btn-add-section').click()
-      $('.guide-section-fields:last .title_field input').val(section.title)
-      $('.guide-section-fields:last .description_field textarea').val(section.description)
+      $.each(['title', 'description', 'rights_holder', 'license', 'source_id', 'source_url'], function() {
+        $('.guide-section-fields:last .'+this+'_field :input').val(section[this])
+        $('.guide-section-fields:last .'+this+'_field .mirror').html(section[this])
+      })
     }
     function updatePositions(container, sortable) {
       $selection = $(sortable+':visible', container)
@@ -182,7 +193,8 @@
       |
       / = link_to_function "Import ranges", "$('#import_ranges_dialog').dialog('open')"
   .actions
-    = f.submit "Save", :class => "btn btn-primary"
+    = f.submit t(:save), :class => "btn btn-primary"
+    = link_to t(:remove_from_guide), @guide_taxon, :method => :delete, :confirm => t(:are_you_sure?), :class => "btn btn-danger pull-right"
 
 #edit_photos_dialog.dialog
 #import_sections_dialog.modal.fade.hide

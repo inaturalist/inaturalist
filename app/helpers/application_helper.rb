@@ -833,8 +833,11 @@ module ApplicationHelper
     end
   end
 
-  def cite(citation)
+  def cite(citation = nil, &block)
     @_citations ||= []
+    if citation.blank? && block_given?
+      citation = capture(&block)
+    end
     citations = [citation].flatten
     links = citations.map do |c|
       c = c.citation if c.is_a?(Source)

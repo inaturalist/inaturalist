@@ -788,34 +788,9 @@ class Taxon < ActiveRecord::Base
   def set_wikipedia_summary(options = {})
     locale = options[:locale] || I18n.locale
     w = WikipediaService.new(:locale => locale)
-    summary = query_results = parsed = nil
-    begin
-      query_results = w.query(
-        :titles => (wikipedia_title.blank? ? name : wikipedia_title),
-        :redirects => '', 
-        :prop => 'revisions', 
-        :rvprop => 'content')
-      raw = query_results.at('page')
-      parsed = if raw.blank?
-        nil
-      else
-        w.parse(:page => raw['title']).at('text').try(:inner_text)
-      end
-    rescue Timeout::Error => e
-      Rails.logger.info "[INFO] Wikipedia API call failed while setting taxon summary: #{e.message}"
-    end
-  
-    if query_results && parsed && !query_results.at('page')['missing']
-      coder = HTMLEntities.new
-      summary = coder.decode(parsed)
-      hxml = Nokogiri::HTML(summary)
-      hxml.search('table').remove
-      hxml.search('div').remove
-      summary = (hxml.at('p') || hxml).inner_html.to_s
-      
-      sanitizer = HTML::WhiteListSanitizer.new
-      summary = sanitizer.sanitize(summary, :tags => %w(p i em b strong))
-      summary.gsub! /\[.*?\]/, ''
+    wname = wikipedia_title.blank? ? name : wikipedia_title
+    
+    if summary = w.summary(wname)
       pre_trunc = summary
       summary = summary.split[0..75].join(' ')
       summary += '...' if pre_trunc > summary

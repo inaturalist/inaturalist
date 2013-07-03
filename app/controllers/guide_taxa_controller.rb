@@ -81,7 +81,7 @@ class GuideTaxaController < ApplicationController
   def update
     respond_to do |format|
       if @guide_taxon.update_attributes(params[:guide_taxon])
-        format.html { redirect_to edit_guide_taxon_path(@guide_taxon), notice: 'Guide taxon was successfully updated.' }
+        format.html { redirect_to @guide_taxon, notice: 'Guide taxon was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -96,7 +96,7 @@ class GuideTaxaController < ApplicationController
     @guide_taxon.destroy
 
     respond_to do |format|
-      format.html { redirect_to edit_guide_url(@guide_taxon.guide_id) }
+      format.html { redirect_to edit_guide_url(@guide_taxon.guide_id), notice: "Taxon removed" }
       format.json { head :no_content }
     end
   end

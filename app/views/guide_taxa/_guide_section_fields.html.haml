@@ -5,6 +5,20 @@
     .title_field
       = f.text_field :title, :class => "input-xxlarge"
     = link_to_toggle "Edit body", "#"+dom_id(f.object, "body")
-    .description_field{:id => dom_id(f.object, "body"), :style => "display:none"}
-      = f.text_area :description, :class => "input-xxlarge"
+    %div{:id => dom_id(f.object, "body"), :style => "display:none"}
+      .description_field
+        = f.text_area :description, :class => "input-xxlarge"
+      .source_id_field= f.hidden_field :source_id
+      .source_url_field.readonly_field
+        = f.label :source_url
+        = f.hidden_field :source_url
+        %span.mirror= f.object.source_url || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
+      .rights_holder_field.readonly_field
+        = f.label :rights_holder, "Original rights holder"
+        = f.hidden_field :rights_holder
+        %span.mirror= f.object.rights_holder || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
+      .license_field.readonly_field
+        = f.label :license
+        = f.hidden_field :license
+        %span.mirror= f.object.license || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
   = link_to_remove_association "remove section", f, :class => "pull-right btn btn-mini"

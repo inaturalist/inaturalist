@@ -94,42 +94,54 @@ class GuideSectionsController < ApplicationController
     @sections = (@sections || []).sort_by(&:title)
     respond_to do |format|
       format.json do
-        render :json => @sections
+        render :json => @sections.as_json(:methods => [:attribution])
       end
     end
   end
 
   def import_from_eol
-    eol = EolService.new(:timeout => 10)
+    eol = EolService.new(:timeout => 30)
     pages = eol.search(params[:q], :exact => true)
     id = pages.at('entry/id').try(:content)
     return unless id
     page = eol.page(id, :text => 50, :subjects => "all", :details => true)
     page.remove_namespaces!
     TaxonDescribers::Eol.data_objects_from_page(page).to_a.uniq.map do |data_object|
-      GuideSection.new(
-        :title => (data_object.at('title') || data_object.at('subject')).content.split('#').last.underscore.humanize,
-        :description => data_object.at('description').content
-      )
+      GuideSection.new_from_eol_data_object(data_object)
     end
   rescue Timeout::Error => e
     []
   end
 
   def import_from_wikipedia
-    w = WikipediaService.new(:debug => true)
-    r = w.parse(:page => params[:q], :prop => "sections")
-    return [] if r.at('error')
-    r.search('s').map do |s|
+    w = WikipediaService.new
+    sections = []
+    if summary = w.summary(params[:q])
+      sections << GuideSection.new(
+        :title => I18n.t(:summary),
+        :description => "<p>#{summary}</p>",
+        :rights_holder => "Wikipedia",
+        :license => Observation::CC_BY_SA,
+        :source_url => w.url_for_title(params[:q].to_s.gsub(/\s+/, '_'))
+      )
+    end
+    r = w.parse(:page => params[:q], :prop => "sections", :redirects => true)
+    return sections if r.at('error')
+    r.search('s').each do |s|
       sr = w.parse(:page => s['fromtitle'], :section => s['index'], :noimages => 1, :disablepp => 1)
       next if s.at('error')
       txt = Nokogiri::HTML(sr.at('text').inner_text).search('p').to_s.strip
+      txt = TaxonDescribers::Wikipedia.clean_html(txt, :strip_references => true)
       next if txt.blank?
-      GuideSection.new(
+      sections << GuideSection.new(
         :title => s['line'],
-        :description => txt
+        :description => txt,
+        :rights_holder => "Wikipedia",
+        :license => Observation::CC_BY_SA,
+        :source_url => w.url_for_title(s['fromtitle'])
       )
-    end.compact
+    end
+    sections
   end
 
   private

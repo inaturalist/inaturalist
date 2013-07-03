@@ -10673,7 +10673,11 @@ CREATE TABLE guide_ranges (
     thumb_url character varying(255),
     original_url character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    license character varying(255),
+    source_url character varying(255),
+    rights_holder character varying(255),
+    source_id integer
 );
 
 
@@ -10707,7 +10711,11 @@ CREATE TABLE guide_sections (
     description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    "position" integer DEFAULT 0
+    "position" integer DEFAULT 0,
+    license character varying(255),
+    source_url character varying(255),
+    rights_holder character varying(255),
+    source_id integer
 );
 
 
@@ -14389,10 +14397,24 @@ CREATE INDEX index_guide_ranges_on_guide_taxon_id ON guide_ranges USING btree (g
 
 
 --
+-- Name: index_guide_ranges_on_source_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_ranges_on_source_id ON guide_ranges USING btree (source_id);
+
+
+--
 -- Name: index_guide_sections_on_guide_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_guide_sections_on_guide_taxon_id ON guide_sections USING btree (guide_taxon_id);
+
+
+--
+-- Name: index_guide_sections_on_source_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_sections_on_source_id ON guide_sections USING btree (source_id);
 
 
 --
@@ -15815,3 +15837,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130613223707');
 INSERT INTO schema_migrations (version) VALUES ('20130624022309');
 
 INSERT INTO schema_migrations (version) VALUES ('20130628035929');
+
+INSERT INTO schema_migrations (version) VALUES ('20130701224024');

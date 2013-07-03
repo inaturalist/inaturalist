@@ -24,8 +24,8 @@ class GuidesController < ApplicationController
     end
     @q = params[:q]
     
-    @guide_taxa = @guide.guide_taxa.order("guide_taxa.position, taxa.ancestry, guide_taxa.name").
-      includes({:taxon => [:taxon_ranges_without_geom]}, :guide_photos).
+    @guide_taxa = @guide.guide_taxa.order("guide_taxa.position").
+      includes({:taxon => [:taxon_ranges_without_geom]}, :guide_photos, :guide_sections).
       page(params[:page]).per_page(100)
     @guide_taxa = @guide_taxa.in_taxon(@taxon) if @taxon
     @guide_taxa = @guide_taxa.dbsearch(@q) unless @q.blank?

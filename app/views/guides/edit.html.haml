@@ -30,6 +30,7 @@
       backdrop: true,
       show: false
     })
+    $('#addtaxa').on('shown', function() { $('input:visible', this).focus() })
     $('#addtaxa-place .taxonchooser').chooser({
       collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
       resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser'
