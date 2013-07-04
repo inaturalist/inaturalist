@@ -542,7 +542,7 @@ class ObservationsController < ApplicationController
       o
     end
     
-    current_user.observations << @observations
+    current_user.observations << @observations.compact
     
     if request.format != :json && !params[:accept_terms] && params[:project_id] && !current_user.project_users.find_by_project_id(params[:project_id])
       flash[:error] = t(:but_we_didnt_add_this_observation_to_the_x_project, :project => Project.find_by_id(params[:project_id]).title)
