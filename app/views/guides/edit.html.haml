@@ -47,19 +47,20 @@
       var params = "place_id=" + $('#addtaxa-place .placechooser').val() + 
                     "&taxon_id=" + $('#addtaxa-place .taxonchooser').val()
       window.matchingTaxaRequest = $.getJSON('/taxa.json', params, function(taxa, status, xhr) {
-        var c = xhr.getResponseHeader('x-total-entries') || 0,
+        var c = parseInt(xhr.getResponseHeader('x-total-entries') || 0),
             names = $.map(taxa, function(t) { return t.name }),
-            msg = '<span class="count">' + c + '</span> matching taxa'
+            msg = I18n.t('x_matching_taxa_html', {count: c})
+        console.log("[DEBUG] msg: ", msg)
         if (names.length == 1) {
           msg += ": " + names.join(', ')
         } else if (names.length > 0){
-          msg += ", including " + names.join(', ')
+          msg += ", "+ I18n.t('including') + " " + names.join(', ')
         }
         $('#addtaxa-place .status').removeClass('loading').html(msg)
       })
     })
     window.addTaxonField = function() {
-      var newInput = $('<input type="text" name="taxon_id" placeholder="Start typing taxon name..."/>')
+      var newInput = $('<input type="text" name="taxon_id" placeholder="'+I18n.t('start_typing_taxon_name')+'"/>')
       $('#addtaxa-single').append(newInput)
       newInput.chooser({
         collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
@@ -89,7 +90,7 @@
           })
           .error(function(xhr) {
             var errors = $.parseJSON(xhr.responseText)
-            alert("There were problems adding those taxa: ", errors)
+            alert(I18n.t('there_were_problems_adding_taxa', {errors: errors}))
           })
       })
       $('#addtaxa-single').html('')
@@ -135,8 +136,8 @@
           matches = status.match(/ (\d+) of (\d+)/),
           current = parseInt(matches[1]),
           total = matches[2],
-          verb = options.verb || "Saving"
-      $('.bigloading.status').text(verb + " " + (current + 1) + " of " + total + "...")
+          verb = options.verb || I18n.t('saving_verb')
+      $('.bigloading.status').text(I18n.t('verbing_x_of_y', {verb: verb, x: current + 1, y: total}))
     }
     function deleteGuideTaxon(options) {
       var options = options || {}
@@ -148,7 +149,7 @@
         if (options.chain) {
           var link = recordContainer.nextAll().has('input[type=checkbox]:checked').find('.delete').get(0)
           if (link) {
-            incrementLoadingStatus({verb: 'Deleting'})
+            incrementLoadingStatus({verb: I18n.t('deleting_verb')})
             deleteGuideTaxon.apply(link, [options])
           } else {
             container.shades('close')
@@ -189,8 +190,8 @@
     function removeSelected() {
       $selection = $('.guide_taxon').has('input[type=checkbox]:checked')
       if ($selection.length == 0) return false
-      if (confirm('Are you sure you want to remove these ' + $selection.length + ' taxa?')) {
-        var msg = "Deleting 1 of " + $selection.length + "..."
+      if (confirm(I18n.t('are_you_sure_you_want_to_remove_these_x_taxa?', {x: $selection.length}))) {
+        var msg = I18n.t('verbing_x_of_y', {verb: I18n.t('deleting_verb'), x: 1, y: $selection.length})
         $('#guide_taxa').loadingShades(msg, {cssClass: 'bigloading'})
         var link = $selection.find('.delete:first').get(0)
         deleteGuideTaxon.apply(link, [{chain: true}])
@@ -277,7 +278,8 @@
         / %h3 Navigation
         / - for opt in @nav_options
         /   = check_box_tag opt
-        = f.submit t(:save), :class => "btn btn-primary"
+        = f.submit t(:save_guide), :class => "btn btn-primary"
+        = link_to t(:delete), @guide, :method => :delete, :confirm => t(:are_you_sure?), :class => "btn btn-danger pull-right"
 
     .span9
       #controls.clearfix.row-fluid{"data-spy" => "affix", "data-offset-top" => 148}
@@ -285,21 +287,20 @@
           .pull-left
             .btn-group
               %button#editbutton.disabled.btn.warning.dropdown-toggle{"data-toggle" => "dropdown"}
-                Edit
+                =t :edit
                 %span.caret
               %ul.dropdown-menu
-                %li= link_to_function "Remove selected", "removeSelected()"
+                %li= link_to_function t(:remove_selected), "removeSelected()"
             %button#selectall.btn{:type => "button", :role => "button"}=t :select_all
             %button#selectnone.btn{:type => "button", :role => "button"}=t :select_none
-            %button.btn-primary.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#addtaxa"} Add taxa
+            %button.btn-primary.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#addtaxa"}=t :add_taxa
           %form.navbar-search
-            %input{:type => "text", :placeholder => "Search", :name => "q", :value => @q}
+            %input{:type => "text", :placeholder => t(:search), :name => "q", :value => @q}
       #guide_taxa
         - if @guide_taxa.blank?
           .nocontent.alert
-            %p
-              Looks like you don't have an species in your guide yet.
-            %button.btn-primary.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#addtaxa"} Add some taxa
+            %p=t :looks_like_no_species_in_guide
+            %button.btn-primary.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#addtaxa"}=t :add_some_now
         - else
           - for guide_taxon in @guide_taxa
             = render "guide_taxon_row", :guide_taxon => guide_taxon
@@ -307,20 +308,22 @@
 #addtaxa.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
   .modal-header
     %button.close{:type => "button", "data-dismiss" => "modal"} x
-    %h3 Add Taxa
+    %h3=t :add_taxa
   .modal-body
     %ul.nav.nav-pills
-      %li.active= link_to "One-by-one", "#addtaxa-single", "data-toggle" => "pill"
-      %li= link_to "From place", "#addtaxa-place", "data-toggle" => "pill"
+      %li.active= link_to t(:one_by_one), "#addtaxa-single", "data-toggle" => "pill"
+      %li= link_to t(:from_place), "#addtaxa-place", "data-toggle" => "pill"
     .tab-content
       #addtaxa-single.tab-pane.active.fade.in
       #addtaxa-place.tab-pane.fade
         .stacked
-          %input.placechooser.chooser{:placeholder => "Start typing place name..."}
+          %input.placechooser.chooser{:placeholder => t(:start_typing_place_name)}
         .stacked
-          %input.taxonchooser.chooser{:placeholder => "Start typing taxon name..."}
-          %span.muted (optional)
-        .status.muted 0 matching taxa
+          %input.taxonchooser.chooser{:placeholder => t(:start_typing_taxon_name)}
+          %span.muted
+            - surround '(', ')' do
+              =t :optional
+        .status.muted=t :x_matching_taxa, :count => 0
   .modal-footer
-    %button.btn{"data-dismiss" => "modal"} Close
-    %button.btn.btn-primary Add taxa
+    %button.btn{"data-dismiss" => "modal"}=t :close
+    %button.btn.btn-primary=t :add_taxa

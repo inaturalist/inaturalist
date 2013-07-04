@@ -1,5 +1,5 @@
 - content_for :title do
-  = @title = "Editing #{@guide_taxon.name} in #{@guide.title}"
+  = @title = t(:editing_x_in_y, :x => @guide_taxon.name, :y => @guide.title)
 .container-fluid
   %ul.breadcrumb
     %li

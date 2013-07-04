@@ -58,7 +58,7 @@
     %li.active= @guide_taxon.display_name
 
   .btn-grp.pull-right
-    = link_to "Edit", edit_guide_taxon_path(@guide_taxon), :class => "btn"
+    = link_to t(:edit), edit_guide_taxon_path(@guide_taxon), :class => "btn"
   .row-fluid.stacked
     %h2= @guide_taxon.display_name
     - if @guide_taxon.display_name != @guide_taxon.name
@@ -85,9 +85,9 @@
             = link_to(s.source_url, s.source_url) unless s.source_url.blank?
         = formatted_user_text s.description
       - unless @guide_taxon.guide_sections.blank?
-        %h3 References
+        %h3=t :references
         = references
-      %h3 More info
+      %h3=t :more_info
       %ul
         %li= link_to "#{SITE_NAME} taxon page", @guide_taxon.taxon
         - for tl in @taxon_links

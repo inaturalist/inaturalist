@@ -51,7 +51,7 @@
           .nabar-inner
             %form.navbar-search.pull-left
               .input-append
-                %input{:type => "text", :placeholder => "Search", :name => "q", :value => @q}
+                %input{:type => "text", :placeholder => t(:search), :name => "q", :value => @q}
                 - unless @q.blank?
                   %button.btn.clearbtn= t(:clear).capitalize
                 %button.btn=t :search

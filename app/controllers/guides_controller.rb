@@ -92,7 +92,7 @@ class GuidesController < ApplicationController
     @guide.destroy
 
     respond_to do |format|
-      format.html { redirect_to guides_url }
+      format.html { redirect_to guides_url, notice: 'Guide deleted.' }
       format.json { head :no_content }
     end
   end

@@ -22,12 +22,6 @@ class Guide < ActiveRecord::Base
         :name => taxon.name,
         :display_name => taxon.default_name.name
       )
-      if p = taxon.default_photo
-        gt.guide_photos.build(:photo => p)
-      end
-      unless taxon.wikipedia_summary.blank?
-        gt.guide_sections.build(:title => "Summary", :description => taxon.wikipedia_summary)
-      end
       unless gt.save
         Rails.logger.error "[ERROR #{Time.now}] Failed to save #{gt}: #{gt.errors.full_messages.to_sentence}"
       end

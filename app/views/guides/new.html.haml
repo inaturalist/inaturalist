@@ -1,5 +1,5 @@
 - content_for :title do
-  New Guide
+  =t :new_guide
 - content_for :extracss do
   :css
     .bootstrap input, .bootstrap textarea {width:100%;}
@@ -7,10 +7,10 @@
   .row-fluid
     .span3
     .span6
-      %h2 New guide
+      %h2=t :new_guide
       = form_for @guide, :builder => DefaultFormBuilder do |f|
-        = f.text_field :title
-        = f.text_area :description, :style => "height:200px;"
-        = f.submit "Save", :class => "btn btn-primary"
-        = link_to "Cancel", guides_path, :class => "btn"
+        = f.text_field :title, :label => t(:title).capitalize
+        = f.text_area :description, :label => t(:description), :style => "height:200px;"
+        = f.submit t(:save_and_add_taxa), :class => "btn btn-primary"
+        = link_to t(:cancel), guides_path, :class => "btn"
     .span3

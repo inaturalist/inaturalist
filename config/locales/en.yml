@@ -29,6 +29,12 @@ en:
   x_journal_posts:
     one: '1 journal post'
     other: '%{count} journal posts'
+  x_matching_taxa:
+    one: '1 matching taxon'
+    other: '%{count} matching taxa'
+  x_matching_taxa_html:
+    one: '<span class="count">1</span> matching taxon'
+    other: '<span class="count">%{count}</span> matching taxa'
   x_observations:
     one: "1 observation"
     other: "%{count} observations"
@@ -306,6 +312,7 @@ en:
   are_you_sure_you_want_to_remove_curator: Are you sure you want to remove %{user} as a curator?
   are_you_sure_you_want_to_remove_from_project: Are you sure you want to remove %{user} from this project?
   are_you_sure_you_want_to_remove_manager: Are you sure you want to remove %{user} as a manager?
+  are_you_sure_you_want_to_remove_these_x_taxa?: "Are you sure you want to remove these %{x} taxa?"
   are_you_sure_you_want_to_remove_this_invitation: Are you sure you want to remove this invitation?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Are you sure you want to remove this taxon from %{place}'s checklist?"
   associated_observations: Associated observations
@@ -651,6 +658,7 @@ en:
   delete_user: Delete user
   delete_your_account: Delete your account
   deleting: Deleting...
+  deleting_verb: Deleting
   desc: desc
   descendant_taxa:  descendant taxa
   descending: descending
@@ -723,6 +731,7 @@ en:
   editing_taxon_name: Editing Taxon Name
   editing_taxon_range: Editing Taxon Range
   editing_this: Editing %{elem}
+  editing_x_in_y: "Editing %{x} in %{y}"
   eg: 'e.g. '
   either: Either
   email: Email
@@ -845,6 +854,7 @@ en:
   from_list: From List
   from_this: from this
   from_photos: From photos
+  from_place: From place
   from_your_site_observations: "From %{site_name} observations"
   full_id_please: ID Please!
   full_id_please!: "ID Please!"
@@ -954,6 +964,7 @@ en:
   importing: "Importing..."
   in: in
   inbox: inbox
+  including: including
   in_order_to_login_and_using_site_visit_url: "In order to login and start using the site you must visit this url to activate your account:"
   in_taxon?: in taxon
   in_the_past: in the past
@@ -1116,6 +1127,7 @@ en:
   longitude_in_decimal: 'Longitude in decimal degrees, e.g. -122.123'
   look_up_name: "Look up name"
   looks_like_neither_have!: Looks like neither have any taxa!
+  looks_like_no_species_in_guide: Looks like you don't have an species in your guide yet.
   lookup: Lookup
   lookup: Lookup
   lookup_user_rarr: "Lookup user &rarr;"
@@ -1398,6 +1410,7 @@ en:
   on_list?: on list
   on_submit_date: "on %{submitdate}"
   on_your_life_list: on your life list
+  one_by_one: "One-by-one"
   one_of_your_lists: "one of your lists..."
   only_accepts_taxa: only accepts taxa
   only_country_state_and_county: "Only country, state, and county equivalent places shown for now. Zoom in to see smaller places."
@@ -1648,11 +1661,13 @@ en:
   remove_curator_role: Remove curator role
   remove_curator_status: Remove curator status
   remove_from_batch: Remove from batch
+  remove_from_guide: Remove from guide
   remove_from_id_please?: Remove from ID Please?
   remove_from_list: Remove from list
   remove_from_project: Remove from project
   remove_manager: Remove manager
   remove_project_user: Remove project user
+  remove_selected: Remove selected
   remove_your_existing_id?: Remove your existing ID?
   removing: "Removing..."
   replace_parentesis: (replace)
@@ -1699,6 +1714,7 @@ en:
   save_all: Save All
   save_and_add_another: Save and add another
   save_and_continue: "Save &amp; continue..."
+  save_and_add_taxa: "Save and start adding species"
   save_changes: Save Changes
   save_colors: Save Colors
   save_comment: Save comment
@@ -1712,6 +1728,7 @@ en:
   save_photos: Save photos
   save_place: Save place
   saving: "Saving..."
+  saving_verb: Saving
   schemes: Schemes
   scientific_names: Scientific names
   search: Search
@@ -1883,6 +1900,7 @@ en:
   start_one_now: Start one now!
   start_typing_field_name: Start typing field name...
   start_typing_place_name: Start typing place name...
+  start_typing_taxon_name: Start typing taxon name...
   start_typing_someones_name: "Start typing someone's name..."
   states: States
   stats: Stats
@@ -2018,6 +2036,7 @@ en:
   there_isnt_a_wikipedia_article_titled_x_html: "There isn't a Wikipedia article or redirect titled '%{x}'.  Perhaps you'd like to <a href='http://en.wikipedia.org/wiki/%{x}'>make one</a>?"
   there_was_a_problem_saving_your_identification: "There was a problem saving your identification: %{error}"
   there_were_errors: There were errors.
+  there_were_problems_adding_taxa: "There were problems adding those taxa: %{errors}"
   there_were_some_problems_saving_this_observation: There were some problems saving this observation
   there_were_some_problems_saving_those_colors: "There were some problems saving those colors: %{error}"
   there_were_some_problems_with: There were some problems with your CSV file.  Please revise the failed rows. Of course the problem could always be on our side. If that is the case, please let us know.
@@ -2166,6 +2185,7 @@ en:
   using_a_license: using a license
   using_cc_license_makes_easier_use_your_data: Using a <strong>Creative Commons Attribution</strong> license makes it easier for researchers to use your data.  You can choose a different license after signing up if you like.
   valid_interrogation: Valid?
+  verbing_x_of_y: "%{verb} %{x} of %{y}..."
   view: View
   view_all: View all
   view_all_members: View all members
