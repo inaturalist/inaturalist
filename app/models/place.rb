@@ -311,7 +311,7 @@ class Place < ActiveRecord::Base
     
     unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
       ancestors = []
-      ydn_place.ancestors.reverse_each do |ydn_ancestor|
+      (ydn_place.ancestors || []).reverse_each do |ydn_ancestor|
         next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
         ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
         ancestors << ancestor
