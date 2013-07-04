@@ -90,3 +90,13 @@
                     = link_to taxon_image(guide_taxon.taxon), guide_taxon, :class => "thumbnail"
                   %h5= link_to guide_taxon.display_name, guide_taxon
         = will_paginate @guide_taxa
+  #attribution.meta
+    =t :by
+    - if @guide.license.blank?
+      = @guide.user.name.blank? ? @guide.user.login : @guide.user.name
+    - else
+      = succeed ',' do
+        = @guide.user.name.blank? ? @guide.user.login : @guide.user.name
+      =t 'copyright.some_rights_reserved'
+      = surround '(', ')' do
+        = @guide.license

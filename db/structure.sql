@@ -10787,7 +10787,8 @@ CREATE TABLE guides (
     user_id integer,
     place_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    license character varying(255) DEFAULT 'CC-BY-SA'::character varying
 );
 
 
@@ -15839,3 +15840,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130624022309');
 INSERT INTO schema_migrations (version) VALUES ('20130628035929');
 
 INSERT INTO schema_migrations (version) VALUES ('20130701224024');
+
+INSERT INTO schema_migrations (version) VALUES ('20130704010119');

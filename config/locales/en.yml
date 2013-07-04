@@ -553,19 +553,20 @@ en:
   copy: Copy
   copy_and_paste_this_into_your_own_html: Copy and paste this into your own HTML.
   copyright:
-        some_rights_reserved_by: (c) %{name}, some rights reserved (%{license_short})
-        all_rights_reserved: (c) %{name}, all rights reserved
-        no_known_copyright_restrictions: "%{name}, no known copyright restrictions (%{license_name})"
-        anonymous: anonymous
-        public_domain: public domain
-        copyright: copyright
-        attribution_noncommercial_sharealike_license: Attribution-NonCommercial-ShareAlike License
-        attribution_noncommercial_license: Attribution-NonCommercial License
-        attribution_noncommercial_noderivs_license: Attribution-NonCommercial-NoDerivs License
-        attribution_license: Attribution License
-        attribution_sharealike_license: Attribution-ShareAlike License
-        attribution_noderivs_license: Attribution-NoDerivs License
-        gnu_free_documentation_license: GNU Free Documentation License
+    some_rights_reserved: some rights reserved        
+    some_rights_reserved_by: (c) %{name}, some rights reserved (%{license_short})
+    all_rights_reserved: (c) %{name}, all rights reserved
+    no_known_copyright_restrictions: "%{name}, no known copyright restrictions (%{license_name})"
+    anonymous: anonymous
+    public_domain: public domain
+    copyright: copyright
+    attribution_noncommercial_sharealike_license: Attribution-NonCommercial-ShareAlike License
+    attribution_noncommercial_license: Attribution-NonCommercial License
+    attribution_noncommercial_noderivs_license: Attribution-NonCommercial-NoDerivs License
+    attribution_license: Attribution License
+    attribution_sharealike_license: Attribution-ShareAlike License
+    attribution_noderivs_license: Attribution-NoDerivs License
+    gnu_free_documentation_license: GNU Free Documentation License
   couldnt_log_you_in_x: "Couldn't log you in as '%{x}'"
   countries: Countries
   country_stats: Country stats for observations created on

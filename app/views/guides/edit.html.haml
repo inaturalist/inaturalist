@@ -275,11 +275,16 @@
       = form_for @guide do |f|
         = f.text_field :title, :placeholder => t(:title), :class => "span12"
         = f.text_area :description, :placeholder => t(:description), :class => "span12"
+        = f.label :license, t(:license)
+        = f.select :license, Observation::LICENSE_CODES, :include_blank => "No license (all rights reserved)", :class => "span12"
+        .stacked
+          %a{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#licensing"}=t :about_licensing
         / %h3 Navigation
         / - for opt in @nav_options
         /   = check_box_tag opt
-        = f.submit t(:save_guide), :class => "btn btn-primary"
-        = link_to t(:delete), @guide, :method => :delete, :confirm => t(:are_you_sure?), :class => "btn btn-danger pull-right"
+        .actions
+          = f.submit t(:save_guide), :class => "btn btn-primary"
+          = link_to t(:delete), @guide, :method => :delete, :confirm => t(:are_you_sure?), :class => "btn btn-danger pull-right"
 
     .span9
       #controls.clearfix.row-fluid{"data-spy" => "affix", "data-offset-top" => 148}
@@ -321,9 +326,28 @@
         .stacked
           %input.taxonchooser.chooser{:placeholder => t(:start_typing_taxon_name)}
           %span.muted
-            - surround '(', ')' do
+            = surround '(', ')' do
               =t :optional
         .status.muted=t :x_matching_taxa, :count => 0
   .modal-footer
     %button.btn{"data-dismiss" => "modal"}=t :close
     %button.btn.btn-primary=t :add_taxa
+
+#licensing.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
+  .modal-header
+    %button.close{:type => "button", "data-dismiss" => "modal"} x
+    %h3=t :about_licenses
+  .modal-body
+    %p
+      Licensing your content grants other people the right to copy and modify it without asking your permission. It makes it much easier to share your work, and if you incorporate 3rd party content from other sources that use Creative Commons ShareAlike licenses (like Wikipedia), you are legall obliged to use a similar license. Here's an overview of all the Creative Commons licenses and what they mean:
+    - for row in Observation::LICENSES.in_groups_of(2)
+      .row-fluid
+        - for code, name, description in row
+          .row6
+            %h4
+              = image_tag("#{code}.png")
+              = t(name)
+            .stacked.description
+              %p
+                = t(description)
+                = link_to t(:view_license), url_for_license(code), :class => "readmore", :target => "_blank"
