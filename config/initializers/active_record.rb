@@ -8,10 +8,16 @@ module ActiveRecord
       has_many_reflections.each do |k, reflection|
         # Avoid those pesky :through relats
         next unless reflection.klass.column_names.include?(reflection.foreign_key)
-        reflection.klass.update_all(
-          ["#{reflection.foreign_key} = ?", id], 
+        
+        # deal with polymorphism
+        where = if reflection.type
+          ["#{reflection.type} = ? AND #{reflection.foreign_key} = ?", reject.class.name, reject.id]
+        else
           ["#{reflection.foreign_key} = ?", reject.id]
-        )
+        end
+
+        reflection.klass.update_all(["#{reflection.foreign_key} = ?", id], where)
+
         if reflection.klass.respond_to?(:merge_duplicates)
           reflection.klass.merge_duplicates(reflection.foreign_key => id)
         end
