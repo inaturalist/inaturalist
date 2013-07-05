@@ -1,5 +1,5 @@
 class ObservationFieldsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :load_observation_field, :only => [:show, :edit, :update, :destroy]
   before_filter :owner_or_curator_required, :only => [:edit, :update, :destroy]
   
@@ -96,7 +96,7 @@ class ObservationFieldsController < ApplicationController
   
   private
   
-  def  load_observation_field
+  def load_observation_field
     render_404 unless @observation_field = ObservationField.find_by_id(params[:id].to_i)
   end
   
