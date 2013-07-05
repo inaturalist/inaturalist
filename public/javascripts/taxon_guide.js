@@ -34,7 +34,7 @@ var TaxonGuide = {
       }
     }
     s = $.param(uniqueParams)
-    if (muiltiParams.length > 0) s += muiltiParams.join('&')
+    if (muiltiParams.length > 0) s += '&' + muiltiParams.join('&')
     return s
   },
   
