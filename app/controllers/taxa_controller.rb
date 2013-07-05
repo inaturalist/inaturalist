@@ -1202,11 +1202,17 @@ class TaxaController < ApplicationController
       @taxa = @taxa.where("taxa.is_active = ? AND taxa.id IN (?)", true, taxon_names.map(&:taxon_id).uniq)
     end
     if params[:limit]
-      @qparams[:limit] = params[:limit]
-      @taxa = @taxa.limit(params[:limit])
+      limit = params[:limit].to_i
+      limit = 30 if limit <= 0 || limit > 200
+      @qparams[:limit] = limit
+      @taxa = @taxa.page(1).per_page(limit)
     else
-      @taxa = @taxa.page(params[:page]) if params[:page].to_i <= 0
-      @taxa = @taxa.per_page(params[:per_page]) unless params[:per_page].blank?
+      page = params[:page].to_i
+      page = 1 if page <= 0
+      per_page = params[:per_page].to_i
+      page = 30 if page <= 0 || page > 200
+      @taxa = @taxa.page(page)
+      @taxa = @taxa.per_page(per_page)
     end
     do_external_lookups
   end
