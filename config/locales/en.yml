@@ -654,7 +654,12 @@ en:
   delete_photo: Delete photo
   delete_project: Delete this project
   delete_selected: Delete Selected
-  delete_taxon_and_merge_most_data_html: "Delete <i>%{taxon}</i> and merge most of its data into another taxon. Use this tool for removing duplicate taxa and outdated synonymous taxa. <strong>BE CAREFUL!</strong> Deleting taxa can be highly destructive."
+  delete_taxon_and_merge_most_data_html: |
+    Delete <i>%{taxon}</i> and merge most of its data into another taxon. Use
+    this tool for <strong>removing duplicate taxa</strong>. If you want to
+    remove an outdated synonym, please create a taxon swap. <strong>BE
+    CAREFUL!</strong> Deleting taxa can be highly destructive. Check out the
+    <a href="%{curator_url}">Curator Guide</a> for more details.
   delete_this_name: Delete this name
   delete_user: Delete user
   delete_your_account: Delete your account
