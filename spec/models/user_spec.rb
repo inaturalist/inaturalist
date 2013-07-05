@@ -61,6 +61,11 @@ describe User do
       u = User.make!
       u.uri.should eq(FakeView.user_url(u))
     end
+
+    it "should set a default locale" do
+      u = User.make!
+      u.locale.should eq I18n.locale.to_s
+    end
   end
 
   #

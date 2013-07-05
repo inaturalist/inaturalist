@@ -99,6 +99,7 @@ class User < ActiveRecord::Base
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name
   before_save :whitelist_licenses
+  before_create :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
   after_save :update_sound_licenses
@@ -355,6 +356,11 @@ class User < ActiveRecord::Base
     merge_has_many_associations(reject)
     reject.destroy
     LifeList.delay.reload_from_observations(life_list_id)
+  end
+
+  def set_locale
+    self.locale ||= I18n.locale
+    true
   end
 
   def set_uri
