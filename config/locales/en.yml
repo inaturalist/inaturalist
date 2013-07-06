@@ -571,6 +571,7 @@ en:
   countries: Countries
   country_stats: Country stats for observations created on
   create: Create
+  create_a_guide: Create a guide
   create_a_list: Create a list
   create_a_new_field: Create a new field
   create_a_new_place: Create a new place
@@ -1638,6 +1639,7 @@ en:
   re_order_photos: "Re-order photos &raquo;"
   read_our_getting_started_guide: read our Getting Started guide
   read_the_full_wikipedia: Read the full Wikipedia description
+  ready_to_get_started?: "Ready to get started?"
   reason: Reason
   reason_you_are_flagging_this_item: Reason you're flagging this item.
   receive_email_notifications_when_people_leave_you: Receive email notifications about
@@ -2278,6 +2280,7 @@ en:
   welcome_login: "Welcome, %{login}"
   welcome_message: "where you can <strong>record</strong> what you see in nature, <strong>meet</strong> other nature lovers, and <strong>learn</strong> about the natural world."
   welcome_to_inat: "Welcome to %{site_name}!"
+  welcome_to_guides: "Welcome to %{site_name} Guides!"
   were_currently_down_for: We're currently down for 
   what: What
   what_color_was_it: What color was it?
@@ -2420,6 +2423,16 @@ en:
   none_of_the_people_you_follow_have_any_updates_yet: "None of the people you follow have made any updates yet!"
   views:
     views: 'Views'
+    guides:
+      index:
+        funding_html: |
+          Funding for the development of Guides was provided by
+          <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
+        welcome_message_html: |
+          Guides help you learn about biodiversity all around the world.
+          Whether you're exploring the Serengeti or just your local park
+          (which might be the Serengeti), Guides can help you make sense of
+          our planet's stunning diversity of life.
     help:
       index:
         welcome_message_html: |
