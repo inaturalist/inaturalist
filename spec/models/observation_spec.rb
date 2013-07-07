@@ -512,6 +512,17 @@ describe Observation, "updating" do
       o.update_attributes(:taxon => t)
       o.should_not be_coordinates_obscured
     end
+
+    it "should obscure coordinates if locally threatened but globally secure" do
+      p = make_place_with_geom
+      t = Taxon.make!(:rank => Taxon::SPECIES)
+      local_cs = ConservationStatus.make!(:place => p, :taxon => t)
+      global_cs = ConservationStatus.make!(:taxon => t, :status => "LC", :iucn => Taxon::IUCN_LEAST_CONCERN, :geoprivacy => "open")
+      o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
+      o.should_not be_coordinates_obscured
+      o.update_attributes(:taxon => t)
+      o.should be_coordinates_obscured
+    end
   end
 
   it "should increment the taxon's counter cache" do

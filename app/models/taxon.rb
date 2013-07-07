@@ -993,7 +993,9 @@ class Taxon < ActiveRecord::Base
 
   def geoprivacy(options = {})
     global_status = ConservationStatus.where("place_id IS NULL AND taxon_id IN (?)", self_and_ancestor_ids).order("iucn ASC").last
-    return global_status.geoprivacy unless global_status.blank?
+    if global_status && [Observation::OBSCURED, Observation::PRIVATE].include?(global_status.geoprivacy)
+      return global_status.geoprivacy
+    end
     return nil if (options[:latitude].blank? || options[:longitude].blank?)
     place_status = ConservationStatus.
       where("taxon_id IN (?)", self_and_ancestor_ids).
