@@ -130,6 +130,7 @@ class GuideSectionsController < ApplicationController
     r.search('s').each do |s|
       sr = w.parse(:page => s['fromtitle'], :section => s['index'], :noimages => 1, :disablepp => 1)
       next if s.at('error')
+      next if sr.at('text').blank?
       txt = Nokogiri::HTML(sr.at('text').inner_text).search('p').to_s.strip
       txt = TaxonDescribers::Wikipedia.clean_html(txt, :strip_references => true)
       next if txt.blank?
