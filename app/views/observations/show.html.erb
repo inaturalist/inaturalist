@@ -225,7 +225,7 @@
 </div><!-- end pageheader -->
 
 <div id="singleobs" class="column span-17">
-  <div id="where-and-photos" class="clear">
+  <div id="where-and-photos" class="clear<%= ' has_photos' unless @photos.blank? %><%= ' has_sounds' unless @sounds.blank? %><%= ' has_media' unless @photos.blank? && @sounds.blank? %>">
     <% if !@photos.blank? || !@sounds.blank? -%>
       <div id="media">
         <% if !@photos.blank? -%>

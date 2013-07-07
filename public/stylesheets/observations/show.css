@@ -12,7 +12,8 @@
 #photos .smallphoto img.zoom_icon {width:auto;}
 #media, #where { float:left;}
 #map{height:245px;overflow:hidden;}
-#where, #map {width: 310px;}
+#where, #map {width: 100%;}
+.has_media #where, .has_maedia #map {width: 310px;}
 #observation-description .description{color:#666;}
 #observation-description img{max-width:500px;height:auto;}
 .breadcrumbs{float:left;width:auto;}

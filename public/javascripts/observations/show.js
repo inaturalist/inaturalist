@@ -28,13 +28,15 @@ $(document).ready(function() {
     })
     
     $(window).load(function() {
-      var photos_height = $('#photos .first img').height();
-      var sounds_height = $('#sounds').height() - $('#sounds .moresounds').height() - $('#sounds .meta').height();
-      var newWidth, newHeight;
+      var photosHeight = $('#photos .first img').height(),
+          soundsHeight = $('#sounds').height() - $('#sounds .moresounds').height() - $('#sounds .meta').height(),
+          mediaWidth = $('#media').width(),
+          newWidth = $('#where-and-photos').width() - mediaWidth, 
+          newHeight
       
-      if (photos_height && sounds_height) { newHeight = sounds_height + $('#photos').height() }
-      else if (photos_height) { newHeight = photos_height }
-      else if (sounds_height) { newHeight = sounds_height - 10 }
+      if (photosHeight && soundsHeight) { newHeight = soundsHeight + $('#photos').height() }
+      else if (photosHeight) { newHeight = photosHeight }
+      else if (soundsHeight) { newHeight = soundsHeight - 10 }
       if (newWidth) {
         newWidth -= 11;
         $('#where').width(newWidth);
