@@ -14,7 +14,7 @@ class GuideSection < ActiveRecord::Base
     if license.blank?
       I18n.t('copyright.all_rights_reserved', :name => rights_holder_name)
     else
-      I18n.t('copyright.some_rights_reserved_by', :name => rights_holder_name, :license_short => license)
+      I18n.t('copyright.some_rights_reserved_by', :name => rights_holder_name, :license_short => license.sub('-', ' '))
     end
   end
 
