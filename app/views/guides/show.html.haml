@@ -5,6 +5,7 @@
     .span2 { background-color: #eee; }
     .tile .img { display:block;height:200px; text-align:center; background-color:#eee;position:relative;overflow:hidden;}
     #actions {margin-top:15px;}
+    #actions .pull-right {margin-left: 5px;}
     .taxonmap {height: 200px;}
 = content_for :extrajs do
   = google_maps_js
@@ -31,9 +32,15 @@
       %li.active= @guide.title
   .row-fluid
     .span12
-      #actions.btn-group.right
+      #actions.right
+        .btn-group.pull-right
+          %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+            =t :pdf
+            %span.caret
+          %ul.dropdown-menu
+            - for l in GuidesController::PDF_LAYOUTS
+              %li= link_to t(l), guide_pdf_path(@guide, :layout => l)
         = link_to t(:edit), edit_guide_path(@guide), :class => "btn"
-        / %button.btn=t :print
       %h1= @guide.title
   .row-fluid
     .span12

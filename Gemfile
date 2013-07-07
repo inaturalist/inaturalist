@@ -72,6 +72,7 @@ gem 'ts-delayed-delta', '1.1.3', :require => 'thinking_sphinx/deltas/delayed_del
 gem 'simple_oauth'
 gem 'twitter'
 gem "watu_table_builder", :require => "table_builder"
+gem 'wicked_pdf'
 gem 'will_paginate'
 gem 'whenever', :require => false
 gem 'ya2yaml'

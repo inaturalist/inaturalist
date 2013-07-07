@@ -412,6 +412,8 @@ GEM
     whenever (0.8.2)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
+    wicked_pdf (0.9.6)
+      rails
     will_paginate (3.0.4)
     ya2yaml (0.31)
     ym4r (0.6.1)
@@ -495,6 +497,7 @@ DEPENDENCIES
   twitter
   watu_table_builder
   whenever
+  wicked_pdf
   will_paginate
   xmp!
   ya2yaml

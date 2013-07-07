@@ -3,6 +3,7 @@ class GuidesController < ApplicationController
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa]
   layout "bootstrap"
+  PDF_LAYOUTS = %w(grid book)
   
   # GET /guides
   # GET /guides.json
@@ -34,6 +35,22 @@ class GuidesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @guide.as_json(:root => true) }
+      format.pdf do
+        @guide_taxa = @guide.guide_taxa.order("guide_taxa.position").
+          includes({:taxon => [:taxon_ranges_without_geom]}, :guide_photos, :guide_sections)
+        @layout = params[:layout] if PDF_LAYOUTS.include?(params[:layout])
+        @layout ||= "grid"
+        @template = "guides/show_#{@layout}.pdf.haml"
+        render :pdf => "#{@guide.title.parameterize}.#{@layout}", 
+          :layout => "bootstrap.pdf",
+          :template => @template,
+          :show_as_html => params[:debug].present? && logged_in?,
+          :disposition => "attachment",
+          :margin => {
+            :left => 0,
+            :right => 0
+          }
+      end
     end
   end
 
