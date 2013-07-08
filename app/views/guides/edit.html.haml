@@ -328,7 +328,8 @@
           %span.muted
             = surround '(', ')' do
               =t :optional
-        .status.muted=t :x_matching_taxa, :count => 0
+        .stacked.status.muted=t :x_matching_taxa, :count => 0
+        .muted=t 'views.guides.edit.places_note'
   .modal-footer
     %button.btn{"data-dismiss" => "modal"}=t :close
     %button.btn.btn-primary=t :add_taxa
@@ -338,8 +339,7 @@
     %button.close{:type => "button", "data-dismiss" => "modal"} x
     %h3=t :about_licenses
   .modal-body
-    %p
-      Licensing your content grants other people the right to copy and modify it without asking your permission. It makes it much easier to share your work, and if you incorporate 3rd party content from other sources that use Creative Commons ShareAlike licenses (like Wikipedia), you are legall obliged to use a similar license. Here's an overview of all the Creative Commons licenses and what they mean:
+    %p=t 'views.guides.edit.licensing_explanation'
     - for row in Observation::LICENSES.in_groups_of(2)
       .row-fluid
         - for code, name, description in row

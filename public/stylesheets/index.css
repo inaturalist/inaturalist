@@ -210,6 +210,7 @@ form .field .description { margin-bottom: 0.5em;}
   top: 30px;
   right: 0px;
   margin: 0;
+  padding:0;
   border-right: 2px solid #ccc;
   border-bottom: 2px solid #ccc;
   border-left: 1px solid #ccc;
@@ -243,6 +244,7 @@ form .field .description { margin-bottom: 0.5em;}
 
 #header .subnav ul {
   margin: 0 0 0 20px;
+  padding:0;
 }
 
 #header .navtabs .subnav ul a {

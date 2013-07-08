@@ -153,6 +153,14 @@ module ApplicationHelper
       "$('#{target_selector}').toggle(); $(this).toggleClass('open')", 
       options
   end
+
+  def link_to_toggle_box(txt, options = {}, &block)
+    options[:class] ||= ''
+    options[:class] += ' togglelink'
+    link = link_to_function(txt, "$(this).siblings('.togglebox').toggle(); $(this).toggleClass('open')", options)
+    hidden = content_tag(:div, capture(&block), :style => "display:none", :class => "togglebox")
+    content_tag :div, link + hidden
+  end
   
   def link_to_toggle_menu(link_text, options = {}, &block)
     menu_id = options[:menu_id]

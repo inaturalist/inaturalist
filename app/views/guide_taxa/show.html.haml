@@ -58,7 +58,8 @@
     %li.active= @guide_taxon.display_name
 
   .btn-grp.pull-right
-    = link_to t(:edit), edit_guide_taxon_path(@guide_taxon), :class => "btn"
+    - if @guide.editable_by?(current_user)
+      = link_to t(:edit), edit_guide_taxon_path(@guide_taxon), :class => "btn"
   .row-fluid.stacked
     %h2= @guide_taxon.display_name
     - if @guide_taxon.display_name != @guide_taxon.name
@@ -74,23 +75,31 @@
         .footer
           .caption
             = guide_photo.description
-            %small.attribution.quiet= guide_photo.attribution
+            %small.attribution.quiet
+              = guide_photo.attribution
+              - unless guide_photo.native_page_url.blank?
+                = surround '(', ')' do
+                  = link_to t(:link, :default => "link").downcase, guide_photo.native_page_url
   .row-fluid
     .span8
       - for s in @guide_taxon.guide_sections.sort_by(&:position)
         %h3
           = s.title
           = cite do
-            = s.attribution
-            = link_to(s.source_url, s.source_url) unless s.source_url.blank?
+            - if s.source_url.blank?
+              = s.attribution
+            - else
+              = succeed ',' do
+                = s.attribution
+              = link_to(s.source_url, s.source_url)
         = formatted_user_text s.description
       - unless @guide_taxon.guide_sections.blank?
-        %h3=t :references
+        %h3=t :sources_and_credits
         = references
-      %h3=t :more_info
+      %h3= t(:more_info, :default => "More Info").titleize
       %ul
         %li= link_to "#{SITE_NAME} taxon page", @guide_taxon.taxon
-        - for tl in @taxon_links
+        - for tl in @taxon_links.sort_by{|tl| tl.site_title.downcase}
           %li= link_to tl.site_title, tl.url_for_taxon(@guide_taxon.taxon)
     .span4
       .map

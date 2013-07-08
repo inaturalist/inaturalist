@@ -115,7 +115,7 @@ class GuidesController < ApplicationController
   end
 
   def import_taxa
-    @guide_taxa = @guide.import_taxa(params)
+    @guide_taxa = @guide.import_taxa(params) || []
     respond_to do |format|
       format.json do
         if partial = params[:partial]

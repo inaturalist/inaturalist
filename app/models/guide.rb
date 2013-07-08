@@ -29,4 +29,8 @@ class Guide < ActiveRecord::Base
     end
     taxa
   end
+
+  def editable_by?(user)
+    self.user_id == user.try(:id)
+  end
 end

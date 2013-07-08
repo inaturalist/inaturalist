@@ -334,6 +334,7 @@ en:
   authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_descriptions_have_been_disabled: Automatic descriptions have been disabled for this taxon.
   automatically_add_to_project: Automatically add to project
+  automatically_share_your_observations_on: Automatically share your observations on
   automatically_id_new: Automatically ID the new obs as
   back: Back
   back_to: Back to
@@ -705,6 +706,7 @@ en:
   edit: Edit
   edit_a_batch_of_observations: Edit a Batch of Observations
   edit_account_settings_and_profile: "Edit account settings &amp; profile"
+  edit_body: Edit body
   edit_colors: Edit colors
   edit_comment: Edit your comment
   edit_custom_project_fields: Edit custom project fields
@@ -903,6 +905,7 @@ en:
   group: Group
   guess_description: Guess / Description
   guide_colors: Guide Colors
+  guide_compiled_by: Guide compiled
   has_already_been_flagged_by: has already been flagged by
   hasnt_contributed_any_observations: hasn't contributed any observations to this project.
   hate_me_facebook: "Unlink your Facebook and %{site_name} Accounts"
@@ -1185,7 +1188,7 @@ en:
   months_ago: "%{text} ago"
   more: More
   more_fields: More fields
-  more_info: "More info:"
+  more_info: More info
   more_journal_posts: More journal posts
   more_observations: More observations
   most: Most
@@ -1298,6 +1301,7 @@ en:
   no_results_found: No results found
   no_results_for: 'No results for '
   no_results_matching: No results matching
+  no_sections_available: No sections available.
   no_species_have_been_listed: No species have been listed for this place yet!
   no_species_on_this_list: No species on this list yet!
   no_species_on_this_list_for_owner_html: |
@@ -1794,6 +1798,7 @@ en:
   settings: Settings
   share_on: Share on
   share_your_observation_with_researchers_by: Share your observation with researchers by
+  sharing_settings: Sharing Settings
   show: Show
   show_active_and_inactive_taxa: Show active and inactive taxa
   show_default_taxon_photos: show default taxon photos
@@ -1890,6 +1895,7 @@ en:
   source_of_coordinates: 'Source of coordinates and accuracy measure, set automatically.'
   sources: Sources
   sources_youve_added: Sources you've added
+  sources_and_credits: Sources and Credits
   sourcing: Sourcing
   spam: spam
   spanish: Spanish
@@ -2437,6 +2443,18 @@ en:
           Whether you're exploring the Serengeti or just your local park
           (which might be the Serengeti), Guides can help you make sense of
           our planet's stunning diversity of life.
+      edit:
+        licensing_explanation: |
+          Licensing your content grants other people the right to copy and
+          modify it without asking your permission. It makes it much easier to
+          share your work, and if you incorporate 3rd party content from other
+          sources that use Creative Commons ShareAlike licenses (like
+          Wikipedia), you are legall obliged to use a similar license. Here's
+          an overview of all the Creative Commons licenses and what they mean:
+        places_note: |
+          Note: not all places have check lists with taxa. If you're having
+          trouble finding a place with taxa, try choosing larger areas with
+          political boundaries, like nations or states.
     help:
       index:
         welcome_message_html: |

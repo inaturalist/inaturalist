@@ -4,8 +4,7 @@
   .pull-left
     .title_field
       = f.text_field :title, :class => "input-xxlarge"
-    = link_to_toggle "Edit body", "#"+dom_id(f.object, "body")
-    %div{:id => dom_id(f.object, "body"), :style => "display:none"}
+    = link_to_toggle_box t(:edit_body) do
       .description_field
         = f.text_area :description, :class => "input-xxlarge"
       .source_id_field= f.hidden_field :source_id
