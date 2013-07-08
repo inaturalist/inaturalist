@@ -4,7 +4,11 @@ Inaturalist::Application.routes.draw do
       get :import
     end
   end
-  resources :guide_ranges
+  resources :guide_ranges do
+    collection do
+      get :import
+    end
+  end
   resources :guide_photos
   resources :guide_taxa do
     member do
@@ -12,7 +16,12 @@ Inaturalist::Application.routes.draw do
       post :update_photos
     end
   end
-  resources :guides
+  resources :guides do
+    member do
+      post :import_taxa
+    end
+  end
+  match '/guides/:id.:layout.pdf' => 'guides#show', :via => :get, :as => "guide_pdf", :constraints => {:format => :pdf}, :defaults => {:format => :pdf}
 
 
   resources :messages, :except => [:edit, :update] do
@@ -60,7 +69,7 @@ Inaturalist::Application.routes.draw do
     get "signup", :to => "users/registrations#new"
     get "users/new", :to => "users/registrations#new", :as => "new_user"
   end
-  match '/register' => 'users#create', :as => :register, :via => :post
+  # match '/register' => 'users#create', :as => :register, :via => :post
   
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
   match '/forgot_password' => 'passwords#new', :as => :forgot_password
@@ -90,7 +99,7 @@ Inaturalist::Application.routes.draw do
   resources :users, :except => [:new, :create]
   # resource :session
   # resources :passwords
-  resources :people, :controller => :users do
+  resources :people, :controller => :users, :except => [:create] do
     collection do
       get :search
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
@@ -111,6 +120,7 @@ Inaturalist::Application.routes.draw do
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
   match 'flickr/photos.:format' => 'flickr#photos', :via => :get
+  resources :soundcloud_sounds, :only => [:index]
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'fields', :as => 'extra_fields'
@@ -131,6 +141,7 @@ Inaturalist::Application.routes.draw do
   match 'observations/delete_batch' => 'observations#delete_batch', :as => :delete_observation_batch, :via => :delete
   match 'observations/import' => 'observations#import', :as => :import_observations
   match 'observations/import_photos' => 'observations#import_photos', :as => :import_photos
+  post 'observations/import_sounds' => 'observations#import_sounds', :as => :import_sounds
   match 'observations/id_please' => 'observations#id_please', :as => :id_please, :via => :get
   match 'observations/selector' => 'observations#selector', :as => :observation_selector, :via => :get
   match '/observations/curation' => 'observations#curation', :as => :curate_observations

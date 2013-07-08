@@ -1,0 +1,21 @@
+.soundSelector{position:relative;}
+.sound_list{clear:both;}
+
+.soundSelectorPhotos .sound{width:auto;display:inline-block;border:1px solid transparent;padding:5px;}
+.soundSelectorPhotos .sound:hover{border:1px solid #ddd;}
+.soundSelectorPhotos .sound .checkbox{margin:0 auto 2px}
+.soundSelectorPhotos .sound img{vertical-align:top;width:75px;}
+
+.soundSelectorSounds {
+  min-height: 100px;
+}
+.soundSelector {
+  border:1px solid #eee;border-radius:10px;padding:10px;margin-right:10px;
+}
+
+.soundSelector h4 {
+  margin: 10px 0 5px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}

@@ -280,6 +280,7 @@ class List < ActiveRecord::Base
   end
   
   def self.refresh_with_observation(observation, options = {})
+    Rails.logger.info "[INFO #{Time.now}] Starting List.refresh_with_observation for #{observation}, #{options.inspect}"
     observation = Observation.find_by_id(observation) unless observation.is_a?(Observation)
     unless taxon = Taxon.find_by_id(observation.try(:taxon_id) || options[:taxon_id])
       Rails.logger.error "[ERROR #{Time.now}] List.refresh_with_observation " + 
@@ -298,8 +299,10 @@ class List < ActiveRecord::Base
       create_new_listed_taxa_for_refresh(taxon, listed_taxa, target_list_ids)
     end
     listed_taxa.each do |lt|
+      Rails.logger.info "[INFO #{Time.now}] List.refresh_with_observation, refreshing #{lt}"
       refresh_listed_taxon(lt)
     end
+    Rails.logger.info "[INFO #{Time.now}] Finished List.refresh_with_observation for #{observation}"
   end
   
   def self.refresh_listed_taxon(lt)

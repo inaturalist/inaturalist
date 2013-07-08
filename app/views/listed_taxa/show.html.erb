@@ -69,7 +69,7 @@
   <div class="observationcounts stacked">
     <div class="ui description">
       <strong><%= @listed_taxon.observations_count %></strong>
-      <%= @listed_taxon.observations_count == 1 ? t(:observation) : t(:observations) -%>
+      <%= (@listed_taxon.observations_count == 1 ? t(:observation) : t(:observations)).downcase -%>,
       <strong class="count"><%= @listed_taxon.confirmed_observations_count %></strong>
       <%=t :research_grade %>
     </div>
@@ -90,10 +90,10 @@
       <%=t :first_inat_observation, :site_name => SITE_NAME_SHORT %>
       <%= link_to one_line_observation(@listed_taxon.first_observation, :skip => %w(user taxon)), @listed_taxon.first_observation %>
       <% if is_not_me?(@list.user) -%>
-       <%=t :by %> 
+        <%=t :by %> 
         <%= link_to user_image(@listed_taxon.first_observation.user), @listed_taxon.first_observation.user %>
         <%= link_to you_or_login(@listed_taxon.first_observation.user), @listed_taxon.first_observation.user %>,
-        <%=t :added %> <%= @listed_taxon.first_observation.created_at.to_date.to_s(:long) %>
+        <%= t(:added).downcase %> <%= @listed_taxon.first_observation.created_at.to_date.to_s(:long) %>
       <% end -%>
     </p>
   <% end -%>
@@ -151,7 +151,7 @@
   <div id="description" class="description">
     <% if @listed_taxon.description.blank? && @list.listed_taxa_editable_by?(current_user) -%>
       <p class="ui description inplaceedit">
-      <%= link_to_function t(:add_description, :description_name=>"#{description_name}"), "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit_description")}').show()" %>
+      <%= link_to_function t(:add_description, :description_name => description_name.downcase), "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit_description")}').show()" %>
       </p>
     <% else %>
       <div class="clear readable">

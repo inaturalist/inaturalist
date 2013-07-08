@@ -53,6 +53,17 @@ Friendship.blueprint do
   friend { User.make }
 end
 
+Guide.blueprint do
+  user { User.make }
+end
+
+GuideTaxon.blueprint do
+  guide { Guide.make! }
+  taxon { Taxon.make! }
+  name { Faker::Lorem.sentence }
+  display_name { Faker::Lorem.sentence }
+end
+
 Identification.blueprint do
   user { User.make }
   observation { Observation.make }
@@ -79,6 +90,13 @@ end
 
 LocalPhoto.blueprint do
   user { User.make }
+end
+
+Message.blueprint do
+  from_user { User.make! }
+  to_user { User.make! }
+  subject { Faker::Lorem.sentence }
+  body { Faker::Lorem.paragraph }
 end
 
 OauthApplication.blueprint do
@@ -186,6 +204,11 @@ end
 
 Role.blueprint(:admin) do
   name { User::JEDI_MASTER_ROLE }
+end
+
+Sound.blueprint do
+  user { User.make }
+  native_sound_id { rand(1000) }
 end
 
 Source.blueprint do

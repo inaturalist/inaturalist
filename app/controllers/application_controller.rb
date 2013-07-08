@@ -229,7 +229,7 @@ class ApplicationController < ActionController::Base
     @places = Place.search(@q, :page => params[:page], :limit => @limit)
     if logged_in? && @places.blank?
       if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
-        new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}
+        new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}.compact
         @places = Place.where("id in (?)", new_places.map(&:id).compact).page(1).to_a
       end
     end
@@ -365,7 +365,7 @@ class ApplicationController < ActionController::Base
   def authenticate_with_oauth?
     return false if !session.blank? && !session['warden.user.user.key'].blank?
     return false if request.authorization.to_s =~ /^Basic /
-    return false unless request.authorization.to_s =~ /^Bearer /
+    return false unless !params[:access_token].blank? || request.authorization.to_s =~ /^Bearer /
     @doorkeeper_for_called = true
   end
 

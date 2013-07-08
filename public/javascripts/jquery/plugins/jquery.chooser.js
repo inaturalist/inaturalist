@@ -193,7 +193,6 @@
         $(this).data('selected', item)
         $(this).data('previous', null)
         $(this.markup.input).hide()
-        $(this.markup.choice).width('auto')
         $(this.markup.choice).html(itemLabel).showInlineBlock()
         $(this.markup.chooseButton).showInlineBlock()
         $(this.markup.clearButton)
@@ -276,6 +275,7 @@
         this.markup.loadingButton, 
         this.markup.clearButton)
       this.markup.input.width(originalInput.width() - this.markup.chooseButton.width() - 3)
+      this.markup.choice.width(this.markup.input.width())
       return this.markup
     },
     destroy: function() {

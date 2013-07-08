@@ -28,23 +28,32 @@ $(document).ready(function() {
     })
     
     $(window).load(function() {
-      var newWidth = $('#where-and-photos').width() - $("#photos").width()
-      newWidth -= 11;
-      var newHeight = $('#photos .first img').height()
-      $('#where').width(newWidth)
-      $('#map').width(newWidth)
+      var photosHeight = $('#photos .first img').height(),
+          soundsHeight = $('#sounds').height() - $('#sounds .moresounds').height() - $('#sounds .meta').height(),
+          mediaWidth = $('#media').width(),
+          newWidth = $('#where-and-photos').width() - mediaWidth, 
+          newHeight
+      
+      if (photosHeight && soundsHeight) { newHeight = soundsHeight + $('#photos').height() }
+      else if (photosHeight) { newHeight = photosHeight }
+      else if (soundsHeight) { newHeight = soundsHeight - 10 }
+      if (newWidth) {
+        newWidth -= 11;
+        $('#where').width(newWidth);
+        $('#map').width(newWidth);
+      }
       if (newHeight) {
-        $('#map').height(newHeight)
+        $('#map').height(newHeight);
       }
       if (map && observation) {
-        google.maps.event.trigger(map, 'resize')
-        map.setCenter(center)
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter(center);
       }
-    })
+    });
   }
   
   $('.identification_form_wrapper input.text').simpleTaxonSelector({
-    buttonText: 'Find',
+    buttonText: I18n.t('find'),
     afterSelect: function(wrapper) {
       var button = $(wrapper).parents('.identification_form_wrapper').find('.default.button');
       $(button).removeClass('disabled').attr('disabled', null);
@@ -61,7 +70,7 @@ $(document).ready(function() {
   $('#new_identification_form .default.button').addClass('disabled').attr('disabled', 'disabled');
   
   $('#new_identification_form .species_guess').simpleTaxonSelector({
-    buttonText: 'Find',
+    buttonText: I18n.t('find'),
     afterSelect: function(wrapper) {
       var button = $('#new_identification_form').find('.default.button');
       $(button).removeClass('disabled').attr('disabled', null);

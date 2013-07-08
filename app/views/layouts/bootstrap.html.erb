@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:fb="http://www.facebook.com/2008/fbml"
+      xmlns:og="http://ogp.me/ns#">
+  <head>
+    <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
+    <link rel="icon" type="image/png" href="/images/favicon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag 'jquery-ui',
+                            "jquery/ui.tabs.css",
+                            'jquery/plugins/jquery.qtip.min',
+                            'index',
+                            'observations'
+                            %>
+    <!-- Bootstrap -->
+    <%= stylesheet_link_tag 'bootstrap', 'bootstrap-inat' %>
+    <style type="text/css">
+      body { font-size: 75%; }
+    </style>
+    <%= csrf_meta_tag %>
+    <% if CONFIG.twitter && CONFIG.twitter.username -%>
+      <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
+    <% end -%>
+    <meta property="og:site_name" content="<%= CONFIG.site_name %>"/>
+    <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
+    <%= yield :extrahead %>
+    <%= yield :extracss %>
+  </head>
+  <body>
+    <% unless @headless -%>
+      <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => ApplicationController::HEADER_VERSION, :site_name => SITE_NAME) do %>
+        <%= render :partial => 'shared/header' %>
+      <% end %>
+    <% end -%>
+    
+    <% if flash[:notice] || flash[:alert] %>
+      <p id="flash" class="notice"><%= (flash[:notice] || flash[:alert]).html_safe %></p> 
+    <% end %>
+    
+    <% if flash[:error] %>
+      <p id="flash" class="error"><%= flash[:error] %></p> 
+    <% end %>
+
+    <div class="bootstrap">
+      <div class="container-fluid">
+        <div class="alert">You're in a VERY experimental section of the site. Please don't expect anything you do here to be saved in the long term.</div>
+      </div>
+      <%= yield %>
+    </div>
+
+    <%= render :partial => 'shared/footer' unless @footless %>
+
+    <%= javascript_include_tag 'jquery/jquery-1.8.3.min' %>
+    <script src="/javascripts/bootstrap.js"></script>
+    <%= javascript_include_tag 'jquery/jquery-ui-1.9.1.min', 
+                               "iso8601",
+                               "i18n.min" %>
+    <script type="text/javascript">
+      I18n.defaultLocale = "en"
+      I18n.locale = "<%= I18n.locale %>"
+      I18n.fallbacks = true
+    </script>
+    <%= javascript_include_tag "jquery/plugins/jquery.qtip2.min", 
+                               "jquery/plugins/jquery.multiselect.min", 
+                               "jquery/plugins/jquery.ui.autocomplete.html",
+                               "jquery/plugins/jquery.chooser",
+                               "jquery/plugins/jquery-ui-timepicker-addon",
+                               "jquery/plugins/jquery.imagesloaded.min",
+                               "jquery/plugins/jquery.timeago.js",
+                               "jquery/plugins/jquery.scrollTo-min.js",
+                               "jquery/plugins/inat/taxon_selectors.js",
+                               "translations",
+                               'rails',
+                               'application', 
+                               'inaturalist' %>
+    <%= yield :extrajs %>
+    <% if logged_in? -%>
+      <script type="text/javascript" charset="utf-8">
+        setUpdatesCount(<%= session[:updates_count].to_i %>)
+        setTimeout(getUpdatesCount, 1000)
+        setMessagesCount(<%= session[:messages_count].to_i %>)
+        setTimeout(getMessagesCount, 1000)
+      </script>
+    <% end -%>
+  </body>
+</html>

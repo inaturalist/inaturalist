@@ -13,3 +13,11 @@ describe Emailer, "updates_notification" do
     mail.body.should_not be_blank
   end
 end
+
+describe Emailer, "new_message" do
+  it "should work" do
+    m = make_message
+    mail = Emailer.new_message(m)
+    mail.body.should_not be_blank
+  end
+end

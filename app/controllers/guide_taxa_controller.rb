@@ -1,7 +1,11 @@
 class GuideTaxaController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :admin_required
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos]
+  before_filter :load_guide, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos]
+  before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos] do |c|
+    require_owner :klass => "Guide"
+  end
+  layout "bootstrap"
 
   # GET /guide_taxa
   # GET /guide_taxa.json
@@ -24,7 +28,9 @@ class GuideTaxaController < ApplicationController
   # GET /guide_taxa/1.json
   def show
     respond_to do |format|
-      format.html # show.html.erb
+      format.html do
+        @taxon_links = TaxonLink.by_taxon(@guide_taxon.taxon)
+      end
       format.json { render json: @guide_taxon.as_json(:root => true,
         :methods => [:guide_photo_ids, :guide_section_ids, :guide_range_ids]) }
     end
@@ -45,6 +51,8 @@ class GuideTaxaController < ApplicationController
   # GET /guide_taxa/1/edit
   def edit
     @guide = @guide_taxon.guide
+    @guide_photos = @guide_taxon.guide_photos.order(:position)
+    @guide_sections = @guide_taxon.guide_sections.order(:position)
   end
 
   # POST /guide_taxa
@@ -55,7 +63,12 @@ class GuideTaxaController < ApplicationController
     respond_to do |format|
       if @guide_taxon.save
         format.html { redirect_to edit_guide_path(@guide_taxon.guide_id), notice: 'Guide taxon was successfully created.' }
-        format.json { render json: @guide_taxon.as_json(:root => true), status: :created, location: @guide_taxon }
+        format.json do
+          if partial = params[:partial]
+            @guide_taxon.html = view_context.render_in_format(:html, partial, :guide_taxon => @guide_taxon)
+          end
+          render json: @guide_taxon.as_json(:root => true, :methods => [:html]), status: :created, location: @guide_taxon
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @guide_taxon.errors, status: :unprocessable_entity }
@@ -68,7 +81,7 @@ class GuideTaxaController < ApplicationController
   def update
     respond_to do |format|
       if @guide_taxon.update_attributes(params[:guide_taxon])
-        format.html { redirect_to edit_guide_taxon_path(@guide_taxon), notice: 'Guide taxon was successfully updated.' }
+        format.html { redirect_to @guide_taxon, notice: 'Guide taxon was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -83,7 +96,7 @@ class GuideTaxaController < ApplicationController
     @guide_taxon.destroy
 
     respond_to do |format|
-      format.html { redirect_to edit_guide_url(@guide_taxon.guide_id) }
+      format.html { redirect_to edit_guide_url(@guide_taxon.guide_id), notice: "Taxon removed" }
       format.json { head :no_content }
     end
   end
@@ -133,5 +146,9 @@ class GuideTaxaController < ApplicationController
       end
     end
     photos
+  end
+
+  def load_guide
+    @guide = @guide_taxon.guide
   end
 end

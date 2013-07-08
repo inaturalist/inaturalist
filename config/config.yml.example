@@ -165,6 +165,11 @@ base: &base
         key: 09af09af09af09af09af09af09af09af
         shared_secret: 09af09af09af09af
 
+    soundcloud:
+        # http://soundcloud.com/you/apps/new
+        client_id: 09af09af09af09af09af09af09af09af
+        secret: 09af09af09af09af09af09af09af09af
+
     # Ratatosk is an internal library for looking up external taxonomy info.
     # By default it uses all registered name providers, but you can
     # configure it here to use a subset
@@ -178,6 +183,12 @@ base: &base
 
     # natureserve:
     #     key: 0x0x0x0x0x0x0x0x
+    
+    # wkhtmltopdf is an HTML-to-PDF converter that we use to generate PDFs.
+    # You'll need to have it installed somewhere on your system. We highly
+    # recommend using one of the static binaries.
+    # https://code.google.com/p/wkhtmltopdf/
+    wkhtmltopdf_path: '/usr/local/bin/wkhtmltopdf'
 
 development:
     <<: *base

@@ -39,7 +39,7 @@ class Project < ActiveRecord::Base
   # accepts_nested_attributes_for :project_observation_rules, :allow_destroy => true
   accepts_nested_attributes_for :project_observation_fields, :allow_destroy => true
   
-  validates_length_of :title, :within => 1..85
+  validates_length_of :title, :within => 1..100
   validates_presence_of :user
   
   scope :featured, where("featured_at IS NOT NULL")
@@ -56,6 +56,8 @@ class Project < ActiveRecord::Base
     :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :default_url => "/attachment_defaults/general/:style.png"
+  validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
+    :message => "must be JPG, PNG, or GIF"
   
   CONTEST_TYPE = 'contest'
   OBS_CONTEST_TYPE = 'observation contest'
@@ -93,7 +95,7 @@ class Project < ActiveRecord::Base
   end
   
   def create_the_project_list
-    create_project_list
+    create_project_list(:project => self)
     true
   end
   

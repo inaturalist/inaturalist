@@ -20,7 +20,7 @@
       window.map = map;
       
       // Add the observations
-      var observations = <%= observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>;
+      var observations = <%= observations.to_json(:viewer => current_user, :include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>;
       window.observations = observations;
       $.each(observations, function() {
         // Add the obs

@@ -61,29 +61,41 @@ Some notes:
       "data-small-url" => iconic_taxon_image_url(observation.taxon, :size => 32)) %>
   </div>
   <div class="photos attribute">
-    <h4 class="label"><%= t :photos %></h4>
+    <h4 class="label"><%= t :'sounds.photos_sounds' %></h4>
     <div class="photolist clear">
-      <% if observation.photos_count == 0 -%>
+      <% photo_count, sound_count, link_text = observation.observation_photos.size, observation.sounds.size, [] %>
+      <% if photo_count == 0 && sound_count == 0 -%>
         <div class="photo nophoto description">
-          <%=t :no_photos %>
+          <%=t :'sounds.no_photos_sounds' %>
         </div>
       <% else %>
-        <%- 
-          photos = observation.observation_photos.sort_by{|op| 
-            op.position || observation.photos_count + op.id.to_i
-          }.map{|op| op.photo}.compact
-          photo = photos.first
-        %>
-        <% if photo %>
-          <%= link_to image_tag(photo.square_url,
-            "data-square-url" => photo.square_url,
-            "data-small-url" => photo.small_url,
-            "data-medium-url" => photo.medium_url
-          ), observation_url(observation), :class => 'flickr photo'%>
-          <% if photos.size > 1 -%>
-            <%= link_to t(:photos_size_photos, :photos_size => photos.size), observation, :class => 'readmore' %>
+        <% if photo_count > 0 %>
+          <%- 
+            photos = observation.observation_photos.sort_by{|op| 
+              op.position || photo_count + op.id.to_i
+            }.map{|op| op.photo}.compact
+            photo = photos.first
+          %>
+          <% if photo %>
+            <%= link_to image_tag(photo.square_url,
+              "data-square-url" => photo.square_url,
+              "data-small-url" => photo.small_url,
+              "data-medium-url" => photo.medium_url
+            ), observation_url(observation), :class => 'flickr photo'%>
+            <% if photo_count > 1 -%>
+              <% link_text << t(:photos_size_photos, :photos_size => photos.size).downcase %>
+            <% end -%>
+          <% end %>
+        <% end -%>
+        <% if sound_count > 0 %>
+          <%= link_to '<i class="icon-volume-up icon-4x"></i>'.html_safe, observation, :class => "sound-icon#{' with-photo' if photo}" %>
+          <% if sound_count > 1 %>
+            <% link_text << t(:'sounds.sounds_size_sounds', :sounds_size => sound_count).downcase %>
           <% end -%>
         <% end %>
+        <% unless link_text.blank? -%>
+          <%= link_to link_text.join(',<br/>').html_safe, observation, :class => 'readmore' %>
+        <% end -%>
       <% end -%>
     </div>
   </div>

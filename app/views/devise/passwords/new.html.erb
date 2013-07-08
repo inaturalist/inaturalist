@@ -1,12 +1,12 @@
-<h2>Forgot your password?</h2>
+<h2><%= t :forgot_your_password %></h2>
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :builder => DefaultFormBuilder, 
     :html => { :method => :post, :class => "clear" }) do |f| %>
   <% if resource.errors[:email] && resource.errors[:email] == ["not found"] -%>
-    <div class="notice box">Couldn't find a user with that email address</div>
+    <div class="notice box"><%= t :we_couldnt_find_a_user %></div>
   <% else %>
     <%= devise_error_messages! %>
   <% end -%>
   <%= f.email_field :email, :class => "text" %>
-  <%= f.submit "Send me reset password instructions", :class => "default button" %>
+  <%= f.submit t(:send_me_reset_password_instructions), :class => "default button" %>
 <% end %>

@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%= t(:x_journal_middot, :user => @parent_display_name) %> <%= @post.title %>
+  <%= t(:x_journal_middot, :user => @parent_display_name).html_safe %> <%= @post.title %>
 <%- end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag "lists" %>
@@ -109,7 +109,7 @@
   
   <h2>
     <% if @post.published_at -%>
-      <span class="meta date"><%= @post.published_at.to_date.to_s(:rfc822) %></span>
+      <span class="meta date"><%=l @post.published_at, :format => :rfc %></span>
     <% end -%>
     <%= @post.title %>
   </h2>
@@ -126,10 +126,10 @@
     </div>
   <% elsif logged_in? && current_user.id == @post.user_id -%>
     <div id="tools" class="buttonrow">
-      <%= link_to "Edit", edit_journal_post_path(:login => @parent_slug, :id => @post.id), 
+      <%= link_to t(:edit), edit_journal_post_path(:login => @parent_slug, :id => @post.id),
                   :id => "edit_post_button", :class => "button" %>
-      <%= link_to "Delete", post_path(@post), 
-                  :confirm => "Are you sure you want to delete this post?", 
+      <%= link_to t(:delete), post_path(@post),
+                  :confirm => t(:are_you_sure_you_want_to_delete_this_post),
                   :method => :delete, 
                   :id => "delete_post_button", 
                   :class => "minor delete button" %>
@@ -145,7 +145,7 @@
   <div id="postmeta" class="description">
     <span class="label"><% t(:posted_on) %></span>
     <% if @post.published_at -%>
-      <span class="date"><%= @post.published_at.to_s(:long) %></span>
+      <span class="date"><%=l @post.published_at, :format=>:long %></span>
     <% end -%>
   </div>
 

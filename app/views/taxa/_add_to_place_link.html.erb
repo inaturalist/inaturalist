@@ -18,13 +18,13 @@
         :remote => true,
         :method => :delete,
         "data-type" => 'json',
-        :confirm => "Are you sure you want to remove this taxon from #{place.name}'s checklist?",
+        :confirm => t(:are_you_sure_you_want_to_remove_this_taxon_from_checklist, :place => place.name),
         :id => dom_id(place, 'remove_link'),
         :class => "last button delete pale remove_link",
         :style => 'float: right; margin: 0' %>
-      <span id="<%= dom_id place, 'remove_status' %>" class="inter status loading right" style="display:none">Removing...</span>
+      <span id="<%= dom_id place, 'remove_status' %>" class="inter status loading right" style="display:none"><%= t :removing %></span>
     <% else %>
-      <div class="last right pale disabled button">added</div>
+      <div class="last right pale disabled button"><%= t :added %></div>
     <% end -%>
   <% else %>
     <%= link_to t(:add_to_checklist), listed_taxa_path,
@@ -35,13 +35,15 @@
       :id => dom_id(place, 'add_link'),
       :class => "last button pale right add_link",
       :style => 'float: right; margin: 0;' %>
-    <span id="<%= dom_id place, 'add_status' %>" class="inter status loading right" style="display:none"><%= t(:adding) %></span>
+    <span id="<%= dom_id place, 'add_status' %>" class="inter status loading right" style="display:none"><%= t :adding %></span>
   <% end -%>
 
   <strong><%= link_to place.name, place %></strong>
   <div class="small description">
-    <%= place.place_type_name %>
-    <% if place.parent %>in <%= place.parent.display_name %><% end %>
+    <% unless place.place_type_name.blank? -%>
+      <%= t("place_geo.geo_planet_place_types.#{place.place_type_name.gsub(' ','_')}", :default => place.place_type_name) %>
+    <% end -%>
+    <% if place.parent %><%= t :in %> <%= place.parent.display_name %><% end %>
   </div>
 
   <% if listed_taxon -%>

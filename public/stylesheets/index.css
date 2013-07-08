@@ -1,5 +1,6 @@
 @import 'buttons.css';
 @import 'jquery/plugins/inat/photo_selectors.css';
+@import 'jquery/plugins/inat/sound_selectors.css';
 @import 'statuses.css';
 @import 'prevnext.css';
 @import 'flickr_photos.css';
@@ -140,6 +141,7 @@ form .field{margin-bottom:10px;}
 form .field .description { margin-bottom: 0.5em;}
 .label .fieldWithErrors{display:inline;}
 .stacked{margin-bottom:10px;}
+.upstacked{margin-top:10px;}
 .unstacked, .column.unstacked{margin-bottom:0px;}
 .lined {padding-bottom: 10px; margin-bottom:10px; border-bottom: 1px solid #eee;}
 .fieldWithErrors {
@@ -198,7 +200,7 @@ form .field .description { margin-bottom: 0.5em;}
 #mainnav a:hover{background-color:lightyellow;}
 #mainnav li.current{background-color:lightyellow;}
 #mainnav a.subnavlink:hover{background-color:transparent;}
-#mainnav .logolink{margin-right:10px;}
+#mainnav .logolink{margin-right:10px;line-height:0;}
 #mainnav .logolink:hover{background-color:transparent;}
 #header .navtabs a.logolink{padding:3px 0 4px;}
 
@@ -1262,6 +1264,7 @@ ul .providerlink, ul .button.providerlink { width: 190px; }
 .providerlink.google { background-image: url(/images/external/google_favicon.png); }
 .providerlink.yahoo { background-image: url(/images/external/yahoo_favicon.png); }
 .providerlink.flickr { background-image: url(/images/external/flickr_favicon.png); }
+.providerlink.soundcloud { background-image: url(/images/external/soundcloud_favicon.png);}
 
 .quality_assessment .loading.status { padding-left: 16px;}
 .quality_assessment .status { margin: 0;}

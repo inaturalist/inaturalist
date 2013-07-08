@@ -64,7 +64,7 @@
 <%- end -%>
 
 <% content_for(:extracss) do %>
-  <%= stylesheet_link_tag 'identifications', 'observations/show', "jquery/ui.tabs.css", 'observations/observation_fields', 'jquery/plugins/inat/photo_selectors' %>
+  <%= stylesheet_link_tag 'identifications', 'observations/show', "jquery/ui.tabs.css", 'observations/observation_fields', 'jquery/plugins/inat/photo_selectors', 'jquery/plugins/inat/photo_selectors' %>
   <style type="text/css" media="screen">  
     .identification_form_wrapper{background-color:#eee;padding:10px;}
     .identification_form_wrapper input.text{width:236px;margin-top:0;}
@@ -105,7 +105,6 @@
                              'inaturalist/map3',
                              "jquery/plugins/inat/photo_selectors.js",
                              "observations/show" %>
-  
   <script type="text/javascript" charset="utf-8">
     var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
         PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
@@ -226,48 +225,82 @@
 </div><!-- end pageheader -->
 
 <div id="singleobs" class="column span-17">
-  <div id="where-and-photos" class="clear">
-    <% if !@photos.blank? -%>
-      <div id="photos">
-        <%- 
-          photo_size = @photos.first.is_a?(FacebookPhoto) ? :large : :medium
-          extra_count = 5
-          cycle_classes = [""]*(extra_count-1) + ["last"]
-        -%>
-        <%= link_to image_tag(@photos.first.best_url(photo_size)), @photos.first.becomes(Photo), :class => "first zoomable", :title => t(:photo_attribution, :attribution => @photos.first.attribution) %>
-        <% for photo in @photos[1..extra_count] -%>
-          <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto #{cycle(*cycle_classes)}", :title => t(:photo_attribution, :attribution => photo.attribution) %>
-        <% end -%>
-        <% if @photos.size > extra_count+1 -%>
-          <div style="clear: both">
-            <%= link_to_toggle t(:view_all_photocount_photos, :photo_count => @observation.photos.size), "#morephotos" %>
-            <div id="morephotos" style="display: none">
-              <% for photo in @photos[(extra_count+1)..-1] -%>
-                <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto", :title => t(:photo_attribution, :attribution => photo.attribution) %>
+  <div id="where-and-photos" class="clear<%= ' has_photos' unless @photos.blank? %><%= ' has_sounds' unless @sounds.blank? %><%= ' has_media' unless @photos.blank? && @sounds.blank? %>">
+    <% if !@photos.blank? || !@sounds.blank? -%>
+      <div id="media">
+        <% if !@photos.blank? -%>
+          <div id="photos" class="stacked">
+            <%- 
+              photo_size = @photos.first.is_a?(FacebookPhoto) ? :large : :medium
+              extra_count = 5
+              cycle_classes = [""]*(extra_count-1) + ["last"]
+            -%>
+            <%= link_to image_tag(@photos.first.best_url(photo_size)), @photos.first.becomes(Photo), :class => "first zoomable", :title => t(:photo_attribution, :attribution => @photos.first.attribution) %>
+            <% for photo in @photos[1..extra_count] -%>
+              <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto #{cycle(*cycle_classes)}", :title => t(:photo_attribution, :attribution => photo.attribution) %>
+            <% end -%>
+            <% if @photos.size > extra_count+1 -%>
+              <div style="clear: both">
+                <%= link_to_toggle t(:view_all_photocount_photos, :photo_count => @observation.photos.size), "#morephotos" %>
+                <div id="morephotos" style="display: none">
+                  <% for photo in @photos[(extra_count+1)..-1] -%>
+                    <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto", :title => t(:photo_attribution, :attribution => photo.attribution) %>
+                  <% end -%>
+                </div>
+              </div>
+            <% end -%>
+            
+            <div class="meta" style="clear:both;">
+              <%=t(:photo, :count => @photos.size).capitalize %>
+              <% if @photos.map{|p| p.license}.compact.uniq.size <= 1 -%>
+                <%= rights @photos.first, :skip_image => true, :separator => " " %>
+              <% else %>
+                &copy;
+                <%= @observation.user.name.blank? ? @observation.user.login : @observation.user.name %>,
+                <%=t :mixed_licenses %>
+              <% end -%>
+            </div>
+
+            <% if is_me?(@observation.user) -%>
+              <div class="meta">
+                <span class="button"><%= link_to t(:add_more_photos), edit_observation_path, :id => "add_more_photos_link" %></span>
+              </div>
+            <% end -%>
+          </div>
+        <%- end -%>
+
+        <% unless @sounds.blank? -%>
+          <div id="sounds" class="stacked">
+            <% above_the_fold_sounds = 1 %>
+            <% @sounds.each_with_index do |sound, i| -%>
+              <% if i == above_the_fold_sounds %>
+                <div class='moresounds' style="clear: both">
+                <%= link_to_toggle t(:'sounds.view_all_soundcount_sounds', :sound_count => @observation.sounds.size), "#moresounds" %>
+                <div id="moresounds" style="display: none">
+              <% end %>
+              <% embed_link = "https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F#{sound.native_sound_id}&show_artwork=false&secret_token=#{sound.secret_token}" %>
+              <iframe width="100%" height="166" scrolling="no" frameborder="no" src="<%= embed_link%>" class="stacked"></iframe>
+            <% end -%>
+            <% if @sounds.size > above_the_fold_sounds %>
+                </div>
+              </div>
+            <% end %>
+
+            <div class="meta" style="clear:both;">
+              <%=t(:'sounds.sound').capitalize %>
+              <% if @sounds.map{|s| s.license}.compact.uniq.size <= 1 -%>
+                <%= rights @sounds.first, :skip_image => true, :separator => " " %>
+              <% else %>
+                &copy;
+                <%= @observation.user.name.blank? ? @observation.user.login : @observation.user.name %>,
+                <%=t :mixed_licenses %>
               <% end -%>
             </div>
           </div>
-        <% end -%>
-        
-        <div class="meta" style="clear:both;">
-          <%=t(:photo, :count => @photos.size).capitalize %>
-          <% if @photos.map{|p| p.license}.compact.uniq.size <= 1 -%>
-            <%= rights @photos.first, :skip_image => true, :separator => " " %>
-          <% else %>
-            &copy;
-            <%= @observation.user.name.blank? ? @observation.user.login : @observation.user.name %>,
-            <%=t :mixed_licenses %>
-          <% end -%>
-        </div>
-
-        <% if is_me?(@observation.user) -%>
-          <div class="meta">
-            <span class="button"><%= link_to t(:add_more_photos), edit_observation_path, :id => "add_more_photos_link" %></span>
-          </div>
-        <% end -%>
+        <%- end -%>
       </div>
-    <%- end -%>
-    
+    <% end -%>
+
     <div id="where">
       <% if show_observation_coordinates?(@observation) %>
         <div id="map" class="stacked"></div>
@@ -276,6 +309,7 @@
         <%= render :partial => 'location', :locals => {:inline_edit => true, :places => @places} %>
       </div>
     </div><!-- end where -->
+
   </div><!-- end where-and-photos -->
   
   <% unless @observation.description.blank? %>
@@ -454,7 +488,7 @@
       <div id="idplease" class="clear inline buttonrow">
         <div id="added_to_id_please" class="box id_please_notice" style="display: <%= @observation.id_please? ? 'block' : 'none' %>">
           <span class="inter">
-            Added to <%= link_to t(:id_please), id_please_path %>
+            <%= t :added_to %> <%= link_to t(:id_please).truncate(18), id_please_path %>
           </span>
           <%= link_to t(:remove), @observation,
             :remote => true,
@@ -582,13 +616,13 @@
             <%= link_to observation_image(o, :size => "square"), o, :title => o.to_plain_s %>
           <% end %>
         </div>
-        <%= link_to t(:view_x_from_x, :day_observations=>"#{@day_observations.total_entries}", :observed_on => "#{@observation.observed_on.to_s(:long)}"), calendar_date_path(@observation.user.login, @observation.observed_on.year, @observation.observed_on.month, @observation.observed_on.day), :class => "right readmore" %>
+        <%= link_to t(:view_x_from_x, :day_observations=>"#{@day_observations.total_entries}", :observed_on => "#{l(@observation.observed_on, :format => :long)}"), calendar_date_path(@observation.user.login, @observation.observed_on.year, @observation.observed_on.month, @observation.observed_on.day), :class => "right readmore" %>
       </div>
     <%= separator %>
   <% end -%>
 
   <% unless @posts.blank? -%>
-    <h3>Journal Posts</h3>
+    <h3><%= t :journal_post %></h3>
     <ul class="plain">
       <% for post in @posts %>
         <li>

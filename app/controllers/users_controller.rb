@@ -174,6 +174,10 @@ class UsersController < ApplicationController
       @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count
       @resolved_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
     end
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def leaderboard

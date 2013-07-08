@@ -39,6 +39,7 @@ class Photo < ActiveRecord::Base
   LICENSE_NUMBERS = LICENSE_INFO.keys
   LICENSE_INFO.each do |number, info|
     const_set info[:code].upcase.gsub(/\-/, '_'), number
+    const_set info[:code].upcase.gsub(/\-/, '_') + "_CODE", info[:code]
   end
 
   SQUARE = 75
@@ -84,14 +85,14 @@ class Photo < ActiveRecord::Base
     elsif (o = observations.first)
       o.user.name || o.user.login
     else
-      "anonymous"
+      I18n.t('copyright.anonymous')
     end
     if license == PD
-      "#{name}, no known copyright restrictions (#{license_name})"
+      I18n.t('copyright.no_known_copyright_restrictions', :name => name, :license_name => I18n.t("copyright.#{license_name.gsub(' ','_').gsub('-','_').downcase}", :default => license_name))
     elsif open_licensed?
-      "(c) #{name}, some rights reserved (#{license_short})"
+      I18n.t('copyright.some_rights_reserved_by', :name => name, :license_short => license_short)
     else
-      "(c) #{name}, all rights reserved"
+      I18n.t('copyright.all_rights_reserved', :name => name)
     end
   end
   
@@ -187,7 +188,11 @@ class Photo < ActiveRecord::Base
 
   def as_json(options = {})
     options[:except] ||= []
-    options[:except] << :metadata
+    options[:except] += [:metadata, :file_content_type, :file_file_name,
+      :file_file_size, :file_processing, :file_updated_at, :mobile,
+      :original_url]
+    options[:methods] ||= []
+    options[:methods] += [:license_name, :license_url, :attribution]
     super(options)
   end
   

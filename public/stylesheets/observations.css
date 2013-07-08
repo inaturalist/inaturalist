@@ -15,6 +15,7 @@
 .observation .actions ul li:after{content:' | ';color:#888;}
 .observation .actions ul li.last:after{content:'';}
 
+.observations .photos .nophoto { text-align:center;}
 /* Table */
 .observations.table {
   display: table;
@@ -94,14 +95,67 @@
   color: transparent;
 }
 
+.observations.table .photolist,
+.observations.mini .photolist {
+  position: relative; 
+}
 .observations.table .photos.attribute {
   max-width: 120px;
 }
 
 .observations.table .photos .nophoto {
   border: 1px dashed #eee;
-  line-height: 1;
   padding: 0.5em;
+}
+
+.observations.table .photos .sound-icon, 
+.observations.mini .photos .sound-icon {
+  display: block;
+  text-align: center;
+}
+.observations.table .photos .sound-icon.with-photo i,
+.observations.mini .photos .sound-icon.with-photo i {
+  display:block;
+}
+
+.observations.mini .photos .sound-icon {
+  width:75px;
+}
+
+.observations.table .photos .sound-icon.with-photo {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  top: 0px;
+  left: 0px;
+  opacity: .8;
+  color: #eee;
+  margin-top: 13px;
+}
+
+.observations.mini .photos .sound-icon.with-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height:75px;
+  opacity: .8;
+  color: #eee;
+}
+.observations.mini .photos .sound-icon.with-photo i {margin-top:13px;}
+
+.observations.medium.grid .photos .sound-icon {
+  display:block;
+  width:100%;
+  position: absolute;
+  top:0;
+  left:0;
+}
+.observations.medium.grid .photos .sound-icon i {margin-top:75px;display:block;font-size:2em;}
+.observations.medium.grid .photos .sound-icon.with-photo i {
+  color:#eee;
+  font-size: 8em;
+  opacity: 0.6;
+  margin-top:40px;
 }
 
 .observations.table .observation .species_guess {

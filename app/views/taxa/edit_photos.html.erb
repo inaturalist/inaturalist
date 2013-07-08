@@ -21,7 +21,7 @@
         </div>
         <div class="buttonrow">
           <%= submit_tag t(:save_photos), :class => 'default button' %>
-          <%= link_to_function t(:cancel), 'return false;', :class => 'button close' %>
+          <%= link_to_function t(:cancel), '$(this).parents(".dialog").dialog("close")', :class => 'button close' %>
         </div>
       <% end %>
     </div>
@@ -35,7 +35,7 @@
         </div>
         <div class="buttonrow">
           <%= submit_tag t(:save_photos), :class => 'default button' %>
-          <%= link_to_function t(:cancel), 'return false;', :class => 'button close' %>
+          <%= link_to_function t(:cancel), '$(this).parents(".dialog").dialog("close")', :class => 'button close' %>
         </div>
       <% end %>
     </div>
@@ -49,7 +49,7 @@
         </div>
         <div class="buttonrow">
           <%= submit_tag t(:save_photos), :class => 'default button' %>
-          <%= link_to_function t(:cancel), 'return false;', :class => 'button close' %>
+          <%= link_to_function t(:cancel), '$(this).parents(".dialog").dialog("close")', :class => 'button close' %>
         </div>
       <% end %>
     </div>
@@ -63,7 +63,7 @@
         </div>
         <div class="buttonrow">
           <%= submit_tag t(:save_photos), :class => 'default button', "data-loading-click" => "Saving..." %>
-          <%= link_to_function t(:cancel), 'return false;', :class => 'button close' %>
+          <%= link_to_function t(:cancel), '$(this).parents(".dialog").dialog("close")', :class => 'button close' %>
         </div>
       <% end %>
     </div>

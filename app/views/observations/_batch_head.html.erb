@@ -8,6 +8,7 @@
   <%= javascript_include_tag "jquery/plugins/jquery.string.1.0.js",
                              "jquery/plugins/inat/datepicker.js",
                              "jquery/plugins/inat/photo_selectors.js",
+                             "jquery/plugins/inat/sound_selectors.js",
                              "jquery/plugins/jquery.latLonSelector.js",
                              'inaturalist/map3',
                              "observations/new_batch.js",
@@ -15,8 +16,16 @@
                              "observations/observation_fields.js" %>
   <script type="text/javascript" charset="utf-8">
     var DEFAULT_BASE_URL = <%= @default_photo_identity_url.inspect.html_safe %>,
-        PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>]
+        PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
+        SOUNDCLOUD_IDENTITY = <%=raw current_user.soundcloud_identity.to_json(:only => [:id]) %>
     $(document).ready(function() {
+      if (SOUNDCLOUD_IDENTITY) {
+        $('.observation_sounds').each(function() {
+            var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name')
+            var index = $.string(index_str).gsub(/[^\d]*/, '').str
+            $(this).soundSelector({index: index});
+        })
+      }
       $('.observation_photos').each(function() {
         // The photo_fields endpoint needs to know the auth token and the index
         // for the field

@@ -10,6 +10,7 @@
                              'inaturalist/map3',
                              "jquery/plugins/inat/datepicker.js",
                              "jquery/plugins/inat/photo_selectors.js",
+                             "jquery/plugins/inat/sound_selectors.js",
                              "jquery/plugins/jquery.latLonSelector.js",
                              "jquery/plugins/jqModal",
                              "taxon_browser",
@@ -18,6 +19,7 @@
   <script type="text/javascript" charset="utf-8">
     var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
         PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
+        SOUNDCLOUD_IDENTITY = <%=raw current_user.soundcloud_identity.to_json(:only => [:id]) %>,
         PROJECT = <%=raw @project.to_json(:only => [:id, :place_id, :latitude, :longitude, :map_type, :zoom_level, :title]) %>
         PLACE = <%= @place.to_json.html_safe %>,
         PLACE_GEOMETRY_KML_URL = <%=raw place_geometry_kml_url.inspect %>,

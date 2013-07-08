@@ -1,7 +1,10 @@
 class GuideRangesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :admin_required
   before_filter :load_record, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_guide, :except => [:index, :new, :create, :import]
+  before_filter :only => [:edit, :update, :destroy] do |c|
+    require_owner :klass => "Guide"
+  end
 
   # GET /guide_ranges
   # GET /guide_ranges.json
@@ -84,5 +87,39 @@ class GuideRangesController < ApplicationController
       format.html { redirect_to guide_ranges_url }
       format.json { head :no_content }
     end
+  end
+
+  def import
+    provider = params[:provider].to_s.downcase
+    @ranges = if provider == "wikipedia"
+      # import_from_wikipedia
+    else
+      import_from_eol
+    end
+    @ranges ||= []
+    respond_to do |format|
+      format.json do
+        render :json => @ranges.as_json(:methods => [:attribution])
+      end
+    end
+  end
+
+  def import_from_eol
+    eol = EolService.new(:timeout => 30)
+    pages = eol.search(params[:q], :exact => true)
+    id = pages.at('entry/id').try(:content)
+    return unless id
+    page = eol.page(id, :text => 0, :images => 0, :sounds => 0, :videos => 0, :maps => 50, :subjects => "all", :details => true)
+    page.remove_namespaces!
+    page.search('dataObject').map do |data_object|
+      GuideRange.new_from_eol_data_object(data_object)
+    end
+  rescue Timeout::Error => e
+    []
+  end
+
+  private
+  def load_guide
+    @guide = @guide_range.guide
   end
 end

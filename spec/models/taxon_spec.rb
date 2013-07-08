@@ -600,6 +600,23 @@ describe Taxon, "merging" do
     o.reload
     o.iconic_taxon.should eq(@keeper.iconic_taxon)
   end
+
+  it "should update subscriptions" do
+    s = Subscription.make!(:resource => @reject)
+    @keeper.merge(@reject)
+    s.reload
+    s.resource.should eq @keeper
+  end
+
+  it "should not alter with subscriptions to other classess" do
+    reject = Taxon.make!(:id => 888)
+    keeper = Taxon.make!(:id => 999)
+    o = Observation.make!(:id => 888)
+    s = Subscription.make!(:resource => o)
+    keeper.merge(reject)
+    s.reload
+    s.resource.should eq(o)
+  end
 end
 
 describe Taxon, "moving" do

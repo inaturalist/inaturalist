@@ -67,6 +67,7 @@ class PicasaPhoto < Photo
   def to_taxa(options = {})
     self.api_response ||= PicasaPhoto.get_api_response(self.native_photo_id, :user => self.user)
     return nil if api_response.keywords.blank?
+    return nil unless api_response.keywords.is_a?(String)
     Taxon.tags_to_taxa(api_response.keywords.split(',').map(&:strip), options)
   end
   

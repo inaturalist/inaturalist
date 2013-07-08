@@ -102,7 +102,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       if options[:required]
         label_tag += content_tag(:span, " *", :class => 'required')
       end
-      label_content = content_tag(options[:label_after] ? :span : :div, label_tag, :class => "label")
+      label_content = content_tag(options[:label_after] ? :span : :div, label_tag, :class => "inlabel")
     end
     
     description = content_tag(:div, options[:description], :class => "description") if options[:description]

@@ -44,6 +44,7 @@ class Observation < ActiveRecord::Base
   attr_accessor :facebook_sharing
 
   attr_accessor :captive
+  attr_accessor :force_quality_metrics
   
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
   
@@ -147,6 +148,7 @@ class Observation < ActiveRecord::Base
   has_many :observation_fields, :through => :observation_field_values
   has_many :observation_links
   has_and_belongs_to_many :posts
+  has_and_belongs_to_many :sounds
   
   define_index do
     indexes taxon.taxon_names.name, :as => :names
@@ -631,18 +633,18 @@ class Observation < ActiveRecord::Base
   end
   
   def to_plain_s(options = {})
-    s = self.species_guess.blank? ? 'something' : self.species_guess
+    s = self.species_guess.blank? ? I18n.t(:something) : self.species_guess
     if options[:verb]
-      s += options[:verb] == true ? " observed" : " #{options[:verb]}"
+      s += options[:verb] == true ? I18n.t(:observed).downcase : " #{options[:verb]}"
     end
     unless self.place_guess.blank? || options[:no_place_guess]
-      s += " in #{self.place_guess}"
+      s += " #{I18n.t(:on_)} #{self.place_guess}"
     end
-    s += " on #{self.observed_on.to_s(:long)}" unless self.observed_on.blank?
+    s += " #{I18n.t(:on_day)}  #{I18n.l(self.observed_on, :format => :long)}" unless self.observed_on.blank?
     unless self.time_observed_at.blank? || options[:no_time]
-      s += " at #{self.time_observed_at_in_zone.to_s(:plain_time)}"
+      s += " #{I18n.t(:at_)} #{self.time_observed_at_in_zone.to_s(:plain_time)}"
     end
-    s += " by #{self.user.try(:login)}" unless options[:no_user]
+    s += " #{I18n.t(:by).downcase} #{self.user.try(:login)}" unless options[:no_user]
     s
   end
 
@@ -954,7 +956,7 @@ class Observation < ActiveRecord::Base
   # Trim whitespace around species guess
   #
   def strip_species_guess
-    self.species_guess.strip! unless species_guess.nil?
+    self.species_guess.to_s.strip! unless species_guess.blank?
     true
   end
   
@@ -1074,11 +1076,15 @@ class Observation < ActiveRecord::Base
   end
   
   def research_grade?
-    georeferenced? && community_supported_id? && quality_metrics_pass? && observed_on? && photos?
+    georeferenced? && community_supported_id? && quality_metrics_pass? && observed_on? && (photos? || sounds?)
   end
   
   def photos?
     observation_photos.exists?
+  end
+
+  def sounds?
+    sounds.exists?
   end
   
   def casual_grade?
@@ -1534,8 +1540,12 @@ class Observation < ActiveRecord::Base
   def update_quality_metrics
     if captive == "1"
       QualityMetric.vote(user, self, QualityMetric::WILD, false)
+    elsif captive == "0" && force_quality_metrics
+      QualityMetric.vote(user, self, QualityMetric::WILD, true)
     elsif captive == "0" && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
       qm.update_attributes(:agree => true)
+    elsif force_quality_metrics && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
+      qm.destroy
     end
     true
   end
@@ -1907,7 +1917,7 @@ class Observation < ActiveRecord::Base
         # observation aggregation for twitter happens in share_on_twitter.
         # fb aggregation happens on their end via open graph aggregations.
         unless Delayed::Job.exists?(["handler LIKE ?", "%user_id: #{u.id}\n%share_on_#{provider_name}%"])
-          self.delay(:priority => USER_INTEGRITY_PRIORITY, :run_at => 10.minute.from_now).send("share_on_#{provider_name}")
+          self.delay(:priority => USER_INTEGRITY_PRIORITY, :run_at => 1.hour.from_now).send("share_on_#{provider_name}")
         end
       end
     end

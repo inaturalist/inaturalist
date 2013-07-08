@@ -1,0 +1,109 @@
+= content_for :title do
+  = @guide.title
+= content_for :extracss do
+  :css
+    .span2 { background-color: #eee; }
+    .tile .img { display:block;height:200px; text-align:center; background-color:#eee;position:relative;overflow:hidden;}
+    #actions {margin-top:15px;}
+    #actions .pull-right {margin-left: 5px;}
+    .taxonmap {height: 200px;}
+= content_for :extrajs do
+  = google_maps_js
+  = javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js", 'jquery/plugins/waypoints.min'
+  :javascript
+    $('.tile .img').imagesLoaded(function() {
+      $('img', this).not('.iconic').centerInContainer()
+    })
+    $('.clearbtn').click(function() {
+      $(this).siblings(':input').val(null)
+    })
+    $('.taxonmap').waypoint(function() {
+      if ($(this).data('taxonMap')) return
+      $(this).taxonMap()
+    }, {
+      triggerOnce: true,
+      offset: '100%'
+    })
+.container-fluid
+  %ul.breadcrumb
+    %li
+      = link_to t(:guides), guides_path
+      %span.divider /
+      %li.active= @guide.title
+  .row-fluid
+    .span12
+      #actions.right
+        .btn-group.pull-right
+          %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
+            =t :pdf
+            %span.caret
+          %ul.dropdown-menu
+            - for l in GuidesController::PDF_LAYOUTS
+              %li= link_to t(l), guide_pdf_path(@guide, :layout => l)
+        = link_to t(:edit), edit_guide_path(@guide), :class => "btn"
+      %h1= @guide.title
+  .row-fluid
+    .span12
+      = truncate_with_more formatted_user_text(@guide.description), :length => 300
+  .row-fluid
+    .span3
+      %ul.nav.nav-list
+        %li.nav-header Iconic Taxa
+        - for taxon in Taxon::ICONIC_TAXA
+          %li{:class => @taxon.try(:id) == taxon.id ? "active" : nil}
+            = link_to taxon.name, {:taxon => taxon.name}
+    .span9
+      .row-fluid.stacked
+        .navbar
+          .nabar-inner
+            %form.navbar-search.pull-left
+              .input-append
+                %input{:type => "text", :placeholder => t(:search), :name => "q", :value => @q}
+                - unless @q.blank?
+                  %button.btn.clearbtn= t(:clear).capitalize
+                %button.btn=t :search
+            .btn-grp.pull-right{"data-toggle" => "buttons-radio"}
+              = link_to t(:grid), {:view => "grid"}, :class => "btn #{'active' if @view == "grid"}"
+              = link_to t(:card), {:view => "card"}, :class => "btn #{'active' if @view == "card"}"
+      - if @view == "card"
+        - for guide_taxon in @guide_taxa
+          .card.row-fluid.stacked
+            .span3
+              = link_to guide_taxon, :class => "img" do
+                - if gp = guide_taxon.default_guide_photo
+                  = image_tag gp.photo.small_url
+                - elsif guide_taxon.taxon
+                  = taxon_image guide_taxon.taxon
+            .span6
+              %h4.name
+                = link_to guide_taxon.display_name, guide_taxon
+              - if gs = guide_taxon.guide_sections.first
+                = truncate_with_more formatted_user_text(gs.description), :length => 400
+            .span3
+              .map
+                - if guide_taxon.guide_ranges.blank?
+                  .taxonmap{setup_map_tag_attrs(guide_taxon.taxon, :taxon_range => guide_taxon.taxon.taxon_ranges_without_geom.first)}
+                - else
+                  = image_tag guide_taxon.guide_ranges.first.original_url
+      - else
+        - for row in @guide_taxa.in_groups_of(4)
+          .row-fluid.stacked
+            %ul.thumbnails
+              - for guide_taxon in row.compact
+                %li.span3
+                  - if gp = guide_taxon.default_guide_photo
+                    = link_to image_tag(gp.photo.small_url), guide_taxon, :class => "thumbnail borderless"
+                  - elsif guide_taxon.taxon
+                    = link_to taxon_image(guide_taxon.taxon), guide_taxon, :class => "thumbnail"
+                  %h5= link_to guide_taxon.display_name, guide_taxon
+        = will_paginate @guide_taxa
+  #attribution.meta
+    =t :by
+    - if @guide.license.blank?
+      = @guide.user.name.blank? ? @guide.user.login : @guide.user.name
+    - else
+      = succeed ',' do
+        = @guide.user.name.blank? ? @guide.user.login : @guide.user.name
+      =t 'copyright.some_rights_reserved'
+      = surround '(', ')' do
+        = @guide.license

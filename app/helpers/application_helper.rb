@@ -366,14 +366,14 @@ module ApplicationHelper
       txt += if o.observed_on.blank?
         t(:in_the_past).downcase
       else
-        t(:on_day) + " #{o.observed_on.strftime("%d %b %Y")} "
+        "#{t(:on_day, :default => "on")} #{o.observed_on.strftime("%d %b %Y")} "
       end
     end
     unless skip.include?(:place_guess)
       txt += if o.place_guess.blank?
         t(:somewhere_on_earth).downcase
       else
-        t(:on_) + " #{o.place_guess}"
+        "#{t(:in, :default => "in")} #{o.place_guess}"
       end
     end
     txt
@@ -601,7 +601,7 @@ module ApplicationHelper
           c + link_to(t(:some_rights_reserved), url_for_license(record.license))
         end
       end
-    elsif record.is_a? Photo
+    elsif record.is_a?(Photo) || record.is_a?(Sound)
       if record.user.blank?
         s = record.attribution
       else
@@ -835,25 +835,37 @@ module ApplicationHelper
     end
   end
 
-  def cite(citation)
+  def cite(citation = nil, &block)
     @_citations ||= []
+    if citation.blank? && block_given?
+      citation = capture(&block)
+    end
     citations = [citation].flatten
     links = citations.map do |c|
       c = c.citation if c.is_a?(Source)
       @_citations << c unless @_citations.include?(c)
       i = @_citations.index(c) + 1
-      link_to(i, "#ref#{i}")
+      link_to(i, "#ref#{i}", :name => "cit#{i}")
     end
     content_tag :sup, links.uniq.sort.join(',').html_safe
   end
 
-  def references
+  def references(options = {})
     return if @_citations.blank?
     lis = ""
     @_citations.each_with_index do |citation, i|
-      lis += content_tag(:li, citation.html_safe, :class => "reference", :id => "ref#{i+1}")
+      lis += if options[:linked]
+        l = link_to i+1, "#cit#{i+1}"
+        content_tag(:li, "#{l}. #{citation}".html_safe, :class => "reference", :id => "ref#{i+1}")
+      else
+        content_tag(:li, citation.html_safe, :class => "reference", :id => "ref#{i+1}")
+      end
     end
-    content_tag :ol, lis.html_safe, :class => "references"
+    if options[:linked]
+      content_tag :ul, lis.html_safe, :class => "references"
+    else
+      content_tag :ol, lis.html_safe, :class => "references"
+    end
   end
 
   def establishment_blob(listed_taxon, options = {})

@@ -1,0 +1,18 @@
+= content_for :title do
+  Guides
+.container-fluid
+  .hero-unit
+    %h1=t :welcome_to_guides, :site_name => SITE_NAME
+    %p
+      =t 'views.guides.index.welcome_message_html'
+    %p
+      =t :ready_to_get_started?
+      = link_to t(:create_a_guide), new_guide_path, :class => "btn btn-primary"
+  - for row in @guides.in_groups_of(3)
+    .row-fluid
+      - for guide in row.compact
+        .span4
+          %h2= link_to guide.title, guide
+          = simple_format guide.description
+  .quiet.box.text-center
+    =t 'views.guides.index.funding_html'

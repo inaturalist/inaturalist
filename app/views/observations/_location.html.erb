@@ -38,7 +38,7 @@
       <% end -%>
     <% end -%>
     <% if num_hidden > 0 -%>
-      <span class="button"><%= link_to_function "More...", "$(this).parents('.places').find('.hidden').toggle(); $(this).html($(this).text() == 'More...' ? 'Less' : 'More...')" %></span>
+      <span class="button"><%= link_to_function "#{t(:more)}...", "$(this).parents('.places').find('.hidden').toggle(); $(this).html($(this).text() == '#{t(:more)}...' ? ''#{t(:less)}'' : '#{t(:more)}...')" %></span>
     <% end -%>
   </div>
 <% end -%>

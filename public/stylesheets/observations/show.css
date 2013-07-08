@@ -3,16 +3,18 @@
 #identifications h3{margin-bottom:0.5em;}
 #identifications .user {display:block;}
 .identifications-list .identification.yours{padding:10px;}
-#photos{max-width:350px; margin-right:10px;}
+#media, #photos, #sounds {max-width:350px;}
+#media{margin-right:10px;}
 #photos .first, #photos .first img {vertical-align:top;float:left;margin:0 10px 10px 0;max-width:350px;max-height:350px;}
 #photos .first img{float:none;margin:0;}
 #photos .smallphoto {width:61px; height:61px; overflow:hidden; margin: 0 7px 10px 0;vertical-align:top;}
 #photos .smallphoto.last {margin-right:0;}
 #photos .smallphoto img {width:61px;}
 #photos .smallphoto img.zoom_icon {width:auto;}
-#photos,#where{float:left;}
+#media, #where { float:left;}
 #map{height:245px;overflow:hidden;}
-#where, #map {width: 310px;}
+#where, #map {width: 100%;}
+.has_media #where, .has_maedia #map {width: 310px;}
 #observation-description .description{color:#666;}
 #observation-description img{max-width:500px;height:auto;}
 .breadcrumbs{float:left;width:auto;}
