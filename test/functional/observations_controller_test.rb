@@ -7,7 +7,7 @@ class ObservationsControllerTest < ActionController::TestCase
   def test_index_finds_observations_by_taxon_name
     taxon = Taxon.make!
     observation = Observation.make!(:taxon => taxon)
-    get :index, :formats => [:json], :taxon_name => taxon.name
+    get :index, :format => :json, :taxon_name => taxon.name
     assert_match /id.*?#{observation.id}/, @response.body
     assert_equal 1, assigns(:observations).map(&:taxon_id).uniq.size
   end
@@ -15,7 +15,7 @@ class ObservationsControllerTest < ActionController::TestCase
   def test_index_finds_observations_when_taxon_name_is_blank
     taxon = Taxon.make!
     observation = Observation.make!(:taxon => taxon)
-    get :index, :formats => [:json], :taxon_name => ''
+    get :index, :format => :json, :taxon_name => ''
     assert_match /id.*?#{observation.id}/, @response.body
   end
   

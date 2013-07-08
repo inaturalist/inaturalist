@@ -1368,18 +1368,26 @@ class ObservationsController < ApplicationController
 
   def photo
     @observations = []
-    unless params[:files].blank?
-      params[:files].each_with_index do |file, i|
-        lp = LocalPhoto.new(:file => file, :user => current_user)
-        o = lp.to_observation
-        if params[:observations] && obs_params = params[:observations][i]
-          obs_params.each do |k,v|
-            o.send("#{k}=", v) unless v.blank?
-          end
+    if params[:files].blank?
+      respond_to do |format|
+        format.json do
+          render :status => :unprocessable_entity, :json => {
+            :error => "You must include files to convert to observations."
+          }
         end
-        o.save
-        @observations << o
       end
+      return
+    end
+    params[:files].each_with_index do |file, i|
+      lp = LocalPhoto.new(:file => file, :user => current_user)
+      o = lp.to_observation
+      if params[:observations] && obs_params = params[:observations][i]
+        obs_params.each do |k,v|
+          o.send("#{k}=", v) unless v.blank?
+        end
+      end
+      o.save
+      @observations << o
     end
     respond_to do |format|
       format.json do

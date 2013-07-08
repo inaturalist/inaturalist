@@ -157,4 +157,19 @@ describe ObservationsController do
     end
   end
   
+  describe :photo do
+    before do
+      @user = User.make!
+      sign_in @user
+    end
+    it "should generate an error if no files specified" do
+      post :photo, :format => :json
+      puts "response.body: #{response.body}"
+      json = JSON.parse(response.body)
+      json['error'].should_not be_blank
+    end
+
+    # ugh, how to test uploads...
+    it "should generate an error if single file makes invalid photo"
+  end
 end
