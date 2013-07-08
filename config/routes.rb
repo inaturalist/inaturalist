@@ -69,7 +69,7 @@ Inaturalist::Application.routes.draw do
     get "signup", :to => "users/registrations#new"
     get "users/new", :to => "users/registrations#new", :as => "new_user"
   end
-  match '/register' => 'users#create', :as => :register, :via => :post
+  # match '/register' => 'users#create', :as => :register, :via => :post
   
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
   match '/forgot_password' => 'passwords#new', :as => :forgot_password
@@ -99,7 +99,7 @@ Inaturalist::Application.routes.draw do
   resources :users, :except => [:new, :create]
   # resource :session
   # resources :passwords
-  resources :people, :controller => :users do
+  resources :people, :controller => :users, :except => [:create] do
     collection do
       get :search
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
