@@ -134,11 +134,10 @@ class PlacesController < ApplicationController
     end
     
     if @place.valid?
-      flash[:notice] = "Place imported!"
+      flash[:notice] = t(:place_imported)
       return redirect_to @place
     else
-      flash[:error] = "There were problems importing that place: " + 
-        @place.errors.full_messages.join(', ')
+      flash[:error] = t(:there_were_problems_importing_that_place, :place_error => @place.errors.full_messages.join(', '))
       render :action => :new
     end
   end
@@ -166,7 +165,7 @@ class PlacesController < ApplicationController
         return
       end
       
-      flash[:notice] = "Place updated!"
+      flash[:notice] = t(:place_updated)
       redirect_to @place
     else
       render :action => :edit
@@ -175,7 +174,7 @@ class PlacesController < ApplicationController
   
   def destroy
     @place.destroy
-    flash[:notice] = "Place deleted."
+    flash[:notice] = t(:place_deleted)
     redirect_to places_path
   end
   
@@ -226,17 +225,16 @@ class PlacesController < ApplicationController
       keepers = nil if keepers.blank?
       
       unless @merge_target
-        flash[:error] = "You must select a place to merge with."
+        flash[:error] = t(:you_must_select_a_place_to_merge_with)
         return
       end
       
       @merged = @merge_target.merge(@place, :keep => keepers)
       if @merged.valid?
-        flash[:notice] = "Places merged successfully!"
+        flash[:notice] = t(:places_merged_successfully)
         redirect_to @merged
       else
-        flash[:error] = "There merge problems with the merge: " +
-          @merged.errors.full_messages.join(', ')
+        flash[:error] = t(:there_merge_problems_with_the_merge, :merged_errors => @merged.errors.full_messages.join(', '))
       end
     end
   end
@@ -446,7 +444,7 @@ class PlacesController < ApplicationController
   
   def editor_required
     unless @place.editable_by?(current_user)
-      flash[:error] = "You don't have permission to do that."
+      flash[:error] = t(:you_dont_have_permission_to_do_that)
       redirect_back_or_default(@place)
       return false
     end

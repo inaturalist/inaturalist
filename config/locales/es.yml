@@ -423,6 +423,7 @@ es:
   calendar: Calendario
   can_you_help_your_friends_id_these: "¿Puedes ayudar a identificar estas observaciones?"
   cancel: Cancelar
+  cant_flag_an_object_that_doesnt_exist: No puedes ponerle advertencia a un contenido que ya no existe
   cant_merge_a_taxon_with_itself: No puedes combinar ese taxón consigo mismo.
   casual: casual
   catalogue_of_life: "Catálogo de la Vida"
@@ -572,6 +573,7 @@ es:
   contest_projects_description: "Proyectos 'Concurso' mostrará un cuadro clasificatorio contribuyentes clasificación por el número de especies únicas observadas mientras que los proyectos 'Concurso de Observación' muestra las tablas de líder en la clasificación de los contribuyentes por el número de observaciones"
   contributions: contribuciones
   contributions_from: "Aportes de"
+  contributor_cannot_be_found: El contribuidor del proyecto no pudo ser encontrado
   contributors_to_project: "Contributors to %{project}: Contribuyentes al proyecto"
   controls: Controles
   coordinates_private: "(coordenadas privadas)"
@@ -591,6 +593,7 @@ es:
         attribution_sharealike_license: Atribución - Compartir bajo la misma licencia
         attribution_noderivs_license: Atribución - Sin obras derivadas
         gnu_free_documentation_license: Licencia gratuita de documentación GNU
+  couldnt_find_that_taxon: No se encontro la especie o grupo.
   couldnt_log_you_in_x: "No pude autenticarlo a usted como '%{x}'"
   countries: Países
   country_stats: "Estadísticas de país para las observaciones creadas"
@@ -902,7 +905,8 @@ es:
   endangered: "en peligro"
   endemic: endémica
   endemic_to_x: "endémica de %{x}"
-  errors: 
+  error_updating_photo: "Error al subir la foto: %{photo_errors}"
+  errors:
     format: "%{attribute} %{message}"
     messages: 
       accepted: "debe ser aceptado"
@@ -968,6 +972,7 @@ es:
   facebook_confirmation: "Facebook desea confirmar que usted desea conectar su cuenta a %{site_name}."
   facebook_needs_the_owner_of_that_photo_to: Facebook necesita la confirmación del propietario de esa foto para poder realizar la conexión a %{site_name_short}.
   facebook_options: "Opciones de Facebook"
+  'false': 'No'
   faq: "Preguntas Frecuentes"
   favorite_taxa: "taxones favoritos"
   favorites: Favoritos
@@ -1011,6 +1016,8 @@ es:
   flag_it!: ¡Márquelo!
   flag_marked_as_resolved_html: '<span class="meta">Marcar marcado como</span> <strong>resuelto.</strong>'
   flag_reason: "&ldquo; Estoy marcando este %{record} porque"
+  flag_saved: Advertencia guardada.
+  flag_saved_thanks: Advertencia guardada. ¡Gracias!
   flag_this_observation: "Marcar esta observación"
   flagged: marcado
   flagged_for_curation: "Marcado para curación."
@@ -1077,6 +1084,7 @@ es:
   graft: Injertar
   grafting: Injertando...
   grafting_attemps_to_insert_this_taxon: "Al injertar se trata de insertar este taxón en nuestro árbol taxonómico, encontrar un taxón padre existente o crear todos los taxones necesarios en el medio con el fin de adjuntarlo a un taxón de más alto nivel existente."
+  grant_role: "Se a %{grant} el permiso de %{role}"
   gray: gris
   green: verde
   grey: gris
@@ -1586,6 +1594,7 @@ es:
   obscured_description: "Coordenadas públicas se muestran como un punto al azar dentro de un radio de 10Km de las coordenadas verdaderas . Las coordenadas reales sólo son visibles para usted y los curadores de los proyectos a la que se agrega la observación."
   observation: observación
   observation_added: "Observation added"
+  observation_added_to_the_project: "Observación añadida al proyecto %{project}"
   observation_by: ""
   observation_calendar_for: "Calendario de observaciones para %{user} en %{year}"
   observation_contest: concurso de observaciones
@@ -1600,6 +1609,7 @@ es:
                  observación, como el número de especies observadas, descripción
                  del habitad, o lo que quieras comentar.
   observation_fields_are_additional: "Los campos de observación son campos de datos adicionales que se pueden agregar a las observaciones."
+  observation_removed_from_the_project: "La observación fue eliminada del proyecto %{project}"
   observation_rights_html: "Observación %{rights}"
   observation_rules: "Reglas de observación"
   observation_rules_description: "Usted puede seleccionar reglas para determinar cuáles observaciones se pueden agregar a este proyecto, como limitar las observaciones a un lugar determinado. Nota&#58; limitar a lugares se basa actualmente en %{site_name} Places y sólo puede limitar las observaciones al rectángulo más pequeño que rodea un lugar."
@@ -1632,6 +1642,7 @@ es:
   observations_observed_this_month: Observaciones <em>hechas</em> este mes, no se añaden al mes en curso. ¡Sal y haz más observaciones!
   observations_on_inat_check_list: "observaciones en %{site_name}. Los lugares con lista de verificación que han sido confirmados tienen al menos 1 observación confirmada dentro de sus límites."
   observations_per_month: "Observaciones / Mes"
+  observations_removed_from_the_project: "Observaciones eliminadas del proyecto %{project}"
   observations_saved: "Observación(es) guardadas!"
   observations_specifying_this_field: "Observaciones que especifican este campo"
   observations_title: "Observaciones de todos"
@@ -1664,7 +1675,9 @@ es:
   on_submit_date: "el %{submitdate}"
   on_your_life_list: "en su lista de vida"
   one_of_your_lists: "una de sus listas..."
+  only_a_project_manager_can_add: Solo un Gerente del proyecto puede darle una clasificación a un curador de proyecto
   only_accepts_taxa: "solamente acepta taxones"
+  only_an_admin_can_remove_project_users: Solo el administrador puede eliminar usuarios del proyecto.
   only_country_state_and_county: "Sólo se muestran lugares de país, estado y equivalentes de país por ahora. Haga un acercamiento para ver lugares más pequeños."
   only_files_with_100_rows_at_a_time: "Solamente archivos con 100 filas cada vez, por favor"
   only_project_curators_can_do_that: Solo los curadores del proyecto pueden hacer eso.
@@ -1676,6 +1689,8 @@ es:
   only_species: "solamente especies"
   only_species_and_subspecies: "solamente especies y subespecies/variedades"
   only_the_author_of_this_post_can_do_that: Solo el autor de esta nota puede hacer eso. No seas malvado.
+  only_the_owner_of_this_list_can_do_that: Solo el propietario de esa lista puede hacer eso.  No seas malvado.
+  only_the_project_admin_can_delete_this_project: Solo el administrador del proyecto puede eliminar este proyecto.
   opcional_columns_note_for_any: "Columnas opcionales (nota. para que cualquiera de estas columnas sea usada en una observación, todas deben estar presentes)"
   open: Transparente
   open_description: "Todo el mundo puede ver las coordenadas a menos que el taxón esté en peligro."
@@ -1721,8 +1736,11 @@ es:
   photo?: ¿foto?
   photo_attribution: "Foto %{attribution}"
   photo_by_id_attribution: "Foto %{id}, %{attribution}"
+  photo_deleted: Foto borrada
+  photo_destroyed_because_it_was_deleted_from: "La foto fue destruida porque fue borrada de un sitio externo o %{site_name} no tiene permisos para mostrarla."
   photo_hosting_accounts: "Cuentas de alojamiento de fotos"
   photo_integration: "Integración de fotos"
+  photo_urls_repaired: La URL de la foto fue reparada.
   photos: Fotos
   photos_next: "Fotos &rarr;"
   photos_size_photos: "%{photos_size} fotos"
@@ -1732,6 +1750,7 @@ es:
   pink: rosa
   place: Lugar
   place_added_to_inat_by: "Lugar agregado a %{site_name} por"
+  place_deleted: Lugar eliminado.
   place_geo:
         geo_planet_place_types:
           undefined: indefinido
@@ -1805,18 +1824,22 @@ es:
           county: condado
           County: Condado
   place_guess: "Estimación de lugar"
+  place_imported: ¡Lugar importado!
   place_must_have_a_boundary_defined: El lugar debe tener límites definidos.
   place_name: "Colocar nombre"
   place_notes: "Colocar notas"
   place_subscription: suscripción de lugar
+  place_updated: ¡Lugar actualizado!
   placement: Colocación
   places: Lugares
+  places_merged_successfully: ¡Los lugares se combinaron satisfactoriamente!
   plants: plantas
   please_add_a_citation_for_this_change: Porfavor añade una referencia para este cambio.
   please_add_this_to_x_html: "Por favor, añada esto a %{x}"
   please_be_aware_project_curators: "Tenga en cuenta que los curadores del proyecto podrán ver cualquier ubicación privada u oculta agregada a este proyecto."
   please_be_aware_that_project_curators: "Tenga en cuenta que los curadores del proyecto podrán ver ubicaciones privadas u ocultas de las observaciones agregadas a este proyecto."
   please_be_careful_particulary_when: "Tenga cuidado, especialmente al eliminar taxones. Si un taxón tiene observaciones, identificadores, taxones enlistados, u otros asociados, por favor"
+  please_check_for_you_confirmation_email: "¡Bienvenido a %{site_name}!  Porfavor revisa la confirmación en tu correo, pero siéntete libre de explorar el sitio."
   please_cite_the_published_source_of_taxon: "Por favor mencione la fuente publicada de este taxón."
   please_confirm_your_inat_username: "Por favor confirme su nombre de usuario con %{site_name}"
   please_confirm_your_account_html: 'Por favor tómate un segundo para <a href="%{url}">confirmar su cuenta</a>.'
@@ -1859,6 +1882,11 @@ es:
   project_post: nota de proyecto
   project_rules: "Reglas del Proyecto"
   project_terms_and_rules: terminos &amp; reglas del proyecto
+  project_user_cannot_be_found: El usuario del proyecto no pudo ser encontrado
+  project_user_was_invalid: "El usuario del proyecto fue invalido: %{project_user}"
+  project_was_successfully_created: El proyecto fue creado satisfactoriamente.
+  project_was_successfully_updated: El proyecto fue actualizado satisfactoriamente.
+  project_x_was_delete: "El proyecto %{project} fue eliminado"
   projects: Proyectos
   projects_description: "Los proyectos son una forma de agrupar sus observaciones con otras personas en %{site_name}.  Ya sea que a usted le interese comenzar un proyecto científico ciudadano o solamente mantener registros de las aves de un parque cercano con su club de observación local, la forma de hacerlo es con Proyectos."
   projects_you_admin: "Proyectos que usted administra"
@@ -1914,7 +1942,10 @@ es:
   remove_manager: Quitar gerente
   remove_project_user: "Quitar usuario de proyecto"
   remove_your_existing_id?: "Eliminar la identificación existente?"
+  removed: eliminado
+  removed_project_user: Usuario eliminado del proyecto
   removing: Eliminando...
+  repair_doesnt_work_for_that_kind_of_photo: Reparar no funciona para ese tipo de foto.
   replace_parentesis: (reemplazar)
   replaced_with: sustituido con
   reply: Responda
@@ -2089,6 +2120,7 @@ es:
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Lo sentimos, alguna de esas fotos de Flickr no existen o no tienes permisos para verlas."
   sorry_picasa_isnt_responding_at_the_moment: "Lo sentimos, Picasa de momento no esta respondiendo."
   sorry_that_photo_provider_isnt_responding: Lo sentimos, esa foto de momento no esta respondiendo. Por favor inténtalo más tarde.
+  sorry_there_were_problems_with_your_request: "Lo sentimos, hubo algunos problemas con tu petición: %{project_user}"
   sorry_we_didnt_find_that_photo: "Lo sentimos, la foto no se encuentra"
   sorry_we_dont_have_any_metadata_for_that_photo: "Lo sentimos, no tenemos ningún meta dato de la foto que se pueda utilizar para poner las características de la observación."
   sorry_you_need_to_be_signed_in_and: Lo sentimos, necesitas ingresar al sistema y tener una cuenta enlazada de Flickr para poder publicar etiquetas directamente desde Flickr.
@@ -2213,6 +2245,7 @@ es:
   taxon_name: "Nombre del taxón"
   taxon_photos_updated: "¡Las fotos del taxón fueron actualizadas!"
   taxon_range: "Rango de taxón"
+  taxon_removed_from_list: Especie o grupo eliminado de la lista.
   taxon_scheme: Esquema de taxonómia
   taxon_schemes_raquo_html: "Esquemas <nobr>taxonómicos &raquo;</nobr>"
   taxon_search: "Búsqueda de Taxón"
@@ -2241,6 +2274,8 @@ es:
   thanks_for_singin_up: "¡Gracias por registrarte!, Te enviamos un correo con tu código de activación"
   thanks_for_using: "Gracias por usar"
   that_photo_doesnt_exist: Esa foto no existe.
+  that_observation_hasnt_been_added_this_project: Esa observación no ha sido añadida al proyecto.
+  that_observation_doesnt_exist: Esa observación no existe.
   that_observation_doesnt_have_any_photos: Esa observación no tiene ninguna foto.
   that_observation_no_longer_exists: Esa observació ya no existe.
   that_project_doesnt_exist: "Ese proyecto ya no existe."
@@ -2267,6 +2302,7 @@ es:
   the_observation_has_date: "la observación <strong>tiene una fecha</strong>"
   the_observation_has_photo: "la observación <strong>tiene una foto</strong>"
   the_observation_is_georeferenced: "la observación <strong>está geo referenciada</strong> (es decir, tiene coordenadas de lat/lon)"
+  the_observation_was_already_added_to_that_project: La observación fue añadida recientemente al proyecto.
   the_past: "el pasado"
   the_people_of_inat: "La gente de %{site_name}"
   the_project: "el proyecto"
@@ -2276,8 +2312,11 @@ es:
   there_is_no_wikipedia_page_matching: "No hay página en Wikipedia que concuerde"
   there_isnt_a_wikipedia_article_titled_x_html: "No existe un articulo relacionado con Wikipeia con el nombre '%{x}'. ¿Quisieras <a href='http://en.wikipedia.org/wiki/%{x}'>crear</a> uno?"
   there_isnt_wikipedia_article_perhaps: "No hay página en Wikipedia que concuerde"
+  there_merge_problems_with_the_merge: "Existen problemas al tratar de combinar los lugares: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "Hubo un problema al salvar tu identificación: %{error}"
   there_were_errors: "Hubo errores."
+  there_were_problems_adding_your_observation_to_this_project: "Hubo problemas al añadir tus observaciones al proyecto: %{@project_observation}"
+  there_were_problems_importing_that_place: "Hubo problemas al importar ese lugar: %{place_error}"
   there_were_some_problems_saving_this_observation: "Hubo algunos problemas al guardar esta observación"
   there_were_some_problems_saving_those_colors: "Hubo algunos problemas al guardar esos colores: %{error}"
   there_were_some_problems_with: "Hubo algunos problemas con su archivo CSV.  Por favor revise las filas erróneas. Por supuesto que el problema pudo también haber sido nuestro. Si ese es el caso, por favor háganoslo saber"
@@ -2367,8 +2406,7 @@ es:
   total_users: "Total de usuarios"
   tree_browser: "Explorador del árbol"
   tree_browser_raquo: "Explorador del árbol &raquo;"
-  ? "true"
-  : sí
+  true: Sí
   try_adding_species_form: "Trate de agregar algunas especies usando el formulario en esta página."
   try_wikipedia: "¿Probar con Wikipedia?"
   tue: mar
@@ -2408,6 +2446,7 @@ es:
   updated: Actualizado
   updated_by: "Actualizado por"
   updated_daily: Actualizado el día de hoy
+  updated_photo: Foto subida
   upload: Cargar
   upload_a_csv_file_with_observation: "Cargar un archivo CSV con datos de observación. Si sus datos están en una hoja de cálculo o base de datos, esta es probablemente la forma de hacerlo."
   ubio: uBio
@@ -2772,6 +2811,7 @@ es:
   we_couldnt_find_a_user: "No pudimos encontrar un usuario con esa dirección de correo."
   we_currently_support_flickr_for_image_hosting: "Actualmente tenemos compatibilidad con Flickr en almacenamiento de imágenes."
   we_didnt_find_any_photos: "No encontramos fotos usando los términos de búsqueda brindados"
+  we_had_a_problem_flagging_that_item: "Hubo problemas al poner ese contenido como advertencia: %{flag_error}"
   we_had_trouble_saving_comment: "Tuvimos problemas guardando el comentario:"
   we_import_our_taxonomic_data: "Importamos nuestros datos taxonómicos de algunas bases de datos taxonómicos externas, incluyendo el Catálogo de Vida y uBio. Algunos de nuestros taxones también han sido ingresados manualmente y cualquier usuario puede agregar nombres nuevos para los taxones. Si no puede encontrar un taxón o un nombre, pruebe"
   we_know_is_inconvenience_but_will_allow_grow: "Sabemos que esto es un inconveniente, pero nuestro nuevo sistema de autorización permitirá que %{sitename} crezca mejor en el futuro y le brinde mayor seguridad."
@@ -2785,6 +2825,7 @@ es:
   welcome_login: "Bienvenido %{login}"
   welcome_noun: Bienvenida
   welcome_to_inat: "¡Bienvenido a %{site_name}!"
+  welcome_to_x_project: "Bienvenido al proyecto %{project}"
   were_currently_down_for: "Estamos fuera de servicio por"
   what: Qué
   what_color_was_it: "¿De qué color era?"
@@ -2869,10 +2910,12 @@ es:
   yesterday_at: ', ayer a las 4pm'
   you: usted
   you_admin: "que usted administra"
+  you_are_already_a_member_of_this_project: ¡Ya eres un miembro de este proyecto!
   you_are_over_your_invites_quota: "...ya has enviado más de 60 invitaciones este mes."
   you_are_now_role_for_project_html: "<strong>Ahora</strong> %{role} de %{project}"
   user_is_now_role_for_project_html: "<strong>%{user}</strong> es ahora %{role} de %{project}"
   you_are_subscribed_to: Estas suscrito a
+  you_arent_a_member_of_that_project: No eres un miembro del proyecto.
   you_can_accept_invitations: "Puede aceptar la invitación aquí."
   you_can_also_add_flickr: "También puede agregar etiquetas de Flickr cuando modifique una observación o grupos de observaciones."
   you_can_alwais_add_new: "Siempre se puede añadir nuevas observaciones haciendo clic en la pequeña flecha en la esquina superior derecha de la página y utilizar el menú desplegable."
@@ -2883,13 +2926,20 @@ es:
   you_can_see_these_coordinates_because: "Usted puede ver estas coordenadas porque usted cura uno de los proyectos a los cuales se agregó esta observación."
   you_can_show_the_boundary_of: Puedes mostrar los límetes del lugar en la pagina de tu proyecto solo si el lugar tiene límites.
   you_can_sign_free_at: "Usted puede registrar una cuenta gratis con %{site_name} en"
+  you_cant_compare_a_list_with_nothing: ¡No puedes comparar una lista con nada!
+  you_cant_flag_that: No puedes poner eso como advertencia
+  you_cant_leave_a_project_you_created: No puedes abandonar un proyecto que tu creaste.
+  you_cant_remove_other_peoples_observations: No puedes eliminar las observaciones de otras personas.
+  you_cant_rotate_photos_hostde_outside: "No puedes rotar fotos que son almacenadas fuera de %{site_name}."
   you_didnt_select_any_observations: No seleccionaste ninguna observación.
   you_didnt_select_any_photos_to_tag: ¡No seleccionaste ninguna foto para etiquetar!
   you_dont: "Usted no"
   you_dont_have_any: No tienes ningún lugar o suscripción de especie o grupo
   you_dont_have_permission_to_do_that: No tienes permisos para hacer eso.
   you_dont_have_permission_to_edit_that_observation: No tienes permisos para editar esa observación.
+  you_dont_have_permission_to_edit_that_project: No tienes permisos para editar ese proyecto.
   you_dont_have_permission_to_edit_those_photos: No tienes permisos para editar esas fotos.
+  you_have_left_x_project: "Has abandonado al proyecto %{project}"
   you_have_logget_out: "Usted se ha desconectado, vuelva pronto"
   you_have_to: Tienes que
   you_havent: "Usted no ha"
@@ -2897,8 +2947,12 @@ es:
   you_havent_linked_your_inaturalist_picasa_account: "Usted no ha vinculado su cuenta de %{site_name} con su cuenta de Picasa account todavía"
   you_havent_observed_any_species: "¡Usted no ha observado ninguna especie para enlistar todavíaPruebe"
   you_may_have: 'que puedas tener. Probablemente solo funcione en buscadores modernos:'
+  you_must_be_a_member_of_this_project_to_do_that: Debes ser un miembro del proyecto para poder hacer eso.
   you_must_select_a_csv_file_to_upload: Debes seleccionar un archivo CSV para subir.
+  you_must_select_a_place_to_merge_with: Debes seleccionar un lugar para combinar.
+  you_must_select_dates_to_compare: Debes seleccionar las fechas a comparar
   you_need_to_have_linked_flickr_account: "Debe tener una cuenta de Flickr vinculada para etiquetar sus fotos."
+  you_need_to_select_at_least_one_photo: ¡Necesitas seleccionar al menos una foto!
   you_need_to_select_some_observations_first: "Debe seleccionar algunas observaciones primero."
   you_retain_full_copyright: "Usted mantiene todos los derechos de autor sobre su contenido aparte de aquellos derechos concedidos a %{site_name} en nuestros Términos de Servicio"
   you_retain_full_copyright_over_your_content: "Usted retiene derechos de autor totales sobre su contenido aparte de aquellos derechos otorgados a %{site_name} en nuestros Términos de Servicio."
@@ -2919,6 +2973,7 @@ es:
       Si usted piensa que esta observación es inexacta, por favor, agregue una 
       identificación, participen en la sección de calidad de datos, o describa 
       la inexactitud en un comentario.
+  youve_joined_the_x_project: "Te has unido al proyecto %{project_invitation} y tus observaciones fueron añadidas"
   you_would_get_the: "usted obtendrá las siguientes etiquetas"
   youll_need_to_link: "Deberá vincular"
   your: Usted

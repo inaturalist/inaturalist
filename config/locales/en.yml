@@ -399,6 +399,7 @@ en:
   calendar: Calendar
   can_you_help_your_friends_id_these: Can you help your friends ID these?
   cancel: Cancel
+  cant_flag_an_object_that_doesnt_exist: Can't flag an object that doesn't exist
   cant_merge_a_taxon_with_itself: Can't merge a taxon with itself.
   casual: casual
   catalogue_of_life: Catalogue of Life
@@ -549,6 +550,7 @@ en:
   contest_projects_description: "'Contest' projects will display a leader board ranking contributors by the number of unique species observed while 'Observation Contest' projects display leader boards ranking contributors by the number of observations"
   contributions: contributions
   contributions_from: Contributions from
+  contributor_cannot_be_found: Contributor cannot be found
   contributors_to_project: "Contributors to %{project}"
   controls: Controls
   coordinates_private: (coordinates private)
@@ -569,6 +571,7 @@ en:
     attribution_sharealike_license: Attribution-ShareAlike License
     attribution_noderivs_license: Attribution-NoDerivs License
     gnu_free_documentation_license: GNU Free Documentation License
+  couldnt_find_that_taxon: Could't find that taxon.
   couldnt_log_you_in_x: "Couldn't log you in as '%{x}'"
   countries: Countries
   country_stats: Country stats for observations created on
@@ -754,6 +757,7 @@ en:
   endangered: endangered
   endemic: endemic
   endemic_to_x: "endemic to %{x}"
+  error_updating_photo: "Error updating photo: %{photo_errors}"
   establishment:
       establishment: Establishment
       native: native
@@ -785,7 +789,7 @@ en:
   facebook_confirmation: "Facebook would like to confirm that you want your account connected to %{site_name}."
   facebook_needs_the_owner_of_that_photo_to: Facebook needs the owner of that photo to re-confirm their connection to %{site_name_short}.
   facebook_options: Facebook Options
-  false: False
+  'false': 'False'
   faq: Frequently Asked Questions
   favorite_taxa: favorite taxa
   favorites: "Favorites"
@@ -828,6 +832,8 @@ en:
   flag_it!: Flag it!
   flag_marked_as_resolved_html: '<span class="meta">Flag marked as</span> <strong>resolved.</strong>'
   flag_reason: "&ldquo;I'm flagging this %{record} because"
+  flag_saved: Flag saved.
+  flag_saved_thanks: Flag saved.  Thanks!
   flag_this_observation: Flag this observation
   flagged: flagged
   flagged_for_curation: Flagged for curation.
@@ -895,6 +901,7 @@ en:
   graft: Graft
   grafting: "Grafting..."
   grafting_attemps_to_insert_this_taxon: Grafting attempts to insert this taxon into our taxonomic tree, finding an existing parent taxon or creating all the necessary in-between taxa in order to attach it to an existing higher level taxon.
+  grant_role: "%{grant} %{role} role"
   gray: gray
   green: green
   grey: grey
@@ -1339,6 +1346,7 @@ en:
   obscured_description: "Public coordinates shown as a random point within 10KM of the true coordinates. True coordinates are only visible to you and the curators of projects to which you add the observation."
   observation: Observation
   observation_added: Observation added.
+  observation_added_to_the_project: "Observation added to the project \"%{project}\""
   observation_photo_uploader: Observation Photo Uploader
   observations_by_user_on_date: "Observations by %{user} on %{date}"
   observations_by_you: "Observations by you"
@@ -1351,6 +1359,7 @@ en:
   observation_field: Observation field
   observation_fields: Observation Fields
   observation_fields_are_additional: Observation fields are additional data fields that can be added to observations.
+  observation_removed_from_the_project: "Observation removed from the project \"%{project}\""
   observation_rights_html: "Observation %{rights}"
   observation_rules: Observation rules
   observation_rules_description: |
@@ -1391,7 +1400,8 @@ en:
   observations_observed_this_month: Observations <em>observed</em> this month, not added this month. Get outside!
   observations_on_inat_check_list: "observations on %{site_name}. Check list places that have been confirmed have at least 1 confirmed observation within their boundaries."
   observations_per_month: Observations / Month
-  observations_saved: Observation(s) saved! 
+  observations_removed_from_the_project: "Observations removed from the project \"%{project}\""
+  observations_saved: Observation(s) saved!
   observations_specifying_this_field: Observations specifying this field
   observations_title: Observations by Everyone
   observations_w: Observations w/
@@ -1422,7 +1432,9 @@ en:
   on_your_life_list: on your life list
   one_by_one: "One-by-one"
   one_of_your_lists: "one of your lists..."
+  only_a_project_manager_can_add: Only a project manager can add project curator status
   only_accepts_taxa: only accepts taxa
+  only_an_admin_can_remove_project_users: Only an admin can remove project users
   only_country_state_and_county: "Only country, state, and county equivalent places shown for now. Zoom in to see smaller places."
   only_files_with_100_rows_at_a_time: Only files with 100 rows at a time, please
   only_project_curators_can_do_that: Only project curators can do that.
@@ -1433,6 +1445,8 @@ en:
   only_species: only species
   only_species_and_subspecies: only species and subspecies/varieties
   only_the_author_of_this_post_can_do_that: Only the author of this post can do that. Don't be evil.
+  only_the_owner_of_this_list_can_do_that: Only the owner of this list can do that.  Don't be evil.
+  only_the_project_admin_can_delete_this_project: Only the project admin can delete this project.
   open: open
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
   optional: optional
@@ -1479,8 +1493,11 @@ en:
   photo?: Photo?
   photo_attribution: "Photo %{attribution}"
   photo_by_id_attribution: "Photo %{id}, %{attribution}"
+  photo_deleted: Photo deleted
+  photo_destroyed_because_it_was_deleted_from: "Photo destroyed b/c it was deleted from the external site or %{site_name} no longer has permission to view it"
   photo_hosting_accounts: Photo Hosting Accounts
   photo_integration: Photo Integration
+  photo_urls_repaired: Photo URLs repaired
   photos: Photos
   photos_or_sounds?: Photos or sounds?
   photos_size:
@@ -1496,6 +1513,7 @@ en:
   pink: pink
   place: Place
   place_added_to_inat_by: "Place added to %{site_name} by"
+  place_deleted: Place deleted.
   place_geo:
           geo_planet_place_types:
             Undefined: Undefined
@@ -1569,18 +1587,22 @@ en:
             territory: territory
             county: county
   place_guess: place guess
+  place_imported: Place imported!
   place_must_have_a_boundary_defined: Place Must Have A Boundary Defined.
   place_name: Place name
   place_notes: Place Notes
   place_subscription: place subscription
+  place_updated: Place updated!
   placement: Placement
   places: Places
+  places_merged_successfully: Places merged successfully!
   plants: plants
   please_add_a_citation_for_this_change: Please add a citation for this change.
   please_add_this_to_x_html: "Please add this to %{x}"
   please_be_aware_project_curators: Please be aware that project curators will be able to see any private or obscured locations of observations added to this project.
   please_be_aware_that_project_curators: Please be aware that project curators will be able to see any private or obscured locations of observations added to this project.
   please_be_careful_particulary_when: "Please be careful, particularly when deleting taxa. If a taxon has associated observations, ids, listed taxa, etc, please"
+  please_check_for_you_confirmation_email: "Welcome to %{site_name}!  Please check for your confirmation email, but feel free to start cruising the site."
   please_cite_the_published_source_of_taxon: Please cite the published source of this taxon.
   please_confirm_your_inat_username: "Please confirm your %{site_name} username"
   please_confirm_your_account_html: 'Please take a second to <a href="%{url}">confirm your account</a>.'
@@ -1622,6 +1644,11 @@ en:
   project_post: project post
   project_rules: Project Rules
   project_terms_and_rules: project terms &amp; rules
+  project_user_cannot_be_found: Project user cannot be found
+  project_user_was_invalid: "Project user was invalid: %{project_user}"
+  project_was_successfully_created: Project was successfully created.
+  project_was_successfully_updated: Project was successfully updated.
+  project_x_was_delete: "%{project} was deleted"
   projects: Projects
   projects_description: "Projects are a way to pool your observations with other people on %{site_name}.  Whether you're interested in starting a citizen science project or just keeping tabs on the birds in a nearby park with your local birding club, Projects are the way to go."
   projects_you_admin: Projects You Admin
@@ -1681,7 +1708,10 @@ en:
   remove_project_user: Remove project user
   remove_selected: Remove selected
   remove_your_existing_id?: Remove your existing ID?
+  removed: Removed
+  removed_project_user: Removed project user
   removing: "Removing..."
+  repair_doesnt_work_for_that_kind_of_photo: Repair doesn't work for that kind of photo
   replace_parentesis: (replace)
   reply: Reply
   report_any_problems: report any problems
@@ -1840,6 +1870,7 @@ en:
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Sorry, one of those Flickr photos either doesn't exist or you don't have permission to view it."
   sorry_picasa_isnt_responding_at_the_moment: "Sorry, Picasa isn't responding at the moment."
   sorry_that_photo_provider_isnt_responding: "Sorry, that photo provider isn't responding at the moment. Please try again later."
+  sorry_there_were_problems_with_your_request: "Sorry, there were problems with your request: %{project_user}"
   sorry_we_didnt_find_that_photo: "Sorry, we didn't find that photo."
   sorry_we_dont_have_any_metadata_for_that_photo: "Sorry, we don't have any metadata for that photo that we can use to set observation properties."
   sorry_you_need_to_be_signed_in_and: Sorry, you need to be signed in and have a linked Flickr account to post tags directly to Flickr.
@@ -1979,6 +2010,7 @@ en:
   taxon_name: Taxon name
   taxon_photos_updated: Taxon photos updated!
   taxon_range: Taxon range
+  taxon_removed_from_list: Taxon removed from list.
   taxon_scheme: Taxon scheme
   taxon_schemes_raquo_html: "Taxon <nobr>schemes &raquo;</nobr>"
   taxon_search: Taxon Search
@@ -2011,7 +2043,9 @@ en:
   thanks_for_signing_up: Thanks for signing up!
   thanks_for_using: Thanks for using
   that_photo_doesnt_exist: That photo doesn't exist.
+  that_observation_doesnt_exist: That observation doesn't exist.
   that_observation_doesnt_have_any_photos: "That observation doesn't have any photos."
+  that_observation_hasnt_been_added_this_project: That observation hasn't been added this project.
   that_observation_no_longer_exists: That observation no longer exists.
   that_project_doesnt_exist: "That project doesn't exist."
   that_will_insert_a_link_to: that will insert a link to this tool on every Flickr photo page.
@@ -2038,6 +2072,7 @@ en:
   the_observation_has_date: the observation <strong>has a date</strong>
   the_observation_has_photo: the observation <strong>has a photo</strong>
   the_observation_is_georeferenced: the observation <strong>is georeferenced</strong> (i.e. has lat/lon coordinates)
+  the_observation_was_already_added_to_that_project: The observation was already added to that project.
   the_past: the past
   the_people_of_inat: The People of iNaturalist
   the_project: the project
@@ -2047,9 +2082,12 @@ en:
   there_is_no_wikipedia_page_matching: There is no Wikipedia page matching
   there_isnt_wiki_article: "There isn't a Wikipedia article or redirect titled '<i>%{taxon}</i>'.  Perhaps you'd like to"
   there_isnt_a_wikipedia_article_titled_x_html: "There isn't a Wikipedia article or redirect titled '%{x}'.  Perhaps you'd like to <a href='http://en.wikipedia.org/wiki/%{x}'>make one</a>?"
+  there_merge_problems_with_the_merge: "There merge problems with the merge: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "There was a problem saving your identification: %{error}"
   there_were_errors: There were errors.
   there_were_problems_adding_taxa: "There were problems adding those taxa: %{errors}"
+  there_were_problems_adding_your_observation_to_this_project: "There were problems adding your observation to this project: %{@project_observation}"
+  there_were_problems_importing_that_place: "There were problems importing that place: %{place_error}"
   there_were_some_problems_saving_this_observation: There were some problems saving this observation
   there_were_some_problems_saving_those_colors: "There were some problems saving those colors: %{error}"
   there_were_some_problems_with: There were some problems with your CSV file.  Please revise the failed rows. Of course the problem could always be on our side. If that is the case, please let us know.
@@ -2131,7 +2169,7 @@ en:
   total_users: "total users,"
   tree_browser: Tree Browser
   tree_browser_raquo: "Tree Browser &raquo;"
-  true: True
+  'true': True
   try_adding_species_form: Try adding some species using the form on this page.
   try_wikipedia: Try Wikipedia?
   tue: Tue
@@ -2169,6 +2207,7 @@ en:
   updated: Updated
   updated_by: Updated by
   updated_daily: Updated daily
+  updated_photo: Updated photo
   upload: Upload
   upload_a_csv_file_with_observation: Upload a CSV file with observation data. If you have your data in a spreadsheet or database, this is probably the way to go.
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
@@ -2271,6 +2310,7 @@ en:
   we_couldnt_find_a_user: We couldn't find a user with that email address.
   we_currently_support_flickr_for_image_hosting: We currently support Flickr for image hosting.
   we_didnt_find_any_photos: We didn't find any photos using the search terms you provided.
+  we_had_a_problem_flagging_that_item: "We had a problem flagging that item: %{flag_error}"
   we_had_trouble_saving_comment: "We had trouble saving that comment:"
   we_import_our_taxonomic_data:  "We import our taxonomic data from some external taxonomic databases, include the Catalogue of Life and uBio. A few of our taxa have also been entered manually, and any user can add new names for taxa.  If you can't find a taxon or a name, try"
   we_know_is_inconvenience_but_will_allow_grow: "We know this is an inconvenience, but our new authorization system will allow %{sitename} to grow well into the future and provide you with some added security."
@@ -2285,7 +2325,8 @@ en:
   welcome_message: "where you can <strong>record</strong> what you see in nature, <strong>meet</strong> other nature lovers, and <strong>learn</strong> about the natural world."
   welcome_to_inat: "Welcome to %{site_name}!"
   welcome_to_guides: "Welcome to %{site_name} Guides!"
-  were_currently_down_for: We're currently down for 
+  welcome_to_x_project: "Welcome to %{project}"
+  were_currently_down_for: We're currently down for
   what: What
   what_color_was_it: What color was it?
   what_did_you_see: What did you see?
@@ -2345,8 +2386,10 @@ en:
   you_are_over_your_invites_quota: ...you're over your monthly quota of 60 invites
   you_are_now_role_for_project_html: "<strong>you</strong> are now %{role} for %{project}"
   user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
+  you_are_already_a_member_of_this_project: "You're already a member of this project!"
   you_are_subscribed_to: "You're subscribed to "
-  you_can_accept_invitations: You can accept the invitation here 
+  you_arent_a_member_of_that_project: You aren't a member of that project.
+  you_can_accept_invitations: You can accept the invitation here
   you_can_also_add_flickr: You can also add Flickr tags when editing an observation, or when batch editing your observations.
   you_can_alwais_add_new: You can always add new observations by clicking the little arrow on the upper right of the page and using the drop down menu.
   you_can_change_your_new_passwd_after_logging_in: "You can change your new password after logging in here:"
@@ -2355,21 +2398,32 @@ en:
   you_can_see_these_coordinates_because: You can see these coordinates because you curate one of the projects to which this observation has been added.
   you_can_show_the_boundary_of: You can show the boundary of the place on your project page if the place has a boundary.
   you_can_sign_free_at: "You can sign up for a free %{site_name} account at"
+  you_cant_compare_a_list_with_nothing: You can't compare a list with nothing!
+  you_cant_flag_that: You can't flag that
+  you_cant_leave_a_project_you_created: You can't leave a project you created.
+  you_cant_remove_other_peoples_observations: You can't remove other people's observations.
+  you_cant_rotate_photos_hostde_outside: "You can't rotate photos hosted outside of %{site_name}."
   you_didnt_select_any_observations: You didn't select any observations.
   you_didnt_select_any_photos_to_tag: You didn't select any photos to tag!
   you_dont: You don't
   you_dont_have_any: "You don't have any place or taxon subscriptions"
   you_dont_have_permission_to_do_that: You don't have permission to do that.
   you_dont_have_permission_to_edit_that_observation: "You don't have permission to edit that observation."
+  you_dont_have_permission_to_edit_that_project: You don't have permission to edit that project.
   you_dont_have_permission_to_edit_those_photos: You don't have permission to edit those photos.
+  you_have_left_x_project: "You have left %{project}"
   you_have_logget_out: "You have been logged out. Come back soon!"
   you_have_to: You have to
   you_havent: You haven't
   you_havent_left_any_comments_recently: You haven't left any comments recently.  Go leave someone a note!
   you_havent_linked_your_inaturalist_picasa_account: "You haven't linked your %{site_name} account and your Picasa account yet"
   you_may_have: you may have. It will probably only work in modern, standards-compliant browsers like
+  you_must_be_a_member_of_this_project_to_do_that: You must be a member of this project to do that
   you_must_select_a_csv_file_to_upload: You must select a CSV file to upload.
+  you_must_select_a_place_to_merge_with: You must select a place to merge with.
+  you_must_select_dates_to_compare: You must select dates to compare
   you_need_to_have_linked_flickr_account: You need to have a linked Flickr account to tag your photos.
+  you_need_to_select_at_least_one_photo: You need to select at least one photo!
   you_need_to_select_some_observations_first: You need to select some observations first.
   you_retain_full_copyright: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
   you_retain_full_copyright_over_your_content: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
@@ -2383,6 +2437,7 @@ en:
   you_sure_remove_taxon_from?: "Are you sure you want to remove this taxon from %{list}?"
   you_sure_remove_this_invitation?: "Are you sure you want to remove this invitation?"
   you_sure_remove_this_observation?: Are you sure you want to remove this observation?
+  youve_joined_the_x_project: "You've joined the \"%{project_invitation}\" project and your observation was added"
   you_would_get_the: "you would get the following tags:"
   youll_need_to_link: You'll need to link
   your: Your

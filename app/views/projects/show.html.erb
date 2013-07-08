@@ -278,7 +278,7 @@
     :alt => h(@project.user.login),
     :title => "#{h(@project.user.login)}, joined #{project_user.created_at.to_s(:long)}" %>
   <%= link_to h(@project.user.login), @project.user %>
-  <span class="description"><%=t :project_created_on, :date => "#{@project.created_at.to_date.to_s(:long)}" %></span>
+  <span class="description"><%=t :project_created_on, :date => l(@project.created_at.to_date, :format => :long) %></span>
   
   <%= separator %>
   <center class="small meta">
