@@ -618,7 +618,7 @@
         <li class="description"><%= t(:more_info) %></li>
         <% for taxon_link in @taxon_links[0..3] %>
           <li class="taxon_link">
-            <%= link_to taxon_link.site_title, taxon_link.url_for_taxon(@taxon) -%>
+            <%= link_to taxon_link.short_title.blank? ? taxon_link.site_title : taxon_link.short_title, taxon_link.url_for_taxon(@taxon) -%>
             <%- if logged_in? -%>
               <span class="controls">
                 <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => t(:edit_this_link) %>
@@ -632,7 +632,7 @@
               <ul>
                 <%- @taxon_links[4..-1].each do |taxon_link| -%>
                   <li class="taxon_link">
-                    <%= link_to taxon_link.site_title, taxon_link.url_for_taxon(@taxon) -%>
+                    <%= link_to taxon_link.short_title.blank? ? taxon_link.site_title : taxon_link.short_title, taxon_link.url_for_taxon(@taxon) -%>
                     <%- if logged_in? -%>
                       <span class="controls">
                         <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => t(:edit_this_link) %>

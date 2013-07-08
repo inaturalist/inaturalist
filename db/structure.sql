@@ -12499,7 +12499,8 @@ CREATE TABLE taxon_links (
     updated_at timestamp without time zone,
     user_id integer,
     place_id integer,
-    species_only boolean DEFAULT false
+    species_only boolean DEFAULT false,
+    short_title character varying(10)
 );
 
 
@@ -15842,3 +15843,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130628035929');
 INSERT INTO schema_migrations (version) VALUES ('20130701224024');
 
 INSERT INTO schema_migrations (version) VALUES ('20130704010119');
+
+INSERT INTO schema_migrations (version) VALUES ('20130708233246');

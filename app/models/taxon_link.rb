@@ -4,7 +4,8 @@ class TaxonLink < ActiveRecord::Base
   belongs_to :place
   validates_format_of :url, :with => URI.regexp, 
     :message => "should look like a URL, e.g. #{CONFIG.site_url}"
-  validates_presence_of :taxon_id
+  validates_presence_of :taxon_id, :site_title
+  validates_length_of :short_title, :maximum => 10, :allow_blank => true
   
   before_save :set_site_title
   
