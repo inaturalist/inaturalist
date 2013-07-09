@@ -2,6 +2,7 @@ class GuideSection < ActiveRecord::Base
   attr_accessible :description, :guide_taxon_id, :title, :position, :rights_holder, :license, :source_id, :source_url
   belongs_to :guide_taxon, :inverse_of => :guide_sections
   has_one :guide, :through => :guide_taxon
+  before_create :set_license
 
   def attribution
     return I18n.t(:public_domain) if license == Photo::PD_CODE
@@ -16,6 +17,12 @@ class GuideSection < ActiveRecord::Base
     else
       I18n.t('copyright.some_rights_reserved_by', :name => rights_holder_name, :license_short => license.sub('-', ' '))
     end
+  end
+
+  def set_license
+    return true if !license.blank?
+    self.license = guide.try(:license)
+    true
   end
 
   def self.new_from_eol_data_object(data_object)

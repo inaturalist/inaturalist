@@ -26,7 +26,8 @@
 <div class="column span-15 append-1">
   <%= form_for @taxon_link, :builder => DefaultFormBuilder, :html => {:class => 'taxon_link_form'} do |f| %>
     <%= f.text_field :url, :label => "URL", :required => true %>
-    <%= f.text_field :site_title %>
+    <%= f.text_field :site_title, :required => true %>
+    <%= f.text_field :short_title, :maxlength => 10, :description => "Short or abbreviated title for display in space-limited areas. Max 10 characters." %>
 
     <%= f.form_field :taxon, :required => true do %>
       <%= text_field_tag :species_guess, '', :class => "text" %>

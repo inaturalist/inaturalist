@@ -153,6 +153,14 @@ module ApplicationHelper
       "$('#{target_selector}').toggle(); $(this).toggleClass('open')", 
       options
   end
+
+  def link_to_toggle_box(txt, options = {}, &block)
+    options[:class] ||= ''
+    options[:class] += ' togglelink'
+    link = link_to_function(txt, "$(this).siblings('.togglebox').toggle(); $(this).toggleClass('open')", options)
+    hidden = content_tag(:div, capture(&block), :style => "display:none", :class => "togglebox")
+    content_tag :div, link + hidden
+  end
   
   def link_to_toggle_menu(link_text, options = {}, &block)
     menu_id = options[:menu_id]
@@ -550,14 +558,20 @@ module ApplicationHelper
   def setup_map_tag_attrs(taxon, options = {})
     taxon_range = options[:taxon_range]
     place = options[:place]
-    map_tag_attrs = {"data-taxon-id" => taxon.id}
+    map_tag_attrs = {
+      "data-taxon-id" => taxon.id,
+      "data-latitude" => options[:latitude],
+      "data-longitude" => options[:longitude],
+      "data-map-type" => options[:map_type],
+      "data-zoom-level" => options[:zoom_level]
+    }
     if taxon_range
       map_tag_attrs["data-taxon-range-kml"] = root_url.gsub(/\/$/, "") + taxon_range.range.url
       map_tag_attrs["data-taxon-range-geojson"] = taxon_range_geom_url(taxon.id, :format => "geojson")
     end
     if place
-      map_tag_attrs["data-latitude"] = place.latitude
-      map_tag_attrs["data-longitude"] = place.longitude
+      map_tag_attrs["data-latitude"] ||= place.latitude
+      map_tag_attrs["data-longitude"] ||= place.longitude
       map_tag_attrs["data-bbox"] = place.bounding_box.join(',') if place.bounding_box
       map_tag_attrs["data-place-kml"] = place_geometry_url(place, :format => "kml") if @place_geometry || PlaceGeometry.without_geom.exists?(:place_id => place)
       map_tag_attrs["data-observations-json"] = observations_url(:taxon_id => taxon, :place_id => place, :format => "json")

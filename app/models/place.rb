@@ -7,6 +7,7 @@ class Place < ActiveRecord::Base
   has_many :listed_taxa
   has_many :taxa, :through => :listed_taxa
   has_many :taxon_links, :dependent => :delete_all
+  has_many :guides, :dependent => :nullify
   has_one :place_geometry, :dependent => :destroy
   has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
     :select => (PlaceGeometry.column_names - ['geom']).join(', ')

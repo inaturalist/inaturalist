@@ -2,11 +2,21 @@
   = @guide.title
 = content_for :extracss do
   :css
-    .span2 { background-color: #eee; }
     .tile .img { display:block;height:200px; text-align:center; background-color:#eee;position:relative;overflow:hidden;}
     #actions {margin-top:15px;}
     #actions .pull-right {margin-left: 5px;}
     .taxonmap {height: 200px;}
+    .bootstrap .thumbnails > li, .thumbnails h5 {margin-bottom:0;}
+    .thumbnails .small {line-height:1;}
+    #attribution ul {margin-left:0;}
+    #attribution li {display:inline; font-size:90%;}
+    #attribution li:after {content: ', ';}
+    #attribution li:last-child:after {content: '';}
+    .bootstrap .nav-list {padding-left: 0;}
+    .bootstrap .nav > li {position:relative;}
+    .bootstrap .nav > li > a.addtag {display:none; position:absolute; height:16px; right: 40px; top:3px; padding: 1px 9px 1px 9px;}
+    .bootstrap .nav > li:hover > a.addtag {display:block;}
+    #nav .badge {position:relative; top:-2px;}
 = content_for :extrajs do
   = google_maps_js
   = javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js", 'jquery/plugins/waypoints.min'
@@ -40,19 +50,31 @@
           %ul.dropdown-menu
             - for l in GuidesController::PDF_LAYOUTS
               %li= link_to t(l), guide_pdf_path(@guide, :layout => l)
-        = link_to t(:edit), edit_guide_path(@guide), :class => "btn"
-      %h1= @guide.title
+        - if @guide.editable_by?(current_user)
+          = link_to t(:edit), edit_guide_path(@guide), :class => "btn"
+      %h1
+        - if @guide.icon.file?
+          = image_tag @guide.icon.url(:thumb), :class => "left img-rounded"
+        = @guide.title
   .row-fluid
     .span12
       = truncate_with_more formatted_user_text(@guide.description), :length => 300
   .row-fluid
-    .span3
-      %ul.nav.nav-list
-        %li.nav-header Iconic Taxa
-        - for taxon in Taxon::ICONIC_TAXA
-          %li{:class => @taxon.try(:id) == taxon.id ? "active" : nil}
-            = link_to taxon.name, {:taxon => taxon.name}
-    .span9
+    .span2
+      %ul#nav.nav.nav-stacked.nav-pills
+        %li{:class => @tags.blank? && @taxon.blank? ? "active" : nil}
+          = link_to @guide do
+            = t(:all)
+            %span.badge.pull-right= @guide.guide_taxa.count
+        - for predicate, tags in @nav_tags.sort_by{|p,t| p}
+          %li.nav-header= predicate.humanize
+          - for tag, value, count in tags.sort_by{|t,v,c| v}
+            %li{:class => @tags.include?(tag) ? "active" : nil}
+              = link_to :tag => tag do
+                = value
+                %span.badge.pull-right= count
+              / = link_to "+", {:tags => [@tags, tag].flatten.uniq}, :class => "addtag badge"
+    .span10
       .row-fluid.stacked
         .navbar
           .nabar-inner
@@ -82,7 +104,7 @@
             .span3
               .map
                 - if guide_taxon.guide_ranges.blank?
-                  .taxonmap{setup_map_tag_attrs(guide_taxon.taxon, :taxon_range => guide_taxon.taxon.taxon_ranges_without_geom.first)}
+                  .taxonmap{setup_map_tag_attrs(guide_taxon.taxon, :taxon_range => guide_taxon.taxon.taxon_ranges_without_geom.first, :place => @guide.place, :latitude => @guide.latitude, :longitude => @guide.longitude, :map_type => @guide.map_type, :zoom_level => @guide.zoom_level)}
                 - else
                   = image_tag guide_taxon.guide_ranges.first.original_url
       - else
@@ -95,15 +117,22 @@
                     = link_to image_tag(gp.photo.small_url), guide_taxon, :class => "thumbnail borderless"
                   - elsif guide_taxon.taxon
                     = link_to taxon_image(guide_taxon.taxon), guide_taxon, :class => "thumbnail"
-                  %h5= link_to guide_taxon.display_name, guide_taxon
+                  %h5
+                    = link_to guide_taxon.display_name, guide_taxon
+                    - if gp
+                      = cite gp.attribution
         = will_paginate @guide_taxa
-  #attribution.meta
-    =t :by
-    - if @guide.license.blank?
-      = @guide.user.name.blank? ? @guide.user.login : @guide.user.name
-    - else
-      = succeed ',' do
+  #attribution.meta.upstacked
+    %p
+      =t :guide_compiled_by
+      - if @guide.license.blank?
         = @guide.user.name.blank? ? @guide.user.login : @guide.user.name
-      =t 'copyright.some_rights_reserved'
-      = surround '(', ')' do
-        = @guide.license
+      - else
+        = succeed ',' do
+          = @guide.user.name.blank? ? @guide.user.login : @guide.user.name
+        =t 'copyright.some_rights_reserved'
+        = surround '(', ')' do
+          = @guide.license
+    %p
+      =t :photo_credits
+      = references(:linked => true)

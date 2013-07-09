@@ -24,13 +24,36 @@ class GuidesController < ApplicationController
       @taxon ||= Taxon.find_by_name(params[:taxon]) || Taxon.find_by_id(params[:taxon])
     end
     @q = params[:q]
+    @tags = params[:tags] || []
+    @tags << params[:tag] unless params[:tag].blank?
     
     @guide_taxa = @guide.guide_taxa.order("guide_taxa.position").
       includes({:taxon => [:taxon_ranges_without_geom]}, :guide_photos, :guide_sections).
       page(params[:page]).per_page(100)
     @guide_taxa = @guide_taxa.in_taxon(@taxon) if @taxon
     @guide_taxa = @guide_taxa.dbsearch(@q) unless @q.blank?
+    @guide_taxa = @guide_taxa.tagged(@tags) unless @tags.blank?
     @view = params[:view] || "grid"
+
+    @tag_counts = Tag.joins(:taggings).
+      joins("JOIN guide_taxa gt ON gt.id = taggings.taggable_id").
+      where("taggings.taggable_type = 'GuideTaxon' AND gt.guide_id = ?", @guide).
+      group("tags.name").
+      count
+    @nav_tags = ActiveSupport::OrderedHash.new
+    @tag_counts.each do |tag, count|
+      namespace, predicate = nil, "tags"
+      nsp, value = tag.split('=')
+      if value.blank?
+        value = nsp
+      else
+        namespace, predicate = nsp.to_s.split(':')
+        predicate = namespace if predicate.blank?
+      end
+      @nav_tags[predicate] ||= []
+      @nav_tags[predicate] << [tag, value, count]
+    end
+
 
     respond_to do |format|
       format.html # show.html.erb
@@ -67,7 +90,8 @@ class GuidesController < ApplicationController
   # GET /guides/1/edit
   def edit
     @nav_options = %w(iconic tag)
-    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_photos => [:photo]], :guide_photos => [:photo]).order("guide_taxa.position")
+    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_photos => [:photo]], :guide_photos => [:photo], :tags => {}).
+      order("guide_taxa.position")
   end
 
   # POST /guides
@@ -91,6 +115,7 @@ class GuidesController < ApplicationController
   # PUT /guides/1
   # PUT /guides/1.json
   def update
+    @guide.icon = nil if params[:icon_delete]
     create_default_guide_taxa
     respond_to do |format|
       if @guide.update_attributes(params[:guide])
@@ -115,7 +140,7 @@ class GuidesController < ApplicationController
   end
 
   def import_taxa
-    @guide_taxa = @guide.import_taxa(params)
+    @guide_taxa = @guide.import_taxa(params) || []
     respond_to do |format|
       format.json do
         if partial = params[:partial]
