@@ -45,6 +45,7 @@ class TaxonName < ActiveRecord::Base
     :HAWAIIAN            =>  'Hawaiian',
     :HEBREW              =>  'Hebrew',
     :HILIGAYNON          =>  'Hiligaynon',
+    :ICELANDIC           =>  'Icelandic',
     :ILOKANO             =>  'Ilokano',
     :ITALIAN             =>  'Italian',
     :JAPANESE            =>  'Japanese',
