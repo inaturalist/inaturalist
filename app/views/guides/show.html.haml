@@ -2,7 +2,6 @@
   = @guide.title
 = content_for :extracss do
   :css
-    .span2 { background-color: #eee; }
     .tile .img { display:block;height:200px; text-align:center; background-color:#eee;position:relative;overflow:hidden;}
     #actions {margin-top:15px;}
     #actions .pull-right {margin-left: 5px;}
@@ -13,6 +12,11 @@
     #attribution li {display:inline; font-size:90%;}
     #attribution li:after {content: ', ';}
     #attribution li:last-child:after {content: '';}
+    .bootstrap .nav-list {padding-left: 0;}
+    .bootstrap .nav > li {position:relative;}
+    .bootstrap .nav > li > a.addtag {display:none; position:absolute; height:16px; right: 40px; top:3px; padding: 1px 9px 1px 9px;}
+    .bootstrap .nav > li:hover > a.addtag {display:block;}
+    #nav .badge {position:relative; top:-2px;}
 = content_for :extrajs do
   = google_maps_js
   = javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js", 'jquery/plugins/waypoints.min'
@@ -56,13 +60,21 @@
     .span12
       = truncate_with_more formatted_user_text(@guide.description), :length => 300
   .row-fluid
-    .span3
-      %ul.nav.nav-list
-        %li.nav-header Iconic Taxa
-        - for taxon in Taxon::ICONIC_TAXA
-          %li{:class => @taxon.try(:id) == taxon.id ? "active" : nil}
-            = link_to taxon.name, {:taxon => taxon.name}
-    .span9
+    .span2
+      %ul#nav.nav.nav-stacked.nav-pills
+        %li{:class => @tags.blank? && @taxon.blank? ? "active" : nil}
+          = link_to @guide do
+            = t(:all)
+            %span.badge.pull-right= @guide.guide_taxa.count
+        - for predicate, tags in @nav_tags.sort_by{|p,t| p}
+          %li.nav-header= predicate.humanize
+          - for tag, value, count in tags.sort_by{|t,v,c| v}
+            %li{:class => @tags.include?(tag) ? "active" : nil}
+              = link_to :tag => tag do
+                = value
+                %span.badge.pull-right= count
+              / = link_to "+", {:tags => [@tags, tag].flatten.uniq}, :class => "addtag badge"
+    .span10
       .row-fluid.stacked
         .navbar
           .nabar-inner
@@ -110,7 +122,7 @@
                     - if gp
                       = cite gp.attribution
         = will_paginate @guide_taxa
-  #attribution.meta
+  #attribution.meta.upstacked
     %p
       =t :guide_compiled_by
       - if @guide.license.blank?

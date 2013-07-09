@@ -234,6 +234,11 @@
     = link_to_add_association t(:add_range), f, :guide_ranges, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_ranges", :class => "btn btn-small btn-success btn-add-range hide"
     / = link_to_function t(:import_ranges), "$('#import_ranges_dialog').dialog('open')", :class => "btn btn-small"
     %button.btn-small.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_ranges_dialog"}=t :import_ranges
+
+  .row-fluid.stacked
+    %h3=t :tags
+    %p
+    = f.text_field :tag_list, :class => "input-xxlarge"
   #actions
     = f.submit t(:save_guide_taxon), :class => "btn btn-primary"
     = link_to t(:remove_from_guide), @guide_taxon, :method => :delete, :confirm => t(:are_you_sure?), :class => "btn btn-danger pull-right"

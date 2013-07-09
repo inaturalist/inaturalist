@@ -7,7 +7,7 @@ class TaxonLink < ActiveRecord::Base
   validates_presence_of :taxon_id, :site_title
   validates_length_of :short_title, :maximum => 10, :allow_blank => true
   
-  before_save :set_site_title
+  before_validation :set_site_title
   
   scope :for_taxon, lambda {|taxon|
     if taxon.species_or_lower?
@@ -62,6 +62,7 @@ class TaxonLink < ActiveRecord::Base
     if self.site_title.blank?
       self.site_title = URI.parse(url_without_template_tags).host
     end
+    true
   end
   
   def url_without_template_tags

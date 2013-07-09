@@ -1,4 +1,5 @@
 = form_for guide_taxon, :remote => true do |f|
+  = f.hidden_field :tag_list
   .row-fluid.guide_taxon.lined{"data-search-name" => (guide_taxon.display_name.to_s + guide_taxon.name.to_s).gsub(/\W/, '').downcase}
     .check.pull-left
       = check_box_tag :batch, guide_taxon.id

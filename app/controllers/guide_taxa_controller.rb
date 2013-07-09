@@ -30,6 +30,7 @@ class GuideTaxaController < ApplicationController
     respond_to do |format|
       format.html do
         @taxon_links = TaxonLink.by_taxon(@guide_taxon.taxon)
+        @machine_tags = @guide_taxon.tag_list.select{|t| t =~ /=/}
       end
       format.json { render json: @guide_taxon.as_json(:root => true,
         :methods => [:guide_photo_ids, :guide_section_ids, :guide_range_ids]) }
@@ -82,7 +83,7 @@ class GuideTaxaController < ApplicationController
     respond_to do |format|
       if @guide_taxon.update_attributes(params[:guide_taxon])
         format.html { redirect_to @guide_taxon, notice: 'Guide taxon was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render :json => @guide_taxon.as_json(:root => true, :methods => [:html]) }
       else
         format.html { render action: "edit" }
         format.json { render json: @guide_taxon.errors, status: :unprocessable_entity }

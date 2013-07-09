@@ -216,8 +216,9 @@ function saveGuideTaxon(options) {
       recordContainer = $(this)
   var nextMethod = function() {
     if (options.chain) {
-      var next = recordContainer.nextAll('form').get(0)
+      var next = recordContainer.nextAll('form').has('input[type=checkbox]:checked:visible').get(0)
       if (next) {
+        incrementLoadingStatus()
         saveGuideTaxon.apply(next, [options])
       } else {
         container.shades('close')
@@ -274,4 +275,47 @@ $('#guide_place_id').chooser({
       $("#guide_latitude").val(item.latitude).change()
     }
   }
+})
+
+$('#addtags .modal-footer .btn-primary').click(function() {
+  var tags = ($('#addtags input[type=text]').val() || "").split(',').map(function(t) { return $.trim(t) })
+  $selection = $('#guide_taxa form.edit_guide_taxon:visible').has('input[type=checkbox]:checked')
+  if (tags.length == 0 || $selection.length == 0) {
+    $('#addtags').modal('hide')
+    return
+  }
+  var msg = I18n.t('verbing_x_of_y', {verb: I18n.t('saving_verb'), x: 1, y: $selection.length})
+  $('#guide_taxa').loadingShades(msg, {cssClass: 'bigloading'})
+  $selection.each(function() {
+    var input = $('input[name*=tag_list]', this)
+    var existing = ($(input).val() || "").split(',').map(function(t) { return $.trim(t) })
+    var newTags = $.unique(existing.concat(tags))
+    $(input).val(newTags.join(', '))
+  })
+  saveGuideTaxon.apply($selection.get(0), [{chain: true}])
+  $('#addtags').modal('hide')
+})
+
+$('#removetags .modal-footer .btn-primary').click(function() {
+  var tags = ($('#removetags input[type=text]').val() || "").split(',').map(function(t) { return $.trim(t) })
+  $selection = $('#guide_taxa form.edit_guide_taxon:visible').has('input[type=checkbox]:checked')
+  if (tags.length == 0 || $selection.length == 0) {
+    $('#removetags').modal('hide')
+    return
+  }
+  var msg = I18n.t('verbing_x_of_y', {verb: I18n.t('removing_verb'), x: 1, y: $selection.length})
+  $('#guide_taxa').loadingShades(msg, {cssClass: 'bigloading'})
+  $selection.each(function() {
+    var input = $('input[name*=tag_list]', this)
+    var existing = ($(input).val() || "").split(',').map(function(t) { return $.trim(t) })
+    var newTags = []
+    for (var i = 0; i < existing.length; i++) {
+      if ($.inArray(existing[i], tags) < 0) {
+        newTags.push(existing[i])
+      }
+    }
+    $(input).val(newTags.join(', '))
+  })
+  saveGuideTaxon.apply($selection.get(0), [{chain: true}])
+  $('#removetags').modal('hide')
 })
