@@ -74,6 +74,8 @@
                                'rails',
                                'application', 
                                'inaturalist' %>
+    <%= google_maps_js %>
+    <%= javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js" %>
     <%= yield :extrajs %>
     <% if logged_in? -%>
       <script type="text/javascript" charset="utf-8">

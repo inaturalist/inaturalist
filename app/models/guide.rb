@@ -1,8 +1,10 @@
 class Guide < ActiveRecord::Base
   attr_accessible :description, :latitude, :longitude, :place_id,
     :published_at, :title, :user_id, :icon, :license, :icon_file_name,
-    :icon_content_type, :icon_file_size, :icon_updated_at
+    :icon_content_type, :icon_file_size, :icon_updated_at, :zoom_level, 
+    :map_type
   belongs_to :user, :inverse_of => :guides
+  belongs_to :place, :inverse_of => :guides
   has_many :guide_taxa, :inverse_of => :guide, :dependent => :destroy
   
   has_attached_file :icon, 

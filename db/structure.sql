@@ -10792,7 +10792,9 @@ CREATE TABLE guides (
     icon_file_name character varying(255),
     icon_content_type character varying(255),
     icon_file_size integer,
-    icon_updated_at timestamp without time zone
+    icon_updated_at timestamp without time zone,
+    map_type character varying(255) DEFAULT 'terrain'::character varying,
+    zoom_level integer
 );
 
 
@@ -15851,3 +15853,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130704010119');
 INSERT INTO schema_migrations (version) VALUES ('20130708233246');
 
 INSERT INTO schema_migrations (version) VALUES ('20130708235548');
+
+INSERT INTO schema_migrations (version) VALUES ('20130709005451');
