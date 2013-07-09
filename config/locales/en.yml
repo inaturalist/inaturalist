@@ -571,6 +571,8 @@ en:
     attribution_sharealike_license: Attribution-ShareAlike License
     attribution_noderivs_license: Attribution-NoDerivs License
     gnu_free_documentation_license: GNU Free Documentation License
+  couldnt_change_your_password: "Couldn't change your password: %{e}"
+  couldnt_find_a_user_matching_x_param: "Couldn't find a user matching %{id}"
   couldnt_find_that_taxon: Could't find that taxon.
   couldnt_log_you_in_x: "Couldn't log you in as '%{x}'"
   countries: Countries
@@ -746,6 +748,7 @@ en:
   editing_x_in_y: "Editing %{x} in %{y}"
   eg: 'e.g. '
   either: Either
+  either_that_user_doesnt_exist_or: "Either that user doesn't exist or you are already following them."
   email: Email
   email_addresses_description: Comma-separated email addresses, limit 60 every 30 days.
   email_addresses_to_receive_invites: Email addresses to receive invites
@@ -1975,6 +1978,7 @@ en:
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Subscribe</a>
     to %{x} from this %{y}.
   subscriptions_arent_available_for:  Subscriptions aren't available for places without boundaries.
+  successfully_changed_your_password: Successfully changed your password.
   suggest_an_id: Suggest an ID
   suggest_or_require_that: Suggest or require that contributors fill out these fields for the observations they add to your project.
   summary: Summary
@@ -2048,6 +2052,7 @@ en:
   that_observation_hasnt_been_added_this_project: That observation hasn't been added this project.
   that_observation_no_longer_exists: That observation no longer exists.
   that_project_doesnt_exist: "That project doesn't exist."
+  that_role_doesnt_exist: That role doesn't exist
   that_will_insert_a_link_to: that will insert a link to this tool on every Flickr photo page.
   thats_okay_we_forget: That's okay! We forget ours too. Send us the email address you used to create your account and we'll email you a link to reset your password.
   the: the
@@ -2077,6 +2082,8 @@ en:
   the_people_of_inat: The People of iNaturalist
   the_project: the project
   the_title_of_the_wikipedia_article_we_use: The title of the Wikipedia article that we use for the description. If the Wikipedia URL is <code>http://en.wikipedia.org/wiki/Bird</code>, then this value should be <code>Bird</code>. If left blank the scientific name of this taxon is used (that usually works).
+  the_user_x_has_been_suspended: "The user %{user} has been suspended"
+  the_user_x_has_been_unsuspended: "The user %{user} has been unsuspended"
   the_world_is_full_of_interesting_places: "The world is full of interesting places, each filled with weird and wonderful life forms. Some are on the other side of the world, while others are just down the street! %{site_name} Places let you browse life from around the planet.  Start exploring!"
   the_world_is_full_of_interesting_places_short: The world is full of interesting places, each filled with weird and wonderful life forms. Some are on the other side of the world, while others are just down the street!
   there_is_no_wikipedia_page_matching: There is no Wikipedia page matching
@@ -2308,6 +2315,7 @@ en:
   we_can_only_understand_csv_in: We can only understand CSV in the following format
   we_care_privacy: We Care About Your Privacy!
   we_couldnt_find_a_user: We couldn't find a user with that email address.
+  we_couldnt_find_a_user_with_that_activation_code: "We couldn't find a user with that activation code. You may have already activated your account, please try signing in."
   we_currently_support_flickr_for_image_hosting: We currently support Flickr for image hosting.
   we_didnt_find_any_photos: We didn't find any photos using the search terms you provided.
   we_had_a_problem_flagging_that_item: "We had a problem flagging that item: %{flag_error}"
@@ -2384,11 +2392,14 @@ en:
                 you have any questions about curating content or don't want to
                 be a curator anymore, please contact us at
   you_are_over_your_invites_quota: ...you're over your monthly quota of 60 invites
+  you_are_now_following_x: "You are now following %{friend_user}."
   you_are_now_role_for_project_html: "<strong>you</strong> are now %{role} for %{project}"
   user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
   you_are_already_a_member_of_this_project: "You're already a member of this project!"
+  you_are_no_longer_following_x: "You are no longer following %{friend}."
   you_are_subscribed_to: "You're subscribed to "
   you_arent_a_member_of_that_project: You aren't a member of that project.
+  you_arent_following_that_person: "You aren't following that person."
   you_can_accept_invitations: You can accept the invitation here
   you_can_also_add_flickr: You can also add Flickr tags when editing an observation, or when batch editing your observations.
   you_can_alwais_add_new: You can always add new observations by clicking the little arrow on the upper right of the page and using the drop down menu.
@@ -2422,9 +2433,11 @@ en:
   you_must_select_a_csv_file_to_upload: You must select a CSV file to upload.
   you_must_select_a_place_to_merge_with: You must select a place to merge with.
   you_must_select_dates_to_compare: You must select dates to compare
+  you_must_specify_and_confirm_a_new_password: You must specify and confirm a new password.
   you_need_to_have_linked_flickr_account: You need to have a linked Flickr account to tag your photos.
   you_need_to_select_at_least_one_photo: You need to select at least one photo!
   you_need_to_select_some_observations_first: You need to select some observations first.
+  your_profile_was_successfully_updated: Your profile was successfully updated!
   you_retain_full_copyright: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
   you_retain_full_copyright_over_your_content: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
   you_sure_delete_asset?: Are you sure you want to delete this asset?
@@ -2441,6 +2454,8 @@ en:
   you_would_get_the: "you would get the following tags:"
   youll_need_to_link: You'll need to link
   your: Your
+  your_account_has_been_verified: "Your %{site_name} account has been verified! Please sign in to continue."
+  your_activation_code_was_missing: "Your activation code was missing.  Please follow the URL from your email."
   your_comment_was_saved: Your content was saved
   your_default: your default
   your_default_time_zone: Your default time zone

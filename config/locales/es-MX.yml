@@ -573,6 +573,8 @@ es-MX:
       attribution_sharealike_license: Atribución - Compartir bajo la misma licencia
       attribution_noderivs_license: Atribución - Sin obras derivadas
       gnu_free_documentation_license: Licencia gratuita de documentación GNU
+  couldnt_change_your_password: "Tu contraseña no pudo ser modificada: %{e}"
+  couldnt_find_a_user_matching_x_param: "No se pudo encontrar al usuario con parametros: %{id}"
   couldnt_find_that_taxon: No se encontro la especie o grupo.
   couldnt_log_you_in_x: "No pudimos ingresarte como  '%{x}'"
   countries: Países
@@ -827,6 +829,7 @@ es-MX:
   editing_this: "Editando %{elem}"
   eg: 'ej. '
   either: Cualquiera
+  either_that_user_doesnt_exist_or: "Ese usuario no existe o ya te encuentras siguiendolo."
   email: Correo
   email_addresses_description: "correos electrónicos separados por coma. El límite son 60 cada 30 días."
   email_addresses_to_receive_invites: "Correos electrónicos que recibirán invitación"
@@ -7436,6 +7439,7 @@ es-MX:
       <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Suscribir</a>
       a %{x} de este %{y}.
   subscriptions_arent_available_for:  Las suscripciones no están disponibles para lugares sin límites definidos.
+  successfully_changed_your_password: Tu contraseña fue modificada satisfactoriamente.
   suggest_an_id: "Sugiere una identificación"
   suggest_or_require_that: Se sugiere o solicita que los contribuyentes completen estos campos para las observaciones que añadan a tu proyecto.
   siutable_observations: observaciones que puedes invitar
@@ -7506,6 +7510,7 @@ es-MX:
   that_observation_doesnt_have_any_photos: Esa observación no tiene ninguna foto.
   that_observation_no_longer_exists: Esa observació ya no existe.
   that_project_doesnt_exist: Ese proyecto ya no existe.
+  that_role_doesnt_exist: Ese rol no existe.
   that_will_insert_a_link_to: "que insertará un enlace en esta herramienta en cada página de fotos de Flickr"
   thats_okay_we_forget: "¡No hay problema! Nosotros también olvidamos la nuestra. Envíanos la dirección de correo electrónico que usaste para crear tu cuenta y te enviaremos un enlace para volver a cargar tu contraseña."
   the: El
@@ -7534,6 +7539,8 @@ es-MX:
   the_people_of_inat: "La gente de NaturaLista"
   the_project: "El proyecto"
   the_title_of_the_wikipedia_article_we_use: "El título del artículo de Wikipedia que usamos para la descripción. Si el URL de Wikipedia es <code>http://en.wikipedia.org/wiki/Bird</code>, entonces, el valor debe ser <code>Aves</code>. Si está vacío se usará el nombre científico de la especie o grupo (que generalmente funciona).\n"
+  the_user_x_has_been_suspended: "El usuario %{user} ha sido suspendido"
+  the_user_x_has_been_unsuspended: "El usuario %{user} ha sido removido de la lista de suspendidos"
   the_world_is_full_of_interesting_places: "l mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. Algunas viven al otro lado del mundo, mientras que otras viven ¡a la vuelta de la esquina! %{site_name} Lugares te deja explorar la vida alrededor del planeta ¡Empieza a explorar!"
   the_world_is_full_of_interesting_places_short: "El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. Algunas viven al otro lado del mundo, mientras que otras viven ¡a la vuelta de la esquina!"
   there_is_no_wikipedia_page_matching: "No hay página de Wikipedia que coincida"
@@ -7967,6 +7974,7 @@ es-MX:
   we_can_only_understand_csv_in: "Solamente podemos entender CSV en el siguiente formato"
   we_care_privacy: "¡Nos preocupamos por tu privacidad!"
   we_couldnt_find_a_user: "No pudimos encontrar a un usuario con esa dirección de correo electrónico."
+  we_couldnt_find_a_user_with_that_activation_code: "No pudimos encontrar ningun usuario con ese código de activación. Puede que tu cuenta ya haya sido activada, porfavor trata de ingresar al sistema"
   we_currently_support_flickr_for_image_hosting: "Actualmente usamos Flickr para hospedar imágenes"
   we_didnt_find_any_photos: "No encontramos ninguna foto utilizando los términos de búsqueda proporcionados."
   we_had_a_problem_flagging_that_item: "Hubo problemas al poner ese contenido como advertencia: %{flag_error}"
@@ -8066,9 +8074,12 @@ es-MX:
   you: Ti
   you_admin: que administras
   you_are_already_a_member_of_this_project: ¡Ya eres un miembro de este proyecto!
+  you_are_no_longer_following_x: "Ya no estas siguiendo a %{friend}."
+  you_are_now_following_x: "Estas siguiendo a %{friend_user}."
   you_are_over_your_invites_quota: "...te pasaste de tu cuota mensual de 60 invitados"
   you_are_subscribed_to: Estás suscrito a
   you_arent_a_member_of_that_project: No eres un miembro del proyecto.
+  you_arent_following_that_person: "No estas siguiendo a esa persona."
   you_can_accept_invitations: "Puedes aceptar la invitación aquí"
   you_can_also_add_flickr: "También puedes añadir etiquetas de Flickr cuando edites una observación o un grupo de tus observaciones."
   you_can_alwais_add_new: "Puedes añadir nuevas observaciones seleccionando la pequeña flecha en el margen superior derecho de la página y utilizando el menú de persiana."
@@ -8103,6 +8114,7 @@ es-MX:
   you_must_select_a_csv_file_to_upload: Debes seleccionar un archivo CSV para subir.
   you_must_select_a_place_to_merge_with: Debes seleccionar un lugar para combinar.
   you_must_select_dates_to_compare: Debes seleccionar las fechas a comparar
+  you_must_specify_and_confirm_a_new_password: Debes especificar y confirmar una nueva contraseña.
   you_need_to_have_linked_flickr_account: "Necesitas tener enlazada tu cuenta Flickr para etiquetar tus fotos."
   you_need_to_select_at_least_one_photo: ¡Necesitas seleccionar al menos una foto!
   you_need_to_select_some_observations_first: "Primero, necesitas seleccionar algunas observaciones."
@@ -8126,6 +8138,8 @@ es-MX:
   you_would_get_the: "Obtendrás las siguientes etiquetas:"
   youll_need_to_link: "Necesitarás enlazar"
   your: Tus
+  your_account_has_been_verified: "¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor ingresa al sistema para continuar."
+  your_activation_code_was_missing: "Tu código de activación se ha perdido.  Porfavor sigue el enlace desde tu correo"
   your_comment_was_saved: "Tu comentario fue guardado"
   your_dashboard_helps_you: "Tu tablero te ayuda a dar seguimiento a lo que la gente está haciendo en NaturaLista. Para seguir las actualizaciones de alguien, selecciona el enlace Seguir [nombre] en el encabezado cuando estés viendo sus observaciones o su perfil."
   your_default: Predeterminado
@@ -8144,6 +8158,7 @@ es-MX:
   your_photos_have_been_tagged: ¡Tus fotos han sido etiquetadas!
   your_picasa_account: "Tu cuenta de Picasa"
   your_picasa_account_info: "La información de tu cuenta de Picasa"
+  your_profile_was_successfully_updated: Tu perfil fue actualizado satisfactoriamente.
   your_should_recognize: "Deberías reconocer algunas de estas fotos"
   your_site_account_has_been_created: "Tu cuenta %{site} ha sido creada."
   your_subscriptions: Tus suscripciones

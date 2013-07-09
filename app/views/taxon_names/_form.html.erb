@@ -33,7 +33,7 @@
   <%- end -%>
   
   <p class="ui">
-    <%= n.label t(:name) %><br/>
+    <%= n.label :name, t(:name) %><br/>
     <% if @taxon_name.new_record? || is_admin? || is_me?(@taxon_name.creator) -%>
       <%= n.text_field :name, :class => "text" %>
     <% else %>
@@ -41,7 +41,7 @@
     <% end -%>
   </p>
   <p class="ui">
-    <%= n.label t(:lexicon) %><br/>
+    <%= n.label :lexicon, t(:lexicon) %><br/>
     <%-
       options = TaxonName::DEFAULT_LEXICONS + ['---------------------------'] + 
         (TaxonName::LEXICONS.values.sort - TaxonName::DEFAULT_LEXICONS)
