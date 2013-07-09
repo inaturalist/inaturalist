@@ -241,7 +241,7 @@
     function saveGuideTaxon(options) {
       var options = options || {}
       var container = $('#guide_taxa'),
-          recordContainer = $(this) //.parents('form:first'),
+          recordContainer = $(this)
       var nextMethod = function() {
         if (options.chain) {
           var next = recordContainer.nextAll('form').get(0)
@@ -255,11 +255,9 @@
       var url = $(this).attr('action'),
           params = $(this).serialize()
       $.post(url, params, function(data, status) {
-        // console.log("[DEBUG] success: ", this)
         nextMethod()
       }, 'json').error(function(xhr) {
         var json = eval('(' + xhr.responseText + ')')
-        // console.log("[DEBUG] error: ", json)
         nextMethod()
       })
     }
@@ -275,6 +273,20 @@
       = form_for @guide do |f|
         = f.text_field :title, :placeholder => t(:title), :class => "span12"
         = f.text_area :description, :placeholder => t(:description), :class => "span12"
+
+        .field.stacked
+          %label=t :icon
+          - if @guide.icon.file?
+            = image_tag(@guide.icon.url(:thumb), :class => "left")
+            %div
+              = check_box_tag :icon_delete
+              %label{:for => "icon_delete", :style => "display:inline"}=t :delete_icon?
+            = link_to_toggle t(:change_icon), "#iconfield"
+            #iconfield{:style => "display: none"}
+              = f.file_field :icon, :label => false, :accept => "image/jpg,image/jpeg,image/png,image/gif"
+          - else
+            = f.file_field :icon, :label => false, :size => 20, :accept => "image/jpg,image/jpeg,image/png,image/gif"
+
         = f.label :license, t(:license)
         = f.select :license, Observation::LICENSE_CODES, :include_blank => "No license (all rights reserved)", :class => "span12"
         .stacked

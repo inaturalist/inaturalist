@@ -48,7 +48,10 @@
               %li= link_to t(l), guide_pdf_path(@guide, :layout => l)
         - if @guide.editable_by?(current_user)
           = link_to t(:edit), edit_guide_path(@guide), :class => "btn"
-      %h1= @guide.title
+      %h1
+        - if @guide.icon.file?
+          = image_tag @guide.icon.url(:thumb), :class => "left img-rounded"
+        = @guide.title
   .row-fluid
     .span12
       = truncate_with_more formatted_user_text(@guide.description), :length => 300

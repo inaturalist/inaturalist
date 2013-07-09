@@ -1,5 +1,8 @@
 = content_for :title do
-  Guides
+  =t :guides
+= content_for :extracss do
+  :css
+    .bootstrap .media-object [class^="icon-"], .bootstrap .media-object [class*=" icon-"] {width: 70px; height:70px; text-align:center;}
 .container-fluid
   .hero-unit
     %h1=t :welcome_to_guides, :site_name => SITE_NAME
@@ -8,11 +11,19 @@
     %p
       =t :ready_to_get_started?
       = link_to t(:create_a_guide), new_guide_path, :class => "btn btn-primary"
-  - for row in @guides.in_groups_of(3)
+  - for row in @guides.in_groups_of(2)
     .row-fluid
       - for guide in row.compact
-        .span4
-          %h2= link_to guide.title, guide
-          = simple_format guide.description
-  .quiet.box.text-center
+        .span6
+          .media
+            .pull-left
+              - if guide.icon.file?
+                = link_to image_tag(guide.icon.url(:span2), :class => "img-rounded"), guide
+              - else
+                .media-object
+                  <i class="icon-book icon-4x"></i>
+            .media-body
+              %h2.media-heading= link_to guide.title, guide
+              = truncate(formatted_user_text(guide.description), :length => 300).html_safe
+  .quiet.box.text-center.upstacked
     =t 'views.guides.index.funding_html'

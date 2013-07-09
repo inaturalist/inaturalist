@@ -91,6 +91,7 @@ class GuidesController < ApplicationController
   # PUT /guides/1
   # PUT /guides/1.json
   def update
+    @guide.icon = nil if params[:icon_delete]
     create_default_guide_taxa
     respond_to do |format|
       if @guide.update_attributes(params[:guide])
