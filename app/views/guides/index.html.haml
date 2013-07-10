@@ -21,7 +21,8 @@
                 = link_to image_tag(guide.icon.url(:span2), :class => "img-rounded"), guide
               - else
                 .media-object
-                  <i class="icon-book icon-4x"></i>
+                  = link_to guide do
+                    %i.icon-book.icon-4x
             .media-body
               %h2.media-heading= link_to guide.title, guide
               = truncate(formatted_user_text(guide.description), :length => 300).html_safe

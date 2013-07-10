@@ -22,6 +22,7 @@ class GuidesController < ApplicationController
       @taxon = Taxon::ICONIC_TAXA_BY_ID[params[:taxon]]
       @taxon ||= Taxon::ICONIC_TAXA_BY_NAME[params[:taxon]]
       @taxon ||= Taxon.find_by_name(params[:taxon]) || Taxon.find_by_id(params[:taxon])
+      @taxon = nil if @taxon == @guide.taxon
     end
     @q = params[:q]
     @tags = params[:tags] || []
@@ -53,7 +54,29 @@ class GuidesController < ApplicationController
       @nav_tags[predicate] ||= []
       @nav_tags[predicate] << [tag, value, count]
     end
+    
+    ancestry_counts_scope = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", @guide).scoped
+    ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
+    ancestry_counts = ancestry_counts_scope.group(:ancestry).count
+    ancestries = ancestry_counts.map{|a,c| a.split('/')}.sort_by(&:size)
+    
+    width = ancestries.last.size
+    matrix = ancestries.map do |a|
+      a + ([nil]*(width-a.size))
+    end
 
+    # start at the right col (lowest rank), look for the first occurrence of
+    # consensus within a rank
+    consensus_taxon_id, subconsensus_taxon_ids = nil, nil
+    (width - 1).downto(0) do |c|
+      column_taxon_ids = matrix.map{|ancestry| ancestry[c]}
+      if column_taxon_ids.uniq.size == 1 && !column_taxon_ids.first.blank?
+        consensus_taxon_id = column_taxon_ids.first
+        subconsensus_taxon_ids = matrix.map{|ancestry| ancestry[c+1]}.uniq
+        break
+      end
+    end
+    @nav_taxa = Taxon.where("id IN (?)", subconsensus_taxon_ids)
 
     respond_to do |format|
       format.html # show.html.erb

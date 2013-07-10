@@ -10794,7 +10794,8 @@ CREATE TABLE guides (
     icon_file_size integer,
     icon_updated_at timestamp without time zone,
     map_type character varying(255) DEFAULT 'terrain'::character varying,
-    zoom_level integer
+    zoom_level integer,
+    taxon_id integer
 );
 
 
@@ -14447,6 +14448,13 @@ CREATE INDEX index_guides_on_place_id ON guides USING btree (place_id);
 
 
 --
+-- Name: index_guides_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guides_on_taxon_id ON guides USING btree (taxon_id);
+
+
+--
 -- Name: index_guides_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15855,3 +15863,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130708233246');
 INSERT INTO schema_migrations (version) VALUES ('20130708235548');
 
 INSERT INTO schema_migrations (version) VALUES ('20130709005451');
+
+INSERT INTO schema_migrations (version) VALUES ('20130709212550');

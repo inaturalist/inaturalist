@@ -14,9 +14,24 @@
     #attribution li:last-child:after {content: '';}
     .bootstrap .nav-list {padding-left: 0;}
     .bootstrap .nav > li {position:relative;}
-    .bootstrap .nav > li > a.addtag {display:none; position:absolute; height:16px; right: 40px; top:3px; padding: 1px 9px 1px 9px;}
-    .bootstrap .nav > li:hover > a.addtag {display:block;}
+    #tags li  {padding-right:27px;}
+    #tags .badge.modtag {
+      display:none; 
+      position:absolute; 
+      right: 5px; 
+      top:6px; 
+      padding-left: 5px; 
+      padding-right: 5px;
+    }
+    #tags .badge.modtag a {color:white; text-decoration: none;}
+    #tags li:hover .badge.modtag {display:block;}
+    #tags .addtag {background-color: #73AC13;}
     #nav .badge {position:relative; top:-2px;}
+    #nav .taxon .othernames {display:block; color:#aaa;}
+    #nav a .taxon:hover {
+      color: inherit;
+      text-decoration: none;
+    }
 = content_for :extrajs do
   = google_maps_js
   = javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js", 'jquery/plugins/waypoints.min'
@@ -60,21 +75,51 @@
     .span12
       = truncate_with_more formatted_user_text(@guide.description), :length => 300
   .row-fluid
-    .span2
-      %ul#nav.nav.nav-stacked.nav-pills
+    #nav.span3
+      %ul#tags.nav.nav-stacked.nav-pills
         %li{:class => @tags.blank? && @taxon.blank? ? "active" : nil}
-          = link_to @guide do
+          = link_to url_for_params(:without => [:page, :taxon, :tag, :tags]) do
             = t(:all)
             %span.badge.pull-right= @guide.guide_taxa.count
         - for predicate, tags in @nav_tags.sort_by{|p,t| p}
           %li.nav-header= predicate.humanize
           - for tag, value, count in tags.sort_by{|t,v,c| v}
             %li{:class => @tags.include?(tag) ? "active" : nil}
-              = link_to :tag => tag do
+              = link_to url_for_params(:tags => [tag], :without => [:page]) do
                 = value
                 %span.badge.pull-right= count
-              / = link_to "+", {:tags => [@tags, tag].flatten.uniq}, :class => "addtag badge"
-    .span10
+              %span.badge.modtag{:class => @tags.include?(tag) ? "removetag" : "addtag"}
+                - if @tags.include?(tag)
+                  = link_to "x", url_for_params(:tags => (@tags - [tag]).flatten.uniq)
+                - else
+                  = link_to "+", url_for_params(:tags => [@tags, tag].flatten.uniq)
+      %ul#taxonomy.nav.nav-stacked.nav-pills
+        %li.nav-header=t :taxonomy
+        - nav_taxa = capture do
+          - for taxon in @nav_taxa
+            %li
+              = link_to url_for_params(:taxon => taxon.id, :without => [:page]) do
+                = render "shared/taxon", :taxon => taxon, :include_parens => false
+        - if @taxon
+          - subnav_taxa = capture do
+            %li.active
+              = link_to url_for_params(:taxon => @taxon.id, :without => [:page]) do
+                = render "shared/taxon", :taxon => @taxon, :include_parens => false
+              %ul.nav.nav-stacked.nav-pills
+                = nav_taxa
+          - if @guide.taxon && !@guide.taxon.ancestor_ids.include?(@taxon.parent_id)
+            %li.active
+              = link_to url_for_params(:taxon => @taxon.parent_id, :without => [:page]) do
+                &laquo;
+                =t :back_to
+                = render "shared/taxon", :taxon => @taxon.parent, :include_parens => false
+              %ul.nav.nav-stacked.nav-pills
+                = subnav_taxa
+          - else
+            = subnav_taxa
+        - else
+          = nav_taxa
+    .span9
       .row-fluid.stacked
         .navbar
           .nabar-inner
@@ -85,8 +130,8 @@
                   %button.btn.clearbtn= t(:clear).capitalize
                 %button.btn=t :search
             .btn-grp.pull-right{"data-toggle" => "buttons-radio"}
-              = link_to t(:grid), {:view => "grid"}, :class => "btn #{'active' if @view == "grid"}"
-              = link_to t(:card), {:view => "card"}, :class => "btn #{'active' if @view == "card"}"
+              = link_to t(:grid), url_for_params(:view => "grid"), :class => "btn #{'active' if @view == "grid"}"
+              = link_to t(:card), url_for_params(:view => "card"), :class => "btn #{'active' if @view == "card"}"
       - if @view == "card"
         - for guide_taxon in @guide_taxa
           .card.row-fluid.stacked

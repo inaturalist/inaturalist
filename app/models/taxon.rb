@@ -35,6 +35,8 @@ class Taxon < ActiveRecord::Base
   has_many :photos, :through => :taxon_photos
   has_many :assessments
   has_many :conservation_statuses, :dependent => :destroy
+  has_many :guide_taxa, :inverse_of => :taxon, :dependent => :nullify
+  has_many :guides, :inverse_of => :taxon, :dependent => :nullify
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'

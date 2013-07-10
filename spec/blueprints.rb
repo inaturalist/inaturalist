@@ -55,6 +55,7 @@ end
 
 Guide.blueprint do
   user { User.make }
+  title { Faker::Lorem.sentence }
 end
 
 GuideTaxon.blueprint do

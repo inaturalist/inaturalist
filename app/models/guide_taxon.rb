@@ -3,7 +3,7 @@ class GuideTaxon < ActiveRecord::Base
   attr_accessible :display_name, :guide_id, :name, :taxon_id, :taxon, :guide_photos_attributes, 
     :guide_sections_attributes, :guide_ranges_attributes, :html, :position, :tag_list
   belongs_to :guide, :inverse_of => :guide_taxa
-  belongs_to :taxon
+  belongs_to :taxon, :inverse_of => :guide_taxa
   has_many :guide_sections, :inverse_of => :guide_taxon, :dependent => :destroy
   has_many :guide_photos, :inverse_of => :guide_taxon, :dependent => :destroy
   has_many :guide_ranges, :inverse_of => :guide_taxon, :dependent => :destroy
@@ -14,6 +14,8 @@ class GuideTaxon < ActiveRecord::Base
   before_save :set_names_from_taxon
   before_create :set_default_photo
   before_create :set_default_section
+  after_create :set_guide_taxon
+  after_destroy :set_guide_taxon
 
   validates_uniqueness_of :taxon_id, :scope => :guide_id
 
@@ -31,7 +33,14 @@ class GuideTaxon < ActiveRecord::Base
     if tags.is_a?(String)
       tags = [tags]
     end
-    joins(:tags).where("tags.name IN (?)", tags)
+    scope = scoped
+    tags.each_with_index do |tag, i|
+      taggings_join_name = "_taggings#{i}"
+      scope = scope.joins("LEFT OUTER JOIN taggings #{taggings_join_name} ON #{taggings_join_name}.taggable_type = 'GuideTaxon' AND #{taggings_join_name}.taggable_id = guide_taxa.id")
+      tags_join_name = "_tags#{i}"
+      scope = scope.joins("LEFT OUTER JOIN tags #{tags_join_name} ON #{tags_join_name}.id = #{taggings_join_name}.tag_id").where("#{tags_join_name}.name = ?", tag)
+    end
+    scope
   }
 
   scope :dbsearch, lambda {|q| where("guide_taxa.name ILIKE ? OR guide_taxa.display_name ILIKE ?", "%#{q}%", "%#{q}%")}
@@ -66,6 +75,12 @@ class GuideTaxon < ActiveRecord::Base
       :license => Observation::CC_BY_SA,
       :source_url => TaxonDescribers::Wikipedia.page_url(taxon)
     )
+    true
+  end
+
+  def set_guide_taxon
+    return true if Delayed::Job.where("handler LIKE '%Guide\n%id: ''#{guide_id}''\n%set_taxon%'").exists?
+    guide.delay(:priority => USER_INTEGRITY_PRIORITY).set_taxon
     true
   end
 end
