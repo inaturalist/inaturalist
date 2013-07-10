@@ -3,7 +3,7 @@ class GuidesController < ApplicationController
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa]
   layout "bootstrap"
-  PDF_LAYOUTS = %w(grid book)
+  PDF_LAYOUTS = %w(grid book journal)
   
   # GET /guides
   # GET /guides.json
@@ -92,6 +92,7 @@ class GuidesController < ApplicationController
         render :pdf => "#{@guide.title.parameterize}.#{@layout}", 
           :layout => "bootstrap.pdf",
           :template => @template,
+          :orientation => @layout == "journal" ? 'Landscape' : nil,
           :show_as_html => params[:debug].present? && logged_in?,
           :margin => {
             :left => 0,
