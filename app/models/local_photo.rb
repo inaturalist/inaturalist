@@ -114,13 +114,13 @@ class LocalPhoto < Photo
     o = Observation.new(:user => user)
     o.observation_photos.build(:photo => self)
     if metadata
-      unless metadata[:gps_latitude].blank?
+      if !metadata[:gps_latitude].blank? && !metadata[:gps_latitude].to_f.nan?
         o.latitude = metadata[:gps_latitude].to_f
         if metadata[:gps_latitude_ref].to_s == 'S' && o.latitude > 0
           o.latitude = o.latitude * -1
         end
       end
-      unless metadata[:gps_longitude].blank?
+      if !metadata[:gps_longitude].blank? && !metadata[:gps_longitude].to_f.nan?
         o.longitude = metadata[:gps_longitude].to_f
         if metadata[:gps_longitude_ref].to_s == 'W' && o.longitude > 0
           o.longitude = o.longitude * -1
