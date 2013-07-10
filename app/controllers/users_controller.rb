@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if success && @user.errors.empty?
-      flash[:notice] = "Welcome to #{CONFIG.site_name}!  Please check for your confirmation email, but feel free to start cruising the site."
+      flash[:notice] = t(:please_check_for_you_confirmation_email, :site_name => CONFIG.site_name)
       self.current_user = @user
       @user.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
       redirect_back_or_default(dashboard_path)
@@ -58,17 +58,17 @@ class UsersController < ApplicationController
       redirect_back_or_default('/')
     when (!params[:activation_code].blank?) && user && !user.confirmed?
       user.confirm!
-      flash[:notice] = "Your #{CONFIG.site_name} account has been verified! Please sign in to continue."
+      flash[:notice] = t(:your_account_has_been_verified, :site_name => CONFIG.site_name)
       if logged_in? && current_user.is_admin?
         redirect_back_or_default('/')
       else
         redirect_to '/login'
       end
     when params[:activation_code].blank?
-      flash[:error] = "Your activation code was missing.  Please follow the URL from your email."
+      flash[:error] = t(:your_activation_code_was_missing)
       redirect_back_or_default('/')
     else 
-      flash[:error]  = "We couldn't find a user with that activation code. You may have already activated your account, please try signing in."
+      flash[:error]  = t(:we_couldnt_find_a_user_with_that_activation_code)
       redirect_back_or_default('/')
     end
   end
@@ -77,24 +77,24 @@ class UsersController < ApplicationController
 
   def suspend
      @user.suspend! 
-     flash[:notice] = "The user #{@user.login} has been suspended"
+     flash[:notice] = t(:the_user_x_has_been_suspended, :user => @user.login)
      redirect_back_or_default(@user)
   end
    
   def unsuspend
     @user.unsuspend! 
-    flash[:notice] = "The user #{@user.login} has been unsuspended"
+    flash[:notice] = t(:the_user_x_has_been_unsuspended, :user => @user.login)
     redirect_back_or_default(@user)
   end
   
   def add_role
     unless @role = Role.find_by_name(params[:role])
-      flash[:error] = "That role doesn't exist"
+      flash[:error] = t(:that_role_doesnt_exist)
       return redirect_to :back
     end
     
     if !current_user.has_role?(@role.name) || (@user.is_admin? && !current_user.is_admin?)
-      flash[:error] = "Sorry, you don't have permission to do that"
+      flash[:error] = t(:you_dont_have_permission_to_do_that)
       return redirect_to :back
     end
     
@@ -105,12 +105,12 @@ class UsersController < ApplicationController
   
   def remove_role
     unless @role = Role.find_by_name(params[:role])
-      flash[:error] = "That role doesn't exist"
+      flash[:error] = t(:that_role_doesnt_exist)
       return redirect_to :back
     end
     
     unless current_user.has_role?(@role.name)
-      flash[:error] = "Sorry, you don't have permission to do that"
+      flash[:error] = t(:you_dont_have_permission_to_do_that)
       return redirect_to :back
     end
     
@@ -364,7 +364,7 @@ class UsersController < ApplicationController
       sign_in @display_user, :bypass => true
       respond_to do |format|
         format.html do
-          flash[:notice] = 'Your profile was successfully updated!'
+          flash[:notice] = t(:your_profile_was_successfully_updated)
           redirect_back_or_default(person_by_login_path(:login => current_user.login))
         end
         format.json do
@@ -397,7 +397,7 @@ class UsersController < ApplicationController
       @display_user ||= User.find_by_login(params[:id])
       @display_user ||= User.find_by_email(params[:id])
       if @display_user.blank?
-        flash[:error] = "Couldn't find a user matching #{params[:id]}"
+        flash[:error] = t(:couldnt_find_a_user_matching_x_param, :id => params[:id])
       else
         @observations = @display_user.observations.order("id desc").limit(10)
       end
@@ -410,9 +410,9 @@ protected
     error_msg, notice_msg = [nil, nil]
     friend_user = User.find_by_id(params[:friend_id])
     if friend_user.blank? || friendship = current_user.friendships.find_by_friend_id(friend_user.id)
-      error_msg = "Either that user doesn't exist or you are already following them."
+      error_msg = t(:either_that_user_doesnt_exist_or)
     else
-      notice_msg = "You are now following #{friend_user.login}."
+      notice_msg = t(:you_are_now_following_x, :friend_user => friend_user.login)
       friendship = current_user.friendships.create(:friend => friend_user)
     end
     respond_to do |format|
@@ -428,10 +428,10 @@ protected
   def remove_friend
     error_msg, notice_msg = [nil, nil]
     if friendship = current_user.friendships.find_by_friend_id(params[:remove_friend_id])
-      notice_msg = "You are no longer following #{friendship.friend.login}."
+      notice_msg = t(:you_are_no_longer_following_x, :friend => friendship.friend.login)
       friendship.destroy
     else
-      error_msg = "You aren't following that person."
+      error_msg = t(:you_arent_following_that_person)
     end
     respond_to do |format|
       format.html do
@@ -445,7 +445,7 @@ protected
   
   def update_password
     if params[:password].blank? || params[:password_confirmation].blank?
-      flash[:error] = "You must specify and confirm a new password."
+      flash[:error] = t(:you_must_specify_and_confirm_a_new_password)
       return redirect_to(edit_person_path(@user))
     end
     
@@ -453,9 +453,9 @@ protected
     current_user.password_confirmation = params[:password_confirmation]
     begin
       current_user.save!
-      flash[:notice] = 'Successfully changed your password.'
+      flash[:notice] = t(:successfully_changed_your_password)
     rescue ActiveRecord::RecordInvalid => e
-      flash[:error] = "Couldn't change your password: #{e}"
+      flash[:error] = t(:couldnt_change_your_password, :e => e)
       return redirect_to(edit_person_path(@user))
     end
     redirect_to(person_by_login_path(:login => current_user.login))
