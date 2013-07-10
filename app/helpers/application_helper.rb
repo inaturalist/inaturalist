@@ -390,7 +390,7 @@ module ApplicationHelper
   end
   
   def separator
-    content_tag :div, image_tag('logo-eee-15px.png'), :class => "column-separator"
+    content_tag :div, image_tag(image_url('logo-eee-15px.png')), :class => "column-separator"
   end
   
   def serial_id
@@ -401,7 +401,7 @@ module ApplicationHelper
   def image_url(source, options = {})
     abs_path = image_path(source)
     unless abs_path =~ /\Ahttp/
-     abs_path = uri_join(root_url, abs_path)
+     abs_path = uri_join(root_url, abs_path).to_s
     end
     abs_path
   end

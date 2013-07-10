@@ -36,51 +36,53 @@ class GuidesController < ApplicationController
     @guide_taxa = @guide_taxa.tagged(@tags) unless @tags.blank?
     @view = params[:view] || "grid"
 
-    @tag_counts = Tag.joins(:taggings).
-      joins("JOIN guide_taxa gt ON gt.id = taggings.taggable_id").
-      where("taggings.taggable_type = 'GuideTaxon' AND gt.guide_id = ?", @guide).
-      group("tags.name").
-      count
-    @nav_tags = ActiveSupport::OrderedHash.new
-    @tag_counts.each do |tag, count|
-      namespace, predicate = nil, "tags"
-      nsp, value = tag.split('=')
-      if value.blank?
-        value = nsp
-      else
-        namespace, predicate = nsp.to_s.split(':')
-        predicate = namespace if predicate.blank?
-      end
-      @nav_tags[predicate] ||= []
-      @nav_tags[predicate] << [tag, value, count]
-    end
-    
-    ancestry_counts_scope = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", @guide).scoped
-    ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
-    ancestry_counts = ancestry_counts_scope.group(:ancestry).count
-    ancestries = ancestry_counts.map{|a,c| a.split('/')}.sort_by(&:size)
-    
-    width = ancestries.last.size
-    matrix = ancestries.map do |a|
-      a + ([nil]*(width-a.size))
-    end
-
-    # start at the right col (lowest rank), look for the first occurrence of
-    # consensus within a rank
-    consensus_taxon_id, subconsensus_taxon_ids = nil, nil
-    (width - 1).downto(0) do |c|
-      column_taxon_ids = matrix.map{|ancestry| ancestry[c]}
-      if column_taxon_ids.uniq.size == 1 && !column_taxon_ids.first.blank?
-        consensus_taxon_id = column_taxon_ids.first
-        subconsensus_taxon_ids = matrix.map{|ancestry| ancestry[c+1]}.uniq
-        break
-      end
-    end
-    @nav_taxa = Taxon.where("id IN (?)", subconsensus_taxon_ids)
-
     respond_to do |format|
-      format.html # show.html.erb
+      format.html do
+        @tag_counts = Tag.joins(:taggings).
+          joins("JOIN guide_taxa gt ON gt.id = taggings.taggable_id").
+          where("taggings.taggable_type = 'GuideTaxon' AND gt.guide_id = ?", @guide).
+          group("tags.name").
+          count
+        @nav_tags = ActiveSupport::OrderedHash.new
+        @tag_counts.each do |tag, count|
+          namespace, predicate = nil, "tags"
+          nsp, value = tag.split('=')
+          if value.blank?
+            value = nsp
+          else
+            namespace, predicate = nsp.to_s.split(':')
+            predicate = namespace if predicate.blank?
+          end
+          @nav_tags[predicate] ||= []
+          @nav_tags[predicate] << [tag, value, count]
+        end
+        
+        ancestry_counts_scope = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", @guide).scoped
+        ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
+        ancestry_counts = ancestry_counts_scope.group(:ancestry).count
+        ancestries = ancestry_counts.map{|a,c| a.split('/')}.sort_by(&:size)
+        
+        width = ancestries.last.size
+        matrix = ancestries.map do |a|
+          a + ([nil]*(width-a.size))
+        end
+
+        # start at the right col (lowest rank), look for the first occurrence of
+        # consensus within a rank
+        consensus_taxon_id, subconsensus_taxon_ids = nil, nil
+        (width - 1).downto(0) do |c|
+          column_taxon_ids = matrix.map{|ancestry| ancestry[c]}
+          if column_taxon_ids.uniq.size == 1 && !column_taxon_ids.first.blank?
+            consensus_taxon_id = column_taxon_ids.first
+            subconsensus_taxon_ids = matrix.map{|ancestry| ancestry[c+1]}.uniq
+            break
+          end
+        end
+        @nav_taxa = Taxon.where("id IN (?)", subconsensus_taxon_ids)
+      end
+
       format.json { render json: @guide.as_json(:root => true) }
+
       format.pdf do
         @guide_taxa = @guide.guide_taxa.order("guide_taxa.position").
           includes({:taxon => [:taxon_ranges_without_geom]}, :guide_photos, :guide_sections)
@@ -91,7 +93,6 @@ class GuidesController < ApplicationController
           :layout => "bootstrap.pdf",
           :template => @template,
           :show_as_html => params[:debug].present? && logged_in?,
-          :disposition => "attachment",
           :margin => {
             :left => 0,
             :right => 0
