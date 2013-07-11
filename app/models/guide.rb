@@ -22,6 +22,8 @@ class Guide < ActiveRecord::Base
     :message => "must be JPG, PNG, or GIF"
   validates_length_of :title, :in => 3..255
 
+  scope :dbsearch, lambda {|q| where("guides.title ILIKE ?", "%#{q}%")}
+
   def import_taxa(options = {})
     return if options[:place_id].blank? && options[:list_id].blank? && options[:taxon_id].blank?
     scope = if !options[:place_id].blank?

@@ -1,5 +1,5 @@
 class GuidesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :search]
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa]
   layout "bootstrap"
@@ -8,7 +8,10 @@ class GuidesController < ApplicationController
   # GET /guides
   # GET /guides.json
   def index
-    @guides = Guide.page(params[:page])
+    @guides = Guide.page(params[:page]).order("guides.id DESC")
+    if logged_in?
+      @guides_by_you = current_user.guides.limit(100).order("guides.id DESC")
+    end
     respond_to do |format|
       format.html
       format.json { render json: {:guides => @guides.as_json} }
@@ -60,25 +63,27 @@ class GuidesController < ApplicationController
         ancestry_counts_scope = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", @guide).scoped
         ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
         ancestry_counts = ancestry_counts_scope.group(:ancestry).count
-        ancestries = ancestry_counts.map{|a,c| a.split('/')}.sort_by(&:size)
-        
-        width = ancestries.last.size
-        matrix = ancestries.map do |a|
-          a + ([nil]*(width-a.size))
-        end
-
-        # start at the right col (lowest rank), look for the first occurrence of
-        # consensus within a rank
-        consensus_taxon_id, subconsensus_taxon_ids = nil, nil
-        (width - 1).downto(0) do |c|
-          column_taxon_ids = matrix.map{|ancestry| ancestry[c]}
-          if column_taxon_ids.uniq.size == 1 && !column_taxon_ids.first.blank?
-            consensus_taxon_id = column_taxon_ids.first
-            subconsensus_taxon_ids = matrix.map{|ancestry| ancestry[c+1]}.uniq
-            break
+        if ancestry_counts.blank?
+          @nav_taxa = []
+        else
+          ancestries = ancestry_counts.map{|a,c| a.split('/')}.sort_by(&:size)
+          width = ancestries.last.size
+          matrix = ancestries.map do |a|
+            a + ([nil]*(width-a.size))
           end
+          # start at the right col (lowest rank), look for the first occurrence of
+          # consensus within a rank
+          consensus_taxon_id, subconsensus_taxon_ids = nil, nil
+          (width - 1).downto(0) do |c|
+            column_taxon_ids = matrix.map{|ancestry| ancestry[c]}
+            if column_taxon_ids.uniq.size == 1 && !column_taxon_ids.first.blank?
+              consensus_taxon_id = column_taxon_ids.first
+              subconsensus_taxon_ids = matrix.map{|ancestry| ancestry[c+1]}.uniq
+              break
+            end
+          end
+          @nav_taxa = Taxon.where("id IN (?)", subconsensus_taxon_ids)
         end
-        @nav_taxa = Taxon.where("id IN (?)", subconsensus_taxon_ids)
       end
 
       format.json { render json: @guide.as_json(:root => true) }
@@ -176,6 +181,13 @@ class GuidesController < ApplicationController
         end
         render :json => {:guide_taxa => @guide_taxa.as_json(:root => false, :methods => [:errors, :html, :valid?])}
       end
+    end
+  end
+
+  def search
+    @guides = Guide.dbsearch(params[:q]).page(params[:page])
+    respond_to do |format|
+      format.html
     end
   end
 
