@@ -9,6 +9,7 @@
     #attribution {page-break-inside: avoid;}
     #attribution ul {list-style:none;}
     .guide_taxon {margin-bottom:2em;}
+    .guide_photos {text-align: center;}
     .guide_photos img {display:inline-block; margin: 0 0.5em 0.5em 0;}
 #titlepage.page
   #title.text-center
@@ -24,7 +25,7 @@
           = @guide.user.name.blank? ? @guide.user.login : @guide.user.name
         =t 'copyright.some_rights_reserved'
         = surround '(', ')' do
-          = @guide.license
+          = @guide.license.sub('-', ' ')
   - unless @guide.description.blank?
     #abstract
       = separator
@@ -37,12 +38,13 @@
         %h2= gt.display_name
         - unless gt.guide_photos.blank?
           .row-fluid.stacked
-            .guide_photos.stacked
-              = gt.guide_photos.sort_by(&:position).map{|p| image_tag(p.medium_url, :class => "thumb")}.join('').html_safe
-            %p.attribution
-              %small.muted.meta
-                = gt.guide_photos.size == 1 ? t(:photo) : t(:photos)
-                = gt.guide_photos.sort_by(&:position).map(&:attribution).join(', ')
+            .guide_photos
+              .stacked
+                = gt.guide_photos.sort_by(&:position).map{|p| image_tag(p.medium_url, :class => "thumb")}.join('').html_safe
+              %p.attribution
+                %small.muted.meta
+                  = gt.guide_photos.size == 1 ? t(:photo) : t(:photos)
+                  = gt.guide_photos.sort_by(&:position).map(&:attribution).join(', ')
       .row-fluid
         .span9
           .guide_sections
