@@ -1698,6 +1698,7 @@ class ObservationsController < ApplicationController
       end
       @id_please = true if search_params[:has].include?('id_please')
       @with_photos = true if search_params[:has].include?('photos')
+      @with_sounds = true if search_params[:has].include?('sounds')
     end
     
     @quality_grade = search_params[:quality_grade]
@@ -1767,6 +1768,7 @@ class ObservationsController < ApplicationController
       !@iconic_taxa.blank? ||
       @id_please == true ||
       !@with_photos.blank? ||
+      !@with_sounds.blank? ||
       !@identifications.blank? ||
       !@quality_grade.blank? ||
       !@out_of_range.blank? ||
@@ -1830,11 +1832,21 @@ class ObservationsController < ApplicationController
       if search_params[:has].include?('photos')
         sphinx_options[:with][:has_photos] = true
       end
+
+      # has sounds
+      if search_params[:has].include?('sounds')
+        sphinx_options[:with][:has_sounds] = true
+      end
       
       # geo
       if search_params[:has].include?('geo')
         sphinx_options[:with][:has_geo] = true 
       end
+    end
+
+    if Observation::QUALITY_GRADES.include?(search_params[:quality_grade])
+      sphinx_options[:conditions] ||= {}
+      sphinx_options[:conditions][:quality_grade] = search_params[:quality_grade]
     end
     
     # Bounding box or near point

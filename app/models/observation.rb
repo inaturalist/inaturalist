@@ -170,6 +170,8 @@ class Observation < ActiveRecord::Base
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
     has "photos_count > 0", :as => :has_photos, :type => :boolean
+    has sounds(:id), :as => :has_sounds, :type => :boolean
+    indexes :quality_grade
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
     has :iconic_taxon_id
@@ -344,6 +346,7 @@ class Observation < ActiveRecord::Base
   scope :has_geo, where("latitude IS NOT NULL AND longitude IS NOT NULL")
   scope :has_id_please, where("id_please IS TRUE")
   scope :has_photos, where("photos_count > 0")
+  scope :has_sounds, joins(:sounds).where("sounds.id is not null")
   scope :has_quality_grade, lambda {|quality_grade|
     quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
     where("quality_grade = ?", quality_grade)
@@ -513,11 +516,12 @@ class Observation < ActiveRecord::Base
     # has (boolean) selectors
     if params[:has]
       params[:has] = params[:has].split(',') if params[:has].is_a? String
-      params[:has].select{|s| %w(geo id_please photos).include?(s)}.each do |prop|
+      params[:has].select{|s| %w(geo id_please photos sounds).include?(s)}.each do |prop|
         scope = case prop
           when 'geo' then scope.has_geo
           when 'id_please' then scope.has_id_please
           when 'photos' then scope.has_photos
+          when 'sounds' then scope.has_sounds
         end
       end
     end
