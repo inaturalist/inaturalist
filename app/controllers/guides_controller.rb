@@ -4,6 +4,8 @@ class GuidesController < ApplicationController
   before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa]
   layout "bootstrap"
   PDF_LAYOUTS = %w(grid book journal)
+
+  caches_page :show, :if => Proc.new {|c| c.request.format == :pdf && c.request.query_parameters.blank?}
   
   # GET /guides
   # GET /guides.json
@@ -32,7 +34,7 @@ class GuidesController < ApplicationController
     @tags << params[:tag] unless params[:tag].blank?
     
     @guide_taxa = @guide.guide_taxa.order("guide_taxa.position").
-      includes({:taxon => [:taxon_ranges_without_geom]}, :guide_photos, :guide_sections).
+      includes({:taxon => [:taxon_ranges_without_geom]}, {:guide_photos => :photo}, :guide_sections).
       page(params[:page]).per_page(100)
     @guide_taxa = @guide_taxa.in_taxon(@taxon) if @taxon
     @guide_taxa = @guide_taxa.dbsearch(@q) unless @q.blank?

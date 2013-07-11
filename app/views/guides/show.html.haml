@@ -64,7 +64,7 @@
             %span.caret
           %ul.dropdown-menu
             - for l in GuidesController::PDF_LAYOUTS
-              %li= link_to t(l), guide_pdf_path(@guide, :layout => l)
+              %li= link_to t(l), guide_pdf_path(@guide, :layout => l), :target => "_blank"
         - if @guide.editable_by?(current_user)
           = link_to t(:edit), edit_guide_path(@guide), :class => "btn"
       %h1

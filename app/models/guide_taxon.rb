@@ -16,6 +16,8 @@ class GuideTaxon < ActiveRecord::Base
   before_create :set_default_section
   after_create :set_guide_taxon
   after_destroy :set_guide_taxon
+  after_save {|r| r.guide.expire_caches}
+  after_destroy {|r| r.guide.expire_caches}
 
   validates_uniqueness_of :taxon_id, :scope => :guide_id
 
