@@ -9,11 +9,16 @@ class TaxonRange < ActiveRecord::Base
   scope :without_geom, select((column_names - ['geom']).join(', '))
   scope :simplified, select(<<-SQL
       id, taxon_id, 
-      multi(cleangeometry(
-        ST_SimplifyPreserveTopology(geom, 
-          exp(-(log(5000/npoints(geom)::float)+1.5944)/0.2586)
+      multi(
+        cleangeometry(
+          ST_Buffer(
+            ST_SimplifyPreserveTopology(geom, 
+              exp(-(log(5000/npoints(geom)::float)+1.5944)/0.2586)
+            ),
+            0.0
+          )
         )
-      )) AS geom
+      ) AS geom
     SQL
   )
   
