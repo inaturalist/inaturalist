@@ -141,9 +141,11 @@ class LocalPhoto < Photo
         if o.taxon
           tags = to_tags.map(&:downcase)
           o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)
+          o.species_guess ||= o.taxon.default_name.try(:name)
         elsif !metadata[:dc][:title].blank?
           o.species_guess = metadata[:dc][:title].to_sentence.strip
         end
+        o.species_guess = nil if o.species_guess.blank?
         o.description = metadata[:dc][:description].to_sentence unless metadata[:dc][:description].blank?
       end
     end

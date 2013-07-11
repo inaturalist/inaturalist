@@ -1,5 +1,5 @@
 <% content_for(:title) do %>
-<%- if @observation.species_guess and @observation.species_guess != '' -%>
+<%- unless @observation.species_guess.blank? -%>
   <%= @observation.species_guess -%>,
 <%- else -%>
   <%=t :something %>
@@ -140,9 +140,9 @@
   
   <h2>
     <%- if @observation.taxon -%>
-      <%= link_to @observation.species_guess, @observation.taxon -%>
-    <%- elsif @observation.species_guess and @observation.species_guess != '' -%>
-      <%= h @observation.species_guess -%>
+      <%= link_to @observation.species_guess.blank? ? @observation.taxon.default_name.try(:name) : @observation.species_guess, @observation.taxon -%>
+    <%- elsif !@observation.species_guess.blank? -%>
+      <%= @observation.species_guess -%>
     <%- else -%>
       <%=t :something %>,
     <% end -%>
