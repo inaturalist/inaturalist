@@ -59,6 +59,7 @@ function addTaxaSingle() {
       .success(function(json, status, xhr) {
         $('#guide_taxa .nocontent').remove()
         $('#guide_taxa').prepend(json.guide_taxon.html)
+        $('#guide_taxa .guide_taxon:first').labelize()
       })
       .error(function(xhr) {
         var errors = $.parseJSON(xhr.responseText)
@@ -91,7 +92,7 @@ $('.guide_taxon .delete').bind('ajax:before', function() {
   $(this).parents('.guide_taxon').remove()
 })
 $('.guide_taxon').labelize();
-$('.check input').change(function() {
+$('.check input').live('change', function() {
   if (this.checked) {
     $(this).parents('.guide_taxon:first').addClass('warning')
     $('#editbutton').removeClass('disabled')
@@ -105,8 +106,9 @@ $('.check input').change(function() {
 function incrementLoadingStatus(options) {
   options = options || {}
   var status = $('.bigloading.status').text(),
-      matches = status.match(/ (\d+) of (\d+)/),
-      current = parseInt(matches[1]),
+      matches = status.match(/ (\d+) of (\d+)/)
+  if (!matches || !matches[1]) { return }
+  var current = parseInt(matches[1]),
       total = matches[2],
       verb = options.verb || I18n.t('saving_verb')
   $('.bigloading.status').text(I18n.t('verbing_x_of_y', {verb: verb, x: current + 1, y: total}))
@@ -208,7 +210,7 @@ $('#guide_taxa').sortable({
 })
 function updateGuideTaxa() {
   window.updateGuideTaxaTimeout = null
-  saveGuideTaxon.apply($('#guide_taxa form:first').get(0), [{chain: true}])
+  saveGuideTaxon.apply($('#guide_taxa form:first').get(0), [{chain: true, unchecked: true}])
 }
 function saveGuideTaxon(options) {
   var options = options || {}
@@ -216,7 +218,12 @@ function saveGuideTaxon(options) {
       recordContainer = $(this)
   var nextMethod = function() {
     if (options.chain) {
-      var next = recordContainer.nextAll('form').has('input[type=checkbox]:checked:visible').get(0)
+      var next
+      if (options.unchecked) {
+        next = recordContainer.nextAll('form').get(0) 
+      } else {
+        next = recordContainer.nextAll('form').has('input[type=checkbox]:checked:visible').get(0)
+      }
       if (next) {
         incrementLoadingStatus()
         saveGuideTaxon.apply(next, [options])
