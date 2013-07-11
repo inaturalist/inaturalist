@@ -125,7 +125,7 @@ class Observation < ActiveRecord::Base
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
   belongs_to :oauth_application
-  has_many :observation_photos, :dependent => :destroy, :order => "id asc"
+  has_many :observation_photos, :dependent => :destroy, :order => "id asc", :inverse_of => :observation
   has_many :photos, :through => :observation_photos
   
   # note last_observation and first_observation on listed taxa will get reset 
@@ -147,7 +147,8 @@ class Observation < ActiveRecord::Base
   has_many :observation_fields, :through => :observation_field_values
   has_many :observation_links
   has_and_belongs_to_many :posts
-  has_and_belongs_to_many :sounds
+  has_many :observation_sounds, :dependent => :destroy, :inverse_of => :observation
+  has_many :sounds, :through => :observation_sounds
   
   define_index do
     indexes taxon.taxon_names.name, :as => :names
@@ -170,7 +171,7 @@ class Observation < ActiveRecord::Base
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
     has "photos_count > 0", :as => :has_photos, :type => :boolean
-    has sounds(:id), :as => :has_sounds, :type => :boolean
+    has "sounds_count > 0", :as => :has_sounds, :type => :boolean
     indexes :quality_grade
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
@@ -188,6 +189,7 @@ class Observation < ActiveRecord::Base
     has :latitude, :as => :fake_latitude
     has :longitude, :as => :fake_longitude
     has :photos_count
+    has :sounds_count
     has :num_identification_agreements
     has :num_identification_disagreements
     # END HACK

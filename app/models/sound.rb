@@ -1,6 +1,7 @@
 class Sound < ActiveRecord::Base
 	belongs_to :user
-	has_and_belongs_to_many :observations
+  has_many :observation_sounds, :dependent => :destroy
+  has_many :observations, :through => :observation_sounds
 
   serialize :native_response
   ############### licensing

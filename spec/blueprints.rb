@@ -128,6 +128,11 @@ ObservationPhoto.blueprint do
   photo { Photo.make }
 end
 
+ObservationSound.blueprint do
+  observation { Observation.make }
+  sound { Sound.make }
+end
+
 Photo.blueprint do
   user { User.make }
   native_photo_id { rand(1000) }

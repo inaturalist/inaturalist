@@ -1,5 +1,5 @@
 class ObservationPhoto < ActiveRecord::Base
-  belongs_to :observation
+  belongs_to :observation, :inverse_of => :observation_photos, :counter_cache => false
   belongs_to :photo
   
   after_create :set_observation_quality_grade,

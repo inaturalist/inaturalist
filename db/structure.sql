@@ -11298,6 +11298,36 @@ ALTER SEQUENCE observation_photos_id_seq OWNED BY observation_photos.id;
 
 
 --
+-- Name: observation_sounds; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_sounds (
+    id integer NOT NULL,
+    observation_id integer,
+    sound_id integer
+);
+
+
+--
+-- Name: observation_sounds_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE observation_sounds_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_sounds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE observation_sounds_id_seq OWNED BY observation_sounds.id;
+
+
+--
 -- Name: observations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -11343,6 +11373,7 @@ CREATE TABLE observations (
     zic_time_zone character varying(255),
     oauth_application_id integer,
     community_taxon_id integer,
+    sounds_count integer DEFAULT 0,
     CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
     CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'POINT'::text) OR (geom IS NULL))),
     CONSTRAINT enforce_srid_geom CHECK ((srid(geom) = (-1)))
@@ -11376,36 +11407,6 @@ CREATE TABLE observations_posts (
     observation_id integer NOT NULL,
     post_id integer NOT NULL
 );
-
-
---
--- Name: observations_sounds; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE observations_sounds (
-    id integer NOT NULL,
-    observation_id integer,
-    sound_id integer
-);
-
-
---
--- Name: observations_sounds_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE observations_sounds_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: observations_sounds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE observations_sounds_id_seq OWNED BY observations_sounds.id;
 
 
 --
@@ -13249,14 +13250,14 @@ ALTER TABLE observation_photos ALTER COLUMN id SET DEFAULT nextval('observation_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE observations ALTER COLUMN id SET DEFAULT nextval('observations_id_seq'::regclass);
+ALTER TABLE observation_sounds ALTER COLUMN id SET DEFAULT nextval('observation_sounds_id_seq'::regclass);
 
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE observations_sounds ALTER COLUMN id SET DEFAULT nextval('observations_sounds_id_seq'::regclass);
+ALTER TABLE observations ALTER COLUMN id SET DEFAULT nextval('observations_id_seq'::regclass);
 
 
 --
@@ -13856,7 +13857,7 @@ ALTER TABLE ONLY observations
 -- Name: observations_sounds_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY observations_sounds
+ALTER TABLE ONLY observation_sounds
     ADD CONSTRAINT observations_sounds_pkey PRIMARY KEY (id);
 
 
@@ -14808,14 +14809,14 @@ CREATE INDEX index_observations_posts_on_post_id ON observations_posts USING btr
 -- Name: index_observations_sounds_on_observation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_observations_sounds_on_observation_id ON observations_sounds USING btree (observation_id);
+CREATE INDEX index_observations_sounds_on_observation_id ON observation_sounds USING btree (observation_id);
 
 
 --
 -- Name: index_observations_sounds_on_sound_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_observations_sounds_on_sound_id ON observations_sounds USING btree (sound_id);
+CREATE INDEX index_observations_sounds_on_sound_id ON observation_sounds USING btree (sound_id);
 
 
 --
@@ -15865,3 +15866,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130708235548');
 INSERT INTO schema_migrations (version) VALUES ('20130709005451');
 
 INSERT INTO schema_migrations (version) VALUES ('20130709212550');
+
+INSERT INTO schema_migrations (version) VALUES ('20130711181857');
