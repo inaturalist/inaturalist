@@ -1,30 +1,35 @@
 = content_for :title do
   =t :guides
 = content_for :extracss do
+  = stylesheet_link_tag "guides"
   :css
-    .bootstrap .media-object [class^="icon-"], .bootstrap .media-object [class*=" icon-"] {width: 70px; height:70px; text-align:center;}
+    .hero-unit .or {margin: 0 1em;}
 .container-fluid
   .hero-unit
     %h1=t :welcome_to_guides, :site_name => SITE_NAME
     %p
       =t 'views.guides.index.welcome_message_html'
-    %p
-      =t :ready_to_get_started?
-      = link_to t(:create_a_guide), new_guide_path, :class => "btn btn-primary"
+    .text
+      = form_tag search_guides_path, :method => :get, :class => "form-search form-inline" do
+        .input-append
+          = text_field_tag :q, nil, :placeholder => t(:find_a_guide), :class => "search-query input-xlarge"
+          = submit_tag t(:search), :class => "btn btn-primary"
+        %nobr
+          %span.or
+            =t :or
+          = link_to t(:create_a_guide), new_guide_path, :class => "btn"
+  %h2=t :recently_created
   - for row in @guides.in_groups_of(2)
     .row-fluid
       - for guide in row.compact
         .span6
-          .media
-            .pull-left
-              - if guide.icon.file?
-                = link_to image_tag(guide.icon.url(:span2), :class => "img-rounded"), guide
-              - else
-                .media-object
-                  = link_to guide do
-                    %i.icon-book.icon-4x
-            .media-body
-              %h2.media-heading= link_to guide.title, guide
-              = truncate(formatted_user_text(guide.description), :length => 300).html_safe
+          = render 'media_object', :guide => guide
+  - unless @guides_by_you.blank?
+    %h2=t :created_by_you
+    - for row in @guides_by_you.in_groups_of(2)
+      .row-fluid
+        - for guide in row.compact
+          .span6
+            = render 'media_object', :guide => guide
   .quiet.box.text-center.upstacked
     =t 'views.guides.index.funding_html'

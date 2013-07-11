@@ -17,6 +17,9 @@ Inaturalist::Application.routes.draw do
     end
   end
   resources :guides do
+    collection do
+      get :search
+    end
     member do
       post :import_taxa
     end

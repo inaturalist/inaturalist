@@ -124,6 +124,7 @@ class Place < ActiveRecord::Base
   PLACE_TYPE_CODES = PLACE_TYPES.invert
   PLACE_TYPES.each do |code, type|
     PLACE_TYPE_CODES[type.downcase] = code
+    const_set type.upcase.gsub(/\W/, '_'), code
   end
 
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}

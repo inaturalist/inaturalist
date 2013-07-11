@@ -3,6 +3,8 @@ class GuideSection < ActiveRecord::Base
   belongs_to :guide_taxon, :inverse_of => :guide_sections
   has_one :guide, :through => :guide_taxon
   before_create :set_license
+  after_save {|r| r.guide.expire_caches}
+  after_destroy {|r| r.guide.expire_caches}
 
   def attribution
     return I18n.t(:public_domain) if license == Photo::PD_CODE

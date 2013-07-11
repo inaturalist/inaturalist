@@ -22,6 +22,11 @@ class Guide < ActiveRecord::Base
     :message => "must be JPG, PNG, or GIF"
   validates_length_of :title, :in => 3..255
 
+  after_update :expire_caches
+  after_destroy :expire_caches
+
+  scope :dbsearch, lambda {|q| where("guides.title ILIKE ?", "%#{q}%")}
+
   def import_taxa(options = {})
     return if options[:place_id].blank? && options[:list_id].blank? && options[:taxon_id].blank?
     scope = if !options[:place_id].blank?
@@ -80,5 +85,14 @@ class Guide < ActiveRecord::Base
     end
 
     Guide.update_all({:taxon_id => consensus_taxon_id}, ["id = ?", id])
+  end
+
+  def expire_caches
+    ctrl = ActionController::Base.new
+    ctrl.expire_page("/guides/#{id}.pdf")
+    GuidesController::PDF_LAYOUTS.each do |l|
+      ctrl.expire_page("/guides/#{id}.#{l}.pdf")
+    end
+    true
   end
 end
