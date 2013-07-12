@@ -1044,7 +1044,7 @@ en:
   join_and: Join and
   join_inat: Join %{site_name}!
   join_project: Join this project
-  join_this_project: join_this_project
+  join_this_project: join this project
   joined_any_projects: joined any projects
   journal: Journal
   journal_archives_for: Journal archives for
@@ -2103,7 +2103,7 @@ en:
   there_was_a_problem_saving_your_identification: "There was a problem saving your identification: %{error}"
   there_were_errors: There were errors.
   there_were_problems_adding_taxa: "There were problems adding those taxa: %{errors}"
-  there_were_problems_adding_your_observation_to_this_project: "There were problems adding your observation to this project: %{@project_observation}"
+  there_were_problems_adding_your_observation_to_this_project: "There were problems adding your observation to this project: "
   there_were_problems_importing_that_place: "There were problems importing that place: %{place_error}"
   there_were_some_problems_saving_this_observation: There were some problems saving this observation
   there_were_some_problems_saving_those_colors: "There were some problems saving those colors: %{error}"
@@ -2462,7 +2462,7 @@ en:
   you_sure_remove_taxon_from?: "Are you sure you want to remove this taxon from %{list}?"
   you_sure_remove_this_invitation?: "Are you sure you want to remove this invitation?"
   you_sure_remove_this_observation?: Are you sure you want to remove this observation?
-  youve_joined_the_x_project: "You've joined the \"%{project_invitation}\" project and your observation was added"
+  youve_joined_the_x_project: "You've joined the %{project_invitation} project and your observation was added"
   you_would_get_the: "you would get the following tags:"
   youll_need_to_link: You'll need to link
   your: Your

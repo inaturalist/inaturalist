@@ -407,7 +407,7 @@ class ProjectsController < ApplicationController
     
     @project_observation = ProjectObservation.create(:project => @project, :observation => @observation)
     unless @project_observation.valid?
-      respond_to_join(:dest => @observation, 
+      respond_to_join(:dest => @observation,
         :error => t(:there_were_problems_adding_your_observation_to_this_project, :project_observation => @project_observation.errors.full_messages.to_sentence))
       return
     end
@@ -543,7 +543,8 @@ class ProjectsController < ApplicationController
     @project_observation = ProjectObservation.create(:project => @project, :observation => @observation)
     
     unless @project_observation.valid?
-      error_msg = t(:there_were_problems_adding_your_observation_to_this_project, :project_observation => @project_observation.errors.full_messages.to_sentence)
+      error_msg = t(:there_were_problems_adding_your_observation_to_this_project) + 
+        @project_observation.errors.full_messages.to_sentence
     end
 
     if error_msg
