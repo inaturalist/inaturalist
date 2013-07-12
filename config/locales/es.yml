@@ -109,6 +109,9 @@ es:
               in_text: Referencia
               url: Enlace
               citation: Bibliografía
+      listed_taxon:
+              occurrence_status_level: Estatus de ocurrencia
+              establishment_means: Medio de establecimiento
     preferences: 
       per_page: "Registros por página"
   add: Agregar
@@ -1242,6 +1245,7 @@ es:
   large: gran
   last_confirmed_observation: "Última observación confirmada"
   last_inat_observation: "Última observación %{site_name}"
+  last_observation: Última observación
   last_seen: "Visto por última vez"
   lat: Latitud
   latitude: Latitud
@@ -1298,11 +1302,13 @@ es:
   linked_flickr_password_html: "<strong>Nunca le pediremos su contraseña de Flickr</strong> (pero Flickr podría pedírselo, verifique que la dirección a la que el botón le envía sea Flickr.com)."
   linked_flickr_photo_copy_html: "<strong>Nunca guardaremos copias de sus fotos o cambiaremos sus datos de Flickr (a menos que usted nos lo pida).</strong> ¡Nos importan mucho las aves, insectos y babosas para querer meternos con su información!"
   list: Lista
+  list_updated: ¡Lista actualizada!
   list_views:
       plain: plana
       taxonomic: taxonómia
       photo: fotos
   listed_taxon: "Taxón listado"
+  listed_taxon_updated: El listado de especie o grupo fue actualizado
   listing_announcement: "Anuncio de lista"
   listing_announcements: "Listado de anuncios"
   listing_lists: "Mostrando listas"
@@ -1665,6 +1671,13 @@ es:
   observing: observando
   occurence_status_describes_how: "El estado de ocurrencia describe que tan común o raro es un taxón en un área determinada. Ver DarwinCore para <a href=\"http: //code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus\">más información sobre terminología </a>."
   occurrence_status: "Estado de ocurrencia"
+  occurrence_status_levels:
+      present: presente
+      common: común
+      uncommon: no común
+      irregular: irregular
+      doubtful: dudoso
+      absent: ausente
   october: Octubre
   of: de
   of_it_and_its_descendants: "de él y sus descendientes"
@@ -1682,6 +1695,7 @@ es:
   only_accepts_taxa: "solamente acepta taxones"
   only_an_admin_can_remove_project_users: Solo el administrador puede eliminar usuarios del proyecto.
   only_country_state_and_county: "Sólo se muestran lugares de país, estado y equivalentes de país por ahora. Haga un acercamiento para ver lugares más pequeños."
+  only_curators_can_add_edit_scientific_names: Solo los curadores pueden añadir/editar nombres científicos.
   only_files_with_100_rows_at_a_time: "Solamente archivos con 100 filas cada vez, por favor"
   only_project_curators_can_do_that: Solo los curadores del proyecto pueden hacer eso.
   only_receive_updates_about_this_taxon: Solo recibir notificaciones de esta especie o grupo
@@ -2038,6 +2052,7 @@ es:
   select: Seleccionar
   select_all: "Seleccionar todo"
   select_an_album: "Seleccionar un álbum"
+  select: Selecciona
   select_one_or_more_photos: "Seleccionar uno o mas fotos"
   select_none: "No seleccionar ninguno"
   select_one_or_more_photos: 'Selecciona una o mas fotos'
@@ -2094,6 +2109,7 @@ es:
   something: Algo
   something_: algún grupo o especie
   something_went_wrong_adding: "Algo salió mal al agregar esa especie a su lista"
+  something_went_wrong_deleting_the_taxon_name: "Algo salió mal al eliminar el nombre de la especie o grupo: '%{taxon_name}'!"
   something_went_wrong_updating: "¡Algo salió mal al actualizar su lista!"
   somewhere: En algun lugar...
   somewhere_on_earth: "en algún lugar de la Tierra"
@@ -2257,6 +2273,8 @@ es:
   taxon_subscription: suscripción de especie o grupo
   taxon_to_delete: "Taxón a eliminar"
   taxon_to_keep: "Taxón a mantener"
+  taxon_name_was_deleted: El nombre del taxon fue eliminado.
+  taxon_name_was_successfully_updated: El nombre del taxon fue actualizado exitosamente.
   taxon_was_successfully_created: El Taxon fue creado exitosamente.
   taxon_was_successfully_updated: El Taxon fue actualizado exitosamente.
   taxonomic: Taxonómia
@@ -2502,6 +2520,7 @@ es:
   view_leaderboard_from_last_year: Ver el más activo del año pasado
   view_license: "Ver licencia"
   view_lists: "Ver las Listas"
+  view_more: Ver más
   view_more_about_x: "Ver más sobre %{x}"
   view_more_observations_from_x: "Ver más observaciones de %{x}"
   view_more_observations_from: Ve mas observaciones de
@@ -2963,6 +2982,7 @@ es:
   you_must_select_a_place_to_merge_with: Debes seleccionar un lugar para combinar.
   you_must_select_dates_to_compare: Debes seleccionar las fechas a comparar
   you_must_specify_and_confirm_a_new_password: Debes especificar y confirmar una nueva contraseña.
+  your_name_was_saved: El nombre fue guardado.
   you_need_to_have_linked_flickr_account: "Debe tener una cuenta de Flickr vinculada para etiquetar sus fotos."
   you_need_to_select_at_least_one_photo: ¡Necesitas seleccionar al menos una foto!
   you_need_to_select_some_observations_first: "Debe seleccionar algunas observaciones primero."

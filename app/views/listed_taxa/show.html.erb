@@ -4,7 +4,7 @@
     <%= link_to @taxon do %>
       <%= render :partial => "shared/taxon" %>
     <% end %>
-    <%=raw t(:on).downcase %>
+    <%=raw t(:on_).downcase %>
     <%= link_to truncate(@list.title, :length => 85), @list %>
   <% end -%>
   <%= strip_tags(@title).html_safe %>
@@ -38,7 +38,7 @@
         },
         load: function(event, ui) {
           $(ui.panel).append(
-            $('<a rel="nofollow">View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('href'))
+            $('<a rel="nofollow">' + I18n.t('view_more') + '</a>').addClass('readmore').attr('href', $(ui.tab).attr('href'))
           )
         }
       })
@@ -69,9 +69,9 @@
   <div class="observationcounts stacked">
     <div class="ui description">
       <strong><%= @listed_taxon.observations_count %></strong>
-      <%= (@listed_taxon.observations_count == 1 ? t(:observation) : t(:observations)).downcase -%>,
+      <%= (@listed_taxon.observations_count == 1 ? t(:observation) : t(:observations)) -%>,
       <strong class="count"><%= @listed_taxon.confirmed_observations_count %></strong>
-      <%=t :research_grade %>
+      <%= t :research_grade %>
     </div>
     <% unless @listed_taxon.observation_month_stats.blank? -%>
       <div class="statsgraphs stacked">
@@ -84,16 +84,16 @@
       </div>
     <% end -%>
   </div>
-  
+
   <% if @listed_taxon.first_observation -%>
     <p class="ui description">
       <%=t :first_inat_observation, :site_name => SITE_NAME_SHORT %>
       <%= link_to one_line_observation(@listed_taxon.first_observation, :skip => %w(user taxon)), @listed_taxon.first_observation %>
       <% if is_not_me?(@list.user) -%>
-        <%=t :by %> 
+        <%= t(:by).downcase %>
         <%= link_to user_image(@listed_taxon.first_observation.user), @listed_taxon.first_observation.user %>
         <%= link_to you_or_login(@listed_taxon.first_observation.user), @listed_taxon.first_observation.user %>,
-        <%= t(:added).downcase %> <%= @listed_taxon.first_observation.created_at.to_date.to_s(:long) %>
+        <%= t(:added).downcase %> <%= l(@listed_taxon.first_observation.created_at.to_date, :format => :long) %>
       <% end -%>
     </p>
   <% end -%>
@@ -103,7 +103,7 @@
       <%=t :last_observation %>
       <%= link_to one_line_observation(@listed_taxon.last_observation, :skip => %w(user taxon)), @listed_taxon.last_observation %>
       <% if is_not_me?(@list.user) -%>
-        <%=t :by %> 
+        <%= t(:by).downcase %>
         <%= link_to user_image(@listed_taxon.last_observation.user), @listed_taxon.last_observation.user %>
         <%= link_to you_or_login(@listed_taxon.last_observation.user), @listed_taxon.last_observation.user %>
       <% end -%>
@@ -113,23 +113,23 @@
   <%= separator %>
   
   <p class="ui description">
-    <%=t :added %> 
+    <%= t(:added).titleize %>
     <% if @listed_taxon.user %>
-      <%=t :by %> 
+      <%= t(:by).downcase %>
       <%= link_to user_image(@listed_taxon.user), @listed_taxon.user %>
       <%= link_to you_or_login(@listed_taxon.user), @listed_taxon.user %>
     <% end %>
-    <%=t :on %> <%= @listed_taxon.created_at.to_s(:long) %>
+    <%=t :on_day %> <%= l(@listed_taxon.created_at.to_date, :format => :long) %>
   </p>
   
   <p class="ui description">
     <%=t :updated %>
     <% if @listed_taxon.updater %>
-      <%=t :by %> 
+      <%= t(:by).downcase %>
       <%= link_to user_image(@listed_taxon.updater), @listed_taxon.updater %>
       <%= link_to you_or_login(@listed_taxon.updater), @listed_taxon.updater %>
     <% end %>
-    <%=t :on %> <%= @listed_taxon.updated_at.to_s(:long) %>
+    <%=t :on_day %> <%= l(@listed_taxon.created_at.to_date, :format => :long) %>
   </p>
   
   <div class="meta">

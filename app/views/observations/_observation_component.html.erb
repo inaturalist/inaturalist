@@ -137,7 +137,7 @@ Some notes:
     <span class="date" title="<%= observation.observed_on ? observation.observed_on.strftime("%Y-%m-%d") : '' %>">
       <%#= observation.observed_on ? observation.observed_on.strftime("%b. %e, %Y") : 'the past' %>
       <% if observation.observed_on -%>
-        <%= link_to observation.observed_on.strftime('%b'), 
+        <%= link_to t("date_format.month.#{observation.observed_on.strftime('%B').downcase}").titleize,
           observations_by_login_path(observation.user.login, :on => "#{observation.observed_on.year}-#{observation.observed_on.month}") %>
         <%= link_to observation.observed_on.day, 
           observations_by_login_path(observation.user.login, :on => "#{observation.observed_on.year}-#{observation.observed_on.month}-#{observation.observed_on.day}") %>,
@@ -149,7 +149,7 @@ Some notes:
     </span>
     <% if observation.time_observed_at %>
     <span class="time">
-      <%= observation.time_observed_at.in_time_zone(observation.time_zone).strftime("%I:%M %p %Z") %>
+      <%= observation.time_observed_at.in_time_zone(observation.time_zone).strftime("%I:%M %p %Z")  %>
     </span>
     <% end %>
   </div>

@@ -310,7 +310,7 @@
         <%= link_to_function(t(:stop_editing), "batchEdit()", :id => "stop_batch_edit_button", :class => 'button') %>
         <%= link_to_function(t(:edit_selected), "editSelected()", :id => "edit_selected_button", :class => 'button') %>
         <span class="inter">
-          Select
+          <%= t :select %>
           <%= link_to_function(t(:all), "$('.observation .control input:checkbox').check()", :id => "select_all_button") %>
           |
           <%= link_to_function(t(:today), "selectToday()", :id => "select_today_button") %>
