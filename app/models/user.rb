@@ -164,6 +164,16 @@ class User < ActiveRecord::Base
     return nil if icon.blank?
     "#{FakeView.root_url}#{icon.url(:thumb)}".gsub(/([^\:])\/\//, '\\1/')
   end
+  
+  def medium_user_icon_url
+    return nil if icon.blank?
+    "#{FakeView.root_url}#{icon.url(:medium)}".gsub(/([^\:])\/\//, '\\1/')
+  end
+  
+  def original_user_icon_url
+    return nil if icon.blank?
+    "#{FakeView.root_url}#{icon.url}".gsub(/([^\:])\/\//, '\\1/')
+  end
 
   def active?
     !suspended?

@@ -327,7 +327,9 @@ class UsersController < ApplicationController
             :icon_content_type, :icon_file_name, :icon_file_size,
             :icon_updated_at, :deleted_at, :remember_token_expires_at, :icon_url
           ],
-          :methods => [:user_icon_url]
+          :methods => [
+            :user_icon_url, :medium_user_icon_url, :original_user_icon_url
+          ]
         )
       end
     end
