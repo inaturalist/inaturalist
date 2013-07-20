@@ -14,8 +14,8 @@
     $(document).ready(function() {
       $('#species_guess').simpleTaxonSelector()
       $('#taxon_link_place_id').chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
-        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        collectionUrl: '/places/autocomplete.json',
+        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
         chosen: PLACE
       })
       toggleSpeciesOnly()

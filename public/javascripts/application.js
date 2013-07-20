@@ -210,8 +210,8 @@ $(document).ready(function() {
   $('[data-tip]').each(autoTip)
   
   $('.source_nested_form_fields input.existing').chooser({
-    collectionUrl: 'http://'+window.location.host + '/sources.json',
-    resourceUrl: 'http://'+window.location.host + '/sources/{{id}}.json'
+    collectionUrl: '/sources.json',
+    resourceUrl: '/sources/{{id}}.json'
   })
   
   $('.zoomable').zoomify()
