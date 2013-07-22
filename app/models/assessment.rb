@@ -5,7 +5,7 @@ class Assessment < ActiveRecord::Base
 
   validates_presence_of :project, :user, :taxon
 
-  has_many :sections, :foreign_key => 'assessment_id', :class_name => "AssessmentSection", :dependent => :destroy
+  has_many :sections, :order => 'display_order DESC', :foreign_key => 'assessment_id', :class_name => "AssessmentSection", :dependent => :destroy
   accepts_nested_attributes_for :sections, :allow_destroy => true
   validates_associated :sections
 

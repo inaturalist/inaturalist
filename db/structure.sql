@@ -9889,7 +9889,8 @@ CREATE TABLE assessment_sections (
     title character varying(255),
     body text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    display_order integer
 );
 
 
@@ -16141,6 +16142,8 @@ INSERT INTO schema_migrations (version) VALUES ('20130709005451');
 INSERT INTO schema_migrations (version) VALUES ('20130709212550');
 
 INSERT INTO schema_migrations (version) VALUES ('20130711181857');
+
+INSERT INTO schema_migrations (version) VALUES ('20130721235136');
 
 INSERT INTO schema_migrations (version) VALUES ('21');
 
