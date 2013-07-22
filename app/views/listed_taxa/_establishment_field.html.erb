@@ -5,9 +5,9 @@
 <div class="establishmentfield">
   <div class="establishment">
     <label><%=t :establishment_means %>:</label>
-    <%= listed_taxon.establishment_means || "unknown" %>
+    <%= listed_taxon.establishment_means || t(:unknown).downcase %>
     <% if list.listed_taxa_editable_by?(current_user) -%>
-      <%= link_to_function "edit", "$(this).parents('.establishment').hide(); $(this).parents('.establishmentfield').find('form').show()",
+      <%= link_to_function t(:edit), "$(this).parents('.establishment').hide(); $(this).parents('.establishmentfield').find('form').show()",
         :class => "small" %>
     <% end -%>
     <span class="establishment_tip_target description helptip" rel="#establishment_tip"></span>
@@ -17,10 +17,10 @@
         :id => dom_id(listed_taxon, "edit_establishment"), 
         :class => "clear box listed_taxon_form inline buttonrow smallbuttons", 
         :style => "display: none"} do |f| %>
-      <%= f.select :establishment_means, ListedTaxon::ESTABLISHMENT_MEANS, :include_blank => "unknown" %>
+      <%= f.select :establishment_means, ListedTaxon::ESTABLISHMENT_MEANS.map{|e| [t("establishment.#{e}", :default => e), e]}, :include_blank => t(:unknown) %>
       <span class="establishment_tip_target description helptip" rel="#establishment_tip"></span>
       <%= f.submit t(:save), :class => "default button" %>
-      <%= link_to_function "Cancel", "$(this).parents('.establishment').show(); $(this).parents('.establishmentfield').find('form').hide()", 
+      <%= link_to_function t(:cancel), "$(this).parents('.establishment').show(); $(this).parents('.establishmentfield').find('form').hide()",
         :class => "minor button" %>
     <% end %>
   <% end -%>

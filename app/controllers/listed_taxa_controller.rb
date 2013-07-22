@@ -69,7 +69,7 @@ class ListedTaxaController < ApplicationController
     respond_to do |format|
       format.html do
         if @listed_taxon.valid?
-          flash[:notice] = "List udpated!"
+          flash[:notice] = t(:list_updated)
         else
           flash[:error] = "D'oh, there was a problem updating your list: " +
                           @listed_taxon.errors.full_messages.join(', ')
@@ -120,7 +120,7 @@ class ListedTaxaController < ApplicationController
     respond_to do |format|
       if @listed_taxon.update_attributes(listed_taxon.merge(:updater_id => current_user.id))
         format.html do
-          flash[:notice] = "Listed taxon updated"
+          flash[:notice] = t(:listed_taxon_updated)
           redirect_to :back
         end
         format.json do
@@ -162,7 +162,7 @@ class ListedTaxaController < ApplicationController
     
     respond_to do |format|
       format.html do
-        flash[:notice] = "Taxon removed from list."
+        flash[:notice] = t(:taxon_removed_from_list)
         return redirect_to(@listed_taxon.list)
       end
       format.json do
