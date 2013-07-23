@@ -25,8 +25,12 @@ class CommentsController < ApplicationController
       @comments.map(&:parent_id), @comments.last.created_at
     ]).sort_by{|c| c.id}
     @comments_by_parent_id = @extra_comments.group_by{|c| c.parent_id}
-    if params[:partial]
-      render :partial => 'listing', :collection => @comments, :layout => false
+    respond_to do |format|
+      format.html do
+        if params[:partial]
+          render :partial => 'listing', :collection => @comments, :layout => false
+        end
+      end
     end
   end
   
