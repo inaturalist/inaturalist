@@ -133,13 +133,13 @@ input,select,textarea{font-family:"Trebuchet MS",Arial,sans-serif;}
 form .field{margin-bottom:10px;}
 
 .twocolform .field {position:relative; padding-left: 110px;}
-.twocolform .field .label {width: 100px; position:absolute; top:0; left: 0; text-align:right;}
-.twocolform .field.text_field .label {padding-top:0.6em;}
+.twocolform .field .inlabel {width: 100px; position:absolute; top:0; left: 0; text-align:right;}
+.twocolform .field.text_field .inlabel {padding-top:0.6em;}
 
 .required{color:deeppink;}
-.label { margin-bottom: 0.2em;}
+.inlabel { margin-bottom: 0.2em;}
 form .field .description { margin-bottom: 0.5em;}
-.label .fieldWithErrors{display:inline;}
+.inlabel .fieldWithErrors{display:inline;}
 .stacked{margin-bottom:10px;}
 .upstacked{margin-top:10px;}
 .unstacked, .column.unstacked{margin-bottom:0px;}
@@ -1131,7 +1131,7 @@ form.edit_preferences .field {
 
 form.inline, 
 form.inline .field,
-form.inline .label {
+form.inline .inlabel {
   display: inline-block;
   margin-bottom: 0;
 }
@@ -1621,4 +1621,3 @@ ul.plain {list-style:none;margin:0;padding:0}
 .ministats .monthgraph .month_0 { display:none;}
 
 .delete .ui-icon {background-image: url(/images/jquery-ui/ui-icons_888888_256x240.png);}
-.inlabel {display:inline-block;}
