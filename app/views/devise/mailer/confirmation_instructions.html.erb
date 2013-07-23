@@ -2,7 +2,7 @@
   img_url = if CONFIG.logo_icon_square_big =~ /http/
     CONFIG.logo_icon_square_big
   else
-    FakeView.uri_join(root_url, CONFIG.logo_icon_square_big)
+    FakeView.uri_join(root_url, image_url(CONFIG.logo_icon_square_big))
   end
 -%>
 <%= link_to image_tag(img_url, 
