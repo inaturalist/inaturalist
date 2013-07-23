@@ -2,8 +2,8 @@ $.fn.observationFieldsForm = function(options) {
   $(this).each(function() {
     var that = this
     $('.observation_field_chooser', this).chooser({
-      collectionUrl: 'http://'+window.location.host + '/observation_fields.json',
-      resourceUrl: 'http://'+window.location.host + '/observation_fields/{{id}}.json',
+      collectionUrl: '/observation_fields.json',
+      resourceUrl: '/observation_fields/{{id}}.json',
       afterSelect: function(item) {
         $('.observation_field_chooser', that).parents('.ui-chooser:first').next('.button').click()
         $('.observation_field_chooser', that).chooser('clear')

@@ -4,12 +4,12 @@ $('#addtaxa').modal({
 })
 $('#addtaxa').on('shown', function() { $('input:visible', this).focus() })
 $('#addtaxa-place .taxonchooser').chooser({
-  collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
-  resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser'
+  collectionUrl: '/taxa/autocomplete.json',
+  resourceUrl: '/taxa/{{id}}.json?partial=chooser'
 })
 $('#addtaxa-place .placechooser').chooser({
-  collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
-  resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item'
+  collectionUrl: '/places/autocomplete.json',
+  resourceUrl: '/places/{{id}}.json?partial=autocomplete_item'
 })
 $('#addtaxa-place .chooser').change(function() {
   $('#addtaxa-place .status').addClass('loading').html('Counting matches...')
@@ -35,8 +35,8 @@ window.addTaxonField = function() {
   var newInput = $('<input type="text" name="taxon_id" placeholder="'+I18n.t('start_typing_taxon_name')+'"/>')
   $('#addtaxa-single').append(newInput)
   newInput.chooser({
-    collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
-    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+    collectionUrl: '/taxa/autocomplete.json',
+    resourceUrl: '/taxa/{{id}}.json?partial=chooser',
     afterSelect: function(taxon) {
       window.addTaxonField()
     }
@@ -262,8 +262,8 @@ google.maps.event.addListener(map, 'zoom_changed', function() {
 })
 window.firstRun = true
 $('#guide_place_id').chooser({
-  collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json?with_geom=t',
-  resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+  collectionUrl: '/places/autocomplete.json?with_geom=t',
+  resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
   chosen: PLACE,
   afterSelect: function(item) {
     $('#guide_place_id').data('json', item)

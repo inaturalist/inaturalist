@@ -27,13 +27,13 @@
 <script type="text/javascript" charset="utf-8">
   $('#taxonchooser').chooser({
     queryParam: 'q',
-    collectionUrl: 'http://'+window.location.host + '/taxa/search.json',
-    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json'
+    collectionUrl: '/taxa/search.json',
+    resourceUrl: '/taxa/{{id}}.json'
   })
   $('#projectchooser').chooser({
     queryParam: 'q',
-    collectionUrl: 'http://'+window.location.host + '/projects/search.json',
-    resourceUrl: 'http://'+window.location.host + '/projects/{{id}}.json',
+    collectionUrl: '/projects/search.json',
+    resourceUrl: '/projects/{{id}}.json',
     defaultSources: <%= @projects.to_json.html_safe %>
   })
     var DEFAULT_PHOTO_IDENTITY_URL = "/facebook/photo_fields", //?context=user",

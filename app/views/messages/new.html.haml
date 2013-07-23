@@ -35,8 +35,8 @@
     $('#message_to_user_id').chooser({
       queryParam: 'q',
       defaultSources: CONTACTS,
-      collectionUrl: 'http://'+window.location.host + '/people/search.json',
-      resourceUrl: 'http://'+window.location.host + '/people/{{id}}.json'
+      collectionUrl: '/people/search.json',
+      resourceUrl: '/people/{{id}}.json'
     })
   }
   

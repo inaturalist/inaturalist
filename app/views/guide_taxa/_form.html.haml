@@ -22,8 +22,8 @@
   :javascript
     var GUIDE_TAXON = #{raw @guide_taxon.to_json}
     $('#guide_taxon_taxon_id:visible').chooser({
-      collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
-      resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+      collectionUrl: '/taxa/autocomplete.json',
+      resourceUrl: '/taxa/{{id}}.json?partial=chooser',
     })
     $('#edit_photos_dialog').dialog({
       modal: true, 
