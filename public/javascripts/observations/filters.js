@@ -43,8 +43,8 @@ function showFilters(link, options) {
   }
   if ($('#place_filter .ui-widget').length == 0) {
     $('#filters input[name=place_id]').chooser({
-      collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
-      resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+      collectionUrl: '/places/autocomplete.json',
+      resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
       chosen: eval('(' + $('#filters input[name=place_id]').attr('data-json') + ')')
     })
   }

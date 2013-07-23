@@ -36,14 +36,14 @@
     window.defaultTaxa = <%= @default_taxa.to_json(:methods => [:html]).html_safe %>
     $(document).ready(function() {
       $('#filters_taxon_id').chooser({
-        collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
-        resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+        collectionUrl: '/taxa/autocomplete.json',
+        resourceUrl: '/taxa/{{id}}.json?partial=chooser',
         defaultSources: defaultTaxa,
         chosen: taxon
       })
       $('#filters_source_id').chooser({
-        collectionUrl: 'http://'+window.location.host + '/sources.json',
-        resourceUrl: 'http://'+window.location.host + '/sources/{{id}}.json'
+        collectionUrl: '/sources.json',
+        resourceUrl: '/sources/{{id}}.json'
       })
       
       if (taxon) {
