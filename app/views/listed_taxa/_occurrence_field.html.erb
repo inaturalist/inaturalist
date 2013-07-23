@@ -5,7 +5,11 @@
 <div class="occurrencefield">
   <div id="occurrence">
     <label><%=t :occurrence_status %>:</label>
-    <%= t("occurrence_status_levels.#{listed_taxon.occurrence_status}", :default => listed_taxon.occurrence_status) || t(:unknown).downcase %>
+    <% if listed_taxon.occurrence_status.blank? %>
+      <%= t(:unknown).downcase %>
+    <% else %>
+      <%= t("occurrence_status_levels.#{listed_taxon.occurrence_status}", :default => listed_taxon.occurrence_status) || t(:unknown).downcase %>
+    <% end -%>
     <% if list.listed_taxa_editable_by?(current_user) -%>
       <%= link_to_function t(:edit), "$(this).parents('.occurrence').hide(); $(this).parents('.occurrencefield').find('form').show()",
         :class => "small" %>
