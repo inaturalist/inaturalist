@@ -1589,7 +1589,7 @@ class Observation < ActiveRecord::Base
     lat = private_latitude || latitude
     lon = private_longitude || longitude
     acc = private_positional_accuracy || positional_accuracy
-    candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area}
+    candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area || 0}
 
     # at present we use PostGIS GEOMETRY types, which are a bit stupid about
     # things crossing the dateline, so we need to do an app-layer check.
