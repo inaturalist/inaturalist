@@ -68,6 +68,20 @@ shared_examples_for "an ObservationsController" do
       response_photo.should_not be_blank
       response_photo['metadata'].should be_blank
     end
+
+    it "should include observation field values" do
+      ofv = ObservationFieldValue.make!
+      get :show, :format => :json, :id => ofv.observation_id
+      response_obs = JSON.parse(response.body)
+      response_obs['observation_field_values'].first['value'].should eq(ofv.value)
+    end
+
+    it "should include observation field values with observation field names" do
+      ofv = ObservationFieldValue.make!
+      get :show, :format => :json, :id => ofv.observation_id
+      response_obs = JSON.parse(response.body)
+      response_obs['observation_field_values'].first['observation_field']['name'].should eq(ofv.observation_field.name)
+    end
   end
 
   define "update" do
