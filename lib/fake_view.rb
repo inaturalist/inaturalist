@@ -34,4 +34,12 @@ class FakeView < ActionView::Base
   def self.default_url_options
     @@default_url_options
   end
+
+  def config
+    fake_controller.config
+  end
+
+  def fake_controller
+    @fake_controller ||= ApplicationController.new
+  end
 end
