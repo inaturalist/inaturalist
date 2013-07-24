@@ -399,7 +399,7 @@ module ApplicationHelper
   end
   
   def image_url(source, options = {})
-    abs_path = image_path(source)
+    abs_path = image_path(source).to_s
     unless abs_path =~ /\Ahttp/
      abs_path = uri_join(root_url, abs_path).to_s
     end

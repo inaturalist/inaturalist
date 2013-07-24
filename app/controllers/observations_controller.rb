@@ -59,7 +59,7 @@ class ObservationsController < ApplicationController
   before_filter :mobilized, :only => MOBILIZED
   before_filter :load_prefs, :only => [:index, :project, :by_login]
   
-  ORDER_BY_FIELDS = %w"created_at observed_on species_guess"
+  ORDER_BY_FIELDS = %w"created_at observed_on project species_guess"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng"
   DISPLAY_ORDER_BY_FIELDS = {
@@ -67,7 +67,8 @@ class ObservationsController < ApplicationController
     'observations.id' => 'date added',
     'id' => 'date added',
     'observed_on' => 'date observed',
-    'species_guess' => 'species name'
+    'species_guess' => 'species name',
+    'project' => "date added to project"
   }
   PARTIALS = %w(cached_component observation_component observation mini)
   EDIT_PARTIALS = %w(add_photos)

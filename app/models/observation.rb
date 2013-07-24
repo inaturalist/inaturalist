@@ -389,6 +389,8 @@ class Observation < ActiveRecord::Base
       order "observed_on #{order} #{extra}, time_observed_at #{order} #{extra}"
     when 'created_at'
       order "observations.id #{order} #{extra}"
+    when 'project'
+      order("project_observations.id #{order} #{extra}").joins(:project_observations)
     else
       order "#{order_by} #{order} #{extra}"
     end
