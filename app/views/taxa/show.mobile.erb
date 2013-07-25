@@ -20,7 +20,7 @@
 <%- end -%> 
 <% in_format :html do %>
   <div class="small stacked crumbs">
-    <%= @taxon.self_and_ancestors.map{|t| link_to(t.name, t.name == 'Life' ? taxa_path : t)}.join(' > ').html_safe %>
+    <%= @taxon.self_and_ancestors.map{|t| link_to(t(t.name.downcase, :default => t.name), t.name == 'Life' ? taxa_path : t)}.join(' > ').html_safe %>
   </div>
   <div id="photo" class="stacked">
     <%= render :partial => "taxa/taxon", :object => @taxon, :locals => {

@@ -72,7 +72,7 @@
 <% end -%>
 
 <% unless @observation.description.blank? -%>
-  <h3>Description</h3>
+  <h3><%=t :description %></h3>
   <%= formatted_user_text @observation.description %>
 <% end -%>
 
@@ -88,7 +88,7 @@
   <% end -%>
 
   <div id="dates" class="description date nobr">
-    <label><%=t :added %></label>
+    <label><%= t(:added).capitalize %></label>
     <span class="date">
       <%= @observation.created_at.strftime("%b. %e, %Y") %>
     </span>
@@ -135,7 +135,12 @@
 
 <div class="inline buttonrow" style="text-align:center;">
   <%= link_to(t(:prev), @prev, :class => "prevlink button inlineblock") if @prev %>
-  <%= link_to "#{truncate possessive(@observation.user, :capitalize => true), :length => 16} "+ t(:observations), 
+  <% txt = if is_me? @observation.user
+    t(:your_observations)
+  else
+    t(:users_observations, :user => truncate(@observation.user.login, :length => 16))
+  end -%>
+  <%= link_to txt, 
     observations_by_login_path(@observation.user.login), :class => "inlineblock button uplink" %>
-  <%= link_to("Next", @next, :class => "nextlink button inlineblock") if @next %>
+  <%= link_to(t(:next), @next, :class => "nextlink button inlineblock") if @next %>
 </div>
