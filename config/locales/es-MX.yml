@@ -260,6 +260,7 @@ es-MX:
       class: Clase
       phylum: Filo
       species: Especie
+      order: Orden
     plants: Plantas
     animals: Animales
     mollusks: Moluscos
@@ -6974,7 +6975,7 @@ es-MX:
   or_post_message_to_google_group: "o envía un mensaje a nuestro Grupo Google"
   or_you_can: "O si puedes..."
   orange: Anaranjado
-  order: Orden
+  Order: Orden
   order_by: "Orden por"
   other: otro
   other_animals: "Otros animales"
@@ -7681,6 +7682,7 @@ es-MX:
   unique_observers: observadores únicos
   unique_observers_last_3_months: "Observaciones únicas en los pasados 3 meses,"
   unknown: Desconocido
+  unknown_rank: '(Clasificación desconocida)'
   unlink_your_picasa_account: "Desenlaza tu cuenta Picasa"
   unpublish: "Cancela publicación"
   unsubscribe: Quitar suscripción
@@ -8079,6 +8081,9 @@ es-MX:
   x_people: 
     one: "Una persona"
     other: "%{count} personas"
+  x_site_is_a_social_network_for_naturalist: |
+        %{site} es una red social para amantes de la naturaleza en donde puedes guardar tus observaciones de plantas y animales,
+        y compartirlas con tus amigos e investigadores para aprende más acerca de nuetra biodiversidad.
   x_species: 
     one: "Una especie"
     other: "%{count} especies"

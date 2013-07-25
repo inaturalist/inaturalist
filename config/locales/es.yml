@@ -225,6 +225,7 @@ es:
        class: Clase
        phylum: Filo
        species: Especie
+       order: Orden
      plants: Plantas
      animals: Animales
      mollusks: Moluscos
@@ -2457,6 +2458,7 @@ es:
   unique_observers: observadores únicos
   unique_observers_last_3_months: "observadores únicos en los últimos 3 meses,"
   unknown: Desconocido
+  unknown_rank: '(Clasificación desconocida)'
   unlink_your_picasa_account: "Desvincular su cuenta de Picasa"
   updates_notification_email_subject: "%{prefix} Nuevas actualizaciones %{date}"
   unpublish: Despublicar
@@ -2927,6 +2929,9 @@ es:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> observacion grado de la investigación identificaron a las especies</span>"
     other: "<span class='count'>%{count}</span> observaciones grado de la investigación identificaron a las especies</span>"
+  x_site_is_a_social_network_for_naturalist: |
+      %{site} es una red social para NaturaListas en donde puedes guardar tus observaciones de plantas y animales,
+      y compartirlas con tus amigos e investigadores, y aprende más acerca de nuetra biodiversidad.
   x_wrote_a_new_post_html: "%{x} escribió una nueva ingreso"
   x_wrote_y_new_posts_html: "%{x} escribió %{y} nuevas ingresos"
   year: Año
