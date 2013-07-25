@@ -9,7 +9,7 @@
   <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
     <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" /> 
   <% end -%>
-  <meta property="og:description" content="<%= SITE_NAME %> is a social network for naturalists! Record your observations of plants and animals, share them with friends and researchers, and learn about the natural world."/>
+  <meta property="og:description" content="<%= t(:x_site_is_a_social_network_for_naturalist, :site => SITE_NAME) %>"/>
 <% end -%>
 <%- content_for(:extrajs) do -%>
   <!--[if lt IE 8]>
