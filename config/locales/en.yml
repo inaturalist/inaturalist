@@ -194,6 +194,7 @@ en:
       class: Class
       phylum: Phylum
       species: Species
+      order: Order
     plants: Plants
     animals: Animals
     mollusks: Mollusks
@@ -2226,6 +2227,7 @@ en:
   unique_observers: unique observers
   unique_observers_last_3_months: unique observers in the last 3 months
   unknown: Unknown
+  unknown_rank: '(Unknown Rank)'
   unlink_your_picasa_account: Unlink Your Picasa Account
   updates_notification_email_subject: "%{prefix} New updates %{date}"
   unpublish: Unpublish
@@ -2402,6 +2404,9 @@ en:
   x_journal_middot: "%{user}'s Journal &middot;"
   x_journal_new_post: "%{user}'s Journal &middot; New Post"
   x_sent_you_a_new_message_on_y_html: "%{x} sent you a new message on %{y}: "
+  x_site_is_a_social_network_for_naturalist: |
+    %{site} is a social network for naturalists! Record your observations of plants and animals,
+    share them with friends and researchers, and learn about the natural world.
   x_wrote_a_new_post_html: "%{x} wrote a new post"
   x_wrote_y_new_posts_html: "%{x} wrote %{y} new posts"
   year: Year
