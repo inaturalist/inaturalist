@@ -412,12 +412,7 @@ class ObservationsController < ApplicationController
       @observation.species_guess =  params[:taxon_name]
     end
     
-    @observation_fields = ObservationField.
-      joins(:observations => :user)
-      where("users.id = ?", current_user).
-      group("observation_fields.id").
-      limit(10).
-      order("observation_field_values.id DESC")
+    @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
     
     respond_to do |format|
       format.html do
@@ -483,12 +478,7 @@ class ObservationsController < ApplicationController
     sync_flickr_photo if params[:flickr_photo_id]
     sync_picasa_photo if params[:picasa_photo_id]
     sync_local_photo if params[:local_photo_id]
-    @observation_fields = ObservationField.
-      joins(:observations => :user)
-      where("users.id = ?", current_user).
-      group("observation_fields.id").
-      limit(10).
-      order("observation_field_values.id DESC")
+    @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
 
     if @observation.quality_metrics.detect{|qm| qm.user_id == @observation.user_id && qm.metric == QualityMetric::WILD && !qm.agree?}
       @observation.captive = true
@@ -1360,12 +1350,7 @@ class ObservationsController < ApplicationController
     elsif params[:observation_fields]
       ObservationField.where("id IN (?)", params[:observation_fields])
     else
-      @observation_fields = ObservationField.
-        joins(:observations => :user).
-        where("users.id = ?", current_user).
-        group("observation_fields.id").
-        limit(10).
-        order("observation_field_values.id DESC")
+      @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
     end
     render :layout => false
   end
