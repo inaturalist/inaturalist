@@ -1171,6 +1171,7 @@ class Taxon < ActiveRecord::Base
     scope = scope.where(:lexicon => options[:lexicon]) if options[:lexicon]
     scope = scope.where("taxon_names.is_valid = ?", true) if options[:valid]
     names = tags.map do |tag|
+      next if tag.blank?
       if name = tag.match(/^taxonomy:\w+=(.*)/).try(:[], 1)
         name.downcase
       else
