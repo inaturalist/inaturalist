@@ -413,8 +413,9 @@ class ObservationsController < ApplicationController
     end
     
     @observation_fields = ObservationField.
-      includes(:observation_field_values => :observation).
-      where("observations.user_id = ?", current_user).
+      joins(:observations => :user)
+      where("users.id = ?", current_user).
+      group("observation_fields.id").
       limit(10).
       order("observation_field_values.id DESC")
     
@@ -483,8 +484,9 @@ class ObservationsController < ApplicationController
     sync_picasa_photo if params[:picasa_photo_id]
     sync_local_photo if params[:local_photo_id]
     @observation_fields = ObservationField.
-      joins(:observation_field_values => :observation).
+      joins(:observations => :user)
       where("users.id = ?", current_user).
+      group("observation_fields.id").
       limit(10).
       order("observation_field_values.id DESC")
 
@@ -1359,8 +1361,9 @@ class ObservationsController < ApplicationController
       ObservationField.where("id IN (?)", params[:observation_fields])
     else
       @observation_fields = ObservationField.
-        joins(:observation_field_values => :observation).
+        joins(:observations => :user).
         where("users.id = ?", current_user).
+        group("observation_fields.id").
         limit(10).
         order("observation_field_values.id DESC")
     end
