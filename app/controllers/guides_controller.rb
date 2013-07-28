@@ -3,9 +3,9 @@ class GuidesController < ApplicationController
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa]
   layout "bootstrap"
-  PDF_LAYOUTS = %w(grid book journal)
+  PDF_LAYOUTS = GuidePdfFlowTask::LAYOUTS
 
-  caches_page :show, :if => Proc.new {|c| c.request.format == :pdf && c.request.query_parameters.blank?}
+  # caches_page :show, :if => Proc.new {|c| c.request.format == :pdf && c.request.query_parameters.blank?}
   
   # GET /guides
   # GET /guides.json
@@ -93,18 +93,42 @@ class GuidesController < ApplicationController
       format.pdf do
         @guide_taxa = @guide.guide_taxa.order("guide_taxa.position").
           includes({:taxon => [:taxon_ranges_without_geom]}, :guide_photos, :guide_sections)
-        @layout = params[:layout] if PDF_LAYOUTS.include?(params[:layout])
-        @layout ||= "grid"
+        @layout = params[:layout] if GuidePdfFlowTask::LAYOUTS.include?(params[:layout])
+        @layout ||= GuidePdfFlowTask::GRID
         @template = "guides/show_#{@layout}.pdf.haml"
-        render :pdf => "#{@guide.title.parameterize}.#{@layout}", 
-          :layout => "bootstrap.pdf",
-          :template => @template,
-          :orientation => @layout == "journal" ? 'Landscape' : nil,
-          :show_as_html => params[:debug].present? && logged_in?,
-          :margin => {
-            :left => 0,
-            :right => 0
-          }
+        if params[:debug].present?
+          render :pdf => "#{@guide.title.parameterize}.#{@layout}", 
+            :layout => "bootstrap.pdf",
+            :template => @template,
+            :orientation => @layout == "journal" ? 'Landscape' : nil,
+            :show_as_html => true,
+            :margin => {
+              :left => 0,
+              :right => 0
+            }
+        elsif matching_flow_task = GuidePdfFlowTask.
+            select("DISTINCT ON (flow_tasks.id) flow_tasks.*").
+            joins("INNER JOIN flow_task_resources inputs ON inputs.flow_task_id = flow_tasks.id").
+            joins("INNER JOIN flow_task_resources outputs ON inputs.flow_task_id = flow_tasks.id").
+            where("inputs.type = 'FlowTaskInput'").
+            where("outputs.type = 'FlowTaskOutput'").
+            where("inputs.resource_type = 'Guide' AND inputs.resource_id = ?", @guide).
+            where("outputs.file_file_name IS NOT NULL").
+            order("flow_tasks.id DESC").
+            detect{|ft| ft.options['layout'] == @layout}
+          redirect_to matching_flow_task.outputs.first.file.url
+        else
+          # # generate flow task
+          # flow_task = GuidePdfFlowTask.new(
+          #   :user => current_user,
+          #   :redirect_url => request.url
+          # )
+          # flow_task.inputs.build(:resource => @guide)
+          # flow_task.options = {'layout' => @layout}
+          # flow_task.save!
+          # redirect_to run_flow_task_path(flow_task)
+          render :status => :not_found, :text => "", :layout => false
+        end
       end
     end
   end

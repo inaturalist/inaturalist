@@ -36,6 +36,13 @@ GIT
       nokogiri (~> 1.5.0)
 
 GIT
+  remote: git://github.com/jrgifford/delayed_paperclip.git
+  revision: 9c2afd91193b5cd409b8cc34768e6a0b68eed1d5
+  specs:
+    delayed_paperclip (2.6.0.0)
+      paperclip (>= 3.3.0)
+
+GIT
   remote: git://github.com/kueda/georuby.git
   revision: 00a95123977726492a4049eb1c36f98c372cd714
   specs:
@@ -43,7 +50,7 @@ GIT
 
 GIT
   remote: git://github.com/kueda/riparian.git
-  revision: a459bfe905d9239c96573506e88140c326133d97
+  revision: 36eba5f4d9a96b4f0a7fc91fd9ced55213380c09
   specs:
     riparian (0.4.0)
       activesupport (> 3.0.0)
@@ -75,14 +82,6 @@ GIT
       rails (>= 3.1.2)
 
 GIT
-  remote: git://github.com/tommeier/delayed_paperclip
-  revision: c23a537c0c5d7488059b07a036ebfa4f5e52d43e
-  branch: fix_312
-  specs:
-    delayed_paperclip (2.4.5.2)
-      paperclip (>= 2.4.5)
-
-GIT
   remote: https://github.com/37signals/mail_view.git
   revision: 2e2b00897cb79b1a6924240b43a7521915efe215
   specs:
@@ -101,12 +100,12 @@ GEM
   remote: http://rubygems.org/
   specs:
     aasm (3.0.19)
-    actionmailer (3.2.13)
-      actionpack (= 3.2.13)
-      mail (~> 2.5.3)
-    actionpack (3.2.13)
-      activemodel (= 3.2.13)
-      activesupport (= 3.2.13)
+    actionmailer (3.2.14)
+      actionpack (= 3.2.14)
+      mail (~> 2.5.4)
+    actionpack (3.2.14)
+      activemodel (= 3.2.14)
+      activesupport (= 3.2.14)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       journey (~> 1.0.4)
@@ -114,19 +113,19 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    activemodel (3.2.13)
-      activesupport (= 3.2.13)
+    activemodel (3.2.14)
+      activesupport (= 3.2.14)
       builder (~> 3.0.0)
-    activerecord (3.2.13)
-      activemodel (= 3.2.13)
-      activesupport (= 3.2.13)
+    activerecord (3.2.14)
+      activemodel (= 3.2.14)
+      activesupport (= 3.2.14)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activeresource (3.2.13)
-      activemodel (= 3.2.13)
-      activesupport (= 3.2.13)
-    activesupport (3.2.13)
-      i18n (= 0.6.1)
+    activeresource (3.2.14)
+      activemodel (= 3.2.14)
+      activesupport (= 3.2.14)
+    activesupport (3.2.14)
+      i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.4)
     airbrake (3.1.12)
@@ -224,7 +223,7 @@ GEM
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
     httpauth (0.2.0)
-    i18n (0.6.1)
+    i18n (0.6.4)
     i18n-js (2.1.2)
       i18n
     journey (1.0.4)
@@ -255,7 +254,7 @@ GEM
     mime-types (1.23)
     mocha (0.14.0)
       metaclass (~> 0.0.1)
-    multi_json (1.7.6)
+    multi_json (1.7.7)
     multi_xml (0.5.4)
     multipart-post (1.2.0)
     net-http-digest_auth (1.3)
@@ -325,19 +324,19 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.13)
-      actionmailer (= 3.2.13)
-      actionpack (= 3.2.13)
-      activerecord (= 3.2.13)
-      activeresource (= 3.2.13)
-      activesupport (= 3.2.13)
+    rails (3.2.14)
+      actionmailer (= 3.2.14)
+      actionpack (= 3.2.14)
+      activerecord (= 3.2.14)
+      activeresource (= 3.2.14)
+      activesupport (= 3.2.14)
       bundler (~> 1.0)
-      railties (= 3.2.13)
+      railties (= 3.2.14)
     rails_autolink (1.1.0)
       rails (> 3.1)
-    railties (3.2.13)
-      actionpack (= 3.2.13)
-      activesupport (= 3.2.13)
+    railties (3.2.14)
+      actionpack (= 3.2.14)
+      activesupport (= 3.2.14)
       rack-ssl (~> 1.3.2)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
@@ -438,7 +437,7 @@ DEPENDENCIES
   dbf
   delayed_job
   delayed_job_active_record
-  delayed_paperclip (= 2.4.5.2)!
+  delayed_paperclip!
   devise
   devise-encryptable
   devise_suspendable
@@ -472,7 +471,7 @@ DEPENDENCIES
   omniauth-openid
   omniauth-soundcloud
   omniauth-twitter
-  paperclip
+  paperclip (= 3.4.2)
   pg
   preferences!
   rack-google-analytics

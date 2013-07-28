@@ -22,7 +22,6 @@ $('#addtaxa-place .chooser').change(function() {
     var c = parseInt(xhr.getResponseHeader('x-total-entries') || 0),
         names = $.map(taxa, function(t) { return t.name }),
         msg = I18n.t('x_matching_taxa_html', {count: c})
-    console.log("[DEBUG] msg: ", msg)
     if (names.length == 1) {
       msg += ": " + names.join(', ')
     } else if (names.length > 0){

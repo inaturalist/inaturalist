@@ -36,6 +36,7 @@
   = google_maps_js
   = javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js", 'jquery/plugins/waypoints.min'
   :javascript
+    var GUIDE = #{raw @guide.to_json}
     $('.tile .img').imagesLoaded(function() {
       $('img', this).not('.iconic').centerInContainer()
     })
@@ -49,6 +50,67 @@
       triggerOnce: true,
       offset: '100%'
     })
+    $('#new_guide_pdf_flow_task input[type=submit]').click(function() {
+      var layout = $('#new_guide_pdf_flow_task input[name*=layout]:checked').val(),
+          pdfUrl = '/guides/'+GUIDE.id+'.'+layout+'.pdf'
+      // send HEAD request to see if PDF exists
+      $.ajax({
+        type: 'HEAD',
+        url: pdfUrl,
+        statusCode: {
+          200: function() {
+            // if exists, open that in new window and cancel form submission
+            window.open(pdfUrl, '_self')
+          },
+          404: function() {
+            // else submit the form
+            loadingClickForButton.apply($('.modal:visible input[data-loading-click]').get(0), [{ajax:false}])
+            $('.modal:visible .patience').show()
+            $('#new_guide_pdf_flow_task').submit()
+          }
+        }
+      })
+      return false
+    })
+    $('#new_guide_pdf_flow_task').bind('ajax:success', function(e, json) {
+      // on form submit success, hit flow_tasks/run and wait until flow task is complete
+      var runUrl = '/flow_tasks/'+json.id+'/run.json',
+          pdfUrl = '/guides/'+GUIDE.id
+      runFlowTask(runUrl, pdfUrl)
+      // open url in new window when complete and close modal
+    })
+    window.runFlowTask = function(runUrl, pdfUrl) {
+      window.delayedLinkTries = (window.delayedLinkTries || 0) + 1
+      if (window.delayedLinkTries > 20) {
+        $('.modal:visible .patience').hide()
+        var btn = $('.modal.visible input[data-loading-click]')
+        btn.attr('disabled', false).removeClass('disabled description')
+        btn.val(btn.data('original-value'))
+        alert('This seems to be taking forever.  Please try again later.')
+        return
+      }
+      $.ajax({
+        url: runUrl,
+        type: 'get',
+        dataType: 'json',
+        statusCode: {
+          // Accepted: request acnkowledged but file hasn't been generated
+          202: function() {
+            setTimeout('runFlowTask("'+runUrl+'", "'+pdfUrl+'")', 5000)
+          },
+          // OK: file is ready
+          200: function(flowTask) {
+            $('.modal:visible .patience').hide()
+            var btn = $('.modal.visible input[data-loading-click]')
+            btn.attr('disabled', false).removeClass('disabled description')
+            btn.val(btn.data('original-value'))
+            window.open(flowTask.redirect_url, '_self')
+          }
+        }
+      }).error(function(arguments) {
+        console.log("[DEBUG] error: ", arguments)
+      })
+    }
 .container-fluid
   %ul.breadcrumb
     %li
@@ -59,14 +121,9 @@
     .span12
       #actions.right
         .btn-group.pull-right
-          %button.btn.dropdown-toggle{"data-toggle" => "dropdown"}
-            =t :pdf
-            %span.caret
-          %ul.dropdown-menu
-            - for l in GuidesController::PDF_LAYOUTS
-              %li= link_to t(l), guide_pdf_path(@guide, :layout => l), :target => "_blank"
-        - if @guide.editable_by?(current_user)
-          = link_to t(:edit), edit_guide_path(@guide), :class => "btn"
+          %button.btn.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#pdf_dialog"}=t :pdf
+          - if @guide.editable_by?(current_user)
+            = link_to t(:edit), edit_guide_path(@guide), :class => "btn"
       %h1
         - if @guide.icon.file?
           = image_tag @guide.icon.url(:thumb), :class => "left img-rounded"
@@ -181,3 +238,23 @@
     %p
       =t :photo_credits
       = references(:linked => true)
+
+#pdf_dialog.modal.fade.hide
+  .modal-header
+    %button.close{:type => "button", "data-dismiss" => "modal"} x
+    %h3=t :generate_pdf
+  .modal-body
+    = form_for GuidePdfFlowTask.new, :url => flow_tasks_url, :remote => true, :html => {'data-type' => 'json'} do |f|
+      = f.fields_for :inputs, f.object.inputs.build(:resource => @guide) do |fi|
+        = fi.hidden_field :resource_type
+        = fi.hidden_field :resource_id
+      %label=t :layout
+      .row-fluid
+        - GuidePdfFlowTask::LAYOUTS.each do |l|
+          %div{:class => "span#{12 / GuidePdfFlowTask::LAYOUTS.size}"}
+            = f.label :options, :value => l, :class => "radio" do
+              = f.radio_button :options, l, :name => "guide_pdf_flow_task[options][layout]", :checked => (l == GuidePdfFlowTask::GRID ? "checked" : nil)
+              = l
+              .small.meta=t "views.guides.pdf_layout_notes.#{l}", :default => ""
+      = f.submit t(:generate_pdf), :class => "btn btn-primary", :data => {'loading-click' => t(:generating)}
+      .meta.patience.hide=t 'views.guides.pdf_generation_notice'

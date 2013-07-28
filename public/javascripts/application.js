@@ -104,7 +104,8 @@ function loadingClickForLink() {
   }
 }
 
-function loadingClickForButton() {
+function loadingClickForButton(options) {
+  options = options || {}
   $(this).data('original-value', $(this).val())
   var txt = $.trim($(this).attr('data-loading-click'))
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Saving...' }
@@ -112,7 +113,7 @@ function loadingClickForButton() {
   $(this).addClass('disabled description').val(txt)
   var link = this
   
-  if (!$(this).attr('data-loading-click-bound')) {
+  if (!$(this).attr('data-loading-click-bound') && options.ajax != false) {
     $(this).parents('form').bind('ajax:complete', function() {
       $(link).attr('disabled', false).removeClass('disabled description')
       $(link).val($(link).data('original-value'))
@@ -397,7 +398,7 @@ function checkDelayedLink(url) {
     url: url,
     type: 'get',
     statusCode: {
-      // Accepted: request acnkowledged byt file hasn't been generated
+      // Accepted: request acnkowledged but file hasn't been generated
       202: function() {
         setTimeout('checkDelayedLink("'+url+'")', 5000)
       },

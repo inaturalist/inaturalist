@@ -379,6 +379,37 @@ class ApplicationController < ActionController::Base
     response.headers['X-Page'] = collection.current_page.to_s
     response.headers['X-Per-Page'] = collection.per_page.to_s
   end
+
+  # Encapsulates common pattern for actions that start a bg task get called 
+  # repeatedly to check progress
+  # Key is required, and a block that assigns a new Delayed::Job to @job
+  def delayed_progress(key)
+    @tries = params[:tries].to_i
+    if @tries > 20
+      @status = @error
+      @error_msg = "This is taking forever.  Please try again later."
+      return
+    # elsif @tries > 0
+    else
+      @job_id = Rails.cache.read(key)
+      @job = Delayed::Job.find_by_id(@job_id)
+    end
+    if @job_id
+      if @job && @job.last_error
+        @status = "error"
+        @error_msg = @job.last_error
+      elsif @job
+        @status = "working"
+      else
+        @status = "done"
+        Rails.cache.delete(key)
+      end
+    else
+      @status = "start"
+      yield
+      Rails.cache.write(key, @job.id)
+    end
+  end
 end
 
 # Override the Google Analytics insertion code so it won't track admins

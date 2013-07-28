@@ -892,8 +892,10 @@ en:
   gbif_occurrences: GBIF Occurrences
   general: General
   generally_these_come_from_iucn_red_list: Generally these come from IUCN Red List, and if they come from elsewhere they will adhere to the IUCN categories.
+  generate_pdf: Generate PDF
   generate_taxonomic_tags_for_flickr: Generate taxonomic tags for your Flickr photos.
   generate_widget: Generate Widget
+  generating: "Generating..."
   genus_slash_species: "[GENUS] / [SPECIES]"
   geoprivacy: Geoprivacy
   georeferenced: Georeferenced?
@@ -2557,6 +2559,15 @@ en:
           Note: not all places have check lists with taxa. If you're having
           trouble finding a place with taxa, try choosing larger areas with
           political boundaries, like nations or states.
+      pdf_layout_notes:
+        grid: |
+          Grid of single images, no descriptions
+        journal: |
+          Split page, species info on the left, room for notes on the right. Species info will be truncated to fit on the page.
+        book: |
+          Complete guide including all photos and descriptions, spanning multiple pages.
+      pdf_generation_notice: |
+        Please be patient, generating large PDFs can take a minute or two.
     help:
       index:
         welcome_message_html: |
