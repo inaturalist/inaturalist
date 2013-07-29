@@ -549,6 +549,22 @@ class User < ActiveRecord::Base
     true
   end
 
+  def generate_csv(path, columns)
+    of_names = ObservationField.
+      includes(:observation_field_values => :observation).
+      where("observations.user_id = ?", id).
+      select("DISTINCT observation_fields.name").
+      map{|of| "field:#{of.normalized_name}"}
+    columns += of_names
+    columns -= %w(user_id user_login)
+    CSV.open(path, 'w') do |csv|
+      csv << columns
+      self.observations.includes(:taxon, {:observation_field_values => :observation_field}).find_each do |observation|
+        csv << columns.map{|c| observation.send(c) rescue nil}
+      end
+    end
+  end
+
   def self.default_json_options
     {
       :except => [:crypted_password, :salt, :old_preferences, :activation_code, :remember_token, :last_ip,

@@ -45,7 +45,7 @@ class ObservationFieldValue < ActiveRecord::Base
   end
   
   def strip_value
-    self.value = value.strip unless value.nil?
+    self.value = value.to_s.strip unless value.nil?
   end
   
   def validate_observation_field_datatype

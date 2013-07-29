@@ -1746,26 +1746,27 @@ class Observation < ActiveRecord::Base
     fpath = options[:path] || File.join(options[:dir] || Dir::tmpdir, fname)
     tmp_path = File.join(Dir::tmpdir, fname)
     FileUtils.mkdir_p File.dirname(tmp_path), :mode => 0755
-
     columns = CSV_COLUMNS
-    if record.is_a?(User) && record != options[:user]
-      columns = columns.select{|c| c !~ /^private_/} unless record == options[:user]
+
+    # ensure private coordinates are hidden unless they shouldn't be
+    viewer_curates_project = record.is_a?(Project) && record.curated_by?(options[:user])
+    viewer_is_owner = record.is_a?(User) && record == options[:user]
+    unless viewer_curates_project || viewer_is_owner
+      columns = columns.select{|c| c !~ /^private_/}
     end
-    if record.is_a?(User)
-      of_names = ObservationField.
-        includes(:observation_field_values => :observation).
-        where("observations.user_id = ?", record).
-        select("DISTINCT observation_fields.name").
-        map{|of| "field:#{of.normalized_name}"}
-      columns += of_names
-    end
-    columns -= %w(user_id user_login) if record.is_a?(User)
-    CSV.open(tmp_path, 'w') do |csv|
-      csv << columns
-      record.observations.includes(:taxon, {:observation_field_values => :observation_field}).find_each do |observation|
-        csv << columns.map{|c| observation.send(c) rescue nil}
+
+    # generate the csv
+    if record.respond_to?(:generate_csv)
+      record.generate_csv(tmp_path, columns)
+    else
+      CSV.open(tmp_path, 'w') do |csv|
+        csv << columns
+        record.observations.includes(:taxon, {:observation_field_values => :observation_field}).find_each do |observation|
+          csv << columns.map{|c| observation.send(c) rescue nil}
+        end
       end
     end
+
     FileUtils.mkdir_p File.dirname(fpath), :mode => 0755
     if tmp_path != fpath
       FileUtils.mv tmp_path, fpath
