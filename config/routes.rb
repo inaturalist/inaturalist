@@ -22,6 +22,7 @@ Inaturalist::Application.routes.draw do
     end
     member do
       post :import_taxa
+      put :reorder, :via => :put
     end
   end
   match '/guides/:id.:layout.pdf' => 'guides#show', :via => :get, :as => "guide_pdf", :constraints => {:format => :pdf}, :defaults => {:format => :pdf}

@@ -102,13 +102,14 @@
         .navbar.clearfix
           .pull-left
             .btn-group
-              %button#editbutton.disabled.btn.warning.dropdown-toggle{"data-toggle" => "dropdown"}
+              %button#editbutton.btn.warning.dropdown-toggle{"data-toggle" => "dropdown"}
                 =t :edit
                 %span.caret
               %ul.dropdown-menu
                 %li= link_to t(:add_tags), "#addtags", "data-toggle" => "modal"
                 %li= link_to t(:remove_tags), "#removetags", "data-toggle" => "modal"
                 %li= link_to_function t(:remove_selected), "removeSelected()"
+                %li= link_to t(:reorder_by_taxonomy), reorder_guide_path(@guide, :by => "taxonomy"), :method => :put, :confirm => "Are you sure? This will reload the page and cannot be undone."
             %button#selectall.btn{:type => "button", :role => "button"}=t :select_all
             %button#selectnone.btn{:type => "button", :role => "button"}=t :select_none
             %button.btn-primary.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#addtaxa"}=t :add_taxa

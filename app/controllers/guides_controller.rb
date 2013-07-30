@@ -1,7 +1,7 @@
 class GuidesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :search]
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa]
-  before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa]
+  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder]
+  before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa, :reorder]
   layout "bootstrap"
   PDF_LAYOUTS = GuidePdfFlowTask::LAYOUTS
 
@@ -214,6 +214,14 @@ class GuidesController < ApplicationController
     @guides = Guide.dbsearch(params[:q]).page(params[:page])
     respond_to do |format|
       format.html
+    end
+  end
+
+  def reorder
+    @guide.reorder_by_taxonomy
+    respond_to do |format|
+      format.html { redirect_to edit_guide_path(@guide) }
+      format.json { render :status => 204 }
     end
   end
 

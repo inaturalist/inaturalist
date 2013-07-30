@@ -90,18 +90,6 @@ $('.guide_taxon .delete').bind('ajax:before', function() {
 }).bind('ajax:success', function() {
   $(this).parents('.guide_taxon').remove()
 })
-$('.guide_taxon').labelize();
-$('.check input').live('change', function() {
-  if (this.checked) {
-    $(this).parents('.guide_taxon:first').addClass('warning')
-    $('#editbutton').removeClass('disabled')
-  } else {
-    $(this).parents('.guide_taxon:first').removeClass('warning')
-    if ($('.guide_taxon.warning').length == 0) {
-      $('#editbutton').addClass('disabled')
-    }
-  }
-})
 function incrementLoadingStatus(options) {
   options = options || {}
   var status = $('.bigloading.status').text(),
