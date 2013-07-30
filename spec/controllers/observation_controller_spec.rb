@@ -168,7 +168,7 @@ describe ObservationsController do
     end
   end
 
-  describe :project_all do
+  describe :project_all, "csv" do
     it "should include observation fields" do
       of = ObservationField.make!(:name => "count", :datatype => "numeric")
       pof = ProjectObservationField.make!(:observation_field => of)
@@ -178,6 +178,15 @@ describe ObservationsController do
       sign_in p.user
       get :project_all, :id => p.id, :format => :csv
       response.body.should =~ /field\:count/
+    end
+
+    it "should have project-specific fields" do
+      p = Project.make!
+      sign_in p.user
+      get :project_all, :id => p.id, :format => :csv
+      %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code).each do |f|
+        response.body.should =~ /#{f}/
+      end
     end
   end
   
