@@ -102,7 +102,7 @@ class Guide < ActiveRecord::Base
     gts = self.guide_taxa.includes(:taxon).all
     indexed_guide_taxa = gts.index_by(&:taxon_id)
     taxa = gts.map(&:taxon)
-    ordered_taxa = Taxon.sort_by_ancestry(taxa) {|t| t.name <=> t.name}
+    ordered_taxa = Taxon.sort_by_ancestry(taxa) {|t1,t2| t1.name <=> t2.name}
     ordered_taxa.each_with_index do |t,i|
       gt = indexed_guide_taxa[t.id]
       next unless gt
