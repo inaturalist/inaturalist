@@ -58,6 +58,12 @@ Guide.blueprint do
   title { Faker::Lorem.sentence }
 end
 
+GuideSection.blueprint do
+  guide_taxon { GuideTaxon.make! }
+  title { Faker::Lorem.sentence }
+  description { Faker::Lorem.paragraph }
+end
+
 GuideTaxon.blueprint do
   guide { Guide.make! }
   taxon { Taxon.make! }

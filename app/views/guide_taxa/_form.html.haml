@@ -196,6 +196,9 @@
       $(this).data('remove-timeout', 1000)
       $(item).slideUp()
     })
+    $('#guide_sections input[type=text]').live('change', function() {
+      $(this).parents('.nested-fields:first').find('input[name*=modified_on_create]').val(true)
+    })
 
 = form_for(@guide_taxon) do |f|
   = f.hidden_field :guide_id

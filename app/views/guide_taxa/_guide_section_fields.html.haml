@@ -1,9 +1,10 @@
 .nested-fields.guide-section-fields.stacked.row-fluid.clearfix.lined
   = f.hidden_field :guide_taxon_id
+  = f.hidden_field :modified_on_create
   = f.text_field :position, :class => "sortable-position pull-left"
   .pull-left
     .title_field
-      = f.text_field :title, :class => "input-xxlarge"
+      = f.text_field :title, :class => "input-xxlarge", :disabled => !f.object.editable?
     = link_to_toggle_box t(:edit_body) do
       .description_field
         = f.text_area :description, :class => "input-xxlarge"
