@@ -68,7 +68,7 @@ class GuidesController < ApplicationController
         if ancestry_counts.blank?
           @nav_taxa = []
         else
-          ancestries = ancestry_counts.map{|a,c| a.split('/')}.sort_by(&:size)
+          ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size)
           width = ancestries.last.size
           matrix = ancestries.map do |a|
             a + ([nil]*(width-a.size))
@@ -137,6 +137,10 @@ class GuidesController < ApplicationController
   # GET /guides/new.json
   def new
     @guide = Guide.new
+    unless params[:source_url].blank?
+      @guide.source_url = params[:source_url]
+      @guide.set_defaults_from_source_url(:skip_icon => true)
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @guide.as_json(:root => true) }

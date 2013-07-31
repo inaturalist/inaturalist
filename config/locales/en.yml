@@ -1488,6 +1488,7 @@ en:
   order: Order
   order_by: Order by
   original: original
+  originally_imported_from_url_html: "Originally imported from <a href='%{url}'>%{url}</a>"
   organism_appears_captive_cultivated: Organism appears captive / cultivated
   other: other
   other_animals: other animals
@@ -3052,6 +3053,8 @@ en:
     errors:
       <<: *errors
     attributes:
+      guide:
+        source_url: Source URL
       project:
         title: Title 
         project_icon: Project icon

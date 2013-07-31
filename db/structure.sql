@@ -10796,7 +10796,8 @@ CREATE TABLE guides (
     icon_updated_at timestamp without time zone,
     map_type character varying(255) DEFAULT 'terrain'::character varying,
     zoom_level integer,
-    taxon_id integer
+    taxon_id integer,
+    source_url character varying(255)
 );
 
 
@@ -14450,6 +14451,13 @@ CREATE INDEX index_guides_on_place_id ON guides USING btree (place_id);
 
 
 --
+-- Name: index_guides_on_source_url; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guides_on_source_url ON guides USING btree (source_url);
+
+
+--
 -- Name: index_guides_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15496,6 +15504,8 @@ CREATE UNIQUE INDEX updates_unique_key ON updates USING btree (resource_type, re
 -- PostgreSQL database dump complete
 --
 
+SET search_path TO "$user",public;
+
 INSERT INTO schema_migrations (version) VALUES ('20090820033338');
 
 INSERT INTO schema_migrations (version) VALUES ('20090920043428');
@@ -15871,3 +15881,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130709212550');
 INSERT INTO schema_migrations (version) VALUES ('20130711181857');
 
 INSERT INTO schema_migrations (version) VALUES ('20130721235136');
+
+INSERT INTO schema_migrations (version) VALUES ('20130730200246');

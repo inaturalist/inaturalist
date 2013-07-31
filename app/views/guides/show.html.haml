@@ -235,6 +235,8 @@
         =t 'copyright.some_rights_reserved'
         = surround '(', ')' do
           = @guide.license
+    - unless @guide.source_url.blank?
+      %p=t :originally_imported_from_url_html, :url => @guide.source_url
     %p
       =t :photo_credits
       = references(:linked => true)

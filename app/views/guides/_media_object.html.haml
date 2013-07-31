@@ -10,4 +10,4 @@
           %i.icon-book.icon-4x
   .media-body
     %h2.media-heading= link_to guide.title, guide
-    = truncate(formatted_user_text(guide.description), :length => 300).html_safe
+    %p= truncate(strip_tags(guide.description), :length => 300).html_safe

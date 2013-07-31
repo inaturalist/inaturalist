@@ -1,6 +1,6 @@
 class GuideTaxon < ActiveRecord::Base
   attr_accessor :html
-  attr_accessible :display_name, :guide_id, :name, :taxon_id, :taxon, :guide_photos_attributes, 
+  attr_accessible :display_name, :guide, :guide_id, :name, :taxon_id, :taxon, :guide_photos_attributes, 
     :guide_sections_attributes, :guide_ranges_attributes, :html, :position, :tag_list
   belongs_to :guide, :inverse_of => :guide_taxa
   belongs_to :taxon, :inverse_of => :guide_taxa
@@ -47,6 +47,10 @@ class GuideTaxon < ActiveRecord::Base
 
   scope :dbsearch, lambda {|q| where("guide_taxa.name ILIKE ? OR guide_taxa.display_name ILIKE ?", "%#{q}%", "%#{q}%")}
 
+  def to_s
+    "<GuideTaxon #{id} guide_id: #{guide_id}, name: #{name}, taxon_id: #{taxon_id}>"
+  end
+
   def default_guide_photo
     guide_photos.sort_by(&:position).first
   end
@@ -82,7 +86,53 @@ class GuideTaxon < ActiveRecord::Base
 
   def set_guide_taxon
     return true if Delayed::Job.where("handler LIKE '%Guide\n%id: ''#{guide_id}''\n%set_taxon%'").exists?
-    guide.delay(:priority => USER_INTEGRITY_PRIORITY).set_taxon
+    self.guide.delay(:priority => USER_INTEGRITY_PRIORITY).set_taxon
     true
+  end
+
+  def self.new_from_eol_collection_item(item, options = {})
+    name = item.at('name').inner_text.strip
+    name = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))
+    object_id = item.at('object_id').inner_text
+
+    # Fetching a page for each taxon is prohibitively slow. Let's revisit this if EOL decides to include this data in the collection response.
+    # page = EolService.page(object_id, :common_names => true, :images => 1, :details => true)
+    # page.remove_namespaces! if page.respond_to?(:remove_namespaces!)
+    # common_names = page.search('commonName')
+    # lang = I18n.locale.to_s.split('-').first
+    # common_name = common_names.detect{|cn| cn['lang'] == lang && cn['eol_preferred'] == "true"}
+    # common_name ||= common_names.detect{|cn| cn['lang'] == lang}
+    # common_name ||= common_names.detect{|cn| cn['eol_preferred'] == "true"}
+    # img_data_object = page.search('dataObject').detect{|data_object| data_object.at('dataType').to_s =~ /StillImage/ }
+    taxon = Taxon.single_taxon_for_name(name)
+    taxon ||= Taxon.find_by_name(name)
+    rank = case name.split.size
+    when 3 then "subspecies"
+    when 2 then "species"
+    end
+    gt = GuideTaxon.new(options)
+    
+    if taxon && taxon.valid?
+      gt.taxon = taxon 
+    else
+      gt.name = name
+      gt.display_name = name
+    end
+    # if common_name && !common_name.inner_text.blank?
+    #   gt.display_name = common_name.inner_text
+    # end
+    # I think this gets into copyright territory
+    # if (annotation = item.at('annotation')) && !annotation.inner_text.blank?
+    #   gt.guide_sections.build(:title => "Annotation", :description => annotation.inner_text)
+    # end
+    # if img_data_object
+    #   p = if (data_object_id = img_data_object.at('dataObjectId').try(:content))
+    #     EolPhoto.find_by_native_photo_id(data_object_id)
+    #   end
+    #   p ||= EolPhoto.new_from_api_response(img_data_object)
+    #   gp = gt.guide_photos.build(:photo => p) unless p.blank?
+    # end
+    # Rails.logger.debug "[DEBUG] gt.errors: #{gt.errors.full_messages.to_sentence}" unless gt.valid?
+    gt
   end
 end
