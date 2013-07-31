@@ -106,7 +106,8 @@ class GuidesController < ApplicationController
               :left => 0,
               :right => 0
             }
-        elsif matching_flow_task = GuidePdfFlowTask.
+        else
+          matching_flow_task = GuidePdfFlowTask.
             select("DISTINCT ON (flow_tasks.id) flow_tasks.*").
             joins("INNER JOIN flow_task_resources inputs ON inputs.flow_task_id = flow_tasks.id").
             joins("INNER JOIN flow_task_resources outputs ON inputs.flow_task_id = flow_tasks.id").
@@ -116,18 +117,16 @@ class GuidesController < ApplicationController
             where("outputs.file_file_name IS NOT NULL").
             order("flow_tasks.id DESC").
             detect{|ft| ft.options['layout'] == @layout}
-          redirect_to matching_flow_task.outputs.first.file.url
-        else
-          # # generate flow task
-          # flow_task = GuidePdfFlowTask.new(
-          #   :user => current_user,
-          #   :redirect_url => request.url
-          # )
-          # flow_task.inputs.build(:resource => @guide)
-          # flow_task.options = {'layout' => @layout}
-          # flow_task.save!
-          # redirect_to run_flow_task_path(flow_task)
-          render :status => :not_found, :text => "", :layout => false
+          if matching_flow_task && 
+              matching_flow_task.created_at > @guide.updated_at && 
+              !@guide.guide_taxa.where("updated_at > ?", matching_flow_task.created_at).exists? &&
+              !GuidePhoto.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_photos.updated_at > ?", matching_flow_task.created_at).exists? &&
+              !GuideSection.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_sections.updated_at > ?", matching_flow_task.created_at).exists? &&
+              !GuideRange.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_ranges.updated_at > ?", matching_flow_task.created_at).exists?
+            redirect_to matching_flow_task.outputs.first.file.url
+          else
+            render :status => :not_found, :text => "", :layout => false
+          end
         end
       end
     end
