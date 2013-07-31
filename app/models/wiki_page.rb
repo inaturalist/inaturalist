@@ -7,16 +7,22 @@ class WikiPage < ActiveRecord::Base
   ALLOWED_ATTRIBUTES = %w(
     abbr
     align
+    allowfullscreen
+    allowFullScreen
+    allowscriptaccess
     alt
     cite
     class
     height
     href
+    mozallowfullscreen
     name
     src
     style
     title
+    type
     value
+    webkitAllowFullScreen
     width
     xml:lang
   )
