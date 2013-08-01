@@ -80,6 +80,7 @@ class User < ActiveRecord::Base
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify
   has_many :messages, :dependent => :destroy
+  has_many :delivered_messages, :class_name => "Message", :foreign_key => "from_user_id", :conditions => "messages.from_user_id != messages.user_id"
   has_many :guides, :dependent => :nullify, :inverse_of => :user
   
   has_attached_file :icon, 
