@@ -1112,12 +1112,15 @@ en:
   linked_flickr_password_html: "<strong>We will never ask you for your Flickr password</strong> (but Flickr might, check the url that the button sends you and make sure it's Flickr.com)."
   linked_flickr_photo_copy_html: "<strong>We will never store copies of your photos or change your Flickr data (unless you ask us to), ever.</strong> We care too much about birds, bugs and slugs to want to mess with your information!"
   list: List
+  list_deleted: List deleted.
+  list_saved: List saved.
   list_tooltip: Show list view
   list_updated: List updated!
   list_views:
     plain: plain
     taxonomic: taxonomic
     photo: photo
+  list_was_successfully_created: List was successfully created.
   listed_taxon: Listed taxon
   listed_taxon_updated: Listed taxon updated
   listing_announcement: Listing announcement
@@ -1399,6 +1402,7 @@ en:
                observation, like number of individuals observed, habitat
                description, or whatever you want! Projects can also specify fields
                they'd like you to fill out.
+  observations_for: Observations for
   observations_for_project: "Observations for %{project}"
   observations_from: Observations from %{date}
   observations_from_this_place: Observations from this place
@@ -1661,16 +1665,19 @@ en:
   processing3p: "Processing..."
   profile: Profile
   project: Project
+  project_assessments: Project Assessments
   project_assets: Project Assets
   project_created_on: created this project on %{date}
   project_curator_id: Project curator ID
   project_curators: Project Curators
+  project_home: Project home
   project_icon: Project icon
   project_invitations: 'Project invitations'
   project_journal_posts: 'Project journal posts'
   project_list: Project List
   project_members: "%{project} Members"
-  project_post: project post
+  project_observations: Project Observations
+  project_post: Project Post
   project_rules: Project Rules
   project_terms_and_rules: project terms &amp; rules
   project_user_cannot_be_found: Project user cannot be found
@@ -1695,6 +1702,7 @@ en:
   rank: Rank
   rank_restrictions: Rank restrictions
   ray_finned_fishes: ray-finned fishes
+  re_apply_list_rules: Re-apply list rules
   re_order_photos: "Re-order photos &raquo;"
   read_our_getting_started_guide: read our Getting Started guide
   read_the_full_wikipedia: Read the full Wikipedia description
@@ -1906,6 +1914,8 @@ en:
   sorry_there_were_problems_with_your_request: "Sorry, there were problems with your request: %{project_user}"
   sorry_we_didnt_find_that_photo: "Sorry, we didn't find that photo."
   sorry_we_dont_have_any_metadata_for_that_photo: "Sorry, we don't have any metadata for that photo that we can use to set observation properties."
+  sorry_you_can_only_add_1000_at_a_time: "Sorry, you can only add 1000 at a time."
+  sorry_you_cant_delete_your_own_life_list: "Sorry, you can't delete your own life list."
   sorry_you_need_to_be_signed_in_and: Sorry, you need to be signed in and have a linked Flickr account to post tags directly to Flickr.
   sounds:
     we_didnt_find_any_sounds: Sorry! We couldn't get any sounds from your SoundCloud account. 
@@ -2409,6 +2419,8 @@ en:
   x_journal_editing: "%{user}'s Journal &middot; Editing"
   x_journal_middot: "%{user}'s Journal &middot;"
   x_journal_new_post: "%{user}'s Journal &middot; New Post"
+  x_project_journal: "%{project}'s %{name}"
+  x_project_stats: "%{project} Stats"
   x_sent_you_a_new_message_on_y_html: "%{x} sent you a new message on %{y}: "
   x_site_is_a_social_network_for_naturalist: |
     %{site} is a social network for naturalists! Record your observations of plants and animals,
