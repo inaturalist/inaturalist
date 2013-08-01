@@ -11,12 +11,12 @@
     <% end %>
   </div>
   
-  <h3>Or upload CSV</h3>
+  <h3><%= t :or_upload %> CSV</h3>
   <p class="meta ui">
-    File should be in the following format: taxon name, description<% if @list.is_a?(CheckList) %>, occurrence status, establishment means<% end %>. CSV should not contain a header row.
+    <%= t :file_should_be_in_the_following_format %><% if @list.is_a?(CheckList) %>, <%= t :occurrence_status_establishment_means %><% end %>. <%= t :csv_should_not_contain_a_header_row %>.
     <% if @list.is_a?(CheckList) %>
-      <br/>Allowed occurrence status values: <%= ListedTaxon::OCCURRENCE_STATUSES.join(', ') %>
-      <br/>Allowed establish means values: <%= ListedTaxon::ESTABLISHMENT_MEANS.join(', ') %>
+      <br/><%= t :allowed_occurrence_status_values %>: <%= ListedTaxon::OCCURRENCE_STATUSES.join(', ') %>
+      <br/><%= t :allowed_establish_means_values %>: <%= ListedTaxon::ESTABLISHMENT_MEANS.join(', ') %>
     <% end -%>
   </p>
 
@@ -31,6 +31,6 @@
         <%= fi.file_field :file %>
       </div>
     <% end -%>
-    <%= f.submit "Upload CSV", :class => "default button" %>
+    <%= f.submit "#{t(:upload)} CSV", :class => "default button" %>
   <% end -%>
 </div>

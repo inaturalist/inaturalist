@@ -257,8 +257,11 @@ en:
   all_your_observations_will_default_to_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   all_your_projects: All your projects
   allow_any: allow any
+  allowed_establish_means_values: Allowed establish means values
   allowed_html: Allowed HTML
+  allowed_occurrence_status_values: Allowed occurrence status values
   allowed_values: Allowed values
+  alphabetical: Alphabetical
   alphabetical_order: Alphabetical Order
   amphibians: amphibians
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb doesn't have any information about this species.
@@ -600,6 +603,7 @@ en:
   critically_endangered: critically endangered
   css_description: This will get included after all other css on the page.
   csv: CSV
+  csv_should_not_contain_a_header_row: CSV should not contain a header row
   curate_observations: Curate observations
   curate_taxa: Curate taxa
   curate_users: Curate users
@@ -661,6 +665,7 @@ en:
   default_observation_license: Default observation license
   default_photo_license: Default photo license
   delete: Delete
+  delete_conversation: Delete conversation
   delete_icon?: Delete icon?
   delete_photo: Delete photo
   delete_project: Delete this project
@@ -811,6 +816,7 @@ en:
                   create a field, check to see if someone else has already made it to
                   avoid duplication.
   fields: fields
+  file_should_be_in_the_following_format: "File should be in the following format: taxon name, description"
   fill_out_your_profile: fill out your profile
   filling_out_checklist_for_place: filling out checklists for places you know well
   filling_out_your_profile: filling out your profile
@@ -1033,7 +1039,7 @@ en:
   invited_to_the_following_projects: "Invited to the following projects:"
   inviting: inviting...
   is_a: 'is a'
-  is_a_naturalist: is a naturalist!
+  is_a_naturalist: "is a %{site_name}!"
   is_an: 'is an'
   is_not_following_anyone: is not following anyone.
   is_the_organism_wild: "Is the organism wild/naturalized?"
@@ -1305,6 +1311,7 @@ en:
   no_more_mail_from_site: "Don't want to receive any email from %{site_name}?  Edit your email settings at"
   no_more_updates: No more updates!
   no_nearby_observations: "No nearby observations."
+  no_new_messages: No new messages
   no_observations: no observations
   no_observations_matching_those_ids: No observations matching those IDs.
   no_observations_need_an_id: No observations need an ID right now.  Amazing!
@@ -1442,6 +1449,7 @@ en:
   observing: observing
   occurence_status_describes_how: Occurence status describes how common or rare a taxon is in a given area.  See DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">more information on terminology</a>.
   occurrence_status: Occurrence status
+  occurrence_status_establishment_means: occurrence status, establishment means
   occurrence_status_levels:
     present: present
     common: common
@@ -1487,6 +1495,7 @@ en:
   or_invite_your_friends: or invite your friends
   or_invited: or invited.
   or_post_message_to_google_group: "or post a message to our Google Group:"
+  or_upload: Or upload
   or_you_can: "Or you can..."
   orange: orange
   order: Order
@@ -1973,6 +1982,7 @@ en:
   species_guess: species guess
   species_guide: Species Guide
   species_name: species names
+  species_or_lower: species or lower
   species_search: Species Search
   species_taxon_name: Species / Taxon Name
   species_unknown: Species Unknown
@@ -2261,6 +2271,7 @@ en:
   updated_daily: Updated daily
   updated_photo: Updated photo
   upload: Upload
+  upload_a_csv_file: Upload CSV file
   upload_a_csv_file_with_observation: Upload a CSV file with observation data. If you have your data in a spreadsheet or database, this is probably the way to go.
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
   US_states: US States
@@ -2327,6 +2338,7 @@ en:
   view_observations: View observations
   view_observations_by_everyone: View observations by everyone
   view_observations_raquo: "View observations &raquo;"
+  view_on: View on
   view_on_amphibiaweb: View on AmphibiaWeb
   view_on_flickr: View on Flickr
   view_on_wikipedia: View on Wikipedia
@@ -2348,6 +2360,7 @@ en:
   view_unidentified_observations: "View unidentified observations..."
   view_user_observations: "View %{user}'s observations"
   view_x_from_x: "View %{day_observations} from %{observed_on}"
+  view_your_dashboard: View your dashboard
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>View your dashboard</a> for more updates"
   view_your_inbox: View your inbox
   view_your_life_list: View your life list

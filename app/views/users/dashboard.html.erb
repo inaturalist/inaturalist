@@ -271,7 +271,7 @@
           <% else %>
             <% for resource_type, subscriptions in @subscriptions.group_by(&:resource_type) %>
               <li>
-                <span class="meta"><%= resource_type.humanize.pluralize %></span>
+                <span class="meta"><%= t(resource_type.humanize.pluralize.downcase, :default => resource_type.humanize.pluralize) %></span>
                 <ul style="margin-bottom: 5px">
                   <% for subscription in subscriptions %>
                     <li class="subscription_for_<%= [subscription.resource_type, subscription.resource_id].join('_') %>">
