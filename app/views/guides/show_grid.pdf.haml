@@ -14,6 +14,7 @@
     #attribution li {display:inline; font-size:90%;}
     #attribution li:after {content: ', ';}
     #attribution li:last-child:after {content: '';}
+    @media print{@page {size: portrait}}
 .container-fluid
   %h1= @guide.title
   - for row in @guide_taxa.in_groups_of(4)

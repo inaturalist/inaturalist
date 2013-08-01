@@ -1,10 +1,11 @@
 - content_for :extracss do
   :css
     .guide_taxon_header, .page {page-break-inside: avoid;}
-    /*.guide_photos img {max-height:200px;}*/
     #attribution {page-break-inside: avoid;}
     #attribution ul {list-style:none;}
     .guide_taxon {page-break-after: always; height: 700px; overflow:hidden;position:relative;}
+    #abstract {padding: 0 20%;}
+    .span6 #title, .span6 #abstract {display: table-cell; vertical-align: middle; height: 700px; overflow:hidden; padding:0;}
     .guide_taxon:after{
       content:' ';
       display:block;
@@ -36,8 +37,35 @@
     }
     .bootstrap h2 {margin: 0;}
     h2 {line-height: 1;}
-    /*h2 .muted {white-space: nowrap; font-size:12pt;}*/
+    @media print{@page {size: landscape}}
 .container-fluid
+  #titlepage.page
+    - title_and_image = capture do
+      #title.text-center
+        - if @guide.icon.file?
+          = image_tag @guide.icon.url(:medium)
+        %h1= @guide.title
+        %p.muted
+          =t :guide_compiled_by
+          - if @guide.license.blank?
+            = @guide.user.name.blank? ? @guide.user.login : @guide.user.name
+          - else
+            = succeed ',' do
+              = @guide.user.name.blank? ? @guide.user.login : @guide.user.name
+            =t 'copyright.some_rights_reserved'
+            = surround '(', ')' do
+              = @guide.license.sub('-', ' ')
+    - abstract = capture do
+      #abstract
+        = formatted_user_text @guide.description
+    - if @guide.description.blank? || @guide.description.length < 200
+      = title_and_image
+      - unless @guide.description.blank?
+        = abstract
+    - else
+      .row-fluid
+        .span6= title_and_image
+        .span6= abstract
   - num_guide_taxa = @guide_taxa.size
   - @guide_taxa.each_with_index do |gt, i|
     .guide_taxon

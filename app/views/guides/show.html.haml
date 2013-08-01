@@ -32,6 +32,8 @@
       color: inherit;
       text-decoration: none;
     }
+    #new_guide_pdf_flow_task .img {height: 170px;}
+    #new_guide_pdf_flow_task .img img {opacity:0.5; max-width: auto;}
 = content_for :extrajs do
   = google_maps_js
   = javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js", 'jquery/plugins/waypoints.min'
@@ -70,6 +72,12 @@
           }
         }
       })
+      return false
+    })
+    $('#printbtn').click(function() {
+      var layout = $('#new_guide_pdf_flow_task input[name*=layout]:checked').val(),
+          printUrl = '/guides/'+GUIDE.id+'.'+layout+'.pdf?print=t'
+      var w = window.open(printUrl, '_blank')
       return false
     })
     $('#new_guide_pdf_flow_task').bind('ajax:success', function(e, json) {
@@ -121,7 +129,7 @@
     .span12
       #actions.right
         .btn-group.pull-right
-          %button.btn.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#pdf_dialog"}=t :pdf
+          %button.btn.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#pdf_dialog"}=t :pdf_slash_print
           - if @guide.editable_by?(current_user)
             = link_to t(:edit), edit_guide_path(@guide), :class => "btn"
       %h1
@@ -255,8 +263,10 @@
         - GuidePdfFlowTask::LAYOUTS.each do |l|
           %div{:class => "span#{12 / GuidePdfFlowTask::LAYOUTS.size}"}
             = f.label :options, :value => l, :class => "radio" do
+              .img= image_tag "guide-#{l}-icon.png"
               = f.radio_button :options, l, :name => "guide_pdf_flow_task[options][layout]", :checked => (l == GuidePdfFlowTask::GRID ? "checked" : nil)
               = l
               .small.meta=t "views.guides.pdf_layout_notes.#{l}", :default => ""
       = f.submit t(:generate_pdf), :class => "btn btn-primary", :data => {'loading-click' => t(:generating)}
+      = link_to t(:print_in_browser), guide_pdf_path(@guide, :layout => "grid", :print => "t"), :id => "printbtn", :class => "btn", :target => "_blank"
       .meta.patience.hide=t 'views.guides.pdf_generation_notice'

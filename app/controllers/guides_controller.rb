@@ -96,12 +96,12 @@ class GuidesController < ApplicationController
         @layout = params[:layout] if GuidePdfFlowTask::LAYOUTS.include?(params[:layout])
         @layout ||= GuidePdfFlowTask::GRID
         @template = "guides/show_#{@layout}.pdf.haml"
-        if params[:debug].present?
+        if params[:print].present?
           render :pdf => "#{@guide.title.parameterize}.#{@layout}", 
             :layout => "bootstrap.pdf",
             :template => @template,
             :orientation => @layout == "journal" ? 'Landscape' : nil,
-            :show_as_html => true,
+            :show_as_html => params[:pdf].blank?,
             :margin => {
               :left => 0,
               :right => 0

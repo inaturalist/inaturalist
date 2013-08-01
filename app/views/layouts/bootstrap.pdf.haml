@@ -8,3 +8,6 @@
     .bootstrap
       = yield
     = yield :extrajs
+    - if params && !params[:print].blank?
+      :javascript
+        window.print()
