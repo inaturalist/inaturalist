@@ -199,7 +199,7 @@ module Shared::ListsModule
     
     respond_to do |format|
       if @list.save
-        flash[:notice] = 'List was successfully created.'
+        flash[:notice] = t(:list_was_successfully_created)
         format.html { redirect_to(@list) }
       else
         format.html { render :action => "new" }
@@ -218,7 +218,7 @@ module Shared::ListsModule
     list_attributes = params[:list] || params[:life_list] || params[:check_list]
     
     if @list.update_attributes(list_attributes)
-      flash[:notice] = "List saved."
+      flash[:notice] = t(:list_saved)
       redirect_to @list
     else
       render :action => 'edit'
@@ -227,7 +227,7 @@ module Shared::ListsModule
   
   def destroy
     if @list.id == current_user.life_list_id
-      flash[:notice] = "Sorry, you can't delete your own life list."
+      flash[:notice] = t(:sorry_you_cant_delete_your_own_life_list)
       redirect_to @list and return
     end
     
@@ -235,7 +235,7 @@ module Shared::ListsModule
     
     respond_to do |format|
       format.html do
-        flash[:notice] = "List deleted."
+        flash[:notice] = t(:list_deleted)
         redirect_path = if @list.is_a?(CheckList)
           @list.place.check_list || @list.place
         else
@@ -255,7 +255,7 @@ module Shared::ListsModule
     @batch_size = 50
     
     if @lines.size > @max
-      flash[:notice] = "Sorry, you can only add 1000 at a time."
+      flash[:notice] = t(:sorry_you_can_only_add_1000_at_a_time)
       return redirect_to(@list)
     end
     

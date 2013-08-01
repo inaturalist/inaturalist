@@ -244,7 +244,7 @@ es-MX:
   agree?: "¿Estás de acuerdo?"
   agree_to_the_project_terms: "De acuerdo con los términos del proyecto"
   aka: Alias
-  all: Todos
+  all: Todo
   all_colors: "&laquo; Todos los colores"
   all_comments: "Todos los comentarios"
   all_csv: "Todos los CSV"
@@ -6601,11 +6601,14 @@ es-MX:
   linked_flickr_password_html: "<strong>Nunca te pediremos por tu contraseña de Flickr </strong> (pero Flickr puede revisar el url que el botón te envía y asegurarse de que es Flickr.com).\n"
   linked_flickr_photo_copy_html: "<strong>Nucna guardaremos copias de tus fotos o cambiaremos tus datos de  Flickr (a menos que nos lo pidas).</strong> ¡Estamos más entretenidos con las aves y otros bichos para querer meternos con tu información!"
   list: Lista
+  list_deleted: Lista eliminada.
+  list_saved: Lista guardada.
   list_updated: ¡Lista actualizada!
   list_views:
       plain: plana
       taxonomic: taxonomía
       photo: fotos
+  list_was_successfully_created: La lista fue creada exitosamente.
   listed_taxon: "Especie o grupo enlistado"
   listed_taxon_updated: El listado de especie o grupo fue actualizado
   listing_announcement: "Enlistando noticias"
@@ -6892,6 +6895,7 @@ es-MX:
   observations_circle_have_their_radii_scaled: "El radio de los círculos de observación es proporcional a la precisión de la ubicación. Las observaciones sin precisión de posición se muestran al mínimo tamaño."
   observations_confirmed: "Observaciones (confirmadas)"
   observations_deleted: Las observaciones se han eliminado.
+  observations_for: Observaciones para
   observations_for_project: "Observaciones de %{project}"
   observations_from: "Observaciones de %{date}"
   observations_from_this_place: "Observaciones de este lugar"
@@ -7137,16 +7141,19 @@ es-MX:
   processing3p: Procesando...
   profile: Perfil
   project: Proyecto
+  project_assessments: Evaluación del proyecto
   project_assets: "Recursos del proyecto"
   project_created_on: "creó este proyecto el %{date}"
   project_curator_id: "Identificación del curador del proyecto"
   project_curators: "Curadores del proyecto"
+  project_home: Inicio del proyecto
   project_icon: "Ícono del proyecto"
   project_invitations: "Invitaciones al proyecto"
   project_journal_posts: "Notas del Diario del proyecto"
   project_list: "Lista del proyecto"
   project_members: Miembros de %{project}
-  project_post: nota de proyecto
+  project_observations: Observaciones del proyecto
+  project_post: Notas del proyecto
   project_rules: "Reglas del proyecto"
   project_terms_and_rules: terminos &amp; reglas del proyecto
   project_user_cannot_be_found: El usuario del proyecto no pudo ser encontrado
@@ -7174,6 +7181,7 @@ es-MX:
   rank: Rango
   rank_restrictions: "Restrinciones de rango"
   ray_finned_fishes: "Peces con aletas radiadas"
+  re_apply_list_rules: Re-aplicar las reglas de la lista
   re_order_photos: "Reordena las fotos  &raquo;"
   read_our_getting_started_guide: "Lee nuestra guía \"empezando\""
   read_the_full_wikipedia: "Lee la descripción completa de Wikipedia"
@@ -7382,6 +7390,8 @@ es-MX:
   sorry_there_were_problems_with_your_request: "Lo sentimos, hubo algunos problemas con tu petición: %{project_user}"
   sorry_we_didnt_find_that_photo: "Lo sentimos, la foto no se encuentra"
   sorry_we_dont_have_any_metadata_for_that_photo: "Lo sentimos, no tenemos ningún meta dato de la foto que se pueda utilizar para poner las características de la observación."
+  sorry_you_can_only_add_1000_at_a_time: "Lo sentimos, solo puedes añadir 1000 a la vez."
+  sorry_you_cant_delete_your_own_life_list: "Lo sentimos, no puedes borrar tu lista de vida."
   sorry_you_need_to_be_signed_in_and: Lo sentimos, necesitas ingresar al sistema y tener una cuenta enlazada de Flickr para poder publicar etiquetas directamente desde Flickr.
   source: Fuente
   source_list:
@@ -8081,6 +8091,8 @@ es-MX:
   x_people: 
     one: "Una persona"
     other: "%{count} personas"
+  x_project_journal: "%{name} del proyecto %{project}"
+  x_project_stats: "Estadisticas del proyecto %{project}"
   x_site_is_a_social_network_for_naturalist: |
         %{site} es una red social para amantes de la naturaleza en donde puedes guardar tus observaciones de plantas y animales,
         y compartirlas con tus amigos e investigadores para aprende más acerca de nuetra biodiversidad.
