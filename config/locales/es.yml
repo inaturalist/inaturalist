@@ -288,8 +288,11 @@ es:
   all_your_observations_will_default_to_this_time_zone: "Todas sus observaciones se harán en esta zona horaria a menos que usted especifique lo contrario."
   all_your_projects: Todos tus proyectos
   allow_any: "permitir alguna"
+  allowed_establish_means_values: Valores permitidos para los medios de establecimiento
   allowed_html: Etiquetas permitidas de HTML
+  allowed_occurrence_status_values: Valores permitidos para los estatus de ocurrencia
   allowed_values: Valores permitidos
+  alphabetical: Orden alfabético
   alphabetical_order: "Orden alfabético"
   amphibians: anfibios
   amphibiaweb_doesnt_have_info_about_species: "AmphibiaWeb no tiene ninguna información de esta especie."
@@ -639,6 +642,7 @@ es:
   current_password: "Contraseña actual"
   custom_project_fields: "Campos de proyecto personalizados"
   csv: CSV
+  csv_should_not_contain_a_header_row: El CSV no debería contener ninguna cabecera de datos
   darr_apply_darr: "&darr; Aplicar &darr;"
   dashboard: Tablero
   data_deficient: "datos insuficientes"
@@ -776,6 +780,7 @@ es:
   default_observation_license: "Licencia para sus observaciones:"
   default_photo_license: "Licencia para sus fotos:"
   delete: Eliminar
+  delete_conversation: Eliminar conversación
   delete_icon?: "¿Eliminar ícono?"
   delete_photo: "Eliminar foto"
   delete_project: "Eliminar este proyecto"
@@ -996,6 +1001,7 @@ es:
                     checa si alguien mas ya lo creo, para
                     evitar duplicación.
   fields: campos
+  file_should_be_in_the_following_format: "El archivo debería tener el siguiente formato: nombre de la especie o grupo, descripción"
   fill_out_your_profile: "completa su perfil"
   filling_out_checklist_for_place: "llenar las listas de verificación de los lugares que usted conoce bien"
   filling_out_your_profile: "completar su perfil"
@@ -1498,6 +1504,7 @@ es:
   no_more_mail_from_site: "¿No desea recibir más correos del sitio de %{site_name}? Edita tu configuración de Correo en"
   no_more_updates: "¡No hay más actualizaciones!"
   no_nearby_observations: "No hay observaciones cercanas."
+  no_new_messages: No hay nuevos mensajes
   no_observations: "no hay observaciones"
   no_observations_matching_those_ids: No hay observaciones que coincidan con esos Identificadores.
   no_observations_need_an_id: "Ninguna observación requiere identificador en este momento. ¡Asombroso!"
@@ -1515,6 +1522,7 @@ es:
   no_range_data_available: "No hay un rango de datos disponible"
   no_recent_activity: "No hay actividad reciente"
   no_recently_active: "Todavía no hay proyectos activos"
+  no_reply_yet: Aún no ha respondido
   no_results_found: "No se encontraron resultados."
   no_results_for: 'Sin resultados para '
   no_results_matching: "No hay resultados que concuerden"
@@ -1677,6 +1685,7 @@ es:
   observing: observando
   occurence_status_describes_how: "El estado de ocurrencia describe que tan común o raro es un taxón en un área determinada. Ver DarwinCore para <a href=\"http: //code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus\">más información sobre terminología </a>."
   occurrence_status: "Estado de ocurrencia"
+  occurrence_status_establishment_means: estado de ocurrencia, medio de establecimiento
   occurrence_status_levels:
       present: presente
       common: común
@@ -1725,6 +1734,7 @@ es:
   or_invited: o invitadas.
   or_just_adding_species_using: "o solamente agregando especies usando el formulario en esta página."
   or_post_message_to_google_group: "o envíe un mensaje a nuestro Grupo en Google"
+  or_upload: O descarga el
   or_you_can: "O usted puede..."
   orange: naranja
   order: Orden
@@ -2188,6 +2198,7 @@ es:
   species_guess: "Estimación especial"
   species_guide: "Guía de especies"
   species_name: "Nombres de la especie"
+  species_or_lower: especies o grupos subordinados
   species_plural: Especies
   species_search: "Búsqueda de especies"
   species_unknown: Epecies Disconocido
@@ -2486,6 +2497,7 @@ es:
   updated_daily: Actualizado el día de hoy
   updated_photo: Foto subida
   upload: Cargar
+  upload_a_csv_file: Carga un archivo CSV
   upload_a_csv_file_with_observation: "Cargar un archivo CSV con datos de observación. Si sus datos están en una hoja de cálculo o base de datos, esta es probablemente la forma de hacerlo."
   ubio: uBio
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio web fuente
@@ -2548,6 +2560,7 @@ es:
   view_observation: "Ver observación"
   view_observations: "Ver observaciones"
   view_observations_raquo: "Ver observaciones &raquo;"
+  view_on: Ver en
   view_on_amphibiaweb: "Ver en AmphibiaWeb"
   view_on_flickr: "Ver en Flickr"
   view_on_wikipedia: "Ver en Wikipedia"
@@ -2570,6 +2583,7 @@ es:
   view_user_observation: "Ver observaciones de %{user}"
   view_user_observations: "Ver observaciones de %{user}"
   view_x_from_x: "Ver %{day_observations} de %{observed_on}"
+  view_your_dashboard: Ve tu tablero
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Ver su tablero</a> para más actualizaciones"
   view_your_inbox: Ver tu buzón
   view_your_life_lists: "Ver su lista de vida"

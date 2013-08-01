@@ -32,7 +32,7 @@
           = f.hidden_field :to_user_id
           = f.text_area :body, :label => false
           .buttonrow
-            = f.submit t(:send).capitalize, :class => "default button", "data-loading-click" => "Sending..."
+            = f.submit t(:send).capitalize, :class => "default button", "data-loading-click" => t(:sending)
             = link_to t(:preview), messages_path, :class => 'button previewbutton commentpreviewbutton'
             .inter.loading{:style => "display:none;"}=t :loading
             .right

@@ -56,7 +56,7 @@
     <label><%=t :order %></label>
     <% for order in ListedTaxon::ORDERS %>
       <%= radio_button_tag :order, order, order == @order %>
-      <%= label_tag "order_#{order}", order.humanize %>
+      <%= label_tag "order_#{order}", t(order, :default => order.humanize) %>
     <% end %>
     
     <%= submit_tag t(:load) %>

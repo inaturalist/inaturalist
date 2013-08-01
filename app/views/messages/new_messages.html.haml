@@ -1,6 +1,7 @@
 %ul
   - if @messages.blank?
-    %li.meta.nobr{:style => "padding:10px;"} No new messages.
+    %li.meta.nobr{:style => "padding:10px;"}
+    ="#{t(:no_new_messages)}."
   - for message in @messages
     %li
       %a{:href => url_for(message)}
@@ -15,4 +16,4 @@
           = message.subject
   %li
     %center
-      = link_to "View your inbox", messages_url, :class => 'readmore'
+      = link_to t(:view_your_inbox), messages_url, :class => 'readmore'

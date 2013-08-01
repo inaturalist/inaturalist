@@ -1,6 +1,6 @@
 <ul>
   <% if @updates.blank? -%>
-    <li class="meta nobr" style="padding:10px;">No recent activity.</li>
+    <li class="meta nobr" style="padding:10px;"><%= t :no_recent_activity %>.</li>
   <% end -%>
   <% for update in @updates %>
     <%- 
@@ -23,7 +23,7 @@
   <% end %>
   <li>
     <center>
-      <%= link_to "View your dashboard", home_url, :class => 'readmore' %>
+      <%= link_to t(:view_your_dashboard), home_url, :class => 'readmore' %>
     </center>
   </li>
 </ul>

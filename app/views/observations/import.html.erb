@@ -114,7 +114,7 @@
             :class => 'clear observationform', 
             :multipart => true) do %>
           <div class="buttonrow">
-            <label for="upload_file">Upload CSV file</label>
+            <label for="upload_file"><%= t :upload_a_csv_file %></label>
             <%= file_field 'upload', 'datafile', :class => 'text' %>
             <%= submit_tag t(:upload), :class => 'default button', "data-loading-click" => t(:importing) %>
           </div>
@@ -151,7 +151,7 @@
               </tr>
             </table>
 
-            <p class="ui"><%=t :here_are_3_examples %> of well-formed data:</p>
+            <p class="ui"><%=t :here_are_3_examples %>:</p>
             
 <code>Anna's Hummingbird,2008-03-03 2:54pm,"An aggressive male dive-bombed my head, so I took cover.","Tilden Regional Park, Berkeley, CA, USA",37.8953,-122.249,"attack, danger"
 Sharp-tailed Snake,2007-08-20,"Beautiful little creature","Leona Canyon Regional Park, Oakland, CA, USA",37.7454,-122.111,"cute, snakes"
