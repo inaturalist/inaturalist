@@ -3,7 +3,7 @@ class ListsController < ApplicationController
   include Shared::GuideModule
 
   before_filter :authenticate_user!, :except => [:index, :show, :by_login, :taxa, :guide,
-  :cached_guide, :guide_widget, :batch_edit]  
+    :cached_guide, :guide_widget]
   before_filter :load_list, :except => [:index, :new, :create, :by_login]
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
     :remove_taxon, :reload_from_observations]
