@@ -159,4 +159,17 @@ class Guide < ActiveRecord::Base
     end
     Rails.logger.debug "[DEBUG] #{self} add_taxa_from_eol_collection, #{saved} saved, #{errors.size} errors"
   end
+
+  def recent_tags
+    tag_sql = <<-SQL
+      SELECT DISTINCT ON (tags.name) tags.*, taggings.id AS taggings_id
+      FROM tags
+        JOIN taggings ON taggings.tag_id = tags.id
+        JOIN guide_taxa ON guide_taxa.id = taggings.taggable_id
+      WHERE
+        taggable_type = 'GuideTaxon' AND
+        guide_taxa.guide_id = #{id}
+    SQL
+    Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags ORDER BY guide_tags.taggings_id DESC LIMIT 20").map(&:name).sort_by(&:downcase)
+  end
 end

@@ -2597,6 +2597,9 @@ en:
           Complete guide including all photos and descriptions, spanning multiple pages.
       pdf_generation_notice: |
         Please be patient, generating large PDFs can take a minute or two.
+      tags_help_html: |
+        Add comma-separated tags to organize the taxa in your guide. To add named categories, use tags like 
+        <code>category_name=category_value</code>, e.g. <code>color=yellow</code>.
     help:
       index:
         welcome_message_html: |

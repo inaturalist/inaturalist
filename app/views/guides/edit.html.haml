@@ -170,7 +170,11 @@
     %button.close{:type => "button", "data-dismiss" => "modal"} x
     %h3=t :add_tags
   .modal-body.row-fluid
+    %p=t 'views.guides.tags_help_html'
     %input{:type => "text", :placeholder => "Add comma-separated tags", :class => "span11"}
+    #recent_tags.quiet
+      - for tag in @recent_tags
+        = link_to_function "<i class='icon-plus-sign'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
   .modal-footer
     %button.btn{"data-dismiss" => "modal"}=t :close
     %button.btn.btn-primary=t :add_tags

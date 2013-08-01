@@ -199,6 +199,19 @@
     $('#guide_sections input[type=text]').live('change', function() {
       $(this).parents('.nested-fields:first').find('input[name*=modified_on_create]').val(true)
     })
+    function addTag(tag) {
+      var tag = $.trim(tag)
+      var tags
+      if ($.trim($('#guide_taxon_tag_list').val()) == '') {
+        tags = []
+      } else {
+        tags = $('#guide_taxon_tag_list').val().split(',').map($.trim)
+      }
+      if (tags.indexOf(tag) < 0) {
+        tags.push(tag)
+        $('#guide_taxon_tag_list').val(tags.join(', '))
+      }
+    }
 
 = form_for(@guide_taxon) do |f|
   = f.hidden_field :guide_id
@@ -240,8 +253,12 @@
 
   .row-fluid.stacked
     %h3=t :tags
+    %p=t 'views.guides.tags_help_html'
     %p
     = f.text_field :tag_list, :class => "input-xxlarge"
+    #recent_tags.quiet
+      - for tag in @recent_tags
+        = link_to_function "<i class='icon-plus-sign'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
   #actions
     = f.submit t(:save_guide_taxon), :class => "btn btn-primary"
     = link_to t(:remove_from_guide), @guide_taxon, :method => :delete, :confirm => t(:are_you_sure?), :class => "btn btn-danger pull-right"

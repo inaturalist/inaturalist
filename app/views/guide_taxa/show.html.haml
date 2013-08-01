@@ -119,9 +119,8 @@
       - unless @machine_tags.blank?
         %table.table.table-bordered.upstacked
           %tbody
-            - for tag in @machine_tags
-              - predicate, value = tag.split('=')
+            - for predicate, values in @grouped_machine_tags
               %tr
                 %th.text-left= predicate.humanize
-                %td= value
+                %td= values.join(', ')
 

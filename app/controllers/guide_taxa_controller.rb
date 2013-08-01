@@ -31,6 +31,13 @@ class GuideTaxaController < ApplicationController
       format.html do
         @taxon_links = TaxonLink.by_taxon(@guide_taxon.taxon)
         @machine_tags = @guide_taxon.tag_list.select{|t| t =~ /=/}
+        @grouped_machine_tags = @machine_tags.inject({}) do |memo, tag|
+          predicate, value = tag.split('=')
+          memo[predicate] ||= []
+          memo[predicate] << value
+          memo[predicate] = memo[predicate].sort.uniq
+          memo
+        end
       end
       format.json { render json: @guide_taxon.as_json(:root => true,
         :methods => [:guide_photo_ids, :guide_section_ids, :guide_range_ids]) }
@@ -54,6 +61,7 @@ class GuideTaxaController < ApplicationController
     @guide = @guide_taxon.guide
     @guide_photos = @guide_taxon.guide_photos.order(:position)
     @guide_sections = @guide_taxon.guide_sections.order(:position)
+    @recent_tags = @guide.recent_tags
   end
 
   # POST /guide_taxa

@@ -313,3 +313,17 @@ $('#removetags .modal-footer .btn-primary').click(function() {
   saveGuideTaxon.apply($selection.get(0), [{chain: true}])
   $('#removetags').modal('hide')
 })
+
+function addTag(tag) {
+  var tag = $.trim(tag)
+  var tags
+  if ($.trim($('#addtags input[type=text]').val()) == '') {
+    tags = []
+  } else {
+    tags = $('#addtags input[type=text]').val().split(',').map($.trim)
+  }
+  if (tags.indexOf(tag) < 0) {
+    tags.push(tag)
+    $('#addtags input[type=text]').val(tags.join(', '))
+  }
+}

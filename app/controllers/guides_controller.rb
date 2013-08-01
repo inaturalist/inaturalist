@@ -151,6 +151,7 @@ class GuidesController < ApplicationController
     @nav_options = %w(iconic tag)
     @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_photos => [:photo]], :guide_photos => [:photo], :tags => {}).
       order("guide_taxa.position")
+    @recent_tags = @guide.recent_tags
   end
 
   # POST /guides
