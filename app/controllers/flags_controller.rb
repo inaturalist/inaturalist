@@ -5,8 +5,8 @@ class FlagsController < ApplicationController
   before_filter :load_flag, :only => [:show, :edit, :destroy, :update]
   
   # put the parameters for the foreign keys here
-  FLAG_MODELS = ["Observation", "Taxon", "Post", "Comment", "Identification"]
-  FLAG_MODELS_ID = ["observation_id","taxon_id","post_id", "comment_id", "identification_id"]
+  FLAG_MODELS = ["Observation", "Taxon", "Post", "Comment", "Identification", "Message"]
+  FLAG_MODELS_ID = ["observation_id","taxon_id","post_id", "comment_id", "identification_id", "message_id"]
   PARTIALS = %w(dialog)
 
   def index
@@ -55,6 +55,8 @@ class FlagsController < ApplicationController
       redirect_to @object.parent
     elsif @object.is_a?(Identification)
       redirect_to @object.observation
+    elsif @object.is_a?(Message)
+      redirect_to messages_path
     else
       redirect_to @object
     end

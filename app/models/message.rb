@@ -1,5 +1,6 @@
 class Message < ActiveRecord::Base
   attr_accessible :body, :from_user_id, :subject, :thread_id, :to_user_id, :user_id, :to_user, :from_user, :user
+  acts_as_flaggable
 
   belongs_to :user
   belongs_to :from_user, :class_name => "User"
@@ -70,5 +71,12 @@ class Message < ActiveRecord::Base
     return true if skip_email
     Emailer.delay(:priority => USER_INTEGRITY_PRIORITY).new_message(id)
     true
+  end
+
+  def flagged_with(flag)
+    if Message.joins(:flags).where("from_user_id = ? AND flags.flag = ?", user_id, Flag::SPAM).count >= 3
+      user.suspend!
+    end
+    Message.where(:user_id => to_user_id, :thread_id => thread_id).destroy_all
   end
 end

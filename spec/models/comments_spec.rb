@@ -31,3 +31,16 @@ describe Comment, "deletion" do
     Update.where(:subscriber_id => s.user_id, :resource_type => 'Observation', :resource_id => o.id).count.should eq(0)
   end
 end
+
+describe Comment, "flagging" do
+  it "should suspend the commenter if their comments have been flagged 3 times" do
+    offender = User.make!
+    3.times do
+      c = Comment.make!(:user => offender)
+      flag = Flag.make(:flaggable => c, :flag => Flag::SPAM)
+      flag.save!
+    end
+    offender.reload
+    offender.should be_suspended
+  end
+end

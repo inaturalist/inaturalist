@@ -42,4 +42,10 @@ class Comment < ActiveRecord::Base
     return true if deleting_user.is_curator? || deleting_user.is_admin?
     false
   end
+
+  def flagged_with(flag)
+    if Comment.joins(:flags).where("comments.user_id = ? AND flags.flag = ?", user_id, Flag::SPAM).count >= 3
+      user.suspend!
+    end
+  end
 end

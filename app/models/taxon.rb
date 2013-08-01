@@ -745,12 +745,6 @@ class Taxon < ActiveRecord::Base
     "lsid:#{URI.parse(CONFIG.site_url).host}:taxa:#{id}"
   end
   
-  # Flagged method is called after every add_flag.  This callback method
-  # is totally optional and does not have to be included in the model
-  def flagged(flag, flag_count)
-    true
-  end
-  
   def update_unique_name(options = {})
     reload # there's a chance taxon names have been created since load
     return true unless default_name

@@ -1,4 +1,6 @@
 class Flag < ActiveRecord::Base
+  SPAM = "spam"
+  INAPPROPRIATE = "inappropriate"
   belongs_to :flaggable, :polymorphic => true
 
   has_subscribers :to => {
@@ -18,6 +20,8 @@ class Flag < ActiveRecord::Base
   belongs_to :user
   belongs_to :resolver, :class_name => 'User', :foreign_key => 'resolver_id'
   has_many :comments, :as => :parent, :dependent => :destroy
+
+  after_create :notify_flaggable
   
   # A user can flag a specific flaggable with a specific flag once
   validates_length_of :flag, :in => 3..256, :allow_blank => false
@@ -32,6 +36,13 @@ class Flag < ActiveRecord::Base
     else
       errors.add(:flaggable_type, "can't be flagged")
     end
+  end
+
+  def notify_flaggable
+    if flaggable && flaggable.respond_to?(:flagged_with)
+      flaggable.flagged_with(self)
+    end
+    true
   end
   
   # Helper class method to lookup all flags assigned
