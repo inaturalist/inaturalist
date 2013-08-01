@@ -281,8 +281,11 @@ es-MX:
   all_your_observations_will_default_to_this_time_zone: "Todas tus observaciones tendrán esta zona de tiempo a menos que especifiques otra cosa."
   all_your_projects: Todos tus proyectos
   allow_any: "Permite a cualquiera"
+  allowed_establish_means_values: Valores permitidos para los medios de establecimiento
   allowed_html: Etiquetas permitidas de HTML
+  allowed_occurrence_status_values: Valores permitidos para los estatus de ocurrencia
   allowed_values: Valores permitidos
+  alphabetical: Orden alfabético
   alphabetical_order: "Orden alfabético"
   amphibians: Anfibios
   amphibiaweb_doesnt_have_info_about_species: "El sitio AmphibiaWeb no tiene información sobre esta especie."
@@ -341,6 +344,7 @@ es-MX:
   at: en
   at_: a las
   at_any_time_change: "en cualquier tiempo (<span class=\"botón\">cambia</span>)"
+  at_time: "a las %{time}"
   atom: Atom
   automatic_descriptions_have_been_disabled: "Las descripciones automáticas para esta especie o grupo han sido desconectadas."
   automatically_add_to_project: "Añade al proyecto automáticamente"
@@ -602,9 +606,11 @@ es-MX:
   critically_endangered: "En peligro crítico"
   css_description: "Esto será incluido después de los otros css en la página."
   csv: CSV
+  csv_should_not_contain_a_header_row: El CSV no debería contener ninguna cabecera de datos
   curate_observations: "Cura observaciones"
   curate_taxa: "Cura una especie o grupo"
-  curate_users: "Revisa usuarios"
+  curate_user: "Curar usuario"
+  curate_users: "Curar usuarios"
   curated: curados
   curating: Curando
   curation: Curación
@@ -704,6 +710,7 @@ es-MX:
   default_observation_license: "Licencia predeterminada de observación"
   default_photo_license: "Licencia predeterminada de foto"
   delete: Borrar
+  delete_conversation: Eliminar conversación
   delete_icon?: "¿Borras el ícono?"
   delete_project: "Borra este proyecto"
   delete_selected: "Borra seleccionado"
@@ -6310,6 +6317,7 @@ es-MX:
                       checa si alguien más ya lo creó, para
                       evitar duplicación.
   fields: Campos
+  file_should_be_in_the_following_format: "El archivo debería tener el siguiente formato: nombre de la especie o grupo, descripción"
   fill_out_your_profile: "Escribe tu perfil"
   filling_out_checklist_for_place: "Llenando listas de especies para lugares que conoces bien"
   filling_out_your_profile: "Llenando tu perfil"
@@ -6776,6 +6784,7 @@ es-MX:
   no_license_all_rights_reserved: "Sin licencia (todos los derechos reservados)"
   no_link_flickr: "No, mejor no."
   no_managers_set: No hay gerentes aún
+  no_matching_article_from_x: "No coincidió ningún artículo en %{x}"
   no_matching_observations: "No hay observaciones que coincidan"
   no_matching_places: "No hay lugares que coincidan"
   no_matching_projects: "No hay proyectos que coincidan"
@@ -6785,6 +6794,7 @@ es-MX:
   no_more_mail_from_site: "¿No quieres recibir correos del %{site_name}? Edita tu configuración de correo en"
   no_more_updates: "¡No más actualizaciones!"
   no_nearby_observations: "No hay observaciones cercanas."
+  no_new_messages: No hay nuevos mensajes
   no_observations: "No hay observaciones"
   no_observations_matching_those_ids: No hay observaciones que coincidan con esos identificadores.
   no_observations_need_an_id: "Ninguna observación necesita identificación por ahora. ¡Genial!"
@@ -6801,6 +6811,7 @@ es-MX:
   no_range_data_available: "No hay información disponible de distribución."
   no_recent_activity: "No hay actividad reciente"
   no_recently_active: "Todavía no hay proyectos activos recientes."
+  no_reply_yet: Aún no ha respondido
   no_results_found: "No se encontraron resultados"
   no_results_for: 'Sin resultados para '
   no_results_matching: "No hay resultados que coincidan"
@@ -6934,6 +6945,7 @@ es-MX:
   observing: Observando
   occurence_status_describes_how: "El estatus de ocurrencia describe que tan común o raro es una especie o grupo en un área determinada. Ver el DarwinCore  <a href=\"http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus\">para información sobre terminología</a>."
   occurrence_status: "Estatus de ocurrencia"
+  occurrence_status_establishment_means: estatus de ocurrencia, medio de establecimiento
   occurrence_status_levels:
         present: presente
         common: común
@@ -6946,6 +6958,7 @@ es-MX:
   offensive_inappropriate: ofensivo / inapropiado
   on_: en
   on_day: el
+  on_date: "el %{date}"
   on_edit_date: "sobre %{editdate}"
   on_list?: en lista
   on_submit_date: "sobre %{submitdate}"
@@ -6977,6 +6990,7 @@ es-MX:
   or_invited: o invitadas.
   or_just_adding_species_using: "o solamente añadiendo especies mediante la forma en esta página"
   or_post_message_to_google_group: "o envía un mensaje a nuestro Grupo Google"
+  or_upload: O descarga el
   or_you_can: "O si puedes..."
   orange: Anaranjado
   Order: Orden
@@ -7225,6 +7239,7 @@ es-MX:
   removing: Quitando...
   repair_doesnt_work_for_that_kind_of_photo: Reparar no funciona para ese tipo de foto.
   replace_parentesis: (reemplazar)
+  reply: Responde
   report_any_problems: reporta cualquier problema
   reptiles: Reptiles
   request_id_help: "Solicita ayuda para el usuario"
@@ -7353,6 +7368,7 @@ es-MX:
   some_of_those_photos_couldnt_be_saved: "Algunas de las fotos no pudierón ser guardadas: %{error}"
   some_other_reason: Otra razón que puedes explicar.
   some_people: "Algunas personas"
+  some_people_that: "Algunas personas que"
   some_rights_reserved: "Algunos derechos reservados"
   something: Alguien
   something_: algún grupo o especie
@@ -7426,6 +7442,7 @@ es-MX:
   species_guess: "Sugerencia de especie"
   species_guide: "Guía de especies"
   species_name: "Nombres de especie"
+  species_or_lower: especies o grupos subordinados
   species_search: "Búsqueda de especies"
   species_taxon_name: "Especie/Grupo"
   species_unknown: Especies desconocidas
@@ -7709,6 +7726,7 @@ es-MX:
   updated_daily: Actualizado el día de hoy
   updated_photo: Foto subida
   upload: Cargar
+  upload_a_csv_file: Carga un archivo CSV
   upload_a_csv_file_with_observation: "Carga el archivo CSV con los datos de observaciones. SI tienes los datos en una base de datos, esta es probablemente la mejor manera de hacerlo."
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio web fuente
   use_this_form_to_create_a_new:
@@ -7717,7 +7735,7 @@ es-MX:
   use_this_if_the_url_needs_genus_species_separated: "Usa esto si el URL requiere tener el género y la especie separados de alguna forma. Si el grupo no es una especie o infraespecie, entonces todo lo que este entre [GÉNERO] y [ESPECIE] será reemplazado por el nombre del grupo, así que úsalo cuidadosamente. <br/><br/> <strong>Por ejemplo:</strong><br/>\n"
   user: Usuario
   user_commented_on: "El %{user} comentó sobre tu %{title} %{time}"
-  user_follows: "%{user} sigue a"
+  user_follows: "%{user} sigue:"
   user_hasnt: "El %{user} no ha "
   user_invite_observation_to_project: "A %{user} le gustaría invitar tu observación  \"%{observation}\" al proyecto %{project}."
   user_s: "del %{user}"
@@ -7760,6 +7778,7 @@ es-MX:
   view_observation: "Ver observación"
   view_observations: "Ver observaciones"
   view_observations_raquo: "Ver observaciones &raquo;"
+  view_on: Ver en
   view_on_amphibiaweb: "Ver en AmphibianWeb"
   view_on_flickr: "Ver en Flickr"
   view_on_wikipedia: "Ver en Wikipedia"
@@ -7779,6 +7798,8 @@ es-MX:
   view_unidentified_observations: "Ve las observaciones no identificadas..."
   view_user_observations: "Ve las observaciones de %{user}"
   view_x_from_x: "Ve las %{day_observations} obs. del %{observed_on}"
+  view_your_dashboard: Ve tu tablero
+  view_your_inbox: Ve tu buzón
   view_your_life_list: "Ve tu lista de vida"
   view_your_life_lists: "Ver tu lista de especies de vida"
   view_your_calendar: Observa tu calendario

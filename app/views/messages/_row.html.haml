@@ -5,4 +5,4 @@
     = link_to_user message.from_user
   %td.body
     = formatted_user_text(message.body)
-  %td.nobr.meta.date= message.created_at.to_s(:short)
+  %td.nobr.meta.date= l(message.created_at.to_datetime, :format => :short)
