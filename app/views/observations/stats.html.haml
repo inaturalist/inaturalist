@@ -39,30 +39,40 @@
   = link_to t(:view_all_observations), request.fullpath.gsub(/\/stats/, ''), :class => "readmore"
 - else
   You must add one of the following parameters to the URL to use this tool
-  %ul
-    %li
+  %dl
+    %dt
       %code place_id
+    %dd
       %div
         Example:
-        %code= stats_observations_url(:place_id => 'belgium')
-    %li
+        = link_to stats_observations_url(:place_id => 'belgium'), stats_observations_url(:place_id => 'belgium')
+    %dt
       %code user_id
+    %dd
       %div
         Example:
-        %code= stats_observations_url(:user_id => 1)
-    %li
+        = link_to stats_observations_url(:user_id => 1), stats_observations_url(:user_id => 1)
+    %dt
       %code projects
+    %dd
       %div
         Example:
-        %code= stats_observations_url(:projects => 10)
-    %li
+        = link_to stats_observations_url(:projects => 10), stats_observations_url(:projects => 10)
+    %dt
+      %code on
+    %dd
+      %div
+        Example:
+        = link_to stats_observations_url(:on => "2012-01-01"), stats_observations_url(:on => "2012-01-01")
+    %dt
       %code d1
       and
       %code d2
       (max date range 1 year)
+    %dd
       %div
         Example:
-        %code= stats_observations_url(:d1 => "2012-01-01", :d2 => "2012-01-30")
+        = link_to stats_observations_url(:d1 => "2012-01-01", :d2 => "2012-01-30"), stats_observations_url(:d1 => "2012-01-01", :d2 => "2012-01-30")
 
 = content_for(:extracss) do
   :css
@@ -109,12 +119,12 @@
     var url = '/observations/taxon_stats.json'+window.location.search
     $.getJSON(url, function(json) {
       $('#species .count').html(json.rank_counts.species || 0)
-      if (json.taxon_counts.length > 0) {
+      if (json.species_counts.length > 0) {
         var most
         $('#most_observed table').html('')
-        for (var i = 0; i < json.taxon_counts.length; i++) {
-          if (json.taxon_counts[i].taxon) {
-            most = json.taxon_counts[i]
+        for (var i = 0; i < json.species_counts.length; i++) {
+          if (json.species_counts[i].taxon) {
+            most = json.species_counts[i]
             var tr = $('<tr></tr>'),
                 taxonTD = $('<td class="taxon"></td>'),
                 imageTD = $('<td class="image"></td>')

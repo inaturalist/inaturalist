@@ -191,6 +191,46 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == o2.id}.should be_blank
     end
   end
+
+  describe "taxon_stats" do
+    before do
+      @o = Observation.make!(:observed_on_string => "2013-07-20", :taxon => Taxon.make!(:rank => Taxon::SPECIES))
+      get :taxon_stats, :format => :json, :on => "2013-07-20"
+      @json = JSON.parse(response.body)
+    end
+
+    it "should include a total" do
+      @json["total"].to_i.should > 0
+    end
+
+    it "should include species_counts" do
+      @json["species_counts"].size.should > 0
+    end
+
+    it "should include rank_counts" do
+      @json["rank_counts"][@o.taxon.rank.downcase].should > 0
+    end
+  end
+
+  describe "user_stats" do
+    before do
+      @o = Observation.make!(:observed_on_string => "2013-07-20", :taxon => Taxon.make!(:rank => Taxon::SPECIES))
+      get :user_stats, :format => :json, :on => "2013-07-20"
+      @json = JSON.parse(response.body)
+    end
+
+    it "should include a total" do
+      @json["total"].to_i.should > 0
+    end
+
+    it "should include most_observations" do
+      @json["most_observations"].size.should > 0
+    end
+
+    it "should include most_species" do
+      @json["most_species"].size.should > 0
+    end
+  end
 end
 
 describe ObservationsController, "oauth authentication" do
