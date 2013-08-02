@@ -85,6 +85,10 @@ class GuidesController < ApplicationController
             end
           end
           @nav_taxa = Taxon.where("id IN (?)", subconsensus_taxon_ids)
+          @nav_taxa_counts = {}
+          @nav_taxa.each do |t|
+            @nav_taxa_counts[t.id] = @guide.guide_taxa.joins(:taxon).where(t.descendant_conditions).count
+          end
         end
       end
 

@@ -14,8 +14,9 @@
     #attribution li:last-child:after {content: '';}
     .bootstrap .nav-list {padding-left: 0;}
     .bootstrap .nav > li {position:relative;}
-    #tags li  {padding-right:27px;}
-    #tags .badge.modtag {
+    #nav li {padding-right:27px;}
+    #nav li li {padding-right:0;}
+    #nav .badge.modtag {
       display:none; 
       position:absolute; 
       right: 5px; 
@@ -23,9 +24,9 @@
       padding-left: 5px; 
       padding-right: 5px;
     }
-    #tags .badge.modtag a {color:white; text-decoration: none;}
-    #tags li:hover .badge.modtag {display:block;}
-    #tags .addtag {background-color: #73AC13;}
+    #nav .badge.modtag a {color:white; text-decoration: none;}
+    #nav li:hover .badge.modtag {display:block;}
+    #nav .addtag {background-color: #73AC13;}
     #nav .badge {position:relative; top:-2px;}
     #nav .taxon .othernames {display:block; color:#aaa;}
     #nav a .taxon:hover {
@@ -164,11 +165,13 @@
           - for taxon in @nav_taxa
             %li
               = link_to url_for_params(:taxon => taxon.id, :without => [:page]) do
+                %span.badge.right= @nav_taxa_counts[taxon.id]
                 = render "shared/taxon", :taxon => taxon, :include_parens => false
         - if @taxon
           - subnav_taxa = capture do
             %li.active
               = link_to url_for_params(:taxon => @taxon.id, :without => [:page]) do
+                %span.badge.right= @nav_taxa_counts[@taxon.id]
                 = render "shared/taxon", :taxon => @taxon, :include_parens => false
               %ul.nav.nav-stacked.nav-pills
                 = nav_taxa
