@@ -1655,11 +1655,10 @@ class ObservationsController < ApplicationController
     end
     
     # taxon
-    unless search_params[:taxon_id].blank?
+    if !search_params[:taxon_id].blank?
       @observations_taxon_id = search_params[:taxon_id] 
       @observations_taxon = Taxon.find_by_id(@observations_taxon_id.to_i)
-    end
-    unless search_params[:taxon_name].blank?
+    elsif !search_params[:taxon_name].blank?
       @observations_taxon_name = search_params[:taxon_name].to_s
       taxon_name_conditions = ["taxon_names.name = ?", @observations_taxon_name]
       includes = nil
