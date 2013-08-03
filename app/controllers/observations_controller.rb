@@ -324,6 +324,17 @@ class ObservationsController < ApplicationController
                   :only => [:name, :login, :id]
                 }
               }
+            },
+            :identifications => {
+              :include => {
+                :user => {
+                  :only => [:name, :login, :id]
+                },
+                :taxon => {
+                  :only => [:id, :name, :iconic_taxon_id, :rank],
+                  :methods => [:iconic_taxon_name]
+                }
+              }
             }
           })
       end

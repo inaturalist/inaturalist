@@ -60,7 +60,7 @@ class CommentsController < ApplicationController
   
   def create
     @comment = Comment.new(params[:comment])
-    @comment.user ||= current_user
+    @comment.user = current_user
     @comment.save unless params[:preview]
     respond_to do |format|
       format.html { respond_to_create }

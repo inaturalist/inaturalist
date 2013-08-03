@@ -184,6 +184,35 @@ EOT
     desc "Delete a comment."
     formats %w(json)
   end
+
+  post "/identifications", :auth_required => true do
+    desc "Create identifications. Identifications are automatically associated with the signed in user."
+    formats %w(json)
+    
+    param "identification[observation_id]" do
+      desc "ID of the associated observation"
+      values "Valid iNat observation ID"
+    end
+
+    param "identification[taxon_id]" do
+      desc "ID of the associated taxon"
+      values "Valid iNat taxon ID"
+    end
+
+    param "identification[body]" do
+      desc "Optional user remarks on the identification."
+    end
+  end
+
+  put "/identifications/:id", :auth_required => true do
+    desc "Update a identification. Params are the same as POST /identifications."
+    formats %w(json)
+  end
+
+  delete "/identifications/:id", :auth_required => true do
+    desc "Delete a identification."
+    formats %w(json)
+  end
   
   get "/observations" do
     desc <<-EOT

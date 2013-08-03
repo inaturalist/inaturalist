@@ -1,5 +1,6 @@
 class IdentificationsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:by_login]
+  doorkeeper_for :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, :except => [:by_login], :unless => lambda { authenticated_with_oauth? }
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :load_identification, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner, :only => [:edit, :update, :destroy]
@@ -42,6 +43,7 @@ class IdentificationsController < ApplicationController
   # POST identification_url
   def create
     @identification = Identification.new(params[:identification])
+    @identification.user = current_user
     if @identification.taxon.blank? && params[:taxa_search_form_taxon_name]
       taxon_name = TaxonName.find_by_name(params[:taxa_search_form_taxon_name])
       @identification.taxon = taxon_name.taxon if taxon_name
@@ -83,11 +85,26 @@ class IdentificationsController < ApplicationController
   
   def update
     if @identification.update_attributes(params[:identification])
-      flash[:notice] = t(:identification_updated)
+      msg = t(:identification_updated)
+      respond_to do |format|
+        format.html do
+          flash[:notice] = msg
+          redirect_to @identification.observation
+        end
+        format.json { render :json => @identification }
+      end
     else
-      flash[:error] = t(:there_was_a_problem_saving_your_identification, :error => @identification.errors.full_messages.join(', '))
+      msg = t(:there_was_a_problem_saving_your_identification, :error => @identification.errors.full_messages.join(', '))
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to @identification.observation
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:errors => @identification.errors.full_messages}
+        end
+      end
     end
-    redirect_to @identification.observation
   end
   
 

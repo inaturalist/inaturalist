@@ -107,6 +107,14 @@ shared_examples_for "an ObservationsController" do
       response_obs = JSON.parse(response.body)
       response_obs['comments'].first['body'].should eq(c.body)
     end
+
+    it "should include identifications" do
+      o = Observation.make!
+      i = Identification.make!(:observation => o)
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['identifications'].first['taxon_id'].should eq(i.taxon_id)
+    end
   end
 
   describe "update" do
