@@ -42,4 +42,8 @@ class FakeView < ActionView::Base
   def fake_controller
     @fake_controller ||= ApplicationController.new
   end
+
+  def params
+    {}
+  end
 end
