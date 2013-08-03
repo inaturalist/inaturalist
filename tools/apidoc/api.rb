@@ -157,6 +157,34 @@ authentication, but if you want to access data like unobscured coordinates on
 behalf of users or write data to iNat, you will need to make authenticated
 requests (see below).
 EOT
+  post "/comments", :auth_required => true do
+    desc "Create comments. Comments are automatically associated with the signed in user."
+    formats %w(json)
+    param "comment[parent_type]" do
+      desc "Type of parent record to which this comment is being added."
+      values %w(AssessmentSection ListedTaxon Observation ObservationField Post TaxonChange)
+    end
+
+    param "comment[parent_id]" do
+      desc "Parent record ID"
+      values "Valid iNat record ID"
+    end
+
+    param "comment[body]" do
+      desc "Comment body."
+    end
+  end
+
+  put "/comments/:id", :auth_required => true do
+    desc "Update a comment. Params are the same as POST /comments."
+    formats %w(json)
+  end
+
+  delete "/comments/:id", :auth_required => true do
+    desc "Delete a comment."
+    formats %w(json)
+  end
+  
   get "/observations" do
     desc <<-EOT
 Primary endpoint for retrieving observations. JSON and ATOM responses are what
@@ -254,6 +282,7 @@ EOT
       desc "Filter by the license of the associated photos."
       values "Same as license param"
     end
+
     param "taxon_id" do
       desc "Filter by iNat taxon ID. Note that this will also select observations of descendant taxa."
       values "valid iNat taxon ID"
@@ -815,6 +844,110 @@ EOT
   delete "/observations/:id", :auth_required => true do
     desc "Delete an observation. Authenticated user must own the observation."
     formats %w(json)
+    example do
+      request <<-EOT
+        /observations/297867.json
+      EOT
+      response <<-EOJS
+{
+  "comments_count": 1,
+  "community_taxon_id": 71992,
+  "created_at": "2013-06-17T15:46:47Z",
+  "delta": false,
+  "description": "",
+  "geoprivacy": "private",
+  "iconic_taxon_id": 47126,
+  "id": 297867,
+  "id_please": false,
+  "latitude": null,
+  "license": "CC-BY",
+  "location_is_exact": false,
+  "longitude": null,
+  "map_scale": null,
+  "num_identification_agreements": 0,
+  "num_identification_disagreements": 1,
+  "oauth_application_id": null,
+  "observed_on": "2013-06-12",
+  "observed_on_string": "2013-06-12 15:00:20",
+  "out_of_range": null,
+  "photos_count": 1,
+  "place_guess": "New Haven, Connecticut, United States",
+  "positional_accuracy": null,
+  "positioning_device": null,
+  "positioning_method": null,
+  "quality_grade": "research",
+  "sounds_count": 0,
+  "species_guess": "Asplenium trichomanes",
+  "taxon_id": 75609,
+  "time_observed_at": "2013-06-12T19:00:20Z",
+  "time_zone": "Eastern Time (US & Canada)",
+  "timeframe": null,
+  "updated_at": "2013-07-08T19:08:27Z",
+  "uri": "http://www.inaturalist.org/observations/297867",
+  "user_id": 1,
+  "zic_time_zone": "America/New_York",
+  "user_login": "kueda",
+  "iconic_taxon_name": "Plantae",
+  "created_at_utc": "2013-06-17T15:46:47Z",
+  "updated_at_utc": "2013-07-08T19:08:27Z",
+  "time_observed_at_utc": "2013-06-12T19:00:20Z",
+  "coordinates_obscured": true,
+  "observation_field_values": [],
+  "project_observations": [{
+    "created_at": "2013-06-17T16:22:04Z",
+    "curator_identification_id": null,
+    "id": 399,
+    "observation_id": 297867,
+    "project_id": 243,
+    "tracking_code": null,
+    "updated_at": "2013-06-17T16:22:04Z",
+    "project": {
+      "id": 243,
+      "title": "McLaren Park Bioblitz",
+      "icon_url": null
+    }
+  }],
+  "observation_photos": [{
+    "created_at": "2013-06-17T15:46:51Z",
+    "id": 1221,
+    "observation_id": 297867,
+    "photo_id": 1582,
+    "position": null,
+    "updated_at": "2013-06-17T15:46:51Z",
+    "photo": {
+      "created_at": "2013-06-17T15:46:47Z",
+      "file_updated_at": "2013-06-17T17:25:36Z",
+      "id": 1582,
+      "large_url": "http://staticdev.inaturalist.org/photos/1582/large.jpg?1371489936",
+      "license": 4,
+      "medium_url": "http://staticdev.inaturalist.org/photos/1582/medium.jpg?1371489936",
+      "native_page_url": "http://www.inaturalist.org/photos/1582",
+      "native_username": "kueda",
+      "small_url": "http://staticdev.inaturalist.org/photos/1582/small.jpg?1371489936",
+      "square_url": "http://staticdev.inaturalist.org/photos/1582/square.jpg?1371489936",
+      "thumb_url": "http://staticdev.inaturalist.org/photos/1582/thumb.jpg?1371489936",
+      "updated_at": "2013-06-17T17:25:46Z",
+      "license_code": "CC-BY",
+      "attribution": "(c) kueda, some rights reserved (CC BY)"
+    }
+  }],
+  "comments": [{
+    "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "created_at": "2013-06-17T18:19:21Z",
+    "id": 173,
+    "parent_id": 297867,
+    "parent_type": "Observation",
+    "updated_at": "2013-06-17T18:19:21Z",
+    "user_id": 168,
+    "user": {
+      "id": 168,
+      "login": "munz",
+      "name": null
+    }
+  }]
+}
+      EOJS
+    end
   end
   
   get "/observations/:username" do

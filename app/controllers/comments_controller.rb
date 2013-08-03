@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  before_filter :authenticate_user!, :except => :index
+  doorkeeper_for :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
   before_filter :admin_required, :only => [:user]
   before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
   before_filter :owner_required, :only => [:edit, :update]
@@ -111,6 +112,7 @@ class CommentsController < ApplicationController
     end
 
     parent = @comment.parent
+    Rails.logger.debug "[DEBUG] @comment: #{@comment}"
     @comment.destroy
     respond_to do |format|
       format.html do

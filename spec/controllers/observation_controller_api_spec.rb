@@ -99,6 +99,14 @@ shared_examples_for "an ObservationsController" do
       response_obs = JSON.parse(response.body)
       response_obs['observation_field_values'].first['observation_field']['name'].should eq(ofv.observation_field.name)
     end
+
+    it "should include comments" do
+      o = Observation.make!
+      c = Comment.make!(:parent => o)
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['comments'].first['body'].should eq(c.body)
+    end
   end
 
   describe "update" do

@@ -303,7 +303,7 @@ class ObservationsController < ApplicationController
             :project_observations => {
               :include => {
                 :project => {
-                  :only => [:id, :title, :description],
+                  :only => [:id, :title],
                   :methods => [:icon_url]
                 }
               }
@@ -315,6 +315,13 @@ class ObservationsController < ApplicationController
                   :except => [:original_url, :file_processing, :file_file_size, 
                     :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
                     :native_realname, :native_photo_id]
+                }
+              }
+            },
+            :comments => {
+              :include => {
+                :user => {
+                  :only => [:name, :login, :id]
                 }
               }
             }

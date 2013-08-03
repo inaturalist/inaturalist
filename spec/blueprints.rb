@@ -29,6 +29,7 @@ end
 Comment.blueprint do
   user { User.make }
   body { Faker::Lorem.paragraph }
+  parent { Observation.make! }
 end
 
 ConservationStatus.blueprint do
