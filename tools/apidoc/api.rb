@@ -609,18 +609,17 @@ EOT
       values ["open", "obscured", "private"]
     end
 
-    param "observation_field_values_attributes[][observation_field_id]" do
+    param "observation[observation_field_values_attributes][order]" do
       desc <<-EOT
         Nested fields for observation field values are specified in the
-        observation_field_values_attributes param. The observation_field_id is
-        the iNat ID of the observation field being used.
+        observation_field_values_attributes param. <code>order</code> is just
+        an integer starting with zero specifying the order of entry.
       EOT
-      values "Any valid iNat observation field ID"
-    end
-
-    param "observation_field_values_attributes[][value]" do
-      desc "Value of the observation field value"
-      values "Depends on the observation field."
+      values <<-EOT
+        ObservationFieldValue attributes. So you
+        might specify an entire observation field value for an observation field with an ID of 1 as 
+        <code>observation[observation_field_values_attributes][0][observation_field_id]=1&observation[observation_field_values_attributes][0][value]=foo</code>.
+      EOT
     end
 
     param "flickr_photos[]" do
@@ -676,8 +675,8 @@ EOT
           observation[location_is_exact]=false&
           observation[positional_accuracy]=7798&
           observation[geoprivacy]=obscured&
-          observation[observation_field_values_attributes][observation_field_id]=5&
-          observation[observation_field_values_attributes][value]=male&
+          observation[observation_field_values_attributes][0][observation_field_id]=5&
+          observation[observation_field_values_attributes][0][value]=male&
           flickr_photos[0]=8331632744
       EOT
       response <<-EOJS
@@ -795,6 +794,21 @@ EOT
         override this behavior and leave any existing photos in place.
       EOT
       values [0,1]
+    end
+
+    param "observation[observation_field_values_attributes][order]" do
+      desc <<-EOT
+        Again, pretty much the same as POST /observations, but you can update
+        existing ObservationFieldValues by including their IDs, and remove
+        them using the <code>_delete</code> param.
+      EOT
+      values <<-EOT
+        ObservationFieldValue attributes. You could update an
+        ObservationFieldValue with an ID of 1 with
+        <code>observation[observation_field_values_attributes][0][id]=1&observation[observation_field_values_attributes][0][value]=foo</code>. 
+        You could delete the same with 
+        <code>observation[observation_field_values_attributes][0][id]=1&observation[observation_field_values_attributes][0][_delete]=true</code>
+      EOT
     end
   end
 

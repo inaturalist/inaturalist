@@ -68,8 +68,9 @@ module MakeHelpers
   def make_project_observation(options = {})
     p = options[:project] || Project.make!
     t = options.delete(:taxon)
-    pu = ProjectUser.make!(:project => p)
-    o = Observation.make!(:user => pu.user, :taxon => t)
+    u = options.delete(:user) || User.make!
+    pu = ProjectUser.make!(:project => p, :user => u)
+    o = Observation.make!(:user => u, :taxon => t)
     ProjectObservation.make!({:project => pu.project, :observation => o}.merge(options))
   end
 

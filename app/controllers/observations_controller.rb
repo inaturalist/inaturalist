@@ -644,8 +644,17 @@ class ObservationsController < ApplicationController
     # Make sure there's no evil going on
     unique_user_ids = @observations.map(&:user_id).uniq
     if unique_user_ids.size > 1 || unique_user_ids.first != observation_user.id && !current_user.has_role?(:admin)
-      flash[:error] = t(:you_dont_have_permission_to_edit_that_observation)
-      return redirect_to(@observation || observations_path)
+      msg = t(:you_dont_have_permission_to_edit_that_observation)
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to(@observation || observations_path)
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => msg}
+        end
+      end
+      return
     end
     
     # Convert the params to a hash keyed by ID.  Yes, it's weird

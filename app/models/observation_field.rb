@@ -49,6 +49,10 @@ class ObservationField < ActiveRecord::Base
     const_set t.upcase, t
   end
 
+  def to_s
+    "<ObservationField #{id}, name: #{name}, user_id: #{user_id}>"
+  end
+
   def strip_name
     self.name = name.strip unless name.blank?
     true

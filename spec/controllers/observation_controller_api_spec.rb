@@ -26,6 +26,23 @@ shared_examples_for "an ObservationsController" do
       o = Observation.last
       o.species_guess.should eq('?')
     end
+
+    it "should accept nested observation_field_values" do
+      of = ObservationField.make!
+      post :create, :format => :json, :observation => {
+        :species_guess => "zomg", 
+        :observation_field_values_attributes => {
+          "0" => {
+            :observation_field_id => of.id,
+            :value => "foo"
+          }
+        }
+      }
+      response.should be_success
+      o = Observation.last
+      o.observation_field_values.last.observation_field.should eq(of)
+      o.observation_field_values.last.value.should eq("foo")
+    end
   end
 
   describe "destroy" do
@@ -84,12 +101,83 @@ shared_examples_for "an ObservationsController" do
     end
   end
 
-  define "update" do
+  describe "update" do
+    before do
+      @o = Observation.make!(:user => user)
+    end
+
     it "should update" do
-      o = Observation.make!(:user => user)
-      put :update, :format => :json, :id => o.id, :observation => {:species_guess => "i am so updated"}
-      o.reload
-      o.species_guess.should eq("i am so updated")
+      put :update, :format => :json, :id => @o.id, :observation => {:species_guess => "i am so updated"}
+      @o.reload
+      @o.species_guess.should eq("i am so updated")
+    end
+
+    it "should accept nested observation_field_values" do
+      of = ObservationField.make!
+      put :update, :format => :json, :id => @o.id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :observation_field_id => of.id,
+            :value => "foo"
+          }
+        }
+      }
+      response.should be_success
+      @o.reload
+      @o.observation_field_values.last.observation_field.should eq(of)
+      @o.observation_field_values.last.value.should eq("foo")
+    end
+
+    it "should updating existing observation_field_values" do
+      ofv = ObservationFieldValue.make!(:value => "foo", :observation => @o)
+      put :update, :format => :json, :id => ofv.observation_id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :id => ofv.id,
+            :observation_field_id => ofv.observation_field_id,
+            :value => "bar"
+          }
+        }
+      }
+      response.should be_success
+      ofv.reload
+      ofv.value.should eq "bar"
+    end
+
+    it "should updating existing observation_field_values even if they're project fields" do
+      pof = ProjectObservationField.make!
+      po = make_project_observation(:project => pof.project, :user => user)
+      ofv = ObservationFieldValue.make!(:value => "foo", :observation => po.observation, :observation_field => pof.observation_field)
+      put :update, :format => :json, :id => ofv.observation_id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :id => ofv.id,
+            :observation_field_id => ofv.observation_field_id,
+            :value => "bar"
+          }
+        }
+      }
+      response.should be_success
+      ofv.reload
+      ofv.value.should eq "bar"
+    end
+
+    it "should allow removal of nested observation_field_values" do
+      ofv = ObservationFieldValue.make!(:value => "foo", :observation => @o)
+      @o.observation_field_values.should_not be_blank
+      put :update, :format => :json, :id => ofv.observation_id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :_destroy => true,
+            :id => ofv.id,
+            :observation_field_id => ofv.observation_field_id,
+            :value => ofv.value
+          }
+        }
+      }
+      response.should be_success
+      @o.reload
+      @o.observation_field_values.should be_blank
     end
   end
 

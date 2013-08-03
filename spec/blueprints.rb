@@ -120,7 +120,7 @@ end
 ObservationField.blueprint do
   name { Faker::Lorem.sentence }
   datatype {'text'}
-  user { User.make }
+  user { User.make! }
 end
 
 ObservationFieldValue.blueprint do
@@ -178,8 +178,8 @@ ProjectList.blueprint do
 end
 
 ProjectObservationField.blueprint do
-  project { Project.make }
-  observation_field { ObservationField.make }
+  project { Project.make! }
+  observation_field { ObservationField.make! }
 end
 
 ProjectUser.blueprint do

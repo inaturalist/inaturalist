@@ -35,6 +35,10 @@ class ObservationFieldValue < ActiveRecord::Base
     end
   }
 
+  def to_s
+    "<ObservationFieldValue #{id}, observation_field_id: #{observation_field_id}, observation_id: #{observation_id}>"
+  end
+
   def taxon
     return nil unless observation_field.datatype == ObservationField::TAXON
     @taxon ||= Taxon.find_by_id(value)
