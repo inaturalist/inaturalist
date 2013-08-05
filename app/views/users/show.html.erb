@@ -59,8 +59,7 @@
           <% end %>
         </div>
       <% else %>
-        <%= @user.login %>
-		<%= t(:is_a_naturalist, :site_name => SITE_NAME) %>
+		    <%= t(:user_is_a_naturalist, :user => @user.login) %>
       <% end -%>
     <% else %>
       <%= formatted_user_text(@user.description) %>
