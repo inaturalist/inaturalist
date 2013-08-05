@@ -503,9 +503,13 @@ class ObservationsController < ApplicationController
     if @observation.quality_metrics.detect{|qm| qm.user_id == @observation.user_id && qm.metric == QualityMetric::WILD && !qm.agree?}
       @observation.captive = true
     end
-    if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
-      return render(:partial => params[:partial], :object => @observation,
-        :layout => false)
+    respond_to do |format|
+      format.html do
+        if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
+          return render(:partial => params[:partial], :object => @observation,
+            :layout => false)
+        end
+      end
     end
   end
 
