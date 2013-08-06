@@ -57,6 +57,10 @@ class Emailer < ActionMailer::Base
     return if @user.email.blank?
     return unless @user.prefers_message_email_notification
     return if @user.prefers_no_email
+    return if @message.from_user.suspended?
+    if fmc = @message.from_user_copy
+      return if fmc.flags.where("resolver_id IS NULL").count > 0
+    end
     mail(:to => @user.email, :subject => "#{SUBJECT_PREFIX} #{@message.subject}")
   end
 end

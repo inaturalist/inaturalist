@@ -36,6 +36,16 @@ class Message < ActiveRecord::Base
     new_message.save!
   end
 
+  def to_user_copy
+    return self if to_user_id == user_id
+    to_user.messages.inbox.where(:thread_id => thread_id).detect{|m| m.body == body}
+  end
+
+  def from_user_copy
+    return self if from_user_id == user_id
+    from_user.messages.sent.where(:thread_id => thread_id).detect{|m| m.body == body}
+  end
+
   def set_read_at
     if user_id == from_user_id
       self.read_at = Time.now

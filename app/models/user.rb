@@ -104,6 +104,7 @@ class User < ActiveRecord::Base
   after_save :update_observation_licenses
   after_save :update_photo_licenses
   after_save :update_sound_licenses
+  after_save :destroy_messages_by_suspended_user
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
@@ -564,6 +565,12 @@ class User < ActiveRecord::Base
         csv << columns.map{|c| observation.send(c) rescue nil}
       end
     end
+  end
+
+  def destroy_messages_by_suspended_user
+    return true unless suspended?
+    Message.inbox.unread.where(:from_user_id => id).destroy_all
+    true
   end
 
   def self.default_json_options
