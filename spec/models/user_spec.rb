@@ -309,7 +309,7 @@ describe User do
     end
 
     it "should refresh check lists" do
-      t = Taxon.make!
+      t = Taxon.make!(:rank => "species")
       without_delay do
         make_research_grade_observation(:taxon => t, :user => @user, :latitude => @place.latitude, :longitude => @place.longitude)
       end
