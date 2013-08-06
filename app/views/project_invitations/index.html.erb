@@ -2,6 +2,11 @@
 <%- content_for(:extrajs) do -%>
   <%= javascript_include_tag 'observations/observation_fields' %>
 <%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css">
+    .observations.mini .observation {border:0 transparent;margin:0;}
+  </style>
+<%- end -%>
 
 <h2>Project Invitations</h2>
 
@@ -16,7 +21,7 @@
     <h3>Pending invitations you've recieved</h3>
     <p class="ui description">The following observations have been invited to join projects. Click "Accept" or "Ignore" to respond to the invitations.</p>
     <% for pi in @project_invitations %>
-      <div class="column span-24">
+      <div class="column span-24 lined">
         <div class="column span-8">
           <div id="observations" class="compact mini observations date-added">
             <%= render :partial => 'observations/observation_component', 
@@ -30,11 +35,13 @@
         </div>
       </div>
     <% end %>
+    <%= will_paginate @project_invitations %>
   </div>
 <% end %>
 
 <% unless @invitations_by_you.empty? %>
   <div class="clear column span-24 stacked">
+    <%= separator %>
     <h3>Pending invitations you've sent</h3>
     <p class="ui description">You've invited the following observations.</p>
     <% for project, pis in @invitations_by_you %>

@@ -2,18 +2,17 @@ class ProjectInvitationsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @project_invitations = ProjectInvitation.all(
-      :include => [:observation],
-      :conditions => ["observations.user_id = ?",current_user.id],
-      :limit => 10,
-      :order => "project_invitations.id DESC"
-    )
-    @invitations_by_you = ProjectInvitation.all(
-      :include => [:observation],
-      :conditions => ["user_id = ?",current_user.id],
-      :limit => 10,
-      :order => "project_invitations.id DESC"
-    ).group_by(&:project)
+    @project_invitations = ProjectInvitation.
+      includes(:observation).
+      where("observations.user_id = ?", current_user).
+      page(params[:page]).
+      order("project_invitations.id DESC")
+    @invitations_by_you = ProjectInvitation.
+      includes(:observation).
+      where("user_id = ?", current_user).
+      limit(10).
+      order("project_invitations.id DESC").
+      group_by(&:project)
   end
   
   def create

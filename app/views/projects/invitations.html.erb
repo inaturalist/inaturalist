@@ -19,11 +19,11 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('.invite_button').bind('ajax:success', function() {
-        $(this).replaceWith($('<span>' + I18n.t('invited') + '</span>').addClass('inter success status'))
+        $(this).parent().html($('<span>' + I18n.t('invited') + '</span>').addClass('inter success status'))
       })
 
       $('.add_button').bind('ajax:success', function() {
-        $(this).replaceWith($('<span>' + I18n.t('added') + ' </span>').addClass('inter success status'))
+        $(this).parent().html($('<span>' + I18n.t('added') + ' </span>').addClass('inter success status'))
       })
     })
   </script>

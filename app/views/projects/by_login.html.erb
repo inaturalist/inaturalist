@@ -4,6 +4,7 @@
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
     .box .project .span-6 { width: 210px; }
+    a.invitations_button {width: 292px; float:none; text-align:center;}
   </style>
 <%- end -%>
 <%- before = capture do %>
@@ -30,6 +31,9 @@
 </div>
 
 <div class="last column span-8">
+  <% if is_me? %>
+    <%= link_to t(:manage_your_project_invitations), project_invitations_path, :class => "button stacked invitations_button" %>
+  <% end -%>
   <div id="started" class="projects clear box">
     <h3> <%= t(:projects) %> <%= is_me? ? t(:you_admin) : t(:x_admin, :login => "#{@login}") %></h3>
     <% if @started.blank? -%>
