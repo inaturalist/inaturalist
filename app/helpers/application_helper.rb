@@ -694,6 +694,25 @@ module ApplicationHelper
     if notifier.respond_to?(:user) && (notifier_user = update_cached(notifier, :user) || notifier.user)
       notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
     end
+    class_name_key = update.resource.class.to_s.underscore
+    class_name = class_name_key.humanize.downcase
+    resource_link = if options[:skip_links]
+      t(class_name_key, :default => class_name_key).downcase
+    else
+      link_to(t(class_name_key, :default => class_name_key).downcase, url_for_resource_with_host(resource))
+    end
+
+    if notifier.is_a?(Comment) || notifier.is_a?(Identification)
+      noun = "#{class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} #{resource_link}".html_safe
+      if resource_name = resource.try_methods(:name, :title)
+        noun += " (\"#{truncate(resource_name, :length => 30)}\")".html_safe
+      end
+      s = activity_snippet(update, notifier, notifier_user, options.merge(
+        :noun => noun
+      ))
+      return s.html_safe
+    end
+
     case update.resource_type
     when "User"
       if options[:count].to_i == 1
@@ -704,28 +723,8 @@ module ApplicationHelper
           :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)),
           :x => options[:count])
       end
-    when "Observation", "ListedTaxon", "Post", "AssessmentSection"
-      class_name_key = update.resource.class.to_s.underscore
-      class_name = class_name_key.humanize.downcase
-      resource_link = if options[:skip_links]
-        t(class_name_key, :default => class_name_key).downcase
-      else
-        link_to(t(class_name_key, :default => class_name_key).downcase, url_for_resource_with_host(resource))
-      end
-      if notifier.is_a?(ProjectInvitation)
-        return t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
-      end
-      s = activity_snippet(update, notifier, notifier_user, options.merge(
-        :noun => "#{class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} #{resource_link}".html_safe
-      ))
-      s.html_safe
-    when "ObservationField"
-      class_name = update.resource.class.to_s.underscore.humanize.downcase
-      resource_link = options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))      
-      s = activity_snippet(update, notifier, notifier_user, options.merge(
-        :noun => "#{resource_link} <strong>\"#{truncate(update.resource.name, :length => 30)}\"</strong>".html_safe,
-      ))
-      s.html_safe
+    when "Observation"
+      t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
     when "Project"
       project = resource
       if update.notifier_type == "Post"
