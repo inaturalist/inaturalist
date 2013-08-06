@@ -846,9 +846,9 @@ class Observation < ActiveRecord::Base
     attr_array = attributes.is_a?(Hash) ? attributes.values : attributes
     attr_array.each_with_index do |v,i|
       if v["id"].blank?
-        if existing = observation_field_values.where(:observation_field_id => v["name"]).first
-          attr_array[i]["id"] = existing.id
-        end
+        existing = observation_field_values.where(:observation_field_id => v["observation_field_id"]).first unless v["observation_field_id"].blank?
+        existing ||= observation_field_values.joins(:observation_fields).where("lower(observation_fields.name) = ?", v["name"]).first unless v["name"].blank?
+        attr_array[i]["id"] = existing.id if existing
       elsif !ObservationFieldValue.where("id = ?", v["id"]).exists?
         attr_array[i].delete("id")
       end

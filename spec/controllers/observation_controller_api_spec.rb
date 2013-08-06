@@ -160,14 +160,29 @@ shared_examples_for "an ObservationsController" do
       ofv.value.should eq "bar"
     end
 
-    it "should updating existing observation_field_values even if they're project fields" do
+    it "should updating existing observation_field_values by observation_field_id" do
+      o = Observation.make!(:user => user)
+      ofv = ObservationFieldValue.make!(:value => "foo", :observation => o)
+      put :update, :format => :json, :id => ofv.observation_id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :observation_field_id => ofv.observation_field_id,
+            :value => "bar"
+          }
+        }
+      }
+      response.should be_success
+      ofv.reload
+      ofv.value.should eq "bar"
+    end
+
+    it "should updating existing observation_field_values by observation_field_id even if they're project fields" do
       pof = ProjectObservationField.make!
       po = make_project_observation(:project => pof.project, :user => user)
       ofv = ObservationFieldValue.make!(:value => "foo", :observation => po.observation, :observation_field => pof.observation_field)
       put :update, :format => :json, :id => ofv.observation_id, :observation => {
         :observation_field_values_attributes => {
           "0" => {
-            :id => ofv.id,
             :observation_field_id => ofv.observation_field_id,
             :value => "bar"
           }
