@@ -33,8 +33,10 @@
       color: inherit;
       text-decoration: none;
     }
+    #new_guide_pdf_flow_task {margin-bottom:0;}
     #new_guide_pdf_flow_task .img {height: 170px;}
     #new_guide_pdf_flow_task .img img {opacity:0.5; max-width: auto;}
+    label.disabled {opacity:0.5;}
 = content_for :extrajs do
   = google_maps_js
   = javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js", 'jquery/plugins/waypoints.min'
@@ -54,6 +56,14 @@
       offset: '100%'
     })
     $('#new_guide_pdf_flow_task input[type=submit]').click(function() {
+      if ($('#guide_pdf_flow_task_options_query_all:checked').length > 0) {
+        checkForExistingDefaultPdf()
+      } else {
+        createFlowTask()
+      }
+      return false
+    })
+    function checkForExistingDefaultPdf() {
       var layout = $('#new_guide_pdf_flow_task input[name*=layout]:checked').val(),
           pdfUrl = '/guides/'+GUIDE.id+'.'+layout+'.pdf'
       // send HEAD request to see if PDF exists
@@ -67,17 +77,25 @@
           },
           404: function() {
             // else submit the form
-            loadingClickForButton.apply($('.modal:visible input[data-loading-click]').get(0), [{ajax:false}])
-            $('.modal:visible .patience').show()
-            $('#new_guide_pdf_flow_task').submit()
+            createFlowTask()
           }
         }
       })
-      return false
-    })
+    }
+    function createFlowTask() {
+      loadingClickForButton.apply($('.modal:visible input[data-loading-click]').get(0), [{ajax:false}])
+      $('.modal:visible .patience').show()
+      $('#new_guide_pdf_flow_task').submit()
+    }
     $('#printbtn').click(function() {
       var layout = $('#new_guide_pdf_flow_task input[name*=layout]:checked').val(),
-          printUrl = '/guides/'+GUIDE.id+'.'+layout+'.pdf?print=t'
+          printUrl = window.location.pathname.replace(/\.+/, '') + '.' + layout+'.pdf'
+      if ($('#guide_pdf_flow_task_options_query_all:checked').length == 0) {
+        if (window.location.search.length == 0) { printUrl += "?print=t" }
+        else { printUrl += window.location.search + '&print=t' }
+      } else {
+        printUrl = printUrl.replace(/\.pdf\??.*$/, '.pdf?print=t')
+      }
       var w = window.open(printUrl, '_blank')
       return false
     })
@@ -113,7 +131,10 @@
             var btn = $('.modal.visible input[data-loading-click]')
             btn.attr('disabled', false).removeClass('disabled description')
             btn.val(btn.data('original-value'))
-            window.open(flowTask.redirect_url, '_self')
+            var redirectUrl = flowTask.redirect_url
+            if (redirectUrl.match(/\?/)) { redirectUrl += '&flow_task_id='+flowTask.id }
+            else { redirectUrl += '?flow_task_id='+flowTask.id }
+            window.open(redirectUrl, '_self')
           }
         }
       }).error(function(arguments) {
@@ -208,7 +229,7 @@
                 - if gp = guide_taxon.default_guide_photo
                   = image_tag gp.photo.small_url
                 - elsif guide_taxon.taxon
-                  = taxon_image guide_taxon.taxon
+                  = iconic_taxon_image guide_taxon.taxon
             .span6
               %h4.name
                 = link_to guide_taxon.display_name, guide_taxon
@@ -229,7 +250,7 @@
                   - if gp = guide_taxon.default_guide_photo
                     = link_to image_tag(gp.photo.small_url), guide_taxon, :class => "thumbnail borderless"
                   - elsif guide_taxon.taxon
-                    = link_to taxon_image(guide_taxon.taxon), guide_taxon, :class => "thumbnail"
+                    = link_to iconic_taxon_image(guide_taxon.taxon), guide_taxon, :class => "thumbnail"
                   %h5
                     = link_to guide_taxon.display_name, guide_taxon
                     - if gp
@@ -256,8 +277,8 @@
   .modal-header
     %button.close{:type => "button", "data-dismiss" => "modal"} x
     %h3=t :generate_pdf
-  .modal-body
-    = form_for GuidePdfFlowTask.new, :url => flow_tasks_url, :remote => true, :html => {'data-type' => 'json'} do |f|
+  = form_for GuidePdfFlowTask.new, :url => flow_tasks_url, :remote => true, :html => {'data-type' => 'json'} do |f|
+    .modal-body
       = f.fields_for :inputs, f.object.inputs.build(:resource => @guide) do |fi|
         = fi.hidden_field :resource_type
         = fi.hidden_field :resource_id
@@ -270,6 +291,17 @@
               = f.radio_button :options, l, :name => "guide_pdf_flow_task[options][layout]", :checked => (l == GuidePdfFlowTask::GRID ? "checked" : nil)
               = l
               .small.meta=t "views.guides.pdf_layout_notes.#{l}", :default => ""
+      .row-fluid=t :taxa_to_include
+      #pdf_taxa.row-fluid
+        = f.fields_for :options do |fo|
+          = fo.label :query, :value => "all", :class => "span6 radio" do
+            = fo.radio_button :query, "all", :checked => true
+            =t :all_taxa_in_this_guide
+          - filter_match_enabled = [@tags, @q, @taxon].map(&:blank?).include?(false)
+          = fo.label :query, :value => request.query_string, :class => "span6 radio #{'disabled' unless filter_match_enabled}" do
+            = fo.radio_button :query, request.query_string, :checked => false, :disabled => !filter_match_enabled
+            =t :x_taxa_matching_current_filters, :count => @guide_taxa.total_entries
+    .modal-footer
       = f.submit t(:generate_pdf), :class => "btn btn-primary", :data => {'loading-click' => t(:generating)}
-      = link_to t(:print_in_browser), guide_pdf_path(@guide, :layout => "grid", :print => "t"), :id => "printbtn", :class => "btn", :target => "_blank"
+      = link_to "#{t :preview} / #{t(:print_in_browser)}", guide_pdf_path(@guide, :layout => "grid", :print => "t"), :id => "printbtn", :class => "btn", :target => "_blank"
       .meta.patience.hide=t 'views.guides.pdf_generation_notice'

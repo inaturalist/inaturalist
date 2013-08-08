@@ -1,4 +1,5 @@
 class GuidesController < ApplicationController
+  include GuidesHelper
   before_filter :authenticate_user!, :except => [:index, :show, :search]
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa, :reorder]
@@ -23,26 +24,11 @@ class GuidesController < ApplicationController
   # GET /guides/1
   # GET /guides/1.json
   def show
-    unless params[:taxon].blank?
-      @taxon = Taxon::ICONIC_TAXA_BY_ID[params[:taxon]]
-      @taxon ||= Taxon::ICONIC_TAXA_BY_NAME[params[:taxon]]
-      @taxon ||= Taxon.find_by_name(params[:taxon]) || Taxon.find_by_id(params[:taxon])
-      @taxon = nil if @taxon == @guide.taxon
-    end
-    @q = params[:q]
-    @tags = params[:tags] || []
-    @tags << params[:tag] unless params[:tag].blank?
-    
-    @guide_taxa = @guide.guide_taxa.order("guide_taxa.position").
-      includes({:taxon => [:taxon_ranges_without_geom]}, {:guide_photos => :photo}, :guide_sections).
-      page(params[:page]).per_page(100)
-    @guide_taxa = @guide_taxa.in_taxon(@taxon) if @taxon
-    @guide_taxa = @guide_taxa.dbsearch(@q) unless @q.blank?
-    @guide_taxa = @guide_taxa.tagged(@tags) unless @tags.blank?
-    @view = params[:view] || "grid"
+    guide_taxa_from_params
 
     respond_to do |format|
       format.html do
+        @guide_taxa = @guide_taxa.page(params[:page]).per_page(100)
         @tag_counts = Tag.joins(:taggings).
           joins("JOIN guide_taxa gt ON gt.id = taggings.taggable_id").
           where("taggings.taggable_type = 'GuideTaxon' AND gt.guide_id = ?", @guide).
@@ -68,7 +54,7 @@ class GuidesController < ApplicationController
         if ancestry_counts.blank?
           @nav_taxa = []
         else
-          ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size)
+          ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0}
           width = ancestries.last.size
           matrix = ancestries.map do |a|
             a + ([nil]*(width-a.size))
@@ -95,8 +81,6 @@ class GuidesController < ApplicationController
       format.json { render json: @guide.as_json(:root => true) }
 
       format.pdf do
-        @guide_taxa = @guide.guide_taxa.order("guide_taxa.position").
-          includes({:taxon => [:taxon_ranges_without_geom]}, :guide_photos, :guide_sections)
         @layout = params[:layout] if GuidePdfFlowTask::LAYOUTS.include?(params[:layout])
         @layout ||= GuidePdfFlowTask::GRID
         @template = "guides/show_#{@layout}.pdf.haml"
@@ -110,6 +94,8 @@ class GuidesController < ApplicationController
               :left => 0,
               :right => 0
             }
+        elsif params[:flow_task_id] && flow_task = FlowTask.find_by_id(params[:flow_task_id])
+          redirect_to flow_task.pdf_url
         else
           matching_flow_task = GuidePdfFlowTask.
             select("DISTINCT ON (flow_tasks.id) flow_tasks.*").
@@ -123,11 +109,12 @@ class GuidesController < ApplicationController
             detect{|ft| ft.options['layout'] == @layout}
           if matching_flow_task && 
               matching_flow_task.created_at > @guide.updated_at && 
+              (matching_flow_task.options['query'].blank? || matching_flow_task.options['query'] == 'all') &&
               !@guide.guide_taxa.where("updated_at > ?", matching_flow_task.created_at).exists? &&
               !GuidePhoto.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_photos.updated_at > ?", matching_flow_task.created_at).exists? &&
               !GuideSection.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_sections.updated_at > ?", matching_flow_task.created_at).exists? &&
               !GuideRange.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_ranges.updated_at > ?", matching_flow_task.created_at).exists?
-            redirect_to matching_flow_task.outputs.first.file.url
+            redirect_to matching_flow_task.pdf_url
           else
             render :status => :not_found, :text => "", :layout => false
           end

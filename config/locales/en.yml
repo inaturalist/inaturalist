@@ -59,6 +59,9 @@ en:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> research-grade observation ID'd to species or lower</span>"
     other: "<span class='count'>%{count}</span> research-grade observations ID'd to species or lower</span>"
+  x_taxa_matching_current_filters: 
+    one: "1 taxon matching current filters"
+    other: "%{count} taxa matching current filters"
   a: a
   a_: a
   a_community_for_naturalist: A Community for Naturalists

@@ -1,8 +1,14 @@
 #encoding: utf-8
 class GuidePdfFlowTask < FlowTask
+  include GuidesHelper
+
   LAYOUTS = %w(grid book journal)
   LAYOUTS.each do |l|
     const_set l.upcase, l
+  end
+
+  def to_s
+    "<GuidePdfFlowTask #{id}>"
   end
 
   def run
@@ -10,10 +16,8 @@ class GuidePdfFlowTask < FlowTask
     guide_input = inputs.detect{|input| input.resource.is_a?(Guide)}
     @guide = guide_input.resource
     raise "Guide does not exist" if @guide.blank?
-
-    @guide_taxa = @guide.guide_taxa.order("guide_taxa.position").
-      includes({:taxon => [:taxon_ranges_without_geom]}, :guide_photos, :guide_sections)
-    layout = options[:layout] if LAYOUTS.include?(options[:layout])
+    @guide_taxa = guide_taxa_from_params(Rack::Utils.parse_nested_query(options['query']).symbolize_keys)
+    layout = options['layout'] if LAYOUTS.include?(options['layout'])
     layout = GRID if layout.blank?
     if redirect_url.blank?
       update_attribute(:redirect_url, FakeView.guide_pdf_url(@guide, :layout => layout))
@@ -32,7 +36,6 @@ class GuidePdfFlowTask < FlowTask
     )
 
     path = File.join(Dir::tmpdir, "#{@guide.id}.#{layout}.pdf")
-    Rails.logger.debug "[DEBUG] path: #{path}"
     File.open(path, 'wb') do |f|
       f << pdf
     end
