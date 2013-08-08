@@ -23,6 +23,22 @@ class GuideTaxon < ActiveRecord::Base
 
   acts_as_taggable
 
+  SORTS = %w(default alphadisplay alphaname)
+  SORTS.each do |s|
+    const_set "#{s.parameterize.underscore.upcase}_SORT", s
+  end
+
+  scope :sorted_by, lambda {|sort|
+    case sort
+    when ALPHANAME_SORT
+      order("guide_taxa.name")
+    when ALPHADISPLAY_SORT
+      order("guide_taxa.display_name")
+    else
+      order("guide_taxa.position")
+    end
+  }
+
   scope :in_taxon, lambda {|taxon| 
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon

@@ -218,9 +218,17 @@
                 - unless @q.blank?
                   %button.btn.clearbtn= t(:clear).capitalize
                 %button.btn=t :search
-            .btn-grp.pull-right{"data-toggle" => "buttons-radio"}
-              = link_to t(:grid), url_for_params(:view => "grid"), :class => "btn #{'active' if @view == "grid"}"
-              = link_to t(:card), url_for_params(:view => "card"), :class => "btn #{'active' if @view == "card"}"
+            .pull-right
+              %span.dropdown.inlineblock
+                %button.btn{:data => {:toggle => "dropdown"}}
+                  =t :sort
+                  %b.caret
+                %ul.dropdown-menu.pull-right{:role => "menu"}
+                  - for sort in GuideTaxon::SORTS
+                    %li= link_to t("views.guides.sorts.#{sort}"), url_for_params(:sort => sort), :tabindex => -1, :class => "#{'active' if @sort == sort}"
+              .btn-group{"data-toggle" => "buttons-radio"}
+                = link_to t(:grid), url_for_params(:view => "grid"), :class => "btn #{'active' if @view == "grid"}"
+                = link_to t(:card), url_for_params(:view => "card"), :class => "btn #{'active' if @view == "card"}"
       - if @view == "card"
         - for guide_taxon in @guide_taxa
           .card.row-fluid.stacked
@@ -252,9 +260,17 @@
                   - elsif guide_taxon.taxon
                     = link_to iconic_taxon_image(guide_taxon.taxon), guide_taxon, :class => "thumbnail"
                   %h5
-                    = link_to guide_taxon.display_name, guide_taxon
-                    - if gp
-                      = cite gp.attribution
+                    - if guide_taxon.display_name == guide_taxon.name
+                      = link_to guide_taxon do
+                        %i= guide_taxon.display_name
+                      = cite(gp.attribution) if gp
+                    - else
+                      = link_to guide_taxon do
+                        = guide_taxon.display_name
+                      = cite(gp.attribution) if gp
+                      .quiet
+                        %small
+                          %i= guide_taxon.name
         = will_paginate @guide_taxa
   #attribution.meta.upstacked
     %p

@@ -2606,6 +2606,10 @@ en:
       tags_help_html: |
         Add comma-separated tags to organize the taxa in your guide. To add named categories, use tags like 
         <code>category_name=category_value</code>, e.g. <code>color=yellow</code>.
+      sorts:
+        default: Guide order
+        alphaname: Alphabetical by scientific name
+        alphadisplay: Alphabetical by display name
     help:
       index:
         welcome_message_html: |
