@@ -30,6 +30,9 @@ class Guide < ActiveRecord::Base
   scope :dbsearch, lambda {|q| where("guides.title ILIKE ?", "%#{q}%")}
 
   def import_taxa(options = {})
+    if options[:eol_collection_url]
+      return add_taxa_from_eol_collection(options[:eol_collection_url])
+    end
     return if options[:place_id].blank? && options[:list_id].blank? && options[:taxon_id].blank?
     scope = if !options[:place_id].blank?
       Taxon.from_place(options[:place_id]).scoped
@@ -101,8 +104,9 @@ class Guide < ActiveRecord::Base
   def reorder_by_taxonomy
     gts = self.guide_taxa.includes(:taxon).all
     indexed_guide_taxa = gts.index_by(&:taxon_id)
-    taxa = gts.map(&:taxon)
-    ordered_taxa = Taxon.sort_by_ancestry(taxa) {|t1,t2| t1.name <=> t2.name}
+    taxa = gts.map(&:taxon).compact
+    guide_taxa_without_taxa = gts.select{|gt| gt.taxon.blank?}
+    ordered_taxa = guide_taxa_without_taxa + Taxon.sort_by_ancestry(taxa) {|t1,t2| t1.name <=> t2.name}
     ordered_taxa.each_with_index do |t,i|
       gt = indexed_guide_taxa[t.id]
       next unless gt
@@ -149,6 +153,7 @@ class Guide < ActiveRecord::Base
       :url => "http://www.eol.org",
       :title => 'Encyclopedia of Life'
     )
+    guide_taxa = []
     c.search("item").each_with_index do |item,i|
       gt = GuideTaxon.new_from_eol_collection_item(item, :position => i+1, :guide => self)
       if gt.save
@@ -156,8 +161,10 @@ class Guide < ActiveRecord::Base
       else
         errors << gt.errors.full_messages.to_sentence
       end
+      guide_taxa << gt
     end
     Rails.logger.debug "[DEBUG] #{self} add_taxa_from_eol_collection, #{saved} saved, #{errors.size} errors"
+    guide_taxa
   end
 
   def recent_tags

@@ -132,6 +132,7 @@
     %ul.nav.nav-pills
       %li.active= link_to t(:one_by_one), "#addtaxa-single", "data-toggle" => "pill"
       %li= link_to t(:from_place), "#addtaxa-place", "data-toggle" => "pill"
+      %li= link_to t(:from_eol_collection), "#addtaxa-eol", "data-toggle" => "pill"
     .tab-content
       #addtaxa-single.tab-pane.active.fade.in
       #addtaxa-place.tab-pane.fade
@@ -144,9 +145,11 @@
               =t :optional
         .stacked.status.muted=t :x_matching_taxa, :count => 0
         .muted=t 'views.guides.edit.places_note'
+      #addtaxa-eol.tab-pane.fade
+        %input{:type => "text", :name => "eol_collection_url", :placeholder => t(:eol_collection_url), :value => @guide.source_url.to_s =~ /eol\.org/ ? @guide.source_url : nil}
   .modal-footer
     %button.btn{"data-dismiss" => "modal"}=t :close
-    %button.btn.btn-primary=t :add_taxa
+    %button.btn.btn-primary{:data => {:loading_click => t(:adding)}}=t :add_taxa
 
 #licensing.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
   .modal-header
