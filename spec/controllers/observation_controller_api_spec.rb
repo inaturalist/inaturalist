@@ -108,12 +108,40 @@ shared_examples_for "an ObservationsController" do
       response_obs['comments'].first['body'].should eq(c.body)
     end
 
+    it "should include comment user icons" do
+      o = Observation.make!
+      c = Comment.make!(:parent => o)
+      c.user.update_attributes(:icon => open(File.dirname(__FILE__) + '/../fixtures/files/egg.jpg'))
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['comments'].first['user']['user_icon_url'].should_not be_blank
+    end
+
     it "should include identifications" do
       o = Observation.make!
       i = Identification.make!(:observation => o)
       get :show, :format => :json, :id => o.id
       response_obs = JSON.parse(response.body)
       response_obs['identifications'].first['taxon_id'].should eq(i.taxon_id)
+    end
+
+    it "should include identification user icons" do
+      o = Observation.make!
+      i = Identification.make!(:observation => o)
+      i.user.update_attributes(:icon => open(File.dirname(__FILE__) + '/../fixtures/files/egg.jpg'))
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['identifications'].first['user']['user_icon_url'].should_not be_blank
+    end
+
+    it "should include identification taxon icons" do
+      load_test_taxa
+      o = Observation.make!
+      t = Taxon.make!(:iconic_taxon => @Amphibia)
+      i = Identification.make!(:observation => o)
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['identifications'].first['taxon']['image_url'].should_not be_blank
     end
   end
 

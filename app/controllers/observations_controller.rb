@@ -321,18 +321,20 @@ class ObservationsController < ApplicationController
             :comments => {
               :include => {
                 :user => {
-                  :only => [:name, :login, :id]
+                  :only => [:name, :login, :id],
+                  :methods => [:user_icon_url]
                 }
               }
             },
             :identifications => {
               :include => {
                 :user => {
-                  :only => [:name, :login, :id]
+                  :only => [:name, :login, :id],
+                  :methods => [:user_icon_url]
                 },
                 :taxon => {
                   :only => [:id, :name, :iconic_taxon_id, :rank],
-                  :methods => [:iconic_taxon_name]
+                  :methods => [:iconic_taxon_name, :image_url]
                 }
               }
             }
