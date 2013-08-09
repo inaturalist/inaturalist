@@ -503,6 +503,9 @@ class ProjectsController < ApplicationController
   
   def invitations
     scope = @project.observations_matching_rules
+    if @project.place && !@project.project_observation_rules.detect{|por| por.operator == "observed_in_place?"}
+      scope = scope.in_place(@project.place)
+    end
     existing_scope = Observation.in_projects([@project]).scoped
     invited_scope = Observation.scoped(:joins => :project_invitations, :conditions => ["project_invitations.project_id = ?", @project])
 
