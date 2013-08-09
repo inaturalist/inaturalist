@@ -1145,7 +1145,8 @@ class Observation < ActiveRecord::Base
     user = User.find_by_id(user) unless user.is_a?(User)
     return false unless user
     return true if user_id == user.id
-    return true if user.project_users.curators.exists?(["project_id IN (?)", project_ids])
+    return true if user.project_users.where("project_id IN (?)", project_ids).
+      where("project_users.role IN (?)", ProjectUser::ROLES).exists?
     false
   end
   
