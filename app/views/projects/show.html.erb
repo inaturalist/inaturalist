@@ -43,7 +43,7 @@
       <%-
         links = []
         if !@project.terms.blank? || !@project.project_observation_rules.blank? || !@project.project_user_rules.blank?
-          links << link_to(t(:terms_and_rules).html_safe, project_terms_path(@project), :class => "ui")
+          links << link_to(t(:terms_and_rules_html), project_terms_path(@project), :class => "ui")
         end
         if @project.editable_by?(current_user)
           links << link_to(t(:edit_project), edit_project_path(@project), :class => "ui description")

@@ -185,6 +185,9 @@ class ProjectsController < ApplicationController
   def terms
     @project_observation_rules = @project.project_observation_rules.all(:limit => 100)
     @project_user_rules = @project.project_user_rules.all(:limit => 100)
+    respond_to do |format|
+      format.html
+    end
   end
   
   def by_login
