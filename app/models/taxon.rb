@@ -293,10 +293,14 @@ class Taxon < ActiveRecord::Base
   
   scope :self_and_descendants_of, lambda{|taxon|
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    conditions = taxon.descendant_conditions
-    conditions[0] += " OR taxa.id = ?"
-    conditions << taxon
-    where(conditions)
+    if taxon
+      conditions = taxon.descendant_conditions
+      conditions[0] += " OR taxa.id = ?"
+      conditions << taxon
+      where(conditions)
+    else
+      where("1 = 2")
+    end
   }
   
   scope :has_conservation_status, lambda {|status|
