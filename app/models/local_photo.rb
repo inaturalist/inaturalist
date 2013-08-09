@@ -56,6 +56,7 @@ class LocalPhoto < Photo
   
   def set_defaults
     self.native_username = user.login
+    self.native_realname = user.name
     true
   end
 
@@ -114,13 +115,13 @@ class LocalPhoto < Photo
     o = Observation.new(:user => user)
     o.observation_photos.build(:photo => self)
     if metadata
-      unless metadata[:gps_latitude].blank?
+      if !metadata[:gps_latitude].blank? && !metadata[:gps_latitude].to_f.nan?
         o.latitude = metadata[:gps_latitude].to_f
         if metadata[:gps_latitude_ref].to_s == 'S' && o.latitude > 0
           o.latitude = o.latitude * -1
         end
       end
-      unless metadata[:gps_longitude].blank?
+      if !metadata[:gps_longitude].blank? && !metadata[:gps_longitude].to_f.nan?
         o.longitude = metadata[:gps_longitude].to_f
         if metadata[:gps_longitude_ref].to_s == 'W' && o.longitude > 0
           o.longitude = o.longitude * -1
@@ -141,9 +142,11 @@ class LocalPhoto < Photo
         if o.taxon
           tags = to_tags.map(&:downcase)
           o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)
+          o.species_guess ||= o.taxon.default_name.try(:name)
         elsif !metadata[:dc][:title].blank?
           o.species_guess = metadata[:dc][:title].to_sentence.strip
         end
+        o.species_guess = nil if o.species_guess.blank?
         o.description = metadata[:dc][:description].to_sentence unless metadata[:dc][:description].blank?
       end
     end

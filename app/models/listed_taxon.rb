@@ -412,6 +412,10 @@ class ListedTaxon < ActiveRecord::Base
   def confirmed_observations_count
     confirmed_observation_month_stats.map{|k,v| v}.sum
   end
+
+  def unconfirmed_observations_count
+    casual_observation_month_stats.map{|k,v| v}.sum
+  end
   
   def nilify_blanks
     %w(establishment_means occurrence_status_level).each do |col|

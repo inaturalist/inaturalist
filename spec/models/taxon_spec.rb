@@ -352,9 +352,10 @@ describe Taxon, "tags_to_taxa" do
   end
   
   it "should work on taxonomic machine tags" do
-    taxa = Taxon.tags_to_taxa(['taxonomy:kingdom=Animalia', 'taxonomy:class=Aves'])
+    taxa = Taxon.tags_to_taxa(['taxonomy:kingdom=Animalia', 'taxonomy:class=Aves', 'taxonomy:binomial=Calypte anna'])
     taxa.should include(@Animalia)
     taxa.should include(@Aves)
+    taxa.should include(@Calypte_anna)
   end
 
   it "should not find inactive taxa" do

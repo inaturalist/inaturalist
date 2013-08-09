@@ -35,7 +35,8 @@
       </span>
       <%= render :partial => 'shared/taxon', 
                  :locals => { :taxon => taxon,
-                              :link_url => taxon } %>
+                              :link_url => taxon,
+                              :named_ancestor => true } %>
     </span>
     <% unless hide_actions -%>
       <% if logged_in? && identification.user_id != current_user.id && (viewers_identification.blank? || viewers_identification.taxon_id != identification.taxon_id) %>

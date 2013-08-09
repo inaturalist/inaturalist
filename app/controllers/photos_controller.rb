@@ -33,9 +33,9 @@ class PhotosController < ApplicationController
   
   def update
     if @photo.update_attributes(params[:photo])
-      flash[:notice] = "Updated photo"
+      flash[:notice] = t(:updated_photo)
     else
-      flash[:error] = "Error updating photo: #{@photo.errors.full_messages.to_sentence}"
+      flash[:error] = t(:error_updating_photo, :photo_errors => @photo.errors.full_messages.to_sentence)
     end
     redirect_to @photo.becomes(Photo)
   end
@@ -60,7 +60,7 @@ class PhotosController < ApplicationController
   def destroy
     resource = @photo.observations.first || @photo.taxa.first
     @photo.destroy
-    flash[:notice] = "Photo deleted"
+    flash[:notice] = t(:photo_deleted)
     redirect_back_or_default(resource || '/')
   end
 
@@ -124,7 +124,7 @@ class PhotosController < ApplicationController
       picasa_photo_urls = (picasa_photos.is_a?(Hash) && picasa_photos.has_key?('0') ? picasa_photos['0'] : []).uniq
 
       if (fb_photo_ids.empty? && flickr_photo_ids.empty? && picasa_photo_urls.empty?)
-        flash[:notice] = "You need to select at least one photo!"
+        flash[:notice] = t(:you_need_to_select_at_least_one_photo)
         return
       end
       
@@ -181,7 +181,7 @@ class PhotosController < ApplicationController
   def repair
     unless @photo.respond_to?(:repair)
       Rails.logger.debug "[DEBUG] @photo: #{@photo}"
-      flash[:error] = "Repair doesn't work for that kind of photo"
+      flash[:error] = t(:repair_doesnt_work_for_that_kind_of_photo)
       redirect_back_or_default(@photo.becomes(Photo))
       return
     end
@@ -189,17 +189,17 @@ class PhotosController < ApplicationController
     url = @photo.taxa.first || @photo.observations.first || '/'
     repaired, errors = @photo.repair
     if repaired.destroyed?
-      flash[:error] = "Photo destroyed b/c it was deleted from the external site or #{CONFIG.site_name_short} no longer has permission to view it"
+      flash[:error] = t(:photo_destroyed_because_it_was_deleted_from, :site_name => CONFIG.site_name_short)
       redirect_to url
     else
-      flash[:notice] = "Photo URLs repaired"
+      flash[:notice] = t(:photo_urls_repaired)
       redirect_back_or_default(@photo.becomes(Photo))
     end
   end
 
   def rotate
     unless @photo.is_a?(LocalPhoto)
-      flash[:error] = "You can't rotate photos hosted outside of iNaturalist."
+      flash[:error] = t(:you_cant_rotate_photos_hostde_outside, :site_name => CONFIG.site_name_short)
       redirect_back_or_default(@photo.becomes(Photo))
     end
     rotation = params[:left] ? -90 : 90
@@ -217,7 +217,7 @@ class PhotosController < ApplicationController
   
   def require_owner
     unless logged_in? && @photo.editable_by?(current_user)
-      flash[:error] = "You don't have permission to do that"
+      flash[:error] = t(:you_dont_have_permission_to_do_that)
       return redirect_to @photo.becomes(Photo)
     end
   end

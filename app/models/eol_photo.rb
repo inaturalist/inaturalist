@@ -15,7 +15,8 @@ class EolPhoto < Photo
   def self.search_eol(query, options = {})
     eol_taxon_xml = eol.search(query, :exact => 1)
     return nil if eol_taxon_xml.blank?
-    eol_taxon_id = eol_taxon_xml.search("id").children.last.inner_text
+    eol_taxon_id = eol_taxon_xml.search("id").children.last.try(:inner_text)
+    return nil unless eol_taxon_id
     limit = (options[:limit] || 36).to_i
     limit = 100 if limit > 100
     eol_page_xml = eol.page(eol_taxon_id, :licenses => 'any', :images => limit, :text => 0, :videos => 0, :details => 1)

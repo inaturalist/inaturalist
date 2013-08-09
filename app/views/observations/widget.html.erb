@@ -31,8 +31,8 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#placechooser input[type=text]').chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json?with_geom=t',
-        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        collectionUrl: '/places/autocomplete.json?with_geom=t',
+        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
         afterSelect: function(item) {
           $('#placechooser .default.button').attr('disabled', false).removeClass('disabled').focus()
         },
@@ -42,8 +42,8 @@
         chosen: eval('(' + $('#placechooser input[type=text]').attr('data-json') + ')')
       })
       $('.placefield input[type=text]').chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
-        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        collectionUrl: '/places/autocomplete.json',
+        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
         chosen: eval('(' + $('.placefield input[type=text]').attr('data-json') + ')')
       })
       <% if @place.blank? %>

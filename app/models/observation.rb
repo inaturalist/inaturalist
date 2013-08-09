@@ -126,7 +126,7 @@ class Observation < ActiveRecord::Base
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
   belongs_to :oauth_application
-  has_many :observation_photos, :dependent => :destroy, :order => "id asc"
+  has_many :observation_photos, :dependent => :destroy, :order => "id asc", :inverse_of => :observation
   has_many :photos, :through => :observation_photos
   
   # note last_observation and first_observation on listed taxa will get reset 
@@ -148,7 +148,8 @@ class Observation < ActiveRecord::Base
   has_many :observation_fields, :through => :observation_field_values
   has_many :observation_links
   has_and_belongs_to_many :posts
-  has_and_belongs_to_many :sounds
+  has_many :observation_sounds, :dependent => :destroy, :inverse_of => :observation
+  has_many :sounds, :through => :observation_sounds
   
   define_index do
     indexes taxon.taxon_names.name, :as => :names
@@ -171,6 +172,8 @@ class Observation < ActiveRecord::Base
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
     has "photos_count > 0", :as => :has_photos, :type => :boolean
+    has "sounds_count > 0", :as => :has_sounds, :type => :boolean
+    indexes :quality_grade
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
     has :iconic_taxon_id
@@ -187,6 +190,7 @@ class Observation < ActiveRecord::Base
     has :latitude, :as => :fake_latitude
     has :longitude, :as => :fake_longitude
     has :photos_count
+    has :sounds_count
     has :num_identification_agreements
     has :num_identification_disagreements
     # END HACK
@@ -345,6 +349,7 @@ class Observation < ActiveRecord::Base
   scope :has_geo, where("latitude IS NOT NULL AND longitude IS NOT NULL")
   scope :has_id_please, where("id_please IS TRUE")
   scope :has_photos, where("photos_count > 0")
+  scope :has_sounds, joins(:sounds).where("sounds.id is not null")
   scope :has_quality_grade, lambda {|quality_grade|
     quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
     where("quality_grade = ?", quality_grade)
@@ -385,6 +390,8 @@ class Observation < ActiveRecord::Base
       order "observed_on #{order} #{extra}, time_observed_at #{order} #{extra}"
     when 'created_at'
       order "observations.id #{order} #{extra}"
+    when 'project'
+      order("project_observations.id #{order} #{extra}").joins(:project_observations)
     else
       order "#{order_by} #{order} #{extra}"
     end
@@ -514,11 +521,12 @@ class Observation < ActiveRecord::Base
     # has (boolean) selectors
     if params[:has]
       params[:has] = params[:has].split(',') if params[:has].is_a? String
-      params[:has].select{|s| %w(geo id_please photos).include?(s)}.each do |prop|
+      params[:has].select{|s| %w(geo id_please photos sounds).include?(s)}.each do |prop|
         scope = case prop
           when 'geo' then scope.has_geo
           when 'id_please' then scope.has_id_please
           when 'photos' then scope.has_photos
+          when 'sounds' then scope.has_sounds
         end
       end
     end
@@ -839,9 +847,9 @@ class Observation < ActiveRecord::Base
     attr_array = attributes.is_a?(Hash) ? attributes.values : attributes
     attr_array.each_with_index do |v,i|
       if v["id"].blank?
-        if existing = observation_field_values.where(:observation_field_id => v["name"]).first
-          attr_array[i]["id"] = existing.id
-        end
+        existing = observation_field_values.where(:observation_field_id => v["observation_field_id"]).first unless v["observation_field_id"].blank?
+        existing ||= observation_field_values.joins(:observation_fields).where("lower(observation_fields.name) = ?", v["name"]).first unless v["name"].blank?
+        attr_array[i]["id"] = existing.id if existing
       elsif !ObservationFieldValue.where("id = ?", v["id"]).exists?
         attr_array[i].delete("id")
       end
@@ -1138,7 +1146,8 @@ class Observation < ActiveRecord::Base
     user = User.find_by_id(user) unless user.is_a?(User)
     return false unless user
     return true if user_id == user.id
-    return true if user.project_users.curators.exists?(["project_id IN (?)", project_ids])
+    return true if user.project_users.where("project_id IN (?)", project_ids).
+      where("project_users.role IN (?)", ProjectUser::ROLES).exists?
     false
   end
   
@@ -1666,7 +1675,7 @@ class Observation < ActiveRecord::Base
     lat = private_latitude || latitude
     lon = private_longitude || longitude
     acc = private_positional_accuracy || positional_accuracy
-    candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area}
+    candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area || 0}
 
     # at present we use PostGIS GEOMETRY types, which are a bit stupid about
     # things crossing the dateline, so we need to do an app-layer check.
@@ -1821,26 +1830,27 @@ class Observation < ActiveRecord::Base
     fpath = options[:path] || File.join(options[:dir] || Dir::tmpdir, fname)
     tmp_path = File.join(Dir::tmpdir, fname)
     FileUtils.mkdir_p File.dirname(tmp_path), :mode => 0755
-
     columns = CSV_COLUMNS
-    if record.is_a?(User) && record != options[:user]
-      columns = columns.select{|c| c !~ /^private_/} unless record == options[:user]
+
+    # ensure private coordinates are hidden unless they shouldn't be
+    viewer_curates_project = record.is_a?(Project) && record.curated_by?(options[:user])
+    viewer_is_owner = record.is_a?(User) && record == options[:user]
+    unless viewer_curates_project || viewer_is_owner
+      columns = columns.select{|c| c !~ /^private_/}
     end
-    if record.is_a?(User)
-      of_names = ObservationField.
-        includes(:observation_field_values => :observation).
-        where("observations.user_id = ?", record).
-        select("DISTINCT observation_fields.name").
-        map{|of| "field:#{of.normalized_name}"}
-      columns += of_names
-    end
-    columns -= %w(user_id user_login) if record.is_a?(User)
-    CSV.open(tmp_path, 'w') do |csv|
-      csv << columns
-      record.observations.includes(:taxon, {:observation_field_values => :observation_field}).find_each do |observation|
-        csv << columns.map{|c| observation.send(c) rescue nil}
+
+    # generate the csv
+    if record.respond_to?(:generate_csv)
+      record.generate_csv(tmp_path, columns)
+    else
+      CSV.open(tmp_path, 'w') do |csv|
+        csv << columns
+        record.observations.includes(:taxon, {:observation_field_values => :observation_field}).find_each do |observation|
+          csv << columns.map{|c| observation.send(c) rescue nil}
+        end
       end
     end
+
     FileUtils.mkdir_p File.dirname(fpath), :mode => 0755
     if tmp_path != fpath
       FileUtils.mv tmp_path, fpath

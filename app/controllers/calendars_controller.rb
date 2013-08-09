@@ -71,7 +71,7 @@ class CalendarsController < ApplicationController
   def compare
     @dates = params[:dates].split(',')
     if @dates.blank?
-      flash[:notice] = "You must select dates to compare"
+      flash[:notice] = t(:you_must_select_dates_to_compare)
       redirect_back_or_default(calendar_path(@login))
     end
     @observations_by_date_by_taxon_id = {}

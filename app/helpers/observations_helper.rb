@@ -15,9 +15,12 @@ module ObservationsHelper
   def observations_order_by_options(order_by = nil)
     order_by ||= @order_by
     pairs = ObservationsController::ORDER_BY_FIELDS.map do |f|
+      next if f == "project" && @project.blank?
       value = %w(created_at observations.id id).include?(f) ? 'observations.id' : f
-      [t(ObservationsController::DISPLAY_ORDER_BY_FIELDS[f].to_s.parameterize.underscore), value]
-    end
+      default = ObservationsController::DISPLAY_ORDER_BY_FIELDS[f].to_s
+      key = default.parameterize.underscore
+      [t(key, :default => default).downcase, value]
+    end.compact
     order_by = 'observations.id' if order_by.blank?
     options_for_select(pairs, order_by)
   end

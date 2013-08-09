@@ -80,6 +80,7 @@ class User < ActiveRecord::Base
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify
   has_many :messages, :dependent => :destroy
+  has_many :delivered_messages, :class_name => "Message", :foreign_key => "from_user_id", :conditions => "messages.from_user_id != messages.user_id"
   has_many :guides, :dependent => :nullify, :inverse_of => :user
   
   has_attached_file :icon, 
@@ -103,6 +104,7 @@ class User < ActiveRecord::Base
   after_save :update_observation_licenses
   after_save :update_photo_licenses
   after_save :update_sound_licenses
+  after_save :destroy_messages_by_suspended_user
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
@@ -163,6 +165,16 @@ class User < ActiveRecord::Base
   def user_icon_url
     return nil if icon.blank?
     "#{FakeView.root_url}#{icon.url(:thumb)}".gsub(/([^\:])\/\//, '\\1/')
+  end
+  
+  def medium_user_icon_url
+    return nil if icon.blank?
+    "#{FakeView.root_url}#{icon.url(:medium)}".gsub(/([^\:])\/\//, '\\1/')
+  end
+  
+  def original_user_icon_url
+    return nil if icon.blank?
+    "#{FakeView.root_url}#{icon.url}".gsub(/([^\:])\/\//, '\\1/')
   end
 
   def active?
@@ -539,10 +551,34 @@ class User < ActiveRecord::Base
     true
   end
 
+  def generate_csv(path, columns)
+    of_names = ObservationField.
+      includes(:observation_field_values => :observation).
+      where("observations.user_id = ?", id).
+      select("DISTINCT observation_fields.name").
+      map{|of| "field:#{of.normalized_name}"}
+    columns += of_names
+    columns -= %w(user_id user_login)
+    CSV.open(path, 'w') do |csv|
+      csv << columns
+      self.observations.includes(:taxon, {:observation_field_values => :observation_field}).find_each do |observation|
+        csv << columns.map{|c| observation.send(c) rescue nil}
+      end
+    end
+  end
+
+  def destroy_messages_by_suspended_user
+    return true unless suspended?
+    Message.inbox.unread.where(:from_user_id => id).destroy_all
+    true
+  end
+
   def self.default_json_options
     {
       :except => [:crypted_password, :salt, :old_preferences, :activation_code, :remember_token, :last_ip,
-        :suspended_at, :suspension_reason, :state, :deleted_at, :remember_token_expires_at, :email]
+        :suspended_at, :suspension_reason, :state, :deleted_at, :remember_token_expires_at, :email],
+      :methods => [
+        :user_icon_url, :medium_user_icon_url, :original_user_icon_url]
     }
   end
 

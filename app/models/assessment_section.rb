@@ -2,8 +2,6 @@ class AssessmentSection < ActiveRecord::Base
 	belongs_to :assessment
 	belongs_to :user
 
-  default_scope order('id ASC')
-
 	validates_presence_of :user, :title, :body # , :assessment
 
   has_many :comments, :as => :parent, :dependent => :destroy

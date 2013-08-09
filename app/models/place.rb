@@ -7,6 +7,7 @@ class Place < ActiveRecord::Base
   has_many :listed_taxa
   has_many :taxa, :through => :listed_taxa
   has_many :taxon_links, :dependent => :delete_all
+  has_many :guides, :dependent => :nullify
   has_one :place_geometry, :dependent => :destroy
   has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
     :select => (PlaceGeometry.column_names - ['geom']).join(', ')
@@ -123,6 +124,7 @@ class Place < ActiveRecord::Base
   PLACE_TYPE_CODES = PLACE_TYPES.invert
   PLACE_TYPES.each do |code, type|
     PLACE_TYPE_CODES[type.downcase] = code
+    const_set type.upcase.gsub(/\W/, '_'), code
   end
 
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}

@@ -3,7 +3,7 @@ class ListsController < ApplicationController
   include Shared::GuideModule
 
   before_filter :authenticate_user!, :except => [:index, :show, :by_login, :taxa, :guide,
-  :cached_guide, :guide_widget, :batch_edit]  
+    :cached_guide, :guide_widget]
   before_filter :load_list, :except => [:index, :new, :create, :by_login]
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
     :remove_taxon, :reload_from_observations]
@@ -56,7 +56,7 @@ class ListsController < ApplicationController
     @iconic_taxa = Taxon::ICONIC_TAXA
     
     unless @with
-      flash[:notice] = "You can't compare a list with nothing!"
+      flash[:notice] = t(:you_cant_compare_a_list_with_nothing)
       return redirect_to(list_path(@list))
     end
     
@@ -172,18 +172,18 @@ class ListsController < ApplicationController
       if @listed_taxon = @list.listed_taxa.find_by_taxon_id(params[:taxon_id].to_i)
         @listed_taxon.destroy
         format.html do
-          flash[:notice] = "Taxon removed from list."
+          flash[:notice] = t(:taxon_removed_from_list)
           redirect_to @list
         end
         format.js do
-          render :text => 'Taxon removed from list.'
+          render :text => t(:taxon_removed_from_list)
         end
         format.json do
           render :json => @listed_taxon
         end
       else
         format.html do
-          flash[:error] = "Could't find that taxon."
+          flash[:error] = t(:couldnt_find_that_taxon)
           redirect_to @list
         end
         format.js do
@@ -283,20 +283,20 @@ class ListsController < ApplicationController
   
   def owner_required
     unless logged_in?
-      flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
+      flash[:notice] = t(:only_the_owner_of_this_list_can_do_that)
       redirect_back_or_default('/')
       return false
     end
     if @list.is_a?(ProjectList)
       project = Project.find_by_id(@list.project_id)
       unless project.project_users.exists?(["role IN ('curator', 'manager') AND user_id = ?", current_user])
-        flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
+        flash[:notice] = t(:only_the_owner_of_this_list_can_do_that)
         redirect_back_or_default('/')
         return false
       end
     else
       unless @list.user_id == current_user.id || current_user.is_admin?
-        flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
+        flash[:notice] = t(:only_the_owner_of_this_list_can_do_that)
         redirect_back_or_default('/')
         return false
       end

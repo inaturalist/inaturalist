@@ -40,7 +40,9 @@ class ObservationsController < ApplicationController
                             :tile_points,
                             :nearby,
                             :widget,
-                            :project]
+                            :project,
+                            :taxon_stats,
+                            :user_stats]
   before_filter :load_observation, :only => [:show, :edit, :edit_photos, :update_photos, :destroy, :fields]
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
@@ -59,7 +61,7 @@ class ObservationsController < ApplicationController
   before_filter :mobilized, :only => MOBILIZED
   before_filter :load_prefs, :only => [:index, :project, :by_login]
   
-  ORDER_BY_FIELDS = %w"created_at observed_on species_guess"
+  ORDER_BY_FIELDS = %w"created_at observed_on project species_guess"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng"
   DISPLAY_ORDER_BY_FIELDS = {
@@ -67,7 +69,8 @@ class ObservationsController < ApplicationController
     'observations.id' => 'date added',
     'id' => 'date added',
     'observed_on' => 'date observed',
-    'species_guess' => 'species name'
+    'species_guess' => 'species name',
+    'project' => "date added to project"
   }
   PARTIALS = %w(cached_component observation_component observation mini)
   EDIT_PARTIALS = %w(add_photos)
@@ -292,11 +295,11 @@ class ObservationsController < ApplicationController
           :viewer => current_user,
           :methods => [:user_login, :iconic_taxon_name],
           :include => {
-            :observation_field_values => {},
+            :observation_field_values => {:include => {:observation_field => {:only => [:name]}}},
             :project_observations => {
               :include => {
                 :project => {
-                  :only => [:id, :title, :description],
+                  :only => [:id, :title],
                   :methods => [:icon_url]
                 }
               }
@@ -308,6 +311,26 @@ class ObservationsController < ApplicationController
                   :except => [:original_url, :file_processing, :file_file_size, 
                     :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
                     :native_realname, :native_photo_id]
+                }
+              }
+            },
+            :comments => {
+              :include => {
+                :user => {
+                  :only => [:name, :login, :id],
+                  :methods => [:user_icon_url]
+                }
+              }
+            },
+            :identifications => {
+              :include => {
+                :user => {
+                  :only => [:name, :login, :id],
+                  :methods => [:user_icon_url]
+                },
+                :taxon => {
+                  :only => [:id, :name, :iconic_taxon_id, :rank],
+                  :methods => [:iconic_taxon_name, :image_url]
                 }
               }
             }
@@ -407,11 +430,7 @@ class ObservationsController < ApplicationController
       @observation.species_guess =  params[:taxon_name]
     end
     
-    @observation_fields = ObservationField.
-      includes(:observation_field_values => :observation).
-      where("observations.user_id = ?", current_user).
-      limit(10).
-      order("observation_field_values.id DESC")
+    @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
     
     respond_to do |format|
       format.html do
@@ -477,18 +496,18 @@ class ObservationsController < ApplicationController
     sync_flickr_photo if params[:flickr_photo_id]
     sync_picasa_photo if params[:picasa_photo_id]
     sync_local_photo if params[:local_photo_id]
-    @observation_fields = ObservationField.
-      includes(:observation_field_values => {:observation => :user}).
-      where("users.id = ?", current_user).
-      limit(10).
-      order("observation_field_values.id DESC")
+    @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
 
     if @observation.quality_metrics.detect{|qm| qm.user_id == @observation.user_id && qm.metric == QualityMetric::WILD && !qm.agree?}
       @observation.captive = true
     end
-    if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
-      return render(:partial => params[:partial], :object => @observation,
-        :layout => false)
+    respond_to do |format|
+      format.html do
+        if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
+          return render(:partial => params[:partial], :object => @observation,
+            :layout => false)
+        end
+      end
     end
   end
 
@@ -645,8 +664,17 @@ class ObservationsController < ApplicationController
     # Make sure there's no evil going on
     unique_user_ids = @observations.map(&:user_id).uniq
     if unique_user_ids.size > 1 || unique_user_ids.first != observation_user.id && !current_user.has_role?(:admin)
-      flash[:error] = t(:you_dont_have_permission_to_edit_that_observation)
-      return redirect_to(@observation || observations_path)
+      msg = t(:you_dont_have_permission_to_edit_that_observation)
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to(@observation || observations_path)
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => msg}
+        end
+      end
+      return
     end
     
     # Convert the params to a hash keyed by ID.  Yes, it's weird
@@ -1353,11 +1381,7 @@ class ObservationsController < ApplicationController
     elsif params[:observation_fields]
       ObservationField.where("id IN (?)", params[:observation_fields])
     else
-      @observation_fields = ObservationField.
-        includes(:observation_field_values => {:observation => :user}).
-        where("users.id = ?", current_user).
-        limit(10).
-        order("observation_field_values.id DESC")
+      @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
     end
     render :layout => false
   end
@@ -1415,22 +1439,22 @@ class ObservationsController < ApplicationController
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
     scope = Observation.query(search_params).scoped
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
-    taxon_counts_scope = scope.
+    species_counts_scope = scope.
       joins(:taxon).
       where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL)
-    taxon_counts_sql = <<-SQL
+    species_counts_sql = <<-SQL
       SELECT
         o.taxon_id,
         count(*) AS count_all
       FROM
-        (#{taxon_counts_scope.to_sql}) AS o
+        (#{species_counts_scope.to_sql}) AS o
       GROUP BY
         o.taxon_id
       ORDER BY count_all desc
       LIMIT 5
     SQL
-    @taxon_counts = ActiveRecord::Base.connection.execute(taxon_counts_sql)
-    @taxa = Taxon.where("id in (?)", @taxon_counts.map{|r| r['taxon_id']}).includes({:taxon_photos => :photo}, :taxon_names)
+    @species_counts = ActiveRecord::Base.connection.execute(species_counts_sql)
+    @taxa = Taxon.where("id in (?)", @species_counts.map{|r| r['taxon_id']}).includes({:taxon_photos => :photo}, :taxon_names)
     @taxa_by_taxon_id = @taxa.index_by(&:id)
     rank_counts_sql = <<-SQL
       SELECT
@@ -1445,9 +1469,8 @@ class ObservationsController < ApplicationController
       format.json do
         render :json => {
           :total => @rank_counts.map{|r| r['count_all'].to_i}.sum,
-          :taxon_counts => @taxon_counts.map{|row|
+          :species_counts => @species_counts.map{|row|
             {
-              :id => row['taxon_id'],
               :count => row['count_all'],
               :taxon => @taxa_by_taxon_id[row['taxon_id'].to_i].as_json(
                 :methods => [:default_name, :image_url, :iconic_taxon_name, :conservation_status_name],
@@ -1456,7 +1479,7 @@ class ObservationsController < ApplicationController
             }
           },
           :rank_counts => @rank_counts.inject({}) {|memo,row|
-            memo[row['rank_name']] = row['count_all']
+            memo[row['rank_name']] = row['count_all'].to_i
             memo
           }
         }
@@ -1500,8 +1523,7 @@ class ObservationsController < ApplicationController
           :total => scope.select("DISTINCT observations.user_id").count,
           :most_observations => @user_counts.map{|row|
             {
-              :id => row['user_id'],
-              :count => row['count_all'],
+              :count => row['count_all'].to_i,
               :user => @users_by_id[row['user_id'].to_i].as_json(
                 :only => [:id, :name, :login],
                 :methods => [:user_icon_url]
@@ -1510,8 +1532,7 @@ class ObservationsController < ApplicationController
           },
           :most_species => @user_taxon_counts.map{|row|
             {
-              :id => row['user_id'],
-              :count => row['count_all'],
+              :count => row['count_all'].to_i,
               :user => @users_by_id[row['user_id'].to_i].as_json(
                 :only => [:id, :name, :login],
                 :methods => [:user_icon_url]
@@ -1532,7 +1553,7 @@ class ObservationsController < ApplicationController
       d2 = (Date.parse(params[:d2]) rescue Date.today)
       return false if d2 - d1 > 366
     end
-    !(params[:d1].blank? && params[:projects].blank? && params[:place_id].blank? && params[:user_id].blank?)
+    !(params[:d1].blank? && params[:projects].blank? && params[:place_id].blank? && params[:user_id].blank? && params[:on].blank?)
   end
   
   def retrieve_photos(photo_list = nil, options = {})
@@ -1663,11 +1684,10 @@ class ObservationsController < ApplicationController
     end
     
     # taxon
-    unless search_params[:taxon_id].blank?
+    if !search_params[:taxon_id].blank?
       @observations_taxon_id = search_params[:taxon_id] 
       @observations_taxon = Taxon.find_by_id(@observations_taxon_id.to_i)
-    end
-    unless search_params[:taxon_name].blank?
+    elsif !search_params[:taxon_name].blank?
       @observations_taxon_name = search_params[:taxon_name].to_s
       taxon_name_conditions = ["taxon_names.name = ?", @observations_taxon_name]
       includes = nil
@@ -1694,6 +1714,7 @@ class ObservationsController < ApplicationController
       end
       @id_please = true if search_params[:has].include?('id_please')
       @with_photos = true if search_params[:has].include?('photos')
+      @with_sounds = true if search_params[:has].include?('sounds')
     end
     
     @quality_grade = search_params[:quality_grade]
@@ -1702,7 +1723,10 @@ class ObservationsController < ApplicationController
     @license = search_params[:license]
     @photo_license = search_params[:photo_license]
     
-    unless options[:skip_order]
+    if options[:skip_order]
+      search_params.delete(:order)
+      search_params.delete(:order_by)
+    else
       search_params[:order_by] = "created_at" if search_params[:order_by] == "observations.id"
       if ORDER_BY_FIELDS.include?(search_params[:order_by].to_s)
         @order_by = search_params[:order_by]
@@ -1763,6 +1787,7 @@ class ObservationsController < ApplicationController
       !@iconic_taxa.blank? ||
       @id_please == true ||
       !@with_photos.blank? ||
+      !@with_sounds.blank? ||
       !@identifications.blank? ||
       !@quality_grade.blank? ||
       !@out_of_range.blank? ||
@@ -1826,11 +1851,21 @@ class ObservationsController < ApplicationController
       if search_params[:has].include?('photos')
         sphinx_options[:with][:has_photos] = true
       end
+
+      # has sounds
+      if search_params[:has].include?('sounds')
+        sphinx_options[:with][:has_sounds] = true
+      end
       
       # geo
       if search_params[:has].include?('geo')
         sphinx_options[:with][:has_geo] = true 
       end
+    end
+
+    if Observation::QUALITY_GRADES.include?(search_params[:quality_grade])
+      sphinx_options[:conditions] ||= {}
+      sphinx_options[:conditions][:quality_grade] = search_params[:quality_grade]
     end
     
     # Bounding box or near point

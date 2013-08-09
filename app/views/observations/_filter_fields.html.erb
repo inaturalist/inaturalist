@@ -16,33 +16,45 @@
     <option <% if @search_on == 'place' %>selected="selected"<% end %> value="place"><%=t :place_name %></option>
   </select>
 </div>
-<div id="attribute_filters" class="row">
+<div id="attribute_filters" class="clear row">
   <strong id="attributes_filters_label" class="label"><%=t :filter_by %></strong>
-  <fieldset>
-    <input type="checkbox" name="has[]" id="with_photos_checkbox" 
-           value="photos" <% if @with_photos %>checked="checked"<% end %>/>
-    <label for="with_photos_checkbox"><%=t :w_photos_only %></label>
-    <input type="checkbox" name="has[]" id="id_please_checkbox" 
-           value="id_please" <% if @id_please %>checked="checked"<% end %>/>
-    <label for="id_please_checkbox"><%=t :id_please %></label>
+  <fieldset class="nobr left">
+    <nobr>
+      <input type="checkbox" name="has[]" id="with_photos_checkbox" 
+             value="photos" <% if @with_photos %>checked="checked"<% end %>/>
+      <label for="with_photos_checkbox"><%=t :w_photos_only %></label>
+      <input type="checkbox" name="has[]" id="with_sounds_checkbox" 
+             value="sounds" <% if @with_sounds %>checked="checked"<% end %>/>
+      <label for="with_sounds_checkbox"><%=t :w_sounds %></label>
+      <input type="checkbox" name="has[]" id="id_please_checkbox" 
+             value="id_please" <% if @id_please %>checked="checked"<% end %>/>
+      <label for="id_please_checkbox"><%=t :id_please %></label>
+      <input type="checkbox" name="out_of_range" value="true" id="out_of_range_checkbox" <% if @out_of_range %>checked="checked"<% end %>>
+      <label for="out_of_range_checkbox"><%= t(:out_of_range, :default => "out of range").downcase %></label>
+    </nobr>
+
+    <nobr>
+      <strong><%=t :quality_grade %></strong>
+      <input type="radio" name="quality_grade" value="any" id="any_grade_checkbox" <% unless Observation::QUALITY_GRADES.include?(@quality_grade) %>checked="checked"<% end %>>
+      <label for="any_grade_checkbox"><%= t(:any, :default => "any").downcase %></label>
+      <input type="radio" name="quality_grade" value="<%= Observation::RESEARCH_GRADE %>" id="research_grade_checkbox" <% if @quality_grade == Observation::RESEARCH_GRADE %>checked="checked"<% end %>>
+      <label for="research_grade_checkbox"><%= t(:research, :default => "research").downcase %></label>
+      <input type="radio" name="quality_grade" value="<%= Observation::CASUAL_GRADE %>" id="casual_grade_checkbox" <% if @quality_grade == Observation::CASUAL_GRADE %>checked="checked"<% end %>>
+      <label for="casual_grade_checkbox"><%= t(:casual, :default => "casual").downcase %></label>
+    </nobr>
     
-    <input type="checkbox" name="quality_grade" value="<%= Observation::RESEARCH_GRADE %>" id="research_grade_checkbox" <% if @quality_grade == Observation::RESEARCH_GRADE %>checked="checked"<% end %>>
-    <label for="research_grade_checkbox"><%=t :research_quality %></label>
-    
-    <input type="checkbox" name="out_of_range" value="true" id="out_of_range_checkbox" <% if @out_of_range %>checked="checked"<% end %>>
-    <label for="out_of_range_checkbox"><%=t :out_of_range %></label>
-    
-  </fieldset>
-  <fieldset>
-    <strong><%=t :identifications %></strong>
-    <% for state in %w"any most_agree some_agree most_disagree" %>
-      <% if @identifications == state %>
-        <%= radio_button_tag :identifications, state, :checked => 'checked' %>
-      <% else %>
-        <%= radio_button_tag :identifications, state %>
+    <br/>
+    <nobr>
+      <strong><%=t :identifications %></strong>
+      <% for state in %w"any most_agree some_agree most_disagree" %>
+        <% if @identifications == state %>
+          <%= radio_button_tag :identifications, state, :checked => 'checked' %>
+        <% else %>
+          <%= radio_button_tag :identifications, state %>
+        <% end %>
+        <%= label :identifications, state, t(state, :default => state).downcase %>
       <% end %>
-      <%= label :identifications, t(state) %>
-    <% end %>
+    </nobr>
   </fieldset>
 </div>
 <div id="iconic_taxon_filters" class="row">
@@ -111,8 +123,8 @@
   <% if @filters_open -%>
     <script type="text/javascript" charset="utf-8">
       $('#filters input[name=place_id]').chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json?with_geom=t',
-        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        collectionUrl: '/places/autocomplete.json?with_geom=t',
+        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
         chosen: eval('(' + $('#filters input[name=place_id]').attr('data-json') + ')')
       })
     </script>

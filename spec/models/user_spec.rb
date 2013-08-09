@@ -309,7 +309,7 @@ describe User do
     end
 
     it "should refresh check lists" do
-      t = Taxon.make!
+      t = Taxon.make!(:rank => "species")
       without_delay do
         make_research_grade_observation(:taxon => t, :user => @user, :latitude => @place.latitude, :longitude => @place.longitude)
       end
@@ -420,6 +420,29 @@ describe User do
     end
   end
 
+  describe "suspension" do
+    it "deletes unread sent messages" do
+      fu = User.make!
+      tu = User.make!
+      m = make_message(:user => fu, :from_user => fu, :to_user => tu)
+      m.send_message
+      m.to_user_copy.should_not be_blank
+      fu.suspend!
+      m.reload
+      m.to_user_copy.should be_blank
+    end
+
+    it "should not delete the suspended user's messages" do
+      fu = User.make!
+      tu = User.make!
+      m = make_message(:user => fu, :from_user => fu, :to_user => tu)
+      m.send_message
+      m.to_user_copy.should_not be_blank
+      fu.suspend!
+      Message.find_by_id(m.id).should_not be_blank
+    end
+  end
+
   describe "being unsuspended" do
 
     before do
@@ -431,18 +454,6 @@ describe User do
       @user.unsuspend!
       @user.should be_active
     end
-
-    # it 'reverts to passive state if activation_code and activated_at are nil' do
-    #   User.update_all :activation_code => nil, :activated_at => nil
-    #   @user.reload.unsuspend!
-    #   @user.should be_passive
-    # end
-
-    # it 'reverts to pending state if activation_code is set and activated_at is nil' do
-    #   User.update_all :activation_code => 'foo-bar', :activated_at => nil
-    #   @user.reload.unsuspend!
-    #   @user.should be_pending
-    # end
   end
   
   describe "licenses" do

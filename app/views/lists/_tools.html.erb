@@ -76,7 +76,7 @@
         </li>
         <li>
           <%- msg = t(:this_will_re_apply_all_list_rules) -%>
-          <%= link_to_function "Re-apply list rules", 
+          <%= link_to_function t(:re_apply_list_rules),
             "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'refreshlink')", 
             :id => "refreshlink" %>
         </li>

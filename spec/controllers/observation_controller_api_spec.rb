@@ -26,6 +26,23 @@ shared_examples_for "an ObservationsController" do
       o = Observation.last
       o.species_guess.should eq('?')
     end
+
+    it "should accept nested observation_field_values" do
+      of = ObservationField.make!
+      post :create, :format => :json, :observation => {
+        :species_guess => "zomg", 
+        :observation_field_values_attributes => {
+          "0" => {
+            :observation_field_id => of.id,
+            :value => "foo"
+          }
+        }
+      }
+      response.should be_success
+      o = Observation.last
+      o.observation_field_values.last.observation_field.should eq(of)
+      o.observation_field_values.last.value.should eq("foo")
+    end
   end
 
   describe "destroy" do
@@ -68,14 +85,158 @@ shared_examples_for "an ObservationsController" do
       response_photo.should_not be_blank
       response_photo['metadata'].should be_blank
     end
+
+    it "should include observation field values" do
+      ofv = ObservationFieldValue.make!
+      get :show, :format => :json, :id => ofv.observation_id
+      response_obs = JSON.parse(response.body)
+      response_obs['observation_field_values'].first['value'].should eq(ofv.value)
+    end
+
+    it "should include observation field values with observation field names" do
+      ofv = ObservationFieldValue.make!
+      get :show, :format => :json, :id => ofv.observation_id
+      response_obs = JSON.parse(response.body)
+      response_obs['observation_field_values'].first['observation_field']['name'].should eq(ofv.observation_field.name)
+    end
+
+    it "should include comments" do
+      o = Observation.make!
+      c = Comment.make!(:parent => o)
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['comments'].first['body'].should eq(c.body)
+    end
+
+    it "should include comment user icons" do
+      o = Observation.make!
+      c = Comment.make!(:parent => o)
+      c.user.update_attributes(:icon => open(File.dirname(__FILE__) + '/../fixtures/files/egg.jpg'))
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['comments'].first['user']['user_icon_url'].should_not be_blank
+    end
+
+    it "should include identifications" do
+      o = Observation.make!
+      i = Identification.make!(:observation => o)
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['identifications'].first['taxon_id'].should eq(i.taxon_id)
+    end
+
+    it "should include identification user icons" do
+      o = Observation.make!
+      i = Identification.make!(:observation => o)
+      i.user.update_attributes(:icon => open(File.dirname(__FILE__) + '/../fixtures/files/egg.jpg'))
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['identifications'].first['user']['user_icon_url'].should_not be_blank
+    end
+
+    it "should include identification taxon icons" do
+      load_test_taxa
+      o = Observation.make!
+      t = Taxon.make!(:iconic_taxon => @Amphibia)
+      i = Identification.make!(:observation => o)
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['identifications'].first['taxon']['image_url'].should_not be_blank
+    end
   end
 
-  define "update" do
+  describe "update" do
+    before do
+      @o = Observation.make!(:user => user)
+    end
+
     it "should update" do
+      put :update, :format => :json, :id => @o.id, :observation => {:species_guess => "i am so updated"}
+      @o.reload
+      @o.species_guess.should eq("i am so updated")
+    end
+
+    it "should accept nested observation_field_values" do
+      of = ObservationField.make!
+      put :update, :format => :json, :id => @o.id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :observation_field_id => of.id,
+            :value => "foo"
+          }
+        }
+      }
+      response.should be_success
+      @o.reload
+      @o.observation_field_values.last.observation_field.should eq(of)
+      @o.observation_field_values.last.value.should eq("foo")
+    end
+
+    it "should updating existing observation_field_values" do
+      ofv = ObservationFieldValue.make!(:value => "foo", :observation => @o)
+      put :update, :format => :json, :id => ofv.observation_id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :id => ofv.id,
+            :observation_field_id => ofv.observation_field_id,
+            :value => "bar"
+          }
+        }
+      }
+      response.should be_success
+      ofv.reload
+      ofv.value.should eq "bar"
+    end
+
+    it "should updating existing observation_field_values by observation_field_id" do
       o = Observation.make!(:user => user)
-      put :update, :format => :json, :id => o.id, :observation => {:species_guess => "i am so updated"}
-      o.reload
-      o.species_guess.should eq("i am so updated")
+      ofv = ObservationFieldValue.make!(:value => "foo", :observation => o)
+      put :update, :format => :json, :id => ofv.observation_id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :observation_field_id => ofv.observation_field_id,
+            :value => "bar"
+          }
+        }
+      }
+      response.should be_success
+      ofv.reload
+      ofv.value.should eq "bar"
+    end
+
+    it "should updating existing observation_field_values by observation_field_id even if they're project fields" do
+      pof = ProjectObservationField.make!
+      po = make_project_observation(:project => pof.project, :user => user)
+      ofv = ObservationFieldValue.make!(:value => "foo", :observation => po.observation, :observation_field => pof.observation_field)
+      put :update, :format => :json, :id => ofv.observation_id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :observation_field_id => ofv.observation_field_id,
+            :value => "bar"
+          }
+        }
+      }
+      response.should be_success
+      ofv.reload
+      ofv.value.should eq "bar"
+    end
+
+    it "should allow removal of nested observation_field_values" do
+      ofv = ObservationFieldValue.make!(:value => "foo", :observation => @o)
+      @o.observation_field_values.should_not be_blank
+      put :update, :format => :json, :id => ofv.observation_id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :_destroy => true,
+            :id => ofv.id,
+            :observation_field_id => ofv.observation_field_id,
+            :value => ofv.value
+          }
+        }
+      }
+      response.should be_success
+      @o.reload
+      @o.observation_field_values.should be_blank
     end
   end
 
@@ -175,6 +336,46 @@ shared_examples_for "an ObservationsController" do
       json = JSON.parse(response.body)
       json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
       json.detect{|obs| obs['id'] == o2.id}.should be_blank
+    end
+  end
+
+  describe "taxon_stats" do
+    before do
+      @o = Observation.make!(:observed_on_string => "2013-07-20", :taxon => Taxon.make!(:rank => Taxon::SPECIES))
+      get :taxon_stats, :format => :json, :on => "2013-07-20"
+      @json = JSON.parse(response.body)
+    end
+
+    it "should include a total" do
+      @json["total"].to_i.should > 0
+    end
+
+    it "should include species_counts" do
+      @json["species_counts"].size.should > 0
+    end
+
+    it "should include rank_counts" do
+      @json["rank_counts"][@o.taxon.rank.downcase].should > 0
+    end
+  end
+
+  describe "user_stats" do
+    before do
+      @o = Observation.make!(:observed_on_string => "2013-07-20", :taxon => Taxon.make!(:rank => Taxon::SPECIES))
+      get :user_stats, :format => :json, :on => "2013-07-20"
+      @json = JSON.parse(response.body)
+    end
+
+    it "should include a total" do
+      @json["total"].to_i.should > 0
+    end
+
+    it "should include most_observations" do
+      @json["most_observations"].size.should > 0
+    end
+
+    it "should include most_species" do
+      @json["most_species"].size.should > 0
     end
   end
 end

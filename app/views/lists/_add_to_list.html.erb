@@ -44,7 +44,7 @@
         $.fn.simpleTaxonSelector.setStatus(
           $('.simpleTaxonSelector').get(0),
           'matched',
-          $('<span>Added!</span>')
+          $('<span>'+I18n.t('added!')+'</span>')
         );
         
         if ($('#add').length > 0) $('#add').effect('highlight', {}, 1000);

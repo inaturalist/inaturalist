@@ -35,6 +35,8 @@ class Taxon < ActiveRecord::Base
   has_many :photos, :through => :taxon_photos
   has_many :assessments
   has_many :conservation_statuses, :dependent => :destroy
+  has_many :guide_taxa, :inverse_of => :taxon, :dependent => :nullify
+  has_many :guides, :inverse_of => :taxon, :dependent => :nullify
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
@@ -291,10 +293,14 @@ class Taxon < ActiveRecord::Base
   
   scope :self_and_descendants_of, lambda{|taxon|
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    conditions = taxon.descendant_conditions
-    conditions[0] += " OR taxa.id = ?"
-    conditions << taxon
-    where(conditions)
+    if taxon
+      conditions = taxon.descendant_conditions
+      conditions[0] += " OR taxa.id = ?"
+      conditions << taxon
+      where(conditions)
+    else
+      where("1 = 2")
+    end
   }
   
   scope :has_conservation_status, lambda {|status|
@@ -743,12 +749,6 @@ class Taxon < ActiveRecord::Base
     "lsid:#{URI.parse(CONFIG.site_url).host}:taxa:#{id}"
   end
   
-  # Flagged method is called after every add_flag.  This callback method
-  # is totally optional and does not have to be included in the model
-  def flagged(flag, flag_count)
-    true
-  end
-  
   def update_unique_name(options = {})
     reload # there's a chance taxon names have been created since load
     return true unless default_name
@@ -1169,6 +1169,7 @@ class Taxon < ActiveRecord::Base
     scope = scope.where(:lexicon => options[:lexicon]) if options[:lexicon]
     scope = scope.where("taxon_names.is_valid = ?", true) if options[:valid]
     names = tags.map do |tag|
+      next if tag.blank?
       if name = tag.match(/^taxonomy:\w+=(.*)/).try(:[], 1)
         name.downcase
       else

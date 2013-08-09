@@ -22,8 +22,8 @@
   :javascript
     var GUIDE_TAXON = #{raw @guide_taxon.to_json}
     $('#guide_taxon_taxon_id:visible').chooser({
-      collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
-      resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+      collectionUrl: '/taxa/autocomplete.json',
+      resourceUrl: '/taxa/{{id}}.json?partial=chooser',
     })
     $('#edit_photos_dialog').dialog({
       modal: true, 
@@ -79,9 +79,13 @@
       var provider = current.attr('id').split('_')[0]
       $.getJSON('/guide_sections/import?provider='+provider+'&q='+GUIDE_TAXON.name, function(json) {
         current.html('')
-        $.each(json, function() {
-          current.append(sectionToHtml(this))
-        })
+        if (!json || json.length == 0) {
+          current.html("<p>"+I18n.t('no_sections_available')+"</p>")
+        } else {
+          $.each(json, function() {
+            current.append(sectionToHtml(this))
+          })
+        }
       })
       current.addClass('loaded')
     })
@@ -116,31 +120,22 @@
       }
       var provider = current.attr('id').split('_')[0]
       $.getJSON('/guide_ranges/import?provider='+provider+'&q='+GUIDE_TAXON.name, function(json) {
-        current.html('')
-        $.each(json, function() {
-          current.append(rangeToHtml(this))
-        })
-      })
-      current.addClass('loaded')
-    })
-    $('#import_ranges_dialog').on('shown', function() {
-      var current = $('.tab-pane:visible', this)
-      if (current.hasClass('loaded')) {
-        return
-      }
-      var provider = current.attr('id').split('_')[0]
-      $.getJSON('/guide_ranges/import?provider='+provider+'&q='+GUIDE_TAXON.name, function(json) {
-        var ul = $('<ul class="thumbnails"></ul>')
-        $.each(json, function() {
-          ul.append(rangeToHtml(this))
-        })
-        current.html(ul)
+        if (!json || json.length == 0) {
+          current.html("<p>"+I18n.t('no_range_data_available')+"</p>")
+        } else {
+          var ul = $('<ul class="thumbnails"></ul>')
+          $.each(json, function() {
+            ul.append(rangeToHtml(this))
+          })
+          current.html(ul)
+        }
+      }).error(function() {
       })
       current.addClass('loaded')
     })
     function rangeToHtml(range) {
       var div = $('<div></div>').addClass('thumbnail span2 text-center')
-      div.append($('<img/>').attr('src', range.thumb_url))
+      div.append($('<img/>').attr('src', range.thumb_url).addClass('stacked'))
       div.append(
         $('<a class="btn">'+I18n.t('import')+'</a>').click(function() {addRange(range)})
       )
@@ -201,6 +196,22 @@
       $(this).data('remove-timeout', 1000)
       $(item).slideUp()
     })
+    $('#guide_sections input[type=text]').live('change', function() {
+      $(this).parents('.nested-fields:first').find('input[name*=modified_on_create]').val(true)
+    })
+    function addTag(tag) {
+      var tag = $.trim(tag)
+      var tags
+      if ($.trim($('#guide_taxon_tag_list').val()) == '') {
+        tags = []
+      } else {
+        tags = $('#guide_taxon_tag_list').val().split(',').map($.trim)
+      }
+      if (tags.indexOf(tag) < 0) {
+        tags.push(tag)
+        $('#guide_taxon_tag_list').val(tags.join(', '))
+      }
+    }
 
 = form_for(@guide_taxon) do |f|
   = f.hidden_field :guide_id
@@ -239,6 +250,15 @@
     = link_to_add_association t(:add_range), f, :guide_ranges, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_ranges", :class => "btn btn-small btn-success btn-add-range hide"
     / = link_to_function t(:import_ranges), "$('#import_ranges_dialog').dialog('open')", :class => "btn btn-small"
     %button.btn-small.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#import_ranges_dialog"}=t :import_ranges
+
+  .row-fluid.stacked
+    %h3=t :tags
+    %p=t 'views.guides.tags_help_html'
+    %p
+    = f.text_field :tag_list, :class => "input-xxlarge"
+    #recent_tags.quiet
+      - for tag in @recent_tags
+        = link_to_function "<i class='icon-plus-sign'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
   #actions
     = f.submit t(:save_guide_taxon), :class => "btn btn-primary"
     = link_to t(:remove_from_guide), @guide_taxon, :method => :delete, :confirm => t(:are_you_sure?), :class => "btn btn-danger pull-right"

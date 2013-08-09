@@ -100,7 +100,7 @@ class TaxonNamesController < ApplicationController
     
     respond_to do |format|
       if @taxon_name.save
-        flash[:notice] = "Your name was saved."
+        flash[:notice] = t(:your_name_was_saved)
         format.html { redirect_to taxon_path(@taxon) }
         format.xml  { render :xml => @taxon_name, :status => :created, :location => @taxon_name }
       else
@@ -119,7 +119,7 @@ class TaxonNamesController < ApplicationController
     
     respond_to do |format|
       if @taxon_name.update_attributes(params[:taxon_name])
-        flash[:notice] = 'Taxon name was successfully updated.'
+        flash[:notice] = t(:taxon_name_was_successfully_updated)
         format.html { redirect_to(taxon_name_path(@taxon_name)) }
         format.xml  { head :ok }
       else
@@ -138,9 +138,9 @@ class TaxonNamesController < ApplicationController
       EOT
       flash[:error] = msg
     elsif @taxon_name.destroy
-      flash[:notice] = "Taxon name was deleted."
+      flash[:notice] = t(:taxon_name_was_deleted)
     else
-      flash[:error] = "Something went wrong deleting the taxon name '#{@taxon_name.name}'!"
+      flash[:error] = t(:something_went_wrong_deleting_the_taxon_name, :taxon_name => @taxon_name.name)
     end
     respond_to do |format|
       format.html { redirect_to(taxon_path(@taxon_name.taxon)) }
@@ -170,7 +170,7 @@ class TaxonNamesController < ApplicationController
       return true if params[:taxon_name].blank?
       return true if params[:taxon_name][:lexicon] != TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
     end
-    flash[:error] = "Only curators can add/edit scientific names."
+    flash[:error] = t(:only_curators_can_add_edit_scientific_names)
     redirect_back_or_default(@taxon)
     false
   end

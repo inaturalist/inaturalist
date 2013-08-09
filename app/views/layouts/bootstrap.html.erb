@@ -6,6 +6,7 @@
     <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <%= stylesheet_link_tag 'jquery-ui',
                             "jquery/ui.tabs.css",
                             'jquery/plugins/jquery.qtip.min',
@@ -16,6 +17,7 @@
     <%= stylesheet_link_tag 'bootstrap', 'bootstrap-inat' %>
     <style type="text/css">
       body { font-size: 75%; }
+      .bootstrap .readable, .bootstrap p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
     </style>
     <%= csrf_meta_tag %>
     <% if CONFIG.twitter && CONFIG.twitter.username -%>
@@ -73,6 +75,8 @@
                                'rails',
                                'application', 
                                'inaturalist' %>
+    <%= google_maps_js %>
+    <%= javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js" %>
     <%= yield :extrajs %>
     <% if logged_in? -%>
       <script type="text/javascript" charset="utf-8">

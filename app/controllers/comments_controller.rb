@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  before_filter :authenticate_user!, :except => :index
+  doorkeeper_for :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
   before_filter :admin_required, :only => [:user]
   before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
   before_filter :owner_required, :only => [:edit, :update]
@@ -25,8 +26,12 @@ class CommentsController < ApplicationController
       @comments.map(&:parent_id), @comments.last.created_at
     ]).sort_by{|c| c.id}
     @comments_by_parent_id = @extra_comments.group_by{|c| c.parent_id}
-    if params[:partial]
-      render :partial => 'listing', :collection => @comments, :layout => false
+    respond_to do |format|
+      format.html do
+        if params[:partial]
+          render :partial => 'listing', :collection => @comments, :layout => false
+        end
+      end
     end
   end
   
@@ -55,7 +60,7 @@ class CommentsController < ApplicationController
   
   def create
     @comment = Comment.new(params[:comment])
-    @comment.user ||= current_user
+    @comment.user = current_user
     @comment.save unless params[:preview]
     respond_to do |format|
       format.html { respond_to_create }
@@ -107,6 +112,7 @@ class CommentsController < ApplicationController
     end
 
     parent = @comment.parent
+    Rails.logger.debug "[DEBUG] @comment: #{@comment}"
     @comment.destroy
     respond_to do |format|
       format.html do

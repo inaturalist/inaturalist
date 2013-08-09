@@ -27,6 +27,9 @@ class MessagesController < ApplicationController
     Message.update_all(["read_at = ?", Time.now], ["id in (?) AND read_at IS NULL", @messages])
     @thread_message = @messages.first
     @reply_to = @thread_message.from_user == current_user ? @thread_message.to_user : @thread_message.from_user
+    @flaggable_message = if m = @messages.detect{|m| m.from_user != current_user}
+      m.from_user.messages.where(:thread_id => @message.thread_id).first
+    end
   end
 
   def new
@@ -80,8 +83,14 @@ class MessagesController < ApplicationController
   # end
 
   def destroy
-    @message.destroy
-    redirect_back_or_default messages_url
+    Message.where("user_id = ? AND thread_id = ?", current_user.id, @message.thread_id).each(&:destroy)
+    msg = "Message deleted"
+    respond_to do |format|
+      format.html do
+        flash[:notice] = msg
+        redirect_to messages_url
+      end
+    end
   end
 
   def count

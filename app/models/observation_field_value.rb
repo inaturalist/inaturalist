@@ -35,6 +35,10 @@ class ObservationFieldValue < ActiveRecord::Base
     end
   }
 
+  def to_s
+    "<ObservationFieldValue #{id}, observation_field_id: #{observation_field_id}, observation_id: #{observation_id}>"
+  end
+
   def taxon
     return nil unless observation_field.datatype == ObservationField::TAXON
     @taxon ||= Taxon.find_by_id(value)
@@ -45,7 +49,7 @@ class ObservationFieldValue < ActiveRecord::Base
   end
   
   def strip_value
-    self.value = value.strip unless value.nil?
+    self.value = value.to_s.strip unless value.nil?
   end
   
   def validate_observation_field_datatype

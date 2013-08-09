@@ -17,11 +17,11 @@
                 = flag.comment
   = f.hidden_field :flaggable_type
   = f.hidden_field :flaggable_id
-  = f.radio_button :flag, "spam", 
+  = f.radio_button :flag, Flag::SPAM, 
     :label => t(:spam),
     :label_after => true, 
     :description => t(:commercial_solicitation)
-  = f.radio_button :flag, "inappropriate", 
+  = f.radio_button :flag, Flag::INAPPROPRIATE, 
     :label => t(:offensive_inappropriate),
     :label_after => true, 
     :description => t(:misleading_or_illegal_content)

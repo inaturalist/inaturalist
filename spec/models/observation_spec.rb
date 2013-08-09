@@ -1003,6 +1003,24 @@ describe Observation do
       txt.should_not match(/private_latitude/)
       txt.should_not match(/#{observation.private_latitude}/)
     end
+
+    it "should be visible to curators of projects to which the observation has been added" do
+      po = make_project_observation
+      o = po.observation
+      o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1, :longitude => 1)
+      o.should be_coordinates_private
+      pu = ProjectUser.make!(:project => po.project, :role => ProjectUser::CURATOR)
+      o.coordinates_viewable_by?(pu.user).should be_true
+    end
+
+    it "should be visible to managers of projects to which the observation has been added" do
+      po = make_project_observation
+      o = po.observation
+      o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1, :longitude => 1)
+      o.should be_coordinates_private
+      pu = ProjectUser.make!(:project => po.project, :role => ProjectUser::MANAGER)
+      o.coordinates_viewable_by?(pu.user).should be_true
+    end
   end
   
   describe "obscure_coordinates" do

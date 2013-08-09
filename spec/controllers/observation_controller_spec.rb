@@ -156,6 +156,39 @@ describe ObservationsController do
       all_project_observations_path(@project, :format => :csv).should_not be_private_page_cached
     end
   end
+
+  describe :by_login_all do
+    it "should include observation fields" do
+      of = ObservationField.make!(:name => "count", :datatype => "numeric")
+      ofv = ObservationFieldValue.make!(:observation_field => of, :value => 7)
+      user = ofv.observation.user
+      sign_in user
+      get :by_login_all, :login => user.login, :format => :csv
+      response.body.should =~ /field\:count/
+    end
+  end
+
+  describe :project_all, "csv" do
+    it "should include observation fields" do
+      of = ObservationField.make!(:name => "count", :datatype => "numeric")
+      pof = ProjectObservationField.make!(:observation_field => of)
+      p = pof.project
+      po = make_project_observation(:project => p)
+      ofv = ObservationFieldValue.make!(:observation_field => of, :value => 7, :observation => po.observation)
+      sign_in p.user
+      get :project_all, :id => p.id, :format => :csv
+      response.body.should =~ /field\:count/
+    end
+
+    it "should have project-specific fields" do
+      p = Project.make!
+      sign_in p.user
+      get :project_all, :id => p.id, :format => :csv
+      %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code).each do |f|
+        response.body.should =~ /#{f}/
+      end
+    end
+  end
   
   describe :photo do
     before do

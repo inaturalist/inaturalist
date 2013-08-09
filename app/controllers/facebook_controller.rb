@@ -131,7 +131,7 @@ class FacebookController < ApplicationController
   # not terribly efficient, cause it makes an api call to get album data and separate calls for each album to get the url
   def facebook_albums(user, friend_id=nil)
     return [] unless user.facebook_api
-    album_data = user.facebook_api.get_connections(friend_id || 'me','albums', :limit => 0)
+    album_data = user.facebook_api.get_connections(friend_id || 'me', 'albums', :limit => 500)
     album_data.reject{|a| a['count'].blank? || a['count'] < 1}.map do |a|
       {
         'aid' => a['id'],

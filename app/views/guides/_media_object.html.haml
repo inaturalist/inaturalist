@@ -1,0 +1,13 @@
+- guide ||= media_object
+- tag ||= :div
+= content_tag tag, :class => "media" do
+  .pull-left
+    - if guide.icon.file?
+      = link_to image_tag(guide.icon.url(:span2), :class => "img-rounded"), guide
+    - else
+      .media-object
+        = link_to guide do
+          %i.icon-book.icon-4x
+  .media-body
+    %h2.media-heading= link_to guide.title, guide
+    %p= truncate(strip_tags(guide.description), :length => 300).html_safe

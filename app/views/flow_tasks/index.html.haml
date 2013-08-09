@@ -16,19 +16,31 @@
             = flow_task.send(col)
         %td
           %ul
-            - for input in flow_task.inputs
+            - inputs = flow_task.inputs.page(1).all
+            - for input in inputs
               %li
                 - if input.resource
                   = link_to "#{input.resource_type}: #{input.resource.to_param}", input.resource
                 - else
                   = link_to input.file_file_name, input.file.url
+            - if inputs.total_pages > 1
+              .meta
+                = inputs.per_page
+                of
+                = inputs.total_entries 
         %td
           %ul
-            - for output in flow_task.outputs
+            - outputs = flow_task.outputs.page(1)
+            - for output in outputs
               %li
                 - if output.resource
                   = link_to "#{output.resource_type}: #{output.resource.to_param}", input.resource
                 - else
                   = link_to output.file_file_name, output.file.url
+            - if outputs.total_pages > 1
+              .meta
+                = outputs.per_page
+                of
+                = outputs.total_entries
 
 = will_paginate @flow_tasks

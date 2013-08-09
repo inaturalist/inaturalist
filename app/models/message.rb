@@ -1,5 +1,6 @@
 class Message < ActiveRecord::Base
   attr_accessible :body, :from_user_id, :subject, :thread_id, :to_user_id, :user_id, :to_user, :from_user, :user
+  acts_as_flaggable
 
   belongs_to :user
   belongs_to :from_user, :class_name => "User"
@@ -33,6 +34,16 @@ class Message < ActiveRecord::Base
     new_message.user = to_user
     new_message.read_at = nil
     new_message.save!
+  end
+
+  def to_user_copy
+    return self if to_user_id == user_id
+    to_user.messages.inbox.where(:thread_id => thread_id).detect{|m| m.body == body}
+  end
+
+  def from_user_copy
+    return self if from_user_id == user_id
+    from_user.messages.sent.where(:thread_id => thread_id).detect{|m| m.body == body}
   end
 
   def set_read_at
@@ -70,5 +81,12 @@ class Message < ActiveRecord::Base
     return true if skip_email
     Emailer.delay(:priority => USER_INTEGRITY_PRIORITY).new_message(id)
     true
+  end
+
+  def flagged_with(flag)
+    if Message.joins(:flags).where("from_user_id = ? AND flags.flag = ?", user_id, Flag::SPAM).count >= 3
+      user.suspend!
+    end
+    Message.where(:user_id => to_user_id, :thread_id => thread_id).destroy_all
   end
 end

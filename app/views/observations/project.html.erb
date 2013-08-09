@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Observations for <%= h @project.title %>
+  <%= t(:observations_for_project, :project => @project.title) %>
 <%- end -%>
 
 <%- content_for(:extracss) do -%>
@@ -12,14 +12,14 @@
 
 <%- before = capture do -%>
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo Back to #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{t(:back_to)} #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <div class="column span-1" style="text-align: center">
     <%= image_tag @project.icon.url(:span1) %>
   </div>
 <%- end -%>
 <%= render :partial => 'map_header', :locals => {
-  :title => "Observations for #{link_to h(@project.title), @project}".html_safe,
+  :title => "#{t(:observations_for)} #{link_to h(@project.title), @project}".html_safe,
   :before => before,
   :control_span => 11
 } %>
@@ -38,7 +38,7 @@
   <% if logged_in? -%>
     <%= form_for :preferences, :url => url_for, :html => {:style => "float: left", :method => :get} do |f| %>
       <%= hidden_fields_for_params(:without => [:per_page, :page, :preferences]) %>
-      <%= f.label :per_page %>
+      <%= f.label :per_page, t(:per_page) %>
       <%= f.select :per_page, ApplicationController::PER_PAGES, 
         {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
     <% end %>
@@ -46,7 +46,7 @@
   <div id="feeds" class="clear right small ui description feeds">
     <%= render :partial => 'feed_links' %>
     <% if @project.curated_by?(current_user) -%>
-      <%= link_to("All CSV",  all_project_observations_path(@project, :format => 'csv'), :class => 'csvlink', :rel => "nofollow") %>
+      <%= link_to("#{t(:all)} CSV",  all_project_observations_path(@project, :format => 'csv'), :class => 'csvlink', :rel => "nofollow") %>
     <% end -%>
   </div>
   <%= will_paginate @observations, :renderer => INatLinkRenderer %>

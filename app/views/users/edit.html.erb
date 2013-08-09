@@ -61,9 +61,9 @@
     </div>
     <div id="preferencescol" class="column span-9 stacked">
       <%- if !current_user.provider_authorizations.blank? %>
-        <h3>Sharing Settings</h3>
+        <h3><%=t :sharing_settings %></h3>
         <div id="observationsharingpreferences" class="stacked">
-          <label>Automatically share your observations on</label>
+          <label><%=t :automatically_share_your_observations_on %></label>
           <% for attr_name in User::SHARING_PREFERENCES %>
             <%- service = attr_name.gsub(/share_observations_on_/, '') %>
             <%- if current_user.has_provider_auth(service) %>

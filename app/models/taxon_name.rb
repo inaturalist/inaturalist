@@ -6,7 +6,7 @@ class TaxonName < ActiveRecord::Base
   belongs_to :updater, :class_name => 'User'
   has_many :taxon_scheme_taxa, :dependent => :destroy
   validates_presence_of :taxon
-  validates_length_of :name, :within => 1..256
+  validates_length_of :name, :within => 1..256, :allow_blank => false
   validates_uniqueness_of :name, 
                           :scope => [:lexicon, :taxon_id], 
                           :message => "already exists for this taxon in this lexicon",
@@ -45,6 +45,7 @@ class TaxonName < ActiveRecord::Base
     :HAWAIIAN            =>  'Hawaiian',
     :HEBREW              =>  'Hebrew',
     :HILIGAYNON          =>  'Hiligaynon',
+    :ICELANDIC           =>  'Icelandic',
     :ILOKANO             =>  'Ilokano',
     :ITALIAN             =>  'Italian',
     :JAPANESE            =>  'Japanese',

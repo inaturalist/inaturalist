@@ -1,13 +1,11 @@
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #333333;
   background-color: #ffffff;
 }
 .readable, p {line-height: 1.6em;}
-.readable, p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
 .bootstrap .ui-chooser input.ui-chooser-input {padding:5px 6px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
 .bootstrap .thumbnail.borderless { padding: 0; overflow:hidden;}
 .bootstrap .overlaycontrol { text-align: right; max-width: 400px;}
@@ -15,5 +13,16 @@ body {
 .bootstrap .overlaycontrol li { line-height: 1; }
 .bootstrap .overlaycontrol label { display: inline-block; }
 .bootstrap .overlaycontrol input[type="checkbox"] { margin: 0 5px 0 0; }
-.bootstrap .taxonmap img {max-width: none;}
+.bootstrap #map img, .bootstrap .latLonSelectorMap img, .bootstrap .taxonmap img {max-width: none;}
 .box {border-radius: 6px;}
+.clear { display: inline-block; }   
+.clear:after, .container:after {
+  content: "."; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;
+}
+* html .clear { height: 1%; }
+.clear { display: block; }
+.bootstrap input[type="text"].latLonSelectorInput {margin-bottom:0;}

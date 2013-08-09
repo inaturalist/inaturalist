@@ -5,7 +5,7 @@ class Assessment < ActiveRecord::Base
 
   validates_presence_of :project, :user, :taxon
 
-  has_many :sections, :foreign_key => 'assessment_id', :class_name => "AssessmentSection", :dependent => :destroy
+  has_many :sections, :order => 'display_order DESC', :foreign_key => 'assessment_id', :class_name => "AssessmentSection", :dependent => :destroy
   accepts_nested_attributes_for :sections, :allow_destroy => true
   validates_associated :sections
 
@@ -18,7 +18,8 @@ class Assessment < ActiveRecord::Base
 
   def display_name
 	   taxon_scientific_name = taxon.present? ? taxon.name : ''
-	   "<i>#{taxon_name}</i> #{self.created_at.strftime('%Y')}".html_safe 
+	   description = self.description.blank? ? nil : self.description.truncate(60)
+	   "<i>#{taxon_name}</i> #{description}".html_safe 
   end
 
   def to_param

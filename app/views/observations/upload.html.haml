@@ -2,11 +2,7 @@
   = @title = t(:observation_photo_uploader)
 - content_for :extrajs do
   = google_maps_js
-  = javascript_include_tag "http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"
-  = javascript_include_tag "http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"
-  = javascript_include_tag "http://blueimp.github.com/JavaScript-Canvas-to-Blob/canvas-to-blob.min.js"
-  = javascript_include_tag "http://blueimp.github.com/cdn/js/bootstrap.min.js"
-  = javascript_include_tag "http://blueimp.github.com/Bootstrap-Image-Gallery/js/bootstrap-image-gallery.min.js"
+  = javascript_include_tag "load-image.min.js"
   = javascript_include_tag "jquery/plugins/jquery.iframe-transport"
   = javascript_include_tag "jquery/plugins/jquery.fileupload"
   = javascript_include_tag "jquery/plugins/jquery.fileupload-fp"
@@ -21,14 +17,14 @@
     textarea {height: 70px; width: 330px;}
     .observation .field input.text {width: 325px;}
     .observation {padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid #eee;}
-    .latitude_field .label, 
-    .longitude_field .label, 
-    .positional_accuracy_field .label,
+    .latitude_field .inlabel, 
+    .longitude_field .inlabel, 
+    .positional_accuracy_field .inlabel,
     .latitude_field, 
     .longitude_field, 
     .positional_accuracy_field,
     .geoprivacy_field,
-    .geoprivacy_field .label { display: inline-block; }
+    .geoprivacy_field .inlabel { display: inline-block; }
     .observation .latitude_field input.text,
     .observation .longitude_field input.text,
     .observation .positional_accuracy_field input.text {width: 80px; font-size: smaller;}

@@ -4,6 +4,7 @@
   :css
     tr.reply td:first-child {vertical-align: top; padding-top:1em;}
     td.body {width:100%;}
+    textarea {width:420px;}
 
 .column.prepend-4.span-16.append-4
   #pageheader
@@ -30,7 +31,12 @@
           = f.hidden_field :thread_id
           = f.hidden_field :to_user_id
           = f.text_area :body, :label => false
-          = f.submit t(:send).capitalize, :class => "default button", "data-loading-click" => "Sending..."
-          = link_to t(:preview), messages_path, :class => 'button previewbutton commentpreviewbutton'
-          .inter.loading{:style => "display:none;"}=t :loading
+          .buttonrow
+            = f.submit t(:send).capitalize, :class => "default button", "data-loading-click" => t(:sending)
+            = link_to t(:preview), messages_path, :class => 'button previewbutton commentpreviewbutton'
+            .inter.loading{:style => "display:none;"}=t :loading
+            .right
+              = link_to t(:delete_conversation), @message, :method => :delete, :confirm => t(:are_you_sure_you_want_to_delete_this), :class => "delete minor button"
+              - if @flaggable_message
+                = link_to t(:flag), new_flag_path("message_id" => @flaggable_message), :class => "flaglink minor button"
       %td

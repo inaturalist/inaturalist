@@ -2,6 +2,8 @@ class GuideRange < ActiveRecord::Base
   attr_accessible :guide_taxon_id, :thumb_url, :medium_url, :original_url, :rights_holder, :license, :source_id, :source_url
   belongs_to :guide_taxon, :inverse_of => :guide_ranges
   has_one :guide, :through => :guide_taxon
+  after_save {|r| r.guide.expire_caches}
+  after_destroy {|r| r.guide.expire_caches}
 
   def attribution
     return I18n.t(:public_domain) if license == Photo::PD_CODE

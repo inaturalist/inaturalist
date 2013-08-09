@@ -188,7 +188,7 @@
     </span>
 
     <h2>
-      <%= render :partial => 'shared/taxon', :locals => { :taxon => @taxon } %>
+      <%= render :partial => 'shared/taxon', :locals => { :taxon => @taxon, :named_ancestor => true } %>
     </h2>
   </div>
 </div>
@@ -606,7 +606,7 @@
     </div>
     
     <div id="fblike" class="stacked">
-      <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+      <script src="//connect.facebook.net/en_US/all.js#xfbml=1"></script>
       <fb:like send="true" show_faces="true" width="270" layout="button_count"></fb:like>
     </div>
   <div><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="inaturalist">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
@@ -618,7 +618,7 @@
         <li class="description"><%= t(:more_info) %></li>
         <% for taxon_link in @taxon_links[0..3] %>
           <li class="taxon_link">
-            <%= link_to taxon_link.site_title, taxon_link.url_for_taxon(@taxon) -%>
+            <%= link_to taxon_link.short_title.blank? ? taxon_link.site_title : taxon_link.short_title, taxon_link.url_for_taxon(@taxon) -%>
             <%- if logged_in? -%>
               <span class="controls">
                 <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => t(:edit_this_link) %>
@@ -632,7 +632,7 @@
               <ul>
                 <%- @taxon_links[4..-1].each do |taxon_link| -%>
                   <li class="taxon_link">
-                    <%= link_to taxon_link.site_title, taxon_link.url_for_taxon(@taxon) -%>
+                    <%= link_to taxon_link.short_title.blank? ? taxon_link.site_title : taxon_link.short_title, taxon_link.url_for_taxon(@taxon) -%>
                     <%- if logged_in? -%>
                       <span class="controls">
                         <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => t(:edit_this_link) %>

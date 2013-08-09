@@ -9,8 +9,13 @@
     .span6
       %h2=t :new_guide
       = form_for @guide, :builder => DefaultFormBuilder do |f|
+        = error_messages_for @guide
         = f.text_field :title, :label => t(:title).capitalize
         = f.text_area :description, :label => t(:description), :style => "height:200px;"
-        = f.submit t(:save_and_add_taxa), :class => "btn btn-primary"
+        - unless @guide.source_url.blank?
+          = f.hidden_field :source_url
+          = f.form_field :source_url do
+            = link_to @guide.source_url, @guide.source_url, :target => "_blank"
+        = f.submit t(:save_and_add_taxa), :class => "btn btn-primary", :data => {:loading_click => t(:saving)}
         = link_to t(:cancel), guides_path, :class => "btn"
     .span3

@@ -20,4 +20,22 @@ describe Emailer, "new_message" do
     mail = Emailer.new_message(m)
     mail.body.should_not be_blank
   end
+
+  it "should not deliver flagged messages" do
+    from_user = User.make!
+    to_user = User.make!
+    m = make_message(:from_user => from_user, :to_user => to_user, :user => from_user)
+    m.send_message
+    f = m.flags.create(:flag => "spam")
+    m.reload
+    mail = Emailer.new_message(m)
+    mail.body.should be_blank
+  end
+
+  it "should not deliver if from_user is suspended" do
+    m = make_message
+    m.from_user.suspend!
+    mail = Emailer.new_message(m)
+    mail.body.should be_blank
+  end
 end

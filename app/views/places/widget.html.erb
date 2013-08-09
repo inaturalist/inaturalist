@@ -16,8 +16,8 @@ end
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#taxonchooser').chooser({
-        collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
-        resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+        collectionUrl: '/taxa/autocomplete.json',
+        resourceUrl: '/taxa/{{id}}.json?partial=chooser',
         defaultSources: <%= @default_taxa.to_json(:methods => [:html]).html_safe %>
       })
       

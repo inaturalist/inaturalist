@@ -59,8 +59,7 @@
           <% end %>
         </div>
       <% else %>
-        <%= @user.login %>
-		<%= t(:is_a_naturalist) %>
+		    <%= t(:user_is_a_naturalist, :user => @user.login) %>
       <% end -%>
     <% else %>
       <%= formatted_user_text(@user.description) %>
@@ -98,9 +97,9 @@
       </div>
     <% else %>
       <% if is_me?(@user) %>
-        <p><%= t(:youre_not_following_anyone)%> <%= link_to t(:observing), observations_path %> <%= t(:and_make_some_new) %> <%= link_to t(:acquaintances), people_path %>.</p>
+        <p><%= t(:youre_not_following_anyone) %> <%= link_to t(:observing), observations_path %> <%= t(:and_make_some_new) %> <%= link_to t(:acquaintances), people_path %>.</p>
       <% else %>
-        <p><%= @user.login %> <%= t(:is_not_following_anyone) %></p>
+        <p><%= @user.login %> <%= t(:is_not_following_anyone).downcase %></p>
       <% end %>
     <% end %>
   </div>

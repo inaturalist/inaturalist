@@ -277,12 +277,12 @@
   <% end %>
   <% for observation in @observations %>
   <div id="observation-<%= observation.id %>" class="observation row column span-24 last">
-    <div class="column span-<%= observation.photos.empty? ? 12 : 6 %> guess_and_description">
+    <div class="column span-<%= observation.photos.blank? ? 12 : 6 %> guess_and_description">
       <div class="mini observations">
         <%= render :partial => "observations/cached_component", :object => observation %>
       </div>
     </div>
-    <% unless observation.photos.empty? -%>
+    <% unless observation.photos.blank? -%>
       <div class="photos column span-6">
         <%= render :partial => 'observations/photos', :object => observation %>
       </div>

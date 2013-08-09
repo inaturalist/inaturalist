@@ -22,8 +22,8 @@
 
 .column.span-4
   %ul.leftmenu
-    - for klass in @class_names.sort
-      %li= link_to klass.underscore.humanize.pluralize, url_for(:type => klass.underscore.pluralize), :class => @type == klass.underscore.pluralize ? "active" : nil
+    - for klass in @reflection_names.sort
+      %li= link_to klass.underscore.humanize, url_for(:type => klass.underscore), :class => @type == klass.underscore ? "active" : nil
 .last.column.span-20
   #controls
     = link_to_function "Select all", "$('form input[type=checkbox]').prop('checked', true)"

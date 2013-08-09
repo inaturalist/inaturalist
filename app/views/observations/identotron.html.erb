@@ -77,14 +77,14 @@
       })
       var currentState = $.deparam.fragment()
       $('#placechooser').chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
-        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        collectionUrl: '/places/autocomplete.json',
+        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
         defaultSources: places,
         chosen: currentState.place ? place : null
       })
       $('#taxonchooser').chooser({
-        collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
-        resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+        collectionUrl: '/taxa/autocomplete.json',
+        resourceUrl: '/taxa/{{id}}.json?partial=chooser',
         defaultSources: defaultTaxa,
         chosen: currentState.taxon ? taxon : null
       })

@@ -50,8 +50,10 @@ gem "omniauth-google-oauth2"
 gem 'omniauth-soundcloud'
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
-gem 'paperclip'
-gem 'delayed_paperclip', '2.4.5.2', :git => 'git://github.com/tommeier/delayed_paperclip', :branch => 'fix_312'
+# gem 'paperclip'
+gem "paperclip", "3.4.2"
+# gem 'delayed_paperclip', '2.4.5.2', :git => 'git://github.com/tommeier/delayed_paperclip', :branch => 'fix_312'
+gem 'delayed_paperclip', :git => 'git://github.com/jrgifford/delayed_paperclip.git'
 gem 'pg'
 gem 'preferences', :git => 'git://github.com/Titinux/preferences.git'
 gem 'rack-google-analytics'

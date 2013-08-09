@@ -58,8 +58,8 @@
   <h3><%= t(:stats) %></h3>
   <ul class="meta">
     <li><%= t :x_taxa_observed_html, :count => number_with_delimiter(@contributor.taxa_count) %></li>
-    <li><%= t :x_observations_html, :count => number_with_delimiter(@contributor.taxa_count) %></li>
-    <li><%= t :x_research_grade_observations_html, :count => number_with_delimiter(@contributor.taxa_count) %></li>
-    <li><%= t :x_research_grade_observations_to_species_html, :count => number_with_delimiter(@contributor.taxa_count) %></li>
+    <li><%= t :x_observations_html, :count => number_with_delimiter(@contributor.observations_count) %></li>
+    <li><%= t :x_research_grade_observations_html, :count => number_with_delimiter(@research_grade_count) %></li>
+    <li><%= t :x_research_grade_observations_to_species_html, :count => number_with_delimiter(@research_grade_species_count) %></li>
   </ul>
 </div>

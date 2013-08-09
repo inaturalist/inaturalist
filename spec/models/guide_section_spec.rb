@@ -3,6 +3,22 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe GuideSection, "creation" do
   it "should set the license of the guide to CC-BY-SA if this section is CC-BY-SA"
+  it "should not be modified by default" do
+    gs = GuideSection.make!
+    gs.should_not be_modified
+  end
+  it "should be modified modified_on_create set" do
+    gs = GuideSection.make!(:modified_on_create => true)
+    gs.should be_modified
+  end
+end
+
+describe GuideSection, "updating" do
+  let(:guide_section) { GuideSection.make! }
+  it "should result in a modified record" do
+    guide_section.update_attributes(:description => "#{guide_section.description} foo")
+    guide_section.should be_modified
+  end
 end
 
 describe GuideSection, "new_from_eol_data_object" do

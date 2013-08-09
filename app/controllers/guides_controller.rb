@@ -1,14 +1,20 @@
 class GuidesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa]
-  before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa]
+  include GuidesHelper
+  before_filter :authenticate_user!, :except => [:index, :show, :search]
+  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder]
+  before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa, :reorder]
   layout "bootstrap"
-  PDF_LAYOUTS = %w(grid book)
+  PDF_LAYOUTS = GuidePdfFlowTask::LAYOUTS
+
+  # caches_page :show, :if => Proc.new {|c| c.request.format == :pdf && c.request.query_parameters.blank?}
   
   # GET /guides
   # GET /guides.json
   def index
-    @guides = Guide.page(params[:page])
+    @guides = Guide.page(params[:page]).order("guides.id DESC")
+    if logged_in?
+      @guides_by_you = current_user.guides.limit(100).order("guides.id DESC")
+    end
     respond_to do |format|
       format.html
       format.json { render json: {:guides => @guides.as_json} }
@@ -18,38 +24,101 @@ class GuidesController < ApplicationController
   # GET /guides/1
   # GET /guides/1.json
   def show
-    unless params[:taxon].blank?
-      @taxon = Taxon::ICONIC_TAXA_BY_ID[params[:taxon]]
-      @taxon ||= Taxon::ICONIC_TAXA_BY_NAME[params[:taxon]]
-      @taxon ||= Taxon.find_by_name(params[:taxon]) || Taxon.find_by_id(params[:taxon])
-    end
-    @q = params[:q]
-    
-    @guide_taxa = @guide.guide_taxa.order("guide_taxa.position").
-      includes({:taxon => [:taxon_ranges_without_geom]}, :guide_photos, :guide_sections).
-      page(params[:page]).per_page(100)
-    @guide_taxa = @guide_taxa.in_taxon(@taxon) if @taxon
-    @guide_taxa = @guide_taxa.dbsearch(@q) unless @q.blank?
-    @view = params[:view] || "grid"
+    guide_taxa_from_params
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html do
+        @guide_taxa = @guide_taxa.page(params[:page]).per_page(100)
+        @tag_counts = Tag.joins(:taggings).
+          joins("JOIN guide_taxa gt ON gt.id = taggings.taggable_id").
+          where("taggings.taggable_type = 'GuideTaxon' AND gt.guide_id = ?", @guide).
+          group("tags.name").
+          count
+        @nav_tags = ActiveSupport::OrderedHash.new
+        @tag_counts.each do |tag, count|
+          namespace, predicate = nil, "tags"
+          nsp, value = tag.split('=')
+          if value.blank?
+            value = nsp
+          else
+            namespace, predicate = nsp.to_s.split(':')
+            predicate = namespace if predicate.blank?
+          end
+          @nav_tags[predicate] ||= []
+          @nav_tags[predicate] << [tag, value, count]
+        end
+        
+        ancestry_counts_scope = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", @guide).scoped
+        ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
+        ancestry_counts = ancestry_counts_scope.group(:ancestry).count
+        if ancestry_counts.blank?
+          @nav_taxa = []
+        else
+          ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0}
+          width = ancestries.last.size
+          matrix = ancestries.map do |a|
+            a + ([nil]*(width-a.size))
+          end
+          # start at the right col (lowest rank), look for the first occurrence of
+          # consensus within a rank
+          consensus_taxon_id, subconsensus_taxon_ids = nil, nil
+          (width - 1).downto(0) do |c|
+            column_taxon_ids = matrix.map{|ancestry| ancestry[c]}
+            if column_taxon_ids.uniq.size == 1 && !column_taxon_ids.first.blank?
+              consensus_taxon_id = column_taxon_ids.first
+              subconsensus_taxon_ids = matrix.map{|ancestry| ancestry[c+1]}.uniq
+              break
+            end
+          end
+          @nav_taxa = Taxon.where("id IN (?)", subconsensus_taxon_ids).sort_by(&:name)
+          @nav_taxa_counts = {}
+          @nav_taxa.each do |t|
+            @nav_taxa_counts[t.id] = @guide.guide_taxa.joins(:taxon).where(t.descendant_conditions).count
+          end
+        end
+      end
+
       format.json { render json: @guide.as_json(:root => true) }
+
       format.pdf do
-        @guide_taxa = @guide.guide_taxa.order("guide_taxa.position").
-          includes({:taxon => [:taxon_ranges_without_geom]}, :guide_photos, :guide_sections)
-        @layout = params[:layout] if PDF_LAYOUTS.include?(params[:layout])
-        @layout ||= "grid"
+        @layout = params[:layout] if GuidePdfFlowTask::LAYOUTS.include?(params[:layout])
+        @layout ||= GuidePdfFlowTask::GRID
         @template = "guides/show_#{@layout}.pdf.haml"
-        render :pdf => "#{@guide.title.parameterize}.#{@layout}", 
-          :layout => "bootstrap.pdf",
-          :template => @template,
-          :show_as_html => params[:debug].present? && logged_in?,
-          :disposition => "attachment",
-          :margin => {
-            :left => 0,
-            :right => 0
-          }
+        if params[:print].present?
+          render :pdf => "#{@guide.title.parameterize}.#{@layout}", 
+            :layout => "bootstrap.pdf",
+            :template => @template,
+            :orientation => @layout == "journal" ? 'Landscape' : nil,
+            :show_as_html => params[:pdf].blank?,
+            :margin => {
+              :left => 0,
+              :right => 0
+            }
+        elsif params[:flow_task_id] && flow_task = FlowTask.find_by_id(params[:flow_task_id])
+          redirect_to flow_task.pdf_url
+        else
+          matching_flow_task = GuidePdfFlowTask.
+            select("DISTINCT ON (flow_tasks.id) flow_tasks.*").
+            joins("INNER JOIN flow_task_resources inputs ON inputs.flow_task_id = flow_tasks.id").
+            joins("INNER JOIN flow_task_resources outputs ON inputs.flow_task_id = flow_tasks.id").
+            where("inputs.type = 'FlowTaskInput'").
+            where("outputs.type = 'FlowTaskOutput'").
+            where("inputs.resource_type = 'Guide' AND inputs.resource_id = ?", @guide).
+            where("outputs.file_file_name IS NOT NULL").
+            order("flow_tasks.id DESC").
+            detect{|ft| ft.options['layout'] == @layout}
+          if matching_flow_task && 
+              matching_flow_task.created_at > @guide.updated_at && 
+              (matching_flow_task.options['query'].blank? || matching_flow_task.options['query'] == 'all') &&
+              !@guide.guide_taxa.where("updated_at > ?", matching_flow_task.created_at).exists? &&
+              !GuidePhoto.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_photos.updated_at > ?", matching_flow_task.created_at).exists? &&
+              !GuideSection.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_sections.updated_at > ?", matching_flow_task.created_at).exists? &&
+              !GuideRange.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_ranges.updated_at > ?", matching_flow_task.created_at).exists?
+            redirect_to matching_flow_task.pdf_url
+          else
+            render :status => :not_found, :text => "", :layout => false
+          end
+        end
       end
     end
   end
@@ -58,6 +127,10 @@ class GuidesController < ApplicationController
   # GET /guides/new.json
   def new
     @guide = Guide.new
+    unless params[:source_url].blank?
+      @guide.source_url = params[:source_url]
+      @guide.set_defaults_from_source_url(:skip_icon => true)
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @guide.as_json(:root => true) }
@@ -67,7 +140,9 @@ class GuidesController < ApplicationController
   # GET /guides/1/edit
   def edit
     @nav_options = %w(iconic tag)
-    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_photos => [:photo]], :guide_photos => [:photo]).order("guide_taxa.position")
+    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_photos => [:photo]], :guide_photos => [:photo], :tags => {}).
+      order("guide_taxa.position")
+    @recent_tags = @guide.recent_tags
   end
 
   # POST /guides
@@ -91,6 +166,7 @@ class GuidesController < ApplicationController
   # PUT /guides/1
   # PUT /guides/1.json
   def update
+    @guide.icon = nil if params[:icon_delete]
     create_default_guide_taxa
     respond_to do |format|
       if @guide.update_attributes(params[:guide])
@@ -115,7 +191,7 @@ class GuidesController < ApplicationController
   end
 
   def import_taxa
-    @guide_taxa = @guide.import_taxa(params)
+    @guide_taxa = @guide.import_taxa(params) || []
     respond_to do |format|
       format.json do
         if partial = params[:partial]
@@ -126,6 +202,21 @@ class GuidesController < ApplicationController
         end
         render :json => {:guide_taxa => @guide_taxa.as_json(:root => false, :methods => [:errors, :html, :valid?])}
       end
+    end
+  end
+
+  def search
+    @guides = Guide.dbsearch(params[:q]).page(params[:page])
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def reorder
+    @guide.reorder_by_taxonomy
+    respond_to do |format|
+      format.html { redirect_to edit_guide_path(@guide) }
+      format.json { render :status => 204 }
     end
   end
 

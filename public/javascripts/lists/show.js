@@ -12,8 +12,8 @@ $(document).ready(function() {
   })
 
   $('#taxonchooser').chooser({
-    collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
-    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+    collectionUrl: '/taxa/autocomplete.json',
+    resourceUrl: '/taxa/{{id}}.json?partial=chooser',
     afterSelect: function(taxon) {
       if (!FILTER_TAXON || FILTER_TAXON.id != taxon.id) {
         $('#taxonchooser').parents('form:first').submit()

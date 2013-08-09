@@ -153,6 +153,14 @@ module ApplicationHelper
       "$('#{target_selector}').toggle(); $(this).toggleClass('open')", 
       options
   end
+
+  def link_to_toggle_box(txt, options = {}, &block)
+    options[:class] ||= ''
+    options[:class] += ' togglelink'
+    link = link_to_function(txt, "$(this).siblings('.togglebox').toggle(); $(this).toggleClass('open')", options)
+    hidden = content_tag(:div, capture(&block), :style => "display:none", :class => "togglebox")
+    content_tag :div, link + hidden
+  end
   
   def link_to_toggle_menu(link_text, options = {}, &block)
     menu_id = options[:menu_id]
@@ -384,7 +392,7 @@ module ApplicationHelper
   end
   
   def separator
-    content_tag :div, image_tag('logo-eee-15px.png'), :class => "column-separator"
+    content_tag :div, image_tag(image_url('logo-eee-15px.png')), :class => "column-separator"
   end
   
   def serial_id
@@ -393,9 +401,9 @@ module ApplicationHelper
   end
   
   def image_url(source, options = {})
-    abs_path = image_path(source)
+    abs_path = image_path(source).to_s
     unless abs_path =~ /\Ahttp/
-     abs_path = uri_join(root_url, abs_path)
+     abs_path = uri_join(root_url, abs_path).to_s
     end
     abs_path
   end
@@ -552,14 +560,20 @@ module ApplicationHelper
   def setup_map_tag_attrs(taxon, options = {})
     taxon_range = options[:taxon_range]
     place = options[:place]
-    map_tag_attrs = {"data-taxon-id" => taxon.id}
+    map_tag_attrs = {
+      "data-taxon-id" => taxon.id,
+      "data-latitude" => options[:latitude],
+      "data-longitude" => options[:longitude],
+      "data-map-type" => options[:map_type],
+      "data-zoom-level" => options[:zoom_level]
+    }
     if taxon_range
       map_tag_attrs["data-taxon-range-kml"] = root_url.gsub(/\/$/, "") + taxon_range.range.url
       map_tag_attrs["data-taxon-range-geojson"] = taxon_range_geom_url(taxon.id, :format => "geojson")
     end
     if place
-      map_tag_attrs["data-latitude"] = place.latitude
-      map_tag_attrs["data-longitude"] = place.longitude
+      map_tag_attrs["data-latitude"] ||= place.latitude
+      map_tag_attrs["data-longitude"] ||= place.longitude
       map_tag_attrs["data-bbox"] = place.bounding_box.join(',') if place.bounding_box
       map_tag_attrs["data-place-kml"] = place_geometry_url(place, :format => "kml") if @place_geometry || PlaceGeometry.without_geom.exists?(:place_id => place)
       map_tag_attrs["data-observations-json"] = observations_url(:taxon_id => taxon, :place_id => place, :format => "json")
@@ -682,6 +696,25 @@ module ApplicationHelper
     if notifier.respond_to?(:user) && (notifier_user = update_cached(notifier, :user) || notifier.user)
       notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
     end
+    class_name_key = update.resource.class.to_s.underscore
+    class_name = class_name_key.humanize.downcase
+    resource_link = if options[:skip_links]
+      t(class_name_key, :default => class_name_key).downcase
+    else
+      link_to(t(class_name_key, :default => class_name_key).downcase, url_for_resource_with_host(resource))
+    end
+
+    if notifier.is_a?(Comment) || notifier.is_a?(Identification)
+      noun = "#{class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} #{resource_link}".html_safe
+      if resource_name = resource.try_methods(:name, :title)
+        noun += " (\"#{truncate(resource_name, :length => 30)}\")".html_safe
+      end
+      s = activity_snippet(update, notifier, notifier_user, options.merge(
+        :noun => noun
+      ))
+      return s.html_safe
+    end
+
     case update.resource_type
     when "User"
       if options[:count].to_i == 1
@@ -692,28 +725,8 @@ module ApplicationHelper
           :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)),
           :x => options[:count])
       end
-    when "Observation", "ListedTaxon", "Post", "AssessmentSection"
-      class_name_key = update.resource.class.to_s.underscore
-      class_name = class_name_key.humanize.downcase
-      resource_link = if options[:skip_links]
-        t(class_name_key, :default => class_name_key).downcase
-      else
-        link_to(t(class_name_key, :default => class_name_key).downcase, url_for_resource_with_host(resource))
-      end
-      if notifier.is_a?(ProjectInvitation)
-        return t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
-      end
-      s = activity_snippet(update, notifier, notifier_user, options.merge(
-        :noun => "#{class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} #{resource_link}".html_safe
-      ))
-      s.html_safe
-    when "ObservationField"
-      class_name = update.resource.class.to_s.underscore.humanize.downcase
-      resource_link = options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))      
-      s = activity_snippet(update, notifier, notifier_user, options.merge(
-        :noun => "#{resource_link} <strong>\"#{truncate(update.resource.name, :length => 30)}\"</strong>".html_safe,
-      ))
-      s.html_safe
+    when "Observation"
+      t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
     when "Project"
       project = resource
       if update.notifier_type == "Post"

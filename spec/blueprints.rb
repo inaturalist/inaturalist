@@ -29,6 +29,7 @@ end
 Comment.blueprint do
   user { User.make }
   body { Faker::Lorem.paragraph }
+  parent { Observation.make! }
 end
 
 ConservationStatus.blueprint do
@@ -55,6 +56,13 @@ end
 
 Guide.blueprint do
   user { User.make }
+  title { Faker::Lorem.sentence }
+end
+
+GuideSection.blueprint do
+  guide_taxon { GuideTaxon.make! }
+  title { Faker::Lorem.sentence }
+  description { Faker::Lorem.paragraph }
 end
 
 GuideTaxon.blueprint do
@@ -113,7 +121,7 @@ end
 ObservationField.blueprint do
   name { Faker::Lorem.sentence }
   datatype {'text'}
-  user { User.make }
+  user { User.make! }
 end
 
 ObservationFieldValue.blueprint do
@@ -125,6 +133,11 @@ end
 ObservationPhoto.blueprint do
   observation { Observation.make }
   photo { Photo.make }
+end
+
+ObservationSound.blueprint do
+  observation { Observation.make }
+  sound { Sound.make }
 end
 
 Photo.blueprint do
@@ -166,8 +179,8 @@ ProjectList.blueprint do
 end
 
 ProjectObservationField.blueprint do
-  project { Project.make }
-  observation_field { ObservationField.make }
+  project { Project.make! }
+  observation_field { ObservationField.make! }
 end
 
 ProjectUser.blueprint do
