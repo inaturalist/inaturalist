@@ -1816,4 +1816,61 @@ describe Observation, "community taxon" do
     o.reload
     o.community_taxon.should be_blank
   end
+
+  it "should not be set if user has opted out" do
+    u = User.make!(:prefers_community_taxa => false)
+    o = Observation.make!(:taxon => Taxon.make!, :user => u)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should be_blank
+  end
+
+  it "should be set if user has opted out and community agrees with user" do
+    u = User.make!(:prefers_community_taxa => false)
+    o = Observation.make!(:taxon => Taxon.make!, :user => u)
+    i1 = Identification.make!(:observation => o, :taxon => o.taxon)
+    o.reload
+    o.community_taxon.should eq o.taxon
+  end
+
+  it "should not be set if observation is opted out" do
+    o = Observation.make!(:taxon => Taxon.make!, :prefers_community_taxon => false)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should be_blank
+  end
+
+  it "should be set if observation is opted in but user is opted out" do
+    u = User.make!(:prefers_community_taxa => false)
+    o = Observation.make!(:taxon => Taxon.make!, :prefers_community_taxon => true, :user => u)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should eq i1.taxon
+  end
+
+  it "should be set when preference set to true" do
+    o = Observation.make!(:taxon => Taxon.make!, :prefers_community_taxon => false)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should be_blank
+    o.update_attributes(:prefers_community_taxon => true)
+    o.reload
+    o.community_taxon.should eq(i1.taxon)
+  end
+
+  it "should be unset when preference set to false" do
+    o = Observation.make!(:taxon => Taxon.make!)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should eq(i1.taxon)
+    o.update_attributes(:prefers_community_taxon => false)
+    o.reload
+    o.community_taxon.should be_blank
+  end
 end
+

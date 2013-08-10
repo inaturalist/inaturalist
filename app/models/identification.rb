@@ -98,7 +98,7 @@ class Identification < ActiveRecord::Base
     end
 
     observation.identifications.reload
-    attrs[:community_taxon] = observation.majority_taxon || observation.consensus_taxon
+    observation.set_community_taxon
 
     observation.update_attributes(attrs)
     true

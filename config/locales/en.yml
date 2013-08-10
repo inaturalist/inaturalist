@@ -747,6 +747,7 @@ en:
   edit_the_observation: Edit the observation
   edit_this_link: Edit this link
   edit_your_account_and_profile_html: "Edit Your Account &amp; Profile"
+  edit_your_default_settings: "Edit your default settings"
   edit_your_identification: Edit your identification
   edit_your_profile: Edit your profile
   edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Edit your settings</a> to change the kinds of updates you receive or unsubscribe completely."
@@ -1497,6 +1498,8 @@ en:
   only_the_project_admin_can_delete_this_project: Only the project admin can delete this project.
   open: open
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
+  opt_in_for_this_observation: "Opt in for this observation"
+  opt_out_of_community_ids_for_obs: "Opt out of the community identification for this observation"
   optional: optional
   optional_columns_note_for_any: "Optional columns (note: for any of these columns to be used in an observation, they must all be present)"
   or: or
@@ -2296,6 +2299,8 @@ en:
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_commented_on: "%{user} commented on your %{title} %{time}"
   user_follows: "%{user} follows"
+  user_has_opted_out_of_community_ids: "%{user} has opted out of community identifications"
+  user_has_opted_out_of_community_ids_for_this_obs: "%{user} has opted out of community identifications for this observation"
   user_hasnt:  "%{user} hasnt"
   user_invite_observation_to_project: '%{user} would like to invite your observation "%{observation}" to the %{project} project.'
   user_invited_your_x_to_a_project_html: "%{user} invited your %{x} to a project"
@@ -2568,6 +2573,8 @@ en:
   youre_viewing_site_name_observations_html: "You're viewing <strong>%{site_name}</strong> observations"
   youve_already_added_an_identification: You've already added an identification, and you can only add one
   youve_linked_your_inaturalist_picasa_account: "You've linked your %{site_name} account and your Picasa account. This will allow you to associate your Picasa photos with your %{site_name} observations."
+  youve_opted_out_of_community_ids: "You've opted out of community identifications"
+  youve_opted_out_of_community_ids_for_this_obs: "You've opted out of community identifications for this observation"
   youve_seen_it_want_to: "You've seen it! Want to"
   zoom_to_taxon_name: "Zoom to %{taxonname}"
   zoom_to_x: "zoom to %{x}"
@@ -2878,6 +2885,15 @@ en:
           Biodiversity Information Facility</a> (GBIF), an international,
           inter-governmental organization that compiles and distributes
           biodiversity information from around the world.
+        prefers_community_taxa_desc: |
+          %{site_name} tracks what you think your observations are and what
+          the community thinks they are (based on majority when possible,
+          otherwise consensus). The identification we share with data partners
+          is the community identification, but if you don't think the
+          community's opinion should ever overrule your own, you can opt out here.
+          People still stil be able to add identifications, but the majority
+          or consensus opinion won't be favored over yours. This means your
+          observations will not be eligible for research grade.
     welcome:
       index:
         welcome_message_html: |

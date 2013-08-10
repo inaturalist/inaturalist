@@ -60,7 +60,8 @@
       <%= f.text_area(:description, :label => t(:tell_everyone_a_little_about_you)) %>
     </div>
     <div id="preferencescol" class="column span-9 stacked">
-      <%- if !current_user.provider_authorizations.blank? %>
+      <%- provider_names = current_user.provider_authorizations.map{|pa| pa.provider_name.downcase} %>
+      <%- if (%w(twitter facebook) & provider_names).size > 0 %>
         <h3><%=t :sharing_settings %></h3>
         <div id="observationsharingpreferences" class="stacked">
           <label><%=t :automatically_share_your_observations_on %></label>
@@ -96,10 +97,16 @@
       <h3><%= t :taxon_change_settings %></h3>
       <div class="stacked">
         <%= f.check_box "prefers_automatic_taxonomic_changes", 
-          :label => "Automatically update my content for taxon changes", 
+          :label => t(:automatically_update_my_content_for_taxon_changes), 
           :label_after => true,
           :description => t('views.users.edit.taxon_change_desc', :site_name => SITE_NAME_SHORT) %>
       </div>
+
+      <h3><%= t :community_identification_settings %></h3>
+      <%= f.check_box "prefers_community_taxa", 
+        :label => t(:accept_community_identifications), 
+        :label_after => true,
+        :description => t('views.users.edit.prefers_community_taxa_desc', :site_name => SITE_NAME_SHORT) %>
     </div>
     
     <div class="column span-18">

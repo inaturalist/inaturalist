@@ -119,6 +119,8 @@ class Observation < ActiveRecord::Base
     "tag_list",
     "description",
   ]
+
+  preference :community_taxon, :boolean, :default => nil
   
   belongs_to :user, :counter_cache => true
   belongs_to :taxon
@@ -251,7 +253,8 @@ class Observation < ActiveRecord::Base
               :set_geom_from_latlon,
               :set_license,
               :trim_user_agent,
-              :update_identifications
+              :update_identifications,
+              :set_community_taxon_if_pref_changed
   
   before_update :set_quality_grade
                  
@@ -1292,16 +1295,56 @@ class Observation < ActiveRecord::Base
   end
 
   def set_community_taxon
-    self.community_taxon = majority_taxon || consensus_taxon
+    t = majority_taxon || consensus_taxon
+    if t.blank?
+      self.community_taxon = nil
+      return true  
+    end
+    if t.id == taxon_id
+      self.community_taxon = t
+      return true
+    end
+    if prefers_community_taxon == true
+      self.community_taxon = t
+      return true
+    end
+    self.community_taxon = if prefers_community_taxon == false || !user.prefers_community_taxa?
+      nil
+    else
+      t
+    end
     true
   end
 
+  def set_community_taxon_if_pref_changed
+    set_community_taxon if prefers_community_taxon_changed?
+    true
+  end
+
+  def self.set_community_taxa(options = {})
+    scope = Observation.includes({:identifications => [:taxon]}, :user).scoped
+    scope = scope.by(options[:user]) unless options[:user].blank?
+    scope = scope.of(options[:taxon]) unless options[:taxon].blank?
+    scope = scope.in_place(options[:place]) unless options[:place].blank?
+    scope = scope.in_projects([options[:project]]) unless options[:project].blank?
+    ThinkingSphinx.deltas_enabled = false
+    scope.find_each do |o|
+      o.set_community_taxon
+      unless o.save
+        Rails.logger.error "[ERROR #{Time.now}] Failed to set community taxon for #{o}: #{o.errors.full_messages.to_sentences}"
+      end
+    end
+    ThinkingSphinx.deltas_enabled = true
+  end
+
+  def community_taxon_rejected?
+    community_taxon_id.blank? && (!prefers_community_taxon? || !user.prefers_community_taxa?)
+  end
+
   def identification_summary
-    # if taxon_id.blank? || identifications.current.size == 1
-    #   "unconfirmed"
-    if majority_taxon # && taxon_id == majority_taxon.id
+    if majority_taxon
       "majority"
-    elsif consensus_taxon # && taxon.descendant_of?(consensus_taxon)
+    elsif consensus_taxon
       "consensus"
     else
       "disputed"
