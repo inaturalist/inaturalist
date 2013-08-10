@@ -5,25 +5,32 @@
 <%- content_for(:extracss) do -%>
   <style type="text/css">
     .observations.mini .observation {border:0 transparent;margin:0;}
-    #invitetabs {margin-top:5px;}
     #invitetabs a.active {font-weight: bold;}
   </style>
 <%- end -%>
 
-<div id="invitetabs" class="tabs right">
-  <ul>
-    <% for type in %w(received sent) %>
-      <li><%= link_to t(type), project_invitations_path(:type => type), :class => @type.to_s.downcase == type ? "active" : nil %></li>
-    <% end %>
-  </ul>
+<div id="pageheader">
+  <div class="breadcrumbs">
+    <%= link_to t(:back_to_your_projects), 
+      observations_by_login_path(:login => current_user.login),
+      :class => 'back crumb' %>
+  </div><!-- /#breadcrumbs -->
+
+  <div id="invitetabs" class="tabs right">
+    <ul>
+      <% for type in %w(received sent) %>
+        <li><%= link_to t(type), project_invitations_path(:type => type), :class => @type.to_s.downcase == type ? "active" : nil %></li>
+      <% end %>
+    </ul>
+  </div>
+  <h2><%= @title %></h2>
+
 </div>
 
-<h2><%= @title %></h2>
-
-<% if @project_invitations.empty? && @invitations_by_you.empty? %>
+<% if @project_invitations.blank? %>
   <p class="ui description">
-    <%=t :no_matching_invitation %>
-    <%=t :join_some_projects_and_invite_some_observations_html, :join_url => projects_path, :invite_url => observations_path %>
+    <%=t :no_matching_invitations %>.
+    <%=t :join_some_projects_and_invite_some_observations_html, :join_url => projects_path, :invite_url => observations_path %>!
   </p>
 <% else %>
   <div class="clear column span-24 stacked">
