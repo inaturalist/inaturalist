@@ -130,12 +130,14 @@ class LocalPhoto < Photo
       if o.georeferenced?
         o.place_guess = o.system_places.sort_by{|p| p.bbox_area || 0}.map(&:name).join(', ')
       end
-      if capture_time = metadata[:date_time_original] || metadata[:date_time_digitized]
+      if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
         o.set_time_zone
         o.time_observed_at = capture_time
         o.set_time_in_time_zone
-        o.observed_on_string = o.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")
-        o.observed_on = o.time_observed_at.to_date
+        if o.time_observed_at
+          o.observed_on_string = o.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")
+          o.observed_on = o.time_observed_at.to_date
+        end
       end
       unless metadata[:dc].blank?
         o.taxon = to_taxon
