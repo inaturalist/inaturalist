@@ -1,5 +1,5 @@
 <%- 
-  widget_url ||= @widget_url || observations_by_login_feed_url(current_user.login, :format => "widget", :limit => 5)
+  widget_url ||= @widget_url || observations_by_login_feed_url(current_user.login, :format => "widget", :limit => 5).gsub(/http\:/, '')
   base_url = CONFIG.site_url
   place ||= @place
   taxon ||= @taxon
@@ -23,7 +23,7 @@
 </style>
 <div class="inat-widget">
   <% if @logo != "none" -%>
-    <div class="inat-widget-header"><%= link_to image_tag(CONFIG.logo, :alt => SITE_NAME), root_url %></div>
+    <div class="inat-widget-header"><%= link_to image_tag(image_url(CONFIG.logo), :alt => SITE_NAME), root_url %></div>
   <% end -%>
   <script type="text/javascript" charset="utf-8" src="<%= widget_url %>"></script>
   <table>

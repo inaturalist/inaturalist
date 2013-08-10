@@ -1240,6 +1240,9 @@ class ObservationsController < ApplicationController
     elsif logged_in?
       observations_by_login_feed_url(current_user.login, url_params)
     end
+    if @widget_url
+      @widget_url.gsub!('http:', '')
+    end
     respond_to do |format|
       format.html
     end
