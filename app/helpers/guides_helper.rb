@@ -1,7 +1,11 @@
 #encoding: utf-8
 module GuidesHelper
   def guide_taxa_from_params(gparams = nil)
-    gparams ||= params || {}
+    gparams ||= if defined? params
+      params || {}
+    else
+      {}
+    end
     unless gparams[:taxon].blank?
       @taxon = Taxon::ICONIC_TAXA_BY_ID[gparams[:taxon]]
       @taxon ||= Taxon::ICONIC_TAXA_BY_NAME[gparams[:taxon]]
@@ -12,7 +16,7 @@ module GuidesHelper
     @tags = gparams[:tags] || []
     @tags << gparams[:tag] unless gparams[:tag].blank?
 
-    @sort = params[:sort]
+    @sort = gparams[:sort]
     @sort = GuideTaxon::DEFAULT_SORT unless GuideTaxon::SORTS.include?(@sort)
     
     @guide_taxa = @guide.guide_taxa.
