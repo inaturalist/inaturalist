@@ -725,11 +725,14 @@ iNaturalist.OverlayControl = function(map, options) {
   var controlDiv = options.div || document.createElement('DIV')
   controlDiv.style.padding = '5px';
   var controlUI = $('<div>' + I18n.t('taxon_map.overlays') + '</div>').addClass('gmapv3control overlaycontrol')
+  var controlUI = $('<div><span class="ui-icon inat-icon ui-icon-layers">'+I18n.t('taxon_map.overlays')+'</span></div>').addClass('gmapv3control overlaycontrol')
   var ul = $('<ul></ul>').hide()
   controlUI.append(ul)
   controlUI.hover(function() {
+    $(this).addClass('open')
     $('ul', this).show()
   }, function() {
+    $(this).removeClass('open')
     $('ul', this).hide()
   })
   controlDiv.appendChild(controlUI.get(0))

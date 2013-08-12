@@ -97,7 +97,7 @@
         hidden: true,
         description: 
           I18n.t('taxon_map.it_may_take_google_a_while_to') +
-          '<a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">' + I18n.t('taxon_map.data_url') + '</a>'
+          ' <a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">' + I18n.t('taxon_map.data_url') + '</a>'
       })
       google.maps.event.addListener(gbifLyr, 'click', function(e) {
         if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}
@@ -139,7 +139,7 @@
     
     var overlayControlDiv = document.createElement('DIV')
     map._overlayControl = new iNaturalist.OverlayControl(map, {div: overlayControlDiv})
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(overlayControlDiv)
+    map.controls[$(elt).width() < 300 ? google.maps.ControlPosition.LEFT_TOP : google.maps.ControlPosition.TOP_RIGHT].push(overlayControlDiv)
     
     $(elt).data('taxonMap', map)
   }
