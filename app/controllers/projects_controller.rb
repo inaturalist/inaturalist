@@ -583,7 +583,12 @@ class ProjectsController < ApplicationController
         flash[:notice] = t(:observation_added_to_the_project, :project => @project.title)
         redirect_back_or_default(@project)
       end
-      format.json { render :json => @project_observation.to_json(:include => {:project => {:include => :project_observation_fields}}) }
+      format.json do
+        render :json => @project_observation.to_json(:include => {
+          :observation => {:include => :observation_field_values}, 
+          :project => {:include => :project_observation_fields}
+        })
+      end
     end
   end
   
