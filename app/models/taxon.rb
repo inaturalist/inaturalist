@@ -1238,15 +1238,18 @@ class Taxon < ActiveRecord::Base
       ["iconic_taxon_id = ?", taxon.iconic_taxon_id],
       ["taxon_id = ?", taxon.id]
     )
-    
-    conds = taxon.descendant_conditions
-    conds[0] += " AND observations_count > 0"
-    Taxon.do_in_batches(:conditions => conds) do |descendant|
-      Observation.update_all(
-        ["iconic_taxon_id = ?", taxon.iconic_taxon_id],
-        ["taxon_id = ?", descendant.id]
-      )
+    sql = <<-SQL
+      UPDATE observations SET iconic_taxon_id = #{taxon.iconic_taxon_id}
+      FROM taxa
+      WHERE 
+        observations.taxon_id = taxa.id AND 
+        (#{Taxon.send :sanitize_sql, taxon.descendant_conditions})
+    SQL
+    descendant_iconic_taxon_ids = taxon.descendants.iconic_taxa.select(:id).map(&:id)
+    unless descendant_iconic_taxon_ids.blank?
+      sql += " AND observations.iconic_taxon_id NOT IN (#{descendant_iconic_taxon_ids.join(',')})"
     end
+    connection.execute sql
   end
   
   def self.occurs_in(minx, miny, maxx, maxy, startdate=nil, enddate=nil)
