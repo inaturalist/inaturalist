@@ -132,7 +132,7 @@ class LifeList < List
     # further up the call stack, causing bugs.
     scope = list.owner.observations.scoped
     scope = scope.of(list.rule_taxon) if list.rule_taxon
-    scope = scope.in_palce(list.place) if list.place
+    scope = scope.in_place(list.place) if list.place
     scope.all(
         :select => 'DISTINCT ON(observations.taxon_id) observations.id, observations.taxon_id', 
         :conditions => conditions).each do |observation|

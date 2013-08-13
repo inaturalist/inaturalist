@@ -25,6 +25,16 @@ describe List, "reload_from_observations" do
     @list.reload
     @list.taxon_ids.should_not include(@child.id)
   end
+
+  it "should add taxa from place" do
+    p = make_place_with_geom
+    o = Observation.make!(:taxon => @child, :latitude => p.latitude, :longitude => p.longitude)
+    l = make_life_list_for_taxon(@taxon, :place => p, :user => o.user)
+    l.taxa.should be_empty
+    LifeList.reload_from_observations(l)
+    l.reload
+    l.taxa.should include(@child)
+  end
   
   def make_listed_taxon_of_taxon(taxon)
     listed_taxon = @list.add_taxon(taxon)
