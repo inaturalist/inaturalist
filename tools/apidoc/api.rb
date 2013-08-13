@@ -224,6 +224,10 @@ bit, so it will probably always be the most information-rich.
 
 The widget response is a JS snippet that inserts HTML.  It should be used 
 with a script tag, e.g. <pre>&lt;script src="http://www.inaturalist.org/observations.widget"&gt;&lt;/script&gt;</pre>
+
+If you're interested for pagination info, check the X headers in the response. 
+You should see <code>X-Total-Entries</code>, <code>X-Page</code>, and 
+<code>X-Per-Page</code>.
 EOT
     formats %w(atom csv dwc json kml widget)
     example do
