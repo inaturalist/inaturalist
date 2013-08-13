@@ -17,11 +17,13 @@ class ListRule < ActiveRecord::Base
   def validates?(subject)
     return false if subject.blank?
     return subject.send(operator, operand) if subject.respond_to?(operator)
-    subject.taxon.send(operator, operand)
+    return subject.taxon.send(operator, operand) if subject.respond_to?(:taxon)
+    false
   rescue ArgumentError => e
     raise e unless e.message =~ /wrong number of arguments/
     return subject.send(operator) if subject.respond_to?(operator)
-    subject.taxon.send(operator)
+    return subject.taxon.send(operator) if subject.respond_to?(:taxon)
+    false
   end
   
   #

@@ -187,8 +187,8 @@ class TaxaController < ApplicationController
           @listed_taxa_by_list_id = @listed_taxa.index_by{|lt| lt.list_id}
           @current_user_lists = current_user.lists.includes(:rules)
           @lists_rejecting_taxon = @current_user_lists.select do |list|
-            if list.is_a?(LifeList)
-              list.rules.map {|rule| rule.validates?(@taxon)}.include?(false)
+            if list.is_a?(LifeList) && (rule = list.rules.detect{|rule| rule.operator == "in_taxon?"})
+              !rule.validates?(@taxon)
             else
               false
             end
