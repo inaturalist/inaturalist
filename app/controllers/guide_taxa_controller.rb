@@ -80,7 +80,7 @@ class GuideTaxaController < ApplicationController
         end
       else
         format.html { render action: "new" }
-        format.json { render json: @guide_taxon.errors, status: :unprocessable_entity }
+        format.json { render json: @guide_taxon.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -94,7 +94,7 @@ class GuideTaxaController < ApplicationController
         format.json { render :json => @guide_taxon.as_json(:root => true, :methods => [:html]) }
       else
         format.html { render action: "edit" }
-        format.json { render json: @guide_taxon.errors, status: :unprocessable_entity }
+        format.json { render json: @guide_taxon.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end

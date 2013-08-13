@@ -65,11 +65,12 @@ function addTaxaSingle() {
       })
       .error(function(xhr) {
         var errors = $.parseJSON(xhr.responseText)
-        alert(I18n.t('there_were_problems_adding_taxa', {errors: errors}))
+        alert(I18n.t('there_were_problems_adding_taxa', {errors: errors.join(', ')}))
       })
       .complete(function() {
-        $('#addtaxa .modal-footer .btn-primary').attr('disabled', false).removeClass('disabled description')
-        $('#addtaxa .modal-footer .btn-primary').val($(link).data('original-value'))
+        var link = $('#addtaxa .modal-footer .btn-primary')
+        link.attr('disabled', false).removeClass('disabled description')
+        link.val(link.data('original-value'))
       })
   })
   $('#addtaxa-single').html('')
