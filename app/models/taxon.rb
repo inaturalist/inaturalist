@@ -1239,7 +1239,7 @@ class Taxon < ActiveRecord::Base
       ["taxon_id = ?", taxon.id]
     )
     sql = <<-SQL
-      UPDATE observations SET iconic_taxon_id = #{taxon.iconic_taxon_id}
+      UPDATE observations SET iconic_taxon_id = #{taxon.iconic_taxon_id || 'NULL'}
       FROM taxa
       WHERE 
         observations.taxon_id = taxa.id AND 
