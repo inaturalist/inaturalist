@@ -14,12 +14,14 @@ class ListRule < ActiveRecord::Base
   #
   # Tests whether a taxon passes this rule or not.
   #
-  def validates?(taxon)
-    return false if taxon.blank?
-    taxon.send(self.operator, self.operand)
+  def validates?(subject)
+    return false if subject.blank?
+    return subject.send(operator, operand) if subject.respond_to?(operator)
+    subject.taxon.send(operator, operand)
   rescue ArgumentError => e
     raise e unless e.message =~ /wrong number of arguments/
-    taxon.send(self.operator)
+    return subject.send(operator) if subject.respond_to?(operator)
+    subject.taxon.send(operator)
   end
   
   #

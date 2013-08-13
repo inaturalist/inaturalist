@@ -180,7 +180,10 @@ class ListedTaxon < ActiveRecord::Base
     # don't bother if validates_presence_of(:taxon) has already failed
     if !errors.include?(:taxon) && taxon
       list.rules.each do |rule|
-        errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(taxon)
+        if rule.operator == "observed_in_place?" && manually_added?
+          next
+        end
+        errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(self)
       end
     end
   end
@@ -250,7 +253,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def set_place_id
-    self.place_id = self.list.place_id
+    self.place_id = self.list.place_id if list.is_a?(CheckList)
     true
   end
 
@@ -540,6 +543,16 @@ class ListedTaxon < ActiveRecord::Base
     merge_has_many_associations(reject)
     reject.destroy
     save!
+  end
+
+  def observed_in_place?
+    p = place || list.place
+    return false unless p
+    scope = Observation.in_place(p).of(taxon).scoped
+    if list.is_a?(LifeList)
+      scope = scope.by(list.user)
+    end
+    scope.exists?
   end
   
   def self.merge_duplicates(options = {})

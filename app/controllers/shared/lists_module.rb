@@ -186,7 +186,9 @@ module Shared::ListsModule
     # Sometimes STI can be annoying...
     klass = Object.const_get(params[:list].delete(:type)) rescue List
     klass = List unless klass.ancestors.include?(List)
-    @list = klass.new(params[klass.to_s.underscore])
+    list_params = params[:list]
+    list_params = params[klass.to_s.underscore] if list_params.blank?
+    @list = klass.new(list_params)
 
     @list.user = current_user
     

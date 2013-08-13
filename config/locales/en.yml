@@ -368,6 +368,7 @@ en:
   back_to_x: "Back to %{noun}"
   back_to_x_journal: "Back to %{user}'s journal"
   back_to_x_observations: "Back to %{user}'s observations"
+  back_to_your_lists: Back to your lists
   back_to_your_journal: Back to your journal
   back_to_your_observations: Back to your observations
   back_to_your_profile: Back to your profile
@@ -2188,6 +2189,7 @@ en:
   this_is_a: This is a
   this_is_a_cached_summary_based_on: This is a cached summary of this taxon based on its
   this_is_a_life_list_of: This is a life list of
+  this_is_a_life_list_of_taxon_in_place: "This is a life list of %{taxon} in %{place}"
   this_is_more_convenient_way_find_parent: This is a more convenient way to find a parent ID. It's the parent ID that actually gets saved.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     This is a more convenient way to find a taxon ID. It's the taxon ID
@@ -2822,6 +2824,11 @@ en:
                 observations, the species will not be added to this list if
                 %{site_name} does not recognize the name you used. We recommend
                 trying alternative names that we might recognize.
+    lists:
+      new:
+        place_desc: |
+          Automatically populate this list with taxa observed in this place.
+          Note that you can only choose places that have boundaries.
     observations:
       copy_tip: "Add a new observation by copying this observation's date, place, photos, and observaiton fields."
       captive_help_html: |
