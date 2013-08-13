@@ -6,9 +6,9 @@
           <% grouper_name = render(:partial => 'shared/taxon', :locals => {:taxon => grouper}) -%>
         <% end -%>
       <% else -%>
-        <% grouper_name = 'Unclassified' -%>
+        <% grouper_name = t(:unclassified) -%>
       <% end -%>
-      <% grouper_class = grouper.name rescue 'Unknown' -%>
+      <% grouper_class = grouper.name rescue t(:unknown) -%>
       <a name="<%= grouper_class %>"></a>
       <div class="listed_taxa_group <%= grouper_class %>">
         <h2 class="title">

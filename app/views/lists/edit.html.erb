@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  Editing "<%= @list.title %>"
+  <%= t :editing %> "<%= @list.title %>"
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'lists/form' %>
@@ -9,9 +9,9 @@
 <% end -%>
 <div id="pageheader" class="column span-24 last">
   <span class="breadcrumbs">    
-    <%= link_to "Back to #{@list.title}", @list, :class => 'back crumb' %>
+    <%= link_to "#{t(:back_to)} #{@list.title}", @list, :class => 'back crumb' %>
   </span>
-  <h2>Editing "<%= @list.title %>"</h2>
+  <h2><%= t :editing %> "<%= @list.title %>"</h2>
 </div>
 
 <div class="column span-24">

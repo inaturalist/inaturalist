@@ -21,7 +21,7 @@
   
   <%= f.text_field :title, :required => true %>
   
-  <%= f.form_field :project_icon, :label => "Project icon (PNG, JPG, or GIF)", :wrapper => {:class => 'clear'} do %>
+  <%= f.form_field :project_icon, :label => "#{t(:project_icon)} (PNG, JPG, or GIF)", :wrapper => {:class => 'clear'} do %>
     <% if project.icon.file? -%>
       <%= image_tag(project.icon.url(:thumb), :class => "left") %>
       <div>
@@ -167,13 +167,13 @@
     </fieldset>
     
     <fieldset class="admin">
-      <legend>Extra Properties</legend>
-      
+      <legend><%= t :extra_properties %></legend>
+
       <%= f.check_box :featured_at, 
-        :label => "Feature this project?", 
+        :label => t(:feature_this_project),
         :label_after => true %>
         
-      <%= f.text_field :source_url, :description => "URL / identifier of a project derived from some external resource" %>
+      <%= f.text_field :source_url, :description => t(:url_identifier_of_a_project_derived_from) %>
     </fieldset>
   <% end -%>
 
