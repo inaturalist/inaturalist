@@ -2301,7 +2301,8 @@ class ObservationsController < ApplicationController
         }
       end
       opts[:include][:taxon] ||= {
-        :only => [:id, :name, :rank, :ancestry]
+        :only => [:id, :name, :rank, :ancestry],
+        :methods => [:common_name]
       }
       opts[:include][:iconic_taxon] ||= {:only => [:id, :name, :rank, :rank_level, :ancestry]}
       opts[:include][:user] ||= {:only => :login}

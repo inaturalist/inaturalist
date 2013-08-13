@@ -337,6 +337,15 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
       json.detect{|obs| obs['id'] == o2.id}.should be_blank
     end
+
+    it "should include common names" do
+      tn = TaxonName.make!(:lexicon => TaxonName::ENGLISH)
+      o = Observation.make!(:taxon => tn.taxon)
+      get :index, :format => :json, :taxon_id => tn.taxon_id
+      json = JSON.parse(response.body)
+      jsono = json.first
+      jsono['taxon']['common_name']['name'].should eq tn.name
+    end
   end
 
   describe "taxon_stats" do
