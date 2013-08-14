@@ -104,6 +104,12 @@ es-MX:
         wikipedia_summary: Resumen de wikipedia
         source_identifier: Identificador de la fuente
         source_url: Enlace fuente
+      taxon_range:
+        description: Descripción
+        range: Rango
+        source_identifier: Identificador de la fuente
+        taxon_id: Especie o grupo
+        url: Página web
       source:
         title: Título
         in_text: Referencia
@@ -166,6 +172,8 @@ es-MX:
   add_a_place_raquo: "Añade un lugar &raquo;"
   add_a_single_observation: "Añade una sola observación"
   add_a_taxon: Añade una especie o grupo
+  add_all_your_matching_obs_of_this_taxon: . Añade todas las observaciones encontradas de esa especie o grupo a este proyecto
+  add_all_your_matching_obs_to_this_project: Añade todas las observaciones encontradas a este proyecto
   add_an_identification: "Añade una identificación"
   add_an_observation: "Añade una observación"
   add_an_observation?: "¿Quieres añadir una observación?"
@@ -380,6 +388,7 @@ es-MX:
   back_to_your_journal: "De regreso a tu diario"
   back_to_your_observations: "De regreso a tus observaciones"
   back_to_your_profile: "De regreso a tu perfil"
+  back_to_your_projects: De regreso a tus proyectos
   batch: Grupo
   batch_edit: "Edita grupo"
   batch_edit_taxa_for_x_html: "Edición de datos por lote para las especies o grupos de %{x}"
@@ -911,6 +920,9 @@ es-MX:
     managed: cuativerio/cultivada
   establishment_means: "Medio de establecimiento"
   establishment_means_describes_how: "Medios de establecimiento describe como la especie o grupo se estableció en un área. Ve el DarwinCore para <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">más información sobre terminología</a>."
+  establishment_means_descriptions:
+      native_and_occurs_nowhere_else: "nativa restringida al pais"
+      arrived_in_the_region_via_anthropogenic_means: "evolucionó en otra región y ahora se encuentra en el país"
   every_species_seen_by: Todas las especies vistas por %{user}
   everyone: todos
   everyone_journal_posts: "Todas las notas de los Diarios"
@@ -6383,7 +6395,7 @@ es-MX:
   from: De
   from_a_place: de un lugar
   from_anywhere_change: "Desde cualquier lado (<span class=\"button\">cambio</span>)"
-  from_in_this_place: "De es"
+  from_in_this_place: "de este lugar"
   from_list: "De la lista"
   from_this: de este
   full_id_please: "¡Ayuda con la identificación, por favor!"
@@ -6543,7 +6555,7 @@ es-MX:
   is_this_observation_offensive_html: "¿Es la observación <a href=\"/help#inappropriate\">inapropiada</a>, ofensiva o spam?"
   is_this_place_a_duplicate: "¿Está duplicado este lugar?"
   it_has: Tiene
-  it_instead: "en lugar."
+  it_instead: "el lugar."
   its_important_that_you: "Es importante que selecciones"
   iucn_red_list_status: "estatus en la Lista Roja de UICN"
   january: Enero
@@ -6551,6 +6563,7 @@ es-MX:
   join_and: "Únete y "
   join_inat: "¡Únete a %{site_name}!"
   join_project: "Únete a este proyecto"
+  join_some_projects_and_invite_some_observations_html: "Únete a ciertos <a href='%{join_url}'>proyectos</a> e <a href='%{invite_url}'>invita algunas observaciones</a>"
   join_this_project: unirte a este proyecto
   joined_any_projects: únido a ningún proyecto
   journal: Diario
@@ -6649,7 +6662,7 @@ es-MX:
   location: Ubicación
   location_: Ubicación
   location_is_exact: "La ubicación es exacta"
-  locked_taxa_will_not_allow_new: "Las especies o grupos con candado no permitirán añadir a nuevas especies. Asi que si pones candado a Anfibios y alguien intenta importar <i>Rana catesbeiana</i> de un proveedor externo de nombres, la nueva especie será creada pero no podrá ser clasificada como un anfibio. Cuando esto sucede, la nueva especie añadida será señalada para atención de los curadores. Esto solo debe usarse para grupos en donde pensamos que ya tenemos a todos los integrantes. Los curadores pueden cambiar esto editando la identificación del grupo directamente, pero por favor considera combinar nuevas especies con las existentes.\n"
+  locked_taxa_will_not_allow_new: "Las especies o grupos con candado no permitirán añadir a nuevas especies. Asi que si pones candado a Anfibios y alguien intenta importar <i>Rana catesbeiana</i> de un proveedor externo de nombres, la nueva especie será creada pero no podrá ser clasificada como un anfibio. Cuando esto sucede, la nueva especie añadida será señalada para advertencia de los curadores. Esto solo debe usarse para grupos en donde pensamos que ya tenemos a todos los integrantes. Los curadores pueden cambiar esto editando la identificación del grupo directamente, pero por favor considera combinar nuevas especies con las existentes.\n"
   log_in: "Empieza la sesión"
   logged_in_as: "Inicia sesión como"
   login_slash_username: "Login / nombre de usuario"
@@ -6670,6 +6683,7 @@ es-MX:
   main_content: "Contenido principal"
   main_content_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n"
   make_a_new_place: Crea un nuevo lugar
+  make_a_taxon_swap_instead?: ¿Quieres hacer un intercambio de la especie o grupo?
   make_curator: Hazlo un curador
   make_it_a_life_list?: "¿Quieres hacer una lista de vida?"
   make_manager: Hazlo un gerente
@@ -6695,7 +6709,7 @@ es-MX:
   merge: Combina
   merge_it_with_another_place: "Combina con otro lugar"
   merge_two_places_together: "Combina dos lugares. Todas las especies en las listas de confirmación se combinarán, al igual que los datos geográficos."
-  merging: Fucionando
+  merging: Combinando
   merging_places: "Fusionando Lugares"
   misleading_or_illegal_content: Contenido ilegal, engañoso, racial, étnico, etc.
   mixed_licenses: Licencia combinada
@@ -6792,6 +6806,7 @@ es-MX:
   no_link_flickr: "No, mejor no."
   no_managers_set: No hay gerentes aún
   no_matching_article_from_x: "No coincidió ningún artículo en %{x}"
+  no_matching_invitations: No hay invitaciones que coincidan
   no_matching_observations: "No hay observaciones que coincidan"
   no_matching_places: "No hay lugares que coincidan"
   no_matching_projects: "No hay proyectos que coincidan"
@@ -6799,10 +6814,12 @@ es-MX:
   no_matching_users: "No hay usuarios que coincidan."
   no_members_yet: "Todavía no hay miembros."
   no_more_mail_from_site: "¿No quieres recibir correos del %{site_name}? Edita tu configuración de correo en"
+  no_more_taxa_to_load: "¡No hay mas especies o grupos a cargar!"
   no_more_updates: "¡No más actualizaciones!"
   no_nearby_observations: "No hay observaciones cercanas."
   no_new_messages: No hay nuevos mensajes
   no_observations: "No hay observaciones"
+  no_observations_from_this_place_yet: Aún no hay observaciones de especies para este lugar.
   no_observations_matching_those_ids: No hay observaciones que coincidan con esos identificadores.
   no_observations_need_an_id: "Ninguna observación necesita identificación por ahora. ¡Genial!"
   no_observations_submitted: "¡No se envió ninguna observación!"
@@ -6822,8 +6839,12 @@ es-MX:
   no_results_found: "No se encontraron resultados"
   no_results_for: 'Sin resultados para '
   no_results_matching: "No hay resultados que coincidan"
-  no_species_have_been_listed: "¡Aún no se hay una lista de especies para este lugar!"
+  no_species_have_been_listed: "¡Aún no hay una lista de especies para este lugar!"
   no_species_on_this_list: "¡Aún no hay especies en esta lista!"
+  no_species_on_this_list_for_owner_html: |
+      Puedes empezar a añadir especies a la lista directamente, o si se
+      trata de una lista de la vida, automáticamente se actualizará con las
+      especies cuando se <a href="%{url}" class="nobr">agregan observaciones</a>.
   no_summary_has_been_set: "No se ha incluido un resumen"
   no_taxa: "No hay taxa"
   no_taxa_listed: "No hay ningún grupo o especie en la lista"
@@ -7015,7 +7036,7 @@ es-MX:
   paste_in_a_bunch_of_names: "¡Pega un grupo de nombres, uno por línea y aprieta el botón!"
   paste_in_a_comma_separated_list: "Pega una lista de países separados por comas"
   people: Gente
-  people_agree: "La gente está de acuerdo"
+  people_agree: "persona(s) están de acuerdo"
   people_following_user: "Personas siguiendo a %{user}"
   people_user_follows: "Personas que %{user} sigue"
   per_page: "Registros por página"
@@ -7210,6 +7231,7 @@ es-MX:
   reason: Razón
   reason_you_are_flagging_this_item: Razón por la cual estas poniendo en advertencia este contenido.
   receive_email_notifications_when_people_leave_you: "Recibe una notificación de correo electrónico sobre"
+  received: Recibidas
   recent_additions: "Observaciones recientes"
   recent_comments_on_your_stuff: "Comentarios recientes sobre tus cosas"
   recent_observations: "Observaciones recientes"
@@ -7343,6 +7365,7 @@ es-MX:
   send_me_reset_password_instructions: Eviarme las instrucciones para restablecer mi contraseña
   send_the_invites: "Envía las invitaciones"
   sending: Enviando...
+  sent: Enviadas
   separate_values_with_a_pipe: "Separa los valores con | , por ejemplo: \"1-5|6-10|muchos\" o \"sí|no|tal vez\""
   september: Septiembre
   set_license: "Escoge la licencia"
