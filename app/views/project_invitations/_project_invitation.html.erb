@@ -22,7 +22,7 @@
           "data-project-id" => pi.project_id,
           "data-observation-id" => pi.observation_id,
           :class => "glaucous button acceptlink" %>
-        <%= link_to "remove", remove_project_observation_url(pi.project_id, :observation_id => pi.observation_id),
+        <%= link_to t(:remove), remove_project_observation_url(pi.project_id, :observation_id => pi.observation_id),
           :remote => remote,
           :method => :post,
           "data-type" => remote ? "json" : nil,

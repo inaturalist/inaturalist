@@ -14,7 +14,7 @@
   end.compact
   label_text ||= nil
   chooser_options = {
-    :label => label_text,
+    :label => t(label_text, :default => t(:source)),
     :placeholder => t(:type_source_title),
     :class => "existing", 
     "data-chooser-default-sources" => sources.to_json(:methods => [:html])
