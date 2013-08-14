@@ -51,10 +51,10 @@
       <p class="ui description">
         <%=t :first_confirmed_inat_observation, :site_name => SITE_NAME_SHORT %>
         <%= link_to one_line_observation(listed_taxon.first_observation, :skip => %w(user taxon)), listed_taxon.first_observation %>
-        <%=t :by_ %>
+        <%= t(:by).downcase %>
         <%= link_to user_image(listed_taxon.first_observation.user), listed_taxon.first_observation.user %>
         <%= link_to you_or_login(listed_taxon.first_observation.user), listed_taxon.first_observation.user %>,
-        <%=t :added %> <%= listed_taxon.first_observation.created_at.to_date.to_s(:long) %>
+        <%=t :added %> <%= l(listed_taxon.first_observation.created_at.to_date, :format => :long) %>
       </p>
     <% end -%>
 
@@ -62,7 +62,7 @@
       <p class="ui description">
        <%=t :last_confirmed_observation %>
         <%= link_to one_line_observation(listed_taxon.last_observation, :skip => %w(user taxon)), listed_taxon.last_observation %>
-        <%=t :by %>
+        <%= t(:by).downcase %>
         <%= link_to user_image(listed_taxon.last_observation.user), listed_taxon.last_observation.user %>
         <%= link_to you_or_login(listed_taxon.last_observation.user), listed_taxon.last_observation.user %>
       </p>
@@ -71,13 +71,13 @@
     <div class="clear stacked">
       <div id="occurrence">
         <label><%=t :occurrence_status %>:</label>
-        <%= listed_taxon.occurrence_status || "unknown" %>
+        <%= listed_taxon.occurrence_status || t(:unknown) %>
         <%= link_to t(:edit), listed_taxon, :class => "small" %>
       </div>
 
       <div class="establishment stacked">
         <label><%=t :establishment_means %>:</label>
-        <%= listed_taxon.establishment_means || "unknown" %>
+        <%= listed_taxon.establishment_means || t(:unknown) %>
         <%= link_to t(:edit), listed_taxon, :class => "small" %>
       </div>
     </div>

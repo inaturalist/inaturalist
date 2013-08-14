@@ -158,7 +158,7 @@
         <%= formatted_user_text(@listed_taxon.description) %>
       </div>
       <% if @list.listed_taxa_editable_by?(current_user) -%>
-        <p class="ui"><%= link_to_function "edit #{description_name}", "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit_description")}').show()" %></p>
+        <p class="ui"><%= link_to_function "#{t(:edit)} #{description_name.downcase}", "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit_description")}').show()" %></p>
       <% end -%>
     <% end -%>
   </div>

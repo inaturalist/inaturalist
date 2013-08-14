@@ -175,7 +175,7 @@ var TaxonGuide = {
   load: function(context, options) {
     $(context).shades('open', {
       css: {'background-color': 'white'}, 
-      content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">Loading...</span></center>'
+      content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">'+I18n.t('loading')+'</span></center>'
     })
     var options = options || {}
     var url = options.url || $(context).attr('data-guide-url')
@@ -210,7 +210,7 @@ var TaxonGuide = {
           loading: {
             img: '/images/spinner-small.gif',
             msgText: '',
-            finishedMsg: '<span class="meta">No more taxa to load!</span>'
+            finishedMsg: '<span class="meta">'+I18n.t('no_more_taxa_to_load')+'</span>'
           }
         }, function() {
           TaxonGuide.ajaxify(context)
@@ -219,7 +219,7 @@ var TaxonGuide = {
     })
   },
   updateConfirmedChart: function(context) {
-    TaxonGuide.updateBarchart(context, '#confirmedchart', 'data-confirmed-listed-taxa-count', {extraLabel: 'confirmed'})
+    TaxonGuide.updateBarchart(context, '#confirmedchart', 'data-confirmed-listed-taxa-count', {extraLabel: I18n.t('confirmed')})
   },
   updateObservedChart: function(context) {
     values = TaxonGuide.updateBarchart(context, '#observedchart', 'data-current-user-observed-count')
@@ -235,7 +235,7 @@ var TaxonGuide = {
     var count = $('.guide_taxa', context).attr(countAttr)
     if (!count) { return false }
     var total = $('.guide_taxa', context).attr('data-listed-taxa-count') || $(selector).attr('data-original-total') || 0,
-        labelText = ' of ' + total,
+        labelText = ' ' + I18n.t('of') + total,
         valueWidth = Math.round(total == 0 ? 0 : (count / total)*100),
         remainderWidth = 100 - valueWidth,
         valueLabel = '',
@@ -353,11 +353,11 @@ var TaxonGuide = {
               load: function(event, ui) {
                 if ($(ui.panel).text() == '') {
                   $(ui.panel).append(
-                    $('<span>No observations from this place yet.</span>').addClass('noresults meta')
+                    $('<span>'+I18n.t('no_observations_from_this_place_yet')+'</span>').addClass('noresults meta')
                   )
                 } else {
                   $(ui.panel).append(
-                    $('<a rel="nofollow">View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('href'))
+                    $('<a rel="nofollow">'+I18n.t('view_more')+'</a>').addClass('readmore').attr('href', $(ui.tab).attr('href'))
                   )
                 }
               }
