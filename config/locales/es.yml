@@ -86,6 +86,7 @@ es:
         zoom_level: Nivel de acercamiento
         prefers_place_boundary_visible: Mostrar los límites del lugar en el mapa
         tracking_codes: Códigos de rastreo
+        source_url: Dirección web de la fuente
       user: 
         comments_email_notification: Comentarios
         email: Correo
@@ -179,6 +180,7 @@ es:
   add_taxon_range: "Agregar rango de taxón"
   add_taxonomic_tags_to: "Agregar etiquetas taxonómicas a fotos de Flickr seleccionadas &raquo;"
   add_taxonomic_tags_to_the_fickr_photos: "Agregar etiquetas taxonómicas a las fotos de Fickr asociadas con las observaciones seleccionadas."
+  add_to: Añade a
   add_to_checklist: "agregar a lista de verificación"
   add_to_id_please: "Solicitar ID"
   add_to_list: "Agregar a lista"
@@ -311,6 +313,7 @@ es:
   any: Cualquiera
   apply_darr: "Aplicar &darr;"
   apply_these_settings_to_all: "Aplicar estas configuraciones a todas las observaciones abajo"
+  apply_to_selected: Apicar a las seleccionadas
   april: Abril
   arachnids: arácnidos
   archives: Archivos
@@ -327,6 +330,7 @@ es:
   are_you_sure_merge_these_places: "¿Está seguro que desea combinar estos lugares?  Esto no podrá deshacerse."
   are_you_sure_remove_curator: "¿Está seguro que desea quitar a %{user} como curador?"
   are_you_sure_remove_from_project: "¿Está seguro que desea quitar a %{user} de este proyecto?"
+  are_you_sure_remove_taxon_from_list: "¿Estás seguro que desea quitar esta especie o grupo de la lista?"
   are_you_sure_remove_taxon_from_place: "¿Está seguro que desea quitar este taxón de su lista de verificación de %{place}?"
   are_you_sure_unlink_picasa: "¿Está seguro que desea desvincular su cuenta de Picasa?"
   are_you_sure_want_activate_account: "¿Está seguro que desea activar esta cuenta?"
@@ -399,6 +403,7 @@ es:
   back_to_your_profile: "Regresar a su perfil"
   batch: Grupo
   batch_edit: "Modificar grupo"
+  batch_edit_taxa_for_x_html: "Edición de datos po lote para %{x}"
   batch_operations: "Operaciones de grupos"
   beacuse_we_recently_changed_auth_system: "Debido a que hace poco cambiamos nuestro sistema de autenticación de usuarios, era necesario reinicializar su contraseña."
   because: porque
@@ -981,6 +986,7 @@ es:
   explore_everyones_observations: "Explore las observaciones de todos"
   extinct: extinto
   extinct_in_the_wild: "extint en estado silvestre"
+  extra_properties: Propiedades extra
   extras: Extras
   facebook_account_information: "Información de su cuenta de Facebook"
   facebook_confirmation: "Facebook desea confirmar que usted desea conectar su cuenta a %{site_name}."
@@ -990,6 +996,7 @@ es:
   faq: "Preguntas Frecuentes"
   favorite_taxa: "taxones favoritos"
   favorites: Favoritos
+  feature_this_project: "¿Quieres resaltar este proyecto?"
   featured: Destacados
   featured?: ¿Destacados?
   february: Febrero
@@ -1878,6 +1885,7 @@ es:
   please_confirm_your_account_html: 'Por favor tómate un segundo para <a href="%{url}">confirmar su cuenta</a>.'
   please_enter_a_new_pass: "Por favor digite una nueva contraseña y confírmela."
   please_hold_on_while_the_file: "Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes."
+  please_hold_on_while_the_file_is_generated: Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes.
   plural_species: Especies
   position: Posición
   positional_accuracy: precisión de tu ubicación
@@ -2079,6 +2087,7 @@ es:
   select_photos_from_your_photo_stream: "Seleccionar fotos de Photostream para convertirlas en observaciones en %{site_name}. Nosotros completaremos la fecha, hora y ubicación de los metadados de una foto y trataremos de buscar nombres de especies de las etiquetas."
   selected_photos: "Fotos seleccionada"
   select_photos_to_display: Selecciona las fotos a mostrar
+  selected: seleccionado(s)
   selected_taxon: "Grupo o especie seleccionada"
   send: enviada(s)
   send_invite: "Enviar invitación"
@@ -2096,8 +2105,10 @@ es:
   show: Mostrar
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
   show_counts: "Mostrar conteos con base en la lista"
+  show_default_taxon_photos: Muestra las fotos predeterminadas de las especies
   show_kml: "Mostrar KML"
   show_observations_from: Muestra observaciones hechas por
+  show_observation_photos: Muestra las fotos de las observaciones
   show_off_your_recent_observations: "¡Presuma sus observaciones en su propio blog o sitio web!"
   show_only: "Mostrar solamente"
   show_taxa_from_both: "(mostrar taxones de ambas listas de nuevo)"
@@ -2500,6 +2511,7 @@ es:
   upload_a_csv_file: Carga un archivo CSV
   upload_a_csv_file_with_observation: "Cargar un archivo CSV con datos de observación. Si sus datos están en una hoja de cálculo o base de datos, esta es probablemente la forma de hacerlo."
   ubio: uBio
+  url_identifier_of_a_project_derived_from: "Direcció web / identificador del proyecto derivado de fuentes externas"
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio web fuente
   use_this_if_the_url_needs_genus_species_separated: "Use esto si la URL debe tener los géneros y especies separados de forma particular. Si el taxón no es una especie o infraespecie, todo lo que esté entre [GÉNERO] y [ESPECIE] será reemplazado por el nombre del taxón, así que úselo con moderación. <br/><br/> <strong>Ejemplo.</strong><br/>"
   user: Usuario
@@ -2907,6 +2919,7 @@ es:
   wikipedia_entry: "Registro de Wikipedia"
   wikipedia_taxobox_raquo: "Ficha de taxón en Wikipedia &raquo;"
   with: con
+  with_errors: Con errores
   within_inaturalist: "Dentro de %{site_name}"
   wondering_what_to_do_next: "¿Se pregunta qué hacer ahora? Por qué no"
   would_you_like_to: ". ¿Le gustaría"
@@ -3058,6 +3071,7 @@ es:
   your_id: "Su identificación"
   your_identification: "Su identificación"
   your_inat_account_has_been_activated: "Su cuenta %{inat} ha sido activada."
+  your_life_list: your life list!
   your_month_observations: Tus observaciones de %{month}
   your_new_password_is: "Su nueva contraseña es"
   your_observation_will_get_shared_html: "Su observación será compartido con redes sociales si se deja estes cajas marcados. Puedes cambiar por <a href='%{url}' target='_blank'>edita tu configuración</a>."

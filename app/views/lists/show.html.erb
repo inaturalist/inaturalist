@@ -124,7 +124,7 @@
   <div id="toppagination">
     <%= will_paginate @listed_taxa, :renderer => INatLinkRenderer %>
   </div>
-  
+
   <%= render :partial => "show_#{@view}" %>
   
   <% if @listed_taxa.empty? %>
@@ -161,7 +161,7 @@
     <%= link_to "#{t(:taxonomic)} CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
       :class => "delayedlink csvlink", 
       "data-delayed-link-msg" => 
-        "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
+        t(:please_hold_on_while_the_file_is_generated),
       :rel => "nofollow" %>
   </div>
 </div>

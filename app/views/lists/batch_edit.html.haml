@@ -48,7 +48,7 @@
         %span.meta
           = surround '(', ')' do
             %span.count 0
-            selected
+            =t(:selected)
       %th.occurrence_status
         .nobr
           = select_tag :occurrence_status_level, options_for_select(ListedTaxon::OCCURRENCE_STATUS_LEVELS.invert.to_a.sort_by(&:last).reverse.map{|k,v| [t(k.downcase, :default => k).downcase, v]}), :include_blank => t(:unknown)

@@ -153,6 +153,7 @@ en:
   add_taxon_range: Add taxon range
   add_taxonomic_tags_to: "Add taxonomic tags to selected Flickr photos &raquo;"
   add_taxonomic_tags_to_the_fickr_photos: Add taxonomic tags to the Fickr photos associated with the selected observations.
+  add_to: Add to
   add_to_checklist: add to checklist
   add_to_id_please: Add to ID Please
   add_to_list: Add to list
@@ -803,6 +804,7 @@ en:
   extinct: EXTINCT
   extinct: extinct
   extinct_in_the_wild: extinct in the wild
+  extra_properties: Extra Properties
   extras: Extras
   facebook_account_information: Your Facebook Account Information
   facebook_confirmation: "Facebook would like to confirm that you want your account connected to %{site_name}."
@@ -813,6 +815,7 @@ en:
   Family: Family
   favorite_taxa: favorite taxa
   favorites: "Favorites"
+  feature_this_project: "Feature this project?"
   featured: featured
   featured?: featured?
   feedback: Feedback
@@ -1660,6 +1663,7 @@ en:
   please_confirm_your_account_html: 'Please take a second to <a href="%{url}">confirm your account</a>.'
   please_enter_a_new_pass: Please enter a new password and confirm it.
   please_hold_on_while_the_file: Please hold on while the file is generated. It can take a couple minutes if you have a lot of observations.
+  please_hold_on_while_the_file_is_generated: Please hold on while the file is generated.  It can take a couple minutes for large lists.
   position: Position
   positional_accuracy: Positional accuracy
   post: Post
@@ -1868,6 +1872,7 @@ en:
   select_one_or_more_photos: 'Select one or more photos'
   select_photos_from_your_photo_stream: "Select photos from your photo stream to convert into %{site_name} observations. We'll fill in the date, time, and location from a photo's metadata, and try to look up species names from the tags."
   select_photos_to_display: Select photos to display
+  selected: selected
   selected_photos: Selected photos
   selected_taxon: Selected Taxon
   send: send
@@ -2285,6 +2290,7 @@ en:
   upload: Upload
   upload_a_csv_file: Upload CSV file
   upload_a_csv_file_with_observation: Upload a CSV file with observation data. If you have your data in a spreadsheet or database, this is probably the way to go.
+  url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
   US_states: US States
   use_this_form_to_create_a_new: Use this form to create a new draft taxonomic change describing a proposed split, merge or swap on active taxa to be later committed.
@@ -2548,6 +2554,7 @@ en:
   your_id: Your ID
   your_identification: Your Identification
   your_inat_account_has_been_activated: "Your %{inat} account has been activated."
+  your_life_list: your life list!
   your_month_observations: your %{month} observations
   your_new_password_is: Your new password is
   your_observation_will_get_shared_html: "Your observation will get shared on social networks if you leave these boxes checked. You can change your defaults by <a href='%{url}' target='_blank'>editing your account settings</a>. If you linked your Facebook or Twitter account before this feature was added, you may need to re-link to Twitter or Facebook from your account to get this working."
@@ -3118,6 +3125,7 @@ en:
         zoom_level: Zoom level
         prefers_place_boundary_visible: Show place boundary on map
         tracking_codes: Tracking codes
+        source_url: Source URL
       place:
               latitude: Latitude
               longitude: Longitude
