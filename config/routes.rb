@@ -191,7 +191,8 @@ Inaturalist::Application.routes.draw do
   match 'projects/:id/invitations' => 'projects#invitations', :as => :invitations
   match 'projects/:project_id/journal/new' => 'posts#new', :as => :new_project_journal_post
   match 'projects/:project_id/journal' => 'posts#index', :as => :project_journal
-  match 'projects/:project_id/journal/:id' => 'posts#show', :as => :project_journal_post
+  match 'projects/:project_id/journal/:id' => 'posts#show', :as => :project_journal_post, :via => :get
+  match 'projects/:project_id/journal/:id' => 'posts#destroy', :as => :delete_project_journal_post, :via => :delete
   match 'projects/:project_id/journal/:id/edit' => 'posts#edit', :as => :edit_project_journal_post
   match 'projects/:project_id/journal/archives/:year/:month' => 'posts#archives', :as => :project_journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/ }
 

@@ -118,7 +118,7 @@
     <div id="tools" class="buttonrow">
       <%= link_to t(:edit), edit_project_journal_post_path(:project_id => @parent_slug, :id => @post.id), 
                   :id => "edit_post_button", :class => "button" %>
-      <%= link_to t(:delete), post_path(@post.user.login, @post), 
+      <%= link_to t(:delete), delete_project_journal_post_path(@parent, @post), 
                   :confirm => t(:are_you_sure_delete_post), 
                   :method => :delete, 
                   :id => "delete_post_button", 
