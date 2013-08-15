@@ -136,7 +136,7 @@ class GuideTaxon < ActiveRecord::Base
         EolPhoto.find_by_native_photo_id(data_object_id)
       end
       p ||= EolPhoto.new_from_api_response(img_data_object)
-      if !p.blank? && self.guide_photos.detect{|gp| p.id && gp.photo_id == p.id}.blank?
+      if !p.blank? && self.guide_photos.detect{|gp| gp.photo_id && gp.photo_id == p.id}.blank?
         self.guide_photos.build(:photo => p)
       end
     end
@@ -217,7 +217,7 @@ class GuideTaxon < ActiveRecord::Base
 
     unless page
       search_results = eol.search(name, :exact => true)
-      if result = search_results.search('entry').detect{|e| e.at('title').to_s.downcase =~ /#{name.downcase}/}
+      if result = search_results.search('entry').first #detect{|e| e.at('title').to_s.downcase =~ /#{name.downcase}/}
         page = eol.page(result.at('id').content, page_request_params)
       end
     end
