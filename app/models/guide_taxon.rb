@@ -155,7 +155,7 @@ class GuideTaxon < ActiveRecord::Base
 
   def sync_eol_sections(options = {})
     return unless page = get_eol_page(options)
-    subjects = options[:subjects]
+    subjects = (options[:subjects] || []).select{|s| !s.blank?}
 
     xpath = <<-XPATH
       //dataObject[
