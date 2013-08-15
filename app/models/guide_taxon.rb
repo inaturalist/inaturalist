@@ -1,3 +1,4 @@
+#encoding: utf-8
 class GuideTaxon < ActiveRecord::Base
   attr_accessor :html
   attr_accessible :display_name, :guide, :guide_id, :name, :taxon_id, :taxon, :guide_photos_attributes, 
@@ -106,20 +107,131 @@ class GuideTaxon < ActiveRecord::Base
     true
   end
 
+  def sync_eol(options = {})
+    return unless page = get_eol_page(options)
+    name = page.at('scientificName').content
+    name = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))
+    self.name ||= name
+    common_names = page.search('commonName')
+    lang = (options[:locale] || guide.user.locale || I18n.locale).to_s.split('-').first
+    common_name = common_names.detect{|cn| cn['lang'] == lang && cn['eol_preferred'] == "true"}
+    common_name ||= common_names.detect{|cn| cn['lang'] == lang}
+    common_name ||= common_names.detect{|cn| cn['eol_preferred'] == "true"}
+    if common_name && !common_name.inner_text.blank?
+      self.display_name = common_name.inner_text
+    end
+    sync_eol_photos(options.merge(:page => page)) if options[:photos]
+    sync_eol_ranges(options.merge(:page => page)) if options[:ranges]
+    sync_eol_sections(options.merge(:page => page)) if [true, 1, "true", "1"].include?(options[:overview]) || !options[:subjects].blank?
+    save!
+  end
+
+  def sync_eol_photos(options = {})
+    return unless page = get_eol_page(options)
+    img_data_objects = page.search('dataObject').select{|data_object| 
+      data_object.at('dataType').to_s =~ /StillImage/ && data_object.at('dataSubtype').to_s !~ /Map/
+    }
+    img_data_objects[0..5].each do |img_data_object|
+      p = if (data_object_id = img_data_object.at('dataObjectID').try(:content))
+        EolPhoto.find_by_native_photo_id(data_object_id)
+      end
+      p ||= EolPhoto.new_from_api_response(img_data_object)
+      if !p.blank? && self.guide_photos.detect{|gp| p.id && gp.photo_id == p.id}.blank?
+        self.guide_photos.build(:photo => p)
+      end
+    end
+  end
+
+  def sync_eol_ranges(options = {})
+    return unless page = get_eol_page(options)
+    map_data_object = page.search('dataObject').detect{|data_object| data_object.at('dataSubtype').to_s =~ /Map/ }
+    if map_data_object
+      gr = GuideRange.new_from_eol_data_object(map_data_object)
+      unless guide_ranges.where(:source_url => gr.source_url).exists?
+        self.guide_ranges[self.guide_ranges.size] = gr
+      end
+    end
+  end
+
+  def sync_eol_sections(options = {})
+    return unless page = get_eol_page(options)
+    subjects = options[:subjects]
+
+    xpath = <<-XPATH
+      //dataObject[
+        descendant::dataType[text()='http://purl.org/dc/dcmitype/Text']
+        and descendant::subject
+      ]
+    XPATH
+    locale = (options[:locale] || guide.user.locale || I18n.locale).to_s
+    data_objects = page.xpath(xpath).reject do |data_object|
+      data_object.at('language') && locale !~ /^#{data_object.at('language').content}/
+    end
+
+    data_objects = if subjects.blank? || options[:overview] == "true"
+      [data_objects.first]
+    else
+      unique_data_objects = ActiveSupport::OrderedHash.new
+      data_objects.each do |data_object| 
+        data_object_subject = if s = data_object.at('subject')
+          s.content.split('#').last
+        end
+        if subjects.include?(data_object_subject)
+          unique_data_objects[data_object_subject] ||= data_object
+        end
+      end
+      unique_data_objects.values
+    end
+
+    data_objects.compact.each do |data_object|
+      gs = GuideSection.new_from_eol_data_object(data_object)
+      if gs && !guide_sections.where(:source_url => gs.source_url).exists?
+        gs.modified_on_create = false
+        self.guide_sections[self.guide_sections.size] = gs
+      end
+    end
+  end
+
+  def get_eol_page(options = {})
+    eol = options[:eol] || EolService.new(:timeout => 30, :debug => Rails.env.development?)
+    page = options[:page]
+    collection = options[:collection]
+    subjects = (options[:subjects] || []).select{|t| !t.blank?}
+    page_request_params = {
+      :images => 5, 
+      :maps => 5, 
+      :text => subjects.size == 0 ? 5 : subjects.size * 5,
+      :details => true}
+    page_request_params[:subjects] = if subjects.blank?
+      "overview"
+    else
+      subjects.join('|')
+    end
+
+    if !page && collection
+      item = collection.search("item").detect do |item|
+        item.at('object_type').content == "TaxonConcept" && item.at('name').content.downcase =~ /#{name.downcase}/
+      end
+      page = eol.page(item.at('object_id').content, page_request_params) if item
+    end
+
+    unless page
+      search_results = eol.search(name, :exact => true)
+      if result = search_results.search('entry').detect{|e| e.at('title').to_s.downcase =~ /#{name.downcase}/}
+        page = eol.page(result.at('id').content, page_request_params)
+      end
+    end
+
+    if page
+      page.remove_namespaces! if page.respond_to?(:remove_namespaces!)
+      return page
+    end
+  end
+
   def self.new_from_eol_collection_item(item, options = {})
     name = item.at('name').inner_text.strip
     name = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))
     object_id = item.at('object_id').inner_text
-
-    # Fetching a page for each taxon is prohibitively slow. Let's revisit this if EOL decides to include this data in the collection response.
-    # page = EolService.page(object_id, :common_names => true, :images => 1, :details => true)
-    # page.remove_namespaces! if page.respond_to?(:remove_namespaces!)
-    # common_names = page.search('commonName')
-    # lang = I18n.locale.to_s.split('-').first
-    # common_name = common_names.detect{|cn| cn['lang'] == lang && cn['eol_preferred'] == "true"}
-    # common_name ||= common_names.detect{|cn| cn['lang'] == lang}
-    # common_name ||= common_names.detect{|cn| cn['eol_preferred'] == "true"}
-    # img_data_object = page.search('dataObject').detect{|data_object| data_object.at('dataType').to_s =~ /StillImage/ }
     taxon = Taxon.single_taxon_for_name(name)
     taxon ||= Taxon.find_by_name(name)
     rank = case name.split.size
@@ -127,28 +239,12 @@ class GuideTaxon < ActiveRecord::Base
     when 2 then "species"
     end
     gt = GuideTaxon.new(options)
-    
+    gt.name = name
     if taxon && taxon.valid?
       gt.taxon = taxon 
     else
-      gt.name = name
       gt.display_name = name
     end
-    # if common_name && !common_name.inner_text.blank?
-    #   gt.display_name = common_name.inner_text
-    # end
-    # I think this gets into copyright territory
-    # if (annotation = item.at('annotation')) && !annotation.inner_text.blank?
-    #   gt.guide_sections.build(:title => "Annotation", :description => annotation.inner_text)
-    # end
-    # if img_data_object
-    #   p = if (data_object_id = img_data_object.at('dataObjectId').try(:content))
-    #     EolPhoto.find_by_native_photo_id(data_object_id)
-    #   end
-    #   p ||= EolPhoto.new_from_api_response(img_data_object)
-    #   gp = gt.guide_photos.build(:photo => p) unless p.blank?
-    # end
-    # Rails.logger.debug "[DEBUG] gt.errors: #{gt.errors.full_messages.to_sentence}" unless gt.valid?
     gt
   end
 end

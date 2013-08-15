@@ -4,5 +4,7 @@
   %ul.breadcrumb
     %li
       = link_to t(:back_to_x, :noun => @guide.title), edit_guide_path(@guide), :class => "back"
+  .btn-grp.pull-right
+    = link_to t(:sync_with_eol), sync_guide_taxon_path(@guide_taxon, :provider => "eol"), :class => "btn", :method => :post, :confirm => "This will try and import photos, ranges, and at least one section from EOL. Proceed?"
   %h2= @title
   = render 'form'

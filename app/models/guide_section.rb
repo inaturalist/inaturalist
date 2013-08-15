@@ -8,6 +8,65 @@ class GuideSection < ActiveRecord::Base
   after_save {|r| r.guide.expire_caches}
   after_destroy {|r| r.guide.expire_caches}
 
+  EOL_SUBJECTS = %w(
+    Associations
+    Barcode
+    Behaviour
+    Biology
+    CitizenScience
+    Conservation
+    ConservationStatus
+    Cyclicity
+    Cytology
+    Description
+    Development
+    DiagnosticDescription
+    Diseases
+    Dispersal
+    Distribution
+    Ecology
+    Education
+    EducationResources
+    Evolution
+    FossilHistory
+    FunctionalAdaptations
+    GeneralDescription
+    Genetics
+    Genome
+    Growth
+    Habitat
+    IdentificationResources
+    Key
+    Legislation
+    LifeCycle
+    LifeExpectancy
+    LookAlikes
+    Management
+    Migration
+    MolecularBiology
+    Morphology
+    Notes
+    NucleotideSequences
+    Physiology
+    PopulationBiology
+    Procedures
+    Reproduction
+    RiskStatement
+    Size
+    SystematicsOrPhylogenetics
+    TaxonBiology
+    Taxonomy
+    Threats
+    Trends
+    TrophicStrategy
+    TypeInformation
+    Use
+  )
+
+  def to_s
+    "<GuideSection #{id}>"
+  end
+
   def attribution
     return I18n.t(:public_domain) if license == Photo::PD_CODE
     rights_holder_name ||= rights_holder unless rights_holder.blank?

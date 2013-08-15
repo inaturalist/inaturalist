@@ -86,6 +86,7 @@ function addTaxaFromPlace() {
       if (json.guide_taxa[i].html) {
         $('#guide_taxa .nocontent').remove()
         $('#guide_taxa').prepend(json.guide_taxa[i].html)
+        $('#guide_taxa .guide_taxon:first').labelize()
       }
     }
   }, 'json').complete(function() {
@@ -101,12 +102,14 @@ function addTaxaFromEol() {
       if (json.guide_taxa[i].html) {
         $('#guide_taxa .nocontent').remove()
         $('#guide_taxa').prepend(json.guide_taxa[i].html)
+        $('#guide_taxa .guide_taxon:first').labelize()
       }
     }
   }, 'json').complete(function() {
     $('#addtaxa').modal('hide')
-    $('#addtaxa .modal-footer .btn-primary').attr('disabled', false).removeClass('disabled description')
-    $('#addtaxa .modal-footer .btn-primary').val($(link).data('original-value'))
+    var link = $('#addtaxa .modal-footer .btn-primary')
+    link.attr('disabled', false).removeClass('disabled description')
+    link.val($(link).data('original-value'))
   })
 }
 $('.guide_taxon .delete').bind('ajax:before', function() {
@@ -350,4 +353,69 @@ function addTag(tag) {
     tags.push(tag)
     $('#addtags input[type=text]').val(tags.join(', '))
   }
+}
+
+$('#guide_taxa .guide_taxon').labelize()
+$('input[name="guide_eol_update_flow_task[options][overview]"]').live('change', function() {
+  if ($(this).val() == "true") {
+    $('#eol_subjects').hide()
+  } else {
+    $('#eol_subjects').show()
+  }
+})
+
+$('#new_guide_eol_update_flow_task .btn-primary').click(function() {
+  $selection = $('#guide_taxa form.edit_guide_taxon:visible').has('input[type=checkbox]:checked')
+  // var msg = I18n.t('verbing_x_of_y', {verb: I18n.t('saving_verb'), x: 1, y: $selection.length})
+  // $('#guide_taxa').loadingShades(msg, {cssClass: 'bigloading'})
+  var data = $('#new_guide_eol_update_flow_task').serializeArray()
+  for (var i = 0; i < $selection.length; i++) {
+    var guideTaxonId = $($selection[i]).attr('action').match(/\d+$/)[0]
+    if (guideTaxonId) {
+      data.push({name: "guide_eol_update_flow_task[inputs_attributes]["+i+"][resource_type]", value: 'GuideTaxon'})
+      data.push({name: "guide_eol_update_flow_task[inputs_attributes]["+i+"][resource_id]", value: guideTaxonId})
+    }
+  }
+  loadingClickForButton.apply($('.modal:visible input[data-loading-click]').get(0), [{ajax:false}])
+  $.ajax({
+    url: '/flow_tasks',
+    type: 'post',
+    dataType: 'json',
+    data: data
+  }).success(function(json) {
+    console.log("[DEBUG] json: ", json)
+    runFlowTask('/flow_tasks/'+json.id+'/run.json')
+  }).error(function(arguments) {
+    var btn = $('.modal:visible input[data-loading-click]')
+    btn.attr('disabled', false).removeClass('disabled description')
+    btn.val(btn.data('original-value'))
+    alert("Error: ", arguments)
+  })
+
+  return false
+})
+
+window.runFlowTask = function(runUrl) {
+  $.ajax({
+    url: runUrl,
+    statusCode: {
+      // Accepted: request acnkowledged but file hasn't been generated
+      202: function() {
+        setTimeout('runFlowTask("'+runUrl+'")', 5000)
+      },
+      // OK: file is ready
+      200: function(flowTask) {
+        $('.modal:visible .patience').hide()
+        var btn = $('.modal:visible input[data-loading-click]')
+        btn.attr('disabled', false).removeClass('disabled description')
+        btn.val(btn.data('original-value'))
+        window.location.reload()
+      }
+    }
+  }).error(function(arguments) {
+    var btn = $('.modal:visible input[data-loading-click]')
+    btn.attr('disabled', false).removeClass('disabled description')
+    btn.val(btn.data('original-value'))
+    alert("Error: ", arguments)
+  })
 }

@@ -5,6 +5,10 @@ class GuideRange < ActiveRecord::Base
   after_save {|r| r.guide.expire_caches}
   after_destroy {|r| r.guide.expire_caches}
 
+  def to_s
+    "<GuideRange #{id}>"
+  end
+
   def attribution
     return I18n.t(:public_domain) if license == Photo::PD_CODE
     rights_holder_name ||= rights_holder unless rights_holder.blank?

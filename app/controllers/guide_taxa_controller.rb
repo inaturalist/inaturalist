@@ -1,8 +1,8 @@
 class GuideTaxaController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos]
-  before_filter :load_guide, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos]
-  before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos] do |c|
+  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos, :sync]
+  before_filter :load_guide, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos, :sync]
+  before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos, :sync] do |c|
     require_owner :klass => "Guide"
   end
   layout "bootstrap"
@@ -136,6 +136,15 @@ class GuideTaxaController < ApplicationController
     raise e unless e.message =~ /OAuthException/
     flash[:error] = "Facebook needs the owner of that photo to re-confirm their connection to #{CONFIG.site_name_short}."
     redirect_back_or_default(edit_guide_taxon_path(@guide_taxon))
+  end
+
+  def sync
+    @guide_taxon.sync_eol(:photos => true, :ranges => true, :sections => true, :overview => true)
+    respond_to do |format|
+      format.html do
+        redirect_to edit_guide_taxon_path(@guide_taxon)
+      end
+    end
   end
 
   private

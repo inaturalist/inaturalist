@@ -14,6 +14,7 @@ Inaturalist::Application.routes.draw do
     member do
       get :edit_photos
       post :update_photos
+      post :sync
     end
   end
   resources :guides do

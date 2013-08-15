@@ -7,7 +7,7 @@
       = f.text_field :position, :class => "sortable-position"
     = link_to edit_guide_taxon_path(guide_taxon), :class => "pull-left" do
       - gp = guide_taxon.guide_photos.first
-      = image_tag gp ? gp.square_url : taxon_image_url(guide_taxon.taxon, :size => "square"), :class => "img-circle", :style => "max-width:30px"
+      = image_tag gp ? gp.square_url : iconic_taxon_image_url(guide_taxon.taxon, :size => "square"), :class => "img-circle", :style => "max-width:30px"
     = link_to edit_guide_taxon_path(guide_taxon), :class => "names pull-left" do
       %span.display_name= guide_taxon.display_name
       %i.name= guide_taxon.name

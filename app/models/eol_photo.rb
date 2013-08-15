@@ -32,12 +32,12 @@ class EolPhoto < Photo
   end
   
   def self.new_from_api_response(api_response, options = {})
-    eol_page_xml = api_response
-    eol_page_xml.remove_namespaces! if eol_page_xml.respond_to?(:remove_namespaces!)
-    native_photo_id = eol_page_xml.at('dataObjectID').try(:content)
-    native_photo_id ||= eol_page_xml.at('dataObject identifier').content
-    if license = eol_page_xml.at('license')
-      license_string = eol_page_xml.search('license').children.first.inner_text
+    api_response = api_response
+    api_response.remove_namespaces! if api_response.respond_to?(:remove_namespaces!)
+    native_photo_id = api_response.at('dataObjectID').try(:content)
+    native_photo_id ||= api_response.at('dataObject identifier').content
+    if license = api_response.at('license')
+      license_string = api_response.search('license').children.first.inner_text
       license_number = Photo::C
       if license_string.include? "licenses/publicdomain/"
         license_number = PD
@@ -51,24 +51,26 @@ class EolPhoto < Photo
       # all EOL content should be CC licensed or PD, so if there's not license info we can assume it's PD
       license_number = PD
     end
-    image_url = eol_page_xml.search('mediaURL').children.last.inner_text
-    thumb_url = eol_page_xml.search('thumbnailURL').children.last.inner_text
-    rights_holder = eol_page_xml.search('dataObject rightsHolder')
+    image_url = api_response.search('mediaURL').children.last.inner_text
+    thumb_url = api_response.search('thumbnailURL').children.last.inner_text
+    rights_holder = api_response.search('dataObject rightsHolder')
     if rights_holder.count == 0
-      alternate_username = eol_page_xml.search('agent')
+      alternate_username = api_response.search('agent')
       native_username = alternate_username[0].inner_text
       if alternate_username.count > 1
         if alternate_username[1]["role"] == "photographer"
           native_username = alternate_username[1].inner_text
         end
       end
-    else
+    elsif rights_holder.children.size > 0
       native_username = rights_holder.children.first.inner_text
+    else
+      native_username = rights_holder.content
     end
 
-    native_page_url = if (verson_id = eol_page_xml.at('dataObjectVersionID').try(:content))
+    native_page_url = if (verson_id = api_response.at('dataObjectVersionID').try(:content))
       "http://eol.org/data_objects/#{verson_id}"
-    elsif (eol_taxon_id = eol_page_xml.at('taxon identifier').try(:content))
+    elsif (eol_taxon_id = api_response.at('taxon identifier').try(:content))
       "http://eol.org/pages/#{eol_taxon_id}"
     end
     

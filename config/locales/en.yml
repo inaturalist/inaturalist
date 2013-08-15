@@ -115,6 +115,7 @@ en:
   add_asset: Add asset
   add_batch: Add batch
   add_colors: Add colors
+  add_comma_separated_tags: "Add comma-separated tags"
   add_comment: Add a comment
   add_common_names_for: add common names for existing taxa
   add_countries: Add Countries
@@ -149,6 +150,7 @@ en:
   add_several_observations_at_once: Add several observations at once.
   add_shape: Add shape
   add_some_now: Add some now
+  add_tags: Add tags
   add_taxa: Add taxa
   add_taxa_to_places:  add taxa to places
   add_taxon_batch_to: "Add Taxon Batch to %{list}"
@@ -367,7 +369,7 @@ en:
   back_to_shared_taxon: "Back to %{sharedtaxon}"
   back_to_taxon: "Back to %{defaulttaxon}"
   back_to_this: "Back to %{place}"
-  back_to_viewing: "Back to Viewing <i>%{taxon}</i>"
+  back_to_viewing: "Back to viewing <i>%{taxon}</i>"
   back_to_x: "Back to %{noun}"
   back_to_x_journal: "Back to %{user}'s journal"
   back_to_x_observations: "Back to %{user}'s observations"
@@ -495,6 +497,7 @@ en:
   choose_photos_to_tag_from_photostream: Choose photos to tag from your photostream
   choose_place: Choose a place
   choose_rule: Choose a rule
+  choose_subjects: Choose subjects
   choose_tags: Choose tags
   choose_taxon: Choose a taxon
   choose_what_kind_of_change_youre_creating: "Choose what kind of change you're creating."
@@ -1763,6 +1766,7 @@ en:
   remember_its_a_lot_easier_to_id: "Remember, it's a lot easier to ID something if you provide as much descriptive information as possible. Most importantly, please provide a <strong>place</strong>, a <strong>date/time</strong>, and some information about the <strong>size</strong>."
   remember_me: Remember me
   remove: Remove
+  remove_comma_separated_tags: "Remove comma-separated tags"
   remove_from: Remove from
   remove_curator: Remove curator
   remove_curator_role: Remove curator role
@@ -1775,6 +1779,7 @@ en:
   remove_manager: Remove manager
   remove_project_user: Remove project user
   remove_selected: Remove selected
+  remove_tags: Remove tags
   remove_your_existing_id?: Remove your existing ID?
   removed: Removed
   removed_project_user: Removed project user
@@ -2061,6 +2066,7 @@ en:
   surround_any_cells_containing_commas: Surround any cells containing commas with double quotes
   suspend_user: Suspend user
   sync: Sync?
+  sync_with_eol: Sync with EOL
   synonyms: Synonyms
   table: Table
   tags: Tags
@@ -2280,6 +2286,7 @@ en:
   unknown_rank: '(Unknown Rank)'
   unlink_your_picasa_account: Unlink Your Picasa Account
   updates_notification_email_subject: "%{prefix} New updates %{date}"
+  updating: Updating...
   unpublish: Unpublish
   unsubscribe: Unsubscribe
   unsubscribe_from_this: Unsubscribe from this
@@ -2289,7 +2296,9 @@ en:
   update_existing_photos_with_new_license: Update existing photos with new license choices
   update_past: "Update past %{type}"
   update_photos: Update photos
+  update_selected_taxa: Update selected taxa
   update_your_content: Update your content
+  update_with_eol_content: Update with EOL content
   updated: Updated
   updated_by: Updated by
   updated_daily: Updated daily
@@ -2604,6 +2613,14 @@ en:
           (which might be the Serengeti), Guides can help you make sense of
           our planet's stunning diversity of life.
       edit:
+        add_eol_content: |
+          Add EOL content to selected taxa as a batch. This can take some
+          time, so please be patient.
+        eol_subjects_desc: |
+          EOL publishes content under a number of different subject headings,
+          not all of which are available for every taxon. Choosing "Overview"
+          will just import the first available text section from EOL, which is
+          generally contains a summary when available.
         licensing_explanation: |
           Licensing your content grants other people the right to copy and
           modify it without asking your permission. It makes it much easier to

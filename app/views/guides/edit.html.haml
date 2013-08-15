@@ -25,6 +25,7 @@
     #map { height: 200px;}
     .bootstrap select, .bootstrap input[type="file"] {line-height: 0;}
     #guide_description {height:300px;}
+    #new_guide_eol_update_flow_task {margin-bottom:0;}
 - content_for :extrajs do
   :javascript
     var GUIDE = #{raw @guide.to_json},
@@ -110,6 +111,7 @@
                 %li= link_to t(:remove_tags), "#removetags", "data-toggle" => "modal"
                 %li= link_to_function t(:remove_selected), "removeSelected()"
                 %li= link_to t(:reorder_by_taxonomy), reorder_guide_path(@guide, :by => "taxonomy"), :method => :put, :confirm => "Are you sure? This will reload the page and cannot be undone."
+                %li= link_to t(:update_with_eol_content), "#eolupdate", "data-toggle" => "modal"
             %button#selectall.btn{:type => "button", :role => "button"}=t :select_all
             %button#selectnone.btn{:type => "button", :role => "button"}=t :select_none
             %button.btn-primary.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#addtaxa"}=t :add_taxa
@@ -174,7 +176,7 @@
     %h3=t :add_tags
   .modal-body.row-fluid
     %p=t 'views.guides.tags_help_html'
-    %input{:type => "text", :placeholder => "Add comma-separated tags", :class => "span11"}
+    %input{:type => "text", :placeholder => t(:add_comma_separated_tags, :default => "Add comma-separated tags"), :class => "span11"}
     #recent_tags.quiet
       - for tag in @recent_tags
         = link_to_function "<i class='icon-plus-sign'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
@@ -186,7 +188,41 @@
     %button.close{:type => "button", "data-dismiss" => "modal"} x
     %h3=t :remove_tags
   .modal-body.row-fluid
-    %input{:type => "text", :placeholder => "Remove comma-separated tags", :class => "span11"}
+    %input{:type => "text", :placeholder => t(:remove_comma_separated_tags, :default => "Remove comma-separated tags"), :class => "span11"}
   .modal-footer
     %button.btn{"data-dismiss" => "modal"}=t :close
     %button.btn.btn-primary=t :remove_tags
+#eolupdate.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
+  .modal-header
+    %button.close{:type => "button", "data-dismiss" => "modal"} x
+    %h3=t :update_with_eol_content
+  = form_for GuideEolUpdateFlowTask.new, :url => flow_tasks_url, :remote => true, :html => {'data-type' => 'json', :class => "unstacked"} do |f|
+    .modal-body
+      %p=t 'views.guides.edit.add_eol_content'
+      .row-fluid
+        = f.fields_for :options do |fo|
+          .span4
+            %h4=t :content_types
+            = fo.fields_for :types do |ft|
+              - %w(photos ranges sections).each do |tp|
+                = fo.label tp, :class => "checkbox" do
+                  = fo.check_box tp, :checked => true
+                  =t tp
+          .span8
+            %h4=t :section_subjects
+            %p=t 'views.guides.edit.eol_subjects_desc'
+            .row-fluid
+              .span4
+                = fo.label :overview, :value => true, :class => "radio" do
+                  = fo.radio_button :overview, true, :checked => true
+                  =t :overview
+              .span8
+                = fo.label :overview, :value => false, :class => "radio" do
+                  = fo.radio_button :overview, false
+                  =t :choose_subjects
+                #eol_subjects.hide
+                  = fo.select :subjects, GuideSection::EOL_SUBJECTS.map{|s| [t(s.underscore, :default => s.titleize), s]}, {}, :multiple => true
+
+    .modal-footer
+      %button.btn{"data-dismiss" => "modal"}=t :close
+      = f.submit t(:update_selected_taxa), :class => "btn btn-primary", :data => {:loading_click => t(:updating)}

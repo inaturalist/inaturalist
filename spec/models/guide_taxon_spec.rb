@@ -74,3 +74,136 @@ end
 #     gt.display_name.downcase.should eq("coachwhip")
 #   end
 # end
+
+describe GuideTaxon, "sync_eol" do
+  let(:gt) { GuideTaxon.make! }
+  before(:all) do
+    @mflagellum_page ||= EolService.page(791500, :common_names => true)
+  end
+
+  it "should update the display_name" do
+    gt.display_name.should_not eq "coachwhip"
+    gt.sync_eol(:page => @mflagellum_page)
+    gt.display_name.should eq "coachwhip"
+  end
+end
+
+describe GuideTaxon, "sync_eol_photos" do
+  let(:gt) { GuideTaxon.make! }
+  before(:all) do
+    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true)
+  end
+
+  it "should add new photos" do
+    gt.guide_photos.should be_blank
+    gt.sync_eol_photos(:page => @mflagellum_page)
+    gt.save!
+    gt.reload
+    gt.guide_photos.should_not be_blank
+  end
+
+  it "should not add duplicate photos" do
+    gt.sync_eol_photos(:page => @mflagellum_page)
+    gt.save!
+    s1 = gt.guide_photos.size
+    gt.sync_eol_photos(:page => @mflagellum_page)
+    gt.save!
+    gt.reload
+    s2 = gt.guide_photos.size
+    s2.should eq s1
+  end
+
+  # it "should not add maps" do
+  #   page = EolService.page(791500, :common_names => true, :maps => 1, :details => true, :photos => 0)
+  #   gt.sync_eol_photos(:page => page)
+  #   if gp = gt.guide_photos.last
+  #     puts "gp.attributes: #{gp.attributes.inspect}"
+  #   end
+  #   gt.guide_photos.should be_blank
+  # end
+end
+
+describe GuideTaxon, "sync_eol_ranges" do
+  let(:gt) { GuideTaxon.make! }
+  before(:all) do
+    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1)
+  end
+  it "should add new ranges" do
+    gt.guide_ranges.should be_blank
+    gt.sync_eol_ranges(:page => @mflagellum_page)
+    gt.guide_ranges.should_not be_blank
+  end
+  it "should not add duplicate ranges" do
+    gt.sync_eol_ranges(:page => @mflagellum_page)
+    gt.save!
+    s1 = gt.guide_ranges.size
+    gt.sync_eol_ranges(:page => @mflagellum_page)
+    s2 = gt.guide_ranges.size
+    s2.should eq s1
+  end
+end
+
+describe GuideTaxon, "sync_eol_sections" do
+  let(:gt) { GuideTaxon.make! }
+  before(:all) do
+    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1, :text => 5)
+  end
+  it "should add new sections" do
+    gt.guide_sections.should be_blank
+    gt.sync_eol_sections(:page => @mflagellum_page)
+    gt.guide_sections.should_not be_blank
+  end
+
+  it "should not add duplicate sections" do
+    gt.sync_eol_sections(:page => @mflagellum_page, :subjects => %w(TypeInformation))
+    gt.save
+    gt.reload
+    gt.guide_sections.size.should == 1
+    gt.sync_eol_sections(:page => @mflagellum_page, :subjects => %w(TypeInformation))
+    gt.save
+    gt.reload
+    gt.guide_sections.size.should == 1
+  end
+
+  it "should only add the requested subjects" do
+    gt.sync_eol_sections(:page => @mflagellum_page, :subjects => %w(TypeInformation))
+    gs = gt.guide_sections.last
+    gs.description.to_s.should =~ /Colorado Desert/
+  end
+
+  it "should not import multiple sections for the same subject" do
+    gt.sync_eol_sections(:page => @mflagellum_page, :subjects => %w(Distribution))
+    gt.save!
+    gt.reload
+    gt.guide_sections.size.should eq 1
+  end
+end
+
+describe GuideTaxon, "get_eol_page" do
+  let(:gt) { GuideTaxon.make!(:name => "Masticophis flagellum") }
+  it "should retrieve photos if requested" do
+    page = gt.get_eol_page(:photos => 1)
+    img_data_object = page.search('dataObject').detect{|data_object| data_object.at('dataType').to_s =~ /StillImage/ }
+    img_data_object.should_not be_blank
+    # puts "img_data_object: #{img_data_object}"
+    img_data_object.at('mediaURL').should_not be_blank
+  end
+
+  it "should retrieve ranges if requested" do
+    page = gt.get_eol_page(:ranges => 1)
+    page.search('dataObject').detect{|data_object| data_object.at('dataSubtype').to_s =~ /Map/ }.should_not be_blank
+  end
+
+  it "should retrieve sections if requested" do
+    page = gt.get_eol_page(:sections => 1)
+    page.search('dataObject').detect{|data_object| data_object.at('dataType').content == "http://purl.org/dc/dcmitype/Text" }.should_not be_blank
+  end
+
+  it "should retrieve sections of requested subjects" do
+    page = gt.get_eol_page(:sections => 1, :subjects => %w(TypeInformation))
+    page.search('dataObject').detect{|data_object| 
+      data_object.at('dataType').content == "http://purl.org/dc/dcmitype/Text" &&
+        data_object.at('subject').try(:content) =~ /TypeInformation/ 
+    }.should_not be_blank
+  end
+end

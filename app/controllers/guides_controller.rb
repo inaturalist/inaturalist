@@ -1,3 +1,4 @@
+#encoding: utf-8
 class GuidesController < ApplicationController
   include GuidesHelper
   before_filter :authenticate_user!, :except => [:index, :show, :search]
@@ -54,7 +55,7 @@ class GuidesController < ApplicationController
         if ancestry_counts.blank?
           @nav_taxa = []
         else
-          ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0}
+          ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0 && a[0] == Taxon::LIFE.id.to_s}
           width = ancestries.last.size
           matrix = ancestries.map do |a|
             a + ([nil]*(width-a.size))
@@ -70,7 +71,7 @@ class GuidesController < ApplicationController
               break
             end
           end
-          @nav_taxa = Taxon.where("id IN (?)", subconsensus_taxon_ids).sort_by(&:name)
+          @nav_taxa = Taxon.where("id IN (?)", subconsensus_taxon_ids).includes(:taxon_names).sort_by(&:name)
           @nav_taxa_counts = {}
           @nav_taxa.each do |t|
             @nav_taxa_counts[t.id] = @guide.guide_taxa.joins(:taxon).where(t.descendant_conditions).count
@@ -140,7 +141,7 @@ class GuidesController < ApplicationController
   # GET /guides/1/edit
   def edit
     @nav_options = %w(iconic tag)
-    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_photos => [:photo]], :guide_photos => [:photo], :tags => {}).
+    @guide_taxa = @guide.guide_taxa.includes(:taxon, {:guide_photos => :photo}, :tags).
       order("guide_taxa.position")
     @recent_tags = @guide.recent_tags
   end

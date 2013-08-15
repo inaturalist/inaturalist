@@ -142,7 +142,7 @@ class Guide < ActiveRecord::Base
 
   def add_taxa_from_eol_collection(collection_url)
     return unless collection_id = collection_url[/\/(\d+)(\.\w+)?$/, 1]
-    eol = EolService.new(:timeout => 30)
+    eol = EolService.new(:timeout => 30, :debug => Rails.env.development?)
     c = eol.collections(collection_id, :per_page => 500, :filter => "taxa", :sort_by => "sort_field")
     saved = 0
     errors = []

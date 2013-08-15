@@ -1,15 +1,17 @@
+#encoding: utf-8
 class GuidePhoto < ActiveRecord::Base
   attr_accessible :description, :guide_taxon_id, :photo_id, :title, :photo, :guide_taxon, :position
   belongs_to :guide_taxon, :inverse_of => :guide_photos
   belongs_to :photo, :inverse_of => :guide_photos
   validates :photo, :presence => true
+  after_destroy :destroy_orphan_photo
+
+  def to_s
+    "<GuidePhoto #{id}>"
+  end
 
   def url
     photo.try(:small_url)
-  end
-
-  def respond_to?(method, include_private = false)
-    photo.respond_to?(method) || super
   end
 
   def method_missing(method, *args, &block)
@@ -21,5 +23,10 @@ class GuidePhoto < ActiveRecord::Base
     options[:methods] += [:url, :square_url, :small_url, :medium_url, :large_url]
     options[:methods].uniq!
     super(options)
+  end
+
+  def destroy_orphan_photo
+    Photo.delay.destroy_orphans(photo_id)
+    true
   end
 end
