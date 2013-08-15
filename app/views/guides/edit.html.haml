@@ -26,6 +26,12 @@
     .bootstrap select, .bootstrap input[type="file"] {line-height: 0;}
     #guide_description {height:300px;}
     #new_guide_eol_update_flow_task {margin-bottom:0;}
+    .icon-tag.strike{position:relative;}
+    .icon-tag.strike:after {
+      content: ' '; width:100%; height:0.5em; border-bottom: 3px solid white; position: absolute; display: block; top:0; left:-0.25em; 
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+    }
 - content_for :extrajs do
   :javascript
     var GUIDE = #{raw @guide.to_json},
@@ -102,20 +108,32 @@
       #controls.clearfix.row-fluid{"data-spy" => "affix", "data-offset-top" => 148}
         .navbar.clearfix
           .pull-left
+            %button#selectall.btn{:type => "button", :role => "button"}=t :select_all
+            %button#selectnone.btn{:type => "button", :role => "button"}=t :select_none
             .btn-group
               %button#editbutton.btn.warning.dropdown-toggle{"data-toggle" => "dropdown"}
                 =t :edit
                 %span.caret
               %ul.dropdown-menu
-                %li= link_to t(:add_tags), "#addtags", "data-toggle" => "modal"
-                %li= link_to t(:remove_tags), "#removetags", "data-toggle" => "modal"
-                %li= link_to_function t(:remove_selected), "removeSelected()"
-                %li= link_to t(:reorder_by_taxonomy), reorder_guide_path(@guide, :by => "taxonomy"), :method => :put, :confirm => "Are you sure? This will reload the page and cannot be undone."
+                %li
+                  = link_to "#addtags", "data-toggle" => "modal" do
+                    %i.icon-tag
+                    = t(:add_tags)
+                %li
+                  = link_to "#removetags", "data-toggle" => "modal" do
+                    %i.icon-tag.strike
+                    = t(:remove_tags)
+                %li.divider
+                %li
+                  = link_to_function "<i class='icon-trash'></i> #{t(:remove_selected)}".html_safe, "removeSelected()"
+                %li.divider
+                %li
+                  = link_to reorder_guide_path(@guide, :by => "taxonomy"), :method => :put, :confirm => "Are you sure? This will reload the page and cannot be undone." do
+                    %i.icon-sort-by-attributes
+                    = t(:reorder_by_taxonomy)
                 %li= link_to t(:update_with_eol_content), "#eolupdate", "data-toggle" => "modal"
-            %button#selectall.btn{:type => "button", :role => "button"}=t :select_all
-            %button#selectnone.btn{:type => "button", :role => "button"}=t :select_none
             %button.btn-primary.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#addtaxa"}=t :add_taxa
-          %form.navbar-search
+          %form.navbar-search.pull-right
             %input{:type => "text", :placeholder => t(:search), :name => "q", :value => @q}
       #guide_taxa
         - if @guide_taxa.blank?
@@ -220,7 +238,7 @@
                 = fo.label :overview, :value => false, :class => "radio" do
                   = fo.radio_button :overview, false
                   =t :choose_subjects
-                #eol_subjects.hide
+                #eol_subjects.hide{:style => "position:relative;"}
                   = fo.select :subjects, GuideSection::EOL_SUBJECTS.map{|s| [t(s.underscore, :default => s.titleize), s]}, {}, :multiple => true
 
     .modal-footer

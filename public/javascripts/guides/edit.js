@@ -419,3 +419,11 @@ window.runFlowTask = function(runUrl) {
     alert("Error: ", arguments)
   })
 }
+$('#guide_eol_update_flow_task_options_subjects').multiselect()
+$('#eolupdate').on('shown', function () {
+  $('body').css({height: '100%', overflow:'hidden'})
+})
+$('#eolupdate').on('hidden', function () {
+  $('body').css({height: 'auto', overflow:'auto'})
+})
+
