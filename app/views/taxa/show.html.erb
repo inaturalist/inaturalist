@@ -196,37 +196,37 @@
 <% unless @taxon.is_active %>
   <div class="column span-24">
     <div class="notice">
-      <strong>Heads up:</strong> this taxon concept is inactive. 
+      <strong><%= t :heads_up %>:</strong> <%= t :this_taxon_concept_is_inactive %>.
       <% if @taxon_change -%>
-        It <%= @taxon_change.committed? ? 'has been' : 'will be' %>
+        <%= t :it %> <%= @taxon_change.committed? ? t(:has_been) : t(:will_be) %>
         <% case @taxon_change.class.to_s when 'TaxonSplit' %>
           <% if @taxon_change.taxon_id == @taxon.id -%>
-            split into
+            <%= t('change_types.split_into') %>
             <%= commas_and @taxon_change.taxa.map {|t| "<i>#{link_to(t.name, t)}</i>"} %>.
           <% else %>
-            split from
+            <%= t('change_types.split_from') %>
             <em><%= link_to @taxon_change.taxon.name, @taxon_change.taxon %></em>.
           <% end -%>
         <% when 'TaxonMerge' %>
           <% if @taxon_change.taxon_id == @taxon.id -%>
-            replacing
+            <%= t :replacing %>
             <%= commas_and @taxon_change.taxa.map {|t| "<i>#{link_to(t.name, t)}</i>"} %>.
           <% else %>
-            merged into
+            <%= t('change_types.merged_into') %>
             <em><%= link_to @taxon_change.taxon.name, @taxon_change.taxon %></em>.
           <% end -%>
         <% when 'TaxonDrop' %>
-          dropped.
+          <%= t('change_types.dropped') %>.
         <% when 'TaxonSwap' %>
           <% if @taxon_change.taxon_id == @taxon.id -%>
-            replacing
+            <%= t :replacing %>
             <em><%= link_to @taxon_change.old_taxon.name, @taxon_change.old_taxon %></em>.
           <% else %>
-            replaced by
+            <%= t('change_types.replaced_by') %>
             <em><%= link_to @taxon_change.taxon.name, @taxon_change.taxon %></em>.
           <% end -%>
         <% when 'TaxonStage' %>
-          activated soon.
+          <%= t('change_types.activated_soon') %>.
         <% end -%>
         <%= link_to "View taxonomic changes", taxon_changes_path(:taxon_id => @taxon), :class => "readmore" -%>
       <% end -%>
@@ -288,7 +288,7 @@
               <%= t("establishment.#{@listed_taxon.establishment_means}", :default => "present").capitalize %>
             <% end -%>
           </strong>
-          <%=t @listed_taxon.native? ? 'to' : 'in' %>
+          <%=t @listed_taxon.native? ? t(:to) : t(:in) %>
           <%= link_to t(@listed_taxon.place.name, :default => @listed_taxon.place.name), @listed_taxon.place %>
           <span class="small">
             (<%= link_to t(:view_details), @listed_taxon %>)
@@ -345,11 +345,7 @@
         <%=t :guide_colors %>
         <% if logged_in? -%>
           <% helptip_for :colors do %>
-            Color categories for this species, as if you were going to place it
-            in a field guide sorted by color. Please don't list every color on
-            the organism, just the prominent ones. For flowering plants please
-            use flower color.  Please leave blank for colors that wouldn't be
-            useful in categorization, like brown mammals and green ferns.
+            <%= t :color_categories_for_this_species %>
           <% end -%>
         <% end -%>
       </h3>

@@ -445,14 +445,18 @@ en:
   change_icon: Change icon
   change_password: Change Password
   change_types:
+    activated_soon: activated soon
     change_types: Change types
     split: Split
     merge: Merge
     swap: Swap
     stage: Stage
     drop: Drop
+    split_from: split from
     split_into: split into
     merge_into: merge into
+    merged_into: merged into
+    replaced_by: replaced by
     replace_with: replace with
     dropped: dropped
     staged: staged
@@ -515,6 +519,12 @@ en:
   click_the_map_to_jump_new_place: Click the map to jump to a new place
   collapse_days: collapse days
   collapse_updates: collapse updates
+  color_categories_for_this_species: |
+                Color categories for this species, as if you were going to place it
+                in a field guide sorted by color. Please don't list every color on
+                the organism, just the prominent ones. For flowering plants please
+                use flower color.  Please leave blank for colors that wouldn't be
+                useful in categorization, like brown mammals and green ferns.
   colors: Colors
   comma_separated_list_of_tracking_codes: |
               Comma-separated list of tracking codes. Add these if you want to append a tracking code when sending
@@ -947,6 +957,8 @@ en:
   guides: Guides
   guide_colors: Guide Colors
   guide_compiled_by: Guide compiled by
+  guide_taxon: Guide taxon
+  has_been: has been
   has_already_been_flagged_by: has already been flagged by
   hasnt_contributed_any_observations: hasn't contributed any observations to this project.
   hate_me_facebook: "Unlink your Facebook and %{site_name} Accounts"
@@ -1000,6 +1012,7 @@ en:
   if_you_have_any_trouble_with_the_site_check_out: 'If you have any trouble with the site, please check out our <a href="%{help_url}">help section</a> or post a message to our <a href="%{feedback_url}">feedback group</a>.'
   if_you_have_trouble_with_the_site: "If you have any trouble with the site, please check out our help section:"
   if_you_use: If you use
+  if_you_want_to_change_the_name: if you want to change the name
   if_your_project_is: If your project is about a particular place, set the coordinates by clicking the map or entering them manually.
   if_your_search_comes_up: "If your search comes up empty, you should see some search boxes to repeat the search through our external name providers:"
   ignore: ignore
@@ -1062,7 +1075,8 @@ en:
   is_the_organism_wild: "Is the organism wild/naturalized?"
   is_this_observation_offensive_html: 'Is this observation <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
   is_this_place_a_duplicate: Is this place a duplicate? 
-  it_has: It has 
+  it: It
+  it_has: It has
   it_instead: it instead.
   its_important_that_you:  It's important that you click
   iucn_red_list_status: IUCN Red List status
@@ -1482,6 +1496,7 @@ en:
     absent: absent
   of: of
   of_it_and_its_descendants: of it and its descendants
+  of_least_concern: Of least_concern
   offensive_inappropriate: offensive / inappropriate
   on_: "on"
   on_date: "at %{date}"
@@ -1787,6 +1802,7 @@ en:
   reorder_by_taxonomy: Reorder by taxonomy
   repair_doesnt_work_for_that_kind_of_photo: Repair doesn't work for that kind of photo
   replace_parentesis: (replace)
+  replacing: replacing
   reply: Reply
   report_any_problems: report any problems
   reptiles: reptiles
@@ -2222,7 +2238,11 @@ en:
   this_taxon_change_has_been_commited: |
     <strong>This taxon change has been committed!</strong>
     Please don't edit the taxa.  Editing other fields is ok.
+  this_taxon_concept_is_inactive: this taxon concept is inactive
   this_taxon_has_no_default_photo: This taxon has no default photo!
+  this_taxon_is_inactive_this_means: |
+    This taxon is <strong>inactive</strong>. This means %{site_name}'s curators have replaced
+    it with a more taxonomically current concept.
   this_taxon_name_was_originally_imported: "This taxon name was originally imported from an external name provider:"
   this_taxon_was_originally_imported_from: "This taxon was originally imported from an external name provider:"
   this_tool_is_experimental: This tool is experimental, so please
@@ -2385,6 +2405,7 @@ en:
   view_place: View place
   view_site_name_observations_html: "View <strong>%{site_name}</strong> observations"
   view_stats: View stats
+  view_taxon_changes: View taxon changes
   view_taxon_page: View taxon page
   view_taxon_page_for: View taxon page for this
   view_taxon_page_for_this_x: "View taxon page for this %{x}"
@@ -2451,6 +2472,7 @@ en:
   white: white
   widget: Widget
   widget_code: Widget code
+  will_be: will be
   wikipedia_entry: Wikipedia entry
   wikipedia_taxobox_raquo: "Wikipedia taxobox &raquo;"
   with: with
