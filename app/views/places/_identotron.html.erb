@@ -19,9 +19,8 @@
     </h3>
     <% unless taxon.is_active? -%>
       <div class="notice box">
-        This taxon is <strong>inactive</strong>. This means <%= CONFIG.site_name %>'s curators have replaced 
-        it with a more taxonomically current concept.
-        <%= link_to "View taxon changes", taxon_changes_path(:taxon_id => taxon), :class => "readmore" %>
+        <%= t(:this_taxon_is_inactive_this_means, :site_name => CONFIG.site_name).html_safe %>
+        <%= link_to t(:view_taxon_changes), taxon_changes_path(:taxon_id => taxon), :class => "readmore" %>
       </div>
     <% end -%>
   </div>
@@ -34,7 +33,7 @@
           :class => "zoomable",
           :title => t(:photo_by_id_attribution, :id => photos[0].id, :attribution => photos[0].attribution) %>
         <div class="meta">
-          Photo: <%= link_to photos.first.attribution, native_url_for_photo(photos.first) %>
+          <%= t :photo %>: <%= link_to photos.first.attribution, native_url_for_photo(photos.first) %>
         </div>
       </div>
       <% for photo in photos[1..4] %>

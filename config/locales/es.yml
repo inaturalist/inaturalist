@@ -469,14 +469,18 @@ es:
   change_icon: "Cambiar ícono"
   change_password: "Cambiar su contraseña"
   change_types:
+    activated_soon: activado hace poco
     change_types: Tipo de cambios
     split: Separar
     merge: Mezclar
     swap: Intercambiar
     stage: Etapa
     drop: Eliminar
+    split_from: dividido de
     split_into: dividido en
     merge_into: mezclado en
+    merged_into: fue combinado en
+    replaced_by: reemplazado por
     replace_with: reemplazado con
     dropped: eliminado
     staged: cambio de etapa
@@ -537,6 +541,11 @@ es:
   click_the_map_to_jump_new_place: "Haga clic en el mapa para moverse a un lugar nuevo"
   collapse_days: "contraer días"
   collapse_updates: "contraer actualizaciones"
+  color_categories_for_this_species: |
+              Las categoria de colores para la especie, es como si fueras a realizar una guia ordenada de acuerdo a su color.
+              Porfavor no listes todos los colores del organismo, solo los más prominentes. Para los colores de las plantas solo
+              usa el color de su flor.  Profavor no pongas colores que no ayuden a la categorización,
+              por ejemplo: evita usar el color café para los mamíferos y verde para las plantas.
   colors: Colores
   comma_separated_list_of_tracking_codes: |
                 Separa los códigos de rastreo con comas. Añade esto si quieres poner un código de rastreo cuando las personas hagan
@@ -1117,7 +1126,9 @@ es:
   group: Grupo
   guess_description: "Estimación / Descripción"
   guide_colors: "Guía de colores"
+  guide_taxon: Taxon guia
   has_already_been_flagged_by: ya ha sido reportado por
+  has_been: ha sido
   hasnt_contributed_any_observations: "no ha aportado ninguna observación a este proyecto."
   hate_me_facebook: "Desvincular sus cuentas de Facebook e %{site_name}"
   hate_me_flickr: "Desvincular sus cuentas de Flickr e %{site_name}"
@@ -1176,6 +1187,7 @@ es:
   if_you_have_any_trouble_with_the_site_check_out: 'Si tuviera algún problema con el sitio, por favor revise nuestro <a href="%{help_url}">sección de ayuda</a> o escriba un mensaje a nuestro <a href="%{feedback_url}">grupo de retroalimentación</a>.'
   if_you_have_trouble_with_the_site: "Si tuviera algún problema con el sitio, por favor revise nuestra sección de ayuda"
   if_you_use: "Si usted usa"
+  if_you_want_to_change_the_name: si solo quieres cambiar el nombre
   if_your_project_is: Si tu proyecto es acerca de un lugar especifico, añade las coordenadas seleccionando el enlace del mapa o añadelas manualmente.
   if_your_search_comes_up: "Si su búsqueda regresa vacía, debería ver algunas cajas de búsqueda para repetir la búsqueda a través de nuestros proveedores externos de nombres"
   ignore: Ignorar
@@ -1238,6 +1250,7 @@ es:
   is_the_organism_wild: "¿Es el organismo salvaje?"
   is_this_observation_offensive_html: "¿Es esta observación <a href=\"/help#inappropriate\">inapropiada</a>, spam u ofensiva?"
   is_this_place_a_duplicate: "¿Este lugar está duplicado?"
+  it: Este
   it_has: Tiene
   it_instead: "en vez de eso."
   its_important_that_you: "Es importante que haga click"
@@ -1711,6 +1724,7 @@ es:
   october: Octubre
   of: de
   of_it_and_its_descendants: "de él y sus descendientes"
+  of_least_concern: De preocupación menor
   offensive_inappropriate: ofensivo / inapropiado
   on_: en
   on_day: el
@@ -2002,6 +2016,7 @@ es:
   repair_doesnt_work_for_that_kind_of_photo: Reparar no funciona para ese tipo de foto.
   replace_parentesis: (reemplazar)
   replaced_with: sustituido con
+  replacing: reemplazando
   reply: Responda
   report_any_problems: reporta cualquier problema
   reptiles: reptiles
@@ -2426,7 +2441,10 @@ es:
   this_taxon_change_has_been_commited:
       <strong>¡Este cambio de taxonómia en la especie o grupo ha sido guradado!</strong>
       Porfavor no edites la especie o grupo. Puedes editar los demas campos.
+  this_taxon_concept_is_inactive: esta especie o grupo esta inactiva
   this_taxon_has_no_default_photo: "¡Este taxón no tiene foto por defecto!"
+  this_taxon_is_inactive_this_means: |
+      Este taxon esta <strong>inactivo</strong>. Esto sigifica que los curadores de %{site_name} lo han reemplazado por un concepto mas actualizado.
   this_taxon_name_was_originally_imported: "Este nombre de taxón fue importado originalmente de un proveedor externo de nombres"
   this_taxon_was_originally_imported_from: "Este taxón fue importado originalmente de un proveedor externo de nombres"
   this_tool_is_experimental: Esta herramienta esta aún en desarrollo, así que porfavor
@@ -2594,6 +2612,7 @@ es:
   view_photos_ranges_observations_more: "¡Ve fotos, distribuciones de especies, observaciones de %{site_name} y más. Hemos recopilado información de muchas fuentes diferentes y las hemos combinado para proporcionar un breve resumen de cada especie en cada lugar."
   view_place: Ver lugar
   view_stats: Ver contribuciones
+  view_taxon_changes: Vier los cambios del taxon
   view_taxon_page: "Ver página del taxón"
   view_taxon_page_for: "Ver página del taxón para este lugar"
   view_taxon_page_for_this_x: "Ver página del taxón para este %{x}"
@@ -2925,6 +2944,7 @@ es:
   white: blanco
   widget: Widget
   widget_code: "Código de widget"
+  will_be: será
   wikipedia_entry: "Registro de Wikipedia"
   wikipedia_taxobox_raquo: "Ficha de taxón en Wikipedia &raquo;"
   with: con
