@@ -432,7 +432,13 @@ class User < ActiveRecord::Base
     )
     u.skip_email_validation = true
     u.skip_confirmation!
-    unless u.save
+    user_saved = begin
+      u.save
+    rescue PG::Error => e
+      raise e unless e.message =~ /duplicate key value violates unique constraint/
+      false
+    end
+    unless user_saved
       suggestion = User.suggest_login(u.login)
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
       u.update_attributes(:login => suggestion)
