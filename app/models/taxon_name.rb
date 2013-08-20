@@ -69,7 +69,8 @@ class TaxonName < ActiveRecord::Base
   
   DEFAULT_LEXICONS = [
     LEXICONS[:SCIENTIFIC_NAMES],
-    LEXICONS[:ENGLISH]
+    LEXICONS[:ENGLISH],
+    LEXICONS[:SPANISH]
   ]
   
   LEXICONS.each do |k,v|
