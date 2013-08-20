@@ -1379,6 +1379,10 @@ class ObservationsController < ApplicationController
     @default_taxa = @taxon ? @taxon.ancestors : Taxon::ICONIC_TAXA
     @taxon ||= Taxon::LIFE
     @default_taxa = [@default_taxa, @taxon].flatten.compact
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def fields

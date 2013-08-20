@@ -505,7 +505,7 @@ class ListedTaxon < ActiveRecord::Base
     ctrl = ActionController::Base.new
     ctrl.expire_fragment(guide_taxon_cache_key) #THIS
     ctrl.expire_page("/places/cached_guide/#{place_id}.html")
-    ctrl.expire_page("/places/cached_guide/#{place.slug}.html")
+    ctrl.expire_page("/places/cached_guide/#{place.slug}.html") if place
     ctrl.expire_fragment(FakeView.listed_taxon_path(id))
     ctrl.expire_fragment(FakeView.listed_taxon_path(id, :for_owner => true))
     ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
@@ -515,7 +515,7 @@ class ListedTaxon < ActiveRecord::Base
     unless place_id.blank?
       ctrl.expire_fragment(guide_taxon_cache_key)
       ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place_id))
-      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug))
+      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug)) if place
     end
     ctrl.expire_page FakeView.list_path(list_id, :format => 'csv')
     ctrl.expire_page FakeView.list_show_formatted_view_path(list_id, :format => 'csv', :view_type => 'taxonomic')

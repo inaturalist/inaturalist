@@ -139,7 +139,7 @@ form .field{margin-bottom:10px;}
 .required{color:deeppink;}
 .inlabel { margin-bottom: 0.2em;}
 form .field .description { margin-bottom: 0.5em;}
-.inlabel .fieldWithErrors{display:inline;}
+.inlabel .fieldWithErrors, .inlabel .field_with_errors{display:inline;}
 .stacked{margin-bottom:10px;}
 .upstacked{margin-top:10px;}
 .unstacked, .column.unstacked{margin-bottom:0px;}

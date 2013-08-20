@@ -232,6 +232,9 @@ class Observation < ActiveRecord::Base
     :allow_blank => true, 
     :less_than_or_equal_to => 180, 
     :greater_than_or_equal_to => -180
+  validates_length_of :observed_on_string, :maximum => 256, :allow_blank => true
+  validates_length_of :species_guess, :maximum => 256, :allow_blank => true
+  validates_length_of :place_guess, :maximum => 256, :allow_blank => true
   
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
