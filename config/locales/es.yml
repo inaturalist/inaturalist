@@ -106,6 +106,10 @@ es:
               wikipedia_summary: Resumen de wikipedia
               source_identifier: Identificador de la fuente
               source_url: Enlace fuente
+      taxon_name:
+              name_provider: Proveedor de nombre
+              source_url: Dirección web de la fuente
+              source_identifier: Identificador de la fuente
       source:
               title: Título
               in_text: Referencia
@@ -1295,6 +1299,42 @@ es:
   leave_this_project: "Salir de este proyecto"
   less: Menos
   lexicon: Léxico
+  lexicons:
+      scientific_names: Nombres científicos
+      afrikaans: Afrikáans
+      bengali: Bengalí
+      cebuano: Cebuano
+      creole_french: Criollo (Francés)
+      creole_portuguese: Criollo (Portugués)
+      davawenyo: Davawenyo
+      dutch: Holandés
+      english: Inglés
+      french: Francés
+      gela: Gela
+      german: Alemán
+      hawaiian: Hawaiano
+      hebrew: Hebreo
+      hiligaynon: Hiligainón
+      icelandic: Islandés
+      ilokano: Ilocano
+      italian: Italiano
+      japanese: Japonés
+      korean: Coreano
+      maltese: Maltés
+      maori: Maorí
+      misima_paneati: Misima-paneati
+      norwegian: Noruego
+      pangasinan: Pangasinán
+      portuguese: Portugués
+      rumanian: Rumano
+      russian: Ruso
+      spanish: Español
+      swedish: Sueco
+      tagalog: Tagalo
+      tahitian: Tahitiano
+      tokelauan: Tokelauano
+      turkish: Turco
+      waray_waray: Samareño
   license_descriptions_and_images: "Descripción de las licenciaas y sus respectivas imágenes"
   licensing: Licencias
   licensing_your_content: |
@@ -1462,6 +1502,8 @@ es:
   naturalized: naturalizado
   nav: Nav
   nav_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  ne_lat: Lat. N.E.
+  ne_lon: Long. N.E.
   near_threatened: "casi amenazado"
   nearby_observations: "Observaciones cercanas"
   need_id_help?: "¿Necesita ayuda?"
@@ -1744,6 +1786,7 @@ es:
   only_project_curators_can_do_that: Solo los curadores del proyecto pueden hacer eso.
   only_receive_updates_about_this_taxon: Solo recibir notificaciones de esta especie o grupo
   only_show_active_taxa: Solo muestra especies activas
+  only_show_for_species_subspecies_varieties_etc: Solo muestra el link para especies, subespecies, variedades, etc (de este grupo o especie).
   only_show_taxa_from: "mostrando taxones de esta lista solamente"
   only_show_taxa_fom_this_list: "Mostrar sólo los taxones de esta lista"
   only_showing_taxa_from: "mostrando taxones de esta lista solamente"
@@ -2025,6 +2068,7 @@ es:
   request_timed_out: "¡La petición excedio el tiempo de espera!"
   required: obligatorio
   required_columns_in_order: "Columnas requeridas en orden"
+  required_field: Campo requerido
   research: investigación
   research_grade: "grado de investigación"
   research_grade_expandable_html: "G<span class='full'>rado de </span>I<span class='full'>nvestigación</span>"
@@ -2122,10 +2166,12 @@ es:
   sent: Enviado
   separate_values_with_a_pipe: "Valores separados por barras, por ejemplo \"1-5|6-10|muchos\" o \"sí|no|tal vez\""
   september: Septiembre
+  set_a_place_if_this_link_only_applies_to: Pon el lugar solo si la especie o grupo se encuentra ese lugar. Déjalo en blanco si la especie o grupo aplica para cualquier parte del mundo.
   set_license: "Fijar licencia"
   settings: Propiedades
   share_on: "Compartir por"
   share_your_observation_with_researchers_by: "Comparta su observación con investigadores por"
+  short_or_abbreviated_title_for_display: Regularmente es una abreviatura del título cuando el espacio es muy limitado (máximo 10 caracteres).
   show: Mostrar
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
   show_counts: "Mostrar conteos con base en la lista"
@@ -2292,6 +2338,8 @@ es:
       words_connector: ", "
   surround_any_cells_containing_commas: "Envuelva las celdas que contengan comas con comillas dobles"
   suspend_user: "Suspender usuario"
+  sw_lat: lat. S.O.
+  sw_lon: long. S.O.
   sync: ¿Sincronizar?
   synonyms: Sinónimos
   table: Tabla
@@ -2893,6 +2941,7 @@ es:
   vulnerable: vulnerable
   w00t_no_unfragted_taxa: "¡Hurra¡No hay taxones sin injertar!"
   w_photos_only: "con fotos solamente"
+  w_sounds: con sonidos
   wait_file_generation: "Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes."
   want_to_add_one: "¿Desea agregar una?"
   want_to_show_off_some_of_your_favorite_taxa: "¿Desea presumir algunos de sus taxones favoritos aquí?"

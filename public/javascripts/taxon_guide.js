@@ -235,7 +235,7 @@ var TaxonGuide = {
     var count = $('.guide_taxa', context).attr(countAttr)
     if (!count) { return false }
     var total = $('.guide_taxa', context).attr('data-listed-taxa-count') || $(selector).attr('data-original-total') || 0,
-        labelText = ' ' + I18n.t('of') + total,
+        labelText = ' ' + I18n.t('of') + ' ' + total,
         valueWidth = Math.round(total == 0 ? 0 : (count / total)*100),
         remainderWidth = 100 - valueWidth,
         valueLabel = '',

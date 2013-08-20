@@ -8,7 +8,6 @@
   <label class="label" for="q"><%=t :search %></label>
   <input type="text" name="q" value="<%= @q %>" id="q" class="text" />
   <select name="search_on" id="search_on">
-    option
     <option value="" class="description"><%=t :search_all_fields %></option>
     <option <% if @search_on == 'names' %>selected="selected"<% end %> value="names"><%=t :species_name %></option>
     <option <% if @search_on == 'tags' %>selected="selected"<% end %> value="tags"> <%=t :tags %> </option>
@@ -131,22 +130,22 @@
   <% end -%>
   
   <div class="left latlon">
-    <label>SW Lat.</label>
+    <label><%= t :sw_lat %></label>
     <input type="text" class="text" name="swlat" id="swlat" value="<%= @swlat %>"/>
   </div>
   <div class="left latlon">
-    <label>SW Lon.</label>
+    <label><%= t :sw_lon %></label>
     <input type="text" class="text" name="swlng" id="swlng" value="<%= @swlng %>"/>
   </div>
   <div class="left latlon">
-    <label>NE Lat.</label>
+    <label><%= t :ne_lat %></label>
     <input type="text" class="text" name="nelat" id="nelat" value="<%= @nelat %>"/>
   </div>
   <div class="left latlon">
-    <label>NE Lon.</label>
+    <label><%= t :ne_lon %></label>
     <input type="text" class="text" name="nelng" id="nelng" value="<%= @nelng %>"/>
     &nbsp;
-    <%= link_to_function "Clear", "$('.latlon input').val('')", :class => "small" %>
+    <%= link_to_function t(:clear), "$('.latlon input').val('')", :class => "small" %>
   </div>
 </div>
 
@@ -207,7 +206,7 @@
 <% unless @ofv_params.blank? -%>
   <div id="ofv_filters" class="clear row">
     <div id="ofv_filters_label" class="label">
-      <strong>Fields</strong>
+      <strong><%= t :fields %></strong>
     </div>
     <div class="left">
       <% for k,v in @ofv_params %>

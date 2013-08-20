@@ -1117,6 +1117,42 @@ en:
   leave_a_comment: Leave a comment
   leave_this_project: Leave this project
   lexicon: Lexicon
+  lexicons:
+    scientific_names: Scientific Names
+    afrikaans: Afrikaans
+    bengali: Bengali
+    cebuano: Cebuano
+    creole_french: creole (French)
+    creole_portuguese: creole (Portuguese)
+    davawenyo: Davawenyo
+    dutch: Dutch
+    english: English
+    french: French
+    gela: Gela
+    german: German
+    hawaiian: Hawaiian
+    hebrew: Hebrew
+    hiligaynon: Hiligaynon
+    icelandic: Icelandic
+    ilokano: Ilokano
+    italian: Italian
+    japanese: Japanese
+    korean: Korean
+    maltese: Maltese
+    maori: Maori
+    misima_paneati: Misima-paneati
+    norwegian: Norwegian
+    pangasinan: Pangasinan
+    portuguese: Portuguese
+    rumanian: Rumanian
+    russian: Russian
+    spanish: Spanish
+    swedish: Swedish
+    tagalog: Tagalog
+    tahitian: Tahitian
+    tokelauan: Tokelauan
+    turkish: Turkish
+    waray_waray: Waray-Waray
   less: Less
   license_descriptions_and_images: License descriptions and images
   licensing: Licensing
@@ -1277,6 +1313,8 @@ en:
   native: native
   nav: Nav
   nav_description:  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  ne_lat: NE Lat.
+  ne_lon: NE Lon.
   near_threatened: near threatened
   nearby_observations: Nearby Observations
   need_id_help?: Need ID help?
@@ -1516,6 +1554,7 @@ en:
   only_project_curators_can_do_that: Only project curators can do that.
   only_receive_updates_about_this_taxon: Only receive updates about this taxon
   only_show_active_taxa: Only show active taxa
+  only_show_for_species_subspecies_varieties_etc: Only show for species, subspecies, varieties, etc.
   only_show_taxa_fom_this_list: "Only show taxa from this list"
   only_showing_taxa_from: only showing taxa from this list
   only_species: only species
@@ -1810,6 +1849,7 @@ en:
   request_password: Request Password
   request_timed_out: Request timed out!
   required: required
+  required_field: required field
   required_columns_in_order: Required columns in order
   research: research
   research_grade: research grade
@@ -1912,11 +1952,13 @@ en:
   sent: Sent
   separate_values_with_a_pipe: Separate values with a pipe, e.g. "1-5|6-10|a lot" or "yes|no|maybe"
   september: September
+  set_a_place_if_this_link_only_applies_to: Set a place if this link only applies to taxa from a certain place. Leave it blank if it applies to taxa all around the world.
   set_license: Set license
   settings: Settings
   share_on: Share on
   share_your_observation_with_researchers_by: Share your observation with researchers by
   sharing_settings: Sharing Settings
+  short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
   show: Show
   show_active_and_inactive_taxa: Show active and inactive taxa
   show_default_taxon_photos: show default taxon photos
@@ -2081,6 +2123,8 @@ en:
   sun: Sun
   surround_any_cells_containing_commas: Surround any cells containing commas with double quotes
   suspend_user: Suspend user
+  sw_lat: sw lat.
+  sw_lon: sw lon.
   sync: Sync?
   sync_with_eol: Sync with EOL
   synonyms: Synonyms
@@ -3193,6 +3237,10 @@ en:
               wikipedia_summary: Wikipedia summary
               source_identifier: Source identifier
               source_url: Source URL
+      taxon_name:
+              name_provider: Name provider
+              source_url: Source URL
+              source_identifier: Source identifier
       source:
                     title: Title
                     in_text: In text
