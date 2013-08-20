@@ -104,6 +104,8 @@ es-MX:
         wikipedia_summary: Resumen de wikipedia
         source_identifier: Identificador de la fuente
         source_url: Enlace fuente
+      conservation_statuses:
+        status: Estatus
       taxon_range:
         description: Descripción
         range: Rango
@@ -159,7 +161,7 @@ es-MX:
           one: "Un error no permitió que este %{model} se guardara"
           other: "% {count} errores no permitieron que este %{model} se guardara"
   add: Añade
-  add_a: Añade una
+  add_a: Añade un(a)
   add_a_batch_of_observations: "Añade un grupo de observaciones"
   add_a_batch_of_observations_by_csv: "Añade un grupo de observaciones mediante CSV"
   add_a_batch_of_taxa: "Añade un grupo de taxa"
@@ -453,6 +455,7 @@ es-MX:
   change_icon: "Cambia ícono"
   change_password: "Cambia contraseña"
   change_types:
+    activated_soon: activado hace poco
     change_types: Tipo de cambios
     split: Separar
     merge: Mezclar
@@ -460,7 +463,10 @@ es-MX:
     stage: Etapa
     drop: Eliminar
     split_into: dividido en
-    merge_into: mezclado en
+    split_from: dividido de
+    merge_into: combinado en
+    merged_into: fue combinado en
+    replaced_by: reemplazado por
     replace_with: reemplazado con
     dropped: eliminado
     staged: cambio de etapa
@@ -521,6 +527,11 @@ es-MX:
   click_the_map_to_jump_new_place: "Selecciona el mapa para moverte a un lugar nuevo"
   collapse_days: "Colapsa los días"
   collapse_updates: "Colapsa las actualizaciones"
+  color_categories_for_this_species: |
+                Las categoria de colores para la especie, es como si fueras a realizar una guia ordenada de acuerdo a su color.
+                Porfavor no listes todos los colores del organismo, solo los más prominentes. Para los colores de las plantas solo
+                usa el color de su flor.  Profavor no pongas colores que no ayuden a la categorización,
+                por ejemplo: evita usar el color café para los mamíferos y verde para las plantas.
   colors: Colores
   comma_separated_list_of_tracking_codes: |
                   Separa los códigos de rastreo con comas. Añade esto si quieres poner un código de rastreo cuando las personas hagan
@@ -6432,6 +6443,8 @@ es-MX:
   grid: Cuadrícula
   group: Grupo
   guess_description: "Sugerencia / descripción"
+  guide_taxon: Especie o grupo guía
+  has_been: ha sido
   hasnt_contributed_any_observations: "no ha contribuido con observaciones a este proyecto."
   hate_me_facebook: "Desenlaza tu cuenta de Facebook y de  %{site_name} "
   hate_me_flickr: "Desenlaza tus cuentas de Flickr y de %{site_name} "
@@ -6496,6 +6509,7 @@ es-MX:
   if_you_have_any_trouble_with_the_site_check_out: 'Si tienes cualquier problema con el sitio, por favor revisa nuestro <a href="%{help_url}">sección de ayuda</a> o incluye un mensaje o nota en nuestro <a href="%{feedback_url}">grupo de retroalimentación</a>.'
   if_you_have_trouble_with_the_site: "Si tienes cualquier problema con este sitio, por favor revisa nuestra sección de ayuda:"
   if_you_use: "Si usas"
+  if_you_want_to_change_the_name: si solo quieres cambiar el nombre
   if_your_project_is: Si tu proyecto es acerca de un lugar especifico, añade las coordenadas seleccionando el enlace del mapa o añadelas manualmente.
   if_your_search_comes_up: "Si la búsqueda resulta vacía, debes ver los íconos de búsqueda para repetirla a través de nuestros proveedores externos:"
   ignore: rechazar
@@ -6554,6 +6568,7 @@ es-MX:
   is_the_organism_wild: "¿El organismo es silvestre / naturalizado?"
   is_this_observation_offensive_html: "¿Es la observación <a href=\"/help#inappropriate\">inapropiada</a>, ofensiva o spam?"
   is_this_place_a_duplicate: "¿Está duplicado este lugar?"
+  it: Este
   it_has: Tiene
   it_instead: "el lugar."
   its_important_that_you: "Es importante que selecciones"
@@ -6983,6 +6998,7 @@ es-MX:
         absent: ausente
   of: de
   of_it_and_its_descendants: "de élla y sus descendientes"
+  of_least_concern_: De preocupación menor
   offensive_inappropriate: ofensivo / inapropiado
   on_: en
   on_day: el
@@ -7169,6 +7185,7 @@ es-MX:
   posted_on: "Anotado en"
   posts: Notas
   powered_by_inaturalist_open_source_software_html: "Propulsado por <a href=\"https://github.com/inaturalist/inaturalist\" target=\"_new\" >iNaturalist</a> programa de código abierto"
+  present: nativo
   prev: Ant
   preview: "Vista previa"
   preview_of_synced_observation: "<strong>Previo</strong> de la observación.  <a href=\"%{url}\">¿Revertir?</a>"
@@ -7269,6 +7286,7 @@ es-MX:
   removing: Quitando...
   repair_doesnt_work_for_that_kind_of_photo: Reparar no funciona para ese tipo de foto.
   replace_parentesis: (reemplazar)
+  replacing: reemplazando
   reply: Responde
   report_any_problems: reporta cualquier problema
   reptiles: Reptiles
@@ -7564,6 +7582,7 @@ es-MX:
   taxon_to_keep: "Mantener la especie o grupo"
   taxon_name_was_deleted: El nombre de la especie o grupo fue eliminada.
   taxon_name_was_successfully_updated: El nombre de la especie o grupo fue actualizada exitosamente.
+  taxon_swap: Intercambio de especie o grupo
   taxon_was_successfully_created: La especie o grupo fue creada exitosamente.
   taxon_was_successfully_updated: La especie o grupo fue actualizada exitosamente.
   taxonomic: Taxonomía
@@ -7672,7 +7691,10 @@ es-MX:
   this_taxon_change_has_been_commited:
         <strong>¡Este cambio de taxonomía en la especie o grupo ha sido guradado!</strong>
         Porfavor no edites la especie o grupo. Puedes editar los demas campos.
+  this_taxon_concept_is_inactive: esta especie o grupo esta inactiva
   this_taxon_has_no_default_photo: "¡Esta especie o grupo no tiene foto predeterminada!"
+  this_taxon_is_inactive_this_means: |
+        Esta especie o grupo esta <strong>inactiva</strong>. Esto sigifica que los curadores de %{site_name} lo han reemplazado por un concepto mas actualizado.
   this_taxon_name_was_originally_imported: "El nombre de esta especie o grupo fue originalmente importado de un proveedor externo de nombres"
   this_taxon_was_originally_imported_from: "Esta especie o grupo fue importado originalmente de un proveedor externo de nombres"
   this_tool_is_experimental: Esta herramienta esta aún en desarrollo, así que porfavor
@@ -7824,6 +7846,7 @@ es-MX:
   view_place: Ver lugar
   view_site_name_observations_html: "Ver observaciones de <strong>%{site_name}</strong> "
   view_stats: Ver contribuciones
+  view_taxon_changes: Ver los cambios de la especie o grupo
   view_taxon_page: "Ver la página de la especie o grupo"
   view_taxon_page_for: "Ver la página de la especie o grupo para este lugar"
   view_terms: "Ver condiciones"
@@ -8047,7 +8070,7 @@ es-MX:
             biodiversidad en el que podrás compartir lo que observas en la 
             naturaleza, aprender de ella e intercambiar información con otros 
             ciudadanos naturalistas.
-  vulnerable: Vulnerable
+  vulnerable: vulnerable
   w00t_no_ungrafted_taxa: "¡Especie o grupo no injertado!"
   w_photos_only: "Con fotos solamente"
   wait_file_generation: "Por favor, espera mientras se genera el archivo. Puede tomar un par de minutos para listas grandes."
@@ -8102,7 +8125,8 @@ es-MX:
   widget_code: "Código widget"
   wikipedia_entry: "entrada de wikipedia"
   wikipedia_taxobox_raquo: "Ficha de la especie o grupo en Wikipedia &raquo;"
-  will_paginate: 
+  will_be: será
+  will_paginate:
     next_label: "Siguiente &#8594;"
     page_entries_info: 
       multi_page: "Mostrando %{model} %{from} - %{to} de %{count} en total"

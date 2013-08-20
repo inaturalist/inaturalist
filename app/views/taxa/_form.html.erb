@@ -12,9 +12,9 @@
         <%= f.form_field :name do %>
           <strong><%= @taxon.name %></strong>
           <div class="meta">
-            Add a
-            <%= link_to "taxon swap", new_taxon_change_path(:type => "TaxonSwap", :input_taxon_ids => @taxon.id) %>
-            if you want to change the name
+            <%= t :add_a %>
+            <%= link_to t(:taxon_swap), new_taxon_change_path(:type => "TaxonSwap", :input_taxon_ids => @taxon.id) %>
+            <%= t :if_you_want_to_change_the_name %>
           </div>
         <% end %>
       <% end -%>
@@ -178,8 +178,8 @@
 
   <fieldset class="last column span-11">
     <legend><%= t :concept_status %></legend>
-    <%= f.radio_button :is_active, true, :label_after => true, :label => t(:active) %>
-    <%= f.radio_button :is_active, false, :label_after => true, :label => t(:inactive) %>
+    <%= f.radio_button :is_active, true, :label_after => true, :label => t(:active).titleize %>
+    <%= f.radio_button :is_active, false, :label_after => true, :label => t(:inactive).titleize %>
     <div class="description">
       <%= t :inactive_taxon_concepts_are %>
     </div>
