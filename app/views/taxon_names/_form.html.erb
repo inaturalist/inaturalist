@@ -43,10 +43,11 @@
   <p class="ui">
     <%= n.label :lexicon, t(:lexicon) %><br/>
     <%-
-      options = TaxonName::DEFAULT_LEXICONS + ['---------------------------'] + 
+      options = TaxonName::DEFAULT_LEXICONS.sort + ['---------------------------'] +
         (TaxonName::LEXICONS.values.sort - TaxonName::DEFAULT_LEXICONS)
     -%>
-    <%= n.select :lexicon, options, :include_blank => "Unknown", :disabled => '---------------------------' %>
+    <%= n.select :lexicon, options.map{|l| [t("lexicons.#{l.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}",
+                                              :default => l), l]}, :include_blank => t(:unknown), :disabled => '---------------------------' %>
   </p>
   <p class="ui">
     <%= link_to_function t(:add_new_lexicon), 

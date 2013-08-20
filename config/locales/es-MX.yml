@@ -104,6 +104,13 @@ es-MX:
         wikipedia_summary: Resumen de wikipedia
         source_identifier: Identificador de la fuente
         source_url: Enlace fuente
+      taxon_link:
+        url: Enlace
+        site_title: Título del sitio
+        short_title: Título corto del sitio
+        taxon: Especie o grupo
+        place_id: Lugar
+        show_for_descendent_taxa: Muestra tambien para las especies o grupos descendentes
       conservation_statuses:
         status: Estatus
       taxon_range:
@@ -112,6 +119,10 @@ es-MX:
         source_identifier: Identificador de la fuente
         taxon_id: Especie o grupo
         url: Página web
+      taxon_name:
+        name_provider: Proveedor de nombre
+        source_url: Dirección web de la fuente
+        source_identifier: Identificador de la fuente
       source:
         title: Título
         in_text: Referencia
@@ -6609,6 +6620,42 @@ es-MX:
   leave_this_project: "Sal de este proyecto"
   less: Menos
   lexicon: Léxico
+  lexicons:
+        scientific_names: Nombres científicos
+        afrikaans: Afrikáans
+        bengali: Bengalí
+        cebuano: Cebuano
+        creole_french: Criollo (Francés)
+        creole_portuguese: Criollo (Portugués)
+        davawenyo: Davawenyo
+        dutch: Holandés
+        english: Inglés
+        french: Francés
+        gela: Gela
+        german: Alemán
+        hawaiian: Hawaiano
+        hebrew: Hebreo
+        hiligaynon: Hiligainón
+        icelandic: Islandés
+        ilokano: Ilocano
+        italian: Italiano
+        japanese: Japonés
+        korean: Coreano
+        maltese: Maltés
+        maori: Maorí
+        misima_paneati: Misima-paneati
+        norwegian: Noruego
+        pangasinan: Pangasinán
+        portuguese: Portugués
+        rumanian: Rumano
+        russian: Ruso
+        spanish: Español
+        swedish: Sueco
+        tagalog: Tagalo
+        tahitian: Tahitiano
+        tokelauan: Tokelauano
+        turkish: Turco
+        waray_waray: Samareño
   license_descriptions_and_images: "Descripción de licencias y de imágenes"
   licensing: Licencias
   licensing_your_content: |
@@ -6768,6 +6815,8 @@ es-MX:
   native: Nativo
   nav: Nav
   nav_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  ne_lat: Lat. N.E.
+  ne_lon: Long. N.E.
   near_threatened: "Casi esta en riesgo"
   nearby_observations: "Observaciones cercanas"
   need_id_help?: "¿Necesitas ayuda para la identificación?"
@@ -7017,6 +7066,7 @@ es-MX:
   only_project_curators_can_do_that: Solo los curadores del proyecto pueden hacer eso.
   only_receive_updates_about_this_taxon: Solo recibir notificaciones de esta especie o grupo
   only_show_active_taxa: Solo muestra especies activas
+  only_show_for_species_subspecies_varieties_etc: Solo muestra el link para especies, subespecies, variedades, etc (de este grupo o especie).
   only_showing_taxa_from: "Solamente se muestra taxa de esta lista"
   only_species: "Solo especies"
   only_species_and_subspecies: "Solo especies y subespecies o variedades"
@@ -7295,6 +7345,7 @@ es-MX:
   request_timed_out: "¡La petición excedio el tiempo de espera!"
   required: Requerido
   required_columns_in_order: "Columnas requeridas en orden"
+  required_field: Campo requerido
   research: Investigación
   research_grade: "Grado de investigación"
   research_grade_expandable_html: "G<span class='full'>rado</span> de I<span class='full'>nvestigación</span>"
@@ -7386,9 +7437,11 @@ es-MX:
   sent: Enviadas
   separate_values_with_a_pipe: "Separa los valores con | , por ejemplo: \"1-5|6-10|muchos\" o \"sí|no|tal vez\""
   september: Septiembre
+  set_a_place_if_this_link_only_applies_to: Pon el lugar solo si la especie o grupo se encuentra en esa región. Déjalo en blanco si la especie o grupo aplica para cualquier parte del mundo.
   set_license: "Escoge la licencia"
   settings: Propiedades
   share_your_observation_with_researchers_by: "Comparte tu observación con investigadores de "
+  short_or_abbreviated_title_for_display: Regularmente es una abreviatura del título cuando el espacio es muy limitado (máximo 10 caracteres).
   show: Muestra
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
   show_counts: "Muestra los conteos basados en la lista."
@@ -7547,6 +7600,8 @@ es-MX:
       words_connector: ","
   surround_any_cells_containing_commas: "Rodea cualquier celda que contenga comas con dobles comillas"
   suspend_user: "Suspender al usuario"
+  sw_lat: Lat. S.O.
+  sw_lon: Long. S.O.
   sync: ¿Sincronizar?
   synonyms: Sinónimos
   table: Cuadro
@@ -7561,6 +7616,7 @@ es-MX:
   taxa_observed: especies o grupos observados
   taxon: "Especie o grupo"
   taxon_: especie o grupo
+  taxon_change: cambio de grupos
   taxon_deleted: Especie o grupo borrado.
   taxon_doesnt_have_a_range: La especie o grupo no tiene una clasificación
   taxon_id: Identificador de la especie o grupo
@@ -7637,7 +7693,7 @@ es-MX:
   the_past: "El pasado"
   the_people_of_inat: "La gente de NaturaLista"
   the_project: "El proyecto"
-  the_title_of_the_wikipedia_article_we_use: "El título del artículo de Wikipedia que usamos para la descripción. Si el URL de Wikipedia es <code>http://en.wikipedia.org/wiki/Bird</code>, entonces, el valor debe ser <code>Aves</code>. Si está vacío se usará el nombre científico de la especie o grupo (que generalmente funciona).\n"
+  the_title_of_the_wikipedia_article_we_use: "El título del artículo de Wikipedia que usamos para la descripción. Si el URL de Wikipedia es <code>http://en.wikipedia.org/wiki/Aves</code>, entonces, el valor debe ser <code>Aves</code>. Si está vacío se usará el nombre científico de la especie o grupo (que generalmente funciona).\n"
   the_user_x_has_been_suspended: "El usuario %{user} ha sido suspendido"
   the_user_x_has_been_unsuspended: "El usuario %{user} ha sido removido de la lista de suspendidos"
   the_world_is_full_of_interesting_places: "l mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. Algunas viven al otro lado del mundo, mientras que otras viven ¡a la vuelta de la esquina! %{site_name} Lugares te deja explorar la vida alrededor del planeta ¡Empieza a explorar!"
@@ -8073,6 +8129,7 @@ es-MX:
   vulnerable: vulnerable
   w00t_no_ungrafted_taxa: "¡Especie o grupo no injertado!"
   w_photos_only: "Con fotos solamente"
+  w_sounds: Con sonidos
   wait_file_generation: "Por favor, espera mientras se genera el archivo. Puede tomar un par de minutos para listas grandes."
   want_to_add_one: "¿Quieres añadir una?"
   want_to_show_off_some_of_your_favorite_taxa: "¿Quieres presumir tus grupos (o especies) favoritos aquí?"
