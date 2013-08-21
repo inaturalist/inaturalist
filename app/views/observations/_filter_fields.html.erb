@@ -207,7 +207,7 @@
 <% unless @ofv_params.blank? -%>
   <div id="ofv_filters" class="clear row">
     <div id="ofv_filters_label" class="label">
-      <strong>Fields</strong>
+      <strong><%=t :fields %></strong>
     </div>
     <div class="left">
       <% for k,v in @ofv_params %>
@@ -218,6 +218,25 @@
           <%= link_to_function "&times;".html_safe, "$(this).parents('.ofv:first').fadeOut(function(){$(this).remove()})" %>
         </span>
       <% end %>
+    </div>
+  </div>
+<% end -%>
+
+<% if @project -%>
+  <div class="clear row">
+    <div class="label"><strong><%=t :project %></strong></div>
+    <div class="left">
+      <nobr>
+        <strong><%=t :curator_identification %></strong>
+        <% for state in %w"any yes no" %>
+          <% if @pcid == state %>
+            <%= radio_button_tag :pcid, state, :checked => 'checked' %>
+          <% else %>
+            <%= radio_button_tag :pcid, state %>
+          <% end %>
+          <%= label :pcid, state, t(state, :default => state).downcase %>
+        <% end %>
+      </nobr>
     </div>
   </div>
 <% end -%>
