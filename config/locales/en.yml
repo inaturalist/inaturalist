@@ -825,9 +825,12 @@ en:
   extra_properties: Extra Properties
   extras: Extras
   facebook_account_information: Your Facebook Account Information
+  facebook_account_not_linked: "%{user} doesn't have a linked facebook account anymore, so %{site_name} doesn't have permission to access this photo."
+  facebook_access_token_expired: "Access token has expired. %{user} needs to re-link their Facebook account."
   facebook_confirmation: "Facebook would like to confirm that you want your account connected to %{site_name}."
   facebook_needs_the_owner_of_that_photo_to: Facebook needs the owner of that photo to re-confirm their connection to %{site_name_short}.
   facebook_options: Facebook Options
+  failed_to_repair_photo: "Failed to repair photo: %{errors}"
   'false': 'False'
   faq: Frequently Asked Questions
   Family: Family

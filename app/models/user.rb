@@ -308,7 +308,7 @@ class User < ActiveRecord::Base
   # see koala docs for available methods: https://github.com/arsduo/koala
   def facebook_api
     return nil unless facebook_identity
-    @facebook_api ||= Koala::Facebook::GraphAndRestAPI.new(facebook_identity.token)
+    @facebook_api ||= Koala::Facebook::API.new(facebook_identity.token)
   end
   
   # returns nil or the facebook ProviderAuthorization
