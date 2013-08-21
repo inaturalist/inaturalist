@@ -621,6 +621,14 @@ class Observation < ActiveRecord::Base
         scope.where("listed_taxa.establishment_means = ?", establishment_means)
       end
     end
+
+    if params[:pcid] && params[:pcid] != "any"
+      scope = if [true, 'true', 't', 1, '1', 'y', 'yes'].include?(params[:pcid])
+        scope.joins(:project_observations).where("project_observations.curator_identification_id IS NOT NULL")
+      else
+        scope.joins(:project_observations).where("project_observations.curator_identification_id IS NULL")
+      end
+    end
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()

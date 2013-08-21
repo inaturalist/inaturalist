@@ -1790,6 +1790,10 @@ class ObservationsController < ApplicationController
 
     @user = User.find_by_id(params[:user_id]) unless params[:user_id].blank?
     @projects = Project.where("id IN (?)", params[:projects]) unless params[:projects].blank?
+    if (@pcid = params[:pcid]) && @pcid != 'any'
+      @pcid = [true, 'true', 't', 1, '1', 'y', 'yes'].include?(params[:pcid]) ? 'yes' : 'no'
+    end
+
     
     @filters_open = 
       !@q.nil? ||
@@ -1804,7 +1808,8 @@ class ObservationsController < ApplicationController
       !@out_of_range.blank? ||
       !@observed_on.blank? ||
       !@place.blank? ||
-      !@ofv_params.blank?
+      !@ofv_params.blank? ||
+      !@pcid.blank?
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
     
     [search_params, find_options]

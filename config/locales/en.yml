@@ -567,7 +567,7 @@ en:
   confirmed_observations_are: Confirmed observations are
   confirming_identifications: confirming identifications
   connect_to_provider: "Connect to %{provider}"
-  connected_accounts: connected accounts
+  connected_accounts: Connected accounts
   connecting_flickr: "Connecting to Flickr... "
   connecting_to_facebook: "Connecting to Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecting your %{site_name} account to accounts on other sites will allow you to login to %{site_name} using your credentials from those sites."
@@ -640,6 +640,7 @@ en:
     identifications are shown alongside the observations on project-
     specific views. Curators can also see the true coordinates of
     private and obscured contributions to this project.
+  curator_identification: Curator identification
   current_password: Current Password
   custom_project_fields: Custom Project Fields 
   darr_apply_darr: "&darr; Apply &darr;"
@@ -686,6 +687,7 @@ en:
   default_invite_comment: "Great photo!  You should post it to %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Default observation license
   default_photo_license: Default photo license
+  default_sound_license: Default sound license
   delete: Delete
   delete_conversation: Delete conversation
   delete_icon?: Delete icon?
@@ -1613,7 +1615,7 @@ en:
   photo_by_id_attribution: "Photo %{id}, %{attribution}"
   photo_deleted: Photo deleted
   photo_destroyed_because_it_was_deleted_from: "Photo destroyed b/c it was deleted from the external site or %{site_name} no longer has permission to view it"
-  photo_hosting_accounts: Photo Hosting Accounts
+  photo_hosting_accounts: Photo hosting accounts
   photo_integration: Photo Integration
   photo_urls_repaired: Photo URLs repaired
   photos: Photos
@@ -1954,10 +1956,10 @@ en:
   september: September
   set_a_place_if_this_link_only_applies_to: Set a place if this link only applies to taxa from a certain place. Leave it blank if it applies to taxa all around the world.
   set_license: Set license
-  settings: Settings
+  settings: settings
   share_on: Share on
   share_your_observation_with_researchers_by: Share your observation with researchers by
-  sharing_settings: Sharing Settings
+  sharing_settings: Sharing settings
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
   show: Show
   show_active_and_inactive_taxa: Show active and inactive taxa
@@ -2150,6 +2152,7 @@ en:
       it_may_take_google_a_while_to: It may take Google a while to load these data, assuming GBIF has any.
       data_url: Data URL
       overlays: Overlays
+  taxon_change_settings: Taxon change settings
   taxon_merge: taxon merge
   taxon_name: Taxon name
   taxon_photos_updated: Taxon photos updated!
@@ -2358,6 +2361,7 @@ en:
   update: Update
   update_existing_observations_with_new_license: Update existing observations with new license choices
   update_existing_photos_with_new_license: Update existing photos with new license choices
+  update_existing_sounds_with_new_license: Update existing sounds with new license choices
   update_past: "Update past %{type}"
   update_photos: Update photos
   update_selected_taxa: Update selected taxa
