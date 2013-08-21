@@ -445,6 +445,7 @@ es:
   cancel: Cancelar
   cant_flag_an_object_that_doesnt_exist: No puedes ponerle advertencia a un contenido que ya no existe
   cant_merge_a_taxon_with_itself: No puedes combinar ese taxón consigo mismo.
+  case_plural: ''
   casual: casual
   catalogue_of_life: "Catálogo de la Vida"
   cc_attribution_license: "Licencia de atribución de Creative Commons"
@@ -1938,6 +1939,49 @@ es:
   placement: Colocación
   places: Lugares
   places_merged_successfully: ¡Los lugares se combinaron satisfactoriamente!
+  places_name:
+      afghanistan: Afganistán
+      africa: África
+      antigua_and_barbuda: Antigua y Barbuda
+      belgium: Bélgica
+      bosnia_and_herzegovina: Bosnia y Herzegovina
+      brazil: Brasil
+      central_america: América central
+      egypt: Egipto
+      equatorial_guinea: Guinea Ecuatorial
+      europe: Europa
+      france: Francia
+      germany: Alemania
+      greece: Grecia
+      hungary: Hungaría
+      italy: Italia
+      iraq: Irak
+      japan: Japón
+      martinique: Martinica
+      mexico: México
+      new_guinea: Nueva Guinea
+      new_zealand: Nueva Zealand
+      north_africa: África del norte
+      north_america: América del norte
+      palestine: Palestina
+      panama: Panamá
+      peru: Perú
+      poland: Polonia
+      republic_of_congo: República del Congo
+      russia: Rusia
+      saudi_arabia: Arabia Saudita
+      sao_tome_and_principe: Santo Tomé and Príncipe
+      south_america: América del sur
+      spain: España
+      sweden: Suecia
+      syria: Siria
+      thailand: Tailandia
+      trinidad_and_tobago: Trinidad y Tobago
+      turkey: Turquía
+      united_kingdom: Reino Unido
+      united_states: Estados Unidos
+      virgin_islands: Islas Vírgenes
+      west_africa: África occidental
   plants: plantas
   please_add_a_citation_for_this_change: Porfavor añade una referencia para este cambio.
   please_add_this_to_x_html: "Por favor, añada esto a %{x}"
@@ -2054,6 +2098,7 @@ es:
   remove_project_user: "Quitar usuario de proyecto"
   remove_your_existing_id?: "Eliminar la identificación existente?"
   removed: eliminado
+  removed!: ¡Eliminado!
   removed_project_user: Usuario eliminado del proyecto
   removing: Eliminando...
   repair_doesnt_work_for_that_kind_of_photo: Reparar no funciona para ese tipo de foto.
@@ -2513,6 +2558,7 @@ es:
       short: "%d/%m/%Y"
       observed_at: a las %I:%M %p %Z
       rfc: "%d %B %Y"
+      day_month_year: "%d %b. %Y"
     pm: pm
   title: título
   time_ago: "hace %{time}"

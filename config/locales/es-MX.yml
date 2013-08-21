@@ -439,6 +439,7 @@ es-MX:
   cancel: Cancelar
   cant_flag_an_object_that_doesnt_exist: No puedes ponerle advertencia a un contenido que ya no existe
   cant_merge_a_taxon_with_itself: No puedes combinar esa especie o grupo consigo misma.
+  case_plural: ''
   casual: Casual
   catalogue_of_life: "Catálogo de la Vida"
   cc_attribution_license: "Licencia de Atribución de Creative Commons"
@@ -664,6 +665,61 @@ es-MX:
   data_deficient: "con datos deficientes"
   data_quality_assessment: "Evaluación de calidad de los datos"
   datatype: "Tipo de datos"
+  date:
+      abbr_day_names:
+        - dom
+        - lun
+        - mar
+        - mié
+        - jue
+        - vie
+        - sáb
+      abbr_month_names:
+        - ~
+        - ene
+        - feb
+        - mar
+        - abr
+        - may
+        - jun
+        - jul
+        - ago
+        - sep
+        - oct
+        - nov
+        - dic
+      day_names:
+        - domingo
+        - lunes
+        - martes
+        - miércoles
+        - jueves
+        - viernes
+        - sábado
+      formats:
+        default: "%d/%m/%Y"
+        long: "%d de %B de %Y"
+        short: "%d de %b"
+        month_year: '%B %Y'
+        month_day_year: '%B %d, %Y'
+      month_names:
+        - ~
+        - enero
+        - febrero
+        - marzo
+        - abril
+        - mayo
+        - junio
+        - julio
+        - agosto
+        - septiembre
+        - octubre
+        - noviembre
+        - diciembre
+      order:
+        - !ruby/symbol day
+        - !ruby/symbol month
+        - !ruby/symbol year
   date_: Fecha
   date?: ¿Fecha?
   date_added: "Fecha añadida"
@@ -6507,7 +6563,7 @@ es-MX:
   identification_summary: "Resumen de identificaciones"
   identification_updated: "¡Identificación actualizada!"
   identifications: Identificaciones
-  identifications_by: "Las identificaciones por %{user}"
+  identifications_by: "Las identificaciones hechas por %{user}"
   identified?: con identificación
   identotron: Identotrón
   identotron_help: Ayuda con el identotrón
@@ -6847,6 +6903,7 @@ es-MX:
   new_taxon_name_for: "Nuevo nombre de especie o grupo para"
   new_taxon_range: "Distribución de la nueva especie o grupo"
   new_taxonomic_change: Nuevo cambio taxonómico (borrador)
+  new_updates_in_the_last_24_hours_from: "Nuevas actualizaciones en las últimas 24 horas de %{site_name}"
   new_user_rules: "Nuevas reglas de usuario"
   new_users_week: "Nuevos usuarios / Semana"
   next: Sig
@@ -7215,6 +7272,10 @@ es-MX:
   placement: Posición
   places: Lugares
   places_merged_successfully: ¡Los lugares se combinaron satisfactoriamente!
+  places_name:
+      north_america: América del norte
+      mexico: México
+
   plants: Plantas
   please_add_a_citation_for_this_change: Porfavor añade una referencia para este cambio.
   please_be_aware_project_curators: "Por favor,, recuerda que los curadores de proyectos pueden ver cualquier ubicación oscurecida o privada de observaciones añadidas a este proyecto."
@@ -7332,6 +7393,7 @@ es-MX:
   remove_project_user: "Remover al usuario del proyecto"
   remove_your_existing_id?: "¿Remueve tu usuario actual?"
   removed: eliminado
+  removed!: ¡Eliminado!
   removed_project_user: Usuario eliminado del proyecto
   removing: Quitando...
   repair_doesnt_work_for_that_kind_of_photo: Reparar no funciona para ese tipo de foto.
@@ -7354,7 +7416,7 @@ es-MX:
   reset_your_password: "Cambia tu contraseña"
   resolve: Resolver
   resolve_this_flag: "Resolver esta advertencia"
-  resolved: Resuelto
+  resolved: Resuelta
   resolved_by: "Resuelto por"
   results: Resultados
   roadmap: camino
@@ -7770,6 +7832,7 @@ es-MX:
       short: "%d %b %H:%M"
       observed_at: a las %I:%M %p %Z
       rfc: "%d %B %Y"
+      day_month_year: "%d %b. %Y"
     pm: pm
   time_: Tiempo
   title: título
