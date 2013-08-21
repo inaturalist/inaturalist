@@ -210,7 +210,13 @@
   padding-left: 30px;
 }
 
-.observations.mini .icon{position:absolute;}
+.observations.mini .icon{position:absolute; }
+.observations.mini .icon{top:7px; left:5px;}
+.observations.mini .observation[data-iconic-taxon-name="Aves"] .icon,
+.observations.mini .observation[data-iconic-taxon-name="Mammalia"] .icon,
+.observations.mini .observation[data-iconic-taxon-name="Mollusca"] .icon,
+.observations.mini .observation[data-iconic-taxon-name="Arachnida"] .icon {top:5px;left:3px;}
+.observations.mini .observation[data-iconic-taxon-name="Fungi"] .icon {top:5px;left:5px;}
 .observations.mini .photos.attribute{max-width:80px;}
 
 .observations.mini .photos .photolist .photo.nophoto {
@@ -482,6 +488,9 @@
 .observations.mini.compact.infowindow .observation .actions {
   padding-left: 0px;
 }
+
+.observations.mini.infowindow .icon,
+.observations.mini .observation[data-iconic-taxon-name] .icon {top:0px; left:0px;}
 
 .observations.mini.compact.infowindow p {
   margin-bottom: 0.8em;

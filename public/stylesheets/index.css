@@ -13,6 +13,10 @@ body {
   color: #333;
 }
 
+.gm-style .gm-style-iw, .gm-style .gm-style-iw a, .gm-style .gm-style-iw span, .gm-style .gm-style-iw label, .gm-style .gm-style-iw div, .gm-style div, .gm-style span, .gm-style label, .gm-style a {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: Georgia, serif;
   margin-bottom: 0.5em;
@@ -72,10 +76,10 @@ p.ui { margin-bottom: 10px; }
 }
 
 /* Readable Elements -- anything that is meant to be read */
-.readable, p {
+.readable, p, .gm-style .readable, .gm-style .readable a, .gm-style .readable div, .gm-style .readable span {
   font-family: Georgia, serif;
-  font-size: 125%;
 }
+.readable, p, .gm-style .readable {font-size: 125%;}
 
 .readable p {
   font-size: 100%;
