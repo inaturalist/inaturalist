@@ -2198,7 +2198,11 @@ class ObservationsController < ApplicationController
     reference_photo ||= current_user.photos.order("id ASC").last
     if reference_photo
       assoc_name = reference_photo.class.to_s.underscore.split('_').first + "_identity"
-      @default_photo_identity = current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
+      if current_user.respond_to?(assoc_name)
+        @default_photo_identity = current_user.send(assoc_name)
+      else
+        @default_photo_source = 'local'
+      end
     end
     if params[:facebook_photo_id]
       if @default_photo_identity = @photo_identities.detect{|pi| pi.to_s =~ /facebook/i}
@@ -2209,11 +2213,10 @@ class ObservationsController < ApplicationController
         @default_photo_source = 'flickr'
       end
     end
-    @default_photo_identity ||= @photo_identities.first
     @default_photo_source ||= if @default_photo_identity && @default_photo_identity.class.name =~ /Identity/
       @default_photo_identity.class.name.underscore.humanize.downcase.split.first
     elsif @default_photo_identity
-      "facebook"
+      "local"
     end
     
     @default_photo_identity_url = nil
