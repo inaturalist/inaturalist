@@ -417,6 +417,7 @@ en:
   cancel: Cancel
   cant_flag_an_object_that_doesnt_exist: Can't flag an object that doesn't exist
   cant_merge_a_taxon_with_itself: Can't merge a taxon with itself.
+  case_plural: 's'
   casual: casual
   catalogue_of_life: Catalogue of Life
   cc_attribution_license: Creative Commons Attribution license
@@ -1715,6 +1716,49 @@ en:
   place_updated: Place updated!
   placement: Placement
   places: Places
+  places_name:
+    afghanistan: Afghanistan
+    africa: Africa
+    antigua_and_barbuda: Antigua and Barbuda
+    belgium: Belgium
+    bosnia_and_herzegovina: Bosnia and Herzegovina
+    brazil: Brazil
+    central_america: Central America
+    egypt: Egypt
+    equatorial_guinea: Equatorial Guinea
+    europe: Europe
+    france: France
+    germany: Germany
+    greece: Greece
+    hungary: Hungary
+    italy: Italy
+    iraq: Iraq
+    japan: Japan
+    martinique: Martinique
+    mexico: México
+    new_guinea: New Guinea
+    new_zealand: New Zealand
+    north_africa: North Africa
+    north_america: North America
+    palestine: Palestine
+    panama: Panama
+    peru: Peru
+    poland: Poland
+    republic_of_congo: Republic of Congo
+    russia: Russia
+    saudi_arabia: Saudi Arabia
+    sao_tome_and_principe: Sao Tome and Principe
+    south_america: South America
+    spain: Spain
+    sweden: Sweden
+    syria: Syria
+    thailand: Thailand
+    trinidad_and_tobago: Trinidad and Tobago
+    turkey: Turkey
+    united_kingdom: United Kingdom
+    united_states: United States
+    virgin_islands: Virgin Islands
+    west_africa: West Africa
   places_merged_successfully: Places merged successfully!
   plants: plants
   please_add_a_citation_for_this_change: Please add a citation for this change.
@@ -1838,6 +1882,7 @@ en:
   remove_tags: Remove tags
   remove_your_existing_id?: Remove your existing ID?
   removed: Removed
+  removed!: Removed!
   removed_project_user: Removed project user
   removing: "Removing..."
   reorder_by_taxonomy: Reorder by taxonomy
@@ -3034,6 +3079,7 @@ en:
       long: '%B %d, %Y'
       short: '%b %d'
       month_year: '%B %Y'
+      month_day_year: '%B %d, %Y'
     month_names:
       - 
       - January
@@ -3197,6 +3243,7 @@ en:
       short: '%d %b %H:%M'
       observed_at: at %I:%M %p %Z
       rfc: "%d %B %Y"
+      day_month_year: "%d %b. %Y"
     pm: pm
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:

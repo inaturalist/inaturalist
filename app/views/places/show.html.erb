@@ -60,7 +60,7 @@
     <span class="description">&gt;</span>
     <% @place.ancestors.each do |ancestor| %>
       <%- link_txt = capture do -%>
-        <%= t ancestor.name, :default => ancestor.name %>
+        <%= t("places_name.#{ancestor.name.gsub(' ','_').downcase}", :default => ancestor.name) %>
         <span class="small description">
           (<%= t("place_geo.geo_planet_place_types.#{ancestor.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if ancestor.place_type_name %>)
         </span>
@@ -71,7 +71,7 @@
   </div><!-- /#breadcrumbs -->
   <div id="map" style="width: 100%; height: 100px"></div>
   <h2>
-    <%= link_to t(@place.display_name, :default => @place.display_name), @place %>
+    <%= link_to t("places_name.#{@place.display_name.gsub(' ','_').downcase}", :default => @place.display_name), @place %>
     <span class="small description">
       <%= t("place_geo.geo_planet_place_types.#{@place.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if @place.place_type_name %>
     </span>
