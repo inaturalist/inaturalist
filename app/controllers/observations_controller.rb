@@ -1005,6 +1005,14 @@ class ObservationsController < ApplicationController
   
   # Import observations from external sources
   def import
+    if @default_photo_identity ||= @photo_identities.first
+      provider_name = if @default_photo_identity.is_a?(ProviderAuthorization)
+        @default_photo_identity.provider_name
+      else
+        @default_photo_identity.class.to_s.underscore.split('_').first
+      end
+      @default_photo_identity_url = "/#{provider_name.downcase}/photo_fields?context=user"
+    end
   end
   
   def import_photos
