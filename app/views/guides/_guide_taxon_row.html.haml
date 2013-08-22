@@ -6,14 +6,14 @@
     .pull-left{:style => "margin-right:10px;"}
       = f.text_field :position, :class => "sortable-position"
     = link_to edit_guide_taxon_path(guide_taxon), :class => "pull-left" do
-      - gp = guide_taxon.guide_photos.first
-      = image_tag gp ? gp.square_url : iconic_taxon_image_url(guide_taxon.taxon, :size => "square"), :class => "img-circle", :style => "max-width:30px"
+      - gp = guide_taxon.default_guide_photo
+      = image_tag gp ? gp.square_url : iconic_taxon_image_url(guide_taxon.taxon, :size => "square"), :class => "img-circle"
     = link_to edit_guide_taxon_path(guide_taxon), :class => "names pull-left" do
       %span.display_name= guide_taxon.display_name
       %i.name= guide_taxon.name
     .ctrl.pull-right.nobr
-      = link_to "x", guide_taxon, :method => :delete, :class => "btn btn-danger delete", :confirm => "Are you sure?", :remote => true, "data-type" => :json
-      %span.ui-icon.ui-icon-arrowthick-2-n-s.inlineblock.grip
+      = link_to "x", guide_taxon, :method => :delete, :class => "btn btn-danger delete", :confirm => t(:are_you_sure_you_want_to_remove_this_taxon), :remote => true, "data-type" => :json
+      %span.inlineblock.grip{:data => {:tip => "Drag and drop to re-order", :tip_show_delay => 1000}}
   .more
     .row-fluid
       .row12

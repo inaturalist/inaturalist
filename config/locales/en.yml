@@ -327,6 +327,7 @@ en:
   are_you_sure_you_want_to_remove_manager: Are you sure you want to remove %{user} as a manager?
   are_you_sure_you_want_to_remove_these_x_taxa?: "Are you sure you want to remove these %{x} taxa?"
   are_you_sure_you_want_to_remove_this_invitation: Are you sure you want to remove this invitation?
+  are_you_sure_you_want_to_remove_this_taxon: Are you sure you want to remove this taxon?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Are you sure you want to remove this taxon from %{place}'s checklist?"
   associated_observations: Associated observations
   associated_taxa: Associated taxa
@@ -2734,11 +2735,16 @@ en:
         add_eol_content: |
           Add EOL content to selected taxa as a batch. This can take some
           time, so please be patient.
+        coordinates_desc: |
+          Giving your guide coordinates will help people find it when searching by location.
         eol_subjects_desc: |
           EOL publishes content under a number of different subject headings,
           not all of which are available for every taxon. Choosing "Overview"
           will just import the first available text section from EOL, which is
           generally contains a summary when available.
+        guide_place_desc: |
+          Associating your guide with a place will show the place boundary on
+          %{site_name} maps where they are shown (e.g. "card" view, taxon pages, etc.)
         licensing_explanation: |
           Licensing your content grants other people the right to copy and
           modify it without asking your permission. It makes it much easier to
@@ -2749,7 +2755,7 @@ en:
         places_note: |
           Note: not all places have check lists with taxa. If you're having
           trouble finding a place with taxa, try choosing larger areas with
-          political boundaries, like nations or states.
+          political boundaries, like nations, states, provinces, or counties.
       pdf_layout_notes:
         grid: |
           Grid of single images, no descriptions

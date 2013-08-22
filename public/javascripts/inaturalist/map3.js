@@ -703,20 +703,32 @@ iNaturalist.FullScreenControl = function(map) {
   controlDiv.style.padding = '5px';
   var controlUI = $('<div></div>').html(enter).addClass('gmapv3control')
   controlDiv.appendChild(controlUI.get(0))
-  
-  controlUI.toggle(function() {
-    var oldCenter = map.getCenter()
-    $(this).html(exit).css('font-weight', 'bold')
-    $(map.getDiv()).addClass('fullscreen')
-    google.maps.event.trigger(map, 'resize')
-    map.setCenter(oldCenter)
-  }, function() {
+
+  var exitFullScreen = function() {
     var oldCenter = map.getCenter()
     $(this).html(enter).css('font-weight', 'normal')
     $(map.getDiv()).removeClass('fullscreen')
     google.maps.event.trigger(map, 'resize')
     map.setCenter(oldCenter)
-  })
+  }
+
+  window.fullscreenEscapeHandler = function(e) {
+    if(e.keyCode === 27) {
+      controlUI.click()
+    }
+    $(document).unbind('keyup', window.fullscreenEscapeHandler)
+  }
+
+  var enterFullScreen = function() {
+    var oldCenter = map.getCenter()
+    $(this).html(exit).css('font-weight', 'bold')
+    $(map.getDiv()).addClass('fullscreen')
+    google.maps.event.trigger(map, 'resize')
+    map.setCenter(oldCenter)
+    $(document).bind('keyup', window.fullscreenEscapeHandler)
+  }
+  
+  controlUI.toggle(enterFullScreen, exitFullScreen)
   return controlDiv;
 }
 

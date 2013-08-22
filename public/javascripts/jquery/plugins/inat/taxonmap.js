@@ -28,6 +28,8 @@
     if (options.taxonRangeKmlUrl == '') { options.taxonRangeKmlUrl = null }
     options.gbifKmlUrl = options.gbifKmlUrl || $(elt).attr('data-gbif-kml')
     if (options.gbifKmlUrl == '') { options.gbifKmlUrl = null }
+    options.taxonRangeCitation = options.taxonRangeCitation || $(elt).attr('data-taxon-range-citation')
+    options.taxonRangeCitationUrl = options.taxonRangeCitationUrl || $(elt).attr('data-taxon-range-citation-url')
     
     if (options.observationsJsonUrl != false) {
       options.observationsJsonUrl = options.observationsJsonUrl 
@@ -80,7 +82,16 @@
     
     if (options.taxonRangeKmlUrl) {
       var taxonRangeLyr = new google.maps.KmlLayer(options.taxonRangeKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
-      map.addOverlay(I18n.t('taxon_range'), taxonRangeLyr, {id: 'taxon_range-'+options.taxonId})
+      var taxonRangeLyrOpts = {id: 'taxon_range-'+options.taxonId}
+      if (options.taxonRangeCitation && options.taxonRangeCitation != '') {
+        var cit = options.taxonRangeCitation
+        if (options.taxonRangeCitationUrl && options.taxonRangeCitationUrl != '') {
+          taxonRangeLyrOpts.description = I18n.t('source') + ": <a href='"+options.taxonRangeCitationUrl+"' target='_blank'>"+cit+"</a>"
+        } else {
+          taxonRangeLyrOpts.description = I18n.t('source') + ": "+cit
+        }
+      }
+      map.addOverlay(I18n.t('taxon_range'), taxonRangeLyr, taxonRangeLyrOpts)
       preserveViewport = true
     }
     

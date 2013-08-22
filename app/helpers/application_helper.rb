@@ -568,6 +568,10 @@ module ApplicationHelper
     if taxon_range
       map_tag_attrs["data-taxon-range-kml"] = root_url.gsub(/\/$/, "") + taxon_range.range.url
       map_tag_attrs["data-taxon-range-geojson"] = taxon_range_geom_url(taxon.id, :format => "geojson")
+      if s = taxon_range.source
+        map_tag_attrs["data-taxon-range-citation"] = s.in_text
+        map_tag_attrs["data-taxon-range-citation-url"] = s.url || source_url(s)
+      end
     end
     if place
       map_tag_attrs["data-latitude"] ||= place.latitude

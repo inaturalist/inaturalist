@@ -6,8 +6,15 @@
     input.position {width:1em;}
     .more {display:none;}
     .guide_taxon .check, .guide_taxon .names {padding:4px 6px;}
+    .guide_taxon .img-circle {max-width:30px; height:30px;}
     .names .display_name {font-size:140%;}
-    .grip {margin-bottom:-4px;}
+    .grip {
+      width:10px;
+      height:2.5em;
+      background: url(/images/dotted.gif);
+      vertical-align: middle;
+      cursor: move;
+    }
     .bootstrap form.edit_guide_taxon {margin-bottom:0;}
     .bootstrap .ctrl input {margin-bottom:0;}
     #addtaxa input {width:400px;}
@@ -32,6 +39,7 @@
       -webkit-transform: rotate(-45deg);
       -moz-transform: rotate(-45deg);
     }
+    .bootstrap .accordion-inner {min-width: 220px;}
 - content_for :extrajs do
   :javascript
     var GUIDE = #{raw @guide.to_json},
@@ -75,17 +83,21 @@
           .accordion-group
             .accordion-heading
               %a.accordion-toggle{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#location"}
-                %label=t :location
+                %label
+                  =t :location
               #location.accordion-body.collapse
                 .accordion-inner
                   = f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => SITE_NAME)
+                  .meta.stacked=t 'views.guides.edit.guide_place_desc', :site_name => SITE_NAME_SHORT
+                  %label=t :coordinates
                   .stacked
                     = text_field_tag :map_search, "", :placeholder => t(:search_the_map), :class => "text"
                   #map.stacked
                   = f.text_field :latitude, :label => t(:latitude)
                   = f.text_field :longitude, :label => t(:longitude)
-                  = f.select :map_type, Project::MAP_TYPES.map{|type| [t("#{type}", :default => type).downcase, type]}
-                  = f.text_field :zoom_level
+                  = f.hidden_field :map_type
+                  = f.hidden_field :zoom_level
+                  .meta.stacked=t 'views.guides.edit.coordinates_desc'
                   - if @place
                     = link_to t(:view_place), @place, :class => "readmore"
           .accordion-group
