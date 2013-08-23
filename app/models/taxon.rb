@@ -1123,6 +1123,24 @@ class Taxon < ActiveRecord::Base
     taxon
   end
 
+  def editable_by?(user)
+    user.is_curator? || user.is_admin?
+  end
+
+  def mergeable_by?(user, reject)
+    return true if user.is_admin?
+    return true if name == reject.name
+    return true if creator_id == user.id && reject.creator_id == user.id
+    false
+  end
+
+  def deleteable_by?(user)
+    return true if user.is_admin?
+    creator_id == user.id
+  end
+  
+  # Static ##################################################################
+
   def self.import_or_create(name, options = {})
     taxon = import(name, options)
     return taxon unless taxon.blank?
@@ -1131,8 +1149,6 @@ class Taxon < ActiveRecord::Base
     taxon.graft_silently
     taxon
   end
-  
-  # Static ##################################################################
   
   #
   # Count the number of taxa in the given rank.

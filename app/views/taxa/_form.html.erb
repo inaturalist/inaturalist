@@ -224,10 +224,18 @@
       msg += t(:descendant_taxa) if @descendants_exist
       msg += t(:and) + " #{pieces.join(', ')} " + t(:of_it_and_its_descendants) unless pieces.empty?
     -%>
-    <%= link_to t(:delete), taxon,
-                :method => :delete,
-                :confirm => t(:are_you_sure_want_delete_taxon, :msg => "#{msg}"),
-                :class => 'minor delete button' %>
+    <% if taxon.deleteable_by?(current_user) -%>
+      <%= link_to t(:delete), taxon,
+                  :method => :delete,
+                  :confirm => t(:are_you_sure_want_delete_taxon, :msg => "#{msg}"),
+                  :class => 'minor delete button' %>
+    <% else %>
+      <span class="inter meta">
+        <s><%=t :delete %></s>
+        <%=t :you_can_only_destroy_taxa_you_created %>
+      </span>
+
+    <% end -%>
     
     <% if @taxon_range %>
       <%= link_to t(:edit_taxon_range), edit_taxon_range_path(@taxon_range), :class => "right minor button" %>
