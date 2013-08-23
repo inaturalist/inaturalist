@@ -377,6 +377,8 @@ es:
   automatic_descriptions_have_been_disabled: "Se han deshabilitado las descripciones automáticas para este taxón."
   automatically_add_to_project: "Agregar a proyecto automáticamente"
   automatically_id_new: "Identificar nuevas observaciones automáticamente como"
+  automatically_share_your_observations_on: Compartir tus observaciones automáticamente
+  automatically_update_my_content_for_taxon_changes: Actualiza mi contenido automáticamente cuando exista un cambio
   back: Regresar
   back_to: "Regresar a"
   back_to_albums: "Volver atras"
@@ -799,9 +801,11 @@ es:
   date_observed_on: fecha que se observo
   day: Día
   december: Diciembre
+  default: Predeterminada
   default_invite_comment: "La gran foto! Usted debe enviar a %{site_name}: {{INVITE_LINK}}"
   default_observation_license: "Licencia para sus observaciones:"
   default_photo_license: "Licencia para sus fotos:"
+  default_sound_license: Licencias del sonido predeterminadas
   delete: Eliminar
   delete_conversation: Eliminar conversación
   delete_icon?: "¿Eliminar ícono?"
@@ -933,6 +937,7 @@ es:
   email: Correo
   email_addresses_description: "Direcciones de correo separadas por coma, límite 60 cada 30 días."
   email_addresses_to_receive_invites: "Direcciones de correo para recibir invitaciones"
+  email_settings: Configuración del correo
   embed: 'Insertar:'
   embed_a_widget_for_this_taxon_on_website: "Insertar un widget para este taxón en su sitio web &raquo;"
   embed_place_widget: "integrar widget de lugar"
@@ -1013,6 +1018,7 @@ es:
   faq: "Preguntas Frecuentes"
   favorite_taxa: "taxones favoritos"
   favorites: Favoritos
+  fblike: es_LA
   feature_this_project: "¿Quieres resaltar este proyecto?"
   featured: Destacados
   featured?: ¿Destacados?
@@ -1209,6 +1215,7 @@ es:
   import_photos: "Importar fotos"
   importing: Importando...
   in: en
+  in_: de
   inbox: buzón
   in_order_to_login_and_using_site_visit_url: "Con el fin de ingresar y comenzar a utilizar el sitio debe visitar esta url para activar su cuenta"
   in_taxon?: con especie o grupo
@@ -1475,6 +1482,16 @@ es:
   mon: lun
   month: Mes
   months_ago: "hace %{text}"
+  months_first_letter:
+      ?: ''
+      j: E
+      f: F
+      m: M
+      a: A
+      s: S
+      o: O
+      n: N
+      d: D
   more: Más
   more_fields: "Más campos"
   more_info: "Más información"
@@ -2216,6 +2233,7 @@ es:
   settings: Propiedades
   share_on: "Compartir por"
   share_your_observation_with_researchers_by: "Comparta su observación con investigadores por"
+  sharing_settings: Compartiendo los ajustes
   short_or_abbreviated_title_for_display: Regularmente es una abreviatura del título cuando el espacio es muy limitado (máximo 10 caracteres).
   show: Mostrar
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
@@ -2400,6 +2418,7 @@ es:
   taxon: Taxón
   taxon_: Taxón
   taxon_change: cambio de taxón
+  taxon_change_settings: Configuración del cambio de especies y grupos
   taxon_id: Identificador de la especie o grupo
   taxon_split: división de taxón
   taxon_merge: fusión de taxón
@@ -2564,6 +2583,7 @@ es:
   time_ago: "hace %{time}"
   titled_favorites_and_the_most_recent_additions: "titulados \"Favoritos\" y las adiciones más recientes aparecerán en este espacio."
   to: a
+  to_: de
   to_add_comments: "para agregar comentarios."
   to_add_identifications: "a agregar identificaciones."
   to_add_ids: "para agregar identificaciones"
@@ -2621,6 +2641,7 @@ es:
   update: Actualizar
   update_existing_observations_with_new_license: "Actualizar las observaciones existentes con la licencia que escogí"
   update_existing_photos_with_new_license: "Actualizar las fotos existentes con la licencia que escogí"
+  update_existing_sounds_with_new_license: Actualiza los sonidos existentes con la licencia que escogí
   update_past: "Actualizar %{type} pasado"
   update_photos: "Actualizar fotos"
   update_your_content: Actualiza tu contenido
