@@ -1131,6 +1131,9 @@ class Taxon < ActiveRecord::Base
     return true if user.is_admin?
     return true if name == reject.name
     return true if creator_id == user.id && reject.creator_id == user.id
+    if reject.identifications.count == 0 && reject.observations.count == 0 && reject.listed_taxa.count == 0 && reject.taxon_scheme_taxa.count == 0
+      return true
+    end
     false
   end
 

@@ -25,6 +25,7 @@ describe TaxaController do
       sign_in curator
       keeper = Taxon.make!(:creator => curator)
       reject = Taxon.make!
+      Observation.make!(:taxon => reject)
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
       Taxon.find_by_id(reject.id).should_not be_blank
     end
@@ -43,8 +44,18 @@ describe TaxaController do
       sign_in curator
       keeper = Taxon.make!
       reject = Taxon.make!
+      Observation.make!(:taxon => reject)
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
       Taxon.find_by_id(reject.id).should_not be_blank
+    end
+
+    it "should allow curators to merge taxa without observations" do
+      curator = make_curator
+      sign_in curator
+      keeper = Taxon.make!
+      reject = Taxon.make!
+      post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
+      Taxon.find_by_id(reject.id).should be_blank
     end
 
     it "should allow admins to merge anything" do
