@@ -202,16 +202,16 @@
 .observations.mini .observed_on,
 .observations.mini .created_at,
 .observations.mini .species_guess,
+.observations.mini .tags,
 .observations.mini .place,
 .observations.mini .user,
 .observations.mini .actions,
-.observations.mini .details,
 .observations.mini .curator_ident {
   padding-left: 30px;
 }
 
 .observations.mini .icon{position:absolute; }
-.observations.mini .icon{top:7px; left:5px;}
+.observations.mini .icon{top:8px; left:5px;}
 .observations.mini .observation[data-iconic-taxon-name="Aves"] .icon,
 .observations.mini .observation[data-iconic-taxon-name="Mammalia"] .icon,
 .observations.mini .observation[data-iconic-taxon-name="Mollusca"] .icon,
@@ -229,6 +229,7 @@
 .observations.mini .user,
 .observations.mini .observed_on,
 .observations.mini .created_at,
+.observations.mini .tags,
 .observations.mini .place {
   font-size: 100%;
   position: relative;
@@ -239,6 +240,7 @@
 .observations.mini .observed_on .label,
 .observations.mini .created_at .label,
 .observations.mini .place .label,
+.observations.mini .tags .label,
 .observations.mini .curator_ident .label {
   display: block;
   width: 50px;
@@ -256,6 +258,8 @@
   position: static;
   font-weight: bold;
 }
+.observations.mini .details .label {display:none;}
+/*.observations.mini .details .description {display:inline-block;}*/
 
 .observations.mini .curator_ident .label:after { content: ': ';}
 
@@ -287,12 +291,14 @@
 
 .observations.mini.compact .observation .user .label,
 .observations.mini.compact .observation .observed_on .label,
-.observations.mini.compact .observation .created_at .label {
+.observations.mini.compact .observation .created_at .label,
+.observations.mini.compact .observation .tags .label {
   display: inline;
   position: static;
 }
 .observations.mini.compact .observation .label:after { content: ': '; }
 .observations.mini.compact .observation .photo:first-child { display: block !important; }
+.observations.mini.compact .observation .tags .description {display:inline;}
 .observations.mini .editlink { display: none ;}
 
 .observations.mini.compact .actions,
@@ -485,22 +491,33 @@
 .observations.mini.compact.infowindow .observation .observed_on,
 .observations.mini.compact.infowindow .observation .created_at,
 .observations.mini.compact.infowindow .observation .details,
+.observations.mini.compact.infowindow .observation .tags,
 .observations.mini.compact.infowindow .observation .actions {
   padding-left: 0px;
 }
+.observations.mini.compact.infowindow .observation .details {display:none;}
 
-.observations.mini.infowindow .icon,
-.observations.mini .observation[data-iconic-taxon-name] .icon {top:0px; left:0px;}
+.observations.mini.infowindow .observation[data-iconic-taxon-name] .icon {top:3px;}
+.observations.mini.infowindow .observation[data-iconic-taxon-name="Aves"] .icon {top:0px; left:0px;}
+.observations.mini.infowindow .observation[data-iconic-taxon-name="Fungi"] .icon,
+.observations.mini.infowindow .observation[data-iconic-taxon-name="Arachnida"] .icon,
+.observations.mini.infowindow .observation[data-iconic-taxon-name="Protozoa"] .icon,
+.observations.mini.infowindow .observation[data-iconic-taxon-name="Mollusca"] .icon,
+.observations.mini.infowindow .observation[data-iconic-taxon-name="Mammalia"] .icon {top:0px;}
 
 .observations.mini.compact.infowindow p {
   margin-bottom: 0.8em;
   line-height: 1.4;
-  font-size: 120%;
+  font-size: 110%;
 }
 
 .observations.infowindow .observation .attribute.control {
   display: none !important;
 }
+
+.gm-style .observations.infowindow .species_guess {font-size:14px;}
+.gm-style .observations.infowindow .species_guess a,
+.gm-style .observations.infowindow .species_guess span {font-size:inherit;}
 
 /* Max Infowindow */
 .observations.maxinfowindow {

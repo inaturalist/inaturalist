@@ -3252,7 +3252,7 @@ en:
       short: '%d %b %H:%M'
       observed_at: at %I:%M %p %Z
       rfc: "%d %B %Y"
-      day_month_year: "%d %b. %Y"
+      day_month_year: "%B %d, %Y"
     pm: pm
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:

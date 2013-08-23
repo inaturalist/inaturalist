@@ -175,7 +175,8 @@ Some notes:
         <%= formatted_user_text observation.description %>
       </div>
     <% end %>
-    
+  </div>
+  <div id="obs-<%= observation.id %>-tags" class="tags attribute">
     <% unless observation.cached_tag_list.blank? %>
       <h4 class="label"><%=t :tags %></h4>
       <div class="description">
