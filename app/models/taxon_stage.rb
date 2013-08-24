@@ -1,4 +1,10 @@
 class TaxonStage < TaxonChange
+
+  validate :has_no_inputs
+
+  def has_no_inputs
+    errors.add(:base, "cannot have inputs") if taxa.size > 0
+  end
   
   def add_input_taxon(t)
   end

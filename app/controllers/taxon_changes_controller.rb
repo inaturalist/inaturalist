@@ -68,7 +68,7 @@ class TaxonChangesController < ApplicationController
   def new
     @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
     @klass = Object.const_get(params[:type]) rescue nil
-    @klass = TaxonChange if @klass.blank? || @klass.superclass != TaxonChange
+    @klass = TaxonSwap if @klass.blank? || @klass.superclass != TaxonChange
     @taxon_change = @klass.new
     @input_taxa = Taxon.where("id in (?)", params[:input_taxon_ids])
     @output_taxa = Taxon.where("id in (?)", params[:output_taxon_ids])
@@ -109,6 +109,7 @@ class TaxonChangesController < ApplicationController
       redirect_to taxon_change_path(@taxon_change)
       return
     else
+      @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
       render :action => 'edit'
     end
   end
