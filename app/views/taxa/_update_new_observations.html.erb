@@ -18,8 +18,8 @@
   </div>
   
   <div class="meta">
-    <%= link_to "View more observations", observations_url(:taxon_id => taxon) %>
-    of
+    <%= link_to t(:view_more_observations), observations_url(:taxon_id => taxon) %>
+    <%= t :of %>
     <%= link_to_taxon taxon %>
   </div>
 </div>
