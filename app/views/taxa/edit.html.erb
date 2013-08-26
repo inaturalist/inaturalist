@@ -11,6 +11,10 @@
   </span>
   <h2><%= t(:editing) %> <i><%= @taxon.name %></i></h2>
   <div class="description">
+    <% if @taxon.creator -%>
+      <%=t :created_by_user_on_date, :user => @taxon.creator.user.login, :date => l(@taxon.created_at) %>
+    <% end -%>
+
     <%= t(:please_be_careful_particulary_when) %>
     <%= link_to t(:merge), :controller => "taxa", :action => "merge", :id => @taxon %>
     <%= t(:it_instead) %>

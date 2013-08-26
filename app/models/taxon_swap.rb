@@ -1,5 +1,11 @@
 class TaxonSwap < TaxonChange
   has_many :old_taxa, :through => :taxon_change_taxa, :source => :taxon
+
+  validate :only_has_one_input
+
+  def only_has_one_input
+    errors.add(:base, "only one input allowed for a swap") if input_taxa.size > 1
+  end
   
   def old_taxon
     old_taxa.first

@@ -26,6 +26,8 @@ puts "\t#{cmd}"
 system cmd
 resurrection_cmds << "psql inaturalist_production -c \"\\copy photos FROM '#{fname}' WITH CSV\""
 
+update_statements = []
+
 has_many_reflections = User.reflections.select{|k,v| v.macro == :has_many}
 has_many_reflections.each do |k, reflection|
   # Avoid those pesky :through relats

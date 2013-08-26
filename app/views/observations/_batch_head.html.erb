@@ -15,7 +15,7 @@
                              "observations/edit_batch.js",
                              "observations/observation_fields.js" %>
   <script type="text/javascript" charset="utf-8">
-    var DEFAULT_BASE_URL = <%= @default_photo_identity_url.inspect.html_safe %>,
+    var DEFAULT_BASE_URL = <%= @default_photo_identity_url ? @default_photo_identity_url.inspect.html_safe : 'null' %>,
         PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
         SOUNDCLOUD_IDENTITY = <%=raw current_user.soundcloud_identity.to_json(:only => [:id]) %>
     $(document).ready(function() {

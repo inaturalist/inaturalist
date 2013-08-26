@@ -299,6 +299,11 @@ class TaxaController < ApplicationController
   end
 
   def destroy
+    unless @taxon.deleteable_by?(current_user)
+      flash[:error] = t(:you_can_only_delete_taxa_you_created)
+      redirect_back_or_default(@taxon)
+      return
+    end
     @taxon.destroy
     flash[:notice] = t(:taxon_deleted)
     redirect_to :action => 'index'
@@ -847,37 +852,52 @@ class TaxaController < ApplicationController
       end
     end
   end
+
+  private
+  def respond_to_merge_error(msg)
+    respond_to do |format|
+      format.html do
+        flash[:error] = msg
+        if @keeper && session[:return_to].to_s =~ /#{@taxon.id}/
+          redirect_to @keeper
+        else
+          redirect_back_or_default(@keeper || @taxon)
+        end
+      end
+      format.js do
+        render :text => msg, :status => :unprocessable_entity, :layout => false
+        return
+      end
+      format.json { render :json => {:error => msg}, :status => unprocessable_entity}
+    end
+  end
+  public
   
   def merge
     @keeper = Taxon.find_by_id(params[:taxon_id].to_i)
+    if @keeper && !@keeper.mergeable_by?(current_user, @taxon)
+      respond_to_merge_error("The merge tool can only be used for taxa you created or exact synonyms")
+      return
+    end
+
     if @keeper && @keeper.id == @taxon.id
-      msg = "Failed to merge taxon #{@taxon.id} (#{@taxon.name}) into taxon #{@keeper.id} (#{@keeper.name}).  You can't merge a taxon with itself."
-      respond_to do |format|
-        format.html do
-          flash[:error] = msg
-          redirect_back_or_default(@taxon)
-          return
-        end
-        format.js do
-          render :text => msg, :status => :unprocessable_entity, :layout => false
-          return
-        end
-        format.json { render :json => {:error => msg} }
-      end
+      respond_to_merge_error "Failed to merge taxon #{@taxon.id} (#{@taxon.name}) into taxon #{@keeper.id} (#{@keeper.name}).  You can't merge a taxon with itself."
+      return
     end
     
     if request.post? && @keeper
       if @taxon.id == @keeper_id
-        flash[:error] = t(:cant_merge_a_taxon_with_itself)
-        return redirect_to :action => "merge", :id => @taxon
+        respond_to_merge_error(t(:cant_merge_a_taxon_with_itself))
+        return
       end
       
       @keeper.merge(@taxon)
-      flash[:notice] = "#{@taxon.name} (#{@taxon.id}) merged into " + 
-        "#{@keeper.name} (#{@keeper.id}).  #{@taxon.name} (#{@taxon.id}) " + 
-        "has been deleted."
+
       respond_to do |format|
         format.html do
+          flash[:notice] = "#{@taxon.name} (#{@taxon.id}) merged into " + 
+            "#{@keeper.name} (#{@keeper.id}).  #{@taxon.name} (#{@taxon.id}) " + 
+            "has been deleted."
           if session[:return_to].to_s =~ /#{@taxon.id}/
             redirect_to @keeper
           else

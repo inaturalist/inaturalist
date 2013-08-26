@@ -32,7 +32,7 @@
     } %>
   <% end %>
 <% end -%>
-<%= render :partial => 'map', :locals => {:observations_html => observations_html} %>
+<%= render :partial => 'map', :locals => {:observations_html => observations_html, :force_coordinate_visibility => @project.curated_by?(current_user)} %>
 
 <div id="pagination" class="last column span-24">
   <% if logged_in? -%>

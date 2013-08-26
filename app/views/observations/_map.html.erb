@@ -3,6 +3,7 @@
   @iconic_taxa ||= []
   @view ||= params[:view] || 'map'
   observations_html ||= nil
+  force_coordinate_visibility ||= false
 -%>
 <% content_for(:extrajs) do %>
   <%= google_maps_js %>
@@ -20,7 +21,15 @@
       window.map = map;
       
       // Add the observations
-      var observations = <%= observations.to_json(:viewer => current_user, :include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>;
+      var observations = <%= observations.to_json(
+        :viewer => current_user, 
+        :force_coordinate_visibility => force_coordinate_visibility,
+        :include => {
+          :user => { :only => :login }, 
+          :taxon => {}, 
+          :iconic_taxon => {}
+        }
+      ).html_safe %>;
       window.observations = observations;
       $.each(observations, function() {
         // Add the obs
