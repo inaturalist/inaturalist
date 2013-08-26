@@ -46,6 +46,7 @@ class ListedTaxon < ActiveRecord::Base
   validates_uniqueness_of :taxon_id, 
                           :scope => :list_id, 
                           :message => "is already on this list"
+  validates_length_of :description, :maximum => 1000, :allow_blank => true
   
   scope :by_user, lambda {|user| includes(:list).where("lists.user_id = ?", user)}
   
