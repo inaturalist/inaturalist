@@ -350,6 +350,7 @@ en:
   automatically_add_to_project: Automatically add to project
   automatically_share_your_observations_on: Automatically share your observations on
   automatically_id_new: Automatically ID the new obs as
+  automatically_update_my_content_for_taxon_changes: Automatically update my content for taxon changes
   back: Back
   back_to: Back to
   back_to_albums: Volver atras 
@@ -686,6 +687,7 @@ en:
   date_time: Date/Time
   datetime_: Date/Time
   day: Day
+  default: default
   default_invite_comment: "Great photo!  You should post it to %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Default observation license
   default_photo_license: Default photo license
@@ -837,6 +839,7 @@ en:
   Family: Family
   favorite_taxa: favorite taxa
   favorites: "Favorites"
+  fblocale: en_US
   feature_this_project: "Feature this project?"
   featured: featured
   featured?: featured?
@@ -1036,6 +1039,7 @@ en:
   import_photos: Import photos
   importing: "Importing..."
   in: in
+  in_: in
   inbox: inbox
   including: including
   in_order_to_login_and_using_site_visit_url: "In order to login and start using the site you must visit this url to activate your account:"
@@ -1293,6 +1297,16 @@ en:
   mon: Mon
   month: Month
   months_ago: "%{text} ago"
+  months_first_letter:
+    ?: '?'
+    j: J
+    f: F
+    m: M
+    a: A
+    s: S
+    o: O
+    n: N
+    d: D
   more: More
   more_fields: More fields
   more_info: More info
@@ -1788,6 +1802,7 @@ en:
   posted_on: Posted on
   posts: Posts
   powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a> open source software'
+  present: present
   preview: Preview
   preview_of_synced_observation: "<strong>Preview</strong> of synced observation.  <a href=\"%{url}\">Undo?</a>"
   preview_personal_message:  "I'd like you to join me on %{site}, a website where you can record your observations of plants and animals, keep track of your life list, and learn about the natural world!"
@@ -2101,6 +2116,7 @@ en:
     nzbrn_plants: NZBRN Plants
     nzbrn_other: NZBRN Other
     catalogue_of_life_2012_annual_checklist: 'Catalogue of Life: 2012 Annual Checklist'
+    catalogue_of_life_2013_annual_checklist: 'Catalogue of Life: 2013 Annual Checklist'
   source_eg:
     title: 'e.g. Snakes: The Evolution of Mystery in Nature'
     in_text: 'e.g. Greene, 2000'
@@ -2358,6 +2374,7 @@ en:
   title_and_description: "Title & Description"
   titled_favorites_and_the_most_recent_additions: titled "Favorites" and the most recent additions will appear in this space.
   to: to
+  to_: to
   to_add_comments: to add comments
   to_add_identifications: to add identifications
   to_add_ids: to add IDs
@@ -2479,6 +2496,7 @@ en:
   view_lists: View Lists
   view_more: View more
   view_more_about_x: "View more about %{x}"
+  view_more_observations: View more observations
   view_more_observations_from_x: "View more observations from %{x}"
   view_more_observations_from: View more observations from
   view_more_observations_near_x_place: "View more observations near %{place} on <nobr>%{site_name} &raquo;</nobr>"

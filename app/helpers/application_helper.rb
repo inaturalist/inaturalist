@@ -484,7 +484,7 @@ module ApplicationHelper
       end
       html += content_tag(tag, tag_options) do
         content_tag(:span, count, :class => "count") +
-        content_tag(:span, name, :class => "month")
+        content_tag(:span, t("months_first_letter.#{name}"), :class => "month")
       end
     end
     content_tag(:div, html.html_safe, :class => 'monthgraph graph')

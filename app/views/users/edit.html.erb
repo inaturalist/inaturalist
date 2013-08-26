@@ -54,7 +54,7 @@
       <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, 
         {:selected => current_user.time_zone}, 
         {:description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
-      <%= f.select :locale, I18N_SUPPORTED_LOCALES.sort, :include_blank => "default", :description => t(:locale_description) %>
+      <%= f.select :locale, I18N_SUPPORTED_LOCALES.sort, :include_blank => t(:default), :description => t(:locale_description) %>
     </div>
     <div class="last column span-18">
       <%= f.text_area(:description, :label => t(:tell_everyone_a_little_about_you)) %>
@@ -96,7 +96,7 @@
       <h3><%= t :taxon_change_settings %></h3>
       <div class="stacked">
         <%= f.check_box "prefers_automatic_taxonomic_changes", 
-          :label => "Automatically update my content for taxon changes", 
+          :label => t(:automatically_update_my_content_for_taxon_changes),
           :label_after => true,
           :description => t('views.users.edit.taxon_change_desc', :site_name => SITE_NAME_SHORT) %>
       </div>
@@ -148,7 +148,7 @@
         </div>
         
         <div class="last column span-18">
-          <%= link_to_function "<span class='helptip'></span> About these licenses".html_safe, 
+          <%= link_to_function "<span class='helptip'></span> #{t(:about_these_licenses)}".html_safe,
             "$('#aboutlicenses').dialog({width:'auto', modal:true, title: '#{t(:about_the_cc_licenses)}'})" %>
           <div id="aboutlicenses" class="dialog" style="display:none">
             <div class="column span-18 verticalmiddle">
@@ -222,7 +222,7 @@
     <%= link_to_toggle current_user.encrypted_password ? t(:change_your_password) : "Set a password", "#passwordform", :class => "ui" %>
     <%= form_for(current_user, :html => {:id => "passwordform", :style => "display:none"}) do %>
       <div class="stacked">
-        <%= label(:password, 'New Password') %>
+        <%= label(:password, t(:new_password)) %>
         <%= password_field_tag(:password, '', :class => 'text') %>
       </div>
       <div class="stacked">

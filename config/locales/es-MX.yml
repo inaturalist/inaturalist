@@ -83,9 +83,15 @@ es-MX:
         prefers_place_boundary_visible: Mostrar los límites del lugar en el mapa
         tracking_codes: Códigos de rastreo
         source_url: Dirección web de la fuente
-      user: 
-        identifications_email_notification: identificaciones
+      user:
+        comments_email_notification: Comentarios
+        email: Correo
+        icon: Ícono
+        identifications_email_notification: Identificaciones
         invitation_email_notification: "Invitaciones a proyectos"
+        locale: Localidad
+        name: Nombre
+        time_zone: "Zona horaria"
       place:
               latitude: Latitud
               longitude: Longitud
@@ -374,6 +380,8 @@ es-MX:
   automatic_descriptions_have_been_disabled: "Las descripciones automáticas para esta especie o grupo han sido desconectadas."
   automatically_add_to_project: "Añade al proyecto automáticamente"
   automatically_id_new: "Automáticamente identifica la nueva observación como"
+  automatically_share_your_observations_on: Compartir tus observaciones automáticamente
+  automatically_update_my_content_for_taxon_changes: Actualiza mi contenido automáticamente cuando exista un cambio
   back: Regresar
   back_to: "Regresar a"
   back_to_albums: "De regreso"
@@ -798,9 +806,11 @@ es-MX:
       month: Mes
       second: Segundos
       year: Año
+  default: Predeterminada
   default_invite_comment: "¡Excelente foto! Debes subirla a  %{site_name}: {{INVITE_LINK}}"
   default_observation_license: "Licencia predeterminada de observación"
   default_photo_license: "Licencia predeterminada de foto"
+  default_sound_license: Licencias de sonido predeterminadas
   delete: Borrar
   delete_conversation: Eliminar conversación
   delete_icon?: "¿Borras el ícono?"
@@ -936,6 +946,7 @@ es-MX:
   email: Correo
   email_addresses_description: "correos electrónicos separados por coma. El límite son 60 cada 30 días."
   email_addresses_to_receive_invites: "Correos electrónicos que recibirán invitación"
+  email_settings: Configuración del correo
   embed: 'Insertar:'
   embed_a_widget_for_this_taxon_on_website: "Incluye un widget de esta especie o grupo en tu sitio web &raquo;"
   embed_place_widget: "Incluye el widget del lugar"
@@ -6402,6 +6413,8 @@ es-MX:
   'false': 'No'
   faq: "Preguntas frecuentes"
   favorite_taxa: "Grupos de especies (taxa) favoritos"
+  favorites: Favoritos
+  fblocale: es_LA
   feature_this_project: "¿Quieres resaltar este proyecto?"
   featured: Destacado
   featured?: ¿Destacado?
@@ -6593,6 +6606,7 @@ es-MX:
   import_photos: "Importa fotos"
   importing: Importando...
   in: en
+  in_: de
   in_order_to_login_and_using_site_visit_url: "Para conectarte y empezar a utilizar el sitio debes visitar este sitio (URL) y activar tu cuenta"
   in_taxon?: con especie o grupo
   in_the_past: "En el pasado"
@@ -6776,6 +6790,7 @@ es-MX:
   loading_tags: "Cargando etiquetas..."
   loading_taxa_from_your: "Cargando especies o grupos de tus observaciones..."
   loading_wikipedia_description: "Cargando la descripción de Wikipedia"
+  locale_description: La localidad permite configurar el idioma y las preferencias de formato de fecha.
   localized_species_accounts: "Contenidos de especies"
   location: Ubicación
   location_: Ubicación
@@ -6845,6 +6860,16 @@ es-MX:
               relative_uri: "Debe ser un URI asboluto"
   month: Mes
   months_ago: "hace %{text} "
+  months_first_letter:
+        ?: 'Mes: '
+        j: E
+        f: F
+        m: M
+        a: A
+        s: S
+        o: O
+        n: N
+        d: D
   more: Más
   more_fields: "Más campos"
   more_info: "Más información"
@@ -6868,7 +6893,7 @@ es-MX:
   name_provider: Nombre del proveedor
   named_based_url_might_change: "El nombre basado en el URL puede cambiar, pero este no."
   names: Nombres
-  native: Nativo
+  native: Nativa
   nav: Nav
   nav_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   ne_lat: Lat. N.E.
@@ -6891,6 +6916,7 @@ es-MX:
   new_observation_rules: "Nuevas reglas de observación"
   new_observations: "Nuevas observaciones..."
   new_observations_ellispsis: Reglas de las observaciones
+  new_observations_from_place_html: "Nuevas observaciones de: %{place}"
   new_password: "Nueva contraseña"
   new_post: "Nueva nota"
   new_project: "Nuevo proyecto"
@@ -7296,7 +7322,7 @@ es-MX:
   posted_on: "Anotado en"
   posts: Notas
   powered_by_inaturalist_open_source_software_html: "Propulsado por <a href=\"https://github.com/inaturalist/inaturalist\" target=\"_new\" >iNaturalist</a> programa de código abierto"
-  present: nativo
+  present: nativa
   prev: Ant
   preview: "Vista previa"
   preview_of_synced_observation: "<strong>Previo</strong> de la observación.  <a href=\"%{url}\">¿Revertir?</a>"
@@ -7503,6 +7529,7 @@ es-MX:
   set_license: "Escoge la licencia"
   settings: Propiedades
   share_your_observation_with_researchers_by: "Comparte tu observación con investigadores de "
+  sharing_settings: Ajustes
   short_or_abbreviated_title_for_display: Regularmente es una abreviatura del título cuando el espacio es muy limitado (máximo 10 caracteres).
   show: Muestra
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
@@ -7590,6 +7617,7 @@ es-MX:
     nzbrn_plants: NZBRN Plantas
     nzbrn_other: NZBRN Otro
     catalogue_of_life_2012_annual_checklist: Lista anual del Catálogo de la vida 2012
+    catalogue_of_life_2013_annual_checklist: Lista anual del Catálogo de la vida 2013
   source_eg:
     title: 'ej. Serpientes: el misterio de su evolución en la naturaleza'
     in_text: 'ej. Herrera, 2000'
@@ -7679,6 +7707,7 @@ es-MX:
   taxon: "Especie o grupo"
   taxon_: especie o grupo
   taxon_change: cambio de grupos
+  taxon_change_settings: Configuración del cambio de especies y grupos
   taxon_deleted: Especie o grupo borrado.
   taxon_doesnt_have_a_range: La especie o grupo no tiene una clasificación
   taxon_id: Identificador de la especie o grupo
@@ -7838,6 +7867,7 @@ es-MX:
   title: título
   titled_favorites_and_the_most_recent_additions: "titulado \"Favoritos\" y las adiciones más recientes aparecerán en este espacio."
   to: "a "
+  to_: de
   to_add_comments: "para añadir comentarios"
   to_add_identifications: "para añadir identificaciones"
   to_add_ids: "para agregar identificaciones"
@@ -7891,8 +7921,9 @@ es-MX:
   unsubscribe_from_this: Quitar suscripción de este
   unsuspend_user: "Cancela suspensión a usuario"
   update: Actualización
-  update_existing_observations_with_new_license: "Actualiza las observaciones existentes con una nueva selección de licencia"
-  update_existing_photos_with_new_license: "Actualiza fotos existentes con una nueva selección de licencia"
+  update_existing_observations_with_new_license: "Actualiza las observaciones existentes con la licencia que escogí"
+  update_existing_photos_with_new_license: "Actualiza las fotos existentes con la licencia que escogí"
+  update_existing_sounds_with_new_license: Actualizar los sonidos existentes con la licencia que escogí
   update_past: "Actualiza las pasadas %{type}"
   update_photos: "Actualiza fotos"
   update_your_content: Actualiza tu contenido
@@ -7925,7 +7956,7 @@ es-MX:
   using_cc_license_makes_easier_use_your_data: "El uso de licencias de <strong>Creative Commons </strong> facilita la utilización de tu información por  los investigadores . Puedes escoger una licencia distinta después de haberte registrado.\n"
   valid_interrogation: ¿Es válido?
   view: Ver
-  view_all: "Ver todos"
+  view_all: "Ver todas"
   view_all_members: "Ver a todos los miembros"
   view_all_n: "Ver todos %{n}"
   view_all_observations: "Ver todas las observaciones"
@@ -7944,6 +7975,7 @@ es-MX:
   view_license: "Ve la licencia"
   view_lists: "Ve las listas"
   view_more: Ver más
+  view_more_observations: Ve mas observaciones
   view_more_observations_from: Ve mas observaciones de
   view_more_observations_near_x_place: "Ver mas observaciones cerca del lugar %{place} en <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Ver mas observaciones del proyecto %{project} en <nobr>%{site_name} &raquo;</nobr>"
