@@ -9,6 +9,7 @@
 .observation div.description p{font-style:italic;}
 .observation .description.attribute img,
 .observation .details.attribute {display:none;}
+.observation .tags.attribute {display:none;}
 .observation .details.attribute img{max-width:400px;height:auto;}
 .observation .actions ul{display:inline;list-style:none;margin:0;padding:0;}
 .observation .actions ul li{display:inline;white-space:nowrap;}
@@ -259,7 +260,6 @@
   font-weight: bold;
 }
 .observations.mini .details .label {display:none;}
-/*.observations.mini .details .description {display:inline-block;}*/
 
 .observations.mini .curator_ident .label:after { content: ': ';}
 
@@ -325,6 +325,7 @@
 .observations.grid .place,
 .observations.grid .user,
 .observations.grid .details,
+.observations.grid .tags,
 .observations.grid .curator_ident {
   display:none;
 }
@@ -476,7 +477,8 @@
   overflow: auto;
 }
 
-.observations.infowindow .details {
+.observations.infowindow .details,
+.observations.infowindow .tags {
   display: block;
   margin-top: 5px;
 }
