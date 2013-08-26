@@ -6,13 +6,13 @@
   <% if CONFIG.facebook -%>
     <meta property="og:type" content="<%= CONFIG.facebook.namespace %>:taxon"/>
   <% end -%>
-  <meta property="og:title" content="<%= @taxon.to_plain_s(:verb => true, :no_time => true) %>"/> 
+  <meta property="og:title" content="<%= @taxon.to_plain_s(:verb => true, :no_time => true) %>"/>
   <% if @photos.blank? -%>
-    <meta property="og:image" content="<%= iconic_taxon_image_url(@taxon) %>"/> 
+    <meta property="og:image" content="<%= iconic_taxon_image_url(@taxon) %>"/>
   <% else %>
-    <meta property="og:image" content="<%= @taxon.default_photo.medium_url %>"/> 
+    <meta property="og:image" content="<%= @taxon.default_photo.medium_url %>"/>
   <% end -%>
-  <meta property="og:url" content="<%= taxon_url(@taxon) %>"/> 
+  <meta property="og:url" content="<%= taxon_url(@taxon) %>"/>
   <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
     <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
   <% end -%>
@@ -23,7 +23,7 @@
   -%>
   <meta name="description" content="<%= html_attributize description %>"/>
   <meta property="og:description" content="<%= html_attributize og_description %>"/>
-  
+
 <%- end -%>
 
 <%- content_for(:extracss) do %>
@@ -40,14 +40,14 @@
   <!--[if lt IE 8]>
   <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
   <![endif]-->
-  
+
   <%= javascript_include_tag 'jquery/plugins/jqModal',
                              'modal_image',
                              "jquery/plugins/inat/photo_selectors.js" %>
 
   <%= google_maps_js %>
   <%= javascript_include_tag 'inaturalist/map3', 'jquery/plugins/inat/taxonmap', 'taxa/show' %>
-  
+
   <script type="text/javascript" charset="utf-8">
     var TAXON = <%=raw @taxon.to_json %>,
         ADDITIONAL_RANGES = <%=raw @additional_ranges.to_json(:methods => [:kml_url], :include => [:source]) %>
@@ -58,7 +58,7 @@
           $('#modal_image_box').jqmAddTrigger('#photos a.modal_image_link')
         });
       <% end %>
-      
+
       <% if logged_in? %>
         <% if @taxon.species_or_lower? -%>
           $('#add_to_place_dialog').jqm({
@@ -80,7 +80,7 @@
           });
         <% end %>
       <% end %>
-      
+
       $('#edit_colors_dialog form')
         .bind('ajax:before', function() {
           $('#edit_colors .button').hide()
@@ -105,7 +105,7 @@
         .bind('ajax:error', function() {
           alert('Error updating colors')
         })
-      
+
       $('#place_selector_search form, #place_selector_paste form')
         .live('ajax:before', function() {
           $('.loading', this).show()
@@ -116,7 +116,7 @@
         .live('ajax:success', function(event, json, status) {
           $(this).siblings('.place_selector_places').html(json.map(function(place) { return place.html }).join(' '))
         })
-      
+
       $('.add_to_place_link .add_link, .add_to_place_link .remove_link')
         .live('ajax:before', function() {
           $(this).siblings('.status').show()
@@ -133,7 +133,7 @@
         .live('ajax:success', function(event, json, status) {
           $(this).siblings('.status').html(I18n.t('removed!')).removeClass('loading')
         })
-        
+
       $('#place_selector_paste form').live('ajax:success', function(event, json, status) {
         $(this).siblings('.places').html(json.map(function(place) { return place.html }).join(' '))
       })
@@ -145,7 +145,7 @@
   <span class="breadcrumbs">
     <%= link_to t(:all_species), taxa_path, :class => 'back crumb' %>
     <% for iconic_taxon in Taxon::ICONIC_TAXA %>
-      <%= link_to "&nbsp;".html_safe, iconic_taxon, :class => "iconic_taxon_sprite #{iconic_taxon.name.downcase} #{'selected' if @taxon.iconic_taxon_id == iconic_taxon.id}", 
+      <%= link_to "&nbsp;".html_safe, iconic_taxon, :class => "iconic_taxon_sprite #{iconic_taxon.name.downcase} #{'selected' if @taxon.iconic_taxon_id == iconic_taxon.id}",
         :title => t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[iconic_taxon.name].gsub(' ','_').gsub('-','_').downcase}") %>
     <% end %>
   </span>
@@ -161,7 +161,7 @@
     <% else %>
       <%= t(:source_unknown)%>
     <% end %>
-    
+
     | <%= link_to t(:permalink), url_for(@taxon), :title => t(:named_based_url_might_change)%>
     <% if logged_in? -%>
       | <%= link_to t(:map), taxon_map_path(@taxon) %>
@@ -172,7 +172,7 @@
     <% if @taxon.flagged? %>
       | <span id="flaggings_heads_up" class="description">
       <%= t(:flagged_for_curation) %>
-      <%= link_to t(:view_flags), taxon_flags_path(@taxon), :class => 'readmore', 
+      <%= link_to t(:view_flags), taxon_flags_path(@taxon), :class => 'readmore',
         :title => t(:see_something_wrong_with_taxon) %>
       </span>
     <% else %>
@@ -181,7 +181,7 @@
       <% end %>
     <% end %>
   </div>
-  
+
   <div class="clear">
     <span id="search_taxa">
       <%= render :partial => 'search_form', :locals => {:css_class => "clear smallbuttons buttonrow"} %>
@@ -264,17 +264,17 @@
                 <%=raw t(:research_grade).downcase %>
               </div>
               <%- obs_url_params = {
-                :controller => "observations", 
-                :action => "index", 
-                :place_id => @listed_taxon.place_id, 
+                :controller => "observations",
+                :action => "index",
+                :place_id => @listed_taxon.place_id,
                 :taxon_id => @taxon.id}
               -%>
               <div class="observedgraph" style="margin-bottom:40px">
-                <%= month_graph @listed_taxon.observation_month_stats, 
+                <%= month_graph @listed_taxon.observation_month_stats,
                   :link => obs_url_params %>
               </div>
               <div class="confirmedgraph">
-                <%= month_graph @listed_taxon.confirmed_observation_month_stats, 
+                <%= month_graph @listed_taxon.confirmed_observation_month_stats,
                   :link => obs_url_params.merge(:quality_grade => 'research'),
                   :max => @listed_taxon.observation_month_stats.values.max %>
               </div>
@@ -288,7 +288,15 @@
               <%= t("establishment.#{@listed_taxon.establishment_means}", :default => t(:present)).capitalize %>
             <% end -%>
           </strong>
-          <%=t @listed_taxon.native? ? t(:to) : t(:in) %>
+
+          <%- if @listed_taxon.native? %>
+                <%= t(:to_).downcase %>
+              <%- elsif @listed_taxon.introduced? %>
+                <%= t(:in).downcase %>
+              <%- else %>
+                <%= t(:in_).downcase %>
+              <%- end %>
+
           <%= link_to t(@listed_taxon.place.name, :default => @listed_taxon.place.name), @listed_taxon.place %>
           <span class="small">
             (<%= link_to t(:view_details), @listed_taxon %>)
@@ -304,14 +312,14 @@
     <%= t(:classification) %>
     <div class="description"><%=t :within_inaturalist, :site_name => SITE_NAME %></div>
   </h3>
-  
+
   <%= render :partial => 'classification_list' %>
-  
+
   <div id="all_names">
     <h3><%= t(:all_names) %></h3>
     <ul>
       <% for lexicon, taxon_names in @taxon.taxon_names.group_by(&:lexicon) %>
-        <%- 
+        <%-
           lexicon = lexicon.blank? ? t(:unknown) : t("lexicons.#{lexicon.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}",
                                                      :default => lexicon.capitalize)
           if taxon_names.size > 1 && (default_name = taxon_names.detect{|tn| tn.name == @taxon.name})
@@ -358,7 +366,7 @@
       <div id="colorboxen">
         <% for color in @colors %>
           <%= link_to "&nbsp;".html_safe, {:controller => "taxa", :action => "search", :colors => color.id},
-            :class => "color", :style => "background-color: #{color.value}", :title => color.value, 
+            :class => "color", :style => "background-color: #{color.value}", :title => color.value,
             :rel => "nofollow" %>
         <% end %>
       </div>
@@ -366,13 +374,13 @@
         <div id="edit_colors">
           <%= link_to_toggle t(:edit_colors), "#edit_colors_dialog" %>
           <div id="edit_colors_dialog" style="display: none">
-            <%= form_for @taxon, 
+            <%= form_for @taxon,
                 :url => {:action => 'update_colors', :id => @taxon, :format => 'json'},
                 :remote => true do |f| %>
               <% for color in Color.all %>
                 <div class="color_field <%= color.value %>">
-                  <%= check_box_tag "taxon[color_ids][]", color.id, 
-                    @taxon.color_ids.include?(color.id), 
+                  <%= check_box_tag "taxon[color_ids][]", color.id,
+                    @taxon.color_ids.include?(color.id),
                     :id => "color_ids_#{color.value}",
                     :class => 'checkbox',
                     :alt => color.value %>
@@ -390,7 +398,7 @@
       <% end -%>
     </div>
   <% end -%>
-  
+
   <% if @taxon.species_or_lower? -%>
     <div id="places" class="clear">
       <h3>
@@ -399,7 +407,7 @@
           <span class="small description"><%= @check_listed_taxa.size %> <%= t :of %> <%= @check_listed_taxa.total_entries %></span>
         <% end -%>
       </h3>
-    
+
       <% if @us_states -%>
         <span class="description"><%=t(:US_states)%>:</span>
         <%= google_charts_map_for_places(@us_states, {:chs => '150x75'}) %>
@@ -407,7 +415,7 @@
         <span class="description"><%= t(:countries)%>:</span>
         <%= google_charts_map_for_places(@countries, {:chs => '150x75'}) %>
       <% end -%>
-    
+
       <% if @check_listed_taxa.blank? -%>
         <% unless logged_in? %><div class="description"><%= t(:no_places_selected)%></div><% end %>
       <% else %>
@@ -418,7 +426,7 @@
               <% if logged_in? && lt.editable_by?(current_user) -%>
                 <%= link_to(t(:edit), lt, :class => "small description editlink") %>
               <% end -%>
-              
+
               <% if lt.introduced? -%>
                 <div class="small description"><%= lt.establishment_means %></div>
               <% end -%>
@@ -426,7 +434,7 @@
           <% end %>
         </ul>
       <% end -%>
-    
+
       <% if logged_in? -%>
         <% if @places.blank? -%>
           <div class="notice">
@@ -440,30 +448,30 @@
       <% end -%>
     </div>
   <% end %>
-  
+
   <div id="extras">
     <h3><%= t(:extras) %></h3>
-    
+
     <p class="ui">
       <%= link_to t(:taxonomic_changes_raquo_html), taxon_changes_path(:taxon_id => @taxon),
         "data-tip" => "View the history of this taxon on #{CONFIG.site_name_short}, e.g. splits, merges, etc." %>
     </p>
 
     <p class="ui">
-      <%= link_to t(:taxon_schemes_raquo_html), schemes_for_taxon_path(@taxon), 
+      <%= link_to t(:taxon_schemes_raquo_html), schemes_for_taxon_path(@taxon),
         "data-tip" => "Schemes are sets of taxa recognized by different authorities." %>
     </p>
-    
+
     <p class="ui">
-      <%= link_to t(:make_taxonomic_flickr_tags_for_taxon_raquo).html_safe, 
+      <%= link_to t(:make_taxonomic_flickr_tags_for_taxon_raquo).html_safe,
         flickr_tagger_path(:taxon_id => @taxon.id) %>
     </p>
-    
+
     <p class="ui">
-      <%= link_to t(:flickr_invite_link_raquo).html_safe, 
+      <%= link_to t(:flickr_invite_link_raquo).html_safe,
         url_for(:controller => "flickr", :action => "create_invite", :taxon_id => @taxon.id) %>
     </p>
-    
+
     <p class="ui">
       <%= link_to_function t(:wikipedia_taxobox_raquo).html_safe, "return false;", :id => "taxoboxlink" %>
       <%- taxobox_content = capture do -%>
@@ -478,20 +486,20 @@
         }));
       </script>
     </p>
-    
+
     <p class="ui">
       <%= link_to t(:tree_browser_raquo).html_safe, {:controller => "taxa", :action => "tree", :taxon_id => @taxon},
         :rel => "nofollow" %>
     </p>
-    
+
     <p class="ui">
-      <%= link_to t(:search_descendant_taxa_raquo).html_safe, 
+      <%= link_to t(:search_descendant_taxa_raquo).html_safe,
         {:controller => "taxa", :action => "search", :taxon_id => @taxon, :view => TaxaController::LIST_VIEW},
         :rel => "nofollow" %>
     </p>
-    
+
     <p class="ui">
-      <%= link_to t(:embed_a_widget_for_this_taxon_on_website).html_safe, observations_widget_path(:taxon_id => @taxon), 
+      <%= link_to t(:embed_a_widget_for_this_taxon_on_website).html_safe, observations_widget_path(:taxon_id => @taxon),
         :rel => "nofollow" %>
     </p>
 
@@ -500,9 +508,9 @@
         <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @taxon } %>
       </p>
     <% end -%>
-    
+
   </div>
-  
+
   <% if logged_in? && current_user.is_curator? -%>
     <div id="curation" class="quiet box">
       <h3><%= t(:curation) %></h3>
@@ -531,7 +539,7 @@
       <%= render :partial => "photos", :locals => { :photos => @photos } %>
       <div id="photos_loading_status" class="loading status" style="display:none"><%= t(:loading_more_photos) %></div>
     </div>
-    
+
     <% if logged_in? %>
       <%= link_to_function(t(:edit_photos), "$('#edit_photos_dialog').dialog('open')", :class => 'readmore') %>
       <div id="edit_photos_dialog" class="dialog" style="display: none"></div>
@@ -544,10 +552,10 @@
         <% if logged_in? -%>
           <%= link_to_toggle t(:add_to_list), '#add_to_list' %> |
         <% end -%>
-        <%= link_to( t(:add_an_observation), new_observation_path(:taxon_id => @taxon), 
+        <%= link_to( t(:add_an_observation), new_observation_path(:taxon_id => @taxon),
           :class => 'readmore', :rel => 'nofollow') %>
       </div>
-      
+
       <% if logged_in? -%>
         <ul id="add_to_list" class="clear<%= ' lots' if @current_user_lists.size > 5 %>" style="display: none">
           <% for list in @current_user_lists %>
@@ -569,9 +577,9 @@
         </ul>
       <% end -%>
     </div>
-    
-    
-    <div id="taxon_observations" class="stacked">      
+
+
+    <div id="taxon_observations" class="stacked">
       <% if @observations.blank? -%>
         <h3><%= t(:recent_observations) %></h3>
         <div id="noobservations" class="clear">
@@ -592,7 +600,7 @@
           <%= compact render(:partial => "observations/cached_component", :collection => @observations) %>
         </div>
       <% end -%>
-      
+
       <% if logged_in? -%>
         <%= link_to t(:view_all_observations), observations_path(:taxon_id => @taxon.id), :class => 'readmore', :rel => "nofollow" %>
         <br/>
@@ -601,14 +609,14 @@
         <%= link_to  t(:view_all_observations), observations_path(:taxon_id => @taxon.id), :class => 'readmore', :rel => "nofollow" %>
       <% end -%>
     </div>
-    
+
     <div id="fblike" class="stacked">
-      <script src="//connect.facebook.net/en_US/all.js#xfbml=1"></script>
+      <script src="//connect.facebook.net/<%= t(:fblocale) %>/all.js#xfbml=1"></script>
       <fb:like send="true" show_faces="true" width="270" layout="button_count"></fb:like>
     </div>
   <div><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="inaturalist">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
   </div>
-  
+
   <div class="last column span-20">
     <div id="taxon_links" class="right tabs">
       <ul>
