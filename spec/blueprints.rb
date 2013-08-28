@@ -59,6 +59,20 @@ Guide.blueprint do
   title { Faker::Lorem.sentence }
 end
 
+GuidePhoto.blueprint do
+  guide_taxon { GuideTaxon.make! }
+  photo { Photo.make! }
+  description { Faker::Lorem.paragraph }
+end
+
+GuideRange.blueprint do
+  guide_taxon { GuideTaxon.make! }
+  rights_holder { Faker::Name.name }
+  thumb_url { "http://#{Faker::Internet.domain_name}/thumb.png" }
+  medium_url { "http://#{Faker::Internet.domain_name}/medium.png" }
+  original_url { "http://#{Faker::Internet.domain_name}/original.png" }
+end
+
 GuideSection.blueprint do
   guide_taxon { GuideTaxon.make! }
   title { Faker::Lorem.sentence }

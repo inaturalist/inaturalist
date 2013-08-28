@@ -40,11 +40,56 @@ describe Guide, "set_defaults_from_eol_collection" do
 end
 
 describe Guide, "add_taxa_from_eol_collection" do
-  # let(:guide) { Guide.make! }
   let(:eol_collection_url) { "http://eol.org/collections/6970" } 
   it "should add taxa" do
     guide = Guide.make!
     guide.add_taxa_from_eol_collection(eol_collection_url)
     guide.guide_taxa.should_not be_blank
+  end
+end
+
+describe Guide, "to_ngz" do
+  before(:all) do
+    @guide = Guide.make!
+    @guide_taxon = GuideTaxon.make!(:guide => @guide)
+    @photo = FlickrPhoto.create!(
+      "native_photo_id" => "6336919400",
+      "square_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_s.jpg",
+      "thumb_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_t.jpg",
+      "small_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_m.jpg",
+      "medium_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116.jpg",
+      "large_url" => "http://farm7.staticflickr.com/6220/6336919400_64fb863116_b.jpg",
+      "original_url" => "http://farm7.staticflickr.com/6220/6336919400_767093042c_o.jpg",
+      "native_page_url" => "http://www.flickr.com/photos/ken-ichi/6336919400/",
+      "native_username" => "Ken-ichi",
+      "native_realname" => "Ken-ichi Ueda",
+      "license" => 2
+    )
+    @guide_photo = GuidePhoto.make!(:guide_taxon => @guide_taxon, :photo => @photo)
+    @guide_range = GuideRange.make!(
+      :guide_taxon => @guide_taxon,
+      "medium_url" => "http://www.natureserve.org/imagerepository/GetImage?SRC=6&BATCH=50&FMT=gif&RES=600X615&NAME=rhinocheilus_lecontei",
+      "thumb_url" => "http://media.eol.org/content/2011/12/03/16/44985_98_68.jpg",
+      "original_url" => "http://www.natureserve.org/imagerepository/GetImage?SRC=6&BATCH=50&FMT=gif&RES=600X615&NAME=rhinocheilus_lecontei",
+      "license" => "CC-BY-NC",
+      "source_url" => "http://eol.org/data_objects/14528560",
+      "rights_holder" => "NatureServe"
+    )
+    @guide_section = GuideSection.make!(:guide_taxon => @guide_taxon)
+    @zip_path = @guide.to_ngz
+    @unzipped_path = File.join File.dirname(@zip_path), @guide.to_param
+    system "unzip -d #{@unzipped_path} #{@zip_path}"
+  end
+
+  it "should contain an xml file" do
+    File.exist?(File.join(@unzipped_path, "#{@guide.title.parameterize}.xml")).should be_true
+  end
+
+  it "should have guide photo image files" do
+    File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_photo, :size => "medium"))).should be_true
+  end
+
+  it "should have guide range image files" do
+    File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_range, :size => "medium"))).should be_true
   end
 end
