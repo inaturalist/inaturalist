@@ -1102,6 +1102,15 @@ class Taxon < ActiveRecord::Base
     tr ? tr.kml_url : nil
   end
 
+  def taxon_ranges_with_kml
+    taxon_ranges = self.taxon_ranges.without_geom.includes(:source).limit(10).select(&:kml_url)
+    taxon_range = if CONFIG.taxon_range_source_id
+      taxon_ranges.detect{|tr| tr.source_id == CONFIG.taxon_range_source_id}
+    end
+    taxon_range ||= taxon_ranges.detect{|tr| !tr.range.blank?}
+    [taxon_range, taxon_ranges - [taxon_range]].flatten
+  end
+
   def all_names
     taxon_names.map(&:name)
   end

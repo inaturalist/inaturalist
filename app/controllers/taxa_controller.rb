@@ -195,12 +195,14 @@ class TaxaController < ApplicationController
           end
         end
         
-        @taxon_ranges = @taxon.taxon_ranges.without_geom.includes(:source).limit(10).select(&:kml_url)
-        @taxon_range = if CONFIG.taxon_range_source_id
-          @taxon_ranges.detect{|tr| tr.source_id == CONFIG.taxon_range_source_id}
-        end
-        @taxon_range ||= @taxon_ranges.detect{|tr| !tr.range.blank?}
-        @additional_ranges = @taxon_ranges - [@taxon_range]
+        # @taxon_ranges = @taxon.taxon_ranges.without_geom.includes(:source).limit(10).select(&:kml_url)
+        # @taxon_range = if CONFIG.taxon_range_source_id
+        #   @taxon_ranges.detect{|tr| tr.source_id == CONFIG.taxon_range_source_id}
+        # end
+        # @taxon_range ||= @taxon_ranges.detect{|tr| !tr.range.blank?}
+        @taxon_ranges = @taxon.taxon_ranges_with_kml
+        @taxon_range = @taxon_ranges[0]
+        @additional_ranges = @taxon_ranges[1..-1]
         @taxon_gbif = "#{@taxon.name.gsub(' ','+')}*"
         @show_range = @taxon_range
         @colors = @taxon.colors if @taxon.species_or_lower?

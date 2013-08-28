@@ -6,7 +6,7 @@
     place ||= listed_taxon.place
   end
   # taxon ||= listed_taxon.taxon
-  taxon_range ||= TaxonRange.without_geom.first(:conditions => ["taxon_id = ?", taxon])
+  taxon_range ||= taxon.taxon_ranges_with_kml.first
   map_tag_attrs = setup_map_tag_attrs(taxon, :place => place, :taxon_range => taxon_range)
   obs_url = observations_path(:place_id => listed_taxon.try(:place_id), :taxon_id => taxon.id)
   photos = taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo}.compact
