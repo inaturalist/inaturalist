@@ -635,7 +635,11 @@ class Taxon < ActiveRecord::Base
           :sort => 'relevance'
         )
         r = [] if r.blank?
-        flickr_chosen_photos = r.map{|fp| fp.respond_to?(:url_s) && fp.url_s ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
+        flickr_chosen_photos = if r.respond_to?(:map)
+          r.map{|fp| fp.respond_to?(:url_s) && fp.url_s ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
+        else
+          []
+        end
       rescue FlickRaw::FailedResponse => e
         Rails.logger.error "EXCEPTION RESCUE: #{e}"
         Rails.logger.error e.backtrace.join("\n\t")
