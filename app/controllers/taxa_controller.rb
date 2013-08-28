@@ -45,7 +45,7 @@ class TaxaController < ApplicationController
   # @param q:    Return all taxa where the name begins with q 
   #
   def index
-    find_taxa unless request.format == :html
+    find_taxa unless request.format.html? || request.format.mobile?
     
     begin
       @taxa.try(:total_entries)
@@ -87,11 +87,10 @@ class TaxaController < ApplicationController
         end
       end
       format.mobile do
-        if @taxa.blank?
-          page = params[:page].to_i
-          page = 1 if page < 1
-          @taxon_photos = TaxonPhoto.paginate(:page => page, :per_page => 32, :order => "id DESC")
-          @taxa = Taxon.all(:conditions => ["id IN (?)", @taxon_photos.map{|tp| tp.taxon_id}])
+        if request.query_parameters.blank?
+          @taxa = Taxon.iconic_taxa.page(1).per_page(50)
+        else
+          find_taxa
         end
       end
       format.xml  do
@@ -1237,7 +1236,7 @@ class TaxaController < ApplicationController
       page = params[:page].to_i
       page = 1 if page <= 0
       per_page = params[:per_page].to_i
-      page = 30 if page <= 0 || page > 200
+      per_page = 30 if per_page <= 0 || per_page > 200
       @taxa = @taxa.page(page)
       @taxa = @taxa.per_page(per_page)
     end
