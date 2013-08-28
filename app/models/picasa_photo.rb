@@ -6,6 +6,7 @@ class PicasaPhoto < Photo
   
   validates_presence_of :native_photo_id
   validate :user_owns_photo
+  validate :licensed_if_no_user
   
   def user_owns_photo
     if self.user

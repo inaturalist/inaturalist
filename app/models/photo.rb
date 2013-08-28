@@ -47,8 +47,6 @@ class Photo < ActiveRecord::Base
   SMALL = 240
   MEDIUM = 500
   LARGE = 1024
-
-  validate :licensed_if_no_user
   
   def to_s
     "<#{self.class} id: #{id}, user_id: #{user_id}>"
@@ -82,8 +80,8 @@ class Photo < ActiveRecord::Base
       native_realname
     elsif !native_username.blank?
       native_username
-    elsif (o = observations.first)
-      o.user.name || o.user.login
+    elsif user
+      user.name || user.login
     else
       I18n.t('copyright.anonymous')
     end

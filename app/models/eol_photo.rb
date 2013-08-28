@@ -3,6 +3,8 @@ class EolPhoto < Photo
   Photo.descendent_classes ||= []
   Photo.descendent_classes << self
 
+  validate :licensed_if_no_user
+
   def sync
     new_photo = self.class.new_from_api_response(self.class.get_api_response(native_photo_id))
     cols = Photo.column_names - %w(id user_id native_photo_id type created_at updated_at)

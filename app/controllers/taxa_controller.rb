@@ -632,9 +632,14 @@ class TaxaController < ApplicationController
     observations = if params[:q].blank?
       Observation.of(@taxon).paginate(:page => params[:page], 
         :per_page => per_page, :include => [:photos], 
-        :conditions => "photos.id IS NOT NULL")
+        :conditions => "photos.id IS NOT NULL AND photos.user_id IS NOT NULL")
     else
-      Observation.search(params[:q], :page => params[:page], :per_page => per_page, :with => {:has_photos => true})
+      Observation.search(params[:q], 
+        :page => params[:page], 
+        :per_page => per_page, 
+        :with => {:has_photos => true}, 
+        :include => [:photos]
+      ).reject{|o| o.photos.detect{|p| o.user_id.blank?}}
     end
     @photos = observations.compact.map(&:photos).flatten
     render :partial => 'photos/photo_list_form', :locals => {
