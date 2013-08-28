@@ -220,7 +220,11 @@
         <% when 'TaxonSwap' %>
           <% if @taxon_change.taxon_id == @taxon.id -%>
             <%= t :replacing %>
-            <em><%= link_to @taxon_change.old_taxon.name, @taxon_change.old_taxon %></em>.
+            <% if @taxon_change.old_taxon -%>
+              <em><%= link_to @taxon_change.old_taxon.name, @taxon_change.old_taxon %></em>.
+            <% else %>
+              <span class="meta">[<%=t :deleted_taxon %>]</span>.
+            <% end -%>
           <% else %>
             <%= t('change_types.replaced_by') %>
             <em><%= link_to @taxon_change.taxon.name, @taxon_change.taxon %></em>.

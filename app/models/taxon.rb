@@ -18,9 +18,8 @@ class Taxon < ActiveRecord::Base
   
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
-  has_many :taxon_changes, :dependent => :destroy
-  has_many :taxon_swaps, :dependent => :destroy
-  has_many :taxon_change_taxa, :dependent => :destroy
+  has_many :taxon_changes
+  has_many :taxon_change_taxa
   has_many :observations, :dependent => :nullify
   has_many :listed_taxa, :dependent => :destroy
   has_many :taxon_scheme_taxa, :dependent => :destroy
