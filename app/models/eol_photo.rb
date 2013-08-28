@@ -21,7 +21,11 @@ class EolPhoto < Photo
     return nil unless eol_taxon_id
     limit = (options[:limit] || 36).to_i
     limit = 100 if limit > 100
-    eol_page_xml = eol.page(eol_taxon_id, :licenses => 'any', :images => limit, :text => 0, :videos => 0, :details => 1)
+    eol_page_xml = begin
+      eol.page(eol_taxon_id, :licenses => 'any', :images => limit, :text => 0, :videos => 0, :details => 1)
+    rescue OpenURI::HTTPError => e
+      return []
+    end
     eol_page_xml.search('dataObject').map do |data_object|
       new_from_api_response(data_object)
     end.compact
