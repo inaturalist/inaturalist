@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Merging <%=h @place.name %>
+  <%= t :merging %> <%= t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
@@ -53,7 +53,7 @@
 
 <div id="pageheader">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo; Back to #{@place.name}".html_safe, @place, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo; #{t(:back_to)} #{t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name)}".html_safe, @place, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <h2><%= t(:merging_places) %></h2>
   <p class="description">
@@ -72,10 +72,10 @@
     </tr>
     <tr>
       <th>&nbsp;</th>
-      <th><%= link_to h(@place.name), @place %></th>
+      <th><%= link_to t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name), @place %></th>
       <th><%= t(:what_to_keep) %></th>
       <th>
-        <input type="text" name="with" value="<%= @merge_target.id if @merge_target %>" id="merge_target_id" placeholder="Type a place name" data-json="<%= @merge_target.to_json(:methods => [:place_type_name]).html_safe %>">
+        <input type="text" name="with" value="<%= @merge_target.id if @merge_target %>" id="merge_target_id" placeholder="<%= t(:type_place_name) %>" data-json="<%= @merge_target.to_json(:methods => [:place_type_name]).html_safe %>">
       </th>
     </tr>
   </thead>
@@ -90,8 +90,16 @@
   <tbody id="keepers">
     <% for attr_name in %w"name place_type_name" %>
       <tr>
-        <td class="attr_name"><%= attr_name.humanize %></td>
-        <td class="target <%= attr_name %>"><%= @place.send(attr_name) %></td>
+        <td class="attr_name"><%= t(attr_name, :default => attr_name) %></td>
+        <td class="target <%= attr_name %>">
+
+          <%- if attr_name.eql?('place_type_name') %>
+            <%= t("place_geo.geo_planet_place_types.#{@place.send(attr_name).gsub(' ','_')}", :default => @place.send(attr_name)) %>
+
+          <% else %>
+              <%= t("places_name.#{@place.send(attr_name).gsub(' ','_').downcase}", :default => @place.send(attr_name)) %>
+          <% end -%>
+        </td>
         <td>
           <label for="<%= "keep_#{attr_name}_left" %>">&larr;</label>
           <%= radio_button_tag "keep_#{attr_name}", 'left', false %>

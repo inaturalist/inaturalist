@@ -63,13 +63,16 @@ es:
       message:
         subject: Asunto
         body: Texto
-      place: 
+      place:
+        code: Código
+        display_name: Nombre a mostrar
         latitude: Latitud
         longitude: Longitud
         name: Nombre
         parent_id: Lugar relacionado
         place_type: Tipo de lugar
         prefers_check_lists: ¿Comprobar listas permitidas?
+        woeid: Identificador único mundial (de acuerdo a Yahoo)
       post: 
         body: Texto
         title: Título
@@ -1484,7 +1487,8 @@ es:
   months_ago: "hace %{text}"
   months_first_letter:
       ?: ''
-      j: E
+      jan: E
+      j: J
       f: F
       m: M
       a: A
@@ -1952,6 +1956,7 @@ es:
   place_name: "Colocar nombre"
   place_notes: "Colocar notas"
   place_subscription: suscripción de lugar
+  place_type_name: Nombre del tipo de lugar
   place_updated: ¡Lugar actualizado!
   placement: Colocación
   places: Lugares
@@ -2234,6 +2239,7 @@ es:
   share_on: "Compartir por"
   share_your_observation_with_researchers_by: "Comparta su observación con investigadores por"
   sharing_settings: Compartiendo los ajustes
+  short_code_for_this_place: Código corto para el país, ej. MX para México
   short_or_abbreviated_title_for_display: Regularmente es una abreviatura del título cuando el espacio es muy limitado (máximo 10 caracteres).
   show: Mostrar
   show_active_and_inactive_taxa: Muestra especies activas e inactivas

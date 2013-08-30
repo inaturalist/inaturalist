@@ -475,7 +475,7 @@ module ApplicationHelper
     tag = options[:link] ? :a : :span
     tag_options = {:class => "bar spacer", :style => "height: 100%; width: 0"}
     html += content_tag(tag, " ", tag_options)
-    %w(? J F M A M J J A S O N D).each_with_index do |name, month|
+    %w(? Jan F M A M J J A S O N D).each_with_index do |name, month|
       count = counts[month.to_s] || 0
       tag_options = {:class => "bar month_#{month}", :style => "height: #{(count.to_f / max * 100).to_i}%"}
       if options[:link]
@@ -484,7 +484,7 @@ module ApplicationHelper
       end
       html += content_tag(tag, tag_options) do
         content_tag(:span, count, :class => "count") +
-        content_tag(:span, t("months_first_letter.#{name}"), :class => "month")
+        content_tag(:span, t("months_first_letter.#{name.downcase}"), :class => "month")
       end
     end
     content_tag(:div, html.html_safe, :class => 'monthgraph graph')

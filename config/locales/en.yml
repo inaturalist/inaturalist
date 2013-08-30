@@ -1299,6 +1299,7 @@ en:
   months_ago: "%{text} ago"
   months_first_letter:
     ?: '?'
+    jan: J
     j: J
     f: F
     m: M
@@ -1733,6 +1734,7 @@ en:
   place_name: Place name
   place_notes: Place Notes
   place_subscription: place subscription
+  place_type_name: Place type name
   place_updated: Place updated!
   placement: Placement
   places: Places
@@ -2026,6 +2028,7 @@ en:
   share_on: Share on
   share_your_observation_with_researchers_by: Share your observation with researchers by
   sharing_settings: Sharing settings
+  short_code_for_this_place: Short code for this place, e.g. US for the United States
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
   show: Show
   show_active_and_inactive_taxa: Show active and inactive taxa
@@ -3298,12 +3301,15 @@ en:
         tracking_codes: Tracking codes
         source_url: Source URL
       place:
+              code: Code
+              display_name: Display name
               latitude: Latitude
               longitude: Longitude
               name: Name
               parent_id: parent
               place_type: Place type
               prefers_check_lists: Check lists allowed?
+              woeid: WOEID
       flag:
         reason: Reason
         flag: Flag
