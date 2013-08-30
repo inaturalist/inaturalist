@@ -188,17 +188,22 @@ module PlaceSources
     geoplanet_type = nil
     name = options[:name] || shape.data['NAME'] || shape.data['NAME10'] || shape.data['NAMELSAD']
     options[:name] = name
-    case options[:place_type]
-    when 'state'
+    case options[:place_type_name]
+    when 'State'
       geoplanet_query = if FIPS_STATES.values.include?(name)
         "#{name} State, US"
+        options[:code] ||= FIPS_STATE_CODES[shape.data['STATEFP']]
       else
         name
       end
       geoplanet_type = "State"
-    when 'county'
+      options[:place_type] ||= Place::PLACE_TYPE_CODES['State']
+      options[:parent] ||= Place.place_type('Country').where("name LIKE 'United States%'").first
+      puts "options[:parent]: #{options[:parent]}"
+    when 'County'
       geoplanet_query = "#{name}, #{FIPS_STATE_CODES[shape.data['STATEFP']]}, US"
       geoplanet_type = "County"
+      options[:place_type] ||= Place::PLACE_TYPE_CODES['County']
     when 'place'
       geoplanet_query = "#{name}, #{FIPS_STATE_CODES[shape.data['STATEFP']]}, US"
       geoplanet_type = "Town,City,Local+Administrative+Area"
@@ -212,18 +217,19 @@ module PlaceSources
     
     # The county files often contain a lot of weird county-like stuff that we 
     # probably don't want...
-    if options[:place_type] == 'county'
+    if options[:place_type_name] == 'County'
       return nil unless LSAD[shape.data['LSAD']] == 'county'
     end
     
     place = Place.new_from_shape(shape, options)
+    puts "place.parent: #{place.parent}"
     
     # Using FIPS codes for source identifiers.  Note that for counties and places
     # they are ONLY unique whithin their state
-    place.source_identifier = case options[:place_type]
-    when 'state'
+    place.source_identifier = case options[:place_type_name]
+    when 'State'
       shape.data['STATEFP']
-    when 'county'
+    when 'County'
       shape.data['COUNTYFP']
     when 'place'
       shape.data['PLACEFP']
