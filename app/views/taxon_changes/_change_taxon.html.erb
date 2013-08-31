@@ -5,7 +5,7 @@
   swaps = if @swaps_by_taxon_id
     @swaps_by_taxon_id[change_taxon.id].try(:clone) || []
   else
-    change_taxon.taxon_swaps + 
+    change_taxon.taxon_changes.where(:type => "TaxonSwap") + 
       change_taxon.taxon_change_taxa.all(
         :include => :taxon_change, 
         :conditions => "taxon_changes.type = 'TaxonSwap'").map{|tct| tct.taxon_change}
