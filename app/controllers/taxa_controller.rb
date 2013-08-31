@@ -126,18 +126,19 @@ class TaxaController < ApplicationController
 
         place_id = params[:place_id] if logged_in? && !params[:place_id].blank?
         place_id ||= CONFIG.place_id
+        place = Place.find(place_id) rescue nil
         @conservation_statuses = @taxon.conservation_statuses.includes(:place).sort_by do |cs|
           cs.place_id.blank? ? [0] : cs.place.self_and_ancestor_ids
         end
-        if place_id
+        if place
           @conservation_status = @conservation_statuses.detect do |cs|
-            cs.place_id == place_id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
+            cs.place_id == place.id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
           end
         end
         @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
         
-        if place_id
-          @listed_taxon = @taxon.listed_taxa.where(:place_id => place_id).order("establishment_means").first
+        if place
+          @listed_taxon = @taxon.listed_taxa.where(:place_id => place.id).order("establishment_means").first
         end
         
         @children = @taxon.children.all(

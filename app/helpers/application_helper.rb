@@ -481,7 +481,7 @@ module ApplicationHelper
       tag_options = {:class => "bar month_#{month_index}", :style => "height: #{(count.to_f / max * 100).to_i}%"}
       if options[:link]
         url_params = options[:link].is_a?(Hash) ? options[:link] : request.params
-        tag_options[:href] = url_for(url_params.merge(:month => month))
+        tag_options[:href] = url_for(url_params.merge(:month => month_index))
       end
       html += content_tag(tag, tag_options) do
         content_tag(:span, count, :class => "count") +
