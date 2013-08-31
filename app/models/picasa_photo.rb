@@ -71,6 +71,51 @@ class PicasaPhoto < Photo
     return nil unless api_response.keywords.is_a?(String)
     Taxon.tags_to_taxa(api_response.keywords.split(',').map(&:strip), options)
   end
+
+  def repair
+    unless r = PicasaPhoto.get_api_response(native_photo_id, :user => user)
+      return [self, {
+        :picasa_account_not_linked => I18n.t(:picasa_account_not_linked, :user => user.try(:login), :site_name => SITE_NAME_SHORT)
+      }]
+    end
+    self.square_url      = r.url('72c')
+    self.thumb_url       = r.url('110')
+    self.small_url       = r.url('220')
+    self.medium_url      = r.url('512')
+    self.large_url       = r.url('1024')
+    self.original_url    = r.url
+    self.native_page_url = r.link('alternate').href
+    save
+    [self, {}]
+  end
+
+  def self.repair(find_options = {})
+    puts "[INFO #{Time.now}] starting PicasaPhoto.repair, options: #{find_options.inspect}"
+    find_options[:include] ||= [:user, :taxon_photos, :observation_photos]
+    find_options[:batch_size] ||= 100
+    find_options[:sleep] ||= 10
+    updated = 0
+    destroyed = 0
+    invalids = 0
+    skipped = 0
+    start_time = Time.now
+    PicasaPhoto.script_do_in_batches(find_options) do |p|
+      r = Net::HTTP.get_response(URI.parse(p.medium_url))
+      unless r.code_type == Net::HTTPBadRequest
+        skipped += 1
+        next
+      end
+      repaired, errors = p.repair
+      if errors.blank?
+        updated += 1
+      else
+        if repaired.frozen?
+          destroyed += 1 
+        end
+      end
+    end
+    puts "[INFO #{Time.now}] finished PicasaPhoto.repair, #{updated} updated, #{destroyed} destroyed, #{invalids} invalid, #{skipped} skipped, #{Time.now - start_time}s"
+  end
   
   # Retrieve info about a photo from its native source given its native id.  
   def self.get_api_response(native_photo_id, options = {})
