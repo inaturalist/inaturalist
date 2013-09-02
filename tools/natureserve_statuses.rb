@@ -13,6 +13,7 @@ where [options] are:
 EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
   opt :ancestor, "Ancestor taxon", :type => :string, :short => "-t"
+  opt :create_taxa, "Create taxa that don't exist.", :type => :boolean, :short => "-c"
   opt :min_id, "Minimum taxon id", :type => :integer
   opt :max_id, "Maximum taxon id", :type => :integer
   opt :api_key, "NatureServe API key", :type => :string, :short => "-k"
@@ -144,15 +145,33 @@ def work_on_uid(uid, options = {})
     return
   end
 
+  url = doc.at('natureServeExplorerURI').text
+
   taxon = options[:taxon]
   taxon ||= Taxon.active.includes(:taxon_scheme_taxa).where("taxa.name = ? AND taxon_scheme_taxa.source_identifier = ?", name, uid).first
   taxon ||= Taxon.single_taxon_for_name(name)
   taxon ||= Taxon.active.find_by_name(name)
-  unless taxon
+  if OPTS[:create_taxa]
+    taxon ||= Taxon.new(
+      :name => name, :rank => Taxon::SPECIES, :source => SOURCE,
+      :source_url => url,
+      :source_identifier => uid,
+      :source => SOURCE
+    )
+    unless OPTS[:debug]
+      if taxon.save
+        taxon.graft_silently
+      end
+      puts "\tAdded taxon: #{taxon}"
+    end
+  end
+  if taxon && taxon.new_record? && !taxon.valid?
+    puts "\tCouldn't create taxon for #{uid} (#{name}): #{taxon.errors.full_messages.to_sentence}"
+    return
+  elsif taxon.blank?
     puts "\tCouldn't find taxon for #{uid} (#{name})"
     return
   end
-  url = doc.at('natureServeExplorerURI').text
   if gs = doc.at('globalStatus')
     natureServeStatus2iNatStatus(gs, taxon, name, url)
   end
