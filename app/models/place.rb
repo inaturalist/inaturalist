@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Place < ActiveRecord::Base
   has_ancestry
   belongs_to :user
@@ -461,7 +462,6 @@ class Place < ActiveRecord::Base
       when 'esriworld'
         PlaceSources.new_place_from_esri_world_shape(shp, options)
       when 'cpad'
-        puts "[INFO] \tUNIT_ID: #{shp.data['UNIT_ID']}"
         PlaceSources.new_place_from_cpad_units_fee(shp, options)
       else
         Place.new_from_shape(shp, options)
@@ -525,12 +525,17 @@ class Place < ActiveRecord::Base
       else
         place
       end
-      if place && place.valid?
-        place.save! unless options[:test]
-        puts "[INFO] \t\tSaved place: #{place}"
-      else
-        num_created -= 1
-        puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}" if place
+      begin
+        if place && place.valid?
+          place.save! unless options[:test]
+          puts "[INFO] \t\tSaved place: #{place}, parent: #{place.parent.try(:name)}"
+        else
+          num_created -= 1
+          puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}" if place
+          next
+        end
+      rescue => e
+        puts "[ERROR] \tError: #{e}"
         next
       end
       

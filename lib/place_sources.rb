@@ -1,3 +1,4 @@
+#encoding: utf-8
 #
 # Just a place to shove some useful data & functionality related to place
 # sources.  Note that all source shapefiles must be have a geographic
@@ -199,11 +200,13 @@ module PlaceSources
       geoplanet_type = "State"
       options[:place_type] ||= Place::PLACE_TYPE_CODES['State']
       options[:parent] ||= Place.place_type('Country').where("name LIKE 'United States%'").first
-      puts "options[:parent]: #{options[:parent]}"
     when 'County'
-      geoplanet_query = "#{name}, #{FIPS_STATE_CODES[shape.data['STATEFP']]}, US"
+      state = FIPS_STATE_CODES[shape.data['STATEFP'] || shape.data['STATE']]
+      geoplanet_query = "#{name}, #{state}, US"
       geoplanet_type = "County"
       options[:place_type] ||= Place::PLACE_TYPE_CODES['County']
+      options[:code] ||= shape.data['COUNTY']
+      options[:parent] ||= Place.place_type('State').where(:code => state, :name => FIPS_STATES[shape.data['STATEFP'] || shape.data['STATE']]).first
     when 'place'
       geoplanet_query = "#{name}, #{FIPS_STATE_CODES[shape.data['STATEFP']]}, US"
       geoplanet_type = "Town,City,Local+Administrative+Area"
@@ -218,11 +221,10 @@ module PlaceSources
     # The county files often contain a lot of weird county-like stuff that we 
     # probably don't want...
     if options[:place_type_name] == 'County'
-      return nil unless LSAD[shape.data['LSAD']] == 'county'
+      return nil unless LSAD[shape.data['LSAD']] == 'county' || shape.data['LSAD'].to_s.downcase == 'county'
     end
     
     place = Place.new_from_shape(shape, options)
-    puts "place.parent: #{place.parent}"
     
     # Using FIPS codes for source identifiers.  Note that for counties and places
     # they are ONLY unique whithin their state
