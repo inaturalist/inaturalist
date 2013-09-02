@@ -469,7 +469,7 @@ class Taxon < ActiveRecord::Base
   
   def to_plain_s(options = {})
     comname = common_name unless options[:skip_common]
-    sciname = if %w(species infraspecies).include?(rank)
+    sciname = if %w(species infraspecies).include?(rank) || rank.blank?
       name
     else
       "#{rank.capitalize} #{name}"
@@ -504,6 +504,16 @@ class Taxon < ActiveRecord::Base
   
   def graft(options = {})
     ratatosk.graft(self, options)
+  rescue RatatoskGraftError, Timeout::Error, NameProviderError => e
+    if species_or_lower? && name.split(' ').size > 1
+      parent_name = name.split(' ')[0..-2].join(' ')
+      parent = Taxon.single_taxon_for_name(parent_name)
+      parent ||= Taxon.import(parent_name, :exact => true)
+      if parent && rank_level && parent.rank_level && parent.rank_level > rank_level
+        self.update_attributes(:parent => parent)
+      end
+    end
+    raise e unless grafted?
   end
 
   def graft_silently(options = {})
@@ -1122,8 +1132,13 @@ class Taxon < ActiveRecord::Base
     name = name.strip
     ancestor = options.delete(:ancestor)
     external_names = ratatosk.find(name)
+    external_names.select!{|en| en.name.downcase == name.downcase} if options[:exact]
     return nil if external_names.blank?
-    external_names.each {|en| en.save; en.taxon.graft_silently}
+    external_names.each do |en| 
+      if en.save && !en.taxon.grafted?
+        en.taxon.graft_silently
+      end
+    end
     external_taxa = external_names.map(&:taxon)
     taxon = external_taxa.detect do |t|
       if ancestor

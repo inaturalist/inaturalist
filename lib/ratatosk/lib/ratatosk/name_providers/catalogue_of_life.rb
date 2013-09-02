@@ -14,7 +14,7 @@ module Ratatosk
           2012 Annual Checklist. Digital resource at
           www.catalogueoflife.org/col/. Species 2000: Reading, UK.
         EOT
-        ::Source.find_by_title("Catalogue of Life: 2012 Annual Checklist") || ::Source.create(
+        @source ||= ::Source.find_by_title("Catalogue of Life: 2012 Annual Checklist") || ::Source.create(
           :title => "Catalogue of Life: 2012 Annual Checklist",
           :in_text => "Bisby et al., 2012",
           :url => "http://www.catalogueoflife.org/annual-checklist/2012",
