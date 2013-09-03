@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Place < ActiveRecord::Base
   has_ancestry
   belongs_to :user
@@ -451,15 +452,16 @@ class Place < ActiveRecord::Base
   def self.import_from_shapefile(shapefile_path, options = {}, &block)
     start_time = Time.now
     num_created = num_updated = 0
+    src = options[:source]
+    options.delete(:source) unless src.is_a?(Source)
     GeoRuby::Shp4r::ShpFile.open(shapefile_path).each do |shp|
       puts "[INFO] Working on shp..."
-      new_place = case options[:source]
+      new_place = case src
       when 'census'
         PlaceSources.new_place_from_census_shape(shp, options)
       when 'esriworld'
         PlaceSources.new_place_from_esri_world_shape(shp, options)
       when 'cpad'
-        puts "[INFO] \tUNIT_ID: #{shp.data['UNIT_ID']}"
         PlaceSources.new_place_from_cpad_units_fee(shp, options)
       else
         Place.new_from_shape(shp, options)
@@ -471,7 +473,7 @@ class Place < ActiveRecord::Base
       end
       
       new_place.source_filename = options[:source_filename] || File.basename(shapefile_path)
-      new_place.source ||= options[:source]
+      new_place.source ||= src if src.is_a?(Source)
         
       puts "[INFO] \t\tMade new place: #{new_place}"
       unless new_place.woeid || options[:skip_woeid]
@@ -523,12 +525,17 @@ class Place < ActiveRecord::Base
       else
         place
       end
-      if place && place.valid?
-        place.save! unless options[:test]
-        puts "[INFO] \t\tSaved place: #{place}"
-      else
-        num_created -= 1
-        puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}" if place
+      begin
+        if place && place.valid?
+          place.save! unless options[:test]
+          puts "[INFO] \t\tSaved place: #{place}, parent: #{place.parent.try(:name)}"
+        else
+          num_created -= 1
+          puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}" if place
+          next
+        end
+      rescue => e
+        puts "[ERROR] \tError: #{e}"
         next
       end
       
@@ -558,29 +565,28 @@ class Place < ActiveRecord::Base
   #
   def self.new_from_shape(shape, options = {})
     name_column = options[:name_column] || 'name'
+    skip_woeid = options[:skip_woeid]
+    geoplanet_query = options[:geoplanet_query]
+    geoplanet_options = options[:geoplanet_options] || {}
     name = options[:name] || 
       shape.data[name_column] || 
       shape.data[name_column.upcase] || 
       shape.data[name_column.capitalize] || 
       shape.data[name_column.downcase]
-    place = Place.new(
+    place = Place.new(options.select{|k,v| Place.instance_methods.include?("#{k}=".to_sym)}.merge(
       :name => name,
       :latitude => shape.geometry.envelope.center.y,
       :longitude => shape.geometry.envelope.center.x,
       :swlat => shape.geometry.envelope.lower_corner.y,
       :swlng => shape.geometry.envelope.lower_corner.x,
       :nelat => shape.geometry.envelope.upper_corner.y,
-      :nelng => shape.geometry.envelope.upper_corner.x,
-      :place_type => options[:place_type]
-    )
+      :nelng => shape.geometry.envelope.upper_corner.x
+    ))
     
-    unless options[:skip_woeid]
-      puts "[INFO] \t\tTrying to find a unique WOEID from " +
-        "'#{options[:geoplanet_query] || place.name}'..."
-      geoplanet_options = options.delete(:geoplanet_options) || {}
+    unless skip_woeid
+      puts "[INFO] \t\tTrying to find a unique WOEID from '#{geoplanet_query || place.name}'..."
       geoplanet_options[:count] = 2
-      ydn_places = GeoPlanet::Place.search(
-        options[:geoplanet_query] || place.name, geoplanet_options)
+      ydn_places = GeoPlanet::Place.search(geoplanet_query || place.name, geoplanet_options)
       if ydn_places && ydn_places.size == 1
         puts "[INFO] \t\tFound unique GeoPlanet place: " + 
           [ydn_places.first.name, ydn_places.first.woeid,

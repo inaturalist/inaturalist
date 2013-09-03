@@ -1297,16 +1297,6 @@ en:
   mon: Mon
   month: Month
   months_ago: "%{text} ago"
-  months_first_letter:
-    ?: '?'
-    j: J
-    f: F
-    m: M
-    a: A
-    s: S
-    o: O
-    n: N
-    d: D
   more: More
   more_fields: More fields
   more_info: More info
@@ -1649,6 +1639,7 @@ en:
   photos_size_photos: "%{photos_size} photos"
   photos_size_photo: "%{photos_size} photo"
   photos_updated: Photos updated.
+  picasa_account_not_linked: "%{user} doesn't have a linked Picasa account anymore, so %{site_name} doesn't have permission to access this photo."
   picasa_identity: Picasa Identity
   pick_a_username: Pick a username
   pink: pink
@@ -1733,6 +1724,7 @@ en:
   place_name: Place name
   place_notes: Place Notes
   place_subscription: place subscription
+  place_type_name: Place type name
   place_updated: Place updated!
   placement: Placement
   places: Places
@@ -2026,6 +2018,7 @@ en:
   share_on: Share on
   share_your_observation_with_researchers_by: Share your observation with researchers by
   sharing_settings: Sharing settings
+  short_code_for_this_place: Short code for this place, e.g. US for the United States
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
   show: Show
   show_active_and_inactive_taxa: Show active and inactive taxa
@@ -3298,12 +3291,15 @@ en:
         tracking_codes: Tracking codes
         source_url: Source URL
       place:
+              code: Code
+              display_name: Display name
               latitude: Latitude
               longitude: Longitude
               name: Name
               parent_id: parent
               place_type: Place type
               prefers_check_lists: Check lists allowed?
+              woeid: WOEID
       flag:
         reason: Reason
         flag: Flag

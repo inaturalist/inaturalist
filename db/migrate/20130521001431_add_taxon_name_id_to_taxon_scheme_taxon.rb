@@ -3,7 +3,7 @@ class AddTaxonNameIdToTaxonSchemeTaxon < ActiveRecord::Migration
     add_column :taxon_scheme_taxa, :taxon_name_id, :integer
     add_index :taxon_scheme_taxa, :taxon_name_id
     batch_size = 500
-    (TaxonSchemeTaxon.maximum(:id) / batch_size).times do |i|
+    ((TaxonSchemeTaxon.maximum(:id) || 0) / batch_size).times do |i|
       start = i * batch_size
       stop  = i * batch_size + batch_size - 1
       sql = <<-SQL

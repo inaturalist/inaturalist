@@ -1,7 +1,7 @@
 $('#addtaxa').modal({
   backdrop: true,
   show: false
-})
+}).on('hidden', completeAddTaxa)
 $('#addtaxa').on('shown', function() { $('input:visible', this).focus() })
 $('#addtaxa-place .taxonchooser').chooser({
   collectionUrl: '/taxa/autocomplete.json',
@@ -44,17 +44,25 @@ window.addTaxonField = function() {
 }
 addTaxonField()
 $('#addtaxa .modal-footer .btn-primary').click(function() {
+  loadingClickForLink.apply(this)
   if ($('#addtaxa-single:visible').length > 0) {
     addTaxaSingle()
   } else if ($('#addtaxa-place:visible').length > 0) {
     addTaxaFromPlace()
   } else if ($('#addtaxa-eol:visible').length > 0) {
     addTaxaFromEol()
+  } else {
+    completeAddTaxa()
   }
-  loadingClickForButton.apply(this)
 })
+window.addingTaxonIds = []
 function addTaxaSingle() {
-  $('#addtaxa-single input[name=taxon_id]').each(function() {
+  var $inputs = $('#addtaxa-single input[name=taxon_id]')
+  window.addingTaxonIds = $inputs.map(function() { var v = $(this).val(); return v == '' ? null : v}).get()
+  if (addingTaxonIds.length == 0) {
+    checkAddingTaxaFor(null)
+  }
+  $inputs.each(function() {
     var taxonId = $(this).val()
     if (!parseInt(taxonId) || parseInt(taxonId) <= 0) return
     $.post("/guide_taxa.json", {"guide_taxon[guide_id]": GUIDE.id, "guide_taxon[taxon_id]": taxonId, partial: "guides/guide_taxon_row"})
@@ -68,14 +76,26 @@ function addTaxaSingle() {
         alert(I18n.t('there_were_problems_adding_taxa', {errors: errors.join(', ')}))
       })
       .complete(function() {
-        var link = $('#addtaxa .modal-footer .btn-primary')
-        link.attr('disabled', false).removeClass('disabled description')
-        link.val(link.data('original-value'))
+        checkAddingTaxaFor(taxonId)
       })
   })
-  $('#addtaxa-single').html('')
-  addTaxonField()
+}
+function completeAddTaxa() {
+  var btn = $('#addtaxa .modal-footer .btn-primary').not('.loadingclick')
+  btn.siblings('.loadingclick').hide()
+  btn.show()
   $('#addtaxa').modal('hide')
+}
+function checkAddingTaxaFor(taxonId) {
+  var i = window.addingTaxonIds.indexOf(taxonId)
+  if (i >= 0) {
+    window.addingTaxonIds.splice(i, 1)
+  }
+  if (window.addingTaxonIds.length == 0) {
+    $('#addtaxa-single').html('')
+    addTaxonField()
+    completeAddTaxa()
+  }
 }
 function addTaxaFromPlace() {
   var placeId = $('#addtaxa-place .placechooser').val(),
@@ -90,9 +110,7 @@ function addTaxaFromPlace() {
       }
     }
   }, 'json').complete(function() {
-    $('#addtaxa .modal-footer .btn-primary').attr('disabled', false).removeClass('disabled description')
-    $('#addtaxa .modal-footer .btn-primary').val($(link).data('original-value'))
-    $('#addtaxa').modal('hide')
+    completeAddTaxa()
   })
 }
 function addTaxaFromEol() {
@@ -106,10 +124,7 @@ function addTaxaFromEol() {
       }
     }
   }, 'json').complete(function() {
-    $('#addtaxa').modal('hide')
-    var link = $('#addtaxa .modal-footer .btn-primary')
-    link.attr('disabled', false).removeClass('disabled description')
-    link.val($(link).data('original-value'))
+    completeAddTaxa()
   })
 }
 $('.guide_taxon .delete').bind('ajax:before', function() {
@@ -383,7 +398,6 @@ $('#new_guide_eol_update_flow_task .btn-primary').click(function() {
     dataType: 'json',
     data: data
   }).success(function(json) {
-    console.log("[DEBUG] json: ", json)
     runFlowTask('/flow_tasks/'+json.id+'/run.json')
   }).error(function(arguments) {
     var btn = $('.modal:visible input[data-loading-click]')

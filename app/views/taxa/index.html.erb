@@ -286,7 +286,9 @@
       <%= link_to(observation.taxon) do %>
         <%= render :partial => 'shared/taxon', :object => observation.taxon %>
       <% end %>
-      <span class="description date"><%= t(:on_day) %> <%=l observation.observed_on, :format => :long %></span>
+      <% if observation.observed_on -%>
+        <span class="description date"><%= t(:on_day) %> <%=l observation.observed_on, :format => :long %></span>
+      <% end -%>
     </p>
     <% end %>
   </div>

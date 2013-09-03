@@ -93,12 +93,15 @@ es-MX:
         name: Nombre
         time_zone: "Zona horaria"
       place:
+              code: Código
+              display_name: Nombre a mostrar
               latitude: Latitud
               longitude: Longitud
               name: Nombre
               parent_id: Lugar relacionado
               place_type: Tipo de lugar
-              prefers_check_lists: ¿Comprobar listas permitidas?
+              prefers_check_lists: ¿Verificar lista de comprobación?
+              woeid: Identificador único mundial (de acuerdo a Yahoo)
       taxon:
         name: Nombre
         rank: Clasificación
@@ -6841,9 +6844,9 @@ es-MX:
   members: Miembros
   merge: Combina
   merge_it_with_another_place: "Combina con otro lugar"
-  merge_two_places_together: "Combina dos lugares. Todas las especies en las listas de confirmación se combinarán, al igual que los datos geográficos."
+  merge_two_places_together: "Combina dos lugares. Todas las especies en las listas de comprobación se combinarán, al igual que los datos geográficos."
   merging: Combinando
-  merging_places: "Fusionando Lugares"
+  merging_places: "Combinando Lugares"
   misleading_or_illegal_content: Contenido ilegal, engañoso, racial, étnico, etc.
   mixed_licenses: Licencia combinada
   mobile_apps_for: "Aplicaciones móviles para"
@@ -6860,16 +6863,6 @@ es-MX:
               relative_uri: "Debe ser un URI asboluto"
   month: Mes
   months_ago: "hace %{text} "
-  months_first_letter:
-        ?: 'Mes: '
-        j: E
-        f: F
-        m: M
-        a: A
-        s: S
-        o: O
-        n: N
-        d: D
   more: Más
   more_fields: "Más campos"
   more_info: "Más información"
@@ -7294,14 +7287,54 @@ es-MX:
   place_name: "Nombre del lugar"
   place_notes: "Notas del lugar"
   place_subscription: suscripción de lugar
+  place_type_name: Nombre del tipo de lugar
   place_updated: ¡Lugar actualizado!
   placement: Posición
   places: Lugares
   places_merged_successfully: ¡Los lugares se combinaron satisfactoriamente!
   places_name:
-      north_america: América del norte
-      mexico: México
-
+        afghanistan: Afganistán
+        africa: África
+        antigua_and_barbuda: Antigua y Barbuda
+        belgium: Bélgica
+        bosnia_and_herzegovina: Bosnia y Herzegovina
+        brazil: Brasil
+        central_america: América central
+        egypt: Egipto
+        equatorial_guinea: Guinea Ecuatorial
+        europe: Europa
+        france: Francia
+        germany: Alemania
+        greece: Grecia
+        hungary: Hungaría
+        italy: Italia
+        iraq: Irak
+        japan: Japón
+        martinique: Martinica
+        mexico: México
+        new_guinea: Nueva Guinea
+        new_zealand: Nueva Zealand
+        north_africa: África del norte
+        north_america: América del norte
+        palestine: Palestina
+        panama: Panamá
+        peru: Perú
+        poland: Polonia
+        republic_of_congo: República del Congo
+        russia: Rusia
+        saudi_arabia: Arabia Saudita
+        sao_tome_and_principe: Santo Tomé and Príncipe
+        south_america: América del sur
+        spain: España
+        sweden: Suecia
+        syria: Siria
+        thailand: Tailandia
+        trinidad_and_tobago: Trinidad y Tobago
+        turkey: Turquía
+        united_kingdom: Reino Unido
+        united_states: Estados Unidos
+        virgin_islands: Islas Vírgenes
+        west_africa: África occidental
   plants: Plantas
   please_add_a_citation_for_this_change: Porfavor añade una referencia para este cambio.
   please_be_aware_project_curators: "Por favor,, recuerda que los curadores de proyectos pueden ver cualquier ubicación oscurecida o privada de observaciones añadidas a este proyecto."
@@ -7530,6 +7563,7 @@ es-MX:
   settings: Propiedades
   share_your_observation_with_researchers_by: "Comparte tu observación con investigadores de "
   sharing_settings: Ajustes
+  short_code_for_this_place: Código corto para el país, ej. MX para México
   short_or_abbreviated_title_for_display: Regularmente es una abreviatura del título cuando el espacio es muy limitado (máximo 10 caracteres).
   show: Muestra
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
@@ -8261,7 +8295,7 @@ es-MX:
   what_did_you_see: "¿Qué viste?"
   what_did_you_see?: <em>¿Qué</em> viste?
   what_do_you_think: "¿Que piensas?"
-  what_to_keep: "Qué mantener"
+  what_to_keep: "¿Qué mantener?"
   what_want_to_list?: "¿Que quieres poner en la lista?"
   when: Cuándo
   when_did_you_see_it?: "¿Cuándo lo viste?"
