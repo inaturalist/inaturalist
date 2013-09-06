@@ -630,34 +630,30 @@
     <div id="links" class="stacked">
       <div id="links_tip" style="display:none;">
         <p>
-          <%= CONFIG.site_name %> shares licensed observation data with
-          several data partners so your data can be more accessible to
-          scientists and other researchers.
+          <%= t :x_site_shared_licensed_observation_data_with, :site_name => CONFIG.site_name %>
         </p>
         
         <% if is_me?(current_user) -%>
           <p>
-            If you don't want us to share your data, 
-            <%= link_to_function "un-license this observation", 
+            <%= t :if_you_dont_want_us_to_share_your_data %>,
+            <%= link_to_function t(:un_license_this_observation),
               "$('#editlicense').dialog({modal:true, width:'auto', title: 'Edit license'})" %>,
-            or you can
-            <%= link_to "edit your account", edit_user_path(current_user, :anchor => 'licenses') %>
-            and un-license all your observations.
+            <%= t :or_you_can_ %>
+            <%= link_to t(:edit_your_account), edit_user_path(current_user, :anchor => 'licenses') %>
+            <%= t :and_un_license_all_your_observations %>.
           </p>
         <% end -%>
         
         <p>
-          If you'd like us to share your observations with data partners, make
-          sure you've chosen to license your observations with a Creative
-          Commons license.
+          <%= t :if_youd_like_us_to_share_your_observations_with %>
         </p>
       </div>
       <h3>
-        <span class="right quality_tip_target description helptip" rel="#links_tip" data-helptip-title="About External Links" data-helptip-width="500" style="margin-top:4px"></span>
-        External Links
+        <span class="right quality_tip_target description helptip" rel="#links_tip" data-helptip-title="<%= t(:about_external_links) %>" data-helptip-width="500" style="margin-top:4px"></span>
+        <%= t :external_links %>
       </h3>
       <p class="meta ui">
-        This observation has been incorporated into the following external websites:
+        <%= t :this_observation_has_been_incorporated_into_the_following_external_websites %>:
       </p>
       <ul class="plain inline">
         <% for ol in @observation.observation_links %>
