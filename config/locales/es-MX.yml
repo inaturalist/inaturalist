@@ -6461,6 +6461,7 @@ es-MX:
   flag_description: "Advertencia para los curadores que hay algo erróneo en este contenido"
   flag_for_curation: "Advertencia para curación"
   flag_it!: "¡Manda advertencia!"
+  flag_marked_as_resolved_html: '<span class="meta">Advertencia marcada como </span> <strong>resuelta.</strong>'
   flag_reason: "&ldquo; Estoy incluyendo una advertencia en este  %{record} porque"
   flag_saved: Advertencia guardada.
   flag_saved_thanks: Advertencia guardada. ¡Gracias!
@@ -7181,6 +7182,7 @@ es-MX:
   or_upload: O descarga el
   or_you_can: "O si puedes..."
   or_you_can_: o puedes
+  originally_flagged_by: Originalmente puesta como advertencia por
   orange: Anaranjado
   Order: Orden
   order_by: "Orden por"
@@ -7356,6 +7358,7 @@ es-MX:
         west_africa: África occidental
   plants: Plantas
   please_add_a_citation_for_this_change: Porfavor añade una referencia para este cambio.
+  please_add_this_observation_to: "Porfavor añade esta observación a:"
   please_be_aware_project_curators: "Por favor,, recuerda que los curadores de proyectos pueden ver cualquier ubicación oscurecida o privada de observaciones añadidas a este proyecto."
   please_be_aware_that_project_curators: "Por favor,, recuerda que los curadores de proyectos pueden ver cualquier ubicación oscurecida o privada de observaciones añadidas a este proyecto."
   please_be_careful_particulary_when: "Por favor, sé cuidadoso, particularmente cuando elimines especies o grupos. Si una especie tiene observaciones, identificación, listas, asociadas, etc. "
@@ -7512,6 +7515,7 @@ es-MX:
       must_be_on_list: deben estar en la lista
       must_be_observed_in_place: deben ser observaciones en este lugar
       must_be_in: deben estar dentro de la especie o grupo
+  said: decia
   sat: Sáb
   satellite: satélite
   save: Guardar
@@ -7546,6 +7550,7 @@ es-MX:
   search_obs: "Busca observaciones"
   search_places: "Busca Lugares"
   search_projects: "Busca proyectos"
+  search_remote: Búsqueda remota
   search_results_for: "Busca Resultados de"
   search_species: Busca especies
   search_taxa: "Busca especie o grupo"
@@ -7997,10 +8002,17 @@ es-MX:
       en el grupo o especie, para que posteriormente sea guardado.
   use_this_if_the_url_needs_genus_species_separated: "Usa esto si el URL requiere tener el género y la especie separados de alguna forma. Si el grupo no es una especie o infraespecie, entonces todo lo que este entre [GÉNERO] y [ESPECIE] será reemplazado por el nombre del grupo, así que úsalo cuidadosamente. <br/><br/> <strong>Por ejemplo:</strong><br/>\n"
   user: Usuario
+  user_added_an_observation_html: "%{user} añadió una observación"
+  user_added_an_x_to_noun_html: "%{user} añadió una %{x} a %{noun}"
+  user_added_a_x_to_noun_html: "%{user} añadió un %{x} a %{noun}"
+  user_added_an_x_to_noun_by_html: "%{user} añadió una %{x} a %{noun} hecha por %{by}"
+  user_added_a_x_to_noun_by_html: "%{user} añadió un %{x} a %{noun} hecha por %{by}"
+  user_added_x_observations_html: "%{user} añadió %{x} observaciones"
   user_commented_on: "El %{user} comentó sobre tu %{title} %{time}"
   user_follows: "%{user} sigue:"
   user_hasnt: "El %{user} no ha "
   user_invite_observation_to_project: "A %{user} le gustaría invitar tu observación  \"%{observation}\" al proyecto %{project}."
+  user_invited_your_x_to_a_project_html: "%{user} invitó su %{x} a un proyecto"
   user_s: "del %{user}"
   user_s_id: "%{id} de %{user}"
   user_thinks_yours_is: "%{user} %{noun} tu observación %{observation} es"
