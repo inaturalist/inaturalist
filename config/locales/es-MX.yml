@@ -248,6 +248,7 @@ es-MX:
   add_taxonomic_tags_to: "Añade etiquetas taxonómicas para seleccionar fotos de Flickr &raquo;"
   add_taxonomic_tags_to_the_fickr_photos: "Añade etiquetas taxonómicas a las fotos de Flickr asociadas con las observaciones seleccionadas."
   add_to: Añade a
+  add_to_a_scheme: Añadir a un esquema
   add_to_checklist: "Añade a lista de comprobación"
   add_to_id_please: "Añadir a la identificación, por favor"
   add_to_list: "Añade a la lista"
@@ -309,6 +310,21 @@ es-MX:
     protozoans: Protozoarios
     other_animals: Otros animales
     life: Vida
+    singularize:
+      plantas: Planta
+      animales: Animal
+      molluscos: Molusco
+      anfibios: Anfibio
+      mamiferos: Mamífero
+      peces_con_aletas_radiadas: Pez con aletas radiadas
+      reptiles: Reptil
+      aves: Ave
+      insectos: Insecto
+      aranas_alacranes_y_parientes: Araña, alacran y pariente
+      hongos: Hongo
+      algas_pardas_y_parientes: Alga parda y pariente
+      protozoarios: Protozoario
+      otros_animales: Otro animal
   all_taxonomic_groups: "&laquo; Todos los grupos taxonómicos"
   all_your_observations_will_default_this_time_zone: "Todas tus observaciones tendrán esta zona de tiempo a menos que especifiques otra cosa."
   all_your_observations_will_default_to_this_time_zone: "Todas tus observaciones tendrán esta zona de tiempo a menos que especifiques otra cosa."
@@ -417,12 +433,13 @@ es-MX:
   back_to_your_projects: De regreso a tus proyectos
   batch: Grupo
   batch_edit: "Edita grupo"
-  batch_edit_taxa_for_x_html: "Edición de datos por lote para las especies o grupos de %{x}"
+  batch_edit_taxa_for_x_html: "Edición de datos por lote para las especies o grupos de la %{x}"
   batch_operations: "Operaciones de grupo"
   beacuse_we_recently_changed_auth_system: "Debido a que recientemente cambiamos nuestro sistema de identificación de usuarios, fue necesario volver a cargar tu contraseña."
   because: Porque
   before_importing_photos: "Antes de importar las fotos"
   before_you_can_contribute_your_observations: antes de poder contribiur con las observaciones.
+  belives_this_is_a_comprehensive_list_of: cree que esta es una lista exhaustiva de
   bg_color: "Color del fondo"
   birds: Aves
   black: Negro
@@ -6828,6 +6845,7 @@ es-MX:
   long: Longitud
   longitude: Longitud
   longitude_in_decimal: 'Longitud en grados con decimales, ej. -122.123'
+  look_up_name: "Buscar el nombre"
   looks_like_neither_have!: "¡Parece que ninguno tiene taxa!"
   lookup: Busca
   lookup_user_rarr: "Busca usario &rarr,"
@@ -7534,6 +7552,7 @@ es-MX:
   save_place: "Guardar el lugar"
   saving: Guardando...
   schemes: Esquemas
+  schemes_including: Esquemas que incluyen a
   scientific_names: "Nombres científicos"
   search: Búsqueda
   search_all_fields: "Busca en todos los campos"

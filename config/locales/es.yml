@@ -191,6 +191,7 @@ es:
   add_taxonomic_tags_to: "Agregar etiquetas taxonómicas a fotos de Flickr seleccionadas &raquo;"
   add_taxonomic_tags_to_the_fickr_photos: "Agregar etiquetas taxonómicas a las fotos de Fickr asociadas con las observaciones seleccionadas."
   add_to: Añade a
+  add_to_a_scheme: Añadir a un esquema
   add_to_checklist: "agregar a lista de verificación"
   add_to_id_please: "Solicitar ID"
   add_to_list: "Agregar a lista"
@@ -254,6 +255,21 @@ es:
      protozoans: Protozoarios
      other_animals: Otros animales
      life: Vida
+     singularize:
+           plantas: Planta
+           animales: Animal
+           molluscos: Molusco
+           anfibios: Anfibio
+           mamiferos: Mamífero
+           peces_con_aletas_radiadas: Pez con aletas radiadas
+           reptiles: Reptil
+           aves: Ave
+           insectos: Insecto
+           aranas_alacranes_y_parientes: Araña, alacran y pariente
+           hongos: Hongo
+           algas_pardas_y_parientes: Alga parda y pariente
+           protozoarios: Protozoario
+           otros_animales: Otro animal
      x_plantae: 
        one: "1 planta"
        other: "%{count} plantas"
@@ -423,6 +439,7 @@ es:
   because: porque
   before_importing_photos: "antes de importar fotos."
   before_you_can_contribute_your_observations: antes de poder contribiur con las observaciones.
+  belives_this_is_a_comprehensive_list_of: cree que esta es una lista exhaustiva de
   bg_color: "Color BG"
   birds: aves
   black: negro
@@ -1448,6 +1465,7 @@ es:
   long: Longitud
   longitude: Longitud
   longitude_in_decimal: 'Longitud en grados con decimales, ej. -122.123'
+  look_up_name: "Buscar el nombre"
   looks_like_neither_have!: "¡Parece que ninguno tiene taxones!"
   lookup: Buscar
   lookup_noun: Búsqueda
@@ -2193,6 +2211,7 @@ es:
   save_place: "Guardar lugar"
   saving: Guardando...
   schemes: Esquemas
+  schemes_including: Esquemas que incluyen a
   scientific_names: "Nombres científicos"
   search: Buscar
   search_all_fields: "buscar todos los campos"
