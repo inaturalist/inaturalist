@@ -1365,7 +1365,7 @@ class Taxon < ActiveRecord::Base
         ).compact
         taxa = search_results.select{|t| t.taxon_names.detect{|tn| tn.name.downcase == name}}
         taxa = search_results if taxa.blank? && search_results.size == 1 && search_results.first.taxon_names.detect{|tn| tn.name.downcase == name}
-      rescue Riddle::ConnectionError => e
+      rescue Riddle::ConnectionError, Riddle::ResponseError => e
         return
       end
     end
