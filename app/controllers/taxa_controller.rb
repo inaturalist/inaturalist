@@ -45,7 +45,7 @@ class TaxaController < ApplicationController
   # @param q:    Return all taxa where the name begins with q 
   #
   def index
-    find_taxa unless request.format.html? || request.format.mobile?
+    find_taxa unless request.format.blank? || request.format.html? || request.format.mobile?
     
     begin
       @taxa.try(:total_entries)
