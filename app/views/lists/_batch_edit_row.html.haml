@@ -20,10 +20,10 @@
       %td.desc= f.text_area :description, :class => "text"
       %td.occurrence_status
         - if list.is_a?(CheckList)
-          = f.select :occurrence_status_level, ListedTaxon::OCCURRENCE_STATUS_LEVELS.invert.to_a.sort_by(&:last).reverse.map{|k,v| [t(k.downcase, :default => k).downcase, v]}, :include_blank => t(:unknown).to_s.downcase
+          = f.select :occurrence_status_level, ListedTaxon::OCCURRENCE_STATUS_LEVELS.invert.to_a.sort_by(&:last).reverse.map{|k,v| [t("occurrence_status_levels.#{k.downcase}", :default => k).downcase, v]}, :include_blank => t(:unknown).to_s.downcase
       %td.establishment_means
         - if list.is_a?(CheckList)
-          = f.select :establishment_means, ListedTaxon::ESTABLISHMENT_MEANS.map{|em| [t(em, :default => em).downcase, em]}, :include_blank => t(:unknown).to_s.downcase
+          = f.select :establishment_means, ListedTaxon::ESTABLISHMENT_MEANS.map{|em| [t("establishment.#{em.downcase}", :default => em).downcase, em]}, :include_blank => t(:unknown).to_s.downcase
       %td.actions.inline.buttonrow.smallbuttons.nobr
         = link_to_function lt.new_record? ? t(:add) : t(:update), "saveListedTaxon.apply(this)", :class => "button savelink"
         - if lt.new_record?

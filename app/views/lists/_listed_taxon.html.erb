@@ -50,7 +50,8 @@
     <% if listed_taxon.occurrence_status || listed_taxon.establishment_means -%>
       <div class="occurrence description">
         <label><%= t :status %>: </label>
-        <%= [listed_taxon.occurrence_status, listed_taxon.establishment_means].compact.join(' / ') %>
+        <%= [t("occurrence_status_levels.#{listed_taxon.occurrence_status.downcase}", :default => listed_taxon.occurrence_status),
+             t("establishment.#{listed_taxon.establishment_means.downcase}",:default => listed_taxon.establishment_means)].compact.join(' / ') %>
       </div>
     <% end -%>
     
