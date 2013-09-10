@@ -407,8 +407,10 @@ module ApplicationHelper
   end
   
   def truncate_with_more(text, options = {})
-    more = options.delete(:more) || " ...more &darr;".html_safe
-    less = options.delete(:less) || " less &uarr;".html_safe
+    more = options.delete(:more) || " ...#{t(:more).downcase} &darr;".html_safe
+    less = options.delete(:less) || " #{t(:less).downcase} &uarr;".html_safe
+    options[:omission] ||= ""
+    options[:separator] ||= " "
     truncated = truncate(text, options)
     return truncated.html_safe if text == truncated
     truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)

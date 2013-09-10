@@ -95,7 +95,7 @@
         </div>
       <% else %>
         <div class="stacked">
-          <%= render :partial => 'posts/post', :locals => { :post => @project_journal_posts.first } %>
+          <%= render :partial => 'posts/post', :locals => { :post => @project_journal_posts.first, :truncate_length => 1000 } %>
         </div>
         
         <% if @project_journal_posts.size > 1 -%>
