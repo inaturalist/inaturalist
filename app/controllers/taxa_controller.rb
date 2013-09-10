@@ -782,7 +782,9 @@ class TaxaController < ApplicationController
       @taxon.wikipedia_summary(:refresh_if_blank => true)
     end
     @describer_url = @describer.page_url(@taxon)
-    render :partial => "description"
+    respond_to do |format|
+      format.html { render :partial => "description" }
+    end
   end
   
   def refresh_wikipedia_summary

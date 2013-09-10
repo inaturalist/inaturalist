@@ -154,11 +154,8 @@
     }
   
     // If there's only one result and it's an exact match, select the taxon
-    else if (taxa.length == 1 && 
-             (taxa[0].name.toLowerCase() == q.toLowerCase() ||
-              (typeof(taxa[0].default_name) != 'undefined' && 
-                taxa[0].default_name.name.toLowerCase() == q.toLowerCase()))) {
-      $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxa[0], options);
+    else if (taxa.length == 1 && taxa[0].taxon_names.map(function(n) { return n.name.toLowerCase()}).indexOf(q.toLowerCase()) >= 0) {
+      $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxa[0], $.extend(true, options, {selectedName: q}));
     }
   
     // Otherwise, display each as an selection option
@@ -422,6 +419,12 @@
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
       if (tn && q && tn.name.toLowerCase() == q.toLowerCase() && $.fn.simpleTaxonSelector.taxonNameMatchesLocale(tn)) {
+        return tn
+      }
+    }
+    for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
+      var tn = taxon.taxon_names[i]
+      if (tn && q && tn.name.toLowerCase() == q.toLowerCase() && tn.lexicon != 'Scientific Names') {
         return tn
       }
     }
