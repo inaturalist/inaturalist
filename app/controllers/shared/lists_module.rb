@@ -378,7 +378,10 @@ module Shared::ListsModule
     }
     if params[:taxon] && @filter_taxon = (Taxon.find_by_id(params[:taxon].to_i) || Taxon.where("lower(name) = ?", params[:taxon].to_s.downcase).first)
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
-      @find_options[:conditions] = ["(taxon_id = ? OR taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?)", @filter_taxon.id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%"]
+      @find_options[:conditions] = [
+        "(listed_taxa.taxon_id = ? OR taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?)", 
+        @filter_taxon.id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%"
+      ]
       
       # The above condition on a joined table will trigger an eager load, 
       # which won't load all 2nd order associations (e.g. taxon names), so 
