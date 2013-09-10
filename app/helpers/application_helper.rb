@@ -1,3 +1,4 @@
+#encoding: utf-8
 # Methods added to this helper will be available to all templates in the application.
 # require 'recaptcha'
 module ApplicationHelper
@@ -418,7 +419,7 @@ module ApplicationHelper
       :class => "nobr ui")
     last_node = truncated.children.last || truncated
     last_node = last_node.parent if last_node.name == "a" || last_node.is_a?(Nokogiri::XML::Text)
-    last_node.add_child(morelink)
+    last_node.add_child(Nokogiri::HTML::DocumentFragment.parse(morelink, 'UTF-8'))
     wrapper = content_tag(:div, truncated.to_s.html_safe, :class => "truncated")
     
     lesslink = link_to_function(less, "$(this).parents('.untruncated').hide().prev('.truncated').show()", 
@@ -426,7 +427,7 @@ module ApplicationHelper
     untruncated = Nokogiri::HTML::DocumentFragment.parse(text)
     last_node = untruncated.children.last || untruncated
     last_node = last_node.parent if last_node.name == "a" || last_node.is_a?(Nokogiri::XML::Text)
-    last_node.add_child(lesslink)
+    last_node.add_child(Nokogiri::HTML::DocumentFragment.parse(lesslink, 'UTF-8'))
     untruncated = content_tag(:div, untruncated.to_s.html_safe, :class => "untruncated", 
       :style => "display: none")
     wrapper + untruncated
@@ -722,13 +723,27 @@ module ApplicationHelper
 
     case update.resource_type
     when "User"
-      if options[:count].to_i == 1
-        t(:user_added_an_observation_html, 
-          :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)))
+      if update.notifier_type == "Post"
+        post = notifier
+        title = if options[:skip_links]
+          resource.login
+        else
+          link_to_user(resource)
+        end
+        article = if options[:count] && options[:count].to_i == 1
+          t(:x_wrote_a_new_post_html, :x => title)
+        else
+          t(:x_wrote_y_new_posts_html, :x => title, :y => options[:count])
+        end
       else
-        t(:user_added_x_observations_html,
-          :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)),
-          :x => options[:count])
+        if options[:count].to_i == 1
+          t(:user_added_an_observation_html, 
+            :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)))
+        else
+          t(:user_added_x_observations_html,
+            :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)),
+            :x => options[:count])
+        end
       end
     when "Observation"
       t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)

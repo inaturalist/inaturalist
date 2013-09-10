@@ -50,8 +50,8 @@ FlickrIdentity.blueprint do
 end
 
 Friendship.blueprint do
-  user { User.make }
-  friend { User.make }
+  user { User.make! }
+  friend { User.make! }
 end
 
 Guide.blueprint do

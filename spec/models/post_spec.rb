@@ -24,3 +24,11 @@ describe Post, "creation for project" do
     Update.where(:notifier_type => "Post", :notifier_id => post.id, :subscriber_id => post.user_id).first.should_not be_blank
   end
 end
+
+describe Post, "creation for user" do
+  it "should generate updates for followers" do
+    f = Friendship.make!
+    post = without_delay { Post.make!(:parent => f.friend) }
+    Update.where(:notifier_type => "Post", :notifier_id => post.id, :subscriber_id => f.user_id).first.should_not be_blank
+  end
+end

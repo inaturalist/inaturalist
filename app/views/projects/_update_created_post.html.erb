@@ -13,7 +13,7 @@
       <% end -%>
     </div>
     <div class="post_content last column item_content">
-      <h4><%= link_to(h(post.title), the_post_path) %></h4>
+      <h4><%= link_to(post.title, the_post_path) %></h4>
       <div class="readable body clear">
         <%= truncate_with_more(formatted_user_text(post.body, 
           :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES), :length => 500) %>
@@ -30,4 +30,4 @@
     </div>
   </div>
 <% end %>
-<%= link_to "View #{h(project.title)}'s journal", project_journal_path(project), :class => 'readmore' %>
+<%= link_to t(:view_xs_journal, :x => project.title), project_journal_path(project), :class => 'readmore' %>
