@@ -111,21 +111,14 @@ module Shared::ListsModule
       end
       
       format.json do
-        per_page = params[:per_page].to_i
-        per_page = 200 unless (1..200).include?(per_page)
-        @listed_taxa = @list.listed_taxa.paginate(:page => params[:page], 
-          :per_page => per_page,
-          :order => "observations_count DESC",
-          :include => [{:taxon => [:photos, :taxon_names]}])
-        @listed_taxa_json = @listed_taxa.map do |lt|
-          lt.as_json(
-            :except => [:manually_added, :updater_id, :observation_month_counts, :taxon_range_id, :source_id],
-            :include => { :taxon => Taxon.default_json_options }
-          )
-        end
+        @find_options[:order] = "observations_count DESC" if params[:order_by].blank?
+        @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
         render :json => {
           :list => @list,
-          :listed_taxa => @listed_taxa_json,
+          :listed_taxa => @listed_taxa.as_json(
+            :except => [:manually_added, :updater_id, :observation_month_counts, :taxon_range_id, :source_id],
+            :include => { :taxon => Taxon.default_json_options }
+          ),
           :current_page => @listed_taxa.current_page,
           :total_pages => @listed_taxa.total_pages,
           :total_entries => @listed_taxa.total_entries
