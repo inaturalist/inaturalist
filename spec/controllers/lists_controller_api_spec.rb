@@ -30,4 +30,18 @@ describe ListsController, "show" do
     json['listed_taxa'].size.should eq 2
     json['listed_taxa'][0]['id'].should eq lt2.id
   end
+
+  it "should allow sort by name" do
+    lt0 = ListedTaxon.make!(:taxon => Taxon.make!(:name => "Cuthona"))
+    lt1 = ListedTaxon.make!(:taxon => Taxon.make!(:name => "Amelanchier"), :list => lt0.list)
+    lt2 = ListedTaxon.make!(:taxon => Taxon.make!(:name => "Bothrops"), :list => lt0.list)
+    without_delay do
+      Observation.make!(:taxon => lt1.taxon, :user => lt1.list.user)
+      2.times { Observation.make!(:taxon => lt2.taxon, :user => lt1.list.user) }
+    end
+    get :show, :format => :json, :id => lt1.list_id, :order_by => "name"
+    json = JSON.parse(response.body)
+    json['listed_taxa'].size.should eq 3
+    json['listed_taxa'][0]['id'].should eq lt1.id
+  end
 end

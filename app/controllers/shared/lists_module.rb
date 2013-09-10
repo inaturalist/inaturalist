@@ -374,10 +374,7 @@ module Shared::ListsModule
       :include => [
         :last_observation,
         {:taxon => [:iconic_taxon, :photos, :taxon_names]}
-      ],
-      
-      # TODO: somehow make the following not cause a filesort...
-      :order => "taxon_ancestor_ids || '/' || listed_taxa.taxon_id"
+      ]
     }
     if params[:taxon] && @filter_taxon = (Taxon.find_by_id(params[:taxon].to_i) || Taxon.where("lower(name) = ?", params[:taxon].to_s.downcase).first)
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
@@ -393,6 +390,19 @@ module Shared::ListsModule
     elsif params[:iconic_taxon]
       @filter_taxon = Taxon.find_by_id(params[:iconic_taxon])
       @find_options[:conditions] = ["taxa.iconic_taxon_id = ?", @filter_taxon.try(:id)]
+    end
+    @find_options[:order] = case params[:order_by]
+    when "name"
+      order = params[:order]
+      order = "asc" unless %w(asc desc).include?(params[:order])
+      "taxa.name #{order}"
+    when "observations_count"
+      order = params[:order]
+      order = "desc" unless %w(asc desc).include?(params[:order])
+      "listed_taxa.observations_count #{order}"
+    else
+      # TODO: somehow make the following not cause a filesort...
+      "taxon_ancestor_ids || '/' || listed_taxa.taxon_id"
     end
   end
   
