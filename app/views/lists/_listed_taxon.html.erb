@@ -50,7 +50,16 @@
     <% if listed_taxon.occurrence_status || listed_taxon.establishment_means -%>
       <div class="occurrence description">
         <label><%= t :status %>: </label>
-        <%= [listed_taxon.occurrence_status, listed_taxon.establishment_means].compact.join(' / ') %>
+        <%=
+          pieces = []
+          unless listed_taxon.occurrence_status.blank?
+            pieces << t("occurrence_status_levels.#{listed_taxon.occurrence_status.to_s.downcase}", :default => listed_taxon.occurrence_status)
+          end
+          unless listed_taxon.establishment_means.blank?
+            pieces << t("establishment.#{listed_taxon.establishment_means.to_s.downcase}",:default => listed_taxon.establishment_means)
+          end
+          pieces.join(' / ')
+        -%>
       </div>
     <% end -%>
     

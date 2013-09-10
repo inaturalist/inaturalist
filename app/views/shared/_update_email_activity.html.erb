@@ -55,12 +55,12 @@
             <%= link_to(truncate(user.id == viewing_user.id ? t(:you).downcase : user.login, :length => 20), 
               person_url(user)) %>
             <span class="when">
-              <span class="date"><%=t :time_ago, :time => time_ago_in_words(notifier.created_at) %></span>
+              <span class="date"><%=t :n_ago, :n => time_ago_in_words(notifier.created_at) %></span>
             </span>
           </div>
         </td>
       </tr>
     <% end %>
   </table>
-  <%= link_to "#{t(:view)} #{class_name.humanize.downcase}", url_for_resource_with_host(resource), :class => "readmore" %>
+  <%= link_to "#{t(:view)} #{t(class_name.humanize.downcase, :default => class_name.humanize.downcase)}", url_for_resource_with_host(resource), :class => "readmore" %>
 </div>

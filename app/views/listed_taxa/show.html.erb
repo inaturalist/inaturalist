@@ -1,3 +1,10 @@
+<% if @list.is_a?(CheckList) && @list.is_default? && @list.title.include?('Check List') %>
+    <% @list_title = truncate(t(:check_list_place, :place => t("places_name.#{@list.title.chomp(' Check List').gsub(' ','_').downcase}",
+                                                 :default => @list.title.split(' Check List').first)), :length => 85) %>
+<% else %>
+    <% @list_title = truncate(@list.title, :length => 85) %>
+<% end %>
+
 <%- content_for(:title) do -%>
   <%- @title = capture do %>
     <%= iconic_taxon_image @taxon, :style => "vertical-align: middle" %>
@@ -5,7 +12,7 @@
       <%= render :partial => "shared/taxon" %>
     <% end %>
     <%=raw t(:on_).downcase %>
-    <%= link_to truncate(@list.title, :length => 85), @list %>
+        <%= link_to @list_title, @list %>
   <% end -%>
   <%= strip_tags(@title).html_safe %>
 <%- end -%>
@@ -47,7 +54,7 @@
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo #{@list.title}".html_safe, @list, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{@list_title}".html_safe, @list, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <h2><%= @title %></h2>
@@ -138,7 +145,7 @@
   
   <% if @listed_taxon.removable_by?(current_user) -%>
     <p class="ui description" style="margin-top: 10px">
-      <%= link_to "#{t(:remove_from)} #{@list.title}", @listed_taxon, :method => :delete, 
+      <%= link_to "#{t(:remove_from)} #{@list_title}", @listed_taxon, :method => :delete,
         :confirm => t(:you_sure_remove_taxon_from?, :list => @list.title),
         :class => "small description" %>
     </p>

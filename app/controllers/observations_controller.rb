@@ -572,7 +572,7 @@ class ObservationsController < ApplicationController
     
     # check for errors
     errors = false
-    @observations.each { |obs| errors = true unless obs.valid? }
+    @observations.compact.each { |obs| errors = true unless obs.valid? }
     respond_to do |format|
       format.html do
         unless errors
@@ -1840,14 +1840,13 @@ class ObservationsController < ApplicationController
       @observations = Observation.query(search_params).includes({:observation_photos => :photo}, :sounds).paginate(find_options)
     end
     @observations
-  rescue ThinkingSphinx::ConnectionError
+  rescue ThinkingSphinx::ConnectionError, Riddle::ResponseError
     Rails.logger.error "[ERROR #{Time.now}] ThinkingSphinx::ConnectionError, hitting the db"
     find_options.delete(:class)
     find_options.delete(:classes)
     find_options.delete(:raise_on_stale)
     @observations = if @q
-      Observation.query(search_params).all(
-        :conditions => ["species_guess LIKE ?", "%#{@q}%"]).paginate(find_options)
+      Observation.query(search_params).where("species_guess LIKE ?", "%#{@q}%").paginate(find_options)
     else
       Observation.query(search_params).paginate(find_options)
     end
@@ -2027,7 +2026,7 @@ class ObservationsController < ApplicationController
       @observations = WillPaginate::Collection.new(1,30, 0)
     end
     @observations
-  rescue ThinkingSphinx::ConnectionError
+  rescue ThinkingSphinx::ConnectionError, Riddle::ResponseError
     Rails.logger.error "[ERROR #{Time.now}] Failed to connect to sphinx, falling back to db"
     get_paginated_observations(search_params, find_options)
   end

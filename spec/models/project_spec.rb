@@ -42,6 +42,14 @@ describe Project, "destruction" do
       project.destroy
     end
   end
+
+  it "should delete project observations" do
+    po = make_project_observation
+    p = po.project
+    po.reload
+    p.destroy
+    ProjectObservation.find_by_id(po.id).should be_blank
+  end
 end
 
 describe Project, "update_curator_idents_on_make_curator" do

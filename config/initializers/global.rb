@@ -1,3 +1,4 @@
+#encoding: utf-8
 def start_log_timer(name = nil)
   @log_timer = Time.now
   @log_timer_name = name || caller(2).first.split('/').last
@@ -52,8 +53,10 @@ class String
   end
 end
 
+# Restrict sphinx queries to characters and simple punctuation
+# http://www.ruby-doc.org/core-2.0.0/Regexp.html#label-Character+Properties
 def sanitize_sphinx_query(q)
-  q.gsub(/[^\w\s\.\'\-]+/, '').gsub(/\-/, '\-')
+  q.gsub(/[^\p{L}\s\.\'\-]+/, '').gsub(/\-/, '\-')
 end
 
 def private_page_cache_path(path)

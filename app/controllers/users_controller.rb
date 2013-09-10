@@ -1,3 +1,4 @@
+#encoding: utf-8
 class UsersController < ApplicationController  
   doorkeeper_for :create, :update, :edit, :dashboard, :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 

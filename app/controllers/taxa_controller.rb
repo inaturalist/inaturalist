@@ -45,7 +45,7 @@ class TaxaController < ApplicationController
   # @param q:    Return all taxa where the name begins with q 
   #
   def index
-    find_taxa unless request.format.html? || request.format.mobile?
+    find_taxa unless request.format.blank? || request.format.html? || request.format.mobile?
     
     begin
       @taxa.try(:total_entries)
@@ -782,7 +782,9 @@ class TaxaController < ApplicationController
       @taxon.wikipedia_summary(:refresh_if_blank => true)
     end
     @describer_url = @describer.page_url(@taxon)
-    render :partial => "description"
+    respond_to do |format|
+      format.html { render :partial => "description" }
+    end
   end
   
   def refresh_wikipedia_summary

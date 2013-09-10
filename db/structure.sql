@@ -38,6 +38,47 @@ COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: crc32(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION crc32(word text) RETURNS bigint
+    LANGUAGE plpgsql IMMUTABLE
+    AS $$
+          DECLARE tmp bigint;
+          DECLARE i int;
+          DECLARE j int;
+          DECLARE byte_length int;
+          DECLARE word_array bytea;
+          BEGIN
+            IF COALESCE(word, '') = '' THEN
+              return 0;
+            END IF;
+
+            i = 0;
+            tmp = 4294967295;
+            byte_length = bit_length(word) / 8;
+            word_array = decode(replace(word, E'\\', E'\\\\'), 'escape');
+            LOOP
+              tmp = (tmp # get_byte(word_array, i))::bigint;
+              i = i + 1;
+              j = 0;
+              LOOP
+                tmp = ((tmp >> 1) # (3988292384 * (tmp & 1)))::bigint;
+                j = j + 1;
+                IF j >= 8 THEN
+                  EXIT;
+                END IF;
+              END LOOP;
+              IF i >= byte_length THEN
+                EXIT;
+              END IF;
+            END LOOP;
+            return (tmp # 4294967295);
+          END
+        $$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -826,13 +867,13 @@ ALTER SEQUENCE guide_photos_id_seq OWNED BY guide_photos.id;
 CREATE TABLE guide_ranges (
     id integer NOT NULL,
     guide_taxon_id integer,
-    medium_url character varying(255),
-    thumb_url character varying(255),
-    original_url character varying(255),
+    medium_url character varying(512),
+    thumb_url character varying(512),
+    original_url character varying(512),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     license character varying(255),
-    source_url character varying(255),
+    source_url character varying(512),
     rights_holder character varying(255),
     source_id integer
 );
@@ -6018,3 +6059,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130721235136');
 INSERT INTO schema_migrations (version) VALUES ('20130730200246');
 
 INSERT INTO schema_migrations (version) VALUES ('20130814211257');
+
+INSERT INTO schema_migrations (version) VALUES ('20130903235202');
+
+INSERT INTO schema_migrations (version) VALUES ('20130910053330');

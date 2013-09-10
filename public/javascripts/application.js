@@ -988,13 +988,13 @@ $('.project_invitation .acceptlink').live('ajax:success', function() {
   $(this).hide()
   $(this).siblings('.ignorelink').hide()
   $(this).siblings('.removelink').show()
-  $(this).siblings('.status').html("Added!").show().addClass('success')
+  $(this).siblings('.status').html(I18n.t('added!')).show().addClass('success')
   $(this).parents('.box:first').removeClass('notice')
 })
 $('.project_invitation .removelink').live('ajax:success', function() {
   $(this).hide()
   $(this).siblings('.acceptlink').show()
-  $(this).siblings('.status').html("Removed").show().removeClass('success')
+  $(this).siblings('.status').html(I18n.t('removed!')).show().removeClass('success')
   $(this).parents('.box:first').addClass('notice')
 })
 $('.project_invitation .ignorelink').live('ajax:success', function() {
