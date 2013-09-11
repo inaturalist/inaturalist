@@ -368,9 +368,12 @@ module Shared::ListsModule
     @iconic_taxa_by_id = @iconic_taxa.index_by(&:id)
     page = params[:page].to_i
     page = 1 if page == 0
+    per_page = params[:per_page].to_i
+    per_page = 45 if per_page <= 0
+    per_page = 200 if per_page > 200
     @find_options = {
       :page => page,
-      :per_page => 45,
+      :per_page => per_page,
       :include => [
         :last_observation,
         {:taxon => [:iconic_taxon, :photos, :taxon_names]}

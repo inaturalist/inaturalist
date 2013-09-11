@@ -44,4 +44,13 @@ describe ListsController, "show" do
     json['listed_taxa'].size.should eq 3
     json['listed_taxa'][0]['id'].should eq lt1.id
   end
+
+  it "per_page should work" do
+    lt0 = ListedTaxon.make!(:taxon => Taxon.make!(:name => "Cuthona"))
+    lt1 = ListedTaxon.make!(:taxon => Taxon.make!(:name => "Amelanchier"), :list => lt0.list)
+    lt2 = ListedTaxon.make!(:taxon => Taxon.make!(:name => "Bothrops"), :list => lt0.list)
+    get :show, :format => :json, :id => lt1.list_id, :order_by => "name", :per_page => 1
+    json = JSON.parse(response.body)
+    json['listed_taxa'].size.should eq 1
+  end
 end
