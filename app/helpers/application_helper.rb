@@ -622,33 +622,40 @@ module ApplicationHelper
         end
       end
     elsif record.is_a?(Photo) || record.is_a?(Sound)
-      if record.user.blank?
-        s = record.attribution
-      else
+      user_name = ""
+      if record.user && record.editable_by?(record.user)
         user_name = record.user.name
         user_name = record.user.login if user_name.blank?
-        s = if record.copyrighted? || record.creative_commons?
-          "&copy; #{user_name}"
-        else
-          "no known copy restrictions"
-        end
+      end
+      user_name = record.native_realname if user_name.blank?
+      user_name = record.native_username if user_name.blank?
+      user_name = record.user.try(:name) if user_name.blank?
+      user_name = record.user.try(:login) if user_name.blank?
+      user_name = t(:unknown) if user_name.blank?
+      s = if record.copyrighted? || record.creative_commons?
+        "&copy; #{user_name}"
+      else
+        t(:no_known_copyright_restrictions, :name => user_name)
+      end
 
-        if record.copyrighted?
-          s += "#{separator}#{t(:all_rights_reserved)}"
-        elsif record.creative_commons?
-          s += separator
-          code = Photo.license_code_for_number(record.license)
-          url = url_for_license(code)
-          s += content_tag(:span) do
-            c = if options[:skip_image]
-              ""
-            else
-              link_to(image_tag("#{code}_small.png"), url) + " "
-            end
-            c.html_safe + link_to(t(:some_rights_reserved), url)
+      if record.copyrighted?
+        s += "#{separator}#{t(:all_rights_reserved)}"
+      elsif record.creative_commons?
+        s += separator
+        code = Photo.license_code_for_number(record.license)
+        url = url_for_license(code)
+        s += content_tag(:span) do
+          c = if options[:skip_image]
+            ""
+          else
+            link_to(image_tag("#{code}_small.png"), url) + " "
           end
+          c.html_safe + link_to(t(:some_rights_reserved), url)
         end
       end
+    else
+      s = record.attribution if record.respond_to?(:attribution)
+      s ||= "&copy; #{user_name}"
     end
     content_tag(:span, s.html_safe, :class => "rights verticalmiddle")
   end

@@ -172,7 +172,7 @@ class Photo < ActiveRecord::Base
   end
 
   def source_title
-    self.class.to_s.gsub(/Photo$/, '').underscore.humanize.titleize
+    self.class.name.gsub(/Photo$/, '').underscore.humanize.titleize
   end
 
   def best_url(size = "medium")

@@ -1616,7 +1616,7 @@ class ObservationsController < ApplicationController
         else
           api_response ||= photo_class.get_api_response(photo_id, :user => current_user)
           if api_response
-            photo_class.new_from_api_response(api_response, :user => current_user)
+            photo_class.new_from_api_response(api_response, :user => current_user, :native_photo_id => photo_id)
           end
         end
       end

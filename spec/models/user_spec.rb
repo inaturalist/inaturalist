@@ -474,6 +474,15 @@ describe User do
       p.reload
       p.license.should == Photo.license_number_for_code(Observation::CC_BY)
     end
+
+    it "should not update GoogleStreetViewPhotos" do
+      u = User.make!
+      p = GoogleStreetViewPhoto.make!(:user => u)
+      u.preferred_photo_license = Observation::CC_BY
+      u.update_attributes(:make_photo_licenses_same => true)
+      p.reload
+      p.license.should == Photo::COPYRIGHT
+    end
   end
 
   protected

@@ -33,8 +33,8 @@ describe GoogleStreetViewPhoto, "new_from_api_response" do
     p.native_page_url.should =~ /maps.google.com/
   end
   
-  it "should not set the license" do
-    p.license.should be_blank
+  it "should set the license to copyright" do
+    p.license.should eq Photo::COPYRIGHT
   end
 
   it "should set the native_realname to Google" do

@@ -2,12 +2,19 @@ class GoogleStreetViewPhoto < Photo
   Photo.descendent_classes ||= []
   Photo.descendent_classes << self
 
+  before_save :set_license
+
   def attribution
     I18n.t('copyright.all_rights_reserved', :name => "Google")
   end
 
   def editable_by?(user)
     false
+  end
+
+  def set_license
+    self.license = Photo::COPYRIGHT
+    true
   end
 
   def self.get_api_response(native_photo_id, options = {})
@@ -30,8 +37,10 @@ class GoogleStreetViewPhoto < Photo
       :large_url => "#{base}#{params.merge(:size => "640x#{(640*r).to_i}").map{|k,v| "#{k}=#{v}"}.join('&')}",
       :original_url => "#{base}#{params.map{|k,v| "#{k}=#{v}"}.join('&')}",
       :native_realname => "Google",
-      :native_page_url => "https://maps.google.com/?ll=#{params[:location]}&layer=c&cbll=#{params[:location]}&cbp=12,#{params[:heading]},,#{z},#{params[:pitch].to_f * -1}"
+      :native_page_url => "https://maps.google.com/?ll=#{params[:location]}&layer=c&cbll=#{params[:location]}&cbp=12,#{params[:heading]},,#{z},#{params[:pitch].to_f * -1}",
+      :license => Photo::COPYRIGHT
     )
+    options[:native_photo_id] ||= options[:original_url]
     GoogleStreetViewPhoto.new(options)
   end
 end

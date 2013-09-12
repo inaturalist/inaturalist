@@ -253,7 +253,7 @@
             <div class="meta" style="clear:both;">
               <%=t(:photo, :count => @photos.size).capitalize %>
               <% if @photos.map{|p| p.license}.compact.uniq.size <= 1 -%>
-                <%= rights @photos.first, :skip_image => true, :separator => " " %>
+                <%= rights @photos.first, :skip_image => true, :separator => ", " %>
               <% else %>
                 &copy;
                 <%= @observation.user.name.blank? ? @observation.user.login : @observation.user.name %>,
@@ -289,7 +289,7 @@
             <div class="meta" style="clear:both;">
               <%=t(:'sounds.sound').capitalize %>
               <% if @sounds.map{|s| s.license}.compact.uniq.size <= 1 -%>
-                <%= rights @sounds.first, :skip_image => true, :separator => " " %>
+                <%= rights @sounds.first, :skip_image => true, :separator => ", " %>
               <% else %>
                 &copy;
                 <%= @observation.user.name.blank? ? @observation.user.login : @observation.user.name %>,

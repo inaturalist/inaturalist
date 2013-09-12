@@ -345,7 +345,7 @@ class User < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_photo_licenses_same)
     number = Photo.license_number_for_code(preferred_photo_license)
     return true unless number
-    Photo.update_all(["license = ?", number], ["user_id = ?", id])
+    Photo.update_all(["license = ?", number], ["user_id = ? AND type != 'GoogleStreetViewPhoto'", id])
     true
   end
 

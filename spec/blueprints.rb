@@ -54,6 +54,11 @@ Friendship.blueprint do
   friend { User.make! }
 end
 
+GoogleStreetViewPhoto.blueprint do
+  user { User.make! }
+  native_photo_id { "http://maps.googleapis.com/maps/api/streetview?location=-0.742447,-90.303923&heading=29.78017781376499&pitch=8.134364432152863&fov=45&sensor=false" }
+end
+
 Guide.blueprint do
   user { User.make }
   title { Faker::Lorem.sentence }

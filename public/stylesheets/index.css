@@ -918,6 +918,7 @@ ul.leafylist li li:first-child {
 .item.comment .body{padding-left:0;}
 .item .comment_actions {display:none;}
 .item:hover .comment_actions {display:inline;}
+.comment {overflow:hidden;}
 
 #pageheader #tools{margin-top:0.5em;}
 .count { color: #74AC00; }
