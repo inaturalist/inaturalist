@@ -29,6 +29,10 @@ class Guide < ActiveRecord::Base
 
   scope :dbsearch, lambda {|q| where("guides.title ILIKE ?", "%#{q}%")}
 
+  def to_s
+    "<Guide #{id} #{title}>"
+  end
+
   def import_taxa(options = {})
     if options[:eol_collection_url]
       return add_taxa_from_eol_collection(options[:eol_collection_url])
@@ -98,6 +102,7 @@ class Guide < ActiveRecord::Base
     GuidesController::PDF_LAYOUTS.each do |l|
       ctrl.expire_page("/guides/#{id}.#{l}.pdf")
     end
+    ctrl.expire_page("/guides/#{to_param}.ngz")
     true
   end
 
@@ -178,5 +183,63 @@ class Guide < ActiveRecord::Base
         guide_taxa.guide_id = #{id}
     SQL
     Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags ORDER BY guide_tags.taggings_id DESC LIMIT 20").map(&:name).sort_by(&:downcase)
+  end
+
+  def generate_ngz_cache_key
+    "gen_ngz_#{id}"
+  end
+
+  def generate_ngz(options = {})
+    zip_path = to_ngz
+    path = options[:path] || "public/guides/#{to_param}.ngz"
+    FileUtils.mv zip_path, path
+  end
+
+  def to_ngz
+    start_log_timer "#{self} to_ngz"
+    ordered_guide_taxa = guide_taxa.order(:position).includes({:guide_photos => [:photo]}, :guide_ranges, :guide_sections)
+    image_sizes = %w(thumb medium)
+    basename = title.parameterize
+    local_asset_path = "files"
+    work_path = File.join(Dir::tmpdir, basename)
+    FileUtils.mkdir_p work_path, :mode => 0755
+    # build xml and write to file in tmpdir
+    xml_path = File.join(work_path, "#{basename}.xml")
+    open xml_path, 'w' do |f|
+      f.write FakeView.render(:template => "guides/show.xml.builder", :locals => {
+        :local_asset_path => local_asset_path, 
+        :guide => self,
+        :guide_taxa => ordered_guide_taxa,
+        :image_sizes => image_sizes
+      })
+    end
+
+    # mkdir for assests
+    full_asset_path = File.join(work_path, local_asset_path)
+    FileUtils.mkdir_p full_asset_path, :mode => 0755
+    # loop over all photos and ranges, downloading assets to the asset dir
+    asset_names = []
+    ordered_guide_taxa.each do |gt|
+      (gt.guide_photos + gt.guide_ranges).each do |gp|
+        image_sizes.each do |s|
+          next unless url = gp.send("#{s}_url")
+          fname = FakeView.guide_asset_filename(gp, :size => s)
+          path = File.join(full_asset_path, fname)
+          Rails.logger.info "[INFO #{Time.now}] Fetching #{url}"
+          open(path, 'wb') do |f|
+            open(url) do |fr|
+              f.write(fr.read)
+            end
+          end
+          asset_names << fname
+        end
+      end
+    end
+
+    # zip up the results & return the path
+    zip_path = File.join(work_path, "#{basename}.ngz")
+    system "cd #{work_path} && zip -r #{basename}.ngz #{basename}.xml #{local_asset_path}"
+    end_log_timer
+    zip_path
   end
 end

@@ -7,7 +7,7 @@ class GuidesController < ApplicationController
   layout "bootstrap"
   PDF_LAYOUTS = GuidePdfFlowTask::LAYOUTS
 
-  # caches_page :show, :if => Proc.new {|c| c.request.format == :pdf && c.request.query_parameters.blank?}
+  caches_page :show, :if => Proc.new {|c| c.request.format == :ngz}
   
   # GET /guides
   # GET /guides.json
@@ -120,6 +120,23 @@ class GuidesController < ApplicationController
             render :status => :not_found, :text => "", :layout => false
           end
         end
+      end
+      format.xml
+      format.ngz do
+        path = "public/guides/#{@guide.to_param}.ngz"
+        job_id = Rails.cache.read(@guide.generate_ngz_cache_key)
+        job = Delayed::Job.find_by_id(job_id)
+        if job
+          # Still working
+        else
+          # no job id, no job, let's get this party started
+          Rails.cache.delete(@guide.generate_ngz_cache_key)
+          job = @guide.delay.generate_ngz(:path => path)
+          Rails.cache.write(@guide.generate_ngz_cache_key, job.id, :expires_in => 1.hour)
+        end
+        prevent_caching
+        # Would prefer to use accepted, but don't want to deliver an invlid zip file
+        render :status => :no_content, :layout => false
       end
     end
   end
