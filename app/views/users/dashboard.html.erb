@@ -192,7 +192,7 @@
           $('.observationcontrols').observationControls()
         </script>
         <div class="pagination">
-          <%= link_to(t(:more), url_for_params(:from => @updates.last.id), :class => "readmore") unless @updates.blank? %>
+          <%= link_to(t(:more), url_for_params(:from => @pagination_updates.last.id), :class => "readmore") unless @pagination_updates.blank? %>
         </div>
       <% end %>
     </div>

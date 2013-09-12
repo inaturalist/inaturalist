@@ -259,13 +259,13 @@ class UsersController < ApplicationController
   
   def dashboard
     conditions = ["id < ?", params[:from].to_i] if params[:from]
-    updates = current_user.updates.all(:limit => 50, :order => "id DESC", 
+    @pagination_updates = current_user.updates.all(:limit => 50, :order => "id DESC", 
       :include => [:resource, :notifier, :subscriber, :resource_owner],
       :conditions => conditions)
-    @updates = Update.load_additional_activity_updates(updates)
+    @updates = Update.load_additional_activity_updates(@pagination_updates)
     @update_cache = Update.eager_load_associates(@updates)
     @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache, :hour_groups => true)
-    Update.user_viewed_updates(updates)
+    Update.user_viewed_updates(@pagination_updates)
     @month_observations = current_user.observations.all(:select => "id, observed_on",
       :conditions => [
         "EXTRACT(month FROM observed_on) = ? AND EXTRACT(year FROM observed_on) = ?",

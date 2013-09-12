@@ -17,3 +17,6 @@
 <%- end -%>
 <h2><%= @title %></h2>
 <%= render_in_format :html, :partial => 'shared/updates_table' %>
+<div class="pagination upstacked">
+  <%= link_to(t(:more), url_for_params(:from => @pagination_updates.last.id), :class => "readmore") unless @pagination_updates.blank? %>
+</div>
