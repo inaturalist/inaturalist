@@ -326,26 +326,32 @@ class ListedTaxon < ActiveRecord::Base
     return true unless establishment_means_changed? && !establishment_means.blank?
     return true unless list.is_a?(CheckList)
     if native?
-      # bubble up for native equivalents
-      ListedTaxon.update_all(
-        ["establishment_means = ?", establishment_means],
-        ["taxon_id = ? AND establishment_means IS NULL AND place_id IN (?)", taxon_id, place.ancestor_ids]
-      )
+      bubble_up_establishment_means
     else
-      # trickle down for introduced
-      sql = <<-SQL
-        UPDATE listed_taxa
-        SET establishment_means = '#{establishment_means}'
-        FROM places
-        WHERE 
-          listed_taxa.place_id = places.id
-          AND establishment_means IS NULL
-          AND listed_taxa.taxon_id = #{taxon_id}
-          AND (places.ancestry LIKE '#{place.ancestry}/%' OR places.ancestry = '#{place.ancestry}')
-      SQL
-      ActiveRecord::Base.connection.execute(sql)
+      trickle_down_establishment_means
     end
     true
+  end
+
+  def bubble_up_establishment_means
+    ListedTaxon.update_all(
+      ["establishment_means = ?", establishment_means],
+      ["taxon_id = ? AND establishment_means IS NULL AND place_id IN (?)", taxon_id, place.ancestor_ids]
+    )
+  end
+
+  def trickle_down_establishment_means
+    sql = <<-SQL
+      UPDATE listed_taxa
+      SET establishment_means = '#{establishment_means}'
+      FROM places
+      WHERE 
+        listed_taxa.place_id = places.id
+        AND establishment_means IS NULL
+        AND listed_taxa.taxon_id = #{taxon_id}
+        AND (places.ancestry LIKE '#{place.ancestry}/%' OR places.ancestry = '#{place.ancestry}')
+    SQL
+    ActiveRecord::Base.connection.execute(sql)
   end
   
   def cache_columns
