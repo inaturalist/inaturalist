@@ -142,7 +142,7 @@ $(document).ready(function() {
     $('#project_zoom_level').val(window.map.getZoom())
   })
 
-  window.firstRun = true
+  window.firstRun = typeof(PROJECT.place_id) != 'undefined' && PROJECT.place_id != null
   $('#project_place_id').chooser({
     collectionUrl: '/places/autocomplete.json?with_geom=t',
     resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',

@@ -1,4 +1,8 @@
 Inaturalist::Application.routes.draw do
+  id_param_pattern = %r(\d+([\w\-\%]*))
+  simplified_login_regex = /\w[^\.,\/]+/  
+  root :to => 'welcome#index'
+  
   resources :guide_sections do
     collection do
       get :import
@@ -20,6 +24,7 @@ Inaturalist::Application.routes.draw do
   resources :guides do
     collection do
       get :search
+      get :user
     end
     member do
       post :import_taxa
@@ -27,6 +32,7 @@ Inaturalist::Application.routes.draw do
     end
   end
   match '/guides/:id.:layout.pdf' => 'guides#show', :via => :get, :as => "guide_pdf", :constraints => {:format => :pdf}, :defaults => {:format => :pdf}
+  match 'guides/user/:login' => 'guides#user', :as => :guides_by_login, :constraints => { :login => simplified_login_regex }
 
 
   resources :messages, :except => [:edit, :update] do
@@ -52,12 +58,6 @@ Inaturalist::Application.routes.draw do
       get :run
     end
   end
-
-
-  id_param_pattern = %r(\d+([\w\-\%]*))
-  simplified_login_regex = /\w[^\.,\/]+/  
-
-  root :to => 'welcome#index'
 
   resources :observation_field_values, :only => [:create, :update, :destroy, :index]
   resources :observation_fields

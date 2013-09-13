@@ -28,6 +28,12 @@ class Guide < ActiveRecord::Base
   after_create :add_taxa_from_source_url
 
   scope :dbsearch, lambda {|q| where("guides.title ILIKE ?", "%#{q}%")}
+  scope :near_point, lambda {|latitude, longitude|
+    latitude = latitude.to_f
+    longitude = longitude.to_f
+    where("ST_Distance(ST_Point(guides.longitude, guides.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
+    order("ST_Distance(ST_Point(guides.longitude, guides.latitude), ST_Point(#{longitude}, #{latitude}))")
+  }
 
   def to_s
     "<Guide #{id} #{title}>"
@@ -241,5 +247,28 @@ class Guide < ActiveRecord::Base
     system "cd #{work_path} && zip -r #{basename}.ngz #{basename}.xml #{local_asset_path}"
     end_log_timer
     zip_path
+  end
+
+  def user_login
+    user.login
+  end
+
+  def icon_url
+    icon.file? ? icon.url(:span2) : nil
+  end
+
+  def as_json(options = {})
+    options[:include] = if options[:include].is_a?(Hash)
+      options[:include].map{|k,v| {k => v}}
+    else
+      [options[:include]].flatten.compact
+    end
+    options[:methods] ||= []
+    options[:methods] += [:user_login, :icon_url]
+    h = super(options)
+    h.each do |k,v|
+      h[k] = v.gsub(/<script.*script>/i, "") if v.is_a?(String)
+    end
+    h
   end
 end
