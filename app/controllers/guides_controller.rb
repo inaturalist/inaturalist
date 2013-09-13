@@ -1,9 +1,10 @@
 #encoding: utf-8
 class GuidesController < ApplicationController
   include GuidesHelper
-  before_filter :authenticate_user!, :except => [:index, :show, :search]
+  before_filter :authenticate_user!, :except => [:index, :show, :search, :user]
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa, :reorder]
+  before_filter :load_user_by_login, :only => [:user]
   layout "bootstrap"
   PDF_LAYOUTS = GuidePdfFlowTask::LAYOUTS
 
@@ -16,9 +17,11 @@ class GuidesController < ApplicationController
     if logged_in?
       @guides_by_you = current_user.guides.limit(100).order("guides.id DESC")
     end
+    @guides = @guides.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
+    pagination_headers_for(@observations)
     respond_to do |format|
       format.html
-      format.json { render json: {:guides => @guides.as_json} }
+      format.json { render json: @guides }
     end
   end
 
@@ -136,7 +139,7 @@ class GuidesController < ApplicationController
         end
         prevent_caching
         # Would prefer to use accepted, but don't want to deliver an invlid zip file
-        render :status => :no_content, :layout => false
+        render :status => :no_content, :layout => false, :text => ""
       end
     end
   end
@@ -225,8 +228,12 @@ class GuidesController < ApplicationController
 
   def search
     @guides = Guide.dbsearch(params[:q]).page(params[:page])
+    pagination_headers_for @guides
     respond_to do |format|
       format.html
+      format.json do
+        render :json => @guides
+      end
     end
   end
 
@@ -235,6 +242,15 @@ class GuidesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to edit_guide_path(@guide) }
       format.json { render :status => 204 }
+    end
+  end
+
+  def user
+    @guides = current_user.guides.page(params[:page]).per_page(500)
+    pagination_headers_for(@observations)
+    respond_to do |format|
+      format.html
+      format.json { render :json => @guides }
     end
   end
 

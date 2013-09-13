@@ -33,7 +33,7 @@
       <% if @project && !member_of?(@project)%>
       <%=t :join_and %> 
       <% end -%>
-      <%=t :add_an_observation %>
+      <%= t(:add_an_observation) %>
       <% if @project %>
         <%=t :to %>
         <% if @project.icon.file? -%>
