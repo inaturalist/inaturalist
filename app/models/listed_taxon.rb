@@ -340,14 +340,14 @@ class ListedTaxon < ActiveRecord::Base
     )
   end
 
-  def trickle_down_establishment_means
+  def trickle_down_establishment_means(options = {})
     sql = <<-SQL
       UPDATE listed_taxa
       SET establishment_means = '#{establishment_means}'
       FROM places
       WHERE 
         listed_taxa.place_id = places.id
-        AND establishment_means IS NULL
+        #{'AND establishment_means IS NULL' unless options[:force]}
         AND listed_taxa.taxon_id = #{taxon_id}
         AND (places.ancestry LIKE '#{place.ancestry}/%' OR places.ancestry = '#{place.ancestry}')
     SQL

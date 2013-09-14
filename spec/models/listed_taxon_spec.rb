@@ -374,6 +374,14 @@ describe ListedTaxon, "establishment means propagation" do
     new_parent_listed_taxon.reload
     new_parent_listed_taxon.establishment_means.should be_blank
   end
+
+  it "trickle down should be forceable" do
+    child_listed_taxon.establishment_means.should be_blank
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+    place_listed_taxon.trickle_down_establishment_means(:force => true)
+    child_listed_taxon.reload
+    child_listed_taxon.establishment_means.should eq ListedTaxon::NATIVE
+  end
 end
 
 
