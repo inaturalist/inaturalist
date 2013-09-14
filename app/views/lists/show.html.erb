@@ -237,6 +237,18 @@
             </form>
           </div>
         </div>
+        <div class="clear" style="padding: 10px">
+          <form method="get">
+            <%= hidden_fields_for_params :without => [:page, :observed] %>
+            <label><%=t :observed %></label>
+            <%= radio_button_tag :observed, :t, @observed == 't', {"data-autosubmit" => true} %>
+            <%= label :observed, :t, t(:yes).downcase %>
+            <%= radio_button_tag :observed, :f, @observed == 'f', {"data-autosubmit" => true} %>
+            <%= label :observed, :f, t(:no).downcase %>
+            <%= radio_button_tag :observed, nil, @observed.blank?, {"data-autosubmit" => true} %>
+            <%= label :observed, nil, t(:any) %>
+          </form>
+        </div>
       </div><!-- /stats -->
     <% end -%>
   </div><!-- /sidebar -->

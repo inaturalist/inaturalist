@@ -397,6 +397,21 @@ module Shared::ListsModule
       @filter_taxon = Taxon.find_by_id(params[:iconic_taxon])
       @find_options[:conditions] = ["taxa.iconic_taxon_id = ?", @filter_taxon.try(:id)]
     end
+    if [true, 't', 'true', '1', 'y', 'yes'].include?(params[:observed])
+      @observed = 't'
+      if @find_options[:conditions].blank?
+        @find_options[:conditions] = ["last_observation_id IS NOT NULL"]
+      else
+        @find_options[:conditions][0] += " AND last_observation_id IS NOT NULL"
+      end
+    elsif [false, 'f', 'false', '0', 'n', 'no'].include?(params[:observed])
+      @observed = 'f'
+      if @find_options[:conditions].blank?
+        @find_options[:conditions] = ["last_observation_id IS NULL"]
+      else
+        @find_options[:conditions][0] += " AND last_observation_id IS NULL"
+      end
+    end
     @find_options[:order] = case params[:order_by]
     when "name"
       order = params[:order]
