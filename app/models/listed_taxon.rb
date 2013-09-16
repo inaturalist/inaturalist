@@ -349,7 +349,7 @@ class ListedTaxon < ActiveRecord::Base
         listed_taxa.place_id = places.id
         #{'AND establishment_means IS NULL' unless options[:force]}
         AND listed_taxa.taxon_id = #{taxon_id}
-        AND (places.ancestry LIKE '#{place.ancestry}/%' OR places.ancestry = '#{place.ancestry}')
+        AND (#{Place.send(:sanitize_sql, place.descendant_conditions)})
     SQL
     ActiveRecord::Base.connection.execute(sql)
   end
