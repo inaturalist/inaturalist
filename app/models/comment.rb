@@ -12,7 +12,13 @@ class Comment < ActiveRecord::Base
   auto_subscribes :user, :to => :parent
   
   scope :by, lambda {|user| where("comments.user_id = ?", user)}
+  scope :for_observer, lambda {|user| 
+    joins("JOIN observations o ON o.id = comments.parent_id").
+    where("comments.parent_type = 'Observation'").
+    where("o.user_id = ?", user)
+  }
   scope :since, lambda {|datetime| where("comments.created_at > DATE(?)", datetime)}
+  scope :dbsearch, lambda {|q| where("comments.body ILIKE ?", "%#{q}%")}
   
   attr_accessor :html
 
