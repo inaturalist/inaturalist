@@ -489,6 +489,23 @@ class Observation < ActiveRecord::Base
     d2 = (Date.parse(d2) rescue Date.today).strftime('%Y-%m-%d')
     where("observed_on BETWEEN ? AND ?", d1, d2)
   }
+
+  scope :dbsearch, lambda {|*args|
+    q, on = args
+    case on
+    when 'species_guess'
+      where("observations.species_guess ILIKE", "%#{q}%")
+    when 'description'
+      where("observations.description ILIKE", "%#{q}%")
+    when 'place_guess'
+      where("observations.place_guess ILIKE", "%#{q}%")
+    when 'tags'
+      where("observations.cached_tag_list ILIKE", "%#{q}%")
+    else
+      where("observations.species_guess ILIKE ? OR observations.description ILIKE ? OR observations.cached_tag_list ILIKE ? OR observations.place_guess ILIKE ?", 
+        "%#{q}%", "%#{q}%", "%#{q}%", "%#{q}%")
+    end
+  }
   
   def self.near_place(place)
     place = (Place.find(place) rescue nil) unless place.is_a?(Place)

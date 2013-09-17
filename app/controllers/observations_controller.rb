@@ -1931,11 +1931,6 @@ class ObservationsController < ApplicationController
       sphinx_options[:with][:identifications_most_disagree] = true
     end
     
-    # Taxon ID
-    unless search_params[:taxon_id].blank?
-      sphinx_options[:with][:taxon_id] = search_params[:taxon_id]
-    end
-    
     # Iconic taxa
     unless search_params[:iconic_taxa].blank?
       sphinx_options[:with][:iconic_taxon_id] = \
@@ -2010,6 +2005,10 @@ class ObservationsController < ApplicationController
         @observations = @observations.has_observation_field(of.id, v[:value])
       end
     end
+
+    
+    @observations = @observations.of(@observations_taxon) if @observations_taxon
+    @observations = @observations.in_place(@place) if @place
 
     if CONFIG.site_only_observations && params[:site].blank?
       @observations = @observations.where("observations.uri LIKE ?", "#{root_url}%")
