@@ -272,7 +272,7 @@ CREATE TABLE conservation_statuses (
     source_id integer,
     authority character varying(255),
     status character varying(255),
-    url character varying(255),
+    url character varying(512),
     description text,
     geoprivacy character varying(255) DEFAULT 'obscured'::character varying,
     iucn integer DEFAULT 20,
@@ -6063,3 +6063,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130814211257');
 INSERT INTO schema_migrations (version) VALUES ('20130903235202');
 
 INSERT INTO schema_migrations (version) VALUES ('20130910053330');
+
+INSERT INTO schema_migrations (version) VALUES ('20130917071826');
