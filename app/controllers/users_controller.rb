@@ -258,10 +258,10 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-    conditions = ["id < ?", params[:from].to_i] if params[:from]
-    @pagination_updates = current_user.updates.all(:limit => 50, :order => "id DESC", 
-      :include => [:resource, :notifier, :subscriber, :resource_owner],
-      :conditions => conditions)
+    @pagination_updates = current_user.updates.limit(50).order("id DESC").includes(:resource, :notifier, :subscriber, :resource_owner).scoped
+    @pagination_updates = @pagination_updates.where("id < ?", params[:from].to_i) if params[:from]
+    @pagination_updates = @pagination_updates.where(:notifier_type => params[:notifier_type]) unless params[:notifier_type].blank?
+    @pagination_updates = @pagination_updates.where(:resource_owner_id => current_user) if params[:filter] == "you"
     @updates = Update.load_additional_activity_updates(@pagination_updates)
     @update_cache = Update.eager_load_associates(@updates)
     @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache, :hour_groups => true)
