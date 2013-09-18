@@ -37,14 +37,14 @@
     $(controls).css({
       'text-align': 'right'
     });
-    var button = $('<a id="latLonSelectorSearchButton" href="#">Search</a>');
+    var button = $('<a id="latLonSelectorSearchButton" href="#">'+I18n.t('search')+'</a>');
     $(button).css(options.buttonCSS);
     $(button).click(function(e) {
       var input = getCurrentInput();
       $.fn.latLonSelector.lookup($(input).val());
       return false;
     });
-    var clear = $('<a href="#">Clear</a>').css({'margin-right': '1em'});
+    var clear = $('<a href="#">'+I18n.t('clear')+'</a>').css({'margin-right': '1em'});
     $(clear).click(function(e) {
       var input = getCurrentInput();
       $.fn.latLonSelector.updateFormLatLon('', '');
@@ -155,7 +155,7 @@
         setExact(this.checked);
         getMarker({exact: this.checked});
       }).hide(),
-      $('<label for="latLonSelectorExactFlag">Exact location</label>').hide()
+      $('<label for="latLonSelectorExactFlag">'+I18n.t('exact_location')+'</label>').hide()
     );
     $(wrapper).append(dataControls);
   }
