@@ -58,10 +58,7 @@ class GuideTaxaController < ApplicationController
 
   # GET /guide_taxa/1/edit
   def edit
-    @guide = @guide_taxon.guide
-    @guide_photos = @guide_taxon.guide_photos.order(:position)
-    @guide_sections = @guide_taxon.guide_sections.order(:position)
-    @recent_tags = @guide.recent_tags
+    load_data_for_edit
   end
 
   # POST /guide_taxa
@@ -93,7 +90,10 @@ class GuideTaxaController < ApplicationController
         format.html { redirect_to @guide_taxon, notice: 'Guide taxon was successfully updated.' }
         format.json { render :json => @guide_taxon.as_json(:root => true, :methods => [:html]) }
       else
-        format.html { render action: "edit" }
+        format.html do
+          load_data_for_edit
+          render action: "edit"
+        end
         format.json { render json: @guide_taxon.errors.full_messages, status: :unprocessable_entity }
       end
     end
@@ -168,5 +168,12 @@ class GuideTaxaController < ApplicationController
 
   def load_guide
     @guide = @guide_taxon.guide
+  end
+
+  def load_data_for_edit
+    @guide = @guide_taxon.guide
+    @guide_photos = @guide_taxon.guide_photos.order(:position)
+    @guide_sections = @guide_taxon.guide_sections.order(:position)
+    @recent_tags = @guide.recent_tags
   end
 end

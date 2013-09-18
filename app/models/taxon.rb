@@ -1129,7 +1129,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.import(name, options = {})
-    name = name.strip
+    name = normalize_name(name)
     ancestor = options.delete(:ancestor)
     external_names = ratatosk.find(name)
     external_names.select!{|en| en.name.downcase == name.downcase} if options[:exact]
@@ -1207,6 +1207,17 @@ class Taxon < ActiveRecord::Base
     pieces.map! {|p| p.gsub('.', '')}
     pieces.reject! {|p| (RANKS + RANK_EQUIVALENTS.keys).include?(p.downcase)}
     pieces.join(' ')
+  end
+
+  def self.normalize_name(name)
+    if name =~ /.+ \(=.+?\) .+/
+      pieces = name.match(/(.+) \(=.+?\) (.+)/)
+      name = "#{pieces[1]} #{pieces[2]}"
+    elsif name =~ /.+\(.+?\)/
+      name = name[/.+\((.+?)\)/, 1]
+    end
+    name = name.gsub(/[\(\)\?]/, '')
+    Taxon.remove_rank_from_name(name)
   end
   
   # Convert an array of strings to taxa
@@ -1344,9 +1355,7 @@ class Taxon < ActiveRecord::Base
   
   def self.single_taxon_for_name(name, options = {})
     return if PROBLEM_NAMES.include?(name.downcase)
-    name = name[/.+\((.+?)\)/, 1] if name =~ /.+\(.+?\)/
-    name = name.gsub(/[\(\)\?]/, '')
-    name = Taxon.remove_rank_from_name(name)
+    name = normalize_name(name)
     scope = TaxonName.limit(10).includes(:taxon).
       where("lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase).scoped
     scope = scope.where(options[:ancestor].descendant_conditions) if options[:ancestor]
