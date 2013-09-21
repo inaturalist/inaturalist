@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   include Ambidextrous
   
-  has_mobile_fu :ignore_formats => [:tablet, :json]
+  has_mobile_fu :ignore_formats => [:tablet, :json, :widget]
   around_filter :catch_missing_mobile_templates
   
   helper :all # include all helpers, all the time

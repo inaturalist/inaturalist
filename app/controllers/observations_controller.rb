@@ -142,7 +142,7 @@ class ObservationsController < ApplicationController
       end
       
       format.widget do
-        if params[:markup_only]=='true'
+        if params[:markup_only] == 'true'
           render :js => render_to_string(:partial => "widget.html.erb", :locals => {
             :show_user => true, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]
           })
