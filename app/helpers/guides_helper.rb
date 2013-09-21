@@ -20,7 +20,7 @@ module GuidesHelper
     @sort = GuideTaxon::DEFAULT_SORT unless GuideTaxon::SORTS.include?(@sort)
     
     @guide_taxa = @guide.guide_taxa.
-      includes({:taxon => [:taxon_ranges_without_geom]}, {:guide_photos => :photo}, :guide_sections, :guide_ranges)
+      includes({:taxon => [:taxon_ranges_without_geom]}, {:guide_photos => :photo}, :guide_sections, :guide_ranges, :tags)
     @guide_taxa = @guide_taxa.in_taxon(@taxon) if @taxon
     @guide_taxa = @guide_taxa.dbsearch(@q) unless @q.blank?
     @guide_taxa = @guide_taxa.tagged(@tags) unless @tags.blank?

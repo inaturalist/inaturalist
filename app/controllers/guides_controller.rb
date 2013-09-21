@@ -124,7 +124,13 @@ class GuidesController < ApplicationController
           end
         end
       end
-      format.xml
+      format.xml do
+        @tags = @guide.tags
+        @predicates = @tags.map do |tag|
+          namespace, predicate, value = FakeView.machine_tag_pieces(tag)
+          predicate
+        end.compact.uniq.sort
+      end
       format.ngz do
         path = "public/guides/#{@guide.to_param}.ngz"
         job_id = Rails.cache.read(@guide.generate_ngz_cache_key)

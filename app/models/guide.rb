@@ -191,6 +191,19 @@ class Guide < ActiveRecord::Base
     Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags ORDER BY guide_tags.taggings_id DESC LIMIT 20").map(&:name).sort_by(&:downcase)
   end
 
+  def tags
+    tag_sql = <<-SQL
+      SELECT DISTINCT ON (tags.name) tags.*, taggings.id AS taggings_id
+      FROM tags
+        JOIN taggings ON taggings.tag_id = tags.id
+        JOIN guide_taxa ON guide_taxa.id = taggings.taggable_id
+      WHERE
+        taggable_type = 'GuideTaxon' AND
+        guide_taxa.guide_id = #{id}
+    SQL
+    Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags").map(&:name).sort_by(&:downcase)
+  end
+
   def generate_ngz_cache_key
     "gen_ngz_#{id}"
   end
@@ -270,5 +283,9 @@ class Guide < ActiveRecord::Base
       h[k] = v.gsub(/<script.*script>/i, "") if v.is_a?(String)
     end
     h
+  end
+
+  def unique_tags
+    Tag.where("taggable_type = 'GuideTaxon")
   end
 end

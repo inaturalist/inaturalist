@@ -938,5 +938,23 @@ module ApplicationHelper
     sensor = options[:sensor] ? 'true' : 'false'
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?sensor=#{sensor}'></script>".html_safe
   end
+
+  def machine_tag_pieces(tag)
+    pieces = tag.split('=')
+    if pieces.size == 1
+      value, namespace, predicate = pieces
+    elsif predicate =~ /\:/
+      predicate, value = pieces
+      namespace, predicate = predicate.split(':')
+    else
+      predicate, value = pieces
+    end
+    [namespace, predicate, value]
+  end
+
+  def tag_to_xml(tag, xml)
+    namespace, predicate, value = machine_tag_pieces(tag)
+    xml.tag tag, :predicate => predicate, :namespace => namespace, :value => value
+  end
   
 end
