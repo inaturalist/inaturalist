@@ -307,6 +307,7 @@ module ApplicationHelper
   end
   
   def user_image(user, options = {})
+    user ||= User.new
     size = options.delete(:size)
     style = "vertical-align:middle; #{options[:style]}"
     url = if defined? root_url
