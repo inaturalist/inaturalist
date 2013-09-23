@@ -425,6 +425,7 @@ class Observation < ActiveRecord::Base
   
   scope :in_projects, lambda { |projects|
     projects = projects.split(',').map(&:to_i) if projects.is_a?(String)
+    projects = [projects].flatten.compact
     projects = projects.map do |p|
       p.to_i == 0 ? Project.find(p).try(:id) : p rescue nil
     end.compact
