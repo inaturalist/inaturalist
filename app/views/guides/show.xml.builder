@@ -8,16 +8,6 @@ xml.INatGuide "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "xmlns:eol" => "
   xml.dc :description, guide.description
   xml.eol :agent, {:role => "compiler"}, @guide.user.name.blank? ? @guide.user.login : @guide.user.name
   xml.dc :license, url_for_license(@guide.license)
-  xml.tags do
-    @tags.each do |tag|
-      tag_to_xml(tag, xml)
-    end
-  end
-  xml.predicates do
-    @predicates.each do |predicate|
-      xml.predicate predicate
-    end
-  end
   guide_taxa.each do |gt|
     xml.GuideTaxon :position => gt.position do
       xml.name gt.name
