@@ -1797,7 +1797,9 @@ class ObservationsController < ApplicationController
     @site = params[:site] unless params[:site].blank?
 
     @user = User.find_by_id(params[:user_id]) unless params[:user_id].blank?
-    @projects = Project.where("id IN (?)", params[:projects]) unless params[:projects].blank?
+    unless params[:projects].blank?
+      @projects = Project.find(params[:projects])
+    end
     if (@pcid = params[:pcid]) && @pcid != 'any'
       @pcid = [true, 'true', 't', 1, '1', 'y', 'yes'].include?(params[:pcid]) ? 'yes' : 'no'
     end
@@ -2035,7 +2037,7 @@ class ObservationsController < ApplicationController
   # in @observations before this is called, this won't do anything
   def refresh_lists_for_batch
     return true if @observations.blank?
-    taxa = @observations.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
+    taxa = @observations.compact.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
     return true if taxa.blank?
     List.delay.refresh_for_user(current_user, :taxa => taxa.map(&:id))
     true

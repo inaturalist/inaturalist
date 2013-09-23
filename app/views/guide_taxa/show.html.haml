@@ -80,7 +80,7 @@
                   = link_to t(:link, :default => "link").downcase, guide_photo.native_page_url
   .row-fluid
     .span8
-      - for s in @guide_taxon.guide_sections.sort_by(&:position)
+      - for s in @guide_taxon.guide_sections.sort_by{|gt| gt.position.to_i}
         %h3
           = s.title
           = cite do

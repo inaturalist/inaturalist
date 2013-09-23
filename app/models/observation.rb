@@ -425,6 +425,9 @@ class Observation < ActiveRecord::Base
   
   scope :in_projects, lambda { |projects|
     projects = projects.split(',').map(&:to_i) if projects.is_a?(String)
+    projects = projects.map do |p|
+      p.to_i == 0 ? Project.find(p).try(:id) : p rescue nil
+    end.compact
     # NOTE using :include seems to trigger an erroneous eager load of 
     # observations that screws up sorting kueda 2011-07-22
     joins(:project_observations).where("project_observations.project_id IN (?)", projects)
