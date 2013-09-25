@@ -216,7 +216,7 @@ class Guide < ActiveRecord::Base
 
   def to_ngz
     start_log_timer "#{self} to_ngz"
-    ordered_guide_taxa = guide_taxa.order(:position).includes({:guide_photos => [:photo]}, :guide_ranges, :guide_sections)
+    ordered_guide_taxa = guide_taxa.order(:position).includes({:guide_photos => [:photo]}, :guide_ranges, :guide_sections, :tags)
     image_sizes = %w(thumb medium)
     basename = title.parameterize
     local_asset_path = "files"

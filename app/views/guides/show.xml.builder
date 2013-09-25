@@ -6,8 +6,8 @@ xml.instruct!
 xml.INatGuide "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "xmlns:eol" => "http://www.eol.org/transfer/content/1.0" do
   xml.dc :title, guide.title
   xml.dc :description, guide.description
-  xml.eol :agent, {:role => "compiler"}, @guide.user.name.blank? ? @guide.user.login : @guide.user.name
-  xml.dc :license, url_for_license(@guide.license)
+  xml.eol :agent, {:role => "compiler"}, guide.user.name.blank? ? guide.user.login : guide.user.name
+  xml.dc :license, url_for_license(guide.license)
   guide_taxa.each do |gt|
     xml.GuideTaxon :position => gt.position do
       xml.name gt.name
