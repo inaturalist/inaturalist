@@ -6,12 +6,6 @@ GIT
       ya2yaml (~> 0.30)
 
 GIT
-  remote: git://github.com/Titinux/preferences.git
-  revision: b5f1de0ff10ba90c4986eae19da9c09e622d6b6b
-  specs:
-    preferences (0.5.0)
-
-GIT
   remote: git://github.com/alno/irwi.git
   revision: df0c21c14b330c6e5aef60e343593d9dcf92f99e
   specs:
@@ -21,6 +15,12 @@ GIT
       activesupport (>= 3.0.0)
       diff-lcs (>= 1.1.2)
       rails_autolink (>= 1.0)
+
+GIT
+  remote: git://github.com/dlabare/preferences.git
+  revision: 8142b046f7876ed6a5e5325f7c710ef1f8482d26
+  specs:
+    preferences (0.4.2)
 
 GIT
   remote: git://github.com/dwaite/gdata.git
