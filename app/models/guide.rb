@@ -204,26 +204,42 @@ class Guide < ActiveRecord::Base
     Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags").map(&:name).sort_by(&:downcase)
   end
 
+  def ngz_path
+    "public/guides/#{id}.ngz"
+  end
+
+  def ngz_url
+    if File.exists?(ngz_path)
+      return FakeView.uri_join(FakeView.root_url, "guides/#{id}.ngz").to_s
+    end
+    nil
+  end
+
+  def ngz_size
+    File.size?(ngz_path)
+  end
+
   def generate_ngz_cache_key
     "gen_ngz_#{id}"
   end
 
   def generate_ngz(options = {})
     zip_path = to_ngz
-    path = options[:path] || "public/guides/#{to_param}.ngz"
+    path = options[:path] || ngz_path
     FileUtils.mv zip_path, path
   end
 
   def to_ngz
     start_log_timer "#{self} to_ngz"
     ordered_guide_taxa = guide_taxa.order(:position).includes({:guide_photos => [:photo]}, :guide_ranges, :guide_sections, :tags)
-    image_sizes = %w(thumb medium)
+    image_sizes = %w(thumb small medium)
     basename = title.parameterize
     local_asset_path = "files"
-    work_path = File.join(Dir::tmpdir, basename)
+    work_path = File.join(Dir::tmpdir, "#{basename}-#{Time.now.to_i}")
     FileUtils.mkdir_p work_path, :mode => 0755
     # build xml and write to file in tmpdir
-    xml_path = File.join(work_path, "#{basename}.xml")
+    xml_fname = "#{id}.xml"
+    xml_path = File.join(work_path, xml_fname)
     open xml_path, 'w' do |f|
       f.write FakeView.render(:template => "guides/show.xml.builder", :locals => {
         :local_asset_path => local_asset_path, 
@@ -237,27 +253,34 @@ class Guide < ActiveRecord::Base
     full_asset_path = File.join(work_path, local_asset_path)
     FileUtils.mkdir_p full_asset_path, :mode => 0755
     # loop over all photos and ranges, downloading assets to the asset dir
-    asset_names = []
     ordered_guide_taxa.each do |gt|
+      threads = []
       (gt.guide_photos + gt.guide_ranges).each do |gp|
         image_sizes.each do |s|
-          next unless url = gp.send("#{s}_url")
+          next unless url = gp.send("#{s}_url") rescue nil
           fname = FakeView.guide_asset_filename(gp, :size => s)
           path = File.join(full_asset_path, fname)
-          Rails.logger.info "[INFO #{Time.now}] Fetching #{url}"
-          open(path, 'wb') do |f|
-            open(url) do |fr|
-              f.write(fr.read)
+          threads << Thread.new(path, url) do |thread_path,thread_url|
+            Rails.logger.info "[INFO #{Time.now}] Fetching #{thread_url} to #{thread_path}"
+            begin
+              open(thread_path, 'wb') do |f|
+                open(thread_url) do |fr|
+                  f.write(fr.read)
+                end
+              end
+            rescue OpenURI::HTTPError => e
+              Rails.logger.error "[ERROR #{Time.now}] Failed to download #{thread_url}: #{e}"
+              next
             end
           end
-          asset_names << fname
         end
       end
+      threads.each(&:join) # block until all threads finished
     end
 
     # zip up the results & return the path
     zip_path = File.join(work_path, "#{basename}.ngz")
-    system "cd #{work_path} && zip -r #{basename}.ngz #{basename}.xml #{local_asset_path}"
+    system "cd #{work_path} && zip -r #{basename}.ngz #{xml_fname} #{local_asset_path}"
     end_log_timer
     zip_path
   end

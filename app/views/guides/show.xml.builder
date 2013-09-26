@@ -8,14 +8,20 @@ xml.INatGuide "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "xmlns:eol" => "
   xml.dc :description, guide.description
   xml.eol :agent, {:role => "compiler"}, guide.user.name.blank? ? guide.user.login : guide.user.name
   xml.dc :license, url_for_license(guide.license)
+  if ngz_url = guide.ngz_url
+    xml.ngz do
+      xml.size number_to_human_size(guide.ngz_size)
+      xml.href ngz_url
+    end
+  end
   guide_taxa.each do |gt|
     xml.GuideTaxon :position => gt.position do
       xml.name gt.name
-      xml.displayName gt.display_name
+      xml.displayName(gt.display_name) unless gt.display_name == gt.name
       gt.tags.map(&:name).each do |tag|
         tag_to_xml(tag, xml)
       end
-      gt.guide_photos.each do |gp|
+      gt.guide_photos.sort_by{|gp| gp.position.to_i}.each do |gp|
         xml.GuidePhoto :position => gp.position do
           image_sizes.each do |s|
             next unless url = gp.send("#{s}_url")
@@ -34,7 +40,7 @@ xml.INatGuide "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "xmlns:eol" => "
           end
         end
       end
-      gt.guide_sections.each do |gs|
+      gt.guide_sections.sort_by{|gs| gs.position.to_i}.each do |gs|
         xml.GuideSection :position => gs.position do
           xml.dc :title, gs.title
           xml.dc :body do
