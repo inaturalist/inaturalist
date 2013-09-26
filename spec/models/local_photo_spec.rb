@@ -11,6 +11,11 @@ describe Photo, "creation" do
     lp = LocalPhoto.make!(:user => u)
     lp.native_realname.should eq(u.name)
   end
+
+  it "should set absolute image urls" do
+    lp = LocalPhoto.make!
+    lp.small_url.should =~ /http/
+  end
 end
 
 describe Photo, "to_observation" do
