@@ -20,10 +20,16 @@
     $(document).ready(function() {
       $('.invite_button').bind('ajax:success', function() {
         $(this).parent().html($('<span>' + I18n.t('invited') + '</span>').addClass('inter success status'))
+      }).bind('ajax:error', function(event, request) {
+        var json = eval('(' + request.responseText + ')')
+        alert(json.full_messages || json.error)
       })
 
       $('.add_button').bind('ajax:success', function() {
         $(this).parent().html($('<span>' + I18n.t('added') + ' </span>').addClass('inter success status'))
+      }).bind('ajax:error', function(event, request) {
+        var json = eval('(' + request.responseText + ')')
+        alert(json.full_messages || json.error)
       })
     })
   </script>
@@ -86,7 +92,7 @@
               <%= link_to t(:add_to_project),
                 add_project_observation_path(@project, :observation_id => observation.id),
                 :remote => true,
-                :datatype => :json,
+                "data-type" => :json,
                 :method => :post,
                 "data-loading-click" => t(:adding),
                 :class => "glaucous button add_button" %>

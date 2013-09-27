@@ -507,7 +507,7 @@ class ProjectsController < ApplicationController
       scope = scope.in_place(@project.place)
     end
     existing_scope = Observation.in_projects([@project]).scoped
-    invited_scope = Observation.scoped(:joins => :project_invitations, :conditions => ["project_invitations.project_id = ?", @project])
+    invited_scope = Observation.scoped(:joins => :project_invitations, :conditions => ["project_invitations.project_id = ?", @project.id])
 
     if params[:by] == "you"
       scope = scope.by(current_user)
