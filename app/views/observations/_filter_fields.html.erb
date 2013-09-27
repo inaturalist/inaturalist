@@ -54,6 +54,17 @@
         <%= label :identifications, state, t(state, :default => state).downcase %>
       <% end %>
     </nobr>
+    <% if is_me?(@selected_user) -%>
+      <nobr>
+        <strong><%=t :geoprivacy %></strong>
+        <%= select_tag :geoprivacy, options_for_select([
+          [t(:open, :default => "open").downcase, nil],
+          [t(Observation::OBSCURED, :default => Observation::OBSCURED).downcase, Observation::OBSCURED],
+          [t(Observation::PRIVATE, :default => Observation::PRIVATE).downcase, Observation::PRIVATE],
+          [t('obscured_or_private', :default => "obscured or private"), "obscured_private"]
+        ], @geoprivacy) %>
+      </nobr>
+    <% end -%>
   </fieldset>
 </div>
 <div id="iconic_taxon_filters" class="row">

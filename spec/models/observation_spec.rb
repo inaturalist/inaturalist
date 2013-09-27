@@ -1280,6 +1280,11 @@ describe Observation do
       o.latitude.to_f.should == lat
       o.longitude.to_f.should == lon
     end
+
+    it "should be nil if not obscured or private" do
+      o = Observation.make!(:geoprivacy => "open")
+      o.geoprivacy.should be_nil
+    end
   end
   
   describe "geom" do

@@ -248,6 +248,7 @@ class Observation < ActiveRecord::Base
               :keep_old_taxon_id,
               :set_latlon_from_place_guess,
               :reset_private_coordinates_if_coordinates_changed,
+              :normalize_geoprivacy,
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon,
@@ -648,6 +649,17 @@ class Observation < ActiveRecord::Base
         scope.joins(:project_observations).where("project_observations.curator_identification_id IS NOT NULL")
       else
         scope.joins(:project_observations).where("project_observations.curator_identification_id IS NULL")
+      end
+    end
+
+    unless params[:geoprivacy].blank?
+      scope = case params[:geoprivacy]
+      when OPEN
+        scope.where("geoprivacy IS NULL")
+      when "obscured_private"
+        scope.where("geoprivacy IN (?)", GEOPRIVACIES)
+      else
+        scope.where(:geoprivacy => params[:geoprivacy])
       end
     end
     
@@ -1187,6 +1199,11 @@ class Observation < ActiveRecord::Base
       self.private_latitude = nil
       self.private_longitude = nil
     end
+    true
+  end
+
+  def normalize_geoprivacy
+    self.geoprivacy = nil unless GEOPRIVACIES.include?(geoprivacy)
     true
   end
   

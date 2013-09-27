@@ -1804,6 +1804,8 @@ class ObservationsController < ApplicationController
       @pcid = [true, 'true', 't', 1, '1', 'y', 'yes'].include?(params[:pcid]) ? 'yes' : 'no'
     end
 
+    @geoprivacy = params[:geoprivacy] unless params[:geoprivacy].blank?
+
     
     @filters_open = 
       !@q.nil? ||
@@ -1819,7 +1821,8 @@ class ObservationsController < ApplicationController
       !@observed_on.blank? ||
       !@place.blank? ||
       !@ofv_params.blank? ||
-      !@pcid.blank?
+      !@pcid.blank? ||
+      !@geoprivacy.blank?
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
     
     [search_params, find_options]
