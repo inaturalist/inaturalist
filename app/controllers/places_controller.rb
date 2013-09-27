@@ -90,6 +90,7 @@ class PlacesController < ApplicationController
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     respond_to do |format|
       format.html do
+        @projects = Project.in_place(@place).page(1).order("projects.title").per_page(50)
         @wikipedia = WikipediaService.new
         if logged_in?
           @subscription = @place.update_subscriptions.first(:conditions => {:user_id => current_user})

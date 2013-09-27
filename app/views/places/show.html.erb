@@ -91,6 +91,9 @@
   <ul>
     <li><a href="#guidetab"><span><%=t :species_guide %></span></a></li>
     <li><a href="#observationstab"><span><%= t(:observations).capitalize %></span></a></li>
+    <% unless @projects.blank? %>
+      <li><a href="#projectstab"><span><%= t(:projects).capitalize %></span></a></li>
+    <% end -%>
     <li><a href="#abouttab"><span><%=t :about_x, :x => t(@place.name, :default => @place.name) %></span></a></li>
   </ul>
   
@@ -130,6 +133,15 @@
     </div>
     <%= link_to t(:view_more_observations_from) + ' ' + "#{@place.name}", observations_url(:place_id => @place.id), :class => "readmore" %>
   </div>
+
+  <% unless @projects.blank? -%>
+    <div id="projectstab">
+      <div class="clear">
+        <h3><%= t(:projects_in_x, :x => @place.name) %></h3>
+        <%= render :partial => 'projects/project', :collection => @projects %>
+      </div>
+    </div>
+  <% end -%>
   
   <div id="abouttab">
     <div class="container">
