@@ -1,7 +1,7 @@
 #encoding: utf-8
 class GuidesController < ApplicationController
   include GuidesHelper
-  before_filter :authenticate_user!, :except => [:index, :show, :search, :user]
+  before_filter :authenticate_user!, :except => [:index, :show, :search]
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa, :reorder]
   before_filter :load_user_by_login, :only => [:user]

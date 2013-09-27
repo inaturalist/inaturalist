@@ -26,7 +26,8 @@ class Guide < ActiveRecord::Base
       :s3_host_alias => CONFIG.s3_bucket,
       :bucket => CONFIG.s3_bucket,
       :path => "guides/:id.ngz",
-      :url => ":s3_alias_url"
+      :url => ":s3_alias_url",
+      :default_url => ""
   else
     has_attached_file :ngz,
       :path => ":rails_root/public/attachments/:class/:id.ngz",
