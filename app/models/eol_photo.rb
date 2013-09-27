@@ -57,7 +57,13 @@ class EolPhoto < Photo
       # all EOL content should be CC licensed or PD, so if there's not license info we can assume it's PD
       license_number = PD
     end
+    square_url, thumb_url, small_url, medium_url, original_url = nil
     image_url = api_response.search('mediaURL').children.last.inner_text
+    unless image_url.blank?
+      square_url = image_url.gsub("_orig", "_88_88")
+      small_url = image_url.gsub("_orig", "_260_190")
+      medium_url = image_url.gsub("_orig", "_580_360")
+    end
     thumb_url = api_response.search('thumbnailURL').children.last.inner_text
     rights_holder = api_response.search('dataObject rightsHolder')
     if rights_holder.count == 0
@@ -81,9 +87,8 @@ class EolPhoto < Photo
     end
     
     new(options.merge(
-      :large_url => image_url,
-      :medium_url => image_url,
-      :small_url => image_url,
+      :medium_url => medium_url,
+      :small_url => small_url,
       :thumb_url => thumb_url,
       :native_photo_id => native_photo_id,
       :square_url => thumb_url,

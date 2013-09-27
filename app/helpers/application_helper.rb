@@ -942,10 +942,10 @@ module ApplicationHelper
 
   def machine_tag_pieces(tag)
     pieces = tag.split('=')
+    predicate, value = pieces
     if pieces.size == 1
       value, namespace, predicate = pieces
     elsif predicate =~ /\:/
-      predicate, value = pieces
       namespace, predicate = predicate.split(':')
     else
       predicate, value = pieces

@@ -59,7 +59,11 @@
     - if @guide.editable_by?(current_user)
       = link_to t(:edit), edit_guide_taxon_path(@guide_taxon), :class => "btn"
   .row-fluid.stacked
-    %h2= @guide_taxon.display_name
+    %h2
+      - if @guide_taxon.display_name == @guide_taxon.name
+        %em= @guide_taxon.name
+      - else
+        = @guide_taxon.display_name
     - if @guide_taxon.display_name != @guide_taxon.name
       %em= @guide_taxon.name
 

@@ -82,7 +82,7 @@ describe Guide, "to_ngz" do
   end
 
   it "should contain an xml file" do
-    File.exist?(File.join(@unzipped_path, "#{@guide.title.parameterize}.xml")).should be_true
+    Dir.glob(File.join(@unzipped_path, "*.xml")).should_not be_blank
   end
 
   it "should have guide photo image files" do
@@ -91,5 +91,43 @@ describe Guide, "to_ngz" do
 
   it "should have guide range image files" do
     File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_range, :size => "medium"))).should be_true
+  end
+end
+
+describe Guide, "ngz" do
+  let(:g) { Guide.make! }
+  it "should generate when downloadable changed to true" do
+    g.ngz.url.should be_blank
+    g.update_attributes(:downloadable => true)
+    Delayed::Worker.new(:quiet => true).work_off
+    g.reload
+    g.ngz.url.should_not be_blank
+  end
+  it "job should not trigger if no relevant attributes changed" do
+    g
+    Delayed::Job.delete_all
+    g.update_attributes :zoom_level => 5
+    Delayed::Job.all.each {|j| puts j.handler} if Delayed::Job.count > 0
+    Delayed::Job.count.should eq 0
+  end
+
+  it "should be removed when downloadable changed to false" do
+    g.ngz.url.should be_blank
+    g.update_attributes(:downloadable => true)
+    Delayed::Worker.new(:quiet => true).work_off
+    g.reload
+    g.ngz.url.should_not be_blank
+    g.update_attributes(:downloadable => false)
+    g.ngz.url.should be_blank
+  end
+
+  it "job should only queue once" do
+    g
+    Delayed::Job.delete_all
+    g.update_attributes(:downloadable => true)
+    g.update_attributes(:downloadable => false)
+    g.update_attributes(:downloadable => true)
+    Delayed::Job.all.each {|j| puts j.handler} if Delayed::Job.count > 1
+    Delayed::Job.count.should eq 1
   end
 end

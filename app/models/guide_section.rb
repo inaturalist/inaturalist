@@ -5,8 +5,8 @@ class GuideSection < ActiveRecord::Base
   has_one :guide, :through => :guide_taxon
   before_create :set_license
   after_create :touch_if_modified
-  after_save {|r| r.guide.expire_caches}
-  after_destroy {|r| r.guide.expire_caches}
+  after_save {|r| r.guide.expire_caches(:check_ngz => true)}
+  after_destroy {|r| r.guide.expire_caches(:check_ngz => true)}
 
   EOL_SUBJECTS = %w(
     Associations

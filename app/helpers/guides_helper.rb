@@ -32,7 +32,7 @@ module GuidesHelper
   def guide_asset_filename(record, options = {})
     size = options[:size].to_s
     size = "original" unless %w(thumb small medium original).include?(size)
-    ext = record.send("#{size}_url").to_s[/.+\.([A-z]+).*?$/, 1]
+    ext = record.send("#{size}_url").to_s[/.+\.([A-z]+)[^\/]*?$/, 1]
     fname = "#{record.class.name.underscore}-#{record.id}-#{size}"
     fname = "#{fname}.#{ext}" unless ext.blank?
     fname

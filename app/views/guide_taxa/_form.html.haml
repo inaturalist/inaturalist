@@ -4,8 +4,10 @@
 - content_for :extracss do
   = stylesheet_link_tag "guides"
   :css
-    #guide_photos textarea {height:50px;}
+    #guide_photos textarea {height:65px;margin-bottom: 0;width:50%;}
     img.thumbnail {max-height: 200px;}
+    #guide_photos .img {width: 100px;}
+    #guide_photos img {max-width: 100px;}
     #guide_photos .pull-left,
     #guide_sections .pull-left {margin-right: 10px;}
     #guide_photos .row-fluid,

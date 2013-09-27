@@ -994,7 +994,12 @@ CREATE TABLE guides (
     map_type character varying(255) DEFAULT 'terrain'::character varying,
     zoom_level integer,
     taxon_id integer,
-    source_url character varying(255)
+    source_url character varying(255),
+    downloadable boolean DEFAULT false,
+    ngz_file_name character varying(255),
+    ngz_content_type character varying(255),
+    ngz_file_size integer,
+    ngz_updated_at timestamp without time zone
 );
 
 
@@ -6065,3 +6070,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130903235202');
 INSERT INTO schema_migrations (version) VALUES ('20130910053330');
 
 INSERT INTO schema_migrations (version) VALUES ('20130917071826');
+
+INSERT INTO schema_migrations (version) VALUES ('20130926224132');
+
+INSERT INTO schema_migrations (version) VALUES ('20130926233023');

@@ -1,8 +1,9 @@
 class Guide < ActiveRecord::Base
   attr_accessible :description, :latitude, :longitude, :place_id,
     :published_at, :title, :user_id, :icon, :license, :icon_file_name,
-    :icon_content_type, :icon_file_size, :icon_updated_at, :zoom_level, 
-    :map_type, :taxon, :taxon_id, :source_url
+    :icon_content_type, :icon_file_size, :icon_updated_at, :zoom_level,
+    :map_type, :taxon, :taxon_id, :source_url, :downloadable, :ngz,
+    :ngz_file_name, :ngz_content_type, :ngz_file_size, :ngz_update_at
   belongs_to :user, :inverse_of => :guides
   belongs_to :place, :inverse_of => :guides
   belongs_to :taxon, :inverse_of => :guides
@@ -17,11 +18,27 @@ class Guide < ActiveRecord::Base
     :bucket => CONFIG.s3_bucket,
     :path => "guides/:id-:style.:extension",
     :url => ":s3_alias_url"
+
+  if Rails.env.production?
+    has_attached_file :ngz,
+      :storage => :s3,
+      :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :s3_host_alias => CONFIG.s3_bucket,
+      :bucket => CONFIG.s3_bucket,
+      :path => "guides/:id.ngz",
+      :url => ":s3_alias_url"
+  else
+    has_attached_file :ngz,
+      :path => ":rails_root/public/attachments/:class/:id.ngz",
+      :url => "/attachments/:class/:id.ngz",
+      :default_url => ""
+  end
   
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
   validates_length_of :title, :in => 3..255
 
+  before_save :generate_ngz_if_necessary
   after_update :expire_caches
   after_destroy :expire_caches
   before_create :set_defaults_from_source_url
@@ -102,13 +119,21 @@ class Guide < ActiveRecord::Base
     Guide.update_all({:taxon_id => consensus_taxon_id}, ["id = ?", id])
   end
 
-  def expire_caches
+  def expire_caches(options = {})
     ctrl = ActionController::Base.new
     ctrl.expire_page("/guides/#{id}.pdf")
+    ctrl.expire_page("/guides/#{id}.xml")
     GuidesController::PDF_LAYOUTS.each do |l|
       ctrl.expire_page("/guides/#{id}.#{l}.pdf")
     end
     ctrl.expire_page("/guides/#{to_param}.ngz")
+    if options[:check_ngz]
+      if downloadable?
+        generate_ngz_later
+      else
+        update_attributes(:ngz => nil)
+      end
+    end
     true
   end
 
@@ -204,19 +229,30 @@ class Guide < ActiveRecord::Base
     Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags").map(&:name).sort_by(&:downcase)
   end
 
-  def ngz_path
-    "public/guides/#{id}.ngz"
-  end
-
   def ngz_url
-    if File.exists?(ngz_path)
-      return FakeView.uri_join(FakeView.root_url, "guides/#{id}.ngz").to_s
-    end
-    nil
+    return nil unless downloadable?
+    return nil if ngz.url.blank?
+    FakeView.uri_join(FakeView.root_url, ngz.url).to_s
   end
 
   def ngz_size
-    File.size?(ngz_path)
+    ngz.size
+  end
+
+  def generate_ngz_if_necessary
+    return nil unless %w(title description downloadable published_at).detect{|a| send("#{a}_changed?")}
+    if downloadable?
+      generate_ngz_later
+    else
+      Delayed::Job.where("handler LIKE '%id: ''#{id}''%generate_ngz%'").destroy_all
+      self.ngz = nil
+    end
+    true
+  end
+
+  def generate_ngz_later
+    return if Delayed::Job.where("handler LIKE '%id: ''#{id}''%generate_ngz%'").exists?
+    delay(:priority => USER_INTEGRITY_PRIORITY).generate_ngz
   end
 
   def generate_ngz_cache_key
@@ -225,8 +261,11 @@ class Guide < ActiveRecord::Base
 
   def generate_ngz(options = {})
     zip_path = to_ngz
-    path = options[:path] || ngz_path
-    FileUtils.mv zip_path, path
+    open(zip_path) do |f|
+      unless update_attributes(:ngz => f)
+        Rails.logger.error "[ERROR #{Time.now}] Failed to save NGZ attachment for guide #{id}: #{errors.full_messages.to_sentence}"
+      end
+    end
   end
 
   def to_ngz
@@ -241,7 +280,7 @@ class Guide < ActiveRecord::Base
     xml_fname = "#{id}.xml"
     xml_path = File.join(work_path, xml_fname)
     open xml_path, 'w' do |f|
-      f.write FakeView.render(:template => "guides/show.xml.builder", :locals => {
+      f.write FakeView.render(:template => "guides/show", :formats => [:xml], :locals => {
         :local_asset_path => local_asset_path, 
         :guide => self,
         :guide_taxa => ordered_guide_taxa,
@@ -264,7 +303,7 @@ class Guide < ActiveRecord::Base
             Rails.logger.info "[INFO #{Time.now}] Fetching #{thread_url} to #{thread_path}"
             begin
               open(thread_path, 'wb') do |f|
-                open(thread_url) do |fr|
+                open(URI.parse(URI.encode(thread_url))) do |fr|
                   f.write(fr.read)
                 end
               end

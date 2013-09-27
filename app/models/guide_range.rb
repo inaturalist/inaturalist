@@ -2,8 +2,8 @@ class GuideRange < ActiveRecord::Base
   attr_accessible :guide_taxon_id, :thumb_url, :medium_url, :original_url, :rights_holder, :license, :source_id, :source_url
   belongs_to :guide_taxon, :inverse_of => :guide_ranges
   has_one :guide, :through => :guide_taxon
-  after_save {|r| r.guide.expire_caches}
-  after_destroy {|r| r.guide.expire_caches}
+  after_save {|r| r.guide.expire_caches(:check_ngz => true)}
+  after_destroy {|r| r.guide.expire_caches(:check_ngz => true)}
 
   def to_s
     "<GuideRange #{id}>"
@@ -25,11 +25,23 @@ class GuideRange < ActiveRecord::Base
   end
 
   def self.new_from_eol_data_object(data_object)
+    thumb_url = data_object.at('thumbnailURL').try(:content)
+    p = /_\d+_\d+\.(\w+)$/
+    original_url = if thumb_url && thumb_url.match(p)
+      thumb_url.sub(p, "_orig.\\1")
+    else
+      data_object.at('mediaURL').try(:content)
+    end
+    medium_url = if thumb_url && thumb_url.match(p)
+      thumb_url.sub(p, "_580_360.\\1")
+    else
+      original_url
+    end
     gr = GuideRange.new(
       :rights_holder => data_object.at('rightsHolder').try(:content) || data_object.at('agent[role=compiler]').try(:content),
-      :thumb_url => data_object.at('thumbnailURL').try(:content),
-      :medium_url => data_object.at('mediaURL').try(:content),
-      :original_url => data_object.at('mediaURL').try(:content)
+      :thumb_url => thumb_url,
+      :medium_url => medium_url,
+      :original_url => original_url
     )
     gr.license = case data_object.at('license').to_s
     when /\/by\// then Observation::CC_BY

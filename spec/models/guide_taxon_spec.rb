@@ -146,7 +146,7 @@ end
 describe GuideTaxon, "sync_eol_sections" do
   let(:gt) { GuideTaxon.make! }
   before(:all) do
-    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1, :text => 5)
+    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1, :text => 50)
   end
   it "should add new sections" do
     gt.guide_sections.should be_blank

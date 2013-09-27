@@ -109,6 +109,16 @@
                   = f.select :license, Observation::LICENSE_CODES, :include_blank => "No license (all rights reserved)", :class => "span12", :label => false
                   .stacked
                     %a{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#licensing"}=t :about_licensing
+          .accordion-group
+            .accordion-heading
+              %a.accordion-toggle{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#mobile"}
+                %label=t :mobile
+              #mobile.accordion-body.collapse
+                .accordion-inner
+                  = f.label :downloadable, :class => "checkbox" do
+                    = f.check_box :downloadable, :label => false
+                    = t(:enable_mobile_downloads)
+                  =t 'views.guides.mobile_downloads_help_html'
         / %h3 Navigation
         / - for opt in @nav_options
         /   = check_box_tag opt

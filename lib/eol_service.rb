@@ -14,7 +14,7 @@ class EolService
     request_uri = get_uri(method, *args)
     begin
       timed_out = Timeout::timeout(@timeout) do
-        Rails.logger.debug "[DEBUG] #{self.class.name} getting #{request_uri}" if @debug
+        Rails.logger.debug "[DEBUG] #{self.class.name} getting #{request_uri}"
         Nokogiri::XML(open(request_uri))
       end
     rescue Timeout::Error

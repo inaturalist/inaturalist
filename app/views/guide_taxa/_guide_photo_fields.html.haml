@@ -1,6 +1,7 @@
 .nested-fields.row-fluid.lined.clearfix{:id => dom_id(f.object, "nested_field")}
   = f.text_field :position, :class => "sortable-position pull-left"
-  = image_tag f.object.photo.try(:square_url), :class => "img-rounded pull-left"
+  .img.pull-left
+    = image_tag f.object.photo.try(:square_url), :class => "img-rounded"
   = f.hidden_field :photo_id
   = f.hidden_field :guide_taxon_id
   = f.text_area :description, :placeholder => t(:brief_caption), :class => "pull-left"

@@ -802,6 +802,7 @@ en:
   embed_a_widget_for_this_taxon_on_website: "Embed a widget for this taxon on your website &raquo;"
   embed_place_widget: Embed place widget
   embed_widget_project: Embed a widget for this project on your website
+  enable_mobile_downloads: Enable mobile downloads
   end: End
   endangered: endangered
   endemic: endemic
@@ -1315,6 +1316,7 @@ en:
   mixed_licenses: mixed licenses
   misleading_or_illegal_content: "Misleading or illegal content, racial or ethnic slurs, etc."
   mobile_apps_for: Mobile apps for
+  mobile_download_enabled: Mobile download enabled
   mobile_view_available: Mobile view available
   mollusks: mollusks
   mon: Mon
@@ -2809,6 +2811,16 @@ en:
           Note: not all places have check lists with taxa. If you're having
           trouble finding a place with taxa, try choosing larger areas with
           political boundaries, like nations, states, provinces, or counties.
+      mobile_downloads_tip_html: |
+        <span class="alert status">Guides in the iPhone app are still under development</span>
+        This guide can be downloaded to the <a href="%{iphone_url}">iPhone app</a> for offline use.
+      mobile_downloads_help_html: |
+        <span class="alert status">Guides in the iPhone app are still under development</span>
+        This will create a downloadable archive of all the data and media
+        associated with this guide so that iPhone users can view all the
+        content in the guide without an Internet connection. It will take a
+        few minutes to generate the archive, but once this is enabled the
+        archive will update whenever you change this guide.
       pdf_layout_notes:
         grid: |
           Grid of single images, no descriptions
