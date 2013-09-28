@@ -25,7 +25,7 @@
    */
   function setup(input, options) {
     // Wrap the form field
-    $(input).wrap($('<div class="simpleTaxonSelector"></div>'));
+    $(input).wrap($('<div class="simpleTaxonSelector clear"></div>'));
     var wrapper = $(input).parent();
     $(wrapper).css({
       position: 'relative',
@@ -115,10 +115,7 @@
         if ($(taxon_id).attr('alt') && $(taxon_id).attr('alt') != '') {
           $.fn.simpleTaxonSelector.setStatus(wrapper, 'matched', $(taxon_id).attr('alt'));
         } else {
-          $.fn.simpleTaxonSelector.setStatus(wrapper, 'loading', I18n.t('loading'));
-          jQuery.getJSON('/taxa/'+$(taxon_id).val()+'.json', function(taxon) {
-            $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxon, options);
-          }); 
+          $.fn.simpleTaxonSelector.selectTaxonFromId(wrapper, $(taxon_id).val(), options)
         }
       } else { // if only the guess is set, look that up
         $.fn.simpleTaxonSelector.lookup(wrapper, options);
@@ -158,7 +155,7 @@
       $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxa[0], $.extend(true, options, {selectedName: q}));
     }
   
-    // Otherwise, display each as an selection option
+    // Otherwise, display each as a selection option
     else {
       var message = $('<span>'+I18n.t('did_you_mean')+'</span>');
       var list = $('<ul class="matches"></ul>').css({'margin-bottom': '3px'});
@@ -199,7 +196,7 @@
         );
       };
   
-      $.fn.simpleTaxonSelector.setStatus(wrapper, 'unmatched', message);
+      $.fn.simpleTaxonSelector.setStatus(wrapper, 'choice', message);
     }
   } // end handleNames
   
@@ -347,6 +344,14 @@
       options.afterSelect(wrapper, taxon, options);
     };
   };
+
+  $.fn.simpleTaxonSelector.selectTaxonFromId = function(wrapper, taxonId, options) {
+    var options = $.extend({}, options)
+    $.fn.simpleTaxonSelector.setStatus(wrapper, 'loading', I18n.t('loading'));
+    jQuery.getJSON('/taxa/'+taxonId+'.json', function(taxon) {
+      $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxon, options);
+    }); 
+  }
   
   $.fn.simpleTaxonSelector.taxonNameToS = function(name, options) {
     var options = $.extend({}, options)
@@ -472,6 +477,8 @@
       color: '#888',
       background: 'url(/images/logo-grey-15px.png) 0 3px no-repeat'
   });
+
+  $.fn.simpleTaxonSelector.styles.statuses.choice = $.extend({}, $.fn.simpleTaxonSelector.styles.statuses.unmatched, {});
   
   $.fn.simpleTaxonSelector.styles.statuses.error = $.extend({}, 
     $.fn.simpleTaxonSelector.styles.statuses['default'], {

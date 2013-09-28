@@ -1044,7 +1044,6 @@ class ObservationsController < ApplicationController
         @export_url = FakeView.uri_join(root_url, @flow_task.outputs.first.file.url).to_s
       end
     end
-    @flow_task ||= ObservationsExportFlowTask.new
     @recent_exports = ObservationsExportFlowTask.where(:user_id => current_user).order("id desc").limit(10)
     respond_to do |format|
       format.html
@@ -1811,7 +1810,7 @@ class ObservationsController < ApplicationController
 
     @user = User.find_by_id(params[:user_id]) unless params[:user_id].blank?
     unless params[:projects].blank?
-      @projects = Project.find(params[:projects])
+      @projects = Project.find(params[:projects]) rescue []
     end
     if (@pcid = params[:pcid]) && @pcid != 'any'
       @pcid = [true, 'true', 't', 1, '1', 'y', 'yes'].include?(params[:pcid]) ? 'yes' : 'no'

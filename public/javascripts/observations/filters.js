@@ -58,3 +58,37 @@ function hideFilters(link, options) {
   }
   $('#filters input[name=filters_open]').val(false)
 }
+
+function deselectAll() {
+  $('#filters :text, #fitlers :input[type=hidden], #fitlers select').val(null)
+  $('#filters :input:checkbox').attr('checked', false)
+  deSelectAllIconicTaxa()
+  $('#filters input[name=place_id]').chooser('clear', {bubble:false})
+  $.fn.simpleTaxonSelector.unSelectTaxon('#filters .simpleTaxonSelector')
+}
+
+function setFiltersFromQuery(query) {
+  deselectAll()
+  var params = $.deparam(query)
+  $.each(params, function(k,v) {
+    $('#filters :input:radio[name='+k+'][value='+v+']').attr('checked', true)
+    $('#filters :input[name='+k+']').not(':checkbox, :radio').val(v)
+    if (k == 'place_id') {
+      $('#filters input[name=place_id]').chooser('selectId', v)
+    } else if (k == 'taxon_id') {
+      $.fn.simpleTaxonSelector.selectTaxonFromId('#filters .simpleTaxonSelector', v)
+    }
+    else if (k == 'iconic_taxa' || k == 'has') { //(typeof(v.unique) == 'function') {
+      $.each(v, function(i,av) {
+        $selection = $('#filters :input:checkbox[name="'+k+'[]"][value='+av+']')
+        $selection.attr('checked', true)
+        if (k == 'iconic_taxa') {
+          $selection.siblings('label').addClass('selected');
+        }
+      })
+    } 
+    else if (k == 'projects') {
+      $('#filters :input[name="projects[]"]').val(v)
+    }
+  })
+}

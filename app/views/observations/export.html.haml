@@ -6,16 +6,31 @@
   = javascript_include_tag "jquery/plugins/jquery.latLonSelector"
   = javascript_include_tag 'inaturalist/map3'
   = javascript_include_tag 'observations/filters'
+  = javascript_include_tag "jquery/plugins/jquery.ba-bbq.min"
   :javascript
+    var REJECT_PARAMS = ['filters_open', 'order', 'order_by', 'utf8', 'flow_task_id', 'view']
     function reloadPreview() {
-      var query = $('#filters :input').filter(function() {
-        return this.value.length !== 0 && this.name != 'filters_open'
-      }).serialize()
-      $('#query').val(query)
       $('#preview').loadingShades()
-      $('#preview .observations .content').load('/observations', query+'&partial=cached_component', function() {
+      $('#preview .observations .content').load('/observations', $('#query').val()+'&partial=cached_component', function(text, status, req) {
         $('#preview').loadingShades('close')
+        var total = parseInt(req.getResponseHeader('X-Total-Entries')),
+            page = parseInt(req.getResponseHeader('X-Page')),
+            perPage = parseInt(req.getResponseHeader('X-Per-Page')),
+            start = page * perPage - perPage
+        $('#previewheader .status').text((start+1) + ' - ' + (Math.min(start+perPage, total)) + ' of ' + total)
       })
+    }
+    function cleanQuery(q) {
+      var params = $.deparam(q), newParams = {}
+      $.each(params, function(k,v) {
+        if (v.length == 1 && v[0] == '') {
+          return
+        }
+        if (v.length !== 0 && v.length != 0 && REJECT_PARAMS.indexOf(k) < 0) {
+          newParams[k] = v
+        }
+      })
+      return $.param(newParams)
     }
     $(document).ready(function() {
       showFilters()
@@ -25,35 +40,56 @@
           project_id = v.match(/observations\/project\/([^\?\/]+)/)[1]
           
         } else if (v.match(/observations\/\w+/)) {
-          var login = v.match(/observations\/([^\?\/]+)/)[1]
-          v += 'user_id='+login
+          login = v.match(/observations\/([^\?\/]+)/)[1]
         }
         if (v.match(/\//)) {
           v = v.split('?')[1] || ''
-        } else {
-          return
-        }
-        if (project_id) v += 'projects[]='+project_id
-        if (login) v += 'user_id='+login
-        if (project_id || login) reloadPreview()
-        $(this).val(v)
+        } 
+        if (project_id) {v += '&projects[]='+project_id}
+        if (login) {v += '&user_id='+login}
+        var query = cleanQuery(v)
+        $(this).val(query)
+        setFiltersFromQuery(query)
+        reloadPreview()
       })
       $('#filters :input').change(function() {
+        var query = $('#filters :input').serialize()
+        $('#query').val(cleanQuery(query))
         reloadPreview()
       })
       $('#filtersplaceholder').outerHeight($('#filters').outerHeight())
       $('#filters').css({position: 'absolute', top: $('#filtersplaceholder').offset().top})
+      var initQuery = cleanQuery($.param($.deparam.querystring()))
+      if (initQuery.length > 0) {
+        $('#query').val(initQuery)
+        setFiltersFromQuery(initQuery)
+        reloadPreview()
+      }
     })
 - content_for :extracss do
   = stylesheet_link_tag "observations", "observations/filters"
   :css
-    #query {width: 936px;}
+    #query {width: 910px; border: 10px solid #ccc;padding:10px;}
     #filters {width:924px;}
-    #preview {border: 1px solid #eee;height: 400px;overflow-x:hidden; overflow-y:auto;}
+    #preview {border: 1px solid #eee;height: 200px;overflow-x:hidden; overflow-y:auto;}
     #preview .content {display:table-row-group;}
     #query, #filtersplaceholder, #preview {margin-bottom: 20px;}
-    .number {display:inline-block; text-align:center; border-radius: 100px; width:1.4em; height:1.4em; background-color: #eee; margin-right:0.2em;}
+    #filtersplaceholder {margin-bottom: 40px; }
+    .number {display:inline-block; text-align:center; border-radius: 100px; width:1.4em; height:1.4em; background-color: #eee; margin-right:0.2em;font-size:128%;}
+    #recent_exports {margin-top:40px;}
     #recent_exports b {color:#333;}
+    #order_filters {display:none;}
+    .simpleTaxonSelector .choice.status {
+      position: absolute;
+      top: 32px;
+      background: white url(/images/logo-grey-15px.png) 0 3px no-repeat;
+      background-color:white !important;
+      box-shadow: #eee 2px 2px 5px;
+      padding-bottom: 5px !important;
+      padding-right: 5px !important;
+      width: 100%;
+      z-index: 100;
+    }
 #pageheader.clear
   %h2= @title
 
@@ -70,7 +106,7 @@
       =t :create_a_query
     %p
       Create an observation query just like you would elsewhere on the site. 
-      / You can also cut and paste an observations URL from another part of the site.
+      You can also cut and paste an observations URL from another part of the site.
       You must specify a
       = succeed ',' do
         %strong taxon
@@ -85,19 +121,19 @@
         %strong search query
     = f.fields_for :inputs, f.object.inputs.first || f.object.inputs.build do |fti|
       = fti.fields_for :extra do |ftie|
-        / = ftie.text_field :query, :type => "text", :class => "text", :id => "query", :placeholder => "Choose query parameters below or paste in an observations URL"
-        = ftie.text_field :query, :type => "text", :class => "text", :id => "query", :placeholder => "Choose query parameters below"
+        = ftie.text_field :query, :type => "text", :class => "text", :id => "query", :placeholder => "Choose query parameters below or paste in an observations URL"
     #filtersplaceholder
-    %h3
+    %h3#previewheader
+      .right.status.ui.meta=t :no_matching_observations
       %span.number 2
       =t :preview
     #preview
       .observations.table.stacked
         = render :partial => 'observations/observations_table_header'
         .content
-          .nocontent.meta=t :no_matching_observations
-    .clear.buttonrow
-      = f.submit t(:create_export, :default => "Create export"), :class => "default button"
+    %h3.inlineblock
+      %span.number 3
+    = f.submit t(:create_export, :default => "Create export"), :class => "default inline button"
     - unless @recent_exports.blank?
       #recent_exports.meta.clear
         %strong=t :recent_exports
@@ -111,4 +147,4 @@
               %td= URI.unescape(ft.query).split('&').map{|p| k,v = p.split('=');"#{k}=<b>#{v}</b>"}.join('&').html_safe
 
 #filters
-  = render "filter_fields", :hide_buttons => true
+  = render "filter_fields", :hide_buttons => true, :show_user_field => true, :show_project_field => true

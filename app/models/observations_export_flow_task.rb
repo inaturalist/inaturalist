@@ -33,7 +33,8 @@ class ObservationsExportFlowTask < FlowTask
     @observations = if params.blank?
       Observation.where("1 = 2")
     else
-      Observation.query(params)
+      # remove order, b/c it won't work with find_each and seems to cause errors in DJ
+      Observation.query(params).reorder(nil)
     end
     archive_path = case format
     when 'shapefile'

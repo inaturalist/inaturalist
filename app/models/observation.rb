@@ -382,7 +382,13 @@ class Observation < ActiveRecord::Base
   }
   
   # Find observations by user
-  scope :by, lambda { |user| where("observations.user_id = ?", user)}
+  scope :by, lambda {|user|
+    if user.is_a?(User) || user.to_i > 0
+      where("observations.user_id = ?", user)
+    else
+      joins(:user).where("users.login = ?", user)
+    end
+  }
   
   # Order observations by date and time observed
   scope :latest, order("observed_on DESC NULLS LAST, time_observed_at DESC NULLS LAST")

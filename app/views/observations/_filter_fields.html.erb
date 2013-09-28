@@ -4,6 +4,8 @@
     @place.html = render(:partial => "places/autocomplete_item.html.erb", :object => @place)
   end
   hide_buttons ||= false
+  show_user_field ||= false
+  show_project_field ||= false
 %>
 <div id="search_filter" class="row">
   <label class="label" for="q"><%=t :search %></label>
@@ -248,6 +250,28 @@
           <%= label :pcid, state, t(state, :default => state).downcase %>
         <% end %>
       </nobr>
+    </div>
+  </div>
+<% end -%>
+
+<% if show_user_field -%>
+  <div class="clear row upstacked">
+    <div class="label"><strong><%=t :user %></strong></div>
+    <div class="left">
+      <input type="text" name="user_id" id="user_id_input" value="<%= @selected_user.try(:id) %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small">Username or user ID</div>
+    </div>
+  </div>
+<% end -%>
+
+<% if show_project_field -%>
+  <div class="clear row upstacked">
+    <div class="label"><strong><%=t :project %></strong></div>
+    <div class="left">
+      <input type="text" name="projects[]" id="project_id_input" value="<%= @project.try(:id) %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small">Project ID or URL slug, e.g. 333 or my-project</div>
     </div>
   </div>
 <% end -%>

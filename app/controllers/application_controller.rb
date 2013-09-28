@@ -397,7 +397,11 @@ class ApplicationController < ActionController::Base
     if @job_id
       if @job && @job.last_error
         @status = "error"
-        @error_msg = @job.last_error
+        @error_msg = if is_admin?
+          @job.last_error
+        else
+          "This job failed to run. Please contact #{CONFIG.help_email}"
+        end
       elsif @job
         @status = "working"
       else

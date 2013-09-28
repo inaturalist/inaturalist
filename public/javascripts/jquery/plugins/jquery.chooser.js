@@ -210,11 +210,13 @@
       }
     },
     
-    clear: function() {
-      var options = this.options || {}
+    clear: function(clearOpts) {
+      var options = this.options || {},
+          clearOpts = clearOpts || {},
+          bubble = clearOpts.bubble == false ? false : true
       $(this).data('selected', null)
       $(this.markup.originalInput).val('')
-      if (!$(this).data('previous')) {
+      if (!$(this).data('previous') && bubble) {
         $(this.markup.originalInput).change()
       }
       $(this.markup.input).val('').showInlineBlock()
