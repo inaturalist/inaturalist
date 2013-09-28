@@ -1,0 +1,114 @@
+- content_for :title do
+  = @title = t(:export_observations)
+- content_for :extrajs do
+  = google_maps_js
+  = javascript_include_tag "jquery/plugins/inat/datepicker"
+  = javascript_include_tag "jquery/plugins/jquery.latLonSelector"
+  = javascript_include_tag 'inaturalist/map3'
+  = javascript_include_tag 'observations/filters'
+  :javascript
+    function reloadPreview() {
+      var query = $('#filters :input').filter(function() {
+        return this.value.length !== 0 && this.name != 'filters_open'
+      }).serialize()
+      $('#query').val(query)
+      $('#preview').loadingShades()
+      $('#preview .observations .content').load('/observations', query+'&partial=cached_component', function() {
+        $('#preview').loadingShades('close')
+      })
+    }
+    $(document).ready(function() {
+      showFilters()
+      $('#query').change(function() {
+        var v = $(this).val(), project_id = null, login = null
+        if (v.match(/observations\/project/)) {
+          project_id = v.match(/observations\/project\/([^\?\/]+)/)[1]
+          
+        } else if (v.match(/observations\/\w+/)) {
+          var login = v.match(/observations\/([^\?\/]+)/)[1]
+          v += 'user_id='+login
+        }
+        if (v.match(/\//)) {
+          v = v.split('?')[1] || ''
+        } else {
+          return
+        }
+        if (project_id) v += 'projects[]='+project_id
+        if (login) v += 'user_id='+login
+        if (project_id || login) reloadPreview()
+        $(this).val(v)
+      })
+      $('#filters :input').change(function() {
+        reloadPreview()
+      })
+      $('#filtersplaceholder').outerHeight($('#filters').outerHeight())
+      $('#filters').css({position: 'absolute', top: $('#filtersplaceholder').offset().top})
+    })
+- content_for :extracss do
+  = stylesheet_link_tag "observations", "observations/filters"
+  :css
+    #query {width: 936px;}
+    #filters {width:924px;}
+    #preview {border: 1px solid #eee;height: 400px;overflow-x:hidden; overflow-y:auto;}
+    #preview .content {display:table-row-group;}
+    #query, #filtersplaceholder, #preview {margin-bottom: 20px;}
+    .number {display:inline-block; text-align:center; border-radius: 100px; width:1.4em; height:1.4em; background-color: #eee; margin-right:0.2em;}
+    #recent_exports b {color:#333;}
+#pageheader.clear
+  %h2= @title
+
+- if @export_url
+  %p.success.ui
+    %strong.smallbuttons.inline.buttonrow
+      = link_to t(:download_export), @export_url, :class => "inline glaucous button"
+      %span.inter
+        = number_to_human_size @flow_task.outputs.first.file.size
+= form_for ObservationsExportFlowTask.new, :url => flow_tasks_url do |f|
+  .column.span-24
+    %h3
+      %span.number 1
+      =t :create_a_query
+    %p
+      Create an observation query just like you would elsewhere on the site. 
+      / You can also cut and paste an observations URL from another part of the site.
+      You must specify a
+      = succeed ',' do
+        %strong taxon
+      = succeed ',' do
+        %strong place
+      = succeed ',' do
+        %strong user
+      = succeed ',' do
+        %strong project
+      or
+      = succeed '.' do
+        %strong search query
+    = f.fields_for :inputs, f.object.inputs.first || f.object.inputs.build do |fti|
+      = fti.fields_for :extra do |ftie|
+        / = ftie.text_field :query, :type => "text", :class => "text", :id => "query", :placeholder => "Choose query parameters below or paste in an observations URL"
+        = ftie.text_field :query, :type => "text", :class => "text", :id => "query", :placeholder => "Choose query parameters below"
+    #filtersplaceholder
+    %h3
+      %span.number 2
+      =t :preview
+    #preview
+      .observations.table.stacked
+        = render :partial => 'observations/observations_table_header'
+        .content
+          .nocontent.meta=t :no_matching_observations
+    .clear.buttonrow
+      = f.submit t(:create_export, :default => "Create export"), :class => "default button"
+    - unless @recent_exports.blank?
+      #recent_exports.meta.clear
+        %strong=t :recent_exports
+        %table
+          - for ft in @recent_exports
+            %tr
+              %td.inline.buttonrow.smallbuttons
+                = link_to t(:download), ft.export_output.file.url, :class => "glaucous button"
+              %td= number_to_human_size ft.export_output.file.size
+              %td=l ft.finished_at, :format => :long
+              %td= URI.unescape(ft.query).split('&').map{|p| k,v = p.split('=');"#{k}=<b>#{v}</b>"}.join('&').html_safe
+
+#filters
+  = render "filter_fields", :hide_buttons => true

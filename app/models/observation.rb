@@ -338,7 +338,15 @@ class Observation < ActiveRecord::Base
     end
   }
   scope :has_iconic_taxa, lambda { |iconic_taxon_ids|
-    iconic_taxon_ids = [iconic_taxon_ids].flatten # make array if single
+    iconic_taxon_ids = [iconic_taxon_ids].flatten.map do |itid|
+      if itid.is_a?(Taxon)
+        itid.id
+      elsif itid.to_i == 0
+        Taxon::ICONIC_TAXA_BY_NAME[itid].try(:id)
+      else
+        itid
+      end
+    end.uniq
     if iconic_taxon_ids.include?(nil)
       where(
         "observations.iconic_taxon_id IS NULL OR observations.iconic_taxon_id IN (?)", 
@@ -1798,6 +1806,21 @@ class Observation < ActiveRecord::Base
     end
   end
 
+
+  def self.generate_csv(scope, options = {})
+    fname = options[:fname] || "observations.csv"
+    fpath = options[:path] || File.join(options[:dir] || Dir::tmpdir, fname)
+    FileUtils.mkdir_p File.dirname(fpath), :mode => 0755
+    columns = options[:columns] || CSV_COLUMNS
+    CSV.open(fpath, 'w') do |csv|
+      csv << columns
+      scope.find_each do |observation|
+        csv << columns.map{|c| observation.send(c) rescue nil}
+      end
+    end
+    fpath
+  end
+
   def self.generate_csv_for(record, options = {})
     fname = options[:fname] || "#{record.to_param}-observations.csv"
     fpath = options[:path] || File.join(options[:dir] || Dir::tmpdir, fname)
@@ -1816,12 +1839,8 @@ class Observation < ActiveRecord::Base
     if record.respond_to?(:generate_csv)
       record.generate_csv(tmp_path, columns)
     else
-      CSV.open(tmp_path, 'w') do |csv|
-        csv << columns
-        record.observations.includes(:taxon, {:observation_field_values => :observation_field}).find_each do |observation|
-          csv << columns.map{|c| observation.send(c) rescue nil}
-        end
-      end
+      scope = record.observations.includes(:taxon, {:observation_field_values => :observation_field}).scoped
+      generate_csv(scope, :path => tmp_path, :fname => fname, :columns => columns)
     end
 
     FileUtils.mkdir_p File.dirname(fpath), :mode => 0755

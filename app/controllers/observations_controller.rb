@@ -28,7 +28,7 @@ class ObservationsController < ApplicationController
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
-    :import, :add_from_list, :new, :project]
+    :import, :export, :add_from_list, :new, :project]
   before_filter :authenticate_user!,
                 :unless => lambda { authenticated_with_oauth? },
                 :except => [:explore,
@@ -1032,10 +1032,23 @@ class ObservationsController < ApplicationController
   end
 
   def import_sounds
-      sounds = Sound.from_observation_params(params, 0, current_user)
-      @observations = sounds.map{|s| s.to_observation}
-      @step = 2
-      render :template => 'observations/new_batch'
+    sounds = Sound.from_observation_params(params, 0, current_user)
+    @observations = sounds.map{|s| s.to_observation}
+    @step = 2
+    render :template => 'observations/new_batch'
+  end
+
+  def export
+    if params[:flow_task_id]
+      if @flow_task = ObservationsExportFlowTask.find_by_id(params[:flow_task_id])
+        @export_url = FakeView.uri_join(root_url, @flow_task.outputs.first.file.url).to_s
+      end
+    end
+    @flow_task ||= ObservationsExportFlowTask.new
+    @recent_exports = ObservationsExportFlowTask.where(:user_id => current_user).order("id desc").limit(10)
+    respond_to do |format|
+      format.html
+    end
   end
   
   def add_from_list

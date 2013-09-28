@@ -135,6 +135,7 @@ Inaturalist::Application.routes.draw do
       get :stats
       get :taxon_stats
       get :user_stats
+      get :export
     end
   end
 

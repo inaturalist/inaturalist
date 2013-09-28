@@ -3,6 +3,7 @@
   if @place && @place.html.blank?
     @place.html = render(:partial => "places/autocomplete_item.html.erb", :object => @place)
   end
+  hide_buttons ||= false
 %>
 <div id="search_filter" class="row">
   <label class="label" for="q"><%=t :search %></label>
@@ -270,6 +271,8 @@
   </div>
 <% end -%>
 
-<div class="inline buttonrow">
-  <input id="submit_filters_button" type="submit" value="<%=t :search %>" class="default inline button" data-loading-click="<%=t :searching %>"/>
-</div>
+<% unless hide_buttons -%>
+  <div class="inline buttonrow">
+    <input id="submit_filters_button" type="submit" value="<%=t :search %>" class="default inline button" data-loading-click="<%=t :searching %>"/>
+  </div>
+<% end -%>

@@ -1,5 +1,5 @@
 %h1
-  = "#{@flow_task.type.to_s.underscore.humanize.downcase.gsub(/flow/, '')} #{@flow_task.id}"
+  = "#{@flow_task.type.to_s.underscore.humanize.capitalize.gsub(/flow/, '')} #{@flow_task.id}"
 
 %table.stacked.simple
   %tr
