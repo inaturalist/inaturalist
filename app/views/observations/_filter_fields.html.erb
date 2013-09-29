@@ -61,7 +61,8 @@
       <nobr>
         <strong><%=t :geoprivacy %></strong>
         <%= select_tag :geoprivacy, options_for_select([
-          [t(:open, :default => "open").downcase, nil],
+          [t(:any, :default => "any").downcase, nil],
+          [t(Observation::OPEN, :default => Observation::OPEN).downcase, Observation::OPEN],
           [t(Observation::OBSCURED, :default => Observation::OBSCURED).downcase, Observation::OBSCURED],
           [t(Observation::PRIVATE, :default => Observation::PRIVATE).downcase, Observation::PRIVATE],
           [t('obscured_or_private', :default => "obscured or private"), "obscured_private"]

@@ -716,6 +716,8 @@ class Observation < ActiveRecord::Base
 
     unless params[:geoprivacy].blank?
       scope = case params[:geoprivacy]
+      when "any"
+        # do nothing
       when OPEN
         scope.where("geoprivacy IS NULL")
       when "obscured_private"
