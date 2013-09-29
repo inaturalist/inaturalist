@@ -386,7 +386,7 @@ class ApplicationController < ActionController::Base
   def delayed_progress(key)
     @tries = params[:tries].to_i
     if @tries > 20
-      @status = @error
+      @status = "error"
       @error_msg = "This is taking forever.  Please try again later."
       return
     # elsif @tries > 0
@@ -397,7 +397,7 @@ class ApplicationController < ActionController::Base
     if @job_id
       if @job && @job.last_error
         @status = "error"
-        @error_msg = if is_admin?
+        @error_msg = if current_user.is_admin?
           @job.last_error
         else
           "This job failed to run. Please contact #{CONFIG.help_email}"

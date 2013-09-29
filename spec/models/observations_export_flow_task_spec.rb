@@ -63,3 +63,15 @@ describe ObservationsExportFlowTask, "geoprivacy" do
     csv[1].should include o.private_latitude.to_s
   end
 end
+
+describe ObservationsExportFlowTask, "columns" do
+  it "should be configurable" do
+    o = Observation.make!(:taxon => Taxon.make!)
+    ft = ObservationsExportFlowTask.make(:options => {:columns => Observation::CSV_COLUMNS[0..0]})
+    ft.inputs.build(:extra => {:query => "taxon_id=#{o.taxon_id}"})
+    ft.save!
+    ft.run 
+    csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+    csv[0].size.should eq 1
+  end
+end

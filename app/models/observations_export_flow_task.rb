@@ -4,11 +4,8 @@ class ObservationsExportFlowTask < FlowTask
   validate :must_have_primary_filter
   validates_presence_of :user_id
 
-  after_save do |record|
-    ObservationsExportFlowTask.update_all(
-      {:redirect_url => FakeView.export_observations_path(:flow_task_id => id)}, 
-      ["id = ?", id]
-    )
+  before_save do |record|
+    record.redirect_url = FakeView.export_observations_path
   end
 
   def must_have_query
@@ -35,7 +32,7 @@ class ObservationsExportFlowTask < FlowTask
       Observation.where("1 = 2")
     else
       # remove order, b/c it won't work with find_each and seems to cause errors in DJ
-      Observation.query(params).reorder(nil)
+      Observation.query(params).includes(:user, {:taxon => :taxon_names}, {:observation_field_values => :observation_field}).reorder(nil)
     end
     archive_path = case format
     when 'shapefile'
@@ -52,7 +49,7 @@ class ObservationsExportFlowTask < FlowTask
 
   def csv_archive
     csv_path = File.join(work_path, "#{basename}.csv")
-    path = Observation.generate_csv(@observations, :fname => "#{basename}.csv", :path => csv_path, :columns => columns)
+    path = Observation.generate_csv(@observations, :fname => "#{basename}.csv", :path => csv_path, :columns => export_columns)
     zip_path = File.join(work_path, "#{basename}.csv.zip")
     system "cd #{work_path} && zip -r #{basename}.csv.zip *"
     zip_path
@@ -81,8 +78,10 @@ class ObservationsExportFlowTask < FlowTask
     @params ||= Rack::Utils.parse_nested_query(query).symbolize_keys
   end
 
-  def columns
-    columns = options['column'] || Observation::CSV_COLUMNS
+  def export_columns
+    export_columns = options[:columns] || []
+    export_columns = export_columns.select{|k,v| v == "1"}.keys if export_columns.is_a?(Hash)
+    export_columns = Observation::CSV_COLUMNS if export_columns.blank?
     viewer_curates_project = if projects = params[:projects]
       if projects.size == 1
         project = Project.find(projects[0]) rescue nil
@@ -96,8 +95,8 @@ class ObservationsExportFlowTask < FlowTask
     end
 
     unless viewer_curates_project || viewer_is_owner
-      columns = columns.select{|c| c !~ /^private_/}
+      export_columns = export_columns.select{|c| c !~ /^private_/}
     end
-    columns
+    export_columns
   end
 end

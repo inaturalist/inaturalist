@@ -503,6 +503,7 @@ en:
   choose_a_place: Choose a place
   choose_a_taxon: Choose a taxon (optional)
   choose_cc_licensed_photos_html: 'Choose <a href="http://creativecommons.org/">CC</a>-licensed photos on Flickr or pick from %{site_name} observations. Try to choose images that <em>show diagnostic features</em> and <em>look good as icons</em>.  The <em>first is the default</em>.'
+  chose_columns: Choose columns
   choose_files_from_your_computer: choose files from your computer
   choose_from_your_lists: Choose from your lists
   choose_good_default_photos: choose good default photos from the pool of Creative Commons photos on Flickr
@@ -622,10 +623,11 @@ en:
   create_a_new_field: Create a new field
   create_a_new_place: Create a new place
   create_a_new_taxon: Create a new taxon
+  create_a_query: Create a query
   create_an_account: Create an account
   create_new_taxon: Create a new taxon
   create_observations: Create observations
-  create_observations_by_uploading_photos_to:
+  create_observations_by_uploading_photos_to: |
     Create observations by uploading photos to %{place}. When you upload %{place} will try to extract GPS coordinates and date/time from the photo.
     To get started,
   created: Created
@@ -1534,7 +1536,7 @@ en:
   observations_it_may_take_a_few: observations.  It may take a few minutes. 
   observations_last500: Observations (last 500)
   observations_map: Observations / Map
-  observations_near_a_place_are:
+  observations_near_a_place_are: |
     Observations "near" a place are within a rectangle drawn around
     the place's boundary, which may result in some inaccurate results for
     places that don't resemble rectangles. This is due to a limitation with
@@ -3060,6 +3062,47 @@ en:
         only present <strong>because human beings intended it to be there</strong>? All
         observations of living things are welcome, but we'd like to know
         when things are not wild / naturalized.
+      export:
+        choose_columns_desc: Choose the columns you want to export
+        create_a_query_desc_html: |
+          Create an observation query just like you would elsewhere on the
+          site. You can also cut and paste an observations URL from another
+          part of the site. You must specify a
+          <strong>taxon</strong>, <strong>place</strong>, <strong>user</strong>, 
+          <strong>project</strong>, or <strong>search query</strong>.
+        query_placeholder: "Choose query parameters below or paste in an observations URL"
+      field_descriptions:
+        id: "Unique identifier for the observation"
+        species_guess: "Name the observer entered for the observed taxon"
+        scientific_name: "Scientific name of the observed taxon according to this site"
+        common_name: "Common of vernacular name of the observed taxon according to this site"
+        iconic_taxon_name: Higher-level taxonomic category for the observed taxon
+        taxon_id: Unique identifier for the observed taxon
+        id_please: Whether or not the observer requested ID help
+        num_identification_agreements: Number of identifications in concurrence with the observer's identiication
+        num_identification_disagreements: Number of identifications conflicting with the observer's identiication
+        observed_on_string: Date/time as entered by the observer
+        observed_on: Normalized date of observation
+        time_observed_at: Normalized datetime of observation
+        time_zone: Time zone of observation
+        place_guess: Locality description as entered by the observer
+        latitude: Publicly visible latitude
+        longitude: Publicly visible longitude
+        positional_accuracy: "Coordinate precision (yeah, yeah, accuracy != precision, poor choice of names)"
+        private_latitude: "Private latitude, set if observation private or obscured"
+        private_longitude: "Private longitude, set if observation private or obscured" 
+        out_of_range: Whether or not this observation lies outside the taxon's known range
+        user_id: Unique identifier for the observer
+        user_login: Username of the observer
+        created_at: Datetime observation was created
+        updated_at: Datetime observation was last updated
+        quality_grade: Quality grade of this observation. See Help section for details on what this means
+        license: License the observer has chosen for this observation
+        url: URL for the observation
+        image_url: URL for the default image
+        tag_list: Comma-separated list of tags
+        positioning_method: How the coordinates were determined
+        positioning_device: Device used to determine coordinates
     photos:
       inviter:
         automatically_add_to_project: Automatically add to project

@@ -592,7 +592,7 @@ ALTER SEQUENCE flow_task_resources_id_seq OWNED BY flow_task_resources.id;
 CREATE TABLE flow_tasks (
     id integer NOT NULL,
     type character varying(255),
-    options character varying(1024),
+    options text,
     command character varying(255),
     error character varying(255),
     started_at timestamp without time zone,
@@ -6074,3 +6074,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130917071826');
 INSERT INTO schema_migrations (version) VALUES ('20130926224132');
 
 INSERT INTO schema_migrations (version) VALUES ('20130926233023');
+
+INSERT INTO schema_migrations (version) VALUES ('20130929024857');

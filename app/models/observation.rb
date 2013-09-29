@@ -119,6 +119,47 @@ class Observation < ActiveRecord::Base
     "tag_list",
     "description",
   ]
+  BASIC_COLUMNS = [
+    "id", 
+    "observed_on_string",
+    "observed_on", 
+    "time_observed_at",
+    "time_zone",
+    "out_of_range",
+    "user_id", 
+    "user_login",
+    "created_at",
+    "updated_at",
+    "quality_grade",
+    "license",
+    "url", 
+    "image_url", 
+    "tag_list",
+    "description",
+    "id_please",
+    "num_identification_agreements",
+    "num_identification_disagreements"
+  ]
+  GEO_COLUMNS = [
+    "place_guess",
+    "latitude", 
+    "longitude",
+    "positional_accuracy",
+    "private_latitude",
+    "private_longitude",
+    "private_positional_accuracy",
+    "geoprivacy",
+    "positioning_method",
+    "positioning_device",
+  ]
+  TAXON_COLUMNS = [
+    "species_guess",
+    "scientific_name", 
+    "common_name", 
+    "iconic_taxon_name",
+    "taxon_id",
+  ]
+  EXTRA_TAXON_COLUMNS = Taxon::RANKS.map{|r| "taxon_#{r}_name"}
   
   belongs_to :user, :counter_cache => true
   belongs_to :taxon
@@ -1743,21 +1784,30 @@ class Observation < ActiveRecord::Base
   end
 
   def method_missing(method, *args, &block)
+    return super unless method.to_s =~ /^field:/ || method.to_s =~ /^taxon_[^=]+/
     if method.to_s =~ /^field:/
       of_name = method.to_s.split(':').last
       ofv = observation_field_values.detect{|ofv| ofv.observation_field.normalized_name == of_name}
       if ofv
         return ofv.taxon ? ofv.taxon.name : ofv.value
       end
+    elsif method.to_s =~ /^taxon_/ && !self.class.instance_methods.include?(method) && taxon
+      return taxon.send(method.to_s.gsub(/^taxon_/, ''))
     end
     super
   end
 
   def respond_to?(method, include_private = false)
+    if self.class.instance_methods.include?(method) || self.class.column_names.include?(method.to_s)
+      return super
+    end
+    return super unless method.to_s =~ /^field:/ || method.to_s =~ /^taxon_[^=]+/
     if method.to_s =~ /^field:/
       of_name = method.to_s.split(':').last
       ofv = observation_field_values.detect{|ofv| ofv.observation_field.normalized_name == of_name}
       return !ofv.blank?
+    elsif method.to_s =~ /^taxon_/ && taxon
+      return taxon.respond_to?(method.to_s.gsub(/^taxon_/, ''), include_private)
     end
     super
   end

@@ -1044,7 +1044,8 @@ class ObservationsController < ApplicationController
         @export_url = FakeView.uri_join(root_url, @flow_task.outputs.first.file.url).to_s
       end
     end
-    @recent_exports = ObservationsExportFlowTask.where(:user_id => current_user).order("id desc").limit(10)
+    @recent_exports = ObservationsExportFlowTask.where(:user_id => current_user).where("finished_at is not null").order("id desc").limit(10)
+    @observation_fields = ObservationField.recently_used_by(current_user).limit(50).sort_by{|of| of.name.downcase}
     respond_to do |format|
       format.html
     end
