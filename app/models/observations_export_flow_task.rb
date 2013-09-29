@@ -2,6 +2,7 @@
 class ObservationsExportFlowTask < FlowTask
   validate :must_have_query
   validate :must_have_primary_filter
+  validates_presence_of :user_id
 
   after_save do |record|
     ObservationsExportFlowTask.update_all(
@@ -17,7 +18,7 @@ class ObservationsExportFlowTask < FlowTask
   end
 
   def must_have_primary_filter
-    unless params[:iconic_taxa] || params[:iconic_taxon_id] || params[:taxon_id] || params[:place_id] || params[:user_id] || params[:q]
+    unless params[:iconic_taxa] || params[:iconic_taxon_id] || params[:taxon_id] || params[:place_id] || params[:user_id] || params[:q] || params[:projects]
       errors.add(:base, "You must specify a taxon, place, user, or search query")
     end
   end
@@ -51,7 +52,7 @@ class ObservationsExportFlowTask < FlowTask
 
   def csv_archive
     csv_path = File.join(work_path, "#{basename}.csv")
-    path = Observation.generate_csv(@observations, :fname => "#{basename}.csv", :path => csv_path)
+    path = Observation.generate_csv(@observations, :fname => "#{basename}.csv", :path => csv_path, :columns => columns)
     zip_path = File.join(work_path, "#{basename}.csv.zip")
     system "cd #{work_path} && zip -r #{basename}.csv.zip *"
     zip_path
@@ -78,5 +79,25 @@ class ObservationsExportFlowTask < FlowTask
 
   def params
     @params ||= Rack::Utils.parse_nested_query(query).symbolize_keys
+  end
+
+  def columns
+    columns = options['column'] || Observation::CSV_COLUMNS
+    viewer_curates_project = if projects = params[:projects]
+      if projects.size == 1
+        project = Project.find(projects[0]) rescue nil
+        project.curated_by?(user) if project
+      end
+    end
+    viewer_is_owner = if user_id = params[:user_id]
+      if filter_user = User.find_by_id(user_id) || User.find_by_login(user_id)
+        filter_user === user
+      end
+    end
+
+    unless viewer_curates_project || viewer_is_owner
+      columns = columns.select{|c| c !~ /^private_/}
+    end
+    columns
   end
 end

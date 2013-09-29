@@ -159,6 +159,10 @@ ObservationSound.blueprint do
   sound { Sound.make }
 end
 
+ObservationsExportFlowTask.blueprint do
+  user { User.make! }
+end
+
 Photo.blueprint do
   user { User.make }
   native_photo_id { rand(1000) }
