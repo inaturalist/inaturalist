@@ -3071,6 +3071,11 @@ en:
           <strong>taxon</strong>, <strong>place</strong>, <strong>user</strong>, 
           <strong>project</strong>, or <strong>search query</strong>.
         query_placeholder: "Choose query parameters below or paste in an observations URL"
+        taxon_extras_help_html: "Note: these columns will slow down the generation of your export"
+        geo_help_html: |
+          Town, county, state, country fields based on coordinates. Analagous
+          adminstrative levels will be used for observations where these place
+          types do not apply.
       field_descriptions:
         id: "Unique identifier for the observation"
         species_guess: "Name the observer entered for the observed taxon"

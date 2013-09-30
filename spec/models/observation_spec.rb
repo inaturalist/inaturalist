@@ -1694,4 +1694,17 @@ describe Observation, "component_cache_key" do
   end
 end
 
-describe Observation
+describe Observation, "dynamic taxon getters" do
+  it "should not interfere with taxon_id"
+  it "should return genus"
+end
+
+describe Observation, "dynamic place getters" do
+  it "should return place state" do
+    p = make_place_with_geom(:place_type => Place::PLACE_TYPE_CODES['State'])
+    o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
+    o.intersecting_places.should_not be_blank
+    o.place_state.should eq p
+    o.place_state_name.should eq p.name
+  end
+end

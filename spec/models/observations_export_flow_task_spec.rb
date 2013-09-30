@@ -74,4 +74,11 @@ describe ObservationsExportFlowTask, "columns" do
     csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
     csv[0].size.should eq 1
   end
+
+  it "should never include anything but allowed columns" do
+    ft = ObservationsExportFlowTask.make(:options => {:columns => %w(delete destroy badness)})
+    ft.inputs.build(:extra => {:query => "user_id=1"})
+    ft.save!
+    ft.export_columns.should be_blank
+  end
 end

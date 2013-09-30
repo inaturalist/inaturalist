@@ -180,7 +180,7 @@
                       <%= render :partial => "shared/activity_item", :object => notifier %>
                     </div>
                   <% end %>
-                  <%= link_to "#{t(:view)} #{t(resource.class.to_s.underscore.humanize.downcase, :default => resource.class.to_s.underscore.humanize.downcase)}",
+                  <%= link_to "#{t(:view)} #{t(resource.class.to_s.underscore.humanize, :default => resource.class.to_s.underscore.humanize).downcase}",
                               resource, :class => "readmore" %>
                 </div>
               <% else %>

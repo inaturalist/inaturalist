@@ -82,6 +82,7 @@ class ObservationsExportFlowTask < FlowTask
     export_columns = options[:columns] || []
     export_columns = export_columns.select{|k,v| v == "1"}.keys if export_columns.is_a?(Hash)
     export_columns = Observation::CSV_COLUMNS if export_columns.blank?
+    export_columns = export_columns & Observation::ALL_EXPORT_COLUMNS
     viewer_curates_project = if projects = params[:projects]
       if projects.size == 1
         project = Project.find(projects[0]) rescue nil

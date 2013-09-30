@@ -117,7 +117,7 @@ class Observation < ActiveRecord::Base
     "url", 
     "image_url", 
     "tag_list",
-    "description",
+    "description"
   ]
   BASIC_COLUMNS = [
     "id", 
@@ -151,15 +151,20 @@ class Observation < ActiveRecord::Base
     "geoprivacy",
     "positioning_method",
     "positioning_device",
+    "place_town_name",
+    "place_county_name",
+    "place_state_name",
+    "place_country_name"
   ]
   TAXON_COLUMNS = [
     "species_guess",
     "scientific_name", 
     "common_name", 
     "iconic_taxon_name",
-    "taxon_id",
+    "taxon_id"
   ]
-  EXTRA_TAXON_COLUMNS = Taxon::RANKS.map{|r| "taxon_#{r}_name"}
+  EXTRA_TAXON_COLUMNS = Taxon::RANKS.map{|r| r == "root" ? nil : "taxon_#{r}_name"}.compact
+  ALL_EXPORT_COLUMNS = (CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS).uniq
   
   belongs_to :user, :counter_cache => true
   belongs_to :taxon
@@ -1734,6 +1739,22 @@ class Observation < ActiveRecord::Base
           Place::PLACE_TYPE_CODES['State'],
           Place::PLACE_TYPE_CODES['County'],
           Place::PLACE_TYPE_CODES['Open Space']].include?(p.place_type)
+    end
+  end
+
+  def intersecting_places
+    return [] unless georeferenced?
+    lat = private_latitude || latitude
+    lon = private_longitude || longitude
+    @intersecting_places ||= Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area || 0}
+  end
+
+  Place::PLACE_TYPES.each do |code, type|
+    define_method "place_#{type.underscore}" do
+      intersecting_places.detect{|p| p.place_type == code}
+    end
+    define_method "place_#{type.underscore}_name" do
+      send("place_#{type.underscore}").try(:name)
     end
   end
 

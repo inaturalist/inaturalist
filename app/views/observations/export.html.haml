@@ -136,9 +136,9 @@
                     %span.meta
                       |
                     = link_to_function t(:none), "$('##{ctype}_columns :checkbox').attr('checked', false)"
-              - if ctype == :taxon_extras
-                %p.meta.ui
-                  Note: these columns will slow down the generation of your export
+              - help = t("views.observations.export.#{ctype}_help_html", :default => '')
+              - unless help.blank?
+                %p.meta.ui= help
               %table{:id => "#{ctype}_columns"}
                 - for grp in columns.in_groups_of(4)
                   %tr
