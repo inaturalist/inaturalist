@@ -1535,12 +1535,16 @@ class ObservationsController < ApplicationController
       LIMIT 5
     SQL
     @user_counts = ActiveRecord::Base.connection.execute(user_counts_sql)
+    unique_taxon_users_scope = scope.
+      select("DISTINCT observations.taxon_id, observations.user_id").
+      joins(:taxon).
+      where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL).scoped
     user_taxon_counts_sql = <<-SQL
       SELECT
         o.user_id,
         count(*) AS count_all
       FROM
-        (#{scope.select("DISTINCT ON (observations.taxon_id) observations.user_id").joins(:taxon).where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL).to_sql}) AS o
+        (#{unique_taxon_users_scope.to_sql}) AS o
       GROUP BY
         o.user_id
       ORDER BY count_all desc
