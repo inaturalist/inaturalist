@@ -11,17 +11,20 @@ class GuideRange < ActiveRecord::Base
 
   def attribution
     return I18n.t(:public_domain) if license == Photo::PD_CODE
+    if license.blank?
+      I18n.t('copyright.all_rights_reserved', :name => attribution_name)
+    else
+      I18n.t('copyright.some_rights_reserved_by', :name => attribution_name, :license_short => license)
+    end
+  end
+
+  def attribution_name
     rights_holder_name ||= rights_holder unless rights_holder.blank?
     if guide && source_url.blank?
       rights_holder_name ||= guide.user.name unless guide.user.name.blank?
       rights_holder_name ||= guide.user.login
     end
     rights_holder_name ||= I18n.t(:unknown)
-    if license.blank?
-      I18n.t('copyright.all_rights_reserved', :name => rights_holder_name)
-    else
-      I18n.t('copyright.some_rights_reserved_by', :name => rights_holder_name, :license_short => license)
-    end
   end
 
   def self.new_from_eol_data_object(data_object)

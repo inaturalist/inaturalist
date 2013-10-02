@@ -68,18 +68,27 @@ class GuideSection < ActiveRecord::Base
   end
 
   def attribution
-    return I18n.t(:public_domain) if license == Photo::PD_CODE
+    original_attribution = if license == Photo::PD_CODE
+      I18n.t('copyright.public_domain')
+    elsif license.blank?
+      I18n.t('copyright.all_rights_reserved', :name => attribution_name)
+    else
+      I18n.t('copyright.some_rights_reserved_by', :name => attribution_name, :license_short => license.sub('-', ' '))
+    end
+    if modified?
+      "adapted by #{guide.user.name} from a work by #{original_attribution}"
+    else
+      original_attribution
+    end
+  end
+
+  def attribution_name
     rights_holder_name ||= rights_holder unless rights_holder.blank?
     if guide && source_url.blank?
       rights_holder_name ||= guide.user.name unless guide.user.name.blank?
       rights_holder_name ||= guide.user.login
     end
     rights_holder_name ||= I18n.t(:unknown)
-    if license.blank?
-      I18n.t('copyright.all_rights_reserved', :name => rights_holder_name)
-    else
-      I18n.t('copyright.some_rights_reserved_by', :name => rights_holder_name, :license_short => license.sub('-', ' '))
-    end
   end
 
   def set_license

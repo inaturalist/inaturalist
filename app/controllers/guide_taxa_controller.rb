@@ -41,6 +41,7 @@ class GuideTaxaController < ApplicationController
       end
       format.json { render json: @guide_taxon.as_json(:root => true,
         :methods => [:guide_photo_ids, :guide_section_ids, :guide_range_ids]) }
+      format.xml
     end
   end
 

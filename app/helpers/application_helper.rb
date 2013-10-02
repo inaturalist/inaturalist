@@ -662,7 +662,12 @@ module ApplicationHelper
   end
   
   def url_for_license(code)
-    "http://creativecommons.org/licenses/#{code[/CC\-(.+)/, 1].downcase}/3.0/"
+    return nil if code.blank?
+    if code == "PD"
+      "http://en.wikipedia.org/wiki/Public_domain"
+    else
+      "http://creativecommons.org/licenses/#{code[/CC\-(.+)/, 1].downcase}/3.0/"
+    end
   end
   
   def update_image_for(update, options = {})

@@ -76,7 +76,17 @@ class Photo < ActiveRecord::Base
   
   # Return a string with attribution info about this photo
   def attribution
-    name = if !native_realname.blank?
+    if license == PD
+      I18n.t('copyright.no_known_copyright_restrictions', :name => attribution_name, :license_name => I18n.t("copyright.#{license_name.gsub(' ','_').gsub('-','_').downcase}", :default => license_name))
+    elsif open_licensed?
+      I18n.t('copyright.some_rights_reserved_by', :name => attribution_name, :license_short => license_short)
+    else
+      I18n.t('copyright.all_rights_reserved', :name => attribution_name)
+    end
+  end
+
+  def attribution_name
+    if !native_realname.blank?
       native_realname
     elsif !native_username.blank?
       native_username
@@ -84,13 +94,6 @@ class Photo < ActiveRecord::Base
       user.name || user.login
     else
       I18n.t('copyright.anonymous')
-    end
-    if license == PD
-      I18n.t('copyright.no_known_copyright_restrictions', :name => name, :license_name => I18n.t("copyright.#{license_name.gsub(' ','_').gsub('-','_').downcase}", :default => license_name))
-    elsif open_licensed?
-      I18n.t('copyright.some_rights_reserved_by', :name => name, :license_short => license_short)
-    else
-      I18n.t('copyright.all_rights_reserved', :name => name)
     end
   end
   
