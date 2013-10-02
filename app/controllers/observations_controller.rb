@@ -1822,6 +1822,9 @@ class ObservationsController < ApplicationController
     end
 
     @geoprivacy = params[:geoprivacy] unless params[:geoprivacy].blank?
+    @rank = params[:rank] if Taxon::VISIBLE_RANKS.include?(params[:rank])
+    @hrank = params[:hrank] if Taxon::VISIBLE_RANKS.include?(params[:hrank])
+    @lrank = params[:lrank] if Taxon::VISIBLE_RANKS.include?(params[:lrank])
 
     
     @filters_open = 
@@ -1839,7 +1842,10 @@ class ObservationsController < ApplicationController
       !@place.blank? ||
       !@ofv_params.blank? ||
       !@pcid.blank? ||
-      !@geoprivacy.blank?
+      !@geoprivacy.blank? ||
+      !@rank.blank? ||
+      !@lrank.blank? ||
+      !@hrank.blank?
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
     
     [search_params, find_options]

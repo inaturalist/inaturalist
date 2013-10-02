@@ -134,6 +134,7 @@ class Taxon < ActiveRecord::Base
   end
   
   RANKS = RANK_LEVELS.keys
+  VISIBLE_RANKS = RANKS - ['root']
   
   RANK_EQUIVALENTS = {
     'division'        => 'phylum',

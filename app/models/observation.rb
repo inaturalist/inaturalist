@@ -731,6 +731,23 @@ class Observation < ActiveRecord::Base
         scope.where(:geoprivacy => params[:geoprivacy])
       end
     end
+
+    rank = params[:rank].to_s.downcase
+    if Taxon::VISIBLE_RANKS.include?(rank)
+      scope = scope.includes(:taxon).where("taxa.rank = ?", rank)
+    end
+
+    high_rank = params[:hrank]
+    if Taxon::VISIBLE_RANKS.include?(high_rank)
+      rank_level = Taxon::RANK_LEVELS[high_rank]
+      scope = scope.includes(:taxon).where("taxa.rank_level <= ?", rank_level)
+    end
+
+    low_rank = params[:lrank]
+    if Taxon::VISIBLE_RANKS.include?(low_rank)
+      rank_level = Taxon::RANK_LEVELS[low_rank]
+      scope = scope.includes(:taxon).where("taxa.rank_level >= ?", rank_level)
+    end
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()
