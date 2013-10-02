@@ -135,7 +135,6 @@ class User < ActiveRecord::Base
 
   validates_format_of       :email,    :with => email_regex, :message => bad_email_message, :allow_blank => true
   validates_length_of       :email,    :within => 6..100, :allow_blank => true #r@a.wk
-  validates_uniqueness_of   :email,    :allow_blank => true
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation

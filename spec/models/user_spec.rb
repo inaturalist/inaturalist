@@ -84,6 +84,13 @@ describe User do
     end.should_not change(User, :count)
   end
 
+  it "should not allow duplicate emails" do
+    existing = User.make!
+    u = User.make(:email => existing.email)
+    u.should_not be_valid
+    u.errors['email'].should_not be_blank
+  end
+
   describe 'allows legitimate logins:' do
     ['whatisthewhat', 'zoooooolander', 'hello-_therefunnycharcom'].each do |login_str|
       it "'#{login_str}'" do
