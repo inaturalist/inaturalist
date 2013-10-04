@@ -1221,6 +1221,7 @@ class Taxon < ActiveRecord::Base
       name = name[/.+\((.+?)\)/, 1]
     end
     name = name.gsub(/[\(\)\?]/, '')
+    name = name.gsub(/^\W$/, '')
     Taxon.remove_rank_from_name(name)
   end
   

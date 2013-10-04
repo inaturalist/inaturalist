@@ -52,6 +52,12 @@ shared_examples_for "an ObservationsController" do
       o = Observation.last
       o.photos.last.should be_a GoogleStreetViewPhoto
     end
+
+    it "should not fail with a dot for a species_guess" do
+      lambda {
+        post :create, :format => :json, :observation => {:species_guess => "."}
+      }.should_not raise_error
+    end
   end
 
   describe "destroy" do
