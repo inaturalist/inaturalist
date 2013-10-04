@@ -13,11 +13,17 @@
     <%= hidden_field_tag :ignore_photos, true %>
   <% end -%>
   <% for code, name, description in Observation::LICENSES %>
-    <%- value = record.is_a?(Photo) ? Photo.license_number_for_code(code) : code -%>
+    <%- 
+      value = record.is_a?(Photo) ? Photo.license_number_for_code(code) : code
+      license_label = "#{image_tag("#{code}.png")} #{t name}"
+      if record.user.try_methods("preferred_#{record.class.to_s.underscore}_license") == code
+        license_label += " (#{t(:your_default)})"
+      end
+    -%>
     <div class="column span-9 <%= cycle '', 'last' %>">
       <%= f.radio_button :license, value,
         :id => "license_#{value.to_s.parameterize}",
-        :label => "#{image_tag("#{code}.png")} #{name} #{"(#{t :your_default})" if record.user.try_methods("preferred_#{record.class.to_s.underscore}_license") == code}", 
+        :label => license_label, 
         :label_after => true %>
       <div class="stacked description">
         <% if Observation::PREFERRED_LICENSES.include?(code) -%>

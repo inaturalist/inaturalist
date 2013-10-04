@@ -44,7 +44,7 @@ describe Users::RegistrationsController, "create" do
     json['errors'].should_not be_blank
   end
 
-  it "shold not duplicate email error when email taken" do
+  it "should not have duplicate email errors when email taken" do
     existing = User.make!
     user = User.make(:email => existing.email)
     post :create, :format => :json, :user => {

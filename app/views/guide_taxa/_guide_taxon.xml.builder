@@ -1,5 +1,5 @@
 gt ||= guide_taxon
-image_sizes ||= %w(thumb small medium)
+image_sizes ||= %w(thumb small medium large)
 local_asset_path ||= "files"
 xml.GuideTaxon :position => gt.position do
   xml.name gt.name
@@ -14,7 +14,7 @@ xml.GuideTaxon :position => gt.position do
         xml.href url, :type => "remote", :size => s
         xml.href(File.join(local_asset_path, guide_asset_filename(gp, :size => s)), :type => "local", :size => s) if local_asset_path
       end
-      xml.description gp.description unless gp.description.blank?
+      xml.dc(:description, gp.description) unless gp.description.blank?
       xml.attribution gp.attribution
       xml.dcterms :rightsHolder, gp.attribution_name
       xml.dc :license, url_for_license(gp.license_code) unless gp.license_code.blank?

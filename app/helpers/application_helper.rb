@@ -663,9 +663,9 @@ module ApplicationHelper
   
   def url_for_license(code)
     return nil if code.blank?
-    if code == "PD"
-      "http://en.wikipedia.org/wiki/Public_domain"
-    else
+    if info = Photo::LICENSE_INFO.detect{|k,v| v[:code] == code}.try(:last)
+      info[:url]
+    elsif code =~ /CC\-/
       "http://creativecommons.org/licenses/#{code[/CC\-(.+)/, 1].downcase}/3.0/"
     end
   end
