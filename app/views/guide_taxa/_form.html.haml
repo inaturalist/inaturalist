@@ -39,6 +39,7 @@
             defaultQuery: GUIDE_TAXON.name,
             skipLocal: true,
             baseURL: '/flickr/photo_fields',
+            licensed: true,
             urlParams: {
               authenticity_token: $('meta[name=csrf-token]').attr('content'),
               limit: 14
@@ -54,8 +55,14 @@
               if ($(ui.panel).attr('id') == 'flickr_taxon_photos' && !$(ui.panel).hasClass('loaded')) {
                 $('.taxon_photos', ui.panel).photoSelector(photoSelectorOptions)
               } else if ($(ui.panel).attr('id') == 'inat_obs_taxon_photos' && !$(ui.panel).hasClass('loaded')) {
+                var baseURL
+                if (GUIDE_TAXON.taxon_id) {
+                  baseURL = '/taxa/'+GUIDE_TAXON.taxon_id+'/observation_photos'
+                } else {
+                  baseURL = '/taxa/observation_photos'
+                }
                 $('.taxon_photos', ui.panel).photoSelector(
-                  $.extend(true, {}, photoSelectorOptions, {baseURL: '/taxa/'+GUIDE_TAXON.id+'/observation_photos'})
+                  $.extend(true, {}, photoSelectorOptions, {baseURL: baseURL})
                 )
               } else if ($(ui.panel).attr('id') == 'eol_taxon_photos' && !$(ui.panel).hasClass('loaded')) {
                 $('.taxon_photos', ui.panel).photoSelector(

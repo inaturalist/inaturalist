@@ -21,7 +21,8 @@
     options.latitude = options.latitude || $(elt).attr('data-latitude')
     options.longitude = options.longitude || $(elt).attr('data-longitude')
     options.mapType = options.mapType || $(elt).attr('data-map-type')
-    options.zoomLevel = options.zoomLevel || $(elt).attr('data-zoom-level')
+    var zoomLevel = parseInt(options.zoomLevel || $(elt).attr('data-zoom-level'))
+    options.zoomLevel = zoomLevel == 0 ? null : zoomLevel
     options.placeKmlUrl = options.placeKmlUrl || $(elt).attr('data-place-kml')
     if (options.placeKmlUrl == '') { options.placeKmlUrl = null }
     options.taxonRangeKmlUrl = options.taxonRangeKmlUrl || $(elt).attr('data-taxon-range-kml')
@@ -70,7 +71,7 @@
       )
       preserveViewport = true
     } else if (options.latitude || options.longitude) {
-      map.setCenter(new google.maps.LatLng(options.latitutde || 0, options.longitude || 0))
+      map.setCenter(new google.maps.LatLng(options.latitude || 0, options.longitude || 0))
       if (options.zoomLevel) {
         map.setZoom(options.zoomLevel)
       }

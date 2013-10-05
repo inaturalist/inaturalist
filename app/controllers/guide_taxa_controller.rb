@@ -114,7 +114,7 @@ class GuideTaxaController < ApplicationController
   def edit_photos
     @resource = @guide_taxon
     @photos = @guide_taxon.guide_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo}
-    render :layout => false, :template => "taxa/edit_photos"
+    render :layout => false, :template => "taxa/edit_photos", :locals => {:licensed => true}
   end
 
   def update_photos

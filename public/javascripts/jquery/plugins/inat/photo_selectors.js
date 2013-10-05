@@ -7,6 +7,7 @@
 //   skipLocal:     Boolean, whether or not to skip local photo selection. Default is false
 //   queryOnLoad:   Whether or not to query with an empty string on page load. 
 //                  Default is true.
+//   licensed:      Restrict iNat photos to those with licenses. Default is false.
 //   defaultQuery:  Default query to run on load
 //   afterQueryPhotos(q, wrapper, options) : called after photos queried
 //   defaultSource: the default source (e.g. 'flickr' or 'facebook')
@@ -415,6 +416,8 @@
     )
     var params = $.extend({}, options.urlParams, {'q': q})
     var baseURL = options.baseURL
+
+    params.licensed = options.licensed
     
     // Pull out parents of existing checked inputs
     if (!$(wrapper).data('photoSelectorExisting')) {

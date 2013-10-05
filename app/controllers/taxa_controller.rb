@@ -20,7 +20,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :observation_photos, :range, :schemes, :tip]
+    :range, :schemes, :tip]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   before_filter :ensure_flickr_write_permission, :only => [
@@ -628,22 +628,26 @@ class TaxaController < ApplicationController
   end
   
   def observation_photos
+    @taxon = Taxon.find_by_id(params[:id].to_i, :include => :taxon_names)
     if per_page = params[:per_page]
       per_page = per_page.to_i > 50 ? 50 : per_page.to_i
     end
-    observations = if params[:q].blank?
-      Observation.of(@taxon).paginate(:page => params[:page], 
-        :per_page => per_page, :include => [:photos], 
-        :conditions => "photos.id IS NOT NULL AND photos.user_id IS NOT NULL")
+    observations = if @taxon && params[:q].blank?
+      obs = Obervation.of(@taxon).page(params[:page]).per_page(per_page).includes(:photos).where("photos.id IS NOT NULL AND photos.user_id IS NOT NULL AND photos.license")
+      if params[:licensed]
+        obs = obs.where("photos.license IS NOT NULL AND photos.license > ? OR photo.user_id = ?", Photo::COPYRIGHT, current_user)
+      end
+      obs.to_a
     else
       Observation.search(params[:q], 
         :page => params[:page], 
         :per_page => per_page, 
         :with => {:has_photos => true}, 
         :include => [:photos]
-      ).reject{|o| o.photos.detect{|p| o.user_id.blank?}}
+      )
     end
-    @photos = observations.compact.map(&:photos).flatten
+    @photos = observations.compact.map(&:photos).flatten.reject{|p| p.user_id.blank?}
+    @photos = @photos.reject{|p| p.license.to_i <= Photo::COPYRIGHT} if params[:licensed]
     render :partial => 'photos/photo_list_form', :locals => {
       :photos => @photos, 
       :index => params[:index],

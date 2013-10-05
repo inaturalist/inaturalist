@@ -284,6 +284,7 @@ Inaturalist::Application.routes.draw do
   match 'taxa/:id/merge' => 'taxa#merge', :as => :merge_taxon
   match 'taxa/:id/merge.:format' => 'taxa#merge', :as => :formatted_merge_taxon
   match 'taxa/:id/observation_photos' => 'taxa#observation_photos', :as => :taxon_observation_photos
+  match 'taxa/observation_photos' => 'taxa#observation_photos'
   match 'taxa/:id/map' => 'taxa#map', :as => :taxon_map
   match 'taxa/map' => 'taxa#map', :as => :taxa_map
   match 'taxa/:id/range.:format' => 'taxa#range', :as => :taxon_range_geom
