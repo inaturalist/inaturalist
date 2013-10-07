@@ -163,7 +163,30 @@ class Observation < ActiveRecord::Base
     "iconic_taxon_name",
     "taxon_id"
   ]
-  EXTRA_TAXON_COLUMNS = Taxon::RANKS.map{|r| r == "root" ? nil : "taxon_#{r}_name"}.compact
+  EXTRA_TAXON_COLUMNS = %w(
+    kingdom
+    phylum
+    subphylum
+    superclass
+    class
+    subclass
+    superorder
+    order
+    suborder
+    superfamily
+    family
+    subfamily
+    supertribe
+    tribe
+    subtribe
+    genus
+    genushybrid
+    species
+    hybrid
+    subspecies
+    variety
+    form
+  ).map{|r| "taxon_#{r}_name"}.compact
   ALL_EXPORT_COLUMNS = (CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS).uniq
   
   belongs_to :user, :counter_cache => true
@@ -1766,7 +1789,37 @@ class Observation < ActiveRecord::Base
     @intersecting_places ||= Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area || 0}
   end
 
-  Place::PLACE_TYPES.each do |code, type|
+  {
+    0     => "Undefined", 
+    2     => "Street Segment", 
+    4     => "Street", 
+    5     => "Intersection", 
+    6     => "Street", 
+    7     => "Town", 
+    8     => "State", 
+    9     => "County",
+    10    => "Local Administrative Area",
+    12    => "Country",
+    13    => "Island",
+    14    => "Airport",
+    15    => "Drainage",
+    16    => "Land Feature",
+    17    => "Miscellaneous",
+    18    => "Nationality",
+    19    => "Supername",
+    20    => "Point of Interest",
+    21    => "Region",
+    24    => "Colloquial",
+    25    => "Zone",
+    26    => "Historical State",
+    27    => "Historical County",
+    29    => "Continent",
+    33    => "Estate",
+    35    => "Historical Town",
+    36    => "Aggregate",
+    100   => "Open Space",
+    101   => "Territory"
+  }.each do |code, type|
     define_method "place_#{type.underscore}" do
       intersecting_places.detect{|p| p.place_type == code}
     end

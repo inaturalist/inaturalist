@@ -1,6 +1,7 @@
 module Ratatosk
   module NameProviders
     class UBioNameProvider
+
       def self.source
         @source ||= ::Source.find_by_title("uBio") || ::Source.create(
           :title => "uBio",

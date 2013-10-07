@@ -121,7 +121,8 @@ class GuidesController < ApplicationController
               !@guide.guide_taxa.where("updated_at > ?", matching_flow_task.created_at).exists? &&
               !GuidePhoto.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_photos.updated_at > ?", matching_flow_task.created_at).exists? &&
               !GuideSection.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_sections.updated_at > ?", matching_flow_task.created_at).exists? &&
-              !GuideRange.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_ranges.updated_at > ?", matching_flow_task.created_at).exists?
+              !GuideRange.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_ranges.updated_at > ?", matching_flow_task.created_at).exists? &&
+              matching_flow_task.pdf_url
             redirect_to matching_flow_task.pdf_url
           else
             render :status => :not_found, :text => "", :layout => false

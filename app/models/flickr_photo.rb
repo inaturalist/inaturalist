@@ -33,9 +33,13 @@ class FlickrPhoto < Photo
   def self.get_api_response(native_photo_id, options = {})
     f = options[:user] ? flickraw_for_user(options[:user]) : flickr
     user_id = options[:user].id if options[:user] && options[:user].is_a?(User)
-    Rails.cache.fetch("flickr_photos_getInfo_#{native_photo_id}_#{user_id}", :expires_in => 5.minutes) do
+    r = Rails.cache.fetch("flickr_photos_getInfo_#{native_photo_id}_#{user_id}", :expires_in => 5.minutes) do
       f.photos.getInfo(:photo_id => native_photo_id)
     end
+    if r.blank?
+      r = f.photos.getInfo(:photo_id => native_photo_id)
+    end
+    r
   rescue FlickRaw::FailedResponse => e
     if e.message =~ /Invalid auth token/
       flickr.photos.getInfo(:photo_id => native_photo_id)
@@ -105,6 +109,7 @@ class FlickrPhoto < Photo
   def sync
     f = FlickrPhoto.flickraw_for_user(user)
     sizes = f.photos.getSizes(:photo_id => native_photo_id)
+    return if sizes.blank?
     sizes = sizes.index_by{|s| s.label}
     self.square_url   = sizes['Square'].source rescue nil
     self.thumb_url    = sizes['Thumbnail'].source rescue nil

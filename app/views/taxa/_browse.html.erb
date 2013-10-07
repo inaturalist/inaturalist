@@ -266,34 +266,42 @@
       <p>
         <%= t(:sorry_how_about_we_try_repeat) %>
       </p>
-      <div class="column span-6">
-        <%= form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
-          <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
-          <label for="q">
-            <%=t (:search) %> <a href="http://www.catalogueoflife.org"><%= t :catalogue_of_life %></a>
-          </label>
-          <%= text_field_tag 'q', params[:q], :class => 'text' %>
-          <input type="hidden" name="all_names" value="true"/>
-          <input type="hidden" name="include_external" value="true"/>
-          <input type="hidden" name="external_src" value="col"/>
-          <input type="submit" class="button" value="<%=raw t(:search_catalogue_of_life_raquo) %>">
-        <% end %>
-      </div>
-      <div class="column span-6">
-        <%= form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
-          <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
-          <label for="q"><%= t(:search)  %> <a href="http://www.ubio.org"><%= t :ubio %></a></label>
-          <%= text_field_tag 'q', params[:q], :class => 'text' %>
-          <input type="hidden" name="all_names" value="true"/>
-          <input type="hidden" name="force_external" value="true"/>
-          <input type="hidden" name="external_src" value="ubio"/>
-          <input type="submit" class="button" value="<%=raw t :search_ubio_raquo %>"/>
-        <% end %>
-      </div>
+      <% Ratatosk.name_providers.each_with_index do |np,i| %>
+        <div class="column span-7 <%= 'last' if i % 3 == 2 %>">
+          <%-
+            name = np.class.source.try(:title) || nil
+            name_key = np.class.name.split('::').last.gsub(/NameProvider/, '').underscore
+            short_name = name_key.humanize
+            name ||= short_name
+            name = t("name_providers.#{name.underscore}", :default => name)
+            url = np.class.source.try(:url)
+            code = np.class.name.split('::').last.gsub(/NameProvider/, '').downcase
+          -%>
+          <%= form_tag url_for(), :method => :get, :class => 'clear' do %>
+            <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
+            <div class="stacked">
+              <label for="q">
+                <% if url -%>
+                  <%= link_to name, url %>
+                <% else %>
+                  <%= name %>
+                <% end -%>
+              </label>
+            </div>
+            <div class="clear buttonrow">
+              <%= text_field_tag 'q', params[:q], :class => 'text' %>
+              <input type="hidden" name="all_names" value="true"/>
+              <input type="hidden" name="include_external" value="true"/>
+              <input type="hidden" name="external_src" value="<%= code %>"/>
+              <input type="submit" class="button" value="<%=raw t(:search) %>">
+            </div>
+          <% end %>
+        </div>
+      <% end %>
       <% if is_curator? -%>
-        <div class="column span-6">
+        <div class="column span-7">
           <label><%= t :still_no_luck? %></label>
-          <%= link_to t(:create_new_taxon), new_taxon_path(:name => params[:q]) %>
+          <%= link_to t(:create_new_taxon), new_taxon_path(:name => params[:q]), :class => "readmore" %>
         </div>
       <% end -%>
     </div>
