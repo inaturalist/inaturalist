@@ -12,6 +12,50 @@ shared_examples_for "a signed in UsersController" do
     get :dashboard
     response.should be_success
   end
+
+  describe :new_updates do
+    it "should show recent updates" do
+      o = Observation.make!(:user => user)
+      without_delay { Comment.make!(:parent => o) }
+      get :new_updates, :format => :json
+      json = JSON.parse(response.body)
+      json.size.should > 0
+    end
+
+    it "should filter by resource_type" do
+      p = Post.make!(:parent => user, :user => user)
+      without_delay { Comment.make!(:parent => p) }
+      get :new_updates, :format => :json, :resource_type => "Post"
+      json = JSON.parse(response.body)
+      json.size.should > 0
+
+      get :new_updates, :format => :json, :resource_type => "Observation"
+      json = JSON.parse(response.body)
+      json.should be_blank
+      json.size.should eq 0
+    end
+
+    it "should filter by notifier_type" do
+      o = Observation.make!(:user => user)
+      without_delay { Comment.make!(:parent => o) }
+      get :new_updates, :format => :json, :notifier_type => "Comment"
+      json = JSON.parse(response.body)
+      json.size.should > 0
+
+      get :new_updates, :format => :json, :notifier_type => "Identification"
+      json = JSON.parse(response.body)
+      json.should be_blank
+      json.size.should eq 0
+    end
+
+    it "should allow user to skip marking the updates as viewed" do
+      o = Observation.make!(:user => user)
+      without_delay { Comment.make!(:parent => o) }
+      get :new_updates, :format => :json, :skip_view => true
+      Delayed::Worker.new(:quiet => true).work_off
+      user.updates.unviewed.activity.count.should > 0
+    end
+  end
 end
 
 describe UsersController, "oauth authentication" do

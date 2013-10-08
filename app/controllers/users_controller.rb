@@ -1,6 +1,6 @@
 #encoding: utf-8
 class UsersController < ApplicationController  
-  doorkeeper_for :create, :update, :edit, :dashboard, :if => lambda { authenticate_with_oauth? }
+  doorkeeper_for :create, :update, :edit, :dashboard, :new_updates, :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
     :except => [:index, :show, :new, :create, :activate, :relationships]
@@ -293,27 +293,32 @@ class UsersController < ApplicationController
   end
   
   def new_updates
-    @updates = current_user.updates.unviewed.activity.all(
-      :include => [:resource, :notifier, :subscriber, :resource_owner],
-      :order => "id DESC",
-      :limit => 200
-    )
-    session[:updates_count] = 0
-    if @updates.blank?
-      @updates = current_user.updates.activity.all(
-        :include => [:resource, :notifier, :subscriber, :resource_owner],
-        :order => "id DESC",
-        :limit => 10,
-        :conditions => ["viewed_at > ?", 1.day.ago])
+    @updates = current_user.updates.unviewed.activity.
+      includes(:resource, :notifier, :subscriber, :resource_owner).
+      order("id DESC").
+      limit(200)
+    if @updates.count == 0
+      @updates = current_user.updates.activity.
+        includes(:resource, :notifier, :subscriber, :resource_owner).
+        order("id DESC").
+        limit(10).
+        where("viewed_at > ?", 1.day.ago)
     end
-    if @updates.blank?
-      @updates = current_user.updates.activity.all(:limit => 5, :order => "id DESC")
-    else
+    if @updates.count == 0
+      @updates = current_user.updates.activity.limit(5).order("id DESC")
+    end
+    @updates = @updates.where(:resource_type => params[:resource_type]) unless params[:resource_type].blank?
+    @updates = @updates.where(:notifier_type => params[:notifier_type]) unless params[:notifier_type].blank?
+    if !%w(1 yes y true t).include?(params[:skip_view].to_s)
       Update.user_viewed_updates(@updates)
+      session[:updates_count] = 0
     end
     @update_cache = Update.eager_load_associates(@updates)
     @updates = @updates.sort_by{|u| u.created_at.to_i * -1}
-    render :layout => false
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.json { render :json => @updates }
+    end
   end
   
   def edit

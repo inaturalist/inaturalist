@@ -1549,4 +1549,50 @@ EOT
     formats %w(json)
   end
 
+  get "/users/new_updates", :auth_required => true do
+    desc "Get info about new updates for the authenticated user, e.g. comments and identifications on their content."
+    formats %w(json)
+    param "resource_type" do
+      desc "Fitler by the type of resource that received the update, e.g. only show updates on your observations."
+      values %w(ListedTaxon Observation Post)
+    end
+    param "notifier_type" do
+      desc "Fitler by the type of resource that created the update, e.g. only show comments."
+      values %w(Comment Identification)
+    end
+    example do
+      request "GET /users/new_updates.json"
+      response <<-EOT
+[
+  {
+    created_at: "2013-10-07T16:22:43-07:00",
+    id: 954,
+    notification: "activity",
+    notifier_id: 610,
+    notifier_type: "Comment",
+    resource_id: 1,
+    resource_owner_id: 1,
+    resource_type: "Post",
+    subscriber_id: 1,
+    updated_at: "2013-10-07T16:22:43-07:00",
+    viewed_at: "2013-10-07T16:22:49-07:00"
+  },
+  {
+    created_at: "2013-09-12T13:39:21-07:00",
+    id: 945,
+    notification: "activity",
+    notifier_id: 607,
+    notifier_type: "Comment",
+    resource_id: 199,
+    resource_owner_id: 1,
+    resource_type: "Observation",
+    subscriber_id: 1,
+    updated_at: "2013-09-12T13:39:21-07:00",
+    viewed_at: "2013-10-07T16:21:09-07:00"
+  }
+]
+      EOT
+    end
+  end
+
 end
