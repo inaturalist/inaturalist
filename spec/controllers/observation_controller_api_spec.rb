@@ -361,6 +361,31 @@ shared_examples_for "an ObservationsController" do
       jsono = json.first
       jsono['taxon']['common_name']['name'].should eq tn.name
     end
+
+    it "should allow filtering by updated_since" do
+      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago)
+      oldo.updated_at.should be < 1.minute.ago
+      newo = Observation.make!
+      get :index, :format => :json, :updated_since => (newo.updated_at - 1.minute).iso8601
+      json = JSON.parse(response.body)
+      json.detect{|o| o['id'] == newo.id}.should_not be_blank
+      json.detect{|o| o['id'] == oldo.id}.should be_blank
+    end
+
+    it "should include identifications_count" do
+      o = Observation.make!
+      i = Identification.make!(:observation => o)
+      get :index, :format => :json
+      obs = JSON.parse(response.body).detect{|jo| jo['id'] == i.observation_id}
+      obs['identifications_count'].should eq 1
+    end
+
+    it "should include comments_count" do
+      c = Comment.make!
+      get :index, :format => :json
+      obs = JSON.parse(response.body).detect{|o| o['id'] == c.parent_id}
+      obs['comments_count'].should eq 1
+    end
   end
 
   describe "taxon_stats" do

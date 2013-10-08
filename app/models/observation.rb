@@ -771,6 +771,10 @@ class Observation < ActiveRecord::Base
       rank_level = Taxon::RANK_LEVELS[low_rank]
       scope = scope.includes(:taxon).where("taxa.rank_level >= ?", rank_level)
     end
+
+    if timestamp = Chronic.parse(params[:updated_since])
+      scope = scope.where("updated_at > ?", timestamp)
+    end
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()
@@ -1702,13 +1706,18 @@ class Observation < ActiveRecord::Base
     # Kinda lame, but Observation#get_quality_grade relies on these numbers
     self.num_identification_agreements = num_agreements
     self.num_identification_disagreements = num_disagreements
+    self.identifications_count = idents.size
     new_quality_grade = get_quality_grade
     self.quality_grade = new_quality_grade
     
-    if !options[:skip_save] && (num_identification_agreements_changed? || num_identification_disagreements_changed? || quality_grade_changed?)
+    if !options[:skip_save] && (
+        num_identification_agreements_changed? || 
+        num_identification_disagreements_changed? || 
+        quality_grade_changed? || 
+        identifications_count_changed?)
       Observation.update_all(
-        ["num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?", 
-          num_agreements, num_disagreements, new_quality_grade], 
+        ["num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?, identifications_count = ?", 
+          num_agreements, num_disagreements, new_quality_grade, identifications_count], 
         "id = #{id}")
       refresh_check_lists
     end
