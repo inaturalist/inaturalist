@@ -1560,6 +1560,14 @@ EOT
       desc "Fitler by the type of resource that created the update, e.g. only show comments."
       values %w(Comment Identification)
     end
+    param "skip_view" do
+      desc <<-EOT
+        Skip setting marking updates at viewed when retrieving them. The
+        default behavior is to assume that if you're hitting this endpoint on
+        behlaf of the user, they will have viewed the udpates returned.
+      EOT
+      values [true, false]
+    end
     example do
       request "GET /users/new_updates.json"
       response <<-EOT
