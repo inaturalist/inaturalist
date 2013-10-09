@@ -417,6 +417,11 @@ EOT
       desc "Northeast longitude of a bounding box query."
       values -180..180
     end
+
+    param "updated_since" do
+      desc "Filter by observations that have been updated since a timestamp."
+      values "ISO 8601 datetime, e.g. 2013-10-09T13:40:13-07:00"
+    end
   end
 
   post "/observations", :auth_required => true do
