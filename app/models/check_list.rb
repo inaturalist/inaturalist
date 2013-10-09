@@ -98,6 +98,9 @@ class CheckList < List
   # This is a loaded gun.  Please fire with discretion.
   def add_intersecting_taxa(options = {})
     return nil unless PlaceGeometry.exists?(["place_id = ?", place_id])
+    if place.straddles_date_line?
+      raise "Can't add intersecting taxa for places that span the dateline. Maybe it would work if we switched from geometries to geographies."
+    end
     ancestor = options[:ancestor].is_a?(Taxon) ? options[:ancestor] : Taxon.find_by_id(options[:ancestor])
     if options[:ancestor] && ancestor.blank?
       return nil
