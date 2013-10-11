@@ -26,7 +26,7 @@ class EolPhoto < Photo
     rescue OpenURI::HTTPError => e
       return []
     end
-    eol_page_xml.search('dataObject').map do |data_object|
+    eol_page_xml.xpath('//xmlns:dataObject[.//xmlns:mediaURL]').map do |data_object|
       new_from_api_response(data_object)
     end.compact
   end
