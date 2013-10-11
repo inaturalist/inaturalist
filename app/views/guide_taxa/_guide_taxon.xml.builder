@@ -4,6 +4,7 @@ local_asset_path ||= "files"
 xml.GuideTaxon :position => gt.position do
   xml.name gt.name
   xml.displayName(gt.display_name) unless gt.display_name == gt.name
+  xml.taxonID gt.taxon_id if gt.taxon_id
   gt.tags.map(&:name).each do |tag|
     tag_to_xml(tag, xml)
   end

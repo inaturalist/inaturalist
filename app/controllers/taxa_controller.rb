@@ -233,10 +233,11 @@ class TaxaController < ApplicationController
         if (partial = params[:partial]) && ALLOWED_SHOW_PARTIALS.include?(partial)
           @taxon.html = render_to_string(:partial => "#{partial}.html.erb", :object => @taxon)
         end
-        render(:json => @taxon.to_json(
-          :include => [:taxon_names, :iconic_taxon],
-          :methods => [:common_name, :image_url, :taxon_range_kml_url, :html, :default_photo])
-        )
+
+        opts = Taxon.default_json_options
+        opts[:include].merge!({:taxon_names => {}, :iconic_taxon => {}})
+        opts[:methods] += [:common_name, :image_url, :taxon_range_kml_url, :html, :default_photo]
+        render :json => @taxon.to_json(opts)
       end
       format.node { render :json => jit_taxon_node(@taxon) }
     end
