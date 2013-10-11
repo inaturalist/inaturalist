@@ -7,6 +7,14 @@ describe Comment, "creation" do
     o.reload
     o.comments_count.should eq(1)
   end
+
+  it "should touch the parent" do
+    o = Observation.make!
+    stamp = o.updated_at
+    c = Comment.make!(:parent => o)
+    o.reload
+    o.updated_at.should be > stamp
+  end
 end
 
 describe Comment, "deletion" do

@@ -36,7 +36,7 @@ class Comment < ActiveRecord::Base
   
   def update_parent_counter_cache
     if parent && parent.class.column_names.include?("comments_count")
-      parent.class.update_all(["comments_count = ?", parent.comments.count], ["id = ?", parent_id])
+      parent.class.update_all(["comments_count = ?, updated_at = ?", parent.comments.count, Time.now], ["id = ?", parent_id])
     end
     true
   end
