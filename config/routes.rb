@@ -73,12 +73,10 @@ Inaturalist::Application.routes.draw do
     post "session", :to => "users/sessions#create", :as => "user_session"
     get "signup", :to => "users/registrations#new"
     get "users/new", :to => "users/registrations#new", :as => "new_user"
+    get "/forgot_password", :to => "devise/passwords#new", :as => "forgot_password"
   end
-  # match '/register' => 'users#create', :as => :register, :via => :post
   
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
-  match '/forgot_password' => 'passwords#new', :as => :forgot_password
-  match '/change_password/:reset_code' => 'passwords#reset', :as => :change_password
   match '/toggle_mobile' => 'welcome#toggle_mobile', :as => :toggle_mobile
   match '/help' => 'help#index', :as => :help
   match '/auth/failure' => 'provider_authorizations#failure', :as => :omniauth_failure
