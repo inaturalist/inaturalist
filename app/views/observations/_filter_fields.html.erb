@@ -8,7 +8,12 @@
   show_project_field ||= false
 %>
 <div id="search_filter" class="row">
-  <label class="label" for="q"><%=t :search %></label>
+  <label class="label" for="q">
+    <%=t :search %>
+    <% helptip_for "q" do %>
+      <%=t :observations_text_search_warning %>
+    <% end %>
+  </label>
   <input type="text" name="q" value="<%= @q %>" id="q" class="text" />
   <select name="search_on" id="search_on">
     <option value="" class="description"><%=t :search_all_fields %></option>

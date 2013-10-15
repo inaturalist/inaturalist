@@ -2038,6 +2038,7 @@ class ObservationsController < ApplicationController
     
     @observations = @observations.of(@observations_taxon) if @observations_taxon
     @observations = @observations.in_place(@place) if @place
+    @observations = @observations.on(@observed_on) if @observed_on
 
     if CONFIG.site_only_observations && params[:site].blank?
       @observations = @observations.where("observations.uri LIKE ?", "#{root_url}%")

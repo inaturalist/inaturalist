@@ -1554,6 +1554,10 @@ en:
   observations_removed_from_the_project: "Observations removed from the project \"%{project}\""
   observations_saved: Observation(s) saved!
   observations_specifying_this_field: Observations specifying this field
+  observations_text_search_warning: |
+    Text searches may yield weird results when combined with other filters. If
+    you want to find observation of a particular species, use the taxon
+    filter.
   observations_title: Observations by Everyone
   observations_w: Observations w/
   observations_w_field: Observations w/ field

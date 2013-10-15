@@ -282,7 +282,12 @@ EOT
       EOT
     end
     param "q" do
-      desc "Search query"
+      desc <<-TXT
+        Search query. Note that this is largely intended to be used on its own
+        and may yield unexpected or limited results when used with other
+        filters. If you're trying to retrieve observations of a particular
+        taxon, taxon_id and taxon_name are better options.
+      TXT
       values "any string"
     end
     
