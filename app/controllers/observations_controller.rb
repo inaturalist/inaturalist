@@ -2033,9 +2033,7 @@ class ObservationsController < ApplicationController
         v[:observation_field].blank? ? nil : v[:observation_field].id
         @observations = @observations.has_observation_field(of.id, v[:value])
       end
-    end
-
-    
+    end    
     @observations = @observations.of(@observations_taxon) if @observations_taxon
     @observations = @observations.in_place(@place) if @place
     @observations = @observations.on(@observed_on) if @observed_on

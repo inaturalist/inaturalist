@@ -7,9 +7,12 @@
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
         <style type="text/css">
           <![CDATA[
-            .images {white-space: nowrap; overflow-x:auto; overflow-y:hidden;-webkit-overflow-scrolling: touch;}
-            .images .image {display:inline-block; margin-left:1em; max-width:100%;}
-            .images img.thumb {max-width:100%; max-height:250px;}
+            .images {white-space: nowrap; overflow-x:auto; overflow-y:hidden;-webkit-overflow-scrolling: touch;text-align:center;}
+            .images .image {display:inline-block; margin-left:1em; max-width:100%; text-align:center;}
+            .images.multi {text-align:left;}
+            .images.multi .image {max-width:90%;}
+            .images img.thumb {max-width:100%; max-height:300px;}
+            .images.multi img.thumb {max-height:200px;}
             .images .image:first-child {margin-left:0;}
             .container {padding-top: 1em;padding-bottom: 2em;}
           ]]>
@@ -17,7 +20,8 @@
       </head>
       <body>
         <div class="container">
-          <div id="photos" class="images">
+          <xsl:variable name="photosClass">images<xsl:if test="count(//GuidePhoto) &gt; 1"> multi</xsl:if></xsl:variable>
+          <div id="photos" class="{$photosClass}">
             <xsl:for-each select="//GuidePhoto">
               <div class="image">
                 <img src="{href[@type='remote' and @size='medium']}" class="thumb img-rounded" data-toggle="modal"/>
@@ -44,7 +48,8 @@
               </xsl:otherwise>
             </xsl:choose>
           </h1>
-          <div id="ranges" class="images">
+          <xsl:variable name="mapsClass">images pull-right col-sm-6 col-xs-12<xsl:if test="count(//GuideRange) &gt; 1"> multi</xsl:if></xsl:variable>
+          <div id="ranges" class="{$mapsClass}">
             <xsl:for-each select="//GuideRange">
               <div class="image">
                 <img src="{href[@type='remote' and @size='medium']}" class="thumb img-rounded" data-toggle="modal"/>
