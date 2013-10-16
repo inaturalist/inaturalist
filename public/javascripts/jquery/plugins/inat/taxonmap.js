@@ -203,6 +203,6 @@
   }
   
   function observationsJsonUrl(id) {
-    return 'http://' + window.location.host + '/observations/of/'+id+'.json'
+    return '//' + window.location.host + '/observations/of/'+id+'.json'
   }
 }(jQuery))
