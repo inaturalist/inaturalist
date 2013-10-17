@@ -625,9 +625,12 @@ class Observation < ActiveRecord::Base
     end
     
     # support bounding box queries
-     if (!params[:swlat].blank? && !params[:swlng].blank? && 
+    if (!params[:swlat].blank? && !params[:swlng].blank? && 
          !params[:nelat].blank? && !params[:nelng].blank?)
       scope = scope.in_bounding_box(params[:swlat], params[:swlng], params[:nelat], params[:nelng])
+    elsif !params[:BBOX].blank?
+      swlng, swlat, nelng, nelat = params[:BBOX].split(',')
+      scope = scope.in_bounding_box(swlat, swlng, nelat, nelng)
     elsif params[:lat] && params[:lng]
       scope = scope.near_point(params[:lat], params[:lng], params[:radius])
     end

@@ -63,7 +63,7 @@ class ObservationsController < ApplicationController
   
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial"
-  REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng"
+  REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
   DISPLAY_ORDER_BY_FIELDS = {
     'created_at' => 'date added',
     'observations.id' => 'date added',
@@ -2386,13 +2386,16 @@ class ObservationsController < ApplicationController
   def render_observations_to_kml(options = {})
     @net_hash = options
     if params[:kml_type] == "network_link"
+      kml_query = request.query_parameters.reject{|k,v| REJECTED_KML_FEED_PARAMS.include?(k.to_s) || k.to_s == "kml_type"}.to_query
+      kml_href = "#{request.base_url}#{request.path}"
+      kml_href += "?#{kml_query}" unless kml_query.blank?
       @net_hash = {
         :id => "AllObs", 
         :link_id =>"AllObs", 
         :snippet => "#{CONFIG.site_name} Feed for Everyone", 
         :description => "#{CONFIG.site_name} Feed for Everyone", 
         :name => "#{CONFIG.site_name} Feed for Everyone", 
-        :href => "#{root_url}#{request.fullpath}".gsub(/kml_type=network_link/, '')
+        :href => kml_href
       }
       render :layout => false, :action => 'network_link'
       return
