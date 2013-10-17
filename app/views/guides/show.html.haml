@@ -292,7 +292,7 @@
         = will_paginate @guide_taxa
   #attribution.meta.upstacked
     %p
-      =t :guide_compiled_by
+      =t :edited_by
       - if @guide.license.blank?
         = link_to_user @guide.user, :content_text => @guide.user.name.blank? ? @guide.user.login : @guide.user.name
       - else

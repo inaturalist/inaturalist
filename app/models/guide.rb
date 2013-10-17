@@ -10,8 +10,8 @@ class Guide < ActiveRecord::Base
   has_many :guide_taxa, :inverse_of => :guide, :dependent => :destroy
   
   has_attached_file :icon, 
-    :styles => { :medium => "500x500>", :thumb => "48x48#", :mini => "16x16#", :span2 => "70x70#" },
-    :default_url => "/attachment_defaults/:class/:style.png",
+    :styles => { :medium => "500x500>", :thumb => "48x48#", :mini => "16x16#", :span2 => "70x70#", :small_square => "200x200#" },
+    :default_url => "/attachment_defaults/:class/icons/:style.png",
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml",
     :s3_host_alias => CONFIG.s3_bucket,
@@ -45,7 +45,7 @@ class Guide < ActiveRecord::Base
   before_create :set_defaults_from_source_url
   after_create :add_taxa_from_source_url
 
-  scope :dbsearch, lambda {|q| where("guides.title ILIKE ?", "%#{q}%")}
+  scope :dbsearch, lambda {|q| where("guides.title ILIKE ? OR guides.description ILIKE ?", "%#{q}%", "%#{q}%")}
   scope :near_point, lambda {|latitude, longitude|
     latitude = latitude.to_f
     longitude = longitude.to_f

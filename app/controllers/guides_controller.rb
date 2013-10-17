@@ -17,17 +17,116 @@ class GuidesController < ApplicationController
   # GET /guides
   # GET /guides.json
   def index
-    @guides = Guide.page(params[:page]).order("guides.id DESC")
-    if logged_in?
-      @guides_by_you = current_user.guides.limit(100).order("guides.id DESC")
+    @guides = if logged_in? && params[:by] == "you"
+      current_user.guides.limit(100).order("guides.id DESC")
+    else
+      Guide.page(params[:page]).order("guides.id DESC")
     end
     @guides = @guides.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
+
+    unless params[:place_id].blank?
+      @place = Place.find(params[:place_id]) rescue nil
+      if @place
+        @guides = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, @place.descendant_conditions)})", @place)
+      end
+    end
+
+    unless params[:taxon_id].blank?
+      @taxon = Taxon.find_by_id(params[:taxon_id])
+      if @taxon
+        @guides = @guides.joins(:taxon).where("taxa.id = ? OR (#{Taxon.send(:sanitize_sql, @taxon.descendant_conditions)})", @taxon)
+      end
+    end
+
+    nav_places_for_index
+    nav_taxa_for_index
+
     pagination_headers_for(@observations)
     respond_to do |format|
       format.html
       format.json { render json: @guides }
     end
   end
+
+  private
+  def nav_places_for_index
+    if @place
+      ancestry_counts_scope = Place.joins("INNER JOIN guides ON guides.place_id = places.id").scoped
+      ancestry_counts_scope = ancestry_counts_scope.where(@place.descendant_conditions) if @place
+      ancestry_counts = ancestry_counts_scope.group("ancestry || '/' || places.id::text").count
+      if ancestry_counts.blank?
+        @nav_places = []
+      else
+        ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0}
+        width = ancestries.last.size
+        matrix = ancestries.map do |a|
+          a + ([nil]*(width-a.size))
+        end
+        # start at the right col (lowest rank), look for the first occurrence of
+        # consensus within a rank
+        consensus_node_id, subconsensus_node_ids = nil, nil
+        (width - 1).downto(0) do |c|
+          column_node_ids = matrix.map{|ancestry| ancestry[c]}
+          if column_node_ids.uniq.size == 1 && !column_node_ids.first.blank?
+            consensus_node_id = column_node_ids.first
+            subconsensus_node_ids = matrix.map{|ancestry| ancestry[c+1]}.uniq
+            break
+          end
+        end
+        @nav_places = Place.where("id IN (?)", subconsensus_node_ids)
+        @nav_places = @nav_places.sort_by(&:name)
+      end
+    else
+      @nav_places = Place.continents.order(:name)
+    end
+    @nav_places_counts = {}
+    @nav_places.each do |p|
+      @nav_places_counts[p.id] = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, p.descendant_conditions)})", p).count
+    end
+    @nav_places_counts.each do |place_id,count|
+      @nav_places.reject!{|p| p.id == place_id} if count == 0
+    end
+  end
+
+  def nav_taxa_for_index
+    if @taxon
+      ancestry_counts_scope = Taxon.joins("INNER JOIN guides ON guides.taxon_id = taxa.id").scoped
+      ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
+      # ancestry_counts = ancestry_counts_scope.group(:ancestry).count
+      ancestry_counts = ancestry_counts_scope.group("ancestry || '/' || taxa.id::text").count
+      if ancestry_counts.blank?
+        @nav_taxa = []
+      else
+        ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0 && a[0] == Taxon::LIFE.id.to_s}
+        width = ancestries.last.size
+        matrix = ancestries.map do |a|
+          a + ([nil]*(width-a.size))
+        end
+        # start at the right col (lowest rank), look for the first occurrence of
+        # consensus within a rank
+        consensus_taxon_id, subconsensus_taxon_ids = nil, nil
+        (width - 1).downto(0) do |c|
+          column_taxon_ids = matrix.map{|ancestry| ancestry[c]}
+          if column_taxon_ids.uniq.size == 1 && !column_taxon_ids.first.blank?
+            consensus_taxon_id = column_taxon_ids.first
+            subconsensus_taxon_ids = matrix.map{|ancestry| ancestry[c+1]}.uniq
+            break
+          end
+        end
+        @nav_taxa = Taxon.where("id IN (?)", subconsensus_taxon_ids).includes(:taxon_names).sort_by(&:name)
+      end
+    else
+      @nav_taxa = Taxon::ICONIC_TAXA.select{|t| t.rank == Taxon::KINGDOM}
+    end
+    @nav_taxa_counts = {}
+    @nav_taxa.each do |t|
+      @nav_taxa_counts[t.id] = @guides.joins(:taxon).where("taxa.id = ? OR (#{Taxon.send(:sanitize_sql, t.descendant_conditions)})", t).count
+    end
+    @nav_taxa_counts.each do |taxon_id,count|
+      @nav_taxa.reject!{|t| t.id == taxon_id} if count == 0
+    end
+  end
+  public
 
   # GET /guides/1
   # GET /guides/1.json

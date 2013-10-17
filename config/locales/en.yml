@@ -196,7 +196,7 @@ en:
   all_life: All life
   all_names: All Names
   all_photos: All photos
-  all_places: "&laquo; All Places"
+  all_places: "All Places"
   all_projects: All Projects
   all_rights_reserved: all rights reserved
   all_species: All Species
@@ -420,6 +420,7 @@ en:
   by_project_list: by project list
   by_submittedby: "by %{submittedby}"
   by_you: By you
+  by_everyone: By everyone
   calendar: Calendar
   can_you_help_your_friends_id_these: Can you help your friends ID these?
   cancel: Cancel
@@ -783,6 +784,8 @@ en:
   edit_your_profile: Edit your profile
   edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Edit your settings</a> to change the kinds of updates you receive or unsubscribe completely."
   edited: Edited
+  edited_by: Edited by
+  edited_by_name_html: "Edited by %{name}"
   editing: Editing
   editing_announcement: Editing announcement
   editing_observation_field: Editing observation field
@@ -2811,8 +2814,10 @@ en:
           will just import the first available text section from EOL, which is
           generally contains a summary when available.
         guide_place_desc: |
-          Associating your guide with a place will show the place boundary on
-          %{site_name} maps where they are shown (e.g. "card" view, taxon pages, etc.)
+          Associating your guide with a place will let people find it when
+          searching for places, and it will show the place boundary on
+          %{site_name} maps where they are shown if a boundary has been set
+          (e.g. "card" view, taxon pages, etc.)
         licensing_explanation: |
           Licensing your content grants other people the right to copy and
           modify it without asking your permission. It makes it much easier to

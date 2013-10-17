@@ -126,7 +126,7 @@
         <% if @places.blank? -%>
           <%= link_to_toggle t(:places), "#places", :class => 'open' %>
         <% else %>
-          <%= link_to t(:all_places).html_safe, url_for_params(:without => [:page, :places]), :rel => "nofollow" %>
+          <%= link_to "&laquo; #{t(:all_places)}".html_safe, url_for_params(:without => [:page, :places]), :rel => "nofollow" %>
         <% end -%>
       </strong>
 

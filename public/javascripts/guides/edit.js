@@ -291,7 +291,7 @@ google.maps.event.addListener(map, 'zoom_changed', function() {
 })
 window.firstRun = true
 $('#guide_place_id').chooser({
-  collectionUrl: '/places/autocomplete.json?with_geom=t',
+  collectionUrl: '/places/autocomplete.json',
   resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
   chosen: PLACE,
   afterSelect: function(item) {

@@ -126,6 +126,7 @@ class Place < ActiveRecord::Base
   PLACE_TYPES.each do |code, type|
     PLACE_TYPE_CODES[type.downcase] = code
     const_set type.upcase.gsub(/\W/, '_'), code
+    scope type.pluralize.underscore.to_sym, where("place_type = ?", code)
   end
 
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
