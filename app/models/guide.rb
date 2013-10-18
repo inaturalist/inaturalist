@@ -52,6 +52,7 @@ class Guide < ActiveRecord::Base
     where("ST_Distance(ST_Point(guides.longitude, guides.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
     order("ST_Distance(ST_Point(guides.longitude, guides.latitude), ST_Point(#{longitude}, #{latitude}))")
   }
+  scope :published, where("published_at IS NOT NULL")
 
   def to_s
     "<Guide #{id} #{title}>"
@@ -350,5 +351,9 @@ class Guide < ActiveRecord::Base
 
   def unique_tags
     Tag.where("taggable_type = 'GuideTaxon")
+  end
+
+  def published?
+    !published_at.blank?
   end
 end

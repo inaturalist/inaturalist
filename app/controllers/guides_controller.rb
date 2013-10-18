@@ -20,7 +20,7 @@ class GuidesController < ApplicationController
     @guides = if logged_in? && params[:by] == "you"
       current_user.guides.limit(100).order("guides.id DESC")
     else
-      Guide.page(params[:page]).order("guides.id DESC")
+      Guide.page(params[:page]).order("guides.id DESC").published
     end
     @guides = @guides.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
 
@@ -131,6 +131,14 @@ class GuidesController < ApplicationController
   # GET /guides/1
   # GET /guides/1.json
   def show
+    unless @guide.published? || @guide.user_id == current_user.try(:id)
+      respond_to do |format|
+        format.any(:html, :mobile) { render(:file => "#{Rails.root}/public/404.html", :status => 404, :layout => false) }
+        format.any(:xml, :ngz) { render :status => 404, :text => ""}
+        format.json { render :json => {:error => "Not found"}, :status => 404 }
+      end
+      return
+    end
     guide_taxa_from_params
 
     respond_to do |format|
@@ -275,6 +283,7 @@ class GuidesController < ApplicationController
   def create
     @guide = Guide.new(params[:guide])
     @guide.user = current_user
+    @guide.published_at = Time.now if params[:publish]
 
     respond_to do |format|
       if @guide.save
@@ -292,10 +301,15 @@ class GuidesController < ApplicationController
   # PUT /guides/1.json
   def update
     @guide.icon = nil if params[:icon_delete]
+    if params[:publish]
+      @guide.published_at = Time.now
+    elsif params[:unpublish]
+      @guide.published_at = nil
+    end
     create_default_guide_taxa
     respond_to do |format|
       if @guide.update_attributes(params[:guide])
-        format.html { redirect_to @guide, notice: 'Guide was successfully updated.' }
+        format.html { redirect_to @guide, notice: "Guide was successfully #{params[:publish] ? 'published' : 'updated'}." }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

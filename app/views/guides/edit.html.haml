@@ -119,11 +119,13 @@
                     = f.check_box :downloadable, :label => false
                     = t(:enable_mobile_downloads)
                   =t 'views.guides.mobile_downloads_help_html'
-        / %h3 Navigation
-        / - for opt in @nav_options
-        /   = check_box_tag opt
         .actions
-          = f.submit t(:save_guide), :class => "btn btn-primary"
+          - if @guide.published?
+            = f.submit t(:save_guide), :class => "btn btn-primary"
+            = f.submit t(:unpublish), :class => "btn", :name => "unpublish"
+          - else
+            = f.submit t(:publish), :class => "btn btn-primary", :name => "publish"
+            = f.submit t(:save), :class => "btn"
           = link_to t(:delete), @guide, :method => :delete, :confirm => t(:are_you_sure?), :class => "btn btn-danger pull-right"
 
     .span9

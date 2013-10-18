@@ -138,7 +138,7 @@
           }
         }
       }).error(function(arguments) {
-        console.log("[DEBUG] error: ", arguments)
+        // console.log("[DEBUG] error: ", arguments)
       })
     }
 .container-fluid
@@ -147,6 +147,10 @@
       = link_to t(:guides), guides_path
       %span.divider /
       %li.active= @guide.title
+  - unless @guide.published?
+    .alert.text-center
+      %strong= t(:draft, :default => "draft").upcase
+      =t 'views.guides.show.draft_desc' 
   .row-fluid
     .span12
       #actions.right
@@ -169,6 +173,8 @@
             = link_to edit_guide_path(@guide), :class => "btn" do
               %i.icon-edit
               = t(:edit)
+            - unless @guide.published?
+              = link_to t(:publish), guide_path(@guide, :publish => true), :method => :put, :class => "btn btn-primary"
       %h1
         - if @guide.icon.file?
           = image_tag @guide.icon.url(:thumb), :class => "left img-rounded"
