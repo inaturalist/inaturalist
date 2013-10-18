@@ -124,11 +124,7 @@ class CheckList < List
       :include => [:taxon, :user],
       :joins => "JOIN place_geometries ON place_geometries.place_id = #{place_id}",
       :conditions => [
-        "observations.quality_grade = ? AND " +
-        "(" +
-          "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-          "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))" +
-        ")",
+        "observations.quality_grade = ? AND ST_Intersects(place_geometries.geom, observations.private_geom)",
         Observation::RESEARCH_GRADE
       ]
     }
@@ -152,16 +148,7 @@ class CheckList < List
           LEFT OUTER JOIN taxa t ON t.id = o.taxon_id 
           JOIN place_geometries pg ON pg.place_id = #{lt.place_id}
       WHERE
-        (
-          (
-            o.private_latitude IS NULL AND 
-            ST_Intersects(pg.geom, o.geom)
-          ) OR 
-          (
-            o.private_latitude IS NOT NULL AND 
-            ST_Intersects(pg.geom, ST_Point(o.private_longitude, o.private_latitude))
-          )
-        ) AND 
+        ST_Intersects(pg.geom, o.private_geom) AND 
         (
           o.taxon_id = #{lt.taxon_id} OR 
           t.ancestry = '#{ancestry_clause}' OR

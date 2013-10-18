@@ -41,7 +41,7 @@ class AdminController < ApplicationController
         places p, 
         place_geometries pg
       WHERE 
-        ST_Intersects(o.geom, pg.geom) 
+        ST_Intersects(o.private_geom, pg.geom) 
         AND p.id = pg.place_id 
         AND o.created_at::DATE = '#{@daily_date.to_s}' 
         AND p.place_type = 12 

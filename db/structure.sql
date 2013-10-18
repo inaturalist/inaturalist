@@ -1575,8 +1575,7 @@ CREATE TABLE observations (
     cached_tag_list character varying(768) DEFAULT NULL::character varying,
     zic_time_zone character varying(255),
     oauth_application_id integer,
-    sounds_count integer DEFAULT 0,
-    identifications_count integer DEFAULT 0
+    sounds_count integer DEFAULT 0
 );
 
 
@@ -6077,5 +6076,3 @@ INSERT INTO schema_migrations (version) VALUES ('20130926224132');
 INSERT INTO schema_migrations (version) VALUES ('20130926233023');
 
 INSERT INTO schema_migrations (version) VALUES ('20130929024857');
-
-INSERT INTO schema_migrations (version) VALUES ('20131008061545');

@@ -41,9 +41,7 @@ class CalendarsController < ApplicationController
     
     unless @observations.blank?
       scope = Observation.where(
-          "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-          "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
-        )
+          "ST_Intersects(place_geometries.geom, observations.private_geom)")
       scope = scope.where("places.id = place_geometries.place_id")
       scope = scope.where("places.place_type NOT IN (?)", [
         Place::PLACE_TYPE_CODES['Country'], 

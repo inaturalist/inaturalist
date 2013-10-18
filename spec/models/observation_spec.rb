@@ -1311,6 +1311,49 @@ describe Observation do
       o.geom.should be_blank
     end
   end
+
+  describe "private_geom" do
+    it "should be set with coords" do
+      o = Observation.make!(:latitude => 1, :longitude => 1)
+      o.private_geom.should_not be_blank
+    end
+    
+    it "should not be set without coords" do
+      o = Observation.make!
+      o.private_geom.should be_blank
+    end
+    
+    it "should change with coords" do
+      o = Observation.make!(:latitude => 1, :longitude => 1)
+      o.private_geom.y.should == 1.0
+      o.update_attributes(:latitude => 2)
+      o.private_geom.y.should == 2.0
+    end
+    
+    it "should go away with coords" do
+      o = Observation.make!(:latitude => 1, :longitude => 1)
+      o.update_attributes(:latitude => nil, :longitude => nil)
+      o.private_geom.should be_blank
+    end
+
+    it "should be set with geoprivacy" do
+      o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::OBSCURED)
+      o.latitude.should_not eq 1.0
+      o.private_latitude.should eq 1.0
+      o.geom.y.should_not eq 1.0
+      o.private_geom.y.should eq 1.0
+    end
+
+    it "should be set without geoprivacy" do
+      o = Observation.make!(:latitude => 1, :longitude => 1)
+      o.latitude.should eq 1.0
+      o.private_geom.y.should eq 1.0
+    end
+
+    # it "should contain the private coordinates if geoprivacy" do
+
+    # end
+  end
   
   describe "query" do
     it "should filter by research grade" do

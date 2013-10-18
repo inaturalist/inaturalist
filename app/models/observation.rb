@@ -371,19 +371,13 @@ class Observation < ActiveRecord::Base
       place.to_i
     end
     joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
-    where(
-      "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-      "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
-    )
+    where("ST_Intersects(place_geometries.geom, observations.private_geom)")
   }
   
   scope :in_taxons_range, lambda {|taxon|
     taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon.to_i
     joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}").
-    where(
-      "(observations.private_latitude IS NULL AND ST_Intersects(taxon_ranges.geom, observations.geom)) OR " +
-      "(observations.private_latitude IS NOT NULL AND ST_Intersects(taxon_ranges.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
-    )
+    where("ST_Intersects(taxon_ranges.geom, observations.private_geom)")
   }
   
   # possibly radius in kilometers
@@ -839,10 +833,10 @@ class Observation < ActiveRecord::Base
     options[:except] ||= []
     options[:except] += [:user_agent]
     if viewer_id != user_id && !options[:force_coordinate_visibility]
-      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]
+      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom, :private_geom]
       options[:methods] << :coordinates_obscured
     end
-    options[:except] += [:cached_tag_list, :geom]
+    options[:except] += [:cached_tag_list, :geom, :private_geom]
     options[:except].uniq!
     options[:methods].uniq!
     h = super(options)
@@ -854,7 +848,7 @@ class Observation < ActiveRecord::Base
   
   def to_xml(options = {})
     options[:except] ||= []
-    options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]
+    options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom, :private_geom]
     super(options)
   end
   
@@ -1545,6 +1539,13 @@ class Observation < ActiveRecord::Base
       self.geom = nil
     elsif longitude_changed? || latitude_changed?
       self.geom = Point.from_x_y(longitude, latitude)
+    end
+    if (private_latitude && private_latitude_changed?) || (private_longitude && private_longitude_changed?)
+      self.private_geom = Point.from_x_y(private_longitude, private_latitude)
+    elsif self.geom
+      self.private_geom = self.geom
+    else
+      self.private_geom = nil
     end
     true
   end

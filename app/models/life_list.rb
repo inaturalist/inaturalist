@@ -203,15 +203,7 @@ class LifeList < List
           JOIN place_geometries pg ON pg.place_id = #{lt.list.place_id}
       WHERE
         o.user_id = #{user_id} AND
-        (
-          (
-            o.private_latitude IS NULL AND 
-            ST_Intersects(pg.geom, o.geom)
-          ) OR (
-            o.private_latitude IS NOT NULL AND 
-            ST_Intersects(pg.geom, ST_Point(o.private_longitude, o.private_latitude))
-          )
-        ) AND (
+        ST_Intersects(pg.geom, o.private_geom) AND (
           o.taxon_id = #{lt.taxon_id} OR 
           t.ancestry = '#{ancestry_clause}' OR
           t.ancestry LIKE '#{ancestry_clause}/%'
