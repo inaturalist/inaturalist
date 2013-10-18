@@ -1575,7 +1575,9 @@ CREATE TABLE observations (
     cached_tag_list character varying(768) DEFAULT NULL::character varying,
     zic_time_zone character varying(255),
     oauth_application_id integer,
-    sounds_count integer DEFAULT 0
+    sounds_count integer DEFAULT 0,
+    identifications_count integer DEFAULT 0,
+    private_geom geometry(Point)
 );
 
 
@@ -4905,6 +4907,13 @@ CREATE INDEX index_observations_on_photos_count ON observations USING btree (pho
 
 
 --
+-- Name: index_observations_on_private_geom; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_private_geom ON observations USING gist (private_geom);
+
+
+--
 -- Name: index_observations_on_quality_grade; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6076,3 +6085,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130926224132');
 INSERT INTO schema_migrations (version) VALUES ('20130926233023');
 
 INSERT INTO schema_migrations (version) VALUES ('20130929024857');
+
+INSERT INTO schema_migrations (version) VALUES ('20131008061545');
+
+INSERT INTO schema_migrations (version) VALUES ('20131011234030');
