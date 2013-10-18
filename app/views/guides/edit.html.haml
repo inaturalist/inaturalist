@@ -121,7 +121,7 @@
                   =t 'views.guides.mobile_downloads_help_html'
         .actions
           - if @guide.published?
-            = f.submit t(:save_guide), :class => "btn btn-primary"
+            = f.submit t(:save), :class => "btn btn-primary"
             = f.submit t(:unpublish), :class => "btn", :name => "unpublish"
           - else
             = f.submit t(:publish), :class => "btn btn-primary", :name => "publish"

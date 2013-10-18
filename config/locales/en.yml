@@ -90,6 +90,7 @@ en:
   actions: Actions
   activate_user: Activate user
   active: active
+  adapted_by_name_from_a_work_by_original: "Adapted by %{name} from a work by %{original}"
   add: Add
   add_a: Add a
   add_a_batch_of_observations: Add a Batch of Observations
@@ -960,6 +961,7 @@ en:
   generate_taxonomic_tags_for_flickr: Generate taxonomic tags for your Flickr photos.
   generate_widget: Generate Widget
   generating: "Generating..."
+  generating_mobile_archive: "Generating mobile archive"
   Genus: Genus
   genus_slash_species: "[GENUS] / [SPECIES]"
   geoprivacy: Geoprivacy
@@ -2832,6 +2834,9 @@ en:
       show:
         draft_desc: |
           This guide will only be visible to people who can edit it until you publish it.
+      generating_mobile_archive_tip_html: |
+        <span class="alert status">Guides in the iPhone app are still under development</span>
+        This can take a while, so try refreshing this page in a few minutes.
       mobile_downloads_tip_html: |
         <span class="alert status">Guides in the iPhone app are still under development</span>
         This guide can be downloaded to the <a href="%{iphone_url}">iPhone app</a> for offline use.

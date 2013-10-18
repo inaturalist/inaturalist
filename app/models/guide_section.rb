@@ -68,17 +68,20 @@ class GuideSection < ActiveRecord::Base
   end
 
   def attribution
-    original_attribution = if license == Photo::PD_CODE
-      I18n.t('copyright.public_domain')
+    if adapted?
+      I18n.t :adapted_by_name_from_a_work_by_original, :name => guide.user.name, :original => original_attribution
+    else
+      original_attribution
+    end
+  end
+
+  def original_attribution
+    @original_attribution ||= if license == Photo::PD_CODE
+      I18n.t('copyright.public_domain', :default => "public domain").titleize
     elsif license.blank?
       I18n.t('copyright.all_rights_reserved', :name => attribution_name)
     else
       I18n.t('copyright.some_rights_reserved_by', :name => attribution_name, :license_short => license.sub('-', ' '))
-    end
-    if modified?
-      "adapted by #{guide.user.name} from a work by #{original_attribution}"
-    else
-      original_attribution
     end
   end
 
@@ -103,6 +106,10 @@ class GuideSection < ActiveRecord::Base
 
   def modified?
     updated_at > created_at
+  end
+
+  def adapted?
+    modified? && original_attribution !~ /#{guide.user.name}/
   end
 
   def touch_if_modified

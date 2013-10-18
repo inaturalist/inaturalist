@@ -155,11 +155,19 @@
     .span12
       #actions.right
         - if @guide.downloadable?
-          .btn.pull-left.btn-link{:disabled => true, :data => {:tip => t('views.guides.mobile_downloads_tip_html', :iphone_url => CONFIG.iphone_app_url), :tip_position_at => "bottom center", :tip_width => 200, :tip_hide_delay => 200}}
-            %i.icon-mobile-phone.icon
-            =t :mobile_download_enabled
-            - if @guide.editable_by?(current_user)
-              = link_to "(#{t(:disable)})".html_safe, guide_path(@guide, :guide => {:downloadable => false}), :method => :put
+          - if @guide.ngz.file?
+            .btn.pull-left.btn-link{:disabled => true, :data => {:tip => t('views.guides.mobile_downloads_tip_html', :iphone_url => CONFIG.iphone_app_url), :tip_position_at => "bottom center", :tip_width => 200, :tip_hide_delay => 200}}
+              %i.icon-mobile-phone.icon
+              =t :mobile_download_enabled
+              - if @guide.editable_by?(current_user)
+                = link_to "(#{t(:disable)})".html_safe, guide_path(@guide, :guide => {:downloadable => false}), :method => :put
+          - else
+            .btn.pull-left.btn-link{:disabled => true, :data => {:tip => t('views.guides.generating_mobile_archive_tip_html'), :tip_position_at => "bottom center", :tip_width => 200, :tip_hide_delay => 200}}
+              %span.loading.status.inlineblock
+                = succeed '&hellip;'.html_safe do
+                  =t(:generating_mobile_archive)
+              - if @guide.editable_by?(current_user)
+                = link_to "(#{t(:stop)})".html_safe, guide_path(@guide, :guide => {:downloadable => false}), :method => :put
         - if @guide.editable_by?(current_user)
           - if !@guide.ngz_url && !@guide.downloadable?
             %button.btn.pull-left{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#mobile_dialog"}
@@ -357,7 +365,7 @@
         = f.hidden_field :downloadable, :value => true
         .row-fluid
           .span3.text-center
-            %i.icon-mobile-phone.icon-4x{:style => "font-size:200px;width:100px;"}
+            %i.icon-mobile-phone.icon-4x{:style => "font-size:200px;width:100px;line-height:1;"}
           .span9
             %p=t 'views.guides.mobile_downloads_help_html'
       .modal-footer

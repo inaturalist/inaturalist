@@ -92,8 +92,6 @@
               = s.attribution
             - else
               = succeed ',' do
-                - if s.modified?
-                  Modified from original:
                 = s.attribution
               = link_to(s.source_url, s.source_url)
         = formatted_user_text s.description

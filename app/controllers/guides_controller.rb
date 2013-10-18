@@ -345,7 +345,7 @@ class GuidesController < ApplicationController
   end
 
   def search
-    @guides = Guide.dbsearch(params[:q]).page(params[:page])
+    @guides = Guide.published.dbsearch(params[:q]).page(params[:page])
     pagination_headers_for @guides
     respond_to do |format|
       format.html
