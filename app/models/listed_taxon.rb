@@ -356,21 +356,17 @@ class ListedTaxon < ActiveRecord::Base
   
   def cache_columns
     return unless (sql = list.cache_columns_query_for(self))
-    ids = []
+    last_observations = []
+    first_observation_ids = []
     counts = {}
-    connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
+    ListedTaxon.connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
       counts[row['key']] = row['count'].to_i
-      ids += row['ids'].to_s.gsub(/[\{\}]/, '').split(',')
+      last_observations << (row['last_observation'].blank? ? nil : row['last_observation'].split(','))
+      first_observation_ids << row['first_observation_id']
     end
-    ids = ids.map {|id| id == "NULL" ? nil : id.to_i}.compact.uniq
-    first_observation_id = nil
-    last_observation_id = nil
-    unless ids.blank?
-      first_observation_id = ids.min
-      last_observation_id = Observation.latest.first(
-        :select => "id, observed_on, time_observed_at", 
-        :conditions => ["id IN (?)", ids]
-      ).try(:id)
+    first_observation_id = first_observation_ids.compact.sort[0]
+    if last_observation = last_observations.compact.compact.sort_by(&:first).last
+      last_observation_id = last_observation[1]
     end
     total = counts.map{|k,v| v}.sum
     month_counts = counts.map{|k,v| k ? "#{k}-#{v}" : nil}.compact.sort.join(',')

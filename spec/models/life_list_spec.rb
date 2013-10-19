@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
-describe List, "reload_from_observations" do
+describe LifeList, "reload_from_observations" do
   before(:each) do
     @taxon = Taxon.make!
     @child = Taxon.make!(:parent => @taxon)
@@ -58,7 +58,7 @@ describe LifeList do
   end
 end
 
-describe List, "refresh_with_observation" do
+describe LifeList, "refresh_with_observation" do
   before(:each) do
     @parent = Taxon.make!
     @list = LifeList.make!

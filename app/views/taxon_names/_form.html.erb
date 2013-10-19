@@ -67,8 +67,8 @@
   </p>
   <p class="ui" style="margin: 20px 0">
     <%= label_tag t(:if_this_is_a_cientific_name) %><br/>
-    <%= n.radio_button :is_valid, true.to_s %> <%= n.label :is_valid_true, t(:true) %>
-    <%= n.radio_button :is_valid, false %>  <%= n.label :is_valid_false, t(:false) %>
+    <%= n.radio_button :is_valid, true.to_s %> <%= n.label :is_valid_true, t(:true).downcase %>
+    <%= n.radio_button :is_valid, false %>  <%= n.label :is_valid_false, t(:false).downcase %>
   </p>
   
   <div class="clear buttonrow">

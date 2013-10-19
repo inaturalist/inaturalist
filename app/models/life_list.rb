@@ -194,7 +194,8 @@ class LifeList < List
     sql_key = "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)"
     <<-SQL
       SELECT
-        array_agg(o.id) AS ids,
+        min(o.id) AS first_observation_id,
+        max(COALESCE(time_observed_at::varchar, observed_on::varchar, '0') || ',' || o.id::varchar) AS last_observation,
         count(*),
         (#{sql_key}) AS key
       FROM
