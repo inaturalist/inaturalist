@@ -833,6 +833,7 @@ en:
   everyone_journal_posts: Everyone's Journal Posts
   exact_coordinates_obscured_for: Exact coordinates obscured for public view for threatened species.
   exact_location: Exact_location
+  exact_rank: Exact rank
   existing_flags: Existing_flags
   exit_full_screen: "Exit full screen"
   expand_days: expand days
@@ -1014,6 +1015,7 @@ en:
   hi: Hi,
   hide: Hide
   hide details: hide details
+  highest_rank: Highest rank
   home: Home
   home_faq: FAQ
   hybrid: hybrid
@@ -1284,6 +1286,7 @@ en:
   lookup: Lookup
   lookup: Lookup
   lookup_user_rarr: "Lookup user &rarr;"
+  lowest_rank: Rango más bajo
   made_a: made a
   mail_disclaimer: "%{site_name} will not allow its users to send you additional invitations via our inviter. Please report invitation abuse to %{site}."
   main_content: Main content
@@ -1866,6 +1869,7 @@ en:
   project_curators: Project Curators
   project_home: Project home
   project_icon: Project icon
+  project_id_or_url_slug: Project ID or URL slug, e.g. 333 or my-project
   project_invitations: 'Project invitations'
   project_journal_posts: 'Project journal posts'
   project_list: Project List
@@ -1896,6 +1900,29 @@ en:
   range_from: 'Range from '
   rank: Rank
   rank_restrictions: Rank restrictions
+  ranks:
+      kingdom: kingdom
+      phylum: phylum
+      subphylum: subphylum
+      superclass: superclass
+      class: class
+      subclass: subclass
+      superorder: superorder
+      order: order
+      suborder: suborder
+      superfamily: superfamily
+      family: family
+      subfamily: subfamily
+      supertribe: supertribe
+      tribe: tribe
+      subtribe: subtribe
+      genus: genus
+      genushybrid: genushybrid
+      species: species
+      hybrid: hybrid
+      subspecies: subspecies
+      variety: variety
+      form: form
   ray_finned_fishes: ray-finned fishes
   re_apply_list_rules: Re-apply list rules
   re_order_photos: "Re-order photos &raquo;"
@@ -2511,6 +2538,7 @@ en:
   user_thinks_yours_is: "%{user} %{noun} your observation %{observation} is"
   username: Username
   username_or_email: Username or email
+  username_or_user_id: Username or user ID
   users: Users
   users_id: "%{user}'s ID"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"

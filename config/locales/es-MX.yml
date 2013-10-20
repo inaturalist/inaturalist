@@ -1043,6 +1043,7 @@ es-MX:
   everyone_journal_posts: "Todas las notas de los Diarios"
   exact_coordinates_obscured_for: "Las coordenadas exactas están oscurecidas para la vista de especies en riesgo por el público"
   exact_location: Ubicación exacta
+  exact_rank: Rango exacto
   existing_flags: "Advertencias presentes"
   exit_full_screen: "Salir de la pantalla completa"
   expand_days: "Expande días"
@@ -6590,6 +6591,7 @@ es-MX:
   hide: Ocultar
   ? "hide details"
   : "Esconde los detalles"
+  highest_rank: Rango más alto
   home: Inicio
   home_faq: "Preguntas frecuentes"
   hybrid: híbrido
@@ -6851,6 +6853,7 @@ es-MX:
   looks_like_neither_have!: "¡Parece que ninguno tiene taxa!"
   lookup: Busca
   lookup_user_rarr: "Busca usario &rarr,"
+  lowest_rank: Rango más bajo
   made_a: creo una
   mail_disclaimer: "El %{site_name} no permitirá a sus usuarios enviar invitaciones adicionales a través de nuestro invitador . Por favor, reporta abusos de invitación a  %{site}.\n"
   main_content: "Contenido principal"
@@ -7422,6 +7425,7 @@ es-MX:
   project_curators: "Curadores del proyecto"
   project_home: Inicio del proyecto
   project_icon: "Ícono del proyecto"
+  project_id_or_url_slug: Identificador o enlace del proyecto, ej. 333 o mi-proyecto
   project_invitations: "Invitaciones al proyecto"
   project_journal_posts: "Notas del Diario del proyecto"
   project_list: "Lista del proyecto"
@@ -7454,6 +7458,29 @@ es-MX:
   range_from: 'Distribución de '
   rank: Rango
   rank_restrictions: "Restrinciones de rango"
+  ranks:
+    kingdom: Reino
+    phylum: Filo
+    subphylum: Subfilo
+    superclass: Superclase
+    class: clase
+    subclass: Subclase
+    superorder: Superorden
+    order: Orden
+    suborder: Suborden
+    superfamily: Superfamilia
+    family: Familia
+    subfamily: Subfamilia
+    supertribe: Supertribu
+    tribe: Tribu
+    subtribe: Subtribu
+    genus: Género
+    genushybrid: Género híbrido
+    species: Especies
+    hybrid: Híbrido
+    subspecies: Subespecies
+    variety: Variedad
+    form: Forma
   ray_finned_fishes: "Peces con aletas radiadas"
   re_apply_list_rules: Re-aplicar las reglas de la lista
   re_order_photos: "Reordena las fotos  &raquo;"
@@ -8040,6 +8067,7 @@ es-MX:
   user_thinks_yours_is: "%{user} %{noun} tu observación %{observation} es"
   username: "Nombre de usuario"
   username_or_email: "Nombre de usuario o correo electónico"
+  username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
   users_profile: "Perfil de %{user}"
   using_a_license: "Usando una licencia"
