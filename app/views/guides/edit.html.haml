@@ -181,9 +181,15 @@
       #addtaxa-single.tab-pane.active.fade.in
       #addtaxa-place.tab-pane.fade
         .stacked
-          %input.placechooser.chooser{:placeholder => t(:start_typing_place_name)}
+          %input.placechooser.chooser{:placeholder => t(:start_typing_place_name), :type => "text"}
         .stacked
-          %input.taxonchooser.chooser{:placeholder => t(:start_typing_taxon_name)}
+          %input.taxonchooser.chooser{:placeholder => t(:start_typing_taxon_name), :type => "text"}
+          %span.muted
+            = surround '(', ')' do
+              =t :optional
+        .stacked
+          %label=t :rank
+          = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t(r, :default => r).downcase, r]}), :include_blank => true
           %span.muted
             = surround '(', ')' do
               =t :optional

@@ -2,22 +2,29 @@ $('#addtaxa').modal({
   backdrop: true,
   show: false
 }).on('hidden', completeAddTaxa)
-$('#addtaxa').on('shown', function() { $('input:visible', this).focus() })
+$('#addtaxa').on('shown', function() { $('input:visible:first', this).focus() })
 $('#addtaxa-place .taxonchooser').chooser({
   collectionUrl: '/taxa/autocomplete.json',
   resourceUrl: '/taxa/{{id}}.json?partial=chooser'
 })
 $('#addtaxa-place .placechooser').chooser({
   collectionUrl: '/places/autocomplete.json',
-  resourceUrl: '/places/{{id}}.json?partial=autocomplete_item'
+  resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
+  afterSelect: function() {
+    $('#addtaxa-place .taxonchooser').nextAll(':input:visible:first').focus()
+  }
 })
-$('#addtaxa-place .chooser').change(function() {
+$('#addtaxa-place .chooser, #addtaxa-place :input[name=rank]').change(function() {
   $('#addtaxa-place .status').addClass('loading').html('Counting matches...')
   if (window.matchingTaxaRequest) {
     window.matchingTaxaRequest.abort()
   }
   var params = "place_id=" + $('#addtaxa-place .placechooser').val() + 
                 "&taxon_id=" + $('#addtaxa-place .taxonchooser').val()
+  var rank = $('#addtaxa-place :input[name=rank]').val()
+  if (rank) {
+    params += "&rank="+rank
+  }
   window.matchingTaxaRequest = $.getJSON('/taxa.json', params, function(taxa, status, xhr) {
     var c = parseInt(xhr.getResponseHeader('x-total-entries') || 0),
         names = $.map(taxa, function(t) { return t.name }),
@@ -25,7 +32,7 @@ $('#addtaxa-place .chooser').change(function() {
     if (names.length == 1) {
       msg += ": " + names.join(', ')
     } else if (names.length > 0){
-      msg += ", "+ I18n.t('including') + " " + names.join(', ')
+      msg += ", "+ I18n.t('including') + " " + names.slice(0,10).join(', ')
     }
     $('#addtaxa-place .status').removeClass('loading').html(msg)
   })
@@ -81,9 +88,11 @@ function addTaxaSingle() {
   })
 }
 function completeAddTaxa() {
-  var btn = $('#addtaxa .modal-footer .btn-primary').not('.loadingclick')
-  btn.siblings('.loadingclick').hide()
+  var btn = $('#addtaxa .modal-footer .btn-primary') //.not('.loadingclick')
   btn.show()
+  btn.attr('disabled', false).removeClass('disabled description')
+  btn.val(btn.data('original-value'))
+  btn.siblings('.loadingclick').hide()
   $('#addtaxa').modal('hide')
 }
 function checkAddingTaxaFor(taxonId) {
@@ -99,9 +108,10 @@ function checkAddingTaxaFor(taxonId) {
 }
 function addTaxaFromPlace() {
   var placeId = $('#addtaxa-place .placechooser').val(),
-      taxonId = $('#addtaxa-place .taxonchooser').val()
+      taxonId = $('#addtaxa-place .taxonchooser').val(),
+      rank = $('#addtaxa-place select[name=rank]').val()
   $('#addtaxa .modal-footer .btn-primary').addClass('disabled').text('Adding...')
-  $.post('/guides/'+GUIDE.id+'/import_taxa', {taxon_id: taxonId, place_id: placeId, partial: "guides/guide_taxon_row"}, function(json) {
+  $.post('/guides/'+GUIDE.id+'/import_taxa', {taxon_id: taxonId, place_id: placeId, rank:rank, partial: "guides/guide_taxon_row"}, function(json) {
     for (var i = json.guide_taxa.length - 1; i >= 0; i--) {
       if (json.guide_taxa[i].html) {
         $('#guide_taxa .nocontent').remove()
@@ -440,4 +450,3 @@ $('#eolupdate').on('shown', function () {
 $('#eolupdate').on('hidden', function () {
   $('body').css({height: 'auto', overflow:'auto'})
 })
-
