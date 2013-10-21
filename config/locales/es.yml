@@ -1027,6 +1027,7 @@ es:
   everyone_journal_posts: "Articulos en todos los diarios"
   exact_coordinates_obscured_for: "Coordenadas exactas ocultas para visualización pública para especies amenazadas."
   exact_location: Ubicación exacta
+  exact_rank: Rango exacto
   existing_flags: "Marcas existentes"
   exit_full_screen: "Salir de la pantalla completa"
   expand_days: "expandir días"
@@ -1200,6 +1201,7 @@ es:
   hi: Hola.
   hide: Ocultar
   hide_details: "ocultar detalles"
+  highest_rank: Rango más alto
   home: Inicio
   home_faq: FAQ
   hybrid: híbrido
@@ -1473,6 +1475,7 @@ es:
   lookup: Buscar
   lookup_noun: Búsqueda
   lookup_user_rarr: "Buscar usuario &rarr;"
+  lowest_rank: Rango más bajo
   made_a: creo una
   mail_disclaimer: "%{site_name} no permitirá que sus usuarios le envíen más invitaciones a través de nuestro invitador. Por favor reporte el abuso de invitaciones a %{site}."
   main_content: "Contenido principal"
@@ -2092,6 +2095,7 @@ es:
   project_curators: "Curadores del Proyecto"
   project_home: Inicio del proyecto
   project_icon: "Ícono de proyecto"
+  project_id_or_url_slug: Identificador o enlace del proyecto, ej. 333 o mi-proyecto
   project_list: "Lista de Proyectos"
   project_members: Miembros de %{project}
   project_observations: Observaciones del proyecto
@@ -2118,6 +2122,29 @@ es:
   range_from: 'Distribución de '
   rank: rango
   rank_restrictions: "Clasificar las restricciones"
+  ranks:
+      kingdom: Reino
+      phylum: Filo
+      subphylum: Subfilo
+      superclass: Superclase
+      class: clase
+      subclass: Subclase
+      superorder: Superorden
+      order: Orden
+      suborder: Suborden
+      superfamily: Superfamilia
+      family: Familia
+      subfamily: Subfamilia
+      supertribe: Supertribu
+      tribe: Tribu
+      subtribe: Subtribu
+      genus: Género
+      genushybrid: Género híbrido
+      species: Especies
+      hybrid: Híbrido
+      subspecies: Subespecies
+      variety: Variedad
+      form: Forma
   ray_finned_fishes: "peces con aletas radiadas"
   re_apply_list_rules: Re-aplicar las reglas de la lista
   re_order_photos: "Reordenar fotos &raquo;"
@@ -2727,6 +2754,7 @@ es:
   user_thinks_yours_is: "%{user} %{noun} su observación %{observation} es"
   username: "Nombre de usuario"
   username_or_email: "Nombre de usuario o email"
+  username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
   users_id: "Identificación de %{user}"
   users_latest_observations_on_site: "Lates observaciones de %{user} en %{site}"

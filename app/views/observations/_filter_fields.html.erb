@@ -266,7 +266,7 @@
       <strong><%=t :exact_rank %></strong>
     </div>
     <div class="left">
-      <%= select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t(r, :default => r).downcase, r]}, @rank), :include_blank => t(:any) %>
+      <%= select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r).downcase, r]}, @rank), :include_blank => t(:any) %>
     </div>
   </div>
   <div class="left">
@@ -274,7 +274,7 @@
       <strong><%=t :highest_rank %></strong>
     </div>
     <div class="left">
-      <%= select_tag :hrank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t(r, :default => r).downcase, r]}, @hrank), :include_blank => t(:any) %>
+      <%= select_tag :hrank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r).downcase, r]}, @hrank), :include_blank => t(:any) %>
     </div>
   </div>
   <div class="left">
@@ -282,7 +282,7 @@
       <strong><%=t :lowest_rank %></strong>
     </div>
     <div class="left">
-      <%= select_tag :lrank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t(r, :default => r).downcase, r]}, @lrank), :include_blank => t(:any) %>
+      <%= select_tag :lrank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r).downcase, r]}, @lrank), :include_blank => t(:any) %>
     </div>
   </div>
 </div>
@@ -293,7 +293,7 @@
     <div class="left">
       <input type="text" name="user_id" id="user_id_input" value="<%= @selected_user.try(:id) %>" class="smalltext text"/>
       <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
-      <div class="small">Username or user ID</div>
+      <div class="small"><%= t :username_or_user_id %></div>
     </div>
   </div>
 <% end -%>
@@ -304,7 +304,7 @@
     <div class="left">
       <input type="text" name="projects[]" id="project_id_input" value="<%= @project.try(:id) %>" class="smalltext text"/>
       <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
-      <div class="small">Project ID or URL slug, e.g. 333 or my-project</div>
+      <div class="small"><%= t :project_id_or_url_slug %></div>
     </div>
   </div>
 <% end -%>
