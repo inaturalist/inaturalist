@@ -237,8 +237,8 @@ class FlickrPhoto < Photo
         puts "[ERROR] Failed to retrieve #{p.square_url}, skipping..."
         skipped += 1
         next
-      rescue Timeout::Error
-        puts "[ERROR] Timeout requesting photo, skipping..."
+      rescue Timeout::Error, Errno::ECONNREFUSED => e
+        puts "[ERROR] #{e.message} (#{e.class.name}), skipping..."
         skipped += 1
         next
       end
