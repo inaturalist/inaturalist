@@ -94,8 +94,8 @@
         <td class="target <%= attr_name %>">
 
           <%- if attr_name.eql?('place_type_name') %>
-            <%= t("place_geo.geo_planet_place_types.#{@place.send(attr_name).gsub(' ','_')}", :default => @place.send(attr_name)) %>
-
+            <%- place_type_name = @place.send(attr_name) || t(:unknown) -%>
+            <%= t("place_geo.geo_planet_place_types.#{place_type_name.gsub(' ','_')}", :default => @place.send(attr_name)) %>
           <% else %>
               <%= t("places_name.#{@place.send(attr_name).gsub(' ','_').downcase}", :default => @place.send(attr_name)) %>
           <% end -%>

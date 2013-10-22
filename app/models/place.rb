@@ -9,6 +9,7 @@ class Place < ActiveRecord::Base
   has_many :taxa, :through => :listed_taxa
   has_many :taxon_links, :dependent => :delete_all
   has_many :guides, :dependent => :nullify
+  has_many :projects, :dependent => :nullify, :inverse_of => :place
   has_one :place_geometry, :dependent => :destroy
   has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
     :select => (PlaceGeometry.column_names - ['geom']).join(', ')
@@ -318,7 +319,7 @@ class Place < ActiveRecord::Base
       (ydn_place.ancestors || []).reverse_each do |ydn_ancestor|
         next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
         ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
-        ancestors << ancestor
+        ancestors << ancestor if ancestor
         place.parent = ancestors.last
       end
     end
