@@ -105,6 +105,7 @@ class GuideSection < ActiveRecord::Base
   end
 
   def modified?
+    return false unless updated_at && created_at
     updated_at > created_at
   end
 

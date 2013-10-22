@@ -2469,7 +2469,7 @@ en:
   total_users: "total users,"
   tree_browser: Tree Browser
   tree_browser_raquo: "Tree Browser &raquo;"
-  'true': True
+  'true': 'True'
   try_adding_species_form: Try adding some species using the form on this page.
   try_wikipedia: Try Wikipedia?
   tue: Tue
@@ -2857,6 +2857,12 @@ en:
           sources that use Creative Commons ShareAlike licenses (like
           Wikipedia), you are legall obliged to use a similar license. Here's
           an overview of all the Creative Commons licenses and what they mean:
+        paste_note_html: |
+          Paste in up to 500 species names, one per line. %{site_name} will do
+          its best to match common names to species concepts, but to avoid
+          ambiguity it's better to use scientific names. If you want to
+          specify them both, separate the scientific name from the common name
+          with a comma, like <code>Homo sapiens,Human</code>.
         places_note: |
           Note: not all places have check lists with taxa. If you're having
           trouble finding a place with taxa, try choosing larger areas with

@@ -296,6 +296,10 @@
                       = link_to guide_taxon do
                         %i= guide_taxon.display_name
                       = cite(gp.attribution) if gp
+                    - elsif guide_taxon.display_name.blank?
+                      = link_to guide_taxon do
+                        %i= guide_taxon.name
+                      = cite(gp.attribution) if gp
                     - else
                       = link_to guide_taxon do
                         = guide_taxon.display_name

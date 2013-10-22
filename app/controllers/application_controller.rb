@@ -198,7 +198,7 @@ class ApplicationController < ActionController::Base
     class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
     class_name = class_name.to_s.underscore.camelcase
     record = instance_variable_get("@#{class_name.underscore}")
-    unless logged_in? && current_user.id == record.user_id
+    unless logged_in? && (current_user.id == record.user_id || current_user.is_admin?)
       msg = "You don't have permission to do that"
       respond_to do |format|
         format.html do

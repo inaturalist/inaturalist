@@ -58,6 +58,8 @@ $('#addtaxa .modal-footer .btn-primary').click(function() {
     addTaxaFromPlace()
   } else if ($('#addtaxa-eol:visible').length > 0) {
     addTaxaFromEol()
+  } else if ($('#addtaxa-paste:visible').length > 0) {
+    addTaxaFromPaste()
   } else {
     completeAddTaxa()
   }
@@ -88,7 +90,7 @@ function addTaxaSingle() {
   })
 }
 function completeAddTaxa() {
-  var btn = $('#addtaxa .modal-footer .btn-primary') //.not('.loadingclick')
+  var btn = $('#addtaxa .modal-footer .btn-primary')
   btn.show()
   btn.attr('disabled', false).removeClass('disabled description')
   btn.val(btn.data('original-value'))
@@ -110,33 +112,57 @@ function addTaxaFromPlace() {
   var placeId = $('#addtaxa-place .placechooser').val(),
       taxonId = $('#addtaxa-place .taxonchooser').val(),
       rank = $('#addtaxa-place select[name=rank]').val()
-  $('#addtaxa .modal-footer .btn-primary').addClass('disabled').text('Adding...')
-  $.post('/guides/'+GUIDE.id+'/import_taxa', {taxon_id: taxonId, place_id: placeId, rank:rank, partial: "guides/guide_taxon_row"}, function(json) {
-    for (var i = json.guide_taxa.length - 1; i >= 0; i--) {
-      if (json.guide_taxa[i].html) {
-        $('#guide_taxa .nocontent').remove()
-        $('#guide_taxa').prepend(json.guide_taxa[i].html)
-        $('#guide_taxa .guide_taxon:first').labelize()
-      }
-    }
-  }, 'json').complete(function() {
+  $.post(
+    '/guides/'+GUIDE.id+'/import_taxa', 
+    {
+      taxon_id: taxonId, 
+      place_id: placeId, 
+      rank:rank, 
+      partial: "guides/guide_taxon_row"
+    }, 
+    addImportedTaxaFromJSON, 
+    'json'
+  ).complete(function() {
     completeAddTaxa()
   })
+}
+function addImportedTaxaFromJSON(json) {
+  for (var i = json.guide_taxa.length - 1; i >= 0; i--) {
+    if (json.guide_taxa[i].html) {
+      $('#guide_taxa .nocontent').remove()
+      $('#guide_taxa').prepend(json.guide_taxa[i].html)
+      $('#guide_taxa .guide_taxon:first').labelize()
+    }
+  }
 }
 function addTaxaFromEol() {
   var eolCollectionUrl = $('#addtaxa-eol input:first').val()
-  $.post('/guides/'+GUIDE.id+'/import_taxa', {eol_collection_url: eolCollectionUrl, partial: "guides/guide_taxon_row"}, function(json) {
-    for (var i = json.guide_taxa.length - 1; i >= 0; i--) {
-      if (json.guide_taxa[i].html) {
-        $('#guide_taxa .nocontent').remove()
-        $('#guide_taxa').prepend(json.guide_taxa[i].html)
-        $('#guide_taxa .guide_taxon:first').labelize()
-      }
-    }
-  }, 'json').complete(function() {
+  $.post(
+    '/guides/'+GUIDE.id+'/import_taxa', 
+    {
+      eol_collection_url: eolCollectionUrl, 
+      partial: "guides/guide_taxon_row"
+    }, 
+    addImportedTaxaFromJSON, 
+    'json'
+  ).complete(function() {
     completeAddTaxa()
   })
 }
+function addTaxaFromPaste() {
+  $.post(
+    '/guides/'+GUIDE.id+'/import_taxa', 
+    {
+      names: $('#addtaxa-paste textarea:first').val(), 
+      partial: "guides/guide_taxon_row"
+    }, 
+    addImportedTaxaFromJSON, 
+    'json'
+  ).complete(function() {
+    completeAddTaxa()
+  })  
+}
+
 $('.guide_taxon .delete').bind('ajax:before', function() {
   $(this).parents('.guide_taxon').slideUp()
 }).bind('ajax:success', function() {

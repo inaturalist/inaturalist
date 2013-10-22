@@ -20,7 +20,7 @@ class GuideTaxon < ActiveRecord::Base
   after_save {|r| r.guide.expire_caches(:check_ngz => true)}
   after_destroy {|r| r.guide.expire_caches(:check_ngz => true)}
 
-  validates_uniqueness_of :taxon_id, :scope => :guide_id, :message => "has already been added to this guide"
+  validates_uniqueness_of :taxon_id, :scope => :guide_id, :allow_blank => true, :message => "has already been added to this guide"
 
   acts_as_taggable
 

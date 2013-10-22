@@ -40,6 +40,7 @@
       -moz-transform: rotate(-45deg);
     }
     .bootstrap .accordion-inner {min-width: 220px;}
+    #addtaxa-paste textarea {height:200px;}
 - content_for :extrajs do
   :javascript
     var GUIDE = #{raw @guide.to_json},
@@ -176,6 +177,7 @@
     %ul.nav.nav-pills
       %li.active= link_to t(:one_by_one), "#addtaxa-single", "data-toggle" => "pill"
       %li= link_to t(:from_place), "#addtaxa-place", "data-toggle" => "pill"
+      %li= link_to t(:paste), "#addtaxa-paste", "data-toggle" => "pill"
       %li= link_to t(:from_eol_collection), "#addtaxa-eol", "data-toggle" => "pill"
     .tab-content
       #addtaxa-single.tab-pane.active.fade.in
@@ -195,6 +197,10 @@
               =t :optional
         .stacked.status.muted=t :x_matching_taxa, :count => 0
         .muted=t 'views.guides.edit.places_note'
+      #addtaxa-paste.tab-pane.fade
+        .row-fluid
+          %textarea.span12{:placeholder => "Paste in names"}
+          .muted.status=t 'views.guides.edit.paste_note_html', :site_name => SITE_NAME_SHORT
       #addtaxa-eol.tab-pane.fade
         %input{:type => "text", :name => "eol_collection_url", :placeholder => t(:eol_collection_url), :value => @guide.source_url.to_s =~ /eol\.org/ ? @guide.source_url : nil}
   .modal-footer

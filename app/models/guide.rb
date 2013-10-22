@@ -62,6 +62,9 @@ class Guide < ActiveRecord::Base
     if options[:eol_collection_url]
       return add_taxa_from_eol_collection(options[:eol_collection_url])
     end
+    unless options[:names].blank?
+      return add_taxa_from_names(options[:names])
+    end
     return if options[:place_id].blank? && options[:list_id].blank? && options[:taxon_id].blank?
     scope = if !options[:place_id].blank?
       Taxon.from_place(options[:place_id]).scoped
@@ -74,7 +77,7 @@ class Guide < ActiveRecord::Base
       scope = scope.descendants_of(t)
     end
     scope = scope.of_rank(options[:rank]) unless Taxon::RANKS.include?(options[:rank])
-    taxa = []
+    guide_taxa = []
     scope.includes(:taxon_photos, :taxon_descriptions).find_each do |taxon|
       gt = self.guide_taxa.build(
         :taxon_id => taxon.id,
@@ -84,9 +87,9 @@ class Guide < ActiveRecord::Base
       unless gt.save
         Rails.logger.error "[ERROR #{Time.now}] Failed to save #{gt}: #{gt.errors.full_messages.to_sentence}"
       end
-      taxa << gt
+      guide_taxa << gt
     end
-    taxa
+    guide_taxa
   end
 
   def editable_by?(user)
@@ -94,9 +97,7 @@ class Guide < ActiveRecord::Base
   end
 
   def set_taxon
-    ancestry_counts = log_timer do
-      Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", id).group(:ancestry).count
-    end
+    ancestry_counts = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", id).group(:ancestry).count
     ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).compact
     if ancestries.blank?
       Guide.update_all({:taxon_id => nil}, ["id = ?", id])
@@ -203,6 +204,38 @@ class Guide < ActiveRecord::Base
       guide_taxa << gt
     end
     Rails.logger.debug "[DEBUG] #{self} add_taxa_from_eol_collection, #{saved} saved, #{errors.size} errors"
+    guide_taxa
+  end
+
+  def add_taxa_from_names(names)
+    if names.is_a?(String)
+      names = names.split("\n").compact.map(&:strip)
+    end
+    guide_taxa = []
+    names[0..500].each do |name|
+      name, display_name = name.split(',')
+      gt = if taxon = Taxon.single_taxon_for_name(name)
+        default_name = taxon.default_name.name
+        display_name = if name.downcase == default_name.downcase
+          display_name || default_name
+        elsif name.downcase == taxon.name.downcase
+          display_name
+        else
+          display_name || name
+        end
+        self.guide_taxa.build(
+          :taxon_id => taxon.id,
+          :name => taxon.name,
+          :display_name => display_name
+        )
+      else
+        self.guide_taxa.build(:name => name, :display_name => display_name)
+      end
+      unless gt.save
+        Rails.logger.error "[ERROR #{Time.now}] Failed to save #{gt}: #{gt.errors.full_messages.to_sentence}"
+      end
+      guide_taxa << gt
+    end
     guide_taxa
   end
 
