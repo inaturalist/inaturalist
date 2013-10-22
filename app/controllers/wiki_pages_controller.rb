@@ -10,7 +10,7 @@ class WikiPagesController < ApplicationController
   end
 
   def history_allowed?
-    edit_allowed?
+    logged_in?
   end
 
   def setup_page
