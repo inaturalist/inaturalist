@@ -779,7 +779,11 @@ class TaxaController < ApplicationController
     else
       @describers.each do |d|
         @describer = d
-        @description = d.describe(@taxon)
+        @description = begin
+          d.describe(@taxon)
+        rescue OpenURI::HTTPError, Timeout::Error => e
+          nil
+        end
         break unless @description.blank?
       end
     end
