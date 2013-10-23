@@ -413,7 +413,7 @@ es-MX:
   back_to_editing_observation: "Regresar a editar la observación"
   back_to_help: "Regresar a ayuda"
   back_to_import: "Regresar a importar"
-  back_to_lists: "Regresar a las listas de %{name}"
+  back_to_lists: "Regresar a las listas %{name}"
   back_to_observation: "Regresar a la observación"
   back_to_observation_fields: "De regreso a los campos de observación"
   back_to_people: "De regreso a la gente"
@@ -1038,7 +1038,7 @@ es-MX:
   establishment_means_descriptions:
       native_and_occurs_nowhere_else: "nativa restringida al pais"
       arrived_in_the_region_via_anthropogenic_means: "evolucionó en otra región y ahora se encuentra en el país"
-  every_species_seen_by: Todas las especies vistas por %{user}
+  every_species_seen_by: Todas las especies vistas por
   everyone: todos
   everyone_journal_posts: "Todas las notas de los Diarios"
   exact_coordinates_obscured_for: "Las coordenadas exactas están oscurecidas para la vista de especies en riesgo por el público"
@@ -7394,6 +7394,7 @@ es-MX:
   please_hold_on_while_the_file_is_generated: Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes.
   position: Posición
   positional_accuracy: precisión de tu ubicación
+  possessive_user: "de %{user}"
   post: Nota
   post_published: ¡Nota publicada!
   post_some_new_stuff: "Incluye una nueva nota"
@@ -8064,6 +8065,7 @@ es-MX:
   user_invited_your_x_to_a_project_html: "%{user} invitó su %{x} a un proyecto"
   user_s: "del %{user}"
   user_s_id: "%{id} de %{user}"
+  user_s_lists: "Listas %{user}"
   user_thinks_yours_is: "%{user} %{noun} tu observación %{observation} es"
   username: "Nombre de usuario"
   username_or_email: "Nombre de usuario o correo electónico"
@@ -8531,6 +8533,7 @@ es-MX:
   you_would_get_the: "Obtendrás las siguientes etiquetas:"
   youll_need_to_link: "Necesitarás enlazar"
   your: Tus
+  your_: Tuyas
   your_account_has_been_verified: "¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor ingresa al sistema para continuar."
   your_activation_code_was_missing: "Tu código de activación se ha perdido.  Porfavor sigue el enlace desde tu correo"
   your_comment_was_saved: "Tu comentario fue guardado"

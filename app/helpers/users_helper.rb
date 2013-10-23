@@ -112,12 +112,12 @@ module UsersHelper
     capitalize_it = options.delete(:capitalize)
     if logged_in? && current_user == user
       if capitalize_it
-        t(:your, :default => "your").capitalize
+        t(:your_, :default => "your").capitalize
       else
-        t(:your, :default => "your")
+        t(:your_, :default => "your")
       end
     else
-      "#{user.login}'s"
+      t :possessive_user, :user => user.login
     end
   end
 

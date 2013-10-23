@@ -1022,7 +1022,7 @@ es:
     native_and_occurs_nowhere_else: "solamente ocurre en México"
     arrived_in_the_region_via_anthropogenic_means: "llegó a la región por medios antropogénicos"
   establishment_means_describes_how: "El medio de establecimiento describe cómo se estableció el taxón en un área. Ver DarwinCore para <a href=\"http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">más información en terminología</a>."
-  every_species_seen_by: Todas las especies vistas por %{user}
+  every_species_seen_by: Todas las especies vistas por
   everyone: todos
   everyone_journal_posts: "Articulos en todos los diarios"
   exact_coordinates_obscured_for: "Coordenadas exactas ocultas para visualización pública para especies amenazadas."
@@ -2063,6 +2063,7 @@ es:
   plural_species: Especies
   position: Posición
   positional_accuracy: precisión de tu ubicación
+  possessive_user: "de %{user}"
   post: Ingresar
   post_published: ¡Nota publicada!
   post_some_new_stuff: "publicar algo nuevo"
@@ -2751,6 +2752,7 @@ es:
   user_is_a_naturalist: "%{user} es un naturalista!"
   user_s: "%{model_name} de %{user}"
   user_s_id: "%{id} de %{user}"
+  user_s_lists: "%Listas {user}"
   user_thinks_yours_is: "%{user} %{noun} su observación %{observation} es"
   username: "Nombre de usuario"
   username_or_email: "Nombre de usuario o email"
@@ -3290,6 +3292,7 @@ es:
   you_would_get_the: "usted obtendrá las siguientes etiquetas"
   youll_need_to_link: "Deberá vincular"
   your: Usted
+  your_: Usted
   your_account_has_been_verified: "¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor ingresa al sistema para continuar."
   your_activation_code_was_missing: "Tu código de activación se ha perdido.  Porfavor sigue el enlace desde tu correo"
   your_comment_was_saved: "Su comentario ha sido guardado."
