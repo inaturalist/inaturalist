@@ -1348,7 +1348,7 @@ class TaxaController < ApplicationController
   end
   
   def presave
-    @taxon.photos = retrieve_photos
+    Rails.cache.delete(@taxon.photos_cache_key)
     if params[:taxon_names]
       TaxonName.update(params[:taxon_names].keys, params[:taxon_names].values)
     end

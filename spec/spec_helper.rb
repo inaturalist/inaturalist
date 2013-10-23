@@ -77,7 +77,7 @@ class EolService
     if File.exists?(fixture_path)
       Nokogiri::XML(open(fixture_path))
     else
-      puts "[DEBUG] Couldn't find EOL response fixture, you should probably do this:\n wget -O #{fixture_path} \"#{uri}\""
+      puts "[DEBUG] Couldn't find EOL response fixture, you should probably do this:\n wget -O \"#{fixture_path}\" \"#{uri}\""
       real_request(method, *args)
     end
   end

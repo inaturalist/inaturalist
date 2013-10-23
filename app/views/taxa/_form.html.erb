@@ -68,24 +68,24 @@
   
   <fieldset class="column span-24">
     <legend><%= t(:photos) %></legend>
-    <p class="description">
-      <%= t(:search_creative_commons_photos_on_flickr) %>
-    </p>
-    
-    <div class="clear">
-      <div id="taxon_photos" class="clear">
-        <% for photo in taxon.photos %>
-          <div class="photo">
-            <%= check_box_tag "#{photo.class.to_s.underscore.pluralize}[]", 
-                photo.native_photo_id, :checked => 'checked', :id => dom_id(photo) %>
-            <label for="<%= dom_id(photo) %>"><%= image_tag(photo.square_url) %></label>
+
+    <div id="taxon_photos" class="clear stacked">
+      <%= f.fields_for :taxon_photos do |tp| %>
+        <div class="taxon_photo">
+          <%= tp.hidden_field :photo_id %>
+          <%= tp.hidden_field :id %>
+          <%= tp.text_field :position, :class => "sortable-position", :label => false %>
+          <%= image_tag(tp.object.photo.small_url) %>
+          <div class="upstacked">
+            <%= link_to t(:view_photo), photo_path(tp.object.photo), :class => "readmore left", :target => "_blank" %>
+            <%= tp.check_box :_destroy, :label_after => true, :label => t(:delete), :wrapper => {:class => "right"} %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end -%>
     </div>
     
     <p class="ui">
-      <%= t :or %> <label><%= t(:add_new_photos_by_their_ids) %></label><br/>
+      <label><%= t(:add_new_photos_by_their_ids) %></label><br/>
       <input type="text" class="text" name="flickr_photos[]" />&nbsp;
       <input type="text" class="text" name="flickr_photos[]" />&nbsp;
       <input type="text" class="text" name="flickr_photos[]" />

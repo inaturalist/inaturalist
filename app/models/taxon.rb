@@ -30,7 +30,7 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_links, :dependent => :delete_all 
   has_many :taxon_ranges, :dependent => :destroy
   has_many :taxon_ranges_without_geom, :class_name => 'TaxonRange', :select => (TaxonRange.column_names - ['geom']).join(', ')
-  has_many :taxon_photos, :dependent => :destroy
+  has_many :taxon_photos, :dependent => :destroy, :order => "position ASC NULLS LAST, id ASC"
   has_many :photos, :through => :taxon_photos
   has_many :assessments
   has_many :conservation_statuses, :dependent => :destroy
@@ -47,6 +47,7 @@ class Taxon < ActiveRecord::Base
   accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :conservation_statuses, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :taxon_photos, :allow_destroy => true
   
   define_index do
     indexes :name
@@ -627,7 +628,7 @@ class Taxon < ActiveRecord::Base
   def photos_with_backfill(options = {})
     options[:limit] ||= 9
     chosen_photos = taxon_photos.all(:limit => options[:limit], 
-      :include => :photo, :order => "taxon_photos.id ASC").map{|tp| tp.photo}
+      :include => :photo, :order => "taxon_photos.position ASC NULLS LAST, taxon_photos.id ASC").map{|tp| tp.photo}
     if chosen_photos.size < options[:limit]
       new_photos = Photo.includes({:taxon_photos => :taxon}).
         order("taxon_photos.id ASC").
@@ -1056,9 +1057,9 @@ class Taxon < ActiveRecord::Base
   
   def default_photo
     @default_photo ||= if taxon_photos.loaded?
-      taxon_photos.sort_by{|tp| tp.id}.first.try(:photo)
+      taxon_photos.sort_by{|tp| tp.position || tp.id}.first.try(:photo)
     else
-      taxon_photos.first(:include => [:photo], :order => "taxon_photos.id ASC").try(:photo)
+      taxon_photos.first(:include => [:photo]).try(:photo)
     end
     @default_photo
   end

@@ -83,7 +83,7 @@ class GuideTaxon < ActiveRecord::Base
     return true unless guide_photos.blank?
     return true if taxon.blank?
     return true if taxon.photos.blank?
-    self.guide_photos.build(:photo => taxon.photos.first)    
+    self.guide_photos.build(:photo => taxon.taxon_photos.first.try(:photo))    
     true
   end
 
@@ -131,13 +131,14 @@ class GuideTaxon < ActiveRecord::Base
     img_data_objects = page.search('dataObject').select{|data_object| 
       data_object.at('dataType').to_s =~ /StillImage/ && data_object.at('dataSubtype').to_s !~ /Map/
     }
+    max_pos = guide_photos.calculate(:maximum, :position) || 0
     img_data_objects[0..5].each do |img_data_object|
       p = if (data_object_id = img_data_object.at('dataObjectID').try(:content))
         EolPhoto.find_by_native_photo_id(data_object_id)
       end
       p ||= EolPhoto.new_from_api_response(img_data_object)
       if !p.blank? && self.guide_photos.detect{|gp| gp.photo_id && gp.photo_id == p.id}.blank?
-        self.guide_photos.build(:photo => p)
+        self.guide_photos.build(:photo => p, :position => (max_pos += 1))
       end
     end
   end
@@ -168,6 +169,8 @@ class GuideTaxon < ActiveRecord::Base
       data_object.at('language') && locale !~ /^#{data_object.at('language').content}/
     end
 
+    max_pos = guide_sections.calculate(:maximum, :position) || 0
+
     data_objects = if subjects.blank? || options[:overview] == "true"
       [data_objects.first]
     else
@@ -185,6 +188,7 @@ class GuideTaxon < ActiveRecord::Base
 
     data_objects.compact.each do |data_object|
       gs = GuideSection.new_from_eol_data_object(data_object)
+      gs.position = (max_pos += 1)
       if gs && !guide_sections.where(:source_url => gs.source_url).exists?
         gs.modified_on_create = false
         self.guide_sections[self.guide_sections.size] = gs

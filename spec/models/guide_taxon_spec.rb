@@ -113,6 +113,16 @@ describe GuideTaxon, "sync_eol_photos" do
     s2.should eq s1
   end
 
+  it "should position new photos after existing ones" do
+    gp = GuidePhoto.make!(:guide_taxon => gt)
+    gt.sync_eol_photos(:page => @mflagellum_page)
+    gt.save!
+    gt.reload
+    guide_photos = gt.guide_photos.sort_by(&:position)
+    guide_photos.first.should eq gp
+    guide_photos.last.position.should > gp.position
+  end
+
   # it "should not add maps" do
   #   page = EolService.page(791500, :common_names => true, :maps => 1, :details => true, :photos => 0)
   #   gt.sync_eol_photos(:page => page)
@@ -176,6 +186,16 @@ describe GuideTaxon, "sync_eol_sections" do
     gt.save!
     gt.reload
     gt.guide_sections.size.should eq 1
+  end
+
+  it "should position new photos after existing ones" do
+    gs = GuideSection.make!(:guide_taxon => gt)
+    gt.sync_eol_sections(:page => @mflagellum_page)
+    gt.save!
+    gt.reload
+    guide_sections = gt.guide_sections.sort_by(&:position)
+    guide_sections.first.should eq gs
+    guide_sections.last.position.should > gs.position
   end
 end
 

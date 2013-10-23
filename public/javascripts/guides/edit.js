@@ -96,6 +96,7 @@ function completeAddTaxa() {
   btn.val(btn.data('original-value'))
   btn.siblings('.loadingclick').hide()
   $('#addtaxa').modal('hide')
+  bindDeleteButtons()
 }
 function checkAddingTaxaFor(taxonId) {
   var i = window.addingTaxonIds.indexOf(taxonId)
@@ -163,11 +164,15 @@ function addTaxaFromPaste() {
   })  
 }
 
-$('.guide_taxon .delete').bind('ajax:before', function() {
-  $(this).parents('.guide_taxon').slideUp()
-}).bind('ajax:success', function() {
-  $(this).parents('.guide_taxon').remove()
-})
+function bindDeleteButtons() {
+  $('.guide_taxon .delete').not('.deleteBound').bind('ajax:before', function() {
+    $(this).parents('.guide_taxon').slideUp()
+  }).bind('ajax:success', function() {
+    $(this).parents('.guide_taxon').remove()
+  }).addClass('deleteBound')
+}
+bindDeleteButtons()
+
 function incrementLoadingStatus(options) {
   options = options || {}
   var status = $('.bigloading.status').text(),
