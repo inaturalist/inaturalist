@@ -1,0 +1,84 @@
+:ruby 
+  index ||= @i
+  checked ||= false
+  synclink_base ||= nil
+  photo_identity ||= nil
+  local_photos ||= false
+  local_photos = false unless logged_in?
+  organized_by_album ||= false
+- if organized_by_album
+  %a.back_to_albums{:data => {:friend_id => @friend_id}}
+    &laquo;
+    Back to
+    = (@friend_name ? "#{@friend_name}'s" : "your")
+    albums
+- elsif @friend_id
+  %a.back_to_friends{"data-friend_id" => @friend_id, href: "#"}
+    &laquo;
+    =t :back_to_friends
+- elsif @group_id
+  %a.back_to_groups{"data-group_id" => @group_id, href: "#"}
+    &laquo;
+    =t :back_to_groups
+- if @reauthorization_needed
+  .alert
+    = t(:flickr_needs_to_confirm, :site_name => SITE_NAME_SHORT)
+    = link_to t(:confirm_now), ProviderAuthorization::AUTH_URLS['Flickr'], :class => "readmore"
+- elsif @timeout
+  .alert
+    Request to the photo provider timed out.  Please try again later.
+- elsif photos.blank? && !local_photos
+  .description.clear= t(:we_didnt_find_any_photos)
+- else
+  - photos.in_groups_of(4) do |row|
+    .row-fluid
+      - row.compact.each do |photo|
+        :ruby
+          native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id
+          thumb_url = photo.try_methods(:small_url, :thumb_url, :url_s, :url_t)
+          next unless thumb_url
+          prefix = photo.is_a?(Photo) ? photo.class.to_s.underscore : 'flickr_photo'
+          unique_id = serial_id
+          if index.blank?
+            input_name = "#{prefix.pluralize}[]"
+            input_id = "#{prefix}_#{native_photo_id}_#{unique_id}"
+          else
+            input_name = "#{prefix.pluralize}[#{index}][]"
+            input_id = "#{prefix}_#{index}_#{native_photo_id}_#{unique_id}"
+          end
+          data = photo.attributes.merge(:photo_class => photo.class.name)
+        .span3.photo{:data => data}
+          = check_box_tag input_name, native_photo_id, checked, {:id => input_id, :class => "checkbox"}
+          - if synclink_base && (synclink_uri = URI.parse(synclink_base) rescue nil)
+            :ruby
+              if synclink_uri.query.blank?
+                synclink_uri.query = "#{prefix}_id=#{native_photo_id}"
+              else
+                synclink_uri.query.gsub!(/\&?#{prefix}_id=[^\&]+/, '')
+                synclink_uri.query += "&#{prefix}_id=#{native_photo_id}"
+              end
+              synclink_uri.query += "&sync_photo=t"
+              synclink_url = synclink_uri.to_s
+              confirmation_msg = <<-EOT
+                Are you sure you want to sync this
+                observation's data with this #{photo.is_a?(LocalPhoto) ? 'photo' : photo.class.name.underscore.humanize}?
+                You will lose changes you've made to this form, but you will be able to
+                revert to your saved copy.
+              EOT
+            = link_to t(:sync), synclink_url, :class => "small synclink", :title => t(:import_date_time_location_taxonomic), :confirm => confirmation_msg
+          %label{:for => input_id}
+            = image_tag(thumb_url, :alt => 'Image', :class => "img-rounded")
+          %span.small.view_photo= link_to(t(:view_original), photo.native_page_url || photo.becomes(Photo), :target => '_blank')
+
+- if local_photos
+  .clear.local_photos
+    - photo_file_field = capture do
+      - uid = serial_id
+      .photo_file_field.clear.quiet.box.stacked
+        = file_field_tag("local_photos[#{index}][]", :accept => "image/jpg,image/jpeg,image/png,image/gif", :multiple => "")
+        .clear
+          = link_to_function t(:clear), "$(this).siblings('input[type=file]').val('')", :class => "right"
+          %nobr{:title => t(:import_date_time_location_taxonomic)}
+            = check_box_tag "local_photos_to_sync[#{index}][]", 1, false, :class => "sync_check", :id => "local_photos_to_sync_#{uid}"
+            %label{:for => "local_photos_to_sync_<%= uid %>"}=t :sync
+    = photo_file_field

@@ -85,24 +85,40 @@
   };
   
   function buildControls(wrapper, options) {
-    // Insert a search field and button.  No forms, please
-    var controls = $('<div class="buttonrow photoSelectorControls"></div>').css(
-      $.fn.photoSelector.defaults.controlsCSS
-    );
-    var $searchInput = $('<input type="text" class="text" placeholder="'+I18n.t('search')+'" />').css(
-      $.fn.photoSelector.defaults.formInputCSS
-    );
-    $searchInput.attr('name', 'photoSelectorSearchField');
+    if (options.bootstrap) {
+      // Insert a search field and button.  No forms, please
+      var controls = $('<div class="photoSelectorControls"></div>').css(
+        $.fn.photoSelector.defaults.controlsCSS
+      )
+      var $searchInput = $('<input type="text" placeholder="'+I18n.t('search')+'" />').css(
+        $.fn.photoSelector.defaults.formInputCSS
+      )
+      var $searchButton = $('<a href="#" class="btn findbutton">'+I18n.t('find_photos')+'</a>').css(
+        $.fn.photoSelector.defaults.formInputCSS
+      )
+      var $searchWrapper = $("<div class='input-append pull-left'></div>")
+      $searchWrapper.append($searchInput).append($searchButton)
+      var $sourceWrapper = $('<span class="urlselect inter"><strong>'+I18n.t('source')+':</strong> </span>')
+    } else {
+      // Insert a search field and button.  No forms, please
+      var controls = $('<div class="buttonrow photoSelectorControls"></div>').css(
+        $.fn.photoSelector.defaults.controlsCSS
+      )
+      var $searchInput = $('<input type="text" class="text" placeholder="'+I18n.t('search')+'" />').css(
+        $.fn.photoSelector.defaults.formInputCSS
+      )
+      var $searchButton = $('<a href="#" class="button findbutton">'+I18n.t('find_photos')+'</a>').css(
+        $.fn.photoSelector.defaults.formInputCSS
+      )
+      var $searchWrapper = $("<span></span>")
+      $searchWrapper.append($searchInput).append($searchButton)
+      var $sourceWrapper = $('<span class="urlselect inter"><strong>'+I18n.t('source')+':</strong> </span>')
+    }
+
+    $searchInput.attr('name', 'photoSelectorSearchField')
     if (typeof(options.defaultQuery) != 'undefined') {
-      $searchInput.val(options.defaultQuery);
-    };
-    var $searchButton = $('<a href="#" class="button findbutton">'+I18n.t('find_photos')+'</a>').css(
-      $.fn.photoSelector.defaults.formInputCSS
-    );
-    var $searchWrapper = $("<span></span>");
-    $searchWrapper.append($searchInput).append($searchButton);
-    
-    var $sourceWrapper = $('<span class="urlselect inter"><strong>'+I18n.t('source')+':</strong> </span>');
+      $searchInput.val(options.defaultQuery)
+    }
 
     // this branch is for backwards compatibility 
     // options.urls is used by legacy photoSelectors, but is now deprecated. 
@@ -329,8 +345,15 @@
 
     
     // Append next & prev links
-    var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>');
-    var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('prev')+'</a>').click(function(e) {
+    var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>')
+    if (options.bootstrap) {
+      var prev = $('<button type="button" class="prevlink btn">&laquo; '+I18n.t('prev')+'</button>')
+      var next = $('<button type="button" class="nextlink btn">'+I18n.t('next')+' &raquo;</button>')
+    } else {
+      var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('prev')+'</a>')
+      var next = $('<a href="#" class="nextlink button">'+I18n.t('next')+' &raquo;</a>')
+    }
+    prev.click(function(e) {
       var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
       pagenum -= 1;
       if (pagenum < 1) pagenum = 1;
@@ -342,8 +365,8 @@
         prevOpts);
       $(wrapper).find('.photoSelectorPage').val(pagenum);
       return false;
-    });
-    var next = $('<a href="#" class="nextlink button">'+I18n.t('next')+' &raquo;</a>').click(function(e) {
+    })
+    next.click(function(e) {
       var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
       pagenum += 1;
       var nextOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
@@ -354,11 +377,17 @@
         nextOpts);
       $(wrapper).find('.photoSelectorPage').val(pagenum);
       return false;
-    });
+    })
     
     $(controls).append($sourceWrapper)
     if ($sourceWrapper.find('select').length == 0) { $sourceWrapper.hide() }
-    $(controls).append($searchWrapper, page, prev, next)
+    if (options.bootstrap) {
+      var prevnext = $('<div class="btn-group pull-right"></div>')
+      prevnext.append(prev,next)
+      $(controls).append($searchWrapper, prevnext, page)
+    } else {
+      $(controls).append($searchWrapper, page, prev, next)
+    }
     $(controls).append($('<div></div>').css({
       height: 0, 
       visibility: 'hidden', 
@@ -426,14 +455,13 @@
     
     // Set loading status
     var $photoSelectorPhotos = $(wrapper).find('.photoSelectorPhotos');
-    var loading = $('<center><span class="loading status inlineblock">'+I18n.t('loading')+'...</span></center>')
-      .css('margin-top', ($photoSelectorPhotos.height() / 2)-20)
-    $photoSelectorPhotos.data('previous-overflow-x', $photoSelectorPhotos.css('overflow-x'));
-    $photoSelectorPhotos.data('previous-overflow-y', $photoSelectorPhotos.css('overflow-y'));
+    $photoSelectorPhotos.data('previous-overflow-x', $photoSelectorPhotos.css('overflow-x'))
+    $photoSelectorPhotos.data('previous-overflow-y', $photoSelectorPhotos.css('overflow-y'))
     $photoSelectorPhotos.scrollTo(0,0)
-    $photoSelectorPhotos.css('overflow','hidden').shades('open', {
-      css: {'background-color': 'white', 'opacity': 0.7}, 
-      content: loading
+    $photoSelectorPhotos.css('overflow','hidden')
+    $photoSelectorPhotos.loadingShades(I18n.t('loading'), {
+      cssClass: 'smallLoading centered',
+      top: '20px'
     })
     
     // Fetch new fields
@@ -456,8 +484,15 @@
         // Re-insert the checkbox parents
         if (existing && existing.length > 0) {
           $photoSelectorPhotos.children().wrapAll('<div class="photoSelectorResults"></div>')
-          var selectedPhotosWrapper = $('<div class="photoSelectorSelected"></div>').html("<h4>"+I18n.t('selected_photos')+"</h4>")
-          selectedPhotosWrapper.append(existing)
+          var selectedPhotosWrapper = $('<div class="photoSelectorSelected"></div>'),
+              header = "<h4>"+I18n.t('selected_photos')+"</h4>"
+          if (options.bootstrap) {
+            var row = $('<div class="row-fluid"></div>')
+            row.append(existing)
+            selectedPhotosWrapper.append(header, row)
+          } else {
+            selectedPhotosWrapper.append(header, existing)
+          }
           $photoSelectorPhotos.prepend(selectedPhotosWrapper)
         }
         $(wrapper).data('photoSelectorExisting', null)

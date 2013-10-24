@@ -55,8 +55,8 @@ class LocalPhoto < Photo
   # validates_attachment_size :file, :less_than => 5.megabytes
   
   def set_defaults
-    self.native_username = user.login
-    self.native_realname = user.name
+    self.native_username ||= user.login
+    self.native_realname ||= user.name
     true
   end
 
@@ -88,9 +88,17 @@ class LocalPhoto < Photo
       url = file.url(s)
       url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
     end
-    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'"
+    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
     Photo.update_all(updates, ["id = ?", id])
     true
+  end
+
+  def attribution
+    if [user.name, user.login].include?(native_realname)
+      super
+    else
+      "#{super}, uploaded by #{user.try_methods(:name, :login)}"
+    end
   end
   
   def expire_observation_caches

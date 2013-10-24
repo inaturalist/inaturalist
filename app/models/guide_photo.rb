@@ -1,6 +1,6 @@
 #encoding: utf-8
 class GuidePhoto < ActiveRecord::Base
-  attr_accessible :description, :guide_taxon_id, :photo_id, :title, :photo, :guide_taxon, :position
+  attr_accessible :description, :guide_taxon_id, :photo_id, :title, :photo, :guide_taxon, :position, :photo_attributes
   belongs_to :guide_taxon, :inverse_of => :guide_photos
   belongs_to :photo, :inverse_of => :guide_photos
   has_one :guide, :through => :guide_taxon
@@ -8,6 +8,8 @@ class GuidePhoto < ActiveRecord::Base
   after_destroy :destroy_orphan_photo
   after_save {|r| r.guide.expire_caches(:check_ngz => true)}
   after_destroy {|r| r.guide.expire_caches(:check_ngz => true)}
+
+  accepts_nested_attributes_for :photo
 
   def to_s
     "<GuidePhoto #{id}>"
@@ -31,5 +33,23 @@ class GuidePhoto < ActiveRecord::Base
   def destroy_orphan_photo
     Photo.delay.destroy_orphans(photo_id)
     true
+  end
+
+  def photo_attributes=(attributes)
+    return if photo # no updating
+    if attributes[:id].blank? && attributes[:thumb_url].blank? && !attributes[:native_photo_id].blank?
+      klass = Object.const_get(attributes[:type])
+      self.photo = if existing = klass.find_by_native_photo_id(attributes[:native_photo_id])
+        existing
+      else
+        r = klass.get_api_response(attributes[:native_photo_id])
+        klass.new_from_api_response(r)
+      end
+    else
+      self.photo = LocalPhoto.new({:user_id => guide.user_id}.merge(attributes))
+    end
+  rescue => e
+    Rails.logger.debug "[DEBUG] Error assigning GuidePhoto photo attributes: #{e}"
+    assign_nested_attributes_for_one_to_one_association(:photo, attributes, mass_assignment_options)
   end
 end

@@ -37,3 +37,15 @@ body {
   font-style: italic;
   background-color:white;
 }
+.bootstrap .photoSelector {padding: 0; border: 0 transparent;margin:0;}
+.bootstrap .photoSelector .view_photo {text-align: left;}
+.bootstrap .photoSelectorPhotos .photo img {width:100%;}
+.bootstrap .photoSelectorSelected {
+  background-color: #eee; 
+  padding:10px; 
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  margin-bottom:10px;
+}
+.bootstrap .photoSelectorSelected .photo:nth-child(5n+5) {clear:left; margin-left:0;}

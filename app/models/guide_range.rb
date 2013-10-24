@@ -1,9 +1,27 @@
 class GuideRange < ActiveRecord::Base
-  attr_accessible :guide_taxon_id, :thumb_url, :medium_url, :original_url, :rights_holder, :license, :source_id, :source_url
+  attr_accessible :guide_taxon_id, :thumb_url, :medium_url, :original_url, :rights_holder, :license, :source_id, :source_url,
+    :file, :file_file_name, :file_content_type, :file_file_size, :file_updated_at, :position
   belongs_to :guide_taxon, :inverse_of => :guide_ranges
   has_one :guide, :through => :guide_taxon
   after_save {|r| r.guide.expire_caches(:check_ngz => true)}
   after_destroy {|r| r.guide.expire_caches(:check_ngz => true)}
+
+  has_attached_file :file, 
+    :styles => {
+      :original => {:geometry => "2048x2048>",  :auto_orient => false },
+      :large    => {:geometry => "1024x1024>",  :auto_orient => false },
+      :medium   => {:geometry => "500x500>",    :auto_orient => false },
+      :small    => {:geometry => "240x240>",    :auto_orient => false },
+      :thumb    => {:geometry => "100x100>",    :auto_orient => false },
+      :square   => {:geometry => "75x75#",      :auto_orient => false }
+    },
+    :storage => :s3,
+    :s3_credentials => "#{Rails.root}/config/s3.yml",
+    :s3_host_alias => CONFIG.s3_bucket,
+    :bucket => CONFIG.s3_bucket,
+    :path => "guide_maps/:id-:style.:extension",
+    :url => ":s3_alias_url",
+    :default_url => "/attachment_defaults/local_photos/:style.png"
 
   def to_s
     "<GuideRange #{id}>"
@@ -40,8 +58,11 @@ class GuideRange < ActiveRecord::Base
     else
       original_url
     end
+    rights_holder = data_object.at('rightsHolder').try(:content)
+    rights_holder ||= data_object.at('agent[role=compiler]').try(:content)
+    rights_holder ||= data_object.at('agent[role=author]').try(:content)
     gr = GuideRange.new(
-      :rights_holder => data_object.at('rightsHolder').try(:content) || data_object.at('agent[role=compiler]').try(:content),
+      :rights_holder => rights_holder,
       :thumb_url => thumb_url,
       :medium_url => medium_url,
       :original_url => original_url
@@ -64,4 +85,37 @@ class GuideRange < ActiveRecord::Base
     end
     gr
   end
+
+  def thumb_url
+    if read_attribute(:thumb_url).blank?
+      file? ? file.url(:thumb) : nil
+    else
+      read_attribute(:thumb_url)
+    end
+  end
+
+  def small_url
+    file.url(:small) if file?
+  end
+
+  def medium_url
+    if read_attribute(:medium_url).blank?
+      file? ? file.url(:medium) : nil
+    else
+      read_attribute(:medium_url)
+    end
+  end
+
+  def large_url
+    file.url(:large) if file?
+  end
+
+  def original_url
+    if read_attribute(:original_url).blank?
+      file? ? file.url(:original) : nil
+    else
+      read_attribute(:original_url)
+    end
+  end
+
 end
