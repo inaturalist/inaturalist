@@ -136,7 +136,7 @@
       <%= link_to user_image(@listed_taxon.updater), @listed_taxon.updater %>
       <%= link_to you_or_login(@listed_taxon.updater), @listed_taxon.updater %>
     <% end %>
-    <%=t :on_day %> <%= l(@listed_taxon.created_at.to_date, :format => :long) %>
+    <%=t :on_day %> <%= l(@listed_taxon.updated_at.to_date, :format => :long) %>
   </p>
   
   <div class="meta">
