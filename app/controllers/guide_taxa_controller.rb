@@ -107,7 +107,7 @@ class GuideTaxaController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to edit_guide_url(@guide_taxon.guide_id), notice: "Taxon removed" }
-      format.json { head :ok }
+      format.json { head :no_content }
     end
   end
 

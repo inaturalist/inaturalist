@@ -19,7 +19,9 @@ class EolController < ApplicationController
     limit = 36 if limit.blank? || limit.to_i > 36
     @photos = EolPhoto.search_eol(@q, :limit => limit)
     
-    render :partial => 'photos/photo_list_form', :locals => {
+    partial = params[:partial].to_s
+    partial = 'photo_list_form' unless %w(photo_list_form bootstrap_photo_list_form).include?(partial)    
+    render :partial => "photos/#{partial}", :locals => {
       :photos => @photos, 
       :index => params[:index],
       :local_photos => false }

@@ -63,6 +63,11 @@ class TaxonChangesController < ApplicationController
   end
   
   def show
+    unless @taxon_change.committed?
+      @existing = @taxon_change.input_taxa.map do |it|
+        TaxonChange.input_taxon(it).all.to_a
+      end.flatten.compact.uniq.reject{|tc| tc.id == @taxon_change.id}
+    end
   end
   
   def new

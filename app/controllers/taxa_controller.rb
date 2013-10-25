@@ -649,7 +649,9 @@ class TaxaController < ApplicationController
     end
     @photos = observations.compact.map(&:photos).flatten.reject{|p| p.user_id.blank?}
     @photos = @photos.reject{|p| p.license.to_i <= Photo::COPYRIGHT} if params[:licensed]
-    render :partial => 'photos/photo_list_form', :locals => {
+    partial = params[:partial].to_s
+    partial = 'photo_list_form' unless %w(photo_list_form bootstrap_photo_list_form).include?(partial)    
+    render :partial => "photos/#{partial}", :locals => {
       :photos => @photos, 
       :index => params[:index],
       :local_photos => false }
@@ -1348,7 +1350,7 @@ class TaxaController < ApplicationController
   end
   
   def presave
-    @taxon.photos = retrieve_photos
+    Rails.cache.delete(@taxon.photos_cache_key)
     if params[:taxon_names]
       TaxonName.update(params[:taxon_names].keys, params[:taxon_names].values)
     end

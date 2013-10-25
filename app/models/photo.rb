@@ -235,4 +235,10 @@ class Photo < ActiveRecord::Base
         :native_realname, :native_photo_id]
     }
   end
+
+  private
+
+  def self.attributes_protected_by_default
+    super - [inheritance_column]
+  end
 end

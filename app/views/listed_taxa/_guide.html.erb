@@ -6,7 +6,7 @@
   taxon_range ||= TaxonRange.without_geom.first(:conditions => ["taxon_id = ?", taxon])
   map_tag_attrs = setup_map_tag_attrs(taxon, :place => place, :taxon_range => taxon_range)
   obs_url = observations_path(:place_id => listed_taxon.place_id, :taxon_id => listed_taxon.taxon_id)
-  photos = taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo}
+  photos = taxon.taxon_photos.sort_by{|tp| tp.position || tp.id}.map{|tp| tp.photo}
 -%>
 <div class="listed_taxon_guide clear">
   <div class="side">

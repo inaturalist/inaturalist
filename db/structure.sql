@@ -875,7 +875,12 @@ CREATE TABLE guide_ranges (
     license character varying(255),
     source_url character varying(512),
     rights_holder character varying(255),
-    source_id integer
+    source_id integer,
+    file_file_name character varying(255),
+    file_content_type character varying(255),
+    file_file_size integer,
+    file_updated_at timestamp without time zone,
+    "position" integer DEFAULT 0
 );
 
 
@@ -6089,3 +6094,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130929024857');
 INSERT INTO schema_migrations (version) VALUES ('20131008061545');
 
 INSERT INTO schema_migrations (version) VALUES ('20131011234030');
+
+INSERT INTO schema_migrations (version) VALUES ('20131023224910');
+
+INSERT INTO schema_migrations (version) VALUES ('20131024045916');

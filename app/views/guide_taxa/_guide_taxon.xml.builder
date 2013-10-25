@@ -21,11 +21,11 @@ xml.GuideTaxon :position => gt.position do
       xml.dc :license, url_for_license(gp.license_code) unless gp.license_code.blank?
     end
   end
-  gt.guide_ranges.each do |gr|
-    xml.GuideRange do
+  gt.guide_ranges.sort_by(&:position).each do |gr|
+    xml.GuideRange :position => gr.position do
       image_sizes.each do |s|
-        next unless gr.respond_to?("#{s}_url") && url = gr.send("#{s}_url")
-        xml.href gr.send("#{s}_url"), :type => "remote", :size => s
+        next unless gr.respond_to?("#{s}_url") && (url = gr.send("#{s}_url")) && !url.blank?
+        xml.href url, :type => "remote", :size => s
         xml.href(File.join(local_asset_path, guide_asset_filename(gr, :size => s)), :type => "local", :size => s) if local_asset_path
       end
       xml.attribution gr.attribution

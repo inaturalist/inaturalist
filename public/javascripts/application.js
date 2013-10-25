@@ -561,6 +561,24 @@ $.fn.disable = function() { $(this).attr('disabled', true).addClass('disabled') 
 $.fn.enable = function() { $(this).attr('disabled', false).removeClass('disabled') }
 $.fn.toggleDisabled = function() { $(this).hasClass('disabled') ? $(this).enable() : $(this).disable() }
 
+$.fn.lock = function() {
+  $(this).each(function() {
+    var replacement = $(this).clone()
+    replacement.attr('name', '').val($(this).val()).addClass('lock-replacement').disable()
+    $(this).after(replacement)
+    $(this).hide().data('locked', true)
+  })
+}
+$.fn.unlock = function() {
+  $(this).each(function() {
+    $(this).nearest('.lock-replacement').remove()
+    $(this).show().data('locked', false)
+  })
+}
+$(document).ready(function() {
+  $(':input[data-locked]').lock()
+})
+
 $.fn.zoomify = function() {
   var selection = $(this).not('.zoomified')
   selection

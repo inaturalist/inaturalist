@@ -10,6 +10,39 @@
 </style>
 <% end %>
 
+<% unless @existing.blank? -%>
+  <div class="notice box">
+    <p class="ui">
+      <strong>HEADS UP:</strong>
+      there
+      <%= @existing.size == 1 ? "is" : "are" %>
+      <%= @existing.size %> other taxon 
+      change<%= @existing.size == 1 ? "" : "s" %>
+      with the same input taxa:
+    </p>
+    <ul>
+      <% for tc in @existing %>
+        <li>
+          (<%= 
+            tc.input_taxa.map{|it| 
+              "#{it.name} #{it.id}"
+            }.join(', ') 
+          %>)
+          <strong><%= tc.verb_phrase %></strong>
+          (<%= tc.output_taxa.map{|it| "#{it.name} #{it.id}"}.join(', ') %>)
+          (<%= tc.committed_on.blank? ? "Draft" : "Committed on #{tc.committed_on}" %>)
+          <%= link_to t(:view), tc, :class => "readmore" %>
+        </li>
+      <% end %>
+    </ul>
+    <p class="ui">
+      You should probably delete this taxon change, or at least come figure
+      out some kind of solution with the person / people who made the other
+      change(s).
+    </p>
+  </div>
+<% end -%>
+
 <div id="pageheader">
   <div class="breadcrumbs">
     <strong><%= link_to "&laquo Back to taxon changes".html_safe, taxon_changes_path, :class => 'crumb' %></strong>
