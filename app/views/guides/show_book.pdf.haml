@@ -57,12 +57,13 @@
                     = link_to(s.source_url, s.source_url) unless s.source_url.blank?
                 = formatted_user_text s.description
         .span3
-          - gt.guide_ranges.each do |gr|
-            .stacked
+          - gt.guide_ranges.sort_by(&:position).each do |gr|
+            .guide_range.stacked.text-center
               = image_tag gr.medium_url, :class => "stacked"
-              %small.muted.meta
-                =t :map
-                = gr.attribution
+              %p.attribution
+                %small.muted.meta
+                  =t :map
+                  = gr.attribution
   #attribution
     %h3=t :sources_and_credits
     = references(:linked => true)

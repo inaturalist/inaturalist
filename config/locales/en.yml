@@ -2852,6 +2852,13 @@ en:
           not all of which are available for every taxon. Choosing "Overview"
           will just import the first available text section from EOL, which is
           generally contains a summary when available.
+        eol_collection_desc_html: |
+          The <a href="http://eol.org/" target="_blank">Encyclopedia of Life (EOL)</a> 
+          is a repository of information about life on Earth. At EOL you can
+          create
+          <a href="http://eol.org/info/252" target="_blank">collections</a> 
+          of species. If you want to import species from an EOL collection,
+          paste in the URL of that collection here.
         guide_place_desc: |
           Associating your guide with a place will let people find it when
           searching for places, and it will show the place boundary on
@@ -2903,8 +2910,11 @@ en:
       pdf_generation_notice: |
         Please be patient, generating large PDFs can take a minute or two.
       tags_help_html: |
-        Add comma-separated tags to organize the taxa in your guide. To add named categories, use tags like 
-        <code>category_name=category_value</code>, e.g. <code>color=yellow</code>.
+        Tags are like categories for the speices in your guide, except
+        mulitple species can have the same tag. Enter tags as a comma-
+        separated list here, e.g. <code>small, furry</code>. To add named
+        categories, use tags like <code>category_name=category_value</code>,
+        e.g. <code>color=yellow</code>.
       sorts:
         default: Guide order
         alphaname: Alphabetical by scientific name
