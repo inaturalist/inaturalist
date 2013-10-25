@@ -207,7 +207,7 @@
     </div>
     <div class="left">
       <%= select_tag :day, options_for_select([[ t(:day), nil]] + (1..31).to_a.map{|n| [n,n]}, :selected => @observed_on_day) %>
-      <%= select_tag :month, options_for_select([[t(:month), nil]] + (1..12).to_a.map{|n| [Date::MONTHNAMES[n],n]}, :selected => @observed_on_month) %>
+      <%= select_tag :month, options_for_select([[t(:month), nil]] + (1..12).to_a.map{|n| [t("date_format.month.#{Date::MONTHNAMES[n].downcase}"),n]}, :selected => @observed_on_month) %>
       <%= select_tag :year, options_for_select([[t(:year), nil]] + (1970..Date.today.year).to_a.reverse.map{|n| [n,n]}, :selected => @observed_on_year) %>
     </div>
   </div>
