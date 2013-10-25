@@ -2512,6 +2512,8 @@ en:
   update_past: "Update past %{type}"
   update_photos: Update photos
   update_selected_taxa: Update selected taxa
+  update_1_selected_taxon: Update 1 selected taxon
+  update_x_selected_taxa: "Update %{x} selected taxa"
   update_your_content: Update your content
   update_with_eol_content: Update with EOL content
   updated: Updated
@@ -2760,6 +2762,7 @@ en:
   you_must_be_a_member_of_this_project_to_do_that: You must be a member of this project to do that
   you_must_select_a_csv_file_to_upload: You must select a CSV file to upload.
   you_must_select_a_place_to_merge_with: You must select a place to merge with.
+  you_must_select_at_least_one_taxon: You must select at least one taxon
   you_must_select_dates_to_compare: You must select dates to compare
   you_must_specify_and_confirm_a_new_password: You must specify and confirm a new password.
   your_name_was_saved: Your name was saved.
@@ -2871,6 +2874,9 @@ en:
           Note: not all places have check lists with taxa. If you're having
           trouble finding a place with taxa, try choosing larger areas with
           political boundaries, like nations, states, provinces, or counties.
+        replace_existing_eol_desc: Delete existing content before importing from EOL
+      eolupdate_notice: |
+        Please be patient, importing content from EOL can take a minute or two.
       show:
         draft_desc: |
           This guide will only be visible to people who can edit it until you publish it.

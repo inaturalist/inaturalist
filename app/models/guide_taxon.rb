@@ -20,7 +20,7 @@ class GuideTaxon < ActiveRecord::Base
   after_save {|r| r.guide.expire_caches(:check_ngz => true)}
   after_destroy {|r| r.guide.expire_caches(:check_ngz => true)}
 
-  validates_uniqueness_of :taxon_id, :scope => :guide_id, :allow_blank => true, :message => "has already been added to this guide"
+  validates_uniqueness_of :name, :scope => :guide_id, :allow_blank => true, :message => "has already been added to this guide"
 
   acts_as_taggable
 
@@ -120,6 +120,7 @@ class GuideTaxon < ActiveRecord::Base
     if common_name && !common_name.inner_text.blank?
       self.display_name = common_name.inner_text
     end
+    options[:replace] = [true, 1, "true", "1"].include?(options[:replace])
     sync_eol_photos(options.merge(:page => page)) if options[:photos]
     sync_eol_ranges(options.merge(:page => page)) if options[:ranges]
     sync_eol_sections(options.merge(:page => page)) if [true, 1, "true", "1"].include?(options[:overview]) || !options[:subjects].blank?
@@ -131,6 +132,7 @@ class GuideTaxon < ActiveRecord::Base
     img_data_objects = page.search('dataObject').select{|data_object| 
       data_object.at('dataType').to_s =~ /StillImage/ && data_object.at('dataSubtype').to_s !~ /Map/
     }
+    guide_photos.destroy_all if options[:replace]
     max_pos = guide_photos.calculate(:maximum, :position) || 0
     img_data_objects[0..5].each do |img_data_object|
       p = if (data_object_id = img_data_object.at('dataObjectID').try(:content))
@@ -146,6 +148,7 @@ class GuideTaxon < ActiveRecord::Base
   def sync_eol_ranges(options = {})
     return unless page = get_eol_page(options)
     map_data_object = page.search('dataObject').detect{|data_object| data_object.at('dataSubtype').to_s =~ /Map/ }
+    guide_ranges.destroy_all if options[:replace]
     if map_data_object
       gr = GuideRange.new_from_eol_data_object(map_data_object)
       unless guide_ranges.where(:source_url => gr.source_url).exists?
@@ -169,6 +172,7 @@ class GuideTaxon < ActiveRecord::Base
       data_object.at('language') && locale !~ /^#{data_object.at('language').content}/
     end
 
+    guide_sections.destroy_all if options[:replace]
     max_pos = guide_sections.calculate(:maximum, :position) || 0
 
     data_objects = if subjects.blank? || options[:overview] == "true"

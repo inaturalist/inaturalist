@@ -276,7 +276,14 @@
                   =t :choose_subjects
                 #eol_subjects.hide{:style => "position:relative;"}
                   = fo.select :subjects, GuideSection::EOL_SUBJECTS.map{|s| [t(s.underscore, :default => s.titleize), s]}, {}, :multiple => true
+          .span12
+            %h4=t :other_options
+            = fo.label :replace, :class => "checkbox" do
+              = fo.check_box :replace, :checked => false
+              =t :replace_existing_content
+              .muted=t 'views.guides.edit.replace_existing_eol_desc'
 
     .modal-footer
       %button.btn{"data-dismiss" => "modal"}=t :close
       = f.submit t(:update_selected_taxa), :class => "btn btn-primary", :data => {:loading_click => t(:updating)}
+      .meta.patience.hide=t 'views.guides.eolupdate_notice'

@@ -15,10 +15,10 @@ class EolPhoto < Photo
   end
 
   def self.search_eol(query, options = {})
-    eol_taxon_xml = eol.search(query, :exact => 1)
-    return nil if eol_taxon_xml.blank?
-    eol_taxon_id = eol_taxon_xml.search("id").children.last.try(:inner_text)
-    return nil unless eol_taxon_id
+    search_xml = eol.search(query, :exact => 1)
+    return [] if search_xml.blank?
+    eol_taxon_id = search_xml.at("entry/id").try(:text)
+    return [] unless eol_taxon_id
     limit = (options[:limit] || 36).to_i
     limit = 100 if limit > 100
     eol_page_xml = begin
@@ -38,7 +38,6 @@ class EolPhoto < Photo
   end
   
   def self.new_from_api_response(api_response, options = {})
-    api_response = api_response
     api_response.remove_namespaces! if api_response.respond_to?(:remove_namespaces!)
     native_photo_id = api_response.at('dataObjectID').try(:content)
     native_photo_id ||= api_response.at('dataObject identifier').content
@@ -58,7 +57,7 @@ class EolPhoto < Photo
       license_number = PD
     end
     square_url, thumb_url, small_url, medium_url, original_url = nil
-    image_url = api_response.search('mediaURL').children.last.inner_text
+    image_url = api_response.search('mediaURL').children.last.try(:inner_text)
     unless image_url.blank?
       square_url = image_url.gsub("_orig", "_88_88")
       small_url = image_url.gsub("_orig", "_260_190")

@@ -422,8 +422,6 @@ $('input[name="guide_eol_update_flow_task[options][overview]"]').live('change', 
 
 $('#new_guide_eol_update_flow_task .btn-primary').click(function() {
   $selection = $('#guide_taxa form.edit_guide_taxon:visible').has('input[type=checkbox]:checked')
-  // var msg = I18n.t('verbing_x_of_y', {verb: I18n.t('saving_verb'), x: 1, y: $selection.length})
-  // $('#guide_taxa').loadingShades(msg, {cssClass: 'bigloading'})
   var data = $('#new_guide_eol_update_flow_task').serializeArray()
   for (var i = 0; i < $selection.length; i++) {
     var guideTaxonId = $($selection[i]).attr('action').match(/\d+$/)[0]
@@ -451,6 +449,7 @@ $('#new_guide_eol_update_flow_task .btn-primary').click(function() {
 })
 
 window.runFlowTask = function(runUrl) {
+  $('.modal:visible .patience').show()
   $.ajax({
     url: runUrl,
     statusCode: {
@@ -472,11 +471,22 @@ window.runFlowTask = function(runUrl) {
     btn.attr('disabled', false).removeClass('disabled description')
     btn.val(btn.data('original-value'))
     alert("Error: ", arguments)
+    $('.modal:visible .patience').hide()
   })
 }
 $('#guide_eol_update_flow_task_options_subjects').multiselect()
 $('#eolupdate').on('shown', function () {
   $('body').css({height: '100%', overflow:'hidden'})
+  var count = $('.guide_taxon input[type=checkbox]:checked').length,
+      val = count == 1 ? I18n.t('update_1_selected_taxon') : I18n.t('update_x_selected_taxa', {x: count})
+  if (count == 0) {
+    val = I18n.t('you_must_select_at_least_one_taxon')
+  }
+  if (count > 0) {
+    $('#eolupdate .modal-footer .btn-primary').enable().val(val)
+  } else {
+    $('#eolupdate .modal-footer .btn-primary').disable().val(val)
+  }
 })
 $('#eolupdate').on('hidden', function () {
   $('body').css({height: 'auto', overflow:'auto'})

@@ -78,13 +78,33 @@ end
 describe GuideTaxon, "sync_eol" do
   let(:gt) { GuideTaxon.make! }
   before(:all) do
-    @mflagellum_page ||= EolService.page(791500, :common_names => true)
+    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true)
   end
 
   it "should update the display_name" do
     gt.display_name.should_not eq "coachwhip"
     gt.sync_eol(:page => @mflagellum_page)
     gt.display_name.should eq "coachwhip"
+  end
+
+  it "should allow replacement of existing content" do
+    gp = GuidePhoto.make!(:guide_taxon => gt)
+    gr = GuideRange.make!(:guide_taxon => gt)
+    gs = GuideSection.make!(:guide_taxon => gt)
+    gt.sync_eol(:page => @mflagellum_page, :replace => true, :photos => true, :ranges => true, :overview => true)
+    GuidePhoto.find_by_id(gp.id).should be_blank
+    GuideRange.find_by_id(gr.id).should be_blank
+    GuideSection.find_by_id(gs.id).should be_blank
+  end
+
+  it "should not replace existing content if not requested" do
+    gp = GuidePhoto.make!(:guide_taxon => gt)
+    gr = GuideRange.make!(:guide_taxon => gt)
+    gs = GuideSection.make!(:guide_taxon => gt)
+    gt.sync_eol(:page => @mflagellum_page, :photos => true, :ranges => true, :overview => true)
+    GuidePhoto.find_by_id(gp.id).should_not be_blank
+    GuideRange.find_by_id(gr.id).should_not be_blank
+    GuideSection.find_by_id(gs.id).should_not be_blank
   end
 end
 

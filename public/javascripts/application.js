@@ -557,8 +557,8 @@ $.fn.selectLocalTimeZone = function() {
   return this
 }
 
-$.fn.disable = function() { $(this).attr('disabled', true).addClass('disabled') }
-$.fn.enable = function() { $(this).attr('disabled', false).removeClass('disabled') }
+$.fn.disable = function() { $(this).attr('disabled', true).addClass('disabled'); return this }
+$.fn.enable = function() { $(this).attr('disabled', false).removeClass('disabled') ; return this }
 $.fn.toggleDisabled = function() { $(this).hasClass('disabled') ? $(this).enable() : $(this).disable() }
 
 $.fn.lock = function() {
