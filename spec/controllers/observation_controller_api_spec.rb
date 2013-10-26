@@ -427,6 +427,42 @@ shared_examples_for "an ObservationsController" do
       @json["most_species"].size.should > 0
     end
   end
+
+  describe "viewed_updates" do
+    before do
+      without_delay do
+        @o = Observation.make!(:user => user)
+        @c = Comment.make!(:parent => @o)
+        @i = Identification.make!(:observation => @o)
+      end
+    end
+
+    it "should mark all updates from this observation for the signed in user as viewed" do
+      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :resource_id => @o.id, :subscriber_id => user.id).count
+      num_updates_for_owner.should eq 2
+      put :viewed_updates, :format => :json, :id => @o.id
+      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :resource_id => @o.id, :subscriber_id => user.id).count
+      num_updates_for_owner.should eq 0
+    end
+
+    it "should not mark other updates for the signed in user as viewed" do
+      without_delay do
+        o = Observation.make!(:user => user)
+        c = Comment.make!(:parent => o)
+      end
+      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :subscriber_id => user.id).count
+      num_updates_for_owner.should eq 3
+      put :viewed_updates, :format => :json, :id => @o.id
+      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :subscriber_id => user.id).count
+      num_updates_for_owner.should eq 1
+    end
+
+    it "should not mark other updates from this observation as viewed" do
+      put :viewed_updates, :format => :json, :id => @o.id
+      num_updates_for_commenter = Update.unviewed.activity.where(:resource_type => "Observation", :resource_id => @o.id, :subscriber_id => @c.user_id).count
+      num_updates_for_commenter.should eq 1
+    end
+  end
 end
 
 describe ObservationsController, "oauth authentication" do

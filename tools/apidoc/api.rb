@@ -1101,6 +1101,11 @@ EOT
     end
   end
 
+  put "/observations/:id/viewed_updates" do
+    desc "Mark updates associated with this observation (e.g. new comment notifications) as viewed. Response should be NO CONTENT."
+    formats %w(json)
+  end
+
   get "/observation_fields" do
     desc <<-EOT
       List / search observation fields. ObservationFields are basically
@@ -1568,6 +1573,10 @@ EOT
     end
     param "notifier_type" do
       desc "Fitler by the type of resource that created the update, e.g. only show comments."
+      values %w(Comment Identification)
+    end
+    param "notifier_types[]" do
+      desc "Fitler by multiple notifier types."
       values %w(Comment Identification)
     end
     param "skip_view" do

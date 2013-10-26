@@ -24,7 +24,7 @@ class ObservationsController < ApplicationController
     by_login
   end
 
-  doorkeeper_for :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  doorkeeper_for :create, :update, :destroy, :viewed_updates, :if => lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
@@ -43,7 +43,7 @@ class ObservationsController < ApplicationController
                             :project,
                             :taxon_stats,
                             :user_stats]
-  before_filter :load_observation, :only => [:show, :edit, :edit_photos, :update_photos, :destroy, :fields]
+  before_filter :load_observation, :only => [:show, :edit, :edit_photos, :update_photos, :destroy, :fields, :viewed_updates]
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :curator_required, :only => [:curation]
@@ -283,6 +283,10 @@ class ObservationsController < ApplicationController
         end
 
         @observer_provider_authorizations = @observation.user.provider_authorizations
+
+        if logged_in?
+          user_viewed_updates
+        end
         
         if params[:partial]
           return render(:partial => params[:partial], :object => @observation,
@@ -1580,8 +1584,24 @@ class ObservationsController < ApplicationController
     end
   end
 
+  def viewed_updates
+    user_viewed_updates
+    respond_to do |format|
+      format.html { redirect_to @observation }
+      format.json { head :no_content }
+    end
+  end
+
 ## Protected / private actions ###############################################
   private
+
+  def user_viewed_updates
+    return unless logged_in?
+    Update.update_all(
+      ["viewed_at = ?", Time.now], 
+      ["resource_type = 'Observation' AND resource_id = ? AND subscriber_id = ?", @observation.id, current_user.id]
+    )
+  end
 
   def stats_adequately_scoped?
     if params[:d1] && params[:d2]

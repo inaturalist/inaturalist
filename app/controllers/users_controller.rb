@@ -297,18 +297,21 @@ class UsersController < ApplicationController
       includes(:resource, :notifier, :subscriber, :resource_owner).
       order("id DESC").
       limit(200)
-    if @updates.count == 0
-      @updates = current_user.updates.activity.
-        includes(:resource, :notifier, :subscriber, :resource_owner).
-        order("id DESC").
-        limit(10).
-        where("viewed_at > ?", 1.day.ago)
-    end
-    if @updates.count == 0
-      @updates = current_user.updates.activity.limit(5).order("id DESC")
+    unless request.format.json?
+      if @updates.count == 0
+        @updates = current_user.updates.activity.
+          includes(:resource, :notifier, :subscriber, :resource_owner).
+          order("id DESC").
+          limit(10).
+          where("viewed_at > ?", 1.day.ago)
+      end
+      if @updates.count == 0
+        @updates = current_user.updates.activity.limit(5).order("id DESC")
+      end
     end
     @updates = @updates.where(:resource_type => params[:resource_type]) unless params[:resource_type].blank?
     @updates = @updates.where(:notifier_type => params[:notifier_type]) unless params[:notifier_type].blank?
+    @updates = @updates.where("notifier_type IN (?)", params[:notifier_types]) unless params[:notifier_types].blank?
     if !%w(1 yes y true t).include?(params[:skip_view].to_s)
       Update.user_viewed_updates(@updates)
       session[:updates_count] = 0
