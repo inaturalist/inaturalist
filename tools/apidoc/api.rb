@@ -216,13 +216,15 @@ EOT
   
   get "/observations" do
     desc <<-EOT
-Primary endpoint for retrieving observations. JSON and ATOM responses are what
-you'd expect, but DwC is <a
-href='http://rs.tdwg.org/dwc/terms/simple/index.htm'>Simple Darin Core</a>, an
+Primary endpoint for retrieving observations. If you're interested for
+pagination info, check the X headers in the response. You should see 
+<code>X-Total-Entries</code>, <code>X-Page</code>, and 
+<code>X-Per-Page</code>. JSON
+and ATOM responses are what you'd expect, but DwC is 
+<a href='http://rs.tdwg.org/dwc/terms/simple/index.htm'>Simple Darin Core</a>, an
 XML schema for biodiversity data. iNat uses JSON responses internally quite a
-bit, so it will probably always be the most information-rich.
-
-The widget response is a JS snippet that inserts HTML.  It should be used 
+bit, so it will probably always be the most information-rich. The widget
+response is a JS snippet that inserts HTML.  It should be used
 with a script tag, e.g. <pre>&lt;script src="http://www.inaturalist.org/observations.widget"&gt;&lt;/script&gt;</pre>
 EOT
     formats %w(atom csv dwc json kml widget)
@@ -280,7 +282,12 @@ EOT
       EOT
     end
     param "q" do
-      desc "Search query"
+      desc <<-TXT
+        Search query. Note that this is largely intended to be used on its own
+        and may yield unexpected or limited results when used with other
+        filters. If you're trying to retrieve observations of a particular
+        taxon, taxon_id and taxon_name are better options.
+      TXT
       values "any string"
     end
     
@@ -414,6 +421,11 @@ EOT
     param "nelng" do
       desc "Northeast longitude of a bounding box query."
       values -180..180
+    end
+
+    param "updated_since" do
+      desc "Filter by observations that have been updated since a timestamp."
+      values "ISO 8601 datetime, e.g. 2013-10-09T13:40:13-07:00"
     end
   end
 
@@ -1089,6 +1101,11 @@ EOT
     end
   end
 
+  put "/observations/:id/viewed_updates" do
+    desc "Mark updates associated with this observation (e.g. new comment notifications) as viewed. Response should be NO CONTENT."
+    formats %w(json)
+  end
+
   get "/observation_fields" do
     desc <<-EOT
       List / search observation fields. ObservationFields are basically
@@ -1545,6 +1562,64 @@ EOT
   get "/users/edit", :auth_required => true do
     desc "Retrieve user profile info. Response should be like <code>POST /users</code> above."
     formats %w(json)
+  end
+
+  get "/users/new_updates", :auth_required => true do
+    desc "Get info about new updates for the authenticated user, e.g. comments and identifications on their content."
+    formats %w(json)
+    param "resource_type" do
+      desc "Fitler by the type of resource that received the update, e.g. only show updates on your observations."
+      values %w(ListedTaxon Observation Post)
+    end
+    param "notifier_type" do
+      desc "Fitler by the type of resource that created the update, e.g. only show comments."
+      values %w(Comment Identification)
+    end
+    param "notifier_types[]" do
+      desc "Fitler by multiple notifier types."
+      values %w(Comment Identification)
+    end
+    param "skip_view" do
+      desc <<-EOT
+        Skip setting marking updates at viewed when retrieving them. The
+        default behavior is to assume that if you're hitting this endpoint on
+        behlaf of the user, they will have viewed the udpates returned.
+      EOT
+      values [true, false]
+    end
+    example do
+      request "GET /users/new_updates.json"
+      response <<-EOT
+[
+  {
+    created_at: "2013-10-07T16:22:43-07:00",
+    id: 954,
+    notification: "activity",
+    notifier_id: 610,
+    notifier_type: "Comment",
+    resource_id: 1,
+    resource_owner_id: 1,
+    resource_type: "Post",
+    subscriber_id: 1,
+    updated_at: "2013-10-07T16:22:43-07:00",
+    viewed_at: "2013-10-07T16:22:49-07:00"
+  },
+  {
+    created_at: "2013-09-12T13:39:21-07:00",
+    id: 945,
+    notification: "activity",
+    notifier_id: 607,
+    notifier_type: "Comment",
+    resource_id: 199,
+    resource_owner_id: 1,
+    resource_type: "Observation",
+    subscriber_id: 1,
+    updated_at: "2013-09-12T13:39:21-07:00",
+    viewed_at: "2013-10-07T16:21:09-07:00"
+  }
+]
+      EOT
+    end
   end
 
 end

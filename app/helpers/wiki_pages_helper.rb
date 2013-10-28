@@ -57,4 +57,8 @@ module WikiPagesHelper
     end
     html.html_safe
   end
+
+  def wiki_user(user)
+    "#{link_to(user_image(user), user)} #{link_to_user(user)}".html_safe
+  end
 end

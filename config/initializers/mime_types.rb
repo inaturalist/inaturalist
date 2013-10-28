@@ -11,3 +11,4 @@ Mime::Type.register "text/json", :geojson
 Mime::Type.register_alias "text/javascript", :widget, %w( application/javascript application/x-javascript )
 Mime::Type.register_alias "text/html", :mobile
 Mime::Type.register "application/pdf", :pdf
+Mime::Type.register "application/zip", :ngz

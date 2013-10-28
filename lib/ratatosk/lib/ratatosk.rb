@@ -28,24 +28,29 @@ module Ratatosk
     # Alias for Ratatosk::Ratatosk#find
     #
     def find(name)
-      @ratatosk ||= Ratatosk.new
-      @ratatosk.find(name)
+      ratatosk.find(name)
     end
     
     #
     # Alias for Ratatosk::Ratatosk#graft
     #
     def graft(taxon, options = {})
-      @ratatosk ||= Ratatosk.new
-      @ratatosk.graft(taxon, options)
+      ratatosk.graft(taxon, options)
     end
     
     #
     # Alias for Ratatosk::Ratatosk#find_existing_taxon
     #
     def find_existing_taxon(taxon)
+      ratatosk.find_existing_taxon(taxon)
+    end
+
+    def name_providers
+      ratatosk.name_providers
+    end
+
+    def ratatosk
       @ratatosk ||= Ratatosk.new
-      @ratatosk.find_existing_taxon(taxon)
     end
   end
   

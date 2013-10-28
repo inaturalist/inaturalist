@@ -95,7 +95,7 @@ class FlickrController < ApplicationController
       search_params['per_page'] = params[:limit] ||= 10
       search_params['text'] = params[:q]
       search_params['page'] = params[:page] ||= 1
-      search_params['extras'] = 'date_upload,owner_name,url_sq,url_t'
+      search_params['extras'] = 'date_upload,owner_name,url_sq,url_t,url_s,license'
       search_params['sort'] = 'relevance'
       begin
         @photos = @flickr.photos.search(search_params).map{|fp| FlickrPhoto.new_from_api_response(fp) }
@@ -121,10 +121,11 @@ class FlickrController < ApplicationController
     #     FlickrPhoto.all(:conditions => ["native_photo_id IN (?)", 
     #       @photos.map(&:id)])
     #   end
-    
+    partial = params[:partial].to_s
+    partial = 'photo_list_form' unless %w(photo_list_form bootstrap_photo_list_form).include?(partial)
     respond_to do |format|
       format.html do
-        render :partial => 'photos/photo_list_form', 
+        render :partial => "photos/#{partial}", 
                :locals => {
                  :photos => @photos, 
                  :index => params[:index],

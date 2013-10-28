@@ -209,6 +209,21 @@ input[type='submit'].link:hover {
   color: white;
 }
 
+.success .button.glaucous,
+.success .button.glaucous.disabled:hover {
+  background-color: #529214;
+  border-color: #529214;
+  color: white;
+  text-align: center;
+  padding: 5px;
+}
+
+.success .button.glaucous:hover {
+  background-color: #3a8011;
+  border-color: #3a8011;
+  color: white;
+}
+
 .button.delete.pale {
   background-color: #eee;
   border-color: #eee;

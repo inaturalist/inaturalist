@@ -26,7 +26,7 @@ class ConservationStatus < ActiveRecord::Base
   end
 
   def to_s
-    "<ConservationStatus #{id} taxon: #{taxon_id} status: #{status} authority: #{authority}>"
+    "<ConservationStatus #{id} taxon: #{taxon_id} place: #{place_id} status: #{status} authority: #{authority}>"
   end
 
   def status_name

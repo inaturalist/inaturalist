@@ -55,8 +55,8 @@ class LocalPhoto < Photo
   # validates_attachment_size :file, :less_than => 5.megabytes
   
   def set_defaults
-    self.native_username = user.login
-    self.native_realname = user.name
+    self.native_username ||= user.login
+    self.native_realname ||= user.name
     true
   end
 
@@ -84,10 +84,21 @@ class LocalPhoto < Photo
   def set_urls
     styles = %w(original large medium small thumb square)
     updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
-    updates += styles.map {|s| file.url(s)}
-    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'"
+    updates += styles.map do |s|
+      url = file.url(s)
+      url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
+    end
+    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
     Photo.update_all(updates, ["id = ?", id])
     true
+  end
+
+  def attribution
+    if [user.name, user.login].include?(native_realname)
+      super
+    else
+      "#{super}, uploaded by #{user.try_methods(:name, :login)}"
+    end
   end
   
   def expire_observation_caches
@@ -130,12 +141,14 @@ class LocalPhoto < Photo
       if o.georeferenced?
         o.place_guess = o.system_places.sort_by{|p| p.bbox_area || 0}.map(&:name).join(', ')
       end
-      if capture_time = metadata[:date_time_original] || metadata[:date_time_digitized]
+      if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
         o.set_time_zone
         o.time_observed_at = capture_time
         o.set_time_in_time_zone
-        o.observed_on_string = o.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")
-        o.observed_on = o.time_observed_at.to_date
+        if o.time_observed_at
+          o.observed_on_string = o.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")
+          o.observed_on = o.time_observed_at.to_date
+        end
       end
       unless metadata[:dc].blank?
         o.taxon = to_taxon

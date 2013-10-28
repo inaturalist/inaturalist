@@ -51,7 +51,7 @@
 
 <div class="pageheader">
   <span class="breadcrumbs">
-    <%= link_to "Back to Viewing <i>#{@taxon.name}</i>".html_safe, 
+    <%= link_to t(:back_to_viewing, :taxon => @taxon.name).html_safe,
                 taxon_path(@taxon), :class => 'back crumb' %>
   </span>
   <h2><%= t(:merge) %> <em><%= @taxon.name %></em></h2>
@@ -65,9 +65,9 @@
   <%= hidden_field_tag :taxon_id, @keeper ? @keeper.id : nil %>
   <%= submit_tag t(:merge), :disabled => true, :class => "default button", 
     :id => "submitbutton",
-    "data-loading-click" => "Merging...",
+    "data-loading-click" => t(:merging),
     :confirm => t(:are_you_sure_delete_taxon_move_associates, :taxonname => "#{@taxon.name}", :taxonid => "#{@taxon.id}") %>
-  <%= link_to_function "Make a TaxonSwap instead?", "makeTaxonSwap()", 
+  <%= link_to_function t(:make_a_taxon_swap_instead?), "makeTaxonSwap()",
     :id => "swapbutton",
     :class => "button disabled" %>
 <% end %>

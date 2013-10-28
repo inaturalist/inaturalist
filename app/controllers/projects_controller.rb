@@ -507,7 +507,7 @@ class ProjectsController < ApplicationController
       scope = scope.in_place(@project.place)
     end
     existing_scope = Observation.in_projects([@project]).scoped
-    invited_scope = Observation.scoped(:joins => :project_invitations, :conditions => ["project_invitations.project_id = ?", @project])
+    invited_scope = Observation.scoped(:joins => :project_invitations, :conditions => ["project_invitations.project_id = ?", @project.id])
 
     if params[:by] == "you"
       scope = scope.by(current_user)
@@ -583,7 +583,12 @@ class ProjectsController < ApplicationController
         flash[:notice] = t(:observation_added_to_the_project, :project => @project.title)
         redirect_back_or_default(@project)
       end
-      format.json { render :json => @project_observation.to_json(:include => {:project => {:include => :project_observation_fields}}) }
+      format.json do
+        render :json => @project_observation.to_json(:include => {
+          :observation => {:include => :observation_field_values}, 
+          :project => {:include => :project_observation_fields}
+        })
+      end
     end
   end
   

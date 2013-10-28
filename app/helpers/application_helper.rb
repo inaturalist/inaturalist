@@ -1,3 +1,4 @@
+#encoding: utf-8
 # Methods added to this helper will be available to all templates in the application.
 # require 'recaptcha'
 module ApplicationHelper
@@ -306,6 +307,7 @@ module ApplicationHelper
   end
   
   def user_image(user, options = {})
+    user ||= User.new
     size = options.delete(:size)
     style = "vertical-align:middle; #{options[:style]}"
     options[:alt] ||= user.login
@@ -409,8 +411,10 @@ module ApplicationHelper
   end
   
   def truncate_with_more(text, options = {})
-    more = options.delete(:more) || " ...more &darr;".html_safe
-    less = options.delete(:less) || " less &uarr;".html_safe
+    more = options.delete(:more) || " ...#{t(:more).downcase} &darr;".html_safe
+    less = options.delete(:less) || " #{t(:less).downcase} &uarr;".html_safe
+    options[:omission] ||= ""
+    options[:separator] ||= " "
     truncated = truncate(text, options)
     return truncated.html_safe if text == truncated
     truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)
@@ -418,7 +422,7 @@ module ApplicationHelper
       :class => "nobr ui")
     last_node = truncated.children.last || truncated
     last_node = last_node.parent if last_node.name == "a" || last_node.is_a?(Nokogiri::XML::Text)
-    last_node.add_child(morelink)
+    last_node.add_child(Nokogiri::HTML::DocumentFragment.parse(morelink, 'UTF-8'))
     wrapper = content_tag(:div, truncated.to_s.html_safe, :class => "truncated")
     
     lesslink = link_to_function(less, "$(this).parents('.untruncated').hide().prev('.truncated').show()", 
@@ -426,7 +430,7 @@ module ApplicationHelper
     untruncated = Nokogiri::HTML::DocumentFragment.parse(text)
     last_node = untruncated.children.last || untruncated
     last_node = last_node.parent if last_node.name == "a" || last_node.is_a?(Nokogiri::XML::Text)
-    last_node.add_child(lesslink)
+    last_node.add_child(Nokogiri::HTML::DocumentFragment.parse(lesslink, 'UTF-8'))
     untruncated = content_tag(:div, untruncated.to_s.html_safe, :class => "untruncated", 
       :style => "display: none")
     wrapper + untruncated
@@ -477,16 +481,17 @@ module ApplicationHelper
     tag = options[:link] ? :a : :span
     tag_options = {:class => "bar spacer", :style => "height: 100%; width: 0"}
     html += content_tag(tag, " ", tag_options)
-    %w(? J F M A M J J A S O N D).each_with_index do |name, month|
-      count = counts[month.to_s] || 0
-      tag_options = {:class => "bar month_#{month}", :style => "height: #{(count.to_f / max * 100).to_i}%"}
+    Date::MONTHNAMES.each_with_index do |month_name, month_index|
+      count = counts[month_index.to_s] || 0
+      month_name = month_name || "?"
+      tag_options = {:class => "bar month_#{month_index}", :style => "height: #{(count.to_f / max * 100).to_i}%"}
       if options[:link]
         url_params = options[:link].is_a?(Hash) ? options[:link] : request.params
-        tag_options[:href] = url_for(url_params.merge(:month => month))
+        tag_options[:href] = url_for(url_params.merge(:month => month_index))
       end
       html += content_tag(tag, tag_options) do
         content_tag(:span, count, :class => "count") +
-        content_tag(:span, name, :class => "month")
+        content_tag(:span, t(month_name.downcase, :default => month_name)[0], :class => "month")
       end
     end
     content_tag(:div, html.html_safe, :class => 'monthgraph graph')
@@ -570,6 +575,10 @@ module ApplicationHelper
     if taxon_range
       map_tag_attrs["data-taxon-range-kml"] = root_url.gsub(/\/$/, "") + taxon_range.range.url
       map_tag_attrs["data-taxon-range-geojson"] = taxon_range_geom_url(taxon.id, :format => "geojson")
+      if s = taxon_range.source
+        map_tag_attrs["data-taxon-range-citation"] = s.in_text
+        map_tag_attrs["data-taxon-range-citation-url"] = s.url || source_url(s)
+      end
     end
     if place
       map_tag_attrs["data-latitude"] ||= place.latitude
@@ -616,39 +625,51 @@ module ApplicationHelper
         end
       end
     elsif record.is_a?(Photo) || record.is_a?(Sound)
-      if record.user.blank?
-        s = record.attribution
-      else
+      user_name = ""
+      if record.user && record.editable_by?(record.user)
         user_name = record.user.name
         user_name = record.user.login if user_name.blank?
-        s = if record.copyrighted? || record.creative_commons?
-          "&copy; #{user_name}"
-        else
-          "no known copy restrictions"
-        end
+      end
+      user_name = record.native_realname if user_name.blank?
+      user_name = record.native_username if user_name.blank?
+      user_name = record.user.try(:name) if user_name.blank?
+      user_name = record.user.try(:login) if user_name.blank?
+      user_name = t(:unknown) if user_name.blank?
+      s = if record.copyrighted? || record.creative_commons?
+        "&copy; #{user_name}"
+      else
+        t(:no_known_copyright_restrictions, :name => user_name)
+      end
 
-        if record.copyrighted?
-          s += "#{separator}#{t(:all_rights_reserved)}"
-        elsif record.creative_commons?
-          s += separator
-          code = Photo.license_code_for_number(record.license)
-          url = url_for_license(code)
-          s += content_tag(:span) do
-            c = if options[:skip_image]
-              ""
-            else
-              link_to(image_tag("#{code}_small.png"), url) + " "
-            end
-            c.html_safe + link_to(t(:some_rights_reserved), url)
+      if record.copyrighted?
+        s += "#{separator}#{t(:all_rights_reserved)}"
+      elsif record.creative_commons?
+        s += separator
+        code = Photo.license_code_for_number(record.license)
+        url = url_for_license(code)
+        s += content_tag(:span) do
+          c = if options[:skip_image]
+            ""
+          else
+            link_to(image_tag("#{code}_small.png"), url) + " "
           end
+          c.html_safe + link_to(t(:some_rights_reserved), url)
         end
       end
+    else
+      s = record.attribution if record.respond_to?(:attribution)
+      s ||= "&copy; #{user_name}"
     end
     content_tag(:span, s.html_safe, :class => "rights verticalmiddle")
   end
   
   def url_for_license(code)
-    "http://creativecommons.org/licenses/#{code[/CC\-(.+)/, 1].downcase}/3.0/"
+    return nil if code.blank?
+    if info = Photo::LICENSE_INFO.detect{|k,v| v[:code] == code}.try(:last)
+      info[:url]
+    elsif code =~ /CC\-/
+      "http://creativecommons.org/licenses/#{code[/CC\-(.+)/, 1].downcase}/3.0/"
+    end
   end
   
   def update_image_for(update, options = {})
@@ -717,13 +738,27 @@ module ApplicationHelper
 
     case update.resource_type
     when "User"
-      if options[:count].to_i == 1
-        t(:user_added_an_observation_html, 
-          :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)))
+      if update.notifier_type == "Post"
+        post = notifier
+        title = if options[:skip_links]
+          resource.login
+        else
+          link_to_user(resource)
+        end
+        article = if options[:count] && options[:count].to_i == 1
+          t(:x_wrote_a_new_post_html, :x => title)
+        else
+          t(:x_wrote_y_new_posts_html, :x => title, :y => options[:count])
+        end
       else
-        t(:user_added_x_observations_html,
-          :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)),
-          :x => options[:count])
+        if options[:count].to_i == 1
+          t(:user_added_an_observation_html, 
+            :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)))
+        else
+          t(:user_added_x_observations_html,
+            :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)),
+            :x => options[:count])
+        end
       end
     when "Observation"
       t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
@@ -910,6 +945,24 @@ module ApplicationHelper
   def google_maps_js(options = {})
     sensor = options[:sensor] ? 'true' : 'false'
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?sensor=#{sensor}'></script>".html_safe
+  end
+
+  def machine_tag_pieces(tag)
+    pieces = tag.split('=')
+    predicate, value = pieces
+    if pieces.size == 1
+      value, namespace, predicate = pieces
+    elsif predicate =~ /\:/
+      namespace, predicate = predicate.split(':')
+    else
+      predicate, value = pieces
+    end
+    [namespace, predicate, value]
+  end
+
+  def tag_to_xml(tag, xml)
+    namespace, predicate, value = machine_tag_pieces(tag)
+    xml.tag tag, :predicate => predicate, :namespace => namespace, :value => value
   end
   
 end

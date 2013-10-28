@@ -90,7 +90,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     options = field_content if block_given?
     options ||= {}
     wrapper_options = options.delete(:wrapper) || {}
-    wrapper_options[:class] = "#{wrapper_options[:class]} field #{field}_field".strip
+    wrapper_options[:class] = "#{wrapper_options[:class]} field #{field.to_s.parameterize.underscore}_field".strip
     content, label_content = '', ''
     
     if options[:label] != false

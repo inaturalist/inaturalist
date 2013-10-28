@@ -1,0 +1,20 @@
+= content_for :title do
+  = @title = "#{@page.title}: #{t :comparing_versions_x_and_y, :x => @old_version.number, :y => @new_version.number}"
+= content_for :extracss do
+  = stylesheet_link_tag 'wiki'
+  :css
+    #{Diffy::CSS}
+
+#pagheader
+  .breadcrumbs
+    %strong= link_to "&laquo; #{t(:back_to_x_history, :x => @page.title)}".html_safe, wiki_page_history_path(@page), :class => "crumb"
+  %h2= @title
+
+= wiki_paginate @versions do
+  = wiki_page_history @page, @versions
+
+%h3=wt 'Changes in content'
+
+.wiki_diff
+  / = wiki_diff @old_version.content, @new_version.content
+  = Irwi.config.comparator.render_changes(@old_version.content, @new_version.content)

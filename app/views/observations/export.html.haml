@@ -1,0 +1,175 @@
+- content_for :title do
+  = @title = t(:export_observations)
+- content_for :extrajs do
+  = google_maps_js
+  = javascript_include_tag "jquery/plugins/inat/datepicker"
+  = javascript_include_tag "jquery/plugins/jquery.latLonSelector"
+  = javascript_include_tag 'inaturalist/map3'
+  = javascript_include_tag 'observations/filters'
+  = javascript_include_tag "jquery/plugins/jquery.ba-bbq.min"
+  :javascript
+    var REJECT_PARAMS = ['filters_open', 'order', 'order_by', 'utf8', 'flow_task_id', 'view']
+    function reloadPreview() {
+      $('#preview').loadingShades()
+      $('#preview .observations .content').load('/observations', $('#query').val()+'&partial=cached_component', function(text, status, req) {
+        $('#preview').loadingShades('close')
+        var total = parseInt(req.getResponseHeader('X-Total-Entries')),
+            page = parseInt(req.getResponseHeader('X-Page')),
+            perPage = parseInt(req.getResponseHeader('X-Per-Page')),
+            start = page * perPage - perPage
+        $('#previewheader .status').text((start+1) + ' - ' + (Math.min(start+perPage, total)) + ' of ' + total)
+      })
+    }
+    function cleanQuery(q) {
+      var params = $.deparam(q), newParams = {}
+      $.each(params, function(k,v) {
+        if (v.length == 1 && v[0] == '') {
+          return
+        }
+        if (v.length !== 0 && v.length != 0 && REJECT_PARAMS.indexOf(k) < 0) {
+          newParams[k] = v
+        }
+      })
+      return $.param(newParams)
+    }
+    $(document).ready(function() {
+      showFilters()
+      $('#query').change(function() {
+        var v = $(this).val(), project_id = null, login = null
+        if (v.match(/observations\/project/)) {
+          project_id = v.match(/observations\/project\/([^\?\/]+)/)[1]
+          
+        } else if (v.match(/observations\/\w+/)) {
+          login = v.match(/observations\/([^\?\/]+)/)[1]
+        }
+        if (v.match(/\//)) {
+          v = v.split('?')[1] || ''
+        } 
+        if (project_id) {v += '&projects[]='+project_id}
+        if (login) {v += '&user_id='+login}
+        var query = cleanQuery(v)
+        $(this).val(query)
+        setFiltersFromQuery(query)
+        reloadPreview()
+      })
+      $('#filters :input').change(function() {
+        var query = $('#filters :input').serialize()
+        $('#query').val(cleanQuery(query))
+        reloadPreview()
+      })
+      $('#filtersplaceholder').outerHeight($('#filters').outerHeight())
+      $('#filters').css({position: 'absolute', top: $('#filtersplaceholder').offset().top})
+      var initQuery = cleanQuery($.param($.deparam.querystring()))
+      if (initQuery.length > 0) {
+        $('#query').val(initQuery)
+        setFiltersFromQuery(initQuery)
+        reloadPreview()
+      }
+    })
+- content_for :extracss do
+  = stylesheet_link_tag "observations", "observations/filters"
+  :css
+    #query {width: 910px; border: 10px solid #ccc;padding:10px;}
+    #filters {width:924px;}
+    #preview {border: 1px solid #eee;height: 200px;overflow-x:hidden; overflow-y:auto;}
+    #preview .content {display:table-row-group;}
+    #query, #filtersplaceholder, #preview, #columns {margin-bottom: 20px;}
+    #filtersplaceholder {margin-bottom: 40px; }
+    .number {display:inline-block; text-align:center; border-radius: 100px; width:1.4em; height:1.4em; background-color: #eee; margin-right:0.2em;font-size:128%;}
+    #recent_exports {margin-top:40px;}
+    #recent_exports b {color:#333;}
+    #order_filters {display:none;}
+    .simpleTaxonSelector .choice.status {
+      position: absolute;
+      top: 32px;
+      background: white url(/images/logo-grey-15px.png) 0 3px no-repeat;
+      background-color:white !important;
+      box-shadow: #eee 2px 2px 5px;
+      padding-bottom: 5px !important;
+      padding-right: 5px !important;
+      width: 100%;
+      z-index: 100;
+    }
+    #columns table {width: 100%;}
+    #columns td {width:25%;}
+    #success table {margin:0;}
+    #success td {border:0 transparent;}
+#pageheader.clear
+  %h2= @title
+
+- if @export_url
+  #success.success.ui
+    %h3 Export complete
+    = render 'exports_table', :flow_tasks => [@flow_task]
+= form_for ObservationsExportFlowTask.new, :url => flow_tasks_url do |f|
+  .column.span-24
+    %h3
+      %span.number 1
+      =t :create_a_query
+    %p=t 'views.observations.export.create_a_query_desc_html'
+    = f.fields_for :inputs, f.object.inputs.first || f.object.inputs.build do |fti|
+      = fti.fields_for :extra do |ftie|
+        = ftie.text_field :query, :type => "text", :class => "text", :id => "query", :placeholder => t('views.observations.export.query_placeholder')
+    #filtersplaceholder
+    %h3#previewheader
+      .right.status.ui.meta=t :no_matching_observations
+      %span.number 2
+      =t :preview
+    #preview
+      .observations.table.stacked
+        = render :partial => 'observations/observations_table_header'
+        .content
+    %h3.inlineblock
+      %span.number 3
+      =t :choose_columns
+    %p=t 'views.observations.export.choose_columns_desc'
+    #columns.clear
+      = f.fields_for :options do |fo|
+        = fo.fields_for :columns, :builder => DefaultFormBuilder do |foc|
+          - {:basic => Observation::BASIC_COLUMNS, :geo => Observation::GEO_COLUMNS, :taxon => Observation::TAXON_COLUMNS, :taxon_extras => Observation::EXTRA_TAXON_COLUMNS}.each do |ctype,columns|
+            .column.span-24
+              %h4
+                =t ctype
+                %span.small.meta.ui
+                  = surround '(',')' do
+                    = link_to_function t(:all), "$('##{ctype}_columns :checkbox').attr('checked', true)"
+                    %span.meta
+                      |
+                    = link_to_function t(:none), "$('##{ctype}_columns :checkbox').attr('checked', false)"
+              - help = t("views.observations.export.#{ctype}_help_html", :default => '')
+              - unless help.blank?
+                %p.meta.ui= help
+              %table{:id => "#{ctype}_columns"}
+                - for grp in columns.in_groups_of(4)
+                  %tr
+                    - for c in grp
+                      %td
+                        - if c
+                          = foc.check_box c, :label => c, :checked => ctype != :taxon_extras, :label_after => true, :wrapper => {"data-tip" => t("views.observations.field_descriptions.#{c.underscore}", :default => ''), "data-tip-position-at" => "left bottom"}
+          .column.span-24
+            %h4
+              =t :observation_fields
+              %span.small.meta.ui
+                = surround '(',')' do
+                  = link_to_function t(:all), "$('#observation_field_columns :checkbox').attr('checked', true)"
+                  %span.meta
+                    |
+                  = link_to_function t(:none), "$('#observation_field_columns :checkbox').attr('checked', false)"
+            %table#observation_field_columns
+              - for grp in @observation_fields.in_groups_of(4)
+                %tr
+                  - for of in grp
+                    %td
+                      - if of
+                        = foc.check_box "field:#{of.normalized_name}", :label => "field:#{of.normalized_name}", :label_after => true, :wrapper => {"data-tip" => of.description, "data-tip-position-at" => "left bottom"}
+            / = text_field_tag :ofv_chooser, "", :placeholder => "Add an observation field", :class => "text"
+    %h3.inlineblock
+      %span.number 4
+    = f.submit t(:create_export, :default => "Create export"), :class => "default inline button"
+    - unless @recent_exports.blank?
+      #recent_exports.meta.clear
+        %strong=t :recent_exports
+        = render 'exports_table', :flow_tasks => @recent_exports
+
+#filters
+  = render "filter_fields", :hide_buttons => true, :show_user_field => true, :show_project_field => true

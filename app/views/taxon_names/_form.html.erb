@@ -1,10 +1,3 @@
-<%- content_for(:extrajs) do -%>
-  <script type="text/javascript" charset="utf-8">
-    // $(document).ready(function() {
-    //   $('#taxon_name_lexicon').autocomplete()
-    // });
-  </script>
-<%- end -%>
 <%= form_for(@taxon_name, 
     :url => @taxon_name.new_record? ? taxon_taxon_names_path(@taxon || @taxon_name.taxon) : @taxon_name) do |n| %>
   <%= error_messages_for :taxon_name %>
@@ -43,10 +36,11 @@
   <p class="ui">
     <%= n.label :lexicon, t(:lexicon) %><br/>
     <%-
-      options = TaxonName::DEFAULT_LEXICONS + ['---------------------------'] + 
+      options = TaxonName::DEFAULT_LEXICONS.sort + ['---------------------------'] +
         (TaxonName::LEXICONS.values.sort - TaxonName::DEFAULT_LEXICONS)
     -%>
-    <%= n.select :lexicon, options, :include_blank => "Unknown", :disabled => '---------------------------' %>
+    <%= n.select :lexicon, options.map{|l| [t("lexicons.#{l.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}",
+                                              :default => l), l]}, :include_blank => t(:unknown), :disabled => '---------------------------' %>
   </p>
   <p class="ui">
     <%= link_to_function t(:add_new_lexicon), 
@@ -66,8 +60,8 @@
   </p>
   <p class="ui" style="margin: 20px 0">
     <%= label_tag t(:if_this_is_a_cientific_name) %><br/>
-    <%= n.radio_button :is_valid, true.to_s %> <%= n.label :is_valid_true, t(:true) %>
-    <%= n.radio_button :is_valid, false %>  <%= n.label :is_valid_false, t(:false) %>
+    <%= n.radio_button :is_valid, true.to_s %> <%= n.label :is_valid_true, t(:true).downcase %>
+    <%= n.radio_button :is_valid, false %>  <%= n.label :is_valid_false, t(:false).downcase %>
   </p>
   
   <div class="clear buttonrow">

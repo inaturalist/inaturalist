@@ -1,7 +1,7 @@
 = link_to "&laquo; Back to applications".html_safe, oauth_applications_path, :class => "crumb"
 %h2= @application.name
 .column.span-8
-  = image_tag @application.image.url(:medium), :style => "width:310px;"
+  = image_tag @application.image.url(:medium), :style => "max-width:310px;"
 .column.span-16.last
   .stacked
     - if @application.description.blank?

@@ -11,19 +11,9 @@
 <script type="text/javascript" charset="utf-8">
 var CONSERVATION_STATUS_AUTHORITIES = <%=raw @conservation_status_authorities.to_json %>
   $(document).ready(function() {
-    $('#taxon_photos').photoSelector({
-      defaultQuery: '<%= @taxon.name %>',
-      baseURL: '/flickr/photo_fields',
-      defaultSource: 'flickr',
-      urlParams: {
-        authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect.html_safe %>),
-        limit: 16
-      }
-    });
-    
     $('#parent_name').simpleTaxonSelector({
       taxonIDField: $('#taxon_parent_id')
-    });
+    })
     
     // Setup taxon browser
     $('body').append(
@@ -59,6 +49,18 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=raw @conservation_status_authorities.to
     $("#conservation_statuses a.add_fields").
       data("association-insertion-method", 'before').
       data("association-insertion-node", 'this');
+
+    $('#taxon_photos').sortable({
+      items: "> .taxon_photo",
+      cursor: "move",
+      placeholder: 'taxon_photo sorttarget',
+      update: function(event, ui) {
+        $selection = $('.taxon_photo')
+        $selection.each(function() {
+          $('input[name*="position"]', this).val($selection.index(this) + 1)
+        })
+      }
+    })
   })
 
   $.fn.conservationStatus = function() {

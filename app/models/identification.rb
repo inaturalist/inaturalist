@@ -252,9 +252,9 @@ class Identification < ActiveRecord::Base
     obs.project_observations.each do |po|
       if current_ident.user.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]])
         po.update_attributes(:curator_identification_id => current_ident.try(:id))
-        ProjectUser.delay.update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        Project.delay.update_observed_taxa_count(po.project_id)
+        ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        Project.delay(:priority => INTEGRITY_PRIORITY).update_observed_taxa_count(po.project_id)
       end
     end
   end
@@ -277,9 +277,9 @@ class Identification < ActiveRecord::Base
         end
 
         po.update_attributes(:curator_identification_id => nil) unless other_curator_ident
-        ProjectUser.delay.update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        Project.delay.update_observed_taxa_count(po.project_id)
+        ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        Project.delay(:priority => INTEGRITY_PRIORITY).update_observed_taxa_count(po.project_id)
       end
     end
   end

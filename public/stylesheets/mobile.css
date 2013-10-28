@@ -38,7 +38,7 @@ h2 {margin: 0 0 0.5em;}
 #new_comment #comment_body {width:auto;}
 #new-comment .meta {position:relative;}
 #new-comment .previewbutton {display:none;}
-.button.full {text-align: center;}
+.button.full {text-align: center; float:none;}
 
 @media all and (orientation: landscape) {
   textarea {max-width:460px;max-height:200px;}

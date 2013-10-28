@@ -5,7 +5,11 @@
 <div class="establishmentfield">
   <div class="establishment">
     <label><%=t :establishment_means %>:</label>
-    <%= listed_taxon.establishment_means || t(:unknown).downcase %>
+    <% if listed_taxon.establishment_means.blank? -%>
+      <%= t(:unknown).downcase %>
+    <% else %>
+      <%= t("establishment.#{listed_taxon.establishment_means.downcase}", :default => listed_taxon.establishment_means) %>
+    <% end -%>
     <% if list.listed_taxa_editable_by?(current_user) -%>
       <%= link_to_function t(:edit), "$(this).parents('.establishment').hide(); $(this).parents('.establishmentfield').find('form').show()",
         :class => "small" %>

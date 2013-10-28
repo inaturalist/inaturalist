@@ -126,6 +126,11 @@ class Sound < ActiveRecord::Base
     true
   end
 
+  def editable_by?(user)
+    return false if user.blank?
+    user.id == user_id || observations.exists?(:user_id => user.id)
+  end
+
   def self.license_number_for_code(code)
     return COPYRIGHT if code.blank?
     LICENSE_INFO.detect{|k,v| v[:code] == code}.try(:first)

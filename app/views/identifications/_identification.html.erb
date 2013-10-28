@@ -25,7 +25,7 @@
       <span class="user">
         <% if user -%>
           <% if is_me?(user) %>
-            <strong><%=t(:your) %></strong> <%= t :id %>:
+            <strong><%=t(:your).singularize %></strong> <%= t :id %>:
           <% else %>
             <%= link_to(t(:user_s_id, :user => user.login, :id => t(:id)), person_path(user)) %>:
           <% end %>
@@ -67,7 +67,7 @@
 
     <% if tc = identification.taxon_change -%>
       <span class="small meta nobr">
-        Added as part of a <%= link_to tc.class.name.underscore.humanize.downcase, taxon_change_path(tc) -%>
+        <%= t :added_as_a_part_of %> <%= link_to tc.class.name.underscore.humanize.downcase, taxon_change_path(tc) -%>
       </span>
     <% end -%>
   </div>

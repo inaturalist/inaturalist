@@ -1,3 +1,10 @@
+<% if @list.is_a?(CheckList) && @list.is_default? && @list.title.include?('Check List') %>
+    <% @list_title = truncate(t(:check_list_place, :place => t("places_name.#{@list.title.chomp(' Check List').gsub(' ','_').downcase}",
+                                                 :default => @list.title.split(' Check List').first)), :length => 85) %>
+<% else %>
+    <% @list_title = truncate(@list.title, :length => 85) %>
+<% end %>
+
 <%- content_for(:title) do -%>
   <%- @title = capture do %>
     <%= iconic_taxon_image @taxon, :style => "vertical-align: middle" %>
@@ -5,7 +12,7 @@
       <%= render :partial => "shared/taxon" %>
     <% end %>
     <%=raw t(:on_).downcase %>
-    <%= link_to truncate(@list.title, :length => 85), @list %>
+        <%= link_to @list_title, @list %>
   <% end -%>
   <%= strip_tags(@title).html_safe %>
 <%- end -%>
@@ -47,7 +54,7 @@
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo #{@list.title}".html_safe, @list, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{@list_title}".html_safe, @list, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <h2><%= @title %></h2>
@@ -69,7 +76,7 @@
   <div class="observationcounts stacked">
     <div class="ui description">
       <strong><%= @listed_taxon.observations_count %></strong>
-      <%= (@listed_taxon.observations_count == 1 ? t(:observation) : t(:observations)) -%>,
+      <%= (@listed_taxon.observations_count == 1 ? t(:observation).downcase : t(:observations).downcase) -%>,
       <strong class="count"><%= @listed_taxon.confirmed_observations_count %></strong>
       <%= t :research_grade %>
     </div>
@@ -129,7 +136,7 @@
       <%= link_to user_image(@listed_taxon.updater), @listed_taxon.updater %>
       <%= link_to you_or_login(@listed_taxon.updater), @listed_taxon.updater %>
     <% end %>
-    <%=t :on_day %> <%= l(@listed_taxon.created_at.to_date, :format => :long) %>
+    <%=t :on_day %> <%= l(@listed_taxon.updated_at.to_date, :format => :long) %>
   </p>
   
   <div class="meta">
@@ -138,7 +145,7 @@
   
   <% if @listed_taxon.removable_by?(current_user) -%>
     <p class="ui description" style="margin-top: 10px">
-      <%= link_to "#{t(:remove_from)} #{@list.title}", @listed_taxon, :method => :delete, 
+      <%= link_to "#{t(:remove_from)} #{@list_title}", @listed_taxon, :method => :delete,
         :confirm => t(:you_sure_remove_taxon_from?, :list => @list.title),
         :class => "small description" %>
     </p>
@@ -158,7 +165,7 @@
         <%= formatted_user_text(@listed_taxon.description) %>
       </div>
       <% if @list.listed_taxa_editable_by?(current_user) -%>
-        <p class="ui"><%= link_to_function "edit #{description_name}", "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit_description")}').show()" %></p>
+        <p class="ui"><%= link_to_function "#{t(:edit)} #{description_name.downcase}", "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit_description")}').show()" %></p>
       <% end -%>
     <% end -%>
   </div>
@@ -192,7 +199,7 @@
         obs_url = project_observations_path(@list.project_id, :taxon_id => @listed_taxon.taxon_id)
       else
         obs_tab_txt = is_me?(@list.user) ? t(:observations_by_you) : t(:observations_by_user, :user => @list.user.login)
-        obs_url = observations_by_login_path(@list.user.login, :taxon_id => @listed_taxon.taxon_id)
+        obs_url = observations_by_login_path(@list.user.login, :taxon_id => @listed_taxon.taxon_id, :place_id => @list.place_id)
       end
     -%>
     <ul>

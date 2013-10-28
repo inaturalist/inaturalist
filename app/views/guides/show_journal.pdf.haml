@@ -36,6 +36,8 @@
       line-height: 1;
     }
     .bootstrap h2 {margin: 0;}
+    .bootstrap h3 {line-height: 1em; font-size:130%;}
+    .bootstrap p {font-size:90%;}
     h2 {line-height: 1;}
     @media print{@page {size: landscape}}
 .container-fluid
@@ -105,12 +107,13 @@
                 %small.muted.meta
                   = gt.guide_photos.size == 1 ? t(:photo) : t(:photos)
                   = gt.guide_photos.sort_by(&:position)[0..2].map(&:attribution).uniq.join(', ')
-          - gt.guide_ranges.each do |gr|
-            .stacked.pull-right.span4.guide_range
+          - if gr = gt.guide_ranges.sort_by(&:position).first
+            .stacked.pull-right.span4.guide_range.text-center
               = image_tag gr.medium_url, :class => "stacked"
-              %small.muted.meta
-                =t :map
-                = gr.attribution
+              %p.attribution
+                %small.muted.meta
+                  =t :map
+                  = gr.attribution
           .guide_sections
             - for s in gt.guide_sections.sort_by(&:position)
               .guide_section

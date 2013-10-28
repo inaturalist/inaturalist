@@ -703,20 +703,32 @@ iNaturalist.FullScreenControl = function(map) {
   controlDiv.style.padding = '5px';
   var controlUI = $('<div></div>').html(enter).addClass('gmapv3control')
   controlDiv.appendChild(controlUI.get(0))
-  
-  controlUI.toggle(function() {
-    var oldCenter = map.getCenter()
-    $(this).html(exit).css('font-weight', 'bold')
-    $(map.getDiv()).addClass('fullscreen')
-    google.maps.event.trigger(map, 'resize')
-    map.setCenter(oldCenter)
-  }, function() {
+
+  var exitFullScreen = function() {
     var oldCenter = map.getCenter()
     $(this).html(enter).css('font-weight', 'normal')
     $(map.getDiv()).removeClass('fullscreen')
     google.maps.event.trigger(map, 'resize')
     map.setCenter(oldCenter)
-  })
+  }
+
+  window.fullscreenEscapeHandler = function(e) {
+    if(e.keyCode === 27) {
+      controlUI.click()
+    }
+    $(document).unbind('keyup', window.fullscreenEscapeHandler)
+  }
+
+  var enterFullScreen = function() {
+    var oldCenter = map.getCenter()
+    $(this).html(exit).css('font-weight', 'bold')
+    $(map.getDiv()).addClass('fullscreen')
+    google.maps.event.trigger(map, 'resize')
+    map.setCenter(oldCenter)
+    $(document).bind('keyup', window.fullscreenEscapeHandler)
+  }
+  
+  controlUI.toggle(enterFullScreen, exitFullScreen)
   return controlDiv;
 }
 
@@ -725,11 +737,14 @@ iNaturalist.OverlayControl = function(map, options) {
   var controlDiv = options.div || document.createElement('DIV')
   controlDiv.style.padding = '5px';
   var controlUI = $('<div>' + I18n.t('taxon_map.overlays') + '</div>').addClass('gmapv3control overlaycontrol')
+  var controlUI = $('<div><span class="ui-icon inat-icon ui-icon-layers">'+I18n.t('taxon_map.overlays')+'</span></div>').addClass('gmapv3control overlaycontrol')
   var ul = $('<ul></ul>').hide()
   controlUI.append(ul)
   controlUI.hover(function() {
+    $(this).addClass('open')
     $('ul', this).show()
   }, function() {
+    $(this).removeClass('open')
     $('ul', this).hide()
   })
   controlDiv.appendChild(controlUI.get(0))

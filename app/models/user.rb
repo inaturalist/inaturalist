@@ -137,7 +137,6 @@ class User < ActiveRecord::Base
 
   validates_format_of       :email,    :with => email_regex, :message => bad_email_message, :allow_blank => true
   validates_length_of       :email,    :within => 6..100, :allow_blank => true #r@a.wk
-  validates_uniqueness_of   :email,    :allow_blank => true
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -311,7 +310,7 @@ class User < ActiveRecord::Base
   # see koala docs for available methods: https://github.com/arsduo/koala
   def facebook_api
     return nil unless facebook_identity
-    @facebook_api ||= Koala::Facebook::GraphAndRestAPI.new(facebook_identity.token)
+    @facebook_api ||= Koala::Facebook::API.new(facebook_identity.token)
   end
   
   # returns nil or the facebook ProviderAuthorization
@@ -348,7 +347,7 @@ class User < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_photo_licenses_same)
     number = Photo.license_number_for_code(preferred_photo_license)
     return true unless number
-    Photo.update_all(["license = ?", number], ["user_id = ?", id])
+    Photo.update_all(["license = ?", number], ["user_id = ? AND type != 'GoogleStreetViewPhoto'", id])
     true
   end
 
@@ -435,7 +434,13 @@ class User < ActiveRecord::Base
     )
     u.skip_email_validation = true
     u.skip_confirmation!
-    unless u.save
+    user_saved = begin
+      u.save
+    rescue PG::Error => e
+      raise e unless e.message =~ /duplicate key value violates unique constraint/
+      false
+    end
+    unless user_saved
       suggestion = User.suggest_login(u.login)
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
       u.update_attributes(:login => suggestion)

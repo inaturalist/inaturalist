@@ -57,9 +57,9 @@
             })
             if (selected.length != 0) {
               if (collectionUrl && request.term != '') {
-                selected.push({label: '<em>Search remote</em>', value: request.term, forceRemote: true})
+                selected.push({label: '<em>'+I18n.t('search_remote')+'</em>', value: request.term, forceRemote: true})
               }
-              selected.push({label: '<em>Clear</em>', value: request.term, clear: true})
+              selected.push({label: '<em>'+I18n.t('clear')+'</em>', value: request.term, clear: true})
               response(selected)
               return
             } else {
@@ -84,7 +84,7 @@
             markup.chooseButton.showInlineBlock()
             markup.loadingButton.hide()
             json = self.recordsToItems(json)
-            json.push({label: '<em>Clear</em>', value: request.term, clear: true})
+            json.push({label: '<em>'+I18n.t('clear')+'</em>', value: request.term, clear: true})
             cache[request.term] = json
             response(json)
           })
@@ -210,11 +210,13 @@
       }
     },
     
-    clear: function() {
-      var options = this.options || {}
+    clear: function(clearOpts) {
+      var options = this.options || {},
+          clearOpts = clearOpts || {},
+          bubble = clearOpts.bubble == false ? false : true
       $(this).data('selected', null)
       $(this.markup.originalInput).val('')
-      if (!$(this).data('previous')) {
+      if (!$(this).data('previous') && bubble) {
         $(this.markup.originalInput).change()
       }
       $(this.markup.input).val('').showInlineBlock()

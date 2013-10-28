@@ -1,8 +1,29 @@
-.nested-fields.row-fluid.lined.clearfix{:id => dom_id(f.object, "nested_field")}
-  = f.text_field :position, :class => "sortable-position pull-left"
-  = image_tag f.object.photo.try(:square_url), :class => "img-rounded pull-left"
-  = f.hidden_field :photo_id
-  = f.hidden_field :guide_taxon_id
-  = f.text_area :description, :placeholder => t(:brief_caption), :class => "pull-left"
-  .actions.pull-right
+.nested-fields.guide-photo-fields.row-fluid.lined.clearfix{:id => dom_id(f.object, "nested_field")}
+  .span1
+    = f.text_field :position, :class => "sortable-position"
+  .span2
+    = image_tag f.object.photo.try(:small_url) || "iconic_taxa/unknown-200px.png", :class => "img-rounded"
+    = f.hidden_field :photo_id, :class => 'photo_id_input'
+    = f.hidden_field :guide_taxon_id
+  .span7
+    .stacked
+      = f.text_area :description, :placeholder => t(:brief_caption), :class => "span12"
+    - if f.object.blank? || f.object.new_record?
+      .local_photo_fields.row-fluid
+        = f.fields_for :photo, f.object.photo || f.object.build_photo(:type => "LocalPhoto"), :builder => DefaultFormBuilder do |p|
+          .span6
+            = p.hidden_field :type
+            = p.hidden_field :native_photo_id
+            = p.hidden_field :id
+            = p.file_field :file, :accept => "image/jpg,image/jpeg,image/png,image/gif", :description => t(:jpg_png_or_gif), :class => "span12"
+            = p.select :license, Photo::LICENSE_INFO.map{|k,v| [k == 0 ? t(:no_license_all_rights_reserved) : v[:name], k]}, {}, {:description => "Creative Commons unless otherwise noted.", :class => "span12"}
+          .span6
+            = p.text_field :native_realname, :label => "Copyright holder", :description => "Defaults to your name or username", :class => "span12"
+            = p.text_field :native_page_url, :description => "Original page URL for this photo.", :class => "span12"
+    - else
+      - %w(attribution).each do |a|
+        .readonly_field{:class => "#{a}_field"}
+          = f.label a
+        %span.mirror= f.object.send(a) || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
+  .span2.actions.text-right
     = link_to_remove_association t(:remove_photo), f, :class => "btn btn-mini"

@@ -42,6 +42,22 @@ describe ProjectUser do
         project_user.reload
       }.should change(project_user, :taxa_count).by(1)
     end
+
+    it "should set taxa_count to number of species observed OR identified by a curator" do
+      t = Taxon.make!(:rank => Taxon::SPECIES)
+      po = make_project_observation
+      pu = po.project.project_users.where(:user_id => po.observation.user_id).first
+      pu.taxa_count.should eq 0
+      puc = ProjectUser.make!(:project => po.project, :role => ProjectUser::CURATOR)
+      i = without_delay do
+        Identification.make!(:observation => po.observation, :user => puc.user, :taxon => t)
+      end
+      po.reload
+      po.curator_identification.should_not be_blank
+      pu.update_taxa_counter_cache
+      pu.reload
+      pu.taxa_count.should eq 1
+    end
   end
   
   describe "update_observations_counter_cache" do

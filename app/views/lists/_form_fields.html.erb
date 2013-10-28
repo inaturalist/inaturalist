@@ -1,5 +1,20 @@
 <%- optionscol ||= nil -%>
 <%- list ||= form_fields ||= @list -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css">
+    .place_id_field .chooser {width:300px;}
+  </style>
+<%- end -%>
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.place_id_field .chooser').chooser({
+        collectionUrl: '/places/autocomplete.json?with_geom=t',
+        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item'
+      })
+    })
+  </script>
+<%- end -%>
 <div class="column span-12">
   <%= f.text_field :title, :class => 'text', :label=>t(:title).humanize %>
   <%= f.text_area :description, :label=>t(:description) %>
@@ -28,6 +43,11 @@
             <input type="text" name="taxon_name" id="taxon_input_1" class="text" />
             <input type="hidden" name="taxa[][taxon_id]" value="" id="taxa_1"/>
           </div>
+
+          <%= f.text_field :place_id, :class => "text chooser", 
+            :description => t('views.lists.new.place_desc'), 
+            :placeholder => t(:start_typing_place_name) %>
+
         </div><!-- /lifelist_fields -->
       </div>
       

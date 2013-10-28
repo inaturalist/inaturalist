@@ -72,6 +72,7 @@ class TaxonLink < ActiveRecord::Base
   end
 
   def self.by_taxon(taxon, options = {})
+    return [] if taxon.blank?
     taxon_links = if taxon.species_or_lower?
       # fetch all relevant links
       TaxonLink.for_taxon(taxon).includes(:taxon)

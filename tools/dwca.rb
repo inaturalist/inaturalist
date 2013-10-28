@@ -137,11 +137,7 @@ def make_occurrence_data
   
   if @place
     find_options[:joins] = "JOIN place_geometries ON place_geometries.place_id = #{@place.id}"
-    find_options[:conditions][0] +=
-      " AND (" +
-        "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-        "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))" +
-      ")"
+    find_options[:conditions][0] += " AND ST_Intersects(place_geometries.geom, observations.private_geom)"
   end
   
   CSV.open(tmp_path, 'w') do |csv|
@@ -226,11 +222,7 @@ def make_eol_media_data
   
   if @place
     find_options[:joins] = "JOIN place_geometries ON place_geometries.place_id = #{@place.id}"
-    find_options[:conditions][0] +=
-      " AND (" +
-        "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-        "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))" +
-      ")"
+    find_options[:conditions][0] += " AND ST_Intersects(place_geometries.geom, observations.private_geom)"
   end
   
   CSV.open(tmp_path, 'w') do |csv|

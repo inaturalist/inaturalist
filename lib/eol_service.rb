@@ -1,3 +1,4 @@
+#encoding: utf-8
 class EolService
   attr_reader :timeout, :service_name
   
@@ -13,13 +14,8 @@ class EolService
     request_uri = get_uri(method, *args)
     begin
       timed_out = Timeout::timeout(@timeout) do
-        response = Net::HTTP.start(request_uri.host) do |http|
-          # puts "#{self.class.name} getting #{request_uri.host}#{request_uri.path}?#{request_uri.query}" if @debug
-          # http.get("#{request_uri.path}?#{request_uri.query}", 'User-Agent' => "#{self.class}/#{SERVICE_VERSION}")
-          puts "#{self.class.name} getting #{request_uri}" if @debug
-          http.get(request_uri.to_s, 'User-Agent' => "#{self.class}/#{SERVICE_VERSION}")
-        end
-        Nokogiri::XML(response.body)
+        Rails.logger.debug "[DEBUG] #{self.class.name} getting #{request_uri}"
+        Nokogiri::XML(open(request_uri))
       end
     rescue Timeout::Error
       raise Timeout::Error, "#{@service_name} didn't respond within #{@timeout} seconds."

@@ -1,23 +1,22 @@
 = form_for guide_taxon, :remote => true do |f|
-  = f.hidden_field :tag_list
   .row-fluid.guide_taxon.lined{"data-search-name" => (guide_taxon.display_name.to_s + guide_taxon.name.to_s).gsub(/\W/, '').downcase}
-    .check.pull-left
-      = check_box_tag :batch, guide_taxon.id
-    .pull-left{:style => "margin-right:10px;"}
+    .check.microspan
+      = check_box_tag "guide_taxon_ids[]", guide_taxon.id
+    .microspan
       = f.text_field :position, :class => "sortable-position"
-    = link_to edit_guide_taxon_path(guide_taxon), :class => "pull-left" do
-      - gp = guide_taxon.guide_photos.first
-      = image_tag gp ? gp.square_url : taxon_image_url(guide_taxon.taxon, :size => "square"), :class => "img-circle", :style => "max-width:30px"
-    = link_to edit_guide_taxon_path(guide_taxon), :class => "names pull-left" do
-      %span.display_name= guide_taxon.display_name
-      %i.name= guide_taxon.name
-    .ctrl.pull-right.nobr
-      = link_to "x", guide_taxon, :method => :delete, :class => "btn btn-danger delete", :confirm => "Are you sure?", :remote => true, "data-type" => :json
-      %span.ui-icon.ui-icon-arrowthick-2-n-s.inlineblock.grip
-  .more
-    .row-fluid
-      .row12
-        = f.text_field :display_name
-      .row12
-        - for guide_photo in guide_taxon.guide_photos
-          = image_tag guide_photo.thumb_url
+    .microspan
+      = link_to edit_guide_taxon_path(guide_taxon) do
+        - gp = guide_taxon.default_guide_photo
+        = image_tag gp ? gp.square_url : iconic_taxon_image_url(guide_taxon.taxon, :size => "square"), :class => "img-circle"
+    .span9.guide_taxon_content
+      = link_to edit_guide_taxon_path(guide_taxon), :class => "names" do
+        %span.display_name= guide_taxon.display_name
+        %i.name= guide_taxon.name
+
+      .input-prepend.row-fluid
+        %span.add-on=t :tags
+        = f.text_field :tag_list, :placeholder => t(:add_comma_separated_tags), :class => "span10 input-small"
+    .span1
+      .ctrl.pull-right.nobr
+        = link_to "x", guide_taxon, :method => :delete, :class => "btn btn-danger delete", :confirm => t(:are_you_sure_you_want_to_remove_this_taxon), :remote => true, "data-type" => :json
+        %span.inlineblock.grip{:data => {:tip => "Drag and drop to re-order", :tip_show_delay => 1000}}

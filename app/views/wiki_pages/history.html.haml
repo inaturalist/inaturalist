@@ -1,0 +1,10 @@
+= content_for :title do
+  = @title = "#{@page.title}: #{t(:history, :default => "History")}"
+= content_for :extracss do
+  = stylesheet_link_tag 'wiki'
+#pagheader
+  .breadcrumbs
+    %strong= link_to "&laquo; #{t(:back_to_x, :noun => @page.title)}".html_safe, @page, :class => "crumb"
+  %h2= @title
+.meta= wiki_page_info
+= wiki_page_history

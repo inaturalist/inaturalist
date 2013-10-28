@@ -24,11 +24,11 @@ class ObservationsController < ApplicationController
     by_login
   end
 
-  doorkeeper_for :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  doorkeeper_for :create, :update, :destroy, :viewed_updates, :if => lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
-    :import, :add_from_list, :new, :project]
+    :import, :export, :add_from_list, :new, :project]
   before_filter :authenticate_user!,
                 :unless => lambda { authenticated_with_oauth? },
                 :except => [:explore,
@@ -43,7 +43,7 @@ class ObservationsController < ApplicationController
                             :project,
                             :taxon_stats,
                             :user_stats]
-  before_filter :load_observation, :only => [:show, :edit, :edit_photos, :update_photos, :destroy, :fields]
+  before_filter :load_observation, :only => [:show, :edit, :edit_photos, :update_photos, :destroy, :fields, :viewed_updates]
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :curator_required, :only => [:curation]
@@ -63,7 +63,7 @@ class ObservationsController < ApplicationController
   
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial"
-  REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng"
+  REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
   DISPLAY_ORDER_BY_FIELDS = {
     'created_at' => 'date added',
     'observations.id' => 'date added',
@@ -142,7 +142,7 @@ class ObservationsController < ApplicationController
       end
       
       format.widget do
-        if params[:markup_only]=='true'
+        if params[:markup_only] == 'true'
           render :js => render_to_string(:partial => "widget.html.erb", :locals => {
             :show_user => true, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]
           })
@@ -279,6 +279,10 @@ class ObservationsController < ApplicationController
         end
 
         @observer_provider_authorizations = @observation.user.provider_authorizations
+
+        if logged_in?
+          user_viewed_updates
+        end
         
         if params[:partial]
           return render(:partial => params[:partial], :object => @observation,
@@ -568,7 +572,7 @@ class ObservationsController < ApplicationController
     
     # check for errors
     errors = false
-    @observations.each { |obs| errors = true unless obs.valid? }
+    @observations.compact.each { |obs| errors = true unless obs.valid? }
     respond_to do |format|
       format.html do
         unless errors
@@ -1001,6 +1005,14 @@ class ObservationsController < ApplicationController
   
   # Import observations from external sources
   def import
+    if @default_photo_identity ||= @photo_identities.first
+      provider_name = if @default_photo_identity.is_a?(ProviderAuthorization)
+        @default_photo_identity.provider_name
+      else
+        @default_photo_identity.class.to_s.underscore.split('_').first
+      end
+      @default_photo_identity_url = "/#{provider_name.downcase}/photo_fields?context=user"
+    end
   end
   
   def import_photos
@@ -1020,10 +1032,23 @@ class ObservationsController < ApplicationController
   end
 
   def import_sounds
-      sounds = Sound.from_observation_params(params, 0, current_user)
-      @observations = sounds.map{|s| s.to_observation}
-      @step = 2
-      render :template => 'observations/new_batch'
+    sounds = Sound.from_observation_params(params, 0, current_user)
+    @observations = sounds.map{|s| s.to_observation}
+    @step = 2
+    render :template => 'observations/new_batch'
+  end
+
+  def export
+    if params[:flow_task_id]
+      if @flow_task = ObservationsExportFlowTask.find_by_id(params[:flow_task_id])
+        @export_url = FakeView.uri_join(root_url, @flow_task.outputs.first.file.url).to_s
+      end
+    end
+    @recent_exports = ObservationsExportFlowTask.where(:user_id => current_user).where("finished_at is not null").order("id desc").limit(10)
+    @observation_fields = ObservationField.recently_used_by(current_user).limit(50).sort_by{|of| of.name.downcase}
+    respond_to do |format|
+      format.html
+    end
   end
   
   def add_from_list
@@ -1236,6 +1261,9 @@ class ObservationsController < ApplicationController
     elsif logged_in?
       observations_by_login_feed_url(current_user.login, url_params)
     end
+    if @widget_url
+      @widget_url.gsub!('http:', '')
+    end
     respond_to do |format|
       format.html
     end
@@ -1372,6 +1400,10 @@ class ObservationsController < ApplicationController
     @default_taxa = @taxon ? @taxon.ancestors : Taxon::ICONIC_TAXA
     @taxon ||= Taxon::LIFE
     @default_taxa = [@default_taxa, @taxon].flatten.compact
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def fields
@@ -1503,12 +1535,16 @@ class ObservationsController < ApplicationController
       LIMIT 5
     SQL
     @user_counts = ActiveRecord::Base.connection.execute(user_counts_sql)
+    unique_taxon_users_scope = scope.
+      select("DISTINCT observations.taxon_id, observations.user_id").
+      joins(:taxon).
+      where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL).scoped
     user_taxon_counts_sql = <<-SQL
       SELECT
         o.user_id,
         count(*) AS count_all
       FROM
-        (#{scope.select("DISTINCT ON (observations.taxon_id) observations.user_id").joins(:taxon).where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL).to_sql}) AS o
+        (#{unique_taxon_users_scope.to_sql}) AS o
       GROUP BY
         o.user_id
       ORDER BY count_all desc
@@ -1544,8 +1580,24 @@ class ObservationsController < ApplicationController
     end
   end
 
+  def viewed_updates
+    user_viewed_updates
+    respond_to do |format|
+      format.html { redirect_to @observation }
+      format.json { head :no_content }
+    end
+  end
+
 ## Protected / private actions ###############################################
   private
+
+  def user_viewed_updates
+    return unless logged_in?
+    Update.update_all(
+      ["viewed_at = ?", Time.now], 
+      ["resource_type = 'Observation' AND resource_id = ? AND subscriber_id = ?", @observation.id, current_user.id]
+    )
+  end
 
   def stats_adequately_scoped?
     if params[:d1] && params[:d2]
@@ -1597,7 +1649,7 @@ class ObservationsController < ApplicationController
         else
           api_response ||= photo_class.get_api_response(photo_id, :user => current_user)
           if api_response
-            photo_class.new_from_api_response(api_response, :user => current_user)
+            photo_class.new_from_api_response(api_response, :user => current_user, :native_photo_id => photo_id)
           end
         end
       end
@@ -1642,7 +1694,8 @@ class ObservationsController < ApplicationController
       :page => search_params[:page]
     }
     unless options[:skip_pagination]
-      find_options[:page] = 1 if find_options[:page].to_i == 0
+      find_options[:page] = find_options[:page].to_i
+      find_options[:page] = 1 if find_options[:page] == 0
       find_options[:per_page] = @prefs["per_page"] if @prefs
       if !search_params[:per_page].blank?
         find_options.update(:per_page => search_params[:per_page])
@@ -1778,7 +1831,18 @@ class ObservationsController < ApplicationController
     @site = params[:site] unless params[:site].blank?
 
     @user = User.find_by_id(params[:user_id]) unless params[:user_id].blank?
-    @projects = Project.where("id IN (?)", params[:projects]) unless params[:projects].blank?
+    unless params[:projects].blank?
+      @projects = Project.find(params[:projects]) rescue []
+    end
+    if (@pcid = params[:pcid]) && @pcid != 'any'
+      @pcid = [true, 'true', 't', 1, '1', 'y', 'yes'].include?(params[:pcid]) ? 'yes' : 'no'
+    end
+
+    @geoprivacy = params[:geoprivacy] unless params[:geoprivacy].blank?
+    @rank = params[:rank] if Taxon::VISIBLE_RANKS.include?(params[:rank])
+    @hrank = params[:hrank] if Taxon::VISIBLE_RANKS.include?(params[:hrank])
+    @lrank = params[:lrank] if Taxon::VISIBLE_RANKS.include?(params[:lrank])
+
     
     @filters_open = 
       !@q.nil? ||
@@ -1793,7 +1857,12 @@ class ObservationsController < ApplicationController
       !@out_of_range.blank? ||
       !@observed_on.blank? ||
       !@place.blank? ||
-      !@ofv_params.blank?
+      !@ofv_params.blank? ||
+      !@pcid.blank? ||
+      !@geoprivacy.blank? ||
+      !@rank.blank? ||
+      !@lrank.blank? ||
+      !@hrank.blank?
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
     
     [search_params, find_options]
@@ -1816,14 +1885,13 @@ class ObservationsController < ApplicationController
       @observations = Observation.query(search_params).includes({:observation_photos => :photo}, :sounds).paginate(find_options)
     end
     @observations
-  rescue ThinkingSphinx::ConnectionError
+  rescue ThinkingSphinx::ConnectionError, Riddle::ResponseError
     Rails.logger.error "[ERROR #{Time.now}] ThinkingSphinx::ConnectionError, hitting the db"
     find_options.delete(:class)
     find_options.delete(:classes)
     find_options.delete(:raise_on_stale)
     @observations = if @q
-      Observation.query(search_params).all(
-        :conditions => ["species_guess LIKE ?", "%#{@q}%"]).paginate(find_options)
+      Observation.query(search_params).where("species_guess LIKE ?", "%#{@q}%").paginate(find_options)
     else
       Observation.query(search_params).paginate(find_options)
     end
@@ -1908,11 +1976,6 @@ class ObservationsController < ApplicationController
       sphinx_options[:with][:identifications_most_disagree] = true
     end
     
-    # Taxon ID
-    unless search_params[:taxon_id].blank?
-      sphinx_options[:with][:taxon_id] = search_params[:taxon_id]
-    end
-    
     # Iconic taxa
     unless search_params[:iconic_taxa].blank?
       sphinx_options[:with][:iconic_taxon_id] = \
@@ -1986,7 +2049,10 @@ class ObservationsController < ApplicationController
         v[:observation_field].blank? ? nil : v[:observation_field].id
         @observations = @observations.has_observation_field(of.id, v[:value])
       end
-    end
+    end    
+    @observations = @observations.of(@observations_taxon) if @observations_taxon
+    @observations = @observations.in_place(@place) if @place
+    @observations = @observations.on(@observed_on) if @observed_on
 
     if CONFIG.site_only_observations && params[:site].blank?
       @observations = @observations.where("observations.uri LIKE ?", "#{root_url}%")
@@ -2003,7 +2069,7 @@ class ObservationsController < ApplicationController
       @observations = WillPaginate::Collection.new(1,30, 0)
     end
     @observations
-  rescue ThinkingSphinx::ConnectionError
+  rescue ThinkingSphinx::ConnectionError, Riddle::ResponseError
     Rails.logger.error "[ERROR #{Time.now}] Failed to connect to sphinx, falling back to db"
     get_paginated_observations(search_params, find_options)
   end
@@ -2013,7 +2079,7 @@ class ObservationsController < ApplicationController
   # in @observations before this is called, this won't do anything
   def refresh_lists_for_batch
     return true if @observations.blank?
-    taxa = @observations.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
+    taxa = @observations.compact.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
     return true if taxa.blank?
     List.delay.refresh_for_user(current_user, :taxa => taxa.map(&:id))
     true
@@ -2182,7 +2248,11 @@ class ObservationsController < ApplicationController
     reference_photo ||= current_user.photos.order("id ASC").last
     if reference_photo
       assoc_name = reference_photo.class.to_s.underscore.split('_').first + "_identity"
-      @default_photo_identity = current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
+      if current_user.respond_to?(assoc_name)
+        @default_photo_identity = current_user.send(assoc_name)
+      else
+        @default_photo_source = 'local'
+      end
     end
     if params[:facebook_photo_id]
       if @default_photo_identity = @photo_identities.detect{|pi| pi.to_s =~ /facebook/i}
@@ -2193,11 +2263,10 @@ class ObservationsController < ApplicationController
         @default_photo_source = 'flickr'
       end
     end
-    @default_photo_identity ||= @photo_identities.first
     @default_photo_source ||= if @default_photo_identity && @default_photo_identity.class.name =~ /Identity/
       @default_photo_identity.class.name.underscore.humanize.downcase.split.first
     elsif @default_photo_identity
-      "facebook"
+      "local"
     end
     
     @default_photo_identity_url = nil
@@ -2294,7 +2363,8 @@ class ObservationsController < ApplicationController
         }
       end
       opts[:include][:taxon] ||= {
-        :only => [:id, :name, :rank, :ancestry]
+        :only => [:id, :name, :rank, :ancestry],
+        :methods => [:common_name]
       }
       opts[:include][:iconic_taxon] ||= {:only => [:id, :name, :rank, :rank_level, :ancestry]}
       opts[:include][:user] ||= {:only => :login}
@@ -2332,13 +2402,16 @@ class ObservationsController < ApplicationController
   def render_observations_to_kml(options = {})
     @net_hash = options
     if params[:kml_type] == "network_link"
+      kml_query = request.query_parameters.reject{|k,v| REJECTED_KML_FEED_PARAMS.include?(k.to_s) || k.to_s == "kml_type"}.to_query
+      kml_href = "#{request.base_url}#{request.path}"
+      kml_href += "?#{kml_query}" unless kml_query.blank?
       @net_hash = {
         :id => "AllObs", 
         :link_id =>"AllObs", 
         :snippet => "#{CONFIG.site_name} Feed for Everyone", 
         :description => "#{CONFIG.site_name} Feed for Everyone", 
         :name => "#{CONFIG.site_name} Feed for Everyone", 
-        :href => "#{root_url}#{request.fullpath}".gsub(/kml_type=network_link/, '')
+        :href => kml_href
       }
       render :layout => false, :action => 'network_link'
       return

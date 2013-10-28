@@ -12,7 +12,13 @@ class Comment < ActiveRecord::Base
   auto_subscribes :user, :to => :parent
   
   scope :by, lambda {|user| where("comments.user_id = ?", user)}
+  scope :for_observer, lambda {|user| 
+    joins("JOIN observations o ON o.id = comments.parent_id").
+    where("comments.parent_type = 'Observation'").
+    where("o.user_id = ?", user)
+  }
   scope :since, lambda {|datetime| where("comments.created_at > DATE(?)", datetime)}
+  scope :dbsearch, lambda {|q| where("comments.body ILIKE ?", "%#{q}%")}
   
   attr_accessor :html
 
@@ -30,7 +36,11 @@ class Comment < ActiveRecord::Base
   
   def update_parent_counter_cache
     if parent && parent.class.column_names.include?("comments_count")
-      parent.class.update_all(["comments_count = ?", parent.comments.count], ["id = ?", parent_id])
+      if parent.class.column_names.include?("updated_at")
+        parent.class.update_all(["comments_count = ?, updated_at = ?", parent.comments.count, Time.now], ["id = ?", parent_id])
+      else
+        parent.class.update_all(["comments_count = ?", parent.comments.count], ["id = ?", parent_id])
+      end
     end
     true
   end

@@ -12,9 +12,9 @@
         <%= f.form_field :name do %>
           <strong><%= @taxon.name %></strong>
           <div class="meta">
-            Add a
-            <%= link_to "taxon swap", new_taxon_change_path(:type => "TaxonSwap", :input_taxon_ids => @taxon.id) %>
-            if you want to change the name
+            <%= t :add_a %>
+            <%= link_to t(:taxon_swap), new_taxon_change_path(:type => "TaxonSwap", :input_taxon_ids => @taxon.id) %>
+            <%= t :if_you_want_to_change_the_name %>
           </div>
         <% end %>
       <% end -%>
@@ -68,24 +68,24 @@
   
   <fieldset class="column span-24">
     <legend><%= t(:photos) %></legend>
-    <p class="description">
-      <%= t(:search_creative_commons_photos_on_flickr) %>
-    </p>
-    
-    <div class="clear">
-      <div id="taxon_photos" class="clear">
-        <% for photo in taxon.photos %>
-          <div class="photo">
-            <%= check_box_tag "#{photo.class.to_s.underscore.pluralize}[]", 
-                photo.native_photo_id, :checked => 'checked', :id => dom_id(photo) %>
-            <label for="<%= dom_id(photo) %>"><%= image_tag(photo.square_url) %></label>
+
+    <div id="taxon_photos" class="clear stacked">
+      <%= f.fields_for :taxon_photos do |tp| %>
+        <div class="taxon_photo">
+          <%= tp.hidden_field :photo_id %>
+          <%= tp.hidden_field :id %>
+          <%= tp.text_field :position, :class => "sortable-position", :label => false %>
+          <%= image_tag(tp.object.photo.small_url) %>
+          <div class="upstacked">
+            <%= link_to t(:view_photo), photo_path(tp.object.photo), :class => "readmore left", :target => "_blank" %>
+            <%= tp.check_box :_destroy, :label_after => true, :label => t(:delete), :wrapper => {:class => "right"} %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end -%>
     </div>
     
     <p class="ui">
-      <%= t :or %> <label><%= t(:add_new_photos_by_their_ids) %></label><br/>
+      <label><%= t(:add_new_photos_by_their_ids) %></label><br/>
       <input type="text" class="text" name="flickr_photos[]" />&nbsp;
       <input type="text" class="text" name="flickr_photos[]" />&nbsp;
       <input type="text" class="text" name="flickr_photos[]" />
@@ -113,7 +113,7 @@
     <p class="ui">
       <%= f.text_field :wikipedia_title, :class => "text" %><br/>
       <span class="description">
-        <%= t(:the_title_of_the_wikipedia_article_we_use) %>
+        <%= t(:the_title_of_the_wikipedia_article_we_use).html_safe %>
       </span>
     </p>
     
@@ -178,8 +178,8 @@
 
   <fieldset class="last column span-11">
     <legend><%= t :concept_status %></legend>
-    <%= f.radio_button :is_active, true, :label_after => true, :label => t(:active) %>
-    <%= f.radio_button :is_active, false, :label_after => true, :label => t(:inactive) %>
+    <%= f.radio_button :is_active, true, :label_after => true, :label => t(:active).titleize %>
+    <%= f.radio_button :is_active, false, :label_after => true, :label => t(:inactive).titleize %>
     <div class="description">
       <%= t :inactive_taxon_concepts_are %>
     </div>
@@ -224,10 +224,18 @@
       msg += t(:descendant_taxa) if @descendants_exist
       msg += t(:and) + " #{pieces.join(', ')} " + t(:of_it_and_its_descendants) unless pieces.empty?
     -%>
-    <%= link_to t(:delete), taxon,
-                :method => :delete,
-                :confirm => t(:are_you_sure_want_delete_taxon, :msg => "#{msg}"),
-                :class => 'minor delete button' %>
+    <% if taxon.deleteable_by?(current_user) -%>
+      <%= link_to t(:delete), taxon,
+                  :method => :delete,
+                  :confirm => t(:are_you_sure_want_delete_taxon, :msg => "#{msg}"),
+                  :class => 'minor delete button' %>
+    <% else %>
+      <span class="inter meta">
+        <s><%=t :delete %></s>
+        <%=t :you_can_only_destroy_taxa_you_created %>
+      </span>
+
+    <% end -%>
     
     <% if @taxon_range %>
       <%= link_to t(:edit_taxon_range), edit_taxon_range_path(@taxon_range), :class => "right minor button" %>

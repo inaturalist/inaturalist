@@ -38,17 +38,19 @@
     <span id="<%= dom_id place, 'add_status' %>" class="inter status loading right" style="display:none"><%= t :adding %></span>
   <% end -%>
 
-  <strong><%= link_to place.name, place %></strong>
+  <strong><%= link_to t("places_name.#{place.name.gsub(' ','_').downcase}", :default => place.name), place %></strong>
   <div class="small description">
     <% unless place.place_type_name.blank? -%>
       <%= t("place_geo.geo_planet_place_types.#{place.place_type_name.gsub(' ','_')}", :default => place.place_type_name) %>
     <% end -%>
-    <% if place.parent %><%= t :in %> <%= place.parent.display_name %><% end %>
+    <% if place.parent %><%= t :in %>
+        <%= t("places_name.#{place.parent.display_name.gsub(' ','_').downcase}", :default => place.parent.display_name) %>
+    <% end %>
   </div>
 
   <% if listed_taxon -%>
     <div class="small description">
-      <%= t(:source) %><%= citation_for listed_taxon.citation_object %>
+      <%= t(:source) %>: <%= citation_for listed_taxon.citation_object %>
     </div>
   <% end -%>
 </li>

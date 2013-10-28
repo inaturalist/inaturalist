@@ -111,21 +111,14 @@ module Shared::ListsModule
       end
       
       format.json do
-        per_page = params[:per_page].to_i
-        per_page = 200 unless (1..200).include?(per_page)
-        @listed_taxa = @list.listed_taxa.paginate(:page => params[:page], 
-          :per_page => per_page,
-          :order => "observations_count DESC",
-          :include => [{:taxon => [:photos, :taxon_names]}])
-        @listed_taxa_json = @listed_taxa.map do |lt|
-          lt.as_json(
-            :except => [:manually_added, :updater_id, :observation_month_counts, :taxon_range_id, :source_id],
-            :include => { :taxon => Taxon.default_json_options }
-          )
-        end
+        @find_options[:order] = "observations_count DESC" if params[:order_by].blank?
+        @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
         render :json => {
           :list => @list,
-          :listed_taxa => @listed_taxa_json,
+          :listed_taxa => @listed_taxa.as_json(
+            :except => [:manually_added, :updater_id, :observation_month_counts, :taxon_range_id, :source_id],
+            :include => { :taxon => Taxon.default_json_options }
+          ),
           :current_page => @listed_taxa.current_page,
           :total_pages => @listed_taxa.total_pages,
           :total_entries => @listed_taxa.total_entries
@@ -186,7 +179,9 @@ module Shared::ListsModule
     # Sometimes STI can be annoying...
     klass = Object.const_get(params[:list].delete(:type)) rescue List
     klass = List unless klass.ancestors.include?(List)
-    @list = klass.new(params[klass.to_s.underscore])
+    list_params = params[:list]
+    list_params = params[klass.to_s.underscore] if list_params.blank?
+    @list = klass.new(list_params)
 
     @list.user = current_user
     
@@ -373,20 +368,23 @@ module Shared::ListsModule
     @iconic_taxa_by_id = @iconic_taxa.index_by(&:id)
     page = params[:page].to_i
     page = 1 if page == 0
+    per_page = params[:per_page].to_i
+    per_page = 45 if per_page <= 0
+    per_page = 200 if per_page > 200
     @find_options = {
       :page => page,
-      :per_page => 45,
+      :per_page => per_page,
       :include => [
         :last_observation,
         {:taxon => [:iconic_taxon, :photos, :taxon_names]}
-      ],
-      
-      # TODO: somehow make the following not cause a filesort...
-      :order => "taxon_ancestor_ids || '/' || listed_taxa.taxon_id"
+      ]
     }
     if params[:taxon] && @filter_taxon = (Taxon.find_by_id(params[:taxon].to_i) || Taxon.where("lower(name) = ?", params[:taxon].to_s.downcase).first)
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
-      @find_options[:conditions] = ["(taxon_id = ? OR taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?)", @filter_taxon.id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%"]
+      @find_options[:conditions] = [
+        "(listed_taxa.taxon_id = ? OR taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?)", 
+        @filter_taxon.id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%"
+      ]
       
       # The above condition on a joined table will trigger an eager load, 
       # which won't load all 2nd order associations (e.g. taxon names), so 
@@ -398,6 +396,34 @@ module Shared::ListsModule
     elsif params[:iconic_taxon]
       @filter_taxon = Taxon.find_by_id(params[:iconic_taxon])
       @find_options[:conditions] = ["taxa.iconic_taxon_id = ?", @filter_taxon.try(:id)]
+    end
+    if [true, 't', 'true', '1', 'y', 'yes'].include?(params[:observed])
+      @observed = 't'
+      if @find_options[:conditions].blank?
+        @find_options[:conditions] = ["last_observation_id IS NOT NULL"]
+      else
+        @find_options[:conditions][0] += " AND last_observation_id IS NOT NULL"
+      end
+    elsif [false, 'f', 'false', '0', 'n', 'no'].include?(params[:observed])
+      @observed = 'f'
+      if @find_options[:conditions].blank?
+        @find_options[:conditions] = ["last_observation_id IS NULL"]
+      else
+        @find_options[:conditions][0] += " AND last_observation_id IS NULL"
+      end
+    end
+    @find_options[:order] = case params[:order_by]
+    when "name"
+      order = params[:order]
+      order = "asc" unless %w(asc desc).include?(params[:order])
+      "taxa.name #{order}"
+    when "observations_count"
+      order = params[:order]
+      order = "desc" unless %w(asc desc).include?(params[:order])
+      "listed_taxa.observations_count #{order}"
+    else
+      # TODO: somehow make the following not cause a filesort...
+      "taxon_ancestor_ids || '/' || listed_taxa.taxon_id"
     end
   end
   

@@ -13,7 +13,7 @@
     :class => 'button previewbutton commentpreviewbutton' %>
   <div id="<%= unique_id %>-preview_loading" class="loading status inter" style="display:none"><%=t :previewing %></div>
   <%- unless comment.new_record? -%>
-    <span class="inter description">or</span>
+    <span class="inter description"><%= t :or %></span>
     <%- cancel_url = comment.parent.is_a?(Post) ? journal_post_path(comment.parent.user.login, comment.parent) : url_for(comment.parent) %>
     <%= link_to t(:cancel), "#{cancel_url}#comment-#{comment.id}", :class => 'button' %>
   <%- end -%>

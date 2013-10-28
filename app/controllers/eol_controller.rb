@@ -15,11 +15,22 @@ class EolController < ApplicationController
       @taxon.name
     end
     
-    limit = params[:limit]
-    limit = 36 if limit.blank? || limit.to_i > 36
+    per_page = params[:limit].to_i
+    per_page = 36 if per_page.blank? || per_page.to_i > 36
+    page = params[:page].to_i
+    page = 1 if page == 0
+    offset = per_page*(page-1)+(page-1)
+    limit = if offset > per_page
+      75
+    else
+      per_page
+    end
     @photos = EolPhoto.search_eol(@q, :limit => limit)
+    @photos = @photos[offset,per_page]
     
-    render :partial => 'photos/photo_list_form', :locals => {
+    partial = params[:partial].to_s
+    partial = 'photo_list_form' unless %w(photo_list_form bootstrap_photo_list_form).include?(partial)    
+    render :partial => "photos/#{partial}", :locals => {
       :photos => @photos, 
       :index => params[:index],
       :local_photos => false }

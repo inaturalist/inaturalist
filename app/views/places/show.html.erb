@@ -60,7 +60,7 @@
     <span class="description">&gt;</span>
     <% @place.ancestors.each do |ancestor| %>
       <%- link_txt = capture do -%>
-        <%= t ancestor.name, :default => ancestor.name %>
+        <%= t("places_name.#{ancestor.name.gsub(' ','_').downcase}", :default => ancestor.name) %>
         <span class="small description">
           (<%= t("place_geo.geo_planet_place_types.#{ancestor.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if ancestor.place_type_name %>)
         </span>
@@ -71,7 +71,7 @@
   </div><!-- /#breadcrumbs -->
   <div id="map" style="width: 100%; height: 100px"></div>
   <h2>
-    <%= link_to t(@place.display_name, :default => @place.display_name), @place %>
+    <%= link_to t("places_name.#{@place.display_name.gsub(' ','_').downcase}", :default => @place.display_name), @place %>
     <span class="small description">
       <%= t("place_geo.geo_planet_place_types.#{@place.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if @place.place_type_name %>
     </span>
@@ -91,6 +91,9 @@
   <ul>
     <li><a href="#guidetab"><span><%=t :species_guide %></span></a></li>
     <li><a href="#observationstab"><span><%= t(:observations).capitalize %></span></a></li>
+    <% unless @projects.blank? %>
+      <li><a href="#projectstab"><span><%= t(:projects).capitalize %></span></a></li>
+    <% end -%>
     <li><a href="#abouttab"><span><%=t :about_x, :x => t(@place.name, :default => @place.name) %></span></a></li>
   </ul>
   
@@ -130,6 +133,15 @@
     </div>
     <%= link_to t(:view_more_observations_from) + ' ' + "#{@place.name}", observations_url(:place_id => @place.id), :class => "readmore" %>
   </div>
+
+  <% unless @projects.blank? -%>
+    <div id="projectstab">
+      <div class="clear">
+        <h3><%= t(:projects_in_x, :x => @place.name) %></h3>
+        <%= render :partial => 'projects/project', :collection => @projects %>
+      </div>
+    </div>
+  <% end -%>
   
   <div id="abouttab">
     <div class="container">

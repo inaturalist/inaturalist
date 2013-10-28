@@ -130,7 +130,10 @@
                 <label for="places_check"><%= t(:checklist_places_introduced) %></label>
               </div>
 
-              <%= link_to_toggle "Toggle place types", "#place_types", :style => "margin-left: 40px" %>
+              <%#= link_to_toggle "Toggle place types", "#place_types" %>
+              <div>
+                <%= link_to_function t(:toggle_place_types), "$('#place_types').toggle(400, expandLegend); $(this).toggleClass('open')", :rel => '#place_types', :class => "togglelink" %>
+              </div>
               <ul id="place_types" style="display:none">
                 <li class="place_type" rel="countries_simple">
                   <input name="place_type" type="radio" id="place_type_countries"/>
@@ -142,7 +145,7 @@
                 </li>
                 <li class="place_type" rel="counties_simple">
                   <input name="place_type" type="radio" id="place_type_counties"/>
-                  <label for="place_type_counties"><%= t(:countries) %></label>
+                  <label for="place_type_counties"><%= t(:counties) %></label>
                 </li>
               </ul>
             </li>

@@ -13,6 +13,11 @@ body {
   color: #333;
 }
 
+.gm-style .gm-style-iw, .gm-style .gm-style-iw a, .gm-style .gm-style-iw span, .gm-style .gm-style-iw label, 
+.gm-style .gm-style-iw div, .gm-style div, .gm-style span, .gm-style label, .gm-style a {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: Georgia, serif;
   margin-bottom: 0.5em;
@@ -72,10 +77,10 @@ p.ui { margin-bottom: 10px; }
 }
 
 /* Readable Elements -- anything that is meant to be read */
-.readable, p {
+.readable, p, .gm-style .readable, .gm-style .readable a, .gm-style .readable div, .gm-style .readable span {
   font-family: Georgia, serif;
-  font-size: 125%;
 }
+.readable, p, .gm-style .readable {font-size: 125%;}
 
 .readable p {
   font-size: 100%;
@@ -139,7 +144,7 @@ form .field{margin-bottom:10px;}
 .required{color:deeppink;}
 .inlabel { margin-bottom: 0.2em;}
 form .field .description { margin-bottom: 0.5em;}
-.inlabel .fieldWithErrors{display:inline;}
+.inlabel .fieldWithErrors, .inlabel .field_with_errors{display:inline;}
 .stacked{margin-bottom:10px;}
 .upstacked{margin-top:10px;}
 .unstacked, .column.unstacked{margin-bottom:0px;}
@@ -912,6 +917,7 @@ ul.leafylist li li:first-child {
 .item.comment .body{padding-left:0;}
 .item .comment_actions {display:none;}
 .item:hover .comment_actions {display:inline;}
+.comment {overflow:hidden;}
 
 #pageheader #tools{margin-top:0.5em;}
 .count { color: #74AC00; }
@@ -1204,6 +1210,7 @@ form.inline .inlabel {
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255,255,255)), to(rgb(230,230,230))) repeat scroll 0 0 transparent;
 }
 .gmapv3control .ui-icon {background-image: url(/images/jquery-ui/ui-icons_222222_256x240.png); }
+.gmapv3control.open .ui-icon {width:auto; text-indent: 20px;}
 .fullscreen {
   position: fixed !important;
   width:100% !important;
@@ -1338,7 +1345,7 @@ a.id_please_notice:hover{color:#584925;}
 
 .ui-tooltip, .qtip{ max-width: 500px; line-height: 1.5;}
 
-.overlaycontrol { text-align: right; max-width: 400px;}
+.overlaycontrol { max-width: 200px;}
 .overlaycontrol ul { list-style: none; margin: 0; text-align: left;}
 
 .shades { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index:10;}
@@ -1372,7 +1379,8 @@ a.id_please_notice:hover{color:#584925;}
 }
 
 .inat-icon,
-.ui-widget-content .inat-icon {
+.ui-widget-content .inat-icon,
+.gmapv3control .inat-icon {
   background-image: url(/images/sprites-222222.png);
   background-repeat: no-repeat;
 }
@@ -1381,6 +1389,7 @@ a:hover .inat-icon, .inat-icon:hover { background-image: url(/images/sprites-222
 .ui-icon-grid { background-position: 0 0;}
 .ui-icon-list { background-position: -16px 0;}
 .ui-icon-map { background-position: -32px 0;}
+.ui-icon-layers { background-position: -64px 0;}
 
 .source_nested_form_fields .ui-chooser-choice { max-width: 300px; padding: 5px 10px; }
 .ui-tabs li.ui-corner-top, .ui-tabs ul.ui-corner-all { -moz-border-radius: 0px; -webkit-border-radius: 0px; -khtml-border-radius: 0px; border-radius: 0px;}
@@ -1621,3 +1630,5 @@ ul.plain {list-style:none;margin:0;padding:0}
 
 .delete .ui-icon {background-image: url(/images/jquery-ui/ui-icons_888888_256x240.png);}
 .identification .display_name { font-weight: bold;}
+
+.post img, .comment img { max-width: 100%;}

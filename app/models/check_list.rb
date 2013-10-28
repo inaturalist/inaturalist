@@ -98,6 +98,9 @@ class CheckList < List
   # This is a loaded gun.  Please fire with discretion.
   def add_intersecting_taxa(options = {})
     return nil unless PlaceGeometry.exists?(["place_id = ?", place_id])
+    if place.straddles_date_line?
+      raise "Can't add intersecting taxa for places that span the dateline. Maybe it would work if we switched from geometries to geographies."
+    end
     ancestor = options[:ancestor].is_a?(Taxon) ? options[:ancestor] : Taxon.find_by_id(options[:ancestor])
     if options[:ancestor] && ancestor.blank?
       return nil
@@ -121,11 +124,7 @@ class CheckList < List
       :include => [:taxon, :user],
       :joins => "JOIN place_geometries ON place_geometries.place_id = #{place_id}",
       :conditions => [
-        "observations.quality_grade = ? AND " +
-        "(" +
-          "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-          "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))" +
-        ")",
+        "observations.quality_grade = ? AND ST_Intersects(place_geometries.geom, observations.private_geom)",
         Observation::RESEARCH_GRADE
       ]
     }
@@ -141,7 +140,12 @@ class CheckList < List
     ancestry_clause = [lt.taxon_ancestor_ids, lt.taxon_id].flatten.map{|i| i.blank? ? nil : i}.compact.join('/')
     <<-SQL
       SELECT
-        array_agg(CASE WHEN quality_grade = 'research' THEN o.id END) AS ids,
+        min(CASE WHEN quality_grade = 'research' THEN o.id END) AS first_observation_id,
+        max(
+          CASE WHEN quality_grade = 'research'
+          THEN (COALESCE(time_observed_at, observed_on)::varchar || ',' || o.id::varchar)
+          END
+        ) AS last_observation,
         count(*),
         (#{sql_key}) AS key
       FROM
@@ -149,16 +153,7 @@ class CheckList < List
           LEFT OUTER JOIN taxa t ON t.id = o.taxon_id 
           JOIN place_geometries pg ON pg.place_id = #{lt.place_id}
       WHERE
-        (
-          (
-            o.private_latitude IS NULL AND 
-            ST_Intersects(pg.geom, o.geom)
-          ) OR 
-          (
-            o.private_latitude IS NOT NULL AND 
-            ST_Intersects(pg.geom, ST_Point(o.private_longitude, o.private_latitude))
-          )
-        ) AND 
+        ST_Intersects(pg.geom, o.private_geom) AND 
         (
           o.taxon_id = #{lt.taxon_id} OR 
           t.ancestry = '#{ancestry_clause}' OR

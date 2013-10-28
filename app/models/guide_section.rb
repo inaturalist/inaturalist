@@ -5,22 +5,93 @@ class GuideSection < ActiveRecord::Base
   has_one :guide, :through => :guide_taxon
   before_create :set_license
   after_create :touch_if_modified
-  after_save {|r| r.guide.expire_caches}
-  after_destroy {|r| r.guide.expire_caches}
+  after_save {|r| r.guide.expire_caches(:check_ngz => true)}
+  after_destroy {|r| r.guide.expire_caches(:check_ngz => true)}
+
+  EOL_SUBJECTS = %w(
+    Associations
+    Barcode
+    Behaviour
+    Biology
+    CitizenScience
+    Conservation
+    ConservationStatus
+    Cyclicity
+    Cytology
+    Description
+    Development
+    DiagnosticDescription
+    Diseases
+    Dispersal
+    Distribution
+    Ecology
+    Education
+    EducationResources
+    Evolution
+    FossilHistory
+    FunctionalAdaptations
+    GeneralDescription
+    Genetics
+    Genome
+    Growth
+    Habitat
+    IdentificationResources
+    Key
+    Legislation
+    LifeCycle
+    LifeExpectancy
+    LookAlikes
+    Management
+    Migration
+    MolecularBiology
+    Morphology
+    Notes
+    NucleotideSequences
+    Physiology
+    PopulationBiology
+    Procedures
+    Reproduction
+    RiskStatement
+    Size
+    SystematicsOrPhylogenetics
+    TaxonBiology
+    Taxonomy
+    Threats
+    Trends
+    TrophicStrategy
+    TypeInformation
+    Use
+  )
+
+  def to_s
+    "<GuideSection #{id}>"
+  end
 
   def attribution
-    return I18n.t(:public_domain) if license == Photo::PD_CODE
+    if adapted?
+      I18n.t :adapted_by_name_from_a_work_by_original, :name => guide.user.name, :original => original_attribution
+    else
+      original_attribution
+    end
+  end
+
+  def original_attribution
+    @original_attribution ||= if license == Photo::PD_CODE
+      I18n.t('copyright.public_domain', :default => "public domain").titleize
+    elsif license.blank?
+      I18n.t('copyright.all_rights_reserved', :name => attribution_name)
+    else
+      I18n.t('copyright.some_rights_reserved_by', :name => attribution_name, :license_short => license.sub('-', ' '))
+    end
+  end
+
+  def attribution_name
     rights_holder_name ||= rights_holder unless rights_holder.blank?
     if guide && source_url.blank?
       rights_holder_name ||= guide.user.name unless guide.user.name.blank?
       rights_holder_name ||= guide.user.login
     end
     rights_holder_name ||= I18n.t(:unknown)
-    if license.blank?
-      I18n.t('copyright.all_rights_reserved', :name => rights_holder_name)
-    else
-      I18n.t('copyright.some_rights_reserved_by', :name => rights_holder_name, :license_short => license.sub('-', ' '))
-    end
   end
 
   def set_license
@@ -34,7 +105,12 @@ class GuideSection < ActiveRecord::Base
   end
 
   def modified?
+    return false unless updated_at && created_at
     updated_at > created_at
+  end
+
+  def adapted?
+    modified? && original_attribution !~ /#{guide.user.name}/
   end
 
   def touch_if_modified

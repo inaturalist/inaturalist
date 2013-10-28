@@ -28,7 +28,7 @@
   link_url ||= nil
   singular ||= false
 
-  taxon_class = "taxon taxon-#{taxon.id}"
+  taxon_class = "taxon taxon-#{taxon.id} #{taxon_class}"
   taxon_class << " #{taxon.rank.downcase}" if taxon.rank
   if iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
     taxon_class << " #{iconic_taxon.name}"

@@ -47,8 +47,6 @@ class Photo < ActiveRecord::Base
   SMALL = 240
   MEDIUM = 500
   LARGE = 1024
-
-  validate :licensed_if_no_user
   
   def to_s
     "<#{self.class} id: #{id}, user_id: #{user_id}>"
@@ -78,21 +76,24 @@ class Photo < ActiveRecord::Base
   
   # Return a string with attribution info about this photo
   def attribution
-    name = if !native_realname.blank?
+    if license == PD
+      I18n.t('copyright.no_known_copyright_restrictions', :name => attribution_name, :license_name => I18n.t("copyright.#{license_name.gsub(' ','_').gsub('-','_').downcase}", :default => license_name))
+    elsif open_licensed?
+      I18n.t('copyright.some_rights_reserved_by', :name => attribution_name, :license_short => license_short)
+    else
+      I18n.t('copyright.all_rights_reserved', :name => attribution_name)
+    end
+  end
+
+  def attribution_name
+    if !native_realname.blank?
       native_realname
     elsif !native_username.blank?
       native_username
-    elsif (o = observations.first)
-      o.user.name || o.user.login
+    elsif user
+      user.name || user.login
     else
       I18n.t('copyright.anonymous')
-    end
-    if license == PD
-      I18n.t('copyright.no_known_copyright_restrictions', :name => name, :license_name => I18n.t("copyright.#{license_name.gsub(' ','_').gsub('-','_').downcase}", :default => license_name))
-    elsif open_licensed?
-      I18n.t('copyright.some_rights_reserved_by', :name => name, :license_short => license_short)
-    else
-      I18n.t('copyright.all_rights_reserved', :name => name)
     end
   end
   
@@ -174,7 +175,7 @@ class Photo < ActiveRecord::Base
   end
 
   def source_title
-    self.class.to_s.gsub(/Photo$/, '').underscore.humanize.titleize
+    self.class.name.gsub(/Photo$/, '').underscore.humanize.titleize
   end
 
   def best_url(size = "medium")
@@ -233,5 +234,11 @@ class Photo < ActiveRecord::Base
         :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
         :native_realname, :native_photo_id]
     }
+  end
+
+  private
+
+  def self.attributes_protected_by_default
+    super - [inheritance_column]
   end
 end

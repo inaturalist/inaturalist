@@ -10,6 +10,7 @@
     <%= stylesheet_link_tag 'jquery-ui',
                             "jquery/ui.tabs.css",
                             'jquery/plugins/jquery.qtip.min',
+                            "jquery/plugins/jquery.multiselect.css",
                             'index',
                             'observations'
                             %>
@@ -44,9 +45,6 @@
     <% end %>
 
     <div class="bootstrap">
-      <div class="container-fluid">
-        <div class="alert">You're in a VERY experimental section of the site. Please don't expect anything you do here to be saved in the long term.</div>
-      </div>
       <%= yield %>
     </div>
 
@@ -76,7 +74,7 @@
                                'application', 
                                'inaturalist' %>
     <%= google_maps_js %>
-    <%= javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js" %>
+    <%#= javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js" %>
     <%= yield :extrajs %>
     <% if logged_in? -%>
       <script type="text/javascript" charset="utf-8">

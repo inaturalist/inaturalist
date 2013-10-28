@@ -228,18 +228,34 @@ describe Taxon, "set_iconic_taxon_for_observations_of" do
     obs.reload
     obs.iconic_taxon.name.should == @Amphibia.name
   end
+
+  it "should not change the iconc taxon for observations of other taxa" do
+    bird_obs = Observation.make!(:taxon => @Calypte_anna)
+    frog_obs = Observation.make!(:taxon => @Pseudacris_regilla)
+    bird_obs.iconic_taxon.should eq @Aves
+    frog_obs.iconic_taxon.should eq @Amphibia
+    @Pseudacris.update_attributes(:iconic_taxon => @Plantae)
+    Taxon.set_iconic_taxon_for_observations_of(@Pseudacris)
+    frog_obs.reload
+    frog_obs.iconic_taxon.should eq @Plantae
+    bird_obs.reload
+    bird_obs.iconic_taxon.should eq @Aves
+  end
   
   it "should NOT set the iconic taxa of observations of descendant taxa if they descend from a lower iconic taxon" do
     @Aves.should be_is_iconic
     @Chordata.should_not be_is_iconic
     @Calypte_anna.iconic_taxon_id.should be(@Aves.id)
+    @Calypte_anna.ancestor_ids.should include(@Aves.id)
+    @Calypte_anna.ancestor_ids.should include(@Chordata.id)
     obs = Observation.make!(:taxon => @Calypte_anna)
-    obs.iconic_taxon_id.should be(@Aves.id)
+    obs.iconic_taxon.should eq @Aves
     @Chordata.update_attributes(:iconic_taxon => @Plantae)
     Taxon.set_iconic_taxon_for_observations_of(@Chordata)
     @Calypte_anna.reload
-    @Calypte_anna.iconic_taxon_id.should be(@Aves.id)
-    obs.iconic_taxon_id.should be(@Aves.id)
+    @Calypte_anna.iconic_taxon.should eq @Aves
+    obs.reload
+    obs.iconic_taxon.should eq @Aves
   end
 end
 

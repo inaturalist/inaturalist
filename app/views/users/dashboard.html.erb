@@ -129,6 +129,14 @@
         <% end -%>
 
       <% else %>
+        <% if is_admin? -%>
+          <div class="tabs clear centered admin">
+            <ul>
+              <li><%= link_to t(:all_updates), dashboard_path, :class => "#{'active' if params[:filter].blank?}" %></li>
+              <li><%= link_to t(:updates_on_your_content), dashboard_path(:filter => "you") , :class => "#{'active' if params[:filter] == 'you'}" %></li>
+            </ul>
+          </div>
+        <% end -%>
         <% for key, updates in @grouped_updates %>
           <%-
             resource_type, resource_id, notification = key
@@ -172,7 +180,8 @@
                       <%= render :partial => "shared/activity_item", :object => notifier %>
                     </div>
                   <% end %>
-                  <%= link_to "#{t(:view)} #{resource.class.to_s.underscore.humanize.downcase}", resource, :class => "readmore" %>
+                  <%= link_to "#{t(:view)} #{t(resource.class.to_s.underscore.humanize, :default => resource.class.to_s.underscore.humanize).downcase}",
+                              resource, :class => "readmore" %>
                 </div>
               <% else %>
                 <%= 
@@ -191,7 +200,7 @@
           $('.observationcontrols').observationControls()
         </script>
         <div class="pagination">
-          <%= link_to(t(:more), url_for_params(:from => @updates.last.id), :class => "readmore") unless @updates.blank? %>
+          <%= link_to(t(:more), url_for_params(:from => @pagination_updates.last.id), :class => "readmore") unless @pagination_updates.blank? %>
         </div>
       <% end %>
     </div>

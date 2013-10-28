@@ -84,6 +84,13 @@ describe User do
     end.should_not change(User, :count)
   end
 
+  it "should not allow duplicate emails" do
+    existing = User.make!
+    u = User.make(:email => existing.email)
+    u.should_not be_valid
+    u.errors['email'].should_not be_blank
+  end
+
   describe 'allows legitimate logins:' do
     ['whatisthewhat', 'zoooooolander', 'hello-_therefunnycharcom'].each do |login_str|
       it "'#{login_str}'" do
@@ -473,6 +480,15 @@ describe User do
       u.update_attributes(:make_photo_licenses_same => true)
       p.reload
       p.license.should == Photo.license_number_for_code(Observation::CC_BY)
+    end
+
+    it "should not update GoogleStreetViewPhotos" do
+      u = User.make!
+      p = GoogleStreetViewPhoto.make!(:user => u)
+      u.preferred_photo_license = Observation::CC_BY
+      u.update_attributes(:make_photo_licenses_same => true)
+      p.reload
+      p.license.should == Photo::COPYRIGHT
     end
   end
 

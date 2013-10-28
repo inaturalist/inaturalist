@@ -91,8 +91,7 @@ $(document).ready(function() {
     if (DEFAULT_PHOTO_IDENTITY_URL) {
       options.baseURL = DEFAULT_PHOTO_IDENTITY_URL
     } else {
-      options.baseURL = '/photos/local_photo_fields?context=user'
-      options.queryOnLoad = false
+      options.defaultSource = 'local'
     }
     if (PHOTO_IDENTITY_URLS && PHOTO_IDENTITY_URLS.length > 0) {
       options.urls = PHOTO_IDENTITY_URLS

@@ -10,10 +10,12 @@
     .row-fluid {page-break-inside: avoid;}
     .thumbnail {font-size: 90%;}
     #attribution {page-break-inside: avoid;}
-    #attribution ul {margin-left:0;}
-    #attribution li {display:inline; font-size:90%;}
+    #attribution, #attribution li, #attribution p {line-height: 1.4;}
+    #attribution ul {margin-left:0;display:inline;}
+    #attribution li {display:inline;}
     #attribution li:after {content: ', ';}
     #attribution li:last-child:after {content: '';}
+    #attribution {font-size:65%;}
     @media print{@page {size: portrait}}
 .container-fluid
   %h1= @guide.title
@@ -32,9 +34,12 @@
               .name
                 %i= guide_taxon.name
                 = cite(gp.attribution) if gp = guide_taxon.default_guide_photo
-  #attribution
-    %h2=t :photo_credits
-    = references(:linked => true)
+  #attribution.muted
+    .stacked
+      %strong
+        = succeed ':' do
+          =t :photos
+      = references(:linked => true)
     %p
       - if @guide.license.blank?
         =t :compiled_by_name, :name => @guide.user.name.blank? ? @guide.user.login : @guide.user.name

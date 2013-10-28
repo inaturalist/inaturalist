@@ -1,8 +1,9 @@
 module Ratatosk
   module NameProviders
     class UBioNameProvider
+
       def self.source
-        ::Source.find_by_title("uBio") || ::Source.create(
+        @source ||= ::Source.find_by_title("uBio") || ::Source.create(
           :title => "uBio",
           :in_text => "uBio",
           :url => "http://www.ubio.org",
@@ -235,7 +236,7 @@ module Ratatosk
       def get_name
         begin
           name = @hxml.at('//ubio:canonicalName').inner_text
-        rescue NoMethodError
+        rescue NoMethodError, Nokogiri::XML::XPath::SyntaxError
           begin
             name = @hxml.at('//dc:title').inner_text
           rescue NoMethodError

@@ -1,4 +1,8 @@
 Inaturalist::Application.routes.draw do
+  id_param_pattern = %r(\d+([\w\-\%]*))
+  simplified_login_regex = /\w[^\.,\/]+/  
+  root :to => 'welcome#index'
+  
   resources :guide_sections do
     collection do
       get :import
@@ -14,18 +18,23 @@ Inaturalist::Application.routes.draw do
     member do
       get :edit_photos
       post :update_photos
+      post :sync
     end
   end
   resources :guides do
     collection do
       get :search
+      get :user
     end
     member do
       post :import_taxa
-      put :reorder, :via => :put
+      put :reorder
+      put :add_color_tags
+      put "add_tags_for_rank/:rank" => "guides#add_tags_for_rank"
     end
   end
   match '/guides/:id.:layout.pdf' => 'guides#show', :via => :get, :as => "guide_pdf", :constraints => {:format => :pdf}, :defaults => {:format => :pdf}
+  match 'guides/user/:login' => 'guides#user', :as => :guides_by_login, :constraints => { :login => simplified_login_regex }
 
 
   resources :messages, :except => [:edit, :update] do
@@ -52,12 +61,6 @@ Inaturalist::Application.routes.draw do
     end
   end
 
-
-  id_param_pattern = %r(\d+([\w\-\%]*))
-  simplified_login_regex = /\w[^\.,\/]+/  
-
-  root :to => 'welcome#index'
-
   resources :observation_field_values, :only => [:create, :update, :destroy, :index]
   resources :observation_fields
   match '/' => 'welcome#index'
@@ -72,12 +75,10 @@ Inaturalist::Application.routes.draw do
     post "session", :to => "users/sessions#create", :as => "user_session"
     get "signup", :to => "users/registrations#new"
     get "users/new", :to => "users/registrations#new", :as => "new_user"
+    get "/forgot_password", :to => "devise/passwords#new", :as => "forgot_password"
   end
-  # match '/register' => 'users#create', :as => :register, :via => :post
   
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
-  match '/forgot_password' => 'passwords#new', :as => :forgot_password
-  match '/change_password/:reset_code' => 'passwords#reset', :as => :change_password
   match '/toggle_mobile' => 'welcome#toggle_mobile', :as => :toggle_mobile
   match '/help' => 'help#index', :as => :help
   match '/auth/failure' => 'provider_authorizations#failure', :as => :omniauth_failure
@@ -134,6 +135,7 @@ Inaturalist::Application.routes.draw do
       get :stats
       get :taxon_stats
       get :user_stats
+      get :export
     end
   end
 
@@ -191,7 +193,8 @@ Inaturalist::Application.routes.draw do
   match 'projects/:id/invitations' => 'projects#invitations', :as => :invitations
   match 'projects/:project_id/journal/new' => 'posts#new', :as => :new_project_journal_post
   match 'projects/:project_id/journal' => 'posts#index', :as => :project_journal
-  match 'projects/:project_id/journal/:id' => 'posts#show', :as => :project_journal_post
+  match 'projects/:project_id/journal/:id' => 'posts#show', :as => :project_journal_post, :via => :get
+  match 'projects/:project_id/journal/:id' => 'posts#destroy', :as => :delete_project_journal_post, :via => :delete
   match 'projects/:project_id/journal/:id/edit' => 'posts#edit', :as => :edit_project_journal_post
   match 'projects/:project_id/journal/archives/:year/:month' => 'posts#archives', :as => :project_journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/ }
 
@@ -281,6 +284,7 @@ Inaturalist::Application.routes.draw do
   match 'taxa/:id/merge' => 'taxa#merge', :as => :merge_taxon
   match 'taxa/:id/merge.:format' => 'taxa#merge', :as => :formatted_merge_taxon
   match 'taxa/:id/observation_photos' => 'taxa#observation_photos', :as => :taxon_observation_photos
+  match 'taxa/observation_photos' => 'taxa#observation_photos'
   match 'taxa/:id/map' => 'taxa#map', :as => :taxon_map
   match 'taxa/map' => 'taxa#map', :as => :taxa_map
   match 'taxa/:id/range.:format' => 'taxa#range', :as => :taxon_range_geom

@@ -10,7 +10,7 @@
     <%= render :partial => "shared/barchart_datum", :locals => {
       :value => @confirmed_listed_taxa_count.to_i, 
       :max => @listed_taxa_count.to_i, 
-      :label_text => t(:of) + "#{@listed_taxa_count.to_i}" + t(:confirmed),
+      :label_text => t(:of) + " #{@listed_taxa_count.to_i} " + t(:confirmed),
       :min_remainder_label_width => 50
     } %>
   </div>

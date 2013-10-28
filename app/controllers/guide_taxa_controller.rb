@@ -1,8 +1,8 @@
 class GuideTaxaController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos]
-  before_filter :load_guide, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos]
-  before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos] do |c|
+  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos, :sync]
+  before_filter :load_guide, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos, :sync]
+  before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos, :sync] do |c|
     require_owner :klass => "Guide"
   end
   layout "bootstrap"
@@ -41,6 +41,7 @@ class GuideTaxaController < ApplicationController
       end
       format.json { render json: @guide_taxon.as_json(:root => true,
         :methods => [:guide_photo_ids, :guide_section_ids, :guide_range_ids]) }
+      format.xml
     end
   end
 
@@ -58,10 +59,7 @@ class GuideTaxaController < ApplicationController
 
   # GET /guide_taxa/1/edit
   def edit
-    @guide = @guide_taxon.guide
-    @guide_photos = @guide_taxon.guide_photos.order(:position)
-    @guide_sections = @guide_taxon.guide_sections.order(:position)
-    @recent_tags = @guide.recent_tags
+    load_data_for_edit
   end
 
   # POST /guide_taxa
@@ -80,7 +78,7 @@ class GuideTaxaController < ApplicationController
         end
       else
         format.html { render action: "new" }
-        format.json { render json: @guide_taxon.errors, status: :unprocessable_entity }
+        format.json { render json: @guide_taxon.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -93,8 +91,11 @@ class GuideTaxaController < ApplicationController
         format.html { redirect_to @guide_taxon, notice: 'Guide taxon was successfully updated.' }
         format.json { render :json => @guide_taxon.as_json(:root => true, :methods => [:html]) }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @guide_taxon.errors, status: :unprocessable_entity }
+        format.html do
+          load_data_for_edit
+          render action: "edit"
+        end
+        format.json { render json: @guide_taxon.errors.full_messages, status: :unprocessable_entity }
       end
     end
   end
@@ -113,7 +114,7 @@ class GuideTaxaController < ApplicationController
   def edit_photos
     @resource = @guide_taxon
     @photos = @guide_taxon.guide_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo}
-    render :layout => false, :template => "taxa/edit_photos"
+    render :layout => false, :template => "taxa/edit_photos", :locals => {:licensed => true}
   end
 
   def update_photos
@@ -138,6 +139,15 @@ class GuideTaxaController < ApplicationController
     redirect_back_or_default(edit_guide_taxon_path(@guide_taxon))
   end
 
+  def sync
+    @guide_taxon.sync_eol(:photos => true, :ranges => true, :sections => true, :overview => true)
+    respond_to do |format|
+      format.html do
+        redirect_to edit_guide_taxon_path(@guide_taxon)
+      end
+    end
+  end
+
   private
   def retrieve_photos
     photo_classes = Photo.descendent_classes
@@ -159,5 +169,12 @@ class GuideTaxaController < ApplicationController
 
   def load_guide
     @guide = @guide_taxon.guide
+  end
+
+  def load_data_for_edit
+    @guide = @guide_taxon.guide
+    @guide_photos = @guide_taxon.guide_photos.order(:position)
+    @guide_sections = @guide_taxon.guide_sections.order(:position)
+    @recent_tags = @guide.recent_tags
   end
 end

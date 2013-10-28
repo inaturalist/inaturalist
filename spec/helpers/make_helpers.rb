@@ -13,8 +13,8 @@ module MakeHelpers
     user
   end
   
-  def make_life_list_for_taxon(taxon)
-    list = LifeList.make!
+  def make_life_list_for_taxon(taxon, options = {})
+    list = LifeList.make!(options)
     list.rules << ListRule.new(
       :operand => taxon, 
       :operator => 'in_taxon?'

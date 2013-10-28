@@ -174,6 +174,14 @@ $(document).ready(function() {
   $('#project_menu .addlink, .project_invitation .acceptlink').bind('ajax:success', function(e, json, status) {
     var observationId = (json && json.observation_id) || $(this).data('observation-id') || window.observation.id
     if (json && json.project && json.project.project_observation_fields && json.project.project_observation_fields.length > 0) {
+      if (json.observation.observation_field_values && json.observation.observation_field_values.length > 0) {
+        var ofvs = json.observation.observation_field_values,
+            pofs = json.project.project_observation_fields,
+            ofv_of_ids = $.map(ofvs, function(ofv) { return ofv.observation_field_id }),
+            pof_of_ids = $.map(pofs, function(pof) { return pof.observation_field_id }),
+            intersection = $.map(ofv_of_ids, function(a) { return $.inArray(a, pof_of_ids) < 0 ? null : a })
+        if (intersection.length >= pof_of_ids.length) { return true }
+      }
       ObservationFields.showObservationFieldsDialog({
         url: '/observations/'+observationId+'/fields?project_id='+json.project_id,
         title: 'Project observation fields for ' + json.project.title,

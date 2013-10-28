@@ -556,7 +556,9 @@ function collapseLegend() {
 
 function expandLegend() {
   $('#togglecollapse').addClass('ui-icon-arrow-1-sw').removeClass('ui-icon-arrow-1-ne')
-  $('#legendcontent').show()
-    .animate({height: $('#legendcontent').data('originalHeight')})
-    .animate({width:  $('#legendcontent').data('originalWidth' )})
+  $lc = $('#legendcontent')
+  $lc.css({display:'block', width:'auto', height:'auto'})
+  var w = Math.max($lc.data('originalWidth'), $lc.prop('scrollWidth')),
+      h = Math.max($lc.data('originalHeight'), $lc.prop('scrollHeight'))
+  $lc.animate({height: h+'px', width:  w+'px'})
 }

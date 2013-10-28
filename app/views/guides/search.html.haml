@@ -15,5 +15,5 @@
       = submit_tag t(:search), :class => "btn btn-primary"
   %ul.media-list
     - for g in @guides
-      = render 'media_object', :guide => g, :tag => :li
+      = render 'media_object', :guide => g, :tag => :li, :img_class => "span2"
   = will_paginate @guides

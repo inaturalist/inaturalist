@@ -46,6 +46,7 @@ class ListedTaxon < ActiveRecord::Base
   validates_uniqueness_of :taxon_id, 
                           :scope => :list_id, 
                           :message => "is already on this list"
+  validates_length_of :description, :maximum => 1000, :allow_blank => true
   
   scope :by_user, lambda {|user| includes(:list).where("lists.user_id = ?", user)}
   
@@ -180,7 +181,10 @@ class ListedTaxon < ActiveRecord::Base
     # don't bother if validates_presence_of(:taxon) has already failed
     if !errors.include?(:taxon) && taxon
       list.rules.each do |rule|
-        errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(taxon)
+        if rule.operator == "observed_in_place?" && manually_added?
+          next
+        end
+        errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(self)
       end
     end
   end
@@ -250,7 +254,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def set_place_id
-    self.place_id = self.list.place_id
+    self.place_id = self.list.place_id if list.is_a?(CheckList)
     true
   end
 
@@ -322,45 +326,47 @@ class ListedTaxon < ActiveRecord::Base
     return true unless establishment_means_changed? && !establishment_means.blank?
     return true unless list.is_a?(CheckList)
     if native?
-      # bubble up for native equivalents
-      ListedTaxon.update_all(
-        ["establishment_means = ?", establishment_means],
-        ["taxon_id = ? AND establishment_means IS NULL AND place_id IN (?)", taxon_id, place.ancestor_ids]
-      )
+      bubble_up_establishment_means
     else
-      # trickle down for introduced
-      sql = <<-SQL
-        UPDATE listed_taxa
-        SET establishment_means = '#{establishment_means}'
-        FROM places
-        WHERE 
-          listed_taxa.place_id = places.id
-          AND establishment_means IS NULL
-          AND listed_taxa.taxon_id = #{taxon_id}
-          AND (places.ancestry LIKE '#{place.ancestry}/%' OR places.ancestry = '#{place.ancestry}')
-      SQL
-      ActiveRecord::Base.connection.execute(sql)
+      trickle_down_establishment_means
     end
     true
+  end
+
+  def bubble_up_establishment_means
+    ListedTaxon.update_all(
+      ["establishment_means = ?", establishment_means],
+      ["taxon_id = ? AND establishment_means IS NULL AND place_id IN (?)", taxon_id, place.ancestor_ids]
+    )
+  end
+
+  def trickle_down_establishment_means(options = {})
+    sql = <<-SQL
+      UPDATE listed_taxa
+      SET establishment_means = '#{establishment_means}'
+      FROM places
+      WHERE 
+        listed_taxa.place_id = places.id
+        #{'AND establishment_means IS NULL' unless options[:force]}
+        AND listed_taxa.taxon_id = #{taxon_id}
+        AND (#{Place.send(:sanitize_sql, place.descendant_conditions)})
+    SQL
+    ActiveRecord::Base.connection.execute(sql)
   end
   
   def cache_columns
     return unless (sql = list.cache_columns_query_for(self))
-    ids = []
+    last_observations = []
+    first_observation_ids = []
     counts = {}
-    connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
+    ListedTaxon.connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
       counts[row['key']] = row['count'].to_i
-      ids += row['ids'].to_s.gsub(/[\{\}]/, '').split(',')
+      last_observations << (row['last_observation'].blank? ? nil : row['last_observation'].split(','))
+      first_observation_ids << row['first_observation_id']
     end
-    ids = ids.map {|id| id == "NULL" ? nil : id.to_i}.compact.uniq
-    first_observation_id = nil
-    last_observation_id = nil
-    unless ids.blank?
-      first_observation_id = ids.min
-      last_observation_id = Observation.latest.first(
-        :select => "id, observed_on, time_observed_at", 
-        :conditions => ["id IN (?)", ids]
-      ).try(:id)
+    first_observation_id = first_observation_ids.compact.sort[0]
+    if last_observation = last_observations.compact.compact.sort_by(&:first).last
+      last_observation_id = last_observation[1]
     end
     total = counts.map{|k,v| v}.sum
     month_counts = counts.map{|k,v| k ? "#{k}-#{v}" : nil}.compact.sort.join(',')
@@ -502,7 +508,7 @@ class ListedTaxon < ActiveRecord::Base
     ctrl = ActionController::Base.new
     ctrl.expire_fragment(guide_taxon_cache_key) #THIS
     ctrl.expire_page("/places/cached_guide/#{place_id}.html")
-    ctrl.expire_page("/places/cached_guide/#{place.slug}.html")
+    ctrl.expire_page("/places/cached_guide/#{place.slug}.html") if place
     ctrl.expire_fragment(FakeView.listed_taxon_path(id))
     ctrl.expire_fragment(FakeView.listed_taxon_path(id, :for_owner => true))
     ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
@@ -512,7 +518,7 @@ class ListedTaxon < ActiveRecord::Base
     unless place_id.blank?
       ctrl.expire_fragment(guide_taxon_cache_key)
       ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place_id))
-      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug))
+      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug)) if place
     end
     ctrl.expire_page FakeView.list_path(list_id, :format => 'csv')
     ctrl.expire_page FakeView.list_show_formatted_view_path(list_id, :format => 'csv', :view_type => 'taxonomic')
@@ -540,6 +546,16 @@ class ListedTaxon < ActiveRecord::Base
     merge_has_many_associations(reject)
     reject.destroy
     save!
+  end
+
+  def observed_in_place?
+    p = place || list.place
+    return false unless p
+    scope = Observation.in_place(p).of(taxon).scoped
+    if list.is_a?(LifeList)
+      scope = scope.by(list.user)
+    end
+    scope.exists?
   end
   
   def self.merge_duplicates(options = {})

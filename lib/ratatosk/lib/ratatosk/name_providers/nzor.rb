@@ -4,6 +4,15 @@ module Ratatosk
     # Concrete strategy for getting names from NZOR
     #
     class NZORNameProvider
+      def self.source
+        @source ||= ::Source.find_by_title("New Zealand Organisms Register") || ::Source.create(
+          :title => "New Zealand Organisms Register",
+          :in_text => "New Zealand Organisms Register",
+          :url => "http://www.nzor.org.nz",
+          :citation => "New Zealand Organisms Register (2012). Accessible at http://www.nzor.org.nz."
+        )
+      end
+
       def initialize
         @service = NewZealandOrganismsRegister.new
       end
@@ -27,7 +36,6 @@ module Ratatosk
       # Kingdom or an existing saved Taxon that is already in our local tree.
       #
       def get_lineage_for(taxon)
-        puts "DEBUG #{__method__} "
         # If taxon was already fetched with classification data, use that
         #TODO use historically cached info
         if taxon.class != Taxon && taxon.hxml && taxon.hxml.at('ClassificationHierarchy')

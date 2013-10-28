@@ -26,6 +26,10 @@ CheckList.blueprint do
   place { Place.make! }
 end
 
+Color.blueprint do
+  value { %w(red green blue)[rand(3)] }  
+end
+
 Comment.blueprint do
   user { User.make }
   body { Faker::Lorem.paragraph }
@@ -50,13 +54,32 @@ FlickrIdentity.blueprint do
 end
 
 Friendship.blueprint do
-  user { User.make }
-  friend { User.make }
+  user { User.make! }
+  friend { User.make! }
+end
+
+GoogleStreetViewPhoto.blueprint do
+  user { User.make! }
+  native_photo_id { "http://maps.googleapis.com/maps/api/streetview?location=-0.742447,-90.303923&heading=29.78017781376499&pitch=8.134364432152863&fov=45&sensor=false" }
 end
 
 Guide.blueprint do
   user { User.make }
   title { Faker::Lorem.sentence }
+end
+
+GuidePhoto.blueprint do
+  guide_taxon { GuideTaxon.make! }
+  photo { Photo.make! }
+  description { Faker::Lorem.paragraph }
+end
+
+GuideRange.blueprint do
+  guide_taxon { GuideTaxon.make! }
+  rights_holder { Faker::Name.name }
+  thumb_url { "http://#{Faker::Internet.domain_name}/thumb.png" }
+  medium_url { "http://#{Faker::Internet.domain_name}/medium.png" }
+  original_url { "http://#{Faker::Internet.domain_name}/original.png" }
 end
 
 GuideSection.blueprint do
@@ -138,6 +161,10 @@ end
 ObservationSound.blueprint do
   observation { Observation.make }
   sound { Sound.make }
+end
+
+ObservationsExportFlowTask.blueprint do
+  user { User.make! }
 end
 
 Photo.blueprint do

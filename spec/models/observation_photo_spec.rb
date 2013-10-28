@@ -8,15 +8,6 @@ describe ObservationPhoto, "creation" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /Observation.*set_quality_grade/m}.should_not be_blank
   end
-  
-  it "should update user_id on photo" do
-    p = Photo.make!(:user => nil, :license => Photo::CC_BY)
-    p.user.should be_blank
-    o = Observation.make!
-    op = ObservationPhoto.make!(:photo => p, :observation => o)
-    p.reload
-    p.user_id.should == o.user_id
-  end
 
   it "should increment photos_count on the observation" do
     o = Observation.make!

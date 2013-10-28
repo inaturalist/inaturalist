@@ -43,6 +43,21 @@ shared_examples_for "an ObservationsController" do
       o.observation_field_values.last.observation_field.should eq(of)
       o.observation_field_values.last.value.should eq("foo")
     end
+
+    it "should allow Google Street View photos" do
+      post :create, :format => :json, :observation => {:species_guess => "tree"}, :google_street_view_photos => {
+        "0" => "http://maps.googleapis.com/maps/api/streetview?size=600x300&location=37.903042,-122.24697600000002&heading=-73.33342317239405&pitch=28.839156732145224&fov=180&sensor=false"
+      }
+      response.should be_success
+      o = Observation.last
+      o.photos.last.should be_a GoogleStreetViewPhoto
+    end
+
+    it "should not fail with a dot for a species_guess" do
+      lambda {
+        post :create, :format => :json, :observation => {:species_guess => "."}
+      }.should_not raise_error
+    end
   end
 
   describe "destroy" do
@@ -337,6 +352,40 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
       json.detect{|obs| obs['id'] == o2.id}.should be_blank
     end
+
+    it "should include common names" do
+      tn = TaxonName.make!(:lexicon => TaxonName::ENGLISH)
+      o = Observation.make!(:taxon => tn.taxon)
+      get :index, :format => :json, :taxon_id => tn.taxon_id
+      json = JSON.parse(response.body)
+      jsono = json.first
+      jsono['taxon']['common_name']['name'].should eq tn.name
+    end
+
+    it "should allow filtering by updated_since" do
+      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago)
+      oldo.updated_at.should be < 1.minute.ago
+      newo = Observation.make!
+      get :index, :format => :json, :updated_since => (newo.updated_at - 1.minute).iso8601
+      json = JSON.parse(response.body)
+      json.detect{|o| o['id'] == newo.id}.should_not be_blank
+      json.detect{|o| o['id'] == oldo.id}.should be_blank
+    end
+
+    it "should include identifications_count" do
+      o = Observation.make!
+      i = Identification.make!(:observation => o)
+      get :index, :format => :json
+      obs = JSON.parse(response.body).detect{|jo| jo['id'] == i.observation_id}
+      obs['identifications_count'].should eq 1
+    end
+
+    it "should include comments_count" do
+      c = Comment.make!
+      get :index, :format => :json
+      obs = JSON.parse(response.body).detect{|o| o['id'] == c.parent_id}
+      obs['comments_count'].should eq 1
+    end
   end
 
   describe "taxon_stats" do
@@ -376,6 +425,42 @@ shared_examples_for "an ObservationsController" do
 
     it "should include most_species" do
       @json["most_species"].size.should > 0
+    end
+  end
+
+  describe "viewed_updates" do
+    before do
+      without_delay do
+        @o = Observation.make!(:user => user)
+        @c = Comment.make!(:parent => @o)
+        @i = Identification.make!(:observation => @o)
+      end
+    end
+
+    it "should mark all updates from this observation for the signed in user as viewed" do
+      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :resource_id => @o.id, :subscriber_id => user.id).count
+      num_updates_for_owner.should eq 2
+      put :viewed_updates, :format => :json, :id => @o.id
+      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :resource_id => @o.id, :subscriber_id => user.id).count
+      num_updates_for_owner.should eq 0
+    end
+
+    it "should not mark other updates for the signed in user as viewed" do
+      without_delay do
+        o = Observation.make!(:user => user)
+        c = Comment.make!(:parent => o)
+      end
+      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :subscriber_id => user.id).count
+      num_updates_for_owner.should eq 3
+      put :viewed_updates, :format => :json, :id => @o.id
+      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :subscriber_id => user.id).count
+      num_updates_for_owner.should eq 1
+    end
+
+    it "should not mark other updates from this observation as viewed" do
+      put :viewed_updates, :format => :json, :id => @o.id
+      num_updates_for_commenter = Update.unviewed.activity.where(:resource_type => "Observation", :resource_id => @o.id, :subscriber_id => @c.user_id).count
+      num_updates_for_commenter.should eq 1
     end
   end
 end

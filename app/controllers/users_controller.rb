@@ -1,5 +1,6 @@
+#encoding: utf-8
 class UsersController < ApplicationController  
-  doorkeeper_for :create, :update, :edit, :dashboard, :if => lambda { authenticate_with_oauth? }
+  doorkeeper_for :create, :update, :edit, :dashboard, :new_updates, :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
     :except => [:index, :show, :new, :create, :activate, :relationships]
@@ -257,14 +258,14 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-    conditions = ["id < ?", params[:from].to_i] if params[:from]
-    updates = current_user.updates.all(:limit => 50, :order => "id DESC", 
-      :include => [:resource, :notifier, :subscriber, :resource_owner],
-      :conditions => conditions)
-    @updates = Update.load_additional_activity_updates(updates)
+    @pagination_updates = current_user.updates.limit(50).order("id DESC").includes(:resource, :notifier, :subscriber, :resource_owner).scoped
+    @pagination_updates = @pagination_updates.where("id < ?", params[:from].to_i) if params[:from]
+    @pagination_updates = @pagination_updates.where(:notifier_type => params[:notifier_type]) unless params[:notifier_type].blank?
+    @pagination_updates = @pagination_updates.where(:resource_owner_id => current_user) if params[:filter] == "you"
+    @updates = Update.load_additional_activity_updates(@pagination_updates)
     @update_cache = Update.eager_load_associates(@updates)
     @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache, :hour_groups => true)
-    Update.user_viewed_updates(updates)
+    Update.user_viewed_updates(@pagination_updates)
     @month_observations = current_user.observations.all(:select => "id, observed_on",
       :conditions => [
         "EXTRACT(month FROM observed_on) = ? AND EXTRACT(year FROM observed_on) = ?",
@@ -292,27 +293,35 @@ class UsersController < ApplicationController
   end
   
   def new_updates
-    @updates = current_user.updates.unviewed.activity.all(
-      :include => [:resource, :notifier, :subscriber, :resource_owner],
-      :order => "id DESC",
-      :limit => 200
-    )
-    session[:updates_count] = 0
-    if @updates.blank?
-      @updates = current_user.updates.activity.all(
-        :include => [:resource, :notifier, :subscriber, :resource_owner],
-        :order => "id DESC",
-        :limit => 10,
-        :conditions => ["viewed_at > ?", 1.day.ago])
+    @updates = current_user.updates.unviewed.activity.
+      includes(:resource, :notifier, :subscriber, :resource_owner).
+      order("id DESC").
+      limit(200)
+    unless request.format.json?
+      if @updates.count == 0
+        @updates = current_user.updates.activity.
+          includes(:resource, :notifier, :subscriber, :resource_owner).
+          order("id DESC").
+          limit(10).
+          where("viewed_at > ?", 1.day.ago)
+      end
+      if @updates.count == 0
+        @updates = current_user.updates.activity.limit(5).order("id DESC")
+      end
     end
-    if @updates.blank?
-      @updates = current_user.updates.activity.all(:limit => 5, :order => "id DESC")
-    else
+    @updates = @updates.where(:resource_type => params[:resource_type]) unless params[:resource_type].blank?
+    @updates = @updates.where(:notifier_type => params[:notifier_type]) unless params[:notifier_type].blank?
+    @updates = @updates.where("notifier_type IN (?)", params[:notifier_types]) unless params[:notifier_types].blank?
+    if !%w(1 yes y true t).include?(params[:skip_view].to_s)
       Update.user_viewed_updates(@updates)
+      session[:updates_count] = 0
     end
     @update_cache = Update.eager_load_associates(@updates)
     @updates = @updates.sort_by{|u| u.created_at.to_i * -1}
-    render :layout => false
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.json { render :json => @updates }
+    end
   end
   
   def edit

@@ -74,3 +74,210 @@ end
 #     gt.display_name.downcase.should eq("coachwhip")
 #   end
 # end
+
+describe GuideTaxon, "sync_eol" do
+  let(:gt) { GuideTaxon.make! }
+  before(:all) do
+    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true)
+  end
+
+  it "should update the display_name" do
+    gt.display_name.should_not eq "coachwhip"
+    gt.sync_eol(:page => @mflagellum_page)
+    gt.display_name.should eq "coachwhip"
+  end
+
+  it "should allow replacement of existing content" do
+    gp = GuidePhoto.make!(:guide_taxon => gt)
+    gr = GuideRange.make!(:guide_taxon => gt)
+    gs = GuideSection.make!(:guide_taxon => gt)
+    gt.sync_eol(:page => @mflagellum_page, :replace => true, :photos => true, :ranges => true, :overview => true)
+    GuidePhoto.find_by_id(gp.id).should be_blank
+    GuideRange.find_by_id(gr.id).should be_blank
+    GuideSection.find_by_id(gs.id).should be_blank
+  end
+
+  it "should not replace existing content if not requested" do
+    gp = GuidePhoto.make!(:guide_taxon => gt)
+    gr = GuideRange.make!(:guide_taxon => gt)
+    gs = GuideSection.make!(:guide_taxon => gt)
+    gt.sync_eol(:page => @mflagellum_page, :photos => true, :ranges => true, :overview => true)
+    GuidePhoto.find_by_id(gp.id).should_not be_blank
+    GuideRange.find_by_id(gr.id).should_not be_blank
+    GuideSection.find_by_id(gs.id).should_not be_blank
+  end
+end
+
+describe GuideTaxon, "sync_eol_photos" do
+  let(:gt) { GuideTaxon.make! }
+  before(:all) do
+    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true)
+  end
+
+  it "should add new photos" do
+    gt.guide_photos.should be_blank
+    gt.sync_eol_photos(:page => @mflagellum_page)
+    gt.save!
+    gt.reload
+    gt.guide_photos.should_not be_blank
+  end
+
+  it "should not add duplicate photos" do
+    gt.sync_eol_photos(:page => @mflagellum_page)
+    gt.save!
+    s1 = gt.guide_photos.size
+    gt.sync_eol_photos(:page => @mflagellum_page)
+    gt.save!
+    gt.reload
+    s2 = gt.guide_photos.size
+    s2.should eq s1
+  end
+
+  it "should position new photos after existing ones" do
+    gp = GuidePhoto.make!(:guide_taxon => gt)
+    gt.sync_eol_photos(:page => @mflagellum_page)
+    gt.save!
+    gt.reload
+    guide_photos = gt.guide_photos.sort_by(&:position)
+    guide_photos.first.should eq gp
+    guide_photos.last.position.should > gp.position
+  end
+
+  # it "should not add maps" do
+  #   page = EolService.page(791500, :common_names => true, :maps => 1, :details => true, :photos => 0)
+  #   gt.sync_eol_photos(:page => page)
+  #   if gp = gt.guide_photos.last
+  #     puts "gp.attributes: #{gp.attributes.inspect}"
+  #   end
+  #   gt.guide_photos.should be_blank
+  # end
+end
+
+describe GuideTaxon, "sync_eol_ranges" do
+  let(:gt) { GuideTaxon.make! }
+  before(:all) do
+    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1)
+  end
+  it "should add new ranges" do
+    gt.guide_ranges.should be_blank
+    gt.sync_eol_ranges(:page => @mflagellum_page)
+    gt.guide_ranges.should_not be_blank
+  end
+  it "should not add duplicate ranges" do
+    gt.sync_eol_ranges(:page => @mflagellum_page)
+    gt.save!
+    s1 = gt.guide_ranges.size
+    gt.sync_eol_ranges(:page => @mflagellum_page)
+    s2 = gt.guide_ranges.size
+    s2.should eq s1
+  end
+end
+
+describe GuideTaxon, "sync_eol_sections" do
+  let(:gt) { GuideTaxon.make! }
+  before(:all) do
+    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1, :text => 50)
+  end
+  it "should add new sections" do
+    gt.guide_sections.should be_blank
+    gt.sync_eol_sections(:page => @mflagellum_page)
+    gt.guide_sections.should_not be_blank
+  end
+
+  it "should not add duplicate sections" do
+    gt.sync_eol_sections(:page => @mflagellum_page, :subjects => %w(TypeInformation))
+    gt.save
+    gt.reload
+    gt.guide_sections.size.should == 1
+    gt.sync_eol_sections(:page => @mflagellum_page, :subjects => %w(TypeInformation))
+    gt.save
+    gt.reload
+    gt.guide_sections.size.should == 1
+  end
+
+  it "should only add the requested subjects" do
+    gt.sync_eol_sections(:page => @mflagellum_page, :subjects => %w(TypeInformation))
+    gs = gt.guide_sections.last
+    gs.description.to_s.should =~ /Colorado Desert/
+  end
+
+  it "should not import multiple sections for the same subject" do
+    gt.sync_eol_sections(:page => @mflagellum_page, :subjects => %w(Distribution))
+    gt.save!
+    gt.reload
+    gt.guide_sections.size.should eq 1
+  end
+
+  it "should position new photos after existing ones" do
+    gs = GuideSection.make!(:guide_taxon => gt)
+    gt.sync_eol_sections(:page => @mflagellum_page)
+    gt.save!
+    gt.reload
+    guide_sections = gt.guide_sections.sort_by(&:position)
+    guide_sections.first.should eq gs
+    guide_sections.last.position.should > gs.position
+  end
+end
+
+describe GuideTaxon, "get_eol_page" do
+  let(:gt) { GuideTaxon.make!(:name => "Masticophis flagellum") }
+  it "should retrieve photos if requested" do
+    page = gt.get_eol_page(:photos => 1)
+    img_data_object = page.search('dataObject').detect{|data_object| data_object.at('dataType').to_s =~ /StillImage/ }
+    img_data_object.should_not be_blank
+    # puts "img_data_object: #{img_data_object}"
+    img_data_object.at('mediaURL').should_not be_blank
+  end
+
+  it "should retrieve ranges if requested" do
+    page = gt.get_eol_page(:ranges => 1)
+    page.search('dataObject').detect{|data_object| data_object.at('dataSubtype').to_s =~ /Map/ }.should_not be_blank
+  end
+
+  it "should retrieve sections if requested" do
+    page = gt.get_eol_page(:sections => 1)
+    page.search('dataObject').detect{|data_object| data_object.at('dataType').content == "http://purl.org/dc/dcmitype/Text" }.should_not be_blank
+  end
+
+  it "should retrieve sections of requested subjects" do
+    page = gt.get_eol_page(:sections => 1, :subjects => %w(TypeInformation))
+    page.search('dataObject').detect{|data_object| 
+      data_object.at('dataType').content == "http://purl.org/dc/dcmitype/Text" &&
+        data_object.at('subject').try(:content) =~ /TypeInformation/ 
+    }.should_not be_blank
+  end
+end
+
+describe GuideTaxon, "add_color_tags" do
+  let(:yellow) { Color.make!(:value => "yellow") }
+  let(:blue) { Color.make!(:value => "blue") }
+  let(:taxon) { 
+    t = Taxon.make!
+    t.colors += [yellow, blue]
+    t.save
+    t
+  }
+  let(:gt) { GuideTaxon.make!(:taxon => taxon)}
+
+  it "should add tags" do
+    gt.add_color_tags
+    gt.tag_list.should include("color=yellow")
+    gt.tag_list.should include("color=blue")
+  end
+end
+
+describe GuideTaxon, "add_rank_tag" do
+
+  before do
+    @genus = Taxon.make!(:rank => "genus")
+    @tn = @genus.taxon_names.create(:lexicon => TaxonName::LEXICONS[:ENGLISH], :name => "Fulminator")
+    @t = Taxon.make!(:rank => "species", :parent => @genus)
+    @gt = GuideTaxon.make!(:taxon => @t)
+  end
+
+  it "should add tags" do
+    @genus.taxon_names.count.should eq 2
+    @gt.add_rank_tag('genus', :lexicon => "ENGLISH")
+    @gt.tag_list.should include("taxonomy:genus=#{@tn.name}")
+  end
+end

@@ -90,6 +90,7 @@ class PlacesController < ApplicationController
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     respond_to do |format|
       format.html do
+        @projects = Project.in_place(@place).page(1).order("projects.title").per_page(50)
         @wikipedia = WikipediaService.new
         if logged_in?
           @subscription = @place.update_subscriptions.first(:conditions => {:user_id => current_user})
@@ -173,9 +174,16 @@ class PlacesController < ApplicationController
   end
   
   def destroy
-    @place.destroy
-    flash[:notice] = t(:place_deleted)
-    redirect_to places_path
+    errors = []
+    errors << "there are people using this place in their projects" if @place.projects.exists?
+    errors << "there are people using this place in their guides" if @place.guides.exists?
+    if errors.blank?
+      flash[:notice] = t(:place_deleted)
+      redirect_to places_path
+    else
+      flash[:error] = "Couldn't delete place: #{errors.to_sentence}"
+      redirect_back_or_default places_path
+    end
   end
   
   def find_external

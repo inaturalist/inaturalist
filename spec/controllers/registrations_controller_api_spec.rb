@@ -43,4 +43,18 @@ describe Users::RegistrationsController, "create" do
     json = JSON.parse(response.body)
     json['errors'].should_not be_blank
   end
+
+  it "should not have duplicate email errors when email taken" do
+    existing = User.make!
+    user = User.make(:email => existing.email)
+    post :create, :format => :json, :user => {
+      :login => user.login,
+      :email => user.email,
+      :password => "zomgbar", 
+      :password_confirmation => "zomgbar"
+    }
+    json = JSON.parse(response.body)
+    puts "errors: #{json['errors'].inspect}"
+    json['errors'].uniq.size.should eq json['errors'].size
+  end
 end

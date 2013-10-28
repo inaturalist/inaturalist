@@ -1,4 +1,7 @@
-<%- resource ||= @resource || @taxon -%>
+<%- 
+  resource ||= @resource || @taxon
+  licensed ||= false
+-%>
 <div id="edit_taxon_photos_<%= resource.id %>" class="edit_taxon_photos">
   <div class="readable description" style="margin-bottom: 1em">
     <%= t(:choose_cc_licensed_photos_html, :site_name => SITE_NAME) %>
@@ -7,7 +10,16 @@
   <div class="tabs">
     <ul>
       <li><%= link_to "<span>#{t(:from)} Flickr</span>".html_safe, "#flickr_taxon_photos" %></li>
-      <li><%= link_to "<span>#{t(:from_your_site_observations, :site_name => SITE_NAME_SHORT)}</span>".html_safe, "#inat_obs_taxon_photos" %></li>
+      <li>
+        <%-
+          title = if licensed
+            t(:from_licensed_site_observations, :site_name => SITE_NAME_SHORT)
+          else
+            t(:from_your_site_observations, :site_name => SITE_NAME_SHORT)
+          end
+        -%>
+        <%= link_to "<span>#{title}</span>".html_safe, "#inat_obs_taxon_photos" %>
+      </li>
       <li><%= link_to "<span>#{t(:from)} EOL</span>".html_safe, "#eol_taxon_photos" %></li>
       <li><%= link_to "<span>#{t(:from)} Wikimedia Commons</span>".html_safe, "#wikimedia_taxon_photos" %></li>
     </ul>

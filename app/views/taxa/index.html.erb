@@ -231,8 +231,8 @@
             <%= link_to t(:view), observation %>
             <% if taxon.observations_count > 1 %>
               |
-              <%= link_to "#{t(:view_all)} #{pluralize(taxon.observations_count, 'observation')} &raquo;".html_safe, 
-                observations_path(:taxon_id => taxon), :rel => "nofollow" %>
+                <%= link_to "#{t(:view_all)} #{taxon.observations_count} #{t(:observations).downcase} &raquo;".html_safe,
+                            observations_path(:taxon_id => taxon), :rel => "nofollow" %>
             <% end %>
           </div>
         <% else %>
@@ -286,7 +286,9 @@
       <%= link_to(observation.taxon) do %>
         <%= render :partial => 'shared/taxon', :object => observation.taxon %>
       <% end %>
-      <span class="description date"><%= t(:on_day) %> <%=l observation.observed_on, :format => :long %></span>
+      <% if observation.observed_on -%>
+        <span class="description date"><%= t(:on_day) %> <%=l observation.observed_on, :format => :long %></span>
+      <% end -%>
     </p>
     <% end %>
   </div>

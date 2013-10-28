@@ -1,5 +1,12 @@
+- if @list.is_a?(CheckList) && @list.is_default?
+  - @list_title = truncate(t(:check_list_place, :place => t("places_name.#{@list.title.chomp(' Check List').gsub(' ','_').downcase}",
+                                                 :default => @list.title.split(' Check List').first)), :length => 85)
+- else
+  - @list_title = truncate(@list.title, :length => 85)
+
 - content_for(:title) do
-  =t :batch_edit_taxa_for_x_html, :x => @list.title
+  =t(:batch_edit_taxa_for_x_html, :x => @list_title)
+
 - content_for(:extracss) do
   :css
     td { vertical-align:top;}
@@ -26,7 +33,7 @@
 
 
 #pageheader
-  %h2=t :batch_edit_taxa_for_x_html, :x => link_to(@list.title, @list)
+  %h2=t :batch_edit_taxa_for_x_html, :x => link_to(@list_title, @list)
 
 %table{:class => @list.type.to_s.underscore}
   %thead
@@ -48,15 +55,15 @@
         %span.meta
           = surround '(', ')' do
             %span.count 0
-            selected
+            =t(:selected)
       %th.occurrence_status
         .nobr
-          = select_tag :occurrence_status_level, options_for_select(ListedTaxon::OCCURRENCE_STATUS_LEVELS.invert.to_a.sort_by(&:last).reverse.map{|k,v| [t(k.downcase, :default => k).downcase, v]}), :include_blank => t(:unknown)
+          = select_tag :occurrence_status_level, options_for_select(ListedTaxon::OCCURRENCE_STATUS_LEVELS.invert.to_a.sort_by(&:last).reverse.map{|k,v| [t("occurrence_status_levels.#{k.downcase}", :default => k).downcase, v]}), :include_blank => t(:unknown)
           %span{:class => "occurrence_tip_target description helptip", :rel => "#occurrence_tip"}
         = link_to_function "&darr; #{t(:apply_to_selected)}".html_safe, "applyOccurrenceStatus()", :class => "small nobr"
       %th.establishment_means
         .nobr
-          = select_tag :establishment_means, options_for_select(ListedTaxon::ESTABLISHMENT_MEANS.map{|em| [t(em, :default => em).downcase, em]}), :include_blank => t(:unknown)
+          = select_tag :establishment_means, options_for_select(ListedTaxon::ESTABLISHMENT_MEANS.map{|em| [t("establishment.#{em.downcase}", :default => em).downcase, em]}), :include_blank => t(:unknown)
           %span{:class => "establishment_tip_target description helptip", :rel => "#establishment_tip"}
         = link_to_function "&darr; #{t(:apply_to_selected)}".html_safe, "applyEstablishmentMeans()", :class => "small nobr"
       %th.buttonrow.smallbuttons.inline.nobr

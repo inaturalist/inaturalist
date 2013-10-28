@@ -2,10 +2,19 @@
 # A LifeList is a List of all the taxa a person has observed.
 #
 class LifeList < List
+  belongs_to :place
   before_validation :set_defaults
+  before_save :set_place_rule
   after_create :add_taxa_from_observations
+  validate :place_has_boundary
   
   MAX_RELOAD_TRIES = 60
+
+  def place_has_boundary
+    if place_id && !PlaceGeometry.where(:place_id => place_id).exists?
+      errors.add(:place_id, "must have a boundary")
+    end
+  end
   
   #
   # Adds a taxon to this life list by creating a new blank obs of the taxon
@@ -123,6 +132,7 @@ class LifeList < List
     # further up the call stack, causing bugs.
     scope = list.owner.observations.scoped
     scope = scope.of(list.rule_taxon) if list.rule_taxon
+    scope = scope.in_place(list.place) if list.place
     scope.all(
         :select => 'DISTINCT ON(observations.taxon_id) observations.id, observations.taxon_id', 
         :conditions => conditions).each do |observation|
@@ -150,6 +160,16 @@ class LifeList < List
   def reload_from_observations_cache_key
     "reload_list_from_obs_#{id}"
   end
+
+  def set_place_rule
+    existing = rules.detect{|r| r.operator == "observed_in_place?"}
+    if place.blank? && existing
+      existing.destroy
+    elsif place && !existing
+      self.rules.build(:operator => "observed_in_place?")
+    end
+    true
+  end
   
   def self.reload_from_observations(list)
     repair_observed(list)
@@ -162,8 +182,35 @@ class LifeList < List
         :conditions => [
           "list_id = ? AND observations.id IS NOT NULL AND observations.taxon_id != listed_taxa.taxon_id",
           list.id]) do |lt|
-      lt.destroy unless lt.last_observation.taxon.descendant_of?(lt.taxon)
+      lt.destroy unless lt.valid? && lt.last_observation && lt.last_observation.taxon.descendant_of?(lt.taxon)
     end
+  end
+
+  def cache_columns_query_for(lt)
+    lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
+    return nil unless lt
+    return super if lt.list.place.blank?
+    ancestry_clause = [lt.taxon_ancestor_ids, lt.taxon_id].flatten.map{|i| i.blank? ? nil : i}.compact.join('/')
+    sql_key = "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)"
+    <<-SQL
+      SELECT
+        min(o.id) AS first_observation_id,
+        max(COALESCE(time_observed_at::varchar, observed_on::varchar, '0') || ',' || o.id::varchar) AS last_observation,
+        count(*),
+        (#{sql_key}) AS key
+      FROM
+        observations o
+          LEFT OUTER JOIN taxa t ON t.id = o.taxon_id
+          JOIN place_geometries pg ON pg.place_id = #{lt.list.place_id}
+      WHERE
+        o.user_id = #{user_id} AND
+        ST_Intersects(pg.geom, o.private_geom) AND (
+          o.taxon_id = #{lt.taxon_id} OR 
+          t.ancestry = '#{ancestry_clause}' OR
+          t.ancestry LIKE '#{ancestry_clause}/%'
+        )
+      GROUP BY #{sql_key}
+    SQL
   end
   
   private

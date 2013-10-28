@@ -3,12 +3,19 @@
   if @place && @place.html.blank?
     @place.html = render(:partial => "places/autocomplete_item.html.erb", :object => @place)
   end
+  hide_buttons ||= false
+  show_user_field ||= false
+  show_project_field ||= false
 %>
 <div id="search_filter" class="row">
-  <label class="label" for="q"><%=t :search %></label>
+  <label class="label" for="q">
+    <%=t :search %>
+    <% helptip_for "q" do %>
+      <%=t :observations_text_search_warning %>
+    <% end %>
+  </label>
   <input type="text" name="q" value="<%= @q %>" id="q" class="text" />
   <select name="search_on" id="search_on">
-    option
     <option value="" class="description"><%=t :search_all_fields %></option>
     <option <% if @search_on == 'names' %>selected="selected"<% end %> value="names"><%=t :species_name %></option>
     <option <% if @search_on == 'tags' %>selected="selected"<% end %> value="tags"> <%=t :tags %> </option>
@@ -55,6 +62,18 @@
         <%= label :identifications, state, t(state, :default => state).downcase %>
       <% end %>
     </nobr>
+    <% if is_me?(@selected_user) -%>
+      <nobr>
+        <strong><%=t :geoprivacy %></strong>
+        <%= select_tag :geoprivacy, options_for_select([
+          [t(:any, :default => "any").downcase, nil],
+          [t(Observation::OPEN, :default => Observation::OPEN).downcase, Observation::OPEN],
+          [t(Observation::OBSCURED, :default => Observation::OBSCURED).downcase, Observation::OBSCURED],
+          [t(Observation::PRIVATE, :default => Observation::PRIVATE).downcase, Observation::PRIVATE],
+          [t('obscured_or_private', :default => "obscured or private"), "obscured_private"]
+        ], @geoprivacy) %>
+      </nobr>
+    <% end -%>
   </fieldset>
 </div>
 <div id="iconic_taxon_filters" class="row">
@@ -131,22 +150,22 @@
   <% end -%>
   
   <div class="left latlon">
-    <label>SW Lat.</label>
+    <label><%= t :sw_lat %></label>
     <input type="text" class="text" name="swlat" id="swlat" value="<%= @swlat %>"/>
   </div>
   <div class="left latlon">
-    <label>SW Lon.</label>
+    <label><%= t :sw_lon %></label>
     <input type="text" class="text" name="swlng" id="swlng" value="<%= @swlng %>"/>
   </div>
   <div class="left latlon">
-    <label>NE Lat.</label>
+    <label><%= t :ne_lat %></label>
     <input type="text" class="text" name="nelat" id="nelat" value="<%= @nelat %>"/>
   </div>
   <div class="left latlon">
-    <label>NE Lon.</label>
+    <label><%= t :ne_lon %></label>
     <input type="text" class="text" name="nelng" id="nelng" value="<%= @nelng %>"/>
     &nbsp;
-    <%= link_to_function "Clear", "$('.latlon input').val('')", :class => "small" %>
+    <%= link_to_function t(:clear), "$('.latlon input').val('')", :class => "small" %>
   </div>
 </div>
 
@@ -207,7 +226,7 @@
 <% unless @ofv_params.blank? -%>
   <div id="ofv_filters" class="clear row">
     <div id="ofv_filters_label" class="label">
-      <strong>Fields</strong>
+      <strong><%=t :fields %></strong>
     </div>
     <div class="left">
       <% for k,v in @ofv_params %>
@@ -218,6 +237,74 @@
           <%= link_to_function "&times;".html_safe, "$(this).parents('.ofv:first').fadeOut(function(){$(this).remove()})" %>
         </span>
       <% end %>
+    </div>
+  </div>
+<% end -%>
+
+<% if @project -%>
+  <div class="clear row">
+    <div class="label"><strong><%=t :project %></strong></div>
+    <div class="left">
+      <nobr>
+        <strong><%=t :curator_identification %></strong>
+        <% for state in %w"any yes no" %>
+          <% if @pcid == state %>
+            <%= radio_button_tag :pcid, state, :checked => 'checked' %>
+          <% else %>
+            <%= radio_button_tag :pcid, state %>
+          <% end %>
+          <%= label :pcid, state, t(state, :default => state).downcase %>
+        <% end %>
+      </nobr>
+    </div>
+  </div>
+<% end -%>
+
+<div class="clear row upstacked">
+  <div class="left">
+    <div class="label">
+      <strong><%=t :exact_rank %></strong>
+    </div>
+    <div class="left">
+      <%= select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r).downcase, r]}, @rank), :include_blank => t(:any) %>
+    </div>
+  </div>
+  <div class="left">
+    <div class="label">
+      <strong><%=t :highest_rank %></strong>
+    </div>
+    <div class="left">
+      <%= select_tag :hrank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r).downcase, r]}, @hrank), :include_blank => t(:any) %>
+    </div>
+  </div>
+  <div class="left">
+    <div class="label">
+      <strong><%=t :lowest_rank %></strong>
+    </div>
+    <div class="left">
+      <%= select_tag :lrank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r).downcase, r]}, @lrank), :include_blank => t(:any) %>
+    </div>
+  </div>
+</div>
+
+<% if show_user_field -%>
+  <div class="clear row upstacked">
+    <div class="label"><strong><%=t :user %></strong></div>
+    <div class="left">
+      <input type="text" name="user_id" id="user_id_input" value="<%= @selected_user.try(:id) %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :username_or_user_id %></div>
+    </div>
+  </div>
+<% end -%>
+
+<% if show_project_field -%>
+  <div class="clear row upstacked">
+    <div class="label"><strong><%=t :project %></strong></div>
+    <div class="left">
+      <input type="text" name="projects[]" id="project_id_input" value="<%= @project.try(:id) %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :project_id_or_url_slug %></div>
     </div>
   </div>
 <% end -%>
@@ -241,6 +328,8 @@
   </div>
 <% end -%>
 
-<div class="inline buttonrow">
-  <input id="submit_filters_button" type="submit" value="<%=t :search %>" class="default inline button" data-loading-click="<%=t :searching %>"/>
-</div>
+<% unless hide_buttons -%>
+  <div class="inline buttonrow">
+    <input id="submit_filters_button" type="submit" value="<%=t :search %>" class="default inline button" data-loading-click="<%=t :searching %>"/>
+  </div>
+<% end -%>

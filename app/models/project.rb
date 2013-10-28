@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :user
-  belongs_to :place
+  belongs_to :place, :inverse_of => :projects
   has_many :project_users, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
   has_many :project_invitations, :dependent => :destroy
@@ -50,6 +50,17 @@ class Project < ActiveRecord::Base
     order("ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude}))")
   }
   scope :from_source_url, lambda {|url| where(:source_url => url) }
+  scope :in_place, lambda{|place|
+    place = Place.find(place) unless place.is_a?(Place) rescue nil
+    if place
+      conditions = place.descendant_conditions
+      conditions[0] += " OR places.id = ?"
+      conditions << place
+      joins(:place).where(conditions)
+    else
+      where("1 = 2")
+    end
+  }
   
   has_attached_file :icon, 
     :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#" },

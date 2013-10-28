@@ -67,7 +67,11 @@ class ProjectObservation < ActiveRecord::Base
   end
 
   def expire_caches
-    FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project, :format => 'csv')), :force => true
+    begin
+      FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project, :format => 'csv')), :force => true
+    rescue ActionController::RoutingError
+      FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project_id, :format => 'csv')), :force => true
+    end
     true
   end
 

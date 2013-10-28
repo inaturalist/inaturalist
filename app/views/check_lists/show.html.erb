@@ -1,5 +1,12 @@
+<% if @list.is_default? && @list.title.include?('Check List') %>
+    <% @list_title=truncate(t(:check_list_place, :place => t("places_name.#{@list.title.chomp(' Check List').gsub(' ','_').downcase}",
+                                                             :default => @list.title.split(' Check List').first)), :length => 85) %>
+<% else %>
+    <% @list_title=truncate(@list.title, :length => 85) %>
+<% end %>
+
 <%- content_for(:title) do -%>
-  <%= @title = t(:check_list_place, :place=>@list.title.chomp('Check List')) %>
+  <%= @title = @list_title %>
 <%- end -%>
 
 <%- content_for(:extrahead) do -%>
@@ -50,7 +57,7 @@
     <%- end -%>
     
     <span class="breadcrumbs">    
-      <%= link_to t(:back_to) + " #{@list.place.name}",
+      <%= link_to "#{t(:back_to)} " + t("places_name.#{@list.place.name.gsub(' ','_').downcase}", :default => @list.place.name),
                   place_path(@list.place),
                   :class => 'back crumb' %>
     </span>
@@ -75,7 +82,7 @@
         <%= t :this_is_a %>
         <% if @list.comprehensive? -%>
           <span class="comprehensive_notice"
-              data-tip="<strong><%= @list.user || CONFIG.site_name_short %></strong> believes this is a comprehensive list of <strong><%= taxon.species_or_lower? ? "<i>#{taxon.name}</i>" : taxon.name %></strong> in <strong><%= @list.place.name %></strong>">
+              data-tip="<strong><%= @list.user || CONFIG.site_name_short %></strong> <%= t(:belives_this_is_a_comprehensive_list_of) %> <strong><%= taxon.species_or_lower? ? "<i>#{taxon.name}</i>" : taxon.name %></strong> in <strong><%= @list.place.name %></strong>">
             <%= t :comprehensive %></span>
         <% end %>
         <%= t(:check_list) + ' ' + t(:for) %>
@@ -139,7 +146,7 @@
       <strong><%= t :created_by %> </strong>
       <%= link_to user_image(@list.user), @list.user %>
       <%= link_to_user @list.user %>
-      on
+      <%= t :on_ %>
       <%= @list.created_at.to_date.to_s(:long) %>
     </div>
   <% end -%>
@@ -223,12 +230,24 @@
             </form>
           </div>
         </div>
+        <div class="clear" style="padding: 10px">
+          <form method="get">
+            <%= hidden_fields_for_params :without => [:page, :observed] %>
+            <label><%=t :observed %></label>
+            <%= radio_button_tag :observed, :t, @observed == 't', {"data-autosubmit" => true} %>
+            <%= label :observed, :t, t(:yes).downcase %>
+            <%= radio_button_tag :observed, :f, @observed == 'f', {"data-autosubmit" => true} %>
+            <%= label :observed, :f, t(:no).downcase %>
+            <%= radio_button_tag :observed, nil, @observed.blank?, {"data-autosubmit" => true} %>
+            <%= label :observed, nil, t(:any) %>
+          </form>
+        </div>
       </div><!-- / innerstats -->
     </div><!-- /stats -->
     
     <div id="other_check_lists_wrapper">
       <h3>
-        <%= link_to_toggle t(:check_lists_for, :place=>@place.name), '#other_check_lists',
+        <%= link_to_toggle t(:check_lists_for, :place=>t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name)), '#other_check_lists',
           :id => 'otherlistslink', :class => 'closed' %>
       </h3>
       <div id="other_check_lists" style="display:none">
@@ -241,7 +260,7 @@
           <% end %>
         </ul>
 
-        <%= link_to t(:new_check_list_for, :place=>@place.name).html_safe, new_check_list_path(:place_id => @place), :style => 'font-weight: bold' %>
+        <%= link_to t(:new_check_list_for, :place => t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name)).html_safe, new_check_list_path(:place_id => @place), :style => 'font-weight: bold' %>
       </div>
     </div>
   </div><!-- /sidebar -->

@@ -73,10 +73,15 @@
   <% if @taxon_rule -%>
     <div id="life_list_taxon" class="life_list_taxon description">
       <%= taxon_image(@taxon_rule.operand) %>
-      <%=t :this_is_a_life_list_of %>
-      <%= render :partial => 'shared/taxon', 
-                 :locals => { :taxon => @taxon_rule.operand,
-                              :link_url => url_for(@taxon_rule.operand) } %>
+      <% if @list.place -%>
+        <%=raw t :this_is_a_life_list_of_taxon_in_place, 
+          :taxon => render('shared/taxon', :taxon => @taxon_rule.operand, :link_url => @taxon_rule.operand),
+          :place => link_to(@list.place.display_name, @list.place) %>
+      <% else %>
+        <%=t :this_is_a_life_list_of %>
+        <%= render :partial => 'shared/taxon', 
+                   :locals => { :taxon => @taxon_rule.operand, :link_url => url_for(@taxon_rule.operand) } %>
+      <% end -%>
     </div>
   <% end -%>
   <% if @list.rank_rule != "any" -%>
@@ -119,7 +124,7 @@
   <div id="toppagination">
     <%= will_paginate @listed_taxa, :renderer => INatLinkRenderer %>
   </div>
-  
+
   <%= render :partial => "show_#{@view}" %>
   
   <% if @listed_taxa.empty? %>
@@ -156,7 +161,7 @@
     <%= link_to "#{t(:taxonomic)} CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
       :class => "delayedlink csvlink", 
       "data-delayed-link-msg" => 
-        "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
+        t(:please_hold_on_while_the_file_is_generated),
       :rel => "nofollow" %>
   </div>
 </div>
@@ -231,6 +236,18 @@
               <input id="taxonchooser" name="taxon" type="text" class="text" placeholder="<%=t :type_taxon_name %>" value="<%= @filter_taxon.try(&:id) unless (@filter_taxon && @filter_taxon.is_iconic?) %>" style="width:200px"/>
             </form>
           </div>
+        </div>
+        <div class="clear" style="padding: 10px">
+          <form method="get">
+            <%= hidden_fields_for_params :without => [:page, :observed] %>
+            <label><%=t :observed %></label>
+            <%= radio_button_tag :observed, :t, @observed == 't', {"data-autosubmit" => true} %>
+            <%= label :observed, :t, t(:yes).downcase %>
+            <%= radio_button_tag :observed, :f, @observed == 'f', {"data-autosubmit" => true} %>
+            <%= label :observed, :f, t(:no).downcase %>
+            <%= radio_button_tag :observed, nil, @observed.blank?, {"data-autosubmit" => true} %>
+            <%= label :observed, nil, t(:any) %>
+          </form>
         </div>
       </div><!-- /stats -->
     <% end -%>

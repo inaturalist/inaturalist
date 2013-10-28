@@ -1281,6 +1281,11 @@ describe Observation do
       o.latitude.to_f.should == lat
       o.longitude.to_f.should == lon
     end
+
+    it "should be nil if not obscured or private" do
+      o = Observation.make!(:geoprivacy => "open")
+      o.geoprivacy.should be_nil
+    end
   end
   
   describe "geom" do
@@ -1306,6 +1311,49 @@ describe Observation do
       o.update_attributes(:latitude => nil, :longitude => nil)
       o.geom.should be_blank
     end
+  end
+
+  describe "private_geom" do
+    it "should be set with coords" do
+      o = Observation.make!(:latitude => 1, :longitude => 1)
+      o.private_geom.should_not be_blank
+    end
+    
+    it "should not be set without coords" do
+      o = Observation.make!
+      o.private_geom.should be_blank
+    end
+    
+    it "should change with coords" do
+      o = Observation.make!(:latitude => 1, :longitude => 1)
+      o.private_geom.y.should == 1.0
+      o.update_attributes(:latitude => 2)
+      o.private_geom.y.should == 2.0
+    end
+    
+    it "should go away with coords" do
+      o = Observation.make!(:latitude => 1, :longitude => 1)
+      o.update_attributes(:latitude => nil, :longitude => nil)
+      o.private_geom.should be_blank
+    end
+
+    it "should be set with geoprivacy" do
+      o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::OBSCURED)
+      o.latitude.should_not eq 1.0
+      o.private_latitude.should eq 1.0
+      o.geom.y.should_not eq 1.0
+      o.private_geom.y.should eq 1.0
+    end
+
+    it "should be set without geoprivacy" do
+      o = Observation.make!(:latitude => 1, :longitude => 1)
+      o.latitude.should eq 1.0
+      o.private_geom.y.should eq 1.0
+    end
+
+    # it "should contain the private coordinates if geoprivacy" do
+
+    # end
   end
   
   describe "query" do
@@ -1690,6 +1738,20 @@ describe Observation, "component_cache_key" do
   end
 end
 
+describe Observation, "dynamic taxon getters" do
+  it "should not interfere with taxon_id"
+  it "should return genus"
+end
+
+describe Observation, "dynamic place getters" do
+  it "should return place state" do
+    p = make_place_with_geom(:place_type => Place::PLACE_TYPE_CODES['State'])
+    o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
+    o.intersecting_places.should_not be_blank
+    o.place_state.should eq p
+    o.place_state_name.should eq p.name
+  end
+end
 describe Observation, "majority taxon" do
   it "should be the majority taxon" do
     majority_taxon = Taxon.make!

@@ -191,6 +191,9 @@ class PhotosController < ApplicationController
     if repaired.destroyed?
       flash[:error] = t(:photo_destroyed_because_it_was_deleted_from, :site_name => CONFIG.site_name_short)
       redirect_to url
+    elsif !errors.blank?
+      flash[:error] = t(:failed_to_repair_photo, :errors => errors.values.to_sentence)
+      redirect_back_or_default(@photo.becomes(Photo))
     else
       flash[:notice] = t(:photo_urls_repaired)
       redirect_back_or_default(@photo.becomes(Photo))

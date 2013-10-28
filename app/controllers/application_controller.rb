@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   include Ambidextrous
   
-  has_mobile_fu :ignore_formats => [:tablet, :json]
+  has_mobile_fu :ignore_formats => [:tablet, :json, :widget]
   around_filter :catch_missing_mobile_templates
   
   helper :all # include all helpers, all the time
@@ -198,7 +198,7 @@ class ApplicationController < ActionController::Base
     class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
     class_name = class_name.to_s.underscore.camelcase
     record = instance_variable_get("@#{class_name.underscore}")
-    unless logged_in? && current_user.id == record.user_id
+    unless logged_in? && (current_user.id == record.user_id || current_user.is_admin?)
       msg = "You don't have permission to do that"
       respond_to do |format|
         format.html do
@@ -386,7 +386,7 @@ class ApplicationController < ActionController::Base
   def delayed_progress(key)
     @tries = params[:tries].to_i
     if @tries > 20
-      @status = @error
+      @status = "error"
       @error_msg = "This is taking forever.  Please try again later."
       return
     # elsif @tries > 0
@@ -397,7 +397,11 @@ class ApplicationController < ActionController::Base
     if @job_id
       if @job && @job.last_error
         @status = "error"
-        @error_msg = @job.last_error
+        @error_msg = if current_user.is_admin?
+          @job.last_error
+        else
+          "This job failed to run. Please contact #{CONFIG.help_email}"
+        end
       elsif @job
         @status = "working"
       else
