@@ -247,3 +247,37 @@ describe GuideTaxon, "get_eol_page" do
     }.should_not be_blank
   end
 end
+
+describe GuideTaxon, "add_color_tags" do
+  let(:yellow) { Color.make!(:value => "yellow") }
+  let(:blue) { Color.make!(:value => "blue") }
+  let(:taxon) { 
+    t = Taxon.make!
+    t.colors += [yellow, blue]
+    t.save
+    t
+  }
+  let(:gt) { GuideTaxon.make!(:taxon => taxon)}
+
+  it "should add tags" do
+    gt.add_color_tags
+    gt.tag_list.should include("color=yellow")
+    gt.tag_list.should include("color=blue")
+  end
+end
+
+describe GuideTaxon, "add_rank_tag" do
+
+  before do
+    @genus = Taxon.make!(:rank => "genus")
+    @tn = @genus.taxon_names.create(:lexicon => TaxonName::LEXICONS[:ENGLISH], :name => "Fulminator")
+    @t = Taxon.make!(:rank => "species", :parent => @genus)
+    @gt = GuideTaxon.make!(:taxon => @t)
+  end
+
+  it "should add tags" do
+    @genus.taxon_names.count.should eq 2
+    @gt.add_rank_tag('genus', :lexicon => "ENGLISH")
+    @gt.tag_list.should include("taxonomy:genus=#{@tn.name}")
+  end
+end

@@ -28,7 +28,9 @@ Inaturalist::Application.routes.draw do
     end
     member do
       post :import_taxa
-      put :reorder, :via => :put
+      put :reorder
+      put :add_color_tags
+      put "add_tags_for_rank/:rank" => "guides#add_tags_for_rank"
     end
   end
   match '/guides/:id.:layout.pdf' => 'guides#show', :via => :get, :as => "guide_pdf", :constraints => {:format => :pdf}, :defaults => {:format => :pdf}

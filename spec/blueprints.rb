@@ -26,6 +26,10 @@ CheckList.blueprint do
   place { Place.make! }
 end
 
+Color.blueprint do
+  value { %w(red green blue)[rand(3)] }  
+end
+
 Comment.blueprint do
   user { User.make }
   body { Faker::Lorem.paragraph }

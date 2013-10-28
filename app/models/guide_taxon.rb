@@ -236,6 +236,28 @@ class GuideTaxon < ActiveRecord::Base
     end
   end
 
+  def add_color_tags
+    return unless taxon
+    tags = tag_list + taxon.colors.map{|c| "color=#{c.value.downcase}"}
+    update_attributes(:tag_list => tags.uniq)
+  end
+
+  def add_rank_tag(rank, options = {})
+    return unless taxon
+    lexicon = options[:lexicon] || TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+    lexicon = TaxonName::LEXICONS[lexicon.to_sym] if TaxonName::LEXICONS[lexicon.to_sym]
+    rank_taxon = taxon.send(rank) rescue nil
+    return unless rank_taxon
+    name = if lexicon == TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+      rank_taxon.name
+    elsif tn = rank_taxon.taxon_names.detect{|tn| tn.lexicon == lexicon}
+      tn.name
+    end
+    return if name.blank?
+    tags = tag_list + ["taxonomy:#{rank}=#{name}"]
+    update_attributes(:tag_list => tags.uniq)
+  end
+
   def self.new_from_eol_collection_item(item, options = {})
     name = item.at('name').inner_text.strip
     name = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))

@@ -311,25 +311,27 @@ function saveGuideTaxon(options) {
     nextMethod()
   })
 }
-window.map = iNaturalist.Map.createMap({
-  div: $('#map').get(0)
-})
-var preserveViewport = GUIDE.latitude && GUIDE.zoom_level
-map.setMapTypeId(GUIDE.map_type)
-if (GUIDE.zoom_level) {
-  map.setZoom(GUIDE.zoom_level)
+if (iNaturalist && iNaturalist.Map) {
+  window.map = iNaturalist.Map.createMap({
+    div: $('#map').get(0)
+  })
+  var preserveViewport = GUIDE.latitude && GUIDE.zoom_level
+  map.setMapTypeId(GUIDE.map_type)
+  if (GUIDE.zoom_level) {
+    map.setZoom(GUIDE.zoom_level)
+  }
+  $('#map_search').latLonSelector({
+    mapDiv: $('#map').get(0),
+    map: map,
+    noAccuracy: true
+  })
+  google.maps.event.addListener(map, 'maptypeid_changed', function() {
+    $('#guide_map_type').val(window.map.getMapTypeId())
+  })
+  google.maps.event.addListener(map, 'zoom_changed', function() {
+    $('#guide_zoom_level').val(window.map.getZoom())
+  })
 }
-$('#map_search').latLonSelector({
-  mapDiv: $('#map').get(0),
-  map: map,
-  noAccuracy: true
-})
-google.maps.event.addListener(map, 'maptypeid_changed', function() {
-  $('#guide_map_type').val(window.map.getMapTypeId())
-})
-google.maps.event.addListener(map, 'zoom_changed', function() {
-  $('#guide_zoom_level').val(window.map.getZoom())
-})
 window.firstRun = true
 $('#guide_place_id').chooser({
   collectionUrl: '/places/autocomplete.json',
@@ -355,7 +357,56 @@ $('#guide_place_id').chooser({
 })
 
 $('#addtags .modal-footer .btn-primary').click(function() {
-  var tags = ($('#addtags input[type=text]').val() || "").split(',').map(function(t) { return $.trim(t) })
+  if ($('#addtags-colors:visible').length > 0) {
+    addColorTags()
+  } else if ($('#addtags-ranks:visible').length > 0) {
+    addRankTags()
+  } else {
+    addYourTags()
+  }
+  $('#addtags').modal('hide')
+})
+
+function addColorTags() {
+  $('#guide_taxa').loadingShades("Tagging", {cssClass: 'bigloading'})
+  $.ajax({
+    url: '/guides/'+GUIDE.id+'/add_color_tags',
+    type: 'put',
+    dataType: 'json',
+    data: $('#guide_taxa form.edit_guide_taxon:visible input[type=checkbox]:checked').serialize()
+  }).success(function(json) {
+    $('#guide_taxa').shades('close')
+    $.each(json, function() {
+      $('#edit_guide_taxon_'+this.id+' [name*=tag_list]').val(this.tag_list.join(', '))
+    })
+  }).error(function(arguments) {
+    alert('Failed to add tags')
+  })
+}
+
+function addRankTags() {
+  $('#guide_taxa').loadingShades("Tagging", {cssClass: 'bigloading'})
+  var data = $('#guide_taxa form.edit_guide_taxon:visible input[type=checkbox]:checked').serialize() +
+             '&' + $('#addtags-ranks :input').serialize(),
+      rank = $('#addtags-ranks :input[name=rank]').val()
+
+  $.ajax({
+    url: '/guides/'+GUIDE.id+'/add_tags_for_rank/'+rank,
+    type: 'put',
+    dataType: 'json',
+    data: data
+  }).success(function(json) {
+    $('#guide_taxa').shades('close')
+    $.each(json, function() {
+      $('#edit_guide_taxon_'+this.id+' [name*=tag_list]').val(this.tag_list.join(', '))
+    })
+  }).error(function(arguments) {
+    alert('Failed to add tags')
+  })
+}
+
+function addYourTags() {
+  var tags = ($('#addtags-your input[type=text]').val() || "").split(',').map(function(t) { return $.trim(t) })
   $selection = $('#guide_taxa form.edit_guide_taxon:visible').has('input[type=checkbox]:checked')
   if (tags.length == 0 || $selection.length == 0) {
     $('#addtags').modal('hide')
@@ -365,13 +416,18 @@ $('#addtags .modal-footer .btn-primary').click(function() {
   $('#guide_taxa').loadingShades(msg, {cssClass: 'bigloading'})
   $selection.each(function() {
     var input = $('input[name*=tag_list]', this)
-    var existing = ($(input).val() || "").split(',').map(function(t) { return $.trim(t) })
+    var val = $(input).val(),
+        existing
+    if (val) {
+      existing = val.split(',').map(function(t) { return $.trim(t) })
+    } else {
+      existing = []
+    }
     var newTags = $.unique(existing.concat(tags))
     $(input).val(newTags.join(', '))
   })
   saveGuideTaxon.apply($selection.get(0), [{chain: true}])
-  $('#addtags').modal('hide')
-})
+}
 
 $('#removetags .modal-footer .btn-primary').click(function() {
   var tags = ($('#removetags input[type=text]').val() || "").split(',').map(function(t) { return $.trim(t) })
@@ -400,16 +456,34 @@ $('#removetags .modal-footer .btn-primary').click(function() {
 function addTag(tag) {
   var tag = $.trim(tag)
   var tags
-  if ($.trim($('#addtags input[type=text]').val()) == '') {
+  if ($.trim($('#addtags-your input[type=text]').val()) == '') {
     tags = []
   } else {
-    tags = $('#addtags input[type=text]').val().split(',').map($.trim)
+    tags = $('#addtags-your input[type=text]').val().split(',').map($.trim)
   }
   if (tags.indexOf(tag) < 0) {
     tags.push(tag)
-    $('#addtags input[type=text]').val(tags.join(', '))
+    $('#addtags-your input[type=text]').val(tags.join(', '))
   }
 }
+
+function removeTag(tag) {
+  var tag = $.trim(tag)
+  var tags
+  if ($.trim($('#removetags input[type=text]').val()) == '') {
+    tags = []
+  } else {
+    tags = $('#removetags input[type=text]').val().split(',').map($.trim)
+  }
+  if (tags.indexOf(tag) < 0) {
+    tags.push(tag)
+    $('#removetags input[type=text]').val(tags.join(', '))
+  }
+}
+
+$('.guide_taxon input[name*=tag_list]').live('change', function() {
+  saveGuideTaxon.apply($(this).parents('form:first').get(0))
+})
 
 $('#guide_taxa .guide_taxon').labelize()
 $('input[name="guide_eol_update_flow_task[options][overview]"]').live('change', function() {

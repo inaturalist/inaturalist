@@ -5,8 +5,8 @@ class GuidesController < ApplicationController
   before_filter :authenticate_user!, 
     :except => [:index, :show, :search], 
     :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder]
-  before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa, :reorder]
+  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank]
+  before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank]
   before_filter :load_user_by_login, :only => [:user]
 
   layout "bootstrap"
@@ -369,6 +369,28 @@ class GuidesController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render :json => @guides }
+    end
+  end
+
+  def add_color_tags
+    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:colors]).where("colors.id IS NOT NULL").scoped
+    @guide_taxa = @guide_taxa.where("guide_taxa.id IN (?)", params[:guide_taxon_ids]) unless params[:guide_taxon_ids].blank?
+    @guide_taxa.each do |gt|
+      gt.add_color_tags
+    end
+    respond_to do |format|
+      format.json { render :json => @guide_taxa.as_json(:methods => [:tag_list])}
+    end
+  end
+
+  def add_tags_for_rank
+    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_names]).scoped
+    @guide_taxa = @guide_taxa.where("guide_taxa.id IN (?)", params[:guide_taxon_ids]) unless params[:guide_taxon_ids].blank?
+    @guide_taxa.each do |gt|
+      gt.add_rank_tag(params[:rank], :lexicon => params[:lexicon])
+    end
+    respond_to do |format|
+      format.json { render :json => @guide_taxa.as_json(:methods => [:tag_list])}
     end
   end
 

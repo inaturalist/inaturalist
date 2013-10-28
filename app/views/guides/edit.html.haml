@@ -5,9 +5,32 @@
   :css
     input.position {width:1em;}
     .more {display:none;}
-    .guide_taxon .check, .guide_taxon .names {padding:4px 6px;}
-    .guide_taxon .img-circle {max-width:30px; height:30px;}
+    .guide_taxon .names {margin-top:3px;}
+    .guide_taxon .tag {margin-right: 5px;}
+    .guide_taxon .img-circle {max-width:30px; height:30px; width:100%;}
     .names .display_name {font-size:140%;}
+    .bootstrap .row-fluid .microspan {width:4%; margin-left:0.5%;text-align: center;}
+    .guide_taxon .guide_taxon_content {margin-top:5px;}
+    .guide_taxon .check {margin-top:3px;}
+    .bootstrap .guide_taxon .input-prepend {margin-bottom: 0;}
+    .bootstrap .input-prepend input[name*=tag_list] {
+      padding: 0px 5px;
+      font-size: 10px;
+      box-shadow: none;
+      min-height:22px;
+      border-color: #efefef;
+    }
+    .bootstrap .input-prepend .add-on:first-child {
+      font-size: 10px;
+      padding: 0 3px;
+      min-height:20px;
+      background-color: #efefef;
+      border-color: #efefef;
+    }
+    .bootstrap .input-prepend input[name*=tag_list],
+    .bootstrap .input-prepend .add-on:first-child {
+      color: #666;
+    }
     .grip {
       width:10px;
       height:2.5em;
@@ -27,7 +50,7 @@
     #controls.affix .navbar {box-shadow: #777 7px 0 10px; padding:10px 0 10px 0; background-color:white;}
     #controls .pull-left {margin-right:10px;}
     .guide_taxon.warning { background-color: #fcf8e3;}
-    .guide_taxon {margin-bottom:0;padding-top:10px;}
+    .guide_taxon {margin-bottom:0; padding: 7px 0;}
     .sorttarget { height: 50px;}
     #map { height: 200px;}
     .bootstrap select, .bootstrap input[type="file"] {line-height: 0;}
@@ -229,21 +252,48 @@
   .modal-header
     %button.close{:type => "button", "data-dismiss" => "modal"} x
     %h3=t :add_tags
-  .modal-body.row-fluid
-    %p=t 'views.guides.tags_help_html'
-    %input{:type => "text", :placeholder => t(:add_comma_separated_tags, :default => "Add comma-separated tags"), :class => "span11"}
-    #recent_tags.quiet
-      - for tag in @recent_tags
-        = link_to_function "<i class='icon-plus-sign'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
+  .modal-body
+    %ul.nav.nav-pills
+      %li.active= link_to t(:your_tags), "#addtags-your", "data-toggle" => "pill"
+      %li= link_to t(:taxon_colors), "#addtags-colors", "data-toggle" => "pill"
+      %li= link_to t(:taxon_ranks), "#addtags-ranks", "data-toggle" => "pill"
+    .tab-content
+      #addtags-your.tab-pane.active.fade.in
+        %p=t 'views.guides.tags_help_html'
+        .row-fluid
+          %input{:type => "text", :placeholder => t(:add_comma_separated_tags, :default => "Add comma-separated tags"), :class => "span12"}
+        .recent_tags.quiet
+          - for tag in @recent_tags
+            = link_to_function "<i class='icon-plus-sign'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
+      #addtags-colors.tab-pane.fade
+        %p Add color tags from colors associated with the selected taxa on iNat.
+      #addtags-ranks.tab-pane.fade
+        %p
+          Add taxon rank tags based on iNat's taxonomy, e.g. 
+          %code family=Laridae
+          or
+          %code family=Gulls and Allies
+        .row-fluid
+          .span6
+            %label
+              =t :rank
+            = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t(r, :default => r), r]}, "family")
+          .span6
+            %label
+              =t :lexicon
+            = select_tag :lexicon, options_for_select(TaxonName::LEXICONS.map{|k,v| [t(v, :default => v), k]})
   .modal-footer
     %button.btn{"data-dismiss" => "modal"}=t :close
-    %button.btn.btn-primary=t :add_tags
+    %button.btn.btn-primary=t :add_tags_to_selected_taxa
 #removetags.modal.fade.hide{:role => "dialog", "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
   .modal-header
     %button.close{:type => "button", "data-dismiss" => "modal"} x
     %h3=t :remove_tags
   .modal-body.row-fluid
     %input{:type => "text", :placeholder => t(:remove_comma_separated_tags, :default => "Remove comma-separated tags"), :class => "span11"}
+    .recent_tags.quiet
+      - for tag in @recent_tags
+        = link_to_function "<i class='icon-minus-sign'></i> #{tag}".html_safe, "removeTag('#{tag}')", :class => "btn btn-mini"
   .modal-footer
     %button.btn{"data-dismiss" => "modal"}=t :close
     %button.btn.btn-primary=t :remove_tags
