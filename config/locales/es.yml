@@ -852,6 +852,7 @@ es:
   description_tags_more: "Descripción, Etiquetas, &amp; Más"
   destroy: Destruir
   details: Detalles
+  developers: Desarrolladores
   device: Dispositivo
   devise: 
     confirmations: 
@@ -1659,6 +1660,8 @@ es:
     trata de una lista de la vida, automáticamente se actualizará con las
     especies cuando se <a href="%{url}" class="nobr">agregan observaciones</a>.
   no_subject_parens: "(No tema)"
+  no_such_wiki_page_html: "No existe tal página."
+  no_such_wiki_page_html: "No existe tal página. ¿Desea <a href='%{new_url}'>crearlo</a>?"
   no_summary_from_wikipedia: No hay resumen de Wikipedia
   no_summary_has_been_set: "No se ha hecho un resumen"
   no_taxa: "No hay taxones"
@@ -3153,6 +3156,7 @@ es:
   wondering_what_to_do_next: "¿Se pregunta qué hacer ahora? Por qué no"
   would_you_like_to: ". ¿Le gustaría"
   x_admin: "%{login} Administrador"
+  x_does_not_exist: "\"%{x}\" no existe"
   x_doesnt: "%{login} no"
   x_followers: 
     one: "1 seguidore"
