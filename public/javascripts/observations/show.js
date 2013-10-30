@@ -104,6 +104,7 @@ $(document).ready(function() {
   $('a[rel=alternate]').each(function() {
     $(this).css({
       background: "url(http://www.google.com/s2/u/0/favicons?domain=" + this.hostname + ") left center no-repeat",
+      'background-size': '16px 16px',
       "padding": "1px 0 1px 20px"
     })
   })

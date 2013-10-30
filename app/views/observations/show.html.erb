@@ -349,7 +349,7 @@
             uri = URI.parse(url) rescue nil
           -%>
           <% if uri -%>
-            <%= link_to(image_tag("http://www.google.com/s2/u/0/favicons?domain=#{uri.host}"), url) %>
+            <%= link_to(image_tag("http://www.google.com/s2/u/0/favicons?domain=#{uri.host}", :class => "favicon"), url) %>
           <% end -%>
           <%= link_to a.name, url %>
         <% elsif !@observation.device_url.blank? -%>
