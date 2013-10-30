@@ -832,7 +832,7 @@ en:
     native_and_occurs_nowhere_else: "native and occurs nowhere else"
     arrived_in_the_region_via_anthropogenic_means: "arrived in the region via anthropogenic means"
   establishment_means_describes_how: Establishment means describes how the taxon came to be established in an area.  See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
-  every_species_seen_by: Every species seen by %{user}
+  every_species_seen_by: Every species seen by
   everyone: everyone
   everyone_journal_posts: Everyone's Journal Posts
   exact_coordinates_obscured_for: Exact coordinates obscured for public view for threatened species.
@@ -1844,6 +1844,7 @@ en:
   please_hold_on_while_the_file_is_generated: Please hold on while the file is generated.  It can take a couple minutes for large lists.
   position: Position
   positional_accuracy: Positional accuracy
+  possessive_user: "%{user}'s"
   post: Post
   post_published: Post published!
   post_some_new_stuff: post some new stuff
@@ -2544,6 +2545,7 @@ en:
   user_is_a_naturalist: "%{user} is a naturalist!"
   user_s: "%{user}'s"
   user_s_id: "%{user}'s %{id}"
+  user_s_lists: "%{user} Lists"
   user_thinks_yours_is: "%{user} %{noun} your observation %{observation} is"
   username: Username
   username_or_email: Username or email
@@ -2788,6 +2790,7 @@ en:
   you_would_get_the: "you would get the following tags:"
   youll_need_to_link: You'll need to link
   your: Your
+  your_: Your
   your_account_has_been_verified: "Your %{site_name} account has been verified! Please sign in to continue."
   your_activation_code_was_missing: "Your activation code was missing.  Please follow the URL from your email."
   your_comment_was_saved: Your content was saved
