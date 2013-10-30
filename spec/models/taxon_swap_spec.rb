@@ -1,5 +1,22 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe TaxonSwap, "creation" do
+  it "should not allow swaps without inputs" do
+    output_taxon = Taxon.make!
+    swap = TaxonSwap.make
+    swap.add_output_taxon(output_taxon)
+    swap.input_taxa.should be_blank
+    swap.should_not be_valid
+  end
+
+  it "should not allow swaps without outputs" do
+    input_taxon = Taxon.make!
+    swap = TaxonSwap.make
+    swap.add_input_taxon(input_taxon)
+    swap.should_not be_valid
+  end
+end
+
 describe TaxonSwap, "destruction" do
   before(:each) do
     prepare_swap

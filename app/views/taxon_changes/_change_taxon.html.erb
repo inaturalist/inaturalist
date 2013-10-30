@@ -63,7 +63,7 @@
           <label><%= t :synonyms %></label>
           <ul>
             <% for swap in swaps %> 
-              <%- aka_taxon = swap.opposite_taxon_from(change_taxon) -%>
+              <%- next unless aka_taxon = swap.opposite_taxon_from(change_taxon) -%>
               <% if aka_taxon.taxon_schemes.blank? -%>
                 <li>
                   <%= link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon %><br/>
