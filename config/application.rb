@@ -9,7 +9,7 @@ CONFIG = InatConfig.new(File.expand_path('../config.yml', __FILE__))
 # flickr api keys - these need to be set before Flickraw gets included
 FLICKR_API_KEY = CONFIG.flickr.key
 FLICKR_SHARED_SECRET = CONFIG.flickr.shared_secret
-DEFAULT_SRID = -1 # nofxx-georuby defaults to 4326.  Ugh.
+DEFAULT_SRID = 0 # nofxx-georuby defaults to 4326.  Ugh.
 
 # DelayedJob priorities
 USER_PRIORITY = 0               # response to user action, should happen ASAP w/o bogging down a web proc
