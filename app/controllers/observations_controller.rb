@@ -2489,9 +2489,10 @@ class ObservationsController < ApplicationController
   end
 
   def delayed_csv(path_for_csv, parent, options = {})
+    path_for_csv_no_ext = path_for_csv.gsub(/\.csv\z/, '')
     if parent.observations.count < 50
       Observation.generate_csv_for(parent, :path => path_for_csv)
-      render :file => path_for_csv
+      render :file => path_for_csv_no_ext, :formats => [:csv]
     else
       cache_key = Observation.generate_csv_for_cache_key(parent)
       job_id = Rails.cache.read(cache_key)
@@ -2499,7 +2500,7 @@ class ObservationsController < ApplicationController
       if job
         # Still working
       elsif File.exists? path_for_csv
-        render :file => path_for_csv
+        render :file => path_for_csv_no_ext, :formats => [:csv]
         return
       else
         # no job id, no job, let's get this party started

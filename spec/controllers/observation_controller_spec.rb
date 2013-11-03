@@ -197,7 +197,6 @@ describe ObservationsController do
     end
     it "should generate an error if no files specified" do
       post :photo, :format => :json
-      puts "response.body: #{response.body}"
       json = JSON.parse(response.body)
       json['error'].should_not be_blank
     end
