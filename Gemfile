@@ -40,7 +40,7 @@ gem 'koala'
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 gem 'mechanize'
 gem 'memcache-client'
-gem 'mocha'
+gem 'mocha', :require => false
 gem 'mobile-fu', :git => 'https://github.com/kueda/mobile-fu.git'
 gem 'nokogiri'
 gem 'omniauth-facebook'
