@@ -48,22 +48,20 @@ describe Observation, "creation" do
     @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(7)
     @observation.time_zone.should == ActiveSupport::TimeZone['Adelaide'].name
   end
-  
-  it "should parse time from strings like Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)" do
-    @observation.observed_on_string = "Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)"
-    @observation.save
-    @observation.observed_on.day.should be(6)
-    @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(16)
-    zone = ActiveSupport::TimeZone[@observation.time_zone]
-    zone.formatted_offset.should == "-05:00"
-  end
 
-  it "should parse datetime like September 27, 2012 8:09:50 AM GMT+01:00" do
-    o = Observation.make!(:observed_on_string => "September 27, 2012 8:09:50 AM GMT+01:00")
-    o.time_observed_at.in_time_zone(o.time_zone).hour.should be(8)
-    zone = ActiveSupport::TimeZone[o.time_zone]
-    zone.formatted_offset.should == "+01:00"
-    o.observed_on.day.should be(27)
+  it "should parse a bunch of test date strings" do
+    [
+      ['Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)', {:day => 6, :hour => 16, :offset => "-05:00"}],
+      ['Sun Nov 03 2013 08:15:25 GMT-0500 (GMT-5)', {:day => 3, :hour => 8, :offset => "-05:00"}],
+      ['lun nov 04 2013 04:22:34 p.m. GMT-0600 (GMT-6)', {:day => 4, :hour => 16, :offset => "-06:00"}],
+      ['September 27, 2012 8:09:50 AM GMT+01:00', :day => 27, :hour => 8, :offset => "+01:00"]
+    ].each do |date_string, opts|
+      o = Observation.make!(:observed_on_string => date_string)
+      o.observed_on.day.should be(opts[:day])
+      o.time_observed_at.in_time_zone(o.time_zone).hour.should be(opts[:hour])
+      zone = ActiveSupport::TimeZone[o.time_zone]
+      zone.formatted_offset.should eq opts[:offset]
+    end
   end
   
   it "should parse a time zone from a code" do

@@ -890,7 +890,7 @@ class Observation < ActiveRecord::Base
     date_string = observed_on_string.strip
     tz_abbrev_pattern = /\s\(?([A-Z]{3,})\)?$/ # ends with (PDT)
     tz_offset_pattern = /([+-]\d{4})$/ # contains -0800
-    tz_js_offset_pattern = /(GMT)?[+-]\d{4}/ # contains GMT-0800
+    tz_js_offset_pattern = /(GMT)?([+-]\d{4})/ # contains GMT-0800
     tz_colon_offset_pattern = /(GMT|HSP)([+-]\d+:\d+)/ # contains (GMT-08:00)
     tz_failed_abbrev_pattern = /\(#{tz_colon_offset_pattern}\)/
     
@@ -905,7 +905,7 @@ class Observation < ActiveRecord::Base
     elsif (offset = date_string[tz_offset_pattern, 1]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f / 100])
       date_string = date_string.sub(tz_offset_pattern, '')
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
-    elsif (offset = date_string[tz_js_offset_pattern, 1]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f / 100])
+    elsif (offset = date_string[tz_js_offset_pattern, 2]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f / 100])
       date_string = date_string.sub(tz_js_offset_pattern, '')
       date_string = date_string.sub(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, '')
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
@@ -919,6 +919,9 @@ class Observation < ActiveRecord::Base
     
     # strip leading month if present
     date_string.sub!(/^[A-z]{3} ([A-z]{3})/, '\\1')
+
+    # strip paranthesized stuff
+    date_string.gsub!(/\(.*\)/, '')
     
     # Set the time zone appropriately
     old_time_zone = Time.zone
@@ -927,7 +930,9 @@ class Observation < ActiveRecord::Base
     
     begin
       # Start parsing...
-      return true unless t = Chronic.parse(date_string)
+      unless t = Chronic.parse(date_string)
+        return true
+      end
     
       # Re-interpret future dates as being in the past
       if t > Time.now
