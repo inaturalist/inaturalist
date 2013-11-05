@@ -33,7 +33,7 @@ class TaxonSwap < TaxonChange
   end
 
   def input_taxa
-    taxa
+    taxa.loaded? ? taxa : taxon_change_taxa.map(&:taxon)
   end
 
   def output_taxa
@@ -41,7 +41,7 @@ class TaxonSwap < TaxonChange
   end
 
   def input_taxon
-    taxa.first
+    taxa.loaded? ? taxa.first : taxon_change_taxa.first.try(:taxon)
   end
 
   def output_taxon
