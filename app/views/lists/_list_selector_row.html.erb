@@ -21,5 +21,9 @@
       :style => "#{'display: none' unless listed_taxon}" %>
     <span class="loading on_eeeeee" style="display: none">&nbsp;</span>
   </span>
-  "<%= link_to t(:life_list, :user => truncate(h(list.title.split("'").first), :length => 35)), list_path(list) %>"
+  <% if logged_in? && current_user.life_list_id == list.id -%>
+    "<%= link_to t(:life_list, :user => current_user.login), list_path(list) %>"
+  <% else %>
+    "<%= link_to truncate(list.title, :length => 35), list_path(list) %>"
+  <% end -%>
 </li>

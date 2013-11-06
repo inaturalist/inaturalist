@@ -40,6 +40,11 @@
           queryOnLoad = false
         } else if (photoClass) {
           baseURL = '/'+photoClass.replace(/Photo$/, '').toLowerCase() + '/photo_fields?context=user'
+        } else if (PHOTO_IDENTITY_URLS.length > 0) {
+          baseURL = PHOTO_IDENTITY_URLS[0].url
+        } else {
+          baseURL = '/photos/local_photo_fields?context=user'
+          queryOnLoad = false
         }
         $(this).photoSelector({
            baseURL: baseURL,

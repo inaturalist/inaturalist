@@ -396,7 +396,7 @@
     
     $(wrapper).append(controls);
     
-    if (options.baseURL.match(/local_photo/)) {
+    if (options.baseURL && options.baseURL.match(/local_photo/)) {
       $(wrapper).find('.photoSelectorControls .button, .photoSelectorControls .text').hide();
     }
     
