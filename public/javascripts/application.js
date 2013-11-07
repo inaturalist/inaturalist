@@ -1080,3 +1080,11 @@ function showJoinProjectDialog(projectId, options) {
 function preciseRound(num,decimals) {
   return Math.round(num*Math.pow(10, decimals)) / Math.pow(10,decimals)
 }
+
+function updateSession(params) {
+  $.ajax({
+    url: '/users/update_session',
+    data: params,
+    type: 'PUT'
+  })
+}

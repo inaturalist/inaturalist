@@ -630,12 +630,13 @@ class TaxaController < ApplicationController
   
   def observation_photos
     @taxon = Taxon.find_by_id(params[:id].to_i, :include => :taxon_names)
+    licensed = %w(t any true).include?(params[:licensed].to_s)
     if per_page = params[:per_page]
       per_page = per_page.to_i > 50 ? 50 : per_page.to_i
     end
     observations = if @taxon && params[:q].blank?
       obs = Obervation.of(@taxon).page(params[:page]).per_page(per_page).includes(:photos).where("photos.id IS NOT NULL AND photos.user_id IS NOT NULL AND photos.license")
-      if params[:licensed]
+      if licensed
         obs = obs.where("photos.license IS NOT NULL AND photos.license > ? OR photo.user_id = ?", Photo::COPYRIGHT, current_user)
       end
       obs.to_a
@@ -648,7 +649,7 @@ class TaxaController < ApplicationController
       )
     end
     @photos = observations.compact.map(&:photos).flatten.reject{|p| p.user_id.blank?}
-    @photos = @photos.reject{|p| p.license.to_i <= Photo::COPYRIGHT} if params[:licensed]
+    @photos = @photos.reject{|p| p.license.to_i <= Photo::COPYRIGHT} if licensed
     partial = params[:partial].to_s
     partial = 'photo_list_form' unless %w(photo_list_form bootstrap_photo_list_form).include?(partial)    
     render :partial => "photos/#{partial}", :locals => {

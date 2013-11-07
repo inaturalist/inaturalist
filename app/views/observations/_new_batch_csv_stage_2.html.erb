@@ -5,6 +5,7 @@
 <% end %>
 <%= form_tag(
   {:controller => 'observations', :action => 'create'}, 
+  :multipart => true,
   :class => 'observationform') do %>
 
   <% unless @hasInvalid %>

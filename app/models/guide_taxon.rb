@@ -83,7 +83,8 @@ class GuideTaxon < ActiveRecord::Base
     return true unless guide_photos.blank?
     return true if taxon.blank?
     return true if taxon.photos.blank?
-    self.guide_photos.build(:photo => taxon.taxon_photos.first.try(:photo))    
+    photo = taxon.taxon_photos.includes(:photo).detect{|tp| tp.photo.open_licensed?}.try(:photo)
+    self.guide_photos.build(:photo => photo) if photo
     true
   end
 

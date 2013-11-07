@@ -1360,6 +1360,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def self.single_taxon_for_name(name, options = {})
+    return if name.blank?
     return if PROBLEM_NAMES.include?(name.downcase)
     name = normalize_name(name)
     scope = TaxonName.limit(10).includes(:taxon).

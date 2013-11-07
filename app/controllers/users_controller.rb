@@ -415,6 +415,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_session
+    allowed_keys = %w(hide_quality_metrics)
+    updates = params.select{|k,v| allowed_keys.include?(k)}.symbolize_keys
+    updates.each do |k,v|
+      v = true if %w(yes y true t).include?(v)
+      v = false if %w(no n false f).include?(v)
+      session[k] = v
+    end
+    render :head => :no_content, :layout => false, :text => nil
+  end
+
 protected
 
   def add_friend

@@ -24,6 +24,7 @@ module TaxonDescribers
 
     def clean_html(html, options = {})
       coder = HTMLEntities.new
+      html.gsub!(/data-videopayload=".+?"/m, '')
       decoded = coder.decode(html)
       decoded.gsub!('href="//', 'href="http://')
       decoded.gsub!('src="//', 'src="http://')
@@ -37,7 +38,7 @@ module TaxonDescribers
     end
 
     def wikipedia
-      @wikipedia ||= WikipediaService.new(:locale => "en")
+      @wikipedia ||= WikipediaService.new(:locale => "en", :debug => Rails.env.development?)
     end
 
     def page_url(taxon)

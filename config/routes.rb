@@ -76,6 +76,7 @@ Inaturalist::Application.routes.draw do
     get "signup", :to => "users/registrations#new"
     get "users/new", :to => "users/registrations#new", :as => "new_user"
     get "/forgot_password", :to => "devise/passwords#new", :as => "forgot_password"
+    put "users/update_session", :to => "users#update_session"
   end
   
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
