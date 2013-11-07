@@ -2,6 +2,7 @@ class AddIdentificationsCountToObservations < ActiveRecord::Migration
   def up
     add_column :observations, :identifications_count, :integer, :default => 0
     max_id = Identification.maximum(:id)
+    return if max_id.nil?
     batch_size = 1000
     # (1..max_id).in_groups_of(100) do |grp|
     (max_id / batch_size).times do |i|

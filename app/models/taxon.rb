@@ -125,7 +125,7 @@ class Taxon < ActiveRecord::Base
       @cached_ancestors ||= ancestors.all
       @cached_ancestors.detect{|a| a.rank == rank}
     end
-    alias_method(rank, "find_#{rank}") unless method_exists?(rank)
+    alias_method(rank, "find_#{rank}") unless respond_to?(rank)
     define_method "#{rank}_name" do
       send("find_#{rank}").try(:name)
     end
