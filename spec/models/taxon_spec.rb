@@ -554,7 +554,7 @@ describe Taxon, "merging" do
   
   it "should destroy the reject" do
     @keeper.merge(@reject)
-    TaxonName.find_by_id(@reject.id).should be_nil
+    Taxon.find_by_id(@reject.id).should be_nil
   end
   
   it "should not create duplicate listed taxa" do
