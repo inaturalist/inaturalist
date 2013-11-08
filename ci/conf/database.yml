@@ -1,0 +1,18 @@
+# Example of a local database setup.
+login: &login
+  host: localhost
+  encoding: utf8
+  adapter: postgresql
+  username: postgres
+
+development:
+  <<: *login
+  database: inaturalist_development
+
+test:
+  <<: *login
+  database: inaturalist_test
+
+production:
+  <<: *login
+  database: inaturalist_production

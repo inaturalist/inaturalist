@@ -1,0 +1,13 @@
+all: &all
+  morphology: stem_en
+  port: 9312
+  use_64_bit: true
+
+development:
+  <<: *all
+
+test:
+  <<: *all
+
+production:
+  <<: *all
