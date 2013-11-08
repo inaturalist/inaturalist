@@ -130,12 +130,20 @@ class PlacesController < ApplicationController
       @place.save
       unless params[:kml].blank?
         @geometry = geometry_from_messy_kml(params[:kml])
-        @place.save_geom(@geometry) if @geometry && @place.valid?
+        if @geometry && @place.valid?
+          @place.save_geom(@geometry)
+          if @place.bbox_area > 100
+            notice = t(:place_too_big_for_check_list)
+            @place.check_list.destroy if @place.check_list
+            @place.update_attributes(:prefers_check_lists => false)
+          end
+        end
       end
     end
     
     if @place.valid?
-      flash[:notice] = t(:place_imported)
+      notice ||= t(:place_imported)
+      flash[:notice] = notice
       return redirect_to @place
     else
       flash[:error] = t(:there_were_problems_importing_that_place, :place_error => @place.errors.full_messages.join(', '))

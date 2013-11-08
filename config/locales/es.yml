@@ -2001,6 +2001,12 @@ es:
   place_name: "Colocar nombre"
   place_notes: "Colocar notas"
   place_subscription: suscripción de lugar
+  place_too_big_for_check_list: |
+    Este lugar es demasiado grande para una lista de verificación. Cálculo de
+    las estadísticas de verificación lista es bastante caro, por lo que no les
+    permiten a lugares muy grandes, a menos que hayan sido agregados por los
+    administradores del sitio. Sin embargo, aún puede utilizar este lugar para
+    los límites del proyecto y las consultas de observación.
   place_type_name: Nombre del tipo de lugar
   place_updated: ¡Lugar actualizado!
   placement: Colocación

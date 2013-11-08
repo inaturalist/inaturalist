@@ -368,7 +368,10 @@ class Place < ActiveRecord::Base
   
   # Create a CheckList associated with this place
   def check_default_check_list
-    if place_type == PLACE_TYPE_CODES['Continent']
+    if bbox_area.to_f > 100 && !user_id.blank? && !prefers_check_lists && check_list
+      delay(:priority => USER_INTEGRITY_PRIORITY).remove_default_check_list
+    end
+    if place_type == PLACE_TYPE_CODES['Continent'] || (bbox_area.to_f > 100 && !user_id.blank?)
       self.prefers_check_lists = false
     end
     if prefers_check_lists && check_list.blank?
@@ -379,10 +382,14 @@ class Place < ActiveRecord::Base
           "creation of #{self}: " + 
           check_list.errors.full_messages.join(', ')
       end
-    else
-      # TODO destroy existing check lists?
     end
     true
+  end
+
+  def remove_default_check_list
+    return unless check_list
+    check_list.listed_taxa.delete_all
+    check_list.destroy
   end
   
   # Update the associated place_geometry or create a new one

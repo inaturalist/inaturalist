@@ -1780,6 +1780,11 @@ en:
   place_name: Place name
   place_notes: Place Notes
   place_subscription: place subscription
+  place_too_big_for_check_list: |
+    This place is too big for a check list. Calculating check list stats is
+    pretty expensive, so we don't allow them for very large places, unless
+    they've been added by the site admins. However, you can still use this
+    place for project boundaries and observation queries.
   place_type_name: Place type name
   place_updated: Place updated!
   placement: Placement
