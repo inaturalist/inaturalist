@@ -95,61 +95,77 @@ module MakeHelpers
   end
   
   # creating the tree is a bit tricky
+  #
+  # Life
+  # |--- Animalia (iconic)
+  # |    `--- Chordata
+  # |         |--- Amphibia (iconic)
+  # |         |    `--- Hylidae
+  # |         |         `--- Pseudacris
+  # |         |              `--- Pseudacris regilla
+  # |         `--- Aves (iconic)
+  # |              `--- Apodiformes
+  # |                   `--- Trochilidae
+  # |                        `--- Calypte
+  # |                             `--- Calypte anna
+  # `--- Plantae
+  #      `--- Magnoliophyta
+  #           `--- Magnoliopsida
   def load_test_taxa
     Rails.logger.debug "\n\n\n[DEBUG] loading test taxa"
     @Life = Taxon.find_by_name('Life') || Taxon.make!(:name => 'Life')
 
-    unless @Animalia = Taxon.iconic_taxa.find_by_name('Animalia')
+    unless @Animalia = Taxon.find_by_name('Animalia')
       @Animalia = Taxon.make!(:name => 'Animalia', :rank => 'kingdom', :is_iconic => true)
     end
     @Animalia.update_attributes(:parent => @Life)
 
-    unless @Chordata = Taxon.iconic_taxa.find_by_name('Chordata')
+    unless @Chordata = Taxon.find_by_name('Chordata')
       @Chordata = Taxon.make!(:name => 'Chordata', :rank => "phylum")
     end
     @Chordata.update_attributes(:parent => @Animalia)
 
-    unless @Amphibia = Taxon.iconic_taxa.find_by_name('Amphibia')
+    unless @Amphibia = Taxon.find_by_name('Amphibia')
       @Amphibia = Taxon.make!(:name => 'Amphibia', :rank => "class", :is_iconic => true)
     end
     @Amphibia.update_attributes(:parent => @Chordata)
 
-    unless @Hylidae = Taxon.iconic_taxa.find_by_name('Hylidae')
+    unless @Hylidae = Taxon.find_by_name('Hylidae')
       @Hylidae = Taxon.make!(:name => 'Hylidae', :rank => "order")
     end
     @Hylidae.update_attributes(:parent => @Amphibia)
 
-    unless @Pseudacris = Taxon.iconic_taxa.find_by_name('Pseudacris')
+    unless @Pseudacris = Taxon.find_by_name('Pseudacris')
       @Pseudacris = Taxon.make!(:name => 'Pseudacris', :rank => "genus")
     end
     @Pseudacris.update_attributes(:parent => @Hylidae)
 
-    unless @Pseudacris_regilla = Taxon.iconic_taxa.find_by_name('Pseudacris regilla')
+    unless @Pseudacris_regilla = Taxon.find_by_name('Pseudacris regilla')
       @Pseudacris_regilla = Taxon.make!(:name => 'Pseudacris regilla', :rank => "species")
     end
     @Pseudacris_regilla.update_attributes(:parent => @Pseudacris)
 
-    unless @Aves = Taxon.iconic_taxa.find_by_name('Aves')
+    unless @Aves = Taxon.find_by_name('Aves')
       @Aves = Taxon.make!(:name => "Aves", :rank => "class", :is_iconic => true)
     end
     @Aves.update_attributes(:parent => @Chordata)
 
-    unless @Apodiformes = Taxon.iconic_taxa.find_by_name('Apodiformes')
+    unless @Apodiformes = Taxon.find_by_name('Apodiformes')
       @Apodiformes = Taxon.make!(:name => "Apodiformes", :rank => "order")
     end
     @Apodiformes.update_attributes(:parent => @Aves)
 
-    unless @Trochilidae = Taxon.iconic_taxa.find_by_name('Trochilidae')
+    unless @Trochilidae = Taxon.find_by_name('Trochilidae')
       @Trochilidae = Taxon.make!(:name => "Trochilidae", :rank => "family")
     end
     @Trochilidae.update_attributes(:parent => @Apodiformes)
 
-    unless @Calypte = Taxon.iconic_taxa.find_by_name('Calypte')
+    unless @Calypte = Taxon.find_by_name('Calypte')
       @Calypte = Taxon.make!(:name => "Calypte", :rank => "genus")
     end
     @Calypte.update_attributes(:parent => @Trochilidae)
 
-    unless @Calypte_anna = Taxon.iconic_taxa.find_by_name('Calypte anna')
+    unless @Calypte_anna = Taxon.find_by_name('Calypte anna')
       @Calypte_anna = Taxon.make!(:name => "Calypte anna", :rank => "species")
       @Calypte_anna.taxon_names << TaxonName.make!(:name => "Anna's Hummingbird", 
         :taxon => @Calypte_anna, 
@@ -157,17 +173,17 @@ module MakeHelpers
     end
     @Calypte_anna.update_attributes(:parent => @Calypte)
 
-    unless @Plantae = Taxon.iconic_taxa.find_by_name('Plantae')
+    unless @Plantae = Taxon.find_by_name('Plantae')
       @Plantae = Taxon.make!(:name => "Plantae", :rank => "kingdom")
     end
     @Plantae.update_attributes(:parent => @Life)
 
-    unless @Magnoliophyta = Taxon.iconic_taxa.find_by_name('Magnoliophyta')
+    unless @Magnoliophyta = Taxon.find_by_name('Magnoliophyta')
       @Magnoliophyta = Taxon.make!(:name => "Magnoliophyta", :rank => "phylum")
     end
     @Magnoliophyta.update_attributes(:parent => @Plantae)
 
-    unless @Magnoliopsida = Taxon.iconic_taxa.find_by_name('Magnoliopsida')
+    unless @Magnoliopsida = Taxon.find_by_name('Magnoliopsida')
       @Magnoliopsida = Taxon.make!(:name => "Magnoliopsida", :rank => "class")
     end
     @Magnoliopsida.update_attributes(:parent => @Magnoliophyta)
