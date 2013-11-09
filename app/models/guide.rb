@@ -76,7 +76,7 @@ class Guide < ActiveRecord::Base
     if t = Taxon.find_by_id(options[:taxon_id])
       scope = scope.descendants_of(t)
     end
-    scope = scope.of_rank(options[:rank]) unless Taxon::RANKS.include?(options[:rank])
+    scope = scope.of_rank(options[:rank]) if Taxon::RANKS.include?(options[:rank])
     guide_taxa = []
     scope.includes(:taxon_photos, :taxon_descriptions).find_each do |taxon|
       gt = self.guide_taxa.build(

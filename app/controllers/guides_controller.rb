@@ -1,7 +1,7 @@
 #encoding: utf-8
 class GuidesController < ApplicationController
   include GuidesHelper
-  doorkeeper_for :user, :if => lambda { authenticate_with_oauth? }
+  doorkeeper_for :show, :user, :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :except => [:index, :show, :search], 
     :unless => lambda { authenticated_with_oauth? }
