@@ -386,6 +386,13 @@ shared_examples_for "an ObservationsController" do
       obs = JSON.parse(response.body).detect{|o| o['id'] == c.parent_id}
       obs['comments_count'].should eq 1
     end
+
+    it "should let you request project_observations as extra data" do
+      po = make_project_observation
+      get :index, :format => :json, :extra => "projects"
+      obs = JSON.parse(response.body).detect{|o| o['id'] == po.observation_id}
+      obs['project_observations'].should_not be_blank
+    end
   end
 
   describe "taxon_stats" do

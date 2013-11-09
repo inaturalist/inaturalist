@@ -2377,6 +2377,13 @@ class ObservationsController < ApplicationController
         :except => [:original_url, :file_processing, :file_file_size, 
           :file_content_type, :file_file_name, :mobile, :metadata]
       }
+      extra = params[:extra].to_s.split(',')
+      if extra.include?('projects')
+        opts[:include][:project_observations] ||= {
+          :include => {:project => {:only => [:title]}},
+          :except => [:tracking_code]
+        }
+      end
       pagination_headers_for(@observations)
       if @observations.respond_to?(:scoped)
         @observations = @observations.includes({:observation_photos => :photo}, :photos, :iconic_taxon)

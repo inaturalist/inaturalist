@@ -427,6 +427,11 @@ EOT
       desc "Filter by observations that have been updated since a timestamp."
       values "ISO 8601 datetime, e.g. 2013-10-09T13:40:13-07:00"
     end
+
+    param "extra" do
+      desc "Retrieve additional information."
+      values %w(projects)
+    end
   end
 
   post "/observations", :auth_required => true do
