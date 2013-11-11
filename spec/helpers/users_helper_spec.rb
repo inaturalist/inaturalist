@@ -24,8 +24,8 @@ describe UsersHelper do
       link_to_user(nil).should == 'deleted user'
     end
     it "should link to the given user" do
-      should_receive(:user_path).at_least(:once).and_return('/users/1')
-      link_to_user(@user).should have_tag("a[href='/users/1']")
+      should_receive(:person_url).at_least(:once).and_return('http://test.host/people/user_name')
+      link_to_user(@user).should have_tag("a[href='http://test.host/people/user_name']")
     end
     it "should use given link text if :content_text is specified" do
       link_to_user(@user, :content_text => 'Hello there!').should have_tag("a", 'Hello there!')
