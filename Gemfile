@@ -86,6 +86,7 @@ group :test, :development do
   gem "database_cleaner"
   gem "machinist"
   gem "rspec-rails"
+  gem "rspec-html-matchers"
 end
 
 gem 'diffy'
