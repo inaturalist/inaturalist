@@ -20,8 +20,8 @@ describe UsersHelper do
   end
   
   describe "link_to_user" do
-    it "should give an error on a nil user" do
-      lambda { link_to_user(nil) }.should raise_error('Invalid user')
+    it "should return an error string on a nil user" do
+      link_to_user(nil).should == 'deleted user'
     end
     it "should link to the given user" do
       should_receive(:user_path).at_least(:once).and_return('/users/1')
