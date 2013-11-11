@@ -429,8 +429,12 @@ EOT
     end
 
     param "extra" do
-      desc "Retrieve additional information."
-      values %w(projects)
+      desc <<-EOT
+        Retrieve additional information. 'projects' returns info about the
+        projects the observations have been added to, 'fields' returns
+        observation field values.
+      EOT
+      values %w(fields projects)
     end
   end
 

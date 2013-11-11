@@ -393,6 +393,13 @@ shared_examples_for "an ObservationsController" do
       obs = JSON.parse(response.body).detect{|o| o['id'] == po.observation_id}
       obs['project_observations'].should_not be_blank
     end
+
+    it "should let you request observation field values as extra data" do
+      ofv = ObservationFieldValue.make!
+      get :index, :format => :json, :extra => "fields"
+      obs = JSON.parse(response.body).detect{|o| o['id'] == ofv.observation_id}
+      obs['observation_field_values'].should_not be_blank
+    end
   end
 
   describe "taxon_stats" do

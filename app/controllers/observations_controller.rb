@@ -2356,16 +2356,6 @@ class ObservationsController < ApplicationController
       opts[:methods] += [:short_description, :user_login, :iconic_taxon_name, :tag_list]
       opts[:methods].uniq!
       opts[:include] ||= {}
-      if @ofv_params
-        opts[:include][:observation_field_values] ||= {
-          :except => [:observation_field_id],
-          :include => {
-            :observation_field => {
-              :only => [:id, :datatype, :name]
-            }
-          }
-        }
-      end
       opts[:include][:taxon] ||= {
         :only => [:id, :name, :rank, :ancestry],
         :methods => [:common_name]
@@ -2382,6 +2372,16 @@ class ObservationsController < ApplicationController
         opts[:include][:project_observations] ||= {
           :include => {:project => {:only => [:title]}},
           :except => [:tracking_code]
+        }
+      end
+      if @ofv_params || extra.include?('fields')
+        opts[:include][:observation_field_values] ||= {
+          :except => [:observation_field_id],
+          :include => {
+            :observation_field => {
+              :only => [:id, :datatype, :name]
+            }
+          }
         }
       end
       pagination_headers_for(@observations)
