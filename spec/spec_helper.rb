@@ -36,6 +36,10 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
+  config.before(:each) do
+    Delayed::Job.delete_all
+  end
+
   config.after(:each) do
     DatabaseCleaner.clean
   end
