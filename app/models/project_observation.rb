@@ -22,6 +22,9 @@ class ProjectObservation < ActiveRecord::Base
   after_create :destroy_project_invitations, :update_curator_identification, :expire_caches
   after_destroy :expire_caches
 
+  after_create  :touch_observation
+  after_destroy :touch_observation
+
   def update_curator_identification
     return true if observation.new_record?
     return true if observation.owners_identification.blank?
@@ -144,6 +147,11 @@ class ProjectObservation < ActiveRecord::Base
 
   def has_observation_field?(observation_field)
     observation.observation_field_values.where(:observation_field_id => observation_field).exists?
+  end
+
+  def touch_observation
+    observation.touch if observation
+    true
   end
   
   ##### Static ##############################################################
