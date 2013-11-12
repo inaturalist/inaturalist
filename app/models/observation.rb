@@ -770,7 +770,7 @@ class Observation < ActiveRecord::Base
     end
 
     if timestamp = Chronic.parse(params[:updated_since])
-      scope = scope.where("updated_at > ?", timestamp)
+      scope = scope.where("observations.updated_at > ?", timestamp)
     end
     
     # return the scope, we can use this for will_paginate calls like:

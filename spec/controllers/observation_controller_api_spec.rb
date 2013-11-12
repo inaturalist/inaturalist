@@ -477,6 +477,21 @@ shared_examples_for "an ObservationsController" do
       num_updates_for_commenter.should eq 1
     end
   end
+
+  describe "project" do
+    it "should allow filtering by updated_since" do
+      pu = ProjectUser.make!
+      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago, :user => pu.user)
+      oldo.updated_at.should be < 1.minute.ago
+      newo = Observation.make!(:user => pu.user)
+      old_po = ProjectObservation.make!(:observation => oldo, :project => pu.project)
+      new_po = ProjectObservation.make!(:observation => newo, :project => pu.project)
+      get :project, :format => :json, :id => pu.project_id, :updated_since => (newo.updated_at - 1.minute).iso8601
+      json = JSON.parse(response.body)
+      json.detect{|o| o['id'] == newo.id}.should_not be_blank
+      json.detect{|o| o['id'] == oldo.id}.should be_blank
+    end
+  end
 end
 
 describe ObservationsController, "oauth authentication" do
