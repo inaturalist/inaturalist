@@ -40,7 +40,7 @@
                :observation_id => identification.observation_id,
                :taxon_id => identification.taxon_id },
              :method => :post,
-             "data-loading-click" => "Agreeing..." -%></span>
+             "data-loading-click" => t(:agreeing) -%></span>
       <% end %>
       <% if logged_in? && identification.user_id == current_user.id && identification.current? %>
         <span class="button"><%= link_to t(:remove), identification_path(identification),
