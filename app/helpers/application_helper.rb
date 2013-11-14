@@ -945,6 +945,26 @@ module ApplicationHelper
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?sensor=#{sensor}'></script>".html_safe
   end
 
+  def leaflet_js(options = {})
+    h = <<-HTML
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+      <!--[if lte IE 8]>
+          <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+      <![endif]-->
+      <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    HTML
+    if options[:draw]
+      h += <<-HTML
+        <link rel="stylesheet" href="/javascripts/leaflet.draw/leaflet.draw.css" />
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="/javascripts/leaflet.draw/leaflet.draw.ie.css" />
+        <![endif]-->
+        <script src="/javascripts/leaflet.draw/leaflet.draw.js"></script>
+      HTML
+    end
+    raw h
+  end
+
   def machine_tag_pieces(tag)
     pieces = tag.split('=')
     predicate, value = pieces

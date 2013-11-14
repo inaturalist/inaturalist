@@ -237,6 +237,7 @@ google.maps.Map.prototype.addPlace = function(place, options) {
 
 // Zooms to place boundaries, adds kml if available
 google.maps.Map.prototype.setPlace = function(place, options) {
+  options = options || {}
   if (place.swlat) {
     var bounds = new google.maps.LatLngBounds(
       new google.maps.LatLng(place.swlat, place.swlng),

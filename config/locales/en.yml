@@ -752,6 +752,7 @@ en:
   double_click_to_finish: (double click to finish)
   download: Download
   download_csv: Download CSV
+  download_kml: Download KML
   drag_and_drop_photos: drag and drop photos onto this window or
   draft: draft
   draft_: Draft
@@ -1968,6 +1969,7 @@ en:
   remember_its_a_lot_easier_to_id: "Remember, it's a lot easier to ID something if you provide as much descriptive information as possible. Most importantly, please provide a <strong>place</strong>, a <strong>date/time</strong>, and some information about the <strong>size</strong>."
   remember_me: Remember me
   remove: Remove
+  remove_boundary: Remove boundary
   remove_comma_separated_tags: "Remove comma-separated tags"
   remove_from: Remove from
   remove_curator: Remove curator
@@ -1989,6 +1991,7 @@ en:
   removing: "Removing..."
   reorder_by_taxonomy: Reorder by taxonomy
   repair_doesnt_work_for_that_kind_of_photo: Repair doesn't work for that kind of photo
+  replace_boundary_with_kml: Replace boundary with KML
   replace_parentesis: (replace)
   replacing: replacing
   reply: Reply
@@ -3250,11 +3253,19 @@ en:
           <strong>meet</strong> other nature lovers, 
           and <strong>learn</strong> about the natural world.
     places:
+      edit:
+        complex_boundary_note_html: |
+          This boundary is a bit too complex to edit on the web. However, you can
+          <a href="%{url}">download the KML</a>, edit it in the GIS application of your choice, and
+          upload your edited KML directly.
       index:
         you_can_help_out_by: You can help improve our place data by
         adding_new_places: adding new places
         confirming_identifications: confirming identifications by adding IDs to observations
         filling_out_checklists: filling out checklists for places you know well
+      new:
+        map_instruction: Use the polygon tool to draw the place boundary.
+        check_list_note: "Note: check lists will be automatically disabled for very large places."
   date:
     abbr_day_names:
       - Sun

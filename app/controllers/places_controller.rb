@@ -108,11 +108,15 @@ class PlacesController < ApplicationController
   end
   
   def geometry
-    @place_geometry = @place.place_geometry
     respond_to do |format|
-      format.kml
+      format.kml do
+        if @place.place_geometry_without_geom
+          @kml = Place.connection.execute("SELECT ST_AsKML(ST_SetSRID(geom, 4326)) AS kml FROM place_geometries WHERE place_id = #{@place.id}")[0]['kml']
+        end
+      end
       format.geojson do
-        render :json => [@place_geometry].to_geojson
+        @geojson = Place.connection.execute("SELECT ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geojson FROM place_geometries WHERE place_id = #{@place.id}")[0]['geojson']
+        render :json => @geojson
       end
     end
   end
@@ -128,15 +132,19 @@ class PlacesController < ApplicationController
       @place = Place.new(params[:place])
       @place.user = current_user
       @place.save
-      unless params[:kml].blank?
-        @geometry = geometry_from_messy_kml(params[:kml])
-        if @geometry && @place.valid?
-          @place.save_geom(@geometry)
-          if @place.bbox_area > 100
-            notice = t(:place_too_big_for_check_list)
-            @place.check_list.destroy if @place.check_list
-            @place.update_attributes(:prefers_check_lists => false)
-          end
+      if params[:file]
+        @geometry = geometry_from_file(params[:file])
+        @place.save_geom(@geometry) if @geometry
+      elsif !params[:geojson].blank?
+        @geometry = geometry_from_geojson(params[:geojson])
+        @place.save_geom(@geometry) if @geometry
+      end
+      if @geometry && @place.valid?
+        @place.save_geom(@geometry)
+        if @place.bbox_area > 100
+          notice = t(:place_too_big_for_check_list)
+          @place.check_list.destroy if @place.check_list
+          @place.update_attributes(:prefers_check_lists => false)
         end
       end
     end
@@ -152,16 +160,24 @@ class PlacesController < ApplicationController
   end
   
   def edit
-    @geometry = @place.place_geometry.geom if @place.place_geometry
+    r = Place.connection.execute("SELECT st_npoints(geom) from place_geometries where place_id = #{@place.id}")
+    @npoints = r[0]['st_npoints'].to_i unless r.num_tuples == 0
   end
   
   def update
     if @place.update_attributes(params[:place])
-      unless params[:kml].blank?
-        @geometry = geometry_from_messy_kml(params[:kml])
+      if params[:file]
+        @geometry = geometry_from_file(params[:file])
+        @place.save_geom(@geometry) if @geometry
+      elsif !params[:geojson].blank?
+        @geometry = geometry_from_geojson(params[:geojson])
         @place.save_geom(@geometry) if @geometry
       end
-      
+
+      if params[:remove_geom]
+        @place.place_geometry_without_geom.delete
+      end
+
       if !@place.valid?
         render :action => :edit
         return
@@ -425,6 +441,20 @@ class PlacesController < ApplicationController
       geometry << poly
     end
     geometry.empty? ? nil : geometry
+  end
+
+  def geometry_from_geojson(geojson)
+    geometry = GeoRuby::SimpleFeatures::MultiPolygon.new
+    collection = GeoRuby::SimpleFeatures::Geometry.from_geojson(geojson)
+    collection.features.each do |feature|
+      geometry << feature.geometry
+    end
+    geometry
+  end
+
+  def geometry_from_file(file)
+    kml = file.read
+    geometry_from_messy_kml(kml)
   end
   
   def search_places_for_index(options)

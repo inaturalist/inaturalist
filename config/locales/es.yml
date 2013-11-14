@@ -913,6 +913,7 @@ es:
   double_click_to_finish: (Con doble clic termina tu forma)
   download: 'Descargar:'
   download_csv: "Descargar CSV"
+  download_kml: "Descargar KML"
   drag_and_drop_photos: arrastra y suelta la foto en esta ventana o
   draft: ¡BORRADOR!
   draft_: Borrador
@@ -2186,6 +2187,7 @@ es:
   remember_its_a_lot_easier_to_id: "Recuerde, es mucho más fácil identificar algo si usted brinda tanta información descriptiva como sea posible. Más importante aún, por favor brinde un <strong>lugar</fuerte>, una <strong>fecha/time</fuerte>, y alguna información acerca del <strong>tamaño</fuerte>."
   remember_me: Recuérdeme
   remove: Quitar
+  remove_boundary: Quitar límites
   remove_from: Quitar de
   remove_curator: Quitar curador
   remove_curator_role: "Quitar rol de curador"
@@ -2202,6 +2204,7 @@ es:
   removed_project_user: Usuario eliminado del proyecto
   removing: Eliminando...
   repair_doesnt_work_for_that_kind_of_photo: Reparar no funciona para ese tipo de foto.
+  replace_boundary_with_kml: Reemplace límite con KML
   replace_parentesis: (reemplazar)
   replaced_with: sustituido con
   replacing: reemplazando
@@ -3063,12 +3066,20 @@ es:
             observaciones %{site_name}. Sólo déjeles un comentario incluyendo este 
             vínculo de invitación especial.  También puede preseleccionar un taxón y 
             proyecto para la observación nueva.
-    places: 
+    places:
+      edit:
+      complex_boundary_note_html: |
+        Este límite es un poco demasiado complejo para editar en la web. Sin embargo, puede
+        <a href="%{url}"> descargar el KML </ a>, editar en la aplicación GIS de su elección, y
+        sube tu KML editado directamente.
       index: 
         adding_new_places: "la adición de nuevos lugares "
         confirming_identifications: "la confirmación de identificaciones"
         filling_out_checklists: "la actualización de listas de verificación para los lugares que conoces bien"
         you_can_help_out_by: "Usted puede ayudar a mejorar nuestros datos de lugares mediante"
+      new:
+        map_instruction: Utilice la herramienta de polígono para dibujar el contorno lugar.
+        check_list_note: "Nota: Las listas de verificación se desactivan automáticamente para sitios muy grandes."
     users:
       dashboard:
         taxon_change_desc: |
