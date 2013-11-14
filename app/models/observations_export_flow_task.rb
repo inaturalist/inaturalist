@@ -35,16 +35,34 @@ class ObservationsExportFlowTask < FlowTask
       Observation.query(params).includes(:user, {:taxon => :taxon_names}, {:observation_field_values => :observation_field}).reorder(nil)
     end
     archive_path = case format
-    when 'shapefile'
-      shapefile_archive
-    when 'kml'
-      kml_archive
+    when 'json'
+      json_archive
     else
       csv_archive
     end
     open(archive_path) do |f|
       self.outputs.create!(:file => f)
     end
+  end
+
+  def json_archive
+    json_path = File.join(work_path, "#{basename}.json")
+    json_opts = {:only => export_columns, :include => [:observation_field_values, :photos]}
+    FileUtils.mkdir_p File.dirname(json_path), :mode => 0755
+    open(json_path, 'w') do |f|
+      f << '['
+      first = true
+      @observations.find_in_batches do |b|
+        f << ',' unless first
+        first = false
+        json = b.to_json(json_opts).sub(/^\[/, '').sub(/\]$/, '')
+        f << json
+      end
+      f << ']'
+    end
+    zip_path = File.join(work_path, "#{basename}.json.zip")
+    system "cd #{work_path} && zip -r #{basename}.json.zip *"
+    zip_path
   end
 
   def csv_archive

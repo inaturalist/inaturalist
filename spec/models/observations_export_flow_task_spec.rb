@@ -8,7 +8,7 @@ describe ObservationsExportFlowTask, "run" do
     @ft.save!
     @ft.run
   end
-  it "should generate a zipped csv archive" do
+  it "should generate a zipped csv archive by default" do
     output = @ft.outputs.first
     output.should_not be_blank
     output.file.path.should =~ /csv.zip$/
@@ -18,6 +18,20 @@ describe ObservationsExportFlowTask, "run" do
     csv = CSV.open(File.join(@ft.work_path, "#{@ft.basename}.csv")).to_a
     csv.size.should eq 2
     csv[1].should include @o.id.to_s
+  end
+
+  it "should allow JSON output" do
+    ft = ObservationsExportFlowTask.make
+    ft.options = {:format => "json"}
+    ft.inputs.build(:extra => {:query => "user_id=#{@o.user_id}"})
+    ft.save!
+    ft.run
+    output = ft.outputs.first
+    output.should_not be_blank
+    output.file.path.should =~ /json.zip$/
+    lambda {
+      JSON.parse(open(File.join(ft.work_path, "#{ft.basename}.json")).read)
+    }.should_not raise_error
   end
 end
 
