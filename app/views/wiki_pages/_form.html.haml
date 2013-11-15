@@ -11,7 +11,7 @@
     = f.text_area :content, :label => wt('Content')
     = f.text_field :comment, :label => wt('Comment on this change (optional)')
     .clear.inline.buttonrow.stacked
-      %input.submit{:name => "save", :type => "submit", :value => wt('Save page'), :class => "button default", "data-loading-click" => "Saving..."}
+      %input.submit{:name => "save", :type => "submit", :value => wt('Save page'), :class => "button default", "data-loading-click" => t(:saving)}
       %input.submit{:name => "preview", :type => "submit", :value => wt('Preview'), :class => "button"}
       %input.submit{:name => "cancel", :type => "submit", :value => wt('Cancel'), :class => "button"}
 

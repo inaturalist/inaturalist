@@ -10,5 +10,5 @@
       :local_photos => @photo_identities.blank? || @observation.photos.first && @observation.photos.first.is_a?(LocalPhoto)
     } %>
   </div>
-  <%= f.submit t(:save_photos), :class => "default button", "data-loading-click" => "Saving..." %>
+  <%= f.submit t(:save_photos), :class => "default button", "data-loading-click" => t(:saving) %>
 <% end -%>

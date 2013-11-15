@@ -208,7 +208,7 @@
   </fieldset>
 
   <div class="buttons">
-    <%= f.submit project.new_record? ? t(:create) : t(:save), :class => "default button", "data-loading-click" => "Saving..." %>
+    <%= f.submit project.new_record? ? t(:create) : t(:save), :class => "default button", "data-loading-click" => t(:saving) %>
     <%= link_to t(:cancel), projects_path, :class => "button" %>
     <% if @project_user && @project_user.is_admin? && !project.new_record? -%>
       <%= link_to t(:delete_project), project, :method => :delete, 
