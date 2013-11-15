@@ -1,5 +1,25 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe ObservationFieldValue, "creation" do
+  it "should touch the observation" do
+    o = Observation.make!(:created_at => 1.day.ago)
+    ofv = ObservationFieldValue.make!(:observation => o)
+    o.reload
+    o.updated_at.should be > o.created_at
+  end
+end
+
+describe ObservationFieldValue, "destruction" do
+  it "should touch the observation" do
+    ofv = ObservationFieldValue.make!
+    o = ofv.observation
+    t = o.updated_at
+    ofv.destroy
+    o.reload
+    o.updated_at.should be > t
+  end
+end
+
 describe ObservationFieldValue, "validation" do
   it "should work for numeric fields" do
     of = ObservationField.make!(:datatype => "numeric")
