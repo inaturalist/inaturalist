@@ -3,6 +3,7 @@ class TaxonNamesController < ApplicationController
   before_filter :load_taxon_name, :only => [:show, :edit, :update, :destroy]
   before_filter :load_taxon, :except => [:index]
   before_filter :curator_required_for_sciname, :only => [:create, :update, :destroy]
+  before_filter :load_lexicons, :only => [:new, :create, :edit, :update]
   
   cache_sweeper :taxon_name_sweeper, :only => [:create, :update, :destroy]
     
@@ -173,5 +174,9 @@ class TaxonNamesController < ApplicationController
     flash[:error] = t(:only_curators_can_add_edit_scientific_names)
     redirect_back_or_default(@taxon)
     false
+  end
+
+  def load_lexicons
+    @lexicons = [TaxonName::LEXICONS.values, TaxonName.select("DISTINCT lexicon").map(&:lexicon)].flatten.uniq.reject{|n| n.blank?}.sort
   end
 end
