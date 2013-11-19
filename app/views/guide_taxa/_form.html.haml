@@ -26,7 +26,8 @@
     .bootstrap input[type=file] {line-height: 1;margin-bottom:10px;}
 - content_for :extrajs do
   :javascript
-    var GUIDE_TAXON = #{raw @guide_taxon.to_json}
+    var GUIDE_TAXON = #{raw @guide_taxon.to_json(:methods => [:eol_page_id])},
+        EOL_PAGE_ID = GUIDE_TAXON.eol_page_id ? GUIDE_TAXON.eol_page_id : ''
   = javascript_include_tag 'guide_taxa/edit'
 
 = form_for(@guide_taxon) do |f|

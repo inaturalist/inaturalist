@@ -953,7 +953,8 @@ CREATE TABLE guide_taxa (
     display_name character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    "position" integer DEFAULT 0
+    "position" integer DEFAULT 0,
+    source_identifier character varying(255)
 );
 
 
@@ -6098,3 +6099,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131011234030');
 INSERT INTO schema_migrations (version) VALUES ('20131023224910');
 
 INSERT INTO schema_migrations (version) VALUES ('20131024045916');
+
+INSERT INTO schema_migrations (version) VALUES ('20131119214722');

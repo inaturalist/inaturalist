@@ -15,14 +15,17 @@ class EolPhoto < Photo
   end
 
   def self.search_eol(query, options = {})
-    search_xml = eol.search(query, :exact => 1)
-    return [] if search_xml.blank?
-    eol_taxon_id = search_xml.at("entry/id").try(:text)
-    return [] unless eol_taxon_id
+    eol_page_id = options[:eol_page_id]
+    if eol_page_id.blank?
+      search_xml = eol.search(query, :exact => 1)
+      return [] if search_xml.blank?
+      eol_page_id = search_xml.at("entry/id").try(:text)
+    end
+    return [] if eol_page_id.blank?
     limit = (options[:limit] || 36).to_i
     limit = 100 if limit > 100
     eol_page_xml = begin
-      eol.page(eol_taxon_id, :licenses => 'any', :images => limit, :text => 0, :videos => 0, :details => 1)
+      eol.page(eol_page_id, :licenses => 'any', :images => limit, :text => 0, :videos => 0, :details => 1)
     rescue OpenURI::HTTPError => e
       return []
     end

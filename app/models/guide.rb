@@ -196,12 +196,24 @@ class Guide < ActiveRecord::Base
     guide_taxa = []
     c.search("item").each_with_index do |item,i|
       gt = GuideTaxon.new_from_eol_collection_item(item, :position => i+1, :guide => self)
-      if gt.save
-        saved += 1
+      existing = self.guide_taxa.where(:source_identifier => gt.source_identifier).first unless gt.source_identifier.blank?
+      if existing
+        %w(name display_name source_identifier).each do |a|
+          existing.send("#{a}=", gt.send(a))
+        end
+        if existing.save
+          saved += 1
+        else
+          errors << gt.errors.full_messages.to_sentence
+        end
       else
-        errors << gt.errors.full_messages.to_sentence
+        if gt.save
+          saved += 1
+        else
+          errors << gt.errors.full_messages.to_sentence
+        end
+        guide_taxa << gt
       end
-      guide_taxa << gt
     end
     Rails.logger.debug "[DEBUG] #{self} add_taxa_from_eol_collection, #{saved} saved, #{errors.size} errors"
     guide_taxa

@@ -51,29 +51,20 @@ describe GuideTaxon, "deletion" do
   end
 end
 
-# describe GuideTaxon, "new_from_eol_collection_item" do
-#   before do
-#     eol = EolService.new(:timeout => 30, :debug => true)
-#     @collection = eol.collections(6970, :sort_by => "sort_field")
-#     @collection_item = @collection.search("item").detect{|item| item.at("name").inner_text =~ /Anniella/}
-#     @guide = Guide.make!
-#     @guide_taxon = GuideTaxon.new_from_eol_collection_item(@collection_item, :guide => @guide)
-#   end
+describe GuideTaxon, "new_from_eol_collection_item" do
+  before do
+    eol = EolService.new(:timeout => 30, :debug => true)
+    @collection = eol.collections(6970, :sort_by => "sort_field")
+    @collection_item = @collection.search("item").detect{|item| item.at("name").inner_text =~ /Anniella/}
+    @guide = Guide.make!
+    @guide_taxon = GuideTaxon.new_from_eol_collection_item(@collection_item, :guide => @guide)
+  end
 
-#   it "should set a guide section from the annotation" do
-#     @guide_taxon.guide_sections.first.description.should eq(@collection_item.at('annotation').inner_text)
-#   end
-
-#   it "should set a guide photo" do
-#     @guide_taxon.guide_photos.should_not be_blank
-#   end
-
-#   it "should set the display_name to an appropriate common name" do
-#     collection_item = @collection.search("item").detect{|item| item.at("name").inner_text =~ /Masticophis/}
-#     gt = GuideTaxon.new_from_eol_collection_item(collection_item, :guide => @guide)
-#     gt.display_name.downcase.should eq("coachwhip")
-#   end
-# end
+  it "should set a source_identifier" do
+    @guide_taxon.source_identifier.should_not be_blank
+    @guide_taxon.source_identifier.should =~ /eol.org\/pages\/\d+/
+  end
+end
 
 describe GuideTaxon, "sync_eol" do
   let(:gt) { GuideTaxon.make! }

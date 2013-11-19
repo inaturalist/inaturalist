@@ -37,7 +37,7 @@ $('#import_photos_dialog [data-toggle="tab"]').on('show', function(e) {
       break
     case 'eol':
       $content.photoSelector(
-        $.extend(true, {}, photoSelectorOptions, {baseURL: '/eol/photo_fields'})
+        $.extend(true, {}, photoSelectorOptions, {baseURL: '/eol/photo_fields?eol_page_id='+EOL_PAGE_ID})
       )
       break
     case 'wikimedia_commons':
@@ -70,7 +70,7 @@ $('#import_sections_dialog').on('shown', function() {
     return
   }
   var provider = current.attr('id').split('_')[0]
-  $.getJSON('/guide_sections/import?provider='+provider+'&q='+GUIDE_TAXON.name, function(json) {
+  $.getJSON('/guide_sections/import?provider='+provider+'&q='+GUIDE_TAXON.name+'&eol_page_id='+EOL_PAGE_ID, function(json) {
     current.html('')
     if (!json || json.length == 0) {
       current.html("<p>"+I18n.t('no_sections_available')+"</p>")
@@ -111,8 +111,9 @@ $('#import_ranges_dialog').on('shown', function() {
   if (current.hasClass('loaded')) {
     return
   }
-  var provider = current.attr('id').split('_')[0]
-  $.getJSON('/guide_ranges/import?provider='+provider+'&q='+GUIDE_TAXON.name, function(json) {
+  var provider = current.attr('id').split('_')[0],
+      eolPageId = ''
+  $.getJSON('/guide_ranges/import?provider='+provider+'&q='+GUIDE_TAXON.name+'&eol_page_id='+EOL_PAGE_ID, function(json) {
     if (!json || json.length == 0) {
       current.html("<p>"+I18n.t('no_range_data_available')+"</p>")
     } else {

@@ -2,7 +2,7 @@
 class GuideTaxon < ActiveRecord::Base
   attr_accessor :html
   attr_accessible :display_name, :guide, :guide_id, :name, :taxon_id, :taxon, :guide_photos_attributes, 
-    :guide_sections_attributes, :guide_ranges_attributes, :html, :position, :tag_list
+    :guide_sections_attributes, :guide_ranges_attributes, :html, :position, :tag_list, :source_identifier
   belongs_to :guide, :inverse_of => :guide_taxa
   belongs_to :taxon, :inverse_of => :guide_taxa
   has_many :guide_sections, :inverse_of => :guide_taxon, :dependent => :destroy
@@ -109,6 +109,9 @@ class GuideTaxon < ActiveRecord::Base
   end
 
   def sync_eol(options = {})
+    if guide.source_url && guide.source_url =~ /eol.org\/collections\/\d+/
+      options
+    end
     return unless page = get_eol_page(options)
     name = page.at('scientificName').content
     name = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))
@@ -224,6 +227,10 @@ class GuideTaxon < ActiveRecord::Base
       page = eol.page(item.at('object_id').content, page_request_params) if item
     end
 
+    if !page && eol_page_id
+      page = eol.page(eol_page_id, page_request_params)
+    end
+
     unless page
       search_results = eol.search(name, :exact => true)
       if result = search_results.search('entry').first #detect{|e| e.at('title').to_s.downcase =~ /#{name.downcase}/}
@@ -259,10 +266,15 @@ class GuideTaxon < ActiveRecord::Base
     update_attributes(:tag_list => tags.uniq)
   end
 
+  def eol_page_id
+    @eol_page_id ||= source_identifier.to_s[/eol.org\/pages\/(\d+)/, 1]
+  end
+
   def self.new_from_eol_collection_item(item, options = {})
     name = item.at('name').inner_text.strip
     name = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))
     object_id = item.at('object_id').inner_text
+    options[:source_identifier] ||= "http://eol.org/pages/#{object_id}"
     taxon = Taxon.single_taxon_for_name(name)
     taxon ||= Taxon.find_by_name(name)
     rank = case name.split.size
