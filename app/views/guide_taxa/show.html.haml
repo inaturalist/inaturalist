@@ -100,7 +100,8 @@
         = references
       %h3= t(:more_info, :default => "More Info").titleize
       %ul
-        %li= link_to "#{SITE_NAME} taxon page", @guide_taxon.taxon
+        - if @guide_taxon.taxon
+          %li= link_to t(:site_taxon_page, :site_name => SITE_NAME_SHORT), @guide_taxon.taxon
         - for tl in @taxon_links.sort_by{|tl| tl.site_title.downcase}
           %li= link_to tl.site_title, tl.url_for_taxon(@guide_taxon.taxon)
     .span4
