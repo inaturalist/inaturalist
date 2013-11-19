@@ -5,9 +5,9 @@ class GuideTaxon < ActiveRecord::Base
     :guide_sections_attributes, :guide_ranges_attributes, :html, :position, :tag_list, :source_identifier
   belongs_to :guide, :inverse_of => :guide_taxa
   belongs_to :taxon, :inverse_of => :guide_taxa
-  has_many :guide_sections, :inverse_of => :guide_taxon, :dependent => :destroy
-  has_many :guide_photos, :inverse_of => :guide_taxon, :dependent => :destroy
-  has_many :guide_ranges, :inverse_of => :guide_taxon, :dependent => :destroy
+  has_many :guide_sections, :inverse_of => :guide_taxon, :dependent => :delete_all
+  has_many :guide_photos, :inverse_of => :guide_taxon, :dependent => :delete_all
+  has_many :guide_ranges, :inverse_of => :guide_taxon, :dependent => :delete_all
   has_many :photos, :through => :guide_photos
   accepts_nested_attributes_for :guide_sections, :allow_destroy => true
   accepts_nested_attributes_for :guide_photos, :allow_destroy => true
