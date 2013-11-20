@@ -328,6 +328,7 @@ en:
   are_you_sure_you_want_to_delete_this: Are you sure you want to delete this?
   are_you_sure_you_want_to_delete_this_post: Are you sure you want to delete this post?
   are_you_sure_you_want_to_delete_this_taxon_change: Are you sure you want to delete this taxon change?
+  are_you_sure_you_want_to_remove_all_tags: Are you sure you want to remove all tags?
   are_you_sure_you_want_to_remove_curator: Are you sure you want to remove %{user} as a curator?
   are_you_sure_you_want_to_remove_from_project: Are you sure you want to remove %{user} from this project?
   are_you_sure_you_want_to_remove_manager: Are you sure you want to remove %{user} as a manager?
@@ -1970,6 +1971,7 @@ en:
   remember_its_a_lot_easier_to_id: "Remember, it's a lot easier to ID something if you provide as much descriptive information as possible. Most importantly, please provide a <strong>place</strong>, a <strong>date/time</strong>, and some information about the <strong>size</strong>."
   remember_me: Remember me
   remove: Remove
+  remove_all_tags: Remove all tags
   remove_boundary: Remove boundary
   remove_comma_separated_tags: "Remove comma-separated tags"
   remove_from: Remove from
@@ -2288,6 +2290,7 @@ en:
   sync_with_eol: Sync with EOL
   synonyms: Synonyms
   table: Table
+  tagging: 'Tagging...'
   tags: Tags
   tags_are_a_way: 'Tags are a way to organize your observations. For example, you might tag all your tidepool observations "tidepools" to make them easier to find later.'
   tags_like_taxonomy_binomial: Tags like <code>taxonomy:binomial=Pseudacris crucifer</code> are <a href="http://www.flickr.com/help/tags#613430">machine tags</a>.  They help engineers programmatically make sense of your tags, and are required by some Flickr groups like the <a href="http://www.flickr.com/groups/encyclopedia_of_life/">Encyclopedia of Life Images</a> group.

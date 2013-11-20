@@ -258,7 +258,7 @@ class GuideTaxon < ActiveRecord::Base
     return unless rank_taxon
     name = if lexicon == TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
       rank_taxon.name
-    elsif tn = rank_taxon.taxon_names.detect{|tn| tn.lexicon == lexicon}
+    elsif tn = rank_taxon.taxon_names.sort_by(&:id).detect{|tn| tn.lexicon == lexicon}
       tn.name
     end
     return if name.blank?

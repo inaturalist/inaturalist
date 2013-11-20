@@ -170,6 +170,8 @@
                   = link_to "#removetags", "data-toggle" => "modal" do
                     %i.icon-tag.strike
                     = t(:remove_tags)
+                %li
+                  = link_to_function "<i class='icon-tag strike'></i> #{t(:remove_all_tags)}".html_safe, "removeAllTags()"
                 %li.divider
                 %li
                   = link_to_function "<i class='icon-trash'></i> #{t(:remove_selected)}".html_safe, "removeSelected()"

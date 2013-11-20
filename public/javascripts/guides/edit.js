@@ -236,7 +236,7 @@ function removeSelected() {
   if ($selection.length == 0) return false
   if (confirm(I18n.t('are_you_sure_you_want_to_remove_these_x_taxa?', {x: $selection.length}))) {
     var msg = I18n.t('verbing_x_of_y', {verb: I18n.t('deleting_verb'), x: 1, y: $selection.length})
-    $('#guide_taxa').loadingShades(msg, {cssClass: 'bigloading'})
+    engageShades(msg)
     var link = $selection.find('.delete:first').get(0)
     deleteGuideTaxon.apply(link, [{chain: true}])
   }
@@ -368,7 +368,7 @@ $('#addtags .modal-footer .btn-primary').click(function() {
 })
 
 function addColorTags() {
-  $('#guide_taxa').loadingShades("Tagging", {cssClass: 'bigloading'})
+  engageShades(I18n.t('tagging'))
   $.ajax({
     url: '/guides/'+GUIDE.id+'/add_color_tags',
     type: 'put',
@@ -385,7 +385,7 @@ function addColorTags() {
 }
 
 function addRankTags() {
-  $('#guide_taxa').loadingShades("Tagging", {cssClass: 'bigloading'})
+  engageShades(I18n.t('tagging'))
   var data = $('#guide_taxa form.edit_guide_taxon:visible input[type=checkbox]:checked').serialize() +
              '&' + $('#addtags-ranks :input').serialize(),
       rank = $('#addtags-ranks :input[name=rank]').val()
@@ -413,7 +413,7 @@ function addYourTags() {
     return
   }
   var msg = I18n.t('verbing_x_of_y', {verb: I18n.t('saving_verb'), x: 1, y: $selection.length})
-  $('#guide_taxa').loadingShades(msg, {cssClass: 'bigloading'})
+  engageShades(msg)
   $selection.each(function() {
     var input = $('input[name*=tag_list]', this)
     var val = $(input).val(),
@@ -437,7 +437,7 @@ $('#removetags .modal-footer .btn-primary').click(function() {
     return
   }
   var msg = I18n.t('verbing_x_of_y', {verb: I18n.t('removing_verb'), x: 1, y: $selection.length})
-  $('#guide_taxa').loadingShades(msg, {cssClass: 'bigloading'})
+  engageShades(msg)
   $selection.each(function() {
     var input = $('input[name*=tag_list]', this)
     var existing = ($(input).val() || "").split(',').map(function(t) { return $.trim(t) })
@@ -479,6 +479,24 @@ function removeTag(tag) {
     tags.push(tag)
     $('#removetags input[type=text]').val(tags.join(', '))
   }
+}
+
+function removeAllTags() {
+  if (!confirm(I18n.t('are_you_sure_you_want_to_remove_all_tags'))) {
+    return
+  }
+  engageShades(I18n.t('removing'))
+  $.ajax({
+    url: '/guides/'+GUIDE.id+'/remove_all_tags',
+    type: 'put',
+    dataType: 'json'
+  }).success(function(json) {
+    $('#guide_taxa').shades('close')
+    $(':input[name*=tag_list]').val('')
+  }).error(function(arguments) {
+    alert('Failed to remove tags')
+    $('#guide_taxa').shades('close')
+  })
 }
 
 $('.guide_taxon input[name*=tag_list]').live('change', function() {
@@ -565,3 +583,9 @@ $('#eolupdate').on('shown', function () {
 $('#eolupdate').on('hidden', function () {
   $('body').css({height: 'auto', overflow:'auto'})
 })
+function engageShades(msg) {
+  $('#guide_taxa').loadingShades(msg, {
+    cssClass: 'bigloading',
+    top: $('body').scrollTop() + $(window).height()/2 - 100 + 'px'
+  })
+}
