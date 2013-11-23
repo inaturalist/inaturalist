@@ -4,12 +4,13 @@
 # You have been warned.
 #
 class CatalogueOfLife
-  ENDPOINT = 'http://www.catalogueoflife.org/annual-checklist/webservice'.freeze
+  ENDPOINT = 'http://www.catalogueoflife.org/annual-checklist/2012/webservice'.freeze
 
   attr_reader :timeout
 
-  def initialize(timeout=5)
+  def initialize(timeout=5, options = {})
     @timeout = timeout
+    @debug = options[:debug]
   end
   #
   # Sends a request to a CoL function, and returns an Hpricot object of the 
@@ -22,9 +23,9 @@ class CatalogueOfLife
     response = nil
     begin
       timed_out = Timeout::timeout(@timeout) do
-        # puts "DEBUG: requesting " + uri # test
+        puts "DEBUG: requesting #{uri}" if @debug
         response  = Net::HTTP.get_response(uri)
-        # puts response.body
+        puts response.body if @debug
       end
     rescue Timeout::Error
       raise Timeout::Error, 
