@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', "~> 3.2.13"
-gem 'rake', '0.8.7' # ubuntu seems to freak with the most recent version
 
 gem 'aasm'
 gem 'addressable', :require => 'addressable/uri'
