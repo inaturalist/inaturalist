@@ -1414,6 +1414,10 @@ class Taxon < ActiveRecord::Base
       end
       taxon || sorted.detect {|taxon| taxon.is_active?}
 
+    # if names are synonymous but only one is valid, choose the valid one
+    elsif taxon_names.map(&:name).uniq.size == 1 && taxon_names.select(&:is_valid?).size == 1
+      taxon_names.detect(&:is_valid?).taxon
+
     # else assume there are > 1 legit synonyms and refuse to make a decision
     else
       nil

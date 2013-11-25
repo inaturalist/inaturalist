@@ -325,7 +325,7 @@
       <% for lexicon, taxon_names in @taxon.taxon_names.group_by(&:lexicon) %>
         <%-
           lexicon = lexicon.blank? ? t(:unknown) : t("lexicons.#{lexicon.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}",
-                                                     :default => lexicon.capitalize)
+                                                     :default => lexicon)
           if taxon_names.size > 1 && (default_name = taxon_names.detect{|tn| tn.name == @taxon.name})
             taxon_names = [taxon_names.delete(default_name), taxon_names.sort_by(&:name)].flatten
           end

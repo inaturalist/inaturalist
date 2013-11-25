@@ -822,11 +822,19 @@ describe Taxon, "single_taxon_for_name" do
     }.should_not raise_error
   end
 
-  it "should find a valid name, not invalid synonyms" do
+  it "should find a valid name, not invalid synonyms within the same parent" do
     name = "Foo bar"
     parent = Taxon.make!
     valid = Taxon.make!(:name => name, :parent => parent)
     invalid = Taxon.make!(:parent => parent)
+    invalid.taxon_names.create(:name => name, :is_valid => false, :lexicon => TaxonName::SCIENTIFIC_NAMES)
+    Taxon.single_taxon_for_name(name).should eq(valid)
+  end
+
+  it "should find a single valid name among invalid synonyms" do
+    name = "Foo bar"
+    valid = Taxon.make!(:name => name, :parent => Taxon.make!)
+    invalid = Taxon.make!(:parent => Taxon.make!)
     invalid.taxon_names.create(:name => name, :is_valid => false, :lexicon => TaxonName::SCIENTIFIC_NAMES)
     Taxon.single_taxon_for_name(name).should eq(valid)
   end
