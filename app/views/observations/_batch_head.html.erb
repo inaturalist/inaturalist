@@ -20,13 +20,19 @@
         SOUNDCLOUD_IDENTITY = <%=raw current_user.soundcloud_identity.to_json(:only => [:id]) %>
     $(document).ready(function() {
       if (SOUNDCLOUD_IDENTITY) {
-        $('.observation_sounds').each(function() {
+        $('.observation_sounds').bind('show', function() {
+            if ($(this).hasClass('soundSelector')) {
+              return
+            }
             var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name')
             var index = $.string(index_str).gsub(/[^\d]*/, '').str
-            $(this).soundSelector({index: index});
+            $(this).soundSelector({index: index})
         })
       }
-      $('.observation_photos').each(function() {
+      $('.observation_photos').bind('show', function() {
+        if ($(this).hasClass('photoSelector')) {
+          return
+        }
         // The photo_fields endpoint needs to know the auth token and the index
         // for the field
         var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name'),

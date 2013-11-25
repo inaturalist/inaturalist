@@ -163,7 +163,7 @@
         </div>
         <div class="column span-21">
           <div class="clear compactfield field">
-            <a href="#" onclick="$(this).next().slideToggle(); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
+            <a href="#" onclick="$(this).next().slideToggle({complete: function() {$(this).trigger('show')}}); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
               <%=t :photos %>
             </a>
             <div id="photos_<%= i %>" style="display: none" class="compactfieldcontent observation_photos photo_list">
@@ -193,7 +193,7 @@
         </div>
         <div class="column span-21">
           <div class="clear compactfield">
-            <a href="#" onclick="$(this).next().slideToggle(); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
+            <a href="#" onclick="$(this).next().slideToggle({complete: function() {$(this).trigger('show')}}); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
               <%=t :'sounds.sounds' %>
             </a>
             <div id="sounds_<%= i %>" style="display: none" class="compactfieldcontent observation_sounds sound_list">
