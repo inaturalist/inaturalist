@@ -301,6 +301,47 @@ $(document).ready(function() {
     })
     return false
   })
+
+  $('.assetpreviewbutton').click(function() {
+      var button = this
+      //alert(unescape($(this).parents('form').serialize()))
+      //alert(jQuery.parseJSON(JSON.stringify($(this).parents('form').serialize().head)))
+      $(button).show()
+      $(button).nextAll('.loading').hide()
+
+      /*
+      var html = $(this).parents('form').serialize()
+      html = '<div class="dialog">'+html+'</div>'
+      //alert(JSON.parse(html));
+      $(html).dialog({
+          modal: true,
+          title: I18n.t('preview'),
+          width: $(window).width() * 0.7
+      }) */
+
+      //alert($(this).parents('form').serialize())
+      $.ajax($(this).attr('href'), {
+          type: 'POST',
+          data: $(this).parents('form').serialize() + '&preview=true',
+          dataType: 'json',
+          beforeSend: function() {
+              //$(button).hide()
+              $(button).nextAll('.loading').show()
+          }
+      })
+          .done(function(data) {
+              $(button).show()
+              $(button).nextAll('.loading').hide()
+              var html = data || data.body || ''
+              html = '<div class="dialog">'+html+'</div>'
+              $(html).dialog({
+                  modal: true,
+                  title: I18n.t('preview'),
+                  width: $(window).width() * 0.7
+              })
+          })
+      return false;
+  })
   
   $('.identificationform')
     .bind('ajax:before', function() {
