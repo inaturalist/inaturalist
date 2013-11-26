@@ -10,7 +10,7 @@
         PLACE_GEOMETRY_KML_URL = <%=raw @place_geometry ? place_geometry_kml_url.inspect : nil.to_json %>,
         KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : "[]" %>
   </script>
-  <%= javascript_include_tag "observations/observation_fields", 
+  <%= javascript_include_tag "observations/observation_fields",
                              'inaturalist/map3',
                              "jquery/plugins/jquery.latLonSelector.js",
                              "projects/form" %>
@@ -18,9 +18,9 @@
 <%- project ||= @project -%>
 <%= form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
   <%= f.error_messages %>
-  
+
   <%= f.text_field :title, :required => true %>
-  
+
   <%= f.form_field :project_icon, :label => "#{t(:project_icon)} (PNG, JPG, or GIF)", :wrapper => {:class => 'clear'} do %>
     <% if project.icon.file? -%>
       <%= image_tag(project.icon.url(:thumb), :class => "left") %>
@@ -36,14 +36,14 @@
       <%= f.file_field :icon, :label => false, :size => 20, :accept => "image/jpg,image/jpeg,image/png,image/gif" %>
     <% end -%>
   <% end %>
-  
+
   <%= f.text_area :description, :description => t(:describe_purpose) %>
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
-  
+
   <div class="clear">
     <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]}, {:include_blank => t(:normal)},
       :description => t(:contest_projects_description) %>
-    <%= f.check_box :prefers_count_from_list, 
+    <%= f.check_box :prefers_count_from_list,
         :label => t(:show_total_listed_taxa),
         :label_after => true,
         :description => t(:show_the_total_number_of) %>
@@ -72,7 +72,7 @@
       <div id="map"></div>
     </div>
   </fieldset>
-  
+
   <!-- <fieldset class="userrules">
     <legend><%= t(:new_user_rules) %></legend>
     
@@ -90,25 +90,25 @@
       </div>
     <% end %>
   </fieldset> -->
-  
+
   <fieldset class="observationrules">
     <legend><%= t(:observation_rules).titleize %></legend>
     <p class="description">
-      <%= raw t(:observation_rules_description, :site_name => SITE_NAME_SHORT) %> 
+      <%= raw t(:observation_rules_description, :site_name => SITE_NAME_SHORT) %>
     </p>
-    
+
     <ul>
       <%= f.fields_for :project_observation_rules do |por| %>
         <li>
           <%= por.object.terms %>
           <%= por.hidden_field :_destroy, :class => "destroyer" %>
-          <%= link_to_function t(:remove), 
-            "$(this).parent().fadeTo('fast', 0.5).css('text-decoration', 'line-through');" + 
+          <%= link_to_function t(:remove),
+            "$(this).parent().fadeTo('fast', 0.5).css('text-decoration', 'line-through');" +
             "$(this).parent().find('.destroyer').val(true)" %>
         </li>
       <% end %>
     </ul>
-    
+
     <%- new_rule_field = capture do %>
       <fieldset id="new_project_observation_rule">
         <%= f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
@@ -133,48 +133,59 @@
     <% end -%>
     <%= link_to_function t(:add_new_rule), "$(this).before('#{escape_javascript new_rule_field}'); rulify(); $(this).hide()" %>
   </fieldset>
-  
+
   <%= f.text_field :tracking_codes, :description => t(:comma_separated_list_of_tracking_codes, :root_url => root_url, :project_id => @project.id) %>
-  
-  <% if current_user.is_admin? && !@project.new_record? -%>
+
+  <% if (current_user.is_admin? || (@project.editable_by?(current_user) && @project.trusted)) && !@project.new_record? -%>
     <fieldset id="project_assets">
       <legend><%=t :project_assets %></legend>
-      
+
       <ul>
         <% for project_asset in @project.project_assets %>
         <li>
           <%= link_to project_asset.asset.url, project_asset.asset.url %>
           <small style="margin-left: 10px">
             <%= link_to t(:edit), edit_project_asset_path(project_asset) %>
-            <%= link_to t(:delete), project_asset, :method => :delete, :confirm => t(:you_sure_delete_asset?), 
+            <%= link_to t(:delete), project_asset, :method => :delete, :confirm => t(:you_sure_delete_asset?),
               :class => 'description' %>
           </small>
         </li>
         <% end %>
       </ul>
-      
+
       <%= link_to t(:add_asset), new_project_asset_path(:project_id => @project.id), :class => "readmore" %>
     </fieldset>
-    
+
     <fieldset id="custom_project_fields">
       <legend><%=t :custom_project_fields %></legend>
-      
+
       <% if @project.custom_project -%>
         <%= link_to t(:edit_custom_project_fields), edit_custom_project_path(@project.custom_project), :class => "readmore" %>
       <% else %>
         <%= link_to t(:add_custom_project_fields), new_custom_project_path(:project_id => @project.id), :class => "readmore" %>
       <% end -%>
     </fieldset>
-    
-    <fieldset class="admin">
-      <legend><%= t :extra_properties %></legend>
 
-      <%= f.check_box :featured_at, 
-        :label => t(:feature_this_project),
-        :label_after => true %>
-        
-      <%= f.text_field :source_url, :description => t(:url_identifier_of_a_project_derived_from) %>
-    </fieldset>
+    <% if current_user.is_admin? && !@project.new_record? -%>
+        <fieldset class="admin">
+          <legend><%= t :extra_properties %></legend>
+
+          <%= f.check_box :featured_at,
+            :label => t(:feature_this_project),
+            :label_after => true %>
+
+          <%= f.text_field :source_url, :description => t(:url_identifier_of_a_project_derived_from) %>
+
+          <div class="field">
+            <%= f.check_box :trusted,
+                          :label => 'Trusted project?',
+                          :label_after => true %>
+            <% helptip_for "trusted" do %>
+              <%=t 'views.observations.captive_help_html' %>
+            <% end -%>
+          </div>
+        </fieldset>
+    <%- end %>
   <% end -%>
 
   <fieldset>
@@ -196,9 +207,9 @@
       <% end -%>
       <div class="inline buttonrow">
         <label><%= t :add_a_field %></label>
-        <input name="observation_field" 
-               class="observation_field_chooser" 
-               type="text" 
+        <input name="observation_field"
+               class="observation_field_chooser"
+               type="text"
                placeholder="<%= t :start_typing_field_name %>"
                data-chooser-default-sources="<%= @observation_fields.to_json %>">
         <%= link_to_function t(:add_a_field), "newProjectObservationField('#{escape_javascript(new_pof_fields)}')", :class => "button addfieldbutton" %>
@@ -211,7 +222,7 @@
     <%= f.submit project.new_record? ? t(:create) : t(:save), :class => "default button", "data-loading-click" => t(:saving) %>
     <%= link_to t(:cancel), projects_path, :class => "button" %>
     <% if @project_user && @project_user.is_admin? && !project.new_record? -%>
-      <%= link_to t(:delete_project), project, :method => :delete, 
+      <%= link_to t(:delete_project), project, :method => :delete,
         :confirm => t(:you_sure_delete_project?),
         :class => "minor delete button" %>
     <% end -%>

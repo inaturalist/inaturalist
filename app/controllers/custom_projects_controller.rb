@@ -1,8 +1,8 @@
 class CustomProjectsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :admin_required
-  before_filter :load_custom_project, :only => [:edit, :update, :destroy]
-  before_filter :load_project
+  before_filter :load_custom_project, :only => [:edit, :show, :update, :destroy]
+  before_filter :load_project, :except => [:preview]
   
   # GET /custom_projects/new
   # GET /custom_projects/new.xml
@@ -13,6 +13,29 @@ class CustomProjectsController < ApplicationController
       format.html # new.html.erb
       format.xml  { render :xml => @custom_project }
     end
+  end
+
+  def show
+    #respond_to do |format|
+
+        if params[:preview]
+          #@custom_project.head = view_context.formatted_user_text(@custom_project.head)
+        end
+        #render :json => @custom_project.head.to_json(:methods => [:html])
+        render :json => params[:custom_project][:head].to_json(:methods => [:html])
+    #end
+  end
+
+  def preview
+    #respond_to do |format|
+
+    if params[:preview]
+      #@custom_project.head = view_context.formatted_user_text(@custom_project.head)
+    end
+    #render :json => @custom_project.head.to_json(:methods => [:html])
+    #render :json => 'algo'.to_json(:methods => [:html])
+    render :json => params[:custom_project][:head].to_json(:methods => [:html])
+    #end
   end
 
   # GET /custom_projects/1/edit
@@ -39,13 +62,22 @@ class CustomProjectsController < ApplicationController
   # PUT /custom_projects/1
   # PUT /custom_projects/1.xml
   def update
+    #@message = current_user.messages.build(params[:message])
+
     respond_to do |format|
-      if @custom_project.update_attributes(params[:custom_project])
-        format.html { redirect_to(edit_project_path(@project), :notice => 'CustomProject was successfully updated.') }
-        format.xml  { head :ok }
+      if !params[:preview]
+        if @custom_project.update_attributes(params[:custom_project])
+          format.html { redirect_to(edit_project_path(@project), :notice => 'CustomProject was successfully updated.') }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @custom_project.errors, :status => :unprocessable_entity }
+        end
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @custom_project.errors, :status => :unprocessable_entity }
+        if params[:preview]
+          @custom_project.head = view_context.formatted_user_text(@custom_project.head)
+        end
+          render :json => @custom_project.to_json(:methods => [:html])
       end
     end
   end
