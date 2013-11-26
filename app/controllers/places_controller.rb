@@ -141,7 +141,7 @@ class PlacesController < ApplicationController
       end
       if @geometry && @place.valid?
         @place.save_geom(@geometry)
-        if @place.bbox_area > 100
+        if @place.too_big_for_check_list?
           notice = t(:place_too_big_for_check_list)
           @place.check_list.destroy if @place.check_list
           @place.update_attributes(:prefers_check_lists => false)

@@ -1,9 +1,12 @@
-<% display ||= '' %>
+<%- 
+  display ||= ''
+  linkable_params = params.select{|k,v| k.to_s != 'host'}
+-%>
 <div class="headerrow" <% unless display.blank? %>style="display: <%= display %>"<% end %>>
   <div class="header icon"><%=t :icon %></div>
   <div class="header photos"><%=t :'sounds.photos_sounds' %></div>
   <div class="header species_guess <%= "order_by #{@order}" if @order_by == 'species_guess' %>">
-    <% url = params.merge(:order_by => 'species_guess') %>
+    <% url = linkable_params.merge(:order_by => 'species_guess') %>
     <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'species_guess' %>
     <%= link_to t(:species_taxon_name), url %>
   </div>
@@ -11,7 +14,7 @@
     <%= t(:observer) %>
   </div>
   <div class="header observed_on <%= "order_by #{@order}" if @order_by == 'observed_on' %>">
-    <% url = params.merge(:order_by => 'observed_on') %>
+    <% url = linkable_params.merge(:order_by => 'observed_on') %>
     <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'observed_on' %>
     <%= link_to t(:date_observed), url %>
   </div>
@@ -19,7 +22,7 @@
     <%= t(:place) %>
   </div>
   <div class="header created_at <%= "order_by #{@order}" if %w(id observations.id created_at).include?(@order_by) %>" style="display: none">
-    <% url = params.merge(:order_by => 'created_at') %>
+    <% url = linkable_params.merge(:order_by => 'created_at') %>
     <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if %w(id observations.id created_at).include?(@order_by) %>
     <%= link_to t(:date_added), url %>
   </div>

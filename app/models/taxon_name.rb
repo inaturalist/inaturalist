@@ -121,7 +121,7 @@ class TaxonName < ActiveRecord::Base
   
   def self.choose_common_name(taxon_names)
     return nil if taxon_names.blank?
-    common_names = taxon_names.reject { |tn| tn.is_scientific_names? }
+    common_names = taxon_names.reject { |tn| tn.is_scientific_names? || !tn.is_valid? }
     return nil if common_names.blank?
     common_names = common_names.sort_by(&:id)
     

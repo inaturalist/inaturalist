@@ -101,6 +101,6 @@
     <% end %>
   <% else %>
     <%= render :partial => 'scheme_taxon', :collection => @taxa %>
-    <%= will_paginate @taxa %>
+    <%= will_paginate @taxa if @taxa.respond_to?(:total_pages) %>
   <% end %>
 </div>

@@ -320,7 +320,7 @@ class Place < ActiveRecord::Base
         next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
         ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
         ancestors << ancestor if ancestor
-        place.parent = ancestors.last
+        place.parent = ancestor if place.persisted? && ancestor.persisted?
       end
     end
     
@@ -368,10 +368,10 @@ class Place < ActiveRecord::Base
   
   # Create a CheckList associated with this place
   def check_default_check_list
-    if bbox_area.to_f > 100 && !user_id.blank? && !prefers_check_lists && check_list
+    if too_big_for_check_list? && !prefers_check_lists && check_list
       delay(:priority => USER_INTEGRITY_PRIORITY).remove_default_check_list
     end
-    if place_type == PLACE_TYPE_CODES['Continent'] || (bbox_area.to_f > 100 && !user_id.blank?)
+    if place_type == PLACE_TYPE_CODES['Continent'] || too_big_for_check_list?
       self.prefers_check_lists = false
     end
     if prefers_check_lists && check_list.blank?
@@ -384,6 +384,10 @@ class Place < ActiveRecord::Base
       end
     end
     true
+  end
+
+  def too_big_for_check_list?
+    bbox_area.to_f > 100 && !user_id.blank?
   end
 
   def remove_default_check_list

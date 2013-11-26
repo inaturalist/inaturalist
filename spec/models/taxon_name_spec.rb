@@ -95,3 +95,12 @@ describe TaxonName, "strip_author" do
     end
   end
 end
+
+describe TaxonName, "choose_common_name" do
+  it "should not choose an invalid common name" do
+    t = Taxon.make!
+    tn_invalid = TaxonName.make!(:is_valid => false, :taxon => t, :lexicon => "English", :name => "Bar")
+    tn_valid = TaxonName.make!(:is_valid => true, :taxon => t, :lexicon => "English", :name => "Foo")
+    TaxonName.choose_common_name([tn_invalid, tn_valid]).should eq tn_valid
+  end
+end

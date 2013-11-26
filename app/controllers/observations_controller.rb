@@ -271,8 +271,9 @@ class ObservationsController < ApplicationController
         if @observation.taxon
           unless @places.blank?
             @listed_taxon = ListedTaxon.
+              includes(:place).
               where("taxon_id = ? AND place_id IN (?) AND establishment_means IS NOT NULL", @observation.taxon_id, @places).
-              includes(:place).first
+              order("establishment_means IN ('endemic', 'introduced') DESC, places.bbox_area ASC").first
             @conservation_status = ConservationStatus.
               where(:taxon_id => @observation.taxon).where("place_id IN (?)", @places).
               where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).

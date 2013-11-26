@@ -71,6 +71,9 @@ class AssessmentsController < ApplicationController
       @headless = @footless = true
     end
     @parent_display_name = @assessment.taxon_name
+    respond_to do |format|
+      format.html
+    end
   end
 
   def edit

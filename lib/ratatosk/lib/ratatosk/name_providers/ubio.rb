@@ -239,7 +239,7 @@ module Ratatosk
         rescue NoMethodError, Nokogiri::XML::XPath::SyntaxError
           begin
             name = @hxml.at('//dc:title').inner_text
-          rescue NoMethodError
+          rescue NoMethodError, Nokogiri::XML::XPath::SyntaxError
             # without any kind of name in the RDF response, we can't make a taxon
             raise TaxonAdapterError, "Couldn't find a name in a uBio RDF response"
           end
