@@ -309,16 +309,25 @@ class ApplicationController < ActionController::Base
     endtime = Time.now
     Rails.logger.debug "\n\n[DEBUG] LOG TIMER END #{endtime} (#{endtime - starttime} s)\n\n"
   end
-  
+
+  def admin_require_or_belongs_trusted_project(project)
+    allow_project_roles = %w(manager admin)
+    unless logged_in? && current_user.has_role?(:admin) ||
+        (project.trusted && allow_project_roles.include?(project.project_users.where(:user_id => current_user).first.role))
+      flash[:notice] = "Only administrators may access that page"
+      redirect_to observations_path
+    end
+  end
+
   private
-  
+
   def admin_required
     unless logged_in? && current_user.has_role?(:admin)
       flash[:notice] = "Only administrators may access that page"
       redirect_to observations_path
     end
   end
-  
+
   def remove_header_and_footer_for_apps
     return true unless is_android_app? || is_iphone_app?
     @headless = true

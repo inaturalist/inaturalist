@@ -216,9 +216,9 @@ Inaturalist::Application.routes.draw do
 
   resources :project_assets, :except => [:index, :show]
   resources :project_observations, :only => [:create, :destroy]
-  resources :custom_projects, :except => [:index] do
+  resources :custom_projects, :except => [:index, :show] do
     collection do
-      get :preview
+      post :preview
     end
   end
   match 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => simplified_login_regex }

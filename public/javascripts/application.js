@@ -304,36 +304,30 @@ $(document).ready(function() {
 
   $('.assetpreviewbutton').click(function() {
       var button = this
-      //alert(unescape($(this).parents('form').serialize()))
-      //alert(jQuery.parseJSON(JSON.stringify($(this).parents('form').serialize().head)))
       $(button).show()
       $(button).nextAll('.loading').hide()
 
-      /*
-      var html = $(this).parents('form').serialize()
-      html = '<div class="dialog">'+html+'</div>'
-      //alert(JSON.parse(html));
-      $(html).dialog({
-          modal: true,
-          title: I18n.t('preview'),
-          width: $(window).width() * 0.7
-      }) */
-
-      //alert($(this).parents('form').serialize())
       $.ajax($(this).attr('href'), {
           type: 'POST',
-          data: $(this).parents('form').serialize() + '&preview=true',
+          data: $(this).parents('form').find(':input[name*="custom_project"]').serialize() + '&preview=true',
           dataType: 'json',
           beforeSend: function() {
-              //$(button).hide()
               $(button).nextAll('.loading').show()
           }
       })
           .done(function(data) {
               $(button).show()
               $(button).nextAll('.loading').hide()
-              var html = data || data.body || ''
-              html = '<div class="dialog">'+html+'</div>'
+              if (data.side != "") {
+                  var side="<br><div style=\"background-color:#FFFFFF;height:auto;width:900px;float:left;\">";
+                  side +="<div style=\"background-color:#FFFFFF;height:auto;width:200px;float:right;\">" + data.side + "</div></div>";
+              } else{
+                  var side=""
+              }
+
+              var html = data.head + "<style type=\"text/css\">" + data.css + "</style>" + side
+              html = '<div class="dialog">'+html.replace(/(\r\n|\n|\r)/gm,"").replace(/<script(.*?)\/script>/g, "")+'</div>'
+              console.log(html)
               $(html).dialog({
                   modal: true,
                   title: I18n.t('preview'),

@@ -1,8 +1,10 @@
 class CustomProjectsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :admin_required
   before_filter :load_custom_project, :only => [:edit, :show, :update, :destroy]
-  before_filter :load_project, :except => [:preview]
+  before_filter :load_project
+  before_filter do |c|
+    c.admin_require_or_belongs_trusted_project @project
+  end
   
   # GET /custom_projects/new
   # GET /custom_projects/new.xml
@@ -15,27 +17,8 @@ class CustomProjectsController < ApplicationController
     end
   end
 
-  def show
-    #respond_to do |format|
-
-        if params[:preview]
-          #@custom_project.head = view_context.formatted_user_text(@custom_project.head)
-        end
-        #render :json => @custom_project.head.to_json(:methods => [:html])
-        render :json => params[:custom_project][:head].to_json(:methods => [:html])
-    #end
-  end
-
   def preview
-    #respond_to do |format|
-
-    if params[:preview]
-      #@custom_project.head = view_context.formatted_user_text(@custom_project.head)
-    end
-    #render :json => @custom_project.head.to_json(:methods => [:html])
-    #render :json => 'algo'.to_json(:methods => [:html])
-    render :json => params[:custom_project][:head].to_json(:methods => [:html])
-    #end
+    render :json => params[:custom_project].to_json(:methods => [:html])
   end
 
   # GET /custom_projects/1/edit

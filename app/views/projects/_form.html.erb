@@ -176,14 +176,12 @@
 
           <%= f.text_field :source_url, :description => t(:url_identifier_of_a_project_derived_from) %>
 
-          <div class="field">
-            <%= f.check_box :trusted,
-                          :label => 'Trusted project?',
-                          :label_after => true %>
-            <% helptip_for "trusted" do %>
-              <%=t 'views.observations.captive_help_html' %>
-            <% end -%>
-          </div>
+          <%= f.check_box :trusted,
+                        :label => t(:trusted_project?),
+                        :label_after => true %>
+          <% helptip_for "trusted" do %>
+              <%=t :trusted_project_means %>
+          <% end -%>
         </fieldset>
     <%- end %>
   <% end -%>
