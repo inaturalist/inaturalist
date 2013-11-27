@@ -66,6 +66,40 @@ describe GuideTaxon, "new_from_eol_collection_item" do
   end
 end
 
+describe GuideTaxon, "sync_site_content" do
+  let(:t) {
+    t = Taxon.make!(:wikipedia_summary => "Foo bar")
+    6.times do
+      p = Photo.make!(:license => Photo::CC_BY)
+      TaxonPhoto.make!(:taxon => t, :photo => p)
+    end
+    TaxonName.make!(:taxon => t, :lexicon => "English")
+    t.reload
+    t
+  }
+  let(:gt) { GuideTaxon.make!(:taxon => t) }
+
+  it "should set up to 5 photos" do
+    gt.taxon.photos.size.should > 5
+    gt.sync_site_content(:photos => true)
+    gt.guide_photos.size.should eq 5
+  end
+
+  it "should set a common name" do
+    gt.update_attributes(:display_name => nil)
+    gt.display_name.should be_blank
+    gt.sync_site_content(:names => true)
+    gt.display_name.should eq gt.taxon.common_name.name
+  end
+
+  it "should set a section" do
+    gt.guide_sections.destroy_all
+    gt.guide_sections.should be_blank
+    gt.sync_site_content(:summary => true)
+    gt.guide_sections.size.should eq 1
+  end
+end
+
 describe GuideTaxon, "sync_eol" do
   let(:gt) { GuideTaxon.make! }
   before(:all) do

@@ -153,6 +153,7 @@ en:
   add_shape: Add shape
   add_some_now: Add some now
   add_tags: Add tags
+  add_tags_to_selected_taxa: Add tags to selected taxa
   add_taxa: Add taxa
   add_taxa_to_places:  add taxa to places
   add_taxon_batch_to: "Add Taxon Batch to %{list}"
@@ -2531,6 +2532,7 @@ en:
   update_x_selected_taxa: "Update %{x} selected taxa"
   update_your_content: Update your content
   update_with_eol_content: Update with EOL content
+  update_with_site_content: "Update with %{site_name} content"
   updated: Updated
   updated_by: Updated by
   updated_daily: Updated daily
@@ -2937,6 +2939,10 @@ en:
         default: Guide order
         alphaname: Alphabetical by scientific name
         alphadisplay: Alphabetical by display name
+    guide_taxa:
+      edit:
+        eol_explanation: "Add a common name, up to 5 images, 1 description section, and 1 map from EOL."
+        site_explanation: "Add a common name, up to 5 licensed images, and a Wikipedia summary from %{site_name}."
     help:
       index:
         welcome_message_html: |

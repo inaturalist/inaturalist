@@ -12,8 +12,8 @@ class GuideTaxon < ActiveRecord::Base
   accepts_nested_attributes_for :guide_sections, :allow_destroy => true
   accepts_nested_attributes_for :guide_photos, :allow_destroy => true
   accepts_nested_attributes_for :guide_ranges, :allow_destroy => true
-  before_save :set_names_from_taxon
-  before_create :set_default_photo
+  before_create :set_names_from_taxon
+  before_create :set_default_photos
   before_create :set_default_section
   after_create :set_guide_taxon
   after_destroy :set_guide_taxon
@@ -79,26 +79,37 @@ class GuideTaxon < ActiveRecord::Base
     true
   end
 
-  def set_default_photo
-    return true unless guide_photos.blank?
+  def set_default_photos(options = {})
     return true if taxon.blank?
     return true if taxon.photos.blank?
-    photo = taxon.taxon_photos.includes(:photo).detect{|tp| tp.photo.open_licensed?}.try(:photo)
-    self.guide_photos.build(:photo => photo) if photo
+    max = options[:max]
+    max = 1 if max.blank? || max > 10
+    taxon.taxon_photos.includes(:photo).sort_by{|tp| tp.position || tp.id}.each do |tp|
+      next unless tp.photo.open_licensed?
+      break if max && self.guide_photos.size >= max
+      self.guide_photos.build(:photo => tp.photo) if tp.photo && self.guide_photos.detect{|gp| gp.photo_id == tp.photo_id}.blank?
+    end
+    self.guide_photos.each_with_index do |tp,i|
+      self.guide_photos[guide_photos.index(tp)].position = i+1
+    end
     true
   end
 
-  def set_default_section
+  def set_default_section(options = {})
     return true if taxon.blank?
-    return true unless guide_sections.blank?
+    return true unless guide_sections.blank? || options[:force]
     return true if taxon.wikipedia_summary.blank?
-    self.guide_sections.build(
-      :title => "Summary", 
-      :description => taxon.wikipedia_summary,
-      :rights_holder => "Wikipedia",
-      :license => Observation::CC_BY_SA,
-      :source_url => TaxonDescribers::Wikipedia.page_url(taxon)
-    )
+    if options[:force] && (gs = guide_sections.detect{|gs| gs.rights_holder == "Wikipedia"})
+      self.guide_sections[guide_sections.index(gs)].description = taxon.wikipedia_summary
+    else
+      self.guide_sections.build(
+        :title => "Summary", 
+        :description => taxon.wikipedia_summary,
+        :rights_holder => "Wikipedia",
+        :license => Observation::CC_BY_SA,
+        :source_url => TaxonDescribers::Wikipedia.page_url(taxon)
+      )
+    end
     true
   end
 
@@ -106,6 +117,13 @@ class GuideTaxon < ActiveRecord::Base
     return true if Delayed::Job.where("handler LIKE '%Guide\n%id: ''#{guide_id}''\n%set_taxon%'").exists?
     self.guide.delay(:priority => USER_INTEGRITY_PRIORITY).set_taxon
     true
+  end
+
+  def sync_site_content(options = {})
+    set_names_from_taxon if options[:names]
+    set_default_photos(:max => 5) if options[:photos]
+    set_default_section(:force => true) if options[:summary]
+    save!
   end
 
   def sync_eol(options = {})
@@ -210,6 +228,7 @@ class GuideTaxon < ActiveRecord::Base
     collection = options[:collection]
     subjects = (options[:subjects] || []).select{|t| !t.blank?}
     page_request_params = {
+      :common_names => true,
       :images => 5, 
       :maps => 5, 
       :text => subjects.size == 0 ? 5 : subjects.size * 5,
