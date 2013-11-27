@@ -468,6 +468,7 @@ class TaxaController < ApplicationController
         :object => taxon, :comname => taxon_name.is_scientific_names? ? nil : taxon_name)
       taxon
     end
+    @taxa.uniq!
     respond_to do |format|
       format.json do
         render :json => @taxa.to_json(:methods => [:html])

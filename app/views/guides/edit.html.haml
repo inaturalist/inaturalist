@@ -207,8 +207,10 @@
       #addtaxa-single.tab-pane.active.fade.in
       #addtaxa-place.tab-pane.fade
         .stacked
+          %label=t :choose_a_place
           %input.placechooser.chooser{:placeholder => t(:start_typing_place_name), :type => "text"}
         .stacked
+          %label=t 'views.guides.edit.place_choose_taxon_note'
           %input.taxonchooser.chooser{:placeholder => t(:start_typing_taxon_name), :type => "text"}
           %span.muted
             = surround '(', ')' do
