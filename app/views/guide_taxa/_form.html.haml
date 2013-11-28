@@ -75,7 +75,7 @@
     = f.text_field :tag_list, :class => "input-xxlarge", :placeholder => t(:add_comma_separated_tags)
     .recent_tags.quiet
       - for tag in @recent_tags
-        = link_to_function "<i class='icon-plus-sign'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
+        = link_to_function "<i class='fa fa-plus-circle'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
   #actions
     = f.submit t(:save_guide_taxon), :class => "btn btn-primary"
     = link_to t(:cancel), :back, :class => "btn"

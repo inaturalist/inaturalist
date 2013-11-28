@@ -2091,7 +2091,11 @@ CREATE TABLE projects (
     map_type character varying(255) DEFAULT 'terrain'::character varying,
     latitude numeric(15,10),
     longitude numeric(15,10),
-    zoom_level integer
+    zoom_level integer,
+    cover_file_name character varying(255),
+    cover_content_type character varying(255),
+    cover_file_size integer,
+    cover_updated_at timestamp without time zone
 );
 
 
@@ -6101,3 +6105,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131023224910');
 INSERT INTO schema_migrations (version) VALUES ('20131024045916');
 
 INSERT INTO schema_migrations (version) VALUES ('20131119214722');
+
+INSERT INTO schema_migrations (version) VALUES ('20131128214012');

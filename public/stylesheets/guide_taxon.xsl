@@ -10,27 +10,44 @@
             .images {white-space: nowrap; overflow-x:auto; overflow-y:hidden;-webkit-overflow-scrolling: touch;text-align:center;}
             .images .image {display:inline-block; margin-left:1em; max-width:100%; text-align:center;}
             .images.multi {text-align:left;}
-            .images.multi .image {max-width:90%;}
             .images img.thumb {max-width:100%; max-height:300px;}
-            .images.multi img.thumb {max-height:200px;}
+            .images.multi img.thumb {max-height:200px;vertical-align:bottom;}
             .images .image:first-child {margin-left:0;}
             .container {padding-top: 1em;padding-bottom: 2em;}
+            .image {position:relative;}
           ]]>
         </style>
       </head>
       <body>
         <div class="container">
-          <xsl:variable name="photosClass">images<xsl:if test="count(//GuidePhoto) &gt; 1"> multi</xsl:if></xsl:variable>
+          <xsl:variable name="numPhotos" select="count(//GuidePhoto)"/>
+          <xsl:variable name="photosClass">images<xsl:if test="$numPhotos &gt; 1"> multi</xsl:if></xsl:variable>
           <div id="photos" class="{$photosClass}">
             <xsl:for-each select="//GuidePhoto">
               <div class="image">
                 <img src="{href[@type='remote' and @size='medium']}" class="thumb img-rounded" data-toggle="modal"/>
-                <div class="text-muted text-center">
-                  <small>
-                    <xsl:text disable-output-escaping="yes"><![CDATA[&copy;]]></xsl:text>
-                    <xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
-                    <xsl:value-of select="dcterms:rightsHolder"/>
-                  </small>
+                <div class="text-muted">
+                  <xsl:choose>
+                    <xsl:when test="$numPhotos &gt; 1">
+                      <small class="pull-left">
+                        <xsl:text disable-output-escaping="yes"><![CDATA[&copy;]]></xsl:text>
+                        <xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+                        <xsl:value-of select="dcterms:rightsHolder"/>
+                      </small>
+                      <small class="pull-right text-right">
+                        <xsl:value-of select="position()"/>
+                        /
+                        <xsl:value-of select="$numPhotos"/>
+                      </small>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <div class="text-center">
+                        <xsl:text disable-output-escaping="yes"><![CDATA[&copy;]]></xsl:text>
+                        <xsl:text disable-output-escaping="yes"><![CDATA[&nbsp;]]></xsl:text>
+                        <xsl:value-of select="dcterms:rightsHolder"/>
+                      </div>
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </div>
               </div>
             </xsl:for-each>

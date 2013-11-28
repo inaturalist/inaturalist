@@ -30,6 +30,7 @@
 
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'projects/show' %>
+  <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
   <% if @custom_project && !@custom_project.css.blank? -%>
     <style type="text/css" media="screen">
       <%= @custom_project.css %>
@@ -63,6 +64,25 @@
   
   <% if @custom_project && !@custom_project.head.blank? -%>
     <%= @custom_project.head.html_safe %>
+  <% elsif @project.cover.file? %>
+    <div id="cover">
+      <%= image_tag @project.cover.url, :id => "coverimg" %>
+      <h1>
+        <% if @logo_image -%>
+          <%= image_tag @logo_image.asset.url, :id => "iconimg" %>
+        <% else %>
+          <% if @project.icon.file? -%>
+            <%= image_tag @project.icon.url(:thumb), :id => "iconimg" %>
+          <% end -%>
+          <%= truncate @project.title, :length => 55 %>
+        <% end -%>
+      </h1>
+
+      <%= link_to new_observation_path(:project_id => @project.id), :id => 'addbutton', :rel => "nofollow" do %>
+        <small><%= t(:add) %></small>
+        <big><%= t(:observations) %></big>
+      <% end -%>
+    </div>
   <% else %>
     <h2>
       <% if @logo_image -%>
@@ -71,7 +91,7 @@
         <% if @project.icon.file? -%>
           <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
         <% end -%>
-        <%=h truncate @project.title, :length => 55 %>
+        <%= truncate @project.title, :length => 55 %>
       <% end -%>
     </h2>
     

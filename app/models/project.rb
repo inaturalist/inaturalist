@@ -69,6 +69,24 @@ class Project < ActiveRecord::Base
     :default_url => "/attachment_defaults/general/:style.png"
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
+
+  if Rails.env.production?
+    has_attached_file :cover,
+      :storage => :s3,
+      :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :s3_host_alias => CONFIG.s3_bucket,
+      :bucket => CONFIG.s3_bucket,
+      :path => "projects/:id-cover.:extension",
+      :url => ":s3_alias_url",
+      :default_url => ""
+  else
+    has_attached_file :cover,
+      :path => ":rails_root/public/attachments/:class/:id-cover.:extension",
+      :url => "/attachments/:class/:id-cover.:extension",
+      :default_url => ""
+  end
+  validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /octet-stream/], :message => "must be JPG or PNG"
+  validate :cover_dimensions, :unless => "errors.any?"
   
   CONTEST_TYPE = 'contest'
   OBS_CONTEST_TYPE = 'observation contest'
@@ -93,6 +111,14 @@ class Project < ActiveRecord::Base
   def strip_title
     self.title = title.strip
     true
+  end
+
+  def cover_dimensions
+    return true unless cover.queued_for_write[:original]
+    dimensions = Paperclip::Geometry.from_file(cover.queued_for_write[:original].path)
+    if dimensions.width != 950 || dimensions.height > 400
+      errors.add(:file, 'Cover image must be exactly 950px wide and at most 400px tall')
+    end
   end
   
   def add_owner_as_project_user

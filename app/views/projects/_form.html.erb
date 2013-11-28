@@ -21,21 +21,40 @@
   
   <%= f.text_field :title, :required => true %>
   
-  <%= f.form_field :project_icon, :label => "#{t(:project_icon)} (PNG, JPG, or GIF)", :wrapper => {:class => 'clear'} do %>
-    <% if project.icon.file? -%>
-      <%= image_tag(project.icon.url(:thumb), :class => "left") %>
-      <div>
-        <%= check_box_tag :icon_delete %>
-        <label for="icon_delete"><%=t :delete_icon? %></label>
-      </div>
-      <%= link_to_toggle t(:change_icon), "#iconfield" %>
-      <div id="iconfield" style="display: none">
-        <%= f.file_field :icon, :label => false, :accept => "image/jpg,image/jpeg,image/png,image/gif" %>
-      </div>
-    <% else %>
-      <%= f.file_field :icon, :label => false, :size => 20, :accept => "image/jpg,image/jpeg,image/png,image/gif" %>
-    <% end -%>
-  <% end %>
+  <div id="icon_fields">
+    <%= f.form_field :project_icon, :label => "#{t(:project_icon)} (PNG, JPG, or GIF)", :wrapper => {:class => 'clear'} do %>
+      <% if project.icon.file? -%>
+        <%= image_tag(project.icon.url(:thumb), :class => "left") %>
+        <div>
+          <%= check_box_tag :icon_delete %>
+          <label for="icon_delete"><%=t :delete_icon? %></label>
+        </div>
+        <%= link_to_toggle t(:change_icon), "#iconfield" %>
+        <div id="iconfield" style="display: none">
+          <%= f.file_field :icon, :label => false, :accept => "image/jpg,image/jpeg,image/png,image/gif" %>
+        </div>
+      <% else %>
+        <%= f.file_field :icon, :label => false, :size => 20, :accept => "image/jpg,image/jpeg,image/png,image/gif" %>
+      <% end -%>
+    <% end %>
+    
+    <%= f.form_field :project_cover, :label => "#{t(:project_cover)} (PNG, JPG, or GIF)", :wrapper => {:class => 'clear'} do %>
+      <% if project.cover.file? -%>
+        <%= image_tag(project.cover.url, :class => "left", :style => "max-width:200px") %>
+        <div>
+          <%= check_box_tag :cover_delete %>
+          <label for="cover_delete"><%=t :delete_cover? %></label>
+        </div>
+        <%= link_to_toggle t(:change_cover), "#coverfield" %>
+        <div id="coverfield" style="display: none">
+          <%= f.file_field :cover, :label => false, :accept => "image/jpg,image/jpeg,image/png" %>
+        </div>
+      <% else %>
+        <%= f.file_field :cover, :label => false, :size => 20, :accept => "image/jpg,image/jpeg,image/png" %>
+      <% end -%>
+    <% end %>
+  </div>
+
   
   <%= f.text_area :description, :description => t(:describe_purpose) %>
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
