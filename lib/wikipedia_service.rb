@@ -16,26 +16,21 @@ class WikipediaService < MetaService
 
   def summary(title)
     summary = query_results = parsed = nil
-    query_results = query(
-      :titles => title,
-      :redirects => '', 
-      :prop => 'revisions', 
-      :rvprop => 'content')
-    retuen if query_results.blank?
-    raw = query_results.at('page')
-    return if raw.blank?
-    parsed = parse(:page => raw['title']).at('text').try(:inner_text)
-    return unless query_results && parsed && !query_results.at('page')['missing']
+    parsed = parse(:page => title, :redirects => true).at('text').try(:inner_text)
+    return unless parsed
     hxml = Nokogiri::HTML(HTMLEntities.new.decode(parsed))
     hxml.search('table').remove
     hxml.search('div').remove
     summary = (hxml.at('p') || hxml).inner_html.to_s
-    sanitizer = HTML::WhiteListSanitizer.new
     summary = sanitizer.sanitize(summary, :tags => %w(p i em b strong))
     summary.gsub! /\[.*?\]/, ''
     summary
   rescue Timeout::Error => e
     Rails.logger.info "[INFO] Wikipedia API call failed while setting taxon summary: #{e.message}"
     return
+  end
+
+  def sanitizer
+    @sanitizer ||= HTML::WhiteListSanitizer.new
   end
 end

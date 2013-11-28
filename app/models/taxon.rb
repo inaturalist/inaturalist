@@ -805,7 +805,7 @@ class Taxon < ActiveRecord::Base
   
   def set_wikipedia_summary(options = {})
     locale = options[:locale] || I18n.locale
-    w = WikipediaService.new(:locale => locale)
+    w = options[:wikipedia] || WikipediaService.new(:locale => locale)
     wname = wikipedia_title.blank? ? name : wikipedia_title
     
     if summary = w.summary(wname)

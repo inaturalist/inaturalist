@@ -181,7 +181,8 @@
 .observations.table .observation .actions ul.counts li:after {
   content: '';
 }
-.observations.table .observation .details { display:none; }
+.observations.table .observation .details,
+.observations.table .observation .tags { display:none; }
 
 /* Mini */
 
