@@ -111,7 +111,7 @@
       })
 
       $('#tabs').tabs({
-        active: PLACE_INVALID ? 1 : 0
+        active: PLACE_INVALID || window.location.hash.match(/manual/) ? 1 : 0
       })
       $('#place_parent_id').chooser({
         collectionUrl: '/places/autocomplete.json',
@@ -180,7 +180,7 @@
     </div>
     <div class="last column span-9">
       <h3><%= t(:give_it_some_detail) %></h3>
-      <%= form_for @place, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
+      <%= form_for :place, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
         <%= f.text_field :name, :class => 'text', :required => true %>
         <%= f.text_field :parent_id, :placeholder => t(:type_place_name), :style => "width: 300px" %>
         <%= f.text_field :latitude, :class => 'text' %>
