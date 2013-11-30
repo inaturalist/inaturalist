@@ -750,9 +750,8 @@ $.fn.observationControls = function(options) {
   $(this).each(function() {
     var observations = options.div || $(this).parent().find('.observations')
 
-
     var gridButton = $('.gridbutton', this)
-    if (gridButton.length == 0) {
+    if (!options.skipGrid && gridButton.length == 0) {
       gridButton = $('<a href="#" class="gridbutton" title="'+I18n.t('grid_tooltip')+'"><span class="inat-icon ui-icon ui-icon-grid inlineblock">&nbsp;</span><label>'+I18n.t('grid')+'</label></a>')
       gridButton.data('gridSize', $(observations).hasClass('medium') ? 'medium' : null)
       gridButton.click(function() {
@@ -764,7 +763,7 @@ $.fn.observationControls = function(options) {
     }
 
     var listButton = $('.listbutton', this)
-    if (listButton.length == 0) {
+    if (!options.skipList && listButton.length == 0) {
       listButton = $('<a href="#" class="listbutton" title="'+I18n.t('list_tooltip')+'"><span class="inat-icon ui-icon ui-icon-list inlineblock">&nbsp;</span><label>'+I18n.t('list')+'</label></a>')
       listButton.click(function() {
         $(observations).observationsList()
@@ -775,7 +774,7 @@ $.fn.observationControls = function(options) {
     }
 
     var mapButton = $('.mapbutton', this)
-    if (mapButton.length == 0) {
+    if (!options.skipMap && mapButton.length == 0) {
       mapButton = $('<a href="#" class="mapbutton" title="'+I18n.t('map_tooltip')+'"><span class="inat-icon ui-icon ui-icon-map inlineblock">&nbsp;</span><label>'+I18n.t('map')+'</label></a>')
       mapButton.click(function() {
         $(observations).observationsMap()
@@ -1086,5 +1085,137 @@ function updateSession(params) {
     url: '/users/update_session',
     data: params,
     type: 'PUT'
+  })
+}
+
+$.fn.loadObservations = function(options) {
+  var url = options.url || '/observations'
+  if (!url.match(/partial=/)) {
+    url += url.match(/\?/) ? '&' : '?'
+    url += 'partial=cached_component'
+  }
+  var container = this
+  var req
+  req = $.ajax({
+    type: "GET",
+    url: url,
+    success: function (data, status) {
+      var html = data.replace(/\/div>[\s\n]+?<div/g, '/div><div')
+      var oldObsId = $('.observation:first', container).attr('id')
+      if (oldObsId) {
+        var r = new RegExp('^[^>]+'+oldObsId, 'g')
+        if (r.test(html)) {
+          return
+        }
+      }
+      $(container).html(html)
+      if (options.style == 'list') {
+        $(container).observationsList()
+      } else if (options.style == 'map') {
+        $(container).observationsMap()
+      } else {
+        $(container).observationsGrid('medium')
+      }
+      if (typeof(options.success) == 'function') {
+        options.success(req, data, status)
+      }
+    }
+  })
+  if (options.refresh) {
+    var t = setTimeout(function() {
+      container.loadObservations(options)
+    }, options.refresh)
+    container.data('loadObservationsTimeout', t)
+  }
+}
+
+$.fn.observationTaxonStats = function(options) {
+  var url = options.url || '/observations/taxon_stats.json'
+  var container = this
+  $.getJSON(url, function(json) {
+    $('.species .count', container).html(json.rank_counts.species || 0)
+    if (json.species_counts.length > 0) {
+      var most
+      $('.most_observed table', container).html('')
+      for (var i = 0; i < json.species_counts.length; i++) {
+        if (json.species_counts[i].taxon) {
+          most = json.species_counts[i]
+          var tr = $('<tr></tr>'),
+              taxonTD = $('<td class="taxon"></td>'),
+              imageTD = $('<td class="image"></td>')
+          taxonTD.html(
+            $('<a></a>').
+              addClass('nobr '+most.taxon.default_name.lexicon).
+              attr('href', '/taxa/'+most.id).
+              html(most.taxon.default_name.name)
+          )
+          imageTD.append($('<img/>').attr('src', most.taxon.image_url))
+          taxonTD.append(
+            $('<div class="meta"></div>').append(
+              $('<a></a>').
+                attr('href', '/observations'+window.location.search+'&taxon_id='+most.id).
+                html(most.count),
+              ' observation'+(most.count == 1 ? '' : 's')
+            )
+          )
+          tr.append(imageTD, taxonTD)
+          $('.most_observed table', container).append(tr)
+        }
+      }
+    }
+    if (options.refresh) {
+      var t = setTimeout(function() {
+        container.observationTaxonStats(options)
+      }, options.refresh)
+      container.data('observationTaxonStatsTimeout', t)
+    }
+  })
+}
+
+$.fn.observationUserStats = function(options) {
+  var url = options.url || '/observations/taxon_stats.json'
+  var container = this
+  $.getJSON(url, function(json) {
+    $('.people .count', container).html(json.total || 0)
+    if (json.most_observations.length > 0) {
+      $('.most_observations table', container).html('')
+      for (var i = 0; i < json.most_observations.length; i++) {
+        var most = json.most_observations[i],
+            img_url = most.user.user_icon_url || '/attachment_defaults/users/icons/defaults/thumb.png',
+            tr = $('<tr></tr>'),
+            imageTD = $('<td class="image"></td>'),
+            userTD = $('<td class="user"></td>')
+        imageTD.append($('<img/>').attr('src', img_url))
+        userTD.html($('<a>'+most.user.login+'</a>').attr('href', '/people/'+most.user.login))
+        userTD.append(
+          $('<div></div>').addClass('meta').html(most.count + " observations")
+        )
+        tr.append(imageTD, userTD)
+        $('.most_observations table', container).append(tr)
+      }
+    }
+    if (json.most_species.length > 0) {
+      $('.most_species table', container).html('')
+      for (var i = 0; i < json.most_species.length; i++) {
+        var row = json.most_species[i]
+            img_url = row.user.user_icon_url || '/attachment_defaults/users/icons/defaults/thumb.png',
+            tr = $('<tr></tr>'),
+            imageTD = $('<td class="image"></td>'),
+            userTD = $('<td class="user"></td>')
+        imageTD.append($('<img/>').attr('src', img_url))
+        userTD.html($('<a>'+row.user.login+'</a>').attr('href', '/people/'+row.user.login))
+        userTD.append(
+          $('<div></div>').addClass('meta').html(row.count + " species")
+        )
+        tr.append(imageTD, userTD)
+        $('.most_species table', container).append(tr)
+      }
+    }
+    if (options.refresh) {
+      var t = setTimeout(function() {
+        container.observationTaxonStats(options)
+      }, options.refresh)
+      container.data('observationUserStats', t)
+    }
   })
 }

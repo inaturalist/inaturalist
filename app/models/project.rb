@@ -41,6 +41,13 @@ class Project < ActiveRecord::Base
   
   validates_length_of :title, :within => 1..100
   validates_presence_of :user
+  validates_format_of :event_url, :with => URI.regexp, 
+    :message => "should look like a URL, e.g. #{CONFIG.site_url}",
+    :allow_blank => true
+  validates_presence_of :start_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
+  validates_presence_of :end_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
+  validate :place_with_boundary, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}
+  validate :one_year_time_span, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}
   
   scope :featured, where("featured_at IS NOT NULL")
   scope :near_point, lambda {|latitude, longitude|
@@ -91,7 +98,8 @@ class Project < ActiveRecord::Base
   CONTEST_TYPE = 'contest'
   OBS_CONTEST_TYPE = 'observation contest'
   ASSESSMENT_TYPE = 'assessment'
-  PROJECT_TYPES = [CONTEST_TYPE, OBS_CONTEST_TYPE , ASSESSMENT_TYPE]
+  BIOBLITZ_TYPE = 'bioblitz'
+  PROJECT_TYPES = [CONTEST_TYPE, OBS_CONTEST_TYPE , ASSESSMENT_TYPE, BIOBLITZ_TYPE]
   RESERVED_TITLES = ProjectsController.action_methods
   MAP_TYPES = %w(roadmap terrain satellite hybrid)
   validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
@@ -102,6 +110,18 @@ class Project < ActiveRecord::Base
     indexes :title
     indexes :description
     set_property :delta => :delayed
+  end
+
+  def place_with_boundary
+    unless PlaceGeometry.where(:place_id => place_id).exists?
+      errors.add(:place_id, "must be set and have a boundary for a bioblitz")
+    end
+  end
+
+  def one_year_time_span
+    if end_time - start_time > 366.days
+      errors.add(:end_time, "must be less than one year after the start time")
+    end
   end
   
   def to_s
@@ -117,7 +137,7 @@ class Project < ActiveRecord::Base
     return true unless cover.queued_for_write[:original]
     dimensions = Paperclip::Geometry.from_file(cover.queued_for_write[:original].path)
     if dimensions.width != 950 || dimensions.height > 400
-      errors.add(:file, 'Cover image must be exactly 950px wide and at most 400px tall')
+      errors.add(:cover, 'image must be exactly 950px wide and at most 400px tall')
     end
   end
   
@@ -155,6 +175,10 @@ class Project < ActiveRecord::Base
   
   def rule_place
     project_observation_rules.first(:conditions => {:operator => "observed_in_place?"}).try(:operand)
+  end
+
+  def rule_taxon
+    @rule_taxon ||= project_observation_rules.where(:operator => "in_taxon?").first.try(:operand)
   end
   
   def icon_url
@@ -250,6 +274,27 @@ class Project < ActiveRecord::Base
         csv << columns.map {|column| project_observation.to_csv_column(column, :project => self)}
       end
     end
+  end
+
+  def eventbrite_id
+    return if event_url.blank?
+    return unless event_url =~ /eventbrite\.com/
+    @eventbrite_id ||= URI.parse(event_url).path.split('/').last[/\d+/, 0]
+  end
+
+  def event_started?
+    return nil if start_time.blank?
+    start_time < Time.now
+  end
+
+  def event_ended?
+    return nil if end_time.blank?
+    Time.now > end_time
+  end
+
+  def event_in_progress?
+    return nil if end_time.blank? || start_time.blank?
+    start_time < Time.now && end_time > Time.now
   end
   
   def self.default_json_options

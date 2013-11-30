@@ -23,7 +23,8 @@
     var PROJECT = <%= @project.to_json(:only => [:title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
         PLACE = <%= @place.to_json.html_safe %>,
         PLACE_GEOMETRY_KML_URL = <%=raw @place_geometry ? place_geometry_kml_url.inspect : nil.to_json %>,
-        OBSERVATIONS = <%= @observations.to_json(:include => :iconic_taxon).html_safe %>,
+        OBSERVATIONS = <%= @observations.blank? ? 'null' : @observations.to_json(:include => :iconic_taxon).html_safe %>,
+        OBSERVATIONS_URL = <%= @observations_url.inspect.html_safe %>
         KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe %>
   </script>
 <%- end -%>
@@ -82,6 +83,18 @@
         <small><%= t(:add) %></small>
         <big><%= t(:observations) %></big>
       <% end -%>
+
+      <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+        <div class="timespan">
+          <% if @project.end_time - @project.start_time <= 1.day -%>
+            <%=l @project.start_time.to_date, :format => :long %>
+          <% else %>
+            <%= @project.start_time.to_date.to_s(:long) %>
+            to
+            <%= @project.end_time.to_date.to_s(:long) %>
+          <% end -%>
+        </div>
+      <% end -%>
     </div>
   <% else %>
     <h2>
@@ -102,6 +115,40 @@
   <% end -%>
 </div>
 
+<% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+  <% if !@project.event_url.blank? && !@project.event_started? -%>
+    <div id="event" class="clear">
+      <% if @project.eventbrite_id -%>
+        <iframe src="http://www.eventbrite.com/tickets-external?eid=<%= @project.eventbrite_id %>&ref=etckt&v=2" frameborder="0" height="256" width="100%" vspace="0" hspace="0" marginheight="5" marginwidth="5" scrolling="auto" allowtransparency="true"></iframe>
+      <% else %>
+        <div class="inline buttonrow centered quiet box">
+          <%= link_to t(:register), @project.event_url, :class => "default button" %>
+          <span class="inter">
+            <%=t :register_for_this_event_at_x_html, :x => link_to(URI.parse(@project.event_url).host, @project.event_url) %>
+          </span>
+        </div>
+      <% end -%>
+    </div>
+  <% end -%>
+
+  <% if @project.event_in_progress? || @project.event_ended? -%>
+    <div id="bioblitzstats" class="stacked">
+      <div class="inline buttonrow right">
+        <%= link_to_dialog t(:about_bioblitz_results), :width => "60%", :link => {:class => "meta inter"} do %>
+          <%=t 'views.projects.show.bioblitz_results_desc_html' %>
+        <% end -%>
+        <% if signed_in? && @project.event_in_progress? -%>
+          <%= link_to t(:view_real_time_stats_in_a_new_window), stats_observations_url(@observations_url_params.merge(:refresh => true)), :class => "inter readmore", :target => "_new" %>
+        <% end -%>
+      </div>
+      <h2 class="stacked"><%= @project.event_ended? ? t(:event_stats) : t(:event_in_progress) %></h2>
+      <div id="rtstats" class="clear">
+        <%= render :partial => "observations/real_time_stats" %>
+      </div>
+    </div>
+    <%= separator %>
+  <% end -%>
+<% end -%>
 
 
 <div class="column span-16">
@@ -149,28 +196,48 @@
       </div>
     <% end -%>
 
-    <h3>
-      <%=t :recent_observations %>
-      <%= link_to t(:view_all), project_observations_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
-    </h3>
-    <% if @project_observations.blank? -%>
-      <div class="description noresults">
-        <%=t :no_observations_yet %>
+    <% if @project.project_type == 'bioblitz' -%>
+      <div id="bioblitz_observations">
+        <div class="clear">
+          <h3 class="left">
+            <%=t :recent_observations %>
+            <%= link_to t(:view_all), @observations_url, :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
+          </h3>
+          <div class="right observationcontrols"></div>
+        </div>
+        <div class="observations medium grid">
+          <%= loading %>
+        </div>
       </div>
     <% else %>
-      <div class="mini observations">
-        <% for project_observation in @project_observations %>
-          <%= render :partial => 'project_observation', :object => project_observation %>
-        <% end %>
-      </div>
-      <%= link_to t(:more_observations), {:controller => "observations", :action => "project", :id => @project},
-        :class => "readmore" %>
+      <h3>
+        <%=t :recent_observations %>
+        <%= link_to t(:view_all), project_observations_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
+      </h3>
+      <% if @project_observations.blank? -%>
+        <div class="description noresults">
+          <%=t :no_observations_yet %>
+        </div>
+      <% else %>
+        <div class="mini observations">
+          <% for project_observation in @project_observations %>
+            <%= render :partial => 'project_observation', :object => project_observation %>
+          <% end %>
+        </div>
+        <%= link_to t(:more_observations), {:controller => "observations", :action => "project", :id => @project},
+          :class => "readmore" %>
+      <% end -%>
     <% end -%>
   </div>
 </div>
 
 <div class="last column span-8">
   <ul id="projectnav" class="stacked quiet box">
+    <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+      <li>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:event_observations)}".html_safe, @observations_url, :class => "navlink" %>
+      </li>
+    <% end -%>
     <li>
       <% if @project_observations_count.to_i > 0 -%>
         <span class="right" style="margin: 4px 10px 0 10px">
@@ -191,6 +258,11 @@
             :rel => "nofollow" %>
         <% end -%>
       </div>
+      <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+        <div class="inner small meta upstacked">
+          <%=t 'views.projects.show.project_observations_desc' %>
+        </div>
+      <% end -%>
     </li>
     <li>
       <% if @project.prefers_count_from_list? -%>

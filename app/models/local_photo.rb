@@ -108,8 +108,7 @@ class LocalPhoto < Photo
     end
     true
   rescue => e
-    puts "[DEBUG] Failed to expire obs caches for #{self}: #{e}"
-    puts e.backtrace.join("\n")
+    Airbrake.notify(e)
     true
   end
   

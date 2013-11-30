@@ -72,7 +72,7 @@ class ObservationsController < ApplicationController
     'species_guess' => 'species name',
     'project' => "date added to project"
   }
-  PARTIALS = %w(cached_component observation_component observation mini)
+  PARTIALS = %w(cached_component observation_component observation mini project_observation)
   EDIT_PARTIALS = %w(add_photos)
   PHOTO_SYNC_ATTRS = [:description, :species_guess, :taxon_id, :observed_on,
     :observed_on_string, :latitude, :longitude, :place_guess]

@@ -50,9 +50,8 @@ input.button:active {
   margin: 0pt 0.583em 0.667em 0pt;
 }
 
-.buttonrow .inter {
-  padding: 7px 0;
-}
+.buttonrow .inter {padding: 7px 0;}
+.buttonrow .inter.right {float:right;}
 
 .buttonrow .select {
   margin: 0pt 0.583em 0.667em 0pt;

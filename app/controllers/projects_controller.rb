@@ -80,14 +80,15 @@ class ProjectsController < ApplicationController
         end
         @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
         @members_count = @project_users.total_entries
-        @project_observations = @project.project_observations.paginate(:page => 1, 
-          :include => {
+        @project_observations = @project.project_observations.page(1).
+          includes(
             :observation => [:iconic_taxon, :observation_photos => [:photo]],
             :curator_identification => [:user, :taxon]
-          }, :order => "project_observations.id DESC")
-        @project_observations_count = @project_observations.total_entries
+          ).
+          order("project_observations.id DESC")
+        @project_observations_count = @project_observations.count
+        @observations = @project_observations.map(&:observation) unless @project.project_type == 'bioblitz'
         @project_journal_posts = @project.posts.published.order("published_at DESC").limit(4)
-        @observations = @project_observations.map(&:observation)
         @custom_project = @project.custom_project
         @project_assets = @project.project_assets.limit(100)
         @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}    
@@ -105,6 +106,13 @@ class ProjectsController < ApplicationController
           map(&:provider_uid)
         @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
         @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
+        @observations_url = if @project.project_type == 'bioblitz'
+          @observations_url_params = {:place_id => @project.place_id, :d1 => @project.start_time.iso8601, :d2 => @project.end_time.iso8601, :per_page => 24}
+          @observations_url_params[:taxon_id] = @project.rule_taxon.id if @project.rule_taxon
+          observations_url(@observations_url_params)
+        else
+          project_observations_url(@project, :per_page => 24)
+        end
 
         if params[:iframe]
           @headless = @footless = true

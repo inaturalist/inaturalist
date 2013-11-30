@@ -182,7 +182,8 @@ module ApplicationHelper
     options[:modal] ||= true
     id = title.gsub(/\W/, '').underscore
     dialog = content_tag(:div, capture(&block), :class => "dialog", :style => "display:none", :id => "#{id}_dialog")
-    link = link_to_function(title, "$('##{id}_dialog').dialog(#{options.to_json})")
+    link_options = options.delete(:link) || {}
+    link = link_to_function(title, "$('##{id}_dialog').dialog(#{options.to_json})", link_options)
     dialog + link
   end
   

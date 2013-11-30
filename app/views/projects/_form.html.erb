@@ -22,7 +22,7 @@
   <%= f.text_field :title, :required => true %>
   
   <div id="icon_fields">
-    <%= f.form_field :project_icon, :label => "#{t(:project_icon)} (PNG, JPG, or GIF)", :wrapper => {:class => 'clear'} do %>
+    <%= f.form_field :project_icon, :label => "#{t(:project_icon)} (PNG, JPG, or GIF)", :description => t('views.projects.edit.icon_desc'), :wrapper => {:class => 'clear'} do %>
       <% if project.icon.file? -%>
         <%= image_tag(project.icon.url(:thumb), :class => "left") %>
         <div>
@@ -37,8 +37,8 @@
         <%= f.file_field :icon, :label => false, :size => 20, :accept => "image/jpg,image/jpeg,image/png,image/gif" %>
       <% end -%>
     <% end %>
-    
-    <%= f.form_field :project_cover, :label => "#{t(:project_cover)} (PNG, JPG, or GIF)", :wrapper => {:class => 'clear'} do %>
+
+    <%= f.form_field :project_cover, :label => "#{t(:project_cover)} (PNG, JPG, or GIF)", :description => t('views.projects.edit.cover_desc'), :wrapper => {:class => 'clear'} do %>
       <% if project.cover.file? -%>
         <%= image_tag(project.cover.url, :class => "left", :style => "max-width:200px") %>
         <div>
@@ -68,6 +68,20 @@
         :description => t(:show_the_total_number_of) %>
   </div>
 
+  <fieldset id="bioblitz" style="<%= "display:none;" unless @project.project_type == Project::BIOBLITZ_TYPE %>">
+    <legend>
+      <%=t :bioblitz %>
+      <%= helptip "&nbsp;".html_safe do %>
+        <%= t('views.projects.edit.bioblitz_desc_html') %>
+        <%=t 'views.projects.show.bioblitz_results_desc_html' %>
+      <% end -%>
+    </legend>
+    <%= f.datetime_select :start_time, :include_blank => true, :description => t('views.projects.edit.start_time_desc'), :required => true %>
+    <%= f.datetime_select :end_time, :include_blank => true, 
+      :description => t('views.projects.edit.end_time_desc'), :required => true %>
+    <%= f.text_field :event_url, :placeholder => t(:event_url, :default => "Event URL"), :description => t('views.projects.edit.event_url_desc') %>
+  </fieldset>
+
   <fieldset class="location">
     <legend><%= t :location %></legend>
     <p class="description">
@@ -79,10 +93,14 @@
       <%= f.select :map_type, Project::MAP_TYPES.map{|type| [t("#{type}", :default => type).downcase, type]} %>
       <%= f.text_field :zoom_level %>
       <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => SITE_NAME) %>
-      <%= f.check_box :prefers_place_boundary_visible, :label_after => true, :description => t(:you_can_show_the_boundary_of) %>
       <% if @place -%>
         <%= link_to t(:view_place), @place, :class => "readmore" %>
       <% end -%>
+      <div class="upstacked stacked">
+        <label><%=t :not_finding_place_you_want? %></label>
+        <div class="meta"><%=t 'views.projects.edit.bioblitz_create_a_new_place_html', :link => link_to(t(:create_a_new_place), new_place_path(:anchor => "manual"), :target => "_blank") %></div>
+      </div>
+      <%= f.check_box :prefers_place_boundary_visible, :label_after => true, :description => t(:you_can_show_the_boundary_of) %>
     </div>
     <div class="last column span-16">
       <div class="stacked">
@@ -226,7 +244,7 @@
     </div>
   </fieldset>
 
-  <div class="buttons">
+  <div class="buttons buttonrow">
     <%= f.submit project.new_record? ? t(:create) : t(:save), :class => "default button", "data-loading-click" => t(:saving) %>
     <%= link_to t(:cancel), projects_path, :class => "button" %>
     <% if @project_user && @project_user.is_admin? && !project.new_record? -%>
@@ -234,5 +252,8 @@
         :confirm => t(:you_sure_delete_project?),
         :class => "minor delete button" %>
     <% end -%>
+    <span class="inter right">
+      <span class="required">* <%= t :required_fields %></span>
+    </span>
   </div>
 <% end %>
