@@ -59,9 +59,7 @@ $(document).ready(function() {
         }
         map.addObservation(o)
       })
-      if ($observations.length > 0) {
-        map.zoomToObservations()
-      } else {
+      if ($observations.length == 0) {
         $('#bioblitz_observations .observations').html(
           $('<div class="meta nocontent"></div>').html(I18n.t('no_observations_yet'))
         )

@@ -60,11 +60,7 @@
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
   
   <div class="clear">
-    <%- 
-      project_types = Project::PROJECT_TYPES
-      project_types -= [Project::BIOBLITZ_TYPE] unless is_admin? || @project.project_type == Project::BIOBLITZ_TYPE
-    -%>
-    <%= f.select :project_type, project_types.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]}, {:include_blank => t(:normal)},
+    <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]}, {:include_blank => t(:normal)},
       :description => t(:contest_projects_description) %>
     <%= f.check_box :prefers_count_from_list, 
         :label => t(:show_total_listed_taxa),
@@ -83,7 +79,7 @@
     <%= f.datetime_select :start_time, :include_blank => true, :description => t('views.projects.edit.start_time_desc'), :required => true %>
     <%= f.datetime_select :end_time, :include_blank => true, 
       :description => t('views.projects.edit.end_time_desc'), :required => true %>
-    <%= f.text_field :event_url, :placeholder => t(:event_url, :default => "Event URL"), :description => t('views.projects.edit.event_url_desc') %>
+    <%= f.text_field :event_url, :label => t(:event_registration_url), :placeholder => t(:event_url, :default => "Event URL"), :description => t('views.projects.edit.event_url_desc') %>
   </fieldset>
 
   <fieldset class="location">

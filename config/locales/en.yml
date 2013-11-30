@@ -836,8 +836,11 @@ en:
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: "native and occurs nowhere else"
     arrived_in_the_region_via_anthropogenic_means: "arrived in the region via anthropogenic means"
-  establishment_means_describes_how: Establishment means describes how the taxon came to be established in an area.  See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
+  establishment_means_describes_how: |
+    Establishment means describes how the taxon came to be established in an area.  
+    See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
   event_in_progress: Event in progress
+  event_registration_url: Event registration URL
   every_species_seen_by: Every species seen by
   everyone: everyone
   everyone_journal_posts: Everyone's Journal Posts
@@ -3265,8 +3268,9 @@ en:
         end_time_desc: "End time for your bioblitz. Must be less than one year after start time"
         event_url_desc: |
           URL of an event registration service you're using for your bioblitz.
-          If this is an Eventbrite URL we'll include a sign-up widget on your
-          project page until your bioblitz begins.
+          If this is an Eventbrite URL that includes a numerical ID, we'll
+          include a sign-up widget on your project page until your bioblitz
+          begins.
       show:
         bioblitz_results_desc_html: |
           <p>
