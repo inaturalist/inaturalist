@@ -1507,9 +1507,11 @@ class ObservationsController < ApplicationController
         render :json => {
           :total => @rank_counts.map{|r| r['count_all'].to_i}.sum,
           :species_counts => @species_counts.map{|row|
+            taxon = @taxa_by_taxon_id[row['taxon_id'].to_i]
+            taxon.locale = I18n.locale
             {
               :count => row['count_all'],
-              :taxon => @taxa_by_taxon_id[row['taxon_id'].to_i].as_json(
+              :taxon => taxon.as_json(
                 :methods => [:default_name, :image_url, :iconic_taxon_name, :conservation_status_name],
                 :only => [:id, :name, :rank, :rank_level]
               )

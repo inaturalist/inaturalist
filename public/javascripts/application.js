@@ -1146,16 +1146,17 @@ $.fn.observationTaxonStats = function(options) {
           taxonTD.html(
             $('<a></a>').
               addClass('nobr '+most.taxon.default_name.lexicon).
-              attr('href', '/taxa/'+most.id).
+              attr('href', '/taxa/'+most.taxon.id).
               html(most.taxon.default_name.name)
           )
           imageTD.append($('<img/>').attr('src', most.taxon.image_url))
           taxonTD.append(
             $('<div class="meta"></div>').append(
               $('<a></a>').
-                attr('href', '/observations'+window.location.search+'&taxon_id='+most.id).
+                attr('href', '/observations'+window.location.search+'&taxon_id='+most.taxon.id).
                 html(most.count),
-              ' observation'+(most.count == 1 ? '' : 's')
+              ' ',
+              I18n.t('observation'+(most.count == 1 ? '' : 's')).toLowerCase()
             )
           )
           tr.append(imageTD, taxonTD)
@@ -1188,7 +1189,7 @@ $.fn.observationUserStats = function(options) {
         imageTD.append($('<img/>').attr('src', img_url))
         userTD.html($('<a>'+most.user.login+'</a>').attr('href', '/people/'+most.user.login))
         userTD.append(
-          $('<div></div>').addClass('meta').html(most.count + " observations")
+          $('<div></div>').addClass('meta').html(I18n.t('x_observations', {count: most.count}))
         )
         tr.append(imageTD, userTD)
         $('.most_observations table', container).append(tr)
@@ -1205,7 +1206,7 @@ $.fn.observationUserStats = function(options) {
         imageTD.append($('<img/>').attr('src', img_url))
         userTD.html($('<a>'+row.user.login+'</a>').attr('href', '/people/'+row.user.login))
         userTD.append(
-          $('<div></div>').addClass('meta').html(row.count + " species")
+          $('<div></div>').addClass('meta').html(I18n.t('x_species', {count: row.count}))
         )
         tr.append(imageTD, userTD)
         $('.most_species table', container).append(tr)

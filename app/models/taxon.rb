@@ -12,6 +12,8 @@ class Taxon < ActiveRecord::Base
 
   # Skip the more onerous callbacks that happen after grafting a taxon somewhere else
   attr_accessor :skip_after_move
+
+  attr_accessor :locale
   
   acts_as_flaggable
   has_ancestry
@@ -549,8 +551,9 @@ class Taxon < ActiveRecord::Base
     update_attributes(:parent => taxon)
   end
   
-  def default_name
-    TaxonName.choose_default_name(taxon_names)
+  def default_name(options = {})
+    options[:locale] = options[:locale] || locale
+    TaxonName.choose_default_name(taxon_names, options)
   end
   
   def scientific_name
