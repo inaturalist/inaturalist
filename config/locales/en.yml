@@ -1152,6 +1152,7 @@ en:
   just_added!: Just added!
   kelp_diatoms_and_allies: "kelp, diatoms, and allies"
   kml: KML
+  kml_file_size_error: "KML must be less than 1 MB in size"
   labels: Labels
   label_to_group_a_batch_of_taxon_changes: Label to group a batch of taxon changes
   large: large
@@ -3229,6 +3230,24 @@ en:
           photos as %{site_name} observations. Just leave a comment including this 
           special invite URL below. You can also pre-select a taxon and project for 
           the new observation.
+    places:
+      kml_field_desc: |
+        KML of the place boundary. You can make one using Google Maps, Google
+        Earth, or most GIS applications. Must have at least one polygon.
+      edit:
+        complex_boundary_note_html: |
+          This boundary is a bit too complex to edit on the web. However, you can
+          <a href="%{url}">download the KML</a>, edit it in the GIS application of your choice, and
+          upload your edited KML directly.
+      index:
+        adding_new_places: adding new places
+        confirming_identifications: confirming identifications by adding IDs to observations
+        filling_out_checklists: filling out checklists for places you know well
+        you_can_help_out_by: You can help improve our place data by
+      new:
+        check_list_note: "Note: check lists will be automatically disabled for very large places."
+        coordinates_desc: You must specify coordinates if you don't draw a boundary or upload KML.
+        map_instruction: Use the polygon tool to draw the place boundary.
     projects:
       edit:
         bioblitz_create_a_new_place_html: |
@@ -3312,20 +3331,6 @@ en:
           to %{image}, where you can <strong>record</strong> what you see in nature, 
           <strong>meet</strong> other nature lovers, 
           and <strong>learn</strong> about the natural world.
-    places:
-      edit:
-        complex_boundary_note_html: |
-          This boundary is a bit too complex to edit on the web. However, you can
-          <a href="%{url}">download the KML</a>, edit it in the GIS application of your choice, and
-          upload your edited KML directly.
-      index:
-        you_can_help_out_by: You can help improve our place data by
-        adding_new_places: adding new places
-        confirming_identifications: confirming identifications by adding IDs to observations
-        filling_out_checklists: filling out checklists for places you know well
-      new:
-        map_instruction: Use the polygon tool to draw the place boundary.
-        check_list_note: "Note: check lists will be automatically disabled for very large places."
   date:
     abbr_day_names:
       - Sun

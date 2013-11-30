@@ -123,7 +123,8 @@
     = f.text_field :woeid
     = f.text_field :parent_id, :placeholder => t(:type_place_name), "data-chooser-chosen" => @place.parent.to_json, :label => t(:parent).capitalize
     = link_to_toggle_box t(:replace_boundary_with_kml) do
-      = file_field_tag :file, :description => "KML of the place boundary. You can make one using Google Maps, Google Earth, or most GIS applications.", :accept => "application/vnd.google-earth.kml+xml"
+      = file_field_tag :file, :accept => "application/vnd.google-earth.kml+xml"
+      .meta= t('views.places.kml_field_desc')
     %input{:type => "hidden", :name => "geojson"}
     = check_box_tag :remove_geom, nil, nil
     %label{:for => "remove_geom"}=t :remove_boundary

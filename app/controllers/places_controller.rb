@@ -133,8 +133,7 @@ class PlacesController < ApplicationController
       @place.user = current_user
       @place.save
       if params[:file]
-        @geometry = geometry_from_file(params[:file])
-        @place.save_geom(@geometry) if @geometry
+        assign_geometry_from_file
       elsif !params[:geojson].blank?
         @geometry = geometry_from_geojson(params[:geojson])
         @place.save_geom(@geometry) if @geometry
@@ -167,8 +166,7 @@ class PlacesController < ApplicationController
   def update
     if @place.update_attributes(params[:place])
       if params[:file]
-        @geometry = geometry_from_file(params[:file])
-        @place.save_geom(@geometry) if @geometry
+        assign_geometry_from_file
       elsif !params[:geojson].blank?
         @geometry = geometry_from_geojson(params[:geojson])
         @place.save_geom(@geometry) if @geometry
@@ -500,5 +498,14 @@ class PlacesController < ApplicationController
       return false
     end
     true
+  end
+
+  def assign_geometry_from_file
+    if params[:file].size > 1.megabyte
+      # can't really add errors to model from here, unfortunately
+    else
+      @geometry = geometry_from_file(params[:file])
+      @place.save_geom(@geometry) if @geometry
+    end
   end
 end

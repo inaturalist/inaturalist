@@ -58,7 +58,8 @@
   <script type="text/javascript" src="https://rawgithub.com/brunob/leaflet.fullscreen/master/Control.FullScreen.js"></script>
   <script type="text/javascript" charset="utf-8">
     var CLOUDMADE_KEY = <%=raw CONFIG.cloudmade.key.inspect %>,
-        BING_KEY = <%=raw CONFIG.bing.key.inspect %>
+        BING_KEY = <%=raw CONFIG.bing.key.inspect %>,
+        PLACE_INVALID = <%= @place && !@place.errors.blank? ? 'true' : 'false' %>
     $(document).ready(function() {
       window.importMap = iNaturalist.Map.createMap({div: 'importMap'})
       window.map = L.map('drawingMap').setView([0,0], 1)
@@ -109,11 +110,20 @@
         saveGeom()
       })
 
-      $('#tabs').tabs()
+      $('#tabs').tabs({
+        active: PLACE_INVALID ? 1 : 0
+      })
       $('#place_parent_id').chooser({
         collectionUrl: '/places/autocomplete.json',
         resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
         chosen: eval('(' + $('place_parent_id').attr('data-json') + ')')
+      })
+
+      $('.kml_field :input').bind('change', function() {
+        if (this.files[0].size > 1048576) {
+          alert(I18n.t('kml_file_size_error'))
+          $(this).val(null)
+        }
       })
     })
     function saveGeom() {
@@ -170,11 +180,17 @@
     </div>
     <div class="last column span-9">
       <h3><%= t(:give_it_some_detail) %></h3>
-      <%= form_for @place, :builder => DefaultFormBuilder do |f| %>
+      <%= form_for @place, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
         <%= f.text_field :name, :class => 'text', :required => true %>
         <%= f.text_field :parent_id, :placeholder => t(:type_place_name), :style => "width: 300px" %>
-        <%= f.text_field :latitude, :class => 'text', :required => true %>
-        <%= f.text_field :longitude, :class => 'text', :required => true %>
+        <%= f.text_field :latitude, :class => 'text' %>
+        <%= f.text_field :longitude, :class => 'text' %>
+        <div class="description stacked">
+          <%=t 'views.places.new.coordinates_desc' %>
+        </div>
+        <%= f.form_field :kml, :label => "#{t(:kml)} (#{t(:optional)})", :description => t('views.places.kml_field_desc') do %>
+          <%= file_field_tag :file, :accept => "application/vnd.google-earth.kml+xml" %>
+        <% end -%>
         <%= f.select :place_type, Place::PLACE_TYPE_CODES.map{|type, code| [t("place_geo.geo_planet_place_types.#{type.gsub(" ", "_")}"), code]}.sort,
                      :include_blank => t(:unknown), :class => 'select' %>
         <%= f.check_box :prefers_check_lists, :checked => false, :label_after => true, :description => t('views.places.new.check_list_note') %>

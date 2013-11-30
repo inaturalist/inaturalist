@@ -69,7 +69,7 @@
       <span class="description">&gt;</span>
     <% end %>
   </div><!-- /#breadcrumbs -->
-  <div id="map" style="width: 100%; height: 100px"></div>
+  <div id="map" class="<%= 'nochecklist' unless @place.check_list %>"></div>
   <h2>
     <%= link_to t("places_name.#{@place.display_name.gsub(' ','_').downcase}", :default => @place.display_name), @place %>
     <span class="small description">

@@ -6,7 +6,7 @@ class PlaceGeometry < ActiveRecord::Base
   belongs_to :source
   scope :without_geom, select((column_names - ['geom']).join(', '))
   
-  after_save :refresh_place_check_list
+  after_save :refresh_place_check_list, :dissolve_geometry_if_changed
   
   validates_presence_of :geom
   validate :validate_geometry
@@ -27,6 +27,11 @@ class PlaceGeometry < ActiveRecord::Base
       self.place.check_list.delay(:priority => priority).refresh unless new_record?
       self.place.check_list.delay(:priority => priority).add_observed_taxa
     end
+    true
+  end
+
+  def dissolve_geometry_if_changed
+    dissolve_geometry if geom_changed?
     true
   end
 

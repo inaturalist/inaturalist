@@ -1473,6 +1473,7 @@ table .numeric { text-align: center; }
 
 .item_user{width:48px;}
 .item_content{width:532px;}
+.item_content .body {overflow:hidden;}
 .item_content .identification_image{margin-right:0.5em;}
 .item_content .identification_image,
 .item_content .identification_body{
