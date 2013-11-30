@@ -60,7 +60,11 @@
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
   
   <div class="clear">
-    <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]}, {:include_blank => t(:normal)},
+    <%- 
+      project_types = Project::PROJECT_TYPES
+      project_types -= [Project::BIOBLITZ_TYPE] unless is_admin? || @project.project_type == Project::BIOBLITZ_TYPE
+    -%>
+    <%= f.select :project_type, project_types.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]}, {:include_blank => t(:normal)},
       :description => t(:contest_projects_description) %>
     <%= f.check_box :prefers_count_from_list, 
         :label => t(:show_total_listed_taxa),
