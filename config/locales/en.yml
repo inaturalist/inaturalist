@@ -405,7 +405,7 @@ en:
   blue_icons_represent_political_units: "Blue icons represent political units like countries, states, provinces, counties, and the like, while green icons represent different kinds of open space (parks, reserves). If you zoom in you'll see more, smaller places."
   body: Body
   breadcrumbs: Breadcrumbs
-  breadcrumbs_description: "This will replace the h1 and default calls to action, so make sure to include them if they're important to this project."
+  breadcrumbs_description: "This will replace the h1 and default calls to action, so make sure to include them if they're important to this project and remember the max width allow is 950px"
   brief_caption: Brief caption
   brief_description_on_what_you_observed: Brief description of what you observed
   brief_description_of_what_you_saw: Brief description of what you saw
@@ -661,7 +661,9 @@ en:
     private and obscured contributions to this project.
   curator_identification: Curator identification
   current_password: Current Password
-  custom_project_fields: Custom Project Fields 
+  custom_project_fields: Custom Project Fields
+  custom_project_fields_means: Allow to custom project's head, add right side content and some style for a better look.
+  custom_project_fields_warning: Please do not paste malicious code on the javascript!
   darr_apply_darr: "&darr; Apply &darr;"
   dashboard: Dashboard
   data_deficient: data deficient
@@ -2490,7 +2492,7 @@ en:
   tree_browser_raquo: "Tree Browser &raquo;"
   'true': 'True'
   trusted_project?: Trusted project?
-  trusted_project_means: When trusted project, the admin and managers of this project can create, update and delete their owns assets on the project.
+  trusted_project_means: When trusted project, the admin and managers of this project can create, update and delete their owns custom project fields.
   try_adding_species_form: Try adding some species using the form on this page.
   try_wikipedia: Try Wikipedia?
   tue: Tue

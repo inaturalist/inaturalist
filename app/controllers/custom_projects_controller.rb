@@ -17,10 +17,6 @@ class CustomProjectsController < ApplicationController
     end
   end
 
-  def preview
-    render :json => params[:custom_project].to_json(:methods => [:html])
-  end
-
   # GET /custom_projects/1/edit
   def edit
   end

@@ -301,41 +301,6 @@ $(document).ready(function() {
     })
     return false
   })
-
-  $('.assetpreviewbutton').click(function() {
-      var button = this
-      $(button).show()
-      $(button).nextAll('.loading').hide()
-
-      $.ajax($(this).attr('href'), {
-          type: 'POST',
-          data: $(this).parents('form').find(':input[name*="custom_project"]').serialize() + '&preview=true',
-          dataType: 'json',
-          beforeSend: function() {
-              $(button).nextAll('.loading').show()
-          }
-      })
-          .done(function(data) {
-              $(button).show()
-              $(button).nextAll('.loading').hide()
-              if (data.side != "") {
-                  var side="<br><div style=\"background-color:#FFFFFF;height:auto;width:900px;float:left;\">";
-                  side +="<div style=\"background-color:#FFFFFF;height:auto;width:200px;float:right;\">" + data.side + "</div></div>";
-              } else{
-                  var side=""
-              }
-
-              var html = data.head + "<style type=\"text/css\">" + data.css + "</style>" + side
-              html = '<div class="dialog">'+html.replace(/(\r\n|\n|\r)/gm,"").replace(/<script(.*?)\/script>/g, "")+'</div>'
-              console.log(html)
-              $(html).dialog({
-                  modal: true,
-                  title: I18n.t('preview'),
-                  width: $(window).width() * 0.7
-              })
-          })
-      return false;
-  })
   
   $('.identificationform')
     .bind('ajax:before', function() {

@@ -164,6 +164,7 @@
       <% else %>
         <%= link_to t(:add_custom_project_fields), new_custom_project_path(:project_id => @project.id), :class => "readmore" %>
       <% end -%>
+      <div class="description"><%= t(:custom_project_fields_means) %></div>
     </fieldset>
 
     <% if current_user.is_admin? && !@project.new_record? -%>
@@ -178,10 +179,7 @@
 
           <%= f.check_box :trusted,
                         :label => t(:trusted_project?),
-                        :label_after => true %>
-          <% helptip_for "trusted" do %>
-              <%=t :trusted_project_means %>
-          <% end -%>
+                        :label_after => true, :description => t(:trusted_project_means) %>
         </fieldset>
     <%- end %>
   <% end -%>
