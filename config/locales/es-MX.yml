@@ -450,7 +450,7 @@ es-MX:
   blue_icons_represent_political_units: "Los íconos azules representan unidades políticas como países, estados y afines. Los íconos verdes representan diferentes tipos de espacios abiertos parques y reservas. Si haces un acercamiento, podrás ver lugares más pequeños."
   body: Cuerpo
   breadcrumbs: Ruta
-  breadcrumbs_description: "Esto reemplazará el h1 y las acciones predeterminadas, así que asegúrate de incluirlas si son importantes para este proyecto."
+  breadcrumbs_description: "Esto reemplazará el h1 y las acciones predeterminadas, así que asegúrate de incluirlas si son importantes para este proyecto, y recuerda el maximo ancho permitido es 950px"
   brief_description_on_what_you_observed: Breve descripción de lo que observaste
   brief_description_of_what_you_saw: "Describe brevemente lo que viste"
   brown: Café
@@ -694,6 +694,8 @@ es-MX:
         del proyecto.
   current_password: "Contraseña actual"
   custom_project_fields: "Campos a la medida del proyecto"
+  custom_project_fields_means: Permite modificar el baner del proyecto, añadir contenido a la parte derecha del proyecto y poner un poco de estilo para una mejor visión.
+  custom_project_fields_warning: Porfavor no pegues código malicioso en la parte del javascript
   darr_apply_darr: "&darr; Applicar &darr;"
   dashboard: Tablero
   data_deficient: "con datos deficientes"
@@ -8001,6 +8003,8 @@ es-MX:
   tree_browser: "Navegador del árbol"
   tree_browser_raquo: "Navegador del árbol &raquo;"
   "true": Sí
+  trusted_project?: ¿Es un projecto verificicado?
+  trusted_project_means: Cuando un projecto está verificado, los curadores y gerentes del proyecto pueden crear, actualizar y borra sus recursos del proyecto.
   try_adding_species_form: 'Intenta añadir algunas especies utilizando el boton "Añadir a la lista".'
   try_wikipedia: "¿Prueba Wikipedia?"
   tue: Mar
