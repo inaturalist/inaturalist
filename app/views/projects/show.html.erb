@@ -72,9 +72,7 @@
         <% if @logo_image -%>
           <%= image_tag @logo_image.asset.url, :id => "iconimg" %>
         <% else %>
-          <% if @project.icon.file? -%>
-            <%= image_tag @project.icon.url(:thumb), :id => "iconimg" %>
-          <% end -%>
+          <%= image_tag @project.icon.url(:thumb), :id => "iconimg", :class => "#{'custom' if @project.icon.file?}" %>
           <%= truncate @project.title, :length => 55 %>
         <% end -%>
       </h1>
@@ -117,9 +115,9 @@
 
 <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
   <% if !@project.event_url.blank? && !@project.event_started? -%>
-    <div id="event" class="clear stacked">
+    <div id="event" class="clear stacked <%= 'with_description' unless @project.description.blank? %>">
       <% if @project.eventbrite_id -%>
-        <iframe src="http://www.eventbrite.com/tickets-external?eid=<%= @project.eventbrite_id %>&ref=etckt&v=2" frameborder="0" height="260" width="100%" vspace="0" hspace="0" marginheight="5" marginwidth="5" scrolling="auto" allowtransparency="true"></iframe>
+        <iframe src="http://www.eventbrite.com/tickets-external?eid=<%= @project.eventbrite_id %>&ref=etckt&v=2" frameborder="0" height="215" width="100%" vspace="0" hspace="0" marginheight="5" marginwidth="5" scrolling="auto" allowtransparency="true"></iframe>
       <% else %>
         <div class="inline buttonrow centered quiet box unstacked">
           <%= link_to t(:register), @project.event_url, :class => "default button" %>
@@ -129,6 +127,10 @@
         </div>
       <% end -%>
     </div>
+  <% end -%>
+
+  <% if !@project.event_started? && !@project.description.blank? -%>
+    <%= formatted_user_text(@project.description) %>
   <% end -%>
 
   <% if @project.event_in_progress? || @project.event_ended? -%>
@@ -350,8 +352,10 @@
     <% end -%>
   </ul>
   
-  <h3><%=t :about %></h3>
-  <%= truncate_with_more formatted_user_text(@project.description), :length => 400 %>
+  <% unless @project.project_type == Project::BIOBLITZ_TYPE && !@project.event_started? %>
+    <h3><%=t :about %></h3>
+    <%= truncate_with_more formatted_user_text(@project.description), :length => 400 %>
+  <% end -%>
   
   <% if @custom_project && !@custom_project.side.blank? -%>
     <div class="stacked">

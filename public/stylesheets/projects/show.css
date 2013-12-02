@@ -59,7 +59,8 @@ h2{line-height:1;margin:0;float:left;}
   letter-spacing: 0.1em;
   text-shadow: 0 0 10px black;
 }
-#iconimg { box-shadow: 0 0 20px black; vertical-align: middle;margin-right: 10px;}
+#iconimg { vertical-align: middle;margin-right: 10px;}
+#iconimg.custom { box-shadow: 0 0 20px black;}
 #addbutton {
   position:absolute; 
   top:50%; 
@@ -107,3 +108,4 @@ h2{line-height:1;margin:0;float:left;}
 #bioblitzstats td {border:none; vertical-align:top;}
 #bioblitzstats table {margin:0;}
 #bioblitzstats .counts .stat {margin-bottom: 5px;}
+#event.with_description {width: 50%; float: right; margin-left: 10px;}
