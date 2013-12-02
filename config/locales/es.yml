@@ -692,8 +692,6 @@ es:
       del proyecto.
   current_password: "Contraseña actual"
   custom_project_fields: "Campos de proyecto personalizados"
-  custom_project_fields_means: Permite modificar el baner del proyecto, añadir contenido a la parte derecha del proyecto y poner un poco de estilo para una mejor visión.
-  custom_project_fields_warning: Porfavor no pegues código malicioso en la parte del javascript
   csv: CSV
   csv_should_not_contain_a_header_row: El CSV no debería contener ninguna cabecera de datos
   darr_apply_darr: "&darr; Aplicar &darr;"
@@ -2704,7 +2702,6 @@ es:
   tree_browser: "Explorador del árbol"
   tree_browser_raquo: "Explorador del árbol &raquo;"
   true: Sí
-  trusted_project_means: Cuando un projecto está verificado, los curadores y gerentes del proyecto pueden crear, actualizar y borra sus recursos del proyecto.
   trusted_project?: ¿Es un projecto verificicado?
   try_adding_species_form: "Trate de agregar algunas especies usando el formulario en esta página."
   try_wikipedia: "¿Probar con Wikipedia?"
@@ -2850,6 +2847,14 @@ es:
   view_your_calendar: Observa tu calendario
   view_your_observations: "Ver sus observaciones"
   views:
+    custom_projects:
+      edit:
+        custom_project_fields_warning: |
+          Por favor, tenga cuidado: la adición de Javascript y CSS a tu página
+          de proyecto puede dañar seriamente el diseño de la página y,
+          potencialmente, permitir software malicioso a afectar a las personas
+          que visualizan la página. Si usted no sabe lo que es un en
+          particular trozo de código no, por favor no agregarlo.
     shared:
       views: Vistas 
       date: Fecha
@@ -3087,6 +3092,45 @@ es:
       new:
         map_instruction: Utilice la herramienta de polígono para dibujar el contorno lugar.
         check_list_note: "Nota: Las listas de verificación se desactivan automáticamente para sitios muy grandes."
+    projects:
+      edit:
+        bioblitz_create_a_new_place_html: |
+          %{link}, make sure it has a boundary, then come back here and try again.
+        bioblitz_desc_html: |
+          <p>
+            A bioblitz is an event where you try to get people to observe as many
+            species as possible within a given place and time period. It's a fun
+            way to introduce people to biodiversity while collecting valuable
+            data at the same time.
+          </p>
+        cover_desc: |
+          Imagen de banner opcional que aparecerá en la parte superior de la
+          página del proyecto. Debe ser 950px de ancho, menos de 400px de
+          alto.
+        custom_project_fields_means: |
+          Permite modificar el baner del proyecto, añadir contenido a la parte
+          derecha del proyecto y poner un poco de estilo para una mejor visión.
+        end_time_desc: "Terminar la hora para su bioblitz. Debe ser inferior a un año después de la hora de inicio"
+        event_url_desc: |
+          URL de un servicio de registro de evento que está utilizando para su bioblitz.
+          Si se trata de una URL Eventbrite que incluye un identificador numérico, vamos a
+          incluir un widget de inscripción en su página de proyecto hasta su bioblitz
+          comienza.
+        icon_desc: "Se recortará a un cuadrado"
+        project_assets_desc_html: |
+          <p class="description"> Activos del Proyecto en sí ACABA de Archivos Asociados estafa do Proyecto, aire ALGUNAS reglas Especiales: </p>
+          <ol class="description">
+            <li>
+              archivos que terminan en <code>.logo.jpg</code>,
+              <code>.logo.png</code>, etc será utilizado como logotipo del
+              proyecto en la página del proyecto en lugar del icono de
+              proyecto
+            </li>
+            <li>archivos KML y KMZ se añadirán al mapa en la página del proyecto</li>
+          </ol>
+        trusted_project_means: |
+          Cuando un projecto está verificado, los curadores y gerentes del
+          proyecto pueden crear, actualizar y borra sus recursos del proyecto.
     users:
       dashboard:
         taxon_change_desc: |

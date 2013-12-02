@@ -3,7 +3,7 @@ class ProjectAssetsController < ApplicationController
   before_filter :load_project_asset, :only => [:edit, :update, :destroy]
   before_filter :load_project
   before_filter do |c|
-    c.admin_require_or_belongs_trusted_project @project
+    c.require_admin_or_trusted_project_manager_for @project
   end
   
   # GET /project_assets/new

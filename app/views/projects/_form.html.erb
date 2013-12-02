@@ -176,7 +176,7 @@
   <% if (current_user.is_admin? || (@project.editable_by?(current_user) && @project.trusted)) && !@project.new_record? -%>
     <fieldset id="project_assets">
       <legend><%=t :project_assets %></legend>
-
+      <%=t 'views.projects.edit.project_assets_desc_html' %>
       <ul>
         <% for project_asset in @project.project_assets %>
         <li>
@@ -190,18 +190,17 @@
         <% end %>
       </ul>
 
-      <%= link_to t(:add_asset), new_project_asset_path(:project_id => @project.id), :class => "readmore" %>
+      <%= link_to t(:add_asset), new_project_asset_path(:project_id => @project.id), :class => "readmore", :target => "_blank" %>
     </fieldset>
 
     <fieldset id="custom_project_fields">
       <legend><%=t :custom_project_fields %></legend>
-
+      <p class="description"><%= t('views.projects.edit.custom_project_fields_means') %></p>
       <% if @project.custom_project -%>
-        <%= link_to t(:edit_custom_project_fields), edit_custom_project_path(@project.custom_project), :class => "readmore" %>
+        <%= link_to t(:edit_custom_project_fields), edit_custom_project_path(@project.custom_project), :class => "readmore", :target => "_blank" %>
       <% else %>
-        <%= link_to t(:add_custom_project_fields), new_custom_project_path(:project_id => @project.id), :class => "readmore" %>
+        <%= link_to t(:add_custom_project_fields), new_custom_project_path(:project_id => @project.id), :class => "readmore", :target => "_blank" %>
       <% end -%>
-      <div class="description"><%= t(:custom_project_fields_means) %></div>
     </fieldset>
 
     <% if current_user.is_admin? && !@project.new_record? -%>
@@ -216,7 +215,7 @@
 
           <%= f.check_box :trusted,
                         :label => t(:trusted_project?),
-                        :label_after => true, :description => t(:trusted_project_means) %>
+                        :label_after => true, :description => t('views.projects.edit.trusted_project_means') %>
         </fieldset>
     <%- end %>
   <% end -%>

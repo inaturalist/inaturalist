@@ -2098,7 +2098,8 @@ CREATE TABLE projects (
     cover_updated_at timestamp without time zone,
     event_url character varying(255),
     start_time timestamp without time zone,
-    end_time timestamp without time zone
+    end_time timestamp without time zone,
+    trusted boolean DEFAULT false
 );
 
 
@@ -6108,6 +6109,8 @@ INSERT INTO schema_migrations (version) VALUES ('20131023224910');
 INSERT INTO schema_migrations (version) VALUES ('20131024045916');
 
 INSERT INTO schema_migrations (version) VALUES ('20131119214722');
+
+INSERT INTO schema_migrations (version) VALUES ('20131123022658');
 
 INSERT INTO schema_migrations (version) VALUES ('20131128214012');
 

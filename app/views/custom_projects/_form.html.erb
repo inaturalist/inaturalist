@@ -2,6 +2,7 @@
   <style type="text/css" media="screen">
     #custom_project_head { width: 99%; height: 100px;}
     #custom_project_css { width: 99%;}
+    .side_field textarea {width: 297px;}
   </style>
 <%- end -%>
 
@@ -71,7 +72,10 @@
     <%= f.text_area :side %>
   </div>
 
-  <div class="description"><%= t(:custom_project_fields_warning) %></div>
+  <div class="column span-24">
+    <div class="notice box"><%= t('views.custom_projects.edit.custom_project_fields_warning') %></div>
+  </div>
+
   <div class="column span-24 actions">
     <%= f.submit f.object.new_record? ? "Create" : "Update", :class => "default button" %>
     <%= link_to t(:preview), '', :class => 'button assetbutton assetpreviewbutton' %>

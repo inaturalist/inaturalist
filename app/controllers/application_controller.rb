@@ -310,12 +310,23 @@ class ApplicationController < ActionController::Base
     Rails.logger.debug "\n\n[DEBUG] LOG TIMER END #{endtime} (#{endtime - starttime} s)\n\n"
   end
 
-  def admin_require_or_belongs_trusted_project(project)
-    allow_project_roles = %w(manager admin)
-    unless logged_in? && current_user.has_role?(:admin) ||
-        (project.trusted && allow_project_roles.include?(project.project_users.where(:user_id => current_user).first.role))
-      flash[:notice] = "Only administrators may access that page"
-      redirect_to observations_path
+  def require_admin_or_trusted_project_manager_for(project)
+    allowed_project_roles = %w(manager admin)
+    return true if current_user.has_role?(:admin) if logged_in?
+    project_user = project.project_users.where(:user_id => current_user).first if logged_in?
+    if !project_user || 
+        !project.trusted? || 
+        !allowed_project_roles.include?(project_user.role)
+      message = "You must be project manager to do that"
+      respond_to do |format|
+        format.html do
+          flash[:notice] = message
+          redirect_back_or_default project_url(project)
+        end
+        format.json do
+          render :json => {:error => message}, :status => :unprocessable_entity
+        end
+      end
     end
   end
 
