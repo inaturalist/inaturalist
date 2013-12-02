@@ -194,11 +194,17 @@ class FlickrPhoto < Photo
       if e.message =~ /Photo not found/
         errors[:photo_missing_from_flickr] = "photo not found #{self}"
       else
-        raise e
+        errors[:flickr_error] = "Unknown problem on Flickr's end"
       end
     rescue NoMethodError => e
       raise e unless e.message =~ /token/
       errors[:flickr_authorization_missing] = "missing FlickrIdentity for #{user}"
+    rescue Errno::ECONNRESET => e
+      errors[:flickr_refusing_connection] = "Flickr is refusing the connection for some reason"
+
+    # catch-all
+    rescue EOFError => e
+      errors[:flickr_error] = "Unknown problem on Flickr's end"
     end
 
     if errors[:photo_missing_from_flickr] || (errors[:flickr_authorization_missing] && orphaned?)

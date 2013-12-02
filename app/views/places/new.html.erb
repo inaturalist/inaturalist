@@ -180,7 +180,7 @@
     </div>
     <div class="last column span-9">
       <h3><%= t(:give_it_some_detail) %></h3>
-      <%= form_for :place, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
+      <%= form_for @place, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
         <%= f.text_field :name, :class => 'text', :required => true %>
         <%= f.text_field :parent_id, :placeholder => t(:type_place_name), :style => "width: 300px" %>
         <%= f.text_field :latitude, :class => 'text' %>
