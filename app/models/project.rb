@@ -47,7 +47,7 @@ class Project < ActiveRecord::Base
   validates_presence_of :start_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
   validates_presence_of :end_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
   validate :place_with_boundary, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}
-  validate :one_year_time_span, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}
+  validate :one_year_time_span, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :unless => "errors.any?"
   
   scope :featured, where("featured_at IS NOT NULL")
   scope :near_point, lambda {|latitude, longitude|

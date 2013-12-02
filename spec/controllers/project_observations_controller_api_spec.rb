@@ -18,6 +18,14 @@ shared_examples_for "a ProjectObservationsController" do
     }.should change(ProjectObservation, :count).by(1)
   end
 
+  it "should yield JSON for invalid record on create" do
+    lambda {
+      post :create, :format => :json, :project_observation => {
+        :project_id => project.id
+      }
+    }.should_not raise_error
+  end
+
   it "should destroy" do
     po = ProjectObservation.make!(:observation => observation, :project => project)
     delete :destroy, :format => :json, :id => po.id

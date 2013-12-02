@@ -306,9 +306,7 @@ class Place < ActiveRecord::Base
       return nil
     end
     place = Place.new_from_geo_planet(ydn_place)
-    if place.valid?
-      place.save!
-    else
+    unless place.save
       Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
       return
     end

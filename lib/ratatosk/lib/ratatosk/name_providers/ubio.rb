@@ -297,8 +297,7 @@ module Ratatosk
           begin
             get_taxon
           rescue TaxonAdapterError => e
-            raise TaxonNameAdapterError, 
-              "Couldn't set a taxon.  Why?  #{e.message}"
+            raise TaxonNameAdapterError, "Couldn't set a taxon.  #{e.message}"
           end
         else
           taxon_name.taxon

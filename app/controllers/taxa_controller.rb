@@ -463,11 +463,11 @@ class TaxaController < ApplicationController
     end
     @taxon_names = exact_matches + @taxon_names
     @taxa = @taxon_names.map do |taxon_name|
-      taxon = taxon_name.taxon
+      next unless taxon = taxon_name.taxon
       taxon.html = view_context.render_in_format(:html, :partial => "chooser.html.erb", 
         :object => taxon, :comname => taxon_name.is_scientific_names? ? nil : taxon_name)
       taxon
-    end
+    end.compact
     @taxa.uniq!
     respond_to do |format|
       format.json do
@@ -526,8 +526,8 @@ class TaxaController < ApplicationController
           fp
         end
       end[0..(limit-1)]
-    rescue Timeout::Error => e
-      Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
+    rescue Timeout::Error, JSON::ParserError => e
+      Rails.logger.error "[ERROR #{Time.now}] Flickr error: #{e}"
       @photos = @taxon.photos
     end
     if params[:partial]

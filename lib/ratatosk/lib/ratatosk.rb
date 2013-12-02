@@ -117,7 +117,8 @@ module Ratatosk
         names.each do |n| 
           phylum_name = name_provider.get_phylum_for(n.taxon).name rescue nil
           unique_taxa[[n.taxon.name, phylum_name]] ||= n.taxon
-          n.taxon = unique_taxa[[n.taxon.name, phylum_name]]
+          n.taxon = unique_taxa[[n.taxon.name, phylum_name]] rescue nil
+          next unless n.taxon
           unique_names[[n.name, n.lexicon, n.taxon.name, phylum_name]] = n
         end
         names = unique_names.values
