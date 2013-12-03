@@ -770,6 +770,7 @@ en:
   edit_colors: Edit colors
   edit_comment: Edit your comment
   edit_custom_project_fields: Edit custom project fields
+  edit_field: Edit field
   edit_flagged_observation: Edit Flagged Observation
   edit_license: Edit license
   edit_notes: Edit notes
@@ -797,6 +798,7 @@ en:
   edited_by_name_html: "Edited by %{name}"
   editing: Editing
   editing_announcement: Editing announcement
+  editing_custom_project_fields_for: Editing custom project fields for
   editing_observation_field: Editing observation field
   editing_observation_id: "Editing Observation %{obs_id}"
   editing_project: Editing %{project}
@@ -885,6 +887,7 @@ en:
                   create a field, check to see if someone else has already made it to
                   avoid duplication.
   fields: fields
+  fields_can_only_be_edited_by_the_people_who: Fields can only be edited by the people who created them and site curators
   file_should_be_in_the_following_format: "File should be in the following format: taxon name, description"
   fill_out_your_profile: fill out your profile
   filling_out_checklist_for_place: filling out checklists for places you know well
@@ -1891,6 +1894,7 @@ en:
   project: Project
   project_assessments: Project Assessments
   project_assets: Project Assets
+  project_cover: Project cover
   project_created_on: created this project on %{date}
   project_curator_id: Project curator ID
   project_curators: Project Curators
