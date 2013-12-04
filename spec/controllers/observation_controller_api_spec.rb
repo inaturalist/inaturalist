@@ -270,6 +270,18 @@ shared_examples_for "an ObservationsController" do
       json = JSON.parse(response.body)
       json.size.should eq(3)
     end
+
+    it "should include deleted observation IDs when filtering by updated_since" do
+      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago)
+      oldo.updated_at.should be < 1.minute.ago
+      delo1 = Observation.make!(:user => user)
+      delo1.destroy
+      delo2 = Observation.make!(:user => user)
+      delo2.destroy
+      get :by_login, :format => :json, :login => user.login, :updated_since => 2.days.ago.iso8601
+      response.headers["X-Deleted-Observations"].split(',').should include(delo1.id.to_s)
+      response.headers["X-Deleted-Observations"].split(',').should include(delo2.id.to_s)
+    end
   end
 
   describe "index" do
@@ -370,16 +382,6 @@ shared_examples_for "an ObservationsController" do
       jsono['taxon']['common_name']['name'].should eq tn.name
     end
 
-    it "should allow filtering by updated_since" do
-      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago)
-      oldo.updated_at.should be < 1.minute.ago
-      newo = Observation.make!
-      get :index, :format => :json, :updated_since => (newo.updated_at - 1.minute).iso8601
-      json = JSON.parse(response.body)
-      json.detect{|o| o['id'] == newo.id}.should_not be_blank
-      json.detect{|o| o['id'] == oldo.id}.should be_blank
-    end
-
     it "should include identifications_count" do
       o = Observation.make!
       i = Identification.make!(:observation => o)
@@ -407,6 +409,16 @@ shared_examples_for "an ObservationsController" do
       get :index, :format => :json, :extra => "fields"
       obs = JSON.parse(response.body).detect{|o| o['id'] == ofv.observation_id}
       obs['observation_field_values'].should_not be_blank
+    end
+
+    it "should allow filtering by updated_since" do
+      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago, :user => user)
+      oldo.updated_at.should be < 1.minute.ago
+      newo = Observation.make!(:user => user)
+      get :by_login, :format => :json, :login => user.login, :updated_since => (newo.updated_at - 1.minute).iso8601
+      json = JSON.parse(response.body)
+      json.detect{|o| o['id'] == newo.id}.should_not be_blank
+      json.detect{|o| o['id'] == oldo.id}.should be_blank
     end
   end
 

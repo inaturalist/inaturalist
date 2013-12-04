@@ -436,6 +436,38 @@ ALTER SEQUENCE delayed_jobs_id_seq OWNED BY delayed_jobs.id;
 
 
 --
+-- Name: deleted_observations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE deleted_observations (
+    id integer NOT NULL,
+    user_id integer,
+    observation_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: deleted_observations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE deleted_observations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: deleted_observations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE deleted_observations_id_seq OWNED BY deleted_observations.id;
+
+
+--
 -- Name: deleted_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3219,6 +3251,13 @@ ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY deleted_observations ALTER COLUMN id SET DEFAULT nextval('deleted_observations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY deleted_users ALTER COLUMN id SET DEFAULT nextval('deleted_users_id_seq'::regclass);
 
 
@@ -3790,6 +3829,14 @@ ALTER TABLE ONLY custom_projects
 
 ALTER TABLE ONLY delayed_jobs
     ADD CONSTRAINT delayed_jobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: deleted_observations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY deleted_observations
+    ADD CONSTRAINT deleted_observations_pkey PRIMARY KEY (id);
 
 
 --
@@ -4498,6 +4545,13 @@ CREATE INDEX index_countries_simplified_1_on_place_id ON countries_simplified_1 
 --
 
 CREATE INDEX index_custom_projects_on_project_id ON custom_projects USING btree (project_id);
+
+
+--
+-- Name: index_deleted_observations_on_user_id_and_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_deleted_observations_on_user_id_and_created_at ON deleted_observations USING btree (user_id, created_at);
 
 
 --
@@ -6115,3 +6169,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131123022658');
 INSERT INTO schema_migrations (version) VALUES ('20131128214012');
 
 INSERT INTO schema_migrations (version) VALUES ('20131128234236');
+
+INSERT INTO schema_migrations (version) VALUES ('20131204211450');

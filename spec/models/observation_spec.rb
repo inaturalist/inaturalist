@@ -622,6 +622,14 @@ describe Observation, "destruction" do
     p.reload
     p.observations_count.should eq(0)
   end
+
+  it "should create a deleted observation" do
+    o = Observation.make!
+    o.destroy
+    deleted_obs = DeletedObservation.where(:observation_id => o.id).first
+    deleted_obs.should_not be_blank
+    deleted_obs.user_id.should eq o.user_id
+  end
 end
 
 describe Observation, "species_guess parsing" do

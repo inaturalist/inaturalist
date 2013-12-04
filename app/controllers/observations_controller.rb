@@ -1130,6 +1130,11 @@ class ObservationsController < ApplicationController
       format.mobile
       
       format.json do
+        if timestamp = Chronic.parse(params[:updated_since])
+          deleted_observation_ids = DeletedObservation.where("created_at >= ?", timestamp).
+            select(:observation_id).limit(500).map(&:observation_id)
+          response.headers['X-Deleted-Observations'] = deleted_observation_ids.join(',')
+        end
         render_observations_to_json
       end
       

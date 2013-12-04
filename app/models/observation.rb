@@ -337,7 +337,7 @@ class Observation < ActiveRecord::Base
   after_create :set_uri,
                :queue_for_sharing
   before_destroy :keep_old_taxon_id
-  after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches
+  after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches, :create_deleted_observation
   
   ##
   # Named scopes
@@ -1934,6 +1934,14 @@ class Observation < ActiveRecord::Base
       idents.sort_by(&:id).last.update_other_identifications
     end
     save!
+  end
+
+  def create_deleted_observation
+    DeletedObservation.create(
+      :observation_id => id,
+      :user_id => user_id
+    )
+    true
   end
 
   def self.expire_components_for(o)
