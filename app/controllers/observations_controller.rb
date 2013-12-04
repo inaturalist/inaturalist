@@ -339,7 +339,7 @@ class ObservationsController < ApplicationController
                 },
                 :taxon => {
                   :only => [:id, :name, :iconic_taxon_id, :rank],
-                  :methods => [:iconic_taxon_name, :image_url]
+                  :methods => [:iconic_taxon_name, :image_url, :common_name]
                 }
               }
             }

@@ -61,7 +61,7 @@ class IdentificationsController < ApplicationController
         
         format.json do
           @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
-          render :json => @identification.to_json(:methods => [:html]).html_safe
+          render :json => @identification.to_json(:methods => [:html], :include => [:observation]).html_safe
         end
       else
         format.html do

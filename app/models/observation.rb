@@ -818,7 +818,7 @@ class Observation < ActiveRecord::Base
     time_observed_at.try(:utc)
   end
   
-  def as_json(options = {})
+  def serializable_hash(options = {})
     # don't use delete here, it will just remove the option for all 
     # subsequent records in an array
     options[:include] = if options[:include].is_a?(Hash)

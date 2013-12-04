@@ -118,6 +118,13 @@ class TaxonName < ActiveRecord::Base
     end
     true
   end
+
+  def as_json(options = {})
+    if options.blank?
+      options[:only] = [:id, :name, :lexicon]
+    end
+    super(options)
+  end
   
   def self.choose_common_name(taxon_names, options = {})
     return nil if taxon_names.blank?

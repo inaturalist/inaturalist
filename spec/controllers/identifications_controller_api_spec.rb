@@ -16,6 +16,30 @@ shared_examples_for "an IdentificationsController" do
       observation.reload
       observation.identifications.count.should eq 1
     end
+
+    it "should include the observation in the response" do
+      t = Taxon.make!
+      post :create, :format => :json, :identification => {
+        :observation_id => observation.id,
+        :taxon_id => t.id,
+        :body => "i must eat them all"
+      }
+      json = JSON.parse(response.body)
+      json['observation']['id'].should eq observation.id
+    end
+
+    it "should not include observation private coordinates" do
+      t = Taxon.make!
+      o = make_private_observation
+      user.should_not eq o.user
+      post :create, :format => :json, :identification => {
+        :observation_id => o.id,
+        :taxon_id => t.id,
+        :body => "i must eat them all"
+      }
+      json = JSON.parse(response.body)
+      json['observation']['private_latitude'].should be_blank
+    end
   end
 
   describe "update" do

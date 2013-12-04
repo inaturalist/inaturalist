@@ -158,6 +158,14 @@ shared_examples_for "an ObservationsController" do
       response_obs = JSON.parse(response.body)
       response_obs['identifications'].first['taxon']['image_url'].should_not be_blank
     end
+
+    it "should include identification taxon common name" do
+      tn = TaxonName.make!(:lexicon => "English")
+      o = Observation.make!(:taxon => tn.taxon)
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['identifications'].first['taxon']['common_name']['name'].should_not be_blank
+    end
   end
 
   describe "update" do
