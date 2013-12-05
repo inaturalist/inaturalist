@@ -94,7 +94,7 @@
       <%= f.text_field :zoom_level %>
       <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => SITE_NAME) %>
       <% if @place -%>
-        <%= link_to t(:view_place), @place, :class => "readmore" %>
+        <%= link_to t(:view_place), @place, :class => "readmore", :target => "_blank" %>
       <% end -%>
       <div class="upstacked stacked">
         <label><%=t :not_finding_place_you_want? %></label>

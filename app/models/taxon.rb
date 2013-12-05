@@ -1023,6 +1023,7 @@ class Taxon < ActiveRecord::Base
       for_lat_lon(options[:latitude], options[:longitude]).
       order("iucn ASC").last
     return place_status.geoprivacy if place_status
+    return global_status.geoprivacy unless global_status.blank?
     return Observation::OBSCURED if conservation_status.to_i >= IUCN_NEAR_THREATENED
     ancestors.where("conservation_status >= ?", IUCN_NEAR_THREATENED).exists? ? Observation::OBSCURED : nil
   end

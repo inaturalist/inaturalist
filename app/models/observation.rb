@@ -1338,7 +1338,9 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates_for_threatened_taxa
-    taxon_geoprivacy = taxon ? taxon.geoprivacy(:latitude => latitude, :longitude => longitude) : nil
+    lat = private_latitude.blank? ? latitude : private_latitude
+    lon = private_longitude.blank? ? longitude : private_longitude
+    taxon_geoprivacy = taxon ? taxon.geoprivacy(:latitude => lat, :longitude => lon) : nil
     case taxon_geoprivacy
     when OBSCURED
       obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA) unless coordinates_obscured?
@@ -1364,6 +1366,7 @@ class Observation < ActiveRecord::Base
       self.private_longitude ||= longitude
     end
     self.latitude, self.longitude = random_neighbor_lat_lon(private_latitude, private_longitude, distance)
+    set_geom_from_latlon
   end
   
   def lat_lon_in_place_guess?
@@ -1383,6 +1386,7 @@ class Observation < ActiveRecord::Base
     self.longitude = private_longitude
     self.private_latitude = nil
     self.private_longitude = nil
+    set_geom_from_latlon
   end
   
   def iconic_taxon_name
@@ -1402,6 +1406,8 @@ class Observation < ActiveRecord::Base
         :longitude => o.longitude,
         :private_latitude => o.private_latitude,
         :private_longitude => o.private_longitude,
+        :geom => o.geom,
+        :private_geom => o.private_geom
       }, {:id => o.id})
     end
   end
@@ -1416,6 +1422,8 @@ class Observation < ActiveRecord::Base
         :longitude => o.longitude,
         :private_latitude => o.private_latitude,
         :private_longitude => o.private_longitude,
+        :geom => o.geom,
+        :private_geom => o.private_geom
       }, {:id => o.id})
     end
   end
@@ -1430,7 +1438,9 @@ class Observation < ActiveRecord::Base
         :latitude => o.latitude,
         :longitude => o.longitude,
         :private_latitude => o.private_latitude,
-        :private_longitude => o.private_longitude
+        :private_longitude => o.private_longitude,
+        :geom => o.geom,
+        :private_geom => o.private_geom
       }, {:id => o.id})
     end
   end
