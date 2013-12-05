@@ -69,7 +69,7 @@
 
   #photos.row-fluid.stacked
     - for guide_photo in @guide_taxon.guide_photos.sort_by(&:position)
-      = image_tag guide_photo.medium_url, :class => "thumb img-rounded", "data-toggle" => "modal", "data-target" => "##{dom_id(guide_photo, "modal")}"
+      = image_tag guide_photo.photo.try_methods(:medium_url, :small_url), :class => "thumb img-rounded", "data-toggle" => "modal", "data-target" => "##{dom_id(guide_photo, "modal")}"
       .imgmodal.modal.fade.hide{:role => "dialog", "aria-hidden" => "true", :id => dom_id(guide_photo, "modal")}
         = image_tag guide_photo.photo.try_methods(:large_url, :original_url, :medium_url)
         .controls

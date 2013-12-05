@@ -658,7 +658,7 @@ class Taxon < ActiveRecord::Base
         else
           []
         end
-      rescue FlickRaw::FailedResponse => e
+      rescue FlickRaw::FailedResponse, EOFError => e
         Rails.logger.error "EXCEPTION RESCUE: #{e}"
         Rails.logger.error e.backtrace.join("\n\t")
       end
