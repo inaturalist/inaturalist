@@ -282,6 +282,18 @@ shared_examples_for "an ObservationsController" do
       response.headers["X-Deleted-Observations"].split(',').should include(delo1.id.to_s)
       response.headers["X-Deleted-Observations"].split(',').should include(delo2.id.to_s)
     end
+
+    it "should not include deleted observation IDs by other people" do
+      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago)
+      oldo.updated_at.should be < 1.minute.ago
+      delo1 = Observation.make!(:user => user)
+      delo1.destroy
+      delo2 = Observation.make!
+      delo2.destroy
+      get :by_login, :format => :json, :login => user.login, :updated_since => 2.days.ago.iso8601
+      response.headers["X-Deleted-Observations"].split(',').should include(delo1.id.to_s)
+      response.headers["X-Deleted-Observations"].split(',').should_not include(delo2.id.to_s)
+    end
   end
 
   describe "index" do

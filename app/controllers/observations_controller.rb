@@ -1131,7 +1131,7 @@ class ObservationsController < ApplicationController
       
       format.json do
         if timestamp = Chronic.parse(params[:updated_since])
-          deleted_observation_ids = DeletedObservation.where("created_at >= ?", timestamp).
+          deleted_observation_ids = DeletedObservation.where("user_id = ? AND created_at >= ?", @selected_user, timestamp).
             select(:observation_id).limit(500).map(&:observation_id)
           response.headers['X-Deleted-Observations'] = deleted_observation_ids.join(',')
         end
