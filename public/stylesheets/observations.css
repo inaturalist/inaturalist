@@ -212,8 +212,8 @@
   padding-left: 30px;
 }
 
-.observations.mini .icon{position:absolute; }
-.observations.mini .icon{top:8px; left:5px;}
+.observations.mini .icon{position:absolute; top:8px; left:5px;}
+.observations.mini .icon img {max-width: 20px;}
 .observations.mini .observation[data-iconic-taxon-name="Aves"] .icon,
 .observations.mini .observation[data-iconic-taxon-name="Mammalia"] .icon,
 .observations.mini .observation[data-iconic-taxon-name="Mollusca"] .icon,
