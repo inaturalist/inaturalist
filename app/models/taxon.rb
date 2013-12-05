@@ -1256,8 +1256,8 @@ class Taxon < ActiveRecord::Base
       names.include?(tn.name) || !tn.name.match(/^([A-Z]|\d)+$/)
     end
     taxon_names = taxon_names.compact.sort do |tn1,tn2|
-      tn1_exact = names.include?(tn1.name)
-      tn2_exact = names.include?(tn2.name)
+      tn1_exact = names.include?(tn1.name) ? 1 : 0
+      tn2_exact = names.include?(tn2.name) ? 1 : 0
       [tn2_exact, tn2.name.size] <=> [tn1_exact, tn1.name.size]
     end
     taxon_names.map{|tn| tn.taxon}.compact

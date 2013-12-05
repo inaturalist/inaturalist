@@ -417,6 +417,13 @@ describe Taxon, "tags_to_taxa" do
     taxa = Taxon.tags_to_taxa([short_name.name, long_name.name])
     taxa.first.should eq long_name.taxon
   end
+
+  it "should work there are inexact matches" do
+    t = Taxon.make!
+    TaxonName.make!(:name => "Nutria", :taxon => t, :lexicon => "English")
+    TaxonName.make!(:name => "nutria", :taxon => t, :lexicon => "French")
+    Taxon.tags_to_taxa(%w(Nutria)).should include t
+  end
 end
 
 describe Taxon, "merging" do
