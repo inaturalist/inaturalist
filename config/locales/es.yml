@@ -927,6 +927,7 @@ es:
   edit_colors: "Modificar colores"
   edit_comment: "Modificar su comentario"
   edit_custom_project_fields: "Modificar campos de proyecto personalizados"
+  edit_field: Edita el campo
   edit_flagged_observation: "Editar la observación marcada"
   edit_license: "Modificar licencia"
   edit_notes: "Modificar notas"
@@ -952,6 +953,7 @@ es:
   edited: Modificado
   editing: Modificar
   editing_announcement: "Modificar anuncio"
+  editing_custom_project_fields_for: Editando campos a la medida para
   editing_observation_field: "Modificando campo de observación"
   editing_observation_id: "Modificar observación %{obs_id}"
   editing_project: "Modificación %{project}"
@@ -1064,6 +1066,7 @@ es:
                     checa si alguien mas ya lo creo, para
                     evitar duplicación.
   fields: campos
+  fields_can_only_be_edited_by_the_people_who: Los campos solo pueden ser editados por las personas que los crearon y los curadores del sitio.
   file_should_be_in_the_following_format: "El archivo debería tener el siguiente formato: nombre de la especie o grupo, descripción"
   fill_out_your_profile: "completa su perfil"
   filling_out_checklist_for_place: "llenar las listas de verificación de los lugares que usted conoce bien"
@@ -1538,6 +1541,7 @@ es:
   most_agree: "La mayoría la apoya"
   most_disagree: "La mayoría no la apoyan"
   multiple_taxa: Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)
+  must_be_less_than_x_MB: "Debe pesar menos de %{x}MB"
   must_be_observed_in: deben ser observaciones en
   must_have_observation_field: "debe completar el campo '%{operand}' en la observación"
   n_ago: "hace %{n}"
@@ -2104,6 +2108,7 @@ es:
   project_assessments: Evaluación del proyecto
   project_assets: "Activos del proyecto"
   project_colon: Proyecto
+  project_cover: Portada del proyecto
   project_created_on: "creó este proyecto el %{date}"
   project_curator_id: "Identificación del curador del proyecto"
   project_curators: "Curadores del Proyecto"

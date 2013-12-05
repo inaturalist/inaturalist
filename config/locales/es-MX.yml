@@ -939,6 +939,7 @@ es-MX:
   edit_colors: "Edita los colores"
   edit_comment: "Edita tu comentario"
   edit_custom_project_fields: "Añade campos a la medida del proyecto"
+  edit_field: Edita el campo
   edit_flagged_observation: "Edita la observación con advertencia"
   edit_notes: "Edita las notas"
   edit_photos: "Edita las fotos"
@@ -961,6 +962,7 @@ es-MX:
   edited: Editado
   editing: Editando
   editing_announcement: "Editando noticia"
+  editing_custom_project_fields_for: Editando campos a la medida para
   editing_observation_field: "Editando campo de observación"
   editing_observation_id: "Editando observación %{obs_id}"
   editing_project: "Editando %{project}"
@@ -6459,6 +6461,7 @@ es-MX:
                       checa si alguien más ya lo creó, para
                       evitar duplicación.
   fields: Campos
+  fields_can_only_be_edited_by_the_people_who: Los campos solo pueden ser editados por las personas que los crearon y los curadores del sitio.
   file_should_be_in_the_following_format: "El archivo debería tener el siguiente formato: nombre de la especie o grupo, descripción"
   fill_out_your_profile: "Escribe tu perfil"
   filling_out_checklist_for_place: "Llenando listas de especies para lugares que conoces bien"
@@ -6663,7 +6666,7 @@ es-MX:
   inat_believes_this_is_a_complete_listing: "El %{site_name} considera que esta es una lista completa para esta especie o grupo en este lugar."
   inat_user_profile: "%{site_name}: Perfil de %{user}"
   inat_will_be_back_on: "%{site_name} regresará con sus pies/alas/aletas/tentáculos/pseudópodos"
-  inaturalist_is_an_online_community: "%{site_name} es una comunidad en línea para naturalistas. Al añadir tu foto, puedes ayudar a los investigadores a conocer más sobre "
+  inaturalist_is_an_online_community: "%{site_name} es una comunidad en línea para NaturaListas. Al añadir tu foto, puedes ayudar a los investigadores a conocer más sobre "
   inaturalist_is_catching_some_zs: "El %{site_name} está durmiendo un rato Catching Some Zs"
   inaturalist_observations_by: "%{site_name} &#58; Las observaciones de %{login}"
   inaturalist_places: "%{site_name} Lugares"
@@ -6916,6 +6919,7 @@ es-MX:
   most_disagree: "La mayoría no está de acuerdo"
   most: Más
   multiple_taxa: Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)
+  must_be_less_than_x_MB: "Debe pesar menos de %{x}MB"
   must_be_observed_in: deben ser observaciones en
   must_have_observation_field: "debe completar el campo '%{operand}' en la observación"
   n_ago: "hace %{n}"
@@ -7425,6 +7429,7 @@ es-MX:
   project: Proyecto
   project_assessments: Evaluación del proyecto
   project_assets: "Recursos del proyecto"
+  project_cover: Portada del proyecto
   project_created_on: "creó este proyecto el %{date}"
   project_curator_id: "Identificación del curador del proyecto"
   project_curators: "Curadores del proyecto"
@@ -8324,6 +8329,45 @@ es-MX:
         confirming_identifications: "Confirmando identificaciones al añadir una identificación a las observaciones"
         filling_out_checklists: "Llenando listas de especies para los lugares que conoces bien."
         you_can_help_out_by: "Puedes ayudar a mejorar nuestros datos de lugares mediante"
+    projects:
+      edit:
+        bioblitz_create_a_new_place_html: |
+          %{link}, asegurate de que tu lugar este delimitado por un polígono, y despues puedes regresar a intentarlo de nuevo.
+        bioblitz_desc_html: |
+          <p>
+            A bioblitz is an event where you try to get people to observe as many
+            species as possible within a given place and time period. It's a fun
+            way to introduce people to biodiversity while collecting valuable
+            data at the same time.
+          </p>
+        cover_desc: |
+          La imagen del banner es opcional y aparecerá en la parte superior de la
+          página del proyecto. Debe ser de 950px de ancho, menos de 400px de
+          alto.
+        custom_project_fields_means: |
+          Permite modificar el baner del proyecto, añadir contenido a la parte
+          derecha del proyecto y poner un poco de estilo para una mejor visión.
+        end_time_desc: "Terminar la hora para su bioblitz. Debe ser inferior a un año después de la hora de inicio"
+        event_url_desc: |
+          URL de un servicio de registro de evento que está utilizando para su bioblitz.
+          Si se trata de una URL Eventbrite que incluye un identificador numérico, vamos a
+          incluir un widget de inscripción en su página de proyecto hasta su bioblitz
+          comienza.
+        icon_desc: "Se recortará a un cuadrado"
+        project_assets_desc_html: |
+          <p class="description"> Los recursos asociados a tu proyecto son archivos que tienen ciertas reglas especiales: </p>
+          <ol class="description">
+            <li>
+              archivos que terminan en <code>.logo.jpg</code>,
+              <code>.logo.png</code>, etc será utilizado como logotipo del
+              proyecto en la página del proyecto en lugar del icono de
+              proyecto
+            </li>
+            <li>archivos KML y KMZ se añadirán al mapa en la página del proyecto</li>
+          </ol>
+        trusted_project_means: |
+          Cuando un projecto está verificado, los curadores y gerentes del
+          proyecto pueden crear, actualizar y borra sus recursos del proyecto.
     users: 
       edit: 
         licensing_desc_html: |
@@ -8346,7 +8390,7 @@ es-MX:
             %{image} te invita a utilizar este portal de información sobre 
             biodiversidad en el que podrás compartir lo que observas en la 
             naturaleza, aprender de ella e intercambiar información con otros 
-            ciudadanos naturalistas.
+            ciudadanos NaturaListas.
   vulnerable: vulnerable
   w00t_no_ungrafted_taxa: "¡Especie o grupo no injertado!"
   w_photos_only: "Con fotos solamente"
@@ -8574,7 +8618,7 @@ es-MX:
                     pero si tienes tiempo de revisar algunos contenidos de antemano lo apreciamos. Si tienes alguna duda, comentario o
                     simplemente ya no quieres ser un curador, contáctanos a
   youre_following: "estás siguiendo"
-  youre_not_following_anyone: "No estás siguiendo a nadie. Si sigues a otros naturalistas podrás ver fácilmente sus más recientes observaciones. Ve y encuentra que gente está"
+  youre_not_following_anyone: "No estás siguiendo a nadie. Si sigues a otros NaturaListas podrás ver fácilmente sus más recientes observaciones. Ve y encuentra que gente está"
   youre_viewing_all_observations: "Estás viendo todas las observaciones"
   youre_viewing_site_name_observations_html: "Estás viendo las observaciones de <strong>%{site_name}</strong> "
   youve_already_added_an_identification: "Ya has añadido una identificación y solo puedes añadir una."
