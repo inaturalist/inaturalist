@@ -157,7 +157,7 @@
         - if @guide.downloadable?
           - if @guide.ngz.file?
             .btn.pull-left.btn-link{:disabled => true, :data => {:tip => t('views.guides.mobile_downloads_tip_html', :iphone_url => CONFIG.iphone_app_url), :tip_position_at => "bottom center", :tip_width => 200, :tip_hide_delay => 200}}
-              %i.icon-mobile-phone.icon
+              %i.fa-mobile.fa
               =t :mobile_download_enabled
               - if @guide.editable_by?(current_user)
                 = link_to "(#{t(:disable)})".html_safe, guide_path(@guide, :guide => {:downloadable => false}), :method => :put
@@ -171,15 +171,15 @@
         - if @guide.editable_by?(current_user)
           - if !@guide.ngz_url && !@guide.downloadable?
             %button.btn.pull-left{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#mobile_dialog"}
-              %i.icon-mobile-phone.icon
+              %i.fa-mobile.fa
               =t :enable_mobile_downloads
         .btn-group.pull-right
           %button.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#pdf_dialog"}
-            %i.icon-print
+            %i.fa.fa-print
             =t :pdf_slash_print
           - if @guide.editable_by?(current_user)
             = link_to edit_guide_path(@guide), :class => "btn" do
-              %i.icon-edit
+              %i.fa.fa-edit
               = t(:edit)
             - unless @guide.published?
               = link_to t(:publish), guide_path(@guide, :publish => true), :method => :put, :class => "btn btn-primary"
@@ -369,7 +369,7 @@
         = f.hidden_field :downloadable, :value => true
         .row-fluid
           .span3.text-center
-            %i.icon-mobile-phone.icon-4x{:style => "font-size:200px;width:100px;line-height:1;"}
+            %i.fa.fa-mobile.fa-6{:style => "font-size:200px;width:100px;line-height:1;"}
           .span9
             %p=t 'views.guides.mobile_downloads_help_html'
       .modal-footer
