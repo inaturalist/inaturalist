@@ -30,12 +30,25 @@ module Paperclip
   end
   module Storage
     module Filesystem
+      mattr_accessor :stubbed_for_tests
+      self.stubbed_for_tests = true
+
+      alias :_orig_flush_writes :flush_writes
       def flush_writes
-        @queued_for_write.each{|style, file| file.close}
-        @queued_for_write = {}
+        if self.stubbed_for_tests
+          @queued_for_write.each{|style, file| file.close}
+          @queued_for_write = {}
+        else
+          _orig_flush_writes
+        end
       end
+      alias :_orig_flush_deletes :flush_deletes
       def flush_deletes
-        @queue_for_delete = []
+        if self.stubbed_for_tests
+          @queue_for_delete = []
+        else
+          _orig_flush_deletes
+        end
       end
     end
   end
