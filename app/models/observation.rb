@@ -1944,6 +1944,27 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def build_observation_fields_from_tags(tags)
+    tags.each do |tag|
+      np, value = tag.split('=')
+      next unless np && value
+      namespace, predicate = np.split(':')
+      predicate = namespace if predicate.blank?
+      of = ObservationField.where("lower(name) = ?", predicate.downcase).first
+      next unless of
+      next if self.observation_field_values.detect{|ofv| ofv.observation_field_id == of.id}
+      if of.datatype == ObservationField::TAXON
+        t = Taxon.single_taxon_for_name(value)
+        next unless t
+        value = t.id
+      end
+      ofv = self.observation_field_values.build(:observation_field => of, :value => value)
+      unless ofv.valid?
+        self.observation_field_values.pop
+      end
+    end
+  end
+
   def self.expire_components_for(o)
     o = Observation.find_by_id(o) unless o.is_a?(Observation)
     return unless o

@@ -1139,7 +1139,11 @@ class Taxon < ActiveRecord::Base
   def self.import(name, options = {})
     name = normalize_name(name)
     ancestor = options.delete(:ancestor)
-    external_names = ratatosk.find(name)
+    external_names = begin
+      ratatosk.find(name)
+    rescue Timeout::Error => e
+      []
+    end
     external_names.select!{|en| en.name.downcase == name.downcase} if options[:exact]
     return nil if external_names.blank?
     external_names.each do |en| 
@@ -1237,16 +1241,25 @@ class Taxon < ActiveRecord::Base
     names = tags.map do |tag|
       next if tag.blank?
       if name = tag.match(/^taxonomy:\w+=(.*)/).try(:[], 1)
-        name.downcase
+        name
       else
-        name = tag.downcase.strip.gsub(/ sp\.?$/, '')
+        name = tag.strip.gsub(/ sp\.?$/, '')
         next if PROBLEM_NAMES.include?(name)
         name
       end
     end.compact
-    scope = scope.where("lower(taxon_names.name) IN (?)", names)
+    lower_names = names.map(&:downcase)
+    scope = scope.where("lower(taxon_names.name) IN (?)", lower_names)
     taxon_names = scope.where("taxa.is_active = ?", true).all
     taxon_names = scope.all if taxon_names.blank? && options[:active] != true
+    taxon_names = taxon_names.select do |tn|
+      names.include?(tn.name) || !tn.name.match(/^([A-Z]|\d)+$/)
+    end
+    taxon_names = taxon_names.compact.sort do |tn1,tn2|
+      tn1_exact = names.include?(tn1.name)
+      tn2_exact = names.include?(tn2.name)
+      [tn2_exact, tn2.name.size] <=> [tn1_exact, tn1.name.size]
+    end
     taxon_names.map{|tn| tn.taxon}.compact
   end
   

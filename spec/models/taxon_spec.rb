@@ -397,6 +397,26 @@ describe Taxon, "tags_to_taxa" do
     taxa = Taxon.tags_to_taxa(['Spizella'])
     taxa.should include(t)
   end
+
+  it "should choose names before codes" do
+    code_name = TaxonName.make!(:name => "HOME", :lexicon => "AOU Codes")
+    name_name = TaxonName.make!(:name => "Golden-crowned Sparrow", :lexicon => "AOU Codes")
+    taxa = Taxon.tags_to_taxa([code_name.name, name_name.name])
+    taxa.first.should eq name_name.taxon
+  end
+
+  it "should not match a code if it's not an exact match" do
+    code_name = TaxonName.make!(:name => "HOME", :lexicon => "AOU Codes")
+    taxa = Taxon.tags_to_taxa([code_name.name.downcase])
+    taxa.should be_blank
+  end
+
+  it "should favor longer names" do
+    short_name = TaxonName.make!(:name => "bork", :lexicon => "English")
+    long_name = TaxonName.make!(:name => "Giant Dour-Crested Mopple Hopper", :lexicon => "English")
+    taxa = Taxon.tags_to_taxa([short_name.name, long_name.name])
+    taxa.first.should eq long_name.taxon
+  end
 end
 
 describe Taxon, "merging" do

@@ -124,43 +124,43 @@ class LocalPhoto < Photo
   def to_observation(options = {})
     o = Observation.new(:user => user)
     o.observation_photos.build(:photo => self)
-    if metadata
-      if !metadata[:gps_latitude].blank? && !metadata[:gps_latitude].to_f.nan?
-        o.latitude = metadata[:gps_latitude].to_f
-        if metadata[:gps_latitude_ref].to_s == 'S' && o.latitude > 0
-          o.latitude = o.latitude * -1
-        end
+    return o unless metadata
+    if !metadata[:gps_latitude].blank? && !metadata[:gps_latitude].to_f.nan?
+      o.latitude = metadata[:gps_latitude].to_f
+      if metadata[:gps_latitude_ref].to_s == 'S' && o.latitude > 0
+        o.latitude = o.latitude * -1
       end
-      if !metadata[:gps_longitude].blank? && !metadata[:gps_longitude].to_f.nan?
-        o.longitude = metadata[:gps_longitude].to_f
-        if metadata[:gps_longitude_ref].to_s == 'W' && o.longitude > 0
-          o.longitude = o.longitude * -1
-        end
+    end
+    if !metadata[:gps_longitude].blank? && !metadata[:gps_longitude].to_f.nan?
+      o.longitude = metadata[:gps_longitude].to_f
+      if metadata[:gps_longitude_ref].to_s == 'W' && o.longitude > 0
+        o.longitude = o.longitude * -1
       end
-      if o.georeferenced?
-        o.place_guess = o.system_places.sort_by{|p| p.bbox_area || 0}.map(&:name).join(', ')
+    end
+    if o.georeferenced?
+      o.place_guess = o.system_places.sort_by{|p| p.bbox_area || 0}.map(&:name).join(', ')
+    end
+    if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
+      o.set_time_zone
+      o.time_observed_at = capture_time
+      o.set_time_in_time_zone
+      if o.time_observed_at
+        o.observed_on_string = o.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")
+        o.observed_on = o.time_observed_at.to_date
       end
-      if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
-        o.set_time_zone
-        o.time_observed_at = capture_time
-        o.set_time_in_time_zone
-        if o.time_observed_at
-          o.observed_on_string = o.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")
-          o.observed_on = o.time_observed_at.to_date
-        end
+    end
+    unless metadata[:dc].blank?
+      o.taxon = to_taxon
+      if o.taxon
+        tags = to_tags.map(&:downcase)
+        o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)
+        o.species_guess ||= o.taxon.default_name.try(:name)
+      elsif !metadata[:dc][:title].blank?
+        o.species_guess = metadata[:dc][:title].to_sentence.strip
       end
-      unless metadata[:dc].blank?
-        o.taxon = to_taxon
-        if o.taxon
-          tags = to_tags.map(&:downcase)
-          o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)
-          o.species_guess ||= o.taxon.default_name.try(:name)
-        elsif !metadata[:dc][:title].blank?
-          o.species_guess = metadata[:dc][:title].to_sentence.strip
-        end
-        o.species_guess = nil if o.species_guess.blank?
-        o.description = metadata[:dc][:description].to_sentence unless metadata[:dc][:description].blank?
-      end
+      o.species_guess = nil if o.species_guess.blank?
+      o.description = metadata[:dc][:description].to_sentence unless metadata[:dc][:description].blank?
+      o.build_observation_fields_from_tags(to_tags)
     end
     o
   end
