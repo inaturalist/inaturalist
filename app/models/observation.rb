@@ -1390,7 +1390,12 @@ class Observation < ActiveRecord::Base
   end
   
   def iconic_taxon_name
-    Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id].try(:name)
+    return nil if iconic_taxon_id.blank?
+    if Taxon::ICONIC_TAXA_BY_ID.blank?
+      association(:iconic_taxon).loaded? ? iconic_taxon.try(:name) : Taxon.select("id, name").where(:id => iconic_taxon_id).first.try(:name)
+    else
+      Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id].try(:name)
+    end
   end
   
   def self.obscure_coordinates_for_observations_of(taxon, options = {})
@@ -1549,10 +1554,10 @@ class Observation < ActiveRecord::Base
     true
   end
   
-  def set_geom_from_latlon
+  def set_geom_from_latlon(options = {})
     if longitude.blank? || latitude.blank?
       self.geom = nil
-    elsif longitude_changed? || latitude_changed?
+    elsif options[:force] || longitude_changed? || latitude_changed?
       self.geom = Point.from_x_y(longitude, latitude)
     end
     if (private_latitude && private_latitude_changed?) || (private_longitude && private_longitude_changed?)
