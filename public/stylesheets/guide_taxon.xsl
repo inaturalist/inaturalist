@@ -25,7 +25,26 @@
           <div id="photos" class="{$photosClass}">
             <xsl:for-each select="//GuidePhoto">
               <div class="image">
-                <img src="{href[@type='remote' and @size='medium']}" class="thumb img-rounded" data-toggle="modal"/>
+                <xsl:choose>
+                  <xsl:when test="href[@type='remote' and @size='large']">
+                    <a href="{href[@type='remote' and @size='large']}">
+                      <img src="{href[@type='remote' and @size='large']}" class="thumb img-rounded" data-toggle="modal"/>
+                    </a>
+                  </xsl:when>
+                  <xsl:when test="href[@type='remote' and @size='medium']">
+                    <a href="{href[@type='remote' and @size='medium']}">
+                      <img src="{href[@type='remote' and @size='medium']}" class="thumb img-rounded" data-toggle="modal"/>
+                    </a>
+                  </xsl:when>
+                  <xsl:when test="href[@type='remote' and @size='small']">
+                    <a href="{href[@type='remote' and @size='small']}">
+                      <img src="{href[@type='remote' and @size='small']}" class="thumb img-rounded" data-toggle="modal"/>
+                    </a>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <img src="{href[@type='remote' and @size='medium']}" class="thumb img-rounded" data-toggle="modal"/>  
+                  </xsl:otherwise>
+                </xsl:choose>
                 <div class="text-muted">
                   <xsl:choose>
                     <xsl:when test="$numPhotos &gt; 1">

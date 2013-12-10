@@ -1,9 +1,9 @@
 - history_table = capture do
   %table.wiki_history
     %tr.wiki_history_header
-      %th=wt 'Version'
+      %th.version=wt 'Version'
       %th=wt 'Date'
-      %th=wt 'Author'
+      %th.author=wt 'Author'
       %th=wt 'Comment'
     - versions.each do |v|
       %tr
