@@ -71,7 +71,7 @@ end
 GuidePhoto.blueprint do
   guide_taxon { GuideTaxon.make! }
   photo { Photo.make! }
-  description { Faker::Lorem.paragraph }
+  description { Faker::Lorem.paragraph.truncate(255) }
 end
 
 GuideRange.blueprint do

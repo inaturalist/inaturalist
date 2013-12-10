@@ -324,9 +324,7 @@ describe Observation, "updating" do
     @observation.observed_on_string = 'March 16 2007 at 2pm'
     @observation.save
     @observation.observed_on.should == Date.parse('2007-03-16')
-    Time.use_zone(@observation.time_zone) do
-      @observation.time_observed_at.hour.should be(14)
-    end
+    @observation.time_observed_at_in_zone.hour.should eq(14)
   end
   
   it "should not save a time if one wasn't specified" do

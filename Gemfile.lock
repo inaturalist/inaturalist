@@ -353,9 +353,16 @@ GEM
       right_http_connection (>= 1.2.5)
     right_http_connection (1.3.0)
     rinku (1.7.3)
+    rspec (2.13.0)
+      rspec-core (~> 2.13.0)
+      rspec-expectations (~> 2.13.0)
+      rspec-mocks (~> 2.13.0)
     rspec-core (2.13.1)
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
+    rspec-html-matchers (0.4.3)
+      nokogiri (>= 1.4.4)
+      rspec (>= 2.0.0)
     rspec-mocks (2.13.1)
     rspec-rails (2.13.2)
       actionpack (>= 3.0)
@@ -485,6 +492,7 @@ DEPENDENCIES
   right_http_connection
   rinku
   riparian!
+  rspec-html-matchers
   rspec-rails
   rvm-capistrano
   simple_oauth
