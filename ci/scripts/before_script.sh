@@ -2,11 +2,20 @@
 
 source ./ci/scripts/guard.sh
 
-TRAVIS_CONFIG_DIR=${TRAVIS_CONFIG_DIR:=ci/conf}
+TRAVIS_PATCHES_DIR=${TRAVIS_PATCHES_DIR:=ci/patches}
 RAILS_CONFIG_DIR=${RAILS_CONFIG_DIR:=config}
 
 echo "Copying config files"
-cp $TRAVIS_CONFIG_DIR/* $RAILS_CONFIG_DIR/
+for ex in $RAILS_CONFIG_DIR/*.example; do
+    f=$(basename "$ex" .example)
+    p="$RAILS_CONFIG_DIR/$f"
+    cp --backup "$ex" "$p"
+
+    patch=$TRAVIS_PATCHES_DIR/$f.patch
+    if [ -f "$patch" ]; then
+        patch "$p" "$patch"
+    fi
+done
 
 echo "Setting up DB and starting Talking Sphinx"
 RAILS_ENV=test bundle exec rake --trace \
