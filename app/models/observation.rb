@@ -988,8 +988,8 @@ class Observation < ActiveRecord::Base
     # A much better approach would be add Spanish and any other supported
     # locales to https://github.com/olojac/chronic-l10n and switch to the
     # 'localized' branch of Chronic, which seems to clear our test suite.
-    return if locale.to_s =~ /^en/
-    return unless I18N_SUPPORTED_LOCALES.include?(locale)
+    return date_string if locale.to_s =~ /^en/
+    return date_string unless I18N_SUPPORTED_LOCALES.include?(locale)
     I18n.t('date.abbr_month_names', :locale => :en).each_with_index do |en_month_name,i|
       next if i == 0
       localized_month_name = I18n.t('date.abbr_month_names', :locale => locale)[i]

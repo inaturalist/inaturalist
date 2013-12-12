@@ -64,13 +64,13 @@ describe Observation, "creation" do
     end
   end
 
-  it "should parse Spanish date strings when locale is Spanish" do
-    u = User.make!(:locale => :"es-MX")
+  it "should parse Spanish date strings" do
     [
       ['lun nov 04 2013 04:22:34 p.m. GMT-0600 (GMT-6)', {:month => 11, :day => 4, :hour => 16, :offset => "-06:00"}],
-      ['lun dic 09 2013 23:37:08 GMT-0800 (GMT-8)', {:month => 12, :day => 9, :hour => 23, :offset => "-08:00"}]
+      ['lun dic 09 2013 23:37:08 GMT-0800 (GMT-8)', {:month => 12, :day => 9, :hour => 23, :offset => "-08:00"}],
+      ['jue dic 12 2013 00:54:02 GMT-0800 (GMT-8)', {:month => 12, :day => 12, :hour => 0, :offset => "-08:00"}]
     ].each do |date_string, opts|
-      o = Observation.make!(:observed_on_string => date_string, :user => u)
+      o = Observation.make!(:observed_on_string => date_string)
       zone = ActiveSupport::TimeZone[o.time_zone]
       zone.formatted_offset.should eq opts[:offset]
       o.observed_on.month.should eq opts[:month]
@@ -103,6 +103,13 @@ describe Observation, "creation" do
     @observation.observed_on_string = "today"
     @observation.save
     @observation.time_observed_at.should be(nil)
+  end
+
+  it "should not choke of bad dates" do
+    @observation.observed_on_string = "this is not a date"
+    lambda {
+      @observation.save
+    }.should_not raise_error
   end
   
   it "should have an identification if taxon is known" do
