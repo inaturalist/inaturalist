@@ -1,7 +1,7 @@
 language: ruby
 
 rvm:
-  - 1.9.3-p484
+  - 1.9.3
 
 before_install: ci/scripts/before_install.sh
 before_script:  ci/scripts/before_script.sh
