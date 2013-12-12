@@ -51,16 +51,31 @@ describe Observation, "creation" do
 
   it "should parse a bunch of test date strings" do
     [
-      ['Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)', {:day => 6, :hour => 16, :offset => "-05:00"}],
-      ['Sun Nov 03 2013 08:15:25 GMT-0500 (GMT-5)', {:day => 3, :hour => 8, :offset => "-05:00"}],
-      ['lun nov 04 2013 04:22:34 p.m. GMT-0600 (GMT-6)', {:day => 4, :hour => 16, :offset => "-06:00"}],
-      ['September 27, 2012 8:09:50 AM GMT+01:00', :day => 27, :hour => 8, :offset => "+01:00"]
+      ['Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)', {:month => 4, :day => 6, :hour => 16, :offset => "-05:00"}],
+      ['Sun Nov 03 2013 08:15:25 GMT-0500 (GMT-5)', {:month => 11, :day => 3, :hour => 8, :offset => "-05:00"}],
+      ['September 27, 2012 8:09:50 AM GMT+01:00', :month => 9, :day => 27, :hour => 8, :offset => "+01:00"]
     ].each do |date_string, opts|
       o = Observation.make!(:observed_on_string => date_string)
       o.observed_on.day.should be(opts[:day])
+      o.observed_on.month.should be(opts[:month])
       o.time_observed_at.in_time_zone(o.time_zone).hour.should be(opts[:hour])
       zone = ActiveSupport::TimeZone[o.time_zone]
       zone.formatted_offset.should eq opts[:offset]
+    end
+  end
+
+  it "should parse Spanish date strings when locale is Spanish" do
+    u = User.make!(:locale => :"es-MX")
+    [
+      ['lun nov 04 2013 04:22:34 p.m. GMT-0600 (GMT-6)', {:month => 11, :day => 4, :hour => 16, :offset => "-06:00"}],
+      ['lun dic 09 2013 23:37:08 GMT-0800 (GMT-8)', {:month => 12, :day => 9, :hour => 23, :offset => "-08:00"}]
+    ].each do |date_string, opts|
+      o = Observation.make!(:observed_on_string => date_string, :user => u)
+      zone = ActiveSupport::TimeZone[o.time_zone]
+      zone.formatted_offset.should eq opts[:offset]
+      o.observed_on.month.should eq opts[:month]
+      o.observed_on.day.should eq opts[:day]
+      o.time_observed_at.in_time_zone(o.time_zone).hour.should eq opts[:hour]
     end
   end
   

@@ -930,9 +930,19 @@ class Observation < ActiveRecord::Base
     
     begin
       # Start parsing...
-      unless t = Chronic.parse(date_string)
-        return true
+      t = Chronic.parse(date_string)
+      if !t && (locale = user.locale || I18n.locale)
+        date_string = englishize_month_abbrevs_for_locale(date_string, locale)
+        t = Chronic.parse(date_string)
       end
+
+      if !t
+        I18N_SUPPORTED_LOCALES.each do |locale|
+          date_string = englishize_month_abbrevs_for_locale(date_string, locale)
+          break if t = Chronic.parse(date_string) 
+        end
+      end
+      return true unless t
     
       # Re-interpret future dates as being in the past
       if t > Time.now
@@ -971,6 +981,22 @@ class Observation < ActiveRecord::Base
     # Set the time zone back the way it was
     Time.zone = old_time_zone
     true
+  end
+
+  def englishize_month_abbrevs_for_locale(date_string, locale)
+    # HACK attempt to translate month abbreviations into English. 
+    # A much better approach would be add Spanish and any other supported
+    # locales to https://github.com/olojac/chronic-l10n and switch to the
+    # 'localized' branch of Chronic, which seems to clear our test suite.
+    return if locale.to_s =~ /^en/
+    return unless I18N_SUPPORTED_LOCALES.include?(locale)
+    I18n.t('date.abbr_month_names', :locale => :en).each_with_index do |en_month_name,i|
+      next if i == 0
+      localized_month_name = I18n.t('date.abbr_month_names', :locale => locale)[i]
+      next if localized_month_name == en_month_name
+      date_string.gsub!(/#{localized_month_name}([\s\,])/, "#{en_month_name}\\1")
+    end
+    date_string
   end
   
   #
