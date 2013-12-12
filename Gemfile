@@ -11,7 +11,6 @@ gem 'ancestry'
 gem 'aws-sdk'
 gem 'bluecloth'
 gem 'capistrano'
-gem 'chronic'
 gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
 gem 'daemons'
 gem 'daemon-spawn'

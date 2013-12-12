@@ -103,7 +103,8 @@ end
 describe GuideTaxon, "sync_eol" do
   let(:gt) { GuideTaxon.make! }
   before(:all) do
-    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true)
+    eol = EolService.new(:timeout => 30)
+    @mflagellum_page ||= eol.page(791500, :common_names => true, :images => 5, :details => true)
   end
 
   it "should update the display_name" do
@@ -144,7 +145,8 @@ describe GuideTaxon, "sync_eol" do
   # rather the EOL API just behaved reasonably
   # it "should add a description section if requested" do
   #   gt.guide_sections.should be_blank
-  #   page = EolService.page(577775, :subjects => "Description")
+  #   eol = EolService.new(:timeout => 30)
+  #   page = eol.page(577775, :subjects => "Description")
   #   gt.sync_eol(:page => page, :subjects => %w(Description))
   #   gt.reload
   #   gt.guide_sections.should_not be_blank
@@ -154,7 +156,8 @@ end
 describe GuideTaxon, "sync_eol_photos" do
   let(:gt) { GuideTaxon.make! }
   before(:all) do
-    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true)
+    eol = EolService.new(:timeout => 30)
+    @mflagellum_page ||= eol.page(791500, :common_names => true, :images => 5, :details => true)
   end
 
   it "should add new photos" do
@@ -199,7 +202,8 @@ end
 describe GuideTaxon, "sync_eol_ranges" do
   let(:gt) { GuideTaxon.make! }
   before(:all) do
-    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1)
+    eol = EolService.new(:timeout => 30)
+    @mflagellum_page ||= eol.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1)
   end
   it "should add new ranges" do
     gt.guide_ranges.should be_blank
@@ -219,7 +223,8 @@ end
 describe GuideTaxon, "sync_eol_sections" do
   let(:gt) { GuideTaxon.make! }
   before(:all) do
-    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1, :text => 50)
+    eol = EolService.new(:timeout => 30)
+    @mflagellum_page ||= eol.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1, :text => 50)
   end
   it "should add new sections" do
     gt.guide_sections.should be_blank
@@ -268,7 +273,6 @@ describe GuideTaxon, "get_eol_page" do
     page = gt.get_eol_page(:photos => 1)
     img_data_object = page.search('dataObject').detect{|data_object| data_object.at('dataType').to_s =~ /StillImage/ }
     img_data_object.should_not be_blank
-    # puts "img_data_object: #{img_data_object}"
     img_data_object.at('mediaURL').should_not be_blank
   end
 
