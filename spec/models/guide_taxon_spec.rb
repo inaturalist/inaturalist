@@ -131,6 +131,24 @@ describe GuideTaxon, "sync_eol" do
     GuideRange.find_by_id(gr.id).should_not be_blank
     GuideSection.find_by_id(gs.id).should_not be_blank
   end
+
+  it "should add at least one secion if overview requested" do
+    gt.guide_sections.should be_blank
+    gt.sync_eol(:page => @mflagellum_page, :overview => true)
+    gt.reload
+    gt.guide_sections.should_not be_blank
+  end
+
+  # this doesn't pass b/c EOL's page api seems to return a GeneralDescription
+  # when you request a Description. Could hack around it, of course, but would
+  # rather the EOL API just behaved reasonably
+  # it "should add a description section if requested" do
+  #   gt.guide_sections.should be_blank
+  #   page = EolService.page(577775, :subjects => "Description")
+  #   gt.sync_eol(:page => page, :subjects => %w(Description))
+  #   gt.reload
+  #   gt.guide_sections.should_not be_blank
+  # end
 end
 
 describe GuideTaxon, "sync_eol_photos" do

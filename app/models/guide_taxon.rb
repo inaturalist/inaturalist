@@ -202,7 +202,7 @@ class GuideTaxon < ActiveRecord::Base
     else
       unique_data_objects = ActiveSupport::OrderedHash.new
       data_objects.each do |data_object| 
-        data_object_subject = if s = data_object.at('subject')
+        data_object_subject = if (s = data_object.at('subject'))
           s.content.split('#').last
         end
         if subjects.include?(data_object_subject)
