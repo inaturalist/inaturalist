@@ -66,6 +66,20 @@ describe User do
       u = User.make!
       u.locale.should eq I18n.locale.to_s
     end
+
+    it "should strip the login" do
+      u = User.make(:login => "foo ")
+      u.save
+      u.login.should eq "foo"
+      u.should be_valid
+    end
+
+    it "should strip the email" do
+      u = User.make(:email => "foo@bar.com ")
+      u.save
+      u.email.should eq "foo@bar.com"
+      u.should be_valid
+    end
   end
 
   #

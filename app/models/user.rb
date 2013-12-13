@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
   has_many :updates, :foreign_key => :subscriber_id, :dependent => :delete_all
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
-  before_validation :strip_name
+  before_validation :strip_name, :strip_login
   before_save :whitelist_licenses
   before_create :set_locale
   after_save :update_observation_licenses
@@ -201,8 +201,14 @@ class User < ActiveRecord::Base
   end
 
   def strip_name
-    return true unless name
+    return true if name.blank?
     self.name = name.gsub(/[\s\n\t]+/, ' ').strip
+    true
+  end
+
+  def strip_login
+    return true if login.blank?
+    self.login = login.strip
     true
   end
   
