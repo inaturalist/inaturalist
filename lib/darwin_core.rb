@@ -184,11 +184,11 @@ module DarwinCore
       end
 
       def occurrenceID
-        view.observation_url(self)
+        view.observation_url(id)
       end
 
       def references
-        view.observation_url(self)
+        view.observation_url(id)
       end
 
       def basisOfRecord
@@ -307,27 +307,27 @@ module DarwinCore
       end
 
       def kingdom
-        taxon.kingdom.try(:name) if taxon
+        taxon.kingdom_name if taxon
       end
 
       def phylum
-        taxon.phylum.try(:name) if taxon
+        taxon.phylum_name if taxon
       end
 
       def taxon_class
-        taxon.find_class.try(:name) if taxon
+        taxon.taxonomic_class_name if taxon
       end
 
       def order
-        taxon.find_order.try(:name) if taxon
+        taxon.taxonomic_order_name if taxon
       end
 
       def family
-        taxon.family.try(:name) if taxon
+        taxon.family_name if taxon
       end
 
       def genus
-        taxon.genus.try(:name) if taxon
+        taxon.genus_name if taxon
       end
 
 

@@ -7,6 +7,7 @@ module BatchTools
 
     module ClassMethods
       def do_in_batches(options = {}, &block)
+        logger = options.delete(:logger) || Rails.logger
         batch_size = options.delete(:batch_size) || 1000
         count_options = options.reject {|k,v| %w(order batch_size sleep).include?(k.to_s)}
         sleep_time = options.delete(:sleep)
@@ -22,15 +23,14 @@ module BatchTools
           full_count = self.count(count_options)
           full_count = full_count.size if full_count.is_a?(Enumerable)
         rescue => e
-          Rails.logger.error "[ERROR #{Time.now}] Batch tool count failed: #{e}"
+          logger.error "[ERROR #{Time.now}] Batch tool count failed: #{e}"
           full_count = self.count
           est = true
         end
         (full_count / batch_size + 1).times do |batch|
           msg = "[INFO #{Time.now}] Working on #{self} batch " +
             "#{batch+1} of #{full_count / batch_size + 1} #{'est' if est} (batch size: #{batch_size})"
-          # puts msg
-          Rails.logger.info msg
+          logger.info msg
           work_on_batch(batch, batch_size, options, &block)
           sleep(sleep_time) if sleep_time
         end
@@ -39,7 +39,7 @@ module BatchTools
       # Like do in batches put prints progress to stdout
       def script_do_in_batches(options = {}, &block)
         start = Time.now
-        count_options = options.reject {|k,v| %w(order select batch_size sleep).include?(k.to_s)}
+        count_options = options.reject {|k,v| %w(order select batch_size sleep logger).include?(k.to_s)}
         item_count = count(count_options)
         iteration = 1
         do_in_batches(options) do |record|
