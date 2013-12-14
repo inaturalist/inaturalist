@@ -18,5 +18,5 @@
         = f.text_field :tag_list, :placeholder => t(:add_comma_separated_tags), :class => "span10 input-small"
     .span1
       .ctrl.pull-right.nobr
-        = link_to "x", guide_taxon, :method => :delete, :class => "btn btn-danger delete", :confirm => t(:are_you_sure_you_want_to_remove_this_taxon), :remote => true, "data-type" => :json
+        = link_to "x", guide_taxon, :method => :delete, :class => "btn btn-danger delete", :confirm => t(:are_you_sure_you_want_to_delete_this), :remote => true, "data-type" => :json
         %span.inlineblock.grip{:data => {:tip => "Drag and drop to re-order", :tip_show_delay => 1000}}

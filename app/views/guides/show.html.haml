@@ -158,7 +158,7 @@
           - if @guide.ngz.file?
             .btn.pull-left.btn-link{:disabled => true, :data => {:tip => t('views.guides.mobile_downloads_tip_html', :iphone_url => CONFIG.iphone_app_url), :tip_position_at => "bottom center", :tip_width => 200, :tip_hide_delay => 200}}
               %i.fa-mobile.fa
-              =t :mobile_download_enabled
+              =t :offline_access_enabled
               - if @guide.editable_by?(current_user)
                 = link_to "(#{t(:disable)})".html_safe, guide_path(@guide, :guide => {:downloadable => false}), :method => :put
           - else
@@ -172,7 +172,7 @@
           - if !@guide.ngz_url && !@guide.downloadable?
             %button.btn.pull-left{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#mobile_dialog"}
               %i.fa-mobile.fa
-              =t :enable_mobile_downloads
+              =t :enable_offline_access
         .btn-group.pull-right
           %button.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#pdf_dialog"}
             %i.fa.fa-print
@@ -198,7 +198,7 @@
             = t(:all)
             %span.badge.pull-right= @guide.guide_taxa.count
         - for predicate, tags in @nav_tags.sort_by{|p,t| p}
-          %li.nav-header= predicate.humanize
+          %li.nav-header=t predicate.underscore.downcase, :default => predicate.humanize
           - for tag, value, count in tags.sort_by{|t,v,c| v}
             %li{:class => @tags.include?(tag) ? "active" : nil}
               = link_to url_for_params(:tags => [tag], :without => [:page]) do
@@ -256,8 +256,8 @@
                   - for sort in GuideTaxon::SORTS
                     %li= link_to t("views.guides.sorts.#{sort}"), url_for_params(:sort => sort), :tabindex => -1, :class => "#{'active' if @sort == sort}"
               .btn-group{"data-toggle" => "buttons-radio"}
-                = link_to t(:grid), url_for_params(:view => "grid"), :class => "btn #{'active' if @view == "grid"}"
-                = link_to t(:card), url_for_params(:view => "card"), :class => "btn #{'active' if @view == "card"}"
+                = link_to t(:grid).capitalize, url_for_params(:view => "grid"), :class => "btn #{'active' if @view == "grid"}"
+                = link_to t(:card).capitalize, url_for_params(:view => "card"), :class => "btn #{'active' if @view == "card"}"
       - if @guide_taxa.blank?
         .nocontent.meta
           =t :no_matching_species
@@ -316,7 +316,7 @@
       - else
         = succeed ',' do
           = link_to_user @guide.user, :content_text => @guide.user.name.blank? ? @guide.user.login : @guide.user.name
-        =t 'copyright.some_rights_reserved'
+        = t(:some_rights_reserved).downcase
         = surround '(', ')' do
           = link_to @guide.license.gsub(/CC-/, 'CC '), url_for_license(@guide.license)
     - unless @guide.source_url.blank?
@@ -363,7 +363,7 @@
   #mobile_dialog.modal.fade.hide
     .modal-header
       %button.close{:type => "button", "data-dismiss" => "modal"} x
-      %h3=t :enable_mobile_downloads
+      %h3=t :enable_offline_access_for_iphone
     = form_for @guide do |f|
       .modal-body
         = f.hidden_field :downloadable, :value => true
@@ -374,4 +374,4 @@
             %p=t 'views.guides.mobile_downloads_help_html'
       .modal-footer
         %button.btn{"data-dismiss" => "modal"}=t :cancel
-        = f.submit t(:enable_mobile_downloads), :class => "btn btn-primary", :data => {'loading-click' => true}
+        = f.submit t(:enable_offline_access), :class => "btn btn-primary", :data => {'loading-click' => true}

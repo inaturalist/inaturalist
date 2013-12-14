@@ -190,6 +190,8 @@ $(document).ready(function() {
     makeHeaderLinkCurrent('#mainnav .placestab')
   } else if (window.location.pathname.match(/^\/user/) || window.location.pathname.match(/^\/people/)) {
     makeHeaderLinkCurrent('#mainnav .peopletab')
+  } else if (window.location.pathname.match(/^\/guides/) || window.location.pathname.match(/^\/guides/)) {
+    makeHeaderLinkCurrent('#mainnav .guidestab')
   }
   
   buildHelpTips()

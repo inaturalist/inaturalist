@@ -38,6 +38,7 @@ class Guide < ActiveRecord::Base
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
   validates_length_of :title, :in => 3..255
+  validate :must_have_some_guide_taxa_to_publish
 
   before_save :generate_ngz_if_necessary
   after_update :expire_caches
@@ -401,5 +402,11 @@ class Guide < ActiveRecord::Base
 
   def published?
     !published_at.blank?
+  end
+
+  def must_have_some_guide_taxa_to_publish
+    if published? && guide_taxa.count < 3
+      errors.add(:published_at, :message => "you must have at least 3 taxa in your guide to publish it.")
+    end
   end
 end

@@ -42,7 +42,7 @@
       = f.text_field :name
     .span4
       = f.label :taxon_id, t(:taxon)
-      = f.text_field :taxon_id, :placeholder => "Starting typing taxon name..."
+      = f.text_field :taxon_id, :placeholder => t(:start_typing_taxon_name)
       - unless f.object.taxon_id.blank?
         .upstacked
           = link_to t(:view_taxon), taxon_path(f.object.taxon_id), :target => "_blank", :class => "readmore"

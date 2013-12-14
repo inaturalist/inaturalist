@@ -96,6 +96,7 @@ end
 
 describe Guide, "ngz" do
   let(:g) { Guide.make! }
+
   it "should generate when downloadable changed to true" do
     g.ngz.url.should be_blank
     g.update_attributes(:downloadable => true)
@@ -103,6 +104,7 @@ describe Guide, "ngz" do
     g.reload
     g.ngz.url.should_not be_blank
   end
+
   it "job should not trigger if no relevant attributes changed" do
     g
     Delayed::Job.delete_all
@@ -129,5 +131,26 @@ describe Guide, "ngz" do
     g.update_attributes(:downloadable => true)
     Delayed::Job.all.each {|j| puts j.handler} if Delayed::Job.count > 1
     Delayed::Job.count.should eq 1
+  end
+end
+
+describe Guide, "publication" do
+  it "should not be allowed for guides with less than 3 taxa" do
+    g = Guide.make!
+    g.update_attributes(:published_at => Time.now)
+    g.errors[:published_at].should_not be_blank
+    
+    2.times do
+      GuideTaxon.make!(:guide => g)
+    end
+    g.reload
+    g.update_attributes(:published_at => Time.now)
+    g.errors[:published_at].should_not be_blank
+
+    GuideTaxon.make!(:guide => g)
+    g.reload
+    g.update_attributes(:published_at => Time.now)
+    g.errors[:published_at].should be_blank
+    g.should be_valid
   end
 end

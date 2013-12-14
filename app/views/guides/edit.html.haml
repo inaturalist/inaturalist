@@ -63,6 +63,7 @@
     }
     .bootstrap .accordion-inner {min-width: 220px;}
     #addtaxa-paste textarea {height:200px;}
+    .actions .btn {margin-bottom:5px;}
 - content_for :extrajs do
   :javascript
     var GUIDE = #{raw @guide.to_json},
@@ -126,7 +127,7 @@
           .accordion-group
             .accordion-heading
               %a.accordion-toggle{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#license"}
-                %label=t :license
+                %label=t :licensing
               #license.accordion-body.collapse
                 .accordion-inner
                   = f.select :license, Observation::LICENSE_CODES, :include_blank => "No license (all rights reserved)", :class => "span12", :label => false
@@ -140,7 +141,7 @@
                 .accordion-inner
                   = f.label :downloadable, :class => "checkbox" do
                     = f.check_box :downloadable, :label => false
-                    = t(:enable_mobile_downloads)
+                    = t(:enable_offline_access)
                   =t 'views.guides.mobile_downloads_help_html'
         .actions
           - if @guide.published?
@@ -177,7 +178,7 @@
                   = link_to_function "<i class='fa fa-trash-o'></i> #{t(:remove_selected)}".html_safe, "removeSelected()"
                 %li.divider
                 %li
-                  = link_to reorder_guide_path(@guide, :by => "taxonomy"), :method => :put, :confirm => "Are you sure? This will reload the page and cannot be undone." do
+                  = link_to reorder_guide_path(@guide, :by => "taxonomy"), :method => :put, :confirm => t(:are_you_sure_this_will_reload_the_page_and_you_may_lose_changes) do
                     %i.fa.fa-sort-amount-asc
                     = t(:reorder_by_taxonomy)
                 %li= link_to t(:update_with_eol_content), "#eolupdate", "data-toggle" => "modal"
@@ -225,7 +226,7 @@
         .muted=t 'views.guides.edit.places_note'
       #addtaxa-paste.tab-pane.fade
         .row-fluid
-          %textarea.span12{:placeholder => "Paste in names"}
+          %textarea.span12{:placeholder => t(:paste_in_a_bunch_of_names)}
           .muted.status=t 'views.guides.edit.paste_note_html', :site_name => SITE_NAME_SHORT
       #addtaxa-eol.tab-pane.fade
         %p=t 'views.guides.edit.eol_collection_desc_html'
@@ -269,13 +270,9 @@
           - for tag in @recent_tags
             = link_to_function "<i class='fa.fa-plus-sign'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
       #addtags-colors.tab-pane.fade
-        %p Add color tags from colors associated with the selected taxa on iNat.
+        %p=t 'views.guides.edit.add_color_tags_help'
       #addtags-ranks.tab-pane.fade
-        %p
-          Add taxon rank tags based on iNat's taxonomy, e.g. 
-          %code family=Laridae
-          or
-          %code family=Gulls and Allies
+        %p=t 'views.guides.edit.add_rank_tags_help_html'
         .row-fluid
           .span6
             %label

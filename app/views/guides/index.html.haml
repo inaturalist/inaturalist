@@ -71,7 +71,7 @@
             %li
               = link_to url_for_params(:place_id => place.id, :without => [:page]) do
                 %span.badge.right= @nav_places_counts[place.id]
-                = place.name
+                =t place.name, :default => place.name
                 .muted
                   %small= place.place_type_name
         - if @place
@@ -79,14 +79,14 @@
             %li.active
               = link_to url_for_params(:place_id => @place.id, :without => [:page]) do
                 %span.badge.right= @nav_places_counts[@place.id]
-                = @place.name
+                =t @place.name, :default => @place.name
               %ul.nav.nav-stacked.nav-pills
                 = nav_places
           %li.active.back
             = link_to url_for_params(:place_id => @place.parent_id, :without => [:page]), :class => "prev" do
               =t :back_to
               - if @place.parent
-                = @place.parent.name
+                =t @place.parent.name, :default => @place.parent.name
               - else
                 = t(:all_places, :default => "all places").downcase
             %ul.nav.nav-stacked.nav-pills

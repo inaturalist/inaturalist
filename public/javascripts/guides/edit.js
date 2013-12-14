@@ -570,7 +570,7 @@ $('#guide_eol_update_flow_task_options_subjects').multiselect()
 $('#eolupdate').on('shown', function () {
   $('body').css({height: '100%', overflow:'hidden'})
   var count = $('.guide_taxon input[type=checkbox]:checked').length,
-      val = count == 1 ? I18n.t('update_1_selected_taxon') : I18n.t('update_x_selected_taxa', {x: count})
+      val = I18n.t('update_x_selected_taxa', {count: count}) // count == 1 ? I18n.t('update_1_selected_taxon') : 
   if (count == 0) {
     val = I18n.t('you_must_select_at_least_one_taxon')
   }
