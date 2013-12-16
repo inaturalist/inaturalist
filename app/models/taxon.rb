@@ -237,7 +237,7 @@ class Taxon < ActiveRecord::Base
   }]
   
   PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect', 
-    'lizard', 'gall', 'pinecone', 'larva', 'cicada', 'caterpillar', 'caterpillars']
+    'lizard', 'gall', 'pinecone', 'larva', 'cicada', 'caterpillar', 'caterpillars', 'chiton']
   
   scope :observed_by, lambda {|user|
     sql = <<-SQL
