@@ -288,7 +288,7 @@ class GuidesController < ApplicationController
     respond_to do |format|
       if @guide.save
         create_default_guide_taxa
-        format.html { redirect_to edit_guide_path(@guide), notice: 'Guide was successfully created.' }
+        format.html { redirect_to edit_guide_path(@guide), notice: t(:guide_was_successfully_created) }
         format.json { render json: @guide.as_json(:root => true), status: :created, location: @guide }
       else
         format.html { render action: "new" }
@@ -309,7 +309,7 @@ class GuidesController < ApplicationController
     create_default_guide_taxa
     respond_to do |format|
       if @guide.update_attributes(params[:guide])
-        format.html { redirect_to @guide, notice: "Guide was successfully #{params[:publish] ? 'published' : 'updated'}." }
+        format.html { redirect_to @guide, notice: t("Guide was successfully #{params[:publish] ? 'published' : 'updated'}".downcase.gsub(' ','_')) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

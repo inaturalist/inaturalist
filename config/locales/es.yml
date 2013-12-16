@@ -37,6 +37,8 @@ es:
   able_to_connect_flickr: "¡Muy bienPudimos vincular su cuenta de Flickr."
   about: "Acerca de"
   about_external_links: Acerca de los enlaces externos
+  about_licenses: Acerca de las licencias
+  about_licensing: Acerca de las licencias
   about_life!: "Acerca de la vida!"
   about_places: "Acerca de Lugares"
   about_the_cc_licenses: "Acerca de las licencias de Creative Commons"
@@ -199,6 +201,7 @@ es:
   add_to_id_please: "Solicitar ID"
   add_to_list: "Agregar a lista"
   add_to_project: "Agregar a proyecto"
+  add_tags_to_selected_taxa: Agregar las etiquetas al taxa seleccionado
   add_to_your_life_list: "Add to your life list"
   add_to_your_list: "Agregar a su lista"
   add_your_own_observations_at: "Agregar sus propias observaciones en %{site_name}"
@@ -651,6 +654,7 @@ es:
   contributor_cannot_be_found: El contribuidor del proyecto no pudo ser encontrado
   contributors_to_project: "Contributors to %{project}: Contribuyentes al proyecto"
   controls: Controles
+  coordinates: Coordenadas
   coordinates_private: "(coordenadas privadas)"
   copy: Copiar
   copy_and_paste_this_into_your_own_html: "Copiar y pegar en su propio HTML."
@@ -1109,6 +1113,7 @@ es:
   find: Encuentra
   find_a_guide: Encuentre una guía
   find_a_place: "Encontrar un Lugar"
+  find_guides: Encuentra guías
   find_new_place_to_explore: "¡Encontrar un nuevo lugar para explorar!"
   find_observations: Encuentra observaciones
   find_photos: Encontrar Fotos
@@ -1167,7 +1172,7 @@ es:
   from_list: "De la lista"
   from_this: de esta
   from_photos: De fotos
-  from_plae: De lugar
+  from_place: De lugar
   from_your_site_observations: "Observaciones de %{site_name}"
   from_licensed_site_observations: "Observaciones de %{site_name} licencia"
   full_id_please!: "¡Ayuda con nombre científico!"
@@ -1208,6 +1213,9 @@ es:
   guess_description: "Estimación / Descripción"
   guide_colors: "Guía de colores"
   guide_taxon: Taxon guía
+  guide_was_successfully_created: La guía fue creada satisfactoriamente.
+  guide_was_successfully_publish: La guía fue publicada satisfactoriamente.
+  guide_was_successfully_updated: La guía fue actualizada satisfactoriamente.
   guides: Guías
   has_already_been_flagged_by: ya ha sido reportado por
   has_been: ha sido
@@ -1518,6 +1526,7 @@ es:
   longitude_in_decimal: 'Longitud en grados con decimales, ej. -122.123'
   look_up_name: "Buscar el nombre"
   looks_like_neither_have!: "¡Parece que ninguno tiene taxones!"
+  looks_like_no_species_in_guide: Parece que no has añadido ninguna especie aún.
   lookup: Buscar
   lookup_noun: Búsqueda
   lookup_user_rarr: "Buscar usuario &rarr;"
@@ -1619,7 +1628,7 @@ es:
   new_check_list_record: "Si desea marcar esta lista como exhaustiva, créela, agregue los taxones y luego modifíquela y aquí tendrá la opción de marcarla como exhaustiva."
   new_custom_field_for: "Nuevo campo personalizado para"
   new_flag_for: "Nueva Marca para"
-  new_guides: Nueva Guía
+  new_guide: Nueva Guía
   new_journal_posts: "Nuevo artículo en el diario"
   new_list: "Lista nueva"
   new_members: "Nuevos miembros..."
@@ -1931,7 +1940,7 @@ es:
   orange: naranja
   order: Orden
   order_by: "Ordenar por"
-  organisms: Organisms
+  organisms: Organismos
   original: original
   originally_imported_from_url_html: "Originalmente importados de <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Página original URL de esta foto"
@@ -2296,6 +2305,7 @@ es:
   research: investigación
   research_grade: "grado de investigación"
   research_grade_expandable_html: "G<span class='full'>rado de </span>I<span class='full'>nvestigación</span>"
+  research_grade_short_html: "G<span class='full'>rado</span> de I<span class='full'>nv.</span>"
   research_grade_observations_have: "Las observaciones de \"grado de investigación\" tienen una fecha, foto, coordenadas y una identificación apoyada por la comunidad. Haga clic para ver la evaluación de la calidad de LOS datos."
   research_quality: "Calidad de la investigación"
   reset_your_password: "Restablecer su contraseña"
@@ -2479,6 +2489,8 @@ es:
   sorry_you_cant_delete_your_own_life_list: "Lo sentimos, no puedes borrar tu lista de vida."
   sorry_you_need_to_be_signed_in_and: "Lo sentimos, necesitas ingresar al sistema y tener una cuenta enlazada de Flickr para poder publicar etiquetas directamente desde Flickr."
   sort: Ordenar
+  sort_by: Ordenar por
+  sorting_by: Ordenando por
   source: Fuente
   source_list:
     ubio: uBio
@@ -2885,6 +2897,7 @@ es:
   view_all_your_projects: "Ver todos sus proyectos"
   view_change: Ver cambio
   view_check_list_page: "Ver página de lista de verificación"
+  view_contributions: Ver contribuciones
   view_details: "Ver detalles"
   view_flags: "Ver marcas"
   view_full_observation: "Ver observación completa"
