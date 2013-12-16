@@ -130,7 +130,7 @@
                 %label=t :licensing
               #license.accordion-body.collapse
                 .accordion-inner
-                  = f.select :license, Observation::LICENSE_CODES, :include_blank => "No license (all rights reserved)", :class => "span12", :label => false
+                  = f.select :license, Observation::LICENSE_CODES, :include_blank => t(:no_license_all_rights_reserved), :class => "span12", :label => false
                   .stacked
                     %a{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#licensing"}=t :about_licensing
           .accordion-group
@@ -218,7 +218,7 @@
               =t :optional
         .stacked
           %label=t :rank
-          = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t(r, :default => r).downcase, r]}), :include_blank => true
+          = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r).downcase, r]}), :include_blank => true
           %span.muted
             = surround '(', ')' do
               =t :optional
@@ -277,11 +277,11 @@
           .span6
             %label
               =t :rank
-            = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t(r, :default => r), r]}, "family")
+            = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r), r]}, "family")
           .span6
             %label
               =t :lexicon
-            = select_tag :lexicon, options_for_select(TaxonName::LEXICONS.map{|k,v| [t(v, :default => v), k]})
+            = select_tag :lexicon, options_for_select(TaxonName::LEXICONS.map{|k,v| [t("lexicons.#{v.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", :default => v), k]})
   .modal-footer
     %button.btn{"data-dismiss" => "modal"}=t :close
     %button.btn.btn-primary=t :add_tags_to_selected_taxa

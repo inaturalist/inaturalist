@@ -11,7 +11,7 @@
   %h1= @title
   = form_tag search_guides_path, :method => :get, :class => "form-search form-inline" do
     .input-append
-      = text_field_tag :q, params[:q], :placeholder => "Find a guide", :class => "search-query input-xlarge"
+      = text_field_tag :q, params[:q], :placeholder => t(:find_a_guide), :class => "search-query input-xlarge"
       = submit_tag t(:search), :class => "btn btn-primary"
   %ul.media-list
     - for g in @guides

@@ -13,6 +13,8 @@ es-MX:
   able_to_connect_flickr: "¡Excelente! Pudimos enlazar tu cuenta de Flickr."
   about: Acerca
   about_external_links: Acerca de los enlaces externos
+  about_licenses: Acerca de las licencias
+  about_licensing: Acerca de las licencias
   about_life!: "¡Acerca de la vida!"
   about_places: "Acerca de Lugares"
   about_the_cc_licenses: "Acerca de las licencias de Creative Commons"
@@ -241,6 +243,7 @@ es-MX:
   add_several_observations_at_once: "Añade varias observaciones al mismo tiempo."
   add_shape: Añade una forma
   add_some_now: "Añade unas ahora"
+  add_tags_to_selected_taxa: Añade las etiquetas al taxa seleccionado
   add_taxa: "Añade taxa"
   add_taxa_to_places: "Añade taxa a lugares"
   add_taxon_batch_to: "Añade un grupo de taxones a %{list}"
@@ -570,6 +573,7 @@ es-MX:
   click_on_the_map_to: "Selecciona el mapa para poner tu observación"
   click_the_map: "<strong>Selecciona el mapa </strong>para añadir una localización."
   click_the_map_to_jump_new_place: "Selecciona el mapa para moverte a un lugar nuevo"
+  close: Cerrar
   code: Código HTML
   collapse_days: "Colapsa los días"
   collapse_updates: "Colapsa las actualizaciones"
@@ -636,6 +640,7 @@ es-MX:
   contributor_cannot_be_found: El contribuidor del proyecto no pudo ser encontrado
   contributors_to_project: "Contribuciones a %{project}"
   controls: Controles
+  coordinates: Coordenadas
   coordinates_private: "(coordenadas privadas)"
   copy_and_paste_this_into_your_own_html: "Copia y pega esto en tu propio HTML."
   copyright:
@@ -659,6 +664,7 @@ es-MX:
   countries: Países
   country_stats: "Estadísticas de observaciones para el país creadas sobre"
   create: Crear
+  create_a_guide: Crea una guía
   create_a_list: "Crea una lista"
   create_a_new_field: "Crea un nuevo campo"
   create_a_new_place: "Crea un nuevo lugar"
@@ -6473,7 +6479,9 @@ es-MX:
   filtering_observations_that_pass_the: Observaciones filtradas que pasan los terminos y las reglas del proyecto y no han sido añadidas
   filters: Filtros
   find: Encuentra
+  find_a_guide: Encuentra una guía
   find_a_place: "Encuentra un lugar"
+  find_guides: Encuentra guías
   find_new_place_to_explore: "¡Encuentra un nuevo lugar para explorar!"
   find_observations: Encuentra observaciones
   find_places: "Encuentra lugares"
@@ -6527,6 +6535,8 @@ es-MX:
   from_in_this_place: "de este lugar"
   from_list: "De la lista"
   from_this: de este
+  from_photos: De fotos
+  from_place: De un lugar
   full_id_please: "¡Ayuda con la identificación, por favor!"
   full_id_please?: Ayuda con identificación
   fungi: 
@@ -6562,6 +6572,9 @@ es-MX:
   group: Grupo
   guess_description: "Sugerencia / descripción"
   guide_taxon: Especie o grupo guía
+  guide_was_successfully_created: La guía fue creada satisfactoriamente.
+  guide_was_successfully_publish: La guía fue publicada satisfactoriamente.
+  guide_was_successfully_updated: La guía fue actualizada satisfactoriamente.
   has_been: ha sido
   hasnt_contributed_any_observations: "no ha contribuido con observaciones a este proyecto."
   hate_me_facebook: "Desenlaza tu cuenta de Facebook y de  %{site_name} "
@@ -6857,6 +6870,7 @@ es-MX:
   longitude_in_decimal: 'Longitud en grados con decimales, ej. -122.123'
   look_up_name: "Buscar el nombre"
   looks_like_neither_have!: "¡Parece que ninguno tiene taxa!"
+  looks_like_no_species_in_guide: Parece que no has añadido ninguna especie aún.
   lookup: Busca
   lookup_user_rarr: "Busca usario &rarr,"
   lowest_rank: Rango más bajo
@@ -6951,6 +6965,7 @@ es-MX:
   new_journal_posts: "Nueva nota de Diario"
   new_list: "Nueva lista"
   new_members: "Nuevos miembros..."
+  new_guide: Nueva Guía
   new_observation_field: "Nuevo campo de observación"
   new_observations_may_take_up_to:
         Las nuevas observaciones pueden tardar alrededor de %{widget_expiration} minutos en aparecer en el widget.
@@ -7182,6 +7197,7 @@ es-MX:
   on_list?: en lista
   on_submit_date: "sobre %{submitdate}"
   on_your_life_list: "en tu lista de vida"
+  one_by_one: Uno por uno
   one_of_your_lists: "una de tus listas..."
   only_a_project_manager_can_add: Solo un Gerente del proyecto puede darle una clasificación a un curador de proyecto
   only_accepts_taxa: "Solo acepta taxa"
@@ -7217,6 +7233,7 @@ es-MX:
   orange: Anaranjado
   Order: Orden
   order_by: "Orden por"
+  organisms: Organismos
   other: otro
   other_animals: "Otros animales"
   other_annimals: "Otros animales"
@@ -7348,6 +7365,7 @@ es-MX:
   places_name:
         afghanistan: Afganistán
         africa: África
+        antarctica: Antártica
         antigua_and_barbuda: Antigua y Barbuda
         belgium: Bélgica
         bosnia_and_herzegovina: Bosnia y Herzegovina
@@ -7369,6 +7387,7 @@ es-MX:
         new_zealand: Nueva Zealand
         north_africa: África del norte
         north_america: América del norte
+        oceania: Oceanía
         palestine: Palestina
         panama: Panamá
         peru: Perú
@@ -7466,7 +7485,7 @@ es-MX:
   quality_grade_colon: "Grado de calidad:"
   range: Distribución
   range_from: 'Distribución de '
-  rank: Rango
+  rank: Categoria taxonómica
   rank_restrictions: "Restrinciones de rango"
   ranks:
     kingdom: Reino
@@ -7551,6 +7570,7 @@ es-MX:
   research: Investigación
   research_grade: "Grado de investigación"
   research_grade_expandable_html: "G<span class='full'>rado</span> de I<span class='full'>nvestigación</span>"
+  research_grade_short_html: "G<span class='full'>rado</span> de I<span class='full'>nv.</span>"
   research_grade_observations_have: "Las observaciones con \"grado de Investigación\" tienen fecha, foto, coordenadas y una comunidad que apoya la identificación. Pícale para ver la evaluación de calidad de los datos."
   research_quality: "Calidad de investigación"
   reset_your_password: "Cambia tu contraseña"
@@ -7627,7 +7647,7 @@ es-MX:
   select: Selecciona
   select_all: Marca todos
   select_an_album: "Selecciona un álbum"
-  select_none: Desmarca todo
+  select_none: Desmarca todos
   select_one_or_more_photos: 'Selecciona una o mas fotos'
   select_photos_from_your_photo_stream: "Selecciona fotos de tus álbums para convertirlas en observaciones de  %{site_name}. Nosotros incluiremos la fecha, hora y ubicación de los metadatos de la foto e intentaremos buscar el nombre de las especies a partir de las etiquetas."
   select_photos_to_display: Selecciona las fotos a mostrar
@@ -7721,6 +7741,8 @@ es-MX:
   sorry_you_can_only_add_1000_at_a_time: "Lo sentimos, solo puedes añadir 1000 a la vez."
   sorry_you_cant_delete_your_own_life_list: "Lo sentimos, no puedes borrar tu lista de vida."
   sorry_you_need_to_be_signed_in_and: Lo sentimos, necesitas ingresar al sistema y tener una cuenta enlazada de Flickr para poder publicar etiquetas directamente desde Flickr.
+  sort_by: Ordenar por
+  sorting_by: Ordenando por
   source: Fuente
   source_list:
     ubio: uBio
@@ -7770,7 +7792,9 @@ es-MX:
   start_one: "Empezar uno"
   start_one_now: "¡Empieza uno ahora!"
   start_typing_field_name: "Nombre del campo...."
-  start_typing_place_name: "Empieza escribiendo el lugar..."
+  start_typing_place_name: "Comience a escribir el nombre del lugar..."
+  start_typing_taxon_name: "Comience a escribir el nombre de la especie..."
+  start_typing_someones_name: "Comience a escribir el nombre de alguien..."
   states: Estados
   stats: Estadísticas
   stats_title: "Estadísticas del sitio"
@@ -7826,6 +7850,7 @@ es-MX:
   taxon_: especie o grupo
   taxon_change: cambio de grupos
   taxon_change_settings: Configuración del cambio de especies y grupos
+  taxon_colors: Colores del taxón
   taxon_deleted: Especie o grupo borrado.
   taxon_doesnt_have_a_range: La especie o grupo no tiene una clasificación
   taxon_id: Identificador de la especie o grupo
@@ -7837,6 +7862,7 @@ es-MX:
   taxon_name: "Nombre de la especie o grupo"
   taxon_photos_updated: "¡Las fotos de la especie o grupo fueron actualizadas!"
   taxon_range: "Distribución potencial"
+  taxon_ranks: Categoria taxonómica del taxón
   taxon_removed_from_list: Especie o grupo eliminado de la lista.
   taxon_search: "Búsqueda de especie o grupo"
   taxon_search_results_for: "Resultados de la búsqueda de especie para"
@@ -8053,6 +8079,7 @@ es-MX:
   updated_by: "Actualizado por"
   updated_daily: Actualizado el día de hoy
   updated_photo: Foto subida
+  updating: Actualizando
   upload: Cargar
   upload_a_csv_file: Carga un archivo CSV
   upload_a_csv_file_with_observation: "Carga el archivo CSV con los datos de observaciones. SI tienes los datos en una base de datos, esta es probablemente la mejor manera de hacerlo."
@@ -8096,6 +8123,7 @@ es-MX:
   view_all_your_projects: "Ve todos tus proyectos"
   view_change: Ver cambio
   view_check_list_page: "Ve la página con la lista de comprobación"
+  view_contributions: Ver contribuciones
   view_details: "Ve detalles"
   view_flags: "Ver advertencias"
   view_full_observation: "Ve la observación completa"
@@ -8147,6 +8175,117 @@ es-MX:
   views:
     # date: Fecha
     views: Vistas
+    guides:
+      index:
+        funding_html: |
+          Los fondos para el desarrollo de la sección de Guías fueron proporcionados por
+          <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
+        welcome_message_html: |
+          Las guías te ayudan a aprender sobre la biodiversidad en todo el mundo.
+          Si estás explorando la Selva Lacandona o simplemente tu parque local,
+          las guías pueden ayudarte a encontrar la impresionante diversidad de la vida en nuestro planeta.
+      edit:
+        add_eol_content: |
+          Agregar contenido a la EOL taxa seleccionados como un lote. Esto
+          puede llevar algún tiempo, así que por favor sea paciente.
+        add_color_tags_help: |
+          Agrega las etiquetas de colores de acuerdo a los colores asociados al taxa
+          de NaturaLista.
+        add_rank_tags_help_html: |
+          Añade etiquetas a la categoria taxonómica de los taxones con base en nuestra taxonomía, por ejemplo,
+          <code>familia=Laridae</code>
+          o
+          <code>familia=Gaviotas y Aliados</code>
+        coordinates_desc: |
+          Dando a sus coordenadas guía ayudará a las personas les resulta en
+          la búsqueda según la ubicación.
+        eol_subjects_desc: |
+          EOL publica el contenido en una serie de diferentes encabezamientos
+          de materia, no todos los cuales están disponibles para cada taxón.
+          La elección de "Panorama" se acaba de importar la primera sección de
+          texto disponible de EOL, que generalmente contiene un resumen cuando
+          esté disponible.
+        eol_collection_desc_html: |
+          La <a href="http://eol.org/" target="_blank"> Enciclopedia de la
+          Vida (EOL)</a> es un repositorio de información sobre la vida en la Tierra.
+          En EOL puede crear <a href="http://eol.org/info/252" target="_blank">colecciones</a>
+          de especies. Si desea importar las especies a partir de una
+          colección de EOL, pegar en la URL de esa colección aquí.
+        guide_place_desc: |
+          Asociar su guía con un lugar permitirá a las personas les resulta en
+          la búsqueda de lugares, y se mostrará el lugar límite en
+          %{site_name} mapas en los que se muestran cuando un límite se ha
+          establecido (por ejemplo, la vista "tarjeta", las páginas del taxón,
+          etc.)
+        licensing_explanation: |
+          Obtención de la licencia de contenido concede a otras personas el
+          derecho a copiar y modificar sin pedir su permiso. Esto hace que sea
+          mucho más fácil de compartir tu trabajo, y si se incorporan tercera
+          contenido de terceros de otras fuentes que usan licencias de
+          Creative Commons Compartir Igual (como Wikipedia), que son legall
+          obligado a utilizar una licencia similar. He aquí un resumen de
+          todas las licencias de Creative Commons y su significado:
+        paste_note_html: |
+          Pegue en un máximo de 500 nombres de especies, uno por línea.
+          %{site_name} hará todo lo posible para que coincida con los nombres
+          comunes de la especie, sino para evitar la ambigüedad
+          es mejor usar los nombres científicos. Si desea especificar los
+          dos, separar el nombre científico del nombre común con una coma,
+          ejemplo: <code>Homo sapiens,humano</code>.
+        places_note: |
+          Nota: no todos los lugares tienen listas de comprobación con taxones.
+          Si estás teniendo problemas para encontrar un lugar con
+          taxones, intenta elegir áreas más grandes con las fronteras
+          políticas, como naciones, estados, provincias o condados.
+        replace_existing_eol_desc: Eliminar el contenido existente antes de importar desde EOL
+        place_choose_taxon_note: |
+          Si quieres concretar su búsqueda, elije un taxón para filtrar, por ejemplo, "plantas"
+      eolupdate_notice: |
+        Por favor, sea paciente, importar contenido desde EOL puede tomar un minuto o dos.
+      show:
+        draft_desc: |
+          Esta guía sólo será visible para las personas que pueden editar hasta que lo publique.
+      generating_mobile_archive_tip_html: |
+        <span class="alert status">Las guías de la aplicación para el iPhone están todavía en desarrollo</span>
+        Esto puede llevar un tiempo, así que prueba a actualizar esta página en unos pocos minutos.
+      mobile_downloads_tip_html: |
+        <span class="alert status">Las guías de la aplicación para el iPhone están todavía en desarrollo</span>
+        Esta guía se puede descargar en el <a href="%{iphone_url}"> aplicación para el iPhone </ a> para uso sin conexión.
+      mobile_downloads_help_html: |
+        <p class="alert status">Las guías de la aplicación para el iPhone están todavía en desarrollo</p>
+        <p>
+          Esto creará un archivo descargable de todos los datos y los medios
+          de comunicación asociados con esta guía para que los usuarios de
+          iPhone pueden ver todo el contenido de la guía y sin una conexión a
+          Internet. Tomará unos minutos para generar el archivo, pero una vez
+          que esto se habilita el archivo se actualizará cada vez que cambie
+          esta guía.
+        </p>
+        <p class="alert error status">
+          Por favor <strong>no permiten descargas móviles fuera de línea a
+          menos que realmente la intención de utilizarlos.</strong> Ellos
+          representan una carga considerable para nuestro sistema.
+        </p>
+      pdf_layout_notes:
+        grid: |
+          Rejilla de imágenes individuales, no hay descripciones
+        journal: |
+          Página de Split, info especies a la izquierda, espacio para notas a la derecha. Info Especies se truncará para que quepa en la página.
+        book: |
+          Guía completa incluyendo todas las fotos y descripciones, que abarcan varias páginas.
+      pdf_generation_notice: |
+        Por favor sea paciente, lo que genera grandes archivos PDF puede tomar un minuto o dos.
+      tags_help_html: |
+        Las etiquetas son como las categorías para la especiede tu guía,
+        con excepción que varias especies pueden tener la misma etiqueta.
+        Introduce etiquetas como una lista separada por comas, por
+        ejemplo, <code>pequeño,peludo</code>. Para agregar categorías con
+        nombre, utilice etiquetas como <code>NOMBRE=valor</code>,
+        por ejemplo, <code>color=amarillo</code>.
+      sorts:
+        default: Orden de la guía (predeterminado)
+        alphaname: Orden alfabético por nombre científico
+        alphadisplay: Orden alfabético por nombre común
     observations:
           captive_help_html: |
             ¿Estaba el organismo observado en cautiverio, cultivado o criado? Por ejemplo, estaba en un jardín,
@@ -8489,7 +8628,10 @@ es-MX:
   x_lists: 
     one: "Una lista"
     other: "%{count} lista"
-  x_observations: 
+  x_matching_taxa:
+      one: "1 taxón coincide"
+      other: "%{count} taxones coinciden"
+  x_observations:
     one: "Una observación"
     other: "%{count} observaciones"
   x_people: 
