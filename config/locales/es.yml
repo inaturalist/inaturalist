@@ -329,6 +329,7 @@ es:
      x_other_animals: 
        one: "1 otro animal"
        other: "%{count} otros animales"
+  all_taxa_in_this_guide: Todas las especies y grupos de esta guía
   all_taxonomic_groups: "&laquo; Todos los Grupos Taxonómicos"
   all_your_observations_will_default_this_time_zone: "Todas sus observaciones se harán en esta zona horaria a menos que usted especifique lo contrario."
   all_your_observations_will_default_to_this_time_zone: "Todas sus observaciones se harán en esta zona horaria a menos que usted especifique lo contrario."
@@ -1195,8 +1196,10 @@ es:
   gbif_occurrences: Registros de GBIF
   general: General
   generally_these_come_from_uicn_red_list: "Vienen generalmente de la Lista Roja de UICN y si vienen de otro lugar se adherirán a las categorías de UICN."
+  generate_pdf: Genera el PDF
   generate_taxonomic_tags_for_flickr: "Generar etiquetas taxonómicas para sus fotos de Flickr."
   generate_widget: Genera el widget
+  generating: "Generando..."
   genus_slash_species: "[GÉNERO] / [ESPECIE]"
   geoprivacy: Geoprivacidad
   georeferenced: "¿Geo referenciado?"
@@ -2173,6 +2176,7 @@ es:
   previewing: Previzualizando...
   previous: Anterior
   previous_page: "Página anterior"
+  print_in_browser: Imprimir desde el navegador
   privacy: "Política de privacidad"
   privacy_policy: "Política de privacidad"
   private: Privada
@@ -2612,6 +2616,7 @@ es:
   taxa_all_species_html: "Taxones &middot; Todas las especies"
   taxa_needing_curation: "Taxones que necesitan curación"
   taxa_observed: especies o grupos observados
+  taxa_to_include: Especies o grupos a incluir
   taxon: Taxón
   taxon_: Taxón
   taxon_change: cambio de taxón
@@ -3064,6 +3069,10 @@ es:
           menos que realmente la intención de utilizarlos.</strong> Ellos
           representan una carga considerable para nuestro sistema.
         </p>
+      pdf_layouts:
+              grid: cuadrícula
+              book: libro
+              journal: revista
       pdf_layout_notes:
         grid: |
           Rejilla de imágenes individuales, no hay descripciones
@@ -3503,6 +3512,9 @@ es:
   x_taxa_observed_html:
     one: "<span class='count'>1</span> taxon observado</span>"
     other: "<span class='count'>%{count}</span> taxones observó</span>"
+  x_taxa_matching_current_filters:
+      one: "1 especie o grupo con los filtros seleccionados"
+      other: "%{count} especies o grupos con los filtros seleccionados"
   x_research_grade_observations_html:
     one: "<span class='count'>1</span> observacion grado de la investigación</span>"
     other: "<span class='count'>%{count}</span> observaciones grado de la investigación</span>"

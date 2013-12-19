@@ -270,6 +270,7 @@ en:
     x_other_animals: 
       one: "1 other animal"
       other: "%{count} other animals"
+  all_taxa_in_this_guide: All taxa in this guide
   all_taxonomic_groups: "&laquo; All Taxonomic Groups"
   all_your_observations_will_default_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   all_your_observations_will_default_to_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
@@ -2334,6 +2335,7 @@ en:
   taxa_all_species_html: "Taxa &middot; All Species"
   taxa_needing_curation: Taxa Needing Curation
   taxa_observed: taxa observed
+  taxa_to_include: Taxa to include
   taxon: Taxon
   taxon_: taxon
   taxon_change: taxon change
@@ -2978,6 +2980,10 @@ en:
           actually intend to use them.</strong> They represent a considerable
           burden on our system.
         </p>
+      pdf_layouts:
+        grid: grid
+        book: book
+        journal: journal
       pdf_layout_notes:
         grid: |
           Grid of single images, no descriptions
