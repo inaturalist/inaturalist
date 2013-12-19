@@ -60,6 +60,9 @@ class GuideTaxaController < ApplicationController
   # GET /guide_taxa/1/edit
   def edit
     load_data_for_edit
+    respond_to do |format|
+      format.html
+    end
   end
 
   # POST /guide_taxa

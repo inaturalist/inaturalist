@@ -74,8 +74,8 @@
     %li
       = link_to t(:back_to_x, :noun => @guide.title), @guide, :class => "back"
 
+  = error_messages_for @guide
   %h1= @title
-
   .row-fluid
     .span3
       = form_for @guide, :builder => DefaultFormBuilder do |f|

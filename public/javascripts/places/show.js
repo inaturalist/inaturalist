@@ -75,6 +75,7 @@ $.fn.loadFlickrPlacePhotos = function(options) {
       if (options.noPhotosNotice) {
         $(self).append('<div class="noresults meta">' + I18n.t("flickr_has_no_creative_commons") + '</div>')
       }
+      $('#pageheader h2').css({bottom: 0})
     },
     success: function(json) {
       $(self).html('')
@@ -94,8 +95,11 @@ $.fn.loadFlickrPlacePhotos = function(options) {
             $(self).append($('<div class="stacked attribution meta"></div>').html('Photo: '+attribution))
           }
         }
-      } else if (options.noPhotosNotice) {
-        $(self).append('<div class="noresults meta">' + I18n.t("flickr_has_no_creative_commons") + '</div>')
+      } else {
+        if (options.noPhotosNotice) {
+          $(self).append('<div class="noresults meta">' + I18n.t("flickr_has_no_creative_commons") + '</div>')
+        }
+        $('#pageheader h2').css({bottom: 0})
       }
     }
   })

@@ -272,10 +272,10 @@ class GuidesController < ApplicationController
 
   # GET /guides/1/edit
   def edit
-    @nav_options = %w(iconic tag)
-    @guide_taxa = @guide.guide_taxa.includes(:taxon, {:guide_photos => :photo}, :tags).
-      order("guide_taxa.position")
-    @recent_tags = @guide.recent_tags
+    load_data_for_edit
+    respond_to do |format|
+      format.html
+    end
   end
 
   # POST /guides
@@ -312,7 +312,10 @@ class GuidesController < ApplicationController
         format.html { redirect_to @guide, notice: t("Guide was successfully #{params[:publish] ? 'published' : 'updated'}".downcase.gsub(' ','_')) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html do
+          load_data_for_edit
+          render action: "edit"
+        end
         format.json { render json: @guide.errors, status: :unprocessable_entity }
       end
     end
@@ -408,5 +411,12 @@ class GuidesController < ApplicationController
 
   def create_default_guide_taxa
     @guide.import_taxa(params)
+  end
+
+  def load_data_for_edit
+    @nav_options = %w(iconic tag)
+    @guide_taxa = @guide.guide_taxa.includes(:taxon, {:guide_photos => :photo}, :tags).
+      order("guide_taxa.position")
+    @recent_tags = @guide.recent_tags
   end
 end

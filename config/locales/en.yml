@@ -1018,7 +1018,7 @@ en:
   guide_compiled_by: Guide compiled by
   guide_taxon: Guide taxon
   guide_was_successfully_created: Guide was successfully created.
-  guide_was_successfully_publish: Guide was successfully publish.
+  guide_was_successfully_published: Guide was successfully published.
   guide_was_successfully_updated: Guide was successfully updated.
   has_been: has been
   has_already_been_flagged_by: has already been flagged by
@@ -1672,7 +1672,7 @@ en:
   orange: orange
   order: Order
   order_by: Order by
-  organisms: Organismos
+  organisms: Organisms
   original: original
   originally_flagged_by: Originally flagged by
   originally_imported_from_url_html: "Originally imported from <a href='%{url}'>%{url}</a>"
@@ -3606,6 +3606,7 @@ en:
     attributes:
       guide:
         source_url: Source URL
+        published_at: Publication
       project:
         title: Title 
         project_icon: Project icon
@@ -3654,3 +3655,9 @@ en:
       listed_taxon:
               occurrence_status_level: Ocurrence status level
               establishment_means: Establishment means
+    errors:
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: "requires at least 3 taxa in your guide"

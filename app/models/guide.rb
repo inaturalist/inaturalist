@@ -401,12 +401,10 @@ class Guide < ActiveRecord::Base
   end
 
   def published?
-    !published_at.blank?
+    !published_at.blank? && errors[:published_at].blank?
   end
 
   def must_have_some_guide_taxa_to_publish
-    if published? && guide_taxa.count < 3
-      errors.add(:published_at, :message => "you must have at least 3 taxa in your guide to publish it.")
-    end
+    errors.add(:published_at, :published_at_needs_3_taxa) if published? && guide_taxa.count < 3
   end
 end

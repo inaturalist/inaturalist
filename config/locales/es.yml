@@ -20,7 +20,7 @@ es:
   Supertribe: Supertribu
   Tribe: Tribu
   US_states: "Estados Unidos"
-  use_this_form_to_create_a_new:
+  use_this_form_to_create_a_new: |
     Usa esta forma para crear un cambio taxonómico en el borrador, describiendo si es para separar, juntar o es un cambio
     en el grupo o especie, para que despues sea guardado.
   Variety: Variedad
@@ -63,6 +63,9 @@ es:
       flag: 
         flag: Marca
         reason: Razón
+      guide:
+        source_url: Fuente URL
+        published_at: Publicación
       message:
         subject: Asunto
         body: Texto
@@ -124,6 +127,12 @@ es:
       listed_taxon:
               occurrence_status_level: Estatus de ocurrencia
               establishment_means: Medio de establecimiento
+    errors:
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: "requiere al menos 3 taxa en la guía"
     preferences: 
       per_page: "Registros por página"
   add: Agregar
@@ -1214,7 +1223,7 @@ es:
   guide_colors: "Guía de colores"
   guide_taxon: Taxon guía
   guide_was_successfully_created: La guía fue creada satisfactoriamente.
-  guide_was_successfully_publish: La guía fue publicada satisfactoriamente.
+  guide_was_successfully_published: La guía fue publicada satisfactoriamente.
   guide_was_successfully_updated: La guía fue actualizada satisfactoriamente.
   guides: Guías
   has_already_been_flagged_by: ya ha sido reportado por
