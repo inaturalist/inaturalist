@@ -330,6 +330,7 @@ es-MX:
       algas_pardas_y_parientes: Alga parda y pariente
       protozoarios: Protozoario
       otros_animales: Otro animal
+  all_taxa_in_this_guide: Todas las especies y grupos de esta guía
   all_taxonomic_groups: "&laquo; Todos los grupos taxonómicos"
   all_your_observations_will_default_this_time_zone: "Todas tus observaciones tendrán esta zona de tiempo a menos que especifiques otra cosa."
   all_your_observations_will_default_to_this_time_zone: "Todas tus observaciones tendrán esta zona de tiempo a menos que especifiques otra cosa."
@@ -6547,8 +6548,10 @@ es-MX:
     other: Hongos
   general: General
   generally_these_come_from_iucn_red_list: "Generalmente, estos provienen de la Lista roja de la UICN, y si se obtienen de otro lado, serán equivalentes a las categorías de UICN (Unión Internacional para la Conservación de la Naturaleza)"
+  generate_pdf: Genera el PDF
   generate_taxonomic_tags_for_flickr: "Genera etiquetas taxonómicas para tus fotos de Flickr"
   generate_widget: Genera el widget
+  generating: "Generando..."
   genus_slash_species: "[GÉNERO] / [ESPECIE]"
   geoprivacy: "Privacidad geográfica"
   georeferenced: "¿Está georeferenciado?"
@@ -7439,6 +7442,7 @@ es-MX:
   previewing: "Vista previa..."
   previous: Previa
   previous_page: "Página previa"
+  print_in_browser: Imprimir desde el navegador
   privacy: "Política de privacidad"
   privacy_policy: "Política de privacidad"
   private: Privada
@@ -7846,6 +7850,7 @@ es-MX:
   taxa_all_species_html: "Todas las especies y grupos"
   taxa_needing_curation: "Taxa que necesita revisión"
   taxa_observed: especies o grupos observados
+  taxa_to_include: Especies o grupos a incluir
   taxon: "Especie o grupo"
   taxon_: especie o grupo
   taxon_change: cambio de grupos
@@ -8266,11 +8271,15 @@ es-MX:
           menos que realmente la intención de utilizarlos.</strong> Ellos
           representan una carga considerable para nuestro sistema.
         </p>
+      pdf_layouts:
+                    grid: cuadrícula
+                    book: libro
+                    journal: revista
       pdf_layout_notes:
         grid: |
           Rejilla de imágenes individuales, no hay descripciones
         journal: |
-          Página de Split, info especies a la izquierda, espacio para notas a la derecha. Info Especies se truncará para que quepa en la página.
+          Página que separa el contenido, la información de las especies a la izquierda, espacio para notas a la derecha. NOTA: La información de las especies se truncará para que quepa en la página.
         book: |
           Guía completa incluyendo todas las fotos y descripciones, que abarcan varias páginas.
       pdf_generation_notice: |
@@ -8649,6 +8658,9 @@ es-MX:
   x_species:
     one: "Una especie"
     other: "%{count} especies"
+  x_taxa_matching_current_filters:
+        one: "1 especie o grupo con los filtros seleccionados"
+        other: "%{count} especies o grupos con los filtros seleccionados"
   year: año
   yellow: Amarillo
   'yes': Sí

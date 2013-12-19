@@ -342,7 +342,7 @@
             = f.label :options, :value => l, :class => "radio" do
               .img= image_tag "guide-#{l}-icon.png"
               = f.radio_button :options, l, :name => "guide_pdf_flow_task[options][layout]", :checked => (l == GuidePdfFlowTask::GRID ? "checked" : nil)
-              = l
+              = t "views.guides.pdf_layouts.#{l}", :default => l
               .small.meta=t "views.guides.pdf_layout_notes.#{l}", :default => ""
       .row-fluid=t :taxa_to_include
       #pdf_taxa.row-fluid
