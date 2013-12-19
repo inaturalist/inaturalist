@@ -4,7 +4,7 @@ class ProjectObservation < ActiveRecord::Base
   belongs_to :curator_identification, :class_name => "Identification"
   validates_presence_of :project, :observation
   validate :observed_by_project_member?, :on => :create, :unless => "errors.any?"
-  validates_rules_from :project, :rule_methods => [:observed_in_place?, :georeferenced?, :identified?, :in_taxon?, :on_list?]
+  validates_rules_from :project, :rule_methods => [:observed_in_place?, :georeferenced?, :identified?, :in_taxon?, :on_list?], :unless => "errors.any?"
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
   
   after_create  :refresh_project_list
