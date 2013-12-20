@@ -50,6 +50,7 @@ class Project < ActiveRecord::Base
   validate :one_year_time_span, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :unless => "errors.any?"
   
   scope :featured, where("featured_at IS NOT NULL")
+  scope :in_group, lambda {|name| where(:group => name) }
   scope :near_point, lambda {|latitude, longitude|
     latitude = latitude.to_f
     longitude = longitude.to_f

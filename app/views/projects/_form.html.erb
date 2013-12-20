@@ -210,7 +210,9 @@
           <%= f.check_box :featured_at,
             :label => t(:feature_this_project),
             :label_after => true %>
-
+          <%= f.text_field :group,
+            :label => t(:project_group_label),
+            :description => t(:project_group_description) %>
           <%= f.text_field :source_url, :description => t(:url_identifier_of_a_project_derived_from) %>
 
           <%= f.check_box :trusted,

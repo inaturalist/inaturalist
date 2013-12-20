@@ -45,6 +45,7 @@ class ProjectsController < ApplicationController
       format.json do
         scope = Project.scoped
         scope = scope.featured if params[:featured]
+        scope = scope.in_group(params[:group]) if params[:group]
         scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
         scope = scope.from_source_url(params[:source]) if params[:source]
         @projects = scope.paginate(:page => params[:page], :per_page => 100)
