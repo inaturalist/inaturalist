@@ -73,6 +73,7 @@ gem 'trollop'
 gem 'ts-delayed-delta', '1.1.3', :require => 'thinking_sphinx/deltas/delayed_delta'
 gem 'simple_oauth'
 gem 'twitter'
+gem 'utf8-cleaner'
 gem "watu_table_builder", :require => "table_builder"
 gem 'wicked_pdf'
 gem 'will_paginate'
