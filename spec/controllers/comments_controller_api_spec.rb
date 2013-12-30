@@ -15,6 +15,14 @@ shared_examples_for "a CommentsController" do
       observation.reload
       observation.comments.count.should eq 1
     end
+
+    it "should error out for invalid comments" do
+      post :create, :format => :json, :comment => {
+        :parent_type => "Observation",
+        :body => "this is erroneous!"
+      }
+      response.status.should == 422
+    end
   end
 
   describe "update" do

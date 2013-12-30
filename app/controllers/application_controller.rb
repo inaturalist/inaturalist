@@ -434,6 +434,16 @@ class ApplicationController < ActionController::Base
       Rails.cache.write(key, @job.id)
     end
   end
+
+  # Coerce the format unless in preselected list. Rescues from ActionView::MissingTemplate
+  def self.accept_formats(*args)
+    options = args.last.is_a?(Hash) ? args.last : {}
+    default = options[:default] ? options[:default].to_sym : :html
+    formats = [args].flatten.map(&:to_sym)
+    before_filter(options) do
+      request.format = default unless formats.include?(request.format.to_sym)
+    end
+  end
 end
 
 # Override the Google Analytics insertion code so it won't track admins

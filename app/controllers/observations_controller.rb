@@ -252,7 +252,7 @@ class ObservationsController < ApplicationController
         
         @photos = @observation.observation_photos.sort_by do |op| 
           op.position || @observation.observation_photos.size + op.id.to_i
-        end.map{|op| op.photo}
+        end.map{|op| op.photo}.compact
         @sounds = @observation.sounds.all
         
         if @observation.observed_on
@@ -1346,6 +1346,7 @@ class ObservationsController < ApplicationController
         render :action => "index"
       end
       format.csv do
+        pagination_headers_for(@observations)
         render :text => ProjectObservation.to_csv(@project_observations, :user => current_user)
       end
       format.kml do
@@ -2415,6 +2416,7 @@ class ObservationsController < ApplicationController
       end
     end
     @observations = @observations.includes(:tags) if @observations.respond_to?(:scoped)
+    pagination_headers_for(@observations)
     render :text => @observations.to_csv(:only => only.map{|c| c.to_sym})
   end
   

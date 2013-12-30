@@ -73,12 +73,17 @@ class CommentsController < ApplicationController
       format.html { respond_to_create }
       format.mobile { respond_to_create }
       format.json do
-        if params[:partial] == "activity_item"
-          @comment.html = view_context.render_in_format(:html, :partial => 'shared/activity_item', :object => @comment)
+        Rails.logger.debug "[DEBUG] @comment: #{@comment}"
+        if @comment.valid?
+          if params[:partial] == "activity_item"
+            @comment.html = view_context.render_in_format(:html, :partial => 'shared/activity_item', :object => @comment)
+          else
+            @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
+          end
+          render :json => @comment.to_json(:methods => [:html])
         else
-          @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
+          render :status => :unprocessable_entity, :json => {:errors => @comment.errors.full_messages}
         end
-        render :json => @comment.to_json(:methods => [:html])
       end
     end
   end
