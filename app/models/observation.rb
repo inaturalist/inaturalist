@@ -902,15 +902,23 @@ class Observation < ActiveRecord::Base
       date_string = observed_on_string.sub(tz_abbrev_pattern, '')
       date_string = date_string.sub(tz_js_offset_pattern, '').strip
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
-    elsif (offset = date_string[tz_offset_pattern, 1]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f / 100])
+    elsif (offset = date_string[tz_offset_pattern, 1]) && 
+        (n = offset.to_f / 100) && 
+        (key = n.round + (n%n.round)/0.6) && 
+        (parsed_time_zone = ActiveSupport::TimeZone[key])
       date_string = date_string.sub(tz_offset_pattern, '')
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
-    elsif (offset = date_string[tz_js_offset_pattern, 2]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f / 100])
+    elsif (offset = date_string[tz_js_offset_pattern, 2]) && 
+        (n = offset.to_f / 100) && 
+        (key = n.round + (n%n.round)/0.6) && 
+        (parsed_time_zone = ActiveSupport::TimeZone[key])
       date_string = date_string.sub(tz_js_offset_pattern, '')
       date_string = date_string.sub(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, '')
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
-    elsif (offset = date_string[tz_colon_offset_pattern, 2]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f])
-      date_string = date_string.sub(tz_colon_offset_pattern, '')
+    elsif (offset = date_string[tz_colon_offset_pattern, 2]) && 
+        (t = Time.parse(offset)) && 
+        (parsed_time_zone = ActiveSupport::TimeZone[t.hour+t.min/60.0])
+      date_string = date_string.sub(/#{tz_colon_offset_pattern}|#{tz_failed_abbrev_pattern}/, '')
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     end
     
