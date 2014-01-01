@@ -294,6 +294,14 @@ shared_examples_for "an ObservationsController" do
       response.headers["X-Deleted-Observations"].split(',').should include(delo1.id.to_s)
       response.headers["X-Deleted-Observations"].split(',').should_not include(delo2.id.to_s)
     end
+
+    it "should return private observations for bounding box queries when viewer is owner" do
+      o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::PRIVATE, :user => user)
+      o.private_geom.should_not be_blank
+      get :by_login, :format => :json, :login => user.login, :swlat => 0, :swlng => 0, :nelat => 2, :nelng => 2
+      json = JSON.parse(response.body)
+      json.map{|jo| jo['id']}.should include o.id
+    end
   end
 
   describe "index" do

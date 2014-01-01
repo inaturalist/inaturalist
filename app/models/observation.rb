@@ -344,13 +344,29 @@ class Observation < ActiveRecord::Base
   # 
   
   # Area scopes
-  scope :in_bounding_box, lambda { |swlat, swlng, nelat, nelng|
+  # scope :in_bounding_box, lambda { |swlat, swlng, nelat, nelng|
+  scope :in_bounding_box, lambda {|*args|
+    swlat, swlng, nelat, nelng, options = args
+    options ||= {}
+    if options[:private]
+      geom_col = "private_geom"
+      lat_col = "private_latitude"
+      lon_col = "private_longitude"
+    else
+      geom_col = "geom"
+      lat_col = "latitude"
+      lon_col = "longitude"
+    end
+
+    # resort to lat/lon cols for date-line spanning boxes
     if swlng.to_f > 0 && nelng.to_f < 0
-      where('latitude > ? AND latitude < ? AND (longitude > ? OR longitude < ?)', 
+      where("#{lat_col} > ? AND #{lat_col} < ? AND (#{lon_col} > ? OR #{lon_col} < ?)", 
         swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f)
     else
-      where('latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?', 
-        swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f)
+      where("ST_Intersects(
+        ST_MakeBox2D(ST_Point(#{swlng.to_f}, #{swlat.to_f}), ST_Point(#{nelng.to_f}, #{nelat.to_f})),
+        #{geom_col}
+      )")
     end
   } do
     def distinct_taxon
@@ -621,7 +637,8 @@ class Observation < ActiveRecord::Base
     # support bounding box queries
     if (!params[:swlat].blank? && !params[:swlng].blank? && 
          !params[:nelat].blank? && !params[:nelng].blank?)
-      scope = scope.in_bounding_box(params[:swlat], params[:swlng], params[:nelat], params[:nelng])
+      viewer = params[:viewer].is_a?(User) ? params[:viewer].id : params[:viewer]
+      scope = scope.in_bounding_box(params[:swlat], params[:swlng], params[:nelat], params[:nelng], :private => (viewer && viewer == params[:user_id]))
     elsif !params[:BBOX].blank?
       swlng, swlat, nelng, nelat = params[:BBOX].split(',')
       scope = scope.in_bounding_box(swlat, swlng, nelat, nelng)
@@ -1594,7 +1611,7 @@ class Observation < ActiveRecord::Base
     elsif options[:force] || longitude_changed? || latitude_changed?
       self.geom = Point.from_x_y(longitude, latitude)
     end
-    if (private_latitude && private_latitude_changed?) || (private_longitude && private_longitude_changed?)
+    if private_latitude && private_longitude
       self.private_geom = Point.from_x_y(private_longitude, private_latitude)
     elsif self.geom
       self.private_geom = self.geom

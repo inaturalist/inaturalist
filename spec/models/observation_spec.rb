@@ -821,6 +821,22 @@ describe Observation, "named scopes" do
     obs.should include(@pos)
     obs.should_not include(@neg)
   end
+
+  it "should find observations in a bounding box in a year" do
+    pos = Observation.make!(:latitude => @pos.latitude, :longitude => @pos.longitude, :observed_on_string => "2010-01-01")
+    neg = Observation.make!(:latitude => @pos.latitude, :longitude => @pos.longitude, :observed_on_string => "2011-01-01")
+    observations = Observation.in_bounding_box(20,20,30,30).on("2010")
+    observations.map(&:id).should include(pos.id)
+    observations.map(&:id).should_not include(neg.id)
+  end
+
+  it "should find observations in a bounding box spanning the date line" do
+    pos = Observation.make!(:latitude => 0, :longitude => 179)
+    neg = Observation.make!(:latitude => 0, :longitude => 170)
+    observations = Observation.in_bounding_box(-1,178,1,-178)
+    observations.map(&:id).should include(pos.id)
+    observations.map(&:id).should_not include(neg.id)
+  end
   
   it "should find observations using the shorter box method" do
     obs = Observation.near_point(20, 20).all

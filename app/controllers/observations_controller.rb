@@ -1103,7 +1103,7 @@ class ObservationsController < ApplicationController
   # gets observations by user login
   def by_login
     search_params, find_options = get_search_params(params)
-    search_params.update(:user_id => @selected_user.id)
+    search_params.update(:user_id => @selected_user.id, :viewer => current_user)
     if search_params[:q].blank?
       get_paginated_observations(search_params, find_options)
     else
