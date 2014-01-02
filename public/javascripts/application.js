@@ -364,6 +364,7 @@ $(document).ready(function() {
   })
 
   $('.add_matching_link').attr('confirm', null).data('confirm', null)
+  $('.dna').dnaHighlight()
 })
 
 function checkFormForRequiredFields(e) {
@@ -1220,5 +1221,90 @@ $.fn.observationUserStats = function(options) {
       }, options.refresh)
       container.data('observationUserStats', t)
     }
+  })
+}
+
+$.fn.dnaHighlight = function() {
+  $(this).each(function() {
+    var newt = "",
+        oldt = $(this).text()
+    for (var i = 0; i < oldt.length; i++) {
+      switch (oldt[i]) {
+        case 'A':
+          newt += '<nt class="a">'+oldt[i]+'</nt>'
+          break
+        case 'T':
+          newt += '<nt class="t">'+oldt[i]+'</nt>'
+          break
+        case 'C':
+          newt += '<nt class="c">'+oldt[i]+'</nt>'
+          break
+        case 'G':
+          newt += '<nt class="g">'+oldt[i]+'</nt>'
+          break
+        default:
+          newt += oldt[i]
+      }
+    }
+    $(this).html(newt)
+  })
+}
+
+$.fn.boldId = function() {
+  $(this).each(function() {
+    if ($('.boldid', this).length > 0) return
+    var bolddb
+    if ($(this).hasClass('bold-its')) {
+      // not implemented by BOLD
+    } else if ($(this).hasClass('bold-matk')) {
+      // not implemented by BOLD
+    } else {
+      bolddb = 'COX1'
+    }
+    if (!bolddb) return
+    var boldWrapper = $('<span class="boldid"><label><a href="http://www.boldsystems.org/">BOLD</a> DNA Match:</label></span>'),
+        boldLink = $('<span class="button inline status"><a href="#">Load DNA-based identification from BOLD</a></span>')
+    boldWrapper.append(' ', boldLink)
+    boldLink.click(function() {
+      $(this).hide()
+      $('.status', boldWrapper).replaceWith('<span class="loading status inline">Loading BOLD ID...</span>')
+      $.get(url, function(data, status, jqXHR) {
+        var name = $('match:first taxonomicidentification', data).text(),
+            similarity = $('match:first similarity', data).text(),
+            specimenURL = $('match:first url', data).text()
+        similarity = preciseRound(parseFloat(similarity) * 100, 2)
+        if (!name) {
+          $('.status', boldWrapper).replaceWith(
+            '<span class="status">No matches</span>'
+          )
+          return
+        }
+        $.getJSON('/taxa/search?q='+name, function(taxa) {
+          var taxon
+          for (var i = 0; i < taxa.length; i++) {
+            if (taxa[i].name == name) {
+              taxon = taxa[i]
+              break
+            }
+          }
+          if (taxon) {
+            var cssClass = 'taxon ' + [taxon.rank, taxon.iconic_taxon_name].join(' ')
+            $('.status', boldWrapper).replaceWith(
+              '<span class="iconic_taxon_sprite '+taxon.iconic_taxon_name.toLowerCase()+' selected">&nbsp;</span> ' +
+              '<span class="'+cssClass+'"><a href="/taxa/'+taxon.id+'"><span class="sciname">'+name+'</span></span></span>'
+            )
+          } else {
+            $('.status', boldWrapper).replaceWith(
+              '<span class="taxon"><span class="sciname">'+name+'</span></span>'
+            )
+          }
+          $(boldWrapper).append(' <span class="meta">('+ similarity + '% match)</span>')
+          $(boldWrapper).append(' <a href="'+specimenURL+'" class="readmore">View matching specimen on BOLD</a>')
+        })
+      })
+      return false
+    })
+    $(this).after(boldWrapper)
+    var url = "/identifications/bold.xml?db="+bolddb+"&sequence="+$(this).text()
   })
 }

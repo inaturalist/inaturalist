@@ -1411,7 +1411,7 @@ CREATE TABLE observation_field_values (
     id integer NOT NULL,
     observation_id integer,
     observation_field_id integer,
-    value character varying(255),
+    value character varying(2048),
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -1448,7 +1448,7 @@ CREATE TABLE observation_fields (
     description character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    allowed_values text
+    allowed_values character varying(512)
 );
 
 
@@ -6174,3 +6174,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131128234236');
 INSERT INTO schema_migrations (version) VALUES ('20131204211450');
 
 INSERT INTO schema_migrations (version) VALUES ('20131220044313');
+
+INSERT INTO schema_migrations (version) VALUES ('20140101210916');

@@ -173,9 +173,10 @@ $(document).ready(function() {
         }
       }
     })
-  $(this).qtip(tipOptions)
+    $(this).qtip(tipOptions)
   })
 
+  $('[class*=bold-]').boldId()
 })
 
 $('#add_more_photos_link').live('click', function() {

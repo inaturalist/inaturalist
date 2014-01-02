@@ -3276,6 +3276,11 @@ en:
         tag_list: Comma-separated list of tags
         positioning_method: How the coordinates were determined
         positioning_device: Device used to determine coordinates
+    observation_fields:
+      dna_help: |
+        To enable BOLD DNA barcode matching functionality, make sure your
+        field name includes the words "COI", "COX1", "ITS", or "matK,"
+        corresponding to the gene this field targets.
     photos:
       inviter:
         automatically_add_to_project: Automatically add to project
@@ -3640,6 +3645,8 @@ en:
       flag:
         reason: Reason
         flag: Flag
+      observation_field_value:
+        value: 'dd'
       taxon:
               name: Name
               rank: Rank
@@ -3669,3 +3676,7 @@ en:
           attributes:
             published_at:
               published_at_needs_3_taxa: "requires at least 3 taxa in your guide"
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: "for DNA can only contain the characters A, T, C, or G"

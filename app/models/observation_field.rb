@@ -44,7 +44,7 @@ class ObservationField < ActiveRecord::Base
   #     map(&:observation_field).uniq[0..10]
   # end
   
-  TYPES = %w(text numeric date time datetime taxon)
+  TYPES = %w(text numeric date time datetime taxon dna)
   TYPES.each do |t|
     const_set t.upcase, t
   end

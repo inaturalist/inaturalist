@@ -311,6 +311,7 @@ Inaturalist::Application.routes.draw do
   resources :identifications, :constraints => { :id => id_param_pattern } do
     resources :flags
   end
+  match 'identifications/bold' => 'identifications#bold', :via => :get
   match 'identifications/agree' => 'identifications#agree', :via => :post
   match 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }, :via => :get
   match 'emailer/invite' => 'emailer#invite', :as => :emailer_invite

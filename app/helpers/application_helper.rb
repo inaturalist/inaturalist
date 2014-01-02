@@ -869,7 +869,7 @@ module ApplicationHelper
   end
 
   def observation_field_value_for(ofv)
-    if ofv.observation_field.datatype == "taxon"
+    if ofv.observation_field.datatype == ObservationField::TAXON
       if taxon = Taxon.find_by_id(ofv.value)
         content_tag(:span, "&nbsp;".html_safe, 
             :class => "iconic_taxon_sprite #{taxon.iconic_taxon_name.to_s.downcase} selected") + 
@@ -877,6 +877,14 @@ module ApplicationHelper
       else
         "unknown"
       end
+    elsif ofv.observation_field.datatype == ObservationField::DNA
+      css_class = "dna"
+      css_class += case ofv.observation_field.name
+      when /(coi|cox1)/i then " bold-coi" 
+      when /its/i then " bold-its"
+      when /rbcl|matk/i then " bold-matk"
+      end
+      content_tag(:div, ofv.value.gsub(/\s/, ''), :class => css_class)
     else
       ofv.value
     end

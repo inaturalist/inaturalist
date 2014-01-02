@@ -6,7 +6,7 @@ class ObservationFieldValue < ActiveRecord::Base
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
   validates_presence_of :value
   validates_presence_of :observation_field_id
-  validates_length_of :value, :maximum => 256
+  validates_length_of :value, :maximum => 2048
   validate :validate_observation_field_datatype
   validate :validate_observation_field_allowed_values
 
@@ -77,6 +77,10 @@ class ObservationFieldValue < ActiveRecord::Base
         end
       rescue ArgumentError => e
         errors.add(:value, "must by in the form hh:mm")
+      end
+    when "dna"
+      if value =~ /[^ATCG]/
+        errors.add(:value, :dna_only_atcg)
       end
     end
   end
