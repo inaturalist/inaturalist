@@ -79,7 +79,7 @@ class ObservationFieldValue < ActiveRecord::Base
         errors.add(:value, "must by in the form hh:mm")
       end
     when "dna"
-      if value =~ /[^ATCG]/
+      if value =~ /[^ATCG\s]/
         errors.add(:value, :dna_only_atcg)
       end
     end
