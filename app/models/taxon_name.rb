@@ -121,7 +121,7 @@ class TaxonName < ActiveRecord::Base
 
   def as_json(options = {})
     if options.blank?
-      options[:only] = [:id, :name, :lexicon]
+      options[:only] = [:id, :name, :lexicon, :is_valid]
     end
     super(options)
   end
