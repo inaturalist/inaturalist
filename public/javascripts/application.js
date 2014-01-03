@@ -456,6 +456,11 @@ function autoTip() {
   }
   
   $(this).qtip(tipOptions)
+
+  // remove multiple file inputs for Windows Safari
+  if (navigator.platform.match(/^Win/) && $.browser.webkit && !navigator.userAgent.match(/Chrome/i)) {
+    $('input[type=file]').removeAttr("multiple")
+  }
 }
 
 // from http://forum.jquery.com/topic/jquery-simple-autolink-and-highlight-12-1-2010

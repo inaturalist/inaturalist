@@ -504,6 +504,11 @@
           $(wrapper).find('.photoSelectorControls .button, .photoSelectorControls .text').show();
           $(wrapper).find('.local_photos').hide();
         }
+
+        // remove multiple file inputs for Windows Safari
+        if (navigator.platform.match(/^Win/) && $.browser.webkit && !navigator.userAgent.match(/Chrome/i)) {
+          $('input[type=file]', wrapper).removeAttr("multiple")
+        }
         
         // Unset loading status
         $photoSelectorPhotos.shades('close')

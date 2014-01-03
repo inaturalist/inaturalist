@@ -61,24 +61,25 @@ class LocalPhoto < Photo
   end
 
   def file=(data)
-    start_time = Time.now
     self.file.assign(data)
-    if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(data.path)
-      self.metadata = exif.to_hash
-      xmp = XMP.parse(exif)
-      if xmp && xmp.respond_to?(:dc) && !xmp.dc.blank?
-        self.metadata[:dc] = {}
-        xmp.dc.attributes.each do |dcattr|
-          begin
-            self.metadata[:dc][dcattr.to_sym] = xmp.dc.send(dcattr) unless xmp.dc.send(dcattr).blank?
-          rescue ArgumentError
-            # XMP does this for some DC attributes, not sure why
+    begin
+      if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(data.path)
+        self.metadata = exif.to_hash
+        xmp = XMP.parse(exif)
+        if xmp && xmp.respond_to?(:dc) && !xmp.dc.blank?
+          self.metadata[:dc] = {}
+          xmp.dc.attributes.each do |dcattr|
+            begin
+              self.metadata[:dc][dcattr.to_sym] = xmp.dc.send(dcattr) unless xmp.dc.send(dcattr).blank?
+            rescue ArgumentError
+              # XMP does this for some DC attributes, not sure why
+            end
           end
         end
       end
+    rescue EXIFR::MalformedImage, EOFError => e
+      Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
     end
-  rescue EXIFR::MalformedImage, EOFError => e
-    Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
   end
   
   def set_urls
