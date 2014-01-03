@@ -349,13 +349,13 @@ class Observation < ActiveRecord::Base
     swlat, swlng, nelat, nelng, options = args
     options ||= {}
     if options[:private]
-      geom_col = "private_geom"
-      lat_col = "private_latitude"
-      lon_col = "private_longitude"
+      geom_col = "observations.private_geom"
+      lat_col = "observations.private_latitude"
+      lon_col = "observations.private_longitude"
     else
-      geom_col = "geom"
-      lat_col = "latitude"
-      lon_col = "longitude"
+      geom_col = "observations.geom"
+      lat_col = "observations.latitude"
+      lon_col = "observations.longitude"
     end
 
     # resort to lat/lon cols for date-line spanning boxes
