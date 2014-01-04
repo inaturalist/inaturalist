@@ -73,7 +73,7 @@
                 %span.badge.right= @nav_places_counts[place.id]
                 =t 'places_name.'+place.name.downcase.gsub(' ','_'), :default => place.name
                 .muted
-                  %small= t("place_geo.geo_planet_place_types.#{place.place_type_name.gsub(' ','_')}", :default => place.place_type_name)
+                  %small= t("place_geo.geo_planet_place_types.#{place.place_type_name.to_s.gsub(' ','_')}", :default => place.place_type_name)
         - if @place
           - subnav_places = capture do
             %li.active
