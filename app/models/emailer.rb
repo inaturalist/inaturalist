@@ -57,8 +57,6 @@ class Emailer < ActionMailer::Base
     return if @user.email.blank?
     return unless @user.prefers_message_email_notification
     return if @user.prefers_no_email
-    Rails.logger.debug "[DEBUG] @message: #{@message}"
-    Rails.logger.debug "[DEBUG] @message.from_user: #{@message.from_user}"
     return if @message.from_user.suspended?
     if fmc = @message.from_user_copy
       return if fmc.flags.where("resolver_id IS NULL").count > 0
@@ -75,6 +73,6 @@ class Emailer < ActionMailer::Base
     return unless fto.file?
     @file_url = FakeView.uri_join(root_url, fto.file.url)
     attachments[fto.file_file_name] = File.read(fto.file.path)
-    mail :to => @user.email, :subject => t(:site_observations_export_from_date, :site_name => SITE_NAME, :date => l(@flow_task.created_at, :format => :long))
+    mail :to => @user.email, :subject => t(:site_observations_export_from_date, :site_name => SITE_NAME, :date => l(@flow_task.created_at.in_time_zone(@user.time_zone), :format => :long))
   end
 end
