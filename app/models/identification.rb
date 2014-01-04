@@ -29,7 +29,7 @@ class Identification < ActiveRecord::Base
   
   attr_accessor :skip_observation
   attr_accessor :html
-  attr_accessor :captive
+  attr_accessor :captive_flag
   
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
     :queue_if => lambda {|ident| ident.taxon_change_id.blank?}
@@ -208,9 +208,9 @@ class Identification < ActiveRecord::Base
   end
 
   def update_quality_metrics
-    if captive == "1"
+    if captive_flag == "1"
       QualityMetric.vote(user, observation, QualityMetric::WILD, false)
-    elsif captive == "0" && (qm = observation.quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
+    elsif captive_flag == "0" && (qm = observation.quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
       qm.update_attributes(:agree => true)
     end
     true

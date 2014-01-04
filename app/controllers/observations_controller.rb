@@ -508,7 +508,7 @@ class ObservationsController < ApplicationController
     @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
 
     if @observation.quality_metrics.detect{|qm| qm.user_id == @observation.user_id && qm.metric == QualityMetric::WILD && !qm.agree?}
-      @observation.captive = true
+      @observation.captive_flag = true
     end
     respond_to do |format|
       format.html do
@@ -983,9 +983,9 @@ class ObservationsController < ApplicationController
         o.longitude = o.private_longitude
       end
       if qm = o.quality_metrics.detect{|qm| qm.user_id == o.user_id}
-        o.captive = qm.metric == QualityMetric::WILD && !qm.agree? ? 1 : 0
+        o.captive_flag = qm.metric == QualityMetric::WILD && !qm.agree? ? 1 : 0
       else
-        o.captive = "unknown"
+        o.captive_flag = "unknown"
       end
       o
     end
@@ -1806,6 +1806,11 @@ class ObservationsController < ApplicationController
     end
     
     @quality_grade = search_params[:quality_grade]
+    @captive = if [true, 'true', 't', 'yes', 'y', 1, '1'].include?(search_params[:captive])
+      true
+    elsif [false, 'false', 'f', 'no', 'n', 0, '0'].include?(search_params[:captive])
+      false
+    end
     @identifications = search_params[:identifications]
     @out_of_range = search_params[:out_of_range]
     @license = search_params[:license]
@@ -1889,6 +1894,7 @@ class ObservationsController < ApplicationController
       !@with_sounds.blank? ||
       !@identifications.blank? ||
       !@quality_grade.blank? ||
+      !@captive.blank? ||
       !@out_of_range.blank? ||
       !@observed_on.blank? ||
       !@place.blank? ||

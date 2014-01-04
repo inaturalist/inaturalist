@@ -36,6 +36,7 @@ class ObservationsExportFlowTask < FlowTask
       scope = scope.includes(:taxon => :taxon_names) if export_columns.detect{|c| c == "common_name"}
       scope = scope.includes(:observation_field_values => :observation_field) if export_columns.detect{|c| c =~ /field\:/}
       scope = scope.includes(:observation_photos => :photo) if export_columns.detect{|c| c == 'image_url'}
+      scope = scope.includes(:quality_metrics) if export_columns.detect{|c| c == 'captive_cultivated'}
       scope
     end
     archive_path = case format

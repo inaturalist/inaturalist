@@ -1615,7 +1615,8 @@ CREATE TABLE observations (
     oauth_application_id integer,
     sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
-    private_geom geometry(Point)
+    private_geom geometry(Point),
+    captive boolean DEFAULT false
 );
 
 
@@ -4934,6 +4935,13 @@ CREATE INDEX index_observation_photos_on_photo_id ON observation_photos USING bt
 
 
 --
+-- Name: index_observations_on_captive; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_captive ON observations USING btree (captive);
+
+
+--
 -- Name: index_observations_on_comments_count; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6176,3 +6184,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131204211450');
 INSERT INTO schema_migrations (version) VALUES ('20131220044313');
 
 INSERT INTO schema_migrations (version) VALUES ('20140101210916');
+
+INSERT INTO schema_migrations (version) VALUES ('20140104202529');

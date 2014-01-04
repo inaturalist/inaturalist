@@ -27,9 +27,9 @@
       </div> -->
 
       <div class="field">
-        <%= o.check_box :captive %>
-        <%= o.label :captive, t(:was_it_captive_cultivated?) %>
-        <% helptip_for "captive" do %>
+        <%= o.check_box :captive_flag %>
+        <%= o.label :captive_flag, t(:was_it_captive_cultivated?) %>
+        <% helptip_for "captive_flag" do %>
           <%=t 'views.observations.captive_help_html' %>
         <% end -%>
       </div>

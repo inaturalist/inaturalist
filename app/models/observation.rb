@@ -43,7 +43,7 @@ class Observation < ActiveRecord::Base
   attr_accessor :twitter_sharing
   attr_accessor :facebook_sharing
 
-  attr_accessor :captive
+  attr_accessor :captive_flag
   attr_accessor :force_quality_metrics
   
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
@@ -138,7 +138,8 @@ class Observation < ActiveRecord::Base
     "description",
     "id_please",
     "num_identification_agreements",
-    "num_identification_disagreements"
+    "num_identification_disagreements",
+    "captive_cultivated"
   ]
   GEO_COLUMNS = [
     "place_guess",
@@ -672,9 +673,6 @@ class Observation < ActiveRecord::Base
       taxon_name = TaxonName.find_single(params[:taxon_name], :iconic_taxa => params[:iconic_taxa])
       scope = scope.of(taxon_name.try(:taxon))
     end
-    scope = scope.by(params[:user_id]) if params[:user_id]
-    scope = scope.in_projects(params[:projects]) if params[:projects]
-    scope = scope.in_place(place_id) unless params[:place_id].blank?
     if params[:on]
       scope = scope.on(params[:on])
     elsif params[:year] || params[:month] || params[:day]
@@ -683,11 +681,16 @@ class Observation < ActiveRecord::Base
         scope = scope.on(date_pieces.join('-'))
       end
     end
+    scope = scope.by(params[:user_id]) if params[:user_id]
+    scope = scope.in_projects(params[:projects]) if params[:projects]
+    scope = scope.in_place(place_id) unless params[:place_id].blank?
     scope = scope.created_on(params[:created_on]) if params[:created_on]
     scope = scope.out_of_range if params[:out_of_range] == 'true'
     scope = scope.in_range if params[:out_of_range] == 'false'
     scope = scope.license(params[:license]) unless params[:license].blank?
     scope = scope.photo_license(params[:photo_license]) unless params[:photo_license].blank?
+    scope = scope.where(:captive => true) if [true, 'true', 't', 'yes', 'y', 1, '1'].include?(params[:captive])
+    scope = scope.where(:captive => false) if [false, 'false', 'f', 'no', 'n', 0, '0'].include?(params[:captive])
     unless params[:ofv_params].blank?
       params[:ofv_params].each do |k,v|
         scope = scope.has_observation_field(v[:observation_field], v[:value])
@@ -1455,6 +1458,10 @@ class Observation < ActiveRecord::Base
       Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id].try(:name)
     end
   end
+
+  def captive_cultivated
+    quality_metrics.any?{|m| m.user_id == user_id && m.metric == QualityMetric::WILD && !m.agree?}
+  end
   
   def self.obscure_coordinates_for_observations_of(taxon, options = {})
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
@@ -1708,11 +1715,11 @@ class Observation < ActiveRecord::Base
   end
 
   def update_quality_metrics
-    if captive == "1"
+    if captive_flag == "1"
       QualityMetric.vote(user, self, QualityMetric::WILD, false)
-    elsif captive == "0" && force_quality_metrics
+    elsif captive_flag == "0" && force_quality_metrics
       QualityMetric.vote(user, self, QualityMetric::WILD, true)
-    elsif captive == "0" && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
+    elsif captive_flag == "0" && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
       qm.update_attributes(:agree => true)
     elsif force_quality_metrics && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
       qm.destroy
@@ -2076,6 +2083,8 @@ class Observation < ActiveRecord::Base
   end
 
 
+  # 2014-01 I tried improving performance by loading ancestor taxa for each
+  # batch, but it didn't really speed things up much
   def self.generate_csv(scope, options = {})
     fname = options[:fname] || "observations.csv"
     fpath = options[:path] || File.join(options[:dir] || Dir::tmpdir, fname)
