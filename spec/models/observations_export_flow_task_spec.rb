@@ -20,6 +20,22 @@ describe ObservationsExportFlowTask, "run" do
     csv[1].should include @o.id.to_s
   end
 
+  it "should filter by year" do
+    u = User.make!
+    o2004 = Observation.make!(:observed_on_string => "2004-05-02", :user => u)
+    o2004.observed_on.year.should eq 2004
+    o2010 = Observation.make!(:observed_on_string => "2010-05-02", :user => u)
+    o2010.observed_on.year.should eq 2010
+    Observation.by(u).on("2010").should_not be_blank
+    ft = ObservationsExportFlowTask.make
+    ft.inputs.build(:extra => {:query => "user_id=#{u.id}&year=2010"})
+    ft.save!
+    ft.run
+    csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+    csv.size.should eq 2
+    csv[1].should include o2010.id.to_s
+  end
+
   it "should allow JSON output" do
     ft = ObservationsExportFlowTask.make
     ft.options = {:format => "json"}

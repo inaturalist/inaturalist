@@ -32,7 +32,11 @@ class ObservationsExportFlowTask < FlowTask
       Observation.where("1 = 2")
     else
       # remove order, b/c it won't work with find_each and seems to cause errors in DJ
-      Observation.query(params).includes(:user, {:taxon => :taxon_names}, {:observation_field_values => :observation_field}).reorder(nil)
+      scope = Observation.query(params).includes(:user).reorder(nil).scoped
+      scope = scope.includes(:taxon => :taxon_names) if export_columns.detect{|c| c == "common_name"}
+      scope = scope.includes(:observation_field_values => :observation_field) if export_columns.detect{|c| c =~ /field\:/}
+      scope = scope.includes(:observation_photos => :photo) if export_columns.detect{|c| c == 'image_url'}
+      scope
     end
     archive_path = case format
     when 'json'
@@ -43,6 +47,11 @@ class ObservationsExportFlowTask < FlowTask
     open(archive_path) do |f|
       self.outputs.create!(:file => f)
     end
+
+    if options[:email]
+      Emailer.observations_export_notification(self).deliver
+    end
+    true
   end
 
   def json_archive
@@ -100,7 +109,8 @@ class ObservationsExportFlowTask < FlowTask
     export_columns = options[:columns] || []
     export_columns = export_columns.select{|k,v| v == "1"}.keys if export_columns.is_a?(Hash)
     export_columns = Observation::CSV_COLUMNS if export_columns.blank?
-    export_columns = export_columns & Observation::ALL_EXPORT_COLUMNS
+    ofv_columns = export_columns.select{|c| c.index("field:")}
+    export_columns = (export_columns & Observation::ALL_EXPORT_COLUMNS) + ofv_columns
     viewer_curates_project = if projects = params[:projects]
       if projects.size == 1
         project = Project.find(projects[0]) rescue nil

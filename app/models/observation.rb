@@ -212,7 +212,7 @@ class Observation < ActiveRecord::Base
   has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
   has_many :quality_metrics, :dependent => :destroy
-  has_many :observation_field_values, :dependent => :destroy, :order => "id asc"
+  has_many :observation_field_values, :dependent => :destroy, :order => "id asc", :inverse_of => :observation
   has_many :observation_fields, :through => :observation_field_values
   has_many :observation_links
   has_and_belongs_to_many :posts
@@ -675,7 +675,14 @@ class Observation < ActiveRecord::Base
     scope = scope.by(params[:user_id]) if params[:user_id]
     scope = scope.in_projects(params[:projects]) if params[:projects]
     scope = scope.in_place(place_id) unless params[:place_id].blank?
-    scope = scope.on(params[:on]) if params[:on]
+    if params[:on]
+      scope = scope.on(params[:on])
+    elsif params[:year] || params[:month] || params[:day]
+      date_pieces = [params[:year], params[:month], params[:day]]
+      unless date_pieces.map{|d| d.blank? ? nil : d}.compact.blank?
+        scope = scope.on(date_pieces.join('-'))
+      end
+    end
     scope = scope.created_on(params[:created_on]) if params[:created_on]
     scope = scope.out_of_range if params[:out_of_range] == 'true'
     scope = scope.in_range if params[:out_of_range] == 'false'
@@ -2076,8 +2083,11 @@ class Observation < ActiveRecord::Base
     columns = options[:columns] || CSV_COLUMNS
     CSV.open(fpath, 'w') do |csv|
       csv << columns
-      scope.find_each do |observation|
-        csv << columns.map{|c| observation.send(c) rescue nil}
+      scope.find_each(:batch_size => 500) do |observation|
+        csv << columns.map do |c| 
+          c = "cached_tag_list" if c == "tag_list"
+          observation.send(c) rescue nil
+        end
       end
     end
     fpath

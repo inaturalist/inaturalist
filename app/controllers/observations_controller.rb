@@ -1601,6 +1601,28 @@ class ObservationsController < ApplicationController
     end
   end
 
+  def email_export
+    unless flow_task = current_user.flow_tasks.find_by_id(params[:id])
+      render :status => :unprocessable_entity, :text => "Flow task doesn't exist"
+      return
+    end
+    if flow_task.user_id != current_user.id
+      render :status => :unprocessable_entity, :text => "You don't have permission to do that"
+      return
+    end
+    if flow_task.outputs.exists?
+      Emailer.observations_export_notification(flow_task).deliver
+      render :status => :ok, :text => ""
+      return 
+    end
+    flow_task.options = flow_task.options.merge(:email => true)
+    if flow_task.save
+      render :status => :ok, :text => ""
+    else
+      render :status => :unprocessable_entity, :text => flow_task.errors.full_messages.to_sentence
+    end
+  end
+
 ## Protected / private actions ###############################################
   private
 
@@ -1726,7 +1748,7 @@ class ObservationsController < ApplicationController
       find_options[:limit] = 200
     end
     
-    unless request.format && request.format.html?
+    unless request && request.format && request.format.html?
       find_options[:include] = [{:taxon => :taxon_names}, {:observation_photos => :photo}, :user]
     end
     

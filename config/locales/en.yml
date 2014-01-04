@@ -866,6 +866,7 @@ en:
   explore!: explore!
   explore_everyones_observations: Explore everyone's observations
   export_observations: Export observations
+  exporting: "Exporting..."
   external_links: External Links
   extinct: EXTINCT
   extinct: extinct
@@ -2181,6 +2182,7 @@ en:
   sizes: Sizes
   small: small
   site_name_place: "%{site_name} place"
+  site_observations_export_from_date: "%{site_name} observations export from %{date}"
   site_taxon_page: "%{site_name} taxon page"
   so_meta!: so meta!
   some_agree: some agree
@@ -3241,6 +3243,16 @@ en:
           Town, county, state, country fields based on coordinates. Analagous
           adminstrative levels will be used for observations where these place
           types do not apply.
+        be_patient: |
+          Please be patient, this can take a few minutes. If this is taking
+          too long, you can
+        check_back: |
+          If you reload this page in a few minutes your export should appear
+          in the list at the bottom of the page.
+        receive_an_email_with_your_data: Receive an email with your data
+        receive_an_email_with_your_data_help: You'll receive an email with your export as an attachment.
+        well_email_you: "Ok, we'll email you when it's ready."
+        taking_a_while: "This is taking a while. Please try one of the options below."
       field_descriptions:
         id: "Unique identifier for the observation"
         species_guess: "Name the observer entered for the observed taxon"
@@ -3278,6 +3290,11 @@ en:
         To enable BOLD DNA barcode matching functionality, make sure your
         field name includes the words "COI", "COX1", "ITS", or "matK,"
         corresponding to the gene this field targets.
+    emailer:
+      observations_export_notification:
+        your_observations_export_is_ready_html: |
+          Your observations export is ready. There's a copy attached to this email, or you can
+          <a href="%{url}">download your export</a>.
     photos:
       inviter:
         automatically_add_to_project: Automatically add to project

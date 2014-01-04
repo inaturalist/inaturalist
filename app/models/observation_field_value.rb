@@ -1,5 +1,5 @@
 class ObservationFieldValue < ActiveRecord::Base
-  belongs_to :observation
+  belongs_to :observation, :inverse_of => :observation_field_values
   belongs_to :observation_field
   
   before_validation :strip_value

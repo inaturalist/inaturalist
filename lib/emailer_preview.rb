@@ -11,4 +11,9 @@ class EmailerPreview < MailView
   def new_message
     Emailer.new_message(Message.last)
   end
+
+  def observations_export_notification
+    ft = ObservationsExportFlowTask.includes(:outputs).where("flow_task_resources.id IS NOT NULL").first
+    Emailer.observations_export_notification(ft)
+  end
 end

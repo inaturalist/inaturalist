@@ -124,14 +124,14 @@ class Taxon < ActiveRecord::Base
     define_method "find_#{rank}" do
       return self if rank_level == level
       return nil if rank_level.to_i > level.to_i
-      @cached_ancestors ||= ancestors.all
+      @cached_ancestors ||= ancestors.select("id, name, rank").all
       @cached_ancestors.detect{|a| a.rank == rank}
     end
     alias_method(rank, "find_#{rank}") unless respond_to?(rank)
     define_method "taxonomic_#{rank}_name" do
       send("find_#{rank}").try(:name)
     end
-    alias_method("#{rank}_name", "taxonomic_#{rank}_name") unless respond_to?(rank)
+    alias_method("#{rank}_name", "taxonomic_#{rank}_name") unless respond_to?("#{rank}_name")
     define_method "#{rank}?" do
       self.rank == rank
     end
