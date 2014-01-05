@@ -362,7 +362,7 @@
     <%= truncate_with_more formatted_user_text(@project.description, 
       :tags => Post::ALLOWED_TAGS + %w(table tr td img p iframe div), 
       :attributes => Post::ALLOWED_ATTRIBUTES, 
-      :skip_simple_format => @project.description.to_s[0] == "<")
+      :skip_simple_format => @project.description.to_s[0] == "<"
     ), :length => 400 %>
   <% end -%>
   
