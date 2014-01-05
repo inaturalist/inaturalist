@@ -29,7 +29,7 @@ h2{line-height:1;margin:0;float:left;}
 .add_matching_link {margin-top: 5px;}
 
 #cover {position:relative;}
-#cover h1 {position:absolute; bottom: 20px; left: 20px; color:white; margin:0;}
+#cover h1 {position:absolute; bottom: 25px; left: 20px; color:white; margin:0;}
 #cover h1, 
 #addbutton,
 #rtstats .counts .count, #cover .timespan {font-family: 'Fjalla One', "Trebuchet MS", Arial, sans-serif;}
@@ -54,7 +54,7 @@ h2{line-height:1;margin:0;float:left;}
 #cover .timespan {
   position: absolute;
   left: 86px;
-  bottom: 5px;
+  bottom: 10px;
   color:white;
   letter-spacing: 0.1em;
   text-shadow: 0 0 10px black;
@@ -109,3 +109,4 @@ h2{line-height:1;margin:0;float:left;}
 #bioblitzstats table {margin:0;}
 #bioblitzstats .counts .stat {margin-bottom: 5px;}
 #event.with_description {width: 50%; float: right; margin-left: 10px;}
+#bioblitz td {border: 0 transparent;}
