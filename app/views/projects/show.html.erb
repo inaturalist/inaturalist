@@ -85,7 +85,10 @@
       <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
         <div class="timespan">
           <% if @project.end_time - @project.start_time <= 1.day -%>
-            <%=l @project.start_time.to_date, :format => :long %>
+            <%=l @project.start_time.to_date, :format => :long %>,
+            <%=l @project.start_time, :format => :hours %>
+            -
+            <%=l @project.end_time, :format => :hours %>
           <% else %>
             <%= @project.start_time.to_date.to_s(:long) %>
             to
