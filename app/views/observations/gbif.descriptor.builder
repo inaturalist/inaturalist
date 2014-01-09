@@ -21,7 +21,7 @@ xml.archive :xmlns => "http://rs.tdwg.org/dwc/text/",
     end
     xml.id :index => 0
     core_terms.each_with_index do |tuple, i|
-      # next if i == 0
+      next if i == 0
       name, uri, default = tuple
       if default
         xml.field :index => i, :default => default, :term => uri
