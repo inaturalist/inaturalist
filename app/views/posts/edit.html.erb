@@ -27,6 +27,6 @@
     </div>
   <% end -%>
 
-  <%= render :partial => 'form' %>  
+  <%= render "#{@post.class.name.underscore}_form" %>
 </div>
 

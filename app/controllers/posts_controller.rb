@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :browse]
   before_filter :load_post, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_new_post, :only => [:new, :create]
   before_filter :load_parent, :except => [:browse, :create, :update, :destroy]
   before_filter :author_required, :only => [:edit, :update, :destroy]
   
@@ -49,12 +50,15 @@ class PostsController < ApplicationController
   end
   
   def new
-    # if params include a project_id, parent is the project.  otherwise, parent is current_user.
-    @post = Post.new(:parent => @parent, :user => current_user)
+    if @list = List.find_by_id(params[:list_id])
+      @listed_taxa = @list.listed_taxa.includes(:taxon).limit(500)
+      @listed_taxa.each do |lt|
+        @post.trip_taxa.build(:taxon => lt.taxon)
+      end
+    end
   end
   
   def create
-    @post = Post.new(params[:post])
     @post.parent ||= current_user
     @display_user = current_user
     @post.published_at = Time.now if params[:commit] == t(:publish)
@@ -64,14 +68,16 @@ class PostsController < ApplicationController
     if @post.save
       if @post.published_at
         flash[:notice] = t(:post_published)
-        redirect_to (@post.parent.is_a?(Project) ?
-                     project_journal_post_path(@post.parent.slug, @post) :
-                     journal_post_path(@post.user.login, @post))
+        # redirect_to (@post.parent.is_a?(Project) ?
+        #              project_journal_post_path(@post.parent.slug, @post) :
+        #              journal_post_path(@post.user.login, @post))
+        redirect_to path_for_post(@post)
       else
         flash[:notice] = t(:draft_saved)
-        redirect_to (@post.parent.is_a?(Project) ?
-                     edit_project_journal_post_path(@post.parent.slug, @post) :
-                     edit_journal_post_path(@post.user.login, @post))
+        # redirect_to (@post.parent.is_a?(Project) ?
+        #              edit_project_journal_post_path(@post.parent.slug, @post) :
+        #              edit_journal_post_path(@post.user.login, @post))
+        redirect_to edit_path_for_post(@post)
       end
     else
       render :action => :new
@@ -83,6 +89,7 @@ class PostsController < ApplicationController
   end
   
   def update
+    Rails.logger.debug "[DEBUG] @post.class: #{@post.class}"
     @post.published_at = Time.now if params[:commit] == t(:publish)
     @post.published_at = nil if params[:commit] == t(:unpublish)
     if params[:observations]
@@ -110,7 +117,8 @@ class PostsController < ApplicationController
     # AG: actually, i don't think this actually runs after preview rendering...
     @post.observations = @observations if @observations
     
-    if @post.update_attributes(params[:post])
+    Rails.logger.debug "[DEBUG] @post.class.name.underscore.to_sym: #{@post.class.name.underscore.to_sym}"
+    if @post.update_attributes(params[@post.class.name.underscore.to_sym])
       if @post.published_at
         flash[:notice] = t(:post_published)
         redirect_to (@post.parent.is_a?(Project) ?
@@ -175,9 +183,14 @@ class PostsController < ApplicationController
       @display_project = Project.find(params[:project_id])
       @parent = @display_project
     end
-    @display_user ||= @post.user if @post
-    @parent ||= @post.parent if @post
-    return render_404 if @parent.blank?
+    if @post
+      @display_user ||= @post.user if @post
+      @parent ||= @post.parent if @post
+    elsif logged_in?
+      @display_user ||= current_user
+      @parent ||= current_user
+    end
+    render_404 && return if @parent.blank?
     if @parent.is_a?(Project)
       @parent_display_name = @parent.title 
       @parent_slug = @parent.slug
@@ -188,9 +201,25 @@ class PostsController < ApplicationController
     end
     true
   end
+
+  def load_new_post
+    @post = if request.fullpath =~ /\/trips/
+    # @post = if params[:trip]
+      Rails.logger.debug "[DEBUG] foo"
+      Trip.new(params[:trip] || params[:post])
+    else
+      Post.new(params[:post])
+    end
+    @post.parent ||= current_user
+    @post.user ||= current_user
+    true
+  end
   
   def load_post
     @post = Post.find_by_id(params[:id])
+    if request.fullpath =~ /\/trips/
+      @post.becomes(Trip)
+    end
     render_404 and return unless @post
     true
   end
@@ -202,6 +231,26 @@ class PostsController < ApplicationController
       redirect_to (@post.parent.is_a?(Project) ?
                    project_journal_path(@post.parent.slug) :
                    journal_by_login_path(@post.user.login))
+    end
+  end
+
+  def path_for_post(post)
+    if post.parent.is_a? Project
+      project_journal_post_path(post.parent.slug, post)
+    elsif post.is_a? Trip
+      trip_path(post)
+    else
+      journal_post_path(post.user.login, post)
+    end
+  end
+
+  def edit_path_for_post(post)
+    if post.parent.is_a? Project
+      edit_project_journal_post_path(post.parent.slug, post)
+    elsif post.is_a? Trip
+      edit_trip_path(post)
+    else
+      edit_journal_post_path(post.user.login, post)
     end
   end
 end

@@ -206,7 +206,7 @@
         $(this.markup.originalInput).val(itemValue).change()
       }
       if (!options.blurring && typeof(this.options.afterSelect) == 'function') {
-        this.options.afterSelect(item)
+        this.options.afterSelect.apply(this, [item])
       }
     },
     

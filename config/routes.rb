@@ -308,6 +308,7 @@ Inaturalist::Application.routes.draw do
     :as => 'journal_posts',
     :path => "/journal/:login",
     :constraints => { :login => simplified_login_regex }
+  resources :trips #, :controller => :posts
   
   resources :identifications, :constraints => { :id => id_param_pattern } do
     resources :flags

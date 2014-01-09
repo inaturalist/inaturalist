@@ -1,0 +1,7 @@
+.container
+  .row
+    .span12
+      %h1= @trip.title
+      = formatted_user_text @trip.body
+    .span12
+      = link_to "edit", edit_trip_path(@trip)
