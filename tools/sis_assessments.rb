@@ -9,7 +9,11 @@ Usage:
 
   rails runner tools/sis_assessments.rb [OPTIONS]
 
-where [options] are:
+Note that you can find a SIS working set ID by going to
+https://sis.iucnsis.org, clicking on the working set you want, and copying its
+ID from the URL. It should look like #W12345, so use 12345 as the ID.
+
+Options:
 EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
   opt :sis_username, "SIS username", :type => :string, :short => "-u"
@@ -68,6 +72,7 @@ def parse_auth_response(auth_response)
 end
 
 def get_json(url)
+  puts "Getting #{url}" if OPTS[:debug]
   response = Net::HTTP.get_response(URI.parse(url))
   json = JSON.parse response.body
 rescue Timeout::Error => e
@@ -182,7 +187,9 @@ else
   )
 end
 
-#Make a key for returning the Assessment Section titles from the SIS API values
+# Make a key for returning the Assessment Section titles from the SIS API
+# values. These are values requested by partners at IUCN. The API returns a
+# number of other sections
 headers = [
   'GeographicRangeInformation',
   'PopulationDocumentation',
@@ -217,38 +224,38 @@ unless working_set_species = get_workingset_species(auth_token, OPTS.working_set
   puts "No species in that working set"
   exit(0)
 end
-working_set_species.each do |sp| #Loop through the species in the workingset
+total = working_set_species.size
+working_set_species.each_with_index do |sp,i| #Loop through the species in the workingset
   iucn_id = sp['taxonid'].to_s
   iucn_name = sp['name'].gsub('_new','')
-  puts "\t Processing #{iucn_name}..."
+  puts "Processing #{iucn_name} (#{i+1}/#{total})..."
   unless taxon = Taxon.first(
     :joins => 
       "JOIN taxon_scheme_taxa tst ON tst.taxon_id = taxa.id " +
       "JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id",
     :conditions => ["ts.id IN (?) AND tst.source_identifier = ?", [SCHEME.id, DRAFT_SCHEME.id], iucn_id]
   )
-    puts "\t\t No taxa in iucn schemes with source_identifir #{iucn_id}, checking other taxa..."
+    puts "\t No taxa in iucn schemes with source_identifier #{iucn_id}, checking other taxa..."
     if taxon = Taxon.first(:conditions => {:name => iucn_name})
-      puts "\t\t Found taxon #{iucn_name}..."
+      puts "\t Found taxon #{iucn_name}..."
     else
-      puts "\t\t No taxa in with iucn name #{iucn_name}, attempting to create..."
-      if parent = Taxon.first(:conditions => {:name => iucn_name.split[0], :rank => "genus"})
+      puts "\t No taxa in with iucn name #{iucn_name}, attempting to create..."
+      # if parent = Taxon.first(:conditions => {:name => iucn_name.split[0], :rank => "genus"})
         taxon = Taxon.new(
           :name => iucn_name,
           :rank => 'species',
           :source_identifier => iucn_id,
-          :parent_id => parent.id,
+          # :parent_id => parent.id,
           :source_id => DRAFT_SOURCE.id,
           :is_active => false
         )
         if taxon.save
-          puts "\t\t Successfully created taxon"
-        else
-          taxon = nil
+          puts "\t Successfully created taxon"
+          taxon.graft
         end
-      end
+      # end
     end
-    if taxon
+    if taxon && taxon.valid?
       unless taxon_scheme_taxon = TaxonSchemeTaxon.first(:conditions => ["taxon_id = ? AND taxon_scheme_id IN (?)", taxon.id, [SCHEME.id, DRAFT_SCHEME.id]])
         tst = TaxonSchemeTaxon.new(
           :taxon_scheme_id => DRAFT_SCHEME.id,
@@ -256,12 +263,17 @@ working_set_species.each do |sp| #Loop through the species in the workingset
           :source_identifier => iucn_id
         )
         if tst.save
-          puts "\t\t Successfully added taxon to taxon_scheme"
+          puts "\t Successfully added taxon to taxon_scheme"
         end
       end
     else
       missing << iucn_id
-      puts "\t\t Problem creating taxon for #{iucn_name}"
+      print "\t Problem creating taxon for #{iucn_name}: "
+      if taxon
+        puts taxon.errors.full_messages.to_sentence
+      else
+        puts "couldn't find taxon"
+      end
     end
   end
   
@@ -274,9 +286,9 @@ working_set_species.each do |sp| #Loop through the species in the workingset
         :user => project.user
       )
       if assessment.save
-        puts "\t\t Created assessment for #{taxon.name}"
+        puts "\t Created assessment for #{taxon.name}"
       else
-        puts "\t\t Failed to save assessment: #{assessment.errors.full_messages.to_sentence}"
+        puts "\t Failed to save assessment: #{assessment.errors.full_messages.to_sentence}"
         next
       end
     end
@@ -286,48 +298,46 @@ working_set_species.each do |sp| #Loop through the species in the workingset
       for_description = "IUCN Red List Category:" #Start building string to fill in assessment description, in this case a summary of the Assessment
       assessment_date = ""
       sis_assessment.each do |key, value| #loop through the assessment secitons
-        if headers.include? key
-          if key == "RedListCategory" #rather add this to the assessment description
-            for_description = for_description + " " + value if value
-          elsif key == "RedListCriteria" #rather add this to the assessment description
-            for_description = for_description + " " + value if value
-          elsif key == "RedListAssessmentDate" #rather add this to the assessment description
-            assessment_date = assessment_date + value if value
-          else
-            value = "Section empty" if value.nil?
-            if key == "GeographicRangeInformation" #add the map to the assessment section
-              value = value + "<iframe width=\"100%\" height=\"500\" src=\"https://amazing-amphibians.herokuapp.com/?taxon_id=#{taxon.id}&height=500&project_id=#{project.id}\"></iframe>" ###
-            end
-            if key == "TaxonomicNotes"
-              value = "<table><tr><td>" + taxon.ancestors[1..-1].map{|t| t.name}.join("</td><td>") + "</td><td>" + taxon.name + "</td></tr></table>Taxonomic notes:  " + value
-            end
-            if key == "bibliography"
-              new_value = "<ul>"
-              value.each do |cit|
-                new_value = new_value + "<li>" + cit["citation"] + "</li>"
-              end
-              value = new_value + "</ul>"
-            end
-            if assessment_section = AssessmentSection.first(:conditions => {:assessment_id => assessment.id, :title => header_hash[key]}) 
-              assessment_section.update_attributes(:body => value)
-            else
-              assessment_section = AssessmentSection.new(
-                :assessment_id => assessment.id,
-                :user => project.user,
-                :title => header_hash[key],
-                :body => value
-              )
-              if assessment_section.save
-                puts "\t\t Created assessment_section for #{assessment.id}"
-              else
-                assessment_section = nil
-                puts "\t\t Failed to save assessment section: #{assessment_section.errors.full_messages.to_sentence}"
-              end
-            end
-            assessment_section_keepers << assessment_section.id if assessment_section
-          end
+        unless headers.include? key
+          puts "\t Unrecognized assessment_section header #{key}"
+          next
+        end
+        if %w(RedListCategory RedListCriteria).include?(key) #rather add this to the assessment description
+          for_description = for_description + " " + value if value
+        elsif key == "RedListAssessmentDate" #rather add this to the assessment description
+          assessment_date = assessment_date + value if value
         else
-          puts "\t\t Unrecognized assessment_section header #{key}"
+          value = "Section empty" if value.nil?
+          if key == "GeographicRangeInformation" #add the map to the assessment section
+            value = value + "<iframe width=\"100%\" height=\"500\" src=\"https://amazing-amphibians.herokuapp.com/?taxon_id=#{taxon.id}&height=500&project_id=#{project.id}\"></iframe>" ###
+          end
+          if key == "TaxonomicNotes"
+            value = "<table><tr><td>" + taxon.ancestors[1..-1].map{|t| t.name}.join("</td><td>") + "</td><td>" + taxon.name + "</td></tr></table>Taxonomic notes:  " + value
+          end
+          if key == "bibliography"
+            new_value = "<ul>"
+            value.each do |cit|
+              new_value = new_value + "<li>" + cit["citation"] + "</li>"
+            end
+            value = new_value + "</ul>"
+          end
+          if assessment_section = AssessmentSection.first(:conditions => {:assessment_id => assessment.id, :title => header_hash[key]}) 
+            assessment_section.update_attributes(:body => value)
+          else
+            assessment_section = AssessmentSection.new(
+              :assessment_id => assessment.id,
+              :user => project.user,
+              :title => header_hash[key],
+              :body => value
+            )
+            if assessment_section.save
+              puts "\t Created assessment_section for #{assessment.id}"
+            else
+              assessment_section = nil
+              puts "\t Failed to save assessment section: #{assessment_section.errors.full_messages.to_sentence}"
+            end
+          end
+          assessment_section_keepers << assessment_section.id if assessment_section
         end
       end
       if assessment_date == ""
@@ -385,9 +395,9 @@ if peru && amphibia
       :taxon => amphibia
     )
     if subscription.save
-      puts "\t\t created Peru Amphibs subscription for user #{pu.user.login}"
+      puts "\t created Peru Amphibs subscription for user #{pu.user.login}"
     else
-      puts "\t\t Failed to create Peru Amphibs subscription for #{pu.user.login}: #{subscription.errors.full_messages.to_sentence}"
+      puts "\t Failed to create Peru Amphibs subscription for #{pu.user.login}: #{subscription.errors.full_messages.to_sentence}"
     end
   end
 end
@@ -409,9 +419,9 @@ unless pa = ProjectAsset.first(:conditions => {
     :asset_content_type => "text/csv"
   )
   if pa.save
-    puts "\t\t Created Project Asset"
+    puts "\t Created Project Asset"
   else
-    puts "\t\t Failed to save assessment section: #{pa.errors.full_messages.to_sentence}"
+    puts "\t Failed to save assessment section: #{pa.errors.full_messages.to_sentence}"
     exit(0)
   end
 end

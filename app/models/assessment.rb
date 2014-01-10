@@ -11,6 +11,16 @@ class Assessment < ActiveRecord::Base
 
   scope :complete, where("completed_at IS NOT NULL")
   scope :incomplete, where("completed_at IS NULL")
+  scope :with_conservation_status, lambda {|authority, status, place|
+    scope = joins("INNER JOIN conservation_statuses ON assessments.taxon_id = conservation_statuses.taxon_id").
+    where("conservation_statuses.authority = ? AND conservation_statuses.status = ?", authority, status).scoped
+    scope = if place
+      scope.where("conservation_statuses.place_id = ?", place)
+    else
+      scope.where("conservation_statuses.place_id IS NULL")
+    end
+    scope
+  }
 
   def taxon_name
      taxon.present? ? taxon.name : '<i>No Taxon</i>'.html_safe
