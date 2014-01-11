@@ -8,7 +8,10 @@
 <div class="column span-4">
   <h3><%=t :filters %></h3>
   <%= form_for :filters, :builder => DefaultFormBuilder, :html => {:method => :get, :class => "clear stacked"} do |f| %>
-    <%= f.select :complete, [[t(:yes), 'yes'], [t(:no), 'no']], {:include_blank => t(:either), :selected => @complete, :label => t(:complete)}, {:data => {:autosubmit => true}} %>
+    <%= hidden_fields_for_params :without => [:page, :filters, :commit] %>
+    <%= f.text_field :q, :value => @q, :label => t(:search) %>
+    <%= f.select :complete, [[t(:yes), 'yes'], [t(:no), 'no']], {:include_blank => t(:either), :selected => @complete, :label => t(:complete)}, {} %>
+    <%= f.submit t(:filter) %>
   <% end -%>
 
   <div id="statuses">

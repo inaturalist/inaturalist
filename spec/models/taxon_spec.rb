@@ -827,7 +827,7 @@ describe Taxon, "grafting" do
   end
 
   it "should set the parent of a species based on the polynom genus" do
-    t = Taxon.make!(:name => "Pseudacris foo", :rank => Taxon::SPECIES)
+    t = Taxon.make!(:name => "Pseudacris foo")
     t.graft
     t.parent.should eq(@Pseudacris)
   end

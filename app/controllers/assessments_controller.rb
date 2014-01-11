@@ -93,6 +93,8 @@ class AssessmentsController < ApplicationController
           elsif @complete == 'no'
             @assessments = @assessments.incomplete
           end
+          @q = filters[:q]
+          @assessments = @assessments.dbsearch(@q) unless @q.blank?
         end
         @authority = params[:authority]
         @status = params[:status]

@@ -21,6 +21,7 @@ class Assessment < ActiveRecord::Base
     end
     scope
   }
+  scope :dbsearch, lambda {|q| joins(:taxon).where("taxa.name ILIKE ? OR assessments.description ILIKE ?", "%#{q}%", "%#{q}%")}
 
   def taxon_name
      taxon.present? ? taxon.name : '<i>No Taxon</i>'.html_safe
