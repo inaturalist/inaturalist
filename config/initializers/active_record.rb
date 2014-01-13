@@ -44,7 +44,14 @@ module ActiveRecord
         d == 0 ? nil : d
       end
       if date.to_s =~ /^\d{4}/ && year && month && day
-        ["#{column}::DATE = ?", "#{year}-#{month}-#{day}"]
+        datestring = "#{year}-#{month}-#{day}"
+        begin
+          Date.parse(datestring)
+          ["#{column}::DATE = ?", datestring]
+        rescue ArgumentError => e
+          raise e unless e.message =~ /invalid date/
+          "1 = 2"
+        end
       elsif year || month || day
         conditions, values = [[],[]]
         if year
