@@ -272,6 +272,8 @@ class Observation < ActiveRecord::Base
       :as => :identifications_most_disagree, :type => :boolean
     has project_observations(:project_id), :as => :projects #, :type => :multi
     has observation_field_values(:observation_field_id), :as => :observation_fields
+    indexes observation_field_values.value, :as => :ofv_values
+    indexes observation_field_values.observation_field.name, :as => :observation_field_names
     set_property :delta => :delayed
   end
   
