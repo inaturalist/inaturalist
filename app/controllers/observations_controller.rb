@@ -1719,7 +1719,10 @@ class ObservationsController < ApplicationController
       end
     end
     
-    @q = search_params[:q].to_s unless search_params[:q].blank?
+    unless search_params[:q].blank?
+      search_params[:q] = sanitize_sphinx_query(search_params[:q])
+      @q = search_params[:q] unless search_params[:q].blank?
+    end
     if Observation::SPHINX_FIELD_NAMES.include?(search_params[:search_on])
       @search_on = search_params[:search_on]
     end

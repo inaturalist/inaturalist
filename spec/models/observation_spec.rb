@@ -974,6 +974,12 @@ describe Observation, "named scopes" do
   it "should not find anything for a non-existant taxon ID" do
     Observation.of(91919191).should be_empty
   end
+
+  it "should not bail on invalid dates" do
+    lambda {
+      o = Observation.on("2013-02-30").all
+    }.should_not raise_error
+  end
 end
 
 describe Observation do

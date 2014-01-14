@@ -5,43 +5,51 @@
 
 <%= render :partial => "shared/by_project_header", :locals => { :model_name => "Assessments", :project => @project } %>
 
-<div class="column span-24">
+<div class="column span-4">
+  <h3><%=t :filters %></h3>
+  <%= form_for :filters, :builder => DefaultFormBuilder, :html => {:method => :get, :class => "clear stacked"} do |f| %>
+    <%= hidden_fields_for_params :without => [:page, :filters, :commit] %>
+    <%= f.text_field :q, :value => @q, :label => t(:search) %>
+    <%= f.select :complete, [[t(:yes), 'yes'], [t(:no), 'no']], {:include_blank => t(:either), :selected => @complete, :label => t(:complete)}, {} %>
+    <%= f.submit t(:filter) %>
+  <% end -%>
 
-  <%= link_to("Add an assessment", new_project_assessment_path(@project), :class => "readmore new-assessment-link") if @project.curated_by?(current_user) %>
-
-  <% if params[:page] == '1' || params[:page].blank? %>
-    <h3>
-    Current Assessments
-    <% helptip_for :colors do %>
-      Taxon assessments are documents assessing the current status of a species, usually conservation status. For example, a regional conservation organization might use them to organize information and solicit feedback about the status of several threatened taxa in the region.
-    <% end -%>
-    </h3>
-    
-    <% if @uncompleted_assessments.blank? -%>
-      <div class="description noresults">
-        No assessments have been added to this project yet.
+  <div id="statuses">
+    <h3><%=t :conservation_statuses %></h3>
+    <% @conservation_statuses.keys.sort.each do |authority| %>
+      <div class="clear stacked">
+        <label><%= authority %></label>
+        <ul class="plain">
+          <% @conservation_statuses[authority].sort.each do |status| %>
+            <li><%= link_to status, url_for_params(:authority => authority, :status => status, :without => [:page]), :class => @authority == authority && @status == status ? "selected" : nil %></li>
+          <% end -%>
+        </ul>
       </div>
-    <% else %>
-      <% for project_assessment in @uncompleted_assessments %>
-        <%= render :partial => 'projects/project_assessment', :locals => {:assessment => project_assessment, :num_sections => 7} %>
-      <% end %>
+    <% end -%>
+    <div>
+      <%= link_to t(:any_status), url_for_params(:without => [:page, :authority, :status]), :class => @authority.blank? && @status.blank? ? 'selected' : nil %>
+    </div>
+  </div>
+</div>
+
+<div class="last column span-20">
+  <%= link_to("Add an assessment", new_project_assessment_path(@project), :class => "readmore new-assessment-link") if @project.curated_by?(current_user) %>
+  <h3>
+    <%=t :assessments %>
+  <% helptip_for :colors do %>
+    Taxon assessments are documents assessing the current status of a species, usually conservation status. For example, a regional conservation organization might use them to organize information and solicit feedback about the status of several threatened taxa in the region.
+  <% end -%>
+  </h3>
+  
+  <% if @assessments.blank? -%>
+    <div class="description noresults">
+      No assessments have been added to this project yet.
+    </div>
+  <% else %>
+    <% for project_assessment in @assessments %>
+      <%= render :partial => 'projects/project_assessment', :locals => {:assessment => project_assessment, :num_sections => 5} %>
     <% end %>
   <% end %>
 
-  <div style="margin-bottom: 20px;"></div>
-
-   <h3>Completed Assessments</h3>
-   <% if @completed_assessments.blank? -%>
-      <div class="description noresults">
-        No assessments have been completed for this project yet.
-      </div>
-    <% else %>
-      <div class="mini observations">
-        <% for project_assessment in @completed_assessments %>
-          <%= render :partial => 'projects/project_assessment', :locals => {:assessment => project_assessment, :num_sections => 7} %>
-        <% end %>
-        <%= will_paginate @completed_assessments %>
-      </div>
-    <% end %>
-  
+  <%= will_paginate @assessments %>
 </div>
