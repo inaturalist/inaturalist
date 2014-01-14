@@ -2989,8 +2989,9 @@ CREATE TABLE trip_purposes (
     trip_id integer,
     purpose character varying(255),
     resource_type character varying(255),
-    resource_id character varying(255),
-    success boolean
+    resource_id integer,
+    success boolean,
+    complete boolean DEFAULT false
 );
 
 
@@ -6324,3 +6325,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131220044313');
 INSERT INTO schema_migrations (version) VALUES ('20140101210916');
 
 INSERT INTO schema_migrations (version) VALUES ('20140104202529');
+
+INSERT INTO schema_migrations (version) VALUES ('20140114210551');

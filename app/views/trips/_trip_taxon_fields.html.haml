@@ -1,11 +1,12 @@
 %tr.nested-fields.trip-taxa-fields
-  %td
-    = f.check_box :observed, :label => false
+  %td.observed
+    = f.label :observed do
+      = f.check_box :observed, :label => false
     = f.hidden_field :taxon_id
   %td.name
     .taxonwrapper
       - if f.object.taxon
-        = render "taxa/chooser", :taxon => f.object.taxon
+        = render "shared/taxon", :taxon => f.object.taxon
       - else
         =t :unknown
   %td.actions

@@ -26,7 +26,8 @@ body {
 }
 * html .clear { height: 1%; }
 .clear { display: block; }
-.bootstrap input[type="text"].latLonSelectorInput {margin-bottom:0;}
+.bootstrap input[type="text"].latLonSelectorInput,
+.bootstrap input[type="text"].hasDatepicker {margin-bottom:0;}
 
 .bootstrap .btn.disabled.loadingclick, .bootstrap .btn.loadingclick[disabled] {
   background-image: url(/images/spinner-small.gif);

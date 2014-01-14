@@ -543,8 +543,9 @@
     if (!$.fn.latLonSelector._circle) { 
       $.fn.latLonSelector.setAccuracy(null)
     }
-    var bounds = $.fn.latLonSelector._map.getBounds(),
-        center = bounds.getCenter(), 
+    var bounds = $.fn.latLonSelector._map.getBounds()
+    if (!bounds) {return}
+    var center = bounds.getCenter(), 
         northEast = bounds.getNorthEast(),
         mapAcc = iNaturalist.Map.distanceInMeters(center.lat(), center.lng(), northEast.lat(), northEast.lng()) / 5,
         defaultAcc = Math.max(mapAcc, 20),

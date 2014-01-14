@@ -21,7 +21,7 @@ class AddTrips < ActiveRecord::Migration
       t.integer :trip_id
       t.string :purpose
       t.string :resource_type
-      t.string :resource_id
+      t.integer :resource_id
       t.boolean :success
     end
     add_index :trip_purposes, :trip_id

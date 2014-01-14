@@ -2,6 +2,7 @@ class TripsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :load_record, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner, :only => [:edit, :update, :destroy]
+  before_filter :load_form_data, :only => [:new, :edit]
 
   layout "bootstrap"
   
@@ -69,4 +70,16 @@ class TripsController < ApplicationController
     end
   end
 
+  private
+
+  def load_form_data
+    selected_names = %w(Aves Amphibia Reptilia Mammalia)
+    @target_taxa = Taxon::ICONIC_TAXA.select{|t| selected_names.include?(t.name)}
+    extra = Taxon.where("name in (?)", %w(Papilionoidea Hesperiidae Araneae Basidiomycota Magnoliophyta Pteridophyta))
+    @target_taxa += extra
+    @target_taxa = Taxon.sort_by_ancestry(@target_taxa)
+    @target_taxa.each_with_index do |t,i|
+      @target_taxa[i].html = render_to_string(:partial => "shared/taxon", :locals => {:taxon => t})
+    end
+  end
 end
