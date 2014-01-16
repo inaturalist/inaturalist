@@ -1,0 +1,29 @@
+<label>
+<% if @listed_taxon.primary_listing %>
+This is the primary listing
+<% else %>
+  <% if @list.listed_taxa_editable_by?(current_user) -%>
+    <%= form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {
+        :id => dom_id(@listed_taxon, "edit_occurrence"), 
+        :class => "smallbuttons inline buttonrow"} do |f| %>
+      <%= f.hidden_field :primary_listing, :value => true %>
+      <%= f.submit "make this the primary listing", :class => "default button" %>
+    <% end %>
+  <% end -%>
+<% end %>
+</label>
+<br>
+<label>
+Other listings of this taxon for this place
+</label>
+<% @related_taxa.each do |related_taxon| %>
+<li>
+<%= link_to display_list_title(related_taxon.list), related_taxon.list %>
+</li>
+<% end %>
+
+<p class=ui>
+<a href="#">
+Remove from Plants of GGRNA / Remove from Golden Gate National Recreation Area Check List
+</a>
+</p>

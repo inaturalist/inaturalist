@@ -3,6 +3,7 @@
 --
 
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -37,47 +38,6 @@ COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial
 
 
 SET search_path = public, pg_catalog;
-
---
--- Name: crc32(text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION crc32(word text) RETURNS bigint
-    LANGUAGE plpgsql IMMUTABLE
-    AS $$
-          DECLARE tmp bigint;
-          DECLARE i int;
-          DECLARE j int;
-          DECLARE byte_length int;
-          DECLARE word_array bytea;
-          BEGIN
-            IF COALESCE(word, '') = '' THEN
-              return 0;
-            END IF;
-
-            i = 0;
-            tmp = 4294967295;
-            byte_length = bit_length(word) / 8;
-            word_array = decode(replace(word, E'\\', E'\\\\'), 'escape');
-            LOOP
-              tmp = (tmp # get_byte(word_array, i))::bigint;
-              i = i + 1;
-              j = 0;
-              LOOP
-                tmp = ((tmp >> 1) # (3988292384 * (tmp & 1)))::bigint;
-                j = j + 1;
-                IF j >= 8 THEN
-                  EXIT;
-                END IF;
-              END LOOP;
-              IF i >= byte_length THEN
-                EXIT;
-              END IF;
-            END LOOP;
-            return (tmp # 4294967295);
-          END
-        $$;
-
 
 SET default_tablespace = '';
 
@@ -1187,7 +1147,8 @@ CREATE TABLE listed_taxa (
     observations_month_counts character varying(255),
     taxon_range_id integer,
     source_id integer,
-    manually_added boolean DEFAULT false
+    manually_added boolean DEFAULT false,
+    primary_listing boolean DEFAULT true
 );
 
 
@@ -1448,7 +1409,7 @@ CREATE TABLE observation_fields (
     description character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    allowed_values character varying(512)
+    allowed_values text
 );
 
 
@@ -2124,6 +2085,7 @@ CREATE TABLE projects (
     latitude numeric(15,10),
     longitude numeric(15,10),
     zoom_level integer,
+    trusted boolean DEFAULT false,
     cover_file_name character varying(255),
     cover_content_type character varying(255),
     cover_file_size integer,
@@ -2131,7 +2093,6 @@ CREATE TABLE projects (
     event_url character varying(255),
     start_time timestamp without time zone,
     end_time timestamp without time zone,
-    trusted boolean DEFAULT false,
     "group" character varying(255)
 );
 
@@ -5739,27 +5700,6 @@ CREATE UNIQUE INDEX updates_unique_key ON updates USING btree (resource_type, re
 
 
 --
--- Name: geometry_columns_delete; Type: RULE; Schema: public; Owner: -
---
-
-CREATE RULE geometry_columns_delete AS ON DELETE TO geometry_columns DO INSTEAD NOTHING;
-
-
---
--- Name: geometry_columns_insert; Type: RULE; Schema: public; Owner: -
---
-
-CREATE RULE geometry_columns_insert AS ON INSERT TO geometry_columns DO INSTEAD NOTHING;
-
-
---
--- Name: geometry_columns_update; Type: RULE; Schema: public; Owner: -
---
-
-CREATE RULE geometry_columns_update AS ON UPDATE TO geometry_columns DO INSTEAD NOTHING;
-
-
---
 -- PostgreSQL database dump complete
 --
 
@@ -6176,3 +6116,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131204211450');
 INSERT INTO schema_migrations (version) VALUES ('20131220044313');
 
 INSERT INTO schema_migrations (version) VALUES ('20140101210916');
+
+INSERT INTO schema_migrations (version) VALUES ('20140113145150');

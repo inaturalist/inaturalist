@@ -39,9 +39,9 @@ class CheckListsController < ApplicationController
       @listed_taxa = ListedTaxon.paginate(@find_options)
       
       @total_listed_taxa = ListedTaxon.count('DISTINCT(taxon_id)',
-        :conditions => ["place_id = ?", @list.place_id])
+        :conditions => ["place_id = ? AND primary_listing = ?", @list.place_id, true])
     end
-    super
+    super #show from list module
   end
   
   def new

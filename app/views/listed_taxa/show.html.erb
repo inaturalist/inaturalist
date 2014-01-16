@@ -1,9 +1,4 @@
-<% if @list.is_a?(CheckList) && @list.is_default? && @list.title.include?('Check List') %>
-    <% @list_title = truncate(t(:check_list_place, :place => t("places_name.#{@list.title.chomp(' Check List').gsub(' ','_').downcase}",
-                                                 :default => @list.title.split(' Check List').first)), :length => 85) %>
-<% else %>
-    <% @list_title = truncate(@list.title, :length => 85) %>
-<% end %>
+<% @list_title = display_list_title(@list) %>
 
 <%- content_for(:title) do -%>
   <%- @title = capture do %>
@@ -186,6 +181,11 @@
       <%= render :partial => 'occurrence_field' %>
       <%= render :partial => 'establishment_field' %>
     </div>
+    <%- if(@related_taxa.present?) %>
+      <div>
+        <%= render :partial => 'all_listings' %>
+      </div>
+    <% end %>
   <% end -%>
   
   <div class="tabs">
