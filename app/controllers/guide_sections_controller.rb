@@ -101,10 +101,13 @@ class GuideSectionsController < ApplicationController
 
   def import_from_eol
     eol = EolService.new(:timeout => 30)
-    pages = eol.search(params[:q], :exact => true)
-    id = pages.at('entry/id').try(:content)
-    return unless id
-    page = eol.page(id, :text => 50, :subjects => "all", :details => true)
+    eol_page_id = params[:eol_page_id]
+    if eol_page_id.blank?
+      pages = eol.search(params[:q], :exact => true)
+      eol_page_id = pages.at('entry/id').try(:content)
+    end
+    return if eol_page_id.blank?
+    page = eol.page(eol_page_id, :text => 50, :subjects => "all", :details => true)
     page.remove_namespaces!
     TaxonDescribers::Eol.data_objects_from_page(page).to_a.uniq.map do |data_object|
       GuideSection.new_from_eol_data_object(data_object)

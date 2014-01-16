@@ -5,6 +5,9 @@ class IdentificationsController < ApplicationController
   before_filter :load_identification, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner, :only => [:edit, :update, :destroy]
   cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
+  caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
+    c.params.merge(:sequence => Digest::MD5.hexdigest(c.params[:sequence]))
+  }
     
   def show
     redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.id}")
@@ -61,7 +64,12 @@ class IdentificationsController < ApplicationController
         
         format.json do
           @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
-          render :json => @identification.to_json(:methods => [:html]).html_safe
+          render :json => @identification.to_json(
+            :methods => [:html], 
+            :include => {
+              :observation => {:methods => [:iconic_taxon_name]}
+            }
+          ).html_safe
         end
       else
         format.html do
@@ -153,6 +161,18 @@ class IdentificationsController < ApplicationController
           render :status => :unprocessable_entity, :json => {:errors => @identification.errors.full_messages }
         end
       end
+    end
+  end
+
+  def bold
+    url = "http://boldsystems.org/index.php/Ids_xml?db=#{params[:db]}&sequence=#{params[:sequence]}"
+    xml = begin
+      Nokogiri::XML(open(url))
+    rescue URI::InvalidURIError => e
+      "<error>#{e.message}</error>"
+    end
+    respond_to do |format|
+      format.xml { render :xml => xml }
     end
   end
   

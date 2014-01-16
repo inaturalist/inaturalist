@@ -1,0 +1,14 @@
+language: ruby
+
+rvm:
+  - 1.9.3
+
+env:
+  - SPEC_DIR=spec/models
+  - SPEC_DIR=spec/helpers
+  - SPEC_DIR=spec/controllers
+
+before_install: ci/scripts/before_install.sh
+before_script:  ci/scripts/before_script.sh
+script:         ci/scripts/script.sh
+after_script:   ci/scripts/after_script.sh

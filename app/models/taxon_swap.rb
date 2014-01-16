@@ -2,9 +2,14 @@ class TaxonSwap < TaxonChange
   has_many :old_taxa, :through => :taxon_change_taxa, :source => :taxon
 
   validate :only_has_one_input
+  validate :has_inputs_and_outputs
 
   def only_has_one_input
     errors.add(:base, "only one input allowed for a swap") if input_taxa.size > 1
+  end
+
+  def has_inputs_and_outputs
+    errors.add(:base, "swap must have both inputs and outputs") if input_taxa.size == 0 || output_taxa.size == 0
   end
   
   def old_taxon
@@ -28,7 +33,7 @@ class TaxonSwap < TaxonChange
   end
 
   def input_taxa
-    taxa
+    taxa.loaded? ? taxa : taxon_change_taxa.map(&:taxon)
   end
 
   def output_taxa
@@ -36,7 +41,7 @@ class TaxonSwap < TaxonChange
   end
 
   def input_taxon
-    taxa.first
+    taxa.loaded? ? taxa.first : taxon_change_taxa.first.try(:taxon)
   end
 
   def output_taxon

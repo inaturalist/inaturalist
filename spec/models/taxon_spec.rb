@@ -397,6 +397,33 @@ describe Taxon, "tags_to_taxa" do
     taxa = Taxon.tags_to_taxa(['Spizella'])
     taxa.should include(t)
   end
+
+  it "should choose names before codes" do
+    code_name = TaxonName.make!(:name => "HOME", :lexicon => "AOU Codes")
+    name_name = TaxonName.make!(:name => "Golden-crowned Sparrow", :lexicon => "AOU Codes")
+    taxa = Taxon.tags_to_taxa([code_name.name, name_name.name])
+    taxa.first.should eq name_name.taxon
+  end
+
+  it "should not match a code if it's not an exact match" do
+    code_name = TaxonName.make!(:name => "HOME", :lexicon => "AOU Codes")
+    taxa = Taxon.tags_to_taxa([code_name.name.downcase])
+    taxa.should be_blank
+  end
+
+  it "should favor longer names" do
+    short_name = TaxonName.make!(:name => "bork", :lexicon => "English")
+    long_name = TaxonName.make!(:name => "Giant Dour-Crested Mopple Hopper", :lexicon => "English")
+    taxa = Taxon.tags_to_taxa([short_name.name, long_name.name])
+    taxa.first.should eq long_name.taxon
+  end
+
+  it "should work there are inexact matches" do
+    t = Taxon.make!
+    TaxonName.make!(:name => "Nutria", :taxon => t, :lexicon => "English")
+    TaxonName.make!(:name => "nutria", :taxon => t, :lexicon => "French")
+    Taxon.tags_to_taxa(%w(Nutria)).should include t
+  end
 end
 
 describe Taxon, "merging" do
@@ -554,7 +581,7 @@ describe Taxon, "merging" do
   
   it "should destroy the reject" do
     @keeper.merge(@reject)
-    TaxonName.find_by_id(@reject.id).should be_nil
+    Taxon.find_by_id(@reject.id).should be_nil
   end
   
   it "should not create duplicate listed taxa" do
@@ -800,7 +827,7 @@ describe Taxon, "grafting" do
   end
 
   it "should set the parent of a species based on the polynom genus" do
-    t = Taxon.make!(:name => "Pseudacris foo", :rank => Taxon::SPECIES)
+    t = Taxon.make!(:name => "Pseudacris foo")
     t.graft
     t.parent.should eq(@Pseudacris)
   end
@@ -822,11 +849,19 @@ describe Taxon, "single_taxon_for_name" do
     }.should_not raise_error
   end
 
-  it "should find a valid name, not invalid synonyms" do
+  it "should find a valid name, not invalid synonyms within the same parent" do
     name = "Foo bar"
     parent = Taxon.make!
     valid = Taxon.make!(:name => name, :parent => parent)
     invalid = Taxon.make!(:parent => parent)
+    invalid.taxon_names.create(:name => name, :is_valid => false, :lexicon => TaxonName::SCIENTIFIC_NAMES)
+    Taxon.single_taxon_for_name(name).should eq(valid)
+  end
+
+  it "should find a single valid name among invalid synonyms" do
+    name = "Foo bar"
+    valid = Taxon.make!(:name => name, :parent => Taxon.make!)
+    invalid = Taxon.make!(:parent => Taxon.make!)
     invalid.taxon_names.create(:name => name, :is_valid => false, :lexicon => TaxonName::SCIENTIFIC_NAMES)
     Taxon.single_taxon_for_name(name).should eq(valid)
   end

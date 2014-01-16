@@ -51,34 +51,60 @@ describe GuideTaxon, "deletion" do
   end
 end
 
-# describe GuideTaxon, "new_from_eol_collection_item" do
-#   before do
-#     eol = EolService.new(:timeout => 30, :debug => true)
-#     @collection = eol.collections(6970, :sort_by => "sort_field")
-#     @collection_item = @collection.search("item").detect{|item| item.at("name").inner_text =~ /Anniella/}
-#     @guide = Guide.make!
-#     @guide_taxon = GuideTaxon.new_from_eol_collection_item(@collection_item, :guide => @guide)
-#   end
+describe GuideTaxon, "new_from_eol_collection_item" do
+  before do
+    eol = EolService.new(:timeout => 30, :debug => true)
+    @collection = eol.collections(6970, :sort_by => "sort_field")
+    @collection_item = @collection.search("item").detect{|item| item.at("name").inner_text =~ /Anniella/}
+    @guide = Guide.make!
+    @guide_taxon = GuideTaxon.new_from_eol_collection_item(@collection_item, :guide => @guide)
+  end
 
-#   it "should set a guide section from the annotation" do
-#     @guide_taxon.guide_sections.first.description.should eq(@collection_item.at('annotation').inner_text)
-#   end
+  it "should set a source_identifier" do
+    @guide_taxon.source_identifier.should_not be_blank
+    @guide_taxon.source_identifier.should =~ /eol.org\/pages\/\d+/
+  end
+end
 
-#   it "should set a guide photo" do
-#     @guide_taxon.guide_photos.should_not be_blank
-#   end
+describe GuideTaxon, "sync_site_content" do
+  let(:t) {
+    t = Taxon.make!(:wikipedia_summary => "Foo bar")
+    6.times do
+      p = Photo.make!(:license => Photo::CC_BY)
+      TaxonPhoto.make!(:taxon => t, :photo => p)
+    end
+    TaxonName.make!(:taxon => t, :lexicon => "English")
+    t.reload
+    t
+  }
+  let(:gt) { GuideTaxon.make!(:taxon => t) }
 
-#   it "should set the display_name to an appropriate common name" do
-#     collection_item = @collection.search("item").detect{|item| item.at("name").inner_text =~ /Masticophis/}
-#     gt = GuideTaxon.new_from_eol_collection_item(collection_item, :guide => @guide)
-#     gt.display_name.downcase.should eq("coachwhip")
-#   end
-# end
+  it "should set up to 5 photos" do
+    gt.taxon.photos.size.should > 5
+    gt.sync_site_content(:photos => true)
+    gt.guide_photos.size.should eq 5
+  end
+
+  it "should set a common name" do
+    gt.update_attributes(:display_name => nil)
+    gt.display_name.should be_blank
+    gt.sync_site_content(:names => true)
+    gt.display_name.should eq gt.taxon.common_name.name
+  end
+
+  it "should set a section" do
+    gt.guide_sections.destroy_all
+    gt.guide_sections.should be_blank
+    gt.sync_site_content(:summary => true)
+    gt.guide_sections.size.should eq 1
+  end
+end
 
 describe GuideTaxon, "sync_eol" do
   let(:gt) { GuideTaxon.make! }
   before(:all) do
-    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true)
+    eol = EolService.new(:timeout => 30)
+    @mflagellum_page ||= eol.page(791500, :common_names => true, :images => 5, :details => true)
   end
 
   it "should update the display_name" do
@@ -106,12 +132,32 @@ describe GuideTaxon, "sync_eol" do
     GuideRange.find_by_id(gr.id).should_not be_blank
     GuideSection.find_by_id(gs.id).should_not be_blank
   end
+
+  it "should add at least one secion if overview requested" do
+    gt.guide_sections.should be_blank
+    gt.sync_eol(:page => @mflagellum_page, :overview => true)
+    gt.reload
+    gt.guide_sections.should_not be_blank
+  end
+
+  # this doesn't pass b/c EOL's page api seems to return a GeneralDescription
+  # when you request a Description. Could hack around it, of course, but would
+  # rather the EOL API just behaved reasonably
+  # it "should add a description section if requested" do
+  #   gt.guide_sections.should be_blank
+  #   eol = EolService.new(:timeout => 30)
+  #   page = eol.page(577775, :subjects => "Description")
+  #   gt.sync_eol(:page => page, :subjects => %w(Description))
+  #   gt.reload
+  #   gt.guide_sections.should_not be_blank
+  # end
 end
 
 describe GuideTaxon, "sync_eol_photos" do
   let(:gt) { GuideTaxon.make! }
   before(:all) do
-    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true)
+    eol = EolService.new(:timeout => 30)
+    @mflagellum_page ||= eol.page(791500, :common_names => true, :images => 5, :details => true)
   end
 
   it "should add new photos" do
@@ -156,7 +202,8 @@ end
 describe GuideTaxon, "sync_eol_ranges" do
   let(:gt) { GuideTaxon.make! }
   before(:all) do
-    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1)
+    eol = EolService.new(:timeout => 30)
+    @mflagellum_page ||= eol.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1)
   end
   it "should add new ranges" do
     gt.guide_ranges.should be_blank
@@ -176,7 +223,8 @@ end
 describe GuideTaxon, "sync_eol_sections" do
   let(:gt) { GuideTaxon.make! }
   before(:all) do
-    @mflagellum_page ||= EolService.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1, :text => 50)
+    eol = EolService.new(:timeout => 30)
+    @mflagellum_page ||= eol.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1, :text => 50)
   end
   it "should add new sections" do
     gt.guide_sections.should be_blank
@@ -225,7 +273,6 @@ describe GuideTaxon, "get_eol_page" do
     page = gt.get_eol_page(:photos => 1)
     img_data_object = page.search('dataObject').detect{|data_object| data_object.at('dataType').to_s =~ /StillImage/ }
     img_data_object.should_not be_blank
-    # puts "img_data_object: #{img_data_object}"
     img_data_object.at('mediaURL').should_not be_blank
   end
 

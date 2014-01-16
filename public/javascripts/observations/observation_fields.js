@@ -65,7 +65,12 @@ var ObservationFields = {
     $('.observation_field').not('.fieldified').each(function() {
       var lastName = $(this).siblings('.fieldified:last').find('input').attr('name')
       if (lastName) {
-        var index = parseInt(lastName.match(/observation_field_values_attributes\]\[(\d+)\]/)[1]) + 1
+        var matches = lastName.match(/observation_field_values_attributes\]\[(\d+)\]/)
+        if (matches) {
+          var index = parseInt(matches[1]) + 1
+        } else {
+          var index = 0
+        }
       } else {
         var index = 0
       }

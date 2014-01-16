@@ -12,6 +12,8 @@ class Taxon < ActiveRecord::Base
 
   # Skip the more onerous callbacks that happen after grafting a taxon somewhere else
   attr_accessor :skip_after_move
+
+  attr_accessor :locale
   
   acts_as_flaggable
   has_ancestry
@@ -32,7 +34,7 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_ranges_without_geom, :class_name => 'TaxonRange', :select => (TaxonRange.column_names - ['geom']).join(', ')
   has_many :taxon_photos, :dependent => :destroy, :order => "position ASC NULLS LAST, id ASC"
   has_many :photos, :through => :taxon_photos
-  has_many :assessments
+  has_many :assessments, :dependent => :nullify
   has_many :conservation_statuses, :dependent => :destroy
   has_many :guide_taxa, :inverse_of => :taxon, :dependent => :nullify
   has_many :guides, :inverse_of => :taxon, :dependent => :nullify
@@ -122,13 +124,14 @@ class Taxon < ActiveRecord::Base
     define_method "find_#{rank}" do
       return self if rank_level == level
       return nil if rank_level.to_i > level.to_i
-      @cached_ancestors ||= ancestors.all
+      @cached_ancestors ||= ancestors.select("id, name, rank, ancestry, iconic_taxon_id, rank_level, created_at, updated_at, is_active").all
       @cached_ancestors.detect{|a| a.rank == rank}
     end
-    alias_method(rank, "find_#{rank}") unless method_exists?(rank)
-    define_method "#{rank}_name" do
+    alias_method(rank, "find_#{rank}") unless respond_to?(rank)
+    define_method "taxonomic_#{rank}_name" do
       send("find_#{rank}").try(:name)
     end
+    alias_method("#{rank}_name", "taxonomic_#{rank}_name") unless respond_to?("#{rank}_name")
     define_method "#{rank}?" do
       self.rank == rank
     end
@@ -234,7 +237,7 @@ class Taxon < ActiveRecord::Base
   }]
   
   PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect', 
-    'lizard', 'gall', 'pinecone', 'larva', 'cicada']
+    'lizard', 'gall', 'pinecone', 'larva', 'cicada', 'caterpillar', 'caterpillars', 'chiton']
   
   scope :observed_by, lambda {|user|
     sql = <<-SQL
@@ -549,8 +552,9 @@ class Taxon < ActiveRecord::Base
     update_attributes(:parent => taxon)
   end
   
-  def default_name
-    TaxonName.choose_default_name(taxon_names)
+  def default_name(options = {})
+    options[:locale] = options[:locale] || locale
+    TaxonName.choose_default_name(taxon_names, options)
   end
   
   def scientific_name
@@ -655,7 +659,7 @@ class Taxon < ActiveRecord::Base
         else
           []
         end
-      rescue FlickRaw::FailedResponse => e
+      rescue FlickRaw::FailedResponse, EOFError => e
         Rails.logger.error "EXCEPTION RESCUE: #{e}"
         Rails.logger.error e.backtrace.join("\n\t")
       end
@@ -805,7 +809,7 @@ class Taxon < ActiveRecord::Base
   
   def set_wikipedia_summary(options = {})
     locale = options[:locale] || I18n.locale
-    w = WikipediaService.new(:locale => locale)
+    w = options[:wikipedia] || WikipediaService.new(:locale => locale)
     wname = wikipedia_title.blank? ? name : wikipedia_title
     
     if summary = w.summary(wname)
@@ -1020,6 +1024,7 @@ class Taxon < ActiveRecord::Base
       for_lat_lon(options[:latitude], options[:longitude]).
       order("iucn ASC").last
     return place_status.geoprivacy if place_status
+    return global_status.geoprivacy unless global_status.blank?
     return Observation::OBSCURED if conservation_status.to_i >= IUCN_NEAR_THREATENED
     ancestors.where("conservation_status >= ?", IUCN_NEAR_THREATENED).exists? ? Observation::OBSCURED : nil
   end
@@ -1136,7 +1141,11 @@ class Taxon < ActiveRecord::Base
   def self.import(name, options = {})
     name = normalize_name(name)
     ancestor = options.delete(:ancestor)
-    external_names = ratatosk.find(name)
+    external_names = begin
+      ratatosk.find(name)
+    rescue Timeout::Error => e
+      []
+    end
     external_names.select!{|en| en.name.downcase == name.downcase} if options[:exact]
     return nil if external_names.blank?
     external_names.each do |en| 
@@ -1234,16 +1243,25 @@ class Taxon < ActiveRecord::Base
     names = tags.map do |tag|
       next if tag.blank?
       if name = tag.match(/^taxonomy:\w+=(.*)/).try(:[], 1)
-        name.downcase
+        name
       else
-        name = tag.downcase.strip.gsub(/ sp\.?$/, '')
+        name = tag.strip.gsub(/ sp\.?$/, '')
         next if PROBLEM_NAMES.include?(name)
         name
       end
     end.compact
-    scope = scope.where("lower(taxon_names.name) IN (?)", names)
+    lower_names = names.map(&:downcase)
+    scope = scope.where("lower(taxon_names.name) IN (?)", lower_names)
     taxon_names = scope.where("taxa.is_active = ?", true).all
     taxon_names = scope.all if taxon_names.blank? && options[:active] != true
+    taxon_names = taxon_names.select do |tn|
+      names.include?(tn.name) || !tn.name.match(/^([A-Z]|\d)+$/)
+    end
+    taxon_names = taxon_names.compact.sort do |tn1,tn2|
+      tn1_exact = names.include?(tn1.name) ? 1 : 0
+      tn2_exact = names.include?(tn2.name) ? 1 : 0
+      [tn2_exact, tn2.name.size] <=> [tn1_exact, tn1.name.size]
+    end
     taxon_names.map{|tn| tn.taxon}.compact
   end
   
@@ -1360,6 +1378,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def self.single_taxon_for_name(name, options = {})
+    return if name.blank?
     return if PROBLEM_NAMES.include?(name.downcase)
     name = normalize_name(name)
     scope = TaxonName.limit(10).includes(:taxon).
@@ -1412,6 +1431,10 @@ class Taxon < ActiveRecord::Base
         taxon.is_active? && taxon.taxon_names.detect{|tn| tn.name.downcase == name.downcase && tn.is_valid?}
       end
       taxon || sorted.detect {|taxon| taxon.is_active?}
+
+    # if names are synonymous but only one is valid, choose the valid one
+    elsif taxon_names.map(&:name).uniq.size == 1 && taxon_names.select(&:is_valid?).size == 1
+      taxon_names.detect(&:is_valid?).taxon
 
     # else assume there are > 1 legit synonyms and refuse to make a decision
     else

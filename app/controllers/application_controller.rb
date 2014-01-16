@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   
   PER_PAGES = [10,30,50,100,200]
-  HEADER_VERSION = 13
+  HEADER_VERSION = 14
   
   alias :logged_in? :user_signed_in?
   
@@ -309,16 +309,36 @@ class ApplicationController < ActionController::Base
     endtime = Time.now
     Rails.logger.debug "\n\n[DEBUG] LOG TIMER END #{endtime} (#{endtime - starttime} s)\n\n"
   end
-  
+
+  def require_admin_or_trusted_project_manager_for(project)
+    allowed_project_roles = %w(manager admin)
+    return true if current_user.has_role?(:admin) if logged_in?
+    project_user = project.project_users.where(:user_id => current_user).first if logged_in?
+    if !project_user || 
+        !project.trusted? || 
+        !allowed_project_roles.include?(project_user.role)
+      message = "You must be project manager to do that"
+      respond_to do |format|
+        format.html do
+          flash[:notice] = message
+          redirect_back_or_default project_url(project)
+        end
+        format.json do
+          render :json => {:error => message}, :status => :unprocessable_entity
+        end
+      end
+    end
+  end
+
   private
-  
+
   def admin_required
     unless logged_in? && current_user.has_role?(:admin)
       flash[:notice] = "Only administrators may access that page"
       redirect_to observations_path
     end
   end
-  
+
   def remove_header_and_footer_for_apps
     return true unless is_android_app? || is_iphone_app?
     @headless = true
@@ -412,6 +432,16 @@ class ApplicationController < ActionController::Base
       @status = "start"
       yield
       Rails.cache.write(key, @job.id)
+    end
+  end
+
+  # Coerce the format unless in preselected list. Rescues from ActionView::MissingTemplate
+  def self.accept_formats(*args)
+    options = args.last.is_a?(Hash) ? args.last : {}
+    default = options[:default] ? options[:default].to_sym : :html
+    formats = [args].flatten.map(&:to_sym)
+    before_filter(options) do
+      request.format = default if request.format.blank? || !formats.include?(request.format.to_sym)
     end
   end
 end

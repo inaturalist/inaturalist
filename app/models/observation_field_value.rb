@@ -1,14 +1,17 @@
 class ObservationFieldValue < ActiveRecord::Base
-  belongs_to :observation
+  belongs_to :observation, :inverse_of => :observation_field_values
   belongs_to :observation_field
   
   before_validation :strip_value
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
   validates_presence_of :value
   validates_presence_of :observation_field_id
-  validates_length_of :value, :maximum => 256
+  validates_length_of :value, :maximum => 2048
   validate :validate_observation_field_datatype
   validate :validate_observation_field_allowed_values
+
+  after_create  :touch_observation
+  after_destroy :touch_observation
   
   LAT_LON_REGEX = /#{Observation::COORDINATE_REGEX},#{Observation::COORDINATE_REGEX}/
 
@@ -75,6 +78,10 @@ class ObservationFieldValue < ActiveRecord::Base
       rescue ArgumentError => e
         errors.add(:value, "must by in the form hh:mm")
       end
+    when "dna"
+      if value =~ /[^ATCG\s]/
+        errors.add(:value, :dna_only_atcg)
+      end
     end
   end
   
@@ -85,6 +92,11 @@ class ObservationFieldValue < ActiveRecord::Base
       errors.add(:value, 
         "of #{observation_field.name} must be #{values[0..-2].map{|v| "#{v}, "}.join}or #{values.last}.")
     end
+  end
+
+  def touch_observation
+    observation.touch if observation
+    true
   end
 
 end

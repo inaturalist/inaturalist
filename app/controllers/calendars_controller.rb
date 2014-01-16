@@ -74,10 +74,12 @@ class CalendarsController < ApplicationController
     end
     @observations_by_date_by_taxon_id = {}
     @taxon_ids = []
+    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) unless params[:taxon_id].blank?
+    scope = Observation.includes(:iconic_taxon).scoped
+    scope = scope.of(@taxon) if @taxon
+    scope = scope.at_or_below_rank(params[:rank]) if params[:rank]
     @dates.each do |date|
-      observations = @selected_user.observations.
-        on(date).
-        all(:include => [:iconic_taxon])
+      observations = scope.by(@selected_user).on(date).all
       @taxon_ids += observations.map{|o| o.taxon_id}
       @observations_by_date_by_taxon_id[date] = observations.group_by{|o| o.taxon_id}
     end

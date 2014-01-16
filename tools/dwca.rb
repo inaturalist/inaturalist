@@ -119,7 +119,8 @@ def make_occurrence_data
   
   find_options = {
     :include => [:taxon, {:user => :stored_preferences}, :photos, :quality_metrics, :identifications],
-    :conditions => ["observations.license IS NOT NULL"]
+    :conditions => ["observations.license IS NOT NULL"],
+    :logger => logger,
   }
   
   if @opts[:quality] == "research"
@@ -140,12 +141,15 @@ def make_occurrence_data
     find_options[:conditions][0] += " AND ST_Intersects(place_geometries.geom, observations.private_geom)"
   end
   
+  start = Time.now
   CSV.open(tmp_path, 'w') do |csv|
     csv << headers
     Observation.do_in_batches(find_options) do |o|
       next unless o.user.prefers_gbif_sharing?
       o = DarwinCore::Occurrence.adapt(o, :view => fake_view)
-      csv << DarwinCore::Occurrence::TERMS.map{|field, uri, default, method| o.send(method || field)}
+      csv << DarwinCore::Occurrence::TERMS.map do |field, uri, default, method| 
+        o.send(method || field)
+      end
     end
   end
   
@@ -165,7 +169,8 @@ def make_taxon_data
     :joins => {:observations => {:observation_photos => :photo}},
     :conditions => [
       "rank_level <= ? AND observation_photos.id IS NOT NULL AND photos.license IN (?)", 
-      Taxon::SPECIES_LEVEL, licenses]
+      Taxon::SPECIES_LEVEL, licenses],
+    :logger => logger
   }
   
   if @opts[:quality] == "research"
@@ -204,7 +209,8 @@ def make_eol_media_data
     :include => [:user, {:observation_photos => {:observation => :taxon}}],
     :conditions => [
       "photos.license IN (?) AND taxa.rank_level <= ? AND taxa.id IS NOT NULL", 
-      licenses, Taxon::SPECIES_LEVEL]
+      licenses, Taxon::SPECIES_LEVEL],
+    :logger => logger
   }
   
   if @opts[:quality] == "research"
@@ -242,6 +248,10 @@ def make_archive(*args)
   fnames = args.map{|f| File.basename(f)}
   system "cd #{Dir::tmpdir} && zip -D #{tmp_path} #{fnames.join(' ')}"
   tmp_path
+end
+
+def logger
+  @logger ||= @opts[:debug] ? Logger.new(STDOUT) : Rails.logger
 end
 
 unless @opts[:metadata].to_s.downcase == "skip"

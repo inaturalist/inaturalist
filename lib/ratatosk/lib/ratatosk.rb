@@ -117,7 +117,8 @@ module Ratatosk
         names.each do |n| 
           phylum_name = name_provider.get_phylum_for(n.taxon).name rescue nil
           unique_taxa[[n.taxon.name, phylum_name]] ||= n.taxon
-          n.taxon = unique_taxa[[n.taxon.name, phylum_name]]
+          n.taxon = unique_taxa[[n.taxon.name, phylum_name]] rescue nil
+          next unless n.taxon
           unique_names[[n.name, n.lexicon, n.taxon.name, phylum_name]] = n
         end
         names = unique_names.values
@@ -197,7 +198,10 @@ module Ratatosk
             msg = "it failed to graft to #{graft_point.name}, which "
             msg += taxon.locked? ? "is locked. " : "descends from a locked taxon. "
             msg += "Please merge or delete, or edit and add it if it's legit."
-            new_taxon.flags.create(:flag => msg)
+            f = new_taxon.flags.build(:flag => msg) 
+            unless f.save
+              puts "Failed to save flag: #{f.errors.full_messages.to_sentence}"
+            end
           else
             raise RatatoskGraftError, "New taxon had errors: #{new_taxon.errors.full_messages.to_sentence}"
           end
@@ -215,28 +219,27 @@ module Ratatosk
       end
       
       # retrieve the Name Provider used to find this taxon
-      name_provider = @name_providers.first if (taxon.name_provider.blank?)
-      name_provider ||= @name_providers.detect do |np|
+      name_provider = @name_providers.detect do |np|
         np.class.name == taxon.name_provider || np.class.name.split('::').last == taxon.name_provider
       end
-      name_provider ||= NameProviders.const_get(taxon.name_provider).new
-
-      if name_provider.nil?
-        raise RatatoskGraftError, "Couldn't graft that taxon without a name provider"
-      end
-      begin
-        lineage = name_provider.get_lineage_for(taxon)
-      rescue NameProviderError => e
-        raise RatatoskGraftError, e.message
+      name_provider ||= NameProviders.const_get(taxon.name_provider).new rescue nil
+      lineage = if name_provider.nil?
+        [taxon]
+      else
+        begin
+          name_provider.get_lineage_for(taxon)
+        rescue NameProviderError => e
+          raise RatatoskGraftError, e.message
+        end
       end
       
       # This basically means the name provider wasn't able to find a lineage
       if lineage.size == 1 && lineage.first.rank_level < Taxon::RANK_LEVELS['phylum']
-        # try retrieving an external parent based on a polynon, e.g. if the
+        # try retrieving an external parent based on a polynom, e.g. if the
         # name is Homo sapiens and there's no Homo taxon, try to get Homo from
         # the NameProvider
         if parent = polynom_parent(taxon.name, options.merge(:external_parent => true))
-          taxon_phylum = name_provider.get_phylum_for(taxon)
+          taxon_phylum = name_provider.get_phylum_for(taxon) if name_provider
           if parent.phylum.blank? || taxon_phylum.blank? || parent.phylum.name == taxon_phylum.name
             return [parent, [taxon]]
           end

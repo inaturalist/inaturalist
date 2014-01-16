@@ -3,8 +3,8 @@ class ProjectObservation < ActiveRecord::Base
   belongs_to :observation
   belongs_to :curator_identification, :class_name => "Identification"
   validates_presence_of :project, :observation
-  validate :observed_by_project_member?, :on => :create
-  validates_rules_from :project, :rule_methods => [:observed_in_place?, :georeferenced?, :identified?, :in_taxon?, :on_list?]
+  validate :observed_by_project_member?, :on => :create, :unless => "errors.any?"
+  validates_rules_from :project, :rule_methods => [:observed_in_place?, :georeferenced?, :identified?, :in_taxon?, :on_list?], :unless => "errors.any?"
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
   
   after_create  :refresh_project_list
@@ -21,6 +21,9 @@ class ProjectObservation < ActiveRecord::Base
 
   after_create :destroy_project_invitations, :update_curator_identification, :expire_caches
   after_destroy :expire_caches
+
+  after_create  :touch_observation
+  after_destroy :touch_observation
 
   def update_curator_identification
     return true if observation.new_record?
@@ -144,6 +147,11 @@ class ProjectObservation < ActiveRecord::Base
 
   def has_observation_field?(observation_field)
     observation.observation_field_values.where(:observation_field_id => observation_field).exists?
+  end
+
+  def touch_observation
+    observation.touch if observation
+    true
   end
   
   ##### Static ##############################################################

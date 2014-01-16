@@ -43,7 +43,7 @@ class Observation < ActiveRecord::Base
   attr_accessor :twitter_sharing
   attr_accessor :facebook_sharing
 
-  attr_accessor :captive
+  attr_accessor :captive_flag
   attr_accessor :force_quality_metrics
   
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
@@ -138,7 +138,8 @@ class Observation < ActiveRecord::Base
     "description",
     "id_please",
     "num_identification_agreements",
-    "num_identification_disagreements"
+    "num_identification_disagreements",
+    "captive_cultivated"
   ]
   GEO_COLUMNS = [
     "place_guess",
@@ -215,7 +216,7 @@ class Observation < ActiveRecord::Base
   has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
   has_many :quality_metrics, :dependent => :destroy
-  has_many :observation_field_values, :dependent => :destroy, :order => "id asc"
+  has_many :observation_field_values, :dependent => :destroy, :order => "id asc", :inverse_of => :observation
   has_many :observation_fields, :through => :observation_field_values
   has_many :observation_links
   has_and_belongs_to_many :posts
@@ -274,6 +275,8 @@ class Observation < ActiveRecord::Base
       :as => :identifications_most_disagree, :type => :boolean
     has project_observations(:project_id), :as => :projects #, :type => :multi
     has observation_field_values(:observation_field_id), :as => :observation_fields
+    indexes observation_field_values.value, :as => :ofv_values
+    indexes observation_field_values.observation_field.name, :as => :observation_field_names
     set_property :delta => :delayed
   end
   
@@ -341,20 +344,36 @@ class Observation < ActiveRecord::Base
   after_create :set_uri,
                :queue_for_sharing
   before_destroy :keep_old_taxon_id
-  after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches
+  after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches, :create_deleted_observation
   
   ##
   # Named scopes
   # 
   
   # Area scopes
-  scope :in_bounding_box, lambda { |swlat, swlng, nelat, nelng|
+  # scope :in_bounding_box, lambda { |swlat, swlng, nelat, nelng|
+  scope :in_bounding_box, lambda {|*args|
+    swlat, swlng, nelat, nelng, options = args
+    options ||= {}
+    if options[:private]
+      geom_col = "observations.private_geom"
+      lat_col = "observations.private_latitude"
+      lon_col = "observations.private_longitude"
+    else
+      geom_col = "observations.geom"
+      lat_col = "observations.latitude"
+      lon_col = "observations.longitude"
+    end
+
+    # resort to lat/lon cols for date-line spanning boxes
     if swlng.to_f > 0 && nelng.to_f < 0
-      where('latitude > ? AND latitude < ? AND (longitude > ? OR longitude < ?)', 
+      where("#{lat_col} > ? AND #{lat_col} < ? AND (#{lon_col} > ? OR #{lon_col} < ?)", 
         swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f)
     else
-      where('latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?', 
-        swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f)
+      where("ST_Intersects(
+        ST_MakeBox2D(ST_Point(#{swlng.to_f}, #{swlat.to_f}), ST_Point(#{nelng.to_f}, #{nelat.to_f})),
+        #{geom_col}
+      )")
     end
   } do
     def distinct_taxon
@@ -578,8 +597,8 @@ class Observation < ActiveRecord::Base
   }
 
   scope :between_dates, lambda{|d1, d2|
-    d1 = (Date.parse(d1) rescue Date.today).strftime('%Y-%m-%d')
-    d2 = (Date.parse(d2) rescue Date.today).strftime('%Y-%m-%d')
+    d1 = (Time.parse(URI.unescape(d1)) rescue Time.now)
+    d2 = (Time.parse(URI.unescape(d2)) rescue Time.now)
     where("observed_on BETWEEN ? AND ?", d1, d2)
   }
 
@@ -625,7 +644,8 @@ class Observation < ActiveRecord::Base
     # support bounding box queries
     if (!params[:swlat].blank? && !params[:swlng].blank? && 
          !params[:nelat].blank? && !params[:nelng].blank?)
-      scope = scope.in_bounding_box(params[:swlat], params[:swlng], params[:nelat], params[:nelng])
+      viewer = params[:viewer].is_a?(User) ? params[:viewer].id : params[:viewer]
+      scope = scope.in_bounding_box(params[:swlat], params[:swlng], params[:nelat], params[:nelng], :private => (viewer && viewer == params[:user_id]))
     elsif !params[:BBOX].blank?
       swlng, swlat, nelng, nelat = params[:BBOX].split(',')
       scope = scope.in_bounding_box(swlat, swlng, nelat, nelng)
@@ -659,15 +679,24 @@ class Observation < ActiveRecord::Base
       taxon_name = TaxonName.find_single(params[:taxon_name], :iconic_taxa => params[:iconic_taxa])
       scope = scope.of(taxon_name.try(:taxon))
     end
+    if params[:on]
+      scope = scope.on(params[:on])
+    elsif params[:year] || params[:month] || params[:day]
+      date_pieces = [params[:year], params[:month], params[:day]]
+      unless date_pieces.map{|d| d.blank? ? nil : d}.compact.blank?
+        scope = scope.on(date_pieces.join('-'))
+      end
+    end
     scope = scope.by(params[:user_id]) if params[:user_id]
     scope = scope.in_projects(params[:projects]) if params[:projects]
     scope = scope.in_place(place_id) unless params[:place_id].blank?
-    scope = scope.on(params[:on]) if params[:on]
     scope = scope.created_on(params[:created_on]) if params[:created_on]
     scope = scope.out_of_range if params[:out_of_range] == 'true'
     scope = scope.in_range if params[:out_of_range] == 'false'
     scope = scope.license(params[:license]) unless params[:license].blank?
     scope = scope.photo_license(params[:photo_license]) unless params[:photo_license].blank?
+    scope = scope.where(:captive => true) if [true, 'true', 't', 'yes', 'y', 1, '1'].include?(params[:captive])
+    scope = scope.where(:captive => false) if [false, 'false', 'f', 'no', 'n', 0, '0'].include?(params[:captive])
     unless params[:ofv_params].blank?
       params[:ofv_params].each do |k,v|
         scope = scope.has_observation_field(v[:observation_field], v[:value])
@@ -774,7 +803,7 @@ class Observation < ActiveRecord::Base
     end
 
     if timestamp = Chronic.parse(params[:updated_since])
-      scope = scope.where("updated_at > ?", timestamp)
+      scope = scope.where("observations.updated_at > ?", timestamp)
     end
     
     # return the scope, we can use this for will_paginate calls like:
@@ -822,7 +851,7 @@ class Observation < ActiveRecord::Base
     time_observed_at.try(:utc)
   end
   
-  def as_json(options = {})
+  def serializable_hash(options = {})
     # don't use delete here, it will just remove the option for all 
     # subsequent records in an array
     options[:include] = if options[:include].is_a?(Hash)
@@ -894,7 +923,7 @@ class Observation < ActiveRecord::Base
     date_string = observed_on_string.strip
     tz_abbrev_pattern = /\s\(?([A-Z]{3,})\)?$/ # ends with (PDT)
     tz_offset_pattern = /([+-]\d{4})$/ # contains -0800
-    tz_js_offset_pattern = /(GMT)?[+-]\d{4}/ # contains GMT-0800
+    tz_js_offset_pattern = /(GMT)?([+-]\d{4})/ # contains GMT-0800
     tz_colon_offset_pattern = /(GMT|HSP)([+-]\d+:\d+)/ # contains (GMT-08:00)
     tz_failed_abbrev_pattern = /\(#{tz_colon_offset_pattern}\)/
     
@@ -906,15 +935,23 @@ class Observation < ActiveRecord::Base
       date_string = observed_on_string.sub(tz_abbrev_pattern, '')
       date_string = date_string.sub(tz_js_offset_pattern, '').strip
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
-    elsif (offset = date_string[tz_offset_pattern, 1]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f / 100])
+    elsif (offset = date_string[tz_offset_pattern, 1]) && 
+        (n = offset.to_f / 100) && 
+        (key = n.round + (n%n.round)/0.6) && 
+        (parsed_time_zone = ActiveSupport::TimeZone[key])
       date_string = date_string.sub(tz_offset_pattern, '')
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
-    elsif (offset = date_string[tz_js_offset_pattern, 1]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f / 100])
+    elsif (offset = date_string[tz_js_offset_pattern, 2]) && 
+        (n = offset.to_f / 100) && 
+        (key = n.round + (n%n.round)/0.6) && 
+        (parsed_time_zone = ActiveSupport::TimeZone[key])
       date_string = date_string.sub(tz_js_offset_pattern, '')
       date_string = date_string.sub(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, '')
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
-    elsif (offset = date_string[tz_colon_offset_pattern, 2]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f])
-      date_string = date_string.sub(tz_colon_offset_pattern, '')
+    elsif (offset = date_string[tz_colon_offset_pattern, 2]) && 
+        (t = Time.parse(offset)) && 
+        (parsed_time_zone = ActiveSupport::TimeZone[t.hour+t.min/60.0])
+      date_string = date_string.sub(/#{tz_colon_offset_pattern}|#{tz_failed_abbrev_pattern}/, '')
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     end
     
@@ -923,6 +960,9 @@ class Observation < ActiveRecord::Base
     
     # strip leading month if present
     date_string.sub!(/^[A-z]{3} ([A-z]{3})/, '\\1')
+
+    # strip paranthesized stuff
+    date_string.gsub!(/\(.*\)/, '')
     
     # Set the time zone appropriately
     old_time_zone = Time.zone
@@ -931,7 +971,19 @@ class Observation < ActiveRecord::Base
     
     begin
       # Start parsing...
-      return true unless t = Chronic.parse(date_string)
+      t = Chronic.parse(date_string)
+      if !t && (locale = user.locale || I18n.locale)
+        date_string = englishize_month_abbrevs_for_locale(date_string, locale)
+        t = Chronic.parse(date_string)
+      end
+
+      if !t
+        I18N_SUPPORTED_LOCALES.each do |locale|
+          date_string = englishize_month_abbrevs_for_locale(date_string, locale)
+          break if t = Chronic.parse(date_string) 
+        end
+      end
+      return true unless t
     
       # Re-interpret future dates as being in the past
       if t > Time.now
@@ -970,6 +1022,22 @@ class Observation < ActiveRecord::Base
     # Set the time zone back the way it was
     Time.zone = old_time_zone
     true
+  end
+
+  def englishize_month_abbrevs_for_locale(date_string, locale)
+    # HACK attempt to translate month abbreviations into English. 
+    # A much better approach would be add Spanish and any other supported
+    # locales to https://github.com/olojac/chronic-l10n and switch to the
+    # 'localized' branch of Chronic, which seems to clear our test suite.
+    return date_string if locale.to_s =~ /^en/
+    return date_string unless I18N_SUPPORTED_LOCALES.include?(locale)
+    I18n.t('date.abbr_month_names', :locale => :en).each_with_index do |en_month_name,i|
+      next if i == 0
+      localized_month_name = I18n.t('date.abbr_month_names', :locale => locale)[i]
+      next if localized_month_name == en_month_name
+      date_string.gsub!(/#{localized_month_name}([\s\,])/, "#{en_month_name}\\1")
+    end
+    date_string
   end
   
   #
@@ -1337,7 +1405,9 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates_for_threatened_taxa
-    taxon_geoprivacy = taxon ? taxon.geoprivacy(:latitude => latitude, :longitude => longitude) : nil
+    lat = private_latitude.blank? ? latitude : private_latitude
+    lon = private_longitude.blank? ? longitude : private_longitude
+    taxon_geoprivacy = taxon ? taxon.geoprivacy(:latitude => lat, :longitude => lon) : nil
     case taxon_geoprivacy
     when OBSCURED
       obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA) unless coordinates_obscured?
@@ -1363,6 +1433,7 @@ class Observation < ActiveRecord::Base
       self.private_longitude ||= longitude
     end
     self.latitude, self.longitude = random_neighbor_lat_lon(private_latitude, private_longitude, distance)
+    set_geom_from_latlon
   end
   
   def lat_lon_in_place_guess?
@@ -1382,10 +1453,20 @@ class Observation < ActiveRecord::Base
     self.longitude = private_longitude
     self.private_latitude = nil
     self.private_longitude = nil
+    set_geom_from_latlon
   end
   
   def iconic_taxon_name
-    Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id].try(:name)
+    return nil if iconic_taxon_id.blank?
+    if Taxon::ICONIC_TAXA_BY_ID.blank?
+      association(:iconic_taxon).loaded? ? iconic_taxon.try(:name) : Taxon.select("id, name").where(:id => iconic_taxon_id).first.try(:name)
+    else
+      Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id].try(:name)
+    end
+  end
+
+  def captive_cultivated
+    quality_metrics.any?{|m| m.user_id == user_id && m.metric == QualityMetric::WILD && !m.agree?}
   end
 
   ##### Community Taxon #########################################################
@@ -1523,6 +1604,8 @@ class Observation < ActiveRecord::Base
         :longitude => o.longitude,
         :private_latitude => o.private_latitude,
         :private_longitude => o.private_longitude,
+        :geom => o.geom,
+        :private_geom => o.private_geom
       }, {:id => o.id})
     end
   end
@@ -1537,6 +1620,8 @@ class Observation < ActiveRecord::Base
         :longitude => o.longitude,
         :private_latitude => o.private_latitude,
         :private_longitude => o.private_longitude,
+        :geom => o.geom,
+        :private_geom => o.private_geom
       }, {:id => o.id})
     end
   end
@@ -1551,7 +1636,9 @@ class Observation < ActiveRecord::Base
         :latitude => o.latitude,
         :longitude => o.longitude,
         :private_latitude => o.private_latitude,
-        :private_longitude => o.private_longitude
+        :private_longitude => o.private_longitude,
+        :geom => o.geom,
+        :private_geom => o.private_geom
       }, {:id => o.id})
     end
   end
@@ -1660,13 +1747,13 @@ class Observation < ActiveRecord::Base
     true
   end
   
-  def set_geom_from_latlon
+  def set_geom_from_latlon(options = {})
     if longitude.blank? || latitude.blank?
       self.geom = nil
-    elsif longitude_changed? || latitude_changed?
+    elsif options[:force] || longitude_changed? || latitude_changed?
       self.geom = Point.from_x_y(longitude, latitude)
     end
-    if (private_latitude && private_latitude_changed?) || (private_longitude && private_longitude_changed?)
+    if private_latitude && private_longitude
       self.private_geom = Point.from_x_y(private_longitude, private_latitude)
     elsif self.geom
       self.private_geom = self.geom
@@ -1756,11 +1843,11 @@ class Observation < ActiveRecord::Base
   end
 
   def update_quality_metrics
-    if captive == "1"
+    if captive_flag == "1"
       QualityMetric.vote(user, self, QualityMetric::WILD, false)
-    elsif captive == "0" && force_quality_metrics
+    elsif captive_flag == "0" && force_quality_metrics
       QualityMetric.vote(user, self, QualityMetric::WILD, true)
-    elsif captive == "0" && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
+    elsif captive_flag == "0" && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
       qm.update_attributes(:agree => true)
     elsif force_quality_metrics && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
       qm.destroy
@@ -2057,6 +2144,35 @@ class Observation < ActiveRecord::Base
     save!
   end
 
+  def create_deleted_observation
+    DeletedObservation.create(
+      :observation_id => id,
+      :user_id => user_id
+    )
+    true
+  end
+
+  def build_observation_fields_from_tags(tags)
+    tags.each do |tag|
+      np, value = tag.split('=')
+      next unless np && value
+      namespace, predicate = np.split(':')
+      predicate = namespace if predicate.blank?
+      of = ObservationField.where("lower(name) = ?", predicate.downcase).first
+      next unless of
+      next if self.observation_field_values.detect{|ofv| ofv.observation_field_id == of.id}
+      if of.datatype == ObservationField::TAXON
+        t = Taxon.single_taxon_for_name(value)
+        next unless t
+        value = t.id
+      end
+      ofv = self.observation_field_values.build(:observation_field => of, :value => value)
+      unless ofv.valid?
+        self.observation_field_values.pop
+      end
+    end
+  end
+
   def self.expire_components_for(o)
     o = Observation.find_by_id(o) unless o.is_a?(Observation)
     return unless o
@@ -2095,6 +2211,8 @@ class Observation < ActiveRecord::Base
   end
 
 
+  # 2014-01 I tried improving performance by loading ancestor taxa for each
+  # batch, but it didn't really speed things up much
   def self.generate_csv(scope, options = {})
     fname = options[:fname] || "observations.csv"
     fpath = options[:path] || File.join(options[:dir] || Dir::tmpdir, fname)
@@ -2102,8 +2220,11 @@ class Observation < ActiveRecord::Base
     columns = options[:columns] || CSV_COLUMNS
     CSV.open(fpath, 'w') do |csv|
       csv << columns
-      scope.find_each do |observation|
-        csv << columns.map{|c| observation.send(c) rescue nil}
+      scope.find_each(:batch_size => 500) do |observation|
+        csv << columns.map do |c| 
+          c = "cached_tag_list" if c == "tag_list"
+          observation.send(c) rescue nil
+        end
       end
     end
     fpath

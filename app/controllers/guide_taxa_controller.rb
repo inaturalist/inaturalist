@@ -60,6 +60,9 @@ class GuideTaxaController < ApplicationController
   # GET /guide_taxa/1/edit
   def edit
     load_data_for_edit
+    respond_to do |format|
+      format.html
+    end
   end
 
   # POST /guide_taxa
@@ -140,7 +143,11 @@ class GuideTaxaController < ApplicationController
   end
 
   def sync
-    @guide_taxon.sync_eol(:photos => true, :ranges => true, :sections => true, :overview => true)
+    if params[:provider] == "eol"
+      @guide_taxon.sync_eol(:photos => true, :ranges => true, :sections => true, :overview => true)
+    else
+      @guide_taxon.sync_site_content(:photos => true, :summary => true, :names => true)
+    end
     respond_to do |format|
       format.html do
         redirect_to edit_guide_taxon_path(@guide_taxon)

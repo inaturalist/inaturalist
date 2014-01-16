@@ -48,22 +48,36 @@ describe Observation, "creation" do
     @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(7)
     @observation.time_zone.should == ActiveSupport::TimeZone['Adelaide'].name
   end
-  
-  it "should parse time from strings like Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)" do
-    @observation.observed_on_string = "Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)"
-    @observation.save
-    @observation.observed_on.day.should be(6)
-    @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(16)
-    zone = ActiveSupport::TimeZone[@observation.time_zone]
-    zone.formatted_offset.should == "-05:00"
+
+  it "should parse a bunch of test date strings" do
+    [
+      ['Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)', {:month => 4, :day => 6, :hour => 16, :offset => "-05:00"}],
+      ['Sun Nov 03 2013 08:15:25 GMT-0500 (GMT-5)', {:month => 11, :day => 3, :hour => 8, :offset => "-05:00"}],
+      ['September 27, 2012 8:09:50 AM GMT+01:00', :month => 9, :day => 27, :hour => 8, :offset => "+01:00"],
+      ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', :month => 12, :day => 26, :hour => 11, :offset => "+05:30"]
+    ].each do |date_string, opts|
+      o = Observation.make!(:observed_on_string => date_string)
+      o.observed_on.day.should be(opts[:day])
+      o.observed_on.month.should be(opts[:month])
+      o.time_observed_at.in_time_zone(o.time_zone).hour.should be(opts[:hour])
+      zone = ActiveSupport::TimeZone[o.time_zone]
+      zone.formatted_offset.should eq opts[:offset]
+    end
   end
 
-  it "should parse datetime like September 27, 2012 8:09:50 AM GMT+01:00" do
-    o = Observation.make!(:observed_on_string => "September 27, 2012 8:09:50 AM GMT+01:00")
-    o.time_observed_at.in_time_zone(o.time_zone).hour.should be(8)
-    zone = ActiveSupport::TimeZone[o.time_zone]
-    zone.formatted_offset.should == "+01:00"
-    o.observed_on.day.should be(27)
+  it "should parse Spanish date strings" do
+    [
+      ['lun nov 04 2013 04:22:34 p.m. GMT-0600 (GMT-6)', {:month => 11, :day => 4, :hour => 16, :offset => "-06:00"}],
+      ['lun dic 09 2013 23:37:08 GMT-0800 (GMT-8)', {:month => 12, :day => 9, :hour => 23, :offset => "-08:00"}],
+      ['jue dic 12 2013 00:54:02 GMT-0800 (GMT-8)', {:month => 12, :day => 12, :hour => 0, :offset => "-08:00"}]
+    ].each do |date_string, opts|
+      o = Observation.make!(:observed_on_string => date_string)
+      zone = ActiveSupport::TimeZone[o.time_zone]
+      zone.formatted_offset.should eq opts[:offset]
+      o.observed_on.month.should eq opts[:month]
+      o.observed_on.day.should eq opts[:day]
+      o.time_observed_at.in_time_zone(o.time_zone).hour.should eq opts[:hour]
+    end
   end
   
   it "should parse a time zone from a code" do
@@ -90,6 +104,13 @@ describe Observation, "creation" do
     @observation.observed_on_string = "today"
     @observation.save
     @observation.time_observed_at.should be(nil)
+  end
+
+  it "should not choke of bad dates" do
+    @observation.observed_on_string = "this is not a date"
+    lambda {
+      @observation.save
+    }.should_not raise_error
   end
   
   it "should have an identification if taxon is known" do
@@ -326,9 +347,7 @@ describe Observation, "updating" do
     @observation.observed_on_string = 'March 16 2007 at 2pm'
     @observation.save
     @observation.observed_on.should == Date.parse('2007-03-16')
-    Time.use_zone(@observation.time_zone) do
-      @observation.time_observed_at.hour.should be(14)
-    end
+    @observation.time_observed_at_in_zone.hour.should eq(14)
   end
   
   it "should not save a time if one wasn't specified" do
@@ -625,6 +644,14 @@ describe Observation, "destruction" do
     p.reload
     p.observations_count.should eq(0)
   end
+
+  it "should create a deleted observation" do
+    o = Observation.make!
+    o.destroy
+    deleted_obs = DeletedObservation.where(:observation_id => o.id).first
+    deleted_obs.should_not be_blank
+    deleted_obs.user_id.should eq o.user_id
+  end
 end
 
 describe Observation, "species_guess parsing" do
@@ -795,6 +822,22 @@ describe Observation, "named scopes" do
     obs.should include(@pos)
     obs.should_not include(@neg)
   end
+
+  it "should find observations in a bounding box in a year" do
+    pos = Observation.make!(:latitude => @pos.latitude, :longitude => @pos.longitude, :observed_on_string => "2010-01-01")
+    neg = Observation.make!(:latitude => @pos.latitude, :longitude => @pos.longitude, :observed_on_string => "2011-01-01")
+    observations = Observation.in_bounding_box(20,20,30,30).on("2010")
+    observations.map(&:id).should include(pos.id)
+    observations.map(&:id).should_not include(neg.id)
+  end
+
+  it "should find observations in a bounding box spanning the date line" do
+    pos = Observation.make!(:latitude => 0, :longitude => 179)
+    neg = Observation.make!(:latitude => 0, :longitude => 170)
+    observations = Observation.in_bounding_box(-1,178,1,-178)
+    observations.map(&:id).should include(pos.id)
+    observations.map(&:id).should_not include(neg.id)
+  end
   
   it "should find observations using the shorter box method" do
     obs = Observation.near_point(20, 20).all
@@ -931,6 +974,12 @@ describe Observation, "named scopes" do
   
   it "should not find anything for a non-existant taxon ID" do
     Observation.of(91919191).should be_empty
+  end
+
+  it "should not bail on invalid dates" do
+    lambda {
+      o = Observation.on("2013-02-30").all
+    }.should_not raise_error
   end
 end
 
@@ -1661,26 +1710,26 @@ end
 
 describe Observation, "captive" do
   it "should vote yes on the wild quality metric if 1" do
-    o = Observation.make!(:captive => "1")
+    o = Observation.make!(:captive_flag => "1")
     o.quality_metrics.should_not be_blank
     o.quality_metrics.first.user.should eq(o.user)
     o.quality_metrics.first.should_not be_agree
   end
 
   it "should vote no on the wild quality metric if 0 and metric exists" do
-    o = Observation.make!(:captive => "1")
+    o = Observation.make!(:captive_flag => "1")
     o.quality_metrics.should_not be_blank
-    o.update_attributes(:captive => "0")
+    o.update_attributes(:captive_flag => "0")
     o.quality_metrics.first.should be_agree
   end
 
   it "should not alter quality metrics if nil" do
-    o = Observation.make!(:captive => nil)
+    o = Observation.make!(:captive_flag => nil)
     o.quality_metrics.should be_blank
   end
 
   it "should not alter quality metrics if 0 and not metrics exist" do
-    o = Observation.make!(:captive => "0")
+    o = Observation.make!(:captive_flag => "0")
     o.quality_metrics.should be_blank
   end
 end

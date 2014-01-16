@@ -182,7 +182,8 @@ module ApplicationHelper
     options[:modal] ||= true
     id = title.gsub(/\W/, '').underscore
     dialog = content_tag(:div, capture(&block), :class => "dialog", :style => "display:none", :id => "#{id}_dialog")
-    link = link_to_function(title, "$('##{id}_dialog').dialog(#{options.to_json})")
+    link_options = options.delete(:link) || {}
+    link = link_to_function(title, "$('##{id}_dialog').dialog(#{options.to_json})", link_options)
     dialog + link
   end
   
@@ -265,7 +266,7 @@ module ApplicationHelper
     text = text.gsub(/(\w+)=['"]([^'"]*?)['"]/, '\\1="\\2"')
     
     # Make sure P's don't get nested in P's
-    text = text.gsub(/<\\?p>/, "\n\n")
+    text = text.gsub(/<\\?p>/, "\n\n") unless options[:skip_simple_format]
     text = sanitize(text, options)
     text = compact(text, :all_tags => true) if options[:compact]
     text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
@@ -870,7 +871,7 @@ module ApplicationHelper
   end
 
   def observation_field_value_for(ofv)
-    if ofv.observation_field.datatype == "taxon"
+    if ofv.observation_field.datatype == ObservationField::TAXON
       if taxon = Taxon.find_by_id(ofv.value)
         content_tag(:span, "&nbsp;".html_safe, 
             :class => "iconic_taxon_sprite #{taxon.iconic_taxon_name.to_s.downcase} selected") + 
@@ -878,6 +879,14 @@ module ApplicationHelper
       else
         "unknown"
       end
+    elsif ofv.observation_field.datatype == ObservationField::DNA
+      css_class = "dna"
+      css_class += case ofv.observation_field.name
+      when /(coi|cox1)/i then " bold-coi" 
+      when /its/i then " bold-its"
+      when /rbcl|matk/i then " bold-matk"
+      end
+      content_tag(:div, ofv.value.gsub(/\s/, ''), :class => css_class)
     else
       ofv.value
     end
@@ -937,7 +946,7 @@ module ApplicationHelper
   end
 
   def uri_join(*args)
-    URI.join(*args)
+    URI.join(*args).to_s
   rescue URI::InvalidURIError
     args.join('/').gsub(/\/+/, '/')
   end
@@ -945,6 +954,26 @@ module ApplicationHelper
   def google_maps_js(options = {})
     sensor = options[:sensor] ? 'true' : 'false'
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?sensor=#{sensor}'></script>".html_safe
+  end
+
+  def leaflet_js(options = {})
+    h = <<-HTML
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+      <!--[if lte IE 8]>
+          <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+      <![endif]-->
+      <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    HTML
+    if options[:draw]
+      h += <<-HTML
+        <link rel="stylesheet" href="/javascripts/leaflet.draw/leaflet.draw.css" />
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="/javascripts/leaflet.draw/leaflet.draw.ie.css" />
+        <![endif]-->
+        <script src="/javascripts/leaflet.draw/leaflet.draw.js"></script>
+      HTML
+    end
+    raw h
   end
 
   def machine_tag_pieces(tag)

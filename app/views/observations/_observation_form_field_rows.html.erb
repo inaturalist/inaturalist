@@ -140,9 +140,9 @@
                 </div>
 
                 <div><label><%= t(:was_it_captive_cultivated?) %></label></div>
-                <%= o.radio_button :captive, 1 %> <%= o.label :captive, t(:yes), :value => 1 %>
-                <%= o.radio_button :captive, 0 %> <%= o.label :captive, t(:no), :value => 0 %>
-                <%= o.radio_button :captive, "unknown" %> <%= o.label :captive, t(:unknown), :value => "unknown" %>
+                <%= o.radio_button :captive_flag, 1 %> <%= o.label :captive_flag, t(:yes), :value => 1 %>
+                <%= o.radio_button :captive_flag, 0 %> <%= o.label :captive_flag, t(:no), :value => 0 %>
+                <%= o.radio_button :captive_flag, "unknown" %> <%= o.label :captive, t(:unknown), :value => "unknown" %>
                 <%= o.hidden_field :force_quality_metrics, :value => true %>
               </div>
               <div class="last column span-20">
@@ -163,7 +163,7 @@
         </div>
         <div class="column span-21">
           <div class="clear compactfield field">
-            <a href="#" onclick="$(this).next().slideToggle(); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
+            <a href="#" onclick="$(this).next().slideToggle({complete: function() {$(this).trigger('show')}}); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
               <%=t :photos %>
             </a>
             <div id="photos_<%= i %>" style="display: none" class="compactfieldcontent observation_photos photo_list">
@@ -193,7 +193,7 @@
         </div>
         <div class="column span-21">
           <div class="clear compactfield">
-            <a href="#" onclick="$(this).next().slideToggle(); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
+            <a href="#" onclick="$(this).next().slideToggle({complete: function() {$(this).trigger('show')}}); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
               <%=t :'sounds.sounds' %>
             </a>
             <div id="sounds_<%= i %>" style="display: none" class="compactfieldcontent observation_sounds sound_list">

@@ -396,7 +396,7 @@
     
     $(wrapper).append(controls);
     
-    if (options.baseURL.match(/local_photo/)) {
+    if (options.baseURL && options.baseURL.match(/local_photo/)) {
       $(wrapper).find('.photoSelectorControls .button, .photoSelectorControls .text').hide();
     }
     
@@ -503,6 +503,11 @@
         } else {
           $(wrapper).find('.photoSelectorControls .button, .photoSelectorControls .text').show();
           $(wrapper).find('.local_photos').hide();
+        }
+
+        // remove multiple file inputs for Windows Safari
+        if (navigator.platform.match(/^Win/) && $.browser.webkit && !navigator.userAgent.match(/Chrome/i)) {
+          $('input[type=file]', wrapper).removeAttr("multiple")
         }
         
         // Unset loading status

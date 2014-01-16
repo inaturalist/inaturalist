@@ -37,7 +37,7 @@ xml.GuideTaxon :position => gt.position do
     xml.GuideSection :position => gs.position do
       xml.dc :title, gs.title
       xml.dc :body do
-        xml.cdata! gs.description
+        xml.cdata! formatted_user_text(gs.description)
       end
       xml.attribution gs.attribution
       xml.dcterms :rightsHolder, gs.rights_holder

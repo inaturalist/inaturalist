@@ -71,7 +71,7 @@ class TaxonSchemesController < ApplicationController
     end
     @taxon_changes = @taxon_changes.flatten.uniq
     
-    @taxa = [@taxon_changes.map{|tc| [tc.taxa, tc.taxon]},@orphaned_taxa,@missing_taxa,@active_taxa].flatten
+    @taxa = [@taxon_changes.map{|tc| [tc.taxa, tc.taxon]}, @orphaned_taxa,@missing_taxa,@active_taxa].flatten
     @swaps = TaxonSwap.all(
       :include => [
         {:taxon => :taxon_schemes},

@@ -306,9 +306,7 @@ class Place < ActiveRecord::Base
       return nil
     end
     place = Place.new_from_geo_planet(ydn_place)
-    if place.valid?
-      place.save!
-    else
+    unless place.save
       Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
       return
     end
@@ -320,7 +318,7 @@ class Place < ActiveRecord::Base
         next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
         ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
         ancestors << ancestor if ancestor
-        place.parent = ancestors.last
+        place.parent = ancestor if place.persisted? && ancestor.persisted?
       end
     end
     
@@ -368,7 +366,10 @@ class Place < ActiveRecord::Base
   
   # Create a CheckList associated with this place
   def check_default_check_list
-    if place_type == PLACE_TYPE_CODES['Continent']
+    if too_big_for_check_list? && !prefers_check_lists && check_list
+      delay(:priority => USER_INTEGRITY_PRIORITY).remove_default_check_list
+    end
+    if place_type == PLACE_TYPE_CODES['Continent'] || too_big_for_check_list?
       self.prefers_check_lists = false
     end
     if prefers_check_lists && check_list.blank?
@@ -379,10 +380,18 @@ class Place < ActiveRecord::Base
           "creation of #{self}: " + 
           check_list.errors.full_messages.join(', ')
       end
-    else
-      # TODO destroy existing check lists?
     end
     true
+  end
+
+  def too_big_for_check_list?
+    bbox_area.to_f > 100 && !user_id.blank?
+  end
+
+  def remove_default_check_list
+    return unless check_list
+    check_list.listed_taxa.delete_all
+    check_list.destroy
   end
   
   # Update the associated place_geometry or create a new one

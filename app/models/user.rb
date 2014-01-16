@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
   has_one  :picasa_identity, :dependent => :delete
   has_one  :soundcloud_identity, :dependent => :delete
   has_many :observations, :dependent => :destroy
+  has_many :deleted_observations
   
   # Some interesting ways to map self-referential relationships in rails
   has_many :friendships, :dependent => :destroy
@@ -97,9 +98,10 @@ class User < ActiveRecord::Base
   has_subscribers
   has_many :subscriptions, :dependent => :delete_all
   has_many :updates, :foreign_key => :subscriber_id, :dependent => :delete_all
+  has_many :flow_tasks
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
-  before_validation :strip_name
+  before_validation :strip_name, :strip_login
   before_save :whitelist_licenses
   before_create :set_locale
   after_save :update_observation_licenses
@@ -203,8 +205,14 @@ class User < ActiveRecord::Base
   end
 
   def strip_name
-    return true unless name
+    return true if name.blank?
     self.name = name.gsub(/[\s\n\t]+/, ' ').strip
+    true
+  end
+
+  def strip_login
+    return true if login.blank?
+    self.login = login.strip
     true
   end
   
@@ -525,7 +533,7 @@ class User < ActiveRecord::Base
 
     # refresh check lists with relevant taxa
     taxon_ids.in_groups_of(100) do |group|
-      CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh(:taxa => group.compact)
+      CheckList.delay(:priority => OPTIONAL_PRIORITY, :queue => "slow").refresh(:taxa => group.compact)
     end
 
     # refresh project lists

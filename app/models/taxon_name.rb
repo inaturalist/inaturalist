@@ -118,14 +118,21 @@ class TaxonName < ActiveRecord::Base
     end
     true
   end
+
+  def as_json(options = {})
+    if options.blank?
+      options[:only] = [:id, :name, :lexicon, :is_valid]
+    end
+    super(options)
+  end
   
-  def self.choose_common_name(taxon_names)
+  def self.choose_common_name(taxon_names, options = {})
     return nil if taxon_names.blank?
-    common_names = taxon_names.reject { |tn| tn.is_scientific_names? }
+    common_names = taxon_names.reject { |tn| tn.is_scientific_names? || !tn.is_valid? }
     return nil if common_names.blank?
     common_names = common_names.sort_by(&:id)
     
-    language_name = language_for_locale || 'english'
+    language_name = language_for_locale(options[:locale]) || 'english'
     locale_names = common_names.select {|n| n.lexicon.to_s.downcase == language_name}
     engnames = common_names.select {|n| n.is_english?}
     unknames = common_names.select {|n| n.lexicon == 'unspecified'}
@@ -157,9 +164,9 @@ class TaxonName < ActiveRecord::Base
     taxon_names.select { |tn| tn.is_valid? && tn.is_scientific_names? }.first
   end
   
-  def self.choose_default_name(taxon_names)
+  def self.choose_default_name(taxon_names, options = {})
     return nil if taxon_names.blank?
-    name = choose_common_name(taxon_names)
+    name = choose_common_name(taxon_names, options)
     name ||= choose_scientific_name(taxon_names)
     name ||= taxon_names.first
     name

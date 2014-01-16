@@ -436,6 +436,38 @@ ALTER SEQUENCE delayed_jobs_id_seq OWNED BY delayed_jobs.id;
 
 
 --
+-- Name: deleted_observations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE deleted_observations (
+    id integer NOT NULL,
+    user_id integer,
+    observation_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: deleted_observations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE deleted_observations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: deleted_observations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE deleted_observations_id_seq OWNED BY deleted_observations.id;
+
+
+--
 -- Name: deleted_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -953,7 +985,8 @@ CREATE TABLE guide_taxa (
     display_name character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    "position" integer DEFAULT 0
+    "position" integer DEFAULT 0,
+    source_identifier character varying(255)
 );
 
 
@@ -1378,7 +1411,7 @@ CREATE TABLE observation_field_values (
     id integer NOT NULL,
     observation_id integer,
     observation_field_id integer,
-    value character varying(255),
+    value character varying(2048),
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -1415,7 +1448,7 @@ CREATE TABLE observation_fields (
     description character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    allowed_values text
+    allowed_values character varying(512)
 );
 
 
@@ -1582,7 +1615,8 @@ CREATE TABLE observations (
     oauth_application_id integer,
     sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
-    private_geom geometry(Point)
+    private_geom geometry(Point),
+    captive boolean DEFAULT false
 );
 
 
@@ -2090,7 +2124,16 @@ CREATE TABLE projects (
     map_type character varying(255) DEFAULT 'terrain'::character varying,
     latitude numeric(15,10),
     longitude numeric(15,10),
-    zoom_level integer
+    zoom_level integer,
+    cover_file_name character varying(255),
+    cover_content_type character varying(255),
+    cover_file_size integer,
+    cover_updated_at timestamp without time zone,
+    event_url character varying(255),
+    start_time timestamp without time zone,
+    end_time timestamp without time zone,
+    trusted boolean DEFAULT false,
+    "group" character varying(255)
 );
 
 
@@ -3210,6 +3253,13 @@ ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY deleted_observations ALTER COLUMN id SET DEFAULT nextval('deleted_observations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY deleted_users ALTER COLUMN id SET DEFAULT nextval('deleted_users_id_seq'::regclass);
 
 
@@ -3781,6 +3831,14 @@ ALTER TABLE ONLY custom_projects
 
 ALTER TABLE ONLY delayed_jobs
     ADD CONSTRAINT delayed_jobs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: deleted_observations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY deleted_observations
+    ADD CONSTRAINT deleted_observations_pkey PRIMARY KEY (id);
 
 
 --
@@ -4492,6 +4550,13 @@ CREATE INDEX index_custom_projects_on_project_id ON custom_projects USING btree 
 
 
 --
+-- Name: index_deleted_observations_on_user_id_and_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_deleted_observations_on_user_id_and_created_at ON deleted_observations USING btree (user_id, created_at);
+
+
+--
 -- Name: index_deleted_users_on_login; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -4867,6 +4932,13 @@ CREATE INDEX index_observation_photos_on_observation_id ON observation_photos US
 --
 
 CREATE INDEX index_observation_photos_on_photo_id ON observation_photos USING btree (photo_id);
+
+
+--
+-- Name: index_observations_on_captive; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_captive ON observations USING btree (captive);
 
 
 --
@@ -6098,3 +6170,19 @@ INSERT INTO schema_migrations (version) VALUES ('20131011234030');
 INSERT INTO schema_migrations (version) VALUES ('20131023224910');
 
 INSERT INTO schema_migrations (version) VALUES ('20131024045916');
+
+INSERT INTO schema_migrations (version) VALUES ('20131119214722');
+
+INSERT INTO schema_migrations (version) VALUES ('20131123022658');
+
+INSERT INTO schema_migrations (version) VALUES ('20131128214012');
+
+INSERT INTO schema_migrations (version) VALUES ('20131128234236');
+
+INSERT INTO schema_migrations (version) VALUES ('20131204211450');
+
+INSERT INTO schema_migrations (version) VALUES ('20131220044313');
+
+INSERT INTO schema_migrations (version) VALUES ('20140101210916');
+
+INSERT INTO schema_migrations (version) VALUES ('20140104202529');

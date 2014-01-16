@@ -25,7 +25,8 @@ class EolController < ApplicationController
     else
       per_page
     end
-    @photos = EolPhoto.search_eol(@q, :limit => limit)
+
+    @photos = EolPhoto.search_eol(@q, :limit => limit, :eol_page_id => params[:eol_page_id])
     @photos = @photos[offset,per_page]
     
     partial = params[:partial].to_s

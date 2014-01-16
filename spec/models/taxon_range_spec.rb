@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
+Paperclip::Storage::Filesystem.stubbed_for_tests = false
 
 describe TaxonRange, "create_kml_attachment" do
   it "should create an kml attachment from geometry" do

@@ -31,6 +31,7 @@ Inaturalist::Application.routes.draw do
       put :reorder
       put :add_color_tags
       put "add_tags_for_rank/:rank" => "guides#add_tags_for_rank"
+      put :remove_all_tags
     end
   end
   match '/guides/:id.:layout.pdf' => 'guides#show', :via => :get, :as => "guide_pdf", :constraints => {:format => :pdf}, :defaults => {:format => :pdf}
@@ -76,6 +77,7 @@ Inaturalist::Application.routes.draw do
     get "signup", :to => "users/registrations#new"
     get "users/new", :to => "users/registrations#new", :as => "new_user"
     get "/forgot_password", :to => "devise/passwords#new", :as => "forgot_password"
+    put "users/update_session", :to => "users#update_session"
   end
   
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
@@ -136,6 +138,7 @@ Inaturalist::Application.routes.draw do
       get :taxon_stats
       get :user_stats
       get :export
+      post :email_export
     end
   end
 
@@ -215,6 +218,7 @@ Inaturalist::Application.routes.draw do
   resources :project_assets, :except => [:index, :show]
   resources :project_observations, :only => [:create, :destroy]
   resources :custom_projects, :except => [:index, :show]
+
   match 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => simplified_login_regex }
   match 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => simplified_login_regex }, :followers => 'followers'
   match 'people/:login/following' => 'users#relationships', :as => :following_by_login, :constraints => { :login => simplified_login_regex }, :following => 'following'
@@ -308,6 +312,7 @@ Inaturalist::Application.routes.draw do
   resources :identifications, :constraints => { :id => id_param_pattern } do
     resources :flags
   end
+  match 'identifications/bold' => 'identifications#bold', :via => :get
   match 'identifications/agree' => 'identifications#agree', :via => :post
   match 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }, :via => :get
   match 'emailer/invite' => 'emailer#invite', :as => :emailer_invite

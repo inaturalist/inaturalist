@@ -100,12 +100,12 @@ GEM
   remote: http://rubygems.org/
   specs:
     aasm (3.0.19)
-    actionmailer (3.2.14)
-      actionpack (= 3.2.14)
+    actionmailer (3.2.16)
+      actionpack (= 3.2.16)
       mail (~> 2.5.4)
-    actionpack (3.2.14)
-      activemodel (= 3.2.14)
-      activesupport (= 3.2.14)
+    actionpack (3.2.16)
+      activemodel (= 3.2.16)
+      activesupport (= 3.2.16)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       journey (~> 1.0.4)
@@ -113,18 +113,18 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    activemodel (3.2.14)
-      activesupport (= 3.2.14)
+    activemodel (3.2.16)
+      activesupport (= 3.2.16)
       builder (~> 3.0.0)
-    activerecord (3.2.14)
-      activemodel (= 3.2.14)
-      activesupport (= 3.2.14)
+    activerecord (3.2.16)
+      activemodel (= 3.2.16)
+      activesupport (= 3.2.16)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activeresource (3.2.14)
-      activemodel (= 3.2.14)
-      activesupport (= 3.2.14)
-    activesupport (3.2.14)
+    activeresource (3.2.16)
+      activemodel (= 3.2.16)
+      activesupport (= 3.2.16)
+    activesupport (3.2.16)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.4)
@@ -134,7 +134,7 @@ GEM
       json
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
-    arel (3.0.2)
+    arel (3.0.3)
     autoparse (0.3.3)
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
@@ -224,7 +224,7 @@ GEM
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
     httpauth (0.2.0)
-    i18n (0.6.4)
+    i18n (0.6.9)
     i18n-js (2.1.2)
       i18n
     journey (1.0.4)
@@ -252,10 +252,10 @@ GEM
       webrobots (>= 0.0.9, < 0.2)
     memcache-client (1.8.5)
     metaclass (0.0.1)
-    mime-types (1.23)
+    mime-types (1.25.1)
     mocha (0.14.0)
       metaclass (~> 0.0.1)
-    multi_json (1.7.7)
+    multi_json (1.8.2)
     multi_xml (0.5.4)
     multipart-post (1.2.0)
     net-http-digest_auth (1.3)
@@ -325,19 +325,19 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.14)
-      actionmailer (= 3.2.14)
-      actionpack (= 3.2.14)
-      activerecord (= 3.2.14)
-      activeresource (= 3.2.14)
-      activesupport (= 3.2.14)
+    rails (3.2.16)
+      actionmailer (= 3.2.16)
+      actionpack (= 3.2.16)
+      activerecord (= 3.2.16)
+      activeresource (= 3.2.16)
+      activesupport (= 3.2.16)
       bundler (~> 1.0)
-      railties (= 3.2.14)
+      railties (= 3.2.16)
     rails_autolink (1.1.0)
       rails (> 3.1)
-    railties (3.2.14)
-      actionpack (= 3.2.14)
-      activesupport (= 3.2.14)
+    railties (3.2.16)
+      actionpack (= 3.2.16)
+      activesupport (= 3.2.16)
       rack-ssl (~> 1.3.2)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
@@ -353,9 +353,16 @@ GEM
       right_http_connection (>= 1.2.5)
     right_http_connection (1.3.0)
     rinku (1.7.3)
+    rspec (2.13.0)
+      rspec-core (~> 2.13.0)
+      rspec-expectations (~> 2.13.0)
+      rspec-mocks (~> 2.13.0)
     rspec-core (2.13.1)
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
+    rspec-html-matchers (0.4.3)
+      nokogiri (>= 1.4.4)
+      rspec (>= 2.0.0)
     rspec-mocks (2.13.1)
     rspec-rails (2.13.2)
       actionpack (>= 3.0)
@@ -389,7 +396,7 @@ GEM
     thor (0.18.1)
     tilt (1.4.1)
     tlsmail (0.0.1)
-    treetop (1.4.14)
+    treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
     trollop (2.0)
@@ -400,10 +407,11 @@ GEM
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
       simple_oauth (~> 0.2)
-    tzinfo (0.3.37)
+    tzinfo (0.3.38)
     unf (0.1.1)
       unf_ext
     unf_ext (0.0.6)
+    utf8-cleaner (0.0.6)
     uuidtools (2.1.4)
     warden (1.2.1)
       rack (>= 1.0)
@@ -477,7 +485,7 @@ DEPENDENCIES
   pg
   preferences!
   rack-google-analytics
-  rails (~> 3.2.13)
+  rails (~> 3.2.16)
   rake (= 0.8.7)
   rest-client
   rgeo
@@ -485,6 +493,7 @@ DEPENDENCIES
   right_http_connection
   rinku
   riparian!
+  rspec-html-matchers
   rspec-rails
   rvm-capistrano
   simple_oauth
@@ -496,6 +505,7 @@ DEPENDENCIES
   trollop
   ts-delayed-delta (= 1.1.3)
   twitter
+  utf8-cleaner
   watu_table_builder
   whenever
   wicked_pdf

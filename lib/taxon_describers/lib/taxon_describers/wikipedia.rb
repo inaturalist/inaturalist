@@ -6,16 +6,8 @@ module TaxonDescribers
       title = taxon.name if title.blank?
       decoded = ""
       begin
-        query_results = wikipedia.query(
-          :titles => title, 
-          :redirects => '', 
-          :prop => 'revisions', 
-          :rvprop => 'content')
-        raw = query_results.at('page')
-        unless raw.blank? || raw['missing']
-          parsed = wikipedia.parse(:page => raw['title']).at('text').try(:inner_text).to_s
-          decoded = clean_html(parsed)
-        end
+        parsed = wikipedia.parse(:page => title, :redirects => true).at('text').try(:inner_text).to_s
+        decoded = clean_html(parsed) if parsed
       rescue Timeout::Error => e
         Rails.logger.info "[INFO] Wikipedia API call failed: #{e.message}"
       end
@@ -24,6 +16,7 @@ module TaxonDescribers
 
     def clean_html(html, options = {})
       coder = HTMLEntities.new
+      html.gsub!(/data-videopayload=".+?"/m, '')
       decoded = coder.decode(html)
       decoded.gsub!('href="//', 'href="http://')
       decoded.gsub!('src="//', 'src="http://')
@@ -37,7 +30,7 @@ module TaxonDescribers
     end
 
     def wikipedia
-      @wikipedia ||= WikipediaService.new(:locale => "en")
+      @wikipedia ||= WikipediaService.new(:locale => "en", :debug => Rails.env.development?)
     end
 
     def page_url(taxon)

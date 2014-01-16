@@ -72,7 +72,7 @@ class ObservationsController < ApplicationController
     'species_guess' => 'species name',
     'project' => "date added to project"
   }
-  PARTIALS = %w(cached_component observation_component observation mini)
+  PARTIALS = %w(cached_component observation_component observation mini project_observation)
   EDIT_PARTIALS = %w(add_photos)
   PHOTO_SYNC_ATTRS = [:description, :species_guess, :taxon_id, :observed_on,
     :observed_on_string, :latitude, :longitude, :place_guess]
@@ -248,7 +248,7 @@ class ObservationsController < ApplicationController
         
         @photos = @observation.observation_photos.sort_by do |op| 
           op.position || @observation.observation_photos.size + op.id.to_i
-        end.map{|op| op.photo}
+        end.map{|op| op.photo}.compact
         @sounds = @observation.sounds.all
         
         if @observation.observed_on
@@ -267,8 +267,9 @@ class ObservationsController < ApplicationController
         if @observation.taxon
           unless @places.blank?
             @listed_taxon = ListedTaxon.
+              includes(:place).
               where("taxon_id = ? AND place_id IN (?) AND establishment_means IS NOT NULL", @observation.taxon_id, @places).
-              includes(:place).first
+              order("establishment_means IN ('endemic', 'introduced') DESC, places.bbox_area ASC").first
             @conservation_status = ConservationStatus.
               where(:taxon_id => @observation.taxon).where("place_id IN (?)", @places).
               where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).
@@ -334,7 +335,7 @@ class ObservationsController < ApplicationController
                 },
                 :taxon => {
                   :only => [:id, :name, :iconic_taxon_id, :rank],
-                  :methods => [:iconic_taxon_name, :image_url]
+                  :methods => [:iconic_taxon_name, :image_url, :common_name]
                 }
               }
             }
@@ -503,7 +504,7 @@ class ObservationsController < ApplicationController
     @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
 
     if @observation.quality_metrics.detect{|qm| qm.user_id == @observation.user_id && qm.metric == QualityMetric::WILD && !qm.agree?}
-      @observation.captive = true
+      @observation.captive_flag = true
     end
     respond_to do |format|
       format.html do
@@ -978,9 +979,9 @@ class ObservationsController < ApplicationController
         o.longitude = o.private_longitude
       end
       if qm = o.quality_metrics.detect{|qm| qm.user_id == o.user_id}
-        o.captive = qm.metric == QualityMetric::WILD && !qm.agree? ? 1 : 0
+        o.captive_flag = qm.metric == QualityMetric::WILD && !qm.agree? ? 1 : 0
       else
-        o.captive = "unknown"
+        o.captive_flag = "unknown"
       end
       o
     end
@@ -1098,7 +1099,7 @@ class ObservationsController < ApplicationController
   # gets observations by user login
   def by_login
     search_params, find_options = get_search_params(params)
-    search_params.update(:user_id => @selected_user.id)
+    search_params.update(:user_id => @selected_user.id, :viewer => current_user)
     if search_params[:q].blank?
       get_paginated_observations(search_params, find_options)
     else
@@ -1125,6 +1126,11 @@ class ObservationsController < ApplicationController
       format.mobile
       
       format.json do
+        if timestamp = Chronic.parse(params[:updated_since])
+          deleted_observation_ids = DeletedObservation.where("user_id = ? AND created_at >= ?", @selected_user, timestamp).
+            select(:observation_id).limit(500).map(&:observation_id)
+          response.headers['X-Deleted-Observations'] = deleted_observation_ids.join(',')
+        end
         render_observations_to_json
       end
       
@@ -1336,6 +1342,7 @@ class ObservationsController < ApplicationController
         render :action => "index"
       end
       format.csv do
+        pagination_headers_for(@observations)
         render :text => ProjectObservation.to_csv(@project_observations, :user => current_user)
       end
       format.kml do
@@ -1502,9 +1509,11 @@ class ObservationsController < ApplicationController
         render :json => {
           :total => @rank_counts.map{|r| r['count_all'].to_i}.sum,
           :species_counts => @species_counts.map{|row|
+            taxon = @taxa_by_taxon_id[row['taxon_id'].to_i]
+            taxon.locale = I18n.locale
             {
               :count => row['count_all'],
-              :taxon => @taxa_by_taxon_id[row['taxon_id'].to_i].as_json(
+              :taxon => taxon.as_json(
                 :methods => [:default_name, :image_url, :iconic_taxon_name, :conservation_status_name],
                 :only => [:id, :name, :rank, :rank_level]
               )
@@ -1585,6 +1594,28 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @observation }
       format.json { head :no_content }
+    end
+  end
+
+  def email_export
+    unless flow_task = current_user.flow_tasks.find_by_id(params[:id])
+      render :status => :unprocessable_entity, :text => "Flow task doesn't exist"
+      return
+    end
+    if flow_task.user_id != current_user.id
+      render :status => :unprocessable_entity, :text => "You don't have permission to do that"
+      return
+    end
+    if flow_task.outputs.exists?
+      Emailer.observations_export_notification(flow_task).deliver
+      render :status => :ok, :text => ""
+      return 
+    end
+    flow_task.options = flow_task.options.merge(:email => true)
+    if flow_task.save
+      render :status => :ok, :text => ""
+    else
+      render :status => :unprocessable_entity, :text => flow_task.errors.full_messages.to_sentence
     end
   end
 
@@ -1684,7 +1715,10 @@ class ObservationsController < ApplicationController
       end
     end
     
-    @q = search_params[:q].to_s unless search_params[:q].blank?
+    unless search_params[:q].blank?
+      search_params[:q] = sanitize_sphinx_query(search_params[:q])
+      @q = search_params[:q] unless search_params[:q].blank?
+    end
     if Observation::SPHINX_FIELD_NAMES.include?(search_params[:search_on])
       @search_on = search_params[:search_on]
     end
@@ -1713,7 +1747,7 @@ class ObservationsController < ApplicationController
       find_options[:limit] = 200
     end
     
-    unless request.format && request.format.html?
+    unless request && request.format && request.format.html?
       find_options[:include] = [{:taxon => :taxon_names}, {:observation_photos => :photo}, :user]
     end
     
@@ -1771,6 +1805,11 @@ class ObservationsController < ApplicationController
     end
     
     @quality_grade = search_params[:quality_grade]
+    @captive = if [true, 'true', 't', 'yes', 'y', 1, '1'].include?(search_params[:captive])
+      true
+    elsif [false, 'false', 'f', 'no', 'n', 0, '0'].include?(search_params[:captive])
+      false
+    end
     @identifications = search_params[:identifications]
     @out_of_range = search_params[:out_of_range]
     @license = search_params[:license]
@@ -1854,6 +1893,7 @@ class ObservationsController < ApplicationController
       !@with_sounds.blank? ||
       !@identifications.blank? ||
       !@quality_grade.blank? ||
+      !@captive.blank? ||
       !@out_of_range.blank? ||
       !@observed_on.blank? ||
       !@place.blank? ||
@@ -2352,16 +2392,6 @@ class ObservationsController < ApplicationController
       opts[:methods] += [:short_description, :user_login, :iconic_taxon_name, :tag_list]
       opts[:methods].uniq!
       opts[:include] ||= {}
-      if @ofv_params
-        opts[:include][:observation_field_values] ||= {
-          :except => [:observation_field_id],
-          :include => {
-            :observation_field => {
-              :only => [:id, :datatype, :name]
-            }
-          }
-        }
-      end
       opts[:include][:taxon] ||= {
         :only => [:id, :name, :rank, :ancestry],
         :methods => [:common_name]
@@ -2373,6 +2403,23 @@ class ObservationsController < ApplicationController
         :except => [:original_url, :file_processing, :file_file_size, 
           :file_content_type, :file_file_name, :mobile, :metadata]
       }
+      extra = params[:extra].to_s.split(',')
+      if extra.include?('projects')
+        opts[:include][:project_observations] ||= {
+          :include => {:project => {:only => [:title]}},
+          :except => [:tracking_code]
+        }
+      end
+      if @ofv_params || extra.include?('fields')
+        opts[:include][:observation_field_values] ||= {
+          :except => [:observation_field_id],
+          :include => {
+            :observation_field => {
+              :only => [:id, :datatype, :name]
+            }
+          }
+        }
+      end
       pagination_headers_for(@observations)
       if @observations.respond_to?(:scoped)
         @observations = @observations.includes({:observation_photos => :photo}, :photos, :iconic_taxon)
@@ -2396,6 +2443,7 @@ class ObservationsController < ApplicationController
       end
     end
     @observations = @observations.includes(:tags) if @observations.respond_to?(:scoped)
+    pagination_headers_for(@observations)
     render :text => @observations.to_csv(:only => only.map{|c| c.to_sym})
   end
   
@@ -2485,9 +2533,10 @@ class ObservationsController < ApplicationController
   end
 
   def delayed_csv(path_for_csv, parent, options = {})
+    path_for_csv_no_ext = path_for_csv.gsub(/\.csv\z/, '')
     if parent.observations.count < 50
       Observation.generate_csv_for(parent, :path => path_for_csv)
-      render :file => path_for_csv
+      render :file => path_for_csv_no_ext, :formats => [:csv]
     else
       cache_key = Observation.generate_csv_for_cache_key(parent)
       job_id = Rails.cache.read(cache_key)
@@ -2495,7 +2544,7 @@ class ObservationsController < ApplicationController
       if job
         # Still working
       elsif File.exists? path_for_csv
-        render :file => path_for_csv
+        render :file => path_for_csv_no_ext, :formats => [:csv]
         return
       else
         # no job id, no job, let's get this party started

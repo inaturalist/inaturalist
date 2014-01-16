@@ -4,21 +4,21 @@
   = f.text_field :position, :class => "sortable-position pull-left"
   .pull-left
     .title_field
-      = f.text_field :title, :class => "input-xxlarge", :disabled => !f.object.editable?
+      = f.text_field :title, :class => "input-xxlarge", :disabled => !f.object.editable?, :placeholder => t(:title).capitalize
     = link_to_toggle_box t(:edit_body) do
       .description_field
         = f.text_area :description, :class => "input-xxlarge"
       .source_id_field= f.hidden_field :source_id
       .source_url_field.readonly_field
-        = f.label :source_url
+        = f.label :source_url, t(:source_url)
         = f.hidden_field :source_url
         %span.mirror= f.object.source_url || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
       .rights_holder_field.readonly_field
-        = f.label :rights_holder, "Original rights holder"
+        = f.label :rights_holder, t(:original_rights_holder)
         = f.hidden_field :rights_holder
         %span.mirror= f.object.rights_holder || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
       .license_field.readonly_field
-        = f.label :license
+        = f.label :license, t(:license)
         = f.hidden_field :license
         %span.mirror= f.object.license || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
   = link_to_remove_association t(:remove_section), f, :class => "pull-right btn btn-mini"

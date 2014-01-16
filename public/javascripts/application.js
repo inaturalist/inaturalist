@@ -190,6 +190,8 @@ $(document).ready(function() {
     makeHeaderLinkCurrent('#mainnav .placestab')
   } else if (window.location.pathname.match(/^\/user/) || window.location.pathname.match(/^\/people/)) {
     makeHeaderLinkCurrent('#mainnav .peopletab')
+  } else if (window.location.pathname.match(/^\/guides/) || window.location.pathname.match(/^\/guides/)) {
+    makeHeaderLinkCurrent('#mainnav .guidestab')
   }
   
   buildHelpTips()
@@ -362,6 +364,7 @@ $(document).ready(function() {
   })
 
   $('.add_matching_link').attr('confirm', null).data('confirm', null)
+  $('.dna').dnaHighlight()
 })
 
 function checkFormForRequiredFields(e) {
@@ -453,6 +456,11 @@ function autoTip() {
   }
   
   $(this).qtip(tipOptions)
+
+  // remove multiple file inputs for Windows Safari
+  if (navigator.platform.match(/^Win/) && $.browser.webkit && !navigator.userAgent.match(/Chrome/i)) {
+    $('input[type=file]').removeAttr("multiple")
+  }
 }
 
 // from http://forum.jquery.com/topic/jquery-simple-autolink-and-highlight-12-1-2010
@@ -750,9 +758,8 @@ $.fn.observationControls = function(options) {
   $(this).each(function() {
     var observations = options.div || $(this).parent().find('.observations')
 
-
     var gridButton = $('.gridbutton', this)
-    if (gridButton.length == 0) {
+    if (!options.skipGrid && gridButton.length == 0) {
       gridButton = $('<a href="#" class="gridbutton" title="'+I18n.t('grid_tooltip')+'"><span class="inat-icon ui-icon ui-icon-grid inlineblock">&nbsp;</span><label>'+I18n.t('grid')+'</label></a>')
       gridButton.data('gridSize', $(observations).hasClass('medium') ? 'medium' : null)
       gridButton.click(function() {
@@ -764,7 +771,7 @@ $.fn.observationControls = function(options) {
     }
 
     var listButton = $('.listbutton', this)
-    if (listButton.length == 0) {
+    if (!options.skipList && listButton.length == 0) {
       listButton = $('<a href="#" class="listbutton" title="'+I18n.t('list_tooltip')+'"><span class="inat-icon ui-icon ui-icon-list inlineblock">&nbsp;</span><label>'+I18n.t('list')+'</label></a>')
       listButton.click(function() {
         $(observations).observationsList()
@@ -775,7 +782,7 @@ $.fn.observationControls = function(options) {
     }
 
     var mapButton = $('.mapbutton', this)
-    if (mapButton.length == 0) {
+    if (!options.skipMap && mapButton.length == 0) {
       mapButton = $('<a href="#" class="mapbutton" title="'+I18n.t('map_tooltip')+'"><span class="inat-icon ui-icon ui-icon-map inlineblock">&nbsp;</span><label>'+I18n.t('map')+'</label></a>')
       mapButton.click(function() {
         $(observations).observationsMap()
@@ -1079,4 +1086,230 @@ function showJoinProjectDialog(projectId, options) {
 // http://stackoverflow.com/a/14839776/720268
 function preciseRound(num,decimals) {
   return Math.round(num*Math.pow(10, decimals)) / Math.pow(10,decimals)
+}
+
+function updateSession(params) {
+  $.ajax({
+    url: '/users/update_session',
+    data: params,
+    type: 'PUT'
+  })
+}
+
+$.fn.loadObservations = function(options) {
+  var url = options.url || '/observations'
+  if (!url.match(/partial=/)) {
+    url += url.match(/\?/) ? '&' : '?'
+    url += 'partial=cached_component'
+  }
+  var container = this
+  var req
+  req = $.ajax({
+    type: "GET",
+    url: url,
+    success: function (data, status) {
+      var html = data.replace(/\/div>[\s\n]+?<div/g, '/div><div')
+      var oldObsId = $('.observation:first', container).attr('id')
+      if (oldObsId) {
+        var r = new RegExp('^[^>]+'+oldObsId, 'g')
+        if (r.test(html)) {
+          return
+        }
+      }
+      $(container).html(html)
+      if (options.style == 'list') {
+        $(container).observationsList()
+      } else if (options.style == 'map') {
+        $(container).observationsMap()
+      } else {
+        $(container).observationsGrid('medium')
+      }
+      if (typeof(options.success) == 'function') {
+        options.success(req, data, status)
+      }
+    }
+  })
+  if (options.refresh) {
+    var t = setTimeout(function() {
+      container.loadObservations(options)
+    }, options.refresh)
+    container.data('loadObservationsTimeout', t)
+  }
+}
+
+$.fn.observationTaxonStats = function(options) {
+  var url = options.url || '/observations/taxon_stats.json'
+  var container = this
+  $.getJSON(url, function(json) {
+    $('.species .count', container).html(json.rank_counts.species || 0)
+    if (json.species_counts.length > 0) {
+      var most
+      $('.most_observed table', container).html('')
+      for (var i = 0; i < json.species_counts.length; i++) {
+        if (json.species_counts[i].taxon) {
+          most = json.species_counts[i]
+          var tr = $('<tr></tr>'),
+              taxonTD = $('<td class="taxon"></td>'),
+              imageTD = $('<td class="image"></td>')
+          taxonTD.html(
+            $('<a></a>').
+              addClass('nobr '+most.taxon.default_name.lexicon).
+              attr('href', '/taxa/'+most.taxon.id).
+              html(most.taxon.default_name.name)
+          )
+          imageTD.append($('<img/>').attr('src', most.taxon.image_url))
+          taxonTD.append(
+            $('<div class="meta"></div>').append(
+              $('<a></a>').
+                attr('href', '/observations'+window.location.search+'&taxon_id='+most.taxon.id).
+                html(most.count),
+              ' ',
+              I18n.t('observation'+(most.count == 1 ? '' : 's')).toLowerCase()
+            )
+          )
+          tr.append(imageTD, taxonTD)
+          $('.most_observed table', container).append(tr)
+        }
+      }
+    }
+    if (options.refresh) {
+      var t = setTimeout(function() {
+        container.observationTaxonStats(options)
+      }, options.refresh)
+      container.data('observationTaxonStatsTimeout', t)
+    }
+  })
+}
+
+$.fn.observationUserStats = function(options) {
+  var url = options.url || '/observations/taxon_stats.json'
+  var container = this
+  $.getJSON(url, function(json) {
+    $('.people .count', container).html(json.total || 0)
+    if (json.most_observations.length > 0) {
+      $('.most_observations table', container).html('')
+      for (var i = 0; i < json.most_observations.length; i++) {
+        var most = json.most_observations[i],
+            img_url = most.user.user_icon_url || '/attachment_defaults/users/icons/defaults/thumb.png',
+            tr = $('<tr></tr>'),
+            imageTD = $('<td class="image"></td>'),
+            userTD = $('<td class="user"></td>')
+        imageTD.append($('<img/>').attr('src', img_url))
+        userTD.html($('<a>'+most.user.login+'</a>').attr('href', '/people/'+most.user.login))
+        userTD.append(
+          $('<div></div>').addClass('meta').html(I18n.t('x_observations', {count: most.count}))
+        )
+        tr.append(imageTD, userTD)
+        $('.most_observations table', container).append(tr)
+      }
+    }
+    if (json.most_species.length > 0) {
+      $('.most_species table', container).html('')
+      for (var i = 0; i < json.most_species.length; i++) {
+        var row = json.most_species[i]
+            img_url = row.user.user_icon_url || '/attachment_defaults/users/icons/defaults/thumb.png',
+            tr = $('<tr></tr>'),
+            imageTD = $('<td class="image"></td>'),
+            userTD = $('<td class="user"></td>')
+        imageTD.append($('<img/>').attr('src', img_url))
+        userTD.html($('<a>'+row.user.login+'</a>').attr('href', '/people/'+row.user.login))
+        userTD.append(
+          $('<div></div>').addClass('meta').html(I18n.t('x_species', {count: row.count}))
+        )
+        tr.append(imageTD, userTD)
+        $('.most_species table', container).append(tr)
+      }
+    }
+    if (options.refresh) {
+      var t = setTimeout(function() {
+        container.observationTaxonStats(options)
+      }, options.refresh)
+      container.data('observationUserStats', t)
+    }
+  })
+}
+
+$.fn.dnaHighlight = function() {
+  $(this).each(function() {
+    var newt = "",
+        oldt = $(this).text()
+    for (var i = 0; i < oldt.length; i++) {
+      switch (oldt[i]) {
+        case 'A':
+          newt += '<nt class="a">'+oldt[i]+'</nt>'
+          break
+        case 'T':
+          newt += '<nt class="t">'+oldt[i]+'</nt>'
+          break
+        case 'C':
+          newt += '<nt class="c">'+oldt[i]+'</nt>'
+          break
+        case 'G':
+          newt += '<nt class="g">'+oldt[i]+'</nt>'
+          break
+        default:
+          newt += oldt[i]
+      }
+    }
+    $(this).html(newt)
+  })
+}
+
+$.fn.boldId = function() {
+  $(this).each(function() {
+    if ($('.boldid', this).length > 0) return
+    var bolddb
+    if ($(this).hasClass('bold-its')) {
+      // not implemented by BOLD
+    } else if ($(this).hasClass('bold-matk')) {
+      // not implemented by BOLD
+    } else {
+      bolddb = 'COX1'
+    }
+    if (!bolddb) return
+    var boldWrapper = $('<span class="boldid"><label><a href="http://www.boldsystems.org/">BOLD</a> DNA Match:</label></span>'),
+        boldLink = $('<span class="button inline status"><a href="#">Load DNA-based identification from BOLD</a></span>')
+    boldWrapper.append(' ', boldLink)
+    boldLink.click(function() {
+      $(this).hide()
+      $('.status', boldWrapper).replaceWith('<span class="loading status inline">Loading BOLD ID...</span>')
+      $.get(url, function(data, status, jqXHR) {
+        var name = $('match:first taxonomicidentification', data).text(),
+            similarity = $('match:first similarity', data).text(),
+            specimenURL = $('match:first url', data).text()
+        similarity = preciseRound(parseFloat(similarity) * 100, 2)
+        if (!name) {
+          $('.status', boldWrapper).replaceWith(
+            '<span class="status">No matches</span>'
+          )
+          return
+        }
+        $.getJSON('/taxa/search?q='+name, function(taxa) {
+          var taxon
+          for (var i = 0; i < taxa.length; i++) {
+            if (taxa[i].name == name) {
+              taxon = taxa[i]
+              break
+            }
+          }
+          if (taxon) {
+            var cssClass = 'taxon ' + [taxon.rank, taxon.iconic_taxon_name].join(' ')
+            $('.status', boldWrapper).replaceWith(
+              '<span class="iconic_taxon_sprite '+taxon.iconic_taxon_name.toLowerCase()+' selected">&nbsp;</span> ' +
+              '<span class="'+cssClass+'"><a href="/taxa/'+taxon.id+'"><span class="sciname">'+name+'</span></span></span>'
+            )
+          } else {
+            $('.status', boldWrapper).replaceWith(
+              '<span class="taxon"><span class="sciname">'+name+'</span></span>'
+            )
+          }
+          $(boldWrapper).append(' <span class="meta">('+ similarity + '% match)</span>')
+          $(boldWrapper).append(' <a href="'+specimenURL+'" class="readmore">View matching specimen on BOLD</a>')
+        })
+      })
+      return false
+    })
+    $(this).after(boldWrapper)
+    var url = "/identifications/bold.xml?db="+bolddb+"&sequence="+$(this).text()
+  })
 }

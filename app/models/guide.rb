@@ -38,6 +38,7 @@ class Guide < ActiveRecord::Base
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
   validates_length_of :title, :in => 3..255
+  validate :must_have_some_guide_taxa_to_publish
 
   before_save :generate_ngz_if_necessary
   after_update :expire_caches
@@ -76,7 +77,7 @@ class Guide < ActiveRecord::Base
     if t = Taxon.find_by_id(options[:taxon_id])
       scope = scope.descendants_of(t)
     end
-    scope = scope.of_rank(options[:rank]) unless Taxon::RANKS.include?(options[:rank])
+    scope = scope.of_rank(options[:rank]) if Taxon::RANKS.include?(options[:rank])
     guide_taxa = []
     scope.includes(:taxon_photos, :taxon_descriptions).find_each do |taxon|
       gt = self.guide_taxa.build(
@@ -196,12 +197,24 @@ class Guide < ActiveRecord::Base
     guide_taxa = []
     c.search("item").each_with_index do |item,i|
       gt = GuideTaxon.new_from_eol_collection_item(item, :position => i+1, :guide => self)
-      if gt.save
-        saved += 1
+      existing = self.guide_taxa.where(:source_identifier => gt.source_identifier).first unless gt.source_identifier.blank?
+      if existing
+        %w(name display_name source_identifier).each do |a|
+          existing.send("#{a}=", gt.send(a))
+        end
+        if existing.save
+          saved += 1
+        else
+          errors << gt.errors.full_messages.to_sentence
+        end
       else
-        errors << gt.errors.full_messages.to_sentence
+        if gt.save
+          saved += 1
+        else
+          errors << gt.errors.full_messages.to_sentence
+        end
+        guide_taxa << gt
       end
-      guide_taxa << gt
     end
     Rails.logger.debug "[DEBUG] #{self} add_taxa_from_eol_collection, #{saved} saved, #{errors.size} errors"
     guide_taxa
@@ -388,6 +401,10 @@ class Guide < ActiveRecord::Base
   end
 
   def published?
-    !published_at.blank?
+    !published_at.blank? && errors[:published_at].blank?
+  end
+
+  def must_have_some_guide_taxa_to_publish
+    errors.add(:published_at, :published_at_needs_3_taxa) if published? && guide_taxa.count < 3
   end
 end

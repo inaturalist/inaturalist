@@ -38,10 +38,10 @@
     </div>
   <% else %>
     <div class="stacked ui">
-      Sorting by <strong><%= params[:sort] == "observation+contest" ? "observations" : "species" %></strong>
+      <%= t :sorting_by %> <strong><%= params[:sort] == "observation+contest" ? t(:observations).downcase : t(:species).downcase %></strong>
       <%- opposite = params[:sort] == "observation+contest" ? "contest" : "observation+contest" -%>
       <%- opposite_string = params[:sort] == "observation+contest" ? "species" : "observations" -%>
-      <%= link_to "(Sort by #{opposite_string})", {:sort => opposite}, :class => "small" %>
+      <%= link_to "(#{t(:sort_by)} #{t(opposite_string).downcase})", {:sort => opposite}, :class => "small" %>
     </div>
     <table>
     <% for project_user in @contributors %>
@@ -54,13 +54,13 @@
           <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project, project_user.user.login) %>
         </td>
         <td width="33%">
-          <span class="description"><%= project_user.taxa_count %> taxa observed</span>
+          <span class="description"><%= project_user.taxa_count %> <%= t :taxa_observed %></span>
         </td>
         <td width="33%">
-          <span class="description"><%= project_user.observations_count %> total observations</span>
+          <span class="description"><%= project_user.observations_count %> <%= t(:total_observations).downcase %></span>
         </td>
         <td>
-          <%= link_to "View contributions", project_show_contributor_path(@project, project_user.user.login), :class => "readmore" %>
+          <%= link_to t(:view_contributions), project_show_contributor_path(@project, project_user.user.login), :class => "readmore" %>
         </td>
     <% end %>
     </table>

@@ -413,7 +413,7 @@ end
 
 describe Identification, "captive" do
   it "should vote yes on the wild quality metric if 1" do
-    i = Identification.make!(:captive => "1")
+    i = Identification.make!(:captive_flag => "1")
     o = i.observation
     o.quality_metrics.should_not be_blank
     o.quality_metrics.first.user.should eq(i.user)
@@ -421,22 +421,22 @@ describe Identification, "captive" do
   end
 
   it "should vote no on the wild quality metric if 0 and metric exists" do
-    i = Identification.make!(:captive => "1")
+    i = Identification.make!(:captive_flag => "1")
     o = i.observation
     o.quality_metrics.should_not be_blank
-    i.update_attributes(:captive => "0")
+    i.update_attributes(:captive_flag => "0")
     o.reload
     o.quality_metrics.first.should be_agree
   end
 
   it "should not alter quality metrics if nil" do
-    i = Identification.make!(:captive => nil)
+    i = Identification.make!(:captive_flag => nil)
     o = i.observation
     o.quality_metrics.should be_blank
   end
 
   it "should not alter quality metrics if 0 and not metrics exist" do
-    i = Identification.make!(:captive => "0")
+    i = Identification.make!(:captive_flag => "0")
     o = i.observation
     o.quality_metrics.should be_blank
   end

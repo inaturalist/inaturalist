@@ -8,7 +8,7 @@ class ObservationField < ActiveRecord::Base
     :comments => {:notification => "activity", :include_owner => true}
   }
   
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :case_sensitive => false
   validates_presence_of :name
   validates_length_of :name, :maximum => 255, :allow_blank => true
   validates_length_of :description, :maximum => 255, :allow_blank => true
@@ -44,7 +44,7 @@ class ObservationField < ActiveRecord::Base
   #     map(&:observation_field).uniq[0..10]
   # end
   
-  TYPES = %w(text numeric date time datetime taxon)
+  TYPES = %w(text numeric date time datetime taxon dna)
   TYPES.each do |t|
     const_set t.upcase, t
   end

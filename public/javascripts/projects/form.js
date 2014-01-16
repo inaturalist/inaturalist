@@ -183,4 +183,11 @@ $(document).ready(function() {
     }
   })
   $('input[name="project[prefers_place_boundary_visible]"]:visible').change()
+  $('#project_project_type').change(function() {
+    if ($(this).val() == 'bioblitz') {
+      $('#bioblitz').show()
+    } else {
+      $('#bioblitz').hide()
+    }
+  })
 })

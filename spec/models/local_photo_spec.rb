@@ -36,4 +36,29 @@ describe Photo, "to_observation" do
     o = p.to_observation
     o.taxon.should be_blank
   end
+
+  it "should set observation fields from machine tags" do
+    of = ObservationField.make!(:name => "sex", :allowed_values => "unknown|male|female", :datatype => ObservationField::TEXT)
+    lp = LocalPhoto.make!
+    lp.metadata = {
+      :dc => {
+        :subject => ['sex=female']
+      }
+    }
+    o = lp.to_observation
+    o.observation_field_values.detect{|ofv| ofv.observation_field_id == of.id}.value.should eq "female"
+  end
+
+  it "should not set invalid observation fields from machine tags" do
+    of = ObservationField.make!(:name => "sex", :allowed_values => "unknown|male|female", :datatype => ObservationField::TEXT)
+    lp = LocalPhoto.make!
+    lp.metadata = {
+      :dc => {
+        :subject => ['sex=whatevs']
+      }
+    }
+    o = lp.to_observation
+    o.should be_valid
+    o.observation_field_values.detect{|ofv| ofv.observation_field_id == of.id}.should be_blank
+  end
 end

@@ -13,8 +13,51 @@ shared_examples_for "an IdentificationsController" do
         :taxon_id => t.id,
         :body => "i must eat them all"
       }
+      response.should be_success
       observation.reload
       observation.identifications.count.should eq 1
+    end
+
+    it "should include the observation in the response" do
+      t = Taxon.make!
+      post :create, :format => :json, :identification => {
+        :observation_id => observation.id,
+        :taxon_id => t.id,
+        :body => "i must eat them all"
+      }
+      response.should be_success
+      json = JSON.parse(response.body)
+      json['observation']['id'].should eq observation.id
+    end
+
+    it "should not include observation private coordinates" do
+      t = Taxon.make!
+      o = make_private_observation
+      user.should_not eq o.user
+      post :create, :format => :json, :identification => {
+        :observation_id => o.id,
+        :taxon_id => t.id,
+        :body => "i must eat them all"
+      }
+      response.should be_success
+      json = JSON.parse(response.body)
+      json['observation']['private_latitude'].should be_blank
+    end
+
+    it "should include the observation iconic_taxon_name" do
+      load_test_taxa
+      t = Taxon.make!
+      @Pseudacris_regilla.iconic_taxon.should eq @Amphibia
+      o = Observation.make!(:taxon => @Pseudacris_regilla)
+      o.iconic_taxon_name.should eq @Amphibia.name
+      post :create, :format => :json, :identification => {
+        :observation_id => o.id,
+        :taxon_id => t.id,
+        :body => "i must eat them all"
+      }
+      response.should be_success
+      json = JSON.parse(response.body)
+      json['observation']['iconic_taxon_name'].should eq o.iconic_taxon_name
     end
   end
 

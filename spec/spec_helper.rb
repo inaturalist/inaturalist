@@ -2,6 +2,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'mocha/setup'
 require File.expand_path(File.dirname(__FILE__) + "/blueprints")
 require File.expand_path(File.dirname(__FILE__) + "/helpers/make_helpers")
 require File.expand_path(File.dirname(__FILE__) + "/helpers/example_helpers")
@@ -33,6 +34,10 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
+  end
+
+  config.before(:each) do
+    Delayed::Job.delete_all
   end
 
   config.after(:each) do
@@ -81,5 +86,17 @@ class EolService
       puts "[DEBUG] Couldn't find EOL response fixture, you should probably do this:\n wget -O \"#{fixture_path}\" \"#{uri}\""
       real_request(method, *args)
     end
+  end
+end
+
+# Change Paperclip storage from S3 to Filesystem for testing
+LocalPhoto.attachment_definitions[:file].tap do |d|
+  if d.nil?
+    Rails.logger.warn "Missing :file attachment definition for LocalPhoto"
+  elsif d[:storage] != :filesystem
+    d[:storage] = :filesystem
+    d[:path] = ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension"
+    d[:url] = "/attachments/:class/:attachment/:id/:style/:basename.:extension"
+    d[:default_url] = "/attachment_defaults/:class/:attachment/defaults/:style.png"
   end
 end

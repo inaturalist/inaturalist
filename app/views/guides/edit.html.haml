@@ -10,7 +10,6 @@
     .guide_taxon .img-circle {max-width:30px; height:30px; width:100%;}
     .names .display_name {font-size:140%;}
     .bootstrap .row-fluid .microspan {width:4%; margin-left:0.5%;text-align: center;}
-    .guide_taxon .guide_taxon_content {margin-top:5px;}
     .guide_taxon .check {margin-top:3px;}
     .bootstrap .guide_taxon .input-prepend {margin-bottom: 0;}
     .bootstrap .input-prepend input[name*=tag_list] {
@@ -56,14 +55,15 @@
     .bootstrap select, .bootstrap input[type="file"] {line-height: 0;}
     #guide_description {height:300px;}
     #new_guide_eol_update_flow_task {margin-bottom:0;}
-    .icon-tag.strike{position:relative;}
-    .icon-tag.strike:after {
+    .fa-tag.strike{position:relative;}
+    .fa-tag.strike:after {
       content: ' '; width:100%; height:0.5em; border-bottom: 3px solid white; position: absolute; display: block; top:0; left:-0.25em; 
       -webkit-transform: rotate(-45deg);
       -moz-transform: rotate(-45deg);
     }
     .bootstrap .accordion-inner {min-width: 220px;}
     #addtaxa-paste textarea {height:200px;}
+    .actions .btn {margin-bottom:5px;}
 - content_for :extrajs do
   :javascript
     var GUIDE = #{raw @guide.to_json},
@@ -74,8 +74,8 @@
     %li
       = link_to t(:back_to_x, :noun => @guide.title), @guide, :class => "back"
 
+  = error_messages_for @guide
   %h1= @title
-
   .row-fluid
     .span3
       = form_for @guide, :builder => DefaultFormBuilder do |f|
@@ -127,10 +127,10 @@
           .accordion-group
             .accordion-heading
               %a.accordion-toggle{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#license"}
-                %label=t :license
+                %label=t :licensing
               #license.accordion-body.collapse
                 .accordion-inner
-                  = f.select :license, Observation::LICENSE_CODES, :include_blank => "No license (all rights reserved)", :class => "span12", :label => false
+                  = f.select :license, Observation::LICENSE_CODES, :include_blank => t(:no_license_all_rights_reserved), :class => "span12", :label => false
                   .stacked
                     %a{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#licensing"}=t :about_licensing
           .accordion-group
@@ -141,7 +141,7 @@
                 .accordion-inner
                   = f.label :downloadable, :class => "checkbox" do
                     = f.check_box :downloadable, :label => false
-                    = t(:enable_mobile_downloads)
+                    = t(:enable_offline_access)
                   =t 'views.guides.mobile_downloads_help_html'
         .actions
           - if @guide.published?
@@ -165,19 +165,21 @@
               %ul.dropdown-menu
                 %li
                   = link_to "#addtags", "data-toggle" => "modal" do
-                    %i.icon-tag
+                    %i.fa.fa-tag
                     = t(:add_tags)
                 %li
                   = link_to "#removetags", "data-toggle" => "modal" do
-                    %i.icon-tag.strike
+                    %i.fa.fa-tag.strike
                     = t(:remove_tags)
+                %li
+                  = link_to_function "<i class='fa fa-tag strike'></i> #{t(:remove_all_tags)}".html_safe, "removeAllTags()"
                 %li.divider
                 %li
-                  = link_to_function "<i class='icon-trash'></i> #{t(:remove_selected)}".html_safe, "removeSelected()"
+                  = link_to_function "<i class='fa fa-trash-o'></i> #{t(:remove_selected)}".html_safe, "removeSelected()"
                 %li.divider
                 %li
-                  = link_to reorder_guide_path(@guide, :by => "taxonomy"), :method => :put, :confirm => "Are you sure? This will reload the page and cannot be undone." do
-                    %i.icon-sort-by-attributes
+                  = link_to reorder_guide_path(@guide, :by => "taxonomy"), :method => :put, :confirm => t(:are_you_sure_this_will_reload_the_page_and_you_may_lose_changes) do
+                    %i.fa.fa-sort-amount-asc
                     = t(:reorder_by_taxonomy)
                 %li= link_to t(:update_with_eol_content), "#eolupdate", "data-toggle" => "modal"
             %button.btn-primary.btn{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#addtaxa"}=t :add_taxa
@@ -206,15 +208,17 @@
       #addtaxa-single.tab-pane.active.fade.in
       #addtaxa-place.tab-pane.fade
         .stacked
+          %label=t :choose_a_place
           %input.placechooser.chooser{:placeholder => t(:start_typing_place_name), :type => "text"}
         .stacked
+          %label=t 'views.guides.edit.place_choose_taxon_note'
           %input.taxonchooser.chooser{:placeholder => t(:start_typing_taxon_name), :type => "text"}
           %span.muted
             = surround '(', ')' do
               =t :optional
         .stacked
           %label=t :rank
-          = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t(r, :default => r).downcase, r]}), :include_blank => true
+          = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r).downcase, r]}), :include_blank => true
           %span.muted
             = surround '(', ')' do
               =t :optional
@@ -222,7 +226,7 @@
         .muted=t 'views.guides.edit.places_note'
       #addtaxa-paste.tab-pane.fade
         .row-fluid
-          %textarea.span12{:placeholder => "Paste in names"}
+          %textarea.span12{:placeholder => t(:paste_in_a_bunch_of_names)}
           .muted.status=t 'views.guides.edit.paste_note_html', :site_name => SITE_NAME_SHORT
       #addtaxa-eol.tab-pane.fade
         %p=t 'views.guides.edit.eol_collection_desc_html'
@@ -264,24 +268,20 @@
           %input{:type => "text", :placeholder => t(:add_comma_separated_tags, :default => "Add comma-separated tags"), :class => "span12"}
         .recent_tags.quiet
           - for tag in @recent_tags
-            = link_to_function "<i class='icon-plus-sign'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
+            = link_to_function "<i class='fa.fa-plus-sign'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
       #addtags-colors.tab-pane.fade
-        %p Add color tags from colors associated with the selected taxa on iNat.
+        %p=t 'views.guides.edit.add_color_tags_help'
       #addtags-ranks.tab-pane.fade
-        %p
-          Add taxon rank tags based on iNat's taxonomy, e.g. 
-          %code family=Laridae
-          or
-          %code family=Gulls and Allies
+        %p=t 'views.guides.edit.add_rank_tags_help_html'
         .row-fluid
           .span6
             %label
               =t :rank
-            = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t(r, :default => r), r]}, "family")
+            = select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r), r]}, "family")
           .span6
             %label
               =t :lexicon
-            = select_tag :lexicon, options_for_select(TaxonName::LEXICONS.map{|k,v| [t(v, :default => v), k]})
+            = select_tag :lexicon, options_for_select(TaxonName::LEXICONS.map{|k,v| [t("lexicons.#{v.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", :default => v), k]})
   .modal-footer
     %button.btn{"data-dismiss" => "modal"}=t :close
     %button.btn.btn-primary=t :add_tags_to_selected_taxa
@@ -293,7 +293,7 @@
     %input{:type => "text", :placeholder => t(:remove_comma_separated_tags, :default => "Remove comma-separated tags"), :class => "span11"}
     .recent_tags.quiet
       - for tag in @recent_tags
-        = link_to_function "<i class='icon-minus-sign'></i> #{tag}".html_safe, "removeTag('#{tag}')", :class => "btn btn-mini"
+        = link_to_function "<i class='fa.fa-minus-sign'></i> #{tag}".html_safe, "removeTag('#{tag}')", :class => "btn btn-mini"
   .modal-footer
     %button.btn{"data-dismiss" => "modal"}=t :close
     %button.btn.btn-primary=t :remove_tags

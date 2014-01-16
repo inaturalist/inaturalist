@@ -11,4 +11,12 @@ class EmailerPreview < MailView
   def new_message
     Emailer.new_message(Message.last)
   end
+
+  def observations_export_notification
+    ft = if (ftid = @rack_env["QUERY_STRING"].to_s[/flow_task_id=([^&]+)/, 1])
+      FlowTask.find_by_id(ftid)
+    end
+    ft ||= ObservationsExportFlowTask.includes(:outputs).where("flow_task_resources.id IS NOT NULL").last
+    Emailer.observations_export_notification(ft)
+  end
 end

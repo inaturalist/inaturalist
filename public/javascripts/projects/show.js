@@ -16,7 +16,9 @@ $(document).ready(function() {
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
   }
   
-  map.addObservations(OBSERVATIONS)
+  if (OBSERVATIONS) {
+    map.addObservations(OBSERVATIONS)
+  }
   
   if (PROJECT.zoom_level) {
     map.setZoom(PROJECT.zoom_level)
@@ -39,4 +41,42 @@ $(document).ready(function() {
       map.zoomToObservations()
     }
   }
+
+  $('#bioblitz_observations .observations').loadObservations({
+    url: OBSERVATIONS_URL, style: 'grid',
+    success: function(r, data) {
+      $observations = $('#bioblitz_observations .observation')
+      $observations.each(function() {
+        var o = {
+          id: $(this).attr('id').split('-')[1],
+          latitude: $(this).attr('data-latitude'),
+          longitude: $(this).attr('data-longitude'),
+          coordinates_obscured: $(this).attr('data-coordinates-obscured'),
+          taxonId: $(this).attr('data-taxon-id'),
+          iconic_taxon: {
+            name: $(this).attr('data-iconic-taxon-name')
+          }
+        }
+        map.addObservation(o)
+      })
+      if ($observations.length == 0) {
+        $('#bioblitz_observations .observations').html(
+          $('<div class="meta nocontent"></div>').html(I18n.t('no_observations_yet'))
+        )
+      }
+      var headers = r.getAllResponseHeaders()
+      var matches = headers.match(/X-Total-Entries: (\d+)/) || [],
+          totalEntries = matches[1]
+      if (totalEntries) {
+        $('.totalcount .count').html(totalEntries)
+      }
+    }
+  })
+  $('#bioblitz_observations .observationcontrols').observationControls({div: $('#bioblitz_observations .observations'), skipMap: true})
+  $('#bioblitzstats').observationUserStats({
+    url: '/observations/user_stats.json?' + OBSERVATIONS_URL.split('?')[1]
+  })
+  $('#bioblitzstats').observationTaxonStats({
+    url: '/observations/taxon_stats.json?' + OBSERVATIONS_URL.split('?')[1]
+  })
 })

@@ -49,19 +49,6 @@
       <input type="radio" name="quality_grade" value="<%= Observation::CASUAL_GRADE %>" id="casual_grade_checkbox" <% if @quality_grade == Observation::CASUAL_GRADE %>checked="checked"<% end %>>
       <label for="casual_grade_checkbox"><%= t(:casual, :default => "casual").downcase %></label>
     </nobr>
-    
-    <br/>
-    <nobr>
-      <strong><%=t :identifications %></strong>
-      <% for state in %w"any most_agree some_agree most_disagree" %>
-        <% if @identifications == state %>
-          <%= radio_button_tag :identifications, state, :checked => 'checked' %>
-        <% else %>
-          <%= radio_button_tag :identifications, state %>
-        <% end %>
-        <%= label :identifications, state, t(state, :default => state).downcase %>
-      <% end %>
-    </nobr>
     <% if is_me?(@selected_user) -%>
       <nobr>
         <strong><%=t :geoprivacy %></strong>
@@ -74,6 +61,29 @@
         ], @geoprivacy) %>
       </nobr>
     <% end -%>
+    <br/>
+
+    <nobr>
+      <strong><%=t :identifications %></strong>
+      <% for state in %w"any most_agree some_agree most_disagree" %>
+        <% if @identifications == state %>
+          <%= radio_button_tag :identifications, state, :checked => 'checked' %>
+        <% else %>
+          <%= radio_button_tag :identifications, state %>
+        <% end %>
+        <%= label :identifications, state, t(state, :default => state).downcase %>
+      <% end %>
+    </nobr>
+    
+    <nobr>
+      <strong><%=t :captive_cultivated %></strong>
+      <input type="radio" name="captive" value="" id="any_captive_checkbox" <% unless @captive == nil %>checked="checked"<% end %>>
+      <label for="any_captive_checkbox"><%= t(:any, :default => "any").downcase %></label>
+      <input type="radio" name="captive" value="true" id="captive_checkbox" <% if @captive == true %>checked="checked"<% end %>>
+      <label for="captive_checkbox"><%= t(:yes, :default => "yes").downcase %></label>
+      <input type="radio" name="captive" value="false" id="wild_checkbox" <% if @captive == false %>checked="checked"<% end %>>
+      <label for="wild_checkbox"><%= t(:no, :default => "no").downcase %></label>
+    </nobr>
   </fieldset>
 </div>
 <div id="iconic_taxon_filters" class="row">
@@ -207,7 +217,7 @@
     </div>
     <div class="left">
       <%= select_tag :day, options_for_select([[ t(:day), nil]] + (1..31).to_a.map{|n| [n,n]}, :selected => @observed_on_day) %>
-      <%= select_tag :month, options_for_select([[t(:month), nil]] + (1..12).to_a.map{|n| [Date::MONTHNAMES[n],n]}, :selected => @observed_on_month) %>
+      <%= select_tag :month, options_for_select([[t(:month), nil]] + (1..12).to_a.map{|n| [t("date_format.month.#{Date::MONTHNAMES[n].downcase}"),n]}, :selected => @observed_on_month) %>
       <%= select_tag :year, options_for_select([[t(:year), nil]] + (1970..Date.today.year).to_a.reverse.map{|n| [n,n]}, :selected => @observed_on_year) %>
     </div>
   </div>

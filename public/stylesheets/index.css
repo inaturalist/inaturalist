@@ -147,7 +147,7 @@ form .field .description { margin-bottom: 0.5em;}
 .inlabel .fieldWithErrors, .inlabel .field_with_errors{display:inline;}
 .stacked{margin-bottom:10px;}
 .upstacked{margin-top:10px;}
-.unstacked, .column.unstacked{margin-bottom:0px;}
+.unstacked, .column.unstacked, .box.unstacked{margin-bottom:0px;}
 .lined {padding-bottom: 10px; margin-bottom:10px; border-bottom: 1px solid #eee;}
 .fieldWithErrors {
   padding: 2px;
@@ -288,12 +288,13 @@ form .field .description { margin-bottom: 0.5em;}
 }
 
 #header .navtabs .subnavtab a:first-child {
-  padding-right: 5px;
+  padding-right: 2px;
 }
 
 #header .navtabs .subnavtab .subnavlink {
   padding-left: 2px;
   padding-right: 2px;
+  padding-top:6px;
   text-align: center;
   outline: 0;
 }
@@ -1472,6 +1473,7 @@ table .numeric { text-align: center; }
 
 .item_user{width:48px;}
 .item_content{width:532px;}
+.item_content .body {overflow:hidden;}
 .item_content .identification_image{margin-right:0.5em;}
 .item_content .identification_image,
 .item_content .identification_body{
@@ -1632,3 +1634,10 @@ ul.plain {list-style:none;margin:0;padding:0}
 .identification .display_name { font-weight: bold;}
 
 .post img, .comment img { max-width: 100%;}
+.favicon {max-width:16px;}
+
+.dna {font-family: 'Andale Mono', monospace; word-wrap: break-word;max-width:700px;}
+.dna:hover nt.a {color: DeepPink;}
+.dna:hover nt.t {color: #e29400;}
+.dna:hover nt.c {color: #1E90FF;}
+.dna:hover nt.g {color: #73AC13;}

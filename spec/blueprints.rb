@@ -71,7 +71,7 @@ end
 GuidePhoto.blueprint do
   guide_taxon { GuideTaxon.make! }
   photo { Photo.make! }
-  description { Faker::Lorem.paragraph }
+  description { Faker::Lorem.paragraph.truncate(255) }
 end
 
 GuideRange.blueprint do
@@ -305,6 +305,7 @@ end
 TaxonName.blueprint do
   name { Faker::Name.name }
   taxon { Taxon.make! }
+  is_valid { true }
 end
 
 TaxonRange.blueprint do
@@ -333,9 +334,10 @@ TaxonSwap.blueprint do
 end
 
 Update.blueprint do
+  o = Observation.make!
   subscriber { User.make! }
-  resource { Observation.make! }
-  notifier { Comment.make!(:parent => self.resource) }
+  resource { o }
+  notifier { Comment.make!(:parent => o) }
 end
 
 User.blueprint do

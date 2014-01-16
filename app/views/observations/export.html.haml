@@ -10,9 +10,17 @@
   :javascript
     var REJECT_PARAMS = ['filters_open', 'order', 'order_by', 'utf8', 'flow_task_id', 'view']
     function reloadPreview() {
-      $('#preview').loadingShades()
-      $('#preview .observations .content').load('/observations', $('#query').val()+'&partial=cached_component', function(text, status, req) {
-        $('#preview').loadingShades('close')
+      $('#previewwrapper').loadingShades()
+      if (window.previewRequest) {
+        previewRequest.abort()
+      }
+      window.previewRequest = $.ajax({
+        url: '/observations',
+        data: $('#query').val()+'&partial=cached_component',
+        type: 'GET',
+      }).success(function(html, status, req) {
+        $('#preview .observations .content').html(html)
+        $('#previewwrapper').loadingShades('close')
         var total = parseInt(req.getResponseHeader('X-Total-Entries')),
             page = parseInt(req.getResponseHeader('X-Page')),
             perPage = parseInt(req.getResponseHeader('X-Per-Page')),
@@ -65,7 +73,59 @@
         setFiltersFromQuery(initQuery)
         reloadPreview()
       }
+      $('#new_observations_export_flow_task').bind('ajax:success', function(e, json) {
+        window.flowTask = json
+        var runUrl = '/flow_tasks/'+json.id+'/run.json'
+        runFlowTask(runUrl)
+        $('#rundialog').dialog({
+          modal: true, 
+          title: I18n.t('exporting'),
+          width: 490
+        })
+        $('#exportingstatus').removeClass('notice box centered').addClass('loading').html(I18n.t('loading'))
+        $('#receive_an_email .inter, #receive_an_email .status').remove()
+        $('#receive_an_email .button').show()
+      })
+      $('#new_observations_export_flow_task').bind('ajax:error', function(e,r) {
+        var json = $.parseJSON(r.responseText)
+        alert(json.error)
+      })
     })
+    window.runFlowTask = function(runUrl) {
+      window.delayedLinkTries = (window.delayedLinkTries || 0) + 1
+      if (window.delayedLinkTries > 20) {
+        $('#exportingstatus').removeClass('loading').addClass('notice box centered').html(I18n.t('views.observations.export.taking_a_while'))
+        return
+      }
+      $.ajax({
+        url: runUrl,
+        type: 'get',
+        dataType: 'json',
+        statusCode: {
+          // Accepted: request acnkowledged but file hasn't been generated
+          202: function() {
+            setTimeout('runFlowTask("'+runUrl+'")', 5000)
+          },
+          // OK: file is ready
+          200: function(flowTask) {
+            var redirectUrl = flowTask.redirect_url
+            if (redirectUrl.match(/\?/)) { redirectUrl += '&flow_task_id='+flowTask.id }
+            else { redirectUrl += '?flow_task_id='+flowTask.id }
+            window.open(redirectUrl, '_self')
+          }
+        }
+      }).error(function() {
+        alert("Something went wrong.")
+      })
+    }
+    function emailWhenComplete() {
+      $('#receive_an_email .button').hide()
+      $('#receive_an_email').append("<span class='loading status'>"+I18n.t('saving')+"</span>")
+      $.post('/observations/email_export/'+window.flowTask.id, function() {
+        $('#receive_an_email .status').remove()
+        $('#receive_an_email').append("<span class='inter'>"+I18n.t('views.observations.export.well_email_you')+"</span>")
+      })
+    }
 - content_for :extracss do
   = stylesheet_link_tag "observations", "observations/filters"
   :css
@@ -94,6 +154,8 @@
     #columns td {width:25%;}
     #success table {margin:0;}
     #success td {border:0 transparent;}
+    #rundialog .status {font-size:140%;}
+    #rundialog .meta, .centered {text-align: center;}
 #pageheader.clear
   %h2= @title
 
@@ -101,7 +163,7 @@
   #success.success.ui
     %h3 Export complete
     = render 'exports_table', :flow_tasks => [@flow_task]
-= form_for ObservationsExportFlowTask.new, :url => flow_tasks_url do |f|
+= form_for ObservationsExportFlowTask.new, :url => flow_tasks_url, :remote => true, :html => {'data-type' => 'json'} do |f|
   .column.span-24
     %h3
       %span.number 1
@@ -111,14 +173,15 @@
       = fti.fields_for :extra do |ftie|
         = ftie.text_field :query, :type => "text", :class => "text", :id => "query", :placeholder => t('views.observations.export.query_placeholder')
     #filtersplaceholder
-    %h3#previewheader
-      .right.status.ui.meta=t :no_matching_observations
-      %span.number 2
-      =t :preview
-    #preview
-      .observations.table.stacked
-        = render :partial => 'observations/observations_table_header'
-        .content
+    #previewwrapper
+      %h3#previewheader
+        .right.status.ui.meta=t :no_matching_observations
+        %span.number 2
+        =t :preview
+      #preview
+        .observations.table.stacked
+          = render :partial => 'observations/observations_table_header'
+          .content
     %h3.inlineblock
       %span.number 3
       =t :choose_columns
@@ -142,10 +205,9 @@
               %table{:id => "#{ctype}_columns"}
                 - for grp in columns.in_groups_of(4)
                   %tr
-                    - for c in grp
+                    - for c in grp.compact
                       %td
-                        - if c
-                          = foc.check_box c, :label => c, :checked => ctype != :taxon_extras, :label_after => true, :wrapper => {"data-tip" => t("views.observations.field_descriptions.#{c.underscore}", :default => ''), "data-tip-position-at" => "left bottom"}
+                        = foc.check_box c, :label => c, :checked => c !~ /place_[tcs]/ && ctype != :taxon_extras, :label_after => true, :wrapper => {"data-tip" => t("views.observations.field_descriptions.#{c.underscore}", :default => ''), "data-tip-position-at" => "left bottom"}
           .column.span-24
             %h4
               =t :observation_fields
@@ -173,3 +235,18 @@
 
 #filters
   = render "filter_fields", :hide_buttons => true, :show_user_field => true, :show_project_field => true
+#rundialog.dialog{:style => "display:none"}
+  .clear.centered.inline.buttonrow
+    .inter
+      #exportingstatus.loading.status=t :exporting
+  %p.description.ui=t 'views.observations.export.be_patient'
+  .column.span-12.stacked
+    .column.span-6
+      .clear.centered.inline.buttonrow
+        %strong.inter=t :check_back_later
+      .meta=t 'views.observations.export.check_back'
+    - unless current_user.email.blank?
+      .column.span-6.last
+        #receive_an_email.clear.centered.inline.buttonrow
+          = link_to_function t('views.observations.export.receive_an_email_with_your_data'), "emailWhenComplete()", :class => "button"
+        .meta= t('views.observations.export.receive_an_email_with_your_data_help')

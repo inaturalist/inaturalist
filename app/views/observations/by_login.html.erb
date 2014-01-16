@@ -328,7 +328,7 @@
                 <li class="inline buttonrow">
                     <%= link_to_function t(:add),
                       "actOnSelected('#{add_project_observation_batch_path(project_user.project)}', {method: 'post'})",
-                      "data-loading-click" => "Adding...",
+                      "data-loading-click" => t(:adding),
                       :class => "glaucous button" %>
                     <%= link_to_function t(:remove),
                       "actOnSelected('#{remove_project_observation_batch_path(project_user.project)}', {method: 'post'})",

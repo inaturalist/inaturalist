@@ -71,21 +71,21 @@
   </style>
 <% end -%>
 <% content_for(:extrajs) do -%>
-  <%= gmap_include_tag %>
+  <%= google_maps_js %>
   <%= javascript_include_tag 'jquery/plugins/jqModal',
                              'inaturalist',
-                             'inaturalist/map2' %>
+                             'inaturalist/map3' %>
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       if ($('#map').length > 0) {
-        var map = window.map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3});
-        var observations = <%= @observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>;
-        map.addObservations(observations);
-        map.zoomToObservations();
-        $('#map').hide();
-      };
-    });
+        window.map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3})
+        var observations = <%= @observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>
+        map.addObservations(observations)
+        map.zoomToObservations()
+        $('#map').hide()
+      }
+    })
   </script>
 <% end -%>
 <div id="pageheader" class="column span-24">
@@ -168,7 +168,7 @@
       <ul>
         <li><%= link_to_function t(:details), "$(this).parents('ul').find('a').removeClass('selected'); $(this).addClass('selected'); $('#map').hide(); $('#observations').show().addClass('mini').removeClass('names')", :class => 'selected' %></li>
         <li><%= link_to_function t(:names),   "$(this).parents('ul').find('a').removeClass('selected'); $(this).addClass('selected'); $('#map').hide(); $('#observations').show().addClass('names')" %></li>
-        <li><%= link_to_function t(:map),     "$(this).parents('ul').find('a').removeClass('selected'); $(this).addClass('selected'); $('#map').toggle(); $('#observations').toggle();" %></li>
+        <li><%= link_to_function t(:map),     "$(this).parents('ul').find('a').removeClass('selected'); $(this).addClass('selected'); $('#map').toggle(); google.maps.event.trigger(map, 'resize'); map.zoomToObservations(); $('#observations').toggle();" %></li>
       </ul>
     </div>
     <h3><%= t(:observations) %></h3>

@@ -5,14 +5,28 @@ shared_examples_for "an ObservationFieldValuesController" do
   let(:observation) { Observation.make!(:user => user) }
   let(:observation_field) { ObservationField.make! }
 
-  it "should create" do
-    lambda {
-      post :create, :format => :json, :observation_field_value => {
-        :observation_id => observation.id,
-        :observation_field_id => observation_field.id,
-        :value => "foo"
-      }
-    }.should change(ObservationFieldValue, :count).by(1)
+  describe "create" do
+    it "should work" do
+      lambda {
+        post :create, :format => :json, :observation_field_value => {
+          :observation_id => observation.id,
+          :observation_field_id => observation_field.id,
+          :value => "foo"
+        }
+      }.should change(ObservationFieldValue, :count).by(1)
+    end
+
+    it "should not allow blank values" do
+      lambda {
+        post :create, :format => :json, :observation_field_value => {
+          :observation_id => observation.id,
+          :observation_field_id => observation_field.id,
+          :value => ""
+        }
+      }.should_not change(ObservationFieldValue, :count).by(1)
+    end
+    
+    it "should allow blank values if coming from an iNat app"
   end
 
   it "should update" do

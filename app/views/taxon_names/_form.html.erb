@@ -37,7 +37,7 @@
     <%= n.label :lexicon, t(:lexicon) %><br/>
     <%-
       options = TaxonName::DEFAULT_LEXICONS.sort + ['---------------------------'] +
-        (TaxonName::LEXICONS.values.sort - TaxonName::DEFAULT_LEXICONS)
+        (@lexicons - TaxonName::DEFAULT_LEXICONS)
     -%>
     <%= n.select :lexicon, options.map{|l| [t("lexicons.#{l.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}",
                                               :default => l), l]}, :include_blank => t(:unknown), :disabled => '---------------------------' %>

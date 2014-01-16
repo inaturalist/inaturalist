@@ -1,12 +1,12 @@
 #encoding: utf-8
 class GuidesController < ApplicationController
   include GuidesHelper
-  doorkeeper_for :user, :if => lambda { authenticate_with_oauth? }
+  doorkeeper_for :show, :user, :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :except => [:index, :show, :search], 
     :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank]
-  before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank]
+  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
+  before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
   before_filter :load_user_by_login, :only => [:user]
 
   layout "bootstrap"
@@ -272,10 +272,10 @@ class GuidesController < ApplicationController
 
   # GET /guides/1/edit
   def edit
-    @nav_options = %w(iconic tag)
-    @guide_taxa = @guide.guide_taxa.includes(:taxon, {:guide_photos => :photo}, :tags).
-      order("guide_taxa.position")
-    @recent_tags = @guide.recent_tags
+    load_data_for_edit
+    respond_to do |format|
+      format.html
+    end
   end
 
   # POST /guides
@@ -288,7 +288,7 @@ class GuidesController < ApplicationController
     respond_to do |format|
       if @guide.save
         create_default_guide_taxa
-        format.html { redirect_to edit_guide_path(@guide), notice: 'Guide was successfully created.' }
+        format.html { redirect_to edit_guide_path(@guide), notice: t(:guide_was_successfully_created) }
         format.json { render json: @guide.as_json(:root => true), status: :created, location: @guide }
       else
         format.html { render action: "new" }
@@ -309,10 +309,13 @@ class GuidesController < ApplicationController
     create_default_guide_taxa
     respond_to do |format|
       if @guide.update_attributes(params[:guide])
-        format.html { redirect_to @guide, notice: "Guide was successfully #{params[:publish] ? 'published' : 'updated'}." }
+        format.html { redirect_to @guide, notice: t("Guide was successfully #{params[:publish] ? 'published' : 'updated'}".downcase.gsub(' ','_')) }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html do
+          load_data_for_edit
+          render action: "edit"
+        end
         format.json { render json: @guide.errors, status: :unprocessable_entity }
       end
     end
@@ -394,9 +397,26 @@ class GuidesController < ApplicationController
     end
   end
 
+  def remove_all_tags
+    @guide_taxa = @guide.guide_taxa
+    @guide_taxa.each do |gt|
+      gt.taggings.delete_all
+    end
+    respond_to do |format|
+      format.json { render :json => @guide_taxa.as_json(:methods => [:tag_list])}
+    end
+  end
+
   private
 
   def create_default_guide_taxa
     @guide.import_taxa(params)
+  end
+
+  def load_data_for_edit
+    @nav_options = %w(iconic tag)
+    @guide_taxa = @guide.guide_taxa.includes(:taxon, {:guide_photos => :photo}, :tags).
+      order("guide_taxa.position")
+    @recent_tags = @guide.recent_tags
   end
 end

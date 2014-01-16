@@ -76,3 +76,8 @@ textarea.assessment-section-field-body {
 .medium.photo {max-width: 310px;}
 .assessment-taxon-listing {border-bottom: 1px solid #eee;padding-bottom: 10px;}
 .assessment_form .nested-fields {padding-bottom: 20px; border-bottom: 1px solid #eee; margin-bottom: 20px;}
+
+#statuses .selected {font-weight: bold; background-color: #eee;}
+#statuses a:hover {background-color: #ccc;}
+#statuses a {display: block; padding: 5px 10px; border-radius: 5px;}
+#filters_q {width: 90%; font-size: 100%;}

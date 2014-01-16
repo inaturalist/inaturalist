@@ -66,6 +66,20 @@ describe User do
       u = User.make!
       u.locale.should eq I18n.locale.to_s
     end
+
+    it "should strip the login" do
+      u = User.make(:login => "foo ")
+      u.save
+      u.login.should eq "foo"
+      u.should be_valid
+    end
+
+    it "should strip the email" do
+      u = User.make(:email => "foo@bar.com ")
+      u.save
+      u.email.should eq "foo@bar.com"
+      u.should be_valid
+    end
   end
 
   #
@@ -102,10 +116,10 @@ describe User do
     end
   end
   describe 'disallows illegitimate logins:' do
-    ['12', '123', '1234567890_234567890_234567890_234567890_', "tab\t", "newline\n",
+    ['12', '123', '1234567890_234567890_234567890_234567890_',
      "Iñtërnâtiônàlizætiøn hasn't happened to ruby 1.8 yet",
      'semicolon;', 'quote"', 'tick\'', 'backtick`', 'percent%', 'plus+', 
-     'space ', 'period.', 'm', 
+     'period.', 'm', 
      'this_is_the_longest_login_ever_written_by_man'].each do |login_str|
       it "'#{login_str}'" do
         lambda do
@@ -512,9 +526,12 @@ describe User, "merge" do
     @keeper = User.make!
     @reject = User.make!
   end
+  
   it "should move observations" do
     o = Observation.make!(:user => @reject)
-    @keeper.merge(@reject)
+    without_delay do
+      @keeper.merge(@reject)
+    end
     o.reload
     o.user_id.should == @keeper.id
   end

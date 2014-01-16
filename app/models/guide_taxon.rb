@@ -2,18 +2,18 @@
 class GuideTaxon < ActiveRecord::Base
   attr_accessor :html
   attr_accessible :display_name, :guide, :guide_id, :name, :taxon_id, :taxon, :guide_photos_attributes, 
-    :guide_sections_attributes, :guide_ranges_attributes, :html, :position, :tag_list
+    :guide_sections_attributes, :guide_ranges_attributes, :html, :position, :tag_list, :source_identifier
   belongs_to :guide, :inverse_of => :guide_taxa
   belongs_to :taxon, :inverse_of => :guide_taxa
-  has_many :guide_sections, :inverse_of => :guide_taxon, :dependent => :destroy
-  has_many :guide_photos, :inverse_of => :guide_taxon, :dependent => :destroy
-  has_many :guide_ranges, :inverse_of => :guide_taxon, :dependent => :destroy
+  has_many :guide_sections, :inverse_of => :guide_taxon, :dependent => :delete_all
+  has_many :guide_photos, :inverse_of => :guide_taxon, :dependent => :delete_all
+  has_many :guide_ranges, :inverse_of => :guide_taxon, :dependent => :delete_all
   has_many :photos, :through => :guide_photos
   accepts_nested_attributes_for :guide_sections, :allow_destroy => true
   accepts_nested_attributes_for :guide_photos, :allow_destroy => true
   accepts_nested_attributes_for :guide_ranges, :allow_destroy => true
-  before_save :set_names_from_taxon
-  before_create :set_default_photo
+  before_create :set_names_from_taxon
+  before_create :set_default_photos
   before_create :set_default_section
   after_create :set_guide_taxon
   after_destroy :set_guide_taxon
@@ -79,25 +79,37 @@ class GuideTaxon < ActiveRecord::Base
     true
   end
 
-  def set_default_photo
-    return true unless guide_photos.blank?
+  def set_default_photos(options = {})
     return true if taxon.blank?
     return true if taxon.photos.blank?
-    self.guide_photos.build(:photo => taxon.taxon_photos.first.try(:photo))    
+    max = options[:max]
+    max = 1 if max.blank? || max > 10
+    taxon.taxon_photos.includes(:photo).sort_by{|tp| tp.position || tp.id}.each do |tp|
+      next unless tp.photo.open_licensed?
+      break if max && self.guide_photos.size >= max
+      self.guide_photos.build(:photo => tp.photo) if tp.photo && self.guide_photos.detect{|gp| gp.photo_id == tp.photo_id}.blank?
+    end
+    self.guide_photos.each_with_index do |tp,i|
+      self.guide_photos[guide_photos.index(tp)].position = i+1
+    end
     true
   end
 
-  def set_default_section
+  def set_default_section(options = {})
     return true if taxon.blank?
-    return true unless guide_sections.blank?
+    return true unless guide_sections.blank? || options[:force]
     return true if taxon.wikipedia_summary.blank?
-    self.guide_sections.build(
-      :title => "Summary", 
-      :description => taxon.wikipedia_summary,
-      :rights_holder => "Wikipedia",
-      :license => Observation::CC_BY_SA,
-      :source_url => TaxonDescribers::Wikipedia.page_url(taxon)
-    )
+    if options[:force] && (gs = guide_sections.detect{|gs| gs.rights_holder == "Wikipedia"})
+      self.guide_sections[guide_sections.index(gs)].description = taxon.wikipedia_summary
+    else
+      self.guide_sections.build(
+        :title => "Summary", 
+        :description => taxon.wikipedia_summary,
+        :rights_holder => "Wikipedia",
+        :license => Observation::CC_BY_SA,
+        :source_url => TaxonDescribers::Wikipedia.page_url(taxon)
+      )
+    end
     true
   end
 
@@ -107,7 +119,17 @@ class GuideTaxon < ActiveRecord::Base
     true
   end
 
+  def sync_site_content(options = {})
+    set_names_from_taxon if options[:names]
+    set_default_photos(:max => 5) if options[:photos]
+    set_default_section(:force => true) if options[:summary]
+    save!
+  end
+
   def sync_eol(options = {})
+    if guide.source_url && guide.source_url =~ /eol.org\/collections\/\d+/
+      options
+    end
     return unless page = get_eol_page(options)
     name = page.at('scientificName').content
     name = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))
@@ -180,7 +202,7 @@ class GuideTaxon < ActiveRecord::Base
     else
       unique_data_objects = ActiveSupport::OrderedHash.new
       data_objects.each do |data_object| 
-        data_object_subject = if s = data_object.at('subject')
+        data_object_subject = if (s = data_object.at('subject'))
           s.content.split('#').last
         end
         if subjects.include?(data_object_subject)
@@ -206,6 +228,7 @@ class GuideTaxon < ActiveRecord::Base
     collection = options[:collection]
     subjects = (options[:subjects] || []).select{|t| !t.blank?}
     page_request_params = {
+      :common_names => true,
       :images => 5, 
       :maps => 5, 
       :text => subjects.size == 0 ? 5 : subjects.size * 5,
@@ -221,6 +244,10 @@ class GuideTaxon < ActiveRecord::Base
         item.at('object_type').content == "TaxonConcept" && item.at('name').content.downcase =~ /#{name.downcase}/
       end
       page = eol.page(item.at('object_id').content, page_request_params) if item
+    end
+
+    if !page && eol_page_id
+      page = eol.page(eol_page_id, page_request_params)
     end
 
     unless page
@@ -250,7 +277,7 @@ class GuideTaxon < ActiveRecord::Base
     return unless rank_taxon
     name = if lexicon == TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
       rank_taxon.name
-    elsif tn = rank_taxon.taxon_names.detect{|tn| tn.lexicon == lexicon}
+    elsif tn = rank_taxon.taxon_names.sort_by(&:id).detect{|tn| tn.lexicon == lexicon}
       tn.name
     end
     return if name.blank?
@@ -258,10 +285,15 @@ class GuideTaxon < ActiveRecord::Base
     update_attributes(:tag_list => tags.uniq)
   end
 
+  def eol_page_id
+    @eol_page_id ||= source_identifier.to_s[/eol.org\/pages\/(\d+)/, 1]
+  end
+
   def self.new_from_eol_collection_item(item, options = {})
     name = item.at('name').inner_text.strip
     name = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))
     object_id = item.at('object_id').inner_text
+    options[:source_identifier] ||= "http://eol.org/pages/#{object_id}"
     taxon = Taxon.single_taxon_for_name(name)
     taxon ||= Taxon.find_by_name(name)
     rank = case name.split.size

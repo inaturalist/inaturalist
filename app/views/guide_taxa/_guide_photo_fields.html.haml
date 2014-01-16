@@ -15,15 +15,15 @@
             = p.hidden_field :type
             = p.hidden_field :native_photo_id
             = p.hidden_field :id
-            = p.file_field :file, :accept => "image/jpg,image/jpeg,image/png,image/gif", :description => t(:jpg_png_or_gif), :class => "span12"
-            = p.select :license, Photo::LICENSE_INFO.map{|k,v| [k == 0 ? t(:no_license_all_rights_reserved) : v[:name], k]}, {}, {:description => "Creative Commons unless otherwise noted.", :class => "span12"}
+            = p.file_field :file, :label => t(:file), :accept => "image/jpg,image/jpeg,image/png,image/gif", :description => t(:jpg_png_or_gif), :class => "span12"
+            = p.select :license, Photo::LICENSE_INFO.map{|k,v| [k == 0 ? t(:no_license_all_rights_reserved) : v[:name], k]}, {}, {:description => t(:creative_commons_unless_otherwise_noted), :class => "span12", :label => t(:license)}
           .span6
-            = p.text_field :native_realname, :label => "Copyright holder", :description => "Defaults to your name or username", :class => "span12"
-            = p.text_field :native_page_url, :description => "Original page URL for this photo.", :class => "span12"
+            = p.text_field :native_realname, :label => t(:copyright_holder), :description => t(:defaults_to_your_name_or_username), :class => "span12"
+            = p.text_field :native_page_url, :label => t(:native_page_url), :description => t(:original_page_url_for_this_photo), :class => "span12"
     - else
       - %w(attribution).each do |a|
         .readonly_field{:class => "#{a}_field"}
-          = f.label a
+          = f.label t(a, :default => a)
         %span.mirror= f.object.send(a) || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
   .span2.actions.text-right
     = link_to_remove_association t(:remove_photo), f, :class => "btn btn-mini"

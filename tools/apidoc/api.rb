@@ -423,9 +423,13 @@ EOT
       values -180..180
     end
 
-    param "updated_since" do
-      desc "Filter by observations that have been updated since a timestamp."
-      values "ISO 8601 datetime, e.g. 2013-10-09T13:40:13-07:00"
+    param "extra" do
+      desc <<-EOT
+        Retrieve additional information. 'projects' returns info about the
+        projects the observations have been added to, 'fields' returns
+        observation field values.
+      EOT
+      values %w(fields projects)
     end
   end
 
@@ -719,6 +723,13 @@ EOT
       values "Valid Facebook photo ID of a photo belonging to the user."
     end
 
+    param "updated_since" do
+      desc <<-EOT
+        Filter by observations that have been updated since a timestamp.
+      EOT
+      values "ISO 8601 datetime, e.g. 2013-10-09T13:40:13-07:00"
+    end
+
     param "local_photos[]" do
       desc <<-EOT
         List of fields containing uploaded photo data. Request must have a
@@ -992,7 +1003,18 @@ EOT
   end
   
   get "/observations/:username" do
-    desc "Just like /observations except filtered by a username."
+    desc "Mostly the same as /observations except filtered by a username."
+    
+    param "updated_since" do
+      desc <<-EOT
+        Behaves the same as it does with GET /observations, with the addition
+        of an extra HTTP header in the response. Since this is mainly used for
+        syncing with 3rd party services and devices, this will also include an
+        HTTP header called X-Deleted-Observations that contains a comma-
+        separated list of observation IDs that have been deleted.
+      EOT
+      values "ISO 8601 datetime, e.g. 2013-10-09T13:40:13-07:00"
+    end
   end
   
   get "/observations/project/:id" do

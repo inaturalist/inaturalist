@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', "~> 3.2.13"
-gem 'rake', '0.8.7' # ubuntu seems to freak with the most recent version
+gem 'rails', "~> 3.2.16"
+gem 'rake', '0.8.7'
 
 gem 'aasm'
 gem 'addressable', :require => 'addressable/uri'
@@ -40,7 +40,7 @@ gem 'koala'
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 gem 'mechanize'
 gem 'memcache-client'
-gem 'mocha'
+gem 'mocha', :require => false
 gem 'mobile-fu', :git => 'https://github.com/kueda/mobile-fu.git'
 gem 'nokogiri'
 gem 'omniauth-facebook'
@@ -73,6 +73,7 @@ gem 'trollop'
 gem 'ts-delayed-delta', '1.1.3', :require => 'thinking_sphinx/deltas/delayed_delta'
 gem 'simple_oauth'
 gem 'twitter'
+gem 'utf8-cleaner'
 gem "watu_table_builder", :require => "table_builder"
 gem 'wicked_pdf'
 gem 'will_paginate'
@@ -86,6 +87,7 @@ group :test, :development do
   gem "database_cleaner"
   gem "machinist"
   gem "rspec-rails"
+  gem "rspec-html-matchers"
 end
 
 gem 'diffy'
