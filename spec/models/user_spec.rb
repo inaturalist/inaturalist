@@ -526,9 +526,12 @@ describe User, "merge" do
     @keeper = User.make!
     @reject = User.make!
   end
+  
   it "should move observations" do
     o = Observation.make!(:user => @reject)
-    @keeper.merge(@reject)
+    without_delay do
+      @keeper.merge(@reject)
+    end
     o.reload
     o.user_id.should == @keeper.id
   end

@@ -172,6 +172,8 @@ class LifeList < List
   end
   
   def self.reload_from_observations(list)
+    list = List.find_by_id(list) unless list.is_a?(List)
+    return unless list
     repair_observed(list)
     add_taxa_from_observations(list)
   end
@@ -181,7 +183,7 @@ class LifeList < List
         :include => [{:last_observation => :taxon}, :taxon], 
         :conditions => [
           "list_id = ? AND observations.id IS NOT NULL AND observations.taxon_id != listed_taxa.taxon_id",
-          list.id]) do |lt|
+          list]) do |lt|
       lt.destroy unless lt.valid? && lt.last_observation && lt.last_observation.taxon.descendant_of?(lt.taxon)
     end
   end
