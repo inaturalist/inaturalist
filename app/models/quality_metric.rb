@@ -4,7 +4,8 @@ class QualityMetric < ActiveRecord::Base
   
   METRIC_QUESTIONS = {
     "wild" => :is_the_organism_wild,
-    "location" => :does_the_location_seem_accurate
+    "location" => :does_the_location_seem_accurate,
+    "date" => :does_the_date_seem_accurate
   }
   METRICS = METRIC_QUESTIONS.keys
   METRICS.each do |metric|
