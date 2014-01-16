@@ -134,6 +134,12 @@
     <%=t :on_day %> <%= l(@listed_taxon.updated_at.to_date, :format => :long) %>
   </p>
   
+  <%- if(@related_listed_taxa.present?) %>
+    <div>
+      <%= render :partial => 'all_listings' %>
+    </div>
+  <% end %>
+  
   <div class="meta">
     <strong><%=t :source %>:</strong> <%= citation_for @listed_taxon.citation_object %>
   </div>
@@ -181,11 +187,6 @@
       <%= render :partial => 'occurrence_field' %>
       <%= render :partial => 'establishment_field' %>
     </div>
-    <%- if(@related_taxa.present?) %>
-      <div>
-        <%= render :partial => 'all_listings' %>
-      </div>
-    <% end %>
   <% end -%>
   
   <div class="tabs">

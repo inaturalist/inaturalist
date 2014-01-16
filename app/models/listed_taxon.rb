@@ -596,7 +596,7 @@ class ListedTaxon < ActiveRecord::Base
     end
   end
 
-  def related_taxa
+  def related_listed_taxa
     ListedTaxon.where(taxon_id: taxon_id, place_id: place_id).where("id != ?", id)
   end
 
@@ -618,9 +618,10 @@ class ListedTaxon < ActiveRecord::Base
     ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).update_all({primary_listing: false})
     self.update_attribute(:primary_listing, true)
   end
+  
   def reassign_primary_taxa
     return unless primary_listing
-    related_taxon = related_taxa.first
+    related_taxon = related_listed_taxa.first
     related_taxon.update_attribute(:primary_listing, true)
   end
 
