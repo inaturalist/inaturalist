@@ -119,7 +119,7 @@ def make_occurrence_data
   
   find_options = {
     :include => [:taxon, {:user => :stored_preferences}, :photos, :quality_metrics, :identifications],
-    :conditions => ["observations.license IS NOT NULL AND observations.id < ?", Observation.maximum(:id) / 10],
+    :conditions => ["observations.license IS NOT NULL"],
     :logger => logger,
   }
   

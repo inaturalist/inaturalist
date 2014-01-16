@@ -82,6 +82,9 @@
           title: I18n.t('exporting'),
           width: 490
         })
+        $('#exportingstatus').removeClass('notice box centered').addClass('loading').html(I18n.t('loading'))
+        $('#receive_an_email .inter, #receive_an_email .status').remove()
+        $('#receive_an_email .button').show()
       })
       $('#new_observations_export_flow_task').bind('ajax:error', function(e,r) {
         var json = $.parseJSON(r.responseText)
@@ -116,9 +119,11 @@
       })
     }
     function emailWhenComplete() {
-      $('#receive_an_email').html("<span class='loading status'>Saving...</span>")
+      $('#receive_an_email .button').hide()
+      $('#receive_an_email').append("<span class='loading status'>"+I18n.t('saving')+"</span>")
       $.post('/observations/email_export/'+window.flowTask.id, function() {
-        $('#receive_an_email').html("<span class='inter'>"+I18n.t('views.observations.export.well_email_you')+"</span>")
+        $('#receive_an_email .status').remove()
+        $('#receive_an_email').append("<span class='inter'>"+I18n.t('views.observations.export.well_email_you')+"</span>")
       })
     }
 - content_for :extracss do
@@ -150,7 +155,7 @@
     #success table {margin:0;}
     #success td {border:0 transparent;}
     #rundialog .status {font-size:140%;}
-    #rundialog .meta {text-align: center;}
+    #rundialog .meta, .centered {text-align: center;}
 #pageheader.clear
   %h2= @title
 

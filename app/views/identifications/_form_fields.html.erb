@@ -16,9 +16,9 @@
     </div>
 
     <div class="field">
-      <%= f.check_box :captive %>
-      <%= f.label :captive, t(:organism_appears_captive_cultivated) %>
-      <% helptip_for "captive" do %>
+      <%= f.check_box :captive_flag %>
+      <%= f.label :captive_flag, t(:organism_appears_captive_cultivated) %>
+      <% helptip_for "captive_flag" do %>
         <%=t 'views.observations.captive_help_html' %>
       <% end -%>
     </div>

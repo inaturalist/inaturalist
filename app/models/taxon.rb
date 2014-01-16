@@ -34,7 +34,7 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_ranges_without_geom, :class_name => 'TaxonRange', :select => (TaxonRange.column_names - ['geom']).join(', ')
   has_many :taxon_photos, :dependent => :destroy, :order => "position ASC NULLS LAST, id ASC"
   has_many :photos, :through => :taxon_photos
-  has_many :assessments
+  has_many :assessments, :dependent => :nullify
   has_many :conservation_statuses, :dependent => :destroy
   has_many :guide_taxa, :inverse_of => :taxon, :dependent => :nullify
   has_many :guides, :inverse_of => :taxon, :dependent => :nullify
@@ -124,7 +124,7 @@ class Taxon < ActiveRecord::Base
     define_method "find_#{rank}" do
       return self if rank_level == level
       return nil if rank_level.to_i > level.to_i
-      @cached_ancestors ||= ancestors.select("id, name, rank, ancestry").all
+      @cached_ancestors ||= ancestors.select("id, name, rank, ancestry, iconic_taxon_id, rank_level, created_at, updated_at, is_active").all
       @cached_ancestors.detect{|a| a.rank == rank}
     end
     alias_method(rank, "find_#{rank}") unless respond_to?(rank)

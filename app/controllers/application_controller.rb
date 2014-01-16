@@ -441,7 +441,7 @@ class ApplicationController < ActionController::Base
     default = options[:default] ? options[:default].to_sym : :html
     formats = [args].flatten.map(&:to_sym)
     before_filter(options) do
-      request.format = default unless formats.include?(request.format.to_sym)
+      request.format = default if request.format.blank? || !formats.include?(request.format.to_sym)
     end
   end
 end
