@@ -1928,7 +1928,6 @@ describe Observation, "community taxon" do
       Identification.make!(:observation => @o, :taxon => @f)
       Identification.make!(:observation => @o, :taxon => @f)
       Identification.make!(:observation => @o, :taxon => @f)
-      # Identification.make!(:observation => @o, :taxon => @ss1)
       Identification.make!(:observation => @o, :taxon => @ss1)
       Identification.make!(:observation => @o, :taxon => @s2)
       Identification.make!(:observation => @o, :taxon => @s2)
@@ -1937,6 +1936,7 @@ describe Observation, "community taxon" do
       @o.reload
       @o.community_taxon.should eq @s2
     end
+
     it "f f f f ss1 ss1 s2 s2 s2 s2 g1" do
       Identification.make!(:observation => @o, :taxon => @f)
       Identification.make!(:observation => @o, :taxon => @f)
@@ -1949,6 +1949,23 @@ describe Observation, "community taxon" do
       Identification.make!(:observation => @o, :taxon => @s2)
       Identification.make!(:observation => @o, :taxon => @s2)
       Identification.make!(:observation => @o, :taxon => @g1)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+
+    it "f g1 s1 (should not taxa with only one ID to be the community taxon)" do
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @g1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+
+    it "f f g1 s1" do
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @g1)
+      Identification.make!(:observation => @o, :taxon => @s1)
       @o.reload
       @o.community_taxon.should eq @g1
     end

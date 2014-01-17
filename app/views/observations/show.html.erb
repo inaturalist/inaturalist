@@ -121,8 +121,15 @@
     <div class="notice box">
       <h2>Community ID Test</h2>
       <p>
-        This is a test of the community ID concept and the algorithm developed by muir and loarie, which basically goes like this:
-        for all identified taxa and their ancestors, score each as the ratio between the number of cumulative IDs for that taxon over the sum of the cumulative IDs, the number of more conservative IDs added after the first ID of that taxon, and the number of IDs that are completely different (i.e. are not among that taxon's ancestors). For the identified taxa that have a score over 2/3, choose the lowest ranked taxon.
+        This is a test of the community ID concept and the algorithm developed
+        by muir and loarie, which basically goes like this: for all identified
+        taxa and their ancestors, score each as the ratio between the number
+        of cumulative IDs for that taxon over the sum of the cumulative IDs,
+        the number of more conservative IDs added after the first ID of that
+        taxon, and the number of IDs that are completely different (i.e. are
+        not among that taxon's ancestors). For the identified taxa that have a
+        score over 2/3 and at least 2 identifications, choose the lowest
+        ranked taxon.
       </p>
       Community ID
       <div class="taxon_links">

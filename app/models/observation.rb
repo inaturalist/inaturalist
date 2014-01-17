@@ -1477,12 +1477,14 @@ class Observation < ActiveRecord::Base
     return unless identifications.current.count > 1
     node = community_taxon_nodes(options).sort_by do |n| 
       [
+        n[:cumulative_count] > 1 ? 1 : 0, # reject taxa with only one identification
         n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF ? 1 : 0, # only consider taxa with a score above the cutoff
         0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
       ]
     end.last
     
-    # Visualizing this stuff is prettu useful for testing, so please leave this in
+    # # Visualizing this stuff is prettu useful for testing, so please leave this in
+    # puts
     # width = 15
     # %w(taxon_id taxon_name cc dc cdc score).each do |c|
     #   print c.ljust(width)
