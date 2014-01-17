@@ -2414,6 +2414,11 @@ class ObservationsController < ApplicationController
           :except => [:tracking_code]
         }
       end
+      if extra.include?('observation_photos')
+        opts[:include][:observation_photos] ||= {
+          :include => {:photo => {:except => [:metadata]}}
+        }
+      end
       if @ofv_params || extra.include?('fields')
         opts[:include][:observation_field_values] ||= {
           :except => [:observation_field_id],
