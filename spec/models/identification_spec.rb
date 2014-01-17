@@ -192,7 +192,6 @@ describe Identification, "creation" do
     o.should be_coordinates_obscured
   end
 
-  # it "should set curator_identification"
   it "should set the observation's community taxon" do
     t = Taxon.make!
     o = Observation.make!(:taxon => t)
@@ -392,9 +391,10 @@ describe Identification, "deletion" do
     o = Observation.make!(:taxon => @Calypte_anna)
     o.community_taxon.should be_blank
     i1 = Identification.make!(:observation => o, :taxon => @Calypte_anna)
+    i3 = Identification.make!(:observation => o, :taxon => @Calypte_anna)
     i2 = Identification.make!(:observation => o, :taxon => @Pseudacris_regilla)
     o.reload
-    o.community_taxon.should eq(@Calypte_anna) # majority
+    o.community_taxon.should eq(@Calypte_anna)
     i1.destroy
     o.reload
     o.community_taxon.should eq(@Chordata) # consensus

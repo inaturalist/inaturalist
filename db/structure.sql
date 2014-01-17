@@ -1616,7 +1616,8 @@ CREATE TABLE observations (
     sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
     private_geom geometry(Point),
-    captive boolean DEFAULT false
+    captive boolean DEFAULT false,
+    community_taxon_id integer
 );
 
 
@@ -4949,6 +4950,13 @@ CREATE INDEX index_observations_on_comments_count ON observations USING btree (c
 
 
 --
+-- Name: index_observations_on_community_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_community_taxon_id ON observations USING btree (community_taxon_id);
+
+
+--
 -- Name: index_observations_on_geom; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6010,6 +6018,8 @@ INSERT INTO schema_migrations (version) VALUES ('20120808224842');
 INSERT INTO schema_migrations (version) VALUES ('20120810053551');
 
 INSERT INTO schema_migrations (version) VALUES ('20120821195023');
+
+INSERT INTO schema_migrations (version) VALUES ('20120830020828');
 
 INSERT INTO schema_migrations (version) VALUES ('20120902210558');
 

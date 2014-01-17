@@ -98,7 +98,7 @@ class Identification < ActiveRecord::Base
     end
 
     observation.identifications.reload
-    observation.set_community_taxon
+    observation.set_community_taxon(:force => true)
 
     observation.update_attributes(attrs)
     true
@@ -127,7 +127,8 @@ class Identification < ActiveRecord::Base
     end
     observation.skip_identifications = true
     observation.identifications.reload
-    attrs[:community_taxon] = observation.majority_taxon || observation.consensus_taxon
+    observation.set_community_taxon
+    attrs[:community_taxon] = observation.community_taxon
     observation.update_attributes(attrs)
     true
   end

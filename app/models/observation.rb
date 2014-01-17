@@ -69,6 +69,8 @@ class Observation < ActiveRecord::Base
   CASUAL_GRADE = "casual"
   RESEARCH_GRADE = "research"
   QUALITY_GRADES = [CASUAL_GRADE, RESEARCH_GRADE]
+
+  COMMUNITY_TAXON_SCORE_CUTOFF = (2.0 / 3)
   
   LICENSES = [
     ["CC-BY", :cc_by_name, :cc_by_description],
@@ -1471,71 +1473,78 @@ class Observation < ActiveRecord::Base
 
   ##### Community Taxon #########################################################
 
-  # majority here means having more votes that all other taxa combined, so
-  # votes of 3,4,5 would not make 5 a majority, b/c 5 < 3+4 (7 people don't
-  # think it's whatever 5 people thought it was)
-  def majority_taxon(options = {})
-    if @majority_taxon && options[:force].blank?
-      return @majority_taxon
-    end
-    current_idents = identifications.current
-    return nil if current_idents.size < 2
-    votes = current_idents.inject({}) do |memo, ident|
-      memo[ident.taxon_id] ||= 0
-      memo[ident.taxon_id] += 1
-      memo
-    end
-    sorted = current_idents.group_by{|ident| ident.taxon_id}.sort_by{|taxon_id, idents| 0 - idents.size}
-    majority_taxon_id, majority_idents = sorted.detect{|taxon_id, idents| idents.size > current_idents.size - idents.size}
-    majority_idents ? majority_idents.first.taxon : nil
+  def get_community_taxon(options = {})
+    return unless identifications.current.count > 1
+    node = community_taxon_nodes(options).sort_by do |n| 
+      [
+        n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF ? 1 : 0, # only consider taxa with a score above the cutoff
+        0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
+      ]
+    end.last
+    
+    # Visualizing this stuff is prettu useful for testing, so please leave this in
+    # width = 15
+    # %w(taxon_id taxon_name cc dc cdc score).each do |c|
+    #   print c.ljust(width)
+    # end
+    # puts
+    # community_taxon_nodes.sort_by{|n| n[:taxon].ancestry || ""}.each do |n|
+    #   print n[:taxon].id.to_s.ljust(width)
+    #   print n[:taxon].name.to_s.ljust(width)
+    #   print n[:cumulative_count].to_s.ljust(width)
+    #   print n[:disagreement_count].to_s.ljust(width)
+    #   print n[:conservative_disagreement_count].to_s.ljust(width)
+    #   print n[:score].to_s.ljust(width)
+    #   puts
+    # end
+
+    return unless node
+    return nil if node[:taxon] == Taxon::LIFE
+    node[:taxon]
   end
 
-  # lowest rank taxon that everyone can agree on, e.g. consensus of Homo
-  # sapiens and Passer domesticus is Chordata
-  def consensus_taxon(options = {})
-    if @consensus_taxon && options[:force].blank?
-      return @consensus_taxon
-    end
-    current_idents = identifications.current
-    return nil if current_idents.size < 2
-    return current_idents.first.taxon if current_idents.map{|ident| ident.taxon_id}.uniq.size == 1
+  def community_taxon_nodes(options = {})
+    return @community_taxon_nodes if @community_taxon_nodes && !options[:force]
+    # work on current identifications
+    working_idents = identifications.current.includes(:taxon).sort_by(&:id)
 
-    # take ancestries of all identified taxa and their ancestors and arrange
-    # them in a matrix where each row is a taxon and each column is an
-    # ancestor taxon id for that taxon, ranked from highest (phylum) on the
-    # left, lowest on the right. Fill missing ranks with nils. 
-    ancestries = current_idents.map{|ident| ident.taxon.self_and_ancestor_ids}.sort_by{|a| a.size}
-    width = ancestries.last.size
-    matrix = ancestries.map do |a|
-      a + ([nil]*(width-a.size))
-    end
+    # load all ancestor taxa implied by identifications
+    ancestor_ids = working_idents.map{|i| i.taxon.ancestor_ids}.flatten.uniq.compact
+    taxon_ids = working_idents.map{|i| [i.taxon_id] + i.taxon.ancestor_ids}.flatten.uniq.compact
+    taxa = Taxon.where("id IN (?)", taxon_ids)
+    taxon_ids_count = taxon_ids.size
 
-    # start at the right col (lowest rank), look for the first occurrence of
-    # consensus within a rank
-    consensus_taxon_id = nil
-    width.downto(0) do |c|
-      next if c == width
-      column_taxon_ids = matrix.map{|ancestry| ancestry[c]}
-      if column_taxon_ids.uniq.size == 1 && !column_taxon_ids.first.blank?
-        consensus_taxon_id = column_taxon_ids.first
-        break
+    @community_taxon_nodes = taxa.map do |id_taxon|
+      # count all identifications of this taxon and its descendants
+      cumulative_count = working_idents.select{|i| i.taxon.self_and_ancestor_ids.include?(id_taxon.id)}.size
+
+      # count identifications of taxa that are outside of this taxon's subtree
+      # (i.e. absolute disagreements)
+      disagreement_count = working_idents.reject{|i|
+       id_taxon.self_and_ancestor_ids.include?(i.taxon_id) || i.taxon.self_and_ancestor_ids.include?(id_taxon.id)
+      }.size
+
+      # count identifications of taxa that are ancestors to this taxon but
+      # were made after the first identification of this taxon (i.e.
+      # conservative disagreements)
+      conservative_disagreement_count = if first_ident = working_idents.detect{|i| i.taxon_id == id_taxon.id}
+        working_idents.select{|i| i.id > first_ident.id && first_ident.taxon.ancestor_ids.include?(i.taxon_id)}.size
+      else
+        0
       end
-    end
-    return nil if consensus_taxon_id.blank?
-    @consensus_taxon = if ident = current_idents.detect{|ident| ident.taxon_id == consensus_taxon_id}
-      ident.taxon
-    else
-      Taxon.find_by_id(consensus_taxon_id)
-    end
-    if @consensus_taxon.root? && @consensus_taxon.name == "Life"
-      @consensus_taxon = nil
-    else
-      @consensus_taxon
+
+      {
+        :taxon => id_taxon,
+        :cumulative_count => cumulative_count,
+        :disagreement_count => disagreement_count,
+        :conservative_disagreement_count => conservative_disagreement_count,
+        :score => cumulative_count.to_f / (cumulative_count + disagreement_count + conservative_disagreement_count)
+      }
     end
   end
 
-  def set_community_taxon
-    t = majority_taxon || consensus_taxon
+  def set_community_taxon(options = {})
+    t = get_community_taxon(options)
     if t.blank?
       self.community_taxon = nil
       return true  
@@ -1579,16 +1588,6 @@ class Observation < ActiveRecord::Base
 
   def community_taxon_rejected?
     community_taxon_id.blank? && (!prefers_community_taxon? || !user.prefers_community_taxa?)
-  end
-
-  def identification_summary
-    if majority_taxon
-      "majority"
-    elsif consensus_taxon
-      "consensus"
-    else
-      "disputed"
-    end
   end
   
   def self.obscure_coordinates_for_observations_of(taxon, options = {})
