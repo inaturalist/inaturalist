@@ -1590,7 +1590,7 @@ class Observation < ActiveRecord::Base
   end
 
   def community_taxon_rejected?
-    community_taxon_id.blank? && (!prefers_community_taxon? || !user.prefers_community_taxa?)
+    (prefers_community_taxon == false || user.prefers_community_taxa == false)
   end
   
   def self.obscure_coordinates_for_observations_of(taxon, options = {})

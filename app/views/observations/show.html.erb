@@ -117,96 +117,6 @@
 <% end %>
 
 <%- @cid_test = logged_in? && params[:test] == 'cid' -%>
-<% if @cid_test -%>
-  <div class="column span-24">
-    <div class="notice box">
-      <h2>Community ID Test</h2>
-      <p>
-        This is a test of the community ID concept and the algorithm developed
-        by muir and loarie, which basically goes like this: for all identified
-        taxa and their ancestors, score each as the ratio between the number
-        of cumulative IDs for that taxon over the sum of the cumulative IDs,
-        the number of more conservative IDs added after the first ID of that
-        taxon, and the number of IDs that are completely different (i.e. are
-        not among that taxon's ancestors). For the identified taxa that have a
-        score over 2/3 and at least 2 identifications, choose the lowest
-        ranked taxon.
-      </p>
-      Community ID
-      <div class="taxon_links">
-        <%= 
-          ctaxon = @observation.get_community_taxon
-          render("shared/taxon", :taxon => ctaxon, :link => true) if ctaxon
-        %>
-      </div>
-      <table id="community_taxon_summary">
-        <tr>
-          <th>taxon_name</th>
-          <th>ident count</th>
-          <th>cumulative count</th>
-          <th>disagreement count</th>
-          <th>ancestor disagreements</th>
-          <th>score</th>
-        </tr>
-        <%-
-          sorted_taxa = Taxon.sort_by_ancestry(@observation.community_taxon_nodes.map{|n| n[:taxon]})
-          indexed_nodes = @observation.community_taxon_nodes.index_by{|n| n[:taxon].id}
-        -%>
-        <% sorted_taxa.each do |t| %>
-          <% 
-            n = indexed_nodes[t.id]
-            row_style = ''
-            row_style = 'font-weight: bold;' if n[:taxon] == ctaxon
-            row_style += "opacity: 0.5;" if n[:score] <= Observation::COMMUNITY_TAXON_SCORE_CUTOFF || n[:cumulative_count] <= 1
-          %>
-          <tr data-taxon="<%= t.to_json(:only => [:id, :ancestor_ids], :methods => [:ancestor_ids]) %>" data-ident-count="<%= n[:ident_count] %>">
-            <td style="<%= row_style.to_s + "padding-left: #{t.ancestor_ids.size * 10}px" %>" class="taxon_links"><%= render "shared/taxon", :taxon => t, :link_url => t %></td>
-            <td style="<%= row_style %>"><%= n[:ident_count] %></td>
-            <td style="<%= row_style %>"><%= n[:cumulative_count] %></td>
-            <td style="<%= row_style %>"><%= n[:disagreement_count] %></td>
-            <td style="<%= row_style %>"><%= n[:conservative_disagreement_count] %></td>
-            <td style="<%= row_style %>">
-              <%= n[:cumulative_count] %>/(<%= n[:cumulative_count] %> + <%= n[:disagreement_count] %> + <%= n[:conservative_disagreement_count] %>
-              = <%= n[:cumulative_count] + n[:disagreement_count] + n[:conservative_disagreement_count] %>) = <%= n[:score] %></td>
-          </tr>
-        <% end -%>
-      </table>
-      Terms
-      <dl>
-        <dt>ident count</dt>
-        <dd># of identifications for an individual taxon</dd>
-        <dt>cumulative count</dt>
-        <dd># of identifications for an individual taxon and all its descendants</dd>
-        <dt>disagreement count</dt>
-        <dd># of identified taxa that are not among a taxon's ancestors</dd>
-        <dt>ancestor disagreements</dt>
-        <dd># of identified taxa that are among a taxon's ancestors, but were created after the first identification using this taxon</dd>
-        <dt>score</dt>
-        <dd>score = cumulative count / (cumulative count + disagreement count + ancestor disagreements) </dd>
-      </dl>
-      <script type="text/javascript">
-        $('#community_taxon_summary tr').mouseenter(function() {
-          var taxon = $(this).data('taxon')
-          if (!taxon) return
-          $('#community_taxon_summary tr').each(function() {
-            var target = $(this).data('taxon')
-            if (!target) return
-            if (target.id == taxon.id) {
-              $(this).css('background-color', 'transparent')
-            } else if (target.ancestor_ids.indexOf(taxon.id) > -1 || taxon.ancestor_ids.indexOf(target.id) > -1) {
-              $(this).css('background-color', 'yellowgreen')
-            } else {
-              $(this).css('background-color', 'pink')
-            }
-          })
-        })
-        $('#community_taxon_summary').mouseleave(function() {
-          $('tr', this).css('background-color', 'transparent')
-        })
-      </script>
-    </div>
-  </div>
-<% end -%>
 
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
@@ -548,13 +458,18 @@
                         :identification => @community_identification,
                         :usertext => "<strong>Community</strong> ID: ".html_safe
                       } %>
-            <% if is_me?(@observation.user) && @observation.community_taxon_id != @observation.taxon_id -%>
-              <%= link_to "&times;".html_safe, 
-                observation_url(@observation, :observation => {:prefers_community_taxon => false}, :ignore_photos => true), 
-                :method => :put, 
-                :class => "blob upperright remove",
-                "data-tip" => t(:opt_out_of_community_ids_for_obs, :default => "Opt out of commmunity IDs") %>
-            <% end -%>
+
+            <center class="actions">
+              <% if is_me?(@observation.user) && @observation.community_taxon_id != @observation.taxon_id -%>
+                <%= link_to t(:reject), 
+                  observation_url(@observation, :observation => {:prefers_community_taxon => false}, :ignore_photos => true), 
+                  :method => :put, 
+                  :class => "blob remove",
+                  "data-tip" => t(:opt_out_of_community_ids_for_obs, :default => "Opt out of commmunity IDs") %>
+                  |
+              <% end -%>
+              <%= link_to_function t(:about), "showCommunityTaxonDialog()", :class => "blob" %>
+            </center>
           </div>
           <% if identifications = @current_identifications_by_taxon[@community_identification.taxon] -%>
             <div class="agreers description">
@@ -568,7 +483,7 @@
       <% elsif @observation.community_taxon_rejected? %>
         <div class="quiet box">
           <% if is_me?(@observation.user) -%>
-            <%=t @observation.prefers_community_taxon == false ? :youve_opted_out_of_community_ids : :youve_opted_out_of_community_ids_for_this_obs %>.
+            <%=t @observation.prefers_community_taxon == false ? :youve_opted_out_of_community_ids_for_this_obs : :youve_opted_out_of_community_ids %>.
             <ul class="unstacked">
               <li>
                 <%= link_to t(:opt_in_for_this_observation), 
@@ -580,7 +495,7 @@
               </li>
             </ul>
           <% else %>
-            <%=t @observation.prefers_community_taxon == false ? :user_has_opted_out_of_community_ids : :user_has_opted_out_of_community_ids_for_this_obs, :user => @observation.user.login %>.
+            <%=t @observation.prefers_community_taxon == false ? :user_has_opted_out_of_community_ids_for_this_obs : :user_has_opted_out_of_community_ids, :user => @observation.user.login %>.
           <% end -%>
         </div>
       <% end -%>

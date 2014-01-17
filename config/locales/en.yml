@@ -75,6 +75,7 @@ en:
   able_to_connect_flickr: Great!  We were able to link to your Flickr account.
   about: About
   about_bioblitz_results: About bioblitz results
+  about_community_taxa: About community taxa
   about_external_links: About External Links
   about_licenses: About licenses
   about_licensing: about_licensing
@@ -3297,6 +3298,47 @@ en:
         tag_list: Comma-separated list of tags
         positioning_method: How the coordinates were determined
         positioning_device: Device used to determine coordinates
+      show:
+        community_taxon_desc_html: |
+          <p class="ui">
+            The community taxon (or community identification) represents
+            what taxon the %{site_name} community thinks is depicted in an
+            observation. If you're interested in how we choose the
+            community taxon, see the notes on the algorithm below, but in
+            general, we try to <strong>choose a taxon that more than 2/3
+            of the identifiers agree with</strong>. Sometimes this means
+            choosing a higher level taxon that contains a number of
+            disagreeing taxa (e.g. you think it's a kingsnake and I think
+            it's rattlesnake, so iNat chooses suborder Seprentes which
+            contains all snakes). The algorithm also slightly favors
+            dissent, because we've found that dissenters are often
+            correct.
+          </p>
+          <p class="ui">
+            The community taxon is the taxon we use when sharing observations with
+            data partners, linking observations of the same taxon on the
+            site, updating your life list, etc. If for some reason you
+            don't agree with the community taxon, you can remove it, which
+            will also make it inelligible for becoming research grade. If
+            you don't like the whole idea of community taxa, you can opt
+            out of them entirely by <a href="/users/edit" target="_blank">editing your settings</a>.
+          </p>
+          <p class="ui">
+            <strong>The algorithm:</strong> for all identified taxa and the taxa that contain them
+            (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score
+            each as the ratio between the number of cumulative IDs for
+            that taxon over the sum of the cumulative IDs, the number of
+            more conservative IDs added after the first ID of that taxon,
+            and the number of IDs that are completely different (i.e. IDs
+            of taxa that do not contain the taxon being scored). For the
+            identified taxa that have a score over 2/3 and at least 2
+            identifications, choose the lowest ranked taxon.
+          </p>
+        identification_count_desc: '# of identifications for an individual taxon'
+        cumulative_count_desc: '# of identifications for an individual taxon and all its descendants'
+        disagreement_count_desc: "# of identified taxa that are not among a taxon's ancestors"
+        ancestor_disagreements_desc: "# of identified taxa that are among a taxon's ancestors, but were created after the first identification using this taxon"
+        score_desc: "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"
     observation_fields:
       dna_help: |
         To enable BOLD DNA barcode matching functionality, make sure your

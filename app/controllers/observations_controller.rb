@@ -43,7 +43,10 @@ class ObservationsController < ApplicationController
                             :project,
                             :taxon_stats,
                             :user_stats]
-  before_filter :load_observation, :only => [:show, :edit, :edit_photos, :update_photos, :destroy, :fields, :viewed_updates]
+  before_filter :load_observation, :only => [
+    :show, :edit, :edit_photos, :update_photos, :destroy, :fields,
+    :viewed_updates, :community_taxon_summary
+  ]
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :curator_required, :only => [:curation]
@@ -1617,6 +1620,10 @@ class ObservationsController < ApplicationController
     else
       render :status => :unprocessable_entity, :text => flow_task.errors.full_messages.to_sentence
     end
+  end
+
+  def community_taxon_summary
+    render :layout => false, :partial => "community_taxon_summary"
   end
 
 ## Protected / private actions ###############################################

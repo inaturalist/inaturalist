@@ -1,0 +1,65 @@
+#community_taxon_summary
+  =t 'views.observations.show.community_taxon_desc_html', :site_name => SITE_NAME_SHORT
+  %h3=t :algorithm_summary
+  %table
+    %tr
+      %th.taxon=t :taxon
+      %th=t :identification_count
+      %th=t :cumulative_count
+      %th=t :disagreement_count
+      %th=t :ancestor_disagreements
+      %th=t :score
+    :ruby
+      ctaxon = @community_taxon || @observation.community_taxon || @observation.get_community_taxon
+      sorted_taxa = Taxon.sort_by_ancestry(@observation.community_taxon_nodes.map{|n| n[:taxon]})
+      indexed_nodes = @observation.community_taxon_nodes.index_by{|n| n[:taxon].id}
+    - sorted_taxa.each do |t|
+      :ruby
+        n = indexed_nodes[t.id]
+        row_class = ''
+        row_class = 'chosen' if n[:taxon] == ctaxon
+        row_class += " below_cutoff" if n[:score] <= Observation::COMMUNITY_TAXON_SCORE_CUTOFF || n[:cumulative_count] <= 1
+        row_data = {
+          :ident_count => n[:ident_count],
+          :taxon => t.to_json(:only => [:id, :ancestor_ids], :methods => [:ancestor_ids])
+        }
+      %tr{:data => row_data}
+        %td{:style => "padding-left: #{t.ancestor_ids.size * 10}px", :class => "#{row_class} taxon_links"}
+          = render "shared/taxon", :taxon => t, :link_url => t
+        %td{:class => row_class}= n[:ident_count]
+        %td{:class => row_class}= n[:cumulative_count]
+        %td{:class => row_class}= n[:disagreement_count]
+        %td{:class => row_class}= n[:conservative_disagreement_count]
+        %td{:class => "#{row_class} score"}
+          = "#{n[:cumulative_count]}/(#{n[:cumulative_count]}+#{n[:disagreement_count]}+#{n[:disagreement_count]}+#{n[:conservative_disagreement_count]}=#{n[:cumulative_count] + n[:disagreement_count] + n[:conservative_disagreement_count]}) = #{n[:score].round(4)}"
+  .legend.stacked
+    %label.agreement=t :agreement
+    %label.disagreement=t :disagreement
+    %label.below_cutoff=t :below_cutoff
+  %h3=t :terms
+  %dl
+    - %w(identification_count cumulative_count disagreement_count ancestor_disagreements score).each do |term|
+      %dt=t term
+      %dd=t "views.observations.show.#{term}_desc"
+  :javascript
+    $('#community_taxon_summary tr').mouseenter(function() {
+      var taxon = $(this).data('taxon')
+      if (!taxon) return
+      $('#community_taxon_summary tr').each(function() {
+        var target = $(this).data('taxon')
+        if (!target) return
+        if (target.id == taxon.id) {
+          // $(this).css('background-color', 'transparent')
+          $(this).removeClass('agreement').removeClass('disagreement')
+        } else if (target.ancestor_ids.indexOf(taxon.id) > -1 || taxon.ancestor_ids.indexOf(target.id) > -1) {
+          // $(this).css('background-color', 'yellowgreen')
+          $(this).addClass('agreement').removeClass('disagreement')
+        } else {
+          // $(this).css('background-color', 'pink')
+          $(this).addClass('disagreement').removeClass('agreement')
+        }
+      })
+    })
+    $('#community_taxon_summary table').mouseleave(function() {
+      $('tr', this).removeClass('agreement').removeClass('disagreement')
+    })
