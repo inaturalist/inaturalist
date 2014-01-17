@@ -577,7 +577,7 @@ end
 
 describe User, "community taxa preference" do
   it "should remove community taxa when set to false" do
-    o = Observation.make!(:taxon => Taxon.make!)
+    o = Observation.make!
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
