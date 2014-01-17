@@ -623,7 +623,7 @@ class ListedTaxon < ActiveRecord::Base
   def reassign_primary_taxa
     return unless primary_listing
     related_taxon = related_listed_taxa.first
-    related_taxon.update_attribute(:primary_listing, true)
+    related_taxon.update_attribute(:primary_listing, true) if related_taxon
   end
 
 
