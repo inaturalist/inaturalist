@@ -116,7 +116,8 @@
   </script>
 <% end %>
 
-<% if logged_in? && params[:test] == "cid" -%>
+<%- @cid_test = logged_in? && params[:test] == 'cid' -%>
+<% if @cid_test -%>
   <div class="column span-24">
     <div class="notice box">
       <h2>Community ID Test</h2>
@@ -538,7 +539,7 @@
       </div>
     <% end %>
 
-    <% if logged_in? && params[:test] == "cid" -%>
+    <% if @cid_test -%>
       <% if @community_identification -%>
         <div class="identification_group">
           <div id="community-identification" class="box">
@@ -587,7 +588,7 @@
 
     <div id="identifications-list-<%= @observation.id %>" class="identifications-list">
       <% for taxon, identifications in @sorted_current_identifications_by_taxon %>
-        <%- next if @community_identification && @community_identification.taxon === taxon -%>
+        <%- next if @cid_test && @community_identification && @community_identification.taxon === taxon -%>
         <div class="identification_group">
           <%= render :partial => "identifications/identification", :locals => { :identification => identifications.first }%>
           <% if identifications.size > 1 -%>
