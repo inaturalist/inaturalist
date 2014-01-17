@@ -1,6 +1,7 @@
 .even{background-color:#f3f3f3;}
 #identifications{margin-bottom:1em;}
 #identifications h3{margin-bottom:0.5em;}
+#identifications .user {display:block;}
 .identifications-list .identification.yours{padding:10px;}
 #media, #photos, #sounds {max-width:350px;}
 #media{margin-right:10px;}
@@ -23,3 +24,6 @@
 .field .observation_photos label {display:block;}
 #where .places .hidden {display:none;}
 #app img {position:relative; top:4px;}
+#community-identification.box {background-color:#DCEAA3;}
+#community-identification {position: relative;}
+#community-identification .remove.blob {font-weight:bold; color:#333;}

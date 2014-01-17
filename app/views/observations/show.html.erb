@@ -116,6 +116,50 @@
   </script>
 <% end %>
 
+<% if logged_in? && params[:test] == "cid" -%>
+  <div class="column span-24">
+    <div class="notice box">
+      <h2>Community ID Test</h2>
+      <p>
+        This is a test of the community ID concept and the algorithm developed by muir and loarie, which basically goes like this:
+        for all identified taxa and their ancestors, score each as the ratio between the number of cumulative IDs for that taxon over the sum of the cumulative IDs, the number of more conservative IDs added after the first ID of that taxon, and the number of IDs that are completely different (i.e. are not among that taxon's ancestors). For the identified taxa that have a score over 2/3, choose the lowest ranked taxon.
+      </p>
+      Community ID
+      <div class="taxon_links">
+        <%= 
+          ctaxon = @observation.get_community_taxon
+          render("shared/taxon", :taxon => ctaxon, :link => true) if ctaxon
+        %>
+      </div>
+      <table>
+        <tr>
+          <th>taxon_id</th>
+          <th>taxon_name</th>
+          <th>taxon rank level</th>
+          <th>cumulative_count</th>
+          <th>disagreement_count</th>
+          <th>ancestor_disagreements</th>
+          <th>score</th>
+        </tr>
+        <% @observation.community_taxon_nodes.sort_by{|n| n[:taxon].ancestry || ""}.each do |n| %>
+          <% row_style = 'font-weight: bold' if n[:taxon] == ctaxon %>
+          <tr>
+            <td style="<%= row_style %>"><%= n[:taxon].try(:id) %></td>
+            <td style="<%= row_style %>"><%= n[:taxon].try(:name) %></td>
+            <td style="<%= row_style %>"><%= n[:taxon].try(:rank_level) %></td>
+            <td style="<%= row_style %>"><%= n[:cumulative_count] %></td>
+            <td style="<%= row_style %>"><%= n[:disagreement_count] %></td>
+            <td style="<%= row_style %>"><%= n[:conservative_disagreement_count] %></td>
+            <td style="<%= row_style %>">
+              <%= n[:cumulative_count] %>/(<%= n[:cumulative_count] %> + <%= n[:disagreement_count] %> + <%= n[:conservative_disagreement_count] %>
+              = <%= n[:cumulative_count] + n[:disagreement_count] + n[:conservative_disagreement_count] %>) = <%= n[:score] %></td>
+          </tr>
+        <% end -%>
+      </table>
+    </div>
+  </div>
+<% end -%>
+
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
     <div class="breadcrumbs">
@@ -433,7 +477,9 @@
 <div class="column span-7 last">  
 
   <div id="identifications" class="identifications clear">
-    <h3><%=t :identification_summary %></h3>
+    <h3>
+      <%=t :identification_summary %>
+    </h3>
     
     <% if @owners_identification %>
       <div id="owners-identification" class="box <%= 'withupperright' if @listed_taxon || @conservation_status %>">
@@ -444,23 +490,63 @@
         <% end -%>
       </div>
     <% end %>
+
+    <% if logged_in? && params[:test] == "cid" && @community_identification -%>
+      <div class="identification_group">
+        <div id="community-identification" class="box">
+          <%= render :partial => 'identifications/identification',
+                     :locals => {
+                      :identification => @community_identification,
+                      :usertext => "<strong>Community</strong> ID: ".html_safe
+                    } %>
+          <% if is_me?(@observation.user) && @observation.community_taxon_id != @observation.taxon_id -%>
+            <%= link_to "&times;".html_safe, 
+              observation_url(@observation, :observation => {:prefers_community_taxon => false}, :ignore_photos => true), 
+              :method => :put, 
+              :class => "blob upperright remove",
+              "data-tip" => t(:opt_out_of_community_ids_for_obs, :default => "Opt out of commmunity IDs") %>
+          <% end -%>
+        </div>
+        <% if identifications = @current_identifications_by_taxon[@community_identification.taxon] -%>
+          <div class="agreers description">
+            <% for agreement in identifications %>
+              <%= link_to user_image(agreement.user, :size => :mini), agreement.user %>
+            <% end %>
+            <nobr><%=t :x_people_agree_html, :count => identifications.size %></nobr>
+          </div>
+        <% end -%>
+      </div>
+    <% elsif @observation.community_taxon_rejected? %>
+      <div class="quiet box">
+        <% if is_me?(@observation.user) -%>
+          <%=t @observation.prefers_community_taxon == false ? :youve_opted_out_of_community_ids : :youve_opted_out_of_community_ids_for_this_obs %>.
+          <ul class="unstacked">
+            <li>
+              <%= link_to t(:opt_in_for_this_observation), 
+                observation_url(@observation, :observation => {:prefers_community_taxon => true}, :ignore_photos => true), 
+                :method => :put %>
+            </li>
+            <li>
+              <%= link_to t(:edit_your_default_settings), generic_edit_user_path %>
+            </li>
+          </ul>
+        <% else %>
+          <%=t @observation.prefers_community_taxon == false ? :user_has_opted_out_of_community_ids : :user_has_opted_out_of_community_ids_for_this_obs, :user => @observation.user.login %>.
+        <% end -%>
+      </div>
+    <% end -%>
+
     <div id="identifications-list-<%= @observation.id %>" class="identifications-list">
-      <% for taxon, identifications in @current_identifications_by_taxon %>
+      <% for taxon, identifications in @sorted_current_identifications_by_taxon %>
+        <%- next if @community_identification && @community_identification.taxon === taxon -%>
         <div class="identification_group">
           <%= render :partial => "identifications/identification", :locals => { :identification => identifications.first }%>
-          <% if identifications.size == 2 %>
+          <% if identifications.size > 1 -%>
             <div class="agreers description">
-              <%= link_to you_or_login(identifications.last.user), identifications.last.user %> agrees
-            </div>
-          <% elsif identifications.size > 2 -%>
-            <div class="agreers description">
-              <%= identifications.size - 1 %> <%=t :people_agree %>
-              <span class="button"><%= link_to_function t(:show), "$(this).parent().next('ul').slideToggle()" %></span>
-              <ul style="display: none">
-                <% for agreement in identifications[1..-1] %>
-                  <li><%= link_to you_or_login(agreement.user), agreement.user %></li>
-                <% end %>
-              </ul>
+              <% for agreement in identifications[1..-1] %>
+                <%= link_to user_image(agreement.user, :size => :mini), agreement.user %>
+              <% end %>
+              <%=t :x_people_agree_html, :count => identifications.size - 1 %>
             </div>
           <% end -%>
         </div>
@@ -707,36 +793,6 @@
   <% end %>
   
   <%= separator %>
-  
-  <% if logged_in? && params[:test] && !@places.blank?-%>
-    <h3><%=t :places %></h3>
-    <ul>
-      <%- @places.each do |place| %>
-        <%- extra = capture do %>
-          <% if @observation.taxon -%>
-            <ul class="plain small stacked">
-              <li>
-                <% if @observation.taxon.species_or_lower? -%>
-                  <%= link_to raw t(:view_other_taxa, :taxon_name => "#{default_taxon_name(@observation.taxon.parent)}"), 
-                    {:controller => "taxa", :action => "search", :taxon_id => @observation.taxon.parent_id, :places => place.id} %>
-                <% else %>
-                  <%= link_to raw t(:view_other_taxa, :taxon_name =>"#{default_taxon_name(@observation.taxon)}"), 
-                    {:controller => "taxa", :action => "search", :taxon_id => @observation.taxon_id, :places => place.id} %>
-                <% end -%>
-              </li>
-              <li>
-                <%- it = Taxon::ICONIC_TAXA_BY_ID[@observation.taxon.iconic_taxon_id] -%>
-                <%= link_to raw t(:view_other_taxa, :taxon_name =>"#{default_taxon_name(it)}"), 
-                  {:controller => "taxa", :action => "search", :taxon_id => it.id, :places => place.id} %>
-              </li>
-            </ul>
-          <% end -%>
-        <% end -%>
-        <%= render :partial => "places/place_li", :object => place, :locals => {:extra => extra} %>
-      <% end %>
-    </ul>
-    <%= separator %>
-  <% end -%>
   
   <div id="fblike" class="stacked">
     <script src="//connect.facebook.net/<%= t(:fblocale) %>/all.js#xfbml=1"></script>

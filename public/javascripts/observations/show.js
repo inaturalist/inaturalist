@@ -1,7 +1,7 @@
 $(document).ready(function() {
   // setup the map if one is needed
   window.observation = OBSERVATION;
-  if ((observation.latitude && observation.longitude) || (observation.private_latitude && observation.private_longitude)) {
+  if (iNaturalist.Map && (observation.latitude && observation.longitude) || (observation.private_latitude && observation.private_longitude)) {
     window.map = iNaturalist.Map.createMap({
       lat: 40.714, 
       lng: -98.262, 
