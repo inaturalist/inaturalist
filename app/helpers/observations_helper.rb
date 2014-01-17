@@ -90,5 +90,56 @@ module ObservationsHelper
     end
     s.html_safe
   end
+
+  #function to filter the stages.  Shouldn't be used until the javascript event is hooked up
+  def filtered_stages(observation)
+    #if !observation.iconic_taxon_name.nil?
+    #  options = Observation::STAGE_OPTIONS.reject { |k,v| ![Observation::NZBRN_ICONIC[observation.iconic_taxon_name]].include? k}
+    #  return options if options.count > 0
+    #end
+    Observation::STAGE_OPTIONS
+  end
   
+  def coordinate_system_select_options
+    return {} unless CONFIG.coordinate_systems
+    options = {}
+    CONFIG.coordinate_systems.each do |system_name, system|
+      options[system[:label]] = system_name
+    end
+    options
+  end
+
+  def field_value_example(datatype, allowed_values = nil, field_id = nil)
+    str = if allowed_values.blank?
+      case datatype
+      when 'text'
+        'alphanumeric string'
+      when 'datetime', 'date'
+        'YYYY-MM-DD or YYYY-MM-DD HH:MM:SS'
+      when 'latitude'
+        'dd.dddd (latitude) or ddddddd (northing)'
+      when 'longitude'
+        'dd.dddd (longitude) or ddddddd (easting)'
+      when 'boolean'
+        'yes or no'
+      when 'list'
+        'limited set of options, usually alphanumeric'
+      when 'number'
+      when 'numeric'
+        'positive whole number'
+      else
+        nil
+      end
+    else
+      "One of #{allowed_values.split('|').to_sentence(:two_words_connector => ' or ', :last_word_connector => ' or ')}"
+    end
+
+    unless field_id.nil?
+      proj_obs_field = ProjectObservationField.find_by_observation_field_id(field_id)
+      str = "#{str}, #{content_tag('strong', 'required')}".html_safe if proj_obs_field.required
+    end
+
+    str
+  end
+
 end

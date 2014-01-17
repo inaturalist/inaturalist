@@ -470,4 +470,40 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
     end
     {numerator: unpaginated_listed_taxa.confirmed.count, denominator: unpaginated_listed_taxa.count}
   end
+
+  def generate_bulk_upload_template
+    data = {
+      'Species guess'            => ['#Lorem', 'Ipsum', 'Dolor'],
+      'Observation Date'         => ['2013-01-01', '2013-01-01 09:10:11', '2013-01-01T14:40:33'],
+      'Description'              => ['Description of observation'],
+      'Location'                 => ['Wellington City', 'Karori'],
+      'Latitude or Northing'     => [-41.2837551, 1932810],
+      'Longitude or Easting'     => [174.7408745, 5669626],
+      'Tags'                     => ['Comma,Separated', 'List,Of,Tags'],
+      'Geoprivacy'               => ["[Leave blank for 'open']", 'Private', 'Obscured'],
+    }
+
+    ProjectObservationField.includes(:observation_field).where(:project_id => self.id).order(:position).each do |field|
+      name = field.observation_field.name
+      name = "#{name}*" if field.required?
+      if field.observation_field.allowed_values.blank?
+        data[name] = [field.observation_field.datatype]
+      else
+        data[name] = ["One of #{field.observation_field.allowed_values.split('|').join(', ')}"]
+      end
+    end
+
+    CSV.generate do |csv|
+      csv << data.keys
+      csv << ['# A hash mark at the start of a row will mean the entire row is ignored']
+      csv << data.collect { |f| f[1][0] }
+      csv << data.collect { |f| f[1][1] }
+      csv << data.collect { |f| f[1][2] }
+    end
+  end
+
+  def split_large_array(list)
+    list_count = (list.count / 3.0).ceil
+    list.in_groups_of(list_count)
+  end
 end

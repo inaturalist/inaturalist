@@ -109,3 +109,14 @@ LocalPhoto.attachment_definitions[:file].tap do |d|
     d[:default_url] = "/attachment_defaults/:class/:attachment/defaults/:style.png"
   end
 end
+
+def stub_config(options = {})
+  InatConfig.instance_eval do
+    options.each do |k,v|
+      define_method k do
+        @config[k] ||= v
+        method_missing k.to_sym
+      end
+    end
+  end
+end

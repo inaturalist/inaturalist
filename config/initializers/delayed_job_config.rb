@@ -28,3 +28,4 @@ Delayed::Worker.destroy_failed_jobs = false
 #   ActiveRecord::Base.logger = Delayed::Worker.logger
 #   Rails.logger = Delayed::Worker.logger
 # end
+Delayed::Worker.max_run_time = 8.hours

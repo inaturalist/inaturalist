@@ -4,11 +4,12 @@ class Observation < ActiveRecord::Base
     :comments => {:notification => "activity", :include_owner => true},
     :identifications => {:notification => "activity", :include_owner => true}
   }
-  notifies_subscribers_of :user, :notification => "created_observations"
+  notifies_subscribers_of :user, :notification => "created_observations",
+    :queue_if => lambda { |observation| !observation.bulk_import }
   notifies_subscribers_of :public_places, :notification => "new_observations", 
     :on => :create,
     :queue_if => lambda {|observation|
-      observation.georeferenced?
+      observation.georeferenced? && !observation.bulk_import
     },
     :if => lambda {|observation, place, subscription|
       return false unless observation.georeferenced?
@@ -17,8 +18,7 @@ class Observation < ActiveRecord::Base
       observation.taxon.ancestor_ids.include?(subscription.taxon_id)
     }
   notifies_subscribers_of :taxon_and_ancestors, :notification => "new_observations", 
-    :on => :create,
-    :queue_if => lambda {|observation| !observation.taxon_id.blank? },
+    :queue_if => lambda {|observation| !observation.taxon_id.blank? && !observation.bulk_import},
     :if => lambda {|observation, taxon, subscription|
       return true if observation.taxon_id == taxon.id
       return false if observation.taxon.blank?
@@ -32,7 +32,7 @@ class Observation < ActiveRecord::Base
   # Set to true if you want to skip the expensive updating of all the user's
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
-  attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications
+  attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications, :bulk_import
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -41,6 +41,13 @@ class Observation < ActiveRecord::Base
   # licensing extras
   attr_accessor :make_license_default
   attr_accessor :make_licenses_same
+  
+  # coordinate system
+  attr_accessor :coordinate_system
+  attr_accessor :place_guess_other
+  attr_accessor :positional_accuracy_other
+  attr_accessor :geo_x
+  attr_accessor :geo_y
 
   attr_accessor :twitter_sharing
   attr_accessor :facebook_sharing
@@ -48,6 +55,9 @@ class Observation < ActiveRecord::Base
   attr_accessor :captive_flag
   attr_accessor :force_quality_metrics
 
+  # custom project field errors
+  attr_accessor :custom_field_errors
+  
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
   
   M_TO_OBSCURE_THREATENED_TAXA = 10000
@@ -195,6 +205,7 @@ class Observation < ActiveRecord::Base
   ALL_EXPORT_COLUMNS = (CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS).uniq
 
   preference :community_taxon, :boolean, :default => nil
+  WGS84_PROJ4 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
   
   belongs_to :user, :counter_cache => true
   belongs_to :taxon
@@ -300,7 +311,7 @@ class Observation < ActiveRecord::Base
   
   validate :must_be_in_the_past,
            :must_not_be_a_range
-  
+
   validates_numericality_of :latitude,
     :allow_blank => true, 
     :less_than_or_equal_to => 90, 
@@ -312,6 +323,22 @@ class Observation < ActiveRecord::Base
   validates_length_of :observed_on_string, :maximum => 256, :allow_blank => true
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
+  validates_inclusion_of :coordinate_system,
+    :in => proc { CONFIG.coordinate_systems.keys.map(&:to_s) },
+    :message => "'%{value}' is not a valid coordinate system",
+    :allow_blank => true,
+    :if => lambda {|o|
+      CONFIG.coordinate_systems
+    }
+  # See /config/locale/en.yml for field labels for `geo_x` and `geo_y`
+  validates_numericality_of :geo_x,
+    :allow_blank => true,
+    :message => "should be a number"
+  validates_numericality_of :geo_y,
+    :allow_blank => true,
+    :message => "should be a number"
+  validates_presence_of :geo_x, :if => proc {|o| o.geo_y.present? }
+  validates_presence_of :geo_y, :if => proc {|o| o.geo_x.present? }
   
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
@@ -334,7 +361,7 @@ class Observation < ActiveRecord::Base
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon,
               :set_iconic_taxon
-  
+  before_create :set_coordinates
   before_update :set_quality_grade
                  
   after_save :refresh_lists,
@@ -1772,10 +1799,14 @@ class Observation < ActiveRecord::Base
   end
   
   def set_taxon_from_species_guess
+    puts "[DEBUG] set_taxon_from_species_guess, species_guess =~ /\?$/: #{species_guess =~ /\?$/}"
     return true if species_guess =~ /\?$/
+    puts "[DEBUG] set_taxon_from_species_guess, species_guess_changed? && taxon_id.blank?: #{species_guess_changed? && taxon_id.blank?}"
     return true unless species_guess_changed? && taxon_id.blank?
+    puts "[DEBUG] set_taxon_from_species_guess, species_guess.blank?: #{species_guess.blank?}"
     return true if species_guess.blank?
     self.taxon_id = single_taxon_id_for_name(species_guess)
+    puts "[DEBUG] set_taxon_from_species_guess, taxon_id: #{self.taxon_id}"
     true
   end
   
@@ -2285,6 +2316,29 @@ class Observation < ActiveRecord::Base
     I18N_SUPPORTED_LOCALES.each do |locale|
       ctrl.expire_fragment(o.component_cache_key(:locale => locale))
       ctrl.expire_fragment(o.component_cache_key(:locale => locale, :for_owner => true))
+    end
+  end
+  
+  def set_coordinates
+    if self.geo_x.present? && self.geo_y.present? && self.coordinate_system.present?
+      # Set the place_guess if place_guess_other is present
+      self.place_guess = self.place_guess_other if self.place_guess_other.present?
+
+      # Set the positional_accuracy if positional_accuracy_other is present
+      self.positional_accuracy = self.positional_accuracy_other if self.positional_accuracy_other.present?
+
+      # Perform the transformation
+      # transfrom from `self.coordinate_system`
+      from = RGeo::CoordSys::Proj4.new(CONFIG.coordinate_systems.send(self.coordinate_system.to_sym).proj4)
+
+      # ... to WGS84
+      to = RGeo::CoordSys::Proj4.new(WGS84_PROJ4)
+
+      # Returns an array of lat, lon
+      transform = RGeo::CoordSys::Proj4.transform_coords(from, to, self.geo_x.to_d, self.geo_y.to_d)
+
+      # Set the transfor
+      self.longitude, self.latitude = transform
     end
   end
   
