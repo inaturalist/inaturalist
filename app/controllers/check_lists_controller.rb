@@ -23,12 +23,8 @@ class CheckListsController < ApplicationController
     # would be a pain to manage, but it might be faster.
     if @list.is_default?
       @find_options[:conditions] = update_conditions(
-        @find_options[:conditions], ["AND place_id = ?", @list.place_id])
+        @find_options[:conditions], ["AND place_id = ? AND primary_listing = ?", @list.place_id, true])
       
-      # Make sure we don't get duplicate taxa from check lists other than the default
-      
-      # replace this with a primary listing query 
-      @find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
 
       # Searches must use place_id instead of list_id for default checklists 
       # so we can search items in other checklists for this place
