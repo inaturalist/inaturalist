@@ -1537,6 +1537,7 @@ class Observation < ActiveRecord::Base
 
       {
         :taxon => id_taxon,
+        :ident_count => working_idents.select{|i| i.taxon_id == id_taxon.id}.size,
         :cumulative_count => cumulative_count,
         :disagreement_count => disagreement_count,
         :conservative_disagreement_count => conservative_disagreement_count,
