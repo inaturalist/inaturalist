@@ -617,6 +617,7 @@ class ListedTaxon < ActiveRecord::Base
   def remove_other_primary_listings
     ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).update_all({primary_listing: false})
     self.update_attribute(:primary_listing, true)
+    true
   end
   
   def reassign_primary_taxa

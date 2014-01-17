@@ -26,8 +26,10 @@ class CheckListsController < ApplicationController
         @find_options[:conditions], ["AND place_id = ?", @list.place_id])
       
       # Make sure we don't get duplicate taxa from check lists other than the default
-      @find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
       
+      # replace this with a primary listing query 
+      @find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
+
       # Searches must use place_id instead of list_id for default checklists 
       # so we can search items in other checklists for this place
       if @q = params[:q]

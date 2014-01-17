@@ -452,12 +452,11 @@ describe "primary_listing" do
     @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @list)
     @listed_taxon.reload
 
-    @taxon_two = Taxon.make!
-    @first_observation_two = Observation.make!(:taxon => @taxon_two)
-    @user_two = @first_observation.user
-    @last_observation_two = Observation.make!(:taxon => @taxon_two, :user => @user_two, :observed_on_string => 1.minute.ago.to_s)
-    @list_two = @user.life_list
-    @listed_taxon_two = ListedTaxon.make!(:taxon => @taxon_two, :list => @list_two)
+    @first_observation_two = Observation.make!(:taxon => @taxon)
+    @user_two = @first_observation_two.user
+    @last_observation_two = Observation.make!(:taxon => @taxon, :user => @user_two, :observed_on_string => 1.minute.ago.to_s)
+    @list_two = @user_two.life_list
+    @listed_taxon_two = ListedTaxon.make!(:taxon => @taxon, :list => @list_two)
     @listed_taxon_two.reload
   end
 
@@ -466,5 +465,11 @@ describe "primary_listing" do
   end
   it "should set second lt as primary listing = false" do
     @listed_taxon_two.primary_listing.should be(false)
+  end
+  it "should set each lt appropriately on update" do
+    @listed_taxon_two.update_attribute(:primary_listing, true)
+    @listed_taxon_two.primary_listing.should be(true)
+    @listed_taxon.reload
+    @listed_taxon.primary_listing.should be(false)
   end
 end
