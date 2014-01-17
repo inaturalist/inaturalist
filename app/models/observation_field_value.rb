@@ -62,21 +62,35 @@ class ObservationFieldValue < ActiveRecord::Base
     when "location"
       errors.add(:value, "must decimal latitude and decimal longitude separated by a comma") if value !~ LAT_LON_REGEX
     when "date"
-      errors.add(:value, "must by in the form YYYY-MM-DD") unless value =~ /^\d{4}\-\d{2}\-\d{2}$/
+      unless value =~ /^\d{4}\-\d{2}\-\d{2}$/
+        errors.add(:value, :date_format, 
+          :observation_field_name => observation_field.name,
+          :observation_species_guess => observation.try(:species_guess)
+        )
+      end
     when "datetime"
       begin
         Time.iso8601(value)
       rescue ArgumentError => e
-        errors.add(:value, "must by in the form #{Time.now.iso8601}")
+        errors.add(:value, :datetime_format,
+          :observation_field_name => observation_field.name,
+          :observation_species_guess => observation.try(:species_guess)
+        )
       end
     when "time"
       begin
         Time.parse(value)
         if value !~ /^\d\d:\d\d/
-          errors.add(:value, "must by in the form hh:mm")
+          errors.add(:value, :time_format, 
+            :observation_field_name => observation_field.name,
+            :observation_species_guess => observation.try(:species_guess)
+          )
         end
       rescue ArgumentError => e
-        errors.add(:value, "must by in the form hh:mm")
+        errors.add(:value, :time_format, 
+          :observation_field_name => observation_field.name,
+          :observation_species_guess => observation.try(:species_guess)
+        )
       end
     when "dna"
       if value =~ /[^ATCG\s]/

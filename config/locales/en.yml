@@ -3681,7 +3681,7 @@ en:
         reason: Reason
         flag: Flag
       observation_field_value:
-        value: 'dd'
+        value: 'value'
       taxon:
               name: Name
               rank: Rank
@@ -3715,3 +3715,9 @@ en:
           attributes:
             value:
               dna_only_atcg: "for DNA can only contain the characters A, T, C, or G"
+              date_format: |
+                must by in the form YYYY-MM-DD for a date field ("%{observation_field_name}" 
+                in your observation of "%{observation_species_guess}")
+              time_format: |
+                must by in the form hh:mm for a time field ("%{observation_field_name}" 
+                in your observation of "%{observation_species_guess}")
