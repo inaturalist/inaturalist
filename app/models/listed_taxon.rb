@@ -35,6 +35,7 @@ class ListedTaxon < ActiveRecord::Base
   after_save :update_cache_columns_for_check_list
   after_save :propagate_establishment_means
   after_save :replace_primary_listing
+  after_save :update_attributes_on_related_listed_taxa
   after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
@@ -626,5 +627,17 @@ class ListedTaxon < ActiveRecord::Base
     related_taxon.update_attribute(:primary_listing, true) if related_taxon
   end
 
-
+  def update_attributes_on_related_listed_taxa
+    return true unless primary_listing
+    related_listed_taxa.each do |related_taxon|
+      related_taxon.establishment_means = establishment_means
+      related_taxon.first_observation_id = first_observation_id
+      related_taxon.last_observation_id = last_observation_id 
+      related_taxon.observations_count = observations_count
+      related_taxon.observations_month_counts = observations_month_counts
+      related_taxon.occurrence_status_level = occurrence_status_level
+      related_taxon.save
+    end
+    true
+  end
 end
