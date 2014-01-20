@@ -130,10 +130,15 @@ module MakeHelpers
     end
     @Amphibia.update_attributes(:parent => @Chordata)
 
-    unless @Hylidae = Taxon.find_by_name('Hylidae')
-      @Hylidae = Taxon.make!(:name => 'Hylidae', :rank => "order")
+    unless @Anura = Taxon.find_by_name('Anura')
+      @Anura = Taxon.make!(:name => 'Anura', :rank => "order")
     end
-    @Hylidae.update_attributes(:parent => @Amphibia)
+    @Anura.update_attributes(:parent => @Amphibia)
+
+    unless @Hylidae = Taxon.find_by_name('Hylidae')
+      @Hylidae = Taxon.make!(:name => 'Hylidae', :rank => "family")
+    end
+    @Hylidae.update_attributes(:parent => @Anura)
 
     unless @Pseudacris = Taxon.find_by_name('Pseudacris')
       @Pseudacris = Taxon.make!(:name => 'Pseudacris', :rank => "genus")
