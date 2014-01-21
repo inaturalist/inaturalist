@@ -273,7 +273,7 @@ class GuideTaxon < ActiveRecord::Base
     return unless taxon
     lexicon = options[:lexicon] || TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
     lexicon = TaxonName::LEXICONS[lexicon.to_sym] if TaxonName::LEXICONS[lexicon.to_sym]
-    rank_taxon = taxon.send(rank) rescue nil
+    rank_taxon = taxon.send("find_#{rank}") rescue nil
     return unless rank_taxon
     name = if lexicon == TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
       rank_taxon.name

@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
   preference :share_observations_on_twitter, :boolean, :default => true
   preference :automatic_taxonomic_changes, :boolean, :default => true
   preference :observations_view, :string
+  preference :community_taxa, :boolean, :default => true
 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
@@ -73,7 +74,7 @@ class User < ActiveRecord::Base
   has_many :journal_posts, :class_name => Post.to_s, :as => :parent, :dependent => :destroy
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
-  has_many :projects #, :dependent => :nullify
+  has_many :projects
   has_many :project_users, :dependent => :destroy
   has_many :listed_taxa, :dependent => :nullify
   has_many :invites, :dependent => :nullify
@@ -107,6 +108,7 @@ class User < ActiveRecord::Base
   after_save :update_photo_licenses
   after_save :update_sound_licenses
   after_save :destroy_messages_by_suspended_user
+  before_save :set_community_taxa_if_pref_changed
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
@@ -141,7 +143,8 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, :time_zone, :icon_url, :locale
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, 
+    :time_zone, :icon_url, :locale, :prefers_community_taxa
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -583,6 +586,13 @@ class User < ActiveRecord::Base
   def destroy_messages_by_suspended_user
     return true unless suspended?
     Message.inbox.unread.where(:from_user_id => id).destroy_all
+    true
+  end
+
+  def set_community_taxa_if_pref_changed
+    if prefers_community_taxa_changed?
+      Observation.delay(:priority => USER_INTEGRITY_PRIORITY).set_community_taxa(:user => id)
+    end
     true
   end
 

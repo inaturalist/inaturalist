@@ -51,6 +51,13 @@ module MakeHelpers
     o.reload
     o
   end
+
+  def make_mobile_observation(options = {})
+    options = {
+      :user_agent => "iNaturalist/2.3.0 (iOS iPhone OS 7.0.4 iPhone)"
+    }.merge(options) 
+    Observation.make!(options)
+  end
   
   def make_local_photo(options = {})
     lp = LocalPhoto.make!(options)
@@ -113,7 +120,7 @@ module MakeHelpers
   #           `--- Magnoliopsida
   def load_test_taxa
     Rails.logger.debug "\n\n\n[DEBUG] loading test taxa"
-    @Life = Taxon.find_by_name('Life') || Taxon.make!(:name => 'Life')
+    @Life = Taxon.find_by_name('Life') || Taxon.make!(:name => 'Life', :rank => "state of matter")
 
     unless @Animalia = Taxon.find_by_name('Animalia')
       @Animalia = Taxon.make!(:name => 'Animalia', :rank => 'kingdom', :is_iconic => true)
@@ -130,10 +137,15 @@ module MakeHelpers
     end
     @Amphibia.update_attributes(:parent => @Chordata)
 
-    unless @Hylidae = Taxon.find_by_name('Hylidae')
-      @Hylidae = Taxon.make!(:name => 'Hylidae', :rank => "order")
+    unless @Anura = Taxon.find_by_name('Anura')
+      @Anura = Taxon.make!(:name => 'Anura', :rank => "order")
     end
-    @Hylidae.update_attributes(:parent => @Amphibia)
+    @Anura.update_attributes(:parent => @Amphibia)
+
+    unless @Hylidae = Taxon.find_by_name('Hylidae')
+      @Hylidae = Taxon.make!(:name => 'Hylidae', :rank => "family")
+    end
+    @Hylidae.update_attributes(:parent => @Anura)
 
     unless @Pseudacris = Taxon.find_by_name('Pseudacris')
       @Pseudacris = Taxon.make!(:name => 'Pseudacris', :rank => "genus")

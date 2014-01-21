@@ -13704,12 +13704,9 @@ CREATE TABLE observations (
     oauth_application_id integer,
     sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
-    private_geom geometry,
+    private_geom geometry(Point),
     captive boolean DEFAULT false,
-    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
-    CONSTRAINT enforce_dims_private_geom CHECK ((st_ndims(private_geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'POINT'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_geotype_private_geom CHECK (((geometrytype(private_geom) = 'POINT'::text) OR (private_geom IS NULL)))
+    community_taxon_id integer
 );
 
 
@@ -17195,6 +17192,13 @@ CREATE INDEX index_observations_on_comments_count ON observations USING btree (c
 
 
 --
+-- Name: index_observations_on_community_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_community_taxon_id ON observations USING btree (community_taxon_id);
+
+
+--
 -- Name: index_observations_on_geom; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -18331,6 +18335,8 @@ INSERT INTO schema_migrations (version) VALUES ('20120808224842');
 INSERT INTO schema_migrations (version) VALUES ('20120810053551');
 
 INSERT INTO schema_migrations (version) VALUES ('20120821195023');
+
+INSERT INTO schema_migrations (version) VALUES ('20120830020828');
 
 INSERT INTO schema_migrations (version) VALUES ('20120902210558');
 

@@ -414,7 +414,7 @@ class ListedTaxon < ActiveRecord::Base
     )
     lt.save
   end
-  
+
   def observation_month_stats
     return {} if observations_month_counts.blank?
     r_stats = confirmed_observation_month_stats

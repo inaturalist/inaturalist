@@ -495,6 +495,7 @@ describe Observation, "updating" do
     
     it "should become casual when taxon changes" do
       o = make_research_grade_observation
+      o.quality_grade.should == Observation::RESEARCH_GRADE
       new_taxon = Taxon.make!
       o.update_attributes(:taxon => new_taxon)
       o.quality_grade.should == Observation::CASUAL_GRADE
@@ -1800,3 +1801,174 @@ describe Observation, "dynamic place getters" do
     o.place_state_name.should eq p.name
   end
 end
+
+describe Observation, "community taxon" do
+
+  it "should not be set if user has opted out" do
+    u = User.make!(:prefers_community_taxa => false)
+    o = Observation.make!(:user => u)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should be_blank
+  end
+
+  it "should be set if user has opted out and community agrees with user" do
+    u = User.make!(:prefers_community_taxa => false)
+    o = Observation.make!(:taxon => Taxon.make!, :user => u)
+    i1 = Identification.make!(:observation => o, :taxon => o.taxon)
+    o.reload
+    o.community_taxon.should eq o.taxon
+  end
+
+  it "should not be set if observation is opted out" do
+    o = Observation.make!(:prefers_community_taxon => false)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should be_blank
+  end
+
+  it "should be set if observation is opted in but user is opted out" do
+    u = User.make!(:prefers_community_taxa => false)
+    o = Observation.make!(:prefers_community_taxon => true, :user => u)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should eq i1.taxon
+  end
+
+  it "should be set when preference set to true" do
+    o = Observation.make!(:prefers_community_taxon => false)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should be_blank
+    o.update_attributes(:prefers_community_taxon => true)
+    o.reload
+    o.community_taxon.should eq(i1.taxon)
+  end
+
+  it "should be unset when preference set to false" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should eq(i1.taxon)
+    o.update_attributes(:prefers_community_taxon => false)
+    o.reload
+    o.community_taxon.should be_blank
+  end
+
+  it "should not be set if there is only one current identification" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o, :user => o.user)
+    i2 = Identification.make!(:observation => o, :user => o.user)
+    o.reload
+    o.community_taxon.should be_blank
+  end
+
+  describe "test cases: " do
+    before do
+      # Tree:
+      #          f
+      #       /     \
+      #      g1     g2
+      #     /  \
+      #    s1  s2
+      #   /  \
+      # ss1  ss2
+
+      @f = Taxon.make!(:rank => "family", :name => "f")
+      @g1 = Taxon.make!(:rank => "genus", :parent => @f, :name => "g1")
+      @g2 = Taxon.make!(:rank => "genus", :parent => @f, :name => "g2")
+      @s1 = Taxon.make!(:rank => "species", :parent => @g1, :name => "s1")
+      @s2 = Taxon.make!(:rank => "species", :parent => @g1, :name => "s2")
+      @ss1 = Taxon.make!(:rank => "species", :parent => @s1, :name => "ss1")
+      @ss2 = Taxon.make!(:rank => "species", :parent => @s1, :name => "ss2")
+      @o = Observation.make!
+    end
+
+    it "s1 s1 s2" do
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      i = Identification.make!(:observation => @o, :taxon => @s2)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+
+    it "s1 s1 g1" do
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @g1)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+
+    it "s1 s1 s1 g1" do
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @g1)
+      @o.reload
+      @o.community_taxon.should eq @s1
+    end
+
+    it "ss1 ss1 ss2 ss2" do
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+
+    it "f f f f ss1 s2 s2 s2 s2" do
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @ss1)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      @o.reload
+      @o.community_taxon.should eq @s2
+    end
+
+    it "f f f f ss1 ss1 s2 s2 s2 s2 g1" do
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @ss1)
+      Identification.make!(:observation => @o, :taxon => @ss1)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @g1)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+
+    it "f g1 s1 (should not taxa with only one ID to be the community taxon)" do
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @g1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+
+    it "f f g1 s1" do
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @g1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+  end
+end
+
