@@ -4,7 +4,7 @@ class ObservationFieldValue < ActiveRecord::Base
   
   before_validation :strip_value
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
-  validates_presence_of :value
+  validates_presence_of :value, :if => lambda {|ofv| !ofv.observation.mobile? }
   validates_presence_of :observation_field_id
   validates_length_of :value, :maximum => 2048
   validate :validate_observation_field_datatype
@@ -56,6 +56,7 @@ class ObservationFieldValue < ActiveRecord::Base
   end
   
   def validate_observation_field_datatype
+    return true if observation.mobile? # HACK until we implement ui for *all* observation field types in the mobile apps
     case observation_field.datatype
     when "numeric"
       errors.add(:value, "must be a number") if value !~ Observation::FLOAT_REGEX

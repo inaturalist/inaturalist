@@ -51,6 +51,13 @@ module MakeHelpers
     o.reload
     o
   end
+
+  def make_mobile_observation(options = {})
+    options = {
+      :user_agent => "iNaturalist/2.3.0 (iOS iPhone OS 7.0.4 iPhone)"
+    }.merge(options) 
+    Observation.make!(options)
+  end
   
   def make_local_photo(options = {})
     lp = LocalPhoto.make!(options)
