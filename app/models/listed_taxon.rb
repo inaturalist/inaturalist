@@ -40,6 +40,7 @@ class ListedTaxon < ActiveRecord::Base
   after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
+  after_create :sync_species_if_infraspecies
   after_create :delta_index_taxon
   before_destroy :set_old_list
   before_destroy :reassign_primary_listed_taxon
@@ -123,6 +124,7 @@ class ListedTaxon < ActiveRecord::Base
   CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
   
   attr_accessor :skip_sync_with_parent,
+                :skip_species_for_infraspecies,
                 :skip_update_cache_columns,
                 :skip_update_user_life_list_taxa_count,
                 :force_update_cache_columns,
@@ -290,6 +292,16 @@ class ListedTaxon < ActiveRecord::Base
     true
   end
   
+  def sync_species_if_infraspecies
+    return true if @skip_species_for_infraspecies
+    return true unless list.is_a?(CheckList) && taxon
+    return true unless taxon.infraspecies?
+    unless Delayed::Job.where("handler LIKE '%ListedTaxon%species_for_infraspecies%\n- #{id}\n'").exists?
+      ListedTaxon.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").species_for_infraspecies(id)
+    end
+    true
+  end
+  
   def delta_index_taxon
     Taxon.update_all(["delta = ?", true], ["id = ?", taxon_id])
     true
@@ -386,6 +398,21 @@ class ListedTaxon < ActiveRecord::Base
         lt.first_observation_id, lt.last_observation_id, lt.observations_count, lt.observations_month_counts],
       ["id = ?", lt.id]
     )
+  end
+  
+  def self.species_for_infraspecies(lt)
+    lt = ListedTaxon.includes(:taxon,:place).find_by_id(lt) unless lt.is_a?(ListedTaxon)
+    return nil unless lt
+    return nil unless taxon = lt.taxon
+    return nil unless place = lt.place
+    return nil unless parent = taxon.parent
+    return true if species = ListedTaxon.where(:taxon_id => parent.id, :place_id => place.id).first
+    lt = ListedTaxon.new(
+      :taxon_id => parent.id,
+      :place_id => place.id,
+      :list_id => lt.place.check_list_id
+    )
+    lt.save
   end
   
   def observation_month_stats
