@@ -44,6 +44,9 @@ en:
   x_people:
     one: '1 person'
     other: '%{count} people'
+  x_people_agree_html:
+    one: '<span class="count">1</span> person agrees'
+    other: '<span class="count">%{count}</span> people agree'
   x_species:
     one: '1 species'
     other: '%{count} species'
@@ -72,6 +75,7 @@ en:
   able_to_connect_flickr: Great!  We were able to link to your Flickr account.
   about: About
   about_bioblitz_results: About bioblitz results
+  about_community_taxa: About community taxa
   about_external_links: About External Links
   about_licenses: About licenses
   about_licensing: about_licensing
@@ -758,6 +762,7 @@ en:
   do_you_know_where_this_species_lives: Do you know where this species lives?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Do you study nematodes? Are you the world's foremost expert on barnacle taxonomy? Do you just like looking at pretty flowers? Filling out your profile adds some personality and helps establish your credibility when helping people out with identifications.
   does_the_location_seem_accurate: "Does the location seem accurate?"
+  does_the_date_seem_accurate: "Does the date seem accurate?"
   doesnt_have_default_photo: doesn't have a default photo yet.
   doh_something_went_wrong: D'oh, something went wrong.
   dont_filter: "Don't filter"
@@ -800,6 +805,7 @@ en:
   edit_this_link: Edit this link
   edit_your_account: edit your account
   edit_your_account_and_profile_html: "Edit Your Account &amp; Profile"
+  edit_your_default_settings: "Edit your default settings"
   edit_your_identification: Edit your identification
   edit_your_profile: Edit your profile
   edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Edit your settings</a> to change the kinds of updates you receive or unsubscribe completely."
@@ -1661,6 +1667,8 @@ en:
   only_the_project_admin_can_delete_this_project: Only the project admin can delete this project.
   open: open
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
+  opt_in_for_this_observation: "Opt in for this observation"
+  opt_out_of_community_ids_for_obs: "Opt out of the community identification for this observation"
   optional: optional
   optional_columns_note_for_any: "Optional columns (note: for any of these columns to be used in an observation, they must all be present)"
   or: or
@@ -2596,6 +2604,8 @@ en:
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_commented_on: "%{user} commented on your %{title} %{time}"
   user_follows: "%{user} follows"
+  user_has_opted_out_of_community_ids: "%{user} has opted out of community identifications"
+  user_has_opted_out_of_community_ids_for_this_obs: "%{user} has opted out of community identifications for this observation"
   user_hasnt:  "%{user} hasnt"
   user_invite_observation_to_project: '%{user} would like to invite your observation "%{observation}" to the %{project} project.'
   user_invited_your_x_to_a_project_html: "%{user} invited your %{x} to a project"
@@ -2886,6 +2896,8 @@ en:
   youre_viewing_site_name_observations_html: "You're viewing <strong>%{site_name}</strong> observations"
   youve_already_added_an_identification: You've already added an identification, and you can only add one
   youve_linked_your_inaturalist_picasa_account: "You've linked your %{site_name} account and your Picasa account. This will allow you to associate your Picasa photos with your %{site_name} observations."
+  youve_opted_out_of_community_ids: "You've opted out of community identifications"
+  youve_opted_out_of_community_ids_for_this_obs: "You've opted out of community identifications for this observation"
   youve_seen_it_want_to: "You've seen it! Want to"
   zoom_to_taxon_name: "Zoom to %{taxonname}"
   zoom_to_x: "zoom to %{x}"
@@ -3286,6 +3298,47 @@ en:
         tag_list: Comma-separated list of tags
         positioning_method: How the coordinates were determined
         positioning_device: Device used to determine coordinates
+      show:
+        community_taxon_desc_html: |
+          <p class="ui">
+            The community taxon (or community identification) represents
+            what taxon the %{site_name} community thinks is depicted in an
+            observation. If you're interested in how we choose the
+            community taxon, see the notes on the algorithm below, but in
+            general, we try to <strong>choose a taxon that more than 2/3
+            of the identifiers agree with</strong>. Sometimes this means
+            choosing a higher level taxon that contains a number of
+            disagreeing taxa (e.g. you think it's a kingsnake and I think
+            it's rattlesnake, so iNat chooses suborder Seprentes which
+            contains all snakes). The algorithm also slightly favors
+            dissent, because we've found that dissenters are often
+            correct.
+          </p>
+          <p class="ui">
+            The community taxon is the taxon we use when sharing observations with
+            data partners, linking observations of the same taxon on the
+            site, updating your life list, etc. If for some reason you
+            don't agree with the community taxon, you can remove it, which
+            will also make it inelligible for becoming research grade. If
+            you don't like the whole idea of community taxa, you can opt
+            out of them entirely by <a href="/users/edit" target="_blank">editing your settings</a>.
+          </p>
+          <p class="ui">
+            <strong>The algorithm:</strong> for all identified taxa and the taxa that contain them
+            (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score
+            each as the ratio between the number of cumulative IDs for
+            that taxon over the sum of the cumulative IDs, the number of
+            more conservative IDs added after the first ID of that taxon,
+            and the number of IDs that are completely different (i.e. IDs
+            of taxa that do not contain the taxon being scored). For the
+            identified taxa that have a score over 2/3 and at least 2
+            identifications, choose the lowest ranked taxon.
+          </p>
+        identification_count_desc: '# of identifications for an individual taxon'
+        cumulative_count_desc: '# of identifications for an individual taxon and all its descendants'
+        disagreement_count_desc: "# of identified taxa that are not among a taxon's ancestors"
+        ancestor_disagreements_desc: "# of identified taxa that are among a taxon's ancestors, but were created after the first identification using this taxon"
+        score_desc: "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"
     observation_fields:
       dna_help: |
         To enable BOLD DNA barcode matching functionality, make sure your
@@ -3416,6 +3469,14 @@ en:
           Biodiversity Information Facility</a> (GBIF), an international,
           inter-governmental organization that compiles and distributes
           biodiversity information from around the world.
+        prefers_community_taxa_desc: |
+          %{site_name} tracks what you think your observations are and what
+          the community thinks they are. The identification we share with data
+          partners is the community identification, but if you don't think the
+          community's opinion should ever overrule your own, you can opt out
+          here. People will stil be able to add identifications, but the
+          community opinion won't be favored over yours. This means your
+          observations will not be eligible for research grade.
     welcome:
       index:
         welcome_message_html: |
@@ -3662,7 +3723,7 @@ en:
         reason: Reason
         flag: Flag
       observation_field_value:
-        value: 'dd'
+        value: 'value'
       taxon:
               name: Name
               rank: Rank
@@ -3696,3 +3757,9 @@ en:
           attributes:
             value:
               dna_only_atcg: "for DNA can only contain the characters A, T, C, or G"
+              date_format: |
+                must by in the form YYYY-MM-DD for a date field ("%{observation_field_name}" 
+                in your observation of "%{observation_species_guess}")
+              time_format: |
+                must by in the form hh:mm for a time field ("%{observation_field_name}" 
+                in your observation of "%{observation_species_guess}")

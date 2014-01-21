@@ -4,7 +4,7 @@ class ObservationFieldValue < ActiveRecord::Base
   
   before_validation :strip_value
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
-  validates_presence_of :value
+  validates_presence_of :value, :if => lambda {|ofv| !ofv.observation.mobile? }
   validates_presence_of :observation_field_id
   validates_length_of :value, :maximum => 2048
   validate :validate_observation_field_datatype
@@ -56,27 +56,42 @@ class ObservationFieldValue < ActiveRecord::Base
   end
   
   def validate_observation_field_datatype
+    return true if observation.mobile? # HACK until we implement ui for *all* observation field types in the mobile apps
     case observation_field.datatype
     when "numeric"
       errors.add(:value, "must be a number") if value !~ Observation::FLOAT_REGEX
     when "location"
       errors.add(:value, "must decimal latitude and decimal longitude separated by a comma") if value !~ LAT_LON_REGEX
     when "date"
-      errors.add(:value, "must by in the form YYYY-MM-DD") unless value =~ /^\d{4}\-\d{2}\-\d{2}$/
+      unless value =~ /^\d{4}\-\d{2}\-\d{2}$/
+        errors.add(:value, :date_format, 
+          :observation_field_name => observation_field.name,
+          :observation_species_guess => observation.try(:species_guess)
+        )
+      end
     when "datetime"
       begin
         Time.iso8601(value)
       rescue ArgumentError => e
-        errors.add(:value, "must by in the form #{Time.now.iso8601}")
+        errors.add(:value, :datetime_format,
+          :observation_field_name => observation_field.name,
+          :observation_species_guess => observation.try(:species_guess)
+        )
       end
     when "time"
       begin
         Time.parse(value)
         if value !~ /^\d\d:\d\d/
-          errors.add(:value, "must by in the form hh:mm")
+          errors.add(:value, :time_format, 
+            :observation_field_name => observation_field.name,
+            :observation_species_guess => observation.try(:species_guess)
+          )
         end
       rescue ArgumentError => e
-        errors.add(:value, "must by in the form hh:mm")
+        errors.add(:value, :time_format, 
+          :observation_field_name => observation_field.name,
+          :observation_species_guess => observation.try(:species_guess)
+        )
       end
     when "dna"
       if value =~ /[^ATCG\s]/

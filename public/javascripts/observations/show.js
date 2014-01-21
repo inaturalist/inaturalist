@@ -1,7 +1,7 @@
 $(document).ready(function() {
   // setup the map if one is needed
   window.observation = OBSERVATION;
-  if ((observation.latitude && observation.longitude) || (observation.private_latitude && observation.private_longitude)) {
+  if (iNaturalist.Map && (observation.latitude && observation.longitude) || (observation.private_latitude && observation.private_longitude)) {
     window.map = iNaturalist.Map.createMap({
       lat: 40.714, 
       lng: -98.262, 
@@ -183,7 +183,7 @@ $('#add_more_photos_link').live('click', function() {
   var dialogId = "add_more_photos_dialog",
       dialog = $('#'+dialogId)
   if (dialog.length == 0) {
-    dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
+    dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">'+I18n.t('loading')+'</div>')
     dialog.attr('id', dialogId)
     dialog.load('/observations/'+window.observation.id+'/edit?partial=add_photos', function() {
       // photo selector
@@ -220,3 +220,27 @@ $('#add_more_photos_link').live('click', function() {
   }
   return false
 })
+
+function showCommunityTaxonDialog() {
+  var dialogId = "community_taxon_dialog",
+      dialog = $('#'+dialogId)
+  if (dialog.length == 0) {
+    dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">'+I18n.t('loading')+'</div>')
+    dialog.attr('id', dialogId)
+    dialog.load('/observations/'+window.observation.id+'/community_taxon_summary', function() {
+      if (!$(dialog).hasClass('dialogcentered')) {
+        $(dialog).centerDialog()
+        $(dialog).addClass('dialogcentered')
+      }
+    })
+    dialog.dialog({
+      modal: true,
+      title: I18n.t('about_community_taxa'),
+      width: '80%',
+      minHeight: 600
+    })
+  } else {
+    $(dialog).dialog('open')
+  }
+  return false
+}

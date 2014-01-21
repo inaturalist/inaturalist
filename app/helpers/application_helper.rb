@@ -311,6 +311,8 @@ module ApplicationHelper
     user ||= User.new
     size = options.delete(:size)
     style = "vertical-align:middle; #{options[:style]}"
+    options[:alt] ||= user.login
+    options[:title] ||= user.login
     url = if defined? root_url
       uri_join(root_url, user.icon.url(size || :mini))
     else

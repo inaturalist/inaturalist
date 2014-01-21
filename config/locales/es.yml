@@ -945,6 +945,7 @@ es:
   do_you_know_where_this_species_lives: "¿Sabe usted dónde vive esta especie?"
   do_you_study_nematodes_worlds_foremost_expert_barnacle: "¿Usted estudia nemátodos? ¿Es usted el mayor experto del mundo en taxonomía de percebes? ¿Sólo le gusta mirar las flores bonitas?. Llenar su perfil agrega un poco de personalidad y ayuda a establecer su credibilidad cuando ayuda a otras personas con las identificaciones."
   does_the_location_seem_accurate: "¿El lugar parece correcto?"
+  does_the_date_seem_accurate: "¿La fecha parece correcto?"
   doesnt_have_default_photo: "no tiene una foto por defecto todavía."
   doh_something_went_wrong: "Algo salió mal."
   dont_filter: No filtrar
@@ -3394,9 +3395,34 @@ es:
         curators_can_see: |
           Sólo un recordatorio, los curadores del proyecto pueden ver la privada y oculta 
           coordenadas de las observaciones que se agregan a este proyecto.
-      edit: 
-        licensing_desc_html: ""
-        taxon_change_desc: ""
+      edit:
+        taxon_change_desc: |
+          Cuando taxa se fusionan o cambiar de nombre en %{site_name}, sus
+          observaciones, taxa incluidos, identificaciones, etc se actualizará
+          automáticamente a la nueva taxa si el cambio es inequívoco. Si se
+          excluye o el cambio es ambigua (por ejemplo, una fractura), recibirá
+          una actualización sobre el cambio de la vinculación a una
+          herramienta que puede utilizar para actualizar manualmente el
+          contenido si usted elige.
+        licensing_desc_html: |
+          Obtención de la licencia de contenido da a otras personas el derecho
+          legal de utilizar sin pedir su permiso si se adhieren a los términos
+          de la licencia. %{site_name} utiliza su contenido con licencia
+          Creative Commons-para compartir con los socios de datos como la 
+          <a href="http://www.gbif.org/">Global Biodiversity Informatics Facility</a>
+          (GBIF), una organización internacional, organización
+          intergubernamental que recopila y distribuye información sobre la
+          biodiversidad de todo el mundo.
+        prefers_community_taxa_desc: |
+          %{site_name} rastrea lo que usted piensa que sus observaciones son
+          y lo que la comunidad piensa que son. La identificación que
+          compartimos con los socios de datos es la identificación de la
+          comunidad, pero si usted no cree que la opinión de la comunidad debe
+          nunca hacer caso omiso de su cuenta, usted puede optar por aquí. La
+          gente va a stil podrá agregar identificaciones, pero la opinión de
+          la comunidad no serán favorecidos frente a la suya. Esto significa
+          que sus observaciones no serán elegibles para el grado de
+          investigación.
     welcome: 
       index: 
         welcome_message_html: |
