@@ -32,16 +32,17 @@ class ListedTaxon < ActiveRecord::Base
   before_save :set_user_id
   before_save :set_source_id
   before_save :set_establishment_means
+  before_save :check_primary_listing
   after_save :update_cache_columns_for_check_list
   after_save :propagate_establishment_means
-  after_save :replace_primary_listing
+  after_save :remove_other_primary_listings
   after_save :update_attributes_on_related_listed_taxa
   after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :delta_index_taxon
   before_destroy :set_old_list
-  before_destroy :reassign_primary_taxa
+  before_destroy :reassign_primary_listed_taxon
   after_destroy :update_user_life_list_taxa_count
   after_destroy :expire_caches
   
@@ -601,42 +602,48 @@ class ListedTaxon < ActiveRecord::Base
     ListedTaxon.where(taxon_id: taxon_id, place_id: place_id).where("id != ?", id)
   end
 
-  def multiple_primary_taxa?
+  def other_primary_listed_taxa?
+    ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true).count > 0
+  end
+  
+  def multiple_primary_listed_taxa?
     ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true).count > 1
   end
-
+  
   def primary_listed_taxon
     primary_listing ? self : ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true).first
   end
 
-  def replace_primary_listing
-    return true unless multiple_primary_taxa?
-    remove_other_primary_listings
-    true
+  def check_primary_listing
+    return true unless other_primary_listed_taxa?
+    if new_record?
+      self.primary_listing = false
+      true
+    end
   end
-
+  
   def remove_other_primary_listings
-    ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).update_all({primary_listing: false})
-    self.update_attribute(:primary_listing, true)
+    return true unless primary_listing && multiple_primary_listed_taxa?
+    ListedTaxon.update_all(["primary_listing = false"],["taxon_id = ? AND place_id = ? AND id != ?", taxon_id, place_id, id])
     true
   end
   
-  def reassign_primary_taxa
+  def reassign_primary_listed_taxon
     return unless primary_listing
-    related_taxon = related_listed_taxa.first
-    related_taxon.update_attribute(:primary_listing, true) if related_taxon
+    related_listed_taxon = related_listed_taxa.first
+    related_listed_taxon.update_attribute(:primary_listing, true) if related_listed_taxon
   end
 
   def update_attributes_on_related_listed_taxa
     return true unless primary_listing
-    related_listed_taxa.each do |related_taxon|
-      related_taxon.establishment_means = establishment_means
-      related_taxon.first_observation_id = first_observation_id
-      related_taxon.last_observation_id = last_observation_id 
-      related_taxon.observations_count = observations_count
-      related_taxon.observations_month_counts = observations_month_counts
-      related_taxon.occurrence_status_level = occurrence_status_level
-      related_taxon.save
+    related_listed_taxa.each do |related_listed_taxon|
+      related_listed_taxon.establishment_means = establishment_means
+      related_listed_taxon.first_observation_id = first_observation_id
+      related_listed_taxon.last_observation_id = last_observation_id 
+      related_listed_taxon.observations_count = observations_count
+      related_listed_taxon.observations_month_counts = observations_month_counts
+      related_listed_taxon.occurrence_status_level = occurrence_status_level
+      related_listed_taxon.save
     end
     true
   end
