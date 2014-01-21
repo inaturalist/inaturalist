@@ -1969,6 +1969,15 @@ describe Observation, "community taxon" do
       @o.reload
       @o.community_taxon.should eq @g1
     end
+
+    it "s1 s1 f f" do
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      @o.reload
+      @o.community_taxon.should eq @f
+    end
   end
 end
 

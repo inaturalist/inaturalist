@@ -1526,11 +1526,13 @@ class Observation < ActiveRecord::Base
        id_taxon.self_and_ancestor_ids.include?(i.taxon_id) || i.taxon.self_and_ancestor_ids.include?(id_taxon.id)
       }.size
 
-      # count identifications of taxa that are ancestors to this taxon but
+      # count identifications of taxa that are ancestors of this taxon but
       # were made after the first identification of this taxon (i.e.
-      # conservative disagreements)
-      conservative_disagreement_count = if first_ident = working_idents.detect{|i| i.taxon_id == id_taxon.id}
-        working_idents.select{|i| i.id > first_ident.id && first_ident.taxon.ancestor_ids.include?(i.taxon_id)}.size
+      # conservative disagreements). Note that for genus1 > species1, an
+      # identification of species1 implies an identification of genus1
+      first_ident = working_idents.detect{|i| i.taxon.self_and_ancestor_ids.include?(id_taxon.id)}
+      conservative_disagreement_count = if first_ident
+        working_idents.select{|i| i.id > first_ident.id && id_taxon.ancestor_ids.include?(i.taxon_id)}.size
       else
         0
       end
