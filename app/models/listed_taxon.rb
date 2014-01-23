@@ -32,14 +32,18 @@ class ListedTaxon < ActiveRecord::Base
   before_save :set_user_id
   before_save :set_source_id
   before_save :set_establishment_means
+  before_create :check_primary_listing
   after_save :update_cache_columns_for_check_list
   after_save :propagate_establishment_means
+  #after_save :remove_other_primary_listings
+  after_save :update_attributes_on_related_listed_taxa
   after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :sync_species_if_infraspecies
   after_create :delta_index_taxon
   before_destroy :set_old_list
+  #before_destroy :reassign_primary_listed_taxon
   after_destroy :update_user_life_list_taxa_count
   after_destroy :expire_caches
   
@@ -182,11 +186,13 @@ class ListedTaxon < ActiveRecord::Base
   def list_rules_pass
     # don't bother if validates_presence_of(:taxon) has already failed
     if !errors.include?(:taxon) && taxon
-      list.rules.each do |rule|
-        if rule.operator == "observed_in_place?" && manually_added?
-          next
+      if list 
+        list.rules.each do |rule|
+          if rule.operator == "observed_in_place?" && manually_added?
+            next
+          end
+          errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(self)
         end
-        errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(self)
       end
     end
   end
@@ -306,6 +312,7 @@ class ListedTaxon < ActiveRecord::Base
   def update_cache_columns
     return true if @skip_update_cache_columns
     return true if list.is_a?(CheckList) && (!@force_update_cache_columns || place_id.blank?)
+    return true unless primary_listing
     set_cache_columns
     true
   end
@@ -327,7 +334,6 @@ class ListedTaxon < ActiveRecord::Base
     return true if @skip_update_cache_columns
     return true unless list.is_a?(CheckList)
     if @force_update_cache_columns
-      # this should have already happened in update_cache_columns
     elsif !Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{id}\n'").exists?
       ListedTaxon.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").update_cache_columns_for(id)
     end
@@ -367,7 +373,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def cache_columns
-    return unless (sql = list.cache_columns_query_for(self))
+    return unless (list && sql = list.cache_columns_query_for(self))
     last_observations = []
     first_observation_ids = []
     counts = {}
@@ -410,7 +416,7 @@ class ListedTaxon < ActiveRecord::Base
     )
     lt.save
   end
-    
+
   def observation_month_stats
     return {} if observations_month_counts.blank?
     r_stats = confirmed_observation_month_stats
@@ -619,6 +625,63 @@ class ListedTaxon < ActiveRecord::Base
       lt.update_attributes(:taxon => taxon)
       yield(lt) if block_given?
     end
+  end
+
+  def related_listed_taxa
+    ListedTaxon.where(taxon_id: taxon_id, place_id: place_id).where("id != ?", id)
+  end
+
+  def other_primary_listed_taxa?
+    ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true).count > 0
+  end
+  
+  def multiple_primary_listed_taxa?
+    ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true).count > 1
+  end
+  
+  def primary_listed_taxon
+    primary_listing ? self : ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true).first
+  end
+
+  def check_primary_listing
+    puts 'all'
+    puts ListedTaxon.all
+    puts 'other primary'
+    puts ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true)
+    puts 'self'
+    puts self
+    self.primary_listing = !other_primary_listed_taxa?
+    true
+  end
+  
+  def remove_other_primary_listings
+    return true unless primary_listing && multiple_primary_listed_taxa?
+    ListedTaxon.update_all(["primary_listing = false"],["taxon_id = ? AND place_id = ? AND id != ?", taxon_id, place_id, id])
+    true
+  end
+  
+  def reassign_primary_listed_taxon
+    return unless primary_listing
+    related_listed_taxon = related_listed_taxa.first
+    puts related_listed_taxon
+    related_listed_taxon.update_attribute(:primary_listing, true) if related_listed_taxon && related_listed_taxon.list_id && related_listed_taxon.place_id
+  end
+
+  def update_attributes_on_related_listed_taxa
+    return true unless primary_listing
+    related_listed_taxa.each do |related_listed_taxon|
+      related_listed_taxon.establishment_means = establishment_means
+      related_listed_taxon.first_observation_id = first_observation_id
+      related_listed_taxon.last_observation_id = last_observation_id 
+      related_listed_taxon.observations_count = observations_count
+      related_listed_taxon.observations_month_counts = observations_month_counts
+      related_listed_taxon.occurrence_status_level = occurrence_status_level
+      related_listed_taxon.save
+    end
+    true
+  end
+  def make_primary_if_no_primary_exists
+      update_attribute(:primary_listing, true) unless ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).present?
   end
   
 end
