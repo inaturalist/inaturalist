@@ -312,7 +312,7 @@ class ListedTaxon < ActiveRecord::Base
   def update_cache_columns
     return true if @skip_update_cache_columns
     return true if list.is_a?(CheckList) && (!@force_update_cache_columns || place_id.blank?)
-    return true unless primary_listing
+    return true if list.is_a?(CheckList) && !primary_listing
     set_cache_columns
     true
   end
