@@ -32,10 +32,10 @@ class ListedTaxon < ActiveRecord::Base
   before_save :set_user_id
   before_save :set_source_id
   before_save :set_establishment_means
-  before_save :check_primary_listing
+  before_create :check_primary_listing
   after_save :update_cache_columns_for_check_list
   after_save :propagate_establishment_means
-  after_save :remove_other_primary_listings
+  #after_save :remove_other_primary_listings
   after_save :update_attributes_on_related_listed_taxa
   after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
@@ -43,7 +43,7 @@ class ListedTaxon < ActiveRecord::Base
   after_create :sync_species_if_infraspecies
   after_create :delta_index_taxon
   before_destroy :set_old_list
-  before_destroy :reassign_primary_listed_taxon
+  #before_destroy :reassign_primary_listed_taxon
   after_destroy :update_user_life_list_taxa_count
   after_destroy :expire_caches
   
@@ -186,11 +186,13 @@ class ListedTaxon < ActiveRecord::Base
   def list_rules_pass
     # don't bother if validates_presence_of(:taxon) has already failed
     if !errors.include?(:taxon) && taxon
-      list.rules.each do |rule|
-        if rule.operator == "observed_in_place?" && manually_added?
-          next
+      if list 
+        list.rules.each do |rule|
+          if rule.operator == "observed_in_place?" && manually_added?
+            next
+          end
+          errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(self)
         end
-        errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(self)
       end
     end
   end
@@ -371,7 +373,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def cache_columns
-    return unless (sql = list.cache_columns_query_for(self))
+    return unless (list && sql = list.cache_columns_query_for(self))
     last_observations = []
     first_observation_ids = []
     counts = {}
@@ -642,11 +644,14 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def check_primary_listing
-    return true unless other_primary_listed_taxa?
-    if new_record?
-      self.primary_listing = false
-      true
-    end
+    puts 'all'
+    puts ListedTaxon.all
+    puts 'other primary'
+    puts ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true)
+    puts 'self'
+    puts self
+    self.primary_listing = !other_primary_listed_taxa?
+    true
   end
   
   def remove_other_primary_listings
@@ -658,7 +663,8 @@ class ListedTaxon < ActiveRecord::Base
   def reassign_primary_listed_taxon
     return unless primary_listing
     related_listed_taxon = related_listed_taxa.first
-    related_listed_taxon.update_attribute(:primary_listing, true) if related_listed_taxon
+    puts related_listed_taxon
+    related_listed_taxon.update_attribute(:primary_listing, true) if related_listed_taxon && related_listed_taxon.list_id && related_listed_taxon.place_id
   end
 
   def update_attributes_on_related_listed_taxa
@@ -674,4 +680,8 @@ class ListedTaxon < ActiveRecord::Base
     end
     true
   end
+  def make_primary_if_no_primary_exists
+      update_attribute(:primary_listing, true) unless ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).present?
+  end
+  
 end
