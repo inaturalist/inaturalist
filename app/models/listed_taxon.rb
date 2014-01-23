@@ -644,8 +644,11 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def check_primary_listing
-    self.primary_listing = !other_primary_listed_taxa?
+    self.primary_listing = !other_primary_listed_taxa? && can_set_as_primary?
     true
+  end
+  def can_set_as_primary?
+    list && list.is_a?(CheckList)
   end
   
   def remove_other_primary_listings
@@ -657,7 +660,7 @@ class ListedTaxon < ActiveRecord::Base
   def reassign_primary_listed_taxon
     return unless primary_listing
     related_listed_taxon = related_listed_taxa.first
-    related_listed_taxon.update_attribute(:primary_listing, true) if related_listed_taxon && related_listed_taxon.list_id && related_listed_taxon.place_id
+    related_listed_taxon.update_attribute(:primary_listing, true) if related_listed_taxon && related_listed_taxon.list_id && related_listed_taxon.place_id && can_set_as_primary?
   end
 
   def update_attributes_on_related_listed_taxa
@@ -674,7 +677,7 @@ class ListedTaxon < ActiveRecord::Base
     true
   end
   def make_primary_if_no_primary_exists
-      update_attribute(:primary_listing, true) unless ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).present?
+      update_attribute(:primary_listing, true) if !ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).present? && can_set_as_primary?
   end
   
 end

@@ -15,13 +15,10 @@ describe ListedTaxon do
     before(:each) do
       @taxon = Taxon.make!
       @first_observation = Observation.make!(:taxon => @taxon)
-      puts @first_observation
       @user = @first_observation.user
       @last_observation = Observation.make!(:taxon => @taxon, :user => @user, :observed_on_string => 1.minute.ago.to_s)
       @list = @user.life_list
-      puts @list
       @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @list)
-      puts @listed_taxon
       @listed_taxon.reload
     end
     
@@ -445,6 +442,20 @@ describe ListedTaxon, "parent check list syncing" do
   end
 end
 
+describe "a listed taxon on a non checklist" do
+  before(:each) do
+    @taxon = Taxon.make!
+    @list = List.make!
+    @first_observation = Observation.make!(:taxon => @taxon)
+    @user = @first_observation.user
+    @last_observation = Observation.make!(:taxon => @taxon, :user => @user, :observed_on_string => 1.minute.ago.to_s)
+    @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @list)
+    @listed_taxon.reload
+  end
+  it "should not be a primary listing" do
+    @listed_taxon.primary_listing.should be(false)
+  end
+end
 describe "primary_listing" do
   before(:each) do
     @taxon = Taxon.make!
@@ -493,3 +504,5 @@ describe "primary_listing" do
     @listed_taxon.primary_listing.should be(false)
   end
 end
+
+
