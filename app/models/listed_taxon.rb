@@ -35,7 +35,7 @@ class ListedTaxon < ActiveRecord::Base
   before_create :check_primary_listing
   after_save :update_cache_columns_for_check_list
   after_save :propagate_establishment_means
-  #after_save :remove_other_primary_listings
+  after_save :remove_other_primary_listings
   after_save :update_attributes_on_related_listed_taxa
   after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
@@ -43,7 +43,7 @@ class ListedTaxon < ActiveRecord::Base
   after_create :sync_species_if_infraspecies
   after_create :delta_index_taxon
   before_destroy :set_old_list
-  #before_destroy :reassign_primary_listed_taxon
+  after_destroy :reassign_primary_listed_taxon
   after_destroy :update_user_life_list_taxa_count
   after_destroy :expire_caches
   
@@ -644,12 +644,6 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def check_primary_listing
-    puts 'all'
-    puts ListedTaxon.all
-    puts 'other primary'
-    puts ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true)
-    puts 'self'
-    puts self
     self.primary_listing = !other_primary_listed_taxa?
     true
   end
@@ -663,7 +657,6 @@ class ListedTaxon < ActiveRecord::Base
   def reassign_primary_listed_taxon
     return unless primary_listing
     related_listed_taxon = related_listed_taxa.first
-    puts related_listed_taxon
     related_listed_taxon.update_attribute(:primary_listing, true) if related_listed_taxon && related_listed_taxon.list_id && related_listed_taxon.place_id
   end
 
