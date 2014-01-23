@@ -49,7 +49,7 @@ class Identification < ActiveRecord::Base
   scope :outdated, where(:current => false)
   
   def to_s
-    "<Identification #{id} observation_id: #{observation_id} taxon_id: #{taxon_id} user_id: #{user_id}"
+    "<Identification #{id} observation_id: #{observation_id} taxon_id: #{taxon_id} user_id: #{user_id} current: #{current?}>"
   end
 
   def to_plain_s(options = {})
@@ -88,12 +88,10 @@ class Identification < ActiveRecord::Base
   # Update the observation if you're adding an ID to your own obs
   def update_observation
     return true unless observation
-    # return true unless self.user_id == self.observation.user_id
-    return true if @skip_observation
 
     attrs = {}
-
-    if user_id == observation.user_id
+    
+    if user_id == observation.user_id && !skip_observation
       observation.skip_identifications = true
       # update the species_guess
       species_guess = observation.species_guess
@@ -106,7 +104,6 @@ class Identification < ActiveRecord::Base
 
     observation.identifications.reload
     observation.set_community_taxon(:force => true)
-
     observation.update_attributes(attrs)
     true
   end
@@ -201,7 +198,7 @@ class Identification < ActiveRecord::Base
   #
   # Tests whether this identification should be considered an agreement with
   # the observer's identification.  If this identification has the same taxon
-  # or a child taxon of the observer's idnetification, then they agree.
+  # or a child taxon of the observer's identification, then they agree.
   #
   def is_agreement?(options = {})
     return false if frozen?

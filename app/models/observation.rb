@@ -332,7 +332,8 @@ class Observation < ActiveRecord::Base
               :set_license,
               :trim_user_agent,
               :update_identifications,
-              :set_community_taxon_if_pref_changed
+              :set_community_taxon_if_pref_changed,
+              :set_taxon_from_community_taxon
   
   before_update :set_quality_grade
                  
@@ -1475,15 +1476,14 @@ class Observation < ActiveRecord::Base
 
   def get_community_taxon(options = {})
     return unless identifications.current.count > 1
-    node = community_taxon_nodes(options).sort_by do |n| 
+    node = community_taxon_nodes(options).select{|n| n[:cumulative_count] > 1}.sort_by do |n| 
       [
-        n[:cumulative_count] > 1 ? 1 : 0, # reject taxa with only one identification
         n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF ? 1 : 0, # only consider taxa with a score above the cutoff
         0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
       ]
     end.last
     
-    # # Visualizing this stuff is prettu useful for testing, so please leave this in
+    # # Visualizing this stuff is pretty useful for testing, so please leave this in
     # puts
     # width = 15
     # %w(taxon_id taxon_name cc dc cdc score).each do |c|
@@ -1549,24 +1549,7 @@ class Observation < ActiveRecord::Base
   end
 
   def set_community_taxon(options = {})
-    t = get_community_taxon(options)
-    if t.blank?
-      self.community_taxon = nil
-      return true  
-    end
-    if t.id == taxon_id
-      self.community_taxon = t
-      return true
-    end
-    if prefers_community_taxon == true
-      self.community_taxon = t
-      return true
-    end
-    self.community_taxon = if prefers_community_taxon == false || !user.prefers_community_taxa?
-      nil
-    else
-      t
-    end
+    self.community_taxon = get_community_taxon(options)
     true
   end
 
@@ -1593,6 +1576,28 @@ class Observation < ActiveRecord::Base
 
   def community_taxon_rejected?
     (prefers_community_taxon == false || user.prefers_community_taxa == false)
+  end
+
+  def set_taxon_from_community_taxon
+    # explicitly opted in
+    self.taxon_id = if prefers_community_taxon
+      community_taxon_id || owners_identification.try(:taxon_id)
+    # obs opted out or user opted out
+    elsif prefers_community_taxon == false || !user.prefers_community_taxa?
+      owners_identification.try(:taxon_id)
+    # implicitly opted in
+    else
+      community_taxon_id || owners_identification.try(:taxon_id)
+    end
+    if taxon_id_changed? && community_taxon_id_changed?
+      update_stats(:skip_save => true)
+      self.species_guess = if taxon
+        taxon.common_name.try(:name) || taxon.name
+      else
+        nil
+      end
+    end
+    true
   end
   
   def self.obscure_coordinates_for_observations_of(taxon, options = {})
@@ -1707,9 +1712,9 @@ class Observation < ActiveRecord::Base
   end
   
   def set_taxon_from_taxon_name
-    return true if @taxon_name.blank?
+    return true if self.taxon_name.blank?
     return true if taxon_id
-    self.taxon_id = single_taxon_id_for_name(@taxon_name)
+    self.taxon_id = single_taxon_id_for_name(self.taxon_name)
     true
   end
   
@@ -1937,9 +1942,12 @@ class Observation < ActiveRecord::Base
         quality_grade_changed? || 
         identifications_count_changed?)
       Observation.update_all(
-        ["num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?, identifications_count = ?", 
-          num_agreements, num_disagreements, new_quality_grade, identifications_count], 
-        "id = #{id}")
+        [
+          "num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?, identifications_count = ?", 
+          num_agreements, num_disagreements, new_quality_grade, identifications_count
+        ], 
+        "id = #{id}"
+      )
       refresh_check_lists
     end
   end
@@ -1949,10 +1957,13 @@ class Observation < ActiveRecord::Base
     return unless taxon
     Rails.logger.info "[INFO #{Time.now}] Observation.update_stats_for_observations_of(#{taxon})"
     conditions = taxon.descendant_conditions
-    conditions[0] = "#{conditions[0]} OR observations.taxon_id = ?"
-    conditions << taxon.id
-    Observation.do_in_batches(:include => :taxon, :conditions => conditions) do |o|
-      o.update_stats
+    conditions[0] = "(#{conditions[0]} OR observations.taxon_id = ?) OR identifications.taxon_id = ?"
+    conditions += [taxon.id, taxon.id]
+    Observation.do_in_batches(:include => [:taxon, :identifications], :conditions => conditions) do |o|
+      o.set_community_taxon
+      o.update_stats(:skip_save => true)
+      o.save
+      # o.update_stats
     end
     Rails.logger.info "[INFO #{Time.now}] Finished Observation.update_stats_for_observations_of(#{taxon})"
   end
@@ -2096,7 +2107,10 @@ class Observation < ActiveRecord::Base
   
   def owners_identification
     if identifications.loaded?
-      identifications.detect {|ident| ident.user_id == user_id && ident.current?}
+      # if idents are loaded, the most recent current identification might be a new record
+      identifications.sort_by{|i| i.created_at || 1.minute.from_now}.select {|ident| 
+        ident.user_id == user_id && ident.current?
+      }.last
     else
       identifications.current.by(user_id).last
     end

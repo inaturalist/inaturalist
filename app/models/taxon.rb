@@ -363,7 +363,7 @@ class Taxon < ActiveRecord::Base
     update_listed_taxa
     update_life_lists
     update_obs_iconic_taxa
-    if observations_count > 0 && !Delayed::Job.where("handler LIKE '%update_stats_for_observations_of%- #{id}%'").exists?
+    if (Observation.of(self).exists? || Identification.of(self).exists?) && !Delayed::Job.where("handler LIKE '%update_stats_for_observations_of%- #{id}%'").exists?
       Observation.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").update_stats_for_observations_of(id)
     end
     true
