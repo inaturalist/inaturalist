@@ -40,6 +40,8 @@ class CheckListsController < ApplicationController
       
       @total_listed_taxa = ListedTaxon.count('DISTINCT(taxon_id)',
         :conditions => ["place_id = ?", @list.place_id])
+      @total_observed_taxa = ListedTaxon.count('DISTINCT(taxon_id)',
+        :conditions => ["last_observation_id IS NOT NULL AND place_id =?", @list.place_id])
     end
     super
   end
