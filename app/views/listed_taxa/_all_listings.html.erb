@@ -13,11 +13,13 @@
   <% end %>
 </label>
 <br>
-<label>
-  <%=t :other_listings_of_this_taxon_for_this_place %>
-</label>
-<% @related_listed_taxa.each do |related_listed_taxon| %>
-  <li>
-  <%= link_to "#{t(:on_)} #{display_list_title(related_listed_taxon.list, 40)}", related_listed_taxon %>
-  </li>
+<% if @listed_taxon.place && @related_listed_taxa %>
+  <label>
+    <%=t :other_listings_of_this_taxon_for_this_place %>
+  </label>
+  <% @related_listed_taxa.each do |related_listed_taxon| %>
+    <li>
+    <%= link_to "#{t(:on_)} #{display_list_title(related_listed_taxon.list, 40)}", related_listed_taxon %>
+    </li>
+  <% end %>
 <% end %>
