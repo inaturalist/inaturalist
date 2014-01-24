@@ -1187,7 +1187,8 @@ CREATE TABLE listed_taxa (
     observations_month_counts character varying(255),
     taxon_range_id integer,
     source_id integer,
-    manually_added boolean DEFAULT false
+    manually_added boolean DEFAULT false,
+    primary_listing boolean DEFAULT true
 );
 
 
@@ -1616,8 +1617,8 @@ CREATE TABLE observations (
     sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
     private_geom geometry(Point),
-    community_taxon_id integer,
     captive boolean DEFAULT false,
+    community_taxon_id integer,
     site_id integer
 );
 
@@ -1869,7 +1870,14 @@ CREATE TABLE posts (
     title character varying(255) NOT NULL,
     body text,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    type character varying(255),
+    start_time timestamp without time zone,
+    stop_time timestamp without time zone,
+    place_id integer,
+    latitude numeric(15,10),
+    longitude numeric(15,10),
+    positional_accuracy integer
 );
 
 
@@ -5280,6 +5288,13 @@ CREATE INDEX index_places_on_user_id ON places USING btree (user_id);
 
 
 --
+-- Name: index_posts_on_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_posts_on_place_id ON posts USING btree (place_id);
+
+
+--
 -- Name: index_posts_on_published_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6199,6 +6214,8 @@ INSERT INTO schema_migrations (version) VALUES ('20121224231303');
 
 INSERT INTO schema_migrations (version) VALUES ('20121227214513');
 
+INSERT INTO schema_migrations (version) VALUES ('20121230023106');
+
 INSERT INTO schema_migrations (version) VALUES ('20121230210148');
 
 INSERT INTO schema_migrations (version) VALUES ('20130102225500');
@@ -6348,5 +6365,9 @@ INSERT INTO schema_migrations (version) VALUES ('20131220044313');
 INSERT INTO schema_migrations (version) VALUES ('20140101210916');
 
 INSERT INTO schema_migrations (version) VALUES ('20140104202529');
+
+INSERT INTO schema_migrations (version) VALUES ('20140113145150');
+
+INSERT INTO schema_migrations (version) VALUES ('20140114210551');
 
 INSERT INTO schema_migrations (version) VALUES ('20140124190652');

@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   def set_site
     @site ||= session[:site]
     @site ||= Site.where("url LIKE '%#{request.host}%'").first
-    sessite[:site] ||= @site
+    session[:site] ||= @site
     @site
   end
 

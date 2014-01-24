@@ -854,7 +854,11 @@ module ApplicationHelper
   end
   
   def url_for_resource_with_host(resource)
-    "#{CONFIG.site_url}#{url_for(resource)}"
+    base_url = if (u = @user) && u.site
+      u.site.url
+    end
+    base_url ||= CONFIG.site_url || root_url
+    "#{base_url}#{url_for(resource)}"
   end
   
   def commas_and(list)

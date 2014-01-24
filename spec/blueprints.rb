@@ -246,6 +246,11 @@ Role.blueprint(:admin) do
   name { User::JEDI_MASTER_ROLE }
 end
 
+Site.blueprint do
+  name { Faker::Name.name }
+  url { "http://#{Faker::Internet.domain_name}" }
+end
+
 Sound.blueprint do
   user { User.make }
   native_sound_id { rand(1000) }
