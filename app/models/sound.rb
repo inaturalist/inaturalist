@@ -48,7 +48,7 @@ class Sound < ActiveRecord::Base
     if user.blank? && (license == COPYRIGHT || license.blank?)
       errors.add(
         :license, 
-        "must be set if the sound wasn't added by an #{CONFIG.site_name_short} user.")
+        "must be set if the sound wasn't added by a user.")
     end
   end
   

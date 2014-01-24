@@ -1,0 +1,38 @@
+= form_for @site, :builder => DefaultFormBuilder do |f|
+  - if @site.errors.any?
+    .row
+      .span12
+        #error_explanation
+          %h2= "#{pluralize(@site.errors.count, "error")} prohibited this site from being saved:"
+          %ul
+            - @site.errors.full_messages.each do |msg|
+              %li= msg
+  .row
+    .span4= f.text_field :name, :required => true
+    .span4= f.text_field :url, :required => true
+  %fieldset
+    %legend=t :images
+    .row
+      .span4
+        = f.file_field :logo
+        = image_tag @site.logo.url
+      .span8
+        = f.file_field :logo_square
+        = image_tag @site.logo_square.url
+  - for grp, prefs in @pref_groups
+    %fieldset
+      %legend= grp.capitalize
+      - for pair in prefs.in_groups_of(3)
+        .row
+          - for pref in pair.compact
+            .span4
+              - if pref.type == :boolean
+                = f.label "preferred_#{pref.name}", :class => "checkbox" do
+                  = f.check_box "preferred_#{pref.name}", :label => false
+                  = t("site_preferences.#{pref.name}")
+              - else
+                = f.text_field "preferred_#{pref.name}", :label => t("site_preferences.#{pref.name}")
+  .row
+    .span12
+      = f.submit t(:save), :class => 'btn btn-primary'
+      = link_to t(:cancel), :back, :class => 'btn btn-link'

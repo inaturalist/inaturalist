@@ -1,4 +1,7 @@
 Inaturalist::Application.routes.draw do
+  resources :sites
+
+
   id_param_pattern = %r(\d+([\w\-\%]*))
   simplified_login_regex = /\w[^\.,\/]+/  
   root :to => 'welcome#index'
