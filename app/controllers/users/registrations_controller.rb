@@ -1,6 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource
+    resource.site = @site
 
     if resource.save
       if resource.active_for_authentication?
