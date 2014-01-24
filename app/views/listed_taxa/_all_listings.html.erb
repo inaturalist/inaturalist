@@ -13,7 +13,7 @@
   <% end %>
 </label>
 <br>
-<% if @listed_taxon.place && @related_listed_taxa %>
+<% if @listed_taxon.place && @related_listed_taxa.present? %>
   <label>
     <%=t :other_listings_of_this_taxon_for_this_place %>
   </label>
