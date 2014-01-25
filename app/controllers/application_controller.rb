@@ -33,10 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_site
-    @site ||= session[:site]
     @site ||= Site.where("url LIKE '%#{request.host}%'").first
-    session[:site] ||= @site
-    @site
   end
 
   def set_locale
