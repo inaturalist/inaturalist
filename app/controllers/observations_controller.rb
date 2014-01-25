@@ -1874,7 +1874,7 @@ class ObservationsController < ApplicationController
       search_params[:ofv_params] = @ofv_params
     end
 
-    @site = params[:site] unless params[:site].blank?
+    @site_uri = params[:site] unless params[:site].blank?
 
     @user = User.find_by_id(params[:user_id]) unless params[:user_id].blank?
     unless params[:projects].blank?
