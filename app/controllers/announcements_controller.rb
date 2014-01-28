@@ -28,7 +28,7 @@ class AnnouncementsController < ApplicationController
 
     respond_to do |format|
       if @announcement.save
-        format.html { redirect_to(@announcement, :notice => 'Announcement was successfully created.') }
+        format.html { redirect_to(@announcement, :notice => t(:announcement_was_successfully_created)) }
       else
         format.html { render :action => "new" }
       end
@@ -38,7 +38,7 @@ class AnnouncementsController < ApplicationController
   def update
     respond_to do |format|
       if @announcement.update_attributes(params[:announcement])
-        format.html { redirect_to(@announcement, :notice => 'Announcement was successfully updated.') }
+        format.html { redirect_to(@announcement, :notice => t(:announcement_was_successfully_updated)) }
       else
         format.html { render :action => "edit" }
       end

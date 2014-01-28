@@ -295,6 +295,8 @@ en:
   and_un_license_all_your_observations: and un-license all your observations
   and_you_havent_linked: "...and you haven't linked one of these external accounts, you should sign in through %{site_name} first, then edit your profile and link your account from there. Otherwise %{site_name} may not be able to tell that the two accounts are connected and try to create a new account for you instead!"
   animals: Animals
+  announcement_was_successfully_created: Announcement was successfully created.
+  announcement_was_successfully_updated: Announcement was successfully updated.
   announcements: Announcements
   any: any
   apply_to_selected: Apply to selected
@@ -351,6 +353,9 @@ en:
   ascending: ascending
   aside_from_extraordinary_circumstances: "Aside from extraordinary circumstances, we well never ask you for your password."
   assessment: assessment
+  assessment_was_deleted: Assessment was deleted.
+  assessment_was_successfully_created: Assessment was successfully created.
+  assessment_was_successfully_updated: Assessment was successfully updated.
   associations: Associations
   at: at
   at_: at
@@ -494,8 +499,12 @@ en:
   check_list_description: Choose a higher-level taxon you'd like to show in this list, like "Aves" for birds, or "Amphibia" for amphibians. When set, this list won't allow taxa that are not in this taxon. For example, if you create a list of birds, you won't be able to add any frogs to it. 
   check_list_for_individual_taxa_that: 'Check lists for individual taxa that live here, e.g. "Birds of %{place}".'
   check_list_individual_taxa: Check lists for individual taxa that live here, e.g. "Birds of %{place}".
+  check_lists_must_belong_to_a_place: |
+    Check lists must belong to a place. To create a new check list, visit
+    a place's default check list and click the 'Create a new check list' link.
   check_list_of_species_occuring_in: Check list of species occuring in
   check_list_place: "%{place} Check List"
+  check_list_updated: Check list updated!
   check_list_source: Source <span class="meta">(optional)</span>
   check_lists_for: "Other Check Lists for %{place}"
   check_out_my_observations_at:  If you want, you can check out my observations at
@@ -1471,6 +1480,7 @@ en:
   no_matching_users: No matching users.
   no_members_yet: "No members yet."
   no_messages_yet: No messages yet
+  no_mobilized_version_of_that_view: No mobilized version of that view.
   no_more_mail_from_site: "Don't want to receive any email from %{site_name}?  Edit your email settings at"
   no_more_taxa_to_load: No more taxa to load!
   no_more_updates: No more updates!
@@ -1523,6 +1533,7 @@ en:
   not_findig_what_you_want: Not finding what you want?
   not_finding_place_you_want?: Not finding the place you want?
   not_finding_what_looking_for: Not finding what you're looking for?
+  not_found: Not found
   not_just_creative_commons_licensed: not just Creative Commons-licensed
   not_linked_facebook: "Your %{site_name} account is not linked to your Facebook account &#59;"
   not_linked_flickr: "Your %{site_name} account is not linked to your Flickr account &#59;"
@@ -1642,10 +1653,12 @@ en:
   one_by_one: "One-by-one"
   one_of_your_lists: "one of your lists..."
   only_a_project_manager_can_add: Only a project manager can add project curator status
+  only_administrators_may_access_that_page: Only administrators may access that page
   only_accepts_taxa: only accepts taxa
   only_an_admin_can_remove_project_users: Only an admin can remove project users
   only_country_state_and_county: "Only country, state, and county equivalent places shown for now. Zoom in to see smaller places."
   only_curators_can_add_edit_scientific_names: Only curators can add/edit scientific names.
+  only_curators_can_access_that_page: Only curators can access that page.
   only_files_with_100_rows_at_a_time: Only files with 100 rows at a time, please
   only_letters_numbers: "Only letters and numbers, no spaces"
   only_project_curators_can_do_that: Only project curators can do that.
@@ -2475,6 +2488,8 @@ en:
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     This is a more convenient way to find a taxon ID. It's the taxon ID
     that actually gets saved. This search only works for active taxa.
+  this_is_taking_forever: This is taking forever.  Please try again later.
+  this_job_failed_to_run: This job failed to run. Please contact %{email}
   this_list_is_empty!: This list is empty!
   this_list_only_accepts_taxa_that_are: This list only accepts taxa that are
   this_observation_has_been_incorporated_into_the_following_external_websites: This observation has been incorporated into the following external websites
@@ -2797,12 +2812,16 @@ en:
   you_can_alwais_add_new: You can always add new observations by clicking the little arrow on the upper right of the page and using the drop down menu.
   you_can_change_your_new_passwd_after_logging_in: "You can change your new password after logging in here:"
   you_can_choose_observations_associated: You can choose observations to associate with this journal post.
+  you_can_edit_this_default_check_list_because: |
+    You can edit this default check list b/c you're an
+    admin, but there shouldn't really be a need to do so.
   you_can_help_make_our: You can help make our species pages more useful by adding data!  Here are a couple ways you can help
   you_can_only_destroy_taxa_you_created: "You can only destroy taxa you created."
   you_can_see_these_coordinates_because: You can see these coordinates because you curate one of the projects to which this observation has been added.
   you_can_show_the_boundary_of: You can show the boundary of the place on your project page if the place has a boundary.
   you_can_sign_free_at: "You can sign up for a free %{site_name} account at"
   you_cant_compare_a_list_with_nothing: You can't compare a list with nothing!
+  you_cant_do_that_for_the_default_check_list_place: You can't do that for the default check list of a place!
   you_cant_flag_that: You can't flag that
   you_cant_leave_a_project_you_created: You can't leave a project you created.
   you_cant_remove_other_peoples_observations: You can't remove other people's observations.
@@ -2823,6 +2842,7 @@ en:
   you_havent_linked_your_inaturalist_picasa_account: "You haven't linked your %{site_name} account and your Picasa account yet"
   you_may_have: you may have. It will probably only work in modern, standards-compliant browsers like
   you_must_be_a_member_of_this_project_to_do_that: You must be a member of this project to do that
+  you_must_be_project_manager_to_do_that: You must be project manager to do that
   you_must_select_a_csv_file_to_upload: You must select a CSV file to upload.
   you_must_select_a_place_to_merge_with: You must select a place to merge with.
   you_must_select_at_least_one_taxon: You must select at least one taxon
@@ -2845,6 +2865,9 @@ en:
   you_sure_remove_taxon_from?: "Are you sure you want to remove this taxon from %{list}?"
   you_sure_remove_this_invitation?: "Are you sure you want to remove this invitation?"
   you_sure_remove_this_observation?: Are you sure you want to remove this observation?
+  you_tried_to_do_something_you_shouldnt: |
+    You tried to do something you shouldn't, like edit
+    someone else's data without permission.  Don't be evil.
   youve_joined_the_x_project: "You've joined the %{project_invitation} project and your observation was added"
   you_would_get_the: "you would get the following tags:"
   youll_need_to_link: You'll need to link
