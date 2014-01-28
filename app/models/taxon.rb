@@ -723,6 +723,11 @@ class Taxon < ActiveRecord::Base
     rank_level <= SPECIES_LEVEL
   end
   
+  def infraspecies?
+    return false if rank_level.blank?
+    rank_level < SPECIES_LEVEL
+  end
+  
   # Updated the "cached" ancestor values in all listed taxa with this taxon
   def update_listed_taxa
     return true if ancestry.blank?

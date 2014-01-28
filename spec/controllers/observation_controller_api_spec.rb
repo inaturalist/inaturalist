@@ -440,6 +440,13 @@ shared_examples_for "an ObservationsController" do
       obs['observation_field_values'].should_not be_blank
     end
 
+    it "should let you request observation_photos as extra data" do
+      rgo = make_research_grade_observation
+      get :index, :format => :json, :extra => "observation_photos"
+      obs = JSON.parse(response.body).detect{|o| o['id'] == rgo.id}
+      obs['observation_photos'].should_not be_nil
+    end
+
     it "should allow filtering by updated_since" do
       oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago, :user => user)
       oldo.updated_at.should be < 1.minute.ago

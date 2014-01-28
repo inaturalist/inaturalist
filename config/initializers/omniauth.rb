@@ -2,6 +2,13 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   require 'openid/store/filesystem' 
   if CONFIG.twitter
     provider :twitter, CONFIG.twitter.key , CONFIG.twitter.secret
+    # TODO
+    # provider :twitter, :setup => lambda {|env|
+    #   request = Rack::Request.new(env)
+    #   site = Site.where("url LIKE '%#{request.host}%'").first
+    #   env['omniauth.strategy'].options[:consumer_key] = site.preferred_twitter_key # CONFIG.twitter.key
+    #   env['omniauth.strategy'].options[:consumer_secret] = site.preferred_twitter_secret # CONFIG.twitter.secret
+    # }
   end
   if fb_cfg = CONFIG.facebook
     opts = {:scope => 'email,offline_access,publish_stream,user_location,user_photos,friends_photos,user_groups,read_stream'}

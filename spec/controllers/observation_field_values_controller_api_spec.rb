@@ -26,7 +26,50 @@ shared_examples_for "an ObservationFieldValuesController" do
       }.should_not change(ObservationFieldValue, :count).by(1)
     end
     
-    it "should allow blank values if coming from an iNat app"
+    it "should allow blank values if coming from an iNat mobile app" do
+      o = make_mobile_observation
+      of = ObservationField.make!(:datatype => "date")
+      post :create, :format => :json, :observation_field_value => {
+        :observation_id => o.id,
+        :observation_field_id => of.id,
+        :value => ""
+      }
+      json = JSON.parse(response.body)
+      json['errors'].should be_blank
+    end
+
+    it "should now allow invalid dates" do
+      of = ObservationField.make!(:datatype => "date")
+      post :create, :format => :json, :observation_field_value => {
+        :observation_id => observation.id,
+        :observation_field_id => of.id,
+        :value => "2013-jfhgh"
+      }
+      json = JSON.parse(response.body)
+      json['errors'].should_not be_blank
+    end
+
+    it "should now allow invalid datetimes" do
+      of = ObservationField.make!(:datatype => "datetime")
+      post :create, :format => :json, :observation_field_value => {
+        :observation_id => observation.id,
+        :observation_field_id => of.id,
+        :value => "2013-jfhgh"
+      }
+      json = JSON.parse(response.body)
+      json['errors'].should_not be_blank
+    end
+
+    it "should now allow invalid times" do
+      of = ObservationField.make!(:datatype => "date")
+      post :create, :format => :json, :observation_field_value => {
+        :observation_id => observation.id,
+        :observation_field_id => of.id,
+        :value => "1pm"
+      }
+      json = JSON.parse(response.body)
+      json['errors'].should_not be_blank
+    end
   end
 
   it "should update" do

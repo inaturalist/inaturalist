@@ -1,0 +1,24 @@
+.container
+  %h1 Listing sites
+
+  %table.table.table-bordered
+    %tr
+      %th
+      %th=t :name
+      %th=t :url
+      %th
+      %th
+      %th
+
+    - @sites.each do |site|
+      %tr
+        %td= image_tag site.logo.url
+        %td= site.name
+        %td= site.url
+        %td= link_to 'Show', site
+        %td= link_to 'Edit', edit_site_path(site)
+        %td= link_to 'Destroy', site, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Site', new_site_path

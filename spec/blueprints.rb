@@ -64,7 +64,7 @@ GoogleStreetViewPhoto.blueprint do
 end
 
 Guide.blueprint do
-  user { User.make }
+  user { User.make! }
   title { Faker::Lorem.sentence }
 end
 
@@ -244,6 +244,11 @@ end
 
 Role.blueprint(:admin) do
   name { User::JEDI_MASTER_ROLE }
+end
+
+Site.blueprint do
+  name { Faker::Name.name }
+  url { "http://#{Faker::Internet.domain_name}" }
 end
 
 Sound.blueprint do

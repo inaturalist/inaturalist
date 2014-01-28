@@ -526,9 +526,12 @@ describe User, "merge" do
     @keeper = User.make!
     @reject = User.make!
   end
+  
   it "should move observations" do
     o = Observation.make!(:user => @reject)
-    @keeper.merge(@reject)
+    without_delay do
+      @keeper.merge(@reject)
+    end
     o.reload
     o.user_id.should == @keeper.id
   end
@@ -569,5 +572,32 @@ describe User, "suggest_login" do
     suggestion = User.suggest_login("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor")
     suggestion.should_not be_blank
     suggestion.size.should be <= User::MAX_LOGIN_SIZE
+  end
+end
+
+describe User, "community taxa preference" do
+  it "should remove community taxa when set to false" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should eq i1.taxon
+    o.user.update_attributes(:prefers_community_taxa => false)
+    Delayed::Worker.new.work_off
+    o.reload
+    o.community_taxon.should be_blank
+  end
+
+  it "should add community taxa when set to true" do
+    o = Observation.make!(:taxon => Taxon.make!)
+    o.user.update_attributes(:prefers_community_taxa => false)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should be_blank
+    o.user.update_attributes(:prefers_community_taxa => true)
+    Delayed::Worker.new.work_off
+    o.reload
+    o.community_taxon.should eq i1.taxon
   end
 end

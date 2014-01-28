@@ -1,8 +1,11 @@
 <%-
-  img_url = if CONFIG.logo =~ /http/
-    CONFIG.logo
+  site_logo = @site.logo.url if @site
+  site_logo = @user.site.logo.url if @user.site
+  site_logo ||= CONFIG.logo 
+  img_url = if site_logo =~ /http/
+    site_logo
   else
-    FakeView.uri_join(root_url, image_path(CONFIG.logo))
+    FakeView.uri_join(root_url, image_path(site_logo))
   end
 -%>
 <div style="border-top: 1px solid #eee; margin-top: 10px; padding-top:10px; color: #777; font-size:smaller;">

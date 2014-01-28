@@ -5,6 +5,7 @@ describe GuideTaxon, "creation" do
   before(:all) do
     load_test_taxa
   end
+
   it "should add the taxon's wikipedia description as a GuideSection" do
     t = Taxon.make!(:wikipedia_summary => "foo bar")
     gt = GuideTaxon.make!(:taxon => t)
@@ -324,7 +325,14 @@ describe GuideTaxon, "add_rank_tag" do
 
   it "should add tags" do
     @genus.taxon_names.count.should eq 2
-    @gt.add_rank_tag('genus', :lexicon => "ENGLISH")
+    @gt.add_rank_tag('genus', :lexicon => TaxonName::LEXICONS[:ENGLISH])
     @gt.tag_list.should include("taxonomy:genus=#{@tn.name}")
+  end
+
+  it "should work for rank names that collide with keywords" do
+    load_test_taxa
+    gt = GuideTaxon.make!(:taxon => @Pseudacris_regilla)
+    gt.add_rank_tag('order')
+    gt.tag_list.should include "taxonomy:order=Anura"
   end
 end

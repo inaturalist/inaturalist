@@ -1004,6 +1004,7 @@ a.csvlink{background-image:url(/images/silk/table.png);}
 
 .taxon_links .taxon {
   padding-left: 25px;
+  padding: 2px 0 2px 25px;
   background-repeat: no-repeat;
   background-position: 0px 3px;
   background-image: url('/images/logo-15px.png');
@@ -1642,3 +1643,4 @@ ul.plain {list-style:none;margin:0;padding:0}
 .dna:hover nt.t {color: #e29400;}
 .dna:hover nt.c {color: #1E90FF;}
 .dna:hover nt.g {color: #73AC13;}
+
