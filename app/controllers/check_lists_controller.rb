@@ -6,7 +6,7 @@ class CheckListsController < ApplicationController
   before_filter :require_editor, :only => [:edit, :update, :destroy, :remove_taxon]
   before_filter :require_listed_taxa_editor, :only => [:batch_edit, :add_taxon_batch]
   before_filter :lock_down_default_check_lists, :only => [:edit, :update, :destroy, :batch_edit]
-  before_filter :load_find_options, :only => [:show]
+  before_filter :set_find_options, :only => [:show]
   
   # Not supporting any of these just yet
   def index; redirect_to '/'; end
