@@ -40,7 +40,7 @@
     =t(:create_observations_by_uploading_photos_to, :place=>CONFIG.site_name_short)
     %em
       =t(:drag_and_drop_photos)
-    = file_field_tag "files[]", :multiple => true, :style => "display:none", :id => "filefield"
+    = file_field_tag "files[]", :multiple => true, :style => "display:none", :id => "filefield", :accept => "image/jpg,image/jpeg,image/png,image/gif"
     %em
       = link_to_function t(:choose_files_from_your_computer), "$('#filefield').click()"
   .observations

@@ -1430,6 +1430,7 @@ class ObservationsController < ApplicationController
 
   def photo
     @observations = []
+    @errors = []
     if params[:files].blank?
       respond_to do |format|
         format.json do
@@ -1448,11 +1449,18 @@ class ObservationsController < ApplicationController
           o.send("#{k}=", v) unless v.blank?
         end
       end
-      o.save
-      @observations << o
+      if o.save
+        @observations << o
+      else
+        @errors << o.errors
+      end
     end
     respond_to do |format|
       format.json do
+        unless @errors.blank?
+          render :status => :unprocessable_entity, :json => @errors.map{|e| e.full_messages.to_sentence}
+          return
+        end
         render_observations_to_json(:include => {
           :taxon => {
             :only => [:name, :id, :rank, :rank_level, :is_iconic], 

@@ -64,7 +64,7 @@ GoogleStreetViewPhoto.blueprint do
 end
 
 Guide.blueprint do
-  user { User.make }
+  user { User.make! }
   title { Faker::Lorem.sentence }
 end
 
