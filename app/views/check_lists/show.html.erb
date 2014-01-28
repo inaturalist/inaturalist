@@ -234,12 +234,60 @@
           <form method="get">
             <%= hidden_fields_for_params :without => [:page, :observed] %>
             <label><%=t :observed %></label>
+            <br>
             <%= radio_button_tag :observed, :t, @observed == 't', {"data-autosubmit" => true} %>
             <%= label :observed, :t, t(:yes).downcase %>
             <%= radio_button_tag :observed, :f, @observed == 'f', {"data-autosubmit" => true} %>
             <%= label :observed, :f, t(:no).downcase %>
             <%= radio_button_tag :observed, nil, @observed.blank?, {"data-autosubmit" => true} %>
             <%= label :observed, nil, t(:any) %>
+            <br>
+            <hr>
+            <%#=t :threatened %>
+            <%#= radio_button_tag :threatened, :t, @threatened == 't', {"data-autosubmit" => true} %>
+            <%#= label :threatened, :t, t(:yes).downcase %>
+            <%#= radio_button_tag :threatened, :f, @threatened == 'f', {"data-autosubmit" => true} %>
+            <%#= label :threatened, :f, t(:no).downcase %>
+            <%#= radio_button_tag :threatened, nil, @threatened.blank?, {"data-autosubmit" => true} %>
+            <%#= label :threatened, nil, t(:any) %>
+            <label><%=t :establishment_means %></label>
+            <br>
+            <%= radio_button_tag :establishment_means, :endemic, @establishment_means == 'endemic', {"data-autosubmit" => true} %>
+            <%= label :establishment_means, :endemic, t(:endemic).downcase %>
+            <%= radio_button_tag :establishment_means, :native, @establishment_means == 'native', {"data-autosubmit" => true} %>
+            <%= label :establishment_means, :native, t(:native).downcase %>
+            <%= radio_button_tag :establishment_means, :introduced, @establishment_means == 'introduced', {"data-autosubmit" => true} %>
+            <%= label :establishment_means, :introduced, t(:introduced).downcase %>
+            <%= radio_button_tag :establishment_means, nil, @establishment_means.blank?, {"data-autosubmit" => true} %>
+            <%= label :establishment_means, nil, t(:any) %>
+            <br>
+            <label><%=t :occurence_status %></label>
+            <br>
+            <%= radio_button_tag :occurence_status, :present, @occurence_status == 'present', {"data-autosubmit" => true} %>
+            <%= label :occurence_status, :present, t(:present).downcase %>
+            <%= radio_button_tag :occurence_status, :absent, @occurence_status == 'absent', {"data-autosubmit" => true} %>
+            <%= label :occurence_status, :absent, "absent".downcase %>
+            <%= radio_button_tag :occurence_status, nil, @occurence_status.blank?, {"data-autosubmit" => true} %>
+            <%= label :occurence_status, nil, t(:any) %>
+            <br>
+            <label><%=t :rank %></label>
+            <br>
+            <%= radio_button_tag :rank, :all, @rank == 't', {"data-autosubmit" => true} %>
+            <%= label :rank, :all, t(:all).downcase %>
+            <%= radio_button_tag :rank, :leaves, @rank == 'f', {"data-autosubmit" => true} %>
+            <%= label :rank, :leaves, "leaves".downcase %>
+            <%= radio_button_tag :rank, :species, @rank.blank?, {"data-autosubmit" => true} %>
+            <%= label :rank, :species, t(:species).downcase %>
+            <br>
+            <label><%=t :taxonomic_status %></label>
+            <br>
+            <%= radio_button_tag :taxonomic_status, :active, @taxonomic_status == 'active', {"data-autosubmit" => true} %>
+            <%= label :taxonomic_status, :active, t(:active).downcase %>
+            <%= radio_button_tag :taxonomic_status, :inactive, @taxonomic_status == 'inactive', {"data-autosubmit" => true} %>
+            <%= label :taxonomic_status, :inactive, t(:inactive).downcase %>
+            <%= radio_button_tag :taxonomic_status, nil, @taxonomic_status.blank?, {"data-autosubmit" => true} %>
+            <%= label :taxonomic_status, :all, t(:all).downcase %>
+            <br>
           </form>
         </div>
       </div><!-- / innerstats -->

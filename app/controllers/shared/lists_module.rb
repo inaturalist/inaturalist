@@ -397,21 +397,9 @@ module Shared::ListsModule
       @filter_taxon = Taxon.find_by_id(params[:iconic_taxon])
       @find_options[:conditions] = ["taxa.iconic_taxon_id = ?", @filter_taxon.try(:id)]
     end
-    if [true, 't', 'true', '1', 'y', 'yes'].include?(params[:observed])
-      @observed = 't'
-      if @find_options[:conditions].blank?
-        @find_options[:conditions] = ["last_observation_id IS NOT NULL"]
-      else
-        @find_options[:conditions][0] += " AND last_observation_id IS NOT NULL"
-      end
-    elsif [false, 'f', 'false', '0', 'n', 'no'].include?(params[:observed])
-      @observed = 'f'
-      if @find_options[:conditions].blank?
-        @find_options[:conditions] = ["last_observation_id IS NULL"]
-      else
-        @find_options[:conditions][0] += " AND last_observation_id IS NULL"
-      end
-    end
+
+    set_sidebar_filters
+
     @find_options[:order] = case params[:order_by]
     when "name"
       order = params[:order]
@@ -425,6 +413,64 @@ module Shared::ListsModule
       # TODO: somehow make the following not cause a filesort...
       "taxon_ancestor_ids || '/' || listed_taxa.taxon_id"
     end
+  end
+  def set_sidebar_filters
+    set_observations_filter
+    set_establishment_means_filter(params[:establishment_means]) unless [nil, "on"].include?(params[:establishment_means])
+    set_occurrence_status_filter(params[:occurence_status]) unless [nil, "on"].include?(params[:occurence_status])
+    #set_taxonomic_status_filter(params[:taxonomic_status]) unless [nil, "on"].include?(params[:taxonomic_status])
+  end
+
+  # def set_taxonomic_status_filter(taxonomic_status)
+  #   is_active = taxonomic_status == "active"
+  #   add_taxonomic_status_filter(taxonomic_status, "taxon.is_active = '#{is_active}'") 
+  # end
+  # def add_taxonomic_status_filter(taxonomic_status, condition)
+  #   @taxonomic_status = taxonomic_status
+  #   add_filter(condition)
+  # end
+
+  def set_occurrence_status_filter(occurence_status)
+    occurrence_status_level = ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[occurence_status]
+    add_occurrence_status_filter(occurence_status, "occurrence_status_level = '#{occurrence_status_level}'") 
+  end
+  def add_occurrence_status_filter(occurence_status, condition)
+    @occurence_status = occurence_status
+    add_filter(condition)
+  end
+  def set_establishment_means_filter(establishment_means)
+    add_establishment_means_filter(establishment_means, "establishment_means = '#{establishment_means}'") 
+  end
+  def add_establishment_means_filter(establishment_means, condition)
+    @establishment_means = establishment_means
+    add_filter(condition)
+  end
+
+  def set_observations_filter
+    if with_observations?
+      add_observations_filter('t', 'last_observation_id IS NOT NULL') 
+    elsif with_no_observations?
+      add_observations_filter('f', 'last_observation_id IS NULL')
+    end
+  end
+  def with_no_observations?
+    [false, 'f', 'false', '0', 'n', 'no'].include?(params[:observed])
+  end
+  def with_observations?
+    [true, 't', 'true', '1', 'y', 'yes'].include?(params[:observed])
+  end
+
+  def add_observations_filter(observed, condition)
+    @observed = observed
+    add_filter(condition)
+  end
+  def add_filter(condition)
+    @find_options = add_to_conditions(@find_options, condition)
+  end
+
+  def add_to_conditions(find_options, toAdd)
+    find_options[:conditions].blank? ?  find_options[:conditions] = [toAdd] : find_options[:conditions][0] += " AND #{toAdd}"
+    find_options
   end
   
   def require_editor
