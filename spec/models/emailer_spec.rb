@@ -72,3 +72,16 @@ describe Emailer, "new_message" do
     mail.body.should be_blank
   end
 end
+
+describe Emailer, "invite" do
+  it "should work" do
+    user = User.make!
+    address = "foo@bar.com"
+    params = {
+      :sender_name => "Admiral Akbar",
+      :personal_message => "it's a twap"
+    }
+    mail = Emailer.invite(address, params, user)
+    mail.body.should_not be_blank
+  end
+end

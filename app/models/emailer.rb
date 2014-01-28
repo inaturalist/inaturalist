@@ -7,12 +7,12 @@ class Emailer < ActionMailer::Base
   default :from =>     "#{CONFIG.site_name} <#{CONFIG.noreply_email}>",
           :reply_to => CONFIG.noreply_email
   
-  def invite(address, params, current_user) 
-    Invite.create(:user => current_user, :invite_address => address)
+  def invite(address, params, user) 
+    Invite.create(:user => user, :invite_address => address)
+    @user = user
     @subject = "#{subject_prefix} #{params[:sender_name]} wants you to join them on #{CONFIG.site_name}" 
     @personal_message = params[:personal_message]
     @sending_user = params[:sender_name]
-    @current_user = current_user
     mail(:to => address) do |format|
       format.text
     end
