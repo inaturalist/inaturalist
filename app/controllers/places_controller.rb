@@ -501,7 +501,8 @@ class PlacesController < ApplicationController
   end
 
   def assign_geometry_from_file
-    if params[:file].size > 1.megabyte
+    limit = current_user && current_user.is_curator? ? 5.megabytes : 1.megabyte
+    if params[:file].size > limit
       # can't really add errors to model from here, unfortunately
     else
       @geometry = geometry_from_file(params[:file])

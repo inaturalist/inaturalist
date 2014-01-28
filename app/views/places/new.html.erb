@@ -59,7 +59,8 @@
   <script type="text/javascript" charset="utf-8">
     var CLOUDMADE_KEY = <%=raw CONFIG.cloudmade.key.inspect %>,
         BING_KEY = <%=raw CONFIG.bing.key.inspect %>,
-        PLACE_INVALID = <%= @place && !@place.errors.blank? ? 'true' : 'false' %>
+        PLACE_INVALID = <%= @place && !@place.errors.blank? ? 'true' : 'false' %>,
+        CURRENT_USER_IS_CURATOR = <%= logged_in? && current_user.is_curator? ? 'true' : 'false' %>
     $(document).ready(function() {
       window.importMap = iNaturalist.Map.createMap({div: 'importMap'})
       window.map = L.map('drawingMap').setView([0,0], 1)
@@ -120,7 +121,8 @@
       })
 
       $('.kml_field :input').bind('change', function() {
-        if (this.files[0].size > 1048576) {
+        var limit = CURRENT_USER_IS_CURATOR ? 1048576*5 : 1048576
+        if (this.files[0].size > limit) {
           alert(I18n.t('kml_file_size_error'))
           $(this).val(null)
         }
