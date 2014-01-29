@@ -215,7 +215,6 @@ class ObservationsController < ApplicationController
         @owners_identification = @current_identifications.detect do |ident|
           ident.user_id == @observation.user_id
         end
-        Rails.logger.debug "[DEBUG] @observation.community_taxon: #{@observation.community_taxon}"
         @community_identification = if @observation.community_taxon
           Identification.new(:taxon => @observation.community_taxon, :observation => @observation)
         end
@@ -689,7 +688,7 @@ class ObservationsController < ApplicationController
     hashed_params = Hash[*params[:observations].to_a.flatten]
     errors = false
     extra_msg = nil
-    @observations.each do |observation|
+    @observations.each_with_index do |observation,i|
       fieldset_index = observation.id.to_s      
       
       # Update the flickr photos
@@ -718,6 +717,17 @@ class ObservationsController < ApplicationController
         doomed_photo_ids = (old_photo_ids - observation.photo_ids).compact
         unless doomed_photo_ids.blank?
           Photo.delay.destroy_orphans(doomed_photo_ids)
+        end
+
+        Photo.descendent_classes.each do |klass|
+          klass_key = klass.to_s.underscore.pluralize.to_sym
+          next unless params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
+          next unless photo = observation.photos.compact.last
+          photo_o = photo.to_observation
+          PHOTO_SYNC_ATTRS.each do |a|
+            hashed_params[observation.id.to_s] ||= {}
+            hashed_params[observation.id.to_s][a] = photo_o.send(a) if hashed_params[observation.id.to_s][a].blank?
+          end
         end
       end
 

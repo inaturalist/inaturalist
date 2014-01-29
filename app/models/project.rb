@@ -158,7 +158,7 @@ class Project < ActiveRecord::Base
   end
   
   def contest?
-     PROJECT_TYPES.include? project_type
+     [CONTEST_TYPE, OBS_CONTEST_TYPE].include?(project_type)
   end
   
   def editable_by?(user)

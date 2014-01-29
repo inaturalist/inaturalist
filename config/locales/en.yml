@@ -2352,6 +2352,7 @@ en:
   sw_lon: SW Lon.
   sync: Sync?
   sync_with_eol: Sync with EOL
+  sync_obs_with_photo_metadata: "Sync obs. w/ photo metadata?"
   synonyms: Synonyms
   table: Table
   tagging: 'Tagging...'
@@ -3389,7 +3390,8 @@ en:
     places:
       kml_field_desc: |
         KML of the place boundary. You can make one using Google Maps, Google
-        Earth, or most GIS applications. Must have at least one polygon.
+        Earth, or most GIS applications. Must have at least one polygon and be
+        under 1 MB (5 MB for site curators).
       edit:
         complex_boundary_note_html: |
           This boundary is a bit too complex to edit on the web. However, you can
