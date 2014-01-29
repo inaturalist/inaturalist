@@ -310,7 +310,6 @@ end
 TaxonName.blueprint do
   name { Faker::Name.name }
   taxon { Taxon.make! }
-  is_valid { true }
 end
 
 TaxonRange.blueprint do
