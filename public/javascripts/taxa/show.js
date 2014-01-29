@@ -86,7 +86,7 @@ $(document).ready(function(){
     autoOpen: false,
     width: 700,
     open: function( event, ui ) {
-      $('#edit_photos_dialog').loadingShades('Loading...', {cssClass: 'smallloading'})
+      $('#edit_photos_dialog').loadingShades(I18n.t('loading'), {cssClass: 'smallloading'})
       $('#edit_photos_dialog').load('/taxa/'+TAXON.id+'/edit_photos', function() {
         var photoSelectorOptions = {
           defaultQuery: TAXON.name,

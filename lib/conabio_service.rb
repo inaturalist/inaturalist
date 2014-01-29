@@ -29,7 +29,8 @@ class ConabioService
     rescue Savon::SOAPFault => e
       puts e.message
     end
-    @response.body[:data_taxon_response][:return].encode('iso-8859-1').force_encoding('UTF-8').gsub(/\n/,'<br>')
+    @response.body[:data_taxon_response][:return].encode('iso-8859-1').force_encoding('UTF-8').gsub(/\n/,'<br>') if
+        @response.body[:data_taxon_response][:return].present?
 
   end
 
