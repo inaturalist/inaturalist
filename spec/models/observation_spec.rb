@@ -1943,6 +1943,20 @@ describe Observation, "community taxon" do
     o.taxon.should eq owner_taxon
   end
 
+  it "should set the species_guess when opted out" do
+    owner_taxon = Taxon.make!
+    o = Observation.make!(:taxon => owner_taxon)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should eq(i1.taxon)
+    o.taxon.should eq o.community_taxon
+    o.update_attributes(:prefers_community_taxon => false)
+    o.reload
+    o.species_guess.should eq owner_taxon.name
+  end
+
   it "should set the taxon if observation is opted in but user is opted out" do
     u = User.make!(:prefers_community_taxa => false)
     o = Observation.make!(:prefers_community_taxon => true, :user => u)

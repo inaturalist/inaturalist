@@ -1575,6 +1575,7 @@ class Observation < ActiveRecord::Base
   end
 
   def community_taxon_rejected?
+    return false if prefers_community_taxon == true
     (prefers_community_taxon == false || user.prefers_community_taxa == false)
   end
 
@@ -1589,7 +1590,7 @@ class Observation < ActiveRecord::Base
     else
       community_taxon_id || owners_identification.try(:taxon_id)
     end
-    if taxon_id_changed? && community_taxon_id_changed?
+    if taxon_id_changed? && (community_taxon_id_changed? || prefers_community_taxon_changed?)
       update_stats(:skip_save => true)
       self.species_guess = if taxon
         taxon.common_name.try(:name) || taxon.name
