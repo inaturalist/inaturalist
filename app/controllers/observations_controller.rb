@@ -65,7 +65,7 @@ class ObservationsController < ApplicationController
   before_filter :load_prefs, :only => [:index, :project, :by_login]
   
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess"
-  REJECTED_FEED_PARAMS = %w"page view filters_open partial"
+  REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
   DISPLAY_ORDER_BY_FIELDS = {
     'created_at' => 'date added',

@@ -259,7 +259,7 @@
       <div class="inner feeds">
         <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
         <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
-        <%= link_to("CSV",  project_observations_path(@project, :format => 'csv'),  :class => 'csvlink', :rel => "nofollow") %>
+        <%= link_to("CSV",  export_observations_path('projects[]' => @project),  :class => 'csvlink', :rel => "nofollow") %>
         <% if @project.curated_by?(current_user) -%>
           /
           <%= link_to t(:all_csv), all_project_observations_url(@project, :format => 'csv'), 
