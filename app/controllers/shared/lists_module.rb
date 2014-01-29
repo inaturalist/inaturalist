@@ -29,7 +29,7 @@ module Shared::ListsModule
         end
 
         set_scopes unless @listed_taxa.present?
-        @listed_taxa.map(&:id)
+        @listed_taxa.map{|lt| lt.id}
 
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id
 
@@ -394,27 +394,6 @@ module Shared::ListsModule
       iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_iconic_taxon(iconic_taxon_id)
     end
-    if with_observations?
-      @observed = 't'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.confirmed
-    elsif with_no_observations?
-      @observed = 'f'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.unconfirmed
-    end
-    if filter_by_param?(params[:establishment_means])
-      @establishment_means = params[:establishment_means]
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_establishment_means(params[:establishment_means])
-    end
-    if filter_by_param?(params[:occurrence_status])
-      @occurrence_status = params[:occurrence_status]
-      unless @occurrence_status=="all"
-        occurrence_status_level = ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[@occurrence_status]
-        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_level(occurrence_status_level)
-      end
-    else
-      @occurrence_status = "present"
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_level(ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[@occurrence_status])
-    end
     if filter_by_param?(params[:taxonomic_status])
       @taxonomic_status = params[:taxonomic_status]
       unless @taxonomic_status=="all"
@@ -435,6 +414,27 @@ module Shared::ListsModule
     else 
       @rank = "species"
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
+    end
+    if with_observations?
+      @observed = 't'
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.confirmed
+    elsif with_no_observations?
+      @observed = 'f'
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.unconfirmed
+    end
+    if filter_by_param?(params[:establishment_means])
+      @establishment_means = params[:establishment_means]
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_establishment_means(params[:establishment_means])
+    end
+    if filter_by_param?(params[:occurrence_status])
+      @occurrence_status = params[:occurrence_status]
+      unless @occurrence_status=="all"
+        occurrence_status_level = ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[@occurrence_status]
+        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_level(occurrence_status_level)
+      end
+    else
+      @occurrence_status = "present"
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_level(ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[@occurrence_status])
     end
     if with_threatened?
       @threatened = 't'

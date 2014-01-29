@@ -66,7 +66,8 @@ class ListedTaxon < ActiveRecord::Base
     end
   }
   
-  scope :filter_by_taxon, lambda {|filter_taxon_id, self_and_ancestor_ids| where("taxon_id = ? OR taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", filter_taxon_id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%")}
+  scope :filter_by_taxon, lambda {|filter_taxon_id, self_and_ancestor_ids| where("listed_taxa.taxon_id = ? OR listed_taxa.taxon_ancestor_ids = ? OR listed_taxa.taxon_ancestor_ids LIKE ?", filter_taxon_id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%")}
+  scope :with_taxonomic_status, lambda{|taxonomic_status| includes(:taxon).where("taxa.is_active = ?", taxonomic_status)}
 
   scope :filter_by_iconic_taxon, lambda {|iconic_taxon_id| where("taxa.iconic_taxon_id = ?", iconic_taxon_id)}
   scope :filter_by_list, lambda {|list_id| where("list_id = ?", list_id)}
@@ -76,15 +77,11 @@ class ListedTaxon < ActiveRecord::Base
   scope :with_establishment_means, lambda{|establishment_means| where("establishment_means = ?", establishment_means)}
   scope :with_occurrence_status_level, lambda{|occurrence_status_level| where("occurrence_status_level = ?", occurrence_status_level)}
 
-  scope :with_taxonomic_status, lambda{|taxonomic_status| includes(:taxon).where("taxa.is_active = ?", taxonomic_status)}
 
   scope :with_threatened_status, includes(:taxon).where("taxa.conservation_status >= #{Taxon::IUCN_NEAR_THREATENED}")
   scope :without_threatened_status, includes(:taxon).where("taxa.conservation_status < #{Taxon::IUCN_NEAR_THREATENED}")
   scope :with_species, includes(:taxon).where("taxa.rank_level = 10")
   
-  def self.ancestor_ids_sql(place_id)
-    "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id FROM listed_taxa WHERE place_id = #{place_id} AND taxon_ancestor_ids IS NOT NULL"
-  end
   scope :with_leaves, lambda{|place_id| where(:place_id => place_id).joins("LEFT JOIN (#{ancestor_ids_sql(place_id)}) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id").where("ancestor_ids.ancestor_id IS NULL")}
   
   
@@ -698,6 +695,10 @@ class ListedTaxon < ActiveRecord::Base
   end
   def make_primary_if_no_primary_exists
     update_attribute(:primary_listing, true) if !ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).present? && can_set_as_primary?
+  end
+  # used with .with_leaves filter
+  def self.ancestor_ids_sql(place_id) 
+    "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id FROM listed_taxa WHERE place_id = #{place_id} AND taxon_ancestor_ids IS NOT NULL"
   end
   
 end
