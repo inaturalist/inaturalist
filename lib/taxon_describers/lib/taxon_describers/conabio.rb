@@ -1,19 +1,18 @@
-require ::File.expand_path('../eol', __FILE__)
 module TaxonDescribers
-  class Conabio < Eol
-    def data_objects_from_page(page, options = {})
-      xpath = <<-XPATH
-        //dataObject[
-          descendant::dataType[text()='http://purl.org/dc/dcmitype/Text']
-          and descendant::subject
-          and descendant::agent[@role='provider' and text()='Conabio']
-        ]
-      XPATH
-      page.xpath(xpath)
-    end
+  class Conabio < Base
 
     def self.describer_name
-      "CONABIO"
+      'CONABIO'
+    end
+
+    def self.describe(taxon)
+      page = conabio_service.search(taxon.name)
+      page.blank? ? nil : page
+    end
+
+    private
+    def conabio_service
+      @conabio_service=ConabioService.new
     end
   end
 end

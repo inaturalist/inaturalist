@@ -35,7 +35,7 @@ class AssessmentsController < ApplicationController
     respond_to do |format|
       if @assessment.valid? && ! params[:preview]
         @assessment.save
-        format.html { redirect_to(@assessment, :notice => 'Assessment was successfully created.') }
+        format.html { redirect_to(@assessment, :notice => t(:assessment_was_successfully_created)) }
       else
         format.html { render :action => "new" }
       end
@@ -59,7 +59,7 @@ class AssessmentsController < ApplicationController
 
     respond_to do |format|
     if @assessment.update_attributes(params[:assessment])
-        format.html { redirect_to(@assessment, :notice => 'Assessment was successfully updated.') }
+        format.html { redirect_to(@assessment, :notice => t(:assessment_was_successfully_updated)) }
       else
         format.html { render :action => "edit" }
       end
@@ -125,7 +125,7 @@ class AssessmentsController < ApplicationController
 
   def destroy
     @assessment.destroy
-    redirect_to(@assessment.project, :notice => 'Assessment was deleted.')
+    redirect_to(@assessment.project, :notice => t(:assessment_was_deleted))
   end
 
   def show_section
@@ -147,7 +147,7 @@ class AssessmentsController < ApplicationController
   
   def project_curator_required
     unless @project.curated_by?(current_user)
-      flash[:error] = "You don't have permission to edit that project."
+      flash[:error] = t(:you_dont_have_permission_to_edit_that_project)
       return redirect_to @project
     end
     true
