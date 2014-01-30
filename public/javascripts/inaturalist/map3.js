@@ -814,6 +814,61 @@ google.maps.Map.prototype.getOverlay = function(name) {
   }
 }
 
+google.maps.Map.prototype.addObservationsLayer = function(options){  
+  var taxon_id = options.taxon_id;
+  var observation_id = options.observation_id;
+  var taxon_color = options.taxon_color;
+  var tiles_url = options.tiles_url;
+  var gridTileUrl = tiles_url + "/observations/grid/{z}/{x}/{y}.png?";
+  var pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png?";
+
+  gridTileUrl += "taxon_id=" + taxon_id;
+  gridTileUrl += "&taxon_color=" + encodeURIComponent(taxon_color);
+  pointTileUrl += "taxon_id=" + taxon_id;
+  pointTileUrl += "&obs_id=" + observation_id;
+  pointTileUrl += "&taxon_color=" + encodeURIComponent(taxon_color);
+  this.addTileLayer(gridTileUrl,'cnt,taxon_id');
+  this.addTileLayer(pointTileUrl,'id,taxon_id,species_guess,latitude,longitude');
+}
+
+google.maps.Map.prototype.addTileLayer = function(tileUrl,interactivity){
+  var gridUrl = tileUrl.replace(/\.png/, '.grid.json') + '&interactivity=' + interactivity
+  var tilejson = {
+    version: '0.0.1',
+    scheme: 'xyz',
+    tiles: [tileUrl],
+    // windshaft needs the interactivity param to know what data to render
+    grids: [gridUrl],
+    // wax needs template and legend set or it won't fire on events
+    "template": "{{species_guess}}",
+    "legend": "foo"
+  }
+  this.overlayMapTypes.push(new wax.g.connector(tilejson));
+  wax.g.interaction()
+    .map(this)
+      .tilejson(tilejson)
+        .on({
+          on: function(o) {
+            document.body.style.cursor = 'pointer'
+            if (o.e.type == 'click') {
+              if(o.data['latitude']){
+                var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude'])
+                var infowindow = new google.maps.InfoWindow({
+                        content: window.map.buildObservationInfoWindow(o.data),
+                        position: latLng
+                })
+                infowindow.open(window.map);
+              }
+            } else if (o.e.type == 'mousemove') {
+              window.map.setOptions({ draggableCursor: 'pointer' });
+            }
+          },
+          off: function(o) {
+            window.map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
+          }
+        })
+}
+
 // Static constants
 iNaturalist.Map.ICONS = {
   DodgerBlue34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_DodgerBlue.png"),
