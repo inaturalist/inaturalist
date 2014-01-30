@@ -20,12 +20,12 @@ var defaultStylePoints = "#observations [zoom >=9]{" +
   "marker-allow-overlap: true;}";
 
 var gridQuery = "(SELECT cnt, taxon_id, ST_Envelope(" +
-  "GEOMETRYFROMTEXT('LINESTRING('||(st_xmax(the_geom)-({{seed}}/2))||' '||(st_ymax(the_geom)-({{seed}}/2))||'," +
+  "ST_GEOMETRYFROMTEXT('LINESTRING('||(st_xmax(the_geom)-({{seed}}/2))||' '||(st_ymax(the_geom)-({{seed}}/2))||'," +
   "'||(st_xmax(the_geom)+({{seed}}/2))||' '||(st_ymax(the_geom)+({{seed}}/2))||')',4326)) as geom FROM " +
-  "(SELECT count(*) as cnt, taxon_id, ST_SnapToGrid(geom, 0+({{seed}}/2), 75+({{seed}}/2), {{seed}}, {{seed}}) as the_geom FROM observations " +
-  "WHERE taxon_id={{taxon_id}} " + 
-  " GROUP By taxon_id, ST_SnapToGrid(geom, 0+({{seed}}/2), 75+({{seed}}/2), {{seed}}, {{seed}})) snap_grid ) as obs_grid";
-
+  "(SELECT count(*) as cnt, o.taxon_id, t.ancestry,  ST_SnapToGrid(geom, 0+({{seed}}/2), 75+({{seed}}/2), {{seed}}, {{seed}}) as the_geom FROM " +
+  "observations o, taxa t  " +
+  "WHERE o.taxon_id=t.id AND taxon_id={{taxon_id}} OR '/' || t.ancestry || '/' LIKE '%/{{taxon_id}}/%' " +
+  "GROUP By taxon_id, ancestry, ST_SnapToGrid(geom, 0+({{seed}}/2), 75+({{seed}}/2), {{seed}}, {{seed}})) snap_grid ) as obs_grid";
 
 var defaultStyleGrid = "#observations [zoom <9]{ " +
   "polygon-fill:#EFF3FF; " +
