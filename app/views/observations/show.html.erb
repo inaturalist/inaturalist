@@ -173,10 +173,10 @@
       map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
 
       var tileLayerOptions = {
-                taxon_id        : OBSERVATION.taxon_id,
-                observation_id  : OBSERVATION.id,
-                taxon_color     : iNaturalist.Map.ICONIC_TAXON_COLORS[OBSERVATION.iconic_taxon.name],
-                tiles_url       : "http://158.109.62.116:4000"
+        taxon_id        : OBSERVATION.taxon_id, 
+        observation_id  : OBSERVATION.id,
+        taxon_color     : iNaturalist.Map.ICONIC_TAXON_COLORS[OBSERVATION.iconic_taxon.name],
+        tiles_url       : "http://158.109.62.116:4000"
       }
       window.map.addObservationsLayer(tileLayerOptions);
     })
