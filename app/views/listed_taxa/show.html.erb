@@ -1,9 +1,4 @@
-<% if @list.is_a?(CheckList) && @list.is_default? && @list.title.include?('Check List') %>
-    <% @list_title = truncate(t(:check_list_place, :place => t("places_name.#{@list.title.chomp(' Check List').gsub(' ','_').downcase}",
-                                                 :default => @list.title.split(' Check List').first)), :length => 85) %>
-<% else %>
-    <% @list_title = truncate(@list.title, :length => 85) %>
-<% end %>
+<% @list_title = display_list_title(@list) %>
 
 <%- content_for(:title) do -%>
   <%- @title = capture do %>
@@ -138,6 +133,12 @@
     <% end %>
     <%=t :on_day %> <%= l(@listed_taxon.updated_at.to_date, :format => :long) %>
   </p>
+  
+  <%- if(@related_listed_taxa.present?) %>
+    <div>
+      <%= render :partial => 'all_listings' %>
+    </div>
+  <% end %>
   
   <div class="meta">
     <strong><%=t :source %>:</strong> <%= citation_for @listed_taxon.citation_object %>

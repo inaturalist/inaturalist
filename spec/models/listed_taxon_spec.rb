@@ -37,6 +37,7 @@ describe ListedTaxon do
     it "should set observations_month_counts" do
       @listed_taxon.observations_month_counts.should_not be_blank
     end
+
   end
   
   describe "creation for check lists" do
@@ -440,3 +441,68 @@ describe ListedTaxon, "parent check list syncing" do
     Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count.should eq(1)
   end
 end
+
+describe "a listed taxon on a non checklist" do
+  before(:each) do
+    @taxon = Taxon.make!
+    @list = List.make!
+    @first_observation = Observation.make!(:taxon => @taxon)
+    @user = @first_observation.user
+    @last_observation = Observation.make!(:taxon => @taxon, :user => @user, :observed_on_string => 1.minute.ago.to_s)
+    @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @list)
+    @listed_taxon.reload
+  end
+  it "should not be a primary listing" do
+    @listed_taxon.primary_listing.should be(false)
+  end
+end
+describe "primary_listing" do
+  before(:each) do
+    @taxon = Taxon.make!
+    @check_list = CheckList.make!
+    @check_list_two = CheckList.make!
+    @check_list_two.place = @check_list.place
+    @check_list_two.save
+    @check_list_two.reload
+    @first_observation = Observation.make!(:taxon => @taxon)
+    @user = @first_observation.user
+    @last_observation = Observation.make!(:taxon => @taxon, :user => @user, :observed_on_string => 1.minute.ago.to_s)
+    @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @check_list)
+    @listed_taxon.reload
+
+    @first_observation_two = Observation.make!(:taxon => @taxon)
+    @user_two = @first_observation_two.user
+    @last_observation_two = Observation.make!(:taxon => @taxon, :user => @user_two, :observed_on_string => 1.minute.ago.to_s)
+    @listed_taxon_two = ListedTaxon.make!(:taxon => @taxon, :list => @check_list_two)
+    @listed_taxon_two.reload
+    
+  end
+
+  it "should set as first as primary listing" do
+    @listed_taxon.primary_listing.should be(true)
+  end
+  it "should set second lt as primary listing = false" do
+    @listed_taxon_two.primary_listing.should be(false)
+  end
+  it "should override attributes (like establishment means) of the non-primary listed taxon" do
+    @listed_taxon.primary_listing.should be(true)
+    @listed_taxon.update_attribute(:establishment_means, "introduced")
+    @listed_taxon_two.reload
+    expect(@listed_taxon_two.establishment_means).to eq("introduced")
+  end
+  it "should reassign the primary to the second taxon when the original primary is destroyed" do
+    @listed_taxon.primary_listing.should be(true)
+    @listed_taxon.destroy
+    @listed_taxon_two.reload
+    @listed_taxon_two.primary_listing.should be(true)
+    @listed_taxon_two.destroy
+  end
+  it "should set each lt appropriately on update" do
+    @listed_taxon_two.update_attribute(:primary_listing, true)
+    @listed_taxon_two.primary_listing.should be(true)
+    @listed_taxon.reload
+    @listed_taxon.primary_listing.should be(false)
+  end
+end
+
+

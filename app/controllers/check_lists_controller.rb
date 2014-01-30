@@ -23,11 +23,9 @@ class CheckListsController < ApplicationController
     # would be a pain to manage, but it might be faster.
     if @list.is_default?
       @find_options[:conditions] = update_conditions(
-        @find_options[:conditions], ["AND place_id = ?", @list.place_id])
+        @find_options[:conditions], ["AND place_id = ? AND primary_listing = ?", @list.place_id, true])
       
-      # Make sure we don't get duplicate taxa from check lists other than the default
-      @find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
-      
+
       # Searches must use place_id instead of list_id for default checklists 
       # so we can search items in other checklists for this place
       if @q = params[:q]
@@ -39,11 +37,11 @@ class CheckListsController < ApplicationController
       @listed_taxa = ListedTaxon.paginate(@find_options)
       
       @total_listed_taxa = ListedTaxon.count('DISTINCT(taxon_id)',
-        :conditions => ["place_id = ?", @list.place_id])
+        :conditions => ["place_id = ? AND primary_listing = ?", @list.place_id, true])
       @total_observed_taxa = ListedTaxon.count('DISTINCT(taxon_id)',
         :conditions => ["last_observation_id IS NOT NULL AND place_id =?", @list.place_id])
     end
-    super
+    super #show from list module
   end
   
   def new
