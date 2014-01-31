@@ -1,14 +1,14 @@
 var Windshaft = require('../lib/windshaft');
 var _         = require('underscore');
 
-var pointQuery = "(SELECT id, species_guess, iconic_taxon_id, taxon_id, latitude, longitude, geom FROM observations " +
-  "WHERE taxon_id = {{taxon_id}}" +
-  " AND id != {{obs_id}}) as points";
+var pointQuery = "(SELECT o.id, o.species_guess, o.iconic_taxon_id, o.taxon_id, o.latitude, o.longitude, o.geom FROM " + 
+  "observations o, taxa t " +
+  "WHERE o.taxon_id = t.id AND ( o.taxon_id = {{taxon_id}} OR '/' || t.ancestry || '/' LIKE '%/{{taxon_id}}/%' ) " +
+  " AND o.id != {{obs_id}}) as points";
 
-
-
-var defaultStylePoints = "#observations [zoom >=9]{" +
-  // "marker-fill: " + iNaturalist.Map.ICONIC_TAXON_COLORS[OBSERVATION.iconic_taxon.name] + ";" +
+//Don't like hardcoding taxon colors here
+var defaultStylePoints = 
+  "#observations [zoom >=9]{" +
   "marker-fill: {{taxon_color}}; " +
   "marker-opacity: 1;" +
   "marker-width: 8;" +
@@ -17,26 +17,42 @@ var defaultStylePoints = "#observations [zoom >=9]{" +
   "marker-line-opacity: 0.9;" +
   "marker-placement: point;" +
   "marker-type: ellipse;" +
-  "marker-allow-overlap: true;}";
+  "marker-allow-overlap: true; " +
+  "[taxon_id=2] { marker-fill: #1E90FF; } " +
+  "[taxon_id=3] { marker-fill: #1E90FF; } " +
+  "[taxon_id=5] { marker-fill: #1E90FF; } " +
+  "[taxon_id=6] { marker-fill: #1E90FF; } " +
+  "[taxon_id=7] { marker-fill: #1E90FF; } " +
+  "[taxon_id=8] { marker-fill: #1E90FF; } " +
+  "[taxon_id=9] { marker-fill: #FF4500; } " +
+  "[taxon_id=11] { marker-fill: #FF4500; } " +
+  "[taxon_id=12] { marker-fill: #73AC13; } " +
+  "[taxon_id=13] { marker-fill: #FF1493; } " +
+  "[taxon_id=14] { marker-fill: #8B008B; } " +
+  "[taxon_id=15] { marker-fill: #FF4500; } " +
+  "[taxon_id=16] { marker-fill: #993300; } " +
+  "}";
 
 var gridQuery = "(SELECT cnt, taxon_id, ST_Envelope(" +
   "ST_GEOMETRYFROMTEXT('LINESTRING('||(st_xmax(the_geom)-({{seed}}/2))||' '||(st_ymax(the_geom)-({{seed}}/2))||'," +
   "'||(st_xmax(the_geom)+({{seed}}/2))||' '||(st_ymax(the_geom)+({{seed}}/2))||')',4326)) as geom FROM " +
   "(SELECT count(*) as cnt, o.taxon_id, t.ancestry,  ST_SnapToGrid(geom, 0+({{seed}}/2), 75+({{seed}}/2), {{seed}}, {{seed}}) as the_geom FROM " +
   "observations o, taxa t  " +
-  "WHERE o.taxon_id=t.id AND taxon_id={{taxon_id}} OR '/' || t.ancestry || '/' LIKE '%/{{taxon_id}}/%' " +
+  "WHERE o.taxon_id=t.id AND (taxon_id={{taxon_id}} OR '/' || t.ancestry || '/' LIKE '%/{{taxon_id}}/%') " + 
   "GROUP By taxon_id, ancestry, ST_SnapToGrid(geom, 0+({{seed}}/2), 75+({{seed}}/2), {{seed}}, {{seed}})) snap_grid ) as obs_grid";
 
-var defaultStyleGrid = "#observations [zoom <9]{ " +
+
+var defaultStyleGrid = 
+  "#observations [zoom <9]{ " +
   "polygon-fill:#EFF3FF; " +
   "polygon-opacity:0.6; " +
   "line-opacity:1; " +
   "line-color:#FFFFFF; " +
-  "[cnt>=5] { polygon-fill: {{taxon_color}}; polygon-opacity:1.0;  } " +
-  "[cnt<5]  { polygon-fill: {{taxon_color}}; polygon-opacity:0.8;  } " +
-  "[cnt<4]  { polygon-fill: {{taxon_color}}; polygon-opacity:0.6;  } " +
-  "[cnt<3]  { polygon-fill: {{taxon_color}}; polygon-opacity:0.4;  } " +
-  "[cnt<2]  { polygon-fill: {{taxon_color}}; polygon-opacity:0.2;  } }";
+  "[cnt>=25] { polygon-fill: {{taxon_color}}; polygon-opacity:1.0;  } " +
+  "[cnt<20]  { polygon-fill: {{taxon_color}}; polygon-opacity:0.8;  } " +
+  "[cnt<15]  { polygon-fill: {{taxon_color}}; polygon-opacity:0.6;  } " +
+  "[cnt<10]  { polygon-fill: {{taxon_color}}; polygon-opacity:0.4;  } " +
+  "[cnt<5]  { polygon-fill: {{taxon_color}}; polygon-opacity:0.2;  } }";
 
 
 var config = {
@@ -83,7 +99,7 @@ var config = {
       }else{
         //Boring blue
         req.params.style = req.params.style.replace(/\{\{taxon_color\}\}/g,'#FBB7ED');	
-      }
+      }      
     }else if(req.params.endpoint == 'points'){	//Points endpoint
       req.params.sql = pointQuery;
       if(req.params.taxon_id){
