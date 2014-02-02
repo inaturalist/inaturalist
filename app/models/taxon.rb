@@ -1185,6 +1185,7 @@ class Taxon < ActiveRecord::Base
 
   def deleteable_by?(user)
     return true if user.is_admin?
+    return false if taxon_changes.exists? || taxon_change_taxa.exists?
     creator_id == user.id
   end
   
