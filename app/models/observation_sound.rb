@@ -5,9 +5,11 @@ class ObservationSound < ActiveRecord::Base
   after_destroy :set_observation_sounds_count
 
   def set_observation_sounds_count
-    if o = Observation.find_by_id(observation_id)
-      Observation.update_all(["sounds_count = ?", o.observation_sounds.count], ["id = ?", o.id])
-    end
+    return true unless observation_id
+    Observation.update_all(
+      ["sounds_count = ?", ObservationSound.where(:observation_id => observation_id).count], 
+      ["id = ?", observation_id]
+    )
     true
   end
 end
