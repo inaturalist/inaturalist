@@ -382,6 +382,11 @@ module Shared::ListsModule
     set_options_order
   end
   def set_scopes
+    apply_list_scopes
+    apply_checklist_scopes if @list.is_a?(CheckList)
+    @listed_taxa ||= @unpaginated_listed_taxa.paginate(@find_options)
+  end
+  def apply_list_scopes
     if filter_by_taxon?
       # This scope uses an eager load which won't load all 2nd order associations (e.g. taxon names), so they'll have to loaded when needed
       @find_options[:include] = [
@@ -394,6 +399,8 @@ module Shared::ListsModule
       iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_iconic_taxon(iconic_taxon_id)
     end
+  end
+  def apply_checklist_scopes
     if filter_by_param?(params[:taxonomic_status])
       @taxonomic_status = params[:taxonomic_status]
       unless @taxonomic_status=="all"
@@ -443,7 +450,6 @@ module Shared::ListsModule
       @threatened = 'f'
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.without_threatened_status
     end
-    @listed_taxa ||= @unpaginated_listed_taxa.paginate(@find_options)
   end
   def set_options_order
     @find_options[:order] = case params[:order_by]
