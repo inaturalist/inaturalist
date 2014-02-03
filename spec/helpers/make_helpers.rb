@@ -100,6 +100,16 @@ module MakeHelpers
     m.save!
     m
   end
+
+  def make_taxon_swap(options = {})
+    input_taxon = options.delete(:input_taxon) || Taxon.make!
+    output_taxon = options.delete(:output_taxon) || Taxon.make!
+    swap = TaxonSwap.make(options)
+    swap.add_input_taxon(input_taxon)
+    swap.add_output_taxon(output_taxon)
+    swap.save!
+    swap
+  end
   
   # creating the tree is a bit tricky
   #

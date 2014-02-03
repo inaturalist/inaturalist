@@ -29,7 +29,7 @@ class CustomProjectsController < ApplicationController
 
     respond_to do |format|
       if @custom_project.save
-        format.html { redirect_to(edit_project_path(@project), :notice => 'CustomProject was successfully created.') }
+        format.html { redirect_to(edit_project_path(@project), :notice => t(:custom_project_was_successfully_created)) }
         format.xml  { render :xml => @custom_project, :status => :created, :location => @custom_project }
       else
         format.html { render :action => "new" }
@@ -46,7 +46,7 @@ class CustomProjectsController < ApplicationController
     respond_to do |format|
       if !params[:preview]
         if @custom_project.update_attributes(params[:custom_project])
-          format.html { redirect_to(edit_project_path(@project), :notice => 'CustomProject was successfully updated.') }
+          format.html { redirect_to(edit_project_path(@project), :notice => t(:custom_project_was_successfully_updated)) }
           format.xml  { head :ok }
         else
           format.html { render :action => "edit" }
@@ -82,7 +82,7 @@ class CustomProjectsController < ApplicationController
     @project ||= Project.find_by_id(params[:project_id])
     @project ||= Project.find_by_id(params[:custom_project].try(:[], :project_id))
     unless @project
-      flash[:error] = "No project selected"
+      flash[:error] = t(:no_project_selected)
       redirect_to projects_path
       return false
     end

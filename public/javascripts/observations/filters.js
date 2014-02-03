@@ -71,14 +71,15 @@ function setFiltersFromQuery(query) {
   deselectAll()
   var params = $.deparam(query)
   $.each(params, function(k,v) {
-    $('#filters :input:radio[name='+k+'][value='+v+']').attr('checked', true)
+    if (k != 'iconic_taxa' && k != 'has') {
+      $('#filters :input:radio[name='+k+'][value='+v+']').attr('checked', true)
+    }
     $('#filters :input[name='+k+']').not(':checkbox, :radio').val(v)
     if (k == 'place_id') {
       $('#filters input[name=place_id]').chooser('selectId', v)
     } else if (k == 'taxon_id') {
       $.fn.simpleTaxonSelector.selectTaxonFromId('#filters .simpleTaxonSelector', v)
-    }
-    else if (k == 'iconic_taxa' || k == 'has') { //(typeof(v.unique) == 'function') {
+    } else if (k == 'iconic_taxa' || k == 'has') {
       $.each(v, function(i,av) {
         $selection = $('#filters :input:checkbox[name="'+k+'[]"][value='+av+']')
         $selection.attr('checked', true)

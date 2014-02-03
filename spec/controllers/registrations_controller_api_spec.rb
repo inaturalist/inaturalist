@@ -54,7 +54,13 @@ describe Users::RegistrationsController, "create" do
       :password_confirmation => "zomgbar"
     }
     json = JSON.parse(response.body)
-    puts "errors: #{json['errors'].inspect}"
     json['errors'].uniq.size.should eq json['errors'].size
+  end
+
+  it "should assign a user to a site" do
+    s = Site.make!(:url => "test.host") # hoping the test host is the same across platforms...
+    u = User.make
+    post :create, :user => {:login => u.login, :password => "zomgbar", :password_confirmation => "zomgbar", :email => u.email}
+    User.find_by_login(u.login).site.should eq s
   end
 end

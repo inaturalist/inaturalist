@@ -54,7 +54,8 @@ describe Observation, "creation" do
       ['Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)', {:month => 4, :day => 6, :hour => 16, :offset => "-05:00"}],
       ['Sun Nov 03 2013 08:15:25 GMT-0500 (GMT-5)', {:month => 11, :day => 3, :hour => 8, :offset => "-05:00"}],
       ['September 27, 2012 8:09:50 AM GMT+01:00', :month => 9, :day => 27, :hour => 8, :offset => "+01:00"],
-      ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', :month => 12, :day => 26, :hour => 11, :offset => "+05:30"]
+      ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', :month => 12, :day => 26, :hour => 11, :offset => "+05:30"],
+      ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"]
     ].each do |date_string, opts|
       o = Observation.make!(:observed_on_string => date_string)
       o.observed_on.day.should be(opts[:day])
@@ -1968,6 +1969,15 @@ describe Observation, "community taxon" do
       Identification.make!(:observation => @o, :taxon => @s1)
       @o.reload
       @o.community_taxon.should eq @g1
+    end
+
+    it "s1 s1 f f" do
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      @o.reload
+      @o.community_taxon.should eq @f
     end
   end
 end

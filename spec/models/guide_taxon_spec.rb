@@ -5,6 +5,7 @@ describe GuideTaxon, "creation" do
   before(:all) do
     load_test_taxa
   end
+
   it "should add the taxon's wikipedia description as a GuideSection" do
     t = Taxon.make!(:wikipedia_summary => "foo bar")
     gt = GuideTaxon.make!(:taxon => t)

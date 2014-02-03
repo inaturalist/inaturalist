@@ -1,13 +1,19 @@
-<%=t :feeds %>:
-<%- 
-  feed_params = params.reject do |key,value|
-    ObservationsController::REJECTED_FEED_PARAMS.include?(key)
-  end
-  kml_feed_params = params.reject do |key,value|
-    ObservationsController::REJECTED_KML_FEED_PARAMS.include?(key)
-  end
-  kml_feed_params[:kml_type] = "network_link"
--%>
-<%= link_to(t(:atom), url_for(feed_params.merge(:format => 'atom')),    :class => 'atomlink') %>
-<%= link_to(t(:kml),  url_for(kml_feed_params.merge(:format => 'kml')), :class => 'kmllink', :rel => "nofollow") %>
-<%= link_to(t(:csv),  url_for(feed_params.merge(:format => 'csv')),     :class => 'csvlink', :rel => "nofollow") %>
+<span class="feeds">
+  <%=t :feeds %>:
+  <%- 
+    feed_params = params.reject do |key,value|
+      ObservationsController::REJECTED_FEED_PARAMS.include?(key)
+    end
+    kml_feed_params = params.reject do |key,value|
+      ObservationsController::REJECTED_KML_FEED_PARAMS.include?(key)
+    end
+    kml_feed_params[:kml_type] = "network_link"
+    feed_params['projects[]'] = @project.slug if @project
+  -%>
+  <%= link_to(t(:atom), url_for(feed_params.merge(:format => 'atom')),    :class => 'atomlink') %>
+  <%= link_to(t(:kml),  url_for(kml_feed_params.merge(:format => 'kml')), :class => 'kmllink', :rel => "nofollow") %>
+</span>
+<span class="feeds">
+  <%=t :export %>:
+  <%= link_to(t(:csv),  export_observations_path(feed_params),     :class => 'csvlink', :rel => "nofollow") %>
+</span>

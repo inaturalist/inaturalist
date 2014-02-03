@@ -155,7 +155,7 @@ class ListedTaxaController < ApplicationController
           return redirect_to lists_path
         end
         format.json do
-          render :json => {:error => msg}
+          return render(:json => {:error => msg})
         end
       end
     end

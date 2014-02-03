@@ -64,7 +64,7 @@ GoogleStreetViewPhoto.blueprint do
 end
 
 Guide.blueprint do
-  user { User.make }
+  user { User.make! }
   title { Faker::Lorem.sentence }
 end
 
@@ -246,6 +246,11 @@ Role.blueprint(:admin) do
   name { User::JEDI_MASTER_ROLE }
 end
 
+Site.blueprint do
+  name { Faker::Name.name }
+  url { "http://#{Faker::Internet.domain_name}" }
+end
+
 Sound.blueprint do
   user { User.make }
   native_sound_id { rand(1000) }
@@ -305,7 +310,6 @@ end
 TaxonName.blueprint do
   name { Faker::Name.name }
   taxon { Taxon.make! }
-  is_valid { true }
 end
 
 TaxonRange.blueprint do
