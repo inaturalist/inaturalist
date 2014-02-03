@@ -1,5 +1,7 @@
 var Windshaft = require('../lib/windshaft');
 var _         = require('underscore');
+
+//Rename config.example to config.js and fill parameters
 var conf      = require('./config');
 
 var pointQuery = "(SELECT o.id, o.species_guess, o.iconic_taxon_id, o.taxon_id, o.latitude, o.longitude, o.geom, " +
