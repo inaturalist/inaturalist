@@ -67,7 +67,11 @@ class ListedTaxon < ActiveRecord::Base
   }
   
   scope :filter_by_taxon, lambda {|filter_taxon_id, self_and_ancestor_ids| where("listed_taxa.taxon_id = ? OR listed_taxa.taxon_ancestor_ids = ? OR listed_taxa.taxon_ancestor_ids LIKE ?", filter_taxon_id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%")}
+  scope :filter_by_taxa, lambda {|search_taxon_ids| where("listed_taxa.taxon_id IN (?)", search_taxon_ids)}
+
   scope :with_taxonomic_status, lambda{|taxonomic_status| includes(:taxon).where("taxa.is_active = ?", taxonomic_status)}
+
+  scope :find_listed_taxa_from_default_list, lambda{|place_id| where("place_id = ? AND primary_listing = ?", place_id, true)}
 
   scope :filter_by_iconic_taxon, lambda {|iconic_taxon_id| where("taxa.iconic_taxon_id = ?", iconic_taxon_id)}
   scope :filter_by_list, lambda {|list_id| where("list_id = ?", list_id)}
@@ -661,7 +665,7 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def check_primary_listing
-    self.primary_listing = !other_primary_listed_taxa? && can_set_as_primary?
+    primary_listing = !other_primary_listed_taxa? && can_set_as_primary?
     true
   end
   def can_set_as_primary?

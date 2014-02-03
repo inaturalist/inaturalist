@@ -15,6 +15,7 @@ module Shared::ListsModule
   
   def show
     @view = params[:view] || params[:view_type]
+    @unpaginated_listed_taxa ||= ListedTaxon.filter_by_list(@list.id)
     respond_to do |format|
       format.html do
         # Make sure request is being handled by the right controller
@@ -381,7 +382,6 @@ module Shared::ListsModule
     set_options_order
   end
   def set_scopes
-    @unpaginated_listed_taxa = ListedTaxon.filter_by_list(@list.id)
     if filter_by_taxon?
       # This scope uses an eager load which won't load all 2nd order associations (e.g. taxon names), so they'll have to loaded when needed
       @find_options[:include] = [
@@ -464,10 +464,10 @@ module Shared::ListsModule
     !([nil, "on"].include?(param_name))
   end
   def filter_by_taxon?
-    params[:taxon] && @filter_taxon = (Taxon.find_by_id(params[:taxon].to_i) || Taxon.where("lower(name) = ?", params[:taxon].to_s.downcase).first)
+    !!(params[:taxon] && @filter_taxon = (Taxon.find_by_id(params[:taxon].to_i) || Taxon.where("lower(name) = ?", params[:taxon].to_s.downcase).first))
   end
   def filter_by_iconic_taxon?
-    params[:iconic_taxon]
+    !!params[:iconic_taxon]
   end
   def with_threatened?
     [true, 't', 'true', '1', 'y', 'yes'].include?(params[:threatened])

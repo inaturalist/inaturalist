@@ -22,19 +22,14 @@ class CheckListsController < ApplicationController
     # check lists belonging to a place, like we do with parent lists.  It 
     # would be a pain to manage, but it might be faster.
     if @list.is_default?
-      @find_options[:conditions] = update_conditions(
-        @find_options[:conditions], ["AND place_id = ? AND primary_listing = ?", @list.place_id, true])
-      
+      @unpaginated_listed_taxa = ListedTaxon.find_listed_taxa_from_default_list(@list.place_id)
 
       # Searches must use place_id instead of list_id for default checklists 
       # so we can search items in other checklists for this place
       if @q = params[:q]
         @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
-        @find_options[:conditions] = update_conditions(
-          @find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
+        @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
       end
-      
-      @listed_taxa = ListedTaxon.paginate(@find_options)
       
       @total_listed_taxa = ListedTaxon.count('DISTINCT(taxon_id)',
         :conditions => ["place_id = ? AND primary_listing = ?", @list.place_id, true])
