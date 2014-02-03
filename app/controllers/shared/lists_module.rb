@@ -411,6 +411,13 @@ module Shared::ListsModule
       @taxonomic_status = "active"
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_taxonomic_status(true)
     end
+    if with_observations?
+      @observed = 't'
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.confirmed
+    elsif with_no_observations?
+      @observed = 'f'
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.unconfirmed
+    end
     if filter_by_param?(params[:rank])
       @rank = params[:rank]
       if @rank=="species"
@@ -421,13 +428,6 @@ module Shared::ListsModule
     else 
       @rank = "species"
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
-    end
-    if with_observations?
-      @observed = 't'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.confirmed
-    elsif with_no_observations?
-      @observed = 'f'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.unconfirmed
     end
     if filter_by_param?(params[:establishment_means])
       @establishment_means = params[:establishment_means]
