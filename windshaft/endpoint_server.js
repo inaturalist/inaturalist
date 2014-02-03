@@ -1,5 +1,6 @@
 var Windshaft = require('../lib/windshaft');
 var _         = require('underscore');
+var conf      = require('./config');
 
 var pointQuery = "(SELECT o.id, o.species_guess, o.iconic_taxon_id, o.taxon_id, o.latitude, o.longitude, o.geom, " +
   "o.positional_accuracy, o.captive, o.quality_grade FROM " + 
@@ -89,21 +90,21 @@ var config = {
   base_url_notable: '/:endpoint',
   grainstore: {
     datasource: {
-      user:'agusti', 
-      host: 'localhost',
-      port: 5432,
-      geometry_field: 'geom',
-      srid: 4326
+      user: conf.database.user, 
+      host: conf.database.host,
+      port: conf.database.port,
+      geometry_field: conf.database.geometry_field,
+      srid: conf.database.srid
     }
   }, //see grainstore npm for other options
-  redis: {host: '127.0.0.1', port: 6379},
+  redis: {host: conf.redis.host, port: conf.redis.port},
   enable_cors: true,
   req2params: function(req, callback){
     // this is in case you want to test sql parameters eg ...png?sql=select * from my_table limit 10
     req.params =  _.extend({}, req.params);
     _.extend(req.params, req.query);
 
-    req.params.dbname = 'inaturalist_fork';
+    req.params.dbname = conf.database.database_name;
 
     if(req.params.endpoint == 'grid' ){		//Grid endpoint
       var seed = 16/Math.pow(2,parseInt(req.params.z));

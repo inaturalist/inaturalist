@@ -176,7 +176,11 @@
         taxon_id        : OBSERVATION.taxon_id, 
         observation_id  : OBSERVATION.id,
         taxon_color     : iNaturalist.Map.ICONIC_TAXON_COLORS[OBSERVATION.iconic_taxon.name],
-        tiles_url       : "http://158.109.62.116:4000"
+        <% if CONFIG.tile_servers && CONFIG.tile_servers.windshaft %>
+          tiles_url     : '<%= CONFIG.tile_servers.windshaft %>'
+        <% else %>  
+          tiles_url     : 'http://localhost:4000'
+        <% end %>
       }
       window.map.addObservationsLayer(tileLayerOptions);
     })

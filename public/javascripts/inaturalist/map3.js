@@ -828,7 +828,7 @@ google.maps.Map.prototype.addObservationsLayer = function(options){
   pointTileUrl += "&obs_id=" + observation_id;
   pointTileUrl += "&taxon_color=" + encodeURIComponent(taxon_color);
   this.addTileLayer(gridTileUrl,'cnt,taxon_id');
-  this.addTileLayer(pointTileUrl,'id,taxon_id,species_guess,latitude,longitude');
+  this.addTileLayer(pointTileUrl,'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id');
 }
 
 google.maps.Map.prototype.addTileLayer = function(tileUrl,interactivity){
