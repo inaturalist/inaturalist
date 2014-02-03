@@ -217,12 +217,11 @@
     <%= link_to t(:cancel), taxon, :class => 'button' %>
     <%-
       pieces = []
+      pieces << t(:descendant_taxa) if @descendants_exist
       pieces << "listed taxa" if @listed_taxa_exist
       pieces << "identifications" if @identifications_exist
       pieces << "observations" if @observations_exist
-      msg = t(:it_has) 
-      msg += t(:descendant_taxa) if @descendants_exist
-      msg += t(:and) + " #{pieces.join(', ')} " + t(:of_it_and_its_descendants) unless pieces.empty?
+      msg = t(:it_has) + " " + commas_and(pieces) unless pieces.empty?
     -%>
     <% if taxon.deleteable_by?(current_user) -%>
       <%= link_to t(:delete), taxon,

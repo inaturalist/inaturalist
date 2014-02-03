@@ -14,7 +14,7 @@
   </div>
 
   <div class="meta">
-    <a href="<%= CONFIG.about_url %>"><%= t(:about_x, :x => SITE_NAME) %></a> &nbsp;
+    <a href="<%= CONFIG.about_url %>"><%= t(:about_x, :x => @site.try(:name) || SITE_NAME) %></a> &nbsp;
     <a href="<%= CONFIG.help_url %>"><%=t :help %></a> &nbsp;
     <a href="<%= CONFIG.feedback_url %>"><%=t :feedback %></a> &nbsp;
     <a href="<%= CONFIG.terms_url %>"><%=t :terms_service %></a> &nbsp;

@@ -16,7 +16,7 @@ module TaxonDescribers
 
     def clean_html(html, options = {})
       coder = HTMLEntities.new
-      html.gsub!(/data-videopayload=".+?"/m, '')
+      html.gsub!(/(data-)?videopayload=".+?"/m, '')
       decoded = coder.decode(html)
       decoded.gsub!('href="//', 'href="http://')
       decoded.gsub!('src="//', 'src="http://')

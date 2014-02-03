@@ -227,7 +227,7 @@
             <% end -%>
           <% else %>
             <%= t('change_types.replaced_by') %>
-            <em><%= link_to @taxon_change.taxon.name, @taxon_change.taxon %></em>.
+            <em><%= link_to @taxon_change.taxon.try(:name), @taxon_change.taxon %></em>.
           <% end -%>
         <% when 'TaxonStage' %>
           <%= t('change_types.activated_soon') %>.

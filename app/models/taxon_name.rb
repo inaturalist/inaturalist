@@ -25,6 +25,7 @@ class TaxonName < ActiveRecord::Base
   before_validation do |tn|
     tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
   end
+  before_save :set_is_valid
   after_create {|name| name.taxon.set_scientific_taxon_name}
   after_save :update_unique_names
   after_destroy {|name| name.taxon.delay(:priority => OPTIONAL_PRIORITY).update_unique_name if name.taxon}
@@ -124,6 +125,11 @@ class TaxonName < ActiveRecord::Base
       options[:only] = [:id, :name, :lexicon, :is_valid]
     end
     super(options)
+  end
+
+  def set_is_valid
+    self.is_valid = true unless self.is_valid == false || lexicon == LEXICONS[:SCIENTIFIC_NAMES]
+    true
   end
   
   def self.choose_common_name(taxon_names, options = {})

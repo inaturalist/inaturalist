@@ -1,0 +1,25 @@
+<label>
+  <% if @listed_taxon.primary_listing %>
+    <%=t :this_is_the_primary_listing %>
+  <% else %>
+    <% if @list.listed_taxa_editable_by?(current_user) && @list.is_a?(CheckList) -%>
+      <%= form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {
+        :id => dom_id(@listed_taxon, "edit_occurrence"), 
+        :class => "smallbuttons inline buttonrow"} do |f| %>
+        <%= f.hidden_field :primary_listing, :value => true %>
+        <%= f.submit t(:make_this_the_primary_listing), :class => "default button" %>
+      <% end %>
+    <% end -%>
+  <% end %>
+</label>
+<br>
+<% if @listed_taxon.place && @related_listed_taxa.present? %>
+  <label>
+    <%=t :other_listings_of_this_taxon_for_this_place %>
+  </label>
+  <% @related_listed_taxa.each do |related_listed_taxon| %>
+    <li>
+    <%= link_to "#{t(:on_)} #{display_list_title(related_listed_taxon.list, 40)}", related_listed_taxon %>
+    </li>
+  <% end %>
+<% end %>

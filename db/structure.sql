@@ -1187,7 +1187,8 @@ CREATE TABLE listed_taxa (
     observations_month_counts character varying(255),
     taxon_range_id integer,
     source_id integer,
-    manually_added boolean DEFAULT false
+    manually_added boolean DEFAULT false,
+    primary_listing boolean
 );
 
 
@@ -1616,7 +1617,9 @@ CREATE TABLE observations (
     sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
     private_geom geometry(Point),
-    captive boolean DEFAULT false
+    community_taxon_id integer,
+    captive boolean DEFAULT false,
+    site_id integer
 );
 
 
@@ -2315,6 +2318,80 @@ ALTER SEQUENCE rules_id_seq OWNED BY rules.id;
 CREATE TABLE schema_migrations (
     version character varying(255) NOT NULL
 );
+
+
+--
+-- Name: site_admins; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE site_admins (
+    id integer NOT NULL,
+    user_id integer,
+    site_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: site_admins_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE site_admins_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: site_admins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE site_admins_id_seq OWNED BY site_admins.id;
+
+
+--
+-- Name: sites; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sites (
+    id integer NOT NULL,
+    name character varying(255),
+    url character varying(255),
+    place_id integer,
+    source_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    logo_file_name character varying(255),
+    logo_content_type character varying(255),
+    logo_file_size integer,
+    logo_updated_at timestamp without time zone,
+    logo_square_file_name character varying(255),
+    logo_square_content_type character varying(255),
+    logo_square_file_size integer,
+    logo_square_updated_at timestamp without time zone
+);
+
+
+--
+-- Name: sites_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sites_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sites_id_seq OWNED BY sites.id;
 
 
 --
@@ -3123,7 +3200,8 @@ CREATE TABLE users (
     suspension_reason character varying(255),
     icon_updated_at timestamp without time zone,
     uri character varying(255),
-    locale character varying(255)
+    locale character varying(255),
+    site_id integer
 );
 
 
@@ -3662,6 +3740,20 @@ ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regcl
 --
 
 ALTER TABLE ONLY rules ALTER COLUMN id SET DEFAULT nextval('rules_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY site_admins ALTER COLUMN id SET DEFAULT nextval('site_admins_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sites ALTER COLUMN id SET DEFAULT nextval('sites_id_seq'::regclass);
 
 
 --
@@ -4309,6 +4401,22 @@ ALTER TABLE ONLY roles
 
 ALTER TABLE ONLY rules
     ADD CONSTRAINT rules_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: site_admins_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY site_admins
+    ADD CONSTRAINT site_admins_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sites
+    ADD CONSTRAINT sites_pkey PRIMARY KEY (id);
 
 
 --
@@ -5051,6 +5159,13 @@ CREATE INDEX index_observations_on_comments_count ON observations USING btree (c
 
 
 --
+-- Name: index_observations_on_community_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_community_taxon_id ON observations USING btree (community_taxon_id);
+
+
+--
 -- Name: index_observations_on_geom; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5097,6 +5212,13 @@ CREATE INDEX index_observations_on_private_geom ON observations USING gist (priv
 --
 
 CREATE INDEX index_observations_on_quality_grade ON observations USING btree (quality_grade);
+
+
+--
+-- Name: index_observations_on_site_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_site_id ON observations USING btree (site_id);
 
 
 --
@@ -5405,6 +5527,34 @@ CREATE INDEX index_roles_users_on_role_id ON roles_users USING btree (role_id);
 --
 
 CREATE INDEX index_roles_users_on_user_id ON roles_users USING btree (user_id);
+
+
+--
+-- Name: index_site_admins_on_site_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_site_admins_on_site_id ON site_admins USING btree (site_id);
+
+
+--
+-- Name: index_site_admins_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_site_admins_on_user_id ON site_admins USING btree (user_id);
+
+
+--
+-- Name: index_sites_on_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_sites_on_place_id ON sites USING btree (place_id);
+
+
+--
+-- Name: index_sites_on_source_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_sites_on_source_id ON sites USING btree (source_id);
 
 
 --
@@ -5800,6 +5950,13 @@ CREATE INDEX index_users_on_observations_count ON users USING btree (observation
 
 
 --
+-- Name: index_users_on_site_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_site_id ON users USING btree (site_id);
+
+
+--
 -- Name: index_users_on_state; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6148,6 +6305,8 @@ INSERT INTO schema_migrations (version) VALUES ('20120810053551');
 
 INSERT INTO schema_migrations (version) VALUES ('20120821195023');
 
+INSERT INTO schema_migrations (version) VALUES ('20120830020828');
+
 INSERT INTO schema_migrations (version) VALUES ('20120902210558');
 
 INSERT INTO schema_migrations (version) VALUES ('20120904064231');
@@ -6310,6 +6469,10 @@ INSERT INTO schema_migrations (version) VALUES ('20131023224910');
 
 INSERT INTO schema_migrations (version) VALUES ('20131024045916');
 
+INSERT INTO schema_migrations (version) VALUES ('20131031160647');
+
+INSERT INTO schema_migrations (version) VALUES ('20131031171349');
+
 INSERT INTO schema_migrations (version) VALUES ('20131119214722');
 
 INSERT INTO schema_migrations (version) VALUES ('20131123022658');
@@ -6326,4 +6489,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140101210916');
 
 INSERT INTO schema_migrations (version) VALUES ('20140104202529');
 
-INSERT INTO schema_migrations (version) VALUES ('20140114210551');
+INSERT INTO schema_migrations (version) VALUES ('20140113145150');
+
+INSERT INTO schema_migrations (version) VALUES ('20140124190652');

@@ -1,6 +1,8 @@
 class ObservationPhoto < ActiveRecord::Base
   belongs_to :observation, :inverse_of => :observation_photos, :counter_cache => false
   belongs_to :photo
+
+  validates_associated :photo
   
   after_create :set_observation_quality_grade,
                :set_observation_photos_count
@@ -19,9 +21,11 @@ class ObservationPhoto < ActiveRecord::Base
   end
 
   def set_observation_photos_count
-    if o = Observation.find_by_id(observation_id)
-      Observation.update_all(["photos_count = ?", o.observation_photos.count], ["id = ?", o.id])
-    end
+    return true unless observation_id
+    Observation.update_all(
+      ["photos_count = ?", ObservationPhoto.where(:observation_id => observation_id).count], 
+      ["id = ?", observation_id]
+    )
     true
   end
   

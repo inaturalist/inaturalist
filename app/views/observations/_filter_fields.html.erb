@@ -319,7 +319,7 @@
   </div>
 <% end -%>
 
-<input type="hidden" name="site" value="<%= @site %>">
+<input type="hidden" name="site" value="<%= @site_uri %>">
 <input type="hidden" name="tdate" id="tdate"/>
 <input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>
 <input type="hidden" name="view" id="view_input" value="<%= @view %>"/>
@@ -327,7 +327,7 @@
 <% if CONFIG.site_only_observations -%>
   <div class="right buttonrow">
     <div class="inter">
-      <% if @site == "any" -%>
+      <% if @site_uri == "any" -%>
         <%=t :youre_viewing_all_observations %>.
         <%= link_to t(:view_site_name_observations_html, :site_name => SITE_NAME), url_for_params(:site => CONFIG.site_url) %>
       <% else %>

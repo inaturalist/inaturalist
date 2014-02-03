@@ -128,7 +128,7 @@
     <div class="stacked observationcontrols"></div>
     <div class="medium observations grid">
       <div class="nocontent">
-        <%= loading "Loading...", :class => "inline" %>
+        <%= loading t(:loading), :class => "inline" %>
       </div>
     </div>
     <%= link_to t(:view_more_observations_from) + ' ' + "#{@place.name}", observations_url(:place_id => @place.id), :class => "readmore" %>

@@ -17,6 +17,8 @@ class ListedTaxaController < ApplicationController
           @photo ||= @listed_taxon.last_observation.photos.first if @listed_taxon.last_observation
         end
         @photo ||= @listed_taxon.taxon.taxon_photos.first(:order => "id ASC").try(:photo)
+        @related_listed_taxa = @listed_taxon.related_listed_taxa
+        @primary_listed_taxon = @listed_taxon.primary_listed_taxon
         if partial = params[:partial]
           partial = "lists/listed_taxon" unless SHOW_PARTIALS.include?(partial)
           render :partial => partial, :layout => false
@@ -153,7 +155,7 @@ class ListedTaxaController < ApplicationController
           return redirect_to lists_path
         end
         format.json do
-          render :json => {:error => msg}
+          return render(:json => {:error => msg})
         end
       end
     end

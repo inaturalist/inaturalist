@@ -6,7 +6,7 @@ feed.entry(observation) do |entry|
   content = ""
   unless observation.photos.blank?
     photo_content = observation.photos.map do |p|
-      image_tag(p.thumb_url)
+      image_tag(p.try_methods(:medium_url, :small_url, :thumb_url))
     end.join(' ')
     content += content_tag(:p, photo_content.html_safe)
   end

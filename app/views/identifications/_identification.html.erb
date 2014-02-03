@@ -4,6 +4,7 @@
   observation ||= identification.observation
   user ||= identification.user
   viewers_identification ||= @viewers_identification
+  usertext ||= nil
   identification_classes = ''
   if logged_in? && identification.user_id == current_user.id
     identification_classes += ' yours'
@@ -21,11 +22,17 @@
   </div>
   <div class="identification_body">
     <span class="user_and_taxon">
-      <% if is_me?(user) %>
-        <strong><%=t(:your).singularize %></strong> <%= t :id %>:
-      <% else %>
-        <%= link_to(t(:user_s_id, :user => user.login, :id => t(:id)), person_path(user)) %>:
-      <% end %>
+      <span class="user">
+        <% if user -%>
+          <% if is_me?(user) %>
+            <strong><%=t(:your).singularize %></strong> <%= t :id %>:
+          <% else %>
+            <%= link_to(t(:user_s_id, :user => user.login, :id => t(:id)), person_path(user)) %>:
+          <% end %>
+        <% elsif usertext %>
+          <%= usertext %>
+        <% end -%>
+      </span>
       <%= render :partial => 'shared/taxon', 
                  :locals => { :taxon => taxon,
                               :link_url => taxon,

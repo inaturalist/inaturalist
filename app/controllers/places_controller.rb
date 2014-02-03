@@ -380,8 +380,7 @@ class PlacesController < ApplicationController
       :conditions => "listed_taxa.first_observation_id IS NOT NULL")
     
     @listed_taxa = @place.listed_taxa.all(
-      :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
-      :conditions => ["taxon_id IN (?)", @taxa])
+      :conditions => ["taxon_id IN (?) AND primary_listing = (?)", @taxa, true])
     @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
     
     render :layout => false, :partial => @partial
@@ -501,7 +500,8 @@ class PlacesController < ApplicationController
   end
 
   def assign_geometry_from_file
-    if params[:file].size > 1.megabyte
+    limit = current_user && current_user.is_curator? ? 5.megabytes : 1.megabyte
+    if params[:file].size > limit
       # can't really add errors to model from here, unfortunately
     else
       @geometry = geometry_from_file(params[:file])

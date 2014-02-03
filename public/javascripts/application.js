@@ -513,7 +513,7 @@ $.fn.loadingShades = function(e, options) {
   } else {
     var txt = e || 'Loading...',
         cssClass = options.cssClass || 'bigloading',
-        msg = '<div class="loadingShadesMsg"><span class="loading '+cssClass+' status inlineblock">'+txt+'...</span></div>'
+        msg = '<div class="loadingShadesMsg"><span class="loading '+cssClass+' status inlineblock">'+txt+'</span></div>'
     options = $.extend(true, options, {
       css: {'background-color': 'white'}, 
       content: msg

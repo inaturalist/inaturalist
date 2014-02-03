@@ -35,7 +35,7 @@ class AssessmentsController < ApplicationController
     respond_to do |format|
       if @assessment.valid? && ! params[:preview]
         @assessment.save
-        format.html { redirect_to(@assessment, :notice => 'Assessment was successfully created.') }
+        format.html { redirect_to(@assessment, :notice => t(:assessment_was_successfully_created)) }
       else
         format.html { render :action => "new" }
       end
@@ -59,7 +59,7 @@ class AssessmentsController < ApplicationController
 
     respond_to do |format|
     if @assessment.update_attributes(params[:assessment])
-        format.html { redirect_to(@assessment, :notice => 'Assessment was successfully updated.') }
+        format.html { redirect_to(@assessment, :notice => t(:assessment_was_successfully_updated)) }
       else
         format.html { render :action => "edit" }
       end
@@ -81,26 +81,27 @@ class AssessmentsController < ApplicationController
 
   def index
     @parent_display_name = @project.title
+    @assessments = Assessment.where(:project_id => @project.id).includes(:taxon, :sections).order("taxa.name ASC").
+      paginate(:page => params[:page]).scoped
+    if (filters = params[:filters]) || params[:complete]
+      filters ||= {}
+      @complete = (filters[:complete] || params[:complete]).to_s
+      @complete = nil unless @complete.yesish? || @complete.noish?
+      if @complete.yesish?
+        @assessments = @assessments.complete
+      elsif @complete.noish?
+        @assessments = @assessments.incomplete
+      end
+      @q = filters[:q]
+      @assessments = @assessments.dbsearch(@q) unless @q.blank?
+    end
+    @authority = params[:authority]
+    @status = params[:status]
+    if @authority && @status
+      @assessments = @assessments.with_conservation_status(@authority, @status, nil)
+    end
     respond_to do |format|
       format.html do
-        @assessments = Assessment.where(:project_id => @project.id).includes(:taxon, :sections).order("taxa.name ASC").
-          paginate(:page => params[:page]).scoped
-        if filters = params[:filters]
-          @complete = filters[:complete]
-          @complete = nil unless %w(yes no).include?(@complete)
-          if @complete == 'yes'
-            @assessments = @assessments.complete
-          elsif @complete == 'no'
-            @assessments = @assessments.incomplete
-          end
-          @q = filters[:q]
-          @assessments = @assessments.dbsearch(@q) unless @q.blank?
-        end
-        @authority = params[:authority]
-        @status = params[:status]
-        if @authority && @status
-          @assessments = @assessments.with_conservation_status(@authority, @status, nil)
-        end
         section_ids = @assessments.map{|a| a.sections.map(&:id)}.flatten.uniq
         @comment_counts = Comment.group(:parent_id).where("parent_type = 'AssessmentSection' AND parent_id IN (?)", section_ids).count
         @conservation_statuses = ConservationStatus.
@@ -115,12 +116,7 @@ class AssessmentsController < ApplicationController
         end
       end
       format.json do
-        @assessments = @project.assessments.includes("taxon").order("taxa.name ASC").page(params[:page]).per_page(100)
-        @assessments = if params[:complete] == 'true'
-          @assessments.complete
-        elsif params[:complete] == 'false'
-          @assessments.incomplete
-        end
+        @assessments = @assessments.per_page(100)
         render :json => @assessments
       end
     end
@@ -129,7 +125,7 @@ class AssessmentsController < ApplicationController
 
   def destroy
     @assessment.destroy
-    redirect_to(@assessment.project, :notice => 'Assessment was deleted.')
+    redirect_to(@assessment.project, :notice => t(:assessment_was_deleted))
   end
 
   def show_section
@@ -151,7 +147,7 @@ class AssessmentsController < ApplicationController
   
   def project_curator_required
     unless @project.curated_by?(current_user)
-      flash[:error] = "You don't have permission to edit that project."
+      flash[:error] = t(:you_dont_have_permission_to_edit_that_project)
       return redirect_to @project
     end
     true

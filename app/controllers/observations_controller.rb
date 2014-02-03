@@ -43,7 +43,10 @@ class ObservationsController < ApplicationController
                             :project,
                             :taxon_stats,
                             :user_stats]
-  before_filter :load_observation, :only => [:show, :edit, :edit_photos, :update_photos, :destroy, :fields, :viewed_updates]
+  before_filter :load_observation, :only => [
+    :show, :edit, :edit_photos, :update_photos, :destroy, :fields,
+    :viewed_updates, :community_taxon_summary
+  ]
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :curator_required, :only => [:curation]
@@ -62,7 +65,7 @@ class ObservationsController < ApplicationController
   before_filter :load_prefs, :only => [:index, :project, :by_login]
   
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess"
-  REJECTED_FEED_PARAMS = %w"page view filters_open partial"
+  REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
   DISPLAY_ORDER_BY_FIELDS = {
     'created_at' => 'date added',
@@ -212,6 +215,10 @@ class ObservationsController < ApplicationController
         @owners_identification = @current_identifications.detect do |ident|
           ident.user_id == @observation.user_id
         end
+        @community_identification = if @observation.community_taxon
+          Identification.new(:taxon => @observation.community_taxon, :observation => @observation)
+        end
+
         if logged_in?
           @viewers_identification = @current_identifications.detect do |ident|
             ident.user_id == current_user.id
@@ -221,20 +228,11 @@ class ObservationsController < ApplicationController
         @current_identifications_by_taxon = @current_identifications.select do |ident|
           ident.user_id != ident.observation.user_id
         end.group_by{|i| i.taxon}
-        @current_identifications_by_taxon = @current_identifications_by_taxon.sort_by do |row|
+        @sorted_current_identifications_by_taxon = @current_identifications_by_taxon.sort_by do |row|
           row.last.size
         end.reverse
         
         if logged_in?
-          # Make sure the viewer's ID is first in its group
-          @current_identifications_by_taxon.each_with_index do |pair, i|
-            if pair.last.map(&:user_id).include?(current_user.id)
-              pair.last.delete(@viewers_identification)
-              identifications = [@viewers_identification] + pair.last
-              @current_identifications_by_taxon[i] = [pair.first, identifications]
-            end
-          end
-          
           @projects = Project.all(
             :joins => [:project_users], 
             :limit => 1000, 
@@ -690,7 +688,7 @@ class ObservationsController < ApplicationController
     hashed_params = Hash[*params[:observations].to_a.flatten]
     errors = false
     extra_msg = nil
-    @observations.each do |observation|
+    @observations.each_with_index do |observation,i|
       fieldset_index = observation.id.to_s      
       
       # Update the flickr photos
@@ -719,6 +717,17 @@ class ObservationsController < ApplicationController
         doomed_photo_ids = (old_photo_ids - observation.photo_ids).compact
         unless doomed_photo_ids.blank?
           Photo.delay.destroy_orphans(doomed_photo_ids)
+        end
+
+        Photo.descendent_classes.each do |klass|
+          klass_key = klass.to_s.underscore.pluralize.to_sym
+          next unless params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
+          next unless photo = observation.photos.compact.last
+          photo_o = photo.to_observation
+          PHOTO_SYNC_ATTRS.each do |a|
+            hashed_params[observation.id.to_s] ||= {}
+            hashed_params[observation.id.to_s][a] = photo_o.send(a) if hashed_params[observation.id.to_s][a].blank?
+          end
         end
       end
 
@@ -1431,6 +1440,7 @@ class ObservationsController < ApplicationController
 
   def photo
     @observations = []
+    @errors = []
     if params[:files].blank?
       respond_to do |format|
         format.json do
@@ -1449,11 +1459,18 @@ class ObservationsController < ApplicationController
           o.send("#{k}=", v) unless v.blank?
         end
       end
-      o.save
-      @observations << o
+      if o.save
+        @observations << o
+      else
+        @errors << o.errors
+      end
     end
     respond_to do |format|
       format.json do
+        unless @errors.blank?
+          render :status => :unprocessable_entity, :json => @errors.map{|e| e.full_messages.to_sentence}
+          return
+        end
         render_observations_to_json(:include => {
           :taxon => {
             :only => [:name, :id, :rank, :rank_level, :is_iconic], 
@@ -1621,6 +1638,10 @@ class ObservationsController < ApplicationController
     else
       render :status => :unprocessable_entity, :text => flow_task.errors.full_messages.to_sentence
     end
+  end
+
+  def community_taxon_summary
+    render :layout => false, :partial => "community_taxon_summary"
   end
 
 ## Protected / private actions ###############################################
@@ -1871,7 +1892,7 @@ class ObservationsController < ApplicationController
       search_params[:ofv_params] = @ofv_params
     end
 
-    @site = params[:site] unless params[:site].blank?
+    @site_uri = params[:site] unless params[:site].blank?
 
     @user = User.find_by_id(params[:user_id]) unless params[:user_id].blank?
     unless params[:projects].blank?
@@ -2412,6 +2433,11 @@ class ObservationsController < ApplicationController
         opts[:include][:project_observations] ||= {
           :include => {:project => {:only => [:title]}},
           :except => [:tracking_code]
+        }
+      end
+      if extra.include?('observation_photos')
+        opts[:include][:observation_photos] ||= {
+          :include => {:photo => {:except => [:metadata]}}
         }
       end
       if @ofv_params || extra.include?('fields')

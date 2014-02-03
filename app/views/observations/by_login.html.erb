@@ -399,13 +399,13 @@
   <div id="feeds" class="small ui description">
     <% if is_me?(@selected_user) -%>
       <span>
-        <%= t :embed %>
+        <%= t :embed %>:
         <%= link_to t(:widget), observations_widget_path %>
       </span>
     <% end -%>
     
     <span class="feeds">
-      <%= t :feeds %>
+      <%= t :feeds %>:
       <%- 
         feed_params = request.query_parameters.reject do |key,value|
           ObservationsController::REJECTED_FEED_PARAMS.include?(key)
@@ -423,12 +423,8 @@
 
     <% if is_me?(@selected_user) -%>
       <span class="feeds">
-        <%= t :download %>
-        <%= link_to "CSV", observations_by_login_all_url(@login, :format => 'csv'),
-          :class => "delayedlink csvlink", 
-          "data-delayed-link-msg" => 
-            "Please hold on while the file is generated.  It can take a couple minutes if you have a lot of observations.",
-          :rel => "nofollow" %>
+        <%= t :export %>:
+        <%= link_to(t(:csv),  export_observations_path(feed_params.merge(:user_id => @selected_user.login)), :class => 'csvlink', :rel => "nofollow") %>
       </span>
     <% end -%>
   </div>

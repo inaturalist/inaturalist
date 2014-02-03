@@ -9,7 +9,11 @@ class EmailerPreview < MailView
   end
 
   def new_message
-    Emailer.new_message(Message.last)
+    m = if message_id = @rack_env["QUERY_STRING"].to_s[/message_id=([^&]+)/, 1]
+      message.find_by_id(message_id)
+    end
+    m ||= Message.last
+    Emailer.new_message(m)
   end
 
   def observations_export_notification

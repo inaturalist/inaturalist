@@ -259,7 +259,7 @@
       <div class="inner feeds">
         <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
         <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
-        <%= link_to("CSV",  project_observations_path(@project, :format => 'csv'),  :class => 'csvlink', :rel => "nofollow") %>
+        <%= link_to("CSV",  export_observations_path('projects[]' => @project),  :class => 'csvlink', :rel => "nofollow") %>
         <% if @project.curated_by?(current_user) -%>
           /
           <%= link_to t(:all_csv), all_project_observations_url(@project, :format => 'csv'), 
@@ -275,20 +275,22 @@
         </div>
       <% end -%>
     </li>
-    <li>
-      <% if @project.prefers_count_from_list? -%>
-        <span class="right" style="margin: 4px 10px 0 10px">
-          <span class="count"><%= @observed_taxa_count %></span> <%= t :of %> <span class="count"><%= @project.project_list.listed_taxa.count %></span> <%= t :taxa_observed %>
-        </span>
-      <% else -%>
-       <% if @observed_taxa_count.to_i > 0 -%>
-         <span class="right" style="margin: 4px 10px 0 10px">
-           <span class="count"><%= @observed_taxa_count %></span> <%= t :taxa_observed %>
-         </span>
+    <% unless @project.project_type == Project::BIOBLITZ_TYPE -%>
+      <li>
+        <% if @project.prefers_count_from_list? -%>
+          <span class="right" style="margin: 4px 10px 0 10px">
+            <span class="count"><%= @observed_taxa_count %></span> <%= t :of %> <span class="count"><%= @project.project_list.listed_taxa.count %></span> <%= t :taxa_observed %>
+          </span>
+        <% else -%>
+         <% if @observed_taxa_count.to_i > 0 -%>
+           <span class="right" style="margin: 4px 10px 0 10px">
+             <span class="count"><%= @observed_taxa_count %></span> <%= t :taxa_observed %>
+           </span>
+          <% end -%>
         <% end -%>
-      <% end -%>
-      <%= link_to "<span class='lead'>&raquo;</span> #{t(:checklist)}".html_safe, list_path(@project.project_list), :class => "navlink" %>
-    </li>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:checklist)}".html_safe, list_path(@project.project_list), :class => "navlink" %>
+      </li>
+    <% end -%>
     <li>
       <% if @journal_post_count.to_i > 0 -%>
         <span class="right" style="margin: 4px 10px 0 10px">
@@ -297,6 +299,7 @@
       <% end -%>
       <%= link_to "<span class='lead'>&raquo;</span> #{t :journal}".html_safe, project_journal_path(@project), :class => "navlink" %>
     </li>
+
     <li>
       <% if @members_count.to_i > 1 -%>
         <span class="right" style="margin: 4px 10px 0 10px">
@@ -345,7 +348,7 @@
         <% end %>
       </div>
     </li>
-    <% if logged_in? -%>
+    <% if logged_in? && @project.project_type != Project::BIOBLITZ_TYPE -%>
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>

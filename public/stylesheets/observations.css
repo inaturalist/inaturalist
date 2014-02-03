@@ -377,6 +377,7 @@
 .observations.grid .observation:hover .actions .counts {
   opacity: 1;
 }
+.observations.grid .idandrg .id_please_notice {top: 1.5em;}
 .observations.grid .species_guess a {
   left: 0;
   bottom: 0;
@@ -806,3 +807,6 @@
 .compact.observationcontrols label {display:none;}
 
 .ui-tooltip.observations .observation {border: 0 transparent; margin-bottom: 0;}
+.observations .idandrg .research_grade_notice .full,
+.observations .idandrg .id_please_notice .full { display:none; }
+

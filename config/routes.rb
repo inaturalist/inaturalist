@@ -1,4 +1,7 @@
 Inaturalist::Application.routes.draw do
+  resources :sites
+
+
   id_param_pattern = %r(\d+([\w\-\%]*))
   simplified_login_regex = /\w[^\.,\/]+/  
   root :to => 'welcome#index'
@@ -131,6 +134,7 @@ Inaturalist::Application.routes.draw do
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'fields', :as => 'extra_fields'
+    get 'community_taxon_summary'
     collection do
       get :upload
       post :photo

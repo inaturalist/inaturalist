@@ -311,6 +311,8 @@ module ApplicationHelper
     user ||= User.new
     size = options.delete(:size)
     style = "vertical-align:middle; #{options[:style]}"
+    options[:alt] ||= user.login
+    options[:title] ||= user.login
     url = if defined? root_url
       uri_join(root_url, user.icon.url(size || :mini))
     else
@@ -852,7 +854,11 @@ module ApplicationHelper
   end
   
   def url_for_resource_with_host(resource)
-    "#{CONFIG.site_url}#{url_for(resource)}"
+    base_url = if (u = @user) && u.site
+      u.site.url
+    end
+    base_url ||= CONFIG.site_url || root_url
+    "#{base_url}#{url_for(resource)}"
   end
   
   def commas_and(list)

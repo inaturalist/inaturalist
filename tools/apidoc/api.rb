@@ -427,7 +427,8 @@ EOT
       desc <<-EOT
         Retrieve additional information. 'projects' returns info about the
         projects the observations have been added to, 'fields' returns
-        observation field values.
+        observation field values, 'observation_photos' returns information
+        about the photos' relationship with the observation, like their order.
       EOT
       values %w(fields projects)
     end
@@ -1603,9 +1604,9 @@ EOT
     end
     param "skip_view" do
       desc <<-EOT
-        Skip setting marking updates at viewed when retrieving them. The
+        Skip marking updates as viewed when retrieving them. The
         default behavior is to assume that if you're hitting this endpoint on
-        behlaf of the user, they will have viewed the udpates returned.
+        behalf of the user, they will have viewed the updates returned.
       EOT
       values [true, false]
     end

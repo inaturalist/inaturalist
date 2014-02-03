@@ -69,19 +69,37 @@ describe TaxaController do
   end
 
   describe "destroy" do
-    it "should not be possible unless user created the record" do
+    it "should be possible if user did create the record" do
+      u = make_curator
+      sign_in u
+      t = Taxon.make!(:creator => u)
+      delete :destroy, :id => t.id
+      Taxon.find_by_id(t.id).should be_blank
+    end
+
+    it "should not be possible if user did not create the record" do
       u = make_curator
       sign_in u
       t = Taxon.make!
       delete :destroy, :id => t.id
       Taxon.find_by_id(t.id).should_not be_blank
     end
+
     it "should always be possible for admins" do
       u = make_admin
       sign_in u
       t = Taxon.make!
       delete :destroy, :id => t.id
       Taxon.find_by_id(t.id).should be_blank
+    end
+
+    it "should not be possible for taxa inolved in taxon changes" do
+      u = make_curator
+      t = Taxon.make!(:creator => u)
+      ts = make_taxon_swap(:input_taxon => t)
+      sign_in u
+      delete :destroy, :id => t.id
+      Taxon.find_by_id(t.id).should_not be_blank
     end
   end
   

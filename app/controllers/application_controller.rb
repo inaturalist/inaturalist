@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   after_filter :user_request_logging
   before_filter :remove_header_and_footer_for_apps
   before_filter :login_from_param
+  before_filter :set_site
   before_filter :set_locale
   
   PER_PAGES = [10,30,50,100,200]
@@ -29,6 +30,10 @@ class ApplicationController < ActionController::Base
   # We can return to this location by calling #redirect_back_or_default.
   def store_location
     session[:return_to] = request.fullpath
+  end
+
+  def set_site
+    @site ||= Site.where("url LIKE '%#{request.host}%'").first
   end
 
   def set_locale
@@ -111,7 +116,7 @@ class ApplicationController < ActionController::Base
   #
   def curator_required
     unless logged_in? && current_user.is_curator?
-      flash[:notice] = "Only curators can access that page."
+      flash[:notice] = t(:only_curators_can_access_that_page)
       if session[:return_to] == request.fullpath
         redirect_to root_url
       else
@@ -159,7 +164,7 @@ class ApplicationController < ActionController::Base
   def render_404
     respond_to do |format|
       format.any(:html, :mobile) { render(:file => "#{Rails.root}/public/404.html", :status => 404, :layout => false) }
-      format.json { render :json => {:error => "Not found"}, :status => 404 }
+      format.json { render :json => {:error => t(:not_found)}, :status => 404 }
     end
   end
   
@@ -167,8 +172,7 @@ class ApplicationController < ActionController::Base
   # Redirect user to front page when they do something naughty.
   #
   def redirect_to_hell
-    flash[:notice] = "You tried to do something you shouldn't, like edit " + 
-      "someone else's data without permission.  Don't be evil."
+    flash[:notice] = t(:you_tried_to_do_something_you_shouldnt)
     redirect_to root_path, :status => :see_other
   end
   
@@ -199,7 +203,7 @@ class ApplicationController < ActionController::Base
     class_name = class_name.to_s.underscore.camelcase
     record = instance_variable_get("@#{class_name.underscore}")
     unless logged_in? && (current_user.id == record.user_id || current_user.is_admin?)
-      msg = "You don't have permission to do that"
+      msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do
           flash[:error] = msg
@@ -241,7 +245,7 @@ class ApplicationController < ActionController::Base
       yield
     rescue ActionView::MissingTemplate => e
       if in_mobile_view?
-        flash[:notice] = "No mobilized version of that view."
+        flash[:notice] = t(:no_mobilized_version_of_that_view)
         session[:mobile_view] = false
         Rails.logger.debug "[DEBUG] Caught missing mobile template: #{e}: \n#{e.backtrace.join("\n")}"
         return redirect_to request.path.gsub(/\.mobile/, '')
@@ -317,7 +321,7 @@ class ApplicationController < ActionController::Base
     if !project_user || 
         !project.trusted? || 
         !allowed_project_roles.include?(project_user.role)
-      message = "You must be project manager to do that"
+      message = t(:you_must_be_a_member_of_this_project_to_do_that)
       respond_to do |format|
         format.html do
           flash[:notice] = message
@@ -334,7 +338,7 @@ class ApplicationController < ActionController::Base
 
   def admin_required
     unless logged_in? && current_user.has_role?(:admin)
-      flash[:notice] = "Only administrators may access that page"
+      flash[:notice] = t(:only_administrators_may_access_that_page)
       redirect_to observations_path
     end
   end
@@ -407,7 +411,7 @@ class ApplicationController < ActionController::Base
     @tries = params[:tries].to_i
     if @tries > 20
       @status = "error"
-      @error_msg = "This is taking forever.  Please try again later."
+      @error_msg = t(:this_is_taking_forever)
       return
     # elsif @tries > 0
     else
@@ -420,7 +424,7 @@ class ApplicationController < ActionController::Base
         @error_msg = if current_user.is_admin?
           @job.last_error
         else
-          "This job failed to run. Please contact #{CONFIG.help_email}"
+          t(:this_job_failed_to_run, :email => CONFIG.help_email)
         end
       elsif @job
         @status = "working"

@@ -354,6 +354,8 @@ es:
   and_un_license_all_your_observations: y quita la licencia de todas tus observaciones
   and_you_havent_linked: "...y no la ha ligado a una de estas cuentas externas, debería ingresar a través de %{site_name} primero, luego modificar su perfil y vincular su cuenta desde ahí. ¡De otra forma %{site_name} no puede darse cuenta de que ambas cuentas están conectadas y en lugar de eso tratar de crear una cuenta para usted!"
   animals: Animales
+  announcement_was_successfully_created: El aviso fue creado satisfactoriamente.
+  announcement_was_successfully_updated: El aviso fue autualizado satisfactoriamente.
   announcements: Anuncios
   any: Cualquiera
   apply_darr: "Aplicar &darr;"
@@ -403,6 +405,9 @@ es:
   aside_from_extraordinary_circumstances: "Aparte de circunstancias extraordinarias, nunca le pediremos su contraseña."
   assessment: valoración
   assessment_section: sección de valoración
+  assessment_was_deleted: La evaluación fue eliminada.
+  assessment_was_successfully_created: La evaluación fue creada satisfactoriamente.
+  assessment_was_successfully_updated: La evaluación fue actualizada satisfactoriamente.
   associations: Asociaciones
   associated_observations: Observaciones asociadas
   associated_taxa: Taxones asociados
@@ -548,9 +553,13 @@ es:
   check_list: lista de comprobación de
   check_list_description: "Seleccione un taxón de más alto nivel que desee mostrar en esta lista, como \"Aves\" para aves, o \"Amphibia\" para anfibios. Cuando termine, esta lista no permitirá taxones que no estén incluidos. Por ejemplo, si crea una lista de aves, no podrá agregarle ranas."
   check_list_for_individual_taxa_that: 'Listas de comprobación para una especie o grupo especifico que habitan aquí, ej. "Aves de %{place}".'
+  check_lists_must_belong_to_a_place: |
+      Las listas de comprobación deben pertenecer a un lugar. Para crear una nueva lista de comprobación,
+      visita la lista de comprobación de algún lugar y selecciona el enlace "Crea una nueva lista de comprobación".
   check_list_of_species_occuring_in: Lista de comprobación de espcies ocurriendo en
   check_list_place: Lista de comprobación de %{place}
   check_list_source: "Fuente <span class=\"meta\">(opcional)</span>"
+  check_list_updated: ¡Lista de comprobación actualizada!
   check_lists_for: "Otras listas de verificación para %{place}"
   check_lists_individual_taxa: "Listas de verificación para taxones individuales que viven aquí, por ejemplo \"Aves de %{place}\"."
   check_out_what_the_observation: Échale un vistazo como a las observaciones que estas tratando de identificar.
@@ -726,6 +735,8 @@ es:
       del proyecto.
   current_password: "Contraseña actual"
   custom_project_fields: "Campos de proyecto personalizados"
+  custom_project_was_successfully_created: El proyecto personalizado fue creado exitosamente.
+  custom_project_was_successfully_updated: El proyecto actualizado fue creado exitosamente.
   csv: CSV
   csv_should_not_contain_a_header_row: El CSV no debería contener ninguna cabecera de datos
   darr_apply_darr: "&darr; Aplicar &darr;"
@@ -945,12 +956,13 @@ es:
   do_you_know_where_this_species_lives: "¿Sabe usted dónde vive esta especie?"
   do_you_study_nematodes_worlds_foremost_expert_barnacle: "¿Usted estudia nemátodos? ¿Es usted el mayor experto del mundo en taxonomía de percebes? ¿Sólo le gusta mirar las flores bonitas?. Llenar su perfil agrega un poco de personalidad y ayuda a establecer su credibilidad cuando ayuda a otras personas con las identificaciones."
   does_the_location_seem_accurate: "¿El lugar parece correcto?"
+  does_the_date_seem_accurate: "¿La fecha parece correcto?"
   doesnt_have_default_photo: "no tiene una foto por defecto todavía."
   doh_something_went_wrong: "Algo salió mal."
   dont_filter: No filtrar
   dont_use_double_quotes: "No utilice comillas dobles en ningún otro lugar"
   double_click_to_finish: (Con doble clic termina tu forma)
-  download: 'Descargar:'
+  download: 'Descargar'
   download_csv: "Descargar CSV"
   download_kml: "Descargar KML"
   drag_and_drop_photos: arrastra y suelta la foto en esta ventana o
@@ -1010,7 +1022,7 @@ es:
   email_addresses_description: "Direcciones de correo separadas por coma, límite 60 cada 30 días."
   email_addresses_to_receive_invites: "Direcciones de correo para recibir invitaciones"
   email_settings: Configuración del correo
-  embed: 'Insertar:'
+  embed: 'Insertar'
   embed_a_widget_for_this_taxon_on_website: "Insertar un widget para este taxón en su sitio web &raquo;"
   embed_place_widget: "integrar widget de lugar"
   embed_widget_project: "Insertar un widget para este proyecto en su página web"
@@ -1083,6 +1095,7 @@ es:
   expand_updates: "expandir actualizaciones"
   explore!: ¡Descubra!
   explore_everyones_observations: "Explore las observaciones de todos"
+  export: Exportar
   external_links: Enlaces externos
   extinct: extinto
   extinct_in_the_wild: "extint en estado silvestre"
@@ -1103,7 +1116,7 @@ es:
   february: Febrero
   feedback: Retroalimentación
   feedback_group: "Grupo de retroalimentación"
-  feeds: 'Feeds:'
+  feeds: 'Feeds'
   feeds_for_current_filters: "Fuentes para los filtros actuales"
   field_note: |
                     <strong>Nota:</strong> Si vas a crear un campo
@@ -1558,6 +1571,7 @@ es:
   make_sure_the_default_photo_looks_good: "Asegúrese de que la foto por defecto se vea bien en tamaño grande."
   make_taxonomic_flickr_tags_for_taxon_raquo: "Hacer etiquetas taxonómicas de Flickr para este taxón &raquo;"
   make_this_your_default_license: "Hacer ésta %{type} su licencia por defecto"
+  make_this_the_primary_listing: Hacerlo la especies listado principal
   mammals: mamíferos
   manage_all_your_subscriptions: Administra todas tus suscripciones
   manage_your_project_invitations: Administra las invitaciones de tus proyectos
@@ -1698,6 +1712,7 @@ es:
   no_matching_users: "No hay usuarios que concuerden"
   no_members_yet: "No hay miembros todavía"
   no_messages_yet: Ningún mensaje aún
+  no_mobilized_version_of_that_view: No existe una versión móvil de esta vista.
   no_more_mail_from_site: "¿No desea recibir más correos del sitio de %{site_name}? Edita tu configuración de Correo en"
   no_more_taxa_to_load: "¡No hay mas especies o grupos a cargar!"
   no_more_updates: "¡No hay más actualizaciones!"
@@ -1717,6 +1732,7 @@ es:
   no_photos_or_sounds: No hay fotos o sonidos
   no_places_selected: "No se han seleccionado lugares"
   no_post_yet: "¡No hay ingresos todavía!"
+  no_project_selected:  No seleccionaste ningún proyecto
   no_projects_yet: "No hay proyectos todavía"
   no_range_data_available: "No hay un rango de datos disponible"
   no_recent_activity: "No hay actividad reciente"
@@ -1754,6 +1770,7 @@ es:
   not_finding_place_you_want?: ¿No encontraste el lugar que buscabas?
   not_finding_play_you_want?: "¿No encuentra el lugar que quiere?"
   not_finding_what_looking_for: "¿No encuentra lo que está buscando?"
+  not_found: No encontrado
   not_just_creative_commons_licensed: No solamente licencias de Creative Commons
   not_linked_facebook: "Su cuenta de %{site_name} ya no está ligada con su cuenta de Facebook."
   not_linked_flickr: "Su cuenta de %{site_name} no está vinculada con su cuenta de Flickr "
@@ -1918,10 +1935,12 @@ es:
   one_by_one: Uno por uno
   one_of_your_lists: "una de sus listas..."
   only_a_project_manager_can_add: Solo un Gerente del proyecto puede darle una clasificación a un curador de proyecto
+  only_administrators_may_access_that_page: Solo los administradores pueden acceder a esa página
   only_accepts_taxa: "solamente acepta taxones"
   only_an_admin_can_remove_project_users: Solo el administrador puede eliminar usuarios del proyecto.
   only_country_state_and_county: "Sólo se muestran lugares de país, estado y equivalentes de país por ahora. Haga un acercamiento para ver lugares más pequeños."
   only_curators_can_add_edit_scientific_names: Solo los curadores pueden añadir/editar nombres científicos.
+  only_curators_can_access_that_page: Solo los curadores pueden acceder a esa página.
   only_files_with_100_rows_at_a_time: "Solamente archivos con 100 filas cada vez, por favor"
   only_letters_numbers: "Sólo letras y números, sin espacios"
   only_project_curators_can_do_that: Solo los curadores del proyecto pueden hacer eso.
@@ -1968,6 +1987,7 @@ es:
   other_animals_plural:
     one: otro animal
     other: otros animales
+  other_listings_of_this_taxon_for_this_place: Otras ejemplas de este especies listado en este lugar
   other_options: Otras Opciones
   out_of_range: "Fuera del rango"
   overview: Visión de conjunto
@@ -2210,6 +2230,7 @@ es:
   project_x_was_delete: "El proyecto %{project} fue eliminado"
   projects: Proyectos
   projects_description: "Los proyectos son una forma de agrupar sus observaciones con otras personas en %{site_name}.  Ya sea que a usted le interese comenzar un proyecto científico ciudadano o solamente mantener registros de las aves de un parque cercano con su club de observación local, la forma de hacerlo es con Proyectos."
+  projects_in_x: Proyectos en %{x}
   projects_you_admin: "Proyectos que usted administra"
   projects_youve_joined: "Proyectos a los que se ha unido"
   protozoans: protozoarios
@@ -2608,6 +2629,7 @@ es:
   sw_lat: lat. S.O.
   sw_lon: long. S.O.
   sync: ¿Sincronizar?
+  sync_obs_with_photo_metadata: "¿Sinc obs. con metadatos foto?"
   synonyms: Sinónimos
   table: Tabla
   tags: Etiquetas
@@ -2751,7 +2773,10 @@ es:
   this_is_a_more_convenient_way_to_find_a_taxon_id:
       Este es el camino más conveniente para encontrar el identificador de la especie o grupo. Este es el identificador
       de la especie o grupo que quedará guardado. Esta búsqueda solo funciona para especies o grupos activos.
+  this_is_taking_forever: Esto está tardando demasiado. Por favor inténtalo más tarde.
+  this_job_failed_to_run: El proceso falló al ser procesado. Por favor contactanos a %{email}
   this_list_is_empty!: "¡Esta lista está vacía!"
+  this_is_the_primary_listing: Es la especies listado principal 
   this_list_only_accepts_taxa_that_are: "Esta lista acepta solamente taxones que son"
   this_observation_has_been_incorporated_into_the_following_external_websites: Esta observación ha sido incorporada a los siguientes sitios web
   this_observation_lies_outside_the: "Esta observación está fuera del rango que %{site_name} tiene para esta especia. Esto podría significar que el rango de %{site_name} está equivocado, la identificación está equivocada, una ocurrencia errante o una expansión del rango."
@@ -2788,6 +2813,7 @@ es:
       observed_at: a las %I:%M %p %Z
       rfc: "%d %B %Y"
       day_month_year: "%d %b. %Y"
+      hours: "%l:%M %p"
     pm: pm
   title: título
   title_and_description: Título y Descripción
@@ -3394,9 +3420,34 @@ es:
         curators_can_see: |
           Sólo un recordatorio, los curadores del proyecto pueden ver la privada y oculta 
           coordenadas de las observaciones que se agregan a este proyecto.
-      edit: 
-        licensing_desc_html: ""
-        taxon_change_desc: ""
+      edit:
+        taxon_change_desc: |
+          Cuando taxa se fusionan o cambiar de nombre en %{site_name}, sus
+          observaciones, taxa incluidos, identificaciones, etc se actualizará
+          automáticamente a la nueva taxa si el cambio es inequívoco. Si se
+          excluye o el cambio es ambigua (por ejemplo, una fractura), recibirá
+          una actualización sobre el cambio de la vinculación a una
+          herramienta que puede utilizar para actualizar manualmente el
+          contenido si usted elige.
+        licensing_desc_html: |
+          Obtención de la licencia de contenido da a otras personas el derecho
+          legal de utilizar sin pedir su permiso si se adhieren a los términos
+          de la licencia. %{site_name} utiliza su contenido con licencia
+          Creative Commons-para compartir con los socios de datos como la 
+          <a href="http://www.gbif.org/">Global Biodiversity Informatics Facility</a>
+          (GBIF), una organización internacional, organización
+          intergubernamental que recopila y distribuye información sobre la
+          biodiversidad de todo el mundo.
+        prefers_community_taxa_desc: |
+          %{site_name} rastrea lo que usted piensa que sus observaciones son y
+          lo que la comunidad piensa que son. La identificación que
+          compartimos con los socios de datos es la identificación de la
+          comunidad, pero si usted no cree que la opinión de la comunidad debe
+          nunca hacer caso omiso de su cuenta, usted puede optar por aquí. La
+          gente todavía será capaz de añadir identificaciones, pero la opinión
+          de la comunidad no serán favorecidos frente a la suya. Esto
+          significa que sus observaciones sólo serán de grado de
+          investigación, cuando usted está de acuerdo con la comunidad.
     welcome: 
       index: 
         welcome_message_html: |
@@ -3503,6 +3554,7 @@ es:
     other: "%{count} personas"
   x_project_journal: "%{name} del proyecto %{project}"
   x_project_stats: "Estadisticas del proyecto %{project}"
+  x_sent_you_a_new_message_on_y_html: "%{x} le envió un nuevo mensaje en %{y}"
   x_species: 
     one: "1 especie"
     other: "%{count} especies"
@@ -3556,11 +3608,16 @@ es:
   you_can_always_add_new: "Siempre puede agregar observaciones nuevas haciendo clic en la flechita arriba a la derecha de la página y usando el menú desplegable."
   you_can_change_your_new_passwd_after_logging_in: "Puede cambiar su nueva contraseña después de ingresar aquí"
   you_can_choose_observations_associated: "Puede seleccionar observaciones para asociar con este artículo del diario."
+  you_can_edit_this_default_check_list_because: |
+      Puedes editar esta página porque eres un administrador,
+      pero no debería haber la necesidad de hacer eso.
   you_can_help_make_our: "¡Usted puede ayudar a que nuestras páginas de especies sean más útiles agregando datos Aquí hay algunas formas en las que puede ayudar"
+  you_can_only_destroy_taxa_you_created: "Sólo puede destruir taxones que ha creado, y no se puede destruir taxones que se está utilizando en los cambios de taxones."
   you_can_see_these_coordinates_because: "Usted puede ver estas coordenadas porque usted cura uno de los proyectos a los cuales se agregó esta observación."
   you_can_show_the_boundary_of: Puedes mostrar los límetes del lugar en la pagina de tu proyecto solo si el lugar tiene límites.
   you_can_sign_free_at: "Usted puede registrar una cuenta gratis con %{site_name} en"
   you_cant_compare_a_list_with_nothing: ¡No puedes comparar una lista con nada!
+  you_cant_do_that_for_the_default_check_list_place: ¡No puedes hacer eso para la lista de comprobación predeterminada!
   you_cant_flag_that: No puedes poner eso como advertencia
   you_cant_leave_a_project_you_created: No puedes abandonar un proyecto que tu creaste.
   you_cant_remove_other_peoples_observations: No puedes eliminar las observaciones de otras personas.
@@ -3582,6 +3639,7 @@ es:
   you_havent_observed_any_species: "¡Usted no ha observado ninguna especie para enlistar todavíaPruebe"
   you_may_have: 'que puedas tener. Probablemente solo funcione en buscadores modernos:'
   you_must_be_a_member_of_this_project_to_do_that: Debes ser un miembro del proyecto para poder hacer eso.
+  you_must_be_project_manager_to_do_that: Debes ser gerente de proyecto para poder hacer eso.
   you_must_select_a_csv_file_to_upload: Debes seleccionar un archivo CSV para subir.
   you_must_select_a_place_to_merge_with: Debes seleccionar un lugar para combinar.
   you_must_select_dates_to_compare: Debes seleccionar las fechas a comparar
@@ -3609,6 +3667,9 @@ es:
       Si usted piensa que esta observación es inexacta, por favor, agregue una 
       identificación, participen en la sección de calidad de datos, o describa 
       la inexactitud en un comentario.
+  you_tried_to_do_something_you_shouldnt: |
+      Intentaste hacer algo que no deberías, como editar
+      la información de alguien más sin permiso. No seas malvado.
   youve_joined_the_x_project: "Te has unido al proyecto %{project_invitation} y tus observaciones fueron añadidas"
   you_would_get_the: "usted obtendrá las siguientes etiquetas"
   youll_need_to_link: "Deberá vincular"
