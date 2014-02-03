@@ -265,16 +265,16 @@
             <%= radio_button_tag :occurrence_status, :present, @occurrence_status == 'present'%>
             <%= label :occurrence_status, :present, t(:present).downcase %>
             <%= radio_button_tag :occurrence_status, :absent, @occurrence_status == 'absent'%>
-            <%= label :occurrence_status, :absent, "absent".downcase %>
+            <%= label :occurrence_status, :absent, t(:absent).downcase %>
             <%= radio_button_tag :occurrence_status, :all, @occurrence_status=='all'%>
-            <%= label :occurrence_status, :all, t(:all) %>
+            <%= label :occurrence_status, :all, t(:all).downcase %>
             <br>
             <label><%=t :rank %></label>
             <br>
             <%= radio_button_tag :rank, :all, @rank=='all'%>
             <%= label :rank, :all, t(:all).downcase %>
             <%= radio_button_tag :rank, :leaves, @rank == "leaves"%>
-            <%= label :rank, :leaves, "leaves".downcase %>
+            <%= label :rank, :leaves, t(:leaves).downcase %>
             <%= radio_button_tag :rank, :species, @rank == "species"%>
             <%= label :rank, :species, t(:species).downcase %>
             <br>
