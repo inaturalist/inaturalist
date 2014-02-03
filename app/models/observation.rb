@@ -939,13 +939,13 @@ class Observation < ActiveRecord::Base
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     elsif (offset = date_string[tz_offset_pattern, 1]) && 
         (n = offset.to_f / 100) && 
-        (key = n.round + (n%n.round)/0.6) && 
+        (key = n == 0 ? 0 : n.floor + (n%n.floor)/0.6) && 
         (parsed_time_zone = ActiveSupport::TimeZone[key])
       date_string = date_string.sub(tz_offset_pattern, '')
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     elsif (offset = date_string[tz_js_offset_pattern, 2]) && 
         (n = offset.to_f / 100) && 
-        (key = n.round + (n%n.round)/0.6) && 
+        (key = n == 0 ? 0 : n.floor + (n%n.floor)/0.6) && 
         (parsed_time_zone = ActiveSupport::TimeZone[key])
       date_string = date_string.sub(tz_js_offset_pattern, '')
       date_string = date_string.sub(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, '')
