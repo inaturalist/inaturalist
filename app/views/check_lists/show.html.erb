@@ -231,7 +231,6 @@
           </div>
         </div>
         <div class="clear" style="padding: 10px">
-            <%= hidden_fields_for_params :without => [:page, :observed, :taxon] %>
             <label><%=t :observed %></label>
             <br>
             <%= radio_button_tag :observed, :t, @observed == 't'%>
