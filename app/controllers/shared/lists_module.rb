@@ -435,13 +435,14 @@ module Shared::ListsModule
     end
     if filter_by_param?(params[:occurrence_status])
       @occurrence_status = params[:occurrence_status]
-      unless @occurrence_status=="all"
-        occurrence_status_level = ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[@occurrence_status]
-        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_level(occurrence_status_level)
+      if @occurrence_status == "absent"
+        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_levels_approximating_absent
+      elsif @occurrence_status=="not_absent"
+        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
       end
     else
-      @occurrence_status = "present"
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_level(ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[@occurrence_status])
+      @occurrence_status = "not_absent"
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
     end
     if with_threatened?
       @threatened = 't'

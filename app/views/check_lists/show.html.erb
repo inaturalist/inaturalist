@@ -262,12 +262,12 @@
             <br>
             <label><%=t :occurrence_status %></label>
             <br>
-            <%= radio_button_tag :occurrence_status, :present, @occurrence_status == 'present'%>
-            <%= label :occurrence_status, :present, t("occurrence_status_levels.present").downcase %>
+            <%= radio_button_tag :occurrence_status, :not_absent, @occurrence_status == 'not_absent'%>
+            <%= label :occurrence_status, :not_absent, t("not_absent").downcase %>
             <%= radio_button_tag :occurrence_status, :absent, @occurrence_status == 'absent'%>
             <%= label :occurrence_status, :absent, t("occurrence_status_levels.absent").downcase %>
-            <%= radio_button_tag :occurrence_status, :all, @occurrence_status=='all'%>
-            <%= label :occurrence_status, :all, t(:any).downcase %>
+            <%= radio_button_tag :occurrence_status, :any, @occurrence_status=='any'%>
+            <%= label :occurrence_status, :any, t(:any).downcase %>
             <br>
             <label><%=t :rank %></label>
             <br>

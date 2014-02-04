@@ -79,8 +79,12 @@ class ListedTaxon < ActiveRecord::Base
   scope :unconfirmed, where("last_observation_id IS NULL")
   scope :confirmed, where("last_observation_id IS NOT NULL")
   scope :with_establishment_means, lambda{|establishment_means| where("establishment_means = ?", establishment_means)}
+
+
   scope :with_occurrence_status_level, lambda{|occurrence_status_level| where("occurrence_status_level = ?", occurrence_status_level)}
 
+  scope :with_occurrence_status_levels_approximating_absent, where("occurrence_status_level IN (?)", [10, 20])
+  scope :with_occurrence_status_levels_approximating_present, where("occurrence_status_level NOT IN (?)", [10, 20])
 
   scope :with_threatened_status, includes(:taxon).where("taxa.conservation_status >= #{Taxon::IUCN_NEAR_THREATENED}")
   scope :without_threatened_status, includes(:taxon).where("taxa.conservation_status < #{Taxon::IUCN_NEAR_THREATENED}")
