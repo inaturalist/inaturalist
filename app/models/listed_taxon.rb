@@ -83,8 +83,8 @@ class ListedTaxon < ActiveRecord::Base
 
   scope :with_occurrence_status_level, lambda{|occurrence_status_level| where("occurrence_status_level = ?", occurrence_status_level)}
 
-  scope :with_occurrence_status_levels_approximating_absent, where("occurrence_status_level IN (?)", [10, 20])
-  scope :with_occurrence_status_levels_approximating_present, where("occurrence_status_level NOT IN (?)", [10, 20])
+  scope :with_occurrence_status_levels_approximating_absent, where("occurrence_status_level IN (10, 20)")
+  scope :with_occurrence_status_levels_approximating_present, where("occurrence_status_level NOT IN (10, 20) OR occurrence_status_level IS NULL")
 
   scope :with_threatened_status, includes(:taxon).where("taxa.conservation_status >= #{Taxon::IUCN_NEAR_THREATENED}")
   scope :without_threatened_status, includes(:taxon).where("taxa.conservation_status < #{Taxon::IUCN_NEAR_THREATENED}")
