@@ -12,7 +12,7 @@
   <% unless @fb_admin_ids.blank? -%>
     <meta property="fb:admins" content="<%= @fb_admin_ids.join(',') %>"/>
   <% end -%>
-  <% og_description = strip_tags(truncate(@project.description.gsub(/\s+/, ' '), :length => 1000)) %>
+  <% og_description = truncate(strip_tags(@project.description).gsub(/\s+/, ' '), :length => 1000) %>
   <meta property="og:description" content="<%= og_description %>"/>
 <%- end -%>
 
