@@ -423,7 +423,7 @@ module Shared::ListsModule
       if @rank=="species"
         @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
       elsif @rank=="leaves"
-        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_leaves(@list.place_id)
+        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_leaves(@unpaginated_listed_taxa.to_sql)
       end
     else 
       @rank = "species"

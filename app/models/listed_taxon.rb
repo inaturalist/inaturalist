@@ -69,8 +69,8 @@ class ListedTaxon < ActiveRecord::Base
   scope :filter_by_taxon, lambda {|filter_taxon_id, self_and_ancestor_ids| where("listed_taxa.taxon_id = ? OR listed_taxa.taxon_ancestor_ids = ? OR listed_taxa.taxon_ancestor_ids LIKE ?", filter_taxon_id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%")}
   scope :filter_by_taxa, lambda {|search_taxon_ids| where("listed_taxa.taxon_id IN (?)", search_taxon_ids)}
 
-  scope :with_taxonomic_status, lambda{|taxonomic_status| includes(:taxon).where("taxa.is_active = ?", taxonomic_status)}
-
+  scope :with_taxonomic_status, lambda{|taxonomic_status| joins("LEFT JOIN taxa ON listed_taxa.taxon_id = taxa.id").where("taxa.is_active = ?", taxonomic_status)}
+  
   scope :find_listed_taxa_from_default_list, lambda{|place_id| where("place_id = ? AND primary_listing = ?", place_id, true)}
 
   scope :filter_by_iconic_taxon, lambda {|iconic_taxon_id| where("taxa.iconic_taxon_id = ?", iconic_taxon_id)}
@@ -86,7 +86,7 @@ class ListedTaxon < ActiveRecord::Base
   scope :without_threatened_status, includes(:taxon).where("taxa.conservation_status < #{Taxon::IUCN_NEAR_THREATENED}")
   scope :with_species, includes(:taxon).where("taxa.rank_level = 10")
   
-  scope :with_leaves, lambda{|place_id| where(:place_id => place_id).joins("LEFT JOIN (#{ancestor_ids_sql(place_id)}) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id").where("ancestor_ids.ancestor_id IS NULL")}
+  scope :with_leaves, lambda{|scope_to_sql| joins("LEFT JOIN (#{ancestor_ids_sql(scope_to_sql)}) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id").where("ancestor_ids.ancestor_id IS NULL")}
   
   
   ALPHABETICAL_ORDER = "alphabetical"
@@ -701,8 +701,11 @@ class ListedTaxon < ActiveRecord::Base
     update_attribute(:primary_listing, true) if !ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).present? && can_set_as_primary?
   end
   # used with .with_leaves filter
-  def self.ancestor_ids_sql(place_id) 
-    "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id FROM listed_taxa WHERE place_id = #{place_id} AND taxon_ancestor_ids IS NOT NULL"
+  def self.ancestor_ids_sql(scope_to_sql)
+    scope_to_sql = scope_to_sql.gsub("SELECT \"listed_taxa\".* FROM \"listed_taxa\"","")
+    scope_to_sql = "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id FROM listed_taxa" +
+    scope_to_sql +
+    " AND taxon_ancestor_ids IS NOT NULL"
   end
   
 end
