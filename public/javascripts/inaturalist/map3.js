@@ -342,8 +342,17 @@ google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {
         observation.user.login
       )
     )
+  }else if(typeof(observation.identifications) != 'undefined' && observation.identifications.length > 0){
+    if( typeof(observation.identifications[0].user) != 'undefined' ){
+      wrapper.append(
+        ', by ',
+        $('<a href="/people/'+observation.identifications[0].user.login+'"></a>').append(
+          observation.identifications[0].user.login
+        )
+      )
+    }
   }
-  
+ 
   if (typeof(observation.short_description) != 'undefined' && observation.short_description != null) {
     wrapper.append($('<div class="description"></div>').append(observation.short_description));
   } else {
@@ -852,12 +861,22 @@ google.maps.Map.prototype.addTileLayer = function(tileUrl,interactivity){
             document.body.style.cursor = 'pointer'
             if (o.e.type == 'click') {
               if(o.data['latitude']){
-                var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude'])
-                var infowindow = new google.maps.InfoWindow({
-                        content: window.map.buildObservationInfoWindow(o.data),
+                var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude']);
+                $.ajax({
+                  url:  '/observations/' + o.data['id'] + '.json',
+                  type: "GET",
+                  dataType: 'json',
+                  success: function(data) {
+                    var infowindow = new google.maps.InfoWindow({
+                        content: window.map.buildObservationInfoWindow(data),
                         position: latLng
-                })
-                infowindow.open(window.map);
+                    });
+                    infowindow.open(window.map);
+                  },
+                  error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus);
+                  }
+                });
               }
             } else if (o.e.type == 'mousemove') {
               window.map.setOptions({ draggableCursor: 'pointer' });
