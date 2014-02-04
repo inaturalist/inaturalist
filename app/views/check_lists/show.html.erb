@@ -240,8 +240,8 @@
             <%= radio_button_tag :observed, nil, @observed.blank?%>
             <%= label :observed, nil, t(:any) %>
             <br>
-            <hr>
-            <label> <%=t :threatened %> </label>
+            <label> <%= t(:threatened).capitalize %> </label>
+            <br>
             <%= radio_button_tag :threatened, :t, @threatened == 't'%>
             <%= label :threatened, :t, t(:yes).downcase %>
             <%= radio_button_tag :threatened, :f, @threatened == 'f'%>
@@ -263,20 +263,20 @@
             <label><%=t :occurrence_status %></label>
             <br>
             <%= radio_button_tag :occurrence_status, :present, @occurrence_status == 'present'%>
-            <%= label :occurrence_status, :present, t(:present).downcase %>
+            <%= label :occurrence_status, :present, t("occurrence_status_levels.present").downcase %>
             <%= radio_button_tag :occurrence_status, :absent, @occurrence_status == 'absent'%>
-            <%= label :occurrence_status, :absent, t(:absent).downcase %>
+            <%= label :occurrence_status, :absent, t("occurrence_status_levels.absent").downcase %>
             <%= radio_button_tag :occurrence_status, :all, @occurrence_status=='all'%>
-            <%= label :occurrence_status, :all, t(:all).downcase %>
+            <%= label :occurrence_status, :all, t(:any).downcase %>
             <br>
             <label><%=t :rank %></label>
             <br>
-            <%= radio_button_tag :rank, :all, @rank=='all'%>
-            <%= label :rank, :all, t(:all).downcase %>
-            <%= radio_button_tag :rank, :leaves, @rank == "leaves"%>
-            <%= label :rank, :leaves, t(:leaves).downcase %>
             <%= radio_button_tag :rank, :species, @rank == "species"%>
             <%= label :rank, :species, t(:species).downcase %>
+            <%= radio_button_tag :rank, :leaves, @rank == "leaves"%>
+            <%= label :rank, :leaves, t(:leaves).downcase %>
+            <%= radio_button_tag :rank, :all, @rank=='all'%>
+            <%= label :rank, :all, t(:any).downcase %>
             <br>
             <label><%=t :taxonomic_status %></label>
             <br>
@@ -285,7 +285,7 @@
             <%= radio_button_tag :taxonomic_status, :inactive, @taxonomic_status == 'inactive'%>
             <%= label :taxonomic_status, :inactive, t(:inactive).downcase %>
             <%= radio_button_tag :taxonomic_status, :all, @taxonomic_status == 'all'%>
-            <%= label :taxonomic_status, :all, t(:all).downcase %>
+            <%= label :taxonomic_status, :all, t(:any).downcase %>
             <br>
             <br>
             <input type="submit" class="default button" value="Filter" />
