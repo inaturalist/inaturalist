@@ -13,11 +13,11 @@ $(document).ready(function() {
 
   $('#taxonchooser').chooser({
     collectionUrl: '/taxa/autocomplete.json',
-    resourceUrl: '/taxa/{{id}}.json?partial=chooser',
-    afterSelect: function(taxon) {
-      if (!FILTER_TAXON || FILTER_TAXON.id != taxon.id) {
-        $('#taxonchooser').parents('form:first').submit()
-      }
-    }
+    //resourceUrl: '/taxa/{{id}}.json?partial=chooser',
+    // afterSelect: function(taxon) {
+    //   if (!FILTER_TAXON || FILTER_TAXON.id != taxon.id) {
+    //     $('#taxonchooser').parents('form:first').submit()
+    //   }
+    // }
   })
 })

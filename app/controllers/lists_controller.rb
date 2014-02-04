@@ -8,7 +8,7 @@ class ListsController < ApplicationController
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
     :remove_taxon, :reload_from_observations]
   before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
-  before_filter :load_find_options, :only => [:show]
+  before_filter :set_find_options, :only => [:show]
   before_filter :load_user_by_login, :only => :by_login
   
   caches_page :show, :if => Proc.new {|c| c.request.format == :csv}

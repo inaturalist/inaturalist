@@ -220,26 +220,75 @@
             </div>
           </a>
         <% end %>
+
+        <form method="get">
         <div class="clear stat <%= ' current' if @filter_taxon && !@filter_taxon.is_iconic? %>">
           <div class="readable title">
             &nbsp;
           </div>
           <div class="barchart">
-            <form>
-              <input id="taxonchooser" name="taxon" type="text" class="text" placeholder="<%=t :type_taxon_name %>" value="<%= @filter_taxon.try(&:id) unless (@filter_taxon && @filter_taxon.is_iconic?) %>" style="width:200px"/>
-            </form>
+            <input id="taxonchooser" name="taxon" type="text" class="text" placeholder="<%= @filter_taxon ? @filter_taxon.name : (t :type_taxon_name) %>" value="<%= @filter_taxon.try(&:id) unless (@filter_taxon && @filter_taxon.is_iconic?) %>" style="width:200px"/>
           </div>
         </div>
         <div class="clear" style="padding: 10px">
-          <form method="get">
-            <%= hidden_fields_for_params :without => [:page, :observed] %>
             <label><%=t :observed %></label>
-            <%= radio_button_tag :observed, :t, @observed == 't', {"data-autosubmit" => true} %>
+            <br>
+            <%= radio_button_tag :observed, :t, @observed == 't'%>
             <%= label :observed, :t, t(:yes).downcase %>
-            <%= radio_button_tag :observed, :f, @observed == 'f', {"data-autosubmit" => true} %>
+            <%= radio_button_tag :observed, :f, @observed == 'f'%>
             <%= label :observed, :f, t(:no).downcase %>
-            <%= radio_button_tag :observed, nil, @observed.blank?, {"data-autosubmit" => true} %>
+            <%= radio_button_tag :observed, nil, @observed.blank?%>
             <%= label :observed, nil, t(:any) %>
+            <br>
+            <label> <%= t(:threatened).capitalize %> </label>
+            <br>
+            <%= radio_button_tag :threatened, :t, @threatened == 't'%>
+            <%= label :threatened, :t, t(:yes).downcase %>
+            <%= radio_button_tag :threatened, :f, @threatened == 'f'%>
+            <%= label :threatened, :f, t(:no).downcase %>
+            <%= radio_button_tag :threatened, nil, @threatened.blank?%>
+            <%= label :threatened, nil, t(:any) %>
+            <br>
+            <label><%=t :establishment_means %></label>
+            <br>
+            <%= radio_button_tag :establishment_means, :endemic, @establishment_means == 'endemic'%>
+            <%= label :establishment_means, :endemic, t(:endemic).downcase %>
+            <%= radio_button_tag :establishment_means, :native, @establishment_means == 'native'%>
+            <%= label :establishment_means, :native, t(:native).downcase %>
+            <%= radio_button_tag :establishment_means, :introduced, @establishment_means == 'introduced'%>
+            <%= label :establishment_means, :introduced, t(:introduced).downcase %>
+            <%= radio_button_tag :establishment_means, nil, @establishment_means.blank?%>
+            <%= label :establishment_means, nil, t(:any) %>
+            <br>
+            <label><%=t :occurrence_status %></label>
+            <br>
+            <%= radio_button_tag :occurrence_status, :not_absent, @occurrence_status == 'not_absent'%>
+            <%= label :occurrence_status, :not_absent, t("not_absent").downcase %>
+            <%= radio_button_tag :occurrence_status, :absent, @occurrence_status == 'absent'%>
+            <%= label :occurrence_status, :absent, t("occurrence_status_levels.absent").downcase %>
+            <%= radio_button_tag :occurrence_status, :any, @occurrence_status=='any'%>
+            <%= label :occurrence_status, :any, t(:any).downcase %>
+            <br>
+            <label><%=t :rank %></label>
+            <br>
+            <%= radio_button_tag :rank, :species, @rank == "species"%>
+            <%= label :rank, :species, t(:species).downcase %>
+            <%= radio_button_tag :rank, :leaves, @rank == "leaves"%>
+            <%= label :rank, :leaves, t(:leaves).downcase %>
+            <%= radio_button_tag :rank, :all, @rank=='all'%>
+            <%= label :rank, :all, t(:any).downcase %>
+            <br>
+            <label><%=t :taxonomic_status %></label>
+            <br>
+            <%= radio_button_tag :taxonomic_status, :active, @taxonomic_status == 'active'%>
+            <%= label :taxonomic_status, :active, t(:active).downcase %>
+            <%= radio_button_tag :taxonomic_status, :inactive, @taxonomic_status == 'inactive'%>
+            <%= label :taxonomic_status, :inactive, t(:inactive).downcase %>
+            <%= radio_button_tag :taxonomic_status, :all, @taxonomic_status == 'all'%>
+            <%= label :taxonomic_status, :all, t(:any).downcase %>
+            <br>
+            <br>
+            <input type="submit" class="default button" value="Filter" />
           </form>
         </div>
       </div><!-- / innerstats -->
