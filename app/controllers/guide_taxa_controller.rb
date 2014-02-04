@@ -18,7 +18,8 @@ class GuideTaxaController < ApplicationController
       format.json do
         render :json => {:guide_taxa => @guide_taxa.as_json(
           :root => false, 
-          :methods => [:guide_photo_ids, :guide_section_ids, :guide_range_ids]
+          :methods => [:guide_photo_ids, :guide_section_ids, :guide_range_ids],
+          :include => [:guide_photos => {:include => [{:photo => Photo.default_json_options}]}]
         )}
       end
     end
