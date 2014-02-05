@@ -1188,7 +1188,7 @@ CREATE TABLE listed_taxa (
     taxon_range_id integer,
     source_id integer,
     manually_added boolean DEFAULT false,
-    primary_listing boolean DEFAULT true
+    primary_listing boolean
 );
 
 
@@ -1617,8 +1617,8 @@ CREATE TABLE observations (
     sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
     private_geom geometry(Point),
-    captive boolean DEFAULT false,
     community_taxon_id integer,
+    captive boolean DEFAULT false,
     site_id integer
 );
 
@@ -4893,6 +4893,13 @@ CREATE INDEX index_guides_on_user_id ON guides USING btree (user_id);
 
 
 --
+-- Name: index_identifications_on_current; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_identifications_on_current ON identifications USING btree (user_id, observation_id) WHERE current;
+
+
+--
 -- Name: index_identifications_on_observation_id_and_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6494,3 +6501,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140113145150');
 INSERT INTO schema_migrations (version) VALUES ('20140114210551');
 
 INSERT INTO schema_migrations (version) VALUES ('20140124190652');
+
+INSERT INTO schema_migrations (version) VALUES ('20140205200914');

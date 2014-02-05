@@ -11,8 +11,8 @@ class Identification < ActiveRecord::Base
                         :message => "for an ID must be something we recognize"
   validate :uniqueness_of_current, :on => :update
   
-  after_create  :update_other_identifications,
-                :update_observation, 
+  before_save   :update_other_identifications
+  after_create  :update_observation, 
                 :increment_user_counter_cache, 
                 :expire_caches
                 
@@ -71,10 +71,17 @@ class Identification < ActiveRecord::Base
   # Callbacks ###############################################################
 
   def update_other_identifications
-    Identification.update_all(
-      ["current = ?", false],
-      ["observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id]
-    )
+    if id
+      Identification.update_all(
+        ["current = ?", false],
+        ["observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id]
+      )
+    else
+      Identification.update_all(
+        ["current = ?", false],
+        ["observation_id = ? AND user_id = ?", observation_id, user_id]
+      )
+    end
     true
   end
   
