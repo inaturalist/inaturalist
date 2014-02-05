@@ -112,6 +112,7 @@ module Shared::ListsModule
       
       format.json do
         @find_options[:order] = "observations_count DESC" if params[:order_by].blank?
+        set_scopes unless @listed_taxa.present?
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
         render :json => {
           :list => @list,
