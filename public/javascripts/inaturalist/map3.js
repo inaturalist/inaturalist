@@ -863,12 +863,14 @@ google.maps.Map.prototype.addTileLayer = function(tileUrl,interactivity){
               if(o.data['latitude']){
                 var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude']);
                 $.ajax({
-                  url:  '/observations/' + o.data['id'] + '.json',
-                  type: "GET",
-                  dataType: 'json',
+                  url:  '/observations/' + o.data['id'] + '.html?partial=cached_component',
+                  type: 'GET',
+                  //dataType: 'json',
+                  dataType: 'html',
                   success: function(data) {
                     var infowindow = new google.maps.InfoWindow({
-                        content: window.map.buildObservationInfoWindow(data),
+                        //content: window.map.buildObservationInfoWindow(data),
+                        content: $('<div class="compact mini infowindow observations"></div>').append(data).get(0),
                         position: latLng
                     });
                     infowindow.open(window.map);
