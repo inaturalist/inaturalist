@@ -443,7 +443,7 @@ describe ListedTaxon, "parent check list syncing" do
 end
 
 describe "a listed taxon on a non checklist" do
-  before(:each) do
+  before do
     @taxon = Taxon.make!
     @list = List.make!
     @first_observation = Observation.make!(:taxon => @taxon)
@@ -452,10 +452,12 @@ describe "a listed taxon on a non checklist" do
     @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @list)
     @listed_taxon.reload
   end
+
   it "should not be a primary listing" do
-    @listed_taxon.primary_listing.should be(false)
+    @listed_taxon.should_not be_primary_listing
   end
 end
+
 describe "primary_listing" do
   before(:each) do
     @taxon = Taxon.make!

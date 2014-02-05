@@ -1188,7 +1188,7 @@ CREATE TABLE listed_taxa (
     taxon_range_id integer,
     source_id integer,
     manually_added boolean DEFAULT false,
-    primary_listing boolean
+    primary_listing boolean DEFAULT true
 );
 
 
@@ -1617,8 +1617,8 @@ CREATE TABLE observations (
     sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
     private_geom geometry(Point),
-    community_taxon_id integer,
     captive boolean DEFAULT false,
+    community_taxon_id integer,
     site_id integer
 );
 
@@ -1870,7 +1870,14 @@ CREATE TABLE posts (
     title character varying(255) NOT NULL,
     body text,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    type character varying(255),
+    start_time timestamp without time zone,
+    stop_time timestamp without time zone,
+    place_id integer,
+    latitude numeric(15,10),
+    longitude numeric(15,10),
+    positional_accuracy integer
 );
 
 
@@ -3051,6 +3058,71 @@ ALTER SEQUENCE taxon_versions_id_seq OWNED BY taxon_versions.id;
 
 
 --
+-- Name: trip_purposes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE trip_purposes (
+    id integer NOT NULL,
+    trip_id integer,
+    purpose character varying(255),
+    resource_type character varying(255),
+    resource_id integer,
+    success boolean,
+    complete boolean DEFAULT false
+);
+
+
+--
+-- Name: trip_purposes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE trip_purposes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: trip_purposes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE trip_purposes_id_seq OWNED BY trip_purposes.id;
+
+
+--
+-- Name: trip_taxa; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE trip_taxa (
+    id integer NOT NULL,
+    taxon_id integer,
+    trip_id integer,
+    observed boolean
+);
+
+
+--
+-- Name: trip_taxa_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE trip_taxa_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: trip_taxa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE trip_taxa_id_seq OWNED BY trip_taxa.id;
+
+
+--
 -- Name: updates; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3814,6 +3886,20 @@ ALTER TABLE ONLY taxon_versions ALTER COLUMN id SET DEFAULT nextval('taxon_versi
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY trip_purposes ALTER COLUMN id SET DEFAULT nextval('trip_purposes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY trip_taxa ALTER COLUMN id SET DEFAULT nextval('trip_taxa_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY updates ALTER COLUMN id SET DEFAULT nextval('updates_id_seq'::regclass);
 
 
@@ -4475,6 +4561,22 @@ ALTER TABLE ONLY taxon_schemes
 
 ALTER TABLE ONLY taxon_versions
     ADD CONSTRAINT taxon_versions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: trip_purposes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY trip_purposes
+    ADD CONSTRAINT trip_purposes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: trip_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY trip_taxa
+    ADD CONSTRAINT trip_taxa_pkey PRIMARY KEY (id);
 
 
 --
@@ -5281,6 +5383,13 @@ CREATE INDEX index_places_on_user_id ON places USING btree (user_id);
 
 
 --
+-- Name: index_posts_on_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_posts_on_place_id ON posts USING btree (place_id);
+
+
+--
 -- Name: index_posts_on_published_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5750,6 +5859,34 @@ CREATE INDEX index_taxon_schemes_on_source_id ON taxon_schemes USING btree (sour
 
 
 --
+-- Name: index_trip_purposes_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_trip_purposes_on_resource_type_and_resource_id ON trip_purposes USING btree (resource_type, resource_id);
+
+
+--
+-- Name: index_trip_purposes_on_trip_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_trip_purposes_on_trip_id ON trip_purposes USING btree (trip_id);
+
+
+--
+-- Name: index_trip_taxa_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_trip_taxa_on_taxon_id ON trip_taxa USING btree (taxon_id);
+
+
+--
+-- Name: index_trip_taxa_on_trip_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_trip_taxa_on_trip_id ON trip_taxa USING btree (trip_id);
+
+
+--
 -- Name: index_updates_on_notifier_type_and_notifier_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6200,6 +6337,8 @@ INSERT INTO schema_migrations (version) VALUES ('20121224231303');
 
 INSERT INTO schema_migrations (version) VALUES ('20121227214513');
 
+INSERT INTO schema_migrations (version) VALUES ('20121230023106');
+
 INSERT INTO schema_migrations (version) VALUES ('20121230210148');
 
 INSERT INTO schema_migrations (version) VALUES ('20130102225500');
@@ -6351,5 +6490,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140101210916');
 INSERT INTO schema_migrations (version) VALUES ('20140104202529');
 
 INSERT INTO schema_migrations (version) VALUES ('20140113145150');
+
+INSERT INTO schema_migrations (version) VALUES ('20140114210551');
 
 INSERT INTO schema_migrations (version) VALUES ('20140124190652');
