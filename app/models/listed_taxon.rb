@@ -78,7 +78,16 @@ class ListedTaxon < ActiveRecord::Base
 
   scope :unconfirmed, where("last_observation_id IS NULL")
   scope :confirmed, where("last_observation_id IS NOT NULL")
-  scope :with_establishment_means, lambda{|establishment_means| where("establishment_means = ?", establishment_means)}
+  scope :with_establishment_means, lambda{|establishment_means|
+    means = if establishment_means == "native"
+      NATIVE_EQUIVALENTS
+    elsif establishment_means == "introduced"
+      INTRODUCED_EQUIVALENTS
+    else
+      [establishment_means]
+    end
+    where("establishment_means IN (?)", means)
+  }
 
 
   scope :with_occurrence_status_level, lambda{|occurrence_status_level| where("occurrence_status_level = ?", occurrence_status_level)}
@@ -669,9 +678,10 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def check_primary_listing
-    primary_listing = !other_primary_listed_taxa? && can_set_as_primary?
+    self.primary_listing = !other_primary_listed_taxa? && can_set_as_primary?
     true
   end
+
   def can_set_as_primary?
     list && list.is_a?(CheckList)
   end
