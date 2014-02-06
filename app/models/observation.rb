@@ -2140,10 +2140,12 @@ class Observation < ActiveRecord::Base
     mutable_columns.each do |column|
       self.send("#{column}=", reject.send(column)) if send(column).blank?
     end
+    reject.identifications.update_all("current = false")
     merge_has_many_associations(reject)
     reject.destroy
     identifications.group_by{|ident| [ident.user_id, ident.taxon_id]}.each do |pair, idents|
-      idents.sort_by(&:id).last.update_other_identifications
+      c = idents.sort_by(&:id).last
+      c.update_attributes(:current => true)
     end
     save!
   end

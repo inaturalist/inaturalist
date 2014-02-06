@@ -58,6 +58,16 @@ class AdminController < ApplicationController
     @records = @display_user.send(@reflection_name).page(params[:page]) rescue []
   end
 
+  def update_user
+    unless u = User.find_by_id(params[:id])
+      flash[:error] = "User doesn't exist"
+      redirect_back_or_default(curate_users_path)
+    end
+    u.update_attributes(params[:user])
+    flash[:notice] = "User description deleted for #{u.login}"
+    redirect_back_or_default(curate_users_path(:user_id => u.id))
+  end
+
   def destroy_user_content
     return unless load_user_content_info
     @records = @display_user.send(@reflection_name).
