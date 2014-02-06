@@ -34,9 +34,9 @@ module Shared::ListsModule
 
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id
 
-        @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa)
-        @total_listed_taxa ||= @list.listed_taxa.count
-        @total_observed_taxa ||= @list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
+        @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, @listed_taxa)
+        @total_listed_taxa ||= @listed_taxa.count 
+        @total_observed_taxa ||= @listed_taxa.with_observation.count
         @view = PHOTO_VIEW unless LIST_VIEWS.include?(@view)
 
         case @view
@@ -330,20 +330,15 @@ module Shared::ListsModule
   
   private
   
-  def get_iconic_taxon_counts(list, iconic_taxa = nil)
-    iconic_taxa ||= Taxon.iconic_taxa
-    # TODO: pull out check list logic
-    iconic_taxon_counts_by_id_hash = if list.is_a?(CheckList) && list.is_default?
-      ListedTaxon.count(:all, :include => [:taxon], 
-        :conditions => ["place_id = ?", list.place_id],
-        :group => "taxa.iconic_taxon_id")
-    else
-      list.listed_taxa.count(:all, :include => [:taxon], :group => "taxa.iconic_taxon_id")
-    end
+  def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)
+    iconic_taxa ||= Taxon::ICONIC_TAXA
+    listed_taxa_iconic_taxon_ids = listed_taxa.map{|lt| lt.taxon.iconic_taxon_id }
     iconic_taxa.map do |iconic_taxon|
-      [iconic_taxon, iconic_taxon_counts_by_id_hash[iconic_taxon.id.to_s]]
+      taxon_count = listed_taxa_iconic_taxon_ids.count(iconic_taxon.id)
+      [iconic_taxon, taxon_count]
     end
   end
+
   
   def load_list
     @list = List.find_by_id(params[:id].to_i)

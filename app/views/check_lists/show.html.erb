@@ -198,7 +198,7 @@
           </div>
         </a>
         <% for grouper, count in @iconic_taxon_counts -%>
-          <% next unless count %>
+          <% next unless (count && count != 0) %>
           <% if grouper.respond_to?(:common_name) && grouper.common_name %>
             <% grouper_name = grouper.common_name.name rescue 'Unclassified' -%>
           <% elsif grouper.respond_to?(:name) %>

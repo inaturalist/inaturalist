@@ -90,6 +90,7 @@ class ListedTaxon < ActiveRecord::Base
   }
 
 
+  scope :with_observation, where("last_observation_id IS NOT NULL")
   scope :with_occurrence_status_level, lambda{|occurrence_status_level| where("occurrence_status_level = ?", occurrence_status_level)}
 
   scope :with_occurrence_status_levels_approximating_absent, where("occurrence_status_level IN (10, 20)")
