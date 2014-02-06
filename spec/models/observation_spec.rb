@@ -1092,6 +1092,10 @@ describe Observation do
       o = Observation.make!(:place_guess => '3333 23rd St, San Francisco, CA 94114, USA ')
       o.obscure_coordinates
       o.place_guess.should_not match(/3333/)
+
+      o = Observation.make!(:place_guess => '3333A 23rd St, San Francisco, CA 94114, USA ')
+      o.obscure_coordinates
+      o.place_guess.should_not match(/3333/)
       
       o = Observation.make!(:place_guess => '3333-6666 23rd St, San Francisco, CA 94114, USA ')
       o.obscure_coordinates

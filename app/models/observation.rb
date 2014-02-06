@@ -1445,7 +1445,7 @@ class Observation < ActiveRecord::Base
   def obscured_place_guess
     return place_guess if place_guess.blank?
     return nil if lat_lon_in_place_guess?
-    place_guess.sub(/^[\d\-]+\s+/, '')
+    place_guess.sub(/^\d[\d\-A-z]+\s+/, '')
   end
   
   def unobscure_coordinates
