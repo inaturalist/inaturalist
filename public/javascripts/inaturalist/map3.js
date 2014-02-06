@@ -30,6 +30,11 @@ google.maps.Map.prototype.places = {};
 google.maps.Map.prototype.lastUnsavedMarker = null;
 
 
+// general purpose infoWindow
+// stores a global scope reference to an infoWindow
+google.maps.Map.prototype.infoWindow = null;
+
+
 google.maps.Map.prototype.createMarker = function(lat, lng, options) {
   options = options || {}
   options.position = new google.maps.LatLng(lat, lng)
@@ -865,15 +870,16 @@ google.maps.Map.prototype.addTileLayer = function(tileUrl,interactivity){
                 $.ajax({
                   url:  '/observations/' + o.data['id'] + '.html?partial=cached_component',
                   type: 'GET',
-                  //dataType: 'json',
                   dataType: 'html',
-                  success: function(data) {
-                    var infowindow = new google.maps.InfoWindow({
-                        //content: window.map.buildObservationInfoWindow(data),
-                        content: $('<div class="compact mini infowindow observations"></div>').append(data).get(0),
-                        position: latLng
+                  success: function(data) {                    
+                    if( typeof(infoWindow) != 'undefined' ){
+                      infoWindow.close();
+                    }
+                    infoWindow = new google.maps.InfoWindow({
+                       content: $('<div class="compact mini infowindow observations"></div>').append(data).get(0),
+                       position: latLng
                     });
-                    infowindow.open(window.map);
+                    infoWindow.open(window.map);
                   },
                   error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus);
