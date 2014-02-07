@@ -707,6 +707,7 @@ class ListedTaxon < ActiveRecord::Base
       related_listed_taxon.observations_count = observations_count
       related_listed_taxon.observations_month_counts = observations_month_counts
       related_listed_taxon.occurrence_status_level = occurrence_status_level
+      related_listed_taxon.skip_update_cache_columns = true
       related_listed_taxon.save
     end
     true
