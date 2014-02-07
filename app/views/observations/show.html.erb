@@ -139,8 +139,14 @@
   </div>
   
   <h2>
-    <%- if @observation.taxon -%>
-      <%= link_to @observation.species_guess.blank? ? @observation.taxon.default_name.try(:name) : @observation.species_guess, @observation.taxon -%>
+    <%- if @observation.taxon && @observation.taxon_id == @observation.community_taxon_id -%>
+      <%= render "shared/taxon", :taxon => @observation.taxon, :link_url => @observation.taxon %>
+    <%- elsif @observation.taxon -%>
+      <%= render "shared/taxon", 
+        :taxon => @observation.taxon, 
+        :link_url => @observation.taxon, 
+        :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil,
+        :no_common => !@observation.species_guess.blank? && @observation.species_guess.downcase == @observation.taxon.name.downcase %>
     <%- elsif !@observation.species_guess.blank? -%>
       <%= @observation.species_guess -%>
     <%- else -%>
@@ -457,7 +463,7 @@
                     } %>
 
           <center class="actions">
-            <% if is_me?(@observation.user) && @observation.community_taxon_id != @owners_identification.taxon_id -%>
+            <% if is_me?(@observation.user) && (@owners_identification.blank? || @observation.community_taxon_id != @owners_identification.taxon_id) -%>
               <%= link_to t(:reject), 
                 observation_url(@observation, :observation => {:prefers_community_taxon => false}, :ignore_photos => true), 
                 :method => :put, 

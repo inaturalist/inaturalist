@@ -103,22 +103,20 @@ Some notes:
   </div>
   <div class="readable species_guess attribute">
     <h4 class="label"><%=t :what %></h4>
-    <% if observation.taxon %>
-      <% if observation.species_guess.blank? || observation.taxon.default_name.name.downcase.strip == observation.species_guess.downcase.strip -%>
-        <%= render :partial => 'shared/taxon', 
-                   :locals => {
-                     :taxon => observation.taxon,
-                     :link_url => url_for(observation),
-                     :include_parens => false} %>
-      <% elsif observation.species_guess.downcase.strip == observation.taxon.name.downcase.strip %>
-        <%= render :partial => 'shared/taxon', 
-                   :locals => {
-                     :taxon => observation.taxon,
-                     :link_url => url_for(observation),
-                     :no_common => true} %>
-      <% else %>
-        <%= link_to observation.species_guess, observation %>
-      <% end -%>
+    <% if observation.taxon && observation.taxon_id == observation.community_taxon_id %>
+      <%= render :partial => 'shared/taxon', 
+                 :locals => {
+                   :taxon => observation.taxon,
+                   :link_url => url_for(observation),
+                   :include_parens => false} %>
+    <% elsif observation.taxon %>
+      <%= render :partial => 'shared/taxon', 
+                 :locals => {
+                    :comname => !observation.species_guess.blank? && observation.species_guess.downcase != observation.taxon.name.downcase ? observation.species_guess : nil,
+                    :no_common => !observation.species_guess.blank? && observation.species_guess.downcase == observation.taxon.name.downcase,
+                    :taxon => observation.taxon,
+                    :link_url => url_for(observation),
+                    :include_parens => false} %>
     <% elsif !observation.species_guess.blank? %>
       <span class="taxon">
         <%= link_to observation.species_guess, observation %>
