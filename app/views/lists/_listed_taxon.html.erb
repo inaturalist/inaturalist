@@ -1,6 +1,6 @@
 <%- 
   listed_taxon ||= @listed_taxon
-  primary_listing ||= listed_taxon.primary_listed_taxon
+  primary_listed_taxon ||= listed_taxon.primary_listed_taxon
   list ||= @list ||= listed_taxon.list
   current_user_life_list_taxon_ids ||= @current_user_life_list_taxon_ids 
   seenit ||= current_user_life_list_taxon_ids && current_user_life_list_taxon_ids.include?(listed_taxon.taxon.id) 
@@ -48,16 +48,16 @@
       <%= link_to rendered_taxon_name, listed_taxon.taxon %>
     </p>
     
-    <% if primary_listing.occurrence_status || primary_listing.establishment_means -%>
+    <% if primary_listed_taxon.occurrence_status || primary_listed_taxon.establishment_means -%>
       <div class="occurrence description">
         <label><%= t :status %>: </label>
         <%=
           pieces = []
-          unless primary_listing.occurrence_status.blank?
-            pieces << t("occurrence_status_levels.#{primary_listing.occurrence_status.to_s.downcase}", :default => primary_listing.occurrence_status)
+          unless primary_listed_taxon.occurrence_status.blank?
+            pieces << t("occurrence_status_levels.#{primary_listed_taxon.occurrence_status.to_s.downcase}", :default => primary_listed_taxon.occurrence_status)
           end
-          unless primary_listing.establishment_means.blank?
-            pieces << t("establishment.#{primary_listing.establishment_means.to_s.downcase}",:default => primary_listing.establishment_means)
+          unless primary_listed_taxon.establishment_means.blank?
+            pieces << t("establishment.#{primary_listed_taxon.establishment_means.to_s.downcase}",:default => primary_listed_taxon.establishment_means)
           end
           pieces.join(' / ')
         -%>
@@ -77,18 +77,18 @@
     <% end -%>
     
     <div class="description">
-      <% if listed_taxon.last_observation %>
+      <% if primary_listed_taxon.last_observation %>
         <span class="observation">
          <%=t :last_seen %>
-          <a href="<%= observation_url(listed_taxon.last_observation) %>">
-            <%= one_line_observation listed_taxon.last_observation, :skip => %w(user taxon) %>
+          <a href="<%= observation_url(primary_listed_taxon.last_observation) %>">
+            <%= one_line_observation primary_listed_taxon.last_observation, :skip => %w(user taxon) %>
           </a>
           <% if list.is_a?(CheckList) -%>
-            <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_url(:place_id => list.place_id, :taxon_id => listed_taxon.taxon_id) %></span>
+            <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_url(:place_id => list.place_id, :taxon_id => primary_listed_taxon.taxon_id) %></span>
           <% elsif list.is_a?(ProjectList) %>
-            <span class="button"><%= link_to "(" + t(:view_all) + ")", project_observations_url(list.project_id, :taxon_id => listed_taxon.taxon_id) %></span>
+            <span class="button"><%= link_to "(" + t(:view_all) + ")", project_observations_url(list.project_id, :taxon_id => primary_listed_taxon.taxon_id) %></span>
           <% elsif list.user %>
-            <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_by_login_url(list.user.login, :taxon_id => listed_taxon.taxon_id) %></span>
+            <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_by_login_url(list.user.login, :taxon_id => primary_listed_taxon.taxon_id) %></span>
           <% end -%>
         </span>
         |
