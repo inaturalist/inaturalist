@@ -1567,15 +1567,16 @@ class Observation < ActiveRecord::Base
     scope = scope.in_projects([options[:project]]) unless options[:project].blank?
     ThinkingSphinx.deltas_enabled = false
     start_time = Time.now
-    Rails.logger.info "[INFO #{Time.now}] Starting Observation.set_community_taxon, options: #{options.inspect}"
+    logger = options[:logger] || Rails.logger
+    logger.info "[INFO #{Time.now}] Starting Observation.set_community_taxon, options: #{options.inspect}"
     scope.find_each do |o|
       next unless o.identifications.size > 1
       o.set_community_taxon
       unless o.save
-        Rails.logger.error "[ERROR #{Time.now}] Failed to set community taxon for #{o}: #{o.errors.full_messages.to_sentence}"
+        logger.error "[ERROR #{Time.now}] Failed to set community taxon for #{o}: #{o.errors.full_messages.to_sentence}"
       end
     end
-    Rails.logger.info "[INFO #{Time.now}] Finished Observation.set_community_taxon in #{Time.now - start_time}s, options: #{options.inspect}"
+    logger.info "[INFO #{Time.now}] Finished Observation.set_community_taxon in #{Time.now - start_time}s, options: #{options.inspect}"
     ThinkingSphinx.deltas_enabled = true
   end
 
