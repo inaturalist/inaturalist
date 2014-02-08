@@ -367,11 +367,15 @@ class ListedTaxon < ActiveRecord::Base
   def update_cache_columns_for_check_list
     return true if @skip_update_cache_columns
     return true unless list.is_a?(CheckList)
-    if @force_update_cache_columns
-    elsif !Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{id}\n'").exists?
-      ListedTaxon.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").update_cache_columns_for(id)
+    if primary_listing
+      if @force_update_cache_columns
+      elsif !Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{id}\n'").exists?
+        ListedTaxon.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").update_cache_columns_for(id)
+      end
+      true
+    else
+      primary_listed_taxon.update_attributes_on_related_listed_taxa
     end
-    true
   end
 
   def propagate_establishment_means
