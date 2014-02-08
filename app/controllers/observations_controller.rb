@@ -42,7 +42,8 @@ class ObservationsController < ApplicationController
                             :widget,
                             :project,
                             :taxon_stats,
-                            :user_stats]
+                            :user_stats,
+                            :community_taxon_summary]
   before_filter :load_observation, :only => [
     :show, :edit, :edit_photos, :update_photos, :destroy, :fields,
     :viewed_updates, :community_taxon_summary
