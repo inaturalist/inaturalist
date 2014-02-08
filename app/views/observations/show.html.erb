@@ -447,7 +447,7 @@
       <div id="owners-identification" class="box <%= 'withupperright' if @listed_taxon || @conservation_status %>">
         <%= render :partial => 'identifications/identification',
                    :locals => { :identification => @owners_identification } %>
-        <% if @listed_taxon || @conservation_status -%>
+        <% if @owners_identification.taxon_id == @observation.taxon_id -%>
           <%= render "listed_taxa/taxon_blobs", :listed_taxon => @listed_taxon, :taxon => @observation.taxon, :conservation_status => @conservation_status, :show_place_name => true %>
         <% end -%>
       </div>
@@ -455,12 +455,15 @@
 
     <% if @community_identification && !@observation.community_taxon_rejected? -%>
       <div class="identification_group">
-        <div id="community-identification" class="box">
+        <div id="community-identification" class="box  <%= 'withupperright' if @listed_taxon || @conservation_status %>">
           <%= render :partial => 'identifications/identification',
                      :locals => {
                       :identification => @community_identification,
                       :usertext => "<strong>Community</strong> ID: ".html_safe
                     } %>
+          <% if @listed_taxon || @conservation_status -%>
+            <%= render "listed_taxa/taxon_blobs", :listed_taxon => @listed_taxon, :taxon => @observation.taxon, :conservation_status => @conservation_status, :show_place_name => true %>
+          <% end -%>
 
           <center class="actions">
             <% if is_me?(@observation.user) && (@owners_identification.blank? || @observation.community_taxon_id != @owners_identification.taxon_id) -%>
