@@ -1912,6 +1912,18 @@ describe Observation, "community taxon" do
     o.species_guess.should eq o.community_taxon.name
   end
 
+  it "should set the iconic taxon" do
+    o = Observation.make!
+    o.iconic_taxon.should be_blank
+    iconic_taxon = Taxon.make!(:is_iconic => true, :rank => "family")
+    i1 = Identification.make!(:observation => o, :taxon => Taxon.make!(:parent => iconic_taxon, :rank => "genus"))
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    i1.taxon.iconic_taxon.should eq iconic_taxon
+    o.reload
+    o.taxon.should eq i1.taxon
+    o.iconic_taxon.should eq iconic_taxon
+  end
+
   it "should not set the taxon if the user has opted out" do
     u = User.make!(:prefers_community_taxa => false)
     o = Observation.make!(:user => u)

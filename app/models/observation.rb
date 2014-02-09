@@ -321,7 +321,6 @@ class Observation < ActiveRecord::Base
   before_save :strip_species_guess,
               :set_taxon_from_species_guess,
               :set_taxon_from_taxon_name,
-              :set_iconic_taxon,
               :keep_old_taxon_id,
               :set_latlon_from_place_guess,
               :reset_private_coordinates_if_coordinates_changed,
@@ -333,7 +332,8 @@ class Observation < ActiveRecord::Base
               :trim_user_agent,
               :update_identifications,
               :set_community_taxon_if_pref_changed,
-              :set_taxon_from_community_taxon
+              :set_taxon_from_community_taxon,
+              :set_iconic_taxon
   
   before_update :set_quality_grade
                  
