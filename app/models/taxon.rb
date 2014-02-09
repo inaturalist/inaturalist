@@ -370,7 +370,7 @@ class Taxon < ActiveRecord::Base
         Identification.joins(:taxon).where(conditions).exists? || 
         Identification.joins(:taxon).where(old_conditions).exists?
         ) && 
-        !Delayed::Job.where("handler LIKE '%update_stats_for_observations_of%-#{id}%'").exists?
+        !Delayed::Job.where("handler LIKE '%update_stats_for_observations_of%- #{id}%'").exists?
       Observation.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").update_stats_for_observations_of(id)
     end
     true

@@ -107,6 +107,7 @@ Some notes:
       <%= render :partial => 'shared/taxon', 
                  :locals => {
                    :taxon => observation.taxon,
+                   :comname => !observation.species_guess.blank? && observation.species_guess.downcase != observation.taxon.name.downcase ? observation.species_guess : nil,
                    :link_url => url_for(observation),
                    :include_parens => false} %>
     <% elsif observation.taxon %>
