@@ -757,6 +757,25 @@ describe Taxon, "moving" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}.should be_blank
   end
+
+  it "should update community taxa" do
+    fam = Taxon.make!(:rank => "family")
+    subfam = Taxon.make!(:rank => "subfamily", :parent => fam)
+    gen = Taxon.make!(:rank => "genus", :parent => fam)
+    sp = Taxon.make!(:rank => "species", :parent => gen)
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o, :taxon => subfam)
+    i2 = Identification.make!(:observation => o, :taxon => sp)
+    Identification.of(gen).exists?.should be_true
+    o.reload
+    o.taxon.should eq fam
+    Delayed::Worker.new.work_off
+    without_delay do
+      gen.update_attributes(:parent => subfam)
+    end
+    o.reload
+    o.taxon.should eq subfam
+  end
   
 end
 

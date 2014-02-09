@@ -43,7 +43,13 @@ class Identification < ActiveRecord::Base
   scope :for_others, includes(:observation).where("observations.user_id != identifications.user_id")
   scope :for_self, includes(:observation).where("observations.user_id = identifications.user_id")
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
-  scope :of, lambda {|taxon| where("identifications.taxon_id = ?", taxon)}
+  scope :of, lambda { |taxon|
+    taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
+    return where("1 = 2") unless taxon
+    c = taxon.descendant_conditions
+    c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
+    joins(:taxon).where(c)
+  }
   scope :on, lambda {|date| where(Identification.conditions_for_date("identifications.created_at", date)) }
   scope :current, where(:current => true)
   scope :outdated, where(:current => false)
