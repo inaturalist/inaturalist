@@ -1303,7 +1303,7 @@ class Observation < ActiveRecord::Base
     if community_taxon_rejected?
       num_identification_agreements.to_i > 0 && num_identification_agreements > num_identification_disagreements
     else
-      taxon_id == community_taxon_id
+      !community_taxon_id.blank? && taxon_id == community_taxon_id
     end
   end
   
