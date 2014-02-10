@@ -509,6 +509,24 @@ describe Observation, "updating" do
       o.update_attributes(:observed_on_string => "")
       o.quality_grade.should == Observation::CASUAL_GRADE
     end
+
+    it "should be research when community taxon is obs taxon and owner agrees" do
+      o = make_research_grade_observation
+      o.identifications.destroy_all
+      o.reload
+      parent = Taxon.make!(:rank => "genus")
+      child = Taxon.make!(:parent => parent, :rank => "species")
+      i1 = Identification.make!(:observation => o, :taxon => parent)
+      i2 = Identification.make!(:observation => o, :taxon => child)
+      i3 = Identification.make!(:observation => o, :taxon => child, :user => o.user)
+      o.reload
+      puts "o.num_identification_agreements: #{o.num_identification_agreements}"
+      puts "o.num_identification_disagreements: #{o.num_identification_disagreements}"
+      o.community_taxon.should eq child
+      o.taxon.should eq child
+      o.should be_community_supported_id
+      o.should be_research_grade
+    end
   end
   
   it "should queue a job to update user lists"

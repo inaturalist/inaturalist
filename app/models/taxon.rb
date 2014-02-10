@@ -104,6 +104,7 @@ class Taxon < ActiveRecord::Base
     'superorder'   => 43,
     'order'        => 40,
     'suborder'     => 37,
+    'infraorder'   => 35,
     'superfamily'  => 33,
     'family'       => 30,
     'subfamily'    => 27,

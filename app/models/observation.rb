@@ -1300,7 +1300,11 @@ class Observation < ActiveRecord::Base
   end
   
   def community_supported_id?
-    num_identification_agreements.to_i > 0 && num_identification_agreements > num_identification_disagreements
+    if community_taxon_rejected?
+      num_identification_agreements.to_i > 0 && num_identification_agreements > num_identification_disagreements
+    else
+      taxon_id == community_taxon_id
+    end
   end
   
   def quality_metrics_pass?
@@ -1932,8 +1936,14 @@ class Observation < ActiveRecord::Base
       num_agreements    = 0
       num_disagreements = 0
     else
-      num_agreements    = idents.select{|ident| ident.current? && ident.is_agreement?(:observation => self)}.size
-      num_disagreements = idents.select{|ident| ident.current? && ident.is_disagreement?(:observation => self)}.size
+      if node = community_taxon_nodes.detect{|n| n[:taxon].try(:id) == taxon_id}
+        num_agreements = node[:cumulative_count]
+        num_disagreements = node[:disagreement_count] + node[:conservative_disagreement_count]
+        num_agreements -= 1 if idents.detect{|i| i.taxon_id == taxon_id && i.user_id == user_id}
+      else
+        num_agreements    = idents.select{|ident| ident.current? && ident.is_agreement?(:observation => self)}.size
+        num_disagreements = idents.select{|ident| ident.current? && ident.is_disagreement?(:observation => self)}.size
+      end
     end
     
     # Kinda lame, but Observation#get_quality_grade relies on these numbers
