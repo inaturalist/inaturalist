@@ -120,7 +120,7 @@ class ListedTaxaController < ApplicationController
     listed_taxon = params[:listed_taxon] || {}
 
     respond_to do |format|
-      if @listed_taxon.update_attributes(listed_taxon.merge(:updater_id => current_user.id))
+      if @listed_taxon.update_attributes_and_primary(listed_taxon, current_user)
         format.html do
           flash[:notice] = t(:listed_taxon_updated)
           redirect_to :back
