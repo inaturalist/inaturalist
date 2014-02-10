@@ -6,8 +6,8 @@ class GuidePhoto < ActiveRecord::Base
   has_one :guide, :through => :guide_taxon
   validates :photo, :presence => true
   after_destroy :destroy_orphan_photo
-  after_save {|r| r.guide.expire_caches(:check_ngz => true)}
-  after_destroy {|r| r.guide.expire_caches(:check_ngz => true)}
+  after_save {|r| r.guide.expire_caches(:check_ngz => true) if r.guide}
+  after_destroy {|r| r.guide.expire_caches(:check_ngz => true) if r.guide}
 
   accepts_nested_attributes_for :photo
 

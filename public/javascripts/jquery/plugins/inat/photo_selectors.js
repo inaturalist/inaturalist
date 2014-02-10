@@ -455,8 +455,12 @@
     
     // Set loading status
     var $photoSelectorPhotos = $(wrapper).find('.photoSelectorPhotos');
-    $photoSelectorPhotos.data('previous-overflow-x', $photoSelectorPhotos.css('overflow-x'))
-    $photoSelectorPhotos.data('previous-overflow-y', $photoSelectorPhotos.css('overflow-y'))
+    if ($photoSelectorPhotos.data('previous-overflow-x') != 'hidden') {
+      $photoSelectorPhotos.data('previous-overflow-x', $photoSelectorPhotos.css('overflow-x'))
+    }
+    if ($photoSelectorPhotos.data('previous-overflow-y') != 'hidden') {
+      $photoSelectorPhotos.data('previous-overflow-y', $photoSelectorPhotos.css('overflow-y'))
+    }
     $photoSelectorPhotos.scrollTo(0,0)
     $photoSelectorPhotos.css('overflow','hidden')
     $photoSelectorPhotos.loadingShades(I18n.t('loading'), {
@@ -512,11 +516,23 @@
         
         // Unset loading status
         $photoSelectorPhotos.shades('close')
-        $photoSelectorPhotos.css('overflow-x', $photoSelectorPhotos.data('previous-overflow-x'));
-        $photoSelectorPhotos.css('overflow-y', $photoSelectorPhotos.data('previous-overflow-y'));
+        if ($photoSelectorPhotos.data('previous-overflow-x') != 'hidden') {
+          $photoSelectorPhotos.css('overflow-x', $photoSelectorPhotos.data('previous-overflow-x'))
+        }
+        if ($photoSelectorPhotos.data('previous-overflow-y') != 'hidden') {
+          $photoSelectorPhotos.css('overflow-y', $photoSelectorPhotos.data('previous-overflow-y'))
+        }
         
         if (typeof(options.afterQueryPhotos) == "function") options.afterQueryPhotos(q, wrapper, options)
         return true
+      },
+      complete: function() {
+        if ($photoSelectorPhotos.data('previous-overflow-x') != 'hidden') {
+          $photoSelectorPhotos.css('overflow-x', $photoSelectorPhotos.data('previous-overflow-x'))
+        }
+        if ($photoSelectorPhotos.data('previous-overflow-y') != 'hidden') {
+          $photoSelectorPhotos.css('overflow-y', $photoSelectorPhotos.data('previous-overflow-y'))
+        }
       }
     })
     $(wrapper).data('ajax', ajax)

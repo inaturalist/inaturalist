@@ -739,6 +739,16 @@ describe Taxon, "moving" do
     jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}.should_not be_blank
   end
 
+  it "should queue a job to update observation stats if there are observations" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    o = Observation.make!(:taxon => @Calypte)
+    Observation.of(@Calypte).count.should eq(1)
+    @Calypte.update_attributes(:parent => @Hylidae)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}.should_not be_blank
+  end
+
   it "should not queue a job to update observation stats if there are no observations" do
     Delayed::Job.delete_all
     stamp = Time.now
@@ -746,6 +756,25 @@ describe Taxon, "moving" do
     @Calypte.update_attributes(:parent => @Hylidae)
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}.should be_blank
+  end
+
+  it "should update community taxa" do
+    fam = Taxon.make!(:rank => "family")
+    subfam = Taxon.make!(:rank => "subfamily", :parent => fam)
+    gen = Taxon.make!(:rank => "genus", :parent => fam)
+    sp = Taxon.make!(:rank => "species", :parent => gen)
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o, :taxon => subfam)
+    i2 = Identification.make!(:observation => o, :taxon => sp)
+    Identification.of(gen).exists?.should be_true
+    o.reload
+    o.taxon.should eq fam
+    Delayed::Worker.new.work_off
+    without_delay do
+      gen.update_attributes(:parent => subfam)
+    end
+    o.reload
+    o.taxon.should eq subfam
   end
   
 end

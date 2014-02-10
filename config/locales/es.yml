@@ -998,6 +998,7 @@ es:
   edit_this_link: "Modificar este vínculo"
   edit_your_account: modificar tu cuenta
   edit_your_account_and_profile_html: "Modificar su cuenta y Perfil"
+  edit_your_default_settings: "Editar la configuración predeterminada"
   edit_your_identification: "Modificar su identificación"
   edit_your_profile: "Modificar su perfil"
   edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Editar la configuración</a> para cambiar los tipos de actualizaciones que recibe o darse de baja por completo."
@@ -1960,6 +1961,8 @@ es:
   opcional_columns_note_for_any: "Columnas opcionales (nota. para que cualquiera de estas columnas sea usada en una observación, todas deben estar presentes)"
   open: Transparente
   open_description: "Todo el mundo puede ver las coordenadas a menos que el taxón esté en peligro."
+  opt_in_for_this_observation: "Optar por esta observación"
+  opt_out_of_community_ids_for_obs: "Opte por la identificación de la comunidad para esta observación"
   optional: opcional
   optional_columns_note_for_any: ""
   or: o
@@ -2913,6 +2916,8 @@ es:
   user_added_x_observations_html: "%{user} agregó %{x} observaciones"
   user_commented_on: "%{user} comentó sobre su %{title} %{time}"
   user_follows: "%{user} sigue a"
+  user_has_opted_out_of_community_ids: "%{user} ha optado por mantener el control sobre los taxones asociados a sus observaciones"
+  user_has_opted_out_of_community_ids_for_this_obs: "%{user} ha optado por mantener el control sobre los taxones asociados con esta observación"
   user_hasnt: "%{user} no ha"
   user_invite_observation_to_project: "%{user} desea invitar su observación \"%{observation}\" al proyecto %{project}."
   user_invited_your_x_to_a_project_html: "%{user} invitó a su %{x} a un proyecto"
@@ -3337,6 +3342,47 @@ es:
         estar allí</strong>? Todas las observaciones de los seres vivos son
         bienvenidos, pero nos gustaría saber cuando las cosas no son salvajes
         / naturalizado.
+      community_taxon_desc_html: |
+        <p class="ui">
+          El taxón comunidad (o la identificación de la comunidad) representa
+          lo que la comunidad taxón %{site_name} piensa se ​​representa en una
+          observación. Si usted está interesado en la forma en que elegimos el
+          taxón comunidad, consulte las notas sobre el algoritmo más adelante,
+          pero en general, tratamos de <strong>elegir un taxón que más de 2/3
+          de los identificadores de acuerdo con</strong>. A veces esto
+          significa elegir un taxón de nivel superior que contiene un número
+          de taxones en desacuerdo (por ejemplo, usted piensa que es un
+          kingsnake y creo que es la serpiente de cascabel, por lo
+          Bioexplorador elige suborden Seprentes que contiene todas las
+          serpientes). El algoritmo también favorece ligeramente la
+          disidencia, porque nos hemos dado cuenta que los disidentes suelen
+          ser correcta.
+        </p>
+        <p class="ui">
+          El taxón comunidad es el taxón utilizamos al compartir observaciones
+          con los asociados de datos, vinculando las observaciones del mismo
+          taxón en el sitio, la actualización de su lista de la vida, etc Si
+          por alguna razón usted no está de acuerdo con el taxón comunidad, se
+          puede rechazar que , lo que significa que su identificación es la
+          que se utiliza para vincular a otras observaciones, la actualización
+          de listas de la vida, etc También significa que su observación sólo
+          puede llegar a ser de grado de investigación cuando la comunidad
+          está de acuerdo con usted. Si no te gusta la idea de los taxones de
+          la comunidad, se puede optar por salir de ellas en su totalidad por
+          la <a href="/users/edit" target="_blank">edición de la configuración</a>.
+        </p>
+        <p class="ui">
+          <strong>El algoritmo:</strong> para todos los taxones identificados
+          y los taxones que los contiene (por ejemplo, género <i>Homo</i>
+          contiene <i>Homo sapiens</i>), la puntuación de cada uno como el
+          cociente entre el número de IDs acumulados para ese taxón sobre la
+          suma de los ID acumulativos, el número de identificaciones más
+          conservadores añade después de la primera ID de dicho taxón, y el
+          número de IDs que son completamente diferentes (es decir, los ID de
+          los taxones que no contienen el taxón está marcado). Para los
+          taxones identificados que tienen una puntuación de más de 2/3 y al
+          menos 2 identificaciones, elija el taxón más bajo ranking.
+        </p>
     photos: 
       inviter: 
         automatically_add_to_project: "Añadir automáticamente al proyecto"
@@ -3554,6 +3600,9 @@ es:
   x_people: 
     one: "1 persona"
     other: "%{count} personas"
+  x_people_agree_html:
+    one: '<span class="count">1</span> persona está de acuerdo'
+    other: '<span class="count">%{count}</span> personas están de acuerdo'
   x_project_journal: "%{name} del proyecto %{project}"
   x_project_stats: "Estadisticas del proyecto %{project}"
   x_sent_you_a_new_message_on_y_html: "%{x} le envió un nuevo mensaje en %{y}"
@@ -3720,6 +3769,8 @@ es:
   youre_not_following_anyone: "Usted no sigue a nadie. Seguir a otros naturalistas le permitirá llevar un control de sus observaciones más recientes. Averigüe lo que la gente está"
   youve_already_added_an_identification: "ya agregó una identificación, y sólo puede agregar una"
   youve_linked_your_inaturalist_picasa_account: "Usted ha vinculado su cuenta de %{site_name} con su cuenta de Picasa. Esto le permitirá asociar sus fotos de Picasa con sus observaciones de %{site_name}."
+  youve_opted_out_of_community_ids: "Decidio de identificaciones comunitarias"
+  youve_opted_out_of_community_ids_for_this_obs: "Decidio de identificaciones comunitarias para esta observación"
   youve_seen_it_want_to: "¡Lo ha visto¿Desea"
   zoom_to_taxon_name: "Acercar a %{taxonname}"
   zoom_to_x: "Ir a %{x}"

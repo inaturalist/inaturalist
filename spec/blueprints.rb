@@ -96,8 +96,8 @@ GuideTaxon.blueprint do
 end
 
 Identification.blueprint do
-  user { User.make }
-  observation { Observation.make }
+  user { User.make! }
+  observation { Observation.make! }
   taxon { Taxon.make! }
 end
 

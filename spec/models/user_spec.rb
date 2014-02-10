@@ -576,7 +576,7 @@ describe User, "suggest_login" do
 end
 
 describe User, "community taxa preference" do
-  it "should remove community taxa when set to false" do
+  it "should not remove community taxa when set to false" do
     o = Observation.make!
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
@@ -585,19 +585,47 @@ describe User, "community taxa preference" do
     o.user.update_attributes(:prefers_community_taxa => false)
     Delayed::Worker.new.work_off
     o.reload
-    o.community_taxon.should be_blank
+    o.taxon.should be_blank
   end
 
-  it "should add community taxa when set to true" do
-    o = Observation.make!(:taxon => Taxon.make!)
+  it "should set observation taxa to owner's ident when set to false" do
+    owners_taxon = Taxon.make!
+    o = Observation.make!(:taxon => owners_taxon)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should eq o.community_taxon
+    o.user.update_attributes(:prefers_community_taxa => false)
+    Delayed::Worker.new.work_off
+    o.reload
+    o.taxon.should eq owners_taxon
+  end
+
+  it "should not set observation taxa to owner's ident when set to false for observations that prefer community taxon" do
+    owners_taxon = Taxon.make!
+    o = Observation.make!(:taxon => owners_taxon, :prefers_community_taxon => true)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should eq o.community_taxon
+    o.user.update_attributes(:prefers_community_taxa => false)
+    Delayed::Worker.new.work_off
+    o.reload
+    o.taxon.should eq o.community_taxon
+  end
+
+  it "should change observation taxa to community taxa when set to true" do
+    o = Observation.make!
     o.user.update_attributes(:prefers_community_taxa => false)
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.community_taxon.should be_blank
+    o.taxon.should be_blank
     o.user.update_attributes(:prefers_community_taxa => true)
     Delayed::Worker.new.work_off
     o.reload
-    o.community_taxon.should eq i1.taxon
+    o.taxon.should eq o.community_taxon
   end
 end

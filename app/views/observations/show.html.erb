@@ -116,8 +116,6 @@
   </script>
 <% end %>
 
-<%- @cid_test = logged_in? && params[:test] == 'cid' -%>
-
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
     <div class="breadcrumbs">
@@ -141,8 +139,15 @@
   </div>
   
   <h2>
-    <%- if @observation.taxon -%>
-      <%= link_to @observation.species_guess.blank? ? @observation.taxon.default_name.try(:name) : @observation.species_guess, @observation.taxon -%>
+    <%- if @observation.taxon && @observation.taxon_id == @observation.community_taxon_id -%>
+      <%= render "shared/taxon", :taxon => @observation.taxon, :link_url => @observation.taxon,
+        :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil %>
+    <%- elsif @observation.taxon -%>
+      <%= render "shared/taxon", 
+        :taxon => @observation.taxon, 
+        :link_url => @observation.taxon, 
+        :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil,
+        :no_common => !@observation.species_guess.blank? && @observation.species_guess.downcase == @observation.taxon.name.downcase %>
     <%- elsif !@observation.species_guess.blank? -%>
       <%= @observation.species_guess -%>
     <%- else -%>
@@ -443,67 +448,50 @@
       <div id="owners-identification" class="box <%= 'withupperright' if @listed_taxon || @conservation_status %>">
         <%= render :partial => 'identifications/identification',
                    :locals => { :identification => @owners_identification } %>
-        <% if @listed_taxon || @conservation_status -%>
+        <% if @owners_identification.taxon_id == @observation.taxon_id -%>
           <%= render "listed_taxa/taxon_blobs", :listed_taxon => @listed_taxon, :taxon => @observation.taxon, :conservation_status => @conservation_status, :show_place_name => true %>
         <% end -%>
       </div>
     <% end %>
 
-    <% if @cid_test -%>
-      <% if @community_identification -%>
-        <div class="identification_group">
-          <div id="community-identification" class="box">
-            <%= render :partial => 'identifications/identification',
-                       :locals => {
-                        :identification => @community_identification,
-                        :usertext => "<strong>Community</strong> ID: ".html_safe
-                      } %>
+    <% if @community_identification && !@observation.community_taxon_rejected? -%>
+      <div class="identification_group">
+        <div id="community-identification" class="box  <%= 'withupperright' if @listed_taxon || @conservation_status %>">
+          <%= render :partial => 'identifications/identification',
+                     :locals => {
+                      :identification => @community_identification,
+                      :usertext => "<strong>Community</strong> ID: ".html_safe
+                    } %>
+          <% if @listed_taxon || @conservation_status -%>
+            <%= render "listed_taxa/taxon_blobs", :listed_taxon => @listed_taxon, :taxon => @observation.taxon, :conservation_status => @conservation_status, :show_place_name => true %>
+          <% end -%>
 
-            <center class="actions">
-              <% if is_me?(@observation.user) && @observation.community_taxon_id != @observation.taxon_id -%>
-                <%= link_to t(:reject), 
-                  observation_url(@observation, :observation => {:prefers_community_taxon => false}, :ignore_photos => true), 
-                  :method => :put, 
-                  :class => "blob remove",
-                  "data-tip" => t(:opt_out_of_community_ids_for_obs, :default => "Opt out of commmunity IDs") %>
-                  |
-              <% end -%>
-              <%= link_to_function t(:about), "showCommunityTaxonDialog()", :class => "blob" %>
-            </center>
+          <center class="actions">
+            <% if is_me?(@observation.user) && (@owners_identification.blank? || @observation.community_taxon_id != @owners_identification.taxon_id) -%>
+              <%= link_to t(:reject), 
+                observation_url(@observation, :observation => {:prefers_community_taxon => false}, :ignore_photos => true), 
+                :method => :put, 
+                :class => "blob remove",
+                "data-tip" => t(:opt_out_of_community_ids_for_obs, :default => "Opt out of commmunity IDs") %>
+                |
+            <% end -%>
+            <%= link_to_function t(:about), "showCommunityTaxonDialog()", :class => "blob" %>
+          </center>
+        </div>
+        <% if identifications = @current_identifications_by_taxon[@community_identification.taxon] -%>
+          <div class="agreers description">
+            <% for agreement in identifications %>
+              <%= link_to user_image(agreement.user, :size => :mini), agreement.user %>
+            <% end %>
+            <nobr><%=t :x_people_agree_html, :count => identifications.size %></nobr>
           </div>
-          <% if identifications = @current_identifications_by_taxon[@community_identification.taxon] -%>
-            <div class="agreers description">
-              <% for agreement in identifications %>
-                <%= link_to user_image(agreement.user, :size => :mini), agreement.user %>
-              <% end %>
-              <nobr><%=t :x_people_agree_html, :count => identifications.size %></nobr>
-            </div>
-          <% end -%>
-        </div>
-      <% elsif @observation.community_taxon_rejected? %>
-        <div class="quiet box">
-          <% if is_me?(@observation.user) -%>
-            <%=t @observation.prefers_community_taxon == false ? :youve_opted_out_of_community_ids_for_this_obs : :youve_opted_out_of_community_ids %>.
-            <ul class="unstacked">
-              <li>
-                <%= link_to t(:opt_in_for_this_observation), 
-                  observation_url(@observation, :observation => {:prefers_community_taxon => true}, :ignore_photos => true), 
-                  :method => :put %>
-              </li>
-              <li>
-                <%= link_to t(:edit_your_default_settings), generic_edit_user_path %>
-              </li>
-            </ul>
-          <% else %>
-            <%=t @observation.prefers_community_taxon == false ? :user_has_opted_out_of_community_ids_for_this_obs : :user_has_opted_out_of_community_ids, :user => @observation.user.login %>.
-          <% end -%>
-        </div>
-      <% end -%>
+        <% end -%>
+      </div>
     <% end -%>
 
     <div id="identifications-list-<%= @observation.id %>" class="identifications-list">
       <% for taxon, identifications in @sorted_current_identifications_by_taxon %>
-        <%- next if @cid_test && @community_identification && @community_identification.taxon === taxon -%>
+        <%- next if !@observation.community_taxon_rejected? && @community_identification && @community_identification.taxon === taxon -%>
         <div class="identification_group">
           <%= render :partial => "identifications/identification", :locals => { :identification => identifications.first }%>
           <% if identifications.size > 1 -%>
@@ -517,6 +505,30 @@
         </div>
       <% end %>
     </div>
+
+    <% if @observation.community_taxon_rejected? %>
+      <div id="no-community-identification" class="quiet box">
+        <% if is_me?(@observation.user) -%>
+          <%=t @observation.prefers_community_taxon == false ? :youve_opted_out_of_community_ids_for_this_obs : :youve_opted_out_of_community_ids %>.
+          <ul class="unstacked">
+            <li>
+              <%= link_to t(:opt_in_for_this_observation), 
+                observation_url(@observation, :observation => {:prefers_community_taxon => true}, :ignore_photos => true), 
+                :method => :put %>
+            </li>
+            <li>
+              <%= link_to t(:edit_your_default_settings), generic_edit_user_path %>
+            </li>
+          </ul>
+        <% else %>
+          <%=t @observation.prefers_community_taxon == false ? :user_has_opted_out_of_community_ids_for_this_obs : :user_has_opted_out_of_community_ids, :user => @observation.user.login %>
+
+        <% end -%>
+        <center class="actions">
+          <%= link_to_function t(:about), "showCommunityTaxonDialog()", :class => "blob" %>
+        </center>
+      </div>
+    <% end -%>
     
     <% if is_me?(@observation.user) -%>
       <div id="idplease" class="clear inline buttonrow">

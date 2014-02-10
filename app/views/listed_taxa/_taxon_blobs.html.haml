@@ -2,7 +2,8 @@
   listed_taxon ||= taxon_blobs || @listed_taxon
   taxon ||= listed_taxon.taxon || @taxon
   taxon ||= conservation_status.taxon if defined? conservation_status && conservation_status
-  conservation_status ||= taxon.threatened_status(:place_id => listed_taxon.place_id) || taxon.threatened_status
+  conservation_status ||= taxon.threatened_status(:place_id => listed_taxon.place_id) if listed_taxon
+  conservation_status ||= taxon.threatened_status
   show_place_name ||= false
 .upperright
   - if listed_taxon && (listed_taxon.endemic? || listed_taxon.introduced?)

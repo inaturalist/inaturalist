@@ -9,13 +9,14 @@
         <%= o.label :species_guess, t(:what_did_you_see) %>
         <%= o.text_field(:species_guess, :class => 'species_guess text') %>
         <%-
-          alt = if observation.taxon
-            "<span class='taxon sciname #{observation.taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[observation.taxon.iconic_taxon_id].try(:name)}'>#{observation.taxon.name}</span>".html_safe
+          taxon = o.object.owners_identification.try(:taxon) || o.object.taxon
+          alt = if taxon
+            "<span class='taxon sciname #{taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id].try(:name)}'>#{taxon.name}</span>".html_safe
           else
             nil
           end
         -%>
-        <%= o.hidden_field(:taxon_id, :alt => alt, :rel => (observation.taxon ? taxon_image_url(observation.taxon) : nil)) %>
+        <%= o.hidden_field(:taxon_id, :value => taxon.try(:id), :alt => alt, :rel => (taxon ? taxon_image_url(taxon) : nil)) %>
         <div class="id_please">
           <%= o.check_box(:id_please) %>
           <%= o.label(:id_please, t(:full_id_please?)) %>

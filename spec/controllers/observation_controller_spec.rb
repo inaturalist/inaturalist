@@ -42,8 +42,8 @@ describe ObservationsController do
       post :create, :observation => {:species_guess => "Foo", :taxon_name => taxon.name}
       obs = user.observations.last
       obs.should_not be_blank
-      obs.species_guess.should == "Foo"
       obs.taxon_id.should == taxon.id
+      obs.species_guess.should == "Foo"
     end
     
   end

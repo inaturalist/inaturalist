@@ -125,7 +125,7 @@ describe Observation, "creation" do
     o.identifications.to_a.should be_blank
   end
   
-  it "should have an identification that maches the taxon" do
+  it "should have an identification that matches the taxon" do
     @observation.reload
     @observation.identifications.first.taxon.should == @observation.taxon
   end
@@ -454,7 +454,8 @@ describe Observation, "updating" do
   end
   
   it "should queue refresh job for project lists if the taxon changed" do
-    o = make_research_grade_observation
+    po = make_project_observation
+    o = po.observation
     Delayed::Job.delete_all
     stamp = Time.now
     o.update_attributes(:taxon => Taxon.make!)
@@ -507,6 +508,24 @@ describe Observation, "updating" do
       o.quality_grade.should == Observation::RESEARCH_GRADE
       o.update_attributes(:observed_on_string => "")
       o.quality_grade.should == Observation::CASUAL_GRADE
+    end
+
+    it "should be research when community taxon is obs taxon and owner agrees" do
+      o = make_research_grade_observation
+      o.identifications.destroy_all
+      o.reload
+      parent = Taxon.make!(:rank => "genus")
+      child = Taxon.make!(:parent => parent, :rank => "species")
+      i1 = Identification.make!(:observation => o, :taxon => parent)
+      i2 = Identification.make!(:observation => o, :taxon => child)
+      i3 = Identification.make!(:observation => o, :taxon => child, :user => o.user)
+      o.reload
+      puts "o.num_identification_agreements: #{o.num_identification_agreements}"
+      puts "o.num_identification_disagreements: #{o.num_identification_disagreements}"
+      o.community_taxon.should eq child
+      o.taxon.should eq child
+      o.should be_community_supported_id
+      o.should be_research_grade
     end
   end
   
@@ -1092,6 +1111,10 @@ describe Observation do
       o = Observation.make!(:place_guess => '3333 23rd St, San Francisco, CA 94114, USA ')
       o.obscure_coordinates
       o.place_guess.should_not match(/3333/)
+
+      o = Observation.make!(:place_guess => '3333A 23rd St, San Francisco, CA 94114, USA ')
+      o.obscure_coordinates
+      o.place_guess.should_not match(/3333/)
       
       o = Observation.make!(:place_guess => '3333-6666 23rd St, San Francisco, CA 94114, USA ')
       o.obscure_coordinates
@@ -1541,7 +1564,7 @@ describe Observation, "places" do
 end
 
 describe Observation, "update_stats" do
-  it "should not consider outdated observations as agreements" do
+  it "should not consider outdated identifications as agreements" do
     o = Observation.make!(:taxon => Taxon.make!)
     old_ident = Identification.make!(:observation => o, :taxon => o.taxon)
     new_ident = Identification.make!(:observation => o, :user => old_ident.user)
@@ -1552,6 +1575,36 @@ describe Observation, "update_stats" do
     old_ident.should_not be_current
     o.num_identification_agreements.should eq(0)
     o.num_identification_disagreements.should eq(1)
+  end
+end
+
+describe Observation, "update_stats_for_observations_of" do
+  it "should work" do
+    parent = Taxon.make!
+    child = Taxon.make!
+    o = Observation.make!(:taxon => parent)
+    i1 = Identification.make!(:observation => o, :taxon => child)
+    o.reload
+    o.num_identification_agreements.should eq(0)
+    o.num_identification_disagreements.should eq(1)
+    child.update_attributes(:parent => parent)
+    Observation.update_stats_for_observations_of(parent)
+    o.reload
+    o.num_identification_agreements.should eq(1)
+    o.num_identification_disagreements.should eq(0)
+  end
+
+  it "should work" do
+    parent = Taxon.make!
+    child = Taxon.make!
+    o = Observation.make!(:taxon => parent)
+    i1 = Identification.make!(:observation => o, :taxon => child)
+    o.reload
+    o.community_taxon.should be_blank
+    child.update_attributes(:parent => parent)
+    Observation.update_stats_for_observations_of(parent)
+    o.reload
+    o.community_taxon.should_not be_blank
   end
 end
 
@@ -1805,13 +1858,13 @@ end
 
 describe Observation, "community taxon" do
 
-  it "should not be set if user has opted out" do
+  it "should be set if user has opted out" do
     u = User.make!(:prefers_community_taxa => false)
     o = Observation.make!(:user => u)
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.community_taxon.should be_blank
+    o.community_taxon.should_not be_blank
   end
 
   it "should be set if user has opted out and community agrees with user" do
@@ -1822,12 +1875,12 @@ describe Observation, "community taxon" do
     o.community_taxon.should eq o.taxon
   end
 
-  it "should not be set if observation is opted out" do
+  it "should be set if observation is opted out" do
     o = Observation.make!(:prefers_community_taxon => false)
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.community_taxon.should be_blank
+    o.community_taxon.should_not be_blank
   end
 
   it "should be set if observation is opted in but user is opted out" do
@@ -1844,13 +1897,13 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.community_taxon.should be_blank
+    o.taxon.should be_blank
     o.update_attributes(:prefers_community_taxon => true)
     o.reload
     o.community_taxon.should eq(i1.taxon)
   end
 
-  it "should be unset when preference set to false" do
+  it "should not be unset when preference set to false" do
     o = Observation.make!
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
@@ -1858,7 +1911,89 @@ describe Observation, "community taxon" do
     o.community_taxon.should eq(i1.taxon)
     o.update_attributes(:prefers_community_taxon => false)
     o.reload
-    o.community_taxon.should be_blank
+    o.community_taxon.should_not be_blank
+  end
+
+  it "should set the taxon" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should eq o.community_taxon
+  end
+
+  it "should set the species_guess" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.species_guess.should eq o.community_taxon.name
+  end
+
+  it "should set the iconic taxon" do
+    o = Observation.make!
+    o.iconic_taxon.should be_blank
+    iconic_taxon = Taxon.make!(:is_iconic => true, :rank => "family")
+    i1 = Identification.make!(:observation => o, :taxon => Taxon.make!(:parent => iconic_taxon, :rank => "genus"))
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    i1.taxon.iconic_taxon.should eq iconic_taxon
+    o.reload
+    o.taxon.should eq i1.taxon
+    o.iconic_taxon.should eq iconic_taxon
+  end
+
+  it "should not set the taxon if the user has opted out" do
+    u = User.make!(:prefers_community_taxa => false)
+    o = Observation.make!(:user => u)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should be_blank
+  end
+
+  it "should not set the taxon if the observation is opted out" do
+    o = Observation.make!(:prefers_community_taxon => false)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should be_blank
+  end
+
+  it "should change the taxon to the owner's identication when observation opted out" do
+    owner_taxon = Taxon.make!
+    o = Observation.make!(:taxon => owner_taxon)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should eq(i1.taxon)
+    o.taxon.should eq o.community_taxon
+    o.update_attributes(:prefers_community_taxon => false)
+    o.reload
+    o.taxon.should eq owner_taxon
+  end
+
+  it "should set the species_guess when opted out" do
+    owner_taxon = Taxon.make!
+    o = Observation.make!(:taxon => owner_taxon)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should eq(i1.taxon)
+    o.taxon.should eq o.community_taxon
+    o.update_attributes(:prefers_community_taxon => false)
+    o.reload
+    o.species_guess.should eq owner_taxon.name
+  end
+
+  it "should set the taxon if observation is opted in but user is opted out" do
+    u = User.make!(:prefers_community_taxa => false)
+    o = Observation.make!(:prefers_community_taxon => true, :user => u)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should eq o.community_taxon
   end
 
   it "should not be set if there is only one current identification" do
@@ -1868,6 +2003,27 @@ describe Observation, "community taxon" do
     o.reload
     o.community_taxon.should be_blank
   end
+
+  it "should not be set for 2 roots" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o)
+    o.reload
+    o.community_taxon.should be_blank
+  end
+
+  it "change should be triggered by changing the taxon" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o)
+    o.reload
+    o.community_taxon.should be_blank
+    o.update_attributes(:taxon => i1.taxon)
+    o.community_taxon.should_not be_blank
+  end
+
+  # it "change should trigger change in observation stats" do
+
+  # end
 
   describe "test cases: " do
     before do

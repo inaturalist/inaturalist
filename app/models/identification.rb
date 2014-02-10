@@ -11,8 +11,8 @@ class Identification < ActiveRecord::Base
                         :message => "for an ID must be something we recognize"
   validate :uniqueness_of_current, :on => :update
   
-  after_create  :update_other_identifications,
-                :update_observation, 
+  before_save   :update_other_identifications
+  after_create  :update_observation, 
                 :increment_user_counter_cache, 
                 :expire_caches
                 
@@ -43,13 +43,19 @@ class Identification < ActiveRecord::Base
   scope :for_others, includes(:observation).where("observations.user_id != identifications.user_id")
   scope :for_self, includes(:observation).where("observations.user_id = identifications.user_id")
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
-  scope :of, lambda {|taxon| where("identifications.taxon_id = ?", taxon)}
+  scope :of, lambda { |taxon|
+    taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
+    return where("1 = 2") unless taxon
+    c = taxon.descendant_conditions
+    c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
+    joins(:taxon).where(c)
+  }
   scope :on, lambda {|date| where(Identification.conditions_for_date("identifications.created_at", date)) }
   scope :current, where(:current => true)
   scope :outdated, where(:current => false)
   
   def to_s
-    "<Identification #{id} observation_id: #{observation_id} taxon_id: #{taxon_id} user_id: #{user_id}"
+    "<Identification #{id} observation_id: #{observation_id} taxon_id: #{taxon_id} user_id: #{user_id} current: #{current?}>"
   end
 
   def to_plain_s(options = {})
@@ -71,22 +77,27 @@ class Identification < ActiveRecord::Base
   # Callbacks ###############################################################
 
   def update_other_identifications
-    Identification.update_all(
-      ["current = ?", false],
-      ["observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id]
-    )
+    if id
+      Identification.update_all(
+        ["current = ?", false],
+        ["observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id]
+      )
+    else
+      Identification.update_all(
+        ["current = ?", false],
+        ["observation_id = ? AND user_id = ?", observation_id, user_id]
+      )
+    end
     true
   end
   
   # Update the observation if you're adding an ID to your own obs
   def update_observation
     return true unless observation
-    # return true unless self.user_id == self.observation.user_id
-    return true if @skip_observation
 
     attrs = {}
-
-    if user_id == observation.user_id
+    
+    if user_id == observation.user_id && !skip_observation
       observation.skip_identifications = true
       # update the species_guess
       species_guess = observation.species_guess
@@ -99,7 +110,6 @@ class Identification < ActiveRecord::Base
 
     observation.identifications.reload
     observation.set_community_taxon(:force => true)
-
     observation.update_attributes(attrs)
     true
   end
@@ -194,7 +204,7 @@ class Identification < ActiveRecord::Base
   #
   # Tests whether this identification should be considered an agreement with
   # the observer's identification.  If this identification has the same taxon
-  # or a child taxon of the observer's idnetification, then they agree.
+  # or a child taxon of the observer's identification, then they agree.
   #
   def is_agreement?(options = {})
     return false if frozen?

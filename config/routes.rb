@@ -341,6 +341,7 @@ Inaturalist::Application.routes.draw do
   match 'admin' => 'admin#index', :as => :admin
   match 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"
   match 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content", :via => :delete
+  match 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user", :via => :put
   resources :taxon_ranges, :except => [:index, :show]
   match '/calendar/:login' => 'calendars#index', :as => :calendar
   match '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare
