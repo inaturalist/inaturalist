@@ -1,11 +1,11 @@
 <%- 
   listed_taxon ||= @listed_taxon
+  list ||= @list ||= listed_taxon.list
   if list.is_a?(CheckList)
     primary_listed_taxon ||= listed_taxon.primary_listed_taxon
   else
     primary_listed_taxon = listed_taxon
   end
-  list ||= @list ||= listed_taxon.list
   current_user_life_list_taxon_ids ||= @current_user_life_list_taxon_ids 
   seenit ||= current_user_life_list_taxon_ids && current_user_life_list_taxon_ids.include?(listed_taxon.taxon.id) 
   seenit ||= false
