@@ -30,11 +30,10 @@ module Shared::ListsModule
         end
 
         set_scopes unless @listed_taxa.present?
-        @listed_taxa.map{|lt| lt.id}
 
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id
 
-        @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, @listed_taxa)
+        @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, @unpaginated_listed_taxa)
         @total_listed_taxa ||= @listed_taxa.count 
         @total_observed_taxa ||= @listed_taxa.with_observation.count
         @view = PHOTO_VIEW unless LIST_VIEWS.include?(@view)
