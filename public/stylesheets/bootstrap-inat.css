@@ -51,3 +51,11 @@ body {
 }
 .bootstrap .photoSelectorSelected .photo:nth-child(5n+5) {clear:left; margin-left:0;}
 .bootstrap .inlabel label {display:inline-block;}
+
+.bootstrap .observations h4{display:none;margin:0;}
+.bootstrap .observations .label {
+  background-color:transparent;
+  padding:0;
+  text-shadow:none;
+}
+.bootstrap .observationcontrols label {display:inline-block;}

@@ -17,7 +17,10 @@ class TripsController < ApplicationController
 
   def show
     respond_to do |format|
-      format.html
+      format.html do
+        @next = Trip.where("id > ?", @trip.id).order("id ASC").first
+        @prev = Trip.where("id < ?", @trip.id).order("id DESC").first
+      end
       format.json { render json: @trip.as_json(:root => true) }
     end
   end
