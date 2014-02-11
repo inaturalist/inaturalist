@@ -223,6 +223,32 @@ class ListsController < ApplicationController
     )
   end
   
+  def reload_and_refresh_now
+    return true unless logged_in? && current_user.is_admin?
+    delayed_task(@list.reload_and_refresh_now_cache_key) do
+      @list.reload_and_refresh_now
+    end
+    
+    respond_to_delayed_task(
+      :done => "List reloaded and refreshed",
+      :error => "Something went wrong reloading and refreshing this list",
+      :timeout => "Reload and refresh timed out, please try again later"
+    )
+  end
+  
+  def refresh_now_without_reload
+    return true unless logged_in? && current_user.is_admin?
+    delayed_task(@list.refresh_now_without_reload_cache_key) do
+      @list.refresh_now_without_reload
+    end
+    
+    respond_to_delayed_task(
+      :done => "List reloaded and refreshed",
+      :error => "Something went wrong reloading and refreshing this list",
+      :timeout => "Reload and refresh timed out, please try again later"
+    )
+  end
+  
   def guide
     show_guide do |scope|
       scope = scope.on_list(@list)

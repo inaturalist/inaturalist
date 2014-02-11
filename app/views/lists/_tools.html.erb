@@ -64,23 +64,43 @@
     <% end %>
   </span>
   
-  <% if list.is_a?(LifeList) && list.editable_by?(current_user) && logged_in? -%>
+  <% if logged_in? && ( ( list.is_a?(LifeList) && list.editable_by?(current_user) ) || ( list.is_a?(CheckList) && current_user.admin? ) ) -%>
     <% link_to_toggle_menu t(:tools), :id => "tools_button", :class => "minor button",
         :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} do %>
       <ul>
-        <li>
-          <%- msg = t(:this_will_update_all_last_observations)+" #{ @list.user ? t(:your) : t(:the_project) } "+ t(:observations_it_may_take_a_few)-%>
-          <%= link_to_function t(:reload_from_observations), 
-            "confirmStartDelayed('#{msg}', '#{list_reload_from_observations_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'reloadlink')", 
-            :id => "reloadlink" %>
-        </li>
-        <li>
-          <%- msg = t(:this_will_re_apply_all_list_rules) -%>
-          <%= link_to_function t(:re_apply_list_rules),
-            "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'refreshlink')", 
-            :id => "refreshlink" %>
-        </li>
+        <% if list.is_a?(LifeList) && list.editable_by?(current_user) -%>
+          <li>
+            <%- msg = t(:this_will_update_all_last_observations)+" #{ @list.user ? t(:your) : t(:the_project) } "+ t(:observations_it_may_take_a_few)-%>
+            <%= link_to_function t(:reload_from_observations), 
+              "confirmStartDelayed('#{msg}', '#{list_reload_from_observations_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'reloadlink')", 
+              :id => "reloadlink" %>
+          </li>
+          <li>
+            <%- msg = t(:this_will_re_apply_all_list_rules) -%>
+            <%= link_to_function t(:re_apply_list_rules),
+              "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'refreshlink')", 
+              :id => "refreshlink" %>
+          </li>
+        <% elsif list.is_a?(CheckList) && current_user.admin? %>
+          <li>
+            <% if list.is_default? %>
+              <%- msg = t(:this_will_reload_and_refresh)-%>
+              <%= link_to_function t(:reload_and_refresh), 
+                "confirmStartDelayed('#{msg}', '#{list_reload_and_refresh_now_path(@list.id )}', #{CheckList::MAX_RELOAD_TRIES}, 'reloadrefreshlink')", 
+                :id => "reloadrefreshlink" %>
+            <% else %>
+              <%- msg = t(:this_will_refresh_without_reload)-%>
+              <%= link_to_function t(:refresh_without_reload), 
+                "confirmStartDelayed('#{msg}', '#{list_refresh_now_without_reload_path(@list.id )}', #{CheckList::MAX_RELOAD_TRIES}, 'refreshwithoutreloadlink')", 
+                :id => "refreshwithoutreloadlink" %>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
     <% end %>
   <% end -%>
+  
+
+
+
 </div>
