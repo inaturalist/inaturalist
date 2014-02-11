@@ -725,5 +725,9 @@ class ListedTaxon < ActiveRecord::Base
     scope_to_sql +
     " AND taxon_ancestor_ids IS NOT NULL"
   end
+  def update_primary
+    primary_listed_taxon.update_attributes({occurrence_status_level: occurrence_status_level, 
+                                            establishment_means: establishment_means})
+  end
   
 end

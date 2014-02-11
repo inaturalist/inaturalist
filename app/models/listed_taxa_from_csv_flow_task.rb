@@ -32,6 +32,7 @@ class ListedTaxaFromCsvFlowTask < FlowTask
       output = self.outputs.build
       extra = {:row => row, :taxon_id => taxon.try(:id)}
       if lt.save
+        lt.update_primary
         output.resource = lt
       else
         extra[:error] = lt.errors.full_messages.to_sentence
