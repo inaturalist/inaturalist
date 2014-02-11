@@ -31,10 +31,6 @@ class CheckListsController < ApplicationController
         @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
       end
       
-      @total_listed_taxa = ListedTaxon.count('DISTINCT(taxon_id)',
-        :conditions => ["place_id = ? AND primary_listing = ?", @list.place_id, true])
-      @total_observed_taxa = ListedTaxon.count('DISTINCT(taxon_id)',
-        :conditions => ["last_observation_id IS NOT NULL AND place_id =?", @list.place_id])
     end
     super #show from list module
   end
@@ -115,17 +111,12 @@ class CheckListsController < ApplicationController
     end
   end
   
-  def get_iconic_taxon_counts(list, iconic_taxa = nil)
+  def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)
     iconic_taxa ||= Taxon::ICONIC_TAXA
-    iconic_taxon_counts_by_id_hash = if list.is_default?
-      ListedTaxon.count('DISTINCT(taxon_id)', :group => "taxa.iconic_taxon_id",
-        :joins => "JOIN taxa ON taxa.id = listed_taxa.taxon_id",
-        :conditions => ["place_id = ?", list.place_id])
-    else
-      list.listed_taxa.count(:include => [:taxon], :group => "taxa.iconic_taxon_id")
-    end
+    listed_taxa_iconic_taxon_ids = listed_taxa.map{|lt| lt.taxon.iconic_taxon_id }
     iconic_taxa.map do |iconic_taxon|
-      [iconic_taxon, iconic_taxon_counts_by_id_hash[iconic_taxon.id.to_s]]
+      taxon_count = listed_taxa_iconic_taxon_ids.count(iconic_taxon.id)
+      [iconic_taxon, taxon_count]
     end
   end
 end
