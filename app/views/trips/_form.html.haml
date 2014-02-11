@@ -80,6 +80,11 @@
   /     %h3=t :who_were_you_with?
   #actions.row
     .span12
-      = f.submit t(:save_trip), :class => "btn btn-primary"
+      - if @trip.published?
+        = f.submit t(:save_trip), :class => "btn btn-primary"
+        = f.submit t(:unpublish), :class => "btn", :name => "unpublish"
+      - else
+        = f.submit t(:publish), :class => "btn btn-primary", :name => "publish"
+        = f.submit t(:save), :class => "btn"
       = link_to t(:cancel), :back, :class => "btn"
       = link_to t(:delete), @trip, :method => :delete, :confirm => t(:are_you_sure?), :class => "btn btn-danger pull-right"

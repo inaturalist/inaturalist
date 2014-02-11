@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :browse]
   before_filter :load_post, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_new_post, :only => [:new, :create]
   before_filter :load_parent, :except => [:browse, :create, :update, :destroy]
+  before_filter :load_new_post, :only => [:new, :create]
   before_filter :author_required, :only => [:edit, :update, :destroy]
   
   def index
@@ -89,7 +89,6 @@ class PostsController < ApplicationController
   end
   
   def update
-    Rails.logger.debug "[DEBUG] @post.class: #{@post.class}"
     @post.published_at = Time.now if params[:commit] == t(:publish)
     @post.published_at = nil if params[:commit] == t(:unpublish)
     if params[:observations]
@@ -116,8 +115,6 @@ class PostsController < ApplicationController
     # happen after preview rendering
     # AG: actually, i don't think this actually runs after preview rendering...
     @post.observations = @observations if @observations
-    
-    Rails.logger.debug "[DEBUG] @post.class.name.underscore.to_sym: #{@post.class.name.underscore.to_sym}"
     if @post.update_attributes(params[@post.class.name.underscore.to_sym])
       if @post.published_at
         flash[:notice] = t(:post_published)
@@ -203,14 +200,8 @@ class PostsController < ApplicationController
   end
 
   def load_new_post
-    @post = if request.fullpath =~ /\/trips/
-    # @post = if params[:trip]
-      Rails.logger.debug "[DEBUG] foo"
-      Trip.new(params[:trip] || params[:post])
-    else
-      Post.new(params[:post])
-    end
-    @post.parent ||= current_user
+    @post = Post.new(params[:post])
+    @post.parent ||= @parent
     @post.user ||= current_user
     true
   end

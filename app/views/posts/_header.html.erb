@@ -23,6 +23,11 @@
       <div id="tools" class="buttonrow">
         <%= link_to t(:new_post), new_journal_post_path(@parent_slug),
                     :id => "newpostbutton", :class => "default button"%>
+        <%= feature_test :trips do %>
+          <%= link_to t(:new_trip), new_trip_path,
+                      :id => "newtripbutton", :class => "default button" %>
+        <% end -%>
+
       </div>
     <% end -%>
   <% end %>

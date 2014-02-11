@@ -997,5 +997,38 @@ module ApplicationHelper
     namespace, predicate, value = machine_tag_pieces(tag)
     xml.tag tag, :predicate => predicate, :namespace => namespace, :value => value
   end
+
+  def post_path(post, options = {})
+    return trip_path(post, options) if post.is_a?(Trip)
+    if post.parent_type == "User"
+      journal_post_path(post.user.login, post)
+    else
+      journal_post_path(post.parent.title, post)
+    end
+  end
+
+  def edit_post_path(post, options = {})
+    return edit_trip_path(post, options) if post.is_a?(Trip)
+    if post.parent_type == "User"
+      edit_journal_post_path(post.user.login, post)
+    else
+      edit_journal_post_path(post.parent.title, post)
+    end
+  end
+
+  def feature_test(test, options = {}, &block)
+    options[:audience] ||= []
+    test_enabled = params[:test] && params[:test] == test.to_s
+    user_authorized = true
+    user_authorized = current_user.try(:is_admin?) if options[:audience].include?(:admins) 
+    user_authoried = current_user.try(:is_curator?) if options[:audience].include?(:curators)
+    user_authoried = logged_in? if options[:audience].include?(:users)
+    if test_enabled && user_authorized
+      @feature_test = test
+      content_tag(:span, capture(&block), :class => "feature_test")
+    else
+      ""
+    end
+  end
   
 end

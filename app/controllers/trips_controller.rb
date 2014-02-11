@@ -3,6 +3,7 @@ class TripsController < ApplicationController
   before_filter :load_record, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner, :only => [:edit, :update, :destroy]
   before_filter :load_form_data, :only => [:new, :edit]
+  before_filter :set_feature_test, :only => [:index, :show, :edit]
 
   layout "bootstrap"
   
@@ -18,8 +19,8 @@ class TripsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @next = Trip.where("id > ?", @trip.id).order("id ASC").first
-        @prev = Trip.where("id < ?", @trip.id).order("id DESC").first
+        @next = @trip.parent.journal_posts.published.where("id > ?", @trip.id).order("id ASC").first
+        @prev = @trip.parent.journal_posts.published.where("id < ?", @trip.id).order("id DESC").first
       end
       format.json { render json: @trip.as_json(:root => true) }
     end
@@ -40,6 +41,11 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(params[:trip])
     @trip.user = current_user
+    if params[:publish]
+      @trip.published_at = Time.now
+    elsif params[:unpublish]
+      @trip.published_at = nil
+    end
 
     respond_to do |format|
       if @trip.save
@@ -53,6 +59,11 @@ class TripsController < ApplicationController
   end
 
   def update
+    if params[:publish]
+      @trip.published_at = Time.now
+    elsif params[:unpublish]
+      @trip.published_at = nil
+    end
     respond_to do |format|
       if @trip.update_attributes(params[:trip])
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
@@ -84,5 +95,9 @@ class TripsController < ApplicationController
     @target_taxa.each_with_index do |t,i|
       @target_taxa[i].html = render_to_string(:partial => "shared/taxon", :locals => {:taxon => t})
     end
+  end
+
+  def set_feature_test
+    @feature_test = "trips"
   end
 end

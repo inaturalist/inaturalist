@@ -39,7 +39,7 @@
       <ul>
         <% for post in @drafts %>
           <li>
-            <%= link_to h(post.title), edit_journal_post_path(current_user.login, post) %>
+            <%= link_to post.title, edit_post_path(post) %>
             <div class="meta">
               <span class="label"><%=t(:created_on)%></span>
               <span class="date"><%= post.created_at.to_s(:long) %></span>

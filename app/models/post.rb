@@ -58,12 +58,16 @@ class Post < ActiveRecord::Base
   end
   
   def to_plain_s(options = {})
-    s = self.title
-    s += ", by #{self.user.login}" unless options[:no_user]
+    s = self.title || ""
+    s += ", by #{self.user.try(:login)}" unless options[:no_user]
     s
   end
   
   def draft?
     published_at.blank?
+  end
+
+  def published?
+    !published_at.blank? && errors[:published_at].blank?
   end
 end

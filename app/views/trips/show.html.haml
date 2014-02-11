@@ -36,17 +36,18 @@
 .container
   %ul.breadcrumb
     %li
-      = link_to t(:trips), trips_path
+      = link_to t(:journal), journal_by_login_path(@trip.user.login)
       %span.divider /
     %li.active= link_to @trip.title, @trip
     %li.pull-right
       - if @prev
         = link_to @prev do
           %i.fa.fa-chevron-left
-          = l(@prev.start_time.to_date, :format => :short) if @prev.start_time
+          = truncate @prev.title
       - if @next
+        = '|' if @prev
         = link_to @next do
-          = l(@next.start_time.to_date, :format => :short) if @next.start_time
+          = truncate @next.title
           %i.fa.fa-chevron-right
   .row
     .span3
@@ -56,6 +57,7 @@
           %li= link_to t(:description), "#description"
         %li= link_to t(:observations), "#observations"
         %li= link_to t(:check_list), "#check_list"
+        %li= link_to t(:comments), "#comments"
     .span9
       %section{:id => "summary"}
         - if @trip.editable_by?(current_user)
@@ -104,3 +106,8 @@
             - for trip_taxon in @trip.trip_taxa
               %li
                 = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
+      %section{:id => "comments"}
+        - if @trip.published_at
+          = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }
+        - else
+          = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2, :hide_form => true }
