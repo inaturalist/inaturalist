@@ -73,7 +73,7 @@ class ListedTaxon < ActiveRecord::Base
   
   scope :find_listed_taxa_from_default_list, lambda{|place_id| where("place_id = ? AND primary_listing = ?", place_id, true)}
 
-  scope :filter_by_iconic_taxon, lambda {|iconic_taxon_id| where("taxa.iconic_taxon_id = ?", iconic_taxon_id)}
+  scope :filter_by_iconic_taxon, lambda {|iconic_taxon_id| joins(:taxon).where("taxa.iconic_taxon_id = ?", iconic_taxon_id)}
   scope :filter_by_list, lambda {|list_id| where("list_id = ?", list_id)}
 
   scope :unconfirmed, where("last_observation_id IS NULL")

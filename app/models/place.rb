@@ -306,8 +306,13 @@ class Place < ActiveRecord::Base
       return nil
     end
     place = Place.new_from_geo_planet(ydn_place)
-    unless place.save
-      Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
+    begin
+      unless place.save
+        Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
+        return
+      end
+    rescue PG::Error => e
+      raise e unless e.message =~ /duplicate key/
       return
     end
     place.parent = options[:parent]

@@ -60,7 +60,6 @@
     } else {
       var json = jsonStr
     }
-    
     // Append html to the list
     $('#seenit_'+json.instance.taxon_id).replaceWith(
       $(json.html)
@@ -78,11 +77,10 @@
         var errorStr = $.map(json.errors, function(error, i) {
           return error.join(' ');
         }).join(', ');
-        alert(<%=t :something_went_wrong_adding %> +": " + 
-          errorStr);
+        alert(I18n.t('something_went_wrong_adding') + ": " + errorStr);
         break;
       default:
-        alert(<%=t :something_went_wrong_adding %> +"!");
+        alert(I18n.t('something_went_wrong_adding') + "!");
         break;
     }
   }

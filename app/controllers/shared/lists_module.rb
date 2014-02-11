@@ -331,6 +331,7 @@ module Shared::ListsModule
   
   def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)
     iconic_taxa ||= Taxon::ICONIC_TAXA
+    listed_taxa ||= @listed_taxa
     listed_taxa_iconic_taxon_ids = listed_taxa.map{|lt| lt.taxon.iconic_taxon_id }
     iconic_taxa.map do |iconic_taxon|
       taxon_count = listed_taxa_iconic_taxon_ids.count(iconic_taxon.id)
