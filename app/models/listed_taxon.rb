@@ -726,5 +726,18 @@ class ListedTaxon < ActiveRecord::Base
     scope_to_sql +
     " AND taxon_ancestor_ids IS NOT NULL"
   end
+  def primary_occurrence_status
+    primary_listed_taxon.occurrence_status
+  end
+  def primary_establishment_means
+    primary_listed_taxon.establishment_means
+  end
+  def update_attributes_and_primary(listed_taxon, current_user)
+    transaction do
+      update_attributes(listed_taxon.merge(:updater_id => current_user.id))
+      primary_listed_taxon.update_attributes({occurrence_status_level: listed_taxon['occurrence_status_level'],
+                                              establishment_means: listed_taxon['establishment_means']})
+    end
+  end
   
 end

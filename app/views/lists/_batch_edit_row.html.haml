@@ -1,7 +1,7 @@
 - lt ||= batch_edit_row
 - list ||= @list || lt.list
-- name, description, occurrence_status, establishment_means = lt.extra[:row] if lt.extra
-- error = lt.extra[:error] if lt.extra
+- name, description, occurrence_status, establishment_means = lt.extra[:row] if lt.respond_to?(:extra) && lt.extra
+- error = lt.extra[:error] if lt.respond_to?(:extra) && lt.extra
 - css_class = ["listed_taxon_row", (error ? "error" : nil), (lt.new_record? ? "new_listed_taxon_row" : nil)].compact.join(" ")
 %tbody{"data-listed-taxon-id" => lt.id, "data-list-id" => @list.id, :class => css_class}
   %tr
