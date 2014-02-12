@@ -699,7 +699,7 @@ class Observation < ActiveRecord::Base
     scope = scope.license(params[:license]) unless params[:license].blank?
     scope = scope.photo_license(params[:photo_license]) unless params[:photo_license].blank?
     scope = scope.where(:captive => true) if [true, 'true', 't', 'yes', 'y', 1, '1'].include?(params[:captive])
-    scope = scope.where(:captive => false) if [false, 'false', 'f', 'no', 'n', 0, '0'].include?(params[:captive])
+    scope = scope.where("observations.captive = ? OR observations.captive IS NULL", false) if [false, 'false', 'f', 'no', 'n', 0, '0'].include?(params[:captive])
     unless params[:ofv_params].blank?
       params[:ofv_params].each do |k,v|
         scope = scope.has_observation_field(v[:observation_field], v[:value])
