@@ -228,7 +228,7 @@
               &nbsp;
             </div>
             <div class="barchart">
-              <input id="taxonchooser" name="taxon" type="text" class="text" placeholder="<%= @filter_taxon ? @filter_taxon.name : (t :type_taxon_name) %>" value="<%= @filter_taxon.try(&:id) unless (@filter_taxon && @filter_taxon.is_iconic?) %>" style="width:200px"/>
+              <input id="taxonchooser" name="taxon" type="text" class="text" placeholder="<%= @filter_taxon ? @filter_taxon.name : (t :type_taxon_name) %>" value="<%= @filter_taxon.try(&:id) %>" style="width:200px"/>
             </div>
           </div>
           <div class="clear" style="padding: 10px">
