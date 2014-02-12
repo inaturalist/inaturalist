@@ -8,7 +8,7 @@
   = javascript_include_tag 'observations/filters'
   = javascript_include_tag "jquery/plugins/jquery.ba-bbq.min"
   :javascript
-    var REJECT_PARAMS = ['filters_open', 'order', 'order_by', 'utf8', 'flow_task_id', 'view']
+    var REJECT_PARAMS = ['filters_open', 'order', 'order_by', 'utf8', 'flow_task_id', 'view', 'taxon_name']
     function reloadPreview() {
       $('#previewwrapper').loadingShades()
       if (window.previewRequest) {
