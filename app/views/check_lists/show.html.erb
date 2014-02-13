@@ -233,7 +233,9 @@
           </div>
           <div class="clear" style="padding: 10px">
             <div class="field">
-              <%= hidden_field_tag :iconic_taxon, params[:iconic_taxon] %>
+              <% if params[:iconic_taxon] %>
+                <%= hidden_field_tag :iconic_taxon, params[:iconic_taxon] %>
+              <% end %>
               <label><%=t :observed %></label>
               <br>
               <%= label :observed, :t do %>
