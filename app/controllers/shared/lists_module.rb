@@ -432,13 +432,15 @@ module Shared::ListsModule
   end
 
   def apply_checklist_scopes
-    #both together
     if filter_by_iconic_taxon? && (params[:taxonomic_status] != "all")
       apply_iconic_taxon_and_taxonomic_status_filters
     elsif filter_by_iconic_taxon?
       apply_iconic_taxon_filter
     elsif params[:taxonomic_status] != "all"
       apply_taxonomic_status_filter
+    end
+    if params[:taxonomic_status] == "all"
+      @taxonomic_status = "all"
     end
 
     if with_observations?
