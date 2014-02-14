@@ -69,11 +69,9 @@ class ListedTaxon < ActiveRecord::Base
   scope :filter_by_taxon, lambda {|filter_taxon_id, self_and_ancestor_ids| where("listed_taxa.taxon_id = ? OR listed_taxa.taxon_ancestor_ids = ? OR listed_taxa.taxon_ancestor_ids LIKE ?", filter_taxon_id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%")}
   scope :filter_by_taxa, lambda {|search_taxon_ids| where("listed_taxa.taxon_id IN (?)", search_taxon_ids)}
 
-  scope :with_taxonomic_status, lambda{|taxonomic_status| joins(:taxon).where("taxa.is_active = ?", taxonomic_status)}
   
   scope :find_listed_taxa_from_default_list, lambda{|place_id| where("place_id = ? AND primary_listing = ?", place_id, true)}
 
-  scope :filter_by_iconic_taxon, lambda {|iconic_taxon_id| joins(:taxon).where("taxa.iconic_taxon_id = ?", iconic_taxon_id)}
   scope :filter_by_list, lambda {|list_id| where("list_id = ?", list_id)}
 
   scope :unconfirmed, where("last_observation_id IS NULL")
@@ -100,7 +98,34 @@ class ListedTaxon < ActiveRecord::Base
   scope :without_threatened_status, includes(:taxon).where("taxa.conservation_status < #{Taxon::IUCN_NEAR_THREATENED}")
   scope :with_species, includes(:taxon).where("taxa.rank_level = 10")
   
-  scope :with_leaves, lambda{|scope_to_sql| joins("LEFT JOIN (#{ancestor_ids_sql(scope_to_sql)}) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id").where("ancestor_ids.ancestor_id IS NULL")}
+  #with taxonomic status (by itself)
+  scope :with_taxonomic_status, lambda{|taxonomic_status| joins("INNER JOIN
+   \"taxa\" \"taxa_listed_taxa\" 
+      ON \"taxa_listed_taxa\".\"id\" = \"listed_taxa\".\"taxon_id\" 
+   AND (
+      taxa_listed_taxa.is_active = '#{taxonomic_status ? 't' : 'f'}' 
+   )")}
+  #with iconic taxon filter (by itself)
+  scope :filter_by_iconic_taxon, lambda{|iconic_taxon_id| joins("INNER JOIN
+   \"taxa\" \"taxa_listed_taxa\" 
+      ON \"taxa_listed_taxa\".\"id\" = \"listed_taxa\".\"taxon_id\" 
+   AND (
+      taxa_listed_taxa.iconic_taxon_id = #{iconic_taxon_id} 
+   )")}
+  #both iconic taxon filter and taxonomic status
+  scope :with_taxonomic_status_and_iconic_taxon, lambda{|taxonomic_status, iconic_taxon_id| joins("INNER JOIN
+   \"taxa\" \"taxa_listed_taxa\" 
+      ON \"taxa_listed_taxa\".\"id\" = \"listed_taxa\".\"taxon_id\" 
+   AND (
+      taxa_listed_taxa.iconic_taxon_id = #{iconic_taxon_id} 
+   AND
+      taxa_listed_taxa.is_active = '#{taxonomic_status ? 't' : 'f'}' 
+   )")}
+
+
+  scope :with_leaves, lambda{|scope_to_sql| 
+    joins("LEFT JOIN (#{ancestor_ids_sql(scope_to_sql)}) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id").where("ancestor_ids.ancestor_id IS NULL")
+  }
   
   
   ALPHABETICAL_ORDER = "alphabetical"
