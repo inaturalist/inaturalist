@@ -394,13 +394,17 @@ module Shared::ListsModule
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxon(@filter_taxon.id, self_and_ancestor_ids)
     end
+    apply_iconic_taxon_filter unless @list.is_a?(CheckList)
+  end
+
+  def apply_iconic_taxon_filter
     if filter_by_iconic_taxon?
       iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_iconic_taxon(iconic_taxon_id)
     end
   end
 
-  def apply_checklist_scopes
+  def apply_taxonomic_status_filter
     if filter_by_param?(params[:taxonomic_status])
       @taxonomic_status = params[:taxonomic_status]
       unless @taxonomic_status=="all"
@@ -411,6 +415,34 @@ module Shared::ListsModule
       @taxonomic_status = "active"
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_taxonomic_status(true)
     end
+  end
+
+  def apply_iconic_taxon_and_taxonomic_status_filters
+    iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
+    if filter_by_param?(params[:taxonomic_status])
+      @taxonomic_status = params[:taxonomic_status]
+      unless @taxonomic_status=="all"
+        taxonomic_status_for_scope = params["taxonomic_status"] == "active"
+      end
+    else
+      @taxonomic_status = "active"
+      taxonomic_status_for_scope = params["taxonomic_status"] == "active"
+    end
+    @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_taxonomic_status_and_iconic_taxon(taxonomic_status_for_scope, iconic_taxon_id)
+  end
+
+  def apply_checklist_scopes
+    if filter_by_iconic_taxon? && (params[:taxonomic_status] != "all")
+      apply_iconic_taxon_and_taxonomic_status_filters
+    elsif filter_by_iconic_taxon?
+      apply_iconic_taxon_filter
+    elsif params[:taxonomic_status] != "all"
+      apply_taxonomic_status_filter
+    end
+    if params[:taxonomic_status] == "all"
+      @taxonomic_status = "all"
+    end
+
     if with_observations?
       @observed = 't'
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.confirmed
