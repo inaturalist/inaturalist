@@ -94,13 +94,11 @@ class ListedTaxon < ActiveRecord::Base
   scope :with_occurrence_status_levels_approximating_absent, where("occurrence_status_level IN (10, 20)")
   scope :with_occurrence_status_levels_approximating_present, where("occurrence_status_level NOT IN (10, 20) OR occurrence_status_level IS NULL")
 
-  #scope :with_threatened_status, includes(:taxon).where("taxa.conservation_status >= #{Taxon::IUCN_NEAR_THREATENED}")
   scope :with_threatened_status, lambda{|place_id|
     joins("INNER JOIN conservation_statuses cs ON cs.taxon_id = listed_taxa.taxon_id").
     where("cs.iucn >= #{Taxon::IUCN_NEAR_THREATENED} AND cs.place_id::text IN (#{place_ancestor_ids_sql(place_id)})")
-    #.select("DISTINCT ON (listed_taxa.id) listed_taxa.*")
+    .select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id, listed_taxa.observations_count) listed_taxa.*")
   }
-  #scope :without_threatened_status, includes(:taxon).where("taxa.conservation_status < #{Taxon::IUCN_NEAR_THREATENED}")
   scope :with_species, includes(:taxon).where("taxa.rank_level = 10")
   
   #with taxonomic status (by itself)
