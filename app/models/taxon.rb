@@ -339,8 +339,10 @@ class Taxon < ActiveRecord::Base
   scope :threatened_in_place, lambda {|place|
     includes(:conservation_statuses).
     where("conservation_statuses.iucn >= ?", IUCN_NEAR_THREATENED).
-    where("(conservation_statuses.place_id = ? OR conservation_statuses.place_id IS NULL)", place)
+    where("(conservation_statuses.place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(place.id)}) OR conservation_statuses.place_id IS NULL)")
+    #.select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id, listed_taxa.observations_count) listed_taxa.*")
   }
+  
   scope :from_place, lambda {|place|
     includes(:listed_taxa).where("listed_taxa.place_id = ?", place)
   }
