@@ -29,9 +29,9 @@ class CheckListsController < ApplicationController
       if @q = params[:q]
         @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
         @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
-      end
-      
+      end      
     end
+
     super #show from list module
   end
   
@@ -108,15 +108,6 @@ class CheckListsController < ApplicationController
     if @list.is_default?
       flash[:error] = t(:you_cant_do_that_for_the_default_check_list_place)
       redirect_to @list
-    end
-  end
-  
-  def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)
-    iconic_taxa ||= Taxon::ICONIC_TAXA
-    listed_taxa_iconic_taxon_ids = listed_taxa.map{|lt| lt.taxon.iconic_taxon_id }
-    iconic_taxa.map do |iconic_taxon|
-      taxon_count = listed_taxa_iconic_taxon_ids.count(iconic_taxon.id)
-      [iconic_taxon, taxon_count]
     end
   end
 end

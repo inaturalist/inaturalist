@@ -50,7 +50,7 @@
   </style>
 <% end -%>
 <ul class="clear photo_view listed_taxa">
-  <% for listed_taxon in listed_taxa %>
+  <% listed_taxa.each_with_index do |listed_taxon, i| %>
     <%-
       cycle_class = cycle('first', '', 'last')
       photo = if @photos_by_listed_taxon_id && @photos_by_listed_taxon_id[listed_taxon.id]
@@ -59,7 +59,7 @@
         listed_taxon.taxon.photos.first
       end
     -%>
-    <% if cycle_class == 'first' && listed_taxon != listed_taxa.first -%>
+    <% if cycle_class == 'first' && i != 0 -%>
       <div class="column-separator">
         <img src="/images/logo-eee-15px.png">
       </div>

@@ -32,11 +32,21 @@ module Shared::ListsModule
         set_scopes unless @listed_taxa.present?
 
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id
-
         @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, @unpaginated_listed_taxa)
         @total_listed_taxa ||= @listed_taxa.count 
         @total_observed_taxa ||= @listed_taxa.with_observation.count
         @view = PHOTO_VIEW unless LIST_VIEWS.include?(@view)
+
+        # preload all primary listed taxa. Would be nicer to do this in the
+        # CheckListsController, but it needs to happen after set_scopes
+        if @list.is_a?(CheckList)
+          primary_listed_taxa = @listed_taxa.select(&:primary_listing)
+          non_primary_listed_taxa = @listed_taxa - primary_listed_taxa
+          primary_listed_taxa += ListedTaxon.
+            where(:primary_listing => true, :place_id => @list.place_id).
+            where("taxon_id IN (?)", non_primary_listed_taxa.map(&:taxon_id))
+          @primary_listed_taxa_by_taxon_id = primary_listed_taxa.index_by(&:taxon_id)
+        end
 
         case @view
         when TAXONOMIC_VIEW
@@ -332,10 +342,13 @@ module Shared::ListsModule
   def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)
     iconic_taxa ||= Taxon::ICONIC_TAXA
     listed_taxa ||= @listed_taxa
-    listed_taxa_iconic_taxon_ids = listed_taxa.map{|lt| lt.taxon.iconic_taxon_id }
+
+    # to perform these counts in sql we need to make sure we're dealing with a scope and not an array
+    listed_taxa = list.listed_taxa.scoped unless listed_taxa.respond_to?(:scoped)
+
+    counts = listed_taxa.joins(:taxon).group("taxa.iconic_taxon_id").count
     iconic_taxa.map do |iconic_taxon|
-      taxon_count = listed_taxa_iconic_taxon_ids.count(iconic_taxon.id)
-      [iconic_taxon, taxon_count]
+      [iconic_taxon, counts[iconic_taxon.id.to_s] || 0]
     end
   end
 
@@ -542,14 +555,13 @@ module Shared::ListsModule
   end
   
   def set_taxon_names_by_taxon_id
-    listed_taxa = @listed_taxa.map(&:taxon)
-    taxa = [listed_taxa, @taxa, @iconic_taxa].flatten.compact
-    TaxonName.all(:conditions => [ "taxon_id IN (?)", taxa]).group_by(&:taxon_id)
+    taxon_ids = [
+      @listed_taxa ? @listed_taxa.map(&:taxon_id) : nil,
+      @taxa ? @taxa.map(&:id) : nil,
+      @iconic_taxa ? @iconic_taxa.map(&:id) : nil
+    ].flatten.uniq.compact
+    TaxonName.where("taxon_id IN (?)", taxon_ids).
+      where("lexicon IN (?)", [TaxonName::LEXICONS[:SCIENTIFIC_NAMES], TaxonName.language_for_locale(I18n.locale)]).
+      group_by(&:taxon_id)
   end
 end
-
-
-
-
-
-

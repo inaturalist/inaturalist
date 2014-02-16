@@ -68,10 +68,7 @@ class ListedTaxon < ActiveRecord::Base
   
   scope :filter_by_taxon, lambda {|filter_taxon_id, self_and_ancestor_ids| where("listed_taxa.taxon_id = ? OR listed_taxa.taxon_ancestor_ids = ? OR listed_taxa.taxon_ancestor_ids LIKE ?", filter_taxon_id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%")}
   scope :filter_by_taxa, lambda {|search_taxon_ids| where("listed_taxa.taxon_id IN (?)", search_taxon_ids)}
-
-  
   scope :find_listed_taxa_from_default_list, lambda{|place_id| where("place_id = ? AND primary_listing = ?", place_id, true)}
-
   scope :filter_by_list, lambda {|list_id| where("list_id = ?", list_id)}
 
   scope :unconfirmed, where("last_observation_id IS NULL")

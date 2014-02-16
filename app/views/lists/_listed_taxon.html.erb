@@ -2,14 +2,12 @@
   listed_taxon ||= @listed_taxon
   list ||= @list ||= listed_taxon.list
   if list.is_a?(CheckList)
+    primary_listed_taxon ||= @primary_listed_taxa_by_taxon_id[listed_taxon.taxon_id] if @primary_listed_taxa_by_taxon_id
     primary_listed_taxon ||= listed_taxon.primary_listed_taxon
   end
   primary_listed_taxon ||= listed_taxon
-  current_user_life_list_taxon_ids ||= @current_user_life_list_taxon_ids 
-  seenit ||= current_user_life_list_taxon_ids && current_user_life_list_taxon_ids.include?(listed_taxon.taxon.id) 
-  seenit ||= false
   editable ||= @listed_taxa_editble_by_current_user
-  editable = list.listed_taxa_editable_by?(current_user) if editable.nil?
+  editable ||= list.listed_taxa_editable_by?(current_user)
   photo ||= if @photos_by_listed_taxon_id && @photos_by_listed_taxon_id[listed_taxon.id]
     @photos_by_listed_taxon_id[listed_taxon.id]
   else
