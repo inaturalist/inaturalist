@@ -17,7 +17,9 @@ class CheckList < List
   
   # TODO: the following should work through list rules
   # validates_uniqueness_of :taxon_id, :scope => :place_id
-
+  
+  MAX_RELOAD_TRIES = 60
+  
   def to_s
     "<#{self.class} #{id}: #{title} taxon_id: #{taxon_id} place_id: #{place_id}>"
   end
@@ -114,11 +116,11 @@ class CheckList < List
     end
   end
   
-  def add_observed_taxa
+  def add_observed_taxa(options = {})
     # TODO remove this when we move to GEOGRAPHIES and our dateline woes have (hopefully) ended
     return if place.straddles_date_line?
 
-    options = {
+    find_options = {
       :select => "DISTINCT ON (observations.taxon_id) observations.*",
       :order => "observations.taxon_id",
       :include => [:taxon, :user],
@@ -128,8 +130,8 @@ class CheckList < List
         Observation::RESEARCH_GRADE
       ]
     }
-    Observation.do_in_batches(options) do |o|
-      add_taxon(o.taxon)
+    Observation.do_in_batches(find_options) do |o|
+      add_taxon(o.taxon, options)
     end
   end
   
@@ -321,4 +323,5 @@ class CheckList < List
       list.add_taxon(taxon.species, :force_update_cache_columns => true) if taxon.rank_level < Taxon::SPECIES_LEVEL
     end
   end
+  
 end

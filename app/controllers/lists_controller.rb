@@ -223,6 +223,28 @@ class ListsController < ApplicationController
     )
   end
   
+  def add_from_observations_now
+    return true unless logged_in? && current_user.is_admin?
+    @list.add_observed_taxa(:force_update_cache_columns => true)
+    respond_to do |format|
+      format.html do
+        flash[:notice] = 'reloaded'
+        redirect_to @list
+      end
+    end
+  end
+  
+  def refresh_now
+    return true unless logged_in? && current_user.is_admin?
+    @list.refresh
+    respond_to do |format|
+      format.html do
+        flash[:notice] = 'refreshed'
+        redirect_to @list
+      end
+    end
+  end
+  
   def guide
     show_guide do |scope|
       scope = scope.on_list(@list)
