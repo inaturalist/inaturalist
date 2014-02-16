@@ -84,15 +84,15 @@
         <% elsif list.is_a?(CheckList) && current_user.admin? %>
           <% if list.is_default? %>
             <li>
-              <%- msg = 'this will add listed taxa from observations'-%>
-              <%= link_to_function 'add from observations', 
+              <%- msg = t(:this_will_add_listed_taxa) -%>
+              <%= link_to_function t(:add_listed_taxa_from_observations), 
                 "confirmStartDelayed('#{msg}', '#{list_add_from_observations_now_path(@list.id)}', #{CheckList::MAX_RELOAD_TRIES}, 'add_from_observations_nowlink')", 
                 :id => "add_from_observations_nowlink" %>
             </li>
           <% end %>
           <li>
-          <%- msg = 'this will refresh listed taxa' -%>
-            <%= link_to_function 'refresh',
+          <%- msg = t(:this_will_refresh_listed_taxa) -%>
+            <%= link_to_function t(:refresh_listed_taxa),
               "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_now_path(@list.id)}', #{CheckList::MAX_RELOAD_TRIES}, 'refresh_nowlink')", 
               :id => "refresh_nowlink" %>
           </li>
