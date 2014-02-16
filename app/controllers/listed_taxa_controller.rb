@@ -186,7 +186,6 @@ class ListedTaxaController < ApplicationController
   end
   
   def refresh_observationcounts
-    puts 'executed'
     @listed_taxon = ListedTaxon.find_by_id(params[:listed_taxon_id])
     @listed_taxon.force_update_cache_columns = true
     respond_to do |format|
