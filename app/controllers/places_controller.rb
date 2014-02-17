@@ -360,7 +360,11 @@ class PlacesController < ApplicationController
       elsif @native = @filter_params[:native]
         scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
       elsif @establishment_means = @filter_params[:establishment_means]
-        scope = scope.scoped(:conditions => ["listed_taxa.establishment_means = ?", @establishment_means])
+        if @establishment_means = "native"
+          scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
+        else
+          scope = scope.scoped(:conditions => ["listed_taxa.establishment_means = ?", @establishment_means])
+        end
       end
       
       if @filter_params.blank?
