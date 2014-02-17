@@ -340,7 +340,6 @@ class Taxon < ActiveRecord::Base
     includes(:conservation_statuses).
     where("conservation_statuses.iucn >= ?", IUCN_NEAR_THREATENED).
     where("(conservation_statuses.place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(place.id)}) OR conservation_statuses.place_id IS NULL)")
-    #.select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id, listed_taxa.observations_count) listed_taxa.*")
   }
   
   scope :from_place, lambda {|place|
@@ -992,24 +991,22 @@ class Taxon < ActiveRecord::Base
   def threatened_in_place?(place)
     return false if place.blank?
     place_id = place.is_a?(Place) ? place.id : place
+    place = Place.find_by_id(place_id) unless place.is_a?(Place)
     cs = if association(:conservation_statuses).loaded?
-      conservation_statuses.detect{|cs| cs.place_id == place_id}
+      conservation_statuses.detect{|cs| ([nil, place.ancestry.split("/")].flatten.include? cs.place_id.to_s) && cs.iucn.to_i > IUCN_LEAST_CONCERN}
     else
-      conservation_statuses.where(:place_id => place_id).first
+      conservation_statuses.where("place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(place_id)}) OR place_id IS NULL").where("iucn > ?", IUCN_LEAST_CONCERN).first
     end
-    if cs
-      cs.iucn.to_i >= IUCN_NEAR_THREATENED
-    else
-      return false
-    end
+    return !cs.nil?
   end
-
+  
   def threatened_status(options = {})
     if place_id = options[:place_id]
+      place = Place.find_by_id(place_id)
       if association(:conservation_statuses).loaded?
-        conservation_statuses.select{|cs| cs.place_id == place_id && cs.iucn.to_i > IUCN_LEAST_CONCERN}.max_by{|cs| cs.iucn.to_i}
+        conservation_statuses.select{|cs| ([nil, place.ancestry.split("/")].flatten.include? cs.place_id.to_s) && cs.iucn.to_i > IUCN_LEAST_CONCERN}.max_by{|cs| cs.iucn.to_i}
       else
-        conservation_statuses.where(:place_id => place_id).where("iucn > ?", IUCN_LEAST_CONCERN).max_by{|cs| cs.iucn.to_i}
+        conservation_statuses.where("place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(place_id)}) OR place_id IS NULL").where("iucn > ?", IUCN_LEAST_CONCERN).max_by{|cs| cs.iucn.to_i}
       end
     elsif (lat = options[:latitude]) && (lon = options[:longitude])
       conservation_statuses.for_lat_lon(lat,lon).where("iucn > ?", IUCN_LEAST_CONCERN).max_by{|cs| cs.iucn.to_i}

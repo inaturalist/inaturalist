@@ -10,7 +10,9 @@
   <% end -%>
 <% end -%>
 <%- upperright = capture do %>
+  <% puts "!!!!!!before!!!!!!#{taxon.id}, #{listed_taxon.place_id}, #{Taxon.find_by_id(taxon.id).threatened?(:place => listed_taxon.place_id)}, #{taxon.threatened?(:place => listed_taxon.place_id)}" %>
   <% if listed_taxon.endemic? || listed_taxon.introduced? || taxon.threatened?(:place => listed_taxon.place_id) -%>
+    <% puts "!!!!!!!!!!!!#{taxon.name}" %>
     <%= render 'listed_taxa/taxon_blobs', :taxon => taxon, :listed_taxon => listed_taxon %>
   <% end -%>
   <% if taxon.iucn_extinct? -%>
