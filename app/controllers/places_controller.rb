@@ -349,6 +349,7 @@ class PlacesController < ApplicationController
     
     show_guide do |scope|
       scope = scope.from_place(@place)
+      scope = scope.scoped(:conditions => ["listed_taxa.primary_listing = true"])
       scope = scope.scoped(:conditions => [
         "listed_taxa.occurrence_status_level IS NULL OR listed_taxa.occurrence_status_level IN (?)", 
         ListedTaxon::PRESENT_EQUIVALENTS
