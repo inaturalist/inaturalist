@@ -118,6 +118,10 @@ $(document).ready(function(){
               $('.taxon_photos', ui.panel).photoSelector(
                 $.extend(true, {}, photoSelectorOptions, {taxon_id: TAXON.id, baseURL: '/wikimedia_commons/photo_fields'})
               )
+            } else if ($(ui.panel).attr('id') == 'conabio_taxon_photos' && !$(ui.panel).hasClass('loaded')) {
+                $('.taxon_photos', ui.panel).photoSelector(
+                    $.extend(true, {}, photoSelectorOptions, {baseURL: '/conabio/photo_fields'})
+                )
             }
             $(ui.panel).addClass('loaded')
             $('#edit_photos_dialog').centerDialog()

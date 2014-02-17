@@ -94,6 +94,7 @@ Inaturalist::Application.routes.draw do
   match '/facebook/photo_fields' => 'facebook#photo_fields'
   match "/eol/photo_fields" => "eol#photo_fields"
   match '/wikimedia_commons/photo_fields' => 'wikimedia_commons#photo_fields'
+  match '/conabio/photo_fields' => 'conabio#photo_fields'
   
   match '/flickr/invite' => 'photos#invite', :as => :flickr_accept_invite
   match '/facebook/invite' => 'photos#invite', :as => :fb_accept_invite
