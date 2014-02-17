@@ -3,6 +3,7 @@
 --
 
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -37,7 +38,7 @@ CREATE TYPE box2d;
 
 CREATE FUNCTION box2d_in(cstring) RETURNS box2d
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_in';
+    AS '$libdir/postgis-2.1', 'BOX2D_in';
 
 
 --
@@ -46,7 +47,7 @@ CREATE FUNCTION box2d_in(cstring) RETURNS box2d
 
 CREATE FUNCTION box2d_out(box2d) RETURNS cstring
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_out';
+    AS '$libdir/postgis-2.1', 'BOX2D_out';
 
 
 --
@@ -54,7 +55,7 @@ CREATE FUNCTION box2d_out(box2d) RETURNS cstring
 --
 
 CREATE TYPE box2d (
-    INTERNALLENGTH = 16,
+    INTERNALLENGTH = 65,
     INPUT = box2d_in,
     OUTPUT = box2d_out,
     ALIGNMENT = int4,
@@ -70,6 +71,44 @@ COMMENT ON TYPE box2d IS 'postgis type: A box composed of x min, ymin, xmax, yma
 
 
 --
+-- Name: box2df; Type: SHELL TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE box2df;
+
+
+--
+-- Name: box2df_in(cstring); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION box2df_in(cstring) RETURNS box2df
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'box2df_in';
+
+
+--
+-- Name: box2df_out(box2df); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION box2df_out(box2df) RETURNS cstring
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'box2df_out';
+
+
+--
+-- Name: box2df; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE box2df (
+    INTERNALLENGTH = 16,
+    INPUT = box2df_in,
+    OUTPUT = box2df_out,
+    ALIGNMENT = double,
+    STORAGE = plain
+);
+
+
+--
 -- Name: box3d; Type: SHELL TYPE; Schema: public; Owner: -
 --
 
@@ -82,7 +121,7 @@ CREATE TYPE box3d;
 
 CREATE FUNCTION box3d_in(cstring) RETURNS box3d
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_in';
+    AS '$libdir/postgis-2.1', 'BOX3D_in';
 
 
 --
@@ -91,7 +130,7 @@ CREATE FUNCTION box3d_in(cstring) RETURNS box3d
 
 CREATE FUNCTION box3d_out(box3d) RETURNS cstring
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_out';
+    AS '$libdir/postgis-2.1', 'BOX3D_out';
 
 
 --
@@ -99,7 +138,7 @@ CREATE FUNCTION box3d_out(box3d) RETURNS cstring
 --
 
 CREATE TYPE box3d (
-    INTERNALLENGTH = 48,
+    INTERNALLENGTH = 52,
     INPUT = box3d_in,
     OUTPUT = box3d_out,
     ALIGNMENT = double,
@@ -115,89 +154,6 @@ COMMENT ON TYPE box3d IS 'postgis type: A box composed of x min, ymin, zmin, xma
 
 
 --
--- Name: box3d_extent; Type: SHELL TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE box3d_extent;
-
-
---
--- Name: box3d_extent_in(cstring); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION box3d_extent_in(cstring) RETURNS box3d_extent
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_in';
-
-
---
--- Name: box3d_extent_out(box3d_extent); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION box3d_extent_out(box3d_extent) RETURNS cstring
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_extent_out';
-
-
---
--- Name: box3d_extent; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE box3d_extent (
-    INTERNALLENGTH = 48,
-    INPUT = box3d_extent_in,
-    OUTPUT = box3d_extent_out,
-    ALIGNMENT = double,
-    STORAGE = plain
-);
-
-
---
--- Name: TYPE box3d_extent; Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON TYPE box3d_extent IS 'postgis type: A box composed of x min, ymin, zmin, xmax, ymax, zmax. Often used to return the extent of a geometry.';
-
-
---
--- Name: chip; Type: SHELL TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE chip;
-
-
---
--- Name: chip_in(cstring); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION chip_in(cstring) RETURNS chip
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_in';
-
-
---
--- Name: chip_out(chip); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION chip_out(chip) RETURNS cstring
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_out';
-
-
---
--- Name: chip; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE chip (
-    INTERNALLENGTH = variable,
-    INPUT = chip_in,
-    OUTPUT = chip_out,
-    ALIGNMENT = double,
-    STORAGE = extended
-);
-
-
---
 -- Name: geography; Type: SHELL TYPE; Schema: public; Owner: -
 --
 
@@ -210,7 +166,7 @@ CREATE TYPE geography;
 
 CREATE FUNCTION geography_analyze(internal) RETURNS boolean
     LANGUAGE c STRICT
-    AS '$libdir/postgis-1.5', 'geography_analyze';
+    AS '$libdir/postgis-2.1', 'gserialized_analyze_nd';
 
 
 --
@@ -219,7 +175,7 @@ CREATE FUNCTION geography_analyze(internal) RETURNS boolean
 
 CREATE FUNCTION geography_in(cstring, oid, integer) RETURNS geography
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_in';
+    AS '$libdir/postgis-2.1', 'geography_in';
 
 
 --
@@ -228,7 +184,25 @@ CREATE FUNCTION geography_in(cstring, oid, integer) RETURNS geography
 
 CREATE FUNCTION geography_out(geography) RETURNS cstring
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_out';
+    AS '$libdir/postgis-2.1', 'geography_out';
+
+
+--
+-- Name: geography_recv(internal, oid, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geography_recv(internal, oid, integer) RETURNS geography
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'geography_recv';
+
+
+--
+-- Name: geography_send(geography); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geography_send(geography) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'geography_send';
 
 
 --
@@ -237,7 +211,7 @@ CREATE FUNCTION geography_out(geography) RETURNS cstring
 
 CREATE FUNCTION geography_typmod_in(cstring[]) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_typmod_in';
+    AS '$libdir/postgis-2.1', 'geography_typmod_in';
 
 
 --
@@ -246,7 +220,7 @@ CREATE FUNCTION geography_typmod_in(cstring[]) RETURNS integer
 
 CREATE FUNCTION geography_typmod_out(integer) RETURNS cstring
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_typmod_out';
+    AS '$libdir/postgis-2.1', 'postgis_typmod_out';
 
 
 --
@@ -257,9 +231,12 @@ CREATE TYPE geography (
     INTERNALLENGTH = variable,
     INPUT = geography_in,
     OUTPUT = geography_out,
+    RECEIVE = geography_recv,
+    SEND = geography_send,
     TYPMOD_IN = geography_typmod_in,
     TYPMOD_OUT = geography_typmod_out,
     ANALYZE = geography_analyze,
+    DELIMITER = ':',
     ALIGNMENT = double,
     STORAGE = main
 );
@@ -285,7 +262,7 @@ CREATE TYPE geometry;
 
 CREATE FUNCTION geometry_analyze(internal) RETURNS boolean
     LANGUAGE c STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_analyze';
+    AS '$libdir/postgis-2.1', 'gserialized_analyze_nd';
 
 
 --
@@ -294,7 +271,7 @@ CREATE FUNCTION geometry_analyze(internal) RETURNS boolean
 
 CREATE FUNCTION geometry_in(cstring) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_in';
+    AS '$libdir/postgis-2.1', 'LWGEOM_in';
 
 
 --
@@ -303,7 +280,7 @@ CREATE FUNCTION geometry_in(cstring) RETURNS geometry
 
 CREATE FUNCTION geometry_out(geometry) RETURNS cstring
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_out';
+    AS '$libdir/postgis-2.1', 'LWGEOM_out';
 
 
 --
@@ -312,7 +289,7 @@ CREATE FUNCTION geometry_out(geometry) RETURNS cstring
 
 CREATE FUNCTION geometry_recv(internal) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_recv';
+    AS '$libdir/postgis-2.1', 'LWGEOM_recv';
 
 
 --
@@ -321,7 +298,25 @@ CREATE FUNCTION geometry_recv(internal) RETURNS geometry
 
 CREATE FUNCTION geometry_send(geometry) RETURNS bytea
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_send';
+    AS '$libdir/postgis-2.1', 'LWGEOM_send';
+
+
+--
+-- Name: geometry_typmod_in(cstring[]); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_typmod_in(cstring[]) RETURNS integer
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'geometry_typmod_in';
+
+
+--
+-- Name: geometry_typmod_out(integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_typmod_out(integer) RETURNS cstring
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'postgis_typmod_out';
 
 
 --
@@ -334,9 +329,11 @@ CREATE TYPE geometry (
     OUTPUT = geometry_out,
     RECEIVE = geometry_recv,
     SEND = geometry_send,
+    TYPMOD_IN = geometry_typmod_in,
+    TYPMOD_OUT = geometry_typmod_out,
     ANALYZE = geometry_analyze,
     DELIMITER = ':',
-    ALIGNMENT = int4,
+    ALIGNMENT = double,
     STORAGE = main
 );
 
@@ -378,7 +375,7 @@ CREATE TYPE gidx;
 
 CREATE FUNCTION gidx_in(cstring) RETURNS gidx
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'gidx_in';
+    AS '$libdir/postgis-2.1', 'gidx_in';
 
 
 --
@@ -387,7 +384,7 @@ CREATE FUNCTION gidx_in(cstring) RETURNS gidx
 
 CREATE FUNCTION gidx_out(gidx) RETURNS cstring
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'gidx_out';
+    AS '$libdir/postgis-2.1', 'gidx_out';
 
 
 --
@@ -416,7 +413,7 @@ CREATE TYPE pgis_abs;
 
 CREATE FUNCTION pgis_abs_in(cstring) RETURNS pgis_abs
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'pgis_abs_in';
+    AS '$libdir/postgis-2.1', 'pgis_abs_in';
 
 
 --
@@ -425,7 +422,7 @@ CREATE FUNCTION pgis_abs_in(cstring) RETURNS pgis_abs
 
 CREATE FUNCTION pgis_abs_out(pgis_abs) RETURNS cstring
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'pgis_abs_out';
+    AS '$libdir/postgis-2.1', 'pgis_abs_out';
 
 
 --
@@ -454,7 +451,7 @@ CREATE TYPE spheroid;
 
 CREATE FUNCTION spheroid_in(cstring) RETURNS spheroid
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'ellipsoid_in';
+    AS '$libdir/postgis-2.1', 'ellipsoid_in';
 
 
 --
@@ -463,7 +460,7 @@ CREATE FUNCTION spheroid_in(cstring) RETURNS spheroid
 
 CREATE FUNCTION spheroid_out(spheroid) RETURNS cstring
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'ellipsoid_out';
+    AS '$libdir/postgis-2.1', 'ellipsoid_out';
 
 
 --
@@ -480,12 +477,81 @@ CREATE TYPE spheroid (
 
 
 --
--- Name: _st_asgeojson(integer, geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: valid_detail; Type: TYPE; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_asgeojson(integer, geometry, integer, integer) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asGeoJson';
+CREATE TYPE valid_detail AS (
+	valid boolean,
+	reason character varying,
+	location geometry
+);
+
+
+--
+-- Name: _postgis_deprecate(text, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _postgis_deprecate(oldname text, newname text, version text) RETURNS void
+    LANGUAGE plpgsql IMMUTABLE STRICT
+    AS $$
+BEGIN
+    RAISE WARNING '% signature was deprecated in %. Please use %', oldname, version, newname;
+END;
+$$;
+
+
+--
+-- Name: _postgis_join_selectivity(regclass, text, regclass, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _postgis_join_selectivity(regclass, text, regclass, text, text DEFAULT '2'::text) RETURNS double precision
+    LANGUAGE c STRICT
+    AS '$libdir/postgis-2.1', '_postgis_gserialized_joinsel';
+
+
+--
+-- Name: _postgis_selectivity(regclass, text, geometry, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _postgis_selectivity(tbl regclass, att_name text, geom geometry, mode text DEFAULT '2'::text) RETURNS double precision
+    LANGUAGE c STRICT
+    AS '$libdir/postgis-2.1', '_postgis_gserialized_sel';
+
+
+--
+-- Name: _postgis_stats(regclass, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _postgis_stats(tbl regclass, att_name text, text DEFAULT '2'::text) RETURNS text
+    LANGUAGE c STRICT
+    AS '$libdir/postgis-2.1', '_postgis_gserialized_stats';
+
+
+--
+-- Name: _st_3ddfullywithin(geometry, geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_3ddfullywithin(geom1 geometry, geom2 geometry, double precision) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'LWGEOM_dfullywithin3d';
+
+
+--
+-- Name: _st_3ddwithin(geometry, geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_3ddwithin(geom1 geometry, geom2 geometry, double precision) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'LWGEOM_dwithin3d';
+
+
+--
+-- Name: _st_3dintersects(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_3dintersects(geom1 geometry, geom2 geometry) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'intersects3d';
 
 
 --
@@ -494,43 +560,61 @@ CREATE FUNCTION _st_asgeojson(integer, geometry, integer, integer) RETURNS text
 
 CREATE FUNCTION _st_asgeojson(integer, geography, integer, integer) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_as_geojson';
+    AS '$libdir/postgis-2.1', 'geography_as_geojson';
 
 
 --
--- Name: _st_asgml(integer, geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: _st_asgeojson(integer, geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_asgml(integer, geometry, integer, integer) RETURNS text
+CREATE FUNCTION _st_asgeojson(integer, geometry, integer, integer) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asGML';
+    AS '$libdir/postgis-2.1', 'LWGEOM_asGeoJson';
 
 
 --
--- Name: _st_asgml(integer, geography, integer, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: _st_asgml(integer, geography, integer, integer, text, text); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_asgml(integer, geography, integer, integer) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_as_gml';
-
-
---
--- Name: _st_askml(integer, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION _st_askml(integer, geometry, integer) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asKML';
+CREATE FUNCTION _st_asgml(integer, geography, integer, integer, text, text) RETURNS text
+    LANGUAGE c IMMUTABLE
+    AS '$libdir/postgis-2.1', 'geography_as_gml';
 
 
 --
--- Name: _st_askml(integer, geography, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: _st_asgml(integer, geometry, integer, integer, text, text); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_askml(integer, geography, integer) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_as_kml';
+CREATE FUNCTION _st_asgml(integer, geometry, integer, integer, text, text) RETURNS text
+    LANGUAGE c IMMUTABLE
+    AS '$libdir/postgis-2.1', 'LWGEOM_asGML';
+
+
+--
+-- Name: _st_askml(integer, geography, integer, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_askml(integer, geography, integer, text) RETURNS text
+    LANGUAGE c IMMUTABLE
+    AS '$libdir/postgis-2.1', 'geography_as_kml';
+
+
+--
+-- Name: _st_askml(integer, geometry, integer, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_askml(integer, geometry, integer, text) RETURNS text
+    LANGUAGE c IMMUTABLE
+    AS '$libdir/postgis-2.1', 'LWGEOM_asKML';
+
+
+--
+-- Name: _st_asx3d(integer, geometry, integer, integer, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_asx3d(integer, geometry, integer, integer, text) RETURNS text
+    LANGUAGE c IMMUTABLE
+    AS '$libdir/postgis-2.1', 'LWGEOM_asX3D';
 
 
 --
@@ -548,7 +632,7 @@ CREATE FUNCTION _st_bestsrid(geography) RETURNS integer
 
 CREATE FUNCTION _st_bestsrid(geography, geography) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_bestsrid';
+    AS '$libdir/postgis-2.1', 'geography_bestsrid';
 
 
 --
@@ -557,43 +641,120 @@ CREATE FUNCTION _st_bestsrid(geography, geography) RETURNS integer
 
 CREATE FUNCTION _st_buffer(geometry, double precision, cstring) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'buffer';
+    AS '$libdir/postgis-2.1', 'buffer';
+
+
+--
+-- Name: _st_concavehull(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_concavehull(param_inputgeom geometry) RETURNS geometry
+    LANGUAGE plpgsql IMMUTABLE STRICT
+    AS $$
+	DECLARE     
+	vexhull GEOMETRY;
+	var_resultgeom geometry;
+	var_inputgeom geometry;
+	vexring GEOMETRY;
+	cavering GEOMETRY;
+	cavept geometry[];
+	seglength double precision;
+	var_tempgeom geometry;
+	scale_factor integer := 1;
+	i integer;
+	
+	BEGIN
+
+		-- First compute the ConvexHull of the geometry
+		vexhull := ST_ConvexHull(param_inputgeom);
+		var_inputgeom := param_inputgeom;
+		--A point really has no concave hull
+		IF ST_GeometryType(vexhull) = 'ST_Point' OR ST_GeometryType(vexHull) = 'ST_LineString' THEN
+			RETURN vexhull;
+		END IF;
+
+		-- convert the hull perimeter to a linestring so we can manipulate individual points
+		vexring := CASE WHEN ST_GeometryType(vexhull) = 'ST_LineString' THEN vexhull ELSE ST_ExteriorRing(vexhull) END;
+		IF abs(ST_X(ST_PointN(vexring,1))) < 1 THEN --scale the geometry to prevent stupid precision errors - not sure it works so make low for now
+			scale_factor := 100;
+			vexring := ST_Scale(vexring, scale_factor,scale_factor);
+			var_inputgeom := ST_Scale(var_inputgeom, scale_factor, scale_factor);
+			--RAISE NOTICE 'Scaling';
+		END IF;
+		seglength := ST_Length(vexring)/least(ST_NPoints(vexring)*2,1000) ;
+
+		vexring := ST_Segmentize(vexring, seglength);
+		-- find the point on the original geom that is closest to each point of the convex hull and make a new linestring out of it.
+		cavering := ST_Collect(
+			ARRAY(
+
+				SELECT 
+					ST_ClosestPoint(var_inputgeom, pt ) As the_geom
+					FROM (
+						SELECT  ST_PointN(vexring, n ) As pt, n
+							FROM 
+							generate_series(1, ST_NPoints(vexring) ) As n
+						) As pt
+				
+				)
+			)
+		; 
+		
+
+		var_resultgeom := ST_MakeLine(geom) 
+			FROM ST_Dump(cavering) As foo;
+
+		IF ST_IsSimple(var_resultgeom) THEN
+			var_resultgeom := ST_MakePolygon(var_resultgeom);
+			--RAISE NOTICE 'is Simple: %', var_resultgeom;
+		ELSE 
+			--RAISE NOTICE 'is not Simple: %', var_resultgeom;
+			var_resultgeom := ST_ConvexHull(var_resultgeom);
+		END IF;
+		
+		IF scale_factor > 1 THEN -- scale the result back
+			var_resultgeom := ST_Scale(var_resultgeom, 1/scale_factor, 1/scale_factor);
+		END IF;
+		RETURN var_resultgeom;
+	
+	END;
+$$;
 
 
 --
 -- Name: _st_contains(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_contains(geometry, geometry) RETURNS boolean
+CREATE FUNCTION _st_contains(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'contains';
+    AS '$libdir/postgis-2.1', 'contains';
 
 
 --
 -- Name: _st_containsproperly(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_containsproperly(geometry, geometry) RETURNS boolean
+CREATE FUNCTION _st_containsproperly(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'containsproperly';
+    AS '$libdir/postgis-2.1', 'containsproperly';
 
 
 --
 -- Name: _st_coveredby(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_coveredby(geometry, geometry) RETURNS boolean
+CREATE FUNCTION _st_coveredby(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'coveredby';
+    AS '$libdir/postgis-2.1', 'coveredby';
 
 
 --
 -- Name: _st_covers(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_covers(geometry, geometry) RETURNS boolean
+CREATE FUNCTION _st_covers(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'covers';
+    AS '$libdir/postgis-2.1', 'covers';
 
 
 --
@@ -602,25 +763,25 @@ CREATE FUNCTION _st_covers(geometry, geometry) RETURNS boolean
 
 CREATE FUNCTION _st_covers(geography, geography) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'geography_covers';
+    AS '$libdir/postgis-2.1', 'geography_covers';
 
 
 --
 -- Name: _st_crosses(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_crosses(geometry, geometry) RETURNS boolean
+CREATE FUNCTION _st_crosses(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'crosses';
+    AS '$libdir/postgis-2.1', 'crosses';
 
 
 --
 -- Name: _st_dfullywithin(geometry, geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_dfullywithin(geometry, geometry, double precision) RETURNS boolean
+CREATE FUNCTION _st_dfullywithin(geom1 geometry, geom2 geometry, double precision) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_dfullywithin';
+    AS '$libdir/postgis-2.1', 'LWGEOM_dfullywithin';
 
 
 --
@@ -629,7 +790,52 @@ CREATE FUNCTION _st_dfullywithin(geometry, geometry, double precision) RETURNS b
 
 CREATE FUNCTION _st_distance(geography, geography, double precision, boolean) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'geography_distance';
+    AS '$libdir/postgis-2.1', 'geography_distance';
+
+
+--
+-- Name: _st_distancetree(geography, geography); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_distancetree(geography, geography) RETURNS double precision
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$SELECT _ST_DistanceTree($1, $2, 0.0, true)$_$;
+
+
+--
+-- Name: _st_distancetree(geography, geography, double precision, boolean); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_distancetree(geography, geography, double precision, boolean) RETURNS double precision
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'geography_distance_tree';
+
+
+--
+-- Name: _st_distanceuncached(geography, geography); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_distanceuncached(geography, geography) RETURNS double precision
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$SELECT _ST_DistanceUnCached($1, $2, 0.0, true)$_$;
+
+
+--
+-- Name: _st_distanceuncached(geography, geography, boolean); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_distanceuncached(geography, geography, boolean) RETURNS double precision
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$SELECT _ST_DistanceUnCached($1, $2, 0.0, $3)$_$;
+
+
+--
+-- Name: _st_distanceuncached(geography, geography, double precision, boolean); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_distanceuncached(geography, geography, double precision, boolean) RETURNS double precision
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'geography_distance_uncached';
 
 
 --
@@ -650,13 +856,12 @@ DECLARE
   
 BEGIN
   
-  RAISE DEBUG '%,%', cur_path, ST_GeometryType(the_geom);
+  -- RAISE DEBUG '%,%', cur_path, ST_GeometryType(the_geom);
 
-  -- Special case (MULTI* OR GEOMETRYCOLLECTION) : iterate and return the DumpPoints of the geometries
-  SELECT ST_NumGeometries(the_geom) INTO nb_geom;
+  -- Special case collections : iterate and return the DumpPoints of the geometries
 
-  IF (nb_geom IS NOT NULL) THEN
-    
+  IF (ST_IsCollection(the_geom)) THEN
+ 
     i = 1;
     FOR tmp2 IN SELECT (ST_Dump(the_geom)).* LOOP
 
@@ -688,6 +893,16 @@ BEGIN
     RETURN;
   END IF;
 
+  -- Special case (TRIANGLE) : return the points of the external rings of a TRIANGLE
+  IF (ST_GeometryType(the_geom) = 'ST_Triangle') THEN
+
+    FOR tmp IN SELECT * FROM _ST_DumpPoints(ST_ExteriorRing(the_geom), cur_path || ARRAY[1]) LOOP
+      RETURN NEXT tmp;
+    END LOOP;
+    
+    RETURN;
+  END IF;
+
     
   -- Special case (POINT) : return the point
   IF (ST_GeometryType(the_geom) = 'ST_Point') THEN
@@ -702,7 +917,7 @@ BEGIN
 
 
   -- Use ST_NumPoints rather than ST_NPoints to have a NULL value if the_geom isn't
-  -- a LINESTRING or CIRCULARSTRING.
+  -- a LINESTRING, CIRCULARSTRING.
   SELECT ST_NumPoints(the_geom) INTO nb_points;
 
   -- This should never happen
@@ -724,9 +939,9 @@ $$;
 -- Name: _st_dwithin(geometry, geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_dwithin(geometry, geometry, double precision) RETURNS boolean
+CREATE FUNCTION _st_dwithin(geom1 geometry, geom2 geometry, double precision) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_dwithin';
+    AS '$libdir/postgis-2.1', 'LWGEOM_dwithin';
 
 
 --
@@ -735,16 +950,34 @@ CREATE FUNCTION _st_dwithin(geometry, geometry, double precision) RETURNS boolea
 
 CREATE FUNCTION _st_dwithin(geography, geography, double precision, boolean) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'geography_dwithin';
+    AS '$libdir/postgis-2.1', 'geography_dwithin';
+
+
+--
+-- Name: _st_dwithinuncached(geography, geography, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_dwithinuncached(geography, geography, double precision) RETURNS boolean
+    LANGUAGE sql IMMUTABLE
+    AS $_$SELECT $1 && _ST_Expand($2,$3) AND $2 && _ST_Expand($1,$3) AND _ST_DWithinUnCached($1, $2, $3, true)$_$;
+
+
+--
+-- Name: _st_dwithinuncached(geography, geography, double precision, boolean); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_dwithinuncached(geography, geography, double precision, boolean) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'geography_dwithin_uncached';
 
 
 --
 -- Name: _st_equals(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_equals(geometry, geometry) RETURNS boolean
+CREATE FUNCTION _st_equals(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'geomequals';
+    AS '$libdir/postgis-2.1', 'ST_Equals';
 
 
 --
@@ -753,61 +986,70 @@ CREATE FUNCTION _st_equals(geometry, geometry) RETURNS boolean
 
 CREATE FUNCTION _st_expand(geography, double precision) RETURNS geography
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_expand';
+    AS '$libdir/postgis-2.1', 'geography_expand';
+
+
+--
+-- Name: _st_geomfromgml(text, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _st_geomfromgml(text, integer) RETURNS geometry
+    LANGUAGE c IMMUTABLE
+    AS '$libdir/postgis-2.1', 'geom_from_gml';
 
 
 --
 -- Name: _st_intersects(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_intersects(geometry, geometry) RETURNS boolean
+CREATE FUNCTION _st_intersects(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'intersects';
+    AS '$libdir/postgis-2.1', 'intersects';
 
 
 --
 -- Name: _st_linecrossingdirection(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_linecrossingdirection(geometry, geometry) RETURNS integer
+CREATE FUNCTION _st_linecrossingdirection(geom1 geometry, geom2 geometry) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'ST_LineCrossingDirection';
+    AS '$libdir/postgis-2.1', 'ST_LineCrossingDirection';
 
 
 --
 -- Name: _st_longestline(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_longestline(geometry, geometry) RETURNS geometry
+CREATE FUNCTION _st_longestline(geom1 geometry, geom2 geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_longestline2d';
+    AS '$libdir/postgis-2.1', 'LWGEOM_longestline2d';
 
 
 --
 -- Name: _st_maxdistance(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_maxdistance(geometry, geometry) RETURNS double precision
+CREATE FUNCTION _st_maxdistance(geom1 geometry, geom2 geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_maxdistance2d_linestring';
+    AS '$libdir/postgis-2.1', 'LWGEOM_maxdistance2d_linestring';
 
 
 --
 -- Name: _st_orderingequals(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_orderingequals(geometry, geometry) RETURNS boolean
+CREATE FUNCTION _st_orderingequals(geometrya geometry, geometryb geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_same';
+    AS '$libdir/postgis-2.1', 'LWGEOM_same';
 
 
 --
 -- Name: _st_overlaps(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_overlaps(geometry, geometry) RETURNS boolean
+CREATE FUNCTION _st_overlaps(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'overlaps';
+    AS '$libdir/postgis-2.1', 'overlaps';
 
 
 --
@@ -816,25 +1058,25 @@ CREATE FUNCTION _st_overlaps(geometry, geometry) RETURNS boolean
 
 CREATE FUNCTION _st_pointoutside(geography) RETURNS geography
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_point_outside';
+    AS '$libdir/postgis-2.1', 'geography_point_outside';
 
 
 --
 -- Name: _st_touches(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_touches(geometry, geometry) RETURNS boolean
+CREATE FUNCTION _st_touches(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'touches';
+    AS '$libdir/postgis-2.1', 'touches';
 
 
 --
 -- Name: _st_within(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION _st_within(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'within';
+CREATE FUNCTION _st_within(geom1 geometry, geom2 geometry) RETURNS boolean
+    LANGUAGE sql IMMUTABLE
+    AS $_$SELECT _ST_Contains($2,$1)$_$;
 
 
 --
@@ -881,15 +1123,6 @@ COMMENT ON FUNCTION addauth(text) IS 'args: auth_token - Add an authorization to
 
 
 --
--- Name: addbbox(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION addbbox(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_addBBOX';
-
-
---
 -- Name: addgeometrycolumn(character varying, character varying, integer, character varying, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -933,6 +1166,22 @@ $_$;
 --
 
 COMMENT ON FUNCTION addgeometrycolumn(character varying, character varying, character varying, integer, character varying, integer) IS 'args: schema_name, table_name, column_name, srid, type, dimension - Adds a geometry column to an existing table of attributes.';
+
+
+--
+-- Name: addgeometrycolumn(character varying, character varying, integer, character varying, integer, boolean); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION addgeometrycolumn(table_name character varying, column_name character varying, new_srid integer, new_type character varying, new_dim integer, use_typmod boolean DEFAULT true) RETURNS text
+    LANGUAGE plpgsql STRICT
+    AS $_$
+DECLARE
+	ret  text;
+BEGIN
+	SELECT AddGeometryColumn('','',$1,$2,$3,$4,$5, $6) into ret;
+	RETURN ret;
+END;
+$_$;
 
 
 --
@@ -1140,21 +1389,179 @@ COMMENT ON FUNCTION addgeometrycolumn(character varying, character varying, char
 
 
 --
--- Name: addpoint(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: addgeometrycolumn(character varying, character varying, character varying, integer, character varying, integer, boolean); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION addpoint(geometry, geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_addpoint';
+CREATE FUNCTION addgeometrycolumn(schema_name character varying, table_name character varying, column_name character varying, new_srid integer, new_type character varying, new_dim integer, use_typmod boolean DEFAULT true) RETURNS text
+    LANGUAGE plpgsql STABLE STRICT
+    AS $_$
+DECLARE
+	ret  text;
+BEGIN
+	SELECT AddGeometryColumn('',$1,$2,$3,$4,$5,$6,$7) into ret;
+	RETURN ret;
+END;
+$_$;
 
 
 --
--- Name: addpoint(geometry, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: addgeometrycolumn(character varying, character varying, character varying, character varying, integer, character varying, integer, boolean); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION addpoint(geometry, geometry, integer) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_addpoint';
+CREATE FUNCTION addgeometrycolumn(catalog_name character varying, schema_name character varying, table_name character varying, column_name character varying, new_srid_in integer, new_type character varying, new_dim integer, use_typmod boolean DEFAULT true) RETURNS text
+    LANGUAGE plpgsql STRICT
+    AS $$
+DECLARE
+	rec RECORD;
+	sr varchar;
+	real_schema name;
+	sql text;
+	new_srid integer;
+
+BEGIN
+
+	-- Verify geometry type
+	IF (postgis_type_name(new_type,new_dim) IS NULL )
+	THEN
+		RAISE EXCEPTION 'Invalid type name "%(%)" - valid ones are:
+	POINT, MULTIPOINT,
+	LINESTRING, MULTILINESTRING,
+	POLYGON, MULTIPOLYGON,
+	CIRCULARSTRING, COMPOUNDCURVE, MULTICURVE,
+	CURVEPOLYGON, MULTISURFACE,
+	GEOMETRY, GEOMETRYCOLLECTION,
+	POINTM, MULTIPOINTM,
+	LINESTRINGM, MULTILINESTRINGM,
+	POLYGONM, MULTIPOLYGONM,
+	CIRCULARSTRINGM, COMPOUNDCURVEM, MULTICURVEM
+	CURVEPOLYGONM, MULTISURFACEM, TRIANGLE, TRIANGLEM,
+	POLYHEDRALSURFACE, POLYHEDRALSURFACEM, TIN, TINM
+	or GEOMETRYCOLLECTIONM', new_type, new_dim;
+		RETURN 'fail';
+	END IF;
+
+
+	-- Verify dimension
+	IF ( (new_dim >4) OR (new_dim <2) ) THEN
+		RAISE EXCEPTION 'invalid dimension';
+		RETURN 'fail';
+	END IF;
+
+	IF ( (new_type LIKE '%M') AND (new_dim!=3) ) THEN
+		RAISE EXCEPTION 'TypeM needs 3 dimensions';
+		RETURN 'fail';
+	END IF;
+
+
+	-- Verify SRID
+	IF ( new_srid_in > 0 ) THEN
+		IF new_srid_in > 998999 THEN
+			RAISE EXCEPTION 'AddGeometryColumn() - SRID must be <= %', 998999;
+		END IF;
+		new_srid := new_srid_in;
+		SELECT SRID INTO sr FROM spatial_ref_sys WHERE SRID = new_srid;
+		IF NOT FOUND THEN
+			RAISE EXCEPTION 'AddGeometryColumn() - invalid SRID';
+			RETURN 'fail';
+		END IF;
+	ELSE
+		new_srid := ST_SRID('POINT EMPTY'::geometry);
+		IF ( new_srid_in != new_srid ) THEN
+			RAISE NOTICE 'SRID value % converted to the officially unknown SRID value %', new_srid_in, new_srid;
+		END IF;
+	END IF;
+
+
+	-- Verify schema
+	IF ( schema_name IS NOT NULL AND schema_name != '' ) THEN
+		sql := 'SELECT nspname FROM pg_namespace ' ||
+			'WHERE text(nspname) = ' || quote_literal(schema_name) ||
+			'LIMIT 1';
+		RAISE DEBUG '%', sql;
+		EXECUTE sql INTO real_schema;
+
+		IF ( real_schema IS NULL ) THEN
+			RAISE EXCEPTION 'Schema % is not a valid schemaname', quote_literal(schema_name);
+			RETURN 'fail';
+		END IF;
+	END IF;
+
+	IF ( real_schema IS NULL ) THEN
+		RAISE DEBUG 'Detecting schema';
+		sql := 'SELECT n.nspname AS schemaname ' ||
+			'FROM pg_catalog.pg_class c ' ||
+			  'JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace ' ||
+			'WHERE c.relkind = ' || quote_literal('r') ||
+			' AND n.nspname NOT IN (' || quote_literal('pg_catalog') || ', ' || quote_literal('pg_toast') || ')' ||
+			' AND pg_catalog.pg_table_is_visible(c.oid)' ||
+			' AND c.relname = ' || quote_literal(table_name);
+		RAISE DEBUG '%', sql;
+		EXECUTE sql INTO real_schema;
+
+		IF ( real_schema IS NULL ) THEN
+			RAISE EXCEPTION 'Table % does not occur in the search_path', quote_literal(table_name);
+			RETURN 'fail';
+		END IF;
+	END IF;
+
+
+	-- Add geometry column to table
+	IF use_typmod THEN
+	     sql := 'ALTER TABLE ' ||
+            quote_ident(real_schema) || '.' || quote_ident(table_name)
+            || ' ADD COLUMN ' || quote_ident(column_name) ||
+            ' geometry(' || postgis_type_name(new_type, new_dim) || ', ' || new_srid::text || ')';
+        RAISE DEBUG '%', sql;
+	ELSE
+        sql := 'ALTER TABLE ' ||
+            quote_ident(real_schema) || '.' || quote_ident(table_name)
+            || ' ADD COLUMN ' || quote_ident(column_name) ||
+            ' geometry ';
+        RAISE DEBUG '%', sql;
+    END IF;
+	EXECUTE sql;
+
+	IF NOT use_typmod THEN
+        -- Add table CHECKs
+        sql := 'ALTER TABLE ' ||
+            quote_ident(real_schema) || '.' || quote_ident(table_name)
+            || ' ADD CONSTRAINT '
+            || quote_ident('enforce_srid_' || column_name)
+            || ' CHECK (st_srid(' || quote_ident(column_name) ||
+            ') = ' || new_srid::text || ')' ;
+        RAISE DEBUG '%', sql;
+        EXECUTE sql;
+    
+        sql := 'ALTER TABLE ' ||
+            quote_ident(real_schema) || '.' || quote_ident(table_name)
+            || ' ADD CONSTRAINT '
+            || quote_ident('enforce_dims_' || column_name)
+            || ' CHECK (st_ndims(' || quote_ident(column_name) ||
+            ') = ' || new_dim::text || ')' ;
+        RAISE DEBUG '%', sql;
+        EXECUTE sql;
+    
+        IF ( NOT (new_type = 'GEOMETRY')) THEN
+            sql := 'ALTER TABLE ' ||
+                quote_ident(real_schema) || '.' || quote_ident(table_name) || ' ADD CONSTRAINT ' ||
+                quote_ident('enforce_geotype_' || column_name) ||
+                ' CHECK (GeometryType(' ||
+                quote_ident(column_name) || ')=' ||
+                quote_literal(new_type) || ' OR (' ||
+                quote_ident(column_name) || ') is null)';
+            RAISE DEBUG '%', sql;
+            EXECUTE sql;
+        END IF;
+    END IF;
+
+	RETURN
+		real_schema || '.' ||
+		table_name || '.' || column_name ||
+		' SRID:' || new_srid::text ||
+		' TYPE:' || new_type ||
+		' DIMS:' || new_dim::text || ' ';
+END;
+$$;
 
 
 --
@@ -1164,78 +1571,6 @@ CREATE FUNCTION addpoint(geometry, geometry, integer) RETURNS geometry
 CREATE FUNCTION affine(geometry, double precision, double precision, double precision, double precision, double precision, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$SELECT affine($1,  $2, $3, 0,  $4, $5, 0,  0, 0, 1,  $6, $7, 0)$_$;
-
-
---
--- Name: affine(geometry, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION affine(geometry, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_affine';
-
-
---
--- Name: area(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION area(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_area_polygon';
-
-
---
--- Name: area2d(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION area2d(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_area_polygon';
-
-
---
--- Name: asbinary(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION asbinary(geometry) RETURNS bytea
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asBinary';
-
-
---
--- Name: asbinary(geometry, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION asbinary(geometry, text) RETURNS bytea
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asBinary';
-
-
---
--- Name: asewkb(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION asewkb(geometry) RETURNS bytea
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'WKBFromLWGEOM';
-
-
---
--- Name: asewkb(geometry, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION asewkb(geometry, text) RETURNS bytea
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'WKBFromLWGEOM';
-
-
---
--- Name: asewkt(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION asewkt(geometry) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asEWKT';
 
 
 --
@@ -1254,24 +1589,6 @@ CREATE FUNCTION asgml(geometry) RETURNS text
 CREATE FUNCTION asgml(geometry, integer) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$SELECT _ST_AsGML(2, $1, $2, 0)$_$;
-
-
---
--- Name: ashexewkb(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION ashexewkb(geometry) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asHEXEWKB';
-
-
---
--- Name: ashexewkb(geometry, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION ashexewkb(geometry, text) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asHEXEWKB';
 
 
 --
@@ -1299,51 +1616,6 @@ CREATE FUNCTION askml(geometry, integer) RETURNS text
 CREATE FUNCTION askml(integer, geometry, integer) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$SELECT _ST_AsKML($1, transform($2,4326), $3)$_$;
-
-
---
--- Name: assvg(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION assvg(geometry) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'assvg_geometry';
-
-
---
--- Name: assvg(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION assvg(geometry, integer) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'assvg_geometry';
-
-
---
--- Name: assvg(geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION assvg(geometry, integer, integer) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'assvg_geometry';
-
-
---
--- Name: astext(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION astext(geometry) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asText';
-
-
---
--- Name: azimuth(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION azimuth(geometry, geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_azimuth';
 
 
 --
@@ -1406,12 +1678,12 @@ $_$;
 
 
 --
--- Name: boundary(geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: box(box3d); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION boundary(geometry) RETURNS geometry
+CREATE FUNCTION box(box3d) RETURNS box
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'boundary';
+    AS '$libdir/postgis-2.1', 'BOX3D_to_BOX';
 
 
 --
@@ -1420,25 +1692,16 @@ CREATE FUNCTION boundary(geometry) RETURNS geometry
 
 CREATE FUNCTION box(geometry) RETURNS box
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_to_BOX';
+    AS '$libdir/postgis-2.1', 'LWGEOM_to_BOX';
 
 
 --
--- Name: box(box3d); Type: FUNCTION; Schema: public; Owner: -
+-- Name: box2d(box3d); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION box(box3d) RETURNS box
+CREATE FUNCTION box2d(box3d) RETURNS box2d
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_to_BOX';
-
-
---
--- Name: box2d(box3d_extent); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION box2d(box3d_extent) RETURNS box2d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_to_BOX2DFLOAT4';
+    AS '$libdir/postgis-2.1', 'BOX3D_to_BOX2D';
 
 
 --
@@ -1447,7 +1710,7 @@ CREATE FUNCTION box2d(box3d_extent) RETURNS box2d
 
 CREATE FUNCTION box2d(geometry) RETURNS box2d
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_to_BOX2DFLOAT4';
+    AS '$libdir/postgis-2.1', 'LWGEOM_to_BOX2D';
 
 
 --
@@ -1458,12 +1721,12 @@ COMMENT ON FUNCTION box2d(geometry) IS 'args: geomA - Returns a BOX2D representi
 
 
 --
--- Name: box2d(box3d); Type: FUNCTION; Schema: public; Owner: -
+-- Name: box3d(box2d); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION box2d(box3d) RETURNS box2d
+CREATE FUNCTION box3d(box2d) RETURNS box3d
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_to_BOX2DFLOAT4';
+    AS '$libdir/postgis-2.1', 'BOX2D_to_BOX3D';
 
 
 --
@@ -1472,7 +1735,7 @@ CREATE FUNCTION box2d(box3d) RETURNS box2d
 
 CREATE FUNCTION box3d(geometry) RETURNS box3d
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_to_BOX3D';
+    AS '$libdir/postgis-2.1', 'LWGEOM_to_BOX3D';
 
 
 --
@@ -1480,24 +1743,6 @@ CREATE FUNCTION box3d(geometry) RETURNS box3d
 --
 
 COMMENT ON FUNCTION box3d(geometry) IS 'args: geomA - Returns a BOX3D representing the maximum extents of the geometry.';
-
-
---
--- Name: box3d(box2d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION box3d(box2d) RETURNS box3d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_to_BOX3D';
-
-
---
--- Name: box3d_extent(box3d_extent); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION box3d_extent(box3d_extent) RETURNS box3d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_extent_to_BOX3D';
 
 
 --
@@ -1510,15 +1755,6 @@ CREATE FUNCTION box3dtobox(box3d) RETURNS box
 
 
 --
--- Name: buffer(geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION buffer(geometry, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'buffer';
-
-
---
 -- Name: buffer(geometry, double precision, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -1528,12 +1764,12 @@ CREATE FUNCTION buffer(geometry, double precision, integer) RETURNS geometry
 
 
 --
--- Name: buildarea(geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: bytea(geography); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION buildarea(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_buildarea';
+CREATE FUNCTION bytea(geography) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_to_bytea';
 
 
 --
@@ -1542,16 +1778,7 @@ CREATE FUNCTION buildarea(geometry) RETURNS geometry
 
 CREATE FUNCTION bytea(geometry) RETURNS bytea
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_to_bytea';
-
-
---
--- Name: centroid(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION centroid(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'centroid';
+    AS '$libdir/postgis-2.1', 'LWGEOM_to_bytea';
 
 
 --
@@ -1615,7 +1842,7 @@ COMMENT ON FUNCTION checkauth(text, text, text) IS 'args: a_schema_name, a_table
 
 CREATE FUNCTION checkauthtrigger() RETURNS trigger
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'check_authorization';
+    AS '$libdir/postgis-2.1', 'check_authorization';
 
 
 --
@@ -1675,69 +1902,6 @@ End;$_$;
 
 
 --
--- Name: collect(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION collect(geometry, geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'LWGEOM_collect';
-
-
---
--- Name: combine_bbox(box2d, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION combine_bbox(box2d, geometry) RETURNS box2d
-    LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_combine';
-
-
---
--- Name: combine_bbox(box3d_extent, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION combine_bbox(box3d_extent, geometry) RETURNS box3d_extent
-    LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'BOX3D_combine';
-
-
---
--- Name: combine_bbox(box3d, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION combine_bbox(box3d, geometry) RETURNS box3d
-    LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'BOX3D_combine';
-
-
---
--- Name: compression(chip); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION compression(chip) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_getCompression';
-
-
---
--- Name: contains(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION contains(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'contains';
-
-
---
--- Name: convexhull(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION convexhull(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'convexhull';
-
-
---
 -- Name: crc32(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -1776,42 +1940,6 @@ CREATE FUNCTION crc32(word text) RETURNS bigint
             return (tmp # 4294967295);
           END
         $$;
-
-
---
--- Name: crosses(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION crosses(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'crosses';
-
-
---
--- Name: datatype(chip); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION datatype(chip) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_getDatatype';
-
-
---
--- Name: difference(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION difference(geometry, geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'difference';
-
-
---
--- Name: dimension(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION dimension(geometry) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_dimension';
 
 
 --
@@ -1864,55 +1992,10 @@ COMMENT ON FUNCTION disablelongtransactions() IS 'Disable long transaction suppo
 
 
 --
--- Name: disjoint(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION disjoint(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'disjoint';
-
-
---
--- Name: distance(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION distance(geometry, geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_mindistance2d';
-
-
---
--- Name: distance_sphere(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION distance_sphere(geometry, geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_distance_sphere';
-
-
---
--- Name: distance_spheroid(geometry, geometry, spheroid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION distance_spheroid(geometry, geometry, spheroid) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_distance_ellipsoid';
-
-
---
--- Name: dropbbox(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION dropbbox(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_dropBBOX';
-
-
---
 -- Name: dropgeometrycolumn(character varying, character varying); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION dropgeometrycolumn(character varying, character varying) RETURNS text
+CREATE FUNCTION dropgeometrycolumn(table_name character varying, column_name character varying) RETURNS text
     LANGUAGE plpgsql STRICT
     AS $_$
 DECLARE
@@ -1925,17 +2008,17 @@ $_$;
 
 
 --
--- Name: FUNCTION dropgeometrycolumn(character varying, character varying); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION dropgeometrycolumn(table_name character varying, column_name character varying); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION dropgeometrycolumn(character varying, character varying) IS 'args: table_name, column_name - Removes a geometry column from a spatial table.';
+COMMENT ON FUNCTION dropgeometrycolumn(table_name character varying, column_name character varying) IS 'args: table_name, column_name - Removes a geometry column from a spatial table.';
 
 
 --
 -- Name: dropgeometrycolumn(character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION dropgeometrycolumn(character varying, character varying, character varying) RETURNS text
+CREATE FUNCTION dropgeometrycolumn(schema_name character varying, table_name character varying, column_name character varying) RETURNS text
     LANGUAGE plpgsql STRICT
     AS $_$
 DECLARE
@@ -1948,24 +2031,20 @@ $_$;
 
 
 --
--- Name: FUNCTION dropgeometrycolumn(character varying, character varying, character varying); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION dropgeometrycolumn(schema_name character varying, table_name character varying, column_name character varying); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION dropgeometrycolumn(character varying, character varying, character varying) IS 'args: schema_name, table_name, column_name - Removes a geometry column from a spatial table.';
+COMMENT ON FUNCTION dropgeometrycolumn(schema_name character varying, table_name character varying, column_name character varying) IS 'args: schema_name, table_name, column_name - Removes a geometry column from a spatial table.';
 
 
 --
 -- Name: dropgeometrycolumn(character varying, character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION dropgeometrycolumn(character varying, character varying, character varying, character varying) RETURNS text
+CREATE FUNCTION dropgeometrycolumn(catalog_name character varying, schema_name character varying, table_name character varying, column_name character varying) RETURNS text
     LANGUAGE plpgsql STRICT
-    AS $_$
+    AS $$
 DECLARE
-	catalog_name alias for $1;
-	schema_name alias for $2;
-	table_name alias for $3;
-	column_name alias for $4;
 	myrec RECORD;
 	okay boolean;
 	real_schema name;
@@ -1975,13 +2054,13 @@ BEGIN
 
 	-- Find, check or fix schema_name
 	IF ( schema_name != '' ) THEN
-		okay = 'f';
+		okay = false;
 
 		FOR myrec IN SELECT nspname FROM pg_namespace WHERE text(nspname) = schema_name LOOP
-			okay := 't';
+			okay := true;
 		END LOOP;
 
-		IF ( okay <> 't' ) THEN
+		IF ( okay <>  true ) THEN
 			RAISE NOTICE 'Invalid schema name - using current_schema()';
 			SELECT current_schema() into real_schema;
 		ELSE
@@ -1992,20 +2071,14 @@ BEGIN
 	END IF;
 
 	-- Find out if the column is in the geometry_columns table
-	okay = 'f';
+	okay = false;
 	FOR myrec IN SELECT * from geometry_columns where f_table_schema = text(real_schema) and f_table_name = table_name and f_geometry_column = column_name LOOP
-		okay := 't';
+		okay := true;
 	END LOOP;
-	IF (okay <> 't') THEN
+	IF (okay <> true) THEN
 		RAISE EXCEPTION 'column not found in geometry_columns table';
-		RETURN 'f';
+		RETURN false;
 	END IF;
-
-	-- Remove ref from geometry_columns table
-	EXECUTE 'delete from geometry_columns where f_table_schema = ' ||
-		quote_literal(real_schema) || ' and f_table_name = ' ||
-		quote_literal(table_name)  || ' and f_geometry_column = ' ||
-		quote_literal(column_name);
 
 	-- Remove table column
 	EXECUTE 'ALTER TABLE ' || quote_ident(real_schema) || '.' ||
@@ -2015,59 +2088,56 @@ BEGIN
 	RETURN real_schema || '.' || table_name || '.' || column_name ||' effectively removed.';
 
 END;
-$_$;
+$$;
 
 
 --
--- Name: FUNCTION dropgeometrycolumn(character varying, character varying, character varying, character varying); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION dropgeometrycolumn(catalog_name character varying, schema_name character varying, table_name character varying, column_name character varying); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION dropgeometrycolumn(character varying, character varying, character varying, character varying) IS 'args: catalog_name, schema_name, table_name, column_name - Removes a geometry column from a spatial table.';
+COMMENT ON FUNCTION dropgeometrycolumn(catalog_name character varying, schema_name character varying, table_name character varying, column_name character varying) IS 'args: catalog_name, schema_name, table_name, column_name - Removes a geometry column from a spatial table.';
 
 
 --
 -- Name: dropgeometrytable(character varying); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION dropgeometrytable(character varying) RETURNS text
+CREATE FUNCTION dropgeometrytable(table_name character varying) RETURNS text
     LANGUAGE sql STRICT
     AS $_$ SELECT DropGeometryTable('','',$1) $_$;
 
 
 --
--- Name: FUNCTION dropgeometrytable(character varying); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION dropgeometrytable(table_name character varying); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION dropgeometrytable(character varying) IS 'args: table_name - Drops a table and all its references in geometry_columns.';
+COMMENT ON FUNCTION dropgeometrytable(table_name character varying) IS 'args: table_name - Drops a table and all its references in geometry_columns.';
 
 
 --
 -- Name: dropgeometrytable(character varying, character varying); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION dropgeometrytable(character varying, character varying) RETURNS text
+CREATE FUNCTION dropgeometrytable(schema_name character varying, table_name character varying) RETURNS text
     LANGUAGE sql STRICT
     AS $_$ SELECT DropGeometryTable('',$1,$2) $_$;
 
 
 --
--- Name: FUNCTION dropgeometrytable(character varying, character varying); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION dropgeometrytable(schema_name character varying, table_name character varying); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION dropgeometrytable(character varying, character varying) IS 'args: schema_name, table_name - Drops a table and all its references in geometry_columns.';
+COMMENT ON FUNCTION dropgeometrytable(schema_name character varying, table_name character varying) IS 'args: schema_name, table_name - Drops a table and all its references in geometry_columns.';
 
 
 --
 -- Name: dropgeometrytable(character varying, character varying, character varying); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION dropgeometrytable(character varying, character varying, character varying) RETURNS text
+CREATE FUNCTION dropgeometrytable(catalog_name character varying, schema_name character varying, table_name character varying) RETURNS text
     LANGUAGE plpgsql STRICT
-    AS $_$
+    AS $$
 DECLARE
-	catalog_name alias for $1;
-	schema_name alias for $2;
-	table_name alias for $3;
 	real_schema name;
 
 BEGIN
@@ -2078,48 +2148,25 @@ BEGIN
 		real_schema = schema_name;
 	END IF;
 
-	-- Remove refs from geometry_columns table
-	EXECUTE 'DELETE FROM geometry_columns WHERE ' ||
-		'f_table_schema = ' || quote_literal(real_schema) ||
-		' AND ' ||
-		' f_table_name = ' || quote_literal(table_name);
-
+	-- TODO: Should we warn if table doesn't exist probably instead just saying dropped
 	-- Remove table
-	EXECUTE 'DROP TABLE '
+	EXECUTE 'DROP TABLE IF EXISTS '
 		|| quote_ident(real_schema) || '.' ||
-		quote_ident(table_name);
+		quote_ident(table_name) || ' RESTRICT';
 
 	RETURN
 		real_schema || '.' ||
 		table_name ||' dropped.';
 
 END;
-$_$;
+$$;
 
 
 --
--- Name: FUNCTION dropgeometrytable(character varying, character varying, character varying); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION dropgeometrytable(catalog_name character varying, schema_name character varying, table_name character varying); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION dropgeometrytable(character varying, character varying, character varying) IS 'args: catalog_name, schema_name, table_name - Drops a table and all its references in geometry_columns.';
-
-
---
--- Name: dump(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION dump(geometry) RETURNS SETOF geometry_dump
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_dump';
-
-
---
--- Name: dumprings(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION dumprings(geometry) RETURNS SETOF geometry_dump
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_dump_rings';
+COMMENT ON FUNCTION dropgeometrytable(catalog_name character varying, schema_name character varying, table_name character varying) IS 'args: catalog_name, schema_name, table_name - Drops a table and all its references in geometry_columns.';
 
 
 --
@@ -2187,93 +2234,12 @@ COMMENT ON FUNCTION enablelongtransactions() IS 'Enable long transaction support
 
 
 --
--- Name: endpoint(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION endpoint(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_endpoint_linestring';
-
-
---
--- Name: envelope(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION envelope(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_envelope';
-
-
---
 -- Name: equals(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION equals(geometry, geometry) RETURNS boolean
+CREATE FUNCTION equals(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geomequals';
-
-
---
--- Name: estimated_extent(text, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION estimated_extent(text, text) RETURNS box2d
-    LANGUAGE c IMMUTABLE STRICT SECURITY DEFINER
-    AS '$libdir/postgis-1.5', 'LWGEOM_estimated_extent';
-
-
---
--- Name: estimated_extent(text, text, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION estimated_extent(text, text, text) RETURNS box2d
-    LANGUAGE c IMMUTABLE STRICT SECURITY DEFINER
-    AS '$libdir/postgis-1.5', 'LWGEOM_estimated_extent';
-
-
---
--- Name: expand(box3d, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION expand(box3d, double precision) RETURNS box3d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_expand';
-
-
---
--- Name: expand(box2d, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION expand(box2d, double precision) RETURNS box2d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_expand';
-
-
---
--- Name: expand(geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION expand(geometry, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_expand';
-
-
---
--- Name: exteriorring(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION exteriorring(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_exteriorring_polygon';
-
-
---
--- Name: factor(chip); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION factor(chip) RETURNS real
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_getFactor';
+    AS '$libdir/postgis-2.1', 'ST_Equals';
 
 
 --
@@ -2429,66 +2395,12 @@ $$;
 
 
 --
--- Name: force_2d(geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: geography(bytea); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION force_2d(geometry) RETURNS geometry
+CREATE FUNCTION geography(bytea) RETURNS geography
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_2d';
-
-
---
--- Name: force_3d(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION force_3d(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_3dz';
-
-
---
--- Name: force_3dm(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION force_3dm(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_3dm';
-
-
---
--- Name: force_3dz(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION force_3dz(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_3dz';
-
-
---
--- Name: force_4d(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION force_4d(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_4d';
-
-
---
--- Name: force_collection(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION force_collection(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_collection';
-
-
---
--- Name: forcerhr(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION forcerhr(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_forceRHR_poly';
+    AS '$libdir/postgis-2.1', 'LWGEOM_from_bytea';
 
 
 --
@@ -2497,7 +2409,7 @@ CREATE FUNCTION forcerhr(geometry) RETURNS geometry
 
 CREATE FUNCTION geography(geometry) RETURNS geography
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_from_geometry';
+    AS '$libdir/postgis-2.1', 'geography_from_geometry';
 
 
 --
@@ -2506,7 +2418,7 @@ CREATE FUNCTION geography(geometry) RETURNS geography
 
 CREATE FUNCTION geography(geography, integer, boolean) RETURNS geography
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_enforce_typmod';
+    AS '$libdir/postgis-2.1', 'geography_enforce_typmod';
 
 
 --
@@ -2515,7 +2427,7 @@ CREATE FUNCTION geography(geography, integer, boolean) RETURNS geography
 
 CREATE FUNCTION geography_cmp(geography, geography) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_cmp';
+    AS '$libdir/postgis-2.1', 'geography_cmp';
 
 
 --
@@ -2524,7 +2436,7 @@ CREATE FUNCTION geography_cmp(geography, geography) RETURNS integer
 
 CREATE FUNCTION geography_eq(geography, geography) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_eq';
+    AS '$libdir/postgis-2.1', 'geography_eq';
 
 
 --
@@ -2533,7 +2445,7 @@ CREATE FUNCTION geography_eq(geography, geography) RETURNS boolean
 
 CREATE FUNCTION geography_ge(geography, geography) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_ge';
+    AS '$libdir/postgis-2.1', 'geography_ge';
 
 
 --
@@ -2542,16 +2454,16 @@ CREATE FUNCTION geography_ge(geography, geography) RETURNS boolean
 
 CREATE FUNCTION geography_gist_compress(internal) RETURNS internal
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'geography_gist_compress';
+    AS '$libdir/postgis-2.1', 'gserialized_gist_compress';
 
 
 --
--- Name: geography_gist_consistent(internal, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: geography_gist_consistent(internal, geography, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geography_gist_consistent(internal, geometry, integer) RETURNS boolean
+CREATE FUNCTION geography_gist_consistent(internal, geography, integer) RETURNS boolean
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'geography_gist_consistent';
+    AS '$libdir/postgis-2.1', 'gserialized_gist_consistent';
 
 
 --
@@ -2560,16 +2472,7 @@ CREATE FUNCTION geography_gist_consistent(internal, geometry, integer) RETURNS b
 
 CREATE FUNCTION geography_gist_decompress(internal) RETURNS internal
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'geography_gist_decompress';
-
-
---
--- Name: geography_gist_join_selectivity(internal, oid, internal, smallint); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION geography_gist_join_selectivity(internal, oid, internal, smallint) RETURNS double precision
-    LANGUAGE c
-    AS '$libdir/postgis-1.5', 'geography_gist_join_selectivity';
+    AS '$libdir/postgis-2.1', 'gserialized_gist_decompress';
 
 
 --
@@ -2578,7 +2481,7 @@ CREATE FUNCTION geography_gist_join_selectivity(internal, oid, internal, smallin
 
 CREATE FUNCTION geography_gist_penalty(internal, internal, internal) RETURNS internal
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'geography_gist_penalty';
+    AS '$libdir/postgis-2.1', 'gserialized_gist_penalty';
 
 
 --
@@ -2587,7 +2490,7 @@ CREATE FUNCTION geography_gist_penalty(internal, internal, internal) RETURNS int
 
 CREATE FUNCTION geography_gist_picksplit(internal, internal) RETURNS internal
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'geography_gist_picksplit';
+    AS '$libdir/postgis-2.1', 'gserialized_gist_picksplit';
 
 
 --
@@ -2596,16 +2499,7 @@ CREATE FUNCTION geography_gist_picksplit(internal, internal) RETURNS internal
 
 CREATE FUNCTION geography_gist_same(box2d, box2d, internal) RETURNS internal
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'geography_gist_same';
-
-
---
--- Name: geography_gist_selectivity(internal, oid, internal, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION geography_gist_selectivity(internal, oid, internal, integer) RETURNS double precision
-    LANGUAGE c
-    AS '$libdir/postgis-1.5', 'geography_gist_selectivity';
+    AS '$libdir/postgis-2.1', 'gserialized_gist_same';
 
 
 --
@@ -2614,7 +2508,7 @@ CREATE FUNCTION geography_gist_selectivity(internal, oid, internal, integer) RET
 
 CREATE FUNCTION geography_gist_union(bytea, internal) RETURNS internal
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'geography_gist_union';
+    AS '$libdir/postgis-2.1', 'gserialized_gist_union';
 
 
 --
@@ -2623,7 +2517,7 @@ CREATE FUNCTION geography_gist_union(bytea, internal) RETURNS internal
 
 CREATE FUNCTION geography_gt(geography, geography) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_gt';
+    AS '$libdir/postgis-2.1', 'geography_gt';
 
 
 --
@@ -2632,7 +2526,7 @@ CREATE FUNCTION geography_gt(geography, geography) RETURNS boolean
 
 CREATE FUNCTION geography_le(geography, geography) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_le';
+    AS '$libdir/postgis-2.1', 'geography_le';
 
 
 --
@@ -2641,7 +2535,7 @@ CREATE FUNCTION geography_le(geography, geography) RETURNS boolean
 
 CREATE FUNCTION geography_lt(geography, geography) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_lt';
+    AS '$libdir/postgis-2.1', 'geography_lt';
 
 
 --
@@ -2650,34 +2544,7 @@ CREATE FUNCTION geography_lt(geography, geography) RETURNS boolean
 
 CREATE FUNCTION geography_overlaps(geography, geography) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_overlaps';
-
-
---
--- Name: geography_typmod_dims(integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION geography_typmod_dims(integer) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_typmod_dims';
-
-
---
--- Name: geography_typmod_srid(integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION geography_typmod_srid(integer) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_typmod_srid';
-
-
---
--- Name: geography_typmod_type(integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION geography_typmod_type(integer) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_typmod_type';
+    AS '$libdir/postgis-2.1', 'gserialized_overlaps';
 
 
 --
@@ -2737,12 +2604,39 @@ CREATE FUNCTION geomcollfromwkb(bytea, integer) RETURNS geometry
 
 
 --
--- Name: geometry(box3d_extent); Type: FUNCTION; Schema: public; Owner: -
+-- Name: geometry(bytea); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry(box3d_extent) RETURNS geometry
+CREATE FUNCTION geometry(bytea) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_to_LWGEOM';
+    AS '$libdir/postgis-2.1', 'LWGEOM_from_bytea';
+
+
+--
+-- Name: geometry(path); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry(path) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'path_to_geometry';
+
+
+--
+-- Name: geometry(point); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry(point) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'point_to_geometry';
+
+
+--
+-- Name: geometry(polygon); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry(polygon) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'polygon_to_geometry';
 
 
 --
@@ -2751,7 +2645,7 @@ CREATE FUNCTION geometry(box3d_extent) RETURNS geometry
 
 CREATE FUNCTION geometry(box2d) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_to_LWGEOM';
+    AS '$libdir/postgis-2.1', 'BOX2D_to_LWGEOM';
 
 
 --
@@ -2760,34 +2654,7 @@ CREATE FUNCTION geometry(box2d) RETURNS geometry
 
 CREATE FUNCTION geometry(box3d) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_to_LWGEOM';
-
-
---
--- Name: geometry(text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION geometry(text) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'parse_WKT_lwgeom';
-
-
---
--- Name: geometry(chip); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION geometry(chip) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_to_LWGEOM';
-
-
---
--- Name: geometry(bytea); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION geometry(bytea) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_from_bytea';
+    AS '$libdir/postgis-2.1', 'BOX3D_to_LWGEOM';
 
 
 --
@@ -2796,223 +2663,358 @@ CREATE FUNCTION geometry(bytea) RETURNS geometry
 
 CREATE FUNCTION geometry(geography) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geometry_from_geography';
+    AS '$libdir/postgis-2.1', 'geometry_from_geography';
+
+
+--
+-- Name: geometry(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry(text) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'parse_WKT_lwgeom';
+
+
+--
+-- Name: geometry(geometry, integer, boolean); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry(geometry, integer, boolean) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'geometry_enforce_typmod';
 
 
 --
 -- Name: geometry_above(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_above(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_above(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_above';
+    AS '$libdir/postgis-2.1', 'gserialized_above_2d';
 
 
 --
 -- Name: geometry_below(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_below(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_below(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_below';
+    AS '$libdir/postgis-2.1', 'gserialized_below_2d';
 
 
 --
 -- Name: geometry_cmp(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_cmp(geometry, geometry) RETURNS integer
+CREATE FUNCTION geometry_cmp(geom1 geometry, geom2 geometry) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'lwgeom_cmp';
+    AS '$libdir/postgis-2.1', 'lwgeom_cmp';
 
 
 --
--- Name: geometry_contain(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: geometry_contains(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_contain(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_contains(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_contain';
+    AS '$libdir/postgis-2.1', 'gserialized_contains_2d';
 
 
 --
--- Name: geometry_contained(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: geometry_distance_box(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_contained(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_distance_box(geom1 geometry, geom2 geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_contained';
+    AS '$libdir/postgis-2.1', 'gserialized_distance_box_2d';
+
+
+--
+-- Name: geometry_distance_centroid(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_distance_centroid(geom1 geometry, geom2 geometry) RETURNS double precision
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'gserialized_distance_centroid_2d';
 
 
 --
 -- Name: geometry_eq(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_eq(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_eq(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'lwgeom_eq';
+    AS '$libdir/postgis-2.1', 'lwgeom_eq';
 
 
 --
 -- Name: geometry_ge(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_ge(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_ge(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'lwgeom_ge';
+    AS '$libdir/postgis-2.1', 'lwgeom_ge';
 
 
 --
--- Name: geometry_gist_joinsel(internal, oid, internal, smallint); Type: FUNCTION; Schema: public; Owner: -
+-- Name: geometry_gist_compress_2d(internal); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_gist_joinsel(internal, oid, internal, smallint) RETURNS double precision
+CREATE FUNCTION geometry_gist_compress_2d(internal) RETURNS internal
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'LWGEOM_gist_joinsel';
+    AS '$libdir/postgis-2.1', 'gserialized_gist_compress_2d';
 
 
 --
--- Name: geometry_gist_sel(internal, oid, internal, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: geometry_gist_compress_nd(internal); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_gist_sel(internal, oid, internal, integer) RETURNS double precision
+CREATE FUNCTION geometry_gist_compress_nd(internal) RETURNS internal
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'LWGEOM_gist_sel';
+    AS '$libdir/postgis-2.1', 'gserialized_gist_compress';
+
+
+--
+-- Name: geometry_gist_consistent_2d(internal, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_gist_consistent_2d(internal, geometry, integer) RETURNS boolean
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_consistent_2d';
+
+
+--
+-- Name: geometry_gist_consistent_nd(internal, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_gist_consistent_nd(internal, geometry, integer) RETURNS boolean
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_consistent';
+
+
+--
+-- Name: geometry_gist_decompress_2d(internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_gist_decompress_2d(internal) RETURNS internal
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_decompress_2d';
+
+
+--
+-- Name: geometry_gist_decompress_nd(internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_gist_decompress_nd(internal) RETURNS internal
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_decompress';
+
+
+--
+-- Name: geometry_gist_distance_2d(internal, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_gist_distance_2d(internal, geometry, integer) RETURNS double precision
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_distance_2d';
+
+
+--
+-- Name: geometry_gist_penalty_2d(internal, internal, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_gist_penalty_2d(internal, internal, internal) RETURNS internal
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_penalty_2d';
+
+
+--
+-- Name: geometry_gist_penalty_nd(internal, internal, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_gist_penalty_nd(internal, internal, internal) RETURNS internal
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_penalty';
+
+
+--
+-- Name: geometry_gist_picksplit_2d(internal, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_gist_picksplit_2d(internal, internal) RETURNS internal
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_picksplit_2d';
+
+
+--
+-- Name: geometry_gist_picksplit_nd(internal, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_gist_picksplit_nd(internal, internal) RETURNS internal
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_picksplit';
+
+
+--
+-- Name: geometry_gist_same_2d(geometry, geometry, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_gist_same_2d(geom1 geometry, geom2 geometry, internal) RETURNS internal
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_same_2d';
+
+
+--
+-- Name: geometry_gist_same_nd(geometry, geometry, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_gist_same_nd(geometry, geometry, internal) RETURNS internal
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_same';
+
+
+--
+-- Name: geometry_gist_union_2d(bytea, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_gist_union_2d(bytea, internal) RETURNS internal
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_union_2d';
+
+
+--
+-- Name: geometry_gist_union_nd(bytea, internal); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_gist_union_nd(bytea, internal) RETURNS internal
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_union';
 
 
 --
 -- Name: geometry_gt(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_gt(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_gt(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'lwgeom_gt';
+    AS '$libdir/postgis-2.1', 'lwgeom_gt';
 
 
 --
 -- Name: geometry_le(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_le(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_le(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'lwgeom_le';
+    AS '$libdir/postgis-2.1', 'lwgeom_le';
 
 
 --
 -- Name: geometry_left(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_left(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_left(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_left';
+    AS '$libdir/postgis-2.1', 'gserialized_left_2d';
 
 
 --
 -- Name: geometry_lt(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_lt(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_lt(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'lwgeom_lt';
+    AS '$libdir/postgis-2.1', 'lwgeom_lt';
 
 
 --
 -- Name: geometry_overabove(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_overabove(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_overabove(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_overabove';
+    AS '$libdir/postgis-2.1', 'gserialized_overabove_2d';
 
 
 --
 -- Name: geometry_overbelow(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_overbelow(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_overbelow(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_overbelow';
+    AS '$libdir/postgis-2.1', 'gserialized_overbelow_2d';
 
 
 --
--- Name: geometry_overlap(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: geometry_overlaps(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_overlap(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_overlaps(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_overlap';
+    AS '$libdir/postgis-2.1', 'gserialized_overlaps_2d';
+
+
+--
+-- Name: geometry_overlaps_nd(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION geometry_overlaps_nd(geometry, geometry) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'gserialized_overlaps';
 
 
 --
 -- Name: geometry_overleft(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_overleft(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_overleft(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_overleft';
+    AS '$libdir/postgis-2.1', 'gserialized_overleft_2d';
 
 
 --
 -- Name: geometry_overright(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_overright(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_overright(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_overright';
+    AS '$libdir/postgis-2.1', 'gserialized_overright_2d';
 
 
 --
 -- Name: geometry_right(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_right(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_right(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_right';
+    AS '$libdir/postgis-2.1', 'gserialized_right_2d';
 
 
 --
 -- Name: geometry_same(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_same(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_same(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_samebox';
+    AS '$libdir/postgis-2.1', 'gserialized_same_2d';
 
 
 --
--- Name: geometry_samebox(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: geometry_within(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometry_samebox(geometry, geometry) RETURNS boolean
+CREATE FUNCTION geometry_within(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_samebox';
+    AS '$libdir/postgis-2.1', 'gserialized_within_2d';
 
 
 --
--- Name: geometryfromtext(text); Type: FUNCTION; Schema: public; Owner: -
+-- Name: geometrytype(geography); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION geometryfromtext(text) RETURNS geometry
+CREATE FUNCTION geometrytype(geography) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_from_text';
-
-
---
--- Name: geometryfromtext(text, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION geometryfromtext(text, integer) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_from_text';
-
-
---
--- Name: geometryn(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION geometryn(geometry, integer) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_geometryn_collection';
+    AS '$libdir/postgis-2.1', 'LWGEOM_getTYPE';
 
 
 --
@@ -3021,7 +3023,7 @@ CREATE FUNCTION geometryn(geometry, integer) RETURNS geometry
 
 CREATE FUNCTION geometrytype(geometry) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_getTYPE';
+    AS '$libdir/postgis-2.1', 'LWGEOM_getTYPE';
 
 
 --
@@ -3037,7 +3039,7 @@ COMMENT ON FUNCTION geometrytype(geometry) IS 'args: geomA - Returns the type of
 
 CREATE FUNCTION geomfromewkb(bytea) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOMFromWKB';
+    AS '$libdir/postgis-2.1', 'LWGEOMFromWKB';
 
 
 --
@@ -3046,7 +3048,7 @@ CREATE FUNCTION geomfromewkb(bytea) RETURNS geometry
 
 CREATE FUNCTION geomfromewkt(text) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'parse_WKT_lwgeom';
+    AS '$libdir/postgis-2.1', 'parse_WKT_lwgeom';
 
 
 --
@@ -3068,30 +3070,12 @@ CREATE FUNCTION geomfromtext(text, integer) RETURNS geometry
 
 
 --
--- Name: geomfromwkb(bytea); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION geomfromwkb(bytea) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_from_WKB';
-
-
---
 -- Name: geomfromwkb(bytea, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION geomfromwkb(bytea, integer) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$SELECT setSRID(GeomFromWKB($1), $2)$_$;
-
-
---
--- Name: geomunion(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION geomunion(geometry, geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geomunion';
 
 
 --
@@ -3108,210 +3092,48 @@ $_$;
 
 
 --
--- Name: getbbox(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION getbbox(geometry) RETURNS box2d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_to_BOX2DFLOAT4';
-
-
---
--- Name: getsrid(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION getsrid(geometry) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_getSRID';
-
-
---
 -- Name: gettransactionid(); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION gettransactionid() RETURNS xid
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'getTransactionID';
+    AS '$libdir/postgis-2.1', 'getTransactionID';
 
 
 --
--- Name: hasbbox(geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: gserialized_gist_joinsel_2d(internal, oid, internal, smallint); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION hasbbox(geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_hasBBOX';
-
-
---
--- Name: height(chip); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION height(chip) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_getHeight';
+CREATE FUNCTION gserialized_gist_joinsel_2d(internal, oid, internal, smallint) RETURNS double precision
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_joinsel_2d';
 
 
 --
--- Name: interiorringn(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: gserialized_gist_joinsel_nd(internal, oid, internal, smallint); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION interiorringn(geometry, integer) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_interiorringn_polygon';
-
-
---
--- Name: intersection(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION intersection(geometry, geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'intersection';
+CREATE FUNCTION gserialized_gist_joinsel_nd(internal, oid, internal, smallint) RETURNS double precision
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_joinsel_nd';
 
 
 --
--- Name: intersects(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: gserialized_gist_sel_2d(internal, oid, internal, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION intersects(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'intersects';
-
-
---
--- Name: isclosed(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION isclosed(geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_isclosed_linestring';
+CREATE FUNCTION gserialized_gist_sel_2d(internal, oid, internal, integer) RETURNS double precision
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_sel_2d';
 
 
 --
--- Name: isempty(geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: gserialized_gist_sel_nd(internal, oid, internal, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION isempty(geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_isempty';
-
-
---
--- Name: isring(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION isring(geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'isring';
-
-
---
--- Name: issimple(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION issimple(geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'issimple';
-
-
---
--- Name: isvalid(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION isvalid(geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'isvalid';
-
-
---
--- Name: length(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION length(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_length_linestring';
-
-
---
--- Name: length2d(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION length2d(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_length2d_linestring';
-
-
---
--- Name: length2d_spheroid(geometry, spheroid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION length2d_spheroid(geometry, spheroid) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_length2d_ellipsoid';
-
-
---
--- Name: length3d(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION length3d(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_length_linestring';
-
-
---
--- Name: length3d_spheroid(geometry, spheroid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION length3d_spheroid(geometry, spheroid) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_length_ellipsoid_linestring';
-
-
---
--- Name: length_spheroid(geometry, spheroid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION length_spheroid(geometry, spheroid) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_length_ellipsoid_linestring';
-
-
---
--- Name: line_interpolate_point(geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION line_interpolate_point(geometry, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_line_interpolate_point';
-
-
---
--- Name: line_locate_point(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION line_locate_point(geometry, geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_line_locate_point';
-
-
---
--- Name: line_substring(geometry, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION line_substring(geometry, double precision, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_line_substring';
-
-
---
--- Name: linefrommultipoint(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION linefrommultipoint(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_line_from_mpoint';
+CREATE FUNCTION gserialized_gist_sel_nd(internal, oid, internal, integer) RETURNS double precision
+    LANGUAGE c
+    AS '$libdir/postgis-2.1', 'gserialized_gist_sel_nd';
 
 
 --
@@ -3367,15 +3189,6 @@ CREATE FUNCTION linefromwkb(bytea, integer) RETURNS geometry
 
 
 --
--- Name: linemerge(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION linemerge(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'linemerge';
-
-
---
 -- Name: linestringfromtext(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -3426,15 +3239,6 @@ CREATE FUNCTION linestringfromwkb(bytea, integer) RETURNS geometry
 CREATE FUNCTION locate_along_measure(geometry, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$ SELECT locate_between_measures($1, $2, $2) $_$;
-
-
---
--- Name: locate_between_measures(geometry, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION locate_between_measures(geometry, double precision, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_locate_between_m';
 
 
 --
@@ -3556,186 +3360,6 @@ BEGIN
 	return 'f';
 END;
 $$;
-
-
---
--- Name: lwgeom_gist_compress(internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION lwgeom_gist_compress(internal) RETURNS internal
-    LANGUAGE c
-    AS '$libdir/postgis-1.5', 'LWGEOM_gist_compress';
-
-
---
--- Name: lwgeom_gist_consistent(internal, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION lwgeom_gist_consistent(internal, geometry, integer) RETURNS boolean
-    LANGUAGE c
-    AS '$libdir/postgis-1.5', 'LWGEOM_gist_consistent';
-
-
---
--- Name: lwgeom_gist_decompress(internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION lwgeom_gist_decompress(internal) RETURNS internal
-    LANGUAGE c
-    AS '$libdir/postgis-1.5', 'LWGEOM_gist_decompress';
-
-
---
--- Name: lwgeom_gist_penalty(internal, internal, internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION lwgeom_gist_penalty(internal, internal, internal) RETURNS internal
-    LANGUAGE c
-    AS '$libdir/postgis-1.5', 'LWGEOM_gist_penalty';
-
-
---
--- Name: lwgeom_gist_picksplit(internal, internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION lwgeom_gist_picksplit(internal, internal) RETURNS internal
-    LANGUAGE c
-    AS '$libdir/postgis-1.5', 'LWGEOM_gist_picksplit';
-
-
---
--- Name: lwgeom_gist_same(box2d, box2d, internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION lwgeom_gist_same(box2d, box2d, internal) RETURNS internal
-    LANGUAGE c
-    AS '$libdir/postgis-1.5', 'LWGEOM_gist_same';
-
-
---
--- Name: lwgeom_gist_union(bytea, internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION lwgeom_gist_union(bytea, internal) RETURNS internal
-    LANGUAGE c
-    AS '$libdir/postgis-1.5', 'LWGEOM_gist_union';
-
-
---
--- Name: m(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION m(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_m_point';
-
-
---
--- Name: makebox2d(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION makebox2d(geometry, geometry) RETURNS box2d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_construct';
-
-
---
--- Name: makebox3d(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION makebox3d(geometry, geometry) RETURNS box3d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_construct';
-
-
---
--- Name: makeline(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION makeline(geometry, geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makeline';
-
-
---
--- Name: makeline_garray(geometry[]); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION makeline_garray(geometry[]) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makeline_garray';
-
-
---
--- Name: makepoint(double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION makepoint(double precision, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makepoint';
-
-
---
--- Name: makepoint(double precision, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION makepoint(double precision, double precision, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makepoint';
-
-
---
--- Name: makepoint(double precision, double precision, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION makepoint(double precision, double precision, double precision, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makepoint';
-
-
---
--- Name: makepointm(double precision, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION makepointm(double precision, double precision, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makepoint3dm';
-
-
---
--- Name: makepolygon(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION makepolygon(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makepoly';
-
-
---
--- Name: makepolygon(geometry, geometry[]); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION makepolygon(geometry, geometry[]) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makepoly';
-
-
---
--- Name: max_distance(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION max_distance(geometry, geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_maxdistance2d_linestring';
-
-
---
--- Name: mem_size(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION mem_size(geometry) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_mem_size';
 
 
 --
@@ -3896,15 +3520,6 @@ CREATE FUNCTION mpolyfromwkb(bytea, integer) RETURNS geometry
 
 
 --
--- Name: multi(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION multi(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_multi';
-
-
---
 -- Name: multilinefromwkb(bytea); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -4037,111 +3652,12 @@ CREATE FUNCTION multipolygonfromtext(text, integer) RETURNS geometry
 
 
 --
--- Name: ndims(geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: path(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION ndims(geometry) RETURNS smallint
+CREATE FUNCTION path(geometry) RETURNS path
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_ndims';
-
-
---
--- Name: noop(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION noop(geometry) RETURNS geometry
-    LANGUAGE c STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_noop';
-
-
---
--- Name: npoints(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION npoints(geometry) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_npoints';
-
-
---
--- Name: nrings(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION nrings(geometry) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_nrings';
-
-
---
--- Name: numgeometries(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION numgeometries(geometry) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_numgeometries_collection';
-
-
---
--- Name: numinteriorring(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION numinteriorring(geometry) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_numinteriorrings_polygon';
-
-
---
--- Name: numinteriorrings(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION numinteriorrings(geometry) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_numinteriorrings_polygon';
-
-
---
--- Name: numpoints(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION numpoints(geometry) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_numpoints_linestring';
-
-
---
--- Name: overlaps(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION "overlaps"(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'overlaps';
-
-
---
--- Name: perimeter(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION perimeter(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_perimeter_poly';
-
-
---
--- Name: perimeter2d(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION perimeter2d(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_perimeter2d_poly';
-
-
---
--- Name: perimeter3d(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION perimeter3d(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_perimeter_poly';
+    AS '$libdir/postgis-2.1', 'geometry_to_path';
 
 
 --
@@ -4150,7 +3666,7 @@ CREATE FUNCTION perimeter3d(geometry) RETURNS double precision
 
 CREATE FUNCTION pgis_geometry_accum_finalfn(pgis_abs) RETURNS geometry[]
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'pgis_geometry_accum_finalfn';
+    AS '$libdir/postgis-2.1', 'pgis_geometry_accum_finalfn';
 
 
 --
@@ -4159,7 +3675,7 @@ CREATE FUNCTION pgis_geometry_accum_finalfn(pgis_abs) RETURNS geometry[]
 
 CREATE FUNCTION pgis_geometry_accum_transfn(pgis_abs, geometry) RETURNS pgis_abs
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'pgis_geometry_accum_transfn';
+    AS '$libdir/postgis-2.1', 'pgis_geometry_accum_transfn';
 
 
 --
@@ -4168,7 +3684,7 @@ CREATE FUNCTION pgis_geometry_accum_transfn(pgis_abs, geometry) RETURNS pgis_abs
 
 CREATE FUNCTION pgis_geometry_collect_finalfn(pgis_abs) RETURNS geometry
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'pgis_geometry_collect_finalfn';
+    AS '$libdir/postgis-2.1', 'pgis_geometry_collect_finalfn';
 
 
 --
@@ -4177,7 +3693,7 @@ CREATE FUNCTION pgis_geometry_collect_finalfn(pgis_abs) RETURNS geometry
 
 CREATE FUNCTION pgis_geometry_makeline_finalfn(pgis_abs) RETURNS geometry
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'pgis_geometry_makeline_finalfn';
+    AS '$libdir/postgis-2.1', 'pgis_geometry_makeline_finalfn';
 
 
 --
@@ -4186,7 +3702,7 @@ CREATE FUNCTION pgis_geometry_makeline_finalfn(pgis_abs) RETURNS geometry
 
 CREATE FUNCTION pgis_geometry_polygonize_finalfn(pgis_abs) RETURNS geometry
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'pgis_geometry_polygonize_finalfn';
+    AS '$libdir/postgis-2.1', 'pgis_geometry_polygonize_finalfn';
 
 
 --
@@ -4195,16 +3711,16 @@ CREATE FUNCTION pgis_geometry_polygonize_finalfn(pgis_abs) RETURNS geometry
 
 CREATE FUNCTION pgis_geometry_union_finalfn(pgis_abs) RETURNS geometry
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'pgis_geometry_union_finalfn';
+    AS '$libdir/postgis-2.1', 'pgis_geometry_union_finalfn';
 
 
 --
--- Name: point_inside_circle(geometry, double precision, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
+-- Name: point(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION point_inside_circle(geometry, double precision, double precision, double precision) RETURNS boolean
+CREATE FUNCTION point(geometry) RETURNS point
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_inside_circle_point';
+    AS '$libdir/postgis-2.1', 'geometry_to_point';
 
 
 --
@@ -4260,24 +3776,6 @@ CREATE FUNCTION pointfromwkb(bytea, integer) RETURNS geometry
 
 
 --
--- Name: pointn(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION pointn(geometry, integer) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_pointn_linestring';
-
-
---
--- Name: pointonsurface(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION pointonsurface(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'pointonsurface';
-
-
---
 -- Name: polyfromtext(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -4330,6 +3828,15 @@ CREATE FUNCTION polyfromwkb(bytea, integer) RETURNS geometry
 
 
 --
+-- Name: polygon(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION polygon(geometry) RETURNS polygon
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'geometry_to_polygon';
+
+
+--
 -- Name: polygonfromtext(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -4371,15 +3878,6 @@ CREATE FUNCTION polygonfromwkb(bytea, integer) RETURNS geometry
 	THEN GeomFromWKB($1, $2)
 	ELSE NULL END
 	$_$;
-
-
---
--- Name: polygonize_garray(geometry[]); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION polygonize_garray(geometry[]) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'polygonize_garray';
 
 
 --
@@ -4717,12 +4215,214 @@ COMMENT ON FUNCTION populate_geometry_columns(tbl_oid oid) IS 'args: relation_oi
 
 
 --
+-- Name: populate_geometry_columns(boolean); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION populate_geometry_columns(use_typmod boolean DEFAULT true) RETURNS text
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+	inserted    integer;
+	oldcount    integer;
+	probed      integer;
+	stale       integer;
+	gcs         RECORD;
+	gc          RECORD;
+	gsrid       integer;
+	gndims      integer;
+	gtype       text;
+	query       text;
+	gc_is_valid boolean;
+
+BEGIN
+	SELECT count(*) INTO oldcount FROM geometry_columns;
+	inserted := 0;
+
+	-- Count the number of geometry columns in all tables and views
+	SELECT count(DISTINCT c.oid) INTO probed
+	FROM pg_class c,
+		 pg_attribute a,
+		 pg_type t,
+		 pg_namespace n
+	WHERE (c.relkind = 'r' OR c.relkind = 'v')
+		AND t.typname = 'geometry'
+		AND a.attisdropped = false
+		AND a.atttypid = t.oid
+		AND a.attrelid = c.oid
+		AND c.relnamespace = n.oid
+		AND n.nspname NOT ILIKE 'pg_temp%' AND c.relname != 'raster_columns' ;
+
+	-- Iterate through all non-dropped geometry columns
+	RAISE DEBUG 'Processing Tables.....';
+
+	FOR gcs IN
+	SELECT DISTINCT ON (c.oid) c.oid, n.nspname, c.relname
+		FROM pg_class c,
+			 pg_attribute a,
+			 pg_type t,
+			 pg_namespace n
+		WHERE c.relkind = 'r'
+		AND t.typname = 'geometry'
+		AND a.attisdropped = false
+		AND a.atttypid = t.oid
+		AND a.attrelid = c.oid
+		AND c.relnamespace = n.oid
+		AND n.nspname NOT ILIKE 'pg_temp%' AND c.relname != 'raster_columns' 
+	LOOP
+
+		inserted := inserted + populate_geometry_columns(gcs.oid, use_typmod);
+	END LOOP;
+
+	IF oldcount > inserted THEN
+	    stale = oldcount-inserted;
+	ELSE
+	    stale = 0;
+	END IF;
+
+	RETURN 'probed:' ||probed|| ' inserted:'||inserted;
+END
+
+$$;
+
+
+--
+-- Name: populate_geometry_columns(oid, boolean); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION populate_geometry_columns(tbl_oid oid, use_typmod boolean DEFAULT true) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+	gcs         RECORD;
+	gc          RECORD;
+	gc_old      RECORD;
+	gsrid       integer;
+	gndims      integer;
+	gtype       text;
+	query       text;
+	gc_is_valid boolean;
+	inserted    integer;
+	constraint_successful boolean := false;
+
+BEGIN
+	inserted := 0;
+
+	-- Iterate through all geometry columns in this table
+	FOR gcs IN
+	SELECT n.nspname, c.relname, a.attname
+		FROM pg_class c,
+			 pg_attribute a,
+			 pg_type t,
+			 pg_namespace n
+		WHERE c.relkind = 'r'
+		AND t.typname = 'geometry'
+		AND a.attisdropped = false
+		AND a.atttypid = t.oid
+		AND a.attrelid = c.oid
+		AND c.relnamespace = n.oid
+		AND n.nspname NOT ILIKE 'pg_temp%'
+		AND c.oid = tbl_oid
+	LOOP
+
+        RAISE DEBUG 'Processing column %.%.%', gcs.nspname, gcs.relname, gcs.attname;
+    
+        gc_is_valid := true;
+        -- Find the srid, coord_dimension, and type of current geometry
+        -- in geometry_columns -- which is now a view
+        
+        SELECT type, srid, coord_dimension INTO gc_old 
+            FROM geometry_columns 
+            WHERE f_table_schema = gcs.nspname AND f_table_name = gcs.relname AND f_geometry_column = gcs.attname; 
+            
+        IF upper(gc_old.type) = 'GEOMETRY' THEN
+        -- This is an unconstrained geometry we need to do something
+        -- We need to figure out what to set the type by inspecting the data
+            EXECUTE 'SELECT st_srid(' || quote_ident(gcs.attname) || ') As srid, GeometryType(' || quote_ident(gcs.attname) || ') As type, ST_NDims(' || quote_ident(gcs.attname) || ') As dims ' ||
+                     ' FROM ONLY ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || 
+                     ' WHERE ' || quote_ident(gcs.attname) || ' IS NOT NULL LIMIT 1;'
+                INTO gc;
+            IF gc IS NULL THEN -- there is no data so we can not determine geometry type
+            	RAISE WARNING 'No data in table %.%, so no information to determine geometry type and srid', gcs.nspname, gcs.relname;
+            	RETURN 0;
+            END IF;
+            gsrid := gc.srid; gtype := gc.type; gndims := gc.dims;
+            	
+            IF use_typmod THEN
+                BEGIN
+                    EXECUTE 'ALTER TABLE ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || ' ALTER COLUMN ' || quote_ident(gcs.attname) || 
+                        ' TYPE geometry(' || postgis_type_name(gtype, gndims, true) || ', ' || gsrid::text  || ') ';
+                    inserted := inserted + 1;
+                EXCEPTION
+                        WHEN invalid_parameter_value OR feature_not_supported THEN
+                        RAISE WARNING 'Could not convert ''%'' in ''%.%'' to use typmod with srid %, type %: %', quote_ident(gcs.attname), quote_ident(gcs.nspname), quote_ident(gcs.relname), gsrid, postgis_type_name(gtype, gndims, true), SQLERRM;
+                            gc_is_valid := false;
+                END;
+                
+            ELSE
+                -- Try to apply srid check to column
+            	constraint_successful = false;
+                IF (gsrid > 0 AND postgis_constraint_srid(gcs.nspname, gcs.relname,gcs.attname) IS NULL ) THEN
+                    BEGIN
+                        EXECUTE 'ALTER TABLE ONLY ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || 
+                                 ' ADD CONSTRAINT ' || quote_ident('enforce_srid_' || gcs.attname) || 
+                                 ' CHECK (st_srid(' || quote_ident(gcs.attname) || ') = ' || gsrid || ')';
+                        constraint_successful := true;
+                    EXCEPTION
+                        WHEN check_violation THEN
+                            RAISE WARNING 'Not inserting ''%'' in ''%.%'' into geometry_columns: could not apply constraint CHECK (st_srid(%) = %)', quote_ident(gcs.attname), quote_ident(gcs.nspname), quote_ident(gcs.relname), quote_ident(gcs.attname), gsrid;
+                            gc_is_valid := false;
+                    END;
+                END IF;
+                
+                -- Try to apply ndims check to column
+                IF (gndims IS NOT NULL AND postgis_constraint_dims(gcs.nspname, gcs.relname,gcs.attname) IS NULL ) THEN
+                    BEGIN
+                        EXECUTE 'ALTER TABLE ONLY ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
+                                 ADD CONSTRAINT ' || quote_ident('enforce_dims_' || gcs.attname) || '
+                                 CHECK (st_ndims(' || quote_ident(gcs.attname) || ') = '||gndims||')';
+                        constraint_successful := true;
+                    EXCEPTION
+                        WHEN check_violation THEN
+                            RAISE WARNING 'Not inserting ''%'' in ''%.%'' into geometry_columns: could not apply constraint CHECK (st_ndims(%) = %)', quote_ident(gcs.attname), quote_ident(gcs.nspname), quote_ident(gcs.relname), quote_ident(gcs.attname), gndims;
+                            gc_is_valid := false;
+                    END;
+                END IF;
+    
+                -- Try to apply geometrytype check to column
+                IF (gtype IS NOT NULL AND postgis_constraint_type(gcs.nspname, gcs.relname,gcs.attname) IS NULL ) THEN
+                    BEGIN
+                        EXECUTE 'ALTER TABLE ONLY ' || quote_ident(gcs.nspname) || '.' || quote_ident(gcs.relname) || '
+                        ADD CONSTRAINT ' || quote_ident('enforce_geotype_' || gcs.attname) || '
+                        CHECK ((geometrytype(' || quote_ident(gcs.attname) || ') = ' || quote_literal(gtype) || ') OR (' || quote_ident(gcs.attname) || ' IS NULL))';
+                        constraint_successful := true;
+                    EXCEPTION
+                        WHEN check_violation THEN
+                            -- No geometry check can be applied. This column contains a number of geometry types.
+                            RAISE WARNING 'Could not add geometry type check (%) to table column: %.%.%', gtype, quote_ident(gcs.nspname),quote_ident(gcs.relname),quote_ident(gcs.attname);
+                    END;
+                END IF;
+                 --only count if we were successful in applying at least one constraint
+                IF constraint_successful THEN
+                	inserted := inserted + 1;
+                END IF;
+            END IF;	        
+	    END IF;
+
+	END LOOP;
+
+	RETURN inserted;
+END
+
+$$;
+
+
+--
 -- Name: postgis_addbbox(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION postgis_addbbox(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_addBBOX';
+    AS '$libdir/postgis-2.1', 'LWGEOM_addBBOX';
 
 
 --
@@ -4738,7 +4438,67 @@ COMMENT ON FUNCTION postgis_addbbox(geometry) IS 'args: geomA - Add bounding box
 
 CREATE FUNCTION postgis_cache_bbox() RETURNS trigger
     LANGUAGE c
-    AS '$libdir/postgis-1.5', 'cache_bbox';
+    AS '$libdir/postgis-2.1', 'cache_bbox';
+
+
+--
+-- Name: postgis_constraint_dims(text, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION postgis_constraint_dims(geomschema text, geomtable text, geomcolumn text) RETURNS integer
+    LANGUAGE sql STABLE STRICT
+    AS $_$
+SELECT  replace(split_part(s.consrc, ' = ', 2), ')', '')::integer
+		 FROM pg_class c, pg_namespace n, pg_attribute a, pg_constraint s
+		 WHERE n.nspname = $1
+		 AND c.relname = $2
+		 AND a.attname = $3
+		 AND a.attrelid = c.oid
+		 AND s.connamespace = n.oid
+		 AND s.conrelid = c.oid
+		 AND a.attnum = ANY (s.conkey)
+		 AND s.consrc LIKE '%ndims(% = %';
+$_$;
+
+
+--
+-- Name: postgis_constraint_srid(text, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION postgis_constraint_srid(geomschema text, geomtable text, geomcolumn text) RETURNS integer
+    LANGUAGE sql STABLE STRICT
+    AS $_$
+SELECT replace(replace(split_part(s.consrc, ' = ', 2), ')', ''), '(', '')::integer
+		 FROM pg_class c, pg_namespace n, pg_attribute a, pg_constraint s
+		 WHERE n.nspname = $1
+		 AND c.relname = $2
+		 AND a.attname = $3
+		 AND a.attrelid = c.oid
+		 AND s.connamespace = n.oid
+		 AND s.conrelid = c.oid
+		 AND a.attnum = ANY (s.conkey)
+		 AND s.consrc LIKE '%srid(% = %';
+$_$;
+
+
+--
+-- Name: postgis_constraint_type(text, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION postgis_constraint_type(geomschema text, geomtable text, geomcolumn text) RETURNS character varying
+    LANGUAGE sql STABLE STRICT
+    AS $_$
+SELECT  replace(split_part(s.consrc, '''', 2), ')', '')::varchar		
+		 FROM pg_class c, pg_namespace n, pg_attribute a, pg_constraint s
+		 WHERE n.nspname = $1
+		 AND c.relname = $2
+		 AND a.attname = $3
+		 AND a.attrelid = c.oid
+		 AND s.connamespace = n.oid
+		 AND s.conrelid = c.oid
+		 AND a.attnum = ANY (s.conkey)
+		 AND s.consrc LIKE '%geometrytype(% = %';
+$_$;
 
 
 --
@@ -4747,7 +4507,7 @@ CREATE FUNCTION postgis_cache_bbox() RETURNS trigger
 
 CREATE FUNCTION postgis_dropbbox(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_dropBBOX';
+    AS '$libdir/postgis-2.1', 'LWGEOM_dropBBOX';
 
 
 --
@@ -4766,45 +4526,121 @@ CREATE FUNCTION postgis_full_version() RETURNS text
     AS $$
 DECLARE
 	libver text;
+	svnver text;
 	projver text;
 	geosver text;
+	sfcgalver text;
+	cgalver text;
+	gdalver text;
 	libxmlver text;
-	usestats bool;
 	dbproc text;
 	relproc text;
 	fullver text;
+	rast_lib_ver text;
+	rast_scr_ver text;
+	topo_scr_ver text;
+	json_lib_ver text;
 BEGIN
 	SELECT postgis_lib_version() INTO libver;
 	SELECT postgis_proj_version() INTO projver;
 	SELECT postgis_geos_version() INTO geosver;
+	SELECT postgis_libjson_version() INTO json_lib_ver;
+	BEGIN
+		SELECT postgis_gdal_version() INTO gdalver;
+	EXCEPTION
+		WHEN undefined_function THEN
+			gdalver := NULL;
+			RAISE NOTICE 'Function postgis_gdal_version() not found.  Is raster support enabled and rtpostgis.sql installed?';
+	END;
+	BEGIN
+		SELECT postgis_sfcgal_version() INTO sfcgalver;
+	EXCEPTION
+		WHEN undefined_function THEN
+			sfcgalver := NULL;
+	END;
 	SELECT postgis_libxml_version() INTO libxmlver;
-	SELECT postgis_uses_stats() INTO usestats;
 	SELECT postgis_scripts_installed() INTO dbproc;
 	SELECT postgis_scripts_released() INTO relproc;
+	select postgis_svn_version() INTO svnver;
+	BEGIN
+		SELECT postgis_topology_scripts_installed() INTO topo_scr_ver;
+	EXCEPTION
+		WHEN undefined_function THEN
+			topo_scr_ver := NULL;
+			RAISE NOTICE 'Function postgis_topology_scripts_installed() not found. Is topology support enabled and topology.sql installed?';
+	END;
 
-	fullver = 'POSTGIS="' || libver || '"';
+	BEGIN
+		SELECT postgis_raster_scripts_installed() INTO rast_scr_ver;
+	EXCEPTION
+		WHEN undefined_function THEN
+			rast_scr_ver := NULL;
+			RAISE NOTICE 'Function postgis_raster_scripts_installed() not found. Is raster support enabled and rtpostgis.sql installed?';
+	END;
+
+	BEGIN
+		SELECT postgis_raster_lib_version() INTO rast_lib_ver;
+	EXCEPTION
+		WHEN undefined_function THEN
+			rast_lib_ver := NULL;
+			RAISE NOTICE 'Function postgis_raster_lib_version() not found. Is raster support enabled and rtpostgis.sql installed?';
+	END;
+
+	fullver = 'POSTGIS="' || libver;
+
+	IF  svnver IS NOT NULL THEN
+		fullver = fullver || ' r' || svnver;
+	END IF;
+
+	fullver = fullver || '"';
 
 	IF  geosver IS NOT NULL THEN
 		fullver = fullver || ' GEOS="' || geosver || '"';
+	END IF;
+
+	IF  sfcgalver IS NOT NULL THEN
+		fullver = fullver || ' SFCGAL="' || sfcgalver || '"';
 	END IF;
 
 	IF  projver IS NOT NULL THEN
 		fullver = fullver || ' PROJ="' || projver || '"';
 	END IF;
 
+	IF  gdalver IS NOT NULL THEN
+		fullver = fullver || ' GDAL="' || gdalver || '"';
+	END IF;
+
 	IF  libxmlver IS NOT NULL THEN
 		fullver = fullver || ' LIBXML="' || libxmlver || '"';
 	END IF;
 
-	IF usestats THEN
-		fullver = fullver || ' USE_STATS';
+	IF json_lib_ver IS NOT NULL THEN
+		fullver = fullver || ' LIBJSON="' || json_lib_ver || '"';
 	END IF;
 
 	-- fullver = fullver || ' DBPROC="' || dbproc || '"';
 	-- fullver = fullver || ' RELPROC="' || relproc || '"';
 
 	IF dbproc != relproc THEN
-		fullver = fullver || ' (procs from ' || dbproc || ' need upgrade)';
+		fullver = fullver || ' (core procs from "' || dbproc || '" need upgrade)';
+	END IF;
+
+	IF topo_scr_ver IS NOT NULL THEN
+		fullver = fullver || ' TOPOLOGY';
+		IF topo_scr_ver != relproc THEN
+			fullver = fullver || ' (topology procs from "' || topo_scr_ver || '" need upgrade)';
+		END IF;
+	END IF;
+
+	IF rast_lib_ver IS NOT NULL THEN
+		fullver = fullver || ' RASTER';
+		IF rast_lib_ver != relproc THEN
+			fullver = fullver || ' (raster lib from "' || rast_lib_ver || '" need upgrade)';
+		END IF;
+	END IF;
+
+	IF rast_scr_ver IS NOT NULL AND rast_scr_ver != relproc THEN
+		fullver = fullver || ' (raster procs from "' || rast_scr_ver || '" need upgrade)';
 	END IF;
 
 	RETURN fullver;
@@ -4825,7 +4661,7 @@ COMMENT ON FUNCTION postgis_full_version() IS 'Reports full postgis version and 
 
 CREATE FUNCTION postgis_geos_version() RETURNS text
     LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'postgis_geos_version';
+    AS '$libdir/postgis-2.1', 'postgis_geos_version';
 
 
 --
@@ -4841,25 +4677,7 @@ COMMENT ON FUNCTION postgis_geos_version() IS 'Returns the version number of the
 
 CREATE FUNCTION postgis_getbbox(geometry) RETURNS box2d
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_to_BOX2DFLOAT4';
-
-
---
--- Name: postgis_gist_joinsel(internal, oid, internal, smallint); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION postgis_gist_joinsel(internal, oid, internal, smallint) RETURNS double precision
-    LANGUAGE c
-    AS '$libdir/postgis-1.5', 'LWGEOM_gist_joinsel';
-
-
---
--- Name: postgis_gist_sel(internal, oid, internal, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION postgis_gist_sel(internal, oid, internal, integer) RETURNS double precision
-    LANGUAGE c
-    AS '$libdir/postgis-1.5', 'LWGEOM_gist_sel';
+    AS '$libdir/postgis-2.1', 'LWGEOM_to_BOX2D';
 
 
 --
@@ -4868,7 +4686,7 @@ CREATE FUNCTION postgis_gist_sel(internal, oid, internal, integer) RETURNS doubl
 
 CREATE FUNCTION postgis_hasbbox(geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_hasBBOX';
+    AS '$libdir/postgis-2.1', 'LWGEOM_hasBBOX';
 
 
 --
@@ -4884,7 +4702,7 @@ COMMENT ON FUNCTION postgis_hasbbox(geometry) IS 'args: geomA - Returns TRUE if 
 
 CREATE FUNCTION postgis_lib_build_date() RETURNS text
     LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'postgis_lib_build_date';
+    AS '$libdir/postgis-2.1', 'postgis_lib_build_date';
 
 
 --
@@ -4900,7 +4718,7 @@ COMMENT ON FUNCTION postgis_lib_build_date() IS 'Returns build date of the PostG
 
 CREATE FUNCTION postgis_lib_version() RETURNS text
     LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'postgis_lib_version';
+    AS '$libdir/postgis-2.1', 'postgis_lib_version';
 
 
 --
@@ -4911,12 +4729,21 @@ COMMENT ON FUNCTION postgis_lib_version() IS 'Returns the version number of the 
 
 
 --
+-- Name: postgis_libjson_version(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION postgis_libjson_version() RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'postgis_libjson_version';
+
+
+--
 -- Name: postgis_libxml_version(); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION postgis_libxml_version() RETURNS text
     LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'postgis_libxml_version';
+    AS '$libdir/postgis-2.1', 'postgis_libxml_version';
 
 
 --
@@ -4932,7 +4759,7 @@ COMMENT ON FUNCTION postgis_libxml_version() IS 'Returns the version number of t
 
 CREATE FUNCTION postgis_noop(geometry) RETURNS geometry
     LANGUAGE c STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_noop';
+    AS '$libdir/postgis-2.1', 'LWGEOM_noop';
 
 
 --
@@ -4941,7 +4768,7 @@ CREATE FUNCTION postgis_noop(geometry) RETURNS geometry
 
 CREATE FUNCTION postgis_proj_version() RETURNS text
     LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'postgis_proj_version';
+    AS '$libdir/postgis-2.1', 'postgis_proj_version';
 
 
 --
@@ -4957,7 +4784,7 @@ COMMENT ON FUNCTION postgis_proj_version() IS 'Returns the version number of the
 
 CREATE FUNCTION postgis_scripts_build_date() RETURNS text
     LANGUAGE sql IMMUTABLE
-    AS $$SELECT '2012-03-20 20:38:58'::text AS version$$;
+    AS $$SELECT '2013-10-28 08:12:35'::text AS version$$;
 
 
 --
@@ -4973,7 +4800,7 @@ COMMENT ON FUNCTION postgis_scripts_build_date() IS 'Returns build date of the P
 
 CREATE FUNCTION postgis_scripts_installed() RETURNS text
     LANGUAGE sql IMMUTABLE
-    AS $$SELECT '1.5 r7360'::text AS version$$;
+    AS $$ SELECT '2.1.0'::text || ' r' || 11822::text AS version $$;
 
 
 --
@@ -4989,7 +4816,7 @@ COMMENT ON FUNCTION postgis_scripts_installed() IS 'Returns version of the postg
 
 CREATE FUNCTION postgis_scripts_released() RETURNS text
     LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'postgis_scripts_released';
+    AS '$libdir/postgis-2.1', 'postgis_scripts_released';
 
 
 --
@@ -5000,28 +4827,141 @@ COMMENT ON FUNCTION postgis_scripts_released() IS 'Returns the version number of
 
 
 --
+-- Name: postgis_svn_version(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION postgis_svn_version() RETURNS text
+    LANGUAGE c IMMUTABLE
+    AS '$libdir/postgis-2.1', 'postgis_svn_version';
+
+
+--
 -- Name: postgis_transform_geometry(geometry, text, text, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION postgis_transform_geometry(geometry, text, text, integer) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'transform_geom';
+    AS '$libdir/postgis-2.1', 'transform_geom';
 
 
 --
--- Name: postgis_uses_stats(); Type: FUNCTION; Schema: public; Owner: -
+-- Name: postgis_type_name(character varying, integer, boolean); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION postgis_uses_stats() RETURNS boolean
-    LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'postgis_uses_stats';
+CREATE FUNCTION postgis_type_name(geomname character varying, coord_dimension integer, use_new_name boolean DEFAULT true) RETURNS character varying
+    LANGUAGE sql IMMUTABLE STRICT COST 200
+    AS $_$
+ SELECT CASE WHEN $3 THEN new_name ELSE old_name END As geomname
+ 	FROM 
+ 	( VALUES
+ 		 ('GEOMETRY', 'Geometry', 2) ,
+ 		 	('GEOMETRY', 'GeometryZ', 3) ,
+ 		 	('GEOMETRY', 'GeometryZM', 4) ,
+			('GEOMETRYCOLLECTION', 'GeometryCollection', 2) ,
+			('GEOMETRYCOLLECTION', 'GeometryCollectionZ', 3) ,
+			('GEOMETRYCOLLECTIONM', 'GeometryCollectionM', 3) ,
+			('GEOMETRYCOLLECTION', 'GeometryCollectionZM', 4) ,
+			
+			('POINT', 'Point',2) ,
+			('POINTM','PointM',3) ,
+			('POINT', 'PointZ',3) ,
+			('POINT', 'PointZM',4) ,
+			
+			('MULTIPOINT','MultiPoint',2) ,
+			('MULTIPOINT','MultiPointZ',3) ,
+			('MULTIPOINTM','MultiPointM',3) ,
+			('MULTIPOINT','MultiPointZM',4) ,
+			
+			('POLYGON', 'Polygon',2) ,
+			('POLYGON', 'PolygonZ',3) ,
+			('POLYGONM', 'PolygonM',3) ,
+			('POLYGON', 'PolygonZM',4) ,
+			
+			('MULTIPOLYGON', 'MultiPolygon',2) ,
+			('MULTIPOLYGON', 'MultiPolygonZ',3) ,
+			('MULTIPOLYGONM', 'MultiPolygonM',3) ,
+			('MULTIPOLYGON', 'MultiPolygonZM',4) ,
+			
+			('MULTILINESTRING', 'MultiLineString',2) ,
+			('MULTILINESTRING', 'MultiLineStringZ',3) ,
+			('MULTILINESTRINGM', 'MultiLineStringM',3) ,
+			('MULTILINESTRING', 'MultiLineStringZM',4) ,
+			
+			('LINESTRING', 'LineString',2) ,
+			('LINESTRING', 'LineStringZ',3) ,
+			('LINESTRINGM', 'LineStringM',3) ,
+			('LINESTRING', 'LineStringZM',4) ,
+			
+			('CIRCULARSTRING', 'CircularString',2) ,
+			('CIRCULARSTRING', 'CircularStringZ',3) ,
+			('CIRCULARSTRINGM', 'CircularStringM',3) ,
+			('CIRCULARSTRING', 'CircularStringZM',4) ,
+			
+			('COMPOUNDCURVE', 'CompoundCurve',2) ,
+			('COMPOUNDCURVE', 'CompoundCurveZ',3) ,
+			('COMPOUNDCURVEM', 'CompoundCurveM',3) ,
+			('COMPOUNDCURVE', 'CompoundCurveZM',4) ,
+			
+			('CURVEPOLYGON', 'CurvePolygon',2) ,
+			('CURVEPOLYGON', 'CurvePolygonZ',3) ,
+			('CURVEPOLYGONM', 'CurvePolygonM',3) ,
+			('CURVEPOLYGON', 'CurvePolygonZM',4) ,
+			
+			('MULTICURVE', 'MultiCurve',2 ) ,
+			('MULTICURVE', 'MultiCurveZ',3 ) ,
+			('MULTICURVEM', 'MultiCurveM',3 ) ,
+			('MULTICURVE', 'MultiCurveZM',4 ) ,
+			
+			('MULTISURFACE', 'MultiSurface', 2) ,
+			('MULTISURFACE', 'MultiSurfaceZ', 3) ,
+			('MULTISURFACEM', 'MultiSurfaceM', 3) ,
+			('MULTISURFACE', 'MultiSurfaceZM', 4) ,
+			
+			('POLYHEDRALSURFACE', 'PolyhedralSurface',2) ,
+			('POLYHEDRALSURFACE', 'PolyhedralSurfaceZ',3) ,
+			('POLYHEDRALSURFACEM', 'PolyhedralSurfaceM',3) ,
+			('POLYHEDRALSURFACE', 'PolyhedralSurfaceZM',4) ,
+			
+			('TRIANGLE', 'Triangle',2) ,
+			('TRIANGLE', 'TriangleZ',3) ,
+			('TRIANGLEM', 'TriangleM',3) ,
+			('TRIANGLE', 'TriangleZM',4) ,
+
+			('TIN', 'Tin', 2),
+			('TIN', 'TinZ', 3),
+			('TIN', 'TinM', 3),
+			('TIN', 'TinZM', 4) )
+			 As g(old_name, new_name, coord_dimension)
+		WHERE (upper(old_name) = upper($1) OR upper(new_name) = upper($1))
+			AND coord_dimension = $2;
+$_$;
 
 
 --
--- Name: FUNCTION postgis_uses_stats(); Type: COMMENT; Schema: public; Owner: -
+-- Name: postgis_typmod_dims(integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION postgis_uses_stats() IS 'Returns TRUE if STATS usage has been enabled.';
+CREATE FUNCTION postgis_typmod_dims(integer) RETURNS integer
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'postgis_typmod_dims';
+
+
+--
+-- Name: postgis_typmod_srid(integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION postgis_typmod_srid(integer) RETURNS integer
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'postgis_typmod_srid';
+
+
+--
+-- Name: postgis_typmod_type(integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION postgis_typmod_type(integer) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'postgis_typmod_type';
 
 
 --
@@ -5030,7 +4970,7 @@ COMMENT ON FUNCTION postgis_uses_stats() IS 'Returns TRUE if STATS usage has bee
 
 CREATE FUNCTION postgis_version() RETURNS text
     LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'postgis_version';
+    AS '$libdir/postgis-2.1', 'postgis_version';
 
 
 --
@@ -5135,33 +5075,6 @@ COMMENT ON FUNCTION probe_geometry_columns() IS 'Scans all tables with PostGIS g
 
 
 --
--- Name: relate(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION relate(geometry, geometry) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'relate_full';
-
-
---
--- Name: relate(geometry, geometry, text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION relate(geometry, geometry, text) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'relate_pattern';
-
-
---
--- Name: removepoint(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION removepoint(geometry, integer) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_removepoint';
-
-
---
 -- Name: rename_geometry_table_constraints(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -5170,15 +5083,6 @@ CREATE FUNCTION rename_geometry_table_constraints() RETURNS text
     AS $$
 SELECT 'rename_geometry_table_constraint() is obsoleted'::text
 $$;
-
-
---
--- Name: reverse(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION reverse(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_reverse';
 
 
 --
@@ -5247,120 +5151,12 @@ CREATE FUNCTION se_envelopesintersect(geometry, geometry) RETURNS boolean
 
 
 --
--- Name: se_is3d(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION se_is3d(geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_hasz';
-
-
---
--- Name: se_ismeasured(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION se_ismeasured(geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_hasm';
-
-
---
 -- Name: se_locatealong(geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION se_locatealong(geometry, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$ SELECT locate_between_measures($1, $2, $2) $_$;
-
-
---
--- Name: se_locatebetween(geometry, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION se_locatebetween(geometry, double precision, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_locate_between_m';
-
-
---
--- Name: se_m(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION se_m(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_m_point';
-
-
---
--- Name: se_z(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION se_z(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_z_point';
-
-
---
--- Name: segmentize(geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION segmentize(geometry, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_segmentize2d';
-
-
---
--- Name: setfactor(chip, real); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION setfactor(chip, real) RETURNS chip
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_setFactor';
-
-
---
--- Name: setpoint(geometry, integer, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION setpoint(geometry, integer, geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_setpoint_linestring';
-
-
---
--- Name: setsrid(chip, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION setsrid(chip, integer) RETURNS chip
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_setSRID';
-
-
---
--- Name: setsrid(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION setsrid(geometry, integer) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_setSRID';
-
-
---
--- Name: shift_longitude(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION shift_longitude(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_longitude_shift';
-
-
---
--- Name: simplify(geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION simplify(geometry, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_simplify2d';
 
 
 --
@@ -5382,39 +5178,111 @@ CREATE FUNCTION snaptogrid(geometry, double precision, double precision) RETURNS
 
 
 --
--- Name: snaptogrid(geometry, double precision, double precision, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_3dclosestpoint(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION snaptogrid(geometry, double precision, double precision, double precision, double precision) RETURNS geometry
+CREATE FUNCTION st_3dclosestpoint(geom1 geometry, geom2 geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'LWGEOM_closestpoint3d';
+
+
+--
+-- Name: st_3ddfullywithin(geometry, geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_3ddfullywithin(geom1 geometry, geom2 geometry, double precision) RETURNS boolean
+    LANGUAGE sql IMMUTABLE
+    AS $_$SELECT $1 && ST_Expand($2,$3) AND $2 && ST_Expand($1,$3) AND _ST_3DDFullyWithin($1, $2, $3)$_$;
+
+
+--
+-- Name: st_3ddistance(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_3ddistance(geom1 geometry, geom2 geometry) RETURNS double precision
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'distance3d';
+
+
+--
+-- Name: st_3ddwithin(geometry, geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_3ddwithin(geom1 geometry, geom2 geometry, double precision) RETURNS boolean
+    LANGUAGE sql IMMUTABLE
+    AS $_$SELECT $1 && ST_Expand($2,$3) AND $2 && ST_Expand($1,$3) AND _ST_3DDWithin($1, $2, $3)$_$;
+
+
+--
+-- Name: st_3dintersects(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_3dintersects(geom1 geometry, geom2 geometry) RETURNS boolean
+    LANGUAGE sql IMMUTABLE
+    AS $_$SELECT $1 && $2 AND _ST_3DIntersects($1, $2)$_$;
+
+
+--
+-- Name: st_3dlength(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_3dlength(geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_snaptogrid';
+    AS '$libdir/postgis-2.1', 'LWGEOM_length_linestring';
 
 
 --
--- Name: snaptogrid(geometry, geometry, double precision, double precision, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_3dlength_spheroid(geometry, spheroid); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION snaptogrid(geometry, geometry, double precision, double precision, double precision, double precision) RETURNS geometry
+CREATE FUNCTION st_3dlength_spheroid(geometry, spheroid) RETURNS double precision
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'LWGEOM_length_ellipsoid_linestring';
+
+
+--
+-- Name: st_3dlongestline(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_3dlongestline(geom1 geometry, geom2 geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'LWGEOM_longestline3d';
+
+
+--
+-- Name: st_3dmakebox(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_3dmakebox(geom1 geometry, geom2 geometry) RETURNS box3d
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_snaptogrid_pointoff';
+    AS '$libdir/postgis-2.1', 'BOX3D_construct';
 
 
 --
--- Name: srid(chip); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_3dmaxdistance(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION srid(chip) RETURNS integer
+CREATE FUNCTION st_3dmaxdistance(geom1 geometry, geom2 geometry) RETURNS double precision
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'LWGEOM_maxdistance3d';
+
+
+--
+-- Name: st_3dperimeter(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_3dperimeter(geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_getSRID';
+    AS '$libdir/postgis-2.1', 'LWGEOM_perimeter_poly';
 
 
 --
--- Name: srid(geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_3dshortestline(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION srid(geometry) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_getSRID';
+CREATE FUNCTION st_3dshortestline(geom1 geometry, geom2 geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'LWGEOM_shortestline3d';
 
 
 --
@@ -5423,7 +5291,7 @@ CREATE FUNCTION srid(geometry) RETURNS integer
 
 CREATE FUNCTION st_addmeasure(geometry, double precision, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'ST_AddMeasure';
+    AS '$libdir/postgis-2.1', 'ST_AddMeasure';
 
 
 --
@@ -5437,32 +5305,32 @@ COMMENT ON FUNCTION st_addmeasure(geometry, double precision, double precision) 
 -- Name: st_addpoint(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_addpoint(geometry, geometry) RETURNS geometry
+CREATE FUNCTION st_addpoint(geom1 geometry, geom2 geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_addpoint';
+    AS '$libdir/postgis-2.1', 'LWGEOM_addpoint';
 
 
 --
--- Name: FUNCTION st_addpoint(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_addpoint(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_addpoint(geometry, geometry) IS 'args: linestring, point - Adds a point to a LineString before point <position> (0-based index).';
+COMMENT ON FUNCTION st_addpoint(geom1 geometry, geom2 geometry) IS 'args: linestring, point - Adds a point to a LineString before point <position> (0-based index).';
 
 
 --
 -- Name: st_addpoint(geometry, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_addpoint(geometry, geometry, integer) RETURNS geometry
+CREATE FUNCTION st_addpoint(geom1 geometry, geom2 geometry, integer) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_addpoint';
+    AS '$libdir/postgis-2.1', 'LWGEOM_addpoint';
 
 
 --
--- Name: FUNCTION st_addpoint(geometry, geometry, integer); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_addpoint(geom1 geometry, geom2 geometry, integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_addpoint(geometry, geometry, integer) IS 'args: linestring, point, position - Adds a point to a LineString before point <position> (0-based index).';
+COMMENT ON FUNCTION st_addpoint(geom1 geometry, geom2 geometry, integer) IS 'args: linestring, point, position - Adds a point to a LineString before point <position> (0-based index).';
 
 
 --
@@ -5471,7 +5339,7 @@ COMMENT ON FUNCTION st_addpoint(geometry, geometry, integer) IS 'args: linestrin
 
 CREATE FUNCTION st_affine(geometry, double precision, double precision, double precision, double precision, double precision, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT affine($1,  $2, $3, 0,  $4, $5, 0,  0, 0, 1,  $6, $7, 0)$_$;
+    AS $_$SELECT ST_Affine($1,  $2, $3, 0,  $4, $5, 0,  0, 0, 1,  $6, $7, 0)$_$;
 
 
 --
@@ -5487,7 +5355,7 @@ COMMENT ON FUNCTION st_affine(geometry, double precision, double precision, doub
 
 CREATE FUNCTION st_affine(geometry, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_affine';
+    AS '$libdir/postgis-2.1', 'LWGEOM_affine';
 
 
 --
@@ -5495,22 +5363,6 @@ CREATE FUNCTION st_affine(geometry, double precision, double precision, double p
 --
 
 COMMENT ON FUNCTION st_affine(geometry, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision, double precision) IS 'args: geomA, a, b, c, d, e, f, g, h, i, xoff, yoff, zoff - Applies a 3d affine transformation to the geometry to do things like translate, rotate, scale in one step.';
-
-
---
--- Name: st_area(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_area(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_area_polygon';
-
-
---
--- Name: FUNCTION st_area(geometry); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_area(geometry) IS 'args: g1 - Returns the area of the surface if it is a polygon or multi-polygon. For "geometry" type area is in SRID units. For "geography" area is in square meters.';
 
 
 --
@@ -5530,6 +5382,22 @@ COMMENT ON FUNCTION st_area(geography) IS 'args: g1 - Returns the area of the su
 
 
 --
+-- Name: st_area(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_area(geometry) RETURNS double precision
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'area';
+
+
+--
+-- Name: FUNCTION st_area(geometry); Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON FUNCTION st_area(geometry) IS 'args: g1 - Returns the area of the surface if it is a polygon or multi-polygon. For "geometry" type area is in SRID units. For "geography" area is in square meters.';
+
+
+--
 -- Name: st_area(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -5542,16 +5410,16 @@ CREATE FUNCTION st_area(text) RETURNS double precision
 -- Name: st_area(geography, boolean); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_area(geography, boolean) RETURNS double precision
+CREATE FUNCTION st_area(geog geography, use_spheroid boolean DEFAULT true) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'geography_area';
+    AS '$libdir/postgis-2.1', 'geography_area';
 
 
 --
--- Name: FUNCTION st_area(geography, boolean); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_area(geog geography, use_spheroid boolean); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_area(geography, boolean) IS 'args: g1, use_spheroid - Returns the area of the surface if it is a polygon or multi-polygon. For "geometry" type area is in SRID units. For "geography" area is in square meters.';
+COMMENT ON FUNCTION st_area(geog geography, use_spheroid boolean) IS 'args: g1, use_spheroid - Returns the area of the surface if it is a polygon or multi-polygon. For "geometry" type area is in SRID units. For "geography" area is in square meters.';
 
 
 --
@@ -5560,23 +5428,7 @@ COMMENT ON FUNCTION st_area(geography, boolean) IS 'args: g1, use_spheroid - Ret
 
 CREATE FUNCTION st_area2d(geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_area_polygon';
-
-
---
--- Name: st_asbinary(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_asbinary(geometry) RETURNS bytea
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asBinary';
-
-
---
--- Name: FUNCTION st_asbinary(geometry); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_asbinary(geometry) IS 'args: g1 - Return the Well-Known Binary (WKB) representation of the geometry/geography without SRID meta data.';
+    AS '$libdir/postgis-2.1', 'LWGEOM_area_polygon';
 
 
 --
@@ -5585,7 +5437,7 @@ COMMENT ON FUNCTION st_asbinary(geometry) IS 'args: g1 - Return the Well-Known B
 
 CREATE FUNCTION st_asbinary(geography) RETURNS bytea
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_as_binary';
+    AS '$libdir/postgis-2.1', 'LWGEOM_asBinary';
 
 
 --
@@ -5593,6 +5445,22 @@ CREATE FUNCTION st_asbinary(geography) RETURNS bytea
 --
 
 COMMENT ON FUNCTION st_asbinary(geography) IS 'args: g1 - Return the Well-Known Binary (WKB) representation of the geometry/geography without SRID meta data.';
+
+
+--
+-- Name: st_asbinary(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_asbinary(geometry) RETURNS bytea
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_asBinary';
+
+
+--
+-- Name: FUNCTION st_asbinary(geometry); Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON FUNCTION st_asbinary(geometry) IS 'args: g1 - Return the Well-Known Binary (WKB) representation of the geometry/geography without SRID meta data.';
 
 
 --
@@ -5605,12 +5473,21 @@ CREATE FUNCTION st_asbinary(text) RETURNS bytea
 
 
 --
+-- Name: st_asbinary(geography, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_asbinary(geography, text) RETURNS bytea
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT ST_AsBinary($1::geometry, $2);  $_$;
+
+
+--
 -- Name: st_asbinary(geometry, text); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_asbinary(geometry, text) RETURNS bytea
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asBinary';
+    AS '$libdir/postgis-2.1', 'LWGEOM_asBinary';
 
 
 --
@@ -5626,7 +5503,7 @@ COMMENT ON FUNCTION st_asbinary(geometry, text) IS 'args: g1, NDR_or_XDR - Retur
 
 CREATE FUNCTION st_asewkb(geometry) RETURNS bytea
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'WKBFromLWGEOM';
+    AS '$libdir/postgis-2.1', 'WKBFromLWGEOM';
 
 
 --
@@ -5642,7 +5519,7 @@ COMMENT ON FUNCTION st_asewkb(geometry) IS 'args: g1 - Return the Well-Known Bin
 
 CREATE FUNCTION st_asewkb(geometry, text) RETURNS bytea
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'WKBFromLWGEOM';
+    AS '$libdir/postgis-2.1', 'WKBFromLWGEOM';
 
 
 --
@@ -5653,12 +5530,21 @@ COMMENT ON FUNCTION st_asewkb(geometry, text) IS 'args: g1, NDR_or_XDR - Return 
 
 
 --
+-- Name: st_asewkt(geography); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_asewkt(geography) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_asEWKT';
+
+
+--
 -- Name: st_asewkt(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_asewkt(geometry) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asEWKT';
+    AS '$libdir/postgis-2.1', 'LWGEOM_asEWKT';
 
 
 --
@@ -5669,19 +5555,12 @@ COMMENT ON FUNCTION st_asewkt(geometry) IS 'args: g1 - Return the Well-Known Tex
 
 
 --
--- Name: st_asgeojson(geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_asewkt(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgeojson(geometry) RETURNS text
+CREATE FUNCTION st_asewkt(text) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGeoJson(1, $1, 15, 0)$_$;
-
-
---
--- Name: FUNCTION st_asgeojson(geometry); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_asgeojson(geometry) IS 'args: g1 - Return the geometry as a GeoJSON element.';
+    AS $_$ SELECT ST_AsEWKT($1::geometry);  $_$;
 
 
 --
@@ -5701,28 +5580,44 @@ COMMENT ON FUNCTION st_asgeojson(geography) IS 'args: g1 - Return the geometry a
 
 
 --
+-- Name: st_asgeojson(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_asgeojson(geometry) RETURNS text
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$SELECT _ST_AsGeoJson(1, $1, 15, 0)$_$;
+
+
+--
+-- Name: FUNCTION st_asgeojson(geometry); Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON FUNCTION st_asgeojson(geometry) IS 'args: g1 - Return the geometry as a GeoJSON element.';
+
+
+--
 -- Name: st_asgeojson(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_asgeojson(text) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$ SELECT ST_AsGeoJson($1::geometry);  $_$;
+    AS $_$ SELECT _ST_AsGeoJson(1, $1::geometry,15,0);  $_$;
 
 
 --
--- Name: st_asgeojson(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_asgeojson(integer, geography); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgeojson(geometry, integer) RETURNS text
+CREATE FUNCTION st_asgeojson(integer, geography) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGeoJson(1, $1, $2, 0)$_$;
+    AS $_$SELECT _ST_AsGeoJson($1, $2, 15, 0)$_$;
 
 
 --
--- Name: FUNCTION st_asgeojson(geometry, integer); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_asgeojson(integer, geography); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_asgeojson(geometry, integer) IS 'args: g1, max_decimal_digits - Return the geometry as a GeoJSON element.';
+COMMENT ON FUNCTION st_asgeojson(integer, geography) IS 'args: gj_version, g1 - Return the geometry as a GeoJSON element.';
 
 
 --
@@ -5758,51 +5653,51 @@ COMMENT ON FUNCTION st_asgeojson(geography, integer) IS 'args: g1, max_decimal_d
 
 
 --
--- Name: st_asgeojson(integer, geography); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_asgeojson(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgeojson(integer, geography) RETURNS text
+CREATE FUNCTION st_asgeojson(geometry, integer) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGeoJson($1, $2, 15, 0)$_$;
+    AS $_$SELECT _ST_AsGeoJson(1, $1, $2, 0)$_$;
 
 
 --
--- Name: FUNCTION st_asgeojson(integer, geography); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_asgeojson(geometry, integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_asgeojson(integer, geography) IS 'args: gj_version, g1 - Return the geometry as a GeoJSON element.';
+COMMENT ON FUNCTION st_asgeojson(geometry, integer) IS 'args: g1, max_decimal_digits - Return the geometry as a GeoJSON element.';
 
 
 --
--- Name: st_asgeojson(integer, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_asgeojson(geography, integer, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgeojson(integer, geometry, integer) RETURNS text
+CREATE FUNCTION st_asgeojson(geog geography, maxdecimaldigits integer DEFAULT 15, options integer DEFAULT 0) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGeoJson($1, $2, $3, 0)$_$;
+    AS $_$ SELECT _ST_AsGeoJson(1, $1, $2, $3); $_$;
 
 
 --
--- Name: FUNCTION st_asgeojson(integer, geometry, integer); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_asgeojson(geog geography, maxdecimaldigits integer, options integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_asgeojson(integer, geometry, integer) IS 'args: gj_version, g1, max_decimal_digits - Return the geometry as a GeoJSON element.';
+COMMENT ON FUNCTION st_asgeojson(geog geography, maxdecimaldigits integer, options integer) IS 'args: g1, max_decimal_digits, options - Return the geometry as a GeoJSON element.';
 
 
 --
 -- Name: st_asgeojson(geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgeojson(geometry, integer, integer) RETURNS text
+CREATE FUNCTION st_asgeojson(geom geometry, maxdecimaldigits integer DEFAULT 15, options integer DEFAULT 0) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGeoJson(1, $1, $2, $3)$_$;
+    AS $_$ SELECT _ST_AsGeoJson(1, $1, $2, $3); $_$;
 
 
 --
--- Name: FUNCTION st_asgeojson(geometry, integer, integer); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_asgeojson(geom geometry, maxdecimaldigits integer, options integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_asgeojson(geometry, integer, integer) IS 'args: g1, max_decimal_digits, options - Return the geometry as a GeoJSON element.';
+COMMENT ON FUNCTION st_asgeojson(geom geometry, maxdecimaldigits integer, options integer) IS 'args: g1, max_decimal_digits, options - Return the geometry as a GeoJSON element.';
 
 
 --
@@ -5822,67 +5717,51 @@ COMMENT ON FUNCTION st_asgeojson(integer, geography, integer) IS 'args: gj_versi
 
 
 --
--- Name: st_asgeojson(geography, integer, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_asgeojson(integer, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgeojson(geography, integer, integer) RETURNS text
+CREATE FUNCTION st_asgeojson(integer, geometry, integer) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGeoJson(1, $1, $2, $3)$_$;
+    AS $_$SELECT _ST_AsGeoJson($1, $2, $3, 0)$_$;
 
 
 --
--- Name: FUNCTION st_asgeojson(geography, integer, integer); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_asgeojson(integer, geometry, integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_asgeojson(geography, integer, integer) IS 'args: g1, max_decimal_digits, options - Return the geometry as a GeoJSON element.';
-
-
---
--- Name: st_asgeojson(integer, geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_asgeojson(integer, geometry, integer, integer) RETURNS text
-    LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGeoJson($1, $2, $3, $4)$_$;
-
-
---
--- Name: FUNCTION st_asgeojson(integer, geometry, integer, integer); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_asgeojson(integer, geometry, integer, integer) IS 'args: gj_version, g1, max_decimal_digits, options - Return the geometry as a GeoJSON element.';
+COMMENT ON FUNCTION st_asgeojson(integer, geometry, integer) IS 'args: gj_version, g1, max_decimal_digits - Return the geometry as a GeoJSON element.';
 
 
 --
 -- Name: st_asgeojson(integer, geography, integer, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgeojson(integer, geography, integer, integer) RETURNS text
+CREATE FUNCTION st_asgeojson(gj_version integer, geog geography, maxdecimaldigits integer DEFAULT 15, options integer DEFAULT 0) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGeoJson($1, $2, $3, $4)$_$;
+    AS $_$ SELECT _ST_AsGeoJson($1, $2, $3, $4); $_$;
 
 
 --
--- Name: FUNCTION st_asgeojson(integer, geography, integer, integer); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_asgeojson(gj_version integer, geog geography, maxdecimaldigits integer, options integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_asgeojson(integer, geography, integer, integer) IS 'args: gj_version, g1, max_decimal_digits, options - Return the geometry as a GeoJSON element.';
+COMMENT ON FUNCTION st_asgeojson(gj_version integer, geog geography, maxdecimaldigits integer, options integer) IS 'args: gj_version, g1, max_decimal_digits, options - Return the geometry as a GeoJSON element.';
 
 
 --
--- Name: st_asgml(geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_asgeojson(integer, geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgml(geometry) RETURNS text
+CREATE FUNCTION st_asgeojson(gj_version integer, geom geometry, maxdecimaldigits integer DEFAULT 15, options integer DEFAULT 0) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGML(2, $1, 15, 0)$_$;
+    AS $_$ SELECT _ST_AsGeoJson($1, $2, $3, $4); $_$;
 
 
 --
--- Name: FUNCTION st_asgml(geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_asgeojson(gj_version integer, geom geometry, maxdecimaldigits integer, options integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_asgml(geometry) IS 'args: g1 - Return the geometry as a GML version 2 or 3 element.';
+COMMENT ON FUNCTION st_asgeojson(gj_version integer, geom geometry, maxdecimaldigits integer, options integer) IS 'args: gj_version, g1, max_decimal_digits, options - Return the geometry as a GeoJSON element.';
 
 
 --
@@ -5902,28 +5781,44 @@ COMMENT ON FUNCTION st_asgml(geography) IS 'args: g1 - Return the geometry as a 
 
 
 --
+-- Name: st_asgml(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_asgml(geometry) RETURNS text
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$SELECT _ST_AsGML(2, $1, 15, 0)$_$;
+
+
+--
+-- Name: FUNCTION st_asgml(geometry); Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON FUNCTION st_asgml(geometry) IS 'args: g1 - Return the geometry as a GML version 2 or 3 element.';
+
+
+--
 -- Name: st_asgml(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_asgml(text) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$ SELECT ST_AsGML($1::geometry);  $_$;
+    AS $_$ SELECT _ST_AsGML(2,$1::geometry,15,0, NULL, NULL);  $_$;
 
 
 --
--- Name: st_asgml(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_asgml(integer, geography); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgml(geometry, integer) RETURNS text
+CREATE FUNCTION st_asgml(integer, geography) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGML(2, $1, $2, 0)$_$;
+    AS $_$SELECT _ST_AsGML($1, $2, 15, 0)$_$;
 
 
 --
--- Name: FUNCTION st_asgml(geometry, integer); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_asgml(integer, geography); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_asgml(geometry, integer) IS 'args: g1, precision - Return the geometry as a GML version 2 or 3 element.';
+COMMENT ON FUNCTION st_asgml(integer, geography) IS 'args: version, g1 - Return the geometry as a GML version 2 or 3 element.';
 
 
 --
@@ -5959,44 +5854,37 @@ COMMENT ON FUNCTION st_asgml(geography, integer) IS 'args: g1, precision - Retur
 
 
 --
--- Name: st_asgml(integer, geography); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_asgml(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgml(integer, geography) RETURNS text
+CREATE FUNCTION st_asgml(geometry, integer) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGML($1, $2, 15, 0)$_$;
+    AS $_$SELECT _ST_AsGML(2, $1, $2, 0)$_$;
 
 
 --
--- Name: FUNCTION st_asgml(integer, geography); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_asgml(geometry, integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_asgml(integer, geography) IS 'args: version, g1 - Return the geometry as a GML version 2 or 3 element.';
+COMMENT ON FUNCTION st_asgml(geometry, integer) IS 'args: g1, precision - Return the geometry as a GML version 2 or 3 element.';
 
 
 --
--- Name: st_asgml(integer, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_asgml(geography, integer, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgml(integer, geometry, integer) RETURNS text
+CREATE FUNCTION st_asgml(geog geography, maxdecimaldigits integer DEFAULT 15, options integer DEFAULT 0) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGML($1, $2, $3, 0)$_$;
-
-
---
--- Name: FUNCTION st_asgml(integer, geometry, integer); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_asgml(integer, geometry, integer) IS 'args: version, g1, precision - Return the geometry as a GML version 2 or 3 element.';
+    AS $_$SELECT _ST_AsGML(2, $1, $2, $3, null, null)$_$;
 
 
 --
 -- Name: st_asgml(geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgml(geometry, integer, integer) RETURNS text
+CREATE FUNCTION st_asgml(geom geometry, maxdecimaldigits integer DEFAULT 15, options integer DEFAULT 0) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGML(2, $1, $2, $3)$_$;
+    AS $_$ SELECT _ST_AsGML(2, $1, $2, $3, null, null); $_$;
 
 
 --
@@ -6016,28 +5904,19 @@ COMMENT ON FUNCTION st_asgml(integer, geography, integer) IS 'args: version, g1,
 
 
 --
--- Name: st_asgml(geography, integer, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_asgml(integer, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgml(geography, integer, integer) RETURNS text
+CREATE FUNCTION st_asgml(integer, geometry, integer) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGML(2, $1, $2, $3)$_$;
+    AS $_$SELECT _ST_AsGML($1, $2, $3, 0)$_$;
 
 
 --
--- Name: st_asgml(integer, geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: FUNCTION st_asgml(integer, geometry, integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_asgml(integer, geometry, integer, integer) RETURNS text
-    LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsGML($1, $2, $3, $4)$_$;
-
-
---
--- Name: FUNCTION st_asgml(integer, geometry, integer, integer); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_asgml(integer, geometry, integer, integer) IS 'args: version, g1, precision, options - Return the geometry as a GML version 2 or 3 element.';
+COMMENT ON FUNCTION st_asgml(integer, geometry, integer) IS 'args: version, g1, precision - Return the geometry as a GML version 2 or 3 element.';
 
 
 --
@@ -6057,12 +5936,46 @@ COMMENT ON FUNCTION st_asgml(integer, geography, integer, integer) IS 'args: ver
 
 
 --
+-- Name: st_asgml(integer, geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_asgml(integer, geometry, integer, integer) RETURNS text
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$SELECT _ST_AsGML($1, $2, $3, $4)$_$;
+
+
+--
+-- Name: FUNCTION st_asgml(integer, geometry, integer, integer); Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON FUNCTION st_asgml(integer, geometry, integer, integer) IS 'args: version, g1, precision, options - Return the geometry as a GML version 2 or 3 element.';
+
+
+--
+-- Name: st_asgml(integer, geography, integer, integer, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_asgml(version integer, geog geography, maxdecimaldigits integer DEFAULT 15, options integer DEFAULT 0, nprefix text DEFAULT NULL::text, id text DEFAULT NULL::text) RETURNS text
+    LANGUAGE sql IMMUTABLE
+    AS $_$ SELECT _ST_AsGML($1, $2, $3, $4, $5, $6);$_$;
+
+
+--
+-- Name: st_asgml(integer, geometry, integer, integer, text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_asgml(version integer, geom geometry, maxdecimaldigits integer DEFAULT 15, options integer DEFAULT 0, nprefix text DEFAULT NULL::text, id text DEFAULT NULL::text) RETURNS text
+    LANGUAGE sql IMMUTABLE
+    AS $_$ SELECT _ST_AsGML($1, $2, $3, $4, $5, $6); $_$;
+
+
+--
 -- Name: st_ashexewkb(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_ashexewkb(geometry) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asHEXEWKB';
+    AS '$libdir/postgis-2.1', 'LWGEOM_asHEXEWKB';
 
 
 --
@@ -6078,7 +5991,7 @@ COMMENT ON FUNCTION st_ashexewkb(geometry) IS 'args: g1 - Returns a Geometry in 
 
 CREATE FUNCTION st_ashexewkb(geometry, text) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asHEXEWKB';
+    AS '$libdir/postgis-2.1', 'LWGEOM_asHEXEWKB';
 
 
 --
@@ -6086,22 +5999,6 @@ CREATE FUNCTION st_ashexewkb(geometry, text) RETURNS text
 --
 
 COMMENT ON FUNCTION st_ashexewkb(geometry, text) IS 'args: g1, NDRorXDR - Returns a Geometry in HEXEWKB format (as text) using either little-endian (NDR) or big-endian (XDR) encoding.';
-
-
---
--- Name: st_askml(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_askml(geometry) RETURNS text
-    LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsKML(2, ST_Transform($1,4326), 15)$_$;
-
-
---
--- Name: FUNCTION st_askml(geometry); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_askml(geometry) IS 'args: g1 - Return the geometry as a KML element. Several variants. Default version=2, default precision=15';
 
 
 --
@@ -6121,60 +6018,60 @@ COMMENT ON FUNCTION st_askml(geography) IS 'args: g1 - Return the geometry as a 
 
 
 --
+-- Name: st_askml(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_askml(geometry) RETURNS text
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$SELECT _ST_AsKML(2, ST_Transform($1,4326), 15)$_$;
+
+
+--
+-- Name: FUNCTION st_askml(geometry); Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON FUNCTION st_askml(geometry) IS 'args: g1 - Return the geometry as a KML element. Several variants. Default version=2, default precision=15';
+
+
+--
 -- Name: st_askml(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_askml(text) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$ SELECT ST_AsKML($1::geometry);  $_$;
-
-
---
--- Name: st_askml(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_askml(geometry, integer) RETURNS text
-    LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsKML(2, ST_Transform($1,4326), $2)$_$;
-
-
---
--- Name: FUNCTION st_askml(geometry, integer); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_askml(geometry, integer) IS 'args: g1, precision - Return the geometry as a KML element. Several variants. Default version=2, default precision=15';
-
-
---
--- Name: st_askml(integer, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_askml(integer, geometry) RETURNS text
-    LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsKML($1, ST_Transform($2,4326), 15)$_$;
-
-
---
--- Name: FUNCTION st_askml(integer, geometry); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_askml(integer, geometry) IS 'args: version, geom1 - Return the geometry as a KML element. Several variants. Default version=2, default precision=15';
+    AS $_$ SELECT _ST_AsKML(2, $1::geometry, 15, null);  $_$;
 
 
 --
 -- Name: st_askml(geography, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_askml(geography, integer) RETURNS text
+CREATE FUNCTION st_askml(geog geography, maxdecimaldigits integer DEFAULT 15) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsKML(2, $1, $2)$_$;
+    AS $_$SELECT _ST_AsKML(2, $1, $2, null)$_$;
 
 
 --
--- Name: FUNCTION st_askml(geography, integer); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_askml(geog geography, maxdecimaldigits integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_askml(geography, integer) IS 'args: g1, precision - Return the geometry as a KML element. Several variants. Default version=2, default precision=15';
+COMMENT ON FUNCTION st_askml(geog geography, maxdecimaldigits integer) IS 'args: g1, precision - Return the geometry as a KML element. Several variants. Default version=2, default precision=15';
+
+
+--
+-- Name: st_askml(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_askml(geom geometry, maxdecimaldigits integer DEFAULT 15) RETURNS text
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT _ST_AsKML(2, ST_Transform($1,4326), $2, null); $_$;
+
+
+--
+-- Name: FUNCTION st_askml(geom geometry, maxdecimaldigits integer); Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON FUNCTION st_askml(geom geometry, maxdecimaldigits integer) IS 'args: g1, precision - Return the geometry as a KML element. Several variants. Default version=2, default precision=15';
 
 
 --
@@ -6194,19 +6091,19 @@ COMMENT ON FUNCTION st_askml(integer, geography) IS 'args: version, geom1 - Retu
 
 
 --
--- Name: st_askml(integer, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_askml(integer, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_askml(integer, geometry, integer) RETURNS text
+CREATE FUNCTION st_askml(integer, geometry) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT _ST_AsKML($1, ST_Transform($2,4326), $3)$_$;
+    AS $_$SELECT _ST_AsKML($1, ST_Transform($2,4326), 15)$_$;
 
 
 --
--- Name: FUNCTION st_askml(integer, geometry, integer); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_askml(integer, geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_askml(integer, geometry, integer) IS 'args: version, geom1, precision - Return the geometry as a KML element. Several variants. Default version=2, default precision=15';
+COMMENT ON FUNCTION st_askml(integer, geometry) IS 'args: version, geom1 - Return the geometry as a KML element. Several variants. Default version=2, default precision=15';
 
 
 --
@@ -6226,35 +6123,55 @@ COMMENT ON FUNCTION st_askml(integer, geography, integer) IS 'args: version, geo
 
 
 --
--- Name: st_assvg(geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_askml(integer, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_assvg(geometry) RETURNS text
+CREATE FUNCTION st_askml(integer, geometry, integer) RETURNS text
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$SELECT _ST_AsKML($1, ST_Transform($2,4326), $3)$_$;
+
+
+--
+-- Name: FUNCTION st_askml(integer, geometry, integer); Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON FUNCTION st_askml(integer, geometry, integer) IS 'args: version, geom1, precision - Return the geometry as a KML element. Several variants. Default version=2, default precision=15';
+
+
+--
+-- Name: st_askml(integer, geography, integer, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_askml(version integer, geog geography, maxdecimaldigits integer DEFAULT 15, nprefix text DEFAULT NULL::text) RETURNS text
+    LANGUAGE sql IMMUTABLE
+    AS $_$SELECT _ST_AsKML($1, $2, $3, $4)$_$;
+
+
+--
+-- Name: st_askml(integer, geometry, integer, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_askml(version integer, geom geometry, maxdecimaldigits integer DEFAULT 15, nprefix text DEFAULT NULL::text) RETURNS text
+    LANGUAGE sql IMMUTABLE
+    AS $_$ SELECT _ST_AsKML($1, ST_Transform($2,4326), $3, $4); $_$;
+
+
+--
+-- Name: st_aslatlontext(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_aslatlontext(geometry) RETURNS text
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT ST_AsLatLonText($1, '') $_$;
+
+
+--
+-- Name: st_aslatlontext(geometry, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_aslatlontext(geometry, text) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'assvg_geometry';
-
-
---
--- Name: FUNCTION st_assvg(geometry); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_assvg(geometry) IS 'args: g1 - Returns a Geometry in SVG path data given a geometry or geography object.';
-
-
---
--- Name: st_assvg(geography); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_assvg(geography) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_as_svg';
-
-
---
--- Name: FUNCTION st_assvg(geography); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_assvg(geography) IS 'args: g1 - Returns a Geometry in SVG path data given a geometry or geography object.';
+    AS '$libdir/postgis-2.1', 'LWGEOM_to_latlon';
 
 
 --
@@ -6263,87 +6180,39 @@ COMMENT ON FUNCTION st_assvg(geography) IS 'args: g1 - Returns a Geometry in SVG
 
 CREATE FUNCTION st_assvg(text) RETURNS text
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$ SELECT ST_AsSVG($1::geometry);  $_$;
-
-
---
--- Name: st_assvg(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_assvg(geometry, integer) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'assvg_geometry';
-
-
---
--- Name: FUNCTION st_assvg(geometry, integer); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_assvg(geometry, integer) IS 'args: g1, rel - Returns a Geometry in SVG path data given a geometry or geography object.';
-
-
---
--- Name: st_assvg(geography, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_assvg(geography, integer) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_as_svg';
-
-
---
--- Name: FUNCTION st_assvg(geography, integer); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_assvg(geography, integer) IS 'args: g1, rel - Returns a Geometry in SVG path data given a geometry or geography object.';
-
-
---
--- Name: st_assvg(geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_assvg(geometry, integer, integer) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'assvg_geometry';
-
-
---
--- Name: FUNCTION st_assvg(geometry, integer, integer); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_assvg(geometry, integer, integer) IS 'args: g1, rel, maxdecimaldigits - Returns a Geometry in SVG path data given a geometry or geography object.';
+    AS $_$ SELECT ST_AsSVG($1::geometry,0,15);  $_$;
 
 
 --
 -- Name: st_assvg(geography, integer, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_assvg(geography, integer, integer) RETURNS text
+CREATE FUNCTION st_assvg(geog geography, rel integer DEFAULT 0, maxdecimaldigits integer DEFAULT 15) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_as_svg';
+    AS '$libdir/postgis-2.1', 'geography_as_svg';
 
 
 --
--- Name: FUNCTION st_assvg(geography, integer, integer); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_assvg(geog geography, rel integer, maxdecimaldigits integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_assvg(geography, integer, integer) IS 'args: g1, rel, maxdecimaldigits - Returns a Geometry in SVG path data given a geometry or geography object.';
+COMMENT ON FUNCTION st_assvg(geog geography, rel integer, maxdecimaldigits integer) IS 'args: g1, rel, maxdecimaldigits - Returns a Geometry in SVG path data given a geometry or geography object.';
 
 
 --
--- Name: st_astext(geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_assvg(geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_astext(geometry) RETURNS text
+CREATE FUNCTION st_assvg(geom geometry, rel integer DEFAULT 0, maxdecimaldigits integer DEFAULT 15) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_asText';
+    AS '$libdir/postgis-2.1', 'LWGEOM_asSVG';
 
 
 --
--- Name: FUNCTION st_astext(geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_assvg(geom geometry, rel integer, maxdecimaldigits integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_astext(geometry) IS 'args: g1 - Return the Well-Known Text (WKT) representation of the geometry/geography without SRID metadata.';
+COMMENT ON FUNCTION st_assvg(geom geometry, rel integer, maxdecimaldigits integer) IS 'args: g1, rel, maxdecimaldigits - Returns a Geometry in SVG path data given a geometry or geography object.';
 
 
 --
@@ -6352,7 +6221,7 @@ COMMENT ON FUNCTION st_astext(geometry) IS 'args: g1 - Return the Well-Known Tex
 
 CREATE FUNCTION st_astext(geography) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_as_text';
+    AS '$libdir/postgis-2.1', 'LWGEOM_asText';
 
 
 --
@@ -6360,6 +6229,22 @@ CREATE FUNCTION st_astext(geography) RETURNS text
 --
 
 COMMENT ON FUNCTION st_astext(geography) IS 'args: g1 - Return the Well-Known Text (WKT) representation of the geometry/geography without SRID metadata.';
+
+
+--
+-- Name: st_astext(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_astext(geometry) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_asText';
+
+
+--
+-- Name: FUNCTION st_astext(geometry); Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON FUNCTION st_astext(geometry) IS 'args: g1 - Return the Well-Known Text (WKT) representation of the geometry/geography without SRID metadata.';
 
 
 --
@@ -6372,19 +6257,37 @@ CREATE FUNCTION st_astext(text) RETURNS text
 
 
 --
+-- Name: st_asx3d(geometry, integer, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_asx3d(geom geometry, maxdecimaldigits integer DEFAULT 15, options integer DEFAULT 0) RETURNS text
+    LANGUAGE sql IMMUTABLE
+    AS $_$SELECT _ST_AsX3D(3,$1,$2,$3,'');$_$;
+
+
+--
+-- Name: st_azimuth(geography, geography); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_azimuth(geog1 geography, geog2 geography) RETURNS double precision
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'geography_azimuth';
+
+
+--
 -- Name: st_azimuth(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_azimuth(geometry, geometry) RETURNS double precision
+CREATE FUNCTION st_azimuth(geom1 geometry, geom2 geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_azimuth';
+    AS '$libdir/postgis-2.1', 'LWGEOM_azimuth';
 
 
 --
--- Name: FUNCTION st_azimuth(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_azimuth(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_azimuth(geometry, geometry) IS 'args: pointA, pointB - Returns the angle in radians from the horizontal of the vector defined by pointA and pointB';
+COMMENT ON FUNCTION st_azimuth(geom1 geometry, geom2 geometry) IS 'args: pointA, pointB - Returns the angle in radians from the horizontal of the vector defined by pointA and pointB';
 
 
 --
@@ -6407,7 +6310,7 @@ BEGIN
 		RAISE EXCEPTION 'Input is not a MultiLinestring';
 	END IF;
 
-	geom := multi(ST_BuildArea(mline));
+	geom := ST_Multi(ST_BuildArea(mline));
 
 	RETURN geom;
 END;
@@ -6466,7 +6369,7 @@ COMMENT ON FUNCTION st_bdpolyfromtext(text, integer) IS 'args: WKT, srid - Const
 
 CREATE FUNCTION st_boundary(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'boundary';
+    AS '$libdir/postgis-2.1', 'boundary';
 
 
 --
@@ -6477,127 +6380,12 @@ COMMENT ON FUNCTION st_boundary(geometry) IS 'args: geomA - Returns the closure 
 
 
 --
--- Name: st_box(geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_box2dfromgeohash(text, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_box(geometry) RETURNS box
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_to_BOX';
-
-
---
--- Name: st_box(box3d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_box(box3d) RETURNS box
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_to_BOX';
-
-
---
--- Name: st_box2d(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_box2d(geometry) RETURNS box2d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_to_BOX2DFLOAT4';
-
-
---
--- Name: st_box2d(box3d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_box2d(box3d) RETURNS box2d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_to_BOX2DFLOAT4';
-
-
---
--- Name: st_box2d(box3d_extent); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_box2d(box3d_extent) RETURNS box2d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_to_BOX2DFLOAT4';
-
-
---
--- Name: st_box2d_in(cstring); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_box2d_in(cstring) RETURNS box2d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_in';
-
-
---
--- Name: st_box2d_out(box2d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_box2d_out(box2d) RETURNS cstring
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_out';
-
-
---
--- Name: st_box3d(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_box3d(geometry) RETURNS box3d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_to_BOX3D';
-
-
---
--- Name: st_box3d(box2d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_box3d(box2d) RETURNS box3d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_to_BOX3D';
-
-
---
--- Name: st_box3d_extent(box3d_extent); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_box3d_extent(box3d_extent) RETURNS box3d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_extent_to_BOX3D';
-
-
---
--- Name: st_box3d_in(cstring); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_box3d_in(cstring) RETURNS box3d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_in';
-
-
---
--- Name: st_box3d_out(box3d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_box3d_out(box3d) RETURNS cstring
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_out';
-
-
---
--- Name: st_buffer(geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_buffer(geometry, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'buffer';
-
-
---
--- Name: FUNCTION st_buffer(geometry, double precision); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_buffer(geometry, double precision) IS 'args: g1, radius_of_buffer - (T) For geometry: Returns a geometry that represents all points whose distance from this Geometry is less than or equal to distance. Calculations are in the Spatial Reference System of this Geometry. For geography: Uses a planar transform wrapper. Introduced in 1.5 support for different end cap and mitre settings to control shape. buffer_style options: quad_segs=#,endcap=round|flat|square,join=round|mitre|bevel,mitre_limit=#.#';
+CREATE FUNCTION st_box2dfromgeohash(text, integer DEFAULT NULL::integer) RETURNS box2d
+    LANGUAGE c IMMUTABLE
+    AS '$libdir/postgis-2.1', 'box2d_from_geohash';
 
 
 --
@@ -6614,6 +6402,22 @@ CREATE FUNCTION st_buffer(geography, double precision) RETURNS geography
 --
 
 COMMENT ON FUNCTION st_buffer(geography, double precision) IS 'args: g1, radius_of_buffer_in_meters - (T) For geometry: Returns a geometry that represents all points whose distance from this Geometry is less than or equal to distance. Calculations are in the Spatial Reference System of this Geometry. For geography: Uses a planar transform wrapper. Introduced in 1.5 support for different end cap and mitre settings to control shape. buffer_style options: quad_segs=#,endcap=round|flat|square,join=round|mitre|bevel,mitre_limit=#.#';
+
+
+--
+-- Name: st_buffer(geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_buffer(geometry, double precision) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'buffer';
+
+
+--
+-- Name: FUNCTION st_buffer(geometry, double precision); Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON FUNCTION st_buffer(geometry, double precision) IS 'args: g1, radius_of_buffer - (T) For geometry: Returns a geometry that represents all points whose distance from this Geometry is less than or equal to distance. Calculations are in the Spatial Reference System of this Geometry. For geography: Uses a planar transform wrapper. Introduced in 1.5 support for different end cap and mitre settings to control shape. buffer_style options: quad_segs=#,endcap=round|flat|square,join=round|mitre|bevel,mitre_limit=#.#';
 
 
 --
@@ -6669,7 +6473,7 @@ COMMENT ON FUNCTION st_buffer(geometry, double precision, text) IS 'args: g1, ra
 
 CREATE FUNCTION st_buildarea(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_buildarea';
+    AS '$libdir/postgis-2.1', 'ST_BuildArea';
 
 
 --
@@ -6680,21 +6484,12 @@ COMMENT ON FUNCTION st_buildarea(geometry) IS 'args: A - Creates an areal geomet
 
 
 --
--- Name: st_bytea(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_bytea(geometry) RETURNS bytea
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_to_bytea';
-
-
---
 -- Name: st_centroid(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_centroid(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'centroid';
+    AS '$libdir/postgis-2.1', 'centroid';
 
 
 --
@@ -6705,37 +6500,28 @@ COMMENT ON FUNCTION st_centroid(geometry) IS 'args: g1 - Returns the geometric c
 
 
 --
--- Name: st_chip_in(cstring); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_cleangeometry(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_chip_in(cstring) RETURNS chip
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_in';
-
-
---
--- Name: st_chip_out(chip); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_chip_out(chip) RETURNS cstring
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_out';
+CREATE FUNCTION st_cleangeometry(geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'ST_CleanGeometry';
 
 
 --
 -- Name: st_closestpoint(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_closestpoint(geometry, geometry) RETURNS geometry
+CREATE FUNCTION st_closestpoint(geom1 geometry, geom2 geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_closestpoint';
+    AS '$libdir/postgis-2.1', 'LWGEOM_closestpoint';
 
 
 --
--- Name: FUNCTION st_closestpoint(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_closestpoint(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_closestpoint(geometry, geometry) IS 'args: g1, g2 - Returns the 2-dimensional point on g1 that is closest to g2. This is the first point of the shortest line.';
+COMMENT ON FUNCTION st_closestpoint(geom1 geometry, geom2 geometry) IS 'args: g1, g2 - Returns the 2-dimensional point on g1 that is closest to g2. This is the first point of the shortest line.';
 
 
 --
@@ -6744,7 +6530,7 @@ COMMENT ON FUNCTION st_closestpoint(geometry, geometry) IS 'args: g1, g2 - Retur
 
 CREATE FUNCTION st_collect(geometry[]) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_collect_garray';
+    AS '$libdir/postgis-2.1', 'LWGEOM_collect_garray';
 
 
 --
@@ -6758,16 +6544,16 @@ COMMENT ON FUNCTION st_collect(geometry[]) IS 'args: g1_array - Return a specifi
 -- Name: st_collect(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_collect(geometry, geometry) RETURNS geometry
+CREATE FUNCTION st_collect(geom1 geometry, geom2 geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'LWGEOM_collect';
+    AS '$libdir/postgis-2.1', 'LWGEOM_collect';
 
 
 --
--- Name: FUNCTION st_collect(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_collect(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_collect(geometry, geometry) IS 'args: g1, g2 - Return a specified ST_Geometry value from a collection of other geometries.';
+COMMENT ON FUNCTION st_collect(geom1 geometry, geom2 geometry) IS 'args: g1, g2 - Return a specified ST_Geometry value from a collection of other geometries.';
 
 
 --
@@ -6776,7 +6562,7 @@ COMMENT ON FUNCTION st_collect(geometry, geometry) IS 'args: g1, g2 - Return a s
 
 CREATE FUNCTION st_collectionextract(geometry, integer) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'ST_CollectionExtract';
+    AS '$libdir/postgis-2.1', 'ST_CollectionExtract';
 
 
 --
@@ -6787,21 +6573,21 @@ COMMENT ON FUNCTION st_collectionextract(geometry, integer) IS 'args: collection
 
 
 --
+-- Name: st_collectionhomogenize(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_collectionhomogenize(geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'ST_CollectionHomogenize';
+
+
+--
 -- Name: st_combine_bbox(box2d, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_combine_bbox(box2d, geometry) RETURNS box2d
     LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_combine';
-
-
---
--- Name: st_combine_bbox(box3d_extent, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_combine_bbox(box3d_extent, geometry) RETURNS box3d_extent
-    LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'BOX3D_combine';
+    AS '$libdir/postgis-2.1', 'BOX2D_combine';
 
 
 --
@@ -6810,48 +6596,196 @@ CREATE FUNCTION st_combine_bbox(box3d_extent, geometry) RETURNS box3d_extent
 
 CREATE FUNCTION st_combine_bbox(box3d, geometry) RETURNS box3d
     LANGUAGE c IMMUTABLE
-    AS '$libdir/postgis-1.5', 'BOX3D_combine';
+    AS '$libdir/postgis-2.1', 'BOX3D_combine';
 
 
 --
--- Name: st_compression(chip); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_concavehull(geometry, double precision, boolean); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_compression(chip) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_getCompression';
+CREATE FUNCTION st_concavehull(param_geom geometry, param_pctconvex double precision, param_allow_holes boolean DEFAULT false) RETURNS geometry
+    LANGUAGE plpgsql IMMUTABLE STRICT
+    AS $$
+	DECLARE
+		var_convhull geometry := ST_ConvexHull(param_geom);
+		var_param_geom geometry := param_geom;
+		var_initarea float := ST_Area(var_convhull);
+		var_newarea float := var_initarea;
+		var_div integer := 6; 
+		var_tempgeom geometry;
+		var_tempgeom2 geometry;
+		var_cent geometry;
+		var_geoms geometry[4]; 
+		var_enline geometry;
+		var_resultgeom geometry;
+		var_atempgeoms geometry[];
+		var_buf float := 1; 
+	BEGIN
+		-- We start with convex hull as our base
+		var_resultgeom := var_convhull;
+		
+		IF param_pctconvex = 1 THEN
+			return var_resultgeom;
+		ELSIF ST_GeometryType(var_param_geom) = 'ST_Polygon' THEN -- it is as concave as it is going to get
+			IF param_allow_holes THEN -- leave the holes
+				RETURN var_param_geom;
+			ELSE -- remove the holes
+				var_resultgeom := ST_MakePolygon(ST_ExteriorRing(var_param_geom));
+				RETURN var_resultgeom;
+			END IF;
+		END IF;
+		IF ST_Dimension(var_resultgeom) > 1 AND param_pctconvex BETWEEN 0 and 0.98 THEN
+		-- get linestring that forms envelope of geometry
+			var_enline := ST_Boundary(ST_Envelope(var_param_geom));
+			var_buf := ST_Length(var_enline)/1000.0;
+			IF ST_GeometryType(var_param_geom) = 'ST_MultiPoint' AND ST_NumGeometries(var_param_geom) BETWEEN 4 and 200 THEN
+			-- we make polygons out of points since they are easier to cave in. 
+			-- Note we limit to between 4 and 200 points because this process is slow and gets quadratically slow
+				var_buf := sqrt(ST_Area(var_convhull)*0.8/(ST_NumGeometries(var_param_geom)*ST_NumGeometries(var_param_geom)));
+				var_atempgeoms := ARRAY(SELECT geom FROM ST_DumpPoints(var_param_geom));
+				-- 5 and 10 and just fudge factors
+				var_tempgeom := ST_Union(ARRAY(SELECT geom
+						FROM (
+						-- fuse near neighbors together
+						SELECT DISTINCT ON (i) i,  ST_Distance(var_atempgeoms[i],var_atempgeoms[j]), ST_Buffer(ST_MakeLine(var_atempgeoms[i], var_atempgeoms[j]) , var_buf*5, 'quad_segs=3') As geom
+								FROM generate_series(1,array_upper(var_atempgeoms, 1)) As i
+									INNER JOIN generate_series(1,array_upper(var_atempgeoms, 1)) As j 
+										ON (
+								 NOT ST_Intersects(var_atempgeoms[i],var_atempgeoms[j])
+									AND ST_DWithin(var_atempgeoms[i],var_atempgeoms[j], var_buf*10)
+									)
+								UNION ALL
+						-- catch the ones with no near neighbors
+								SELECT i, 0, ST_Buffer(var_atempgeoms[i] , var_buf*10, 'quad_segs=3') As geom
+								FROM generate_series(1,array_upper(var_atempgeoms, 1)) As i
+									LEFT JOIN generate_series(ceiling(array_upper(var_atempgeoms,1)/2)::integer,array_upper(var_atempgeoms, 1)) As j 
+										ON (
+								 NOT ST_Intersects(var_atempgeoms[i],var_atempgeoms[j])
+									AND ST_DWithin(var_atempgeoms[i],var_atempgeoms[j], var_buf*10) 
+									)
+									WHERE j IS NULL
+								ORDER BY 1, 2
+							) As foo	) );
+				IF ST_IsValid(var_tempgeom) AND ST_GeometryType(var_tempgeom) = 'ST_Polygon' THEN
+					var_tempgeom := ST_ForceSFS(ST_Intersection(var_tempgeom, var_convhull));
+					IF param_allow_holes THEN
+						var_param_geom := var_tempgeom;
+					ELSE
+						var_param_geom := ST_MakePolygon(ST_ExteriorRing(var_tempgeom));
+					END IF;
+					return var_param_geom;
+				ELSIF ST_IsValid(var_tempgeom) THEN
+					var_param_geom := ST_ForceSFS(ST_Intersection(var_tempgeom, var_convhull));	
+				END IF;
+			END IF;
+
+			IF ST_GeometryType(var_param_geom) = 'ST_Polygon' THEN
+				IF NOT param_allow_holes THEN
+					var_param_geom := ST_MakePolygon(ST_ExteriorRing(var_param_geom));
+				END IF;
+				return var_param_geom;
+			END IF;
+            var_cent := ST_Centroid(var_param_geom);
+            IF (ST_XMax(var_enline) - ST_XMin(var_enline) ) > var_buf AND (ST_YMax(var_enline) - ST_YMin(var_enline) ) > var_buf THEN
+                    IF ST_Dwithin(ST_Centroid(var_convhull) , ST_Centroid(ST_Envelope(var_param_geom)), var_buf/2) THEN
+                -- If the geometric dimension is > 1 and the object is symettric (cutting at centroid will not work -- offset a bit)
+                        var_cent := ST_Translate(var_cent, (ST_XMax(var_enline) - ST_XMin(var_enline))/1000,  (ST_YMAX(var_enline) - ST_YMin(var_enline))/1000);
+                    ELSE
+                        -- uses closest point on geometry to centroid. I can't explain why we are doing this
+                        var_cent := ST_ClosestPoint(var_param_geom,var_cent);
+                    END IF;
+                    IF ST_DWithin(var_cent, var_enline,var_buf) THEN
+                        var_cent := ST_centroid(ST_Envelope(var_param_geom));
+                    END IF;
+                    -- break envelope into 4 triangles about the centroid of the geometry and returned the clipped geometry in each quadrant
+                    FOR i in 1 .. 4 LOOP
+                       var_geoms[i] := ST_MakePolygon(ST_MakeLine(ARRAY[ST_PointN(var_enline,i), ST_PointN(var_enline,i+1), var_cent, ST_PointN(var_enline,i)]));
+                       var_geoms[i] := ST_ForceSFS(ST_Intersection(var_param_geom, ST_Buffer(var_geoms[i],var_buf)));
+                       IF ST_IsValid(var_geoms[i]) THEN 
+                            
+                       ELSE
+                            var_geoms[i] := ST_BuildArea(ST_MakeLine(ARRAY[ST_PointN(var_enline,i), ST_PointN(var_enline,i+1), var_cent, ST_PointN(var_enline,i)]));
+                       END IF; 
+                    END LOOP;
+                    var_tempgeom := ST_Union(ARRAY[ST_ConvexHull(var_geoms[1]), ST_ConvexHull(var_geoms[2]) , ST_ConvexHull(var_geoms[3]), ST_ConvexHull(var_geoms[4])]); 
+                    --RAISE NOTICE 'Curr vex % ', ST_AsText(var_tempgeom);
+                    IF ST_Area(var_tempgeom) <= var_newarea AND ST_IsValid(var_tempgeom)  THEN --AND ST_GeometryType(var_tempgeom) ILIKE '%Polygon'
+                        
+                        var_tempgeom := ST_Buffer(ST_ConcaveHull(var_geoms[1],least(param_pctconvex + param_pctconvex/var_div),true),var_buf, 'quad_segs=2');
+                        FOR i IN 1 .. 4 LOOP
+                            var_geoms[i] := ST_Buffer(ST_ConcaveHull(var_geoms[i],least(param_pctconvex + param_pctconvex/var_div),true), var_buf, 'quad_segs=2');
+                            IF ST_IsValid(var_geoms[i]) Then
+                                var_tempgeom := ST_Union(var_tempgeom, var_geoms[i]);
+                            ELSE
+                                RAISE NOTICE 'Not valid % %', i, ST_AsText(var_tempgeom);
+                                var_tempgeom := ST_Union(var_tempgeom, ST_ConvexHull(var_geoms[i]));
+                            END IF; 
+                        END LOOP;
+
+                        --RAISE NOTICE 'Curr concave % ', ST_AsText(var_tempgeom);
+                        IF ST_IsValid(var_tempgeom) THEN
+                            var_resultgeom := var_tempgeom;
+                        END IF;
+                        var_newarea := ST_Area(var_resultgeom);
+                    ELSIF ST_IsValid(var_tempgeom) THEN
+                        var_resultgeom := var_tempgeom;
+                    END IF;
+
+                    IF ST_NumGeometries(var_resultgeom) > 1  THEN
+                        var_tempgeom := _ST_ConcaveHull(var_resultgeom);
+                        IF ST_IsValid(var_tempgeom) AND ST_GeometryType(var_tempgeom) ILIKE 'ST_Polygon' THEN
+                            var_resultgeom := var_tempgeom;
+                        ELSE
+                            var_resultgeom := ST_Buffer(var_tempgeom,var_buf, 'quad_segs=2');
+                        END IF;
+                    END IF;
+                    IF param_allow_holes = false THEN 
+                    -- only keep exterior ring since we do not want holes
+                        var_resultgeom := ST_MakePolygon(ST_ExteriorRing(var_resultgeom));
+                    END IF;
+                ELSE
+                    var_resultgeom := ST_Buffer(var_resultgeom,var_buf);
+                END IF;
+                var_resultgeom := ST_ForceSFS(ST_Intersection(var_resultgeom, ST_ConvexHull(var_param_geom)));
+            ELSE
+                -- dimensions are too small to cut
+                var_resultgeom := _ST_ConcaveHull(var_param_geom);
+            END IF;
+            RETURN var_resultgeom;
+	END;
+$$;
 
 
 --
 -- Name: st_contains(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_contains(geometry, geometry) RETURNS boolean
+CREATE FUNCTION st_contains(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE sql IMMUTABLE
     AS $_$SELECT $1 && $2 AND _ST_Contains($1,$2)$_$;
 
 
 --
--- Name: FUNCTION st_contains(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_contains(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_contains(geometry, geometry) IS 'args: geomA, geomB - Returns true if and only if no points of B lie in the exterior of A, and at least one point of the interior of B lies in the interior of A.';
+COMMENT ON FUNCTION st_contains(geom1 geometry, geom2 geometry) IS 'args: geomA, geomB - Returns true if and only if no points of B lie in the exterior of A, and at least one point of the interior of B lies in the interior of A.';
 
 
 --
 -- Name: st_containsproperly(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_containsproperly(geometry, geometry) RETURNS boolean
+CREATE FUNCTION st_containsproperly(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE sql IMMUTABLE
     AS $_$SELECT $1 && $2 AND _ST_ContainsProperly($1,$2)$_$;
 
 
 --
--- Name: FUNCTION st_containsproperly(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_containsproperly(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_containsproperly(geometry, geometry) IS 'args: geomA, geomB - Returns true if B intersects the interior of A but not the boundary (or exterior). A does not contain properly itself, but does contain itself.';
+COMMENT ON FUNCTION st_containsproperly(geom1 geometry, geom2 geometry) IS 'args: geomA, geomB - Returns true if B intersects the interior of A but not the boundary (or exterior). A does not contain properly itself, but does contain itself.';
 
 
 --
@@ -6860,7 +6794,7 @@ COMMENT ON FUNCTION st_containsproperly(geometry, geometry) IS 'args: geomA, geo
 
 CREATE FUNCTION st_convexhull(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'convexhull';
+    AS '$libdir/postgis-2.1', 'convexhull';
 
 
 --
@@ -6874,32 +6808,32 @@ COMMENT ON FUNCTION st_convexhull(geometry) IS 'args: geomA - The convex hull of
 -- Name: st_coorddim(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_coorddim(geometry) RETURNS smallint
+CREATE FUNCTION st_coorddim(geometry geometry) RETURNS smallint
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_ndims';
+    AS '$libdir/postgis-2.1', 'LWGEOM_ndims';
 
 
 --
--- Name: FUNCTION st_coorddim(geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_coorddim(geometry geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_coorddim(geometry) IS 'args: geomA - Return the coordinate dimension of the ST_Geometry value.';
+COMMENT ON FUNCTION st_coorddim(geometry geometry) IS 'args: geomA - Return the coordinate dimension of the ST_Geometry value.';
 
 
 --
 -- Name: st_coveredby(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_coveredby(geometry, geometry) RETURNS boolean
+CREATE FUNCTION st_coveredby(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE sql IMMUTABLE
     AS $_$SELECT $1 && $2 AND _ST_CoveredBy($1,$2)$_$;
 
 
 --
--- Name: FUNCTION st_coveredby(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_coveredby(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_coveredby(geometry, geometry) IS 'args: geomA, geomB - Returns 1 (TRUE) if no point in Geometry/Geography A is outside Geometry/Geography B';
+COMMENT ON FUNCTION st_coveredby(geom1 geometry, geom2 geometry) IS 'args: geomA, geomB - Returns 1 (TRUE) if no point in Geometry/Geography A is outside Geometry/Geography B';
 
 
 --
@@ -6931,16 +6865,16 @@ CREATE FUNCTION st_coveredby(text, text) RETURNS boolean
 -- Name: st_covers(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_covers(geometry, geometry) RETURNS boolean
+CREATE FUNCTION st_covers(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE sql IMMUTABLE
     AS $_$SELECT $1 && $2 AND _ST_Covers($1,$2)$_$;
 
 
 --
--- Name: FUNCTION st_covers(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_covers(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_covers(geometry, geometry) IS 'args: geomA, geomB - Returns 1 (TRUE) if no point in Geometry B is outside Geometry A. For geography: if geography point B is not outside Polygon Geography A';
+COMMENT ON FUNCTION st_covers(geom1 geometry, geom2 geometry) IS 'args: geomA, geomB - Returns 1 (TRUE) if no point in Geometry B is outside Geometry A. For geography: if geography point B is not outside Polygon Geography A';
 
 
 --
@@ -6948,7 +6882,7 @@ COMMENT ON FUNCTION st_covers(geometry, geometry) IS 'args: geomA, geomB - Retur
 --
 
 CREATE FUNCTION st_covers(geography, geography) RETURNS boolean
-    LANGUAGE sql IMMUTABLE STRICT
+    LANGUAGE sql IMMUTABLE
     AS $_$SELECT $1 && $2 AND _ST_Covers($1, $2)$_$;
 
 
@@ -6972,16 +6906,16 @@ CREATE FUNCTION st_covers(text, text) RETURNS boolean
 -- Name: st_crosses(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_crosses(geometry, geometry) RETURNS boolean
+CREATE FUNCTION st_crosses(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE sql IMMUTABLE
     AS $_$SELECT $1 && $2 AND _ST_Crosses($1,$2)$_$;
 
 
 --
--- Name: FUNCTION st_crosses(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_crosses(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_crosses(geometry, geometry) IS 'args: g1, g2 - Returns TRUE if the supplied geometries have some, but not all, interior points in common.';
+COMMENT ON FUNCTION st_crosses(geom1 geometry, geom2 geometry) IS 'args: g1, g2 - Returns TRUE if the supplied geometries have some, but not all, interior points in common.';
 
 
 --
@@ -7006,7 +6940,7 @@ COMMENT ON FUNCTION st_curvetoline(geometry) IS 'args: curveGeom - Converts a CI
 
 CREATE FUNCTION st_curvetoline(geometry, integer) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_curve_segmentize';
+    AS '$libdir/postgis-2.1', 'LWGEOM_curve_segmentize';
 
 
 --
@@ -7017,44 +6951,44 @@ COMMENT ON FUNCTION st_curvetoline(geometry, integer) IS 'args: curveGeom, segme
 
 
 --
--- Name: st_datatype(chip); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_delaunaytriangles(geometry, double precision, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_datatype(chip) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_getDatatype';
+CREATE FUNCTION st_delaunaytriangles(g1 geometry, tolerance double precision DEFAULT 0.0, flags integer DEFAULT 0) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'ST_DelaunayTriangles';
 
 
 --
 -- Name: st_dfullywithin(geometry, geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_dfullywithin(geometry, geometry, double precision) RETURNS boolean
+CREATE FUNCTION st_dfullywithin(geom1 geometry, geom2 geometry, double precision) RETURNS boolean
     LANGUAGE sql IMMUTABLE
     AS $_$SELECT $1 && ST_Expand($2,$3) AND $2 && ST_Expand($1,$3) AND _ST_DFullyWithin(ST_ConvexHull($1), ST_ConvexHull($2), $3)$_$;
 
 
 --
--- Name: FUNCTION st_dfullywithin(geometry, geometry, double precision); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_dfullywithin(geom1 geometry, geom2 geometry, double precision); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_dfullywithin(geometry, geometry, double precision) IS 'args: g1, g2, distance - Returns true if all of the geometries are within the specified distance of one another';
+COMMENT ON FUNCTION st_dfullywithin(geom1 geometry, geom2 geometry, double precision) IS 'args: g1, g2, distance - Returns true if all of the geometries are within the specified distance of one another';
 
 
 --
 -- Name: st_difference(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_difference(geometry, geometry) RETURNS geometry
+CREATE FUNCTION st_difference(geom1 geometry, geom2 geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'difference';
+    AS '$libdir/postgis-2.1', 'difference';
 
 
 --
--- Name: FUNCTION st_difference(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_difference(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_difference(geometry, geometry) IS 'args: geomA, geomB - Returns a geometry that represents that part of geometry A that does not intersect with geometry B.';
+COMMENT ON FUNCTION st_difference(geom1 geometry, geom2 geometry) IS 'args: geomA, geomB - Returns a geometry that represents that part of geometry A that does not intersect with geometry B.';
 
 
 --
@@ -7063,7 +6997,7 @@ COMMENT ON FUNCTION st_difference(geometry, geometry) IS 'args: geomA, geomB - R
 
 CREATE FUNCTION st_dimension(geometry) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_dimension';
+    AS '$libdir/postgis-2.1', 'LWGEOM_dimension';
 
 
 --
@@ -7077,32 +7011,32 @@ COMMENT ON FUNCTION st_dimension(geometry) IS 'args: g - The inherent dimension 
 -- Name: st_disjoint(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_disjoint(geometry, geometry) RETURNS boolean
+CREATE FUNCTION st_disjoint(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'disjoint';
+    AS '$libdir/postgis-2.1', 'disjoint';
 
 
 --
--- Name: FUNCTION st_disjoint(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_disjoint(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_disjoint(geometry, geometry) IS 'args: A, B - Returns TRUE if the Geometries do not "spatially intersect" - if they do not share any space together.';
+COMMENT ON FUNCTION st_disjoint(geom1 geometry, geom2 geometry) IS 'args: A, B - Returns TRUE if the Geometries do not "spatially intersect" - if they do not share any space together.';
 
 
 --
 -- Name: st_distance(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_distance(geometry, geometry) RETURNS double precision
+CREATE FUNCTION st_distance(geom1 geometry, geom2 geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_mindistance2d';
+    AS '$libdir/postgis-2.1', 'distance';
 
 
 --
--- Name: FUNCTION st_distance(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_distance(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_distance(geometry, geometry) IS 'args: g1, g2 - For geometry type Returns the 2-dimensional cartesian minimum distance (based on spatial ref) between two geometries in projected units. For geography type defaults to return spheroidal minimum distance between two geographies in meters.';
+COMMENT ON FUNCTION st_distance(geom1 geometry, geom2 geometry) IS 'args: g1, g2 - For geometry type Returns the 2-dimensional cartesian minimum distance (based on spatial ref) between two geometries in projected units. For geography type defaults to return spheroidal minimum distance between two geographies in meters.';
 
 
 --
@@ -7150,32 +7084,34 @@ COMMENT ON FUNCTION st_distance(geography, geography, boolean) IS 'args: gg1, gg
 -- Name: st_distance_sphere(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_distance_sphere(geometry, geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_distance_sphere';
+CREATE FUNCTION st_distance_sphere(geom1 geometry, geom2 geometry) RETURNS double precision
+    LANGUAGE sql IMMUTABLE STRICT COST 300
+    AS $_$
+	select st_distance(geography($1),geography($2),false)
+	$_$;
 
 
 --
--- Name: FUNCTION st_distance_sphere(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_distance_sphere(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_distance_sphere(geometry, geometry) IS 'args: geomlonlatA, geomlonlatB - Returns minimum distance in meters between two lon/lat geometries. Uses a spherical earth and radius of 6370986 meters. Faster than ST_Distance_Spheroid, but less accurate. PostGIS versions prior to 1.5 only implemented for points.';
+COMMENT ON FUNCTION st_distance_sphere(geom1 geometry, geom2 geometry) IS 'args: geomlonlatA, geomlonlatB - Returns minimum distance in meters between two lon/lat geometries. Uses a spherical earth and radius of 6370986 meters. Faster than ST_Distance_Spheroid, but less accurate. PostGIS versions prior to 1.5 only implemented for points.';
 
 
 --
 -- Name: st_distance_spheroid(geometry, geometry, spheroid); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_distance_spheroid(geometry, geometry, spheroid) RETURNS double precision
+CREATE FUNCTION st_distance_spheroid(geom1 geometry, geom2 geometry, spheroid) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_distance_ellipsoid';
+    AS '$libdir/postgis-2.1', 'LWGEOM_distance_ellipsoid';
 
 
 --
--- Name: FUNCTION st_distance_spheroid(geometry, geometry, spheroid); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_distance_spheroid(geom1 geometry, geom2 geometry, spheroid); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_distance_spheroid(geometry, geometry, spheroid) IS 'args: geomlonlatA, geomlonlatB, measurement_spheroid - Returns the minimum distance between two lon/lat geometries given a particular spheroid. PostGIS versions prior to 1.5 only support points.';
+COMMENT ON FUNCTION st_distance_spheroid(geom1 geometry, geom2 geometry, spheroid) IS 'args: geomlonlatA, geomlonlatB, measurement_spheroid - Returns the minimum distance between two lon/lat geometries given a particular spheroid. PostGIS versions prior to 1.5 only support points.';
 
 
 --
@@ -7184,7 +7120,7 @@ COMMENT ON FUNCTION st_distance_spheroid(geometry, geometry, spheroid) IS 'args:
 
 CREATE FUNCTION st_dump(geometry) RETURNS SETOF geometry_dump
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_dump';
+    AS '$libdir/postgis-2.1', 'LWGEOM_dump';
 
 
 --
@@ -7199,10 +7135,8 @@ COMMENT ON FUNCTION st_dump(geometry) IS 'args: g1 - Returns a set of geometry_d
 --
 
 CREATE FUNCTION st_dumppoints(geometry) RETURNS SETOF geometry_dump
-    LANGUAGE sql STRICT
-    AS $_$
-  SELECT * FROM _ST_DumpPoints($1, NULL);
-$_$;
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_dumppoints';
 
 
 --
@@ -7218,7 +7152,7 @@ COMMENT ON FUNCTION st_dumppoints(geometry) IS 'args: geom - Returns a set of ge
 
 CREATE FUNCTION st_dumprings(geometry) RETURNS SETOF geometry_dump
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_dump_rings';
+    AS '$libdir/postgis-2.1', 'LWGEOM_dump_rings';
 
 
 --
@@ -7232,16 +7166,16 @@ COMMENT ON FUNCTION st_dumprings(geometry) IS 'args: a_polygon - Returns a set o
 -- Name: st_dwithin(geometry, geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_dwithin(geometry, geometry, double precision) RETURNS boolean
+CREATE FUNCTION st_dwithin(geom1 geometry, geom2 geometry, double precision) RETURNS boolean
     LANGUAGE sql IMMUTABLE
     AS $_$SELECT $1 && ST_Expand($2,$3) AND $2 && ST_Expand($1,$3) AND _ST_DWithin($1, $2, $3)$_$;
 
 
 --
--- Name: FUNCTION st_dwithin(geometry, geometry, double precision); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_dwithin(geom1 geometry, geom2 geometry, double precision); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_dwithin(geometry, geometry, double precision) IS 'args: g1, g2, distance_of_srid - Returns true if the geometries are within the specified distance of one another. For geometry units are in those of spatial reference and For geography units are in meters and measurement is defaulted to use_spheroid=true (measure around spheroid), for faster check, use_spheroid=false to measure along sphere.';
+COMMENT ON FUNCTION st_dwithin(geom1 geometry, geom2 geometry, double precision) IS 'args: g1, g2, distance_of_srid - Returns true if the geometries are within the specified distance of one another. For geometry units are in those of spatial reference and For geography units are in meters and measurement is defaulted to use_spheroid=true (measure around spheroid), for faster check, use_spheroid=false to measure along sphere.';
 
 
 --
@@ -7291,7 +7225,7 @@ COMMENT ON FUNCTION st_dwithin(geography, geography, double precision, boolean) 
 
 CREATE FUNCTION st_endpoint(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_endpoint_linestring';
+    AS '$libdir/postgis-2.1', 'LWGEOM_endpoint_linestring';
 
 
 --
@@ -7307,7 +7241,7 @@ COMMENT ON FUNCTION st_endpoint(geometry) IS 'args: g - Returns the last point o
 
 CREATE FUNCTION st_envelope(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_envelope';
+    AS '$libdir/postgis-2.1', 'LWGEOM_envelope';
 
 
 --
@@ -7321,16 +7255,16 @@ COMMENT ON FUNCTION st_envelope(geometry) IS 'args: g1 - Returns a geometry repr
 -- Name: st_equals(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_equals(geometry, geometry) RETURNS boolean
+CREATE FUNCTION st_equals(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE sql IMMUTABLE
-    AS $_$SELECT $1 && $2 AND _ST_Equals($1,$2)$_$;
+    AS $_$SELECT $1 ~= $2 AND _ST_Equals($1,$2)$_$;
 
 
 --
--- Name: FUNCTION st_equals(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_equals(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_equals(geometry, geometry) IS 'args: A, B - Returns true if the given geometries represent the same geometry. Directionality is ignored.';
+COMMENT ON FUNCTION st_equals(geom1 geometry, geom2 geometry) IS 'args: A, B - Returns true if the given geometries represent the same geometry. Directionality is ignored.';
 
 
 --
@@ -7338,8 +7272,13 @@ COMMENT ON FUNCTION st_equals(geometry, geometry) IS 'args: A, B - Returns true 
 --
 
 CREATE FUNCTION st_estimated_extent(text, text) RETURNS box2d
-    LANGUAGE c IMMUTABLE STRICT SECURITY DEFINER
-    AS '$libdir/postgis-1.5', 'LWGEOM_estimated_extent';
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT _postgis_deprecate('ST_Estimated_Extent', 'ST_EstimatedExtent', '2.1.0');
+    -- We use security invoker instead of security definer 
+    -- to prevent malicious injection of a same named different function
+    -- that would be run under elevated permissions
+    SELECT ST_EstimatedExtent($1, $2);
+  $_$;
 
 
 --
@@ -7354,8 +7293,12 @@ COMMENT ON FUNCTION st_estimated_extent(text, text) IS 'args: table_name, geocol
 --
 
 CREATE FUNCTION st_estimated_extent(text, text, text) RETURNS box2d
-    LANGUAGE c IMMUTABLE STRICT SECURITY DEFINER
-    AS '$libdir/postgis-1.5', 'LWGEOM_estimated_extent';
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT _postgis_deprecate('ST_Estimated_Extent', 'ST_EstimatedExtent', '2.1.0');
+    -- We use security invoker instead of security definer 
+    -- to prevent malicious injection of a different same named function
+    SELECT ST_EstimatedExtent($1, $2, $3);
+  $_$;
 
 
 --
@@ -7366,19 +7309,21 @@ COMMENT ON FUNCTION st_estimated_extent(text, text, text) IS 'args: schema_name,
 
 
 --
--- Name: st_expand(box3d, double precision); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_estimatedextent(text, text); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_expand(box3d, double precision) RETURNS box3d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_expand';
+CREATE FUNCTION st_estimatedextent(text, text) RETURNS box2d
+    LANGUAGE c IMMUTABLE STRICT SECURITY DEFINER
+    AS '$libdir/postgis-2.1', 'gserialized_estimated_extent';
 
 
 --
--- Name: FUNCTION st_expand(box3d, double precision); Type: COMMENT; Schema: public; Owner: -
+-- Name: st_estimatedextent(text, text, text); Type: FUNCTION; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_expand(box3d, double precision) IS 'args: g1, units_to_expand - Returns bounding box expanded in all directions from the bounding box of the input geometry. Uses double-precision';
+CREATE FUNCTION st_estimatedextent(text, text, text) RETURNS box2d
+    LANGUAGE c IMMUTABLE STRICT SECURITY DEFINER
+    AS '$libdir/postgis-2.1', 'gserialized_estimated_extent';
 
 
 --
@@ -7387,7 +7332,7 @@ COMMENT ON FUNCTION st_expand(box3d, double precision) IS 'args: g1, units_to_ex
 
 CREATE FUNCTION st_expand(box2d, double precision) RETURNS box2d
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_expand';
+    AS '$libdir/postgis-2.1', 'BOX2D_expand';
 
 
 --
@@ -7398,12 +7343,28 @@ COMMENT ON FUNCTION st_expand(box2d, double precision) IS 'args: g1, units_to_ex
 
 
 --
+-- Name: st_expand(box3d, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_expand(box3d, double precision) RETURNS box3d
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'BOX3D_expand';
+
+
+--
+-- Name: FUNCTION st_expand(box3d, double precision); Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON FUNCTION st_expand(box3d, double precision) IS 'args: g1, units_to_expand - Returns bounding box expanded in all directions from the bounding box of the input geometry. Uses double-precision';
+
+
+--
 -- Name: st_expand(geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_expand(geometry, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_expand';
+    AS '$libdir/postgis-2.1', 'LWGEOM_expand';
 
 
 --
@@ -7419,7 +7380,7 @@ COMMENT ON FUNCTION st_expand(geometry, double precision) IS 'args: g1, units_to
 
 CREATE FUNCTION st_exteriorring(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_exteriorring_polygon';
+    AS '$libdir/postgis-2.1', 'LWGEOM_exteriorring_polygon';
 
 
 --
@@ -7427,15 +7388,6 @@ CREATE FUNCTION st_exteriorring(geometry) RETURNS geometry
 --
 
 COMMENT ON FUNCTION st_exteriorring(geometry) IS 'args: a_polygon - Returns a line string representing the exterior ring of the POLYGON geometry. Return NULL if the geometry is not a polygon. Will not work with MULTIPOLYGON';
-
-
---
--- Name: st_factor(chip); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_factor(chip) RETURNS real
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_getFactor';
 
 
 --
@@ -7451,7 +7403,7 @@ DECLARE
 	myrec RECORD;
 
 BEGIN
-	FOR myrec IN EXECUTE 'SELECT extent("' || columnname || '") FROM "' || tablename || '"' LOOP
+	FOR myrec IN EXECUTE 'SELECT ST_Extent("' || columnname || '") As extent FROM "' || tablename || '"' LOOP
 		return myrec.extent;
 	END LOOP;
 END;
@@ -7472,7 +7424,7 @@ DECLARE
 	myrec RECORD;
 
 BEGIN
-	FOR myrec IN EXECUTE 'SELECT extent("' || columnname || '") FROM "' || schemaname || '"."' || tablename || '"' LOOP
+	FOR myrec IN EXECUTE 'SELECT ST_Extent("' || columnname || '") As extent FROM "' || schemaname || '"."' || tablename || '"' LOOP
 		return myrec.extent;
 	END LOOP;
 END;
@@ -7480,12 +7432,68 @@ $_$;
 
 
 --
+-- Name: st_flipcoordinates(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_flipcoordinates(geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'ST_FlipCoordinates';
+
+
+--
+-- Name: st_force2d(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_force2d(geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_force_2d';
+
+
+--
+-- Name: st_force3d(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_force3d(geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_force_3dz';
+
+
+--
+-- Name: st_force3dm(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_force3dm(geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_force_3dm';
+
+
+--
+-- Name: st_force3dz(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_force3dz(geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_force_3dz';
+
+
+--
+-- Name: st_force4d(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_force4d(geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_force_4d';
+
+
+--
 -- Name: st_force_2d(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_force_2d(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_2d';
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT _postgis_deprecate('ST_Force_2d', 'ST_Force2D', '2.1.0');
+    SELECT ST_Force2D($1);
+  $_$;
 
 
 --
@@ -7500,8 +7508,10 @@ COMMENT ON FUNCTION st_force_2d(geometry) IS 'args: geomA - Forces the geometrie
 --
 
 CREATE FUNCTION st_force_3d(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_3dz';
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT _postgis_deprecate('ST_Force_3d', 'ST_Force3D', '2.1.0');
+    SELECT ST_Force3D($1);
+  $_$;
 
 
 --
@@ -7516,8 +7526,10 @@ COMMENT ON FUNCTION st_force_3d(geometry) IS 'args: geomA - Forces the geometrie
 --
 
 CREATE FUNCTION st_force_3dm(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_3dm';
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT _postgis_deprecate('ST_Force_3dm', 'ST_Force3DM', '2.1.0');
+    SELECT ST_Force3DM($1);
+  $_$;
 
 
 --
@@ -7532,8 +7544,10 @@ COMMENT ON FUNCTION st_force_3dm(geometry) IS 'args: geomA - Forces the geometri
 --
 
 CREATE FUNCTION st_force_3dz(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_3dz';
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT _postgis_deprecate('ST_Force_3dz', 'ST_Force3DZ', '2.1.0');
+    SELECT ST_Force3DZ($1);
+  $_$;
 
 
 --
@@ -7548,8 +7562,10 @@ COMMENT ON FUNCTION st_force_3dz(geometry) IS 'args: geomA - Forces the geometri
 --
 
 CREATE FUNCTION st_force_4d(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_4d';
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT _postgis_deprecate('ST_Force_4d', 'ST_Force4D', '2.1.0');
+    SELECT ST_Force4D($1);
+  $_$;
 
 
 --
@@ -7564,8 +7580,10 @@ COMMENT ON FUNCTION st_force_4d(geometry) IS 'args: geomA - Forces the geometrie
 --
 
 CREATE FUNCTION st_force_collection(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_collection';
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT _postgis_deprecate('ST_Force_Collection', 'ST_ForceCollection', '2.1.0');
+    SELECT ST_ForceCollection($1);
+  $_$;
 
 
 --
@@ -7576,12 +7594,21 @@ COMMENT ON FUNCTION st_force_collection(geometry) IS 'args: geomA - Converts the
 
 
 --
+-- Name: st_forcecollection(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_forcecollection(geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_force_collection';
+
+
+--
 -- Name: st_forcerhr(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_forcerhr(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_forceRHR_poly';
+    AS '$libdir/postgis-2.1', 'LWGEOM_force_clockwise_poly';
 
 
 --
@@ -7592,12 +7619,30 @@ COMMENT ON FUNCTION st_forcerhr(geometry) IS 'args: g - Forces the orientation o
 
 
 --
+-- Name: st_forcesfs(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_forcesfs(geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_force_sfs';
+
+
+--
+-- Name: st_forcesfs(geometry, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_forcesfs(geometry, version text) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_force_sfs';
+
+
+--
 -- Name: st_geogfromtext(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_geogfromtext(text) RETURNS geography
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_from_text';
+    AS '$libdir/postgis-2.1', 'geography_from_text';
 
 
 --
@@ -7613,7 +7658,7 @@ COMMENT ON FUNCTION st_geogfromtext(text) IS 'args: EWKT - Return a specified ge
 
 CREATE FUNCTION st_geogfromwkb(bytea) RETURNS geography
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_from_binary';
+    AS '$libdir/postgis-2.1', 'geography_from_binary';
 
 
 --
@@ -7629,7 +7674,7 @@ COMMENT ON FUNCTION st_geogfromwkb(bytea) IS 'args: geom - Creates a geography i
 
 CREATE FUNCTION st_geographyfromtext(text) RETURNS geography
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geography_from_text';
+    AS '$libdir/postgis-2.1', 'geography_from_text';
 
 
 --
@@ -7656,19 +7701,28 @@ COMMENT ON FUNCTION st_geohash(geometry) IS 'args: g1 - Return a GeoHash represe
 
 
 --
+-- Name: st_geohash(geography, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_geohash(geog geography, maxchars integer DEFAULT 0) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'ST_GeoHash';
+
+
+--
 -- Name: st_geohash(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_geohash(geometry, integer) RETURNS text
+CREATE FUNCTION st_geohash(geom geometry, maxchars integer DEFAULT 0) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'ST_GeoHash';
+    AS '$libdir/postgis-2.1', 'ST_GeoHash';
 
 
 --
--- Name: FUNCTION st_geohash(geometry, integer); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_geohash(geom geometry, maxchars integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_geohash(geometry, integer) IS 'args: g1, precision - Return a GeoHash representation (geohash.org) of the geometry.';
+COMMENT ON FUNCTION st_geohash(geom geometry, maxchars integer) IS 'args: g1, precision - Return a GeoHash representation (geohash.org) of the geometry.';
 
 
 --
@@ -7735,271 +7789,10 @@ CREATE FUNCTION st_geomcollfromwkb(bytea, integer) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
 	SELECT CASE
-	WHEN geometrytype(GeomFromWKB($1, $2)) = 'GEOMETRYCOLLECTION'
-	THEN GeomFromWKB($1, $2)
+	WHEN geometrytype(ST_GeomFromWKB($1, $2)) = 'GEOMETRYCOLLECTION'
+	THEN ST_GeomFromWKB($1, $2)
 	ELSE NULL END
 	$_$;
-
-
---
--- Name: st_geometry(box2d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry(box2d) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_to_LWGEOM';
-
-
---
--- Name: st_geometry(box3d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry(box3d) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_to_LWGEOM';
-
-
---
--- Name: st_geometry(text); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry(text) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'parse_WKT_lwgeom';
-
-
---
--- Name: st_geometry(chip); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry(chip) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_to_LWGEOM';
-
-
---
--- Name: st_geometry(bytea); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry(bytea) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_from_bytea';
-
-
---
--- Name: st_geometry(box3d_extent); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry(box3d_extent) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_to_LWGEOM';
-
-
---
--- Name: st_geometry_above(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_above(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_above';
-
-
---
--- Name: st_geometry_analyze(internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_analyze(internal) RETURNS boolean
-    LANGUAGE c STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_analyze';
-
-
---
--- Name: st_geometry_below(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_below(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_below';
-
-
---
--- Name: st_geometry_cmp(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_cmp(geometry, geometry) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'lwgeom_cmp';
-
-
---
--- Name: st_geometry_contain(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_contain(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_contain';
-
-
---
--- Name: st_geometry_contained(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_contained(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_contained';
-
-
---
--- Name: st_geometry_eq(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_eq(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'lwgeom_eq';
-
-
---
--- Name: st_geometry_ge(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_ge(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'lwgeom_ge';
-
-
---
--- Name: st_geometry_gt(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_gt(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'lwgeom_gt';
-
-
---
--- Name: st_geometry_in(cstring); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_in(cstring) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_in';
-
-
---
--- Name: st_geometry_le(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_le(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'lwgeom_le';
-
-
---
--- Name: st_geometry_left(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_left(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_left';
-
-
---
--- Name: st_geometry_lt(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_lt(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'lwgeom_lt';
-
-
---
--- Name: st_geometry_out(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_out(geometry) RETURNS cstring
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_out';
-
-
---
--- Name: st_geometry_overabove(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_overabove(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_overabove';
-
-
---
--- Name: st_geometry_overbelow(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_overbelow(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_overbelow';
-
-
---
--- Name: st_geometry_overlap(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_overlap(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_overlap';
-
-
---
--- Name: st_geometry_overleft(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_overleft(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_overleft';
-
-
---
--- Name: st_geometry_overright(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_overright(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_overright';
-
-
---
--- Name: st_geometry_recv(internal); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_recv(internal) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_recv';
-
-
---
--- Name: st_geometry_right(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_right(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_right';
-
-
---
--- Name: st_geometry_same(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_same(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_samebox';
-
-
---
--- Name: st_geometry_send(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_geometry_send(geometry) RETURNS bytea
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_send';
 
 
 --
@@ -8008,7 +7801,7 @@ CREATE FUNCTION st_geometry_send(geometry) RETURNS bytea
 
 CREATE FUNCTION st_geometryfromtext(text) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_from_text';
+    AS '$libdir/postgis-2.1', 'LWGEOM_from_text';
 
 
 --
@@ -8024,7 +7817,7 @@ COMMENT ON FUNCTION st_geometryfromtext(text) IS 'args: WKT - Return a specified
 
 CREATE FUNCTION st_geometryfromtext(text, integer) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_from_text';
+    AS '$libdir/postgis-2.1', 'LWGEOM_from_text';
 
 
 --
@@ -8040,7 +7833,7 @@ COMMENT ON FUNCTION st_geometryfromtext(text, integer) IS 'args: WKT, srid - Ret
 
 CREATE FUNCTION st_geometryn(geometry, integer) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_geometryn_collection';
+    AS '$libdir/postgis-2.1', 'LWGEOM_geometryn_collection';
 
 
 --
@@ -8056,7 +7849,7 @@ COMMENT ON FUNCTION st_geometryn(geometry, integer) IS 'args: geomA, n - Return 
 
 CREATE FUNCTION st_geometrytype(geometry) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geometry_geometrytype';
+    AS '$libdir/postgis-2.1', 'geometry_geometrytype';
 
 
 --
@@ -8072,7 +7865,7 @@ COMMENT ON FUNCTION st_geometrytype(geometry) IS 'args: g1 - Return the geometry
 
 CREATE FUNCTION st_geomfromewkb(bytea) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOMFromWKB';
+    AS '$libdir/postgis-2.1', 'LWGEOMFromWKB';
 
 
 --
@@ -8088,7 +7881,7 @@ COMMENT ON FUNCTION st_geomfromewkb(bytea) IS 'args: EWKB - Return a specified S
 
 CREATE FUNCTION st_geomfromewkt(text) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'parse_WKT_lwgeom';
+    AS '$libdir/postgis-2.1', 'parse_WKT_lwgeom';
 
 
 --
@@ -8099,12 +7892,30 @@ COMMENT ON FUNCTION st_geomfromewkt(text) IS 'args: EWKT - Return a specified ST
 
 
 --
+-- Name: st_geomfromgeohash(text, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_geomfromgeohash(text, integer DEFAULT NULL::integer) RETURNS geometry
+    LANGUAGE sql IMMUTABLE
+    AS $_$ SELECT CAST(ST_Box2dFromGeoHash($1, $2) AS geometry); $_$;
+
+
+--
+-- Name: st_geomfromgeojson(text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_geomfromgeojson(text) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'geom_from_geojson';
+
+
+--
 -- Name: st_geomfromgml(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_geomfromgml(text) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geom_from_gml';
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$SELECT _ST_GeomFromGML($1, 0)$_$;
 
 
 --
@@ -8115,12 +7926,21 @@ COMMENT ON FUNCTION st_geomfromgml(text) IS 'args: geomgml - Takes as input GML 
 
 
 --
+-- Name: st_geomfromgml(text, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_geomfromgml(text, integer) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'geom_from_gml';
+
+
+--
 -- Name: st_geomfromkml(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_geomfromkml(text) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geom_from_kml';
+    AS '$libdir/postgis-2.1', 'geom_from_kml';
 
 
 --
@@ -8136,7 +7956,7 @@ COMMENT ON FUNCTION st_geomfromkml(text) IS 'args: geomkml - Takes as input KML 
 
 CREATE FUNCTION st_geomfromtext(text) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_from_text';
+    AS '$libdir/postgis-2.1', 'LWGEOM_from_text';
 
 
 --
@@ -8152,7 +7972,7 @@ COMMENT ON FUNCTION st_geomfromtext(text) IS 'args: WKT - Return a specified ST_
 
 CREATE FUNCTION st_geomfromtext(text, integer) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_from_text';
+    AS '$libdir/postgis-2.1', 'LWGEOM_from_text';
 
 
 --
@@ -8168,7 +7988,7 @@ COMMENT ON FUNCTION st_geomfromtext(text, integer) IS 'args: WKT, srid - Return 
 
 CREATE FUNCTION st_geomfromwkb(bytea) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_from_WKB';
+    AS '$libdir/postgis-2.1', 'LWGEOM_from_WKB';
 
 
 --
@@ -8199,8 +8019,8 @@ COMMENT ON FUNCTION st_geomfromwkb(bytea, integer) IS 'args: geom, srid - Makes 
 --
 
 CREATE FUNCTION st_gmltosql(text) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geom_from_gml';
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$SELECT _ST_GeomFromGML($1, 0)$_$;
 
 
 --
@@ -8211,60 +8031,60 @@ COMMENT ON FUNCTION st_gmltosql(text) IS 'args: geomgml - Return a specified ST_
 
 
 --
+-- Name: st_gmltosql(text, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_gmltosql(text, integer) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'geom_from_gml';
+
+
+--
 -- Name: st_hasarc(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_hasarc(geometry) RETURNS boolean
+CREATE FUNCTION st_hasarc(geometry geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_has_arc';
+    AS '$libdir/postgis-2.1', 'LWGEOM_has_arc';
 
 
 --
--- Name: FUNCTION st_hasarc(geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_hasarc(geometry geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_hasarc(geometry) IS 'args: geomA - Returns true if a geometry or geometry collection contains a circular string';
+COMMENT ON FUNCTION st_hasarc(geometry geometry) IS 'args: geomA - Returns true if a geometry or geometry collection contains a circular string';
 
 
 --
 -- Name: st_hausdorffdistance(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_hausdorffdistance(geometry, geometry) RETURNS double precision
+CREATE FUNCTION st_hausdorffdistance(geom1 geometry, geom2 geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'hausdorffdistance';
+    AS '$libdir/postgis-2.1', 'hausdorffdistance';
 
 
 --
--- Name: FUNCTION st_hausdorffdistance(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_hausdorffdistance(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_hausdorffdistance(geometry, geometry) IS 'args: g1, g2 - Returns the Hausdorff distance between two geometries. Basically a measure of how similar or dissimilar 2 geometries are. Units are in the units of the spatial reference system of the geometries.';
+COMMENT ON FUNCTION st_hausdorffdistance(geom1 geometry, geom2 geometry) IS 'args: g1, g2 - Returns the Hausdorff distance between two geometries. Basically a measure of how similar or dissimilar 2 geometries are. Units are in the units of the spatial reference system of the geometries.';
 
 
 --
 -- Name: st_hausdorffdistance(geometry, geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_hausdorffdistance(geometry, geometry, double precision) RETURNS double precision
+CREATE FUNCTION st_hausdorffdistance(geom1 geometry, geom2 geometry, double precision) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'hausdorffdistancedensify';
+    AS '$libdir/postgis-2.1', 'hausdorffdistancedensify';
 
 
 --
--- Name: FUNCTION st_hausdorffdistance(geometry, geometry, double precision); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_hausdorffdistance(geom1 geometry, geom2 geometry, double precision); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_hausdorffdistance(geometry, geometry, double precision) IS 'args: g1, g2, densifyFrac - Returns the Hausdorff distance between two geometries. Basically a measure of how similar or dissimilar 2 geometries are. Units are in the units of the spatial reference system of the geometries.';
-
-
---
--- Name: st_height(chip); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_height(chip) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_getHeight';
+COMMENT ON FUNCTION st_hausdorffdistance(geom1 geometry, geom2 geometry, double precision) IS 'args: g1, g2, densifyFrac - Returns the Hausdorff distance between two geometries. Basically a measure of how similar or dissimilar 2 geometries are. Units are in the units of the spatial reference system of the geometries.';
 
 
 --
@@ -8273,7 +8093,7 @@ CREATE FUNCTION st_height(chip) RETURNS integer
 
 CREATE FUNCTION st_interiorringn(geometry, integer) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_interiorringn_polygon';
+    AS '$libdir/postgis-2.1', 'LWGEOM_interiorringn_polygon';
 
 
 --
@@ -8284,19 +8104,28 @@ COMMENT ON FUNCTION st_interiorringn(geometry, integer) IS 'args: a_polygon, n -
 
 
 --
+-- Name: st_interpolatepoint(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_interpolatepoint(line geometry, point geometry) RETURNS double precision
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'ST_InterpolatePoint';
+
+
+--
 -- Name: st_intersection(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_intersection(geometry, geometry) RETURNS geometry
+CREATE FUNCTION st_intersection(geom1 geometry, geom2 geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'intersection';
+    AS '$libdir/postgis-2.1', 'intersection';
 
 
 --
--- Name: FUNCTION st_intersection(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_intersection(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_intersection(geometry, geometry) IS 'args: geomA, geomB - (T) Returns a geometry that represents the shared portion of geomA and geomB. The geography implementation does a transform to geometry to do the intersection and then transform back to WGS84.';
+COMMENT ON FUNCTION st_intersection(geom1 geometry, geom2 geometry) IS 'args: geomA, geomB - (T) Returns a geometry that represents the shared portion of geomA and geomB. The geography implementation does a transform to geometry to do the intersection and then transform back to WGS84.';
 
 
 --
@@ -8328,16 +8157,16 @@ CREATE FUNCTION st_intersection(text, text) RETURNS geometry
 -- Name: st_intersects(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_intersects(geometry, geometry) RETURNS boolean
+CREATE FUNCTION st_intersects(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE sql IMMUTABLE
     AS $_$SELECT $1 && $2 AND _ST_Intersects($1,$2)$_$;
 
 
 --
--- Name: FUNCTION st_intersects(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_intersects(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_intersects(geometry, geometry) IS 'args: geomA, geomB - Returns TRUE if the Geometries/Geography "spatially intersect" - (share any portion of space) and FALSE if they dont (they are Disjoint). For geography -- tolerance is 0.00001 meters (so any points that close are considered to intersect)';
+COMMENT ON FUNCTION st_intersects(geom1 geometry, geom2 geometry) IS 'args: geomA, geomB - Returns TRUE if the Geometries/Geography "spatially intersect" - (share any portion of space) and FALSE if they dont (they are Disjoint). For geography -- tolerance is 0.00001 meters (so any points that close are considered to intersect)';
 
 
 --
@@ -8371,7 +8200,7 @@ CREATE FUNCTION st_intersects(text, text) RETURNS boolean
 
 CREATE FUNCTION st_isclosed(geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_isclosed_linestring';
+    AS '$libdir/postgis-2.1', 'LWGEOM_isclosed';
 
 
 --
@@ -8382,12 +8211,21 @@ COMMENT ON FUNCTION st_isclosed(geometry) IS 'args: g - Returns TRUE if the LINE
 
 
 --
+-- Name: st_iscollection(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_iscollection(geometry) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'ST_IsCollection';
+
+
+--
 -- Name: st_isempty(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_isempty(geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_isempty';
+    AS '$libdir/postgis-2.1', 'LWGEOM_isempty';
 
 
 --
@@ -8403,7 +8241,7 @@ COMMENT ON FUNCTION st_isempty(geometry) IS 'args: geomA - Returns true if this 
 
 CREATE FUNCTION st_isring(geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'isring';
+    AS '$libdir/postgis-2.1', 'isring';
 
 
 --
@@ -8419,7 +8257,7 @@ COMMENT ON FUNCTION st_isring(geometry) IS 'args: g - Returns TRUE if this LINES
 
 CREATE FUNCTION st_issimple(geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'issimple';
+    AS '$libdir/postgis-2.1', 'issimple';
 
 
 --
@@ -8435,7 +8273,7 @@ COMMENT ON FUNCTION st_issimple(geometry) IS 'args: geomA - Returns (TRUE) if th
 
 CREATE FUNCTION st_isvalid(geometry) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'isvalid';
+    AS '$libdir/postgis-2.1', 'isvalid';
 
 
 --
@@ -8446,12 +8284,39 @@ COMMENT ON FUNCTION st_isvalid(geometry) IS 'args: g - Returns true if the ST_Ge
 
 
 --
+-- Name: st_isvalid(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_isvalid(geometry, integer) RETURNS boolean
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$SELECT (ST_isValidDetail($1, $2)).valid$_$;
+
+
+--
+-- Name: st_isvaliddetail(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_isvaliddetail(geometry) RETURNS valid_detail
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'isvaliddetail';
+
+
+--
+-- Name: st_isvaliddetail(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_isvaliddetail(geometry, integer) RETURNS valid_detail
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'isvaliddetail';
+
+
+--
 -- Name: st_isvalidreason(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_isvalidreason(geometry) RETURNS text
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'isvalidreason';
+    AS '$libdir/postgis-2.1', 'isvalidreason';
 
 
 --
@@ -8462,19 +8327,16 @@ COMMENT ON FUNCTION st_isvalidreason(geometry) IS 'args: geomA - Returns text st
 
 
 --
--- Name: st_length(geometry); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_isvalidreason(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_length(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_length2d_linestring';
-
-
---
--- Name: FUNCTION st_length(geometry); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_length(geometry) IS 'args: a_2dlinestring - Returns the 2d length of the geometry if it is a linestring or multilinestring. geometry are in units of spatial reference and geography are in meters (default spheroid)';
+CREATE FUNCTION st_isvalidreason(geometry, integer) RETURNS text
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+SELECT CASE WHEN valid THEN 'Valid Geometry' ELSE reason END FROM (
+	SELECT (ST_isValidDetail($1, $2)).*
+) foo
+	$_$;
 
 
 --
@@ -8494,6 +8356,22 @@ COMMENT ON FUNCTION st_length(geography) IS 'args: gg - Returns the 2d length of
 
 
 --
+-- Name: st_length(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_length(geometry) RETURNS double precision
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_length2d_linestring';
+
+
+--
+-- Name: FUNCTION st_length(geometry); Type: COMMENT; Schema: public; Owner: -
+--
+
+COMMENT ON FUNCTION st_length(geometry) IS 'args: a_2dlinestring - Returns the 2d length of the geometry if it is a linestring or multilinestring. geometry are in units of spatial reference and geography are in meters (default spheroid)';
+
+
+--
 -- Name: st_length(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -8506,16 +8384,16 @@ CREATE FUNCTION st_length(text) RETURNS double precision
 -- Name: st_length(geography, boolean); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_length(geography, boolean) RETURNS double precision
+CREATE FUNCTION st_length(geog geography, use_spheroid boolean DEFAULT true) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'geography_length';
+    AS '$libdir/postgis-2.1', 'geography_length';
 
 
 --
--- Name: FUNCTION st_length(geography, boolean); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_length(geog geography, use_spheroid boolean); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_length(geography, boolean) IS 'args: gg, use_spheroid - Returns the 2d length of the geometry if it is a linestring or multilinestring. geometry are in units of spatial reference and geography are in meters (default spheroid)';
+COMMENT ON FUNCTION st_length(geog geography, use_spheroid boolean) IS 'args: gg, use_spheroid - Returns the 2d length of the geometry if it is a linestring or multilinestring. geometry are in units of spatial reference and geography are in meters (default spheroid)';
 
 
 --
@@ -8524,7 +8402,7 @@ COMMENT ON FUNCTION st_length(geography, boolean) IS 'args: gg, use_spheroid - R
 
 CREATE FUNCTION st_length2d(geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_length2d_linestring';
+    AS '$libdir/postgis-2.1', 'LWGEOM_length2d_linestring';
 
 
 --
@@ -8540,7 +8418,7 @@ COMMENT ON FUNCTION st_length2d(geometry) IS 'args: a_2dlinestring - Returns the
 
 CREATE FUNCTION st_length2d_spheroid(geometry, spheroid) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_length2d_ellipsoid';
+    AS '$libdir/postgis-2.1', 'LWGEOM_length2d_ellipsoid';
 
 
 --
@@ -8551,44 +8429,12 @@ COMMENT ON FUNCTION st_length2d_spheroid(geometry, spheroid) IS 'args: a_linestr
 
 
 --
--- Name: st_length3d(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_length3d(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_length_linestring';
-
-
---
--- Name: FUNCTION st_length3d(geometry); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_length3d(geometry) IS 'args: a_3dlinestring - Returns the 3-dimensional or 2-dimensional length of the geometry if it is a linestring or multi-linestring.';
-
-
---
--- Name: st_length3d_spheroid(geometry, spheroid); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_length3d_spheroid(geometry, spheroid) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_length_ellipsoid_linestring';
-
-
---
--- Name: FUNCTION st_length3d_spheroid(geometry, spheroid); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_length3d_spheroid(geometry, spheroid) IS 'args: a_linestring, a_spheroid - Calculates the length of a geometry on an ellipsoid, taking the elevation into account. This is just an alias for ST_Length_Spheroid.';
-
-
---
 -- Name: st_length_spheroid(geometry, spheroid); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_length_spheroid(geometry, spheroid) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'LWGEOM_length_ellipsoid_linestring';
+    AS '$libdir/postgis-2.1', 'LWGEOM_length_ellipsoid_linestring';
 
 
 --
@@ -8603,8 +8449,10 @@ COMMENT ON FUNCTION st_length_spheroid(geometry, spheroid) IS 'args: a_linestrin
 --
 
 CREATE FUNCTION st_line_interpolate_point(geometry, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_line_interpolate_point';
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT _postgis_deprecate('ST_Line_Interpolate_Point', 'ST_LineInterpolatePoint', '2.1.0');
+    SELECT ST_LineInterpolatePoint($1, $2);
+  $_$;
 
 
 --
@@ -8618,16 +8466,18 @@ COMMENT ON FUNCTION st_line_interpolate_point(geometry, double precision) IS 'ar
 -- Name: st_line_locate_point(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_line_locate_point(geometry, geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_line_locate_point';
+CREATE FUNCTION st_line_locate_point(geom1 geometry, geom2 geometry) RETURNS double precision
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT _postgis_deprecate('ST_Line_Locate_Point', 'ST_LineLocatePoint', '2.1.0');
+     SELECT ST_LineLocatePoint($1, $2);
+  $_$;
 
 
 --
--- Name: FUNCTION st_line_locate_point(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_line_locate_point(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_line_locate_point(geometry, geometry) IS 'args: a_linestring, a_point - Returns a float between 0 and 1 representing the location of the closest point on LineString to the given Point, as a fraction of total 2d line length.';
+COMMENT ON FUNCTION st_line_locate_point(geom1 geometry, geom2 geometry) IS 'args: a_linestring, a_point - Returns a float between 0 and 1 representing the location of the closest point on LineString to the given Point, as a fraction of total 2d line length.';
 
 
 --
@@ -8635,8 +8485,10 @@ COMMENT ON FUNCTION st_line_locate_point(geometry, geometry) IS 'args: a_linestr
 --
 
 CREATE FUNCTION st_line_substring(geometry, double precision, double precision) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_line_substring';
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$ SELECT _postgis_deprecate('ST_Line_Substring', 'ST_LineSubstring', '2.1.0');
+     SELECT ST_LineSubstring($1, $2, $3);
+  $_$;
 
 
 --
@@ -8650,16 +8502,16 @@ COMMENT ON FUNCTION st_line_substring(geometry, double precision, double precisi
 -- Name: st_linecrossingdirection(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_linecrossingdirection(geometry, geometry) RETURNS integer
+CREATE FUNCTION st_linecrossingdirection(geom1 geometry, geom2 geometry) RETURNS integer
     LANGUAGE sql IMMUTABLE
     AS $_$ SELECT CASE WHEN NOT $1 && $2 THEN 0 ELSE _ST_LineCrossingDirection($1,$2) END $_$;
 
 
 --
--- Name: FUNCTION st_linecrossingdirection(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_linecrossingdirection(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_linecrossingdirection(geometry, geometry) IS 'args: linestringA, linestringB - Given 2 linestrings, returns a number between -3 and 3 denoting what kind of crossing behavior. 0 is no crossing.';
+COMMENT ON FUNCTION st_linecrossingdirection(geom1 geometry, geom2 geometry) IS 'args: linestringA, linestringB - Given 2 linestrings, returns a number between -3 and 3 denoting what kind of crossing behavior. 0 is no crossing.';
 
 
 --
@@ -8668,7 +8520,7 @@ COMMENT ON FUNCTION st_linecrossingdirection(geometry, geometry) IS 'args: lines
 
 CREATE FUNCTION st_linefrommultipoint(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_line_from_mpoint';
+    AS '$libdir/postgis-2.1', 'LWGEOM_line_from_mpoint';
 
 
 --
@@ -8705,8 +8557,8 @@ COMMENT ON FUNCTION st_linefromtext(text) IS 'args: WKT - Makes a Geometry from 
 CREATE FUNCTION st_linefromtext(text, integer) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
-	SELECT CASE WHEN geometrytype(GeomFromText($1, $2)) = 'LINESTRING'
-	THEN GeomFromText($1,$2)
+	SELECT CASE WHEN geometrytype(ST_GeomFromText($1, $2)) = 'LINESTRING'
+	THEN ST_GeomFromText($1,$2)
 	ELSE NULL END
 	$_$;
 
@@ -8759,12 +8611,30 @@ COMMENT ON FUNCTION st_linefromwkb(bytea, integer) IS 'args: WKB, srid - Makes a
 
 
 --
+-- Name: st_lineinterpolatepoint(geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_lineinterpolatepoint(geometry, double precision) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_line_interpolate_point';
+
+
+--
+-- Name: st_linelocatepoint(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_linelocatepoint(geom1 geometry, geom2 geometry) RETURNS double precision
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_line_locate_point';
+
+
+--
 -- Name: st_linemerge(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_linemerge(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'linemerge';
+    AS '$libdir/postgis-2.1', 'linemerge';
 
 
 --
@@ -8781,8 +8651,8 @@ COMMENT ON FUNCTION st_linemerge(geometry) IS 'args: amultilinestring - Returns 
 CREATE FUNCTION st_linestringfromwkb(bytea) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
-	SELECT CASE WHEN geometrytype(GeomFromWKB($1)) = 'LINESTRING'
-	THEN GeomFromWKB($1)
+	SELECT CASE WHEN geometrytype(ST_GeomFromWKB($1)) = 'LINESTRING'
+	THEN ST_GeomFromWKB($1)
 	ELSE NULL END
 	$_$;
 
@@ -8815,19 +8685,28 @@ COMMENT ON FUNCTION st_linestringfromwkb(bytea, integer) IS 'args: WKB, srid - M
 
 
 --
+-- Name: st_linesubstring(geometry, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_linesubstring(geometry, double precision, double precision) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_line_substring';
+
+
+--
 -- Name: st_linetocurve(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_linetocurve(geometry) RETURNS geometry
+CREATE FUNCTION st_linetocurve(geometry geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_line_desegmentize';
+    AS '$libdir/postgis-2.1', 'LWGEOM_line_desegmentize';
 
 
 --
--- Name: FUNCTION st_linetocurve(geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_linetocurve(geometry geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_linetocurve(geometry) IS 'args: geomANoncircular - Converts a LINESTRING/POLYGON to a CIRCULARSTRING, CURVED POLYGON';
+COMMENT ON FUNCTION st_linetocurve(geometry geometry) IS 'args: geomANoncircular - Converts a LINESTRING/POLYGON to a CIRCULARSTRING, CURVED POLYGON';
 
 
 --
@@ -8836,7 +8715,7 @@ COMMENT ON FUNCTION st_linetocurve(geometry) IS 'args: geomANoncircular - Conver
 
 CREATE FUNCTION st_locate_along_measure(geometry, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$ SELECT locate_between_measures($1, $2, $2) $_$;
+    AS $_$ SELECT ST_locate_between_measures($1, $2, $2) $_$;
 
 
 --
@@ -8852,7 +8731,7 @@ COMMENT ON FUNCTION st_locate_along_measure(geometry, double precision) IS 'args
 
 CREATE FUNCTION st_locate_between_measures(geometry, double precision, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_locate_between_m';
+    AS '$libdir/postgis-2.1', 'LWGEOM_locate_between_m';
 
 
 --
@@ -8863,35 +8742,53 @@ COMMENT ON FUNCTION st_locate_between_measures(geometry, double precision, doubl
 
 
 --
+-- Name: st_locatealong(geometry, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_locatealong(geometry geometry, measure double precision, leftrightoffset double precision DEFAULT 0.0) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'ST_LocateAlong';
+
+
+--
+-- Name: st_locatebetween(geometry, double precision, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_locatebetween(geometry geometry, frommeasure double precision, tomeasure double precision, leftrightoffset double precision DEFAULT 0.0) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'ST_LocateBetween';
+
+
+--
 -- Name: st_locatebetweenelevations(geometry, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_locatebetweenelevations(geometry, double precision, double precision) RETURNS geometry
+CREATE FUNCTION st_locatebetweenelevations(geometry geometry, fromelevation double precision, toelevation double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'ST_LocateBetweenElevations';
+    AS '$libdir/postgis-2.1', 'ST_LocateBetweenElevations';
 
 
 --
--- Name: FUNCTION st_locatebetweenelevations(geometry, double precision, double precision); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_locatebetweenelevations(geometry geometry, fromelevation double precision, toelevation double precision); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_locatebetweenelevations(geometry, double precision, double precision) IS 'args: geom_mline, elevation_start, elevation_end - Return a derived geometry (collection) value with elements that intersect the specified range of elevations inclusively. Only 3D, 4D LINESTRINGS and MULTILINESTRINGS are supported.';
+COMMENT ON FUNCTION st_locatebetweenelevations(geometry geometry, fromelevation double precision, toelevation double precision) IS 'args: geom_mline, elevation_start, elevation_end - Return a derived geometry (collection) value with elements that intersect the specified range of elevations inclusively. Only 3D, 4D LINESTRINGS and MULTILINESTRINGS are supported.';
 
 
 --
 -- Name: st_longestline(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_longestline(geometry, geometry) RETURNS geometry
+CREATE FUNCTION st_longestline(geom1 geometry, geom2 geometry) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$SELECT _ST_LongestLine(ST_ConvexHull($1), ST_ConvexHull($2))$_$;
 
 
 --
--- Name: FUNCTION st_longestline(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_longestline(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_longestline(geometry, geometry) IS 'args: g1, g2 - Returns the 2-dimensional longest line points of two geometries. The function will only return the first longest line if more than one, that the function finds. The line returned will always start in g1 and end in g2. The length of the line this function returns will always be the same as st_maxdistance returns for g1 and g2.';
+COMMENT ON FUNCTION st_longestline(geom1 geometry, geom2 geometry) IS 'args: g1, g2 - Returns the 2-dimensional longest line points of two geometries. The function will only return the first longest line if more than one, that the function finds. The line returned will always start in g1 and end in g2. The length of the line this function returns will always be the same as st_maxdistance returns for g1 and g2.';
 
 
 --
@@ -8900,7 +8797,7 @@ COMMENT ON FUNCTION st_longestline(geometry, geometry) IS 'args: g1, g2 - Return
 
 CREATE FUNCTION st_m(geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_m_point';
+    AS '$libdir/postgis-2.1', 'LWGEOM_m_point';
 
 
 --
@@ -8914,41 +8811,25 @@ COMMENT ON FUNCTION st_m(geometry) IS 'args: a_point - Return the M coordinate o
 -- Name: st_makebox2d(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_makebox2d(geometry, geometry) RETURNS box2d
+CREATE FUNCTION st_makebox2d(geom1 geometry, geom2 geometry) RETURNS box2d
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX2DFLOAT4_construct';
+    AS '$libdir/postgis-2.1', 'BOX2D_construct';
 
 
 --
--- Name: FUNCTION st_makebox2d(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_makebox2d(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_makebox2d(geometry, geometry) IS 'args: pointLowLeft, pointUpRight - Creates a BOX2D defined by the given point geometries.';
-
-
---
--- Name: st_makebox3d(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_makebox3d(geometry, geometry) RETURNS box3d
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_construct';
-
-
---
--- Name: FUNCTION st_makebox3d(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_makebox3d(geometry, geometry) IS 'args: point3DLowLeftBottom, point3DUpRightTop - Creates a BOX3D defined by the given 3d point geometries.';
+COMMENT ON FUNCTION st_makebox2d(geom1 geometry, geom2 geometry) IS 'args: pointLowLeft, pointUpRight - Creates a BOX2D defined by the given point geometries.';
 
 
 --
 -- Name: st_makeenvelope(double precision, double precision, double precision, double precision, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_makeenvelope(double precision, double precision, double precision, double precision, integer) RETURNS geometry
+CREATE FUNCTION st_makeenvelope(double precision, double precision, double precision, double precision, integer DEFAULT 0) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'ST_MakeEnvelope';
+    AS '$libdir/postgis-2.1', 'ST_MakeEnvelope';
 
 
 --
@@ -8964,7 +8845,7 @@ COMMENT ON FUNCTION st_makeenvelope(double precision, double precision, double p
 
 CREATE FUNCTION st_makeline(geometry[]) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makeline_garray';
+    AS '$libdir/postgis-2.1', 'LWGEOM_makeline_garray';
 
 
 --
@@ -8978,25 +8859,16 @@ COMMENT ON FUNCTION st_makeline(geometry[]) IS 'args: point_array - Creates a Li
 -- Name: st_makeline(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_makeline(geometry, geometry) RETURNS geometry
+CREATE FUNCTION st_makeline(geom1 geometry, geom2 geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makeline';
+    AS '$libdir/postgis-2.1', 'LWGEOM_makeline';
 
 
 --
--- Name: FUNCTION st_makeline(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_makeline(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_makeline(geometry, geometry) IS 'args: point1, point2 - Creates a Linestring from point geometries.';
-
-
---
--- Name: st_makeline_garray(geometry[]); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_makeline_garray(geometry[]) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makeline_garray';
+COMMENT ON FUNCTION st_makeline(geom1 geometry, geom2 geometry) IS 'args: point1, point2 - Creates a Linestring from point geometries.';
 
 
 --
@@ -9005,7 +8877,7 @@ CREATE FUNCTION st_makeline_garray(geometry[]) RETURNS geometry
 
 CREATE FUNCTION st_makepoint(double precision, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makepoint';
+    AS '$libdir/postgis-2.1', 'LWGEOM_makepoint';
 
 
 --
@@ -9021,7 +8893,7 @@ COMMENT ON FUNCTION st_makepoint(double precision, double precision) IS 'args: x
 
 CREATE FUNCTION st_makepoint(double precision, double precision, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makepoint';
+    AS '$libdir/postgis-2.1', 'LWGEOM_makepoint';
 
 
 --
@@ -9037,7 +8909,7 @@ COMMENT ON FUNCTION st_makepoint(double precision, double precision, double prec
 
 CREATE FUNCTION st_makepoint(double precision, double precision, double precision, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makepoint';
+    AS '$libdir/postgis-2.1', 'LWGEOM_makepoint';
 
 
 --
@@ -9053,7 +8925,7 @@ COMMENT ON FUNCTION st_makepoint(double precision, double precision, double prec
 
 CREATE FUNCTION st_makepointm(double precision, double precision, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makepoint3dm';
+    AS '$libdir/postgis-2.1', 'LWGEOM_makepoint3dm';
 
 
 --
@@ -9069,7 +8941,7 @@ COMMENT ON FUNCTION st_makepointm(double precision, double precision, double pre
 
 CREATE FUNCTION st_makepolygon(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makepoly';
+    AS '$libdir/postgis-2.1', 'LWGEOM_makepoly';
 
 
 --
@@ -9085,7 +8957,7 @@ COMMENT ON FUNCTION st_makepolygon(geometry) IS 'args: linestring - Creates a Po
 
 CREATE FUNCTION st_makepolygon(geometry, geometry[]) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makepoly';
+    AS '$libdir/postgis-2.1', 'LWGEOM_makepoly';
 
 
 --
@@ -9096,19 +8968,28 @@ COMMENT ON FUNCTION st_makepolygon(geometry, geometry[]) IS 'args: outerlinestri
 
 
 --
+-- Name: st_makevalid(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_makevalid(geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'ST_MakeValid';
+
+
+--
 -- Name: st_maxdistance(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_maxdistance(geometry, geometry) RETURNS double precision
+CREATE FUNCTION st_maxdistance(geom1 geometry, geom2 geometry) RETURNS double precision
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$SELECT _ST_MaxDistance(ST_ConvexHull($1), ST_ConvexHull($2))$_$;
 
 
 --
--- Name: FUNCTION st_maxdistance(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_maxdistance(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_maxdistance(geometry, geometry) IS 'args: g1, g2 - Returns the 2-dimensional largest distance between two geometries in projected units.';
+COMMENT ON FUNCTION st_maxdistance(geom1 geometry, geom2 geometry) IS 'args: g1, g2 - Returns the 2-dimensional largest distance between two geometries in projected units.';
 
 
 --
@@ -9117,7 +8998,7 @@ COMMENT ON FUNCTION st_maxdistance(geometry, geometry) IS 'args: g1, g2 - Return
 
 CREATE FUNCTION st_mem_size(geometry) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_mem_size';
+    AS '$libdir/postgis-2.1', 'LWGEOM_mem_size';
 
 
 --
@@ -9147,7 +9028,7 @@ COMMENT ON FUNCTION st_minimumboundingcircle(geometry) IS 'args: geomA - Returns
 -- Name: st_minimumboundingcircle(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_minimumboundingcircle(inputgeom geometry, segs_per_quarter integer) RETURNS geometry
+CREATE FUNCTION st_minimumboundingcircle(inputgeom geometry, segs_per_quarter integer DEFAULT 48) RETURNS geometry
     LANGUAGE plpgsql IMMUTABLE STRICT
     AS $$
 	DECLARE
@@ -9196,14 +9077,14 @@ CREATE FUNCTION st_minimumboundingcircle(inputgeom geometry, segs_per_quarter in
 		END LOOP;
 
 	-- We now have the diameter of the convex hull.  The following line returns it if desired.
-	-- RETURN MakeLine(PointN(ring,idx1),PointN(ring,idx2));
+	-- RETURN ST_MakeLine(ST_PointN(ring,idx1),ST_PointN(ring,idx2));
 
 	-- Now for the Minimum Bounding Circle.  Since we know the two points furthest from each
 	-- other, the MBC must go through those two points. Start with those points as a diameter of a circle.
 
 	-- The radius is half the distance between them and the center is midway between them
 	radius = ST_Distance(ST_PointN(ring,idx1),ST_PointN(ring,idx2)) / 2.0;
-	center = ST_Line_interpolate_point(ST_MakeLine(ST_PointN(ring,idx1),ST_PointN(ring,idx2)),0.5);
+	center = ST_LineInterpolatePoint(ST_MakeLine(ST_PointN(ring,idx1),ST_PointN(ring,idx2)),0.5);
 
 	-- Loop through each vertex and check if the distance from the center to the point
 	-- is greater than the current radius.
@@ -9218,22 +9099,22 @@ CREATE FUNCTION st_minimumboundingcircle(inputgeom geometry, segs_per_quarter in
 				-- Draw a line from the first diameter to this point
 				l1 = ST_Makeline(ST_PointN(ring,idx1),ST_PointN(ring,k));
 				-- Compute the midpoint
-				p1 = ST_line_interpolate_point(l1,0.5);
+				p1 = ST_LineInterpolatePoint(l1,0.5);
 				-- Rotate the line 90 degrees around the midpoint (perpendicular bisector)
-				l1 = ST_Translate(ST_Rotate(ST_Translate(l1,-X(p1),-Y(p1)),pi()/2),X(p1),Y(p1));
+				l1 = ST_Rotate(l1,pi()/2,p1);
 				--  Compute the azimuth of the bisector
 				a1 = ST_Azimuth(ST_PointN(l1,1),ST_PointN(l1,2));
 				--  Extend the line in each direction the new computed distance to insure they will intersect
-				l1 = ST_AddPoint(l1,ST_Makepoint(X(ST_PointN(l1,2))+sin(a1)*dist,Y(ST_PointN(l1,2))+cos(a1)*dist),-1);
-				l1 = ST_AddPoint(l1,ST_Makepoint(X(ST_PointN(l1,1))-sin(a1)*dist,Y(ST_PointN(l1,1))-cos(a1)*dist),0);
+				l1 = ST_AddPoint(l1,ST_Makepoint(ST_X(ST_PointN(l1,2))+sin(a1)*dist,ST_Y(ST_PointN(l1,2))+cos(a1)*dist),-1);
+				l1 = ST_AddPoint(l1,ST_Makepoint(ST_X(ST_PointN(l1,1))-sin(a1)*dist,ST_Y(ST_PointN(l1,1))-cos(a1)*dist),0);
 
 				-- Repeat for the line from the point to the other diameter point
 				l2 = ST_Makeline(ST_PointN(ring,idx2),ST_PointN(ring,k));
-				p2 = ST_Line_interpolate_point(l2,0.5);
-				l2 = ST_Translate(ST_Rotate(ST_Translate(l2,-X(p2),-Y(p2)),pi()/2),X(p2),Y(p2));
+				p2 = ST_LineInterpolatePoint(l2,0.5);
+				l2 = ST_Rotate(l2,pi()/2,p2);
 				a2 = ST_Azimuth(ST_PointN(l2,1),ST_PointN(l2,2));
-				l2 = ST_AddPoint(l2,ST_Makepoint(X(ST_PointN(l2,2))+sin(a2)*dist,Y(ST_PointN(l2,2))+cos(a2)*dist),-1);
-				l2 = ST_AddPoint(l2,ST_Makepoint(X(ST_PointN(l2,1))-sin(a2)*dist,Y(ST_PointN(l2,1))-cos(a2)*dist),0);
+				l2 = ST_AddPoint(l2,ST_Makepoint(ST_X(ST_PointN(l2,2))+sin(a2)*dist,ST_Y(ST_PointN(l2,2))+cos(a2)*dist),-1);
+				l2 = ST_AddPoint(l2,ST_Makepoint(ST_X(ST_PointN(l2,1))-sin(a2)*dist,ST_Y(ST_PointN(l2,1))-cos(a2)*dist),0);
 
 				-- The new center is the intersection of the two bisectors
 				center = ST_Intersection(l1,l2);
@@ -9284,8 +9165,8 @@ CREATE FUNCTION st_mlinefromtext(text, integer) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
 	SELECT CASE
-	WHEN geometrytype(GeomFromText($1, $2)) = 'MULTILINESTRING'
-	THEN GeomFromText($1,$2)
+	WHEN geometrytype(ST_GeomFromText($1, $2)) = 'MULTILINESTRING'
+	THEN ST_GeomFromText($1,$2)
 	ELSE NULL END
 	$_$;
 
@@ -9350,8 +9231,8 @@ COMMENT ON FUNCTION st_mpointfromtext(text) IS 'args: WKT - Makes a Geometry fro
 CREATE FUNCTION st_mpointfromtext(text, integer) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
-	SELECT CASE WHEN geometrytype(GeomFromText($1, $2)) = 'MULTIPOINT'
-	THEN GeomFromText($1, $2)
+	SELECT CASE WHEN geometrytype(ST_GeomFromText($1, $2)) = 'MULTIPOINT'
+	THEN ST_GeomFromText($1, $2)
 	ELSE NULL END
 	$_$;
 
@@ -9383,8 +9264,8 @@ CREATE FUNCTION st_mpointfromwkb(bytea) RETURNS geometry
 CREATE FUNCTION st_mpointfromwkb(bytea, integer) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
-	SELECT CASE WHEN geometrytype(GeomFromWKB($1, $2)) = 'MULTIPOINT'
-	THEN GeomFromWKB($1, $2)
+	SELECT CASE WHEN geometrytype(ST_GeomFromWKB($1, $2)) = 'MULTIPOINT'
+	THEN ST_GeomFromWKB($1, $2)
 	ELSE NULL END
 	$_$;
 
@@ -9461,7 +9342,7 @@ CREATE FUNCTION st_mpolyfromwkb(bytea, integer) RETURNS geometry
 
 CREATE FUNCTION st_multi(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_force_multi';
+    AS '$libdir/postgis-2.1', 'LWGEOM_force_multi';
 
 
 --
@@ -9499,7 +9380,7 @@ CREATE FUNCTION st_multilinestringfromtext(text) RETURNS geometry
 
 CREATE FUNCTION st_multilinestringfromtext(text, integer) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT MLineFromText($1, $2)$_$;
+    AS $_$SELECT ST_MLineFromText($1, $2)$_$;
 
 
 --
@@ -9508,7 +9389,7 @@ CREATE FUNCTION st_multilinestringfromtext(text, integer) RETURNS geometry
 
 CREATE FUNCTION st_multipointfromtext(text) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT MPointFromText($1)$_$;
+    AS $_$SELECT ST_MPointFromText($1)$_$;
 
 
 --
@@ -9569,7 +9450,7 @@ CREATE FUNCTION st_multipolyfromwkb(bytea, integer) RETURNS geometry
 
 CREATE FUNCTION st_multipolygonfromtext(text) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT MPolyFromText($1)$_$;
+    AS $_$SELECT ST_MPolyFromText($1)$_$;
 
 
 --
@@ -9578,7 +9459,7 @@ CREATE FUNCTION st_multipolygonfromtext(text) RETURNS geometry
 
 CREATE FUNCTION st_multipolygonfromtext(text, integer) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT MPolyFromText($1, $2)$_$;
+    AS $_$SELECT ST_MPolyFromText($1, $2)$_$;
 
 
 --
@@ -9587,7 +9468,7 @@ CREATE FUNCTION st_multipolygonfromtext(text, integer) RETURNS geometry
 
 CREATE FUNCTION st_ndims(geometry) RETURNS smallint
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_ndims';
+    AS '$libdir/postgis-2.1', 'LWGEOM_ndims';
 
 
 --
@@ -9598,12 +9479,21 @@ COMMENT ON FUNCTION st_ndims(geometry) IS 'args: g1 - Returns coordinate dimensi
 
 
 --
+-- Name: st_node(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_node(g geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'ST_Node';
+
+
+--
 -- Name: st_npoints(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_npoints(geometry) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_npoints';
+    AS '$libdir/postgis-2.1', 'LWGEOM_npoints';
 
 
 --
@@ -9619,7 +9509,7 @@ COMMENT ON FUNCTION st_npoints(geometry) IS 'args: g1 - Return the number of poi
 
 CREATE FUNCTION st_nrings(geometry) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_nrings';
+    AS '$libdir/postgis-2.1', 'LWGEOM_nrings';
 
 
 --
@@ -9635,7 +9525,7 @@ COMMENT ON FUNCTION st_nrings(geometry) IS 'args: geomA - If the geometry is a p
 
 CREATE FUNCTION st_numgeometries(geometry) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_numgeometries_collection';
+    AS '$libdir/postgis-2.1', 'LWGEOM_numgeometries_collection';
 
 
 --
@@ -9651,7 +9541,7 @@ COMMENT ON FUNCTION st_numgeometries(geometry) IS 'args: a_multi_or_geomcollecti
 
 CREATE FUNCTION st_numinteriorring(geometry) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_numinteriorrings_polygon';
+    AS '$libdir/postgis-2.1', 'LWGEOM_numinteriorrings_polygon';
 
 
 --
@@ -9667,7 +9557,7 @@ COMMENT ON FUNCTION st_numinteriorring(geometry) IS 'args: a_polygon - Return th
 
 CREATE FUNCTION st_numinteriorrings(geometry) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_numinteriorrings_polygon';
+    AS '$libdir/postgis-2.1', 'LWGEOM_numinteriorrings_polygon';
 
 
 --
@@ -9678,12 +9568,25 @@ COMMENT ON FUNCTION st_numinteriorrings(geometry) IS 'args: a_polygon - Return t
 
 
 --
+-- Name: st_numpatches(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_numpatches(geometry) RETURNS integer
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+	SELECT CASE WHEN ST_GeometryType($1) = 'ST_PolyhedralSurface'
+	THEN ST_NumGeometries($1)
+	ELSE NULL END
+	$_$;
+
+
+--
 -- Name: st_numpoints(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_numpoints(geometry) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_numpoints_linestring';
+    AS '$libdir/postgis-2.1', 'LWGEOM_numpoints_linestring';
 
 
 --
@@ -9694,10 +9597,19 @@ COMMENT ON FUNCTION st_numpoints(geometry) IS 'args: g1 - Return the number of p
 
 
 --
+-- Name: st_offsetcurve(geometry, double precision, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_offsetcurve(line geometry, distance double precision, params text DEFAULT ''::text) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'ST_OffsetCurve';
+
+
+--
 -- Name: st_orderingequals(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_orderingequals(geometry, geometry) RETURNS boolean
+CREATE FUNCTION st_orderingequals(geometrya geometry, geometryb geometry) RETURNS boolean
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$ 
 	SELECT $1 ~= $2 AND _ST_OrderingEquals($1, $2)
@@ -9705,26 +9617,39 @@ CREATE FUNCTION st_orderingequals(geometry, geometry) RETURNS boolean
 
 
 --
--- Name: FUNCTION st_orderingequals(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_orderingequals(geometrya geometry, geometryb geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_orderingequals(geometry, geometry) IS 'args: A, B - Returns true if the given geometries represent the same geometry and points are in the same directional order.';
+COMMENT ON FUNCTION st_orderingequals(geometrya geometry, geometryb geometry) IS 'args: A, B - Returns true if the given geometries represent the same geometry and points are in the same directional order.';
 
 
 --
 -- Name: st_overlaps(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_overlaps(geometry, geometry) RETURNS boolean
+CREATE FUNCTION st_overlaps(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE sql IMMUTABLE
     AS $_$SELECT $1 && $2 AND _ST_Overlaps($1,$2)$_$;
 
 
 --
--- Name: FUNCTION st_overlaps(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_overlaps(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_overlaps(geometry, geometry) IS 'args: A, B - Returns TRUE if the Geometries share space, are of the same dimension, but are not completely contained by each other.';
+COMMENT ON FUNCTION st_overlaps(geom1 geometry, geom2 geometry) IS 'args: A, B - Returns TRUE if the Geometries share space, are of the same dimension, but are not completely contained by each other.';
+
+
+--
+-- Name: st_patchn(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_patchn(geometry, integer) RETURNS geometry
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+	SELECT CASE WHEN ST_GeometryType($1) = 'ST_PolyhedralSurface'
+	THEN ST_GeometryN($1, $2)
+	ELSE NULL END
+	$_$;
 
 
 --
@@ -9733,7 +9658,7 @@ COMMENT ON FUNCTION st_overlaps(geometry, geometry) IS 'args: A, B - Returns TRU
 
 CREATE FUNCTION st_perimeter(geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_perimeter2d_poly';
+    AS '$libdir/postgis-2.1', 'LWGEOM_perimeter2d_poly';
 
 
 --
@@ -9744,12 +9669,21 @@ COMMENT ON FUNCTION st_perimeter(geometry) IS 'args: g1 - Return the length meas
 
 
 --
+-- Name: st_perimeter(geography, boolean); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_perimeter(geog geography, use_spheroid boolean DEFAULT true) RETURNS double precision
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'geography_perimeter';
+
+
+--
 -- Name: st_perimeter2d(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_perimeter2d(geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_perimeter2d_poly';
+    AS '$libdir/postgis-2.1', 'LWGEOM_perimeter2d_poly';
 
 
 --
@@ -9760,28 +9694,12 @@ COMMENT ON FUNCTION st_perimeter2d(geometry) IS 'args: geomA - Returns the 2-dim
 
 
 --
--- Name: st_perimeter3d(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_perimeter3d(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_perimeter_poly';
-
-
---
--- Name: FUNCTION st_perimeter3d(geometry); Type: COMMENT; Schema: public; Owner: -
---
-
-COMMENT ON FUNCTION st_perimeter3d(geometry) IS 'args: geomA - Returns the 3-dimensional perimeter of the geometry, if it is a polygon or multi-polygon.';
-
-
---
 -- Name: st_point(double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_point(double precision, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_makepoint';
+    AS '$libdir/postgis-2.1', 'LWGEOM_makepoint';
 
 
 --
@@ -9797,7 +9715,7 @@ COMMENT ON FUNCTION st_point(double precision, double precision) IS 'args: x_lon
 
 CREATE FUNCTION st_point_inside_circle(geometry, double precision, double precision, double precision) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_inside_circle_point';
+    AS '$libdir/postgis-2.1', 'LWGEOM_inside_circle_point';
 
 
 --
@@ -9805,6 +9723,15 @@ CREATE FUNCTION st_point_inside_circle(geometry, double precision, double precis
 --
 
 COMMENT ON FUNCTION st_point_inside_circle(geometry, double precision, double precision, double precision) IS 'args: a_point, center_x, center_y, radius - Is the point geometry insert circle defined by center_x, center_y , radius';
+
+
+--
+-- Name: st_pointfromgeohash(text, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_pointfromgeohash(text, integer DEFAULT NULL::integer) RETURNS geometry
+    LANGUAGE c IMMUTABLE
+    AS '$libdir/postgis-2.1', 'point_from_geohash';
 
 
 --
@@ -9879,7 +9806,7 @@ CREATE FUNCTION st_pointfromwkb(bytea, integer) RETURNS geometry
 
 CREATE FUNCTION st_pointn(geometry, integer) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_pointn_linestring';
+    AS '$libdir/postgis-2.1', 'LWGEOM_pointn_linestring';
 
 
 --
@@ -9895,7 +9822,7 @@ COMMENT ON FUNCTION st_pointn(geometry, integer) IS 'args: a_linestring, n - Ret
 
 CREATE FUNCTION st_pointonsurface(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'pointonsurface';
+    AS '$libdir/postgis-2.1', 'pointonsurface';
 
 
 --
@@ -9964,7 +9891,7 @@ CREATE FUNCTION st_polyfromwkb(bytea, integer) RETURNS geometry
 CREATE FUNCTION st_polygon(geometry, integer) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$ 
-	SELECT setSRID(makepolygon($1), $2)
+	SELECT ST_SetSRID(ST_MakePolygon($1), $2)
 	$_$;
 
 
@@ -9997,7 +9924,7 @@ COMMENT ON FUNCTION st_polygonfromtext(text) IS 'args: WKT - Makes a Geometry fr
 
 CREATE FUNCTION st_polygonfromtext(text, integer) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT PolyFromText($1, $2)$_$;
+    AS $_$SELECT ST_PolyFromText($1, $2)$_$;
 
 
 --
@@ -10014,8 +9941,8 @@ COMMENT ON FUNCTION st_polygonfromtext(text, integer) IS 'args: WKT, srid - Make
 CREATE FUNCTION st_polygonfromwkb(bytea) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
-	SELECT CASE WHEN geometrytype(GeomFromWKB($1)) = 'POLYGON'
-	THEN GeomFromWKB($1)
+	SELECT CASE WHEN geometrytype(ST_GeomFromWKB($1)) = 'POLYGON'
+	THEN ST_GeomFromWKB($1)
 	ELSE NULL END
 	$_$;
 
@@ -10039,7 +9966,7 @@ CREATE FUNCTION st_polygonfromwkb(bytea, integer) RETURNS geometry
 
 CREATE FUNCTION st_polygonize(geometry[]) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'polygonize_garray';
+    AS '$libdir/postgis-2.1', 'polygonize_garray';
 
 
 --
@@ -10050,62 +9977,62 @@ COMMENT ON FUNCTION st_polygonize(geometry[]) IS 'args: geom_array - Aggregate. 
 
 
 --
--- Name: st_polygonize_garray(geometry[]); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_project(geography, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_polygonize_garray(geometry[]) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'polygonize_garray';
-
-
---
--- Name: st_postgis_gist_joinsel(internal, oid, internal, smallint); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_postgis_gist_joinsel(internal, oid, internal, smallint) RETURNS double precision
-    LANGUAGE c
-    AS '$libdir/postgis-1.5', 'LWGEOM_gist_joinsel';
-
-
---
--- Name: st_postgis_gist_sel(internal, oid, internal, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_postgis_gist_sel(internal, oid, internal, integer) RETURNS double precision
-    LANGUAGE c
-    AS '$libdir/postgis-1.5', 'LWGEOM_gist_sel';
+CREATE FUNCTION st_project(geog geography, distance double precision, azimuth double precision) RETURNS geography
+    LANGUAGE c IMMUTABLE COST 100
+    AS '$libdir/postgis-2.1', 'geography_project';
 
 
 --
 -- Name: st_relate(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_relate(geometry, geometry) RETURNS text
+CREATE FUNCTION st_relate(geom1 geometry, geom2 geometry) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'relate_full';
+    AS '$libdir/postgis-2.1', 'relate_full';
 
 
 --
--- Name: FUNCTION st_relate(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_relate(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_relate(geometry, geometry) IS 'args: geomA, geomB - Returns true if this Geometry is spatially related to anotherGeometry, by testing for intersections between the Interior, Boundary and Exterior of the two geometries as specified by the values in the intersectionMatrixPattern. If no intersectionMatrixPattern is passed in, then returns the maximum intersectionMatrixPattern that relates the 2 geometries.';
+COMMENT ON FUNCTION st_relate(geom1 geometry, geom2 geometry) IS 'args: geomA, geomB - Returns true if this Geometry is spatially related to anotherGeometry, by testing for intersections between the Interior, Boundary and Exterior of the two geometries as specified by the values in the intersectionMatrixPattern. If no intersectionMatrixPattern is passed in, then returns the maximum intersectionMatrixPattern that relates the 2 geometries.';
+
+
+--
+-- Name: st_relate(geometry, geometry, integer); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_relate(geom1 geometry, geom2 geometry, integer) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'relate_full';
 
 
 --
 -- Name: st_relate(geometry, geometry, text); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_relate(geometry, geometry, text) RETURNS boolean
+CREATE FUNCTION st_relate(geom1 geometry, geom2 geometry, text) RETURNS boolean
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'relate_pattern';
+    AS '$libdir/postgis-2.1', 'relate_pattern';
 
 
 --
--- Name: FUNCTION st_relate(geometry, geometry, text); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_relate(geom1 geometry, geom2 geometry, text); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_relate(geometry, geometry, text) IS 'args: geomA, geomB, intersectionMatrixPattern - Returns true if this Geometry is spatially related to anotherGeometry, by testing for intersections between the Interior, Boundary and Exterior of the two geometries as specified by the values in the intersectionMatrixPattern. If no intersectionMatrixPattern is passed in, then returns the maximum intersectionMatrixPattern that relates the 2 geometries.';
+COMMENT ON FUNCTION st_relate(geom1 geometry, geom2 geometry, text) IS 'args: geomA, geomB, intersectionMatrixPattern - Returns true if this Geometry is spatially related to anotherGeometry, by testing for intersections between the Interior, Boundary and Exterior of the two geometries as specified by the values in the intersectionMatrixPattern. If no intersectionMatrixPattern is passed in, then returns the maximum intersectionMatrixPattern that relates the 2 geometries.';
+
+
+--
+-- Name: st_relatematch(text, text); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_relatematch(text, text) RETURNS boolean
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'ST_RelateMatch';
 
 
 --
@@ -10114,7 +10041,7 @@ COMMENT ON FUNCTION st_relate(geometry, geometry, text) IS 'args: geomA, geomB, 
 
 CREATE FUNCTION st_removepoint(geometry, integer) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_removepoint';
+    AS '$libdir/postgis-2.1', 'LWGEOM_removepoint';
 
 
 --
@@ -10125,12 +10052,21 @@ COMMENT ON FUNCTION st_removepoint(geometry, integer) IS 'args: linestring, offs
 
 
 --
+-- Name: st_removerepeatedpoints(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_removerepeatedpoints(geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'ST_RemoveRepeatedPoints';
+
+
+--
 -- Name: st_reverse(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_reverse(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_reverse';
+    AS '$libdir/postgis-2.1', 'LWGEOM_reverse';
 
 
 --
@@ -10146,7 +10082,7 @@ COMMENT ON FUNCTION st_reverse(geometry) IS 'args: g1 - Returns the geometry wit
 
 CREATE FUNCTION st_rotate(geometry, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT rotateZ($1, $2)$_$;
+    AS $_$SELECT ST_Affine($1,  cos($2), -sin($2), 0,  sin($2), cos($2), 0,  0, 0, 1,  0, 0, 0)$_$;
 
 
 --
@@ -10157,12 +10093,30 @@ COMMENT ON FUNCTION st_rotate(geometry, double precision) IS 'args: geomA, rotZR
 
 
 --
+-- Name: st_rotate(geometry, double precision, geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_rotate(geometry, double precision, geometry) RETURNS geometry
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$SELECT ST_Affine($1,  cos($2), -sin($2), 0,  sin($2),  cos($2), 0, 0, 0, 1, ST_X($3) - cos($2) * ST_X($3) + sin($2) * ST_Y($3), ST_Y($3) - sin($2) * ST_X($3) - cos($2) * ST_Y($3), 0)$_$;
+
+
+--
+-- Name: st_rotate(geometry, double precision, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_rotate(geometry, double precision, double precision, double precision) RETURNS geometry
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$SELECT ST_Affine($1,  cos($2), -sin($2), 0,  sin($2),  cos($2), 0, 0, 0, 1,	$3 - cos($2) * $3 + sin($2) * $4, $4 - sin($2) * $3 - cos($2) * $4, 0)$_$;
+
+
+--
 -- Name: st_rotatex(geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_rotatex(geometry, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT affine($1, 1, 0, 0, 0, cos($2), -sin($2), 0, sin($2), cos($2), 0, 0, 0)$_$;
+    AS $_$SELECT ST_Affine($1, 1, 0, 0, 0, cos($2), -sin($2), 0, sin($2), cos($2), 0, 0, 0)$_$;
 
 
 --
@@ -10178,7 +10132,7 @@ COMMENT ON FUNCTION st_rotatex(geometry, double precision) IS 'args: geomA, rotR
 
 CREATE FUNCTION st_rotatey(geometry, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT affine($1,  cos($2), 0, sin($2),  0, 1, 0,  -sin($2), 0, cos($2), 0,  0, 0)$_$;
+    AS $_$SELECT ST_Affine($1,  cos($2), 0, sin($2),  0, 1, 0,  -sin($2), 0, cos($2), 0,  0, 0)$_$;
 
 
 --
@@ -10194,7 +10148,7 @@ COMMENT ON FUNCTION st_rotatey(geometry, double precision) IS 'args: geomA, rotR
 
 CREATE FUNCTION st_rotatez(geometry, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT affine($1,  cos($2), -sin($2), 0,  sin($2), cos($2), 0,  0, 0, 1,  0, 0, 0)$_$;
+    AS $_$SELECT ST_Rotate($1, $2)$_$;
 
 
 --
@@ -10210,7 +10164,7 @@ COMMENT ON FUNCTION st_rotatez(geometry, double precision) IS 'args: geomA, rotR
 
 CREATE FUNCTION st_scale(geometry, double precision, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT scale($1, $2, $3, 1)$_$;
+    AS $_$SELECT ST_Scale($1, $2, $3, 1)$_$;
 
 
 --
@@ -10226,7 +10180,7 @@ COMMENT ON FUNCTION st_scale(geometry, double precision, double precision) IS 'a
 
 CREATE FUNCTION st_scale(geometry, double precision, double precision, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT affine($1,  $2, 0, 0,  0, $3, 0,  0, 0, $4,  0, 0, 0)$_$;
+    AS $_$SELECT ST_Affine($1,  $2, 0, 0,  0, $3, 0,  0, 0, $4,  0, 0, 0)$_$;
 
 
 --
@@ -10237,12 +10191,21 @@ COMMENT ON FUNCTION st_scale(geometry, double precision, double precision, doubl
 
 
 --
+-- Name: st_segmentize(geography, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_segmentize(geog geography, max_segment_length double precision) RETURNS geography
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'geography_segmentize';
+
+
+--
 -- Name: st_segmentize(geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_segmentize(geometry, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_segmentize2d';
+    AS '$libdir/postgis-2.1', 'LWGEOM_segmentize2d';
 
 
 --
@@ -10253,21 +10216,12 @@ COMMENT ON FUNCTION st_segmentize(geometry, double precision) IS 'args: geomA, m
 
 
 --
--- Name: st_setfactor(chip, real); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_setfactor(chip, real) RETURNS chip
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_setFactor';
-
-
---
 -- Name: st_setpoint(geometry, integer, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_setpoint(geometry, integer, geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_setpoint_linestring';
+    AS '$libdir/postgis-2.1', 'LWGEOM_setpoint_linestring';
 
 
 --
@@ -10283,7 +10237,7 @@ COMMENT ON FUNCTION st_setpoint(geometry, integer, geometry) IS 'args: linestrin
 
 CREATE FUNCTION st_setsrid(geometry, integer) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_setSRID';
+    AS '$libdir/postgis-2.1', 'LWGEOM_set_srid';
 
 
 --
@@ -10294,12 +10248,21 @@ COMMENT ON FUNCTION st_setsrid(geometry, integer) IS 'args: geom, srid - Sets th
 
 
 --
+-- Name: st_sharedpaths(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_sharedpaths(geom1 geometry, geom2 geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'ST_SharedPaths';
+
+
+--
 -- Name: st_shift_longitude(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_shift_longitude(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_longitude_shift';
+    AS '$libdir/postgis-2.1', 'LWGEOM_longitude_shift';
 
 
 --
@@ -10313,16 +10276,16 @@ COMMENT ON FUNCTION st_shift_longitude(geometry) IS 'args: geomA - Reads every p
 -- Name: st_shortestline(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_shortestline(geometry, geometry) RETURNS geometry
+CREATE FUNCTION st_shortestline(geom1 geometry, geom2 geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_shortestline2d';
+    AS '$libdir/postgis-2.1', 'LWGEOM_shortestline2d';
 
 
 --
--- Name: FUNCTION st_shortestline(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_shortestline(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_shortestline(geometry, geometry) IS 'args: g1, g2 - Returns the 2-dimensional shortest line between two geometries';
+COMMENT ON FUNCTION st_shortestline(geom1 geometry, geom2 geometry) IS 'args: g1, g2 - Returns the 2-dimensional shortest line between two geometries';
 
 
 --
@@ -10331,7 +10294,7 @@ COMMENT ON FUNCTION st_shortestline(geometry, geometry) IS 'args: g1, g2 - Retur
 
 CREATE FUNCTION st_simplify(geometry, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_simplify2d';
+    AS '$libdir/postgis-2.1', 'LWGEOM_simplify2d';
 
 
 --
@@ -10347,7 +10310,7 @@ COMMENT ON FUNCTION st_simplify(geometry, double precision) IS 'args: geomA, tol
 
 CREATE FUNCTION st_simplifypreservetopology(geometry, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT COST 100
-    AS '$libdir/postgis-1.5', 'topologypreservesimplify';
+    AS '$libdir/postgis-2.1', 'topologypreservesimplify';
 
 
 --
@@ -10355,6 +10318,15 @@ CREATE FUNCTION st_simplifypreservetopology(geometry, double precision) RETURNS 
 --
 
 COMMENT ON FUNCTION st_simplifypreservetopology(geometry, double precision) IS 'args: geomA, tolerance - Returns a "simplified" version of the given geometry using the Douglas-Peucker algorithm. Will avoid creating derived geometries (polygons in particular) that are invalid.';
+
+
+--
+-- Name: st_snap(geometry, geometry, double precision); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_snap(geom1 geometry, geom2 geometry, double precision) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'ST_Snap';
 
 
 --
@@ -10395,7 +10367,7 @@ COMMENT ON FUNCTION st_snaptogrid(geometry, double precision, double precision) 
 
 CREATE FUNCTION st_snaptogrid(geometry, double precision, double precision, double precision, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_snaptogrid';
+    AS '$libdir/postgis-2.1', 'LWGEOM_snaptogrid';
 
 
 --
@@ -10409,43 +10381,25 @@ COMMENT ON FUNCTION st_snaptogrid(geometry, double precision, double precision, 
 -- Name: st_snaptogrid(geometry, geometry, double precision, double precision, double precision, double precision); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_snaptogrid(geometry, geometry, double precision, double precision, double precision, double precision) RETURNS geometry
+CREATE FUNCTION st_snaptogrid(geom1 geometry, geom2 geometry, double precision, double precision, double precision, double precision) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_snaptogrid_pointoff';
+    AS '$libdir/postgis-2.1', 'LWGEOM_snaptogrid_pointoff';
 
 
 --
--- Name: FUNCTION st_snaptogrid(geometry, geometry, double precision, double precision, double precision, double precision); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_snaptogrid(geom1 geometry, geom2 geometry, double precision, double precision, double precision, double precision); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_snaptogrid(geometry, geometry, double precision, double precision, double precision, double precision) IS 'args: geomA, pointOrigin, sizeX, sizeY, sizeZ, sizeM - Snap all points of the input geometry to the grid defined by its origin and cell size. Remove consecutive points falling on the same cell, eventually returning NULL if output points are not enough to define a geometry of the given type. Collapsed geometries in a collection are stripped from it. Useful for reducing precision.';
-
-
---
--- Name: st_spheroid_in(cstring); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_spheroid_in(cstring) RETURNS spheroid
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'ellipsoid_in';
+COMMENT ON FUNCTION st_snaptogrid(geom1 geometry, geom2 geometry, double precision, double precision, double precision, double precision) IS 'args: geomA, pointOrigin, sizeX, sizeY, sizeZ, sizeM - Snap all points of the input geometry to the grid defined by its origin and cell size. Remove consecutive points falling on the same cell, eventually returning NULL if output points are not enough to define a geometry of the given type. Collapsed geometries in a collection are stripped from it. Useful for reducing precision.';
 
 
 --
--- Name: st_spheroid_out(spheroid); Type: FUNCTION; Schema: public; Owner: -
+-- Name: st_split(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_spheroid_out(spheroid) RETURNS cstring
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'ellipsoid_out';
-
-
---
--- Name: st_srid(chip); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_srid(chip) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_getSRID';
+CREATE FUNCTION st_split(geom1 geometry, geom2 geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT COST 100
+    AS '$libdir/postgis-2.1', 'ST_Split';
 
 
 --
@@ -10454,7 +10408,7 @@ CREATE FUNCTION st_srid(chip) RETURNS integer
 
 CREATE FUNCTION st_srid(geometry) RETURNS integer
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_getSRID';
+    AS '$libdir/postgis-2.1', 'LWGEOM_get_srid';
 
 
 --
@@ -10470,7 +10424,7 @@ COMMENT ON FUNCTION st_srid(geometry) IS 'args: g1 - Returns the spatial referen
 
 CREATE FUNCTION st_startpoint(geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_startpoint_linestring';
+    AS '$libdir/postgis-2.1', 'LWGEOM_startpoint_linestring';
 
 
 --
@@ -10481,12 +10435,21 @@ COMMENT ON FUNCTION st_startpoint(geometry) IS 'args: geomA - Returns the first 
 
 
 --
+-- Name: st_summary(geography); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_summary(geography) RETURNS text
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'LWGEOM_summary';
+
+
+--
 -- Name: st_summary(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_summary(geometry) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_summary';
+    AS '$libdir/postgis-2.1', 'LWGEOM_summary';
 
 
 --
@@ -10500,50 +10463,41 @@ COMMENT ON FUNCTION st_summary(geometry) IS 'args: g - Returns a text summary of
 -- Name: st_symdifference(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_symdifference(geometry, geometry) RETURNS geometry
+CREATE FUNCTION st_symdifference(geom1 geometry, geom2 geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'symdifference';
+    AS '$libdir/postgis-2.1', 'symdifference';
 
 
 --
--- Name: FUNCTION st_symdifference(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_symdifference(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_symdifference(geometry, geometry) IS 'args: geomA, geomB - Returns a geometry that represents the portions of A and B that do not intersect. It is called a symmetric difference because ST_SymDifference(A,B) = ST_SymDifference(B,A).';
+COMMENT ON FUNCTION st_symdifference(geom1 geometry, geom2 geometry) IS 'args: geomA, geomB - Returns a geometry that represents the portions of A and B that do not intersect. It is called a symmetric difference because ST_SymDifference(A,B) = ST_SymDifference(B,A).';
 
 
 --
 -- Name: st_symmetricdifference(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_symmetricdifference(geometry, geometry) RETURNS geometry
+CREATE FUNCTION st_symmetricdifference(geom1 geometry, geom2 geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'symdifference';
-
-
---
--- Name: st_text(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_text(geometry) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_to_text';
+    AS '$libdir/postgis-2.1', 'symdifference';
 
 
 --
 -- Name: st_touches(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_touches(geometry, geometry) RETURNS boolean
+CREATE FUNCTION st_touches(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE sql IMMUTABLE
     AS $_$SELECT $1 && $2 AND _ST_Touches($1,$2)$_$;
 
 
 --
--- Name: FUNCTION st_touches(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_touches(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_touches(geometry, geometry) IS 'args: g1, g2 - Returns TRUE if the geometries have at least one point in common, but their interiors do not intersect.';
+COMMENT ON FUNCTION st_touches(geom1 geometry, geom2 geometry) IS 'args: g1, g2 - Returns TRUE if the geometries have at least one point in common, but their interiors do not intersect.';
 
 
 --
@@ -10552,7 +10506,7 @@ COMMENT ON FUNCTION st_touches(geometry, geometry) IS 'args: g1, g2 - Returns TR
 
 CREATE FUNCTION st_transform(geometry, integer) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'transform';
+    AS '$libdir/postgis-2.1', 'transform';
 
 
 --
@@ -10568,7 +10522,7 @@ COMMENT ON FUNCTION st_transform(geometry, integer) IS 'args: g1, srid - Returns
 
 CREATE FUNCTION st_translate(geometry, double precision, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT translate($1, $2, $3, 0)$_$;
+    AS $_$SELECT ST_Translate($1, $2, $3, 0)$_$;
 
 
 --
@@ -10584,7 +10538,7 @@ COMMENT ON FUNCTION st_translate(geometry, double precision, double precision) I
 
 CREATE FUNCTION st_translate(geometry, double precision, double precision, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT affine($1, 1, 0, 0, 0, 1, 0, 0, 0, 1, $2, $3, $4)$_$;
+    AS $_$SELECT ST_Affine($1, 1, 0, 0, 0, 1, 0, 0, 0, 1, $2, $3, $4)$_$;
 
 
 --
@@ -10600,7 +10554,7 @@ COMMENT ON FUNCTION st_translate(geometry, double precision, double precision, d
 
 CREATE FUNCTION st_transscale(geometry, double precision, double precision, double precision, double precision) RETURNS geometry
     LANGUAGE sql IMMUTABLE STRICT
-    AS $_$SELECT affine($1,  $4, 0, 0,  0, $5, 0,
+    AS $_$SELECT ST_Affine($1,  $4, 0, 0,  0, $5, 0,
 		0, 0, 1,  $2 * $4, $3 * $5, 0)$_$;
 
 
@@ -10612,12 +10566,21 @@ COMMENT ON FUNCTION st_transscale(geometry, double precision, double precision, 
 
 
 --
+-- Name: st_unaryunion(geometry); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION st_unaryunion(geometry) RETURNS geometry
+    LANGUAGE c IMMUTABLE STRICT
+    AS '$libdir/postgis-2.1', 'ST_UnaryUnion';
+
+
+--
 -- Name: st_union(geometry[]); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION st_union(geometry[]) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'pgis_union_geometry_array';
+    AS '$libdir/postgis-2.1', 'pgis_union_geometry_array';
 
 
 --
@@ -10631,66 +10594,48 @@ COMMENT ON FUNCTION st_union(geometry[]) IS 'args: g1_array - Returns a geometry
 -- Name: st_union(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_union(geometry, geometry) RETURNS geometry
+CREATE FUNCTION st_union(geom1 geometry, geom2 geometry) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'geomunion';
+    AS '$libdir/postgis-2.1', 'geomunion';
 
 
 --
--- Name: FUNCTION st_union(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_union(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_union(geometry, geometry) IS 'args: g1, g2 - Returns a geometry that represents the point set union of the Geometries.';
-
-
---
--- Name: st_unite_garray(geometry[]); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_unite_garray(geometry[]) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'pgis_union_geometry_array';
-
-
---
--- Name: st_width(chip); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION st_width(chip) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_getWidth';
+COMMENT ON FUNCTION st_union(geom1 geometry, geom2 geometry) IS 'args: g1, g2 - Returns a geometry that represents the point set union of the Geometries.';
 
 
 --
 -- Name: st_within(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_within(geometry, geometry) RETURNS boolean
+CREATE FUNCTION st_within(geom1 geometry, geom2 geometry) RETURNS boolean
     LANGUAGE sql IMMUTABLE
-    AS $_$SELECT $1 && $2 AND _ST_Within($1,$2)$_$;
+    AS $_$SELECT $1 && $2 AND _ST_Contains($2,$1)$_$;
 
 
 --
--- Name: FUNCTION st_within(geometry, geometry); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_within(geom1 geometry, geom2 geometry); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_within(geometry, geometry) IS 'args: A, B - Returns true if the geometry A is completely inside geometry B';
+COMMENT ON FUNCTION st_within(geom1 geometry, geom2 geometry) IS 'args: A, B - Returns true if the geometry A is completely inside geometry B';
 
 
 --
 -- Name: st_wkbtosql(bytea); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION st_wkbtosql(bytea) RETURNS geometry
+CREATE FUNCTION st_wkbtosql(wkb bytea) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_from_WKB';
+    AS '$libdir/postgis-2.1', 'LWGEOM_from_WKB';
 
 
 --
--- Name: FUNCTION st_wkbtosql(bytea); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION st_wkbtosql(wkb bytea); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION st_wkbtosql(bytea) IS 'args: WKB - Return a specified ST_Geometry value from Well-Known Binary representation (WKB). This is an alias name for ST_GeomFromWKB that takes no srid';
+COMMENT ON FUNCTION st_wkbtosql(wkb bytea) IS 'args: WKB - Return a specified ST_Geometry value from Well-Known Binary representation (WKB). This is an alias name for ST_GeomFromWKB that takes no srid';
 
 
 --
@@ -10699,7 +10644,7 @@ COMMENT ON FUNCTION st_wkbtosql(bytea) IS 'args: WKB - Return a specified ST_Geo
 
 CREATE FUNCTION st_wkttosql(text) RETURNS geometry
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_from_text';
+    AS '$libdir/postgis-2.1', 'LWGEOM_from_text';
 
 
 --
@@ -10715,7 +10660,7 @@ COMMENT ON FUNCTION st_wkttosql(text) IS 'args: WKT - Return a specified ST_Geom
 
 CREATE FUNCTION st_x(geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_x_point';
+    AS '$libdir/postgis-2.1', 'LWGEOM_x_point';
 
 
 --
@@ -10731,7 +10676,7 @@ COMMENT ON FUNCTION st_x(geometry) IS 'args: a_point - Return the X coordinate o
 
 CREATE FUNCTION st_xmax(box3d) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_xmax';
+    AS '$libdir/postgis-2.1', 'BOX3D_xmax';
 
 
 --
@@ -10747,7 +10692,7 @@ COMMENT ON FUNCTION st_xmax(box3d) IS 'args: aGeomorBox2DorBox3D - Returns X max
 
 CREATE FUNCTION st_xmin(box3d) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_xmin';
+    AS '$libdir/postgis-2.1', 'BOX3D_xmin';
 
 
 --
@@ -10763,7 +10708,7 @@ COMMENT ON FUNCTION st_xmin(box3d) IS 'args: aGeomorBox2DorBox3D - Returns X min
 
 CREATE FUNCTION st_y(geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_y_point';
+    AS '$libdir/postgis-2.1', 'LWGEOM_y_point';
 
 
 --
@@ -10779,7 +10724,7 @@ COMMENT ON FUNCTION st_y(geometry) IS 'args: a_point - Return the Y coordinate o
 
 CREATE FUNCTION st_ymax(box3d) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_ymax';
+    AS '$libdir/postgis-2.1', 'BOX3D_ymax';
 
 
 --
@@ -10795,7 +10740,7 @@ COMMENT ON FUNCTION st_ymax(box3d) IS 'args: aGeomorBox2DorBox3D - Returns Y max
 
 CREATE FUNCTION st_ymin(box3d) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_ymin';
+    AS '$libdir/postgis-2.1', 'BOX3D_ymin';
 
 
 --
@@ -10811,7 +10756,7 @@ COMMENT ON FUNCTION st_ymin(box3d) IS 'args: aGeomorBox2DorBox3D - Returns Y min
 
 CREATE FUNCTION st_z(geometry) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_z_point';
+    AS '$libdir/postgis-2.1', 'LWGEOM_z_point';
 
 
 --
@@ -10827,7 +10772,7 @@ COMMENT ON FUNCTION st_z(geometry) IS 'args: a_point - Return the Z coordinate o
 
 CREATE FUNCTION st_zmax(box3d) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_zmax';
+    AS '$libdir/postgis-2.1', 'BOX3D_zmax';
 
 
 --
@@ -10843,7 +10788,7 @@ COMMENT ON FUNCTION st_zmax(box3d) IS 'args: aGeomorBox2DorBox3D - Returns Z min
 
 CREATE FUNCTION st_zmflag(geometry) RETURNS smallint
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_zmflag';
+    AS '$libdir/postgis-2.1', 'LWGEOM_zmflag';
 
 
 --
@@ -10859,7 +10804,7 @@ COMMENT ON FUNCTION st_zmflag(geometry) IS 'args: geomA - Returns ZM (dimension 
 
 CREATE FUNCTION st_zmin(box3d) RETURNS double precision
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_zmin';
+    AS '$libdir/postgis-2.1', 'BOX3D_zmin';
 
 
 --
@@ -10870,66 +10815,12 @@ COMMENT ON FUNCTION st_zmin(box3d) IS 'args: aGeomorBox2DorBox3D - Returns Z min
 
 
 --
--- Name: startpoint(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION startpoint(geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_startpoint_linestring';
-
-
---
--- Name: summary(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION summary(geometry) RETURNS text
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_summary';
-
-
---
--- Name: symdifference(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION symdifference(geometry, geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'symdifference';
-
-
---
--- Name: symmetricdifference(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION symmetricdifference(geometry, geometry) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'symdifference';
-
-
---
 -- Name: text(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION text(geometry) RETURNS text
     LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_to_text';
-
-
---
--- Name: touches(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION touches(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'touches';
-
-
---
--- Name: transform(geometry, integer); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION transform(geometry, integer) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'transform';
+    AS '$libdir/postgis-2.1', 'LWGEOM_to_text';
 
 
 --
@@ -10958,15 +10849,6 @@ CREATE FUNCTION transscale(geometry, double precision, double precision, double 
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$SELECT affine($1,  $4, 0, 0,  0, $5, 0,
 		0, 0, 1,  $2 * $4, $3 * $5, 0)$_$;
-
-
---
--- Name: unite_garray(geometry[]); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION unite_garray(geometry[]) RETURNS geometry
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'pgis_union_geometry_array';
 
 
 --
@@ -11051,32 +10933,29 @@ COMMENT ON FUNCTION updategeometrysrid(character varying, character varying, cha
 -- Name: updategeometrysrid(character varying, character varying, character varying, character varying, integer); Type: FUNCTION; Schema: public; Owner: -
 --
 
-CREATE FUNCTION updategeometrysrid(character varying, character varying, character varying, character varying, integer) RETURNS text
+CREATE FUNCTION updategeometrysrid(catalogn_name character varying, schema_name character varying, table_name character varying, column_name character varying, new_srid_in integer) RETURNS text
     LANGUAGE plpgsql STRICT
-    AS $_$
+    AS $$
 DECLARE
-	catalog_name alias for $1;
-	schema_name alias for $2;
-	table_name alias for $3;
-	column_name alias for $4;
-	new_srid alias for $5;
 	myrec RECORD;
 	okay boolean;
 	cname varchar;
 	real_schema name;
+	unknown_srid integer;
+	new_srid integer := new_srid_in;
 
 BEGIN
 
 
 	-- Find, check or fix schema_name
 	IF ( schema_name != '' ) THEN
-		okay = 'f';
+		okay = false;
 
 		FOR myrec IN SELECT nspname FROM pg_namespace WHERE text(nspname) = schema_name LOOP
-			okay := 't';
+			okay := true;
 		END LOOP;
 
-		IF ( okay <> 't' ) THEN
+		IF ( okay <> true ) THEN
 			RAISE EXCEPTION 'Invalid schema name';
 		ELSE
 			real_schema = schema_name;
@@ -11085,164 +10964,72 @@ BEGIN
 		SELECT INTO real_schema current_schema()::text;
 	END IF;
 
-	-- Find out if the column is in the geometry_columns table
-	okay = 'f';
-	FOR myrec IN SELECT * from geometry_columns where f_table_schema = text(real_schema) and f_table_name = table_name and f_geometry_column = column_name LOOP
-		okay := 't';
+	-- Ensure that column_name is in geometry_columns
+	okay = false;
+	FOR myrec IN SELECT type, coord_dimension FROM geometry_columns WHERE f_table_schema = text(real_schema) and f_table_name = table_name and f_geometry_column = column_name LOOP
+		okay := true;
 	END LOOP;
-	IF (okay <> 't') THEN
+	IF (NOT okay) THEN
 		RAISE EXCEPTION 'column not found in geometry_columns table';
-		RETURN 'f';
+		RETURN false;
 	END IF;
 
-	-- Update ref from geometry_columns table
-	EXECUTE 'UPDATE geometry_columns SET SRID = ' || new_srid::text ||
-		' where f_table_schema = ' ||
-		quote_literal(real_schema) || ' and f_table_name = ' ||
-		quote_literal(table_name)  || ' and f_geometry_column = ' ||
-		quote_literal(column_name);
+	-- Ensure that new_srid is valid
+	IF ( new_srid > 0 ) THEN
+		IF ( SELECT count(*) = 0 from spatial_ref_sys where srid = new_srid ) THEN
+			RAISE EXCEPTION 'invalid SRID: % not found in spatial_ref_sys', new_srid;
+			RETURN false;
+		END IF;
+	ELSE
+		unknown_srid := ST_SRID('POINT EMPTY'::geometry);
+		IF ( new_srid != unknown_srid ) THEN
+			new_srid := unknown_srid;
+			RAISE NOTICE 'SRID value % converted to the officially unknown SRID value %', new_srid_in, new_srid;
+		END IF;
+	END IF;
 
-	-- Make up constraint name
-	cname = 'enforce_srid_'  || column_name;
-
-	-- Drop enforce_srid constraint
-	EXECUTE 'ALTER TABLE ' || quote_ident(real_schema) ||
-		'.' || quote_ident(table_name) ||
-		' DROP constraint ' || quote_ident(cname);
-
-	-- Update geometries SRID
-	EXECUTE 'UPDATE ' || quote_ident(real_schema) ||
-		'.' || quote_ident(table_name) ||
-		' SET ' || quote_ident(column_name) ||
-		' = setSRID(' || quote_ident(column_name) ||
-		', ' || new_srid::text || ')';
-
-	-- Reset enforce_srid constraint
-	EXECUTE 'ALTER TABLE ' || quote_ident(real_schema) ||
-		'.' || quote_ident(table_name) ||
-		' ADD constraint ' || quote_ident(cname) ||
-		' CHECK (srid(' || quote_ident(column_name) ||
-		') = ' || new_srid::text || ')';
+	IF postgis_constraint_srid(schema_name, table_name, column_name) IS NOT NULL THEN 
+	-- srid was enforced with constraints before, keep it that way.
+        -- Make up constraint name
+        cname = 'enforce_srid_'  || column_name;
+    
+        -- Drop enforce_srid constraint
+        EXECUTE 'ALTER TABLE ' || quote_ident(real_schema) ||
+            '.' || quote_ident(table_name) ||
+            ' DROP constraint ' || quote_ident(cname);
+    
+        -- Update geometries SRID
+        EXECUTE 'UPDATE ' || quote_ident(real_schema) ||
+            '.' || quote_ident(table_name) ||
+            ' SET ' || quote_ident(column_name) ||
+            ' = ST_SetSRID(' || quote_ident(column_name) ||
+            ', ' || new_srid::text || ')';
+            
+        -- Reset enforce_srid constraint
+        EXECUTE 'ALTER TABLE ' || quote_ident(real_schema) ||
+            '.' || quote_ident(table_name) ||
+            ' ADD constraint ' || quote_ident(cname) ||
+            ' CHECK (st_srid(' || quote_ident(column_name) ||
+            ') = ' || new_srid::text || ')';
+    ELSE 
+        -- We will use typmod to enforce if no srid constraints
+        -- We are using postgis_type_name to lookup the new name 
+        -- (in case Paul changes his mind and flips geometry_columns to return old upper case name) 
+        EXECUTE 'ALTER TABLE ' || quote_ident(real_schema) || '.' || quote_ident(table_name) || 
+        ' ALTER COLUMN ' || quote_ident(column_name) || ' TYPE  geometry(' || postgis_type_name(myrec.type, myrec.coord_dimension, true) || ', ' || new_srid::text || ') USING ST_SetSRID(' || quote_ident(column_name) || ',' || new_srid::text || ');' ;
+    END IF;
 
 	RETURN real_schema || '.' || table_name || '.' || column_name ||' SRID changed to ' || new_srid::text;
 
 END;
-$_$;
+$$;
 
 
 --
--- Name: FUNCTION updategeometrysrid(character varying, character varying, character varying, character varying, integer); Type: COMMENT; Schema: public; Owner: -
+-- Name: FUNCTION updategeometrysrid(catalogn_name character varying, schema_name character varying, table_name character varying, column_name character varying, new_srid_in integer); Type: COMMENT; Schema: public; Owner: -
 --
 
-COMMENT ON FUNCTION updategeometrysrid(character varying, character varying, character varying, character varying, integer) IS 'args: catalog_name, schema_name, table_name, column_name, srid - Updates the SRID of all features in a geometry column, geometry_columns metadata and srid table constraint';
-
-
---
--- Name: width(chip); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION width(chip) RETURNS integer
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'CHIP_getWidth';
-
-
---
--- Name: within(geometry, geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION within(geometry, geometry) RETURNS boolean
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'within';
-
-
---
--- Name: x(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION x(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_x_point';
-
-
---
--- Name: xmax(box3d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION xmax(box3d) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_xmax';
-
-
---
--- Name: xmin(box3d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION xmin(box3d) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_xmin';
-
-
---
--- Name: y(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION y(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_y_point';
-
-
---
--- Name: ymax(box3d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION ymax(box3d) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_ymax';
-
-
---
--- Name: ymin(box3d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION ymin(box3d) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_ymin';
-
-
---
--- Name: z(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION z(geometry) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_z_point';
-
-
---
--- Name: zmax(box3d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION zmax(box3d) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_zmax';
-
-
---
--- Name: zmflag(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION zmflag(geometry) RETURNS smallint
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'LWGEOM_zmflag';
-
-
---
--- Name: zmin(box3d); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION zmin(box3d) RETURNS double precision
-    LANGUAGE c IMMUTABLE STRICT
-    AS '$libdir/postgis-1.5', 'BOX3D_zmin';
+COMMENT ON FUNCTION updategeometrysrid(catalogn_name character varying, schema_name character varying, table_name character varying, column_name character varying, new_srid_in integer) IS 'args: catalog_name, schema_name, table_name, column_name, srid - Updates the SRID of all features in a geometry column, geometry_columns metadata and srid table constraint';
 
 
 --
@@ -11279,26 +11066,6 @@ CREATE AGGREGATE collect(geometry) (
 
 
 --
--- Name: extent(geometry); Type: AGGREGATE; Schema: public; Owner: -
---
-
-CREATE AGGREGATE extent(geometry) (
-    SFUNC = public.st_combine_bbox,
-    STYPE = box3d_extent
-);
-
-
---
--- Name: extent3d(geometry); Type: AGGREGATE; Schema: public; Owner: -
---
-
-CREATE AGGREGATE extent3d(geometry) (
-    SFUNC = public.combine_bbox,
-    STYPE = box3d
-);
-
-
---
 -- Name: makeline(geometry); Type: AGGREGATE; Schema: public; Owner: -
 --
 
@@ -11320,16 +11087,6 @@ CREATE AGGREGATE memcollect(geometry) (
 
 
 --
--- Name: memgeomunion(geometry); Type: AGGREGATE; Schema: public; Owner: -
---
-
-CREATE AGGREGATE memgeomunion(geometry) (
-    SFUNC = geomunion,
-    STYPE = geometry
-);
-
-
---
 -- Name: polygonize(geometry); Type: AGGREGATE; Schema: public; Owner: -
 --
 
@@ -11337,6 +11094,16 @@ CREATE AGGREGATE polygonize(geometry) (
     SFUNC = pgis_geometry_accum_transfn,
     STYPE = pgis_abs,
     FINALFUNC = pgis_geometry_polygonize_finalfn
+);
+
+
+--
+-- Name: st_3dextent(geometry); Type: AGGREGATE; Schema: public; Owner: -
+--
+
+CREATE AGGREGATE st_3dextent(geometry) (
+    SFUNC = public.st_combine_bbox,
+    STYPE = box3d
 );
 
 
@@ -11382,7 +11149,8 @@ COMMENT ON AGGREGATE st_collect(geometry) IS 'args: g1field - Return a specified
 
 CREATE AGGREGATE st_extent(geometry) (
     SFUNC = public.st_combine_bbox,
-    STYPE = box3d_extent
+    STYPE = box3d,
+    FINALFUNC = public.box2d
 );
 
 
@@ -11496,12 +11264,12 @@ COMMENT ON AGGREGATE st_union(geometry) IS 'args: g1field - Returns a geometry t
 --
 
 CREATE OPERATOR && (
-    PROCEDURE = geometry_overlap,
+    PROCEDURE = geometry_overlaps,
     LEFTARG = geometry,
     RIGHTARG = geometry,
     COMMUTATOR = &&,
-    RESTRICT = geometry_gist_sel,
-    JOIN = geometry_gist_joinsel
+    RESTRICT = gserialized_gist_sel_2d,
+    JOIN = gserialized_gist_joinsel_2d
 );
 
 
@@ -11514,8 +11282,22 @@ CREATE OPERATOR && (
     LEFTARG = geography,
     RIGHTARG = geography,
     COMMUTATOR = &&,
-    RESTRICT = geography_gist_selectivity,
-    JOIN = geography_gist_join_selectivity
+    RESTRICT = gserialized_gist_sel_nd,
+    JOIN = gserialized_gist_joinsel_nd
+);
+
+
+--
+-- Name: &&&; Type: OPERATOR; Schema: public; Owner: -
+--
+
+CREATE OPERATOR &&& (
+    PROCEDURE = geometry_overlaps_nd,
+    LEFTARG = geometry,
+    RIGHTARG = geometry,
+    COMMUTATOR = &&&,
+    RESTRICT = gserialized_gist_sel_nd,
+    JOIN = gserialized_gist_joinsel_nd
 );
 
 
@@ -11588,6 +11370,30 @@ CREATE OPERATOR < (
     NEGATOR = >=,
     RESTRICT = contsel,
     JOIN = contjoinsel
+);
+
+
+--
+-- Name: <#>; Type: OPERATOR; Schema: public; Owner: -
+--
+
+CREATE OPERATOR <#> (
+    PROCEDURE = geometry_distance_box,
+    LEFTARG = geometry,
+    RIGHTARG = geometry,
+    COMMUTATOR = <#>
+);
+
+
+--
+-- Name: <->; Type: OPERATOR; Schema: public; Owner: -
+--
+
+CREATE OPERATOR <-> (
+    PROCEDURE = geometry_distance_centroid,
+    LEFTARG = geometry,
+    RIGHTARG = geometry,
+    COMMUTATOR = <->
 );
 
 
@@ -11756,7 +11562,7 @@ CREATE OPERATOR >> (
 --
 
 CREATE OPERATOR @ (
-    PROCEDURE = geometry_contained,
+    PROCEDURE = geometry_within,
     LEFTARG = geometry,
     RIGHTARG = geometry,
     COMMUTATOR = ~,
@@ -11798,7 +11604,7 @@ CREATE OPERATOR |>> (
 --
 
 CREATE OPERATOR ~ (
-    PROCEDURE = geometry_contain,
+    PROCEDURE = geometry_contains,
     LEFTARG = geometry,
     RIGHTARG = geometry,
     COMMUTATOR = @,
@@ -11812,12 +11618,11 @@ CREATE OPERATOR ~ (
 --
 
 CREATE OPERATOR ~= (
-    PROCEDURE = geometry_samebox,
+    PROCEDURE = geometry_same,
     LEFTARG = geometry,
     RIGHTARG = geometry,
-    COMMUTATOR = ~=,
-    RESTRICT = eqsel,
-    JOIN = eqjoinsel
+    RESTRICT = contsel,
+    JOIN = contjoinsel
 );
 
 
@@ -11832,7 +11637,7 @@ CREATE OPERATOR CLASS btree_geography_ops
     OPERATOR 3 =(geography,geography) ,
     OPERATOR 4 >=(geography,geography) ,
     OPERATOR 5 >(geography,geography) ,
-    FUNCTION 1 geography_cmp(geography,geography);
+    FUNCTION 1 (geography, geography) geography_cmp(geography,geography);
 
 
 --
@@ -11846,7 +11651,7 @@ CREATE OPERATOR CLASS btree_geometry_ops
     OPERATOR 3 =(geometry,geometry) ,
     OPERATOR 4 >=(geometry,geometry) ,
     OPERATOR 5 >(geometry,geometry) ,
-    FUNCTION 1 geometry_cmp(geometry,geometry);
+    FUNCTION 1 (geometry, geometry) geometry_cmp(geometry,geometry);
 
 
 --
@@ -11857,22 +11662,22 @@ CREATE OPERATOR CLASS gist_geography_ops
     DEFAULT FOR TYPE geography USING gist AS
     STORAGE gidx ,
     OPERATOR 3 &&(geography,geography) ,
-    FUNCTION 1 geography_gist_consistent(internal,geometry,integer) ,
-    FUNCTION 2 geography_gist_union(bytea,internal) ,
-    FUNCTION 3 geography_gist_compress(internal) ,
-    FUNCTION 4 geography_gist_decompress(internal) ,
-    FUNCTION 5 geography_gist_penalty(internal,internal,internal) ,
-    FUNCTION 6 geography_gist_picksplit(internal,internal) ,
-    FUNCTION 7 geography_gist_same(box2d,box2d,internal);
+    FUNCTION 1 (geography, geography) geography_gist_consistent(internal,geography,integer) ,
+    FUNCTION 2 (geography, geography) geography_gist_union(bytea,internal) ,
+    FUNCTION 3 (geography, geography) geography_gist_compress(internal) ,
+    FUNCTION 4 (geography, geography) geography_gist_decompress(internal) ,
+    FUNCTION 5 (geography, geography) geography_gist_penalty(internal,internal,internal) ,
+    FUNCTION 6 (geography, geography) geography_gist_picksplit(internal,internal) ,
+    FUNCTION 7 (geography, geography) geography_gist_same(box2d,box2d,internal);
 
 
 --
--- Name: gist_geometry_ops; Type: OPERATOR CLASS; Schema: public; Owner: -
+-- Name: gist_geometry_ops_2d; Type: OPERATOR CLASS; Schema: public; Owner: -
 --
 
-CREATE OPERATOR CLASS gist_geometry_ops
+CREATE OPERATOR CLASS gist_geometry_ops_2d
     DEFAULT FOR TYPE geometry USING gist AS
-    STORAGE box2d ,
+    STORAGE box2df ,
     OPERATOR 1 <<(geometry,geometry) ,
     OPERATOR 2 &<(geometry,geometry) ,
     OPERATOR 3 &&(geometry,geometry) ,
@@ -11885,13 +11690,33 @@ CREATE OPERATOR CLASS gist_geometry_ops
     OPERATOR 10 <<|(geometry,geometry) ,
     OPERATOR 11 |>>(geometry,geometry) ,
     OPERATOR 12 |&>(geometry,geometry) ,
-    FUNCTION 1 lwgeom_gist_consistent(internal,geometry,integer) ,
-    FUNCTION 2 lwgeom_gist_union(bytea,internal) ,
-    FUNCTION 3 lwgeom_gist_compress(internal) ,
-    FUNCTION 4 lwgeom_gist_decompress(internal) ,
-    FUNCTION 5 lwgeom_gist_penalty(internal,internal,internal) ,
-    FUNCTION 6 lwgeom_gist_picksplit(internal,internal) ,
-    FUNCTION 7 lwgeom_gist_same(box2d,box2d,internal);
+    OPERATOR 13 <->(geometry,geometry) FOR ORDER BY pg_catalog.float_ops ,
+    OPERATOR 14 <#>(geometry,geometry) FOR ORDER BY pg_catalog.float_ops ,
+    FUNCTION 1 (geometry, geometry) geometry_gist_consistent_2d(internal,geometry,integer) ,
+    FUNCTION 2 (geometry, geometry) geometry_gist_union_2d(bytea,internal) ,
+    FUNCTION 3 (geometry, geometry) geometry_gist_compress_2d(internal) ,
+    FUNCTION 4 (geometry, geometry) geometry_gist_decompress_2d(internal) ,
+    FUNCTION 5 (geometry, geometry) geometry_gist_penalty_2d(internal,internal,internal) ,
+    FUNCTION 6 (geometry, geometry) geometry_gist_picksplit_2d(internal,internal) ,
+    FUNCTION 7 (geometry, geometry) geometry_gist_same_2d(geometry,geometry,internal) ,
+    FUNCTION 8 (geometry, geometry) geometry_gist_distance_2d(internal,geometry,integer);
+
+
+--
+-- Name: gist_geometry_ops_nd; Type: OPERATOR CLASS; Schema: public; Owner: -
+--
+
+CREATE OPERATOR CLASS gist_geometry_ops_nd
+    FOR TYPE geometry USING gist AS
+    STORAGE gidx ,
+    OPERATOR 3 &&&(geometry,geometry) ,
+    FUNCTION 1 (geometry, geometry) geometry_gist_consistent_nd(internal,geometry,integer) ,
+    FUNCTION 2 (geometry, geometry) geometry_gist_union_nd(bytea,internal) ,
+    FUNCTION 3 (geometry, geometry) geometry_gist_compress_nd(internal) ,
+    FUNCTION 4 (geometry, geometry) geometry_gist_decompress_nd(internal) ,
+    FUNCTION 5 (geometry, geometry) geometry_gist_penalty_nd(internal,internal,internal) ,
+    FUNCTION 6 (geometry, geometry) geometry_gist_picksplit_nd(internal,internal) ,
+    FUNCTION 7 (geometry, geometry) geometry_gist_same_nd(geometry,geometry,internal);
 
 
 SET search_path = pg_catalog;
@@ -11932,24 +11757,10 @@ CREATE CAST (public.box3d AS public.geometry) WITH FUNCTION public.geometry(publ
 
 
 --
--- Name: CAST (public.box3d_extent AS public.box2d); Type: CAST; Schema: pg_catalog; Owner: -
+-- Name: CAST (bytea AS public.geography); Type: CAST; Schema: pg_catalog; Owner: -
 --
 
-CREATE CAST (public.box3d_extent AS public.box2d) WITH FUNCTION public.box2d(public.box3d_extent) AS IMPLICIT;
-
-
---
--- Name: CAST (public.box3d_extent AS public.box3d); Type: CAST; Schema: pg_catalog; Owner: -
---
-
-CREATE CAST (public.box3d_extent AS public.box3d) WITH FUNCTION public.box3d_extent(public.box3d_extent) AS IMPLICIT;
-
-
---
--- Name: CAST (public.box3d_extent AS public.geometry); Type: CAST; Schema: pg_catalog; Owner: -
---
-
-CREATE CAST (public.box3d_extent AS public.geometry) WITH FUNCTION public.geometry(public.box3d_extent) AS IMPLICIT;
+CREATE CAST (bytea AS public.geography) WITH FUNCTION public.geography(bytea) AS IMPLICIT;
 
 
 --
@@ -11960,10 +11771,10 @@ CREATE CAST (bytea AS public.geometry) WITH FUNCTION public.geometry(bytea) AS I
 
 
 --
--- Name: CAST (public.chip AS public.geometry); Type: CAST; Schema: pg_catalog; Owner: -
+-- Name: CAST (public.geography AS bytea); Type: CAST; Schema: pg_catalog; Owner: -
 --
 
-CREATE CAST (public.chip AS public.geometry) WITH FUNCTION public.geometry(public.chip) AS IMPLICIT;
+CREATE CAST (public.geography AS bytea) WITH FUNCTION public.bytea(public.geography) AS IMPLICIT;
 
 
 --
@@ -11984,7 +11795,7 @@ CREATE CAST (public.geography AS public.geometry) WITH FUNCTION public.geometry(
 -- Name: CAST (public.geometry AS box); Type: CAST; Schema: pg_catalog; Owner: -
 --
 
-CREATE CAST (public.geometry AS box) WITH FUNCTION public.box(public.geometry) AS IMPLICIT;
+CREATE CAST (public.geometry AS box) WITH FUNCTION public.box(public.geometry) AS ASSIGNMENT;
 
 
 --
@@ -12016,10 +11827,59 @@ CREATE CAST (public.geometry AS public.geography) WITH FUNCTION public.geography
 
 
 --
+-- Name: CAST (public.geometry AS public.geometry); Type: CAST; Schema: pg_catalog; Owner: -
+--
+
+CREATE CAST (public.geometry AS public.geometry) WITH FUNCTION public.geometry(public.geometry, integer, boolean) AS IMPLICIT;
+
+
+--
+-- Name: CAST (public.geometry AS path); Type: CAST; Schema: pg_catalog; Owner: -
+--
+
+CREATE CAST (public.geometry AS path) WITH FUNCTION public.path(public.geometry);
+
+
+--
+-- Name: CAST (public.geometry AS point); Type: CAST; Schema: pg_catalog; Owner: -
+--
+
+CREATE CAST (public.geometry AS point) WITH FUNCTION public.point(public.geometry);
+
+
+--
+-- Name: CAST (public.geometry AS polygon); Type: CAST; Schema: pg_catalog; Owner: -
+--
+
+CREATE CAST (public.geometry AS polygon) WITH FUNCTION public.polygon(public.geometry);
+
+
+--
 -- Name: CAST (public.geometry AS text); Type: CAST; Schema: pg_catalog; Owner: -
 --
 
 CREATE CAST (public.geometry AS text) WITH FUNCTION public.text(public.geometry) AS IMPLICIT;
+
+
+--
+-- Name: CAST (path AS public.geometry); Type: CAST; Schema: pg_catalog; Owner: -
+--
+
+CREATE CAST (path AS public.geometry) WITH FUNCTION public.geometry(path);
+
+
+--
+-- Name: CAST (point AS public.geometry); Type: CAST; Schema: pg_catalog; Owner: -
+--
+
+CREATE CAST (point AS public.geometry) WITH FUNCTION public.geometry(point);
+
+
+--
+-- Name: CAST (polygon AS public.geometry); Type: CAST; Schema: pg_catalog; Owner: -
+--
+
+CREATE CAST (polygon AS public.geometry) WITH FUNCTION public.geometry(polygon);
 
 
 --
@@ -12759,27 +12619,38 @@ ALTER SEQUENCE friendships_id_seq OWNED BY friendships.id;
 --
 
 CREATE VIEW geography_columns AS
-    SELECT current_database() AS f_table_catalog, n.nspname AS f_table_schema, c.relname AS f_table_name, a.attname AS f_geography_column, geography_typmod_dims(a.atttypmod) AS coord_dimension, geography_typmod_srid(a.atttypmod) AS srid, geography_typmod_type(a.atttypmod) AS type FROM pg_class c, pg_attribute a, pg_type t, pg_namespace n WHERE ((((((t.typname = 'geography'::name) AND (a.attisdropped = false)) AND (a.atttypid = t.oid)) AND (a.attrelid = c.oid)) AND (c.relnamespace = n.oid)) AND (NOT pg_is_other_temp_schema(c.relnamespace)));
+ SELECT current_database() AS f_table_catalog, 
+    n.nspname AS f_table_schema, 
+    c.relname AS f_table_name, 
+    a.attname AS f_geography_column, 
+    postgis_typmod_dims(a.atttypmod) AS coord_dimension, 
+    postgis_typmod_srid(a.atttypmod) AS srid, 
+    postgis_typmod_type(a.atttypmod) AS type
+   FROM pg_class c, 
+    pg_attribute a, 
+    pg_type t, 
+    pg_namespace n
+  WHERE (((((((t.typname = 'geography'::name) AND (a.attisdropped = false)) AND (a.atttypid = t.oid)) AND (a.attrelid = c.oid)) AND (c.relnamespace = n.oid)) AND (NOT pg_is_other_temp_schema(c.relnamespace))) AND has_table_privilege(c.oid, 'SELECT'::text));
 
-
-SET default_with_oids = true;
 
 --
--- Name: geometry_columns; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: geometry_columns; Type: VIEW; Schema: public; Owner: -
 --
 
-CREATE TABLE geometry_columns (
-    f_table_catalog character varying(256) NOT NULL,
-    f_table_schema character varying(256) NOT NULL,
-    f_table_name character varying(256) NOT NULL,
-    f_geometry_column character varying(256) NOT NULL,
-    coord_dimension integer NOT NULL,
-    srid integer NOT NULL,
-    type character varying(30) NOT NULL
-);
+CREATE VIEW geometry_columns AS
+ SELECT (current_database())::character varying(256) AS f_table_catalog, 
+    (n.nspname)::character varying(256) AS f_table_schema, 
+    (c.relname)::character varying(256) AS f_table_name, 
+    (a.attname)::character varying(256) AS f_geometry_column, 
+    COALESCE(NULLIF(postgis_typmod_dims(a.atttypmod), 2), postgis_constraint_dims((n.nspname)::text, (c.relname)::text, (a.attname)::text), 2) AS coord_dimension, 
+    COALESCE(NULLIF(postgis_typmod_srid(a.atttypmod), 0), postgis_constraint_srid((n.nspname)::text, (c.relname)::text, (a.attname)::text), 0) AS srid, 
+    (replace(replace(COALESCE(NULLIF(upper(postgis_typmod_type(a.atttypmod)), 'GEOMETRY'::text), (postgis_constraint_type((n.nspname)::text, (c.relname)::text, (a.attname)::text))::text, 'GEOMETRY'::text), 'ZM'::text, ''::text), 'Z'::text, ''::text))::character varying(30) AS type
+   FROM pg_class c, 
+    pg_attribute a, 
+    pg_type t, 
+    pg_namespace n
+  WHERE (((((((((t.typname = 'geometry'::name) AND (a.attisdropped = false)) AND (a.atttypid = t.oid)) AND (a.attrelid = c.oid)) AND (c.relnamespace = n.oid)) AND ((c.relkind = 'r'::"char") OR (c.relkind = 'v'::"char"))) AND (NOT pg_is_other_temp_schema(c.relnamespace))) AND (NOT ((n.nspname = 'public'::name) AND (c.relname = 'raster_columns'::name)))) AND has_table_privilege(c.oid, 'SELECT'::text));
 
-
-SET default_with_oids = false;
 
 --
 -- Name: goal_contributions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
@@ -13848,7 +13719,8 @@ CREATE TABLE place_geometries (
     source_filename character varying(255),
     source_id integer,
     CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL)))
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
 );
 
 
@@ -14569,7 +14441,8 @@ CREATE TABLE spatial_ref_sys (
     auth_name character varying(256),
     auth_srid integer,
     srtext character varying(2048),
-    proj4text character varying(2048)
+    proj4text character varying(2048),
+    CONSTRAINT spatial_ref_sys_srid_check CHECK (((srid > 0) AND (srid <= 998999)))
 );
 
 
@@ -15020,7 +14893,8 @@ CREATE TABLE taxon_ranges (
     range_updated_at timestamp without time zone,
     url character varying(255),
     CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL)))
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
 );
 
 
@@ -16155,14 +16029,6 @@ ALTER TABLE ONLY flow_tasks
 
 ALTER TABLE ONLY friendships
     ADD CONSTRAINT friendships_pkey PRIMARY KEY (id);
-
-
---
--- Name: geometry_columns_pk; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY geometry_columns
-    ADD CONSTRAINT geometry_columns_pk PRIMARY KEY (f_table_catalog, f_table_schema, f_table_name, f_geometry_column);
 
 
 --
@@ -18123,6 +17989,30 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 --
 
 CREATE UNIQUE INDEX updates_unique_key ON updates USING btree (resource_type, resource_id, notifier_type, notifier_id, subscriber_id, notification);
+
+
+--
+-- Name: geometry_columns_delete; Type: RULE; Schema: public; Owner: -
+--
+
+CREATE RULE geometry_columns_delete AS
+    ON DELETE TO geometry_columns DO INSTEAD NOTHING;
+
+
+--
+-- Name: geometry_columns_insert; Type: RULE; Schema: public; Owner: -
+--
+
+CREATE RULE geometry_columns_insert AS
+    ON INSERT TO geometry_columns DO INSTEAD NOTHING;
+
+
+--
+-- Name: geometry_columns_update; Type: RULE; Schema: public; Owner: -
+--
+
+CREATE RULE geometry_columns_update AS
+    ON UPDATE TO geometry_columns DO INSTEAD NOTHING;
 
 
 --
