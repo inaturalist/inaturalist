@@ -144,6 +144,10 @@ class List < ActiveRecord::Base
   def refresh_cache_key
     "refresh_list_#{id}"
   end
+
+  def reload_from_observations_cache_key
+    "rfo_list_#{id}"
+  end
   
   def generate_csv(options = {})
     controller = options[:controller] || FakeView.new

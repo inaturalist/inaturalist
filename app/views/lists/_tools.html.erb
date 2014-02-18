@@ -67,37 +67,45 @@
   <% if logged_in? && ( ( list.is_a?(LifeList) && list.editable_by?(current_user) ) || ( list.is_a?(CheckList) && current_user.admin? ) ) -%>
     <% link_to_toggle_menu t(:tools), :id => "tools_button", :class => "minor button",
         :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} do %>
-      <ul>
-        <% if list.is_a?(LifeList) && list.editable_by?(current_user) -%>
+      <% if list.is_a?(LifeList) && list.editable_by?(current_user) -%>
+        <ul>
           <li>
-            <%- msg = t(:this_will_update_all_last_observations)+" #{ @list.user ? t(:your) : t(:the_project) } "+ t(:observations_it_may_take_a_few)-%>
+            <%- msg = t(:this_will_add_listed_taxa) -%>
             <%= link_to_function t(:reload_from_observations), 
               "confirmStartDelayed('#{msg}', '#{list_reload_from_observations_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'reloadlink')", 
               :id => "reloadlink" %>
           </li>
           <li>
-          <%- msg = t(:this_will_re_apply_all_list_rules) -%>
+            <%- msg = t(:this_will_re_apply_all_list_rules).gsub(/\s+/m, " ") -%>
             <%= link_to_function t(:re_apply_list_rules),
               "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'refreshlink')", 
               :id => "refreshlink" %>
           </li>
-        <% elsif list.is_a?(CheckList) && current_user.admin? %>
-          <% if list.is_default? %>
+        </ul>
+      <% elsif list.is_a?(CheckList) && current_user.admin? %>
+        <div class="admin">
+          <ul>
+            <% if list.is_default? %>
+              <li>
+                <%- msg = t(:this_will_add_listed_taxa) -%>
+                <%= link_to_function t(:reload_from_observations), 
+                  "confirmStartDelayed('#{msg}', '#{list_add_from_observations_now_path(@list.id)}', #{CheckList::MAX_RELOAD_TRIES}, 'add_from_observations_nowlink')", 
+                  :id => "add_from_observations_nowlink" %>
+              </li>
+            <% end %>
             <li>
-              <%- msg = t(:this_will_add_listed_taxa) -%>
-              <%= link_to_function t(:add_listed_taxa_from_observations), 
-                "confirmStartDelayed('#{msg}', '#{list_add_from_observations_now_path(@list.id)}', #{CheckList::MAX_RELOAD_TRIES}, 'add_from_observations_nowlink')", 
-                :id => "add_from_observations_nowlink" %>
+              <%- msg = t(:this_will_re_apply_all_list_rules).gsub(/\s+/m, " ") -%>
+              <%= link_to_function t(:re_apply_list_rules),
+                "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_now_path(@list.id)}', #{CheckList::MAX_RELOAD_TRIES}, 'refresh_nowlink')", 
+                :id => "refresh_nowlink" %>
             </li>
-          <% end %>
-          <li>
-          <%- msg = t(:this_will_refresh_listed_taxa) -%>
-            <%= link_to_function t(:refresh_listed_taxa),
-              "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_now_path(@list.id)}', #{CheckList::MAX_RELOAD_TRIES}, 'refresh_nowlink')", 
-              :id => "refresh_nowlink" %>
-          </li>
-        <% end %>
-      </ul>
+          </ul>
+          <div class="alert">
+            These tools can be very slow, even debilitatingly slow for large
+            lists, so please only use them for small places and small lists.
+          </div>
+        </div>
+      <% end %>
     <% end %>
   <% end -%>
 </div>

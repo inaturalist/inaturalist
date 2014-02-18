@@ -10,6 +10,7 @@ class ListsController < ApplicationController
   before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
   before_filter :set_find_options, :only => [:show]
   before_filter :load_user_by_login, :only => :by_login
+  before_filter :admin_required, :only => [:add_from_observations_now, :refresh_now]
   
   caches_page :show, :if => Proc.new {|c| c.request.format == :csv}
   
@@ -224,25 +225,31 @@ class ListsController < ApplicationController
   end
   
   def add_from_observations_now
-    return true unless logged_in? && current_user.is_admin?
-    @list.add_observed_taxa(:force_update_cache_columns => true)
-    respond_to do |format|
-      format.html do
-        flash[:notice] = 'reloaded'
-        redirect_to @list
-      end
+    delayed_task(@list.reload_from_observations_cache_key) do
+      job = @list.delay.add_observed_taxa(:force_update_cache_columns => true)
+      Rails.cache.write(@list.reload_from_observations_cache_key, job.id)
+      job
     end
+    
+    respond_to_delayed_task(
+      :done => "List reloaded from observations",
+      :error => "Something went wrong reloading from observations",
+      :timeout => "Reload timed out, please try again later"
+    )
   end
   
   def refresh_now
-    return true unless logged_in? && current_user.is_admin?
-    @list.refresh
-    respond_to do |format|
-      format.html do
-        flash[:notice] = 'refreshed'
-        redirect_to @list
-      end
+    delayed_task(@list.refresh_cache_key) do
+      job = @list.delay.refresh
+      Rails.cache.write(@list.refresh_cache_key, job.id)
+      job
     end
+    
+    respond_to_delayed_task(
+      :done => "List rules re-applied",
+      :error => "Something went wrong re-applying list rules",
+      :timeout => "Re-applying list rules timed out, please try again later"
+    )
   end
   
   def guide

@@ -2534,13 +2534,19 @@ en:
   this_tool_is_experimental: This tool is experimental, so please
   this_will_add_listed_taxa: This will add listed taxa from observations. This may take a while so please use sparingly and on small checklists
   this_will_refresh_listed_taxa: This will refresh the listed taxa on this list. This may take a while so please use sparingly and on small checklists
-  this_tool_will_add_tags: tool. This tool will add tags to your photos for all the common and scientific names of the taxon you observed, and the names of its ancestor taxa. So if your observation is of a
-  this_will_re_apply_all_list_rules: "This will re-apply all list rules to the listed taxa, e.g. rejecting taxa that are not within the life  list taxon or aren't of the selected rank.  It will not add any new taxa. It may take a few minutes."
+  this_will_re_apply_all_list_rules: |
+    This will re-apply all list rules to the listed taxa and update any
+    associated stats`, e.g. rejecting taxa that are not within the list taxon
+    or aren't of the selected rank. It will not add any new taxa. It may take
+    a few minutes.
   this_will_refresh_without_reload: This will refresh observation stats immediately. It may take some time and please use sparingly. 
   this_will_reload_and_refresh: This will add listed taxa from observations and refresh observation stats immediately. It may take some time and please use sparingly.
   this_will_try_to_add_tags_to_your_flickr: This will try to add tags to your Flickr photos.  Continue?
   this_will_update_all_last_observations: This will update all last observations and add new taxa from 
-  those_are_the_basics_of: Those are the basics of adding observations! There are plent of other things you can do, like searching and filtering your observations or editing them as a batch, but they should be pretty self-explanatory.
+  those_are_the_basics_of: |
+    Those are the basics of adding observations! There are plent of other
+    things you can do, like searching and filtering your observations or
+    editing them as a batch, but they should be pretty self-explanatory.
   those_observations_no_longer_exist: Those observations no longer exist.
   threatened: threatened
   thu: Thu
