@@ -118,7 +118,11 @@ module Ratatosk
             # if the cbank object fails, try converting from namebank
             rdf = @service.lsid(:namespace => 'namebank', 
                                 :object => namebank_id)
-            new_taxon = UBioTaxonAdapter.new(rdf)
+            new_taxon = begin
+              UBioTaxonAdapter.new(rdf)
+            rescue TaxonAdapterError => e
+              raise NameProviderError, "uBio bonked: #{e}"
+            end
           rescue UBioConnectionError => e
             taxon.logger.error("Error while running get_lineage_for(#{taxon}): #{e}") if taxon.logger
             raise NameProviderError, e.message

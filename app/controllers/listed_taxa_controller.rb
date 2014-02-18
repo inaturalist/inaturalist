@@ -1,6 +1,6 @@
 class ListedTaxaController < ApplicationController
   before_filter :authenticate_user!, :except => [:show]
-  before_filter :load_listed_taxon, :except => [:index, :create]
+  before_filter :load_listed_taxon, :except => [:index, :create, :refresh_observationcounts]
   cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
   
   SHOW_PARTIALS = %w(place_tip guide batch_edit_row)
@@ -180,6 +180,19 @@ class ListedTaxaController < ApplicationController
           )
         else
           return render(:json => @listed_taxon)
+        end
+      end
+    end
+  end
+  
+  def refresh_observationcounts
+    @listed_taxon = ListedTaxon.find_by_id(params[:listed_taxon_id])
+    @listed_taxon.force_update_cache_columns = true
+    respond_to do |format|
+      if @listed_taxon.save
+        format.html do
+          flash[:notice] = t(:observationcounts_refreshed)
+          redirect_to @listed_taxon
         end
       end
     end

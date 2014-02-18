@@ -187,74 +187,111 @@
 
     <% unless @list.listed_taxa.empty? -%>
       <div id="stats" class="clear">
-        <a href="<%= url_for_params(:without => [:page, :taxon, :q]) %>" class="clear stat total<%= ' current' unless @filter_taxon %>">
-          <div class="readable title">
-            &nbsp;
-          </div>
-
-          <div class="barchart">
-            <%= render :partial => "shared/barchart_datum", :locals => {
-              :value => @total_observed_taxa,
-              :max => @total_listed_taxa,
-              :label_text => "#{t(:of)} #{@total_listed_taxa} #{t(:taxa_observed)}",
-              :min_value_label_width => 30 } %>
-          </div>
-        </a>
-        <% for grouper, count in @iconic_taxon_counts -%>
-          <%-
-            next unless count
-            if grouper.respond_to?(:common_name) && grouper.common_name
-              grouper_name = grouper.common_name.name rescue 'Unclassified'
-            elsif grouper.respond_to?(:name)
-              grouper_name = grouper.name
-            else
-              grouper_name = 'Unclassified'
-            end
-            grouper_class = grouper.name rescue 'Unknown'
-            url_params = {:taxon => grouper.id, :without => [:page, :q, :taxon, :iconic_taxon]}
-            if grouper_name.downcase == 'animals'
-              grouper_name = 'Other Animals'
-              url_params[:taxon] = nil
-              url_params[:iconic_taxon] = grouper.id
-            end
-          -%>
-          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params(url_params) %>">
+        <div id="innerstats"> 
+          <a href="<%= url_for(params.merge(:page => 1, :taxon => nil, :iconic_taxon => nil)) %>" class="clear stat total<%= ' current' unless @filter_taxon %>">
             <div class="readable title">
               &nbsp;
             </div>
-
             <div class="barchart">
               <%= render :partial => "shared/barchart_datum", :locals => {
-                :value => count,
+                :value => @total_observed_taxa,
                 :max => @total_listed_taxa,
-                :label_text => grouper_name } %>
+                :label_text => "#{t(:of)} #{@total_listed_taxa} #{t(:taxa_observed)}",
+                :min_value_label_width => 30 } %>
             </div>
           </a>
-        <% end %>
-        <div class="clear stat <%= ' current' if @filter_taxon && !@filter_taxon.is_iconic? %>">
-          <div class="readable title">
-            &nbsp;
-          </div>
-          <div class="barchart">
-            <form>
-              <input id="taxonchooser" name="taxon" type="text" class="text" placeholder="<%=t :type_taxon_name %>" value="<%= @filter_taxon.try(&:id) unless (@filter_taxon && @filter_taxon.is_iconic?) %>" style="width:200px"/>
-            </form>
-          </div>
-        </div>
-        <div class="clear" style="padding: 10px">
+          <% for grouper, count in @iconic_taxon_counts -%>
+            <% next unless (count && count != 0) %>
+            <% if grouper.respond_to?(:common_name) && grouper.common_name %>
+              <% grouper_name = grouper.common_name.name rescue 'Unclassified' -%>
+            <% elsif grouper.respond_to?(:name) %>
+              <% grouper_name = grouper.name -%>
+            <% else %>
+              <% grouper_name = t(:unclassified) -%>
+            <% end -%>
+            <%- grouper_name = t(:other_animals) if grouper_name == 'Animals' -%>
+            <%- grouper_class = grouper.name rescue 'Unknown' -%>
+            <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params(:iconic_taxon => grouper.id, :without => [:page, :q]) %>">
+              <div class="readable title">
+                &nbsp;
+              </div>
+
+              <div class="barchart">
+                <%= render :partial => "shared/barchart_datum", :locals => {
+                  :value => count, 
+                  :max => @total_listed_taxa, 
+                  :label_text => grouper_name } %>
+              </div>
+            </a>
+          <% end %>
+        
           <form method="get">
-            <%= hidden_fields_for_params :without => [:page, :observed] %>
-            <label><%=t :observed %></label>
-            <%= radio_button_tag :observed, :t, @observed == 't', {"data-autosubmit" => true} %>
-            <%= label :observed, :t, t(:yes).downcase %>
-            <%= radio_button_tag :observed, :f, @observed == 'f', {"data-autosubmit" => true} %>
-            <%= label :observed, :f, t(:no).downcase %>
-            <%= radio_button_tag :observed, nil, @observed.blank?, {"data-autosubmit" => true} %>
-            <%= label :observed, nil, t(:any) %>
+            <div class="clear stat <%= ' current' if @filter_taxon && !@filter_taxon.is_iconic? %>">
+              <div class="readable title">
+                &nbsp;
+              </div>
+              <div class="barchart">
+                <input id="taxonchooser" name="taxon" type="text" class="text" placeholder="<%= @filter_taxon ? @filter_taxon.name : (t :type_taxon_name) %>" value="<%= @filter_taxon.try(&:id) %>" style="width:200px"/>
+              </div>
+            </div>
+            <div class="clear" style="padding: 10px">
+              <div class="field">
+                <% if params[:iconic_taxon] %>
+                  <%= hidden_field_tag :iconic_taxon, params[:iconic_taxon] %>
+                <% end %>
+                <label><%=t :observed %></label>
+                <br>
+                <%= label :observed, :t do %>
+                  <%= radio_button_tag :observed, :t, @observed == 't'%>
+                  <%= t(:yes).downcase %>
+                <% end -%>
+                <%= label :observed, :f do %>
+                  <%= radio_button_tag :observed, :f, @observed == 'f'%>
+                  <%= t(:no).downcase %>
+                <% end -%>
+                <%= label :observed, nil do %>
+                  <%= radio_button_tag :observed, nil, @observed.blank?%>
+                  <%= t(:any) %>
+                <% end -%>
+              </div>
+              <div class="field">
+                <label><%=t :rank %></label>
+                <br>
+                <%= label :rank, :species do %>
+                  <%= radio_button_tag :rank, :species, @rank == "species"%>
+                  <%= t(:species).downcase %>
+                <% end -%>
+                <%= label :rank, :leaves do %>
+                  <%= radio_button_tag :rank, :leaves, @rank == "leaves"%>
+                  <%= t(:leaves).downcase %>
+                <% end -%>
+                <%= label :rank, :all do %>
+                  <%= radio_button_tag :rank, :all, @rank=='all'%>
+                  <%= t(:any).downcase %>
+                <% end -%>
+              </div>
+              <div class="field">
+                <label><%=t :taxonomic_status %></label>
+                <br>
+                <%= label :taxonomic_status, :active do %>
+                  <%= radio_button_tag :taxonomic_status, :active, @taxonomic_status == 'active'%>
+                  <%= t(:active).downcase %>
+                <% end -%>
+                <%= label :taxonomic_status, :inactive do %>
+                  <%= radio_button_tag :taxonomic_status, :inactive, @taxonomic_status == 'inactive' %>
+                  <%= t(:inactive).downcase %>
+                <% end -%>
+                <%= label :taxonomic_status, :all do %>
+                  <%= radio_button_tag :taxonomic_status, :all, @taxonomic_status == 'all'%>
+                  <%= t(:any).downcase %>
+                <% end -%>
+              </div>
+              <input type="submit" class="default button" value="Filter" />
+            </div>
           </form>
-        </div>
+        </div><!-- / innerstats -->
       </div><!-- /stats -->
-    <% end -%>
+    <% end -%> 
   </div><!-- /sidebar -->
 </div>
 

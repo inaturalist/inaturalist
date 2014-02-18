@@ -17,7 +17,9 @@ class CheckList < List
   
   # TODO: the following should work through list rules
   # validates_uniqueness_of :taxon_id, :scope => :place_id
-
+  
+  MAX_RELOAD_TRIES = 60
+  
   def to_s
     "<#{self.class} #{id}: #{title} taxon_id: #{taxon_id} place_id: #{place_id}>"
   end
@@ -114,11 +116,11 @@ class CheckList < List
     end
   end
   
-  def add_observed_taxa
+  def add_observed_taxa(options = {})
     # TODO remove this when we move to GEOGRAPHIES and our dateline woes have (hopefully) ended
     return if place.straddles_date_line?
 
-    options = {
+    find_options = {
       :select => "DISTINCT ON (observations.taxon_id) observations.*",
       :order => "observations.taxon_id",
       :include => [:taxon, :user],
@@ -128,8 +130,8 @@ class CheckList < List
         Observation::RESEARCH_GRADE
       ]
     }
-    Observation.do_in_batches(options) do |o|
-      add_taxon(o.taxon)
+    Observation.do_in_batches(find_options) do |o|
+      add_taxon(o.taxon, options)
     end
   end
   
@@ -194,6 +196,51 @@ class CheckList < List
       # re-apply list rules to the listed taxa
       listed_taxon.force_update_cache_columns = true
       listed_taxon.save
+      if !listed_taxon.valid?
+        Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
+          "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
+        listed_taxon.destroy
+      elsif listed_taxon.auto_removable_from_check_list?
+        listed_taxon.destroy
+      end
+    end
+    true
+  end
+  
+  def reload_and_refresh_now
+    job = CheckList.delay.reload_and_refresh_now(self)
+    Rails.cache.write(reload_and_refresh_now_cache_key, job.id)
+    job
+  end
+  
+  def reload_and_refresh_now_cache_key
+    "reload_and_refresh_now_#{id}"
+  end
+  
+  def refresh_now_without_reload
+    job = CheckList.delay.refresh_now_without_reload(self)
+    Rails.cache.write(refresh_now_without_reload_cache_key, job.id)
+    job
+  end
+  
+  def refresh_now_without_reload_cache_key
+    "refresh_now_without_reload_#{id}"
+  end
+  
+  def refresh_now(options = {})
+    find_options = {}
+    if taxa = options[:taxa]
+      find_options[:conditions] = ["list_id = ? AND taxon_id IN (?)", self.id, taxa]
+    else
+      find_options[:conditions] = ["list_id = ?", self.id]
+    end
+    
+    ListedTaxon.do_in_batches(find_options) do |listed_taxon|
+      if listed_taxon.primary_listing
+        ListedTaxon.update_cache_columns_for(listed_taxon)
+      else
+        listed_taxon.primary_listed_taxon.update_attributes_on_related_listed_taxa
+      end
       if !listed_taxon.valid?
         Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
           "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
@@ -321,4 +368,5 @@ class CheckList < List
       list.add_taxon(taxon.species, :force_update_cache_columns => true) if taxon.rank_level < Taxon::SPECIES_LEVEL
     end
   end
+  
 end

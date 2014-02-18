@@ -32,11 +32,21 @@ module Shared::ListsModule
         set_scopes unless @listed_taxa.present?
 
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id
-
         @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, @unpaginated_listed_taxa)
         @total_listed_taxa ||= @listed_taxa.count 
-        @total_observed_taxa ||= @listed_taxa.with_observation.count
+        @total_observed_taxa ||= @listed_taxa.confirmed.count
         @view = PHOTO_VIEW unless LIST_VIEWS.include?(@view)
+
+        # preload all primary listed taxa. Would be nicer to do this in the
+        # CheckListsController, but it needs to happen after set_scopes
+        if @list.is_a?(CheckList)
+          primary_listed_taxa = @listed_taxa.select(&:primary_listing)
+          non_primary_listed_taxa = @listed_taxa - primary_listed_taxa
+          primary_listed_taxa += ListedTaxon.
+            where(:primary_listing => true, :place_id => @list.place_id).
+            where("taxon_id IN (?)", non_primary_listed_taxa.map(&:taxon_id))
+          @primary_listed_taxa_by_taxon_id = primary_listed_taxa.index_by(&:taxon_id)
+        end
 
         case @view
         when TAXONOMIC_VIEW
@@ -110,7 +120,7 @@ module Shared::ListsModule
       end
       
       format.json do
-        @find_options[:order] = "observations_count DESC" if params[:order_by].blank?
+        @find_options[:order] = "listed_taxa.observations_count DESC" if params[:order_by].blank?
         set_scopes unless @listed_taxa.present?
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
         render :json => {
@@ -331,10 +341,14 @@ module Shared::ListsModule
   
   def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)
     iconic_taxa ||= Taxon::ICONIC_TAXA
-    listed_taxa_iconic_taxon_ids = listed_taxa.map{|lt| lt.taxon.iconic_taxon_id }
+    listed_taxa ||= @listed_taxa
+
+    # to perform these counts in sql we need to make sure we're dealing with a scope and not an array
+    listed_taxa = list.listed_taxa.scoped unless listed_taxa.respond_to?(:scoped)
+
+    counts = listed_taxa.joins(:taxon).group("taxa.iconic_taxon_id").count
     iconic_taxa.map do |iconic_taxon|
-      taxon_count = listed_taxa_iconic_taxon_ids.count(iconic_taxon.id)
-      [iconic_taxon, taxon_count]
+      [iconic_taxon, counts[iconic_taxon.id.to_s] || 0]
     end
   end
 
@@ -392,13 +406,50 @@ module Shared::ListsModule
       ]
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxon(@filter_taxon.id, self_and_ancestor_ids)
+    end
+    
+    if filter_by_iconic_taxon? && (params[:taxonomic_status] != "all")
+      apply_iconic_taxon_and_taxonomic_status_filters
     elsif filter_by_iconic_taxon?
+      apply_iconic_taxon_filter
+    elsif params[:taxonomic_status] != "all"
+      apply_taxonomic_status_filter
+    end
+    if params[:taxonomic_status] == "all"
+      @taxonomic_status = "all"
+    end
+
+    if with_observations?
+      @observed = 't'
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.confirmed
+    elsif with_no_observations?
+      @observed = 'f'
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.unconfirmed
+    end
+
+    if filter_by_param?(params[:rank])
+      @rank = params[:rank]
+      if @rank == "species"
+        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
+      elsif @rank == "leaves"
+        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_leaves(@unpaginated_listed_taxa.to_sql)
+      end
+    # Scott wants this so places/show and check_lists/show have matching
+    # counts. I think it's dumb - kueda 20140218, unhappy, desiring sleep
+    elsif @list.is_a?(CheckList)
+      @rank = "species"
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
+    end
+  end
+
+  def apply_iconic_taxon_filter
+    if filter_by_iconic_taxon?
       iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_iconic_taxon(iconic_taxon_id)
     end
   end
 
-  def apply_checklist_scopes
+  def apply_taxonomic_status_filter
     if filter_by_param?(params[:taxonomic_status])
       @taxonomic_status = params[:taxonomic_status]
       unless @taxonomic_status=="all"
@@ -409,24 +460,23 @@ module Shared::ListsModule
       @taxonomic_status = "active"
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_taxonomic_status(true)
     end
-    if with_observations?
-      @observed = 't'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.confirmed
-    elsif with_no_observations?
-      @observed = 'f'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.unconfirmed
-    end
-    if filter_by_param?(params[:rank])
-      @rank = params[:rank]
-      if @rank=="species"
-        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
-      elsif @rank=="leaves"
-        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_leaves(@unpaginated_listed_taxa.to_sql)
+  end
+
+  def apply_iconic_taxon_and_taxonomic_status_filters
+    iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
+    if filter_by_param?(params[:taxonomic_status])
+      @taxonomic_status = params[:taxonomic_status]
+      unless @taxonomic_status=="all"
+        taxonomic_status_for_scope = params["taxonomic_status"] == "active"
       end
-    else 
-      @rank = "species"
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
+    else
+      @taxonomic_status = "active"
+      taxonomic_status_for_scope = params["taxonomic_status"] == "active"
     end
+    @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_taxonomic_status_and_iconic_taxon(taxonomic_status_for_scope, iconic_taxon_id)
+  end
+
+  def apply_checklist_scopes
     if filter_by_param?(params[:establishment_means])
       @establishment_means = params[:establishment_means]
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_establishment_means(params[:establishment_means])
@@ -444,10 +494,7 @@ module Shared::ListsModule
     end
     if with_threatened?
       @threatened = 't'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_threatened_status
-    elsif without_threatened?
-      @threatened = 'f'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.without_threatened_status
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_threatened_status(@list.place_id)
     end
   end
 
@@ -508,14 +555,13 @@ module Shared::ListsModule
   end
   
   def set_taxon_names_by_taxon_id
-    listed_taxa = @listed_taxa.map(&:taxon)
-    taxa = [listed_taxa, @taxa, @iconic_taxa].flatten.compact
-    TaxonName.all(:conditions => [ "taxon_id IN (?)", taxa]).group_by(&:taxon_id)
+    taxon_ids = [
+      @listed_taxa ? @listed_taxa.map(&:taxon_id) : nil,
+      @taxa ? @taxa.map(&:id) : nil,
+      @iconic_taxa ? @iconic_taxa.map(&:id) : nil
+    ].flatten.uniq.compact
+    TaxonName.where("taxon_id IN (?)", taxon_ids).
+      where("lexicon IN (?)", [TaxonName::LEXICONS[:SCIENTIFIC_NAMES], TaxonName.language_for_locale(I18n.locale)]).
+      group_by(&:taxon_id)
   end
 end
-
-
-
-
-
-

@@ -10,6 +10,7 @@ class ListsController < ApplicationController
   before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
   before_filter :set_find_options, :only => [:show]
   before_filter :load_user_by_login, :only => :by_login
+  before_filter :admin_required, :only => [:add_from_observations_now, :refresh_now]
   
   caches_page :show, :if => Proc.new {|c| c.request.format == :csv}
   
@@ -223,6 +224,34 @@ class ListsController < ApplicationController
     )
   end
   
+  def add_from_observations_now
+    delayed_task(@list.reload_from_observations_cache_key) do
+      job = @list.delay.add_observed_taxa(:force_update_cache_columns => true)
+      Rails.cache.write(@list.reload_from_observations_cache_key, job.id)
+      job
+    end
+    
+    respond_to_delayed_task(
+      :done => "List reloaded from observations",
+      :error => "Something went wrong reloading from observations",
+      :timeout => "Reload timed out, please try again later"
+    )
+  end
+  
+  def refresh_now
+    delayed_task(@list.refresh_cache_key) do
+      job = @list.delay.refresh
+      Rails.cache.write(@list.refresh_cache_key, job.id)
+      job
+    end
+    
+    respond_to_delayed_task(
+      :done => "List rules re-applied",
+      :error => "Something went wrong re-applying list rules",
+      :timeout => "Re-applying list rules timed out, please try again later"
+    )
+  end
+  
   def guide
     show_guide do |scope|
       scope = scope.on_list(@list)
@@ -246,7 +275,6 @@ class ListsController < ApplicationController
   def delayed_task(cache_key)
     @job_id = Rails.cache.read(cache_key)
     @job = Delayed::Job.find_by_id(@job_id) if @job_id && @job_id.is_a?(Fixnum)
-    Rails.logger.debug "[DEBUG] @job: #{@job}"
     @tries = params[:tries].to_i
     @start = @tries == 0 && @job.blank?
     @done = @tries > 0 && @job.blank?

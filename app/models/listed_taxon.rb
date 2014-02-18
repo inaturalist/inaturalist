@@ -68,12 +68,7 @@ class ListedTaxon < ActiveRecord::Base
   
   scope :filter_by_taxon, lambda {|filter_taxon_id, self_and_ancestor_ids| where("listed_taxa.taxon_id = ? OR listed_taxa.taxon_ancestor_ids = ? OR listed_taxa.taxon_ancestor_ids LIKE ?", filter_taxon_id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%")}
   scope :filter_by_taxa, lambda {|search_taxon_ids| where("listed_taxa.taxon_id IN (?)", search_taxon_ids)}
-
-  scope :with_taxonomic_status, lambda{|taxonomic_status| joins("LEFT JOIN taxa ON listed_taxa.taxon_id = taxa.id").where("taxa.is_active = ?", taxonomic_status)}
-  
-  scope :find_listed_taxa_from_default_list, lambda{|place_id| where("place_id = ? AND primary_listing = ?", place_id, true)}
-
-  scope :filter_by_iconic_taxon, lambda {|iconic_taxon_id| where("taxa.iconic_taxon_id = ?", iconic_taxon_id)}
+  scope :find_listed_taxa_from_default_list, lambda{|place_id| where("listed_taxa.place_id = ? AND primary_listing = ?", place_id, true)}
   scope :filter_by_list, lambda {|list_id| where("list_id = ?", list_id)}
 
   scope :unconfirmed, where("last_observation_id IS NULL")
@@ -90,17 +85,45 @@ class ListedTaxon < ActiveRecord::Base
   }
 
 
-  scope :with_observation, where("last_observation_id IS NOT NULL")
   scope :with_occurrence_status_level, lambda{|occurrence_status_level| where("occurrence_status_level = ?", occurrence_status_level)}
 
   scope :with_occurrence_status_levels_approximating_absent, where("occurrence_status_level IN (10, 20)")
   scope :with_occurrence_status_levels_approximating_present, where("occurrence_status_level NOT IN (10, 20) OR occurrence_status_level IS NULL")
 
-  scope :with_threatened_status, includes(:taxon).where("taxa.conservation_status >= #{Taxon::IUCN_NEAR_THREATENED}")
-  scope :without_threatened_status, includes(:taxon).where("taxa.conservation_status < #{Taxon::IUCN_NEAR_THREATENED}")
+  scope :with_threatened_status, lambda{|place_id|
+    joins("INNER JOIN conservation_statuses cs ON cs.taxon_id = listed_taxa.taxon_id").
+    where("cs.iucn >= #{Taxon::IUCN_NEAR_THREATENED} AND (cs.place_id IS NULL OR cs.place_id::text IN (#{place_ancestor_ids_sql(place_id)}))")
+    .select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id, listed_taxa.observations_count) listed_taxa.*")
+  }
   scope :with_species, includes(:taxon).where("taxa.rank_level = 10")
   
-  scope :with_leaves, lambda{|scope_to_sql| joins("LEFT JOIN (#{ancestor_ids_sql(scope_to_sql)}) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id").where("ancestor_ids.ancestor_id IS NULL")}
+  #with taxonomic status (by itself)
+  scope :with_taxonomic_status, lambda{|taxonomic_status| joins("INNER JOIN
+   \"taxa\" \"taxa_listed_taxa\" 
+      ON \"taxa_listed_taxa\".\"id\" = \"listed_taxa\".\"taxon_id\" 
+   AND (
+      taxa_listed_taxa.is_active = '#{taxonomic_status ? 't' : 'f'}' 
+   )")}
+  #with iconic taxon filter (by itself)
+  scope :filter_by_iconic_taxon, lambda{|iconic_taxon_id| joins("INNER JOIN
+   \"taxa\" \"taxa_listed_taxa\" 
+      ON \"taxa_listed_taxa\".\"id\" = \"listed_taxa\".\"taxon_id\" 
+   AND (
+      taxa_listed_taxa.iconic_taxon_id = #{iconic_taxon_id} 
+   )")}
+  #both iconic taxon filter and taxonomic status
+  scope :with_taxonomic_status_and_iconic_taxon, lambda{|taxonomic_status, iconic_taxon_id| joins("INNER JOIN
+   \"taxa\" \"taxa_listed_taxa\" 
+      ON \"taxa_listed_taxa\".\"id\" = \"listed_taxa\".\"taxon_id\" 
+   AND (
+      taxa_listed_taxa.iconic_taxon_id = #{iconic_taxon_id} 
+   AND
+      taxa_listed_taxa.is_active = '#{taxonomic_status ? 't' : 'f'}' 
+   )")}
+
+  scope :with_leaves, lambda{|scope_to_sql| 
+    joins("LEFT JOIN (#{ancestor_ids_sql(scope_to_sql)}) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id").where("ancestor_ids.ancestor_id IS NULL")
+  }
   
   
   ALPHABETICAL_ORDER = "alphabetical"
@@ -369,7 +392,7 @@ class ListedTaxon < ActiveRecord::Base
     return true if @skip_update_cache_columns
     return true unless list.is_a?(CheckList)
     if primary_listing
-      if @force_update_cache_columns || !Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{id}\n'").exists?
+      unless @force_update_cache_columns || Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{id}\n'").exists?
         ListedTaxon.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").update_cache_columns_for(id)
       end
     else
@@ -719,13 +742,25 @@ class ListedTaxon < ActiveRecord::Base
   def make_primary_if_no_primary_exists
     update_attribute(:primary_listing, true) if !ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).present? && can_set_as_primary?
   end
+
   # used with .with_leaves filter
   def self.ancestor_ids_sql(scope_to_sql)
-    scope_to_sql = scope_to_sql.gsub("SELECT \"listed_taxa\".* FROM \"listed_taxa\"","")
-    scope_to_sql = "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id FROM listed_taxa" +
-    scope_to_sql +
-    " AND taxon_ancestor_ids IS NOT NULL"
+    scope_to_sql = scope_to_sql.gsub(/^(S.*)\*/, "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id")
+    scope_to_sql + " AND taxon_ancestor_ids IS NOT NULL"
   end
+  
+  # used with threatened_status filter
+  def self.place_ancestor_ids_sql(place_id)
+    <<-SQL
+      SELECT DISTINCT 
+        regexp_split_to_table(ancestry, '/') AS ancestor_id 
+      FROM places
+      WHERE
+        id = #{place_id} AND
+        ancestry IS NOT NULL
+    SQL
+  end
+  
   def primary_occurrence_status
     primary_listed_taxon.occurrence_status
   end
@@ -735,8 +770,12 @@ class ListedTaxon < ActiveRecord::Base
   def update_attributes_and_primary(listed_taxon, current_user)
     transaction do
       update_attributes(listed_taxon.merge(:updater_id => current_user.id))
-      primary_listed_taxon.update_attributes({occurrence_status_level: listed_taxon['occurrence_status_level'],
-                                              establishment_means: listed_taxon['establishment_means']})
+      if primary_listed_taxon
+        primary_listed_taxon.update_attributes(
+          occurrence_status_level: listed_taxon['occurrence_status_level'],
+          establishment_means: listed_taxon['establishment_means']
+        )
+      end
     end
   end
   

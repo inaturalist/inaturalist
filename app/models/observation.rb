@@ -699,7 +699,7 @@ class Observation < ActiveRecord::Base
     scope = scope.license(params[:license]) unless params[:license].blank?
     scope = scope.photo_license(params[:photo_license]) unless params[:photo_license].blank?
     scope = scope.where(:captive => true) if [true, 'true', 't', 'yes', 'y', 1, '1'].include?(params[:captive])
-    scope = scope.where(:captive => false) if [false, 'false', 'f', 'no', 'n', 0, '0'].include?(params[:captive])
+    scope = scope.where("observations.captive = ? OR observations.captive IS NULL", false) if [false, 'false', 'f', 'no', 'n', 0, '0'].include?(params[:captive])
     unless params[:ofv_params].blank?
       params[:ofv_params].each do |k,v|
         scope = scope.has_observation_field(v[:observation_field], v[:value])
@@ -1932,6 +1932,7 @@ class Observation < ActiveRecord::Base
   
   def update_stats(options = {})
     idents = [self.identifications.to_a, options[:include]].flatten.compact.uniq
+    current_idents = idents.select(&:current?)
     if taxon_id.blank?
       num_agreements    = 0
       num_disagreements = 0
@@ -1939,10 +1940,10 @@ class Observation < ActiveRecord::Base
       if node = community_taxon_nodes.detect{|n| n[:taxon].try(:id) == taxon_id}
         num_agreements = node[:cumulative_count]
         num_disagreements = node[:disagreement_count] + node[:conservative_disagreement_count]
-        num_agreements -= 1 if idents.detect{|i| i.taxon_id == taxon_id && i.user_id == user_id}
+        num_agreements -= 1 if current_idents.detect{|i| i.taxon_id == taxon_id && i.user_id == user_id}
       else
-        num_agreements    = idents.select{|ident| ident.current? && ident.is_agreement?(:observation => self)}.size
-        num_disagreements = idents.select{|ident| ident.current? && ident.is_disagreement?(:observation => self)}.size
+        num_agreements    = current_idents.select{|ident| ident.is_agreement?(:observation => self)}.size
+        num_disagreements = current_idents.select{|ident| ident.is_disagreement?(:observation => self)}.size
       end
     end
     

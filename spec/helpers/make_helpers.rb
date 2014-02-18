@@ -212,4 +212,9 @@ module MakeHelpers
 
     Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
   end
+
+  def make_check_listed_taxon(options = {})
+    list = CheckList.make!
+    ListedTaxon.make!(options)
+  end
 end

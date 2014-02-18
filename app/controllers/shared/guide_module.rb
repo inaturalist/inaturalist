@@ -13,7 +13,7 @@ module Shared::GuideModule
       end
       is_filter_param && !is_blank
     }].symbolize_keys
-    @scope = Taxon.active.of_rank(Taxon::SPECIES).
+    @scope = Taxon.active.of_rank_equiv(10).
       includes({:taxon_photos => :photo}, :taxon_names, :conservation_statuses, :taxon_descriptions).scoped
     
     if block_given?

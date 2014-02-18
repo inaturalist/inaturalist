@@ -15,3 +15,23 @@ describe ListsController do
     end
   end
 end
+
+describe ListsController, "show" do
+  it "should filter by iconic taxon"
+end
+
+describe ListsController, "compare" do
+  let(:user) { User.make! }
+  before do
+    sign_in user
+  end
+  
+  it "should work" do
+    lt1 = ListedTaxon.make!
+    lt2 = ListedTaxon.make!
+    lambda {
+      get :compare, :id => lt1.list_id, :with => lt2.list_id
+    }.should_not raise_error
+    response.should be_success
+  end
+end
