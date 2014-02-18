@@ -258,10 +258,6 @@
                 <%= radio_button_tag :threatened, :t, @threatened == 't' %>
                 <%= t(:yes).downcase %>
               <% end -%>
-              <%= label :threatened, :f do %>
-                <%= radio_button_tag :threatened, :f, @threatened == 'f' %>
-                <%= t(:no).downcase %>
-              <% end -%>
               <%= label :threatened, nil do %>
                 <%= radio_button_tag :threatened, nil, @threatened.blank? %>
                 <%= t(:any) %>

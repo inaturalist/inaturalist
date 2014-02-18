@@ -455,7 +455,11 @@ module Shared::ListsModule
     if params[:taxonomic_status] == "all"
       @taxonomic_status = "all"
     end
-
+    
+    if with_threatened?
+      @threatened = 't'
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_threatened_status(@list.place_id)
+    end
     if with_observations?
       @observed = 't'
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.confirmed
@@ -488,13 +492,6 @@ module Shared::ListsModule
     else
       @occurrence_status = "not_absent"
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
-    end
-    if with_threatened?
-      @threatened = 't'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_threatened_status
-    elsif without_threatened?
-      @threatened = 'f'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.without_threatened_status
     end
   end
 

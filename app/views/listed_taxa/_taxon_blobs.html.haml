@@ -11,7 +11,7 @@
   - if cs = conservation_status
     :ruby
       tip = "#{t(:conservation_status)}: <strong>#{cs.status_name} #{"(#{cs.status})" if cs.status_name != cs.status}</strong>"
-      tip += " in #{cs.place.display_name}" if show_place_name && cs.place
+      tip += " in #{cs.place.display_name}" if cs.place
       tip += " (#{cs.authority})"
       tip += "<br/>#{cs.description}" unless cs.description.blank?
       blob_attrs = {

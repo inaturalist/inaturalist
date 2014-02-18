@@ -68,7 +68,7 @@ class ListedTaxon < ActiveRecord::Base
   
   scope :filter_by_taxon, lambda {|filter_taxon_id, self_and_ancestor_ids| where("listed_taxa.taxon_id = ? OR listed_taxa.taxon_ancestor_ids = ? OR listed_taxa.taxon_ancestor_ids LIKE ?", filter_taxon_id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%")}
   scope :filter_by_taxa, lambda {|search_taxon_ids| where("listed_taxa.taxon_id IN (?)", search_taxon_ids)}
-  scope :find_listed_taxa_from_default_list, lambda{|place_id| where("place_id = ? AND primary_listing = ?", place_id, true)}
+  scope :find_listed_taxa_from_default_list, lambda{|place_id| where("listed_taxa.place_id = ? AND primary_listing = ?", place_id, true)}
   scope :filter_by_list, lambda {|list_id| where("list_id = ?", list_id)}
 
   scope :unconfirmed, where("last_observation_id IS NULL")
@@ -91,8 +91,11 @@ class ListedTaxon < ActiveRecord::Base
   scope :with_occurrence_status_levels_approximating_absent, where("occurrence_status_level IN (10, 20)")
   scope :with_occurrence_status_levels_approximating_present, where("occurrence_status_level NOT IN (10, 20) OR occurrence_status_level IS NULL")
 
-  scope :with_threatened_status, includes(:taxon).where("taxa.conservation_status >= #{Taxon::IUCN_NEAR_THREATENED}")
-  scope :without_threatened_status, includes(:taxon).where("taxa.conservation_status < #{Taxon::IUCN_NEAR_THREATENED}")
+  scope :with_threatened_status, lambda{|place_id|
+    joins("INNER JOIN conservation_statuses cs ON cs.taxon_id = listed_taxa.taxon_id").
+    where("cs.iucn >= #{Taxon::IUCN_NEAR_THREATENED} AND (cs.place_id IS NULL OR cs.place_id::text IN (#{place_ancestor_ids_sql(place_id)}))")
+    .select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id, listed_taxa.observations_count) listed_taxa.*")
+  }
   scope :with_species, includes(:taxon).where("taxa.rank_level = 10")
   
   #with taxonomic status (by itself)
@@ -118,7 +121,6 @@ class ListedTaxon < ActiveRecord::Base
    AND
       taxa_listed_taxa.is_active = '#{taxonomic_status ? 't' : 'f'}' 
    )")}
-
 
   scope :with_leaves, lambda{|scope_to_sql| 
     joins("LEFT JOIN (#{ancestor_ids_sql(scope_to_sql)}) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id").where("ancestor_ids.ancestor_id IS NULL")
@@ -743,11 +745,20 @@ class ListedTaxon < ActiveRecord::Base
   end
   # used with .with_leaves filter
   def self.ancestor_ids_sql(scope_to_sql)
-    scope_to_sql = scope_to_sql.gsub("SELECT \"listed_taxa\".* FROM \"listed_taxa\"","")
-    scope_to_sql = "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id FROM listed_taxa" +
-    scope_to_sql +
-    " AND taxon_ancestor_ids IS NOT NULL"
+    scope_to_sql = scope_to_sql.gsub(/^(S.*)\*/, "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id")
+    scope_to_sql + " AND taxon_ancestor_ids IS NOT NULL"
   end
+  
+  # used with threatened_status filter
+  def self.place_ancestor_ids_sql(place_id)
+    scope_to_sql = "SELECT DISTINCT 
+      regexp_split_to_table(ancestry, '/') AS ancestor_id 
+    FROM places
+    WHERE
+      id = #{place_id} AND 
+      ancestry IS NOT NULL"
+  end
+  
   def primary_occurrence_status
     primary_listed_taxon.occurrence_status
   end
