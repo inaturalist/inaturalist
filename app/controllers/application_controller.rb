@@ -338,8 +338,20 @@ class ApplicationController < ActionController::Base
 
   def admin_required
     unless logged_in? && current_user.has_role?(:admin)
-      flash[:notice] = t(:only_administrators_may_access_that_page)
-      redirect_to observations_path
+      msg = t(:only_administrators_may_access_that_page)
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to observations_path
+        end
+        format.js do
+          render :status => :unprocessable_entity, :text => msg
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => msg}
+        end
+      end
+      return false
     end
   end
 
