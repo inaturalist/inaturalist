@@ -1,0 +1,19 @@
+- include_breadcrumbs ||= false
+- breadcrumbs = capture do
+  - if include_breadcrumbs
+    = render :partial => 'posts/breadcrumbs'
+- if @parent.is_a?(Project)
+  - tools = capture do
+    - if @display_project.editable_by?(current_user)
+      #tools.buttonrow
+        = link_to t(:new_post), new_project_journal_post_path(@parent_slug), |
+          :id => "newpostbutton", :class => "default button"                 |
+  = render :partial => "shared/by_project_header_bootstrap", :locals => { :before => breadcrumbs, :after => tools, :model_name => "Journal", :project => @parent }
+- else # parent is not a project
+  - tools = capture do
+    - if logged_in? && current_user.login == @parent_display_name
+      #tools.btn-grp
+        = link_to t(:new_post), new_journal_post_path(@parent_slug), :id => "newpostbutton", :class => "btn btn-primary"
+        = feature_test :trips do
+          = link_to t(:new_trip), new_trip_path, :id => "newtripbutton", :class => "btn btn-primary"
+  = render :partial => "shared/by_login_header_bootstrap", :locals => { :before => breadcrumbs, :after => tools, :model_name => "Journal" }

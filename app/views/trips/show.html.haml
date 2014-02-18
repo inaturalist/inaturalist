@@ -32,13 +32,19 @@
 - content_for :extrajs do
   :javascript
     $('.observationcontrols').observationControls()
-    $('body').scrollspy()
 .container
   %ul.breadcrumb
     %li
-      = link_to t(:journal), journal_by_login_path(@trip.user.login)
+      - if @trip.parent.is_a?(Project)
+        = link_to t(:x_journal, :user => @trip.parent.title), project_journal_path(@trip.parent)
+      - else
+        = link_to possessive_noun(@trip.user, t(:journal).downcase), journal_by_login_path(@trip.user.login)
       %span.divider /
-    %li.active= link_to @trip.title, @trip
+    %li.active
+      = link_to @trip.title, @trip
+      - if @trip.is_a?(Trip)
+        = surround '(', ')' do
+          =t :trip
     %li.pull-right
       - if @prev
         = link_to @prev do
@@ -55,57 +61,65 @@
         %li= link_to t(:summary), "#summary"
         - unless @trip.body.blank?
           %li= link_to t(:description), "#description"
-        %li= link_to t(:observations), "#observations"
-        %li= link_to t(:check_list), "#check_list"
+        - unless @trip.observations.blank?
+          %li= link_to t(:observations), "#observations"
+        - if @trip.is_a?(Trip)
+          %li= link_to t(:check_list), "#check_list"
         %li= link_to t(:comments), "#comments"
     .span9
       %section{:id => "summary"}
         - if @trip.editable_by?(current_user)
           .btn-group.pull-right
-            = link_to edit_trip_path(@trip), :class => "btn" do
+            = link_to @trip.is_a?(Trip) ? edit_trip_path(@trip) : edit_post_path(@trip), :class => "btn" do
               %i.fa.fa-edit
               = t(:edit)
         %h1= @trip.title
-        .subtitle.muted.lead
-          = l(@trip.start_time, :format => :long) if @trip.start_time
-          \-
-          = l(@trip.stop_time, :format => :long) if @trip.start_time
+        - if @trip.is_a?(Trip)
+          .subtitle.muted.lead
+            = l(@trip.start_time, :format => :long) if @trip.start_time
+            \-
+            = l(@trip.stop_time, :format => :long) if @trip.start_time
 
       - unless @trip.body.blank?
-        %section{:id => "description"}
-          = formatted_user_text @trip.body
-      %section{:id => "observations"}
-        .observationcontrols.pull-right
-        %h2=t :observations
-        - if @trip.trip_observations.blank?
-          .muted.nocontent=t :no_matching_observations
-        - else
+        %section.stacked{:id => "description"}
+          = formatted_user_text(@trip.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES)
+          .small.muted.stacked
+            =t :posted_by
+            = succeed ',' do
+              = user_image @trip.user, :size => "mini", :class => "img-rounded"
+              = link_to_user @trip.user
+            =l @trip.published_at, :format => :long
+      - unless @trip.observations.blank?
+        %section{:id => "observations"}
+          .observationcontrols.pull-right
+          %h2=t :observations
           .observations.medium.grid
             - compact do
-              = render :partial => "observations/cached_component", :collection => @trip.trip_observations
-          .muted
-            :ruby
-              obs_params = {
-                :d1 => @trip.start_time.iso8601,
-                :d2 => @trip.stop_time.iso8601,
-                :user_id => @trip.user_id
-              }
-              obs_params[:place_id] = @trip.place_id unless @trip.place_id.blank?
-            = link_to observations_url(obs_params), :class => "readmore" do
-              View observations made between 
-              =l @trip.start_time, :format => :short
-              =t :and
-              =l @trip.stop_time, :format => :short
-
-      %section{:id => "check_list"}
-        %h2=t :check_list
-        - if @trip.trip_taxa.blank?
-          .muted.nocontent=t :no_taxa_listed
-        - else
-          %ul.taxon_links.plain
-            - for trip_taxon in @trip.trip_taxa
-              %li
-                = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
+              = render :partial => "observations/cached_component", :collection => @trip.observations
+          - if @trip.is_a?(Trip)
+            .muted
+              :ruby
+                obs_params = {
+                  :d1 => @trip.start_time.iso8601,
+                  :d2 => @trip.stop_time.iso8601,
+                  :user_id => @trip.user_id
+                }
+                obs_params[:place_id] = @trip.place_id unless @trip.place_id.blank?
+              = link_to observations_url(obs_params), :class => "readmore" do
+                View observations made between 
+                =l @trip.start_time, :format => :short
+                =t :and
+                =l @trip.stop_time, :format => :short
+      - if @trip.is_a?(Trip)
+        %section{:id => "check_list"}
+          %h2=t :check_list
+          - if @trip.trip_taxa.blank?
+            .muted.nocontent=t :no_taxa_listed
+          - else
+            %ul.taxon_links.plain
+              - for trip_taxon in @trip.trip_taxa
+                %li
+                  = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
       %section{:id => "comments"}
         - if @trip.published_at
           = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }

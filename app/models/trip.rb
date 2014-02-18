@@ -12,7 +12,7 @@ class Trip < Post
     self.parent ||= self.user
   end
 
-  def trip_observations
+  def observations
     return Observation.where("1 = 2") if start_time.blank? || stop_time.blank?
     scope = Observation.by(user).where("observed_on = ? OR time_observed_at BETWEEN ? AND ?", start_time.to_date, start_time, stop_time).scoped
     scope = scope.in_place(place_id) unless place_id.blank?

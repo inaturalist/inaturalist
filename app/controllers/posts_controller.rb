@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   before_filter :load_parent, :except => [:browse, :create, :update, :destroy]
   before_filter :load_new_post, :only => [:new, :create]
   before_filter :author_required, :only => [:edit, :update, :destroy]
+
+  layout "bootstrap"
   
   def index
     scope = @parent.is_a?(User) ? @parent.journal_posts.scoped : @parent.posts.scoped
@@ -12,7 +14,7 @@ class PostsController < ApplicationController
     # Grab the monthly counts of all posts to show archives
     get_archives
     
-    if (logged_in? && @display_user == current_user) ||
+    if is_me?(@display_user) ||
        (logged_in? && @parent.is_a?(Project) && @parent.editable_by?(current_user))
       @drafts = scope.unpublished.order("created_at DESC")
     end
@@ -32,6 +34,16 @@ class PostsController < ApplicationController
       end
       return
     end
+
+    if params[:login] && @post.parent_type == "Project"
+      redirect_to project_journal_post_path(@parent, @post)
+      return
+    end
+
+    if params[:project_id] && @post.parent_type == "User"
+      redirect_to journal_post_path(@parent.login, @post)
+      return
+    end
     
     unless @post.published_at
       if logged_in? && @post.user_id == current_user.id
@@ -40,13 +52,16 @@ class PostsController < ApplicationController
         render_404 and return
       end
     end
-    @previous = @parent.posts.published.find(:first, 
-      :conditions => ["published_at < ?", @post.published_at],
-      :order => "published_at DESC")
-    @next = @parent.posts.published.find(:first, 
-      :conditions => ["published_at > ?", @post.published_at],
-      :order => "published_at ASC")
-    @observations = @post.observations.order_by('observed_on')
+    
+    respond_to do |format|
+      format.html do
+        @next = @post.parent.journal_posts.published.where("published_at > ?", @post.published_at || @post.updated_at).order("published_at ASC").first
+        @prev = @post.parent.journal_posts.published.where("published_at < ?", @post.published_at || @post.updated_at).order("published_at DESC").first
+        @trip = @post
+        @observations = @post.observations.order_by('observed_on')
+        render "trips/show"
+      end
+    end
   end
   
   def new

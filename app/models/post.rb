@@ -70,4 +70,9 @@ class Post < ActiveRecord::Base
   def published?
     !published_at.blank? && errors[:published_at].blank?
   end
+
+  def editable_by?(u)
+    return false unless u
+    user_id == u.id
+  end
 end

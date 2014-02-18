@@ -19,8 +19,8 @@ class TripsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @next = @trip.parent.journal_posts.published.where("id > ?", @trip.id).order("id ASC").first
-        @prev = @trip.parent.journal_posts.published.where("id < ?", @trip.id).order("id DESC").first
+        @next = @trip.parent.journal_posts.published.where("published_at > ?", @trip.published_at || @trip.updated_at).order("published_at ASC").first
+        @prev = @trip.parent.journal_posts.published.where("published_at < ?", @trip.published_at || @trip.updated_at).order("published_at DESC").first
       end
       format.json { render json: @trip.as_json(:root => true) }
     end

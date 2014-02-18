@@ -1,0 +1,28 @@
+- content_for(:title) do
+  = t(:x_journal_editing, :user => @parent_display_name).html_safe
+  "#{@post.title}"
+- content_for(:extracss) do
+  = stylesheet_link_tag "observations", "posts"
+.container
+  .row
+    #pageheader.span12
+      .breadcrumbs
+        %strong= link_to t(:back_to_post).html_safe, @post, :class => 'crumb'
+      / /#breadcrumbs
+      %h2
+        = t(:editing)
+        "#{@post.title}"
+      .meta
+        = t(:post) + ' ' + t(:from).downcase
+        - if @post.parent.is_a?(Project)
+          = link_to @post.parent.title, @post.parent
+          's journal
+        - else
+          = link_to t(:your).downcase.singularize + ' ' + t(:journal).downcase, journal_by_login_path(current_user.login)
+  .row
+    .span12
+      - if @preview
+        #preview.box
+          %h3= t :preview
+          = render :partial => "post", :locals => { :post => @post }
+  = render "#{@post.class.name.underscore}_form"

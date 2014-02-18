@@ -1,0 +1,11 @@
+- content_for(:title) do
+  = t(:x_journal_new_post, :user => @parent_display_name)
+- content_for(:extracss) do
+  = stylesheet_link_tag "posts"
+.container
+  .row
+    #pageheader.span12
+      = render :partial => 'posts/breadcrumbs'
+      %h2
+        New #{@post.class.name.humanize}
+  = render "#{@post.class.name.underscore}_form"

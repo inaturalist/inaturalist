@@ -1,0 +1,30 @@
+- content_for(:title) do
+  = t(:everyone_journal_posts)
+- content_for(:extracss) do
+  = stylesheet_link_tag "posts"
+  :css
+    .post {margin-bottom: 1em;}
+    .iconcol {width: 48px;}
+    .namecol {width: 100px;}
+    .bodycol {width: 650px;}
+    .bodycol p:first-child:before {content: '\201C \0020';font-size: 160%;color: #ddd;}
+    .morecol {width: 100px;}
+    .morecol p:first-child:before {content: '\201C \0020';font-size: 160%;visibility: hidden;}
+.container
+  .row
+    #pageheader.span12
+      %h2= t(:everyone_journal_posts)
+  .row
+    .span12
+      - if !@posts.blank?
+        - for post in @posts
+          .media
+            - if post.parent_type == "Project"
+              = link_to(image_tag(post.parent.icon.url(:thumb), :class => 'usericon media-object img-rounded'), project_journal_path(post.parent), :class => "pull-left")
+            - else
+              = link_to(image_tag(post.user.icon.url(:thumb), :class => 'usericon media-object img-rounded'), journal_by_login_path(post.user.login), :class => "pull-left")
+            .media-body
+              = render "posts/post", :post => post
+      - else
+        #noposts.description= t(:no_one_posted_anything_yet)
+      = will_paginate @posts, :renderer => INatLinkRenderer
