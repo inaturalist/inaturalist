@@ -426,14 +426,17 @@ module Shared::ListsModule
       @observed = 'f'
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.unconfirmed
     end
+
     if filter_by_param?(params[:rank])
       @rank = params[:rank]
-      if @rank=="species"
+      if @rank == "species"
         @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
-      elsif @rank=="leaves"
+      elsif @rank == "leaves"
         @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_leaves(@unpaginated_listed_taxa.to_sql)
       end
-    else 
+    # Scott wants this so places/show and check_lists/show have matching
+    # counts. I think it's dumb - kueda 20140218, unhappy, desiring sleep
+    elsif @list.is_a?(CheckList)
       @rank = "species"
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
     end
