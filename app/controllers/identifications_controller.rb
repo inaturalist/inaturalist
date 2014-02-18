@@ -53,7 +53,14 @@ class IdentificationsController < ApplicationController
     end
     
     respond_to do |format|
-      if @identification.save
+      duplicate_key_violation = false
+      begin
+        @identification.save
+      rescue PG::Error => e
+        raise e unless e =~ /index_identifications_on_current/
+        duplicate_key_violation = true
+      end
+      if @identification.valid? && duplicate_key_violation == false
         format.html do
           flash[:notice] = t(:identification_saved)
           if params[:return_to]

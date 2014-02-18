@@ -315,7 +315,7 @@ class Place < ActiveRecord::Base
       raise e unless e.message =~ /duplicate key/
       return
     end
-    place.parent = options[:parent]
+    place.parent = options[:parent] if options[:parent] && options[:parent].persisted?
     
     unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
       ancestors = []

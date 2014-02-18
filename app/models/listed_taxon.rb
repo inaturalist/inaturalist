@@ -743,6 +743,7 @@ class ListedTaxon < ActiveRecord::Base
   def make_primary_if_no_primary_exists
     update_attribute(:primary_listing, true) if !ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).present? && can_set_as_primary?
   end
+
   # used with .with_leaves filter
   def self.ancestor_ids_sql(scope_to_sql)
     scope_to_sql = scope_to_sql.gsub(/^(S.*)\*/, "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id")
@@ -751,12 +752,14 @@ class ListedTaxon < ActiveRecord::Base
   
   # used with threatened_status filter
   def self.place_ancestor_ids_sql(place_id)
-    scope_to_sql = "SELECT DISTINCT 
-      regexp_split_to_table(ancestry, '/') AS ancestor_id 
-    FROM places
-    WHERE
-      id = #{place_id} AND 
-      ancestry IS NOT NULL"
+    <<-SQL
+      SELECT DISTINCT 
+        regexp_split_to_table(ancestry, '/') AS ancestor_id 
+      FROM places
+      WHERE
+        id = #{place_id} AND
+        ancestry IS NOT NULL
+    SQL
   end
   
   def primary_occurrence_status
@@ -768,8 +771,12 @@ class ListedTaxon < ActiveRecord::Base
   def update_attributes_and_primary(listed_taxon, current_user)
     transaction do
       update_attributes(listed_taxon.merge(:updater_id => current_user.id))
-      primary_listed_taxon.update_attributes({occurrence_status_level: listed_taxon['occurrence_status_level'],
-                                              establishment_means: listed_taxon['establishment_means']})
+      if primary_listed_taxon
+        primary_listed_taxon.update_attributes(
+          occurrence_status_level: listed_taxon['occurrence_status_level'],
+          establishment_means: listed_taxon['establishment_means']
+        )
+      end
     end
   end
   
