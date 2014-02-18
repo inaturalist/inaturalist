@@ -494,10 +494,7 @@ module Shared::ListsModule
     end
     if with_threatened?
       @threatened = 't'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_threatened_status
-    elsif without_threatened?
-      @threatened = 'f'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.without_threatened_status
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_threatened_status(@list.place_id)
     end
   end
 
