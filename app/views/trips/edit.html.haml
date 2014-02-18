@@ -1,0 +1,5 @@
+- content_for :title do
+  =t :editing_this, :elem => @trip.title
+.container
+  %h2=t :edit_trip
+  = render :partial => "form"

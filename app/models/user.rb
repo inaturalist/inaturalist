@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
     :conditions => "identifications.user_id != observations.user_id AND identifications.current = true"
   has_many :photos, :dependent => :destroy
   has_many :posts #, :dependent => :destroy
-  has_many :journal_posts, :class_name => Post.to_s, :as => :parent, :dependent => :destroy
+  has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
   has_many :projects

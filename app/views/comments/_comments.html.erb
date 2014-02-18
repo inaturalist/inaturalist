@@ -2,10 +2,13 @@
   parent ||= comments
   hide_form ||= false
   remote ||= nil 
+  header_tag ||= "h3"
 -%>
-<h3><%=t :comments %></h3>
+<%= content_tag header_tag do %>
+  <%=t :comments %>
+<% end -%>
 <% if parent.comments.empty? %>
-  <p class="noresults"><%=t :no_comments_yet %></p>
+  <div class="muted noresults"><%=t :no_comments_yet %></div>
 <% end %>
 <% for comment in parent.comments.sort {|a,b| a.created_at <=> b.created_at } %>
   <div class="<%= cycle('odd', 'even') %>">

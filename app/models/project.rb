@@ -14,6 +14,7 @@ class Project < ActiveRecord::Base
   has_many :project_observation_fields, :dependent => :destroy, :inverse_of => :project, :order => "position"
   has_many :observation_fields, :through => :project_observation_fields
   has_many :posts, :as => :parent, :dependent => :destroy
+  has_many :journal_posts, :class_name => "Post", :as => :parent
   has_many :assessments, :dependent => :destroy
     
   before_save :strip_title

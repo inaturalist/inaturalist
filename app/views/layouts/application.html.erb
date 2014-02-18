@@ -59,6 +59,14 @@
   <p id="flash" class="error"><%= flash[:error] %></p> 
   <% end %>
 
+  <% if @feature_test -%>
+    <div class="container">
+      <div class="notice box">
+        <b><%= @feature_test %> test</b>. This is only a test, so please don't expect everything to work correctly.
+      </div>
+    </div>
+  <% end -%>
+
   <div id="wrapper" class="container clear">
     <%= yield %>
   </div><!-- end wrapper -->
