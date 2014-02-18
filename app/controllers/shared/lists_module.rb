@@ -34,7 +34,7 @@ module Shared::ListsModule
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id
         @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, @unpaginated_listed_taxa)
         @total_listed_taxa ||= @listed_taxa.count 
-        @total_observed_taxa ||= @listed_taxa.with_observation.count
+        @total_observed_taxa ||= @listed_taxa.confirmed.count
         @view = PHOTO_VIEW unless LIST_VIEWS.include?(@view)
 
         # preload all primary listed taxa. Would be nicer to do this in the
@@ -120,7 +120,7 @@ module Shared::ListsModule
       end
       
       format.json do
-        @find_options[:order] = "observations_count DESC" if params[:order_by].blank?
+        @find_options[:order] = "listed_taxa.observations_count DESC" if params[:order_by].blank?
         set_scopes unless @listed_taxa.present?
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
         render :json => {
@@ -407,7 +407,36 @@ module Shared::ListsModule
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxon(@filter_taxon.id, self_and_ancestor_ids)
     end
-    apply_iconic_taxon_filter unless @list.is_a?(CheckList)
+    
+    if filter_by_iconic_taxon? && (params[:taxonomic_status] != "all")
+      apply_iconic_taxon_and_taxonomic_status_filters
+    elsif filter_by_iconic_taxon?
+      apply_iconic_taxon_filter
+    elsif params[:taxonomic_status] != "all"
+      apply_taxonomic_status_filter
+    end
+    if params[:taxonomic_status] == "all"
+      @taxonomic_status = "all"
+    end
+
+    if with_observations?
+      @observed = 't'
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.confirmed
+    elsif with_no_observations?
+      @observed = 'f'
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.unconfirmed
+    end
+    if filter_by_param?(params[:rank])
+      @rank = params[:rank]
+      if @rank=="species"
+        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
+      elsif @rank=="leaves"
+        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_leaves(@unpaginated_listed_taxa.to_sql)
+      end
+    else 
+      @rank = "species"
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
+    end
   end
 
   def apply_iconic_taxon_filter
@@ -445,39 +474,6 @@ module Shared::ListsModule
   end
 
   def apply_checklist_scopes
-    if filter_by_iconic_taxon? && (params[:taxonomic_status] != "all")
-      apply_iconic_taxon_and_taxonomic_status_filters
-    elsif filter_by_iconic_taxon?
-      apply_iconic_taxon_filter
-    elsif params[:taxonomic_status] != "all"
-      apply_taxonomic_status_filter
-    end
-    if params[:taxonomic_status] == "all"
-      @taxonomic_status = "all"
-    end
-    
-    if with_threatened?
-      @threatened = 't'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_threatened_status(@list.place_id)
-    end
-    if with_observations?
-      @observed = 't'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.confirmed
-    elsif with_no_observations?
-      @observed = 'f'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.unconfirmed
-    end
-    if filter_by_param?(params[:rank])
-      @rank = params[:rank]
-      if @rank=="species"
-        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
-      elsif @rank=="leaves"
-        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_leaves(@unpaginated_listed_taxa.to_sql)
-      end
-    else 
-      @rank = "species"
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
-    end
     if filter_by_param?(params[:establishment_means])
       @establishment_means = params[:establishment_means]
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_establishment_means(params[:establishment_means])
@@ -492,6 +488,13 @@ module Shared::ListsModule
     else
       @occurrence_status = "not_absent"
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
+    end
+    if with_threatened?
+      @threatened = 't'
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_threatened_status
+    elsif without_threatened?
+      @threatened = 'f'
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.without_threatened_status
     end
   end
 

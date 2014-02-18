@@ -117,7 +117,7 @@ class AssessmentsController < ApplicationController
       end
       format.json do
         @assessments = @assessments.per_page(100)
-        render :json => @assessments
+        render :json => @assessments.as_json( :include => { :taxon => Taxon.default_json_options } )
       end
     end
   end
