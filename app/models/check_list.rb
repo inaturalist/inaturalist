@@ -18,7 +18,7 @@ class CheckList < List
   # TODO: the following should work through list rules
   # validates_uniqueness_of :taxon_id, :scope => :place_id
   
-  MAX_RELOAD_TRIES = 60 
+  MAX_RELOAD_TRIES = 60
   
   def to_s
     "<#{self.class} #{id}: #{title} taxon_id: #{taxon_id} place_id: #{place_id}>"
@@ -369,17 +369,4 @@ class CheckList < List
     end
   end
   
-  def self.reload_and_refresh_now(list)
-    list = List.find_by_id(list) unless list.is_a?(List)
-    return unless list
-    list.add_observed_taxa(:skip_update_cache_columns => true)
-    list.refresh_now
-  end
-  
-  def self.refresh_now_without_reload(list)
-    list = List.find_by_id(list) unless list.is_a?(List)
-    return unless list
-    list.refresh_now
-  end
-
 end

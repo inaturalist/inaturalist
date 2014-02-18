@@ -186,7 +186,7 @@
     <div id="stats" class="clear">
       <h3><%= link_to_toggle t(:stats), "#innerstats", :class => 'open' %></h3>
       <div id="innerstats">
-        <a href="<%= url_for(params.merge(:page => 1, :taxon => nil)) %>" class="clear stat total<%= ' current' unless @filter_taxon %>">
+        <a href="<%= url_for(params.merge(:page => 1, :taxon => nil, :iconic_taxon => nil)) %>" class="clear stat total<%= ' current' unless @filter_taxon %>">
           <div class="readable title">&nbsp;</div>
           <div class="barchart">
             <%= render :partial => "shared/barchart_datum", :locals => { 
@@ -198,7 +198,7 @@
           </div>
         </a>
         <% for grouper, count in @iconic_taxon_counts -%>
-          <% next unless count %>
+          <% next unless (count && count != 0) %>
           <% if grouper.respond_to?(:common_name) && grouper.common_name %>
             <% grouper_name = grouper.common_name.name rescue 'Unclassified' -%>
           <% elsif grouper.respond_to?(:name) %>
@@ -208,7 +208,7 @@
           <% end -%>
           <%- grouper_name = t(:other_animals) if grouper_name == 'Animals' -%>
           <%- grouper_class = grouper.name rescue 'Unknown' -%>
-          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params(:taxon => grouper.id, :without => [:page, :q]) %>">
+          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params(:iconic_taxon => grouper.id, :without => [:page, :q]) %>">
             <div class="readable title">
               &nbsp;
             </div>
@@ -228,11 +228,14 @@
               &nbsp;
             </div>
             <div class="barchart">
-              <input id="taxonchooser" name="taxon" type="text" class="text" placeholder="<%= @filter_taxon ? @filter_taxon.name : (t :type_taxon_name) %>" value="<%= @filter_taxon.try(&:id) unless (@filter_taxon && @filter_taxon.is_iconic?) %>" style="width:200px"/>
+              <input id="taxonchooser" name="taxon" type="text" class="text" placeholder="<%= @filter_taxon ? @filter_taxon.name : (t :type_taxon_name) %>" value="<%= @filter_taxon.try(&:id) %>" style="width:200px"/>
             </div>
           </div>
           <div class="clear" style="padding: 10px">
             <div class="field">
+              <% if params[:iconic_taxon] %>
+                <%= hidden_field_tag :iconic_taxon, params[:iconic_taxon] %>
+              <% end %>
               <label><%=t :observed %></label>
               <br>
               <%= label :observed, :t do %>

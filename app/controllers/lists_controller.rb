@@ -223,30 +223,26 @@ class ListsController < ApplicationController
     )
   end
   
-  def reload_and_refresh_now
+  def add_from_observations_now
     return true unless logged_in? && current_user.is_admin?
-    delayed_task(@list.reload_and_refresh_now_cache_key) do
-      @list.reload_and_refresh_now
+    @list.add_observed_taxa(:force_update_cache_columns => true)
+    respond_to do |format|
+      format.html do
+        flash[:notice] = 'reloaded'
+        redirect_to @list
+      end
     end
-    
-    respond_to_delayed_task(
-      :done => "List reloaded and refreshed",
-      :error => "Something went wrong reloading and refreshing this list",
-      :timeout => "Reload and refresh timed out, please try again later"
-    )
   end
   
-  def refresh_now_without_reload
+  def refresh_now
     return true unless logged_in? && current_user.is_admin?
-    delayed_task(@list.refresh_now_without_reload_cache_key) do
-      @list.refresh_now_without_reload
+    @list.refresh
+    respond_to do |format|
+      format.html do
+        flash[:notice] = 'refreshed'
+        redirect_to @list
+      end
     end
-    
-    respond_to_delayed_task(
-      :done => "List reloaded and refreshed",
-      :error => "Something went wrong reloading and refreshing this list",
-      :timeout => "Reload and refresh timed out, please try again later"
-    )
   end
   
   def guide
@@ -272,7 +268,6 @@ class ListsController < ApplicationController
   def delayed_task(cache_key)
     @job_id = Rails.cache.read(cache_key)
     @job = Delayed::Job.find_by_id(@job_id) if @job_id && @job_id.is_a?(Fixnum)
-    Rails.logger.debug "[DEBUG] @job: #{@job}"
     @tries = params[:tries].to_i
     @start = @tries == 0 && @job.blank?
     @done = @tries > 0 && @job.blank?

@@ -30,13 +30,12 @@ module Shared::ListsModule
         end
 
         set_scopes unless @listed_taxa.present?
-        @listed_taxa.map{|lt| lt.id}
 
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id
 
-        @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa)
-        @total_listed_taxa ||= @list.listed_taxa.count
-        @total_observed_taxa ||= @list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
+        @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, @unpaginated_listed_taxa)
+        @total_listed_taxa ||= @listed_taxa.count 
+        @total_observed_taxa ||= @listed_taxa.with_observation.count
         @view = PHOTO_VIEW unless LIST_VIEWS.include?(@view)
 
         case @view
@@ -157,12 +156,12 @@ module Shared::ListsModule
           end
           lt ||= ListedTaxon.new(:list => @list)
           lt.description = description unless description.blank?
-          lt.occurrence_status_level = if ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[occurrence_status.to_s.downcase]
-            ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[occurrence_status.to_s.downcase]
+          lt.occurrence_status_level = if ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[primary_occurrence_status.to_s.downcase]
+            ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[primary_occurrence_status.to_s.downcase]
           else
             lt.occurrence_status_level
           end
-          lt.establishment_means = if ListedTaxon::ESTABLISHMENT_MEANS.include?(establishment_means.to_s.downcase)
+          lt.establishment_means = if ListedTaxon::ESTABLISHMENT_MEANS.include?(primary_establishment_means.to_s.downcase)
             establishment_means.downcase
           else
             lt.establishment_means
@@ -330,20 +329,16 @@ module Shared::ListsModule
   
   private
   
-  def get_iconic_taxon_counts(list, iconic_taxa = nil)
-    iconic_taxa ||= Taxon.iconic_taxa
-    # TODO: pull out check list logic
-    iconic_taxon_counts_by_id_hash = if list.is_a?(CheckList) && list.is_default?
-      ListedTaxon.count(:all, :include => [:taxon], 
-        :conditions => ["place_id = ?", list.place_id],
-        :group => "taxa.iconic_taxon_id")
-    else
-      list.listed_taxa.count(:all, :include => [:taxon], :group => "taxa.iconic_taxon_id")
-    end
+  def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)
+    iconic_taxa ||= Taxon::ICONIC_TAXA
+    listed_taxa ||= @listed_taxa
+    listed_taxa_iconic_taxon_ids = listed_taxa.map{|lt| lt.taxon.iconic_taxon_id }
     iconic_taxa.map do |iconic_taxon|
-      [iconic_taxon, iconic_taxon_counts_by_id_hash[iconic_taxon.id.to_s]]
+      taxon_count = listed_taxa_iconic_taxon_ids.count(iconic_taxon.id)
+      [iconic_taxon, taxon_count]
     end
   end
+
   
   def load_list
     @list = List.find_by_id(params[:id].to_i)
@@ -398,13 +393,18 @@ module Shared::ListsModule
       ]
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxon(@filter_taxon.id, self_and_ancestor_ids)
-    elsif filter_by_iconic_taxon?
+    end
+    apply_iconic_taxon_filter unless @list.is_a?(CheckList)
+  end
+
+  def apply_iconic_taxon_filter
+    if filter_by_iconic_taxon?
       iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_iconic_taxon(iconic_taxon_id)
     end
   end
 
-  def apply_checklist_scopes
+  def apply_taxonomic_status_filter
     if filter_by_param?(params[:taxonomic_status])
       @taxonomic_status = params[:taxonomic_status]
       unless @taxonomic_status=="all"
@@ -415,6 +415,34 @@ module Shared::ListsModule
       @taxonomic_status = "active"
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_taxonomic_status(true)
     end
+  end
+
+  def apply_iconic_taxon_and_taxonomic_status_filters
+    iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
+    if filter_by_param?(params[:taxonomic_status])
+      @taxonomic_status = params[:taxonomic_status]
+      unless @taxonomic_status=="all"
+        taxonomic_status_for_scope = params["taxonomic_status"] == "active"
+      end
+    else
+      @taxonomic_status = "active"
+      taxonomic_status_for_scope = params["taxonomic_status"] == "active"
+    end
+    @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_taxonomic_status_and_iconic_taxon(taxonomic_status_for_scope, iconic_taxon_id)
+  end
+
+  def apply_checklist_scopes
+    if filter_by_iconic_taxon? && (params[:taxonomic_status] != "all")
+      apply_iconic_taxon_and_taxonomic_status_filters
+    elsif filter_by_iconic_taxon?
+      apply_iconic_taxon_filter
+    elsif params[:taxonomic_status] != "all"
+      apply_taxonomic_status_filter
+    end
+    if params[:taxonomic_status] == "all"
+      @taxonomic_status = "all"
+    end
+
     if with_observations?
       @observed = 't'
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.confirmed

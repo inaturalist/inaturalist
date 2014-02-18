@@ -77,6 +77,16 @@
       <%= (listed_taxon.observations_count == 1 ? t(:observation).downcase : t(:observations).downcase) -%>,
       <strong class="count"><%= listed_taxon.confirmed_observations_count %></strong>
       <%= t :research_grade %>
+    
+    <% if logged_in? && current_user.is_admin? -%>
+      <span class="button">
+        <%= link_to t(:refresh).downcase, {
+            :controller => 'listed_taxa',
+            :action => 'refresh_observationcounts',
+            :listed_taxon_id => listed_taxon.id },
+          :method => :post,
+          "data-loading-click" => t(:refreshing) -%></span>
+    <% end -%>
     </div>
     <% unless listed_taxon.observation_month_stats.blank? -%>
       <div class="statsgraphs stacked">

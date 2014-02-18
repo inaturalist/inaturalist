@@ -132,6 +132,7 @@ en:
   add_edit_more_fields: Add/edit more fields
   add_description: "Add %{description_name}"
   add_from_your_observations: Add from your observations
+  add_listed_taxa_from_observations: Add listed taxa from observations
   add_higher_level_taxon: Add a higher-level taxon (e.g. "birds")
   add_id: Add ID
   add_it_to_place_raquo: "Add it to a place &raquo;"
@@ -1633,6 +1634,7 @@ en:
   observations_week: Observations / Week
   observations_widget: Observations Widget
   observations_will_revert_to_casual: Observations will revert to "casual" grade if the above conditions aren't met or
+  observationcounts_refreshed: Observation counts refreshed
   observed: Observed
   observed_by: Observed by
   observed_in_place?: observed in place
@@ -2028,7 +2030,8 @@ en:
   red: red
   redo_search_in_map_area: Redo search in map area
   refresh: Refresh
-  refresh_without_reload: Refresh list
+  refresh_listed_taxa: refresh listed taxa
+  refreshing: refreshing
   regenerate_url: Regenate URL
   register_for_this_event_at_x_html: "Register for this event at %{x}"
   reload_and_refresh: Reload and refresh list
@@ -2529,6 +2532,8 @@ en:
   this_taxon_name_was_originally_imported: "This taxon name was originally imported from an external name provider:"
   this_taxon_was_originally_imported_from: "This taxon was originally imported from an external name provider:"
   this_tool_is_experimental: This tool is experimental, so please
+  this_will_add_listed_taxa: This will add listed taxa from observations. This may take a while so please use sparingly and on small checklists
+  this_will_refresh_listed_taxa: This will refresh the listed taxa on this list. This may take a while so please use sparingly and on small checklists
   this_tool_will_add_tags: tool. This tool will add tags to your photos for all the common and scientific names of the taxon you observed, and the names of its ancestor taxa. So if your observation is of a
   this_will_re_apply_all_list_rules: "This will re-apply all list rules to the listed taxa, e.g. rejecting taxa that are not within the life  list taxon or aren't of the selected rank.  It will not add any new taxa. It may take a few minutes."
   this_will_refresh_without_reload: This will refresh observation stats immediately. It may take some time and please use sparingly. 

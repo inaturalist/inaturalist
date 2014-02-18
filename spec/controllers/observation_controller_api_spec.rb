@@ -345,6 +345,13 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == captive.id}.should_not be_blank
     end
 
+    it "captive filter=false should include nil" do
+      o = Observation.make!
+      get :index, :format => :json, :captive => false
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o.id}.should_not be_blank
+    end
+
     it "should include pagination data in headers" do
       3.times { Observation.make! }
       total_entries = Observation.count

@@ -1054,6 +1054,8 @@ class ObservationsController < ApplicationController
   end
 
   def export
+    search_params, find_options = get_search_params(params)
+    search_params = site_search_params(search_params)
     if params[:flow_task_id]
       if @flow_task = ObservationsExportFlowTask.find_by_id(params[:flow_task_id])
         @export_url = FakeView.uri_join(root_url, @flow_task.outputs.first.file.url).to_s

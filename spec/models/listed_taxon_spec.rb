@@ -507,4 +507,49 @@ describe "primary_listing" do
   end
 end
 
+describe ListedTaxon, "force_update_cache_columns" do
+  before do
+    @place = make_place_with_geom
+    @check_list = CheckList.make!(:place => @place)
+    @lt = ListedTaxon.make!(:list => @check_list, :place => @place, :primary_listing => true)
+    @observation = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @lt.taxon)
+    Observation.in_place(@place).should include @observation
+    ListedTaxon.update_all(
+      ["first_observation_id = ?, last_observation_id = ?, observations_count = ?, observations_month_counts = ?",nil,nil,nil,nil], 
+      ["id = ?", @lt]
+    )
+    Delayed::Job.delete_all
+    Delayed::Job.count.should eq 0
+    @lt.reload
+    @lt.last_observation_id.should be_nil
+  end
 
+  it "should queue a job to update cache columns when not set" do
+    @lt.save 
+    Delayed::Job.count.should eq 1
+    @lt.reload
+    @lt.last_observation_id.should be_nil
+  end
+
+  it "should not queue a job to update cache columns if a job already exists" do
+    @lt.save 
+    Delayed::Job.count.should eq 1
+    @lt.reload
+    @lt.save
+    Delayed::Job.count.should eq 1
+  end
+
+  it "should not queue a job to update cache columns if set" do
+    Delayed::Job.delete_all
+    @lt.force_update_cache_columns = true
+    @lt.save
+    Delayed::Job.count.should eq 0
+  end
+
+  it "should force cache columns to be set" do
+    Delayed::Job.delete_all
+    @lt.force_update_cache_columns = true
+    @lt.save
+    @lt.last_observation_id.should eq @observation.id
+  end
+end

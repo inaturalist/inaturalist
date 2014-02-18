@@ -24,6 +24,7 @@
       <%= f.select :occurrence_status_level, ListedTaxon::OCCURRENCE_STATUS_LEVELS.invert.to_a.sort_by(&:last).reverse.map{|s, v| [t("occurrence_status_levels.#{s}", :default => s), v]}, :include_blank => t(:unknown) %>
       <span class="occurrence_tip_target description helptip" rel="#occurrence_tip"></span>
       <%= f.submit t(:save), :class => "default button" %>
+      <%= f.hidden_field :establishment_means %>
       <%= link_to_function t(:cancel), "$(this).parents('.occurrence'); $(this).parents('.occurrencefield').find('form').hide()",
         :class => "minor button" %>
     <% end %>

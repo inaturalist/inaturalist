@@ -76,31 +76,28 @@
               :id => "reloadlink" %>
           </li>
           <li>
-            <%- msg = t(:this_will_re_apply_all_list_rules) -%>
+          <%- msg = t(:this_will_re_apply_all_list_rules) -%>
             <%= link_to_function t(:re_apply_list_rules),
               "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'refreshlink')", 
               :id => "refreshlink" %>
           </li>
         <% elsif list.is_a?(CheckList) && current_user.admin? %>
+          <% if list.is_default? %>
+            <li>
+              <%- msg = t(:this_will_add_listed_taxa) -%>
+              <%= link_to_function t(:add_listed_taxa_from_observations), 
+                "confirmStartDelayed('#{msg}', '#{list_add_from_observations_now_path(@list.id)}', #{CheckList::MAX_RELOAD_TRIES}, 'add_from_observations_nowlink')", 
+                :id => "add_from_observations_nowlink" %>
+            </li>
+          <% end %>
           <li>
-            <% if list.is_default? %>
-              <%- msg = t(:this_will_reload_and_refresh)-%>
-              <%= link_to_function t(:reload_and_refresh), 
-                "confirmStartDelayed('#{msg}', '#{list_reload_and_refresh_now_path(@list.id )}', #{CheckList::MAX_RELOAD_TRIES}, 'reloadrefreshlink')", 
-                :id => "reloadrefreshlink" %>
-            <% else %>
-              <%- msg = t(:this_will_refresh_without_reload)-%>
-              <%= link_to_function t(:refresh_without_reload), 
-                "confirmStartDelayed('#{msg}', '#{list_refresh_now_without_reload_path(@list.id )}', #{CheckList::MAX_RELOAD_TRIES}, 'refreshwithoutreloadlink')", 
-                :id => "refreshwithoutreloadlink" %>
-            <% end %>
+          <%- msg = t(:this_will_refresh_listed_taxa) -%>
+            <%= link_to_function t(:refresh_listed_taxa),
+              "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_now_path(@list.id)}', #{CheckList::MAX_RELOAD_TRIES}, 'refresh_nowlink')", 
+              :id => "refresh_nowlink" %>
           </li>
         <% end %>
       </ul>
     <% end %>
   <% end -%>
-  
-
-
-
 </div>

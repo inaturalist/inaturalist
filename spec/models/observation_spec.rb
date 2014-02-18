@@ -527,6 +527,13 @@ describe Observation, "updating" do
       o.should be_community_supported_id
       o.should be_research_grade
     end
+
+    it "should be casual if no identifications" do
+      o = make_research_grade_observation
+      o.identifications.destroy_all
+      o.reload
+      o.should be_casual_grade
+    end
   end
   
   it "should queue a job to update user lists"
