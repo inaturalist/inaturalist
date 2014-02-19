@@ -170,8 +170,10 @@ class PostsController < ApplicationController
   end
   
   def browse
-    @posts = Post.published.paginate(:page => params[:page] || 1, 
-      :order => 'published_at DESC')
+    @posts = Post.published.page(params[:page] || 1).order('published_at DESC')
+    respond_to do |format|
+      format.html
+    end
   end
   
   private

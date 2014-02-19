@@ -88,7 +88,7 @@
             = succeed ',' do
               = user_image @trip.user, :size => "mini", :class => "img-rounded"
               = link_to_user @trip.user
-            =l @trip.published_at, :format => :long
+            =l @trip.published_at, :format => :long if @trip.published?
       - unless @trip.observations.blank?
         %section{:id => "observations"}
           .observationcontrols.pull-right

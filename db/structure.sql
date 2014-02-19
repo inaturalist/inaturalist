@@ -1781,10 +1781,8 @@ CREATE TABLE place_geometries (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     source_filename character varying(255),
-    source_id integer,
-    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
+    geom geometry(MultiPolygon) NOT NULL,
+    source_id integer
 );
 
 
@@ -2919,10 +2917,8 @@ CREATE TABLE taxon_ranges (
     source_id integer,
     source_identifier integer,
     range_updated_at timestamp without time zone,
-    url character varying(255),
-    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
+    geom geometry(MultiPolygon),
+    url character varying(255)
 );
 
 
