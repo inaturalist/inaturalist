@@ -1,0 +1,24 @@
+<h1>
+  Find Missing Listings
+</h1>
+Find taxa listed in this place elsewhere, but missing from the <%= list_title %>.
+<input id="taxonchooser" name="taxon" type="text" class="text" placeholder="<%= @filter_taxon ? @filter_taxon.name : (t :type_taxon_name) %>" value="<%= @filter_taxon.try(&:id) %>" style="width:200px"/>
+<br>
+<input type="checkbox" value="filter">
+Hide ancestors of listed taxa on the checklist
+<br>
+<input type="checkbox" value="filter">
+Hide descendants of listed taxa on the checklist
+<br>
+<input type="button" value="filter">
+<p> Total is: <%= missing_listings.count %> </p>
+<% missing_listings.each do |missing_listing| %>
+  <div id="innerstats">
+    <span class="stat <%=missing_listing.taxon.iconic_taxon.name if missing_listing.taxon.iconic_taxon %>" href="/check_lists/92970-Plants-of-Fort-Funston?find_missing_listings=true&amp;iconic_taxon=47126">
+      <span class="title"> &nbsp; </span>
+    </span>
+    <%= missing_listing.taxon.name %>
+    <%= link_to "view listing", listed_taxon_path(missing_listing) %>
+  </div>
+<% end %>
+<br>

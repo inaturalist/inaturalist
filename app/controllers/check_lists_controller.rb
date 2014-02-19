@@ -31,6 +31,43 @@ class CheckListsController < ApplicationController
         @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
       end      
     end
+    if params[:find_missing_listings]
+      if !params[:hide_descendants] 
+        # all of the listed taxa unique to other lists are shown
+        listed_taxa_on_this_list = ListedTaxon.filter_by_list(@list.id).select([:id, :taxon_id])
+        listed_taxa_on_other_lists = ListedTaxon.filter_by_place_and_not_list(@list.place.id, @list.id).select([:id, :taxon_id])
+        ids_for_listed_taxa_on_this_list = listed_taxa_on_this_list.map(&:id)
+        taxon_ids_for_listed_taxa_on_this_list = listed_taxa_on_this_list.map(&:taxon_id)
+
+        ids_for_listed_taxa_on_other_lists = []
+        listed_taxa_on_other_lists.each{|lt|
+          ids_for_listed_taxa_on_other_lists.push(lt.id) unless taxon_ids_for_listed_taxa_on_this_list.include?(lt.taxon_id)
+        }
+
+        @missing_listings = ListedTaxon.find(ids_for_listed_taxa_on_other_lists)
+      else
+        # not showing descendants of this list 
+        listed_taxa_on_this_list = ListedTaxon.filter_by_list(@list.id).select([:id, :taxon_id])
+        listed_taxa_on_other_lists = ListedTaxon.filter_by_place_and_not_list(@list.place.id, @list.id).includes(:taxon)
+        taxon_ids_for_listed_taxa_on_this_list = listed_taxa_on_this_list.map(&:taxon_id)
+        listed_taxa_on_other_lists_with_ancestry = listed_taxa_on_other_lists.map{|lt| [lt.id, lt.taxon.ancestry.split('/')]}
+
+        ids_for_listed_taxa_on_other_lists = []
+        listed_taxa_on_other_lists_with_ancestry.each{|lt_with_ancestry|
+          raise lt_with_ancestry.to_s
+          found = false
+          lt_with_ancestry[1].each{|ancestry|
+            if taxon_ids_for_listed_taxa_on_this_list.include?(ancestry)
+              found = true 
+              raise 'aaaaaaaaaaaaa'
+            end
+          }
+          ids_for_listed_taxa_on_other_lists.push(lt_with_ancestry[0]) unless found
+        }
+
+        @missing_listings = ListedTaxon.find(ids_for_listed_taxa_on_other_lists)
+      end
+    end
 
     super #show from list module
   end
