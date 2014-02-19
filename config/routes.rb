@@ -1,4 +1,6 @@
 Inaturalist::Application.routes.draw do
+  apipie
+
   resources :sites
 
 

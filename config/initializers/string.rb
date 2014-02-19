@@ -17,3 +17,23 @@ class NilClass
     false
   end
 end
+
+class TrueClass
+  def yesish?
+    true
+  end
+
+  def noish?
+    false
+  end
+end
+
+class FalseClass
+  def yesish?
+    false
+  end
+
+  def noish?
+    true
+  end
+end

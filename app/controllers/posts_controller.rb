@@ -14,8 +14,7 @@ class PostsController < ApplicationController
     # Grab the monthly counts of all posts to show archives
     get_archives
     
-    if is_me?(@display_user) ||
-       (logged_in? && @parent.is_a?(Project) && @parent.editable_by?(current_user))
+    if logged_in? && (current_user == @display_user || (@parent.is_a?(Project) && @parent.editable_by?(current_user)))
       @drafts = scope.unpublished.order("created_at DESC")
     end
     
