@@ -83,4 +83,14 @@
       </ul>
     <% end %>
   <% end -%>
+  <% #if list.is_a?(CheckList) && list.editable_by?(current_user) && logged_in? -%>
+    <% link_to_toggle_menu t(:tools), :id => "tools_button", :class => "minor button",
+        :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} do %>
+      <ul>
+        <li>
+        <%= link_to t(:find_missing_listings), {find_missing_listings: true} %>
+        </li>
+      </ul>
+    <% end %>
+  <% #end -%>
 </div>
