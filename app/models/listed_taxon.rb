@@ -438,20 +438,22 @@ class ListedTaxon < ActiveRecord::Base
   def cache_columns
     return unless (list && sql = list.cache_columns_query_for(self))
     last_observations = []
-    first_observation_ids = []
+    first_observations = []
     counts = {}
     ListedTaxon.connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
       counts[row['key']] = row['count'].to_i
       last_observations << (row['last_observation'].blank? ? nil : row['last_observation'].split(','))
-      first_observation_ids << row['first_observation_id']
+      first_observations << (row['first_observation'].blank? ? nil : row['first_observation'].split(',')) 
     end
-    first_observation_id = first_observation_ids.compact.sort[0]
+    if first_observation = first_observations.compact.compact.sort_by(&:first).first
+      first_observation_id = first_observation[1]
+    end
     if last_observation = last_observations.compact.compact.sort_by(&:first).last
       last_observation_id = last_observation[1]
     end
     total = counts.map{|k,v| v}.sum
     month_counts = counts.map{|k,v| k ? "#{k}-#{v}" : nil}.compact.sort.join(',')
-    [first_observation_id, last_observation_id, total, month_counts]
+    [first_observation_id ||= nil, last_observation_id ||= nil, total, month_counts]
   end
   
   def self.update_cache_columns_for(lt)
