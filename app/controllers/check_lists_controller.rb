@@ -34,14 +34,17 @@ class CheckListsController < ApplicationController
     if params[:find_missing_listings]
       if !params[:hide_descendants] 
         # all of the listed taxa unique to other lists are shown
-        listed_taxa_on_this_list = ListedTaxon.filter_by_list(@list.id).select([:id, :taxon_id])
-        listed_taxa_on_other_lists = ListedTaxon.filter_by_place_and_not_list(@list.place.id, @list.id).select([:id, :taxon_id])
-        ids_for_listed_taxa_on_this_list = listed_taxa_on_this_list.map(&:id)
-        taxon_ids_for_listed_taxa_on_this_list = listed_taxa_on_this_list.map(&:taxon_id)
+        query = ListedTaxon.filter_by_list(@list.id).select([:id, :taxon_id])
+        listed_taxa_on_this_list = ActiveRecord::Base.connection.select_all(query) 
+        query = ListedTaxon.filter_by_place_and_not_list(@list.place.id, @list.id).select([:id, :taxon_id])
+        listed_taxa_on_other_lists = ActiveRecord::Base.connection.select_all(query) 
+
+        ids_for_listed_taxa_on_this_list = listed_taxa_on_this_list.map{|lt| lt['id']}
+        taxon_ids_for_listed_taxa_on_this_list = listed_taxa_on_this_list.map{|lt| lt['taxon_id']}
 
         ids_for_listed_taxa_on_other_lists = []
         listed_taxa_on_other_lists.each{|lt|
-          ids_for_listed_taxa_on_other_lists.push(lt.id) unless taxon_ids_for_listed_taxa_on_this_list.include?(lt.taxon_id)
+          ids_for_listed_taxa_on_other_lists.push(lt['id']) unless taxon_ids_for_listed_taxa_on_this_list.include?(lt['taxon_id'])
         }
 
         @missing_listings = ListedTaxon.find(ids_for_listed_taxa_on_other_lists)
