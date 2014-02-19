@@ -993,7 +993,7 @@ class Taxon < ActiveRecord::Base
     place_id = place.is_a?(Place) ? place.id : place
     place = Place.find_by_id(place_id) unless place.is_a?(Place)
     cs = if association(:conservation_statuses).loaded?
-      conservation_statuses.detect{|cs| ([nil, place.ancestry.split("/")].flatten.include? cs.place_id.to_s) && cs.iucn.to_i > IUCN_LEAST_CONCERN}
+      conservation_statuses.detect{|cs| ([nil, place.ancestry.to_s.split("/")].flatten.include? cs.place_id.to_s) && cs.iucn.to_i > IUCN_LEAST_CONCERN}
     else
       conservation_statuses.where("place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(place_id)}) OR place_id IS NULL").where("iucn > ?", IUCN_LEAST_CONCERN).first
     end
