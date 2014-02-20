@@ -1003,7 +1003,7 @@ module ApplicationHelper
     if post.parent_type == "User"
       journal_post_path(post.user.login, post)
     else
-      journal_post_path(post.parent.title, post)
+      project_journal_post_path(post.parent.slug, post)
     end
   end
 
@@ -1012,7 +1012,7 @@ module ApplicationHelper
     if post.parent_type == "User"
       edit_journal_post_path(post.user.login, post)
     else
-      edit_journal_post_path(post.parent.title, post)
+      edit_project_journal_post_path(post.parent.slug, post)
     end
   end
 
