@@ -1,6 +1,7 @@
 Apipie.configure do |config|
   config.app_name                = "iNaturalist"
   config.doc_base_url            = "/apipie"
+  config.api_base_url = ""
   config.validate = false
   config.api_controllers_matcher = "#{Rails.root}/app/controllers/*.rb"
   config.copyright = "&copy; #{Time.now.year} iNaturalist, LLC"
