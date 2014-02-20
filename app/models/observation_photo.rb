@@ -23,7 +23,7 @@ class ObservationPhoto < ActiveRecord::Base
   def set_observation_photos_count
     return true unless observation_id
     Observation.update_all(
-      ["photos_count = ?", ObservationPhoto.where(:observation_id => observation_id).count], 
+      ["observation_photos_count = ?", ObservationPhoto.where(:observation_id => observation_id).count], 
       ["id = ?", observation_id]
     )
     true

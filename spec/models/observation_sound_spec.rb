@@ -5,9 +5,9 @@ describe ObservationSound, "creation" do
   it "should increment the counter cache on observations" do
     o = Observation.make!
     lambda {
-      ObservationSound.make!(:observation => o)
+      without_delay { ObservationSound.make!(:observation => o) }
       o.reload
-    }.should change(o, :sounds_count).by(1)
+    }.should change(o, :observation_sounds_count).by(1)
   end
 end
 
@@ -19,6 +19,6 @@ describe ObservationSound, "deletion" do
     lambda {
       os.destroy
       o.reload
-    }.should change(o, :sounds_count).by(-1)
+    }.should change(o, :observation_sounds_count).by(-1)
   end
 end

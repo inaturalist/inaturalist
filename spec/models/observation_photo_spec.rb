@@ -9,12 +9,12 @@ describe ObservationPhoto, "creation" do
     jobs.select{|j| j.handler =~ /Observation.*set_quality_grade/m}.should_not be_blank
   end
 
-  it "should increment photos_count on the observation" do
+  it "should increment observation_photos_count on the observation" do
     o = Observation.make!
     lambda {
       ObservationPhoto.make!(:observation => o)
       o.reload
-    }.should change(o, :photos_count).by(1)
+    }.should change(o, :observation_photos_count).by(1)
   end
 end
 
@@ -28,13 +28,13 @@ describe ObservationPhoto, "destruction" do
     jobs.select{|j| j.handler =~ /Observation.*set_quality_grade/m}.should_not be_blank
   end
 
-  it "should decrement photos_count on the observation" do
+  it "should decrement observation_photos_count on the observation" do
     op = ObservationPhoto.make!
     o = op.observation
-    o.photos_count.should eq(1)
+    o.observation_photos_count.should eq(1)
     lambda {
       op.destroy
       o.reload
-    }.should change(o, :photos_count).by(-1)
+    }.should change(o, :observation_photos_count).by(-1)
   end
 end

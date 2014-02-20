@@ -271,7 +271,7 @@
     desc = t(:users_latest_observations_on_site, :user => @login, :site => SITE_NAME)
   -%>
   <meta property="og:description" content="<%= desc %>">
-  <% if @observations && (photo_obs = @observations.detect{|o| o.photos_count > 0}) -%>
+  <% if @observations && (photo_obs = @observations.detect{|o| o.observation_photos_count > 0}) -%>
     <% if photo = photo_obs.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/} -%>
       <meta property="og:image" content="<%= photo.medium_url %>"/> 
     <% end -%>

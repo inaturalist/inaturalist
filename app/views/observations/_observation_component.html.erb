@@ -65,7 +65,7 @@ Some notes:
   <div class="photos attribute">
     <h4 class="label"><%= t :'sounds.photos_sounds' %></h4>
     <div class="photolist clear">
-      <% photo_count, sound_count, link_text = observation.observation_photos.size, observation.sounds.size, [] %>
+      <% photo_count, sound_count, link_text = observation.observation_photos.size, observation.observation_sounds_count, [] %>
       <% if photo_count == 0 && sound_count == 0 -%>
         <div class="photo nophoto description">
           <%=t :'sounds.no_photos_sounds' %>
@@ -90,7 +90,7 @@ Some notes:
           <% end %>
         <% end -%>
         <% if sound_count > 0 %>
-          <%= link_to '<i class="icon-volume-up icon-4x"></i>'.html_safe, observation, :class => "sound-icon#{' with-photo' if photo}" %>
+          <%= link_to '<i class="fa fa-volume-up fa-4x"></i>'.html_safe, observation, :class => "sound-icon#{' with-photo' if photo}" %>
           <% if sound_count > 1 %>
             <% link_text << t(:'sounds.sounds_size_sounds', :sounds_size => sound_count).downcase %>
           <% end -%>

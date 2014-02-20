@@ -1188,7 +1188,7 @@ CREATE TABLE listed_taxa (
     taxon_range_id integer,
     source_id integer,
     manually_added boolean DEFAULT false,
-    primary_listing boolean
+    primary_listing boolean DEFAULT true
 );
 
 
@@ -1608,17 +1608,17 @@ CREATE TABLE observations (
     out_of_range boolean,
     license character varying(255),
     uri character varying(255),
-    photos_count integer DEFAULT 0,
+    observation_photos_count integer DEFAULT 0,
     comments_count integer DEFAULT 0,
     geom geometry(Point),
     cached_tag_list character varying(768) DEFAULT NULL::character varying,
     zic_time_zone character varying(255),
     oauth_application_id integer,
-    sounds_count integer DEFAULT 0,
+    observation_sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
     private_geom geometry(Point),
-    community_taxon_id integer,
     captive boolean DEFAULT false,
+    community_taxon_id integer,
     site_id integer
 );
 
@@ -5204,7 +5204,7 @@ CREATE INDEX index_observations_on_out_of_range ON observations USING btree (out
 -- Name: index_observations_on_photos_count; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_observations_on_photos_count ON observations USING btree (photos_count);
+CREATE INDEX index_observations_on_photos_count ON observations USING btree (observation_photos_count);
 
 
 --
@@ -6503,3 +6503,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140114210551');
 INSERT INTO schema_migrations (version) VALUES ('20140124190652');
 
 INSERT INTO schema_migrations (version) VALUES ('20140205200914');
+
+INSERT INTO schema_migrations (version) VALUES ('20140220201532');
