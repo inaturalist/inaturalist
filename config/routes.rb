@@ -313,12 +313,17 @@ Inaturalist::Application.routes.draw do
   match 'journal/:login/archives/' => 'posts#archives', :as => :journal_archives, :constraints => { :login => simplified_login_regex }
   match 'journal/:login/archives/:year/:month' => 'posts#archives', :as => :journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/, :login => simplified_login_regex }
   match 'journal/:login/:id/edit' => 'posts#edit', :as => :edit_journal_post
-  resources :posts, :except => [:index]
+  resources :posts, :except => [:index], :constraints => { :id => id_param_pattern }
   resources :posts,
     :as => 'journal_posts',
     :path => "/journal/:login",
     :constraints => { :login => simplified_login_regex }
-  resources :trips #, :controller => :posts
+  resources :trips, :constraints => { :id => id_param_pattern } do
+    member do
+      post :add_taxa_from_observations
+      delete :remove_taxa
+    end
+  end
   
   resources :identifications, :constraints => { :id => id_param_pattern } do
     resources :flags

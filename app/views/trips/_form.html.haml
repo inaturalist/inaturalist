@@ -10,6 +10,7 @@
                            "jquery/plugins/jquery-ui-timepicker-addon.min",
                            "trips/form"
 = form_for @trip, :builder => DefaultFormBuilder, :html => {:class => 'trip_form'} do |f|
+  = error_messages_for @trip
   .row
     .span6
       = f.text_field :title, :class => "span6"
@@ -50,6 +51,12 @@
           = text_field_tag :new_goal_taxon, '', :class => 'span4', :placeholder => t(:start_typing_taxon_name)
   #trip_taxa_row.row.stacked
     .span12
+      - if @trip && @trip.persisted?
+        .pull-right
+          %span
+            = link_to t(:remove_all), remove_taxa_trip_path(@trip), :id => "removetaxabutton", :class => 'btn btn-small', :method => :delete, :remote => true, :data => {:type => 'json', :loading_click => t(:removing)}
+          %span
+            = link_to t(:add_from_observations), add_taxa_from_observations_trip_path(@trip), :id => "addfromobsbutton", :class => 'btn btn-small', :method => :post, :remote => true, :data => {:type => 'json', :loading_click => t(:adding)}
       %h3=t :check_list
       .row-fluid
         .span8

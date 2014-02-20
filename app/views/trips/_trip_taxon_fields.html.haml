@@ -3,6 +3,7 @@
     = f.label :observed do
       = f.check_box :observed, :label => false
     = f.hidden_field :taxon_id
+    = f.hidden_field :id
   %td.name
     .taxonwrapper
       - if f.object.taxon

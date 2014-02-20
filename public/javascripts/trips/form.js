@@ -1,3 +1,8 @@
+function addTaxon(taxon) {
+  $('#trip_taxa').data('last-taxon', taxon)
+  $('#trip_taxa').data('check-last', true)
+  $('#trip_taxa_row .add_fields').click()
+}
 $(document).ready(function() {
   $('#trip_taxa table').dataTable({
     bPaginate: false,
@@ -8,15 +13,24 @@ $(document).ready(function() {
     resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=taxon',
     queryParam: 'q',
     afterSelect: function(item) {
-      $('#trip_taxa').data('last-taxon', item)
-      $('#trip_taxa').data('check-last', true)
-      $('#trip_taxa_row .add_fields').click()
+      addTaxon(item)
     }
   })
   $('#trip_taxa').bind('cocoon:after-insert', function(e, inserted_item) {
     var taxon = $('#trip_taxa').data('last-taxon'),
         row = $('#trip_taxa tr:last')
-    $('td.name', row).html(taxon.html)
+    if (!taxon) {
+      return
+    }
+    if (taxon.html) {
+      $('td.name', row).html(taxon.html)
+    } else {
+      var css_class = 'taxon ' + taxon.rank
+      if (taxon.iconic_taxon_name) css_class += ' ' + taxon.iconic_taxon_name
+      var html = $('<span></span>').addClass(css_class)
+      html.html($('<span class="sciname"></span>').html(taxon.name))
+      $('td.name', row).html(html)
+    }
     $(':input[name*=taxon_id]', row).val(taxon.id)
     $(':input[name*=observed]', row).attr('checked', $('#trip_taxa').data('check-last'))
     $('#new_species').chooser('clear')
@@ -63,6 +77,7 @@ $(document).ready(function() {
     $(':input[name*=resource_id]', row).val(taxon.id)
     $('#new_goal_taxon').chooser('clear')
     $('#trip_purposes').data('last-taxon', null)
+    row.attr('data-taxon-id', taxon.id)
     if (taxon.html && taxon.html.length > 0) {
       $('.taxonwrapper', row).html(taxon.html)
     }
@@ -77,7 +92,7 @@ $(document).ready(function() {
       $('#trip_taxa_row .add_fields').click()
     } else {
       // add complete check box
-      var li = $('<li></li>').attr('data-taxon-id', taxon.id),
+      var li = $('<li></li>').data('taxon-id', taxon.id),
           inputId = taxon.name.toLowerCase()+'_complete',
           label = $('<label></label>').attr('for', inputId).addClass('checkbox')
           checkbox = $('<input type="checkbox"/>').attr('name', inputId).attr('id', inputId)
@@ -124,5 +139,20 @@ $(document).ready(function() {
     } else {
       $('.trip-purpose-fields[data-taxon-id='+taxonId+'] :input[name*=complete]').val(false)
     }
+  })
+
+  $('#addfromobsbutton').bind('ajax:success', function(e, json) {
+    $.each(json.saved, function() {
+      addTaxon(this.taxon)
+      $('#trip_taxa tr:last :input[name*="[id]"]').val(this.id)
+    })
+    alert(json.msg)
+  })
+
+  $('#removetaxabutton').bind('ajax:success', function(e, json) {
+    $('.trip-taxa-fields').fadeOut(function() {
+      $(this).remove()
+      $('#trip_taxa :input').remove()
+    })
   })
 })

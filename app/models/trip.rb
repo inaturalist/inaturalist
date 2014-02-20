@@ -23,4 +23,16 @@ class Trip < Post
     return false unless u
     user_id == u.id
   end
+
+  def add_taxa_from_observations
+    candidates = []
+    observations.select("DISTINCT ON (observations.taxon_id) observations.*").
+        includes(:taxon).where("observations.taxon_id IS NOT NULL").each do |o|
+      next if self.trip_taxa.where(:taxon_id => o.taxon_id).exists?
+      tt = TripTaxon.new(:trip => self, :taxon => o.taxon, :observed => true)
+      tt.save
+      candidates << tt
+    end
+    candidates
+  end
 end

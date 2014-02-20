@@ -1,8 +1,8 @@
 class TripsController < ApplicationController
   doorkeeper_for :create, :update, :destroy, :by_login, :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :except => [:index, :show, :by_login], :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy]
-  before_filter :require_owner, :only => [:edit, :update, :destroy]
+  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
+  before_filter :require_owner, :only => [:edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
   before_filter :load_form_data, :only => [:new, :edit]
   before_filter :set_feature_test, :only => [:index, :show, :edit]
   before_filter :load_user_by_login, :only => [:by_login]
@@ -169,7 +169,10 @@ class TripsController < ApplicationController
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html do
+          load_form_data
+          render action: "edit"
+        end
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
     end
@@ -182,6 +185,54 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to trips_url }
+      format.json { head :no_content }
+    end
+  end
+
+  def add_taxa_from_observations
+    @trip_taxa = @trip.add_taxa_from_observations
+    @saved, @unsaved = [], []
+    @trip_taxa.each do |tt|
+      if tt.persisted?
+        @saved << tt
+      else
+        @unsaved << tt
+      end
+    end
+    if @saved.size == 0 && @unsaved.size == 0
+      msg = "Nothing new to add!"
+    else
+      msg = "Saved #{@saved.size} taxa"
+      unless @unsaved.blank?
+        msg += ", failed to add #{@unsaved.size}: #{@unsaved.map{|tt| "#{tt.taxon.try(:name)}: "+tt.errors.full_messages.to_sentence}.join(', ')}"
+      end
+    end
+    respond_to do |format|
+      format.html do
+        flash[:notice] = msg
+        redirect_back_or_default(edit_trip_path(@trip))
+      end
+      format.json do
+        @saved.each_with_index do |tt,i|
+          if @saved[i].taxon
+            @saved[i].taxon.html = view_context.render_in_format(:html, :partial => "shared/taxon", :object => @saved[i].taxon)
+          end
+        end
+        render :json => {
+          :msg => msg,
+          :saved => @saved.as_json(:include => {:taxon => {:methods => [:iconic_taxon_name, :html]}}),
+          :unsaved => @saved.as_json(:include => [:taxon], :methods => [:errors])
+        }
+      end
+    end
+  end
+
+  def remove_taxa
+    @trip.trip_taxa.destroy_all
+    respond_to do |format|
+      format.html do
+        flash[:notoce] = "Removed trip taxa"
+      end
       format.json { head :no_content }
     end
   end
