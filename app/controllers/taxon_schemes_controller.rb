@@ -16,7 +16,7 @@ class TaxonSchemesController < ApplicationController
         :limit => 1000, 
         :select => "DISTINCT ancestry", 
         :conditions => "ancestry IS NOT NULL").map do |t|
-      t.ancestry.split('/')[-2..-1]
+      t.ancestry.to_s.split('/')[-2..-1]
     end.flatten.uniq.compact
     @genera = []
     parent_ids.in_groups_of(100) do |ids|
