@@ -2,8 +2,8 @@
   taxon ||= @taxon
   include_article ||= false
   singular ||= false
-  comname ||= common_taxon_name(taxon).try(:name)
   no_common ||= false
+  comname ||= common_taxon_name(taxon).try(:name) unless no_common
   if taxon.species_or_lower?
     pieces = taxon.name.split
     sciname = if taxon.variety? && pieces.size == 3
