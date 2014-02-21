@@ -90,4 +90,30 @@ module ActiveRecord
       end
     end
   end
+
+  # MONKEY PATCH
+  # pluck_all selects just the columns needed and constructs a hash with their values
+  # In rails 4, this is a feature of the "pluck" itself (the ability to take multiple argumetns)
+  # In theory, this method could overwrite "pluck," but that seems a bit aggressive 
+  # Details on pluck_all are here: http://meltingice.net/2013/06/11/pluck-multiple-columns-rails/
+  class Relation
+    def pluck_all(*args)
+      args.map! do |column_name|
+        if column_name.is_a?(Symbol) && column_names.include?(column_name.to_s)
+          "#{connection.quote_table_name(table_name)}.#{connection.quote_column_name(column_name)}"
+        else
+          column_name.to_s
+        end
+      end
+
+      relation = clone
+      relation.select_values = args
+      klass.connection.select_all(relation.arel).map! do |attributes|
+        initialized_attributes = klass.initialize_attributes(attributes)
+        attributes.each do |key, attribute|
+          attributes[key] = klass.type_cast_attribute(key, initialized_attributes)
+        end
+      end
+    end
+  end
 end
