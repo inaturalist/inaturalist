@@ -78,7 +78,7 @@
         <div class="inline buttonrow">
           <%= hidden_fields_for_params :without => [:establishment_means, :page] %>
           <%-
-            options = [[t("establishment.establishment"), nil]] + ListedTaxon::ESTABLISHMENT_MEANS.map {|em| [t("establishment.#{em}"),em]}
+            options = [[t("establishment.establishment").capitalize, nil]] + ListedTaxon::ESTABLISHMENT_MEANS.map {|em| [t("establishment.#{em}").capitalize,em]}
           -%>
           <%= select_tag "establishment_means", options_for_select(options, @establishment_means), :id => "establishmentFilter", :class => "inlineblock" %>
           <%= submit_tag "Filter", :class => "glaucous button" %>
