@@ -40,7 +40,7 @@ while true do
     if existing
       existing.touch unless opts[:debug]
       old_count += 1
-      puts "\tobservation link already exists, skipping"
+      puts "\tobservation link already exists for observation #{observation_id}, skipping"
     else
       ol = ObservationLink.new(:observation => observation, :href => href, :href_name => "GBIF", :rel => "alternate")
       ol.save unless opts[:debug]
