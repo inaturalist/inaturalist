@@ -18,7 +18,7 @@ Find taxa listed in this place elsewhere, but missing from the <%= list_title %>
   <input type="submit" value="filter">
   <% missing_listings.each do |missing_listing| %>
     <div id="innerstats">
-      <span class="stat <%=missing_listing.taxon.iconic_taxon.name if missing_listing.taxon.iconic_taxon %>" href="/check_lists/92970-Plants-of-Fort-Funston?find_missing_listings=true&amp;iconic_taxon=47126">
+      <span class="stat no-toggle <%=missing_listing.taxon.iconic_taxon.name if missing_listing.taxon.iconic_taxon %>" href="/check_lists/92970-Plants-of-Fort-Funston?find_missing_listings=true&amp;iconic_taxon=47126">
         <span class="title"> &nbsp; </span>
       </span>
       <%= missing_listing.taxon.name %>
