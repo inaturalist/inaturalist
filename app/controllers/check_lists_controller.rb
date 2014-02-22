@@ -35,54 +35,15 @@ class CheckListsController < ApplicationController
       @missing_filter_taxon = params[:missing_filter_taxon].present? ? Taxon.find(params[:missing_filter_taxon]) : nil
       @hide_descendants = params[:hide_descendants]
       @hide_ancestors = params[:hide_ancestors]
-      if !params[:hide_descendants] 
-        # all of the listed taxa unique to other lists are shown
-        listed_taxa_on_this_list = ListedTaxon.filter_by_list(@list.id).pluck_all(:id, :taxon_id)
-        listed_taxa_on_other_lists  = ListedTaxon.filter_by_place_and_not_list(@list.place.id, @list.id).pluck_all(:id, :taxon_id)
 
-        ids_for_listed_taxa_on_this_list = listed_taxa_on_this_list.map{|lt| lt['id']}
-        taxon_ids_for_listed_taxa_on_this_list = listed_taxa_on_this_list.map{|lt| lt['taxon_id']}
+      listed_taxa_on_this_list = @list.find_listed_taxa_and_ancestry_as_hashes
+      listed_taxa_on_other_lists = @list.find_listed_taxa_and_ancestry_on_other_lists_as_hashes
 
-        ids_for_listed_taxa_on_other_lists = []
-        listed_taxa_on_other_lists.each{|lt|
-          ids_for_listed_taxa_on_other_lists.push(lt['id']) unless taxon_ids_for_listed_taxa_on_this_list.include?(lt['taxon_id'])
-        }
+      scoped_list = apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, @missing_filter_taxon, @hide_ancestors, @hide_descendants)
 
-        @missing_listings = ListedTaxon.where('listed_taxa.id IN (?) ', ids_for_listed_taxa_on_other_lists).paginate({:page => params[:missing_listings_page] || 1, :per_page => 20})
-      else
-        # not showing descendants of this list 
-        listed_taxa_on_this_list_with_ancestry_string = ActiveRecord::Base.connection.execute("select listed_taxa.id, taxon_id, taxa.ancestry from listed_taxa, taxa where listed_taxa.taxon_id = taxa.id and list_id = #{@list.id};")
+      ids_for_listed_taxa_on_other_lists = scoped_list.map{|lt| lt['id'] }
 
-        listed_taxa_not_on_this_list_but_on_this_place_with_ancestry_string = ActiveRecord::Base.connection.execute("select listed_taxa.id, taxon_id, taxa.ancestry from listed_taxa, taxa where listed_taxa.taxon_id = taxa.id and list_id != #{@list.id} and place_id = #{@list.place_id};")
-
-        listed_taxa_on_this_list_with_ancestry = listed_taxa_on_this_list_with_ancestry_string.map{|row| row['ancestry'] = row['ancestry'].split("/"); row }
-
-        listed_taxa_on_other_lists_with_ancestry = listed_taxa_not_on_this_list_but_on_this_place_with_ancestry_string.map{|row| row['ancestry'] = (row['ancestry'].present? ? row['ancestry'].split("/") : []); row }
-
-        taxon_ids_for_listed_taxa_on_this_list = listed_taxa_on_this_list_with_ancestry.map{|lt| lt['taxon_id']}
-
-        ids_for_listed_taxa_on_other_lists = []
-        listed_taxa_on_other_lists_with_ancestry.each{|lt_with_ancestry|
-          found = false
-          if @missing_filter_taxon
-            found = (lt_with_ancestry['taxon_id'].to_i == @missing_filter_taxon.id)
-          else
-            found = true if taxon_ids_for_listed_taxa_on_this_list.include?(lt_with_ancestry['taxon_id'].to_i)
-          end
-          if !found
-            lt_with_ancestry['ancestry'].each{|ancestor|
-              if @missing_filter_taxon
-                found = true if ancestor.to_i == @missing_filter_taxon.id
-              else
-                found = true if taxon_ids_for_listed_taxa_on_this_list.include?(ancestor.to_i) 
-              end
-            }
-          end
-          ids_for_listed_taxa_on_other_lists.push(lt_with_ancestry['id']) unless found
-        }
-
-        @missing_listings = ListedTaxon.where('listed_taxa.id IN (?)', ids_for_listed_taxa_on_other_lists).paginate({:page => params[:missing_listings_page] || 1, :per_page => 20})
-      end
+      @missing_listings = ListedTaxon.where('listed_taxa.id IN (?)', ids_for_listed_taxa_on_other_lists).paginate({:page => params[:missing_listings_page] || 1, :per_page => 20})
     end
 
     super #show from list module
@@ -134,6 +95,48 @@ class CheckListsController < ApplicationController
   end
   
   private
+
+  def apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, missing_filter_taxon, hide_ancestors, hide_descendants)
+    scoped_list = listed_taxa_on_other_lists
+    scoped_list = missing_filter_taxon(missing_filter_taxon, scoped_list) if missing_filter_taxon
+    scoped_list = hide_matches(listed_taxa_on_this_list, scoped_list)
+    scoped_list = hide_descendants(listed_taxa_on_this_list, scoped_list) if hide_descendants
+    scoped_list = hide_ancestors(listed_taxa_on_this_list, scoped_list) if hide_ancestors
+    scoped_list
+  end
+
+  def missing_filter_taxon(taxon, other_list)
+    other_list.select{|lt| 
+      found = taxon.match_descendants(lt)
+    }
+  end
+  def hide_matches(this_list, other_list)
+    this_list.each do |taxon|
+      other_list = other_list.reject do |lt| 
+        taxon['taxon_id'].to_i == lt['taxon_id'].to_i
+      end
+    end
+    other_list
+  end
+
+  def hide_descendants(this_list, other_list)
+    this_list.each do |taxon|
+      other_list = other_list.reject do |lt| 
+        Taxon.match_descendants_of_id(taxon['taxon_id'].to_i, lt)
+      end
+    end
+    other_list
+  end
+
+
+  def hide_ancestors(this_list, other_list)
+    this_list.each do |taxon|
+      other_list = other_list.reject do |lt| 
+        Taxon.match_descendants_of_id(lt['taxon_id'].to_i, taxon)
+      end
+    end
+    other_list
+  end
 
   def update_list_rules
     # Override taxon choice with iconic taxon choice
