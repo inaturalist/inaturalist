@@ -1197,8 +1197,19 @@ class Taxon < ActiveRecord::Base
     return false if taxon_changes.exists? || taxon_change_taxa.exists?
     creator_id == user.id
   end
+
+  def match_descendants(taxon_hash)
+    Taxon.match_descendants_of_id(id, taxon_hash)
+  end
   
   # Static ##################################################################
+
+  def self.match_descendants_of_id(id, taxon_hash)
+    taxon_hash['ancestry'].each{|ancestor|
+      return true if id == ancestor.to_i 
+    }
+    false
+  end
 
   def self.import_or_create(name, options = {})
     taxon = import(name, options)
