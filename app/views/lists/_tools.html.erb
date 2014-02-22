@@ -113,7 +113,7 @@
         :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} do %>
       <ul>
         <li>
-        <%= link_to t(:find_missing_listings), {find_missing_listings: true} %>
+        <%= link_to t(:find_missing_listings), {find_missing_listings: true, missing_filter_taxon: @list.taxon_id} %>
         </li>
       </ul>
     <% end %>
