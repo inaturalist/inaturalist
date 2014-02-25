@@ -1188,7 +1188,7 @@ CREATE TABLE listed_taxa (
     taxon_range_id integer,
     source_id integer,
     manually_added boolean DEFAULT false,
-    primary_listing boolean DEFAULT true
+    primary_listing boolean
 );
 
 
@@ -1617,8 +1617,8 @@ CREATE TABLE observations (
     observation_sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
     private_geom geometry(Point),
-    captive boolean DEFAULT false,
     community_taxon_id integer,
+    captive boolean DEFAULT false,
     site_id integer
 );
 

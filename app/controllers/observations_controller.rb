@@ -1909,7 +1909,13 @@ class ObservationsController < ApplicationController
     @rank = params[:rank] if Taxon::VISIBLE_RANKS.include?(params[:rank])
     @hrank = params[:hrank] if Taxon::VISIBLE_RANKS.include?(params[:hrank])
     @lrank = params[:lrank] if Taxon::VISIBLE_RANKS.include?(params[:lrank])
-
+    if stats_adequately_scoped?
+      @d1 = search_params[:d1]
+      @d2 = search_params[:d2]
+    else
+      search_params[:d1] = nil
+      search_params[:d2] = nil
+    end
     
     @filters_open = 
       !@q.nil? ||
