@@ -32,7 +32,7 @@ module Shared::ListsModule
             @find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
         end
 
-        @listed_taxa ||= set_scopes
+        @listed_taxa ||= set_scopes.paginate(@find_options)
 
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id(@listed_taxa, @iconic_taxa, @taxa)
         @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, @unpaginated_listed_taxa)
@@ -124,7 +124,7 @@ module Shared::ListsModule
       
       format.json do
         @find_options[:order] = "listed_taxa.observations_count DESC" if params[:order_by].blank?
-        set_scopes unless @listed_taxa.present?
+        @listed_taxa ||= set_scopes.paginate(@find_options) 
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
         render :json => {
           :list => @list,
@@ -341,9 +341,6 @@ module Shared::ListsModule
   end
   
 private
-  def place_based_list?(list)
-    (list.type == "CheckList" || (list.type == "ProjectList" && list.project.show_from_place))
-  end
   def handle_place_based_list(list)
     @place = list.place
     @other_check_lists = @place.check_lists.limit(1000)
@@ -360,28 +357,12 @@ private
   end
   def handle_default_checklist_setup(list)
     @unpaginated_listed_taxa = ListedTaxon.find_listed_taxa_from_default_list(list.place_id)
-
     # Searches must use place_id instead of list_id for default checklists 
     # so we can search items in other checklists for this place
     if @q = params[:q]
       @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
     end      
-  end
-  def observable_list(list)
-    if(list.type == "ProjectList" && list.project.show_from_place)
-      list.project.place.check_list
-    else
-      list
-    end
-
-  end
-  def allow_batch_adding(list, current_user)
-    if(list.type == "ProjectList")
-      list.editable_by?(current_user) && !list.project.show_from_place
-    else
-      list.editable_by?(current_user)
-    end
   end
   def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)
     iconic_taxa ||= Taxon::ICONIC_TAXA
@@ -395,7 +376,6 @@ private
       [iconic_taxon, counts[iconic_taxon.id.to_s] || 0]
     end
   end
-
   
   def load_list
     @list = List.find_by_id(params[:id].to_i)
@@ -432,13 +412,13 @@ private
         {:taxon => [:iconic_taxon, :photos, :taxon_names]}
       ]
     }
-    set_options_order
+    @find_options = set_options_order(@find_options)
   end
 
   def set_scopes
     apply_list_scopes
     apply_checklist_scopes if @list.is_a?(CheckList)
-    @unpaginated_listed_taxa.paginate(@find_options)
+    @unpaginated_listed_taxa
   end
 
   def apply_list_scopes
@@ -542,8 +522,8 @@ private
     end
   end
 
-  def set_options_order
-    @find_options[:order] = case params[:order_by]
+  def set_options_order(find_options)
+    find_options[:order] = case params[:order_by]
     when "name"
       order = params[:order]
       order = "asc" unless %w(asc desc).include?(params[:order])
@@ -556,6 +536,7 @@ private
       # TODO: somehow make the following not cause a filesort...
       "taxon_ancestor_ids || '/' || listed_taxa.taxon_id"
     end
+    find_options
   end
 
 
@@ -606,5 +587,22 @@ private
       iconic_taxa ? iconic_taxa.map(&:id) : nil
     ].flatten.uniq.compact
     TaxonName.where("taxon_id IN (?)", taxon_ids).group_by(&:taxon_id)
+  end
+  def observable_list(list)
+    if(list.type == "ProjectList" && list.project.show_from_place)
+      list.project.place.check_list
+    else
+      list
+    end
+  end
+  def allow_batch_adding(list, current_user)
+    if(list.type == "ProjectList")
+      list.editable_by?(current_user) && !list.project.show_from_place
+    else
+      list.editable_by?(current_user)
+    end
+  end
+  def place_based_list?(list)
+    (list.type == "CheckList" || (list.type == "ProjectList" && list.project.show_from_place))
   end
 end
