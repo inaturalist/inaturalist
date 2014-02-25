@@ -32,6 +32,8 @@ module Shared::ListsModule
             @find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
         end
 
+        @listed_taxa ||= set_scopes
+
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id
         @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, @unpaginated_listed_taxa)
         @total_listed_taxa ||= @listed_taxa.count 
@@ -122,7 +124,7 @@ module Shared::ListsModule
       
       format.json do
         @find_options[:order] = "listed_taxa.observations_count DESC" if params[:order_by].blank?
-        @listed_taxa ||= set_scopes
+        set_scopes unless @listed_taxa.present?
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
         render :json => {
           :list => @list,
