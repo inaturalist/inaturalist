@@ -14,8 +14,13 @@ module Shared::ListsModule
   end
   
   def show
+    if @list.type == "CheckList"
+      handle_checklist_specific_setup
+    end
     @view = params[:view] || params[:view_type]
+    @observable_list = observable_list(@list)
     @unpaginated_listed_taxa ||= ListedTaxon.filter_by_list(@list.id)
+    @allow_batch_adding = allow_batch_adding(@list, current_user)
     respond_to do |format|
       format.html do
         # Make sure request is being handled by the right controller
@@ -337,8 +342,43 @@ module Shared::ListsModule
     end
   end
   
-  private
-  
+private
+  def handle_checklist_specific_setup
+    @place = @list.place
+    @other_check_lists = @place.check_lists.limit(1000)
+    @other_check_lists.delete_if {|l| l.id == @list.id}
+    
+    # If this is a place's default check list, load ALL the listed taxa
+    # belonging to this place.  Kind of weird, I know.  The alternative would
+    # be to keep the default list updated with duplicates from all the other
+    # check lists belonging to a place, like we do with parent lists.  It 
+    # would be a pain to manage, but it might be faster.
+    if @list.is_default?
+      @unpaginated_listed_taxa = ListedTaxon.find_listed_taxa_from_default_list(@list.place_id)
+
+      # Searches must use place_id instead of list_id for default checklists 
+      # so we can search items in other checklists for this place
+      if @q = params[:q]
+        @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
+        @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
+      end      
+    end
+  end
+  def observable_list(list)
+    if(list.type == "ProjectList" && list.project.show_from_place)
+      list.project.place.check_list
+    else
+      list
+    end
+
+  end
+  def allow_batch_adding(list, current_user)
+    if(list.type == "ProjectList")
+      list.editable_by?(current_user) && !list.project.show_from_place
+    else
+      list.editable_by?(current_user)
+    end
+  end
   def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)
     iconic_taxa ||= Taxon::ICONIC_TAXA
     listed_taxa ||= @listed_taxa
