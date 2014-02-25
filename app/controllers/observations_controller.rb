@@ -717,7 +717,7 @@ class ObservationsController < ApplicationController
         # Destroy old photos.  ObservationPhotos seem to get removed by magic
         doomed_photo_ids = (old_photo_ids - observation.photo_ids).compact
         unless doomed_photo_ids.blank?
-          Photo.delay.destroy_orphans(doomed_photo_ids)
+          Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(doomed_photo_ids)
         end
 
         Photo.descendent_classes.each do |klass|
@@ -2155,7 +2155,7 @@ class ObservationsController < ApplicationController
     return true if @observations.blank?
     taxa = @observations.compact.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
     return true if taxa.blank?
-    List.delay.refresh_for_user(current_user, :taxa => taxa.map(&:id))
+    List.delay(:priority => USER_PRIORITY).refresh_for_user(current_user, :taxa => taxa.map(&:id))
     true
   end
   
@@ -2588,7 +2588,7 @@ class ObservationsController < ApplicationController
       else
         # no job id, no job, let's get this party started
         Rails.cache.delete(cache_key)
-        job = Observation.delay.generate_csv_for(parent, :path => path_for_csv, :user => current_user)
+        job = Observation.delay(:priority => USER_PRIORITY).generate_csv_for(parent, :path => path_for_csv, :user => current_user)
         Rails.cache.write(cache_key, job.id, :expires_in => 1.hour)
       end
       prevent_caching

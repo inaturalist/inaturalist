@@ -212,7 +212,7 @@ class ListsController < ApplicationController
   
   def refresh
     delayed_task(@list.refresh_cache_key) do
-      job = @list.delay.refresh(:skip_update_cache_columns => true)
+      job = @list.delay(:priority => USER_PRIORITY).refresh(:skip_update_cache_columns => true)
       Rails.cache.write(@list.refresh_cache_key, job.id)
       job
     end
@@ -226,7 +226,7 @@ class ListsController < ApplicationController
   
   def add_from_observations_now
     delayed_task(@list.reload_from_observations_cache_key) do
-      job = @list.delay.add_observed_taxa(:force_update_cache_columns => true)
+      job = @list.delay(:priority => USER_PRIORITY).add_observed_taxa(:force_update_cache_columns => true)
       Rails.cache.write(@list.reload_from_observations_cache_key, job.id)
       job
     end
@@ -240,7 +240,7 @@ class ListsController < ApplicationController
   
   def refresh_now
     delayed_task(@list.refresh_cache_key) do
-      job = @list.delay.refresh
+      job = @list.delay(:priority => USER_PRIORITY).refresh
       Rails.cache.write(@list.refresh_cache_key, job.id)
       job
     end

@@ -9,7 +9,7 @@ class ObservationPhoto < ActiveRecord::Base
   after_destroy :destroy_orphan_photo, :set_observation_quality_grade, :set_observation_photos_count
   
   def destroy_orphan_photo
-    Photo.delay.destroy_orphans(photo_id)
+    Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(photo_id)
     true
   end
   

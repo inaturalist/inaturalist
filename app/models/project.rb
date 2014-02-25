@@ -320,8 +320,8 @@ class Project < ActiveRecord::Base
           project_user.user_id]) do |po|
       curator_ident = po.observation.identifications.detect{|ident| ident.user_id == project_user.user_id}
       po.update_attributes(:curator_identification => curator_ident)
-      ProjectUser.delay.update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
-      ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      ProjectUser.delay(:priority => USER_INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      ProjectUser.delay(:priority => USER_INTEGRITY_PRIORITY).update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
     end
   end
   
@@ -348,8 +348,8 @@ class Project < ActiveRecord::Base
     project.project_observations.find_each(find_options) do |po|
       curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
       po.update_attributes(:curator_identification => curator_ident)
-      ProjectUser.delay.update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
-      ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      ProjectUser.delay(:priority => USER_INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      ProjectUser.delay(:priority => USER_INTEGRITY_PRIORITY).update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
     end
   end
   
