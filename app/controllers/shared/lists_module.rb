@@ -14,11 +14,9 @@ module Shared::ListsModule
   end
   
   def show
-    if @list.type == "CheckList"
-      handle_checklist_specific_setup
-    end
     @view = params[:view] || params[:view_type]
     @observable_list = observable_list(@list)
+    handle_place_based_list(@observable_list) if place_based_list?(@observable_list)
     @unpaginated_listed_taxa ||= ListedTaxon.filter_by_list(@list.id)
     @allow_batch_adding = allow_batch_adding(@list, current_user)
     respond_to do |format|
@@ -33,8 +31,6 @@ module Shared::ListsModule
           @find_options[:conditions] = update_conditions(
             @find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
         end
-
-        set_scopes unless @listed_taxa.present?
 
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id
         @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, @unpaginated_listed_taxa)
@@ -126,7 +122,7 @@ module Shared::ListsModule
       
       format.json do
         @find_options[:order] = "listed_taxa.observations_count DESC" if params[:order_by].blank?
-        set_scopes unless @listed_taxa.present?
+        @listed_taxa ||= set_scopes
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
         render :json => {
           :list => @list,
@@ -343,26 +339,32 @@ module Shared::ListsModule
   end
   
 private
-  def handle_checklist_specific_setup
-    @place = @list.place
+  def place_based_list?(list)
+    (list.type == "CheckList" || (list.type == "ProjectList" && list.project.show_from_place))
+  end
+  def handle_place_based_list(list)
+    @place = list.place
     @other_check_lists = @place.check_lists.limit(1000)
-    @other_check_lists.delete_if {|l| l.id == @list.id}
+    @other_check_lists.delete_if {|l| l.id == list.id}
     
     # If this is a place's default check list, load ALL the listed taxa
     # belonging to this place.  Kind of weird, I know.  The alternative would
     # be to keep the default list updated with duplicates from all the other
     # check lists belonging to a place, like we do with parent lists.  It 
     # would be a pain to manage, but it might be faster.
-    if @list.is_default?
-      @unpaginated_listed_taxa = ListedTaxon.find_listed_taxa_from_default_list(@list.place_id)
-
-      # Searches must use place_id instead of list_id for default checklists 
-      # so we can search items in other checklists for this place
-      if @q = params[:q]
-        @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
-        @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
-      end      
+    if list.is_default?
+      handle_default_checklist_setup(list)
     end
+  end
+  def handle_default_checklist_setup(list)
+    @unpaginated_listed_taxa = ListedTaxon.find_listed_taxa_from_default_list(list.place_id)
+
+    # Searches must use place_id instead of list_id for default checklists 
+    # so we can search items in other checklists for this place
+    if @q = params[:q]
+      @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
+    end      
   end
   def observable_list(list)
     if(list.type == "ProjectList" && list.project.show_from_place)
@@ -434,7 +436,7 @@ private
   def set_scopes
     apply_list_scopes
     apply_checklist_scopes if @list.is_a?(CheckList)
-    @listed_taxa ||= @unpaginated_listed_taxa.paginate(@find_options)
+    @unpaginated_listed_taxa.paginate(@find_options)
   end
 
   def apply_list_scopes
