@@ -34,7 +34,7 @@ module Shared::ListsModule
 
         @listed_taxa ||= set_scopes
 
-        @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id
+        @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id(@listed_taxa, @iconic_taxa, @taxa)
         @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, @unpaginated_listed_taxa)
         @total_listed_taxa ||= @listed_taxa.count 
         @total_observed_taxa ||= @listed_taxa.confirmed.count
@@ -558,6 +558,7 @@ private
     end
   end
 
+
   def filter_by_param?(param_name)
     !([nil, "on"].include?(param_name))
   end
@@ -598,11 +599,11 @@ private
     # override
   end
   
-  def set_taxon_names_by_taxon_id
+  def set_taxon_names_by_taxon_id(listed_taxa, iconic_taxa, taxa)
     taxon_ids = [
-      @listed_taxa ? @listed_taxa.map(&:taxon_id) : nil,
-      @taxa ? @taxa.map(&:id) : nil,
-      @iconic_taxa ? @iconic_taxa.map(&:id) : nil
+      listed_taxa ? listed_taxa.map(&:taxon_id) : nil,
+      taxa ? taxa.map(&:id) : nil,
+      iconic_taxa ? iconic_taxa.map(&:id) : nil
     ].flatten.uniq.compact
     TaxonName.where("taxon_id IN (?)", taxon_ids).group_by(&:taxon_id)
   end
