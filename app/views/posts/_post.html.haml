@@ -1,7 +1,7 @@
 :ruby
   truncate_length ||= nil
   @parent ||= post.parent
-  post_url = post_path(post)
+  post_url = flexible_post_path(post)
 .post{:id => "post-#{post.id}"}
   %h3.title.media-heading
     = link_to post.title, post_url

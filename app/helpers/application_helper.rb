@@ -998,7 +998,7 @@ module ApplicationHelper
     xml.tag tag, :predicate => predicate, :namespace => namespace, :value => value
   end
 
-  def post_path(post, options = {})
+  def flexible_post_path(post, options = {})
     return trip_path(post, options) if post.is_a?(Trip)
     if post.parent_type == "User"
       journal_post_path(post.user.login, post)
