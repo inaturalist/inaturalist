@@ -19,28 +19,36 @@ module Shared::ListsModule
     @observable_list = observable_list(@list)
     @q = params[:q]
     @search_taxon_ids = set_search_taxon_ids(@q)
-    if place_based_list?(@observable_list)
+    if place_based_list?(@list)
       @place = set_place(@observable_list)
       @other_check_lists = set_other_check_lists(@observable_list, @place)
-      if @observable_list.is_default?
-        listed_taxa_query = handle_default_checklist_setup(@observable_list, @q, @search_taxon_ids) 
-      end
     end
-    listed_taxa_query ||= ListedTaxon.filter_by_list(@list.id)
-    @allow_batch_adding = allow_batch_adding(@list, current_user)
+    if place_based_list?(@observable_list) && @observable_list.is_default?
+      observable_listed_taxa_query = handle_default_checklist_setup(@observable_list, @q, @search_taxon_ids) 
+    end
+
+    listed_taxa_query = ListedTaxon.filter_by_list(@list.id)
+    if @q 
+      @find_options[:conditions] = update_conditions(@find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
+    end
+
+    if (@list.type=="CheckList" && @list.is_default?)
+      unpaginated_listed_taxa = set_scopes(@list, observable_listed_taxa_query, @filter_taxon)
+    elsif place_based_project_list?(@list)
+      unpaginated_listed_taxa = set_scopes(@list, observable_listed_taxa_query, @filter_taxon)
+    else
+      unpaginated_listed_taxa = set_scopes(@list, listed_taxa_query, @filter_taxon)
+    end
+    @listed_taxa ||= unpaginated_listed_taxa.paginate(@find_options) 
+
     respond_to do |format|
       format.html do
         # Make sure request is being handled by the right controller
         if @list.is_a?(CheckList) && params[:controller] != CheckList.to_s.underscore.pluralize
           return redirect_to @list
         end
+        @allow_batch_adding = allow_batch_adding(@list, current_user)
 
-        if @q 
-          @find_options[:conditions] = update_conditions(@find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
-        end
-
-        unpaginated_listed_taxa = set_scopes(@list, listed_taxa_query, @filter_taxon)
-        @listed_taxa ||= unpaginated_listed_taxa.paginate(@find_options) 
 
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id(@listed_taxa, @iconic_taxa, @taxa)
         @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, unpaginated_listed_taxa)
@@ -132,8 +140,6 @@ module Shared::ListsModule
       
       format.json do
         @find_options[:order] = "listed_taxa.observations_count DESC" if params[:order_by].blank?
-        unpaginated_listed_taxa = set_scopes(@list, listed_taxa_query, @filter_taxon)
-        @listed_taxa ||= unpaginated_listed_taxa.paginate(@find_options) 
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
         render :json => {
           :list => @list,
@@ -472,6 +478,8 @@ private
     elsif list.is_a?(CheckList)
       @rank = "species"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
+    else
+      @rank = "all"
     end
     unpaginated_listed_taxa
   end
@@ -614,6 +622,9 @@ private
   end
 
   def place_based_list?(list)
-    (list.type == "CheckList" || (list.type == "ProjectList" && list.project.show_from_place))
+    list.type == "CheckList" || place_based_project_list?(list)
+  end
+  def place_based_project_list?(list)
+    list.type == "ProjectList" && list.project.show_from_place
   end
 end
