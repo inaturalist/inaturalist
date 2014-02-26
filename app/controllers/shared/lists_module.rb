@@ -32,7 +32,8 @@ module Shared::ListsModule
             @find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
         end
 
-        @listed_taxa ||= set_scopes.paginate(@find_options)
+        @unpaginated_listed_taxa = set_scopes
+        @listed_taxa ||= @unpaginated_listed_taxa.paginate(@find_options) 
 
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id(@listed_taxa, @iconic_taxa, @taxa)
         @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, @unpaginated_listed_taxa)
@@ -124,7 +125,8 @@ module Shared::ListsModule
       
       format.json do
         @find_options[:order] = "listed_taxa.observations_count DESC" if params[:order_by].blank?
-        @listed_taxa ||= set_scopes.paginate(@find_options) 
+        @unpaginated_listed_taxa = set_scopes
+        @listed_taxa ||= @unpaginated_listed_taxa.paginate(@find_options) 
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
         render :json => {
           :list => @list,
@@ -416,12 +418,13 @@ private
   end
 
   def set_scopes
-    apply_list_scopes
-    apply_checklist_scopes if @list.is_a?(CheckList)
-    @unpaginated_listed_taxa
+    unpaginated_listed_taxa = @unpaginated_listed_taxa
+    unpaginated_listed_taxa = apply_list_scopes(unpaginated_listed_taxa)
+    unpaginated_listed_taxa = apply_checklist_scopes(unpaginated_listed_taxa) if @list.is_a?(CheckList)
+    unpaginated_listed_taxa
   end
 
-  def apply_list_scopes
+  def apply_list_scopes(unpaginated_listed_taxa)
     if filter_by_taxon?
       # This scope uses an eager load which won't load all 2nd order associations (e.g. taxon names), so they'll have to loaded when needed
       @find_options[:include] = [
@@ -429,7 +432,7 @@ private
         {:taxon => [:iconic_taxon, :photos]}
       ]
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxon(@filter_taxon.id, self_and_ancestor_ids)
+      unpaginated_listed_taxa = unpaginated_listed_taxa.filter_by_taxon(@filter_taxon.id, self_and_ancestor_ids)
     end
     
     if filter_by_iconic_taxon? && (params[:taxonomic_status] != "all")
@@ -445,25 +448,26 @@ private
 
     if with_observations?
       @observed = 't'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.confirmed
+      unpaginated_listed_taxa = unpaginated_listed_taxa.confirmed
     elsif with_no_observations?
       @observed = 'f'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.unconfirmed
+      unpaginated_listed_taxa = unpaginated_listed_taxa.unconfirmed
     end
 
     if filter_by_param?(params[:rank])
       @rank = params[:rank]
       if @rank == "species"
-        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
+        unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
       elsif @rank == "leaves"
-        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_leaves(@unpaginated_listed_taxa.to_sql)
+        unpaginated_listed_taxa = unpaginated_listed_taxa.with_leaves(unpaginated_listed_taxa.to_sql)
       end
     # Scott wants this so places/show and check_lists/show have matching
     # counts. I think it's dumb - kueda 20140218, unhappy, desiring sleep
     elsif @list.is_a?(CheckList)
       @rank = "species"
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
+      unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
     end
+    unpaginated_listed_taxa
   end
 
   def apply_iconic_taxon_filter
@@ -471,6 +475,7 @@ private
       iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_iconic_taxon(iconic_taxon_id)
     end
+    unpaginated_listed_taxa
   end
 
   def apply_taxonomic_status_filter
@@ -500,26 +505,27 @@ private
     @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_taxonomic_status_and_iconic_taxon(taxonomic_status_for_scope, iconic_taxon_id)
   end
 
-  def apply_checklist_scopes
+  def apply_checklist_scopes(unpaginated_listed_taxa)
     if filter_by_param?(params[:establishment_means])
       @establishment_means = params[:establishment_means]
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_establishment_means(params[:establishment_means])
+      unpaginated_listed_taxa = unpaginated_listed_taxa.with_establishment_means(params[:establishment_means])
     end
     if filter_by_param?(params[:occurrence_status])
       @occurrence_status = params[:occurrence_status]
       if @occurrence_status == "absent"
-        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_levels_approximating_absent
+        unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_absent
       elsif @occurrence_status=="not_absent"
-        @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
+        unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
       end
     else
       @occurrence_status = "not_absent"
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
+      unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
     end
     if with_threatened?
       @threatened = 't'
-      @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_threatened_status(@list.place_id)
+      unpaginated_listed_taxa = unpaginated_listed_taxa.with_threatened_status(@list.place_id)
     end
+    unpaginated_listed_taxa
   end
 
   def set_options_order(find_options)
