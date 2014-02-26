@@ -949,11 +949,14 @@ class ObservationsController < ApplicationController
           :latitude => row[4], 
           :longitude => row[5]
         )
+        Rails.logger.debug "[DEBUG] obs.latitude: #{obs.latitude}"
+        Rails.logger.debug "[DEBUG] obs.place_guess: #{obs.place_guess}"
+        Rails.logger.debug "[DEBUG] row[3]: #{row[3]}"
         obs.set_taxon_from_species_guess
         if obs.georeferenced?
           obs.location_is_exact = true
         elsif row[3]
-          places = Ym4r::GmPlugin::Geocoding.get(row[3]) unless row[3].blank?
+          places = Geocoder.search(obs.place_guess) unless obs.place_guess.blank?
           unless places.blank?
             obs.latitude = places.first.latitude
             obs.longitude = places.first.longitude
