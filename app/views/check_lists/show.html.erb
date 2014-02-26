@@ -73,7 +73,9 @@
   <%= render :partial => 'lists/tools' %>
 
   <% if @missing_listings %>
-    <%= render :partial => 'missing_listings', locals: {missing_listings: @missing_listings, list_title: @list_title} %>
+    <div class="quiet box">
+      <%= render :partial => 'missing_listings', locals: {missing_listings: @missing_listings, list_title: @list_title} %>
+    </div>
   <% end %>
   
   <% unless @list.is_default? -%>
