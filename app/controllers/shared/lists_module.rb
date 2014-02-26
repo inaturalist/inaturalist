@@ -35,12 +35,33 @@ module Shared::ListsModule
     main_list = build_main_query(@list, @filter_taxon, listed_taxa_query, observable_listed_taxa_query)
 
     if place_based_project_list?(@list)
+      taxon_for_rule_filter = Taxon.find(@list.project.project_observation_rules.find{|por| por.operator == "in_taxon?"}.operand_id) rescue nil
+      if taxon_for_rule_filter
+        acceptable_taxa_from_list = taxon_for_rule_filter.descendant_ids + [taxon_for_rule_filter.id]
+      else
+        acceptable_taxa_from_list = nil
+      end
+
       project_based_list = main_list.to_a
       supplemental_list = set_scopes(@list, @filter_taxon, observable_listed_taxa_query)
       supplemental_list.each do |listed_taxon|
-        project_based_list.push(listed_taxon) unless main_list.detect { |main_list_lt| main_list_lt.taxon_id.to_s == listed_taxon.taxon_id.to_s }
+        project_based_list.push(listed_taxon) unless main_list.detect { |main_list_lt| 
+          if acceptable_taxa_from_list
+            # if we DON'T want to filter taxa from the project list based on the taxa rule, we would add this condition back, and change the select on line 62 (2/26/14)
+            main_list_lt.taxon_id.to_s == listed_taxon.taxon_id.to_s # || !acceptable_taxa_from_list.include?(listed_taxon.taxon_id.to_i)
+          else
+            main_list_lt.taxon_id.to_s == listed_taxon.taxon_id.to_s 
+          end
+        }
       end
-      main_list = project_based_list
+      if acceptable_taxa_from_list
+        main_list = project_based_list.select do |lt|
+          acceptable_taxa_from_list.include?(lt.taxon_id.to_i)
+        end
+      else
+        main_list = project_based_list #this line would stay, but the rest of the conditional with the select would go.
+      end
+
       @total_listed_taxa = main_list.count
       @total_observed_taxa = main_list.count do |lt| 
         lt.last_observation
