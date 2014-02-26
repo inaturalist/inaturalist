@@ -26,20 +26,30 @@ module Shared::ListsModule
     if place_based_list?(@observable_list) && @observable_list.is_default?
       observable_listed_taxa_query = handle_default_checklist_setup(@observable_list, @q, @search_taxon_ids) 
     end
-
     listed_taxa_query = ListedTaxon.filter_by_list(@list.id)
+
     if @q 
       @find_options[:conditions] = update_conditions(@find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
     end
 
-    if (@list.type=="CheckList" && @list.is_default?)
-      unpaginated_listed_taxa = set_scopes(@list, observable_listed_taxa_query, @filter_taxon)
-    elsif place_based_project_list?(@list)
-      unpaginated_listed_taxa = set_scopes(@list, observable_listed_taxa_query, @filter_taxon)
-    else
-      unpaginated_listed_taxa = set_scopes(@list, listed_taxa_query, @filter_taxon)
+    main_list = build_main_query(@list, @filter_taxon, listed_taxa_query, observable_listed_taxa_query)
+
+    if place_based_project_list?(@list)
+      project_based_list = main_list.to_a
+      supplemental_list = set_scopes(@list, @filter_taxon, observable_listed_taxa_query)
+      supplemental_list.each do |listed_taxon|
+        project_based_list.push(listed_taxon) unless main_list.detect { |main_list_lt| main_list_lt.taxon_id.to_s == listed_taxon.taxon_id.to_s }
+      end
+      main_list = project_based_list
+      @total_listed_taxa = main_list.count
+      @total_observed_taxa = main_list.count do |lt| 
+        lt.last_observation
+      end
+      @iconic_taxon_counts = get_iconic_taxon_counts_for_place_based_project(main_list)
     end
-    @listed_taxa ||= unpaginated_listed_taxa.paginate(@find_options) 
+
+    # default_checklist_query = build_query(@list, observable_listed_taxa_query, @filter_taxon)
+    @listed_taxa ||= main_list.paginate(@find_options) 
 
     respond_to do |format|
       format.html do
@@ -51,13 +61,13 @@ module Shared::ListsModule
 
 
         @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id(@listed_taxa, @iconic_taxa, @taxa)
-        @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa, unpaginated_listed_taxa)
-        @total_listed_taxa ||= @listed_taxa.count 
+        @iconic_taxon_counts ||= get_iconic_taxon_counts(@list, @iconic_taxa, main_list)
+        @total_listed_taxa ||= @listed_taxa.count
         @total_observed_taxa ||= @listed_taxa.confirmed.count
         @view = PHOTO_VIEW unless LIST_VIEWS.include?(@view)
 
         # preload all primary listed taxa. Would be nicer to do this in the
-        # CheckListsController, but it needs to happen after set_scopes
+        # CheckListsController, but it needs to happen after build_query
         if @list.is_a?(CheckList)
           primary_listed_taxa = @listed_taxa.select(&:primary_listing)
           non_primary_listed_taxa = @listed_taxa - primary_listed_taxa
@@ -390,6 +400,16 @@ private
       [iconic_taxon, counts[iconic_taxon.id.to_s] || 0]
     end
   end
+
+  def get_iconic_taxon_counts_for_place_based_project(main_list)
+    iconic_taxa = Taxon::ICONIC_TAXA
+    iconic_taxa.map do |iconic_taxon|
+      number_found = main_list.count do |lt| 
+        lt.taxon.iconic_taxon.id.to_s == iconic_taxon.id.to_s
+      end
+      [iconic_taxon, number_found]
+    end
+  end
   
   def load_list #before_filter
     @list = List.find_by_id(params[:id].to_i)
@@ -435,7 +455,17 @@ private
     set_options_order(find_options)
   end
 
-  def set_scopes(list, unpaginated_listed_taxa, filter_taxon)
+  def build_main_query(list, filter_taxon, listed_taxa_query, observable_listed_taxa_query)
+    if default_checklist?(list)
+      main_query = set_scopes(list, filter_taxon, observable_listed_taxa_query)
+    elsif place_based_project_list?(list)
+      main_query = set_scopes(list, filter_taxon, listed_taxa_query)
+    else
+      main_query = set_scopes(list, filter_taxon, listed_taxa_query)
+    end
+    main_query
+  end
+  def set_scopes(list, filter_taxon, unpaginated_listed_taxa)
     unpaginated_listed_taxa = apply_list_scopes(list, unpaginated_listed_taxa, filter_taxon)
     unpaginated_listed_taxa = apply_checklist_scopes(list, unpaginated_listed_taxa) if list.is_a?(CheckList)
     unpaginated_listed_taxa
@@ -626,5 +656,8 @@ private
   end
   def place_based_project_list?(list)
     list.type == "ProjectList" && list.project.show_from_place
+  end
+  def default_checklist?(list)
+    list.type=="CheckList" && list.is_default?
   end
 end
