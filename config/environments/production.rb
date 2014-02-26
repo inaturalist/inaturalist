@@ -34,7 +34,6 @@ Inaturalist::Application.configure do
   config.action_mailer.default_url_options = { :host => URI.parse(CONFIG.site_url).host }
   smtp_config_path = File.open("#{Rails.root}/config/smtp.yml")
   ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path).symbolize_keys
-  Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default :charset => "utf-8"
