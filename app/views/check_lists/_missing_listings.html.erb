@@ -31,7 +31,9 @@
   <input type="hidden" name= 'find_missing_listings' value="true">
 </form>
 
-<% unless missing_listings.blank? -%>
+<% if missing_listings.blank? -%>
+  <div class="nocontent"><%=t :no_missing_listings %></div>
+<% else %>
   <h4><%=t :missing_listings %></h4>
   <ul class="plain taxon_links">
     <% missing_listings.each do |missing_listing| %>
