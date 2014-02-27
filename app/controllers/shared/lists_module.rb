@@ -43,21 +43,23 @@ module Shared::ListsModule
       end
 
       project_based_list = main_list.to_a
-      supplemental_list = set_scopes(@list, @filter_taxon, observable_listed_taxa_query)
-      supplemental_list.each do |listed_taxon|
-        project_based_list.push(listed_taxon) unless main_list.detect { |main_list_lt| 
-          if acceptable_taxa_from_list
-            main_list_lt.taxon_id.to_s == listed_taxon.taxon_id.to_s  || !acceptable_taxa_from_list.include?(listed_taxon.taxon_id.to_i)
-          else
-            main_list_lt.taxon_id.to_s == listed_taxon.taxon_id.to_s 
-          end
-        }
+      unless @observed == 't' #don't add any listed taxa if 
+        supplemental_list = set_scopes(@list, @filter_taxon, observable_listed_taxa_query)
+        supplemental_list.each do |listed_taxon|
+          project_based_list.push(listed_taxon) unless main_list.detect { |main_list_lt| 
+            if acceptable_taxa_from_list
+              main_list_lt.taxon_id.to_s == listed_taxon.taxon_id.to_s  || !acceptable_taxa_from_list.include?(listed_taxon.taxon_id.to_i)
+            else
+              main_list_lt.taxon_id.to_s == listed_taxon.taxon_id.to_s 
+            end
+          }
+        end
       end
       main_list = project_based_list 
 
       @total_listed_taxa = main_list.count
       @total_observed_taxa = main_list.count do |lt| 
-        lt.last_observation
+        lt.last_observation && lt.list.type == "ProjectList"
       end
       @iconic_taxon_counts = get_iconic_taxon_counts_for_place_based_project(main_list)
     end
