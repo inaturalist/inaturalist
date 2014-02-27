@@ -499,7 +499,7 @@ private
     end
     
     if filter_by_iconic_taxon? && (params[:taxonomic_status] != "all")
-      apply_iconic_taxon_and_taxonomic_status_filters(unpaginated_listed_taxa)
+      unpaginated_listed_taxa = apply_iconic_taxon_and_taxonomic_status_filters(unpaginated_listed_taxa)
     elsif filter_by_iconic_taxon?
       unpaginated_listed_taxa = apply_iconic_taxon_filter(unpaginated_listed_taxa)
     elsif params[:taxonomic_status] != "all"
@@ -537,8 +537,8 @@ private
 
   def apply_iconic_taxon_filter(unpaginated_listed_taxa)
     if filter_by_iconic_taxon?
-      iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
-      unpaginated_listed_taxa = unpaginated_listed_taxa.filter_by_iconic_taxon(iconic_taxon_id)
+      @iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
+      unpaginated_listed_taxa = unpaginated_listed_taxa.filter_by_iconic_taxon(@iconic_taxon_id)
     end
     unpaginated_listed_taxa
   end
@@ -558,7 +558,7 @@ private
   end
 
   def apply_iconic_taxon_and_taxonomic_status_filters(unpaginated_listed_taxa)
-    iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
+    @iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
     if filter_by_param?(params[:taxonomic_status])
       @taxonomic_status = params[:taxonomic_status]
       unless @taxonomic_status=="all"
@@ -568,7 +568,7 @@ private
       @taxonomic_status = "active"
       taxonomic_status_for_scope = params["taxonomic_status"] == "active"
     end
-    unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status_and_iconic_taxon(taxonomic_status_for_scope, iconic_taxon_id)
+    unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status_and_iconic_taxon(taxonomic_status_for_scope, @iconic_taxon_id)
   end
 
   def apply_checklist_scopes(list, unpaginated_listed_taxa)
