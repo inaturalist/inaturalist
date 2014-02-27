@@ -40,6 +40,10 @@ end
 
 @opts = opts
 
+# Make a unique dir to put our files
+@work_path = Dir.mktmpdir
+FileUtils.mkdir_p @work_path, :mode => 0755
+
 @place = Place.find_by_id(opts[:place].to_i) || Place.find_by_name(opts[:place])
 puts "Found place: #{@place}" if opts[:debug]
 @taxon = Taxon.find_by_id(opts[:taxon].to_i) || Taxon.find_by_name(opts[:taxon])
@@ -77,7 +81,7 @@ end
 
 def make_metadata
   m = Metadata.new(@opts)
-  tmp_path = File.join(Dir::tmpdir, "metadata.eml.xml")
+  tmp_path = File.join(@work_path, "metadata.eml.xml")
   open(tmp_path, 'w') do |f|
     f << m.render(:file => @opts[:metadata])
   end
@@ -93,7 +97,7 @@ def make_descriptor
     }]
   end
   d = Descriptor.new(:core => @opts[:core], :extensions => extensions)
-  tmp_path = File.join(Dir::tmpdir, "meta.xml")
+  tmp_path = File.join(@work_path, "meta.xml")
   open(tmp_path, 'w') do |f|
     f << d.render(:file => @opts[:descriptor])
   end
@@ -114,7 +118,7 @@ end
 def make_occurrence_data
   headers = DarwinCore::Occurrence::TERM_NAMES
   fname = "observations.csv"
-  tmp_path = File.join(Dir::tmpdir, fname)
+  tmp_path = File.join(@work_path, fname)
   fake_view = FakeView.new
   
   find_options = {
@@ -159,7 +163,7 @@ end
 def make_taxon_data
   headers = DarwinCore::Taxon::TERM_NAMES
   fname = "taxa.csv"
-  tmp_path = File.join(Dir::tmpdir, fname)
+  tmp_path = File.join(@work_path, fname)
   licenses = @opts[:photo_licenses].map do |license_code|
     Photo.license_number_for_code(license_code)
   end
@@ -200,7 +204,7 @@ end
 def make_eol_media_data
   headers = EolMedia::TERM_NAMES
   fname = "media.csv"
-  tmp_path = File.join(Dir::tmpdir, fname)
+  tmp_path = File.join(@work_path, fname)
   licenses = @opts[:photo_licenses].map do |license_code|
     Photo.license_number_for_code(license_code)
   end
@@ -244,9 +248,9 @@ end
 
 def make_archive(*args)
   fname = "dwca.zip"
-  tmp_path = File.join(Dir::tmpdir, fname)
+  tmp_path = File.join(@work_path, fname)
   fnames = args.map{|f| File.basename(f)}
-  system "cd #{Dir::tmpdir} && zip -D #{tmp_path} #{fnames.join(' ')}"
+  system "cd #{@work_path} && zip -D #{tmp_path} #{fnames.join(' ')}"
   tmp_path
 end
 
