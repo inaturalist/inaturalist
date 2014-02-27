@@ -43,7 +43,7 @@ module Shared::ListsModule
       end
 
       project_based_list = main_list.to_a
-      unless @observed == 't' #don't add any listed taxa if 
+      unless @observed == 't' #don't add any listed taxa if not observed
         supplemental_list = set_scopes(@list, @filter_taxon, observable_listed_taxa_query)
         supplemental_list.each do |listed_taxon|
           project_based_list.push(listed_taxon) unless main_list.detect { |main_list_lt| 
@@ -53,6 +53,16 @@ module Shared::ListsModule
               main_list_lt.taxon_id.to_s == listed_taxon.taxon_id.to_s 
             end
           }
+        end
+        project_based_list = project_based_list.sort!{|a, b| b.observations_count <=> a.observations_count }
+        if @rank == "leaves"
+            project_based_list = project_based_list.inject(new_list = project_based_list) do |new_list, lt| 
+            #remove all ancestors appearing on the list
+            new_list.reject do |possible_ancestor| 
+              lt.taxon_ancestor_ids.include?(possible_ancestor.taxon_id.to_s)
+            end
+            new_list
+          end
         end
       end
       main_list = project_based_list 
