@@ -141,6 +141,7 @@ Inaturalist::Application.routes.draw do
       get :upload
       post :photo
       get :stats
+      get :taxa
       get :taxon_stats
       get :user_stats
       get :export

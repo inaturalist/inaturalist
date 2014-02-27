@@ -580,6 +580,10 @@ class Taxon < ActiveRecord::Base
     TaxonName.choose_common_name(taxon_names)
   end
 
+  def common_name_string
+    common_name.try(:name)
+  end
+
   def name_with_rank
     if rank_level && rank_level < SPECIES_LEVEL
       r = case rank
