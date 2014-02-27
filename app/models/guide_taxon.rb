@@ -135,7 +135,10 @@ class GuideTaxon < ActiveRecord::Base
     name = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))
     self.name ||= name
     common_names = page.search('commonName')
-    lang = (options[:locale] || guide.user.locale || I18n.locale).to_s.split('-').first
+    locale = options[:locale]
+    locale = guide.user.locale if locale.blank?
+    locale = I18n.locale if locale.blank?
+    lang = locale.to_s.split('-').first
     common_name = common_names.detect{|cn| cn['lang'] == lang && cn['eol_preferred'] == "true"}
     common_name ||= common_names.detect{|cn| cn['lang'] == lang}
     common_name ||= common_names.detect{|cn| cn['eol_preferred'] == "true"}
