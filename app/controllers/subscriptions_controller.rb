@@ -34,7 +34,8 @@ class SubscriptionsController < ApplicationController
           :resource_id => params[:resource_id]})
       end
     end
-    @resource ||= @subscription.resource if @subscription
+    return render_404 unless @subscription
+    @resource ||= @subscription.resource
     
     if @subscription && @subscription.user_id != current_user.id
       flash[:error] = "You don't have permission to do that"

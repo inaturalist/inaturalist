@@ -83,6 +83,17 @@ shared_examples_for "an IdentificationsController" do
       delete :destroy, :format => :json, :id => identification.id
       Identification.find_by_id(identification.id).should be_blank
     end
+
+    it "should work if there's a pre-existing ident" do
+      i = Identification.make!(:user => user, :observation => identification.observation)
+      i.should be_current
+      identification.reload
+      identification.should_not be_current
+      delete :destroy, :format => :json, :id => i.id
+      Identification.find_by_id(i.id).should be_blank
+      identification.reload
+      identification.should be_current
+    end
   end
 end
 

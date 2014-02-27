@@ -413,9 +413,10 @@
   }
 
   $.fn.simpleTaxonSelector.taxonNameMatchesLocale = function(taxonName) {
-    if (taxonName.lexicon.toLowerCase() == "scientific names") { return true }
-    if (I18n.locale == 'en' && taxonName.lexicon == 'English') { return true }
-    if (I18n.locale.match(/^es/) && taxonName.lexicon == "Spanish") { return true }
+    var lexicon = taxonName.lexicon || ""
+    if (lexicon.toLowerCase() == "scientific names") { return true }
+    if (I18n.locale == 'en' && lexicon == 'English') { return true }
+    if (I18n.locale.match(/^es/) && lexicon == "Spanish") { return true }
     return false
   }
 

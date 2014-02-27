@@ -199,11 +199,11 @@ class PostsController < ApplicationController
     if @post
       @display_user ||= @post.user if @post
       @parent ||= @post.parent if @post
-    elsif logged_in?
+    elsif logged_in? && current_user.login == params[:login]
       @display_user ||= current_user
       @parent ||= current_user
     end
-    render_404 && return if @parent.blank?
+    return render_404 if @parent.blank?
     if @parent.is_a?(Project)
       @parent_display_name = @parent.title 
       @parent_slug = @parent.slug

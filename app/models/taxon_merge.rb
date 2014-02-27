@@ -14,7 +14,7 @@ class TaxonMerge < TaxonChange
   end
 
   def output_taxa
-    [taxon]
+    [taxon].compact
   end
 
   def output_taxon
