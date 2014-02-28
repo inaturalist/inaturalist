@@ -27,6 +27,8 @@ module Shared::ListsModule
       @other_check_lists = set_other_check_lists(@observable_list, @place)
     end
 
+    @observed = with_observations? ? 't' : 'f'
+
     if default_checklist?(@list) 
       listed_taxa = handle_default_checklist_setup(@list, @q, @search_taxon_ids) 
       main_list = build_main_query(@list, @filter_taxon, listed_taxa)
