@@ -103,6 +103,8 @@ class List < ActiveRecord::Base
     "refresh_list_#{id}"
   end
   
+  #For lists, returns first_observation (array of [date, observation_id])
+  #where date represents the first date observed (e.g. not first date added to iNat)
   def cache_columns_query_for(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
