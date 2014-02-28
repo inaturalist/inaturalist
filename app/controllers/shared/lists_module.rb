@@ -55,13 +55,15 @@ module Shared::ListsModule
           }
         end
         project_based_list = project_based_list.sort!{|a, b| b.observations_count <=> a.observations_count }
-        if @rank == "leaves"
-            project_based_list = project_based_list.inject(new_list = project_based_list) do |new_list, lt| 
-            #remove all ancestors appearing on the list
-            new_list.reject do |possible_ancestor| 
-              lt.taxon_ancestor_ids.include?(possible_ancestor.taxon_id.to_s)
-            end
-            new_list
+      end
+      if (@rank == "leaves" && @observed != 'f')
+        ancestors_for_project_based_list = project_based_list.map{ |lt|
+          lt.taxon_ancestor_ids.split('/')
+        }.flatten.uniq
+        project_based_list = project_based_list.reject do |lt| 
+          found = false
+          if !found
+            found = ancestors_for_project_based_list.include?(lt.taxon_id.to_s)
           end
         end
       end
