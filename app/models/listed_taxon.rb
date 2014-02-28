@@ -438,14 +438,24 @@ class ListedTaxon < ActiveRecord::Base
   def cache_columns
     return unless (list && sql = list.cache_columns_query_for(self))
     last_observations = []
-    first_observation_ids = []
+    first_observation_info = [] #array of observation_ids when checklist, otherwise array of [date, observation_id]
     counts = {}
     ListedTaxon.connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
       counts[row['key']] = row['count'].to_i
       last_observations << (row['last_observation'].blank? ? nil : row['last_observation'].split(','))
-      first_observation_ids << row['first_observation_id']
+      if list.is_a?(CheckList) #process the observation_ids representing first addition to iNat
+        first_observation_info << row['first_observation_id'] 
+      else #process arrays of [date,observation_id] where date represents first date observed
+        first_observation_info << (row['first_observation'].blank? ? nil : row['first_observation'].split(',')) 
+      end
     end
-    first_observation_id = first_observation_ids.compact.sort[0]
+    if list.is_a?(CheckList) #pull out the smallest observation_id (e.g. earliest added to iNat)
+      first_observation_id = first_observation_info.compact.sort[0]
+    else #sort arrays by date and pull out observation_id from first one observed based on date
+      if first_observation = first_observation_info.compact.compact.sort_by(&:first).first
+        first_observation_id = first_observation[1]
+      end
+    end
     if last_observation = last_observations.compact.compact.sort_by(&:first).last
       last_observation_id = last_observation[1]
     end

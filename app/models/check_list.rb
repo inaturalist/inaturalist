@@ -135,6 +135,7 @@ class CheckList < List
     end
   end
   
+  #For CheckLists, returns first_observation_id which represents the first one added to the site (e.g. not first date observed)
   def cache_columns_query_for(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
