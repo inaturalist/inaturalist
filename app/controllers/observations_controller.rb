@@ -1505,7 +1505,7 @@ class ObservationsController < ApplicationController
   def taxa
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
     oscope = Observation.query(search_params).scoped
-    oscope = scope.where("1 = 2") unless stats_adequately_scoped?
+    oscope = oscope.where("1 = 2") unless stats_adequately_scoped?
     @taxa = Taxon.find_by_sql("SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id")
     respond_to do |format|
       format.html do
