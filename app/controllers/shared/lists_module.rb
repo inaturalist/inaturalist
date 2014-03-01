@@ -47,6 +47,7 @@ module Shared::ListsModule
           aggregator["#{listed_taxon['taxon_id']}"] = listed_taxon['id'] if (aggregator["#{listed_taxon['taxon_id']}"].nil?) && (listed_taxon['last_observation_id'].nil? || (listed_taxon['last_observation_id'] && (!results.find{|lt| lt['taxon_id']==listed_taxon['taxon_id'] && lt['last_observation_id'] && lt['place_id'].nil?}) )) 
           aggregator
         end
+        @total_observed_taxa = 0
       else
         # kicks out duplicate listed_taxa 
         listed_taxa_hash = results.inject({}) do |aggregator, listed_taxon|
@@ -63,7 +64,7 @@ module Shared::ListsModule
       @listed_taxa = main_list.paginate(@find_options) 
 
       @total_listed_taxa =  main_list.count
-      @total_observed_taxa = main_list.confirmed.count
+      @total_observed_taxa ||= main_list.confirmed.count
       @iconic_taxon_counts = get_iconic_taxon_counts_for_place_based_project(@list, @iconic_taxa, @listed_taxa)
     else
       listed_taxa_query = ListedTaxon.filter_by_list(@list.id)
