@@ -73,6 +73,7 @@ class ListedTaxon < ActiveRecord::Base
 
   scope :unconfirmed, where("last_observation_id IS NULL")
   scope :confirmed, where("last_observation_id IS NOT NULL")
+  scope :confirmed_and_not_place_based, where("last_observation_id IS NOT NULL AND place_id IS NULL")
   scope :with_establishment_means, lambda{|establishment_means|
     means = if establishment_means == "native"
       NATIVE_EQUIVALENTS
