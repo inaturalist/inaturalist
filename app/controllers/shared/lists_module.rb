@@ -27,29 +27,38 @@ module Shared::ListsModule
       @other_check_lists = set_other_check_lists(@observable_list, @place)
     end
 
-    @observed = 't' if with_observations?
 
     if default_checklist?(@list) 
       listed_taxa = handle_default_checklist_setup(@list, @q, @search_taxon_ids) 
-      main_list = build_main_query(@list, @filter_taxon, listed_taxa)
-    elsif place_based_project_list?(@list) && @observed != 't'
+      main_list = set_scopes(@list, @filter_taxon, listed_taxa)
+    elsif place_based_project_list?(@list) && !with_observations?
       taxon_for_rule_filter = Taxon.find(@list.project.project_observation_rules.find{|por| por.operator == "in_taxon?"}.operand_id) rescue nil
       acceptable_taxa_from_list = taxon_for_rule_filter ? (taxon_for_rule_filter.descendant_ids + [taxon_for_rule_filter.id]) : nil
 
+      @ignore_observed_filter_for_place = true if params[:observed] == 'f'
       listed_taxa_with_duplicates = set_scopes_for_place_based_project_list(@list, @q, @filter_taxon, @search_taxon_ids, acceptable_taxa_from_list) 
 
-      query = listed_taxa_with_duplicates.select([:id, :taxon_id, :place_id])
+      query = listed_taxa_with_duplicates.select([:id, :taxon_id, :place_id, :last_observation_id])
       results = ActiveRecord::Base.connection.select_all(query)
 
-      listed_taxa_hash = results.inject({}) do |aggregator, listed_taxon|
-        aggregator["#{listed_taxon['taxon_id']}"] = listed_taxon['id'] if (aggregator["#{listed_taxon['taxon_id']}"].nil? || listed_taxon['place_id'].nil?)
-        aggregator
+      if params[:observed] == 'f'
+        # kicks out duplicate listed_taxa 
+        listed_taxa_hash = results.inject({}) do |aggregator, listed_taxon|
+          aggregator["#{listed_taxon['taxon_id']}"] = listed_taxon['id'] if (aggregator["#{listed_taxon['taxon_id']}"].nil?) && (listed_taxon['last_observation_id'].nil? || (listed_taxon['last_observation_id'] && (!results.find{|lt| lt['taxon_id']==listed_taxon['taxon_id'] && lt['last_observation_id'] && lt['place_id'].nil?}) )) 
+          aggregator
+        end
+      else
+        # kicks out duplicate listed_taxa 
+        listed_taxa_hash = results.inject({}) do |aggregator, listed_taxon|
+          aggregator["#{listed_taxon['taxon_id']}"] = listed_taxon['id'] if (aggregator["#{listed_taxon['taxon_id']}"].nil? || listed_taxon['place_id'].nil?)
+          aggregator
+        end
       end
       listed_taxa_ids = listed_taxa_hash.values.map(&:to_i)
 
       listed_taxa = listed_taxa_with_duplicates.where("listed_taxa.id IN (?)", listed_taxa_ids)
 
-      main_list = build_main_query(@list, @filter_taxon, listed_taxa)
+      main_list = set_scopes(@list, @filter_taxon, listed_taxa)
 
       @listed_taxa = main_list.paginate(@find_options) 
 
@@ -58,10 +67,8 @@ module Shared::ListsModule
       @iconic_taxon_counts = get_iconic_taxon_counts_for_place_based_project(@list, @iconic_taxa, @listed_taxa)
     else
       listed_taxa_query = ListedTaxon.filter_by_list(@list.id)
-      main_list = build_main_query(@list, @filter_taxon, listed_taxa_query)
+      main_list = set_scopes(@list, @filter_taxon, listed_taxa_query)
     end
-
-
 
     @listed_taxa ||= main_list.paginate(@find_options) 
 
@@ -399,6 +406,17 @@ private
     unpaginated_listed_taxa
   end
 
+  def set_scopes_for_place_based_project_list_with_observed_from_place(list, q, filter_taxon, search_taxon_ids, acceptable_taxa_from_list)
+    unpaginated_listed_taxa = ListedTaxon.from_place_or_list_with_observed_from_place(list.project.place_id, list.id)
+    if acceptable_taxa_from_list
+      unpaginated_listed_taxa = unpaginated_listed_taxa.acceptable_taxa(acceptable_taxa_from_list)
+    end
+    if q
+      unpaginated_listed_taxa = unpaginated_listed_taxa.filter_by_taxa(search_taxon_ids)
+    end
+    unpaginated_listed_taxa
+  end
+
   def handle_default_checklist_setup(list, q, search_taxon_ids)
     unpaginated_listed_taxa = ListedTaxon.find_listed_taxa_from_default_list(list.place_id)
     if q
@@ -481,9 +499,6 @@ private
     set_options_order(find_options)
   end
 
-  def build_main_query(list, filter_taxon, listed_taxa_query)
-    main_query = set_scopes(list, filter_taxon, listed_taxa_query)
-  end
   def set_scopes(list, filter_taxon, unpaginated_listed_taxa)
     unpaginated_listed_taxa = apply_list_scopes(list, unpaginated_listed_taxa, filter_taxon)
     unpaginated_listed_taxa = apply_checklist_scopes(list, unpaginated_listed_taxa) if list.is_a?(CheckList)
@@ -512,7 +527,9 @@ private
       unpaginated_listed_taxa = unpaginated_listed_taxa.confirmed
     elsif with_no_observations?
       @observed = 'f'
-      unpaginated_listed_taxa = unpaginated_listed_taxa.unconfirmed
+      unless (@ignore_observed_filter_for_place)
+        unpaginated_listed_taxa = unpaginated_listed_taxa.unconfirmed
+      end
     end
 
     if filter_by_param?(params[:rank])

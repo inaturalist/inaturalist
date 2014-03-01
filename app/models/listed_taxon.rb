@@ -85,6 +85,7 @@ class ListedTaxon < ActiveRecord::Base
   }
 
   scope :from_place_or_list, lambda{|place_id, list_id| where("(place_id = ? OR list_id = ?)", place_id, list_id)}
+  scope :from_place_or_list_with_observed_from_place, lambda{|place_id, list_id| where("((place_id = ?) OR (list_id = ? AND last_observation_id IS NULL))", place_id, list_id)}
 
   scope :acceptable_taxa, lambda{|taxa_ids| where("listed_taxa.taxon_id IN (?)", taxa_ids)}
 
