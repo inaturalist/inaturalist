@@ -81,15 +81,12 @@
               "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'refreshlink')", 
               :id => "refreshlink" %>
           </li>
-          <li>
-            <%= link_to t(:find_missing_listings), {find_missing_listings: true, missing_filter_taxon: @list.taxon_id} %>
-          </li>
         </ul>
       <% elsif list.is_a?(CheckList) %>
         <% if logged_in? && current_user.is_admin? -%>
           <div class="admin">
             <ul>
-              <li> </li>
+              <li>&nbsp;</li>
               <% if list.is_default? %>
                 <li>
                   <%- msg = t(:this_will_add_listed_taxa) -%>
