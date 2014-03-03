@@ -27,6 +27,8 @@ class Identification < ActiveRecord::Base
                 :update_obs_stats,
                 :expire_caches
   
+  include Shared::TouchesObservationModule
+  
   attr_accessor :skip_observation
   attr_accessor :html
   attr_accessor :captive_flag
