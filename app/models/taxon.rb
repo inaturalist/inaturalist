@@ -223,7 +223,7 @@ class Taxon < ActiveRecord::Base
     [const_get("IUCN_#{status_name.upcase}"), status_name]
   }]
   IUCN_STATUSES_SELECT = IUCN_STATUS_NAMES.map do |status_name|
-    ["#{status_name.humanize} (#{IUCN_STATUS_CODES[status_name]})", const_get("IUCN_#{status_name.upcase}")]
+    ["#{I18n.t(status_name, :default => status_name).humanize} (#{IUCN_STATUS_CODES[status_name]})", const_get("IUCN_#{status_name.upcase}")]
   end
   IUCN_STATUS_VALUES = Hash[IUCN_STATUS_NAMES.map {|status_name|
     [status_name, const_get("IUCN_#{status_name.upcase}")]

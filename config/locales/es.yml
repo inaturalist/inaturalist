@@ -59,7 +59,15 @@ es:
   activate_user: "Activar usuario"
   active: activa
   activerecord: 
-    attributes: 
+    attributes:
+      conservation_status:
+        status: Estatus
+        description : Descripción
+        authority: Autoridad
+        place_id: Lugar
+        url: URL
+        geoprivacy: Geoprivacidad
+        iucn: Equivalente a IUCN
       flag: 
         flag: Marca
         reason: Razón
@@ -164,6 +172,7 @@ es:
   add_comma_separated_tags: Agregar etiquetas separadas por comas
   add_comment: "Agregar un comentario"
   add_common_names_for: "Agregar nombres comunes a taxones existentes"
+  add_conservation_status: Agrega estado de conservación
   add_countries: "Agregar países"
   add_custom_project_fields: "Agregar campos de proyecto personalizados"
   add_description: "Agregar %{description_name}"
@@ -665,6 +674,14 @@ es:
   connecting_to_facebook: "Conectándose a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Conectar su cuenta de %{site_name} con cuentas en otros sitios le permitirá ingresar a %{site_name} usando sus credenciales de esos sitios."
   conservation_status: "Categoría de riesgo"
+  conservation_status_descriptions:
+    status: Estatus, clasificación, etc. Si existe una abreviatura corta como E o CR, por favor úsela, de lo contrario, usa el estatus completo, ej. En peligro de extinción.
+    description: Descripción muy corta del porque esta en la lista.
+    authority: Es la organizacivn que declara el estatus. Puedes saltarte esta parte si deseas aparecer tu como la autoridad.
+    place: Lugar en el cual el estatus esta restringido.
+    url: URL que describa este estaus.
+    geoprivacy: Geoprivacidad predeterminada para esta especie o grupo.
+    iucn: Código equivalente a la Lista roja de IUCN.
   conservation_summary: "conservación resumen"
   contain_all_descendants?: "¿Esta lista de verificación contiene todos los descendientes de este taxón que se producen aquí?"
   content_types: Tipos de contenido
@@ -700,6 +717,7 @@ es:
   couldnt_log_you_in_x: "No pude autenticarlo a usted como '%{x}'"
   countries: Países
   country_stats: "Estadísticas de país para las observaciones creadas"
+  cover: Portada
   create: Crear
   create_a_guide: "Crear una guía"
   create_a_list: "Crear una lista"
@@ -1317,6 +1335,7 @@ es:
   if_your_project_is: Si tu proyecto es acerca de un lugar especifico, añade las coordenadas seleccionando el enlace del mapa o añadelas manualmente.
   if_your_search_comes_up: "Si su búsqueda regresa vacía, debería ver algunas cajas de búsqueda para repetir la búsqueda a través de nuestros proveedores externos de nombres"
   ignore: Ignorar
+  image_must_be_exactly: del proyecto debe ser exactamente de 950px ancho y a lo más de 400px de altura
   import: Importar
   import_all_photos_as_observations: "Importar todas las fotos como observaciones"
   import_as_an_observation: "Importar como una observación"
@@ -2312,6 +2331,7 @@ es:
   remove: Quitar
   remove_boundary: Quitar límites
   remove_from: Quitar de
+  remove_conservation_status: Eliminar estado de conservación
   remove_curator: Quitar curador
   remove_curator_role: "Quitar rol de curador"
   remove_curator_status: "Quitar estatus de curador"
@@ -2867,6 +2887,7 @@ es:
   type_a_name_and_click: Pon el nombre de la especie
   type_a_place_name_and_click_search: Pon el nombre de un lugar
   type_a_taxon_name: Nombre de la especie o grupo
+  type_authority: Pon el nombre de la autoridad...
   type_date_time_or_use_the_calendar: Pon la fecha/hora o usa el calendario
   type_one: Por cada línea pon el nombre de una especie.
   type_place_name: "Digite el nombre del lugar"

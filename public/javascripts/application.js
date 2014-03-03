@@ -108,7 +108,7 @@ function loadingClickForButton(options) {
   options = options || {}
   $(this).data('original-value', $(this).val())
   var txt = $.trim($(this).attr('data-loading-click'))
-  if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Saving...' }
+  if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = I18n.t('saving') }
   $(this).data('original-value', $(this).val())
   $(this).addClass('disabled description').val(txt)
   var link = this

@@ -127,6 +127,7 @@ en:
   add_comma_separated_tags: "Add comma-separated tags"
   add_comment: Add a comment
   add_common_names_for: add common names for existing taxa
+  add_conservation_status: add conservation status
   add_countries: Add Countries
   add_custom_project_fields: Add custom project fields
   add_edit_more_fields: Add/edit more fields
@@ -613,6 +614,14 @@ en:
   connecting_to_facebook: "Connecting to Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecting your %{site_name} account to accounts on other sites will allow you to login to %{site_name} using your credentials from those sites."
   conservation_status: Conservation Status
+  conservation_status_descriptions:
+    status: Status code, rank, etc. If a short code like E or CR exists, please use that, but if not, please use the full status, e.g. endangered or critically endangered.
+    description: Brief description of why this was listed.
+    authority: Organization that declared this status. You can skip this if *you* want to be listed as the authority.
+    place: Place to which this status is restricted.
+    url: URL for a page describing this status.
+    geoprivacy: Default geoprivacy for observations of this taxon
+    iucn: Equivalent IUCN Red List code
   conservation_summary: Conservation Summary
   contain_all_descendants?: Does this check list contain all the descendants of this taxon that occur here?
   contest: contest
@@ -647,6 +656,7 @@ en:
   couldnt_log_you_in_x: "Couldn't log you in as '%{x}'"
   countries: Countries
   country_stats: Country stats for observations created on
+  cover: Cover
   create: Create
   create_a_guide: Create a guide
   create_a_list: Create a list
@@ -1109,6 +1119,7 @@ en:
   if_your_project_is: If your project is about a particular place, set the coordinates by clicking the map or entering them manually.
   if_your_search_comes_up: "If your search comes up empty, you should see some search boxes to repeat the search through our external name providers:"
   ignore: ignore
+  image_must_be_exactly: image must be exactly 950px wide and at most 400px tall
   import: Import
   import_all_photos_as_observations: Import all photos as observations 
   import_as_an_observation: Import as an observation
@@ -2044,6 +2055,7 @@ en:
   remove_all_tags: Remove all tags
   remove_boundary: Remove boundary
   remove_comma_separated_tags: "Remove comma-separated tags"
+  remove_conservation_status: remove conservation status
   remove_from: Remove from
   remove_curator: Remove curator
   remove_curator_role: Remove curator role
@@ -2586,6 +2598,7 @@ en:
   type: Type
   type_a_name_and_click: Type a name and click LOOKUP
   type_a_place_name_and_click_search: Type a place name and click SEARCH to search
+  type_authority: Type authority...
   type_date_time_or_use_the_calendar: Type date/time or use the calendar
   type_place_name: Type place name
   type_project_name: Type project name
@@ -3747,6 +3760,14 @@ en:
     errors:
       <<: *errors
     attributes:
+      conservation_status:
+        status: Status
+        description : Description
+        authority: Authority
+        place_id: Place
+        url: URL
+        geoprivacy: Geoprivacy
+        iucn: IUCN Equivalent
       guide:
         source_url: Source URL
         published_at: Publication
