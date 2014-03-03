@@ -81,14 +81,12 @@
               "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'refreshlink')", 
               :id => "refreshlink" %>
           </li>
-          <li>
-            <%= link_to t(:find_missing_listings), {find_missing_listings: true, missing_filter_taxon: @list.taxon_id} %>
-          </li>
         </ul>
-      <% elsif list.is_a?(CheckList) && !list.is_default? %>
+      <% elsif list.is_a?(CheckList) %>
         <% if logged_in? && current_user.is_admin? -%>
           <div class="admin">
             <ul>
+              <li>&nbsp;</li>
               <% if list.is_default? %>
                 <li>
                   <%- msg = t(:this_will_add_listed_taxa) -%>
@@ -98,8 +96,8 @@
                 </li>
               <% end %>
               <li>
-                <%- msg = t(:this_will_re_apply_all_list_rules).gsub(/\s+/m, " ") -%>
-                <%= link_to_function t(:re_apply_list_rules),
+                <%- msg = t(:this_will_refresh_listed_taxa).gsub(/\s+/m, " ") -%>
+                <%= link_to_function t(:refresh),
                   "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_now_path(@list.id)}', #{CheckList::MAX_RELOAD_TRIES}, 'refresh_nowlink')", 
                   :id => "refresh_nowlink" %>
               </li>
