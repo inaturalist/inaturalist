@@ -1,0 +1,37 @@
+:ruby
+  truncate_length ||= nil
+  @parent ||= post.parent
+  post_url = flexible_post_path(post)
+.post{:id => "post-#{post.id}"}
+  %h3.title.media-heading
+    = link_to post.title, post_url
+    - if post.is_a?(Trip)
+      %span.muted
+        = surround '(', ')' do
+          =t :trip
+  .body.clear
+    - if truncate_length
+      = truncate_with_more formatted_user_text(post.body), :length => truncate_length
+    - else
+      = formatted_user_text(post.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES)
+  .meta
+    = t(:posted_on)
+    - if post.published_at
+      %span.date= l post.published_at, :format => :long
+    - else
+      %span= t(:draft)
+    = t(:by).downcase
+    - if post.user
+      = link_to user_image(post.user), post.user
+      = link_to(post.user.login, observations_by_login_path(post.user.login))
+    - else
+      deleted user
+    - if post.observations.size > 0
+      |
+      %span.count= post.observations.size
+      = t(:observations).downcase
+    |
+    %span.count= post.comments.size
+    = t(:comments).downcase
+    |
+    \#{link_to t(:leave_a_comment), post_url + "#new_comment"}

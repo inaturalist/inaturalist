@@ -31,7 +31,7 @@ class GuidePhoto < ActiveRecord::Base
   end
 
   def destroy_orphan_photo
-    Photo.delay.destroy_orphans(photo_id)
+    Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(photo_id)
     true
   end
 

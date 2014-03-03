@@ -143,7 +143,7 @@ class Sound < ActiveRecord::Base
   def self.from_observation_params(params, fieldset_index, owner)
     sounds = []
     
-    self.descendent_classes.each do |klass|
+    (self.descendent_classes || []).each do |klass|
       klass_key = klass.to_s.underscore.pluralize.to_sym
       if params[klass_key] && params[klass_key][fieldset_index.to_s]
         params[klass_key][fieldset_index.to_s].each do |sid|

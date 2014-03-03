@@ -19,5 +19,10 @@ $(document).ready(function() {
         $('#taxonchooser').parents('form:first').submit()
       }
     }
+  });
+
+  $('.taxonchooser').chooser({
+    collectionUrl: '/taxa/autocomplete.json',
+    resourceUrl: '/taxa/{{id}}.json?partial=chooser'
   })
 })

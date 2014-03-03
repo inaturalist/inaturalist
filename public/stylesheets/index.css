@@ -1003,7 +1003,6 @@ a.csvlink{background-image:url(/images/silk/table.png);}
 .simpleTaxonSelector .matches .taxon {cursor: pointer;}
 
 .taxon_links .taxon {
-  padding-left: 25px;
   padding: 2px 0 2px 25px;
   background-repeat: no-repeat;
   background-position: 0px 3px;
@@ -1368,7 +1367,7 @@ a.id_please_notice:hover{color:#584925;}
   border-right: 0 transparent; 
   overflow: hidden; 
   vertical-align: middle;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 .ui-widget-content.ui-chooser-choice { background: #eee; }
@@ -1644,3 +1643,7 @@ ul.plain {list-style:none;margin:0;padding:0}
 .dna:hover nt.c {color: #1E90FF;}
 .dna:hover nt.g {color: #73AC13;}
 
+/*! jQuery Timepicker Addon - v1.4.3 - 2013-11-30
+* http://trentrichardson.com/examples/timepicker
+* Copyright (c) 2013 Trent Richardson; Licensed MIT */
+.ui-timepicker-div .ui-widget-header{margin-bottom:8px}.ui-timepicker-div dl{text-align:left}.ui-timepicker-div dl dt{float:left;clear:left;padding:0 0 0 5px}.ui-timepicker-div dl dd{margin:0 10px 10px 40%}.ui-timepicker-div td{font-size:90%}.ui-tpicker-grid-label{background:0;border:0;margin:0;padding:0}.ui-timepicker-rtl{direction:rtl}.ui-timepicker-rtl dl{text-align:right;padding:0 5px 0 0}.ui-timepicker-rtl dl dt{float:right;clear:right}.ui-timepicker-rtl dl dd{margin:0 40% 10px 10px}

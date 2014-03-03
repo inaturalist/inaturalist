@@ -560,8 +560,6 @@ module Shared::ListsModule
       @taxa ? @taxa.map(&:id) : nil,
       @iconic_taxa ? @iconic_taxa.map(&:id) : nil
     ].flatten.uniq.compact
-    TaxonName.where("taxon_id IN (?)", taxon_ids).
-      where("lexicon IN (?)", [TaxonName::LEXICONS[:SCIENTIFIC_NAMES], TaxonName.language_for_locale(I18n.locale)]).
-      group_by(&:taxon_id)
+    TaxonName.where("taxon_id IN (?)", taxon_ids).group_by(&:taxon_id)
   end
 end

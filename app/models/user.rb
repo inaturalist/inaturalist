@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
     :conditions => "identifications.user_id != observations.user_id AND identifications.current = true"
   has_many :photos, :dependent => :destroy
   has_many :posts #, :dependent => :destroy
-  has_many :journal_posts, :class_name => Post.to_s, :as => :parent, :dependent => :destroy
+  has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
   has_many :projects
@@ -378,7 +378,7 @@ class User < ActiveRecord::Base
     reject.friendships.all(:conditions => ["friend_id = ?", id]).each{|f| f.destroy}
     merge_has_many_associations(reject)
     reject.destroy
-    LifeList.delay.reload_from_observations(life_list_id)
+    LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).reload_from_observations(life_list_id)
   end
 
   def set_locale

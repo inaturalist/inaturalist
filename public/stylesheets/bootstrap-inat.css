@@ -26,7 +26,8 @@ body {
 }
 * html .clear { height: 1%; }
 .clear { display: block; }
-.bootstrap input[type="text"].latLonSelectorInput {margin-bottom:0;}
+.bootstrap input[type="text"].latLonSelectorInput,
+.bootstrap input[type="text"].hasDatepicker {margin-bottom:0;}
 
 .bootstrap .btn.disabled.loadingclick, .bootstrap .btn.loadingclick[disabled] {
   background-image: url(/images/spinner-small.gif);
@@ -50,3 +51,13 @@ body {
 }
 .bootstrap .photoSelectorSelected .photo:nth-child(5n+5) {clear:left; margin-left:0;}
 .bootstrap .inlabel label {display:inline-block;}
+
+.bootstrap .observations h4{display:none;margin:0;}
+.bootstrap .observations .label {
+  background-color:transparent;
+  padding:0;
+  text-shadow:none;
+}
+.bootstrap .observationcontrols label {display:inline-block;}
+.item_user {float: left;margin-right: 10px;}
+#pageheader h2 {margin: 0; line-height: 1;}

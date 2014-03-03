@@ -1,0 +1,46 @@
+- content_for(:title) do
+  = t(:x_journal, :user => @parent_display_name)
+- content_for(:extracss) do
+  = stylesheet_link_tag "posts"
+  %style{:media => "screen", :type => "text/css"}
+  :css
+    #footercol .feeds {text-align: right;}
+
+.container
+  .row
+    = render :partial => "posts/header"
+  .row
+    .span8
+      #postdates.posts_by_date
+        = render :partial => 'posts_by_date'
+        - if @posts.empty?
+          %center#noposts.readable.description
+            = t(:no_post_yet)
+            - if (@parent.is_a?(Project) && @display_project.editable_by?(current_user))
+              = link_to t(:add_one), new_project_journal_post_path(@parent_slug), |
+                :id => "newpostbutton", :class => "default button"                |
+            - elsif logged_in? && current_user.login == @parent_display_name
+              = link_to t(:add_one), new_journal_post_path(@parent_slug), |
+                :class => "default button"                                |
+      = will_paginate @posts
+    .span4
+      - unless @drafts.blank?
+        .box
+          %h3= t(:drafts)
+          %ul
+            - for post in @drafts
+              %li
+                = link_to post.title, edit_post_path(post)
+                %div
+                  %span.muted= t(:created_on)
+                  %span.date= post.created_at.to_s(:long)
+      - unless @archives.blank?
+        = render :partial => 'archives'
+  #footercol.row
+    .feeds
+      = link_to("Atom",                                                          |
+        (@parent.is_a?(Project) ?                                                |
+          project_journal_path(:project_id => @parent_slug, :format => 'atom') : |
+          journal_by_login_path(:login => @parent_slug, :format => 'atom')),     |
+        :class => 'atomlink')                                                    |
+

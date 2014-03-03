@@ -1,0 +1,10 @@
+.alert.box
+  This tool is brutally slow for params that imply lots of observations, so it's admin-only until I can figure a way to make it better. Please only use it for small places, small time ranges, etc.
+
+%stronhg.count= @taxa.count
+=t :taxa
+= link_to "Download CSV", url_for_params(:format => "csv")
+
+%ul.taxon_links
+  - taxonomic_taxon_list @arranged_taxa do |taxon|
+    = render "shared/taxon", :taxon => taxon, :link_url => taxon

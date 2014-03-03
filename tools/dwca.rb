@@ -40,6 +40,10 @@ end
 
 @opts = opts
 
+# Make a unique dir to put our files
+@work_path = Dir.mktmpdir
+FileUtils.mkdir_p @work_path, :mode => 0755
+
 @place = Place.find_by_id(opts[:place].to_i) || Place.find_by_name(opts[:place])
 puts "Found place: #{@place}" if opts[:debug]
 @taxon = Taxon.find_by_id(opts[:taxon].to_i) || Taxon.find_by_name(opts[:taxon])
@@ -77,7 +81,7 @@ end
 
 def make_metadata
   m = Metadata.new(@opts)
-  tmp_path = File.join(Dir::tmpdir, "metadata.eml.xml")
+  tmp_path = File.join(@work_path, "metadata.eml.xml")
   open(tmp_path, 'w') do |f|
     f << m.render(:file => @opts[:metadata])
   end
@@ -93,7 +97,7 @@ def make_descriptor
     }]
   end
   d = Descriptor.new(:core => @opts[:core], :extensions => extensions)
-  tmp_path = File.join(Dir::tmpdir, "meta.xml")
+  tmp_path = File.join(@work_path, "meta.xml")
   open(tmp_path, 'w') do |f|
     f << d.render(:file => @opts[:descriptor])
   end
@@ -114,37 +118,27 @@ end
 def make_occurrence_data
   headers = DarwinCore::Occurrence::TERM_NAMES
   fname = "observations.csv"
-  tmp_path = File.join(Dir::tmpdir, fname)
+  tmp_path = File.join(@work_path, fname)
   fake_view = FakeView.new
   
-  find_options = {
-    :include => [:taxon, {:user => :stored_preferences}, :photos, :quality_metrics, :identifications],
-    :conditions => ["observations.license IS NOT NULL"],
-    :logger => logger,
-  }
+  scope = Observation.
+    includes(:taxon, {:user => :stored_preferences}, :photos, :quality_metrics, :identifications).
+    where("observations.license IS NOT NULL").
+    scoped
   
   if @opts[:quality] == "research"
-    find_options[:conditions][0] += " AND quality_grade = ?"
-    find_options[:conditions] << Observation::RESEARCH_GRADE
+    scope = scope.where("quality_grade = ?", Observation::RESEARCH_GRADE)
   elsif @opts[:quality] == "casual"
-    find_options[:conditions][0] += " AND quality_grade = ?"
-    find_options[:conditions] << Observation::Observation::CASUAL_GRADE
+    scope = scope.where("quality_grade = ?", Observation::CASUAL_GRADE)
   end
   
-  if @taxon
-    find_options[:conditions][0] += " AND (#{@taxon.descendant_conditions[0]})"
-    find_options[:conditions] += @taxon.descendant_conditions[1..-1]
-  end
-  
-  if @place
-    find_options[:joins] = "JOIN place_geometries ON place_geometries.place_id = #{@place.id}"
-    find_options[:conditions][0] += " AND ST_Intersects(place_geometries.geom, observations.private_geom)"
-  end
+  scope = scope.of(@taxon) if @taxon
+  scope = scope.in_place(@place) if @place
   
   start = Time.now
   CSV.open(tmp_path, 'w') do |csv|
     csv << headers
-    Observation.do_in_batches(find_options) do |o|
+    scope.find_each do |o|
       next unless o.user.prefers_gbif_sharing?
       o = DarwinCore::Occurrence.adapt(o, :view => fake_view)
       csv << DarwinCore::Occurrence::TERMS.map do |field, uri, default, method| 
@@ -159,36 +153,28 @@ end
 def make_taxon_data
   headers = DarwinCore::Taxon::TERM_NAMES
   fname = "taxa.csv"
-  tmp_path = File.join(Dir::tmpdir, fname)
+  tmp_path = File.join(@work_path, fname)
   licenses = @opts[:photo_licenses].map do |license_code|
     Photo.license_number_for_code(license_code)
   end
   
-  find_options = {
-    :select => "DISTINCT ON (taxa.id) taxa.*",
-    :joins => {:observations => {:observation_photos => :photo}},
-    :conditions => [
-      "rank_level <= ? AND observation_photos.id IS NOT NULL AND photos.license IN (?)", 
-      Taxon::SPECIES_LEVEL, licenses],
-    :logger => logger
-  }
-  
+  scope = Taxon.
+    select("DISTINCT ON (taxa.id) taxa.*").
+    joins(:observations => {:observation_photos => :photo}).
+    where("rank_level <= ? AND observation_photos.id IS NOT NULL AND photos.license IN (?)", Taxon::SPECIES_LEVEL, licenses).
+    scoped
+
   if @opts[:quality] == "research"
-    find_options[:conditions][0] += " AND observations.quality_grade = ?"
-    find_options[:conditions] << Observation::RESEARCH_GRADE
+    scope = scope.where("observations.quality_grade = ?", Observation::RESEARCH_GRADE)
   elsif @opts[:quality] == "casual"
-    find_options[:conditions][0] += " AND observations.quality_grade = ?"
-    find_options[:conditions] << Observation::Observation::CASUAL_GRADE
+    scope = scope.where("observations.quality_grade = ?", Observation::CASUAL_GRADE)
   end
   
-  if @taxon
-    find_options[:conditions][0] += " AND (#{@taxon.descendant_conditions[0]})"
-    find_options[:conditions] += @taxon.descendant_conditions[1..-1]
-  end
+  scope = scope.where(@taxon.descendant_conditions[0]) if @taxon
   
   CSV.open(tmp_path, 'w') do |csv|
     csv << headers
-    Taxon.do_in_batches(find_options) do |t|
+    scope.find_each do |t|
       DarwinCore::Taxon.adapt(t)
       csv << DarwinCore::Taxon::TERMS.map{|field, uri, default, method| t.send(method || field)}
     end
@@ -200,40 +186,31 @@ end
 def make_eol_media_data
   headers = EolMedia::TERM_NAMES
   fname = "media.csv"
-  tmp_path = File.join(Dir::tmpdir, fname)
+  tmp_path = File.join(@work_path, fname)
   licenses = @opts[:photo_licenses].map do |license_code|
     Photo.license_number_for_code(license_code)
   end
   
-  find_options = {
-    :include => [:user, {:observation_photos => {:observation => :taxon}}],
-    :conditions => [
-      "photos.license IN (?) AND taxa.rank_level <= ? AND taxa.id IS NOT NULL", 
-      licenses, Taxon::SPECIES_LEVEL],
-    :logger => logger
-  }
+  scope = Photo.
+    includes(:user, {:observation_photos => {:observation => :taxon}}).
+    where("photos.license IN (?) AND taxa.rank_level <= ? AND taxa.id IS NOT NULL", licenses, Taxon::SPECIES_LEVEL)
   
   if @opts[:quality] == "research"
-    find_options[:conditions][0] += " AND observations.quality_grade = ?"
-    find_options[:conditions] << Observation::RESEARCH_GRADE
+    scope = scope.where("observations.quality_grade = ?", Observation::RESEARCH_GRADE)
   elsif @opts[:quality] == "casual"
-    find_options[:conditions][0] += " AND observations.quality_grade = ?"
-    find_options[:conditions] << Observation::Observation::CASUAL_GRADE
+    scope = scope.where("observations.quality_grade = ?", Observation::CASUAL_GRADE)
   end
   
-  if @taxon
-    find_options[:conditions][0] += " AND (#{@taxon.descendant_conditions[0]})"
-    find_options[:conditions] += @taxon.descendant_conditions[1..-1]
-  end
-  
+  scope = scope.where(@taxon.descendant_conditions[0]) if @taxon
+
   if @place
-    find_options[:joins] = "JOIN place_geometries ON place_geometries.place_id = #{@place.id}"
-    find_options[:conditions][0] += " AND ST_Intersects(place_geometries.geom, observations.private_geom)"
+    scope = scope.joins("JOIN place_geometries ON place_geometries.place_id = #{@place.id}")
+    scope = scope.where("ST_Intersects(place_geometries.geom, observations.private_geom)")
   end
   
   CSV.open(tmp_path, 'w') do |csv|
     csv << headers
-    Photo.do_in_batches(find_options) do |t|
+    scope.find_each do |t|
       EolMedia.adapt(t)
       csv << EolMedia::TERMS.map{|field, uri, default, method| t.send(method || field)}
     end
@@ -244,9 +221,9 @@ end
 
 def make_archive(*args)
   fname = "dwca.zip"
-  tmp_path = File.join(Dir::tmpdir, fname)
+  tmp_path = File.join(@work_path, fname)
   fnames = args.map{|f| File.basename(f)}
-  system "cd #{Dir::tmpdir} && zip -D #{tmp_path} #{fnames.join(' ')}"
+  system "cd #{@work_path} && zip -D #{tmp_path} #{fnames.join(' ')}"
   tmp_path
 end
 

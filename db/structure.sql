@@ -1608,13 +1608,13 @@ CREATE TABLE observations (
     out_of_range boolean,
     license character varying(255),
     uri character varying(255),
-    photos_count integer DEFAULT 0,
+    observation_photos_count integer DEFAULT 0,
     comments_count integer DEFAULT 0,
     geom geometry(Point),
     cached_tag_list character varying(768) DEFAULT NULL::character varying,
     zic_time_zone character varying(255),
     oauth_application_id integer,
-    sounds_count integer DEFAULT 0,
+    observation_sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
     private_geom geometry(Point),
     community_taxon_id integer,
@@ -1781,10 +1781,8 @@ CREATE TABLE place_geometries (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     source_filename character varying(255),
-    source_id integer,
-    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
+    geom geometry(MultiPolygon) NOT NULL,
+    source_id integer
 );
 
 
@@ -2919,10 +2917,8 @@ CREATE TABLE taxon_ranges (
     source_id integer,
     source_identifier integer,
     range_updated_at timestamp without time zone,
-    url character varying(255),
-    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
-    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
-    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
+    geom geometry(MultiPolygon),
+    url character varying(255)
 );
 
 
@@ -5208,7 +5204,7 @@ CREATE INDEX index_observations_on_out_of_range ON observations USING btree (out
 -- Name: index_observations_on_photos_count; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_observations_on_photos_count ON observations USING btree (photos_count);
+CREATE INDEX index_observations_on_photos_count ON observations USING btree (observation_photos_count);
 
 
 --
@@ -6507,3 +6503,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140114210551');
 INSERT INTO schema_migrations (version) VALUES ('20140124190652');
 
 INSERT INTO schema_migrations (version) VALUES ('20140205200914');
+
+INSERT INTO schema_migrations (version) VALUES ('20140220201532');

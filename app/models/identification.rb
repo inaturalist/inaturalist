@@ -190,7 +190,7 @@ class Identification < ActiveRecord::Base
       begin
         Identification.update_all(["current = ?", true], ["id = ?", last_outdated])
       rescue PG::Error => e
-        raise e unless e =~ /index_identifications_on_current/
+        raise e unless e.message =~ /index_identifications_on_current/
         # assume that if the unique key constrait complained, then there's already a current ident
       end
     end

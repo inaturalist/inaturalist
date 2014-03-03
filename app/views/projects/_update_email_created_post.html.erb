@@ -24,7 +24,7 @@
             a deleted user
           <% end -%>
           <span class="when">
-            <abbr class="date timeago" title="<%= post.created_at.iso8601 %>"><%=t :time_ago, :time => time_ago_in_words(post.created_at) %></abbr>
+            <abbr class="date timeago" title="<%= post.published_at.iso8601 %>"><%=t :time_ago, :time => time_ago_in_words(post.published_at) %></abbr>
           </span> | 
           <%= link_to(t(:view_post), the_post_url) %>
         </div>

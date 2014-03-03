@@ -1313,3 +1313,10 @@ $.fn.boldId = function() {
     var url = "/identifications/bold.xml?db="+bolddb+"&sequence="+$(this).text()
   })
 }
+
+$(document).ready(function() {
+  // tmp fixes for old views being used with bootstrap
+  $('.bootstrap .button.default').addClass('btn btn-primary').removeClass('button default')
+  $('.bootstrap .inter').addClass('btn btn-link').removeClass('inter')
+  $('.bootstrap .button').addClass('btn').removeClass('button')
+})

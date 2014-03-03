@@ -100,12 +100,12 @@ GEM
   remote: http://rubygems.org/
   specs:
     aasm (3.0.19)
-    actionmailer (3.2.16)
-      actionpack (= 3.2.16)
+    actionmailer (3.2.17)
+      actionpack (= 3.2.17)
       mail (~> 2.5.4)
-    actionpack (3.2.16)
-      activemodel (= 3.2.16)
-      activesupport (= 3.2.16)
+    actionpack (3.2.17)
+      activemodel (= 3.2.17)
+      activesupport (= 3.2.17)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       journey (~> 1.0.4)
@@ -113,18 +113,18 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    activemodel (3.2.16)
-      activesupport (= 3.2.16)
+    activemodel (3.2.17)
+      activesupport (= 3.2.17)
       builder (~> 3.0.0)
-    activerecord (3.2.16)
-      activemodel (= 3.2.16)
-      activesupport (= 3.2.16)
+    activerecord (3.2.17)
+      activemodel (= 3.2.17)
+      activesupport (= 3.2.17)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activeresource (3.2.16)
-      activemodel (= 3.2.16)
-      activesupport (= 3.2.16)
-    activesupport (3.2.16)
+    activeresource (3.2.17)
+      activemodel (= 3.2.17)
+      activesupport (= 3.2.17)
+    activesupport (3.2.17)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.4)
@@ -137,6 +137,8 @@ GEM
       nokogiri (>= 1.4.0)
     ancestry (2.0.0)
       activerecord (>= 3.0.0)
+    apipie-rails (0.0.24)
+      rails (>= 3.0.10)
     arel (3.0.3)
     autoparse (0.3.3)
       addressable (>= 2.3.1)
@@ -184,8 +186,6 @@ GEM
       warden
     diff-lcs (1.2.4)
     diffy (3.0.1)
-    domain_name (0.5.12)
-      unf (>= 0.0.5, < 1.0.0)
     doorkeeper (0.6.7)
       railties (~> 3.1)
     dynamic_form (1.1.4)
@@ -199,6 +199,7 @@ GEM
     fastercsv (1.5.5)
     flickraw (0.9.6)
     friendly_id (4.0.9)
+    geocoder (1.1.9)
     geoplanet (0.2.6)
       json (>= 1.1.3)
       rest-client (>= 0.9)
@@ -228,8 +229,6 @@ GEM
     httmultiparty (0.3.10)
       httparty (>= 0.7.3)
       multipart-post
-    http-cookie (1.0.1)
-      domain_name (~> 0.5)
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
@@ -254,25 +253,14 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mechanize (2.7.1)
-      domain_name (~> 0.5, >= 0.5.1)
-      http-cookie (~> 1.0.0)
-      mime-types (~> 1.17, >= 1.17.2)
-      net-http-digest_auth (~> 1.1, >= 1.1.1)
-      net-http-persistent (~> 2.5, >= 2.5.2)
-      nokogiri (~> 1.4)
-      ntlm-http (~> 0.1, >= 0.1.1)
-      webrobots (>= 0.0.9, < 0.2)
     memcache-client (1.8.5)
     metaclass (0.0.1)
     mime-types (1.25.1)
     mocha (0.14.0)
       metaclass (~> 0.0.1)
-    multi_json (1.8.2)
+    multi_json (1.8.4)
     multi_xml (0.5.4)
     multipart-post (1.2.0)
-    net-http-digest_auth (1.3)
-    net-http-persistent (2.8)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -282,7 +270,6 @@ GEM
       net-ssh (>= 2.6.5)
     nokogiri (1.5.10)
     nori (2.3.0)
-    ntlm-http (0.1.1)
     oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -325,7 +312,7 @@ GEM
       cocaine (~> 0.5.0)
       mime-types
     pg (0.15.1)
-    polyglot (0.3.3)
+    polyglot (0.3.4)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -339,19 +326,19 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.16)
-      actionmailer (= 3.2.16)
-      actionpack (= 3.2.16)
-      activerecord (= 3.2.16)
-      activeresource (= 3.2.16)
-      activesupport (= 3.2.16)
+    rails (3.2.17)
+      actionmailer (= 3.2.17)
+      actionpack (= 3.2.17)
+      activerecord (= 3.2.17)
+      activeresource (= 3.2.17)
+      activesupport (= 3.2.17)
       bundler (~> 1.0)
-      railties (= 3.2.16)
+      railties (= 3.2.17)
     rails_autolink (1.1.0)
       rails (> 3.1)
-    railties (3.2.16)
-      actionpack (= 3.2.16)
-      activesupport (= 3.2.16)
+    railties (3.2.17)
+      actionpack (= 3.2.17)
+      activesupport (= 3.2.17)
       rack-ssl (~> 1.3.2)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
@@ -418,7 +405,6 @@ GEM
       riddle (>= 1.5.0)
     thor (0.18.1)
     tilt (1.4.1)
-    tlsmail (0.0.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -431,9 +417,6 @@ GEM
       multi_json (~> 1.0)
       simple_oauth (~> 0.2)
     tzinfo (0.3.38)
-    unf (0.1.1)
-      unf_ext
-    unf_ext (0.0.6)
     utf8-cleaner (0.0.6)
     uuidtools (2.1.4)
     warden (1.2.1)
@@ -443,7 +426,6 @@ GEM
       mime-types (< 2.0.0)
       nokogiri (>= 1.4.0)
     watu_table_builder (0.3.0)
-    webrobots (0.1.1)
     whenever (0.8.2)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
@@ -461,6 +443,7 @@ DEPENDENCIES
   addressable
   airbrake
   ancestry
+  apipie-rails
   aws-sdk
   bborn-acts_as_taggable_on_steroids!
   bluecloth
@@ -485,6 +468,7 @@ DEPENDENCIES
   flickraw
   friendly_id (~> 4.0.1)
   gdata!
+  geocoder
   geoplanet
   georuby!
   google-api-client
@@ -497,7 +481,6 @@ DEPENDENCIES
   koala
   machinist
   mail_view!
-  mechanize
   memcache-client
   mobile-fu!
   mocha
@@ -513,7 +496,7 @@ DEPENDENCIES
   pg
   preferences!
   rack-google-analytics
-  rails (~> 3.2.16)
+  rails (~> 3.2.17)
   rake (= 0.8.7)
   rest-client
   rgeo
@@ -525,11 +508,9 @@ DEPENDENCIES
   rspec-rails
   rvm-capistrano
   savon
-  simple_oauth
   soundcloud
   spatial_adapter!
   thinking-sphinx (= 2.0.10)
-  tlsmail
   translate-rails3!
   trollop
   ts-delayed-delta (= 1.1.3)

@@ -417,7 +417,12 @@ class TaxaController < ApplicationController
         end
         
         if params[:partial]
-          render :partial => "taxa/#{params[:partial]}.html.erb", :locals => {
+          partial_path = if params[:partial] == "taxon"
+            "shared/#{params[:partial]}.html.erb"
+          else
+            "taxa/#{params[:partial]}.html.erb"
+          end
+          render :partial => partial_path, :locals => {
             :js_link => params[:js_link]
           }
         else
@@ -432,6 +437,17 @@ class TaxaController < ApplicationController
           :taxon_names => {:only => [:id, :name, :lexicon, :is_valid]}
         )
         options[:methods] += [:common_name, :image_url, :default_name]
+        if params[:partial]
+          partial_path = if params[:partial] == "taxon"
+            "shared/#{params[:partial]}.html.erb"
+          else
+            "taxa/#{params[:partial]}.html.erb"
+          end
+          @taxa.each_with_index do |t,i|
+            @taxa[i].html = render_to_string(:partial => partial_path, :locals => {:taxon => t})
+            options[:methods] << :html
+          end
+        end
         render :json => @taxa.to_json(options)
       end
     end

@@ -92,6 +92,10 @@
   background-repeat: no-repeat;
   left: -10px;
 }
+.stat.no-toggle:hover{
+  background-image: none;
+  background-color: white;
+}
 
 .stat.current .title,
 .stat.current .barchart,

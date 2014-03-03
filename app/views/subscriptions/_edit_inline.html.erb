@@ -12,7 +12,7 @@
           </div>
           <%= text_field_tag :taxon_name, subscription.taxon.try(:name),
             :width => 50,
-            :placeholder => t(:type_a_taxon_name),
+            :placeholder => t(:type_a_taxon_name, :default => "Type a taxon name"),
             :class => "taxonchooser text" %>
           <%= f.hidden_field(:taxon_id, 
             :alt => (subscription.taxon ? 

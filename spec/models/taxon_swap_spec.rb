@@ -230,6 +230,16 @@ describe TaxonSwap, "commit_records" do
     Delayed::Job.where("created_at >= ?", stamp).detect{|j| j.handler =~ /notify_subscribers_of/}.should be_blank
   end
 
+  it "should re-evalute community taxa" do
+    o = Observation.make!
+    i1 = Identification.make!(:taxon => @input_taxon, :observation => o)
+    i2 = Identification.make!(:taxon => @input_taxon, :observation => o)
+    o.community_taxon.should eq @input_taxon
+    @swap.commit_records
+    o.reload
+    o.community_taxon.should eq @output_taxon
+  end
+
   it "should set counter caches correctly" do
     without_delay do
       3.times { Observation.make!(:taxon => @input_taxon) }

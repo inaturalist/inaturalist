@@ -501,7 +501,7 @@ en:
   check_here_to_autoload_description: Check here to auto-load the description from Wikipedia. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
   check_here_to_autoload_photos: Check here to auto-load photos from Flickr. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
   check_it_out: Check it out
-  check_list: check list of
+  check_list: Check list
   check_list_description: Choose a higher-level taxon you'd like to show in this list, like "Aves" for birds, or "Amphibia" for amphibians. When set, this list won't allow taxa that are not in this taxon. For example, if you create a list of birds, you won't be able to add any frogs to it. 
   check_list_for_individual_taxa_that: 'Check lists for individual taxa that live here, e.g. "Birds of %{place}".'
   check_list_individual_taxa: Check lists for individual taxa that live here, e.g. "Birds of %{place}".
@@ -1472,6 +1472,7 @@ en:
   new_taxon_name_for: New Taxon Name for
   new_taxon_range: New Taxon Range
   new_taxonomic_change: New Taxonomic Change (Draft)
+  new_trip: New trip
   new_updates_in_the_last_24_hours_from: "New updates in the last 24 hours from %{site_name}"
   new_user_rules: New User Rules
   new_users_week: New Users / Week
@@ -2138,6 +2139,7 @@ en:
   save_observation: Save observation
   save_photos: Save photos
   save_place: Save place
+  save_trip: Save trip
   saving: "Saving..."
   saving_verb: Saving
   schemes: Schemes
@@ -2700,7 +2702,8 @@ en:
   view_leaderboard_from_last_month: View leaderboard from last month
   view_leaderboard_from_last_year: View leaderboard from last year
   view_license: View license
-  view_lists: View Lists
+  view_lists: View lists
+  view_listing: View listing
   view_more: View more
   view_more_about_x: "View more about %{x}"
   view_more_observations: View more observations

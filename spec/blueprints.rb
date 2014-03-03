@@ -337,6 +337,26 @@ TaxonSwap.blueprint do
   user { User.make! }
 end
 
+Trip.blueprint do
+  user { User.make! }
+  parent { self.user }
+  title { Faker::Lorem.sentence }
+  body { Faker::Lorem.paragraph }
+  published_at { Time.now }
+  start_time { 8.hours.ago }
+  stop_time { 2.hours.ago }
+end
+
+TripTaxon.blueprint do
+  trip { Trip.make! }
+  taxon { Taxon.make! }
+end
+
+TripPurpose.blueprint do
+  trip { Trip.make! }
+  resource { Taxon.make! }
+end
+
 Update.blueprint do
   o = Observation.make!
   subscriber { User.make! }

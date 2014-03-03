@@ -21,6 +21,8 @@ class ProjectList < LifeList
     project.project_users.exists?(["role IN ('curator', 'manager') AND user_id = ?", user])
   end
   
+  #For project_lists, returns first_observation (array of [date, observation_id])
+  #where date represents the first date observed (e.g. not first date added to iNat)
   def cache_columns_query_for(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
@@ -28,7 +30,7 @@ class ProjectList < LifeList
     sql_key = "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)"
     <<-SQL
       SELECT
-        min(o.id) AS first_observation_id,
+        min(COALESCE(time_observed_at::varchar, observed_on::varchar, '0') || ',' || o.id::varchar) AS first_observation,
         max(COALESCE(time_observed_at::varchar, observed_on::varchar, '0') || ',' || o.id::varchar) AS last_observation,
         count(*),
         (#{sql_key}) AS key

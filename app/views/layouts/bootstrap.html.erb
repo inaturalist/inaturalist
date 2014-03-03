@@ -45,6 +45,13 @@
     <% end %>
 
     <div class="bootstrap">
+      <% if @feature_test -%>
+        <div class="container">
+          <div class="alert">
+            <b><%= @feature_test %> test</b>. This is only a test, so please don't expect everything to work correctly.
+          </div>
+        </div>
+      <% end -%>
       <%= yield %>
     </div>
 

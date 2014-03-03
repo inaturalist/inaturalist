@@ -2,7 +2,10 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :browse]
   before_filter :load_post, :only => [:show, :edit, :update, :destroy]
   before_filter :load_parent, :except => [:browse, :create, :update, :destroy]
+  before_filter :load_new_post, :only => [:new, :create]
   before_filter :author_required, :only => [:edit, :update, :destroy]
+
+  layout "bootstrap"
   
   def index
     scope = @parent.is_a?(User) ? @parent.journal_posts.scoped : @parent.posts.scoped
@@ -11,8 +14,7 @@ class PostsController < ApplicationController
     # Grab the monthly counts of all posts to show archives
     get_archives
     
-    if (logged_in? && @display_user == current_user) ||
-       (logged_in? && @parent.is_a?(Project) && @parent.editable_by?(current_user))
+    if logged_in? && (current_user == @display_user || (@parent.is_a?(Project) && @parent.editable_by?(current_user)))
       @drafts = scope.unpublished.order("created_at DESC")
     end
     
@@ -31,6 +33,16 @@ class PostsController < ApplicationController
       end
       return
     end
+
+    if params[:login] && @post.parent_type == "Project"
+      redirect_to project_journal_post_path(@parent, @post)
+      return
+    end
+
+    if params[:project_id] && @post.parent_type == "User"
+      redirect_to journal_post_path(@parent.login, @post)
+      return
+    end
     
     unless @post.published_at
       if logged_in? && @post.user_id == current_user.id
@@ -39,22 +51,28 @@ class PostsController < ApplicationController
         render_404 and return
       end
     end
-    @previous = @parent.posts.published.find(:first, 
-      :conditions => ["published_at < ?", @post.published_at],
-      :order => "published_at DESC")
-    @next = @parent.posts.published.find(:first, 
-      :conditions => ["published_at > ?", @post.published_at],
-      :order => "published_at ASC")
-    @observations = @post.observations.order_by('observed_on')
+    
+    respond_to do |format|
+      format.html do
+        @next = @post.parent.journal_posts.published.where("published_at > ?", @post.published_at || @post.updated_at).order("published_at ASC").first
+        @prev = @post.parent.journal_posts.published.where("published_at < ?", @post.published_at || @post.updated_at).order("published_at DESC").first
+        @trip = @post
+        @observations = @post.observations.order_by('observed_on')
+        render "trips/show"
+      end
+    end
   end
   
   def new
-    # if params include a project_id, parent is the project.  otherwise, parent is current_user.
-    @post = Post.new(:parent => @parent, :user => current_user)
+    if @list = List.find_by_id(params[:list_id])
+      @listed_taxa = @list.listed_taxa.includes(:taxon).limit(500)
+      @listed_taxa.each do |lt|
+        @post.trip_taxa.build(:taxon => lt.taxon)
+      end
+    end
   end
   
   def create
-    @post = Post.new(params[:post])
     @post.parent ||= current_user
     @display_user = current_user
     @post.published_at = Time.now if params[:commit] == t(:publish)
@@ -64,14 +82,16 @@ class PostsController < ApplicationController
     if @post.save
       if @post.published_at
         flash[:notice] = t(:post_published)
-        redirect_to (@post.parent.is_a?(Project) ?
-                     project_journal_post_path(@post.parent.slug, @post) :
-                     journal_post_path(@post.user.login, @post))
+        # redirect_to (@post.parent.is_a?(Project) ?
+        #              project_journal_post_path(@post.parent.slug, @post) :
+        #              journal_post_path(@post.user.login, @post))
+        redirect_to path_for_post(@post)
       else
         flash[:notice] = t(:draft_saved)
-        redirect_to (@post.parent.is_a?(Project) ?
-                     edit_project_journal_post_path(@post.parent.slug, @post) :
-                     edit_journal_post_path(@post.user.login, @post))
+        # redirect_to (@post.parent.is_a?(Project) ?
+        #              edit_project_journal_post_path(@post.parent.slug, @post) :
+        #              edit_journal_post_path(@post.user.login, @post))
+        redirect_to edit_path_for_post(@post)
       end
     else
       render :action => :new
@@ -109,8 +129,7 @@ class PostsController < ApplicationController
     # happen after preview rendering
     # AG: actually, i don't think this actually runs after preview rendering...
     @post.observations = @observations if @observations
-    
-    if @post.update_attributes(params[:post])
+    if @post.update_attributes(params[@post.class.name.underscore.to_sym])
       if @post.published_at
         flash[:notice] = t(:post_published)
         redirect_to (@post.parent.is_a?(Project) ?
@@ -151,8 +170,10 @@ class PostsController < ApplicationController
   end
   
   def browse
-    @posts = Post.published.paginate(:page => params[:page] || 1, 
-      :order => 'published_at DESC')
+    @posts = Post.published.page(params[:page] || 1).order('published_at DESC')
+    respond_to do |format|
+      format.html
+    end
   end
   
   private
@@ -175,8 +196,13 @@ class PostsController < ApplicationController
       @display_project = Project.find(params[:project_id])
       @parent = @display_project
     end
-    @display_user ||= @post.user if @post
-    @parent ||= @post.parent if @post
+    if @post
+      @display_user ||= @post.user if @post
+      @parent ||= @post.parent if @post
+    elsif logged_in? && current_user.login == params[:login]
+      @display_user ||= current_user
+      @parent ||= current_user
+    end
     return render_404 if @parent.blank?
     if @parent.is_a?(Project)
       @parent_display_name = @parent.title 
@@ -188,9 +214,19 @@ class PostsController < ApplicationController
     end
     true
   end
+
+  def load_new_post
+    @post = Post.new(params[:post])
+    @post.parent ||= @parent
+    @post.user ||= current_user
+    true
+  end
   
   def load_post
     @post = Post.find_by_id(params[:id])
+    if request.fullpath =~ /\/trips/
+      @post.becomes(Trip)
+    end
     render_404 and return unless @post
     true
   end
@@ -202,6 +238,26 @@ class PostsController < ApplicationController
       redirect_to (@post.parent.is_a?(Project) ?
                    project_journal_path(@post.parent.slug) :
                    journal_by_login_path(@post.user.login))
+    end
+  end
+
+  def path_for_post(post)
+    if post.parent.is_a? Project
+      project_journal_post_path(post.parent.slug, post)
+    elsif post.is_a? Trip
+      trip_path(post)
+    else
+      journal_post_path(post.user.login, post)
+    end
+  end
+
+  def edit_path_for_post(post)
+    if post.parent.is_a? Project
+      edit_project_journal_post_path(post.parent.slug, post)
+    elsif post.is_a? Trip
+      edit_trip_path(post)
+    else
+      edit_journal_post_path(post.user.login, post)
     end
   end
 end

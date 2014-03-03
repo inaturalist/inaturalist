@@ -37,7 +37,7 @@ class TaxonSwap < TaxonChange
   end
 
   def output_taxa
-    [taxon]  
+    [taxon].compact
   end
 
   def input_taxon

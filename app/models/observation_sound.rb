@@ -7,7 +7,7 @@ class ObservationSound < ActiveRecord::Base
   def set_observation_sounds_count
     return true unless observation_id
     Observation.update_all(
-      ["sounds_count = ?", ObservationSound.where(:observation_id => observation_id).count], 
+      ["observation_sounds_count = ?", ObservationSound.where(:observation_id => observation_id).count],
       ["id = ?", observation_id]
     )
     true

@@ -10,11 +10,7 @@ Inaturalist::Application.configure do
   config.action_controller.perform_caching             = true
   config.action_view.cache_template_loading            = true
 
-  # Specifies the header that your server uses for sending files
-  config.action_dispatch.x_sendfile_header = "X-Sendfile"
-
-  # For nginx:
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
+  config.action_dispatch.x_sendfile_header = CONFIG.x_sendfile_header
 
   # If you have no front-end server that supports something like X-Sendfile,
   # just comment this out and Rails will serve the files
@@ -38,7 +34,6 @@ Inaturalist::Application.configure do
   config.action_mailer.default_url_options = { :host => URI.parse(CONFIG.site_url).host }
   smtp_config_path = File.open("#{Rails.root}/config/smtp.yml")
   ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path).symbolize_keys
-  Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default :charset => "utf-8"

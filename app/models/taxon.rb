@@ -580,6 +580,10 @@ class Taxon < ActiveRecord::Base
     TaxonName.choose_common_name(taxon_names)
   end
 
+  def common_name_string
+    common_name.try(:name)
+  end
+
   def name_with_rank
     if rank_level && rank_level < SPECIES_LEVEL
       r = case rank
@@ -993,7 +997,7 @@ class Taxon < ActiveRecord::Base
     place_id = place.is_a?(Place) ? place.id : place
     place = Place.find_by_id(place_id) unless place.is_a?(Place)
     cs = if association(:conservation_statuses).loaded?
-      conservation_statuses.detect{|cs| ([nil, place.ancestry.split("/")].flatten.include? cs.place_id.to_s) && cs.iucn.to_i > IUCN_LEAST_CONCERN}
+      conservation_statuses.detect{|cs| ([nil, place.ancestry.to_s.split("/")].flatten.include? cs.place_id.to_s) && cs.iucn.to_i > IUCN_LEAST_CONCERN}
     else
       conservation_statuses.where("place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(place_id)}) OR place_id IS NULL").where("iucn > ?", IUCN_LEAST_CONCERN).first
     end
@@ -1004,7 +1008,7 @@ class Taxon < ActiveRecord::Base
     if place_id = options[:place_id]
       place = Place.find_by_id(place_id)
       if association(:conservation_statuses).loaded?
-        conservation_statuses.select{|cs| ([nil, place.ancestry.split("/")].flatten.include? cs.place_id.to_s) && cs.iucn.to_i > IUCN_LEAST_CONCERN}.max_by{|cs| cs.iucn.to_i}
+        conservation_statuses.select{|cs| ([nil, place.ancestry.to_s.split("/")].flatten.include? cs.place_id.to_s) && cs.iucn.to_i > IUCN_LEAST_CONCERN}.max_by{|cs| cs.iucn.to_i}
       else
         conservation_statuses.where("place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(place_id)}) OR place_id IS NULL").where("iucn > ?", IUCN_LEAST_CONCERN).max_by{|cs| cs.iucn.to_i}
       end
@@ -1196,8 +1200,19 @@ class Taxon < ActiveRecord::Base
     return false if taxon_changes.exists? || taxon_change_taxa.exists?
     creator_id == user.id
   end
+
+  def match_descendants(taxon_hash)
+    Taxon.match_descendants_of_id(id, taxon_hash)
+  end
   
   # Static ##################################################################
+
+  def self.match_descendants_of_id(id, taxon_hash)
+    taxon_hash['ancestry'].each{|ancestor|
+      return true if id == ancestor.to_i 
+    }
+    false
+  end
 
   def self.import_or_create(name, options = {})
     taxon = import(name, options)

@@ -112,7 +112,7 @@ class GuideSectionsController < ApplicationController
     TaxonDescribers::Eol.data_objects_from_page(page).to_a.uniq.map do |data_object|
       GuideSection.new_from_eol_data_object(data_object)
     end
-  rescue Timeout::Error => e
+  rescue Timeout::Error, OpenURI::HTTPError => e
     []
   end
 

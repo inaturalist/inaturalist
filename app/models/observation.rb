@@ -245,8 +245,8 @@ class Observation < ActiveRecord::Base
     # the snappy searches. --KMU 2009-04-4
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
-    has "photos_count > 0", :as => :has_photos, :type => :boolean
-    has "sounds_count > 0", :as => :has_sounds, :type => :boolean
+    has "observation_photos_count > 0", :as => :has_photos, :type => :boolean
+    has "observation_sounds_count > 0", :as => :has_sounds, :type => :boolean
     indexes :quality_grade
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
@@ -263,8 +263,8 @@ class Observation < ActiveRecord::Base
     # http://groups.google.com/group/thinking-sphinx/browse_thread/thread/e8397477b201d1e4
     has :latitude, :as => :fake_latitude
     has :longitude, :as => :fake_longitude
-    has :photos_count
-    has :sounds_count
+    has :observation_photos_count
+    has :observation_sounds_count
     has :num_identification_agreements
     has :num_identification_disagreements
     # END HACK
@@ -448,8 +448,8 @@ class Observation < ActiveRecord::Base
   
   scope :has_geo, where("latitude IS NOT NULL AND longitude IS NOT NULL")
   scope :has_id_please, where("id_please IS TRUE")
-  scope :has_photos, where("photos_count > 0")
-  scope :has_sounds, joins(:sounds).where("sounds.id is not null")
+  scope :has_photos, where("observation_photos_count > 0")
+  scope :has_sounds, where("observation_sounds_count > 0")
   scope :has_quality_grade, lambda {|quality_grade|
     quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
     where("quality_grade = ?", quality_grade)
@@ -790,19 +790,19 @@ class Observation < ActiveRecord::Base
 
     rank = params[:rank].to_s.downcase
     if Taxon::VISIBLE_RANKS.include?(rank)
-      scope = scope.includes(:taxon).where("taxa.rank = ?", rank)
+      scope = scope.joins(:taxon).where("taxa.rank = ?", rank)
     end
 
     high_rank = params[:hrank]
     if Taxon::VISIBLE_RANKS.include?(high_rank)
       rank_level = Taxon::RANK_LEVELS[high_rank]
-      scope = scope.includes(:taxon).where("taxa.rank_level <= ?", rank_level)
+      scope = scope.joins(:taxon).where("taxa.rank_level <= ?", rank_level)
     end
 
     low_rank = params[:lrank]
     if Taxon::VISIBLE_RANKS.include?(low_rank)
       rank_level = Taxon::RANK_LEVELS[low_rank]
-      scope = scope.includes(:taxon).where("taxa.rank_level >= ?", rank_level)
+      scope = scope.joins(:taxon).where("taxa.rank_level >= ?", rank_level)
     end
 
     if timestamp = Chronic.parse(params[:updated_since])
@@ -1800,7 +1800,7 @@ class Observation < ActiveRecord::Base
     if taxon_id_changed? && taxon.blank?
       update_out_of_range
     elsif latitude_changed? || private_latitude_changed? || taxon_id_changed?
-      delay.update_out_of_range
+      delay(:priority => USER_INTEGRITY_PRIORITY).update_out_of_range
     end
     true
   end

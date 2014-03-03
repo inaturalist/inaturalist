@@ -18,7 +18,7 @@ class TaxonStage < TaxonChange
   end
 
   def output_taxa
-    [taxon]
+    [taxon].compact
   end
   
 end

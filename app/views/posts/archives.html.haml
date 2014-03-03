@@ -1,0 +1,30 @@
+- content_for(:title) do
+  = t(:x_journal_archives_for_y, :user => @parent.try_methods(:login, :title))
+  = @target_date.strftime('%B %Y')
+- content_for(:extracss) do
+  = stylesheet_link_tag "posts"
+  %style{:media => "screen", :type => "text/css"}
+    h2.title {
+    border-bottom: 1px dotted #888;
+    }
+
+.container
+  .row
+    = render :partial => "posts/header", :locals => { :include_breadcrumbs => true }
+  .row
+    #postscol.column.span8
+      %h2.title
+        = t(:journal_archives_for)
+        = @target_date.strftime('%B %Y')
+      #postdates.posts_by_date
+        = render :partial => 'posts_by_date'
+        - if @posts.empty?
+          %center#noposts.readable.description
+            = t(:no_post_yet)
+            - if logged_in? && current_user.login == @display_user.login
+              = link_to t(:add_one), new_post_path(@display_user.login), |
+                :class => "default button"                               |
+      = will_paginate @posts, :renderer => INatLinkRenderer
+    #sidecol.span4
+      - unless @archives.blank?
+        = render :partial => 'archives'

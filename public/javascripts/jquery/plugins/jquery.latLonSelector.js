@@ -231,6 +231,9 @@
         longitudeField = findFormField(input, 'longitude'),
         f = function() {
           var point = new google.maps.LatLng($(latitudeField).val(), $(longitudeField).val())
+          if (accuracyField) {
+            accuracyField.change()
+          }
           getMarker().setPosition(point);
           $.fn.latLonSelector._map.setCenter(point)
           if ($.fn.latLonSelector._circle) {
@@ -540,8 +543,9 @@
     if (!$.fn.latLonSelector._circle) { 
       $.fn.latLonSelector.setAccuracy(null)
     }
-    var bounds = $.fn.latLonSelector._map.getBounds(),
-        center = bounds.getCenter(), 
+    var bounds = $.fn.latLonSelector._map.getBounds()
+    if (!bounds) {return}
+    var center = bounds.getCenter(), 
         northEast = bounds.getNorthEast(),
         mapAcc = iNaturalist.Map.distanceInMeters(center.lat(), center.lng(), northEast.lat(), northEast.lng()) / 5,
         defaultAcc = Math.max(mapAcc, 20),
@@ -628,6 +632,11 @@
       $.fn.latLonSelector._circle.setCenter($.fn.latLonSelector.currentMarker().getPosition())
     }
   }
+
+  $.fn.latLonSelector.zoomToAccuracy = function() {
+    if (!$.fn.latLonSelector._circle) { return }
+    $.fn.latLonSelector._map.fitBounds($.fn.latLonSelector._circle.getBounds())
+  }
   
   $.fn.latLonSelector.currentMarker = function() {
     return $.fn.latLonSelector._exactMarker.getVisible() ? $.fn.latLonSelector._exactMarker : $.fn.latLonSelector._approxMarker
@@ -647,7 +656,7 @@
       9: 13   // Premise (building name, property name, shopping center, etc.) level accuracy. (Since 2.105)
     };
     return dict[accuracy];
-  };
+  }
   
   $.fn.latLonSelector.COORDINATE_REGEX = /[-+]?[0-9]*\.?[0-9]+/g;
   $.fn.latLonSelector.parseLatLon = function(latLon) {
