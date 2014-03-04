@@ -27,7 +27,22 @@
       <input type="submit" value="<%=t :filter %>" class="default button">
     </div>
   </div>
-
+  <div style="margin-right:10px">
+    <div>
+      Filter by list:
+    </div>
+    <select name="missing_listing_list_id" id="missing_listing_list_id">
+      <option value="" selected='selected'>All</option>
+      <% @lists_for_missing_listings.each do |list| %>
+        <% if list.id == params[:missing_listing_list_id].to_i %>
+          <option value="<%= list.id %>" selected='selected'><%= list.title %></option>
+        <% else %>
+          <option value="<%= list.id %>"><%= list.title %></option>
+        <% end %>
+      <% end %>
+    </select>
+  </div>
+  <br >
   <input type="hidden" name= 'find_missing_listings' value="true">
 </form>
 
