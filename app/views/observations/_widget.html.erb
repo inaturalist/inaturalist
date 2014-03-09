@@ -7,7 +7,11 @@
        data-total-pages="<%= @observations.total_pages %>">
   <% if @observations.size == 0 %>
     <% unless silence == "true" %>
-      <span class="inat-value"><%=t :no_observations %></span>
+      <tr>
+        <td class="inat-value" colspan="2">
+          <%= t(:no_observations, :default => "No observations").capitalize %>
+        </td>
+      </tr>
     <% end %>
   <% end %>
   <% for observation in @observations %>

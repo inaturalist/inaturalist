@@ -84,7 +84,7 @@
 
 <% if logged_in? || @place || @taxon -%>
   <div class="column span-6">
-    <h3><%= t :settings %></h3>
+    <h3><%= t(:settings).capitalize %></h3>
     <form method="get">
       <% if @place -%>
         <div class="field placefield">

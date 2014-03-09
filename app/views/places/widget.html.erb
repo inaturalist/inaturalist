@@ -41,7 +41,7 @@ end
   <div class="breadcrumbs">
     <div class="right meta" style="z-index:1">
       <%= t(:for_a_widget_showing_recent_observations_from, :place_name => t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name)) %>
-      <%= link_to t(:observations_widget).downcase, observations_widget_url(:place_id => @place), :class => "readmore" %>
+      <%= link_to t(:observations_widget).downcase, observations_widget_url(:place_id => @place.id), :class => "readmore" %>
     </div>
     <strong><%= link_to "&laquo #{t('places_name.'+@place.display_name.gsub(' ','_').downcase, :default => @place.display_name)}".html_safe, @place, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->

@@ -34,7 +34,7 @@
           <%= link_to image_tag(img_url, :class => 'usericon'), observations_by_login_url(current_user.login), :border => 0 %>
         </td>
       <% end %>
-      <td class="inat-user-body"<%= ' colspan="2"' if place %>>
+      <td class="inat-value"<%= ' colspan="2"' if place %>>
         <strong>
           <% if place -%>
             <%= link_to t(:view_more_observations_near_x_place, :place => place.name, :site_name => CONFIG.site_name).html_safe, place_url(place) %>
