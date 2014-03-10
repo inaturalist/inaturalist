@@ -36,14 +36,16 @@ class CheckListsController < ApplicationController
       @hide_descendants = params[:hide_descendants]
       @hide_ancestors = params[:hide_ancestors]
 
-      listed_taxa_on_this_list = @list.find_listed_taxa_and_ancestry_as_hashes
-      listed_taxa_on_other_lists = @list.find_listed_taxa_and_ancestry_on_other_lists_as_hashes
 
       @missing_listings_list = params[:missing_listing_list_id].present? ? List.find(params[:missing_listing_list_id]) : nil
 
       place_based_projects = Project.where("place_id = ?", @list.place_id)
       list_ids_from_projects = place_based_projects.map{|project| project.project_list.id}
       @lists_for_missing_listings = List.where("(place_id = ? AND id != ?) OR id IN (?)", @list.place_id, @list.id, list_ids_from_projects).order(:title)
+      missing_listings_list_ids = @lists_for_missing_listings.map(&:id)
+
+      listed_taxa_on_this_list = @list.find_listed_taxa_and_ancestry_as_hashes
+      listed_taxa_on_other_lists = @list.find_listed_taxa_and_ancestry_on_other_lists_as_hashes(missing_listings_list_ids)
 
       scoped_list = apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, @missing_filter_taxon, @hide_ancestors, @hide_descendants, @missing_listings_list)
 
