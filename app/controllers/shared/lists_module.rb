@@ -166,12 +166,12 @@ module Shared::ListsModule
           end
           lt ||= ListedTaxon.new(:list => @list)
           lt.description = description unless description.blank?
-          lt.occurrence_status_level = if ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[primary_occurrence_status.to_s.downcase]
-            ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[primary_occurrence_status.to_s.downcase]
+          lt.occurrence_status_level = if ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[lt.primary_occurrence_status.to_s.downcase]
+            ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[lt.primary_occurrence_status.to_s.downcase]
           else
             lt.occurrence_status_level
           end
-          lt.establishment_means = if ListedTaxon::ESTABLISHMENT_MEANS.include?(primary_establishment_means.to_s.downcase)
+          lt.establishment_means = if ListedTaxon::ESTABLISHMENT_MEANS.include?(lt.primary_establishment_means.to_s.downcase)
             establishment_means.downcase
           else
             lt.establishment_means
@@ -439,6 +439,10 @@ module Shared::ListsModule
     elsif @list.is_a?(CheckList)
       @rank = "species"
       @unpaginated_listed_taxa = @unpaginated_listed_taxa.with_species
+    end
+
+    unless @search_taxon_ids.blank?
+      @unpaginated_listed_taxa = @unpaginated_listed_taxa.where("listed_taxa.taxon_id IN (?)", @search_taxon_ids)
     end
   end
 

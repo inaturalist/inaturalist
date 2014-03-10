@@ -103,7 +103,7 @@ class FlickrController < ApplicationController
         raise e unless e.message =~ /Invalid auth token/
         @reauthorization_needed = true
         Rails.logger.error "[ERROR #{Time.now}] #{e}"
-      rescue Net::HTTPFatalError => e
+      rescue Net::HTTPFatalError, JSON::ParserError => e
         Rails.logger.error "[ERROR #{Time.now}] #{e}"
         @photos = []
       end

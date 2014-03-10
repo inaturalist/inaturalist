@@ -28,7 +28,7 @@
   <p class="ui">
     <%= n.label :name, t(:name) %><br/>
     <% if @taxon_name.new_record? || is_curator? || is_me?(@taxon_name.creator) -%>
-      <%= n.text_field :name, :class => "text" %>
+      <%= n.text_field :name, :class => "text", :autofocus => true %>
     <% else %>
       <strong><%= @taxon_name.name %></strong>
     <% end -%>

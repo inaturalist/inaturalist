@@ -80,6 +80,7 @@ class FacebookPhoto < Photo
     return nil if fp.nil?
     # facebook api provides these sizes in an keyless array, in this order
     [:large_url, :medium_url, :small_url, :thumb_url].each_with_index{|img_size,i|
+      next unless fp['images'] && fp['images'][i]
       options.update(img_size => fp['images'][i]['source'])
     }
     options.update(
