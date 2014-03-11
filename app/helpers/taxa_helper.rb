@@ -256,7 +256,7 @@ module TaxaHelper
   end
 
   def photo_providers(licensed=false, photo_providers=nil)
-    providers=CONFIG.photo_providers ||= photo_providers || %W(flickr inat_obs eol wikimedia conabio)
+    providers=CONFIG.photo_providers ||= photo_providers || %W(flickr inat_obs eol wikimedia)
     html='<ul>'
     providers.each do |prov|
       prov=prov.to_s.downcase

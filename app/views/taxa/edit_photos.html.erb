@@ -1,7 +1,7 @@
 <%- 
   resource ||= @resource || @taxon
   licensed ||= false
-  providers = CONFIG.photo_providers ||= %W(flickr inat_obs eol wikimedia conabio)
+  providers = CONFIG.photo_providers ||= %W(flickr inat_obs eol wikimedia)
 -%>
 <div id="edit_taxon_photos_<%= resource.id %>" class="edit_taxon_photos">
   <div class="readable description" style="margin-bottom: 1em">

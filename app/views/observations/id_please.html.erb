@@ -1,4 +1,4 @@
-<% content_for(:title) do %>ID Please!<% end %>
+<% content_for(:title) do %><%= t :full_id_please %> <% end %>
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'identifications',
                           'observations/filters',
@@ -134,7 +134,7 @@
       $('.observation .details').show()
       
       $('.identification_form_wrapper input.text').simpleTaxonSelector({
-        buttonText: 'Find',
+        buttonText: I18n.t('find'),
         afterSelect: function(wrapper) {
           $(wrapper).parents('form').find('.default.button').removeClass('disabled').attr('disabled', null);
         }
@@ -232,7 +232,7 @@
       <%= link_to t(:add_a_new_observation_to_id_please!),
         new_observation_path(:id_please => true), :class => "default button", 
         :rel => 'nofollow' %>
-      <%= link_to_function("Filters", 
+      <%= link_to_function(t(:filters),
         "toggleFilters(this)",
         :id => 'filters_button', 
         :class => "inter#{' open' if @filters_open}") %>
