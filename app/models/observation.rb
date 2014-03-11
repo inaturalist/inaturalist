@@ -808,6 +808,10 @@ class Observation < ActiveRecord::Base
     if timestamp = Chronic.parse(params[:updated_since])
       scope = scope.where("observations.updated_at > ?", timestamp)
     end
+
+    unless params[:q].blank?
+      scope = scope.dbsearch(params[:q])
+    end
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()

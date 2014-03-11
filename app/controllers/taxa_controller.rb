@@ -98,7 +98,9 @@ class TaxaController < ApplicationController
           :include => :taxon_names, :methods => [:common_name]))
       end
       format.json do
-        @taxa = Taxon::ICONIC_TAXA if params[:q].blank? && params[:taxon_id].blank? && params[:place_id].blank?
+        if params[:q].blank? && params[:taxon_id].blank? && params[:place_id].blank? && params[:names].blank?
+          @taxa = Taxon::ICONIC_TAXA
+        end
         pagination_headers_for @taxa
         options = Taxon.default_json_options
         options[:include].merge!(

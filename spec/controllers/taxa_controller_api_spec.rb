@@ -19,6 +19,19 @@ shared_examples_for "a TaxaController" do
         json_taxon['is_iconic'].should be_true
       end
     end
+
+    it "should filter by names" do
+      t1 = Taxon.make!
+      t2 = Taxon.make!
+      t3 = Taxon.make!
+      taxa = [t1,t2,t3]
+      get :index, :format => :json, :names => taxa.map(&:name).join(',')
+      json = JSON.parse(response.body)
+      json.size.should eq 3
+      taxa.each do |t|
+        json.detect{|jt| jt["id"] == t.id}.should_not be_blank
+      end
+    end
   end
 
   describe "show" do
