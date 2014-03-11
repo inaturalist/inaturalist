@@ -1275,7 +1275,7 @@ class Taxon < ActiveRecord::Base
         name
       else
         name = tag.strip.gsub(/ sp\.?$/, '')
-        next if PROBLEM_NAMES.include?(name)
+        next if PROBLEM_NAMES.include?(name.downcase)
         name
       end
     end.compact

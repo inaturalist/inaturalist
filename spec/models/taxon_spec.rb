@@ -424,6 +424,13 @@ describe Taxon, "tags_to_taxa" do
     TaxonName.make!(:name => "nutria", :taxon => t, :lexicon => "French")
     Taxon.tags_to_taxa(%w(Nutria)).should include t
   end
+
+  it "should not match problematic names" do
+    Taxon::PROBLEM_NAMES.each do |name|
+      t = Taxon.make!(:name => name.capitalize)
+      Taxon.tags_to_taxa([name, name.capitalize]).should be_blank
+    end
+  end
 end
 
 describe Taxon, "merging" do

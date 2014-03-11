@@ -16,8 +16,12 @@
       %input.submit{:name => "cancel", :type => "submit", :value => wt('Cancel'), :class => "button"}
 
   %h3 Attachments
-  .attachments
-    = wiki_page_attachments(@page)
+  - if @page.persisted?
+    .attachments
+      = wiki_page_attachments(@page)
+  - else
+    .nocontent.meta
+      =t 'views.wiki_pages.form.save_and_edit_to_add_attachments'
 
 .last.column.span-8
   .quiet.box

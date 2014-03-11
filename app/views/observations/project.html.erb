@@ -26,6 +26,7 @@
 
 <%- observations_html = capture do %>
   <% for observation in @observations %>
+    <%- next unless @project_observations_by_observation_id[observation.id] -%>
     <%= render :partial => 'projects/project_observation', :locals => {
       :project_observation => @project_observations_by_observation_id[observation.id],
       :observation => observation

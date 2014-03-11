@@ -15,6 +15,7 @@ class EolPhoto < Photo
   end
 
   def self.search_eol(query, options = {})
+    return [] if query.blank?
     eol_page_id = options[:eol_page_id]
     if eol_page_id.blank?
       search_xml = eol.search(query, :exact => 1)

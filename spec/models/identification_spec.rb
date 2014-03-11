@@ -201,6 +201,13 @@ describe Identification, "creation" do
     o.community_taxon.should eq(t)
   end
 
+  it "should touch the observation" do
+    o = Observation.make!
+    updated_at_was = o.updated_at
+    op = Identification.make!(:observation => o, :user => o.user)
+    o.reload
+    updated_at_was.should < o.updated_at
+  end
 end
 
 describe Identification, "deletion" do

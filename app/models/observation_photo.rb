@@ -7,6 +7,8 @@ class ObservationPhoto < ActiveRecord::Base
   after_create :set_observation_quality_grade,
                :set_observation_photos_count
   after_destroy :destroy_orphan_photo, :set_observation_quality_grade, :set_observation_photos_count
+
+  include Shared::TouchesObservationModule
   
   def destroy_orphan_photo
     Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(photo_id)
