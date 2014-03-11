@@ -1,6 +1,6 @@
 <h3><%=t :find_missing_listings %></h3>
 
-<p>Find taxa listed on other lists for this place, but missing from "<%= list_title %>."</p>
+<p>Find taxa listed on other checklists or project lists for this place, but missing from "<%= list_title %>."</p>
 
 <form action="">
   <div class="clear">
@@ -29,10 +29,10 @@
   </div>
   <div style="margin-right:10px">
     <div>
-      Filter by list:
+      Filter by all place checklists or a specific checklist or project list
     </div>
     <select name="missing_listing_list_id" id="missing_listing_list_id">
-      <option value="" selected='selected'>All</option>
+      <option value="" selected='selected'>All place checklists</option>
       <% @lists_for_missing_listings.each do |list| %>
         <% if list.id == params[:missing_listing_list_id].to_i %>
           <option value="<%= list.id %>" selected='selected'><%= list.title %></option>
