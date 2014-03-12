@@ -113,6 +113,9 @@ class CheckListsController < ApplicationController
     scoped_list = hide_ancestors(listed_taxa_on_this_list, scoped_list) if hide_ancestors
     scoped_list
   end
+  
+  # filter out listed taxa that do not belong to a particular list
+  # Note that "other_list" is a hash, not an active record query in progress
   def filter_by_list(list, other_list)
     other_list.select{|lt| 
       lt['list_id'].to_s == list.id.to_s
