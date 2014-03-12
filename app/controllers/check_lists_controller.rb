@@ -37,7 +37,7 @@ class CheckListsController < ApplicationController
       @hide_ancestors = params[:hide_ancestors]
 
 
-      @missing_listings_list = params[:missing_listing_list_id].present? ? List.find(params[:missing_listing_list_id]) : nil
+      @missing_listings_list = params[:missing_listing_list_id].present? ? List.find_by_id(params[:missing_listing_list_id]) : nil
 
       place_based_projects = Project.where("place_id = ?", @list.place_id)
       list_ids_from_projects = place_based_projects.map{|project| project.project_list.id}
