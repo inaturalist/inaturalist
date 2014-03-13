@@ -27,6 +27,7 @@ class ObservationsController < ApplicationController
   doorkeeper_for :create, :update, :destroy, :viewed_updates, :if => lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
+  before_filter :admin_required, :only => [:taxa]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
     :import, :export, :add_from_list, :new, :project]
   before_filter :authenticate_user!,
@@ -717,7 +718,7 @@ class ObservationsController < ApplicationController
         # Destroy old photos.  ObservationPhotos seem to get removed by magic
         doomed_photo_ids = (old_photo_ids - observation.photo_ids).compact
         unless doomed_photo_ids.blank?
-          Photo.delay.destroy_orphans(doomed_photo_ids)
+          Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(doomed_photo_ids)
         end
 
         Photo.descendent_classes.each do |klass|
@@ -949,11 +950,14 @@ class ObservationsController < ApplicationController
           :latitude => row[4], 
           :longitude => row[5]
         )
+        Rails.logger.debug "[DEBUG] obs.latitude: #{obs.latitude}"
+        Rails.logger.debug "[DEBUG] obs.place_guess: #{obs.place_guess}"
+        Rails.logger.debug "[DEBUG] row[3]: #{row[3]}"
         obs.set_taxon_from_species_guess
         if obs.georeferenced?
           obs.location_is_exact = true
         elsif row[3]
-          places = Ym4r::GmPlugin::Geocoding.get(row[3]) unless row[3].blank?
+          places = Geocoder.search(obs.place_guess) unless obs.place_guess.blank?
           unless places.blank?
             obs.latitude = places.first.latitude
             obs.longitude = places.first.longitude
@@ -1496,6 +1500,33 @@ class ObservationsController < ApplicationController
     @headless = @footless = true
     search_params, find_options = get_search_params(params)
     @stats_adequately_scoped = stats_adequately_scoped?
+  end
+
+  def taxa
+    search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
+    oscope = Observation.query(search_params).scoped
+    oscope = oscope.where("1 = 2") unless stats_adequately_scoped?
+    @taxa = Taxon.find_by_sql("SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id")
+    respond_to do |format|
+      format.html do
+        @headless = @footless = true
+        ancestor_ids = @taxa.map{|t| t.ancestor_ids[1..-1]}.flatten.uniq
+        ancestors = Taxon.find_all_by_id(ancestor_ids)
+        taxa_to_arrange = (ancestors + @taxa).sort_by{|t| "#{t.ancestry}/#{t.id}"}
+        @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
+        @taxon_names_by_taxon_id = TaxonName.where("taxon_id IN (?)", taxa_to_arrange.map(&:id).uniq).group_by(&:taxon_id)
+      end
+      format.csv do
+        render :text => @taxa.to_csv(
+          :only => [:id, :name, :rank, :rank_level, :ancestry, :is_active],
+          :methods => [:common_name_string, :iconic_taxon_name, 
+            :taxonomic_kingdom_name,
+            :taxonomic_phylum_name, :taxonomic_class_name,
+            :taxonomic_order_name, :taxonomic_family_name,
+            :taxonomic_genus_name, :taxonomic_species_name]
+        )
+      end
+    end
   end
 
   def taxon_stats
@@ -2155,7 +2186,7 @@ class ObservationsController < ApplicationController
     return true if @observations.blank?
     taxa = @observations.compact.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
     return true if taxa.blank?
-    List.delay.refresh_for_user(current_user, :taxa => taxa.map(&:id))
+    List.delay(:priority => USER_PRIORITY).refresh_for_user(current_user, :taxa => taxa.map(&:id))
     true
   end
   
@@ -2588,7 +2619,7 @@ class ObservationsController < ApplicationController
       else
         # no job id, no job, let's get this party started
         Rails.cache.delete(cache_key)
-        job = Observation.delay.generate_csv_for(parent, :path => path_for_csv, :user => current_user)
+        job = Observation.delay(:priority => USER_PRIORITY).generate_csv_for(parent, :path => path_for_csv, :user => current_user)
         Rails.cache.write(cache_key, job.id, :expires_in => 1.hour)
       end
       prevent_caching

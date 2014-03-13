@@ -246,7 +246,7 @@ class GuidesController < ApplicationController
         else
           # no job id, no job, let's get this party started
           Rails.cache.delete(@guide.generate_ngz_cache_key)
-          job = @guide.delay.generate_ngz(:path => path)
+          job = @guide.delay(:priority => USER_INTEGRITY_PRIORITY).generate_ngz(:path => path)
           Rails.cache.write(@guide.generate_ngz_cache_key, job.id, :expires_in => 1.hour)
         end
         prevent_caching

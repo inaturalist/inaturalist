@@ -10,8 +10,7 @@ class ObservationFieldValue < ActiveRecord::Base
   validate :validate_observation_field_datatype
   validate :validate_observation_field_allowed_values
 
-  after_create  :touch_observation
-  after_destroy :touch_observation
+  include Shared::TouchesObservationModule
   
   LAT_LON_REGEX = /#{Observation::COORDINATE_REGEX},#{Observation::COORDINATE_REGEX}/
 
@@ -107,11 +106,6 @@ class ObservationFieldValue < ActiveRecord::Base
       errors.add(:value, 
         "of #{observation_field.name} must be #{values[0..-2].map{|v| "#{v}, "}.join}or #{values.last}.")
     end
-  end
-
-  def touch_observation
-    observation.touch if observation
-    true
   end
 
 end

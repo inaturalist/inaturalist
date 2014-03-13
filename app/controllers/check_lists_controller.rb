@@ -12,7 +12,47 @@ class CheckListsController < ApplicationController
   def index; redirect_to '/'; end
   
   def show
+    @place = @list.place
+    @other_check_lists = @place.check_lists.limit(1000)
+    @other_check_lists.delete_if {|l| l.id == @list.id}
+    
+    # If this is a place's default check list, load ALL the listed taxa
+    # belonging to this place.  Kind of weird, I know.  The alternative would
+    # be to keep the default list updated with duplicates from all the other
+    # check lists belonging to a place, like we do with parent lists.  It 
+    # would be a pain to manage, but it might be faster.
+    if @list.is_default?
+      @unpaginated_listed_taxa = ListedTaxon.find_listed_taxa_from_default_list(@list.place_id)
 
+      # Searches must use place_id instead of list_id for default checklists 
+      # so we can search items in other checklists for this place
+      if @q = params[:q]
+        @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
+        @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
+      end      
+    end
+    if params[:find_missing_listings]
+      @missing_filter_taxon = params[:missing_filter_taxon].present? ? Taxon.find(params[:missing_filter_taxon]) : nil
+      @hide_descendants = params[:hide_descendants]
+      @hide_ancestors = params[:hide_ancestors]
+
+
+      @missing_listings_list = params[:missing_listing_list_id].present? ? List.find_by_id(params[:missing_listing_list_id]) : nil
+
+      list_ids_from_projects = ProjectList.joins(:project).where("projects.place_id = ?", @list.place_id).pluck(:id)
+
+      @lists_for_missing_listings = List.where("(place_id = ? AND id != ?) OR id IN (?)", @list.place_id, @list.id, list_ids_from_projects).order(:title)
+      missing_listings_list_ids = @lists_for_missing_listings.map(&:id)
+
+      listed_taxa_on_this_list = @list.find_listed_taxa_and_ancestry_as_hashes
+      listed_taxa_on_other_lists = @list.find_listed_taxa_and_ancestry_on_other_lists_as_hashes(missing_listings_list_ids)
+
+      scoped_list = apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, @missing_filter_taxon, @hide_ancestors, @hide_descendants, @missing_listings_list)
+
+      ids_for_listed_taxa_on_other_lists = scoped_list.map{|lt| lt['id'] }
+
+      @missing_listings = ListedTaxon.where('listed_taxa.id IN (?)', ids_for_listed_taxa_on_other_lists).paginate({:page => params[:missing_listings_page] || 1, :per_page => 20})
+    end
     super #show from list module
   end
   
@@ -62,6 +102,57 @@ class CheckListsController < ApplicationController
   end
   
   private
+
+  def apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, missing_filter_taxon, hide_ancestors, hide_descendants, missing_listings_list)
+    scoped_list = listed_taxa_on_other_lists
+    scoped_list = filter_by_list(missing_listings_list, scoped_list) if missing_listings_list
+    scoped_list = missing_filter_taxon(missing_filter_taxon, scoped_list) if missing_filter_taxon
+    scoped_list = hide_matches(listed_taxa_on_this_list, scoped_list)
+    scoped_list = hide_descendants(listed_taxa_on_this_list, scoped_list) if hide_descendants
+    scoped_list = hide_ancestors(listed_taxa_on_this_list, scoped_list) if hide_ancestors
+    scoped_list
+  end
+  
+  # filter out listed taxa that do not belong to a particular list
+  # Note that "other_list" is a hash, not an active record query in progress
+  def filter_by_list(list, other_list)
+    other_list.select{|lt| 
+      lt['list_id'].to_s == list.id.to_s
+    }
+  end
+
+  def missing_filter_taxon(taxon, other_list)
+    other_list.select{|lt| 
+      found = taxon.match_descendants(lt)
+    }
+  end
+  def hide_matches(this_list, other_list)
+    this_list.each do |taxon|
+      other_list = other_list.reject do |lt| 
+        taxon['taxon_id'].to_i == lt['taxon_id'].to_i
+      end
+    end
+    other_list
+  end
+
+  def hide_descendants(this_list, other_list)
+    this_list.each do |taxon|
+      other_list = other_list.reject do |lt| 
+        Taxon.match_descendants_of_id(taxon['taxon_id'].to_i, lt)
+      end
+    end
+    other_list
+  end
+
+
+  def hide_ancestors(this_list, other_list)
+    this_list.each do |taxon|
+      other_list = other_list.reject do |lt| 
+        Taxon.match_descendants_of_id(lt['taxon_id'].to_i, taxon)
+      end
+    end
+    other_list
+  end
 
   def update_list_rules
     # Override taxon choice with iconic taxon choice

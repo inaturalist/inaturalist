@@ -16,6 +16,14 @@ describe ObservationPhoto, "creation" do
       o.reload
     }.should change(o, :observation_photos_count).by(1)
   end
+
+  it "should touch the observation" do
+    o = Observation.make!
+    updated_at_was = o.updated_at
+    op = ObservationPhoto.make!(:observation => o)
+    o.reload
+    updated_at_was.should < o.updated_at
+  end
 end
 
 describe ObservationPhoto, "destruction" do

@@ -790,19 +790,19 @@ class Observation < ActiveRecord::Base
 
     rank = params[:rank].to_s.downcase
     if Taxon::VISIBLE_RANKS.include?(rank)
-      scope = scope.includes(:taxon).where("taxa.rank = ?", rank)
+      scope = scope.joins(:taxon).where("taxa.rank = ?", rank)
     end
 
     high_rank = params[:hrank]
     if Taxon::VISIBLE_RANKS.include?(high_rank)
       rank_level = Taxon::RANK_LEVELS[high_rank]
-      scope = scope.includes(:taxon).where("taxa.rank_level <= ?", rank_level)
+      scope = scope.joins(:taxon).where("taxa.rank_level <= ?", rank_level)
     end
 
     low_rank = params[:lrank]
     if Taxon::VISIBLE_RANKS.include?(low_rank)
       rank_level = Taxon::RANK_LEVELS[low_rank]
-      scope = scope.includes(:taxon).where("taxa.rank_level >= ?", rank_level)
+      scope = scope.joins(:taxon).where("taxa.rank_level >= ?", rank_level)
     end
 
     if timestamp = Chronic.parse(params[:updated_since])
@@ -1800,7 +1800,7 @@ class Observation < ActiveRecord::Base
     if taxon_id_changed? && taxon.blank?
       update_out_of_range
     elsif latitude_changed? || private_latitude_changed? || taxon_id_changed?
-      delay.update_out_of_range
+      delay(:priority => USER_INTEGRITY_PRIORITY).update_out_of_range
     end
     true
   end

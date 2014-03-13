@@ -71,6 +71,12 @@
 
 <div class="column span-17">
   <%= render :partial => 'lists/tools' %>
+
+  <% if @missing_listings %>
+    <div class="quiet box">
+      <%= render :partial => 'missing_listings', locals: {missing_listings: @missing_listings, list_title: @list_title} %>
+    </div>
+  <% end %>
   
   <% unless @list.is_default? -%>
     <div id="description" class="readable description">

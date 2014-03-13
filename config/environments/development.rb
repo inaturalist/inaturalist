@@ -20,7 +20,6 @@ Inaturalist::Application.configure do
   # # Uncomment to test mail delivery
   # smtp_config_path = File.open("#{Rails.root}/config/smtp.yml")
   # ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path).symbolize_keys
-  # Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
   # config.action_mailer.delivery_method = :smtp  
 
   # Uncomment these to test caching

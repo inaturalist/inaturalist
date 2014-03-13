@@ -135,6 +135,7 @@ class CheckList < List
     end
   end
   
+  #For CheckLists, returns first_observation_id which represents the first one added to the site (e.g. not first date observed)
   def cache_columns_query_for(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
@@ -208,7 +209,7 @@ class CheckList < List
   end
   
   def reload_and_refresh_now
-    job = CheckList.delay.reload_and_refresh_now(self)
+    job = CheckList.delay(:priority => USER_PRIORITY).reload_and_refresh_now(self)
     Rails.cache.write(reload_and_refresh_now_cache_key, job.id)
     job
   end
@@ -218,7 +219,7 @@ class CheckList < List
   end
   
   def refresh_now_without_reload
-    job = CheckList.delay.refresh_now_without_reload(self)
+    job = CheckList.delay(:priority => USER_PRIORITY).refresh_now_without_reload(self)
     Rails.cache.write(refresh_now_without_reload_cache_key, job.id)
     job
   end
@@ -368,5 +369,14 @@ class CheckList < List
       list.add_taxon(taxon.species, :force_update_cache_columns => true) if taxon.rank_level < Taxon::SPECIES_LEVEL
     end
   end
-  
+
+  def find_listed_taxa_and_ancestry_as_hashes
+    listed_taxa_on_this_list_with_ancestry_string = ActiveRecord::Base.connection.execute("select listed_taxa.id, taxon_id, taxa.ancestry from listed_taxa, taxa where listed_taxa.taxon_id = taxa.id and list_id = #{id};")
+    listed_taxa_on_this_list_with_ancestry_string.map{|row| row['ancestry'] = row['ancestry'].split("/"); row }
+  end
+
+  def find_listed_taxa_and_ancestry_on_other_lists_as_hashes(list_ids)
+    listed_taxa_not_on_this_list_but_on_this_place_with_ancestry_string = ActiveRecord::Base.connection.execute("select listed_taxa.id, taxon_id, list_id, taxa.ancestry from listed_taxa, taxa where listed_taxa.taxon_id = taxa.id and list_id IN (#{list_ids.join(', ')})")
+    listed_taxa_on_other_lists_with_ancestry = listed_taxa_not_on_this_list_but_on_this_place_with_ancestry_string.map{|row| row['ancestry'] = (row['ancestry'].present? ? row['ancestry'].split("/") : []); row }
+  end
 end
