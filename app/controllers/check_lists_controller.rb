@@ -39,8 +39,8 @@ class CheckListsController < ApplicationController
 
       @missing_listings_list = params[:missing_listing_list_id].present? ? List.find_by_id(params[:missing_listing_list_id]) : nil
 
-      place_based_projects = Project.where("place_id = ?", @list.place_id)
-      list_ids_from_projects = place_based_projects.map{|project| project.project_list.id}
+      list_ids_from_projects = ProjectList.joins(:project).where("projects.place_id = ?", @list.place_id).pluck(:id)
+
       @lists_for_missing_listings = List.where("(place_id = ? AND id != ?) OR id IN (?)", @list.place_id, @list.id, list_ids_from_projects).order(:title)
       missing_listings_list_ids = @lists_for_missing_listings.map(&:id)
 
