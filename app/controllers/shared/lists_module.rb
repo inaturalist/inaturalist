@@ -170,8 +170,10 @@ module Shared::ListsModule
       end
       
       format.json do
-        @find_options[:order] = "listed_taxa.observations_count DESC" if params[:order_by].blank?
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
+        if @listed_taxa.respond_to?(:scoped) && params[:order_by].blank?
+          @listed_taxa = @listed_taxa.reorder("listed_taxa.observations_count DESC")
+        end
         render :json => {
           :list => @list,
           :listed_taxa => @listed_taxa.as_json(
