@@ -36,10 +36,18 @@ class CheckListsController < ApplicationController
       @hide_descendants = params[:hide_descendants]
       @hide_ancestors = params[:hide_ancestors]
 
-      listed_taxa_on_this_list = @list.find_listed_taxa_and_ancestry_as_hashes
-      listed_taxa_on_other_lists = @list.find_listed_taxa_and_ancestry_on_other_lists_as_hashes
 
-      scoped_list = apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, @missing_filter_taxon, @hide_ancestors, @hide_descendants)
+      @missing_listings_list = params[:missing_listing_list_id].present? ? List.find_by_id(params[:missing_listing_list_id]) : nil
+
+      list_ids_from_projects = ProjectList.joins(:project).where("projects.place_id = ?", @list.place_id).pluck(:id)
+
+      @lists_for_missing_listings = List.where("(place_id = ? AND id != ?) OR id IN (?)", @list.place_id, @list.id, list_ids_from_projects).order(:title)
+      missing_listings_list_ids = @lists_for_missing_listings.map(&:id)
+
+      listed_taxa_on_this_list = @list.find_listed_taxa_and_ancestry_as_hashes
+      listed_taxa_on_other_lists = @list.find_listed_taxa_and_ancestry_on_other_lists_as_hashes(missing_listings_list_ids)
+
+      scoped_list = apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, @missing_filter_taxon, @hide_ancestors, @hide_descendants, @missing_listings_list)
 
       ids_for_listed_taxa_on_other_lists = scoped_list.map{|lt| lt['id'] }
 
@@ -96,13 +104,22 @@ class CheckListsController < ApplicationController
   
   private
 
-  def apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, missing_filter_taxon, hide_ancestors, hide_descendants)
+  def apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, missing_filter_taxon, hide_ancestors, hide_descendants, missing_listings_list)
     scoped_list = listed_taxa_on_other_lists
+    scoped_list = filter_by_list(missing_listings_list, scoped_list) if missing_listings_list
     scoped_list = missing_filter_taxon(missing_filter_taxon, scoped_list) if missing_filter_taxon
     scoped_list = hide_matches(listed_taxa_on_this_list, scoped_list)
     scoped_list = hide_descendants(listed_taxa_on_this_list, scoped_list) if hide_descendants
     scoped_list = hide_ancestors(listed_taxa_on_this_list, scoped_list) if hide_ancestors
     scoped_list
+  end
+  
+  # filter out listed taxa that do not belong to a particular list
+  # Note that "other_list" is a hash, not an active record query in progress
+  def filter_by_list(list, other_list)
+    other_list.select{|lt| 
+      lt['list_id'].to_s == list.id.to_s
+    }
   end
 
   def missing_filter_taxon(taxon, other_list)
