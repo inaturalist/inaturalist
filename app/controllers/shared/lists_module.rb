@@ -43,7 +43,7 @@ module Shared::ListsModule
 
       if params[:observed] == 'f'
         listed_taxa_hash = results.inject({}) do |aggregator, listed_taxon|
-          aggregator["#{listed_taxon['taxon_id']}"] = listed_taxon['id'] if ( !results.find{|lt| (listed_taxon['taxon_id'] == lt['taxon_id'] && lt['last_observation_id'] && lt['place_id'].nil? )} && (aggregator["#{listed_taxon['taxon_id']}"].nil? && (listed_taxon['last_observation_id'].nil?)) || ((!results.find{|lt| (lt['taxon_id']==listed_taxon['taxon_id'] && lt['place_id'].nil?) }) )) 
+          aggregator["#{listed_taxon['taxon_id']}"] = listed_taxon['id'] if (!already_in_list_and_observed_and_not_place_based(results, listed_taxon) && not_yet_in_list_and_unobserved(aggregator, listed_taxon) || !already_in_list_and_not_place_based(results, listed_taxon)) 
           aggregator
         end
         @total_observed_taxa = 0
@@ -695,5 +695,15 @@ private
   end
   def default_checklist?(list)
     list.type=="CheckList" && list.is_default?
+  end
+  def already_in_list_and_observed_and_not_place_based(results, listed_taxon)
+    results.find{|lt| (listed_taxon['taxon_id'] == lt['taxon_id'] && lt['last_observation_id'] && lt['place_id'].nil? )}
+  end
+  def not_yet_in_list_and_unobserved(aggregator, listed_taxon)
+    aggregator["#{listed_taxon['taxon_id']}"].nil? && (listed_taxon['last_observation_id'].nil?)
+  end
+
+  def already_in_list_and_not_place_based(results, listed_taxon)
+    results.find{|lt| (lt['taxon_id']==listed_taxon['taxon_id'] && lt['place_id'].nil?) }
   end
 end
