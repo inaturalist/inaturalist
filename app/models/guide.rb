@@ -368,7 +368,8 @@ class Guide < ActiveRecord::Base
 
     # zip up the results & return the path
     zip_path = File.join(work_path, "#{basename}.ngz")
-    system "cd #{work_path} && zip -r #{basename}.ngz #{xml_fname} #{local_asset_path}"
+    system "cd #{work_path} && zip -r #{zip_path} #{xml_fname} #{local_asset_path}"
+    FileUtils.rm_rf local_asset_path # clean up all those big files
     end_log_timer
     zip_path
   end
