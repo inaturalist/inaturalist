@@ -128,6 +128,16 @@
     <% end %>
   </fieldset> -->
 
+  <% if project.place %>
+    <fieldset class="unobserved-listings">
+      <legend>Unobserved Listings</legend>
+      <p class="description">
+        Select how unobserved listings are displayed
+      </p>
+      <%= f.radio_button("show_from_place", false, { checked: !project.show_from_place.present?, label: t(:display_listings_added_by_curators), :label_after => true})%>
+      <%= f.radio_button("show_from_place", true, { checked: project.show_from_place.present?, label: t(:display_listings_from_place), :label_after => true})%>
+    </fieldset>
+  <% end %>
   <fieldset class="observationrules">
     <legend><%= t(:observation_rules).titleize %></legend>
     <p class="description">
