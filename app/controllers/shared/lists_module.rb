@@ -55,9 +55,12 @@ module Shared::ListsModule
       end
       listed_taxa_ids = listed_taxa_hash.values.map(&:to_i)
 
+
       listed_taxa = listed_taxa_with_duplicates.where("listed_taxa.id IN (?)", listed_taxa_ids)
 
+
       main_list = set_scopes(@list, @filter_taxon, listed_taxa)
+
 
       @listed_taxa = main_list.paginate(@find_options) 
 
@@ -503,6 +506,7 @@ private
 
   def set_scopes(list, filter_taxon, unpaginated_listed_taxa)
     unpaginated_listed_taxa = apply_list_scopes(list, unpaginated_listed_taxa, filter_taxon)
+
     unpaginated_listed_taxa = apply_checklist_scopes(list, unpaginated_listed_taxa) if list.is_a?(CheckList)
     unpaginated_listed_taxa
   end
