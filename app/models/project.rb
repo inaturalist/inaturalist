@@ -402,21 +402,20 @@ class Project < ActiveRecord::Base
     end
   end
 
-  def get_total_listed_taxa_count #denominator on project/show
+  def list_observed_and_total #denominator and numerator on project/show
     if show_from_place?
-      find_demominator_for_project_from_place
+      find_observed_and_total_for_project_from_place
     else
-      find_demominator_for_project_not_from_place
+      find_observed_and_total_for_project_not_from_place
     end
   end
 
-  def find_demominator_for_project_from_place
+  def find_observed_and_total_for_project_from_place
     list = project_list
     observable_list = place.check_list
 
     listed_taxa_with_duplicates = ListedTaxon.from_place_or_list(list.project.place_id, list.id)
 
-    # raise (listed_taxa_with_duplicates).count.to_s
     query = listed_taxa_with_duplicates.select([:id, :taxon_id, :place_id, :last_observation_id])
     results = ActiveRecord::Base.connection.select_all(query)
 
@@ -426,19 +425,19 @@ class Project < ActiveRecord::Base
     end
 
     listed_taxa_ids = listed_taxa_hash.values.map(&:to_i)
-    listed_taxa = listed_taxa_with_duplicates.where("listed_taxa.id IN (?)", listed_taxa_ids)
-
-    unpaginated_listed_taxa = listed_taxa.with_taxonomic_status(true)
+    unpaginated_listed_taxa = listed_taxa_with_duplicates.where("listed_taxa.id IN (?)", listed_taxa_ids)
 
     if preferred_count_by == "species"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
     elsif preferred_count_by == "leaves"
-      unpaginated_listed_taxa = unpaginated_listed_taxa.with_leaves(unpaginated_listed_taxa.to_sql)
+      unpaginated_listed_taxa = unpaginated_listed_taxa.with_leaves(unpaginated_listed_taxa.to_sql.sub("AND (taxa.rank_level = 10)", ""))
     end
-    unpaginated_listed_taxa.count
+    unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(true)
+
+    {numerator: unpaginated_listed_taxa.confirmed_and_not_place_based.count, denominator: unpaginated_listed_taxa.count}
   end
 
-  def find_demominator_for_project_not_from_place
+  def find_observed_and_total_for_project_not_from_place
     unpaginated_listed_taxa = ListedTaxon.filter_by_list(project_list.id)
     unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(true)
     if preferred_count_by == "species"
@@ -446,6 +445,6 @@ class Project < ActiveRecord::Base
     elsif preferred_count_by == "leaves"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_leaves(unpaginated_listed_taxa.to_sql)
     end
-    unpaginated_listed_taxa.count
+    {numerator: unpaginated_listed_taxa.confirmed.count, denominator: unpaginated_listed_taxa.count}
   end
 end

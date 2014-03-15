@@ -279,7 +279,7 @@
       <li>
         <% if @observed_taxa_count.to_i > 0 -%>
           <span class="right" style="margin: 4px 10px 0 10px">
-             <span class="count"><%= @observed_taxa_count %></span>
+             <span class="count"><%= @list_numerator || @observed_taxa_count %></span>
              <%# <% raise @project.prefers_count_from_list.to_s %1> %>
              <%# if @project.prefers_count_from_list? -%>
                <%= t :of %>
