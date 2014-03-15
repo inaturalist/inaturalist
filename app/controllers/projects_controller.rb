@@ -67,6 +67,9 @@ class ProjectsController < ApplicationController
   
   def show
     respond_to do |format|
+
+      @list_denom = @project.get_total_listed_taxa_count
+
       format.html do
         if logged_in?
           @provider_authorizations = current_user.provider_authorizations.all

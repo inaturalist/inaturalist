@@ -66,6 +66,7 @@
         :label => t(:show_total_listed_taxa),
         :label_after => true,
         :description => t(:show_the_total_number_of) %>
+    <%= f.check_box :prefers_count_leaves, :label => t(:count_by_leaves), :label_after => true, :description => t(:count_listed_taxa_by) %>
   </div>
 
   <fieldset id="bioblitz" style="<%= "display:none;" unless @project.project_type == Project::BIOBLITZ_TYPE %>">
