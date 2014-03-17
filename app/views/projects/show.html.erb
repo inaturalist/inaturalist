@@ -275,12 +275,12 @@
         </div>
       <% end -%>
     </li>
-    <%# add back later????<% unless @project.project_type == Project::BIOBLITZ_TYPE -%> %>
+    <% unless @project.project_type == Project::BIOBLITZ_TYPE -%> %>
       <li>
         <% if @observed_taxa_count.to_i > 0 -%>
           <span class="right" style="margin: 4px 10px 0 10px">
              <span class="count"><%= @list_numerator || @observed_taxa_count %></span>
-             <%# ????? if @project.prefers_count_from_list? -%>
+             <% if @project.prefers_count_from_list? -%>
                <%= t :of %>
                <span class="count">
                  <%= @list_denom %>
@@ -288,10 +288,10 @@
              <% end -%>
              <%= t :taxa_observed %>
           </span>
-        <%# ????? end -%>
+        <% end -%>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
       </li>
-    <%# add back later???? <% end -%> %>
+    <% end -%>
     <li>
       <% if @journal_post_count.to_i > 0 -%>
         <span class="right" style="margin: 4px 10px 0 10px">

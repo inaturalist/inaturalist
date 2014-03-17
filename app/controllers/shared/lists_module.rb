@@ -395,11 +395,13 @@ private
   def set_place(list)
     list.place
   end
+  
   def set_other_check_lists(list, place)
     other_check_lists = place.check_lists.limit(1000)
     other_check_lists.delete_if {|l| l.id == list.id}
     other_check_lists
   end
+  
   def set_scopes_for_place_based_project_list(list, q, filter_taxon, search_taxon_ids, acceptable_taxa_from_list)
     unpaginated_listed_taxa = ListedTaxon.from_place_or_list(list.project.place_id, list.id)
     if acceptable_taxa_from_list

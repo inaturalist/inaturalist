@@ -427,13 +427,13 @@ class Project < ActiveRecord::Base
     listed_taxa_ids = listed_taxa_hash.values.map(&:to_i)
     unpaginated_listed_taxa = listed_taxa_with_duplicates.where("listed_taxa.id IN (?)", listed_taxa_ids)
 
+    unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(true)
     if preferred_count_by == "species"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
     elsif preferred_count_by == "leaves"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_leaves(unpaginated_listed_taxa.to_sql.sub("AND (taxa.rank_level = 10)", ""))
     end
-    unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(true)
-
+    
     {numerator: unpaginated_listed_taxa.confirmed_and_not_place_based.count, denominator: unpaginated_listed_taxa.count}
   end
 
