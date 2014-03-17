@@ -781,7 +781,7 @@ module ApplicationHelper
         title = if options[:skip_links]
           project.title
         else
-          link_to(project.title, project)
+          link_to(project.title, url_for_resource_with_host(project))
         end
         t(:curators_changed_for_x_html, :x => title)
       end
