@@ -18,17 +18,21 @@ describe ProjectList, "refresh_with_observation" do
     pl = p.project_list
     t1 = Taxon.make!
     t2 = Taxon.make!
-    o = Observation.make!(:taxon => t1)
+    o = make_research_grade_observation(:taxon => t1)
+    
     pu = ProjectUser.make!(:user => o.user, :project => p)
     po = ProjectObservation.make!(:project => p, :observation => o)
     ProjectList.refresh_with_observation(o)
     pl.reload
-    pl.taxon_ids.should include(o.taxon_id)
+    pl.taxon_ids.should include(o.taxon_id) #
     
     o.update_attributes(:taxon => t2)
+    i = Identification.make!(:observation => o, :taxon => t2)
+    Observation.set_quality_grade(o.id)
+    o.reload
+    
     ProjectList.refresh_with_observation(o, :taxon_id => o.taxon_id, 
       :taxon_id_was => t1.id, :user_id => o.user_id, :created_at => o.created_at)
-    
     pl.reload
     pl.taxon_ids.should_not include(t1.id)
     pl.taxon_ids.should include(t2.id)
@@ -40,9 +44,13 @@ describe ProjectList, "refresh_with_observation" do
     p = Project.make!
     pl = p.project_list
     lt = pl.add_taxon(species, :user => p.user, :manually_added => true)
-    po = make_project_observation(:project => p, :taxon => subspecies)
+    po = make_project_observation_from_research_quality_observation(:project => p, :taxon => subspecies)
     Delayed::Worker.new(:quiet => true).work_off
+    puts "reloading"
     lt.reload
+    puts "po: #{po}"
+    puts "lt.last_observation: #{lt.last_observation}"
+    puts "po.observation: #{po.observation}"
     lt.last_observation.should eq(po.observation)
   end
 end

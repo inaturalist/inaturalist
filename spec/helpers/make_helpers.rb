@@ -80,7 +80,17 @@ module MakeHelpers
     o = Observation.make!(:user => u, :taxon => t)
     ProjectObservation.make!({:project => pu.project, :observation => o}.merge(options))
   end
-
+  
+  def make_project_observation_from_research_quality_observation(options = {})
+    p = options[:project] || Project.make!
+    t = options.delete(:taxon)
+    u = options.delete(:user) || User.make!
+    pu = ProjectUser.make!(:project => p, :user => u)
+    o = make_research_grade_observation(:user => u, :taxon => t)
+    #o = Observation.make!(:user => u, :taxon => t)
+    ProjectObservation.make!({:project => pu.project, :observation => o}.merge(options))
+  end
+  
   def make_place_with_geom(options = {})
     wkt = options.delete(:wkt) || options.delete(:ewkt) || "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
     place = Place.make!(options)
