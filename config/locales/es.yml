@@ -3342,6 +3342,32 @@ es:
             de alguien merecen ser marcados y podrán ser borrados, sin embargo evidencia 
             de contaminación o disturbios pueden ser interesantes y probablemente no 
             sean borrados.
+    observation_fields:
+      about_editing_observation_fields_desc_html: |
+        <p class='ui'>
+          Usted puede editar este campo de observación, porque ha creado o
+          porque eres un curador sitio. Si usted es un curador sitio, por
+          favor, siga estos directrices
+        </p>
+        <ol>
+          <li>No haga cambios de nombres arbitrarios (por ejemplo, cambio de "comer" a la "libación")</li>
+          <li>
+            Tenga en cuenta que los campos de observación se pueden utilizar
+            para las observaciones de cualquier taxón, así que trate de no
+            utilizar la terminología específica del taxón
+          </li>
+          <li>No elimine los campos que la gente está utilizando</li>
+          <li>
+            No traducir nombres de campo existentes en diferentes idiomas.
+            Inglés es la lengua franca de este sitio. Si realmente quieres un
+            campo que encapsula el mismo concepto pero en otro idioma, por
+            favor haga un nuevo campo de observación.
+          </li>
+        </ol>
+      dna_help: |
+        Per habilitar la funcionalitat corresponent codi de barres d'ADN BOLD, assegureu-vos que el seu 
+        nom de camp inclou les paraules "COI", "COX1", "els seus", o "matK" 
+        corresponent al gen aquesta objectius de camp.
     observations:
       copy_tip: "Añadir una nueva observación copiando la fecha de esta observación, el lugar, las fotos y los campos de observación."
       captive_help_html: |

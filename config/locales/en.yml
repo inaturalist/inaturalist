@@ -3394,10 +3394,19 @@ en:
         ancestor_disagreements_desc: "# of identified taxa that are among a taxon's ancestors, but were created after the first identification using this taxon"
         score_desc: "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"
     observation_fields:
+      about_editing_observation_fields_desc_html: |
+        <p class='ui'>You can edit this observation field because you created or because you're a site curator. If you're a site curator, please follow these guidelines</p>
+        <ol>
+          <li>Don't make arbitrary name changes (e.g. changing "eating" to "nectaring")</li>
+          <li>Keep in mind that observation fields can be used for observations of any taxon, so try not to use taxon-specific terminology</li>
+          <li>Don't delete fields that people are using</li>
+          <li>Don't translate existing field names into different languages. English is the lingua franca of this site. If you really want a field that encapsulates the same concept but in a different language, please make a new observation field.</li>
+        </ol>
       dna_help: |
-        To enable BOLD DNA barcode matching functionality, make sure your
-        field name includes the words "COI", "COX1", "ITS", or "matK,"
-        corresponding to the gene this field targets.
+        Para habilitar la funcionalidad correspondiente código de barras de
+        ADN BOLD, asegúrese de que su nombre de campo incluye las palabras
+        "COI", "COX1", "sus", o "matK" correspondiente al gen esta objetivos
+        de campo.
     emailer:
       observations_export_notification:
         your_observations_export_is_ready_html: |
