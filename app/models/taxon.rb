@@ -1032,16 +1032,16 @@ class Taxon < ActiveRecord::Base
 
   def geoprivacy(options = {})
     global_status = ConservationStatus.where("place_id IS NULL AND taxon_id IN (?)", self_and_ancestor_ids).order("iucn ASC").last
-    if global_status && [Observation::OBSCURED, Observation::PRIVATE].include?(global_status.geoprivacy)
+    if global_status && global_status.geoprivacy == Observation::PRIVATE
       return global_status.geoprivacy
     end
-    return nil if (options[:latitude].blank? || options[:longitude].blank?)
-    place_status = ConservationStatus.
+    geoprivacies = [global_status.try(:geoprivacy)].compact
+    geoprivacies += ConservationStatus.
       where("taxon_id IN (?)", self_and_ancestor_ids).
-      for_lat_lon(options[:latitude], options[:longitude]).
-      order("iucn ASC").last
-    return place_status.geoprivacy if place_status
-    return global_status.geoprivacy unless global_status.blank?
+      for_lat_lon(options[:latitude], options[:longitude]).pluck(:geoprivacy)
+    return geoprivacies.first if geoprivacies.size == 1
+    return Observation::PRIVATE if geoprivacies.include?(Observation::PRIVATE)
+    return Observation::OBSCURED unless geoprivacies.blank?
     return Observation::OBSCURED if conservation_status.to_i >= IUCN_NEAR_THREATENED
     ancestors.where("conservation_status >= ?", IUCN_NEAR_THREATENED).exists? ? Observation::OBSCURED : nil
   end

@@ -5,8 +5,13 @@ class ConservationStatus < ActiveRecord::Base
   belongs_to :place
   belongs_to :source
 
-  after_save :update_observation_geoprivacies
+  after_save :update_observation_geoprivacies, :if => lambda {|record|
+    record.id_changed? || record.geoprivacy_changed?
+  }
   after_save :update_taxon_conservation_status
+
+  after_destroy :update_observation_geoprivacies
+  after_destroy :update_taxon_conservation_status
 
   attr_accessible :authority, :description, :geoprivacy, :iucn, :place_id,
     :status, :taxon_id, :url, :user_id, :taxon, :user, :place, :source,
@@ -96,7 +101,6 @@ class ConservationStatus < ActiveRecord::Base
 
   def update_observation_geoprivacies
     return true if skip_update_observation_geoprivacies
-    return true if !id_changed? && !geoprivacy_changed?
     Observation.delay(:priority => USER_INTEGRITY_PRIORITY).
       reassess_coordinates_for_observations_of(taxon_id, :place => place_id)
     true

@@ -936,3 +936,14 @@ describe Taxon, "threatened?" do
     t.threatened?(:latitude => p.latitude, :longitude => p.longitude).should be_true
   end
 end
+
+describe Taxon, "geoprivacy" do
+  it "should choose the maximum privacy relevant to the location" do
+    t = Taxon.make!(:rank => Taxon::SPECIES)
+    p = make_place_with_geom
+    cs_place = ConservationStatus.make!(:taxon => t, :place => p, :geoprivacy => Observation::PRIVATE)
+    cs_global = ConservationStatus.make!(:taxon => t)
+    o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :taxon => t)
+    o.should be_coordinates_private
+  end
+end
