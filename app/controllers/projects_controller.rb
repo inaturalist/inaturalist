@@ -67,6 +67,11 @@ class ProjectsController < ApplicationController
   
   def show
     respond_to do |format|
+
+      list_observed_and_total = @project.list_observed_and_total
+      @list_denom = list_observed_and_total[:denominator]
+      @list_numerator = list_observed_and_total[:numerator]
+
       format.html do
         if logged_in?
           @provider_authorizations = current_user.provider_authorizations.all

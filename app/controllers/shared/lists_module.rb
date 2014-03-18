@@ -55,9 +55,12 @@ module Shared::ListsModule
       end
       listed_taxa_ids = listed_taxa_hash.values.map(&:to_i)
 
+
       listed_taxa = listed_taxa_with_duplicates.where("listed_taxa.id IN (?)", listed_taxa_ids)
 
+
       main_list = set_scopes(@list, @filter_taxon, listed_taxa)
+
 
       @listed_taxa = main_list.paginate(@find_options) 
 
@@ -392,11 +395,13 @@ private
   def set_place(list)
     list.place
   end
+  
   def set_other_check_lists(list, place)
     other_check_lists = place.check_lists.limit(1000)
     other_check_lists.delete_if {|l| l.id == list.id}
     other_check_lists
   end
+  
   def set_scopes_for_place_based_project_list(list, q, filter_taxon, search_taxon_ids, acceptable_taxa_from_list)
     unpaginated_listed_taxa = ListedTaxon.from_place_or_list(list.project.place_id, list.id)
     if acceptable_taxa_from_list
@@ -503,6 +508,7 @@ private
 
   def set_scopes(list, filter_taxon, unpaginated_listed_taxa)
     unpaginated_listed_taxa = apply_list_scopes(list, unpaginated_listed_taxa, filter_taxon)
+
     unpaginated_listed_taxa = apply_checklist_scopes(list, unpaginated_listed_taxa) if list.is_a?(CheckList)
     unpaginated_listed_taxa
   end

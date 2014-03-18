@@ -66,6 +66,7 @@
         :label => t(:show_total_listed_taxa),
         :label_after => true,
         :description => t(:show_the_total_number_of) %>
+    <%= f.select :preferred_count_by, {species: "species", leaves: "leaves", all: "all"} %>  
   </div>
 
   <fieldset id="bioblitz" style="<%= "display:none;" unless @project.project_type == Project::BIOBLITZ_TYPE %>">
