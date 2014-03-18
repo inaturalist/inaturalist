@@ -366,8 +366,8 @@ class Taxon < ActiveRecord::Base
     update_listed_taxa
     update_life_lists
     update_obs_iconic_taxa
-    conditions = ["taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?", id, ancestry, "#{ancestry}/%"]
-    old_conditions = ["taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?", id, ancestry_was, "#{ancestry_was}/%"]
+    conditions = ["taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?", id, "#{ancestry}/#{id}", "#{ancestry}/#{id}/%"]
+    old_conditions = ["taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?", id, ancestry_was, "#{ancestry_was}/#{id}/%"]
     if (Observation.joins(:taxon).where(conditions).exists? || 
         Observation.joins(:taxon).where(old_conditions).exists? || 
         Identification.joins(:taxon).where(conditions).exists? || 

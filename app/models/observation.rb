@@ -1977,16 +1977,15 @@ class Observation < ActiveRecord::Base
   def self.update_stats_for_observations_of(taxon)
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    Rails.logger.info "[INFO #{Time.now}] Observation.update_stats_for_observations_of(#{taxon})"
     descendant_conditions = taxon.descendant_conditions
     Observation.includes(:taxon, :identifications).
         select("observations.*").
         joins("LEFT OUTER JOIN taxa otaxa ON otaxa.id = observations.taxon_id").
         joins("LEFT OUTER JOIN identifications idents ON idents.observation_id = observations.id").
         joins("LEFT OUTER JOIN taxa itaxa ON itaxa.id = idents.taxon_id").
-        where("(otaxa.id = ? OR otaxa.ancestry = ? OR otaxa.ancestry LIKE ?) OR (itaxa.id = ? OR itaxa.ancestry = ? OR itaxa.ancestry LIKE ?)", 
-          taxon.id, descendant_conditions[1], descendant_conditions[0], 
-          taxon.id, descendant_conditions[1], descendant_conditions[0]).find_each do |o|
+        where("otaxa.id = ? OR otaxa.ancestry = ? OR otaxa.ancestry LIKE ? OR itaxa.id = ? OR itaxa.ancestry = ? OR itaxa.ancestry LIKE ?", 
+          taxon.id, descendant_conditions[2], descendant_conditions[1], 
+          taxon.id, descendant_conditions[2], descendant_conditions[1]).find_each do |o|
       o.set_community_taxon
       o.update_stats(:skip_save => true)
       o.save
