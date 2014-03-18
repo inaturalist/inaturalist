@@ -9,6 +9,7 @@ def end_log_timer
   Rails.logger.debug "[DEBUG] *********** Finished log timer from #{@log_timer_name} (#{Time.now - @log_timer}s) ***********\n\n"
   @log_timer, @log_timer_name = nil, nil
 end
+alias :stop_log_timer :end_log_timer
 
 def log_timer(name = nil)
   start_log_timer(name)

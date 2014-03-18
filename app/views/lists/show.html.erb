@@ -172,17 +172,17 @@
 
 <div class="last column span-7">
   <div id="sidebar">
-    <% if @list.editable_by?(current_user) %>
-    <div id="add" class="clear">
-      <%= link_to_function t(:add_batch), "$('#add_batch_dialog').jqmShow()", :class => "right small", :style => 'padding-top: 3px' %>
-      <h3>
-        <%= link_to_function(
-          t(:add_to_your_list),
-          "$('#new_listed_taxon').slideToggle();",
-          :id => 'addlink') %>
-      </h3>
-      <%= render :partial => 'add_to_list' %>
-    </div>
+    <% if @allow_batch_adding %>
+      <div id="add" class="clear">
+        <%= link_to_function t(:add_batch), "$('#add_batch_dialog').jqmShow()", :class => "right small", :style => 'padding-top: 3px' %>
+        <h3>
+          <%= link_to_function(
+            t(:add_to_your_list),
+            "$('#new_listed_taxon').slideToggle();",
+            :id => 'addlink') %>
+        </h3>
+        <%= render :partial => 'add_to_list' %>
+      </div>
     <% end %>
 
     <% unless @list.listed_taxa.empty? -%>

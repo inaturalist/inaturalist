@@ -1,5 +1,10 @@
 <% content_for(:title) do -%>
-  <%= @title = t(:user_s_lists, :user => possessive(@selected_user, :capitalize => @selected_user == current_user)) %>
+  <%= 
+    @title ||= if is_me?(@selected_user)
+      t(:second_person_possessive_singular_, :noun => t(:lists).downcase)
+    else
+      t(:third_person_possessive_singular, :noun => t(:lists).titleize, :object_phrase => @login)
+    end %>
 <% end -%>
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'barchart', 'lists' %>

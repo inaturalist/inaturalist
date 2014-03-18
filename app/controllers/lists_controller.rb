@@ -8,10 +8,10 @@ class ListsController < ApplicationController
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
     :remove_taxon, :reload_from_observations]
   before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
-  before_filter :set_find_options, :only => [:show]
   before_filter :load_user_by_login, :only => :by_login
   before_filter :admin_required, :only => [:add_from_observations_now, :refresh_now]
-  
+  before_filter :set_iconic_taxa, :only => [:show]
+
   caches_page :show, :if => Proc.new {|c| c.request.format == :csv}
   
   LIST_SORTS = %w"id title"

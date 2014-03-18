@@ -777,8 +777,18 @@ describe Taxon, "moving" do
     o.reload
     o.taxon.should eq fam
     Delayed::Worker.new.work_off
+    # [fam, subfam, gen, sp].each do |t|
+    #   t.reload
+    #   puts "before #{t.rank}: #{t.ancestry}, #{t.id}"
+    # end
     without_delay do
+      # puts "moving #{gen} to #{subfam}"
       gen.update_attributes(:parent => subfam)
+      # [fam, subfam, gen, sp].each do |t|
+      #   t.reload
+      #   puts "after #{t.rank}: #{t.ancestry}, #{t.id}"
+      # end
+      # Delayed::Worker.new.work_off
     end
     o.reload
     o.taxon.should eq subfam
@@ -924,5 +934,16 @@ describe Taxon, "threatened?" do
     p.contains_lat_lng?(p.latitude, p.longitude).should be_true
     t = cs.taxon
     t.threatened?(:latitude => p.latitude, :longitude => p.longitude).should be_true
+  end
+end
+
+describe Taxon, "geoprivacy" do
+  it "should choose the maximum privacy relevant to the location" do
+    t = Taxon.make!(:rank => Taxon::SPECIES)
+    p = make_place_with_geom
+    cs_place = ConservationStatus.make!(:taxon => t, :place => p, :geoprivacy => Observation::PRIVATE)
+    cs_global = ConservationStatus.make!(:taxon => t)
+    o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :taxon => t)
+    o.should be_coordinates_private
   end
 end

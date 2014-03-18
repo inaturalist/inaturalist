@@ -4,7 +4,12 @@
   synclink_base ||= nil
   sound_identity ||= nil
 -%>
-<% if @timeout %>
+<% if @reauthorization_needed -%>
+  <p class="notice ui">
+    <%= t(:soundcloud_needs_to_confirm, :site_name => SITE_NAME_SHORT) %>
+    <%= link_to t(:confirm_now), ProviderAuthorization::AUTH_URLS['soundcloud'], :class => "readmore" %>
+  </p>
+<% elsif @timeout %>
   <p class="error ui">
     Request to the photo provider timed out.  Please try again later.
   </p>

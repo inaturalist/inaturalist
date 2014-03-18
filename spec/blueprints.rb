@@ -268,6 +268,7 @@ end
 Taxon.blueprint do
   name { Faker::Name.name }
   rank { Taxon::RANKS[rand(Taxon::RANKS.size)] }
+  is_active { true }
 end
 
 Taxon.blueprint(:species) do

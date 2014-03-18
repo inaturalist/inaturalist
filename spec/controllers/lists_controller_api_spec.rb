@@ -19,12 +19,18 @@ describe ListsController, "show" do
   end
 
   it "should default to ordering by observations_count desc" do
-    lt1 = ListedTaxon.make!
-    lt2 = ListedTaxon.make!(:list => lt1.list)
+    t1 = Taxon.make!(:rank => Taxon::SPECIES)
+    t2 = Taxon.make!(:rank => Taxon::SPECIES)
+    lt1 = ListedTaxon.make!(:taxon => t1)
+    lt2 = ListedTaxon.make!(:taxon => t2, :list => lt1.list)
     without_delay do
       Observation.make!(:taxon => lt1.taxon, :user => lt1.list.user)
-      2.times { Observation.make!(:taxon => lt2.taxon, :user => lt1.list.user) }
+      2.times { Observation.make!(:taxon => lt2.taxon, :user => lt2.list.user) }
     end
+    lt1.reload
+    lt1.observations_count.should eq 1
+    lt2.reload
+    lt2.observations_count.should eq 2
     get :show, :format => :json, :id => lt1.list_id
     json = JSON.parse(response.body)
     json['listed_taxa'].size.should eq 2

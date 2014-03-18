@@ -75,6 +75,7 @@ class ListedTaxon < ActiveRecord::Base
 
   scope :unconfirmed, where("last_observation_id IS NULL")
   scope :confirmed, where("last_observation_id IS NOT NULL")
+  scope :confirmed_and_not_place_based, where("last_observation_id IS NOT NULL AND place_id IS NULL")
   scope :with_establishment_means, lambda{|establishment_means|
     means = if establishment_means == "native"
       NATIVE_EQUIVALENTS
@@ -86,6 +87,10 @@ class ListedTaxon < ActiveRecord::Base
     where("establishment_means IN (?)", means)
   }
 
+  scope :from_place_or_list, lambda{|place_id, list_id| where("(place_id = ? OR list_id = ?)", place_id, list_id)}
+  scope :from_place_or_list_with_observed_from_place, lambda{|place_id, list_id| where("((place_id = ?) OR (list_id = ? AND last_observation_id IS NULL))", place_id, list_id)}
+
+  scope :acceptable_taxa, lambda{|taxa_ids| where("listed_taxa.taxon_id IN (?)", taxa_ids)}
 
   scope :with_occurrence_status_level, lambda{|occurrence_status_level| where("occurrence_status_level = ?", occurrence_status_level)}
 

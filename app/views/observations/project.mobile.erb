@@ -17,7 +17,8 @@
       window.map = new google.maps.Map(document.getElementById("map"), {
         mapTypeId: google.maps.MapTypeId.TERRAIN,
         center: new google.maps.LatLng(38, -122),
-        zoom: 8
+        zoom: 8,
+        streetViewControl: false
       });
       var lyr;
       <%- for kml_asset in @kml_assets %>

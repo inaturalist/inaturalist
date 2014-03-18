@@ -43,7 +43,7 @@ function batchObservationFields() {
       $('select', existing).val(val)
     })
 
-    var index = $(this).parents('.observation:first').attr('id').split('-')[1]
+    var index = $(this).parents('.observation:first').find('.observed_on_string').attr('id').split('_')[1]
     $(':input', this).each(function() {
       if ($(this).attr('id')) {
         $(this).attr('id', $(this).attr('id').replace(/\d+_value/, index+'_value'))

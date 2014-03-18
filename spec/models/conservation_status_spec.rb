@@ -71,6 +71,24 @@ describe ConservationStatus, "saving" do
   end
 end
 
+describe ConservationStatus, "deletion" do
+  before(:each) do
+    @taxon = Taxon.make!(:rank => Taxon::SPECIES)
+  end
+
+  it "should reassess observations of taxon" do
+    cs = without_delay { ConservationStatus.make!(:taxon => @taxon) }
+    o = Observation.make!(:taxon => @taxon, :latitude => 1, :longitude => 1)
+    o.should be_coordinates_obscured
+    cs.destroy
+    Delayed::Worker.new.work_off
+    @taxon.reload
+    @taxon.should_not be_threatened
+    o.reload
+    o.should_not be_coordinates_obscured
+  end
+end
+
 describe ConservationStatus, "updating geoprivacy" do
   before(:each) do
     @taxon = Taxon.make!(:rank => Taxon::SPECIES)
@@ -89,7 +107,9 @@ describe ConservationStatus, "updating geoprivacy" do
     o = Observation.make!(:taxon => @taxon, :latitude => 1, :longitude => 1)
     lat = o.latitude
     geom_lat = o.geom.y
-    without_delay {@cs.update_attributes(:geoprivacy => Observation::OPEN)}
+    @cs.update_attributes(:geoprivacy => Observation::OPEN)
+    @taxon.conservation_statuses.count.should eq 1
+    Delayed::Worker.new.work_off
     o.reload
     o.latitude.to_f.should_not eq lat.to_f
     o.geom.y.should_not eq geom_lat
