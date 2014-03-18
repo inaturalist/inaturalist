@@ -460,7 +460,7 @@
           <%= render :partial => 'identifications/identification',
                      :locals => {
                       :identification => @community_identification,
-                      :usertext => "<strong>Community</strong> ID: ".html_safe
+                      :usertext => t(:community_id).html_safe
                     } %>
           <% if @listed_taxon || @conservation_status -%>
             <%= render "listed_taxa/taxon_blobs", :listed_taxon => @listed_taxon, :taxon => @observation.taxon, :conservation_status => @conservation_status, :show_place_name => true %>

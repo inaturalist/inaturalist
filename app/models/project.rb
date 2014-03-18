@@ -141,7 +141,7 @@ class Project < ActiveRecord::Base
     return true unless cover.queued_for_write[:original]
     dimensions = Paperclip::Geometry.from_file(cover.queued_for_write[:original].path)
     if dimensions.width != 950 || dimensions.height > 400
-      errors.add(:cover, 'image must be exactly 950px wide and at most 400px tall')
+      errors.add(I18n.t(:cover), I18n.t(:image_must_be_exactly))
     end
   end
   

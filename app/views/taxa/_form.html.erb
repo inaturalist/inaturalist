@@ -207,7 +207,7 @@
         <%= f.fields_for :conservation_statuses, :builder => DefaultFormBuilder do |cs| %>
           <%= render "conservation_status_fields", :f => cs %>
         <% end -%>
-        <%= link_to_add_association 'add conservation status', f, :conservation_statuses %>
+        <%= link_to_add_association t(:add_conservation_status), f, :conservation_statuses %>
       </div>
     </fieldset>
   <% end -%>
