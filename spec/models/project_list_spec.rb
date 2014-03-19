@@ -37,7 +37,32 @@ describe ProjectList, "refresh_with_observation" do
     pl.taxon_ids.should_not include(t1.id)
     pl.taxon_ids.should include(t2.id)
   end
-
+  
+  it "should give curator_identification precedence" do
+    p = Project.make!
+    pl = p.project_list
+    t1 = Taxon.make!
+    puts "t1: #{t1}"
+    t2 = Taxon.make!
+    puts "t2: #{t2}"
+    o = make_research_grade_observation(:taxon => t1)
+    
+    pu = ProjectUser.make!(:user => o.user, :project => p)
+    po = ProjectObservation.make!(:project => p, :observation => o)
+    ProjectList.refresh_with_observation(o)
+    pl.reload
+    pl.taxon_ids.should include(o.taxon_id) #
+    
+    pu2 = ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR) 
+    i = without_delay { Identification.make!(:observation => o, :taxon => t2, :user => pu2.user) }
+    po.reload
+    ProjectList.refresh_with_project_observation(po, :observation_id => o.id, :taxon_id => t2.id, 
+      :taxon_id_was => t1.id, :created_at => o.created_at)
+    pl.reload
+    pl.taxon_ids.should_not include(t1.id)
+    pl.taxon_ids.should include(t2.id)
+  end
+  
   it "should confirm a species when a subspecies was observed" do
     species = Taxon.make!(:rank => "species")
     subspecies = Taxon.make!(:rank => "subspecies", :parent => species)
@@ -46,11 +71,7 @@ describe ProjectList, "refresh_with_observation" do
     lt = pl.add_taxon(species, :user => p.user, :manually_added => true)
     po = make_project_observation_from_research_quality_observation(:project => p, :taxon => subspecies)
     Delayed::Worker.new(:quiet => true).work_off
-    puts "reloading"
     lt.reload
-    puts "po: #{po}"
-    puts "lt.last_observation: #{lt.last_observation}"
-    puts "po.observation: #{po.observation}"
     lt.last_observation.should eq(po.observation)
   end
 end

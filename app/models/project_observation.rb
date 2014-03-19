@@ -32,7 +32,11 @@ class ProjectObservation < ActiveRecord::Base
    old_curator_identification_id = curator_identification_id_was
    old_curator_identification = Identification.where(:id => old_curator_identification_id).first
    taxon_id = curator_identification ? curator_identification.taxon_id : nil
-   taxon_id_was = old_curator_identification ? old_curator_identification.taxon_id : nil
+   if old_curator_identification 
+     taxon_id_was = old_curator_identification.taxon_id
+   else
+     taxon_id_was = Observation.find_by_id(observation_id).taxon_id
+   end
    
    # Don't refresh if nothing changed
    return true if taxon_id == taxon_id_was

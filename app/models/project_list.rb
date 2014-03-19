@@ -32,11 +32,18 @@ class ProjectList < LifeList
     sql_key = "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)"
     <<-SQL
       SELECT
-        min(CASE WHEN quality_grade = 'research' THEN o.id WHEN po.curator_identification_id IS NOT NULL THEN o.id END) AS first_observation_id,
+        min(
+          CASE WHEN
+            quality_grade = 'research' OR
+            po.curator_identification_id IS NOT NULL
+          THEN o.id
+          END
+        ) AS first_observation_id,
         max(
-          CASE WHEN quality_grade = 'research'
-          THEN (COALESCE(time_observed_at, observed_on)::varchar || ',' || o.id::varchar)
-          WHEN po.curator_identification_id IS NOT NULL THEN (COALESCE(time_observed_at, observed_on)::varchar || ',' || o.id::varchar) 
+          CASE WHEN
+            quality_grade = 'research' OR 
+            po.curator_identification_id IS NOT NULL
+          THEN (COALESCE(time_observed_at, observed_on)::varchar || ',' || o.id::varchar) 
           END
         ) AS last_observation,
         count(*),
@@ -87,7 +94,6 @@ class ProjectList < LifeList
       return
     end
     target_list_id = ProjectList.where(:project_id => project.id).first.id
-    
     # get listed taxa for this taxon and its ancestors that are on the project list
     listed_taxa = ListedTaxon.all(:include => [:list],
       :conditions => ["taxon_id IN (?) AND list_id = ?", taxon_ids, target_list_id])
