@@ -375,8 +375,12 @@ class UsersController < ApplicationController
       sign_in @display_user, :bypass => true
       respond_to do |format|
         format.html do
-          flash[:notice] = t(:your_profile_was_successfully_updated)
-          redirect_back_or_default(person_by_login_path(:login => current_user.login))
+          if params[:from_edit_after_auth].blank?
+            flash[:notice] = t(:your_profile_was_successfully_updated)
+            redirect_back_or_default(person_by_login_path(:login => current_user.login))
+          else
+            redirect_to(dashboard_path)
+          end
         end
         format.json do
           render :json => @display_user.to_json(User.default_json_options)
