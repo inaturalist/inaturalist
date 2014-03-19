@@ -169,7 +169,7 @@ var ObservationFields = {
       modal: true,
       title: title,
       width: 600,
-      minHeight: 400
+      maxHeight: $(window).height() * 0.8
     })
   }
 }

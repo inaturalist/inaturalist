@@ -960,7 +960,7 @@ $.fn.serializeObject = function() {
 }
 
 $.fn.centerDialog = function() {
-  var newHeight = $(':first', this).height() + 100
+  var newHeight = $(this).height() + 100
   var maxHeight = $(window).height() * 0.8
   if (newHeight > maxHeight) { newHeight = maxHeight };
   $(this).dialog('option', 'height', newHeight)
@@ -1073,12 +1073,13 @@ function showJoinProjectDialog(projectId, options) {
       })
       return false
     })
+    $(this).centerDialog()
   })
   dialog.dialog({
     modal: true,
     title: title,
     width: 600,
-    minHeight: 400
+    maxHeight: $(window).height() * 0.8,
   })
 }
 
