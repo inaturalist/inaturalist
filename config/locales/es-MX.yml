@@ -70,8 +70,16 @@ es-MX:
           one: "Un error no permitió que este %{model} se guardara"
           other: "% {count} errores no permitieron que este %{model} se guardara"
   activerecord: 
-    attributes: 
-      flag: 
+    attributes:
+      conservation_status:
+        status: Estatus
+        description : Descripción
+        authority: Autoridad
+        place_id: Lugar
+        url: URL
+        geoprivacy: Geoprivacidad
+        iucn: Equivalente a IUCN
+      flag:
         flag: Advertencia
         reason: Razón
       project: 
@@ -211,6 +219,7 @@ es-MX:
   add_colors: "Añade colores"
   add_comment: "Añade un comentario"
   add_common_names_for: "Añade nombres comunes para los taxa existentes"
+  add_conservation_status: Añade estado de conservación
   add_countries: "Añade países"
   add_custom_project_fields: "Añade campos a la medida al proyecto"
   add_description: "Añade %{description_name}"
@@ -324,6 +333,7 @@ es-MX:
       peces_con_aletas_radiadas: Pez con aletas radiadas
       reptiles: Reptil
       aves: Ave
+      birds: Ave
       insectos: Insecto
       aranas_alacranes_y_parientes: Araña, alacran y pariente
       hongos: Hongo
@@ -481,6 +491,7 @@ es-MX:
   cancel: Cancelar
   cant_flag_an_object_that_doesnt_exist: No puedes ponerle advertencia a un contenido que ya no existe
   cant_merge_a_taxon_with_itself: No puedes combinar esa especie o grupo consigo misma.
+  captive_cultivated: cautiverio / cultivada
   case_plural: ''
   casual: Casual
   catalogue_of_life: "Catálogo de la Vida"
@@ -612,6 +623,7 @@ es-MX:
   commit: Guardar
   committed: Guardado
   committing: Guardando...
+  community_id: 'Identificación de la <strong>comunidad</strong>: '
   community_supported_id: "¿Hay una identificación apoyada por la comunidad?"
   compare_with: "Compara con"
   comparing: Comparando
@@ -639,6 +651,14 @@ es-MX:
   connecting_to_facebook: "Conectando a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Al conectar tu cuenta de %{site_name} a cuentas de otros sitios podrás registrarte en %{site_name} usando tus credenciales de esos sitios. \n"
   conservation_status: "Estado de conservación"
+  conservation_status_descriptions:
+    status: Estatus, clasificación, etc. Si existe una abreviatura corta como E o CR, por favor úsela, de lo contrario, usa el estatus completo, ej. En peligro de extinción.
+    description: Descripción muy corta del porque esta en la lista.
+    authority: Es la organizacivn que declara el estatus. Puedes saltarte esta parte si deseas aparecer tu como la autoridad.
+    place: Lugar en el cual el estatus esta restringido.
+    url: URL que describa este estaus.
+    geoprivacy: Geoprivacidad predeterminada para esta especie o grupo.
+    iucn: Código equivalente a la Lista roja de IUCN.
   conservation_summary: "Categorías de riesgo"
   contain_all_descendants?: "¿Esta lista contiene todos los descendientes de este grupo que habitan aquí?"
   contest: concurso
@@ -673,6 +693,7 @@ es-MX:
   couldnt_log_you_in_x: "No pudimos ingresarte como  '%{x}'"
   countries: Países
   country_stats: "Estadísticas de observaciones para el país creadas sobre"
+  cover: Portada
   create: Crear
   create_a_guide: Crea una guía
   create_a_list: "Crea una lista"
@@ -1056,8 +1077,8 @@ es-MX:
     naturalised: naturalizada
     invasive: invasiva
     managed: cuativerio/cultivada
-  establishment_means: "Medio de establecimiento"
-  establishment_means_describes_how: "Medios de establecimiento describe como la especie o grupo se estableció en un área. Ve el DarwinCore para <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">más información sobre terminología</a>."
+  establishment_means: Distribución
+  establishment_means_describes_how: "La distribución describe como la especie o grupo se estableció en un área. Ve el DarwinCore para <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">más información sobre terminología</a>."
   establishment_means_descriptions:
       native_and_occurs_nowhere_else: "nativa restringida al pais"
       arrived_in_the_region_via_anthropogenic_means: "evolucionó en otra región y ahora se encuentra en el país"
@@ -6666,6 +6687,7 @@ es-MX:
   if_your_project_is: Si tu proyecto es acerca de un lugar especifico, añade las coordenadas seleccionando el enlace del mapa o añadelas manualmente.
   if_your_search_comes_up: "Si la búsqueda resulta vacía, debes ver los íconos de búsqueda para repetirla a través de nuestros proveedores externos:"
   ignore: rechazar
+  image_must_be_exactly: del proyecto debe ser exactamente de 950px de ancho y a lo más de 400px de altura
   import: Importa
   import_all_photos_as_observations: "Importa todas las fotos como observaciones"
   import_as_an_observation: "Importa como una observación"
@@ -6762,6 +6784,7 @@ es-MX:
   least_concern: "Baja preocupación"
   leave_a_comment: "Deja un comentario"
   leave_this_project: "Sal de este proyecto"
+  leaves: últimos
   less: Menos
   lexicon: Léxico
   lexicons:
@@ -7559,9 +7582,10 @@ es-MX:
   reload_from_observations: "Vuelve a cargar a partir de las observaciones"
   reload_timed_out: "El tiempo de carga se terminó. Por favor inténtalo otra vez más tarde."
   remarks_optional: 'Comentarios <span class="small description">(opcionales)</span>'
-  remember_its_a_lot_easier_to_id: "Recuerda, es mucho más facil identificar algo si proporcionas la información descriptiva que más puedas. De mayor importancia es que por favor proporciones un <strong>lugar</strong>, una <strong>fecha/tiempo</strong>, y algo de información acerca de su <strong>tamaño</strong>."
+  remember_its_a_lot_easier_to_id: "Recuerda, es mucho más facil identificar algo si proporcionas la mejor información descriptiva que puedas. Es de mayor importancia que por favor proporciones un <strong>lugar</strong>, una <strong>fecha/tiempo</strong>, y algo de información acerca de su <strong>tamaño</strong>."
   remember_me: Recuérdame
   remove: Quitar
+  remove_conservation_status: Eliminar estado de conservación
   remove_curator: Quitar curador
   remove_curator_role: "Remover el papel de curador"
   remove_curator_status: "Remover el estatus de curador"
@@ -7903,6 +7927,7 @@ es-MX:
   taxonomic_changes_raquo_html: "Cambios <nobr>taxonómicos &raquo;</nobr>"
   taxonomic_groups: "Grupos taxonómicos"
   taxonomic_order: "Orden taxonómico"
+  taxonomic_status: Estatus de la taxonomía
   taxonomic_tags_for_flickr: "Etiquetas taxonómicas para Flickr"
   taxonomic_tree_browser: "Navegador del árbol taxonómico"
   tell_everyone_a_little_about_you: "Comparte algo sobre tí a los demás"
@@ -8067,6 +8092,7 @@ es-MX:
   type_a_name_and_click: Pon el nombre de la especie
   type_a_place_name_and_click_search: Pon el nombre de un lugar
   type_a_taxon_name: Especie o grupo
+  type_authority: Pon el nombre de la autoridad...
   type_date_time_or_use_the_calendar: Pon la fecha/hora o usa el calendario
   type_one: Por cada línea pon el nombre de una especie.
   type_place_name: "Escribe el nombre del lugar"

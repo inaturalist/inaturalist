@@ -141,7 +141,7 @@ class Project < ActiveRecord::Base
     return true unless cover.queued_for_write[:original]
     dimensions = Paperclip::Geometry.from_file(cover.queued_for_write[:original].path)
     if dimensions.width != 950 || dimensions.height > 400
-      errors.add(:cover, 'image must be exactly 950px wide and at most 400px tall')
+      errors.add(I18n.t(:cover), I18n.t(:image_must_be_exactly))
     end
   end
   
@@ -428,6 +428,7 @@ class Project < ActiveRecord::Base
     unpaginated_listed_taxa = listed_taxa_with_duplicates.where("listed_taxa.id IN (?)", listed_taxa_ids)
 
     unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(true)
+    unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present(true)
     if preferred_count_by == "species"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
     elsif preferred_count_by == "leaves"
