@@ -39,7 +39,7 @@ class ProjectObservation < ActiveRecord::Base
    end
    
    # Don't refresh if nothing changed
-   return true if taxon_id == taxon_id_was
+   return true unless taxon_id_changed?
    
    # Update the projectobservation's current curator_id taxon and/or a previous one that was
    # just removed/changed
