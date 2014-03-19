@@ -402,7 +402,7 @@ class ListedTaxon < ActiveRecord::Base
       unless @force_update_cache_columns || Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{id}\n'").exists?
         ListedTaxon.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").update_cache_columns_for(id)
       end
-    else
+    elsif primary_listed_taxon
       primary_listed_taxon.update_attributes_on_related_listed_taxa
     end
     true

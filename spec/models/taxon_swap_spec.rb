@@ -266,6 +266,19 @@ describe TaxonSwap, "commit_records" do
     @output_taxon.reload
     lt.taxon_id.should eq(@output_taxon.id)
   end
+
+  it "should not choke on non-primary checklisted taxa without primaries" do
+    l = CheckList.make!
+    lt = ListedTaxon.make!(:list => l, :primary_listing => false, :taxon => @input_taxon)
+    lt.update_attribute(:primary_listing, false)
+    lt.should_not be_primary_listing
+    lt.primary_listing.should be_blank
+    without_delay { 
+      lambda {
+        @swap.commit_records
+      }.should_not raise_error
+    }
+  end
 end
 
 def prepare_swap
