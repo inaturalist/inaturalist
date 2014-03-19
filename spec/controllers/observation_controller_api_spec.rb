@@ -58,6 +58,22 @@ shared_examples_for "an ObservationsController" do
         post :create, :format => :json, :observation => {:species_guess => "."}
       }.should_not raise_error
     end
+
+    describe "project_id" do
+      let(:p) { Project.make! }
+
+      it "should add to project" do
+        post :create, :format => :json, :observation => {:species_guess => "foo"}, :project_id => p.id
+        p.observations.count.should eq 1
+      end
+
+      it "should create a project user if one doesn't exist" do
+        p.project_users.where(:user_id => user.id).should be_blank
+        post :create, :format => :json, :observation => {:species_guess => "foo"}, :project_id => p.id
+        p.reload
+        p.project_users.where(:user_id => user.id).should_not be_blank
+      end
+    end
   end
 
   describe "destroy" do
