@@ -42,9 +42,7 @@ describe ProjectList, "refresh_with_observation" do
     p = Project.make!
     pl = p.project_list
     t1 = Taxon.make!
-    puts "t1: #{t1}"
     t2 = Taxon.make!
-    puts "t2: #{t2}"
     o = make_research_grade_observation(:taxon => t1)
     
     pu = ProjectUser.make!(:user => o.user, :project => p)
@@ -55,12 +53,22 @@ describe ProjectList, "refresh_with_observation" do
     
     pu2 = ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR) 
     i = without_delay { Identification.make!(:observation => o, :taxon => t2, :user => pu2.user) }
-    po.reload
-    ProjectList.refresh_with_project_observation(po, :observation_id => o.id, :taxon_id => t2.id, 
-      :taxon_id_was => t1.id, :created_at => o.created_at)
     pl.reload
     pl.taxon_ids.should_not include(t1.id)
     pl.taxon_ids.should include(t2.id)
+  end
+  
+  it "should add taxa to project list from project observations made by curators" do
+    p = Project.make!
+    pu = without_delay {ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)}
+    t = Taxon.make!
+    o = Observation.make!(:user => pu.user, :taxon => t)
+    po = without_delay {make_project_observation(:observation => o, :project => p)}
+    
+    po.curator_identification_id.should eq(o.owners_identification.id)
+    cid_taxon_id = Identification.find_by_id(po.curator_identification_id).taxon_id
+    pl = p.project_list
+    pl.taxon_ids.should include(cid_taxon_id)  
   end
   
   it "should confirm a species when a subspecies was observed" do

@@ -28,23 +28,23 @@ class ProjectObservation < ActiveRecord::Base
   after_save :update_project_list_if_curator_ident_changed
   
   def update_project_list_if_curator_ident_changed
-   return true unless curator_identification_id_changed?
-   old_curator_identification_id = curator_identification_id_was
-   old_curator_identification = Identification.where(:id => old_curator_identification_id).first
-   taxon_id = curator_identification ? curator_identification.taxon_id : nil
-   if old_curator_identification 
-     taxon_id_was = old_curator_identification.taxon_id
-   else
-     taxon_id_was = Observation.find_by_id(observation_id).taxon_id
-   end
-   
-   # Don't refresh if nothing changed
-   return true unless taxon_id_changed?
-   
-   # Update the projectobservation's current curator_id taxon and/or a previous one that was
-   # just removed/changed
-   unless Delayed::Job.where("handler LIKE '%ProjectList%refresh_with_project_observation% #{id}\n%'").exists?
-     ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY).
+    return true unless curator_identification_id_changed?
+    old_curator_identification_id = curator_identification_id_was
+    old_curator_identification = Identification.where(:id => old_curator_identification_id).first
+    taxon_id = curator_identification ? curator_identification.taxon_id : nil
+    if old_curator_identification 
+      taxon_id_was = old_curator_identification.taxon_id
+    else
+      taxon_id_was = nil
+    end
+    # Don't refresh if nothing changed
+    return true if taxon_id == taxon_id_was
+    #if nil set taxon_id_was to observation.taxon_id so listings with this taxon_id will get refreshed
+    taxon_id_was = Observation.find_by_id(observation_id).taxon_id if taxon_id_was.nil?
+    # Update the projectobservation's current curator_id taxon and/or a previous one that was
+    # just removed/changed
+    unless Delayed::Job.where("handler LIKE '%ProjectList%refresh_with_project_observation% #{id}\n%'").exists?
+      ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY).
                  refresh_with_project_observation(
                    id,
                    :observation_id => observation_id,
@@ -52,8 +52,8 @@ class ProjectObservation < ActiveRecord::Base
                    :taxon_id_was => taxon_id_was,
                    :project_id => project_id
                  )
-   end
-   true
+    end
+    true
   end
   
   def update_curator_identification
