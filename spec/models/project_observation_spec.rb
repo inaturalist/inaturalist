@@ -36,6 +36,7 @@ describe ProjectObservation, "creation" do
     o.reload
     o.updated_at.should be > o.created_at
   end
+  
 end
 
 describe ProjectObservation, "destruction" do

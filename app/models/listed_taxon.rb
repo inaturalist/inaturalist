@@ -268,11 +268,33 @@ class ListedTaxon < ActiveRecord::Base
           taxon_id == last_observation.taxon_id || 
           taxon.ancestor_of?(last_observation.taxon) || 
           last_observation.taxon.ancestor_of?(taxon))
+        if taxon_matches_curator_identification? #cases where project listed_taxon is based on curator_id
+          return true
+        end
         errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
       end
     end
   end
-
+  
+  def taxon_matches_curator_identification?
+    unless list.is_a?(ProjectList) && last_observation
+      return false
+    end
+    unless po = ProjectObservation.where(:project_id => list.project_id, :observation_id => last_observation.id).first
+      return false
+    end
+    unless ident = Identification.find_by_id(po.curator_identification_id)
+      return false
+    end
+    if ident.taxon_id.blank? || !(
+        taxon_id == ident.taxon_id || 
+        taxon.ancestor_of?(ident.taxon) || 
+        ident.taxon.ancestor_of?(taxon))
+      return false
+    end
+    return true
+  end
+  
   def check_list_editability
     if list.is_a?(CheckList)
       if (list.comprehensive? || list.user) && user && user != list.user && !user.is_curator?
