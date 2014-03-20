@@ -9,7 +9,12 @@
         <%= o.label :species_guess, t(:what_did_you_see) %>
         <%= o.text_field(:species_guess, :class => 'species_guess text') %>
         <%-
-          taxon = o.object.owners_identification.try(:taxon) || o.object.taxon
+          taxon = if o.object.taxon_id_changed?
+            # assume this means the taxon has been set upstream somewhere without saving
+            o.object.taxon
+          else
+            o.object.owners_identification.try(:taxon) || o.object.taxon
+          end
           alt = if taxon
             "<span class='taxon sciname #{taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id].try(:name)}'>#{taxon.name}</span>".html_safe
           else

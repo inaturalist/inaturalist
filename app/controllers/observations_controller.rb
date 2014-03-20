@@ -510,6 +510,7 @@ class ObservationsController < ApplicationController
     if @observation.quality_metrics.detect{|qm| qm.user_id == @observation.user_id && qm.metric == QualityMetric::WILD && !qm.agree?}
       @observation.captive_flag = true
     end
+
     respond_to do |format|
       format.html do
         if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
@@ -557,7 +558,7 @@ class ObservationsController < ApplicationController
           if photo = o.photos.compact.last
             photo_o = photo.to_observation
             PHOTO_SYNC_ATTRS.each do |a|
-              o.send("#{a}=", photo_o.send(a))
+              o.send("#{a}=", photo_o.send(a)) if o.send(a).blank?
             end
           end
         end
@@ -950,9 +951,6 @@ class ObservationsController < ApplicationController
           :latitude => row[4], 
           :longitude => row[5]
         )
-        Rails.logger.debug "[DEBUG] obs.latitude: #{obs.latitude}"
-        Rails.logger.debug "[DEBUG] obs.place_guess: #{obs.place_guess}"
-        Rails.logger.debug "[DEBUG] row[3]: #{row[3]}"
         obs.set_taxon_from_species_guess
         if obs.georeferenced?
           obs.location_is_exact = true
@@ -2320,7 +2318,7 @@ class ObservationsController < ApplicationController
     end
     o = @local_photo.to_observation
     PHOTO_SYNC_ATTRS.each do |sync_attr|
-      @observation.send("#{sync_attr}=", o.send(sync_attr))
+      @observation.send("#{sync_attr}=", o.send(sync_attr)) unless o.send(sync_attr).blank?
     end
 
     unless @observation.observation_photos.detect {|op| op.photo_id == @local_photo.id}
