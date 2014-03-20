@@ -82,6 +82,24 @@ describe ProjectList, "refresh_with_observation" do
     lt.reload
     lt.last_observation.should eq(po.observation)
   end
+  
+  it "should add taxa observed by project curators on reload" do
+    p = Project.make!
+    pu = without_delay {ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)}
+    t = Taxon.make!
+    o = Observation.make!(:user => pu.user, :taxon => t)
+    po = without_delay {make_project_observation(:observation => o, :project => p)}
+    
+    po.curator_identification_id.should eq(o.owners_identification.id)
+    cid_taxon_id = Identification.find_by_id(po.curator_identification_id).taxon_id
+    pl = p.project_list
+    pl.taxon_ids.should include(cid_taxon_id)
+    lt = ListedTaxon.where(:list_id => pl.id, :taxon_id => cid_taxon_id).first
+    lt.destroy
+    pl.taxon_ids.should_not include(cid_taxon_id)
+    LifeList.reload_from_observations(pl)
+    pl.taxon_ids.should include(cid_taxon_id)
+  end
 end
 
 describe ProjectList, "reload_from_observations" do
