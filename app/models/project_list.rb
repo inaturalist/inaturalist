@@ -122,6 +122,47 @@ class ProjectList < LifeList
     target_list_and_curator_ids.map{|pair| pair[0] unless pair[1] }.compact
   end
   
+  #todo, make this support options[:taxa] filtering
+  def self.add_taxa_from_observations(list, options = {})
+    sql = <<-SQL
+      SELECT DISTINCT ON (taxon_id)
+        CASE WHEN po.curator_identification_id IS NOT NULL THEN i.taxon_id ELSE observations.taxon_id END AS taxon_id, 
+        observations.id
+      FROM 
+        observations
+          JOIN project_observations po ON po.observation_id = observations.id
+          LEFT OUTER JOIN identifications i ON i.id = po.curator_identification_id
+      WHERE
+        po.project_id = #{list.project_id}
+        AND (observations.quality_grade = 'research' OR po.curator_identification_id IS NOT NULL)
+    SQL
+    scope = Observation
+    scope = scope.of(list.rule_taxon) if list.rule_taxon
+    scope = scope.in_place(list.place) if list.place
+    results = scope.find_by_sql [sql]
+    results.each do |observation|
+      list.add_taxon(observation.taxon_id, :last_observation_id => observation.id) 
+    end
+  end
+  
+  def self.repair_observed(list)
+    conditions = "po.project_id = ? AND (" +
+      "(po.curator_identification_id IS NOT NULL AND i.taxon_id != listed_taxa.taxon_id) OR " +
+      "(po.curator_identification_id IS NULL AND (o.quality_grade != 'research' OR o.taxon_id != listed_taxa.taxon_id)) " +
+    ")"
+    scope = ListedTaxon.where("list_id = ?", list).scoped
+    scope = scope.joins("LEFT OUTER JOIN observations o ON o.id = listed_taxa.last_observation_id").
+    joins("LEFT OUTER JOIN project_observations po ON po.observation_id = listed_taxa.last_observation_id").
+    joins("LEFT OUTER JOIN identifications i ON i.id = po.curator_identification_id").
+    select("listed_taxa.id, CASE WHEN po.curator_identification_id IS NOT NULL THEN i.taxon_id ELSE o.taxon_id END AS taxon_id").
+    where(conditions, list.project_id)
+    scope.each do |entry|
+      lt = ListedTaxon.find_by_id(entry.id)
+      taxon = Taxon.find_by_id(entry.taxon_id)
+      lt.destroy unless taxon.descendant_of?(lt.taxon)
+    end
+  end
+  
   private
   def set_defaults
     self.title ||= "%s's Check List" % owner_name

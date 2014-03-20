@@ -174,8 +174,13 @@ class LifeList < List
   def self.reload_from_observations(list)
     list = List.find_by_id(list) unless list.is_a?(List)
     return unless list
-    repair_observed(list)
-    add_taxa_from_observations(list)
+    if list.is_a?(ProjectList)
+      ProjectList.repair_observed(list)
+      ProjectList.add_taxa_from_observations(list)
+    else
+      repair_observed(list)
+      add_taxa_from_observations(list)
+    end
   end
   
   def self.repair_observed(list)
