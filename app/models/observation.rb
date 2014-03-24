@@ -867,7 +867,7 @@ class Observation < ActiveRecord::Base
       [options[:include]].flatten.compact
     end
     options[:methods] ||= []
-    options[:methods] << :time_observed_at_utc
+    options[:methods] += [:created_at_utc, :updated_at_utc, :time_observed_at_utc]
     viewer = options[:viewer]
     viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
     options[:except] ||= []
