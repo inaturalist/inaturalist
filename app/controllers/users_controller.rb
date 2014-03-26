@@ -309,9 +309,12 @@ class UsersController < ApplicationController
         @updates = current_user.updates.activity.limit(5).order("id DESC")
       end
     end
+    notifier_types = [(params[:notifier_types] || params[:notifier_type])].compact
+    unless notifier_types.blank?
+      notifier_types = notifier_types.map{|t| t.split(',')}.flatten.compact.uniq
+      @updates = @updates.where("notifier_type IN (?)", notifier_types)
+    end
     @updates = @updates.where(:resource_type => params[:resource_type]) unless params[:resource_type].blank?
-    @updates = @updates.where(:notifier_type => params[:notifier_type]) unless params[:notifier_type].blank?
-    @updates = @updates.where("notifier_type IN (?)", params[:notifier_types]) unless params[:notifier_types].blank?
     if !%w(1 yes y true t).include?(params[:skip_view].to_s)
       Update.user_viewed_updates(@updates)
       session[:updates_count] = 0

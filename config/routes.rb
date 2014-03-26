@@ -147,6 +147,9 @@ Inaturalist::Application.routes.draw do
       get :export
       post :email_export
     end
+    member do
+      put :viewed_updates
+    end
   end
 
   match 'observations/identotron' => 'observations#identotron', :as => :identotron

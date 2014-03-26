@@ -815,13 +815,15 @@ class ObservationsController < ApplicationController
                   }
                 },
                 :observation_photos => {
-                  :except => [:file_processing, :file_file_size, 
-                    :file_content_type, :file_file_name, :user_id, 
-                    :native_realname, :mobile, :native_photo_id],
                   :include => {
-                    :photo => {}
+                    :photo => {
+                      :methods => [:license_code, :attribution],
+                      :except => [:original_url, :file_processing, :file_file_size, 
+                        :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
+                        :native_realname, :native_photo_id]
+                    }
                   }
-                }
+                },
               })
           else
             render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name])
@@ -2469,7 +2471,7 @@ class ObservationsController < ApplicationController
       extra = params[:extra].to_s.split(',')
       if extra.include?('projects')
         opts[:include][:project_observations] ||= {
-          :include => {:project => {:only => [:title]}},
+          :include => {:project => {:only => [:id, :title]}},
           :except => [:tracking_code]
         }
       end
@@ -2483,7 +2485,7 @@ class ObservationsController < ApplicationController
           :except => [:observation_field_id],
           :include => {
             :observation_field => {
-              :only => [:id, :datatype, :name]
+              :only => [:id, :datatype, :name, :allowed_values]
             }
           }
         }
