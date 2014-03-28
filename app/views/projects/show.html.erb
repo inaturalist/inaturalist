@@ -275,7 +275,27 @@
         </div>
       <% end -%>
     </li>
-    <% unless @project.project_type == Project::BIOBLITZ_TYPE -%>
+    <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+      <li>
+        <%= link_to "<span class='lead'>&raquo;</span>#{t(:curated_checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
+        <% if @observed_taxa_count.to_i > 0 -%>
+          <div class="inner">
+            <%= t(:curated_count) %>:
+            <span class="count"><%= @list_numerator || @observed_taxa_count %></span>
+            <% if @project.prefers_count_from_list? -%>
+              <%= t :of %>
+              <span class="count">
+                <%= @list_denom %>
+              </span>
+            <% end -%>
+            <%= t :taxa_observed %>
+          </div> 
+        <% end -%>
+        <div class="inner small meta upstacked">
+          <%=t 'views.projects.show.curated_checklist_desc' %>
+        </div>
+      </li>
+    <% else %>
       <li>
         <% if @observed_taxa_count.to_i > 0 -%>
           <span class="right" style="margin: 4px 10px 0 10px">
