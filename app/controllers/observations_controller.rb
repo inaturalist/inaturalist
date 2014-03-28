@@ -510,6 +510,7 @@ class ObservationsController < ApplicationController
     if @observation.quality_metrics.detect{|qm| qm.user_id == @observation.user_id && qm.metric == QualityMetric::WILD && !qm.agree?}
       @observation.captive_flag = true
     end
+
     respond_to do |format|
       format.html do
         if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
@@ -557,7 +558,7 @@ class ObservationsController < ApplicationController
           if photo = o.photos.compact.last
             photo_o = photo.to_observation
             PHOTO_SYNC_ATTRS.each do |a|
-              o.send("#{a}=", photo_o.send(a))
+              o.send("#{a}=", photo_o.send(a)) if o.send(a).blank?
             end
           end
         end
@@ -814,13 +815,15 @@ class ObservationsController < ApplicationController
                   }
                 },
                 :observation_photos => {
-                  :except => [:file_processing, :file_file_size, 
-                    :file_content_type, :file_file_name, :user_id, 
-                    :native_realname, :mobile, :native_photo_id],
                   :include => {
-                    :photo => {}
+                    :photo => {
+                      :methods => [:license_code, :attribution],
+                      :except => [:original_url, :file_processing, :file_file_size, 
+                        :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
+                        :native_realname, :native_photo_id]
+                    }
                   }
-                }
+                },
               })
           else
             render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name])
@@ -950,9 +953,6 @@ class ObservationsController < ApplicationController
           :latitude => row[4], 
           :longitude => row[5]
         )
-        Rails.logger.debug "[DEBUG] obs.latitude: #{obs.latitude}"
-        Rails.logger.debug "[DEBUG] obs.place_guess: #{obs.place_guess}"
-        Rails.logger.debug "[DEBUG] row[3]: #{row[3]}"
         obs.set_taxon_from_species_guess
         if obs.georeferenced?
           obs.location_is_exact = true
@@ -2320,7 +2320,7 @@ class ObservationsController < ApplicationController
     end
     o = @local_photo.to_observation
     PHOTO_SYNC_ATTRS.each do |sync_attr|
-      @observation.send("#{sync_attr}=", o.send(sync_attr))
+      @observation.send("#{sync_attr}=", o.send(sync_attr)) unless o.send(sync_attr).blank?
     end
 
     unless @observation.observation_photos.detect {|op| op.photo_id == @local_photo.id}
@@ -2471,7 +2471,7 @@ class ObservationsController < ApplicationController
       extra = params[:extra].to_s.split(',')
       if extra.include?('projects')
         opts[:include][:project_observations] ||= {
-          :include => {:project => {:only => [:title]}},
+          :include => {:project => {:only => [:id, :title]}},
           :except => [:tracking_code]
         }
       end
@@ -2485,7 +2485,7 @@ class ObservationsController < ApplicationController
           :except => [:observation_field_id],
           :include => {
             :observation_field => {
-              :only => [:id, :datatype, :name]
+              :only => [:id, :datatype, :name, :allowed_values]
             }
           }
         }
