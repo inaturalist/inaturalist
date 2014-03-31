@@ -343,6 +343,15 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == o.id}.should_not be_blank
     end
 
+    it "should filter by time range" do
+      o1 = Observation.make!(:observed_on_string => "2014-03-28T18:57:41+00:00")
+      o2 = Observation.make!(:observed_on_string => "2014-03-28T08:57:41+00:00")
+      get :index, :format => :json, :d1 => "2014-03-28T12:57:41+00:00", :d2 => "2014-03-28T22:57:41+00:00"
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
+      json.detect{|obs| obs['id'] == o2.id}.should be_blank
+    end
+
     it "should filter by month range" do
       o1 = Observation.make!(:observed_on_string => "2012-01-01 13:13")
       o2 = Observation.make!(:observed_on_string => "2010-03-01 13:13")
