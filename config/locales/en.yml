@@ -691,6 +691,8 @@ en:
   curate_taxa: Curate taxa
   curate_users: Curate users
   curated: curated
+  curated_checklist: Curated Checklist
+  curated_count: Curated Count
   curating: Curating
   curation: Curation
   curator: Curator
@@ -3499,10 +3501,11 @@ en:
       show:
         bioblitz_results_desc_html: |
           <p>
-            Unlike regular projects, bioblitzes accumulate stats from
+            Unlike regular projects, bioblitzes display event stats below from
             <em>all</em> observations within a place and time period, not just
             observations that people have intentionally added to the project.
-            This is to remove the hurdle of joining a project for a bioblitz.
+            This is to remove the hurdle of joining a project from contributing
+            to these event stats.
           </p>
           <p>
             Note that while this kind of project shows stats for observations that
@@ -3510,12 +3513,17 @@ en:
             curators to see private or obscured coordinates for those
             observations or assume that observers have agreed to the project
             terms. If you're a project curator and you need access to private
-            coordinates or you need your participants to agree to the project
-            terms, make sure your participants join the project and add their
+            coordinates, you need your participants to agree to the project
+            terms, or you want observations counted towards the curated project checklist,
+            make sure your participants join the project and add their
             observations like they would in a normal project.
           </p>
         project_observations_desc: |
           Note: this only includes observations explictly added to this
+          project, not all observations recorded at the place and time of this
+          event.
+        curated_checklist_desc: |
+          Note: this is the curated checklist and count of taxa from observations explictly added to this
           project, not all observations recorded at the place and time of this
           event.
     users:
