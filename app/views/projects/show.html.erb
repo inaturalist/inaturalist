@@ -277,7 +277,7 @@
     </li>
     <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
       <li>
-        <%= link_to "<span class='lead'>&raquo;</span>#{t(:curated_checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:curated_checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
         <% if @observed_taxa_count.to_i > 0 -%>
           <div class="inner">
             <%= t(:curated_count) %>:
