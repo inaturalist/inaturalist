@@ -25,6 +25,27 @@ describe Update, "email_updates_to_user" do
 end
 
 describe Update, "user_viewed_updates" do
+  it "should queue job to delete old updates" do
+    u = User.make!
+    old_update = Update.make!(:created_at => 7.months.ago, :subscriber => u)
+    new_update = Update.make!(:subscriber => u)
+    stamp = Time.now
+    Update.user_viewed_updates([new_update])
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /Update.*sweep_for_user.*#{u.id}/m}.size.should eq(1)
+  end
+
+  it "should only queue job to delete old updates once" do
+    u = User.make!
+    old_update = Update.make!(:created_at => 7.months.ago, :subscriber => u)
+    new_update = Update.make!(:subscriber => u)
+    stamp = Time.now
+    Update.user_viewed_updates([new_update])
+    Update.user_viewed_updates([new_update])
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /Update.*sweep_for_user.*#{u.id}/m}.size.should eq(1)
+  end
+  
   it "should delete updates made over 6 months ago" do
     old_update = Update.make!(:created_at => 7.months.ago)
     new_update = Update.make!(:subscriber => old_update.subscriber)

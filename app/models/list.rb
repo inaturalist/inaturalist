@@ -304,7 +304,7 @@ class List < ActiveRecord::Base
     listed_taxa = ListedTaxon.all(:include => [:list],
       :conditions => ["taxon_id IN (?) AND list_id IN (?)", taxon_ids, target_list_ids])
     if respond_to?(:create_new_listed_taxa_for_refresh)
-      unless self == ProjectList && observation.quality_grade == 'casual' #only RG for projects
+      unless self == ProjectList && observation && observation.quality_grade == 'casual' #only RG for projects
         create_new_listed_taxa_for_refresh(taxon, listed_taxa, target_list_ids)
       end
     end

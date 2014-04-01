@@ -78,7 +78,7 @@ class ProjectObservation < ActiveRecord::Base
   
   def refresh_project_list
     return true if observation.blank? || observation.taxon_id.blank?
-    Project.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_project_list(project_id, 
+    Project.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow").refresh_project_list(project_id, 
       :taxa => [observation.taxon_id], :add_new_taxa => id_was.nil?)
     true
   end

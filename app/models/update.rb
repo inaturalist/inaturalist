@@ -227,6 +227,14 @@ class Update < ActiveRecord::Base
         update.id, update.subscriber_id, update.resource_type, update.resource_id
       ])
     end
-    Update.delay(:priority => USER_INTEGRITY_PRIORITY).delete_all(["subscriber_id = ? AND created_at < ?", subscriber_id, 6.months.ago])
+    
+    unless Delayed::Job.where("handler LIKE '%Update%sweep_for_user% #{subscriber_id}\n%'").exists?
+      Update.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow", :run_at => 6.hours.from_now).sweep_for_user(subscriber_id)
+    end
+  end
+
+  def self.sweep_for_user(user_id)
+    return if user_id.blank?
+    Update.delete_all(["subscriber_id = ? AND created_at < ?", user_id, 6.months.ago])
   end
 end
