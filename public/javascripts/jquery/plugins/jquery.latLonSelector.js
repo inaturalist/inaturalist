@@ -582,7 +582,7 @@
   
   $.fn.latLonSelector.setAccuracy = function(accuracy, options) {
     options = options || {}
-    var inputOptions = $(getCurrentInput()).data('latLonSelectorOptions')
+    var inputOptions = $(getCurrentInput()).data('latLonSelectorOptions') || {}
     if (inputOptions.noAccuracy) {return};
     if (!$.fn.latLonSelector._circle) {
       $.fn.latLonSelector._circle = new google.maps.Circle({

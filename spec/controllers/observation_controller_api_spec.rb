@@ -287,6 +287,16 @@ shared_examples_for "an ObservationsController" do
       json.size.should eq(3)
     end
 
+    it "should allow filtering by updated_since" do
+      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago, :user => user)
+      oldo.updated_at.should be < 1.minute.ago
+      newo = Observation.make!(:user => user)
+      get :by_login, :format => :json, :login => user.login, :updated_since => (newo.updated_at - 1.minute).iso8601
+      json = JSON.parse(response.body)
+      json.detect{|o| o['id'] == newo.id}.should_not be_blank
+      json.detect{|o| o['id'] == oldo.id}.should be_blank
+    end
+
     it "should include deleted observation IDs when filtering by updated_since" do
       oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago)
       oldo.updated_at.should be < 1.minute.ago
@@ -479,14 +489,15 @@ shared_examples_for "an ObservationsController" do
       obs['observation_photos'].should_not be_nil
     end
 
-    it "should allow filtering by updated_since" do
-      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago, :user => user)
-      oldo.updated_at.should be < 1.minute.ago
-      newo = Observation.make!(:user => user)
-      get :by_login, :format => :json, :login => user.login, :updated_since => (newo.updated_at - 1.minute).iso8601
-      json = JSON.parse(response.body)
-      json.detect{|o| o['id'] == newo.id}.should_not be_blank
-      json.detect{|o| o['id'] == oldo.id}.should be_blank
+    it "should filter by list_id" do
+      l = List.make!
+      lt = ListedTaxon.make!(:list => l)
+      on_list_obs = Observation.make!(:observed_on_string => "2013-01-03", :taxon => lt.taxon)
+      off_list_obs = Observation.make!(:observed_on_string => "2013-01-03", :taxon => Taxon.make!)
+      get :index, :format => :json, :on => on_list_obs.observed_on_string, :list_id => l.id
+      json_obs = JSON.parse(response.body)
+      json_obs.detect{|o| o['id'] == on_list_obs.id}.should_not be_blank
+      json_obs.detect{|o| o['id'] == off_list_obs.id}.should be_blank
     end
   end
 

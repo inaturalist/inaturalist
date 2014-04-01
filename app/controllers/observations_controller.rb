@@ -27,7 +27,6 @@ class ObservationsController < ApplicationController
   doorkeeper_for :create, :update, :destroy, :viewed_updates, :if => lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
-  before_filter :admin_required, :only => [:taxa]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
     :import, :export, :add_from_list, :new, :project]
   before_filter :authenticate_user!,
@@ -42,6 +41,8 @@ class ObservationsController < ApplicationController
                             :nearby,
                             :widget,
                             :project,
+                            :stats,
+                            :taxa,
                             :taxon_stats,
                             :user_stats,
                             :community_taxon_summary]

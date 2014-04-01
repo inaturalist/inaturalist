@@ -297,7 +297,7 @@ module ApplicationHelper
   def taxonomic_taxon_list(taxa, options = {}, &block)
     taxa.each do |taxon, children|
       concat "<li class='#{options[:class]}'>".html_safe
-      yield taxon
+      yield taxon, children
       unless children.blank?
         concat "<ul>".html_safe
         taxonomic_taxon_list(children, options, &block)

@@ -1202,7 +1202,12 @@ $.fn.observationUserStats = function(options) {
         imageTD.append($('<img/>').attr('src', img_url))
         userTD.html($('<a>'+most.user.login+'</a>').attr('href', '/people/'+most.user.login))
         userTD.append(
-          $('<div></div>').addClass('meta').html(I18n.t('x_observations', {count: most.count}))
+          $('<div></div>').
+            addClass('meta').
+            html(I18n.t('x_observations_link_html', {
+              count: most.count,
+              url: '/observations'+window.location.search+'&user_id='+most.user.login
+            }))
         )
         tr.append(imageTD, userTD)
         $('.most_observations table', container).append(tr)
@@ -1219,7 +1224,12 @@ $.fn.observationUserStats = function(options) {
         imageTD.append($('<img/>').attr('src', img_url))
         userTD.html($('<a>'+row.user.login+'</a>').attr('href', '/people/'+row.user.login))
         userTD.append(
-          $('<div></div>').addClass('meta').html(I18n.t('x_species', {count: row.count}))
+          $('<div></div>').
+            addClass('meta').
+            html(I18n.t('x_species_link_html', {
+              count: row.count, 
+              url: '/observations/taxa'+window.location.search+'&user_id='+row.user.login
+            }))
         )
         tr.append(imageTD, userTD)
         $('.most_species table', container).append(tr)

@@ -423,6 +423,11 @@ EOT
       values -180..180
     end
 
+    param "list_id" do
+      desc "Restrict results to observations of taxa on the specifified list. Limited to lists with 2000 taxa or less."
+      values "iNat list ID"
+    end
+
     param "extra" do
       desc <<-EOT
         Retrieve additional information. 'projects' returns info about the
