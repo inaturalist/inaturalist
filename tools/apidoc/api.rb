@@ -225,7 +225,11 @@ and ATOM responses are what you'd expect, but DwC is
 XML schema for biodiversity data. iNat uses JSON responses internally quite a
 bit, so it will probably always be the most information-rich. The widget
 response is a JS snippet that inserts HTML.  It should be used
-with a script tag, e.g. <pre>&lt;script src="http://www.inaturalist.org/observations.widget"&gt;&lt;/script&gt;</pre>
+with a script tag, e.g. <pre>&lt;script
+src="http://www.inaturalist.org/observations.widget"&gt;&lt;/script&gt;</pre>.
+Note that while this endpoint doesn't require authentication under normal
+circumstances, it WILL require it when you request pages higher than 100. If
+you're going to scrape us, we want to know who you are.
 EOT
     formats %w(atom csv dwc json kml widget)
     example do

@@ -88,6 +88,11 @@ class ObservationsController < ApplicationController
   def index
     search_params, find_options = get_search_params(params)
     search_params = site_search_params(search_params)
+
+    if !logged_in? && find_options[:page].to_i > 100
+      authenticate_user!
+      return false
+    end
     
     if search_params[:q].blank?
       @observations = if perform_caching

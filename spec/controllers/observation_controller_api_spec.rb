@@ -499,6 +499,11 @@ shared_examples_for "an ObservationsController" do
       json_obs.detect{|o| o['id'] == on_list_obs.id}.should_not be_blank
       json_obs.detect{|o| o['id'] == off_list_obs.id}.should be_blank
     end
+
+    it "should not require sign in for page 100 or more" do
+      get :index, :format => :json, :page => 101
+      response.should be_success
+    end
   end
 
   describe "taxon_stats" do
@@ -620,4 +625,15 @@ describe ObservationsController, "devise authentication" do
     http_login(user)
   end
   it_behaves_like "an ObservationsController"
+end
+
+describe ObservationsController, "without authentication" do
+  describe "index" do
+    it "should require sign in for page 100 or more" do
+      get :index, :format => :json, :page => 10
+      response.should be_success
+      get :index, :format => :json, :page => 101
+      response.status.should eq 401
+    end
+  end
 end
