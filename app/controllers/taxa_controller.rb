@@ -357,10 +357,11 @@ class TaxaController < ApplicationController
       drill_params[:colors] = @color_ids
     end
     
-    per_page = params[:per_page] ? params[:per_page].to_i : 24
-    per_page = 100 if per_page > 100
-    
     page = params[:page] ? params[:page].to_i : 1
+    user_per_page = params[:per_page] ? params[:per_page].to_i : 24
+    user_per_page = 100 if user_per_page > 100
+    per_page = page == 1 && user_per_page < 50 ? 50 : user_per_page
+    
     @facets = Taxon.facets(q, :page => page, :per_page => per_page,
       :with => drill_params, 
       :include => [:taxon_names, {:taxon_photos => :photo}, :taxon_descriptions],
@@ -405,6 +406,13 @@ class TaxaController < ApplicationController
       # otherwise try and hit the db directly. Sphinx doesn't always seem to behave properly
       elsif params[:page].to_i <= 1 && (exact = Taxon.where("lower(name) = ?", params[:q].to_s.downcase.strip).first)
         @taxa.unshift exact
+      end
+    end
+
+    if page == 1 && per_page != user_per_page
+      old_taxa = @taxa
+      @taxa = WillPaginate::Collection.create(1, user_per_page, old_taxa.total_entries) do |pager|
+        pager.replace(old_taxa[0...user_per_page])
       end
     end
     
