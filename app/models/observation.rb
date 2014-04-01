@@ -1132,7 +1132,7 @@ class Observation < ActiveRecord::Base
     project_list_refresh_needed = (taxon_id || taxon_id_was) && (quality_grade_changed? || taxon_id_changed? || observed_on_changed?)
     return true unless project_list_refresh_needed
     unless Delayed::Job.where("handler LIKE '%ProjectList%refresh_with_observation% #{id}\n%'").exists?
-      ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
+      ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow").refresh_with_observation(id, :taxon_id => taxon_id, 
         :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
     end
     
