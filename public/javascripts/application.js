@@ -1143,8 +1143,9 @@ $.fn.loadObservations = function(options) {
 }
 
 $.fn.observationTaxonStats = function(options) {
-  var url = options.url || '/observations/taxon_stats.json'
-  var container = this
+  var url = options.url || '/observations/taxon_stats.json',
+      container = this,
+      baseSearch = typeof(OBSERVATIONS_URL) == 'undefined' ? window.location.search : '?'+OBSERVATIONS_URL.split('?')[1]
   $.getJSON(url, function(json) {
     $('.species .count', container).html(json.rank_counts.species || 0)
     if (json.species_counts.length > 0) {
@@ -1166,7 +1167,7 @@ $.fn.observationTaxonStats = function(options) {
           taxonTD.append(
             $('<div class="meta"></div>').append(
               $('<a></a>').
-                attr('href', '/observations'+window.location.search+'&taxon_id='+most.taxon.id).
+                attr('href', '/observations'+baseSearch+'&taxon_id='+most.taxon.id).
                 html(most.count),
               ' ',
               I18n.t('observation'+(most.count == 1 ? '' : 's')).toLowerCase()
@@ -1187,8 +1188,9 @@ $.fn.observationTaxonStats = function(options) {
 }
 
 $.fn.observationUserStats = function(options) {
-  var url = options.url || '/observations/taxon_stats.json'
-  var container = this
+  var url = options.url || '/observations/taxon_stats.json',
+      container = this,
+      baseSearch = typeof(OBSERVATIONS_URL) == 'undefined' ? window.location.search : '?'+OBSERVATIONS_URL.split('?')[1]
   $.getJSON(url, function(json) {
     $('.people .count', container).html(json.total || 0)
     if (json.most_observations.length > 0) {
@@ -1206,7 +1208,7 @@ $.fn.observationUserStats = function(options) {
             addClass('meta').
             html(I18n.t('x_observations_link_html', {
               count: most.count,
-              url: '/observations'+window.location.search+'&user_id='+most.user.login
+              url: '/observations'+baseSearch+'&user_id='+most.user.login
             }))
         )
         tr.append(imageTD, userTD)
@@ -1228,7 +1230,7 @@ $.fn.observationUserStats = function(options) {
             addClass('meta').
             html(I18n.t('x_species_link_html', {
               count: row.count, 
-              url: '/observations/taxa'+window.location.search+'&user_id='+row.user.login
+              url: '/observations/taxa'+baseSearch+'&user_id='+row.user.login
             }))
         )
         tr.append(imageTD, userTD)

@@ -36,7 +36,10 @@ var ObservationFields = {
     var url = $(this).attr('href'),
         dialog = $('<div class="dialog"><span class="loading status">Loading...</span></div>')
     $(document.body).append(dialog)
-      $(dialog).dialog({modal:true, title: I18n.translations[I18n.currentLocale()]['new_observation_field']})
+    $(dialog).dialog({
+      modal:true, 
+      title: I18n.translations[I18n.currentLocale()]['new_observation_field']
+    })
     $(dialog).load(url, "format=js", function() {
       $('form', dialog).submit(function() {
         $.ajax({

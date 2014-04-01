@@ -126,12 +126,12 @@ class Guide < ActiveRecord::Base
 
   def expire_caches(options = {})
     ctrl = ActionController::Base.new
-    ctrl.expire_page("/guides/#{id}.pdf")
-    ctrl.expire_page("/guides/#{id}.xml")
+    ctrl.expire_page("/guides/#{id}.pdf") rescue nil
+    ctrl.expire_page("/guides/#{id}.xml") rescue nil
     GuidesController::PDF_LAYOUTS.each do |l|
-      ctrl.expire_page("/guides/#{id}.#{l}.pdf")
+      ctrl.expire_page("/guides/#{id}.#{l}.pdf") rescue nil
     end
-    ctrl.expire_page("/guides/#{to_param}.ngz")
+    ctrl.expire_page("/guides/#{to_param}.ngz") rescue nil
     if options[:check_ngz]
       if downloadable?
         generate_ngz_later

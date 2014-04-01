@@ -1505,7 +1505,7 @@ class ObservationsController < ApplicationController
   def stats
     @headless = @footless = true
     search_params, find_options = get_search_params(params)
-    @stats_adequately_scoped = stats_adequately_scoped?
+    stats_adequately_scoped?
   end
 
   def taxa
@@ -1701,7 +1701,7 @@ class ObservationsController < ApplicationController
       d2 = (Date.parse(params[:d2]) rescue Date.today)
       return false if d2 - d1 > 366
     end
-    !(params[:d1].blank? && params[:projects].blank? && params[:place_id].blank? && params[:user_id].blank? && params[:on].blank?)
+    @stats_adequately_scoped = !(params[:d1].blank? && params[:projects].blank? && params[:place_id].blank? && params[:user_id].blank? && params[:on].blank?)
   end
   
   def retrieve_photos(photo_list = nil, options = {})
@@ -1934,7 +1934,10 @@ class ObservationsController < ApplicationController
 
     @site_uri = params[:site] unless params[:site].blank?
 
-    @user = User.find_by_id(params[:user_id]) unless params[:user_id].blank?
+    unless params[:user_id].blank?
+      @user = User.find_by_id(params[:user_id])
+      @user ||= User.find_by_login(params[:user_id])
+    end
     unless params[:projects].blank?
       @projects = Project.find(params[:projects]) rescue []
     end

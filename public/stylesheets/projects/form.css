@@ -1,13 +1,15 @@
-.title_field,.description_field,.project_type_field{margin-right:20px;}
-.description_field,
-.terms_field,
-.title_field, 
-.prefers_count_from_list_field, 
-.project_type_field{float:left;width:465px;}
+.project_form .title_field,
+.project_form .description_field,
+.project_form .project_type_field{margin-right:20px;}
+.project_form .description_field,
+.project_form .terms_field,
+.project_form .title_field, 
+.project_form .prefers_count_from_list_field, 
+.project_form .project_type_field{float:left;width:465px;}
 #icon_fields{float:left;width:465px;}
-.description_field,.project_type_field{clear:left;}
-.title_field input{width:390px;}
-.description_field textarea,.terms_field textarea{width:450px;}
+.project_form .description_field,.project_type_field{clear:left;}
+.project_form .title_field input{width:390px;}
+.project_form .description_field textarea,.terms_field textarea{width:450px;}
 #place_q,#taxon_q{width:300px;}
 .observationrules{clear:left;}
 .project_observation_fields {list-style: none;margin-left:0;}

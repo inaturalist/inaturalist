@@ -9,41 +9,7 @@
     = loading
   = link_to t(:view_all_observations), request.fullpath.gsub(/\/stats/, ''), :class => "readmore"
 - else
-  You must add one of the following parameters to the URL to use this tool
-  %dl
-    %dt
-      %code place_id
-    %dd
-      %div
-        Example:
-        = link_to stats_observations_url(:place_id => 'belgium'), stats_observations_url(:place_id => 'belgium')
-    %dt
-      %code user_id
-    %dd
-      %div
-        Example:
-        = link_to stats_observations_url(:user_id => 1), stats_observations_url(:user_id => 1)
-    %dt
-      %code projects
-    %dd
-      %div
-        Example:
-        = link_to stats_observations_url(:projects => 10), stats_observations_url(:projects => 10)
-    %dt
-      %code on
-    %dd
-      %div
-        Example:
-        = link_to stats_observations_url(:on => "2012-01-01"), stats_observations_url(:on => "2012-01-01")
-    %dt
-      %code d1
-      and
-      %code d2
-      (max date range 1 year)
-    %dd
-      %div
-        Example:
-        = link_to stats_observations_url(:d1 => "2012-01-01", :d2 => "2012-01-30"), stats_observations_url(:d1 => "2012-01-01", :d2 => "2012-01-30")
+  = render 'stats_inadequately_scoped'
 
 = content_for(:extracss) do
   :css
@@ -57,25 +23,24 @@
     table {margin:0;}
 
 :javascript
-  $('#observations').loadObservations({
-    url: '/observations'+window.location.search,
-    refresh: window.location.toString().match(/refresh=true/) ? 10*1000 : null,
-    success: function(r, data) {
-      var headers = r.getAllResponseHeaders()
-      var matches = headers.match(/X-Total-Entries: (\d+)/) || [],
-          totalEntries = matches[1]
-      if (totalEntries) {
-        $('.totalcount .count').html(totalEntries)
-      }
-    }
-  })
   if ($('#observations').length == 1) {
+    $('#observations').loadObservations({
+      url: '/observations'+window.location.search,
+      refresh: window.location.toString().match(/refresh=true/) ? 10*1000 : null,
+      success: function(r, data) {
+        var headers = r.getAllResponseHeaders()
+        var matches = headers.match(/X-Total-Entries: (\d+)/) || [],
+            totalEntries = matches[1]
+        if (totalEntries) {
+          $('.totalcount .count').html(totalEntries)
+        }
+      }
+    })
+    
     $('#stats').observationTaxonStats({
       url: '/observations/taxon_stats.json'+window.location.search,
       refresh: window.location.toString().match(/refresh=true/) ? 10*1000 : null
     })
-  }
-  if ($('#observations').length == 1) {
     $('#stats').observationUserStats({
       url: '/observations/user_stats.json'+window.location.search,
       refresh: window.location.toString().match(/refresh=true/) ? 10*1000 : null

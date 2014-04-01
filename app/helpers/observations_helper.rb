@@ -77,5 +77,18 @@ module ObservationsHelper
       content_tag(:span, t(:somewhere))
     end
   end
+
+  def title_for_observation_params
+    s = t(:observed_taxa, :default => "Observed taxa")
+    s += " #{t :of} #{link_to_taxon @observations_taxon}" if @observations_taxon
+    s += " #{t(:from).downcase} #{link_to @place.display_name, @place}" if @place
+    s += " #{t :by} #{link_to @user.login, @user}" if @user
+    if @observed_on
+      s += " #{@observed_on_day ? t(:on).downcase : t(:in).downcase} #{@observed_on}"
+    elsif @d1 && @d2
+      s += " #{t(:between).downcase} #{@d1} #{t :and} #{@d2}"
+    end
+    s.html_safe
+  end
   
 end

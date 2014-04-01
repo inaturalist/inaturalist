@@ -16,7 +16,7 @@
                              "projects/form" %>
 <%- end -%>
 <%- project ||= @project -%>
-<%= form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
+<%= form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true, :class => "project_form"} do |f| %>
   <%= f.error_messages %>
 
   <%= f.text_field :title, :required => true %>
