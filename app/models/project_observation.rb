@@ -44,14 +44,14 @@ class ProjectObservation < ActiveRecord::Base
     # Update the projectobservation's current curator_id taxon and/or a previous one that was
     # just removed/changed
     unless Delayed::Job.where("handler LIKE '%ProjectList%refresh_with_project_observation% #{id}\n%'").exists?
-      ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY).
-                 refresh_with_project_observation(
-                   id,
-                   :observation_id => observation_id,
-                   :taxon_id => taxon_id,
-                   :taxon_id_was => taxon_id_was,
-                   :project_id => project_id
-                 )
+      ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow").
+       refresh_with_project_observation(
+         id,
+         :observation_id => observation_id,
+         :taxon_id => taxon_id,
+         :taxon_id_was => taxon_id_was,
+         :project_id => project_id
+       )
     end
     true
   end
