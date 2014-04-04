@@ -23,7 +23,11 @@
             - if sub
               = sub.call(user, count)
             - else
-              = link_to observations_by_login_path(user.login, :on => time_unit == 'month' ? date.strftime("%Y-%m") : date.year) do
+              - if noun == 'species'
+                - url = taxa_observations_path(:user_id => user.login, :on => time_unit == 'month' ? date.strftime("%Y-%m") : date.year, :hrank => "species")
+              - else
+                - url = observations_by_login_path(user.login, :on => time_unit == 'month' ? date.strftime("%Y-%m") : date.year)
+              = link_to url do
                 =t "x_#{noun.camelize.parameterize.pluralize}_html", :count => count.to_i
     - else
       .nocontent.meta=t :no_x_this_y, :x => t(noun).downcase, :y => t(time_unit).downcase

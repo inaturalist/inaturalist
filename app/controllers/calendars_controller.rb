@@ -9,12 +9,13 @@ class CalendarsController < ApplicationController
   
   def show
     @year   = params[:year] if params[:year].to_i != 0
-    @month  = params[:month] if params[:month].to_i != 0
-    @day    = params[:day] if params[:day].to_i != 0
+    @month  = params[:month].to_s.rjust(2, '0') if params[:month].to_i != 0
+    @day    = params[:day].to_s.rjust(2, '0') if params[:day].to_i != 0
     @date = [@year, @month, @day].compact.join('-')
     @observations = @selected_user.observations.
       on(@date).
-      limit(500).
+      page(1).
+      per_page(200).
       order_by("observed_on")
     if @day
       @observations = @observations.includes(:taxon => :taxon_names, :observation_photos => :photo)
