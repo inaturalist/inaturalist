@@ -11,7 +11,7 @@ class Identification < ActiveRecord::Base
                         :message => "for an ID must be something we recognize"
   validate :uniqueness_of_current, :on => :update
   
-  before_save   :update_other_identifications
+  before_create :update_other_identifications
   after_create  :update_observation, 
                 :increment_user_counter_cache, 
                 :expire_caches

@@ -210,6 +210,22 @@ describe Identification, "creation" do
   end
 end
 
+describe Identification, "updating" do
+  it "should not change current status of other identifications" do
+    i1 = Identification.make!
+    i2 = Identification.make!(:observation => i1.observation, :user => i1.user)
+    i1.reload
+    i2.reload
+    i1.should_not be_current
+    i2.should be_current
+    i1.update_attributes(:body => "foo")
+    i1.reload
+    i2.reload
+    i1.should_not be_current
+    i2.should be_current
+  end
+end
+
 describe Identification, "deletion" do
   
   before(:each) do
