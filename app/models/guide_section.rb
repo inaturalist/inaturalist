@@ -8,6 +8,8 @@ class GuideSection < ActiveRecord::Base
   after_save {|r| r.guide.expire_caches(:check_ngz => true)}
   after_destroy {|r| r.guide.expire_caches(:check_ngz => true)}
 
+  validates_length_of :title, :within => 1..256
+
   EOL_SUBJECTS = %w(
     Associations
     Barcode

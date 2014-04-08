@@ -5,6 +5,7 @@ class GuidePhoto < ActiveRecord::Base
   belongs_to :photo, :inverse_of => :guide_photos
   has_one :guide, :through => :guide_taxon
   validates :photo, :presence => true
+  validates_length_of :description, :maximum => 256, :allow_blank => true
   after_destroy :destroy_orphan_photo
   after_save {|r| r.guide.expire_caches(:check_ngz => true) if r.guide}
   after_destroy {|r| r.guide.expire_caches(:check_ngz => true) if r.guide}

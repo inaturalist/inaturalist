@@ -3,13 +3,23 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe GuideSection, "creation" do
   it "should set the license of the guide to CC-BY-SA if this section is CC-BY-SA"
+  
   it "should not be modified by default" do
     gs = GuideSection.make!
     gs.should_not be_modified
   end
+
   it "should be modified modified_on_create set" do
     gs = GuideSection.make!(:modified_on_create => true)
     gs.should be_modified
+  end
+
+  it "should validate the length of a title" do
+    gs = GuideSection.make(:title => "foo")
+    gs.should be_valid
+    gs = GuideSection.make(:title => "foo"*256)
+    gs.should_not be_valid
+    gs.errors[:title].should_not be_blank
   end
 end
 

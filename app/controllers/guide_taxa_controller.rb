@@ -181,8 +181,8 @@ class GuideTaxaController < ApplicationController
 
   def load_data_for_edit
     @guide = @guide_taxon.guide
-    @guide_photos = @guide_taxon.guide_photos.order(:position)
-    @guide_sections = @guide_taxon.guide_sections.order(:position)
+    @guide_photos = @guide_taxon.guide_photos.sort_by(&:position)
+    @guide_sections = @guide_taxon.guide_sections.sort_by(&:position)
     @recent_tags = @guide.recent_tags
   end
 end
