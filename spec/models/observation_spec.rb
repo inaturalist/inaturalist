@@ -2032,6 +2032,18 @@ describe Observation, "community taxon" do
 
   # end
 
+  it "should obscure the observation if set to a threatened taxon but the owner has no ID" do
+    cs = ConservationStatus.make!
+    t = cs.taxon
+    o = Observation.make!(:latitude => 1, :longitude => 1)
+    o.taxon.should be_blank
+    i1 = Identification.make!(:taxon => t, :observation => o)
+    i2 = Identification.make!(:taxon => t, :observation => o)
+    o.reload
+    o.taxon.should eq t
+    o.should be_coordinates_obscured
+  end
+
   describe "test cases: " do
     before do
       # Tree:

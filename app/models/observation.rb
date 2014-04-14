@@ -1432,7 +1432,8 @@ class Observation < ActiveRecord::Base
   def obscure_coordinates_for_threatened_taxa
     lat = private_latitude.blank? ? latitude : private_latitude
     lon = private_longitude.blank? ? longitude : private_longitude
-    taxon_geoprivacy = taxon ? taxon.geoprivacy(:latitude => lat, :longitude => lon) : nil
+    t = taxon || community_taxon
+    taxon_geoprivacy = t ? t.geoprivacy(:latitude => lat, :longitude => lon) : nil
     case taxon_geoprivacy
     when OBSCURED
       obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA) unless coordinates_obscured?
