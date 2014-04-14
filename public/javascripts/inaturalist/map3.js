@@ -117,7 +117,9 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
       accuracy += 10000
     }
     if (accuracy == 0) return
-    var color = observation.iconic_taxon ? iNaturalist.Map.ICONIC_TAXON_COLORS[observation.iconic_taxon.name] : '#333333'
+    var iconicTaxonName = observation.iconic_taxon_name
+    if (!iconicTaxonName && observation.iconic_taxon) iconicTaxonName = observation.iconic_taxon.name
+    var color = iconicTaxonName ? iNaturalist.Map.ICONIC_TAXON_COLORS[iconicTaxonName] : '#333333'
     var circle = new google.maps.Circle({
       strokeColor: color,
       strokeOpacity: 0.8,
@@ -508,8 +510,10 @@ iNaturalist.Map.createObservationIcon = function(options) {
   if (options.observation) {
     var iconSet = options.observation.coordinates_obscured ? 'STEMLESS_ICONS' : 'ICONS'
     var iconicTaxonIconsSet = options.observation.coordinates_obscured ? 'STEMLESS_ICONIC_TAXON_ICONS' : 'ICONIC_TAXON_ICONS'
-    if (options.observation.iconic_taxon && options.observation.iconic_taxon.name) {
-      iconPath = iNaturalist.Map[iconicTaxonIconsSet][options.observation.iconic_taxon.name];
+    var iconicTaxonName = options.observation.iconic_taxon_name
+    if (!iconicTaxonName && options.observation.iconic_taxon) iconicTaxonName = options.observation.iconic_taxon.name
+    if (iconicTaxonName) {
+      iconPath = iNaturalist.Map[iconicTaxonIconsSet][iconicTaxonName];
     } else {
       iconPath = iNaturalist.Map[iconSet]['unknown34'];
     }

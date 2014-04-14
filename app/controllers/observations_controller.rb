@@ -95,9 +95,10 @@ class ObservationsController < ApplicationController
     end
     
     if search_params[:q].blank?
-      @observations = if perform_caching
+      @observations = if perform_caching && (!logged_in? || find_options[:page] == 1)
         cache_params = params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
         cache_params[:page] ||= 1
+        cache_params[:per_page] ||= find_options[:per_page]
         cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
         cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
         cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
@@ -1996,7 +1997,9 @@ class ObservationsController < ApplicationController
       end
     end
     if @observations.blank?
-      @observations = Observation.query(search_params).includes({:observation_photos => :photo}, :sounds).paginate(find_options)
+      @observations = Observation.query(search_params).
+        includes({:observation_photos => :photo}, :sounds).
+        paginate(find_options)
     end
     @observations
   rescue ThinkingSphinx::ConnectionError, Riddle::ResponseError

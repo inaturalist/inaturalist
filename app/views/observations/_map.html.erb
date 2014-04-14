@@ -24,10 +24,10 @@
       var observations = <%= observations.to_json(
         :viewer => current_user, 
         :force_coordinate_visibility => force_coordinate_visibility,
+        :methods => [:iconic_taxon_name],
         :include => {
           :user => { :only => :login }, 
-          :taxon => {}, 
-          :iconic_taxon => {}
+          :taxon => {:only => [:id, :name]}
         }
       ).html_safe %>;
       window.observations = observations;
