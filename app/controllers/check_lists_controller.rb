@@ -6,8 +6,8 @@ class CheckListsController < ApplicationController
   before_filter :require_editor, :only => [:edit, :update, :destroy, :remove_taxon]
   before_filter :require_listed_taxa_editor, :only => [:batch_edit, :add_taxon_batch]
   before_filter :lock_down_default_check_lists, :only => [:edit, :update, :destroy, :batch_edit]
-  before_filter :load_find_options, :only => [:show]
-  
+  before_filter :set_iconic_taxa, :only => [:show]
+
   # Not supporting any of these just yet
   def index; redirect_to '/'; end
   
@@ -22,36 +22,44 @@ class CheckListsController < ApplicationController
     # check lists belonging to a place, like we do with parent lists.  It 
     # would be a pain to manage, but it might be faster.
     if @list.is_default?
-      @find_options[:conditions] = update_conditions(
-        @find_options[:conditions], ["AND place_id = ?", @list.place_id])
-      
-      # Make sure we don't get duplicate taxa from check lists other than the default
-      @find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
-      
+      @unpaginated_listed_taxa = ListedTaxon.find_listed_taxa_from_default_list(@list.place_id)
+
       # Searches must use place_id instead of list_id for default checklists 
       # so we can search items in other checklists for this place
       if @q = params[:q]
         @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
-        @find_options[:conditions] = update_conditions(
-          @find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
-      end
-      
-      @listed_taxa = ListedTaxon.paginate(@find_options)
-      
-      @total_listed_taxa = ListedTaxon.count('DISTINCT(taxon_id)',
-        :conditions => ["place_id = ?", @list.place_id])
+        @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
+      end      
     end
-    super
+    if params[:find_missing_listings]
+      @missing_filter_taxon = params[:missing_filter_taxon].present? ? Taxon.find(params[:missing_filter_taxon]) : nil
+      @hide_descendants = params[:hide_descendants]
+      @hide_ancestors = params[:hide_ancestors]
+
+
+      @missing_listings_list = params[:missing_listing_list_id].present? ? List.find_by_id(params[:missing_listing_list_id]) : nil
+
+      list_ids_from_projects = ProjectList.joins(:project).where("projects.place_id = ?", @list.place_id).pluck(:id)
+
+      @lists_for_missing_listings = List.where("(place_id = ? AND id != ?) OR id IN (?)", @list.place_id, @list.id, list_ids_from_projects).order(:title)
+      missing_listings_list_ids = @lists_for_missing_listings.map(&:id)
+
+      listed_taxa_on_this_list = @list.find_listed_taxa_and_ancestry_as_hashes
+      listed_taxa_on_other_lists = @list.find_listed_taxa_and_ancestry_on_other_lists_as_hashes(missing_listings_list_ids)
+
+      scoped_list = apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, @missing_filter_taxon, @hide_ancestors, @hide_descendants, @missing_listings_list)
+
+      ids_for_listed_taxa_on_other_lists = scoped_list.map{|lt| lt['id'] }
+
+      @missing_listings = ListedTaxon.where('listed_taxa.id IN (?)', ids_for_listed_taxa_on_other_lists).paginate({:page => params[:missing_listings_page] || 1, :per_page => 20})
+    end
+    super #show from list module
   end
   
   def new
     @place = Place.find(params[:place_id]) rescue nil
     unless @place
-      flash[:notice] = <<-EOT
-        Check lists must belong to a place. To create a new check list, visit
-        a place's default check list and click the 'Create a new check list'
-        link.
-      EOT
+      flash[:notice] = t(:check_lists_must_belong_to_a_place)
       return redirect_to places_path
     end
     
@@ -67,7 +75,7 @@ class CheckListsController < ApplicationController
 
     respond_to do |format|
       if @check_list.save
-        flash[:notice] = 'List was successfully created.'
+        flash[:notice] = t(:list_was_successfully_created)
         format.html { redirect_to(@check_list) }
       else
         @taxon = @check_list.taxon
@@ -85,7 +93,7 @@ class CheckListsController < ApplicationController
     @check_list = @list
     update_list_rules
     if @list.update_attributes(params[:check_list])
-      flash[:notice] = "Check list updated!"
+      flash[:notice] = t(:check_list_updated)
       return redirect_to @list
     else
       @iconic_taxa = Taxon::ICONIC_TAXA || Taxon.iconic_taxa.all
@@ -94,6 +102,57 @@ class CheckListsController < ApplicationController
   end
   
   private
+
+  def apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, missing_filter_taxon, hide_ancestors, hide_descendants, missing_listings_list)
+    scoped_list = listed_taxa_on_other_lists
+    scoped_list = filter_by_list(missing_listings_list, scoped_list) if missing_listings_list
+    scoped_list = missing_filter_taxon(missing_filter_taxon, scoped_list) if missing_filter_taxon
+    scoped_list = hide_matches(listed_taxa_on_this_list, scoped_list)
+    scoped_list = hide_descendants(listed_taxa_on_this_list, scoped_list) if hide_descendants
+    scoped_list = hide_ancestors(listed_taxa_on_this_list, scoped_list) if hide_ancestors
+    scoped_list
+  end
+  
+  # filter out listed taxa that do not belong to a particular list
+  # Note that "other_list" is a hash, not an active record query in progress
+  def filter_by_list(list, other_list)
+    other_list.select{|lt| 
+      lt['list_id'].to_s == list.id.to_s
+    }
+  end
+
+  def missing_filter_taxon(taxon, other_list)
+    other_list.select{|lt| 
+      found = taxon.match_descendants(lt)
+    }
+  end
+  def hide_matches(this_list, other_list)
+    this_list.each do |taxon|
+      other_list = other_list.reject do |lt| 
+        taxon['taxon_id'].to_i == lt['taxon_id'].to_i
+      end
+    end
+    other_list
+  end
+
+  def hide_descendants(this_list, other_list)
+    this_list.each do |taxon|
+      other_list = other_list.reject do |lt| 
+        Taxon.match_descendants_of_id(taxon['taxon_id'].to_i, lt)
+      end
+    end
+    other_list
+  end
+
+
+  def hide_ancestors(this_list, other_list)
+    this_list.each do |taxon|
+      other_list = other_list.reject do |lt| 
+        Taxon.match_descendants_of_id(lt['taxon_id'].to_i, taxon)
+      end
+    end
+    other_list
+  end
 
   def update_list_rules
     # Override taxon choice with iconic taxon choice
@@ -115,27 +174,12 @@ class CheckListsController < ApplicationController
   
   def lock_down_default_check_lists
     if logged_in? && current_user.is_admin?
-      flash[:notice] = "You can edit this default check list b/c you're an " + 
-        "admin, but there shouldn't really be a need to do so."
+      flash[:notice] = t(:you_can_edit_this_default_check_list_because)
       return true
     end
     if @list.is_default?
-      flash[:error] = "You can't do that for the default check list of a place!"
+      flash[:error] = t(:you_cant_do_that_for_the_default_check_list_place)
       redirect_to @list
-    end
-  end
-  
-  def get_iconic_taxon_counts(list, iconic_taxa = nil)
-    iconic_taxa ||= Taxon::ICONIC_TAXA
-    iconic_taxon_counts_by_id_hash = if list.is_default?
-      ListedTaxon.count('DISTINCT(taxon_id)', :group => "taxa.iconic_taxon_id",
-        :joins => "JOIN taxa ON taxa.id = listed_taxa.taxon_id",
-        :conditions => ["place_id = ?", list.place_id])
-    else
-      list.listed_taxa.count(:include => [:taxon], :group => "taxa.iconic_taxon_id")
-    end
-    iconic_taxa.map do |iconic_taxon|
-      [iconic_taxon, iconic_taxon_counts_by_id_hash[iconic_taxon.id.to_s]]
     end
   end
 end

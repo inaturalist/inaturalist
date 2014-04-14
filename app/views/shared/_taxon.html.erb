@@ -2,8 +2,8 @@
   taxon ||= @taxon
   include_article ||= false
   singular ||= false
-  comname ||= common_taxon_name(taxon).try(:name)
   no_common ||= false
+  comname ||= common_taxon_name(taxon).try(:name) unless no_common
   if taxon.species_or_lower?
     pieces = taxon.name.split
     sciname = if taxon.variety? && pieces.size == 3
@@ -14,9 +14,9 @@
       "<span class=\"sciname\">#{taxon.name}</span>"
     end
   elsif taxon.root?
-    sciname = "<span class=\"sciname\">#{taxon.name}</span>"
+    sciname = "<span class=\"sciname\">#{taxon.name == 'Life' ? t(:life) : taxon.name}</span>"
   else
-    rank = taxon.rank ? taxon.rank.capitalize : '(Unknown Rank)'
+    rank = taxon.rank ? taxon.rank.capitalize : t(:unknown_rank)
     rank = content_tag(:span, t(rank), :class => 'rank')
     sciname = "#{rank} <span class=\"sciname\">#{taxon.name}</span>"
   end
@@ -28,10 +28,14 @@
   link_url ||= nil
   singular ||= false
 
-  taxon_class = "taxon taxon-#{taxon.id}"
+  taxon_class = "taxon taxon-#{taxon.id} #{taxon_class}"
   taxon_class << " #{taxon.rank.downcase}" if taxon.rank
   if iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
     taxon_class << " #{iconic_taxon.name}"
+  end
+  named_ancestor ||= nil
+  if named_ancestor == true
+    named_ancestor = taxon.ancestors.reverse.detect{|t| !t.common_name.blank?}
   end
 -%>
 <% if comname.nil? || no_common == true %>
@@ -40,13 +44,10 @@
       in
     <% end %>
   <% end -%>
-  <span class="<%= taxon_class %>">
-    <% if link_url %>
-      <%= link_to sciname.html_safe, link_url %>
-    <% else %>
-      <%= sciname.html_safe %>
-    <% end %>
-  </span>
+    <span class="<%= taxon_class %> <%= 'display_name' if named_ancestor %>"><%= link_url ? link_to(sciname.html_safe, link_url) : sciname.html_safe -%></span><span class="named_ancestor meta"><%- if named_ancestor -%>,
+      <%=t :a_member_of_taxon_html, :taxon => render("shared/taxon", :taxon => named_ancestor, :link_url => named_ancestor) %>
+    </span>
+  <% end -%>
 <% else %>
   <% if include_article %>
     <% if 'aeiou'.include? comname.first.downcase %>
@@ -55,20 +56,20 @@
       a
     <% end %>
   <% end -%>
-<span class="<%= taxon_class %>">
-  <span class="comname">
-    <% if link_url %>
-      <%= link_to(singular ? comname.singularize : comname, link_url) %>
-    <% else %>
-      <%= singular ? comname.singularize : comname %>
-    <% end %>
+  <span class="<%= taxon_class %>">
+    <span class="comname <%= 'display_name' if named_ancestor %>">
+      <% if link_url %>
+        <%= link_to(singular ? comname.singularize : comname, link_url) %>
+      <% else %>
+        <%= singular ? comname.singularize : comname %>
+      <% end %>
+    </span>
+    <span class="othernames">
+      <% if include_parens %>
+        (<%= sciname.html_safe %>)
+      <% else %>
+        <%= sciname.html_safe %>
+      <% end %>
+    </span>
   </span>
-  <span class="othernames">
-    <% if include_parens %>
-      (<%= sciname.html_safe %>)
-    <% else %>
-      <%= sciname.html_safe %>
-    <% end %>
-  </span>
-</span>
 <% end -%>

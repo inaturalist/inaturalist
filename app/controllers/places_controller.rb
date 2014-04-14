@@ -85,11 +85,12 @@ class PlacesController < ApplicationController
   def show
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
-    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
+    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry, name", :include => [:taxon_names])
     browsing_taxa.delete_if{|t| t.name == "Life"}
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     respond_to do |format|
       format.html do
+        @projects = Project.in_place(@place).page(1).order("projects.title").per_page(50)
         @wikipedia = WikipediaService.new
         if logged_in?
           @subscription = @place.update_subscriptions.first(:conditions => {:user_id => current_user})
@@ -107,11 +108,15 @@ class PlacesController < ApplicationController
   end
   
   def geometry
-    @place_geometry = @place.place_geometry
     respond_to do |format|
-      format.kml
+      format.kml do
+        if @place.place_geometry_without_geom
+          @kml = Place.connection.execute("SELECT ST_AsKML(ST_SetSRID(geom, 4326)) AS kml FROM place_geometries WHERE place_id = #{@place.id}")[0]['kml']
+        end
+      end
       format.geojson do
-        render :json => [@place_geometry].to_geojson
+        @geojson = Place.connection.execute("SELECT ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geojson FROM place_geometries WHERE place_id = #{@place.id}")[0]['geojson']
+        render :json => @geojson
       end
     end
   end
@@ -127,33 +132,50 @@ class PlacesController < ApplicationController
       @place = Place.new(params[:place])
       @place.user = current_user
       @place.save
-      unless params[:kml].blank?
-        @geometry = geometry_from_messy_kml(params[:kml])
-        @place.save_geom(@geometry) if @geometry && @place.valid?
+      if params[:file]
+        assign_geometry_from_file
+      elsif !params[:geojson].blank?
+        @geometry = geometry_from_geojson(params[:geojson])
+        @place.save_geom(@geometry) if @geometry
+      end
+      if @geometry && @place.valid?
+        @place.save_geom(@geometry)
+        if @place.too_big_for_check_list?
+          notice = t(:place_too_big_for_check_list)
+          @place.check_list.destroy if @place.check_list
+          @place.update_attributes(:prefers_check_lists => false)
+        end
       end
     end
     
     if @place.valid?
-      flash[:notice] = "Place imported!"
+      notice ||= t(:place_imported)
+      flash[:notice] = notice
       return redirect_to @place
     else
-      flash[:error] = "There were problems importing that place: " + 
-        @place.errors.full_messages.join(', ')
+      flash[:error] = t(:there_were_problems_importing_that_place, :place_error => @place.errors.full_messages.join(', '))
       render :action => :new
     end
   end
   
   def edit
-    @geometry = @place.place_geometry.geom if @place.place_geometry
+    r = Place.connection.execute("SELECT st_npoints(geom) from place_geometries where place_id = #{@place.id}")
+    @npoints = r[0]['st_npoints'].to_i unless r.num_tuples == 0
   end
   
   def update
     if @place.update_attributes(params[:place])
-      unless params[:kml].blank?
-        @geometry = geometry_from_messy_kml(params[:kml])
+      if params[:file]
+        assign_geometry_from_file
+      elsif !params[:geojson].blank?
+        @geometry = geometry_from_geojson(params[:geojson])
         @place.save_geom(@geometry) if @geometry
       end
-      
+
+      if params[:remove_geom]
+        @place.place_geometry_without_geom.delete
+      end
+
       if !@place.valid?
         render :action => :edit
         return
@@ -166,7 +188,7 @@ class PlacesController < ApplicationController
         return
       end
       
-      flash[:notice] = "Place updated!"
+      flash[:notice] = t(:place_updated)
       redirect_to @place
     else
       render :action => :edit
@@ -174,9 +196,16 @@ class PlacesController < ApplicationController
   end
   
   def destroy
-    @place.destroy
-    flash[:notice] = "Place deleted."
-    redirect_to places_path
+    errors = []
+    errors << "there are people using this place in their projects" if @place.projects.exists?
+    errors << "there are people using this place in their guides" if @place.guides.exists?
+    if errors.blank?
+      flash[:notice] = t(:place_deleted)
+      redirect_to places_path
+    else
+      flash[:error] = "Couldn't delete place: #{errors.to_sentence}"
+      redirect_back_or_default places_path
+    end
   end
   
   def find_external
@@ -198,9 +227,14 @@ class PlacesController < ApplicationController
   
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
-    scope = Place.where("lower(name) = ? OR lower(display_name) LIKE ?", @q, "#{@q.to_s.downcase}%").
+    scope = Place.
       includes(:place_geometry_without_geom).
       limit(30).scoped
+    scope = if @q.blank?
+      scope.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
+    else
+      scope.where("lower(name) = ? OR lower(display_name) LIKE ?", @q, "#{@q.to_s.downcase}%")
+    end
     scope = scope.with_geom if params[:with_geom]
     @places = scope.sort_by{|p| p.bbox_area || 0}.reverse
     respond_to do |format|
@@ -209,7 +243,7 @@ class PlacesController < ApplicationController
       end
       format.json do
         @places.each_with_index do |place, i|
-          @places[i].html = view_context.render_in_format(:html, :partial => 'places/autocomplete_item.html.erb', :object => place)
+          @places[i].html = view_context.render_in_format(:html, :partial => 'places/autocomplete_item', :object => place)
         end
         render :json => @places.to_json(:methods => [:html, :kml_url])
       end
@@ -226,17 +260,16 @@ class PlacesController < ApplicationController
       keepers = nil if keepers.blank?
       
       unless @merge_target
-        flash[:error] = "You must select a place to merge with."
+        flash[:error] = t(:you_must_select_a_place_to_merge_with)
         return
       end
       
       @merged = @merge_target.merge(@place, :keep => keepers)
       if @merged.valid?
-        flash[:notice] = "Places merged successfully!"
+        flash[:notice] = t(:places_merged_successfully)
         redirect_to @merged
       else
-        flash[:error] = "There merge problems with the merge: " +
-          @merged.errors.full_messages.join(', ')
+        flash[:error] = t(:there_merge_problems_with_the_merge, :merged_errors => @merged.errors.full_messages.join(', '))
       end
     end
   end
@@ -316,6 +349,7 @@ class PlacesController < ApplicationController
     
     show_guide do |scope|
       scope = scope.from_place(@place)
+      scope = scope.scoped(:conditions => ["listed_taxa.primary_listing = true"])
       scope = scope.scoped(:conditions => [
         "listed_taxa.occurrence_status_level IS NULL OR listed_taxa.occurrence_status_level IN (?)", 
         ListedTaxon::PRESENT_EQUIVALENTS
@@ -326,7 +360,13 @@ class PlacesController < ApplicationController
       elsif @native = @filter_params[:native]
         scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
       elsif @establishment_means = @filter_params[:establishment_means]
-        scope = scope.scoped(:conditions => ["listed_taxa.establishment_means = ?", @establishment_means])
+        if @establishment_means == "native"
+          scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
+        elsif @establishment_means == "introduced"
+          scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS])
+        else
+          scope = scope.scoped(:conditions => ["listed_taxa.establishment_means = ?", @establishment_means])
+        end
       end
       
       if @filter_params.blank?
@@ -347,8 +387,7 @@ class PlacesController < ApplicationController
       :conditions => "listed_taxa.first_observation_id IS NOT NULL")
     
     @listed_taxa = @place.listed_taxa.all(
-      :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
-      :conditions => ["taxon_id IN (?)", @taxa])
+      :conditions => ["taxon_id IN (?) AND primary_listing = (?)", @taxa, true])
     @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
     
     render :layout => false, :partial => @partial
@@ -407,6 +446,20 @@ class PlacesController < ApplicationController
     end
     geometry.empty? ? nil : geometry
   end
+
+  def geometry_from_geojson(geojson)
+    geometry = GeoRuby::SimpleFeatures::MultiPolygon.new
+    collection = GeoRuby::SimpleFeatures::Geometry.from_geojson(geojson)
+    collection.features.each do |feature|
+      geometry << feature.geometry
+    end
+    geometry
+  end
+
+  def geometry_from_file(file)
+    kml = file.read
+    geometry_from_messy_kml(kml)
+  end
   
   def search_places_for_index(options)
     session[:places_index_q] = @q
@@ -446,10 +499,20 @@ class PlacesController < ApplicationController
   
   def editor_required
     unless @place.editable_by?(current_user)
-      flash[:error] = "You don't have permission to do that."
+      flash[:error] = t(:you_dont_have_permission_to_do_that)
       redirect_back_or_default(@place)
       return false
     end
     true
+  end
+
+  def assign_geometry_from_file
+    limit = current_user && current_user.is_curator? ? 5.megabytes : 1.megabyte
+    if params[:file].size > limit
+      # can't really add errors to model from here, unfortunately
+    else
+      @geometry = geometry_from_file(params[:file])
+      @place.save_geom(@geometry) if @geometry
+    end
   end
 end

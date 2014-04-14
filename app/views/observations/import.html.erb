@@ -17,9 +17,10 @@
   </style>
 <% end -%>
 <% content_for(:extrajs) do -%>
-  <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>
+  <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js", "jquery/plugins/inat/sound_selectors.js" %>
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect.html_safe};" if protect_against_forgery? %>
   <script type="text/javascript" charset="utf-8">
+    var SOUNDCLOUD_IDENTITY = <%=raw current_user.soundcloud_identity.to_json(:only => [:id]) %>
     $(document).ready(function() {
       $('#tabs').tabs();
       
@@ -35,7 +36,10 @@
           authenticity_token: AUTH_TOKEN,
           limit: 30
         }
-      })
+      });
+      if (SOUNDCLOUD_IDENTITY) {
+        $('#sounds').soundSelector({limit: 30})
+      }
     })
   </script>
 <% end -%>
@@ -58,6 +62,7 @@
     <ul>
       <li><a href="#photo_import"><span><%=t :import_from_photos %></span></a></li>
       <li><a href="#csv_import"><span><%=t :import_from_csv %></span></a></li>
+      <li><a href="#sound_import"><span><%=t :'sounds.import_from_sounds' %></span></a></li>
     </ul>
     
     <div id="photo_import">
@@ -80,6 +85,24 @@
       <% end %>
     </div>
 
+    <div id="sound_import">
+      <% if current_user.soundcloud_identity %>      
+        <%= form_tag({:action => 'import_sounds'}) do %>
+          <div class="readable description">
+            <%=t :'sounds.import_from_soundcloud_description' %>
+          </div>
+          <div id="sounds" class="clear stacked"></div>
+          <%= submit_tag(t(:'sounds.import_sounds'), :class => 'default button', "data-loading-click" => t(:importing)) %>
+        <% end %>
+      <% else %>
+        <div class="notice">
+          <%=t :youll_need_to_link %>
+          <%= link_to(t(:'sounds.your_soundcloud_account'), '/auth/soundcloud') %> 
+          <%=t :'sounds.before_importing_sounds' %>
+        </div>
+      <% end %>
+    </div>
+
     <div id="csv_import">
       <div class="readable description">
         <%=t :upload_a_csv_file_with_observation %>
@@ -91,7 +114,7 @@
             :class => 'clear observationform', 
             :multipart => true) do %>
           <div class="buttonrow">
-            <label for="upload_file">Upload CSV file</label>
+            <label for="upload_file"><%= t :upload_a_csv_file %></label>
             <%= file_field 'upload', 'datafile', :class => 'text' %>
             <%= submit_tag t(:upload), :class => 'default button', "data-loading-click" => t(:importing) %>
           </div>
@@ -99,7 +122,7 @@
       </div>
       
       <div class="description">
-        <h3><%= raw t(:rules_amp_formatting) %></h3>
+        <h3><%= raw t(:rules_and_formatting) %></h3>
         <ol>
           <li><%=t :no_header_row %></li>
           <li><%=t :only_files_with_100_rows_at_a_time %></li>
@@ -128,7 +151,7 @@
               </tr>
             </table>
 
-            <p class="ui"><%=t :here_are_3_examples %> of well-formed data:</p>
+            <p class="ui"><%=t :here_are_3_examples %>:</p>
             
 <code>Anna's Hummingbird,2008-03-03 2:54pm,"An aggressive male dive-bombed my head, so I took cover.","Tilden Regional Park, Berkeley, CA, USA",37.8953,-122.249,"attack, danger"
 Sharp-tailed Snake,2007-08-20,"Beautiful little creature","Leona Canyon Regional Park, Oakland, CA, USA",37.7454,-122.111,"cute, snakes"

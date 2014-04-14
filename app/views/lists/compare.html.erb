@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%= t(:comparing_listo_to_list, :list1=> "#{@list.title }", :list2 => "#{@with.title}" ) %>
+  <%= t(:comparing_list_to_list, :list1 => @list.title, :list2 => @with.title ) %>
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'lists', 'barchart', 'lists/show' %>
@@ -60,7 +60,6 @@
     } else {
       var json = jsonStr
     }
-    
     // Append html to the list
     $('#seenit_'+json.instance.taxon_id).replaceWith(
       $(json.html)
@@ -78,11 +77,10 @@
         var errorStr = $.map(json.errors, function(error, i) {
           return error.join(' ');
         }).join(', ');
-        alert(<%=t :something_went_wrong_adding %> +": " + 
-          errorStr);
+        alert(I18n.t('something_went_wrong_adding') + ": " + errorStr);
         break;
       default:
-        alert(<%=t :something_went_wrong_adding %> +"!");
+        alert(I18n.t('something_went_wrong_adding') + "!");
         break;
     }
   }
@@ -107,7 +105,7 @@
           <strong><%=t :only_showing_taxa_from %></strong>
           <%= link_to t(:show_taxa_from_both), url_for_params(:without => [:show]) %>
         <% else %>
-          <%= link_to t(:only_show_taxa_from), url_for_params(:show => "left") %>
+          <%= link_to t(:only_show_taxa_fom_this_list), url_for_params(:show => "left") %>
         <% end -%>
       </div>
       
@@ -119,7 +117,7 @@
           <strong><%=t :only_showing_taxa_from %> </strong>
           <%= link_to t(:show_taxa_from_both) , url_for_params(:without => [:show, :page]) %>
         <% else %>
-          <%= link_to t(:only_show_taxa_from), url_for_params(:show => "right", :without => [:page]) %>
+          <%= link_to t(:only_show_taxa_fom_this_list), url_for_params(:show => "right", :without => [:page]) %>
         <% end -%>
       </div>
     </div>
@@ -146,10 +144,10 @@
               ) do |f| %>
                 <%= f.hidden_field :list_id %>
                 <%= f.hidden_field :taxon_id %>
-                <%= f.submit("Add to #{list.id == current_user.life_list_id ? 'your life list!' : list.title}", 
+                <%= f.submit("#{t(:add_to)} #{list.id == current_user.life_list_id ? t(:your_life_list) : list.title}",
                   :id => "listed_taxon_submit_#{lt.taxon_id}", 
                   :class => 'button',
-                  "data-loading-click" => "Adding...") %>
+                  "data-loading-click" => t(:adding)) %>
               <% end %>
             </div>
           <% else %>

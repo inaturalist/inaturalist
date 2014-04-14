@@ -1,22 +1,41 @@
-<% content_for(:title) do %>Project Invitations<% end %>
+<% content_for(:title) do %><%= @title = t(:project_invitations) %><% end %>
 <%- content_for(:extrajs) do -%>
   <%= javascript_include_tag 'observations/observation_fields' %>
 <%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css">
+    .observations.mini .observation {border:0 transparent;margin:0;}
+    #invitetabs a.active {font-weight: bold;}
+  </style>
+<%- end -%>
 
-<h2>Project Invitations</h2>
+<div id="pageheader">
+  <div class="breadcrumbs">
+    <%= link_to t(:back_to_your_projects), 
+      observations_by_login_path(:login => current_user.login),
+      :class => 'back crumb' %>
+  </div><!-- /#breadcrumbs -->
 
-<% if @project_invitations.empty? && @invitations_by_you.empty? %>
+  <div id="invitetabs" class="tabs right">
+    <ul>
+      <% for type in %w(received sent) %>
+        <li><%= link_to t(type), project_invitations_path(:type => type), :class => @type.to_s.downcase == type ? "active" : nil %></li>
+      <% end %>
+    </ul>
+  </div>
+  <h2><%= @title %></h2>
+
+</div>
+
+<% if @project_invitations.blank? %>
   <p class="ui description">
-    You don't have any pending project invitations, <%= link_to "join some projects", projects_path %> and <%= link_to "invite some observations", observations_path %>!
+    <%=t :no_matching_invitations %>.
+    <%=t :join_some_projects_and_invite_some_observations_html, :join_url => projects_path, :invite_url => observations_path %>!
   </p>
-<% end %>
-
-<% unless @project_invitations.empty? %>
+<% else %>
   <div class="clear column span-24 stacked">
-    <h3>Pending invitations you've recieved</h3>
-    <p class="ui description">The following observations have been invited to join projects. Click "Accept" or "Ignore" to respond to the invitations.</p>
     <% for pi in @project_invitations %>
-      <div class="column span-24">
+      <div class="column span-24 lined">
         <div class="column span-8">
           <div id="observations" class="compact mini observations date-added">
             <%= render :partial => 'observations/observation_component', 
@@ -30,53 +49,6 @@
         </div>
       </div>
     <% end %>
-  </div>
-<% end %>
-
-<% unless @invitations_by_you.empty? %>
-  <div class="clear column span-24 stacked">
-    <h3>Pending invitations you've sent</h3>
-    <p class="ui description">You've invited the following observations.</p>
-    <% for project, pis in @invitations_by_you %>
-      <div class="column span-24 stacked clear">
-        <h3><%= link_to project.title, projects_path(project) %></h3>
-        <% for pi in pis %>
-          <div class="column span-24">
-            <div class="column span-8">
-              <div id="observations" class="compact mini observations date-added">
-                <%= render :partial => 'observations/observation_component', 
-                  :locals => {:observation => pi.observation} %>
-              </div>
-            </div>
-            <div class="last column span-16">
-              <div class="notice box clear inline buttonrow">
-                <span class="inter">
-                  <%= image_tag pi.project.icon.url(:mini), :width => 16, :height => 16, :style => "vertical-align: middle" %>
-                  <%= link_to truncate(h(pi.project.title), :length => (is_me?(pi.observation.user) || is_me?(pi.user) || curator_of?(pi.project) ? 50 : 65)), pi.project %>
-                </span>
-                <span class="date">
-                  <%= pi.created_at.in_time_zone(pi.user.time_zone || 'UTC').strftime("%b. %e, %Y") %>
-                </span>
-                <nobr class="inlineblock right">
-                  <% if is_me?(pi.observation.user) -%>
-                    <%= link_to "accept", accept_project_invitation_path(pi),
-                      :method => :post,
-                      :class => "glaucous button",
-                      "data-loading-click" => "" %>
-                  <% end -%>
-                  <% if is_me?(pi.observation.user) || is_me?(pi.user)  || curator_of?(pi.project) -%>
-                    <%= link_to (is_me?(pi.observation.user) ? "ignore" : "uninvite"), pi,
-                      :method => :delete,
-                      :confirm => "Are you sure you want to remove this invitation?",
-                      :class => "pale button",
-                      "data-loading-click" => "" %>
-                  <% end -%>
-                </nobr>
-              </div>
-            </div>
-          </div>
-        <% end -%>
-      </div>
-    <% end %>
+    <%= will_paginate @project_invitations %>
   </div>
 <% end %>

@@ -27,3 +27,85 @@ h2{line-height:1;margin:0;float:left;}
 #projectnav ol li { padding: 5px 0; }
 #pageheader .buttonrow {margin-top: 5px;}
 .add_matching_link {margin-top: 5px;}
+
+#cover {position:relative;}
+#cover h1 {position:absolute; bottom: 25px; left: 20px; color:white; margin:0;}
+#cover h1, 
+#addbutton,
+#rtstats .counts .count, #cover .timespan {font-family: 'Fjalla One', "Trebuchet MS", Arial, sans-serif;}
+#cover:before {
+  content: '';
+  display:block;
+  width:100%;
+  height: 100px;
+  position:absolute;
+  bottom: 0;
+  left: 0;
+  z-index:0;
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 65%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(65%,rgba(0,0,0,0.6))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 65%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 65%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 65%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 65%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+#cover .timespan {
+  position: absolute;
+  left: 86px;
+  bottom: 10px;
+  color:white;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px black;
+}
+#iconimg { vertical-align: middle;margin-right: 10px;}
+#iconimg.custom { box-shadow: 0 0 20px black;}
+#addbutton {
+  position:absolute; 
+  top:50%; 
+  right: -20px; 
+  margin-top:-1.5em;
+  padding: 10px 20px;
+  background-color:#ff4219;
+  color:white;
+  font-size: 18pt;
+  line-height: 1;
+  text-transform: uppercase;
+  z-index:1;
+  box-shadow: inset 0px 0px 20px rgba(0,0,0,0.1),
+              -5px 0px 10px rgba(0,0,0,0.6);
+}
+#addbutton:hover {background-color: #f82714;}
+#addbutton small {font-size:12pt; letter-spacing: 0.25em;}
+#addbutton big {display:block;margin-top:3px;}
+#addbutton:after {
+  content:"";
+  bottom:-20px;
+  position:absolute;
+  display:block;
+  border-style:solid;
+  border-color: #620b0f transparent transparent transparent;
+  z-index:0;
+  right: 0;
+  border-width: 20px 20px 0 0;
+}
+#bioblitz_observations .observationcontrols {margin-top:3px;}
+.observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
+  width: 152px;
+  height: 152px;
+}
+#rtstats .counts,
+.most_observations,
+.most_observed,
+.most_species {
+  width: 237px; float: left;
+}
+#bioblitzstats h2 {float:none;}
+#bioblitzstats .stat .count {font-size: 300%;}
+#bioblitzstats .stat img {max-width:48px;}
+#bioblitzstats .numerical.stat .count {line-height: 1;}
+#bioblitzstats td {border:none; vertical-align:top;}
+#bioblitzstats table {margin:0;}
+#bioblitzstats .counts .stat {margin-bottom: 5px;}
+#event.with_description {width: 50%; float: right; margin-left: 10px;}
+#bioblitz td {border: 0 transparent;}

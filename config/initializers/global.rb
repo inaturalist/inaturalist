@@ -1,3 +1,4 @@
+#encoding: utf-8
 def start_log_timer(name = nil)
   @log_timer = Time.now
   @log_timer_name = name || caller(2).first.split('/').last
@@ -8,6 +9,7 @@ def end_log_timer
   Rails.logger.debug "[DEBUG] *********** Finished log timer from #{@log_timer_name} (#{Time.now - @log_timer}s) ***********\n\n"
   @log_timer, @log_timer_name = nil, nil
 end
+alias :stop_log_timer :end_log_timer
 
 def log_timer(name = nil)
   start_log_timer(name)
@@ -52,8 +54,10 @@ class String
   end
 end
 
+# Restrict sphinx queries to charactersm, numbers, and simple punctuation
+# http://www.ruby-doc.org/core-2.0.0/Regexp.html#label-Character+Properties
 def sanitize_sphinx_query(q)
-  q.gsub(/[^\w\s\.\'\-]+/, '').gsub(/\-/, '\-')
+  q.gsub(/[^\p{L}\s\.\'\-\d]+/, '').gsub(/\-/, '\-')
 end
 
 def private_page_cache_path(path)

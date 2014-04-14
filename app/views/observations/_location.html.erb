@@ -38,7 +38,7 @@
       <% end -%>
     <% end -%>
     <% if num_hidden > 0 -%>
-      <span class="button"><%= link_to_function "More...", "$(this).parents('.places').find('.hidden').toggle(); $(this).html($(this).text() == 'More...' ? 'Less' : 'More...')" %></span>
+      <span class="button"><%= link_to_function "#{t(:more)}...", "$(this).parents('.places').find('.hidden').toggle(); $(this).html($(this).text() == '#{t(:more)}...' ? '#{t(:less)}' : '#{t(:more)}...')" %></span>
     <% end -%>
   </div>
 <% end -%>
@@ -48,18 +48,18 @@
     <%= t(:public_coordinates_obscured_by, :distance=> (Observation::M_TO_OBSCURE_THREATENED_TAXA / 1000) ) %>
   <% else %>
     <% if observation.coordinates_obscured? -%>
-      <span class="latitude"><label>Lat:</label> <%= observation.private_latitude %></span>,
-      <span class="longitude"><label>Lon:</label> <%= observation.private_longitude %></span>
+      <span class="latitude"><label><%= t :lat %></label> <%= observation.private_latitude %></span>,
+      <span class="longitude"><label><%= t :long %></label> <%= observation.private_longitude %></span>
       <% if observation.latitude && observation.longitude -%>
         <div class="small meta">
         <%=t :shown_publicly_as %> 
-        <span class="latitude"><label>Lat:</label> <%= observation.latitude %></span>,
-        <span class="longitude"><label>Lon:</label> <%= observation.longitude %></span>
+        <span class="latitude"><label><%= t :lat %></label> <%= observation.latitude %></span>,
+        <span class="longitude"><label><%= t :long %></label> <%= observation.longitude %></span>
         </div>
       <% end -%>
     <% else %>
-      <span class="latitude"><label>Lat:</label> <%= observation.latitude %></span>,
-      <span class="longitude"><label>Lon:</label> <%= observation.longitude %></span>
+      <span class="latitude"><label><%= t :lat %></label> <%= observation.latitude %></span>,
+      <span class="longitude"><label><%= t :long %></label> <%= observation.longitude %></span>
     <% end -%>
     <%- if observation.coordinates_obscured? && observation.geoprivacy.blank? -%>
       <div class="small meta">
@@ -95,7 +95,7 @@
       <% if inline_edit && is_me?(observation.user) -%>
         <%= form_for observation, :html => {:style => "display:none;"} do |f| %>
           <%= f.label :geoprivacy, "#{t(:geoprivacy)}: " %>
-          <%= f.select :geoprivacy, Observation::GEOPRIVACIES.map{|g| [t(g), g]}, :include_blank => t(:open) %>
+          <%= f.select :geoprivacy, Observation::GEOPRIVACIES.map{|g| [t(g, :default => g).downcase, g]}, :include_blank => t(:open, :default => "open").downcase %>
           <%= hidden_field_tag :ignore_photos, true %>
           <%= f.submit t(:save), "data-loading-click" => true %>
           <%= link_to_function t(:cancel), 

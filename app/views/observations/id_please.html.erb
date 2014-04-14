@@ -1,4 +1,4 @@
-<% content_for(:title) do %>ID Please!<% end %>
+<% content_for(:title) do %><%= t :full_id_please %> <% end %>
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'identifications',
                           'observations/filters',
@@ -123,7 +123,7 @@
 <% end %>
 
 <% content_for(:extrajs) do %>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= google_maps_js %>
   <%= javascript_include_tag('jquery/plugins/jqModal',
                              'modal_image',
                              'inaturalist/map3',
@@ -134,7 +134,7 @@
       $('.observation .details').show()
       
       $('.identification_form_wrapper input.text').simpleTaxonSelector({
-        buttonText: 'Find',
+        buttonText: I18n.t('find'),
         afterSelect: function(wrapper) {
           $(wrapper).parents('form').find('.default.button').removeClass('disabled').attr('disabled', null);
         }
@@ -232,7 +232,7 @@
       <%= link_to t(:add_a_new_observation_to_id_please!),
         new_observation_path(:id_please => true), :class => "default button", 
         :rel => 'nofollow' %>
-      <%= link_to_function("Filters", 
+      <%= link_to_function(t(:filters),
         "toggleFilters(this)",
         :id => 'filters_button', 
         :class => "inter#{' open' if @filters_open}") %>
@@ -277,14 +277,22 @@
   <% end %>
   <% for observation in @observations %>
   <div id="observation-<%= observation.id %>" class="observation row column span-24 last">
-    <div class="column span-<%= observation.photos.empty? ? 12 : 6 %> guess_and_description">
+    <div class="column span-<%= observation.photos.blank? && observation.sounds.blank? ? 12 : 6 %> guess_and_description">
       <div class="mini observations">
         <%= render :partial => "observations/cached_component", :object => observation %>
       </div>
     </div>
-    <% unless observation.photos.empty? -%>
+    <% if !observation.photos.blank? -%>
       <div class="photos column span-6">
         <%= render :partial => 'observations/photos', :object => observation %>
+      </div>
+    <% elsif !observation.sounds.blank? %>
+      <div class="photos column span-6">
+        <%- 
+          sound = observation.sounds.first
+          embed_link = "https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F#{sound.native_sound_id}&show_artwork=false&secret_token=#{sound.secret_token}" 
+        -%>
+        <iframe width="100%" height="166" scrolling="no" frameborder="no" src="<%= embed_link%>" class="stacked"></iframe>
       </div>
     <% end -%>
     <div class="column span-6 where">

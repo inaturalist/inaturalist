@@ -5,12 +5,12 @@
 - date ||= @date || Date.today
 %div{:class => "column span-#{span} #{'last' if last}"}
   %h4
-    Most
-    = noun
-    in
+    =t(:most)
+    =t(noun_plural).downcase
+    =t(:in)
     - case time_unit
     - when 'month'
-      = date.strftime('%B %Y')
+      =l date, :format => :month_year
     - else
       = date.year
   %ol
@@ -23,13 +23,12 @@
             - if sub
               = sub.call(user, count)
             - else
-              = link_to observations_by_login_path(user.login, :on => time_unit == 'month' ? date.strftime("%Y-%m") : date.year) do
-                %span.count= count
-                = count == 1 ? noun.singularize : noun.pluralize
+              - if noun == 'species'
+                - url = taxa_observations_path(:user_id => user.login, :on => time_unit == 'month' ? date.strftime("%Y-%m") : date.year, :hrank => "species")
+              - else
+                - url = observations_by_login_path(user.login, :on => time_unit == 'month' ? date.strftime("%Y-%m") : date.year)
+              = link_to url do
+                =t "x_#{noun.camelize.parameterize.pluralize}_html", :count => count.to_i
     - else
-      .nocontent.meta
-        No
-        = noun
-        this
-        = time_unit
+      .nocontent.meta=t :no_x_this_y, :x => t(noun).downcase, :y => t(time_unit).downcase
   = extra

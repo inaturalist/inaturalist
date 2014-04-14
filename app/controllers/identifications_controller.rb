@@ -1,9 +1,13 @@
 class IdentificationsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:by_login]
+  doorkeeper_for :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, :except => [:by_login], :unless => lambda { authenticated_with_oauth? }
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :load_identification, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner, :only => [:edit, :update, :destroy]
   cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
+  caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
+    c.params.merge(:sequence => Digest::MD5.hexdigest(c.params[:sequence]))
+  }
     
   def show
     redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.id}")
@@ -42,15 +46,23 @@ class IdentificationsController < ApplicationController
   # POST identification_url
   def create
     @identification = Identification.new(params[:identification])
+    @identification.user = current_user
     if @identification.taxon.blank? && params[:taxa_search_form_taxon_name]
       taxon_name = TaxonName.find_by_name(params[:taxa_search_form_taxon_name])
       @identification.taxon = taxon_name.taxon if taxon_name
     end
     
     respond_to do |format|
-      if @identification.save
+      duplicate_key_violation = false
+      begin
+        @identification.save
+      rescue PG::Error => e
+        raise e unless e =~ /index_identifications_on_current/
+        duplicate_key_violation = true
+      end
+      if @identification.valid? && duplicate_key_violation == false
         format.html do
-          flash[:notice] = "Identification saved!"
+          flash[:notice] = t(:identification_saved)
           if params[:return_to]
             return redirect_to(params[:return_to])
           end
@@ -59,12 +71,16 @@ class IdentificationsController < ApplicationController
         
         format.json do
           @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
-          render :json => @identification.to_json(:methods => [:html]).html_safe
+          render :json => @identification.to_json(
+            :methods => [:html], 
+            :include => {
+              :observation => {:methods => [:iconic_taxon_name]}
+            }
+          ).html_safe
         end
       else
         format.html do
-          flash[:error] = "There was a problem saving your identification: " +
-            @identification.errors.full_messages.join(', ')
+          flash[:error] = t(:there_was_a_problem_saving_your_identification, :error => @identification.errors.full_messages.join(', '))
           if params[:return_to]
             return redirect_to(params[:return_to])
           end
@@ -84,12 +100,26 @@ class IdentificationsController < ApplicationController
   
   def update
     if @identification.update_attributes(params[:identification])
-      flash[:notice] = "Identification updated!"
+      msg = t(:identification_updated)
+      respond_to do |format|
+        format.html do
+          flash[:notice] = msg
+          redirect_to @identification.observation
+        end
+        format.json { render :json => @identification }
+      end
     else
-      flash[:error] = "There was a problem saving your identification: " +
-        @identification.errors.full_messages.join(', ')
+      msg = t(:there_was_a_problem_saving_your_identification, :error => @identification.errors.full_messages.join(', '))
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to @identification.observation
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:errors => @identification.errors.full_messages}
+        end
+      end
     end
-    redirect_to @identification.observation
   end
   
 
@@ -99,7 +129,7 @@ class IdentificationsController < ApplicationController
     @identification.destroy
     respond_to do |format|
       format.html do
-        flash[:notice] = "Identification deleted."
+        flash[:notice] = t(:identification_deleted)
         redirect_to observation
       end
       format.js { render :status => :ok, :json => nil }
@@ -124,7 +154,14 @@ class IdentificationsController < ApplicationController
     end
     
     respond_to do |format|
-      if @identification.save
+      duplicate_key_violation = false
+      begin
+        @identification.save
+      rescue PG::Error => e
+        raise e unless e =~ /index_identifications_on_current/
+        duplicate_key_violation = true
+      end
+      if @identification.valid? && duplicate_key_violation == false
         format.html { agree_respond_to_html }
         format.mobile { agree_respond_to_html }
         format.json do
@@ -140,11 +177,23 @@ class IdentificationsController < ApplicationController
       end
     end
   end
+
+  def bold
+    url = "http://boldsystems.org/index.php/Ids_xml?db=#{params[:db]}&sequence=#{params[:sequence]}"
+    xml = begin
+      Nokogiri::XML(open(url))
+    rescue URI::InvalidURIError => e
+      "<error>#{e.message}</error>"
+    end
+    respond_to do |format|
+      format.xml { render :xml => xml }
+    end
+  end
   
   private
   
   def agree_respond_to_html
-    flash[:notice] = "Identification saved!"
+    flash[:notice] = t(:identification_saved)
     if params[:return_to]
       return redirect_to(params[:return_to])
     end
@@ -152,8 +201,7 @@ class IdentificationsController < ApplicationController
   end
   
   def agree_respond_to_html_failure
-    flash[:notice] = "There was a problem saving your identification: " +
-      @identification.errors.full_messages.join(', ')
+    flash[:error] = t(:there_was_a_problem_saving_your_identification, :error => @identification.errors.full_messages.join(', '))
     if params[:return_to]
       return redirect_to(params[:return_to])
     end

@@ -1,7 +1,7 @@
 function rulify() {
   $('#new_operand_id').chooser({
-    collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json?with_geom=t',
-    resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+    collectionUrl: '/places/autocomplete.json?with_geom=t',
+    resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
     chosen: eval('(' + $('new_operand_id').attr('data-json') + ')'),
     afterSelect: function(item) {
       $('#new_operand_type').val("Place")
@@ -100,8 +100,8 @@ function updateProjectObservationFieldPositions() {
 
 $(document).ready(function() {
   $('.observation_field_chooser').chooser({
-    collectionUrl: 'http://'+window.location.host + '/observation_fields.json',
-    resourceUrl: 'http://'+window.location.host + '/observation_fields/{{id}}.json',
+    collectionUrl: '/observation_fields.json',
+    resourceUrl: '/observation_fields/{{id}}.json',
     afterSelect: function(item) {
       $('.observation_field_chooser').parents('.ui-chooser:first').next('.button').click()
       $('.observation_field_chooser').chooser('clear')
@@ -142,10 +142,10 @@ $(document).ready(function() {
     $('#project_zoom_level').val(window.map.getZoom())
   })
 
-  window.firstRun = true
+  window.firstRun = typeof(PROJECT.place_id) != 'undefined' && PROJECT.place_id != null
   $('#project_place_id').chooser({
-    collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json?with_geom=t',
-    resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+    collectionUrl: '/places/autocomplete.json?with_geom=t',
+    resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
     chosen: PLACE,
     afterSelect: function(item) {
       $('#project_place_id').data('json', item)
@@ -183,4 +183,11 @@ $(document).ready(function() {
     }
   })
   $('input[name="project[prefers_place_boundary_visible]"]:visible').change()
+  $('#project_project_type').change(function() {
+    if ($(this).val() == 'bioblitz') {
+      $('#bioblitz').show()
+    } else {
+      $('#bioblitz').hide()
+    }
+  })
 })

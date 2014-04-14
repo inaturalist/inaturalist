@@ -15,9 +15,12 @@ module ObservationsHelper
   def observations_order_by_options(order_by = nil)
     order_by ||= @order_by
     pairs = ObservationsController::ORDER_BY_FIELDS.map do |f|
+      next if f == "project" && @project.blank?
       value = %w(created_at observations.id id).include?(f) ? 'observations.id' : f
-      [t(ObservationsController::DISPLAY_ORDER_BY_FIELDS[f].to_s.parameterize.underscore), value]
-    end
+      default = ObservationsController::DISPLAY_ORDER_BY_FIELDS[f].to_s
+      key = default.parameterize.underscore
+      [t(key, :default => default).downcase, value]
+    end.compact
     order_by = 'observations.id' if order_by.blank?
     options_for_select(pairs, order_by)
   end
@@ -71,8 +74,21 @@ module ObservationsHelper
         observations_path(:lat => observation.private_latitude, :lng => observation.private_longitude)) +
         " (#{google_coords_link}, #{osm_coords_link})".html_safe
     else
-      content_tag(:span, "(Somewhere...)")
+      content_tag(:span, t(:somewhere))
     end
+  end
+
+  def title_for_observation_params
+    s = t(:observed_taxa, :default => "Observed taxa")
+    s += " #{t :of} #{link_to_taxon @observations_taxon}" if @observations_taxon
+    s += " #{t(:from).downcase} #{link_to @place.display_name, @place}" if @place
+    s += " #{t :by} #{link_to @user.login, @user}" if @user
+    if @observed_on
+      s += " #{@observed_on_day ? t(:on).downcase : t(:in).downcase} #{@observed_on}"
+    elsif @d1 && @d2
+      s += " #{t(:between).downcase} #{@d1} #{t :and} #{@d2}"
+    end
+    s.html_safe
   end
   
 end

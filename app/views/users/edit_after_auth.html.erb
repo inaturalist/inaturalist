@@ -10,8 +10,7 @@
     <%= error_messages_for :display_user %>
     <%= f.text_field :login, :label => t(:please_confirm_your_inat_username, :site_name => SITE_NAME_SHORT), :class => "text", :required => true %>
     <%= f.text_field :email, :class => "text", :required => true %>
-    <%= f.password_field :password, :class => 'text', :description => "Create a password to access this account from the #{CONFIG.site_name} iPhone or Android apps, or make one later after signing up." %>
-    <%= f.password_field :password_confirmation, :class => 'text' %>
+    <%= hidden_field_tag 'from_edit_after_auth', true %>
     
     <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, {}, {
       :label => t(:your_default_time_zone),

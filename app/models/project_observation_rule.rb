@@ -8,6 +8,7 @@ class ProjectObservationRule < Rule
   
   before_save :clear_operand
   validate :operand_present
+  validates_uniqueness_of :operator, :scope => [:ruler_type, :ruler_id]
 
   def operand_present
     if OPERAND_OPERATORS.include?(operator)
@@ -27,11 +28,15 @@ class ProjectObservationRule < Rule
   
   def terms
     if operator == "observed_in_place?" && operand
-      "must be observed in #{send(:operand).display_name}"
+      "#{I18n.t(:must_be_observed_in)} #{send(:operand).display_name}"
     elsif operator == "has_observation_field?" && operand
-      "must have observation field '#{operand.name}' filled out"
+      I18n.t(:must_have_observation_field, :operand=>operand.name)
+    elsif super.include? 'must be in taxon'
+      taxon_rule=super.split(' taxon ')
+      I18n.t("rules_types.#{taxon_rule.first.gsub(' ','_')}", :default=>super) + ' ' + taxon_rule.last
     else
-      super
+      I18n.t("rules_types.#{super.gsub(' ','_')}", :default=>super)
     end
   end
 end
+

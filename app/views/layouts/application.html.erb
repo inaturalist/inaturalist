@@ -22,6 +22,7 @@
                                "jquery/plugins/jquery.imagesloaded.min",
                                "jquery/plugins/jquery.timeago.js",
                                "jquery/plugins/jquery.scrollTo-min.js",
+                               "jquery/plugins/jquery.string.1.0",
                                "i18n.min",
                                "translations",
                                'rails',
@@ -58,6 +59,14 @@
   <p id="flash" class="error"><%= flash[:error] %></p> 
   <% end %>
 
+  <% if @feature_test -%>
+    <div class="container">
+      <div class="notice box">
+        <b><%= @feature_test %> test</b>. This is only a test, so please don't expect everything to work correctly.
+      </div>
+    </div>
+  <% end -%>
+
   <div id="wrapper" class="container clear">
     <%= yield %>
   </div><!-- end wrapper -->
@@ -71,6 +80,8 @@
     <script type="text/javascript" charset="utf-8">
       setUpdatesCount(<%= session[:updates_count].to_i %>)
       setTimeout(getUpdatesCount, 1000)
+      setMessagesCount(<%= session[:messages_count].to_i %>)
+      setTimeout(getMessagesCount, 1000)
     </script>
   <% end -%>
 </body>

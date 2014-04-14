@@ -28,7 +28,7 @@
         :user => user
       } %>
     <% elsif item.is_a? ProjectInvitation %>
-      <p>Please add this observation to</p>
+      <p><%= t :please_add_this_observation_to %></p>
       <%= render :partial => "project_invitations/project_invitation", 
         :object => item,
         :locals => { 
@@ -37,12 +37,12 @@
     <% elsif item.is_a? Flag %>
       <div class="stacked body">
         <div class="stacked">
-          <span class="meta">Originally flagged by</span>
+          <span class="meta"><%= t :originally_flagged_by %></span>
           <%= link_to item.user.login, item.user %>: "<%= item.flag %>"
         </div>
-        <span class="meta">Flag marked as</span> <strong>resolved</strong>.
+        <%= t(:flag_marked_as_resolved_html).html_safe %>
         <% unless item.comment.blank? %>
-          <span class="meta"><%= item.resolver.login %> said,</span>
+          <span class="meta"><%= item.resolver.login %> <%= t :said %>,</span>
           "<%= item.comment %>"
         <% end -%>
       </div>
@@ -54,7 +54,7 @@
     
     <div class="meta">
       <%=t :posted_by %>
-      <%= link_to(truncate(you_or_login(user), :length => 20), person_path(user)) %>
+      <%= link_to(truncate(you_or_login(user).downcase, :length => 20), person_path(user)) %>
       <span class="when">
         <abbr class="date timeago" title="<%= item.created_at.iso8601 %>">
           <%=t :n_ago, :n => time_ago_in_words(item.created_at) %>
@@ -64,16 +64,16 @@
         <%-
           pieces = []
           if is_me?(item.user) && edit_url
-            pieces << link_to("Edit", edit_url)
+            pieces << link_to(t(:edit), edit_url)
           end
           if item.respond_to?(:deletable_by?) && item.deletable_by?(current_user) || is_me?(item.user)
-            pieces << link_to("Delete", item, 
-                        :confirm => "Are you sure you want to delete this?", 
+            pieces << link_to(t(:delete), item,
+                        :confirm => t(:are_you_sure_you_want_to_delete_this),
                         :method => :delete, 
                         :id => "delete_comment_#{item.id}_button")
           end
           unless item.is_a?(Flag)
-            pieces << link_to("Flag", new_flag_path("#{item.class.name.underscore}_id" => item), :class => "flaglink")
+            pieces << link_to(t(:flag), new_flag_path("#{item.class.name.underscore}_id" => item), :class => "flaglink")
           end
         -%>
         (<%= pieces.join(' | ').html_safe %>)

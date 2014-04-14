@@ -1,8 +1,19 @@
 function applyBatch(inputNames) {
   $.each(inputNames, function() {
-    var batchVal = $('#batchform :input[name="observation['+this+']"]').val()
+    var checkedInput, input = $('#batchform :input[name="observation['+this+']"]')
+    if (input.length > 1) { 
+      checkedInput = $('#batchform :input[name="observation['+this+']"]:checked')
+      if (checkedInput.length > 0) {
+        input = checkedInput
+      }
+    }
+    var batchVal = input.val()
     if ($.trim(batchVal) != '') {
-      $('#batchcol :input[name*="['+this+']"]').val(batchVal)
+      if (checkedInput) {
+        $('#batchcol :input[name*="['+this+']"][value='+batchVal+']').click()
+      } else {
+        $('#batchcol :input[name*="['+this+']"]').val(batchVal)
+      }
     }
   })
 }
@@ -32,7 +43,7 @@ function batchObservationFields() {
       $('select', existing).val(val)
     })
 
-    var index = $(this).parents('.observation:first').attr('id').split('-')[1]
+    var index = $(this).parents('.observation:first').find('.observed_on_string').attr('id').split('_')[1]
     $(':input', this).each(function() {
       if ($(this).attr('id')) {
         $(this).attr('id', $(this).attr('id').replace(/\d+_value/, index+'_value'))

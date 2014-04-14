@@ -31,8 +31,11 @@ $(document).ready(function() {
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
   } else if (typeof(KML_ASSET_URLS) != 'undefined' && KML_ASSET_URLS != null && KML_ASSET_URLS.length > 0) {
     for (var i=0; i < KML_ASSET_URLS.length; i++) {
-      lyr = new google.maps.KmlLayer(KML_ASSET_URLS[i], {preserveViewport: preserveViewport})
+      lyr = new google.maps.KmlLayer(KML_ASSET_URLS[i], {preserveViewport: preserveViewport, suppressInfoWindows: true})
       map.addOverlay('KML Layer', lyr)
+      google.maps.event.addListener(lyr, 'click', function(e) {
+        $.fn.latLonSelector.handleMapClick(e)
+      })
     }
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
   }
@@ -88,14 +91,22 @@ $(document).ready(function() {
     if (DEFAULT_PHOTO_IDENTITY_URL) {
       options.baseURL = DEFAULT_PHOTO_IDENTITY_URL
     } else {
-      options.baseURL = '/photos/local_photo_fields?context=user'
-      options.queryOnLoad = false
+      options.defaultSource = 'local'
     }
     if (PHOTO_IDENTITY_URLS && PHOTO_IDENTITY_URLS.length > 0) {
       options.urls = PHOTO_IDENTITY_URLS
     }
     $(this).photoSelector(options)
   })
+
+  if (SOUNDCLOUD_IDENTITY) {
+    $('.observation_sounds').each(function(){
+      var index = (window.location.href.match(/\/observations\/(\d+)/) || [])[1] || 0
+      $(this).soundSelector({index: index});
+    })
+  }
+
+  $('.ui-tabs').tabs();
   
   if ($('#accept_terms').length != 0) {
     $("input[type=submit].default").attr("exception", "true");
@@ -104,11 +115,11 @@ $(document).ready(function() {
         var c = confirm("You didn't agree to the project's terms, this will still save the observation " +
                       "to iNaturalist, but it won't be added to the project. Is this what you want?"
         );
-        if (!c){
+        if (!c) {
           return false;
         }
       }
-    });
+    })
   }
 })
 

@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "#{h truncate(@project.title, :length => 85)}" %> <%=t :terms_and_rules %>
+  <%= @title = "#{h truncate(@project.title, :length => 85)}" %> <%=t(:terms_and_rules_html) %>
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
@@ -31,7 +31,7 @@
   <% end -%>
 
   <% unless @project_observation_rules.blank? -%>
-    <h4><%= t(:new_observations) %></h4>
+    <h4><%= t(:new_observations_ellispsis) %></h4>
     <ul>
       <% for rule in @project_observation_rules %>
         <li>...<%= rule.terms %></li>

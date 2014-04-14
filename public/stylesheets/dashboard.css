@@ -71,7 +71,8 @@
 #comments .commentitem { border-bottom: 1px solid #eee; margin-bottom: 10px; padding-bottom: 10px;}
 .updatebody td {border: 0 transparent;}
 .updatebody table {margin: 0;}
-.updatebody .image_and_content .image {background-color: #eee; width: 75px; height: 75px;}
+.updatebody .image_and_content .image {background-color: #eee; width: 75px; height: 75px; overflow:hidden;}
 .updatebody .image_and_content .image img {max-width: 75px;}
-.updatebody .image_and_content .image img.iconic {margin-top: 20px;}
+.updatebody .image_and_content .image img.iconic {margin-top: 10px; width:55px;}
 .updatebody .curatorupdate .image_and_content .image {background-color: transparent; height: auto;}
+.tabs .active {font-weight:bold;}

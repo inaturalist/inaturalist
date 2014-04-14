@@ -26,8 +26,9 @@
   <%= submit_tag t(:save_observation), :class => "default button", "data-loading-click" => t(:saving) %>
 <% end %>
 
+<%= javascript_include_tag 'modernizr' %>
 <script type="text/javascript" charset="utf-8">
-  if(/(iPhone|iPad|iPod)\sOS\s[6789]/.test(navigator.userAgent) || /Android [456789]/.test(navigator.userAgent)) {
+  if(Modernizr.fileinput) {
     $('#photos').show()
   } else {
     $('#photos').hide()

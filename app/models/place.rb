@@ -1,11 +1,16 @@
+#encoding: utf-8
 class Place < ActiveRecord::Base
   has_ancestry
   belongs_to :user
   belongs_to :check_list, :dependent => :destroy
+  belongs_to :source
   has_many :check_lists, :dependent => :destroy
   has_many :listed_taxa
   has_many :taxa, :through => :listed_taxa
   has_many :taxon_links, :dependent => :delete_all
+  has_many :guides, :dependent => :nullify
+  has_many :projects, :dependent => :nullify, :inverse_of => :place
+  has_many :trips, :dependent => :nullify, :inverse_of => :place
   has_one :place_geometry, :dependent => :destroy
   has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
     :select => (PlaceGeometry.column_names - ['geom']).join(', ')
@@ -118,9 +123,12 @@ class Place < ActiveRecord::Base
   PLACE_TYPES = GEO_PLANET_PLACE_TYPES.merge(INAT_PLACE_TYPES).delete_if do |k,v|
     Place::REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(k)
   end
+
   PLACE_TYPE_CODES = PLACE_TYPES.invert
   PLACE_TYPES.each do |code, type|
     PLACE_TYPE_CODES[type.downcase] = code
+    const_set type.upcase.gsub(/\W/, '_'), code
+    scope type.pluralize.underscore.to_sym, where("place_type = ?", code)
   end
 
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
@@ -299,21 +307,24 @@ class Place < ActiveRecord::Base
       return nil
     end
     place = Place.new_from_geo_planet(ydn_place)
-    if place.valid?
-      place.save!
-    else
-      Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
+    begin
+      unless place.save
+        Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
+        return
+      end
+    rescue PG::Error => e
+      raise e unless e.message =~ /duplicate key/
       return
     end
-    place.parent = options[:parent]
+    place.parent = options[:parent] if options[:parent] && options[:parent].persisted?
     
     unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
       ancestors = []
-      ydn_place.ancestors.reverse_each do |ydn_ancestor|
+      (ydn_place.ancestors || []).reverse_each do |ydn_ancestor|
         next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
         ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
-        ancestors << ancestor
-        place.parent = ancestors.last
+        ancestors << ancestor if ancestor
+        place.parent = ancestor if place.persisted? && ancestor.persisted?
       end
     end
     
@@ -361,7 +372,10 @@ class Place < ActiveRecord::Base
   
   # Create a CheckList associated with this place
   def check_default_check_list
-    if place_type == PLACE_TYPE_CODES['Continent']
+    if too_big_for_check_list? && !prefers_check_lists && check_list
+      delay(:priority => USER_INTEGRITY_PRIORITY).remove_default_check_list
+    end
+    if place_type == PLACE_TYPE_CODES['Continent'] || too_big_for_check_list?
       self.prefers_check_lists = false
     end
     if prefers_check_lists && check_list.blank?
@@ -372,10 +386,18 @@ class Place < ActiveRecord::Base
           "creation of #{self}: " + 
           check_list.errors.full_messages.join(', ')
       end
-    else
-      # TODO destroy existing check lists?
     end
     true
+  end
+
+  def too_big_for_check_list?
+    bbox_area.to_f > 100 && !user_id.blank?
+  end
+
+  def remove_default_check_list
+    return unless check_list
+    check_list.listed_taxa.delete_all
+    check_list.destroy
   end
   
   # Update the associated place_geometry or create a new one
@@ -435,6 +457,7 @@ class Place < ActiveRecord::Base
   #   <tt>source</tt>: specify a type of handler for certain shapefiles.  Current options are 'census', 'esriworld', and 'cpad'
   #   <tt>skip_woeid</tt>: (boolean) Whether or not to require that the shape matches a unique WOEID.  This is based querying GeoPlanet for the name of the shape.
   #   <tt>test</tt>: (boolean) setting this to +true+ will do everything other than saving places and geometries.
+  #   <tt>ancestor_place</tt>: (Place) scope searches for exissting records to descendents of this place. Matching will be based on name and place_type
   #
   # Examples:
   #   Census:
@@ -443,18 +466,19 @@ class Place < ActiveRecord::Base
   #   California Protected Areas Database:
   #     Place.import_from_shapefile('/Users/kueda/Desktop/CPAD_March09/Units_Fee_09_longlat.shp', :source => 'cpad', :skip_woeid => true)
   #
-  def self.import_from_shapefile(shapefile_path, options = {})
+  def self.import_from_shapefile(shapefile_path, options = {}, &block)
     start_time = Time.now
     num_created = num_updated = 0
+    src = options[:source]
+    options.delete(:source) unless src.is_a?(Source)
     GeoRuby::Shp4r::ShpFile.open(shapefile_path).each do |shp|
       puts "[INFO] Working on shp..."
-      new_place = case options[:source]
+      new_place = case src
       when 'census'
         PlaceSources.new_place_from_census_shape(shp, options)
       when 'esriworld'
         PlaceSources.new_place_from_esri_world_shape(shp, options)
       when 'cpad'
-        puts "[INFO] \tUNIT_ID: #{shp.data['UNIT_ID']}"
         PlaceSources.new_place_from_cpad_units_fee(shp, options)
       else
         Place.new_from_shape(shp, options)
@@ -466,6 +490,7 @@ class Place < ActiveRecord::Base
       end
       
       new_place.source_filename = options[:source_filename] || File.basename(shapefile_path)
+      new_place.source ||= src if src.is_a?(Source)
         
       puts "[INFO] \t\tMade new place: #{new_place}"
       unless new_place.woeid || options[:skip_woeid]
@@ -486,6 +511,10 @@ class Place < ActiveRecord::Base
           "source_filename = ? AND source_name = ?", 
           new_place.source_filename, new_place.source_name])
       end
+      if options[:ancestor_place]
+        existing ||= options[:ancestor_place].descendants.
+          where("lower(name) = ? AND place_type = ?", new_place.name.downcase, new_place.place_type).first
+      end
       
       if existing
         puts "[INFO] \t\tFound existing place: #{existing}"
@@ -503,12 +532,27 @@ class Place < ActiveRecord::Base
         end
         num_created += 1
       end
+
+      if options[:ancestor_place]
+        place.parent ||= options[:ancestor_place]
+      end
       
-      if place.valid?
-        place.save unless options[:test]
-        puts "[INFO] \t\tSaved place: #{place}"
+      place = if block_given?
+        yield place, shp
       else
-        puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}"
+        place
+      end
+      begin
+        if place && place.valid?
+          place.save! unless options[:test]
+          puts "[INFO] \t\tSaved place: #{place}, parent: #{place.parent.try(:name)}"
+        else
+          num_created -= 1
+          puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}" if place
+          next
+        end
+      rescue => e
+        puts "[ERROR] \tError: #{e}"
         next
       end
       
@@ -517,14 +561,16 @@ class Place < ActiveRecord::Base
       if existing && PlaceGeometry.exists?(
           ["place_id = ? AND updated_at >= ?", existing, start_time.utc])
         puts "[INFO] \t\tAppending to existing geom..."
-        place.append_geom(shp.geometry)
+        place.append_geom(shp.geometry, :source => options[:source])
       else
         puts "[INFO] \t\tAdding geom..."
         place.save_geom(shp.geometry, 
+          :source => options[:source],
           :source_filename => place.source_filename,
           :source_name => place.source_name, 
           :source_identifier => place.source_identifier)
       end
+      place.place_geometry_without_geom.dissolve_geometry
     end
     
     puts "\n[INFO] Finished importing places.  #{num_created} created, " + 
@@ -535,23 +581,29 @@ class Place < ActiveRecord::Base
   # Make a new Place from a shapefile shape
   #
   def self.new_from_shape(shape, options = {})
-    place = Place.new(
-      :name => options[:name] || shape.data['NAME'] || shape.data['Name'] || shape.data['name'],
+    name_column = options[:name_column] || 'name'
+    skip_woeid = options[:skip_woeid]
+    geoplanet_query = options[:geoplanet_query]
+    geoplanet_options = options[:geoplanet_options] || {}
+    name = options[:name] || 
+      shape.data[name_column] || 
+      shape.data[name_column.upcase] || 
+      shape.data[name_column.capitalize] || 
+      shape.data[name_column.downcase]
+    place = Place.new(options.select{|k,v| Place.instance_methods.include?("#{k}=".to_sym)}.merge(
+      :name => name,
       :latitude => shape.geometry.envelope.center.y,
       :longitude => shape.geometry.envelope.center.x,
       :swlat => shape.geometry.envelope.lower_corner.y,
       :swlng => shape.geometry.envelope.lower_corner.x,
       :nelat => shape.geometry.envelope.upper_corner.y,
       :nelng => shape.geometry.envelope.upper_corner.x
-    )
+    ))
     
-    unless options[:skip_woeid]
-      puts "[INFO] \t\tTrying to find a unique WOEID from " +
-        "'#{options[:geoplanet_query] || place.name}'..."
-      geoplanet_options = options.delete(:geoplanet_options) || {}
+    unless skip_woeid
+      puts "[INFO] \t\tTrying to find a unique WOEID from '#{geoplanet_query || place.name}'..."
       geoplanet_options[:count] = 2
-      ydn_places = GeoPlanet::Place.search(
-        options[:geoplanet_query] || place.name, geoplanet_options)
+      ydn_places = GeoPlanet::Place.search(geoplanet_query || place.name, geoplanet_options)
       if ydn_places && ydn_places.size == 1
         puts "[INFO] \t\tFound unique GeoPlanet place: " + 
           [ydn_places.first.name, ydn_places.first.woeid,

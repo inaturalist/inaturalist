@@ -7,7 +7,11 @@
        data-total-pages="<%= @observations.total_pages %>">
   <% if @observations.size == 0 %>
     <% unless silence == "true" %>
-      <span class="inat-value"><%=t :no_observations %></span>
+      <tr>
+        <td class="inat-value" colspan="2">
+          <%= t(:no_observations, :default => "No observations").capitalize %>
+        </td>
+      </tr>
     <% end %>
   <% end %>
   <% for observation in @observations %>
@@ -40,7 +44,7 @@
           <% end -%>
           <% unless observation.observed_on.blank? -%>
             <span class="inat-label"><%=t :observation_date %>: </span>
-            <span class="inat-value"><%= observation.observed_on.to_s(:short) %> <%= observation.observed_on.year %></span><br/>
+            <span class="inat-value"> <%= l(observation.observed_on.to_date, :format => :short) %> <%= observation.observed_on.year %></span><br/>
           <% end -%>
           <% unless observation.place_guess.blank? %>
             <span class="inat-label"><%=t :place %>: </span>

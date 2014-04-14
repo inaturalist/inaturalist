@@ -4,7 +4,7 @@
   user_quality_metrics = @user_quality_metrics || []
 -%>
   
-<div class="details" style="display:none">
+<div class="details" style="<%= session[:hide_quality_metrics] ? 'display:none' : nil %>">
   <table class="quality_assessment">
     <tbody>
       <tr>
@@ -25,7 +25,7 @@
       </tr>
 
       <tr>
-        <td><%= t(:observation_date) %></td>
+        <td><%= t(:observation_date?) %></td>
         <td>
           <%= o.observed_on? ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : t(:no) %>
         </td>
@@ -39,9 +39,9 @@
       </tr>
 
       <tr>
-        <td> <%= t(:photo) %></td>
+        <td> <%= t(:photos_or_sounds?) %></td>
         <td>
-          <%= o.photos.exists? ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : t(:no) %>
+          <%= (o.photos? || o.sounds?) ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : t(:no) %>
         </td>
       </tr>
 
@@ -69,7 +69,7 @@
   </table>
 </div>
 
-<div class="summary inlineblock">
+<div class="summary inlineblock" style="<%= session[:hide_quality_metrics] ? nil : 'display:none' %>">
   <label><%= t(:quality_grade_colon) %></label>
   <% if o.research_grade? -%>
     <span class="research_grade_notice"><%=t o.quality_grade %></span>
@@ -79,8 +79,10 @@
 </div>
 
 <span class="button">
-  <%= link_to_function t(:details), "$(this).parent().siblings('.summary').hide().siblings('.details').slideDown(); $(this).hide().next().show();" %>
-  <%= link_to_function t(:hide_details), "$(this).parent().siblings('.summary').show().siblings('.details').slideUp();   $(this).hide().prev().show();", :style => "display:none" %>
+  <%= link_to_function t(:details), "$(this).parent().siblings('.summary').hide().siblings('.details').slideDown(); $(this).hide().next().show(); updateSession({hide_quality_metrics: false})", 
+    :style => session[:hide_quality_metrics] ? nil : "display:none" %>
+  <%= link_to_function t(:hide_details), "$(this).parent().siblings('.summary').show().siblings('.details').slideUp();   $(this).hide().prev().show(); updateSession({hide_quality_metrics: true})",
+    :style => session[:hide_quality_metrics] ? "display:none" : nil %>
 </span>
 
 <div id="quality_tip" style="display:none">

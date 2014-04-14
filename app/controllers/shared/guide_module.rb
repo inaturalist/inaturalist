@@ -13,8 +13,8 @@ module Shared::GuideModule
       end
       is_filter_param && !is_blank
     }].symbolize_keys
-    @scope = Taxon.active.of_rank(Taxon::SPECIES).
-      includes({:taxon_photos => :photo}, :taxon_names, :conservation_statuses).scoped
+    @scope = Taxon.active.of_rank_equiv(10).
+      includes({:taxon_photos => :photo}, :taxon_names, :conservation_statuses, :taxon_descriptions).scoped
     
     if block_given?
       @scope = yield(@scope)
@@ -52,8 +52,12 @@ module Shared::GuideModule
       @scope = @scope.colored(@colors)
     end
     
-    if @threatened = @filter_params[:threatened]
-      @scope = @scope.threatened
+    if @threatened = (params[:threatened] == "1")
+      @scope = if @place
+        @scope.threatened_in_place(@place)
+      else
+        @scope.threatened
+      end
     elsif @conservation_status = @filter_params[:conservation_status]
       @scope = if @place
         @scope.has_conservation_status_in_place(@conservation_status, @place)

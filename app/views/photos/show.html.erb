@@ -8,6 +8,8 @@
     .photocell {min-width: 500px;}
     .mini.observations .observation {border: 0 transparent;}
     th {border-bottom: 1px solid #DDD;}
+    .button.rotateleft {padding-left:25px; background: url(/images/silk/arrow_turn_left.png) 5px 5px no-repeat;}
+    .button.rotateright {padding-left:25px; background: url(/images/silk/arrow_turn_right.png) 5px 5px no-repeat;}
   </style>
 <%- end -%>
 
@@ -28,7 +30,7 @@
     <td style="width: 100%">
       <table width="100%">
         <tr>
-          <th><%= :attribution %></th>
+          <th><%=t :attribution %></th>
           <td width="100%">
             <%= rights @photo %>
             <% if @photo.editable_by?(current_user) -%>
@@ -60,7 +62,7 @@
         <% end -%>
         <% unless @observations.blank? -%>
           <tr>
-            <th>Associated observations</th>
+            <th><%=t :associated_observations %></th>
             <td class="mini observations">
               <%= render :partial => "observations/cached_component", :collection => @observations %>
             </td>
@@ -69,7 +71,7 @@
 
         <% unless @taxa.blank? -%>
           <tr>
-            <th>Associated taxa</th>
+            <th><%= t(:associated_taxa) %></th>
             <td class="taxa grid">
               <%= render :partial => "taxa/taxon", :collection => @taxa, :locals => {
                 :hide_wikipedia_summary => true,
@@ -81,13 +83,13 @@
         <% end -%>
         
         <tr>
-          <th><%= :sizes %></th>
+          <th><%= t(:sizes).capitalize %></th>
           <td>
             <ul>
               <% %w(small medium large original).each do |size| %>
                 <%- next if @photo.send("#{size}_url").blank? -%>
                 <li>
-                  <%= link_to size, url_for(:size => size) %>
+                  <%= link_to t(size), url_for(:size => size) %>
                 </li>
               <% end -%>
             </ul>
@@ -101,10 +103,14 @@
         </tr>
         <% if is_me?(@photo.user) -%>
           <tr>
-            <th>Actions</th>
+            <th><%= t(:actions).capitalize %></th>
             <td>
-              <%= link_to "Delete photo", @photo.becomes(Photo), :method => :delete, 
-                :confirm => "Are you sure you want to delete this photo?", "data-loading-click" => "Deleting...", 
+              <% if @photo.is_a?(LocalPhoto) -%>
+                <%= link_to t(:rotate_left), rotate_photo_path(@photo, :left => true), :method => :put, :class => "button rotateleft", "data-loading-click" => "Rotating..." %>
+                <%= link_to t(:rotate_right), rotate_photo_path(@photo), :method => :put, :class => "button rotateright", "data-loading-click" => "Rotating..." %>
+              <% end -%>
+              <%= link_to t(:delete_photo), @photo.becomes(Photo), :method => :delete, 
+                :confirm => t(:are_you_sure_you_want_to_delete_this_photo?), "data-loading-click" => "Deleting...", 
                 :class => "delete button" %>
             </td>
           </tr>

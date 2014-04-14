@@ -1,7 +1,7 @@
 $(document).ready(function() {
   // setup the map if one is needed
   window.observation = OBSERVATION;
-  if ((observation.latitude && observation.longitude) || (observation.private_latitude && observation.private_longitude)) {
+  if (iNaturalist.Map && (observation.latitude && observation.longitude) || (observation.private_latitude && observation.private_longitude)) {
     window.map = iNaturalist.Map.createMap({
       lat: 40.714, 
       lng: -98.262, 
@@ -28,23 +28,32 @@ $(document).ready(function() {
     })
     
     $(window).load(function() {
-      var newWidth = $('#where-and-photos').width() - $("#photos").width()
-      newWidth -= 11;
-      var newHeight = $('#photos .first img').height()
-      $('#where').width(newWidth)
-      $('#map').width(newWidth)
+      var photosHeight = $('#photos .first img').height(),
+          soundsHeight = $('#sounds').height() - $('#sounds .moresounds').height() - $('#sounds .meta').height(),
+          mediaWidth = $('#media').width(),
+          newWidth = $('#where-and-photos').width() - mediaWidth, 
+          newHeight
+      
+      if (photosHeight && soundsHeight) { newHeight = soundsHeight + $('#photos').height() }
+      else if (photosHeight) { newHeight = photosHeight }
+      else if (soundsHeight) { newHeight = soundsHeight - 10 }
+      if (newWidth) {
+        newWidth -= 11;
+        $('#where').width(newWidth);
+        $('#map').width(newWidth);
+      }
       if (newHeight) {
-        $('#map').height(newHeight)
+        $('#map').height(newHeight);
       }
       if (map && observation) {
-        google.maps.event.trigger(map, 'resize')
-        map.setCenter(center)
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter(center);
       }
-    })
+    });
   }
   
   $('.identification_form_wrapper input.text').simpleTaxonSelector({
-    buttonText: 'Find',
+    buttonText: I18n.t('find'),
     afterSelect: function(wrapper) {
       var button = $(wrapper).parents('.identification_form_wrapper').find('.default.button');
       $(button).removeClass('disabled').attr('disabled', null);
@@ -61,7 +70,7 @@ $(document).ready(function() {
   $('#new_identification_form .default.button').addClass('disabled').attr('disabled', 'disabled');
   
   $('#new_identification_form .species_guess').simpleTaxonSelector({
-    buttonText: 'Find',
+    buttonText: I18n.t('find'),
     afterSelect: function(wrapper) {
       var button = $('#new_identification_form').find('.default.button');
       $(button).removeClass('disabled').attr('disabled', null);
@@ -95,6 +104,7 @@ $(document).ready(function() {
   $('a[rel=alternate]').each(function() {
     $(this).css({
       background: "url(http://www.google.com/s2/u/0/favicons?domain=" + this.hostname + ") left center no-repeat",
+      'background-size': '16px 16px',
       "padding": "1px 0 1px 20px"
     })
   })
@@ -163,16 +173,17 @@ $(document).ready(function() {
         }
       }
     })
-  $(this).qtip(tipOptions)
+    $(this).qtip(tipOptions)
   })
 
+  $('[class*=bold-]').boldId()
 })
 
 $('#add_more_photos_link').live('click', function() {
   var dialogId = "add_more_photos_dialog",
       dialog = $('#'+dialogId)
   if (dialog.length == 0) {
-    dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
+    dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">'+I18n.t('loading')+'</div>')
     dialog.attr('id', dialogId)
     dialog.load('/observations/'+window.observation.id+'/edit?partial=add_photos', function() {
       // photo selector
@@ -209,3 +220,27 @@ $('#add_more_photos_link').live('click', function() {
   }
   return false
 })
+
+function showCommunityTaxonDialog() {
+  var dialogId = "community_taxon_dialog",
+      dialog = $('#'+dialogId)
+  if (dialog.length == 0) {
+    dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">'+I18n.t('loading')+'</div>')
+    dialog.attr('id', dialogId)
+    dialog.load('/observations/'+window.observation.id+'/community_taxon_summary', function() {
+      if (!$(dialog).hasClass('dialogcentered')) {
+        $(dialog).centerDialog()
+        $(dialog).addClass('dialogcentered')
+      }
+    })
+    dialog.dialog({
+      modal: true,
+      title: I18n.t('about_community_taxa'),
+      width: '80%',
+      minHeight: 600
+    })
+  } else {
+    $(dialog).dialog('open')
+  }
+  return false
+}

@@ -1,12 +1,14 @@
+#encoding: utf-8
 class UsersController < ApplicationController  
-  doorkeeper_for :create, :update, :edit, :dashboard, :if => lambda { authenticate_with_oauth? }
+  doorkeeper_for :create, :update, :edit, :dashboard, :new_updates, :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
     :except => [:index, :show, :new, :create, :activate, :relationships]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
     :show, :update, :relationships, :add_role, :remove_role]
-  before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy, :suspend, :unsuspend]
+  before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_filter :admin_required, :only => [:curation]
+  before_filter :curator_required, :only => [:suspend, :unsuspend]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   
   MOBILIZED = [:show, :dashboard, :new, :create]
@@ -37,7 +39,7 @@ class UsersController < ApplicationController
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if success && @user.errors.empty?
-      flash[:notice] = "Welcome to #{CONFIG.site_name}!  Please check for your confirmation email, but feel free to start cruising the site."
+      flash[:notice] = t(:please_check_for_you_confirmation_email, :site_name => CONFIG.site_name)
       self.current_user = @user
       @user.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
       redirect_back_or_default(dashboard_path)
@@ -57,17 +59,17 @@ class UsersController < ApplicationController
       redirect_back_or_default('/')
     when (!params[:activation_code].blank?) && user && !user.confirmed?
       user.confirm!
-      flash[:notice] = "Your #{CONFIG.site_name} account has been verified! Please sign in to continue."
+      flash[:notice] = t(:your_account_has_been_verified, :site_name => CONFIG.site_name)
       if logged_in? && current_user.is_admin?
         redirect_back_or_default('/')
       else
         redirect_to '/login'
       end
     when params[:activation_code].blank?
-      flash[:error] = "Your activation code was missing.  Please follow the URL from your email."
+      flash[:error] = t(:your_activation_code_was_missing)
       redirect_back_or_default('/')
     else 
-      flash[:error]  = "We couldn't find a user with that activation code. You may have already activated your account, please try signing in."
+      flash[:error]  = t(:we_couldnt_find_a_user_with_that_activation_code)
       redirect_back_or_default('/')
     end
   end
@@ -76,24 +78,24 @@ class UsersController < ApplicationController
 
   def suspend
      @user.suspend! 
-     flash[:notice] = "The user #{@user.login} has been suspended"
+     flash[:notice] = t(:the_user_x_has_been_suspended, :user => @user.login)
      redirect_back_or_default(@user)
   end
    
   def unsuspend
     @user.unsuspend! 
-    flash[:notice] = "The user #{@user.login} has been unsuspended"
+    flash[:notice] = t(:the_user_x_has_been_unsuspended, :user => @user.login)
     redirect_back_or_default(@user)
   end
   
   def add_role
     unless @role = Role.find_by_name(params[:role])
-      flash[:error] = "That role doesn't exist"
+      flash[:error] = t(:that_role_doesnt_exist)
       return redirect_to :back
     end
     
     if !current_user.has_role?(@role.name) || (@user.is_admin? && !current_user.is_admin?)
-      flash[:error] = "Sorry, you don't have permission to do that"
+      flash[:error] = t(:you_dont_have_permission_to_do_that)
       return redirect_to :back
     end
     
@@ -104,12 +106,12 @@ class UsersController < ApplicationController
   
   def remove_role
     unless @role = Role.find_by_name(params[:role])
-      flash[:error] = "That role doesn't exist"
+      flash[:error] = t(:that_role_doesnt_exist)
       return redirect_to :back
     end
     
     unless current_user.has_role?(@role.name)
-      flash[:error] = "Sorry, you don't have permission to do that"
+      flash[:error] = t(:you_dont_have_permission_to_do_that)
       return redirect_to :back
     end
     
@@ -154,7 +156,7 @@ class UsersController < ApplicationController
       @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_3"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_4"
     unless fragment_exist?(@leaderboard_key)
       @most_observations = most_observations(:per => 'month')
       @most_species = most_species(:per => 'month')
@@ -164,7 +166,7 @@ class UsersController < ApplicationController
       @most_identifications_year = most_identifications(:per => 'year')
     end
 
-    @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}"
+    @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}_4"
     unless fragment_exist?(@curators_key)
       @curators = User.curators.limit(500)
       @curators = @curators.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
@@ -172,6 +174,10 @@ class UsersController < ApplicationController
       @updated_taxa_counts = Taxon.where("updater_id IN (?)", @curators).group(:updater_id).count
       @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count
       @resolved_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
+    end
+
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -209,7 +215,17 @@ class UsersController < ApplicationController
       scope = scope.where(conditions)
     end
     @users = scope.page(params[:page])
-    counts_for_users
+    respond_to do |format|
+      format.html { counts_for_users }
+      format.json do
+        haml_pretty do
+          @users.each_with_index do |user, i|
+            @users[i].html = view_context.render_in_format(:html, :partial => "users/chooser", :object => user).gsub(/\n/, '')
+          end
+        end
+        render :json => @users.to_json(User.default_json_options.merge(:methods => [:html]))
+      end
+    end
   end
   
   def show
@@ -226,6 +242,7 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       format.html
+      format.json { render :json => @selected_user.to_json(User.default_json_options) }
       format.mobile
     end
   end
@@ -241,14 +258,14 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-    conditions = ["id < ?", params[:from].to_i] if params[:from]
-    updates = current_user.updates.all(:limit => 50, :order => "id DESC", 
-      :include => [:resource, :notifier, :subscriber, :resource_owner],
-      :conditions => conditions)
-    @updates = Update.load_additional_activity_updates(updates)
+    @pagination_updates = current_user.updates.limit(50).order("id DESC").includes(:resource, :notifier, :subscriber, :resource_owner).scoped
+    @pagination_updates = @pagination_updates.where("id < ?", params[:from].to_i) if params[:from]
+    @pagination_updates = @pagination_updates.where(:notifier_type => params[:notifier_type]) unless params[:notifier_type].blank?
+    @pagination_updates = @pagination_updates.where(:resource_owner_id => current_user) if params[:filter] == "you"
+    @updates = Update.load_additional_activity_updates(@pagination_updates)
     @update_cache = Update.eager_load_associates(@updates)
     @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache, :hour_groups => true)
-    Update.user_viewed_updates(updates)
+    Update.user_viewed_updates(@pagination_updates)
     @month_observations = current_user.observations.all(:select => "id, observed_on",
       :conditions => [
         "EXTRACT(month FROM observed_on) = ? AND EXTRACT(year FROM observed_on) = ?",
@@ -276,27 +293,38 @@ class UsersController < ApplicationController
   end
   
   def new_updates
-    @updates = current_user.updates.unviewed.activity.all(
-      :include => [:resource, :notifier, :subscriber, :resource_owner],
-      :order => "id DESC",
-      :limit => 200
-    )
-    session[:updates_count] = 0
-    if @updates.blank?
-      @updates = current_user.updates.activity.all(
-        :include => [:resource, :notifier, :subscriber, :resource_owner],
-        :order => "id DESC",
-        :limit => 10,
-        :conditions => ["viewed_at > ?", 1.day.ago])
+    @updates = current_user.updates.unviewed.activity.
+      includes(:resource, :notifier, :subscriber, :resource_owner).
+      order("id DESC").
+      limit(200)
+    unless request.format.json?
+      if @updates.count == 0
+        @updates = current_user.updates.activity.
+          includes(:resource, :notifier, :subscriber, :resource_owner).
+          order("id DESC").
+          limit(10).
+          where("viewed_at > ?", 1.day.ago)
+      end
+      if @updates.count == 0
+        @updates = current_user.updates.activity.limit(5).order("id DESC")
+      end
     end
-    if @updates.blank?
-      @updates = current_user.updates.activity.all(:limit => 5, :order => "id DESC")
-    else
+    notifier_types = [(params[:notifier_types] || params[:notifier_type])].compact
+    unless notifier_types.blank?
+      notifier_types = notifier_types.map{|t| t.split(',')}.flatten.compact.uniq
+      @updates = @updates.where("notifier_type IN (?)", notifier_types)
+    end
+    @updates = @updates.where(:resource_type => params[:resource_type]) unless params[:resource_type].blank?
+    if !%w(1 yes y true t).include?(params[:skip_view].to_s)
       Update.user_viewed_updates(@updates)
+      session[:updates_count] = 0
     end
     @update_cache = Update.eager_load_associates(@updates)
     @updates = @updates.sort_by{|u| u.created_at.to_i * -1}
-    render :layout => false
+    respond_to do |format|
+      format.html { render :layout => false }
+      format.json { render :json => @updates }
+    end
   end
   
   def edit
@@ -311,7 +339,9 @@ class UsersController < ApplicationController
             :icon_content_type, :icon_file_name, :icon_file_size,
             :icon_updated_at, :deleted_at, :remember_token_expires_at, :icon_url
           ],
-          :methods => [:user_icon_url]
+          :methods => [
+            :user_icon_url, :medium_user_icon_url, :original_user_icon_url
+          ]
         )
       end
     end
@@ -348,8 +378,12 @@ class UsersController < ApplicationController
       sign_in @display_user, :bypass => true
       respond_to do |format|
         format.html do
-          flash[:notice] = 'Your profile was successfully updated!'
-          redirect_back_or_default(person_by_login_path(:login => current_user.login))
+          if params[:from_edit_after_auth].blank?
+            flash[:notice] = t(:your_profile_was_successfully_updated)
+            redirect_back_or_default(person_by_login_path(:login => current_user.login))
+          else
+            redirect_to(dashboard_path)
+          end
         end
         format.json do
           render :json => @display_user.to_json(User.default_json_options)
@@ -381,11 +415,22 @@ class UsersController < ApplicationController
       @display_user ||= User.find_by_login(params[:id])
       @display_user ||= User.find_by_email(params[:id])
       if @display_user.blank?
-        flash[:error] = "Couldn't find a user matching #{params[:id]}"
+        flash[:error] = t(:couldnt_find_a_user_matching_x_param, :id => params[:id])
       else
         @observations = @display_user.observations.order("id desc").limit(10)
       end
     end
+  end
+
+  def update_session
+    allowed_keys = %w(hide_quality_metrics)
+    updates = params.select{|k,v| allowed_keys.include?(k)}.symbolize_keys
+    updates.each do |k,v|
+      v = true if %w(yes y true t).include?(v)
+      v = false if %w(no n false f).include?(v)
+      session[k] = v
+    end
+    render :head => :no_content, :layout => false, :text => nil
   end
 
 protected
@@ -394,9 +439,9 @@ protected
     error_msg, notice_msg = [nil, nil]
     friend_user = User.find_by_id(params[:friend_id])
     if friend_user.blank? || friendship = current_user.friendships.find_by_friend_id(friend_user.id)
-      error_msg = "Either that user doesn't exist or you are already following them."
+      error_msg = t(:either_that_user_doesnt_exist_or)
     else
-      notice_msg = "You are now following #{friend_user.login}."
+      notice_msg = t(:you_are_now_following_x, :friend_user => friend_user.login)
       friendship = current_user.friendships.create(:friend => friend_user)
     end
     respond_to do |format|
@@ -412,10 +457,10 @@ protected
   def remove_friend
     error_msg, notice_msg = [nil, nil]
     if friendship = current_user.friendships.find_by_friend_id(params[:remove_friend_id])
-      notice_msg = "You are no longer following #{friendship.friend.login}."
+      notice_msg = t(:you_are_no_longer_following_x, :friend => friendship.friend.login)
       friendship.destroy
     else
-      error_msg = "You aren't following that person."
+      error_msg = t(:you_arent_following_that_person)
     end
     respond_to do |format|
       format.html do
@@ -429,7 +474,7 @@ protected
   
   def update_password
     if params[:password].blank? || params[:password_confirmation].blank?
-      flash[:error] = "You must specify and confirm a new password."
+      flash[:error] = t(:you_must_specify_and_confirm_a_new_password)
       return redirect_to(edit_person_path(@user))
     end
     
@@ -437,9 +482,9 @@ protected
     current_user.password_confirmation = params[:password_confirmation]
     begin
       current_user.save!
-      flash[:notice] = 'Successfully changed your password.'
+      flash[:notice] = t(:successfully_changed_your_password)
     rescue ActiveRecord::RecordInvalid => e
-      flash[:error] = "Couldn't change your password: #{e}"
+      flash[:error] = t(:couldnt_change_your_password, :e => e)
       return redirect_to(edit_person_path(@user))
     end
     redirect_to(person_by_login_path(:login => current_user.login))

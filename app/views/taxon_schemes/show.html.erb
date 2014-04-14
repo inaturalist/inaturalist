@@ -30,8 +30,8 @@
     window.defaultTaxa = <%= @genera.to_json(:only => [:id, :name]).html_safe %>
     $(document).ready(function() {
       $('#filters_taxon_id').chooser({
-        collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
-        resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+        collectionUrl: '/taxa/autocomplete.json',
+        resourceUrl: '/taxa/{{id}}.json?partial=chooser',
         defaultSources: defaultTaxa,
         chosen: taxon
       })
@@ -101,6 +101,6 @@
     <% end %>
   <% else %>
     <%= render :partial => 'scheme_taxon', :collection => @taxa %>
-    <%= will_paginate @taxa %>
+    <%= will_paginate @taxa if @taxa.respond_to?(:total_pages) %>
   <% end %>
 </div>

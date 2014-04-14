@@ -1,6 +1,6 @@
 <%- posts ||= @posts -%>
     <% for date, day_posts in posts.group_by{|p| p.published_at.to_date} %>
-      <h2 class="date grouped_date"><%= date.to_s(:long) %></h2>
+      <h2 class="date grouped_date"><%=l date, :format=>:long %></h2>
       
       <div class="posts">
         <% for post in day_posts %>

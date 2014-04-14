@@ -4,6 +4,7 @@
 <% content_for(:extracss) do -%>
   <style type="text/css" media="screen">
     #signup_form .formError {display: inline;}
+    #signup_form input.text {width: 300px;}
     .providerlink, .button.providerlink { width: 140px; }
   </style>
 <% end -%>
@@ -22,7 +23,9 @@
       <label><%= t :or_you_can %></label>
     </div>
     <%- ProviderAuthorization::AUTH_URLS.each do |provider, url| -%>
-        <%= link_to t(:sign_in_with_provider, :provider => provider.capitalize), url, :class => "button providerlink #{provider.downcase}" %>
+      <%= link_to t(:sign_in_with_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
+        url, 
+        :class => "button providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase}" %>
     <%- end -%>
   </div>
 </div>

@@ -5,12 +5,11 @@
 -%>
 <%= prepend if prepend %>
 <% if logged_in? && (@listed_taxa_editble_by_current_user || list.listed_taxa_editable_by?(current_user)) -%>
-  <% cache(:controller => 'listed_taxa', :action => 'show', :id => listed_taxon.id, :for_owner => true) do %>
+  <%= render :partial => 'lists/listed_taxon',
+             :locals => {:listed_taxon => listed_taxon, :list => list} %>
+<%- else -%>
+  <% cache(:controller => 'listed_taxa', :action => 'show', :id => listed_taxon.id, :locale => I18n.locale) do %>
     <%= render :partial => 'lists/listed_taxon',
                :locals => {:listed_taxon => listed_taxon, :list => list} %>
   <% end %>
-<%- else -%>
-    <%= render :partial => 'lists/listed_taxon',
-               :locals => {:listed_taxon => listed_taxon, :list => list} %>
 <% end -%>
-

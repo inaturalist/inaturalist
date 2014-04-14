@@ -13,8 +13,8 @@ module MakeHelpers
     user
   end
   
-  def make_life_list_for_taxon(taxon)
-    list = LifeList.make!
+  def make_life_list_for_taxon(taxon, options = {})
+    list = LifeList.make!(options)
     list.rules << ListRule.new(
       :operand => taxon, 
       :operator => 'in_taxon?'
@@ -51,6 +51,13 @@ module MakeHelpers
     o.reload
     o
   end
+
+  def make_mobile_observation(options = {})
+    options = {
+      :user_agent => "iNaturalist/2.3.0 (iOS iPhone OS 7.0.4 iPhone)"
+    }.merge(options) 
+    Observation.make!(options)
+  end
   
   def make_local_photo(options = {})
     lp = LocalPhoto.make!(options)
@@ -68,11 +75,22 @@ module MakeHelpers
   def make_project_observation(options = {})
     p = options[:project] || Project.make!
     t = options.delete(:taxon)
-    pu = ProjectUser.make!(:project => p)
-    o = Observation.make!(:user => pu.user, :taxon => t)
+    u = options.delete(:user) || User.make!
+    pu = ProjectUser.make!(:project => p, :user => u)
+    o = Observation.make!(:user => u, :taxon => t)
     ProjectObservation.make!({:project => pu.project, :observation => o}.merge(options))
   end
-
+  
+  def make_project_observation_from_research_quality_observation(options = {})
+    p = options[:project] || Project.make!
+    t = options.delete(:taxon)
+    u = options.delete(:user) || User.make!
+    pu = ProjectUser.make!(:project => p, :user => u)
+    o = make_research_grade_observation(:user => u, :taxon => t)
+    #o = Observation.make!(:user => u, :taxon => t)
+    ProjectObservation.make!({:project => pu.project, :observation => o}.merge(options))
+  end
+  
   def make_place_with_geom(options = {})
     wkt = options.delete(:wkt) || options.delete(:ewkt) || "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
     place = Place.make!(options)
@@ -85,63 +103,101 @@ module MakeHelpers
     tr = TaxonRange.make!(options.merge(:geom => MultiPolygon.from_ewkt(wkt)))
     tr
   end
+
+  def make_message(options = {})
+    m = Message.make(options)
+    m.user ||= m.to_user
+    m.save!
+    m
+  end
+
+  def make_taxon_swap(options = {})
+    input_taxon = options.delete(:input_taxon) || Taxon.make!
+    output_taxon = options.delete(:output_taxon) || Taxon.make!
+    swap = TaxonSwap.make(options)
+    swap.add_input_taxon(input_taxon)
+    swap.add_output_taxon(output_taxon)
+    swap.save!
+    swap
+  end
   
   # creating the tree is a bit tricky
+  #
+  # Life
+  # |--- Animalia (iconic)
+  # |    `--- Chordata
+  # |         |--- Amphibia (iconic)
+  # |         |    `--- Hylidae
+  # |         |         `--- Pseudacris
+  # |         |              `--- Pseudacris regilla
+  # |         `--- Aves (iconic)
+  # |              `--- Apodiformes
+  # |                   `--- Trochilidae
+  # |                        `--- Calypte
+  # |                             `--- Calypte anna
+  # `--- Plantae
+  #      `--- Magnoliophyta
+  #           `--- Magnoliopsida
   def load_test_taxa
     Rails.logger.debug "\n\n\n[DEBUG] loading test taxa"
-    @Life = Taxon.find_by_name('Life') || Taxon.make!(:name => 'Life')
+    @Life = Taxon.find_by_name('Life') || Taxon.make!(:name => 'Life', :rank => "state of matter")
 
-    unless @Animalia = Taxon.iconic_taxa.find_by_name('Animalia')
+    unless @Animalia = Taxon.find_by_name('Animalia')
       @Animalia = Taxon.make!(:name => 'Animalia', :rank => 'kingdom', :is_iconic => true)
     end
     @Animalia.update_attributes(:parent => @Life)
 
-    unless @Chordata = Taxon.iconic_taxa.find_by_name('Chordata')
+    unless @Chordata = Taxon.find_by_name('Chordata')
       @Chordata = Taxon.make!(:name => 'Chordata', :rank => "phylum")
     end
     @Chordata.update_attributes(:parent => @Animalia)
 
-    unless @Amphibia = Taxon.iconic_taxa.find_by_name('Amphibia')
+    unless @Amphibia = Taxon.find_by_name('Amphibia')
       @Amphibia = Taxon.make!(:name => 'Amphibia', :rank => "class", :is_iconic => true)
     end
     @Amphibia.update_attributes(:parent => @Chordata)
 
-    unless @Hylidae = Taxon.iconic_taxa.find_by_name('Hylidae')
-      @Hylidae = Taxon.make!(:name => 'Hylidae', :rank => "order")
+    unless @Anura = Taxon.find_by_name('Anura')
+      @Anura = Taxon.make!(:name => 'Anura', :rank => "order")
     end
-    @Hylidae.update_attributes(:parent => @Amphibia)
+    @Anura.update_attributes(:parent => @Amphibia)
 
-    unless @Pseudacris = Taxon.iconic_taxa.find_by_name('Pseudacris')
+    unless @Hylidae = Taxon.find_by_name('Hylidae')
+      @Hylidae = Taxon.make!(:name => 'Hylidae', :rank => "family")
+    end
+    @Hylidae.update_attributes(:parent => @Anura)
+
+    unless @Pseudacris = Taxon.find_by_name('Pseudacris')
       @Pseudacris = Taxon.make!(:name => 'Pseudacris', :rank => "genus")
     end
     @Pseudacris.update_attributes(:parent => @Hylidae)
 
-    unless @Pseudacris_regilla = Taxon.iconic_taxa.find_by_name('Pseudacris regilla')
+    unless @Pseudacris_regilla = Taxon.find_by_name('Pseudacris regilla')
       @Pseudacris_regilla = Taxon.make!(:name => 'Pseudacris regilla', :rank => "species")
     end
     @Pseudacris_regilla.update_attributes(:parent => @Pseudacris)
 
-    unless @Aves = Taxon.iconic_taxa.find_by_name('Aves')
+    unless @Aves = Taxon.find_by_name('Aves')
       @Aves = Taxon.make!(:name => "Aves", :rank => "class", :is_iconic => true)
     end
     @Aves.update_attributes(:parent => @Chordata)
 
-    unless @Apodiformes = Taxon.iconic_taxa.find_by_name('Apodiformes')
+    unless @Apodiformes = Taxon.find_by_name('Apodiformes')
       @Apodiformes = Taxon.make!(:name => "Apodiformes", :rank => "order")
     end
     @Apodiformes.update_attributes(:parent => @Aves)
 
-    unless @Trochilidae = Taxon.iconic_taxa.find_by_name('Trochilidae')
+    unless @Trochilidae = Taxon.find_by_name('Trochilidae')
       @Trochilidae = Taxon.make!(:name => "Trochilidae", :rank => "family")
     end
     @Trochilidae.update_attributes(:parent => @Apodiformes)
 
-    unless @Calypte = Taxon.iconic_taxa.find_by_name('Calypte')
+    unless @Calypte = Taxon.find_by_name('Calypte')
       @Calypte = Taxon.make!(:name => "Calypte", :rank => "genus")
     end
     @Calypte.update_attributes(:parent => @Trochilidae)
 
-    unless @Calypte_anna = Taxon.iconic_taxa.find_by_name('Calypte anna')
+    unless @Calypte_anna = Taxon.find_by_name('Calypte anna')
       @Calypte_anna = Taxon.make!(:name => "Calypte anna", :rank => "species")
       @Calypte_anna.taxon_names << TaxonName.make!(:name => "Anna's Hummingbird", 
         :taxon => @Calypte_anna, 
@@ -149,21 +205,26 @@ module MakeHelpers
     end
     @Calypte_anna.update_attributes(:parent => @Calypte)
 
-    unless @Plantae = Taxon.iconic_taxa.find_by_name('Plantae')
+    unless @Plantae = Taxon.find_by_name('Plantae')
       @Plantae = Taxon.make!(:name => "Plantae", :rank => "kingdom")
     end
     @Plantae.update_attributes(:parent => @Life)
 
-    unless @Magnoliophyta = Taxon.iconic_taxa.find_by_name('Magnoliophyta')
+    unless @Magnoliophyta = Taxon.find_by_name('Magnoliophyta')
       @Magnoliophyta = Taxon.make!(:name => "Magnoliophyta", :rank => "phylum")
     end
     @Magnoliophyta.update_attributes(:parent => @Plantae)
 
-    unless @Magnoliopsida = Taxon.iconic_taxa.find_by_name('Magnoliopsida')
+    unless @Magnoliopsida = Taxon.find_by_name('Magnoliopsida')
       @Magnoliopsida = Taxon.make!(:name => "Magnoliopsida", :rank => "class")
     end
     @Magnoliopsida.update_attributes(:parent => @Magnoliophyta)
 
     Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
+  end
+
+  def make_check_listed_taxon(options = {})
+    list = CheckList.make!
+    ListedTaxon.make!(options)
   end
 end

@@ -8,10 +8,8 @@ class ObservationPhotosController < ApplicationController
     @observation_photo = ObservationPhoto.find_by_id(params[:id])
     respond_to do |format|
       format.json do
-        render :json => @observation_photo.to_json(:include => {
-          :photo => {
-            :methods => %w(license_code)
-          }
+        render :json => @observation_photo.as_json(:include => {
+          :photo => Photo.default_json_options
         })
       end
     end

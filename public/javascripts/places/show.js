@@ -13,7 +13,7 @@ $(document).ready(function() {
         $.get(url, function(data, status, xhr) {
           var html = data.replace(/div\>[\n\s]+\<div/g, 'div><div')
           if (html.length == 0) {
-            $('.loading.status', ui.panel).removeClass('loading').html("No observations yet!")
+            $('.loading.status', ui.panel).removeClass('loading').html(I18n.t("no_observations_yet"))
           } else {
             $('.observations', ui.panel).html(html)
             $('.observationcontrols', ui.panel).observationControls()
@@ -67,10 +67,17 @@ $.fn.loadFlickrPlacePhotos = function(options) {
     flickrOptions.lon = PLACE.longitude
   }
   
-  $.getJSON(
-    "http://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&jsoncallback=?",
-    flickrOptions,
-    function(json) {
+  $.ajax({
+    dataType: "json",
+    url: "http://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&jsoncallback=?",
+    data: flickrOptions,
+    error: function() {
+      if (options.noPhotosNotice) {
+        $(self).append('<div class="noresults meta">' + I18n.t("flickr_has_no_creative_commons") + '</div>')
+      }
+      $('#pageheader h2').css({bottom: 0})
+    },
+    success: function(json) {
       $(self).html('')
       if (json.photos && json.photos.photo && json.photos.photo.length > 0) {
         for (var i = json.photos.photo.length - 1; i >= 0; i--){
@@ -88,11 +95,14 @@ $.fn.loadFlickrPlacePhotos = function(options) {
             $(self).append($('<div class="stacked attribution meta"></div>').html('Photo: '+attribution))
           }
         }
-      } else if (options.noPhotosNotice) {
-        $(self).append('<div class="noresults meta">Flickr has no Creative Commons-licensed photos from this place.</div>')
+      } else {
+        if (options.noPhotosNotice) {
+          $(self).append('<div class="noresults meta">' + I18n.t("flickr_has_no_creative_commons") + '</div>')
+        }
+        $('#pageheader h2').css({bottom: 0})
       }
     }
-  )
+  })
 }
 
 $.fn.loadWikipediaDescription = function() {

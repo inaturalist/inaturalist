@@ -7,7 +7,7 @@
 <div class="clear">
   <% if logged_in? %>
     <% if remote -%>
-      <div id="<%= unique_id %>-loading" class="loading status" style="display:none">Saving...</div>
+      <div id="<%= unique_id %>-loading" class="loading status" style="display:none"><%= t :saving %></div>
       <%= form_for(comment, 
         :remote => true,
         :html => {

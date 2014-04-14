@@ -1,5 +1,22 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe TaxonSwap, "creation" do
+  it "should not allow swaps without inputs" do
+    output_taxon = Taxon.make!
+    swap = TaxonSwap.make
+    swap.add_output_taxon(output_taxon)
+    swap.input_taxa.should be_blank
+    swap.should_not be_valid
+  end
+
+  it "should not allow swaps without outputs" do
+    input_taxon = Taxon.make!
+    swap = TaxonSwap.make
+    swap.add_input_taxon(input_taxon)
+    swap.should_not be_valid
+  end
+end
+
 describe TaxonSwap, "destruction" do
   before(:each) do
     prepare_swap
@@ -33,6 +50,15 @@ describe TaxonSwap, "commit" do
     @output_taxon.conservation_status.should be_blank
     @swap.commit
     @output_taxon.conservation_status.should eq(Taxon::IUCN_ENDANGERED)
+  end
+
+  it "should duplicate conservation statuses" do
+    cs = ConservationStatus.make!(:taxon => @input_taxon)
+    @output_taxon.conservation_statuses.should be_blank
+    @swap.commit
+    @output_taxon.reload
+    @output_taxon.conservation_statuses.first.status.should eq(cs.status)
+    @output_taxon.conservation_statuses.first.authority.should eq(cs.authority)
   end
 
   it "should duplicate taxon names" do
@@ -149,7 +175,7 @@ describe TaxonSwap, "commit_records" do
     tr = TaxonRange.make!(:taxon => @input_taxon)
     cl = CheckList.make!
     lt = ListedTaxon.make!(:list => cl, :taxon => @input_taxon, :taxon_range => tr)
-    @swap.commit_records
+    without_delay { @swap.commit_records }
     lt.reload
     lt.taxon.should eq(@output_taxon)
   end
@@ -204,6 +230,16 @@ describe TaxonSwap, "commit_records" do
     Delayed::Job.where("created_at >= ?", stamp).detect{|j| j.handler =~ /notify_subscribers_of/}.should be_blank
   end
 
+  it "should re-evalute community taxa" do
+    o = Observation.make!
+    i1 = Identification.make!(:taxon => @input_taxon, :observation => o)
+    i2 = Identification.make!(:taxon => @input_taxon, :observation => o)
+    o.community_taxon.should eq @input_taxon
+    @swap.commit_records
+    o.reload
+    o.community_taxon.should eq @output_taxon
+  end
+
   it "should set counter caches correctly" do
     without_delay do
       3.times { Observation.make!(:taxon => @input_taxon) }
@@ -225,10 +261,23 @@ describe TaxonSwap, "commit_records" do
     lt = ListedTaxon.make!(:taxon => @input_taxon, :list => l)
     lt.update_attributes(:user => nil)
     lt.user.should be_blank
-    @swap.commit_records
+    without_delay { @swap.commit_records }
     lt.reload
     @output_taxon.reload
     lt.taxon_id.should eq(@output_taxon.id)
+  end
+
+  it "should not choke on non-primary checklisted taxa without primaries" do
+    l = CheckList.make!
+    lt = ListedTaxon.make!(:list => l, :primary_listing => false, :taxon => @input_taxon)
+    lt.update_attribute(:primary_listing, false)
+    lt.should_not be_primary_listing
+    lt.primary_listing.should be_blank
+    without_delay { 
+      lambda {
+        @swap.commit_records
+      }.should_not raise_error
+    }
   end
 end
 

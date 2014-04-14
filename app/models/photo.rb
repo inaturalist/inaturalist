@@ -3,6 +3,7 @@ class Photo < ActiveRecord::Base
   belongs_to :user
   has_many :observation_photos, :dependent => :destroy
   has_many :taxon_photos, :dependent => :destroy
+  has_many :guide_photos, :dependent => :destroy, :inverse_of => :photo
   has_many :observations, :through => :observation_photos
   has_many :taxa, :through => :taxon_photos
   
@@ -38,6 +39,7 @@ class Photo < ActiveRecord::Base
   LICENSE_NUMBERS = LICENSE_INFO.keys
   LICENSE_INFO.each do |number, info|
     const_set info[:code].upcase.gsub(/\-/, '_'), number
+    const_set info[:code].upcase.gsub(/\-/, '_') + "_CODE", info[:code]
   end
 
   SQUARE = 75
@@ -45,8 +47,6 @@ class Photo < ActiveRecord::Base
   SMALL = 240
   MEDIUM = 500
   LARGE = 1024
-
-  validate :licensed_if_no_user
   
   def to_s
     "<#{self.class} id: #{id}, user_id: #{user_id}>"
@@ -76,21 +76,24 @@ class Photo < ActiveRecord::Base
   
   # Return a string with attribution info about this photo
   def attribution
-    name = if !native_realname.blank?
+    if license == PD
+      I18n.t('copyright.no_known_copyright_restrictions', :name => attribution_name, :license_name => I18n.t("copyright.#{license_name.gsub(' ','_').gsub('-','_').downcase}", :default => license_name))
+    elsif open_licensed?
+      I18n.t('copyright.some_rights_reserved_by', :name => attribution_name, :license_short => license_short)
+    else
+      I18n.t('copyright.all_rights_reserved', :name => attribution_name)
+    end
+  end
+
+  def attribution_name
+    if !native_realname.blank?
       native_realname
     elsif !native_username.blank?
       native_username
-    elsif (o = observations.first)
-      o.user.name || o.user.login
+    elsif user
+      user.name || user.login
     else
-      "anonymous"
-    end
-    if license == PD
-      "#{name}, no known copyright restrictions (#{license_name})"
-    elsif open_licensed?
-      "(c) #{name}, some rights reserved (#{license_short})"
-    else
-      "(c) #{name}, all rights reserved"
+      I18n.t('copyright.anonymous')
     end
   end
   
@@ -165,13 +168,14 @@ class Photo < ActiveRecord::Base
   end
 
   def orphaned?
-    observation_photos_exist = observation_photos.loaded? ? observation_photos.size > 0 : observation_photos.exists?
-    taxon_photos_exist = taxon_photos.loaded? ? taxon_photos.size > 0 : taxon_photos.exists?
-    !observation_photos_exist && !taxon_photos_exist
+    return false if observation_photos.loaded? ? observation_photos.size > 0 : observation_photos.exists?
+    return false if taxon_photos.loaded? ? taxon_photos.size > 0 : taxon_photos.exists?
+    return false if guide_photos.loaded? ? guide_photos.size > 0 : guide_photos.exists?
+    true
   end
 
   def source_title
-    self.class.to_s.gsub(/Photo$/, '').underscore.humanize.titleize
+    self.class.name.gsub(/Photo$/, '').underscore.humanize.titleize
   end
 
   def best_url(size = "medium")
@@ -185,7 +189,11 @@ class Photo < ActiveRecord::Base
 
   def as_json(options = {})
     options[:except] ||= []
-    options[:except] << :metadata
+    options[:except] += [:metadata, :file_content_type, :file_file_name,
+      :file_file_size, :file_processing, :file_updated_at, :mobile,
+      :original_url]
+    options[:methods] ||= []
+    options[:methods] += [:license_name, :license_url, :attribution]
     super(options)
   end
   
@@ -219,4 +227,18 @@ class Photo < ActiveRecord::Base
     LICENSE_INFO[number].try(:[], :code)
   end
   
+  def self.default_json_options
+    {
+      :methods => [:license_code, :attribution],
+      :except => [:original_url, :file_processing, :file_file_size, 
+        :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
+        :native_realname, :native_photo_id]
+    }
+  end
+
+  private
+
+  def self.attributes_protected_by_default
+    super - [inheritance_column]
+  end
 end

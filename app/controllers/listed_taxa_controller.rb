@@ -1,6 +1,6 @@
 class ListedTaxaController < ApplicationController
   before_filter :authenticate_user!, :except => [:show]
-  before_filter :load_listed_taxon, :except => [:index, :create]
+  before_filter :load_listed_taxon, :except => [:index, :create, :refresh_observationcounts]
   cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
   
   SHOW_PARTIALS = %w(place_tip guide batch_edit_row)
@@ -17,6 +17,8 @@ class ListedTaxaController < ApplicationController
           @photo ||= @listed_taxon.last_observation.photos.first if @listed_taxon.last_observation
         end
         @photo ||= @listed_taxon.taxon.taxon_photos.first(:order => "id ASC").try(:photo)
+        @related_listed_taxa = @listed_taxon.related_listed_taxa
+        @primary_listed_taxon = @listed_taxon.primary_listed_taxon
         if partial = params[:partial]
           partial = "lists/listed_taxon" unless SHOW_PARTIALS.include?(partial)
           render :partial => partial, :layout => false
@@ -69,7 +71,7 @@ class ListedTaxaController < ApplicationController
     respond_to do |format|
       format.html do
         if @listed_taxon.valid?
-          flash[:notice] = "List udpated!"
+          flash[:notice] = t(:list_updated)
         else
           flash[:error] = "D'oh, there was a problem updating your list: " +
                           @listed_taxon.errors.full_messages.join(', ')
@@ -118,9 +120,9 @@ class ListedTaxaController < ApplicationController
     listed_taxon = params[:listed_taxon] || {}
 
     respond_to do |format|
-      if @listed_taxon.update_attributes(listed_taxon.merge(:updater_id => current_user.id))
+      if @listed_taxon.update_attributes_and_primary(listed_taxon, current_user)
         format.html do
-          flash[:notice] = "Listed taxon updated"
+          flash[:notice] = t(:listed_taxon_updated)
           redirect_to :back
         end
         format.json do
@@ -153,7 +155,7 @@ class ListedTaxaController < ApplicationController
           return redirect_to lists_path
         end
         format.json do
-          render :json => {:error => msg}
+          return render(:json => {:error => msg})
         end
       end
     end
@@ -162,7 +164,7 @@ class ListedTaxaController < ApplicationController
     
     respond_to do |format|
       format.html do
-        flash[:notice] = "Taxon removed from list."
+        flash[:notice] = t(:taxon_removed_from_list)
         return redirect_to(@listed_taxon.list)
       end
       format.json do
@@ -178,6 +180,19 @@ class ListedTaxaController < ApplicationController
           )
         else
           return render(:json => @listed_taxon)
+        end
+      end
+    end
+  end
+  
+  def refresh_observationcounts
+    @listed_taxon = ListedTaxon.find_by_id(params[:listed_taxon_id])
+    @listed_taxon.force_update_cache_columns = true
+    respond_to do |format|
+      if @listed_taxon.save
+        format.html do
+          flash[:notice] = t(:observationcounts_refreshed)
+          redirect_to @listed_taxon
         end
       end
     end

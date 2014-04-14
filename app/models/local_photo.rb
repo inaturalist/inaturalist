@@ -8,17 +8,17 @@ class LocalPhoto < Photo
   
   # only perform EXIF-based rotation on mobile app contributions
   image_convert_options = Proc.new {|record|
-    record.mobile? ? "-auto-orient -strip" : "-strip"
+    record.rotation.blank? && record.mobile? ? "-auto-orient -strip" : "-strip"
   }
   
   has_attached_file :file, 
     :styles => {
-      :original => {:geometry => "2048x2048>",  :auto_orient => false },
+      :original => {:geometry => "2048x2048>",  :auto_orient => false, :processors => [:rotator] },
       :large    => {:geometry => "1024x1024>",  :auto_orient => false },
       :medium   => {:geometry => "500x500>",    :auto_orient => false },
-      :small    => {:geometry => "240x240>",    :auto_orient => false },
-      :thumb    => {:geometry => "100x100>",    :auto_orient => false },
-      :square   => {:geometry => "75x75#",      :auto_orient => false }
+      :small    => {:geometry => "240x240>",    :auto_orient => false, :processors => [:deanimator] },
+      :thumb    => {:geometry => "100x100>",    :auto_orient => false, :processors => [:deanimator] },
+      :square   => {:geometry => "75x75#",      :auto_orient => false, :processors => [:deanimator] }
     },
     :convert_options => {
       :large  => image_convert_options,
@@ -47,21 +47,23 @@ class LocalPhoto < Photo
   validates_presence_of :user
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
+
+  attr_accessor :rotation
   
   # I think this may be impossible using delayed_paperclip
   # validates_attachment_presence :file
   # validates_attachment_size :file, :less_than => 5.megabytes
   
   def set_defaults
-    self.native_username = user.login
+    self.native_username ||= user.login
+    self.native_realname ||= user.name
     true
   end
 
   def file=(data)
-    start_time = Time.now
     self.file.assign(data)
-    if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(data.path)
-      begin
+    begin
+      if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(data.path)
         self.metadata = exif.to_hash
         xmp = XMP.parse(exif)
         if xmp && xmp.respond_to?(:dc) && !xmp.dc.blank?
@@ -74,19 +76,30 @@ class LocalPhoto < Photo
             end
           end
         end
-      rescue EXIFR::MalformedImage => e
-        Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{@attachment.instance}: #{e}"
       end
+    rescue EXIFR::MalformedImage, EOFError => e
+      Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
     end
   end
   
   def set_urls
     styles = %w(original large medium small thumb square)
     updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
-    updates += styles.map {|s| file.url(s)}
-    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'"
+    updates += styles.map do |s|
+      url = file.url(s)
+      url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
+    end
+    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
     Photo.update_all(updates, ["id = ?", id])
     true
+  end
+
+  def attribution
+    if [user.name, user.login].include?(native_realname)
+      super
+    else
+      "#{super}, uploaded by #{user.try_methods(:name, :login)}"
+    end
   end
   
   def expire_observation_caches
@@ -96,8 +109,7 @@ class LocalPhoto < Photo
     end
     true
   rescue => e
-    puts "[DEBUG] Failed to expire obs caches for #{self}: #{e}"
-    puts e.backtrace.join("\n")
+    Airbrake.notify(e)
     true
   end
   
@@ -113,39 +125,43 @@ class LocalPhoto < Photo
   def to_observation(options = {})
     o = Observation.new(:user => user)
     o.observation_photos.build(:photo => self)
-    if metadata
-      unless metadata[:gps_latitude].blank?
-        o.latitude = metadata[:gps_latitude].to_f
-        if metadata[:gps_latitude_ref].to_s == 'S' && o.latitude > 0
-          o.latitude = o.latitude * -1
-        end
+    return o unless metadata
+    if !metadata[:gps_latitude].blank? && !metadata[:gps_latitude].to_f.nan?
+      o.latitude = metadata[:gps_latitude].to_f
+      if metadata[:gps_latitude_ref].to_s == 'S' && o.latitude > 0
+        o.latitude = o.latitude * -1
       end
-      unless metadata[:gps_longitude].blank?
-        o.longitude = metadata[:gps_longitude].to_f
-        if metadata[:gps_longitude_ref].to_s == 'W' && o.longitude > 0
-          o.longitude = o.longitude * -1
-        end
+    end
+    if !metadata[:gps_longitude].blank? && !metadata[:gps_longitude].to_f.nan?
+      o.longitude = metadata[:gps_longitude].to_f
+      if metadata[:gps_longitude_ref].to_s == 'W' && o.longitude > 0
+        o.longitude = o.longitude * -1
       end
-      if o.georeferenced?
-        o.place_guess = o.system_places.sort_by{|p| p.bbox_area || 0}.map(&:name).join(', ')
-      end
-      if capture_time = metadata[:date_time_original] || metadata[:date_time_digitized]
-        o.set_time_zone
-        o.time_observed_at = capture_time
-        o.set_time_in_time_zone
+    end
+    if o.georeferenced?
+      o.place_guess = o.system_places.sort_by{|p| p.bbox_area || 0}.map(&:name).join(', ')
+    end
+    if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
+      o.set_time_zone
+      o.time_observed_at = capture_time
+      o.set_time_in_time_zone
+      if o.time_observed_at
         o.observed_on_string = o.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")
         o.observed_on = o.time_observed_at.to_date
       end
-      unless metadata[:dc].blank?
-        o.taxon = to_taxon
-        if o.taxon
-          tags = to_tags.map(&:downcase)
-          o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)
-        elsif !metadata[:dc][:title].blank?
-          o.species_guess = metadata[:dc][:title].to_sentence.strip
-        end
-        o.description = metadata[:dc][:description].to_sentence unless metadata[:dc][:description].blank?
+    end
+    unless metadata[:dc].blank?
+      o.taxon = to_taxon
+      if o.taxon
+        tags = to_tags.map(&:downcase)
+        o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)
+        o.species_guess ||= o.taxon.default_name.try(:name)
+      elsif !metadata[:dc][:title].blank?
+        o.species_guess = metadata[:dc][:title].to_sentence.strip
       end
+      o.species_guess = nil if o.species_guess.blank?
+      o.description = metadata[:dc][:description].to_sentence unless metadata[:dc][:description].blank?
+      o.build_observation_fields_from_tags(to_tags)
     end
     o
   end
@@ -159,6 +175,15 @@ class LocalPhoto < Photo
     tags = to_tags
     return [] if tags.blank?
     Taxon.tags_to_taxa(tags, options).compact
+  end
+
+  def rotate!(degrees = 90)
+    self.rotation = degrees
+    self.rotation -= 360 if self.rotation >= 360
+    self.rotation += 360 if self.rotation <= -360
+    self.file.post_processing = true
+    self.file.reprocess!
+    self.save
   end
   
 end

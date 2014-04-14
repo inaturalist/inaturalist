@@ -4,20 +4,35 @@
                           'observations/new' %>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= google_maps_js %>
   <%= javascript_include_tag "jquery/plugins/jquery.string.1.0.js",
                              "jquery/plugins/inat/datepicker.js",
                              "jquery/plugins/inat/photo_selectors.js",
+                             "jquery/plugins/inat/sound_selectors.js",
                              "jquery/plugins/jquery.latLonSelector.js",
                              'inaturalist/map3',
                              "observations/new_batch.js",
                              "observations/edit_batch.js",
                              "observations/observation_fields.js" %>
   <script type="text/javascript" charset="utf-8">
-    var DEFAULT_BASE_URL = <%= @default_photo_identity_url.inspect.html_safe %>,
-        PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>]
+    var DEFAULT_BASE_URL = <%= @default_photo_identity_url ? @default_photo_identity_url.inspect.html_safe : 'null' %>,
+        PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
+        SOUNDCLOUD_IDENTITY = <%=raw current_user.soundcloud_identity.to_json(:only => [:id]) %>
     $(document).ready(function() {
-      $('.observation_photos').each(function() {
+      if (SOUNDCLOUD_IDENTITY) {
+        $('.observation_sounds').bind('show', function() {
+            if ($(this).hasClass('soundSelector')) {
+              return
+            }
+            var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name')
+            var index = $.string(index_str).gsub(/[^\d]*/, '').str
+            $(this).soundSelector({index: index})
+        })
+      }
+      $('.observation_photos').bind('show', function() {
+        if ($(this).hasClass('photoSelector')) {
+          return
+        }
         // The photo_fields endpoint needs to know the auth token and the index
         // for the field
         var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name'),
@@ -31,6 +46,11 @@
           queryOnLoad = false
         } else if (photoClass) {
           baseURL = '/'+photoClass.replace(/Photo$/, '').toLowerCase() + '/photo_fields?context=user'
+        } else if (PHOTO_IDENTITY_URLS.length > 0) {
+          baseURL = PHOTO_IDENTITY_URLS[0].url
+        } else {
+          baseURL = '/photos/local_photo_fields?context=user'
+          queryOnLoad = false
         }
         $(this).photoSelector({
            baseURL: baseURL,

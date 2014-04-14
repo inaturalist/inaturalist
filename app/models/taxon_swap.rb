@@ -1,5 +1,16 @@
 class TaxonSwap < TaxonChange
   has_many :old_taxa, :through => :taxon_change_taxa, :source => :taxon
+
+  validate :only_has_one_input
+  validate :has_inputs_and_outputs
+
+  def only_has_one_input
+    errors.add(:base, "only one input allowed for a swap") if input_taxa.size > 1
+  end
+
+  def has_inputs_and_outputs
+    errors.add(:base, "swap must have both inputs and outputs") if input_taxa.size == 0 || output_taxa.size == 0
+  end
   
   def old_taxon
     old_taxa.first
@@ -22,15 +33,15 @@ class TaxonSwap < TaxonChange
   end
 
   def input_taxa
-    taxa
+    taxa.loaded? ? taxa : taxon_change_taxa.map(&:taxon)
   end
 
   def output_taxa
-    [taxon]  
+    [taxon].compact
   end
 
   def input_taxon
-    taxa.first
+    taxa.loaded? ? taxa.first : taxon_change_taxa.first.try(:taxon)
   end
 
   def output_taxon
@@ -55,6 +66,16 @@ class TaxonSwap < TaxonChange
     output_taxon.conservation_status = input_taxon.conservation_status
     output_taxon.conservation_status_source_id = input_taxon.conservation_status_source_id
     output_taxon.conservation_status_source_identifier = input_taxon.conservation_status_source_identifier
+
+    # duplicate conservation_statuses
+    input_taxon.conservation_statuses.each do |cs|
+      new_cs = cs.dup
+      new_cs.taxon_id = output_taxon.id
+      unless new_cs.save
+        Rails.logger.error "[ERROR #{Time.now}] TaxonChange #{id} failed to duplicate #{cs}: " + 
+          new_cs.errors.full_messages.to_sentence
+      end
+    end
     
     # duplicate taxon_names
     input_taxon.taxon_names.each do |taxon_name|

@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  before_filter :authenticate_user!, :except => :index
+  doorkeeper_for :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
   before_filter :admin_required, :only => [:user]
   before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
   before_filter :owner_required, :only => [:edit, :update]
@@ -11,22 +12,33 @@ class CommentsController < ApplicationController
   
   def index
     find_options = {
-      :select => "MAX(id) AS id, parent_id",
+      :select => "MAX(comments.id) AS id, parent_id",
       :page => params[:page],
       :order => "id DESC",
       :group => "parent_id"
     }
     @paging_comments = Comment.scoped
-    @paging_comments = @paging_comments.by(current_user) if logged_in? && params[:mine]
+    if logged_in?
+      if params[:mine]
+        @paging_comments = @paging_comments.by(current_user)
+      elsif params[:for_me]
+        @paging_comments = @paging_comments.for_observer(current_user)
+      end
+      @paging_comments = @paging_comments.dbsearch(params[:q]) unless params[:q].blank?
+    end
     @paging_comments = @paging_comments.paginate(find_options)
-    @comments = Comment.find(@paging_comments.map{|c| c.id}, :include => :user, :order => "id desc")
+    @comments = Comment.where("id IN (?)", @paging_comments.map{|c| c.id}).includes(:user).order("comments.id desc")
     @extra_comments = Comment.all(:conditions => [
-      "parent_id IN (?) AND created_at >= ?", 
-      @comments.map(&:parent_id), @comments.last.created_at
+      "comments.parent_id IN (?) AND comments.created_at >= ?", 
+      @comments.map(&:parent_id), @comments.last.try(:created_at)
     ]).sort_by{|c| c.id}
     @comments_by_parent_id = @extra_comments.group_by{|c| c.parent_id}
-    if params[:partial]
-      render :partial => 'listing', :collection => @comments, :layout => false
+    respond_to do |format|
+      format.html do
+        if params[:partial]
+          render :partial => 'listing', :collection => @comments, :layout => false
+        end
+      end
     end
   end
   
@@ -55,18 +67,23 @@ class CommentsController < ApplicationController
   
   def create
     @comment = Comment.new(params[:comment])
-    @comment.user ||= current_user
+    @comment.user = current_user
     @comment.save unless params[:preview]
     respond_to do |format|
       format.html { respond_to_create }
       format.mobile { respond_to_create }
       format.json do
-        if params[:partial] == "activity_item"
-          @comment.html = view_context.render_in_format(:html, :partial => 'shared/activity_item', :object => @comment)
+        Rails.logger.debug "[DEBUG] @comment: #{@comment}"
+        if @comment.valid?
+          if params[:partial] == "activity_item"
+            @comment.html = view_context.render_in_format(:html, :partial => 'shared/activity_item', :object => @comment)
+          else
+            @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
+          end
+          render :json => @comment.to_json(:methods => [:html])
         else
-          @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
+          render :status => :unprocessable_entity, :json => {:errors => @comment.errors.full_messages}
         end
-        render :json => @comment.to_json(:methods => [:html])
       end
     end
   end
@@ -93,7 +110,7 @@ class CommentsController < ApplicationController
   
   def destroy
     unless @comment.deletable_by?(current_user)
-      msg = "You don't have permission to do that"
+      msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do
           flash[:error] = msg
@@ -107,10 +124,11 @@ class CommentsController < ApplicationController
     end
 
     parent = @comment.parent
+    Rails.logger.debug "[DEBUG] @comment: #{@comment}"
     @comment.destroy
     respond_to do |format|
       format.html do
-        flash[:notice] = "Comment deleted"
+        flash[:notice] = t(:comment_deleted)
         redirect_back_or_default(parent)
       end
       format.js do
@@ -123,12 +141,7 @@ class CommentsController < ApplicationController
   def redirect_to_parent
     if @comment.parent.is_a?(Post)
       post = @comment.parent
-      url = if post.parent.is_a?(Project)
-        project_journal_post_path(post.parent.slug, @comment.parent, :anchor => "comment-#{@comment.id}")
-      else
-        journal_post_path(post.user.login, @comment.parent, :anchor => "comment-#{@comment.id}")
-      end
-      redirect_to(url)
+      redirect_to(post_path(post, :anchor => "comment-#{@comment.id}"))
     else
       redirect_to(url_for(@comment.parent) + "#comment-#{@comment.id}")
     end
@@ -136,10 +149,10 @@ class CommentsController < ApplicationController
   
   def respond_to_create
     if @comment.valid?
-      flash[:notice] = "Your comment was saved."
+      flash[:notice] = t(:your_comment_was_saved)
       return redirect_to(params[:return_to]) unless params[:return_to].blank?
     else
-      flash[:error] = "We had trouble saving your comment: #{@comment.errors.full_messages.join(', ')}"
+      flash[:error] = "#{t(:we_had_trouble_saving_comment)} #{@comment.errors.full_messages.join(', ')}"
     end
     redirect_to_parent
   end
@@ -150,7 +163,7 @@ class CommentsController < ApplicationController
   
   def owner_required
     unless logged_in? && (current_user.is_admin? || current_user.id == @comment.user_id)
-      msg = "You don't have permission to do that"
+      msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do
           flash[:error] = msg

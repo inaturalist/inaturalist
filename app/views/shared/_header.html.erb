@@ -7,7 +7,7 @@
     </li>
     <li class="subnavwrapper observationstab">
       <div class="clear subnavtab">
-        <%= link_to t(:observations), observations_path %>
+        <%= link_to t(:observations).capitalize, observations_path %>
         <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
           "toggleHeaderSubnav(this)",
           :class => 'subnavlink' %>
@@ -37,7 +37,7 @@
       <ul class="subnav taxon_links" style="display: none">
         <% for taxon in Taxon::ICONIC_TAXA %>
           <li>
-            <%= link_to Taxon::ICONIC_TAXON_NAMES[taxon.name], taxon, :class => "taxon #{taxon.name}" %>
+            <%= link_to t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[taxon.name].gsub(' ','_').gsub('-','_').downcase}", :default=>Taxon::ICONIC_TAXON_NAMES[taxon.name]), taxon, :class => "taxon #{taxon.name}" %>
           </li>
         <% end %>
         <li class="formwrapper">
@@ -66,7 +66,7 @@
             </li>
           <% end %>
           <li>
-            <%= link_to "All your projects", projects_by_login_url(current_user.login) %>
+            <%= link_to t(:all_your_projects), projects_by_login_url(current_user.login) %>
           </li>
         <% end -%>
         <li class="formwrapper">
@@ -97,6 +97,7 @@
       </ul>
     </li>
     
+    <li class="guidestab"><%= link_to t(:guides), guides_path %></li>
     <li class="peopletab"><%= link_to t(:people), people_path %></li>
   </ul>
   
@@ -112,12 +113,23 @@
         <strong class="inlineblock"><%= link_to current_user.login, main_app.person_path(:id => current_user.login) %></strong>
       </span>
     </li>
-    <li id="updatesnav" class="subnavwrapper">
+    <li id="messagesnav" class="subnavwrapper notices">
+      <div class="clear subnavtab">
+        <%= link_to "<span class='inlineblock ui-icon ui-icon-mail-closed'></span><span class='count'>0</span>".html_safe, 
+          home_path, 
+          :id => "headermessagesnotice",
+          :class => "messages headernotice" %>
+      </div>
+      <div id="messagessubnav" class="subnav meta">
+        <div class="loadingwrapper"><%= loading %></div>
+      </div>
+    </li>
+    <li id="updatesnav" class="subnavwrapper notices">
       <div class="clear subnavtab">
         <%= link_to "<span class='ui-icon ui-icon-comment'></span><span class='count'>0</span>".html_safe, 
           home_path, 
           :id => "headerupdatesnotice",
-          :class => "updates" %>
+          :class => "updates headernotice" %>
       </div>
       <div id="updatessubnav" class="subnav meta">
         <div class="loadingwrapper"><%= loading %></div>
@@ -141,6 +153,9 @@
         </li>
         <li><%= link_to t(:lists), lists_by_login_path(current_user.login), :class => 'lists_link' %></li>
         <li><%= link_to t(:journal), journal_by_login_path(current_user.login), :class => 'journal_link' %></li>
+        <li>
+          <%= link_to t(:messages).capitalize, messages_url, :class => "messages_link" %>
+        </li>
         <li><%= link_to t(:profile), person_path(current_user), :class => 'profile_link' %></li>
         <li><%= link_to t(:account), edit_person_path(current_user), :class => 'profile_link' %></li>
         <li><%= link_to t(:sign_out), logout_path %></li>

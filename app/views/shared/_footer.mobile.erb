@@ -1,12 +1,12 @@
 <div id="footer" class="clear">
   <ul class="stacked">
     <li><%= link_to t(:home), root_path %></li>
-    <% if logged_in? -%><li><%= link_to "Dashboard", dashboard_path %></li><% end -%>
+    <% if logged_in? -%><li><%= link_to t(:dashboard), dashboard_path %></li><% end -%>
     <li><%= link_to t(:observations), observations_path %></li>
     <% if logged_in? -%>
       <li><%= link_to t(:your_observations), observations_by_login_path(current_user.login) %></li>
     <% end -%>
-    <li><%= link_to "Taxa", taxa_path %></li>
+    <li><%= link_to t(:taxa), taxa_path %></li>
     <li>
       <%= link_to t(:view_non_mobile_site), toggle_mobile_path, :class => "box" %>
     </li>

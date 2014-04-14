@@ -38,15 +38,18 @@ Some notes:
   css_class += ' longdesc' if !observation.description.blank? && observation.description.size > 200
   if observation.quality_grade == Observation::RESEARCH_GRADE
     css_class += ' research_grade'
-  elsif observation.id_please
+  end
+  if observation.id_please
     css_class += ' id_please'
+    css_class += ' idandrg' if observation.research_grade?
   end
 -%>
 <div id="observation-<%= observation.id rescue rand(999) %>" class="<%= css_class %>" 
     data-taxon-id=<%= observation.taxon_id %>
     data-iconic-taxon-id=<%= observation.iconic_taxon_id %>
-    data-latitude=<%= observation.latitude %>
-    data-longitude=<%= observation.longitude %>
+    data-latitude=<%= is_me?(observation.user) && observation.private_latitude ? observation.private_latitude : observation.latitude %>
+    data-longitude=<%= is_me?(observation.user) && observation.private_longitude ? observation.private_longitude : observation.longitude %>
+    <% if !is_me?(observation.user) && observation.coordinates_obscured? %>data-coordinates-obscured="true"<% end %>
     data-iconic-taxon-name=<%= observation.iconic_taxon_name %>>
   <%= top if top %>
   <% if check_box_name -%>
@@ -60,50 +63,61 @@ Some notes:
       "data-small-url" => iconic_taxon_image_url(observation.taxon, :size => 32)) %>
   </div>
   <div class="photos attribute">
-    <h4 class="label">Photos</h4>
+    <h4 class="label"><%= t :'sounds.photos_sounds' %></h4>
     <div class="photolist clear">
-      <% if observation.photos_count == 0 -%>
+      <% photo_count, sound_count, link_text = observation.observation_photos.size, observation.observation_sounds_count, [] %>
+      <% if photo_count == 0 && sound_count == 0 -%>
         <div class="photo nophoto description">
-          <%=t :no_photos %>
+          <%=t :'sounds.no_photos_sounds' %>
         </div>
       <% else %>
-        <%- 
-          photos = observation.observation_photos.sort_by{|op| 
-            op.position || observation.photos_count + op.id.to_i
-          }.map{|op| op.photo}.compact
-          photo = photos.first
-        %>
-        <% if photo %>
-          <%= link_to image_tag(photo.square_url,
-            "data-square-url" => photo.square_url,
-            "data-small-url" => photo.small_url,
-            "data-medium-url" => photo.medium_url
-          ), observation_url(observation), :class => 'flickr photo'%>
-          <% if photos.size > 1 -%>
-            <%= link_to t(:photos_size_photos, :photos_size => photos.size), observation, :class => 'readmore' %>
+        <% if photo_count > 0 %>
+          <%- 
+            photos = observation.observation_photos.sort_by{|op| 
+              op.position || photo_count + op.id.to_i
+            }.map{|op| op.photo}.compact
+            photo = photos.first
+          %>
+          <% if photo %>
+            <%= link_to image_tag(photo.square_url,
+              "data-square-url" => photo.square_url,
+              "data-small-url" => photo.small_url,
+              "data-medium-url" => photo.medium_url
+            ), observation_url(observation), :class => 'flickr photo'%>
+            <% if photo_count > 1 -%>
+              <% link_text << t(:photos_size_photos, :photos_size => photos.size).downcase %>
+            <% end -%>
+          <% end %>
+        <% end -%>
+        <% if sound_count > 0 %>
+          <%= link_to '<i class="fa fa-volume-up fa-4x"></i>'.html_safe, observation, :class => "sound-icon#{' with-photo' if photo}" %>
+          <% if sound_count > 1 %>
+            <% link_text << t(:'sounds.sounds_size_sounds', :sounds_size => sound_count).downcase %>
           <% end -%>
         <% end %>
+        <% unless link_text.blank? -%>
+          <%= link_to link_text.join(',<br/>').html_safe, observation, :class => 'readmore' %>
+        <% end -%>
       <% end -%>
     </div>
   </div>
   <div class="readable species_guess attribute">
     <h4 class="label"><%=t :what %></h4>
-    <% if observation.taxon %>
-      <% if observation.species_guess.blank? || observation.taxon.default_name.name.downcase.strip == observation.species_guess.downcase.strip -%>
-        <%= render :partial => 'shared/taxon', 
-                   :locals => {
-                     :taxon => observation.taxon,
-                     :link_url => url_for(observation),
-                     :include_parens => false} %>
-      <% elsif observation.species_guess.downcase.strip == observation.taxon.name.downcase.strip %>
-        <%= render :partial => 'shared/taxon', 
-                   :locals => {
-                     :taxon => observation.taxon,
-                     :link_url => url_for(observation),
-                     :no_common => true} %>
-      <% else %>
-        <%= link_to observation.species_guess, observation %>
-      <% end -%>
+    <% if observation.taxon && observation.taxon_id == observation.community_taxon_id %>
+      <%= render :partial => 'shared/taxon', 
+                 :locals => {
+                   :taxon => observation.taxon,
+                   :comname => !observation.species_guess.blank? && observation.species_guess.downcase != observation.taxon.name.downcase ? observation.species_guess : nil,
+                   :link_url => url_for(observation),
+                   :include_parens => false} %>
+    <% elsif observation.taxon %>
+      <%= render :partial => 'shared/taxon', 
+                 :locals => {
+                    :comname => !observation.species_guess.blank? && observation.species_guess.downcase != observation.taxon.name.downcase ? observation.species_guess : nil,
+                    :no_common => !observation.species_guess.blank? && observation.species_guess.downcase == observation.taxon.name.downcase,
+                    :taxon => observation.taxon,
+                    :link_url => url_for(observation),
+                    :include_parens => false} %>
     <% elsif !observation.species_guess.blank? %>
       <span class="taxon">
         <%= link_to observation.species_guess, observation %>
@@ -124,7 +138,7 @@ Some notes:
     <span class="date" title="<%= observation.observed_on ? observation.observed_on.strftime("%Y-%m-%d") : '' %>">
       <%#= observation.observed_on ? observation.observed_on.strftime("%b. %e, %Y") : 'the past' %>
       <% if observation.observed_on -%>
-        <%= link_to observation.observed_on.strftime('%b'), 
+        <%= link_to t("date_format.month.#{observation.observed_on.strftime('%B').downcase}").titleize,
           observations_by_login_path(observation.user.login, :on => "#{observation.observed_on.year}-#{observation.observed_on.month}") %>
         <%= link_to observation.observed_on.day, 
           observations_by_login_path(observation.user.login, :on => "#{observation.observed_on.year}-#{observation.observed_on.month}-#{observation.observed_on.day}") %>,
@@ -136,7 +150,7 @@ Some notes:
     </span>
     <% if observation.time_observed_at %>
     <span class="time">
-      <%= observation.time_observed_at.in_time_zone(observation.time_zone).strftime("%I:%M %p %Z") %>
+      <%= observation.time_observed_at.in_time_zone(observation.time_zone).strftime("%I:%M %p %Z")  %>
     </span>
     <% end %>
   </div>
@@ -148,7 +162,7 @@ Some notes:
     <div class="created_at attribute" style="display:none">
       <h4 class="label"><%=t :date_added %></h4>
       <span class="date">
-        <%= observation.created_at.in_time_zone(observation.user.time_zone || 'UTC').strftime("%b. %e, %Y") %>
+        <%= l(observation.created_at.in_time_zone(observation.user.time_zone || 'UTC'), :format => :day_month_year) %>
       </span>
       <span class="time">
         <%= observation.created_at.in_time_zone(observation.user.time_zone || 'UTC').strftime("%I:%M %p %Z") %>
@@ -162,7 +176,8 @@ Some notes:
         <%= formatted_user_text observation.description %>
       </div>
     <% end %>
-    
+  </div>
+  <div id="obs-<%= observation.id %>-tags" class="tags attribute">
     <% unless observation.cached_tag_list.blank? %>
       <h4 class="label"><%=t :tags %></h4>
       <div class="description">
@@ -185,30 +200,32 @@ Some notes:
           <li class="identifications_count">
             <a href="<%= url_for(observation) %>">
               <span class="count"><%= observation.num_identifications_by_others %></span>
-              ID<%= 's' if observation.num_identifications_by_others != 1 %>
+              <%= t(:id) if observation.num_identifications_by_others == 1 %>
+              <%= t(:ids) if observation.num_identifications_by_others != 1 %>
             </a>
           </li>
         <% end -%>
       </ul>
     <% end -%>
-    <%- if observation.id_please? %>
-      <ul>
-        <li class="last">
-          <%= link_to t(:id_please_expandable_html), observation, :class => "id_please_notice", 
-            "data-tip" => t(:observation_would_like_some_help, :user => observation.user.login),
-            "data-tip-show-delay" => 1000 %>
-        </li>
+    <%- if observation.id_please? || observation.research_grade? %>
+      <ul class="bubbles">
+        <% if observation.id_please? -%>
+          <li class="last">
+            <%= link_to t(:id_please_expandable_html), observation, :class => "id_please_notice",
+              "data-tip" => t(:observation_would_like_some_help, :user => observation.user.login),
+              "data-tip-show-delay" => 1000 %>
+          </li>
+        <% end -%>
+        <%- if observation.quality_grade == Observation::RESEARCH_GRADE %>
+          <li class="last">
+            <%= link_to t(:research_grade_short_html), observation_url(observation, :anchor => "data_quality_assessment"),
+              :class => "research_grade_notice", 
+              "data-tip" => t(:research_grade_observations_have),
+              "data-tip-show-delay" => 1000 %>
+          </li>
+        <% end -%>
       </ul>
-    <%- elsif observation.quality_grade == Observation::RESEARCH_GRADE %>
-      <ul>
-        <li class="last">
-          <%= link_to t(:research_grade_expandable_html), observation_url(observation, :anchor => "data_quality_assessment"), 
-            :class => "research_grade_notice", 
-            "data-tip" => t(:research_grade_observations_have),
-            "data-tip-show-delay" => 1000 %>
-        </li>
-      </ul>
-    <% end -%>
+    <%- end -%>
     <ul class="editview">
       <% if logged_in? && current_user.id == observation.user_id && !observation.new_record? -%>
         <li class="editlink"><%= link_to t(:edit), edit_observation_path(observation) %></li>

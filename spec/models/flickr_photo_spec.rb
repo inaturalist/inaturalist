@@ -7,17 +7,23 @@ describe FlickrPhoto, "creation" do
   end
   
   it "should not save if there is no assoc'd iNat user and the pic isn't CC" do
-    @non_cc_flickr_photo.user = nil
-    @non_cc_flickr_photo.valid?
-    @non_cc_flickr_photo.errors[:license].should be_blank
+    pending_flickr_setup do
+      @non_cc_flickr_photo.user = nil
+      @non_cc_flickr_photo.valid?
+      @non_cc_flickr_photo.errors[:license].should be_blank
+    end
   end
   
   it "should make a valid FlickrPhoto from a flickraw response" do
-    FlickrPhoto.new_from_flickraw(@cc_flickr_photo_response, :user => @user).should be_valid
+    pending_flickr_setup do
+      FlickrPhoto.new_from_flickraw(@cc_flickr_photo_response, :user => @user).should be_valid
+    end
   end
   
   it "should not be valid if the associated user didn't take the photo" do
-    FlickrPhoto.new_from_api_response(@cc_flickr_photo_response, :user => User.make!).should_not be_valid
+    pending_flickr_setup do
+      FlickrPhoto.new_from_api_response(@cc_flickr_photo_response, :user => User.make!).should_not be_valid
+    end
   end
 end
 
@@ -27,18 +33,19 @@ describe FlickrPhoto, "updating" do
   end
 
   it "should be valid if flickr identity blank but past observations exist" do
-    o = Observation.make!(:user => @user)
-    o.photos << @cc_flickr_photo
-    @user.flickr_identity.destroy
-    @cc_flickr_photo.reload
-    @cc_flickr_photo.should be_valid
+    pending_flickr_setup do
+      o = Observation.make!(:user => @user)
+      o.photos << @cc_flickr_photo
+      @user.flickr_identity.destroy
+      @cc_flickr_photo.reload
+      @cc_flickr_photo.should be_valid
+    end
   end
 end
 
 describe FlickrPhoto, "to_observation" do
   before(:all) do
     load_test_taxa
-    
   end
   
   before(:each) do
@@ -46,26 +53,38 @@ describe FlickrPhoto, "to_observation" do
   end
   
   it "should create a valid observation" do
-    @cc_flickr_photo.to_observation.should be_valid
+    pending_flickr_setup do
+      @cc_flickr_photo.to_observation.should be_valid
+    end
   end
 end
 
 def setup_flickr_stuff
-  FlickRaw.api_key = FLICKR_API_KEY
-  FlickRaw.shared_secret = FLICKR_SHARED_SECRET
-  @flickr = flickr
-  @user = User.make!
-  @fi = FlickrIdentity.make!(:user => @user, :flickr_user_id => "18024068@N00")
+  begin
+    FlickRaw.api_key = FLICKR_API_KEY
+    FlickRaw.shared_secret = FLICKR_SHARED_SECRET
+    @flickr = flickr
+    @user = User.make!
+    @fi = FlickrIdentity.make!(:user => @user, :flickr_user_id => "18024068@N00")
 
-  json = JSON.load(FLICKR_PHOTO_JSON)
-  type, json = json.to_a.first
-  @cc_flickr_photo_response = FlickRaw::Response.build(json, type)
-  @cc_flickr_photo = FlickrPhoto.new_from_api_response(@cc_flickr_photo_response, :user => @user)
-  
-  json = JSON.load(NON_CC_FLICKR_PHOTO_JSON)
-  type, json = json.to_a.first
-  @non_cc_flickr_photo_response = FlickRaw::Response.build(json, type)
-  @non_cc_flickr_photo = FlickrPhoto.new_from_api_response(@non_cc_flickr_photo_response, :user => @user)
+    json = JSON.load(FLICKR_PHOTO_JSON)
+    type, json = json.to_a.first
+    @cc_flickr_photo_response = FlickRaw::Response.build(json, type)
+    @cc_flickr_photo = FlickrPhoto.new_from_api_response(@cc_flickr_photo_response, :user => @user)
+
+    json = JSON.load(NON_CC_FLICKR_PHOTO_JSON)
+    type, json = json.to_a.first
+    @non_cc_flickr_photo_response = FlickRaw::Response.build(json, type)
+    @non_cc_flickr_photo = FlickrPhoto.new_from_api_response(@non_cc_flickr_photo_response, :user => @user)
+
+    @flickr_setup_exception = false
+  rescue FlickRaw::FailedResponse => e
+    @flickr_setup_exception = e
+  end
+end
+
+def pending_flickr_setup(&block)
+  pending("Flickr setup failed: #{@flickr_setup_exception}", :if => @flickr_setup_exception, &block)
 end
 
 FLICKR_PHOTO_JSON = <<-JSON

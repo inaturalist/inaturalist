@@ -70,15 +70,16 @@ $('a[data-loading-click], input[data-loading-click][type=radio], input[data-load
 
 function loadingClickForLink() {
   var txt = $(this).attr('data-loading-click')
-  if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
+  if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = I18n.t('loading') }
   var loading = $(this).siblings('.loadingclick:first')
   if (loading.length == 0) {
-    loading = $(this).clone()
+    loading = $(this).clone(false)
     loading.unbind()
     loading.attr('onclick', 'return false;')
+    loading.attr('href', '#')
     loading
       .attr('id', '')
-      .addClass('loadingclick')
+      .addClass('loadingclick disabled')
       .css('padding-left', '25px')
       .html(txt)
     loading.click(function(e){
@@ -103,15 +104,16 @@ function loadingClickForLink() {
   }
 }
 
-function loadingClickForButton() {
+function loadingClickForButton(options) {
+  options = options || {}
   $(this).data('original-value', $(this).val())
   var txt = $.trim($(this).attr('data-loading-click'))
-  if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Saving...' }
+  if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = I18n.t('saving') }
   $(this).data('original-value', $(this).val())
   $(this).addClass('disabled description').val(txt)
   var link = this
   
-  if (!$(this).attr('data-loading-click-bound')) {
+  if (!$(this).attr('data-loading-click-bound') && options.ajax != false) {
     $(this).parents('form').bind('ajax:complete', function() {
       $(link).attr('disabled', false).removeClass('disabled description')
       $(link).val($(link).data('original-value'))
@@ -188,6 +190,8 @@ $(document).ready(function() {
     makeHeaderLinkCurrent('#mainnav .placestab')
   } else if (window.location.pathname.match(/^\/user/) || window.location.pathname.match(/^\/people/)) {
     makeHeaderLinkCurrent('#mainnav .peopletab')
+  } else if (window.location.pathname.match(/^\/guides/) || window.location.pathname.match(/^\/guides/)) {
+    makeHeaderLinkCurrent('#mainnav .guidestab')
   }
   
   buildHelpTips()
@@ -209,8 +213,8 @@ $(document).ready(function() {
   $('[data-tip]').each(autoTip)
   
   $('.source_nested_form_fields input.existing').chooser({
-    collectionUrl: 'http://'+window.location.host + '/sources.json',
-    resourceUrl: 'http://'+window.location.host + '/sources/{{id}}.json'
+    collectionUrl: '/sources.json',
+    resourceUrl: '/sources/{{id}}.json'
   })
   
   $('.zoomable').zoomify()
@@ -244,7 +248,7 @@ $(document).ready(function() {
             target: 'event'
           },
           content: {
-            text: '<span class="loading status">Loading...</span>',
+            text: '<span class="loading status">' + I18n.t('loading') + '</span>',
             ajax: {
               type: 'GET',
               data: {partial: 'cached_component'}
@@ -258,6 +262,18 @@ $(document).ready(function() {
           tipOptions.content.ajax.url = $(this).attr('href')
           $(this).qtip(tipOptions)
         })
+      })
+    }
+    return false
+  })
+
+  $('#headermessagesnotice').click(function() {
+    toggleHeaderSubnav(this)
+    if (!$('#messagessubnav').data('loaded')) {
+      $('#messagessubnav').load('/messages/new_messages', function(data) {
+        $(this).html(data)
+        $('#messagessubnav').data('loaded', true)
+        setMessagesCount(0, {skipAnimation: true})
       })
     }
     return false
@@ -281,7 +297,7 @@ $(document).ready(function() {
       html = '<div class="dialog">'+html+'</div>'
       $(html).dialog({
         modal: true, 
-        title: 'Preview',
+        title: I18n.t('preview'),
         width: $(window).width() * 0.7
       })
     })
@@ -348,6 +364,7 @@ $(document).ready(function() {
   })
 
   $('.add_matching_link').attr('confirm', null).data('confirm', null)
+  $('.dna').dnaHighlight()
 })
 
 function checkFormForRequiredFields(e) {
@@ -384,7 +401,7 @@ function checkDelayedLink(url) {
     url: url,
     type: 'get',
     statusCode: {
-      // Accepted: request acnkowledged byt file hasn't been generated
+      // Accepted: request acnkowledged but file hasn't been generated
       202: function() {
         setTimeout('checkDelayedLink("'+url+'")', 5000)
       },
@@ -439,6 +456,11 @@ function autoTip() {
   }
   
   $(this).qtip(tipOptions)
+
+  // remove multiple file inputs for Windows Safari
+  if (navigator.platform.match(/^Win/) && $.browser.webkit && !navigator.userAgent.match(/Chrome/i)) {
+    $('input[type=file]').removeAttr("multiple")
+  }
 }
 
 // from http://forum.jquery.com/topic/jquery-simple-autolink-and-highlight-12-1-2010
@@ -491,7 +513,7 @@ $.fn.loadingShades = function(e, options) {
   } else {
     var txt = e || 'Loading...',
         cssClass = options.cssClass || 'bigloading',
-        msg = '<div class="loadingShadesMsg"><span class="loading '+cssClass+' status inlineblock">'+txt+'...</span></div>'
+        msg = '<div class="loadingShadesMsg"><span class="loading '+cssClass+' status inlineblock">'+txt+'</span></div>'
     options = $.extend(true, options, {
       css: {'background-color': 'white'}, 
       content: msg
@@ -543,9 +565,27 @@ $.fn.selectLocalTimeZone = function() {
   return this
 }
 
-$.fn.disable = function() { $(this).attr('disabled', true).addClass('disabled') }
-$.fn.enable = function() { $(this).attr('disabled', false).removeClass('disabled') }
+$.fn.disable = function() { $(this).attr('disabled', true).addClass('disabled'); return this }
+$.fn.enable = function() { $(this).attr('disabled', false).removeClass('disabled') ; return this }
 $.fn.toggleDisabled = function() { $(this).hasClass('disabled') ? $(this).enable() : $(this).disable() }
+
+$.fn.lock = function() {
+  $(this).each(function() {
+    var replacement = $(this).clone()
+    replacement.attr('name', '').val($(this).val()).addClass('lock-replacement').disable()
+    $(this).after(replacement)
+    $(this).hide().data('locked', true)
+  })
+}
+$.fn.unlock = function() {
+  $(this).each(function() {
+    $(this).nearest('.lock-replacement').remove()
+    $(this).show().data('locked', false)
+  })
+}
+$(document).ready(function() {
+  $(':input[data-locked]').lock()
+})
 
 $.fn.zoomify = function() {
   var selection = $(this).not('.zoomified')
@@ -559,7 +599,7 @@ $.fn.zoomify = function() {
         $('<div></div>').attr('id', 'zoomable_dialog').addClass('dialog')
       )
     }
-    $('#zoomable_dialog').html('<div class="loading status">Loading...</div>')
+    $('#zoomable_dialog').html('<div class="loading status">' + I18n.t('loading') + '</div>')
     $('#zoomable_dialog').load($(this).attr('href'), "partial=photo", function() {
       
       $('img', this).load(function() {
@@ -699,6 +739,7 @@ $.fn.observationsMap = function() {
         id: $(this).attr('id').split('-')[1],
         latitude: $(this).attr('data-latitude'),
         longitude: $(this).attr('data-longitude'),
+        coordinates_obscured: $(this).attr('data-coordinates-obscured'),
         taxonId: $(this).attr('data-taxon-id'),
         iconic_taxon: {
           name: $(this).attr('data-iconic-taxon-name')
@@ -717,9 +758,8 @@ $.fn.observationControls = function(options) {
   $(this).each(function() {
     var observations = options.div || $(this).parent().find('.observations')
 
-
     var gridButton = $('.gridbutton', this)
-    if (gridButton.length == 0) {
+    if (!options.skipGrid && gridButton.length == 0) {
       gridButton = $('<a href="#" class="gridbutton" title="'+I18n.t('grid_tooltip')+'"><span class="inat-icon ui-icon ui-icon-grid inlineblock">&nbsp;</span><label>'+I18n.t('grid')+'</label></a>')
       gridButton.data('gridSize', $(observations).hasClass('medium') ? 'medium' : null)
       gridButton.click(function() {
@@ -731,7 +771,7 @@ $.fn.observationControls = function(options) {
     }
 
     var listButton = $('.listbutton', this)
-    if (listButton.length == 0) {
+    if (!options.skipList && listButton.length == 0) {
       listButton = $('<a href="#" class="listbutton" title="'+I18n.t('list_tooltip')+'"><span class="inat-icon ui-icon ui-icon-list inlineblock">&nbsp;</span><label>'+I18n.t('list')+'</label></a>')
       listButton.click(function() {
         $(observations).observationsList()
@@ -742,7 +782,7 @@ $.fn.observationControls = function(options) {
     }
 
     var mapButton = $('.mapbutton', this)
-    if (mapButton.length == 0) {
+    if (!options.skipMap && mapButton.length == 0) {
       mapButton = $('<a href="#" class="mapbutton" title="'+I18n.t('map_tooltip')+'"><span class="inat-icon ui-icon ui-icon-map inlineblock">&nbsp;</span><label>'+I18n.t('map')+'</label></a>')
       mapButton.click(function() {
         $(observations).observationsMap()
@@ -806,6 +846,31 @@ function getUpdatesCount() {
   })
 }
 
+function setMessagesCount(count, options) {
+  options = options || {}
+  if (count > 0) {
+    if (options.skipAnimation) {
+      $('#header .messages').addClass('alert')
+    } else {
+      $('#header .messages').switchClass('', 'alert')
+    }
+    $('#header .messages .count').html(count)
+  } else {
+    if (options.skipAnimation) {
+      $('#header .messages').removeClass('alert')
+    } else {
+      $('#header .messages').switchClass('alert', '')
+    }
+    $('#header .messages .count').html(0)
+  }
+}
+
+function getMessagesCount() {
+  $.get('/messages/count', function(data) {
+    setMessagesCount(data.count)
+  })
+}
+
 $.fn.subscriptionSettings = function() {
   var options = $.extend(true, {
     position: {
@@ -819,7 +884,7 @@ $.fn.subscriptionSettings = function() {
       event: 'unfocus'
     },
     content: {
-      text: '<span class="loading status">Loading...</span>',
+      text: '<span class="loading status">' + I18n.t('loading') + '</span>',
       ajax: {
         type: 'GET',
         data: {partial: 'edit_inline'},
@@ -895,7 +960,11 @@ $.fn.serializeObject = function() {
 }
 
 $.fn.centerDialog = function() {
-  var newHeight = $(':first', this).height() + 100
+  if ($(this).children().length == 1) {
+    var newHeight = $(':first', this).height() + 100
+  } else {
+    var newHeight = $(this).height() + 100
+  }
   var maxHeight = $(window).height() * 0.8
   if (newHeight > maxHeight) { newHeight = maxHeight };
   $(this).dialog('option', 'height', newHeight)
@@ -906,7 +975,7 @@ $('.flaglink').live('click', function() {
   $('#flagdialog').remove()
   var dialog = $('<div></div>').attr('id', 'flagdialog')
     .addClass('dialog')
-    .html('<div class="loading status">Loading...</div>')
+    .html('<div class="loading status">' + I18n.t('loading') + '</div>')
   dialog.load($(this).attr('href'), "partial=dialog", function() {
     $(this).centerDialog()
     $('input[type=radio]', this).change(function() {
@@ -920,7 +989,7 @@ $('.flaglink').live('click', function() {
     })
   })
   $(document.body).append(dialog)
-  dialog.dialog({modal: true, title: "Flag an item"})
+  dialog.dialog({modal: true, title: I18n.t('flag_an_item')})
   return false
 })
 
@@ -940,7 +1009,7 @@ function setPreference(pref, value) {
   $.ajax(url, {
     type: 'POST',
     data: data,
-    dataType: 'json',    
+    dataType: 'json'    
   })
 }
 
@@ -948,13 +1017,13 @@ $('.project_invitation .acceptlink').live('ajax:success', function() {
   $(this).hide()
   $(this).siblings('.ignorelink').hide()
   $(this).siblings('.removelink').show()
-  $(this).siblings('.status').html("Added!").show().addClass('success')
+  $(this).siblings('.status').html(I18n.t('added!')).show().addClass('success')
   $(this).parents('.box:first').removeClass('notice')
 })
 $('.project_invitation .removelink').live('ajax:success', function() {
   $(this).hide()
   $(this).siblings('.acceptlink').show()
-  $(this).siblings('.status').html("Removed").show().removeClass('success')
+  $(this).siblings('.status').html(I18n.t('removed!')).show().removeClass('success')
   $(this).parents('.box:first').addClass('notice')
 })
 $('.project_invitation .ignorelink').live('ajax:success', function() {
@@ -974,7 +1043,7 @@ $('.add_matching_link').live('click', function(e) {
   $('#add_matching_link_dialog').remove()
   var dialog = $('<div></div>').attr('id', 'add_matching_link_dialog')
     .addClass('dialog')
-    .html('<div class="loading status">Loading...</div>')
+    .html('<div class="loading status">' + I18n.t('loading') + '</div>')
   $.ajax({url: url, type: 'get'})
     .success(function(data) { dialog.html(data) })
     .fail(function() {
@@ -989,9 +1058,9 @@ $('.add_matching_link').live('click', function(e) {
 function showJoinProjectDialog(projectId, options) {
   options = options || {}
   var url = options.url || '/projects/'+projectId+'/join?partial=join',
-      title = options.title || 'Join project',
+      title = options.title || I18n.t('join_project'),
       originalInput = options.originalInput
-  var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
+  var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">' + I18n.t('loading') + '</div>')
   dialog.load(url, function() {
     // ajaxify join
     var button = $('.default.button', this),
@@ -1008,11 +1077,263 @@ function showJoinProjectDialog(projectId, options) {
       })
       return false
     })
+    $(this).centerDialog()
   })
   dialog.dialog({
     modal: true,
     title: title,
     width: 600,
-    minHeight: 400
+    maxHeight: $(window).height() * 0.8,
   })
 }
+
+
+// http://stackoverflow.com/a/14839776/720268
+function preciseRound(num,decimals) {
+  return Math.round(num*Math.pow(10, decimals)) / Math.pow(10,decimals)
+}
+
+function updateSession(params) {
+  $.ajax({
+    url: '/users/update_session',
+    data: params,
+    type: 'PUT'
+  })
+}
+
+$.fn.loadObservations = function(options) {
+  var url = options.url || '/observations'
+  if (!url.match(/partial=/)) {
+    url += url.match(/\?/) ? '&' : '?'
+    url += 'partial=cached_component'
+  }
+  var container = this
+  var req
+  req = $.ajax({
+    type: "GET",
+    url: url,
+    success: function (data, status) {
+      var html = data.replace(/\/div>[\s\n]+?<div/g, '/div><div')
+      var oldObsId = $('.observation:first', container).attr('id')
+      if (oldObsId) {
+        var r = new RegExp('^[^>]+'+oldObsId, 'g')
+        if (r.test(html)) {
+          return
+        }
+      }
+      $(container).html(html)
+      if (options.style == 'list') {
+        $(container).observationsList()
+      } else if (options.style == 'map') {
+        $(container).observationsMap()
+      } else {
+        $(container).observationsGrid('medium')
+      }
+      if (typeof(options.success) == 'function') {
+        options.success(req, data, status)
+      }
+    }
+  })
+  if (options.refresh) {
+    var t = setTimeout(function() {
+      container.loadObservations(options)
+    }, options.refresh)
+    container.data('loadObservationsTimeout', t)
+  }
+}
+
+$.fn.observationTaxonStats = function(options) {
+  var url = options.url || '/observations/taxon_stats.json',
+      container = this,
+      baseSearch = typeof(OBSERVATIONS_URL) == 'undefined' ? window.location.search : '?'+OBSERVATIONS_URL.split('?')[1]
+  $.getJSON(url, function(json) {
+    $('.species .count', container).html(json.rank_counts.species || 0)
+    if (json.species_counts.length > 0) {
+      var most
+      $('.most_observed table', container).html('')
+      for (var i = 0; i < json.species_counts.length; i++) {
+        if (json.species_counts[i].taxon) {
+          most = json.species_counts[i]
+          var tr = $('<tr></tr>'),
+              taxonTD = $('<td class="taxon"></td>'),
+              imageTD = $('<td class="image"></td>')
+          taxonTD.html(
+            $('<a></a>').
+              addClass('nobr '+most.taxon.default_name.lexicon).
+              attr('href', '/taxa/'+most.taxon.id).
+              html(most.taxon.default_name.name)
+          )
+          imageTD.append($('<img/>').attr('src', most.taxon.image_url))
+          taxonTD.append(
+            $('<div class="meta"></div>').append(
+              $('<a></a>').
+                attr('href', '/observations'+baseSearch+'&taxon_id='+most.taxon.id).
+                html(most.count),
+              ' ',
+              I18n.t('observation'+(most.count == 1 ? '' : 's')).toLowerCase()
+            )
+          )
+          tr.append(imageTD, taxonTD)
+          $('.most_observed table', container).append(tr)
+        }
+      }
+    }
+    if (options.refresh) {
+      var t = setTimeout(function() {
+        container.observationTaxonStats(options)
+      }, options.refresh)
+      container.data('observationTaxonStatsTimeout', t)
+    }
+  })
+}
+
+$.fn.observationUserStats = function(options) {
+  var url = options.url || '/observations/taxon_stats.json',
+      container = this,
+      baseSearch = typeof(OBSERVATIONS_URL) == 'undefined' ? window.location.search : '?'+OBSERVATIONS_URL.split('?')[1]
+  $.getJSON(url, function(json) {
+    $('.people .count', container).html(json.total || 0)
+    if (json.most_observations.length > 0) {
+      $('.most_observations table', container).html('')
+      for (var i = 0; i < json.most_observations.length; i++) {
+        var most = json.most_observations[i],
+            img_url = most.user.user_icon_url || '/attachment_defaults/users/icons/defaults/thumb.png',
+            tr = $('<tr></tr>'),
+            imageTD = $('<td class="image"></td>'),
+            userTD = $('<td class="user"></td>')
+        imageTD.append($('<img/>').attr('src', img_url))
+        userTD.html($('<a>'+most.user.login+'</a>').attr('href', '/people/'+most.user.login))
+        userTD.append(
+          $('<div></div>').
+            addClass('meta').
+            html(I18n.t('x_observations_link_html', {
+              count: most.count,
+              url: '/observations'+baseSearch+'&user_id='+most.user.login
+            }))
+        )
+        tr.append(imageTD, userTD)
+        $('.most_observations table', container).append(tr)
+      }
+    }
+    if (json.most_species.length > 0) {
+      $('.most_species table', container).html('')
+      for (var i = 0; i < json.most_species.length; i++) {
+        var row = json.most_species[i]
+            img_url = row.user.user_icon_url || '/attachment_defaults/users/icons/defaults/thumb.png',
+            tr = $('<tr></tr>'),
+            imageTD = $('<td class="image"></td>'),
+            userTD = $('<td class="user"></td>')
+        imageTD.append($('<img/>').attr('src', img_url))
+        userTD.html($('<a>'+row.user.login+'</a>').attr('href', '/people/'+row.user.login))
+        userTD.append(
+          $('<div></div>').
+            addClass('meta').
+            html(I18n.t('x_species_link_html', {
+              count: row.count, 
+              url: '/observations/taxa'+baseSearch+'&user_id='+row.user.login
+            }))
+        )
+        tr.append(imageTD, userTD)
+        $('.most_species table', container).append(tr)
+      }
+    }
+    if (options.refresh) {
+      var t = setTimeout(function() {
+        container.observationTaxonStats(options)
+      }, options.refresh)
+      container.data('observationUserStats', t)
+    }
+  })
+}
+
+$.fn.dnaHighlight = function() {
+  $(this).each(function() {
+    var newt = "",
+        oldt = $(this).text()
+    for (var i = 0; i < oldt.length; i++) {
+      switch (oldt[i]) {
+        case 'A':
+          newt += '<nt class="a">'+oldt[i]+'</nt>'
+          break
+        case 'T':
+          newt += '<nt class="t">'+oldt[i]+'</nt>'
+          break
+        case 'C':
+          newt += '<nt class="c">'+oldt[i]+'</nt>'
+          break
+        case 'G':
+          newt += '<nt class="g">'+oldt[i]+'</nt>'
+          break
+        default:
+          newt += oldt[i]
+      }
+    }
+    $(this).html(newt)
+  })
+}
+
+$.fn.boldId = function() {
+  $(this).each(function() {
+    if ($('.boldid', this).length > 0) return
+    var bolddb
+    if ($(this).hasClass('bold-its')) {
+      // not implemented by BOLD
+    } else if ($(this).hasClass('bold-matk')) {
+      // not implemented by BOLD
+    } else {
+      bolddb = 'COX1'
+    }
+    if (!bolddb) return
+    var boldWrapper = $('<span class="boldid"><label><a href="http://www.boldsystems.org/">BOLD</a> DNA Match:</label></span>'),
+        boldLink = $('<span class="button inline status"><a href="#">Load DNA-based identification from BOLD</a></span>')
+    boldWrapper.append(' ', boldLink)
+    boldLink.click(function() {
+      $(this).hide()
+      $('.status', boldWrapper).replaceWith('<span class="loading status inline">Loading BOLD ID...</span>')
+      $.get(url, function(data, status, jqXHR) {
+        var name = $('match:first taxonomicidentification', data).text(),
+            similarity = $('match:first similarity', data).text(),
+            specimenURL = $('match:first url', data).text()
+        similarity = preciseRound(parseFloat(similarity) * 100, 2)
+        if (!name) {
+          $('.status', boldWrapper).replaceWith(
+            '<span class="status">No matches</span>'
+          )
+          return
+        }
+        $.getJSON('/taxa/search?q='+name, function(taxa) {
+          var taxon
+          for (var i = 0; i < taxa.length; i++) {
+            if (taxa[i].name == name) {
+              taxon = taxa[i]
+              break
+            }
+          }
+          if (taxon) {
+            var cssClass = 'taxon ' + [taxon.rank, taxon.iconic_taxon_name].join(' ')
+            $('.status', boldWrapper).replaceWith(
+              '<span class="iconic_taxon_sprite '+taxon.iconic_taxon_name.toLowerCase()+' selected">&nbsp;</span> ' +
+              '<span class="'+cssClass+'"><a href="/taxa/'+taxon.id+'"><span class="sciname">'+name+'</span></span></span>'
+            )
+          } else {
+            $('.status', boldWrapper).replaceWith(
+              '<span class="taxon"><span class="sciname">'+name+'</span></span>'
+            )
+          }
+          $(boldWrapper).append(' <span class="meta">('+ similarity + '% match)</span>')
+          $(boldWrapper).append(' <a href="'+specimenURL+'" class="readmore">View matching specimen on BOLD</a>')
+        })
+      })
+      return false
+    })
+    $(this).after(boldWrapper)
+    var url = "/identifications/bold.xml?db="+bolddb+"&sequence="+$(this).text()
+  })
+}
+
+$(document).ready(function() {
+  // tmp fixes for old views being used with bootstrap
+  $('.bootstrap .button.default').addClass('btn btn-primary').removeClass('button default')
+  $('.bootstrap .inter').addClass('btn btn-link').removeClass('inter')
+  $('.bootstrap .button').addClass('btn').removeClass('button')
+})

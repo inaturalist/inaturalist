@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b><%= t :guide_taxon %>:</b>
+  <%= @guide_photo.guide_taxon_id %>
+</p>
+
+<p>
+  <b><%= t(:title).titleize %>:</b>
+  <%= @guide_photo.title %>
+</p>
+
+<p>
+  <b><%= t :description %>:</b>
+  <%= @guide_photo.description %>
+</p>
+
+<p>
+  <b><%= t :photo %>:</b>
+  <%= @guide_photo.photo_id %>
+</p>
+
+
+<%= link_to t(:edit), edit_guide_photo_path(@guide_photo) %> |
+<%= link_to t(:back), guide_photos_path %>

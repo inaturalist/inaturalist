@@ -1,0 +1,22 @@
+- unless @observation_field.new_record?
+  .right.column.span-12
+    .notice.box
+      %h3=t :about_editing_observation_fields
+      =t 'views.observation_fields.about_editing_observation_fields_desc_html'
+= form_for @observation_field, :builder => DefaultFormBuilder do |f|
+  = f.error_messages
+  = f.text_field :name, :required => true, :label => t(:name)
+  = f.text_field :description, :label => t(:description)
+  = f.select :datatype, ObservationField::TYPES.map{|type| [t("#{type}_", :default => type).downcase, type]}, :required => true, :label => t(:datatype)
+  %p.ui.meta.dna_help{:style => f.object.datatype == ObservationField::DNA ? '': 'display:none'}
+    = t 'views.observation_fields.dna_help'
+  = f.text_field :allowed_values, :description => t(:separate_values_with_a_pipe), :label => t(:allowed_values)
+  = f.submit t(:save), :class => "default button", "data-loading-click" => t(:saving)
+:javascript
+  $('#observation_field_datatype').change(function() {
+    if ($(this).val() == 'dna') {
+      $('.dna_help').show()
+    } else {
+      $('.dna_help').hide()
+    }
+  })

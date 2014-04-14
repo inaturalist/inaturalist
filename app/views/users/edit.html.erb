@@ -1,4 +1,4 @@
-<% content_for(:title) do %> <%= t(:edit_your_account_and_profile) %><% end %>
+<% content_for(:title) do %> <%= t(:edit_your_account_and_profile_html) %><% end %>
 <% content_for(:extracss) do %>
 <style type="text/css" media="screen">
   textarea{width:690px; height: 200px;}
@@ -35,7 +35,7 @@
     </div><!-- /#breadcrumbs -->
   </div>
   
-  <h2><%= t(:edit_your_account_and_profile) %></h2>  
+  <h2><%= t(:edit_your_account_and_profile_html) %></h2>  
 </div>
 
 <div class="column span-18">
@@ -47,22 +47,25 @@
       <%= link_to_function(t(:change), "$('#user_icon').show(); $(this).hide()", :class => 'button inlineblock') %>
     </div>
     <div class="column span-9">
+      <%= f.text_field(:login, :class => "text", :required => true, :label => t(:username)) %>
       <%= f.text_field(:email, :class => "text", :required => true) %>
       <%= f.text_field(:name, :class => "text") %>
     </div>
     <div class="last column span-9">
       <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, 
         {:selected => current_user.time_zone}, 
-        {:class => 'select', :description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
+        {:description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
+      <%= f.select :locale, I18N_SUPPORTED_LOCALES.sort, :include_blank => t(:default), :description => t(:locale_description) %>
     </div>
     <div class="last column span-18">
       <%= f.text_area(:description, :label => t(:tell_everyone_a_little_about_you)) %>
     </div>
     <div id="preferencescol" class="column span-9 stacked">
-      <%- if !current_user.provider_authorizations.blank? %>
-        <h3>Sharing Settings</h3>
+      <%- provider_names = current_user.provider_authorizations.map{|pa| pa.provider_name.downcase} %>
+      <%- if (%w(twitter facebook) & provider_names).size > 0 %>
+        <h3><%=t :sharing_settings %></h3>
         <div id="observationsharingpreferences" class="stacked">
-          <label>Automatically share your observations on</label>
+          <label><%=t :automatically_share_your_observations_on %></label>
           <% for attr_name in User::SHARING_PREFERENCES %>
             <%- service = attr_name.gsub(/share_observations_on_/, '') %>
             <%- if current_user.has_provider_auth(service) %>
@@ -95,10 +98,16 @@
       <h3><%= t :taxon_change_settings %></h3>
       <div class="stacked">
         <%= f.check_box "prefers_automatic_taxonomic_changes", 
-          :label => "Automatically update my content for taxon changes", 
+          :label => t(:automatically_update_my_content_for_taxon_changes),
           :label_after => true,
           :description => t('views.users.edit.taxon_change_desc', :site_name => SITE_NAME_SHORT) %>
       </div>
+      
+      <h3><%= t :community_identification_settings %></h3>
+      <%= f.check_box "prefers_community_taxa", 
+        :label => t(:accept_community_identifications), 
+        :label_after => true,
+        :description => t('views.users.edit.prefers_community_taxa_desc', :site_name => SITE_NAME_SHORT) %>
     </div>
     
     <div class="column span-18">
@@ -133,9 +142,21 @@
             :description =>t(:you_retain_full_copyright_over_your_content, :site_name => SITE_NAME_SHORT) %>
           <%= f.check_box :make_photo_licenses_same, :label => t(:update_existing_photos_with_new_license), :label_after => true %>
         </div>
+
+        <div class="last column span-9 verticalmiddle licensechoices">
+          <h4><%= t(:default_sound_license) %></h4>
+          <% for code, name, description in Observation::LICENSES %>
+            <%= f.radio_button :preferred_sound_license, code, 
+              :id => "preferred_sound_license_#{code.to_s.parameterize}",
+              :label => "#{image_tag("#{code}.png")} #{t(name)}", :label_after => true %>
+          <% end %>
+          <%= f.radio_button :preferred_sound_license, nil, :label => t(:no_license_all_rights_reserved), :label_after => true,
+            :description =>t(:you_retain_full_copyright_over_your_content, :site_name => SITE_NAME_SHORT) %>
+          <%= f.check_box :make_sound_licenses_same, :label => t(:update_existing_sounds_with_new_license), :label_after => true %>
+        </div>
         
         <div class="last column span-18">
-          <%= link_to_function "<span class='helptip'></span> About these licenses".html_safe, 
+          <%= link_to_function "<span class='helptip'></span> #{t(:about_these_licenses)}".html_safe,
             "$('#aboutlicenses').dialog({width:'auto', modal:true, title: '#{t(:about_the_cc_licenses)}'})" %>
           <div id="aboutlicenses" class="dialog" style="display:none">
             <div class="column span-18 verticalmiddle">
@@ -178,13 +199,15 @@
       <% ProviderAuthorization::PROVIDERS.each do |provider| %>
         <% if current_user.has_provider_auth(provider) %>
           <li class="clear">
-            <%= button_to t(:disconnect_provider, :provider => provider.capitalize), omniauth_disconnect_path(provider.downcase),
-              :class => "providerlink #{provider.downcase} disabled button", :method => "delete" %>
+            <%= button_to t(:disconnect_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
+              omniauth_disconnect_path(provider),
+              :class => "providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase} disabled button", :method => "delete" %>
           </li>
         <% else %>
           <li class="clear">
-            <%= link_to t(:connect_to_provider, :provider => provider.capitalize), auth_url_for(provider.downcase), 
-              :class => "providerlink #{provider.downcase} button" %>
+            <%= link_to t(:connect_to_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
+              auth_url_for(provider), 
+              :class => "providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase} button" %>
           </li>
         <% end %>
       <% end %>
@@ -207,7 +230,7 @@
     <%= link_to_toggle current_user.encrypted_password ? t(:change_your_password) : "Set a password", "#passwordform", :class => "ui" %>
     <%= form_for(current_user, :html => {:id => "passwordform", :style => "display:none"}) do %>
       <div class="stacked">
-        <%= label(:password, 'New Password') %>
+        <%= label(:password, t(:new_password)) %>
         <%= password_field_tag(:password, '', :class => 'text') %>
       </div>
       <div class="stacked">

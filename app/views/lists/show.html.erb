@@ -1,6 +1,10 @@
 <% content_for(:title) do %>
-  <%- 
-    @title = @list.title
+  <%-
+    if @list.title =~ /Life List$/ && @list.id == @list.user.life_list_id
+      @title = t(:life_list, :user => @list.title.split(' Life List').first[0..-3], :default => @list.title)
+    else
+      @title = @list.title
+    end
     unless @title.index(@list.owner_name)
       @title += ", #{link_to(@list.owner_name, @list.user ? lists_by_login_path(@list.user.login) : @list.owner)}"
     end
@@ -19,11 +23,11 @@
   -%>
   <% if @representative_photo -%>
     <%- og_description += " &mdash; Photo: #{@representative_photo.attribution}" -%>
-    <meta property="og:image" content="<%= image_url @representative_photo.medium_url %>"/> 
+    <meta property="og:image" content="<%= image_url @representative_photo.medium_url %>"/>
   <% elsif @representative_listed_taxon %>
-    <meta property="og:image" content="<%= image_url iconic_taxon_image_url(@representative_listed_taxon.taxon, :size => 200) %>"/> 
+    <meta property="og:image" content="<%= image_url iconic_taxon_image_url(@representative_listed_taxon.taxon, :size => 200) %>"/>
   <% end -%>
-  <meta property="og:description" content="<%= html_attributize og_description %>"/> 
+  <meta property="og:description" content="<%= html_attributize og_description %>"/>
 <%- end -%>
 
 <% content_for(:extracss) do %>
@@ -42,18 +46,18 @@
 
         <form action="<%= url_for %>" method="get" style="display: inline-block; margin-left: 10px">
           <input type="text" name="q" value="<%= @q %>" class="text" />
-          <input type="submit" value="Search List" class="default button" style="margin-right: 0"/>
+          <input type="submit" value="<%= t(:search_list) %>" class="default button" style="margin-right: 0"/>
         </form>
       </div>
     <%- end -%>
 
     <span class="breadcrumbs">
       <% if @list.user -%>
-        <%= link_to "Back to #{possessive(@list.user)} lists", 
+        <%= link_to t(:back_to_lists, :name => possessive(@list.user).downcase),
                     lists_by_login_path(:login => @list.user.login),
                     :class => 'back crumb' %>
       <% else %>
-        <%= link_to "Back to #{@list.owner_name}", @list.owner, :class => "back crumb" %>
+        <%= link_to t(:back_to_x, :noun => @list.owner_name), @list.owner, :class => "back crumb" %>
       <% end -%>
     </span>
   </div>
@@ -65,55 +69,68 @@
 
 <div id="maincol" class="column span-17">
   <%= render :partial => 'tools' %>
-  
+
   <div id="description" class="readable description">
-    <%= formatted_user_text(@list.description) %>
+    <%= formatted_user_text(@list.description =~ /^Every species seen by / ? @list.description.gsub('Every species seen by', t(:every_species_seen_by)) : @list.description) %>
   </div>
-  
+
   <% if @taxon_rule -%>
     <div id="life_list_taxon" class="life_list_taxon description">
       <%= taxon_image(@taxon_rule.operand) %>
-      <%=t :this_is_a_life_list_of %>
-      <%= render :partial => 'shared/taxon', 
-                 :locals => { :taxon => @taxon_rule.operand,
-                              :link_url => url_for(@taxon_rule.operand) } %>
+      <% if @list.place -%>
+        <%=raw t :this_is_a_life_list_of_taxon_in_place,
+          :taxon => render('shared/taxon', :taxon => @taxon_rule.operand, :link_url => @taxon_rule.operand),
+          :place => link_to(@list.place.display_name, @list.place) %>
+      <% else %>
+        <%=t :this_is_a_life_list_of %>
+        <%= render :partial => 'shared/taxon',
+                   :locals => { :taxon => @taxon_rule.operand, :link_url => url_for(@taxon_rule.operand) } %>
+      <% end -%>
     </div>
   <% end -%>
   <% if @list.rank_rule != "any" -%>
     <div id="life_list_rank_rule" class="description">
-      <%=t :this_list_only_accepts_taxa_that_are %> <%= @list.rank_rule.gsub(/[_?]+/, ' ').strip %>.
+      <%=t :this_list_only_accepts_taxa_that_are %> <%= t(@list.rank_rule.gsub(/[_?]+/, ' ').strip.gsub(' ', '_'), :default => @list.rank_rule.gsub(/[_?]+/, ' ').strip).downcase %>.
     </div>
   <% end -%>
-  
+
   <div class="column-separator">
     <img src="/images/logo-eee-15px.png">
   </div>
-  
+
   <% if @q -%>
     <div id="searchresults" class="description quiet box">
       <%= render :partial => "shared/page_results", :object => @listed_taxa %>
-      for <strong>"<%= @q %>"</strong>
-      <%= link_to "clear", url_for_params(:without => [:page, :q]) %>
+      <%=t :for %> <strong>"<%= @q %>"</strong>
+      <%= link_to t(:clear), url_for_params(:without => [:page, :q]) %>
+    </div>
+  <% elsif @filter_taxon %>
+    <div id="searchresults" class="description quiet box">
+      <%= render :partial => "shared/page_results", :object => @listed_taxa %>
+      <%=t :for %>
+      <%= render :partial => 'shared/taxon',
+                 :locals => { :taxon => @filter_taxon, :link_url => @filter_taxon } %>
+      <%= link_to t(:clear), url_for_params(:without => [:page, :taxon]) %>
     </div>
   <% end -%>
-  
+
   <div id="justadded" style="display: none">
     <h2 class="title"><%=t :just_added! %></h2>
     <ul class="listed_taxa">
       <li style="display: none"><%=t :stuff_just_added %></li>
     </ul>
-    
+
     <div class="column-separator">
       <img src="/images/logo-eee-15px.png">
     </div>
   </div>
-  
+
   <div id="toppagination">
     <%= will_paginate @listed_taxa, :renderer => INatLinkRenderer %>
   </div>
-  
+
   <%= render :partial => "show_#{@view}" %>
-  
+
   <% if @listed_taxa.empty? %>
     <div id="empty" class="readable description">
       <% if @add_taxa_from_observations_job && @add_taxa_from_observations_job.last_error.blank? -%>
@@ -131,91 +148,151 @@
       <% end %>
     </div>
   <% end %>
-  
+
   <div id="pagination">
     <%= will_paginate @listed_taxa, :renderer => INatLinkRenderer %>
   </div>
-  
+
   <div class="clear meta feeds">
     <%= separator %>
   <strong><%=t :download %></strong>
-    <%= link_to t(:csv), list_path(@list, :format => 'csv'), 
-      :class => "delayedlink csvlink", 
-      "data-delayed-link-msg" => 
+    <%= link_to t(:csv), list_path(@list, :format => 'csv'),
+      :class => "delayedlink csvlink",
+      "data-delayed-link-msg" =>
         t(:please_hold_on_while_the_file),
       :rel => "nofollow" %>
 
-    <%= link_to "Taxonomic CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"), 
-      :class => "delayedlink csvlink", 
-      "data-delayed-link-msg" => 
-        "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
+    <%= link_to "#{t(:taxonomic)} CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
+      :class => "delayedlink csvlink",
+      "data-delayed-link-msg" =>
+        t(:please_hold_on_while_the_file_is_generated),
       :rel => "nofollow" %>
   </div>
 </div>
 
 <div class="last column span-7">
   <div id="sidebar">
-    <% if @list.editable_by?(current_user) %>
-    <div id="add" class="clear">
-      <%= link_to_function t(:add_batch), "$('#add_batch_dialog').jqmShow()", :class => "right small", :style => 'padding-top: 3px' %>
-      <h3>
-        <%= link_to_function(
-          t(:add_to_your_list), 
-          "$('#new_listed_taxon').slideToggle();",
-          :id => 'addlink') %>
-      </h3>
-      <%= render :partial => 'add_to_list' %>
-    </div>
+    <% if @allow_batch_adding %>
+      <div id="add" class="clear">
+        <%= link_to_function t(:add_batch), "$('#add_batch_dialog').jqmShow()", :class => "right small", :style => 'padding-top: 3px' %>
+        <h3>
+          <%= link_to_function(
+            t(:add_to_your_list),
+            "$('#new_listed_taxon').slideToggle();",
+            :id => 'addlink') %>
+        </h3>
+        <%= render :partial => 'add_to_list' %>
+      </div>
     <% end %>
-    
+
     <% unless @list.listed_taxa.empty? -%>
       <div id="stats" class="clear">
-        <a href="<%= url_for_params(:without => [:page, :taxon, :q]) %>" class="clear stat total<%= ' current' unless @filter_taxon %>">
-          <div class="readable title">
-            &nbsp;
-          </div>
-
-          <div class="barchart">
-            <%= render :partial => "shared/barchart_datum", :locals => { 
-              :value => @total_observed_taxa, 
-              :max => @total_listed_taxa, 
-              :label_text => "of #{@total_listed_taxa} taxa observed",
-              :min_value_label_width => 30 } %>
-          </div>
-        </a>
-        <% for grouper, count in @iconic_taxon_counts -%>
-          <%-
-            next unless count
-            if grouper.respond_to?(:common_name) && grouper.common_name
-              grouper_name = grouper.common_name.name rescue 'Unclassified'
-            elsif grouper.respond_to?(:name)
-              grouper_name = grouper.name
-            else
-              grouper_name = 'Unclassified'
-            end
-            grouper_class = grouper.name rescue 'Unknown'
-            url_params = {:taxon => grouper.id, :without => [:page, :q, :taxon, :iconic_taxon]}
-            if grouper_name.downcase == 'animals'
-              grouper_name = 'Other Animals'
-              url_params[:taxon] = nil
-              url_params[:iconic_taxon] = grouper.id
-            end
-          -%>
-          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params(url_params) %>">
+        <div id="innerstats"> 
+          <a href="<%= url_for(params.merge(:page => 1, :taxon => nil, :iconic_taxon => nil)) %>" class="clear stat total<%= ' current' unless @filter_taxon %>">
             <div class="readable title">
               &nbsp;
             </div>
-
             <div class="barchart">
               <%= render :partial => "shared/barchart_datum", :locals => {
-                :value => count, 
-                :max => @total_listed_taxa, 
-                :label_text => grouper_name } %>
+                :value => @total_observed_taxa,
+                :max => @total_listed_taxa,
+                :label_text => "#{t(:of)} #{@total_listed_taxa} #{t(:taxa_observed)}",
+                :min_value_label_width => 30 } %>
             </div>
           </a>
-        <% end %>
+          <% for grouper, count in @iconic_taxon_counts -%>
+            <% next unless (count && count != 0) %>
+            <% if grouper.respond_to?(:common_name) && grouper.common_name %>
+              <% grouper_name = grouper.common_name.name rescue 'Unclassified' -%>
+            <% elsif grouper.respond_to?(:name) %>
+              <% grouper_name = grouper.name -%>
+            <% else %>
+              <% grouper_name = t(:unclassified) -%>
+            <% end -%>
+            <%- grouper_name = t(:other_animals) if grouper_name == 'Animals' -%>
+            <%- grouper_class = grouper.name rescue 'Unknown' -%>
+            <% fill_in_params = params[:observed] ? {} : {taxon:"", observed: 't', rank: 'species', taxonomic_status: 'active'} %>
+            <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params({:iconic_taxon => grouper.id, :without => [:page, :q]}.merge(fill_in_params)) %>">
+              <div class="readable title">
+                &nbsp;
+              </div>
+
+              <div class="barchart">
+                <%= render :partial => "shared/barchart_datum", :locals => {
+                  :value => count, 
+                  :max => @total_listed_taxa, 
+                  :label_text => grouper_name } %>
+              </div>
+            </a>
+          <% end %>
+        
+          <form method="get">
+            <div class="clear stat <%= ' current' if @filter_taxon && !@filter_taxon.is_iconic? %>">
+              <div class="readable title">
+                &nbsp;
+              </div>
+              <div class="barchart">
+                <input id="taxonchooser" name="taxon" type="text" class="text" placeholder="<%= @filter_taxon ? @filter_taxon.name : (t :type_taxon_name) %>" value="<%= @filter_taxon.try(&:id) %>" style="width:200px"/>
+              </div>
+            </div>
+            <div class="clear" style="padding: 10px">
+              <div class="field">
+                <% if params[:iconic_taxon] %>
+                  <%= hidden_field_tag :iconic_taxon, params[:iconic_taxon] %>
+                <% end %>
+                <label><%=t :observed %></label>
+                <br>
+                <%= label :observed, :t do %>
+                  <%= radio_button_tag :observed, :t, @observed == 't'%>
+                  <%= t(:yes).downcase %>
+                <% end -%>
+                <%= label :observed, :f do %>
+                  <%= radio_button_tag :observed, :f, @observed == 'f'%>
+                  <%= t(:no).downcase %>
+                <% end -%>
+                <%= label :observed, nil do %>
+                  <%= radio_button_tag :observed, nil, @observed.blank?%>
+                  <%= t(:any) %>
+                <% end -%>
+              </div>
+              <div class="field">
+                <label><%=t :rank %></label>
+                <br>
+                <%= label :rank, :species do %>
+                  <%= radio_button_tag :rank, :species, @rank == "species"%>
+                  <%= t(:species).downcase %>
+                <% end -%>
+                <%= label :rank, :leaves do %>
+                  <%= radio_button_tag :rank, :leaves, @rank == "leaves"%>
+                  <%= t(:leaves).downcase %>
+                <% end -%>
+                <%= label :rank, :all do %>
+                  <%= radio_button_tag :rank, :all, @rank=='all'%>
+                  <%= t(:any).downcase %>
+                <% end -%>
+              </div>
+              <div class="field">
+                <label><%=t :taxonomic_status %></label>
+                <br>
+                <%= label :taxonomic_status, :active do %>
+                  <%= radio_button_tag :taxonomic_status, :active, @taxonomic_status == 'active'%>
+                  <%= t(:active).downcase %>
+                <% end -%>
+                <%= label :taxonomic_status, :inactive do %>
+                  <%= radio_button_tag :taxonomic_status, :inactive, @taxonomic_status == 'inactive' %>
+                  <%= t(:inactive).downcase %>
+                <% end -%>
+                <%= label :taxonomic_status, :all do %>
+                  <%= radio_button_tag :taxonomic_status, :all, @taxonomic_status == 'all'%>
+                  <%= t(:any).downcase %>
+                <% end -%>
+              </div>
+              <input type="submit" class="default button" value="Filter" />
+            </div>
+          </form>
+        </div><!-- / innerstats -->
       </div><!-- /stats -->
-    <% end -%>
+    <% end -%> 
   </div><!-- /sidebar -->
 </div>
 

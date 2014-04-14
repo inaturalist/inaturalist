@@ -37,14 +37,14 @@
     $(controls).css({
       'text-align': 'right'
     });
-    var button = $('<a id="latLonSelectorSearchButton" href="#">Search</a>');
+    var button = $('<a id="latLonSelectorSearchButton" href="#">'+I18n.t('search')+'</a>');
     $(button).css(options.buttonCSS);
     $(button).click(function(e) {
       var input = getCurrentInput();
       $.fn.latLonSelector.lookup($(input).val());
       return false;
     });
-    var clear = $('<a href="#">Clear</a>').css({'margin-right': '1em'});
+    var clear = $('<a href="#">'+I18n.t('clear')+'</a>').css({'margin-right': '1em'});
     $(clear).click(function(e) {
       var input = getCurrentInput();
       $.fn.latLonSelector.updateFormLatLon('', '');
@@ -155,7 +155,7 @@
         setExact(this.checked);
         getMarker({exact: this.checked});
       }).hide(),
-      $('<label for="latLonSelectorExactFlag">Exact location</label>').hide()
+      $('<label for="latLonSelectorExactFlag">'+I18n.t('exact_location')+'</label>').hide()
     );
     $(wrapper).append(dataControls);
   }
@@ -231,6 +231,9 @@
         longitudeField = findFormField(input, 'longitude'),
         f = function() {
           var point = new google.maps.LatLng($(latitudeField).val(), $(longitudeField).val())
+          if (accuracyField) {
+            accuracyField.change()
+          }
           getMarker().setPosition(point);
           $.fn.latLonSelector._map.setCenter(point)
           if ($.fn.latLonSelector._circle) {
@@ -304,10 +307,11 @@
     $(findFormField($.fn.latLonSelector._currentInput, 'positioning_device')).val('manual')
     if ($.fn.latLonSelector._circle) {
       $.fn.latLonSelector._circle.setCenter(marker.getPosition())
-      if (!$.fn.latLonSelector._circle.getEditable()) {
-        $.fn.latLonSelector.setAccuracy(null)
-        $.fn.latLonSelector.updateFormAccuracy(null)
-      }
+    }
+    if (!$.fn.latLonSelector._circle || !$.fn.latLonSelector._circle.getEditable()) {
+      var accuracy = $.fn.latLonSelector.boundsToAccuracy(map.getBounds()) / 10
+      $.fn.latLonSelector.setAccuracy(accuracy)
+      $.fn.latLonSelector.updateFormAccuracy(accuracy)  
     }
   }
   
@@ -342,6 +346,8 @@
   }
   
   $.fn.latLonSelector.updateFormLatLon = function(lat, lon) {
+    lat = preciseRound(lat, 6)
+    lon = preciseRound(lon, 6)
     var input = $.fn.latLonSelector._currentInput;
     var latField = findFormField(input, 'latitude');
     var lonField = findFormField(input, 'longitude');
@@ -508,15 +514,20 @@
       )
       
       if (viewport) {
-        var dNorthEast = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
-              viewport.getNorthEast().lat(), viewport.getNorthEast().lng()),
-            dSouthWest = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
-              viewport.getSouthWest().lat(), viewport.getSouthWest().lng()),
-            accuracy = Math.max(dNorthEast, dSouthWest)
+        var accuracy = $.fn.latLonSelector.boundsToAccuracy(viewport, point)
         $.fn.latLonSelector.setAccuracy(accuracy, {lat: point.lat(), lng: point.lng()})
         $.fn.latLonSelector.updateFormAccuracy(accuracy, {positioningMethod: 'google', positioningDevice: 'google'})
       }
     })
+  }
+
+  $.fn.latLonSelector.boundsToAccuracy = function(bounds, point) {
+    point = point || bounds.getCenter()
+    var dNorthEast = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
+          bounds.getNorthEast().lat(), bounds.getNorthEast().lng()),
+        dSouthWest = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
+          bounds.getSouthWest().lat(), bounds.getSouthWest().lng())
+    return Math.max(dNorthEast, dSouthWest)
   }
   
   $.fn.latLonSelector.updateAccuracyWithGeocoderResult = function(result) {
@@ -532,8 +543,9 @@
     if (!$.fn.latLonSelector._circle) { 
       $.fn.latLonSelector.setAccuracy(null)
     }
-    var bounds = $.fn.latLonSelector._map.getBounds(),
-        center = bounds.getCenter(), 
+    var bounds = $.fn.latLonSelector._map.getBounds()
+    if (!bounds) {return}
+    var center = bounds.getCenter(), 
         northEast = bounds.getNorthEast(),
         mapAcc = iNaturalist.Map.distanceInMeters(center.lat(), center.lng(), northEast.lat(), northEast.lng()) / 5,
         defaultAcc = Math.max(mapAcc, 20),
@@ -570,7 +582,7 @@
   
   $.fn.latLonSelector.setAccuracy = function(accuracy, options) {
     options = options || {}
-    var inputOptions = $(getCurrentInput()).data('latLonSelectorOptions')
+    var inputOptions = $(getCurrentInput()).data('latLonSelectorOptions') || {}
     if (inputOptions.noAccuracy) {return};
     if (!$.fn.latLonSelector._circle) {
       $.fn.latLonSelector._circle = new google.maps.Circle({
@@ -620,6 +632,11 @@
       $.fn.latLonSelector._circle.setCenter($.fn.latLonSelector.currentMarker().getPosition())
     }
   }
+
+  $.fn.latLonSelector.zoomToAccuracy = function() {
+    if (!$.fn.latLonSelector._circle) { return }
+    $.fn.latLonSelector._map.fitBounds($.fn.latLonSelector._circle.getBounds())
+  }
   
   $.fn.latLonSelector.currentMarker = function() {
     return $.fn.latLonSelector._exactMarker.getVisible() ? $.fn.latLonSelector._exactMarker : $.fn.latLonSelector._approxMarker
@@ -639,7 +656,7 @@
       9: 13   // Premise (building name, property name, shopping center, etc.) level accuracy. (Since 2.105)
     };
     return dict[accuracy];
-  };
+  }
   
   $.fn.latLonSelector.COORDINATE_REGEX = /[-+]?[0-9]*\.?[0-9]+/g;
   $.fn.latLonSelector.parseLatLon = function(latLon) {
@@ -667,7 +684,7 @@
   };
   
   $.fn.latLonSelector.defaults = {
-    buttonImgPath: '/images/silk/world.png',
+    buttonImgPath: '/images/Gnome-emblem-web-16x16.png',
     wrapperCSS: {
       display: 'none',
       position: 'absolute',

@@ -9,12 +9,13 @@ class CalendarsController < ApplicationController
   
   def show
     @year   = params[:year] if params[:year].to_i != 0
-    @month  = params[:month] if params[:month].to_i != 0
-    @day    = params[:day] if params[:day].to_i != 0
+    @month  = params[:month].to_s.rjust(2, '0') if params[:month].to_i != 0
+    @day    = params[:day].to_s.rjust(2, '0') if params[:day].to_i != 0
     @date = [@year, @month, @day].compact.join('-')
     @observations = @selected_user.observations.
       on(@date).
-      limit(500).
+      page(1).
+      per_page(200).
       order_by("observed_on")
     if @day
       @observations = @observations.includes(:taxon => :taxon_names, :observation_photos => :photo)
@@ -40,14 +41,15 @@ class CalendarsController < ApplicationController
     ).sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
     
     unless @observations.blank?
-      scope = Observation.where([
-        "ST_Intersects(observations.geom, place_geometries.geom) " +
-        "AND places.id = place_geometries.place_id " + 
-        "AND places.place_type NOT IN (?) " +
-        "AND observations.user_id = ? ",
-        [Place::PLACE_TYPE_CODES['Country'], Place::PLACE_TYPE_CODES['State']],
-        @selected_user
+      scope = Observation.where(
+          "ST_Intersects(place_geometries.geom, observations.private_geom)")
+      scope = scope.where("places.id = place_geometries.place_id")
+      scope = scope.where("places.place_type NOT IN (?)", [
+        Place::PLACE_TYPE_CODES['Country'], 
+        Place::PLACE_TYPE_CODES['State'],
+        Place::PLACE_TYPE_CODES['Continent']
       ])
+      scope = scope.where("observations.user_id = ? ", @selected_user)
       scope = scope.where(Observation.conditions_for_date("observations.observed_on", @date))
       place_name_counts = scope.count(
         :from => "observations, places, place_geometries", 
@@ -68,15 +70,17 @@ class CalendarsController < ApplicationController
   def compare
     @dates = params[:dates].split(',')
     if @dates.blank?
-      flash[:notice] = "You must select dates to compare"
+      flash[:notice] = t(:you_must_select_dates_to_compare)
       redirect_back_or_default(calendar_path(@login))
     end
     @observations_by_date_by_taxon_id = {}
     @taxon_ids = []
+    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) unless params[:taxon_id].blank?
+    scope = Observation.includes(:iconic_taxon).scoped
+    scope = scope.of(@taxon) if @taxon
+    scope = scope.at_or_below_rank(params[:rank]) if params[:rank]
     @dates.each do |date|
-      observations = @selected_user.observations.
-        on(date).
-        all(:include => [:iconic_taxon])
+      observations = scope.by(@selected_user).on(date).all
       @taxon_ids += observations.map{|o| o.taxon_id}
       @observations_by_date_by_taxon_id[date] = observations.group_by{|o| o.taxon_id}
     end

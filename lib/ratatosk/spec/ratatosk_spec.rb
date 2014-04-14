@@ -124,6 +124,19 @@ describe Ratatosk, "searching" do
     taxon.reload
     taxon.unique_name.should_not be_nil
   end
+
+  it "should add names to existing taxa" do
+    load_test_taxa
+    ratatosk = Ratatosk::Ratatosk.new(:name_providers => [:col])
+    existing = Taxon.find_by_name('Calypte anna')
+    existing.should_not be_blank
+    results = ratatosk.find('Calypte anna')
+    puts "existing: #{existing}"
+    results.each do |tn|
+      puts "tn: #{tn}"
+      tn.taxon.should eq(existing)
+    end
+  end
 end
 
 describe Ratatosk, "grafting" do
@@ -247,17 +260,25 @@ describe Ratatosk, "grafting" do
   describe "to a locked subtree" do
     it "should fail" do
       @Amphibia.update_attributes(:locked => true)
-      taxon = Taxon.make!(:name => "Ensatina foobar")
+      taxon = Taxon.make!(:name => "Pseudacris foobar", :rank => Taxon::SPECIES)
       @ratatosk.graft(taxon)
       taxon.reload
+      taxon.should_not be_grafted
       taxon.ancestor_ids.should_not include(@Amphibia.id)
     end
 
     it "should flag taxa that could not be grafted" do
       @Amphibia.update_attributes(:locked => true)
-      taxon = Taxon.make!(:name => "Ensatina foobar")
+      @Amphibia.should be_valid
+      @Amphibia.should be_locked
+      # puts "Amphibia.locked: #{@Amphibia.locked}"
+      taxon = Taxon.make!(:name => "Pseudacris foobar", :rank => Taxon::SPECIES)
       lambda {
+        # puts "spec, grafting"
         @ratatosk.graft(taxon)
+        taxon.reload
+        # puts "taxon.ancestor_ids: #{taxon.ancestor_ids.inspect}"
+        taxon.should_not be_grafted
       }.should change(Flag, :count).by_at_least(1)
     end
   end

@@ -61,6 +61,25 @@ describe User do
       u = User.make!
       u.uri.should eq(FakeView.user_url(u))
     end
+
+    it "should set a default locale" do
+      u = User.make!
+      u.locale.should eq I18n.locale.to_s
+    end
+
+    it "should strip the login" do
+      u = User.make(:login => "foo ")
+      u.save
+      u.login.should eq "foo"
+      u.should be_valid
+    end
+
+    it "should strip the email" do
+      u = User.make(:email => "foo@bar.com ")
+      u.save
+      u.email.should eq "foo@bar.com"
+      u.should be_valid
+    end
   end
 
   #
@@ -79,6 +98,13 @@ describe User do
     end.should_not change(User, :count)
   end
 
+  it "should not allow duplicate emails" do
+    existing = User.make!
+    u = User.make(:email => existing.email)
+    u.should_not be_valid
+    u.errors['email'].should_not be_blank
+  end
+
   describe 'allows legitimate logins:' do
     ['whatisthewhat', 'zoooooolander', 'hello-_therefunnycharcom'].each do |login_str|
       it "'#{login_str}'" do
@@ -90,10 +116,10 @@ describe User do
     end
   end
   describe 'disallows illegitimate logins:' do
-    ['12', '123', '1234567890_234567890_234567890_234567890_', "tab\t", "newline\n",
+    ['12', '123', '1234567890_234567890_234567890_234567890_',
      "Iñtërnâtiônàlizætiøn hasn't happened to ruby 1.8 yet",
      'semicolon;', 'quote"', 'tick\'', 'backtick`', 'percent%', 'plus+', 
-     'space ', 'period.', 'm', 
+     'period.', 'm', 
      'this_is_the_longest_login_ever_written_by_man'].each do |login_str|
       it "'#{login_str}'" do
         lambda do
@@ -304,7 +330,7 @@ describe User do
     end
 
     it "should refresh check lists" do
-      t = Taxon.make!
+      t = Taxon.make!(:rank => "species")
       without_delay do
         make_research_grade_observation(:taxon => t, :user => @user, :latitude => @place.latitude, :longitude => @place.longitude)
       end
@@ -415,6 +441,29 @@ describe User do
     end
   end
 
+  describe "suspension" do
+    it "deletes unread sent messages" do
+      fu = User.make!
+      tu = User.make!
+      m = make_message(:user => fu, :from_user => fu, :to_user => tu)
+      m.send_message
+      m.to_user_copy.should_not be_blank
+      fu.suspend!
+      m.reload
+      m.to_user_copy.should be_blank
+    end
+
+    it "should not delete the suspended user's messages" do
+      fu = User.make!
+      tu = User.make!
+      m = make_message(:user => fu, :from_user => fu, :to_user => tu)
+      m.send_message
+      m.to_user_copy.should_not be_blank
+      fu.suspend!
+      Message.find_by_id(m.id).should_not be_blank
+    end
+  end
+
   describe "being unsuspended" do
 
     before do
@@ -426,18 +475,6 @@ describe User do
       @user.unsuspend!
       @user.should be_active
     end
-
-    # it 'reverts to passive state if activation_code and activated_at are nil' do
-    #   User.update_all :activation_code => nil, :activated_at => nil
-    #   @user.reload.unsuspend!
-    #   @user.should be_passive
-    # end
-
-    # it 'reverts to pending state if activation_code is set and activated_at is nil' do
-    #   User.update_all :activation_code => 'foo-bar', :activated_at => nil
-    #   @user.reload.unsuspend!
-    #   @user.should be_pending
-    # end
   end
   
   describe "licenses" do
@@ -457,6 +494,15 @@ describe User do
       u.update_attributes(:make_photo_licenses_same => true)
       p.reload
       p.license.should == Photo.license_number_for_code(Observation::CC_BY)
+    end
+
+    it "should not update GoogleStreetViewPhotos" do
+      u = User.make!
+      p = GoogleStreetViewPhoto.make!(:user => u)
+      u.preferred_photo_license = Observation::CC_BY
+      u.update_attributes(:make_photo_licenses_same => true)
+      p.reload
+      p.license.should == Photo::COPYRIGHT
     end
   end
 
@@ -480,9 +526,12 @@ describe User, "merge" do
     @keeper = User.make!
     @reject = User.make!
   end
+  
   it "should move observations" do
     o = Observation.make!(:user => @reject)
-    @keeper.merge(@reject)
+    without_delay do
+      @keeper.merge(@reject)
+    end
     o.reload
     o.user_id.should == @keeper.id
   end
@@ -523,5 +572,60 @@ describe User, "suggest_login" do
     suggestion = User.suggest_login("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor")
     suggestion.should_not be_blank
     suggestion.size.should be <= User::MAX_LOGIN_SIZE
+  end
+end
+
+describe User, "community taxa preference" do
+  it "should not remove community taxa when set to false" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should eq i1.taxon
+    o.user.update_attributes(:prefers_community_taxa => false)
+    Delayed::Worker.new.work_off
+    o.reload
+    o.taxon.should be_blank
+  end
+
+  it "should set observation taxa to owner's ident when set to false" do
+    owners_taxon = Taxon.make!
+    o = Observation.make!(:taxon => owners_taxon)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should eq o.community_taxon
+    o.user.update_attributes(:prefers_community_taxa => false)
+    Delayed::Worker.new.work_off
+    o.reload
+    o.taxon.should eq owners_taxon
+  end
+
+  it "should not set observation taxa to owner's ident when set to false for observations that prefer community taxon" do
+    owners_taxon = Taxon.make!
+    o = Observation.make!(:taxon => owners_taxon, :prefers_community_taxon => true)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should eq o.community_taxon
+    o.user.update_attributes(:prefers_community_taxa => false)
+    Delayed::Worker.new.work_off
+    o.reload
+    o.taxon.should eq o.community_taxon
+  end
+
+  it "should change observation taxa to community taxa when set to true" do
+    o = Observation.make!
+    o.user.update_attributes(:prefers_community_taxa => false)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should be_blank
+    o.user.update_attributes(:prefers_community_taxa => true)
+    Delayed::Worker.new.work_off
+    o.reload
+    o.taxon.should eq o.community_taxon
   end
 end

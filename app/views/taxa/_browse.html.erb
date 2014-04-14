@@ -5,7 +5,7 @@
   <%= hidden_field_tag :view, @view %>
   <%= hidden_field_tag :is_active, @is_active %>
   <%= text_field_tag 'q', params[:q], :class => 'text' %>
-  <input type="submit" class="default button" value="Go" />
+  <input type="submit" class="default button" value="<%= t :go %>" />
   <%= link_to t(:clear), url_for_params(:without => :q), :class => 'delete button' %>
   <div class="inter">
     <%= render(:partial => "shared/page_results", :object => @taxa) unless @taxa.nil? %>
@@ -21,14 +21,16 @@
     
     <% unless @iconic_taxa.blank? %>
       <span class="description">| </span>
-      <%= @iconic_taxa.map do |it|
-        link_to(default_taxon_name(it, :use_iconic_taxon_display_name => true), it, :class => "taxon #{it.name}")
-      end.join(', ') %>
+      <%- @iconic_taxa.map do |it| -%>
+
+        <%= link_to(t("all_taxa.#{default_taxon_name(it, :use_iconic_taxon_display_name => true).gsub(' ','_').gsub('-','_').downcase}",
+                        :default => default_taxon_name(it, :use_iconic_taxon_display_name => true)), it, :class => "taxon #{it.name}") %>
+      <%- end.join(', ') -%>
     <% end %>
     
     <% unless @colors.blank? %>
       <span class="description">| </span>
-      <%= @colors.map{|c| content_tag(:span, c.value, :class => "color #{c.value}")}.join(', ').html_safe %>
+      <%= @colors.map{|c| content_tag(:span, t(c.value, :default=>c.value), :class => "color #{c.value}")}.join(', ').html_safe %>
     <% end %>
   </div>
   
@@ -70,7 +72,7 @@
           <%- selected = @iconic_taxa_ids && @iconic_taxa_ids.include?(iconic_taxon.id) -%>
           <div class="facet_value<%= ' selected' if selected %>">
             <%= link_to('&times;'.html_safe, url_for_params(:without => [:iconic_taxa, :page]), :rel => "nofollow", :class => 'right description') if selected %>
-            <%= link_to default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true), 
+            <%= link_to t("all_taxa.#{default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true).gsub(' ','_').gsub('-','_').downcase}", :default=>default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true)),
               url_for_params(:iconic_taxa => iconic_taxon.id, :without => :page), 
               :rel => "nofollow",
               :class => "taxon #{iconic_taxon.name}" %>
@@ -80,7 +82,7 @@
       </div>
     </div>
   <% end %>
-  
+
   <% unless @faceted_colors.blank? && @colors.blank? -%>
     <div id="colors_facet" class="facet">
       <strong>
@@ -110,7 +112,7 @@
               <%= link_to "+", url_for_params(:colors => (@color_ids + [color.id]).uniq.join(','), :without => :page), :rel => "nofollow", :class => 'right' %>
             <% end %>
             <%= link_to "&nbsp;".html_safe, url_for_params(:colors => color.id, :without => :page), :rel => "nofollow", :class => 'icon' %>
-            <%= link_to color.value, url_for_params(:colors => color.id, :without => :page), :rel => "nofollow" %>
+            <%= link_to t(color.value, :default=>color.value), url_for_params(:colors => color.id, :without => :page), :rel => "nofollow" %>
             (<span class="count"><%= number_with_delimiter @facets[:colors][color.id] %></span>)
           </div>
         <% end %>
@@ -124,7 +126,7 @@
         <% if @places.blank? -%>
           <%= link_to_toggle t(:places), "#places", :class => 'open' %>
         <% else %>
-          <%= link_to t(:all_places).html_safe, url_for_params(:without => [:page, :places]), :rel => "nofollow" %>
+          <%= link_to "&laquo; #{t(:all_places)}".html_safe, url_for_params(:without => [:page, :places]), :rel => "nofollow" %>
         <% end -%>
       </strong>
 
@@ -195,7 +197,7 @@
         <ul class="taxon_links">
           <% for iconic_taxon in @all_iconic_taxa %>
             <li>
-              <%= link_to default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true), 
+              <%= link_to t("all_taxa.#{default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true).downcase.gsub(' ','_').gsub('-','_')}", :default=>default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true)),
                 url_for_params(:taxon_id => iconic_taxon.id), 
                 :rel => "nofollow",
                 :class => "taxon #{iconic_taxon.name}" %>
@@ -211,7 +213,7 @@
           <% for color in @all_colors %>
             <li class="facet_value <%= color.value %>">
               <%= link_to "&nbsp;".html_safe, url_for_params(:colors => color.id), :rel => "nofollow", :class => 'icon' %>
-              <%= link_to color.value, url_for_params(:colors => color.id), :rel => "nofollow" %>
+              <%= link_to t(color.value, :default=>color.value), url_for_params(:colors => color.id), :rel => "nofollow" %>
             </li>
           <% end %>
         </ul>
@@ -260,38 +262,46 @@
 <% if logged_in? -%>
   <div id="external_search" class="last column span-24">
     <div class="quiet clear box">
-      <h3><% t(:not_seeing_what_looking_for) %></h3>
+      <h3><%= t(:not_seeing_what_looking_for) %></h3>
       <p>
         <%= t(:sorry_how_about_we_try_repeat) %>
       </p>
-      <div class="column span-6">
-        <%= form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
-          <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
-          <label for="q">
-            <%=t (:search) %> <a href="http://www.catalogueoflife.org"><%= t :catalogue_of_life %></a>
-          </label>
-          <%= text_field_tag 'q', params[:q], :class => 'text' %>
-          <input type="hidden" name="all_names" value="true"/>
-          <input type="hidden" name="include_external" value="true"/>
-          <input type="hidden" name="external_src" value="col"/>
-          <input type="submit" class="button" value="<%=raw t(:search_catalogue_of_life_raquo) %>">
-        <% end %>
-      </div>
-      <div class="column span-6">
-        <%= form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
-          <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
-          <label for="q"><%= t(:search)  %> <a href="http://www.ubio.org"><%= t :ubio %></a></label>
-          <%= text_field_tag 'q', params[:q], :class => 'text' %>
-          <input type="hidden" name="all_names" value="true"/>
-          <input type="hidden" name="force_external" value="true"/>
-          <input type="hidden" name="external_src" value="ubio"/>
-          <input type="submit" class="button" value="<%=raw t :search_ubio_raquo %>"/>
-        <% end %>
-      </div>
+      <% Ratatosk.name_providers.each_with_index do |np,i| %>
+        <div class="column span-7 <%= 'last' if i % 3 == 2 %>">
+          <%-
+            name = np.class.source.try(:title) || nil
+            name_key = np.class.name.split('::').last.gsub(/NameProvider/, '').underscore
+            short_name = name_key.humanize
+            name ||= short_name
+            name = t("name_providers.#{name.underscore}", :default => name)
+            url = np.class.source.try(:url)
+            code = np.class.name.split('::').last.gsub(/NameProvider/, '').downcase
+          -%>
+          <%= form_tag url_for(), :method => :get, :class => 'clear' do %>
+            <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
+            <div class="stacked">
+              <label for="q">
+                <% if url -%>
+                  <%= link_to name, url %>
+                <% else %>
+                  <%= name %>
+                <% end -%>
+              </label>
+            </div>
+            <div class="clear buttonrow">
+              <%= text_field_tag 'q', params[:q], :class => 'text' %>
+              <input type="hidden" name="all_names" value="true"/>
+              <input type="hidden" name="include_external" value="true"/>
+              <input type="hidden" name="external_src" value="<%= code %>"/>
+              <input type="submit" class="button" value="<%=raw t(:search) %>">
+            </div>
+          <% end %>
+        </div>
+      <% end %>
       <% if is_curator? -%>
-        <div class="column span-6">
+        <div class="column span-7">
           <label><%= t :still_no_luck? %></label>
-          <%= link_to t(:create_new_taxon), new_taxon_path(:name => params[:q]) %>
+          <%= link_to t(:create_new_taxon), new_taxon_path(:name => params[:q]), :class => "readmore" %>
         </div>
       <% end -%>
     </div>

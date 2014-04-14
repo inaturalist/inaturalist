@@ -228,18 +228,34 @@ describe Taxon, "set_iconic_taxon_for_observations_of" do
     obs.reload
     obs.iconic_taxon.name.should == @Amphibia.name
   end
+
+  it "should not change the iconc taxon for observations of other taxa" do
+    bird_obs = Observation.make!(:taxon => @Calypte_anna)
+    frog_obs = Observation.make!(:taxon => @Pseudacris_regilla)
+    bird_obs.iconic_taxon.should eq @Aves
+    frog_obs.iconic_taxon.should eq @Amphibia
+    @Pseudacris.update_attributes(:iconic_taxon => @Plantae)
+    Taxon.set_iconic_taxon_for_observations_of(@Pseudacris)
+    frog_obs.reload
+    frog_obs.iconic_taxon.should eq @Plantae
+    bird_obs.reload
+    bird_obs.iconic_taxon.should eq @Aves
+  end
   
   it "should NOT set the iconic taxa of observations of descendant taxa if they descend from a lower iconic taxon" do
     @Aves.should be_is_iconic
     @Chordata.should_not be_is_iconic
     @Calypte_anna.iconic_taxon_id.should be(@Aves.id)
+    @Calypte_anna.ancestor_ids.should include(@Aves.id)
+    @Calypte_anna.ancestor_ids.should include(@Chordata.id)
     obs = Observation.make!(:taxon => @Calypte_anna)
-    obs.iconic_taxon_id.should be(@Aves.id)
+    obs.iconic_taxon.should eq @Aves
     @Chordata.update_attributes(:iconic_taxon => @Plantae)
     Taxon.set_iconic_taxon_for_observations_of(@Chordata)
     @Calypte_anna.reload
-    @Calypte_anna.iconic_taxon_id.should be(@Aves.id)
-    obs.iconic_taxon_id.should be(@Aves.id)
+    @Calypte_anna.iconic_taxon.should eq @Aves
+    obs.reload
+    obs.iconic_taxon.should eq @Aves
   end
 end
 
@@ -352,9 +368,10 @@ describe Taxon, "tags_to_taxa" do
   end
   
   it "should work on taxonomic machine tags" do
-    taxa = Taxon.tags_to_taxa(['taxonomy:kingdom=Animalia', 'taxonomy:class=Aves'])
+    taxa = Taxon.tags_to_taxa(['taxonomy:kingdom=Animalia', 'taxonomy:class=Aves', 'taxonomy:binomial=Calypte anna'])
     taxa.should include(@Animalia)
     taxa.should include(@Aves)
+    taxa.should include(@Calypte_anna)
   end
 
   it "should not find inactive taxa" do
@@ -379,6 +396,40 @@ describe Taxon, "tags_to_taxa" do
     t = Taxon.make!(:name => 'Spizella')
     taxa = Taxon.tags_to_taxa(['Spizella'])
     taxa.should include(t)
+  end
+
+  it "should choose names before codes" do
+    code_name = TaxonName.make!(:name => "HOME", :lexicon => "AOU Codes")
+    name_name = TaxonName.make!(:name => "Golden-crowned Sparrow", :lexicon => "AOU Codes")
+    taxa = Taxon.tags_to_taxa([code_name.name, name_name.name])
+    taxa.first.should eq name_name.taxon
+  end
+
+  it "should not match a code if it's not an exact match" do
+    code_name = TaxonName.make!(:name => "HOME", :lexicon => "AOU Codes")
+    taxa = Taxon.tags_to_taxa([code_name.name.downcase])
+    taxa.should be_blank
+  end
+
+  it "should favor longer names" do
+    short_name = TaxonName.make!(:name => "bork", :lexicon => "English")
+    long_name = TaxonName.make!(:name => "Giant Dour-Crested Mopple Hopper", :lexicon => "English")
+    taxa = Taxon.tags_to_taxa([short_name.name, long_name.name])
+    taxa.first.should eq long_name.taxon
+  end
+
+  it "should work there are inexact matches" do
+    t = Taxon.make!
+    TaxonName.make!(:name => "Nutria", :taxon => t, :lexicon => "English")
+    TaxonName.make!(:name => "nutria", :taxon => t, :lexicon => "French")
+    Taxon.tags_to_taxa(%w(Nutria)).should include t
+  end
+
+  it "should not match problematic names" do
+    Taxon::PROBLEM_NAMES.each do |name|
+      t = Taxon.make!(:name => name.capitalize)
+      Taxon.tags_to_taxa([name, name.capitalize]).should be_blank
+    end
   end
 end
 
@@ -537,7 +588,7 @@ describe Taxon, "merging" do
   
   it "should destroy the reject" do
     @keeper.merge(@reject)
-    TaxonName.find_by_id(@reject.id).should be_nil
+    Taxon.find_by_id(@reject.id).should be_nil
   end
   
   it "should not create duplicate listed taxa" do
@@ -588,6 +639,7 @@ describe Taxon, "merging" do
     t2 = Taxon.make!
     t2.taxon_schemes << ts
     t1.merge(t2)
+    t1.reload
     t1.taxon_schemes.size.should eq(1)
   end
 
@@ -598,6 +650,23 @@ describe Taxon, "merging" do
     without_delay {@keeper.merge(reject)}
     o.reload
     o.iconic_taxon.should eq(@keeper.iconic_taxon)
+  end
+
+  it "should update subscriptions" do
+    s = Subscription.make!(:resource => @reject)
+    @keeper.merge(@reject)
+    s.reload
+    s.resource.should eq @keeper
+  end
+
+  it "should not alter with subscriptions to other classess" do
+    reject = Taxon.make!(:id => 888)
+    keeper = Taxon.make!(:id => 999)
+    o = Observation.make!(:id => 888)
+    s = Subscription.make!(:resource => o)
+    keeper.merge(reject)
+    s.reload
+    s.resource.should eq(o)
   end
 end
 
@@ -667,6 +736,62 @@ describe Taxon, "moving" do
     @Calypte.update_attributes(:parent => @Hylidae)
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}.should_not be_blank
+  end
+
+  it "should not queue a job to update descendant ancetries if skip_after_move set" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    @Calypte.update_attributes(:parent => @Hylidae, :skip_after_move => true)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}.should_not be_blank
+  end
+
+  it "should queue a job to update observation stats if there are observations" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    o = Observation.make!(:taxon => @Calypte)
+    Observation.of(@Calypte).count.should eq(1)
+    @Calypte.update_attributes(:parent => @Hylidae)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}.should_not be_blank
+  end
+
+  it "should not queue a job to update observation stats if there are no observations" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    Observation.of(@Calypte).count.should eq(0)
+    @Calypte.update_attributes(:parent => @Hylidae)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}.should be_blank
+  end
+
+  it "should update community taxa" do
+    fam = Taxon.make!(:rank => "family")
+    subfam = Taxon.make!(:rank => "subfamily", :parent => fam)
+    gen = Taxon.make!(:rank => "genus", :parent => fam)
+    sp = Taxon.make!(:rank => "species", :parent => gen)
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o, :taxon => subfam)
+    i2 = Identification.make!(:observation => o, :taxon => sp)
+    Identification.of(gen).exists?.should be_true
+    o.reload
+    o.taxon.should eq fam
+    Delayed::Worker.new.work_off
+    # [fam, subfam, gen, sp].each do |t|
+    #   t.reload
+    #   puts "before #{t.rank}: #{t.ancestry}, #{t.id}"
+    # end
+    without_delay do
+      # puts "moving #{gen} to #{subfam}"
+      gen.update_attributes(:parent => subfam)
+      # [fam, subfam, gen, sp].each do |t|
+      #   t.reload
+      #   puts "after #{t.rank}: #{t.ancestry}, #{t.id}"
+      # end
+      # Delayed::Worker.new.work_off
+    end
+    o.reload
+    o.taxon.should eq subfam
   end
   
 end
@@ -748,14 +873,14 @@ describe Taxon, "grafting" do
   end
 
   it "should set the parent of a species based on the polynom genus" do
-    t = Taxon.make!(:name => "Pseudacris foo", :rank => Taxon::SPECIES)
+    t = Taxon.make!(:name => "Pseudacris foo")
     t.graft
     t.parent.should eq(@Pseudacris)
   end
 end
 
 describe Taxon, "single_taxon_for_name" do
-  it "should find varities" do
+  it "should find varieties" do
     name = "Abies magnifica var. magnifica"
     t = Taxon.make!(:name => name, :rank => Taxon::VARIETY)
     t.should be_variety
@@ -768,6 +893,23 @@ describe Taxon, "single_taxon_for_name" do
     lambda {
       Taxon.single_taxon_for_name("(Foo").should eq(t)
     }.should_not raise_error
+  end
+
+  it "should find a valid name, not invalid synonyms within the same parent" do
+    name = "Foo bar"
+    parent = Taxon.make!
+    valid = Taxon.make!(:name => name, :parent => parent)
+    invalid = Taxon.make!(:parent => parent)
+    invalid.taxon_names.create(:name => name, :is_valid => false, :lexicon => TaxonName::SCIENTIFIC_NAMES)
+    Taxon.single_taxon_for_name(name).should eq(valid)
+  end
+
+  it "should find a single valid name among invalid synonyms" do
+    name = "Foo bar"
+    valid = Taxon.make!(:name => name, :parent => Taxon.make!)
+    invalid = Taxon.make!(:parent => Taxon.make!)
+    invalid.taxon_names.create(:name => name, :is_valid => false, :lexicon => TaxonName::SCIENTIFIC_NAMES)
+    Taxon.single_taxon_for_name(name).should eq(valid)
   end
 end
 
@@ -792,5 +934,16 @@ describe Taxon, "threatened?" do
     p.contains_lat_lng?(p.latitude, p.longitude).should be_true
     t = cs.taxon
     t.threatened?(:latitude => p.latitude, :longitude => p.longitude).should be_true
+  end
+end
+
+describe Taxon, "geoprivacy" do
+  it "should choose the maximum privacy relevant to the location" do
+    t = Taxon.make!(:rank => Taxon::SPECIES)
+    p = make_place_with_geom
+    cs_place = ConservationStatus.make!(:taxon => t, :place => p, :geoprivacy => Observation::PRIVATE)
+    cs_global = ConservationStatus.make!(:taxon => t)
+    o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :taxon => t)
+    o.should be_coordinates_private
   end
 end

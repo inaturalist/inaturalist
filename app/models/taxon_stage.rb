@@ -1,4 +1,10 @@
 class TaxonStage < TaxonChange
+
+  validate :has_no_inputs
+
+  def has_no_inputs
+    errors.add(:base, "cannot have inputs") if taxa.size > 0
+  end
   
   def add_input_taxon(t)
   end
@@ -12,7 +18,7 @@ class TaxonStage < TaxonChange
   end
 
   def output_taxa
-    [taxon]
+    [taxon].compact
   end
   
 end

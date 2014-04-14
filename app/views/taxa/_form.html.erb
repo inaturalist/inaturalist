@@ -6,7 +6,18 @@
   <%= error_messages_for :taxon %>
   <div class="last column span-24">
     <div class="column span-8">
-      <%= f.text_field :name, :class => "text", :required => true %>
+      <% if @taxon.new_record? || is_admin? || is_me?(@taxon.creator) -%>
+        <%= f.text_field :name, :class => "text", :required => true %>
+      <% else %>
+        <%= f.form_field :name do %>
+          <strong><%= @taxon.name %></strong>
+          <div class="meta">
+            <%= t :add_a %>
+            <%= link_to t(:taxon_swap), new_taxon_change_path(:type => "TaxonSwap", :input_taxon_ids => @taxon.id) %>
+            <%= t :if_you_want_to_change_the_name %>
+          </div>
+        <% end %>
+      <% end -%>
     </div>
     <div class="column span-8">
       <%= f.text_field :rank, :class => "text", :required => true %>
@@ -26,9 +37,9 @@
     
     <div class="stacked last column span-23">
       <div class="column span-12">
-        <%= f.text_field :parent_id, :label => "Parent ID", :value => taxon.parent_id, :class => 'text' %><br/>
+        <%= f.text_field :parent_id, :value => taxon.parent_id, :class => 'text' %><br/>
 
-        <%= label_tag :parent_name %><br/>
+        <%= label_tag t(:parent_name) %><br/>
         <%= text_field_tag :parent_name, taxon.parent ? taxon.parent.name : '', :id => 'parent_name', :class => 'text' %>
         <%= link_to_function t(:browse_all_species), "$('#taxonchooser').jqmShow();" %>
         <div class="description">
@@ -57,24 +68,24 @@
   
   <fieldset class="column span-24">
     <legend><%= t(:photos) %></legend>
-    <p class="description">
-      <%= t(:search_creative_commons_photos_on_flickr) %>
-    </p>
-    
-    <div class="clear">
-      <div id="taxon_photos" class="clear">
-        <% for photo in taxon.photos %>
-          <div class="photo">
-            <%= check_box_tag "#{photo.class.to_s.underscore.pluralize}[]", 
-                photo.native_photo_id, :checked => 'checked', :id => dom_id(photo) %>
-            <label for="<%= dom_id(photo) %>"><%= image_tag(photo.square_url) %></label>
+
+    <div id="taxon_photos" class="clear stacked">
+      <%= f.fields_for :taxon_photos do |tp| %>
+        <div class="taxon_photo">
+          <%= tp.hidden_field :photo_id %>
+          <%= tp.hidden_field :id %>
+          <%= tp.text_field :position, :class => "sortable-position", :label => false %>
+          <%= image_tag(tp.object.photo.small_url) %>
+          <div class="upstacked">
+            <%= link_to t(:view_photo), photo_path(tp.object.photo), :class => "readmore left", :target => "_blank" %>
+            <%= tp.check_box :_destroy, :label_after => true, :label => t(:delete), :wrapper => {:class => "right"} %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end -%>
     </div>
     
     <p class="ui">
-      or <label><%= t(:add_new_photos_by_their_ids) %></label><br/>
+      <label><%= t(:add_new_photos_by_their_ids) %></label><br/>
       <input type="text" class="text" name="flickr_photos[]" />&nbsp;
       <input type="text" class="text" name="flickr_photos[]" />&nbsp;
       <input type="text" class="text" name="flickr_photos[]" />
@@ -102,7 +113,7 @@
     <p class="ui">
       <%= f.text_field :wikipedia_title, :class => "text" %><br/>
       <span class="description">
-        <%= t(:the_title_of_the_wikipedia_article_we_use) %>
+        <%= t(:the_title_of_the_wikipedia_article_we_use).html_safe %>
       </span>
     </p>
     
@@ -153,12 +164,12 @@
           </div>
           <p class="ui">
             <%= f.text_field :source_identifier, :disabled => true, :class => "text" %>
-            <div class="description">Unique identifier of this taxon in the source database.</div>
+            <div class="description"><%= t :unique_identifier_of_this_taxon %></div>
           </p>
           
           <p class="ui">
             <%= f.text_field :source_url, :disabled => true, :class => "text" %>
-            <div class="description">URL of this taxon on the source's website</div>
+            <div class="description"><%= t :url_of_this_taxon_on_the_source_website %></div>
           </p>
         </div>
       <% end -%>
@@ -166,12 +177,11 @@
   </fieldset>
 
   <fieldset class="last column span-11">
-    <legend>Concept Status</legend>
-    <%= f.radio_button :is_active, true, :label_after => true, :label => "Active" %>
-    <%= f.radio_button :is_active, false, :label_after => true, :label => "Inactive" %>
+    <legend><%= t :concept_status %></legend>
+    <%= f.radio_button :is_active, true, :label_after => true, :label => t(:active).titleize %>
+    <%= f.radio_button :is_active, false, :label_after => true, :label => t(:inactive).titleize %>
     <div class="description">
-      Inactive taxon concepts are either taxonomically outdated or being staged for a a taxon change. 
-      Outdated concepts are kept to maintain history and compatability with some partner sites.
+      <%= t :inactive_taxon_concepts_are %>
     </div>
   </fieldset>
 
@@ -192,12 +202,12 @@
   
   <% if @taxon.species_or_lower? -%>
     <fieldset class="column span-24 twocolform">
-      <legend>Conservation Status</legend>
+      <legend><%= t :conservation_status %></legend>
       <div id="conservation_statuses">
         <%= f.fields_for :conservation_statuses, :builder => DefaultFormBuilder do |cs| %>
           <%= render "conservation_status_fields", :f => cs %>
         <% end -%>
-        <%= link_to_add_association 'add conservation status', f, :conservation_statuses %>
+        <%= link_to_add_association t(:add_conservation_status), f, :conservation_statuses %>
       </div>
     </fieldset>
   <% end -%>
@@ -207,17 +217,24 @@
     <%= link_to t(:cancel), taxon, :class => 'button' %>
     <%-
       pieces = []
+      pieces << t(:descendant_taxa) if @descendants_exist
       pieces << "listed taxa" if @listed_taxa_exist
       pieces << "identifications" if @identifications_exist
       pieces << "observations" if @observations_exist
-      msg = t(:it_has) 
-      msg += t(:descendant_taxa) if @descendants_exist
-      msg += t(:and) + " #{pieces.join(', ')} " + t(:of_it_and_its_descendants) unless pieces.empty?
+      msg = t(:it_has) + " " + commas_and(pieces) unless pieces.empty?
     -%>
-    <%= link_to t(:delete), taxon,
-                :method => :delete,
-                :confirm => t(:are_you_sure_want_delete_taxon, :msg => "#{msg}"),
-                :class => 'minor delete button' %>
+    <% if taxon.deleteable_by?(current_user) -%>
+      <%= link_to t(:delete), taxon,
+                  :method => :delete,
+                  :confirm => t(:are_you_sure_want_delete_taxon, :msg => "#{msg}"),
+                  :class => 'minor delete button' %>
+    <% else %>
+      <span class="inter meta">
+        <s><%=t :delete %></s>
+        <%=t :you_can_only_destroy_taxa_you_created %>
+      </span>
+
+    <% end -%>
     
     <% if @taxon_range %>
       <%= link_to t(:edit_taxon_range), edit_taxon_range_path(@taxon_range), :class => "right minor button" %>

@@ -17,7 +17,9 @@ class CheckList < List
   
   # TODO: the following should work through list rules
   # validates_uniqueness_of :taxon_id, :scope => :place_id
-
+  
+  MAX_RELOAD_TRIES = 60
+  
   def to_s
     "<#{self.class} #{id}: #{title} taxon_id: #{taxon_id} place_id: #{place_id}>"
   end
@@ -98,6 +100,9 @@ class CheckList < List
   # This is a loaded gun.  Please fire with discretion.
   def add_intersecting_taxa(options = {})
     return nil unless PlaceGeometry.exists?(["place_id = ?", place_id])
+    if place.straddles_date_line?
+      raise "Can't add intersecting taxa for places that span the dateline. Maybe it would work if we switched from geometries to geographies."
+    end
     ancestor = options[:ancestor].is_a?(Taxon) ? options[:ancestor] : Taxon.find_by_id(options[:ancestor])
     if options[:ancestor] && ancestor.blank?
       return nil
@@ -111,29 +116,26 @@ class CheckList < List
     end
   end
   
-  def add_observed_taxa
+  def add_observed_taxa(options = {})
     # TODO remove this when we move to GEOGRAPHIES and our dateline woes have (hopefully) ended
     return if place.straddles_date_line?
 
-    options = {
+    find_options = {
       :select => "DISTINCT ON (observations.taxon_id) observations.*",
       :order => "observations.taxon_id",
       :include => [:taxon, :user],
       :joins => "JOIN place_geometries ON place_geometries.place_id = #{place_id}",
       :conditions => [
-        "observations.quality_grade = ? AND " +
-        "(" +
-          "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-          "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))" +
-        ")",
+        "observations.quality_grade = ? AND ST_Intersects(place_geometries.geom, observations.private_geom)",
         Observation::RESEARCH_GRADE
       ]
     }
-    Observation.do_in_batches(options) do |o|
-      add_taxon(o.taxon)
+    Observation.do_in_batches(find_options) do |o|
+      add_taxon(o.taxon, options)
     end
   end
   
+  #For CheckLists, returns first_observation_id which represents the first one added to the site (e.g. not first date observed)
   def cache_columns_query_for(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
@@ -141,7 +143,12 @@ class CheckList < List
     ancestry_clause = [lt.taxon_ancestor_ids, lt.taxon_id].flatten.map{|i| i.blank? ? nil : i}.compact.join('/')
     <<-SQL
       SELECT
-        array_agg(CASE WHEN quality_grade = 'research' THEN o.id END) AS ids,
+        min(CASE WHEN quality_grade = 'research' THEN o.id END) AS first_observation_id,
+        max(
+          CASE WHEN quality_grade = 'research'
+          THEN (COALESCE(time_observed_at, observed_on)::varchar || ',' || o.id::varchar)
+          END
+        ) AS last_observation,
         count(*),
         (#{sql_key}) AS key
       FROM
@@ -149,16 +156,7 @@ class CheckList < List
           LEFT OUTER JOIN taxa t ON t.id = o.taxon_id 
           JOIN place_geometries pg ON pg.place_id = #{lt.place_id}
       WHERE
-        (
-          (
-            o.private_latitude IS NULL AND 
-            ST_Intersects(pg.geom, o.geom)
-          ) OR 
-          (
-            o.private_latitude IS NOT NULL AND 
-            ST_Intersects(pg.geom, ST_Point(o.private_longitude, o.private_latitude))
-          )
-        ) AND 
+        ST_Intersects(pg.geom, o.private_geom) AND 
         (
           o.taxon_id = #{lt.taxon_id} OR 
           t.ancestry = '#{ancestry_clause}' OR
@@ -199,6 +197,51 @@ class CheckList < List
       # re-apply list rules to the listed taxa
       listed_taxon.force_update_cache_columns = true
       listed_taxon.save
+      if !listed_taxon.valid?
+        Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
+          "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
+        listed_taxon.destroy
+      elsif listed_taxon.auto_removable_from_check_list?
+        listed_taxon.destroy
+      end
+    end
+    true
+  end
+  
+  def reload_and_refresh_now
+    job = CheckList.delay(:priority => USER_PRIORITY).reload_and_refresh_now(self)
+    Rails.cache.write(reload_and_refresh_now_cache_key, job.id)
+    job
+  end
+  
+  def reload_and_refresh_now_cache_key
+    "reload_and_refresh_now_#{id}"
+  end
+  
+  def refresh_now_without_reload
+    job = CheckList.delay(:priority => USER_PRIORITY).refresh_now_without_reload(self)
+    Rails.cache.write(refresh_now_without_reload_cache_key, job.id)
+    job
+  end
+  
+  def refresh_now_without_reload_cache_key
+    "refresh_now_without_reload_#{id}"
+  end
+  
+  def refresh_now(options = {})
+    find_options = {}
+    if taxa = options[:taxa]
+      find_options[:conditions] = ["list_id = ? AND taxon_id IN (?)", self.id, taxa]
+    else
+      find_options[:conditions] = ["list_id = ?", self.id]
+    end
+    
+    ListedTaxon.do_in_batches(find_options) do |listed_taxon|
+      if listed_taxon.primary_listing
+        ListedTaxon.update_cache_columns_for(listed_taxon)
+      else
+        listed_taxon.primary_listed_taxon.update_attributes_on_related_listed_taxa
+      end
       if !listed_taxon.valid?
         Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
           "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
@@ -325,5 +368,15 @@ class CheckList < List
       list.add_taxon(taxon, :force_update_cache_columns => true)
       list.add_taxon(taxon.species, :force_update_cache_columns => true) if taxon.rank_level < Taxon::SPECIES_LEVEL
     end
+  end
+
+  def find_listed_taxa_and_ancestry_as_hashes
+    listed_taxa_on_this_list_with_ancestry_string = ActiveRecord::Base.connection.execute("select listed_taxa.id, taxon_id, taxa.ancestry from listed_taxa, taxa where listed_taxa.taxon_id = taxa.id and list_id = #{id};")
+    listed_taxa_on_this_list_with_ancestry_string.map{|row| row['ancestry'] = row['ancestry'].split("/"); row }
+  end
+
+  def find_listed_taxa_and_ancestry_on_other_lists_as_hashes(list_ids)
+    listed_taxa_not_on_this_list_but_on_this_place_with_ancestry_string = ActiveRecord::Base.connection.execute("select listed_taxa.id, taxon_id, list_id, taxa.ancestry from listed_taxa, taxa where listed_taxa.taxon_id = taxa.id and list_id IN (#{list_ids.join(', ')})")
+    listed_taxa_on_other_lists_with_ancestry = listed_taxa_not_on_this_list_but_on_this_place_with_ancestry_string.map{|row| row['ancestry'] = (row['ancestry'].present? ? row['ancestry'].split("/") : []); row }
   end
 end

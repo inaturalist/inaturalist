@@ -1,0 +1,193 @@
+:css
+  .endpoint {position:relative;}
+  h3 {border-bottom: 1px solid #eee; line-height: 1.8;}
+  .endpoint .auth {position: absolute; top: 0; right: 0; top: 0.8em; }
+  .auth {color: deeppink;}
+  .gist .highlight {background-color:transparent;}
+  .gist .lines {margin-bottom: 0;}
+
+.column.span-6
+  {{nav Developers, API Reference}}
+.last.column.span-18
+  %p= desc
+
+  #toc.quiet.box
+    %strong Contents
+    %ul
+      %li
+        %a{:href => "#auth"} Authentication
+        %ul
+          %li
+            %a{:href => "#authorization_code_flow"} Authorization Code Flow
+          %li
+            %a{:href => "#resource_owner_password_credentials_flow"} Resource Owner Password Credentials Flow
+          %li
+            %a{:href => "#assertion_flow"} Assertion Flow
+          %li
+            %a{:href => "#bounce_flow"} Bounce Flow
+      %li
+        %a{:href => "#endpoints"} Endpoints
+        %ul
+          - for api_method in api_methods
+            %li
+              %a{:href => "##{api_method.title.parameterize}"}
+                = api_method.title
+    &nbsp;
+
+  %a{:name => "auth"}
+  %h2 Authentication
+  %p
+    iNaturalist is an OAuth2 provider and supports
+    %a{:href => "http://tools.ietf.org/html/rfc6749#section-4.1"} Authorization Code
+    and
+    %a{:href => "http://tools.ietf.org/html/draft-ietf-oauth-v2-25#page-9"} Resource Owner Password Credentials
+    flows, as well as some custom auth flows for 3rd party authentication. Methods marked
+    %em.auth Auth required
+    require authentication via one of the aforementioned methods. Please make
+    sure to use
+    %code https://www.inaturalist.org
+    as the base URL for authorization flows and for authenticated requests to
+    ensure passwords and access tokens are encrypted. Unfortunately we must
+    maintain the vanilla http endpoints for backward compatability, but all
+    future API users should make requests with SSL. Note that many PUT and
+    DELETE methods also check for ownership and will fail if you try to use
+    them when not authenticated as the user who owns the associated
+    resources.
+  %h3 Auth Examples
+  %p
+    Before you make any authenticated requests, you'll need to 
+    = succeed '.' do
+      %a{:href => "/oauth/applications/new"} create an iNat application
+    The
+    %code redirect_uri
+    should be functioning URL to which users will be
+    redirected upon successfully authorizing your app with access to the
+    user's iNat data.
+  %p
+    There are plenty of language-specific OAuth2 libraries out there, so
+    find one you like or get familiar enough with OAuth2 to construct
+    requests and manage redirect flows yourself. The following examples
+    use Ruby's
+    = succeed '.' do
+      %a{:href => "https://github.com/intridea/oauth2"} oauth2 gem
+
+  %a{:name => "authorization_code_flow"}
+  %h4 Authorization Code Flow
+  %p
+    This is what you'll want to use if your app is a web app. The rough
+    outline is you redirect your user to iNat, the user is offered the
+    choice to authorize your app with access to their iNat data, and if
+    they agree, they are redirected to the
+    %code redirect_uri
+    you specified with
+    an
+    %code access_token
+    in the params.
+  %script{:src => "https://gist.github.com/kueda/96394b87244fe6ea1457.js"}
+
+  %a{:name => "resource_owner_password_credentials_flow"}
+  %h4 Resource Owner Password Credentials Flow
+  %p
+    Retrieve an access token based on the user's iNat username and
+    password. This is more for desktop and mobile apps, not for web.
+  %script{:src => "https://gist.github.com/kueda/f4835782e1615932d85a.js"}
+
+  %a{:name => "assertion_flow"}
+  %h4 Assertion Flow
+  %p
+    This is roughly based on
+    %a{:href => "http://tools.ietf.org/html/draft-ietf-oauth-assertions-01#section-6.3"}
+      http://tools.ietf.org/html/draft-ietf-oauth-assertions-01#section-6.3
+    and used to retrieve an access token for a
+    user based on a 3rd party access token from Facebook or Google. It
+    assumes the user is already a member of iNat or wants to be, and
+    uses the 3rd party token to sign them up and / or authenticate them.
+    It returns an access token without the authorization step. This method
+    is only available to partners we're working with directly.
+  %script{:src => "https://gist.github.com/kueda/6f6b7da1734f897b3afc.js"}
+
+  %a{:name => "bounce_flow"}
+  %h4 Bounce Flow
+  %p
+    This is a custom auth flow for obtaining an access token based on 3rd party authentication
+    %em without
+    a pre-existing 3rd party access token. The client specifies a 3rd
+    party auth provider and the user is either authenticated through that
+    provider before returning an iNat access token. This method is only
+    available to partner's we're working with directly.
+  %p
+    To retrieve an access token using this method, you just need to send your user to
+    = succeed '.' do
+      %code /oauth/bounce?provider=PROVIDER&client_id=YOUR_CLIENT_ID
+    The options for
+    %code provider
+    are
+    %code facebook
+    and
+    = succeed '.' do
+      %code google
+    If auth is sucessful, the user should be redirected back to your app's
+    %code redirect_uri
+    with an
+    %code access_token
+    parameter.
+
+  %a{:name => "endpoints"}
+  %h2 Endpoints
+  %p
+    All of these endpoints should use
+    %code https://www.inaturalist.org
+    as the base URL, particularly endpoints that require auth.
+  - api_methods.each do |api_method|
+    .endpoint
+      %a{:name => api_method.title.parameterize}
+      %h3
+        = api_method.method.to_s.upcase
+        %code= api_method.path
+      - if api_method.auth_required
+        %em.auth Auth required
+      %p= api_method.desc
+
+      - if api_method.formats && api_method.formats.size > 0
+        %p.ui
+          %strong
+            Formats:
+            = api_method.formats.join(', ')
+      - if api_method.params && api_method.params.size > 0
+        %h4 Params
+        %dl
+          - for param in api_method.params
+            %dt= param.name
+            %dd= param.desc
+            - unless param.allowed_values.nil?
+              %dd
+                %label Allowed values:
+                - if param.allowed_values.is_a?(Range)
+                  = param.allowed_values.first
+                  to
+                  = param.allowed_values.last
+                - elsif param.allowed_values.is_a?(Array)
+                  = param.allowed_values.join(' | ')
+                - elsif param.allowed_values.is_a?(Hash)
+                  %dl
+                    - for k,v in param.allowed_values
+                      %dt= k
+                      %dd= v
+                - else
+                  = param.allowed_values
+              - if param.default
+                %dd
+                  %label Default:
+                  = param.default
+      - if api_method.examples.size > 0
+        - for example in api_method.examples
+          %h4 Example
+          %h5 
+            Request
+            - if api_method.method == :get
+              %a{:href => example.request, :rel => "nofollow"}
+                (try it)
+          %pre= example.request
+          %h5 Response
+          %pre= example.response
+      

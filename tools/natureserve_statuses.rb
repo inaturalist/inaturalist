@@ -13,6 +13,7 @@ where [options] are:
 EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
   opt :ancestor, "Ancestor taxon", :type => :string, :short => "-t"
+  opt :create_taxa, "Create taxa that don't exist.", :type => :boolean, :short => "-c"
   opt :min_id, "Minimum taxon id", :type => :integer
   opt :max_id, "Maximum taxon id", :type => :integer
   opt :api_key, "NatureServe API key", :type => :string, :short => "-k"
@@ -53,11 +54,14 @@ def rank2iucn(rank)
   when "3" then Taxon::IUCN_VULNERABLE
   when "4" then Taxon::IUCN_LEAST_CONCERN
   when "5" then Taxon::IUCN_LEAST_CONCERN
+  when "N" then Taxon::IUCN_NOT_EVALUATED
+  when "U" then Taxon::IUCN_DATA_DEFICIENT
   else Taxon::IUCN_LEAST_CONCERN
   end
 end
 
 def get_xml(url)
+  puts "getting #{url}" if OPTS[:debug]
   Nokogiri::XML(open(url))
 rescue Timeout::Error => e
   puts "  Timeout requesting #{url}, trying again..."
@@ -75,7 +79,6 @@ rescue OpenURI::HTTPError => e
 end
 
 def natureServeStatus2iNatStatus(status_node, taxon, name, url, place = nil)
-  # puts "status_node: #{status_node}"
   iucn = rank2iucn(status_node.at('roundedRank/code').text)
   existing = ConservationStatus.where(:taxon_id => taxon, :authority => "NatureServe", :place_id => place).first
 
@@ -90,9 +93,10 @@ def natureServeStatus2iNatStatus(status_node, taxon, name, url, place = nil)
   end
 
   if iucn < Taxon::IUCN_NEAR_THREATENED && existing.blank?
-    # puts "\tTaxon globally secure"
+    puts "\tTaxon secure or data deficient, skipping conservation status..."
   else
     desc = [status_node.at('roundedRank/description').try(:text), status_node.at('reasons').try(:text)].compact.join('. ').strip
+    puts "\tstatus: #{status_node.at('rank/code').text}" if OPTS[:debug]
     attrs = {
       :taxon => taxon,
       :place => place,
@@ -121,7 +125,7 @@ def natureServeStatus2iNatStatus(status_node, taxon, name, url, place = nil)
 end
 
 def work_on_uid(uid, options = {})
-  puts uid
+  print uid
   doc = options[:doc]
   unless doc
     uid_url = "https://services.natureserve.org/idd/rest/ns/v1.1/globalSpecies/comprehensive?uid=#{uid}&NSAccessKeyId=#{KEY}"
@@ -129,23 +133,45 @@ def work_on_uid(uid, options = {})
     doc = get_xml(uid_url)
   end
   unless doc
+    puts
     puts "\tCouldn't get response from NatureServe for #{uid}, skipping..."
     return
   end
-  unless name = doc.at('scientificName/unformattedName').text
+  if name = doc.at('scientificName/unformattedName').text
+    puts " (#{name})"
+  else
+    puts
     puts "\tCouldn't parse name for #{uid}"
     return
   end
+
+  url = doc.at('natureServeExplorerURI').text
 
   taxon = options[:taxon]
   taxon ||= Taxon.active.includes(:taxon_scheme_taxa).where("taxa.name = ? AND taxon_scheme_taxa.source_identifier = ?", name, uid).first
   taxon ||= Taxon.single_taxon_for_name(name)
   taxon ||= Taxon.active.find_by_name(name)
-  unless taxon
+  if OPTS[:create_taxa]
+    taxon ||= Taxon.new(
+      :name => name, :rank => Taxon::SPECIES, :source => SOURCE,
+      :source_url => url,
+      :source_identifier => uid,
+      :source => SOURCE
+    )
+    unless OPTS[:debug]
+      if taxon.save
+        taxon.graft_silently
+      end
+      puts "\tAdded taxon: #{taxon}"
+    end
+  end
+  if taxon && taxon.new_record? && !taxon.valid?
+    puts "\tCouldn't create taxon for #{uid} (#{name}): #{taxon.errors.full_messages.to_sentence}"
+    return
+  elsif taxon.blank?
     puts "\tCouldn't find taxon for #{uid} (#{name})"
     return
   end
-  url = doc.at('natureServeExplorerURI').text
   if gs = doc.at('globalStatus')
     natureServeStatus2iNatStatus(gs, taxon, name, url)
   end

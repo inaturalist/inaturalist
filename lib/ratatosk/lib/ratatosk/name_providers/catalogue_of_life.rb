@@ -14,7 +14,7 @@ module Ratatosk
           2012 Annual Checklist. Digital resource at
           www.catalogueoflife.org/col/. Species 2000: Reading, UK.
         EOT
-        ::Source.find_by_title("Catalogue of Life: 2012 Annual Checklist") || ::Source.create(
+        @source ||= ::Source.find_by_title("Catalogue of Life: 2012 Annual Checklist") || ::Source.create(
           :title => "Catalogue of Life: 2012 Annual Checklist",
           :in_text => "Bisby et al., 2012",
           :url => "http://www.catalogueoflife.org/annual-checklist/2012",
@@ -29,7 +29,7 @@ module Ratatosk
       def find(name)
         hxml = @service.search(:name => name, :response => 'full')
         unless hxml.errors.blank?
-          raise NameProviderError, "Failed to parse the response from the Catalogue of Life: #{hxml.errors}"
+          raise NameProviderError, "Failed to parse the response from the Catalogue of Life: #{hxml.errors.to_sentence}"
         end
         hxml.search('//result').map do |r|
           ColTaxonNameAdapter.new(r)

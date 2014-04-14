@@ -1,0 +1,23 @@
+- history_table = capture do
+  %table.wiki_history
+    %tr.wiki_history_header
+      %th.version=wt 'Version'
+      %th=wt 'Date'
+      %th.author=wt 'Author'
+      %th=wt 'Comment'
+    - versions.each do |v|
+      %tr
+        %td
+          = v.number
+          - if with_form
+            %input{:type => "radio", :name => "old", :value => v.number, :checked => (v == versions[1] ? 'true' : nil)}
+            %input{:type => "radio", :name => "new", :value => v.number, :checked => (v == versions[0] ? 'true' : nil)}
+        %td= l( v.updated_at, :format => :long )
+        %td= wiki_user( v.updator )
+        %td= v.comment
+- if with_form
+  %form.clear{:action => wiki_page_compare_path(@page), :method => "get"}
+    = history_table
+    = submit_tag t(:compare_selected_versions, :default => "Compare selected versions"), :class => "default button"
+- else
+  = history_table

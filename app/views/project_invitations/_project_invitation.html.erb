@@ -13,16 +13,16 @@
       <%= link_to truncate(h(pi.project.title), :length => truncation_length), pi.project %>
     </span>
     <nobr class="inlineblock right">
-      <span class="inter plain status" style="display:none">Added!</span>
+      <span class="inter plain status" style="display:none"><%= t :added! %></span>
       <% if is_me?(observation.user) -%>
-        <%= link_to "accept", add_project_observation_url(pi.project_id, :observation_id => pi.observation_id),
+        <%= link_to t(:accept), add_project_observation_url(pi.project_id, :observation_id => pi.observation_id),
           :remote => remote,
           :method => :post,
           "data-type" => remote ? "json" : nil,
           "data-project-id" => pi.project_id,
           "data-observation-id" => pi.observation_id,
           :class => "glaucous button acceptlink" %>
-        <%= link_to "remove", remove_project_observation_url(pi.project_id, :observation_id => pi.observation_id),
+        <%= link_to t(:remove), remove_project_observation_url(pi.project_id, :observation_id => pi.observation_id),
           :remote => remote,
           :method => :post,
           "data-type" => remote ? "json" : nil,
@@ -32,11 +32,11 @@
           :style => "display:none" %>
       <% end -%>
       <% if is_me?(observation.user) || is_me?(pi.user)  || curator_of?(pi.project) -%>
-        <%= link_to (is_me?(observation.user) ? "ignore" : "uninvite"), pi,
+        <%= link_to (is_me?(observation.user) ? t(:ignore) : t(:uninvite)), pi,
           :remote => remote,
           :method => :delete,
           "data-type" => remote ? "json" : nil,
-          :confirm => "Are you sure you want to remove this invitation?",
+          :confirm => t(:are_you_sure_you_want_to_remove_this_invitation),
           :class => "pale button ignorelink",
           "data-loading-click" => "" %>
       <% end -%>

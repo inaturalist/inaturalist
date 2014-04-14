@@ -1,9 +1,61 @@
 Inaturalist::Application.routes.draw do
+  apipie
+
+  resources :sites
+
+
+  id_param_pattern = %r(\d+([\w\-\%]*))
+  simplified_login_regex = /\w[^\.,\/]+/  
+  root :to => 'welcome#index'
+  
+  resources :guide_sections do
+    collection do
+      get :import
+    end
+  end
+  resources :guide_ranges do
+    collection do
+      get :import
+    end
+  end
+  resources :guide_photos
+  resources :guide_taxa do
+    member do
+      get :edit_photos
+      post :update_photos
+      post :sync
+    end
+  end
+  resources :guides do
+    collection do
+      get :search
+      get :user
+    end
+    member do
+      post :import_taxa
+      put :reorder
+      put :add_color_tags
+      put "add_tags_for_rank/:rank" => "guides#add_tags_for_rank"
+      put :remove_all_tags
+    end
+  end
+  match '/guides/:id.:layout.pdf' => 'guides#show', :via => :get, :as => "guide_pdf", :constraints => {:format => :pdf}, :defaults => {:format => :pdf}
+  match 'guides/user/:login' => 'guides#user', :as => :guides_by_login, :constraints => { :login => simplified_login_regex }
+
+
+  resources :messages, :except => [:edit, :update] do
+    collection do
+      get :count
+      get :new_messages
+    end
+  end
+
   match '/oauth/assertion_token' => 'provider_oauth#assertion', :via => :post
   match '/oauth/bounce' => 'provider_oauth#bounce', :as => "oauth_bounce"
   match '/oauth/bounce_back' => 'provider_oauth#bounce_back', :as => "oauth_bounce_back"
   use_doorkeeper do
-    controllers :applications => 'oauth_applications'
+    controllers :applications => 'oauth_applications',
+                :authorizations => 'oauth_authorizations'
   end
 
   wiki_root '/pages'
@@ -15,13 +67,7 @@ Inaturalist::Application.routes.draw do
     end
   end
 
-
-  id_param_pattern = %r(\d+([\w\-\%]*))
-  simplified_login_regex = /\w[^\.,\/]+/  
-
-  root :to => 'welcome#index'
-
-  resources :observation_field_values, :only => [:create, :update, :destroy]
+  resources :observation_field_values, :only => [:create, :update, :destroy, :index]
   resources :observation_fields
   match '/' => 'welcome#index'
   match '/home' => 'users#dashboard', :as => :home
@@ -35,12 +81,11 @@ Inaturalist::Application.routes.draw do
     post "session", :to => "users/sessions#create", :as => "user_session"
     get "signup", :to => "users/registrations#new"
     get "users/new", :to => "users/registrations#new", :as => "new_user"
+    get "/forgot_password", :to => "devise/passwords#new", :as => "forgot_password"
+    put "users/update_session", :to => "users#update_session"
   end
-  match '/register' => 'users#create', :as => :register, :via => :post
   
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
-  match '/forgot_password' => 'passwords#new', :as => :forgot_password
-  match '/change_password/:reset_code' => 'passwords#reset', :as => :change_password
   match '/toggle_mobile' => 'welcome#toggle_mobile', :as => :toggle_mobile
   match '/help' => 'help#index', :as => :help
   match '/auth/failure' => 'provider_authorizations#failure', :as => :omniauth_failure
@@ -66,7 +111,7 @@ Inaturalist::Application.routes.draw do
   resources :users, :except => [:new, :create]
   # resource :session
   # resources :passwords
-  resources :people, :controller => :users do
+  resources :people, :controller => :users, :except => [:create] do
     collection do
       get :search
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
@@ -78,17 +123,32 @@ Inaturalist::Application.routes.draw do
   match 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }, :method => :delete
   match 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
   match '/photos/:id/repair' => "photos#repair", :as => :photo_repair, :via => :put
-  resources :photos, :only => [:show, :update, :destroy]
+  resources :photos, :only => [:show, :update, :destroy] do
+    member do
+      put :rotate
+    end
+  end
   match 'picasa/unlink' => 'picasa#unlink', :method => :delete
 
-  resources :observation_photos, :only => :create
+  resources :observation_photos, :only => [:show, :create, :update, :destroy]
   match 'flickr/photos.:format' => 'flickr#photos', :via => :get
+  resources :soundcloud_sounds, :only => [:index]
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'fields', :as => 'extra_fields'
+    get 'community_taxon_summary'
     collection do
       get :upload
       post :photo
+      get :stats
+      get :taxa
+      get :taxon_stats
+      get :user_stats
+      get :export
+      post :email_export
+    end
+    member do
+      put :viewed_updates
     end
   end
 
@@ -100,6 +160,7 @@ Inaturalist::Application.routes.draw do
   match 'observations/delete_batch' => 'observations#delete_batch', :as => :delete_observation_batch, :via => :delete
   match 'observations/import' => 'observations#import', :as => :import_observations
   match 'observations/import_photos' => 'observations#import_photos', :as => :import_photos
+  post 'observations/import_sounds' => 'observations#import_sounds', :as => :import_sounds
   match 'observations/id_please' => 'observations#id_please', :as => :id_please, :via => :get
   match 'observations/selector' => 'observations#selector', :as => :observation_selector, :via => :get
   match '/observations/curation' => 'observations#curation', :as => :curate_observations
@@ -145,7 +206,8 @@ Inaturalist::Application.routes.draw do
   match 'projects/:id/invitations' => 'projects#invitations', :as => :invitations
   match 'projects/:project_id/journal/new' => 'posts#new', :as => :new_project_journal_post
   match 'projects/:project_id/journal' => 'posts#index', :as => :project_journal
-  match 'projects/:project_id/journal/:id' => 'posts#show', :as => :project_journal_post
+  match 'projects/:project_id/journal/:id' => 'posts#show', :as => :project_journal_post, :via => :get
+  match 'projects/:project_id/journal/:id' => 'posts#destroy', :as => :delete_project_journal_post, :via => :delete
   match 'projects/:project_id/journal/:id/edit' => 'posts#edit', :as => :edit_project_journal_post
   match 'projects/:project_id/journal/archives/:year/:month' => 'posts#archives', :as => :project_journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/ }
 
@@ -166,6 +228,7 @@ Inaturalist::Application.routes.draw do
   resources :project_assets, :except => [:index, :show]
   resources :project_observations, :only => [:create, :destroy]
   resources :custom_projects, :except => [:index, :show]
+
   match 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => simplified_login_regex }
   match 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => simplified_login_regex }, :followers => 'followers'
   match 'people/:login/following' => 'users#relationships', :as => :following_by_login, :constraints => { :login => simplified_login_regex }, :following => 'following'
@@ -187,7 +250,11 @@ Inaturalist::Application.routes.draw do
   match 'lists/:id/add_taxon_batch' => 'lists#add_taxon_batch', :as => :list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }, :via => :post
   match 'check_lists/:id/add_taxon_batch' => 'check_lists#add_taxon_batch', :as => :check_list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }, :via => :post
   match 'lists/:id/reload_from_observations' => 'lists#reload_from_observations', :as => :list_reload_from_observations, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  match 'lists/:id/reload_and_refresh_now' => 'lists#reload_and_refresh_now', :as => :list_reload_and_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  match 'lists/:id/refresh_now_without_reload' => 'lists#refresh_now_without_reload', :as => :list_refresh_now_without_reload, :constraints => { :id => /\d+([\w\-\%]*)/ }
   match 'lists/:id/refresh' => 'lists#refresh', :as => :list_refresh, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  match 'lists/:id/add_from_observations_now' => 'lists#add_from_observations_now', :as => :list_add_from_observations_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  match 'lists/:id/refresh_now' => 'lists#refresh_now', :as => :list_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
   match 'lists/:id/generate_csv' => 'lists#generate_csv', :as => :list_generate_csv, :constraints => { :id => /\d+([\w\-\%]*)/ }
   resources :comments do
     resources :flags
@@ -235,6 +302,7 @@ Inaturalist::Application.routes.draw do
   match 'taxa/:id/merge' => 'taxa#merge', :as => :merge_taxon
   match 'taxa/:id/merge.:format' => 'taxa#merge', :as => :formatted_merge_taxon
   match 'taxa/:id/observation_photos' => 'taxa#observation_photos', :as => :taxon_observation_photos
+  match 'taxa/observation_photos' => 'taxa#observation_photos'
   match 'taxa/:id/map' => 'taxa#map', :as => :taxon_map
   match 'taxa/map' => 'taxa#map', :as => :taxa_map
   match 'taxa/:id/range.:format' => 'taxa#range', :as => :taxon_range_geom
@@ -249,15 +317,22 @@ Inaturalist::Application.routes.draw do
   match 'journal/:login/archives/' => 'posts#archives', :as => :journal_archives, :constraints => { :login => simplified_login_regex }
   match 'journal/:login/archives/:year/:month' => 'posts#archives', :as => :journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/, :login => simplified_login_regex }
   match 'journal/:login/:id/edit' => 'posts#edit', :as => :edit_journal_post
-  resources :posts, :except => [:index]
+  resources :posts, :except => [:index], :constraints => { :id => id_param_pattern }
   resources :posts,
     :as => 'journal_posts',
     :path => "/journal/:login",
     :constraints => { :login => simplified_login_regex }
+  resources :trips, :constraints => { :id => id_param_pattern } do
+    member do
+      post :add_taxa_from_observations
+      delete :remove_taxa
+    end
+  end
   
   resources :identifications, :constraints => { :id => id_param_pattern } do
     resources :flags
   end
+  match 'identifications/bold' => 'identifications#bold', :via => :get
   match 'identifications/agree' => 'identifications#agree', :via => :post
   match 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }, :via => :get
   match 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
@@ -272,19 +347,25 @@ Inaturalist::Application.routes.draw do
   match 'places/:id/taxa.:format' => 'places#taxa', :as => :place_taxa, :via => :get
   match 'places/geometry/:id.:format' => 'places#geometry', :as => :place_geometry, :via => :get
   match 'places/guide/:id' => 'places#guide', :as => :place_guide, :via => :get
+  match 'places/guide' => 'places#guide', :as => :idendotron_guide, :via => :get
   match 'places/cached_guide/:id' => 'places#cached_guide', :as => :cached_place_guide, :via => :get
   match 'places/autocomplete' => 'places#autocomplete', :as => :places_autocomplete
   resources :places
   
-  match '/guide' => 'places#guide', :as => :guide
+  # match '/guide' => 'places#guide', :as => :guide
   resources :flags
   match 'admin' => 'admin#index', :as => :admin
   match 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"
   match 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content", :via => :delete
+  match 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user", :via => :put
   resources :taxon_ranges, :except => [:index, :show]
   match '/calendar/:login' => 'calendars#index', :as => :calendar
   match '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare
-  match '/calendar/:login/:year/:month/:day' => 'calendars#show', :as => :calendar_date
+  match '/calendar/:login/:year/:month/:day' => 'calendars#show', :as => :calendar_date, :constraints => {
+    :year => /\d+/,
+    :month => /\d+/,
+    :day => /\d+/
+  }
   
   resources :subscriptions, :only => [:index, :new, :edit, :create, :update, :destroy]
   match 'subscriptions/:resource_type/:resource_id' => "subscriptions#destroy", :as => :delete_subscription, :via => :delete

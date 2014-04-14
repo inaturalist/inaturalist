@@ -13,7 +13,7 @@ module HasSubscribers
       return if self.included_modules.include?(HasSubscribers::InstanceMethods)
       include HasSubscribers::InstanceMethods
       
-      has_many :update_subscriptions, :class_name => "Subscription", :as => :resource
+      has_many :update_subscriptions, :class_name => "Subscription", :as => :resource, :inverse_of => :resource
       has_many :subscribers, :through => :update_subscriptions, :source => :user
       has_many :updates, :as => :resource
       

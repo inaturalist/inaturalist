@@ -1,13 +1,17 @@
 <%-
-  listed_taxon ||= occurrence_field || @listed_taxon
+  listed_taxon ||= occurrence_field || @primary_listed_taxon || @listed_taxon
   list ||= listed_taxon.list || @list
 -%>
 <div class="occurrencefield">
   <div id="occurrence">
     <label><%=t :occurrence_status %>:</label>
-    <%= listed_taxon.occurrence_status || "unknown" %>
+    <% if listed_taxon.occurrence_status.blank? %>
+      <%= t(:unknown).downcase %>
+    <% else %>
+      <%= t("occurrence_status_levels.#{listed_taxon.occurrence_status}", :default => listed_taxon.occurrence_status) || t(:unknown).downcase %>
+    <% end -%>
     <% if list.listed_taxa_editable_by?(current_user) -%>
-      <%= link_to_function "edit", "$(this).parents('.occurrence').hide(); $(this).parents('.occurrencefield').find('form').show()",
+      <%= link_to_function t(:edit), "$(this).parents('.occurrence').hide(); $(this).parents('.occurrencefield').find('form').show()",
         :class => "small" %>
     <% end -%>
     <span class="occurrence_tip_target description helptip" rel="#occurrence_tip"></span>
@@ -17,10 +21,11 @@
         :id => dom_id(listed_taxon, "edit_occurrence"), 
         :class => "clear box listed_taxon_form smallbuttons inline buttonrow", 
         :style => "display: none"} do |f| %>
-      <%= f.select :occurrence_status_level, ListedTaxon::OCCURRENCE_STATUS_LEVELS.invert.to_a.sort_by(&:last).reverse, :include_blank => "unknown" %>
+      <%= f.select :occurrence_status_level, ListedTaxon::OCCURRENCE_STATUS_LEVELS.invert.to_a.sort_by(&:last).reverse.map{|s, v| [t("occurrence_status_levels.#{s}", :default => s), v]}, :include_blank => t(:unknown) %>
       <span class="occurrence_tip_target description helptip" rel="#occurrence_tip"></span>
-      <%= f.submit "Save", :class => "default button" %>
-      <%= link_to_function "Cancel", "$(this).parents('.occurrence'); $(this).parents('.occurrencefield').find('form').hide()", 
+      <%= f.submit t(:save), :class => "default button" %>
+      <%= f.hidden_field :establishment_means %>
+      <%= link_to_function t(:cancel), "$(this).parents('.occurrence'); $(this).parents('.occurrencefield').find('form').hide()",
         :class => "minor button" %>
     <% end %>
   <% end -%>

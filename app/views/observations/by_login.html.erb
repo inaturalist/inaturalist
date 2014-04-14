@@ -59,14 +59,14 @@
 <% end %>
 
 <% content_for(:extrajs) do %>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<%= javascript_include_tag 'inaturalist',
-                           'inaturalist/map3',
-                           "observations/filters",
-                           'jquery/plugins/jquery.labelize',
-                           'jquery/plugins/inat/checkboxes' %>
+  <%= google_maps_js %>
+  <%= javascript_include_tag 'inaturalist',
+                             'inaturalist/map3',
+                             "observations/filters",
+                             'jquery/plugins/jquery.labelize',
+                             'jquery/plugins/inat/checkboxes' %>
 
- <script type="text/javascript" charset="utf-8">
+  <script type="text/javascript" charset="utf-8">
     // define a function to be run after the window is fully loaded
     <% if !params[:nelat].blank? && !params[:nelng].blank? && !params[:swlat].blank? && !params[:swlng].blank? %>
       var bounds = new google.maps.LatLngBounds(
@@ -265,18 +265,33 @@
 
 <% content_for(:extrahead) do %>
   <link rel="alternate" type="application/atom+xml" title=<%= t(:recent_atom_observations_by, :login => @login ) %>  href="<%= url_for({:controller => 'observations', :action => 'by_login', :login => @login, :format => 'atom'}) %>" />
+  <meta property="og:title" content="<%=t :observations_by_user, :user => @login %>">
+  <meta property="og:url" content="<%= uri_join CONFIG.site_url, request.fullpath %>"/>
+  <%-
+    desc = t(:users_latest_observations_on_site, :user => @login, :site => SITE_NAME)
+  -%>
+  <meta property="og:description" content="<%= desc %>">
+  <% if @observations && (photo_obs = @observations.detect{|o| o.observation_photos_count > 0}) -%>
+    <% if photo = photo_obs.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/} -%>
+      <meta property="og:image" content="<%= photo.medium_url %>"/> 
+    <% end -%>
+  <% end -%>
+  <% if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
+    <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
+  <% end -%>
+  <meta name="twitter:card" content="summary">
 <% end %>
 
 <% unless @proj_obs_errors_obs.blank? -%>
   <div class="error">
-  <h3><%= raw t(:the_following_observations_could, :link=> "{link_to @project.title, @project}") %></h3>
+  <h3><%= raw t(:the_following_observations_could, :link => link_to(@project.title, @project)) %></h3>
     <ul>
       <% for o in @proj_obs_errors_obs %>
         <li class="clear stacked">
           <%= image_and_content observation_image(o, :style => "max-width: 48px; margin: 0 auto; display:block;") do %>
             <%= link_to o.to_plain_s(:user => false), o %>
             <div>
-              <%= @proj_obs_errors[:errors][o.id].join("<br/>") %>
+              <%= raw @proj_obs_errors[:errors][o.id].join("<br/>") %>
             </div>
           <% end %>
         </li>
@@ -295,7 +310,7 @@
         <%= link_to_function(t(:stop_editing), "batchEdit()", :id => "stop_batch_edit_button", :class => 'button') %>
         <%= link_to_function(t(:edit_selected), "editSelected()", :id => "edit_selected_button", :class => 'button') %>
         <span class="inter">
-          Select
+          <%= t :select %>
           <%= link_to_function(t(:all), "$('.observation .control input:checkbox').check()", :id => "select_all_button") %>
           |
           <%= link_to_function(t(:today), "selectToday()", :id => "select_today_button") %>
@@ -311,13 +326,13 @@
             <ul>
               <% for project_user in @project_users %>
                 <li class="inline buttonrow">
-                    <%= link_to_function "add", 
+                    <%= link_to_function t(:add),
                       "actOnSelected('#{add_project_observation_batch_path(project_user.project)}', {method: 'post'})",
-                      "data-loading-click" => "Adding...",
+                      "data-loading-click" => t(:adding),
                       :class => "glaucous button" %>
-                    <%= link_to_function "remove", 
+                    <%= link_to_function t(:remove),
                       "actOnSelected('#{remove_project_observation_batch_path(project_user.project)}', {method: 'post'})",
-                      "data-loading-click" => "Removing...",
+                      "data-loading-click" => t(:removing),
                       :class => "pale button" %>
                   <%= link_to h(project_user.project.title), project_user.project, :class => "inter" %>
                 </li>
@@ -377,20 +392,20 @@
   <%= link_to_function t(:redo_search_in_map_area),
     "redoSearchInMapArea()", 
     :id => 'redo_search_in_map_area_button',
-    "data-loading-click" => "Loading..." %>
+    "data-loading-click" => t(:loading) %>
 </div>
 
 <div class="last column span-24">
   <div id="feeds" class="small ui description">
     <% if is_me?(@selected_user) -%>
       <span>
-        <%= t :embed %>
+        <%= t :embed %>:
         <%= link_to t(:widget), observations_widget_path %>
       </span>
     <% end -%>
     
     <span class="feeds">
-      <%= t :feeds %>
+      <%= t :feeds %>:
       <%- 
         feed_params = request.query_parameters.reject do |key,value|
           ObservationsController::REJECTED_FEED_PARAMS.include?(key)
@@ -408,12 +423,8 @@
 
     <% if is_me?(@selected_user) -%>
       <span class="feeds">
-        <%= t :download %>
-        <%= link_to "CSV", observations_by_login_all_url(@login, :format => t(:csv)),
-          :class => "delayedlink csvlink", 
-          "data-delayed-link-msg" => 
-            "Please hold on while the file is generated.  It can take a couple minutes if you have a lot of observations.",
-          :rel => "nofollow" %>
+        <%= t :export %>:
+        <%= link_to(t(:csv),  export_observations_path(feed_params.merge(:user_id => @selected_user.login)), :class => 'csvlink', :rel => "nofollow") %>
       </span>
     <% end -%>
   </div>

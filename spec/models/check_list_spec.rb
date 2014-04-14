@@ -257,23 +257,24 @@ describe CheckList, "refresh_with_observation" do
   end
   
   it "should update old listed taxa when taxon changes" do
-    make_research_grade_observation(:latitude => @place.latitude, 
+    o1 = make_research_grade_observation(:latitude => @place.latitude, 
       :longitude => @place.longitude, :taxon => @taxon, :observed_on_string => "1 week ago")
     # it's the middle one, see?
-    o = make_research_grade_observation(:latitude => @place.latitude, 
+    o2 = make_research_grade_observation(:latitude => @place.latitude, 
       :longitude => @place.longitude, :taxon => @taxon, :observed_on_string => "3 days ago")
-    make_research_grade_observation(:latitude => @place.latitude, 
+    o3 = make_research_grade_observation(:latitude => @place.latitude, 
       :longitude => @place.longitude, :taxon => @taxon, :observed_on_string => "yesterday")
-    without_delay { CheckList.refresh_with_observation(o) }
+    without_delay { CheckList.refresh_with_observation(o2) }
     lt = @place.listed_taxa.find_by_taxon_id(@taxon.id)
-    lt.last_observation_id.should_not be(o.id)
-    lt.observations_count.should be(3)
+    lt.last_observation_id.should_not be(o2.id)
+    lt.observations_count.should eq 3
     
-    o.update_attributes(:taxon => Taxon.make!)
-    without_delay { CheckList.refresh_with_observation(o, :taxon_id_was => @taxon.id) }
+    o2.reload
+    o2.update_attributes(:taxon => Taxon.make!)
+    without_delay { CheckList.refresh_with_observation(o2, :taxon_id_was => @taxon.id) }
     lt = @check_list.listed_taxa.find_by_taxon_id(@taxon.id)
     lt.should_not be_blank
-    lt.observations_count.should be(2)
+    lt.observations_count.should eq 2
   end
   
   it "should not remove taxa just because obs obscured" do

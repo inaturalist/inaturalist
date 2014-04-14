@@ -1,0 +1,36 @@
+%p
+  This tool accepts the same URL parameters as <code>/observations</code>, but you must add at least one of the following parameters to use it:
+%dl
+  %dt
+    %code place_id
+  %dd
+    %div
+      Example:
+      = link_to url_for_params(:place_id => 'belgium'), url_for_params(:place_id => 'belgium')
+  %dt
+    %code user_id
+  %dd
+    %div
+      Example:
+      = link_to url_for_params(:user_id => 1), url_for_params(:user_id => 1)
+  %dt
+    %code projects
+  %dd
+    %div
+      Example:
+      = link_to url_for_params(:projects => 10), url_for_params(:projects => 10)
+  %dt
+    %code on
+  %dd
+    %div
+      Example:
+      = link_to url_for_params(:on => "2012-01-01"), url_for_params(:on => "2012-01-01")
+  %dt
+    %code d1
+    and
+    %code d2
+    (max date range 1 year)
+  %dd
+    %div
+      Example:
+      = link_to url_for_params(:d1 => "2012-01-01", :d2 => "2012-01-30"), url_for_params(:d1 => "2012-01-01", :d2 => "2012-01-30")

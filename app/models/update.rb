@@ -222,18 +222,19 @@ class Update < ActiveRecord::Base
     update_ids = []
     updates.each do |update|
       next unless update.notification == 'activity'
-      update_ids << update.id
-      clauses << "(subscriber_id = #{update.subscriber_id} AND resource_type = '#{update.resource_type}' AND resource_id = #{update.resource_id})"
-    end
-    unless clauses.blank?
-      update_ids.compact!
-      update_ids.uniq!
       Update.delay(:priority => USER_INTEGRITY_PRIORITY).delete_all([
-        "id < ? AND id NOT IN (?) AND notification = 'activity' AND (#{clauses.join(' OR ')})",
-        update_ids.min,
-        update_ids
+        "id < ? AND notification = 'activity' AND subscriber_id = ? AND resource_type = ? AND resource_id = ?", 
+        update.id, update.subscriber_id, update.resource_type, update.resource_id
       ])
     end
-    Update.delay(:priority => USER_INTEGRITY_PRIORITY).delete_all(["subscriber_id = ? AND created_at < ?", subscriber_id, 6.months.ago])
+    
+    unless Delayed::Job.where("handler LIKE '%Update%sweep_for_user% #{subscriber_id}\n%'").exists?
+      Update.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow", :run_at => 6.hours.from_now).sweep_for_user(subscriber_id)
+    end
+  end
+
+  def self.sweep_for_user(user_id)
+    return if user_id.blank?
+    Update.delete_all(["subscriber_id = ? AND created_at < ?", user_id, 6.months.ago])
   end
 end

@@ -1,17 +1,17 @@
 class Post < ActiveRecord::Base
   has_subscribers
   notifies_subscribers_of :parent, {
-    :on => [:update, :create], # new post => draft => publish triggers :update;  new post => publish trigers :create
+    :on => [:update, :create],
     :queue_if => lambda{|post| 
-      existing_updates = Update.where(:notifier_type => "Post", :notifier_id => post.id)
+      existing_updates = Update.where(:notifier_type => "Post", :notifier_id => post.id).scoped
       # destroy existing updates if user *unpublishes* a post
-      if !existing_updates.blank? && post.draft? 
-        existing_updates.destroy_all
+      if existing_updates.count > 0 && post.draft? 
+        existing_updates.delete_all
         return false
       end
-      return (post.parent_type == "Project" && !post.draft? && existing_updates.blank?)
+      return !post.draft? && existing_updates.blank?
     },
-    :notification => "created_project_post",
+    :notification => "created_post",
     :include_notifier => true
   }
   belongs_to :parent, :polymorphic => true
@@ -34,7 +34,7 @@ class Post < ActiveRecord::Base
   )
 
   ALLOWED_ATTRIBUTES = %w(
-    href src width height alt cite title class name xml:lang abbr value align
+    href src width height alt cite title class name xml:lang abbr value align style
   )
   
   def skip_update_for_draft
@@ -58,12 +58,21 @@ class Post < ActiveRecord::Base
   end
   
   def to_plain_s(options = {})
-    s = self.title
-    s += ", by #{self.user.login}" unless options[:no_user]
+    s = self.title || ""
+    s += ", by #{self.user.try(:login)}" unless options[:no_user]
     s
   end
   
   def draft?
     published_at.blank?
+  end
+
+  def published?
+    !published_at.blank? && errors[:published_at].blank?
+  end
+
+  def editable_by?(u)
+    return false unless u
+    user_id == u.id
   end
 end

@@ -5,12 +5,23 @@ class Assessment < ActiveRecord::Base
 
   validates_presence_of :project, :user, :taxon
 
-  has_many :sections, :foreign_key => 'assessment_id', :class_name => "AssessmentSection", :dependent => :destroy
+  has_many :sections, :order => 'display_order DESC', :foreign_key => 'assessment_id', :class_name => "AssessmentSection", :dependent => :destroy
   accepts_nested_attributes_for :sections, :allow_destroy => true
   validates_associated :sections
 
   scope :complete, where("completed_at IS NOT NULL")
   scope :incomplete, where("completed_at IS NULL")
+  scope :with_conservation_status, lambda {|authority, status, place|
+    scope = joins("INNER JOIN conservation_statuses ON assessments.taxon_id = conservation_statuses.taxon_id").
+    where("conservation_statuses.authority = ? AND conservation_statuses.status = ?", authority, status).scoped
+    scope = if place
+      scope.where("conservation_statuses.place_id = ?", place)
+    else
+      scope.where("conservation_statuses.place_id IS NULL")
+    end
+    scope
+  }
+  scope :dbsearch, lambda {|q| joins(:taxon).where("taxa.name ILIKE ? OR assessments.description ILIKE ?", "%#{q}%", "%#{q}%")}
 
   def taxon_name
      taxon.present? ? taxon.name : '<i>No Taxon</i>'.html_safe
@@ -18,7 +29,8 @@ class Assessment < ActiveRecord::Base
 
   def display_name
 	   taxon_scientific_name = taxon.present? ? taxon.name : ''
-	   "<i>#{taxon_name}</i> #{self.created_at.strftime('%Y')}".html_safe 
+	   description = self.description.blank? ? nil : self.description.truncate(60)
+	   "<i>#{taxon_name}</i> #{description}".html_safe 
   end
 
   def to_param

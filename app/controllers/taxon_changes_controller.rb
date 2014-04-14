@@ -63,12 +63,17 @@ class TaxonChangesController < ApplicationController
   end
   
   def show
+    unless @taxon_change.committed?
+      @existing = @taxon_change.input_taxa.map do |it|
+        TaxonChange.input_taxon(it).all.to_a
+      end.flatten.compact.uniq.reject{|tc| tc.id == @taxon_change.id}
+    end
   end
   
   def new
     @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
     @klass = Object.const_get(params[:type]) rescue nil
-    @klass = TaxonChange if @klass.blank? || @klass.superclass != TaxonChange
+    @klass = TaxonSwap if @klass.blank? || @klass.superclass != TaxonChange
     @taxon_change = @klass.new
     @input_taxa = Taxon.where("id in (?)", params[:input_taxon_ids])
     @output_taxa = Taxon.where("id in (?)", params[:output_taxon_ids])
@@ -109,6 +114,7 @@ class TaxonChangesController < ApplicationController
       redirect_to taxon_change_path(@taxon_change)
       return
     else
+      @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
       render :action => 'edit'
     end
   end

@@ -3,6 +3,7 @@ class TaxonNamesController < ApplicationController
   before_filter :load_taxon_name, :only => [:show, :edit, :update, :destroy]
   before_filter :load_taxon, :except => [:index]
   before_filter :curator_required_for_sciname, :only => [:create, :update, :destroy]
+  before_filter :load_lexicons, :only => [:new, :create, :edit, :update]
   
   cache_sweeper :taxon_name_sweeper, :only => [:create, :update, :destroy]
     
@@ -100,7 +101,7 @@ class TaxonNamesController < ApplicationController
     
     respond_to do |format|
       if @taxon_name.save
-        flash[:notice] = "Your name was saved."
+        flash[:notice] = t(:your_name_was_saved)
         format.html { redirect_to taxon_path(@taxon) }
         format.xml  { render :xml => @taxon_name, :status => :created, :location => @taxon_name }
       else
@@ -119,7 +120,7 @@ class TaxonNamesController < ApplicationController
     
     respond_to do |format|
       if @taxon_name.update_attributes(params[:taxon_name])
-        flash[:notice] = 'Taxon name was successfully updated.'
+        flash[:notice] = t(:taxon_name_was_successfully_updated)
         format.html { redirect_to(taxon_name_path(@taxon_name)) }
         format.xml  { head :ok }
       else
@@ -130,14 +131,20 @@ class TaxonNamesController < ApplicationController
   end
   
   def destroy
-    if @taxon_name.destroy
-      flash[:notice] = "Taxon name was deleted."
+    if @taxon_name == @taxon_name.taxon.scientific_name
+      msg = <<-EOT
+        You can't delete the default scientific name of a taxon. You might
+        want to add a new name or create a taxon change instead. See the
+        Curator Guide under Help for tips.
+      EOT
+      flash[:error] = msg
+    elsif @taxon_name.destroy
+      flash[:notice] = t(:taxon_name_was_deleted)
     else
-      flash[:error] = "Something went wrong deleting the taxon name '#{@taxon_name.name}'!"
+      flash[:error] = t(:something_went_wrong_deleting_the_taxon_name, :taxon_name => @taxon_name.name)
     end
     respond_to do |format|
       format.html { redirect_to(taxon_path(@taxon_name.taxon)) }
-      format.xml  { head :ok }
     end
   end
   
@@ -164,8 +171,15 @@ class TaxonNamesController < ApplicationController
       return true if params[:taxon_name].blank?
       return true if params[:taxon_name][:lexicon] != TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
     end
-    flash[:error] = "Only curators can add/edit scientific names."
+    flash[:error] = t(:only_curators_can_add_edit_scientific_names)
     redirect_back_or_default(@taxon)
     false
+  end
+
+  def load_lexicons
+    @lexicons = [
+      TaxonName::LEXICONS.values, 
+      TaxonName.select("DISTINCT ON (lower(lexicon)) lexicon").map(&:lexicon)
+    ].flatten.uniq.reject{|n| n.blank?}.sort
   end
 end

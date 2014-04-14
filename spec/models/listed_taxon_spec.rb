@@ -37,6 +37,7 @@ describe ListedTaxon do
     it "should set observations_month_counts" do
       @listed_taxon.observations_month_counts.should_not be_blank
     end
+
   end
   
   describe "creation for check lists" do
@@ -239,6 +240,21 @@ describe ListedTaxon do
       ListedTaxon.find_by_id(keeper.id).should_not be_blank
       ListedTaxon.find_by_id(reject.id).should be_blank
     end
+
+    it "should work for multiple duplicates" do
+      keeper = ListedTaxon.make!
+      rejects = []
+      3.times do
+        reject = ListedTaxon.make!(:list => keeper.list)
+        ListedTaxon.update_all("taxon_id = #{keeper.taxon_id}", "id = #{reject.id}")
+        rejects << reject
+      end
+      ListedTaxon.merge_duplicates
+      ListedTaxon.find_by_id(keeper.id).should_not be_blank
+      rejects.each do |reject|
+        ListedTaxon.find_by_id(reject.id).should be_blank
+      end
+    end
   end
   
   describe "cache_columns" do
@@ -332,16 +348,16 @@ describe ListedTaxon, "establishment means propagation" do
     child_listed_taxon.establishment_means.should be_blank
   end
 
-  it "should trickle down for invasive" do
+  it "should trickle down for introduced" do
     child_listed_taxon.establishment_means.should be_blank
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INVASIVE)
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
     child_listed_taxon.reload
     child_listed_taxon.establishment_means.should eq(place_listed_taxon.establishment_means)
   end
 
-  it "should not bubble up for invasive" do
+  it "should not bubble up for introduced" do
     parent_listed_taxon.establishment_means.should be_blank
-    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INVASIVE)
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
     parent_listed_taxon.reload
     parent_listed_taxon.establishment_means.should be_blank
   end
@@ -358,6 +374,29 @@ describe ListedTaxon, "establishment means propagation" do
     place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
     new_parent_listed_taxon.reload
     new_parent_listed_taxon.establishment_means.should be_blank
+  end
+
+  it "trickle down should be forceable" do
+    child_listed_taxon.establishment_means.should be_blank
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+    child_listed_taxon.reload
+    child_listed_taxon.establishment_means.should eq ListedTaxon::INTRODUCED
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+    place_listed_taxon.trickle_down_establishment_means(:force => true)
+    child_listed_taxon.reload
+    child_listed_taxon.establishment_means.should eq ListedTaxon::NATIVE
+  end
+
+  it "trickle should not update listed taxa for other places" do
+    sibling_place = Place.make!(:parent => parent)
+    sibling_lt = sibling_place.check_list.add_taxon(taxon, :establishment_means => ListedTaxon::NATIVE)
+    sibling_lt.establishment_means.should eq ListedTaxon::NATIVE
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+    place_listed_taxon.trickle_down_establishment_means(:force => true)
+    child_listed_taxon.reload
+    child_listed_taxon.establishment_means.should eq ListedTaxon::INTRODUCED
+    sibling_lt.reload
+    sibling_lt.establishment_means.should eq ListedTaxon::NATIVE
   end
 end
 
@@ -400,5 +439,117 @@ describe ListedTaxon, "parent check list syncing" do
     Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count.should eq(1)
     lt2 = ListedTaxon.make!(:list => @check_list)
     Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count.should eq(1)
+  end
+end
+
+describe "a listed taxon on a non checklist" do
+  before do
+    @taxon = Taxon.make!
+    @list = List.make!
+    @first_observation = Observation.make!(:taxon => @taxon)
+    @user = @first_observation.user
+    @last_observation = Observation.make!(:taxon => @taxon, :user => @user, :observed_on_string => 1.minute.ago.to_s)
+    @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @list)
+    @listed_taxon.reload
+  end
+
+  it "should not be a primary listing" do
+    @listed_taxon.should_not be_primary_listing
+  end
+end
+
+describe "primary_listing" do
+  before(:each) do
+    @taxon = Taxon.make!
+    @check_list = CheckList.make!
+    @check_list_two = CheckList.make!
+    @check_list_two.place = @check_list.place
+    @check_list_two.save
+    @check_list_two.reload
+    @first_observation = Observation.make!(:taxon => @taxon)
+    @user = @first_observation.user
+    @last_observation = Observation.make!(:taxon => @taxon, :user => @user, :observed_on_string => 1.minute.ago.to_s)
+    @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @check_list)
+    @listed_taxon.reload
+
+    @first_observation_two = Observation.make!(:taxon => @taxon)
+    @user_two = @first_observation_two.user
+    @last_observation_two = Observation.make!(:taxon => @taxon, :user => @user_two, :observed_on_string => 1.minute.ago.to_s)
+    @listed_taxon_two = ListedTaxon.make!(:taxon => @taxon, :list => @check_list_two)
+    @listed_taxon_two.reload
+    
+  end
+
+  it "should set as first as primary listing" do
+    @listed_taxon.primary_listing.should be(true)
+  end
+  it "should set second lt as primary listing = false" do
+    @listed_taxon_two.primary_listing.should be(false)
+  end
+  it "should override attributes (like establishment means) of the non-primary listed taxon" do
+    @listed_taxon.primary_listing.should be(true)
+    @listed_taxon.update_attribute(:establishment_means, "introduced")
+    @listed_taxon_two.reload
+    expect(@listed_taxon_two.establishment_means).to eq("introduced")
+  end
+  it "should reassign the primary to the second taxon when the original primary is destroyed" do
+    @listed_taxon.primary_listing.should be(true)
+    @listed_taxon.destroy
+    @listed_taxon_two.reload
+    @listed_taxon_two.primary_listing.should be(true)
+    @listed_taxon_two.destroy
+  end
+  it "should set each lt appropriately on update" do
+    @listed_taxon_two.update_attribute(:primary_listing, true)
+    @listed_taxon_two.primary_listing.should be(true)
+    @listed_taxon.reload
+    @listed_taxon.primary_listing.should be(false)
+  end
+end
+
+describe ListedTaxon, "force_update_cache_columns" do
+  before do
+    @place = make_place_with_geom
+    @check_list = CheckList.make!(:place => @place)
+    @lt = ListedTaxon.make!(:list => @check_list, :place => @place, :primary_listing => true)
+    @observation = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @lt.taxon)
+    Observation.in_place(@place).should include @observation
+    ListedTaxon.update_all(
+      ["first_observation_id = ?, last_observation_id = ?, observations_count = ?, observations_month_counts = ?",nil,nil,nil,nil], 
+      ["id = ?", @lt]
+    )
+    Delayed::Job.delete_all
+    Delayed::Job.count.should eq 0
+    @lt.reload
+    @lt.last_observation_id.should be_nil
+  end
+
+  it "should queue a job to update cache columns when not set" do
+    @lt.save 
+    Delayed::Job.count.should eq 1
+    @lt.reload
+    @lt.last_observation_id.should be_nil
+  end
+
+  it "should not queue a job to update cache columns if a job already exists" do
+    @lt.save 
+    Delayed::Job.count.should eq 1
+    @lt.reload
+    @lt.save
+    Delayed::Job.count.should eq 1
+  end
+
+  it "should not queue a job to update cache columns if set" do
+    Delayed::Job.delete_all
+    @lt.force_update_cache_columns = true
+    @lt.save
+    Delayed::Job.count.should eq 0
+  end
+
+  it "should force cache columns to be set" do
+    Delayed::Job.delete_all
+    @lt.force_update_cache_columns = true
+    @lt.save
+    @lt.last_observation_id.should eq @observation.id
   end
 end

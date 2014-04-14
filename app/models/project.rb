@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :user
-  belongs_to :place
+  belongs_to :place, :inverse_of => :projects
   has_many :project_users, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
   has_many :project_invitations, :dependent => :destroy
@@ -14,6 +14,7 @@ class Project < ActiveRecord::Base
   has_many :project_observation_fields, :dependent => :destroy, :inverse_of => :project, :order => "position"
   has_many :observation_fields, :through => :project_observation_fields
   has_many :posts, :as => :parent, :dependent => :destroy
+  has_many :journal_posts, :class_name => "Post", :as => :parent
   has_many :assessments, :dependent => :destroy
     
   before_save :strip_title
@@ -33,16 +34,26 @@ class Project < ActiveRecord::Base
   
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
+
+  preference :count_by, :string, :default => 'species'
   
   # For some reason these don't work here
   # accepts_nested_attributes_for :project_user_rules, :allow_destroy => true
   # accepts_nested_attributes_for :project_observation_rules, :allow_destroy => true
   accepts_nested_attributes_for :project_observation_fields, :allow_destroy => true
   
-  validates_length_of :title, :within => 1..85
+  validates_length_of :title, :within => 1..100
   validates_presence_of :user
+  validates_format_of :event_url, :with => URI.regexp, 
+    :message => "should look like a URL, e.g. #{CONFIG.site_url}",
+    :allow_blank => true
+  validates_presence_of :start_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
+  validates_presence_of :end_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
+  validate :place_with_boundary, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}
+  validate :one_year_time_span, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :unless => "errors.any?"
   
   scope :featured, where("featured_at IS NOT NULL")
+  scope :in_group, lambda {|name| where(:group => name) }
   scope :near_point, lambda {|latitude, longitude|
     latitude = latitude.to_f
     longitude = longitude.to_f
@@ -50,17 +61,49 @@ class Project < ActiveRecord::Base
     order("ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude}))")
   }
   scope :from_source_url, lambda {|url| where(:source_url => url) }
+  scope :in_place, lambda{|place|
+    place = Place.find(place) unless place.is_a?(Place) rescue nil
+    if place
+      conditions = place.descendant_conditions
+      conditions[0] += " OR places.id = ?"
+      conditions << place
+      joins(:place).where(conditions)
+    else
+      where("1 = 2")
+    end
+  }
   
   has_attached_file :icon, 
     :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#" },
     :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :default_url => "/attachment_defaults/general/:style.png"
+  validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
+    :message => "must be JPG, PNG, or GIF"
+
+  if Rails.env.production?
+    has_attached_file :cover,
+      :storage => :s3,
+      :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :s3_host_alias => CONFIG.s3_bucket,
+      :bucket => CONFIG.s3_bucket,
+      :path => "projects/:id-cover.:extension",
+      :url => ":s3_alias_url",
+      :default_url => ""
+  else
+    has_attached_file :cover,
+      :path => ":rails_root/public/attachments/:class/:id-cover.:extension",
+      :url => "/attachments/:class/:id-cover.:extension",
+      :default_url => ""
+  end
+  validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /octet-stream/], :message => "must be JPG or PNG"
+  validate :cover_dimensions, :unless => "errors.any?"
   
   CONTEST_TYPE = 'contest'
   OBS_CONTEST_TYPE = 'observation contest'
   ASSESSMENT_TYPE = 'assessment'
-  PROJECT_TYPES = [CONTEST_TYPE, OBS_CONTEST_TYPE , ASSESSMENT_TYPE]
+  BIOBLITZ_TYPE = 'bioblitz'
+  PROJECT_TYPES = [CONTEST_TYPE, OBS_CONTEST_TYPE , ASSESSMENT_TYPE, BIOBLITZ_TYPE]
   RESERVED_TITLES = ProjectsController.action_methods
   MAP_TYPES = %w(roadmap terrain satellite hybrid)
   validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
@@ -72,6 +115,18 @@ class Project < ActiveRecord::Base
     indexes :description
     set_property :delta => :delayed
   end
+
+  def place_with_boundary
+    unless PlaceGeometry.where(:place_id => place_id).exists?
+      errors.add(:place_id, "must be set and have a boundary for a bioblitz")
+    end
+  end
+
+  def one_year_time_span
+    if end_time - start_time > 366.days
+      errors.add(:end_time, "must be less than one year after the start time")
+    end
+  end
   
   def to_s
     "<Project #{id} #{title}>"
@@ -80,6 +135,14 @@ class Project < ActiveRecord::Base
   def strip_title
     self.title = title.strip
     true
+  end
+
+  def cover_dimensions
+    return true unless cover.queued_for_write[:original]
+    dimensions = Paperclip::Geometry.from_file(cover.queued_for_write[:original].path)
+    if dimensions.width != 950 || dimensions.height > 400
+      errors.add(I18n.t(:cover), I18n.t(:image_must_be_exactly))
+    end
   end
   
   def add_owner_as_project_user
@@ -93,12 +156,12 @@ class Project < ActiveRecord::Base
   end
   
   def create_the_project_list
-    create_project_list
+    create_project_list(:project => self)
     true
   end
   
   def contest?
-     PROJECT_TYPES.include? project_type
+     [CONTEST_TYPE, OBS_CONTEST_TYPE].include?(project_type)
   end
   
   def editable_by?(user)
@@ -116,6 +179,10 @@ class Project < ActiveRecord::Base
   
   def rule_place
     project_observation_rules.first(:conditions => {:operator => "observed_in_place?"}).try(:operand)
+  end
+
+  def rule_taxon
+    @rule_taxon ||= project_observation_rules.where(:operator => "in_taxon?").first.try(:operand)
   end
   
   def icon_url
@@ -181,6 +248,58 @@ class Project < ActiveRecord::Base
   def managers
     users.where("project_users.role = ?", ProjectUser::MANAGER).scoped
   end
+
+  def duplicate
+    new_project = dup
+    project_observation_fields.each do |pof|
+      new_project.project_observation_fields.build(:position => pof.position, 
+        :observation_field => pof.observation_field, :required => pof.required)
+    end
+    project_observation_rules.each do |por|
+      new_project.project_observation_rules.build(:operand => por.operand, :operator => por.operator)
+    end
+    new_project.title = "#{title} copy"
+    new_project.custom_project = custom_project.dup unless custom_project.blank?
+    new_project.save!
+    listed_taxa.find_each do |lt|
+      ListedTaxon.create(:list => new_project.project_list, :taxon_id => lt.taxon_id, :description => lt.description)
+    end
+    new_project
+  end
+
+  def generate_csv(path, columns)
+    project_columns = %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code)
+    columns += project_columns
+    ofv_columns = self.observation_fields.map{|of| "field:#{of.normalized_name}"}
+    columns += ofv_columns
+    CSV.open(path, 'w') do |csv|
+      csv << columns
+      self.project_observations.includes(:observation => [:taxon, {:observation_field_values => :observation_field}]).find_each do |project_observation|
+        csv << columns.map {|column| project_observation.to_csv_column(column, :project => self)}
+      end
+    end
+  end
+
+  def eventbrite_id
+    return if event_url.blank?
+    return unless event_url =~ /eventbrite\.com/
+    @eventbrite_id ||= URI.parse(event_url).path.split('/').last[/\d+/, 0]
+  end
+
+  def event_started?
+    return nil if start_time.blank?
+    start_time < Time.now
+  end
+
+  def event_ended?
+    return nil if end_time.blank?
+    Time.now > end_time
+  end
+
+  def event_in_progress?
+    return nil if end_time.blank? || start_time.blank?
+    start_time < Time.now && end_time > Time.now
+  end
   
   def self.default_json_options
     {
@@ -203,8 +322,8 @@ class Project < ActiveRecord::Base
           project_user.user_id]) do |po|
       curator_ident = po.observation.identifications.detect{|ident| ident.user_id == project_user.user_id}
       po.update_attributes(:curator_identification => curator_ident)
-      ProjectUser.delay.update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
-      ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      ProjectUser.delay(:priority => USER_INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      ProjectUser.delay(:priority => USER_INTEGRITY_PRIORITY).update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
     end
   end
   
@@ -231,8 +350,8 @@ class Project < ActiveRecord::Base
     project.project_observations.find_each(find_options) do |po|
       curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
       po.update_attributes(:curator_identification => curator_ident)
-      ProjectUser.delay.update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
-      ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      ProjectUser.delay(:priority => USER_INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      ProjectUser.delay(:priority => USER_INTEGRITY_PRIORITY).update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
     end
   end
   
@@ -267,5 +386,66 @@ class Project < ActiveRecord::Base
     proj.project_observations.find_each(:include => :observation, :conditions => ["observations.user_id = ?", usr]) do |po|
       po.destroy
     end
+  end
+
+  def get_observed_listed_taxa_count #numerator on project/show
+    if show_from_place?
+      if p.preferred_count_by == "species"
+      elsif p.preferred_count_by == "leaves"
+      else
+      end
+    else
+      if p.preferred_count_by == "species"
+      elsif p.preferred_count_by == "leaves"
+      else
+      end
+    end
+  end
+
+  def list_observed_and_total #denominator and numerator on project/show
+    if show_from_place?
+      find_observed_and_total_for_project_from_place
+    else
+      find_observed_and_total_for_project_not_from_place
+    end
+  end
+
+  def find_observed_and_total_for_project_from_place
+    list = project_list
+    observable_list = place.check_list
+
+    listed_taxa_with_duplicates = ListedTaxon.from_place_or_list(list.project.place_id, list.id)
+
+    query = listed_taxa_with_duplicates.select([:id, :taxon_id, :place_id, :last_observation_id])
+    results = ActiveRecord::Base.connection.select_all(query)
+
+    listed_taxa_hash = results.inject({}) do |aggregator, listed_taxon|
+      aggregator["#{listed_taxon['taxon_id']}"] = listed_taxon['id'] if (aggregator["#{listed_taxon['taxon_id']}"].nil? || listed_taxon['place_id'].nil?)
+      aggregator
+    end
+
+    listed_taxa_ids = listed_taxa_hash.values.map(&:to_i)
+    unpaginated_listed_taxa = listed_taxa_with_duplicates.where("listed_taxa.id IN (?)", listed_taxa_ids)
+
+    unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(true)
+    unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present(true)
+    if preferred_count_by == "species"
+      unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
+    elsif preferred_count_by == "leaves"
+      unpaginated_listed_taxa = unpaginated_listed_taxa.with_leaves(unpaginated_listed_taxa.to_sql.sub("AND (taxa.rank_level = 10)", ""))
+    end
+    
+    {numerator: unpaginated_listed_taxa.confirmed_and_not_place_based.count, denominator: unpaginated_listed_taxa.count}
+  end
+
+  def find_observed_and_total_for_project_not_from_place
+    unpaginated_listed_taxa = ListedTaxon.filter_by_list(project_list.id)
+    unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(true)
+    if preferred_count_by == "species"
+      unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
+    elsif preferred_count_by == "leaves"
+      unpaginated_listed_taxa = unpaginated_listed_taxa.with_leaves(unpaginated_listed_taxa.to_sql)
+    end
+    {numerator: unpaginated_listed_taxa.confirmed.count, denominator: unpaginated_listed_taxa.count}
   end
 end

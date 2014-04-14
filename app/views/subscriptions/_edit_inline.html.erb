@@ -8,11 +8,11 @@
       <%= form_for subscription, :builder => DefaultFormBuilder do |f| %>
         <div class="field">
           <div>
-            <label>Only receive updates about this taxon</label>
+            <label><%= t :only_receive_updates_about_this_taxon %></label>
           </div>
           <%= text_field_tag :taxon_name, subscription.taxon.try(:name),
             :width => 50,
-            :placeholder => "Type a taxon name",
+            :placeholder => t(:type_a_taxon_name, :default => "Type a taxon name"),
             :class => "taxonchooser text" %>
           <%= f.hidden_field(:taxon_id, 
             :alt => (subscription.taxon ? 
@@ -31,7 +31,7 @@
       <%= f.hidden_field :resource_type %>
       <%= f.hidden_field :resource_id %>
       <%= f.hidden_field :user_id %>
-      <%= link_to_function "Subscribe to this #{resource.class.to_s.underscore.humanize.downcase}", "$(this).parents('form:first').submit()" %>
+      <%= link_to_function t(:subscribe_to_this) + ' ' + t(resource.class.to_s.underscore.humanize.downcase).downcase, "$(this).parents('form:first').submit()" %>
     <% end -%>
 
     <%= form_tag delete_subscription_url(resource.class.to_s, resource.id), 
@@ -40,7 +40,7 @@
         :style => "#{'display:none;' unless subscription}" do %>
       <%= hidden_field_tag :resource_type, resource.class.to_s %>
       <%= hidden_field_tag :resource_id, resource.id %>
-      <%= link_to_function "Unsubscribe from this #{resource.class.to_s.underscore.humanize.downcase}", "$(this).parents('form:first').submit()" %>
+      <%= link_to_function t(:unsubscribe_from_this) + ' ' + t(resource.class.to_s.underscore.humanize.downcase).downcase, "$(this).parents('form:first').submit()" %>
     <% end -%>
   </li>
 </ul>

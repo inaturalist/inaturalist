@@ -1,0 +1,146 @@
+- content_for(:title) do
+  = t :editing
+  = @place.name
+- content_for(:extracss) do
+  = stylesheet_link_tag "/javascripts/leaflet.fullscreen/Control.FullScreen.css"
+  :css
+    #map {width: 100%;height: 500px;}
+    .edit_place input.text, .edit_place textarea {width: 415px;}
+    .latitude_field input.text, .longitude_field input.text { width: 175px;}
+    input.ac_loading {background: white url('/images/spinner-small.gif') 420px 5px no-repeat;}
+- content_for(:extrajs) do
+  = leaflet_js(:draw => true)
+  = javascript_include_tag "shramov-leaflet-plugins/Bing"
+  %script{:src => "/javascripts/leaflet.fullscreen/Control.FullScreen.js"}
+  :javascript
+    var PLACE = #{@place.to_json},
+        NPOINTS = #{@npoints.to_i},
+        CLOUDMADE_KEY = #{CONFIG.cloudmade.key.inspect},
+        BING_KEY = #{CONFIG.bing.key.inspect}
+    $(document).ready(function() {
+      $('#place_parent_id').chooser({
+        collectionUrl: '/places/autocomplete.json',
+        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
+        chosen: eval('(' + $('place_parent_id').attr('data-json') + ')')
+      })
+      window.map = L.map('map').setView([PLACE.latitude, PLACE.longitude], 8)
+      if (PLACE.swlat) {
+        var b = new L.LatLngBounds(
+          new L.LatLng(PLACE.swlat, PLACE.swlng),
+          new L.LatLng(PLACE.nelat, PLACE.nelng)
+        )
+        map.fitBounds(b)
+      }
+      var d = new Date()
+      var osm = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/22677/256/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; '+d.getFullYear()+' OpenStreetMap contributors, Imagery &copy; '+d.getFullYear()+' CloudMade',
+        key: CLOUDMADE_KEY
+      })
+      var bing = new L.BingLayer(BING_KEY, {type:"AerialWithLabels"});
+      map.addLayer(osm);
+      map.addControl(new L.Control.Layers({'Map (OSM)':osm, "Satellite (Bing)":bing}, {}));
+      var fullScreen = new L.Control.FullScreen();
+      // add fullscreen control to the map
+      map.addControl(fullScreen)
+      window.drawnItems = new L.FeatureGroup()
+      map.addLayer(drawnItems)
+      if (NPOINTS < 5000) {
+        addDrawControls()
+      }
+      if (NPOINTS > 3) {
+        $.getJSON('/places/geometry/'+PLACE.id+'.geojson', function(geojson) {
+          var l = L.geoJson(geojson, {
+            onEachFeature: function(feature, layer) {
+              layer.eachLayer(function(lyr) {
+                drawnItems.addLayer(lyr)
+              })
+            }
+          })
+          l.addTo(map)
+        })
+      }
+    })
+    function saveGeom() {
+      $(':input[name=geojson]').val(JSON.stringify(drawnItems.toGeoJSON()))
+      $(':input[name=remove_geom]').attr('checked', drawnItems.getLayers().length == 0)
+    }
+    function addDrawControls() {
+      var drawControl = new L.Control.Draw({
+        draw: {
+          marker: false,
+          rectangle: false,
+          circle: false,
+          polyline: false,
+          polygon: {
+            allowIntersection: false,
+            drawError: {
+                color: '#e1e100', // Color the shape will turn when intersects
+                message: I18n.t('Illegal shape')
+            }
+          }
+        },
+        edit: {
+          featureGroup: drawnItems,
+          marker: false
+        }
+      })
+      map.addControl(drawControl)
+      map.on('draw:created', function(e) {
+        var type = e.layerType,
+            layer = e.layer
+        drawnItems.addLayer(layer)
+        map.addLayer(layer)
+        saveGeom()
+      })
+      map.on('draw:edited', function(e) {
+        var layers = e.layers
+        saveGeom()
+      })
+      map.on('draw:deleted', function(e) {
+        saveGeom()
+      })
+    }
+#pageheader
+  .breadcrumbs
+    %strong= link_to "&laquo; #{t(:back_to)} #{@place.name}".html_safe, @place, :class => 'crumb'
+  %h2
+    = t :editing
+    = h @place.name
+.column.span-11.append-1
+  = form_for @place, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f|
+    = error_messages_for :place
+    = f.text_field :name, :required => true, :class => 'text'
+    = f.text_field :display_name, :class => 'text'
+    = f.text_field :code, :class => 'text', :description => t(:short_code_for_this_place)
+    = f.select :place_type, Place::PLACE_TYPE_CODES.sort.uniq{|k,v| k.downcase}.map{|k,v| [t("place_geo.geo_planet_place_types.#{k.gsub(' ','_')}", :default => k), v]}.sort, |
+      :include_blank => t(:unknown), :class => 'select'                                                                                                                       |
+    = f.check_box :prefers_check_lists, :label_after => true
+    .last.column.span-11
+      .column.span-5.append-1
+        = f.text_field :latitude, :required => true, :class => 'text'
+      .last.column.span-5
+        = f.text_field :longitude, :required => true, :class => 'text'
+    = f.text_field :woeid
+    = f.text_field :parent_id, :placeholder => t(:type_place_name), "data-chooser-chosen" => @place.parent.to_json, :label => t(:parent).capitalize
+    = link_to_toggle_box t(:replace_boundary_with_kml) do
+      = file_field_tag :file, :accept => "application/vnd.google-earth.kml+xml"
+      .meta= t('views.places.kml_field_desc')
+    %input{:type => "hidden", :name => "geojson"}
+    = check_box_tag :remove_geom, nil, nil
+    %label{:for => "remove_geom"}=t :remove_boundary
+    .clear.buttonrow.upstacked
+      = f.submit t(:save), :class => 'default button', "data-loading-click" => t(:saving)
+      = link_to t(:cancel), @place, :class => 'button'
+      = link_to t(:delete), @place, :method => :delete, |
+        :confirm => t(:are_you_sure_delete_this_place), |
+        :class => 'minor delete button'                 |
+.last.column.span-12
+  #map.stacked
+  - if @npoints && @npoints > 5000
+    .notice.box=t 'views.places.edit.complex_boundary_note_html', :url => place_geometry_url(@place, :format => "kml")
+  - else
+    = link_to t(:download_kml), place_geometry_url(@place, :format => "kml")
+.column.span-24
+  .small.description
+    = t(:is_this_place_a_duplicate)
+    = link_to t(:merge_it_with_another_place), {:action => 'merge', :id => @place}, :class => 'readmore'

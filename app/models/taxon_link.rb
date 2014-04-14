@@ -2,11 +2,11 @@ class TaxonLink < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :user
   belongs_to :place
-  validates_format_of :url, :with => URI.regexp, 
-    :message => "should look like a URL, e.g. #{CONFIG.site_url}"
-  validates_presence_of :taxon_id
+  validates_format_of :url, :with => URI.regexp, :message => "should look like a URL, e.g. http://www.inaturalist.org"
+  validates_presence_of :taxon_id, :site_title
+  validates_length_of :short_title, :maximum => 10, :allow_blank => true
   
-  before_save :set_site_title
+  before_validation :set_site_title
   
   scope :for_taxon, lambda {|taxon|
     if taxon.species_or_lower?
@@ -61,11 +61,39 @@ class TaxonLink < ActiveRecord::Base
     if self.site_title.blank?
       self.site_title = URI.parse(url_without_template_tags).host
     end
+    true
   end
   
   def url_without_template_tags
     stripped_url = self.url
     TEMPLATE_TAGS.each {|tt| stripped_url.gsub!(tt, '')}
     stripped_url
+  end
+
+  def self.by_taxon(taxon, options = {})
+    return [] if taxon.blank?
+    taxon_links = if taxon.species_or_lower?
+      # fetch all relevant links
+      TaxonLink.for_taxon(taxon).includes(:taxon)
+    else
+      # fetch links without species only
+      TaxonLink.for_taxon(taxon).where(:species_only => false).includes(:taxon)
+    end
+    tl_place_ids = taxon_links.map(&:place_id).compact
+    if !tl_place_ids.blank? # && !@places.blank?
+      if options[:reject_places]
+        taxon_links.reject! {|tl| tl.place_id}
+      else
+        # fetch listed taxa for this taxon with places matching the links
+        place_listed_taxa = ListedTaxon.where("place_id IN (?)", tl_place_ids).where(:taxon_id => taxon)
+
+        # remove links that have a place_id set but don't have a corresponding listed taxon
+        taxon_links.reject! do |tl|
+          tl.place_id && place_listed_taxa.detect{|lt| lt.place_id == tl.place_id}.blank?
+        end
+      end
+    end
+    taxon_links.uniq!{|tl| tl.url}
+    taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
   end
 end

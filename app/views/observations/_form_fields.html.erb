@@ -2,28 +2,42 @@
 <%= fields_for observation do |o| %>
   <div class="column span-24 observation stacked">
     <% unless observation.errors.empty? %>
-    <%= error_messages_for('observation', :object => observation) %>
+    <%= error_messages_for(:observation, :object => observation) %>
     <% end %>
     <div class="column span-7">
       <div class="field species_guess_field">
         <%= o.label :species_guess, t(:what_did_you_see) %>
         <%= o.text_field(:species_guess, :class => 'species_guess text') %>
         <%-
-          alt = if observation.taxon
-            "<span class='taxon sciname #{observation.taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[observation.taxon.iconic_taxon_id].try(:name)}'>#{observation.taxon.name}</span>".html_safe
+          taxon = if o.object.taxon_id_changed?
+            # assume this means the taxon has been set upstream somewhere without saving
+            o.object.taxon
+          else
+            o.object.owners_identification.try(:taxon) || o.object.taxon
+          end
+          alt = if taxon
+            "<span class='taxon sciname #{taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id].try(:name)}'>#{taxon.name}</span>".html_safe
           else
             nil
           end
         -%>
-        <%= o.hidden_field(:taxon_id, :alt => alt, :rel => (observation.taxon ? taxon_image_url(observation.taxon) : nil)) %>
+        <%= o.hidden_field(:taxon_id, :value => taxon.try(:id), :alt => alt, :rel => (taxon ? taxon_image_url(taxon) : nil)) %>
         <div class="id_please">
           <%= o.check_box(:id_please) %>
           <%= o.label(:id_please, t(:full_id_please?)) %>
         </div>
       </div>
       
-      <div class="field">
+      <!-- <div class="field">
         <%= link_to_function t(:browse_all_species), "$('#taxonchooser').dialog('open')" %>
+      </div> -->
+
+      <div class="field">
+        <%= o.check_box :captive_flag %>
+        <%= o.label :captive_flag, t(:was_it_captive_cultivated?) %>
+        <% helptip_for "captive_flag" do %>
+          <%=t 'views.observations.captive_help_html' %>
+        <% end -%>
       </div>
       
       <div class="field<%= ' error' if observation.errors[:observed_on] && !observation.errors[:observed_on].empty? %>">
@@ -94,7 +108,7 @@
       </div>
       <div id="geoprivacy_<%= i %>" class="geoprivacyfield">
         <label for="observations_<%= i %>_geoprivacy"><%= t :change_geoprivacy %></label>
-        <%= o.select :geoprivacy, Observation::GEOPRIVACIES.map{|g| [t(g), g]}, :include_blank => t(:open) %>
+        <%= o.select :geoprivacy, Observation::GEOPRIVACIES.map{|g| [t(g, :default => g).downcase, g]}, :include_blank => t(:open) %>
         <span class="geoprivacy_tip_target description helptip" rel="#geoprivacy_<%= i %>_tip"></span>
         <div id="geoprivacy_<%= i %>_tip" class="geoprivacy_tip" style="display:none">
           <p><%= t :changing_the_geoprivacy %></p>
@@ -108,64 +122,92 @@
       </div>
     </div>
     <div class="last column span-8">
-      <div class="field">
-        <label>
-          <%=t :add_photos %>
-        </label>
-        
-        <div id="photos_<%= i %>" class="observation_photos">
-          <%-
-            # if the photo was invalid, we can't show new local_photos
-            photos = if observation.new_record? && !observation.valid?
-              observation.photos.reject do |p|
-                p.is_a?(LocalPhoto)
-              end
-            else
-              observation.photos
-            end.compact
-          -%>
-          <%= render :partial => "photos/photo_list_form", :locals => { 
-            :photos => photos, 
-            :index => i,
-            :checked => true,
-            :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation),
-            :photo_identity => @photo_identities.first,
-            :local_photos => @photo_identities.blank? || observation.photos.first && observation.photos.first.is_a?(LocalPhoto)
-          } %>
-        </div>
-        
-        <% if @photo_identities.blank? %>
-        
-          <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
-          
-          <p class="ui description">
-            <%= raw t :we_also_support %>
-          </p>
-          
-          <div class="clear buttons">
-            <%= link_to t(:link_your_flickr_account),
-              {:controller => 'flickr', :action => 'options'}, :class => "button" %>
-            <%= link_to t(:link_your_picasa_account),
-              {:controller => 'picasa', :action => 'options'}, :class => "button" %>
-            <%= link_to t(:link_your_facebook_account), "/auth/facebook", :class => "button" %>
+
+      <label> <%=t :'sounds.add_media' %></label>
+
+      <div class="ui-tabs">
+        <ul>
+          <li class="ui-tabs-nav selected"><a href="#add_photos_<%= i %>"><%=t :add_photos %></a></li>
+          <li class="ui-tabs-nav"><a href="#add_sounds_<%= i %>"><%=t :'sounds.add_sounds' %></a></li>
+        </ul>
+        <div id="add_photos_<%= i %>">
+          <div id="photos_<%= i %>" class="observation_photos">
+            <%-
+              # if the photo was invalid, we can't show new local_photos
+              photos = if observation.new_record? && !observation.valid?
+                observation.photos.reject do |p|
+                  p.is_a?(LocalPhoto) && p.new_record?
+                end
+              else
+                observation.observation_photos.map(&:photo)
+              end.compact
+            -%>
+            <%= render :partial => "photos/photo_list_form", :locals => { 
+              :photos => photos, 
+              :index => i,
+              :checked => true,
+              :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation),
+              :photo_identity => @photo_identities.first,
+              :local_photos => @photo_identities.blank? || observation.photos.first && observation.photos.first.is_a?(LocalPhoto)
+            } %>
           </div>
+          
+          <% if @photo_identities.blank? %>
+          
+            <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
+            
+            <p class="ui description">
+              <%= raw t :we_also_support %>
+            </p>
+            
+            <div class="clear buttons">
+              <%= link_to t(:link_your_flickr_account),
+                {:controller => 'flickr', :action => 'options'}, :class => "button" %>
+              <%= link_to t(:link_your_picasa_account),
+                {:controller => 'picasa', :action => 'options'}, :class => "button" %>
+              <%= link_to t(:link_your_facebook_account), "/auth/facebook", :class => "button" %>
+            </div>
 
-        <% end %>
-        
-        <div>
-          <% if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
-            <%= link_to_function t(:add_taxonomic_tags_to).html_safe,
-              "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
-                "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
-              ").join('&');" +
-              "window.open('#{url_for(:controller => 'taxa', :action => 'flickr_tagger')}?" + 
-                "taxon_id='+$('#observations_#{i}_taxon_id').val()+'&'+flickrPhotoParams)" %>
-          <% end -%>
+          <% end %>
+          
+          <div>
+            <% if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
+              <%= link_to_function t(:add_taxonomic_tags_to).html_safe,
+                "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
+                  "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
+                ").join('&');" +
+                "window.open('#{url_for(:controller => 'taxa', :action => 'flickr_tagger')}?" + 
+                  "taxon_id='+$('#observations_#{i}_taxon_id').val()+'&'+flickrPhotoParams)" %>
+            <% end -%>
 
-          <% unless observation.photos.empty? || observation.new_record? -%>
-            <br/>
-            <%= link_to t(:re_order_photos).html_safe, edit_observation_photos_path(observation) %>
-          <% end -%>
+            <% unless observation.photos.empty? || observation.new_record? -%>
+              <br/>
+              <%= link_to t(:re_order_photos).html_safe, edit_observation_photos_path(observation) %>
+            <% end -%>
+          </div>
+        </div>
+
+        <div id="add_sounds_<%= i %>">
+          <% if @sound_identities.blank? %>
+            <div class="nosounds">
+              <p class="ui">
+                <%=t 'sounds.you_need_to_link_your_soundcloud_account' %>
+              </p>
+              <div class="clear inline buttons">
+                <%= link_to t(:'sounds.link_your_soundcloud_account'), "/auth/soundcloud", :class => "button" %>
+              </div>
+            </div>
+          <% else %>
+            <div id="sounds_<%= i %>" class="observation_sounds">
+              <%= render :partial => "sounds/sound_list_form", :locals => { 
+                :sounds => observation.sounds, 
+                :index => i,
+                :checked => true,
+                :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation),
+                :sound_identity => @sound_identities.first,
+              } %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -194,7 +236,7 @@
           <% end -%>
         </div>
         <% if @project.project_observation_fields.detect{|pof| pof.required?} -%>
-          <div class="required">* required</div>
+          <div class="required">* <%= t :required %></div>
         <% end -%>
       </fieldset>
     <% end -%>

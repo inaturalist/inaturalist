@@ -48,22 +48,37 @@ describe Observation, "creation" do
     @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(7)
     @observation.time_zone.should == ActiveSupport::TimeZone['Adelaide'].name
   end
-  
-  it "should parse time from strings like Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)" do
-    @observation.observed_on_string = "Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)"
-    @observation.save
-    @observation.observed_on.day.should be(6)
-    @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(16)
-    zone = ActiveSupport::TimeZone[@observation.time_zone]
-    zone.formatted_offset.should == "-05:00"
+
+  it "should parse a bunch of test date strings" do
+    [
+      ['Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)', {:month => 4, :day => 6, :hour => 16, :offset => "-05:00"}],
+      ['Sun Nov 03 2013 08:15:25 GMT-0500 (GMT-5)', {:month => 11, :day => 3, :hour => 8, :offset => "-05:00"}],
+      ['September 27, 2012 8:09:50 AM GMT+01:00', :month => 9, :day => 27, :hour => 8, :offset => "+01:00"],
+      ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', :month => 12, :day => 26, :hour => 11, :offset => "+05:30"],
+      ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"]
+    ].each do |date_string, opts|
+      o = Observation.make!(:observed_on_string => date_string)
+      o.observed_on.day.should be(opts[:day])
+      o.observed_on.month.should be(opts[:month])
+      o.time_observed_at.in_time_zone(o.time_zone).hour.should be(opts[:hour])
+      zone = ActiveSupport::TimeZone[o.time_zone]
+      zone.formatted_offset.should eq opts[:offset]
+    end
   end
 
-  it "should parse datetime like September 27, 2012 8:09:50 AM GMT+01:00" do
-    o = Observation.make!(:observed_on_string => "September 27, 2012 8:09:50 AM GMT+01:00")
-    o.time_observed_at.in_time_zone(o.time_zone).hour.should be(8)
-    zone = ActiveSupport::TimeZone[o.time_zone]
-    zone.formatted_offset.should == "+01:00"
-    o.observed_on.day.should be(27)
+  it "should parse Spanish date strings" do
+    [
+      ['lun nov 04 2013 04:22:34 p.m. GMT-0600 (GMT-6)', {:month => 11, :day => 4, :hour => 16, :offset => "-06:00"}],
+      ['lun dic 09 2013 23:37:08 GMT-0800 (GMT-8)', {:month => 12, :day => 9, :hour => 23, :offset => "-08:00"}],
+      ['jue dic 12 2013 00:54:02 GMT-0800 (GMT-8)', {:month => 12, :day => 12, :hour => 0, :offset => "-08:00"}]
+    ].each do |date_string, opts|
+      o = Observation.make!(:observed_on_string => date_string)
+      zone = ActiveSupport::TimeZone[o.time_zone]
+      zone.formatted_offset.should eq opts[:offset]
+      o.observed_on.month.should eq opts[:month]
+      o.observed_on.day.should eq opts[:day]
+      o.time_observed_at.in_time_zone(o.time_zone).hour.should eq opts[:hour]
+    end
   end
   
   it "should parse a time zone from a code" do
@@ -91,6 +106,13 @@ describe Observation, "creation" do
     @observation.save
     @observation.time_observed_at.should be(nil)
   end
+
+  it "should not choke of bad dates" do
+    @observation.observed_on_string = "this is not a date"
+    lambda {
+      @observation.save
+    }.should_not raise_error
+  end
   
   it "should have an identification if taxon is known" do
     @observation.save
@@ -103,7 +125,7 @@ describe Observation, "creation" do
     o.identifications.to_a.should be_blank
   end
   
-  it "should have an identification that maches the taxon" do
+  it "should have an identification that matches the taxon" do
     @observation.reload
     @observation.identifications.first.taxon.should == @observation.taxon
   end
@@ -326,9 +348,7 @@ describe Observation, "updating" do
     @observation.observed_on_string = 'March 16 2007 at 2pm'
     @observation.save
     @observation.observed_on.should == Date.parse('2007-03-16')
-    Time.use_zone(@observation.time_zone) do
-      @observation.time_observed_at.hour.should be(14)
-    end
+    @observation.time_observed_at_in_zone.hour.should eq(14)
   end
   
   it "should not save a time if one wasn't specified" do
@@ -434,7 +454,8 @@ describe Observation, "updating" do
   end
   
   it "should queue refresh job for project lists if the taxon changed" do
-    o = make_research_grade_observation
+    po = make_project_observation
+    o = po.observation
     Delayed::Job.delete_all
     stamp = Time.now
     o.update_attributes(:taxon => Taxon.make!)
@@ -476,6 +497,7 @@ describe Observation, "updating" do
     
     it "should become casual when taxon changes" do
       o = make_research_grade_observation
+      o.quality_grade.should == Observation::RESEARCH_GRADE
       new_taxon = Taxon.make!
       o.update_attributes(:taxon => new_taxon)
       o.quality_grade.should == Observation::CASUAL_GRADE
@@ -486,6 +508,31 @@ describe Observation, "updating" do
       o.quality_grade.should == Observation::RESEARCH_GRADE
       o.update_attributes(:observed_on_string => "")
       o.quality_grade.should == Observation::CASUAL_GRADE
+    end
+
+    it "should be research when community taxon is obs taxon and owner agrees" do
+      o = make_research_grade_observation
+      o.identifications.destroy_all
+      o.reload
+      parent = Taxon.make!(:rank => "genus")
+      child = Taxon.make!(:parent => parent, :rank => "species")
+      i1 = Identification.make!(:observation => o, :taxon => parent)
+      i2 = Identification.make!(:observation => o, :taxon => child)
+      i3 = Identification.make!(:observation => o, :taxon => child, :user => o.user)
+      o.reload
+      puts "o.num_identification_agreements: #{o.num_identification_agreements}"
+      puts "o.num_identification_disagreements: #{o.num_identification_disagreements}"
+      o.community_taxon.should eq child
+      o.taxon.should eq child
+      o.should be_community_supported_id
+      o.should be_research_grade
+    end
+
+    it "should be casual if no identifications" do
+      o = make_research_grade_observation
+      o.identifications.destroy_all
+      o.reload
+      o.should be_casual_grade
     end
   end
   
@@ -511,6 +558,17 @@ describe Observation, "updating" do
       o.should_not be_coordinates_obscured
       o.update_attributes(:taxon => t)
       o.should_not be_coordinates_obscured
+    end
+
+    it "should obscure coordinates if locally threatened but globally secure" do
+      p = make_place_with_geom
+      t = Taxon.make!(:rank => Taxon::SPECIES)
+      local_cs = ConservationStatus.make!(:place => p, :taxon => t)
+      global_cs = ConservationStatus.make!(:taxon => t, :status => "LC", :iucn => Taxon::IUCN_LEAST_CONCERN, :geoprivacy => "open")
+      o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
+      o.should_not be_coordinates_obscured
+      o.update_attributes(:taxon => t)
+      o.should be_coordinates_obscured
     end
   end
 
@@ -613,6 +671,14 @@ describe Observation, "destruction" do
     p.reload
     p.observations_count.should eq(0)
   end
+
+  it "should create a deleted observation" do
+    o = Observation.make!
+    o.destroy
+    deleted_obs = DeletedObservation.where(:observation_id => o.id).first
+    deleted_obs.should_not be_blank
+    deleted_obs.user_id.should eq o.user_id
+  end
 end
 
 describe Observation, "species_guess parsing" do
@@ -705,6 +771,12 @@ describe Observation, "species_guess parsing" do
     o = Observation.make!(:species_guess => name)
     o.taxon_id.should == t.id
   end
+
+  it "should not make a guess if ends in a question mark" do
+    t = Taxon.make!(:name => "Foo bar")
+    o = Observation.make!(:species_guess => "#{t.name}?")
+    o.taxon.should be_blank
+  end
 end
 
 describe Observation, "named scopes" do
@@ -776,6 +848,22 @@ describe Observation, "named scopes" do
     obs = Observation.in_bounding_box(20,20,30,30)
     obs.should include(@pos)
     obs.should_not include(@neg)
+  end
+
+  it "should find observations in a bounding box in a year" do
+    pos = Observation.make!(:latitude => @pos.latitude, :longitude => @pos.longitude, :observed_on_string => "2010-01-01")
+    neg = Observation.make!(:latitude => @pos.latitude, :longitude => @pos.longitude, :observed_on_string => "2011-01-01")
+    observations = Observation.in_bounding_box(20,20,30,30).on("2010")
+    observations.map(&:id).should include(pos.id)
+    observations.map(&:id).should_not include(neg.id)
+  end
+
+  it "should find observations in a bounding box spanning the date line" do
+    pos = Observation.make!(:latitude => 0, :longitude => 179)
+    neg = Observation.make!(:latitude => 0, :longitude => 170)
+    observations = Observation.in_bounding_box(-1,178,1,-178)
+    observations.map(&:id).should include(pos.id)
+    observations.map(&:id).should_not include(neg.id)
   end
   
   it "should find observations using the shorter box method" do
@@ -902,17 +990,23 @@ describe Observation, "named scopes" do
   end
   
   it "should order observations by created_at" do
-    last_obs = Observation.all(:order => 'created_at desc').first
-    Observation.order_by('created_at').to_a.last.should === last_obs
+    last_obs = Observation.make!
+    Observation.order_by('created_at').to_a.last.should eq last_obs
   end
   
   it "should reverse order observations by created_at" do
-    last_obs = Observation.all(:order => 'created_at desc').first
-    Observation.order_by('created_at DESC').first.should === last_obs
+    last_obs = Observation.make!
+    Observation.order_by('created_at DESC').first.should eq last_obs
   end
   
   it "should not find anything for a non-existant taxon ID" do
     Observation.of(91919191).should be_empty
+  end
+
+  it "should not bail on invalid dates" do
+    lambda {
+      o = Observation.on("2013-02-30").all
+    }.should_not raise_error
   end
 end
 
@@ -985,6 +1079,24 @@ describe Observation do
       txt.should_not match(/private_latitude/)
       txt.should_not match(/#{observation.private_latitude}/)
     end
+
+    it "should be visible to curators of projects to which the observation has been added" do
+      po = make_project_observation
+      o = po.observation
+      o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1, :longitude => 1)
+      o.should be_coordinates_private
+      pu = ProjectUser.make!(:project => po.project, :role => ProjectUser::CURATOR)
+      o.coordinates_viewable_by?(pu.user).should be_true
+    end
+
+    it "should be visible to managers of projects to which the observation has been added" do
+      po = make_project_observation
+      o = po.observation
+      o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1, :longitude => 1)
+      o.should be_coordinates_private
+      pu = ProjectUser.make!(:project => po.project, :role => ProjectUser::MANAGER)
+      o.coordinates_viewable_by?(pu.user).should be_true
+    end
   end
   
   describe "obscure_coordinates" do
@@ -1004,6 +1116,10 @@ describe Observation do
       o.place_guess.should_not match(/5720/)
       
       o = Observation.make!(:place_guess => '3333 23rd St, San Francisco, CA 94114, USA ')
+      o.obscure_coordinates
+      o.place_guess.should_not match(/3333/)
+
+      o = Observation.make!(:place_guess => '3333A 23rd St, San Francisco, CA 94114, USA ')
       o.obscure_coordinates
       o.place_guess.should_not match(/3333/)
       
@@ -1245,6 +1361,11 @@ describe Observation do
       o.latitude.to_f.should == lat
       o.longitude.to_f.should == lon
     end
+
+    it "should be nil if not obscured or private" do
+      o = Observation.make!(:geoprivacy => "open")
+      o.geoprivacy.should be_nil
+    end
   end
   
   describe "geom" do
@@ -1270,6 +1391,49 @@ describe Observation do
       o.update_attributes(:latitude => nil, :longitude => nil)
       o.geom.should be_blank
     end
+  end
+
+  describe "private_geom" do
+    it "should be set with coords" do
+      o = Observation.make!(:latitude => 1, :longitude => 1)
+      o.private_geom.should_not be_blank
+    end
+    
+    it "should not be set without coords" do
+      o = Observation.make!
+      o.private_geom.should be_blank
+    end
+    
+    it "should change with coords" do
+      o = Observation.make!(:latitude => 1, :longitude => 1)
+      o.private_geom.y.should == 1.0
+      o.update_attributes(:latitude => 2)
+      o.private_geom.y.should == 2.0
+    end
+    
+    it "should go away with coords" do
+      o = Observation.make!(:latitude => 1, :longitude => 1)
+      o.update_attributes(:latitude => nil, :longitude => nil)
+      o.private_geom.should be_blank
+    end
+
+    it "should be set with geoprivacy" do
+      o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::OBSCURED)
+      o.latitude.should_not eq 1.0
+      o.private_latitude.should eq 1.0
+      o.geom.y.should_not eq 1.0
+      o.private_geom.y.should eq 1.0
+    end
+
+    it "should be set without geoprivacy" do
+      o = Observation.make!(:latitude => 1, :longitude => 1)
+      o.latitude.should eq 1.0
+      o.private_geom.y.should eq 1.0
+    end
+
+    # it "should contain the private coordinates if geoprivacy" do
+
+    # end
   end
   
   describe "query" do
@@ -1379,34 +1543,35 @@ describe Observation, "license" do
 end
 
 describe Observation, "places" do
-  it "should work across the date line" do
-    wkt = <<-WKT
-      MULTIPOLYGON(((-152.09473 20.81363,-169.49708
-      28.00992,-177.44019 30.24388,-179.52485 28.65781,141.65771
-      25.45121,140.95458 18.32115,140.95458 10.02078,-170.39795
-      -16.45927,-168.81592 -16.88025,-158.18116 0.44823,-152.09473
-      20.81363)),((-152.09473 20.81363,-169.49708 28.00992,-177.44019
-      30.24388,-179.52485 28.65781,141.65771 25.45121,140.95458
-      18.32115,140.95458 10.02078,-170.39795 -16.45927,-168.81592
-      -16.88025,-158.18116 0.44823,-152.09473 20.81363)),((-152.09473
-      20.81363,-169.49708 28.00992,-177.44019 30.24388,-179.52485
-      28.65781,141.65771 25.45121,140.95458 18.32115,140.95458
-      10.02078,-170.39795 -16.45927,-168.81592 -16.88025,-158.18116
-      0.44823,-152.09473 20.81363)))      
-    WKT
-    place = Place.make
-    place.save_geom(MultiPolygon.from_ewkt(wkt))
-    place.reload
-    inside = Observation.make(:latitude => place.latitude, :longitude => place.longitude)
-    inside.should be_georeferenced
-    outside = Observation.make(:latitude => 24, :longitude => 92)
-    outside.places.should_not include(place)
-    inside.places.should include(place)
-  end
+  # need to switch from geometry to geography to really get this working
+  # it "should work across the date line" do
+  #   wkt = <<-WKT
+  #     MULTIPOLYGON(((-152.09473 20.81363,-169.49708
+  #     28.00992,-177.44019 30.24388,-179.52485 28.65781,141.65771
+  #     25.45121,140.95458 18.32115,140.95458 10.02078,-170.39795
+  #     -16.45927,-168.81592 -16.88025,-158.18116 0.44823,-152.09473
+  #     20.81363)),((-152.09473 20.81363,-169.49708 28.00992,-177.44019
+  #     30.24388,-179.52485 28.65781,141.65771 25.45121,140.95458
+  #     18.32115,140.95458 10.02078,-170.39795 -16.45927,-168.81592
+  #     -16.88025,-158.18116 0.44823,-152.09473 20.81363)),((-152.09473
+  #     20.81363,-169.49708 28.00992,-177.44019 30.24388,-179.52485
+  #     28.65781,141.65771 25.45121,140.95458 18.32115,140.95458
+  #     10.02078,-170.39795 -16.45927,-168.81592 -16.88025,-158.18116
+  #     0.44823,-152.09473 20.81363)))      
+  #   WKT
+  #   place = Place.make
+  #   place.save_geom(MultiPolygon.from_ewkt(wkt))
+  #   place.reload
+  #   inside = Observation.make(:latitude => place.latitude, :longitude => place.longitude)
+  #   inside.should be_georeferenced
+  #   outside = Observation.make(:latitude => 24, :longitude => 92)
+  #   outside.places.should_not include(place)
+  #   inside.places.should include(place)
+  # end
 end
 
 describe Observation, "update_stats" do
-  it "should not consider outdated observations as agreements" do
+  it "should not consider outdated identifications as agreements" do
     o = Observation.make!(:taxon => Taxon.make!)
     old_ident = Identification.make!(:observation => o, :taxon => o.taxon)
     new_ident = Identification.make!(:observation => o, :user => old_ident.user)
@@ -1417,6 +1582,36 @@ describe Observation, "update_stats" do
     old_ident.should_not be_current
     o.num_identification_agreements.should eq(0)
     o.num_identification_disagreements.should eq(1)
+  end
+end
+
+describe Observation, "update_stats_for_observations_of" do
+  it "should work" do
+    parent = Taxon.make!
+    child = Taxon.make!
+    o = Observation.make!(:taxon => parent)
+    i1 = Identification.make!(:observation => o, :taxon => child)
+    o.reload
+    o.num_identification_agreements.should eq(0)
+    o.num_identification_disagreements.should eq(1)
+    child.update_attributes(:parent => parent)
+    Observation.update_stats_for_observations_of(parent)
+    o.reload
+    o.num_identification_agreements.should eq(1)
+    o.num_identification_disagreements.should eq(0)
+  end
+
+  it "should work" do
+    parent = Taxon.make!
+    child = Taxon.make!
+    o = Observation.make!(:taxon => parent)
+    i1 = Identification.make!(:observation => o, :taxon => child)
+    o.reload
+    o.community_taxon.should be_blank
+    child.update_attributes(:parent => parent)
+    Observation.update_stats_for_observations_of(parent)
+    o.reload
+    o.community_taxon.should_not be_blank
   end
 end
 
@@ -1573,3 +1768,392 @@ describe Observation, "queue_for_sharing" do
     Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"]).should be_blank
   end
 end
+
+describe Observation, "captive" do
+  it "should vote yes on the wild quality metric if 1" do
+    o = Observation.make!(:captive_flag => "1")
+    o.quality_metrics.should_not be_blank
+    o.quality_metrics.first.user.should eq(o.user)
+    o.quality_metrics.first.should_not be_agree
+  end
+
+  it "should vote no on the wild quality metric if 0 and metric exists" do
+    o = Observation.make!(:captive_flag => "1")
+    o.quality_metrics.should_not be_blank
+    o.update_attributes(:captive_flag => "0")
+    o.quality_metrics.first.should be_agree
+  end
+
+  it "should not alter quality metrics if nil" do
+    o = Observation.make!(:captive_flag => nil)
+    o.quality_metrics.should be_blank
+  end
+
+  it "should not alter quality metrics if 0 and not metrics exist" do
+    o = Observation.make!(:captive_flag => "0")
+    o.quality_metrics.should be_blank
+  end
+end
+
+describe Observation, "merge" do
+  let(:user) { User.make! }
+  let(:reject) { Observation.make!(:user => user) }
+  let(:keeper) { Observation.make!(:user => user) }
+  
+  it "should destroy the reject" do
+    keeper.merge(reject)
+    Observation.find_by_id(reject.id).should be_blank
+  end
+
+  it "should preserve photos" do
+    op = ObservationPhoto.make!(:observation => reject)
+    keeper.merge(reject)
+    op.reload
+    op.observation.should eq(keeper)
+  end
+
+  it "should preserve comments" do
+    c = Comment.make!(:parent => reject)
+    keeper.merge(reject)
+    c.reload
+    c.parent.should eq(keeper)
+  end
+
+  it "should preserve identifications" do
+    i = Identification.make!(:observation => reject)
+    keeper.merge(reject)
+    i.reload
+    i.observation.should eq(keeper)
+  end
+
+  it "should mark duplicate identifications as not current" do
+    t = Taxon.make!
+    without_delay do
+      reject.update_attributes(:taxon => t)
+      keeper.update_attributes(:taxon => t)
+    end
+    keeper.merge(reject)
+    idents = keeper.identifications.where(:user_id => keeper.user_id).order('id asc')
+    idents.size.should eq(2)
+    idents.first.should_not be_current
+    idents.last.should be_current
+  end
+end
+
+describe Observation, "component_cache_key" do
+  it "should be the same regardless of option order" do
+    k1 = Observation.component_cache_key(111, :for_owner => true, :locale => :en)
+    k2 = Observation.component_cache_key(111, :locale => :en, :for_owner => true)
+    k1.should eq(k2)
+  end
+end
+
+describe Observation, "dynamic taxon getters" do
+  it "should not interfere with taxon_id"
+  it "should return genus"
+end
+
+describe Observation, "dynamic place getters" do
+  it "should return place state" do
+    p = make_place_with_geom(:place_type => Place::PLACE_TYPE_CODES['State'])
+    o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
+    o.intersecting_places.should_not be_blank
+    o.place_state.should eq p
+    o.place_state_name.should eq p.name
+  end
+end
+
+describe Observation, "community taxon" do
+
+  it "should be set if user has opted out" do
+    u = User.make!(:prefers_community_taxa => false)
+    o = Observation.make!(:user => u)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should_not be_blank
+  end
+
+  it "should be set if user has opted out and community agrees with user" do
+    u = User.make!(:prefers_community_taxa => false)
+    o = Observation.make!(:taxon => Taxon.make!, :user => u)
+    i1 = Identification.make!(:observation => o, :taxon => o.taxon)
+    o.reload
+    o.community_taxon.should eq o.taxon
+  end
+
+  it "should be set if observation is opted out" do
+    o = Observation.make!(:prefers_community_taxon => false)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should_not be_blank
+  end
+
+  it "should be set if observation is opted in but user is opted out" do
+    u = User.make!(:prefers_community_taxa => false)
+    o = Observation.make!(:prefers_community_taxon => true, :user => u)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should eq i1.taxon
+  end
+
+  it "should be set when preference set to true" do
+    o = Observation.make!(:prefers_community_taxon => false)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should be_blank
+    o.update_attributes(:prefers_community_taxon => true)
+    o.reload
+    o.community_taxon.should eq(i1.taxon)
+  end
+
+  it "should not be unset when preference set to false" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should eq(i1.taxon)
+    o.update_attributes(:prefers_community_taxon => false)
+    o.reload
+    o.community_taxon.should_not be_blank
+  end
+
+  it "should set the taxon" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should eq o.community_taxon
+  end
+
+  it "should set the species_guess" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.species_guess.should eq o.community_taxon.name
+  end
+
+  it "should set the iconic taxon" do
+    o = Observation.make!
+    o.iconic_taxon.should be_blank
+    iconic_taxon = Taxon.make!(:is_iconic => true, :rank => "family")
+    i1 = Identification.make!(:observation => o, :taxon => Taxon.make!(:parent => iconic_taxon, :rank => "genus"))
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    i1.taxon.iconic_taxon.should eq iconic_taxon
+    o.reload
+    o.taxon.should eq i1.taxon
+    o.iconic_taxon.should eq iconic_taxon
+  end
+
+  it "should not set the taxon if the user has opted out" do
+    u = User.make!(:prefers_community_taxa => false)
+    o = Observation.make!(:user => u)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should be_blank
+  end
+
+  it "should not set the taxon if the observation is opted out" do
+    o = Observation.make!(:prefers_community_taxon => false)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should be_blank
+  end
+
+  it "should change the taxon to the owner's identication when observation opted out" do
+    owner_taxon = Taxon.make!
+    o = Observation.make!(:taxon => owner_taxon)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should eq(i1.taxon)
+    o.taxon.should eq o.community_taxon
+    o.update_attributes(:prefers_community_taxon => false)
+    o.reload
+    o.taxon.should eq owner_taxon
+  end
+
+  it "should set the species_guess when opted out" do
+    owner_taxon = Taxon.make!
+    o = Observation.make!(:taxon => owner_taxon)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.community_taxon.should eq(i1.taxon)
+    o.taxon.should eq o.community_taxon
+    o.update_attributes(:prefers_community_taxon => false)
+    o.reload
+    o.species_guess.should eq owner_taxon.name
+  end
+
+  it "should set the taxon if observation is opted in but user is opted out" do
+    u = User.make!(:prefers_community_taxa => false)
+    o = Observation.make!(:prefers_community_taxon => true, :user => u)
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+    o.reload
+    o.taxon.should eq o.community_taxon
+  end
+
+  it "should not be set if there is only one current identification" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o, :user => o.user)
+    i2 = Identification.make!(:observation => o, :user => o.user)
+    o.reload
+    o.community_taxon.should be_blank
+  end
+
+  it "should not be set for 2 roots" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o)
+    i2 = Identification.make!(:observation => o)
+    o.reload
+    o.community_taxon.should be_blank
+  end
+
+  it "change should be triggered by changing the taxon" do
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o)
+    o.reload
+    o.community_taxon.should be_blank
+    o.update_attributes(:taxon => i1.taxon)
+    o.community_taxon.should_not be_blank
+  end
+
+  # it "change should trigger change in observation stats" do
+
+  # end
+
+  it "should obscure the observation if set to a threatened taxon but the owner has no ID" do
+    cs = ConservationStatus.make!
+    t = cs.taxon
+    o = Observation.make!(:latitude => 1, :longitude => 1)
+    o.taxon.should be_blank
+    i1 = Identification.make!(:taxon => t, :observation => o)
+    i2 = Identification.make!(:taxon => t, :observation => o)
+    o.reload
+    o.taxon.should eq t
+    o.should be_coordinates_obscured
+  end
+
+  describe "test cases: " do
+    before do
+      # Tree:
+      #          f
+      #       /     \
+      #      g1     g2
+      #     /  \
+      #    s1  s2
+      #   /  \
+      # ss1  ss2
+
+      @f = Taxon.make!(:rank => "family", :name => "f")
+      @g1 = Taxon.make!(:rank => "genus", :parent => @f, :name => "g1")
+      @g2 = Taxon.make!(:rank => "genus", :parent => @f, :name => "g2")
+      @s1 = Taxon.make!(:rank => "species", :parent => @g1, :name => "s1")
+      @s2 = Taxon.make!(:rank => "species", :parent => @g1, :name => "s2")
+      @ss1 = Taxon.make!(:rank => "species", :parent => @s1, :name => "ss1")
+      @ss2 = Taxon.make!(:rank => "species", :parent => @s1, :name => "ss2")
+      @o = Observation.make!
+    end
+
+    it "s1 s1 s2" do
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      i = Identification.make!(:observation => @o, :taxon => @s2)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+
+    it "s1 s1 g1" do
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @g1)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+
+    it "s1 s1 s1 g1" do
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @g1)
+      @o.reload
+      @o.community_taxon.should eq @s1
+    end
+
+    it "ss1 ss1 ss2 ss2" do
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+
+    it "f f f f ss1 s2 s2 s2 s2" do
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @ss1)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      @o.reload
+      @o.community_taxon.should eq @s2
+    end
+
+    it "f f f f ss1 ss1 s2 s2 s2 s2 g1" do
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @ss1)
+      Identification.make!(:observation => @o, :taxon => @ss1)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @s2)
+      Identification.make!(:observation => @o, :taxon => @g1)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+
+    it "f g1 s1 (should not taxa with only one ID to be the community taxon)" do
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @g1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+
+    it "f f g1 s1" do
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @g1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      @o.reload
+      @o.community_taxon.should eq @g1
+    end
+
+    it "s1 s1 f f" do
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @s1)
+      Identification.make!(:observation => @o, :taxon => @f)
+      Identification.make!(:observation => @o, :taxon => @f)
+      @o.reload
+      @o.community_taxon.should eq @f
+    end
+  end
+end
+

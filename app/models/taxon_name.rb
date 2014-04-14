@@ -4,8 +4,9 @@ class TaxonName < ActiveRecord::Base
   belongs_to :source
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
+  has_many :taxon_scheme_taxa, :dependent => :destroy
   validates_presence_of :taxon
-  validates_length_of :name, :within => 1..256
+  validates_length_of :name, :within => 1..256, :allow_blank => false
   validates_uniqueness_of :name, 
                           :scope => [:lexicon, :taxon_id], 
                           :message => "already exists for this taxon in this lexicon",
@@ -24,6 +25,7 @@ class TaxonName < ActiveRecord::Base
   before_validation do |tn|
     tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
   end
+  before_save :set_is_valid
   after_create {|name| name.taxon.set_scientific_taxon_name}
   after_save :update_unique_names
   after_destroy {|name| name.taxon.delay(:priority => OPTIONAL_PRIORITY).update_unique_name if name.taxon}
@@ -44,6 +46,7 @@ class TaxonName < ActiveRecord::Base
     :HAWAIIAN            =>  'Hawaiian',
     :HEBREW              =>  'Hebrew',
     :HILIGAYNON          =>  'Hiligaynon',
+    :ICELANDIC           =>  'Icelandic',
     :ILOKANO             =>  'Ilokano',
     :ITALIAN             =>  'Italian',
     :JAPANESE            =>  'Japanese',
@@ -67,7 +70,8 @@ class TaxonName < ActiveRecord::Base
   
   DEFAULT_LEXICONS = [
     LEXICONS[:SCIENTIFIC_NAMES],
-    LEXICONS[:ENGLISH]
+    LEXICONS[:ENGLISH],
+    LEXICONS[:SPANISH]
   ]
   
   LEXICONS.each do |k,v|
@@ -115,14 +119,26 @@ class TaxonName < ActiveRecord::Base
     end
     true
   end
+
+  def as_json(options = {})
+    if options.blank?
+      options[:only] = [:id, :name, :lexicon, :is_valid]
+    end
+    super(options)
+  end
+
+  def set_is_valid
+    self.is_valid = true unless self.is_valid == false || lexicon == LEXICONS[:SCIENTIFIC_NAMES]
+    true
+  end
   
-  def self.choose_common_name(taxon_names)
+  def self.choose_common_name(taxon_names, options = {})
     return nil if taxon_names.blank?
-    common_names = taxon_names.reject { |tn| tn.is_scientific_names? }
+    common_names = taxon_names.reject { |tn| tn.is_scientific_names? || !tn.is_valid? }
     return nil if common_names.blank?
     common_names = common_names.sort_by(&:id)
     
-    language_name = language_for_locale || 'english'
+    language_name = language_for_locale(options[:locale]) || 'english'
     locale_names = common_names.select {|n| n.lexicon.to_s.downcase == language_name}
     engnames = common_names.select {|n| n.is_english?}
     unknames = common_names.select {|n| n.lexicon == 'unspecified'}
@@ -140,7 +156,7 @@ class TaxonName < ActiveRecord::Base
 
   def self.language_for_locale(locale = nil)
     locale ||= I18n.locale
-    lang_code = locale.to_s.split('-').first.downcase
+    lang_code = locale.to_s.split('-').first.to_s.downcase
     case lang_code
     when 'es' then return 'spanish'
     when 'fr' then return 'french'
@@ -154,9 +170,9 @@ class TaxonName < ActiveRecord::Base
     taxon_names.select { |tn| tn.is_valid? && tn.is_scientific_names? }.first
   end
   
-  def self.choose_default_name(taxon_names)
+  def self.choose_default_name(taxon_names, options = {})
     return nil if taxon_names.blank?
-    name = choose_common_name(taxon_names)
+    name = choose_common_name(taxon_names, options)
     name ||= choose_scientific_name(taxon_names)
     name ||= taxon_names.first
     name

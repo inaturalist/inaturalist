@@ -1,6 +1,6 @@
 <div id="header" class="clear">
   <% if logged_in? -%>
-    <%= link_to( t(:welcome, :login => "#{current_user.login}"), dashboard_path, :class => "right") %>
+    <%= link_to( t(:welcome_login, :login => "#{current_user.login}"), dashboard_path, :class => "right") %>
   <% else %>
     <%= link_to(t(:sign_in), new_user_session_path, :class => "right") %>
   <% end -%>

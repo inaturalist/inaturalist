@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Observations Widget
+  <%= @title=t(:observations_widget) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
@@ -31,8 +31,8 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#placechooser input[type=text]').chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json?with_geom=t',
-        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        collectionUrl: '/places/autocomplete.json?with_geom=t',
+        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
         afterSelect: function(item) {
           $('#placechooser .default.button').attr('disabled', false).removeClass('disabled').focus()
         },
@@ -42,8 +42,8 @@
         chosen: eval('(' + $('#placechooser input[type=text]').attr('data-json') + ')')
       })
       $('.placefield input[type=text]').chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
-        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        collectionUrl: '/places/autocomplete.json',
+        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
         chosen: eval('(' + $('.placefield input[type=text]').attr('data-json') + ')')
       })
       <% if @place.blank? %>
@@ -60,40 +60,38 @@
 <%- end -%>
 <div id="pageheader">
   <div id="widgetnav" class="right">
-    <span class="meta">Observations</span>
-    <%= link_to "by you", url_for(), :class => "#{'selected' unless @place || @taxon || @project}" %>
+    <span class="meta"><%= t :observations %></span>
+    <%= link_to t(:by_you).downcase, url_for(), :class => "#{'selected' unless @place || @taxon || @project}" %>
     <span class="meta">&middot;</span>
-    <%= link_to_function "from a place", "$('#placechooser').show(); $(this).hide()",
+    <%= link_to_function t(:from_a_place), "$('#placechooser').show(); $(this).hide()",
       :id => "placechooserlink",
       :class => "selected" %>
     <form method="get" id="placechooser" class="buttonrow smallbuttons inline">
-      <label for="place_name">Place name</label>
-      <input type="text" name="place_id" value="" id="place_id" placeholder="Type place name" data-json='<%= @place.to_json.html_safe %>'/>
-      <input type="submit" value="Generate Widget" disabled="true" class="disabled default button"/>
-      <%= link_to_function "cancel", "$('#placechooser').hide(); $('#placechooserlink').show()", :class => "cancellink" %>
+      <label for="place_name"><%= t :place_name %></label>
+      <input type="text" name="place_id" value="" id="place_id" placeholder="<%= t :type_place_name %>" data-json='<%= @place.to_json.html_safe %>'/>
+      <input type="submit" value="<%= t :generate_widget %>" disabled="true" class="disabled default button"/>
+      <%= link_to_function t(:cancel), "$('#placechooser').hide(); $('#placechooserlink').show()", :class => "cancellink" %>
     </form>
     <span class="meta">&middot;</span>
-    <%= link_to "for a taxon", url_for(:taxon_id => '1'), :class => "#{'selected' if @taxon}" %>
+    <%= link_to t(:for_a_taxon), url_for(:taxon_id => '1'), :class => "#{'selected' if @taxon}" %>
   </div>
   
-  <h2>Observations Widget</h2>
+  <h2><%= @title %></h2>
   <p class="description">
-    Configure a widget to show <%= CONFIG.site_name %> observations on your website or
-    blog. You may have to include the embedded CSS in the
-    <code>&lt;head&gt;</code> of your HTML.  Feel free to re-write the CSS.
+    <%= t(:configure_a_widget_to_show, :site_name => CONFIG.site_name).html_safe %>
   </p>
 </div>
 
 <% if logged_in? || @place || @taxon -%>
   <div class="column span-6">
-    <h3>Settings</h3>
+    <h3><%= t(:settings).capitalize %></h3>
     <form method="get">
       <% if @place -%>
         <div class="field placefield">
-          <label>Place</label><br/>
+          <label><%= t :place %></label><br/>
           <input type="text" name="place_id" value="<%= @place.id if @place %>" data-json='<%= @place.to_json %>'/>
           <div>
-            <%= link_to "View #{h(truncate(@place.name, :length => 30))}", @place, :class => "readmore" %>
+            <%= link_to "#{t(:view)} #{h(truncate(@place.name, :length => 30))}", @place, :class => "readmore" %>
           </div>
         </div>
       <% end -%>
@@ -102,28 +100,28 @@
         <input type="hidden" name="taxon_id" value="<%= @taxon.id if @taxon %>"/>
       <%end -%>
       <% if @project -%>
-        <label>Project</label><br/>
+        <label><%= t :project %></label><br/>
         <%= link_to @project.title, @project %>
         <input type="hidden" name="project_id" value="<%= @project.id if @project %>"/>
       <%end -%>
 
       <div class="field">
-        <label>Logo</label><br/>
+        <label><%= t 'logo.logo' %></label><br/>
 
         <input type="radio" name="logo" value="logo-small.gif" id="logo_small_gif" <%= 'checked="checked"' if @logo == "logo-small.gif" %>>
-        <label for="logo_small_gif">white BG GIF</label><br/>
+        <label for="logo_small_gif"><%= t 'logo.white_bg_gif' %></label><br/>
 
         <input type="radio" name="logo" value="logo-small.png" id="logo_small_png" <%= 'checked="checked"' if @logo == "logo-small.png" %>>
-        <label for="logo_small_png">transparent PNG</label><br/>
+        <label for="logo_small_png"><%= t 'logo.transparent_png' %></label><br/>
 
         <input type="radio" name="logo" value="logo-small-white.png" id="logo_small_white_gif" <%= 'checked="checked"' if @logo  == "logo-small-white.png" %>>
-        <label for="logo_small_white_gif">white text transparent PNG</label><br/>
+        <label for="logo_small_white_gif"><%= t 'logo.white_text_transparent_png' %></label><br/>
 
         <input type="radio" name="logo" value="none" id="logo_none" <%= 'checked="checked"' if @logo == "none" %>>
-        <label for="logo_none">none</label>
+        <label for="logo_none"><%= t 'logo.none' %></label>
       </div>
       <div class="field">
-        <label for="limit">Number of observations</label><br/>
+        <label for="limit"><%= t :number_of_observations %></label><br/>
         <select name="limit" id="limit">
           <% 20.times do |n| %>
           <option value="<%= n + 1 %>"<%= ' selected="selected"' if n+1 == @limit %>><%= n + 1 %></option>
@@ -132,31 +130,31 @@
       </div>
 
       <div class="field">
-        <label for="order_by">Order by</label><br/>
+        <label for="order_by"><%= t :order_by %></label><br/>
         <select name="order_by" id="order_by">
-          <option <%= 'selected="selected"' if @order_by == 'observed_on' %> value="observed_on">date observed on</option>
-          <option <%= 'selected="selected"' if @order_by == 'created_at' %> value="created_at">date added</option>
+          <option <%= 'selected="selected"' if @order_by == 'observed_on' %> value="observed_on"><%= t :date_observed_on %></option>
+          <option <%= 'selected="selected"' if @order_by == 'created_at' %> value="created_at"><%= t(:date_added).downcase %></option>
         </select>
       </div>
 
       <div class="field">
-        <label for="order">Order</label><br/>
-        <input type="radio" name="order" <%= 'checked="checked"' if @order == 'desc' %> value="desc" id="order_desc"> <label for="order_desc">descending</label>
-        <input type="radio" name="order" <%= 'checked="checked"' if @order == 'asc' %> value="asc" id="order_asc"> <label for="order_asc">ascending</label>
+        <label for="order"><%= t :order %></label><br/>
+        <input type="radio" name="order" <%= 'checked="checked"' if @order == 'desc' %> value="desc" id="order_desc"> <label for="order_desc"><%= t :descending %></label>
+        <input type="radio" name="order" <%= 'checked="checked"' if @order == 'asc' %> value="asc" id="order_asc"> <label for="order_asc"><%= t :ascending %></label>
       </div>
 
       <div class="field">
-        <label for="layout">Layout</label><br/>
-        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'large' %> value="large" id="layout_large"> <label for="layout_large">list</label>
-        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'small' %> value="small" id="layout_small"> <label for="layout_small">grid</label>
+        <label for="layout"><%= t :layout %></label><br/>
+        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'large' %> value="large" id="layout_large"> <label for="layout_large"><%= t(:list).downcase %></label>
+        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'small' %> value="small" id="layout_small"> <label for="layout_small"><%= t(:grid).downcase %></label>
       </div>
 
-      <%= submit_tag "Configure &raquo;".html_safe, :class => "button" %>
+      <%= submit_tag "#{t(:configure)} &raquo;".html_safe, :class => "button" %>
     </form>
   </div>
 
   <div class="last column span-18">
-    <div id="loading" class="loading status" style="display: none">Loading preview and code...</div>
+    <div id="loading" class="loading status" style="display: none"><%= t :loading_preview_and_code %></div>
     <div id="widget_preview_and_code">
       <%= render :partial => 'widget_preview_and_code', :locals => {
         :place => @place, :taxon => @taxon, :project => @project
@@ -166,27 +164,22 @@
   
   
   <div class="last column span-24 meta">
-    <h3>Note</h3>
+    <h3><%= t :note %></h3>
     <p class="ui">
-      New observations may take up to
-      <%= ObservationsController::WIDGET_CACHE_EXPIRATION / 60 %> minutes to 
-      appear in the widget.
+      <%= t(:new_observations_may_take_up_to, :widget_expiration => ObservationsController::WIDGET_CACHE_EXPIRATION / 60) %>
     </p>
     <% if @place -%>
       <p class="ui">
-        Observations "near" a place are within a rectangle drawn around
-        the place's boundary, which may result in some inaccurate results for
-        places that don't resemble rectangles. This is due to a limitation with
-        our database that we're working to resolve.
+        <%= t :observations_near_a_place_are %>
       </p>
     <% end -%>
   </div>
 
 <% else %>
   <p>
-    <%= link_to "Sign in", login_path %>
-    or <%= link_to "sign up", signup_path %>
-    to configure your widget.
+    <%= link_to t(:sign_in), login_path %>
+    <%= t :or %> <%= link_to t(:sign_up), signup_path %>
+    <%= t :to_configure_your_widget %>
   </p>
 <% end -%>
 

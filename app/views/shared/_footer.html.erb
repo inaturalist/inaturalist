@@ -14,11 +14,12 @@
   </div>
 
   <div class="meta">
-    <a href="<%= CONFIG.about_url %>"><%= t(:about_x, :x => SITE_NAME) %></a> &nbsp;
+    <a href="<%= CONFIG.about_url %>"><%= t(:about_x, :x => @site.try(:name) || SITE_NAME) %></a> &nbsp;
     <a href="<%= CONFIG.help_url %>"><%=t :help %></a> &nbsp;
     <a href="<%= CONFIG.feedback_url %>"><%=t :feedback %></a> &nbsp;
     <a href="<%= CONFIG.terms_url %>"><%=t :terms_service %></a> &nbsp;
-    <a href="<%= CONFIG.privacy_url %>"><%=t :privacy%></a> &nbsp;
+    <a href="<%= CONFIG.privacy_url %>"><%=t :privacy %></a> &nbsp;
+    <a href="<%= CONFIG.developers_url %>"><%=t :developers %></a>
   </div>
 </div>
 <%- if defined?(is_mobile_device?) && is_mobile_device? && @mobilized -%>

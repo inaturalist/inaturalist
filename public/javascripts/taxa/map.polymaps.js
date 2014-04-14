@@ -266,6 +266,18 @@ function addObservations() {
     .url(observationsGeoJsonUrl)
     .tile(false)
     .on('load', handleObservations)
+    .zoom(function(z) {
+      $('#observations circle').each(function(o) {
+        var r = parseFloat($(this).attr('r')),
+            minDimension = Math.min(window.map.size().x, window.map.size().y)
+        if (r * 2 > minDimension) {
+          $(this).hide()
+        } else {
+          $(this).show()
+        }
+      })
+      return z
+    })
     .clip(false)
   map.add(layers['observations']);
 }
@@ -544,7 +556,9 @@ function collapseLegend() {
 
 function expandLegend() {
   $('#togglecollapse').addClass('ui-icon-arrow-1-sw').removeClass('ui-icon-arrow-1-ne')
-  $('#legendcontent').show()
-    .animate({height: $('#legendcontent').data('originalHeight')})
-    .animate({width:  $('#legendcontent').data('originalWidth' )})
+  $lc = $('#legendcontent')
+  $lc.css({display:'block', width:'auto', height:'auto'})
+  var w = Math.max($lc.data('originalWidth'), $lc.prop('scrollWidth')),
+      h = Math.max($lc.data('originalHeight'), $lc.prop('scrollHeight'))
+  $lc.animate({height: h+'px', width:  w+'px'})
 }

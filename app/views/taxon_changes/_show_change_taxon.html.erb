@@ -26,16 +26,16 @@
   <% unless hide_buttons -%>
     <div class="right inline buttonrow">
       <% if taxon_change.editable_by?(current_user) %>
-        <%= link_to "edit taxon change", edit_taxon_change_path(taxon_change), :class => "pale inline button" %>
+        <%= link_to t(:edit_taxon_change), edit_taxon_change_path(taxon_change), :class => "pale inline button" %>
         <% unless taxon_change.committed? -%>
-          <%= link_to "Commit", taxon_change_commit_path(taxon_change),
-            :confirm => "Are you sure you want to commit this change? This cannot be undone.",
+          <%= link_to t(:commit), taxon_change_commit_path(taxon_change),
+            :confirm => t(:are_you_sure_you_want_to_commit_this_change),
             :method => :put,
             :class => "glaucous inline button",
-            "data-loading-click" => "Committing..." %>
+            "data-loading-click" => t(:committing) %>
         <% end -%>
       <% end %>
-      <%= link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "glaucous inline button" %>
+      <%= link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), :class => "glaucous inline button" %>
     </div>
   <% end -%>
 
@@ -43,7 +43,7 @@
     <h2>
       <%= link_to image_tag("#{taxon_change.class.name.underscore}-aaaaaa-48px.png", :style => "vertical-align:middle;"), taxon_change %>
       <%= link_to "Taxonomic #{taxon_change.class.name.split('Taxon')[1]} #{taxon_change.id}", taxon_change_path(taxon_change) %>
-      (<%= taxon_change.committed_on.nil? ? "Draft" : "Committed on #{taxon_change.committed_on}" %>)
+      (<%= taxon_change.committed_on.blank? ? t(:draft_) : t(:committed) + ' ' + t(:on_) + ' ' + l(taxon_change.committed_on) %>)
     </h2>
   <% end -%>
 
@@ -54,30 +54,30 @@
       </div>
     <% end -%>
     <div class="meta">
-      <label>Source:</label>
+      <label><%= t :source %>:</label>
       <% if taxon_change.source %>
         <% if taxon_change.source.url %>
            <%= link_to truncate(taxon_change.source.title, :length => 40), taxon_change.source.url %>
         <% elsif taxon_change.source %>
           <%= taxon_change.source.title %>
         <% end -%>
-        (<%= link_to_dialog "Citation", :title => "Citation for #{taxon_change.class.name.underscore.titleize} #{taxon_change.id}" do %>
+        (<%= link_to_dialog t(:citation), :title => t(:citation) + t(:for) + " #{taxon_change.class.name.underscore.titleize} #{taxon_change.id}" do %>
           <%= citation_for taxon_change.source %>
         <% end -%>)
       <% else %>
-        unknown
+        <%= t(:unknown).downcase %>
       <% end %>
       <% unless taxon_change.change_group.blank? %>
-      | <label>Group:</label> <%= link_to taxon_change.change_group, taxon_changes_path(:change_group => taxon_change.change_group) %>
+      | <label><%= t :group %>:</label> <%= link_to taxon_change.change_group, taxon_changes_path(:change_group => taxon_change.change_group) %>
     <% end %>
     </div>
     <% if taxon_change.user %>
-      <label>Added by</label> <%= link_to taxon_change.user.login, taxon_change.user %>
-      on <%= taxon_change.created_at.to_date %>
+      <label><%= t :added_by %></label> <%= link_to taxon_change.user.login, taxon_change.user %>
+      <%= t :on_ %> <%= taxon_change.created_at.to_date %>
     <% end -%>
     <% if taxon_change.committed? && taxon_change.committer %>
-      | <label>Committed by</label> <%= link_to taxon_change.committer.login, taxon_change.committer %>
-      on <%= taxon_change.committed_on %>
+      | <label><%= t(:committed) + ' ' + t(:by).downcase %></label> <%= link_to taxon_change.committer.login, taxon_change.committer %>
+       <%= t(:on_) + ' ' + l(taxon_change.committed_on) %>
     <% end -%>
   </div>
 
@@ -94,15 +94,15 @@
       </td>
       <td class="mergetype">
         <% case taxon_change.class.name when "TaxonSplit" %>
-          split into
+          <%= t("change_types.split_into") %>
         <% when "TaxonMerge" %>
-          merged into
+          <%= t("change_types.merge_into") %>
         <% when "TaxonSwap" %>
-          replaced with
+          <%= t("change_types.replace_with") %>
         <% when "TaxonDrop" %>
-          dropped
+          <%= t("change_types.dropped") %>
         <% when "TaxonDrop" %>
-          staged
+          <%= t("change_types.staged") %>
         <% end %>
       </td>
       <td>

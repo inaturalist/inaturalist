@@ -5,8 +5,8 @@ class FlagsController < ApplicationController
   before_filter :load_flag, :only => [:show, :edit, :destroy, :update]
   
   # put the parameters for the foreign keys here
-  FLAG_MODELS = ["Observation", "Taxon", "Post", "Comment", "Identification"]
-  FLAG_MODELS_ID = ["observation_id","taxon_id","post_id", "comment_id", "identification_id"]
+  FLAG_MODELS = ["Observation", "Taxon", "Post", "Comment", "Identification", "Message"]
+  FLAG_MODELS_ID = ["observation_id","taxon_id","post_id", "comment_id", "identification_id", "message_id"]
   PARTIALS = %w(dialog)
 
   def index
@@ -38,7 +38,7 @@ class FlagsController < ApplicationController
     create_options[:user_id] = current_user.id
     @object = @model.find_by_id(params[:flag][:flaggable_id])
     unless @object
-      flash[:error] = "Can't flag an object that doesn't exist"
+      flash[:error] = t(:cant_flag_an_object_that_doesnt_exist)
       redirect_to root_path
     end
     
@@ -47,14 +47,16 @@ class FlagsController < ApplicationController
       @flag.flag = params[:flag_explanation]
     end
     if @flag.save
-      flash[:notice] = "Flag saved.  Thanks!"
+      flash[:notice] = t(:flag_saved_thanks)
     else
-      flash[:error] = "We had a problem flagging that item: #{@flag.errors.full_messages.to_sentence.downcase}"
+      flash[:error] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence.downcase)
     end
     if @object.is_a?(Comment)
       redirect_to @object.parent
     elsif @object.is_a?(Identification)
       redirect_to @object.observation
+    elsif @object.is_a?(Message)
+      redirect_to messages_path
     else
       redirect_to @object
     end
@@ -63,9 +65,9 @@ class FlagsController < ApplicationController
   def update
     respond_to do |format|
       if @flag.update_attributes(params[:flag])
-        flash[:notice] = "Flag saved."
+        flash[:notice] = t(:flag_saved)
       else
-        flash[:notice] = "We had a problem saving that flag: #{@flag.errors.full_messages.to_sentence}"
+        flash[:notice] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence)
       end
       format.html do 
         redirect_back_or_default(@flag)
@@ -99,7 +101,7 @@ class FlagsController < ApplicationController
     if (@model ||= Object.const_get(params[:flag][:flaggable_type]) rescue nil)
       return
     end
-    flash[:notice] = "You can't flag that"
+    flash[:notice] = t(:you_cant_flag_that)
     redirect_to observations_path
   end
 end

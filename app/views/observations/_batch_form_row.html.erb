@@ -73,7 +73,7 @@
         </div>
         
         <div class="last column prepend-1 span-21">
-          <%= link_to_toggle "More fields", "#morebatchcontrols" %>
+          <%= link_to_toggle t(:more_fields), "#morebatchcontrols" %>
           <div id="morebatchcontrols" style="display:none;">
             <table>
               <tr class="inline buttonrow">
@@ -84,13 +84,22 @@
               <tr class="inline buttonrow">
                 <td><%= o.label :geoprivacy, t(:geoprivacy) %></td>
                 <td><%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %></td>
-                <td><%= link_to_function "Apply geoprivacy &darr;".html_safe, "applyBatch(['geoprivacy'])", :class => "default button" %></td>
+                <td><%= link_to_function "#{t :apply_geoprivacy} &darr;".html_safe, "applyBatch(['geoprivacy'])", :class => "default button" %></td>
+              </tr>
+              <tr class="inline buttonrow">
+                <td><label><%= t(:was_it_captive_cultivated?) %></label></td>
+                <td>
+                  <%= o.radio_button :captive_flag, 1 %> <%= o.label :captive_flag, t(:yes), :value => 1 %>
+                  <%= o.radio_button :captive_flag, 0 %> <%= o.label :captive_flag, t(:no), :value => 0 %>
+                  <%= o.radio_button :captive_flag, "unknown" %> <%= o.label :captive_flag, t(:unknown), :value => "unknown" %>
+                </td>
+                <td><%= link_to_function "#{t :apply_captive_cultivated} &darr;".html_safe, "applyBatch(['captive_flag'])", :class => "default button" %></td>
               </tr>
               <tr>
                 <td colspan="2">
                   <%= render 'observation_field_form_fields', :builder => o %>
                 </td>
-                <td class="inline buttonrow"><%= link_to_function "Apply fields &darr;".html_safe, "batchObservationFields()", :class => "default button nobr" %></td>
+                <td class="inline buttonrow"><%= link_to_function "#{t :apply_fields} &darr;".html_safe, "batchObservationFields()", :class => "default button nobr" %></td>
               </tr>
             </table>
           </div>

@@ -13,8 +13,8 @@ class ListedTaxaFromCsvFlowTask < FlowTask
       taxon_name, description, occurrence_status, establishment_means = row
       next if taxon_name.blank?
       if list_input.resource.is_a?(CheckList)
-        occurrence_status_level = ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[occurrence_status]
-        establishment_means = ListedTaxon::ESTABLISHMENT_MEANS.include?(establishment_means) ? establishment_means : nil
+        occurrence_status_level = ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[occurrence_status.to_s.downcase]
+        establishment_means = ListedTaxon::ESTABLISHMENT_MEANS.include?(establishment_means.to_s.downcase) ? establishment_means.downcase : nil
       else
         occurrence_status_level = nil
         establishment_means = nil
@@ -30,7 +30,7 @@ class ListedTaxaFromCsvFlowTask < FlowTask
       lt.skip_sync_with_parent = true
       lt.force_update_cache_columns = true
       output = self.outputs.build
-      extra = {:row => row}
+      extra = {:row => row, :taxon_id => taxon.try(:id)}
       if lt.save
         output.resource = lt
       else

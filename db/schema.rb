@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131061500) do
+ActiveRecord::Schema.define(:version => 20130102225500) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -414,8 +414,6 @@ ActiveRecord::Schema.define(:version => 20130131061500) do
     t.boolean  "out_of_range"
     t.string   "license"
     t.string   "uri"
-    t.integer  "photos_count",                                                                    :default => 0
-    t.integer  "comments_count",                                                                  :default => 0
   end
 
   add_index "observations", ["comments_count"], :name => "index_observations_on_comments_count"
@@ -993,8 +991,6 @@ ActiveRecord::Schema.define(:version => 20130131061500) do
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
   end
-
-  add_index "wiki_page_attachments", ["page_id"], :name => "index_wiki_page_attachments_on_page_id"
 
   create_table "wiki_page_versions", :force => true do |t|
     t.integer  "page_id",    :null => false

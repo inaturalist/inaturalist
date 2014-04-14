@@ -1,0 +1,13 @@
+- guide ||= media_object
+- tag ||= :div
+- img_class ||= nil
+= content_tag tag, :class => "media" do
+  .pull-left{:class => img_class}
+    = link_to image_tag(guide.icon.url(:small_square), :class => "img-rounded"), guide
+  .media-body
+    %h2.media-heading= link_to guide.title, guide
+    %p= truncate(strip_tags(guide.description), :length => 300).html_safe
+    .muted
+      - unless guide.published?
+        %span.badge.badge-warning.draft=t :draft
+      =t :edited_by_name_html, :name => link_to_user(guide.user)

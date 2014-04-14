@@ -24,7 +24,7 @@
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= google_maps_js %>
   <%= javascript_include_tag 'inaturalist/map3' %>
 
   <script type="text/javascript" charset="utf-8">
@@ -37,6 +37,7 @@
         lng: 0, 
         zoom: 2,
         minZoom: 2,
+        mapTypeId: eval(I18n.t('maptype_for_places')),
         bounds: BOUNDS
       })
       for (var i=0; i < places.length; i++) {
@@ -63,7 +64,7 @@
   </div>
   <h2>
     <%=t :places %>&nbsp;
-    <span class="small description">
+        <span class="small description">
       <%= t(:find_new_place_to_explore) %>
     </span>
   </h2>
@@ -89,9 +90,9 @@
             <%= link_to h(truncate(place.name, :length => 30)), place %>
           </h3>
           <div class="small description">
-            <%= place.place_type_name %>
+            <%= t("place_geo.geo_planet_place_types.#{place.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if(place.place_type_name) %>
             <% if place.parent -%>
-              in <%= link_to place.parent.display_name, place.parent %>
+              <%= t :in %> <%= link_to place.parent.display_name, place.parent %>
             <% end -%>
           </div>
         </div>

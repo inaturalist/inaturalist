@@ -5,7 +5,7 @@
 end
 -%>
 <%- content_for(:title) do -%>
-  <%= @title = "Widget for #{@place.display_name}" %>
+  <%= @title = "#{t(:widget_for)} #{t('places_name.'+@place.display_name.gsub(' ','_').downcase, :default => @place.display_name)}" %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
@@ -16,8 +16,8 @@ end
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#taxonchooser').chooser({
-        collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
-        resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+        collectionUrl: '/taxa/autocomplete.json',
+        resourceUrl: '/taxa/{{id}}.json?partial=chooser',
         defaultSources: <%= @default_taxa.to_json(:methods => [:html]).html_safe %>
       })
       
@@ -40,59 +40,59 @@ end
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
     <div class="right meta" style="z-index:1">
-      For a widget showing recent observations from <%= @place.name %>, check out the
-      <%= link_to "observations widget", observations_widget_url(:place_id => @place), :class => "readmore" %>
+      <%= t(:for_a_widget_showing_recent_observations_from, :place_name => t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name)) %>
+      <%= link_to t(:observations_widget).downcase, observations_widget_url(:place_id => @place.id), :class => "readmore" %>
     </div>
-    <strong><%= link_to "&laquo #{@place.name}".html_safe, @place, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{t('places_name.'+@place.display_name.gsub(' ','_').downcase, :default => @place.display_name)}".html_safe, @place, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <h2><%= @title %></h2>
 </div>
 
 <div class="column span-16">
-  <h3>Preview</h3>
+  <h3><%= t :preview %></h3>
   <%= @widget_code = "<iframe width=\"100%\" height=\"600\" scrolling=\"auto\" src=\"#{place_guide_widget_url(@place)}\"></iframe>".html_safe -%>
 </div>
 <div class="last column span-8">
-  <h3>Configure</h3>
+  <h3><%= t :configure %></h3>
   <form id="configureform" class="stacked">
     <div class="field">
-      <label>Icon size</label>
+      <label><%= t :icon_size %></label>
       <br/>
-      <%= radio_button_tag 'size', 'medium', true %> <label for="size_medium">normal</label>
-      <%= radio_button_tag 'size', 'small' %> <label for="size_small">small</label>
+      <%= radio_button_tag 'size', 'medium', true %> <label for="size_medium"><%= t :normal %></label>
+      <%= radio_button_tag 'size', 'small' %> <label for="size_small"><%= t :small %></label>
     </div>
     <div class="field">
-      <label>Layout</label>
+      <label><%= t :layout %></label>
       <br/>
-      <%= radio_button_tag 'grid', 'grid', true %> <label for="grid_grid">grid</label>
-      <%= radio_button_tag 'grid', 'fluid' %> <label for="grid_fluid">fluid</label>
+      <%= radio_button_tag 'grid', 'grid', true %> <label for="grid_grid"><%= t :grid %></label>
+      <%= radio_button_tag 'grid', 'fluid' %> <label for="grid_fluid"><%= t :fluid %></label>
     </div>
     <div class="field">
-      <label>Labels</label>
+      <label><%= t(:labels) %></label>
       <br/>
-      <%= radio_button_tag 'labeled', 'labeled', true %> <label for="labeled_labeled">yes</label>
-      <%= radio_button_tag 'labeled', 'unlabeled' %> <label for="labeled_unlabeled">no</label>
+      <%= radio_button_tag 'labeled', 'labeled', true %> <label for="labeled_labeled"><%= t :yes %></label>
+      <%= radio_button_tag 'labeled', 'unlabeled' %> <label for="labeled_unlabeled"><%= t :no %></label>
     </div>
     
     <div class="field">
-      <label>BG Color</label>
+      <label><%= t :bg_color %></label>
       <span class="small meta">
-        Hex color, e.g. 65644F
+        <%= t :hex_color_eg %>
       </span>
       <br/>
       <%= text_field_tag 'bgcolor', nil, :class => "text" %>
     </div>
     
     <div class="field">
-      <label>Taxon</label>
+      <label><%= t :taxon %></label>
       <br/>
-      <%= text_field_tag :taxon, nil, :class => "chooser text", :id => "taxonchooser", :placeholder => "Type species name..." %>
+      <%= text_field_tag :taxon, nil, :class => "chooser text", :id => "taxonchooser", :placeholder => t(:type_taxon_name) %>
     </div>
-    <input type="submit" value="Configure"/>
+    <input type="submit" value="<%= t(:configure) %>"/>
   </form>
   
-  <h3>Code</h3>
+  <h3><%= t :code %></h3>
   <textarea style="width:100%;"><%= @widget_code %></textarea>
 </div>
 

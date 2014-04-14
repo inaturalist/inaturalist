@@ -26,9 +26,15 @@
       changeFirstDay: false,
       changeMonth: true,
       changeYear: true,
-      dateFormat: 'yy-mm-dd'
+      dateFormat: 'yy-mm-dd',
+      timeFormat: 'hh:mm tt z',
+      showTimezone: true
     }, options)
-    $(this).datepicker(options);
+    if (options.time) {
+      $(this).datetimepicker(options);
+    } else {
+      $(this).datepicker(options);
+    }
     $(this).next('.ui-datepicker-trigger').css({
       'vertical-align': 'middle'
     });

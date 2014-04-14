@@ -90,7 +90,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     options = field_content if block_given?
     options ||= {}
     wrapper_options = options.delete(:wrapper) || {}
-    wrapper_options[:class] = "#{wrapper_options[:class]} field #{field}_field".strip
+    wrapper_options[:class] = "#{wrapper_options[:class]} field #{field.to_s.parameterize.underscore}_field".strip
     content, label_content = '', ''
     
     if options[:label] != false
@@ -102,7 +102,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       if options[:required]
         label_tag += content_tag(:span, " *", :class => 'required')
       end
-      label_content = content_tag(options[:label_after] ? :span : :div, label_tag, :class => "label")
+      label_content = content_tag(options[:label_after] ? :span : :div, label_tag, :class => "inlabel")
     end
     
     description = content_tag(:div, options[:description], :class => "description") if options[:description]

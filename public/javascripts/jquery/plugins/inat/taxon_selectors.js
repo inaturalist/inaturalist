@@ -25,7 +25,7 @@
    */
   function setup(input, options) {
     // Wrap the form field
-    $(input).wrap($('<div class="simpleTaxonSelector"></div>'));
+    $(input).wrap($('<div class="simpleTaxonSelector clear"></div>'));
     var wrapper = $(input).parent();
     $(wrapper).css({
       position: 'relative',
@@ -115,10 +115,7 @@
         if ($(taxon_id).attr('alt') && $(taxon_id).attr('alt') != '') {
           $.fn.simpleTaxonSelector.setStatus(wrapper, 'matched', $(taxon_id).attr('alt'));
         } else {
-          $.fn.simpleTaxonSelector.setStatus(wrapper, 'loading', I18n.t('loading'));
-          jQuery.getJSON('/taxa/'+$(taxon_id).val()+'.json', function(taxon) {
-            $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxon, options);
-          }); 
+          $.fn.simpleTaxonSelector.selectTaxonFromId(wrapper, $(taxon_id).val(), options)
         }
       } else { // if only the guess is set, look that up
         $.fn.simpleTaxonSelector.lookup(wrapper, options);
@@ -154,14 +151,11 @@
     }
   
     // If there's only one result and it's an exact match, select the taxon
-    else if (taxa.length == 1 && 
-             (taxa[0].name.toLowerCase() == q.toLowerCase() ||
-              (typeof(taxa[0].default_name) != 'undefined' && 
-                taxa[0].default_name.name.toLowerCase() == q.toLowerCase()))) {
-      $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxa[0], options);
+    else if (taxa.length == 1 && taxa[0].taxon_names.map(function(n) { return n.name.toLowerCase()}).indexOf(q.toLowerCase()) >= 0) {
+      $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxa[0], $.extend(true, options, {selectedName: q}));
     }
   
-    // Otherwise, display each as an selection option
+    // Otherwise, display each as a selection option
     else {
       var message = $('<span>'+I18n.t('did_you_mean')+'</span>');
       var list = $('<ul class="matches"></ul>').css({'margin-bottom': '3px'});
@@ -202,7 +196,7 @@
         );
       };
   
-      $.fn.simpleTaxonSelector.setStatus(wrapper, 'unmatched', message);
+      $.fn.simpleTaxonSelector.setStatus(wrapper, 'choice', message);
     }
   } // end handleNames
   
@@ -350,6 +344,14 @@
       options.afterSelect(wrapper, taxon, options);
     };
   };
+
+  $.fn.simpleTaxonSelector.selectTaxonFromId = function(wrapper, taxonId, options) {
+    var options = $.extend({}, options)
+    $.fn.simpleTaxonSelector.setStatus(wrapper, 'loading', I18n.t('loading'));
+    jQuery.getJSON('/taxa/'+taxonId+'.json', function(taxon) {
+      $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxon, options);
+    }); 
+  }
   
   $.fn.simpleTaxonSelector.taxonNameToS = function(name, options) {
     var options = $.extend({}, options)
@@ -410,14 +412,26 @@
     return $(formatted).get(0);
   }
 
+  $.fn.simpleTaxonSelector.taxonNameMatchesLocale = function(taxonName) {
+    var lexicon = taxonName.lexicon || ""
+    if (lexicon.toLowerCase() == "scientific names") { return true }
+    if (I18n.locale == 'en' && lexicon == 'English') { return true }
+    if (I18n.locale.match(/^es/) && lexicon == "Spanish") { return true }
+    return false
+  }
+
   $.fn.simpleTaxonSelector.chosenTaxonNameFor = function(q, taxon) {
     // find exact match
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
-      if (tn && q && tn.name.toLowerCase() == q.toLowerCase()) {
-        if ((I18n.locale == 'en' && tn.lexicon == 'English') || (I18n.locale.match(/^es/) && tn.lexicon == "Spanish")) {
-          return tn
-        }
+      if (tn && q && tn.name.toLowerCase() == q.toLowerCase() && $.fn.simpleTaxonSelector.taxonNameMatchesLocale(tn)) {
+        return tn
+      }
+    }
+    for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
+      var tn = taxon.taxon_names[i]
+      if (tn && q && tn.name.toLowerCase() == q.toLowerCase() && tn.lexicon != 'Scientific Names') {
+        return tn
       }
     }
 
@@ -425,7 +439,7 @@
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
       if (tn && q && tn.is_valid && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
-        if ((I18n.locale == 'en' && tn.lexicon == 'English') || (I18n.locale.match(/^es/) && tn.lexicon == "Spanish")) {
+        if ($.fn.simpleTaxonSelector.taxonNameMatchesLocale(tn)) {
           return tn
         }
       }
@@ -434,10 +448,8 @@
     // find match
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
-      if (tn && q && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
-        if ((I18n.locale == 'en' && tn.lexicon == 'English') || (I18n.locale.match(/^es/) && tn.lexicon == "Spanish")) {
-          return tn
-        }
+      if (tn && q && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0 && $.fn.simpleTaxonSelector.taxonNameMatchesLocale(tn)) {
+        return tn
       }
     }
 
@@ -466,6 +478,8 @@
       color: '#888',
       background: 'url(/images/logo-grey-15px.png) 0 3px no-repeat'
   });
+
+  $.fn.simpleTaxonSelector.styles.statuses.choice = $.extend({}, $.fn.simpleTaxonSelector.styles.statuses.unmatched, {});
   
   $.fn.simpleTaxonSelector.styles.statuses.error = $.extend({}, 
     $.fn.simpleTaxonSelector.styles.statuses['default'], {

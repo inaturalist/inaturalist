@@ -1,0 +1,15 @@
+%table
+  - for ft in flow_tasks
+    %tr
+      %td.inline.buttonrow.smallbuttons
+        = link_to t(:download), ft.export_output.file.url, :class => "glaucous button"
+      %td= number_to_human_size ft.export_output.file.size
+      - unless ft.finished_at.blank?
+        %td=l ft.finished_at, :format => :long
+      %td
+        %div
+          %strong=t :query
+          = URI.unescape(ft.query).split('&').map{|p| k,v = p.split('=');"#{k}=<b>#{v}</b>"}.join('&').html_safe
+        %div
+          %strong=t :columns
+          = ft.export_columns.join(', ')

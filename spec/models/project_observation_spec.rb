@@ -29,6 +29,14 @@ describe ProjectObservation, "creation" do
     po = without_delay {make_project_observation(:observation => o, :project => @project)}
     po.curator_identification_id.should eq(o.owners_identification.id)
   end
+
+  it "should touch the observation" do
+    o = Observation.make!(:user => @project_user.user)
+    po = ProjectObservation.create(:observation => o, :project => @project)
+    o.reload
+    o.updated_at.should be > o.created_at
+  end
+  
 end
 
 describe ProjectObservation, "destruction" do
@@ -51,6 +59,14 @@ describe ProjectObservation, "destruction" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /\:update_observations_counter_cache/}.should_not be_blank
     jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}.should_not be_blank
+  end
+
+  it "should touch the observation" do
+    o = @project_observation.observation
+    t = o.updated_at
+    @project_observation.destroy
+    o.reload
+    o.updated_at.should be > t
   end
 end
 
@@ -115,6 +131,14 @@ describe ProjectObservation, "georeferenced?" do
     project_observation = make_project_observation
     o = project_observation.observation
     o.update_attributes(:latitude => 0.5, :longitude => 0.5)
+    project_observation.reload
+    project_observation.should be_georeferenced
+  end
+
+  it "should be true if observation coordinates are private" do
+    project_observation = make_project_observation
+    o = project_observation.observation
+    o.update_attributes(:latitude => 0.5, :longitude => 0.5, :geoprivacy => Observation::PRIVATE)
     project_observation.reload
     project_observation.should be_georeferenced
   end

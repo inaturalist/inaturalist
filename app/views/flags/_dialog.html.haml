@@ -1,10 +1,10 @@
 = form_for @flag, :builder => DefaultFormBuilder do |f|
   - unless @flags.blank?
     .notice.box
-      %strong Heads up:
-      this
+      %strong= t(:heads_up)
+      = t(:this)
       = @object.class.name.underscore.humanize.downcase
-      has already been flagged by
+      = t(:has_already_been_flagged_by)
       %ul
         - @flags.each do |flag|
           %li
@@ -17,19 +17,19 @@
                 = flag.comment
   = f.hidden_field :flaggable_type
   = f.hidden_field :flaggable_id
-  = f.radio_button :flag, "spam", 
-    :label => "spam",
+  = f.radio_button :flag, Flag::SPAM, 
+    :label => t(:spam),
     :label_after => true, 
-    :description => "Commercial solicitation, links to nowhere, etc."
-  = f.radio_button :flag, "inappropriate", 
-    :label => "offensive / inappropriate",
+    :description => t(:commercial_solicitation)
+  = f.radio_button :flag, Flag::INAPPROPRIATE, 
+    :label => t(:offensive_inappropriate),
     :label_after => true, 
-    :description => "Misleading or illegal content, racial or ethnic slugs, etc."
+    :description => t(:misleading_or_illegal_content)
   = f.radio_button :flag, "other",
-    :label => "other",
+    :label => t(:other),
     :label_after => true, 
-    :description => "Some other reason you can explain below."
+    :description => t(:some_other_reason)
 
-  = text_area_tag :flag_explanation, "", :placeholder => "Reason you're flagging this item.", 
+  = text_area_tag :flag_explanation, "", :placeholder => t(:reason_you_are_flagging_this_item),
     :style => "display:none;"
-  = f.submit "Save flag", "data-loading-click" => "Saving...", :class => "default button"
+  = f.submit t(:save_flag), "data-loading-click" => t(:saving), :class => "default button"

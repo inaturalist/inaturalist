@@ -1,5 +1,10 @@
 <% content_for(:title) do -%>
-  <%= @title = "#{possessive(@selected_user, :capitalize => @selected_user == current_user)} "+  t(:lists) %>
+  <%= 
+    @title ||= if is_me?(@selected_user)
+      t(:second_person_possessive_singular_, :noun => t(:lists).downcase)
+    else
+      t(:third_person_possessive_singular, :noun => t(:lists).titleize, :object_phrase => @login)
+    end %>
 <% end -%>
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'barchart', 'lists' %>
@@ -74,10 +79,10 @@
             </a>
           <% end %>
           <div class="last column span-8">
-            <div class="readable title attr"><%= link_to h(list.title), list_path(list) %></div>
+            <div class="readable title attr"><%= link_to h(list.title =~ /Life List$/ && list.id == @selected_user.life_list_id ? t(:life_list, :user => list.title.split(' Life List').first[0..-3], :default => list.title) : list.title), list_path(list) %></div>
 
             <div class="attr readable description">
-              <%= truncate(strip_tags(list.description), :length => 75) %>
+              <%= truncate(strip_tags(list.description =~ /^Every species seen by / ? list.description.gsub('Every species seen by', t(:every_species_seen_by)) : list.description), :length => 75) %>
               <%= link_to "#{t(:view)} &raquo;".html_safe, list_path(list), :style => "white-space: nowrap" %>
             </div>
 
@@ -85,7 +90,7 @@
               <%= render :partial => "shared/barchart_datum", :locals => { 
                 :value => list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL"), 
                 :max => list.listed_taxa.count, 
-                :label_text => "of #{list.listed_taxa.count} observed",
+                :label_text => t(:of) + " #{list.listed_taxa.count} " + t(:observed).downcase,
                 :min_value_label_width => 30 } %>
               <div class="clear"></div>
             </div>
@@ -107,19 +112,19 @@
   
   <% if logged_in? -%>
     <%= form_for :preferences, :url => url_for do |f| %>
-      <%= f.label :per_page %>
+      <%= f.label :per_page, t(:per_page) %>
       <%= f.select :per_page, ApplicationController::PER_PAGES, {}, 
         :onchange => "$(this).parents('form:first').submit()" %>
       <span class="meta">&middot;</span>
-      <%= f.label :lists_by_login_sort, "Order" %>
+      <%= f.label :list_by_login_sort, t(:order) %>
       <%= f.select :lists_by_login_sort, 
-        [['date created', 'id'], 'title'],
+        [[t(:date_created), 'id'], [t(:title), 'title']],
         {},
         :onchange => "$(this).parents('form:first').submit()" %>
       <%= f.radio_button :lists_by_login_order, "asc", :onchange => "$(this).parents('form:first').submit()" %>
-      <%= f.label :lists_by_login_order_asc, "asc" %>
+      <%= f.label :lists_by_login_order_asc, t(:asc) %>
       <%= f.radio_button :lists_by_login_order, "desc", :onchange => "$(this).parents('form:first').submit()" %>
-      <%= f.label :lists_by_login_order_desc, "desc" %>
+      <%= f.label :lists_by_login_order_desc, t(:desc) %>
     <% end %>
   <% end -%>
   

@@ -1,0 +1,134 @@
+= content_for :title do
+  = "#{@guide_taxon.display_name} (#{@guide.title})"
+= content_for :extracss do
+  :css
+    #photos {white-space: nowrap; overflow-x:auto; overflow-y:hidden;}
+    #photos img.thumb {max-height:200px;}
+    .taxonmap {height: 300px;}
+    .bootstrap .modal.imgmodal {border: 0 transparent;}
+    .bootstrap .modal.imgmodal img {display: none; max-width: none;}
+    .bootstrap .imgmodal .close {
+      color: #eee;
+      text-shadow: 0 1px 0 #000000;
+      float:none;
+      opacity: 0.5;
+    }
+    .bootstrap .imgmodal:hover .close {opacity:1;}
+    .bootstrap .imgmodal .close:hover {color:white;}
+    .imgmodal .footer {
+      position: absolute;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      width: 100%;
+    }
+    .imgmodal .footer .caption { padding: 10px;}
+    .imgmodal .controls {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+    }
+    .imgmodal.zoomed {overflow:hidden;}
+= content_for :extrajs do
+  :javascript
+    $('.taxonmap').taxonMap()
+    $('.imgmodal').on('shown', function() {
+      $selection = $('img', this).not('.imagesloaded')
+      $selection.hide()
+      var newHeight = $(window).height() * 0.8
+      $(this).height(newHeight)
+      $('img', this).css({'height': newHeight+'px'})
+      $(this).css('margin-left', $('img', this).width() / -2 + 'px')
+      $(this).width($('img', this).width())
+      $('img:hidden', this).fadeIn()
+    })
+    $('.imgmodal').imagesLoaded(function() {
+      $('img', this).addClass('imagesloaded')
+    })
+.container-fluid
+  %ul.breadcrumb
+    %li
+      = link_to t(:guides), guides_path
+      %span.divider /
+    %li
+      = link_to @guide.title, @guide
+      %span.divider /
+    %li.active= @guide_taxon.display_name
+
+  .btn-grp.pull-right
+    - if @guide.editable_by?(current_user)
+      = link_to t(:edit), edit_guide_taxon_path(@guide_taxon), :class => "btn"
+  .row-fluid.stacked
+    %h2
+      - if @guide_taxon.display_name == @guide_taxon.name
+        %em= @guide_taxon.name
+      - else
+        = @guide_taxon.display_name
+    - if @guide_taxon.display_name != @guide_taxon.name
+      %em= @guide_taxon.name
+
+  #photos.row-fluid.stacked
+    - for guide_photo in @guide_taxon.guide_photos.sort_by(&:position)
+      = image_tag guide_photo.photo.try_methods(:medium_url, :small_url), :class => "thumb img-rounded", "data-toggle" => "modal", "data-target" => "##{dom_id(guide_photo, "modal")}"
+      .imgmodal.modal.fade.hide{:role => "dialog", "aria-hidden" => "true", :id => dom_id(guide_photo, "modal")}
+        = image_tag guide_photo.photo.try_methods(:large_url, :original_url, :medium_url)
+        .controls
+          %button.close{:type => "button", "data-dismiss" => "modal"} ×
+        .footer
+          .caption
+            = guide_photo.description
+            %small.attribution.quiet
+              = guide_photo.attribution
+              - unless guide_photo.native_page_url.blank?
+                = surround '(', ')' do
+                  = link_to t(:link, :default => "link").downcase, guide_photo.native_page_url
+  .row-fluid
+    .span8
+      - for s in @guide_taxon.guide_sections.sort_by{|gt| gt.position.to_i}
+        %h3
+          = s.title
+          = cite do
+            - if s.source_url.blank?
+              = s.attribution
+            - else
+              = succeed ',' do
+                = s.attribution
+              = link_to(s.source_url, s.source_url)
+        = formatted_user_text s.description
+      - unless @guide_taxon.guide_sections.blank?
+        %h3=t :sources_and_credits
+        = references
+      %h3= t(:more_info, :default => "More Info").titleize
+      %ul
+        - if @guide_taxon.taxon
+          %li= link_to t(:site_taxon_page, :site_name => SITE_NAME_SHORT), @guide_taxon.taxon
+        - for tl in @taxon_links.sort_by{|tl| tl.site_title.downcase}
+          - if @guide_taxon.eol_page_id && tl.url =~ /eol\.org/
+            %li= link_to tl.site_title, "http://eol.org/pages/#{@guide_taxon.eol_page_id}"
+          - else
+            %li= link_to tl.site_title, tl.url_for_taxon(@guide_taxon.taxon)
+    .span4
+      - unless @guide_taxon.guide_ranges.blank?
+        %h3=t :range_map
+        - @guide_taxon.guide_ranges.sort_by(&:position).each do |gr|
+          .stacked
+            = image_tag gr.medium_url, :class => "stacked"
+            %p.muted
+              %small
+                - if gr.source_url.blank?
+                  = gr.attribution
+                - else
+                  = link_to(gr.attribution, gr.source_url)
+      - if @guide_taxon.taxon
+        %h3
+          = SITE_NAME_SHORT
+          =t :map
+        .taxonmap.stacked{setup_map_tag_attrs(@guide_taxon.taxon, :taxon_range => @guide_taxon.taxon.taxon_ranges_with_kml.first, :place => @guide.place, :latitude => @guide.latitude, :longitude => @guide.longitude, :map_type => @guide.map_type, :zoom_level => @guide.zoom_level)}
+      - unless @machine_tags.blank?
+        %table.table.table-bordered.upstacked
+          %tbody
+            - for predicate, values in @grouped_machine_tags
+              %tr
+                %th.text-left= predicate.humanize
+                %td= values.join(', ')
+

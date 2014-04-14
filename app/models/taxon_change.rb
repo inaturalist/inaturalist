@@ -175,6 +175,36 @@ class TaxonChange < ActiveRecord::Base
     end
   end
 
+  # This is an emergency tool, so for the love of Linnaeus please be careful
+  # with it and don't expose it in the UI. It will correctly revert
+  # identifications and observations, but for splits it will not do anything
+  # for affected listed taxa or taxon links, and for other changes it will
+  # assume records updated 24 hours after the change was committed were
+  # updated by this change, which is obviously dubious.
+  def partial_revert(debug = false)
+    Rails.logger.info "[INFO #{Time.now}] Starting partial revert for #{self}"
+    Rails.logger.info "[INFO #{Time.now}] Destroying identifications..."
+    identifications.destroy_all unless debug
+    in_taxon = input_taxa.first if input_taxa.size == 1
+    if in_taxon
+      listed_taxa_sql = <<-SQL
+        UPDATE listed_taxa SET taxon_id = #{in_taxon.id} FROM places WHERE
+          AND listed_taxa.taxon_id IN (#{output_taxa.map(&:id).join(',')})
+          AND (listed_taxa.updated_at BETWEEN '#{(committed_on+0.hours).to_s(:db)}' AND '#{(committed_on+1.day).to_s(:db)}')
+      SQL
+      Rails.logger.info "[INFO #{Time.now}] Reverting listed taxa: #{listed_taxa_sql}"
+      ActiveRecord::Base.connection.execute(listed_taxa_sql) unless debug
+      taxon_link_sql = <<-SQL
+        UPDATE taxon_links SET taxon_id = #{in_taxon.id} FROM places WHERE
+          AND taxon_links.taxon_id IN (#{output_taxa.map(&:id).join(',')})
+          AND (taxon_links.updated_at BETWEEN '#{(committed_on+0.hours).to_s(:db)}' AND '#{(committed_on+1.day).to_s(:db)}')
+      SQL
+      Rails.logger.info "[INFO #{Time.now}] Reverting taxon links: #{taxon_link_sql}"
+      ActiveRecord::Base.connection.execute(taxon_link_sql) unless debug
+    end
+    Rails.logger.info "[INFO #{Time.now}] Finished partial revert for #{self}"
+  end
+
   def automatable?
     output_taxa.size == 1
   end

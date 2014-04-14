@@ -3,8 +3,8 @@ class ProjectObservation < ActiveRecord::Base
   belongs_to :observation
   belongs_to :curator_identification, :class_name => "Identification"
   validates_presence_of :project, :observation
-  validate :observed_by_project_member?, :on => :create
-  validates_rules_from :project, :rule_methods => [:observed_in_place?, :georeferenced?, :identified?, :in_taxon?, :on_list?]
+  validate :observed_by_project_member?, :on => :create, :unless => "errors.any?"
+  validates_rules_from :project, :rule_methods => [:observed_in_place?, :georeferenced?, :identified?, :in_taxon?, :on_list?], :unless => "errors.any?"
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
   
   after_create  :refresh_project_list
@@ -22,6 +22,40 @@ class ProjectObservation < ActiveRecord::Base
   after_create :destroy_project_invitations, :update_curator_identification, :expire_caches
   after_destroy :expire_caches
 
+  after_create  :touch_observation
+  after_destroy :touch_observation
+  
+  after_save :update_project_list_if_curator_ident_changed
+  
+  def update_project_list_if_curator_ident_changed
+    return true unless curator_identification_id_changed?
+    old_curator_identification_id = curator_identification_id_was
+    old_curator_identification = Identification.where(:id => old_curator_identification_id).first
+    taxon_id = curator_identification ? curator_identification.taxon_id : nil
+    if old_curator_identification 
+      taxon_id_was = old_curator_identification.taxon_id
+    else
+      taxon_id_was = nil
+    end
+    # Don't refresh if nothing changed
+    return true if taxon_id == taxon_id_was
+    #if nil set taxon_id_was to observation.taxon_id so listings with this taxon_id will get refreshed
+    taxon_id_was = Observation.find_by_id(observation_id).taxon_id if taxon_id_was.nil?
+    # Update the projectobservation's current curator_id taxon and/or a previous one that was
+    # just removed/changed
+    unless Delayed::Job.where("handler LIKE '%ProjectList%refresh_with_project_observation% #{id}\n%'").exists?
+      ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow").
+       refresh_with_project_observation(
+         id,
+         :observation_id => observation_id,
+         :taxon_id => taxon_id,
+         :taxon_id_was => taxon_id_was,
+         :project_id => project_id
+       )
+    end
+    true
+  end
+  
   def update_curator_identification
     return true if observation.new_record?
     return true if observation.owners_identification.blank?
@@ -34,6 +68,7 @@ class ProjectObservation < ActiveRecord::Base
   end
   
   def observed_by_project_member?
+    return false unless project
     unless project.project_users.exists?(:user_id => observation.user_id)
       errors.add(:observation_id, "must belong to a member of the project")
       return false
@@ -43,7 +78,8 @@ class ProjectObservation < ActiveRecord::Base
   
   def refresh_project_list
     return true if observation.blank? || observation.taxon_id.blank?
-    Project.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_project_list(project_id, 
+    return true if Delayed::Job.where("handler LIKE '%Project%refresh_project_list% #{project_id}\n%'").exists?
+    Project.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow", :run_at => 1.hour.from_now).refresh_project_list(project_id, 
       :taxa => [observation.taxon_id], :add_new_taxa => id_was.nil?)
     true
   end
@@ -66,7 +102,11 @@ class ProjectObservation < ActiveRecord::Base
   end
 
   def expire_caches
-    FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project, :format => 'csv')), :force => true
+    begin
+      FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project, :format => 'csv')), :force => true
+    rescue ActionController::RoutingError
+      FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project_id, :format => 'csv')), :force => true
+    end
     true
   end
 
@@ -117,7 +157,7 @@ class ProjectObservation < ActiveRecord::Base
   end
   
   def georeferenced?
-    !observation.latitude.blank? && !observation.longitude.blank?
+    observation.georeferenced?
   end
   
   def identified?
@@ -139,6 +179,11 @@ class ProjectObservation < ActiveRecord::Base
 
   def has_observation_field?(observation_field)
     observation.observation_field_values.where(:observation_field_id => observation_field).exists?
+  end
+
+  def touch_observation
+    observation.touch if observation
+    true
   end
   
   ##### Static ##############################################################

@@ -163,6 +163,7 @@ table.infobox_v2,
 .wikipedia_description th {
   padding: 0.4em;
 }
+.mw-editsection {margin-left: 0.5em; font-size:smaller;}
 
 #places_list .editlink { display: none; }
 #places_list li:hover .editlink { display: inline; }
@@ -412,3 +413,4 @@ h3 .externallink { font-size: 70%; }
   height: 127px;
 }
 #observations {max-height: 251px; overflow-y: auto;overflow-x: hidden;}
+h2 .named_ancestor {font-size: 80%;}

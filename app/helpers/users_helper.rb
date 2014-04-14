@@ -43,54 +43,19 @@ module UsersHelper
   #   link_to_user @user, :content_text => 'Your user page'
   #   # => <a href="/users/3" title="barmy" class="nickname">Your user page</a>
   #
-  def link_to_user(user, options={})
+  def link_to_user(user, options = {}, &block)
     return "deleted user" unless user
     options.reverse_merge! :content_method => :login, :title_method => :login, :class => :nickname
-    content_text      = options.delete(:content_text)
-    content_text    ||= user.send(options.delete(:content_method))
+    if block_given?
+      content_text = capture(&block)
+    else
+      content_text      = options.delete(:content_text)
+      content_text    ||= user.send(options.delete(:content_method))
+    end
     options[:title] ||= user.send(options.delete(:title_method))
-    link_to content_text, person_path(user.login), options
+    link_to content_text, person_url(user.login), options
   end
 
-  #
-  # Link to login page using remote ip address as link content
-  #
-  # The :title (and thus, tooltip) is set to the IP address 
-  #
-  # Examples:
-  #   link_to_login_with_IP
-  #   # => <a href="/login" title="169.69.69.69">169.69.69.69</a>
-  #
-  #   link_to_login_with_IP :content_text => 'not signed in'
-  #   # => <a href="/login" title="169.69.69.69">not signed in</a>
-  #
-  def link_to_login_with_IP content_text=nil, options={}
-    ip_addr           = request.remote_ip
-    content_text    ||= ip_addr
-    options.reverse_merge! :title => ip_addr
-    if tag = options.delete(:tag)
-      content_tag tag, h(content_text), options
-    else
-      link_to h(content_text), login_path, options
-    end
-  end
-
-  #
-  # Link to the current user's page (using link_to_user) or to the login page
-  # (using link_to_login_with_IP).
-  #
-  def link_to_current_user(options={})
-    if current_user
-      link_to_user current_user, options
-    else
-      content_text = options.delete(:content_text) || 'not signed in'
-      # kill ignored options from link_to_user
-      [:content_method, :title_method].each{|opt| options.delete(opt)} 
-      link_to_login_with_IP content_text, options
-    end
-  end
-  
-  
   # Below here, added for iNaturalist
   
   def friend_link(user, potential_friend)
@@ -108,12 +73,12 @@ module UsersHelper
     capitalize_it = options.delete(:capitalize)
     if logged_in? && current_user == user
       if capitalize_it
-        "Your"
+        t(:your_, :default => "your").capitalize
       else
-        "your"
+        t(:your_, :default => "your")
       end
     else
-      "#{user.login}'s"
+      t :possessive_user, :user => user.login
     end
   end
 
@@ -128,7 +93,7 @@ module UsersHelper
   def you_or_login(user, options = {})
     capitalize_it = options.delete(:capitalize)
     if respond_to?(:user_signed_in?) && logged_in? && respond_to?(:current_user) && current_user == user
-      capitalize_it ? t(:you).capitalize : t(:you)
+      capitalize_it ? t(:you).capitalize : t(:you).downcase
     else
       user.login
     end

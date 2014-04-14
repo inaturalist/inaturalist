@@ -49,7 +49,7 @@
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= google_maps_js %>
   <%= javascript_include_tag 'jquery/plugins/jqModal',
                              'modal_image',
                              "jquery/plugins/jquery.ba-bbq.min", 
@@ -77,28 +77,28 @@
       })
       var currentState = $.deparam.fragment()
       $('#placechooser').chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
-        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        collectionUrl: '/places/autocomplete.json',
+        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
         defaultSources: places,
         chosen: currentState.place ? place : null
       })
       $('#taxonchooser').chooser({
-        collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
-        resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+        collectionUrl: '/taxa/autocomplete.json',
+        resourceUrl: '/taxa/{{id}}.json?partial=chooser',
         defaultSources: defaultTaxa,
         chosen: currentState.taxon ? taxon : null
       })
       $('#controls select[multiple]').val(currentState.colors)
       $('#controls select[multiple]').multiselect({
         header: false,
-        noneSelectedText: "None",
+        noneSelectedText: I18n.t('none'),
         selectedText: function(selected, total, elts) {
           if (selected > 2) {
-            return '<strong>'+selected+' colors</strong>'
+            return '<strong>'+selected+' '+I18n.t('colors')+'</strong>'
           }
           var html = ''
           for (var i=0; i < elts.length; i++) {
-            html += '<span class="colorfield '+elts[i].value+'">'+elts[i].value+'</span>'
+            html += '<span class="colorfield '+elts[i].value+'">'+I18n.t(elts[i].value)+'</span>'
           }
           return html
         }
@@ -123,11 +123,11 @@
       
       $(window).bind("hashchange", function(e) {
         var state = $.bbq.getState()
-        var url = '/guide?' + $.param(state)
+        var url = '/places/guide?' + $.param(state)
         url += '&partial=identotron_taxa&per_page=30'
         $('#taxa').shades('open', {
           css: {'background-color': 'white'}, 
-          content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">Loading...</span></center>'
+          content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">'+I18n.t('loading')+'</span></center>'
         })
         
         $('#guidesearch').val(state.q)
@@ -243,34 +243,28 @@
 
 <div id="pageheader">
   <div class="right">
-    <%= link_to_dialog "Identotron help", :width => 600 do %>
-      
-      The Identotron is a tool to help you identify observations based on
-      <%= CONFIG.site_name_short %>'s check list data.  Given a higher level taxon and a place (e.g.
-      mammals of India), <%= CONFIG.site_name_short %> will look for check lists entries matching that
-      taxon in that place, kind of like a dynamic field guide to the entire
-      planet. Most <%= CONFIG.site_name_short %> check lists are works in progress, but if there's one
-      that is comprehensive, i.e. it lists <em>all</em> the representatives of
-      its taxon in a place, the Identotron will show a notice.
+    <%= link_to_dialog t(:identotron_help), :width => 600 do %>
+
+        <%= t(:the_identotron_is_a_tool_to, :place=>CONFIG.site_name_short).html_safe %>
 
       <table style="width:100%">
         <tr>
           <td width="30%">
             <div class="quiet box">
-              Filter by place, taxon, and color using the controls.
+              <%= t :filter_by_place_taxon_and_color %>
             </div>
 
             <div class="quiet box">
-              Check out what the observation you're trying to identify looks like.
+              <%= t :check_out_what_the_observation %>
             </div>
           </td>
           <td width="70%">
             <div class="success status comprehensive_notice stacked">
-              If matches come from a comprehensive list a green bar will show here.
+              <%= t :if_matches_come_from_a_comprehensive_list %>
             </div>
 
             <div class="quiet box" style="height:200px;">
-              Matching species will show up here. The maps will show a range if <%= CONFIG.site_name_short %> has one for that species.
+              <%= t(:matching_species_will_shown_up_here, :place=>CONFIG.site_name_short) %>
             </div>
           </td>
         </tr>
@@ -282,39 +276,39 @@
       <%= link_to t(:back_to_observation), @observation, :class => 'back crumb' %>
     </div><!-- /#breadcrumbs -->
   <% end -%>
-  <h2 class="fadednowrap">Identotron <%= "for #{@observation.to_plain_s}" if @observation %></h2>
-  <p class="description">Browse species that occur near this observation.</p>
+  <h2 class="fadednowrap"><%= t :identotron %> <%= t(:for) + ' ' + @observation.to_plain_s if @observation %></h2>
+  <p class="description"><%= t :browse_species_that_occur_near_this_observation %></p>
 </div>
 
 <div class="column span-8 append-1">
   <div id="side">
     <div class="stacked" id="controlsbox">
-      <%= link_to_function "Hide", "$(this).siblings('form').slideToggle(); $(this).text(function() { return $(this).text() == 'Hide' ? 'Show' : 'Hide'})", :class => "right" %>
-      <h3>Controls</h3>
+      <%= link_to_function t(:hide).humanize, "$(this).siblings('form').slideToggle(); $(this).text(function() { return $(this).text() == '#{t(:hide).humanize}' ? '#{t(:show).humanize}' : '#{t(:hide).humanize}'})", :class => "right" %>
+      <h3><%= t :controls %></h3>
       <%= form_tag url_for, :method => :get, :id => "controls" do %>
         <div class="field">
-          <label>Search</label><br/>
-          <%= text_field_tag :q, @q, :id => "guidesearch", :class => "text", :placeholder => "Search species" %>
+          <label><%= t :search %></label><br/>
+          <%= text_field_tag :q, @q, :id => "guidesearch", :class => "text", :placeholder => t(:search_species) %>
         </div>
         <div class="field">
-          <label>Place</label><br/>
-          <%= text_field_tag :place, "", :id => "placechooser", :class => "text", :placeholder => "Type place name" %>
+          <label><%= t :place %></label><br/>
+          <%= text_field_tag :place, "", :id => "placechooser", :class => "text", :placeholder => t(:type_place_name) %>
         </div>
         <div class="field">
-          <label>Taxon</label><br/>
-          <%= text_field_tag :taxon, "", :id => "taxonchooser", :class => "text", :placeholder => "Type taxon name" %>
+          <label><%= t :taxon %></label><br/>
+          <%= text_field_tag :taxon, "", :id => "taxonchooser", :class => "text", :placeholder => t(:type_taxon_name) %>
         </div>
         <div class="field">
-          <label>Colors</label><br/>
-          <%= select_tag "colors[]", options_for_select(Color.all.map(&:value).sort, :selected => @colors), :multiple => true, :id => "colorchooser" %>
+          <label><%= t :colors %></label><br/>
+          <%= select_tag "colors[]", options_for_select(Color.order('value').map {|value| [t(value.value), value.value]}, :selected => @colors), :multiple => true, :id => "colorchooser" %>
         </div>
         <%= submit_tag "Filter", :class => "glaucous button" %>
       <% end -%>
     </div>
     <% if @observation -%>
       <div id="observationbox">
-        <%= link_to_function "Hide", "$(this).siblings('#observation').slideToggle(); $(this).text(function() { return $(this).text() == 'Hide' ? 'Show' : 'Hide'})", :class => "right" %>
-        <h3>Observation</h3>
+        <%= link_to_function t(:hide).humanize, "$(this).siblings('#observation').slideToggle(); $(this).text(function() { return $(this).text() == '#{t(:hide).humanize}' ? '#{t(:show).humanize}' : '#{t(:hide).humanize}'})", :class => "right" %>
+        <h3><%= t :observation %></h3>
         <div id="observation">
           <div class="photos">
             <%- photos = @observation.observation_photos.sort_by{|o| o.id}.map{|o| o.photo} -%>

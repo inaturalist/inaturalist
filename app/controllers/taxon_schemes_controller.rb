@@ -1,4 +1,6 @@
 class TaxonSchemesController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :curator_required, :except => [:index, :show]
   before_filter :load_taxon_scheme, :except => [:index]
   
   def index
@@ -14,7 +16,7 @@ class TaxonSchemesController < ApplicationController
         :limit => 1000, 
         :select => "DISTINCT ancestry", 
         :conditions => "ancestry IS NOT NULL").map do |t|
-      t.ancestry.split('/')[-2..-1]
+      t.ancestry.to_s.split('/')[-2..-1]
     end.flatten.uniq.compact
     @genera = []
     parent_ids.in_groups_of(100) do |ids|
@@ -69,7 +71,7 @@ class TaxonSchemesController < ApplicationController
     end
     @taxon_changes = @taxon_changes.flatten.uniq
     
-    @taxa = [@taxon_changes.map{|tc| [tc.taxa, tc.taxon]},@orphaned_taxa,@missing_taxa,@active_taxa].flatten
+    @taxa = [@taxon_changes.map{|tc| [tc.taxa, tc.taxon]}, @orphaned_taxa,@missing_taxa,@active_taxa].flatten
     @swaps = TaxonSwap.all(
       :include => [
         {:taxon => :taxon_schemes},

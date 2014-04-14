@@ -4,7 +4,8 @@ class QualityMetric < ActiveRecord::Base
   
   METRIC_QUESTIONS = {
     "wild" => :is_the_organism_wild,
-    "location" => :does_the_location_seem_accurate
+    "location" => :does_the_location_seem_accurate,
+    "date" => :does_the_date_seem_accurate
   }
   METRICS = METRIC_QUESTIONS.keys
   METRICS.each do |metric|
@@ -26,5 +27,10 @@ class QualityMetric < ActiveRecord::Base
     CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh_with_observation(observation.id, 
       :taxon_id => observation.taxon_id)
     true
+  end
+
+  def self.vote(user, observation, metric, agree)
+    qm = observation.quality_metrics.find_or_initialize_by_metric_and_user_id(metric, user.id)
+    qm.update_attributes(:agree => agree)
   end
 end

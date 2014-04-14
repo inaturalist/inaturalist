@@ -74,6 +74,16 @@ describe TaxonName, 'creation' do
     tn = TaxonName.make!(:name => "Foo <i>")
     tn.name.should == 'Foo'
   end
+
+  it "should set is_valid to true for common names by default" do
+    tn = TaxonName.make!(:lexicon => TaxonName::LEXICONS[:ENGLISH])
+    tn.is_valid.should be_true
+  end
+
+  it "should not set is_valid to true for common names if it was set to false" do
+    tn = TaxonName.make!(:lexicon => TaxonName::LEXICONS[:ENGLISH], :is_valid => false)
+    tn.is_valid.should be_false
+  end
 end
 
 describe TaxonName, "strip_author" do
@@ -93,5 +103,14 @@ describe TaxonName, "strip_author" do
     ].each do |stripped, name|
       TaxonName.strip_author(name).should == stripped
     end
+  end
+end
+
+describe TaxonName, "choose_common_name" do
+  it "should not choose an invalid common name" do
+    t = Taxon.make!
+    tn_invalid = TaxonName.make!(:is_valid => false, :taxon => t, :lexicon => "English", :name => "Bar")
+    tn_valid = TaxonName.make!(:is_valid => true, :taxon => t, :lexicon => "English", :name => "Foo")
+    TaxonName.choose_common_name([tn_invalid, tn_valid]).should eq tn_valid
   end
 end

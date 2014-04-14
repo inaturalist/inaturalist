@@ -9,37 +9,53 @@ var TaxonGuide = {
     'multiselect_colorsFilter[]', 
     'multiselect_colorchooser',
     'multiselect_colorchooser[]',
-    'multiselect_conservationFilter', 
     'multiselect_establishmentFilter'],
   OVERRIDE_EXISTING: 0,
   RESPECT_EXISTING: 1,
   REPLACE_EXISTING: 2,
   
   cleanParamString: function(s) {
+    s = decodeURIComponent(s)
     var re
     for (var i = TaxonGuide.IGNORE_PARAMS.length - 1; i >= 0; i--){
       re = new RegExp(TaxonGuide.IGNORE_PARAMS[i]+'=[^\&]*\&?', 'g')
       s = s.replace(re, '')
     }
+    if ($.trim(s) == '') { return s }
+    var params = s.split('&')
+    var uniqueParams = {}
+    var muiltiParams = []
+    for (var i = 0; i < params.length; i++) {
+      var kv = params[i].split('=')
+      if (kv[0].match(/\[.*\]/)) {
+        muiltiParams.push(params[i])
+      } else {
+        uniqueParams[kv[0]] = kv[1]
+      }
+    }
+    s = $.param(uniqueParams)
+    if (muiltiParams.length > 0) s += '&' + muiltiParams.join('&')
     return s
   },
   
   init: function(context, options) {
     options = options || {}
     window.taxa = window.taxa || {}
+    jQuery.param.fragment.noEscape(",/[]");
     
     $('#observedchart').parent().hide()
     $('#filters select[multiple]').multiselect({
       header: false,
-      noneSelectedText: "Colors",
+      noneSelectedText: I18n.t('colors'),
       minWidth: 130,
+      height: 'auto',
       selectedText: function(selected, total, elts) {
         if (selected > 2) {
-          return '<strong>'+selected+' colors</strong>'
+          return '<strong>'+selected+ ' ' +I18n.t('colors')+'</strong>'
         }
         var html = ''
         for (var i=0; i < elts.length; i++) {
-          html += '<span class="colorfield '+elts[i].value+'">'+elts[i].value+'</span>'
+          html += '<span class="colorfield '+elts[i].value+'">'+I18n.t(elts[i].value)+'</span>'
         }
         return html
       }
@@ -48,19 +64,7 @@ var TaxonGuide = {
       header: false,
       noneSelectedText: "Native/endemic/inroduced",
       minWidth: 110,
-      multiple: false,
-      selectedText: function(selected, total, elts) {
-        if (elts[0].value) {
-          return "<strong>"+elts[0].title+"</strong>"
-        } else {
-          return elts[0].title
-        }
-      }
-    })
-    $('#filters .conservationfilter select').multiselect({
-      header: false,
-      noneSelectedText: "Conservation status",
-      minWidth: 140,
+      height: 'auto',
       multiple: false,
       selectedText: function(selected, total, elts) {
         if (elts[0].value) {
@@ -71,8 +75,8 @@ var TaxonGuide = {
       }
     })
 
-    $('#filters select').siblings('input.button').hide()
-    $('#filters select').change(function() {
+    $('#filters select, #filters input:checkbox, #filters .inter').siblings('input.button').hide()
+    $('#filters select, #filters input:checkbox').change(function() {
       $(this).parents('form:first').submit()
     })
     
@@ -80,6 +84,7 @@ var TaxonGuide = {
     // ensure controls change url state
     function replaceParams() {
       var href = $(this).attr("href") || $(this).serialize()
+      href = href.match(/\?(.+)/)[1]
       href = TaxonGuide.cleanParamString(href)
       var state = href.match(/[\?\&=]/) ? $.deparam.querystring(href) : {}
       $.bbq.pushState(state, TaxonGuide.REPLACE_EXISTING)
@@ -115,8 +120,8 @@ var TaxonGuide = {
       return false
     })
     
-    $('#controls form.conservationfilter a').click(function() {
-      $.bbq.removeState('conservation_status')
+    $('#controls form.threatenedfilter input:checkbox').change(function() {
+      if (!this.checked) { $.bbq.removeState('threatened') }
       return false
     })
     
@@ -132,7 +137,7 @@ var TaxonGuide = {
       $('#controls form.searchfilter input[type=text]').val($.bbq.getState('q'))
       $('#controls form.colorfilter select').val($.bbq.getState('colors'))
       $('#controls form.establishmentfilter select').val($.bbq.getState('establishment_means'))
-      $('#controls form.conservationfilter select').val($.bbq.getState('conservation_status'))
+      $('#controls form.threatenedfilter input:checkbox').attr('checked', $.bbq.getState('threatened') == '1')
       $('#controls select:hidden').multiselect('refresh')
       if ($.bbq.getState('colors')) {
         $('#controls form.colorfilter .pale.button').show()
@@ -144,12 +149,6 @@ var TaxonGuide = {
       } else {
         $('#controls form.establishmentfilter .pale.button').hide()
       }
-      if ($.bbq.getState('conservation_status')) {
-        $('#controls form.conservationfilter .pale.button').show()
-      } else {
-        $('#controls form.conservationfilter .pale.button').hide()
-      }
-      
       if ($.bbq.getState('q')) {
         $('#controls form.searchfilter .pale.button').show()
       } else {
@@ -176,7 +175,7 @@ var TaxonGuide = {
   load: function(context, options) {
     $(context).shades('open', {
       css: {'background-color': 'white'}, 
-      content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">Loading...</span></center>'
+      content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">'+I18n.t('loading')+'</span></center>'
     })
     var options = options || {}
     var url = options.url || $(context).attr('data-guide-url')
@@ -211,7 +210,7 @@ var TaxonGuide = {
           loading: {
             img: '/images/spinner-small.gif',
             msgText: '',
-            finishedMsg: '<span class="meta">No more taxa to load!</span>'
+            finishedMsg: '<span class="meta">'+I18n.t('no_more_taxa_to_load')+'</span>'
           }
         }, function() {
           TaxonGuide.ajaxify(context)
@@ -220,7 +219,7 @@ var TaxonGuide = {
     })
   },
   updateConfirmedChart: function(context) {
-    TaxonGuide.updateBarchart(context, '#confirmedchart', 'data-confirmed-listed-taxa-count', {extraLabel: 'confirmed'})
+    TaxonGuide.updateBarchart(context, '#confirmedchart', 'data-confirmed-listed-taxa-count', {extraLabel: I18n.t('confirmed')})
   },
   updateObservedChart: function(context) {
     values = TaxonGuide.updateBarchart(context, '#observedchart', 'data-current-user-observed-count')
@@ -236,7 +235,7 @@ var TaxonGuide = {
     var count = $('.guide_taxa', context).attr(countAttr)
     if (!count) { return false }
     var total = $('.guide_taxa', context).attr('data-listed-taxa-count') || $(selector).attr('data-original-total') || 0,
-        labelText = ' of ' + total,
+        labelText = ' ' + I18n.t('of') + ' ' + total,
         valueWidth = Math.round(total == 0 ? 0 : (count / total)*100),
         remainderWidth = 100 - valueWidth,
         valueLabel = '',
@@ -329,7 +328,7 @@ var TaxonGuide = {
         var dialog = $('#'+dialogId)
         $(dialog).dialog('open')
         if ($(dialog).html() == '') {
-          $(dialog).append($('<span class="loading status">Loading...</span>'))
+          $(dialog).append($('<span class="loading status">' + I18n.t('loading') + '</span>'))
           $(dialog).load($(this).attr('href') + '?partial=guide', function(foo) {
             var dialog = $('#'+dialogId)
             $(dialog).centerDialog()
@@ -354,11 +353,11 @@ var TaxonGuide = {
               load: function(event, ui) {
                 if ($(ui.panel).text() == '') {
                   $(ui.panel).append(
-                    $('<span>No observations from this place yet.</span>').addClass('noresults meta')
+                    $('<span>'+I18n.t('no_observations_from_this_place_yet')+'</span>').addClass('noresults meta')
                   )
                 } else {
                   $(ui.panel).append(
-                    $('<a rel="nofollow">View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('href'))
+                    $('<a rel="nofollow">'+I18n.t('view_more')+'</a>').addClass('readmore').attr('href', $(ui.tab).attr('href'))
                   )
                 }
               }

@@ -1,8 +1,10 @@
 class ProjectAssetsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :admin_required
   before_filter :load_project_asset, :only => [:edit, :update, :destroy]
   before_filter :load_project
+  before_filter do |c|
+    c.require_admin_or_trusted_project_manager_for @project
+  end
   
   # GET /project_assets/new
   # GET /project_assets/new.xml

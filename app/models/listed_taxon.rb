@@ -32,23 +32,29 @@ class ListedTaxon < ActiveRecord::Base
   before_save :set_user_id
   before_save :set_source_id
   before_save :set_establishment_means
+  before_create :check_primary_listing
   after_save :update_cache_columns_for_check_list
   after_save :propagate_establishment_means
+  after_save :remove_other_primary_listings
+  after_save :update_attributes_on_related_listed_taxa
   after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
+  after_create :sync_species_if_infraspecies
   after_create :delta_index_taxon
   before_destroy :set_old_list
+  after_destroy :reassign_primary_listed_taxon
   after_destroy :update_user_life_list_taxa_count
   after_destroy :expire_caches
   
   validates_presence_of :list_id, :taxon_id
   validates_uniqueness_of :taxon_id, 
                           :scope => :list_id, 
-                          :message => "is already in this list"
+                          :message => "is already on this list"
+  validates_length_of :description, :maximum => 1000, :allow_blank => true
   
   scope :by_user, lambda {|user| includes(:list).where("lists.user_id = ?", user)}
-  
+                                                                 
   scope :order_by, lambda {|order_by|
     case order_by
     when "alphabetical"
@@ -60,7 +66,72 @@ class ListedTaxon < ActiveRecord::Base
     end
   }
   
+  scope :filter_by_taxon, lambda {|filter_taxon_id, self_and_ancestor_ids| where("listed_taxa.taxon_id = ? OR listed_taxa.taxon_ancestor_ids = ? OR listed_taxa.taxon_ancestor_ids LIKE ?", filter_taxon_id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%")}
+  scope :filter_by_taxa, lambda {|search_taxon_ids| where("listed_taxa.taxon_id IN (?)", search_taxon_ids)}
+  scope :find_listed_taxa_from_default_list, lambda{|place_id| where("listed_taxa.place_id = ? AND primary_listing = ?", place_id, true)}
+  scope :filter_by_list, lambda {|list_id| where("list_id = ?", list_id)}
+
+  scope :filter_by_place_and_not_list, lambda {|place_id, list_id| where("place_id = ? AND list_id != ? AND taxon_id IS NOT NULL", place_id, list_id)}
+
+  scope :unconfirmed, where("last_observation_id IS NULL")
   scope :confirmed, where("last_observation_id IS NOT NULL")
+  scope :confirmed_and_not_place_based, where("last_observation_id IS NOT NULL AND place_id IS NULL")
+  scope :with_establishment_means, lambda{|establishment_means|
+    means = if establishment_means == "native"
+      NATIVE_EQUIVALENTS
+    elsif establishment_means == "introduced"
+      INTRODUCED_EQUIVALENTS
+    else
+      [establishment_means]
+    end
+    where("establishment_means IN (?)", means)
+  }
+
+  scope :from_place_or_list, lambda{|place_id, list_id| where("(place_id = ? OR list_id = ?)", place_id, list_id)}
+  scope :from_place_or_list_with_observed_from_place, lambda{|place_id, list_id| where("((place_id = ?) OR (list_id = ? AND last_observation_id IS NULL))", place_id, list_id)}
+
+  scope :acceptable_taxa, lambda{|taxa_ids| where("listed_taxa.taxon_id IN (?)", taxa_ids)}
+
+  scope :with_occurrence_status_level, lambda{|occurrence_status_level| where("occurrence_status_level = ?", occurrence_status_level)}
+
+  scope :with_occurrence_status_levels_approximating_absent, where("occurrence_status_level IN (10, 20)")
+  scope :with_occurrence_status_levels_approximating_present, where("occurrence_status_level NOT IN (10, 20) OR occurrence_status_level IS NULL")
+
+  scope :with_threatened_status, lambda{|place_id|
+    joins("INNER JOIN conservation_statuses cs ON cs.taxon_id = listed_taxa.taxon_id").
+    where("cs.iucn >= #{Taxon::IUCN_NEAR_THREATENED} AND (cs.place_id IS NULL OR cs.place_id::text IN (#{place_ancestor_ids_sql(place_id)}))")
+    .select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id, listed_taxa.observations_count) listed_taxa.*")
+  }
+  scope :with_species, includes(:taxon).where("taxa.rank_level = 10")
+  
+  #with taxonomic status (by itself)
+  scope :with_taxonomic_status, lambda{|taxonomic_status| joins("INNER JOIN
+   \"taxa\" \"taxa_listed_taxa\" 
+      ON \"taxa_listed_taxa\".\"id\" = \"listed_taxa\".\"taxon_id\" 
+   AND (
+      taxa_listed_taxa.is_active = '#{taxonomic_status ? 't' : 'f'}' 
+   )")}
+  #with iconic taxon filter (by itself)
+  scope :filter_by_iconic_taxon, lambda{|iconic_taxon_id| joins("INNER JOIN
+   \"taxa\" \"taxa_listed_taxa\" 
+      ON \"taxa_listed_taxa\".\"id\" = \"listed_taxa\".\"taxon_id\" 
+   AND (
+      taxa_listed_taxa.iconic_taxon_id = #{iconic_taxon_id} 
+   )")}
+  #both iconic taxon filter and taxonomic status
+  scope :with_taxonomic_status_and_iconic_taxon, lambda{|taxonomic_status, iconic_taxon_id| joins("INNER JOIN
+   \"taxa\" \"taxa_listed_taxa\" 
+      ON \"taxa_listed_taxa\".\"id\" = \"listed_taxa\".\"taxon_id\" 
+   AND (
+      taxa_listed_taxa.iconic_taxon_id = #{iconic_taxon_id} 
+   AND
+      taxa_listed_taxa.is_active = '#{taxonomic_status ? 't' : 'f'}' 
+   )")}
+
+  scope :with_leaves, lambda{|scope_to_sql| 
+    joins("LEFT JOIN (#{ancestor_ids_sql(scope_to_sql)}) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id").where("ancestor_ids.ancestor_id IS NULL")
+  }
+  
   
   ALPHABETICAL_ORDER = "alphabetical"
   TAXONOMIC_ORDER = "taxonomic"
@@ -91,14 +162,11 @@ class ListedTaxon < ActiveRecord::Base
   end
   PRESENT_EQUIVALENTS = [PRESENT, COMMON, UNCOMMON]
   
-  ESTABLISHMENT_MEANS = %w(native endemic introduced naturalised invasive managed)
+  ESTABLISHMENT_MEANS = %w(native endemic introduced)
   ESTABLISHMENT_MEANS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
   ESTABLISHMENT_MEANS_DESCRIPTIONS["native"] = "evolved in this region or arrived by non-anthropogenic means"
   ESTABLISHMENT_MEANS_DESCRIPTIONS["endemic"] = "native and occurs nowhere else"
   ESTABLISHMENT_MEANS_DESCRIPTIONS["introduced"] = "arrived in the region via anthropogenic means"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["naturalised"] = "reproduces naturally and forms part of the local ecology"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["invasive"] = "has a deleterious impact on another organism, multiple organisms, or the ecosystem as a whole"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["managed"] = "maintains presence through intentional cultivation or husbandry"
   
   ESTABLISHMENT_MEANS.each do |means|
     const_set means.upcase, means
@@ -108,7 +176,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   NATIVE_EQUIVALENTS = %w(native endemic)
-  INTRODUCED_EQUIVALENTS = %w(introduced naturalised invasive managed)
+  INTRODUCED_EQUIVALENTS = %w(introduced)
   
   validates_inclusion_of :occurrence_status_level, :in => OCCURRENCE_STATUS_LEVELS.keys, :allow_blank => true
   validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true
@@ -121,6 +189,7 @@ class ListedTaxon < ActiveRecord::Base
   CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
   
   attr_accessor :skip_sync_with_parent,
+                :skip_species_for_infraspecies,
                 :skip_update_cache_columns,
                 :skip_update_user_life_list_taxa_count,
                 :force_update_cache_columns,
@@ -182,8 +251,13 @@ class ListedTaxon < ActiveRecord::Base
   def list_rules_pass
     # don't bother if validates_presence_of(:taxon) has already failed
     if !errors.include?(:taxon) && taxon
-      list.rules.each do |rule|
-        errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(taxon)
+      if list 
+        list.rules.each do |rule|
+          if rule.operator == "observed_in_place?" && manually_added?
+            next
+          end
+          errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(self)
+        end
       end
     end
   end
@@ -194,11 +268,33 @@ class ListedTaxon < ActiveRecord::Base
           taxon_id == last_observation.taxon_id || 
           taxon.ancestor_of?(last_observation.taxon) || 
           last_observation.taxon.ancestor_of?(taxon))
+        if taxon_matches_curator_identification? #cases where project listed_taxon is based on curator_id
+          return true
+        end
         errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
       end
     end
   end
-
+  
+  def taxon_matches_curator_identification?
+    unless list.is_a?(ProjectList) && last_observation
+      return false
+    end
+    unless po = ProjectObservation.where(:project_id => list.project_id, :observation_id => last_observation.id).first
+      return false
+    end
+    unless ident = Identification.find_by_id(po.curator_identification_id)
+      return false
+    end
+    if ident.taxon_id.blank? || !(
+        taxon_id == ident.taxon_id || 
+        taxon.ancestor_of?(ident.taxon) || 
+        ident.taxon.ancestor_of?(taxon))
+      return false
+    end
+    return true
+  end
+  
   def check_list_editability
     if list.is_a?(CheckList)
       if (list.comprehensive? || list.user) && user && user != list.user && !user.is_curator?
@@ -253,7 +349,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def set_place_id
-    self.place_id = self.list.place_id
+    self.place_id = self.list.place_id if list.is_a?(CheckList)
     true
   end
 
@@ -285,6 +381,16 @@ class ListedTaxon < ActiveRecord::Base
     true
   end
   
+  def sync_species_if_infraspecies
+    return true if @skip_species_for_infraspecies
+    return true unless list.is_a?(CheckList) && taxon
+    return true unless taxon.infraspecies?
+    unless Delayed::Job.where("handler LIKE '%ListedTaxon%species_for_infraspecies%\n- #{id}\n'").exists?
+      ListedTaxon.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").species_for_infraspecies(id)
+    end
+    true
+  end
+  
   def delta_index_taxon
     Taxon.update_all(["delta = ?", true], ["id = ?", taxon_id])
     true
@@ -293,6 +399,7 @@ class ListedTaxon < ActiveRecord::Base
   def update_cache_columns
     return true if @skip_update_cache_columns
     return true if list.is_a?(CheckList) && (!@force_update_cache_columns || place_id.blank?)
+    return true if list.is_a?(CheckList) && !primary_listing
     set_cache_columns
     true
   end
@@ -303,7 +410,7 @@ class ListedTaxon < ActiveRecord::Base
     # HACK these queries are killing us for places with very complex
     # geometries. Until I figure out a better way to do this calculation,
     # we're using bbox area as a proxy for complexity and setting a cutoff
-    if place && place.bbox_area > 5000
+    if place && place.bbox_area.to_i > 5000
       return
     end
 
@@ -313,10 +420,12 @@ class ListedTaxon < ActiveRecord::Base
   def update_cache_columns_for_check_list
     return true if @skip_update_cache_columns
     return true unless list.is_a?(CheckList)
-    if @force_update_cache_columns
-      # this should have already happened in update_cache_columns
-    elsif !Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{id}\n'").exists?
-      ListedTaxon.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").update_cache_columns_for(id)
+    if primary_listing
+      unless @force_update_cache_columns || Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{id}\n'").exists?
+        ListedTaxon.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").update_cache_columns_for(id)
+      end
+    elsif primary_listed_taxon
+      primary_listed_taxon.update_attributes_on_related_listed_taxa
     end
     true
   end
@@ -325,45 +434,57 @@ class ListedTaxon < ActiveRecord::Base
     return true unless establishment_means_changed? && !establishment_means.blank?
     return true unless list.is_a?(CheckList)
     if native?
-      # bubble up for native equivalents
-      ListedTaxon.update_all(
-        ["establishment_means = ?", establishment_means],
-        ["taxon_id = ? AND establishment_means IS NULL AND place_id IN (?)", taxon_id, place.ancestor_ids]
-      )
+      bubble_up_establishment_means
     else
-      # trickle down for introduced
-      sql = <<-SQL
-        UPDATE listed_taxa
-        SET establishment_means = '#{establishment_means}'
-        FROM places
-        WHERE 
-          listed_taxa.place_id = places.id
-          AND establishment_means IS NULL
-          AND listed_taxa.taxon_id = #{taxon_id}
-          AND (places.ancestry LIKE '#{place.ancestry}/%' OR places.ancestry = '#{place.ancestry}')
-      SQL
-      ActiveRecord::Base.connection.execute(sql)
+      trickle_down_establishment_means
     end
     true
   end
+
+  def bubble_up_establishment_means
+    ListedTaxon.update_all(
+      ["establishment_means = ?", establishment_means],
+      ["taxon_id = ? AND establishment_means IS NULL AND place_id IN (?)", taxon_id, place.ancestor_ids]
+    )
+  end
+
+  def trickle_down_establishment_means(options = {})
+    sql = <<-SQL
+      UPDATE listed_taxa
+      SET establishment_means = '#{establishment_means}'
+      FROM places
+      WHERE 
+        listed_taxa.place_id = places.id
+        #{'AND establishment_means IS NULL' unless options[:force]}
+        AND listed_taxa.taxon_id = #{taxon_id}
+        AND (#{Place.send(:sanitize_sql, place.descendant_conditions)})
+    SQL
+    ActiveRecord::Base.connection.execute(sql)
+  end
   
   def cache_columns
-    return unless (sql = list.cache_columns_query_for(self))
-    ids = []
+    return unless (list && sql = list.cache_columns_query_for(self))
+    last_observations = []
+    first_observation_info = [] #array of observation_ids when checklist, otherwise array of [date, observation_id]
     counts = {}
-    connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
+    ListedTaxon.connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
       counts[row['key']] = row['count'].to_i
-      ids += row['ids'].to_s.gsub(/[\{\}]/, '').split(',')
+      last_observations << (row['last_observation'].blank? ? nil : row['last_observation'].split(','))
+      if list.is_a?(CheckList) #process the observation_ids representing first addition to iNat
+        first_observation_info << row['first_observation_id'] 
+      else #process arrays of [date,observation_id] where date represents first date observed
+        first_observation_info << (row['first_observation'].blank? ? nil : row['first_observation'].split(',')) 
+      end
     end
-    ids = ids.map {|id| id == "NULL" ? nil : id.to_i}.compact.uniq
-    first_observation_id = nil
-    last_observation_id = nil
-    unless ids.blank?
-      first_observation_id = ids.min
-      last_observation_id = Observation.latest.first(
-        :select => "id, observed_on, time_observed_at", 
-        :conditions => ["id IN (?)", ids]
-      ).try(:id)
+    if list.is_a?(CheckList) #pull out the smallest observation_id (e.g. earliest added to iNat)
+      first_observation_id = first_observation_info.compact.sort[0]
+    else #sort arrays by date and pull out observation_id from first one observed based on date
+      if first_observation = first_observation_info.compact.compact.sort_by(&:first).first
+        first_observation_id = first_observation[1]
+      end
+    end
+    if last_observation = last_observations.compact.compact.sort_by(&:first).last
+      last_observation_id = last_observation[1]
     end
     total = counts.map{|k,v| v}.sum
     month_counts = counts.map{|k,v| k ? "#{k}-#{v}" : nil}.compact.sort.join(',')
@@ -381,6 +502,21 @@ class ListedTaxon < ActiveRecord::Base
     )
   end
   
+  def self.species_for_infraspecies(lt)
+    lt = ListedTaxon.includes(:taxon,:place).find_by_id(lt) unless lt.is_a?(ListedTaxon)
+    return nil unless lt
+    return nil unless taxon = lt.taxon
+    return nil unless place = lt.place
+    return nil unless parent = taxon.parent
+    return true if species = ListedTaxon.where(:taxon_id => parent.id, :place_id => place.id).first
+    lt = ListedTaxon.new(
+      :taxon_id => parent.id,
+      :place_id => place.id,
+      :list_id => lt.place.check_list_id
+    )
+    lt.save
+  end
+
   def observation_month_stats
     return {} if observations_month_counts.blank?
     r_stats = confirmed_observation_month_stats
@@ -414,6 +550,10 @@ class ListedTaxon < ActiveRecord::Base
   
   def confirmed_observations_count
     confirmed_observation_month_stats.map{|k,v| v}.sum
+  end
+
+  def unconfirmed_observations_count
+    casual_observation_month_stats.map{|k,v| v}.sum
   end
   
   def nilify_blanks
@@ -501,8 +641,34 @@ class ListedTaxon < ActiveRecord::Base
     ctrl = ActionController::Base.new
     ctrl.expire_fragment(guide_taxon_cache_key) #THIS
     ctrl.expire_page("/places/cached_guide/#{place_id}.html")
-    ctrl.expire_page("/places/cached_guide/#{place.slug}.html")
+    ctrl.expire_page("/places/cached_guide/#{place.slug}.html") if place
+    ctrl.expire_fragment(FakeView.listed_taxon_path(id))
+    ctrl.expire_fragment(FakeView.listed_taxon_path(id, :for_owner => true))
+    ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
+    ListedTaxon::ORDERS.each do |order|
+      ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
+    end
+    unless place_id.blank?
+      ctrl.expire_fragment(guide_taxon_cache_key)
+      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place_id))
+      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug)) if place
+    end
+    ctrl.expire_page FakeView.list_path(list_id, :format => 'csv')
+    ctrl.expire_page FakeView.list_show_formatted_view_path(list_id, :format => 'csv', :view_type => 'taxonomic')
+    if list
+      ctrl.expire_page FakeView.list_path(list, :format => 'csv')
+      ctrl.expire_page FakeView.list_show_formatted_view_path(list, :format => 'csv', :view_type => 'taxonomic')
+    end
+    ctrl.send :expire_action, FakeView.url_for(:controller => 'taxa', :action => 'show', :id => taxon_id)
     true
+  end
+
+  def self.expire_caches_for(taxon)
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    return unless taxon
+    taxon.listed_taxa.includes(:list, :place).find_each do |lt|
+      lt.expire_caches
+    end
   end
   
   def merge(reject)
@@ -513,6 +679,16 @@ class ListedTaxon < ActiveRecord::Base
     merge_has_many_associations(reject)
     reject.destroy
     save!
+  end
+
+  def observed_in_place?
+    p = place || list.place
+    return false unless p
+    scope = Observation.in_place(p).of(taxon).scoped
+    if list.is_a?(LifeList)
+      scope = scope.by(list.user)
+    end
+    scope.exists?
   end
   
   def self.merge_duplicates(options = {})
@@ -527,6 +703,10 @@ class ListedTaxon < ActiveRecord::Base
       to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
       lt = ListedTaxon.find_by_id(to_merge_ids.first)
       rejects = ListedTaxon.all(:conditions => ["id IN (?)", to_merge_ids[1..-1]])
+
+      # remove the rejects from the list before merging to avoid alread-on-list validation errors
+      ListedTaxon.update_all("list_id = NULL", ["id IN (?)", rejects])
+      
       rejects.each do |reject|
         lt.merge(reject)
       end
@@ -546,5 +726,97 @@ class ListedTaxon < ActiveRecord::Base
       yield(lt) if block_given?
     end
   end
+
+  def related_listed_taxa
+    ListedTaxon.where(taxon_id: taxon_id, place_id: place_id).where("id != ?", id)
+  end
+
+  def other_primary_listed_taxa?
+    ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true).count > 0
+  end
+  
+  def multiple_primary_listed_taxa?
+    ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true).count > 1
+  end
+  
+  def primary_listed_taxon
+    primary_listing ? self : ListedTaxon.where(taxon_id:taxon_id, place_id: place_id, primary_listing: true).first
+  end
+
+  def check_primary_listing
+    self.primary_listing = !other_primary_listed_taxa? && can_set_as_primary?
+    true
+  end
+
+  def can_set_as_primary?
+    list && list.is_a?(CheckList)
+  end
+  
+  def remove_other_primary_listings
+    return true unless primary_listing && multiple_primary_listed_taxa?
+    ListedTaxon.update_all(["primary_listing = false"],["taxon_id = ? AND place_id = ? AND id != ?", taxon_id, place_id, id])
+    true
+  end
+  
+  def reassign_primary_listed_taxon
+    return unless primary_listing
+    related_listed_taxon = related_listed_taxa.first
+    related_listed_taxon.update_attribute(:primary_listing, true) if related_listed_taxon && related_listed_taxon.list_id && related_listed_taxon.place_id && can_set_as_primary?
+  end
+
+  def update_attributes_on_related_listed_taxa
+    return true unless primary_listing
+    related_listed_taxa.each do |related_listed_taxon|
+      related_listed_taxon.establishment_means = establishment_means
+      related_listed_taxon.first_observation_id = first_observation_id
+      related_listed_taxon.last_observation_id = last_observation_id 
+      related_listed_taxon.observations_count = observations_count
+      related_listed_taxon.observations_month_counts = observations_month_counts
+      related_listed_taxon.occurrence_status_level = occurrence_status_level
+      related_listed_taxon.skip_update_cache_columns = true
+      related_listed_taxon.save
+    end
+    true
+  end
+  def make_primary_if_no_primary_exists
+    update_attribute(:primary_listing, true) if !ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).present? && can_set_as_primary?
+  end
+
+  # used with .with_leaves filter
+  def self.ancestor_ids_sql(scope_to_sql)
+    scope_to_sql = scope_to_sql.gsub(/^(S.*)\*/, "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id")
+    scope_to_sql + " AND taxon_ancestor_ids IS NOT NULL"
+  end
+  
+  # used with threatened_status filter
+  def self.place_ancestor_ids_sql(place_id)
+    <<-SQL
+      SELECT DISTINCT 
+        regexp_split_to_table(ancestry, '/') AS ancestor_id 
+      FROM places
+      WHERE
+        id = #{place_id} AND
+        ancestry IS NOT NULL
+    SQL
+  end
+  
+  def primary_occurrence_status
+    primary_listed_taxon.occurrence_status
+  end
+  def primary_establishment_means
+    primary_listed_taxon.establishment_means
+  end
+  def update_attributes_and_primary(listed_taxon, current_user)
+    transaction do
+      update_attributes(listed_taxon.merge(:updater_id => current_user.id))
+      if primary_listed_taxon
+        primary_listed_taxon.update_attributes(
+          occurrence_status_level: listed_taxon['occurrence_status_level'],
+          establishment_means: listed_taxon['establishment_means']
+        )
+      end
+    end
+  end
+
   
 end

@@ -1,4 +1,4 @@
-
+#encoding: utf-8
 class Identification < ActiveRecord::Base
   acts_as_flaggable
   belongs_to :observation
@@ -11,13 +11,14 @@ class Identification < ActiveRecord::Base
                         :message => "for an ID must be something we recognize"
   validate :uniqueness_of_current, :on => :update
   
-  after_create  :update_other_identifications,
-                :update_observation, 
+  before_create :update_other_identifications
+  after_create  :update_observation, 
                 :increment_user_counter_cache, 
                 :expire_caches
                 
   after_save    :update_obs_stats, 
-                :update_curator_identification
+                :update_curator_identification,
+                :update_quality_metrics
                 
   after_destroy :set_last_identification_as_current,
                 :revisit_curator_identification, 
@@ -26,8 +27,11 @@ class Identification < ActiveRecord::Base
                 :update_obs_stats,
                 :expire_caches
   
+  include Shared::TouchesObservationModule
+  
   attr_accessor :skip_observation
   attr_accessor :html
+  attr_accessor :captive_flag
   
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
     :queue_if => lambda {|ident| ident.taxon_change_id.blank?}
@@ -41,13 +45,19 @@ class Identification < ActiveRecord::Base
   scope :for_others, includes(:observation).where("observations.user_id != identifications.user_id")
   scope :for_self, includes(:observation).where("observations.user_id = identifications.user_id")
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
-  scope :of, lambda {|taxon| where("identifications.taxon_id = ?", taxon)}
+  scope :of, lambda { |taxon|
+    taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
+    return where("1 = 2") unless taxon
+    c = taxon.descendant_conditions
+    c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
+    joins(:taxon).where(c)
+  }
   scope :on, lambda {|date| where(Identification.conditions_for_date("identifications.created_at", date)) }
   scope :current, where(:current => true)
   scope :outdated, where(:current => false)
   
   def to_s
-    "<Identification #{id} observation_id: #{observation_id} taxon_id: #{taxon_id} user_id: #{user_id}"
+    "<Identification #{id} observation_id: #{observation_id} taxon_id: #{taxon_id} user_id: #{user_id} current: #{current?}>"
   end
 
   def to_plain_s(options = {})
@@ -69,33 +79,46 @@ class Identification < ActiveRecord::Base
   # Callbacks ###############################################################
 
   def update_other_identifications
-    Identification.update_all(
-      ["current = ?", false],
-      ["observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id]
-    )
+    if id
+      Identification.update_all(
+        ["current = ?", false],
+        ["observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id]
+      )
+    else
+      Identification.update_all(
+        ["current = ?", false],
+        ["observation_id = ? AND user_id = ?", observation_id, user_id]
+      )
+    end
     true
   end
   
   # Update the observation if you're adding an ID to your own obs
   def update_observation
     return true unless observation
-    return true unless self.user_id == self.observation.user_id
-    return true if @skip_observation
 
-    # update the species_guess
-    species_guess = observation.species_guess
-    unless taxon.taxon_names.exists?(:name => species_guess)
-      species_guess = taxon.to_plain_s
+    attrs = {}
+    
+    if user_id == observation.user_id && !skip_observation
+      observation.skip_identifications = true
+      # update the species_guess
+      species_guess = observation.species_guess
+      unless taxon.taxon_names.exists?(:name => species_guess)
+        species_guess = taxon.to_plain_s
+      end
+      attrs = {:species_guess => species_guess, :taxon_id => taxon_id, :iconic_taxon_id => taxon.iconic_taxon_id}
+      ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
     end
-    observation.skip_identifications = true
-    observation.update_attributes(:species_guess => species_guess, :taxon_id => taxon_id, :iconic_taxon_id => taxon.iconic_taxon_id)
-    ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+
+    observation.identifications.reload
+    observation.set_community_taxon(:force => true)
+    observation.update_attributes(attrs)
     true
   end
   
   def update_observation_after_destroy
     return true unless self.observation
-    return true unless self.observation.user_id == self.user_id
+    # return true unless self.observation.user_id == self.user_id
     return true if @skip_observation
 
     if last_current = observation.identifications.current.by(user_id).order("id ASC").last
@@ -103,15 +126,22 @@ class Identification < ActiveRecord::Base
       return true
     end
     
-    # update the species_guess
-    species_guess = observation.species_guess
-    if !taxon.blank? && !taxon.taxon_names.exists?(:name => species_guess)
-      species_guess = nil
+    attrs = {}
+    if user_id == observation.user_id
+      # update the species_guess
+      species_guess = observation.species_guess
+      if !taxon.blank? && !taxon.taxon_names.exists?(:name => species_guess)
+        species_guess = nil
+      end
+      attrs = {:species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil}
+      ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+    else
     end
-    
     observation.skip_identifications = true
-    observation.update_attributes(:species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil)
-    ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+    observation.identifications.reload
+    observation.set_community_taxon
+    attrs[:community_taxon] = observation.community_taxon
+    observation.update_attributes(attrs)
     true
   end
   
@@ -159,7 +189,12 @@ class Identification < ActiveRecord::Base
   def set_last_identification_as_current
     last_outdated = observation.identifications.outdated.by(user_id).order("id ASC").last
     if last_outdated
-      Identification.update_all(["current = ?", true], ["id = ?", last_outdated])
+      begin
+        Identification.update_all(["current = ?", true], ["id = ?", last_outdated])
+      rescue PG::Error => e
+        raise e unless e.message =~ /index_identifications_on_current/
+        # assume that if the unique key constrait complained, then there's already a current ident
+      end
     end
     true
   end
@@ -176,7 +211,7 @@ class Identification < ActiveRecord::Base
   #
   # Tests whether this identification should be considered an agreement with
   # the observer's identification.  If this identification has the same taxon
-  # or a child taxon of the observer's idnetification, then they agree.
+  # or a child taxon of the observer's identification, then they agree.
   #
   def is_agreement?(options = {})
     return false if frozen?
@@ -204,6 +239,15 @@ class Identification < ActiveRecord::Base
     return true if self.taxon_id == identification.taxon_id
     self.taxon.in_taxon? identification.taxon
   end
+
+  def update_quality_metrics
+    if captive_flag == "1"
+      QualityMetric.vote(user, observation, QualityMetric::WILD, false)
+    elsif captive_flag == "0" && (qm = observation.quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
+      qm.update_attributes(:agree => true)
+    end
+    true
+  end
   
   # Static ##################################################################
   
@@ -226,9 +270,9 @@ class Identification < ActiveRecord::Base
     obs.project_observations.each do |po|
       if current_ident.user.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]])
         po.update_attributes(:curator_identification_id => current_ident.try(:id))
-        ProjectUser.delay.update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        Project.delay.update_observed_taxa_count(po.project_id)
+        ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        Project.delay(:priority => INTEGRITY_PRIORITY).update_observed_taxa_count(po.project_id)
       end
     end
   end
@@ -251,9 +295,9 @@ class Identification < ActiveRecord::Base
         end
 
         po.update_attributes(:curator_identification_id => nil) unless other_curator_ident
-        ProjectUser.delay.update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        Project.delay.update_observed_taxa_count(po.project_id)
+        ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        Project.delay(:priority => INTEGRITY_PRIORITY).update_observed_taxa_count(po.project_id)
       end
     end
   end

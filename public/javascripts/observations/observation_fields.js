@@ -2,8 +2,8 @@ $.fn.observationFieldsForm = function(options) {
   $(this).each(function() {
     var that = this
     $('.observation_field_chooser', this).chooser({
-      collectionUrl: 'http://'+window.location.host + '/observation_fields.json',
-      resourceUrl: 'http://'+window.location.host + '/observation_fields/{{id}}.json',
+      collectionUrl: '/observation_fields.json',
+      resourceUrl: '/observation_fields/{{id}}.json',
       afterSelect: function(item) {
         $('.observation_field_chooser', that).parents('.ui-chooser:first').next('.button').click()
         $('.observation_field_chooser', that).chooser('clear')
@@ -36,7 +36,10 @@ var ObservationFields = {
     var url = $(this).attr('href'),
         dialog = $('<div class="dialog"><span class="loading status">Loading...</span></div>')
     $(document.body).append(dialog)
-      $(dialog).dialog({modal:true, title: I18n.translations[I18n.currentLocale()]['new_observation_field']})
+    $(dialog).dialog({
+      modal:true, 
+      title: I18n.translations[I18n.currentLocale()]['new_observation_field']
+    })
     $(dialog).load(url, "format=js", function() {
       $('form', dialog).submit(function() {
         $.ajax({
@@ -65,7 +68,12 @@ var ObservationFields = {
     $('.observation_field').not('.fieldified').each(function() {
       var lastName = $(this).siblings('.fieldified:last').find('input').attr('name')
       if (lastName) {
-        var index = parseInt(lastName.match(/observation_field_values_attributes\]\[(\d+)\]/)[1]) + 1
+        var matches = lastName.match(/observation_field_values_attributes\]\[(\d*)\]/)
+        if (matches) {
+          var index = parseInt(matches[1]) + 1
+        } else {
+          var index = 0
+        }
       } else {
         var index = 0
       }
@@ -84,7 +92,7 @@ var ObservationFields = {
       $('input', this).each(function() {
         var newName = $(this).attr('name')
           .replace(
-            /observation_field_values_attributes\]\[(\d+)\]/, 
+            /observation_field_values_attributes\]\[(\d*)\]/, 
             'observation_field_values_attributes]['+index+']')
         $(this).attr('name', newName)
       })
@@ -164,7 +172,7 @@ var ObservationFields = {
       modal: true,
       title: title,
       width: 600,
-      minHeight: 400
+      maxHeight: $(window).height() * 0.8
     })
   }
 }
@@ -174,6 +182,14 @@ $(document).ready(function() {
   $('#project_menu .addlink, .project_invitation .acceptlink').bind('ajax:success', function(e, json, status) {
     var observationId = (json && json.observation_id) || $(this).data('observation-id') || window.observation.id
     if (json && json.project && json.project.project_observation_fields && json.project.project_observation_fields.length > 0) {
+      if (json.observation.observation_field_values && json.observation.observation_field_values.length > 0) {
+        var ofvs = json.observation.observation_field_values,
+            pofs = json.project.project_observation_fields,
+            ofv_of_ids = $.map(ofvs, function(ofv) { return ofv.observation_field_id }),
+            pof_of_ids = $.map(pofs, function(pof) { return pof.observation_field_id }),
+            intersection = $.map(ofv_of_ids, function(a) { return $.inArray(a, pof_of_ids) < 0 ? null : a })
+        if (intersection.length >= pof_of_ids.length) { return true }
+      }
       ObservationFields.showObservationFieldsDialog({
         url: '/observations/'+observationId+'/fields?project_id='+json.project_id,
         title: 'Project observation fields for ' + json.project.title,

@@ -17,14 +17,15 @@
     <%= f.select :iconic_taxon, 
       options_for_select(Taxon::ICONIC_TAXA.map{|t| [t.name, t.id]}, @iconic_taxon.to_i), 
       :include_blank => "None", :multiple => true %>
-    <%= f.select :rank, options_for_select(Taxon::RANKS, @rank), :include_blank => "None" %>
+    <%= f.select :rank, options_for_select(Taxon::RANKS.sort, @rank), :include_blank => "None" %>
+    <%= f.check_box :within_iconic, {:checked => @within_iconic == 't'}, 't', 'f' %>
     <%= f.submit "Filter" %>
   <% end -%>
 </div>
 
 <table>
   <% for name, taxa in @synonyms_by_name %>
-    <%- taxa = taxa.sort_by{|t| t.id} -%>
+    <%- taxa = taxa.sort_by{|t| t.id}.compact -%>
     <tr>
       <th><%= name %></th>
       <td>

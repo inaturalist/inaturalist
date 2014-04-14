@@ -1,5 +1,7 @@
+- content_for :title do
+  = @title = "#{@flow_task.type.to_s.underscore.humanize.capitalize.gsub(/flow/, '')} #{@flow_task.id}"
 %h1
-  = "#{@flow_task.type.to_s.underscore.humanize.downcase.gsub(/flow/, '')} #{@flow_task.id}"
+  = @title
 
 %table.stacked.simple
   %tr

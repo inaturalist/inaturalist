@@ -20,11 +20,11 @@ $(document).ready(function(){
           lyr = new google.maps.KmlLayer(range.kml_url, {suppressInfoWindows: true, preserveViewport: true})
 
       if (range.source && range.source.in_text) {
-        var title = "Range from " + range.source.in_text,
+        var title = I18n.t('range_from') + range.source.in_text,
             description = range.description || range.source.citation
       } else {
-        var title = "Additional range",
-            description = range.description || "Additional range data from an unknown source"
+        var title = I18n.t('additional_range'),
+            description = range.description || I18n.t('additional_range_data_from_an_unknown_source')
       }
       map.addOverlay(title, lyr, {
         id: 'taxon_range-'+range.id, 
@@ -86,7 +86,7 @@ $(document).ready(function(){
     autoOpen: false,
     width: 700,
     open: function( event, ui ) {
-      $('#edit_photos_dialog').loadingShades('Loading...', {cssClass: 'smallloading'})
+      $('#edit_photos_dialog').loadingShades(I18n.t('loading'), {cssClass: 'smallloading'})
       $('#edit_photos_dialog').load('/taxa/'+TAXON.id+'/edit_photos', function() {
         var photoSelectorOptions = {
           defaultQuery: TAXON.name,

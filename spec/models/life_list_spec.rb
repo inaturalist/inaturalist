@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
-describe List, "reload_from_observations" do
+describe LifeList, "reload_from_observations" do
   before(:each) do
     @taxon = Taxon.make!
     @child = Taxon.make!(:parent => @taxon)
@@ -25,6 +25,16 @@ describe List, "reload_from_observations" do
     @list.reload
     @list.taxon_ids.should_not include(@child.id)
   end
+
+  it "should add taxa from place" do
+    p = make_place_with_geom
+    o = Observation.make!(:taxon => @child, :latitude => p.latitude, :longitude => p.longitude)
+    l = make_life_list_for_taxon(@taxon, :place => p, :user => o.user)
+    l.taxa.should be_empty
+    LifeList.reload_from_observations(l)
+    l.reload
+    l.taxa.should include(@child)
+  end
   
   def make_listed_taxon_of_taxon(taxon)
     listed_taxon = @list.add_taxon(taxon)
@@ -48,7 +58,7 @@ describe LifeList do
   end
 end
 
-describe List, "refresh_with_observation" do
+describe LifeList, "refresh_with_observation" do
   before(:each) do
     @parent = Taxon.make!
     @list = LifeList.make!
@@ -142,5 +152,44 @@ describe LifeList, "update_life_lists_for_taxon" do
         LifeList.update_life_lists_for_taxon(t)
       end
     }.should change(Delayed::Job, :count).by(1)
+  end
+end
+
+describe LifeList, "places" do
+  let(:place) { make_place_with_geom }
+  it "should create a rule when set" do
+    l = LifeList.make!(:place => place)
+    l.rules.detect{|r| r.operator == "observed_in_place?"}.should_not be_blank
+  end
+  it "should remove the rule when unset" do
+    l = LifeList.make!(:place => place)
+    l.update_attributes(:place => nil)
+    l.reload
+    l.rules.detect{|r| r.operator == "observed_in_place?"}.should be_blank
+  end
+  it "should not allow places without boundaries" do
+    l = LifeList.make(:place => Place.make!)
+    l.should_not be_valid
+  end
+  it "should allow taxa observed in place" do
+    t = Taxon.make!
+    o = Observation.make!(:taxon => t, :latitude => place.latitude, :longitude => place.longitude)
+    l = LifeList.make!(:user => o.user, :place => place)
+    lt = l.add_taxon(t)
+    lt.should be_valid
+  end
+  it "should not allow taxa observed outside of the place" do
+    t = Taxon.make!
+    o = Observation.make!(:taxon => t, :latitude => place.latitude + 1, :longitude => place.longitude + 1)
+    l = LifeList.make!(:user => o.user, :place => place)
+    lt = l.add_taxon(t)
+    lt.should_not be_valid
+  end
+  it "should allow manually added taxa that have not been observed" do
+    t = Taxon.make!
+    o = Observation.make!(:taxon => t, :latitude => place.latitude + 1, :longitude => place.longitude + 1)
+    l = LifeList.make!(:user => o.user, :place => place)
+    lt = l.add_taxon(t, :manually_added => true)
+    lt.should be_valid
   end
 end

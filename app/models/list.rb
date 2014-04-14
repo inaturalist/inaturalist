@@ -103,6 +103,8 @@ class List < ActiveRecord::Base
     "refresh_list_#{id}"
   end
   
+  #For lists, returns first_observation (array of [date, observation_id])
+  #where date represents the first date observed (e.g. not first date added to iNat)
   def cache_columns_query_for(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
@@ -110,7 +112,8 @@ class List < ActiveRecord::Base
     sql_key = "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)"
     <<-SQL
       SELECT
-        array_agg(o.id) AS ids,
+        min(COALESCE(time_observed_at::varchar, observed_on::varchar, '0') || ',' || o.id::varchar) AS first_observation,
+        max(COALESCE(time_observed_at::varchar, observed_on::varchar, '0') || ',' || o.id::varchar) AS last_observation,
         count(*),
         (#{sql_key}) AS key
       FROM
@@ -143,10 +146,15 @@ class List < ActiveRecord::Base
   def refresh_cache_key
     "refresh_list_#{id}"
   end
+
+  def reload_from_observations_cache_key
+    "rfo_list_#{id}"
+  end
   
   def generate_csv(options = {})
     controller = options[:controller] || FakeView.new
-    attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation last_observation url created_at updated_at taxon_common_name)
+    attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation 
+       last_observation url created_at updated_at taxon_common_name confirmed_observations_count unconfirmed_observations_count)
     ranks = %w(kingdom phylum class sublcass superorder order suborder superfamily family subfamily tribe genus)
     headers = options[:taxonomic] ? ranks + attrs : attrs
     fname = options[:fname] || "#{to_param}.csv"
@@ -225,7 +233,7 @@ class List < ActiveRecord::Base
   
   def self.icon_preview_cache_key(list)
     list_id = list.is_a?(List) ? list.id : list
-    {:controller => "lists", :action => "icon_preview", :list_id => list_id}
+    FakeView.url_for(:controller => "lists", :action => "icon_preview", :list_id => list_id, :locale => I18n.locale)
   end
   
   def self.refresh_for_user(user, options = {})
@@ -280,6 +288,7 @@ class List < ActiveRecord::Base
   end
   
   def self.refresh_with_observation(observation, options = {})
+    Rails.logger.info "[INFO #{Time.now}] Starting List.refresh_with_observation for #{observation}, #{options.inspect}"
     observation = Observation.find_by_id(observation) unless observation.is_a?(Observation)
     unless taxon = Taxon.find_by_id(observation.try(:taxon_id) || options[:taxon_id])
       Rails.logger.error "[ERROR #{Time.now}] List.refresh_with_observation " + 
@@ -295,11 +304,15 @@ class List < ActiveRecord::Base
     listed_taxa = ListedTaxon.all(:include => [:list],
       :conditions => ["taxon_id IN (?) AND list_id IN (?)", taxon_ids, target_list_ids])
     if respond_to?(:create_new_listed_taxa_for_refresh)
-      create_new_listed_taxa_for_refresh(taxon, listed_taxa, target_list_ids)
+      unless self == ProjectList && observation && observation.quality_grade == 'casual' #only RG for projects
+        create_new_listed_taxa_for_refresh(taxon, listed_taxa, target_list_ids)
+      end
     end
     listed_taxa.each do |lt|
+      Rails.logger.info "[INFO #{Time.now}] List.refresh_with_observation, refreshing #{lt}"
       refresh_listed_taxon(lt)
     end
+    Rails.logger.info "[INFO #{Time.now}] Finished List.refresh_with_observation for #{observation}"
   end
   
   def self.refresh_listed_taxon(lt)

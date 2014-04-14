@@ -15,14 +15,19 @@ class User < ActiveRecord::Base
   # licensing extras
   attr_accessor   :make_observation_licenses_same
   attr_accessor   :make_photo_licenses_same
+  attr_accessor   :make_sound_licenses_same
   attr_accessible :make_observation_licenses_same, 
-                  :make_photo_licenses_same, 
+                  :make_photo_licenses_same,
+                  :make_sound_licenses_same, 
                   :preferred_photo_license, 
-                  :preferred_observation_license
+                  :preferred_observation_license,
+                  :preferred_sound_license
+  attr_accessor :html
   
   preference :project_journal_post_email_notification, :boolean, :default => true
   preference :comment_email_notification, :boolean, :default => true
   preference :identification_email_notification, :boolean, :default => true
+  preference :message_email_notification, :boolean, :default => true
   preference :no_email, :boolean, :default => false
   preference :project_invitation_email_notification, :boolean, :default => true
   preference :lists_by_login_sort, :string, :default => "id"
@@ -31,19 +36,26 @@ class User < ActiveRecord::Base
   preference :gbif_sharing, :boolean, :default => true
   preference :observation_license, :string
   preference :photo_license, :string
+  preference :sound_license, :string
   preference :share_observations_on_facebook, :boolean, :default => true
   preference :share_observations_on_twitter, :boolean, :default => true
   preference :automatic_taxonomic_changes, :boolean, :default => true
   preference :observations_view, :string
+  preference :community_taxa, :boolean, :default => true
+
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
-  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification project_journal_post_email_notification)
+  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 
+    message_email_notification project_invitation_email_notification 
+    project_journal_post_email_notification)
   
   belongs_to :life_list, :dependent => :destroy
   has_many  :provider_authorizations, :dependent => :delete_all
   has_one  :flickr_identity, :dependent => :delete
   has_one  :picasa_identity, :dependent => :delete
+  has_one  :soundcloud_identity, :dependent => :delete
   has_many :observations, :dependent => :destroy
+  has_many :deleted_observations
   
   # Some interesting ways to map self-referential relationships in rails
   has_many :friendships, :dependent => :destroy
@@ -59,19 +71,23 @@ class User < ActiveRecord::Base
     :conditions => "identifications.user_id != observations.user_id AND identifications.current = true"
   has_many :photos, :dependent => :destroy
   has_many :posts #, :dependent => :destroy
-  has_many :journal_posts, :class_name => Post.to_s, :as => :parent, :dependent => :destroy
+  has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
-  has_many :projects #, :dependent => :nullify
+  has_many :projects
   has_many :project_users, :dependent => :destroy
   has_many :listed_taxa, :dependent => :nullify
   has_many :invites, :dependent => :nullify
   has_many :quality_metrics, :dependent => :destroy
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify
+  has_many :messages, :dependent => :destroy
+  has_many :delivered_messages, :class_name => "Message", :foreign_key => "from_user_id", :conditions => "messages.from_user_id != messages.user_id"
+  has_many :guides, :dependent => :nullify, :inverse_of => :user
   
   has_attached_file :icon, 
     :styles => { :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },
+    :processors => [:deanimator],
     :path => ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",
     :url => "/attachments/:class/:attachment/:id-:style.:icon_type_extension",
     :default_url => "/attachment_defaults/:class/:attachment/defaults/:style.png"
@@ -82,12 +98,18 @@ class User < ActiveRecord::Base
   has_subscribers
   has_many :subscriptions, :dependent => :delete_all
   has_many :updates, :foreign_key => :subscriber_id, :dependent => :delete_all
+  has_many :flow_tasks
+  belongs_to :site, :inverse_of => :users
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
-  before_validation :strip_name
+  before_validation :strip_name, :strip_login
   before_save :whitelist_licenses
+  before_create :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
+  after_save :update_sound_licenses
+  after_save :destroy_messages_by_suspended_user
+  before_save :set_community_taxa_if_pref_changed
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
@@ -118,12 +140,12 @@ class User < ActiveRecord::Base
 
   validates_format_of       :email,    :with => email_regex, :message => bad_email_message, :allow_blank => true
   validates_length_of       :email,    :within => 6..100, :allow_blank => true #r@a.wk
-  validates_uniqueness_of   :email,    :allow_blank => true
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, :time_zone, :icon_url
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, 
+    :time_zone, :icon_url, :locale, :prefers_community_taxa
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -147,7 +169,17 @@ class User < ActiveRecord::Base
 
   def user_icon_url
     return nil if icon.blank?
-    "#{FakeView.root_url}#{icon.url}".gsub(/\/\//, '/')
+    "#{FakeView.root_url}#{icon.url(:thumb)}".gsub(/([^\:])\/\//, '\\1/')
+  end
+  
+  def medium_user_icon_url
+    return nil if icon.blank?
+    "#{FakeView.root_url}#{icon.url(:medium)}".gsub(/([^\:])\/\//, '\\1/')
+  end
+  
+  def original_user_icon_url
+    return nil if icon.blank?
+    "#{FakeView.root_url}#{icon.url}".gsub(/([^\:])\/\//, '\\1/')
   end
 
   def active?
@@ -174,8 +206,14 @@ class User < ActiveRecord::Base
   end
 
   def strip_name
-    return true unless name
+    return true if name.blank?
     self.name = name.gsub(/[\s\n\t]+/, ' ').strip
+    true
+  end
+
+  def strip_login
+    return true if login.blank?
+    self.login = login.strip
     true
   end
   
@@ -214,7 +252,9 @@ class User < ActiveRecord::Base
   # returns either nil or the appropriate ProviderAuthorization
   def has_provider_auth(provider)
     provider = provider.downcase
-    provider_authorizations.all.select{|p| (p.provider_name == provider || p.provider_uid.match(provider))}.first
+    provider_authorizations.detect do |p| 
+      p.provider_name.match(provider) || p.provider_uid.match(provider)
+    end
   end
 
   def login=(value)
@@ -279,7 +319,7 @@ class User < ActiveRecord::Base
   # see koala docs for available methods: https://github.com/arsduo/koala
   def facebook_api
     return nil unless facebook_identity
-    @facebook_api ||= Koala::Facebook::GraphAndRestAPI.new(facebook_identity.token)
+    @facebook_api ||= Koala::Facebook::API.new(facebook_identity.token)
   end
   
   # returns nil or the facebook ProviderAuthorization
@@ -316,7 +356,15 @@ class User < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_photo_licenses_same)
     number = Photo.license_number_for_code(preferred_photo_license)
     return true unless number
-    Photo.update_all(["license = ?", number], ["user_id = ?", id])
+    Photo.update_all(["license = ?", number], ["user_id = ? AND type != 'GoogleStreetViewPhoto'", id])
+    true
+  end
+
+  def update_sound_licenses
+    return true unless [true, "1", "true"].include?(@make_sound_licenses_same)
+    number = Photo.license_number_for_code(preferred_sound_license)
+    return true unless number
+    Sound.update_all(["license = ?", number], ["user_id = ?", id])
     true
   end
   
@@ -330,7 +378,12 @@ class User < ActiveRecord::Base
     reject.friendships.all(:conditions => ["friend_id = ?", id]).each{|f| f.destroy}
     merge_has_many_associations(reject)
     reject.destroy
-    LifeList.delay.reload_from_observations(life_list_id)
+    LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).reload_from_observations(life_list_id)
+  end
+
+  def set_locale
+    self.locale ||= I18n.locale
+    true
   end
 
   def set_uri
@@ -390,7 +443,13 @@ class User < ActiveRecord::Base
     )
     u.skip_email_validation = true
     u.skip_confirmation!
-    unless u.save
+    user_saved = begin
+      u.save
+    rescue PG::Error => e
+      raise e unless e.message =~ /duplicate key value violates unique constraint/
+      false
+    end
+    unless user_saved
       suggestion = User.suggest_login(u.login)
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
       u.update_attributes(:login => suggestion)
@@ -475,7 +534,7 @@ class User < ActiveRecord::Base
 
     # refresh check lists with relevant taxa
     taxon_ids.in_groups_of(100) do |group|
-      CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh(:taxa => group.compact)
+      CheckList.delay(:priority => OPTIONAL_PRIORITY, :queue => "slow").refresh(:taxa => group.compact)
     end
 
     # refresh project lists
@@ -509,10 +568,41 @@ class User < ActiveRecord::Base
     true
   end
 
+  def generate_csv(path, columns)
+    of_names = ObservationField.
+      includes(:observation_field_values => :observation).
+      where("observations.user_id = ?", id).
+      select("DISTINCT observation_fields.name").
+      map{|of| "field:#{of.normalized_name}"}
+    columns += of_names
+    columns -= %w(user_id user_login)
+    CSV.open(path, 'w') do |csv|
+      csv << columns
+      self.observations.includes(:taxon, {:observation_field_values => :observation_field}).find_each do |observation|
+        csv << columns.map{|c| observation.send(c) rescue nil}
+      end
+    end
+  end
+
+  def destroy_messages_by_suspended_user
+    return true unless suspended?
+    Message.inbox.unread.where(:from_user_id => id).destroy_all
+    true
+  end
+
+  def set_community_taxa_if_pref_changed
+    if prefers_community_taxa_changed?
+      Observation.delay(:priority => USER_INTEGRITY_PRIORITY).set_community_taxa(:user => id)
+    end
+    true
+  end
+
   def self.default_json_options
     {
       :except => [:crypted_password, :salt, :old_preferences, :activation_code, :remember_token, :last_ip,
-        :suspended_at, :suspension_reason, :state, :deleted_at, :remember_token_expires_at, :email]
+        :suspended_at, :suspension_reason, :state, :deleted_at, :remember_token_expires_at, :email],
+      :methods => [
+        :user_icon_url, :medium_user_icon_url, :original_user_icon_url]
     }
   end
 

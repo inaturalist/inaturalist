@@ -1,0 +1,14 @@
+%tr.nested-fields.trip-taxa-fields
+  %td.observed
+    = f.label :observed do
+      = f.check_box :observed, :label => false
+    = f.hidden_field :taxon_id
+    = f.hidden_field :id
+  %td.name
+    .taxonwrapper
+      - if f.object.taxon
+        = render "shared/taxon", :taxon => f.object.taxon
+      - else
+        =t :unknown
+  %td.actions
+    = link_to_remove_association t(:remove), f, :class => "btn btn-mini"

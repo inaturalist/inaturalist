@@ -1,10 +1,3 @@
-<%- content_for(:extrajs) do -%>
-  <script type="text/javascript" charset="utf-8">
-    // $(document).ready(function() {
-    //   $('#taxon_name_lexicon').autocomplete()
-    // });
-  </script>
-<%- end -%>
 <%= form_for(@taxon_name, 
     :url => @taxon_name.new_record? ? taxon_taxon_names_path(@taxon || @taxon_name.taxon) : @taxon_name) do |n| %>
   <%= error_messages_for :taxon_name %>
@@ -33,16 +26,21 @@
   <%- end -%>
   
   <p class="ui">
-    <%= n.label :name %><br/>
-    <%= n.text_field :name, :class => "text" %>
+    <%= n.label :name, t(:name) %><br/>
+    <% if @taxon_name.new_record? || is_curator? || is_me?(@taxon_name.creator) -%>
+      <%= n.text_field :name, :class => "text", :autofocus => true %>
+    <% else %>
+      <strong><%= @taxon_name.name %></strong>
+    <% end -%>
   </p>
   <p class="ui">
-    <%= n.label :lexicon %><br/>
+    <%= n.label :lexicon, t(:lexicon) %><br/>
     <%-
-      options = TaxonName::DEFAULT_LEXICONS + ['---------------------------'] + 
-        (TaxonName::LEXICONS.values.sort - TaxonName::DEFAULT_LEXICONS)
+      options = TaxonName::DEFAULT_LEXICONS.sort + ['---------------------------'] +
+        (@lexicons - TaxonName::DEFAULT_LEXICONS)
     -%>
-    <%= n.select :lexicon, options, :include_blank => "Unknown", :disabled => '---------------------------' %>
+    <%= n.select :lexicon, options.map{|l| [t("lexicons.#{l.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}",
+                                              :default => l), l]}, :include_blank => t(:unknown), :disabled => '---------------------------' %>
   </p>
   <p class="ui">
     <%= link_to_function t(:add_new_lexicon), 
@@ -62,15 +60,15 @@
   </p>
   <p class="ui" style="margin: 20px 0">
     <%= label_tag t(:if_this_is_a_cientific_name) %><br/>
-    <%= n.radio_button :is_valid, true.to_s %> <%= n.label :is_valid_true, t(:true) %>
-    <%= n.radio_button :is_valid, false %>  <%= n.label :is_valid_false, t(:false) %>
+    <%= n.radio_button :is_valid, true.to_s %> <%= n.label :is_valid_true, t(:true).downcase %>
+    <%= n.radio_button :is_valid, false %>  <%= n.label :is_valid_false, t(:false).downcase %>
   </p>
   
   <div class="clear buttonrow">
     <%= n.submit t(:save), :class => 'default button', "data-loading-click" => t(:saving) %>
     <%= link_to t(:cancel), @taxon || @taxon_name.taxon, :class => 'button' %>
     <%- unless @taxon_name.new_record? -%>
-      <%= link_to 'Delete', @taxon_name,
+      <%= link_to t(:delete), @taxon_name,
                   :method => :delete,
                   :confirm => t(:are_you_sure_want_delete_this_name),
                   :class => 'minor delete button' %>

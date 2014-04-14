@@ -1,5 +1,5 @@
 <% content_for(:title) do %>
-<%- if @observation.species_guess and @observation.species_guess != '' -%>
+<%- unless @observation.species_guess.blank? -%>
   <%= @observation.species_guess -%>,
 <%- else -%>
   <%=t :something %>
@@ -7,10 +7,11 @@
 <%= t(:observed_by).downcase %>
 <%= @observation.user.login %>
 <%- if @observation.time_observed_at -%>
-  at <%=h @observation.time_observed_at.strftime("%I:%M %p %Z") %>
+        <%=l @observation.time_observed_at, :format => :observed_at %>
 <%- end %>
-<%- if @observation.observed_on -%>
-  on <%=h @observation.observed_on.to_s(:long) %>
+<%- if @observation.observed_on
+      date_format = @observation.observed_on.to_s(:long).split(" ") -%>
+        <%= t :on_ %> <%= t("date_format.date_long.#{date_format.first.downcase}", :day => date_format[1], :year =>date_format.last) %>
 <%- end -%>
 <% end -%>
 
@@ -63,7 +64,7 @@
 <%- end -%>
 
 <% content_for(:extracss) do %>
-  <%= stylesheet_link_tag 'identifications', 'observations/show', "jquery/ui.tabs.css", 'observations/observation_fields', 'jquery/plugins/inat/photo_selectors' %>
+  <%= stylesheet_link_tag 'identifications', 'observations/show', "jquery/ui.tabs.css", 'observations/observation_fields', 'jquery/plugins/inat/photo_selectors', 'jquery/plugins/inat/photo_selectors' %>
   <style type="text/css" media="screen">  
     .identification_form_wrapper{background-color:#eee;padding:10px;}
     .identification_form_wrapper input.text{width:236px;margin-top:0;}
@@ -80,7 +81,6 @@
     .ui-tabs .ui-tabs-nav .ui-tabs-active{border-color:#eee;}
     .ui-tabs .ui-tabs-nav li a{padding:0.25em 0.5em;}
     #new_identification_form .species_guess{width:538px;}
-    #new_identification_form label{display:block;}
     #new_identification_form textarea{width:538px;height:150px;}
     #identifications .agreers{padding-left:60px;}
     #identifications .identification_image{width:40px;text-align:center;}
@@ -98,14 +98,13 @@
   </style>
 <% end %>
 <% content_for(:extrajs) do %>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= google_maps_js %>
   <%= javascript_include_tag 'jquery/plugins/jqModal',
                              'modal_image',
                              'observations/observation_fields',
                              'inaturalist/map3',
                              "jquery/plugins/inat/photo_selectors.js",
                              "observations/show" %>
-  
   <script type="text/javascript" charset="utf-8">
     var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
         PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
@@ -140,10 +139,17 @@
   </div>
   
   <h2>
-    <%- if @observation.taxon -%>
-      <%= link_to @observation.species_guess, @observation.taxon -%>
-    <%- elsif @observation.species_guess and @observation.species_guess != '' -%>
-      <%= h @observation.species_guess -%>
+    <%- if @observation.taxon && @observation.taxon_id == @observation.community_taxon_id -%>
+      <%= render "shared/taxon", :taxon => @observation.taxon, :link_url => @observation.taxon,
+        :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil %>
+    <%- elsif @observation.taxon -%>
+      <%= render "shared/taxon", 
+        :taxon => @observation.taxon, 
+        :link_url => @observation.taxon, 
+        :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil,
+        :no_common => !@observation.species_guess.blank? && @observation.species_guess.downcase == @observation.taxon.name.downcase %>
+    <%- elsif !@observation.species_guess.blank? -%>
+      <%= @observation.species_guess -%>
     <%- else -%>
       <%=t :something %>,
     <% end -%>
@@ -151,16 +157,15 @@
     <%= link_to @observation.user.login, observations_by_login_path(@observation.user.login) %>
     <span class="meta date">
       <%- if @observation.time_observed_at -%>
-        <%=t :at %>
-        <%=h @observation.time_observed_at.in_time_zone(@observation.time_zone).strftime("%I:%M %p %Z") %>
+        <%=l @observation.time_observed_at, :format => :observed_at %>
       <% end -%>
       <%- if @observation.observed_on -%>
         <%=t :on_ %>
-        <%= link_to @observation.observed_on.strftime(@observation.time_observed_at ? '%b' : '%B'), 
+        <%= link_to t("date_format.month.#{@observation.observed_on.strftime(@observation.time_observed_at ? '%b' : '%B').downcase}"),
           observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}") %>
         <%= link_to @observation.observed_on.day, 
           observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}-#{@observation.observed_on.day}") %>,
-        <%= link_to @observation.observed_on.year, 
+        <%= link_to @observation.observed_on.year,
           observations_by_login_path(@observation.user.login, :on => @observation.observed_on.year) %>
       <%- end -%>
     </span>
@@ -169,7 +174,7 @@
   <% if is_me?(@observation.user) %>
     
     <div id="tools">
-      <%= link_to t(:edit), edit_observation_url, 
+      <%= link_to "<span class='ui-icon ui-icon-pencil inlineblock'></span> #{t(:edit)}".html_safe, edit_observation_url,
         :id => "edit_list_button", :class => "button" %>
 
       <% unless @projects.blank? %>
@@ -178,12 +183,12 @@
           <ul>
             <% for project in @projects %>
               <li class="inline buttonrow">
-                <%= link_to t(:remove), 
+                <%= link_to t(:remove),
                   remove_project_observation_path(project, :observation_id => @observation.id),
                   :remote => true,
                   :method => :delete,
                   "data-type" => "json",
-                  :confirm => t(:are_you_sure_delete_obervation_from_project, :project => project.title),
+                  :confirm => t(:are_you_sure_delete_observation_from_project, :project => project.title),
                   :class => "removelink pale button",
                   :id => dom_id(project, "removelink"),
                   :style => @project_observations_by_project_id[project.id] ? nil : 'display:none' %>
@@ -203,11 +208,17 @@
         <% end %>
       <% end %>
       
-      <%= link_to t(:delete), @observation, 
-                  :confirm => t(:you_sure_delete_this_observation), 
-                  :method => :delete, 
-                  :id => "delete_observation_button", 
-                  :class => "minor delete button" %>
+      <%= link_to "<span class='ui-icon ui-icon-copy inlineblock'></span> #{t :copy}".html_safe, 
+        new_observation_path(:copy => @observation.id), 
+        :class => "minor button",
+        "data-tip" => t('views.observations.copy_tip'),
+        "data-tip-show-delay" => 1000 %>
+      <%= link_to "<span class='ui-icon ui-icon-trash inlineblock'></span> #{t(:delete)}".html_safe, 
+        @observation, 
+        :confirm => t(:you_sure_delete_this_observation), 
+        :method => :delete, 
+        :id => "delete_observation_button", 
+        :class => "minor delete button" %>
     </div>
   
   <% elsif logged_in? && current_user.is_admin? && @observation.flagged? %>
@@ -221,48 +232,82 @@
 </div><!-- end pageheader -->
 
 <div id="singleobs" class="column span-17">
-  <div id="where-and-photos" class="clear">
-    <% if !@photos.blank? -%>
-      <div id="photos">
-        <%- 
-          photo_size = @photos.first.is_a?(FacebookPhoto) ? :large : :medium
-          extra_count = 5
-          cycle_classes = [""]*(extra_count-1) + ["last"]
-        -%>
-        <%= link_to image_tag(@photos.first.best_url(photo_size)), @photos.first.becomes(Photo), :class => "first zoomable", :title => t(:photo_attribution, :attribution => @photos.first.attribution) %>
-        <% for photo in @photos[1..extra_count] -%>
-          <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto #{cycle(*cycle_classes)}", :title => t(:photo_attribution, :attribution => photo.attribution) %>
-        <% end -%>
-        <% if @photos.size > extra_count+1 -%>
-          <div style="clear: both">
-            <%= link_to_toggle t(:view_all_photocount_photos, :photo_count => @observation.photos.size), "#morephotos" %>
-            <div id="morephotos" style="display: none">
-              <% for photo in @photos[(extra_count+1)..-1] -%>
-                <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto", :title => t(:photo_attribution, :attribution => photo.attribution) %>
+  <div id="where-and-photos" class="clear<%= ' has_photos' unless @photos.blank? %><%= ' has_sounds' unless @sounds.blank? %><%= ' has_media' unless @photos.blank? && @sounds.blank? %>">
+    <% if !@photos.blank? || !@sounds.blank? -%>
+      <div id="media">
+        <% if !@photos.blank? -%>
+          <div id="photos" class="stacked">
+            <%- 
+              photo_size = @photos.first.is_a?(FacebookPhoto) ? :large : :medium
+              extra_count = 5
+              cycle_classes = [""]*(extra_count-1) + ["last"]
+            -%>
+            <%= link_to image_tag(@photos.first.best_url(photo_size)), @photos.first.becomes(Photo), :class => "first zoomable", :title => t(:photo_attribution, :attribution => @photos.first.attribution) %>
+            <% for photo in @photos[1..extra_count] -%>
+              <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto #{cycle(*cycle_classes)}", :title => t(:photo_attribution, :attribution => photo.attribution) %>
+            <% end -%>
+            <% if @photos.size > extra_count+1 -%>
+              <div style="clear: both">
+                <%= link_to_toggle t(:view_all_photocount_photos, :photo_count => @observation.photos.size), "#morephotos" %>
+                <div id="morephotos" style="display: none">
+                  <% for photo in @photos[(extra_count+1)..-1] -%>
+                    <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto", :title => t(:photo_attribution, :attribution => photo.attribution) %>
+                  <% end -%>
+                </div>
+              </div>
+            <% end -%>
+            
+            <div class="meta" style="clear:both;">
+              <%=t(:photo, :count => @photos.size).capitalize %>
+              <% if @photos.map{|p| p.license}.compact.uniq.size <= 1 -%>
+                <%= rights @photos.first, :skip_image => true, :separator => ", " %>
+              <% else %>
+                &copy;
+                <%= @observation.user.name.blank? ? @observation.user.login : @observation.user.name %>,
+                <%=t :mixed_licenses %>
+              <% end -%>
+            </div>
+
+            <% if is_me?(@observation.user) -%>
+              <div class="meta">
+                <span class="button"><%= link_to t(:add_more_photos), edit_observation_path, :id => "add_more_photos_link" %></span>
+              </div>
+            <% end -%>
+          </div>
+        <%- end -%>
+
+        <% unless @sounds.blank? -%>
+          <div id="sounds" class="stacked">
+            <% above_the_fold_sounds = 1 %>
+            <% @sounds.each_with_index do |sound, i| -%>
+              <% if i == above_the_fold_sounds %>
+                <div class='moresounds' style="clear: both">
+                <%= link_to_toggle t(:'sounds.view_all_soundcount_sounds', :sound_count => @observation.sounds.size), "#moresounds" %>
+                <div id="moresounds" style="display: none">
+              <% end %>
+              <% embed_link = "https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F#{sound.native_sound_id}&show_artwork=false&secret_token=#{sound.secret_token}" %>
+              <iframe width="100%" height="166" scrolling="no" frameborder="no" src="<%= embed_link%>" class="stacked"></iframe>
+            <% end -%>
+            <% if @sounds.size > above_the_fold_sounds %>
+                </div>
+              </div>
+            <% end %>
+
+            <div class="meta" style="clear:both;">
+              <%=t(:'sounds.sound').capitalize %>
+              <% if @sounds.map{|s| s.license}.compact.uniq.size <= 1 -%>
+                <%= rights @sounds.first, :skip_image => true, :separator => ", " %>
+              <% else %>
+                &copy;
+                <%= @observation.user.name.blank? ? @observation.user.login : @observation.user.name %>,
+                <%=t :mixed_licenses %>
               <% end -%>
             </div>
           </div>
-        <% end -%>
-        
-        <div class="meta" style="clear:both;">
-          <%=t(:photo, :count => @photos.size).capitalize %>
-          <% if @photos.map{|p| p.license}.compact.uniq.size <= 1 -%>
-            <%= rights @photos.first, :skip_image => true, :separator => " " %>
-          <% else %>
-            &copy;
-            <%= @observation.user.name.blank? ? @observation.user.login : @observation.user.name %>,
-            <%=t :mixed_licenses %>
-          <% end -%>
-        </div>
-
-        <% if is_me?(@observation.user) -%>
-          <div class="meta">
-            <span class="button"><%= link_to t(:add_more_photos), edit_observation_path, :id => "add_more_photos_link" %></span>
-          </div>
-        <% end -%>
+        <%- end -%>
       </div>
-    <%- end -%>
-    
+    <% end -%>
+
     <div id="where">
       <% if show_observation_coordinates?(@observation) %>
         <div id="map" class="stacked"></div>
@@ -271,11 +316,12 @@
         <%= render :partial => 'location', :locals => {:inline_edit => true, :places => @places} %>
       </div>
     </div><!-- end where -->
+
   </div><!-- end where-and-photos -->
   
   <% unless @observation.description.blank? %>
     <div id="observation-description">
-      <h3>Description</h3>
+      <h3><%= t :description %></h3>
       <div class="clear readable description">
         <%= formatted_user_text(@observation.description) %>
       </div>
@@ -301,13 +347,20 @@
       </span>
     </div>
 
-    <% if @observation.mobile? -%>
-      <div id="device" class="description <%= @observation.device_name.to_s.split.join('_').downcase %>">
-        <label>Device:</label>
-        <% if @observation.device_url -%>
+    <% if (a = @observation.oauth_application) || !@observation.device_url.blank? -%>
+      <div id="app" class="description">
+        <label>App:</label>
+        <% if a -%>
+          <%-
+            url = a.url.blank? ? oauth_application_url(a) : a.url
+            uri = URI.parse(url) rescue nil
+          -%>
+          <% if uri -%>
+            <%= link_to(image_tag("http://www.google.com/s2/u/0/favicons?domain=#{uri.host}", :class => "favicon"), url) %>
+          <% end -%>
+          <%= link_to a.name, url %>
+        <% elsif !@observation.device_url.blank? -%>
           <%= link_to @observation.device_name, @observation.device_url %>
-        <% else %>
-          <%= @observation.device_name %>
         <% end -%>
       </div>
     <% end -%>
@@ -317,15 +370,15 @@
         <% for ofv in @observation.observation_field_values %>
           <div class="observation_field_value">
             <label data-tip="<%=h ofv.observation_field.description %>" data-tip-width="auto">
-              <%= link_to ofv.observation_field.name.capitalize, ofv.observation_field %>:
+              <%= link_to ofv.observation_field.name, ofv.observation_field %>:
             </label>
             <%= observation_field_value_for(ofv) %>
             <span class="extra small">
-              <%= link_to "Observations w/ field", observations_path("field:#{ofv.observation_field.normalized_name}" => ""),
+              <%= link_to t(:observations_w_field), observations_path("field:#{ofv.observation_field.normalized_name}" => ""),
                 :rel => "nofollow" %>
               <% if ofv.value.to_s.size < 30 -%>
                 |
-                <%= link_to "Observations w/ #{ofv.observation_field.name}=#{ofv.value}", 
+                <%= link_to t(:observations_w) + "#{ofv.observation_field.name}=#{ofv.value}",
                   observations_path("field:#{ofv.observation_field.normalized_name}" => ofv.value),
                   :rel => "nofollow" -%>
               <%- end -%>
@@ -360,9 +413,9 @@
       
       <div id="new_identification_form">
         <% if !logged_in? -%>
-          <%= link_to "Sign in", login_path %>
-          or <%= link_to "sign up", signup_path %>
-          to add identifications.
+          <%= link_to t(:sign_in), login_path %>
+          <%= t :or %> <%= link_to t(:sign_up), signup_path %>
+          <%= t :to_add_identifications %>
         <% else %>
           <%- new_identification = Identification.new(:user => current_user, :observation => @observation) -%>
           <%= form_for new_identification do |f| %>
@@ -371,7 +424,7 @@
               :f => f,
               :show_body => true
             } %>
-            <%= f.submit 'Save Identification', :class => 'default button', "data-loading-click" => "Saving..." %>
+            <%= f.submit t(:save_identification), :class => 'default button', "data-loading-click" => t(:saving) %>
           <% end %>
         <% end -%>
       </div>
@@ -387,45 +440,101 @@
 <div class="column span-7 last">  
 
   <div id="identifications" class="identifications clear">
-    <h3><%=t :identification_summary %></h3>
+    <h3>
+      <%=t :identification_summary %>
+    </h3>
     
     <% if @owners_identification %>
       <div id="owners-identification" class="box <%= 'withupperright' if @listed_taxon || @conservation_status %>">
         <%= render :partial => 'identifications/identification',
                    :locals => { :identification => @owners_identification } %>
-        <% if @listed_taxon || @conservation_status -%>
+        <% if @owners_identification.taxon_id == @observation.taxon_id -%>
           <%= render "listed_taxa/taxon_blobs", :listed_taxon => @listed_taxon, :taxon => @observation.taxon, :conservation_status => @conservation_status, :show_place_name => true %>
         <% end -%>
       </div>
     <% end %>
+
+    <% if @community_identification && !@observation.community_taxon_rejected? -%>
+      <div class="identification_group">
+        <div id="community-identification" class="box  <%= 'withupperright' if @listed_taxon || @conservation_status %>">
+          <%= render :partial => 'identifications/identification',
+                     :locals => {
+                      :identification => @community_identification,
+                      :usertext => t(:community_id).html_safe
+                    } %>
+          <% if @listed_taxon || @conservation_status -%>
+            <%= render "listed_taxa/taxon_blobs", :listed_taxon => @listed_taxon, :taxon => @observation.taxon, :conservation_status => @conservation_status, :show_place_name => true %>
+          <% end -%>
+
+          <center class="actions">
+            <% if is_me?(@observation.user) && (@owners_identification.blank? || @observation.community_taxon_id != @owners_identification.taxon_id) -%>
+              <%= link_to t(:reject), 
+                observation_url(@observation, :observation => {:prefers_community_taxon => false}, :ignore_photos => true), 
+                :method => :put, 
+                :class => "blob remove",
+                "data-tip" => t(:opt_out_of_community_ids_for_obs, :default => "Opt out of commmunity IDs") %>
+                |
+            <% end -%>
+            <%= link_to_function t(:about), "showCommunityTaxonDialog()", :class => "blob" %>
+          </center>
+        </div>
+        <% if identifications = @current_identifications_by_taxon[@community_identification.taxon] -%>
+          <div class="agreers description">
+            <% for agreement in identifications %>
+              <%= link_to user_image(agreement.user, :size => :mini), agreement.user %>
+            <% end %>
+            <nobr><%=t :x_people_agree_html, :count => identifications.size %></nobr>
+          </div>
+        <% end -%>
+      </div>
+    <% end -%>
+
     <div id="identifications-list-<%= @observation.id %>" class="identifications-list">
-      <% for taxon, identifications in @current_identifications_by_taxon %>
+      <% for taxon, identifications in @sorted_current_identifications_by_taxon %>
+        <%- next if !@observation.community_taxon_rejected? && @community_identification && @community_identification.taxon === taxon -%>
         <div class="identification_group">
           <%= render :partial => "identifications/identification", :locals => { :identification => identifications.first }%>
-          <% if identifications.size == 2 %>
+          <% if identifications.size > 1 -%>
             <div class="agreers description">
-              <%= link_to you_or_login(identifications.last.user), identifications.last.user %> agrees
-            </div>
-          <% elsif identifications.size > 2 -%>
-            <div class="agreers description">
-              <%= identifications.size - 1 %> <%=t :people_agree %>
-              <span class="button"><%= link_to_function t(:show), "$(this).parent().next('ul').slideToggle()" %></span>
-              <ul style="display: none">
-                <% for agreement in identifications[1..-1] %>
-                  <li><%= link_to you_or_login(agreement.user), agreement.user %></li>
-                <% end %>
-              </ul>
+              <% for agreement in identifications[1..-1] %>
+                <%= link_to user_image(agreement.user, :size => :mini), agreement.user %>
+              <% end %>
+              <%=t :x_people_agree_html, :count => identifications.size - 1 %>
             </div>
           <% end -%>
         </div>
       <% end %>
     </div>
+
+    <% if @observation.community_taxon_rejected? %>
+      <div id="no-community-identification" class="quiet box">
+        <% if is_me?(@observation.user) -%>
+          <%=t @observation.prefers_community_taxon == false ? :youve_opted_out_of_community_ids_for_this_obs : :youve_opted_out_of_community_ids %>.
+          <ul class="unstacked">
+            <li>
+              <%= link_to t(:opt_in_for_this_observation), 
+                observation_url(@observation, :observation => {:prefers_community_taxon => true}, :ignore_photos => true), 
+                :method => :put %>
+            </li>
+            <li>
+              <%= link_to t(:edit_your_default_settings), generic_edit_user_path %>
+            </li>
+          </ul>
+        <% else %>
+          <%=t @observation.prefers_community_taxon == false ? :user_has_opted_out_of_community_ids_for_this_obs : :user_has_opted_out_of_community_ids, :user => @observation.user.login %>
+
+        <% end -%>
+        <center class="actions">
+          <%= link_to_function t(:about), "showCommunityTaxonDialog()", :class => "blob" %>
+        </center>
+      </div>
+    <% end -%>
     
     <% if is_me?(@observation.user) -%>
       <div id="idplease" class="clear inline buttonrow">
         <div id="added_to_id_please" class="box id_please_notice" style="display: <%= @observation.id_please? ? 'block' : 'none' %>">
           <span class="inter">
-            Added to <%= link_to t(:id_please), id_please_path %>
+            <%= t :added_to %> <%= link_to t(:id_please).truncate(18), id_please_path %>
           </span>
           <%= link_to t(:remove), @observation,
             :remote => true,
@@ -510,7 +619,7 @@
         <% for pi in @project_invitations %>
           <%= render :partial => 'project_invitations/project_invitation', :object => pi, :locals => {:observation => @observation} %>
         <% end %>
-        <%= link_to "Manage your project invitations", project_invitations_path, :class => "right readmore" %>
+        <%= link_to t(:manage_your_project_invitations), project_invitations_path, :class => "right readmore" %>
       <% end %>
     </div>
     
@@ -534,7 +643,7 @@
                       :user_id => current_user.id },
                     :method => :post,
                     :class => "glaucous button",
-                    "data-loading-click" => "inviting..." %>
+                    "data-loading-click" => t(:inviting) %>
                 <% end -%>
                 <%= link_to h(project.title), project, :class => "inter" %>
               </li>
@@ -553,13 +662,13 @@
             <%= link_to observation_image(o, :size => "square"), o, :title => o.to_plain_s %>
           <% end %>
         </div>
-        <%= link_to t(:view_x_from_x, :day_observations=>"#{@day_observations.total_entries}", :observed_on => "#{@observation.observed_on.to_s(:long)}"), calendar_date_path(@observation.user.login, @observation.observed_on.year, @observation.observed_on.month, @observation.observed_on.day), :class => "right readmore" %>
+        <%= link_to t(:view_x_from_x, :day_observations=>"#{@day_observations.total_entries}", :observed_on => "#{l(@observation.observed_on, :format => :long)}"), calendar_date_path(@observation.user.login, @observation.observed_on.year, @observation.observed_on.month, @observation.observed_on.day), :class => "right readmore" %>
       </div>
     <%= separator %>
   <% end -%>
 
   <% unless @posts.blank? -%>
-    <h3>Journal Posts</h3>
+    <h3><%= t :journal_post %></h3>
     <ul class="plain">
       <% for post in @posts %>
         <li>
@@ -573,7 +682,7 @@
   
   <div id="data_quality_assessment">
     <h3>
-      <span class="right quality_tip_target description helptip" rel="#quality_tip" data-helptip-title="About the Quality Assessment" data-helptip-width="500" style="margin-top:4px"></span>
+      <span class="right quality_tip_target description helptip" rel="#quality_tip" data-helptip-title="<%= t :about_the_quality_assessment %>" data-helptip-width="500" style="margin-top:4px"></span>
       <%=t :data_quality_assessment %>
     </h3>
     <%= render :partial => "quality_metrics/quality_metrics", :object => @observation %>
@@ -584,34 +693,30 @@
     <div id="links" class="stacked">
       <div id="links_tip" style="display:none;">
         <p>
-          <%= CONFIG.site_name %> shares licensed observation data with
-          several data partners so your data can be more accessible to
-          scientists and other researchers.
+          <%= t :x_site_shared_licensed_observation_data_with, :site_name => CONFIG.site_name %>
         </p>
         
         <% if is_me?(current_user) -%>
           <p>
-            If you don't want us to share your data, 
-            <%= link_to_function "un-license this observation", 
+            <%= t :if_you_dont_want_us_to_share_your_data %>,
+            <%= link_to_function t(:un_license_this_observation),
               "$('#editlicense').dialog({modal:true, width:'auto', title: 'Edit license'})" %>,
-            or you can
-            <%= link_to "edit your account", edit_user_path(current_user, :anchor => 'licenses') %>
-            and un-license all your observations.
+            <%= t :or_you_can_ %>
+            <%= link_to t(:edit_your_account), edit_user_path(current_user, :anchor => 'licenses') %>
+            <%= t :and_un_license_all_your_observations %>.
           </p>
         <% end -%>
         
         <p>
-          If you'd like us to share your observations with data partners, make
-          sure you've chosen to license your observations with a Creative
-          Commons license.
+          <%= t :if_youd_like_us_to_share_your_observations_with %>
         </p>
       </div>
       <h3>
-        <span class="right quality_tip_target description helptip" rel="#links_tip" data-helptip-title="About External Links" data-helptip-width="500" style="margin-top:4px"></span>
-        External Links
+        <span class="right quality_tip_target description helptip" rel="#links_tip" data-helptip-title="<%= t(:about_external_links) %>" data-helptip-width="500" style="margin-top:4px"></span>
+        <%= t :external_links %>
       </h3>
       <p class="meta ui">
-        This observation has been incorporated into the following external websites:
+        <%= t :this_observation_has_been_incorporated_into_the_following_external_websites %>:
       </p>
       <ul class="plain inline">
         <% for ol in @observation.observation_links %>
@@ -666,38 +771,8 @@
   
   <%= separator %>
   
-  <% if logged_in? && params[:test] && !@places.blank?-%>
-    <h3><%=t :places %></h3>
-    <ul>
-      <%- @places.each do |place| %>
-        <%- extra = capture do %>
-          <% if @observation.taxon -%>
-            <ul class="plain small stacked">
-              <li>
-                <% if @observation.taxon.species_or_lower? -%>
-                  <%= link_to raw t(:view_other_taxa, :taxon_name => "#{default_taxon_name(@observation.taxon.parent)}"), 
-                    {:controller => "taxa", :action => "search", :taxon_id => @observation.taxon.parent_id, :places => place.id} %>
-                <% else %>
-                  <%= link_to raw t(:view_other_taxa, :taxon_name =>"#{default_taxon_name(@observation.taxon)}"), 
-                    {:controller => "taxa", :action => "search", :taxon_id => @observation.taxon_id, :places => place.id} %>
-                <% end -%>
-              </li>
-              <li>
-                <%- it = Taxon::ICONIC_TAXA_BY_ID[@observation.taxon.iconic_taxon_id] -%>
-                <%= link_to raw t(:view_other_taxa, :taxon_name =>"#{default_taxon_name(it)}"), 
-                  {:controller => "taxa", :action => "search", :taxon_id => it.id, :places => place.id} %>
-              </li>
-            </ul>
-          <% end -%>
-        <% end -%>
-        <%= render :partial => "places/place_li", :object => place, :locals => {:extra => extra} %>
-      <% end %>
-    </ul>
-    <%= separator %>
-  <% end -%>
-  
   <div id="fblike" class="stacked">
-    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+    <script src="//connect.facebook.net/<%= t(:fblocale) %>/all.js#xfbml=1"></script>
     <fb:like send="true" show_faces="true" width="270" layout="button_count"></fb:like>
   </div>
   

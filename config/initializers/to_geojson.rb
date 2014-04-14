@@ -15,7 +15,7 @@ class Array
   end
 end
 
-# Override the as_json method in all Geometry sublcasses to putput a hash, not a json string
+# Override the as_json method in all Geometry sublcasses to output a hash, not a json string
 GeoRuby::SimpleFeatures::Geometry.subclasses.each do |klass|
   klass.class_eval do
     define_method(:as_json) do |*args|

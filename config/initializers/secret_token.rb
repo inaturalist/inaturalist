@@ -4,4 +4,6 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Inaturalist::Application.config.secret_token = 'bef0512fe2686331d4a6d278cd8ffe8cfda8d76944d6db3161db775756b3bca838a480811f0e7c379087bbc79292bf029c07b578994d8a710d3f556e80be7f1b'
+
+config = YAML.load(File.open("#{Rails.root}/config/config.yml"))
+Inaturalist::Application.config.secret_token = config[Rails.env]['rails']['secret']

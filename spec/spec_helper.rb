@@ -2,9 +2,11 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'mocha/setup'
 require File.expand_path(File.dirname(__FILE__) + "/blueprints")
 require File.expand_path(File.dirname(__FILE__) + "/helpers/make_helpers")
 require File.expand_path(File.dirname(__FILE__) + "/helpers/example_helpers")
+require File.expand_path(File.dirname(__FILE__) + "/../lib/eol_service.rb")
 
 include MakeHelpers
 
@@ -32,6 +34,10 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
+  end
+
+  config.before(:each) do
+    Delayed::Job.delete_all
   end
 
   config.after(:each) do
@@ -66,3 +72,31 @@ def http_login(user)
     user.login, "monkey")
 end
 
+# inject a fixture check into CoL service wrapper.  Need to stop making HTTP requests in tests
+class EolService
+  alias :real_request :request
+  def request(method, *args)
+    uri = get_uri(method, *args)
+    fname = "#{uri.path}_#{uri.query}".gsub(/[\/\.]+/, '_')
+    fixture_path = File.expand_path(File.dirname(__FILE__) + "/fixtures/eol_service/#{fname}")
+    if File.exists?(fixture_path)
+      Rails.logger.debug "[DEBUG] Loading cached EOL response for #{uri}: #{fixture_path}"
+      Nokogiri::XML(open(fixture_path))
+    else
+      puts "[DEBUG] Couldn't find EOL response fixture, you should probably do this:\n wget -O \"#{fixture_path}\" \"#{uri}\""
+      real_request(method, *args)
+    end
+  end
+end
+
+# Change Paperclip storage from S3 to Filesystem for testing
+LocalPhoto.attachment_definitions[:file].tap do |d|
+  if d.nil?
+    Rails.logger.warn "Missing :file attachment definition for LocalPhoto"
+  elsif d[:storage] != :filesystem
+    d[:storage] = :filesystem
+    d[:path] = ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension"
+    d[:url] = "/attachments/:class/:attachment/:id/:style/:basename.:extension"
+    d[:default_url] = "/attachment_defaults/:class/:attachment/defaults/:style.png"
+  end
+end

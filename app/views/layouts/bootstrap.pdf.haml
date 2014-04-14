@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    = wicked_pdf_stylesheet_link_tag "bootstrap", 'bootstrap-inat', 'bootstrap-pdf'
+    = yield :extrahead
+    = yield :extracss
+  %body
+    .bootstrap
+      = yield
+    = yield :extrajs
+    - if params && !params[:print].blank?
+      :javascript
+        window.print()

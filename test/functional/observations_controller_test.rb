@@ -7,7 +7,7 @@ class ObservationsControllerTest < ActionController::TestCase
   def test_index_finds_observations_by_taxon_name
     taxon = Taxon.make!
     observation = Observation.make!(:taxon => taxon)
-    get :index, :format => 'json', :taxon_name => taxon.name
+    get :index, :format => :json, :taxon_name => taxon.name
     assert_match /id.*?#{observation.id}/, @response.body
     assert_equal 1, assigns(:observations).map(&:taxon_id).uniq.size
   end
@@ -15,7 +15,7 @@ class ObservationsControllerTest < ActionController::TestCase
   def test_index_finds_observations_when_taxon_name_is_blank
     taxon = Taxon.make!
     observation = Observation.make!(:taxon => taxon)
-    get :index, :format => 'json', :taxon_name => ''
+    get :index, :format => :json, :taxon_name => ''
     assert_match /id.*?#{observation.id}/, @response.body
   end
   
@@ -163,6 +163,15 @@ class ObservationsControllerTest < ActionController::TestCase
     assert_response :success
     assert_no_match /flubbernutter/, @response.body
   end
+
+  def test_index_coordinates_visible_for_owner
+    t = Taxon.make!
+    o = Observation.make!(:latitude => 38.52345, :longitude => -122.345435, :geoprivacy => Observation::OBSCURED, :taxon => t)
+    assert !o.private_latitude.blank?
+    sign_in o.user
+    get :index, :taxon_id => t.id
+    assert_coordinates_visible(o)
+  end
   
   def assert_private_coordinates_obscured(observation)
     assert_response :success
@@ -173,5 +182,14 @@ class ObservationsControllerTest < ActionController::TestCase
   def assert_private_coordinates_hidden(observation)
     assert_response :success
     assert_no_match /#{observation.private_latitude}\D/, @response.body
+  end
+
+  def assert_coordinates_visible(observation)
+    assert_response :success
+    if observation.private_latitude
+      assert_match /#{observation.private_latitude}/, @response.body
+    else
+      assert_match /#{observation.latitude}/, @response.body
+    end
   end
 end

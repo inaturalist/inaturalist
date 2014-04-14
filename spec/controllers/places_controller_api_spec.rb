@@ -33,19 +33,11 @@ describe PlacesController, "index" do
     t = Taxon.make!
     native_place = Place.make!
     native_place.check_list.add_taxon(t, :establishment_means => ListedTaxon::NATIVE)
-    invasive_place = Place.make!
-    invasive_place.check_list.add_taxon(t, :establishment_means => ListedTaxon::INVASIVE)
+    introduced_place = Place.make!
+    introduced_place.check_list.add_taxon(t, :establishment_means => ListedTaxon::INTRODUCED)
     get :index, :format => :json, :taxon => t.name, :establishment_means => ListedTaxon::NATIVE
     response.body.should =~ /#{native_place.name}/
-    response.body.should_not =~ /#{invasive_place.name}/
-  end
-
-  it "should include invasives in searches for introduced" do
-    p = Place.make!
-    t = Taxon.make!
-    lt = p.check_list.add_taxon(t, :establishment_means => ListedTaxon::INVASIVE)
-    get :index, :format => :json, :taxon => t.name, :establishment_means => ListedTaxon::INTRODUCED
-    response.body.should =~ /#{p.name}/
+    response.body.should_not =~ /#{introduced_place.name}/
   end
 
   it "should include endemics in searches for native" do

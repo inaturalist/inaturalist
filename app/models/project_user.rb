@@ -75,26 +75,26 @@ class ProjectUser < ActiveRecord::Base
     update_attributes(:observations_count => project_observations.count)
   end
   
+  # set taxa_count on project user, which is the number of taxa observed by this user, favoring the curator ident
   def update_taxa_counter_cache
-    user_taxon_ids = ProjectObservation.all(
-      :select => "distinct observations.taxon_id",
-      :include => [{:observation => :taxon}, :curator_identification],
-      :conditions => [
-        "identifications.id IS NULL AND project_id = ? AND observations.user_id = ? AND taxa.rank_level <= ?",
-        project_id, user_id, Taxon::RANK_LEVELS['species']
-      ]
-    ).map{|po| po.observation.taxon_id}
-    
-    curator_taxon_ids = ProjectObservation.all(
-      :select => "distinct identifications.taxon_id",
-      :include => [:observation, {:curator_identification => :taxon}],
-      :conditions => [
-        "identifications.id IS NOT NULL AND project_id = ? AND observations.user_id = ? AND taxa.rank_level <= ?",
-        project_id, user_id, Taxon::RANK_LEVELS['species']
-      ]
-    ).map{|po| po.curator_identification.taxon_id}
-    
-    update_attributes(:taxa_count => (user_taxon_ids + curator_taxon_ids).uniq.size)
+    sql = <<-SQL
+      SELECT count(DISTINCT COALESCE(i.taxon_id, o.taxon_id))
+      FROM project_observations po
+        JOIN observations o ON po.observation_id = o.id
+        LEFT OUTER JOIN taxa ot ON ot.id = o.taxon_id
+        LEFT OUTER JOIN identifications i ON po.curator_identification_id = i.id
+        LEFT OUTER JOIN taxa it ON it.id = i.taxon_id
+      WHERE
+        po.project_id = #{project_id}
+        AND o.user_id = #{user_id}
+        AND (
+          -- observer's ident taxon is species or lower
+          ot.rank_level <= #{Taxon::SPECIES_LEVEL}
+          -- curator's ident taxon is species or lower
+          OR it.rank_level <= #{Taxon::SPECIES_LEVEL}
+        )
+    SQL
+    update_attributes(:taxa_count => ProjectUser.connection.execute(sql)[0]['count'].to_i)
   end
   
   def check_role

@@ -1,6 +1,13 @@
 <%- content_for(:title) do -%>
   <%= @title = t(:observation_fields) %>
 <%- end -%>
+<%= form_tag(observation_fields_path, :method => :get, :class => "right smallbuttons buttonrow") do %>
+  <%= text_field_tag :q, @q, :class => 'text' %>
+  <% unless @q.blank? -%>
+    <%= link_to t(:clear).capitalize, observation_fields_path, :class => "glaucous button" %>
+  <% end -%>
+  <%= submit_tag t(:search), :class => 'last default button' %>
+<% end %>
 <h2><%= @title %></h2>
 <p class="description">
   <%=t :observation_fields_are_additional %> 

@@ -5,14 +5,17 @@
 -%>
 <div class="identification <%= identification.user_id == observation.user_id ? 'box' : 'quiet box' %>">
   <div class="boxheader">
-    <%= possessive identification.user, :capitalize => true %>
-    ID
+    <% if is_me? identification.user -%>
+      <%=t :your_id %>
+    <% else %>
+      <%=t :users_id, :user => identification.user.login %>
+    <% end -%>
   </div>
   <div class="boxbody ui-helper-clearfix">
     <%= image_and_content link_to(user_image(identification.user, :size => "thumb"), identification.user) do %>
       <%= image_and_content link_to(taxon_image(identification.taxon), identification.taxon) do %>
         <% if logged_in? && identification.user_id != current_user.id -%>
-          <%= link_to "Agree?", {
+          <%= link_to t(:agree?), {
                :controller => 'identifications',
                :action => 'agree',
                :observation_id => identification.observation_id,
@@ -24,7 +27,8 @@
         <div class="stacked">
           <%= render :partial => "shared/taxon", :object => identification.taxon, :locals => {
             :link_url => url_for(identification.taxon),
-            :include_parens => false
+            :include_parens => false,
+            :named_ancestor => true
           } %>
         </div>
       <% end -%>

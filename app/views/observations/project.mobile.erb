@@ -11,13 +11,14 @@
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+  <%= google_maps_js :sensor => true %>
   <script type="text/javascript" charset="utf-8">
     $(window).ready(function() {
       window.map = new google.maps.Map(document.getElementById("map"), {
         mapTypeId: google.maps.MapTypeId.TERRAIN,
         center: new google.maps.LatLng(38, -122),
-        zoom: 8
+        zoom: 8,
+        streetViewControl: false
       });
       var lyr;
       <%- for kml_asset in @kml_assets %>

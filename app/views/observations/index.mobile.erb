@@ -10,12 +10,11 @@
   <% in_format :html do %>
     <% if @observations.blank? -%>
       <div class="meta nocontent">
-        No matching observations.
+        <%=t :no_matching_observations %>
       </div>
     <% else %>
       <%= render :partial => "observations/cached_component", :collection => @observations %>
     <% end -%>
   <% end -%>
 </div>
-foo
 <%= will_paginate @observations, :renderer => INatLinkRenderer %>

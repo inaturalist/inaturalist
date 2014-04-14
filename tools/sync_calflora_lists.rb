@@ -206,7 +206,7 @@ def make_list_comprehensive(list)
   list.update_attributes(:comprehensive => true) unless OPTS[:test]
 end
 
-california = Place.find(14)
+california = Place.where(:name => "California", :place_type => Place::PLACE_TYPE_CODES["State"]).first
 california.children.where(:place_type => Place::PLACE_TYPE_CODES["County"]).find_each do |county|
   work_on_place(county)
 end

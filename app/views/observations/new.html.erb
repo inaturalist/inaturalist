@@ -5,11 +5,12 @@
   <%= stylesheet_link_tag 'observations/new', 'taxa', 'taxon_browser', 'observations/observation_fields', "observations/edit" %>
 <% end %>
 <% content_for(:extrajs) do %>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= google_maps_js %>
   <%= javascript_include_tag "jquery/plugins/jquery.string.1.0.js",
                              'inaturalist/map3',
                              "jquery/plugins/inat/datepicker.js",
                              "jquery/plugins/inat/photo_selectors.js",
+                             "jquery/plugins/inat/sound_selectors.js",
                              "jquery/plugins/jquery.latLonSelector.js",
                              "jquery/plugins/jqModal",
                              "taxon_browser",
@@ -18,6 +19,7 @@
   <script type="text/javascript" charset="utf-8">
     var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
         PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
+        SOUNDCLOUD_IDENTITY = <%=raw current_user.soundcloud_identity.to_json(:only => [:id]) %>,
         PROJECT = <%=raw @project.to_json(:only => [:id, :place_id, :latitude, :longitude, :map_type, :zoom_level, :title]) %>
         PLACE = <%= @place.to_json.html_safe %>,
         PLACE_GEOMETRY_KML_URL = <%=raw place_geometry_kml_url.inspect %>,
@@ -31,7 +33,7 @@
       <% if @project && !member_of?(@project)%>
       <%=t :join_and %> 
       <% end -%>
-      <%=t :add_an_observation %>
+      <%= t(:add_an_observation) %>
       <% if @project %>
         <%=t :to %>
         <% if @project.icon.file? -%>
@@ -93,7 +95,7 @@
     <% if @project && !member_of?(@project)%>
       <div class="stacked" id="accept_terms">
         <%= check_box_tag :accept_terms %>
-        <span class="notice">Agree to the project terms <%= link_to_function "View terms", 
+        <span class="notice"><%= t :agree_to_the_project_terms %> <%= link_to_function t(:view_terms),
           "$('#terms').dialog({modal: true, title: 'Project Terms', width: 600})", :class => "readmore" %></span>
         <br />
         <br />
@@ -131,13 +133,7 @@
         <span class="inter">
           <%#= link_to "Prefs", edit_user_path(current_user), :class => "small", :target => "_blank" %>
           <%= helptip "(beta)" do %>
-            We're still testing this so Facebook sharing will only work if
-            you're a site admin or a test user, and Twitter sharing might
-            require you to sign in with your Twitter account, even if you've
-            already linked your account. The way this *will* work is that your
-            observations will get shared on social networks if you leave these
-            boxes checked. You can change your defaults by
-            <%= link_to "editing your account", edit_user_path(current_user), :target => "_blank" %>.
+            <%= t :your_observation_will_get_shared_html, :url => edit_user_path(current_user) %>
           <% end -%>
         </span>
       </div>
@@ -145,7 +141,7 @@
 
     <div class="buttonrow">
       <%= submit_tag(t(:save_observation), :class => 'default button', "data-loading-click" => true) %>
-      <%= submit_tag "Save and add another", :class => 'button', :style => "display:none", :id => "add_another_button" %>
+      <%= submit_tag t(:save_and_add_another), :class => 'button', :style => "display:none", :id => "add_another_button" %>
       <%= link_to_function t(:save_and_add_another), "$('#add_another_button').click()", :class => "button" %>
       <%= link_to(t(:cancel), session[:return_to], :class => 'button') %>
     </div>

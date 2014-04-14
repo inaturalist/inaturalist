@@ -1,0 +1,18 @@
+- updates.each do |update|
+  - post = update.notifier
+  - author = resource
+  - the_post_path = journal_post_path(:login => resource.login, :id => post.id)
+  .post.clear.stacked{:id => id_for(post)}
+    %h4= link_to(post.title, the_post_path)
+    .readable.body.clear
+      = truncate_with_more(formatted_user_text(post.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES), :length => 500)
+    .meta
+      = t :posted_by
+      = link_to(truncate(you_or_login(post.user), :length => 20), person_path(post.user.login))
+      %span.when
+        %abbr.date.timeago{:title => post.published_at.iso8601}
+          = time_ago_in_words(post.published_at)
+          =t :ago
+      |
+      = link_to t(:view_post), the_post_path
+= link_to t(:view_xs_journal, :x => resource.login), journal_posts_path(:login => resource.login), :class => 'readmore'

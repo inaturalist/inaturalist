@@ -1,5 +1,5 @@
 <%- show_body ||= false -%>
-<%- body_label ||= 'Remarks <span class="small description">(optional)</span>'.html_safe -%>
+<%- body_label ||= t(:remarks_optional).html_safe -%>
   <div class="field species_guess_field">
     <label for="identification_species_guess-<%= identification.observation_id %>"><%=t :species%></label>
     <%= text_field_tag(:species_guess, '', 
@@ -13,6 +13,14 @@
     <div class="field body_field">
       <%= f.label :body, body_label.html_safe %>
       <%= f.text_area :body %>
+    </div>
+
+    <div class="field">
+      <%= f.check_box :captive_flag %>
+      <%= f.label :captive_flag, t(:organism_appears_captive_cultivated) %>
+      <% helptip_for "captive_flag" do %>
+        <%=t 'views.observations.captive_help_html' %>
+      <% end -%>
     </div>
   <% end -%>
 

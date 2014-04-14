@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @place.display_name %>
+  <%= t @place.display_name, :default => @place.display_name %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "taxa", "taxa/guide", "barchart", "places/show", "guide" %>
@@ -24,7 +24,7 @@
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= google_maps_js %>
   <script type="text/javascript" charset="utf-8">
     var PLACE = <%= @place.to_json.html_safe %>,
         PLACE_GEOMETRY_KML_URL = <%=raw place_geometry_kml_url.inspect %>,
@@ -60,17 +60,21 @@
     <span class="description">&gt;</span>
     <% @place.ancestors.each do |ancestor| %>
       <%- link_txt = capture do -%>
-        <%= ancestor.name %>
-        <span class="small description">(<%=t ancestor.place_type_name %>)</span>
+        <%= t("places_name.#{ancestor.name.gsub(' ','_').downcase}", :default => ancestor.name) %>
+        <span class="small description">
+          (<%= t("place_geo.geo_planet_place_types.#{ancestor.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if ancestor.place_type_name %>)
+        </span>
       <%- end -%>
       <%= link_to link_txt, ancestor, :class => 'crumb' %>
       <span class="description">&gt;</span>
     <% end %>
   </div><!-- /#breadcrumbs -->
-  <div id="map" style="width: 100%; height: 100px"></div>
+  <div id="map" class="<%= 'nochecklist' unless @place.check_list %>"></div>
   <h2>
-    <%= link_to h(@place.display_name), @place %>
-    <span class="small description"><%=t @place.place_type_name %></span>
+    <%= link_to t("places_name.#{@place.display_name.gsub(' ','_').downcase}", :default => @place.display_name), @place %>
+    <span class="small description">
+      <%= t("place_geo.geo_planet_place_types.#{@place.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if @place.place_type_name %>
+    </span>
   </h2>
   <div id="placephotos"></div>
 </div>
@@ -79,22 +83,25 @@
   <div id="metalinks" class="meta right">
     <%-
       pieces = []
-      pieces << link_to(t(:embed_place_widget), place_widget_path(@place), :rel => "nofollow") if @place.check_list
+      pieces << link_to(t(:embed_place_widget), place_widget_path(@place.id), :rel => "nofollow") if @place.check_list
       pieces << link_to(t(:edit_place), edit_place_path(@place), :rel => "nofollow") if @place.editable_by?(current_user)
     -%>
     <%=raw pieces.join(' | ') %>
   </div>
   <ul>
     <li><a href="#guidetab"><span><%=t :species_guide %></span></a></li>
-    <li><a href="#observationstab"><span><%=t :observations %></span></a></li>
-    <li><a href="#abouttab"><span><%=t :about_x, :x => @place.name %></span></a></li>
+    <li><a href="#observationstab"><span><%= t(:observations).capitalize %></span></a></li>
+    <% unless @projects.blank? %>
+      <li><a href="#projectstab"><span><%= t(:projects).capitalize %></span></a></li>
+    <% end -%>
+    <li><a href="#abouttab"><span><%=t :about_x, :x => t(@place.name, :default => @place.name) %></span></a></li>
   </ul>
   
   <div id="guidetab">
     <% if @place.check_list -%>
       <%- extra = capture do -%>
         <p class="ui">
-          <%= link_to "View check list page", @place.check_list, :class => "readmore" %>
+          <%= link_to t(:view_check_list_page), @place.check_list, :class => "readmore" %>
         </p>
         
         <% if logged_in? -%>
@@ -102,7 +109,7 @@
             <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
           <% else %>
             <div class="meta">
-              Subscriptions aren't available for places without boundaries.
+              <%= t :subscriptions_arent_available_for %>
             </div>
           <% end -%>
         <% end -%>
@@ -110,7 +117,7 @@
       <%= render :partial => 'guides/guide', :locals => {:extra => extra} %>
     <% else %>
       <div class="readable nocontent">
-        This place has no check list, so there is no guide<% if @place_geometry %>, but you can still
+        <%= t :this_place_has_no_check_list %><% if @place_geometry %>, but you can still
         <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
         <% end %>
       </div>
@@ -121,18 +128,27 @@
     <div class="stacked observationcontrols"></div>
     <div class="medium observations grid">
       <div class="nocontent">
-        <%= loading "Loading...", :class => "inline" %>
+        <%= loading t(:loading), :class => "inline" %>
       </div>
     </div>
-    <%= link_to "View more observations from #{@place.name}", observations_url(:place_id => @place.id), :class => "readmore" %>
+    <%= link_to t(:view_more_observations_from) + ' ' + "#{@place.name}", observations_url(:place_id => @place.id), :class => "readmore" %>
   </div>
+
+  <% unless @projects.blank? -%>
+    <div id="projectstab">
+      <div class="clear">
+        <h3><%= t(:projects_in_x, :x => @place.name) %></h3>
+        <%= render :partial => 'projects/project', :collection => @projects %>
+      </div>
+    </div>
+  <% end -%>
   
   <div id="abouttab">
     <div class="container">
       <div class="column span-8 append-1">
         <h3><%= t(:flickr_photos) %></h3>
         <div class="stacked photos">
-          <div class="loading status"><%= t(:loading_flikr_photos) %></div>
+          <div class="loading status"><%= t(:loading_flickr_photos) %></div>
         </div>
       </div>
       
@@ -143,7 +159,7 @@
           <div class="loading status"> <%= t(:loading_wikipedia_description) %></div>
           <div class="noresults description" style="display:none">
             <%= t(:there_is_no_wikipedia_page_matching) + " #{@place.wikipedia_name} "+ t(:would_you_like_to) %>
-            <%= link_to t(:start_one), wikipedia_url %>?
+            <%= link_to t(:start_one).downcase, wikipedia_url %>?
           </div>
         </div>
       </div>
@@ -156,8 +172,8 @@
     <%= t(:place_added_to_inat_by, :site_name => SITE_NAME_SHORT) %>
     <%= link_to user_image(@place.user), @place.user %>
     <%= link_to you_or_login(@place.user), @place.user %>
-    on
-    <%= @place.created_at.to_date.to_s(:long) %>
+      <%- date_format = @place.created_at.to_date.to_s(:long).split(" ") %>
+      <%= t :on_ %> <%= t("date_format.date_long.#{date_format.first.downcase}", :day => date_format[1], :year =>date_format.last) %>
     |
   <% end -%>
   <%= link_to t(:add_new_place), new_place_path, :class => "readmore" %>

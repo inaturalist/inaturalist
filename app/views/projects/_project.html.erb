@@ -17,7 +17,7 @@
     <% end %>
     <% if project_user -%>
       <div>
-        <%= link_to "View #{possessive(project_user.user)} contributions", 
+        <%= link_to is_me?(project_user.user) ? t(:view_your_observations) : t(:view_users_observations, :user => project_user.user.login),
           project_show_contributor_path(project, project_user.user.login),
           :class => "readmore" %>
       </div>

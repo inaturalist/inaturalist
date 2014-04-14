@@ -6,6 +6,7 @@ class FlickrPhoto < Photo
   
   validates_presence_of :native_photo_id
   validate :user_owns_photo
+  validate :licensed_if_no_user
 
   def user_owns_photo
     if user
@@ -32,9 +33,13 @@ class FlickrPhoto < Photo
   def self.get_api_response(native_photo_id, options = {})
     f = options[:user] ? flickraw_for_user(options[:user]) : flickr
     user_id = options[:user].id if options[:user] && options[:user].is_a?(User)
-    Rails.cache.fetch("flickr_photos_getInfo_#{native_photo_id}_#{user_id}", :expires_in => 5.minutes) do
+    r = Rails.cache.fetch("flickr_photos_getInfo_#{native_photo_id}_#{user_id}", :expires_in => 5.minutes) do
       f.photos.getInfo(:photo_id => native_photo_id)
     end
+    if r.blank?
+      r = f.photos.getInfo(:photo_id => native_photo_id)
+    end
+    r
   rescue FlickRaw::FailedResponse => e
     if e.message =~ /Invalid auth token/
       flickr.photos.getInfo(:photo_id => native_photo_id)
@@ -83,7 +88,7 @@ class FlickrPhoto < Photo
         f = FlickrPhoto.flickraw_for_user(options[:user])
         sizes = f.photos.getSizes(:photo_id => fp.id)
       end
-      sizes = sizes.index_by{|s| s.label}
+      sizes = sizes.blank? ? {} : sizes.index_by{|s| s.label} rescue {}
       options[:square_url]   ||= sizes['Square'].source rescue nil
       options[:thumb_url]    ||= sizes['Thumbnail'].source rescue nil
       options[:small_url]    ||= sizes['Small'].source rescue nil
@@ -104,6 +109,7 @@ class FlickrPhoto < Photo
   def sync
     f = FlickrPhoto.flickraw_for_user(user)
     sizes = f.photos.getSizes(:photo_id => native_photo_id)
+    return if sizes.blank?
     sizes = sizes.index_by{|s| s.label}
     self.square_url   = sizes['Square'].source rescue nil
     self.thumb_url    = sizes['Thumbnail'].source rescue nil
@@ -188,11 +194,17 @@ class FlickrPhoto < Photo
       if e.message =~ /Photo not found/
         errors[:photo_missing_from_flickr] = "photo not found #{self}"
       else
-        raise e
+        errors[:flickr_error] = "Unknown problem on Flickr's end"
       end
     rescue NoMethodError => e
       raise e unless e.message =~ /token/
       errors[:flickr_authorization_missing] = "missing FlickrIdentity for #{user}"
+    rescue Errno::ECONNRESET => e
+      errors[:flickr_refusing_connection] = "Flickr is refusing the connection for some reason"
+
+    # catch-all
+    rescue EOFError => e
+      errors[:flickr_error] = "Unknown problem on Flickr's end"
     end
 
     if errors[:photo_missing_from_flickr] || (errors[:flickr_authorization_missing] && orphaned?)
@@ -231,8 +243,8 @@ class FlickrPhoto < Photo
         puts "[ERROR] Failed to retrieve #{p.square_url}, skipping..."
         skipped += 1
         next
-      rescue Timeout::Error
-        puts "[ERROR] Timeout requesting photo, skipping..."
+      rescue Timeout::Error, Errno::ECONNREFUSED => e
+        puts "[ERROR] #{e.message} (#{e.class.name}), skipping..."
         skipped += 1
         next
       end

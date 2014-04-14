@@ -11,17 +11,9 @@
 <script type="text/javascript" charset="utf-8">
 var CONSERVATION_STATUS_AUTHORITIES = <%=raw @conservation_status_authorities.to_json %>
   $(document).ready(function() {
-    $('#taxon_photos').photoSelector({
-      defaultQuery: '<%= @taxon.name %>',
-      urlParams: {
-        authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect.html_safe %>),
-        limit: 16
-      }
-    });
-    
     $('#parent_name').simpleTaxonSelector({
       taxonIDField: $('#taxon_parent_id')
-    });
+    })
     
     // Setup taxon browser
     $('body').append(
@@ -57,6 +49,18 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=raw @conservation_status_authorities.to
     $("#conservation_statuses a.add_fields").
       data("association-insertion-method", 'before').
       data("association-insertion-node", 'this');
+
+    $('#taxon_photos').sortable({
+      items: "> .taxon_photo",
+      cursor: "move",
+      placeholder: 'taxon_photo sorttarget',
+      update: function(event, ui) {
+        $selection = $('.taxon_photo')
+        $selection.each(function() {
+          $('input[name*="position"]', this).val($selection.index(this) + 1)
+        })
+      }
+    })
   })
 
   $.fn.conservationStatus = function() {
@@ -66,8 +70,8 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=raw @conservation_status_authorities.to
         chosen: $('.authority_field input', this).val()
       })
       $('.place_id_field input', this).chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
-        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item'
+        collectionUrl: '/places/autocomplete.json',
+        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item'
       })
     })
   }

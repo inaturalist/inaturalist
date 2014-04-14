@@ -3,6 +3,7 @@
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.plural /^(.*)([Tt])axon$/i, '\1\2axa'
   inflect.singular /^(.*)([Tt])axa$/i, '\1\2axon'
+  inflect.plural /^(.*)([Tt])axa$/i, '\1\2axa'
   
   inflect.plural /^(.*)([Pp])hylum$/i, '\1\2hyla'
   inflect.singular /^(.*)([Pp])hyla$/i, '\1\2hylum'

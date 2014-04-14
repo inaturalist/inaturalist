@@ -14,9 +14,9 @@
         <%= f.hidden_field :taxon_id %>
       </div>
       <%= f.hidden_field :list_id %>
-      <%= hidden_field_tag 'success_msg', 'Life list updated!' %>
+      <%= hidden_field_tag 'success_msg', t(:life_list_updated) %>
       <div class="inline buttonrow" style="text-align:center">
-        <%= f.submit "Add", :id => "listed_taxon_submit", :class => 'default inline button inlineblock' %>
+        <%= f.submit t(:add), :id => "listed_taxon_submit", :class => 'default inline button inlineblock' %>
         <%= image_tag('spinner.gif', :id => 'listed_taxon_loading', :style => 'display: none') %>
       </div>
     <% end %>
@@ -44,7 +44,7 @@
         $.fn.simpleTaxonSelector.setStatus(
           $('.simpleTaxonSelector').get(0),
           'matched',
-          $('<span>Added!</span>')
+          $('<span>'+I18n.t('added!')+'</span>')
         );
         
         if ($('#add').length > 0) $('#add').effect('highlight', {}, 1000);
@@ -89,7 +89,7 @@
       
       
       $('#species_guess').simpleTaxonSelector({
-        buttonText: 'Find',
+        buttonText: I18n.t('find'),
         afterSelect: function() {
           $('#listed_taxon_submit').removeClass('disabled').attr('disabled', null);
           $('#listed_taxon_submit').focus();

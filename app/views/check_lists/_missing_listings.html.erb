@@ -1,0 +1,65 @@
+<h3><%=t :find_missing_listings %></h3>
+
+<p>Find taxa listed on other checklists or project lists for this place, but missing from "<%= list_title %>."</p>
+
+<form action="">
+  <div class="clear">
+    <div style="float:left;margin-right:10px">
+      <input class="taxonchooser nosubmit" name="missing_filter_taxon" type="text" class="text" placeholder="<%= @missing_filter_taxon ? @missing_filter_taxon.name : (t :type_taxon_name) %>" value="<%= @missing_filter_taxon.try(&:id) %>" style="width:200px"/>
+    </div>
+    
+    <div style="float:left;margin-right:10px">
+      <div>
+        <label for="hide_ancestors" class="label stacked">
+          <%= check_box_tag "hide_ancestors", @hide_ancestors, @hide_ancestors %>
+          Hide ancestors of listed taxa on this checklist
+        </label>
+      </div>
+
+      <div class="stacked">
+        <label for="hide_ancestors">
+          <%= check_box_tag "hide_descendants", @hide_descendants, @hide_descendants %>
+          Hide descendants of listed taxa on this checklist
+        </label>
+      </div>
+    </div>
+    <div class="inline buttonrow" style="float:left;">
+      <input type="submit" value="<%=t :filter %>" class="default button">
+    </div>
+  </div>
+  <div style="margin-right:10px">
+    <div>
+      Filter by all place checklists or a specific checklist or project list
+    </div>
+    <select name="missing_listing_list_id" id="missing_listing_list_id">
+      <option value="" selected='selected'>All place checklists</option>
+      <% @lists_for_missing_listings.each do |list| %>
+        <% if list.id == params[:missing_listing_list_id].to_i %>
+          <option value="<%= list.id %>" selected='selected'><%= list.title %></option>
+        <% else %>
+          <option value="<%= list.id %>"><%= list.title %></option>
+        <% end %>
+      <% end %>
+    </select>
+  </div>
+  <br >
+  <input type="hidden" name= 'find_missing_listings' value="true">
+</form>
+
+<% if missing_listings.blank? -%>
+  <div class="nocontent"><%=t :no_missing_listings %></div>
+<% else %>
+  <h4><%=t :missing_listings %></h4>
+  <ul class="plain taxon_links">
+    <% missing_listings.each do |missing_listing| %>
+      <li>
+        <%= render "shared/taxon", :taxon => missing_listing.taxon %>
+        <span class="button"><%= link_to t(:view_listing), listed_taxon_path(missing_listing) %></span>
+      </li>
+    <% end %>
+  </ul>
+<% end -%>
+
+<div id="pagination">
+  <%= will_paginate missing_listings, {:renderer => INatLinkRenderer, param_name: "missing_listings_page"} %>
+</div>

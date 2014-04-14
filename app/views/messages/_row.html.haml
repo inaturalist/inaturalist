@@ -1,0 +1,8 @@
+- message ||= row
+%tr
+  %td.nobr.from
+    = link_to user_image(message.from_user, :size => "thumb"), message.from_user
+    = link_to_user message.from_user
+  %td.body
+    = formatted_user_text(message.body)
+  %td.nobr.meta.date= l(message.created_at.to_datetime, :format => :short)

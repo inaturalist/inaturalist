@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Join #{CONFIG.site_name}!" %>
+  <%= @title = t(:join_inat, :site_name => CONFIG.site_name) %>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">

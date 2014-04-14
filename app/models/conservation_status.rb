@@ -1,11 +1,17 @@
+#encoding: utf-8
 class ConservationStatus < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :user
   belongs_to :place
   belongs_to :source
 
-  after_save :update_observation_geoprivacies
+  after_save :update_observation_geoprivacies, :if => lambda {|record|
+    record.id_changed? || record.geoprivacy_changed?
+  }
   after_save :update_taxon_conservation_status
+
+  after_destroy :update_observation_geoprivacies
+  after_destroy :update_taxon_conservation_status
 
   attr_accessible :authority, :description, :geoprivacy, :iucn, :place_id,
     :status, :taxon_id, :url, :user_id, :taxon, :user, :place, :source,
@@ -20,12 +26,12 @@ class ConservationStatus < ActiveRecord::Base
     where("ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lon, lat)
   }
 
-  ["IUCN Red List", "NatureServe"].each do |authority|
+  ["IUCN Red List", "NatureServe", "Norma Oficial 059"].each do |authority|
     const_set authority.strip.gsub(/\s+/, '_').underscore.upcase, authority
   end
 
   def to_s
-    "<ConservationStatus #{id} taxon: #{taxon_id} status: #{status} authority: #{authority}>"
+    "<ConservationStatus #{id} taxon: #{taxon_id} place: #{place_id} status: #{status} authority: #{authority}>"
   end
 
   def status_name
@@ -38,6 +44,8 @@ class ConservationStatus < ActiveRecord::Base
       else
         iucn_name
       end
+    when NORMA_OFICIAL_059
+      norma_oficial_059_status_name
     else 
       case status.downcase
       when 'se', 'fe', 'le', 'e' then 'endangered'
@@ -80,9 +88,19 @@ class ConservationStatus < ActiveRecord::Base
     end
   end
 
+  def norma_oficial_059_status_name
+    norma_status = status
+    case norma_status
+    when "P" then "en peligro de extinción"
+    when "A" then "amenazada"
+    when "Pr" then "sujeta a protección especial"
+    when "Ex" then "probablemente extinta en el medio silvestre"
+    else status
+    end
+  end
+
   def update_observation_geoprivacies
     return true if skip_update_observation_geoprivacies
-    return true if !id_changed? && !geoprivacy_changed?
     Observation.delay(:priority => USER_INTEGRITY_PRIORITY).
       reassess_coordinates_for_observations_of(taxon_id, :place => place_id)
     true

@@ -25,13 +25,21 @@ class FacebookPhoto < Photo
   end
 
   def repair
-    fp = FacebookPhoto.get_api_response(native_photo_id, :user => user)
-    errors = {}
+    unless fp = FacebookPhoto.get_api_response(native_photo_id, :user => user)
+      return [self, {
+        :facebook_account_not_linked => I18n.t(:facebook_account_not_linked, :user => user.try(:login), :site_name => SITE_NAME_SHORT)
+      }]
+    end
     [:large_url, :medium_url, :small_url, :thumb_url].each_with_index do |img_size, i|
       send("#{img_size}=", fp['images'][i]['source'])
     end
     save
-    [self, errors]
+    [self, {}]
+  rescue Koala::Facebook::AuthenticationError => e
+    raise e unless e.message =~ /Error validating access token/
+    [self, {
+      :error_validating_token => I18n.t(:facebook_access_token_expired, :user => user.try(:login))
+    }]
   end
 
   def self.repair(find_options = {})
@@ -39,13 +47,12 @@ class FacebookPhoto < Photo
     find_options[:include] ||= [:user, :taxon_photos, :observation_photos]
     find_options[:batch_size] ||= 100
     find_options[:sleep] ||= 10
-    flickr = FlickRaw::Flickr.new
     updated = 0
     destroyed = 0
     invalids = 0
     skipped = 0
     start_time = Time.now
-    FlickrPhoto.script_do_in_batches(find_options) do |p|
+    FacebookPhoto.script_do_in_batches(find_options) do |p|
       r = Net::HTTP.get_response(URI.parse(p.medium_url))
       unless r.code_type == Net::HTTPBadRequest
         skipped += 1
@@ -55,15 +62,9 @@ class FacebookPhoto < Photo
       if errors.blank?
         updated += 1
       else
-        puts "[DEBUG] #{errors.values.to_sentence}"
         if repaired.frozen?
           destroyed += 1 
-          puts "[DEBUG] destroyed #{repaired}"
         end
-        # if errors[:flickr_authorization_missing]
-        #   invalids += 1
-        #   puts "[DEBUG] authorization missing #{repaired}"
-        # end
       end
     end
     puts "[INFO #{Time.now}] finished FacebookPhoto.repair, #{updated} updated, #{destroyed} destroyed, #{invalids} invalid, #{skipped} skipped, #{Time.now - start_time}s"
@@ -79,6 +80,7 @@ class FacebookPhoto < Photo
     return nil if fp.nil?
     # facebook api provides these sizes in an keyless array, in this order
     [:large_url, :medium_url, :small_url, :thumb_url].each_with_index{|img_size,i|
+      next unless fp['images'] && fp['images'][i]
       options.update(img_size => fp['images'][i]['source'])
     }
     options.update(

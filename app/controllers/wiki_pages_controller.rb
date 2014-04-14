@@ -1,5 +1,7 @@
 class WikiPagesController < ApplicationController
   acts_as_wiki_pages_controller
+  accept_formats :html
+
   def edit_allowed?
     return false unless logged_in?
     return true if current_user.is_admin?
@@ -10,7 +12,7 @@ class WikiPagesController < ApplicationController
   end
 
   def history_allowed?
-    edit_allowed?
+    logged_in?
   end
 
   def setup_page

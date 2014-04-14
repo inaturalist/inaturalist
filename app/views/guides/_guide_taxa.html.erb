@@ -16,19 +16,19 @@
 
 <%- compact do %>
   <div class="guide_taxa" <%= data_attrs.map{|k,v| "#{k}=\"#{v}\""}.join(' ').html_safe %>>
-    <% if @taxa.total_pages == 0 -%>
+    <% if @taxa.total_entries == 0 -%>
       <div class="noresults meta">
         <% if @filter_params.blank? -%>
-          No species have been listed for this place yet!
+          <%= t :no_species_have_been_listed %>
         <% else %>
-          No matching species.
+          <%= t :no_matching_species %>.
         <% end -%>
       </div>
     <% else %>
       <% for taxon in @taxa %>
         <% if @listed_taxa_by_taxon_id -%>
           <%-
-            listed_taxon = @listed_taxa_by_taxon_id[taxon.id]
+            next unless listed_taxon = @listed_taxa_by_taxon_id[taxon.id]
             cache_key = listed_taxon.guide_taxon_cache_key
           -%>
           <%- cache cache_key do %>

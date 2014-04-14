@@ -50,9 +50,8 @@ input.button:active {
   margin: 0pt 0.583em 0.667em 0pt;
 }
 
-.buttonrow .inter {
-  padding: 7px 0;
-}
+.buttonrow .inter {padding: 7px 0;}
+.buttonrow .inter.right {float:right;}
 
 .buttonrow .select {
   margin: 0pt 0.583em 0.667em 0pt;
@@ -128,7 +127,7 @@ button.default {
   border: 0 none;
 }
 .button.disabled { opacity: 0.5; cursor: default;}
-.button.disabled:hover { opacity: 0.5; }
+.button.disabled:hover { opacity: 0.5; background-color: inherit;}
 
 .okcancel.buttons {
   clear: both;
@@ -137,6 +136,7 @@ button.default {
 .minor.button {
   border: 1px solid transparent; 
   font-weight: normal;
+  margin-right: 0;
 }
 
 .button.delete {
@@ -205,6 +205,21 @@ input[type='submit'].link:hover {
 .button.glaucous:hover {
   background-color: #777;
   border-color: #777;
+  color: white;
+}
+
+.success .button.glaucous,
+.success .button.glaucous.disabled:hover {
+  background-color: #529214;
+  border-color: #529214;
+  color: white;
+  text-align: center;
+  padding: 5px;
+}
+
+.success .button.glaucous:hover {
+  background-color: #3a8011;
+  border-color: #3a8011;
   color: white;
 }
 

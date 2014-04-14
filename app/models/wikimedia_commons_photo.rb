@@ -6,68 +6,53 @@ class WikimediaCommonsPhoto < Photo
   
   # retrieve WikimediaCommonsPhotos from Wikimedia Commons based on a taxon_name
   def self.search_wikimedia_for_taxon(taxon_name, options = {})
-    wm = WikimediaCommonsService.new
+    wm = WikimediaCommonsService.new(:debug => true)
     wikimedia_photos = []
+    page = options[:page].to_i
+    page = 1 if page <= 1
+    per_page = (options[:per_page] || options[:limit]).to_i
+    per_page = 30 if per_page <= 1
+    limit = per_page
+    offset = page * per_page - per_page
     query_results = begin
       wm.query(
-        :titles => taxon_name,
-        :redirects => '',
-        :imlimit => '100',
-        :prop => 'images')
+        :generator => "search",
+        :gsrsearch => taxon_name,
+        :gsrnamespace => 6,
+        :prop => "imageinfo",
+        :iiprop => "size|mime|url",
+        :gsrlimit => limit,
+        :gsroffset => offset)
     rescue Timeout::Error => e
       nil
     end
     return unless query_results
-    raw = query_results.at('images')
-    filenames = if raw.blank?
-      taxon = Taxon.find_by_name(taxon_name)
+    images = query_results.search('ii').select {|ii| ii['descriptionurl'][/File:.+/,0] =~ /\.(jpg|jpeg|png|gif)/i}
+    if images.blank? && (taxon = Taxon.find_by_name(taxon_name))
       title = taxon.try(:wikipedia_title) || taxon_name
-      [wikipedia_image_filename_for_title(taxon_name)]
-    else
-      raw.children.map do |child|
-        filename = child.attributes["title"].value
-        ext = filename.split(".").last.upcase.downcase
-        %w(jpg jpef png gif).include?(ext) ? filename.strip.gsub(/\s/, '_') : nil
+      if filename = wikipedia_image_filename_for_title(taxon_name)
+        [new_from_api_response(get_api_response(filename))]
       end
-    end.compact
-    metadata_query_results = begin
-      wm.query(
-        :prop => 'imageinfo',
-        :titles => filenames.join("|"),
-        :iiprop => 'timestamp|user|userid|comment|parsedcomment|url|size|dimensions|sha1|mime|thumbmime|mediatype|metadata|archivename|bitdepth'
-      )
-    rescue Timeout::Error => e
-      nil
+    else
+      images.map do |ii|
+        file_name = ii['descriptionurl'][/File:(.+)/,1]
+        next if file_name.blank?
+        width = ii['width'].to_i
+        next if width == 0
+        md5_hash = Digest::MD5.hexdigest(URI.unescape(file_name))
+        file_name = URI.escape(URI.unescape(file_name))
+        WikimediaCommonsPhoto.new(
+          :native_photo_id => file_name,
+          :original_url => "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}",
+          :large_url => "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{1024 > width ? width : 1024}px-#{file_name}",
+          :medium_url => "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{500 > width ? width : 500}px-#{file_name}",
+          :small_url => "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{240 > width ? width : 240}px-#{file_name}",
+          :square_url => "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{100 > width ? width : 100}px-#{file_name}",
+          :thumb_url => "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}/#{75 > width ? width : 75}px-#{file_name}",
+          :native_page_url => "http://commons.wikimedia.org/wiki/File:#{file_name}"
+        )
+      end.compact
     end
-    return if metadata_query_results.blank?
-    return if metadata_query_results.at('pages').blank?
-    first_page = metadata_query_results.at('pages').children.first
-    return if first_page['missing'] || first_page['invalid']
-    metadata_query_results.at('pages').children.each do |page|
-      file_name = page.attributes['title'].value.strip.gsub(/\s/, '_').split("File:")[1]
-      next if file_name.blank?
-      next unless page.at('ii') && page.at('ii')['width']
-      width = page.at('ii')['width'].to_i
-      md5_hash = Digest::MD5.hexdigest(file_name)
-      image_url = "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
-      large_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{1024 > width ? width : 1024}px-#{file_name}"
-      medium_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{500 > width ? width : 500}px-#{file_name}"
-      small_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{240 > width ? width : 240}px-#{file_name}"
-      square_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{100 > width ? width : 100}px-#{file_name}"
-      thumb_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{75 > width ? width : 75}px-#{file_name}"
-      native_page_url = "http://commons.wikimedia.org/wiki/File:#{file_name}"
-      wikimedia_photos << WikimediaCommonsPhoto.new(
-        :large_url => large_url,
-        :medium_url => medium_url,
-        :small_url => small_url,
-        :thumb_url => thumb_url,
-        :native_photo_id => file_name,
-        :square_url => square_url,
-        :original_url => image_url,
-        :native_page_url => native_page_url
-      )
-    end
-    wikimedia_photos
   end
 
   def self.wikipedia_image_filename_for_title(title)
@@ -91,7 +76,7 @@ class WikimediaCommonsPhoto < Photo
   
   def self.get_api_response(file_name)
     url = "http://commons.wikimedia.org/w/index.php?title=File:#{file_name}"
-    Nokogiri::HTML(open(url, 'User-Agent' => CONFIG.site_name))
+    Nokogiri::HTML(open(url, 'User-Agent' => "iNaturalist"))
   rescue OpenURI::HTTPError => e
     Rails.logger.error "[ERROR #{Time.now}] Failed to retrieve #{url}: #{e}"
     nil
@@ -107,7 +92,7 @@ class WikimediaCommonsPhoto < Photo
     photo.native_photo_id = file_name
 
     license = api_response.search('.licensetpl_short').inner_text
-    photo.license = if (license.downcase.include? "public domain") || (license.downcase.include? "pd")
+    photo.license = if (license.downcase.include? "public domain") || (license.downcase.include? "pd") || (license.downcase.include? "cc0")
       Photo::PD
     elsif license.downcase.include? "cc-by-nc-sa"
       Photo::CC_BY_NC_SA

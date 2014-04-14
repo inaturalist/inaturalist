@@ -1,11 +1,9 @@
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
-  # include AuthenticatedSystem
-  # include RoleRequirementSystem
   include Ambidextrous
   
-  has_mobile_fu :ignore_formats => [:tablet, :json]
+  has_mobile_fu :ignore_formats => [:tablet, :json, :widget]
   around_filter :catch_missing_mobile_templates
   
   helper :all # include all helpers, all the time
@@ -17,10 +15,11 @@ class ApplicationController < ActionController::Base
   after_filter :user_request_logging
   before_filter :remove_header_and_footer_for_apps
   before_filter :login_from_param
+  before_filter :set_site
   before_filter :set_locale
   
   PER_PAGES = [10,30,50,100,200]
-  HEADER_VERSION = 11
+  HEADER_VERSION = 14
   
   alias :logged_in? :user_signed_in?
   
@@ -33,8 +32,14 @@ class ApplicationController < ActionController::Base
     session[:return_to] = request.fullpath
   end
 
+  def set_site
+    @site ||= Site.where("url LIKE '%#{request.host}%'").first
+  end
+
   def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    I18n.locale = params[:locale] || current_user.try(:locale) || I18n.default_locale
+    I18n.locale = current_user.try(:locale) if I18n.locale.blank?
+    I18n.locale = I18n.default_locale if I18n.locale.blank?
   end
 
   # Redirect to the URI stored by the most recent store_location call or
@@ -111,7 +116,7 @@ class ApplicationController < ActionController::Base
   #
   def curator_required
     unless logged_in? && current_user.is_curator?
-      flash[:notice] = "Only curators can access that page."
+      flash[:notice] = t(:only_curators_can_access_that_page)
       if session[:return_to] == request.fullpath
         redirect_to root_url
       else
@@ -137,21 +142,6 @@ class ApplicationController < ActionController::Base
     Chronic.time_class = Time.zone
   end
   
-  #
-  # Filter to set a return url
-  #
-  def return_here
-    ie_needs_return_to = false
-    if request.user_agent =~ /msie/i && params[:format].blank? && 
-        ![Mime::JS, Mime::JSON, Mime::XML, Mime::KML, Mime::ATOM].map(&:to_s).include?(request.format.to_s)
-      ie_needs_return_to = true
-    end
-    if (ie_needs_return_to || request.format.blank? || request.format.html?) && !params.keys.include?('partial')
-      session[:return_to] = request.fullpath
-    end
-    true
-  end
-  
   def return_here_from_url
     return true if params[:return_to].blank?
     session[:return_to] = params[:return_to]
@@ -172,15 +162,17 @@ class ApplicationController < ActionController::Base
   # Return a 404 response with our default 404 page
   #
   def render_404
-    return render(:file => "#{Rails.root}/public/404.html", :status => 404, :layout => false)
+    respond_to do |format|
+      format.any(:html, :mobile) { render(:file => "#{Rails.root}/public/404.html", :status => 404, :layout => false) }
+      format.json { render :json => {:error => t(:not_found)}, :status => 404 }
+    end
   end
   
   #
   # Redirect user to front page when they do something naughty.
   #
   def redirect_to_hell
-    flash[:notice] = "You tried to do something you shouldn't, like edit " + 
-      "someone else's data without permission.  Don't be evil."
+    flash[:notice] = t(:you_tried_to_do_something_you_shouldnt)
     redirect_to root_path, :status => :see_other
   end
   
@@ -210,8 +202,8 @@ class ApplicationController < ActionController::Base
     class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
     class_name = class_name.to_s.underscore.camelcase
     record = instance_variable_get("@#{class_name.underscore}")
-    unless logged_in? && current_user.id == record.user_id
-      msg = "You don't have permission to do that"
+    unless logged_in? && (current_user.id == record.user_id || current_user.is_admin?)
+      msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do
           flash[:error] = msg
@@ -241,7 +233,7 @@ class ApplicationController < ActionController::Base
     @places = Place.search(@q, :page => params[:page], :limit => @limit)
     if logged_in? && @places.blank?
       if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
-        new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}
+        new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}.compact
         @places = Place.where("id in (?)", new_places.map(&:id).compact).page(1).to_a
       end
     end
@@ -253,7 +245,7 @@ class ApplicationController < ActionController::Base
       yield
     rescue ActionView::MissingTemplate => e
       if in_mobile_view?
-        flash[:notice] = "No mobilized version of that view."
+        flash[:notice] = t(:no_mobilized_version_of_that_view)
         session[:mobile_view] = false
         Rails.logger.debug "[DEBUG] Caught missing mobile template: #{e}: \n#{e.backtrace.join("\n")}"
         return redirect_to request.path.gsub(/\.mobile/, '')
@@ -321,16 +313,48 @@ class ApplicationController < ActionController::Base
     endtime = Time.now
     Rails.logger.debug "\n\n[DEBUG] LOG TIMER END #{endtime} (#{endtime - starttime} s)\n\n"
   end
-  
-  private
-  
-  def admin_required
-    unless logged_in? && current_user.has_role?(:admin)
-      flash[:notice] = "Only administrators may access that page"
-      redirect_to observations_path
+
+  def require_admin_or_trusted_project_manager_for(project)
+    allowed_project_roles = %w(manager admin)
+    return true if current_user.has_role?(:admin) if logged_in?
+    project_user = project.project_users.where(:user_id => current_user).first if logged_in?
+    if !project_user || 
+        !project.trusted? || 
+        !allowed_project_roles.include?(project_user.role)
+      message = t(:you_must_be_a_member_of_this_project_to_do_that)
+      respond_to do |format|
+        format.html do
+          flash[:notice] = message
+          redirect_back_or_default project_url(project)
+        end
+        format.json do
+          render :json => {:error => message}, :status => :unprocessable_entity
+        end
+      end
     end
   end
-  
+
+  private
+
+  def admin_required
+    unless logged_in? && current_user.has_role?(:admin)
+      msg = t(:only_administrators_may_access_that_page)
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to observations_path
+        end
+        format.js do
+          render :status => :unprocessable_entity, :text => msg
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => msg}
+        end
+      end
+      return false
+    end
+  end
+
   def remove_header_and_footer_for_apps
     return true unless is_android_app? || is_iphone_app?
     @headless = true
@@ -377,11 +401,64 @@ class ApplicationController < ActionController::Base
   def authenticate_with_oauth?
     return false if !session.blank? && !session['warden.user.user.key'].blank?
     return false if request.authorization.to_s =~ /^Basic /
+    return false unless !params[:access_token].blank? || request.authorization.to_s =~ /^Bearer /
     @doorkeeper_for_called = true
   end
 
   def authenticated_with_oauth?
     @doorkeeper_for_called && doorkeeper_token && doorkeeper_token.accessible?
+  end
+
+  def pagination_headers_for(collection)
+    return unless collection.respond_to?(:total_entries)
+    response.headers['X-Total-Entries'] = collection.total_entries.to_s
+    response.headers['X-Page'] = collection.current_page.to_s
+    response.headers['X-Per-Page'] = collection.per_page.to_s
+  end
+
+  # Encapsulates common pattern for actions that start a bg task get called 
+  # repeatedly to check progress
+  # Key is required, and a block that assigns a new Delayed::Job to @job
+  def delayed_progress(key)
+    @tries = params[:tries].to_i
+    if @tries > 20
+      @status = "error"
+      @error_msg = t(:this_is_taking_forever)
+      return
+    # elsif @tries > 0
+    else
+      @job_id = Rails.cache.read(key)
+      @job = Delayed::Job.find_by_id(@job_id)
+    end
+    if @job_id
+      if @job && @job.last_error
+        @status = "error"
+        @error_msg = if current_user.is_admin?
+          @job.last_error
+        else
+          t(:this_job_failed_to_run, :email => CONFIG.help_email)
+        end
+      elsif @job
+        @status = "working"
+      else
+        @status = "done"
+        Rails.cache.delete(key)
+      end
+    else
+      @status = "start"
+      yield
+      Rails.cache.write(key, @job.id)
+    end
+  end
+
+  # Coerce the format unless in preselected list. Rescues from ActionView::MissingTemplate
+  def self.accept_formats(*args)
+    options = args.last.is_a?(Hash) ? args.last : {}
+    default = options[:default] ? options[:default].to_sym : :html
+    formats = [args].flatten.map(&:to_sym)
+    before_filter(options) do
+      request.format = default if request.format.blank? || !formats.include?(request.format.to_sym)
+    end
   end
 end
 

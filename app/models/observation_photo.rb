@@ -1,14 +1,17 @@
 class ObservationPhoto < ActiveRecord::Base
-  belongs_to :observation
+  belongs_to :observation, :inverse_of => :observation_photos, :counter_cache => false
   belongs_to :photo
+
+  validates_associated :photo
   
   after_create :set_observation_quality_grade,
-               :set_user_on_photo,
                :set_observation_photos_count
   after_destroy :destroy_orphan_photo, :set_observation_quality_grade, :set_observation_photos_count
+
+  include Shared::TouchesObservationModule
   
   def destroy_orphan_photo
-    Photo.delay.destroy_orphans(photo_id)
+    Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(photo_id)
     true
   end
   
@@ -18,17 +21,13 @@ class ObservationPhoto < ActiveRecord::Base
     Observation.delay.set_quality_grade(observation.id)
     true
   end
-  
-  def set_user_on_photo
-    return true unless observation && photo
-    Photo.update_all(["user_id = ?", observation.user_id], ["id = ?", photo.id])
-    true
-  end
 
   def set_observation_photos_count
-    if o = Observation.find_by_id(observation_id)
-      Observation.update_all(["photos_count = ?", o.observation_photos.count], ["id = ?", o.id])
-    end
+    return true unless observation_id
+    Observation.update_all(
+      ["observation_photos_count = ?", ObservationPhoto.where(:observation_id => observation_id).count], 
+      ["id = ?", observation_id]
+    )
     true
   end
   

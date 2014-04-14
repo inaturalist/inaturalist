@@ -41,7 +41,7 @@ class AdminController < ApplicationController
         places p, 
         place_geometries pg
       WHERE 
-        ST_Intersects(o.geom, pg.geom) 
+        ST_Intersects(o.private_geom, pg.geom) 
         AND p.id = pg.place_id 
         AND o.created_at::DATE = '#{@daily_date.to_s}' 
         AND p.place_type = 12 
@@ -55,15 +55,25 @@ class AdminController < ApplicationController
 
   def user_content
     return unless load_user_content_info
-    @records = @display_user.send("#{@klass.name.underscore.pluralize}").page(params[:page]) rescue []
+    @records = @display_user.send(@reflection_name).page(params[:page]) rescue []
+  end
+
+  def update_user
+    unless u = User.find_by_id(params[:id])
+      flash[:error] = "User doesn't exist"
+      redirect_back_or_default(curate_users_path)
+    end
+    u.update_attributes(params[:user])
+    flash[:notice] = "User description deleted for #{u.login}"
+    redirect_back_or_default(curate_users_path(:user_id => u.id))
   end
 
   def destroy_user_content
     return unless load_user_content_info
-    @records = @display_user.send("#{@klass.name.underscore.pluralize}").
+    @records = @display_user.send(@reflection_name).
       where("id IN (?)", params[:ids] || [])
     @records.each(&:destroy)
-    flash[:notice] = "Deleted #{@records.size} #{@type}"
+    flash[:notice] = "Deleted #{@records.size} #{@type.humanize.downcase}"
     redirect_back_or_default(admin_user_content_path(@display_user.id, @type))
   end
   
@@ -93,7 +103,8 @@ class AdminController < ApplicationController
     end
 
     @type = params[:type] || "observations"
-    @klass = Object.const_get(@type.camelcase.singularize) rescue nil
+    @reflection_name, @reflection = User.reflections.detect{|k,r| k.to_s == @type}
+    @klass = Object.const_get(@reflection.class_name) rescue nil
     @klass = nil unless @klass.try(:base_class).try(:superclass) == ActiveRecord::Base
     unless @klass
       flash[:error] = "#{params[:type]} doesn't exist"
@@ -101,14 +112,14 @@ class AdminController < ApplicationController
       return false
     end
 
-    @class_names = []
+    @reflection_names = []
     has_many_reflections = User.reflections.select{|k,v| v.macro == :has_many}
     has_many_reflections.each do |k, reflection|
       # Avoid those pesky :through relats
       next unless reflection.klass.column_names.include?(reflection.foreign_key)
-      @class_names << reflection.klass.name
+      @reflection_names << k.to_s
     end
-    @class_names.uniq!
+    @reflection_names.uniq!
     true
   end
 end

@@ -12,7 +12,7 @@
 
 <div id="pageheader" class="column span-24">
   <div class="breadcrumbs">
-    <%= link_to t(:back_to_possessive_user_profile, :possuser => "#{t(possessive(@user))}"), 
+    <%= link_to is_me?(@user) ? t(:back_to_your_profile) : t(:back_to_possessive_user_profile, :possuser => @user.login), 
                 person_path(@user),
                 :class => 'back crumb' %>
   </div><!-- /#breadcrumbs -->

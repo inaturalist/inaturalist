@@ -1,0 +1,19 @@
+= content_for :title do
+  - @title = title_for_observation_params
+  = strip_tags @title
+= content_for(:extracss) do
+  :css
+    #wrapper { width: auto; padding: 0 10px; position: relative;padding:10px;}
+%h2= @title
+
+- unless @stats_adequately_scoped
+  .clear
+    = render 'stats_inadequately_scoped'
+%strong= t(:x_taxa_observed_html, :count => @taxa.count)
+%span.button= link_to t(:download_csv), url_for_params(:format => "csv")
+%ul.taxon_links
+  - taxonomic_taxon_list @arranged_taxa do |taxon, children|
+    %div{:class => children && children.size > 0 ? "faded" : ""}
+      = render "shared/taxon", :taxon => taxon, :link_url => taxon
+      %span.class.button
+        = link_to t(:view_observations), observations_url(request.query_parameters.merge(:taxon_id => taxon.id))

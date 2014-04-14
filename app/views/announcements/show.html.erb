@@ -15,8 +15,10 @@
 
 <p>
   <b><%=t :body %>:</b>
-  <%= @announcement.body %>
 </p>
+
+<%=raw @announcement.body %>
+
 
 
 <%= link_to t(:edit), edit_announcement_path(@announcement) %> |

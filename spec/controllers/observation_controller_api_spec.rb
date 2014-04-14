@@ -1,63 +1,622 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "an ObservationsController" do
-  it "should create" do
-    lambda {
-      post :create, :format => :json, :observation => {:species_guess => "foo"}
-    }.should change(Observation, :count).by(1)
-    o = Observation.last
-    o.user_id.should eq(user.id)
-    o.species_guess.should eq ("foo")
+
+  describe "create" do
+    it "should create" do
+      lambda {
+        post :create, :format => :json, :observation => {:species_guess => "foo"}
+      }.should change(Observation, :count).by(1)
+      o = Observation.last
+      o.user_id.should eq(user.id)
+      o.species_guess.should eq ("foo")
+    end
+
+    it "should include private coordinates in create response" do
+      post :create, :format => :json, :observation => {:latitude => 1.2345, :longitude => 1.2345, :geoprivacy => Observation::PRIVATE}
+      o = Observation.last
+      o.should be_coordinates_obscured
+      response.body.should =~ /#{o.private_latitude}/
+      response.body.should =~ /#{o.private_longitude}/
+    end
+
+    it "should not fail if species_guess is a question mark" do
+      post :create, :format => :json, :observation => {:species_guess => "?"}
+      response.should be_success
+      o = Observation.last
+      o.species_guess.should eq('?')
+    end
+
+    it "should accept nested observation_field_values" do
+      of = ObservationField.make!
+      post :create, :format => :json, :observation => {
+        :species_guess => "zomg", 
+        :observation_field_values_attributes => {
+          "0" => {
+            :observation_field_id => of.id,
+            :value => "foo"
+          }
+        }
+      }
+      response.should be_success
+      o = Observation.last
+      o.observation_field_values.last.observation_field.should eq(of)
+      o.observation_field_values.last.value.should eq("foo")
+    end
+
+    it "should allow Google Street View photos" do
+      post :create, :format => :json, :observation => {:species_guess => "tree"}, :google_street_view_photos => {
+        "0" => "http://maps.googleapis.com/maps/api/streetview?size=600x300&location=37.903042,-122.24697600000002&heading=-73.33342317239405&pitch=28.839156732145224&fov=180&sensor=false"
+      }
+      response.should be_success
+      o = Observation.last
+      o.photos.last.should be_a GoogleStreetViewPhoto
+    end
+
+    it "should not fail with a dot for a species_guess" do
+      lambda {
+        post :create, :format => :json, :observation => {:species_guess => "."}
+      }.should_not raise_error
+    end
+
+    describe "project_id" do
+      let(:p) { Project.make! }
+
+      it "should add to project" do
+        post :create, :format => :json, :observation => {:species_guess => "foo"}, :project_id => p.id
+        p.observations.count.should eq 1
+      end
+
+      it "should create a project user if one doesn't exist" do
+        p.project_users.where(:user_id => user.id).should be_blank
+        post :create, :format => :json, :observation => {:species_guess => "foo"}, :project_id => p.id
+        p.reload
+        p.project_users.where(:user_id => user.id).should_not be_blank
+      end
+    end
   end
 
-  it "should destroy" do
-    o = Observation.make!(:user => user)
-    delete :destroy, :format => :json, :id => o.id
-    Observation.find_by_id(o.id).should be_blank
+  describe "destroy" do
+    it "should destroy" do
+      o = Observation.make!(:user => user)
+      delete :destroy, :format => :json, :id => o.id
+      Observation.find_by_id(o.id).should be_blank
+    end
+
+    it "should not destory other people's observations" do
+      o = Observation.make!
+      delete :destroy, :format => :json, :id => o.id
+      Observation.find_by_id(o.id).should_not be_blank
+    end
   end
 
-  it "should not destory other people's observations" do
-    o = Observation.make!
-    delete :destroy, :format => :json, :id => o.id
-    Observation.find_by_id(o.id).should_not be_blank
+  describe "show" do
+    it "should provide private coordinates for user's observation" do
+      o = Observation.make!(:user => user, :latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
+      get :show, :format => :json, :id => o.id
+      response.body.should =~ /#{o.private_latitude}/
+      response.body.should =~ /#{o.private_longitude}/
+    end
+
+    it "should not provide private coordinates for another user's observation" do
+      o = Observation.make!(:latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
+      get :show, :format => :json, :id => o.id
+      response.body.should_not =~ /#{o.private_latitude}/
+      response.body.should_not =~ /#{o.private_longitude}/
+    end
+
+    it "should not include photo metadata" do
+      p = LocalPhoto.make!(:metadata => {:foo => "bar"})
+      p.metadata.should_not be_blank
+      o = Observation.make!(:user => p.user, :taxon => Taxon.make!)
+      op = ObservationPhoto.make!(:photo => p, :observation => o)
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_photo = response_obs['observation_photos'][0]['photo']
+      response_photo.should_not be_blank
+      response_photo['metadata'].should be_blank
+    end
+
+    it "should include observation field values" do
+      ofv = ObservationFieldValue.make!
+      get :show, :format => :json, :id => ofv.observation_id
+      response_obs = JSON.parse(response.body)
+      response_obs['observation_field_values'].first['value'].should eq(ofv.value)
+    end
+
+    it "should include observation field values with observation field names" do
+      ofv = ObservationFieldValue.make!
+      get :show, :format => :json, :id => ofv.observation_id
+      response_obs = JSON.parse(response.body)
+      response_obs['observation_field_values'].first['observation_field']['name'].should eq(ofv.observation_field.name)
+    end
+
+    it "should include comments" do
+      o = Observation.make!
+      c = Comment.make!(:parent => o)
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['comments'].first['body'].should eq(c.body)
+    end
+
+    it "should include comment user icons" do
+      o = Observation.make!
+      c = Comment.make!(:parent => o)
+      c.user.update_attributes(:icon => open(File.dirname(__FILE__) + '/../fixtures/files/egg.jpg'))
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['comments'].first['user']['user_icon_url'].should_not be_blank
+    end
+
+    it "should include identifications" do
+      o = Observation.make!
+      i = Identification.make!(:observation => o)
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['identifications'].first['taxon_id'].should eq(i.taxon_id)
+    end
+
+    it "should include identification user icons" do
+      o = Observation.make!
+      i = Identification.make!(:observation => o)
+      i.user.update_attributes(:icon => open(File.dirname(__FILE__) + '/../fixtures/files/egg.jpg'))
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['identifications'].first['user']['user_icon_url'].should_not be_blank
+    end
+
+    it "should include identification taxon icons" do
+      load_test_taxa
+      o = Observation.make!
+      t = Taxon.make!(:iconic_taxon => @Amphibia)
+      i = Identification.make!(:observation => o)
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['identifications'].first['taxon']['image_url'].should_not be_blank
+    end
+
+    it "should include identification taxon common name" do
+      tn = TaxonName.make!(:lexicon => "English")
+      o = Observation.make!(:taxon => tn.taxon)
+      get :show, :format => :json, :id => o.id
+      response_obs = JSON.parse(response.body)
+      response_obs['identifications'].first['taxon']['common_name']['name'].should_not be_blank
+    end
   end
 
-  it "should provide private coordinates for user's observation" do
-    o = Observation.make!(:user => user, :latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
-    get :show, :format => :json, :id => o.id
-    response.body.should =~ /#{o.private_latitude}/
-    response.body.should =~ /#{o.private_longitude}/
+  describe "update" do
+    before do
+      @o = Observation.make!(:user => user)
+    end
+
+    it "should update" do
+      put :update, :format => :json, :id => @o.id, :observation => {:species_guess => "i am so updated"}
+      @o.reload
+      @o.species_guess.should eq("i am so updated")
+    end
+
+    it "should accept nested observation_field_values" do
+      of = ObservationField.make!
+      put :update, :format => :json, :id => @o.id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :observation_field_id => of.id,
+            :value => "foo"
+          }
+        }
+      }
+      response.should be_success
+      @o.reload
+      @o.observation_field_values.last.observation_field.should eq(of)
+      @o.observation_field_values.last.value.should eq("foo")
+    end
+
+    it "should updating existing observation_field_values" do
+      ofv = ObservationFieldValue.make!(:value => "foo", :observation => @o)
+      put :update, :format => :json, :id => ofv.observation_id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :id => ofv.id,
+            :observation_field_id => ofv.observation_field_id,
+            :value => "bar"
+          }
+        }
+      }
+      response.should be_success
+      ofv.reload
+      ofv.value.should eq "bar"
+    end
+
+    it "should updating existing observation_field_values by observation_field_id" do
+      o = Observation.make!(:user => user)
+      ofv = ObservationFieldValue.make!(:value => "foo", :observation => o)
+      put :update, :format => :json, :id => ofv.observation_id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :observation_field_id => ofv.observation_field_id,
+            :value => "bar"
+          }
+        }
+      }
+      response.should be_success
+      ofv.reload
+      ofv.value.should eq "bar"
+    end
+
+    it "should updating existing observation_field_values by observation_field_id even if they're project fields" do
+      pof = ProjectObservationField.make!
+      po = make_project_observation(:project => pof.project, :user => user)
+      ofv = ObservationFieldValue.make!(:value => "foo", :observation => po.observation, :observation_field => pof.observation_field)
+      put :update, :format => :json, :id => ofv.observation_id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :observation_field_id => ofv.observation_field_id,
+            :value => "bar"
+          }
+        }
+      }
+      response.should be_success
+      ofv.reload
+      ofv.value.should eq "bar"
+    end
+
+    it "should allow removal of nested observation_field_values" do
+      ofv = ObservationFieldValue.make!(:value => "foo", :observation => @o)
+      @o.observation_field_values.should_not be_blank
+      put :update, :format => :json, :id => ofv.observation_id, :observation => {
+        :observation_field_values_attributes => {
+          "0" => {
+            :_destroy => true,
+            :id => ofv.id,
+            :observation_field_id => ofv.observation_field_id,
+            :value => ofv.value
+          }
+        }
+      }
+      response.should be_success
+      @o.reload
+      @o.observation_field_values.should be_blank
+    end
   end
 
-  it "should not provide private coordinates for another user's observation" do
-    o = Observation.make!(:latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
-    get :show, :format => :json, :id => o.id
-    response.body.should_not =~ /#{o.private_latitude}/
-    response.body.should_not =~ /#{o.private_longitude}/
+  describe "by_login" do
+    it "should get user's observations" do
+      3.times { Observation.make!(:user => user) }
+      get :by_login, :format => :json, :login => user.login
+      json = JSON.parse(response.body)
+      json.size.should eq(3)
+    end
+
+    it "should allow filtering by updated_since" do
+      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago, :user => user)
+      oldo.updated_at.should be < 1.minute.ago
+      newo = Observation.make!(:user => user)
+      get :by_login, :format => :json, :login => user.login, :updated_since => (newo.updated_at - 1.minute).iso8601
+      json = JSON.parse(response.body)
+      json.detect{|o| o['id'] == newo.id}.should_not be_blank
+      json.detect{|o| o['id'] == oldo.id}.should be_blank
+    end
+
+    it "should include deleted observation IDs when filtering by updated_since" do
+      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago)
+      oldo.updated_at.should be < 1.minute.ago
+      delo1 = Observation.make!(:user => user)
+      delo1.destroy
+      delo2 = Observation.make!(:user => user)
+      delo2.destroy
+      get :by_login, :format => :json, :login => user.login, :updated_since => 2.days.ago.iso8601
+      response.headers["X-Deleted-Observations"].split(',').should include(delo1.id.to_s)
+      response.headers["X-Deleted-Observations"].split(',').should include(delo2.id.to_s)
+    end
+
+    it "should not include deleted observation IDs by other people" do
+      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago)
+      oldo.updated_at.should be < 1.minute.ago
+      delo1 = Observation.make!(:user => user)
+      delo1.destroy
+      delo2 = Observation.make!
+      delo2.destroy
+      get :by_login, :format => :json, :login => user.login, :updated_since => 2.days.ago.iso8601
+      response.headers["X-Deleted-Observations"].split(',').should include(delo1.id.to_s)
+      response.headers["X-Deleted-Observations"].split(',').should_not include(delo2.id.to_s)
+    end
+
+    it "should return private observations for bounding box queries when viewer is owner" do
+      o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::PRIVATE, :user => user)
+      o.private_geom.should_not be_blank
+      get :by_login, :format => :json, :login => user.login, :swlat => 0, :swlng => 0, :nelat => 2, :nelng => 2
+      json = JSON.parse(response.body)
+      json.map{|jo| jo['id']}.should include o.id
+    end
   end
 
-  it "should update" do
-    o = Observation.make!(:user => user)
-    put :update, :format => :json, :id => o.id, :observation => {:species_guess => "i am so updated"}
-    o.reload
-    o.species_guess.should eq("i am so updated")
+  describe "index" do
+    it "should allow search" do
+      lambda {
+        get :index, :format => :json, :q => "foo"
+      }.should_not raise_error
+    end
+
+    it "should filter by hour range" do
+      o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
+      o.time_observed_at.should_not be_blank
+      get :index, :format => :json, :h1 => 13, :h2 => 14
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o.id}.should_not be_blank
+    end
+
+    it "should filter by date range" do
+      o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
+      o.time_observed_at.should_not be_blank
+      get :index, :format => :json, :d1 => "2011-12-31", :d2 => "2012-01-04"
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o.id}.should_not be_blank
+    end
+
+    it "should filter by time range" do
+      o1 = Observation.make!(:observed_on_string => "2014-03-28T18:57:41+00:00")
+      o2 = Observation.make!(:observed_on_string => "2014-03-28T08:57:41+00:00")
+      get :index, :format => :json, :d1 => "2014-03-28T12:57:41+00:00", :d2 => "2014-03-28T22:57:41+00:00"
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
+      json.detect{|obs| obs['id'] == o2.id}.should be_blank
+    end
+
+    it "should filter by month range" do
+      o1 = Observation.make!(:observed_on_string => "2012-01-01 13:13")
+      o2 = Observation.make!(:observed_on_string => "2010-03-01 13:13")
+      get :index, :format => :json, :m1 => 11, :m2 => 3
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
+      json.detect{|obs| obs['id'] == o2.id}.should_not be_blank
+    end
+
+    it "should filter by captive" do
+      captive = Observation.make!(:captive => "1")
+      wild = Observation.make!(:captive => "0")
+      get :index, :format => :json, :captive => true
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == wild.id}.should be_blank
+      json.detect{|obs| obs['id'] == captive.id}.should_not be_blank
+    end
+
+    it "captive filter=false should include nil" do
+      o = Observation.make!
+      get :index, :format => :json, :captive => false
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o.id}.should_not be_blank
+    end
+
+    it "should include pagination data in headers" do
+      3.times { Observation.make! }
+      total_entries = Observation.count
+      get :index, :format => :json, :page => 2, :per_page => 30
+      response.headers["X-Total-Entries"].to_i.should eq(total_entries)
+      response.headers["X-Page"].to_i.should eq(2)
+      response.headers["X-Per-Page"].to_i.should eq(30)
+    end
+
+    it "should not include photo metadata" do
+      p = LocalPhoto.make!(:metadata => {:foo => "bar"})
+      p.metadata.should_not be_blank
+      o = Observation.make!(:user => p.user, :taxon => Taxon.make!)
+      op = ObservationPhoto.make!(:photo => p, :observation => o)
+      get :index, :format => :json, :taxon_id => o.taxon_id
+      json = JSON.parse(response.body)
+      response_obs = json.detect{|obs| obs['id'] == o.id}
+      response_obs.should_not be_blank
+      response_photo = response_obs['photos'].first
+      response_photo.should_not be_blank
+      response_photo['metadata'].should be_blank
+    end
+
+    it "should filter by conservation_status" do
+      cs = without_delay {ConservationStatus.make!}
+      t = cs.taxon
+      o1 = Observation.make!(:taxon => t)
+      o2 = Observation.make!(:taxon => Taxon.make!)
+      get :index, :format => :json, :cs => cs.status
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
+      json.detect{|obs| obs['id'] == o2.id}.should be_blank
+    end
+
+    it "should filter by conservation_status authority" do
+      cs1 = without_delay {ConservationStatus.make!(:authority => "foo")}
+      cs2 = without_delay {ConservationStatus.make!(:authority => "bar", :status => cs1.status)}
+      o1 = Observation.make!(:taxon => cs1.taxon)
+      o2 = Observation.make!(:taxon => cs2.taxon)
+      get :index, :format => :json, :csa => cs1.authority
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
+      json.detect{|obs| obs['id'] == o2.id}.should be_blank
+    end
+
+    it "should filter by establishment means" do
+      p = make_place_with_geom
+      lt1 = without_delay {ListedTaxon.make!(:establishment_means => ListedTaxon::INTRODUCED, :list => p.check_list, :place => p)}
+      lt2 = without_delay {ListedTaxon.make!(:establishment_means => ListedTaxon::NATIVE, :list => p.check_list, :place => p)}
+      o1 = Observation.make!(:taxon => lt1.taxon, :latitude => p.latitude, :longitude => p.longitude)
+      o2 = Observation.make!(:taxon => lt2.taxon, :latitude => p.latitude, :longitude => p.longitude)
+      get :index, :format => :json, :establishment_means => lt1.establishment_means, :place_id => p.id
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
+      json.detect{|obs| obs['id'] == o2.id}.should be_blank
+    end
+
+    it "should include common names" do
+      tn = TaxonName.make!(:lexicon => TaxonName::ENGLISH)
+      o = Observation.make!(:taxon => tn.taxon)
+      get :index, :format => :json, :taxon_id => tn.taxon_id
+      json = JSON.parse(response.body)
+      jsono = json.first
+      jsono['taxon']['common_name']['name'].should eq tn.name
+    end
+
+    it "should include identifications_count" do
+      o = Observation.make!
+      i = Identification.make!(:observation => o)
+      get :index, :format => :json
+      obs = JSON.parse(response.body).detect{|jo| jo['id'] == i.observation_id}
+      obs['identifications_count'].should eq 1
+    end
+
+    it "should include comments_count" do
+      c = Comment.make!
+      get :index, :format => :json
+      obs = JSON.parse(response.body).detect{|o| o['id'] == c.parent_id}
+      obs['comments_count'].should eq 1
+    end
+
+    it "should let you request project_observations as extra data" do
+      po = make_project_observation
+      get :index, :format => :json, :extra => "projects"
+      obs = JSON.parse(response.body).detect{|o| o['id'] == po.observation_id}
+      obs['project_observations'].should_not be_blank
+    end
+
+    it "should let you request observation field values as extra data" do
+      ofv = ObservationFieldValue.make!
+      get :index, :format => :json, :extra => "fields"
+      obs = JSON.parse(response.body).detect{|o| o['id'] == ofv.observation_id}
+      obs['observation_field_values'].should_not be_blank
+    end
+
+    it "should let you request observation_photos as extra data" do
+      rgo = make_research_grade_observation
+      get :index, :format => :json, :extra => "observation_photos"
+      obs = JSON.parse(response.body).detect{|o| o['id'] == rgo.id}
+      obs['observation_photos'].should_not be_nil
+    end
+
+    it "should filter by list_id" do
+      l = List.make!
+      lt = ListedTaxon.make!(:list => l)
+      on_list_obs = Observation.make!(:observed_on_string => "2013-01-03", :taxon => lt.taxon)
+      off_list_obs = Observation.make!(:observed_on_string => "2013-01-03", :taxon => Taxon.make!)
+      get :index, :format => :json, :on => on_list_obs.observed_on_string, :list_id => l.id
+      json_obs = JSON.parse(response.body)
+      json_obs.detect{|o| o['id'] == on_list_obs.id}.should_not be_blank
+      json_obs.detect{|o| o['id'] == off_list_obs.id}.should be_blank
+    end
+
+    it "should not require sign in for page 100 or more" do
+      get :index, :format => :json, :page => 101
+      response.should be_success
+    end
   end
 
-  it "should get user's observations" do
-    3.times { Observation.make!(:user => user) }
-    get :by_login, :format => :json, :login => user.login
-    json = JSON.parse(response.body)
-    json.size.should eq(3)
+  describe "taxon_stats" do
+    before do
+      @o = Observation.make!(:observed_on_string => "2013-07-20", :taxon => Taxon.make!(:rank => Taxon::SPECIES))
+      get :taxon_stats, :format => :json, :on => "2013-07-20"
+      @json = JSON.parse(response.body)
+    end
+
+    it "should include a total" do
+      @json["total"].to_i.should > 0
+    end
+
+    it "should include species_counts" do
+      @json["species_counts"].size.should > 0
+    end
+
+    it "should include rank_counts" do
+      @json["rank_counts"][@o.taxon.rank.downcase].should > 0
+    end
+  end
+
+  describe "user_stats" do
+    before do
+      @o = Observation.make!(:observed_on_string => "2013-07-20", :taxon => Taxon.make!(:rank => Taxon::SPECIES))
+      get :user_stats, :format => :json, :on => "2013-07-20"
+      @json = JSON.parse(response.body)
+    end
+
+    it "should include a total" do
+      @json["total"].to_i.should > 0
+    end
+
+    it "should include most_observations" do
+      @json["most_observations"].size.should > 0
+    end
+
+    it "should include most_species" do
+      @json["most_species"].size.should > 0
+    end
+  end
+
+  describe "viewed_updates" do
+    before do
+      without_delay do
+        @o = Observation.make!(:user => user)
+        @c = Comment.make!(:parent => @o)
+        @i = Identification.make!(:observation => @o)
+      end
+    end
+
+    it "should mark all updates from this observation for the signed in user as viewed" do
+      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :resource_id => @o.id, :subscriber_id => user.id).count
+      num_updates_for_owner.should eq 2
+      put :viewed_updates, :format => :json, :id => @o.id
+      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :resource_id => @o.id, :subscriber_id => user.id).count
+      num_updates_for_owner.should eq 0
+    end
+
+    it "should not mark other updates for the signed in user as viewed" do
+      without_delay do
+        o = Observation.make!(:user => user)
+        c = Comment.make!(:parent => o)
+      end
+      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :subscriber_id => user.id).count
+      num_updates_for_owner.should eq 3
+      put :viewed_updates, :format => :json, :id => @o.id
+      num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :subscriber_id => user.id).count
+      num_updates_for_owner.should eq 1
+    end
+
+    it "should not mark other updates from this observation as viewed" do
+      put :viewed_updates, :format => :json, :id => @o.id
+      num_updates_for_commenter = Update.unviewed.activity.where(:resource_type => "Observation", :resource_id => @o.id, :subscriber_id => @c.user_id).count
+      num_updates_for_commenter.should eq 1
+    end
+  end
+
+  describe "project" do
+    it "should allow filtering by updated_since" do
+      pu = ProjectUser.make!
+      oldo = Observation.make!(:user => pu.user)
+      old_po = ProjectObservation.make!(:observation => oldo, :project => pu.project)
+      sleep(2)
+      newo = Observation.make!(:user => pu.user)
+      new_po = ProjectObservation.make!(:observation => newo, :project => pu.project)
+      get :project, :format => :json, :id => pu.project_id, :updated_since => (newo.updated_at - 1.second).iso8601
+      json = JSON.parse(response.body)
+      json.detect{|o| o['id'] == newo.id}.should_not be_blank
+      json.detect{|o| o['id'] == oldo.id}.should be_blank
+    end
   end
 end
 
 describe ObservationsController, "oauth authentication" do
   let(:user) { User.make! }
-  let(:token) { stub :accessible? => true, :resource_owner_id => user.id }
+  let(:token) { stub :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
   before do
+    request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     controller.stub(:doorkeeper_token) { token }
   end
   it_behaves_like "an ObservationsController"
+end
+
+describe ObservationsController, "oauth authentication with param" do
+  let(:user) { User.make! }
+  it "should create" do
+    app = OauthApplication.make!
+    token = Doorkeeper::AccessToken.create(:application_id => app.id, :resource_owner_id => user.id)
+    lambda {
+      post :create, :format => :json, :access_token => token.token, :observation => {:species_guess => "foo"}
+    }.should change(Observation, :count).by(1)
+  end
 end
 
 describe ObservationsController, "devise authentication" do
@@ -66,4 +625,15 @@ describe ObservationsController, "devise authentication" do
     http_login(user)
   end
   it_behaves_like "an ObservationsController"
+end
+
+describe ObservationsController, "without authentication" do
+  describe "index" do
+    it "should require sign in for page 100 or more" do
+      get :index, :format => :json, :page => 10
+      response.should be_success
+      get :index, :format => :json, :page => 101
+      response.status.should eq 401
+    end
+  end
 end

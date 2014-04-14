@@ -76,13 +76,13 @@ describe Identification, "creation" do
   it "should increment the observations num_identification_agreements if this is an agreement" do
     taxon = Taxon.make!
     obs = Observation.make!(:taxon => taxon)
-    expect {
-      Identification.make!(:observation => obs, :taxon => taxon)
-      obs.reload
-    }.to change(obs, :num_identification_agreements).by(1)
+    old_count = obs.num_identification_agreements
+    Identification.make!(:observation => obs, :taxon => taxon)
+    obs.reload
+    obs.num_identification_agreements.should eq old_count+1
   end
 
-  it "should increment the observations num_identification_agreements if this is an agreement and there are outdated idents" do
+  it "should increment the observation's num_identification_agreements if this is an agreement and there are outdated idents" do
     taxon = Taxon.make!
     obs = Observation.make!(:taxon => taxon)
     old_ident = Identification.make!(:observation => obs, :taxon => taxon)
@@ -94,21 +94,20 @@ describe Identification, "creation" do
     obs.num_identification_agreements.should eq(0)
   end
   
-  it "should increment the observations num_identification_disagreements if this is an disagreement" do
-    taxon = Taxon.make!
-    obs = Observation.make!(:taxon => taxon)
-    expect {
-      Identification.make!(:observation => obs)
-      obs.reload
-    }.to change(obs, :num_identification_disagreements).by(1)
+  it "should increment the observations num_identification_disagreements if this is a disagreement" do
+    obs = Observation.make!(:taxon => Taxon.make!)
+    old_count = obs.num_identification_disagreements
+    Identification.make!(:observation => obs)
+    obs.reload
+    obs.num_identification_disagreements.should eq old_count+1
   end
   
   it "should NOT increment the observations num_identification_disagreements if the obs has no taxon" do
     obs = Observation.make!
-    expect {
-      Identification.make!(:observation => obs)
-      obs.reload
-    }.to_not change(obs, :num_identification_agreements)
+    old_count = obs.num_identification_disagreements
+    Identification.make!(:observation => obs)
+    obs.reload
+    obs.num_identification_disagreements.should eq old_count
   end
   
   it "should consider an identification with a taxon that is a child of " + 
@@ -116,7 +115,7 @@ describe Identification, "creation" do
     taxon = Taxon.make!
     parent = Taxon.make!
     taxon.update_attributes(:parent => parent)
-    observation = Observation.make!(:taxon => parent)
+    observation = Observation.make!(:taxon => parent, :prefers_community_taxon => false)
     identification = Identification.make!(:observation => observation, :taxon => taxon)
     identification.user.should_not be(identification.observation.user)
     identification.is_agreement?.should be_true
@@ -127,17 +126,18 @@ describe Identification, "creation" do
     taxon = Taxon.make!
     parent = Taxon.make!
     taxon.update_attributes(:parent => parent)
-    observation = Observation.make!(:taxon => taxon)
+    observation = Observation.make!(:taxon => taxon, :prefers_community_taxon => false)
     identification = Identification.make!(:observation => observation, :taxon => parent)
     identification.user.should_not be(identification.observation.user)
     identification.is_agreement?.should be_false
   end
   
-  it "should not consider itdentifications of different taxa in the different lineages to be in agreement" do
+  it "should not consider identifications of different taxa in the different lineages to be in agreement" do
     taxon = Taxon.make!
     child = Taxon.make!(:parent => taxon)
-    ident = Identification.make!(:taxon => child)
-    disagreement = Identification.make!(:observation => ident.observation, :taxon => taxon)
+    o = Observation.make!(:prefers_community_taxon => false)
+    ident = Identification.make!(:taxon => child, :observation => o)
+    disagreement = Identification.make!(:observation => o, :taxon => taxon)
     disagreement.is_agreement?.should be_false
   end
   
@@ -170,7 +170,7 @@ describe Identification, "creation" do
   end
 
   it "should update observation quality grade after disagreement" do
-    o = make_research_grade_observation
+    o = make_research_grade_observation(:prefers_community_taxon => false)
     o.should be_research_grade
     i = Identification.make!(:observation => o)
     Identification.make!(:observation => o, :taxon => i.taxon)
@@ -192,7 +192,38 @@ describe Identification, "creation" do
     o.should be_coordinates_obscured
   end
 
-  # it "should set curator_identification"
+  it "should set the observation's community taxon" do
+    t = Taxon.make!
+    o = Observation.make!(:taxon => t)
+    o.community_taxon.should be_blank
+    i = Identification.make!(:observation => o, :taxon => t)
+    o.reload
+    o.community_taxon.should eq(t)
+  end
+
+  it "should touch the observation" do
+    o = Observation.make!
+    updated_at_was = o.updated_at
+    op = Identification.make!(:observation => o, :user => o.user)
+    o.reload
+    updated_at_was.should < o.updated_at
+  end
+end
+
+describe Identification, "updating" do
+  it "should not change current status of other identifications" do
+    i1 = Identification.make!
+    i2 = Identification.make!(:observation => i1.observation, :user => i1.user)
+    i1.reload
+    i2.reload
+    i1.should_not be_current
+    i2.should be_current
+    i1.update_attributes(:body => "foo")
+    i1.reload
+    i2.reload
+    i1.should_not be_current
+    i2.should be_current
+  end
 end
 
 describe Identification, "deletion" do
@@ -376,5 +407,60 @@ describe Identification, "deletion" do
     ident3.destroy
     o.reload
     o.taxon_id.should eq(ident2.taxon_id)
+  end
+
+  it "should set the observation's community taxon if remaining identifications" do
+    load_test_taxa
+    o = Observation.make!(:taxon => @Calypte_anna)
+    o.community_taxon.should be_blank
+    i1 = Identification.make!(:observation => o, :taxon => @Calypte_anna)
+    i3 = Identification.make!(:observation => o, :taxon => @Calypte_anna)
+    i2 = Identification.make!(:observation => o, :taxon => @Pseudacris_regilla)
+    o.reload
+    o.community_taxon.should eq(@Calypte_anna)
+    i1.destroy
+    o.reload
+    o.community_taxon.should eq(@Chordata) # consensus
+  end
+
+  it "should remove the observation's community taxon if no more identifications" do
+    o = Observation.make!(:taxon => Taxon.make!)
+    i = Identification.make!(:observation => o, :taxon => o.taxon)
+    o.reload
+    o.community_taxon.should eq o.taxon
+    i.destroy
+    o.reload
+    o.community_taxon.should be_blank
+  end
+end
+
+describe Identification, "captive" do
+  it "should vote yes on the wild quality metric if 1" do
+    i = Identification.make!(:captive_flag => "1")
+    o = i.observation
+    o.quality_metrics.should_not be_blank
+    o.quality_metrics.first.user.should eq(i.user)
+    o.quality_metrics.first.should_not be_agree
+  end
+
+  it "should vote no on the wild quality metric if 0 and metric exists" do
+    i = Identification.make!(:captive_flag => "1")
+    o = i.observation
+    o.quality_metrics.should_not be_blank
+    i.update_attributes(:captive_flag => "0")
+    o.reload
+    o.quality_metrics.first.should be_agree
+  end
+
+  it "should not alter quality metrics if nil" do
+    i = Identification.make!(:captive_flag => nil)
+    o = i.observation
+    o.quality_metrics.should be_blank
+  end
+
+  it "should not alter quality metrics if 0 and not metrics exist" do
+    i = Identification.make!(:captive_flag => "0")
+    o = i.observation
+    o.quality_metrics.should be_blank
   end
 end

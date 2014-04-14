@@ -57,9 +57,9 @@
             })
             if (selected.length != 0) {
               if (collectionUrl && request.term != '') {
-                selected.push({label: '<em>Search remote</em>', value: request.term, forceRemote: true})
+                selected.push({label: '<em>'+I18n.t('search_remote')+'</em>', value: request.term, forceRemote: true})
               }
-              selected.push({label: '<em>Clear</em>', value: request.term, clear: true})
+              selected.push({label: '<em>'+I18n.t('clear')+'</em>', value: request.term, clear: true})
               response(selected)
               return
             } else {
@@ -84,7 +84,7 @@
             markup.chooseButton.showInlineBlock()
             markup.loadingButton.hide()
             json = self.recordsToItems(json)
-            json.push({label: '<em>Clear</em>', value: request.term, clear: true})
+            json.push({label: '<em>'+I18n.t('clear')+'</em>', value: request.term, clear: true})
             cache[request.term] = json
             response(json)
           })
@@ -193,7 +193,6 @@
         $(this).data('selected', item)
         $(this).data('previous', null)
         $(this.markup.input).hide()
-        $(this.markup.choice).width('auto')
         $(this.markup.choice).html(itemLabel).showInlineBlock()
         $(this.markup.chooseButton).showInlineBlock()
         $(this.markup.clearButton)
@@ -207,15 +206,17 @@
         $(this.markup.originalInput).val(itemValue).change()
       }
       if (!options.blurring && typeof(this.options.afterSelect) == 'function') {
-        this.options.afterSelect(item)
+        this.options.afterSelect.apply(this, [item])
       }
     },
     
-    clear: function() {
-      var options = this.options || {}
+    clear: function(clearOpts) {
+      var options = this.options || {},
+          clearOpts = clearOpts || {},
+          bubble = clearOpts.bubble == false ? false : true
       $(this).data('selected', null)
       $(this.markup.originalInput).val('')
-      if (!$(this).data('previous')) {
+      if (!$(this).data('previous') && bubble) {
         $(this.markup.originalInput).change()
       }
       $(this.markup.input).val('').showInlineBlock()
@@ -276,6 +277,7 @@
         this.markup.loadingButton, 
         this.markup.clearButton)
       this.markup.input.width(originalInput.width() - this.markup.chooseButton.width() - 3)
+      this.markup.choice.width(this.markup.input.width())
       return this.markup
     },
     destroy: function() {
