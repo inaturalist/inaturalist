@@ -1269,7 +1269,8 @@ form.inline .inlabel {
 .crossout.extinct { background-color: black; color: white; }
 
 .providerlink, .button.providerlink { padding-left: 28px; background: url(/images/favicon.png) no-repeat 5px 50%; text-align: left;}
-ul .providerlink, ul .button.providerlink { width: 190px; }
+ul a.providerlink, ul a.button.providerlink { width: 190px; }
+ul input.providerlink, ul input.button.providerlink { width: 230px; }
 .providerlink.facebook { background-image: url(/images/external/facebook_favicon.png); }
 .providerlink.twitter { background-image: url(/images/external/twitter_favicon.png); }
 .providerlink.google { background-image: url(/images/external/google_favicon.png); }
