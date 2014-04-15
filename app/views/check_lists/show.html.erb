@@ -230,6 +230,7 @@
         <% end %>
 
         <form method="get">
+          <%= hidden_field_tag :q, @q %>
           <div class="clear stat <%= ' current' if @filter_taxon && !@filter_taxon.is_iconic? %>">
             <div class="readable title">
               &nbsp;

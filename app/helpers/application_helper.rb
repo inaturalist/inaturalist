@@ -188,7 +188,7 @@ module ApplicationHelper
   end
   
   # Generate a URL based on the current params hash, overriding existing values
-  # withthe hash passed in.  To remove existing values, specify them with
+  # with the hash passed in.  To remove existing values, specify them with
   # :without => [:some, :keys]
   # Example: url_for_params(:taxon_id => 1, :without => :page)
   def url_for_params(options = {})

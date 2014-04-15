@@ -393,11 +393,11 @@ module Shared::ListsModule
   
 private
   def set_place(list)
-    list.place
+    list.try(:place)
   end
   
   def set_other_check_lists(list, place)
-    other_check_lists = place.check_lists.limit(1000)
+    other_check_lists = place.check_lists.limit(500)
     other_check_lists.delete_if {|l| l.id == list.id}
     other_check_lists
   end
