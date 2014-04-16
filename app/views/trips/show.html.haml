@@ -81,7 +81,7 @@
             = l(@trip.stop_time, :format => :long) if @trip.start_time
 
       - unless @trip.body.blank?
-        %section.stacked{:id => "description"}
+        %section.stacked.post{:id => "description"}
           = formatted_user_text(@trip.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES)
           .small.muted.stacked
             =t :posted_by
