@@ -138,7 +138,7 @@ class Project < ActiveRecord::Base
   end
 
   def unset_show_from_place_if_no_place
-    self.show_from_place = false if place.blank?
+    self.show_from_place = false if place.blank? || place.check_list.blank?
     true
   end
 
