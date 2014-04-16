@@ -23,8 +23,9 @@ module Shared::ListsModule
     @search_taxon_ids = set_search_taxon_ids(@q)
 
     if place_based_list?(@list)
-      @place = set_place(@observable_list)
-      @other_check_lists = set_other_check_lists(@observable_list, @place)
+      if @place = set_place(@observable_list)
+        @other_check_lists = set_other_check_lists(@observable_list, @place)
+      end
     end
 
 
@@ -393,7 +394,10 @@ module Shared::ListsModule
   
 private
   def set_place(list)
-    list.try(:place)
+    unless p = list.place
+      p = list.project.place if list.is_a?(ProjectList)
+    end
+    p
   end
   
   def set_other_check_lists(list, place)
@@ -702,15 +706,19 @@ private
   def place_based_list?(list)
     list.type == "CheckList" || place_based_project_list?(list)
   end
+
   def place_based_project_list?(list)
     list.type == "ProjectList" && list.project.show_from_place
   end
+
   def default_checklist?(list)
     list.type=="CheckList" && list.is_default?
   end
+
   def already_in_list_and_observed_and_not_place_based(results, listed_taxon)
     results.find{|lt| (listed_taxon['taxon_id'] == lt['taxon_id'] && lt['last_observation_id'] && lt['place_id'].nil? )}
   end
+  
   def not_yet_in_list_and_unobserved(aggregator, listed_taxon)
     aggregator["#{listed_taxon['taxon_id']}"].nil? && (listed_taxon['last_observation_id'].nil?)
   end

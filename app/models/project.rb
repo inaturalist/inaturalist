@@ -18,6 +18,7 @@ class Project < ActiveRecord::Base
   has_many :assessments, :dependent => :destroy
     
   before_save :strip_title
+  before_save :unset_show_from_place_if_no_place
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
   
@@ -34,7 +35,6 @@ class Project < ActiveRecord::Base
   
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
-
   preference :count_by, :string, :default => 'species'
   
   # For some reason these don't work here
@@ -134,6 +134,11 @@ class Project < ActiveRecord::Base
   
   def strip_title
     self.title = title.strip
+    true
+  end
+
+  def unset_show_from_place_if_no_place
+    self.show_from_place = false if place.blank?
     true
   end
 
