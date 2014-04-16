@@ -22,6 +22,12 @@ class TripsController < ApplicationController
   end
   
   api :GET, '/trips', 'Retrieve recently created trips'
+  description <<-EOT
+    If you're looking for
+    pagination info, check the X headers in the response. You should see 
+    <code>X-Total-Entries</code>, <code>X-Page</code>, and 
+    <code>X-Per-Page</code>
+  EOT
   param :page, :number, :desc => "Page of results"
   param :per_page, PER_PAGES, :desc => "Results per page"
   def index
@@ -31,11 +37,20 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: {:trips => @trips.as_json} }
+      format.json do
+        pagination_headers_for(@trips)
+        render json: {:trips => @trips.as_json}
+      end
     end
   end
 
   api :GET, '/trips/:login', 'Retrieve recently created trips by a particular user'
+  description <<-EOT
+    If you're looking for
+    pagination info, check the X headers in the response. You should see 
+    <code>X-Total-Entries</code>, <code>X-Page</code>, and 
+    <code>X-Per-Page</code>
+  EOT
   param :login, String, :desc => "User login (username)"
   param :page, :number, :desc => "Page of results"
   param :per_page, PER_PAGES, :desc => "Results per page"
@@ -51,6 +66,7 @@ class TripsController < ApplicationController
     else
       @trips = @trips.published
     end
+    pagination_headers_for(@trips)
     respond_to do |format|
       format.json { render json: {:trips => @trips.as_json} }
     end
@@ -64,7 +80,31 @@ class TripsController < ApplicationController
         @next = @trip.parent.journal_posts.published.where("published_at > ?", @trip.published_at || @trip.updated_at).order("published_at ASC").first
         @prev = @trip.parent.journal_posts.published.where("published_at < ?", @trip.published_at || @trip.updated_at).order("published_at DESC").first
       end
-      format.json { render json: @trip.as_json(:root => true) }
+      format.json do
+        @trip = Trip.includes(:trip_taxa => {:taxon => [:taxon_names, {:taxon_photos => :photo}]}, :trip_purposes => {}).where(:id => @trip.id).first
+        render json: @trip.as_json(:root => true, :include => {
+          :trip_taxa => {
+            :include => {
+              :taxon => {
+                :only => [:id, :name, :ancestry], 
+                :methods => [:default_name, :photo_url, :iconic_taxon_name, :conservation_status_name]
+              }
+            }
+          },
+          :trip_purposes => {
+            :include => {
+              :resource => {
+                :except => [:delta, :auto_description, :source_url,
+                  :source_identifier, :creator_id, :updater_id, :version,
+                  :featured_at, :auto_photos, :locked, :wikipedia_summary,
+                  :wikipedia_title, :name_provider, :source_id,
+                  :conservation_status, :conservation_status_source_id,
+                  :conservation_status_source_identifier]
+              }
+          }
+          }
+        })
+      end
     end
   end
 

@@ -9,6 +9,15 @@ shared_examples_for "a TripsController" do
       json = JSON.parse(response.body)
       json.should_not be_blank
     end
+
+    it "should include pagination data in headers" do
+      3.times { Trip.make! }
+      total_entries = Trip.count
+      get :index, :format => :json, :page => 1, :per_page => 2
+      response.headers["X-Total-Entries"].to_i.should eq(total_entries)
+      response.headers["X-Page"].to_i.should eq(1)
+      response.headers["X-Per-Page"].to_i.should eq(2)
+    end
   end
 
   describe "by_login" do
@@ -50,6 +59,15 @@ shared_examples_for "a TripsController" do
       json = JSON.parse(response.body)
       json['trips'].should be_blank
     end
+
+    it "should include pagination data in headers" do
+      3.times { Trip.make!(:user => user) }
+      total_entries = user.trips.count
+      get :by_login, :format => :json, :login => user.login, :published => "any", :page => 1, :per_page => 2
+      response.headers["X-Total-Entries"].to_i.should eq(total_entries)
+      response.headers["X-Page"].to_i.should eq(1)
+      response.headers["X-Per-Page"].to_i.should eq(2)
+    end
   end
 
   describe "show" do
@@ -57,6 +75,20 @@ shared_examples_for "a TripsController" do
       trip = Trip.make!(:body => "this mah trip")
       get :show, :format => :json, :id => trip.id
       response.body.should match /this mah trip/
+    end
+
+    it "should include trip taxa" do
+      tt = TripTaxon.make!
+      get :show, :format => :json, :id => tt.trip_id
+      json = JSON.parse(response.body)
+      json['trip']['trip_taxa'].should_not be_blank
+    end
+
+    it "should include trip purposes" do
+      tt = TripPurpose.make!
+      get :show, :format => :json, :id => tt.trip_id
+      json = JSON.parse(response.body)
+      json['trip']['trip_purposes'].should_not be_blank
     end
   end
 

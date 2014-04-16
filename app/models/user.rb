@@ -72,6 +72,7 @@ class User < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
   has_many :posts #, :dependent => :destroy
   has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
+  has_many :trips, :class_name => "Post", :foreign_key => "user_id", :conditions => "posts.type = 'Trip'"
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
   has_many :projects

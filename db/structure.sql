@@ -3069,7 +3069,9 @@ CREATE TABLE trip_purposes (
     resource_type character varying(255),
     resource_id integer,
     success boolean,
-    complete boolean DEFAULT false
+    complete boolean DEFAULT false,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -3100,7 +3102,9 @@ CREATE TABLE trip_taxa (
     id integer NOT NULL,
     taxon_id integer,
     trip_id integer,
-    observed boolean
+    observed boolean,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -6512,3 +6516,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140225074921');
 INSERT INTO schema_migrations (version) VALUES ('20140307003642');
 
 INSERT INTO schema_migrations (version) VALUES ('20140313030123');
+
+INSERT INTO schema_migrations (version) VALUES ('20140416193430');
