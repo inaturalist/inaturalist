@@ -30,6 +30,11 @@ google.maps.Map.prototype.places = {};
 google.maps.Map.prototype.lastUnsavedMarker = null;
 
 
+// general purpose infoWindow
+// stores a global scope reference to an infoWindow
+google.maps.Map.prototype.infoWindow = null;
+
+
 google.maps.Map.prototype.createMarker = function(lat, lng, options) {
   options = options || {}
   options.position = new google.maps.LatLng(lat, lng)
@@ -344,8 +349,17 @@ google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {
         observation.user.login
       )
     )
+  }else if(typeof(observation.identifications) != 'undefined' && observation.identifications.length > 0){
+    if( typeof(observation.identifications[0].user) != 'undefined' ){
+      wrapper.append(
+        ', by ',
+        $('<a href="/people/'+observation.identifications[0].user.login+'"></a>').append(
+          observation.identifications[0].user.login
+        )
+      )
+    }
   }
-  
+ 
   if (typeof(observation.short_description) != 'undefined' && observation.short_description != null) {
     wrapper.append($('<div class="description"></div>').append(observation.short_description));
   } else {
@@ -816,6 +830,74 @@ google.maps.Map.prototype.getOverlay = function(name) {
   for (var i=0; i < this.overlays.length; i++) {
     if (this.overlays[i].name == name) { return this.overlays[i] }
   }
+}
+
+google.maps.Map.prototype.addObservationsLayer = function(options){  
+  var taxon_id = options.taxon_id;
+  var observation_id = options.observation_id;
+  var taxon_color = options.taxon_color;
+  var tiles_url = options.tiles_url;
+  var gridTileUrl = tiles_url + "/observations/grid/{z}/{x}/{y}.png?";
+  var pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png?";
+
+  gridTileUrl += "taxon_id=" + taxon_id;
+  gridTileUrl += "&taxon_color=" + encodeURIComponent(taxon_color);
+  pointTileUrl += "taxon_id=" + taxon_id;
+  pointTileUrl += "&obs_id=" + observation_id;
+  pointTileUrl += "&taxon_color=" + encodeURIComponent(taxon_color);
+  this.addTileLayer(gridTileUrl,'cnt,taxon_id');
+  this.addTileLayer(pointTileUrl,'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id');
+}
+
+google.maps.Map.prototype.addTileLayer = function(tileUrl,interactivity){
+  var gridUrl = tileUrl.replace(/\.png/, '.grid.json') + '&interactivity=' + interactivity
+  var tilejson = {
+    version: '0.0.1',
+    scheme: 'xyz',
+    tiles: [tileUrl],
+    // windshaft needs the interactivity param to know what data to render
+    grids: [gridUrl],
+    // wax needs template and legend set or it won't fire on events
+    "template": "{{species_guess}}",
+    "legend": "foo"
+  }
+  this.overlayMapTypes.push(new wax.g.connector(tilejson));
+  wax.g.interaction()
+    .map(this)
+      .tilejson(tilejson)
+        .on({
+          on: function(o) {
+            document.body.style.cursor = 'pointer'
+            if (o.e.type == 'click') {
+              if(o.data['latitude']){
+                var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude']);
+                $.ajax({
+                  url:  '/observations/' + o.data['id'] + '.html?partial=cached_component',
+                  type: 'GET',
+                  dataType: 'html',
+                  success: function(data) {                    
+                    if( typeof(infoWindow) != 'undefined' ){
+                      infoWindow.close();
+                    }
+                    infoWindow = new google.maps.InfoWindow({
+                       content: $('<div class="compact mini infowindow observations"></div>').append(data).get(0),
+                       position: latLng
+                    });
+                    infoWindow.open(window.map);
+                  },
+                  error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus);
+                  }
+                });
+              }
+            } else if (o.e.type == 'mousemove') {
+              window.map.setOptions({ draggableCursor: 'pointer' });
+            }
+          },
+          off: function(o) {
+            window.map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
+          }
+        })
 }
 
 // Static constants
