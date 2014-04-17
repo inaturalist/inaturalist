@@ -99,12 +99,12 @@
 <% end %>
 <% content_for(:extrajs) do %>
   <%= google_maps_js %>
-  <script type="text/javascript" src="http://mapbox.com/wax/dist/wax.g.min.js"></script>
   <%= javascript_include_tag 'jquery/plugins/jqModal',
                              'modal_image',
                              'observations/observation_fields',
                              'inaturalist/map3',
                              "jquery/plugins/inat/photo_selectors.js",
+                             "wax.g.min",
                              "observations/show" %>
   <script type="text/javascript" charset="utf-8">
     var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
