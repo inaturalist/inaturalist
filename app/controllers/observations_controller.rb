@@ -1516,12 +1516,13 @@ class ObservationsController < ApplicationController
     @taxa = Taxon.find_by_sql("SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id")
     respond_to do |format|
       format.html do
-        @headless = @footless = true
+        @headless = true
         ancestor_ids = @taxa.map{|t| t.ancestor_ids[1..-1]}.flatten.uniq
         ancestors = Taxon.find_all_by_id(ancestor_ids)
         taxa_to_arrange = (ancestors + @taxa).sort_by{|t| "#{t.ancestry}/#{t.id}"}
         @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
         @taxon_names_by_taxon_id = TaxonName.where("taxon_id IN (?)", taxa_to_arrange.map(&:id).uniq).group_by(&:taxon_id)
+        render :layout => "bootstrap"
       end
       format.csv do
         render :text => @taxa.to_csv(
@@ -1628,7 +1629,7 @@ class ObservationsController < ApplicationController
     @users_by_id = @users.index_by(&:id)
     respond_to do |format|
       format.html do
-        @headless = @footless = true
+        @headless = true
         @user_counts_by_user_id = @user_counts.inject({}) {|memo,r| memo[r['user_id'].to_i] = r['count_all'].to_i; memo}
         @user_taxon_counts_by_user_id = @user_taxon_counts.inject({}) {|memo,r| memo[r['user_id'].to_i] = r['count_all'].to_i; memo}
         render :layout => "bootstrap"

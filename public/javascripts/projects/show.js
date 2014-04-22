@@ -67,7 +67,8 @@ $(document).ready(function() {
       var headers = r.getAllResponseHeaders()
       var matches = headers.match(/X-Total-Entries: (\d+)/) || [],
           totalEntries = matches[1],
-          totalEntriesLink = $('<a>'+totalEntries+'</a>').attr('href', OBSERVATIONS_URL)
+          url = OBSERVATIONS_URL.replace(/per_page=[^&]+/, '').replace(/page=[^&]+/, ''),
+          totalEntriesLink = $('<a>'+totalEntries+'</a>').attr('href', url)
       if (totalEntries) {
         $('.totalcount .count').html(totalEntriesLink)
       }

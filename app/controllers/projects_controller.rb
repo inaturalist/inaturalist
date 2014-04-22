@@ -113,8 +113,7 @@ class ProjectsController < ApplicationController
         @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
         @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
         @observations_url = if @project.project_type == 'bioblitz'
-          @observations_url_params = {:place_id => @project.place_id, :d1 => @project.start_time.iso8601, :d2 => @project.end_time.iso8601, :per_page => 24}
-          @observations_url_params[:taxon_id] = @project.rule_taxon.id if @project.rule_taxon
+          @observations_url_params = @project.observations_url_params
           observations_url(@observations_url_params)
         else
           project_observations_url(@project, :per_page => 24)
