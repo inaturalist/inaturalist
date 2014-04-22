@@ -83,7 +83,7 @@
                   = user_image user
                   = link_to_user user
                 %td.numeric
-                  = link_to @user_counts_by_user_id[user.id], observations_url(request.query_parameters.merge(:user_id => user.login))
+                  = link_to @user_counts_by_user_id[user.id] || 0, observations_url(request.query_parameters.merge(:user_id => user.login))
                 %td.numeric
-                  = link_to @user_taxon_counts_by_user_id[user.id], taxa_observations_url(request.query_parameters.merge(:user_id => user.login))
+                  = link_to @user_taxon_counts_by_user_id[user.id] || 0, taxa_observations_url(request.query_parameters.merge(:user_id => user.login))
 
