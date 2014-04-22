@@ -1,0 +1,57 @@
+= content_for :title do
+  - @title = title_for_observation_params(:lead => t(:observed_taxa, :default => "Observers"))
+  = strip_tags @title
+= content_for(:extracss) do
+  :css
+    #wrapper { width: auto; padding: 0 10px; position: relative;padding:10px;}
+    td.user {width:auto}
+    /*th.sorting {color: #36C;}*/
+    table.table thead .sorting,
+    table.table thead .sorting_asc,
+    table.table thead .sorting_desc,
+    table.table thead .sorting_asc_disabled,
+    table.table thead .sorting_desc_disabled {
+        cursor: pointer;
+        *cursor: hand;
+    }
+    /*table.table thead .sorting { background: url('images/sort_both.png') no-repeat center right; }*/
+    table.table thead .sorting_asc { background: url('/images/toggle_arrow_up.png') no-repeat center right; }
+    table.table thead .sorting_desc { background: url('/images/toggle_arrow_down.png') no-repeat center right; }
+    /*table.table thead .sorting_asc_disabled { background: url('images/sort_asc_disabled.png') no-repeat center right; }
+    table.table thead .sorting_desc_disabled { background: url('images/sort_desc_disabled.png') no-repeat center right; }*/
+= content_for :extrajs do
+  = javascript_include_tag 'jquery/plugins/jquery.dataTables.min'
+  :javascript
+    $('#user_stats').dataTable({
+      "bPaginate": false,
+      "bLengthChange": false,
+      "bFilter": false,
+      "bInfo": false
+    })
+
+- unless @stats_adequately_scoped
+  .container-fluid
+    .row-fluid
+      .span12= render 'stats_inadequately_scoped'
+- else
+  .container-fluid
+    .row-fluid
+      .span12
+        %h4= @title
+    .row-fluid
+      .span12
+        %table#user_stats.table
+          %thead
+            %tr
+              %th= t(:user)
+              %th= t(:observations)
+              %th= t(:taxa)
+          %tbody
+            - for user in @users
+              %tr
+                %td.user
+                  = user_image user
+                  = link_to_user user
+                %td= @user_counts_by_user_id[user.id]
+                %td= @user_taxon_counts_by_user_id[user.id]
+

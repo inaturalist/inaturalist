@@ -66,15 +66,16 @@ $(document).ready(function() {
       }
       var headers = r.getAllResponseHeaders()
       var matches = headers.match(/X-Total-Entries: (\d+)/) || [],
-          totalEntries = matches[1]
+          totalEntries = matches[1],
+          totalEntriesLink = $('<a>'+totalEntries+'</a>').attr('href', OBSERVATIONS_URL)
       if (totalEntries) {
-        $('.totalcount .count').html(totalEntries)
+        $('.totalcount .count').html(totalEntriesLink)
       }
     }
   })
   $('#bioblitz_observations .observationcontrols').observationControls({div: $('#bioblitz_observations .observations'), skipMap: true})
   $('#bioblitzstats').observationUserStats({
-    url: '/observations/user_stats.json?' + OBSERVATIONS_URL.split('?')[1]
+    url: '/observations/user_stats.json?limit=5&' + OBSERVATIONS_URL.split('?')[1]
   })
   $('#bioblitzstats').observationTaxonStats({
     url: '/observations/taxon_stats.json?' + OBSERVATIONS_URL.split('?')[1]

@@ -1143,11 +1143,15 @@ $.fn.loadObservations = function(options) {
 }
 
 $.fn.observationTaxonStats = function(options) {
-  var url = options.url || '/observations/taxon_stats.json',
+  var options = options || {},
       container = this,
-      baseSearch = typeof(OBSERVATIONS_URL) == 'undefined' ? window.location.search : '?'+OBSERVATIONS_URL.split('?')[1]
+      baseSearch = typeof(OBSERVATIONS_URL) == 'undefined' ? window.location.search : '?'+OBSERVATIONS_URL.split('?')[1],
+      limit = options.limit || 5,
+      url = options.url || '/observations/taxon_stats.json?limit'+limit
   $.getJSON(url, function(json) {
-    $('.species .count', container).html(json.rank_counts.species || 0)
+    var speciesCount = json.rank_counts.species || 0,
+        speciesCountLink = $('<a>'+speciesCount+'</a>').attr('href', '/observations/taxa'+baseSearch)
+    $('.species .count', container).html(speciesCountLink)
     if (json.species_counts.length > 0) {
       var most
       $('.most_observed table', container).html('')

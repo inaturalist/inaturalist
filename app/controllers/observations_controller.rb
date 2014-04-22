@@ -1594,6 +1594,8 @@ class ObservationsController < ApplicationController
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
     scope = Observation.query(search_params).scoped
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
+    limit = params[:limit].to_i
+    limit = 500 if limit > 500 || limit <= 0
     user_counts_sql = <<-SQL
       SELECT
         o.user_id,
@@ -1603,7 +1605,7 @@ class ObservationsController < ApplicationController
       GROUP BY
         o.user_id
       ORDER BY count_all desc
-      LIMIT 5
+      LIMIT #{limit}
     SQL
     @user_counts = ActiveRecord::Base.connection.execute(user_counts_sql)
     unique_taxon_users_scope = scope.
@@ -1619,12 +1621,18 @@ class ObservationsController < ApplicationController
       GROUP BY
         o.user_id
       ORDER BY count_all desc
-      LIMIT 5
+      LIMIT #{limit}
     SQL
     @user_taxon_counts = ActiveRecord::Base.connection.execute(user_taxon_counts_sql)
     @users = User.where("id in (?)", [@user_counts.map{|r| r['user_id']}, @user_taxon_counts.map{|r| r['user_id']}].flatten.uniq)
     @users_by_id = @users.index_by(&:id)
     respond_to do |format|
+      format.html do
+        @headless = @footless = true
+        @user_counts_by_user_id = @user_counts.inject({}) {|memo,r| memo[r['user_id'].to_i] = r['count_all'].to_i; memo}
+        @user_taxon_counts_by_user_id = @user_taxon_counts.inject({}) {|memo,r| memo[r['user_id'].to_i] = r['count_all'].to_i; memo}
+        render :layout => "bootstrap"
+      end
       format.json do
         render :json => {
           :total => scope.select("DISTINCT observations.user_id").count,
