@@ -212,7 +212,8 @@ class ListsController < ApplicationController
   
   def refresh
     delayed_task(@list.refresh_cache_key) do
-      job = @list.delay(:priority => USER_PRIORITY).refresh(:skip_update_cache_columns => true)
+      queue = @list.is_a?(CheckList) ? "slow" : nil
+      job = @list.delay(:priority => USER_PRIORITY, :queue => queue).refresh(:skip_update_cache_columns => true)
       Rails.cache.write(@list.refresh_cache_key, job.id)
       job
     end

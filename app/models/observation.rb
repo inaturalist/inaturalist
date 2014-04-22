@@ -1182,22 +1182,9 @@ class Observation < ActiveRecord::Base
   end
   
   #
-  # Remove any instructional text that may have been submitted with the form.
-  #
-  def scrub_instructions_before_save
-    self.attributes.each do |attr_name, value|
-      if Observation.instructions[attr_name.to_sym] and value and
-        Observation.instructions[attr_name.to_sym] == value
-        write_attribute(attr_name.to_sym, nil)
-      end
-    end
-  end
-  
-  #
   # Set the iconic taxon if it hasn't been set
   #
   def set_iconic_taxon
-    return true unless self.taxon_id_changed?
     if taxon
       self.iconic_taxon_id ||= taxon.iconic_taxon_id
     else

@@ -86,11 +86,21 @@ class ObservationFieldsController < ApplicationController
   # DELETE /observation_fields/1
   # DELETE /observation_fields/1.xml
   def destroy
-    @observation_field.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(observation_fields_url) }
-      format.json  { head :ok }
+    if @observation_field.observation_field_values.count > 0
+      msg = t(:you_cant_delete_observation_fields_that_people_are_using)
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to(observation_fields_url)
+        end
+        format.json  { render :json => {:error => msg}, :status => :unprocessable_entity }
+      end
+    else
+      @observation_field.destroy
+      respond_to do |format|
+        format.html { redirect_to(observation_fields_url) }
+        format.json  { head :ok }
+      end
     end
   end
   
