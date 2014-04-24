@@ -299,7 +299,7 @@ module ApplicationHelper
       concat "<li class='#{options[:class]}'>".html_safe
       yield taxon, children
       unless children.blank?
-        concat "<ul>".html_safe
+        concat "<ul class='#{options[:ul_class]}'>".html_safe
         taxonomic_taxon_list(children, options, &block)
         concat "</ul>".html_safe
       end

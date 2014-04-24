@@ -242,6 +242,12 @@ class Project < ActiveRecord::Base
     scope
   end
 
+  def observations_url_params
+    observations_url_params = {:place_id => place_id, :d1 => start_time.iso8601, :d2 => end_time.iso8601, :per_page => 24}
+    observations_url_params[:taxon_id] = rule_taxon.id if rule_taxon
+    observations_url_params
+  end
+
   def cached_slug
     slug
   end

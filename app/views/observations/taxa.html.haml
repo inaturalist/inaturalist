@@ -1,19 +1,30 @@
 = content_for :title do
-  - @title = title_for_observation_params
+  - @title = title_for_observation_params(:lead => t(:observed_taxa, :default => "Observed taxa"))
   = strip_tags @title
 = content_for(:extracss) do
   :css
     #wrapper { width: auto; padding: 0 10px; position: relative;padding:10px;}
-%h2= @title
+    .observations_link {display:none;}
+    .taxonrow:hover .observations_link {display:inline;}
 
 - unless @stats_adequately_scoped
-  .clear
-    = render 'stats_inadequately_scoped'
-%strong= t(:x_taxa_observed_html, :count => @taxa.count)
-%span.button= link_to t(:download_csv), url_for_params(:format => "csv")
-%ul.taxon_links
-  - taxonomic_taxon_list @arranged_taxa do |taxon, children|
-    %div{:class => children && children.size > 0 ? "faded" : ""}
-      = render "shared/taxon", :taxon => taxon, :link_url => taxon
-      %span.class.button
-        = link_to t(:view_observations), observations_url(request.query_parameters.merge(:taxon_id => taxon.id))
+  .container-fluid
+    .row-fluid
+      .span12= render 'stats_inadequately_scoped'
+- else
+  .container-fluid
+    .row-fluid
+      .span12
+        %h4= @title
+    .row-fluid
+      .span12
+        .btn-grp
+          %span.btn.btn-mini= link_to t(:download_csv), url_for_params(:format => "csv")
+          %strong.help-inline= t(:x_taxa_observed_html, :count => @taxa.count)
+    .row-fluid
+      .span12
+        %ul.taxon_links.unstyled
+          - taxonomic_taxon_list(@arranged_taxa, :ul_class => "plain") do |taxon, children|
+            .taxonrow{:class => children && children.size > 0 ? "faded" : ""}
+              = render "shared/taxon", :taxon => taxon, :link_url => taxon
+              = link_to t(:view_observations), observations_url(request.query_parameters.merge(:taxon_id => taxon.id)), :class => "observations_link"

@@ -17,17 +17,17 @@ module Shared::ListsModule
     @find_options = set_find_options
     @view = params[:view] || params[:view_type]
     @observable_list = observable_list(@list)
-    if @q = params[:q]
+    @q = params[:q] unless params[:q].blank?
+    @search_taxon_ids = set_search_taxon_ids(@q)
+    unless @search_taxon_ids.blank?
       @find_options[:conditions] = update_conditions(@find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
     end
-    @search_taxon_ids = set_search_taxon_ids(@q)
 
     if place_based_list?(@list)
       if @place = set_place(@observable_list)
         @other_check_lists = set_other_check_lists(@observable_list, @place)
       end
     end
-
 
     if default_checklist?(@list) 
       listed_taxa = handle_default_checklist_setup(@list, @q, @search_taxon_ids) 
@@ -67,11 +67,9 @@ module Shared::ListsModule
 
       @total_listed_taxa =  main_list.count
       @total_observed_taxa ||= main_list.confirmed_and_not_place_based.count
-      # @total_observed_taxa ||= main_list.confirmed.count
       @iconic_taxon_counts = get_iconic_taxon_counts_for_place_based_project(@list, @iconic_taxa, @listed_taxa)
     else
-      listed_taxa_query = ListedTaxon.filter_by_list(@list.id)
-      main_list = set_scopes(@list, @filter_taxon, listed_taxa_query)
+      main_list = set_scopes(@list, @filter_taxon, @list.listed_taxa.scoped)
     end
 
     @listed_taxa ||= main_list.paginate(@find_options) 
@@ -438,9 +436,8 @@ private
   end
 
   def set_search_taxon_ids(q)
-    if q
-      search_taxon_ids = Taxon.search_for_ids(q, :per_page => 1000)
-    end
+    return [] if q.blank?
+    Taxon.search_for_ids(q, :per_page => 1000)
   end
 
   def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)
@@ -513,7 +510,6 @@ private
 
   def set_scopes(list, filter_taxon, unpaginated_listed_taxa)
     unpaginated_listed_taxa = apply_list_scopes(list, unpaginated_listed_taxa, filter_taxon)
-
     unpaginated_listed_taxa = apply_checklist_scopes(list, unpaginated_listed_taxa) if list.is_a?(CheckList)
     unpaginated_listed_taxa
   end

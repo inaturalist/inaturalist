@@ -72,7 +72,7 @@ function setFiltersFromQuery(query) {
   var params = $.deparam(query)
   $.each(params, function(k,v) {
     if (k != 'iconic_taxa' && k != 'has') {
-      $('#filters :input:radio[name='+k+'][value='+v+']').attr('checked', true)
+      $('#filters :input:radio[name="'+k+'"][value="'+v+'"]').attr('checked', true)
     }
     $('#filters :input[name='+k+']').not(':checkbox, :radio').val(v)
     if (k == 'place_id') {

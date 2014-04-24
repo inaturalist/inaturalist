@@ -1143,11 +1143,17 @@ $.fn.loadObservations = function(options) {
 }
 
 $.fn.observationTaxonStats = function(options) {
-  var url = options.url || '/observations/taxon_stats.json',
+  var options = options || {},
       container = this,
-      baseSearch = typeof(OBSERVATIONS_URL) == 'undefined' ? window.location.search : '?'+OBSERVATIONS_URL.split('?')[1]
+      baseSearch = typeof(OBSERVATIONS_URL) == 'undefined' ? window.location.search : '?'+OBSERVATIONS_URL.split('?')[1],
+      limit = options.limit || 5,
+      url = options.url || '/observations/taxon_stats.json?limit'+limit
+  baseSearch = baseSearch.replace(/per_page=[^&]+/, '')
+  baseSearch = baseSearch.replace(/page=[^&]+/, '')
   $.getJSON(url, function(json) {
-    $('.species .count', container).html(json.rank_counts.species || 0)
+    var speciesCount = json.rank_counts.species || 0,
+        speciesCountLink = $('<a>'+speciesCount+'</a>').attr('href', '/observations/taxa'+baseSearch)
+    $('.species .count', container).html(speciesCountLink)
     if (json.species_counts.length > 0) {
       var most
       $('.most_observed table', container).html('')
@@ -1191,8 +1197,12 @@ $.fn.observationUserStats = function(options) {
   var url = options.url || '/observations/taxon_stats.json',
       container = this,
       baseSearch = typeof(OBSERVATIONS_URL) == 'undefined' ? window.location.search : '?'+OBSERVATIONS_URL.split('?')[1]
+  baseSearch = baseSearch.replace(/per_page=[^&]+/, '')
+  baseSearch = baseSearch.replace(/page=[^&]+/, '')
   $.getJSON(url, function(json) {
-    $('.people .count', container).html(json.total || 0)
+    var total = json.total || 0,
+        totalLink = $('<a>'+total+'</a>').attr('href', '/observations/user_stats'+baseSearch)
+    $('.people .count', container).html(totalLink)
     if (json.most_observations.length > 0) {
       $('.most_observations table', container).html('')
       for (var i = 0; i < json.most_observations.length; i++) {
