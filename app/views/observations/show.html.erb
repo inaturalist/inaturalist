@@ -162,7 +162,12 @@
       window.map.setOptions({
         disableDefaultUI: false,
         mapTypeControlOptions: {
-          mapTypeIds: [MY_MAPTYPE_ID]
+          mapTypeIds: [
+            google.maps.MapTypeId.TERRAIN,
+            google.maps.MapTypeId.ROADMAP,
+            MY_MAPTYPE_ID,
+            google.maps.MapTypeId.SATELLITE,
+            google.maps.MapTypeId.HYBRID]
         },
         mapTypeId: MY_MAPTYPE_ID
       })
