@@ -214,7 +214,6 @@
           <% end -%>
           <%- grouper_name = t(:other_animals) if grouper_name == 'Animals' -%>
           <%- grouper_class = grouper.name rescue 'Unknown' -%>
-          <% fill_in_params = params[:establishment_means] ? {} : {taxon:"", observed: 'on', threatened: 'on', establishment_means: 'on', occurrence_status: 'not_absent', rank: 'species', taxonomic_status: 'active'} %>
           <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params({:iconic_taxon => grouper.id, :without => [:page, :q]}.merge(fill_in_params)) %>">
             <div class="readable title">
               &nbsp;

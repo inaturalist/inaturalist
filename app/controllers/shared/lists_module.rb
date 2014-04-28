@@ -573,7 +573,7 @@ private
   def apply_taxonomic_status_filter(unpaginated_listed_taxa)
     if filter_by_param?(params[:taxonomic_status])
       @taxonomic_status = params[:taxonomic_status]
-      unless @taxonomic_status=="all"
+      unless @taxonomic_status == "all"
         taxonomic_status_for_scope = params["taxonomic_status"] == "active"
         unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(taxonomic_status_for_scope)
       end
@@ -588,12 +588,12 @@ private
     @iconic_taxon_id = Taxon.find_by_id(params[:iconic_taxon]).try(:id)
     if filter_by_param?(params[:taxonomic_status])
       @taxonomic_status = params[:taxonomic_status]
-      unless @taxonomic_status=="all"
+      unless @taxonomic_status == "all"
         taxonomic_status_for_scope = params["taxonomic_status"] == "active"
       end
     else
       @taxonomic_status = "active"
-      taxonomic_status_for_scope = params["taxonomic_status"] == "active"
+      taxonomic_status_for_scope = true
     end
     unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status_and_iconic_taxon(taxonomic_status_for_scope, @iconic_taxon_id)
   end
