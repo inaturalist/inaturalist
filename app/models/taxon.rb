@@ -1274,7 +1274,7 @@ class Taxon < ActiveRecord::Base
       if name = tag.match(/^taxonomy:\w+=(.*)/).try(:[], 1)
         name
       else
-        name = tag.strip.gsub(/ sp\.?$/, '')
+        name = Taxon.normalize_name(tag)
         next if PROBLEM_NAMES.include?(name.downcase)
         name
       end
