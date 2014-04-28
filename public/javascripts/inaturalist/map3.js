@@ -833,34 +833,78 @@ google.maps.Map.prototype.getOverlay = function(name) {
 }
 
 google.maps.Map.prototype.addObservationsLayer = function(options){  
-  var taxon_id = options.taxon_id;
-  var observation_id = options.observation_id;
-  var taxon_color = options.taxon_color;
-  var tiles_url = options.tiles_url;
-  var gridTileUrl = tiles_url + "/observations/grid/{z}/{x}/{y}.png?";
-  var pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png?";
+  var options = options || {},
+      taxon_id = options.taxon_id,
+      observation_id = options.observation_id,
+      color = options.color,
+      tiles_url = options.tiles_url,
+      gridTileUrl = tiles_url + "/observations/grid/{z}/{x}/{y}.png",
+      pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png"
+      precisionsTileUrl = tiles_url + "/observations/precisions/{z}/{x}/{y}.png"
 
-  gridTileUrl += "taxon_id=" + taxon_id;
-  gridTileUrl += "&taxon_color=" + encodeURIComponent(taxon_color);
-  pointTileUrl += "taxon_id=" + taxon_id;
-  pointTileUrl += "&obs_id=" + observation_id;
-  pointTileUrl += "&taxon_color=" + encodeURIComponent(taxon_color);
-  this.addTileLayer(gridTileUrl,'cnt,taxon_id');
-  this.addTileLayer(pointTileUrl,'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id');
+  if (taxon_id || observation_id || color) {
+    gridTileUrl += '?'
+    pointTileUrl += '?'
+    precisionsTileUrl += '?'
+  }
+  if (taxon_id) {
+    gridTileUrl += "taxon_id=" + taxon_id
+    pointTileUrl += "taxon_id=" + taxon_id
+    precisionsTileUrl += "taxon_id=" + taxon_id
+  }
+  if (color) {
+    gridTileUrl += "&color=" + encodeURIComponent(color)
+    pointTileUrl += "&color=" + encodeURIComponent(color)
+    precisionsTileUrl += "&color=" + encodeURIComponent(color)
+  }
+  if (observation_id) pointTileUrl += "&obs_id=" + observation_id
+  this.addTileLayer(gridTileUrl, {
+    maxzoom: 8
+  })
+  if (options.precision) {
+    this.addTileLayer(precisionsTileUrl, {
+      minzoom: 9,
+      interactivity: false
+    })
+  }
+  this.addTileLayer(pointTileUrl, {
+    interactivity: 'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
+    minzoom: 9
+  })
 }
 
-google.maps.Map.prototype.addTileLayer = function(tileUrl,interactivity){
-  var gridUrl = tileUrl.replace(/\.png/, '.grid.json') + '&interactivity=' + interactivity
-  var tilejson = {
+google.maps.Map.prototype.getInfoWindow = function() {
+  if (!this.infoWindow) {
+    this.infoWindow = new google.maps.InfoWindow({
+       content: $('<div class="loading status">'+I18n.t('loading')+'</div>').get(0),
+       position: new google.maps.LatLng(0,0)
+    })
+  }
+  return this.infoWindow
+}
+
+google.maps.Map.prototype.addTileLayer = function(tileUrl, options) {
+  var options = options || {},
+      interactivity = options.interactivity
+      gridUrl = tileUrl.replace(/\.png/, '.grid.json')
+  if (interactivity) {
+    if (gridUrl.indexOf('?') < 0) {
+      gridUrl += '?'
+    } else {
+      gridUrl += '&'
+    }
+    gridUrl += 'interactivity='+interactivity
+    // windshaft needs the interactivity param to know what data to render
+    options.grids = [gridUrl]
+  }
+  var tilejson = $.extend(true, {}, {
     version: '0.0.1',
     scheme: 'xyz',
     tiles: [tileUrl],
-    // windshaft needs the interactivity param to know what data to render
-    grids: [gridUrl],
     // wax needs template and legend set or it won't fire on events
     "template": "{{species_guess}}",
     "legend": "foo"
-  }
+  }, options)
   this.overlayMapTypes.push(new wax.g.connector(tilejson));
   wax.g.interaction()
     .map(this)
@@ -875,15 +919,17 @@ google.maps.Map.prototype.addTileLayer = function(tileUrl,interactivity){
                   url:  '/observations/' + o.data['id'] + '.html?partial=cached_component',
                   type: 'GET',
                   dataType: 'html',
-                  success: function(data) {                    
-                    if( typeof(infoWindow) != 'undefined' ){
-                      infoWindow.close();
-                    }
-                    infoWindow = new google.maps.InfoWindow({
-                       content: $('<div class="compact mini infowindow observations"></div>').append(data).get(0),
-                       position: latLng
-                    });
-                    infoWindow.open(window.map);
+                  beforeSend: function() {
+                    var iw = map.getInfoWindow()
+                    iw.position = latLng
+                    iw.content = $('<div class="loading status">'+I18n.t('loading')+'</div>').get(0)
+                    iw.open(window.map)
+                  },
+                  success: function(data) {
+                    var iw = map.getInfoWindow()
+                    iw.position = latLng
+                    iw.content = $('<div class="compact mini infowindow observations"></div>').append(data).get(0)
+                    iw.open(window.map)
                   },
                   error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus);

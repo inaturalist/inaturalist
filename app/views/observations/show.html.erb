@@ -104,7 +104,7 @@
                              'observations/observation_fields',
                              'inaturalist/map3',
                              "jquery/plugins/inat/photo_selectors.js",
-                             "wax.g.min",
+                             "wax.g",
                              "observations/show" %>
   <script type="text/javascript" charset="utf-8">
     var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
@@ -178,9 +178,10 @@
       map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
 
       var tileLayerOptions = {
-        taxon_id        : OBSERVATION.taxon_id, 
-        observation_id  : OBSERVATION.id,
-        taxon_color     : iNaturalist.Map.ICONIC_TAXON_COLORS[OBSERVATION.iconic_taxon.name],
+        taxon_id: OBSERVATION.taxon_id, 
+        observation_id: OBSERVATION.id,
+        color: iNaturalist.Map.ICONIC_TAXON_COLORS[OBSERVATION.iconic_taxon.name],
+        precision: true,
         <% if CONFIG.tile_servers && CONFIG.tile_servers.windshaft %>
           tiles_url     : '<%= CONFIG.tile_servers.windshaft %>'
         <% else %>  

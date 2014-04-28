@@ -146,6 +146,7 @@ Inaturalist::Application.routes.draw do
       get :user_stats
       get :export
       post :email_export
+      get :map
     end
     member do
       put :viewed_updates

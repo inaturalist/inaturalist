@@ -1694,6 +1694,10 @@ class ObservationsController < ApplicationController
     render :layout => false, :partial => "community_taxon_summary"
   end
 
+  def map
+    
+  end
+
 ## Protected / private actions ###############################################
   private
 
