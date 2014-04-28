@@ -211,8 +211,7 @@
             <% end -%>
             <%- grouper_name = t(:other_animals) if grouper_name == 'Animals' -%>
             <%- grouper_class = grouper.name rescue 'Unknown' -%>
-            <% fill_in_params = params[:observed] ? {} : {taxon:"", observed: 't', rank: 'species', taxonomic_status: 'active'} %>
-            <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params({:iconic_taxon => grouper.id, :without => [:page, :q]}.merge(fill_in_params)) %>">
+            <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params({:iconic_taxon => grouper.id, :without => [:page, :q]}) %>">
               <div class="readable title">
                 &nbsp;
               </div>
@@ -244,15 +243,15 @@
                 <label><%=t :observed %></label>
                 <br>
                 <%= label :observed, :t do %>
-                  <%= radio_button_tag :observed, :t, @observed == 't'%>
+                  <%= radio_button_tag :observed, :t, @observed == 't' %>
                   <%= t(:yes).downcase %>
                 <% end -%>
                 <%= label :observed, :f do %>
-                  <%= radio_button_tag :observed, :f, @observed == 'f'%>
+                  <%= radio_button_tag :observed, :f, @observed == 'f' %>
                   <%= t(:no).downcase %>
                 <% end -%>
                 <%= label :observed, nil do %>
-                  <%= radio_button_tag :observed, nil, @observed.blank?%>
+                  <%= radio_button_tag :observed, nil, @observed.blank? %>
                   <%= t(:any) %>
                 <% end -%>
               </div>
@@ -260,15 +259,15 @@
                 <label><%=t :rank %></label>
                 <br>
                 <%= label :rank, :species do %>
-                  <%= radio_button_tag :rank, :species, @rank == "species"%>
+                  <%= radio_button_tag :rank, :species, @rank == "species" %>
                   <%= t(:species).downcase %>
                 <% end -%>
                 <%= label :rank, :leaves do %>
-                  <%= radio_button_tag :rank, :leaves, @rank == "leaves"%>
+                  <%= radio_button_tag :rank, :leaves, @rank == "leaves" %>
                   <%= t(:leaves).downcase %>
                 <% end -%>
                 <%= label :rank, :all do %>
-                  <%= radio_button_tag :rank, :all, @rank=='all'%>
+                  <%= radio_button_tag :rank, :all, @rank=='all' %>
                   <%= t(:any).downcase %>
                 <% end -%>
               </div>
@@ -276,7 +275,7 @@
                 <label><%=t :taxonomic_status %></label>
                 <br>
                 <%= label :taxonomic_status, :active do %>
-                  <%= radio_button_tag :taxonomic_status, :active, @taxonomic_status == 'active'%>
+                  <%= radio_button_tag :taxonomic_status, :active, @taxonomic_status == 'active' %>
                   <%= t(:active).downcase %>
                 <% end -%>
                 <%= label :taxonomic_status, :inactive do %>
@@ -284,7 +283,7 @@
                   <%= t(:inactive).downcase %>
                 <% end -%>
                 <%= label :taxonomic_status, :all do %>
-                  <%= radio_button_tag :taxonomic_status, :all, @taxonomic_status == 'all'%>
+                  <%= radio_button_tag :taxonomic_status, :all, @taxonomic_status == 'all' %>
                   <%= t(:any).downcase %>
                 <% end -%>
               </div>

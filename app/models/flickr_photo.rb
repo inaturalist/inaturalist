@@ -161,7 +161,7 @@ class FlickrPhoto < Photo
     else
       # First try to find taxa matching taxonomic machine tags, then default 
       # to all tags
-      tags = api_response.tags.map{|t| t.raw}
+      tags = [api_response.tags.map{|t| t.raw}, api_response.title].flatten.compact.uniq
       machine_tags = tags.select{|t| t =~ /taxonomy\:/}
       taxa = Taxon.tags_to_taxa(machine_tags, options) unless machine_tags.blank?
       taxa ||= Taxon.tags_to_taxa(tags, options)

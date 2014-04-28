@@ -333,7 +333,8 @@ class Observation < ActiveRecord::Base
               :update_identifications,
               :set_community_taxon_if_pref_changed,
               :set_taxon_from_community_taxon,
-              :set_iconic_taxon
+              :set_iconic_taxon,
+              :set_captive
   
   before_update :set_quality_grade
                  
@@ -1243,6 +1244,10 @@ class Observation < ActiveRecord::Base
     true
   end
   
+  def set_captive
+    self.captive = captive_cultivated
+    true
+  end
   
   def lsid
     "lsid:#{URI.parse(CONFIG.site_url).host}:observations:#{id}"

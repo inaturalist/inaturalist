@@ -59,7 +59,85 @@ describe FlickrPhoto, "to_observation" do
   end
 end
 
+describe FlickrPhoto, "to_taxon" do
+  before {setup_flickr_stuff}
+  it "should use the title" do
+    t = Taxon.make!
+    @flickr_photo_hash["title"] = t.name
+    r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
+    fp = FlickrPhoto.new_from_api_response(r)
+    fp.to_taxon.should eq t
+  end
+
+  it "should parse a parenthesized taxon name out of the title" do
+    tn = TaxonName.make!
+    @flickr_photo_hash['title'] = "#{tn.name} (#{tn.taxon.name})"
+    r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
+    fp = FlickrPhoto.new_from_api_response(r)
+    fp.to_taxon.should eq tn.taxon
+  end
+end
+
 def setup_flickr_stuff
+  @flickr_photo_hash = {
+    "id"=>"3670586632",
+    "secret"=>"0bd9d563e9",
+    "server"=>"3658",
+    "farm"=>4,
+    "dateuploaded"=>"1246243085",
+    "isfavorite"=>0,
+    "license"=>"2",
+    "safety_level"=>"0",
+    "rotation"=>0,
+    "originalsecret"=>"57da5e30d2",
+    "originalformat"=>"jpg",
+    "owner" => {
+      "nsid"=>"18024068@N00", 
+      "username"=>"Ken-ichi", 
+      "realname"=>"Ken-ichi Ueda", 
+      "location"=>"Oakland, CA, United States", 
+      "iconserver"=>"5335", 
+      "iconfarm"=>6, 
+      "path_alias"=>"ken-ichi"
+    },
+    "title"=>"Unknown Slug Eggs",
+    "description" => "
+      This was a hefty mass.  The blade of eel grass to which it was attached
+      was about 1 cm wide, at least, so the mass must have been 6-7 cm wide.
+      Definitely from a sea slug, but which one?  Looks a bit
+      <i>Hermissenda</i>-ish, but that big?  Observed in &lt; 1 m of water in
+      Tomales Bay, California, USA.",
+    "visibility"=>{"ispublic"=>1, "isfriend"=>0, "isfamily"=>0},
+    "dates"=>{"posted"=>"1246243085", "taken"=>"2009-06-28 10:28:21", "takengranularity"=>"0", "lastupdate"=>"1327389339"},
+    "views"=>"249",
+    "editability"=>{"cancomment"=>0, "canaddmeta"=>0},
+    "publiceditability"=>{"cancomment"=>1, "canaddmeta"=>1},
+    "usage"=>{"candownload"=>1, "canblog"=>0, "canprint"=>0, "canshare"=>1},
+    "comments"=>"2",
+    "notes"=>[],
+    "people"=>{"haspeople"=>0},
+    "tags"=>[
+      {"id"=>"1007768-3670586632-1337340", "author"=>"18024068@N00", "authorname"=>"Ken-ichi", "raw"=>"California state parks", "_content"=>"californiastateparks", "machine_tag"=>0}, 
+      {"id"=>"1007768-3670586632-166302", "author"=>"18024068@N00", "authorname"=>"Ken-ichi", "raw"=>"Tomales Bay", "_content"=>"tomalesbay", "machine_tag"=>0}, 
+      {"id"=>"1007768-3670586632-1045949", "author"=>"18024068@N00", "authorname"=>"Ken-ichi", "raw"=>"Tomales Bay State Park", "_content"=>"tomalesbaystatepark", "machine_tag"=>0}, 
+      {"id"=>"1007768-3670586632-17947", "author"=>"18024068@N00", "authorname"=>"Ken-ichi", "raw"=>"eggs", "_content"=>"eggs", "machine_tag"=>0}, 
+      {"id"=>"1007768-3670586632-288657", "author"=>"18024068@N00", "authorname"=>"Ken-ichi", "raw"=>"state parks", "_content"=>"stateparks", "machine_tag"=>0}
+    ],
+    "location"=>{
+      "latitude"=>38.161262, 
+      "longitude"=>-122.914727, 
+      "accuracy"=>"16", 
+      "context"=>"0", 
+      "locality"=>{"_content"=>"Lairds Landing", "place_id"=>"S1rj1khTVrmEHNAz", "woeid"=>"2434694"}, 
+      "county"=>{"_content"=>"Marin", "place_id"=>"V2NO5YxQUL8nrwLCyQ", "woeid"=>"12587690"}, 
+      "region"=>{"_content"=>"California", "place_id"=>"NsbUWfBTUb4mbyVu", "woeid"=>"2347563"}, 
+      "country"=>{"_content"=>"United States", "place_id"=>"nz.gsghTUb4c2WAecA", "woeid"=>"23424977"}, 
+      "place_id"=>"S1rj1khTVrmEHNAz", "woeid"=>"2434694"
+    },
+    "geoperms"=>{"ispublic"=>1, "iscontact"=>0, "isfriend"=>0, "isfamily"=>0},
+    "urls"=> [{"type"=>"photopage", "_content"=>"http://www.flickr.com/photos/ken-ichi/3670586632/"}],
+    "media"=>"photo"
+  }
   begin
     FlickRaw.api_key = FLICKR_API_KEY
     FlickRaw.shared_secret = FLICKR_SHARED_SECRET
