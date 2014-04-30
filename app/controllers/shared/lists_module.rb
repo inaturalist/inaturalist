@@ -429,7 +429,7 @@ private
 
   def handle_default_checklist_setup(list, q, search_taxon_ids)
     unpaginated_listed_taxa = ListedTaxon.find_listed_taxa_from_default_list(list.place_id)
-    if q
+    unless q.blank?
       unpaginated_listed_taxa = unpaginated_listed_taxa.filter_by_taxa(search_taxon_ids)
     end
     unpaginated_listed_taxa
@@ -639,11 +639,13 @@ private
   end
 
   def filter_by_param?(param_name)
-    !([nil, "on"].include?(param_name))
+    !([nil, "on", "any"].include?(param_name))
   end
 
   def filter_by_taxon?
-    !!(params[:taxon] && @filter_taxon = (Taxon.find_by_id(params[:taxon].to_i) || Taxon.where("lower(name) = ?", params[:taxon].to_s.downcase).first))
+    return false if params[:taxon].blank?
+    @filter_taxon ||= Taxon.find_by_id(params[:taxon].to_i) || Taxon.where("lower(name) = ?", params[:taxon].to_s.downcase).first
+    !@filter_taxon.blank?
   end
 
   def filter_by_iconic_taxon?

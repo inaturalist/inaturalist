@@ -225,7 +225,7 @@
             </a>
           <% end %>
         
-          <form method="get">
+          <form id="filters" method="get">
             <%= hidden_field_tag :q, @q %>
             <div class="clear stat <%= ' current' if @filter_taxon && !@filter_taxon.is_iconic? %>">
               <div class="readable title">
@@ -250,8 +250,8 @@
                   <%= radio_button_tag :observed, :f, @observed == 'f' %>
                   <%= t(:no).downcase %>
                 <% end -%>
-                <%= label :observed, nil do %>
-                  <%= radio_button_tag :observed, nil, @observed.blank? %>
+                <%= label :observed, :any do %>
+                  <%= radio_button_tag :observed, :any, @observed.blank? %>
                   <%= t(:any) %>
                 <% end -%>
               </div>
