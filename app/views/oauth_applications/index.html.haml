@@ -1,7 +1,8 @@
+= content_for :title do
+  = @title = "3rd Party #{CONFIG.site_name_short} Applications"
 %header.page-header
   = link_to 'New Application', new_oauth_application_path, :class => "right button"
-  %h2
-    3rd Party #{CONFIG.site_name_short} Applications
+  %h2= @title
 %table.zebra-striped
   %thead
     %tr
@@ -20,3 +21,4 @@
         %td
           - if is_admin? || is_me?(application.owner)
             = link_to 'Destroy', [:oauth, application], :data => { :confirm => 'Are you sure?' }, :method => :delete
+= will_paginate @applications
