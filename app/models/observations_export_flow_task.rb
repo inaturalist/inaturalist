@@ -28,17 +28,7 @@ class ObservationsExportFlowTask < FlowTask
     outputs.each(&:destroy)
     query = inputs.first.extra[:query]
     format = options[:format]
-    @observations = if params.blank?
-      Observation.where("1 = 2")
-    else
-      # remove order, b/c it won't work with find_each and seems to cause errors in DJ
-      scope = Observation.query(params).includes(:user).reorder(nil).scoped
-      scope = scope.includes(:taxon => :taxon_names) if export_columns.detect{|c| c == "common_name"}
-      scope = scope.includes(:observation_field_values => :observation_field) if export_columns.detect{|c| c =~ /field\:/}
-      scope = scope.includes(:observation_photos => :photo) if export_columns.detect{|c| c == 'image_url'}
-      scope = scope.includes(:quality_metrics) if export_columns.detect{|c| c == 'captive_cultivated'}
-      scope
-    end
+    @observations = observations_scope
     archive_path = case format
     when 'json'
       json_archive
@@ -53,6 +43,20 @@ class ObservationsExportFlowTask < FlowTask
       Emailer.observations_export_notification(self).deliver
     end
     true
+  end
+
+  def observations_scope
+    if params.blank?
+      Observation.where("1 = 2")
+    else
+      # remove order, b/c it won't work with find_each and seems to cause errors in DJ
+      scope = Observation.query(params).includes(:user).reorder(nil).scoped
+      scope = scope.includes(:taxon => :taxon_names) if export_columns.detect{|c| c == "common_name"}
+      scope = scope.includes(:observation_field_values => :observation_field) if export_columns.detect{|c| c =~ /field\:/}
+      scope = scope.includes(:observation_photos => :photo) if export_columns.detect{|c| c == 'image_url'}
+      scope = scope.includes(:quality_metrics) if export_columns.detect{|c| c == 'captive_cultivated'}
+      scope
+    end
   end
 
   def json_archive
@@ -128,5 +132,15 @@ class ObservationsExportFlowTask < FlowTask
       export_columns = export_columns.select{|c| c !~ /^private_/}
     end
     export_columns
+  end
+
+  def enqueue_options
+    opts = {}
+    # Giant exports can really bog things down, so put them in the slow queue
+    if observations_scope.count > 100000
+      opts[:queue] = "slow"
+      opts[:priority] = USER_PRIORITY
+    end
+    opts
   end
 end
