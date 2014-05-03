@@ -2512,6 +2512,7 @@ class ObservationsController < ApplicationController
         }
       end
       pagination_headers_for(@observations)
+      opts[:viewer] = current_user
       if @observations.respond_to?(:scoped)
         @observations = @observations.includes({:observation_photos => :photo}, :photos, :iconic_taxon)
       end

@@ -328,6 +328,16 @@ shared_examples_for "an ObservationsController" do
       json = JSON.parse(response.body)
       json.map{|jo| jo['id']}.should include o.id
     end
+
+    it "should include private coordinates when viewer is owner" do
+      o = Observation.make!(:latitude => 1.2345, :longitude => 1.2345, :geoprivacy => Observation::PRIVATE, :user => user)
+      o.private_geom.should_not be_blank
+      get :by_login, :format => :json, :login => user.login, :swlat => 0, :swlng => 0, :nelat => 2, :nelng => 2
+      json = JSON.parse(response.body)
+      json_obs = json.detect{|jo| jo['id'] == o.id}
+      json_obs.should_not be_blank
+      json_obs['private_latitude'].should eq o.private_latitude.to_s
+    end
   end
 
   describe "index" do
@@ -372,8 +382,8 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should filter by captive" do
-      captive = Observation.make!(:captive => "1")
-      wild = Observation.make!(:captive => "0")
+      captive = Observation.make!(:captive_flag => "1")
+      wild = Observation.make!(:captive_flag => "0")
       get :index, :format => :json, :captive => true
       json = JSON.parse(response.body)
       json.detect{|obs| obs['id'] == wild.id}.should be_blank

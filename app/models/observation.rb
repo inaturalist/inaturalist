@@ -330,8 +330,7 @@ class Observation < ActiveRecord::Base
               :update_identifications,
               :set_community_taxon_if_pref_changed,
               :set_taxon_from_community_taxon,
-              :set_iconic_taxon,
-              :set_captive
+              :set_iconic_taxon
   
   before_update :set_quality_grade
                  
@@ -341,7 +340,8 @@ class Observation < ActiveRecord::Base
              :update_default_license,
              :update_all_licenses,
              :update_taxon_counter_caches,
-             :update_quality_metrics
+             :update_quality_metrics,
+             :set_captive
   after_create :set_uri,
                :queue_for_sharing
   before_destroy :keep_old_taxon_id
@@ -1242,7 +1242,7 @@ class Observation < ActiveRecord::Base
   end
   
   def set_captive
-    self.captive = captive_cultivated
+    Observation.update_all(["captive = ?", captive_cultivated], "id = #{id}")
     true
   end
   
