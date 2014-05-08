@@ -216,3 +216,5 @@
 #refresher.success.status {
   padding: 5px 10px;
 }
+span.taxonfilterbutton {display:none;}
+.containertaxon:hover > span.taxonfilterbutton {display:inline;}

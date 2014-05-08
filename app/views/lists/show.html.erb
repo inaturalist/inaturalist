@@ -98,7 +98,7 @@
     <img src="/images/logo-eee-15px.png">
   </div>
 
-  <% if @q -%>
+  <% if !@q.blank? -%>
     <div id="searchresults" class="description quiet box">
       <%= render :partial => "shared/page_results", :object => @listed_taxa %>
       <%=t :for %> <strong>"<%= @q %>"</strong>

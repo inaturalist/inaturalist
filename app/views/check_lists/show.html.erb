@@ -104,11 +104,19 @@
     </div>
   <% end -%>
   
-  <% if @q -%>
+  <% if !@q.blank? -%>
     <div id="searchresults" class="description quiet box">
       <%= render :partial => "shared/page_results", :object => @listed_taxa %>
       <%= t :for %> <strong>"<%= @q %>"</strong>
       <%= link_to t(:clear), url_for_params(:without => [:page, :q]) %>
+    </div>
+  <% elsif @filter_taxon %>
+    <div id="searchresults" class="description quiet box">
+      <%= render :partial => "shared/page_results", :object => @listed_taxa %>
+      <%=t :for %>
+      <%= render :partial => 'shared/taxon',
+                 :locals => { :taxon => @filter_taxon, :link_url => @filter_taxon } %>
+      <%= link_to t(:clear), url_for_params(:without => [:page, :taxon]) %>
     </div>
   <% end -%>
   
@@ -230,6 +238,7 @@
 
         <form id="filters" method="get">
           <%= hidden_field_tag :q, @q %>
+          <%= hidden_field_tag :view, @view %>
           <div class="clear stat <%= ' current' if @filter_taxon && !@filter_taxon.is_iconic? %>">
             <div class="readable title">
               &nbsp;
