@@ -945,6 +945,7 @@ en:
   filter: Filter
   filter_by: Filter by
   filter_by_place_taxon_and_color: Filter by place, taxon, and color using the controls.
+  filter_list_by_this_taxon: Filter list by this taxon
   filtering: Filtering
   filtering_observations_that_pass_the: "Filtering observations that pass the project rules or were made in the project place and haven't yet been contributed"
   filters: Filters
@@ -1166,7 +1167,7 @@ en:
   info: Info
   input_taxon: Input taxon
   insects: insects
-  inspired_by_the_flickr_group: "Inspired by the Flickr group <a href='http: //flickr.com/groups/idplease/'>ID Please</a>, this is a place to post observations of things you don't know, and to help people identify mysterious creatures!"
+  inspired_by_the_flickr_group: "Inspired by the Flickr group <a href='http://flickr.com/groups/idplease/'>ID Please</a>, this is a place to post observations of things you don't know, and to help people identify mysterious creatures!"
   introduced: introduced
   invasive: invasive
   invitations: Invitations
@@ -2892,6 +2893,7 @@ en:
   you_can_show_the_boundary_of: You can show the boundary of the place on your project page if the place has a boundary.
   you_can_sign_free_at: "You can sign up for a free %{site_name} account at"
   you_cant_compare_a_list_with_nothing: You can't compare a list with nothing!
+  you_cant_delete_observation_fields_that_people_are_using: "You can't delete observation fields that people are using"
   you_cant_do_that_for_the_default_check_list_place: You can't do that for the default check list of a place!
   you_cant_flag_that: You can't flag that
   you_cant_leave_a_project_you_created: You can't leave a project you created.
@@ -3507,6 +3509,13 @@ en:
           to custom project attributes means the project managers can
           potentially add malicious Javascript, so only trust projects that
           have managers that are both responsible and technically competent.
+      members:
+        bioblitz_notice_html: |
+          <strong>Note:</strong> this is only a list of people who have
+          explicitly joined this project. Since this is a bioblitz project and
+          stats are calculated for all observations added within the specified
+          place and time period, there may be many more participants than are
+          listed here.
       show:
         bioblitz_results_desc_html: |
           <p>

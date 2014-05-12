@@ -154,6 +154,19 @@ class TaxonName < ActiveRecord::Base
     end
   end
 
+  def serializable_hash(options = {})
+    # don't use delete here, it will just remove the option for all 
+    # subsequent records in an array
+    options[:except] ||= []
+    options[:except] += [:source_id, :source_identifier, :source_url, :name_provider, :creator_id, :updater_id]
+    if options[:only]
+      options[:except] = options[:except] - options[:only]
+    end
+    options[:except].uniq!
+    h = super(options)
+    h
+  end
+
   def self.language_for_locale(locale = nil)
     locale ||= I18n.locale
     lang_code = locale.to_s.split('-').first.to_s.downcase

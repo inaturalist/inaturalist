@@ -209,9 +209,6 @@ class Observation < ActiveRecord::Base
   has_many :first_listed_taxa, :class_name => "ListedTaxon", :foreign_key => 'first_observation_id'
   has_many :first_check_listed_taxa, :class_name => "ListedTaxon", :foreign_key => 'first_observation_id', :conditions => "listed_taxa.place_id IS NOT NULL"
   
-  has_many :goal_contributions,
-           :as => :contribution,
-           :dependent => :destroy
   has_many :comments, :as => :parent, :dependent => :destroy
   has_many :identifications, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
@@ -343,7 +340,8 @@ class Observation < ActiveRecord::Base
              :update_default_license,
              :update_all_licenses,
              :update_taxon_counter_caches,
-             :update_quality_metrics
+             :update_quality_metrics,
+             :set_captive
   after_create :set_uri,
                :queue_for_sharing
   before_destroy :keep_old_taxon_id
@@ -1182,22 +1180,9 @@ class Observation < ActiveRecord::Base
   end
   
   #
-  # Remove any instructional text that may have been submitted with the form.
-  #
-  def scrub_instructions_before_save
-    self.attributes.each do |attr_name, value|
-      if Observation.instructions[attr_name.to_sym] and value and
-        Observation.instructions[attr_name.to_sym] == value
-        write_attribute(attr_name.to_sym, nil)
-      end
-    end
-  end
-  
-  #
   # Set the iconic taxon if it hasn't been set
   #
   def set_iconic_taxon
-    return true unless self.taxon_id_changed?
     if taxon
       self.iconic_taxon_id ||= taxon.iconic_taxon_id
     else
@@ -1256,6 +1241,10 @@ class Observation < ActiveRecord::Base
     true
   end
   
+  def set_captive
+    Observation.update_all(["captive = ?", captive_cultivated], "id = #{id}")
+    true
+  end
   
   def lsid
     "lsid:#{URI.parse(CONFIG.site_url).host}:observations:#{id}"
@@ -1273,26 +1262,6 @@ class Observation < ActiveRecord::Base
   
   def num_identifications_by_others
     num_identification_agreements + num_identification_disagreements
-  end
-  
-  ##### Rules ###############################################################
-  #
-  # This section contains all of the rules that can be used for list creation
-  # or goal completion
-  
-  class << self # this just prevents me from having to write def self.*
-    
-    # Written for the Goals framework.
-    # Accepts two parameters, the first is 'thing' from GoalRule,
-    # the second is an array created when the GoalRule splits on pipes "|"
-    def within_the_first_n_contributions?(observation, args)
-      return false unless observation.instance_of? self
-      return true if count <= args[0].to_i
-      find(:all,
-           :select => "id",
-           :order => "created_at ASC",
-           :limit => args[0]).include?(observation)
-    end
   end
   
   #

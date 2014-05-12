@@ -18,6 +18,7 @@ class Project < ActiveRecord::Base
   has_many :assessments, :dependent => :destroy
     
   before_save :strip_title
+  before_save :unset_show_from_place_if_no_place
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
   
@@ -34,7 +35,6 @@ class Project < ActiveRecord::Base
   
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
-
   preference :count_by, :string, :default => 'species'
   
   # For some reason these don't work here
@@ -137,6 +137,11 @@ class Project < ActiveRecord::Base
     true
   end
 
+  def unset_show_from_place_if_no_place
+    self.show_from_place = false if place.blank? || place.check_list.blank?
+    true
+  end
+
   def cover_dimensions
     return true unless cover.queued_for_write[:original]
     dimensions = Paperclip::Geometry.from_file(cover.queued_for_write[:original].path)
@@ -235,6 +240,12 @@ class Project < ActiveRecord::Base
       end
     end
     scope
+  end
+
+  def observations_url_params
+    observations_url_params = {:place_id => place_id, :d1 => start_time.iso8601, :d2 => end_time.iso8601, :per_page => 24}
+    observations_url_params[:taxon_id] = rule_taxon.id if rule_taxon
+    observations_url_params
   end
 
   def cached_slug

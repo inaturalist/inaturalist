@@ -85,6 +85,7 @@ GeoPlanet.appid = YDN_APP_ID
 
 FlickRaw.api_key = FLICKR_API_KEY
 FlickRaw.shared_secret = FLICKR_SHARED_SECRET
+FlickRaw.secure = false
 
 # General settings
 SITE_NAME = CONFIG.site_name

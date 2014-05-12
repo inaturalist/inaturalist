@@ -328,6 +328,7 @@ Inaturalist::Application.routes.draw do
       delete :remove_taxa
     end
   end
+  match 'trips/:login' => 'trips#by_login', :as => :trips_by_login, :constraints => { :login => simplified_login_regex }
   
   resources :identifications, :constraints => { :id => id_param_pattern } do
     resources :flags

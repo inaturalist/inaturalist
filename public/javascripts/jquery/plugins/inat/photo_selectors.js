@@ -96,7 +96,7 @@
       var $searchButton = $('<a href="#" class="btn findbutton">'+I18n.t('find_photos')+'</a>').css(
         $.fn.photoSelector.defaults.formInputCSS
       )
-      var $searchWrapper = $("<div class='input-append pull-left'></div>")
+      var $searchWrapper = $("<div class='photoSelectorSearch input-append pull-left'></div>")
       $searchWrapper.append($searchInput).append($searchButton)
       var $sourceWrapper = $('<span class="urlselect inter"><strong>'+I18n.t('source')+':</strong> </span>')
     } else {
@@ -110,7 +110,7 @@
       var $searchButton = $('<a href="#" class="button findbutton">'+I18n.t('find_photos')+'</a>').css(
         $.fn.photoSelector.defaults.formInputCSS
       )
-      var $searchWrapper = $("<span></span>")
+      var $searchWrapper = $("<span class='photoSelectorSearch'></span>")
       $searchWrapper.append($searchInput).append($searchButton)
       var $sourceWrapper = $('<span class="urlselect inter"><strong>'+I18n.t('source')+':</strong> </span>')
     }
@@ -378,15 +378,40 @@
       $(wrapper).find('.photoSelectorPage').val(pagenum);
       return false;
     })
+
+    if (options.bootstrap) {
+      var allNoneLabel = $('<label>'+I18n.t('select')+'</label>')
+      var selectAll = $('<button type="button" class="btn">'+I18n.t('all')+'</button>')
+      var selectNone = $('<button type="button" class="btn">'+I18n.t('none')+'</button>')
+    } else {
+      var allNoneLabel = $('<label class="inter">'+I18n.t('select')+'</label>')
+      var selectAll = $('<a href="#" class="inter">'+I18n.t('all')+'</a>')
+      var selectNone = $('<a href="#" class="inter">'+I18n.t('none')+'</a>')
+    }
+    selectAll.click(function() {
+      $('.photoSelectorPhotos input:checkbox', wrapper).not('.photoSelectorSelected input').attr('checked', true)
+      return false
+    })
+    selectNone.click(function() {
+      $('.photoSelectorPhotos input:checkbox', wrapper).not('.photoSelectorSelected input').attr('checked', false)
+      return false
+    })
     
     $(controls).append($sourceWrapper)
     if ($sourceWrapper.find('select').length == 0) { $sourceWrapper.hide() }
     if (options.bootstrap) {
       var prevnext = $('<div class="btn-group pull-right"></div>')
       prevnext.append(prev,next)
-      $(controls).append($searchWrapper, prevnext, page)
+      var allNone = $('<div class="allNone form-inline pull-right"></div>'),
+          allNoneButtons = $('<div class="btn-group"></div>')
+      allNoneLabel.addClass('checkbox')
+      allNoneButtons.append(selectAll, selectNone)
+      allNone.append(allNoneLabel, allNoneButtons)
+      $(controls).append($searchWrapper, prevnext, allNone, page)
     } else {
-      $(controls).append($searchWrapper, page, prev, next)
+      var allNone = $('<span class="allNone"></span>')
+      allNone.append(allNoneLabel, selectAll, selectNone)
+      $(controls).append($searchWrapper, page, prev, next, allNone)
     }
     $(controls).append($('<div></div>').css({
       height: 0, 
@@ -397,7 +422,8 @@
     $(wrapper).append(controls);
     
     if (options.baseURL && options.baseURL.match(/local_photo/)) {
-      $(wrapper).find('.photoSelectorControls .button, .photoSelectorControls .text').hide();
+      $('.nextlink, .prevlink, .allNone, .photoSelectorSearch', wrapper).hide()
+      $sourceWrapper.show()
     }
     
     // Bind button clicks to search photos
@@ -502,11 +528,11 @@
         $(wrapper).data('photoSelectorExisting', null)
         
         if (options.baseURL.match(/local_photo/)) {
-          $(wrapper).find('.photoSelectorControls .button, .photoSelectorControls .text').hide();
-          $(wrapper).find('.local_photos').show();
+          $('.nextlink, .prevlink, .allNone, .photoSelectorSearch', wrapper).hide()
+          $(wrapper).find('.local_photos').show()
         } else {
-          $(wrapper).find('.photoSelectorControls .button, .photoSelectorControls .text').show();
-          $(wrapper).find('.local_photos').hide();
+          $('.nextlink, .prevlink, .allNone, .photoSelectorSearch', wrapper).show()
+          $(wrapper).find('.local_photos').hide()
         }
 
         // remove multiple file inputs for Windows Safari

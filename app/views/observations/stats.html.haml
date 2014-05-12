@@ -42,7 +42,7 @@
       refresh: window.location.toString().match(/refresh=true/) ? 10*1000 : null
     })
     $('#stats').observationUserStats({
-      url: '/observations/user_stats.json'+window.location.search,
+      url: '/observations/user_stats.json'+window.location.search+'&limit='+5,
       refresh: window.location.toString().match(/refresh=true/) ? 10*1000 : null
     })
   }

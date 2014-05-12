@@ -11,7 +11,7 @@
           =t :trip
   .body.clear
     - if truncate_length
-      = truncate_with_more formatted_user_text(post.body), :length => truncate_length
+      = truncate_with_more formatted_user_text(post.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES), :length => truncate_length
     - else
       = formatted_user_text(post.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES)
   .meta

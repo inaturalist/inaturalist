@@ -216,7 +216,7 @@ EOT
   
   get "/observations" do
     desc <<-EOT
-Primary endpoint for retrieving observations. If you're interested for
+Primary endpoint for retrieving observations. If you're looking for
 pagination info, check the X headers in the response. You should see 
 <code>X-Total-Entries</code>, <code>X-Page</code>, and 
 <code>X-Per-Page</code>. JSON

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', "~> 3.2.17"
+gem 'rails', "~> 3.2.18"
 gem 'rake', '0.8.7'
 
 gem 'apipie-rails'
@@ -27,7 +27,7 @@ gem 'doorkeeper', '~> 0.6.7'
 gem 'dynamic_form'
 gem 'exifr'
 gem 'faker'
-gem 'flickraw'
+gem 'flickraw', "~> 0.9.8"
 gem "friendly_id", "~> 4.0.1"
 gem 'gdata', :git => 'git://github.com/dwaite/gdata.git'
 gem 'geocoder'

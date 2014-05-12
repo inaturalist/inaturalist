@@ -78,8 +78,8 @@ module ObservationsHelper
     end
   end
 
-  def title_for_observation_params
-    s = t(:observed_taxa, :default => "Observed taxa")
+  def title_for_observation_params(options = {})
+    s = options[:lead] || t(:observation_stats, :default => "Observation stats")
     s += " #{t :of} #{link_to_taxon @observations_taxon}" if @observations_taxon
     s += " #{t(:from).downcase} #{link_to @place.display_name, @place}" if @place
     s += " #{t :by} #{link_to @user.login, @user}" if @user

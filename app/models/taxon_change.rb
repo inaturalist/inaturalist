@@ -71,6 +71,8 @@ class TaxonChange < ActiveRecord::Base
     ).
     where("ts1.id = ? OR ts2.id = ?", taxon_scheme, taxon_scheme)
   }
+
+  scope :by, lambda{|user| where(:user_id => user)}
   
   def to_s
     "<#{self.class} #{id}>"
