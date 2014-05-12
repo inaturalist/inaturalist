@@ -574,16 +574,16 @@ ca:
   collapse_days: "replega dies"
   collapse_updates: "replega actualitzacions"
   color_categories_for_this_species: |
-      "Les categories de colors per a l'espècie; és com si volguessis realitzar una guia ordenada d'acord amb el seu color.
+      Les categories de colors per a l'espècie; és com si volguessis realitzar una guia ordenada d'acord amb el seu color.
       Si us plau, no llistis tots els colors de l'organisme, només els més destacats. Per als colors de les plantes, utilitza
       només el color de la seva flor.  Si us plau, no hi posis colors que no ajudin a la categorització,
-      per exemple: evita fer servir el color cafè per als mamífers i el verd per a les plantes."
+      per exemple: evita fer servir el color cafè per als mamífers i el verd per a les plantes.
   colors: Colors
   comma_separated_list_of_tracking_codes: |
-      " Separa els codis de seguiment amb comes. Afegeix això si vols afegir un codi de seguiment quan les persones facin
+      Separa els codis de seguiment amb comes. Afegeix això si vols afegir un codi de seguiment quan les persones facin
       observacions en el teu projecte, ex. %{root_%{url}observations/new?project_%{id}=%{project_%{id}&tracking_code=elteucodi123.
       Es pot utilitzar per fer el seguiment de la participació en diferents fonts. Pots accedir a aquests codis de seguiment
-      quan descarreguis les observacions del teu projecte en format CSV."
+      quan descarreguis les observacions del teu projecte en format CSV.
   comma_separated_please: "Si us plau, separa mitjançant comes"
   comment: comentari
   comment_deleted: "El comentari s’ha esborrat"
@@ -1009,9 +1009,7 @@ ca:
   feeds: "Fonts:"
   feeds_for_current_filters: "Fonts per als filtres actuals"
   field_note: |
-      <strong>Nota:</strong> Si vas a crear un campo
-      checa si alguien mas ya lo creo, para
-      evitar duplicación.
+      <strong>Nota:</strong> Si has de crear un camp comprova abans si algú ja l'ha creat per evitar duplicats.
   fields: camps
   file_should_be_in_the_following_format: "L'arxiu hauria de tenir el següent format: nom de l'espècie o grup, descripció"
   fill_out_your_profile: "completa el teu perfil"
@@ -1191,8 +1189,8 @@ ca:
   if_you_use: "Si fas servir"
   if_you_want_to_change_the_name: "si només vols canviar el nom"
   if_youd_like_us_to_share_your_observations_with: |
-      " Si vols compartir les teves observacions amb la comunitat científica, assegura't
-      d'haver escollit una llicència Creative Commons per a les teves observacions."
+      Si vols compartir les teves observacions amb la comunitat científica, assegura't
+      d'haver escollit una llicència Creative Commons per a les teves observacions.
   if_your_project_is: "Si el teu projecte és sobre un lloc específic, afegeix les coordenades seleccionant l'enllaç del mapa o afegeix-les manualment."
   if_your_search_comes_up: "Si la cerca no dóna resultats, introdueix més informació als camps de cerca per repetir-la a través dels nostres proveïdors de noms externs"
   ignore: Ignora
@@ -1339,11 +1337,11 @@ ca:
   license_descriptions_and_images: "Descripció de les llicències i les seves respectives imatges"
   licensing: Llicències
   licensing_your_content: |
-      "Donar llicències del teu contingut dóna a altres persones el dret legal d'utilitzar-lo
+      Donar llicències del teu contingut dóna a altres persones el dret legal d'utilitzar-lo
       si respecten els termes de la llicència. Utilitzem contingut amb llicència
       de Creative Commons per compartir amb associats com
       </a> href=http://www.gbif.org/>Global Biodiversity Information Facility</a>
-      (GBIF)."
+      (GBIF).
   licensing_your_content_gives_others_legal: "Aplicar una llicència al contingut que generes confereix a altres persones el dret a fer-lo servir, sempre que acceptin les condicions de la llicència. %{site_name} fa servir una llicència de Creative Commons per compartir dades amb altres iniciatives, com ara"
   life: Vida
   life!: "la vida"
@@ -1719,7 +1717,8 @@ ca:
   observations_circle_have_their_radii_scaled: "El radi dels cercles d'observació està condicionat per l'exactitud de la posició. Les dades d'observacions amb una posició inexacta es mostren amb la mida mínima."
   observations_confirmed: "Observacions (confirmades)"
   observations_deleted: "Les observacions s'han eliminat."
-  observations_fields_are: "| Els camps són informació extra associada a la teva observació, com el nombre d'espècies observades, descripció de l'hàbitat, o el que vulguis comentar."
+  observations_fields_are: | 
+        Els camps són informació extra associada a la teva observació, com el nombre d'espècies observades, descripció de l'hàbitat, o el que vulguis comentar.
   observations_for: "Observacions per a"
   observations_for_project: "Observacions per a %{project}"
   observations_from: "Observacions de %{data}"
@@ -1740,9 +1739,9 @@ ca:
   observations_saved: "Observacions desades!"
   observations_specifying_this_field: "Observacions que especifiquen aquest camp"
   observations_text_search_warning: |
-      " Les cerques de text poden produir resultats estranys quan es combinen
+      Les cerques de text poden produir resultats estranys quan es combinen
       amb altres filtres; si vols trobar l'observació d'una espècie
-      en particular, utilitza filtrar tàxon."
+      en particular, utilitza filtrar tàxon.
   observations_title: "Observacions de tots els usuaris"
   observations_w: "Cerca d'observacions amb"
   observations_w_field: "Cerca d'observacions amb camp"
@@ -1943,11 +1942,11 @@ ca:
   place_notes: "Posa-hi notes"
   place_subscription: "subscripció de lloc"
   place_too_big_for_check_list: |
-      "Aquest lloc és massa gran per a una llista de verificació. El càlcul de
+      Aquest lloc és massa gran per a una llista de verificació. El càlcul de
       les estadístiques de verificació de llista és bastant costós, per la qual cosa no es
       permet per a llocs molt grans, tret que hagi estat afegit pels
       administradors del lloc. No obstant això, encara pot utilitzar aquest lloc per 
-      als límits del projecte i les consultes d'observació."
+      als límits del projecte i les consultes d'observació.
   place_type_name: "Nom del tipus de lloc"
   place_updated: "Lloc actualitzat!"
   placement: Col·locació
@@ -2133,7 +2132,7 @@ ca:
   remove_curator_status: "Elimina estat d'administrador"
   remove_from: "Elimina de"
   remove_from_batch: "Elimina l'edició"
-  remove_from_id_please?: "Elimina del grup \"ID \"?"
+  remove_from_id_please?: "Elimina del grup ID?"
   remove_from_list: "Elimina de la llista"
   remove_from_project: "Quitar del proyecto"
   remove_manager: "Elimina gestor"
@@ -2409,12 +2408,12 @@ ca:
   submit_comment: "Envia comentari"
   submitted: Enviat
   subscribe_to_places_to: |
-      "Subscriu-te a llocs per rebre actualitzacions sobre noves
+      Subscriu-te a llocs per rebre actualitzacions sobre noves
       observacions, persones que segueixes i coses que has comentat,
       tot això és gestionat per les subscripcions, pots veure a què t'has
       subscrit i a què no. Selecciona l'enllaç de més avall "Administra todas tus suscripciones" i
       també, si ho desitges, podràs eliminar totes les subscripcions d'algun lloc que ja no
-      vulguis tenir en les teves preferències."
+      vulguis tenir en les teves preferències.
   subscribe_to_this: "Subscriu-te a aquest"
   subscribe_to_x_from_this_y_html: "<a href=\\"
   subscriptions_arent_available_for: " Les subscripcions no estan disponibles per a llocs sense límits definits."
@@ -2539,7 +2538,8 @@ ca:
   there_were_some_problems_with: "Hi ha hagut problemes amb el teu arxiu CSV.  Torna a revisar les files errònies. És possible que el problema hagi estat nostre. Si és així, si us plau, fes-nos-ho saber."
   there_were_some_problems_with_fields: "Hi ha hagut problemes amb els següents camps"
   theres_also: "també hi ha"
-  these_are_items_people_on: "| Són continguts que la gent ha introduït com a advertència per a l’administració. Els continguts brossa s’esborraran i  l’usuari que els va introduir hauria de ser suspès (vés a la pàgina del seu perfil i a la part inferior esquerra selecciona l'enllaç Suspèn usuari perquè ja no pugui entrar al lloc). Els continguts de tipus il·legal, enganyós, racista, xenòfob, etc., s'han d'esborrar i s'han de respondre amb un comentari correcte. Les persones que repeteixin aquests comentaris s'han de comunicar a"
+  these_are_items_people_on: |
+        Són continguts que la gent ha introduït com a advertència per a l’administració. Els continguts brossa s’esborraran i  l’usuari que els va introduir hauria de ser suspès (vés a la pàgina del seu perfil i a la part inferior esquerra selecciona l'enllaç Suspèn usuari perquè ja no pugui entrar al lloc). Els continguts de tipus il·legal, enganyós, racista, xenòfob, etc., s'han d'esborrar i s'han de respondre amb un comentari correcte. Les persones que repeteixin aquests comentaris s'han de comunicar a
   these_are_taxa_that: |
       Són espècies o grups que %{site} no va poder afegir automàticament
       a l'arbre taxonòmic. Tu pots afegir-los a l'arbre seleccionant
@@ -2569,7 +2569,8 @@ ca:
   this_taxon_change_has_been_commited: "<strong>Aquest canvi de taxonomia en l'espècie o grup s’ha desat!</strong> Si us plau, no editis l'espècie o grup. Pots editar els altres camps."
   this_taxon_concept_is_inactive: "aquesta espècie o grup està inactiu/va"
   this_taxon_has_no_default_photo: "Aquest tàxon no té foto per defecte!"
-  this_taxon_is_inactive_this_means: "\"Aquest tàxon està <strong>inactiu</strong>. Això significa que els administradors d’%{site_name} l’han reemplaçat per un concepte més actualitzat.\"\n"
+  this_taxon_is_inactive_this_means: |
+            Aquest tàxon està <strong>inactiu</strong>. Això significa que els administradors d’%{site_name} l’han reemplaçat per un concepte més actualitzat.
   this_taxon_name_was_originally_imported: "Aquest nom de tàxon es va importar originàriament d'un proveïdor de noms extern"
   this_taxon_was_originally_imported_from: "Aquest tàxon es va importar originàriament d'un proveïdor de noms extern"
   this_tool_is_experimental: "Aquesta eina està encara en desenvolupament, així que, si us plau"
@@ -2770,38 +2771,38 @@ ca:
     custom_projects: 
       edit: 
         custom_project_fields_warning: |
-            "Si us plau, vés amb compte: Si afegeixes Javascript i CSS a la teva pàgina
+            Si us plau, vés amb compte: Si afegeixes Javascript i CSS a la teva pàgina
             de projecte pots danyar greument el disseny de la pàgina i,
             potser, facilitar que programari maliciós pugui afectar les persones
             que visualitzen la pàgina. Si no saps exactament què és un
-            tros de codi, si us plau, no l’afegeixis."
+            tros de codi, si us plau, no l’afegeixis.
     help: 
       index: 
         a_check_list_is_html: |
-            "Una llista de verificació és una llista dels tàxons que es troben en un lloc. 
+            Una llista de verificació és una llista dels tàxons que es troben en un lloc. 
             Cada lloc té una llista de control per defecte i sempre que l'observació es realitzi
             dins dels límits del lloc <em>i</em> que hagi aconseguit l'estat de grau de
             recerca, les espècies observades s'afegiran automàticament a la llista de
-            verificació del lloc."
+            verificació del lloc.
         a_project_list_belongs: |
-            "Una llista de projecte vincula un projecte amb una llista de tots els tàxons observats
+            Una llista de projecte vincula un projecte amb una llista de tots els tàxons observats
             pels membres d'aquest projecte. Les llistes de projectes també poden ser redactades de forma
             manual per l'administrador d'aquest projecte, i es poden utilitzar per restringir les
-            contribucions del projecte als tàxons que estan a la llista."
+            contribucions del projecte als tàxons que estan a la llista.
         an_observation_is_the_what_where_and_when_html: |
             Una observació és el què on i quan d'un descobriment en la natura.
             %{site_name} ofereix un espai per afegir aquesta informació juntament amb text, fotos i
             etiquetes associades. %{site_name} anima a prendre nota de tots els descobriments en
             la natura, tant si es tracta d'espècies identificades com de narracions descriptives més simples. 
-            (A %{site_name} la mateixa sargantana pot ser descrita com a \"sargantana cornuda del desert\" o com a \"sargantana misteriosa de la vall de la Mort\"
+            (A %{site_name} la mateixa sargantana pot ser descrita com a "sargantana cornuda del desert" o com a "sargantana misteriosa de la vall de la Mort").
         automatically_updates_based_on_your_observations: |
-            "S'actualitza automàticament basant-se en les teves observacions. Tothom a %{site_name}
+            S'actualitza automàticament basant-se en les teves observacions. Tothom a %{site_name}
             té una llista de vida predeterminada que conté totes les espècies que aquesta persona ha
             observat. Si elimines una observació o canvies la seva identificació,
             l’espècie s'elimina. També pots afegir manualment els tàxons a la teva
             llista de vida com ho fas amb una llista comuna. Les espècies que
             afegeixis manualment no s'eliminen si les observes a continuació d'haver eliminat
-            l'observació."
+            l'observació.
         can_i_add_photos_without_a_flickr_account?: "Puc afegir fotos sense tenir compte de Flickr?"
         can_i_include_my_observations_on_my_blog?: "Puc incloure les meves observacions d’%{site_name} a la meva pàgina web o blog?"
         check_the_id_please_checkbox_when_html: |
@@ -2809,29 +2810,28 @@ ca:
             la teva observació apareixerà a
             <a href="%{url}" title=ID, si us plau>ID, si us plau</a>.
         coordinates_are_obscured_for_all_taxa: |
-            "Les coordenades s'oculten automàticament per a tota la informació
+            Les coordenades s'oculten automàticament per a tota la informació
             taxonòmica que es trobi EN RISC D'AMENAÇA o pitjor, d'acord amb la
             llista vermella de la UICN.  Alguna informació taxonòmica pot ser considerada
             en perill per altres autoritats de conservació, i d’altra pot ser
             marcada simplement com que està en perill pels administradors d’%{site_name} si ells
-            creuen que s’ha de protegir."
+            creuen que s’ha de protegir.
         curators_are_inat_users_who_volunteer_to_html: |
-            "Els administradors són usuaris de %{site_name} que voluntàriament ens ajuden a
+            Els administradors són usuaris de %{site_name} que voluntàriament ens ajuden a
             mantenir la nostra informació taxonòmica actualitzada.  Si estàs interessat
             a convertir-te en administrador, si us plau, <a href=mailto: %{help_email}>
             posa't en contacte amb nosaltres</a>.  Els administradors també poden convertir altres usuaris 
             en administradors.  Si us plau, ascendeix només les persones en les
-            quals confiïs i sàpigues que realment tenen coneixements taxonòmics."
-        geoprivacy_is_a_setting_you_can: "\"La geoprivacitat és un ajust que pots afegir a les teves observacions \n\
-            i que controla la manera en què s'exposen les coordenades espacials (latitud i \n\
-            longitud).  Hi ha les opcions següents:\" \n"
+            quals confiïs i sàpigues que realment tenen coneixements taxonòmics.
+        geoprivacy_is_a_setting_you_can: |
+            La geoprivacitat és un ajust que pots afegir a les teves observacions i que controla la manera en què s'exposen les coordenades espacials (latitud i longitud). Hi ha les opcions següents:
         how_can_i_get_help_identifying_what_i_saw?: "Com puc rebre ajuda per identificar el que vaig veure?"
         how_do_i_contact_inaturalist?: "Com puc posar-me en contacte amb %{site_name}?"
         i_observed_a_species: "Vaig observar una espècie, per què no apareix en la meva llista de vida?"
         inat_admins_are_the_people_who: |
-            "%{site_name} admins són els que dirigeixen el lloc.  Tenen accés directe al 
+            %{site_name} admins són els que dirigeixen el lloc.  Tenen accés directe al 
             codi subjacent de la pàgina i a la base de dades, i poden canviar
-            qualsevol element del lloc web. "
+            qualsevol element del lloc web.
         inat_users_can_also: |
             %{site_name} Els usuaris també poden afegir llistes de verificació addicionals als llocs, encara que aquestes llistes no s'actualitzen automàticament. Principalment
             proporcionen un mitjà perquè la gent pugui aportar fonts externes de dades o
@@ -2879,25 +2879,28 @@ ca:
             et preocupa qui té les teves coordenades, has d'assegurar-te de confiar
             en els administradors amb els quals participes en els projectes.
         photos_attached_to_observations_should_be: |
-            "Les fotos que adjuntis a les teves observacions haurien de ser de l'individu
-            que vas observar en el moment que es va veure.  Si graves l'observació d'un
+            Les fotos que adjuntis a les teves observacions haurien de ser de l'individu
+            que vas observar en el moment que es va veure. Si graves l'observació d'un
             arbre, i tornes l'endemà a fer-li una foto, si us plau, afegeix una
             nova observació per a la foto, perquè representa l'arbre en un moment
-            diferent de la teva entrada anterior."
+            diferent de la teva entrada anterior.
         please_do_not_upload_pictures_you_didnt_take_html: |
-            "Si us plau, <em>no pugis fotos que no hagis fet tu mateix</em>, tret que tinguis
+            Si us plau, <em>no pugis fotos que no hagis fet tu mateix</em>, tret que tinguis
             l’autorització de qui la va fer.  És il·legal publicar treballs amb drets
             d'autor sense tenir algun tipus de permís de l'artista o amo de la fotografia,
             i tots els fotògrafs tenen drets d'autor sobre les seves fotografies per defecte.
             Si la foto és d'alguna cosa que tu vas observar i una altra persona la va fer però tens el seu
             permís per publicar-la, has d'anotar també el nom del fotògraf o fotògrafa
-            en la descripció de l'observació."
-        sure_check_out_our_widget_html: "Per descomptat, pots revisar el nostre <a href=\"%{url}\" title=\" Giny d’observacions\">Giny d'observacions</a>.\\n"
-        tags_are_keywords_you_can_add_to_an_html: "| Les etiquetes són paraules clau que pots afegir a les teves observacions perquè sigui més fàcil trobar-les.  Per exemple, si una barracuda et va seguir en un viatge de busseig a Puntarenas, pots etiquetar l'observació com a \"barracuda, de por, busseig, vacances, Puntarenas\"."
+            en la descripció de l'observació.
+        sure_check_out_our_widget_html: |
+            Per descomptat, pots revisar el nostre <a href=\"%{url}\" title=\" Giny d’observacions\">Giny d'observacions</a>.
+        tags_are_keywords_you_can_add_to_an_html: |
+            Les etiquetes són paraules clau que pots afegir a les teves observacions perquè sigui més fàcil trobar-les. Per exemple, si una barracuda et va seguir en un viatge de busseig a Puntarenas, pots etiquetar l'observació com a "barracuda, de por, busseig, vacances, Puntarenas".
         we_also_support_picasa_html: "També pots utilitzar Picasa: <a href=\"%{url}\">Configura el teu compte de Picasa » </a>"
-        we_also_support_uploading_photos: "\"També pots pujar les teves fotos directament a %{site_name}, però pot resultar una mica lent,\n\
-            així que només permetem pujar una foto alhora.  Utilitzar Flickr o Picasa és\n\
-            probablement molt més ràpid si ja utilitzes els seus serveis.\" \n"
+        we_also_support_uploading_photos: |
+            També pots pujar les teves fotos directament a %{site_name}, però pot resultar una mica lent,
+            així que només permetem pujar una foto alhora.  Utilitzar Flickr o Picasa és
+            probablement molt més ràpid si ja utilitzes els seus serveis.
         welcome_message_html: |
             Hola! Si estàs començant a utilitzar %{site_name}, et convidem a revisar
             la nostra guia a: <a href="%{url}">%{getting_started}</a> perquè coneguis algunes de les característiques
@@ -2917,7 +2920,7 @@ ca:
         what_kind_of_photos_should_i_attach: "Quin tipus de fotos haig d'adjuntar a les observacions? Puc afegir-hi fotos que no he fet jo?"
         what_technologies_does_the_project_use?: "En quines tecnologies i fonts d'informació es basa el projecte?"
         when_coordinates_are_obscured_it_means_that: |
-            "Quan les coordenades estan ocultes significa que es mostra públicament un punt a l'atzar dins dels
+            Quan les coordenades estan ocultes significa que es mostra públicament un punt a l'atzar dins dels
             10 km a la rodona de les teves coordenades reals
             (per exemple, a la pàgina d'inici, la pàgina d'observacions i pàgines
             de projectes), mentre que les teves coordenades reals només són visibles quan
@@ -2925,17 +2928,17 @@ ca:
             individual i la llista de les teves pròpies observacions). Tingues en compte que els
             administradors que has afegit a les teves observacions també poden veure les teves
             coordenades veritables.  Les coordenades ocultes sempre es mostraran
-            amb una marca circular sense arrels en mapes i retroacció geoespacial."
+            amb una marca circular sense arrels en mapes i retroacció geoespacial.
         while_the_life_list_is_automatically_populated: |
-            "Encara que la llista de vida es genera automàticament a partir 
+            Encara que la llista de vida es genera automàticament a partir 
             d’observacions afegides, les espècies no s'afegiran a aquesta
-            llista si %{site_name} no reconeix el nom que has utilitzat.  Et
-            recomanem intentar utilitzar noms alternatius que puguem reconèixer."
+            llista si %{site_name} no reconeix el nom que has utilitzat. Et
+            recomanem intentar utilitzar noms alternatius que puguem reconèixer.
         who_is_behind_inaturalist?: "Qui hi ha darrere %{site_name}?"
         why_doesnt_inaturalist_recognize_the_name_ive_entered?: "Per què %{site_name} no reconeix el nom que he teclejat?"
         you_can_also_make_additional_life_lists: |
-            "També pots crear llistes addicionals de vida per a grups específics d'organismes,
-            com una llista de vida de les aus o una llista de vida de la innocència."
+            També pots crear llistes addicionals de vida per a grups específics d'organismes,
+            com una llista de vida de les aus o una llista de vida de la innocència.
         you_can_also_obscure_the_coordinates_html: |
             També pots ocultar les coordenades de les teves pròpies observacions
             sense importar la informació taxonòmica.  Mostra <a href="#geoprivacy">geoprivacitat</a>.
@@ -2997,26 +3000,27 @@ ca:
         map_instruction: "Utilitza l'eina de polígon per dibuixar el contorn del lloc."
     projects: 
       edit: 
-        bioblitz_create_a_new_place_html: "\" %{link}, assegura't que té un límit, després torna enrere i torna-ho a intentar.\"\n"
+        bioblitz_create_a_new_place_html: |
+            %{link}, assegura't que té un límit, després torna enrere i torna-ho a intentar.
         bioblitz_desc_html: |
-            "<p>
+            <p>
             Un bioblitz és un esdeveniment en el qual tu intentes que altres persones observin tantes
             espècies com sigui possible en un lloc i en un termini de temps determinats. 
             És una manera
             divertida d'introduir la gent a la biodiversitat mentre que, alhora,
             es recullen dades valuoses.
-            </p>"
+            </p>
         cover_desc: |
-            " Imatge del bàner opcional que apareixerà en la part superior de la
-            pàgina del projecte. Ha de tenir... 950 px d'amplada, menys de 400 px d’alçària "
+            Imatge del bàner opcional que apareixerà en la part superior de la
+            pàgina del projecte. Ha de tenir... 950 px d'amplada, menys de 400 px d’alçària.
         custom_project_fields_means: |
-            "Permet modificar el bàner del projecte, afegir contingut a la part
-            dreta del projecte i donar-li cert estil per millorar el seu aspecte visual."
+            Permet modificar el bàner del projecte, afegir contingut a la part
+            dreta del projecte i donar-li cert estil per millorar el seu aspecte visual.
         end_time_desc: "Afegeix hora final al teu bioblitz. Ha de ser inferior a un any després de l'hora d'inici"
         event_url_desc: |
-            "URL del servei de registre d'esdeveniments que estàs utilitzant per al teu bioblitz.
+            URL del servei de registre d'esdeveniments que estàs utilitzant per al teu bioblitz.
             Si es tracta d'un URL Eventbrite que inclou un identificador numèric,
-            inclourem un giny d'inscripció a la teva pàgina de projecte fins que comenci el bioblitz."
+            inclourem un giny d'inscripció a la teva pàgina de projecte fins que comenci el bioblitz.
         icon_desc: "Es retallarà en un quadrat"
         project_assets_desc_html: |
             <p class="description">Els arxius del projecte són arxius associats al projecte, segons certes regles especials: </p>
@@ -3029,7 +3033,8 @@ ca:
             </li>
             <li>Els arxius KML i KMZ s'afegiran al mapa a la pàgina del projecte</li>
             </ol>
-        trusted_project_means: "| Quan un projecte està verificat, els administradors i gestors del projecte poden crear, actualitzar i esborrar els seus recursos del projecte."
+        trusted_project_means: |
+            Quan un projecte està verificat, els administradors i gestors del projecte poden crear, actualitzar i esborrar els seus recursos del projecte.
     shared: 
       date: Data
       views: "Vistes "
@@ -3037,8 +3042,8 @@ ca:
       dashboard: 
         cannot_update_your_content: "%{site_name} no pot actualitzar el teu contingut automàticament per afegir-hi els canvis."
         curators_can_see: |
-            "Només un recordatori: els administradors del projecte poden veure les coordenades
-            privades i ocultes de les observacions que s'agreguen a aquest projecte."
+            Només un recordatori: els administradors del projecte poden veure les coordenades
+            privades i ocultes de les observacions que s'agreguen a aquest projecte.
         new_project_admin_html: |
             Et preguntes per què ets ara l'administrador d'aquest projecte? El
             propietari anterior probablement ha esborrat el seu compte, per la qual cosa el %{site_name}
@@ -3046,11 +3051,11 @@ ca:
             lloc. Si no vols ser administrador d'un projecte, si us plau, posa't en contacte amb
             <a href="mailto:%{help_email}">%{help_email}</a>
         taxon_change_desc: |
-            "Els canvis de tàxon representen canvis de la taxonomia d’%{site_name}.
+            Els canvis de tàxon representen canvis de la taxonomia d’%{site_name}.
             La major part del temps, %{site_name} mantindrà automàticament
             actualitzat el teu contingut, quan es produeixin canvis (tret que hagis
             seleccionat No), però encara volem saber quan i com canvien
-            les teves dades."
+            les teves dades.
         you_may_want_to_update: "Tens alguns continguts relacionats amb aquests tàxons que és possible que vulguis actualitzar."
         your_content_will_be_updated: "El teu contingut relacionat amb aquests tàxons s'actualitzarà automàticament."
       edit: 
@@ -3059,9 +3064,9 @@ ca:
     welcome: 
       index: 
         welcome_message_html: |
-            "%{image} et convida a utilitzar aquest portal d'informació sobre biodiversitat
+            %{image} et convida a utilitzar aquest portal d'informació sobre biodiversitat
             on podràs compartir el que observes en la natura, aprendre de la natura i
-            intercanviar informació amb altres naturalistes."
+            intercanviar informació amb altres naturalistes.
   vulnerable: vulnerable
   w00t_no_unfragted_taxa: "Hurra! S’han inserit tots els tàxons!"
   w_photos_only: "només amb fotos"
@@ -3166,12 +3171,12 @@ ca:
     one: "<span class=count>1</span> observació amb grau de recerca va identificar les espècies</span>"
     other: "<span class=count>%{count}</span> observacions amb grau de recerca van identificar les espècies</span>"
   x_site_is_a_social_network_for_naturalist: |
-      "%{site} és una xarxa social per a NaturaListes on pots desar les teves observacions de plantes i animals,
-      i compartir-les amb els teus amics i investigadors, i aprendre més sobre la nostra biodiversitat."
+      %{site} és una xarxa social per a NaturaListes on pots desar les teves observacions de plantes i animals,
+      i compartir-les amb els teus amics i investigadors, i aprendre més sobre la nostra biodiversitat.
   x_site_shared_licensed_observation_data_with: |
-      "%{site_name} comparteix observacions amb llicència
+      %{site_name} comparteix observacions amb llicència
       amb certs llocs de recerca; així les teves dades poden resultar més accessibles
-      per a científics i altres investigadors."
+      per a científics i altres investigadors.
   x_species: 
     one: "1 espècie"
     other: "%{count} espècies"
@@ -3256,9 +3261,9 @@ ca:
   you_sure_remove_this_observation?: "Estàs segur que vols eliminar aquesta observació?"
   you_sure_to_delete_observation?: "Estàs segur que vols eliminar aquesta llista?"
   you_think_observation_inacurate: |
-      "Si penses que aquesta observació és inexacta, afegeix una
+      Si penses que aquesta observació és inexacta, afegeix una
       identificació, participa en la secció de qualitat de dades, o descriu
-      la inexactitud amb un comentari."
+      la inexactitud amb un comentari.
   you_would_get_the: "Obtindràs les etiquetes següents"
   youll_need_to_link: "Hauràs de vincular"
   your: Tu

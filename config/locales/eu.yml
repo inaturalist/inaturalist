@@ -531,7 +531,8 @@ eu:
   check_out_my_observations_at: "Nahi izanez gero, nire oharrak hemen ikus ditzakezu:"
   check_out_what_the_observation: "Begirada bat eman identifikatu nahian zabiltzan behaketei."
   check_out_your_life_list: "Berrikusi zure Bizitzako Zerrenda"
-  check_this_box_if: "\"Hautatu kaxa hau merkataritzakoa ez den <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons</a> esleipen-lizentzia zure argazkiei aplikatu nahi baldin badiezu. Bestelako lizentzia hauta dezakezu edo gero kendu, baina hau da datuak ikertzaileekin partekatzeko lizentziarik onena.\"\n"
+  check_this_box_if: |
+            Hautatu kaxa hau merkataritzakoa ez den <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons</a> esleipen-lizentzia zure argazkiei aplikatu nahi baldin badiezu. Bestelako lizentzia hauta dezakezu edo gero kendu, baina hau da datuak ikertzaileekin partekatzeko lizentziarik onena.
   checklist: "Egiaztatzeko zerrenda"
   checklist_places: "Egiaztapen-zerrenda duten lekuak"
   checklist_places_absent: "Egiaztapen-zerrenda duten lekuak (ez daude)"
@@ -569,12 +570,12 @@ eu:
   collapse_days: "egunak hartu"
   collapse_updates: "eguneraketak egin"
   color_categories_for_this_species: |
-      "  Espezierako koloreen kategoriak, badirudi koloreen arabera ordenatutako gida egitera zoazela.
-        Mesedez, ez zerrendatu organismoaren kolore guztiak, nabarmenenak soilik. Landareen koloreetarako, lorearen kolorea erabili.  Mesedez, ez jarri kategorizatzen laguntzen ez duen kolorerik, esate baterako: ez erabili kafe kolorea ugaztunetarako eta berdea landareetarako."
+        Espezierako koloreen kategoriak, badirudi koloreen arabera ordenatutako gida egitera zoazela.
+        Mesedez, ez zerrendatu organismoaren kolore guztiak, nabarmenenak soilik. Landareen koloreetarako, lorearen kolorea erabili. Mesedez, ez jarri kategorizatzen laguntzen ez duen kolorerik, esate baterako: ez erabili kafe kolorea ugaztunetarako eta berdea landareetarako.
   colors: "Koloreak "
   comma_separated_list_of_tracking_codes: |
-      " Arakatze-kodeak komekin bereizi. Gehitu hau arakatze-kodea jarri nahi baduzu jendeak zure proiektuan behaketak egitean, adib. %{root_%{url}observations/new?project_%{id}=%{project_%{id}&tracking_code=tucodigo123.
-       Hainbat iturritako partaidetza arakatzeko erabil daiteke. Arakatze-kode hauetara sar zaitezke zure proiektuko behaketak CSV formatuan deskargatzen dituzunean."
+       Arakatze-kodeak komekin bereizi. Gehitu hau arakatze-kodea jarri nahi baduzu jendeak zure proiektuan behaketak egitean, adib. %{root_%{url}observations/new?project_%{id}=%{project_%{id}&tracking_code=tucodigo123.
+       Hainbat iturritako partaidetza arakatzeko erabil daiteke. Arakatze-kode hauetara sar zaitezke zure proiektuko behaketak CSV formatuan deskargatzen dituzunean.
   comma_separated_please: "Mesedez, komekin bereizi"
   comment: "oharra "
   comment_deleted: "Oharra ezabatu egin da"
@@ -1002,8 +1003,7 @@ eu:
   feeds: "Iturriak:"
   feeds_for_current_filters: "Uneko iragazkietarako iturriak"
   field_note: |
-      <strong>Oharra:</strong> Eremu berri bat sortu aurretik beste
-      norbaitek lehenago sortu al duen begira ezazu, bikoiztasunak sahiestu arren.
+      <strong>Oharra:</strong> Eremu berri bat sortu aurretik beste norbaitek lehenago sortu al duen begira ezazu, bikoiztasunak sahiestu arren
   fields: eremuak
   file_should_be_in_the_following_format: "Fitxategiak formatu hau izan behar luke: espeziearen edo taldearen izena, deskribapena"
   fill_out_your_profile: "zure profila osatu"
@@ -1182,7 +1182,8 @@ eu:
   if_you_have_trouble_with_the_site: "Gunearekin arazoren bat izango bazenu, mesedez, berrikusi gure laguntza atala"
   if_you_use: "Hau erabiltzen baduzu:"
   if_you_want_to_change_the_name: "izena soilik aldatu nahi baduzu"
-  if_youd_like_us_to_share_your_observations_with: "\" Zure behaketak komunitate zientifikoarekin partekatu nahi badituzu, ziurtatu zure behaketetarako Creative Commons lizentzia aukeratu duzula.\"\n"
+  if_youd_like_us_to_share_your_observations_with: |
+            Zure behaketak komunitate zientifikoarekin partekatu nahi badituzu, ziurtatu zure behaketetarako Creative Commons lizentzia aukeratu duzula.
   if_your_project_is: "Zure proiektua leku espezifiko bati buruzkoa bada, gehitu koordenatuak mapako esteka hautatuta edo eskuz gehitu."
   if_your_search_comes_up: "Zure bilaketak emaitzarik ematen ez badu, jarri xehetasun gehiago bilaketa-eremuetan izenen gure kanpoko hornitzaileen bidez bilaketa errepikatzeko"
   ignore: "Ezikusi "
@@ -1328,7 +1329,8 @@ eu:
     waray_waray: "Samarera "
   license_descriptions_and_images: "Lizentzien eta horiei dagozkien irudien deskribapena"
   licensing: "Lizentziak "
-  licensing_your_content: "\"Zure edukia lizentziatzeak  beste batzuei legez erabiltzeko eskubidea ematen die lizentziaren baldintzetara atxikitzen badira. Creative Commonsekin lizentziatutako edukia erabiltzen dugu bazkideekin partekatzeko, esate baterako, </a> href=http://www.gbif.org/>Global Biodiversity Information Facility</a> (GBIF).\"\n"
+  licensing_your_content: |
+            Zure edukia lizentziatzeak  beste batzuei legez erabiltzeko eskubidea ematen die lizentziaren baldintzetara atxikitzen badira. Creative Commonsekin lizentziatutako edukia erabiltzen dugu bazkideekin partekatzeko, esate baterako, </a> href=http://www.gbif.org/>Global Biodiversity Information Facility</a> (GBIF).
   licensing_your_content_gives_others_legal: "Zuk sortutako edukiari lizentzia aplikatzeak beste batzuei hori erabiltzeko eskubidea ematen die, lizentziaren baldintzak onartzen dituztenean, betiere. %{site_name} webguneak Creative Commons-eko lizentzia erabiltzen du beste ekimen batzuekin datuak partekatzeko, hala nola"
   life: Bizitza
   life!: bizitza
@@ -1428,7 +1430,7 @@ eu:
   make_taxonomic_flickr_tags_for_taxon_raquo: "Flickr-eko etiketa taxonomikoak egin taxon honetarako »"
   make_this_your_default_license: "%{type} hau zure lehenetsitako lizentzia egin"
   mammals: "ugaztunak "
-  manage_all_your_subscriptions: Zure harpidetza guztiak kudeaku
+  manage_all_your_subscriptions: "Zure harpidetza guztiak administratu"
   manage_your_project_invitations: "Zure proiektuetako gonbidapenak administratu"
   managed: kudeatuta
   manager: "Kudeatzailea "
@@ -1698,7 +1700,8 @@ eu:
   observations_circle_have_their_radii_scaled: "Behaketa-zirkuluen erradioa posizioaren zehaztasunak baldintzatzen du. Zehaztugabeko posizioko behaketetako datuak tamaina txikienean azaltzen dira."
   observations_confirmed: "Behaketak (baieztatuak)"
   observations_deleted: "Behaketak ezabatu egin dira."
-  observations_fields_are: "| Eremuak zure behaketarekin lotutako aparteko informazioa dira, hala nola behatutako espezie kopurua, habitataren deskribapena edo aipatu nahi duzuna."
+  observations_fields_are: |
+        Eremuak zure behaketarekin lotutako aparteko informazioa dira, hala nola behatutako espezie kopurua, habitataren deskribapena edo aipatu nahi duzuna.
   observations_for: "Honetarako behaketak:"
   observations_for_project: "Honetarako behaketak: %{project}"
   observations_from: "Egun honetako behaketak: %{data}"
@@ -1718,7 +1721,8 @@ eu:
   observations_removed_from_the_project: "%{project} proiektutik ezabatutako behaketak"
   observations_saved: "Behaketa(k) gordeta!"
   observations_specifying_this_field: "Eremu hau espezifikatzen duten behaketak"
-  observations_text_search_warning: "\" Testu-bilaketek emaitza bitxiak eman ditzakete beste iragazki batzuekin konbinatzen direnean; espezie jakin baten behaketa topatu nahi baduzu, erabili iragazi taxona.\"\n"
+  observations_text_search_warning: |
+            Testu-bilaketek emaitza bitxiak eman ditzakete beste iragazki batzuekin konbinatzen direnean; espezie jakin baten behaketa topatu nahi baduzu, erabili iragazi taxona.
   observations_title: "Denen behaketak"
   observations_w: "Behaketen bilaketa honekin:"
   observations_w_field: "Behaketen bilaketa eremuarekin"
@@ -1918,7 +1922,8 @@ eu:
   place_name: "Izena kokatu"
   place_notes: "Oharrak kokatu"
   place_subscription: "tokiaren harpidetza"
-  place_too_big_for_check_list: "\"Toki hau handiegia da egiaztapen-zerrenda baterako. Zerrenda egiaztatzeko estatistiken kalkulua kostu handikoa denez, ez da leku handietarako baimentzen, lekuko administratzaileek gehitu ez badituzte behintzat. Hala eta guztiz ere, leku oraindik proiektuko mugetarako eta behaketako kontsultetarako erabil dezakezu.\"\n"
+  place_too_big_for_check_list: |
+            Toki hau handiegia da egiaztapen-zerrenda baterako. Zerrenda egiaztatzeko estatistiken kalkulua kostu handikoa denez, ez da leku handietarako baimentzen, lekuko administratzaileek gehitu ez badituzte behintzat. Hala eta guztiz ere, leku oraindik proiektuko mugetarako eta behaketako kontsultetarako erabil dezakezu.
   place_type_name: "Leku motaren izena"
   place_updated: "Tokia eguneratuta!"
   placement: "Kokapena "
@@ -2104,7 +2109,7 @@ eu:
   remove_curator_status: "Administrariaren estatusa kendu"
   remove_from: "Hemendik kendu:"
   remove_from_batch: "Edizioa kendu"
-  remove_from_id_please?: "\"ID, mesedez\" taldea kendu?"
+  remove_from_id_please?: "ID, mesedez taldea kendu?"
   remove_from_list: "Zerrendatik kendu"
   remove_from_project: "Quitar del proyecto"
   remove_manager: "Kudeatzailea kendu"
@@ -2380,7 +2385,8 @@ eu:
   submit: "Bidali "
   submit_comment: "Aipamena bidali"
   submitted: Bidalita
-  subscribe_to_places_to: "\"Tokietan harpidetu behaketa berriei, jarraitzen dituzun pertsonei eta aipatu dituzun gauzei buruzko eguneraketak jasotzeko; hori guztia harpidetzek gobernatzen dute, zertan harpidetu zaren eta zertan ez ikus dezakezu. Beheko esteka hautatu \"Administra todas tus suscripciones\" eta, hala nahi baduzu, dagoeneko lehentasunetan izan nahi ez duzun tokiren bateko harpidetza guztiak kendu ahal izango dituzu.\"\n"
+  subscribe_to_places_to: |
+      Tokietan harpidetu behaketa berriei, jarraitzen dituzun pertsonei eta aipatu dituzun gauzei buruzko eguneraketak jasotzeko; hori guztia harpidetzek gobernatzen dute, zertan harpidetu zaren eta zertan ez ikus dezakezu. Beheko esteka hautatu "Zure harpidetza guztiak kudeatu" eta, hala nahi baduzu, dagoeneko lehentasunetan izan nahi ez duzun tokiren bateko harpidetza guztiak kendu ahal izango dituzu.
   subscribe_to_this: "Honetara harpidetu:"
   subscribe_to_x_from_this_y_html: "<a href=\\#\\ onclick=\\$(this).parents(form:first).submit(); return false;\\>Harpidetu</a>  %{x} hauetatik %{y} hauetan."
   subscriptions_arent_available_for: " Harpidetzak ez daude eskuragarri mugak definitu gabe dituzten lekuetarako."
@@ -2532,7 +2538,8 @@ eu:
   this_taxon_change_has_been_commited: "<strong>Espezie edo taldean taxonomia-aldaketa hau gorde da!</strong> Mesedez, ez editatu espeziea edo taldea. Gainerako eremuak edita ditzakezu."
   this_taxon_concept_is_inactive: "espezie edo talde hau inaktibo dago"
   this_taxon_has_no_default_photo: "Taxon honek ez du lehenetsitako argazkirik!"
-  this_taxon_is_inactive_this_means: "\"Taxon hau <strong>inaktibo</strong> dago. %{site_name}(e)ko administratzaileek are eguneratuago dagoen kontzeptu batekin ordezkatu dutela esan nahi du horrek.\"\n"
+  this_taxon_is_inactive_this_means: |
+            Taxon hau <strong>inaktibo</strong> dago. %{site_name}(e)ko administratzaileek are eguneratuago dagoen kontzeptu batekin ordezkatu dutela esan nahi du horrek.
   this_taxon_name_was_originally_imported: "Taxon izen hau izenen kanpoko hornitzaileak inportatu zuen jatorrian"
   this_taxon_was_originally_imported_from: "Taxon hau izenen kanpoko hornitzaileak inportatu zuen jatorrian"
   this_tool_is_experimental: "Tresna hau oraindik garatzen ari da, beraz, mesedez"
@@ -2732,54 +2739,71 @@ eu:
   views: 
     custom_projects: 
       edit: 
-        custom_project_fields_warning: "\"Mesedez, arretaz ibili: Zure proiektuko orrialdeari Javascript eta CSS gehitzen badizkiozu, orrialdearen diseinuari kalte larriak egin diezazkiokezu eta agian software gaiztoak orrialdea ikusten dutenei eragin diezaieke. Kode zatia zer den zehatz-mehatz ez badakizu, mesedez, ez gehitu.\"\n"
+        custom_project_fields_warning: |
+            Mesedez, arretaz ibili: Zure proiektuko orrialdeari Javascript eta CSS gehitzen badizkiozu, orrialdearen diseinuari kalte larriak egin diezazkiokezu eta agian software gaiztoak orrialdea ikusten dutenei eragin diezaieke. Kode zatia zer den zehatz-mehatz ez badakizu, mesedez, ez gehitu.
     help: 
       index: 
         a_check_list_is_html: |
-            "Egiaztapen-zerrenda leku batean dauden taxonen zerrenda da. 
-            Leku bakoitzak lehenetsitako kontrol-zerrenda du eta behaketa lekuaren mugen barruan egiten denean <em>eta</em> ikerketa mailaren egoera lortzen duenean, betiere, behatutako espezieak automatikoki gehituko dira lekuko egiaztapen-zerrendara."
-        a_project_list_belongs: "\"Proiektu-zerrendak proiektuko kideek behatutako taxon guztien zerrendarekin lotzen du proiektua. Proiektu-zerrendak eskuz ere idatz ditzake proiektuko administratzaileak eta proiektuak zerrendan dauden taxonetara egindako ekarpenak mugatzeko erabil daiteke.\"\n"
+            Egiaztapen-zerrenda leku batean dauden taxonen zerrenda da. 
+            Leku bakoitzak lehenetsitako kontrol-zerrenda du eta behaketa lekuaren mugen barruan egiten denean <em>eta</em> ikerketa mailaren egoera lortzen duenean, betiere, behatutako espezieak automatikoki gehituko dira lekuko egiaztapen-zerrendara.
+        a_project_list_belongs: |
+            Proiektu-zerrendak proiektuko kideek behatutako taxon guztien zerrendarekin lotzen du proiektua. Proiektu-zerrendak eskuz ere idatz ditzake proiektuko administratzaileak eta proiektuak zerrendan dauden taxonetara egindako ekarpenak mugatzeko erabil daiteke.
         an_observation_is_the_what_where_and_when_html: |
-            "Behaketa zer da? Naturako aurkikuntzaren non? eta noiz?
+            Behaketa zer da? Naturako aurkikuntzaren non? eta noiz?
             %{site_name} weguneak informazio hau testuarekin, argazkiekin eta lotutako etiketekin batera gehitzeko lekua eskaintzen du. %{site_name} webguneak naturako aurkikuntza guztiak gogoan hartzera dei egiten du; identifikatutako espezieak, nahiz narrazio deskriptibo arruntagoak izan. 
-            (%{site_name} webgunean sugandila bera honela deskriba daiteke: "basamortuko musker adarduna" nahiz "Heriotzaren haraneko sugandila misteriotsua" moduan"
-        automatically_updates_based_on_your_observations: "\"Zure behaketetan oinarrituta automatikoki eguneratzen da. %{site_name} webgunean mundu guztiak bisitatu dituen espezie guztiak jasotzen dituen lehenetsitako bizitza-zerrenda du. Behaketa bat ezabatzen baduzu edo horren identifikazioa aldatzen baduzu, espeziea ezabatu egingo da. Bizitza-zerrendarako taxonak eskuz ere gehi ditzakezu, zerrenda arruntarekin egin dezakezun moduan. Eskuz gehitutako espezieak ez dira ezabatzen behaketa ezabatu ondoren behatzen badituzu.\"\n"
+            (%{site_name} webgunean sugandila bera honela deskriba daiteke: "basamortuko musker adarduna" nahiz "Heriotzaren haraneko sugandila misteriotsua" moduan).
+        automatically_updates_based_on_your_observations: |
+            Zure behaketetan oinarrituta automatikoki eguneratzen da. %{site_name} webgunean mundu guztiak bisitatu dituen espezie guztiak jasotzen dituen lehenetsitako bizitza-zerrenda du. Behaketa bat ezabatzen baduzu edo horren identifikazioa aldatzen baduzu, espeziea ezabatu egingo da. Bizitza-zerrendarako taxonak eskuz ere gehi ditzakezu, zerrenda arruntarekin egin dezakezun moduan. Eskuz gehitutako espezieak ez dira ezabatzen behaketa ezabatu ondoren behatzen badituzu.
         can_i_add_photos_without_a_flickr_account?: "Argazkirik gehitu al dezaket Flickr-eko konturik gabe?"
         can_i_include_my_observations_on_my_blog?: "%{site_name} behaketak nire web orrian edo blogean gehitu al ditzaket?"
-        check_the_id_please_checkbox_when_html: "\"Markatu 'ID mesedez' dioen laukia zure behaketak gehitzen/editatzen dituzunean eta zure behaketa hemen azalduko da: <a href=%{url} title=ID mesedez>ID mesedez</a>.\"\n"
-        coordinates_are_obscured_for_all_taxa: "\"Koordenatuak automatikoki ezkutatzen dira MEHATXU EGOERAN edo okerrago dagoen informazio taxonomiko guztirako, IUCNko zerrenda gorriari jarraiki.  Kontserbaziorako beste agintari batzuek informazio taxonomikoren bat arriskuan dagoela uste izan dezakete eta %{site_name} webguneko administratzaileek arriskuan egongo balitz bezala marka dezakete, babestea behar duela uste badute.\"\n"
-        curators_are_inat_users_who_volunteer_to_html: "\"Administrariak %{site_name} webguneko erabiltzaileak dira eta beren borondatez informazio taxonomikoa eguneratuta izaten laguntzen digute.  Administrari izan nahi baduzu, mesedez <a href=mailto: %{help_email}> jarri gurekin harremanetan</a>.  Administrariek ere igo ditzakete beste erabiltzaile batzuk administrarien kategoriara.  Zure konfiantza merezi duten eta benetan ezagutza taxonomikoak dituztela dakizun pertsonak soilik igo.\"\n"
-        geoprivacy_is_a_setting_you_can: "\"Geopribatutasuna zure behaketei gehi diezaiekezun doikuntza da eta koordenatu espazialak azaltzeko modua (latitudea eta longitudea) kontrolatzen du.  Hauek dira aukerak:\" \n"
+        check_the_id_please_checkbox_when_html: |
+            Markatu 'ID mesedez' dioen laukia zure behaketak gehitzen/editatzen dituzunean eta zure behaketa hemen azalduko da: <a href=%{url} title=ID mesedez>ID mesedez</a>.
+        coordinates_are_obscured_for_all_taxa: |
+            Koordenatuak automatikoki ezkutatzen dira MEHATXU EGOERAN edo okerrago dagoen informazio taxonomiko guztirako, IUCNko zerrenda gorriari jarraiki. Kontserbaziorako beste agintari batzuek informazio taxonomikoren bat arriskuan dagoela uste izan dezakete eta %{site_name} webguneko administratzaileek arriskuan egongo balitz bezala marka dezakete, babestea behar duela uste badute.
+        curators_are_inat_users_who_volunteer_to_html: |
+            Administrariak %{site_name} webguneko erabiltzaileak dira eta beren borondatez informazio taxonomikoa eguneratuta izaten laguntzen digute.  Administrari izan nahi baduzu, mesedez <a href=mailto: %{help_email}> jarri gurekin harremanetan</a>. Administrariek ere igo ditzakete beste erabiltzaile batzuk administrarien kategoriara. Zure konfiantza merezi duten eta benetan ezagutza taxonomikoak dituztela dakizun pertsonak soilik igo.
+        geoprivacy_is_a_setting_you_can: |
+            Geopribatutasuna zure behaketei gehi diezaiekezun doikuntza da eta koordenatu espazialak azaltzeko modua (latitudea eta longitudea) kontrolatzen du. Hauek dira aukerak:
         how_can_i_get_help_identifying_what_i_saw?: "Nola jaso dezaket laguntza ikusi nuena identifikatzeko?"
         how_do_i_contact_inaturalist?: "Nola jar naiteke %{site_name} webgunearekin harremanetan?"
         i_observed_a_species: "Espezie bat behatu nuen, zergatik ez da nire bizitza-zerrendan agertzen?"
-        inat_admins_are_the_people_who: "\"%{site_name} administrariak gunea zuzentzen dutenak dira.  Zuzeneko sarrera dute orrialdearen azpiko kodera, datu-basera eta guneko edozein datu alda dezakete. \"\n"
-        inat_users_can_also: "\"%{site_name} Erabiltzaileek egiaztapen-zerrenda gehigarriak ere gehi ditzakete lekuetara, baina zerrenda horiek ez dira automatikoki eguneratuko. Jendeak kanpoko datu-iturriak ekarri ahal izateko baliabidea edo norberaren esperientzian oinarritutako zerrenda soilik eskaintzen dute nagusiki.\"\n"
-        inaturalist_can_link_directly_to_the_flickr_photo_service: "\"%{site_name} Flickr-eko argazki-zerbitzuarekin zuzenean estekatu daiteke Flickr-eko zure argazkiak behaketei gehitu ahal izateko.  Zure Flickr-eko kontua estekatzea onartzean, bi kontu lotzen ari zara; horrek ez digu Flickr-en duzun kontura sartzen uzten eta zure pasahitza ere ez dugu; egile-eskubiderik ere ez dizugu eskatzen eta ez diguzu zure argazkiak zuk nahi ez duzun ezertan erabiltzeko eskubiderik ere ematen.\"\n"
+        inat_admins_are_the_people_who: |
+            %{site_name} administrariak gunea zuzentzen dutenak dira. Zuzeneko sarrera dute orrialdearen azpiko kodera, datu-basera eta guneko edozein datu alda dezakete.
+        inat_users_can_also: |
+            %{site_name} Erabiltzaileek egiaztapen-zerrenda gehigarriak ere gehi ditzakete lekuetara, baina zerrenda horiek ez dira automatikoki eguneratuko. Jendeak kanpoko datu-iturriak ekarri ahal izateko baliabidea edo norberaren esperientzian oinarritutako zerrenda soilik eskaintzen dute nagusiki.
+        inaturalist_can_link_directly_to_the_flickr_photo_service: |
+            %{site_name} Flickr-eko argazki-zerbitzuarekin zuzenean estekatu daiteke Flickr-eko zure argazkiak behaketei gehitu ahal izateko. Zure Flickr-eko kontua estekatzea onartzean, bi kontu lotzen ari zara; horrek ez digu Flickr-en duzun kontura sartzen uzten eta zure pasahitza ere ez dugu; egile-eskubiderik ere ez dizugu eskatzen eta ez diguzu zure argazkiak zuk nahi ez duzun ezertan erabiltzeko eskubiderik ere ematen.
         inaturalist_has_name_information_for_mammals: |
-            "%{site_name} guneak ugaztunen, txorien, narrastien eta anfibioen izenen informazioa du eta, horrez gain, etengabe izen berriak gehitzen ditugu gure datu-basera. 
-            Izen jakin bat ezagutzen ez badugu, saiatu ezagutu ditzakegun izen alternatiboekin eta gehitu jatorrizko izena etiketei edo deskribapenerako eremuei."
-        inaturalist_is_built_using_html: "\"%{site_name} hau erabilita sortu da:  <a href= http://www.rubyonrails.org/>Ruby on Rails</a>, <a href= http://mysql.com/>MySQL</a>, <a href= http://jquery.com/>jQuery</a> y <a href= http://code.google.com/apis/maps//>Google Maps</a> eta <a href= http://flickr.com/>Flickr</a>. Horrez gain, hau erabiltzen du: <a href= http://www.catalogueoflife.org>Katalogoa</a> eta <a href= http://ubio.org/>uBio</a>  informazio taxonomikorako.\"\n"
+            %{site_name} guneak ugaztunen, txorien, narrastien eta anfibioen izenen informazioa du eta, horrez gain, etengabe izen berriak gehitzen ditugu gure datu-basera. 
+            Izen jakin bat ezagutzen ez badugu, saiatu ezagutu ditzakegun izen alternatiboekin eta gehitu jatorrizko izena etiketei edo deskribapenerako eremuei.
+        inaturalist_is_built_using_html: |
+            %{site_name} hau erabilita sortu da:  <a href= http://www.rubyonrails.org/>Ruby on Rails</a>, <a href= http://mysql.com/>MySQL</a>, <a href= http://jquery.com/>jQuery</a> y <a href= http://code.google.com/apis/maps//>Google Maps</a> eta <a href= http://flickr.com/>Flickr</a>. Horrez gain, hau erabiltzen du: <a href= http://www.catalogueoflife.org>Katalogoa</a> eta <a href= http://ubio.org/>uBio</a>  informazio taxonomikorako.
         inaturalist_provides_a_place_to: |
-            "%{site_name} webgunean zure aurkikuntza naturalak gorde eta antola ditzakezu, naturaren beste zaletu batzuk ezagut ditzakezu eta mundu naturalari buruz gehiago ikas dezakezu.  
-            Naturako sutsuen barietate zabalaren partaidetza bultzatzen du, hauek barne (baina ez esklusiboki): ekologistak, ehiztariak, ornitologoak, txangozaleak, onddo-biltzaileak, arrantzaleak eta parke-kontserbatzaileak.  Mundu naturalarekin lotutako pertzepzio eta gaitasun guztiak konektatzean, %{site_name} webguneak komunitateetan tokiko biodibertsitateari buruzko kontzientzia zabala sortzea eta tokiko ingurunearen azterketa handiagoa bultzatzea espero du."
+            %{site_name} webgunean zure aurkikuntza naturalak gorde eta antola ditzakezu, naturaren beste zaletu batzuk ezagut ditzakezu eta mundu naturalari buruz gehiago ikas dezakezu.  
+            Naturako sutsuen barietate zabalaren partaidetza bultzatzen du, hauek barne (baina ez esklusiboki): ekologistak, ehiztariak, ornitologoak, txangozaleak, onddo-biltzaileak, arrantzaleak eta parke-kontserbatzaileak.  Mundu naturalarekin lotutako pertzepzio eta gaitasun guztiak konektatzean, %{site_name} webguneak komunitateetan tokiko biodibertsitateari buruzko kontzientzia zabala sortzea eta tokiko ingurunearen azterketa handiagoa bultzatzea espero du.
         inaturalist_was_originally_the_masters_final_html: |
-            "%{site_name} webgunea jatorrian Nathan Agrin, Jessica Kline eta Ken-ichi Ueda-ren master amaierako proiektu gisa sortu zen Kaliforniako Unibertsitatean, Berkeleyn <a href= http://www.ischool.berkeley.edu> Informazio-eskola</a>.
-            Begirada bat eman <a href=/about>Orrialdeari buruz</a> atalari gaur egun gunea administratzen dutenei buruzko informazio gehiago eskuratzeko."
-        is_a_list_of_every_species_that_you_have_seen: "\"Bizitzako zerrenda ikusitako espezie guztien zerrenda da. %{site_name} webguneko erabiltzaile guztiek bizitza-zerrenda dute eta zerrenda horiek automatikoki osatzen dira %{site_name} webgunera gehitutako behaketetatik.\"\n"
+            %{site_name} webgunea jatorrian Nathan Agrin, Jessica Kline eta Ken-ichi Ueda-ren master amaierako proiektu gisa sortu zen Kaliforniako Unibertsitatean, Berkeleyn <a href= http://www.ischool.berkeley.edu> Informazio-eskola</a>.
+            Begirada bat eman <a href=/about>Orrialdeari buruz</a> atalari gaur egun gunea administratzen dutenei buruzko informazio gehiago eskuratzeko.
+        is_a_list_of_every_species_that_you_have_seen: |
+            Bizitzako zerrenda ikusitako espezie guztien zerrenda da. %{site_name} webguneko erabiltzaile guztiek bizitza-zerrenda dute eta zerrenda horiek automatikoki osatzen dira %{site_name} webgunera gehitutako behaketetatik.
         just_a_simple_list: "Portaera berezirik gabeko taxonen zerrenda arrunta bakarrik."
-        note_that_curators_of: "\"Gogoan izan banakako proiektu-administratzaileek beti ikusten dituztela zure koordenatuak, zure geopribatutasuneko doikuntzak albo batera utzita; hortaz, zure koordenatuak nork dituen kezkatzen bazaitu, proiektuetan zurekin parte hartzen duten administratzaileengan konfiantza duzula ziurtatu behar duzu.\"\n"
-        photos_attached_to_observations_should_be: "\"Zure behaketei erantsitako argazkiek banakoa ikusi zenuen unekoak izan behar lukete.  Zuhaitzaren behaketa grabatzen baduzu eta hurrengo egunean argazkia ateratzera itzultzen bazara, mesedez, gehitu beste behaketa bat argazkiari; izan ere, zuhaitza aurreko sarreraz bestelako une batean adierazten du.\"\n"
+        note_that_curators_of: |
+            Gogoan izan banakako proiektu-administratzaileek beti ikusten dituztela zure koordenatuak, zure geopribatutasuneko doikuntzak albo batera utzita; hortaz, zure koordenatuak nork dituen kezkatzen bazaitu, proiektuetan zurekin parte hartzen duten administratzaileengan konfiantza duzula ziurtatu behar duzu.
+        photos_attached_to_observations_should_be: |
+            Zure behaketei erantsitako argazkiek banakoa ikusi zenuen unekoak izan behar lukete. Zuhaitzaren behaketa grabatzen baduzu eta hurrengo egunean argazkia ateratzera itzultzen bazara, mesedez, gehitu beste behaketa bat argazkiari; izan ere, zuhaitza aurreko sarreraz bestelako une batean adierazten du.
         please_do_not_upload_pictures_you_didnt_take_html: |
-            "<em>Ez igo zuk egin ez duzun argazkirik</em>, egin zuenaren baimena izan ezean.  Legez kanpokoa da egile-eskubideak dituzten lanak argitaratzea artistaren edo argazki-jabearen baimenik gabe eta argazkilari guztiek dituzte beren argazkien gaineko egile-eskubideak, besterik adierazi ezean.
-            Argazkia zuk ikusi zenuen zerbaitena baldin bada eta beste norbaitek atera baldin bazuen, baina argitaratzeko haren baimena baldin baduzu, argazkilariaren izena ere jarri behar duzu behaketaren deskribapenean."
-        sure_check_out_our_widget_html: "Jakina, berrikusi gure <a href=\"%{url}\" title=\"Behaketen widget\">behaketen widget-a</a>.\n"
-        tags_are_keywords_you_can_add_to_an_html: "\"Behaketei gehi daitezkeen hitz gakoak dira etiketak, topatzen errazagoak izan daitezen.  Esate baterako, barrakuda batek atzetik jarraitu bazintuen urpeko igeriketan Puntarenasen, behaketa honetan etiketa dezakezu: \" barrakuda, beldurgarria, urpekaritza, oporrak, Puntarenas\".\"\n"
+            <em>Ez igo zuk egin ez duzun argazkirik</em>, egin zuenaren baimena izan ezean.  Legez kanpokoa da egile-eskubideak dituzten lanak argitaratzea artistaren edo argazki-jabearen baimenik gabe eta argazkilari guztiek dituzte beren argazkien gaineko egile-eskubideak, besterik adierazi ezean.
+            Argazkia zuk ikusi zenuen zerbaitena baldin bada eta beste norbaitek atera baldin bazuen, baina argitaratzeko haren baimena baldin baduzu, argazkilariaren izena ere jarri behar duzu behaketaren deskribapenean.
+        sure_check_out_our_widget_html: |
+            Jakina, berrikusi gure <a href=\"%{url}\" title=\"Behaketen widget\">behaketen widget-a</a>.
+        tags_are_keywords_you_can_add_to_an_html: |
+            Behaketei gehi daitezkeen hitz gakoak dira etiketak, topatzen errazagoak izan daitezen.  Esate baterako, barrakuda batek atzetik jarraitu bazintuen urpeko igeriketan Puntarenasen, behaketa honetan etiketa dezakezu: "barrakuda, beldurgarria, urpekaritza, oporrak, Puntarenas".
         we_also_support_picasa_html: "Picasa ere erabil dezakezu: <a href=\"%{url}\">Zure Picasa-ko kontuan konfiguratu » </a>"
-        we_also_support_uploading_photos: "\"Zure argazkiak zuzenean %{site_name} webgunera ere igo ditzakezu, baina motela izan daiteke, aldian argazki bakarra igotzen uzten dugulako.  Flickr edo Picasa erabiltzea seguru asko azkarragoa izango da dagoeneko horien zerbitzuak erabiltzen badituzu.\" \n"
+        we_also_support_uploading_photos: |
+            Zure argazkiak zuzenean %{site_name} webgunera ere igo ditzakezu, baina motela izan daiteke, aldian argazki bakarra igotzen uzten dugulako. Flickr edo Picasa erabiltzea seguru asko azkarragoa izango da dagoeneko horien zerbitzuak erabiltzen badituzu.
         welcome_message_html: |
-            "Kaixo! %{site_name} erabiltzen hasi bazara, hau berrikustera gonbidatzen zaitugu:"
-            nuestra guía en: "<a href=%{url}>%{getting_started}</a> gure orrialdearen ezaugarri eta funtzio batzuk ezagut ditzazun.  Zalantzarik baldin baduzu, mesedez, Galdera Ohikoak atalean klikatu."
+            Kaixo! %{site_name} erabiltzen hasi bazara, hau berrikustera gonbidatzen zaitugu:"
+            nuestra guía en: "<a href=%{url}>%{getting_started}</a> gure orrialdearen ezaugarri eta funtzio batzuk ezagut ditzazun.  Zalantzarik baldin baduzu, mesedez, Galdera Ohikoak atalean klikatu.
         what_are_admins_and_curators?: "Zer dira administrariak?"
         what_are_tags?: "Zer dira etiketak?"
         what_can_i_do_to_help_inaturalist?: "Zer egin dezaket %{site_name} guneari laguntzeko?"
@@ -2793,22 +2817,27 @@ eu:
         what_is_the_quality_assessment: "Zein da kalitatezko balorazioa eta nola kalifikatu daitezke behaketak \"ikerketa\" maila eskuratzeko\\?"
         what_kind_of_photos_should_i_attach: "Zer argazki mota erantsi behar dizkiet behaketei? Nik egin ez ditudan argazkiak gehitu al ditzaket?"
         what_technologies_does_the_project_use?: "Proiektua zein teknologiatan eta informazio-iturritan dago oinarrituta?"
-        when_coordinates_are_obscured_it_means_that: "\"Koordenatuak ezkutuan daudenean, zure benetako koordenatuen 10 kilometroko inguruan ausazko puntua publikoki erakusten dela esan nahi du (adibidez: hasierako orrialdean, behaketen orrian eta proiektuen orrietan) eta zure benetako koordenatuak, berriz, zure behaketak ikusten ari zarenean soilik ikusi ahal izango dira (adibidez: banakako proiektuan eta zure behaketen zerrendan). Gogoan izan zure behaketei gehitutako administratzaileek ere ikus ditzaketela zure benetako koordenatuak.  Ezkutuko koordenatuak zirkulu formako markarekin azalduko dira, mapetan errorik gabe eta atzeraelikadura geoespazialarekin.\"\n"
-        while_the_life_list_is_automatically_populated: "\"Bizitza-zerrenda gehitutako behaketetatik automatikoki sortzen den arren, espezieak ez dira zerrendara gehituko %{site_name} webguneak erabilitako izena ezagutzen ez badu.  Ezagut ditzakegun izen alternatiboak erabiltzen saiatzea gomendatzen dizugu.\"\n"
+        when_coordinates_are_obscured_it_means_that: |
+            Koordenatuak ezkutuan daudenean, zure benetako koordenatuen 10 kilometroko inguruan ausazko puntua publikoki erakusten dela esan nahi du (adibidez: hasierako orrialdean, behaketen orrian eta proiektuen orrietan) eta zure benetako koordenatuak, berriz, zure behaketak ikusten ari zarenean soilik ikusi ahal izango dira (adibidez: banakako proiektuan eta zure behaketen zerrendan). Gogoan izan zure behaketei gehitutako administratzaileek ere ikus ditzaketela zure benetako koordenatuak.  Ezkutuko koordenatuak zirkulu formako markarekin azalduko dira, mapetan errorik gabe eta atzeraelikadura geoespazialarekin.
+        while_the_life_list_is_automatically_populated: |
+            Bizitza-zerrenda gehitutako behaketetatik automatikoki sortzen den arren, espezieak ez dira zerrendara gehituko %{site_name} webguneak erabilitako izena ezagutzen ez badu. Ezagut ditzakegun izen alternatiboak erabiltzen saiatzea gomendatzen dizugu.
         who_is_behind_inaturalist?: "Nor dago %{site_name}-(r)en atzean?"
         why_doesnt_inaturalist_recognize_the_name_ive_entered?: "%{site_name}-(e)k zergatik ez du ezagutzen tekleatu dudan izena?"
-        you_can_also_make_additional_life_lists: "\"Organismo talde espezifikoetarako bizitza-zerrenda gehigarriak ere sor ditzakezu, hala nola hegaztien bizitza-zerrenda edo aftaren bizitza-zerrenda.\"\n"
-        you_can_also_obscure_the_coordinates_html: "\"Zure behaketen koordenatuak ezkutatu ere egin ditzakezu, informazio taxonomikoari garrantzirik eman gabe.  Ikusi <a href=#geoprivacy>geopribatutasuna</a>.\"\n"
+        you_can_also_make_additional_life_lists: |
+            Organismo talde espezifikoetarako bizitza-zerrenda gehigarriak ere sor ditzakezu, hala nola hegaztien bizitza-zerrenda edo aftaren bizitza-zerrenda.
+        you_can_also_obscure_the_coordinates_html: |
+            Zure behaketen koordenatuak ezkutatu ere egin ditzakezu, informazio taxonomikoari garrantzirik eman gabe. Ikusi <a href=#geoprivacy>geopribatutasuna</a>.
         you_can_contact_us_at_html: "Hemen jar zaitezke gurekin harremanetan: <a href=\\mailto:%{help_email}\\ >%{help_email}</a>"
         you_can_help_inaturalist_by_giving_us_your_feedback_html: |
-            "%{site_name} webguneari lagun diezaiokezu zure iritzia emanda eta oharrak utzita; gure <a href=%{feedback_url}>atzeraelikadura taldearekin</a> bat eginda eta erabileren azterketak eta txostenak jasotzeko eta funtzio berriak eskatzeko izena emanda.
+            %{site_name} webguneari lagun diezaiokezu zure iritzia emanda eta oharrak utzita; gure <a href=%{feedback_url}>atzeraelikadura taldearekin</a> bat eginda eta erabileren azterketak eta txostenak jasotzeko eta funtzio berriak eskatzeko izena emanda.
             %{site_name} webguneari ere lagun diezaiokezu zure behaketak gehituta eta komunitateko gainerako kideei zure behaketak identifikatzen lagunduta.  
-            Kodetzen baldin badakizu eta zenbait funtzio hobetzen lagundu nahi baduzu, <a href= http://github.com/inaturalist/inaturalist title=inaturalists inaturalist at master - GitHub>egin proiektuaren fork bat hemen: GitHub!</a>"
+            Kodetzen baldin badakizu eta zenbait funtzio hobetzen lagundu nahi baduzu, <a href= http://github.com/inaturalist/inaturalist title=inaturalists inaturalist at master - GitHub>egin proiektuaren fork bat hemen: GitHub!</a>
         you_know_it_when_you_see_it_html: |
-            "<a href= http://en.wikipedia.org/wiki/Jacobellis_v._Ohio>Ikusi bezain pronto badakizu</a>, ezta?  Gure Termino eta Baldintzetako 2. atala betetzen ez duten alderdiak guztiz desegokiak dira eta markatuak izatea edo dagokien administrariei jakinaraztea merezi dute.  Zakarkeria formarik bortitzenak ere desegokiak dira eta gaizki ikusiak dira, baina seguru asko ez ditugu ezabatuko. Seguru asko beste naturalista batzuengan interesik izango ez duten maskota, animalia gatibu, gizaki eta beste organismo batzuei buruzko behaketak ere onartuko dira (azken finean izaki bizidunak dira).  
-            Organismoak ez diren gauzei buruzko behaketak zailak dira definitzen eta ikusi arte ezingo da horiei buruzko erabakirik hartu.  Argi eta garbi naturarekin zerikusirik ez duten gertakariek, norbaiten gosariak, kasu, markatuak izatea merezi dute eta ezabatu egin daitezke; alabaina, kutsaduraren edo istiluen ebidentziak interesgarriak izan daitezke eta seguru asko ez dira ezabatuko."
+            <a href= http://en.wikipedia.org/wiki/Jacobellis_v._Ohio>Ikusi bezain pronto badakizu</a>, ezta? Gure Termino eta Baldintzetako 2. atala betetzen ez duten alderdiak guztiz desegokiak dira eta markatuak izatea edo dagokien administrariei jakinaraztea merezi dute. Zakarkeria formarik bortitzenak ere desegokiak dira eta gaizki ikusiak dira, baina seguru asko ez ditugu ezabatuko. Seguru asko beste naturalista batzuengan interesik izango ez duten maskota, animalia gatibu, gizaki eta beste organismo batzuei buruzko behaketak ere onartuko dira (azken finean izaki bizidunak dira).
+            Organismoak ez diren gauzei buruzko behaketak zailak dira definitzen eta ikusi arte ezingo da horiei buruzko erabakirik hartu.  Argi eta garbi naturarekin zerikusirik ez duten gertakariek, norbaiten gosariak, kasu, markatuak izatea merezi dute eta ezabatu egin daitezke; alabaina, kutsaduraren edo istiluen ebidentziak interesgarriak izan daitezke eta seguru asko ez dira ezabatuko.
     observations: 
-      captive_help_html: "\"Behatu zenuen organismoa <strong>landua</strong> edo <strong>gatibu</strong> izan al da? Esate baterako, <strong>lorategi, zoologiko edo akuario</strong> batean zegoen edo beste kokapen batean zegoen <strong>gizakiek han egotera zuzendu zutelako bakarrik</strong>? Izaki bizidunei buruzko behaketa guztiak ongi etorriak dira, baina izaki horiek basatiak ez ote diren edo naturalizatu egin diren jakin nahi genuke.\"\n"
+      captive_help_html: |
+            Behatu zenuen organismoa <strong>landua</strong> edo <strong>gatibu</strong> izan al da? Esate baterako, <strong>lorategi, zoologiko edo akuario</strong> batean zegoen edo beste kokapen batean zegoen <strong>gizakiek han egotera zuzendu zutelako bakarrik</strong>? Izaki bizidunei buruzko behaketa guztiak ongi etorriak dira, baina izaki horiek basatiak ez ote diren edo naturalizatu egin diren jakin nahi genuke.
       copy_tip: "Behaketa berria gehitu behaketa honen data, lekua, argazkiak eta behaketa-eremuak kopiatuta."
     photos: 
       inviter: 
@@ -2816,9 +2845,11 @@ eu:
         automatically_id_the_new_obs_as: "Behaketa berria automatikoki identifikatu IDarekin honela:"
         dont_forget_the_invite_link_placeholder: "ez ahaztu {{INVITE_LINK}} leku-marka gehitzea"
         invite_other_photographers_to_inat: "%{site_name}-(e)ko beste argazkilari batzuk gonbidatu"
-        invite_your_friends_description: "\"Beste pertsona batzuek argazkiak Flickr-en behaketa gisa gehi ditzaten lagun dezakezu %{site_name}. Aipamena utzi eta gonbidapen bereziaren esteka gehitu besterik ez duzu egin behar.  Behaketa berrirako taxona eta proiektuaren lehen hautaketa ere egin dezakezu.\"\n"
+        invite_your_friends_description: |
+            Beste pertsona batzuek argazkiak Flickr-en behaketa gisa gehi ditzaten lagun dezakezu %{site_name}. Aipamena utzi eta gonbidapen bereziaren esteka gehitu besterik ez duzu egin behar. Behaketa berrirako taxona eta proiektuaren lehen hautaketa ere egin dezakezu.
     places: 
-      complex_boundary_note_html: "\"Muga hori (ingurua) webgunean editatzeko zail samarra da. Hala eta guztiz ere, <a href=%{url}> deskarga dezakezu: KML</a>, nahi duzun GIS aplikazioan editatu eta editatutako zure KML zuzenean igo.\"\n"
+      complex_boundary_note_html: |
+            Muga hori (ingurua) webgunean editatzeko zail samarra da. Hala eta guztiz ere, <a href=%{url}> deskarga dezakezu: KML</a>, nahi duzun GIS aplikazioan editatu eta editatutako zure KML zuzenean igo.
       edit: ~
       index: 
         adding_new_places: "leku berriak gehitzea "
@@ -2830,39 +2861,45 @@ eu:
         map_instruction: "Poligonoaren tresna erabili lekuaren ingurua marrazteko."
     projects: 
       edit: 
-        bioblitz_create_a_new_place_html: "\" %{link}, ziurtatu muga duela, gero joan atzera eta saiatu berriro.\"\n"
+        bioblitz_create_a_new_place_html: |
+            %{link}, ziurtatu muga duela, gero joan atzera eta saiatu berriro.
         bioblitz_desc_html: |
-            "<p>
+            <p>
             Bioblitz ekitaldia honetan oinarritzen da: beste pertsona batzuek leku batean eta denbora tarte jakin batean ahalik eta espezie gehien beha ditzaten saiatuko zara.  
             Jendea biodibertsitatean sartzeko modu dibertigarria da eta aldi berean datu baliotsuak biltzen dira.
-            </p>"
-        cover_desc: "\" Proiektuaren orrialdearen goialdean azalduko den hautazko banner-aren irudia. Hau izan behar du... 950 pixel zabal, 400 pixel baino gutxiago altu.\"\n"
-        custom_project_fields_means: "\"Proiektuko banner-a aldatzeko, proiektuaren eskuinaldean edukia gehitzeko eta itxura hobetzeko nolabaiteko estiloa emateko aukera ematen du.\"\n"
+            </p>
+        cover_desc: |
+            Proiektuaren orrialdearen goialdean azalduko den hautazko banner-aren irudia. Hau izan behar du... 950 pixel zabal, 400 pixel baino gutxiago altu.
+        custom_project_fields_means: |
+            Proiektuko banner-a aldatzeko, proiektuaren eskuinaldean edukia gehitzeko eta itxura hobetzeko nolabaiteko estiloa emateko aukera ematen du.
         end_time_desc: "Bioblitz-erako ordua amaitzea. Hasiera-ordutik urtebete baino gutxiagokoa izan behar du"
         event_url_desc: |
-            "Zure bioblitz-erako erabiltzen ari zaren ekitaldi-erregistro zerbitzuaren URLa.
-            Zenbakizko identifikatzailea duen Eventbrite URLa baldin bada, harpidetza widget-a gehituko dugu zure proiektuaren orrialdean bioblitz-a hasi arte."
+            Zure bioblitz-erako erabiltzen ari zaren ekitaldi-erregistro zerbitzuaren URLa.
+            Zenbakizko identifikatzailea duen Eventbrite URLa baldin bada, harpidetza widget-a gehituko dugu zure proiektuaren orrialdean bioblitz-a hasi arte.
         icon_desc: "Lauki batera moztuko da"
         project_assets_desc_html: |
-            "<p class="description">Proiektuko fitxategiak proiektuari lotutako fitxategiak dira, zenbait arau bereziren arabera: </p>
+            <p class="description">Proiektuko fitxategiak proiektuari lotutako fitxategiak dira, zenbait arau bereziren arabera: </p>
             <ol class="description">
               <li>
                 <code>.logo.jpg</code>, <code>.logo.png</code> eta abar amaitzen diren fitxategiak proiektuko logotipo gisa erabiliko dira proiektuaren orrialdean, proiektuko ikonoaren ordez
               </li>
               <li>KML eta KMZ fitxategiak mapari gehituko zaizkio proiektuaren orrialdean</li>
-            </ol>"
-        trusted_project_means: "| Proiektua egiaztatuta dagoenean, proiektuko administratzaile eta kudeatzaileek beren proiektuko baliabideak sortu, eguneratu eta ezaba ditzakete."
+            </ol>
+        trusted_project_means: |
+            Proiektua egiaztatuta dagoenean, proiektuko administratzaile eta kudeatzaileek beren proiektuko baliabideak sortu, eguneratu eta ezaba ditzakete.
     shared: 
       date: Data
       views: "Ikuspegiak "
     users: 
       dashboard: 
         cannot_update_your_content: "%{site_name} guneak ezin du edukia automatikoki eguneratu aldatzeko."
-        curators_can_see: "\"Gogoratu beharreko gauza bat besterik ez, proiektuko administratzaileek proiektuari gehitutako behaketen koordenatu pribatuak eta ezkutuak ikus ditzakete.\"\n"
-        new_project_admin_html: "\"Orain zergatik zaren proiektuko administratzailea galdetzen diozu zure buruari? Aurreko jabeak seguru asko kontua ezabatu duenez, %{site_name} webguneak zuri esleitu dizu, proiektuko kudeatzailea edo guneko administratzailea zarelako. Proiektuko administratzaile izan nahi ez baduzu, mesedez, jarri honekin harremanetan: <a href=mailto:%{help_email}>%{help_email}</a>\"\n"
+        curators_can_see: |
+            Gogoratu beharreko gauza bat besterik ez, proiektuko administratzaileek proiektuari gehitutako behaketen koordenatu pribatuak eta ezkutuak ikus ditzakete.
+        new_project_admin_html: |
+            Orain zergatik zaren proiektuko administratzailea galdetzen diozu zure buruari? Aurreko jabeak seguru asko kontua ezabatu duenez, %{site_name} webguneak zuri esleitu dizu, proiektuko kudeatzailea edo guneko administratzailea zarelako. Proiektuko administratzaile izan nahi ez baduzu, mesedez, jarri honekin harremanetan: <a href=mailto:%{help_email}>%{help_email}</a>
         taxon_change_desc: |
-            "Taxon-aldaketek %{site_name} webguneko taxonomia-aldaketak adierazten dituzte.
-            Denborarik zati handienean, %{site_name} webguneak automatikoki eguneratuko du zure edukia, aldaketak gertatzen direnean (Ez aukeratu duzunean izan ezik), baina oraindik ere zure datuak noiz eta nola aldatzen diren jakin nahi dugu."
+            Taxon-aldaketek %{site_name} webguneko taxonomia-aldaketak adierazten dituzte.
+            Denborarik zati handienean, %{site_name} webguneak automatikoki eguneratuko du zure edukia, aldaketak gertatzen direnean (Ez aukeratu duzunean izan ezik), baina oraindik ere zure datuak noiz eta nola aldatzen diren jakin nahi dugu.
         you_may_want_to_update: "Taxon hauekin lotutako zenbait eduki dituzu eta baliteke eguneratu nahi izatea."
         your_content_will_be_updated: "Taxon hauekin lotutako zure edukia automatikoki eguneratuko da."
       edit: 
@@ -2870,7 +2907,8 @@ eu:
         taxon_change_desc: ""
     welcome: 
       index: 
-        welcome_message_html: "\"%{image}(e)k biodibertsitateari buruzko informazio-atari hau erabiltzera gonbidatzen zaitu eta bertan naturan behatutakoa partekatu, naturatik ikasi eta informazioa beste naturalista batzuekin partekatu ahal izango duzu.\"\n"
+        welcome_message_html: |
+            %{image}(e)k biodibertsitateari buruzko informazio-atari hau erabiltzera gonbidatzen zaitu eta bertan naturan behatutakoa partekatu, naturatik ikasi eta informazioa beste naturalista batzuekin partekatu ahal izango duzu.
   vulnerable: zaurgarria
   w00t_no_unfragted_taxa: "Aupa! Ez dago txertatu gabeko taxonik!"
   w_photos_only: "argazkiekin soilik"
@@ -2879,7 +2917,8 @@ eu:
   want_to_add_one: "Bat gehitu nahi duzu?"
   want_to_show_off_some_of_your_favorite_taxa: "Zure taxon gogokoenetako batzuk hemen gehitu nahi dituzu?"
   was_it_captive_cultivated?: "Gatibu/hezia izan da?"
-  we_also_support: "\"Zure irudietarako <a href=http://flickr.com>Flickr</a>, <a href=http://picasaweb.google.com>Picasa</a> eta <a href=http://facebook.com>Facebook-ekin</a> ere konexioa dugu.\"\n"
+  we_also_support: |
+            Zure irudietarako <a href=http://flickr.com>Flickr</a>, <a href=http://picasaweb.google.com>Picasa</a> eta <a href=http://facebook.com>Facebook-ekin</a> ere konexioa dugu.
   we_can_only_understand_csv_in: "CSV formatu honetan soilik inporta dezakegu:"
   we_care_privacy: "Zure pribatutasuna axola zaigu!"
   we_couldnt_find_a_user: "Ezin izan dugu erabiltzailerik topatu posta-helbide honekin."
@@ -2970,8 +3009,10 @@ eu:
   x_research_grade_observations_to_species_html: 
     one: "<span class=count>1</span> behaketa ikerketa maila espezieak identifikatu zituzten</span>"
     other: "<span class=count>%{count}</span> behaketak ikerketa maila espezieak identifikatu zituzten</span>"
-  x_site_is_a_social_network_for_naturalist: "\"%{site} NaturaListentzako sare soziala da eta bertan landare eta animalien behaketak gorde ditzakezu, eta zure lagunekin eta ikertzaileekin partekatu eta gure biodibertsitateari buruz gehiago ikasi.\"\n"
-  x_site_shared_licensed_observation_data_with: "\"%{site_name} webguneak lizentzia duten behaketak ikerketako hainbat gunerekin partekatzen ditu, horrela, zure datuak eskuragarriago egon daitezke zientzialari eta ikerlarientzat.\"\n"
+  x_site_is_a_social_network_for_naturalist: |
+            %{site} NaturaListentzako sare soziala da eta bertan landare eta animalien behaketak gorde ditzakezu, eta zure lagunekin eta ikertzaileekin partekatu eta gure biodibertsitateari buruz gehiago ikasi.
+  x_site_shared_licensed_observation_data_with: |
+            %{site_name} webguneak lizentzia duten behaketak ikerketako hainbat gunerekin partekatzen ditu, horrela, zure datuak eskuragarriago egon daitezke zientzialari eta ikerlarientzat.
   x_species: 
     one: "1 espezie"
     other: "%{count} espezie"
@@ -3055,7 +3096,8 @@ eu:
   you_sure_remove_this_invitation?: "Ziur zaude gonbidapen hau ezabatu nahi duzula?"
   you_sure_remove_this_observation?: "Ziur zaude behaketa hau ezabatu nahi duzula?"
   you_sure_to_delete_observation?: "Ziur zaude zerrenda hau ezabatu nahi duzula?"
-  you_think_observation_inacurate: "\"Behaketa zehaztasunik gabekoa dela pentsatzen baduzu, mesedez, gehitu identifikazioa, hartu parte datuen kalitate atalean edo zehaztasunik eza aipamen batekin deskribatu.\"\n"
+  you_think_observation_inacurate: |
+            Behaketa zehaztasunik gabekoa dela pentsatzen baduzu, mesedez, gehitu identifikazioa, hartu parte datuen kalitate atalean edo zehaztasunik eza aipamen batekin deskribatu.
   you_would_get_the: "Etiketa hauek eskuratuko dituzu"
   youll_need_to_link: "Estekatu egin beharko duzu"
   your: Zu
