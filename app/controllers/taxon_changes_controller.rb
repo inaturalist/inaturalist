@@ -17,7 +17,8 @@ class TaxonChangesController < ApplicationController
     @taxon = Taxon.find_by_id(filter_params[:taxon_id].to_i) unless filter_params[:taxon_id].blank?
     @change_group = filter_params[:change_group] unless filter_params[:change_group].blank?
     @taxon_scheme = TaxonScheme.find_by_id(filter_params[:taxon_scheme_id]) unless filter_params[:taxon_scheme_id].blank?
-    
+    @user = User.find_by_id(params[:user_id]) || User.find_by_login(params[:user_id]) unless params[:user_id].blank?
+
     @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
     @taxon_schemes = TaxonScheme.all(:limit => 100).sort_by{|ts| ts.title}
     
@@ -33,6 +34,7 @@ class TaxonChangesController < ApplicationController
     scope = scope.taxon(@taxon) if @taxon
     scope = scope.source(@source) if @source
     scope = scope.taxon_scheme(@taxon_scheme) if @taxon_scheme
+    scope = scope.by(@user) if @user
     
     @taxon_changes = scope.page(params[:page]).
       select("DISTINCT ON (taxon_changes.id) taxon_changes.*").

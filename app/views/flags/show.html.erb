@@ -1,4 +1,7 @@
-<% content_for(:title) do %>Flag for <%= @object.to_plain_s %><% end %>
+<% content_for(:title) do %>
+  <%- @title = "Flag for #{link_to(@object.to_plain_s, @object) rescue @object.to_plain_s}".html_safe -%>
+  <%= strip_tags @title %>
+<% end %>
 <% content_for(:extracss) do -%>
   <style type="text/css" media="screen">
     #tools {
@@ -13,7 +16,15 @@
   </style>
 <% end -%>
 
-<h2>Flag for <%= link_to @object.to_plain_s, @object %></h2>
+<div id="pageheader" class="clear">
+  <div class="breadcrumbs">
+    <%-
+      url = send("#{@object.class.name.underscore}_flags_url", @object)
+    -%>
+    <strong><%= link_to "&laquo; #{t :back_to_x, :noun => "#{t(:flags_for).downcase} #{@object.to_plain_s}"}".html_safe, url, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+  <h2><%= @title %></h2>
+</div>
 
 <table>
   <tr>
