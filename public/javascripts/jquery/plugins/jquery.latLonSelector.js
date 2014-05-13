@@ -14,9 +14,9 @@
     
     // If embedded map, show the wrapper on the first input
     if (typeof(options.mapDiv) != 'undefined') {
-      $.fn.latLonSelector.showMap($(this).get(0));
-      $.fn.latLonSelector.hideMap($(this).get(0));
-    };
+      $.fn.latLonSelector.showMap($(this).get(0))
+      $.fn.latLonSelector.hideMap()
+    }
   }
 
   function setupMap(options) {
@@ -454,11 +454,11 @@
   };
   
   $.fn.latLonSelector.hideMap = function(options) {
-    var options = $.extend({}, options);
+    var options = $.extend({}, options)
     if (options.effect && options.effect == 'none') {
-      $('#latLonSelector').setVisible(false);
+      $('#latLonSelector').setVisible(false)
     } else {
-      $('#latLonSelector').fadeOut();
+      $('#latLonSelector').fadeOut()
     };
   };
   

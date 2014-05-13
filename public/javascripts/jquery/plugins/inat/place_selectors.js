@@ -156,7 +156,7 @@
           if ($('#latLonSelector:visible').length == 0) {
             $(input).get(0).focus();
           } else {
-            $.fn.latLonSelector.hideMap(input);
+            $.fn.latLonSelector.hideMap()
           };
         }
         catch (e) {

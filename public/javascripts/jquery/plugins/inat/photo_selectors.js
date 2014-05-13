@@ -398,7 +398,9 @@
     })
     
     $(controls).append($sourceWrapper)
-    if ($sourceWrapper.find('select').length == 0) { $sourceWrapper.hide() }
+    if ($sourceWrapper.find('select').length == 0) { 
+      $sourceWrapper.hide()
+    }
     if (options.bootstrap) {
       var prevnext = $('<div class="btn-group pull-right"></div>')
       prevnext.append(prev,next)
@@ -421,7 +423,7 @@
     
     $(wrapper).append(controls);
     
-    if (options.baseURL && options.baseURL.match(/local_photo/)) {
+    if (options.baseURL && options.baseURL.match(/local_photo/) && $sourceWrapper.find('select').length != 0) {
       $('.nextlink, .prevlink, .allNone, .photoSelectorSearch', wrapper).hide()
       $sourceWrapper.show()
     }
