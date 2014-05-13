@@ -8,31 +8,54 @@ shared_examples_for "a ProjectObservationsController" do
     @project_user = ProjectUser.make!(:user => user, :project => project)
   end
 
-  it "should create" do
-    project.users.should include(user)
-    lambda {
-      post :create, :format => :json, :project_observation => {
-        :observation_id => observation.id,
-        :project_id => project.id
-      }
-    }.should change(ProjectObservation, :count).by(1)
-  end
+  describe "create" do
+    it "should work" do
+      project.users.should include(user)
+      lambda {
+        post :create, :format => :json, :project_observation => {
+          :observation_id => observation.id,
+          :project_id => project.id
+        }
+      }.should change(ProjectObservation, :count).by(1)
+    end
 
-  it "should yield JSON for invalid record on create" do
-    lambda {
-      post :create, :format => :json, :project_observation => {
-        :project_id => project.id
-      }
-    }.should_not raise_error
-  end
+    it "should yield JSON for invalid record" do
+      lambda {
+        post :create, :format => :json, :project_observation => {
+          :project_id => project.id
+        }
+      }.should_not raise_error
+    end
 
-  it "should yield JSON for invalid record on create if rules" do
-    project.project_observation_fields.create(:observation_field => ObservationField.make!, :required => true)
-    lambda {
-      post :create, :format => :json, :project_observation => {
-        :project_id => project.id
-      }
-    }.should_not raise_error
+    it "should yield JSON for invalid record if rules" do
+      project.project_observation_fields.create(:observation_field => ObservationField.make!, :required => true)
+      lambda {
+        post :create, :format => :json, :project_observation => {
+          :project_id => project.id
+        }
+      }.should_not raise_error
+    end
+
+    describe "with project_id" do
+      let(:new_project) { Project.make! }
+      it "should add project observation" do
+        lambda {
+          post :create, :format => :json, :project_id => new_project.id, :project_observation => {
+            :observation_id => observation.id,
+            :project_id => new_project.id
+          }
+        }.should change(ProjectObservation, :count).by(1)
+      end
+
+      it "should add project user" do
+        new_project.project_users.where(:user_id => user.id).should be_blank
+        post :create, :format => :json, :project_id => new_project.id, :project_observation => {
+          :observation_id => observation.id,
+          :project_id => new_project.id
+        }
+        new_project.project_users.where(:user_id => user.id).should_not be_blank
+      end
+    end
   end
 
   it "should destroy" do
