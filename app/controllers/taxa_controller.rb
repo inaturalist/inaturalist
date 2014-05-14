@@ -586,8 +586,8 @@ class TaxaController < ApplicationController
   end
   
   def map
-    @cloudmade_key = CONFIG.cloudmade.key
-    @bing_key = CONFIG.bing.key
+    @cloudmade_key = CONFIG.cloudmade.try(:key)
+    @bing_key = CONFIG.bing.try(:key)
     
     if @taxon = Taxon.find_by_id(params[:id].to_i)
       load_single_taxon_map_data(@taxon)

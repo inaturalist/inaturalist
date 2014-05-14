@@ -339,6 +339,8 @@ $(document).ready(function() {
         "provided by <a href='http://cloudmade.com/'>CloudMade</a>"
       )
     )
+  } else {
+    $('#basemap_map_label').hide()
   }
   
   if (BING_KEY) {
@@ -349,6 +351,9 @@ $(document).ready(function() {
         + "?key="+BING_KEY
         + "&jsonp=bingCallback");
     document.body.appendChild(script);
+    if (!CLOUDMADE_KEY) {
+      $('#controls').hide()
+    }
   } else {
     loadLayers()
     $('#basemap').hide()
@@ -510,11 +515,10 @@ function bingCallback(data) {
     for (var j = 0; j < resources.length; j++) {
       var resource = resources[j];
       window.bingLyr = po.image()
-          .url(Polymaps.bingUrlTemplate(resource.imageUrl, resource.imageUrlSubdomains))
-          .id('satellite')
-          .visible(false)
-      map.add(bingLyr
-        ).tileSize({x: resource.imageWidth, y: resource.imageHeight});
+        .url(Polymaps.bingUrlTemplate(resource.imageUrl, resource.imageUrlSubdomains))
+        .id('satellite')
+        .visible(false)
+      map.add(bingLyr).tileSize({x: resource.imageWidth, y: resource.imageHeight});
     }
   }
 
@@ -530,11 +534,15 @@ function bingCallback(data) {
     $('#bing_attribution').hide()
   })
   $('#basemap_sat').click(function() {
-    cloudmadeLyr.visible(false)
+    if (typeof(cloudmadeLyr) != 'undefined') cloudmadeLyr.visible(false)
+    console.log("[DEBUG] clicked: #basemap_sat")
     bingLyr.visible(true)
     $('#cloudmade_attribution').hide()
     $('#bing_attribution').show()
   })
+  if (!CLOUDMADE_KEY) {
+    $('#basemap_sat').click()
+  }
 }
 
 function toggleLegend() {

@@ -15,7 +15,7 @@
   :javascript
     var PLACE = #{@place.to_json},
         NPOINTS = #{@npoints.to_i},
-        CLOUDMADE_KEY = #{CONFIG.cloudmade.key.inspect},
+        CLOUDMADE_KEY = #{CONFIG.cloudmade.try(:key).to_json},
         BING_KEY = #{CONFIG.bing.key.inspect}
     $(document).ready(function() {
       $('#place_parent_id').chooser({
@@ -32,13 +32,13 @@
         map.fitBounds(b)
       }
       var d = new Date()
-      var osm = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/22677/256/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; '+d.getFullYear()+' OpenStreetMap contributors, Imagery &copy; '+d.getFullYear()+' CloudMade',
-        key: CLOUDMADE_KEY
-      })
       var bing = new L.BingLayer(BING_KEY, {type:"AerialWithLabels"});
-      map.addLayer(osm);
-      map.addControl(new L.Control.Layers({'Map (OSM)':osm, "Satellite (Bing)":bing}, {}));
+      if (CLOUDMADE_KEY) {
+        map.addLayer(osm);
+        map.addControl(new L.Control.Layers({'Map (OSM)':osm, "Satellite (Bing)":bing}, {}));
+      } else {
+        map.addLayer(bing)
+      }
       var fullScreen = new L.Control.FullScreen();
       // add fullscreen control to the map
       map.addControl(fullScreen)

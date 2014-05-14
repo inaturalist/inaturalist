@@ -62,10 +62,14 @@
 
 <div id="controls" class="floating">
   <div id="basemap">
-    <input type="radio" name="basemap" value="map" id="basemap_map" checked="checked">
-    <label for="basemap_map"><%= t(:map) %></label>
-    <input type="radio" name="basemap" value="sat" id="basemap_sat">
-    <label for="basemap_sat"><%= t(:Sat) %></label>
+    <label id="basemap_map_label" for="basemap_map">
+      <input type="radio" name="basemap" value="map" id="basemap_map" checked="checked">
+      <%= t(:map) %>
+    </label>
+    <label id="basemap_sat_label" for="basemap_sat">
+      <input type="radio" name="basemap" value="sat" id="basemap_sat"/>
+      <%= t(:Sat) %>
+    </label>
   </div>
 </div>
 <div id="copyright"></div>
