@@ -547,7 +547,12 @@ ca:
   choose_a_list_above: "Selecciona una llista de dalt"
   choose_a_place: "Selecciona un lloc"
   choose_a_taxon: "Escull una espècie o grup (opcional)"
-  choose_cc_licensed_photos_html: "Troba fotos amb llicència de <a href=\"http://creativecommons.org/\">CC</a> a Flickr o selecciona-les de les teves  observacions a %{site_name}. Prova de seleccionar imatges que <em>mostrin característiques de diagnòstic</em> i <em> que es vegin bé com a icones</em>.  La <em>primera apareix per defecte</em>."
+  choose_cc_licensed_photos_html: |
+    Troba fotos amb llicència de <a href=\"http://creativecommons.org/\">CC</a> 
+    a Flickr o selecciona-les de
+    les teves  observacions a %{site_name}. Prova de seleccionar imatges que
+    <em>mostrin característiques de diagnòstic</em> i <em> que es vegin bé com
+    a icones</em>.  La <em>primera apareix per defecte</em>.
   choose_files_from_your_computer: "selecciona l'arxiu al teu ordinador."
   choose_from_your_lists: "Selecciona de les teves llistes"
   choose_good_default_photos: "selecciona bones fotos per defecte del grup de fotos de Creative Commons a Flickr"
@@ -581,7 +586,7 @@ ca:
   colors: Colors
   comma_separated_list_of_tracking_codes: |
       Separa els codis de seguiment amb comes. Afegeix això si vols afegir un codi de seguiment quan les persones facin
-      observacions en el teu projecte, ex. %{root_%{url}observations/new?project_%{id}=%{project_%{id}&tracking_code=elteucodi123.
+      observacions en el teu projecte, ex. %{root_url}observations/new?project_id=%{project_id}&tracking_code=elteucodi123.
       Es pot utilitzar per fer el seguiment de la participació en diferents fonts. Pots accedir a aquests codis de seguiment
       quan descarreguis les observacions del teu projecte en format CSV.
   comma_separated_please: "Si us plau, separa mitjançant comes"
@@ -690,17 +695,59 @@ ca:
   data_quality_assessment: "Avaluació de la qualitat de dades"
   datatype: "Tipus de dades"
   date: 
-    abbr_day_names: "- dg. - dl. - dt. - dc. - dj. - dv. - ds."
-    abbr_month_names: " - ~ - gen.\n\
-        - febr. - març - abr. - maig - juny - jul. - ag. - set. - oct. - nov. - des."
-    day_names: "- diumenge - dilluns - dimarts - dimecres - dijous - divendres - dissabte"
+    abbr_day_names: 
+      - dg. 
+      - dl. 
+      - dt. 
+      - dc. 
+      - dj. 
+      - dv. 
+      - ds.
+    abbr_month_names: 
+      -
+      - gen.
+      - febr. 
+      - març 
+      - abr. 
+      - maig 
+      - juny 
+      - jul. 
+      - ag. 
+      - set. 
+      - oct. 
+      - nov. 
+      - des.
+    day_names: 
+      - diumenge 
+      - dilluns 
+      - dimarts 
+      - dimecres 
+      - dijous 
+      - divendres 
+      - dissabte
     formats: 
       default: "%d/%m/%Y"
       long: "%d de %B de %Y"
       month_year: "%B %Y"
       short: "%d de %b"
-    month_names: " - ~ - gener - febrer - març - abril - maig - juny - juliol - agost - setembre - octubre - novembre - desembre"
-    order: " - !ruby/symbol day - !ruby/symbol month - !ruby/symbol year"
+    month_names: 
+      - ~ 
+      - gener 
+      - febrer 
+      - març 
+      - abril 
+      - maig 
+      - juny 
+      - juliol 
+      - agost 
+      - setembre 
+      - octubre 
+      - novembre 
+      - desembre
+    order: 
+      - !ruby/symbol day 
+      - !ruby/symbol month 
+      - !ruby/symbol year
   date_added: "Data afegida"
   date_created: "data de creació"
   date_formats: 

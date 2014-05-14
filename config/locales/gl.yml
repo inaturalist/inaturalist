@@ -579,7 +579,7 @@ gl:
   colors: Cores
   comma_separated_list_of_tracking_codes: |
       Separa os códigos de rastreo con comas. Engade isto se queres poñer un código de rastreo cando as persoas fagan
-      observacións no teu proxecto, ex. %{root_%{url}observations/new?project_id=%{project_id}&tracking_code=tucodigo123.
+      observacións no teu proxecto, ex. %{root_url}observations/new?project_id=%{project_id}&tracking_code=tucodigo123.
       Pódese empregar para rastrear a participación en diferentes fontes. Podes acceder a estes códigos de rastreo
       cando descargues as observacións do teu proxecto en formato CSV.
   comma_separated_please: "Por favor separa por comas"
@@ -688,16 +688,59 @@ gl:
   data_quality_assessment: "Avaliación da calidade de datos"
   datatype: "Tipo de datos"
   date:
-    abbr_day_names: "- dom - lun - mar - mér - xov - ven - sáb"
-    abbr_month_names: " - ~ - xan - feb - mar - abr - mai - xuñ - xul - ago - set - out - nov - dec"
-    day_names: "- domingo - luns - martes - mércores - xoves - venres - sábado"
+    abbr_day_names: 
+      - dom 
+      - lun 
+      - mar 
+      - mér 
+      - xov 
+      - ven 
+      - sáb
+    abbr_month_names: 
+      - ~ 
+      - xan 
+      - feb 
+      - mar 
+      - abr 
+      - mai 
+      - xuñ 
+      - xul 
+      - ago 
+      - set 
+      - out 
+      - nov 
+      - dec
+    day_names: 
+      - domingo 
+      - luns 
+      - martes 
+      - mércores 
+      - xoves 
+      - venres 
+      - sábado
     formats:
       default: "%d/%m/%Y"
       long: "%d de %B de %Y"
       month_year: "%B %Y"
       short: "%d de %b"
-    month_names: " - ~ - xaneiro - febreiro - marzo - abril - maio - xuño - xullo - agosto - setembro - outubro - novembro - decembro"
-    order: " - !ruby/symbol day - !ruby/symbol month - !ruby/symbol year"
+    month_names: 
+      - ~ 
+      - xaneiro 
+      - febreiro 
+      - marzo 
+      - abril 
+      - maio 
+      - xuño 
+      - xullo 
+      - agosto 
+      - setembro 
+      - outubro 
+      - novembro 
+      - decembro
+    order: 
+      - !ruby/symbol day 
+      - !ruby/symbol month 
+      - !ruby/symbol year
   date_added: "Data engadida"
   date_created: "data de creación"
   date_formats:

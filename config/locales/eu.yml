@@ -570,12 +570,20 @@ eu:
   collapse_days: "egunak hartu"
   collapse_updates: "eguneraketak egin"
   color_categories_for_this_species: |
-        Espezierako koloreen kategoriak, badirudi koloreen arabera ordenatutako gida egitera zoazela.
-        Mesedez, ez zerrendatu organismoaren kolore guztiak, nabarmenenak soilik. Landareen koloreetarako, lorearen kolorea erabili. Mesedez, ez jarri kategorizatzen laguntzen ez duen kolorerik, esate baterako: ez erabili kafe kolorea ugaztunetarako eta berdea landareetarako.
+    Espezierako koloreen kategoriak, badirudi koloreen arabera ordenatutako
+    gida egitera zoazela. Mesedez, ez zerrendatu organismoaren kolore guztiak,
+    nabarmenenak soilik. Landareen koloreetarako, lorearen kolorea erabili.
+    Mesedez, ez jarri kategorizatzen laguntzen ez duen kolorerik, esate
+    baterako: ez erabili kafe kolorea ugaztunetarako eta berdea
+    landareetarako.
   colors: "Koloreak "
   comma_separated_list_of_tracking_codes: |
-       Arakatze-kodeak komekin bereizi. Gehitu hau arakatze-kodea jarri nahi baduzu jendeak zure proiektuan behaketak egitean, adib. %{root_%{url}observations/new?project_%{id}=%{project_%{id}&tracking_code=tucodigo123.
-       Hainbat iturritako partaidetza arakatzeko erabil daiteke. Arakatze-kode hauetara sar zaitezke zure proiektuko behaketak CSV formatuan deskargatzen dituzunean.
+    Arakatze-kodeak komekin bereizi. Gehitu hau arakatze-kodea jarri nahi
+    baduzu jendeak zure proiektuan behaketak egitean, adib. 
+    %{root_url}observations/new?project_id=%{project_id}&tracking_code=tucodigo123.
+    Hainbat iturritako partaidetza arakatzeko erabil daiteke. Arakatze-kode
+    hauetara sar zaitezke zure proiektuko behaketak CSV formatuan
+    deskargatzen dituzunean.
   comma_separated_please: "Mesedez, komekin bereizi"
   comment: "oharra "
   comment_deleted: "Oharra ezabatu egin da"
@@ -682,17 +690,59 @@ eu:
   data_quality_assessment: "Datuen kalitatearen ebaluazioa"
   datatype: "Datu mota"
   date: 
-    abbr_day_names: "- ig. - al. - ar. - az. - og. - ol. - lr."
-    abbr_month_names: " - ~ - urt.\n\
-        - ots. - mar. - api. - mai. - eka. - uzt. - abu. - ira. - urr. - aza. - abe."
-    day_names: "- igandea - astelehena - asteartea - asteazkena - osteguna - ostirala - larunbata"
+    abbr_day_names: 
+      - ig. 
+      - al. 
+      - ar. 
+      - az. 
+      - og. 
+      - ol. 
+      - lr.
+    abbr_month_names: 
+      - ~ 
+      - urt.
+      - ots. 
+      - mar. 
+      - api. 
+      - mai. 
+      - eka. 
+      - uzt. 
+      - abu. 
+      - ira. 
+      - urr. 
+      - aza. 
+      - abe.
+    day_names: 
+      - igandea 
+      - astelehena 
+      - asteartea 
+      - asteazkena 
+      - osteguna 
+      - ostirala 
+      - larunbata
     formats: 
       default: "%Y/%m/%d"
       long: "%Y(e)ko %Bk %d"
       month_year: "%B %Y"
       short: "%b(e)ko %d"
-    month_names: " - ~ - urtarrila - otsaila - martxoa - apirila  - maiatza - ekaina - uztaila - abuztua  - iraila - urria - azaroa - abendua"
-    order: " - !ruby/symbol day - !ruby/symbol month - !ruby/symbol year"
+    month_names: 
+      - ~ 
+      - urtarrila 
+      - otsaila 
+      - martxoa 
+      - apirila  
+      - maiatza 
+      - ekaina 
+      - uztaila 
+      - abuztua  
+      - iraila 
+      - urria 
+      - azaroa 
+      - abendua
+    order: 
+      - !ruby/symbol day 
+      - !ruby/symbol month 
+      - !ruby/symbol year
   date_added: "Gehitutako data"
   date_created: sortze-data
   date_formats: 
