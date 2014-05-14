@@ -27,7 +27,7 @@ gem 'doorkeeper', '~> 0.6.7'
 gem 'dynamic_form'
 gem 'exifr'
 gem 'faker'
-gem 'flickraw', "~> 0.9.8"
+gem 'flickraw', "~> 0.9.8", :git => 'git://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
 gem "friendly_id", "~> 4.0.1"
 gem 'gdata', :git => 'git://github.com/dwaite/gdata.git'
 gem 'geocoder'

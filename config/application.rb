@@ -85,7 +85,7 @@ GeoPlanet.appid = YDN_APP_ID
 
 FlickRaw.api_key = FLICKR_API_KEY
 FlickRaw.shared_secret = FLICKR_SHARED_SECRET
-FlickRaw.secure = false
+FlickRaw.ca_path = "/etc/ssl/certs" if File.exists?("/etc/ssl/certs")
 
 # General settings
 SITE_NAME = CONFIG.site_name
