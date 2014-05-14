@@ -3,7 +3,10 @@ require 'trollop'
 
 opts = Trollop::options do
     banner <<-EOS
-Create and/or sync CA county/family lists from Calflora
+Create and/or sync CA county/family lists from Calflora.
+
+WARNING: this is not the script we used ot populate lists on iNaturalist.org.
+This script should just be used for testing purposes.
 
 Usage:
   rails runner tools/sync_calflora_lists.rb
@@ -57,11 +60,14 @@ def work_on_place(place)
   #   ["list_id = #{place.check_list_id} AND taxon_ancestor_ids LIKE ?", "#{self_and_ancestor_ids}/%"])
   # puts "Created list of #{taxon.name} for #{place.display_name} #{check_list}"
 
-  name = place.name.gsub(/\s*county\s+/i, '').capitalize
-  url = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{name}&output=text"
-  agent = Mechanize.new
-  page = agent.get(url)
+  place_name = place.name.gsub(/\s*county\s+/i, '').capitalize
+  url = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{place_name}&output=text"
+  url_introduced = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{place_name}&output=text&where-native=f"
+  page = RestClient.get(url)
   names = page.body.split("\n")[1..-1]
+  page_introduced = RestClient.get(url_introduced)
+  names_introduced = page_introduced.body.split("\n")[1..-1]
+  puts "\t#{names.size} names, #{names_introduced.size} introduced"
   if names.blank?
     puts "\tERROR: no names for #{url}, skipping..."
     return
@@ -72,7 +78,7 @@ def work_on_place(place)
     :in_text => "Calflora #{Time.now.year}",
     :citation => "Calflora: Information on California plants for education, research and conservation. [web application]. #{Time.now.year}. Berkeley, California: The Calflora Database [a non-profit organization]. Available: http://www.calflora.org/ (Accessed: #{Time.now.strftime('%M %d, %Y')}).",
     :url => url,
-    :title => "Calflora Plant Search Results, county: #{name}"
+    :title => "Calflora Plant Search Results, county: #{place_name}"
   )
 
   skipped_names = []
@@ -99,13 +105,23 @@ def work_on_place(place)
       next
     end
     lists << list unless lists.include?(list)
+    establishment_means = names_introduced.include?(name) ? ListedTaxon::INTRODUCED : ListedTaxon::NATIVE
+    puts "\t\tEstablishment means: #{establishment_means}"
     if existing_lt = place.check_list.listed_taxa.where(:taxon_id => taxon.id).first
       puts "\t\tFound existing lt: #{existing_lt}, moving to new list"
-      existing_lt.update_attributes(:list => list) unless OPTS[:test]
+      existing_lt.update_attributes(:list => list, :establishment_means => establishment_means) unless OPTS[:test]
     else
       puts "\t\tAdding #{taxon} to #{list}"
       lt = unless OPTS[:test]
-        list.add_taxon(taxon, :source => source, :skip_sync_with_parent => true, :force_update_cache_columns => true)
+        listed_taxon = list.listed_taxa.find_by_taxon_id(taxon.id)
+        listed_taxon ||= ListedTaxon.new(:taxon => taxon, :list => list)
+        listed_taxon.establishment_means = establishment_means
+        listed_taxon.source = source
+        listed_taxon.skip_sync_with_parent = true
+        listed_taxon.force_update_cache_columns = true
+        listed_taxon.save
+        puts "\t\tSaved #{listed_taxon}"
+        listed_taxon
       end
       if lt && !lt.valid?
         puts "\t\t\tFailed to add #{lt}: #{lt.errors.full_messages.to_sentence}"
@@ -153,6 +169,9 @@ def find_external_taxon_for(name)
 rescue Timeout::Error => e
   puts "\t\t\tTimed out, skipping"
   nil
+rescue TaxonNameAdapterError => e
+  puts "\t\t\tFailed to add TaxonName: #{e.message}"
+  nil
 end
 
 def create_new_taxon_for(name)
@@ -189,6 +208,9 @@ def create_new_taxon_for(name)
     # TAXON_SCHEME.taxa << t
   end
   t
+rescue TaxonNameAdapterError => e
+  puts "\t\t\tFailed to add TaxonName: #{e.message}"
+  nil
 end
 
 def find_or_create_list_for(taxon, place, options = {})

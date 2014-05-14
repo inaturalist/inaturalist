@@ -1434,6 +1434,7 @@ class ObservationsController < ApplicationController
     @default_taxa = @taxon ? @taxon.ancestors : Taxon::ICONIC_TAXA
     @taxon ||= Taxon::LIFE
     @default_taxa = [@default_taxa, @taxon].flatten.compact
+    @establishment_means = params[:establishment_means] if ListedTaxon::ESTABLISHMENT_MEANS.include?(params[:establishment_means])
 
     respond_to do |format|
       format.html
