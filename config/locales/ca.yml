@@ -134,7 +134,7 @@ ca:
   add_a_link_raquo: "Afegeix un enllaç »"
   add_a_name: "Afegeix un nom"
   add_a_new_change_group: "Afegeix un nou canvi en grup"
-  add_a_new_observation_to_id_please!: "Afegeix una observació a \\«ID, si us plau\\»!"
+  add_a_new_observation_to_id_please!: "Afegeix una observació a \"ID, si us plau\"!"
   add_a_place_raquo: "Afegeix un lloc »"
   add_a_single_observation: "Afegeix una breu observació"
   add_a_taxon: "Afegeix una espècie o grup"
@@ -157,7 +157,7 @@ ca:
   add_description: "Afegeix %{description_name}"
   add_edit_more_fields: "Afegeix/edita més camps"
   add_from_your_observations: "Afegeix des de les teves observacions"
-  add_higher_level_taxon: "Afegeix un tàxon de més alt nivell (per exemple \\ocells\\)"
+  add_higher_level_taxon: "Afegeix un tàxon de més alt nivell (per exemple \"ocells\")"
   add_id: "Afegeix identificador"
   add_it_to_place_raquo: "Afegeix a un lloc »"
   add_more_photos: "Afegeix més fotos"
@@ -974,7 +974,7 @@ ca:
   establishment_means_describes_how: "El mitjà d'establiment descriu com es va implantar el tàxon dins una àrea. Mostra DarwinCore per <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\"> obtenir més informació de terminologia</a>."
   establishment_means_descriptions: 
     arrived_in_the_region_via_anthropogenic_means: "va arribar a la regió per mitjans antropogènics"
-    native_and_occurs_nowhere_else: "només succeeix a Mèxic"
+    native_and_occurs_nowhere_else: "nadiu, no succeeix a cap altre lloc"
   every_species_seen_by: "Totes les espècies vistes per"
   everyone: tots
   everyone_journal_posts: "Articles a tots els diaris"
@@ -1721,7 +1721,7 @@ ca:
         Els camps són informació extra associada a la teva observació, com el nombre d'espècies observades, descripció de l'hàbitat, o el que vulguis comentar.
   observations_for: "Observacions per a"
   observations_for_project: "Observacions per a %{project}"
-  observations_from: "Observacions de %{data}"
+  observations_from: "Observacions de %{date}"
   observations_from_this_place: "Observacions d'aquest lloc"
   observations_from_this_project: "Observacions d'aquest projecte"
   observations_from_you: "Les teves observacions"
@@ -2159,7 +2159,7 @@ ca:
   research: recerca
   research_grade: "grau de recerca"
   research_grade_expandable_html: "G<span class='full'>rau de </span>r<span class='full'>ecerca</span>"
-  research_grade_observations_have: "Les observacions amb \\grau de recerca\\ disposen de data, foto, coordenades i una identificació amb el suport de la comunitat. Fes clic aquí per veure l'avaluació de la qualitat de les dades."
+  research_grade_observations_have: "Les observacions amb \"grau de recerca\" disposen de data, foto, coordenades i una identificació amb el suport de la comunitat. Fes clic aquí per veure l'avaluació de la qualitat de les dades."
   research_quality: "Qualitat de la recerca"
   reset_your_password: "Restableix la contrasenya"
   resolve: Resol
@@ -2415,7 +2415,9 @@ ca:
       també, si ho desitges, podràs eliminar totes les subscripcions d'algun lloc que ja no
       vulguis tenir en les teves preferències.
   subscribe_to_this: "Subscriu-te a aquest"
-  subscribe_to_x_from_this_y_html: "<a href=\\"
+  subscribe_to_x_from_this_y_html: |
+      <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Subscriure's</a>
+      a %{x} d'aquestes %{y}.
   subscriptions_arent_available_for: " Les subscripcions no estan disponibles per a llocs sense límits definits."
   successfully_changed_your_password: "La teva contrasenya es va modificar satisfactòriament."
   suggest_an_id: "Suggereix un identificador"
@@ -2893,7 +2895,7 @@ ca:
             permís per publicar-la, has d'anotar també el nom del fotògraf o fotògrafa
             en la descripció de l'observació.
         sure_check_out_our_widget_html: |
-            Per descomptat, pots revisar el nostre <a href=\"%{url}\" title=\" Giny d’observacions\">Giny d'observacions</a>.
+            Per descomptat, pots revisar el nostre <a href="%{url}" title=" Giny d’observacions">Giny d'observacions</a>.
         tags_are_keywords_you_can_add_to_an_html: |
             Les etiquetes són paraules clau que pots afegir a les teves observacions perquè sigui més fàcil trobar-les. Per exemple, si una barracuda et va seguir en un viatge de busseig a Puntarenas, pots etiquetar l'observació com a "barracuda, de por, busseig, vacances, Puntarenas".
         we_also_support_picasa_html: "També pots utilitzar Picasa: <a href=\"%{url}\">Configura el teu compte de Picasa » </a>"
@@ -2942,7 +2944,7 @@ ca:
         you_can_also_obscure_the_coordinates_html: |
             També pots ocultar les coordenades de les teves pròpies observacions
             sense importar la informació taxonòmica.  Mostra <a href="#geoprivacy">geoprivacitat</a>.
-        you_can_contact_us_at_html: "Ens pots contactar a <a href=\\mailto:%{help_email}\\ >%{help_email}</a>"
+        you_can_contact_us_at_html: "Ens pots contactar a <a href=\"mailto:%{help_email}\" >%{help_email}</a>"
         you_can_help_inaturalist_by_giving_us_your_feedback_html: |
             Pots ajudar %{site_name} oferint-nos la teva opinió i comentaris;
             unint-te al <a href="%{feedback_url}">nostre grup de retroacció</a>
@@ -2954,8 +2956,7 @@ ca:
         you_know_it_when_you_see_it_html: |
             <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">Ho saps quan ho veus</a>,
             oi?  Els aspectes que incompleixin la secció 2 dels nostres Termes i condicions són
-            definitivament inadequats i s’han de marcar o notificar als administradors corresponents.  Les formes més subtils de grolleria també són inoportunes i estan mal vistes,
-            però probablement no les esborrarem. Observacions sobre mascotes, animals
+            definitivament inadequats i s’han de marcar o notificar als administradors corresponents. Les formes més subtils de grolleria també són inoportunes i estan mal vistes,     però probablement no les esborrarem. Observacions sobre mascotes, animals
             captius, humans i altres organismes en els quals altres naturalistes probablement
             no estiguin interessats també s'accepten (al cap i a la fi, tots són éssers vius).  
             Les observacions sobre coses que no són organismes són difícils de definir i
@@ -2982,7 +2983,7 @@ ca:
         invite_your_friends_description: |
             Pots facilitar que altres persones afegeixin les seves fotos a Flickr com a
             observacions d’%{site_name}. Només has de deixar-los un comentari i incloure aquest
-            vincle d'invitació especial.  També pots preseleccionar un tàxon i
+            vincle d'invitació especial. També pots preseleccionar un tàxon i
             projecte per a l'observació nova.
     places: 
       complex_boundary_note_html: |
