@@ -321,32 +321,7 @@
 
   <div id="all_names">
     <h3><%= t(:all_names) %></h3>
-    <ul>
-      <% for lexicon, taxon_names in @taxon.taxon_names.group_by(&:lexicon) %>
-        <%-
-          lexicon = lexicon.blank? ? t(:unknown) : t("lexicons.#{lexicon.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}",
-                                                     :default => lexicon)
-          if taxon_names.size > 1 && (default_name = taxon_names.detect{|tn| tn.name == @taxon.name})
-            taxon_names = [taxon_names.delete(default_name), taxon_names.sort_by(&:name)].flatten
-          end
-        -%>
-        <li>
-          <span class="description"><%=t lexicon %></span>
-          <ul class="taxon_names">
-            <% for taxon_name in taxon_names %>
-              <li>
-                <span class="taxon_name <%= lexicon.split.join('_') %><%= ' invalid' unless taxon_name.is_valid? %>">
-                  <%= taxon_name.name %></span>
-                <% if logged_in? && (!taxon_name.is_scientific? || current_user.is_curator?) -%>
-                  <%= link_to t(:edit), edit_taxon_name_path(taxon_name), :class => 'small description' %>
-                <% end -%>
-              </li>
-            <% end %>
-          </ul>
-        </li>
-      <% end %>
-    </ul>
-
+    <%= render 'names' %>
     <% if logged_in? -%>
       <%= link_to t(:add_a_name), new_taxon_taxon_name_path(@taxon), :class => 'readmore' %>
     <% end -%>

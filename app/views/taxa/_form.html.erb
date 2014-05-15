@@ -187,11 +187,12 @@
 
   <fieldset class="column span-24">
     <legend><%= t(:names) %></legend>
-    <div class="clear">
-      <%= render :partial => "taxon_names/nested_form_fields", 
-        :collection => taxon.taxon_names
-      %>
-    </div>
+    
+    <% unless taxon.taxon_names.blank? %>
+      <div class="clear">
+        <%= render 'names' %>
+      </div>
+    <% end %>
     
     <% if taxon.new_record? -%>
       <%= t(:a_default_taxon_name_will_automatically_created) %>
