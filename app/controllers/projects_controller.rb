@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms]
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
-    :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count]
+    :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count, :browse]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map, :browse]
   before_filter :ensure_current_project_url, :only => :show
   before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
@@ -62,7 +62,13 @@ class ProjectsController < ApplicationController
   def browse
     @order = params[:order] if ORDERS.include?(params[:order])
     @order ||= 'title'
-    @projects = Project.paginate(:page => params[:page], :order => ORDER_CLAUSES[@order])
+    @projects = Project.page(params[:page]).order(ORDER_CLAUSES[@order])
+    if (@place = Place.find(params[:place_id]) rescue nil)
+      @projects = @projects.in_place(@place)
+    end
+    respond_to do |format|
+      format.html
+    end
   end
   
   def show

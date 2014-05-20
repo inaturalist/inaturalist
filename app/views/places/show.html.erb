@@ -140,6 +140,7 @@
         <h3><%= t(:projects_in_x, :x => @place.name) %></h3>
         <%= render :partial => 'projects/project', :collection => @projects %>
       </div>
+      <%= link_to t(:view_all), browse_projects_url(:place_id => @place.slug), :class => "readmore" %>
     </div>
   <% end -%>
   
