@@ -277,6 +277,14 @@ shared_examples_for "an ObservationsController" do
       @o.reload
       @o.observation_field_values.should be_blank
     end
+
+    it "should respond with 410 for deleted observations" do
+      o = Observation.make!(:user => user)
+      oid = o.id
+      o.destroy
+      put :update, :format => :json, :id => oid, :observation => {:description => "this is different"}
+      response.status.should eq 410
+    end
   end
 
   describe "by_login" do

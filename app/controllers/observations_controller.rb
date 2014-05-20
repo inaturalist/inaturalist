@@ -680,7 +680,9 @@ class ObservationsController < ApplicationController
     
     # Make sure there's no evil going on
     unique_user_ids = @observations.map(&:user_id).uniq
-    if unique_user_ids.size > 1 || unique_user_ids.first != observation_user.id && !current_user.has_role?(:admin)
+    more_than_one_observer = unique_user_ids.size > 1
+    admin_action = unique_user_ids.first != observation_user.id && current_user.has_role?(:admin)
+    if !@observations.blank? && more_than_one_observer && !admin_action
       msg = t(:you_dont_have_permission_to_edit_that_observation)
       respond_to do |format|
         format.html do
