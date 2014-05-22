@@ -326,21 +326,32 @@ $(document).ready(function() {
   map.add(po.hash())
   
   if (CLOUDMADE_KEY) {
-    window.cloudmadeLyr = po.image()
+    window.mapLyr = po.image()
         .url(po.url("http://{S}tile.cloudmade.com"
         + "/"+CLOUDMADE_KEY
         + "/998/256/{Z}/{X}/{Y}.png")
         .hosts(["a.", "b.", "c.", ""]))
     map.add(cloudmadeLyr);
     $('#copyright').append(
-      $('<div id="cloudmade_attribution"></div>').append(
-        "Base map: &copy; <a href='http://www.openstreetmap.org/'>OpenStreetMap</a> contributors, " + 
-        "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, " + 
+      $('<span id="cloudmade_attribution"></span>').append(
+        "Base map: &copy; <a href='http://www.openstreetmap.org/'>OpenStreetMap</a> contributors " + 
+        "(<a href='http://opendatacommons.org/licenses/odbl/'>ODbL</a>), " + 
         "provided by <a href='http://cloudmade.com/'>CloudMade</a>"
       )
     )
   } else {
-    $('#basemap_map_label').hide()
+    window.mapLyr = po.image()
+        .url(po.url("http://otile{S}.mqcdn.com/tiles/1.0.0/map/{Z}/{X}/{Y}.jpg")
+        .hosts(["1", "1", "3", "4"]))
+    map.add(mapLyr);
+    $('#copyright').append(
+      $('<span id="maplyr_attribution"></span>').append(
+        "Base map: &copy; <a href='http://www.openstreetmap.org/'>OpenStreetMap</a> contributors " + 
+        "(<a href='http://opendatacommons.org/licenses/odbl/'>ODbL</a>), " + 
+        "tiles courtesy of <a href='http://www.mapquest.com/'' target='_blank'>MapQuest</a> " + 
+        "<img src='http://developer.mapquest.com/content/osm/mq_logo.png'>"
+      )
+    )
   }
   
   if (BING_KEY) {
@@ -351,14 +362,26 @@ $(document).ready(function() {
         + "?key="+BING_KEY
         + "&jsonp=bingCallback");
     document.body.appendChild(script);
-    if (!CLOUDMADE_KEY) {
+    if (!window.mapLyr) {
       $('#controls').hide()
     }
   } else {
+    // $('#basemap').hide()
+    window.satLyr = po.image()
+        .url(po.url("http://otile{S}.mqcdn.com/tiles/1.0.0/sat/{Z}/{X}/{Y}.jpg")
+        .hosts(["1", "1", "3", "4"]))
+    map.add(satLyr);
+    $('#copyright').append(
+      $('<div id="satlyr_attribution"></div>').append(
+        "Base map: portions courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency, " + 
+        "tiles courtesy of <a href='http://www.mapquest.com/'' target='_blank'>MapQuest</a> " + 
+        "<img src='http://developer.mapquest.com/content/osm/mq_logo.png'>"
+      )
+    )
     loadLayers()
-    $('#basemap').hide()
+    bindControls()
+    $('#basemap_map').click()
   }
-  
 })
 
 function loadLayers() {
@@ -465,7 +488,7 @@ function loadSingleTaxonLayers() {
       .url(taxonRangeUrl)
     map.add(layers['range'])
     $('#copyright').append(
-      $('<div id="range_attribution"></div>').append(
+      $('<span id="range_attribution"></span>').append(
         'Taxon range: ',
         taxonRange.source ? (taxonRange.source.citation || taxonRange.source.title) : 'unknown source'
       ).autolink()
@@ -514,35 +537,38 @@ function bingCallback(data) {
     var resources = data.resourceSets[i].resources;
     for (var j = 0; j < resources.length; j++) {
       var resource = resources[j];
-      window.bingLyr = po.image()
+      window.satLyr = po.image()
         .url(Polymaps.bingUrlTemplate(resource.imageUrl, resource.imageUrlSubdomains))
         .id('satellite')
         .visible(false)
-      map.add(bingLyr).tileSize({x: resource.imageWidth, y: resource.imageHeight});
+      map.add(satLyr).tileSize({x: resource.imageWidth, y: resource.imageHeight});
     }
   }
 
   /* Display copyright notice. */
   $('#copyright').append(
-    $('<div id="bing_attribution"></div>').append(data.copyright).hide()
+    $('<span id="satlyr_attribution"></span>').append("Base layer: " + data.copyright).hide()
   )
   loadLayers()
-  $('#basemap_map').click(function() {
-    cloudmadeLyr.visible(true)
-    bingLyr.visible(false)
-    $('#cloudmade_attribution').show()
-    $('#bing_attribution').hide()
-  })
-  $('#basemap_sat').click(function() {
-    if (typeof(cloudmadeLyr) != 'undefined') cloudmadeLyr.visible(false)
-    console.log("[DEBUG] clicked: #basemap_sat")
-    bingLyr.visible(true)
-    $('#cloudmade_attribution').hide()
-    $('#bing_attribution').show()
-  })
-  if (!CLOUDMADE_KEY) {
+  bindControls()
+  if (!window.mapLyr) {
     $('#basemap_sat').click()
   }
+}
+
+function bindControls() {
+  $('#basemap_map').click(function() {
+    window.mapLyr.visible(true)
+    window.satLyr.visible(false)
+    $('#maplyr_attribution').show()
+    $('#satlyr_attribution').hide()
+  })
+  $('#basemap_sat').click(function() {
+    if (typeof(mapLyr) != 'undefined') mapLyr.visible(false)
+    window.satLyr.visible(true)
+    $('#maplyr_attribution').hide()
+    $('#satlyr_attribution').show()
+  })
 }
 
 function toggleLegend() {

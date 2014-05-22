@@ -130,13 +130,17 @@ path.range:hover {
 #copyright { 
   z-index: 1000;
   position: absolute;
-  right: 5px;
-  bottom: 5px;
+  right: 0px;
+  bottom: 0px;
   font-size: 80%;
   white-space: nowrap;
-  opacity: 0.8;
+  opacity: 0.7;
   text-align: right;
+  background-color: white;
+  padding: 2px 5px;
 }
+#copyright:hover {opacity: 1;}
+#copyright img {display:inline-block; vertical-align: middle;}
 
 .floating { box-shadow: 0px 3px 3px #888; }
 li.place_type { padding-left: 22px; }
@@ -145,3 +149,4 @@ li.place_type { padding-left: 22px; }
 #legend td { vertical-align: top; border: 0 transparent;}
 .observations.compact.infowindow .observation { width: 240px; }
 label.inactive {opacity: 0.5;}
+#range_attribution {margin-left: 1em;}
