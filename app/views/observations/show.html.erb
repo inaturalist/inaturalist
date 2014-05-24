@@ -662,7 +662,7 @@
             <%= link_to observation_image(o, :size => "square"), o, :title => o.to_plain_s %>
           <% end %>
         </div>
-        <%= link_to t(:view_x_from_x, :day_observations=>"#{@day_observations.total_entries}", :observed_on => "#{l(@observation.observed_on, :format => :long)}"), calendar_date_path(@observation.user.login, @observation.observed_on.year, @observation.observed_on.month, @observation.observed_on.day), :class => "right readmore" %>
+        <%= link_to t(:view_x_from_x, :day_observations => @day_observations.total_entries, :observed_on => l(@observation.observed_on, :format => :long)), calendar_date_path(@observation.user.login, @observation.observed_on.year, @observation.observed_on.month, @observation.observed_on.day), :class => "right readmore" %>
       </div>
     <%= separator %>
   <% end -%>

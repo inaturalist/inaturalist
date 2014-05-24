@@ -307,6 +307,8 @@ class ObservationsController < ApplicationController
       format.xml { render :xml => @observation }
       
       format.json do
+        taxon_options = Taxon.default_json_options
+        taxon_options[:methods] += [:iconic_taxon_name, :image_url, :common_name, :default_name]
         render :json => @observation.to_json(
           :viewer => current_user,
           :methods => [:user_login, :iconic_taxon_name],
@@ -338,16 +340,14 @@ class ObservationsController < ApplicationController
                 }
               }
             },
+            :taxon => taxon_options,
             :identifications => {
               :include => {
                 :user => {
                   :only => [:name, :login, :id],
                   :methods => [:user_icon_url]
                 },
-                :taxon => {
-                  :only => [:id, :name, :iconic_taxon_id, :rank],
-                  :methods => [:iconic_taxon_name, :image_url, :common_name, :default_name]
-                }
+                :taxon => taxon_options
               }
             }
           })

@@ -847,14 +847,14 @@ class Observation < ActiveRecord::Base
       s += options[:verb] == true ? I18n.t(:observed).downcase : " #{options[:verb]}"
     end
     unless self.place_guess.blank? || options[:no_place_guess]
-      s += " #{I18n.t(:on_)} #{self.place_guess}"
+      s += " #{I18n.t(:from, :default => 'from').downcase} #{self.place_guess}"
     end
     s += " #{I18n.t(:on_day)}  #{I18n.l(self.observed_on, :format => :long)}" unless self.observed_on.blank?
     unless self.time_observed_at.blank? || options[:no_time]
       s += " #{I18n.t(:at_)} #{self.time_observed_at_in_zone.to_s(:plain_time)}"
     end
     s += " #{I18n.t(:by).downcase} #{self.user.try(:login)}" unless options[:no_user]
-    s
+    s.gsub(/\s+/, ' ')
   end
 
   # returns a string for sharing on social media (fb, twitter)

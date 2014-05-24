@@ -130,7 +130,7 @@ class TaxaController < ApplicationController
         place_id ||= CONFIG.place_id
         place = Place.find(place_id) rescue nil
         @conservation_statuses = @taxon.conservation_statuses.includes(:place).sort_by do |cs|
-          cs.place_id.blank? ? [0] : cs.place.self_and_ancestor_ids
+          cs.place.blank? ? [0] : cs.place.self_and_ancestor_ids
         end
         if place
           @conservation_status = @conservation_statuses.detect do |cs|
