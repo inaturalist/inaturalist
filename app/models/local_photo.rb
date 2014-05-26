@@ -21,6 +21,7 @@ class LocalPhoto < Photo
       :square   => {:geometry => "75x75#",      :auto_orient => false, :processors => [:deanimator] }
     },
     :convert_options => {
+      :original => image_convert_options,
       :large  => image_convert_options,
       :medium => image_convert_options,
       :small  => image_convert_options,

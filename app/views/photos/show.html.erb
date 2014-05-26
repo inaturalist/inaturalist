@@ -115,6 +115,27 @@
             </td>
           </tr>
         <% end -%>
+        <% if logged_in? && !@photo.metadata.blank? %>
+          <%- coords_viewable = @photo.observations.detect{|o| !o.coordinates_viewable_by?(current_user)}.blank? -%>
+          <% for k,v in @photo.metadata %>
+            <%- next if !coords_viewable && k.to_s =~ /(gps|date)/i -%>
+            <%- next if k.to_s == 'dc' || k.to_s =~ /description/ %>
+            <tr>
+              <% if k.to_s =~ /gps/i -%>
+                <th><%= k.to_s.humanize.gsub(/Gps/, 'GPS') %></th>
+                <td><%= v.is_a?(EXIFR::TIFF::Degrees) || v.is_a?(Rational) ? v.to_f : v %></td>
+              <% else %>
+                <th><%= k.to_s.humanize %></th>
+                <td>
+                  <%= case
+                  when v.is_a?(EXIFR::TIFF::Orientation) then v.to_i
+                  else v
+                  end %>
+                </td>
+              <% end -%>
+            </tr>
+          <% end %>
+        <% end -%>
       </table>
     </td>
   </tr>
