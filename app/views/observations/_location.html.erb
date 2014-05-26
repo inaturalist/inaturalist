@@ -6,18 +6,20 @@
     places = places[-3,3]
   end
 -%>
-<label><%=t :location %>:</label>
-<%= observation_place_guess(observation).html_safe %>
-<% if observation.out_of_range? -%>
-  <strong class="out_of_range nobr">
-    <span class="ui-icon ui-icon-alert inlineblock"></span>
-    <%=t :out_of_range %>!
-    <span class="helptip" rel="#<%= dom_id(observation, 'out_of_range_tip') %>"></span>
-    <div id="<%= dom_id(observation, 'out_of_range_tip') %>" style="display:none;" class="inlineblock">
-      <%=t :this_observation_lies_outside_the, :site_name => SITE_NAME_SHORT %> 
-      <%= link_to t(:view_the_range), taxon_path(observation.taxon, :anchor => "taxon_range"), :class => "readmore" %>
-    </div>
-  </strong>
+<% if observation.coordinates_viewable_by?(current_user) -%>
+  <label><%=t :location %>:</label>
+  <%= observation_place_guess(observation).html_safe %>
+  <% if observation.out_of_range? -%>
+    <strong class="out_of_range nobr">
+      <span class="ui-icon ui-icon-alert inlineblock"></span>
+      <%=t :out_of_range %>!
+      <span class="helptip" rel="#<%= dom_id(observation, 'out_of_range_tip') %>"></span>
+      <div id="<%= dom_id(observation, 'out_of_range_tip') %>" style="display:none;" class="inlineblock">
+        <%=t :this_observation_lies_outside_the, :site_name => SITE_NAME_SHORT %> 
+        <%= link_to t(:view_the_range), taxon_path(observation.taxon, :anchor => "taxon_range"), :class => "readmore" %>
+      </div>
+    </strong>
+  <% end -%>
 <% end -%>
 <% unless places.blank? -%>
   <div class="places">
