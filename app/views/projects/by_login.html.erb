@@ -44,6 +44,6 @@
       <% end %>
     <% end -%>
     
-    <%= link_to t(:start_a_project), new_project_path, :class => "default button" %>
+    <%= link_to(t(:start_a_project), new_project_path, :class => "default button") if is_me? %>
   </div>
 </div>

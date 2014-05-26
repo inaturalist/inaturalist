@@ -793,7 +793,7 @@ module ApplicationHelper
         :partial => "shared/taxon", 
         :object => resource,
         :locals => {
-          :link_url => (options[:skip_links] == true ? nil : resource)
+          :link_url => (options[:skip_links] == true ? nil : url_for_resource_with_host(resource))
         })
       t(:new_observations_of_x_html, :x => name)
     when "Flag"

@@ -200,7 +200,7 @@ en:
   additional_range: Additional range
   additional_range_data_from_an_unknown_source: Additional range data from an unknown source
   admin: Admin
-  admin_any_projects: Admin Any Projects
+  admin_any_projects: admin any projects
   admin_tools: Admin Tools
   agree: agree
   agree?: Agree?
@@ -3319,6 +3319,11 @@ en:
         place_desc: |
           Automatically populate this list with taxa observed in this place.
           Note that you can only choose places that have boundaries.
+      show:
+        project_list_desc: |
+          Project check lists include taxa manually added by project curators,
+          observed taxa identified by project curators, and taxa verified by
+          research-grade observations added to the project.
     observations:
       copy_tip: "Add a new observation by copying this observation's date, place, photos, and observaiton fields."
       captive_help_html: |

@@ -93,6 +93,11 @@
       <%=t :this_list_only_accepts_taxa_that_are %> <%= t(@list.rank_rule.gsub(/[_?]+/, ' ').strip.gsub(' ', '_'), :default => @list.rank_rule.gsub(/[_?]+/, ' ').strip).downcase %>.
     </div>
   <% end -%>
+  <% if @list.is_a?(ProjectList) -%>
+    <div class="description">
+      <%=t 'views.lists.show.project_list_desc' %>
+    </div>
+  <% end -%>
 
   <div class="column-separator">
     <img src="/images/logo-eee-15px.png">
