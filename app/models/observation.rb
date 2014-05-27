@@ -881,7 +881,7 @@ class Observation < ActiveRecord::Base
     options[:except] ||= []
     options[:except] += [:user_agent]
     if viewer_id != user_id && !options[:force_coordinate_visibility]
-      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom, :private_geom]
+      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom, :private_geom, :place_guess]
       options[:methods] << :coordinates_obscured
     end
     options[:except] += [:cached_tag_list, :geom, :private_geom]

@@ -6,7 +6,7 @@
   <% end %>
   <%= t(:observed_by).downcase %>
   <%= @observation.user.login %>
-  <%- if @observation.time_observed_at && @observation.coordinates_viewable_by?(current_user) -%>
+  <%- if @observation.time_observed_at && @coordinates_viewable -%>
     <%=l @observation.time_observed_at, :format => :observed_at %>
   <%- end %>
   <%- if @observation.observed_on -%>
@@ -24,10 +24,10 @@
     <% if @observation.observed_on -%>
       <meta property="<%= CONFIG.facebook.namespace %>:observed_on" content="<%= @observation.datetime.iso8601 %>" />
     <% end -%>
-    <% unless @observation.place_guess.blank? -%>
+    <% if !@observation.place_guess.blank? && @coordinates_viewable -%>
       <meta property="<%= CONFIG.facebook.namespace %>:place_guess" content="<%= @observation.place_guess %>" />
     <% end -%>
-    <% if @observation.georeferenced? && @observation.geoprivacy.blank? -%>
+    <% if @coordinates_viewable -%>
       <meta property="<%= CONFIG.facebook.namespace %>:coordinates:latitude"  content="<%= @observation.latitude %>"> 
       <meta property="<%= CONFIG.facebook.namespace %>:coordinates:longitude" content="<%= @observation.longitude %>">
     <% end -%>
@@ -47,7 +47,7 @@
     <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
   <% end -%>
   <% if @observation.description.blank? %>
-    <meta property="og:description" content="<%= html_attributize @observation.to_plain_s %>"/> 
+    <meta property="og:description" content="<%= html_attributize @observation.to_plain_s(:no_place_guess => !@coordinates_viewable) %>"/> 
   <% else %>
     <meta property="og:description" content="<%= html_attributize @observation.description %>"/> 
   <% end %>
@@ -111,7 +111,7 @@
         PHOTO_SOURCES = <%= @photo_sources.to_json.html_safe %>,
         DEFAULT_PHOTO_SOURCE = <%= @default_photo_source.to_json.html_safe %>,
         OBSERVATION = <%= @observation.to_json(:viewer => current_user, 
-          :force_coordinate_visibility => @observation.coordinates_viewable_by?(current_user),
+          :force_coordinate_visibility => @coordinates_viewable,
           :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}).html_safe %>
   </script>
 <% end %>
@@ -156,7 +156,7 @@
     <%= t(:observed_by).downcase %> 
     <%= link_to @observation.user.login, observations_by_login_path(@observation.user.login) %>
     <span class="meta date">
-      <%- if @observation.time_observed_at && @observation.coordinates_viewable_by?(current_user) -%>
+      <%- if @observation.time_observed_at && @coordinates_viewable -%>
         <%=l @observation.time_observed_at, :format => :observed_at %>
       <% end -%>
       <%- if @observation.observed_on -%>
