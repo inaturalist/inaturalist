@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%=h @parent_display_name %>'s assessments
+  <%= t(:x_project_journal, :project => strip_tags(@parent_display_name), :name => t(:assessments)) %>
 <%- end -%>
 <% if params[:iframe].present? %>
   <% content_for(:extrajs) do %>
@@ -46,12 +46,12 @@
         <%- before = capture do %>
           <div class="crumbs clear">
             <% if params[:preview].blank? %>
-              <%= link_to("Back to #{@assessment.project.title} assessments", 
+              <%= link_to(t(:back_to_x_assessment, :project => @assessment.project.title),
                 project_assessments_path(@assessment.project), 
                 :class => "back crumb") %>
             <% end -%>
             <% if @project.curated_by?(current_user) %>
-              <%= link_to 'edit assessment', edit_assessment_path(@assessment), :class => 'edit-button' %>
+              <%= link_to t(:edit_assessment), edit_assessment_path(@assessment), :class => 'edit-button' %>
             <% end %>
           </div>
         <% end -%>
@@ -60,10 +60,9 @@
           :project => @assessment.project,
           :before => before } %>
       <% else %>
-        <%= link_to "View on #{CONFIG.site_name}", assessment_path(@assessment), :class => 'edit-button' %>
+        <%= link_to "#{t(:view_on)} #{CONFIG.site_name}", assessment_path(@assessment), :class => 'edit-button' %>
         <h3>
-          <%= @assessment.display_name %>
-          Assessment
+          <%= t(:assessment_x, :project => @assessment.display_name) %>
         </h3>
       <% end %>
     </div>
@@ -74,10 +73,10 @@
           :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES) %>
         <% if @assessment.completed_at %>
           <label for="completed_at">
-            Completed At
+            <%=t :completed_at %>
           </label>
           <p>
-            <%= @assessment.completed_at || '<i>Not Completed</i>'.html_safe %>
+            <%= @assessment.completed_at || "<i>#{t(:not_completed)}</i>".html_safe %>
           </p>
         <% end %>
       </div>
@@ -87,7 +86,7 @@
       <% if photo = @assessment.taxon.default_photo %>
         <div class="stacked"><%= link_to taxon_image(@assessment.taxon, :size => "medium"), @assessment.taxon %></div>
         <div class="meta">
-          Photo: <%= link_to photo.attribution, native_url_for_photo(photo) %>
+         <%=t :photo %>: <%= link_to photo.attribution, native_url_for_photo(photo) %>
         </div>
       <% else -%>
         <%= render :partial => 'taxa/nophoto', :object => @assessment.taxon %>
