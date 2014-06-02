@@ -933,11 +933,11 @@ en:
   feeds: 'Feeds'
   feeds_for_current_filters: Feeds for Current Filters
   field_note: |
-                  <strong>Note:</strong> If you'd like to
-                  create a field, check to see if someone else has already made it to
-                  avoid duplication.
+    <strong>Note:</strong> If you'd like to create a field, check to see if
+    someone else has already made it to avoid duplication.
   fields: fields
   fields_can_only_be_edited_by_the_people_who: Fields can only be edited by the people who created them and site curators
+  fields_merged: Fields merged
   file_should_be_in_the_following_format: "File should be in the following format: taxon name, description"
   fill_out_your_profile: fill out your profile
   filling_out_checklist_for_place: filling out checklists for places you know well
@@ -1407,6 +1407,7 @@ en:
   merge: Merge
   merge_it_with_another_place: Merge it with another place
   merge_two_places_together: Merge two places together. All species on the checklists will be merged, as well as any geographic data.
+  merge_observation_field_x_into: 'Merge observation field "%{x}" into...'
   merging: Merging
   merging_places: Merging Places
   message: Message
@@ -2916,6 +2917,7 @@ en:
   you_may_have: you may have. It will probably only work in modern, standards-compliant browsers like
   you_must_be_a_member_of_this_project_to_do_that: You must be a member of this project to do that
   you_must_be_project_manager_to_do_that: You must be project manager to do that
+  you_must_choose_an_observation_field: You must choose an observation field
   you_must_select_a_csv_file_to_upload: You must select a CSV file to upload.
   you_must_select_a_place_to_merge_with: You must select a place to merge with.
   you_must_select_at_least_one_taxon: You must select at least one taxon
@@ -3446,6 +3448,12 @@ en:
         ADN BOLD, asegúrese de que su nombre de campo incluye las palabras
         "COI", "COX1", "sus", o "matK" correspondiente al gen esta objetivos
         de campo.
+      merge:
+        warning_html: |
+          Please be respectful of other people's data and <strong>talk to the creator
+          of an observation field before merging</strong>. This tool will destroy the
+          obseration field being merged and move all observations using it
+          over to the keeper. <strong>This process cannot be undone</strong>, so be careful.
     emailer:
       observations_export_notification:
         your_observations_export_is_ready_html: |

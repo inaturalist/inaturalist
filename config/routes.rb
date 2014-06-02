@@ -68,7 +68,12 @@ Inaturalist::Application.routes.draw do
   end
 
   resources :observation_field_values, :only => [:create, :update, :destroy, :index]
-  resources :observation_fields
+  resources :observation_fields do
+    member do
+      get :merge
+      put :merge, :to => 'observation_fields#merge_field'
+    end
+  end
   match '/' => 'welcome#index'
   match '/home' => 'users#dashboard', :as => :home
   match '/home.:format' => 'users#dashboard', :as => :formatted_home

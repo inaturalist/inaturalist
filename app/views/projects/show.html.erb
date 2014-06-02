@@ -379,7 +379,9 @@
       <% if @project.curated_by?(current_user) -%>
         <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_observations)}".html_safe, invitations_path(@project), :class => "navlink" %></li>
       <% end -%>
-      <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %></li>
+      <% if @project_user -%>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %></li>
+      <% end -%>
     <% end -%>
   </ul>
   
