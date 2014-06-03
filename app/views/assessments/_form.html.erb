@@ -21,7 +21,7 @@
         var html = '<div class="dialog">'+data+'</div>'
         $(html).dialog({
           modal: true, 
-          title: 'Preview',
+          title: I18n.t('preview'),
           width: '980px'
         })
       })
@@ -57,21 +57,21 @@
   <div class="column span-12 first">
     <%= f.text_area :description %>
     <div class="stacked small meta">
-      <strong>Allowed HTML:</strong>
+      <strong><%=t :allowed_html %>:</strong>
       <%= Post::ALLOWED_TAGS.to_a.sort.join(', ') %>
     </div>
   </div>
 
   <div class="column span-12 last">
     <label for="project">
-      Project
+      <%=t :project %>
     </label>
     <p>
       <%= @assessment.project.title %>
     </p>
     
     <label for="taxon">
-      Taxon
+      <%=t :taxon %>
     </label>
 
     <script>
@@ -90,30 +90,30 @@
     </p>
 
     <label for="completed">
-      Completed
+      <%=t :completed %>
     </label>
     <p>
       <%= check_box_tag("completed", "yes", @assessment.completed_at.present?) %>
-      Assessment has been completed
+      <%=t :assessment_has_benn_completed %>
     </p>
 
   </div>
 
   <div class="column span-24 first last">
-    <h3> Assessment sections </h3>
+    <h3><%=t :assessment_sections %></h3>
     <div id="cocoon-sections">
       <%= f.fields_for :sections do |section_form| %>
         <%= render 'section_fields', :f => section_form %>
       <% end %>
       <div class="stacked">
-        <%= link_to_add_association 'Add another section', f, :sections %>
+        <%= link_to_add_association t(:add_another_section), f, :sections %>
       </div>
 
       <div class="actions buttons">
-        <%= f.submit f.object.new_record? ? 'Create' : 'Update', :class => "default button" %>
-        <%= link_to 'Cancel', project_path(@assessment.project), :class => "button" %>
-        <%= link_to 'Delete', assessment_path(@assessment), :confirm => "Are you sure you want to delete the assessment?", :method => :delete, :class => "button" unless f.object.new_record? %>
-        <a href="#" class="button assessment-preview-button">Preview</a>
+        <%= f.submit f.object.new_record? ? t(:create) : t(:update), :class => "default button" %>
+        <%= link_to t(:cancel), project_path(@assessment.project), :class => "button" %>
+        <%= link_to t(:delete), assessment_path(@assessment), :confirm => t(:are_you_sure_you_want_to_delete_this_assessment?), :method => :delete, :class => "button" unless f.object.new_record? %>
+        <a href="#" class="button assessment-preview-button"><%=t :preview %></a>
       </div>
     </div>
 

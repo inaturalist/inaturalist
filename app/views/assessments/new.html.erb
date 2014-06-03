@@ -1,13 +1,13 @@
 <%- content_for(:title) do -%>
-  New assessment
+  <%= @title=t(:new_assessment) %>
 <%- end -%>
 <% content_for(:extracss) { stylesheet_link_tag "assessments" } %>
 
 <% if params[:iframe].blank? && params[:preview].blank? %>
-  <%= link_to "Back to #{@assessment.project.title} assessments", project_assessments_path(@assessment.project), 
+  <%= link_to t(:back_to_x_assessment, :project => @assessment.project.title), project_assessments_path(@assessment.project),
     :class => "back crumb" %>
 <% end -%>
 
-<h2>New assessment</h2>
+<h2><%= @title %></h2>
   
 <%= render :partial => 'form' %>

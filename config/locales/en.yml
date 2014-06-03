@@ -96,6 +96,7 @@ en:
   about_x: "About %{x}"
   acc: 'Acc (m)'
   accept: accept
+  accept_community_identifications: accept_community_identifications
   accuracy: Accuracy
   accuracy_meters: Accuracy (meters)
   accuracy_of_the_coordinates: 'Accuracy of the coordinates in meters. You can edit this by click the "edit" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you are sure you were somewhere inside it.'
@@ -120,6 +121,7 @@ en:
   add_a_taxon: Add a taxon
   add_all_your_matching_obs_of_this_taxon: Add all your matching obs. of this taxon to this project
   add_all_your_matching_obs_to_this_project: Add all your matching obs. to this project
+  add_an_assessment: Add an assessment
   add_an_identification: Add an identification
   add_an_observation: Add an observation
   add_an_observation?: Add an observation?
@@ -127,6 +129,7 @@ en:
   add_another: Add another
   add_another_flag: Add another flag
   add_another_photo: Add another photo
+  add_another_section: Add another section
   add_asset: Add asset
   add_batch: Add batch
   add_colors: Add colors
@@ -346,6 +349,7 @@ en:
   are_you_sure_you_want_sync_this: Are you sure you want to sync this observation's data with this Flickr photo? You will lose changes you've made to this form, but you will be able to revert to your saved copy.
   are_you_sure_you_want_to_commit_this_change: Are you sure you want to commit this change? This cannot be undone.
   are_you_sure_you_want_to_delete_this: Are you sure you want to delete this?
+  are_you_sure_you_want_to_delete_this_assessment?: Are you sure you want to delete the assessment?
   are_you_sure_you_want_to_delete_this_photo?: Are you sure you want to delete this photo?
   are_you_sure_you_want_to_delete_this_post: Are you sure you want to delete this post?
   are_you_sure_you_want_to_delete_this_taxon_change: Are you sure you want to delete this taxon change?
@@ -365,9 +369,13 @@ en:
   ascending: ascending
   aside_from_extraordinary_circumstances: "Aside from extraordinary circumstances, we well never ask you for your password."
   assessment: assessment
+  assessment_has_benn_completed: Assessment has been completed
+  assessment_sections: Assessment sections
   assessment_was_deleted: Assessment was deleted.
   assessment_was_successfully_created: Assessment was successfully created.
   assessment_was_successfully_updated: Assessment was successfully updated.
+  assessment_x: "%{assessment} assessment"
+  assessments: assessments
   associations: Associations
   at: at
   at_: at
@@ -404,6 +412,7 @@ en:
   back_to_this: "Back to %{place}"
   back_to_viewing: "Back to viewing <i>%{taxon}</i>"
   back_to_x: "Back to %{noun}"
+  back_to_x_assessment: "Back to %{project} assessments"
   back_to_x_history: "Back to %{x} history"
   back_to_x_journal: "Back to %{user}'s journal"
   back_to_x_observations: "Back to %{user}'s observations"
@@ -585,6 +594,7 @@ en:
   comments_and_identifications: Comments & Identifications
   comments_by_everyone: Comments by everyone
   comments_by_me: Comments by me
+  comments_on: Comments on
   comments_on_my_observations: Comments on my observations
   comments_youve_made_with_others: Comments You've Made (w/ Others)<br/><span class="description">in the past week</span>
   commercial_solicitation: Commercial solicitation, links to nowhere, etc.
@@ -592,6 +602,7 @@ en:
   committed: Committed
   committing: Committing...
   community_id: '<strong>Community</strong> ID: '
+  community_identification_settings: community_identification_settings
   community_supported_id: Community-supported ID?
   compare_with: Compare with
   comparing: comparing
@@ -599,6 +610,8 @@ en:
   comparing_versions_x_and_y: "Comparing versions %{x} and %{y}"
   comparing_observations_from: "Comparing %{user} observations from %{dates}"
   compiled_by_name: "Compiled by %{name}"
+  completed: Completed
+  completed_at: Completed At
   comprehensive: comprehensive
   comprehensive?: Comprehensive?
   comprehensive_list: Comprehensive list
@@ -641,6 +654,7 @@ en:
   coordinates: Coordinates
   coordinates_private: (coordinates private)
   copy: Copy
+  copy_and_paste_the_following_code_to: Copy and paste the following code to embed this assessment into another web page.
   copy_and_paste_this_into_your_own_html: Copy and paste this into your own HTML.
   copyright:
     some_rights_reserved: some rights reserved        
@@ -812,6 +826,7 @@ en:
   edit: Edit
   edit_a_batch_of_observations: Edit a Batch of Observations
   edit_account_settings_and_profile: "Edit account settings &amp; profile"
+  edit_assessment: edit assessment
   edit_body: Edit body
   edit_colors: Edit colors
   edit_comment: Edit your comment
@@ -864,6 +879,7 @@ en:
   embed: 'Embed'
   embed_a_widget_for_this_taxon_on_website: "Embed a widget for this taxon on your website &raquo;"
   embed_place_widget: Embed place widget
+  embed_this_assessment: Embed this assessment
   embed_widget_project: Embed a widget for this project on your website
   enable_offline_access: Enable offline access
   enable_offline_access_for_iphone: Enable offline access for iPhone
@@ -1462,6 +1478,7 @@ en:
   nearby_observations: Nearby Observations
   need_id_help?: Need ID help?
   new_announcement: New announcement
+  new_assessment: New assessment
   new_check_list: New check list
   new_check_list_for: "Create a new check list for %{place} &raquo;"
   new_check_list_record: "If you want to mark this list as comprehensive, create it, add the taxa, and then edit it and you'll have the option to mark it as comprehensive here."
@@ -1501,6 +1518,7 @@ en:
   'no': 'No'
   no_activity_in_the_past_week: No activity in the past week.  Time to 
   no_administrator_knows_your_password: "No %{sitename} administrator knows your new password or at any point had or has access to your password."
+  no_assessments_have_been_added_to_this_project_yet: No assessments have been added to this project yet.
   no_colors_selected: No colors selected.
   no_comments_yet: No comments yet.
   no_countries_added_yet: No countries added yet
@@ -1554,6 +1572,7 @@ en:
   no_results_for: 'No results for '
   no_results_matching: No results matching
   no_sections_available: No sections available.
+  no_sections_have_been_added_to_this_assessments_yet: No sections have been added to this assessments yet.
   no_species_have_been_listed: No species have been listed for this place yet!
   no_species_on_this_list: No species on this list yet!
   no_species_on_this_list_for_owner_html: |
@@ -1574,6 +1593,7 @@ en:
   none: None
   none_of_the_people_you_follow_have_updates: "None of the people you follow have made any updates yet!"
   normal: normal
+  not_completed: Not Completed
   not_evaluated: not evaluated
   not_filtering: Not filtering
   not_findig_what_you_want: Not finding what you want?
@@ -1588,6 +1608,7 @@ en:
   not_seeing_what_looking_for: Not Seeing What You're Looking For?
   not_yet: Not yet
   note: Note
+  note_you_can_modify_the_height_attribute: "Note: You can modify the 'height' attribute to fit the available space on your web page."
   number_of_observations: Number of observations
   numeric_: numeric
   noun_by_you: "%{noun} by you"
@@ -2086,6 +2107,7 @@ en:
   remove_from_id_please?: Remove from ID Please?
   remove_from_list: Remove from list
   remove_from_project: Remove from project
+  remove_this_section: Remove this section
   remove_manager: Remove manager
   remove_project_user: Remove project user
   remove_selected: Remove selected
@@ -2400,6 +2422,7 @@ en:
   sync_obs_with_photo_metadata: "Sync obs. w/ photo metadata?"
   synonyms: Synonyms
   table: Table
+  table_of_contents: Table of contents
   tagging: 'Tagging...'
   tags: Tags
   tags_are_a_way: 'Tags are a way to organize your observations. For example, you might tag all your tidepool observations "tidepools" to make them easier to find later.'
@@ -2413,6 +2436,9 @@ en:
   taxa_to_include: Taxa to include
   taxon: Taxon
   taxon_: taxon
+  taxon_assessments_are: |
+    Taxon assessments are documents assessing the current status of a species, usually conservation status.
+    For example, a regional conservation organization might use them to organize information and solicit feedback about the status of several threatened taxa in the region.
   taxon_change: taxon change
   taxon_deleted: Taxon deleted.
   taxon_doesnt_have_a_range: Taxon doesn't have a range
@@ -2711,6 +2737,7 @@ en:
   view_all_photocount_photos: "View all %{photo_count} photos"
   view_all_photos_tagged_taxon_html: 'View all photos tagged "%{taxon}" on <nobr>Flickr &raquo;</nobr>'
   view_all_your_projects: View all your projects
+  view_assessment: View assessment
   view_change: View change
   view_check_list_page: View check list page
   view_contributions: View contributions
@@ -3822,6 +3849,11 @@ en:
     errors:
       <<: *errors
     attributes:
+      assessment:
+        description: Description
+      assessment_section:
+        title: Title
+        body: Body
       conservation_status:
         status: Status
         description : Description

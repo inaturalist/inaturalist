@@ -1,6 +1,6 @@
 <% if assessment.sections.blank? -%>
   <div class="description noresults">
-    No sections have been added to this assessments yet.
+    <%=t :no_sections_have_been_added_to_this_assessments_yet %>
   </div>
 <% else %>
   <% assessment.sections.each do |section| %>
