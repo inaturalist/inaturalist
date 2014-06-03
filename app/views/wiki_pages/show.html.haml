@@ -1,5 +1,7 @@
 - content_for :title do
   = @title = @page.title
+- content_for :extracss do
+  = stylesheet_link_tag 'wiki'
 - content_for :extrajs do
   = google_maps_js
   = javascript_include_tag 'inaturalist/map3'
