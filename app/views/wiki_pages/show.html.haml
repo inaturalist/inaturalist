@@ -7,7 +7,9 @@
     $(document).ready(function() {
       $('#tabs, .tabs').tabs()
     })
-%h2=h @title
+
+= wiki_topnav
+%h2= @title
   
 = wiki_content @page.content
 
