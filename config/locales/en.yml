@@ -186,6 +186,9 @@ en:
   add_to_project: Add to project
   add_to_your_life_list: Add to your life list!
   add_to_your_list: Add to your list
+  add_your_email_to_get: |
+    Add your email to get feedback on your observation from the community.
+    If you'd rather not share it, please check back soon!
   add_your_own_observations_at: "Add your own observations at %{site_name}"
   add_your_photo: Add your photo
   add_your_photo_to: "Add your photo to %{project}"
@@ -483,6 +486,7 @@ en:
   cc_by_sa_name: Attribution-ShareAlike
   cc_used_under_a: "Creative Commons, used under a "
   change: Change
+  change_cover: change cover
   change_descriptions:
       split: Old taxon split into multiple new taxa
       merge: Several old taxa lumped into one new taxon
@@ -760,6 +764,16 @@ en:
       december: December
   date_observed: Date observed
   date_observed_on: date observed on
+  date_picker:
+    closeText: Cerrar
+    currentText: Today
+    prevText: Prev
+    nextText: Next
+    monthNames: "['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']"
+    monthNamesShort: "['Jan','Feb','Mar','Apr', 'May','Jun','Jul','Aug','Sep', 'Oct','Nov','Dec']"
+    dayNames: "['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']"
+    dayNamesShort: "['Sun','Mon','Tue','Wed','Thu','Sun','Sat']"
+    dayNamesMin: "['Su','Mo','Tu','We','Th','Fr','Sa']"
   date_time: Date/Time
   datetime_: Date/Time
   day: Day
@@ -771,6 +785,7 @@ en:
   defaults_to_your_name_or_username: Defaults to your name or username
   delete: Delete
   delete_conversation: Delete conversation
+  delete_cover?: delete cover?
   delete_icon?: Delete icon?
   delete_photo: Delete photo
   delete_project: Delete this project
@@ -804,6 +819,8 @@ en:
   did_you_photos_flickr?: Did you put any photos on Flickr?
   disagree: disagree
   disconnect_provider: "Disconnect %{provider}"
+  display_listings_added_by_curators: display_listings_added_by_curators
+  display_listings_from_place: display_listings_from_place
   do_you_know_where_this_species_lives: Do you know where this species lives?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Do you study nematodes? Are you the world's foremost expert on barnacle taxonomy? Do you just like looking at pretty flowers? Filling out your profile adds some personality and helps establish your credibility when helping people out with identifications.
   does_the_location_seem_accurate: "Does the location seem accurate?"
@@ -875,6 +892,7 @@ en:
   either_that_user_doesnt_exist_or: "Either that user doesn't exist or you are already following them."
   email: Email
   email_addresses_description: Comma-separated email addresses, limit 60 every 30 days.
+  email_address_for_comments_and_other_feedback: Email address for comments and other feedback
   email_addresses_to_receive_invites: Email addresses to receive invites
   embed: 'Embed'
   embed_a_widget_for_this_taxon_on_website: "Embed a widget for this taxon on your website &raquo;"
@@ -907,6 +925,7 @@ en:
     See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
   event_in_progress: Event in progress
   event_registration_url: Event registration URL
+  event_url: Event URL
   every_species_seen_by: Every species seen by
   everyone: everyone
   everyone_journal_posts: Everyone's Journal Posts
@@ -2220,6 +2239,7 @@ en:
   select_all: Select all
   select_an_album: Select an album
   select: Select
+  select_how_unobserved_listings_are_displayed: Select how unobserved listings are displayed
   select_one_or_more_photos: Select one or more photos
   select_none: Select none
   select_one_or_more_photos: 'Select one or more photos'
@@ -2667,6 +2687,7 @@ en:
   unknown: Unknown
   unknown_rank: '(Unknown Rank)'
   unlink_your_picasa_account: Unlink Your Picasa Account
+  unobserved_listings: Unobserved Listings
   updates_notification_email_subject: "%{prefix} New updates %{date}"
   updating: Updating...
   unpublish: Unpublish
@@ -2981,6 +3002,7 @@ en:
   your_default: your default
   your_default_time_zone: Your default time zone
   your_drafts: Your Drafts
+  your_email_address: Your email address
   your_flickr_account: your Flickr account
   your_flickr_photos_have_been_tagged: Your Flickr photos have been tagged!
   your_hard_drive: your hard drive
@@ -3869,14 +3891,18 @@ en:
         title: Title 
         project_icon: Project icon
         project_type: Project type
+        preferred_count_by: Preferred count by
         prefers_count_from_list: Prefers count from list
         description: Description
+        end_time: End time
+        event_url: Event registration URL
         terms: Terms
         map_type: Map type
         zoom_level: Zoom level
         prefers_place_boundary_visible: Show place boundary on map
         tracking_codes: Tracking codes
         source_url: Source URL
+        start_time: start time
       place:
               code: Code
               display_name: Display name

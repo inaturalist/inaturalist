@@ -66,7 +66,7 @@
         :label => t(:show_total_listed_taxa),
         :label_after => true,
         :description => t(:show_the_total_number_of) %>
-    <%= f.select :preferred_count_by, {species: "species", leaves: "leaves", all: "all"} %>  
+    <%= f.select :preferred_count_by, {t(:species).downcase => "species", t(:leaves).downcase => "leaves", t(:all).downcase => "all"} %>
   </div>
 
   <fieldset id="bioblitz" style="<%= "display:none;" unless @project.project_type == Project::BIOBLITZ_TYPE %>">
@@ -74,13 +74,12 @@
       <%=t :bioblitz %>
       <%= helptip "&nbsp;".html_safe do %>
         <%= t('views.projects.edit.bioblitz_desc_html') %>
-        <%=t 'views.projects.show.bioblitz_results_desc_html' %>
       <% end -%>
     </legend>
     <%= f.datetime_select :start_time, :include_blank => true, :description => t('views.projects.edit.start_time_desc'), :required => true %>
     <%= f.datetime_select :end_time, :include_blank => true, 
       :description => t('views.projects.edit.end_time_desc'), :required => true %>
-    <%= f.text_field :event_url, :label => t(:event_registration_url), :placeholder => t(:event_url, :default => "Event URL"), :description => t('views.projects.edit.event_url_desc') %>
+    <%= f.text_field :event_url, :placeholder => t(:event_url), :description => t('views.projects.edit.event_url_desc') %>
   </fieldset>
 
   <fieldset class="location">
@@ -131,9 +130,9 @@
 
   <% if project.place && project.place.check_list %>
     <fieldset class="unobserved-listings">
-      <legend>Unobserved Listings</legend>
+      <legend><%=t :unobserved_listings %></legend>
       <p class="description">
-        Select how unobserved listings are displayed
+        <%=t :select_how_unobserved_listings_are_displayed %>
       </p>
       <%= f.radio_button("show_from_place", false, { checked: !project.show_from_place.present?, label: t(:display_listings_added_by_curators), :label_after => true})%>
       <%= f.radio_button("show_from_place", true, { checked: project.show_from_place.present?, label: t(:display_listings_from_place), :label_after => true})%>

@@ -166,7 +166,7 @@
         } else {
           var t = $.fn.simpleTaxonSelector.taxonNameToS(taxon.default_name, $.extend(true, options, {taxon: taxon}))
         }
-        var link = $('<a>View</a>').attr('href', '/taxa/'+taxon.id).addClass('small')
+        var link = $('<a>'+I18n.t('view')+'</a>').attr('href', '/taxa/'+taxon.id).addClass('small')
         $(link).click(function() {
           window.open($(this).attr('href'), '_blank')
           return false
@@ -367,13 +367,13 @@
       if (name.is_valid) {
         $(formatted).append(formattedSciName);
       } else {
-        $(formatted).append(name['name'] + ' (=');
+        $(formatted).append(I18n.t('all_taxa.' + name['name'].toLowerCase().replace(/ /g, '_').replace(/-/g, '_'), { defaultValue: name['name']}) + ' (=');
         $(formatted).append(formattedSciName);
         $(formatted).append(')');
       }
     }
     else {
-      $(formatted).append(name['name'] + ' (');
+      $(formatted).append(I18n.t('all_taxa.' + name['name'].toLowerCase().replace(/ /g, '_').replace(/-/g, '_'), { defaultValue: name['name']}) + ' (');
       $(formatted).append(formattedSciName);
       $(formatted).append(')');
     }
@@ -390,7 +390,7 @@
     }
     else {
       if (typeof($.string) != 'undefined') {
-        $(formatted).prepend($.string(taxon.rank).capitalize().str + ' ');
+        $(formatted).prepend(I18n.t('all_taxa.rank.' + $.string(taxon.rank).str.toLowerCase(), { defaultValue: $.string(taxon.rank).capitalize().str}) + ' ');
       } else {
         $(formatted).prepend(taxon.rank + ' ');
       }
