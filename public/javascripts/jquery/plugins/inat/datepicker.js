@@ -28,7 +28,16 @@
       changeYear: true,
       dateFormat: 'yy-mm-dd',
       timeFormat: 'hh:mm tt z',
-      showTimezone: true
+      showTimezone: true,
+      closeText: I18n.t('date_picker.closeText'),
+      currentText: I18n.t('date_picker.currentText'),
+      prevText: I18n.t('date_picker.prevText'),
+      nextText: I18n.t('date_picker.nextText'),
+      monthNames: eval(I18n.t('date_picker.monthNames')),
+      monthNamesShort: eval(I18n.t('date_picker.monthNamesShort')),
+      dayNames: eval(I18n.t('date_picker.dayNames')),
+      dayNamesShort: eval(I18n.t('date_picker.dayNamesShort')),
+      dayNamesMin: eval(I18n.t('date_picker.dayNamesMin'))
     }, options)
     if (options.time) {
       $(this).datetimepicker(options);

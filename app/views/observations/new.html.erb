@@ -67,12 +67,12 @@
       <% if current_user.email.blank? %>
         <div class="clear stacked notice">
           <%= fields_for current_user, :builder => DefaultFormBuilder do |fu| %>
-            <%= fu.label :email, 'Email address for comments and other feedback',
-              "data-tip" => "Add your email to get feedback on your observation from the community. If you'd rather not share it, please check back soon!"
+            <%= fu.label :email, t(:email_address_for_comments_and_other_feedback),
+              "data-tip" => t(:add_your_email_to_get)
             %>
             <%= fu.text_field :email, 
               :type => "email",
-              :placeholder => "Your email address" %>
+              :placeholder => t(:your_email_address) %>
           <% end %>
         </div>
       <% end %>

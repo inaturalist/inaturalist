@@ -90,6 +90,9 @@ es-MX:
         reason: Razón
       project: 
         description: Descripción
+        end_time: Tiempo de termino
+        event_url: URL del registro de evento
+        preferred_count_by: Muestra el conteo por
         prefers_count_from_list: "Prefiere contar de una lista"
         project_icon: "Ícono del Proyecto"
         project_type: "Tipo de Proyecto"
@@ -100,6 +103,7 @@ es-MX:
         prefers_place_boundary_visible: Mostrar los límites del lugar en el mapa
         tracking_codes: Códigos de rastreo
         source_url: Dirección web de la fuente
+        start_time: Tiempo de inicio
       user:
         comments_email_notification: Comentarios
         email: Correo
@@ -275,6 +279,9 @@ es-MX:
   add_to_project: "Añade al proyecto"
   add_to_your_life_list: "¡Añade a tu lista de vida!"
   add_to_your_list: "Añade a tu lista"
+  add_your_email_to_get: |
+      Añade tu correo para tener un seguimiento de tu observación por la comunidad.
+      Sin embargo puedes elegir no compartir tu observación
   add_your_own_observations_at: "Añadir tus propias observaciones al %{site_name}"
   add_your_photo: "Añade tu foto"
   add_your_photo_to: "Añade tu foto al  %{project}"
@@ -524,6 +531,7 @@ es-MX:
   cc_by_sa_description: "Esta licencia permite a otros mezclar, modificar y desarrollar sobre tu obra, aún comercialmente, siempre y cuando te den crédito por la creación original y den licencia por sus nuevas obras con las mismas condiciones. Todas las obras nuevas basadas en tu obra, llevan la misma licencia, así que cualquier trabajo derivado también permitirá el uso comercial.\n"
   cc_by_sa_name: "Atribución - Compartir bajo la misma licencia"
   cc_used_under_a: "Creative Commons, utilizado bajo una "
+  change_cover: Cambia la portada
   change_descriptions:
     split: La especie o grupo es separada
     merge: Muchas especies son agrupadas formando una nueva clase o grupo
@@ -532,7 +540,7 @@ es-MX:
     stage: Prepara un concepto inactivo como parte de un cambio de taxonomía de un grupo de especies.
   change_geoprivacy: 'Cambiar geoprivacidad'
   change_group: Cambiar grupo
-  change_icon: "Cambia ícono"
+  change_icon: "Cambia el ícono"
   change_password: "Cambia contraseña"
   change_types:
     activated_soon: activado hace poco
@@ -849,6 +857,16 @@ es-MX:
       december: diciembre
   date_observed: "Fecha de la obs."
   date_observed_on: fecha que se observo
+  date_picker:
+      closeText: Cerrar
+      currentText: Hoy
+      prevText: Anterior
+      nextText: Siguiente
+      monthNames: "['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']"
+      monthNamesShort: "['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic']"
+      dayNames: "['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']"
+      dayNamesShort: "['Dom','Lun','Mar','Mié','Juv','Vie','Sáb']"
+      dayNamesMin: "['Do','Lu','Ma','Mi','Ju','Vi','Sá']"
   date_time: Fecha/Hora
   datetime_: Fecha/Hora
   datetime:
@@ -901,7 +919,8 @@ es-MX:
   default_sound_license: Licencias de sonido predeterminadas
   delete: Borrar
   delete_conversation: Eliminar conversación
-  delete_icon?: "¿Borras el ícono?"
+  delete_icon?: "¿Borrar el ícono?"
+  delete_cover?: ¿Borrar la portada?
   delete_project: "Borra este proyecto"
   delete_selected: "Borra seleccionado"
   delete_taxon_and_merge_most_data_html: "Borra<i>%{taxon}</i> y combina su información con otra especie o grupo. Usa esta herramienta para remover especies o grupos duplicados y nombres desactualizados . <strong>¡SE CUIDADOSO!</strong> La eliminación de especies o grupos puede ser muy destructiva."
@@ -976,6 +995,8 @@ es-MX:
   did_you_photos_flickr?: "¿Pusiste algunas fotos en Flickr?"
   disagree: "En desacuerdo"
   disconnect_provider: "Desconecta  %{provider}"
+  display_listings_added_by_curators: Mostrar listados añadidos por curadores
+  display_listings_from_place: Mostrar listados del Lugar
   do_you_know_where_this_species_lives: "¿Sabes en donde vive esta especie?"
   do_you_study_nematodes_worlds_foremost_expert_barnacle: "¿Estudiaste a los nemátodos? ¿Eres uno de los expertos mundiales en la taxonomía de los percebes? ¿Te gusta admirar flores bonitas? La descripción en tu perfil proporciona personalidad y ayuda a establecer tu credibilidad cuando ayudas a otras personas a las identificaciones."
   does_the_location_seem_accurate: "¿Parece precisa la ubicación?"
@@ -1037,6 +1058,7 @@ es-MX:
   either_that_user_doesnt_exist_or: "Ese usuario no existe o ya te encuentras siguiendolo."
   email: Correo
   email_addresses_description: "correos electrónicos separados por coma. El límite son 60 cada 30 días."
+  email_address_for_comments_and_other_feedback: Dirección de correo para comentarios y feedback
   email_addresses_to_receive_invites: "Correos electrónicos que recibirán invitación"
   email_settings: Configuración del correo
   embed: 'Insertar:'
@@ -1105,6 +1127,7 @@ es-MX:
   establishment_means_descriptions:
       native_and_occurs_nowhere_else: "nativa restringida al pais"
       arrived_in_the_region_via_anthropogenic_means: "evolucionó en otra región y ahora se encuentra en el país"
+  event_url: URL del evento
   every_species_seen_by: Todas las especies vistas por
   everyone: todos
   everyone_journal_posts: "Todas las notas de los Diarios"
@@ -7203,6 +7226,7 @@ es-MX:
   observations_by_everyone: "Observaciones de todos"
   observations_by_user: "Observaciones de %{user}"
   observations_by_user_on_date: "Observaciones de %{user} el %{date}"
+  observations_by_you: Tus observaciones
   observations_by_you_on_date: "Tus observaciones en %{date}"
   observations_circle_have_their_radii_scaled: "El radio de los círculos de observación es proporcional a la precisión de la ubicación. Las observaciones sin precisión de posición se muestran al mínimo tamaño."
   observations_confirmed: "Observaciones (confirmadas)"
@@ -7721,6 +7745,7 @@ es-MX:
   select: Selecciona
   select_all: Marca todos
   select_an_album: "Selecciona un álbum"
+  select_how_unobserved_listings_are_displayed: Selecciona como mostrar los listados de especies no observadas
   select_none: Desmarca todos
   select_one_or_more_photos: 'Selecciona una o mas fotos'
   select_photos_from_your_photo_stream: "Selecciona fotos de tus álbums para convertirlas en observaciones de  %{site_name}. Nosotros incluiremos la fecha, hora y ubicación de los metadatos de la foto e intentaremos buscar el nombre de las especies a partir de las etiquetas."
@@ -7909,6 +7934,7 @@ es-MX:
   sw_lat: Lat. S.O.
   sw_lon: Long. S.O.
   sync: ¿Sincronizar?
+  sync_obs_with_photo_metadata: "¿Sinc obs. con los metadatos?"
   synonyms: Sinónimos
   table: Cuadro
   table_of_contents: Tabla de contenidos
@@ -8148,6 +8174,7 @@ es-MX:
   unknown: Desconocido
   unknown_rank: '(Clasificación desconocida)'
   unlink_your_picasa_account: "Desenlaza tu cuenta Picasa"
+  unobserved_listings: Listados no observados
   unpublish: "Cancela publicación"
   unsubscribe: Quitar suscripción
   unsubscribe_from_this: Quitar suscripción de este
@@ -8563,24 +8590,26 @@ es-MX:
           %{link}, asegurate de que tu lugar este delimitado por un polígono, y despues puedes regresar a intentarlo de nuevo.
         bioblitz_desc_html: |
           <p>
-            A bioblitz is an event where you try to get people to observe as many
-            species as possible within a given place and time period. It's a fun
-            way to introduce people to biodiversity while collecting valuable
-            data at the same time.
+            Un bioblitz es un evento donde se juntan a todas las personas que participan en cierto lugar
+            y en un determinado periodo de tiempo para hacer un conteo de observaciones, especies y gente.
+            Es divertido e interesante introducir a la gente la biodiversidad a partir de datos que
+            puedan ser de utilidad.
+            NOTA: Estas estadisticas son totalmente independientes de la lista de especies potenciales.
           </p>
         cover_desc: |
           La imagen del banner es opcional y aparecerá en la parte superior de la
-          página del proyecto. Debe ser de 950px de ancho, menos de 400px de
+          página del proyecto. Debe ser de 950px de ancho y menos de 400px de
           alto.
         custom_project_fields_means: |
           Permite modificar el baner del proyecto, añadir contenido a la parte
           derecha del proyecto y poner un poco de estilo para una mejor visión.
-        end_time_desc: "Terminar la hora para su bioblitz. Debe ser inferior a un año después de la hora de inicio"
+        end_time_desc: "Debe ser a lo más un año después del tiempo de inicio"
+        start_time_desc: Tiempo en que empezara su bioblitz
         event_url_desc: |
-          URL de un servicio de registro de evento que está utilizando para su bioblitz.
+          URL del servicio de registro del evento que está utilizando para su bioblitz.
           Si se trata de una URL Eventbrite que incluye un identificador numérico, vamos a
-          incluir un widget de inscripción en su página de proyecto hasta su bioblitz
-          comienza.
+          incluir un widget de inscripción en su página de proyecto hasta que su bioblitz
+          comienze.
         icon_desc: "Se recortará a un cuadrado"
         project_assets_desc_html: |
           <p class="description"> Los recursos asociados a tu proyecto son archivos que tienen ciertas reglas especiales: </p>
@@ -8833,12 +8862,13 @@ es-MX:
   your_default: Predeterminado
   your_default_time_zone: "Tu zona de tiempo predeterminada"
   your_drafts: "Tus borradores"
+  your_email_address: Tu dirección de correo
   your_flickr_account: "Tu cuenta de Flickr"
   your_flickr_photos_have_been_tagged: "¡Tus fotos de Flickr han sido etiquetadas!"
   your_home: "Tu inicio"
   your_identification: "Tu identificación"
   your_inat_account_has_been_activated: "Tu cuenta de %{inat} ha sido activada"
-  your_life_list: your life list!
+  your_life_list: tu lista de vida
   your_month_observations: Tus observaciones de %{month}
   your_new_password_is: "Tu nueva contraseña es"
   your_observation_wont_get: "Tu observación no será asociada con otras observaciones de esta especie, y tu lista de vida no será actualizada."
