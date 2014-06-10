@@ -32,6 +32,15 @@ describe GuideTaxon, "creation" do
     g.reload
     g.taxon_id.should eq(ancestor.id)
   end
+
+  it "should be impossible to create more than 500 guide taxa per guide" do
+    g = Guide.make!
+    500.times do
+      GuideTaxon.make!(:guide => g)
+    end
+    gt = GuideTaxon.make(:guide => g)
+    gt.should_not be_valid
+  end
 end
 
 describe GuideTaxon, "deletion" do

@@ -21,6 +21,7 @@ class GuideTaxon < ActiveRecord::Base
   after_destroy {|r| r.guide.expire_caches(:check_ngz => true)}
 
   validates_uniqueness_of :name, :scope => :guide_id, :allow_blank => true, :message => "has already been added to this guide"
+  validate :within_count_limit, :on => :create
 
   acts_as_taggable
 
@@ -66,6 +67,10 @@ class GuideTaxon < ActiveRecord::Base
 
   def to_s
     "<GuideTaxon #{id} guide_id: #{guide_id}, name: #{name}, taxon_id: #{taxon_id}>"
+  end
+
+  def within_count_limit
+    errors.add(:base, :guide_has_too_many_taxa) if guide.guide_taxa.count >= 500
   end
 
   def default_guide_photo

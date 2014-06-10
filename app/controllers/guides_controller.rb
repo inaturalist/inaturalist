@@ -324,16 +324,36 @@ class GuidesController < ApplicationController
   # DELETE /guides/1
   # DELETE /guides/1.json
   def destroy
-    @guide.destroy
+    if @guide.guide_taxa.count > 100
+      @guide.delay(:priority => USER_INTEGRITY_PRIORITY).destroy
+      msg = t(:guide_will_be_deleted)
+    else
+      @guide.destroy
+      msg = t(:guide_deleted)
+    end
 
     respond_to do |format|
-      format.html { redirect_to guides_url, notice: 'Guide deleted.' }
+      format.html { redirect_to guides_url, notice: msg }
       format.json { head :no_content }
     end
   end
 
   def import_taxa
-    @guide_taxa = @guide.import_taxa(params) || []
+    begin
+      @guide_taxa = @guide.import_taxa(params) || []
+    rescue OpenURI::HTTPError => e
+      respond_to do |format|
+        format.json do
+          msg = if params[:eol_collection_url]
+            t(:sorry_x_is_not_responding, :x => "EOL")
+          else
+            t(:sorry_that_service_is_not_responding)
+          end
+          render :json => {:error => msg}
+        end
+      end
+      return
+    end
     respond_to do |format|
       format.json do
         if partial = params[:partial]

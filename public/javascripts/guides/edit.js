@@ -128,6 +128,10 @@ function addTaxaFromPlace() {
   })
 }
 function addImportedTaxaFromJSON(json) {
+  if (json.error) {
+    alert(json.error)
+    return
+  }
   for (var i = json.guide_taxa.length - 1; i >= 0; i--) {
     if (json.guide_taxa[i].html) {
       $('#guide_taxa .nocontent').remove()

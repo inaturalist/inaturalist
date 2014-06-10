@@ -114,7 +114,7 @@
               <%= f.check_box :facebook_sharing, :checked => current_user.prefers_share_observations_on_facebook? %>
             <% end -%>
             <label for="observation_facebook_sharing">
-              <%= image_tag "http://www.google.com/s2/u/0/favicons?domain=facebook.com" %>
+              <%= image_tag favicon_url_for('http://www.facebook.com') %>
               Facebook
             </label>
           </span>
@@ -125,7 +125,7 @@
               <%= f.check_box :twitter_sharing, :checked => current_user.prefers_share_observations_on_twitter? %>
             <% end -%>
             <label for="observation_twitter_sharing">
-              <%= image_tag "http://www.google.com/s2/u/0/favicons?domain=twitter.com" %>
+              <%= image_tag favicon_url_for('http://www.twitter.com') %>
               Twitter
             </label>
           </span>

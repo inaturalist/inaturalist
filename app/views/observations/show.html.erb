@@ -351,13 +351,7 @@
       <div id="app" class="description">
         <label>App:</label>
         <% if a -%>
-          <%-
-            url = a.url.blank? ? oauth_application_url(a) : a.url
-            uri = URI.parse(url) rescue nil
-          -%>
-          <% if uri -%>
-            <%= link_to(image_tag("http://www.google.com/s2/u/0/favicons?domain=#{uri.host}", :class => "favicon"), url) %>
-          <% end -%>
+          <%= link_to(image_tag(favicon_url_for(a.url.blank? ? oauth_application_url(a) : a.url), :class => "favicon"), url) %>
           <%= link_to a.name, url %>
         <% elsif !@observation.device_url.blank? -%>
           <%= link_to @observation.device_name, @observation.device_url %>

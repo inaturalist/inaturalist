@@ -1074,6 +1074,8 @@ en:
   guides: Guides
   guide_colors: Guide Colors
   guide_compiled_by: Guide compiled by
+  guide_deleted: Guide deleted
+  guide_will_be_deleted: Guide will be deleted. It takes a while for larger guides.
   guide_taxon: Guide taxon
   guide_was_successfully_created: Guide was successfully created.
   guide_was_successfully_published: Guide was successfully published.
@@ -2294,9 +2296,11 @@ en:
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Sorry, one of those Flickr photos either doesn't exist or you don't have permission to view it."
   sorry_picasa_isnt_responding_at_the_moment: "Sorry, Picasa isn't responding at the moment."
   sorry_that_photo_provider_isnt_responding: "Sorry, that photo provider isn't responding at the moment. Please try again later."
+  sorry_that_service_is_not_responding: "Sorry, that sercice is not responding. Please try again later."
   sorry_there_were_problems_with_your_request: "Sorry, there were problems with your request: %{project_user}"
   sorry_we_didnt_find_that_photo: "Sorry, we didn't find that photo."
   sorry_we_dont_have_any_metadata_for_that_photo: "Sorry, we don't have any metadata for that photo that we can use to set observation properties."
+  sorry_x_is_not_responding: "Sorry, %{x} is not responding. Please try again later."
   sorry_you_can_only_add_1000_at_a_time: "Sorry, you can only add 1000 at a time."
   sorry_you_cant_delete_your_own_life_list: "Sorry, you can't delete your own life list."
   sorry_you_need_to_be_signed_in_and: Sorry, you need to be signed in and have a linked Flickr account to post tags directly to Flickr.
@@ -2649,6 +2653,7 @@ en:
   type_a_place_name_and_click_search: Type a place name and click SEARCH to search
   type_authority: Type authority...
   type_date_time_or_use_the_calendar: Type date/time or use the calendar
+  type_one_name_per_line: Type one name per line
   type_place_name: Type place name
   type_project_name: Type project name
   type_source_name: Type source name
@@ -3921,6 +3926,11 @@ en:
           attributes:
             published_at:
               published_at_needs_3_taxa: "requires at least 3 taxa in your guide"
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: "guide can only have 500 taxa"
+
         observation_field_value:
           attributes:
             value:

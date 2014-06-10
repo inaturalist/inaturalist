@@ -1030,5 +1030,10 @@ module ApplicationHelper
       ""
     end
   end
+
+  def favicon_url_for(url)
+    uri = URI.parse(url) rescue nil
+    "http://www.google.com/s2/favicons?domain=#{uri.host}"
+  end
   
 end
