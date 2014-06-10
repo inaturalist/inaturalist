@@ -305,6 +305,17 @@ shared_examples_for "an ObservationsController" do
       json.detect{|o| o['id'] == oldo.id}.should be_blank
     end
 
+    it "should return no results if updated_since is specified but incorrectly formatted" do
+      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago, :user => user)
+      oldo.updated_at.should be < 1.minute.ago
+      newo = Observation.make!(:user => user)
+      stamp = (newo.updated_at - 1.minute).iso8601
+      bad_stamp = stamp.gsub(/\:/, '-')
+      get :by_login, :format => :json, :login => user.login, :updated_since => bad_stamp
+      json = JSON.parse(response.body)
+      json.should be_blank
+    end
+
     it "should include deleted observation IDs when filtering by updated_since" do
       oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago)
       oldo.updated_at.should be < 1.minute.ago

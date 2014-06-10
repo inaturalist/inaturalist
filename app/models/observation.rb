@@ -807,8 +807,12 @@ class Observation < ActiveRecord::Base
       scope = scope.joins(:taxon).where("taxa.rank_level >= ?", rank_level)
     end
 
-    if timestamp = Chronic.parse(params[:updated_since])
-      scope = scope.where("observations.updated_at > ?", timestamp)
+    unless params[:updated_since].blank?
+      if timestamp = Chronic.parse(params[:updated_since])
+        scope = scope.where("observations.updated_at > ?", timestamp)
+      else
+        scope = scope.where("1 = 2")
+      end
     end
 
     unless params[:q].blank?
