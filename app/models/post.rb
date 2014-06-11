@@ -20,6 +20,7 @@ class Post < ActiveRecord::Base
   has_and_belongs_to_many :observations, :uniq => true
   
   validates_length_of :title, :in => 1..2000
+  validate :user_must_be_on_site_long_enough
   
   before_save :skip_update_for_draft
   after_create :increment_user_counter_cache
@@ -36,6 +37,12 @@ class Post < ActiveRecord::Base
   ALLOWED_ATTRIBUTES = %w(
     href src width height alt cite title class name xml:lang abbr value align style
   )
+
+  def user_must_be_on_site_long_enough
+    if !is_a?(Trip) && published? && user.created_at > 24.hours.ago
+      errors.add(:user, :must_be_on_site_long_enough)
+    end
+  end
   
   def skip_update_for_draft
     @skip_update = true if draft?

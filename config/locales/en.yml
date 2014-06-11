@@ -1468,7 +1468,7 @@ en:
   most_observations: Most observations
   most_species: Most species
   most_observed_species: Most observed species
-  multiple_taxa: Multiple taxa (input for swap/merge, output for split)
+  multiple_taxa: "Multiple taxa (input for swap/merge, output for split)"
   must_be_observed_in: must be observed in
   must_be_less_than_x_MB: "Must be less than %{x} MB"
   must_have_observation_field: "must have observation field '%{operand}' filled out"
@@ -3956,7 +3956,6 @@ en:
           attributes:
             base:
               guide_has_too_many_taxa: "guide can only have 500 taxa"
-
         observation_field_value:
           attributes:
             value:
@@ -3967,3 +3966,11 @@ en:
               time_format: |
                 must by in the form hh:mm for a time field ("%{observation_field_name}" 
                 in your observation of "%{observation_species_guess}")
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: |
+                must have registered more than 24 hours ago to publish. We get
+                a lot of spammers, and this is a kind of lame way of dealing
+                with them. You can still save a draft, and if you're still
+                using the site in a day, you'll be able to publish.

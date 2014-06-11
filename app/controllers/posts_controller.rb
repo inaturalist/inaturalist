@@ -234,7 +234,7 @@ class PostsController < ApplicationController
   def author_required
     if ((@post.parent.is_a?(Project) && !@post.parent.editable_by?(current_user)) ||
         !(logged_in? && @post.user.id == current_user.id))
-        flash[:notice] = t(:only_the_author_of_this_post_can_do_that)
+      flash[:notice] = t(:only_the_author_of_this_post_can_do_that)
       redirect_to (@post.parent.is_a?(Project) ?
                    project_journal_path(@post.parent.slug) :
                    journal_by_login_path(@post.user.login))
