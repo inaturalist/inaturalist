@@ -549,7 +549,11 @@ class ObservationsController < ApplicationController
     @observations = params[:observations].map do |fieldset_index, observation|
       next if observation.blank?
       observation.delete('fieldset_index') if observation[:fieldset_index]
-      o = Observation.new(observation)
+      o = unless observation[:uuid].blank?
+        current_user.observations.where(:uuid => observation[:uuid]).first
+      end
+      o ||= Observation.new
+      o.assign_attributes(observation)
       o.user = current_user
       o.user_agent = request.user_agent
       if doorkeeper_token && (a = doorkeeper_token.application)

@@ -39,62 +39,6 @@ COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial
 SET search_path = public, pg_catalog;
 
 --
--- Name: cleangeometry(geometry); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION cleangeometry(geom geometry) RETURNS geometry
-    LANGUAGE plpgsql
-    AS $_$DECLARE
-  inGeom ALIAS for $1;
-  outGeom geometry;
-  tmpLinestring geometry;
-
-Begin
-  
-  outGeom := NULL;
-  
--- Clean Process for Polygon 
-  IF (GeometryType(inGeom) = 'POLYGON' OR GeometryType(inGeom) = 'MULTIPOLYGON') THEN
-
--- Only process if geometry is not valid, 
--- otherwise put out without change
-    if not st_isValid(inGeom) THEN
-    
--- create nodes at all self-intersecting lines by union the polygon boundaries
--- with the startingpoint of the boundary.  
-      tmpLinestring := st_union(st_multi(st_boundary(inGeom)),st_pointn(st_boundary(inGeom),1));
-      outGeom = st_buildarea(tmpLinestring);      
-      IF (GeometryType(inGeom) = 'MULTIPOLYGON') THEN      
-        RETURN st_multi(outGeom);
-      ELSE
-        RETURN outGeom;
-      END IF;
-    else    
-      RETURN inGeom;
-    END IF;
-
-
-------------------------------------------------------------------------------
--- Clean Process for LINESTRINGS, self-intersecting parts of linestrings 
--- will be divided into multiparts of the mentioned linestring 
-------------------------------------------------------------------------------
-  ELSIF (GeometryType(inGeom) = 'LINESTRING') THEN
-    
--- create nodes at all self-intersecting lines by union the linestrings
--- with the startingpoint of the linestring.  
-    outGeom := st_union(st_multi(inGeom),st_pointn(inGeom,1));
-    RETURN outGeom;
-  ELSIF (GeometryType(inGeom) = 'MULTILINESTRING') THEN 
-    outGeom := st_multi(st_union(st_multi(inGeom),st_pointn(inGeom,1)));
-    RETURN outGeom;
-  ELSE 
-    RAISE NOTICE 'The input type % is not supported',GeometryType(inGeom);
-    RETURN inGeom;
-  END IF;	  
-End;$_$;
-
-
---
 -- Name: crc32(text); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -1572,7 +1516,8 @@ CREATE TABLE observation_photos (
     photo_id integer NOT NULL,
     "position" integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    uuid character varying(255)
 );
 
 
@@ -1673,9 +1618,10 @@ CREATE TABLE observations (
     observation_sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
     private_geom geometry(Point),
-    community_taxon_id integer,
     captive boolean DEFAULT false,
-    site_id integer
+    community_taxon_id integer,
+    site_id integer,
+    uuid character varying(255)
 );
 
 
@@ -5213,6 +5159,13 @@ CREATE INDEX index_observation_photos_on_photo_id ON observation_photos USING bt
 
 
 --
+-- Name: index_observation_photos_on_uuid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_photos_on_uuid ON observation_photos USING btree (uuid);
+
+
+--
 -- Name: index_observations_on_captive; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5308,6 +5261,13 @@ CREATE INDEX index_observations_on_uri ON observations USING btree (uri);
 --
 
 CREATE INDEX index_observations_on_user_id ON observations USING btree (user_id);
+
+
+--
+-- Name: index_observations_on_uuid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_uuid ON observations USING btree (uuid);
 
 
 --
@@ -6576,3 +6536,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140313030123');
 INSERT INTO schema_migrations (version) VALUES ('20140416193430');
 
 INSERT INTO schema_migrations (version) VALUES ('20140604055610');
+
+INSERT INTO schema_migrations (version) VALUES ('20140611180054');

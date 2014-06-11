@@ -14,7 +14,7 @@ class WelcomeController < ApplicationController
       format.html do
         @announcement = Announcement.last(:conditions => [
          'placement = \'welcome/index\' AND ? BETWEEN "start" AND "end"', Time.now.utc])
-        @observations_cache_key = "#{SITE_NAME}_welcome_observations"
+        @observations_cache_key = "#{SITE_NAME}_#{I18n.locale}_welcome_observations"
         unless fragment_exist?(@observations_cache_key)
           @observations = Observation.has_geo.has_photos.includes(:observation_photos => :photo).
             limit(4).order("observations.id DESC").scoped

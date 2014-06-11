@@ -16,7 +16,13 @@ class ObservationPhotosController < ApplicationController
   end
   
   def create
-    @observation_photo = ObservationPhoto.new(params[:observation_photo])
+    @observation_photo = if !params[:observation_photo].blank? && !params[:observation_photo][:uuid].blank?
+      ObservationPhoto.includes(:observation).
+        where("observations.user_id = ? AND observation_photos.uuid = ?", current_user, params[:observation_photo][:uuid]).
+        first
+    end
+    @observation_photo ||= ObservationPhoto.new
+    @observation_photo.assign_attributes(params[:observation_photo])
     unless @observation_photo.observation
       respond_to do |format|
         format.json do

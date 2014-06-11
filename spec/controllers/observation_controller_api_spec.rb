@@ -74,6 +74,30 @@ shared_examples_for "an ObservationsController" do
         p.project_users.where(:user_id => user.id).should_not be_blank
       end
     end
+
+    it "should not duplicate observations with the same uuid" do
+      uuid = "some really long identifier"
+      o = Observation.make!(:user => user, :uuid => uuid)
+      post :create, :format => :json, :observation => {:uuid => uuid}
+      Observation.where(:uuid => uuid).count.should eq 1
+    end
+
+    it "should update attributes for an existing observation with the same uuid" do
+      uuid = "some really long identifier"
+      o = Observation.make!(:user => user, :uuid => uuid)
+      post :create, :format => :json, :observation => {:uuid => uuid, :description => "this is a WOAH"}
+      Observation.where(:uuid => uuid).count.should eq 1
+      o.reload
+      o.description.should eq "this is a WOAH"
+    end
+
+    it "should duplicate observations with the same uuid if made by different users" do
+      # in theory this is statistically impossible if people use rfc4122 UUIDs, but people and statistics are evil
+      uuid = "some really long identifier"
+      o = Observation.make!(:uuid => uuid)
+      post :create, :format => :json, :observation => {:uuid => uuid}
+      Observation.where(:uuid => uuid).count.should eq 2
+    end
   end
 
   describe "destroy" do
