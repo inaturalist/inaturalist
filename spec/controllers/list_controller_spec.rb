@@ -16,10 +16,6 @@ describe ListsController do
   end
 end
 
-describe ListsController, "show" do
-  it "should filter by iconic taxon"
-end
-
 describe ListsController, "compare" do
   let(:user) { User.make! }
   before do

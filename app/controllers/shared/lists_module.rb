@@ -610,7 +610,7 @@ private
       elsif @occurrence_status=="not_absent"
         unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
       end
-    else
+    elsif params[:occurrence_status] != 'any'
       @occurrence_status = "not_absent"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
     end
