@@ -263,7 +263,7 @@ module ApplicationHelper
     return text if text.blank?
     
     # make sure attributes are quoted correctly
-    text = text.gsub(/(\w+)=['"]([^'"]*?)['"]/, '\\1="\\2"')
+    text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
     
     # Make sure P's don't get nested in P's
     text = text.gsub(/<\\?p>/, "\n\n") unless options[:skip_simple_format]
