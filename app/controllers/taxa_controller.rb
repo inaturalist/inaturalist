@@ -1159,49 +1159,7 @@ class TaxaController < ApplicationController
     name, format = params[:q].to_s.sanitize_encoding.split('_').join(' ').split('.')
     request.format = format if request.format.blank? && !format.blank?
     name = name.to_s.downcase
-    
-    # Try to look by its current unique name
-    unless @taxon
-      begin
-        taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2) unless @taxon
-      rescue ActiveRecord::StatementInvalid, PGError => e
-        raise e unless e.message =~ /invalid byte sequence/ || e.message =~ /incomplete multibyte character/
-        name = name.encode('UTF-8')
-        taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2)
-      end
-      @taxon = taxa.first if taxa.size == 1
-    end
-    
-    # Try to look by its current scientifc name
-    unless @taxon
-      begin
-        taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2) unless @taxon
-      rescue ActiveRecord::StatementInvalid => e
-        raise e unless e.message =~ /invalid byte sequence/
-        name = name.encode('UTF-8')
-        taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2)
-      end
-      @taxon = taxa.first if taxa.size == 1
-    end
-    
-    # Try to find a unique TaxonName
-    unless @taxon
-      begin
-        taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
-      rescue ActiveRecord::StatementInvalid => e
-        raise e unless e.message =~ /invalid byte sequence/
-        name = name.encode('UTF-8')
-        taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
-      end
-      if taxon_names.size == 1
-        @taxon = taxon_names.first.taxon
-        
-        # Redirect to the currently accepted sciname if this isn't an accepted sciname
-        unless taxon_names.first.is_valid?
-          return redirect_to :action => @taxon.name.split.join('_')
-        end
-      end
-    end
+    @taxon = Taxon.single_taxon_for_name(name)
     
     # Redirect to a canonical form
     if @taxon

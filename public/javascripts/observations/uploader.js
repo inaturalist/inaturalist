@@ -43,6 +43,9 @@ $(document).ready(function() {
         $('.species_guess input', data.context).val(obs.species_guess)
         if (obs.taxon) {
           $.fn.simpleTaxonSelector.selectTaxon($('.species_guess_field input', data.context).parents('.simpleTaxonSelector:first'), obs.taxon)
+        } else if (obs.species_guess && obs.species_guess.length > 0) {
+          $('.species_guess_field input[type=text]:visible', data.context).val(obs.species_guess)
+          $.fn.simpleTaxonSelector.lookup($('.species_guess_field input', data.context).parents('.simpleTaxonSelector:first'))
         }
         $(data.context).data('observation', obs)
         $('.description_field textarea', data.context).val(obs.description)

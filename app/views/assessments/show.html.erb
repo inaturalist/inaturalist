@@ -62,7 +62,7 @@
       <% else %>
         <%= link_to "#{t(:view_on)} #{CONFIG.site_name}", assessment_path(@assessment), :class => 'edit-button' %>
         <h3>
-          <%= t(:assessment_x, :project => @assessment.display_name) %>
+          <%= t(:assessment_x, :assessment => @assessment.display_name) %>
         </h3>
       <% end %>
     </div>
