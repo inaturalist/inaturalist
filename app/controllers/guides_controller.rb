@@ -166,10 +166,10 @@ class GuidesController < ApplicationController
         ancestry_counts_scope = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", @guide).scoped
         ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
         ancestry_counts = ancestry_counts_scope.group(:ancestry).count
-        if ancestry_counts.blank?
+        ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0 && a[0] == Taxon::LIFE.id.to_s}
+        if ancestries.blank?
           @nav_taxa = []
         else
-          ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0 && a[0] == Taxon::LIFE.id.to_s}
           width = ancestries.last.size
           matrix = ancestries.map do |a|
             a + ([nil]*(width-a.size))
