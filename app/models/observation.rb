@@ -949,8 +949,15 @@ class Observation < ActiveRecord::Base
     if date_string =~ /#{tz_js_offset_pattern} #{tz_failed_abbrev_pattern}/
       date_string = date_string.sub(tz_failed_abbrev_pattern, '').strip
     end
+
+    # Rails timezone support doesn't seem to recognize this abbreviation, and
+    # frankly I have no idea where ActiveSupport::TimeZone::CODES comes from.
+    # In case that ever stops working or a less hackish solution is required,
+    # check out https://gist.github.com/kueda/3e6f77f64f792b4f119f
+    tz_abbrev = date_string[tz_abbrev_pattern, 1]
+    tz_abbrev = 'CET' if tz_abbrev == 'CEST'
     
-    if parsed_time_zone = ActiveSupport::TimeZone::CODES[date_string[tz_abbrev_pattern, 1]]
+    if parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev]
       date_string = observed_on_string.sub(tz_abbrev_pattern, '')
       date_string = date_string.sub(tz_js_offset_pattern, '').strip
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
