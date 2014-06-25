@@ -41,14 +41,11 @@ class CalendarsController < ApplicationController
     ).sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
     
     unless @observations.blank?
-      scope = Observation.where(
-          "ST_Intersects(place_geometries.geom, observations.private_geom)")
+      scope = Observation.where("ST_Intersects(place_geometries.geom, observations.private_geom)")
+      # without this there can be performance problems with very large places.
+      # 6 is around the max size for a US county
+      scope = scope.where("st_area(place_geometries.geom) < 6")
       scope = scope.where("places.id = place_geometries.place_id")
-      scope = scope.where("places.place_type NOT IN (?)", [
-        Place::PLACE_TYPE_CODES['Country'], 
-        Place::PLACE_TYPE_CODES['State'],
-        Place::PLACE_TYPE_CODES['Continent']
-      ])
       scope = scope.where("observations.user_id = ? ", @selected_user)
       scope = scope.where(Observation.conditions_for_date("observations.observed_on", @date))
       place_name_counts = scope.count(
