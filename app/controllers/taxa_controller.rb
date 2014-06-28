@@ -321,7 +321,7 @@ class TaxaController < ApplicationController
   # /taxa/browse?q=bird&places=1,2&colors=4,5
   # TODO: /taxa/browse?q=bird&places=usa-ca-berkeley,usa-ct-clinton&colors=blue,black
   def search
-    @q = params[:q] = params[:q].to_s.sanitize_encoding
+    @q = params[:q].to_s.sanitize_encoding
     
     # Wrap the query in modifiers to ensure exact matches show first
     q, match_mode = Taxon.search_query(@q)

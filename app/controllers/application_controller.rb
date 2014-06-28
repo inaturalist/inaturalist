@@ -225,12 +225,12 @@ class ApplicationController < ActionController::Base
   end
   
   def search_for_places
-    @q = params[:q]
+    @q = params[:q].to_s.sanitize_encoding
     if params[:limit]
       @limit ||= params[:limit].to_i
       @limit = 50 if @limit > 50
     end
-    @places = Place.search(@q, :page => params[:page], :limit => @limit)
+    @places = Place.search(sanitize_sphinx_query(@q), :page => params[:page], :limit => @limit)
     if logged_in? && @places.blank?
       if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
         new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}.compact
