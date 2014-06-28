@@ -2170,3 +2170,46 @@ describe Observation, "community taxon" do
   end
 end
 
+describe Observation, "fields_addable_by?" do
+  it "should default to true for anyone" do
+    Observation.make!.fields_addable_by?(User.make!).should be_true
+  end
+
+  it "should be false for nil user" do
+    Observation.make!.fields_addable_by?(nil).should be_false
+  end
+
+  it "should be true for curators if curators preferred" do
+    c = make_curator
+    u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS)
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(c).should be_true
+  end
+
+  it "should be true for curators by default" do
+    c = make_curator
+    u = User.make!
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(c).should be_true
+  end
+
+  it "should be false for curators if no editing preferred" do
+    c = make_curator
+    u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(c).should be_false
+  end
+
+  it "should be false for everyone other than the observer if no editing preferred" do
+    other = User.make!
+    u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(other).should be_false
+  end
+
+  it "should be true for the observer if no editing preferred" do
+    u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(u).should be_true
+  end
+end

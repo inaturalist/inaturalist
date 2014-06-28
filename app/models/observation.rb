@@ -2213,6 +2213,13 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  def fields_addable_by?(u)
+    return false unless u.is_a?(User) 
+    return true if user.preferred_observation_fields_by == User::PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
+    return true if user.preferred_observation_fields_by == User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS && u.is_curator?
+    u.id == user_id
+  end
+
   def self.expire_components_for(o)
     o = Observation.find_by_id(o) unless o.is_a?(Observation)
     return unless o

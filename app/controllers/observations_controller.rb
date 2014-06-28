@@ -24,7 +24,7 @@ class ObservationsController < ApplicationController
     by_login
   end
 
-  doorkeeper_for :create, :update, :destroy, :viewed_updates, :if => lambda { authenticate_with_oauth? }
+  doorkeeper_for :create, :update, :destroy, :viewed_updates, :update_fields, :if => lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
@@ -48,7 +48,7 @@ class ObservationsController < ApplicationController
                             :community_taxon_summary]
   before_filter :load_observation, :only => [
     :show, :edit, :edit_photos, :update_photos, :destroy, :fields,
-    :viewed_updates, :community_taxon_summary
+    :viewed_updates, :community_taxon_summary, :update_fields
   ]
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
@@ -1458,6 +1458,52 @@ class ObservationsController < ApplicationController
       @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
     end
     render :layout => false
+  end
+
+  def update_fields
+    unless @observation.fields_addable_by?(current_user)
+      respond_to do |format|
+        msg = "you_dont_have_permission_to_do_that"
+        format.html do
+          flash[:error] = msg
+          redirect_back_or_default @observation
+        end
+        format.json do
+          render :status => 401, :json => {:error => msg}
+        end
+      end
+      return
+    end
+    ofv_attrs = params[:observation][:observation_field_values_attributes]
+    ofv_attrs.each do |k,v|
+      ofv_attrs[k][:updater_user_id] = current_user.id
+    end
+    o = { :observation_field_values_attributes =>  ofv_attrs}
+    respond_to do |format|
+      if @observation.update_attributes(o)
+        format.html do
+          flash[:notice] = I18n.t(:observations_was_successfully_updated)
+          redirect_to @observation
+        end
+        format.json do
+          render :json => @observation.to_json(
+            :viewer => current_user,
+            :include => {
+              :observation_field_values => {:include => {:observation_field => {:only => [:name]}}}
+            }
+          )
+        end
+      else
+        msg = "Failed update observation: #{@observation.errors.full_messages.to_sentence}"
+        format.html do
+          flash[:error] = msg
+          redirect_to @observation
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => msg}
+        end
+      end
+    end
   end
 
   def photo

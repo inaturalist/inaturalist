@@ -96,7 +96,7 @@ en:
   about_x: "About %{x}"
   acc: 'Acc (m)'
   accept: accept
-  accept_community_identifications: accept_community_identifications
+  accept_community_identifications: Accept community identifications
   accuracy: Accuracy
   accuracy_meters: Accuracy (meters)
   accuracy_of_the_coordinates: 'Accuracy of the coordinates in meters. You can edit this by click the "edit" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you are sure you were somewhere inside it.'
@@ -606,7 +606,7 @@ en:
   committed: Committed
   committing: Committing...
   community_id: '<strong>Community</strong> ID: '
-  community_identification_settings: community_identification_settings
+  community_moderation_settings: Community Moderation Settings
   community_supported_id: Community-supported ID?
   compare_with: Compare with
   comparing: comparing
@@ -1651,6 +1651,10 @@ en:
   observation_field: Observation field
   observation_fields: Observation Fields
   observation_fields_are_additional: Observation fields are additional data fields that can be added to observations.
+  observation_fields_by_preferences_description: |
+    Observation fields are a bit like tags, except anyone can add them to your
+    observation by default. Change this if you'd prefer that only you can do
+    this, or only site curators.
   observation_removed_from_the_project: "Observation removed from the project \"%{project}\""
   observation_rights_html: "Observation %{rights}"
   observation_rules: Observation rules
@@ -2738,6 +2742,7 @@ en:
   user_hasnt:  "%{user} hasnt"
   user_invite_observation_to_project: '%{user} would like to invite your observation "%{observation}" to the %{project} project.'
   user_invited_your_x_to_a_project_html: "%{user} invited your %{x} to a project"
+  user_added_an_observation_field_html: '%{user} added a value for "%{field_name}" to an observation by %{owner}'
   user_is_a_naturalist: "%{user} is a naturalist!"
   user_s: "%{user}'s"
   user_s_id: "%{user}'s %{id}"

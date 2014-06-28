@@ -649,6 +649,104 @@ shared_examples_for "an ObservationsController" do
       json.detect{|o| o['id'] == oldo.id}.should be_blank
     end
   end
+
+  describe "update_fields" do
+    shared_examples_for "it allows changes" do
+      it "should allow ofv creation" do
+        put :update_fields, :format => :json, :id => o.id, :observation => {
+          :observation_field_values_attributes => {
+            "0" => {
+              :observation_field_id => of.id,
+              :value => "foo"
+            }
+          }
+        }
+        response.should be_success
+        o.reload
+        o.observation_field_values.first.value.should eq "foo"
+      end
+      it "should allow ofv updating" do
+        ofv = ObservationFieldValue.make!(:observation => o, :observation_field => of, :value => "foo")
+        put :update_fields, :format => :json, :id => o.id, :observation => {
+          :observation_field_values_attributes => {
+            "0" => {
+              :observation_field_id => of.id,
+              :value => "bar"
+            }
+          }
+        }
+        response.should be_success
+        o.reload
+        o.observation_field_values.first.value.should eq "bar"
+      end
+    end
+    describe "for the observer" do
+      let(:o) { Observation.make!(:user => user) }
+      let(:of) { ObservationField.make! }
+      it_behaves_like "it allows changes"
+    end
+
+    describe "for a non-observer" do
+      let(:o) { Observation.make! }
+      let(:of) { ObservationField.make! }
+      it_behaves_like "it allows changes"
+      it "should set the user_id" do
+        put :update_fields, :format => :json, :id => o.id, :observation => {
+          :observation_field_values_attributes => {
+            "0" => {
+              :observation_field_id => of.id,
+              :value => "foo"
+            }
+          }
+        }
+        response.should be_success
+        o.reload
+        o.observation_field_values.first.user.should eq user
+        o.observation_field_values.first.updater.should eq user
+      end
+    end
+
+    describe "for a curator" do
+      before do
+        user.roles << Role.make!(:name => "curator")
+      end
+      let(:o) { Observation.make! }
+      let(:of) { ObservationField.make! }
+
+      it "should allow creation if observer prefers editng by curators" do
+        u = o.user
+        u.update_attributes(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS)
+        u.preferred_observation_fields_by.should eq User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS
+        o.reload
+        put :update_fields, :format => :json, :id => o.id, :observation => {
+          :observation_field_values_attributes => {
+            "0" => {
+              :observation_field_id => of.id,
+              :value => "foo"
+            }
+          }
+        }
+        response.should be_success
+        o.reload
+        o.observation_field_values.first.value.should eq "foo"
+      end
+      it "should not allow creation if observer prefers editng by observer" do
+        o.user.update_attributes(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
+        o.user.preferred_observation_fields_by.should eq User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER
+        put :update_fields, :format => :json, :id => o.id, :observation => {
+          :observation_field_values_attributes => {
+            "0" => {
+              :observation_field_id => of.id,
+              :value => "foo"
+            }
+          }
+        }
+        response.should_not be_success
+        o.reload
+        o.observation_field_values.should be_blank
+      end
+    end
+  end
 end
 
 describe ObservationsController, "oauth authentication" do

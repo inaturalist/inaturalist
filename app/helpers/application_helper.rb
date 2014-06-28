@@ -763,7 +763,14 @@ module ApplicationHelper
         end
       end
     when "Observation"
-      t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
+      if resource.is_a?(ProjectInvitation)
+        t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
+      elsif notifier.is_a?(ObservationFieldValue)
+        t(:user_added_an_observation_field_html, :user => notifier_user_link, :field_name => truncate(notifier.observation_field.name), 
+          :owner => you_or_login(resource.user, :capitalize_it => false))
+      else
+        "unknown"
+      end
     when "Project"
       project = resource
       if update.notifier_type == "Post"
@@ -869,10 +876,19 @@ module ApplicationHelper
   end
   
   def update_cached(record, association)
-    if @update_cache && @update_cache[association.to_s.pluralize.to_sym]
-      cached = @update_cache[association.to_s.pluralize.to_sym][record.send("#{association}_id")]
+    unless record.respond_to?("#{association}_id")
+      return record.send(association)
     end
-    cached ||= record.send(association)
+    cache_key = record.send("#{association}_id")
+    cached = if @update_cache && @update_cache[association.to_s.pluralize.to_sym]
+      @update_cache[association.to_s.pluralize.to_sym][cache_key]
+    end
+    unless cached
+      @update_cache ||= {}
+      @update_cache[association.to_s.pluralize.to_sym] ||= {}
+      @update_cache[association.to_s.pluralize.to_sym][cache_key] = record.send(association)
+    end
+    @update_cache[association.to_s.pluralize.to_sym][cache_key]
   end
 
   def observation_field_value_for(ofv)

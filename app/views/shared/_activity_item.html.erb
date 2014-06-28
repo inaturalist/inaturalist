@@ -5,6 +5,8 @@
   observation = update_cached(item, :observation) if item.respond_to?(:observation)
   user = if item.is_a?(Flag)
     update_cached(item, :resolver)
+  elsif item.is_a?(ObservationFieldValue)
+    update_cached(item, :updater) || update_cached(item, :user)
   elsif item.respond_to?(:user)
     update_cached(item, :user)
   end
@@ -45,6 +47,10 @@
           <span class="meta"><%= item.resolver.login %> <%= t :said %>,</span>
           "<%= item.comment %>"
         <% end -%>
+      </div>
+    <% elsif item.is_a? ObservationFieldValue %>
+      <div class="stacked body">
+        <%= render "observation_fields/observation_field_value", :observation_field_value => item %>
       </div>
     <%- end -%>
     

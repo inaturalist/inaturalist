@@ -7,6 +7,63 @@ describe ObservationFieldValue, "creation" do
     o.reload
     o.updated_at.should be > o.created_at
   end
+
+  describe "for subscribers" do
+    before { Update.delete_all }
+
+    it "should create an update for the observer if user is not observer" do
+      o = Observation.make!
+      ofv = without_delay do
+        ObservationFieldValue.make!(:observation => o, :user => User.make!)
+      end
+      Update.where(:subscriber_id => o.user_id, :resource_id => o.id, :notifier_id => ofv.id).count.should eq 1
+    end
+    
+    it "should not create an update for the observer if the user is the observer" do
+      o = Observation.make!
+      ofv = without_delay do
+        ObservationFieldValue.make!(:observation => o, :user => o.user)
+      end
+      Update.where(:subscriber_id => o.user_id, :resource_id => o.id, :notifier_id => ofv.id).count.should eq 0
+    end
+  end
+end
+
+describe ObservationFieldValue, "updating for subscribers" do
+  before do
+    @ofv = ObservationFieldValue.make!(:value => "foo", :user => User.make!)
+    @o = @ofv.observation
+    Update.delete_all
+  end
+  
+  it "should create an update for the observer if user is not observer" do
+    without_delay { @ofv.update_attributes(:value => "bar") }
+    Update.where(:subscriber_id => @o.user_id, :resource_id => @o.id, :notifier_id => @ofv.id).count.should eq 1
+  end
+
+  it "should create an update for the observer if user is not observer and the observer created the ofv" do
+    ofv = without_delay { ObservationFieldValue.make!(:user => @o.user, :value => "foo", :observation => @o) }
+    Update.delete_all
+    without_delay { ofv.update_attributes(:value => "bar", :updater => User.make!) }
+    Update.where(:subscriber_id => @o.user_id, :resource_id => @o.id, :notifier_id => ofv.id).count.should eq 1
+  end
+
+  it "should not create an update for the observer" do
+    ofv = ObservationFieldValue.make!
+    o = ofv.observation
+    o.user_id.should eq ofv.user_id
+    Update.delete_all
+    without_delay { ofv.update_attributes(:value => "bar") }
+    Update.where(:subscriber_id => o.user_id, :resource_id => o.id, :notifier_id => ofv.id).count.should eq 0
+  end
+
+  it "should not create an update for subscribers who didn't add the value" do
+    u = User.make!
+    without_delay { Comment.make!(:user => u, :parent => @o)}
+    Update.delete_all
+    without_delay { @ofv.update_attributes(:value => "bar") }
+    Update.where(:subscriber_id => u.id, :resource_id => @o.id, :notifier_id => @ofv.id).count.should eq 0
+  end
 end
 
 describe ObservationFieldValue, "destruction" do
