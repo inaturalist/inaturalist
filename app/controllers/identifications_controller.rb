@@ -141,7 +141,10 @@ class IdentificationsController < ApplicationController
 
   # Agree with an identification
   def agree
-    @observation = Observation.find_by_id(params[:observation_id])
+    unless @observation = Observation.find_by_id(params[:observation_id])
+      render_404
+      return
+    end
     @old_identification = @observation.identifications.by(current_user).current.last
     if @old_identification && @old_identification.taxon_id == params[:taxon_id].to_i
       @identification = @old_identification

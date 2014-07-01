@@ -228,7 +228,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
-    hashie (2.0.5)
+    hashie (2.1.2)
     highline (1.6.19)
     hike (1.2.3)
     htmlentities (4.3.1)
@@ -286,12 +286,12 @@ GEM
     objectify-xml (0.2.3)
       activesupport
       nokogiri
-    omniauth (1.1.4)
+    omniauth (1.2.1)
       hashie (>= 1.2, < 3)
-      rack
+      rack (~> 1.0)
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
-    omniauth-flickr (0.0.11)
+    omniauth-flickr (0.0.15)
       omniauth-oauth (~> 1.0)
     omniauth-google-oauth2 (0.1.17)
       omniauth (~> 1.0)

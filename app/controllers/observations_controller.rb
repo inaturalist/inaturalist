@@ -1858,7 +1858,7 @@ class ObservationsController < ApplicationController
     }
     unless options[:skip_pagination]
       find_options[:page] = find_options[:page].to_i
-      find_options[:page] = 1 if find_options[:page] == 0
+      find_options[:page] = 1 if find_options[:page] <= 0
       find_options[:per_page] = @prefs["per_page"] if @prefs
       if !search_params[:per_page].blank?
         find_options.update(:per_page => search_params[:per_page])
@@ -1869,7 +1869,7 @@ class ObservationsController < ApplicationController
       if find_options[:per_page] && find_options[:per_page].to_i > 200
         find_options[:per_page] = 200
       end
-      find_options[:per_page] = 30 if find_options[:per_page].to_i == 0
+      find_options[:per_page] = 30 if find_options[:per_page].to_i <= 0
     end
     
     if find_options[:limit] && find_options[:limit].to_i > 200
