@@ -5896,6 +5896,13 @@ CREATE INDEX index_taxon_links_on_user_id ON taxon_links USING btree (user_id);
 
 
 --
+-- Name: index_taxon_names_on_lexicon; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_taxon_names_on_lexicon ON taxon_names USING btree (lexicon);
+
+
+--
 -- Name: index_taxon_names_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6612,3 +6619,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140604055610');
 INSERT INTO schema_migrations (version) VALUES ('20140611180054');
 
 INSERT INTO schema_migrations (version) VALUES ('20140620021223');
+
+INSERT INTO schema_migrations (version) VALUES ('20140701212522');

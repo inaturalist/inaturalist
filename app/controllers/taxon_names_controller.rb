@@ -179,7 +179,7 @@ class TaxonNamesController < ApplicationController
   def load_lexicons
     @lexicons = [
       TaxonName::LEXICONS.values, 
-      TaxonName.select("DISTINCT ON (lower(lexicon)) lexicon").map(&:lexicon)
+      TaxonName.select("DISTINCT ON (lexicon) lexicon").map(&:lexicon)
     ].flatten.uniq.reject{|n| n.blank?}.sort
   end
 end
