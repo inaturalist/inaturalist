@@ -763,7 +763,7 @@ module ApplicationHelper
         end
       end
     when "Observation"
-      if resource.is_a?(ProjectInvitation)
+      if notifier.is_a?(ProjectInvitation)
         t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
       elsif notifier.is_a?(ObservationFieldValue)
         t(:user_added_an_observation_field_html, :user => notifier_user_link, :field_name => truncate(notifier.observation_field.name), 
