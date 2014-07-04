@@ -1937,7 +1937,7 @@ CREATE TABLE posts (
     place_id integer,
     latitude numeric(15,10),
     longitude numeric(15,10),
-    positional_accuracy integer
+    radius integer
 );
 
 
@@ -6621,3 +6621,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140611180054');
 INSERT INTO schema_migrations (version) VALUES ('20140620021223');
 
 INSERT INTO schema_migrations (version) VALUES ('20140701212522');
+
+INSERT INTO schema_migrations (version) VALUES ('20140704062909');
