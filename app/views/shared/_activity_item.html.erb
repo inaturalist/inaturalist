@@ -15,7 +15,7 @@
   when "Identification" then edit_identification_path(item)
   end
 -%>
-<div id="<%= id_for(item) %>" class="<%= item.class.name.humanize.underscore %> item clear stacked">
+<div id="<%= dom_id(item, 'activity') %>" class="<%= item.class.name.humanize.underscore %>_activity_item item clear stacked">
   <div class="item_user column">
     <% if user -%>
       <%= link_to image_tag(user.icon.url(:thumb), :class => 'usericon'), person_path(user) %>

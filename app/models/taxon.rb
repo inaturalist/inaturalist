@@ -674,8 +674,8 @@ class Taxon < ActiveRecord::Base
         else
           []
         end
-      rescue FlickRaw::FailedResponse, EOFError => e
-        Rails.logger.error "EXCEPTION RESCUE: #{e}"
+      rescue FlickRaw::FailedResponse, EOFError, OpenSSL::SSL::SSLError => e
+        Rails.logger.error "Failed Flickr API request: #{e}"
         Rails.logger.error e.backtrace.join("\n\t")
       end
     end

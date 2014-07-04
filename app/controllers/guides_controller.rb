@@ -169,6 +169,7 @@ class GuidesController < ApplicationController
         ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0 && a[0] == Taxon::LIFE.id.to_s}
         if ancestries.blank?
           @nav_taxa = []
+          @nav_taxa_counts = {}
         else
           width = ancestries.last.size
           matrix = ancestries.map do |a|

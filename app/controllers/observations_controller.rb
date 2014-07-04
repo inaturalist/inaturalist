@@ -1788,7 +1788,12 @@ class ObservationsController < ApplicationController
     
     photo_list.uniq.each do |photo_id|
       if (photo = existing[photo_id]) || options[:sync]
-        api_response = photo_class.get_api_response(photo_id, :user => current_user)
+        api_response = begin
+          photo_class.get_api_response(photo_id, :user => current_user)
+        rescue JSON::ParserError => e
+          Rails.logger.error "[ERROR #{Time.now}] Failed to parse JSON from Flickr: #{e}"
+          next
+        end
       end
       
       # Sync existing if called for
