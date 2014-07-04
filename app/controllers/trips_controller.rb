@@ -126,7 +126,7 @@ class TripsController < ApplicationController
     param :body, String, :desc => "Description of the trip."
     param :latitude, :number, :desc => "Latitude of a point approximating the trip location."
     param :longitude, :number, :desc => "Longitude of a point approximating the trip location."
-    param :positional_accuracy, :number, :desc => "Precision of a point approximating the trip location."
+    param :radius, :number, :desc => "Radius in meters within which the trip occurred."
     param :place_id, :number, :desc => "Site place ID of place where the trip occurred."
     param :trip_taxa_attributes, Hash, :desc => "
       Nested trip taxa, i.e. taxa on the trip's check list. Note that this
@@ -171,7 +171,7 @@ class TripsController < ApplicationController
     param :body, String, :desc => "Description of the trip."
     param :latitude, :number, :desc => "Latitude of a point approximating the trip location."
     param :longitude, :number, :desc => "Longitude of a point approximating the trip location."
-    param :positional_accuracy, :number, :desc => "Precision of a point approximating the trip location."
+    param :radius, :number, :desc => "Radius in meters within which the trip occurred."
     param :place_id, :number, :desc => "Site place ID of place where the trip occurred."
     param :trip_taxa_attributes, Hash, :desc => "
       Nested trip taxa, i.e. taxa on the trip's check list. Note that this
