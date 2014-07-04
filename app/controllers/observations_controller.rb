@@ -1812,7 +1812,12 @@ class ObservationsController < ApplicationController
         photo = if photo_class == LocalPhoto
           LocalPhoto.new(:file => photo_id, :user => current_user) unless photo_id.blank?
         else
-          api_response ||= photo_class.get_api_response(photo_id, :user => current_user)
+          api_response ||= begin
+            photo_class.get_api_response(photo_id, :user => current_user)
+          rescue JSON::ParserError => e
+            Rails.logger.error "[ERROR #{Time.now}] Failed to parse JSON from Flickr: #{e}"
+            nil
+          end
           if api_response
             photo_class.new_from_api_response(api_response, :user => current_user, :native_photo_id => photo_id)
           end
