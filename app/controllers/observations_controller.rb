@@ -1463,7 +1463,7 @@ class ObservationsController < ApplicationController
   def update_fields
     unless @observation.fields_addable_by?(current_user)
       respond_to do |format|
-        msg = "you_dont_have_permission_to_do_that"
+        msg = t(:you_dont_have_permission_to_do_that)
         format.html do
           flash[:error] = msg
           redirect_back_or_default @observation
@@ -1474,6 +1474,21 @@ class ObservationsController < ApplicationController
       end
       return
     end
+
+    if params[:observation].blank?
+      respond_to do |format|
+        msg = t(:you_must_choose_an_observation_field)
+        format.html do
+          flash[:error] = msg
+          redirect_back_or_default @observation
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => msg}
+        end
+      end
+      return
+    end
+
     ofv_attrs = params[:observation][:observation_field_values_attributes]
     ofv_attrs.each do |k,v|
       ofv_attrs[k][:updater_user_id] = current_user.id
