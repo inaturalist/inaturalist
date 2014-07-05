@@ -800,11 +800,13 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def primary_occurrence_status
-    primary_listed_taxon.occurrence_status
+    primary_listed_taxon.try(:occurrence_status)
   end
+
   def primary_establishment_means
-    primary_listed_taxon.establishment_means
+    primary_listed_taxon.try(:establishment_means)
   end
+
   def update_attributes_and_primary(listed_taxon, current_user)
     transaction do
       update_attributes(listed_taxon.merge(:updater_id => current_user.id))
