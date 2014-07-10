@@ -285,8 +285,23 @@ module Shared::ListsModule
   
   def destroy
     if @list.id == current_user.life_list_id
-      flash[:notice] = t(:sorry_you_cant_delete_your_own_life_list)
-      redirect_to @list and return
+      respond_to do |format|
+        format.html do
+          flash[:notice] = t(:sorry_you_cant_delete_your_own_life_list)
+          redirect_to @list
+        end
+      end
+      return
+    end
+
+    if @list.is_a?(ProjectList)
+      respond_to do |format|
+        format.html do
+          flash[:notice] = t(:you_cant_delete_a_project_list)
+          redirect_to @list
+        end
+      end
+      return
     end
     
     @list.destroy
@@ -301,7 +316,6 @@ module Shared::ListsModule
         end
         redirect_to(redirect_path)
       end
-      format.xml  { head :ok }
     end
   end
   

@@ -14,6 +14,23 @@ describe ListsController do
       list.should be_a(LifeList)
     end
   end
+
+  describe :destroy do
+    it "should not allow you to delete your own life list" do
+      u = User.make!
+      sign_in u
+      delete :destroy, :id => u.life_list_id
+      List.find_by_id(u.life_list_id).should_not be_blank
+    end
+
+    it "should not allow anyone to delete a default project list" do
+      p = Project.make!
+      u = p.user
+      sign_in u
+      delete :destroy, :id => p.project_list.id
+      List.find_by_project_id(p.id).should_not be_blank
+    end
+  end
 end
 
 describe ListsController, "compare" do
