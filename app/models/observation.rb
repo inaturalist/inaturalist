@@ -524,6 +524,7 @@ class Observation < ActiveRecord::Base
   scope :observed_after, lambda { |time| where('time_observed_at >= ?', time)}
   scope :observed_before, lambda { |time| where('time_observed_at <= ?', time)}
   scope :in_month, lambda {|month| where("EXTRACT(MONTH FROM observed_on) = ?", month)}
+  scope :week, lambda {|week| where("EXTRACT(WEEK FROM observed_on) = ?", week)}
   
   scope :in_projects, lambda { |projects|
     projects = projects.split(',').map(&:to_i) if projects.is_a?(String)
@@ -724,6 +725,10 @@ class Observation < ActiveRecord::Base
 
     if !params[:d1].blank? && !params[:d2].blank?
       scope = scope.between_dates(params[:d1], params[:d2])
+    end
+
+    unless params[:week].blank?
+      scope = scope.week(params[:week])
     end
 
     if !params[:cs].blank?

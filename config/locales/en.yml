@@ -765,7 +765,7 @@ en:
   date_observed: Date observed
   date_observed_on: date observed on
   date_picker:
-    closeText: Cerrar
+    closeText: Close
     currentText: Today
     prevText: Prev
     nextText: Next
@@ -819,8 +819,8 @@ en:
   did_you_photos_flickr?: Did you put any photos on Flickr?
   disagree: disagree
   disconnect_provider: "Disconnect %{provider}"
-  display_listings_added_by_curators: display_listings_added_by_curators
-  display_listings_from_place: display_listings_from_place
+  display_listings_added_by_curators: Display listings added by curators
+  display_listings_from_place: Display listings from place
   do_you_know_where_this_species_lives: Do you know where this species lives?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Do you study nematodes? Are you the world's foremost expert on barnacle taxonomy? Do you just like looking at pretty flowers? Filling out your profile adds some personality and helps establish your credibility when helping people out with identifications.
   does_the_location_seem_accurate: "Does the location seem accurate?"
@@ -2245,7 +2245,7 @@ en:
   select_all: Select all
   select_an_album: Select an album
   select: Select
-  select_how_unobserved_listings_are_displayed: Select how unobserved listings are displayed
+  select_how_unobserved_listings_are_displayed: Select how unobserved listings from the project list are displayed
   select_one_or_more_photos: Select one or more photos
   select_none: Select none
   select_one_or_more_photos: 'Select one or more photos'
@@ -3555,10 +3555,14 @@ en:
           %{link}, make sure it has a boundary, then come back here and try again.
         bioblitz_desc_html: |
           <p>
-            A bioblitz is an event where you try to get people to observe as many
+            A bioblitz is an event where participants try to observe as many
             species as possible within a given place and time period. It's a fun
             way to introduce people to biodiversity while collecting valuable
-            data at the same time.
+            data at the same time. Unlike normal projects, bioblitz projects
+            accumulate stats from <em>all</em> obervations made within the
+            specified time period and place, so participants do not need to
+            sign up for the project or explicity add their observations to the
+            project.
           </p>
         cover_desc: "Optional banner image that will appear at the top of your project page. Must be 950px wide, less than 400px tall."
         custom_project_fields_means: "Customize the project's banner, add side content, and edit CSS."
@@ -3913,7 +3917,7 @@ en:
         prefers_place_boundary_visible: Show place boundary on map
         tracking_codes: Tracking codes
         source_url: Source URL
-        start_time: start time
+        start_time: Start time
       place:
               code: Code
               display_name: Display name

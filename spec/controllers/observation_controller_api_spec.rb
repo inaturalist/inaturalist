@@ -424,6 +424,15 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == o2.id}.should_not be_blank
     end
 
+    it "should filter by week of the year" do
+      o1 = Observation.make!(:observed_on_string => "2012-01-05 13:13")
+      o2 = Observation.make!(:observed_on_string => "2010-03-01 13:13")
+      get :index, :format => :json, :week => 1
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
+      json.detect{|obs| obs['id'] == o2.id}.should be_blank
+    end
+
     it "should filter by captive" do
       captive = Observation.make!(:captive_flag => "1")
       wild = Observation.make!(:captive_flag => "0")

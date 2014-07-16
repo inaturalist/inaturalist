@@ -1257,7 +1257,7 @@ class TaxaController < ApplicationController
         if fp = photo_class.find_by_native_photo_id(photo_id)
           photos << fp 
         else
-          pp = photo_class.get_api_response(photo_id)
+          pp = photo_class.get_api_response(photo_id) rescue nil
           photos << photo_class.new_from_api_response(pp) if pp
         end
       end
