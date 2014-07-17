@@ -74,10 +74,10 @@
     <legend><%=t :bioblitz %></legend>
     <div class="description"><%= t('views.projects.edit.bioblitz_desc_html') %></div>
     <div class="column span-12">
-      <%= f.text_field :start_time, :value => f.object.start_time ? f.object.start_time.iso8601 : nil, :description => t('views.projects.edit.start_time_desc'), :required => true %>
+      <%= f.text_field :start_time, :value => f.object.start_time ? f.object.start_time.iso8601 : nil, :description => t('views.projects.edit.start_time_desc') %>
     </div>
     <div class="last column span-11">
-      <%= f.text_field :end_time, :value => f.object.end_time ? f.object.end_time.iso8601 : nil, :description => t('views.projects.edit.end_time_desc'), :required => true %>
+      <%= f.text_field :end_time, :value => f.object.end_time ? f.object.end_time.iso8601 : nil, :description => t('views.projects.edit.end_time_desc') %>
     </div>
     <div class="column span-23">
       <%= f.text_field :event_url, :placeholder => t(:event_url), :description => t('views.projects.edit.event_url_desc') %>
