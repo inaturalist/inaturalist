@@ -7,10 +7,11 @@ class ObservationFieldValue < ActiveRecord::Base
   before_validation :strip_value
   before_save :set_user
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
-  validates_presence_of :value, :if => lambda {|ofv| !ofv.observation.mobile? }
+  validates_presence_of :value, :if => lambda {|ofv| ofv.observation && !ofv.observation.mobile? }
   validates_presence_of :observation_field_id
+  validates_presence_of :observation_id
   validates_length_of :value, :maximum => 2048
-  validate :validate_observation_field_datatype
+  validate :validate_observation_field_datatype, :if => lambda {|ofv| ofv.observation }
   validate :validate_observation_field_allowed_values
 
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 

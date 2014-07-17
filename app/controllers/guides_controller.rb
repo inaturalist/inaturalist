@@ -211,7 +211,7 @@ class GuidesController < ApplicationController
               :right => 0
             }
         elsif params[:flow_task_id] && flow_task = FlowTask.find_by_id(params[:flow_task_id])
-          redirect_to flow_task.pdf_url
+          redirect_to flow_task.pdf_url || @guide
         else
           matching_flow_task = GuidePdfFlowTask.
             select("DISTINCT ON (flow_tasks.id) flow_tasks.*").

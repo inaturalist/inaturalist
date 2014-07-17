@@ -25,6 +25,15 @@ shared_examples_for "an ObservationFieldValuesController" do
         }
       }.should_not change(ObservationFieldValue, :count).by(1)
     end
+
+    it "should provie an appropriate response for blank observation id" do
+      post :create, :format => :json,  :observation_field_value => {
+        :observation_id => nil,
+        :observation_field_id => observation_field.id,
+        :value => "foo"
+      }
+      response.status.should eq 422
+    end
     
     it "should allow blank values if coming from an iNat mobile app" do
       o = make_mobile_observation

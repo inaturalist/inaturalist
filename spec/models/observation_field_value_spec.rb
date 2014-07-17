@@ -8,6 +8,13 @@ describe ObservationFieldValue, "creation" do
     o.updated_at.should be > o.created_at
   end
 
+  it "should not be valid without an observation" do
+    of = ObservationField.make!
+    ofv = ObservationFieldValue.new(:observation_field => of, :value => "foo")
+    ofv.should_not be_valid
+    ofv.errors[:observation_id].should_not be_blank
+  end
+
   describe "for subscribers" do
     before { Update.delete_all }
 
