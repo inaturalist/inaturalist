@@ -9,7 +9,7 @@ class ObservationFieldValue < ActiveRecord::Base
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
   validates_presence_of :value, :if => lambda {|ofv| ofv.observation && !ofv.observation.mobile? }
   validates_presence_of :observation_field_id
-  validates_presence_of :observation_id
+  validates_presence_of :observation
   validates_length_of :value, :maximum => 2048
   validate :validate_observation_field_datatype, :if => lambda {|ofv| ofv.observation }
   validate :validate_observation_field_allowed_values

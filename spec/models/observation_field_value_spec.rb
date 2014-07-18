@@ -12,7 +12,7 @@ describe ObservationFieldValue, "creation" do
     of = ObservationField.make!
     ofv = ObservationFieldValue.new(:observation_field => of, :value => "foo")
     ofv.should_not be_valid
-    ofv.errors[:observation_id].should_not be_blank
+    ofv.errors[:observation].should_not be_blank
   end
 
   describe "for subscribers" do
