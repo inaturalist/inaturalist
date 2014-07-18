@@ -10,7 +10,7 @@
   <% if @photos.blank? -%>
     <meta property="og:image" content="<%= iconic_taxon_image_url(@taxon) %>"/>
   <% else %>
-    <meta property="og:image" content="<%= @taxon.default_photo.medium_url %>"/>
+    <meta property="og:image" content="<%= @photos.first.medium_url %>"/>
   <% end -%>
   <meta property="og:url" content="<%= taxon_url(@taxon) %>"/>
   <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>

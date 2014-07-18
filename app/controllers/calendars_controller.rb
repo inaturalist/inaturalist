@@ -12,6 +12,17 @@ class CalendarsController < ApplicationController
     @month  = params[:month].to_s.rjust(2, '0') if params[:month].to_i != 0
     @day    = params[:day].to_s.rjust(2, '0') if params[:day].to_i != 0
     @date = [@year, @month, @day].compact.join('-')
+    begin
+      Date.parse(@date)
+    rescue ArgumentError
+      respond_to do |format|
+        format.html do
+          flash[:notice] = t(:thats_not_a_real_date)
+          redirect_back_or_default calendar_path(@login)
+        end
+      end
+      return
+    end
     @observations = @selected_user.observations.
       on(@date).
       page(1).
@@ -62,6 +73,10 @@ class CalendarsController < ApplicationController
     end
 
     @observer_provider_authorizations = @selected_user.provider_authorizations
+
+    respond_to do |format|
+      format.html
+    end
   end
   
   def compare

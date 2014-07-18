@@ -59,6 +59,12 @@ shared_examples_for "an ObservationsController" do
       }.should_not raise_error
     end
 
+    it "should handle invalid time zones" do
+      lambda {
+        post :create, :format => :json, :observation => {:species_guess => "foo", :observed_on_string => "2014-07-01 14:23", :time_zone => "Eastern Time (US &amp; Canada)"}
+      }.should_not raise_error
+    end
+
     describe "project_id" do
       let(:p) { Project.make! }
 

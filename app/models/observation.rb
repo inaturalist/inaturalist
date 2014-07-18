@@ -997,7 +997,12 @@ class Observation < ActiveRecord::Base
     
     # Set the time zone appropriately
     old_time_zone = Time.zone
-    Time.zone = time_zone || user.try(:time_zone)
+    begin
+      Time.zone = time_zone || user.try(:time_zone)
+    rescue ArgumentError
+      # Usually this would happen b/c of an invalid time zone being specified
+      self.time_zone = time_zone_was || old_time_zone.name
+    end
     Chronic.time_class = Time.zone
     
     begin

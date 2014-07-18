@@ -1391,11 +1391,11 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.search_query(q)
+    q = sanitize_sphinx_query(q)
     if q.blank?
       q = q
       return [q, :all]
     end
-    q = sanitize_sphinx_query(q)
 
     # for some reason 1-term queries don't return an exact match first if enclosed 
     # in quotes, so we only use them for multi-term queries
@@ -1420,6 +1420,7 @@ class Taxon < ActiveRecord::Base
     if taxa.blank?
       begin
         q, match_mode = Taxon.search_query(name)
+        Rails.logger.debug "[DEBUG] q: #{q}"
         search_results = Taxon.search(q,
           :include => [:taxon_names, :photos],
           :field_weights => {:name => 2},

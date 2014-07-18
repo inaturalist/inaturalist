@@ -265,8 +265,13 @@ module ApplicationHelper
     # make sure attributes are quoted correctly
     text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
     
-    # Make sure P's don't get nested in P's
-    text = text.gsub(/<\\?p>/, "\n\n") unless options[:skip_simple_format]
+    unless options[:skip_simple_format]
+      # Make sure P's don't get nested in P's
+      text = text.gsub(/<\\?p>/, "\n\n")
+
+      # blockquotes should always start with a P
+      text = text.gsub(/blockquote(.*?)>\s*/, "blockquote\\1>\n\n")
+    end
     text = sanitize(text, options)
     text = compact(text, :all_tags => true) if options[:compact]
     text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]

@@ -14,25 +14,26 @@ class ConabioService
   end
 
   #
-  #Search for the specific cientific name
+  # Search for the specific cientific name
   #
   def search(q)
     begin
       client=Savon.client(wsdl: @wsdl)
       begin
-            Timeout::timeout(@timeout) do
+        Timeout::timeout(@timeout) do
           @response = client.call(:data_taxon, message: { scientific_name: URI.encode(q.gsub(' ', '_')), key: @key })
         end
-      rescue Timeout::Error, Errno::ECONNRESET
+      rescue Timeout::Error
         raise Timeout::Error, "Conabio didn't respond within #{@timeout} seconds."
+      rescue Errno::ECONNRESET, Errno::EHOSTUNREACH => e
+        Rails.logger.error "[ERROR #{Time.now}] Failed to retrieve CONABIO page: #{e}"
+        return nil
       end
     rescue Savon::SOAPFault => e
       puts e.message
     end
-    @response.body[:data_taxon_response][:return].encode('iso-8859-1').force_encoding('UTF-8').gsub(/\n/,'<br>') if
-        @response.body[:data_taxon_response][:return].present?
-
+    if @response.body[:data_taxon_response][:return].present?
+      @response.body[:data_taxon_response][:return].encode('iso-8859-1').force_encoding('UTF-8').gsub(/\n/,'<br>')
+    end
   end
-
 end
-
