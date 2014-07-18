@@ -547,6 +547,17 @@ describe Observation, "updating" do
       o.reload
       o.should be_casual_grade
     end
+
+    it "should not be research if the community taxon is Life" do
+      load_test_taxa
+      o = make_research_grade_observation
+      o.identifications.destroy_all
+      i1 = Identification.make!(:observation => o, :taxon => @Animalia)
+      i2 = Identification.make!(:observation => o, :taxon => @Plantae)
+      o.reload
+      o.community_taxon.should eq @Life
+      o.should be_casual_grade
+    end
   end
   
   it "should queue a job to update user lists"
@@ -2031,6 +2042,18 @@ describe Observation, "community taxon" do
     o.reload
     o.community_taxon.should be_blank
   end
+
+  it "should be set to Life for two phyla" do
+    load_test_taxa
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o, :taxon => @Animalia)
+    i2 = Identification.make!(:observation => o, :taxon => @Plantae)
+    o.reload
+    puts "o.community_taxon: #{o.community_taxon}"
+    puts "@Life: #{@Life}"
+    o.community_taxon.should eq @Life
+  end
+
 
   it "change should be triggered by changing the taxon" do
     o = Observation.make!

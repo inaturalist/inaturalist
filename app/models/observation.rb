@@ -1324,7 +1324,15 @@ class Observation < ActiveRecord::Base
   end
   
   def research_grade?
-    georeferenced? && community_supported_id? && quality_metrics_pass? && observed_on? && (photos? || sounds?)
+    return false unless georeferenced?
+    return false unless community_supported_id?
+    return false unless quality_metrics_pass?
+    return false unless observed_on?
+    return false unless (photos? || sounds?)
+    if root = (Taxon::LIFE || Taxon.roots.select("id, name, rank").find_by_name('Life'))
+      return false if community_taxon_id == root.id
+    end
+    true
   end
   
   def photos?
@@ -1514,7 +1522,6 @@ class Observation < ActiveRecord::Base
     # end
 
     return unless node
-    return nil if node[:taxon] == Taxon::LIFE
     node[:taxon]
   end
 
