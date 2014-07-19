@@ -572,6 +572,29 @@ shared_examples_for "an ObservationsController" do
       get :index, :format => :json, :page => 101
       response.should be_success
     end
+
+    it "should filter by taxon name" do
+      o1 = Observation.make!(:taxon => Taxon.make!)
+      o2 = Observation.make!(:taxon => Taxon.make!)
+      get :index, :format => :json, :taxon_name => o1.taxon.name
+      JSON.parse(response.body).size.should eq 1
+    end
+
+    it "should filter by taxon name if there are synonyms and iconic_taxa provided" do
+      load_test_taxa
+
+      # This is an ugly solution, but Observation#query relies on some of the
+      # cached constants set in Taxon...which will be empty until after
+      # load_test_taxa, so they need to be reset. I guess I could unload and
+      # reload the individual constants, but that doesn't seem any prettier.
+      load "#{Rails.root}/app/models/taxon.rb"
+      
+      o1 = Observation.make!(:taxon => @Pseudacris_regilla)
+      synonym = Taxon.make!(:parent => @Calypte, :name => o1.taxon.name)
+      o2 = Observation.make!(:taxon => synonym)
+      get :index, :format => :json, :taxon_name => o1.taxon.name, :iconic_taxa => [@Aves.name]
+      JSON.parse(response.body).size.should eq 1
+    end
   end
 
   describe "taxon_stats" do

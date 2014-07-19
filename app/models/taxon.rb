@@ -1414,13 +1414,24 @@ class Taxon < ActiveRecord::Base
     scope = TaxonName.limit(10).includes(:taxon).
       where("lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase).scoped
     scope = scope.where(options[:ancestor].descendant_conditions) if options[:ancestor]
+    if options[:iconic_taxa]
+      iconic_taxon_ids = options[:iconic_taxa].map do |it|
+        if it.is_a?(Taxon)
+          it.id
+        elsif it.to_i == 0
+          Taxon::ICONIC_TAXA_BY_NAME[it].try(:id)
+        else
+          it
+        end
+      end.compact
+      scope = scope.where("taxa.iconic_taxon_id IN (?)", iconic_taxon_ids)
+    end
     taxon_names = scope.all
     return taxon_names.first.taxon if taxon_names.size == 1
     taxa = taxon_names.map{|tn| tn.taxon}.compact
     if taxa.blank?
       begin
         q, match_mode = Taxon.search_query(name)
-        Rails.logger.debug "[DEBUG] q: #{q}"
         search_results = Taxon.search(q,
           :include => [:taxon_names, :photos],
           :field_weights => {:name => 2},

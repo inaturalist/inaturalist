@@ -682,8 +682,7 @@ class Observation < ActiveRecord::Base
     elsif !params[:taxon_id].blank?
       scope = scope.of(params[:taxon_id].to_i)
     elsif !params[:taxon_name].blank?
-      taxon_name = TaxonName.find_single(params[:taxon_name], :iconic_taxa => params[:iconic_taxa])
-      scope = scope.of(taxon_name.try(:taxon))
+      scope = scope.of(Taxon.single_taxon_for_name(params[:taxon_name], :iconic_taxa => params[:iconic_taxa]))
     end
     if params[:on]
       scope = scope.on(params[:on])

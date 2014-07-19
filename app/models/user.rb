@@ -267,11 +267,11 @@ class User < ActiveRecord::Base
   end
 
   def login=(value)
-    write_attribute :login, (value ? value.downcase : nil)
+    write_attribute :login, (value ? value.to_s.downcase : nil)
   end
 
   def email=(value)
-    write_attribute :email, (value ? value.downcase : nil)
+    write_attribute :email, (value ? value.to_s.downcase : nil)
   end
   
   # Role related methods
