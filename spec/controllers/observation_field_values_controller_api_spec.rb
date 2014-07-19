@@ -16,15 +16,15 @@ shared_examples_for "an ObservationFieldValuesController" do
       }.should change(ObservationFieldValue, :count).by(1)
     end
 
-    it "should not allow blank values" do
-      lambda {
-        post :create, :format => :json, :observation_field_value => {
-          :observation_id => observation.id,
-          :observation_field_id => observation_field.id,
-          :value => ""
-        }
-      }.should_not change(ObservationFieldValue, :count).by(1)
-    end
+    # it "should not allow blank values" do
+    #   lambda {
+    #     post :create, :format => :json, :observation_field_value => {
+    #       :observation_id => observation.id,
+    #       :observation_field_id => observation_field.id,
+    #       :value => ""
+    #     }
+    #   }.should_not change(ObservationFieldValue, :count).by(1)
+    # end
 
     it "should provie an appropriate response for blank observation id" do
       post :create, :format => :json,  :observation_field_value => {

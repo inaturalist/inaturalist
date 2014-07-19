@@ -7,12 +7,16 @@ class ObservationFieldValue < ActiveRecord::Base
   before_validation :strip_value
   before_save :set_user
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
-  validates_presence_of :value, :if => lambda {|ofv| ofv.observation && !ofv.observation.mobile? }
+  # I'd like to keep this, but since mobile clients could be submitting
+  # observations that weren't created on a mobile device now, the check really
+  # needs to happen in the controller... but not sure how best to do that
+  # validates_presence_of :value, :if => lambda {|ofv| ofv.observation && !ofv.observation.mobile? }
   validates_presence_of :observation_field_id
   validates_presence_of :observation
   validates_length_of :value, :maximum => 2048
   validate :validate_observation_field_datatype, :if => lambda {|ofv| ofv.observation }
-  validate :validate_observation_field_allowed_values
+  # Again, we can't support this until all mobile clients support all field types
+  # validate :validate_observation_field_allowed_values
 
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
     :on => :save,
