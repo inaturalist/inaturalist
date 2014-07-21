@@ -14,9 +14,9 @@ class ObservationFieldValue < ActiveRecord::Base
   validates_presence_of :observation_field_id
   validates_presence_of :observation
   validates_length_of :value, :maximum => 2048
-  validate :validate_observation_field_datatype, :if => lambda {|ofv| ofv.observation }
+  # validate :validate_observation_field_datatype, :if => lambda {|ofv| ofv.observation }
   # Again, we can't support this until all mobile clients support all field types
-  # validate :validate_observation_field_allowed_values
+  validate :validate_observation_field_allowed_values
 
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
     :on => :save,
