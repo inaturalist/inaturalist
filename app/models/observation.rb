@@ -1125,7 +1125,7 @@ class Observation < ActiveRecord::Base
   #
   def refresh_lists
     return true if skip_refresh_lists
-    return true unless taxon_id_changed?
+    return true unless taxon_id_changed? || quality_grade_changed?
     
     # Update the observation's current taxon and/or a previous one that was
     # just removed/changed
@@ -1136,6 +1136,15 @@ class Observation < ActiveRecord::Base
     
     # Don't refresh all the lists if nothing changed
     return true if target_taxa.empty?
+    
+    # Refreh the ProjectLists
+    unless Delayed::Job.where("handler LIKE '%ProjectList%refresh_with_observation% #{id}\n%'").exists?
+      ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow").refresh_with_observation(id, :taxon_id => taxon_id, 
+        :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
+    end
+    
+    # Don't refresh LifeLists and Lists if only quality grade has changed
+    return true unless taxon_id_changed?
     unless Delayed::Job.where("handler LIKE '%''List%refresh_with_observation% #{id}\n%'").exists?
       List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
         :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
@@ -1143,14 +1152,6 @@ class Observation < ActiveRecord::Base
     end
     unless Delayed::Job.where("handler LIKE '%LifeList%refresh_with_observation% #{id}\n%'").exists?
       LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
-        :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
-    end
-    
-    #only refresh project lists if the observation quality grade or taxon_id changed
-    project_list_refresh_needed = (taxon_id || taxon_id_was) && (quality_grade_changed? || taxon_id_changed? || observed_on_changed?)
-    return true unless project_list_refresh_needed
-    unless Delayed::Job.where("handler LIKE '%ProjectList%refresh_with_observation% #{id}\n%'").exists?
-      ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow").refresh_with_observation(id, :taxon_id => taxon_id, 
         :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
     end
     
@@ -1982,6 +1983,7 @@ class Observation < ActiveRecord::Base
         "id = #{id}"
       )
       refresh_check_lists
+      refresh_lists
     end
   end
   
