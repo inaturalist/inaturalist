@@ -24,7 +24,7 @@ class ObservationsController < ApplicationController
     by_login
   end
 
-  doorkeeper_for :create, :update, :destroy, :viewed_updates, :if => lambda { authenticate_with_oauth? }
+  doorkeeper_for :create, :update, :destroy, :viewed_updates, :update_fields, :if => lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
@@ -48,7 +48,7 @@ class ObservationsController < ApplicationController
                             :community_taxon_summary]
   before_filter :load_observation, :only => [
     :show, :edit, :edit_photos, :update_photos, :destroy, :fields,
-    :viewed_updates, :community_taxon_summary
+    :viewed_updates, :community_taxon_summary, :update_fields
   ]
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
@@ -549,7 +549,11 @@ class ObservationsController < ApplicationController
     @observations = params[:observations].map do |fieldset_index, observation|
       next if observation.blank?
       observation.delete('fieldset_index') if observation[:fieldset_index]
-      o = Observation.new(observation)
+      o = unless observation[:uuid].blank?
+        current_user.observations.where(:uuid => observation[:uuid]).first
+      end
+      o ||= Observation.new
+      o.assign_attributes(observation)
       o.user = current_user
       o.user_agent = request.user_agent
       if doorkeeper_token && (a = doorkeeper_token.application)
@@ -1456,6 +1460,67 @@ class ObservationsController < ApplicationController
     render :layout => false
   end
 
+  def update_fields
+    unless @observation.fields_addable_by?(current_user)
+      respond_to do |format|
+        msg = t(:you_dont_have_permission_to_do_that)
+        format.html do
+          flash[:error] = msg
+          redirect_back_or_default @observation
+        end
+        format.json do
+          render :status => 401, :json => {:error => msg}
+        end
+      end
+      return
+    end
+
+    if params[:observation].blank?
+      respond_to do |format|
+        msg = t(:you_must_choose_an_observation_field)
+        format.html do
+          flash[:error] = msg
+          redirect_back_or_default @observation
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => msg}
+        end
+      end
+      return
+    end
+
+    ofv_attrs = params[:observation][:observation_field_values_attributes]
+    ofv_attrs.each do |k,v|
+      ofv_attrs[k][:updater_user_id] = current_user.id
+    end
+    o = { :observation_field_values_attributes =>  ofv_attrs}
+    respond_to do |format|
+      if @observation.update_attributes(o)
+        format.html do
+          flash[:notice] = I18n.t(:observations_was_successfully_updated)
+          redirect_to @observation
+        end
+        format.json do
+          render :json => @observation.to_json(
+            :viewer => current_user,
+            :include => {
+              :observation_field_values => {:include => {:observation_field => {:only => [:name]}}}
+            }
+          )
+        end
+      else
+        msg = "Failed update observation: #{@observation.errors.full_messages.to_sentence}"
+        format.html do
+          flash[:error] = msg
+          redirect_to @observation
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => msg}
+        end
+      end
+    end
+  end
+
   def photo
     @observations = []
     @errors = []
@@ -1738,7 +1803,12 @@ class ObservationsController < ApplicationController
     
     photo_list.uniq.each do |photo_id|
       if (photo = existing[photo_id]) || options[:sync]
-        api_response = photo_class.get_api_response(photo_id, :user => current_user)
+        api_response = begin
+          photo_class.get_api_response(photo_id, :user => current_user)
+        rescue JSON::ParserError => e
+          Rails.logger.error "[ERROR #{Time.now}] Failed to parse JSON from Flickr: #{e}"
+          next
+        end
       end
       
       # Sync existing if called for
@@ -1757,7 +1827,12 @@ class ObservationsController < ApplicationController
         photo = if photo_class == LocalPhoto
           LocalPhoto.new(:file => photo_id, :user => current_user) unless photo_id.blank?
         else
-          api_response ||= photo_class.get_api_response(photo_id, :user => current_user)
+          api_response ||= begin
+            photo_class.get_api_response(photo_id, :user => current_user)
+          rescue JSON::ParserError => e
+            Rails.logger.error "[ERROR #{Time.now}] Failed to parse JSON from Flickr: #{e}"
+            nil
+          end
           if api_response
             photo_class.new_from_api_response(api_response, :user => current_user, :native_photo_id => photo_id)
           end
@@ -1808,7 +1883,7 @@ class ObservationsController < ApplicationController
     }
     unless options[:skip_pagination]
       find_options[:page] = find_options[:page].to_i
-      find_options[:page] = 1 if find_options[:page] == 0
+      find_options[:page] = 1 if find_options[:page] <= 0
       find_options[:per_page] = @prefs["per_page"] if @prefs
       if !search_params[:per_page].blank?
         find_options.update(:per_page => search_params[:per_page])
@@ -1819,7 +1894,7 @@ class ObservationsController < ApplicationController
       if find_options[:per_page] && find_options[:per_page].to_i > 200
         find_options[:per_page] = 200
       end
-      find_options[:per_page] = 30 if find_options[:per_page].to_i == 0
+      find_options[:per_page] = 30 if find_options[:per_page].to_i <= 0
     end
     
     if find_options[:limit] && find_options[:limit].to_i > 200

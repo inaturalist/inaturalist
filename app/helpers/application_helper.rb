@@ -263,14 +263,20 @@ module ApplicationHelper
     return text if text.blank?
     
     # make sure attributes are quoted correctly
-    text = text.gsub(/(\w+)=['"]([^'"]*?)['"]/, '\\1="\\2"')
+    text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
     
-    # Make sure P's don't get nested in P's
-    text = text.gsub(/<\\?p>/, "\n\n") unless options[:skip_simple_format]
+    unless options[:skip_simple_format]
+      # Make sure P's don't get nested in P's
+      text = text.gsub(/<\\?p>/, "\n\n")
+
+      # blockquotes should always start with a P
+      text = text.gsub(/blockquote(.*?)>\s*/, "blockquote\\1>\n\n")
+    end
     text = sanitize(text, options)
     text = compact(text, :all_tags => true) if options[:compact]
     text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
+    text = text.gsub(/<a /, '<a rel="nofollow" ')
     # Ensure all tags are closed
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
@@ -762,7 +768,14 @@ module ApplicationHelper
         end
       end
     when "Observation"
-      t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
+      if notifier.is_a?(ProjectInvitation)
+        t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
+      elsif notifier.is_a?(ObservationFieldValue)
+        t(:user_added_an_observation_field_html, :user => notifier_user_link, :field_name => truncate(notifier.observation_field.name), 
+          :owner => you_or_login(resource.user, :capitalize_it => false))
+      else
+        "unknown"
+      end
     when "Project"
       project = resource
       if update.notifier_type == "Post"
@@ -868,10 +881,19 @@ module ApplicationHelper
   end
   
   def update_cached(record, association)
-    if @update_cache && @update_cache[association.to_s.pluralize.to_sym]
-      cached = @update_cache[association.to_s.pluralize.to_sym][record.send("#{association}_id")]
+    unless record.respond_to?("#{association}_id")
+      return record.send(association)
     end
-    cached ||= record.send(association)
+    cache_key = record.send("#{association}_id")
+    cached = if @update_cache && @update_cache[association.to_s.pluralize.to_sym]
+      @update_cache[association.to_s.pluralize.to_sym][cache_key]
+    end
+    unless cached
+      @update_cache ||= {}
+      @update_cache[association.to_s.pluralize.to_sym] ||= {}
+      @update_cache[association.to_s.pluralize.to_sym][cache_key] = record.send(association)
+    end
+    @update_cache[association.to_s.pluralize.to_sym][cache_key]
   end
 
   def observation_field_value_for(ofv)
@@ -1029,6 +1051,11 @@ module ApplicationHelper
     else
       ""
     end
+  end
+
+  def favicon_url_for(url)
+    uri = URI.parse(url) rescue nil
+    "http://www.google.com/s2/favicons?domain=#{uri.try(:host)}"
   end
   
 end

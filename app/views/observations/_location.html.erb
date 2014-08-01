@@ -3,7 +3,7 @@
   inline_edit ||= false
   places ||= nil
   if places && !observation.coordinates_viewable_by?(current_user)
-    places = places[-3,3]
+    places = places.select{|p| [Place::CONTINENT, Place::COUNTRY, Place::STATE, Place::COUNTY].include?(p.place_type) && p.user_id.blank?}
   end
 -%>
 <% if observation.coordinates_viewable_by?(current_user) -%>

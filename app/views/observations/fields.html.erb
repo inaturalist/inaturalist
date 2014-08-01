@@ -1,4 +1,4 @@
-<%= form_for @observation do |o| %>
+<%= form_for @observation, :url => update_fields_observation_path(@observation) do |o| %>
   <% if @project -%>
     <div class="notice box">
       <strong><%= @project.title %></strong>

@@ -15,12 +15,10 @@
 #map{height:245px;overflow:hidden;}
 #where, #map {width: 100%;}
 .has_media #where, .has_maedia #map {width: 310px;}
-#observation-description .description{color:#666;}
+#observation-description .description{color:#666; overflow:hidden;}
 #observation-description img{max-width:500px;height:auto;}
 .breadcrumbs{float:left;width:auto;}
 #observation-description {margin-top:10px;}
-.observation_field_value .extra {visibility: hidden;}
-.observation_field_value:hover .extra {visibility: visible;}
 .field .observation_photos label {display:block;}
 #where .places .hidden {display:none;}
 #app img {position:relative; top:4px;}

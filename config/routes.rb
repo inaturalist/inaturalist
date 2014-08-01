@@ -154,6 +154,7 @@ Inaturalist::Application.routes.draw do
     end
     member do
       put :viewed_updates
+      put :update_fields
     end
   end
 

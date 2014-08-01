@@ -12,6 +12,17 @@ class CalendarsController < ApplicationController
     @month  = params[:month].to_s.rjust(2, '0') if params[:month].to_i != 0
     @day    = params[:day].to_s.rjust(2, '0') if params[:day].to_i != 0
     @date = [@year, @month, @day].compact.join('-')
+    begin
+      Date.parse(@date)
+    rescue ArgumentError
+      respond_to do |format|
+        format.html do
+          flash[:notice] = t(:thats_not_a_real_date)
+          redirect_back_or_default calendar_path(@login)
+        end
+      end
+      return
+    end
     @observations = @selected_user.observations.
       on(@date).
       page(1).
@@ -41,14 +52,11 @@ class CalendarsController < ApplicationController
     ).sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
     
     unless @observations.blank?
-      scope = Observation.where(
-          "ST_Intersects(place_geometries.geom, observations.private_geom)")
+      scope = Observation.where("ST_Intersects(place_geometries.geom, observations.private_geom)")
+      # without this there can be performance problems with very large places.
+      # 6 is around the max size for a US county
+      scope = scope.where("st_area(place_geometries.geom) < 6")
       scope = scope.where("places.id = place_geometries.place_id")
-      scope = scope.where("places.place_type NOT IN (?)", [
-        Place::PLACE_TYPE_CODES['Country'], 
-        Place::PLACE_TYPE_CODES['State'],
-        Place::PLACE_TYPE_CODES['Continent']
-      ])
       scope = scope.where("observations.user_id = ? ", @selected_user)
       scope = scope.where(Observation.conditions_for_date("observations.observed_on", @date))
       place_name_counts = scope.count(
@@ -65,6 +73,10 @@ class CalendarsController < ApplicationController
     end
 
     @observer_provider_authorizations = @selected_user.provider_authorizations
+
+    respond_to do |format|
+      format.html
+    end
   end
   
   def compare

@@ -1470,7 +1470,9 @@ CREATE TABLE observation_field_values (
     observation_field_id integer,
     value character varying(2048),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    user_id integer,
+    updater_id integer
 );
 
 
@@ -1572,7 +1574,8 @@ CREATE TABLE observation_photos (
     photo_id integer NOT NULL,
     "position" integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    uuid character varying(255)
 );
 
 
@@ -1675,7 +1678,8 @@ CREATE TABLE observations (
     private_geom geometry(Point),
     community_taxon_id integer,
     captive boolean DEFAULT false,
-    site_id integer
+    site_id integer,
+    uuid character varying(255)
 );
 
 
@@ -1933,7 +1937,7 @@ CREATE TABLE posts (
     place_id integer,
     latitude numeric(15,10),
     longitude numeric(15,10),
-    positional_accuracy integer
+    radius integer
 );
 
 
@@ -5185,6 +5189,20 @@ CREATE INDEX index_observation_field_values_on_observation_id ON observation_fie
 
 
 --
+-- Name: index_observation_field_values_on_updater_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_field_values_on_updater_id ON observation_field_values USING btree (updater_id);
+
+
+--
+-- Name: index_observation_field_values_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_field_values_on_user_id ON observation_field_values USING btree (user_id);
+
+
+--
 -- Name: index_observation_fields_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5210,6 +5228,13 @@ CREATE INDEX index_observation_photos_on_observation_id ON observation_photos US
 --
 
 CREATE INDEX index_observation_photos_on_photo_id ON observation_photos USING btree (photo_id);
+
+
+--
+-- Name: index_observation_photos_on_uuid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_photos_on_uuid ON observation_photos USING btree (uuid);
 
 
 --
@@ -5308,6 +5333,13 @@ CREATE INDEX index_observations_on_uri ON observations USING btree (uri);
 --
 
 CREATE INDEX index_observations_on_user_id ON observations USING btree (user_id);
+
+
+--
+-- Name: index_observations_on_uuid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_uuid ON observations USING btree (uuid);
 
 
 --
@@ -5861,6 +5893,13 @@ CREATE INDEX index_taxon_links_on_taxon_id_and_show_for_descendent_taxa ON taxon
 --
 
 CREATE INDEX index_taxon_links_on_user_id ON taxon_links USING btree (user_id);
+
+
+--
+-- Name: index_taxon_names_on_lexicon; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_taxon_names_on_lexicon ON taxon_names USING btree (lexicon);
 
 
 --
@@ -6576,3 +6615,11 @@ INSERT INTO schema_migrations (version) VALUES ('20140313030123');
 INSERT INTO schema_migrations (version) VALUES ('20140416193430');
 
 INSERT INTO schema_migrations (version) VALUES ('20140604055610');
+
+INSERT INTO schema_migrations (version) VALUES ('20140611180054');
+
+INSERT INTO schema_migrations (version) VALUES ('20140620021223');
+
+INSERT INTO schema_migrations (version) VALUES ('20140701212522');
+
+INSERT INTO schema_migrations (version) VALUES ('20140704062909');

@@ -351,13 +351,8 @@
       <div id="app" class="description">
         <label>App:</label>
         <% if a -%>
-          <%-
-            url = a.url.blank? ? oauth_application_url(a) : a.url
-            uri = URI.parse(url) rescue nil
-          -%>
-          <% if uri -%>
-            <%= link_to(image_tag("http://www.google.com/s2/u/0/favicons?domain=#{uri.host}", :class => "favicon"), url) %>
-          <% end -%>
+          <%- url = a.url.blank? ? oauth_application_url(a) : a.url -%>
+          <%= link_to(image_tag(favicon_url_for(url), :class => "favicon"), url) %>
           <%= link_to a.name, url %>
         <% elsif !@observation.device_url.blank? -%>
           <%= link_to @observation.device_name, @observation.device_url %>
@@ -367,27 +362,10 @@
     
     <% unless @observation.observation_field_values.blank? -%>
       <div class="observation_fields meta">
-        <% for ofv in @observation.observation_field_values %>
-          <div class="observation_field_value">
-            <label data-tip="<%=h ofv.observation_field.description %>" data-tip-width="auto">
-              <%= link_to ofv.observation_field.name, ofv.observation_field %>:
-            </label>
-            <%= observation_field_value_for(ofv) %>
-            <span class="extra small">
-              <%= link_to t(:observations_w_field), observations_path("field:#{ofv.observation_field.normalized_name}" => ""),
-                :rel => "nofollow" %>
-              <% if ofv.value.to_s.size < 30 -%>
-                |
-                <%= link_to t(:observations_w) + "#{ofv.observation_field.name}=#{ofv.value}",
-                  observations_path("field:#{ofv.observation_field.normalized_name}" => ofv.value),
-                  :rel => "nofollow" -%>
-              <%- end -%>
-            </span>
-          </div>
-        <% end %>
+        <%= render :partial => 'observation_fields/observation_field_value', :collection => @observation.observation_field_values %>
       </div>
     <% end -%>
-    <% if is_me?(@observation.user) -%>
+    <% if @observation.fields_addable_by?(current_user) -%>
       <span class="button"><%= link_to_function t(:add_edit_more_fields), "ObservationFields.showObservationFieldsDialog()" %></span>
     <% end -%>
     

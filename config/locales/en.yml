@@ -96,7 +96,7 @@ en:
   about_x: "About %{x}"
   acc: 'Acc (m)'
   accept: accept
-  accept_community_identifications: accept_community_identifications
+  accept_community_identifications: Accept community identifications
   accuracy: Accuracy
   accuracy_meters: Accuracy (meters)
   accuracy_of_the_coordinates: 'Accuracy of the coordinates in meters. You can edit this by click the "edit" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you are sure you were somewhere inside it.'
@@ -606,7 +606,7 @@ en:
   committed: Committed
   committing: Committing...
   community_id: '<strong>Community</strong> ID: '
-  community_identification_settings: community_identification_settings
+  community_moderation_settings: Community Moderation Settings
   community_supported_id: Community-supported ID?
   compare_with: Compare with
   comparing: comparing
@@ -765,7 +765,7 @@ en:
   date_observed: Date observed
   date_observed_on: date observed on
   date_picker:
-    closeText: Cerrar
+    closeText: Close
     currentText: Today
     prevText: Prev
     nextText: Next
@@ -819,8 +819,8 @@ en:
   did_you_photos_flickr?: Did you put any photos on Flickr?
   disagree: disagree
   disconnect_provider: "Disconnect %{provider}"
-  display_listings_added_by_curators: display_listings_added_by_curators
-  display_listings_from_place: display_listings_from_place
+  display_listings_added_by_curators: Display listings added by curators
+  display_listings_from_place: Display listings from place
   do_you_know_where_this_species_lives: Do you know where this species lives?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Do you study nematodes? Are you the world's foremost expert on barnacle taxonomy? Do you just like looking at pretty flowers? Filling out your profile adds some personality and helps establish your credibility when helping people out with identifications.
   does_the_location_seem_accurate: "Does the location seem accurate?"
@@ -1093,6 +1093,8 @@ en:
   guides: Guides
   guide_colors: Guide Colors
   guide_compiled_by: Guide compiled by
+  guide_deleted: Guide deleted
+  guide_will_be_deleted: Guide will be deleted. It takes a while for larger guides.
   guide_taxon: Guide taxon
   guide_was_successfully_created: Guide was successfully created.
   guide_was_successfully_published: Guide was successfully published.
@@ -1119,7 +1121,7 @@ en:
   hex_color_eg: Hex color, e.g. 65644F
   hi: Hi,
   hide: Hide
-  hide details: hide details
+  hide_details: Hide details
   highest_rank: Highest rank
   home: Home
   home_faq: FAQ
@@ -1466,7 +1468,7 @@ en:
   most_observations: Most observations
   most_species: Most species
   most_observed_species: Most observed species
-  multiple_taxa: Multiple taxa (input for swap/merge, output for split)
+  multiple_taxa: "Multiple taxa (input for swap/merge, output for split)"
   must_be_observed_in: must be observed in
   must_be_less_than_x_MB: "Must be less than %{x} MB"
   must_have_observation_field: "must have observation field '%{operand}' filled out"
@@ -1649,6 +1651,10 @@ en:
   observation_field: Observation field
   observation_fields: Observation Fields
   observation_fields_are_additional: Observation fields are additional data fields that can be added to observations.
+  observation_fields_by_preferences_description: |
+    Observation fields are a bit like tags, except anyone can add them to your
+    observation by default. Change this if you'd prefer that only you can do
+    this, or only site curators.
   observation_removed_from_the_project: "Observation removed from the project \"%{project}\""
   observation_rights_html: "Observation %{rights}"
   observation_rules: Observation rules
@@ -2239,7 +2245,7 @@ en:
   select_all: Select all
   select_an_album: Select an album
   select: Select
-  select_how_unobserved_listings_are_displayed: Select how unobserved listings are displayed
+  select_how_unobserved_listings_are_displayed: Select how unobserved listings from the project list are displayed
   select_one_or_more_photos: Select one or more photos
   select_none: Select none
   select_one_or_more_photos: 'Select one or more photos'
@@ -2314,9 +2320,11 @@ en:
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Sorry, one of those Flickr photos either doesn't exist or you don't have permission to view it."
   sorry_picasa_isnt_responding_at_the_moment: "Sorry, Picasa isn't responding at the moment."
   sorry_that_photo_provider_isnt_responding: "Sorry, that photo provider isn't responding at the moment. Please try again later."
+  sorry_that_service_is_not_responding: "Sorry, that sercice is not responding. Please try again later."
   sorry_there_were_problems_with_your_request: "Sorry, there were problems with your request: %{project_user}"
   sorry_we_didnt_find_that_photo: "Sorry, we didn't find that photo."
   sorry_we_dont_have_any_metadata_for_that_photo: "Sorry, we don't have any metadata for that photo that we can use to set observation properties."
+  sorry_x_is_not_responding: "Sorry, %{x} is not responding. Please try again later."
   sorry_you_can_only_add_1000_at_a_time: "Sorry, you can only add 1000 at a time."
   sorry_you_cant_delete_your_own_life_list: "Sorry, you can't delete your own life list."
   sorry_you_need_to_be_signed_in_and: Sorry, you need to be signed in and have a linked Flickr account to post tags directly to Flickr.
@@ -2517,6 +2525,7 @@ en:
   that_role_doesnt_exist: That role doesn't exist
   that_will_insert_a_link_to: that will insert a link to this tool on every Flickr photo page.
   thats_okay_we_forget: That's okay! We forget ours too. Send us the email address you used to create your account and we'll email you a link to reset your password.
+  thats_not_a_real_date: That's not a real date!
   the: the
   the_admin_is_the_person_who: The admin is the person who created the project. They can do everything managers and curators can do, as well as delete the project.
   the_community_agrees_location_doesnt: the community agrees the <strong>location doesn't looks accurate</strong> (e.g. monkeys in the middle of the ocean, hippos in office buildings, etc.)
@@ -2669,6 +2678,7 @@ en:
   type_a_place_name_and_click_search: Type a place name and click SEARCH to search
   type_authority: Type authority...
   type_date_time_or_use_the_calendar: Type date/time or use the calendar
+  type_one_name_per_line: Type one name per line
   type_place_name: Type place name
   type_project_name: Type project name
   type_source_name: Type source name
@@ -2733,6 +2743,7 @@ en:
   user_hasnt:  "%{user} hasnt"
   user_invite_observation_to_project: '%{user} would like to invite your observation "%{observation}" to the %{project} project.'
   user_invited_your_x_to_a_project_html: "%{user} invited your %{x} to a project"
+  user_added_an_observation_field_html: '%{user} added a value for "%{field_name}" to an observation by %{owner}'
   user_is_a_naturalist: "%{user} is a naturalist!"
   user_s: "%{user}'s"
   user_s_id: "%{user}'s %{id}"
@@ -2942,6 +2953,7 @@ en:
   you_can_show_the_boundary_of: You can show the boundary of the place on your project page if the place has a boundary.
   you_can_sign_free_at: "You can sign up for a free %{site_name} account at"
   you_cant_compare_a_list_with_nothing: You can't compare a list with nothing!
+  you_cant_delete_a_project_list: "You can't delete a project list"
   you_cant_delete_observation_fields_that_people_are_using: "You can't delete observation fields that people are using"
   you_cant_do_that_for_the_default_check_list_place: You can't do that for the default check list of a place!
   you_cant_flag_that: You can't flag that
@@ -3544,10 +3556,14 @@ en:
           %{link}, make sure it has a boundary, then come back here and try again.
         bioblitz_desc_html: |
           <p>
-            A bioblitz is an event where you try to get people to observe as many
+            A bioblitz is an event where participants try to observe as many
             species as possible within a given place and time period. It's a fun
             way to introduce people to biodiversity while collecting valuable
-            data at the same time.
+            data at the same time. Unlike normal projects, bioblitz projects
+            accumulate stats from <em>all</em> obervations made within the
+            specified time period and place, so participants do not need to
+            sign up for the project or explicity add their observations to the
+            project.
           </p>
         cover_desc: "Optional banner image that will appear at the top of your project page. Must be 950px wide, less than 400px tall."
         custom_project_fields_means: "Customize the project's banner, add side content, and edit CSS."
@@ -3902,7 +3918,7 @@ en:
         prefers_place_boundary_visible: Show place boundary on map
         tracking_codes: Tracking codes
         source_url: Source URL
-        start_time: start time
+        start_time: Start time
       place:
               code: Code
               display_name: Display name
@@ -3947,6 +3963,10 @@ en:
           attributes:
             published_at:
               published_at_needs_3_taxa: "requires at least 3 taxa in your guide"
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: "guide can only have 500 taxa"
         observation_field_value:
           attributes:
             value:
@@ -3957,3 +3977,11 @@ en:
               time_format: |
                 must by in the form hh:mm for a time field ("%{observation_field_name}" 
                 in your observation of "%{observation_species_guess}")
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: |
+                must have registered more than 24 hours ago to publish. We get
+                a lot of spammers, and this is a kind of lame way of dealing
+                with them. You can still save a draft, and if you're still
+                using the site in a day, you'll be able to publish.

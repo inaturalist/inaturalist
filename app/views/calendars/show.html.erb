@@ -119,7 +119,9 @@
           <% for place_name, count in (@place_name_counts || []) %>
             <%- name, id = [place_name.split('-')[0..-2].join('-'), place_name.split('-').last] -%>
             <div>
-              <span class="count"><%= count %></span>
+              <%= link_to(observations_by_login_path(@selected_user.login, :place_id => id, :on => @date)) do %>
+                <span class="count"><%= count %></span>
+              <% end -%>
               <%= t(:from).downcase %>
               <% if place_name.blank? -%>
                 somewhere

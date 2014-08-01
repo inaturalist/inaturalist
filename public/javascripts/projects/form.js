@@ -186,8 +186,35 @@ $(document).ready(function() {
   $('#project_project_type').change(function() {
     if ($(this).val() == 'bioblitz') {
       $('#bioblitz').show()
+      $('#project_start_time, #project_end_time').attr('required', true)
+      $('#project_start_time, #project_end_time').each(function () {
+        if (!$(this).hasClass('hasDatepicker')) {
+          $(this).iNatDatepicker({
+            time:true, 
+            timezone: currentTimeZone().offset,
+            timeFormat: 'HH:mm:ssz',
+            separator: 'T',
+            showSecond: false,
+            showTimezone: false
+          })
+        }
+      })
     } else {
       $('#bioblitz').hide()
+      $('#project_start_time, #project_end_time').attr('required', false)
+    }
+  })
+  $('#project_start_time:visible, #project_end_time:visible').each(function () {
+    $(this).attr('required', true)
+    if (!$(this).hasClass('hasDatepicker')) {
+      $(this).iNatDatepicker({
+        time:true, 
+        timezone: currentTimeZone().offset,
+        timeFormat: 'HH:mm:ssz',
+        separator: 'T',
+        showSecond: false,
+        showTimezone: false
+      })
     }
   })
 })

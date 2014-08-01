@@ -1,12 +1,21 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "an ObservationPhotosController" do
-  it "should create" do
-    @file = fixture_file_upload('files/egg.jpg', 'image/jpeg')
-    lambda {
-      post :create, :format => :json, :observation_photo => {:observation_id => observation.id}, :file => @file
-    }.should change(ObservationPhoto, :count).by(1)
-    response.should be_success
+  describe "create" do
+    let(:file) { fixture_file_upload('files/egg.jpg', 'image/jpeg') }
+    it "should work" do
+      lambda {
+        post :create, :format => :json, :observation_photo => {:observation_id => observation.id}, :file => file
+      }.should change(ObservationPhoto, :count).by(1)
+      response.should be_success
+    end
+
+    it "should not duplicate observation photos with the same uuid" do
+      uuid = "some really long identifier"
+      op = ObservationPhoto.make!(:uuid => uuid, :observation => observation)
+      post :create, :format => :json, :observation_photo => {:observation_id => observation.id, :uuid => uuid}, :file => file
+      ObservationPhoto.where(:uuid => uuid).count.should eq 1
+    end
   end
 
   it "should update" do

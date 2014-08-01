@@ -103,11 +103,16 @@
           :description => t('views.users.edit.taxon_change_desc', :site_name => SITE_NAME_SHORT) %>
       </div>
       
-      <h3><%= t :community_identification_settings %></h3>
+      <h3><%= t :community_moderation_settings %></h3>
       <%= f.check_box "prefers_community_taxa", 
         :label => t(:accept_community_identifications), 
         :label_after => true,
         :description => t('views.users.edit.prefers_community_taxa_desc', :site_name => SITE_NAME_SHORT) %>
+      <%= f.select :preferred_observation_fields_by, [
+          [t(:anyone), User::PREFERRED_OBSERVATION_FIELDS_BY_ANYONE],
+          [t(:curators), User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS],
+          [t(:only_you), User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER]
+        ], :description => t(:observation_fields_by_preferences_description) %>
     </div>
     
     <div class="column span-18">

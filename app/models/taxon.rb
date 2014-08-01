@@ -674,8 +674,8 @@ class Taxon < ActiveRecord::Base
         else
           []
         end
-      rescue FlickRaw::FailedResponse, EOFError => e
-        Rails.logger.error "EXCEPTION RESCUE: #{e}"
+      rescue FlickRaw::FailedResponse, EOFError, OpenSSL::SSL::SSLError => e
+        Rails.logger.error "Failed Flickr API request: #{e}"
         Rails.logger.error e.backtrace.join("\n\t")
       end
     end
@@ -1391,11 +1391,11 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.search_query(q)
+    q = sanitize_sphinx_query(q)
     if q.blank?
       q = q
       return [q, :all]
     end
-    q = sanitize_sphinx_query(q)
 
     # for some reason 1-term queries don't return an exact match first if enclosed 
     # in quotes, so we only use them for multi-term queries
@@ -1414,6 +1414,18 @@ class Taxon < ActiveRecord::Base
     scope = TaxonName.limit(10).includes(:taxon).
       where("lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase).scoped
     scope = scope.where(options[:ancestor].descendant_conditions) if options[:ancestor]
+    if options[:iconic_taxa]
+      iconic_taxon_ids = options[:iconic_taxa].map do |it|
+        if it.is_a?(Taxon)
+          it.id
+        elsif it.to_i == 0
+          Taxon::ICONIC_TAXA_BY_NAME[it].try(:id)
+        else
+          it
+        end
+      end.compact
+      scope = scope.where("taxa.iconic_taxon_id IN (?)", iconic_taxon_ids)
+    end
     taxon_names = scope.all
     return taxon_names.first.taxon if taxon_names.size == 1
     taxa = taxon_names.map{|tn| tn.taxon}.compact

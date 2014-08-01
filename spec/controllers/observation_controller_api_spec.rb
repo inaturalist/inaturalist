@@ -59,6 +59,12 @@ shared_examples_for "an ObservationsController" do
       }.should_not raise_error
     end
 
+    it "should handle invalid time zones" do
+      lambda {
+        post :create, :format => :json, :observation => {:species_guess => "foo", :observed_on_string => "2014-07-01 14:23", :time_zone => "Eastern Time (US &amp; Canada)"}
+      }.should_not raise_error
+    end
+
     describe "project_id" do
       let(:p) { Project.make! }
 
@@ -73,6 +79,30 @@ shared_examples_for "an ObservationsController" do
         p.reload
         p.project_users.where(:user_id => user.id).should_not be_blank
       end
+    end
+
+    it "should not duplicate observations with the same uuid" do
+      uuid = "some really long identifier"
+      o = Observation.make!(:user => user, :uuid => uuid)
+      post :create, :format => :json, :observation => {:uuid => uuid}
+      Observation.where(:uuid => uuid).count.should eq 1
+    end
+
+    it "should update attributes for an existing observation with the same uuid" do
+      uuid = "some really long identifier"
+      o = Observation.make!(:user => user, :uuid => uuid)
+      post :create, :format => :json, :observation => {:uuid => uuid, :description => "this is a WOAH"}
+      Observation.where(:uuid => uuid).count.should eq 1
+      o.reload
+      o.description.should eq "this is a WOAH"
+    end
+
+    it "should duplicate observations with the same uuid if made by different users" do
+      # in theory this is statistically impossible if people use rfc4122 UUIDs, but people and statistics are evil
+      uuid = "some really long identifier"
+      o = Observation.make!(:uuid => uuid)
+      post :create, :format => :json, :observation => {:uuid => uuid}
+      Observation.where(:uuid => uuid).count.should eq 2
     end
   end
 
@@ -305,6 +335,17 @@ shared_examples_for "an ObservationsController" do
       json.detect{|o| o['id'] == oldo.id}.should be_blank
     end
 
+    it "should return no results if updated_since is specified but incorrectly formatted" do
+      oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago, :user => user)
+      oldo.updated_at.should be < 1.minute.ago
+      newo = Observation.make!(:user => user)
+      stamp = (newo.updated_at - 1.minute).iso8601
+      bad_stamp = stamp.gsub(/\:/, '-')
+      get :by_login, :format => :json, :login => user.login, :updated_since => bad_stamp
+      json = JSON.parse(response.body)
+      json.should be_blank
+    end
+
     it "should include deleted observation IDs when filtering by updated_since" do
       oldo = Observation.make!(:created_at => 1.day.ago, :updated_at => 1.day.ago)
       oldo.updated_at.should be < 1.minute.ago
@@ -387,6 +428,15 @@ shared_examples_for "an ObservationsController" do
       json = JSON.parse(response.body)
       json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
       json.detect{|obs| obs['id'] == o2.id}.should_not be_blank
+    end
+
+    it "should filter by week of the year" do
+      o1 = Observation.make!(:observed_on_string => "2012-01-05 13:13")
+      o2 = Observation.make!(:observed_on_string => "2010-03-01 13:13")
+      get :index, :format => :json, :week => 1
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o1.id}.should_not be_blank
+      json.detect{|obs| obs['id'] == o2.id}.should be_blank
     end
 
     it "should filter by captive" do
@@ -522,6 +572,29 @@ shared_examples_for "an ObservationsController" do
       get :index, :format => :json, :page => 101
       response.should be_success
     end
+
+    it "should filter by taxon name" do
+      o1 = Observation.make!(:taxon => Taxon.make!)
+      o2 = Observation.make!(:taxon => Taxon.make!)
+      get :index, :format => :json, :taxon_name => o1.taxon.name
+      JSON.parse(response.body).size.should eq 1
+    end
+
+    it "should filter by taxon name if there are synonyms and iconic_taxa provided" do
+      load_test_taxa
+
+      # This is an ugly solution, but Observation#query relies on some of the
+      # cached constants set in Taxon...which will be empty until after
+      # load_test_taxa, so they need to be reset. I guess I could unload and
+      # reload the individual constants, but that doesn't seem any prettier.
+      load "#{Rails.root}/app/models/taxon.rb"
+      
+      o1 = Observation.make!(:taxon => @Pseudacris_regilla)
+      synonym = Taxon.make!(:parent => @Calypte, :name => o1.taxon.name)
+      o2 = Observation.make!(:taxon => synonym)
+      get :index, :format => :json, :taxon_name => o1.taxon.name, :iconic_taxa => [@Aves.name]
+      JSON.parse(response.body).size.should eq 1
+    end
   end
 
   describe "taxon_stats" do
@@ -612,6 +685,104 @@ shared_examples_for "an ObservationsController" do
       json = JSON.parse(response.body)
       json.detect{|o| o['id'] == newo.id}.should_not be_blank
       json.detect{|o| o['id'] == oldo.id}.should be_blank
+    end
+  end
+
+  describe "update_fields" do
+    shared_examples_for "it allows changes" do
+      it "should allow ofv creation" do
+        put :update_fields, :format => :json, :id => o.id, :observation => {
+          :observation_field_values_attributes => {
+            "0" => {
+              :observation_field_id => of.id,
+              :value => "foo"
+            }
+          }
+        }
+        response.should be_success
+        o.reload
+        o.observation_field_values.first.value.should eq "foo"
+      end
+      it "should allow ofv updating" do
+        ofv = ObservationFieldValue.make!(:observation => o, :observation_field => of, :value => "foo")
+        put :update_fields, :format => :json, :id => o.id, :observation => {
+          :observation_field_values_attributes => {
+            "0" => {
+              :observation_field_id => of.id,
+              :value => "bar"
+            }
+          }
+        }
+        response.should be_success
+        o.reload
+        o.observation_field_values.first.value.should eq "bar"
+      end
+    end
+    describe "for the observer" do
+      let(:o) { Observation.make!(:user => user) }
+      let(:of) { ObservationField.make! }
+      it_behaves_like "it allows changes"
+    end
+
+    describe "for a non-observer" do
+      let(:o) { Observation.make! }
+      let(:of) { ObservationField.make! }
+      it_behaves_like "it allows changes"
+      it "should set the user_id" do
+        put :update_fields, :format => :json, :id => o.id, :observation => {
+          :observation_field_values_attributes => {
+            "0" => {
+              :observation_field_id => of.id,
+              :value => "foo"
+            }
+          }
+        }
+        response.should be_success
+        o.reload
+        o.observation_field_values.first.user.should eq user
+        o.observation_field_values.first.updater.should eq user
+      end
+    end
+
+    describe "for a curator" do
+      before do
+        user.roles << Role.make!(:name => "curator")
+      end
+      let(:o) { Observation.make! }
+      let(:of) { ObservationField.make! }
+
+      it "should allow creation if observer prefers editng by curators" do
+        u = o.user
+        u.update_attributes(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS)
+        u.preferred_observation_fields_by.should eq User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS
+        o.reload
+        put :update_fields, :format => :json, :id => o.id, :observation => {
+          :observation_field_values_attributes => {
+            "0" => {
+              :observation_field_id => of.id,
+              :value => "foo"
+            }
+          }
+        }
+        response.should be_success
+        o.reload
+        o.observation_field_values.first.value.should eq "foo"
+      end
+      it "should not allow creation if observer prefers editng by observer" do
+        o.user.update_attributes(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
+        o.user.preferred_observation_fields_by.should eq User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER
+        put :update_fields, :format => :json, :id => o.id, :observation => {
+          :observation_field_values_attributes => {
+            "0" => {
+              :observation_field_id => of.id,
+              :value => "foo"
+            }
+          }
+        }
+        response.should_not be_success
+        o.reload
+        o.observation_field_values.should be_blank
+      end
     end
   end
 end

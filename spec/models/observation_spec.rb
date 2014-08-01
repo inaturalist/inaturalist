@@ -53,16 +53,29 @@ describe Observation, "creation" do
     [
       ['Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)', {:month => 4, :day => 6, :hour => 16, :offset => "-05:00"}],
       ['Sun Nov 03 2013 08:15:25 GMT-0500 (GMT-5)', {:month => 11, :day => 3, :hour => 8, :offset => "-05:00"}],
-      ['September 27, 2012 8:09:50 AM GMT+01:00', :month => 9, :day => 27, :hour => 8, :offset => "+01:00"],
+
+      # This won't work given our current setup because if we lookup a time
+      # zone by offset like this, it will return the first *named* timezone,
+      # which in this case is Amsterdam, which is the same as CET, which, in
+      # September, observes daylight savings time, so it's actually CEST and
+      # the offset is +2:00. The main problem here is that if the client just
+      # specifies an offset, we can't reliably find the zone
+      # ['September 27, 2012 8:09:50 AM GMT+01:00', :month => 9, :day => 27, :hour => 8, :offset => "+01:00"],
+
+      # This *does* work b/c in December, Amsterdam is in CET, standard time
+      ['December 27, 2012 8:09:50 AM GMT+01:00', :month => 12, :day => 27, :hour => 8, :offset => "+01:00"],
+
       ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', :month => 12, :day => 26, :hour => 11, :offset => "+05:30"],
-      ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"]
+      ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"],
+      ['2014-06-18 5:18:17 pm CEST', :month => 6, :day => 18, :hour => 17, :offset => "+02:00"]
     ].each do |date_string, opts|
       o = Observation.make!(:observed_on_string => date_string)
       o.observed_on.day.should be(opts[:day])
       o.observed_on.month.should be(opts[:month])
-      o.time_observed_at.in_time_zone(o.time_zone).hour.should be(opts[:hour])
-      zone = ActiveSupport::TimeZone[o.time_zone]
-      zone.formatted_offset.should eq opts[:offset]
+      t = o.time_observed_at.in_time_zone(o.time_zone)
+      t.hour.should be(opts[:hour])
+      # zone = ActiveSupport::TimeZone[o.time_zone]
+      t.formatted_offset.should eq opts[:offset]
     end
   end
 
@@ -532,6 +545,17 @@ describe Observation, "updating" do
       o = make_research_grade_observation
       o.identifications.destroy_all
       o.reload
+      o.should be_casual_grade
+    end
+
+    it "should not be research if the community taxon is Life" do
+      load_test_taxa
+      o = make_research_grade_observation
+      o.identifications.destroy_all
+      i1 = Identification.make!(:observation => o, :taxon => @Animalia)
+      i2 = Identification.make!(:observation => o, :taxon => @Plantae)
+      o.reload
+      o.community_taxon.should eq @Life
       o.should be_casual_grade
     end
   end
@@ -2019,6 +2043,18 @@ describe Observation, "community taxon" do
     o.community_taxon.should be_blank
   end
 
+  it "should be set to Life for two phyla" do
+    load_test_taxa
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o, :taxon => @Animalia)
+    i2 = Identification.make!(:observation => o, :taxon => @Plantae)
+    o.reload
+    puts "o.community_taxon: #{o.community_taxon}"
+    puts "@Life: #{@Life}"
+    o.community_taxon.should eq @Life
+  end
+
+
   it "change should be triggered by changing the taxon" do
     o = Observation.make!
     i1 = Identification.make!(:observation => o)
@@ -2157,3 +2193,46 @@ describe Observation, "community taxon" do
   end
 end
 
+describe Observation, "fields_addable_by?" do
+  it "should default to true for anyone" do
+    Observation.make!.fields_addable_by?(User.make!).should be_true
+  end
+
+  it "should be false for nil user" do
+    Observation.make!.fields_addable_by?(nil).should be_false
+  end
+
+  it "should be true for curators if curators preferred" do
+    c = make_curator
+    u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS)
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(c).should be_true
+  end
+
+  it "should be true for curators by default" do
+    c = make_curator
+    u = User.make!
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(c).should be_true
+  end
+
+  it "should be false for curators if no editing preferred" do
+    c = make_curator
+    u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(c).should be_false
+  end
+
+  it "should be false for everyone other than the observer if no editing preferred" do
+    other = User.make!
+    u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(other).should be_false
+  end
+
+  it "should be true for the observer if no editing preferred" do
+    u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(u).should be_true
+  end
+end

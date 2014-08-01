@@ -227,13 +227,14 @@ class PlacesController < ApplicationController
   
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
+    @q = sanitize_sphinx_query(@q.to_s.sanitize_encoding)
     scope = Place.
       includes(:place_geometry_without_geom).
       limit(30).scoped
     scope = if @q.blank?
       scope.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
     else
-      scope.where("lower(name) = ? OR lower(display_name) LIKE ?", @q, "#{@q.to_s.downcase}%")
+      scope = scope.where("places.id IN (?)", Place.search_for_ids("^#{@q}*", :match_mode => :extended))
     end
     scope = scope.with_geom if params[:with_geom]
     @places = scope.sort_by{|p| p.bbox_area || 0}.reverse

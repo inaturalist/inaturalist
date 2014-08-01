@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
                   :make_sound_licenses_same, 
                   :preferred_photo_license, 
                   :preferred_observation_license,
-                  :preferred_sound_license
+                  :preferred_sound_license,
+                  :preferred_observation_fields_by
   attr_accessor :html
   
   preference :project_journal_post_email_notification, :boolean, :default => true
@@ -42,6 +43,10 @@ class User < ActiveRecord::Base
   preference :automatic_taxonomic_changes, :boolean, :default => true
   preference :observations_view, :string
   preference :community_taxa, :boolean, :default => true
+  PREFERRED_OBSERVATION_FIELDS_BY_ANYONE = "anyone"
+  PREFERRED_OBSERVATION_FIELDS_BY_CURATORS = "curators"
+  PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER = "observer"
+  preference :observation_fields_by, :string, :default => PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
@@ -85,9 +90,12 @@ class User < ActiveRecord::Base
   has_many :messages, :dependent => :destroy
   has_many :delivered_messages, :class_name => "Message", :foreign_key => "from_user_id", :conditions => "messages.from_user_id != messages.user_id"
   has_many :guides, :dependent => :nullify, :inverse_of => :user
+  has_many :observation_fields, :dependent => :nullify, :inverse_of => :user
+  has_many :observation_field_values, :dependent => :nullify, :inverse_of => :user
+  has_many :updated_observation_field_values, :dependent => :nullify, :inverse_of => :updater, :foreign_key => "updater_id", :class_name => "ObservationFieldValue"
   
   has_attached_file :icon, 
-    :styles => { :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },
+    :styles => { :original => "2048x2048>", :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },
     :processors => [:deanimator],
     :path => ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",
     :url => "/attachments/:class/:attachment/:id-:style.:icon_type_extension",
@@ -259,11 +267,11 @@ class User < ActiveRecord::Base
   end
 
   def login=(value)
-    write_attribute :login, (value ? value.downcase : nil)
+    write_attribute :login, (value ? value.to_s.downcase : nil)
   end
 
   def email=(value)
-    write_attribute :email, (value ? value.downcase : nil)
+    write_attribute :email, (value ? value.to_s.downcase : nil)
   end
   
   # Role related methods

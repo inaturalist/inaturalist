@@ -166,10 +166,11 @@ class GuidesController < ApplicationController
         ancestry_counts_scope = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", @guide).scoped
         ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
         ancestry_counts = ancestry_counts_scope.group(:ancestry).count
-        if ancestry_counts.blank?
+        ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0 && a[0] == Taxon::LIFE.id.to_s}
+        if ancestries.blank?
           @nav_taxa = []
+          @nav_taxa_counts = {}
         else
-          ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0 && a[0] == Taxon::LIFE.id.to_s}
           width = ancestries.last.size
           matrix = ancestries.map do |a|
             a + ([nil]*(width-a.size))
@@ -210,7 +211,7 @@ class GuidesController < ApplicationController
               :right => 0
             }
         elsif params[:flow_task_id] && flow_task = FlowTask.find_by_id(params[:flow_task_id])
-          redirect_to flow_task.pdf_url
+          redirect_to flow_task.pdf_url || @guide
         else
           matching_flow_task = GuidePdfFlowTask.
             select("DISTINCT ON (flow_tasks.id) flow_tasks.*").
@@ -324,16 +325,36 @@ class GuidesController < ApplicationController
   # DELETE /guides/1
   # DELETE /guides/1.json
   def destroy
-    @guide.destroy
+    if @guide.guide_taxa.count > 100
+      @guide.delay(:priority => USER_INTEGRITY_PRIORITY).destroy
+      msg = t(:guide_will_be_deleted)
+    else
+      @guide.destroy
+      msg = t(:guide_deleted)
+    end
 
     respond_to do |format|
-      format.html { redirect_to guides_url, notice: 'Guide deleted.' }
+      format.html { redirect_to guides_url, notice: msg }
       format.json { head :no_content }
     end
   end
 
   def import_taxa
-    @guide_taxa = @guide.import_taxa(params) || []
+    begin
+      @guide_taxa = @guide.import_taxa(params) || []
+    rescue OpenURI::HTTPError => e
+      respond_to do |format|
+        format.json do
+          msg = if params[:eol_collection_url]
+            t(:sorry_x_is_not_responding, :x => "EOL")
+          else
+            t(:sorry_that_service_is_not_responding)
+          end
+          render :json => {:error => msg}
+        end
+      end
+      return
+    end
     respond_to do |format|
       format.json do
         if partial = params[:partial]

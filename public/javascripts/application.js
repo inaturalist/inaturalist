@@ -543,18 +543,30 @@ $.fn.showInlineBlock = function() {
   return this
 }
 
+function currentTimeZone() {
+  var now = new Date(),
+      nowString = now.toString(),
+      timeZoneAbbr = nowString.match(/\(([A-Z]{3})\)$/)[1],
+      timeZoneOffset = nowString.match(/[+-]\d\d\d\d/)[0],
+      timeZoneOffsetHours = nowString.match(/([+-]\d\d)(\d\d)/)[1],
+      timeZoneOffsetMinutes = nowString.match(/([+-]\d\d)(\d\d)/)[2]
+  return {
+    abbreviation: timeZoneAbbr,
+    offset: timeZoneOffset,
+    offsetHours: timeZoneOffsetHours,
+    offsetMinutes: timeZoneOffsetMinutes
+  }
+}
+
 $.fn.selectLocalTimeZone = function() {
   $(this).each(function() {
-    var option
-    var now = new Date(),
-        timeZoneAbbr = now.toString().match(/\(([A-Z]{3})\)$/)[1],
-        timeZoneOffsetHour = now.toString().match(/([+-]\d\d)(\d\d)/)[1]
-        timeZoneOffsetMinute = now.toString().match(/([+-]\d\d)(\d\d)/)[2]
+    var option,
+        tz = currentTimeZone()
     if (timeZoneAbbr) {
-      var matches = $("option[data-time-zone-abbr='"+timeZoneAbbr+"']", this)
+      var matches = $("option[data-time-zone-abbr='"+tz.abbreviation+"']", this)
       option = matches.first()
     } else if (timeZoneOffsetHour) {
-      var formattedOffset = timeZoneOffsetHour + ':' + timeZoneOffsetMinute
+      var formattedOffset = tz.offsetHours + ':' + tz.offsetMinutes
       var matches = $("option[data-time-zone-formatted-offset='"+formattedOffset+"']", this)
       option = matches.first()
     }
