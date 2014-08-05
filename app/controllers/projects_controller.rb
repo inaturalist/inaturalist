@@ -137,6 +137,8 @@ class ProjectsController < ApplicationController
           {:project_observation_fields => ProjectObservationField.default_json_options}
         ])
         opts[:methods] << :project_observations_count
+        opts[:methods] << :list_observed_and_total
+
         render :json => @project.as_json(opts)
       end
     end
