@@ -519,8 +519,13 @@ class ProjectsController < ApplicationController
         opts[:total_project_users] = @total_project_users
         opts[:total_project_observations] = @total_project_observations
         opts[:total_unique_observers] = @total_unique_observers
-        opts[:data_means] = @headers
-        opts[:data] = @data
+        opts[:data] = []
+        @data.each do |data|
+          per_period = Hash.new
+          data.each_with_index { |d, i| per_period[@headers[i]] = d }
+          opts[:data] << per_period
+        end
+
         render :json => opts
       end
       format.csv do 
