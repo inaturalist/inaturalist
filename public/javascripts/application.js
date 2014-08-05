@@ -1032,6 +1032,14 @@ $('.project_invitation .acceptlink').live('ajax:success', function() {
   $(this).siblings('.status').html(I18n.t('added!')).show().addClass('success')
   $(this).parents('.box:first').removeClass('notice')
 })
+$('.project_user_invitation .acceptlink').live('ajax:success', function() {
+  $(this).hide()
+  $(this).siblings('.status').html(I18n.t('joined!')).show().addClass('success').removeClass('loading')
+})
+$('.project_user_invitation .acceptlink').live('ajax:before', function() {
+  $(this).hide()
+  $(this).siblings('.status').html(I18n.t('loading')).show().addClass('loading')
+})
 $('.project_invitation .removelink').live('ajax:success', function() {
   $(this).hide()
   $(this).siblings('.acceptlink').show()

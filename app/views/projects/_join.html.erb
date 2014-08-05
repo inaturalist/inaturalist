@@ -1,3 +1,8 @@
+<% if @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY && @project_user_invitation.blank? -%>
+  <div class="notice box centered">
+    <%=t 'views.projects.join.invite_only_description' %>
+  </div>
+<% end -%>
 <h3><%= t(:about_this_project) %></h3>
 <div class="description">
   <%= truncate_with_more formatted_user_text(@project.description).gsub(/\<a /, '<a target="_blank" ').html_safe, :length => 500 %>
@@ -48,11 +53,13 @@
   </ul>
 <% end -%>
 
-<div class="clear buttonrow">
-  <%= link_to t(:yes_i_want_to_join), 
-    @observation ? join_project_path(@project, :observation_id => @observation.id) : join_project_path(@project), 
-    :method => :post, 
-    :class => "default button",
-    "data-loading-click" => "Joining..." %>
-  <%= link_to t(:cancel), session[:return_to] || @project, :class => "button" %>
-</div>
+<% if @project.preferred_membership_model != Project::MEMBERSHIP_INVITE_ONLY || @project_user_invitation -%>
+  <div class="clear buttonrow">
+    <%= link_to t(:yes_i_want_to_join), 
+      @observation ? join_project_path(@project, :observation_id => @observation.id) : join_project_path(@project), 
+      :method => :post, 
+      :class => "default button",
+      "data-loading-click" => "Joining..." %>
+    <%= link_to t(:cancel), session[:return_to] || @project, :class => "button" %>
+  </div>
+<% end -%>

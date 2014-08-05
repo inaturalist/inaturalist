@@ -693,6 +693,8 @@ module ApplicationHelper
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
       image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
+    when "ProjectUserInvitation"
+      image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options.merge(:alt => "#{resource.user.login} icon"))
     when "AssessmentSection"
       image_tag("#{root_url}#{resource.assessment.project.icon.url(:thumb)}", options)
     when "ListedTaxon"
@@ -797,6 +799,12 @@ module ApplicationHelper
           link_to(project.title, url_for_resource_with_host(project))
         end
         t(:curators_changed_for_x_html, :x => title)
+      end
+    when "ProjectUserInvitation"
+      if options[:skip_links]
+        t(:user_invited_you_to_join_project, :user => notifier_user.login, :project => resource.project.title)
+      else
+        t(:user_invited_you_to_join_project, :user => notifier_user_link, :project => link_to(resource.project.title, project_url(resource.project))).html_safe
       end
     when "Place"
       t(:new_observations_from_place_html, 

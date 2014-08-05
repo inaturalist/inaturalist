@@ -20,9 +20,19 @@
 <%= form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true, :class => "project_form"} do |f| %>
   <%= f.error_messages %>
 
-  <%= f.text_field :title, :required => true %>
+  <div class="column span-12">
+    <%= f.text_field :title, :required => true %>
+    <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]},
+      :include_blank => t(:normal),
+      :description => t(:contest_projects_description) %>
+    <%= f.form_field :preferred_membership_model, :description => t(:project_membership_model_description) do %>
+      <% for type in Project::MEMBERSHIP_MODELS %>
+        <%= f.radio_button "preferred_membership_model", type, :label => t(type), :label_after => true, :wrapper => {:class => "inlineblock"} %>  
+      <% end %>
+    <% end -%>
+  </div>
   
-  <div id="icon_fields">
+  <div id="icon_fields" class="column span-12 last">
     <%= f.form_field :project_icon, :label => "#{t(:project_icon)} (PNG, JPG, or GIF)", :description => t('views.projects.edit.icon_desc'), :wrapper => {:class => 'clear'} do %>
       <% if project.icon.file? -%>
         <%= image_tag(project.icon.url(:thumb), :class => "left") %>
@@ -55,20 +65,18 @@
       <% end -%>
     <% end %>
   </div>
-
   
   <%= f.text_area :description, :description => t(:describe_purpose) %>
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
 
-  <div class="clear">
-    <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]}, {:include_blank => t(:normal)},
-      :description => t(:contest_projects_description) %>
+  <fieldset id="taxa">
+    <legend><%=t :checklist %></legend>
     <%= f.check_box :prefers_count_from_list,
         :label => t(:show_total_listed_taxa),
         :label_after => true,
         :description => t(:show_the_total_number_of) %>
-    <%= f.select :preferred_count_by, {t(:species).downcase => "species", t(:leaves).downcase => "leaves", t(:all).downcase => "all"} %>
-  </div>
+    <%= f.select :preferred_count_by, {t(:species).downcase => "species", t(:leaves).downcase => "leaves", t(:all).downcase => "all"}, :description => t(:project_preferred_count_description) %>
+  </fieldset>
 
   <fieldset id="bioblitz" style="<%= "display:none;" unless @project.project_type == Project::BIOBLITZ_TYPE %>">
     <legend><%=t :bioblitz %></legend>
@@ -183,8 +191,6 @@
     <%= link_to_function t(:add_new_rule), "$(this).before('#{escape_javascript new_rule_field}'); rulify(); $(this).hide()" %>
   </fieldset>
 
-  <%= f.text_field :tracking_codes, :description => t(:comma_separated_list_of_tracking_codes, :root_url => root_url, :project_id => @project.id) %>
-
   <% if (current_user.is_admin? || (@project.editable_by?(current_user) && @project.trusted)) && !@project.new_record? -%>
     <fieldset id="project_assets">
       <legend><%=t :project_assets %></legend>
@@ -263,6 +269,8 @@
       </div>
     </div>
   </fieldset>
+
+  <%= f.text_field :tracking_codes, :description => t(:comma_separated_list_of_tracking_codes, :root_url => root_url, :project_id => @project.id) %>
 
   <div class="buttons buttonrow">
     <%= f.submit project.new_record? ? t(:create) : t(:save), :class => "default button", "data-loading-click" => t(:saving) %>

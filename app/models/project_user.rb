@@ -7,7 +7,9 @@ class ProjectUser < ActiveRecord::Base
   after_save :check_role, :remove_updates, :subscribe_to_assessment_sections_later
   after_destroy :remove_updates
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "already a member of this project"
+  validates_presence_of :project, :user
   validates_rules_from :project, :rule_methods => [:has_time_zone?]
+  validate :user_invited?
   
   CURATOR_CHANGE_NOTIFICATION = "curator_change"
   ROLES = %w(curator manager)
@@ -69,6 +71,15 @@ class ProjectUser < ActiveRecord::Base
   
   def is_admin?
     user_id == project.user_id
+  end
+
+  def user_invited?
+    return true if project.preferred_membership_model == Project::MEMBERSHIP_OPEN
+    uid = user_id || user.try(:id)
+    pid = project_id || project.try(:id)
+    unless ProjectUserInvitation.where(:invited_user_id => uid, :project_id => pid).exists?
+      errors.add(:user, "hasn't been invited to this project")
+    end
   end
   
   def update_observations_counter_cache

@@ -2133,6 +2133,39 @@ ALTER SEQUENCE project_observations_id_seq OWNED BY project_observations.id;
 
 
 --
+-- Name: project_user_invitations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE project_user_invitations (
+    id integer NOT NULL,
+    user_id integer,
+    invited_user_id integer,
+    project_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: project_user_invitations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE project_user_invitations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_user_invitations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE project_user_invitations_id_seq OWNED BY project_user_invitations.id;
+
+
+--
 -- Name: project_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3769,6 +3802,13 @@ ALTER TABLE ONLY project_observations ALTER COLUMN id SET DEFAULT nextval('proje
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY project_user_invitations ALTER COLUMN id SET DEFAULT nextval('project_user_invitations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY project_users ALTER COLUMN id SET DEFAULT nextval('project_users_id_seq'::regclass);
 
 
@@ -4418,6 +4458,14 @@ ALTER TABLE ONLY project_observation_fields
 
 ALTER TABLE ONLY project_observations
     ADD CONSTRAINT project_observations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: project_user_invitations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY project_user_invitations
+    ADD CONSTRAINT project_user_invitations_pkey PRIMARY KEY (id);
 
 
 --
@@ -5553,6 +5601,27 @@ CREATE INDEX index_project_observations_on_project_id ON project_observations US
 
 
 --
+-- Name: index_project_user_invitations_on_invited_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_project_user_invitations_on_invited_user_id ON project_user_invitations USING btree (invited_user_id);
+
+
+--
+-- Name: index_project_user_invitations_on_project_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_project_user_invitations_on_project_id ON project_user_invitations USING btree (project_id);
+
+
+--
+-- Name: index_project_user_invitations_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_project_user_invitations_on_user_id ON project_user_invitations USING btree (user_id);
+
+
+--
 -- Name: index_project_users_on_project_id_and_taxa_count; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6623,3 +6692,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140620021223');
 INSERT INTO schema_migrations (version) VALUES ('20140701212522');
 
 INSERT INTO schema_migrations (version) VALUES ('20140704062909');
+
+INSERT INTO schema_migrations (version) VALUES ('20140731201815');

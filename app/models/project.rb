@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   has_many :project_users, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
   has_many :project_invitations, :dependent => :destroy
+  has_many :project_user_invitations, :dependent => :delete_all
   has_many :users, :through => :project_users
   has_many :observations, :through => :project_observations
   has_one :project_list, :dependent => :destroy
@@ -36,6 +37,11 @@ class Project < ActiveRecord::Base
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
   preference :count_by, :string, :default => 'species'
+
+  MEMBERSHIP_OPEN = 'open'
+  MEMBERSHIP_INVITE_ONLY = 'inviteonly'
+  MEMBERSHIP_MODELS = [MEMBERSHIP_OPEN, MEMBERSHIP_INVITE_ONLY]
+  preference :membership_model, :string, :default => MEMBERSHIP_OPEN
   
   # For some reason these don't work here
   # accepts_nested_attributes_for :project_user_rules, :allow_destroy => true
