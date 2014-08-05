@@ -522,7 +522,7 @@ class ProjectsController < ApplicationController
         opts[:data] = []
         @data.each do |data|
           per_period = Hash.new
-          data.each_with_index { |d, i| per_period[@headers[i]] = d }
+          data.each_with_index { |d, i| per_period[@headers[i].gsub(/[ \/]/, '_')] = d }
           opts[:data] << per_period
         end
 
