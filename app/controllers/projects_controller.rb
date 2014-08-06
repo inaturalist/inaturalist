@@ -137,6 +137,8 @@ class ProjectsController < ApplicationController
           {:project_observation_fields => ProjectObservationField.default_json_options}
         ])
         opts[:methods] << :project_observations_count
+        opts[:methods] << :list_observed_and_total
+
         render :json => @project.as_json(opts)
       end
     end
@@ -510,6 +512,22 @@ class ProjectsController < ApplicationController
     
     respond_to do |format|
       format.html
+      format.json do
+        opts = {}
+        opts[:project_id] = @project.id
+        opts[:project_title] = @project.title
+        opts[:total_project_users] = @total_project_users
+        opts[:total_project_observations] = @total_project_observations
+        opts[:total_unique_observers] = @total_unique_observers
+        opts[:data] = []
+        @data.each do |data|
+          per_period = Hash.new
+          data.each_with_index { |d, i| per_period[@headers[i].gsub(/[ \/]/, '_')] = d }
+          opts[:data] << per_period
+        end
+
+        render :json => opts
+      end
       format.csv do 
         csv_text = CSV.generate(:headers => true) do |csv|
           csv << @headers
