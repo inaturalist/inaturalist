@@ -82,6 +82,10 @@ gem 'ya2yaml'
 gem 'ym4r_gm', :git => 'git://github.com/modyo/ym4r_gm.git'
 gem 'xmp', :git => 'git://github.com/eknoop/xmp.git'
 
+group :production do
+  gem 'newrelic_rpm'
+end
+
 group :test, :development do
   gem "database_cleaner"
   gem "machinist"

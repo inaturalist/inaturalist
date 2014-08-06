@@ -274,6 +274,7 @@ GEM
     net-ssh (2.6.7)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
+    newrelic_rpm (3.9.1.236)
     nokogiri (1.5.10)
     nori (2.3.0)
     oauth (0.4.7)
@@ -490,6 +491,7 @@ DEPENDENCIES
   memcache-client
   mobile-fu!
   mocha
+  newrelic_rpm
   nokogiri
   objectify-xml
   omniauth-facebook
