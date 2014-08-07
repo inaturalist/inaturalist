@@ -136,11 +136,14 @@ class ObservationsExportFlowTask < FlowTask
 
   def enqueue_options
     opts = {}
-    # Giant exports can really bog things down, so put them in the slow queue
-    if observations_scope.count > 100000
-      opts[:queue] = "slow"
-      opts[:priority] = USER_PRIORITY
+    # Giant exports can really bog things down, so manage queue and priority
+    count = observations_scope.count
+    opts[:priority] = if count > 1000
+      USER_INTEGRITY_PRIORITY
+    else
+      NOTIFICATION_PRIORITY
     end
+    opts[:queue] = "slow" if count > 10000
     opts
   end
 end
