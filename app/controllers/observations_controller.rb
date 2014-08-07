@@ -2720,7 +2720,7 @@ class ObservationsController < ApplicationController
       else
         # no job id, no job, let's get this party started
         Rails.cache.delete(cache_key)
-        job = Observation.delay(:priority => USER_PRIORITY).generate_csv_for(parent, :path => path_for_csv, :user => current_user)
+        job = Observation.delay(:priority => NOTIFICATION_PRIORITY).generate_csv_for(parent, :path => path_for_csv, :user => current_user)
         Rails.cache.write(cache_key, job.id, :expires_in => 1.hour)
       end
       prevent_caching
