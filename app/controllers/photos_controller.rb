@@ -1,3 +1,4 @@
+#encoding: utf-8
 class PhotosController < ApplicationController
   MOBILIZED = [:show]
   before_filter :unmobilized, :except => MOBILIZED

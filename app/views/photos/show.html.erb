@@ -129,6 +129,7 @@
                 <td>
                   <%= case
                   when v.is_a?(EXIFR::TIFF::Orientation) then v.to_i
+                  when v.is_a?(String) then v.utf_safe
                   else v
                   end %>
                 </td>
