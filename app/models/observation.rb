@@ -1336,7 +1336,7 @@ class Observation < ActiveRecord::Base
   end
   
   def photos?
-    observation_photos.exists?
+    observation_photos.loaded? ? ! observation_photos.empty? : observation_photos.exists?
   end
 
   def sounds?
@@ -1394,8 +1394,15 @@ class Observation < ActiveRecord::Base
     user = User.find_by_id(user) unless user.is_a?(User)
     return false unless user
     return true if user_id == user.id
-    return true if user.project_users.where("project_id IN (?)", project_ids).
-      where("project_users.role IN (?)", ProjectUser::ROLES).exists?
+    if user.project_users.loaded?
+      if user.project_users.detect{ |pu| project_ids.include?(pu.project_id) &&
+                                         ProjectUser::ROLES.includes?(pu.role_id) }
+        return true
+      end
+    else
+      return true if user.project_users.where("project_id IN (?)", project_ids).
+        where("project_users.role IN (?)", ProjectUser::ROLES).exists?
+    end
     false
   end
   

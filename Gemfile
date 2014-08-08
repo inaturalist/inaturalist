@@ -91,4 +91,5 @@ group :test, :development do
   gem "machinist"
   gem "rspec-rails"
   gem "rspec-html-matchers"
+  gem "debugger"
 end
