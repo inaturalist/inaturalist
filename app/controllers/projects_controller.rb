@@ -93,10 +93,16 @@ class ProjectsController < ApplicationController
         @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
         @members_count = @project_users.total_entries
         @project_observations = @project.project_observations.page(1).
-          includes(
-            :observation => [:iconic_taxon, :observation_photos => [:photo]],
-            :curator_identification => [:user, :taxon]
-          ).
+          includes([
+            { :observation => [ :iconic_taxon,
+                                :projects,
+                                :quality_metrics,
+                                :stored_preferences,
+                                :taxon,
+                                { :observation_photos => :photo },
+                                { :user => :stored_preferences } ] },
+            { :curator_identification => [:user, :taxon] }
+          ]).
           order("project_observations.id DESC")
         @project_observations_count = @project_observations.count
         @observations = @project_observations.map(&:observation) unless @project.project_type == 'bioblitz'

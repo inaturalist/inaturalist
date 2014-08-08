@@ -90,13 +90,13 @@ Some notes:
           <% end %>
         <% end -%>
         <% if sound_count > 0 %>
-          <%= link_to '<i class="fa fa-volume-up fa-4x"></i>'.html_safe, observation, :class => "sound-icon#{' with-photo' if photo}" %>
+          <%= link_to '<i class="fa fa-volume-up fa-4x"></i>'.html_safe, observation_path(observation), :class => "sound-icon#{' with-photo' if photo}" %>
           <% if sound_count > 1 %>
             <% link_text << t(:'sounds.sounds_size_sounds', :sounds_size => sound_count).downcase %>
           <% end -%>
         <% end %>
         <% unless link_text.blank? -%>
-          <%= link_to link_text.join(',<br/>').html_safe, observation, :class => 'readmore' %>
+          <%= link_to link_text.join(',<br/>').html_safe, observation_path(observation), :class => 'readmore' %>
         <% end -%>
       <% end -%>
     </div>
@@ -108,7 +108,7 @@ Some notes:
                  :locals => {
                    :taxon => observation.taxon,
                    :comname => !observation.species_guess.blank? && observation.species_guess.downcase != observation.taxon.name.downcase ? observation.species_guess : nil,
-                   :link_url => url_for(observation),
+                   :link_url => observation_path(observation),
                    :include_parens => false} %>
     <% elsif observation.taxon %>
       <%= render :partial => 'shared/taxon', 
@@ -116,15 +116,15 @@ Some notes:
                     :comname => !observation.species_guess.blank? && observation.species_guess.downcase != observation.taxon.name.downcase ? observation.species_guess : nil,
                     :no_common => !observation.species_guess.blank? && observation.species_guess.downcase == observation.taxon.name.downcase,
                     :taxon => observation.taxon,
-                    :link_url => url_for(observation),
+                    :link_url => observation_path(observation),
                     :include_parens => false} %>
     <% elsif !observation.species_guess.blank? %>
       <span class="taxon">
-        <%= link_to observation.species_guess, observation %>
+        <%= link_to observation.species_guess, observation_path(observation) %>
       </span>
     <% else %>
       <span class="taxon">
-        <%= link_to "#{t(:something)}...", observation %>
+        <%= link_to "#{t(:something)}...", observation_path(observation) %>
       </span>
     <% end %>
     <!-- <span class="button detailsctrl">Show Details</span> -->
@@ -190,7 +190,7 @@ Some notes:
       <ul class="counts">
         <% if observation.comments_count > 0 -%>
           <li class="comments_count">
-            <a href="<%= url_for(observation) %>">
+            <a href="<%= observation_path(observation) %>">
               <span class="count"><%= observation.comments_count %></span>
               <span class="ui-icon ui-icon-comment inlineblock">comment<%= 's' if observation.comments_count != 1 %></span>
             </a>
@@ -198,7 +198,7 @@ Some notes:
         <% end -%>
         <% if observation.num_identifications_by_others > 0 -%>
           <li class="identifications_count">
-            <a href="<%= url_for(observation) %>">
+            <a href="<%= observation_path(observation) %>">
               <span class="count"><%= observation.num_identifications_by_others %></span>
               <%= t(:id) if observation.num_identifications_by_others == 1 %>
               <%= t(:ids) if observation.num_identifications_by_others != 1 %>
@@ -211,7 +211,7 @@ Some notes:
       <ul class="bubbles">
         <% if observation.id_please? -%>
           <li class="last">
-            <%= link_to t(:id_please_expandable_html), observation, :class => "id_please_notice",
+            <%= link_to t(:id_please_expandable_html), observation_path(observation), :class => "id_please_notice",
               "data-tip" => t(:observation_would_like_some_help, :user => observation.user.login),
               "data-tip-show-delay" => 1000 %>
           </li>
@@ -231,7 +231,7 @@ Some notes:
         <li class="editlink"><%= link_to t(:edit), edit_observation_path(observation) %></li>
       <% end -%>
       <li class="last viewlink">
-        <%= link_to t(:view), observation, :class => 'readmore' %>
+        <%= link_to t(:view), observation_path(observation), :class => 'readmore' %>
       </li>
     </ul>
   </div>

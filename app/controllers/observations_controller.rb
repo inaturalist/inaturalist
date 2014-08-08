@@ -176,14 +176,18 @@ class ObservationsController < ApplicationController
       render_404 && return
     end
     @observations = Observation.of(@taxon).all(
-      :include => [:user, :taxon, :iconic_taxon, :observation_photos => [:photo]], 
+      :include => [ :user,
+                    :iconic_taxon,
+                    { :taxon => :taxon_descriptions },
+                    { :observation_photos => :photo } ],
       :order => "observations.id desc", 
       :limit => 500).sort_by{|o| [o.quality_grade == "research" ? 1 : 0, o.id]}
     respond_to do |format|
       format.json do
         render :json => @observations.to_json(
-          :methods => [:user_login, :iconic_taxon_name, :obs_image_url],
-          :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}})
+          :methods => [ :user_login, :iconic_taxon_name, :obs_image_url],
+          :include => [ { :user => { :only => :login } },
+                        :taxon, :iconic_taxon ] )
         end
       format.geojson do
         render :json => @observations.to_geojson(:except => [
@@ -264,9 +268,9 @@ class ObservationsController < ApplicationController
         @sounds = @observation.sounds.all
         
         if @observation.observed_on
-          @day_observations = Observation.by(@observation.user).on(@observation.observed_on).
-            includes(:photos).
-            paginate(:page => 1, :per_page => 14)
+          @day_observations = Observation.by(@observation.user).on(@observation.observed_on)
+            .includes([ :photos, :user ])
+            .paginate(:page => 1, :per_page => 14)
         end
         
         if logged_in?
@@ -2085,9 +2089,21 @@ class ObservationsController < ApplicationController
       end
     end
     if @observations.blank?
-      @observations = Observation.query(search_params).
-        includes({:observation_photos => :photo}, :sounds).
-        paginate(find_options)
+      if search_params[:place_id] || search_params[:taxon_id]
+        @observations = Observation.query(search_params).paginate_with_count_over(find_options)
+      else
+        @observations = Observation.query(search_params).paginate(find_options)
+      end
+      Observation.preload_associations(@observations,
+        [ :sounds,
+          :stored_preferences,
+          :quality_metrics,
+          :projects,
+          { :observation_photos => :photo },
+          { :user => :stored_preferences },
+          { :taxon => :taxon_descriptions },
+          { :iconic_taxon => :taxon_descriptions }
+        ])
     end
     @observations
   rescue ThinkingSphinx::ConnectionError, Riddle::ResponseError
@@ -2512,11 +2528,12 @@ class ObservationsController < ApplicationController
   end
   
   def load_observation
-    render_404 unless @observation = Observation.find_by_id(params[:id] || params[:observation_id], 
-      :include => [
-        :photos, 
-        {:taxon => [:taxon_names]},
-        :identifications
+    render_404 unless @observation = Observation.find_by_id(params[:id] || params[:observation_id],
+      :include => [ :quality_metrics,
+                    :photos,
+                    :identifications,
+                    { :taxon => :taxon_names },
+                    { :projects => :users }
       ]
     )
   end
