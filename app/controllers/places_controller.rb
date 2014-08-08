@@ -387,8 +387,9 @@ class PlacesController < ApplicationController
     @confirmed_listed_taxa_count = @scope.count(:select => "DISTINCT taxa.id",
       :conditions => "listed_taxa.first_observation_id IS NOT NULL")
     
-    @listed_taxa = @place.listed_taxa.all(
-      :conditions => ["taxon_id IN (?) AND primary_listing = (?)", @taxa, true])
+    @listed_taxa = @place.listed_taxa
+                         .where(["taxon_id IN (?) AND primary_listing = (?)", @taxa, true])
+                         .includes([ :place, { :first_observation => :user } ])
     @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
     
     render :layout => false, :partial => @partial

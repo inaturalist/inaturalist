@@ -86,7 +86,7 @@
       var newObsIcon = iNaturalist.Map.createObservationIcon({color: "DeepPink"});
     
       var observations = <%= @observations.to_json(:viewer => current_user, 
-        :include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>;
+        :include => [ { :user => { :only => :login } }, :taxon, :iconic_taxon ]).html_safe %>;
       
       var letter_counter = 0;
       var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';

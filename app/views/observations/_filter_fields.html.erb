@@ -1,7 +1,7 @@
 <% 
   selected_taxa ||= []
   if @place && @place.html.blank?
-    @place.html = render(:partial => "places/autocomplete_item.html.erb", :object => @place)
+    @place.html = render(:partial => "places/autocomplete_item", :object => @place)
   end
   hide_buttons ||= false
   show_user_field ||= false

@@ -73,6 +73,7 @@ module Shared::ListsModule
     end
 
     @listed_taxa ||= main_list.paginate(@find_options) 
+    ListedTaxon.preload_associations(@listed_taxa, [ :list, :user, :first_observation ])
 
     respond_to do |format|
       format.html do
@@ -481,6 +482,7 @@ private
   def load_list #before_filter
     @list = List.find_by_id(params[:id].to_i)
     @list ||= List.find_by_id(params[:list_id].to_i)
+    List.preload_associations(@list, :user)
     render_404 && return unless @list
     true
   end
