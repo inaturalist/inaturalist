@@ -2090,8 +2090,7 @@ class ObservationsController < ApplicationController
     end
     if @observations.blank?
       if search_params[:place_id] || search_params[:taxon_id]
-        @observations = Observation.paginate_with_count(Observation.query(search_params),
-                                                        find_options)
+        @observations = Observation.query(search_params).paginate_with_count_over(find_options)
       else
         @observations = Observation.query(search_params).paginate(find_options)
       end

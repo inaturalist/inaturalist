@@ -1389,20 +1389,14 @@ class Observation < ActiveRecord::Base
     geoprivacy == OBSCURED
   end
   
-  def coordinates_viewable_by?(user)
+  def coordinates_viewable_by?(usr)
     return true unless coordinates_obscured?
-    user = User.find_by_id(user) unless user.is_a?(User)
-    return false unless user
-    return true if user_id == user.id
-    if user.project_users.loaded?
-      if user.project_users.detect{ |pu| project_ids.include?(pu.project_id) &&
-                                         ProjectUser::ROLES.includes?(pu.role_id) }
-        return true
-      end
-    else
-      return true if user.project_users.where("project_id IN (?)", project_ids).
-        where("project_users.role IN (?)", ProjectUser::ROLES).exists?
-    end
+    usr = User.find_by_id(usr) unless usr.is_a?(User)
+    return false unless usr
+    return true if user_id == usr.id
+    return true if usr.project_users
+                      .detect{ |pu| project_ids.include?(pu.project_id) &&
+                                    ProjectUser::ROLES.include?(pu.role) }
     false
   end
   

@@ -129,10 +129,7 @@ class ApplicationController < ActionController::Base
   # Override Devise implementation so we can set this for oauth2 / doorkeeper requests
   def current_user
     cu = super
-    unless cu.blank?
-      User.preload_associations(cu, :project_users)
-      return cu
-    end
+    return cu unless cu.blank?
     return nil unless doorkeeper_token && doorkeeper_token.accessible?
     @current_user ||= User.find_by_id(doorkeeper_token.resource_owner_id)
   end
