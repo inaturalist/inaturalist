@@ -2173,7 +2173,9 @@ class Observation < ActiveRecord::Base
   end
 
   def respond_to?(method, include_private = false)
-    if self.class.instance_methods.include?(method) || self.class.column_names.include?(method.to_s)
+    @@class_methods_hash ||= Hash[ self.class.instance_methods.map{ |h| [ h.to_sym, true ] } ]
+    @@class_columns_hash ||= Hash[ self.class.column_names.map{ |h| [ h.to_sym, true ] } ]
+    if @@class_methods_hash[method.to_sym] || @@class_columns_hash[method.to_sym]
       return super
     end
     return super unless method.to_s =~ /^field:/ || method.to_s =~ /^taxon_[^=]+/
