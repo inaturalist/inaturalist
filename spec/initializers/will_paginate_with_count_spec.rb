@@ -20,4 +20,8 @@ describe 'WillPaginate::ActiveRecord::Pagination' do
     @with_count.build_arel.to_sql.should match(/COUNT\(.*?\) OVER\(\)/)
   end
 
+  it "to_a should have the same total_entries as paginate" do
+    @with_count.to_a.total_entries.should == @original.to_a.total_entries
+  end
+
 end
