@@ -415,16 +415,16 @@
         end
         kml_feed_params[:kml_type] = "network_link"
       -%>
-      <%= link_to("Atom", observations_by_login_feed_path(@login, :format => t(:atom), :params => feed_params),
+      <%= link_to(t(:atom), observations_by_login_feed_path(@login, :format => :atom, :params => feed_params),
         :class => 'atomlink') %>
-      <%= link_to("KML",  observations_by_login_feed_path(@login, :format => t(:kml), :params => kml_feed_params),
+      <%= link_to(t(:kml), observations_by_login_feed_path(@login, :format => :kml, :params => kml_feed_params),
         :class => 'kmllink') %>
     </span>
 
     <% if is_me?(@selected_user) -%>
       <span class="feeds">
         <%= t :export %>:
-        <%= link_to(t(:csv),  export_observations_path(feed_params.merge(:user_id => @selected_user.login)), :class => 'csvlink', :rel => "nofollow") %>
+        <%= link_to(t(:csv), export_observations_path(feed_params.merge(:user_id => @selected_user.login)), :class => 'csvlink', :rel => "nofollow") %>
       </span>
     <% end -%>
   </div>
