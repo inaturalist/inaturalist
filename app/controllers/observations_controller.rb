@@ -2094,7 +2094,7 @@ class ObservationsController < ApplicationController
       else
         @observations = Observation.query(search_params).paginate(find_options)
       end
-      unless request.format.json?
+      unless request.format && request.format.json?
         Observation.preload_associations(@observations,
           [ :sounds,
             :stored_preferences,
