@@ -2707,9 +2707,8 @@ class ObservationsController < ApplicationController
   def site_search_params(search_params = {})
     if CONFIG.site_only_observations && params[:site].blank?
       search_params[:site] ||= FakeView.root_url
-      @site ||= search_params[:site]
     end
-    if (site_bounds = CONFIG.bounds) && params[:swlat].nil?
+    if (site_bounds = CONFIG.bounds) && params[:swlat].blank? && params[:place_id].blank? & params[:bbox].blank?
       search_params[:nelat] ||= site_bounds['nelat']
       search_params[:nelng] ||= site_bounds['nelng']
       search_params[:swlat] ||= site_bounds['swlat']
