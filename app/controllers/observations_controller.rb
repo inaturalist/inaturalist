@@ -2089,21 +2089,23 @@ class ObservationsController < ApplicationController
       end
     end
     if @observations.blank?
-      if search_params[:place_id] || search_params[:taxon_id]
+      if search_params[:place_id] || search_params[:taxon_id]  || (search_params[:lat] && search_params[:lng])
         @observations = Observation.query(search_params).paginate_with_count_over(find_options)
       else
         @observations = Observation.query(search_params).paginate(find_options)
       end
-      Observation.preload_associations(@observations,
-        [ :sounds,
-          :stored_preferences,
-          :quality_metrics,
-          :projects,
-          { :observation_photos => :photo },
-          { :user => :stored_preferences },
-          { :taxon => :taxon_descriptions },
-          { :iconic_taxon => :taxon_descriptions }
-        ])
+      unless request.format.json?
+        Observation.preload_associations(@observations,
+          [ :sounds,
+            :stored_preferences,
+            :quality_metrics,
+            :projects,
+            { :observation_photos => :photo },
+            { :user => :stored_preferences },
+            { :taxon => :taxon_descriptions },
+            { :iconic_taxon => :taxon_descriptions }
+          ])
+      end
     end
     @observations
   rescue ThinkingSphinx::ConnectionError, Riddle::ResponseError
@@ -2610,7 +2612,7 @@ class ObservationsController < ApplicationController
       pagination_headers_for(@observations)
       opts[:viewer] = current_user
       if @observations.respond_to?(:scoped)
-        @observations = @observations.includes({:observation_photos => :photo}, :photos, :iconic_taxon)
+        @observations = @observations.includes([ {:observation_photos => { :photo => :user } }, :photos, :iconic_taxon ])
       end
       render :json => @observations.to_json(opts)
     end

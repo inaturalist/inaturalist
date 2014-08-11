@@ -25,7 +25,9 @@
       <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
     <% end -%>
     <meta property="og:site_name" content="<%= CONFIG.site_name %>"/>
-    <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
+    <% if CONFIG.facebook && CONFIG.facebook['app_id'] -%>
+      <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
+    <% end %>
     <%= yield :extrahead %>
     <%= yield :extracss %>
   </head>
