@@ -637,7 +637,7 @@ class ObservationsController < ApplicationController
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(
               :viewer => current_user,
-              :methods => [:user_login, :iconic_taxon_name], 
+              :methods => [:user_login, :iconic_taxon_name],
               :include => {
                 :taxon => Taxon.default_json_options,
                 :observation_field_values => {}
@@ -2089,7 +2089,7 @@ class ObservationsController < ApplicationController
       end
     end
     if @observations.blank?
-      if search_params[:place_id] || search_params[:taxon_id]  || (search_params[:lat] && search_params[:lng])
+      if search_params[:place_id] || search_params[:taxon_id] || search_params[:taxon_name] || (search_params[:lat] && search_params[:lng])
         @observations = Observation.query(search_params).paginate_with_count_over(find_options)
       else
         @observations = Observation.query(search_params).paginate(find_options)
@@ -2612,7 +2612,7 @@ class ObservationsController < ApplicationController
       pagination_headers_for(@observations)
       opts[:viewer] = current_user
       if @observations.respond_to?(:scoped)
-        @observations = @observations.includes([ {:observation_photos => { :photo => :user } }, :photos, :iconic_taxon ])
+        Observation.preload_associations(@observations, [ {:observation_photos => { :photo => :user } }, :photos, :iconic_taxon ])
       end
       render :json => @observations.to_json(opts)
     end
@@ -2629,10 +2629,10 @@ class ObservationsController < ApplicationController
     unless @ofv_params.blank?
       only += @ofv_params.map{|k,v| "field:#{v[:normalized_name]}"}
       if @observations.respond_to?(:scoped)
-        @observations = @observations.includes(:observation_field_values => :observation_field)
+        Observation.preload_associations(@observations, { :observation_field_values => :observation_field })
       end
     end
-    @observations = @observations.includes(:tags) if @observations.respond_to?(:scoped)
+    Observation.preload_associations(@observations, :tags) if @observations.respond_to?(:scoped)
     pagination_headers_for(@observations)
     render :text => @observations.to_csv(:only => only.map{|c| c.to_sym})
   end
