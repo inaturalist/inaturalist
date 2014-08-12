@@ -876,7 +876,7 @@ class Observation < ActiveRecord::Base
   def serializable_hash(options = {})
     # making a deep copy of the options so they don't get modified
     # This was more effective than options.deep_dup
-    options[:include] = options[:include].marshal_copy if options[:include]
+    options[:include] = options[:include].marshal_copy if options[:include] && options[:include].is_a?(Hash)
     # don't use delete here, it will just remove the option for all 
     # subsequent records in an array
     options[:include] = if options[:include].is_a?(Hash)
