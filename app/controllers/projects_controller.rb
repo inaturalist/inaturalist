@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
 
   doorkeeper_for :by_login, :join, :leave, :if => lambda { authenticate_with_oauth? }
   
-  before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms]
+  before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms, :invite]
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
     :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count, :browse]
@@ -129,6 +129,9 @@ class ProjectsController < ApplicationController
           observations_url(@observations_url_params)
         else
           project_observations_url(@project, :per_page => 24)
+        end
+        if logged_in? && @project_user.blank?
+          @project_user_invitation = @project.project_user_invitations.where(:invited_user_id => current_user).first
         end
 
         if params[:iframe]
@@ -405,6 +408,7 @@ class ProjectsController < ApplicationController
       return
     end
     unless request.post?
+      @project_user_invitation = @project.project_user_invitations.where(:invited_user_id => current_user).first
       respond_to do |format|
         format.html do
           if partial = params[:partial]
@@ -798,6 +802,15 @@ class ProjectsController < ApplicationController
         ])
         render :json => @projects.to_json(opts)
       end
+    end
+  end
+
+  def invite
+    @project_user_invitations = @project.project_user_invitations.includes(:user, :invited_user).page(params[:page]).
+      joins("LEFT OUTER JOIN project_users ON project_users.user_id = project_user_invitations.invited_user_id AND project_users.project_id = #{@project.id}").
+      where("project_users.id IS NULL").order("project_user_invitations.id DESC")
+    respond_to do |format|
+      format.html
     end
   end
   

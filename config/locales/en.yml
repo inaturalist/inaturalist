@@ -1207,11 +1207,14 @@ en:
   inspired_by_the_flickr_group: "Inspired by the Flickr group <a href='http://flickr.com/groups/idplease/'>ID Please</a>, this is a place to post observations of things you don't know, and to help people identify mysterious creatures!"
   introduced: introduced
   invasive: invasive
+  invitation: Invitation
   invitations: Invitations
   invite: invite
   invite_flickr_photos: "Invite Flickr Photos to %{site_name}"
   invite_more: Invite more
   invite_observations: Invite observations
+  invite_people: Invite people
+  invite_people_to_project: "Invite people to %{project}"
   invite_photos_from_other_sites: Invite photos from other sites
   invite_photos_to: "Invite photos to %{site_name}"
   invite_photos_to_raquo_html: "Invite photos to <nobr>%{site_name} &raquo;</nobr>"
@@ -1219,8 +1222,10 @@ en:
   invite_to_project: Invite to project
   invite_your_friends: Invite your friends
   invite_your_friends_description: "Help make %{site_name} a bigger, better community by inviting your friends to join!"
+  inviteonly: invite-only
   invited: Invited
   invited_to_the_following_projects: "Invited to the following projects:"
+  invited_x: "Invited %{x}"
   inviting: Inviting...
   is_a: 'is a'
   is_an: 'is an'
@@ -1239,7 +1244,8 @@ en:
   join_inat: Join %{site_name}!
   join_project: Join this project
   join_some_projects_and_invite_some_observations_html: "Join some <a href='%{join_url}'>projects</a> and <a href='%{invite_url}'>invite some observations</a>"
-  join_this_project: join this project
+  join_this_project: Join this project
+  'joined!': Joined!
   joined_any_projects: joined any projects
   journal: Journal
   journal_archives_for: Journal archives for
@@ -1578,6 +1584,7 @@ en:
   no_observations_suitable_for_this_project: "No observations suitable for this project that haven't yet been contributed or invited."
   no_observations_yet: No observations yet
   no_one_has_added_any: No one has added any notes for this place
+  no_one_has_been_invited_yet: No one has been invited yet
   no_one_posted_anything_yet: No one's posted anything yet!
   no_ones_observed: No one's observed
   no_photos: No photos
@@ -2034,8 +2041,12 @@ en:
   project_journal_posts: 'Project journal posts'
   project_list: Project List
   project_members: "%{project} Members"
+  project_membership_model_description: Is your project open to everyone or only to people you invite?
   project_observations: Project Observations
   project_post: Project Post
+  project_preferred_count_description: |
+    Do you want the total number of taxa for your project to be reported as
+    species, any taxon, or just the "leaves" of the taxonomic tree?
   project_rules: Project Rules
   project_terms_and_rules: project terms &amp; rules
   project_user_cannot_be_found: Project user cannot be found
@@ -2742,6 +2753,10 @@ en:
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} has chosen to retain control over the taxa associated with this observation"
   user_hasnt:  "%{user} hasnt"
   user_invite_observation_to_project: '%{user} would like to invite your observation "%{observation}" to the %{project} project.'
+  user_invited_you_to_join_project: "%{user} invited you to join %{project}"
+  user_invited_you_to_join_html: "%{user} invited you to join"
+  user_invited_you_to_join_this_project_on_date_html: |
+    %{user} invited you to join this project on %{date}
   user_invited_your_x_to_a_project_html: "%{user} invited your %{x} to a project"
   user_added_an_observation_field_html: '%{user} added a value for "%{field_name}" to an observation by %{owner}'
   user_is_a_naturalist: "%{user} is a naturalist!"
@@ -2892,6 +2907,7 @@ en:
   would_you_like_to: Would you like to
   would_like_some_help_identifying_this: would like some help identifying this
   x_admin: "%{login} admins"
+  x_deleted: "%{x} deleted"
   x_does_not_exist: "\"%{x}\" does not exist"
   x_doesnt: "%{login} doesn't"
   x_hasnt: "%{login} hasn't"
@@ -2974,6 +2990,7 @@ en:
   you_havent: You haven't
   you_havent_left_any_comments_recently: You haven't left any comments recently.  Go leave someone a note!
   you_havent_linked_your_inaturalist_picasa_account: "You haven't linked your %{site_name} account and your Picasa account yet"
+  you_joined_this_project: You joined this project!
   you_may_have: you may have. It will probably only work in modern, standards-compliant browsers like
   you_must_be_a_member_of_this_project_to_do_that: You must be a member of this project to do that
   you_must_be_project_manager_to_do_that: You must be project manager to do that
@@ -3003,6 +3020,8 @@ en:
   you_tried_to_do_something_you_shouldnt: |
     You tried to do something you shouldn't, like edit
     someone else's data without permission.  Don't be evil.
+  youve_been_invited_to_join_this_project_html: |
+    You've been invited to <a href="%{url}" class="readmore">join this project</a>
   youve_joined_the_x_project: "You've joined the %{project_invitation} project and your observation was added"
   you_would_get_the: "you would get the following tags:"
   youll_need_to_link: You'll need to link
@@ -3587,6 +3606,29 @@ en:
           to custom project attributes means the project managers can
           potentially add malicious Javascript, so only trust projects that
           have managers that are both responsible and technically competent.
+      invite:
+        description_html: |
+          <h3>About Invitations</h3>
+          <p class="ui">
+            Inviting people to your project is a bit different than inviting
+            individual observations. Inviting people will
+          </p>
+          <ol>
+            <li>Send them an email inviting them to join your project</li>
+            <li>Show an invitation on their dashboard</li>
+            <li>Enable them to join your project if it's been set to invite-only</li>
+          </ol>
+          <p class="ui">
+            Only project curators can invite people to join a project. You
+            should be able to search for people by their iNat username or
+            their <em>complete</em> email address, assuming we have that on
+            file.
+          </p>
+      join:
+        invite_only_description: |
+            Membership in this project is by invitation only. If you'd like to
+            join, please contact one of the curators below and request an
+            invitation.
       members:
         bioblitz_notice_html: |
           <strong>Note:</strong> this is only a list of people who have
