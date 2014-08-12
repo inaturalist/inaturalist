@@ -25,7 +25,7 @@
     }
 
     function rearrangeTaxonFieldsets() {
-      var changeType = $('input[name="taxon_swap[type]"]:checked').val() || $('input[name="taxon_swap[type]"]').val()
+      var changeType = $('input[name="taxon_swap[type]"]:checked').val() || $('input[name*="[type]"]').val()
       if (changeType == 'TaxonStage' || changeType == 'TaxonDrop') {
         $('#singletaxon').removeClass('right').addClass('left').show()
         $('#multiple_taxa').removeClass('right').addClass('left').hide()
