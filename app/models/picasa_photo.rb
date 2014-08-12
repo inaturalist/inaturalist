@@ -51,7 +51,7 @@ class PicasaPhoto < Photo
         if place = places.first
           observation.place_guess = place.display_name
         end
-      rescue Riddle::ConnectionError
+      rescue Riddle::ConnectionError, Riddle::ResponseError
         # sphinx down for some reason
       end
     end
