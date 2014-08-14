@@ -69,7 +69,7 @@ $.fn.loadFlickrPlacePhotos = function(options) {
   
   $.ajax({
     dataType: "json",
-    url: "http://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&jsoncallback=?",
+    url: "https://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&jsoncallback=?",
     data: flickrOptions,
     error: function() {
       if (options.noPhotosNotice) {
