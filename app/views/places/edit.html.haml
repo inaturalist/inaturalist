@@ -2,16 +2,16 @@
   = t :editing
   = @place.name
 - content_for(:extracss) do
-  = stylesheet_link_tag "/javascripts/leaflet.fullscreen/Control.FullScreen.css"
+  = stylesheet_link_tag "/assets/leaflet.fullscreen/Control.FullScreen.css"
   :css
     #map {width: 100%;height: 500px;}
     .edit_place input.text, .edit_place textarea {width: 415px;}
     .latitude_field input.text, .longitude_field input.text { width: 175px;}
-    input.ac_loading {background: white url('/images/spinner-small.gif') 420px 5px no-repeat;}
+    input.ac_loading {background: white url('/assets/spinner-small.gif') 420px 5px no-repeat;}
 - content_for(:extrajs) do
   = leaflet_js(:draw => true)
   = javascript_include_tag "shramov-leaflet-plugins/Bing"
-  %script{:src => "/javascripts/leaflet.fullscreen/Control.FullScreen.js"}
+  %script{:src => "/assets/leaflet.fullscreen/Control.FullScreen.js"}
   :javascript
     var PLACE = #{@place.to_json},
         NPOINTS = #{@npoints.to_i},

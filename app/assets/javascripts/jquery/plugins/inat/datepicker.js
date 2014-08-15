@@ -15,7 +15,7 @@
     options = options || {}
     options = $.extend({}, {
       showOn: 'both',
-      buttonImage: "/images/silk/date.png",
+      buttonImage: "/assets/silk/date.png",
       buttonImageOnly: true,
       showButtonPanel: true,
       showAnim: 'fadeIn',

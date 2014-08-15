@@ -9,11 +9,11 @@
 
 /* credits/thanks:
   Shaggy, Martijn Wargers, Jimmy Cerra, Mark D Anderson,
-  Lars Dieckow, Erik Arvidsson, Gellért Gyuris, James Denny,
+  Lars Dieckow, Erik Arvidsson, GellÃ©rt Gyuris, James Denny,
   Unknown W Brackets, Benjamin Westfarer, Rob Eberhardt,
   Bill Edney, Kevin Newman, James Crompton, Matthew Mastracci,
   Doug Wright, Richard York, Kenneth Kolano, MegaZone,
-  Thomas Verelst, Mark 'Tarquin' Wilton-Jones, Rainer Åhlfors,
+  Thomas Verelst, Mark 'Tarquin' Wilton-Jones, Rainer Ã…hlfors,
   David Zulaica, Ken Kolano, Kevin Newman
 */
 

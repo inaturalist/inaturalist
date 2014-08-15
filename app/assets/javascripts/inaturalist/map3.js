@@ -491,7 +491,7 @@ iNaturalist.Map.createMap = function(options) {
 // The following code should be abstracted out a bit more
 iNaturalist.Map.createPlaceIcon = function(options) {
   var options = options || {}
-  var iconPath = "/images/mapMarkers/mm_34_stemless_";
+  var iconPath = "/assets/mapMarkers/mm_34_stemless_";
   iconPath += options.color ? options.color : "DeepPink"
   if (options.character) { iconPath += ('_' + options.character); }
   iconPath += '.png';
@@ -521,7 +521,7 @@ iNaturalist.Map.createObservationIcon = function(options) {
     return iconPath
   }
   
-  iconPath = "/images/mapMarkers/mm_34_"
+  iconPath = "/assets/mapMarkers/mm_34_"
   iconPath += options.stemless ? "stemless_" : ""
   iconPath += options.color || "HotPink"
   iconPath += options.character ? ('_'+options.character) : ""
@@ -589,16 +589,16 @@ iNaturalist.Map.builtPlacesMapType = function(map, options) {
   }, options)
   map.placeMarkers = []
   map.placeUrlsRequested = {}
-  var countryIcon = new google.maps.MarkerImage('/images/mapMarkers/mm_20_stemless_DodgerBlue_dark.png')
+  var countryIcon = new google.maps.MarkerImage('/assets/mapMarkers/mm_20_stemless_DodgerBlue_dark.png')
   countryIcon.size = new google.maps.Size(12,12)
   countryIcon.anchor = new google.maps.Point(6,6)
-  var stateIcon = new google.maps.MarkerImage('/images/mapMarkers/mm_20_stemless_DodgerBlue.png')
+  var stateIcon = new google.maps.MarkerImage('/assets/mapMarkers/mm_20_stemless_DodgerBlue.png')
   stateIcon.size = new google.maps.Size(12,12)
   stateIcon.anchor = new google.maps.Point(6,6)
-  var countyIcon = new google.maps.MarkerImage('/images/mapMarkers/mm_20_stemless_DodgerBlue_light.png')
+  var countyIcon = new google.maps.MarkerImage('/assets/mapMarkers/mm_20_stemless_DodgerBlue_light.png')
   countyIcon.size = new google.maps.Size(12,12)
   countyIcon.anchor = new google.maps.Point(6,6)
-  var openSpaceIcon = new google.maps.MarkerImage('/images/mapMarkers/mm_20_stemless_iNatGreen.png')
+  var openSpaceIcon = new google.maps.MarkerImage('/assets/mapMarkers/mm_20_stemless_iNatGreen.png')
   openSpaceIcon.size = new google.maps.Size(12,12)
   openSpaceIcon.anchor = new google.maps.Point(6,6)
   var PlacesMapType = function(tileSize) { this.tileSize = tileSize; }
@@ -820,23 +820,23 @@ google.maps.Map.prototype.getOverlay = function(name) {
 
 // Static constants
 iNaturalist.Map.ICONS = {
-  DodgerBlue34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_DodgerBlue.png"),
-  DeepPink34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_DeepPink.png"),
-  iNatGreen34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_iNatGreen.png"),
-  OrangeRed34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_OrangeRed.png"),
-  DarkMagenta34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_DarkMagenta.png"),
-  unknown34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_unknown.png"),
-  ChromistaBrown34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_ChromistaBrown.png")
+  DodgerBlue34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_DodgerBlue.png"),
+  DeepPink34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_DeepPink.png"),
+  iNatGreen34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_iNatGreen.png"),
+  OrangeRed34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_OrangeRed.png"),
+  DarkMagenta34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_DarkMagenta.png"),
+  unknown34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_unknown.png"),
+  ChromistaBrown34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_ChromistaBrown.png")
 };
 
 iNaturalist.Map.STEMLESS_ICONS = {
-  DodgerBlue34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_DodgerBlue.png"),
-  DeepPink34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_DeepPink.png"),
-  iNatGreen34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_iNatGreen.png"),
-  OrangeRed34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_OrangeRed.png"),
-  DarkMagenta34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_DarkMagenta.png"),
-  unknown34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_unknown.png"),
-  ChromistaBrown34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_ChromistaBrown.png")
+  DodgerBlue34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_stemless_DodgerBlue.png"),
+  DeepPink34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_stemless_DeepPink.png"),
+  iNatGreen34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_stemless_iNatGreen.png"),
+  OrangeRed34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_stemless_OrangeRed.png"),
+  DarkMagenta34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_stemless_DarkMagenta.png"),
+  unknown34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_stemless_unknown.png"),
+  ChromistaBrown34: new google.maps.MarkerImage("/assets/mapMarkers/mm_34_stemless_ChromistaBrown.png")
 };
 
 iNaturalist.Map.ICONIC_TAXON_ICONS = {

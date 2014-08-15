@@ -1000,11 +1000,11 @@ module ApplicationHelper
     HTML
     if options[:draw]
       h += <<-HTML
-        <link rel="stylesheet" href="/javascripts/leaflet.draw/leaflet.draw.css" />
+        <link rel="stylesheet" href="/assets/leaflet.draw/leaflet.draw.css" />
         <!--[if lte IE 8]>
-            <link rel="stylesheet" href="/javascripts/leaflet.draw/leaflet.draw.ie.css" />
+            <link rel="stylesheet" href="/assets/leaflet.draw/leaflet.draw.ie.css" />
         <![endif]-->
-        <script src="/javascripts/leaflet.draw/leaflet.draw.js"></script>
+        <script src="/assets/leaflet.draw/leaflet.draw.js"></script>
       HTML
     end
     raw h

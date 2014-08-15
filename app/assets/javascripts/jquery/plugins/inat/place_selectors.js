@@ -459,7 +459,7 @@
   };
   
   $.fn.latLonSelector.defaults = {
-    buttonImgPath: '/images/silk/world.png',
+    buttonImgPath: '/assets/silk/world.png',
     wrapperCSS: {
       display: 'none',
       position: 'absolute',

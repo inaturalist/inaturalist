@@ -75,13 +75,13 @@
 
 .observations.table .header.order_by a,
 .observations.table .header:hover a {
-  background: right center url(/images/toggle_arrow_up.png) no-repeat;
+  background: right center url(/assets/toggle_arrow_up.png) no-repeat;
   visibility: visible;
   padding-right: 16px;
 }
 
 .observations.table .header.order_by.desc a {
-  background: right center url(/images/toggle_arrow_down.png) no-repeat;
+  background: right center url(/assets/toggle_arrow_down.png) no-repeat;
   visibility: visible;
   padding-right: 16px;
 }
@@ -419,7 +419,7 @@
   width:12px; 
   height: 12px; 
   background-position: -130px -99px;
-  background-image: url(/images/jquery-ui/ui-icons_ffffff_256x240.png);
+  background-image: url(/assets/jquery-ui/ui-icons_ffffff_256x240.png);
   margin-right: 2px;
 }
 .observations.grid .ui-icon-comment:before {
@@ -432,7 +432,7 @@
   background-position: -130px -99px;
   left: 1px;
   top: 1px;
-  background-image: url(/images/jquery-ui/ui-icons_222222_256x240.png);
+  background-image: url(/assets/jquery-ui/ui-icons_222222_256x240.png);
 }
 
 .observations.grid .species_guess .othernames {display:none;}
@@ -678,19 +678,19 @@
 .observation.new .status.loading {
   color: #888;
   padding-left: 20px;
-  background: url('/images/spinner-small-999999_on_ffff99.gif') transparent 0px 1px no-repeat;
+  background: url('/assets/spinner-small-999999_on_ffff99.gif') transparent 0px 1px no-repeat;
 }
 
 .observation.new .status.success {
   color: green;
   padding-left: 20px;
-  background: url('/images/silk/accept.png') 0 0 no-repeat;
+  background: url('/assets/silk/accept.png') 0 0 no-repeat;
 }
 
 .observation.new .status.unmatched {
   color: #888;
   padding-left: 20px;
-  background: url('/images/silk/help.png') 0 0 no-repeat;
+  background: url('/assets/silk/help.png') 0 0 no-repeat;
 }
 
 .observation.new .attribute.error {
@@ -766,7 +766,7 @@
 #batchformcol h3 a {
   color: black;
   padding-left: 13px;
-  background: left center url(/images/toggle_arrow_down.png) no-repeat;
+  background: left center url(/assets/toggle_arrow_down.png) no-repeat;
 }
 
 #batchformcol h3 a:hover {
@@ -775,7 +775,7 @@
 
 #batchform.closed h3 a {
   padding-left: 13px;
-  background: left center url(/images/toggle_arrow_right.png) no-repeat;
+  background: left center url(/assets/toggle_arrow_right.png) no-repeat;
 }
 
 #batchform,

@@ -42,7 +42,7 @@
 
 #addlink {
   padding-left: 20px;
-  background: url(/images/silk/add.png) 0 50% no-repeat;
+  background: url(/assets/silk/add.png) 0 50% no-repeat;
 }
 
 #new_listed_taxon {
@@ -87,7 +87,7 @@
   -moz-border-radius-bottomright: 5px;
   -webkit-border-top-right-radius: 5px;
   -webkit-border-bottom-right-radius: 5px;
-  background-image: url('/images/toggle_arrow_left.png');
+  background-image: url('/assets/toggle_arrow_left.png');
   background-position: 5px 50%;
   background-repeat: no-repeat;
   left: -10px;
@@ -164,31 +164,31 @@
 #plain_view_link:hover,
 #plain_view_link:active,
 #plain_view_link.selected {
-  background-image: url(/images/checklist-icon.png);
+  background-image: url(/assets/checklist-icon.png);
 }
 
 #taxonomic_view_link:hover,
 #taxonomic_view_link:active,
 #taxonomic_view_link.selected {
-  background-image: url(/images/taxonomy-icon.png);
+  background-image: url(/assets/taxonomy-icon.png);
 }
 
 #photo_view_link:hover,
 #photo_view_link:active,
 #photo_view_link.selected {
-  background-image: url(/images/silk/picture.png);
+  background-image: url(/assets/silk/picture.png);
 }
 
 #plain_view_link {
-  background-image: url(/images/checklist-icon-gray.png);
+  background-image: url(/assets/checklist-icon-gray.png);
 }
 
 #taxonomic_view_link {
-  background-image: url(/images/taxonomy-icon-gray.png);
+  background-image: url(/assets/taxonomy-icon-gray.png);
 }
 
 #photo_view_link {
-  background-image: url(/images/silk/picture-gray.png);
+  background-image: url(/assets/silk/picture-gray.png);
 }
 
 #maincol {

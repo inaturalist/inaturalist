@@ -4,7 +4,7 @@
       xmlns:og="http://ogp.me/ns#">
   <head>
     <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
-    <link rel="icon" type="image/png" href="/images/favicon.png"/>
+    <link rel="icon" type="image/png" href="/assets/favicon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <%= stylesheet_link_tag 'jquery-ui',
@@ -60,7 +60,7 @@
     <%= render :partial => 'shared/footer' unless @footless %>
 
     <%= javascript_include_tag 'jquery/jquery-1.8.3.min' %>
-    <script src="/javascripts/bootstrap.js"></script>
+    <%= javascript_include_tag 'bootstrap.js' %>
     <%= javascript_include_tag 'jquery/jquery-ui-1.9.1.min', 
                                "iso8601",
                                "i18n.min" %>

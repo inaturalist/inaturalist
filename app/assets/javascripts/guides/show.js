@@ -72,7 +72,7 @@ App.TaxonControllerBase =  Ember.ObjectController.extend({
     var guideTaxon = this.get('content')
     var photos = guideTaxon.get('guidePhotos')
     var that = this
-    var url = 'http://www.inaturalist.org/images/animals.jpg'
+    var url = 'http://www.inaturalist.org/assets/animals.jpg'
     if (photos.get('isLoaded')) {
       var photo = photos.get('firstObject')
       if (photo) {
@@ -94,7 +94,7 @@ App.TaxonControllerBase =  Ember.ObjectController.extend({
     var guideTaxon = this.get('content')
     var ranges = guideTaxon.get('guideRanges')
     var that = this
-    var url = 'http://www.inaturalist.org/images/animals.jpg'
+    var url = 'http://www.inaturalist.org/assets/animals.jpg'
     if (ranges.get('isLoaded')) {
       var range = ranges.get('firstObject')
       if (range) {

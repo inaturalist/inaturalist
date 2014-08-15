@@ -93,7 +93,7 @@ module TaxaHelper
   #
   # URL of this taxon's icon, using the following convention
   #
-  #   /images/iconic_taxa/[taxon_name]-[color]-[size]px.png
+  #   /assets/iconic_taxa/[taxon_name]-[color]-[size]px.png
   #
   # where :color and :size are values you can pass in as params.  Right now,
   # it returns a path for the taxon's iconic_taxon, or itself if it IS an
@@ -103,9 +103,9 @@ module TaxaHelper
   #
   # Example:
   #  >> iconic_taxon_image_url(Taxon.find_by_name('Aves'))
-  #  => "/images/iconic_taxa/aves.png"
+  #  => "/assets/iconic_taxa/aves.png"
   #  >> iconic_taxon_image_url(Taxon.find_by_name('Aves'), :color => 'ffaa00', :size => 20)
-  #  => "/images/iconic_taxa/aves-ffaa00-20px.png"
+  #  => "/assets/iconic_taxa/aves-ffaa00-20px.png"
   # 
   def iconic_taxon_image_url(taxon, params = {})
     params[:size] = nil unless params[:size].is_a? Fixnum
@@ -118,7 +118,7 @@ module TaxaHelper
       nil
     end
     path = CONFIG.site_url
-    path += '/images/iconic_taxa/'
+    path += '/assets/iconic_taxa/'
     if iconic_taxon
       path += iconic_taxon.name.downcase
     else

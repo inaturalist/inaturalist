@@ -172,7 +172,7 @@ function buildHelpTips() {
 $(document).ready(function() {
   function makeHeaderLinkCurrent(li) {
     $(li).addClass('current').append(
-      $('<img src="/images/active_tab_bottom.gif">').css({
+      $('<img src="/assets/active_tab_bottom.gif">').css({
         position: "absolute",
         left: '50%',
         bottom: '-6px',
@@ -204,10 +204,10 @@ $(document).ready(function() {
   })
   
   $([
-    '/images/spinner.gif',
-    '/images/spinner-small.gif',
-    '/images/spinner-small-ffffff_on_dedede.gif',
-    '/images/spinner-small-ffffff_on_aaaaaa.gif'
+    '/assets/spinner.gif',
+    '/assets/spinner-small.gif',
+    '/assets/spinner-small-ffffff_on_dedede.gif',
+    '/assets/spinner-small-ffffff_on_aaaaaa.gif'
   ]).preload()
   
   $('[data-tip]').each(autoTip)
@@ -604,7 +604,7 @@ $.fn.zoomify = function() {
   selection
     .addClass('zoomified')
     .addClass('inlineblock')
-    .append('<img src="/images/silk/magnifier.png" class="zoom_icon"/>')
+    .append('<img src="/assets/silk/magnifier.png" class="zoom_icon"/>')
   selection.click(function() {
     if ($('#zoomable_dialog').length == 0) {
       $(document.body).append(

@@ -38,7 +38,7 @@
     var taxon_id = getTaxonID(wrapper, options);
     
     // Insert the taxon image
-    var imageURL = '/images/iconic_taxa/unknown-32px.png';
+    var imageURL = '/assets/iconic_taxa/unknown-32px.png';
     if (typeof($(taxon_id).attr('rel')) != 'undefined' && $(taxon_id).attr('rel') != '') {
       imageURL = $(taxon_id).attr('rel');
     }
@@ -285,7 +285,7 @@
       I18n.t('species_unknown'));
     
     // Set the image
-    $(image).attr('src', '/images/iconic_taxa/unknown-32px.png')
+    $(image).attr('src', '/assets/iconic_taxa/unknown-32px.png')
     
     $(wrapper).data('taxon', null)
     
@@ -476,7 +476,7 @@
   $.fn.simpleTaxonSelector.styles.statuses.unmatched = $.extend({}, 
     $.fn.simpleTaxonSelector.styles.statuses['default'], {
       color: '#888',
-      background: 'url(/images/logo-grey-15px.png) 0 3px no-repeat'
+      background: 'url(/assets/logo-grey-15px.png) 0 3px no-repeat'
   });
 
   $.fn.simpleTaxonSelector.styles.statuses.choice = $.extend({}, $.fn.simpleTaxonSelector.styles.statuses.unmatched, {});
@@ -484,13 +484,13 @@
   $.fn.simpleTaxonSelector.styles.statuses.error = $.extend({}, 
     $.fn.simpleTaxonSelector.styles.statuses['default'], {
       color: 'DeepPink',
-      background: "url('/images/logo-DeepPink-15px-error.png') 0 3px no-repeat"
+      background: "url('/assets/logo-DeepPink-15px-error.png') 0 3px no-repeat"
   });
   
   $.fn.simpleTaxonSelector.styles.statuses.loading = $.extend({}, 
     $.fn.simpleTaxonSelector.styles.statuses['default'], {
       color: '#888',
-      background: 'url(/images/spinner-small.gif) 0 3px no-repeat'
+      background: 'url(/assets/spinner-small.gif) 0 3px no-repeat'
   });
   
   $.fn.simpleTaxonSelector.defaults = {

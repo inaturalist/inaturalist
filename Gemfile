@@ -40,6 +40,7 @@ gem 'htmlentities'
 gem 'i18n-js'
 gem 'irwi', :git => 'git://github.com/alno/irwi.git'
 gem 'json', "~> 1.7.7"
+gem 'jquery-rails'
 gem 'koala'
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 gem 'memcache-client'
@@ -73,6 +74,7 @@ gem 'translate-rails3', :require => 'translate', :git => 'git://github.com/JayTe
 gem 'trollop'
 gem 'ts-delayed-delta', '1.1.3', :require => 'thinking_sphinx/deltas/delayed_delta'
 gem 'twitter'
+gem 'uglifier'
 gem 'utf8-cleaner'
 gem "watu_table_builder", :require => "table_builder"
 gem 'wicked_pdf'
@@ -80,6 +82,7 @@ gem 'will_paginate'
 gem 'whenever', :require => false
 gem 'ya2yaml'
 gem 'ym4r_gm', :git => 'git://github.com/modyo/ym4r_gm.git'
+gem 'yui-compressor'
 gem 'xmp', :git => 'git://github.com/eknoop/xmp.git'
 
 group :production do

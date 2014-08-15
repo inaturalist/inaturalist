@@ -183,7 +183,7 @@ jQuery.extend({
 			return this.r(arguments,1,s);
 		},
 		/**
-		 * Treats the string as a Prototype-style Template and fills it with object’s properties.
+		 * Treats the string as a Prototype-style Template and fills it with object's properties.
 		 * @param {Object} obj object of values to replace in string
 		 * @param {Object} pattern RegEx pattern for template replacement (default matches Ruby-style '#{attribute}')
 		 * @param {String} s string to be evaluated
