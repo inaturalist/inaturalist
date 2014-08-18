@@ -725,4 +725,12 @@ class Place < ActiveRecord::Base
   def self_and_ancestor_ids
     [ancestor_ids, id].flatten
   end
+
+  def default_observation_precision
+    return nil unless nelat
+    f = RGeo::Geographic.simple_mercator_factory
+    ne_point = f.point(nelng, nelat)
+    center_point = f.point(longitude, latitude)
+    center_point.distance(ne_point)
+  end
 end

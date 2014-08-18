@@ -400,13 +400,17 @@ class ObservationsController < ApplicationController
         Project.includes(:project_observation_fields => :observation_field).find_by_id(params[:project_id].to_i)
       end
       if @project
+        @place = @project.place
         @project_curators = @project.project_users.where("role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR])
-        if @place = @project.place
-          @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
-        end
         @tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
         @kml_assets = @project.project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
       end
+    end
+
+    @place ||= Place.find(params[:place_id]) unless params[:place_id].blank? rescue nil
+
+    if @place
+      @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
     end
     
     if params[:facebook_photo_id]
