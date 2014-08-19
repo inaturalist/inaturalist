@@ -1010,7 +1010,11 @@ class Observation < ActiveRecord::Base
     
     begin
       # Start parsing...
-      t = Chronic.parse(date_string)
+      t = begin
+        Chronic.parse(date_string)
+      rescue ArgumentError
+        Chronic.parse(date_string.split[0..-2].join(' '))
+      end
       if !t && (locale = user.locale || I18n.locale)
         date_string = englishize_month_abbrevs_for_locale(date_string, locale)
         t = Chronic.parse(date_string)
@@ -1041,11 +1045,8 @@ class Observation < ActiveRecord::Base
           self.time_observed_at = nil
         end
       end
-    rescue RuntimeError
-      errors.add(:observed_on, 
-        "was not recognized, some working examples are: yesterday, 3 years " +
-        "ago, 5/27/1979, 1979-05-27 05:00. " +
-        "(<a href='http://chronic.rubyforge.org/'>others</a>)")
+    rescue RuntimeError, ArgumentError
+      # ignore these, just don't set the date
       return true
     end
     
@@ -1722,12 +1723,8 @@ class Observation < ActiveRecord::Base
       if tspan = Chronic.parse(observed_on_string, :context => :past, :guess => false)
         is_a_range = true if tspan.width.seconds > 1.day.seconds
       end
-    rescue RuntimeError
-      errors.add(:observed_on, 
-        "was not recognized, some working examples are: yesterday, 3 years " +
-        "ago, 5/27/1979, 1979-05-27 05:00. " +
-        "(<a href='http://chronic.rubyforge.org/'>others</a>)"
-      ) 
+    rescue RuntimeError, ArgumentError
+      # ignore parse errors, assume they're not spans
       return
     end
     
