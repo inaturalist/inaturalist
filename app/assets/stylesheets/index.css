@@ -1,11 +1,12 @@
-@import 'buttons.css';
-@import 'jquery/plugins/inat/photo_selectors.css';
-@import 'jquery/plugins/inat/sound_selectors.css';
-@import 'statuses.css';
-@import 'prevnext.css';
-@import 'flickr_photos.css';
-@import 'projects.css';
-
+/* ...
+*= require buttons
+*= require jquery/plugins/inat/photo_selectors
+*= require jquery/plugins/inat/sound_selectors
+*= require statuses
+*= require prevnext
+*= require flickr_photos
+*= require projects
+*/
 body {
   margin: 0;
   padding: 0;
