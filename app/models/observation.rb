@@ -200,6 +200,7 @@ class Observation < ActiveRecord::Base
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
   belongs_to :oauth_application
+  belongs_to :site, :inverse_of => :observations
   has_many :observation_photos, :dependent => :destroy, :order => "id asc", :inverse_of => :observation
   has_many :photos, :through => :observation_photos
   

@@ -80,7 +80,7 @@ class Project < ActiveRecord::Base
   }
   
   has_attached_file :icon, 
-    :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#" },
+    :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#", :original => "1024x1024>" },
     :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :default_url => "/attachment_defaults/general/:style.png"
