@@ -129,14 +129,12 @@
         <% end -%>
 
       <% else %>
-        <% if is_admin? -%>
-          <div class="tabs clear centered admin">
-            <ul>
-              <li><%= link_to t(:all_updates), dashboard_path, :class => "#{'active' if params[:filter].blank?}" %></li>
-              <li><%= link_to t(:updates_on_your_content), dashboard_path(:filter => "you") , :class => "#{'active' if params[:filter] == 'you'}" %></li>
-            </ul>
-          </div>
-        <% end -%>
+        <div id="owner_filter" class="tabs clear centered">
+          <ul>
+            <li><%= link_to t(:all_updates), dashboard_path, :class => "#{'active' if params[:filter].blank?}" %></li>
+            <li><%= link_to t(:updates_on_your_content), dashboard_path(:filter => "you") , :class => "#{'active' if params[:filter] == 'you'}" %></li>
+          </ul>
+        </div>
         <% for key, updates in @grouped_updates %>
           <%-
             resource_type, resource_id, notification = key
