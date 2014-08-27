@@ -147,7 +147,7 @@ module HasSubscribers
       after_destroy do |record|
         resource = options[:to] ? record.send(options[:to]) : record
         user = record.auto_subscriber || record.send(subscriber)
-        if user
+        if user && resource
           Subscription.delete_all(:user_id => user.id, 
             :resource_type => resource.class.name, :resource_id => resource.id)
         else

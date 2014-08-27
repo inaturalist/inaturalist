@@ -107,6 +107,13 @@ describe Observation, "creation" do
     zone.should_not be_blank
     zone.formatted_offset.should == "-05:00"
   end
+
+  it "should handle unparsable times gracefully" do
+    @observation.observed_on_string = "2013-03-02, 1430hrs"
+    @observation.save
+    @observation.should be_valid
+    @observation.observed_on.day.should eq 2
+  end
   
   it "should not save a time if one wasn't specified" do
     @observation.observed_on_string = "April 2 2008"

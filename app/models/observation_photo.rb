@@ -3,12 +3,17 @@ class ObservationPhoto < ActiveRecord::Base
   belongs_to :photo
 
   validates_associated :photo
+  validates_uniqueness_of :photo_id, :scope => :observation_id
   
   after_create :set_observation_quality_grade,
                :set_observation_photos_count
   after_destroy :destroy_orphan_photo, :set_observation_quality_grade, :set_observation_photos_count
 
   include Shared::TouchesObservationModule
+
+  def to_s
+    "<ObservationPhoto #{id} observation_id: #{observation_id} photo_id: #{photo_id}>"
+  end
   
   def destroy_orphan_photo
     Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(photo_id)
