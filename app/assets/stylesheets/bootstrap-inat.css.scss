@@ -30,7 +30,7 @@ body {
 .bootstrap input[type="text"].hasDatepicker {margin-bottom:0;}
 
 .bootstrap .btn.disabled.loadingclick, .bootstrap .btn.loadingclick[disabled] {
-  background-image: url(/assets/spinner-small.gif);
+  background-image: image-url('spinner-small.gif');
   background-position: 5px 50%;
   background-repeat: no-repeat;
   color: #999;

@@ -238,7 +238,7 @@ form .field .description { margin-bottom: 0.5em;}
 
 #header .navtabs .observationstab .subnav a,
 #header .navtabs .projectstab .subnav a {
-  background-image: url('/assets/logo-eee-15px.png');
+  background-image: image-url('logo-eee-15px.png');
   background-position: 148px center;
   background-repeat: no-repeat;
 }
@@ -304,11 +304,11 @@ form .field .description { margin-bottom: 0.5em;}
   display: block;
   width: auto;
   min-height: 15px;
-  background: url('/assets/logo-eee-15px.png') 5px 50% no-repeat;
+  background: image-url('logo-eee-15px.png') 5px 50% no-repeat;
 }
 
 #usersubnav li a:hover {
-  background: url('/assets/logo-15px.png') 5px 50% no-repeat;
+  background: image-url('logo-15px.png') 5px 50% no-repeat;
 }
 
 #header .navtabs #usersubnav a {
@@ -316,21 +316,21 @@ form .field .description { margin-bottom: 0.5em;}
 }
 
 #usersubnav .observations_link {
-  background-image: url('/assets/notebook-icon-eee-15px.png');
+  background-image: image-url('notebook-icon-eee-15px.png');
   background-position: 7px 40%;
   background-attachment: no-repeat;
 }
 
 #header .navtabs .observations_link:hover {
-  background: url('/assets/notebook-icon-color-15px.png') 7px 45% no-repeat;
+  background: image-url('notebook-icon-color-15px.png') 7px 45% no-repeat;
 }
 
 #header .navtabs .lists_link {
-  background: url('/assets/checklist-icon-eee-15px.png') 5px 50% no-repeat;
+  background: image-url('checklist-icon-eee-15px.png') 5px 50% no-repeat;
 }
 
 #header .navtabs .lists_link:hover {
-  background: url('/assets/checklist-icon-color-15px.png') 5px 50% no-repeat;
+  background: image-url('checklist-icon-color-15px.png') 5px 50% no-repeat;
 }
 
 #header .navtabs .profile_link {
@@ -344,14 +344,14 @@ form .field .description { margin-bottom: 0.5em;}
 
 #header .navtabs .journal_link {
   padding-left: 20px;
-  background: url(/assets/silk/book-gray.png) 7px 50% no-repeat;
+  background: image-url('silk/book-gray.png') 7px 50% no-repeat;
 }
-#header .navtabs .journal_link:hover { background: url(/assets/silk/book-light.png) 7px 50% no-repeat; }
+#header .navtabs .journal_link:hover { background: image-url('silk/book-light.png') 7px 50% no-repeat; }
 #header .navtabs .messages_link {
   padding-left: 20px;
-  background: url(/assets/silk/email-gray.png) 7px 50% no-repeat;
+  background: image-url('silk/email-gray.png') 7px 50% no-repeat;
 }
-#header .navtabs .messages_link:hover { background: url(/assets/silk/email.png) 7px 50% no-repeat; }
+#header .navtabs .messages_link:hover { background: image-url('silk/email.png') 7px 50% no-repeat; }
 #header .formwrapper { padding: 10px; }
 #header form { min-width: 148px; }
 
@@ -367,7 +367,7 @@ form .field .description { margin-bottom: 0.5em;}
 
 #header form .button {
   margin-right: 0;
-  background: url(/assets/silk/magnifier.png) 50% 50% no-repeat;
+  background: image-url('silk/magnifier.png') 50% 50% no-repeat;
   width: 25px;
 }
 
@@ -428,40 +428,40 @@ img.mini.usericon {
   width: auto;
   min-height: 15px;
   padding: 0 10px 0 18px;
-  background: url('/assets/logo-eee-15px.png') 0% 50% no-repeat;
+  background: image-url('logo-eee-15px.png') 0% 50% no-repeat;
 }
 #subnav li a.active { color: #333; }
 
 #subnav li a:hover{
-  background: url('/assets/logo-15px.png') 0% 50% no-repeat;
+  background: image-url('logo-15px.png') 0% 50% no-repeat;
 }
 
 #subnav #observations_link {
-  background: url('/assets/notebook-icon-eee-15px.png') 0% 40% no-repeat;
+  background: image-url('notebook-icon-eee-15px.png') 0% 40% no-repeat;
 }
 
 #subnav #observations_link:hover,
 #subnav #observations_link.active {
-  background: url('/assets/notebook-icon-color-15px.png') 0% 45% no-repeat;
+  background: image-url('notebook-icon-color-15px.png') 0% 45% no-repeat;
 }
 
 #subnav #calendar_link {
-  background: url('/assets/silk/date-gray.png') 0% 40% no-repeat;
+  background: image-url('silk/date-gray.png') 0% 40% no-repeat;
 }
 
 #subnav #calendar_link:hover,
 #subnav #calendar_link.active {
-  background: url('/assets/silk/date.png') 0% 45% no-repeat;
+  background: image-url('silk/date.png') 0% 45% no-repeat;
 }
 
 #subnav #lists_link {
   padding-left: 22px;
-  background: url('/assets/checklist-icon-eee-15px.png') 0% 50% no-repeat;
+  background: image-url('checklist-icon-eee-15px.png') 0% 50% no-repeat;
 }
 
 #subnav #lists_link:hover,
 #subnav #lists_link.active {
-  background: url('/assets/checklist-icon-color-15px.png') 0% 50% no-repeat;
+  background: image-url('checklist-icon-color-15px.png') 0% 50% no-repeat;
 }
 
 #subnav #profile_link {
@@ -476,38 +476,38 @@ img.mini.usericon {
 
 #subnav #journal_link {
   padding-left: 20px;
-  background: url(/assets/silk/book-gray.png) 0% 50% no-repeat;
+  background: image-url('silk/book-gray.png') 0% 50% no-repeat;
 }
 
 #subnav #journal_link:hover,
 #subnav #journal_link.active {
-  background: url(/assets/silk/book-light.png) 0% 50% no-repeat;
+  background: image-url('silk/book-light.png') 0% 50% no-repeat;
 }
 
 #subnav #identifications_link {
   padding-left: 20px;
-  background: url(/assets/silk/help-gray.png) 0% 50% no-repeat;
+  background: image-url('silk/help-gray.png') 0% 50% no-repeat;
 }
 
 #subnav #identifications_link:hover,
 #subnav #identifications_link.active {
-  background: url(/assets/silk/help.png) 0% 50% no-repeat;
+  background: image-url('silk/help.png') 0% 50% no-repeat;
 }
 
 #subnav #follow_button {
   padding-left: 20px;
-  background: url(/assets/follow-icon-eee-15px.png) 0% 50% no-repeat;
+  background: image-url('follow-icon-eee-15px.png') 0% 50% no-repeat;
 }
 
 #subnav #follow_button:hover,
 #subnav #follow_button.active {
-  background: url(/assets/follow-icon-nm-15px.png) 0% 50% no-repeat;
+  background: image-url('follow-icon-nm-15px.png') 0% 50% no-repeat;
 }
 
 #subnav .message_link {background: none;padding-left:5px;}
 #subnav .message_link:hover {background: none;}
-#subnav .message_link .ui-icon {background-image: url(/assets/jquery-ui/ui-icons_888888_256x240.png);}
-#subnav .message_link:hover .ui-icon {background-image: url(/assets/jquery-ui/ui-icons_454545_256x240.png);}
+#subnav .message_link .ui-icon {background-image: image-url('jquery-ui/ui-icons_888888_256x240.png');}
+#subnav .message_link:hover .ui-icon {background-image: image-url('jquery-ui/ui-icons_454545_256x240.png');}
 
 #breadcrumbs {
   color: #999;
@@ -662,7 +662,7 @@ ul.leafylist {
 }
 
 ul.leafylist li {
-  list-style-image: url('/assets/logo-15px.png');
+  list-style-image: image-url('logo-15px.png');
   margin-bottom: 0.4em;
   line-height: 120%;
 }
@@ -707,7 +707,7 @@ ul.leafylist li li:first-child {
 }
 
 .identification { position: relative;}
-.identification.box {padding:0; position}
+.identification.box {padding:0;}
 .identification.box .boxbody {padding:10px 10px 0 10px;}
 .identification.box .boxheader{background-color:#EFEFC7; padding:5px 10px;}
 .identification.quiet.box .boxheader{background-color:#dedede;}
@@ -786,7 +786,7 @@ ul.leafylist li li:first-child {
 .compactfieldlink,
 .togglelink {
   font-weight: bold;
-  background: url(/assets/toggle_arrow_right.png) no-repeat 5px 50%;
+  background: image-url('toggle_arrow_right.png') no-repeat 5px 50%;
   padding-left: 15px;
   outline: none;
 }
@@ -797,7 +797,7 @@ ul.leafylist li li:first-child {
 
 .compactfield.open .compactfieldlink,
 .togglelink.open {
-  background: url(/assets/toggle_arrow_down.png) no-repeat 0 50%;
+  background: image-url('toggle_arrow_down.png') no-repeat 0 50%;
 }
 
 .toggle_menu {
@@ -928,12 +928,12 @@ ul.leafylist li li:first-child {
 .bad  { color: deeppink; }
 
 .feeds a {
-  background: url(/assets/silk/feed.png) no-repeat 0 50%;
+  background: image-url('silk/feed.png') no-repeat 0 50%;
   padding: 2px 0px 2px 20px;
   margin-right: 0.25em;
 }
-a.kmllink{background-image:url(/assets/google_earth.png);}
-a.csvlink{background-image:url(/assets/silk/table.png);}
+a.kmllink{background-image:image-url('google_earth.png');}
+a.csvlink{background-image:image-url('silk/table.png');}
 
 
 /* Modal Links */
@@ -977,7 +977,7 @@ a.csvlink{background-image:url(/assets/silk/table.png);}
   background-repeat: no-repeat;
   background-position: 0px 3px;
   margin-bottom: 2px;
-  background-image: url('/assets/logo-15px.png');
+  background-image: image-url('logo-15px.png');
 }
 
 .simpleTaxonSelectorImage {
@@ -986,20 +986,20 @@ a.csvlink{background-image:url(/assets/silk/table.png);}
   margin-right: 5px;
 }
 
-.simpleTaxonSelector .taxon.Unknown          { color: inherit;  background-image: url('/assets/iconic_taxa/unknown-15px.png'); }
-.simpleTaxonSelector .taxon.Protozoa         { color: #691776;  background-image: url('/assets/iconic_taxa/protozoa-15px.png'); }
-.simpleTaxonSelector .taxon.Plantae          { color: #73AC13;  background-image: url('/assets/iconic_taxa/plantae-15px.png'); }
-.simpleTaxonSelector .taxon.Fungi            { color: DeepPink; background-image: url('/assets/iconic_taxa/fungi-15px.png'); }
-.simpleTaxonSelector .taxon.Animalia         { color: #1E90FF;  background-image: url('/assets/iconic_taxa/animalia-15px.png'); }
-.simpleTaxonSelector .taxon.Mollusca         { color: #FF4500;  background-image: url('/assets/iconic_taxa/mollusca-15px.png'); background-position: 0px 0px;}
-.simpleTaxonSelector .taxon.Arachnida        { color: #FF4500;  background-image: url('/assets/iconic_taxa/arachnida-15px.png'); }
-.simpleTaxonSelector .taxon.Insecta          { color: #FF4500;  background-image: url('/assets/iconic_taxa/insecta-15px.png'); }
-.simpleTaxonSelector .taxon.Amphibia         { color: #1E90FF;  background-image: url('/assets/iconic_taxa/amphibia-15px.png'); }
-.simpleTaxonSelector .taxon.Reptilia         { color: #1E90FF;  background-image: url('/assets/iconic_taxa/reptilia-15px.png'); }
-.simpleTaxonSelector .taxon.Aves             { color: #1E90FF;  background-image: url('/assets/iconic_taxa/aves-15px.png'); }
-.simpleTaxonSelector .taxon.Mammalia         { color: #1E90FF;  background-image: url('/assets/iconic_taxa/mammalia-15px.png'); }
-.simpleTaxonSelector .taxon.Actinopterygii   { color: #1E90FF;  background-image: url('/assets/iconic_taxa/actinopterygii-15px.png'); }
-.simpleTaxonSelector .taxon.Chromista        { color: #993300;  background-image: url('/assets/iconic_taxa/chromista-15px.png'); }
+.simpleTaxonSelector .taxon.Unknown          { color: inherit;  background-image: image-url('iconic_taxa/unknown-15px.png'); }
+.simpleTaxonSelector .taxon.Protozoa         { color: #691776;  background-image: image-url('iconic_taxa/protozoa-15px.png'); }
+.simpleTaxonSelector .taxon.Plantae          { color: #73AC13;  background-image: image-url('iconic_taxa/plantae-15px.png'); }
+.simpleTaxonSelector .taxon.Fungi            { color: DeepPink; background-image: image-url('iconic_taxa/fungi-15px.png'); }
+.simpleTaxonSelector .taxon.Animalia         { color: #1E90FF;  background-image: image-url('iconic_taxa/animalia-15px.png'); }
+.simpleTaxonSelector .taxon.Mollusca         { color: #FF4500;  background-image: image-url('iconic_taxa/mollusca-15px.png'); background-position: 0px 0px;}
+.simpleTaxonSelector .taxon.Arachnida        { color: #FF4500;  background-image: image-url('iconic_taxa/arachnida-15px.png'); }
+.simpleTaxonSelector .taxon.Insecta          { color: #FF4500;  background-image: image-url('iconic_taxa/insecta-15px.png'); }
+.simpleTaxonSelector .taxon.Amphibia         { color: #1E90FF;  background-image: image-url('iconic_taxa/amphibia-15px.png'); }
+.simpleTaxonSelector .taxon.Reptilia         { color: #1E90FF;  background-image: image-url('iconic_taxa/reptilia-15px.png'); }
+.simpleTaxonSelector .taxon.Aves             { color: #1E90FF;  background-image: image-url('iconic_taxa/aves-15px.png'); }
+.simpleTaxonSelector .taxon.Mammalia         { color: #1E90FF;  background-image: image-url('iconic_taxa/mammalia-15px.png'); }
+.simpleTaxonSelector .taxon.Actinopterygii   { color: #1E90FF;  background-image: image-url('iconic_taxa/actinopterygii-15px.png'); }
+.simpleTaxonSelector .taxon.Chromista        { color: #993300;  background-image: image-url('iconic_taxa/chromista-15px.png'); }
 
 .simpleTaxonSelector .matches .taxon {cursor: pointer;}
 
@@ -1007,23 +1007,23 @@ a.csvlink{background-image:url(/assets/silk/table.png);}
   padding: 2px 0 2px 25px;
   background-repeat: no-repeat;
   background-position: 0px 3px;
-  background-image: url('/assets/logo-15px.png');
+  background-image: image-url('logo-15px.png');
 }
 
-.taxon_links .taxon.Unknown          { color: inherit;  background-image: url('/assets/iconic_taxa/unknown-15px.png'); }
-.taxon_links .taxon.Protozoa         { color: #691776;  background-image: url('/assets/iconic_taxa/protozoa-15px.png'); }
-.taxon_links .taxon.Plantae          { color: #73AC13;  background-image: url('/assets/iconic_taxa/plantae-15px.png'); }
-.taxon_links .taxon.Fungi            { color: DeepPink; background-image: url('/assets/iconic_taxa/fungi-15px.png'); }
-.taxon_links .taxon.Animalia         { color: #1E90FF;  background-image: url('/assets/iconic_taxa/animalia-15px.png'); }
-.taxon_links .taxon.Mollusca         { color: #FF4500;  background-image: url('/assets/iconic_taxa/mollusca-15px.png'); }
-.taxon_links .taxon.Arachnida        { color: #FF4500;  background-image: url('/assets/iconic_taxa/arachnida-15px.png'); }
-.taxon_links .taxon.Insecta          { color: #FF4500;  background-image: url('/assets/iconic_taxa/insecta-15px.png'); }
-.taxon_links .taxon.Amphibia         { color: #1E90FF;  background-image: url('/assets/iconic_taxa/amphibia-15px.png'); }
-.taxon_links .taxon.Reptilia         { color: #1E90FF;  background-image: url('/assets/iconic_taxa/reptilia-15px.png'); }
-.taxon_links .taxon.Aves             { color: #1E90FF;  background-image: url('/assets/iconic_taxa/aves-15px.png'); }
-.taxon_links .taxon.Mammalia         { color: #1E90FF;  background-image: url('/assets/iconic_taxa/mammalia-15px.png'); }
-.taxon_links .taxon.Actinopterygii   { color: #1E90FF;  background-image: url('/assets/iconic_taxa/actinopterygii-15px.png'); }
-.taxon_links .taxon.Chromista        { color: #993300;  background-image: url('/assets/iconic_taxa/chromista-15px.png'); }
+.taxon_links .taxon.Unknown          { color: inherit;  background-image: image-url('iconic_taxa/unknown-15px.png'); }
+.taxon_links .taxon.Protozoa         { color: #691776;  background-image: image-url('iconic_taxa/protozoa-15px.png'); }
+.taxon_links .taxon.Plantae          { color: #73AC13;  background-image: image-url('iconic_taxa/plantae-15px.png'); }
+.taxon_links .taxon.Fungi            { color: DeepPink; background-image: image-url('iconic_taxa/fungi-15px.png'); }
+.taxon_links .taxon.Animalia         { color: #1E90FF;  background-image: image-url('iconic_taxa/animalia-15px.png'); }
+.taxon_links .taxon.Mollusca         { color: #FF4500;  background-image: image-url('iconic_taxa/mollusca-15px.png'); }
+.taxon_links .taxon.Arachnida        { color: #FF4500;  background-image: image-url('iconic_taxa/arachnida-15px.png'); }
+.taxon_links .taxon.Insecta          { color: #FF4500;  background-image: image-url('iconic_taxa/insecta-15px.png'); }
+.taxon_links .taxon.Amphibia         { color: #1E90FF;  background-image: image-url('iconic_taxa/amphibia-15px.png'); }
+.taxon_links .taxon.Reptilia         { color: #1E90FF;  background-image: image-url('iconic_taxa/reptilia-15px.png'); }
+.taxon_links .taxon.Aves             { color: #1E90FF;  background-image: image-url('iconic_taxa/aves-15px.png'); }
+.taxon_links .taxon.Mammalia         { color: #1E90FF;  background-image: image-url('iconic_taxa/mammalia-15px.png'); }
+.taxon_links .taxon.Actinopterygii   { color: #1E90FF;  background-image: image-url('iconic_taxa/actinopterygii-15px.png'); }
+.taxon_links .taxon.Chromista        { color: #993300;  background-image: image-url('iconic_taxa/chromista-15px.png'); }
 
 .taxon.Unknown a          { color: inherit;  }
 .taxon.Protozoa a         { color: #691776;  }
@@ -1055,20 +1055,20 @@ table.user-table td {
   text-decoration: line-through;
 }
 
-ul.taxonomic_tree li.Protozoa          { list-style-image: url('/assets/iconic_taxa/protozoa-15px.png'); }
-ul.taxonomic_tree li.Plantae          { list-style-image: url('/assets/iconic_taxa/plantae-15px.png'); }
-ul.taxonomic_tree li.Fungi            { list-style-image: url('/assets/iconic_taxa/fungi-15px.png'); }
-ul.taxonomic_tree li.Animalia         { list-style-image: url('/assets/iconic_taxa/animalia-15px.png'); }
-ul.taxonomic_tree li.Mollusca         { list-style-image: url('/assets/iconic_taxa/mollusca-15px.png'); }
-ul.taxonomic_tree li.Arachnida        { list-style-image: url('/assets/iconic_taxa/arachnida-15px.png'); }
-ul.taxonomic_tree li.Insecta          { list-style-image: url('/assets/iconic_taxa/insecta-15px.png'); }
-ul.taxonomic_tree li.Actinopterygii   { list-style-image: url('/assets/iconic_taxa/actinopterygii-15px.png'); }
-ul.taxonomic_tree li.Amphibia         { list-style-image: url('/assets/iconic_taxa/amphibia-15px.png'); }
-ul.taxonomic_tree li.Reptilia         { list-style-image: url('/assets/iconic_taxa/reptilia-15px.png'); }
-ul.taxonomic_tree li.Aves             { list-style-image: url('/assets/iconic_taxa/aves-15px.png'); }
-ul.taxonomic_tree li.Mammalia         { list-style-image: url('/assets/iconic_taxa/mammalia-15px.png'); }
-ul.taxonomic_tree li.Chromista         { list-style-image: url('/assets/iconic_taxa/chromista-15px.png'); }
-ul.taxonomic_tree li.unknown          { list-style-image: url('/assets/iconic_taxa/unknown-15px.png'); }
+ul.taxonomic_tree li.Protozoa          { list-style-image: image-url('iconic_taxa/protozoa-15px.png'); }
+ul.taxonomic_tree li.Plantae          { list-style-image: image-url('iconic_taxa/plantae-15px.png'); }
+ul.taxonomic_tree li.Fungi            { list-style-image: image-url('iconic_taxa/fungi-15px.png'); }
+ul.taxonomic_tree li.Animalia         { list-style-image: image-url('iconic_taxa/animalia-15px.png'); }
+ul.taxonomic_tree li.Mollusca         { list-style-image: image-url('iconic_taxa/mollusca-15px.png'); }
+ul.taxonomic_tree li.Arachnida        { list-style-image: image-url('iconic_taxa/arachnida-15px.png'); }
+ul.taxonomic_tree li.Insecta          { list-style-image: image-url('iconic_taxa/insecta-15px.png'); }
+ul.taxonomic_tree li.Actinopterygii   { list-style-image: image-url('iconic_taxa/actinopterygii-15px.png'); }
+ul.taxonomic_tree li.Amphibia         { list-style-image: image-url('iconic_taxa/amphibia-15px.png'); }
+ul.taxonomic_tree li.Reptilia         { list-style-image: image-url('iconic_taxa/reptilia-15px.png'); }
+ul.taxonomic_tree li.Aves             { list-style-image: image-url('iconic_taxa/aves-15px.png'); }
+ul.taxonomic_tree li.Mammalia         { list-style-image: image-url('iconic_taxa/mammalia-15px.png'); }
+ul.taxonomic_tree li.Chromista         { list-style-image: image-url('iconic_taxa/chromista-15px.png'); }
+ul.taxonomic_tree li.unknown          { list-style-image: image-url('iconic_taxa/unknown-15px.png'); }
 ul.taxonomic_tree .taxon .othernames {
   display: block;
 }
@@ -1148,13 +1148,13 @@ form.inline .inlabel {
   display:inline-block;
   width: 16px;
   height: 16px;
-  background: url(/assets/silk/help-gray.png) no-repeat;
+  background: image-url('silk/help-gray.png') no-repeat;
   vertical-align: middle;
   position:relative;
   top:-2px;
 }
 .helptip:hover {
-  background: url(/assets/silk/help.png) no-repeat;
+  background: image-url('silk/help.png') no-repeat;
 }
 .helptip.helptiptext {
   top: 0;
@@ -1171,7 +1171,7 @@ form.inline .inlabel {
 }
 
 .iconic_taxon_sprite {
-  background: url(/assets/iconic_taxa/unknown-sprite.png) no-repeat;
+  background: image-url('iconic_taxa/unknown-sprite.png') no-repeat;
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -1181,19 +1181,19 @@ form.inline .inlabel {
 .iconic_taxon_sprite.selected {
   background-position: 0 0;
 }
-.iconic_taxon_sprite.animalia { background-image: url(/assets/iconic_taxa/animalia-sprite.png); }
-.iconic_taxon_sprite.actinopterygii { background-image: url(/assets/iconic_taxa/actinopterygii-sprite.png); }
-.iconic_taxon_sprite.amphibia { background-image: url(/assets/iconic_taxa/amphibia-sprite.png); }
-.iconic_taxon_sprite.reptilia { background-image: url(/assets/iconic_taxa/reptilia-sprite.png); }
-.iconic_taxon_sprite.aves { background-image: url(/assets/iconic_taxa/aves-sprite.png); }
-.iconic_taxon_sprite.mammalia { background-image: url(/assets/iconic_taxa/mammalia-sprite.png); }
-.iconic_taxon_sprite.mollusca { background-image: url(/assets/iconic_taxa/mollusca-sprite.png); }
-.iconic_taxon_sprite.arachnida { background-image: url(/assets/iconic_taxa/arachnida-sprite.png); }
-.iconic_taxon_sprite.insecta { background-image: url(/assets/iconic_taxa/insecta-sprite.png); }
-.iconic_taxon_sprite.fungi { background-image: url(/assets/iconic_taxa/fungi-sprite.png); }
-.iconic_taxon_sprite.protozoa { background-image: url(/assets/iconic_taxa/protozoa-sprite.png); }
-.iconic_taxon_sprite.plantae { background-image: url(/assets/iconic_taxa/plantae-sprite.png); }
-.iconic_taxon_sprite.chromista { background-image: url(/assets/iconic_taxa/chromista-sprite.png); }
+.iconic_taxon_sprite.animalia { background-image: image-url('iconic_taxa/animalia-sprite.png'); }
+.iconic_taxon_sprite.actinopterygii { background-image: image-url('iconic_taxa/actinopterygii-sprite.png'); }
+.iconic_taxon_sprite.amphibia { background-image: image-url('iconic_taxa/amphibia-sprite.png'); }
+.iconic_taxon_sprite.reptilia { background-image: image-url('iconic_taxa/reptilia-sprite.png'); }
+.iconic_taxon_sprite.aves { background-image: image-url('iconic_taxa/aves-sprite.png'); }
+.iconic_taxon_sprite.mammalia { background-image: image-url('iconic_taxa/mammalia-sprite.png'); }
+.iconic_taxon_sprite.mollusca { background-image: image-url('iconic_taxa/mollusca-sprite.png'); }
+.iconic_taxon_sprite.arachnida { background-image: image-url('iconic_taxa/arachnida-sprite.png'); }
+.iconic_taxon_sprite.insecta { background-image: image-url('iconic_taxa/insecta-sprite.png'); }
+.iconic_taxon_sprite.fungi { background-image: image-url('iconic_taxa/fungi-sprite.png'); }
+.iconic_taxon_sprite.protozoa { background-image: image-url('iconic_taxa/protozoa-sprite.png'); }
+.iconic_taxon_sprite.plantae { background-image: image-url('iconic_taxa/plantae-sprite.png'); }
+.iconic_taxon_sprite.chromista { background-image: image-url('iconic_taxa/chromista-sprite.png'); }
 
 .gmapv3control {
   color: black;
@@ -1212,7 +1212,7 @@ form.inline .inlabel {
   background: -moz-linear-gradient(center top, #ffffff, #e6e6e6) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255,255,255)), to(rgb(230,230,230))) repeat scroll 0 0 transparent;
 }
-.gmapv3control .ui-icon {background-image: url(/assets/jquery-ui/ui-icons_222222_256x240.png); }
+.gmapv3control .ui-icon {background-image: image-url('jquery-ui/ui-icons_222222_256x240.png'); }
 .gmapv3control.open .ui-icon {width:auto; text-indent: 20px;}
 .fullscreen {
   position: fixed !important;
@@ -1269,15 +1269,15 @@ form.inline .inlabel {
 .box.conservation_status.extinct,
 .crossout.extinct { background-color: black; color: white; }
 
-.providerlink, .button.providerlink { padding-left: 28px; background: url(/assets/favicon.png) no-repeat 5px 50%; text-align: left;}
+.providerlink, .button.providerlink { padding-left: 28px; background: image-url('favicon.png') no-repeat 5px 50%; text-align: left;}
 ul a.providerlink, ul a.button.providerlink { width: 190px; }
 ul input.providerlink, ul input.button.providerlink { width: 230px; }
-.providerlink.facebook { background-image: url(/assets/external/facebook_favicon.png); }
-.providerlink.twitter { background-image: url(/assets/external/twitter_favicon.png); }
-.providerlink.google { background-image: url(/assets/external/google_favicon.png); }
-.providerlink.yahoo { background-image: url(/assets/external/yahoo_favicon.png); }
-.providerlink.flickr { background-image: url(/assets/external/flickr_favicon.png); }
-.providerlink.soundcloud { background-image: url(/assets/external/soundcloud_favicon.png);}
+.providerlink.facebook { background-image: image-url('external/facebook_favicon.png'); }
+.providerlink.twitter { background-image: image-url('external/twitter_favicon.png'); }
+.providerlink.google { background-image: image-url('external/google_favicon.png'); }
+.providerlink.yahoo { background-image: image-url('external/yahoo_favicon.png'); }
+.providerlink.flickr { background-image: image-url('external/flickr_favicon.png'); }
+.providerlink.soundcloud { background-image: image-url('external/soundcloud_favicon.png');}
 
 .quality_assessment .loading.status { padding-left: 16px;}
 .quality_assessment .status { margin: 0;}
@@ -1288,17 +1288,17 @@ ul input.providerlink, ul input.button.providerlink { width: 230px; }
 
 .loadingclick {
   cursor: default;
-  background-image: url(/assets/spinner-small.gif);
+  background-image: image-url('spinner-small.gif');
   background-position: 5px 50%;
   background-repeat: no-repeat;
   color: #888;
 }
 .pale.loadingclick {
-  background-image: url(/assets/spinner-small-ffffff_on_dedede.gif);
+  background-image: image-url('spinner-small-ffffff_on_dedede.gif');
 }
 
 .glaucous.loadingclick {
-  background-image: url(/assets/spinner-small-ffffff_on_aaaaaa.gif);
+  background-image: image-url('spinner-small-ffffff_on_aaaaaa.gif');
 }
 
 abbr.date {border:0 transparent;}
@@ -1355,8 +1355,8 @@ a.id_please_notice:hover{color:#584925;}
 .shades { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index:10;}
 .shades .underlay {background-color: black; opacity: 0.5;filter:Alpha(Opacity=50); position: absolute; width: 100%; height: 100%; top: 0; left: 0;}
 .shades .overlay {position: absolute; width: 100%; height: 100%; top: 0; left: 0;}
-.shades .status.loading{background:url("/assets/spinner-small.gif") no-repeat scroll 5px 50% white;padding:2px 5px 2px 25px;border-radius:15px;-moz-border-radius:15px;-webkit-border-radius:15px;box-shadow:0 0 20px #aaa;-webkit-box-shadow:0 0 20px #aaa;-moz-box-shadow:0 0 20px #aaa;}
-.shades .status.loading.bigloading{background:url("/assets/spinner.gif") no-repeat scroll 10px 50% white;font-size:14pt;line-height:2;padding:5px 10px 5px 50px;border-radius:25px;-moz-border-radius:25px;-webkit-border-radius:25px;box-shadow:0 0 30px #aaa;-webkit-box-shadow:0 0 30px #aaa;-moz-box-shadow:0 0 30px #aaa;}
+.shades .status.loading{background:image-url("spinner-small.gif") no-repeat scroll 5px 50% white;padding:2px 5px 2px 25px;border-radius:15px;-moz-border-radius:15px;-webkit-border-radius:15px;box-shadow:0 0 20px #aaa;-webkit-box-shadow:0 0 20px #aaa;-moz-box-shadow:0 0 20px #aaa;}
+.shades .status.loading.bigloading{background:image-url("spinner.gif") no-repeat scroll 10px 50% white;font-size:14pt;line-height:2;padding:5px 10px 5px 50px;border-radius:25px;-moz-border-radius:25px;-webkit-border-radius:25px;box-shadow:0 0 30px #aaa;-webkit-box-shadow:0 0 30px #aaa;-moz-box-shadow:0 0 30px #aaa;}
 .floating { border-radius:15px;-moz-border-radius:15px;-webkit-border-radius:15px;box-shadow:0 0 20px #aaa;-webkit-box-shadow:0 0 20px #aaa;-moz-box-shadow:0 0 20px #aaa;}
 .floating.dark { border-radius:15px;-moz-border-radius:15px;-webkit-border-radius:15px;box-shadow:0 0 20px #333;-webkit-box-shadow:0 0 20px #333;-moz-box-shadow:0 0 20px #333;}
 
@@ -1377,7 +1377,7 @@ a.id_please_notice:hover{color:#584925;}
 .ui-multiselect { margin: 0; }
 
 .ui-icon-loading {
-  background-image: url(/assets/spinner-small-on_eeeeee.gif);
+  background-image: image-url('spinner-small-on_eeeeee.gif');
   background-position: center center;
   background-repeat: no-repeat;
 }
@@ -1385,11 +1385,11 @@ a.id_please_notice:hover{color:#584925;}
 .inat-icon,
 .ui-widget-content .inat-icon,
 .gmapv3control .inat-icon {
-  background-image: url(/assets/sprites-222222.png);
+  background-image: image-url('sprites-222222.png');
   background-repeat: no-repeat;
 }
-a:hover .inat-icon, .inat-icon:hover { background-image: url(/assets/sprites-222222.png) !important; }
-.disabled .inat-icon, .inat-icon.disabled {background-image: url(/assets/sprites-888888.png);}
+a:hover .inat-icon, .inat-icon:hover { background-image: image-url('sprites-222222.png') !important; }
+.disabled .inat-icon, .inat-icon.disabled {background-image: image-url('sprites-888888.png');}
 .ui-icon-grid { background-position: 0 0;}
 .ui-icon-list { background-position: -16px 0;}
 .ui-icon-map { background-position: -32px 0;}
@@ -1471,7 +1471,7 @@ table .numeric { text-align: center; }
 .licensechoices div.description { margin-left: 20px; }
 .licensechoices .status.preferred {padding: 2px 5px;}
 
-#redo_search_in_map_area_button{background:0% 50% url(/assets/silk/arrow_refresh.png) no-repeat;padding-left:20px;}
+#redo_search_in_map_area_button{background:0% 50% image-url('silk/arrow_refresh.png') no-repeat;padding-left:20px;}
 #redo_search_in_map_area_loading.loading{display:inline;}
 
 .item_user{width:48px;}
@@ -1496,7 +1496,7 @@ table .numeric { text-align: center; }
 .item_content p{margin-bottom:0.5em;}
 
 .alert, .alert:hover {background-color: #cd0a0a; color: white; }
-.alert .ui-icon { background-image: url(/assets/jquery-ui/ui-icons_ffffff_256x240.png); }
+.alert .ui-icon { background-image: image-url('jquery-ui/ui-icons_ffffff_256x240.png'); }
 
 .notmonth { color: #ccc;}
 .calendar { width: 230px; }
@@ -1519,11 +1519,11 @@ table .numeric { text-align: center; }
 #taxonchooser_chooser .ui-chooser-choice { padding: 5px 5px 4px;}
 
 .subscriptionsettings .ui-icon {
-  background-image: url(/assets/jquery-ui/ui-icons_888888_256x240.png);
+  background-image: image-url('jquery-ui/ui-icons_888888_256x240.png');
   border: 0 none;
 }
 .subscriptionsettings .ui-icon:hover {
-  background-image: url(/assets/jquery-ui/ui-icons_222222_256x240.png);
+  background-image: image-url('jquery-ui/ui-icons_222222_256x240.png');
 }
 
 .edit_subscription_inline {
@@ -1626,7 +1626,7 @@ ul.plain {list-style:none;margin:0;padding:0}
 .blob .ui-icon {vertical-align:middle;width:12px;height:12px;top:0;}
 .blob .ui-icon-star { background-position: -226px -114px; }
 .blob .ui-icon-notice { background-position: -34px -146px; }
-.blob .ui-icon {background-image: url(/assets/jquery-ui/ui-icons_222222_256x240.png);}
+.blob .ui-icon {background-image: image-url('jquery-ui/ui-icons_222222_256x240.png');}
 .upperright .blob.conservation_status {padding: 3px 5px;}
 
 .ministats.monthstats {border-radius: 10px; padding: 3px 5px;}
@@ -1637,7 +1637,7 @@ ul.plain {list-style:none;margin:0;padding:0}
 .ministats .monthgraph { margin: 0; height: 9px;}
 .ministats .monthgraph .month_0 { display:none;}
 
-.delete .ui-icon {background-image: url(/assets/jquery-ui/ui-icons_888888_256x240.png);}
+.delete .ui-icon {background-image: image-url('jquery-ui/ui-icons_888888_256x240.png');}
 .identification .display_name { font-weight: bold;}
 
 .post img, .post iframe, .comment img { max-width: 100%;}

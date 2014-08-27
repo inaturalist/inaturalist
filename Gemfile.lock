@@ -394,6 +394,11 @@ GEM
     rubyntlm (0.3.4)
     rvm-capistrano (1.3.1)
       capistrano (>= 2.0.0)
+    sass (3.4.0)
+    sass-rails (3.2.6)
+      railties (~> 3.2.0)
+      sass (>= 3.1.10)
+      tilt (~> 1.3)
     savon (2.3.3)
       akami (~> 1.2.0)
       builder (>= 2.1.2)
@@ -532,6 +537,7 @@ DEPENDENCIES
   rspec-html-matchers
   rspec-rails
   rvm-capistrano
+  sass-rails
   savon
   soundcloud
   spatial_adapter!

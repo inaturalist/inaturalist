@@ -67,6 +67,7 @@ gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'git://github.com/kueda/riparian.git'
 gem 'rvm-capistrano'
 gem 'savon'   #allow to consume soap services with WSDL
+gem 'sass-rails'
 gem 'soundcloud'
 gem 'spatial_adapter', :git => 'git://github.com/kueda/spatial_adapter.git' # until fragility updates the gemspec
 gem 'thinking-sphinx', '2.0.10'
