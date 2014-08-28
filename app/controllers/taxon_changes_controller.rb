@@ -17,7 +17,8 @@ class TaxonChangesController < ApplicationController
     @taxon = Taxon.find_by_id(filter_params[:taxon_id].to_i) unless filter_params[:taxon_id].blank?
     @change_group = filter_params[:change_group] unless filter_params[:change_group].blank?
     @taxon_scheme = TaxonScheme.find_by_id(filter_params[:taxon_scheme_id]) unless filter_params[:taxon_scheme_id].blank?
-    @user = User.find_by_id(params[:user_id]) || User.find_by_login(params[:user_id]) unless params[:user_id].blank?
+    user_id = filter_params[:user_id] || params[:user_id]
+    @user = User.find_by_id(user_id) || User.find_by_login(user_id) unless user_id.blank?
 
     @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
     @taxon_schemes = TaxonScheme.all(:limit => 100).sort_by{|ts| ts.title}

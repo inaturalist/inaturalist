@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
     :default_url => "/attachment_defaults/:class/:attachment/defaults/:style.png"
 
   # Roles
-  has_and_belongs_to_many :roles
+  has_and_belongs_to_many :roles, :uniq => true
   
   has_subscribers
   has_many :subscriptions, :dependent => :delete_all
