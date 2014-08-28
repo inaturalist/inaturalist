@@ -28,8 +28,8 @@
       ].join('  <span class="meta">&amp;</span> ') %>
     </p>
     <p>
-      <a href="<%= CONFIG.iphone_app_url %>"><img src="/assets/apple_app_store.png"></a> &nbsp;
-      <a href="<%= CONFIG.android_app_url %>"><img src="/assets/android_market.png"></a>
+      <a href="<%= CONFIG.iphone_app_url %>"><img src="<%= asset_path("apple_app_store.png") %>"></a> &nbsp;
+      <a href="<%= CONFIG.android_app_url %>"><img src="<%= asset_path("android_market.png") %>"></a>
     </p>
   </div>
 

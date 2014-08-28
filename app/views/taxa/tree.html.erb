@@ -101,8 +101,8 @@
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <!--[if IE]>  
-  <script type="text/javascript" src="/assets/jit/Extras/excanvas.js"></script>
+  <!--[if IE]>
+  <%= javascript_include_tag('jit/Extras/excanvas.js') %>
   <![endif]-->
   <%= javascript_include_tag "jit/jit" %>
   <script type="text/javascript" charset="utf-8">

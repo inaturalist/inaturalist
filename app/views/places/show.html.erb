@@ -42,9 +42,9 @@
       var script = document.createElement("script")
       script.setAttribute("type", "text/javascript")
       if (true || $.browser.msie) {
-        script.setAttribute("src", "/assets/places/show.gmaps.js")
+        script.setAttribute("src", "<%= asset_path('places/show.gmaps.js') %>")
       } else {
-        script.setAttribute("src", "/assets/places/show.polymaps.js")
+        script.setAttribute("src", "<%= asset_path('places/show.polymaps.js') %>")
       }
       document.body.appendChild(script);
     })

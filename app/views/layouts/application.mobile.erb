@@ -9,7 +9,7 @@
       <meta name="apple-itunes-app" content="app-id=<%= CONFIG.ios_app_id %>">
     <% end -%>
     <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
-    <link rel="icon" type="image/png" href="/assets/favicon.png"/>
+    <%= favicon_link_tag %>
     <%= stylesheet_link_tag 'blueprint/plugins/buttons/buttons' %>
     <%= stylesheet_link_tag 'index', 'jquery-ui', 'jquery/ui.tabs', 'observations', 'mobile' %>
     <% if is_android_app? -%>

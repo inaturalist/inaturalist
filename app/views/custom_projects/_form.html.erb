@@ -17,15 +17,15 @@
                   var head = unescape($(this).parents('form').find(':input[name="custom_project[head]"]').serialize()).replace(/^(.*?)=/, "")
                   var side = unescape($(this).parents('form').find(':input[name="custom_project[side]"]').serialize()).replace(/^(.*?)=/, "")
                   var css = unescape($(this).parents('form').find(':input[name="custom_project[css]"]').serialize()).replace(/^(.*?)=/, "")
-                  var css_page="<link href=\"/assets/blueprint/screen.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
-                  css_page+="<link href=\"/assets/blueprint/plugins/buttons/buttons.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
-                  css_page+="<link href=\"/assets/jquery-ui.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
-                  css_page+="<link href=\"/assets/jquery/plugins/jquery.qtip.min.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
-                  css_page+="<link href=\"/assets/jquery/ui.tabs.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
-                  css_page+="<link href=\"/assets/jquery/plugins/jquery.multiselect.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
-                  css_page+="<link href=\"/assets/jquery/plugins/jquery.autocomplete.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
-                  css_page+="<link href=\"/assets/index.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
-                  css_page+="<link href=\"/assets/observations.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
+                  var css_page = <%= stylesheet_link_tag('blueprint/screen.css') %>
+                  css_page += <%= stylesheet_link_tag('blueprint/plugins/buttons/buttons.css') %>
+                  css_page += <%= stylesheet_link_tag('jquery-ui.css') %>
+                  css_page += <%= stylesheet_link_tag('jquery/plugins/jquery.qtip.min.css') %>
+                  css_page += <%= stylesheet_link_tag('jquery/ui.tabs.css') %>
+                  css_page += <%= stylesheet_link_tag('jquery/plugins/jquery.multiselect.css') %>
+                  css_page += <%= stylesheet_link_tag('jquery/plugins/jquery.autocomplete.css') %>
+                  css_page += <%= stylesheet_link_tag('index.css') %>
+                  css_page += <%= stylesheet_link_tag('observations.css') %>
 
                   if (side != "") {
                       var side_content="<br><div style=\"height:auto;width:830px;float:left;\">"

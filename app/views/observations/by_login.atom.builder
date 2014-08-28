@@ -3,7 +3,7 @@ atom_feed({"xmlns"        => "http://www.w3.org/2005/Atom",
              
   feed.title(raw t(:inaturalist_observations_by, :login => @login, :site_name => SITE_NAME ) )
   feed.updated(@observations.first.created_at) unless @observations.empty?
-  feed.icon("#{CONFIG.site_url}/assets/favicon.png")
+  feed.icon(image_path('favicon.png'))
   
   render(:partial => 'observation', :collection => @observations, 
     :locals => {:feed => feed})

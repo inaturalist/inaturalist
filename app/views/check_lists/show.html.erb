@@ -30,8 +30,8 @@
 <% content_for(:extracss) do %>
   <%= render :partial => 'lists/show_css' %>
   <style type="text/css" media="screen">
-    #otherlistslink{background:url(/assets/toggle_arrow_right.png) no-repeat 5px 5px;}
-    #otherlistslink.open{background:url(/assets/toggle_arrow_down.png) no-repeat 0px 10px;}
+    #otherlistslink{background:url(<%= image_path('toggle_arrow_right.png') %>) no-repeat 5px 5px;}
+    #otherlistslink.open{background:url(<%= image_path('toggle_arrow_down.png') %>) no-repeat 0px 10px;}
     #other_check_lists_wrapper{border:2px solid #ddd;border-top:0 none;padding:10px;}
     #other_check_lists{padding-left:15px;}
     .toolset{color:#888;}
@@ -100,7 +100,7 @@
     <% end -%>
 
     <div class="column-separator">
-      <img src="/assets/logo-eee-15px.png">
+      <img src="<%= image_path('logo-eee-15px.png') %>">
     </div>
   <% end -%>
   
@@ -127,7 +127,7 @@
     </ul>
     
     <div class="column-separator">
-      <img src="/assets/logo-eee-15px.png">
+      <img src="<%= image_path('logo-eee-15px.png') %>">
     </div>
   </div>
   
