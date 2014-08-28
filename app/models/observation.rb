@@ -708,10 +708,15 @@ class Observation < ActiveRecord::Base
       end
     end
 
+    # TODO change this to use the Site model
     if !params[:site].blank? && params[:site] != 'any'
       uri = params[:site]
       uri = "http://#{uri}" unless uri =~ /^http\:\/\//
       scope = scope.where("observations.uri LIKE ?", "#{uri}%")
+    end
+
+    if !params[:site_id].blank? && site = Site.find_by_id(params[:site_id])
+      scope = scope.where("observations.site_id = ?", site)
     end
 
     if !params[:h1].blank? && !params[:h2].blank?
