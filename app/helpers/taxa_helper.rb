@@ -117,8 +117,7 @@ module TaxaHelper
     else
       nil
     end
-    path = CONFIG.site_url
-    path += '/assets/iconic_taxa/'
+    path = 'iconic_taxa/'
     if iconic_taxon
       path += iconic_taxon.name.downcase
     else
@@ -127,7 +126,7 @@ module TaxaHelper
     path += '-' + params[:color] if params[:color]
     path += "-%spx" % params[:size] if params[:size]
     path += '.png'
-    image_path(path)
+    image_url(path)
   end
   
   #
