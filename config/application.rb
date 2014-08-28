@@ -76,6 +76,7 @@ module Inaturalist
     # Compile localized CSS:
     config.assets.precompile += ['*.css', '*.js']
 
+    # in case assets reference application objects or methods
     config.assets.initialize_on_precompile = true
 
     config.to_prepare do
