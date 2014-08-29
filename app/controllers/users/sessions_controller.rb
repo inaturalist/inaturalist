@@ -1,7 +1,7 @@
 class Users::SessionsController < Devise::SessionsController
   def create
     # attempt straight db auth first, then warden auth
-    resource = if CONFIG.legacy.rest_auth
+    resource = if CONFIG.legacy && CONFIG.legacy.rest_auth
       legacy_authenticate
     elsif params[:login] && params[:password]
       User.authenticate(params[:login], params[:password])
@@ -53,6 +53,10 @@ class Users::SessionsController < Devise::SessionsController
 
   # Sign a user in using legacy auth information if present
   def legacy_authenticate
+    unless CONFIG.legacy && CONFIG.legacy.rest_auth && 
+        CONFIG.legacy.rest_auth.REST_AUTH_SITE_KEY && CONFIG.legacy.rest_auth.REST_AUTH_DIGEST_STRETCHES
+      return false
+    end
     login = params[:login]
     password = params[:password]
     if params[:user]
