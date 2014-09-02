@@ -2561,6 +2561,10 @@ class ObservationsController < ApplicationController
   
   def render_observations_to_json(options = {})
     if (partial = params[:partial]) && PARTIALS.include?(partial)
+      Observation.preload_associations(@observations, [
+        :stored_preferences,
+        { :taxon => :taxon_descriptions },
+        { :iconic_taxon => :taxon_descriptions } ])
       data = @observations.map do |observation|
         item = {
           :instance => observation,
