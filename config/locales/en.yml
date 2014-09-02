@@ -2564,7 +2564,7 @@ en:
   the_observation_is_georeferenced: the observation <strong>is georeferenced</strong> (i.e. has lat/lon coordinates)
   the_observation_was_already_added_to_that_project: The observation was already added to that project.
   the_past: the past
-  the_people_of_inat: The People of iNaturalist
+  the_people_of_inat: "The People of %{site_name}"
   the_project: the project
   the_title_of_the_wikipedia_article_we_use: The title of the Wikipedia article that we use for the description. If the Wikipedia URL is <code>http://en.wikipedia.org/wiki/Bird</code>, then this value should be <code>Bird</code>. If left blank the scientific name of this taxon is used (that usually works).
   the_user_x_has_been_suspended: "The user %{user} has been suspended"
