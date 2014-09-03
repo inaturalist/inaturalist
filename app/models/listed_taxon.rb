@@ -263,6 +263,7 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def taxon_matches_observation
+    return false if taxon.blank?
     if last_observation
       if last_observation.taxon_id.blank? || !(
           taxon_id == last_observation.taxon_id || 
