@@ -300,7 +300,7 @@ class Project < ActiveRecord::Base
   def eventbrite_id
     return if event_url.blank?
     return unless event_url =~ /eventbrite\.com/
-    @eventbrite_id ||= URI.parse(event_url).path.split('/').last[/\d+/, 0]
+    @eventbrite_id ||= URI.parse(event_url).path.split('/').last.scan(/\d+/).last
   end
 
   def event_started?
