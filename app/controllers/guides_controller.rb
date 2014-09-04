@@ -24,11 +24,11 @@ class GuidesController < ApplicationController
     end
     @guides = @guides.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
 
-    unless params[:place_id].blank?
-      @place = Place.find(params[:place_id]) rescue nil
-      if @place
-        @guides = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, @place.descendant_conditions)})", @place)
-      end
+    @root_place = @site.place if @site
+    @place = (Place.find_by_id(params[:place_id]) rescue nil) unless params[:place_id].blank?
+    @place ||= @root_place
+    if @place
+      @guides = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, @place.descendant_conditions)})", @place)
     end
 
     unless params[:taxon_id].blank?

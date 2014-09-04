@@ -11,6 +11,7 @@ class Place < ActiveRecord::Base
   has_many :guides, :dependent => :nullify
   has_many :projects, :dependent => :nullify, :inverse_of => :place
   has_many :trips, :dependent => :nullify, :inverse_of => :place
+  has_many :sites, :dependent => :nullify, :inverse_of => :place
   has_one :place_geometry, :dependent => :destroy
   has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
     :select => (PlaceGeometry.column_names - ['geom']).join(', ')

@@ -39,7 +39,7 @@ class Site < ActiveRecord::Base
   preference :geo_nelng, :string
 
   # default place ID for place filters. Presently only used on /places, but use may be expanded
-  belongs_to :geo_place, :inverse_of => :sites
+  belongs_to :place, :inverse_of => :sites
 
   # header logo, should be at least 118x22
   if Rails.env.production?

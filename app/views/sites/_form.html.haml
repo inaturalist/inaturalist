@@ -32,6 +32,8 @@
                   = t("site_preferences.#{pref.name}")
               - else
                 = f.text_field "preferred_#{pref.name}", :label => t("site_preferences.#{pref.name}")
+      - if grp == 'geo'
+        = f.text_field :place_id
   .row
     .span12
       = f.submit t(:save), :class => 'btn btn-primary'
