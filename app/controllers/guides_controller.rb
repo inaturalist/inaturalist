@@ -7,7 +7,6 @@ class GuidesController < ApplicationController
     :unless => lambda { authenticated_with_oauth? }
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
-  before_filter :load_user_by_login, :only => [:user]
 
   layout "bootstrap"
   PDF_LAYOUTS = GuidePdfFlowTask::LAYOUTS
@@ -387,14 +386,13 @@ class GuidesController < ApplicationController
     end
   end
 
-  # def user
-  #   @guides = current_user.guides.page(params[:page]).per_page(500)
-  #   pagination_headers_for(@observations)
-  #   respond_to do |format|
-  #     format.html
-  #     format.json { render :json => @guides }
-  #   end
-  # end
+  def user
+    @guides = current_user.guides.page(params[:page]).per_page(500)
+    pagination_headers_for(@observations)
+    respond_to do |format|
+      format.json { render :json => @guides }
+    end
+  end
 
   def add_color_tags
     @guide_taxa = @guide.guide_taxa.includes(:taxon => [:colors]).where("colors.id IS NOT NULL").scoped

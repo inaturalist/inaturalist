@@ -29,7 +29,7 @@ Inaturalist::Application.routes.draw do
   resources :guides do
     collection do
       get :search
-      # get :user
+      get :user
     end
     member do
       post :import_taxa
@@ -40,7 +40,7 @@ Inaturalist::Application.routes.draw do
     end
   end
   match '/guides/:id.:layout.pdf' => 'guides#show', :via => :get, :as => "guide_pdf", :constraints => {:format => :pdf}, :defaults => {:format => :pdf}
-  # match 'guides/user/:login' => 'guides#user', :as => :guides_by_login, :constraints => { :login => simplified_login_regex }
+  match 'guides/user/:login' => 'guides#user', :as => :guides_by_login, :constraints => { :login => simplified_login_regex }
 
 
   resources :messages, :except => [:edit, :update] do
