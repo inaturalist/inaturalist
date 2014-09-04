@@ -40,6 +40,7 @@ gem 'htmlentities'
 gem 'i18n-js'
 gem 'irwi', :git => 'git://github.com/alno/irwi.git'
 gem 'json', "~> 1.7.7"
+gem 'jquery-rails'
 gem 'koala'
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 gem 'memcache-client'
@@ -66,6 +67,8 @@ gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'git://github.com/kueda/riparian.git'
 gem 'rvm-capistrano'
 gem 'savon'   #allow to consume soap services with WSDL
+gem 'sass', '= 3.2.5'
+gem 'sass-rails'
 gem 'soundcloud'
 gem 'spatial_adapter', :git => 'git://github.com/kueda/spatial_adapter.git' # until fragility updates the gemspec
 gem 'thinking-sphinx', '2.0.10'
@@ -73,6 +76,7 @@ gem 'translate-rails3', :require => 'translate', :git => 'git://github.com/JayTe
 gem 'trollop'
 gem 'ts-delayed-delta', '1.1.3', :require => 'thinking_sphinx/deltas/delayed_delta'
 gem 'twitter'
+gem 'uglifier'
 gem 'utf8-cleaner'
 gem "watu_table_builder", :require => "table_builder"
 gem 'wicked_pdf'
@@ -80,6 +84,7 @@ gem 'will_paginate'
 gem 'whenever', :require => false
 gem 'ya2yaml'
 gem 'ym4r_gm', :git => 'git://github.com/modyo/ym4r_gm.git'
+gem 'yui-compressor'
 gem 'xmp', :git => 'git://github.com/eknoop/xmp.git'
 
 group :production do

@@ -992,19 +992,19 @@ module ApplicationHelper
 
   def leaflet_js(options = {})
     h = <<-HTML
-      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+      #{ stylesheet_link_tag('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css') }
       <!--[if lte IE 8]>
-          <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+          #{ stylesheet_link_tag('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css') }
       <![endif]-->
-      <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+      #{ javascript_include_tag('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js') }
     HTML
     if options[:draw]
       h += <<-HTML
-        <link rel="stylesheet" href="/javascripts/leaflet.draw/leaflet.draw.css" />
+        #{ stylesheet_link_tag('leaflet.draw/leaflet.draw.css') }
         <!--[if lte IE 8]>
-            <link rel="stylesheet" href="/javascripts/leaflet.draw/leaflet.draw.ie.css" />
+            #{ stylesheet_link_tag('leaflet.draw/leaflet.draw.ie.css') }
         <![endif]-->
-        <script src="/javascripts/leaflet.draw/leaflet.draw.js"></script>
+        #{ javascript_include_tag('leaflet.draw/leaflet.draw.js') }
       HTML
     end
     raw h

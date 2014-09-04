@@ -1,0 +1,207 @@
+App = Ember.Application.create({
+  LOG_TRANSITIONS: true,
+  rootElement: '#emberapp'
+})
+
+App.Router.map(function() {
+  // put your routes here
+  this.resource('guideTaxon', { path: '/guide_taxa/:guide_taxon_id' })
+})
+
+// App.IndexRoute = Ember.Route.extend({
+//   // model: function() {
+//   //   return ['red', 'yellow', 'blue'];
+//   // }
+//   redirect: function() {
+//     console.log("[DEBUG] GUIDE: ", GUIDE)
+//     //     taxa = App.Taxon.find()
+//     // console.log("[DEBUG] App.Taxon.find(1): ", App.Taxon.find(1))
+//     // guide.get('taxons').addObject(App.Taxon.find(1))
+//     this.transitionTo('guide', GUIDE)
+//   }
+// })
+
+App.ApplicationRoute = Ember.Route.extend({
+    model: function() {
+      // var guide = App.Guide.find(GUIDE.id)
+      // var guide = App.Store.load(App.Guide, GUIDE)
+      var store = this.container.lookup('store:main')
+      store.load(App.Guide, GUIDE)
+      var guide = App.Guide.find(GUIDE.id)
+      return guide
+    }
+})
+
+App.IndexRoute = Ember.Route.extend({
+  model: function() {
+    return App.GuideTaxon.find({guide_id: GUIDE.id})
+  }
+})
+
+App.GuideRoute = Ember.Route.extend({
+  setupController: function(controller, guide) {
+    // var taxon = App.Taxon.find(1),
+    //     photo = App.Photo.find(1)
+    // console.log("[DEBUG] photo: ", photo)
+    // console.log("[DEBUG] taxon: ", taxon)
+    // taxon.get('photos').addObject(photo)
+    // guide.get('taxons').addObject(taxon)
+    // App.Store.commit()
+    controller.set('content', guide);
+  }
+});
+
+App.IndexController = Ember.ObjectController.extend({
+  isCard: false,
+
+  showCards: function() {
+    this.set('isCard', true);
+  },
+
+  showTiles: function() {
+    this.set('isCard', false);
+  }
+})
+
+App.TaxonControllerBase =  Ember.ObjectController.extend({
+  hasRange: function() {
+    return this.get('content').get('guideRanges').get('length') > 0
+  }.property('content.hasRange'),
+
+  defaultPhotoUrl: function() {
+    var guideTaxon = this.get('content')
+    var photos = guideTaxon.get('guidePhotos')
+    var that = this
+    var url = '<%= image_path('animals.jpg') %>'
+    if (photos.get('isLoaded')) {
+      var photo = photos.get('firstObject')
+      if (photo) {
+        url = photo.get('mediumUrl') || photo.get('smallUrl')
+      }
+    } else {
+      photos.one("didLoad", function () {
+        var photo = photos.get('firstObject')
+        if (photo) {
+          var url = photo.get('mediumUrl') || photo.get('smallUrl')
+          that.set('defaultPhotoUrl', url)
+        }
+      })
+    }
+    return url
+  }.property('content.defaultPhotoUrl'),
+
+  guideRangeUrl: function() {
+    var guideTaxon = this.get('content')
+    var ranges = guideTaxon.get('guideRanges')
+    var that = this
+    var url = '<%= image_path('animals.jpg') %>'
+    if (ranges.get('isLoaded')) {
+      var range = ranges.get('firstObject')
+      if (range) {
+        url = range.get('originalUrl')
+      }
+    } else {
+      ranges.one("didLoad", function () {
+        var range = ranges.get('firstObject')
+        if (range) {
+          var url = range.get('originalUrl')
+          that.set('guideRangeUrl', url)
+        }
+      })
+    }
+    return url
+  }.property('content.guideRangeUrl'),
+
+  otherPhotos: function() {
+    var guideTaxon = this.get('content')
+    var photos = guideTaxon.get('guidePhotos')
+    var that = this
+    if (photos.get('isLoaded')) {
+      return photos.slice(1, photos.length)
+    }
+    photos.one("didLoad", function () {
+      if (photos.get('length') > 0) {
+        that.set('otherPhotos', photos.slice(1, photos.length))
+      }
+    })
+  }.property('content.otherPhotos'),
+
+  guideSections: function() {
+    var guideTaxon = this.get('content'),
+        guideSections = guideTaxon.get('guideSections'),
+        that = this
+    if (guideSections.get('isLoaded')) { return guideSections }
+    guideSections.one('didLoad', function() {
+      that.set('guideSections', guideSections)
+    })
+  }.property('content.guideSections'),
+
+  defaultSection: function() {
+    return this.get('content').get('guideSections').get('firstObject')
+  }.property('content.defaultSection')
+})
+
+App.TaxonTileController = App.TaxonControllerBase.extend({})
+App.CardController = App.TaxonControllerBase.extend({})
+App.PageController = App.TaxonControllerBase.extend({})
+
+App.TaxonTileView = Ember.View.extend({
+  didInsertElement: function() {
+    this.$().imagesLoaded(function() {
+      $('img', this).centerInContainer({container: '.img:first'})
+    })
+  }
+})
+
+App.PhotoThumbController = Ember.ObjectController.extend({
+  squareUrl: function() {
+    return this.get('content').get('squareUrl')
+  }.property('content.squareUrl')
+})
+
+App.GuideTaxonController = App.TaxonControllerBase.extend({
+  setupController: function(controller, guideTaxon) {
+    controller.set('content', guideTaxon);
+  }
+})
+
+DS.RESTAdapter.configure("plurals", { taxon: "taxa", guide_taxon: 'guide_taxa' });
+
+App.Store = DS.Store.extend({revision: 12})
+
+App.Guide = DS.Model.extend({
+  title: DS.attr('string'),
+  description: DS.attr('string'),
+  guide_taxa: DS.hasMany('App.GuideTaxon')
+})
+
+App.GuideTaxon = DS.Model.extend({
+  name: DS.attr('string'),
+  displayName: DS.attr('string'),
+  guide: DS.belongsTo('App.Guide'),
+  guidePhotos: DS.hasMany('App.GuidePhoto'),
+  guideSections: DS.hasMany('App.GuideSection'),
+  guideRanges: DS.hasMany('App.GuideRange')
+})
+
+App.GuidePhoto = DS.Model.extend({
+  title: DS.attr('string'),
+  description: DS.attr('string'),
+  squareUrl: DS.attr('string'),
+  smallUrl: DS.attr('string'),
+  mediumUrl: DS.attr('string'),
+  largeUrl: DS.attr('string'),
+  guideTaxon: DS.belongsTo('App.GuideTaxon')
+})
+
+App.GuideSection = DS.Model.extend({
+  title: DS.attr('string'),
+  description: DS.attr('string'),
+  guideTaxon: DS.belongsTo('App.GuideTaxon')
+})
+
+App.GuideRange = DS.Model.extend({
+  originalUrl: DS.attr('string'),
+  thumbUrl: DS.attr('string'),
+  guideTaxon: DS.belongsTo('App.GuideTaxon')
+})

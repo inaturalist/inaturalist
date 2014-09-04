@@ -67,6 +67,18 @@ module Inaturalist
 
     config.active_record.schema_format = :sql
 
+    # Enable the asset pipeline
+    config.assets.enabled = true
+
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
+
+    # Compile localized CSS:
+    config.assets.precompile += ['*.css', '*.js']
+
+    # in case assets reference application objects or methods
+    config.assets.initialize_on_precompile = true
+
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
     end
