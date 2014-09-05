@@ -416,7 +416,7 @@
     var lexicon = taxonName.lexicon || ""
     if (lexicon.toLowerCase() == "scientific names") { return true }
     if (I18n.locale == 'en' && lexicon == 'English') { return true }
-    if (I18n.locale.match(/^es/) && lexicon == "Spanish") { return true }
+    if (I18n.locale && I18n.locale.match(/^es/) && lexicon == "Spanish") { return true }
     return false
   }
 
