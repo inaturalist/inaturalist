@@ -64,7 +64,6 @@ class CalendarsController < ApplicationController
         :group => "(places.display_name || '-' || places.id)")
       @places = Place.where("id IN (?)", place_name_counts.map{|n,c| n.split('-').last})
       @place_name_counts = @places.sort_by(&:bbox_area).map do |place|
-        Rails.logger.debug "[DEBUG] place: #{place}"
         n = "#{place.display_name}-#{place.id}"
         [n, place_name_counts[n]]
       end
