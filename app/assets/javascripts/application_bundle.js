@@ -1,6 +1,7 @@
 //= require iso8601
 //= require jquery/plugins/jquery.qtip2.min
 //= require jquery/plugins/jquery.multiselect.min
+//= require jquery/plugins/jquery.ui.autocomplete.html.js
 //= require jquery/plugins/jquery.chooser
 //= require jquery/plugins/jquery-ui-timepicker-addon
 //= require jquery/plugins/jquery.imagesloaded.min
