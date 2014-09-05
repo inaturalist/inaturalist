@@ -17,15 +17,8 @@
                   var head = unescape($(this).parents('form').find(':input[name="custom_project[head]"]').serialize()).replace(/^(.*?)=/, "")
                   var side = unescape($(this).parents('form').find(':input[name="custom_project[side]"]').serialize()).replace(/^(.*?)=/, "")
                   var css = unescape($(this).parents('form').find(':input[name="custom_project[css]"]').serialize()).replace(/^(.*?)=/, "")
-                  var css_page = <%= stylesheet_link_tag('blueprint/screen.css').inspect.html_safe %>
-                  css_page += <%= stylesheet_link_tag('blueprint/plugins/buttons/buttons.css').inspect.html_safe %>
-                  css_page += <%= stylesheet_link_tag('jquery-ui.css').inspect.html_safe %>
-                  css_page += <%= stylesheet_link_tag('jquery/plugins/jquery.qtip.min.css').inspect.html_safe %>
-                  css_page += <%= stylesheet_link_tag('jquery/ui.tabs.css').inspect.html_safe %>
-                  css_page += <%= stylesheet_link_tag('jquery/plugins/jquery.multiselect.css').inspect.html_safe %>
-                  css_page += <%= stylesheet_link_tag('jquery/plugins/jquery.autocomplete.css').inspect.html_safe %>
-                  css_page += <%= stylesheet_link_tag('index.css').inspect.html_safe %>
-                  css_page += <%= stylesheet_link_tag('observations.css').inspect.html_safe %>
+                  var css_page = <%= stylesheet_link_tag('blueprint_bundle.css').inspect.html_safe %>
+                  css_page += <%= stylesheet_link_tag('application_bundle.css').inspect.html_safe %>
 
                   if (side != "") {
                       var side_content="<br><div style=\"height:auto;width:830px;float:left;\">"

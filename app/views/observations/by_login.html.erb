@@ -60,11 +60,7 @@
 
 <% content_for(:extrajs) do %>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'inaturalist',
-                             'inaturalist/map3',
-                             "observations/filters",
-                             'jquery/plugins/jquery.labelize',
-                             'jquery/plugins/inat/checkboxes' %>
+  <%= javascript_include_tag 'by_login_bundle' %>
 
   <script type="text/javascript" charset="utf-8">
     // define a function to be run after the window is fully loaded

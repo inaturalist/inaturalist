@@ -11,29 +11,15 @@
     <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
     <%= favicon_link_tag %>
     <%= render :partial => 'shared/common_stylesheets'%>
-    <%= javascript_include_tag 'jquery/jquery-1.8.3.min', 
-                               'jquery/jquery-ui-1.9.1.min', 
-                               "iso8601",
-                               "jquery/plugins/jquery.qtip2.min", 
-                               "jquery/plugins/jquery.multiselect.min", 
-                               "jquery/plugins/jquery.ui.autocomplete.html",
-                               "jquery/plugins/jquery.chooser",
-                               "jquery/plugins/jquery-ui-timepicker-addon",
-                               "jquery/plugins/jquery.imagesloaded.min",
-                               "jquery/plugins/jquery.timeago.js",
-                               "jquery/plugins/jquery.scrollTo-min.js",
-                               "jquery/plugins/jquery.string.1.0",
-                               "i18n.min",
-                               "translations",
-                               'rails',
-                               'application', 
-                               'inaturalist' %>
+    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' %>
+    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js' %>
+    <%= javascript_include_tag 'i18n.min' %>
     <script type="text/javascript">
       I18n.defaultLocale = "en"
       I18n.locale = "<%= I18n.locale %>"
       I18n.fallbacks = true
     </script>
-    <%= javascript_include_tag "jquery/plugins/inat/taxon_selectors.js" %>
+    <%= javascript_include_tag 'application_bundle' %>
     <%= csrf_meta_tag %>
     <% if CONFIG.twitter && CONFIG.twitter.username -%>
       <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
