@@ -108,3 +108,17 @@ describe Project, "update_curator_idents_on_remove_curator" do
     @project_observation.curator_identification_id.should be_blank
   end
 end
+
+describe Project, "eventbrite_id" do
+  it "should parse a variety of URLS" do
+    id = "12345"
+    [
+      "http://www.eventbrite.com/e/memorial-park-bioblitz-2014-tickets-#{id}",
+      "http://www.eventbrite.com/e/#{id}"
+    ].each do |url|
+      p = Project.make(:event_url => url)
+      p.eventbrite_id.should eq id
+    end
+
+  end
+end

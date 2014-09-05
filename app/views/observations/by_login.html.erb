@@ -31,7 +31,7 @@
   #filters_button {
     padding-left: 17px;
     padding-right: 10px;
-    background: 7px 10px url('/assets/toggle_arrow_right.png') no-repeat;
+    background: 7px 10px url(<%= image_path('toggle_arrow_right.png') %>) no-repeat;
     border: 1px solid transparent;
     background-color: white;
     outline: none;
@@ -43,7 +43,7 @@
   }
 
   #filters_button.open {
-    background: 5px 12px url('/assets/toggle_arrow_down.png') no-repeat;
+    background: 5px 12px url(<%= image_path('toggle_arrow_down.png') %>) no-repeat;
     border: 1px solid #eee;
     border-bottom: 1px solid white;
     padding-bottom: 18px;
@@ -125,7 +125,7 @@
           });
         }
         else {
-          var icon_img = $('<img src="/assets/mapMarkers/questionmarker.png"/>');
+          var icon_img = $('<img src="<%= asset_path("mapMarkers/questionmarker.png") %>"/>');
         }
         $(icon_div).text('').append(icon_img);
       });

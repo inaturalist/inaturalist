@@ -15,7 +15,7 @@
     }
     .iconic_taxon_sprite {margin-right:5px;}
     #guidesheader {
-      background: url(/assets/guidesbg1.jpg) no-repeat;
+      background: url(#{image_url('guidesbg1.jpg')}) no-repeat;
       background-color:black;
       color:white;
       background-position: right top;
@@ -83,12 +83,13 @@
               %ul.nav.nav-stacked.nav-pills
                 = nav_places
           %li.active.back
-            = link_to url_for_params(:place_id => @place.parent_id, :without => [:page]), :class => "prev" do
-              =t :back_to
-              - if @place.parent
-                =t @place.parent.name, :default => @place.parent.name
-              - else
-                = t(:all_places, :default => "all places").downcase
+            - unless @place == @root_place
+              = link_to url_for_params(:place_id => @place.parent_id, :without => [:page]), :class => "prev" do
+                =t :back_to
+                - if @place.parent
+                  =t @place.parent.name, :default => @place.parent.name
+                - else
+                  = t(:all_places, :default => "all places").downcase
             %ul.nav.nav-stacked.nav-pills
               = subnav_places
         - else

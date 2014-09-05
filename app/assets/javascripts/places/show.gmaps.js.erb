@@ -11,7 +11,7 @@ map.setPlace(PLACE, {kml: PLACE_GEOMETRY_KML_URL})
 var placesMapType = iNaturalist.Map.builtPlacesMapType(map, {tilestacheServer: TILESTACHE_SERVER})
 map.overlayMapTypes.insertAt(0, new placesMapType(new google.maps.Size(256, 256)));
 
-var icon = new google.maps.MarkerImage('/assets/mapMarkers/mm_20_stemless_GoldenRod.png')
+var icon = new google.maps.MarkerImage('<%= image_path('mapMarkers/mm_20_stemless_GoldenRod.png') %>')
 icon.size = new google.maps.Size(12,12)
 icon.anchor = new google.maps.Point(6,6)
 var marker = map.createMarker(PLACE.latitude, PLACE.longitude, {

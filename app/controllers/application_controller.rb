@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_site
+    @site ||= Site.find_by_id(CONFIG.site_id) if CONFIG.site_id
     @site ||= Site.where("url LIKE '%#{request.host}%'").first
   end
 

@@ -51,12 +51,12 @@ h3 .description {
 }
 
 .loading {
-  background: url('/assets/spinner-small.gif') 0 50% no-repeat;
+  background: image-url('spinner-small.gif') 0 50% no-repeat;
   padding-left: 20px;
 }
 
 .loading.on_eeeeee {
-  background: url('/assets/spinner-small-on_eeeeee.gif') 0 50% no-repeat;
+  background: image-url('spinner-small-on_eeeeee.gif') 0 50% no-repeat;
 }
 
 /* Flaggings */
@@ -67,12 +67,12 @@ h3 .description {
 }
 
 #flag_this {
-  background: url('/assets/silk/flag_grey.png') 0 50% no-repeat;
+  background: image-url('silk/flag_grey.png') 0 50% no-repeat;
 }
 
 #flaggings_heads_up,
 #flag_this:hover {
-  background: url('/assets/silk/flag_yellow.png') 0 50% no-repeat;;
+  background: image-url('silk/flag_yellow.png') 0 50% no-repeat;;
 }
 
 /* Wikipedia Styles */

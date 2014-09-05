@@ -1,4 +1,6 @@
-styleUrl = "#{root_url}assets/observations/google_earth.kml#{@prevent_cache}#"
+styleUrl = asset_path("observations/google_earth.kml")
+styleUrl += @prevent_cache if @prevent_cache
+styleUrl += '#'
 styleUrl += observation.iconic_taxon_id ? Taxon::ICONIC_TAXA_BY_ID[observation.iconic_taxon_id].try(:name).to_s : 'Unknown'
 styleUrl += "Stemless" if observation.coordinates_obscured?
 xml.Placemark(:id => "ID#{observation.id}") do

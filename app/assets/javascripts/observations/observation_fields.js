@@ -53,7 +53,12 @@ var ObservationFields = {
           $('.observation_field_chooser').chooser('selectItem', data)
         })
         .fail(function (xhr, ajaxOptions, thrownError){
-          alert(xhr.statusText)
+          var json = $.parseJSON(xhr.responseText)
+          if (json && json.errors && json.errors.length > 0) {
+            alert(json.errors.join(''))
+          } else {
+            alert(I18n.t('doh_something_went_wrong'))
+          }
         })
         return false
       })

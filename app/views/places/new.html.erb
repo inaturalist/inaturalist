@@ -131,6 +131,18 @@
           $(this).val(null)
         }
       })
+      $('#place_selector form')
+        .live('ajax:before', function() {
+          $('.loading', this).show()
+        })
+        .live('ajax:complete', function() {
+          $('.loading', this).hide()
+        })
+        .live('ajax:success', function(event, json, status) {
+          $(this).siblings('.place_selector_places').html(json.map(function(place) { 
+            return '<li class="clear">' + place.html + '</li>'
+          }).join(' '))
+        })
     })
     function saveGeom() {
       $(':input[name=geojson]').val(JSON.stringify(drawnItems.toGeoJSON()))
@@ -167,7 +179,7 @@
             <%= submit_tag t(:search), :class => 'button', "data-loading-click" => true %>
           </div>
         <% end %>
-        <ul id="places" style="margin: 0"></ul>
+        <ul id="places" class="place_selector_places" style="margin: 0"></ul>
       </div>
     </div>
 

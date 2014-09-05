@@ -94,7 +94,7 @@
 .jcarousel-skin-inat .jcarousel-item-placeholder {
     background: #fff;
     color: #000;
-    background: #fff url(/assets/spinner-small.gif) no-repeat center center;
+    background: #fff image-url('spinner-small.gif') no-repeat center center;
 }
 
 /**
@@ -107,7 +107,7 @@
     width: 16px;
     height: 16px;
     cursor: pointer;
-    background: transparent url(/assets/toggle_arrow_right.png) no-repeat 50% 50%;
+    background: transparent image-url('toggle_arrow_right.png') no-repeat 50% 50%;
 }
 
 .jcarousel-skin-inat .jcarousel-next-horizontal:hover {
@@ -132,7 +132,7 @@
     width: 16px;
     height: 16px;
     cursor: pointer;
-    background: transparent url(/assets/toggle_arrow_left.png) no-repeat 50% 50%;
+    background: transparent image-url('toggle_arrow_left.png') no-repeat 50% 50%;
 }
 
 .jcarousel-skin-inat .jcarousel-prev-horizontal:hover {
@@ -160,7 +160,7 @@
     width: 16px;
     height: 16px;
     cursor: pointer;
-    background: transparent url(/assets/toggle_arrow_down.png) no-repeat 0 0;
+    background: transparent image-url('toggle_arrow_down.png') no-repeat 0 0;
 }
 
 .jcarousel-skin-inat .jcarousel-next-vertical:hover {
@@ -185,7 +185,7 @@
     width:16px;
     height:16px;
     cursor: pointer;
-    background: transparent url(/assets/toggle_arrow_up.png) no-repeat 0 0;
+    background: transparent image-url('toggle_arrow_up.png') no-repeat 0 0;
 }
 
 .jcarousel-skin-inat .jcarousel-prev-vertical:hover {

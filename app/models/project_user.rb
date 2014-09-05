@@ -74,6 +74,7 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def user_invited?
+    return true unless project
     return true if project.preferred_membership_model == Project::MEMBERSHIP_OPEN
     uid = user_id || user.try(:id)
     pid = project_id || project.try(:id)

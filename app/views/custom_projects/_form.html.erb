@@ -17,8 +17,8 @@
                   var head = unescape($(this).parents('form').find(':input[name="custom_project[head]"]').serialize()).replace(/^(.*?)=/, "")
                   var side = unescape($(this).parents('form').find(':input[name="custom_project[side]"]').serialize()).replace(/^(.*?)=/, "")
                   var css = unescape($(this).parents('form').find(':input[name="custom_project[css]"]').serialize()).replace(/^(.*?)=/, "")
-                  var css_page="<link href=\"/assets/blueprint_bundle.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
-                  css_page+="<link href=\"/assets/application_bundle.css\" media=\"screen\" rel=\"stylesheet\" type=\"text/css\" />"
+                  var css_page = <%= stylesheet_link_tag('blueprint_bundle.css').inspect.html_safe %>
+                  css_page += <%= stylesheet_link_tag('application_bundle.css').inspect.html_safe %>
 
                   if (side != "") {
                       var side_content="<br><div style=\"height:auto;width:830px;float:left;\">"

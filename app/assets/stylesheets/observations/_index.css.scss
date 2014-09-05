@@ -40,11 +40,11 @@ input.radio, input[type="radio"] {
 
 #controls ul li a.toggle {
   padding-left: 17px;
-  background: 7px 10px url('/assets/toggle_arrow_right.png') no-repeat;
+  background: 7px 10px image-url('toggle_arrow_right.png') no-repeat;
 }
 
 #controls ul li.open a.toggle {
-  background: 5px 12px url('/assets/toggle_arrow_down.png') no-repeat;
+  background: 5px 12px image-url('toggle_arrow_down.png') no-repeat;
 }
 
 #controls ul li a.modal_link {
@@ -52,21 +52,21 @@ input.radio, input[type="radio"] {
 }
 
 #tablelink {
-  background-image: url(/assets/table-icon-inactive-30px.png);
+  background-image: image-url('table-icon-inactive-30px.png');
 }
 
 #tablelink.selected,
 #tablelink:hover {
-  background-image: url(/assets/table-icon-30px.png);
+  background-image: image-url('table-icon-30px.png');
 }
 
 #maplink {
-  background-image: url(/assets/map-icon-inactive-30px.png);
+  background-image: image-url('map-icon-inactive-30px.png');
 }
 
 #maplink.selected,
 #maplink:hover {
-  background-image: url(/assets/map-icon-30px.png);
+  background-image: image-url('map-icon-30px.png');
 }
 
 .filters.tab a {

@@ -181,7 +181,6 @@ class PhotosController < ApplicationController
 
   def repair
     unless @photo.respond_to?(:repair)
-      Rails.logger.debug "[DEBUG] @photo: #{@photo}"
       flash[:error] = t(:repair_doesnt_work_for_that_kind_of_photo)
       redirect_back_or_default(@photo.becomes(Photo))
       return

@@ -208,7 +208,7 @@ var TaxonGuide = {
           itemSelector : ".guide_taxa .listed_taxon",
           bufferPx: 1000,
           loading: {
-            img: '/assets/spinner-small.gif',
+            img: '<%= image_path('spinner-small.gif') %>',
             msgText: '',
             finishedMsg: '<span class="meta">'+I18n.t('no_more_taxa_to_load')+'</span>'
           }
