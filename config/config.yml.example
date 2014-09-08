@@ -199,6 +199,14 @@ base: &base
     # config.action_dispatch.x_sendfile_header. Most servers use X-Sendfile, but nginx prefers X-Accel-Redirect
     x_sendfile_header: 'X-Sendfile'
 
+    # # GBIF login credentials. Currently only used in 
+    # # tools/gbif_observation_links.rb, so only useful if you send data 
+    # # to GBIF
+    # gbif:
+    #     username: yourusername
+    #     password: yourpassword
+    #     notification_address: you@you.com
+
 development:
     <<: *base
 
