@@ -135,10 +135,9 @@ GEM
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.4)
-    airbrake (3.1.12)
-      activesupport
+    airbrake (4.1.0)
       builder
-      json
+      multi_json
     akami (1.2.0)
       gyoku (>= 0.4.0)
       nokogiri (>= 1.4.0)
@@ -250,7 +249,7 @@ GEM
     httpi (2.1.0)
       rack
       rubyntlm (~> 0.3.2)
-    i18n (0.6.9)
+    i18n (0.6.11)
     i18n-js (2.1.2)
       i18n
     journey (1.0.4)
