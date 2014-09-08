@@ -50,12 +50,12 @@ def request
           :type => "equals",
           :key => "INSTITUTION_CODE",
           :value => "iNaturalist"
-        },
-        {
-          :type => "equals",
-          :key => "TAXON_KEY",
-          :value => 3189179
         }
+        # {
+        #   :type => "equals",
+        #   :key => "TAXON_KEY",
+        #   :value => 3189179
+        # }
       ]
     }
   }.to_json
