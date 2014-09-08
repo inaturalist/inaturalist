@@ -128,6 +128,7 @@ module DarwinCore
 
     TERMS = [
       %w(id id),
+      %w(occurrenceID http://rs.tdwg.org/dwc/terms/occurrenceID),
       %w(basisOfRecord http://rs.tdwg.org/dwc/terms/basisOfRecord HumanObservation),
       %w(modified http://purl.org/dc/terms/modified),
       %w(institutionCode http://rs.tdwg.org/dwc/terms/institutionCode iNaturalist),
@@ -184,7 +185,7 @@ module DarwinCore
       end
 
       def occurrenceID
-        view.observation_url(id)
+        uri
       end
 
       def references
