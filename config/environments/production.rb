@@ -43,8 +43,9 @@ Inaturalist::Application.configure do
   config.assets.digest = true
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
-  config.action_controller.asset_host = Proc.new {|source,request|
-    "#{request.protocol}#{CONFIG.site_url.sub(/^https?:\/\//, '')}"
+  config.action_controller.asset_host = Proc.new {|*args|
+    source, request = args
+    "#{request ? request.protocol : 'http://'}#{CONFIG.site_url.sub(/^https?:\/\//, '')}"
   }
 
   # Disable delivery errors, bad email addresses will be ignored
