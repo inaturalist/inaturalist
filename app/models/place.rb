@@ -537,6 +537,9 @@ class Place < ActiveRecord::Base
       if options[:ancestor_place]
         place.parent ||= options[:ancestor_place]
       end
+
+      place.place_type = options[:place_type] unless options[:place_type].blank?
+      place.place_type_name = options[:place_type_name] unless options[:place_type_name].blank?
       
       place = if block_given?
         yield place, shp
