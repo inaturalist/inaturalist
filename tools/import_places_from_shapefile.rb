@@ -37,7 +37,7 @@ Trollop::die "You a path to a shapefile" if @path.blank?
 @place_type = Place::PLACE_TYPE_CODES[@opts.place_type]
 @source = Source.find_by_id(@opts.source_id) if @opts.source_id
 if @opts.source_title
-  @source ||= Source.find_by_title("Connecticut DEEP Property") || Source.create(:title => @opts.source_title)
+  @source ||= Source.find_by_title(@opts.source_title) || Source.create(:title => @opts.source_title)
 end
 
 new_shapefile_name = @shapefile_name.gsub(/\.shp/, '_longlat.shp')

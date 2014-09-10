@@ -67,6 +67,11 @@ class PlacesController < ApplicationController
             end
           end
         end
+        if !params[:latitude].blank? && !params[:longitude].blank?
+          lat = params[:latitude].to_f
+          lon = params[:longitude].to_f
+          scope = scope.containing_lat_lng(lat, lon)
+        end
         per_page = params[:per_page].to_i
         per_page = 200 if per_page > 200
         per_page = 30 if per_page < 1
