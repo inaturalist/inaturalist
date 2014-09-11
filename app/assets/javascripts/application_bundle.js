@@ -8,9 +8,9 @@
 //= require jquery/plugins/jquery.timeago
 //= require jquery/plugins/jquery.scrollTo-min
 //= require jquery/plugins/jquery.string.1.0
-//= require i18n.min
 //= require translations
 //= require rails
 //= require application
 //= require inaturalist
 //= require jquery/plugins/inat/taxon_selectors
+
