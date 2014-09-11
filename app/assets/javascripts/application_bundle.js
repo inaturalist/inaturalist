@@ -11,7 +11,6 @@
 //= require i18n.min
 //= require translations
 //= require rails
-//= require locale
 //= require application
 //= require inaturalist
 //= require jquery/plugins/inat/taxon_selectors
