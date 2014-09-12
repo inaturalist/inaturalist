@@ -1894,7 +1894,8 @@ CREATE TABLE places (
     source_filename character varying(255),
     ancestry character varying(255),
     slug character varying(255),
-    source_id integer
+    source_id integer,
+    admin_level integer
 );
 
 
@@ -5461,6 +5462,13 @@ CREATE INDEX index_place_geometries_on_source_id ON place_geometries USING btree
 
 
 --
+-- Name: index_places_on_admin_level; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_places_on_admin_level ON places USING btree (admin_level);
+
+
+--
 -- Name: index_places_on_ancestry; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6694,3 +6702,7 @@ INSERT INTO schema_migrations (version) VALUES ('20140701212522');
 INSERT INTO schema_migrations (version) VALUES ('20140704062909');
 
 INSERT INTO schema_migrations (version) VALUES ('20140731201815');
+
+INSERT INTO schema_migrations (version) VALUES ('20140820152353');
+
+INSERT INTO schema_migrations (version) VALUES ('20140904004901');

@@ -28,7 +28,7 @@ class PlacesController < ApplicationController
             place.children.select('id').order("RANDOM()").limit(50)
           else
             Place.all(:select => "id", :order => "RANDOM()", :limit => 50, 
-              :conditions => ["place_type IN (?)", [Place::PLACE_TYPE_CODES['Country']]])
+              :conditions => ["place_type = ?", Place::COUNTRY_LEVEL])
           end
           places.map{|p| p.id}
         end

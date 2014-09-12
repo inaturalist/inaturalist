@@ -16,7 +16,7 @@ class Place < ActiveRecord::Base
   has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
     :select => (PlaceGeometry.column_names - ['geom']).join(', ')
   
-  before_save :calculate_bbox_area, :set_display_name
+  before_save :calculate_bbox_area, :set_display_name, :set_admin_level
   after_save :check_default_check_list
   
   validates_presence_of :latitude, :longitude
@@ -132,6 +132,12 @@ class Place < ActiveRecord::Base
     scope type.pluralize.underscore.to_sym, where("place_type = ?", code)
   end
 
+  COUNTRY_LEVEL = 0
+  STATE_LEVEL = 1
+  COUNTY_LEVEL = 2
+  TOWN_LEVEL = 3
+  ADMIN_LEVELS = [COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL]
+
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
   scope :containing_lat_lng, lambda {|lat, lng|
@@ -231,12 +237,12 @@ class Place < ActiveRecord::Base
     return read_attribute(:display_name) unless read_attribute(:display_name).blank? || options[:reload]
     
     ancestor_names = ancestors.reverse.select do |a|
-      %w"town state country".include?(PLACE_TYPES[a.place_type].to_s.downcase)
+      [Place::TOWN_LEVEL, Place::STATE_LEVEL, Place::COUNTRY_LEVEL].include?(a.admin_level)
     end.map do |a|
       a.code.blank? ? a.name : a.code.split('-').last
     end.compact
     
-    new_name = if self.place_type_name == 'County' && ancestor_names.include?('US')
+    new_name = if self.admin_level == COUNTY_LEVEL && ancestor_names.include?('US')
       "#{self.name} County"
     else
       self.name
@@ -254,9 +260,18 @@ class Place < ActiveRecord::Base
     display_name(:reload => true)
     true
   end
+
+  # There's only so much we can do here, since various place types have
+  # different admin levels based on the country, e.g. Irish counties are
+  # equivalent to US states
+  def set_admin_level
+    self.admin_level ||= COUNTRY_LEVEL if place_type == COUNTRY
+    self.admin_level ||= STATE_LEVEL if place_type == STATE
+    true
+  end
   
   def wikipedia_name
-    if %w"Town County".include? place_type_name
+    if [TOWN_LEVEL, COUNTY_LEVEL].include?(admin_level)
       display_name.gsub(', US', '')
     else
       name
@@ -291,7 +306,7 @@ class Place < ActiveRecord::Base
     return false if user.blank?
     return true if user.is_curator?
     return true if self.user_id == user.id
-    return false if %w(country state county).include?(place_type_name.to_s.downcase)
+    return false if [COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL].include?(admin_level)
     false
   end
   

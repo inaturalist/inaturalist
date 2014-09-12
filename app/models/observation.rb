@@ -2061,11 +2061,10 @@ class Observation < ActiveRecord::Base
   def system_places(options = {})
     all_places = options[:places] || places
     all_places.select do |p| 
-      p.user_id.blank? &&
-        [Place::PLACE_TYPE_CODES['Country'],
-          Place::PLACE_TYPE_CODES['State'],
-          Place::PLACE_TYPE_CODES['County'],
-          Place::PLACE_TYPE_CODES['Open Space']].include?(p.place_type)
+      p.user_id.blank? && (
+        [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(p.admin_level) || 
+        p.place_type == Place::PLACE_TYPE_CODES['Open Space']
+      )
     end
   end
 

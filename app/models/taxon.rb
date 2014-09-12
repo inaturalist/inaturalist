@@ -1050,9 +1050,9 @@ class Taxon < ActiveRecord::Base
   
   def add_to_intersecting_places
     Place.
-        place_types(%w(Country State County)).
+        where("places.admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTRY_LEVEL]).
         intersecting_taxon(self).
-        find_each(:select => "places.id, place_type, check_list_id, taxon_ranges.id AS taxon_range_id", :include => :check_list) do |place|
+        find_each(:select => "places.id, admin_level, check_list_id, taxon_ranges.id AS taxon_range_id", :include => :check_list) do |place|
       place.check_list.try(:add_taxon, self, :taxon_range_id => place.taxon_range_id)
     end
   end

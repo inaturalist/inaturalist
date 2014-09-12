@@ -567,6 +567,10 @@ class ListedTaxon < ActiveRecord::Base
   def occurrence_status
     OCCURRENCE_STATUS_LEVELS[occurrence_status_level]
   end
+
+  def occurrence_status=(status)
+    self.occurrence_status_level = OCCURRENCE_STATUS_LEVELS_BY_NAME[status]
+  end
   
   def editable_by?(target_user)
     list.editable_by?(target_user)

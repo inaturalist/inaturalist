@@ -44,7 +44,7 @@ class AdminController < ApplicationController
         ST_Intersects(o.private_geom, pg.geom) 
         AND p.id = pg.place_id 
         AND o.created_at::DATE = '#{@daily_date.to_s}' 
-        AND p.place_type = 12 
+        AND p.admin_level = #{Place::COUNTRY_LEVEL}
       GROUP BY p.display_name, p.code, p.id
     SQL
     @daily_country_stats = Observation.connection.execute(daily_country_stats_sql.gsub(/\s+/, ' ').strip)

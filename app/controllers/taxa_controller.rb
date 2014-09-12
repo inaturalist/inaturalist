@@ -165,7 +165,7 @@ class TaxaController < ApplicationController
           @us_states = @taxon.places.all(
             :select => "places.id, place_type, code",
             :conditions => [
-              "place_type = ? AND parent_id = ?", Place::PLACE_TYPE_CODES['State'], 
+              "admin_level = ? AND parent_id = ?", Place::STATE_LEVEL, 
               @countries.first.id
             ]
           ).uniq{|p| p.id}
@@ -1429,14 +1429,14 @@ class TaxaController < ApplicationController
       :select => "listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level, establishment_means", 
       :joins => [:place], 
       :conditions => [
-        "place_id IS NOT NULL AND places.place_type = ?", 
-        Place::PLACE_TYPE_CODES['County']
+        "place_id IS NOT NULL AND places.admin_level = ?", 
+        Place::COUNTY_LEVEL
       ]
     }
     @county_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
-    find_options[:conditions][1] = Place::PLACE_TYPE_CODES['State']
+    find_options[:conditions][1] = Place::STATE_LEVEL
     @state_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
-    find_options[:conditions][1] = Place::PLACE_TYPE_CODES['Country']
+    find_options[:conditions][1] = Place::COUNTRY_LEVEL
     @country_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
   end
 
