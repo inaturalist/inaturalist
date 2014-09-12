@@ -790,8 +790,13 @@ class ProjectsController < ApplicationController
   end
   
   def search
+    if @site && (@site_place = @site.place)
+      @place = @site.place unless params[:everywhere].yesish?
+    end
     if @q = params[:q]
-      @projects = Project.search(@q, :page => params[:page])
+      opts = {:page => params[:page]}
+      opts[:with] = {:place_ids => [@place.id]} if @place
+      @projects = Project.search(@q, opts)
     end
     respond_to do |format|
       format.html
