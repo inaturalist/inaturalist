@@ -75,6 +75,21 @@ class Site < ActiveRecord::Base
       :default_url => "/assets/bird.png"
   end
 
+  # CSS file to override default styles
+  if Rails.env.production?
+    has_attached_file :stylesheet,
+      :storage => :s3,
+      :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :s3_host_alias => CONFIG.s3_bucket,
+      :bucket => CONFIG.s3_bucket,
+      :path => "sites/:id-stylesheet.css",
+      :url => ":s3_alias_url"
+  else
+    has_attached_file :stylesheet,
+      :path => ":rails_root/public/attachments/sites/:id-stylesheet.css",
+      :url => "/attachments/sites/:id-stylesheet.css"
+  end
+
   # URL where visitors can learn more about the site
   preference :about_url, :string
 
@@ -161,4 +176,8 @@ class Site < ActiveRecord::Base
   preference :name_providers, :string #: [col, ubio]
 
   preference :natureserve_key, :string
+
+  def to_s
+    "<Site #{id} #{url}>"
+  end
 end

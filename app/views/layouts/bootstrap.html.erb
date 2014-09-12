@@ -14,6 +14,9 @@
       body { font-size: 75%; }
       .bootstrap .readable, .bootstrap p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
     </style>
+    <% if @site && @site.stylesheet -%>
+      <%= stylesheet_link_tag @site.stylesheet.url %>
+    <% end -%>
     <%= csrf_meta_tag %>
     <% if CONFIG.twitter && CONFIG.twitter.username -%>
       <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">

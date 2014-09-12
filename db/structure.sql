@@ -2466,7 +2466,11 @@ CREATE TABLE sites (
     logo_square_file_name character varying(255),
     logo_square_content_type character varying(255),
     logo_square_file_size integer,
-    logo_square_updated_at timestamp without time zone
+    logo_square_updated_at timestamp without time zone,
+    stylesheet_file_name character varying(255),
+    stylesheet_content_type character varying(255),
+    stylesheet_file_size integer,
+    stylesheet_updated_at timestamp without time zone
 );
 
 
@@ -6706,3 +6710,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140731201815');
 INSERT INTO schema_migrations (version) VALUES ('20140820152353');
 
 INSERT INTO schema_migrations (version) VALUES ('20140904004901');
+
+INSERT INTO schema_migrations (version) VALUES ('20140912201349');
