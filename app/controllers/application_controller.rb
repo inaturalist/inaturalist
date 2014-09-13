@@ -33,11 +33,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_site
-    Rails.logger.debug "[DEBUG] CONFIG.site_id: #{CONFIG.site_id}"
     @site ||= Site.find_by_id(CONFIG.site_id) if CONFIG.site_id
-    Rails.logger.debug "[DEBUG] @site: #{@site}"
     @site ||= Site.where("url LIKE '%#{request.host}%'").first
-    Rails.logger.debug "[DEBUG] @site: #{@site}"
   end
 
   def set_locale

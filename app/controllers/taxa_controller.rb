@@ -56,17 +56,21 @@ class TaxaController < ApplicationController
     
     respond_to do |format|
       format.html do # index.html.erb
-        @featured_taxa = Taxon.all(:conditions => "featured_at IS NOT NULL", 
-          :order => "featured_at DESC", :limit => 100,
-          :include => [:iconic_taxon, :photos, :taxon_names])
+        @site_place = @site.place if @site
+        @featured_taxa = Taxon.where("taxa.featured_at IS NOT NULL"). 
+          order("taxa.featured_at DESC").
+          limit(100).
+          includes(:iconic_taxon, :photos, :taxon_names)
+        @featured_taxa = @featured_taxa.from_place(@site_place) if @site_place
         
         if @featured_taxa.blank?
-          @featured_taxa = Taxon.all(:limit => 100, :conditions => [
+          @featured_taxa = Taxon.limit(100).where(
             "taxa.wikipedia_summary IS NOT NULL AND " +
             "photos.id IS NOT NULL AND " +
             "taxa.observations_count > 1"
-          ], :include => [:iconic_taxon, :photos, :taxon_names],
-          :order => "taxa.id DESC")
+          ).includes(:iconic_taxon, :photos, :taxon_names).
+          order("taxa.id DESC")
+          @featured_taxa = @featured_taxa.from_place(@site_place) if @site_place
         end
         
         # Shuffle the taxa (http://snippets.dzone.com/posts/show/2994)
@@ -78,12 +82,12 @@ class TaxaController < ApplicationController
           render :action => :search
         else
           @iconic_taxa = Taxon::ICONIC_TAXA
-          @recent = Observation.all(
-            :select => "DISTINCT ON (taxon_id) *",
-            :from => "(SELECT * from observations WHERE taxon_id IS NOT NULL ORDER BY observed_on DESC NULLS LAST LIMIT 10) AS obs",
-            :include => {:taxon => [:taxon_names]},
-            :limit => 5
-          ).sort_by(&:id).reverse
+          @recent = Observation.
+            select("DISTINCT ON (taxon_id) *").
+            from("(SELECT * from observations WHERE taxon_id IS NOT NULL ORDER BY observed_on DESC NULLS LAST LIMIT 10) AS observations").
+            where(:site_id => @site).
+            includes(:taxon => [:taxon_names]).
+            limit(5).sort_by(&:id).reverse
         end
       end
       format.mobile do
@@ -158,12 +162,12 @@ class TaxaController < ApplicationController
         @sorted_check_listed_taxa = @check_listed_taxa.sort_by{|lt| lt.place.place_type || 0}.reverse
         @places = @check_listed_taxa.map{|lt| lt.place}.uniq{|p| p.id}
         @countries = @taxon.places.all(
-          :select => "places.id, place_type, code",
+          :select => "places.id, place_type, code, admin_level",
           :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES['Country']]
         ).uniq{|p| p.id}
         if @countries.size == 1 && @countries.first.code == 'US'
           @us_states = @taxon.places.all(
-            :select => "places.id, place_type, code",
+            :select => "places.id, place_type, code, admin_level",
             :conditions => [
               "admin_level = ? AND parent_id = ?", Place::STATE_LEVEL, 
               @countries.first.id

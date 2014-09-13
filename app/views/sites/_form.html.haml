@@ -41,4 +41,4 @@
     .span12
       = f.submit t(:save), :class => 'btn btn-primary'
       = link_to t(:cancel), :back, :class => 'btn btn-link'
-      = link_to t(:destroy), site, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      = link_to t(:destroy), @record, :method => :delete, :data => { :confirm => 'Are you sure?' }
