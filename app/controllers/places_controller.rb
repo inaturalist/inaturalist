@@ -233,13 +233,20 @@ class PlacesController < ApplicationController
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
     @q = sanitize_sphinx_query(@q.to_s.sanitize_encoding)
+    site_place = @site.place if @site
+    search_options = {:match_mode => :extended}
+    search_options[:with] = {:place_ids => [site_place.id]} if site_place
     scope = Place.
       includes(:place_geometry_without_geom).
       limit(30).scoped
     scope = if @q.blank?
-      scope.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
+      if site_place
+        scope.where(site_place.child_conditions).page(1)
+      else
+        scope.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
+      end
     else
-      scope = scope.where("places.id IN (?)", Place.search_for_ids("^#{@q}*", :match_mode => :extended))
+      scope = scope.where("places.id IN (?)", Place.search_for_ids("^#{@q}*", search_options))
     end
     scope = scope.with_geom if params[:with_geom]
     @places = scope.sort_by{|p| p.bbox_area || 0}.reverse
