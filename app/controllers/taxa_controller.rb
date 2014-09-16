@@ -350,11 +350,15 @@ class TaxaController < ApplicationController
       @iconic_taxa = Taxon.find(@iconic_taxa_ids)
       drill_params[:iconic_taxon_id] = @iconic_taxa_ids
     end
-    # if params[:places] && @place_ids = params[:places].split(',')
-    #   @place_ids = @place_ids.map(&:to_i)
-    #   @places = Place.find(@place_ids)
-    #   drill_params[:places] = @place_ids
-    # end
+    if params[:places] && @place_ids = params[:places].split(',')
+      @place_ids = @place_ids.map(&:to_i)
+      @places = Place.find(@place_ids)
+      drill_params[:places] = @place_ids
+    elsif @site && (@site_place = @site.place) && !params[:everywhere].yesish?
+      @place_ids = [@site_place.id]
+      @places = [@site_place]
+      drill_params[:places] = @place_ids
+    end
     if params[:colors] && @color_ids = params[:colors].split(',')
       @color_ids = @color_ids.map(&:to_i)
       @colors = Color.find(@color_ids)
@@ -375,6 +379,22 @@ class TaxaController < ApplicationController
       :sort_mode => :desc
     )
 
+    @taxa = @facets.for(drill_params)
+    if @facets.count > 0 && @taxa.size == 0 && params[:places].blank?
+      drill_params = drill_params.reject{|k,v| k == :places}
+      @place_ids = nil
+      @places = nil
+      @facets = Taxon.facets(q, :page => page, :per_page => per_page,
+        :with => drill_params, 
+        :include => [:taxon_names, {:taxon_photos => :photo}, :taxon_descriptions],
+        :field_weights => {:name => 2},
+        :match_mode => match_mode,
+        :order => :observations_count,
+        :sort_mode => :desc
+      )
+      @taxa = @facets.for(drill_params)
+    end
+
     if @facets[:iconic_taxon_id]
       @faceted_iconic_taxa = Taxon.all(
         :conditions => ["id in (?)", @facets[:iconic_taxon_id].keys],
@@ -388,7 +408,16 @@ class TaxaController < ApplicationController
       @faceted_colors = Color.all(:conditions => ["id in (?)", @facets[:colors].keys])
       @faceted_colors_by_id = @faceted_colors.index_by(&:id)
     end
-    @taxa = @facets.for(drill_params)
+
+    if @facets[:places] && !@places.blank?
+      place_ids_to_load = [@facets[:places].keys, @place_ids].flatten
+      @faceted_places = Place.where("id in (?)", place_ids_to_load).order("name ASC")
+      # @faceted_places = @faceted_places.where(:admin_level => Place::COUNTRY_LEVEL) if @place_ids.blank?
+      if @places.size == 1 && (place = @places.first)
+        @faceted_places = @faceted_places.where(place.descendant_conditions)
+      end
+      @faceted_places_by_id = @faceted_places.index_by(&:id)
+    end
     
     begin
       @taxa.blank?
@@ -1294,7 +1323,6 @@ class TaxaController < ApplicationController
     return unless logged_in?
     return unless params[:force_external] || (params[:include_external] && @taxa.blank?)
     @external_taxa = []
-    Rails.logger.info("DEBUG: Making an external lookup...")
     begin
       ext_names = TaxonName.find_external(params[:q], :src => params[:external_src])
     rescue Timeout::Error, NameProviderError => e

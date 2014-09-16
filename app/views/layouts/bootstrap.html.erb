@@ -63,6 +63,9 @@
       I18n.defaultLocale = "en"
       I18n.locale = "<%= I18n.locale %>"
       I18n.fallbacks = true
+      <% if @site && @site.place -%>
+        var SITE_PLACE = <%=raw @site.place.to_json(:only => [:id, :name]) %>
+      <% end -%>
     </script>
     <%= javascript_include_tag 'bootstrap_bundle' %>
     <%= google_maps_js %>

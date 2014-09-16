@@ -18,6 +18,10 @@
       I18n.defaultLocale = "en"
       I18n.locale = "<%= I18n.locale %>"
       I18n.fallbacks = true
+      <% if @site && @site.place -%>
+        var SITE_PLACE = <%=raw @site.place.to_json(:only => [:id, :name]) %>
+        window.site_place = SITE_PLACE
+      <% end -%>
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <%= csrf_meta_tag %>

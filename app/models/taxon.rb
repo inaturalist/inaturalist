@@ -62,6 +62,7 @@ class Taxon < ActiveRecord::Base
     # has listed_taxa(:list_id), :as => :lists, :type => :multi
     has created_at, ancestry
     has "REPLACE(ancestry, '/', ',')", :as => :ancestors, :type => :multi
+    has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi, :source => :query
     has observations_count
     set_property :delta => :delayed
   end

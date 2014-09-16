@@ -12,6 +12,8 @@
     } else {
       options.inputHeight = $(this).outerHeight();
     }
+
+    options.placeName = options.placeName || (typeof(SITE_PLACE) == 'object' && SITE_PLACE ? SITE_PLACE.name : null)
     
     var instances = [];
     this.each(function() {
@@ -127,9 +129,42 @@
    ************************* PRIVATE METHODS *************************
    */
   function handleTaxa(wrapper, taxa, options) {
-    var options = $.extend({}, options);
-    var input = $(wrapper).find('input[type=text]:first');
-    var q = $(input).attr('value');
+    var options = $.extend({}, options),
+        input = $(wrapper).find('input[type=text]:first'),
+        q = $(input).attr('value')
+    var searchExternalLink = $('<a href="#">'+I18n.t('search_external_name_providers')+' &raquo;</a>').css({
+      'font-weight': 'bold'
+    }).click(function() {
+      $.fn.simpleTaxonSelector.lookup(
+        wrapper, $.extend(options, {includeExternal: true}));
+      return false;
+    })
+    var searchEverywhereLink, searchEverywhereNotice
+
+    var lastLookupOptions = $(wrapper).data('lastOptions') || {}
+    if (options.placeName) {
+      if (lastLookupOptions.everywhere) {
+        searchEverywhereLink = $('<a href="#">'+I18n.t('show_taxa_from_place', {place: options.placeName})+'</a>').click(function() {
+          $.fn.simpleTaxonSelector.lookup(
+            wrapper, $.extend(options, {everywhere: false}));
+          return false;
+        })
+        searchEverywhereNotice = $('<div></div>').append(
+          I18n.t('showing_taxa_from_everywhere'),
+          ' (', searchEverywhereLink, ')'
+        )
+      } else {
+        searchEverywhereLink = $('<a href="#">'+I18n.t('show_taxa_from_everywhere')+'</a>').click(function() {
+          $.fn.simpleTaxonSelector.lookup(
+            wrapper, $.extend(options, {everywhere: true}));
+          return false;
+        })
+        searchEverywhereNotice = $('<div></div>').append(
+          I18n.t('showing_taxa_from_place', {place: options.placeName}),
+          ' (', searchEverywhereLink, ')'
+        )
+      }
+    }
   
     // If there were no results, give notice and provide external lookup
     // options
@@ -137,16 +172,8 @@
       var status = $('<span>' + I18n.t('no_results_for') + '"' + q + '".<br/></span>');
       $(input).focus();
       if (options.includeSearchExternal) {
-        $(status).append(
-          $('<a href="#">'+I18n.t('search_external_name_providers')+' &raquo;</a>').css({
-            'font-weight': 'bold'
-          }).click(function() {
-            $.fn.simpleTaxonSelector.lookup(
-              wrapper, $.extend(options, {includeExternal: true}));
-            return false;
-          })
-        )
-      };
+        $(status).append(searchExternalLink)
+      }
       $.fn.simpleTaxonSelector.setStatus(wrapper, 'unmatched', status);
     }
   
@@ -179,22 +206,15 @@
           return false
         })
       })
-      message.append(list);
+      message.append(list)
+      var links = []
+      if (true || options.placeName) {
+        links.push(searchEverywhereNotice)
+      }
       if (options.includeSearchExternal) {
-        message.append(
-          $('<div></div>').append(
-            $('<a href="#">'+I18n.t('search_external_name_providers')+' &raquo;</a>').css({
-              'font-weight': 'bold'
-            }).click(function() {
-              $.fn.simpleTaxonSelector.lookup(
-                wrapper, 
-                $.extend(options,{includeExternal: true, forceExternal: true})
-              );
-              return false;
-            })
-          )
-        );
-      };
+        links.push(searchExternalLink)
+      }
+      if (links.length > 0) { message.append(links) }
   
       $.fn.simpleTaxonSelector.setStatus(wrapper, 'choice', message);
     }
@@ -236,19 +256,23 @@
   };
   
   $.fn.simpleTaxonSelector.lookup = function(wrapper, options) {
-    var options = $.extend({}, $(wrapper).data('simpleTaxonSelectorOptions'), options);
-    var input = $(wrapper).find('input[type=text]:first');
-    var q = $(input).attr('value');
-    var url = '/taxa/search.json?per_page=10&q='+q;
+    var options = $.extend({}, $(wrapper).data('simpleTaxonSelectorOptions'), options),
+        input = $(wrapper).find('input[type=text]:first'),
+        q = $(input).attr('value'),
+        url = '/taxa/search.json?per_page=10&q='+q
     if (options.includeExternal) { url += '&include_external=1' }
     if (options.forceExternal) { url += '&force_external=1' }
     if (options.isActive) { url += "&is_active=" + String(options.isActive) }
+    if (options.everywhere) { url += "&everywhere=" + String(options.everywhere) }
     
     // If blank, unset
     if (q == '') {
       $.fn.simpleTaxonSelector.unSelectTaxon(wrapper, options);
       return false;
-    };
+    }
+
+    $(wrapper).data('lastUrl', url)
+    $(wrapper).data('lastOptions', options)
     
     // Get the JSON
     $.ajax({
@@ -260,8 +284,8 @@
       },
       success: function(data) {
         if (data.status) {
-          $.fn.simpleTaxonSelector.setStatus(wrapper, 'error', data.status);
-        };
+          $.fn.simpleTaxonSelector.setStatus(wrapper, 'error', data.status)
+        }
         handleTaxa(wrapper, data, options);
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {

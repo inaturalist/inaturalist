@@ -25,7 +25,7 @@ class GuidesController < ApplicationController
 
     @root_place = @site.place if @site
     @place = (Place.find_by_id(params[:place_id]) rescue nil) unless params[:place_id].blank?
-    @place ||= @root_place
+    @place ||= @root_place unless logged_in? && params[:by] == "you"
     if @place
       @guides = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, @place.descendant_conditions)})", @place)
     end

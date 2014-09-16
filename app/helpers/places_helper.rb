@@ -3,7 +3,7 @@ module PlacesHelper
     place_name = options[:display] ? place.display_name : place.name
     place_type_name = place_type(place)
     content_tag(:span, :class => "place #{place.place_type_name}") do
-      place_name + (place_type_name.blank? ? '' : " #{place_type_name}")
+      raw(place_name + (place_type_name.blank? ? '' : " #{place_type_name}"))
     end
   end
   
