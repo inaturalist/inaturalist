@@ -82,12 +82,18 @@ class TaxaController < ApplicationController
           render :action => :search
         else
           @iconic_taxa = Taxon::ICONIC_TAXA
+          q = if @site && CONFIG.site_only_observations
+            "SELECT * from observations WHERE taxon_id IS NOT NULL AND site_id = #{@site.id} ORDER BY observed_on DESC NULLS LAST LIMIT 10"
+          else
+            "SELECT * from observations WHERE taxon_id IS NOT NULL ORDER BY observed_on DESC NULLS LAST LIMIT 10"
+          end
           @recent = Observation.
             select("DISTINCT ON (taxon_id) *").
-            from("(SELECT * from observations WHERE taxon_id IS NOT NULL ORDER BY observed_on DESC NULLS LAST LIMIT 10) AS observations").
-            where(:site_id => @site).
+            from("(#{q}) AS observations").
             includes(:taxon => [:taxon_names]).
-            limit(5).sort_by(&:id).reverse
+            limit(5)
+          @recent = @recent.where(:site_id => @site.id) if @site && CONFIG.site_only_observations
+          @recent = @recent.sort_by(&:id).reverse
         end
       end
       format.mobile do
