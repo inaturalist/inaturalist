@@ -75,6 +75,12 @@ class TaxaController < ApplicationController
         
         # Shuffle the taxa (http://snippets.dzone.com/posts/show/2994)
         @featured_taxa = @featured_taxa.sort_by{rand}[0..10]
+        featured_taxa_obs = @featured_taxa.map do |taxon|
+          scope = taxon.observations.order("id DESC").includes(:user)
+          scope = scope.where(:site_id => @site) if @site
+          scope.first
+        end.compact
+        @featured_taxa_obs_by_taxon_id = featured_taxa_obs.index_by(&:taxon_id)
         
         flash[:notice] = @status unless @status.blank?
         if params[:q]
@@ -82,7 +88,7 @@ class TaxaController < ApplicationController
           render :action => :search
         else
           @iconic_taxa = Taxon::ICONIC_TAXA
-          q = if @site && CONFIG.site_only_observations
+          q = if @site
             "SELECT * from observations WHERE taxon_id IS NOT NULL AND site_id = #{@site.id} ORDER BY observed_on DESC NULLS LAST LIMIT 10"
           else
             "SELECT * from observations WHERE taxon_id IS NOT NULL ORDER BY observed_on DESC NULLS LAST LIMIT 10"
