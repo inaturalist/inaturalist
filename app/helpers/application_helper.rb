@@ -415,6 +415,8 @@ module ApplicationHelper
      abs_path = uri_join(root_url, abs_path).to_s
     end
     abs_path
+  rescue Sprockets::Helpers::RailsHelper::AssetPaths::AssetNotPrecompiledError
+    nil
   end
   
   def truncate_with_more(text, options = {})

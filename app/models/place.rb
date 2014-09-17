@@ -747,6 +747,10 @@ class Place < ActiveRecord::Base
     [ancestors, self].flatten
   end
 
+  def self_and_descendant_conditions
+    ["places.id = ? OR places.ancestry like ? OR places.ancestry = ?", id, "#{ancestry}/#{id}/%", "#{ancestry}/#{id}"] 
+  end
+
   def self_and_ancestor_ids
     [ancestor_ids, id].flatten
   end

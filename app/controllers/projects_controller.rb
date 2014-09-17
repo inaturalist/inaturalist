@@ -31,12 +31,22 @@ class ProjectsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        project_observations = ProjectObservation.all(
-          :select => "MAX(id) AS id, project_id",
-          :order => "id desc", :limit => 9, :group => "project_id")
-        @projects = Project.all(:conditions => ["id IN (?)", project_observations.map(&:project_id)])
-        @created = Project.all(:order => "id desc", :limit => 9)
-        @featured = Project.featured.all
+        if @site && (@site_place = @site.place)
+          @place = @site.place unless params[:everywhere].yesish?
+        end
+        project_observations = ProjectObservation.
+          select("MAX(project_observations.id) AS id, project_id").
+          order("id DESC").
+          limit(9).
+          group('project_id')
+        if @place
+          project_observations = project_observations.joins(:project => :place).where(@place.self_and_descendant_conditions)
+        end
+        @projects = Project.where("id IN (?)", project_observations.map(&:project_id))
+        @created = Project.order("id desc").limit(9)
+        @created = @created.joins(:place).where(@place.self_and_descendant_conditions) if @place
+        @featured = Project.featured
+        @featured = @featured.joins(:place).where(@place.self_and_descendant_conditions) if @place
         if logged_in?
           @started = current_user.projects.all(:order => "id desc", :limit => 9)
           @joined = current_user.project_users.all(:include => :project, :order => "id desc", :limit => 9).map(&:project)
