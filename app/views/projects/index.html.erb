@@ -58,9 +58,11 @@
       <% if @place -%>
         <h3 class="inlineblock"><%=t :featured_projects_from_place, :place => t(@place.name, :default => @place.name) %></h3>
         (<%= link_to t(:view_projects_from_place, :place => t(:everywhere, :default => "everywhere")), url_for_params(:everywhere => true) %>)
-      <% else %>
+      <% elsif @site_place %>
         <h3 class="inlineblock"><%=t :featured_projects_from_everywhere %></h3>
         (<%= link_to t(:view_projects_from_place, :place => t(@site_place.name, :default => @site_place.name)), url_for_params(:everywhere => false) %>)
+      <% else %>
+        <h3><%= t(:featured).titleize %></h3>
       <% end -%>
     </div>
     <% @featured.each_with_index do |project, i| %>
@@ -76,9 +78,11 @@
     <% if @place -%>
       <h3 class="inlineblock"><%=t :recently_active_projects_from_place, :place => t(@place.name, :default => @place.name) %></h3>
       (<%= link_to t(:view_projects_from_place, :place => t(:everywhere, :default => "everywhere")), url_for_params(:everywhere => true) %>)
-    <% else %>
+    <% elsif @site_place %>
       <h3 class="inlineblock"><%=t :recently_active_projects_from_everywhere %></h3>
       (<%= link_to t(:view_projects_from_place, :place => t(@site_place.name, :default => @site_place.name)), url_for_params(:everywhere => false) %>)
+    <% else %>
+      <h3><%= t(:recently_active).titleize %></h3>
     <% end -%>
   </div>
   <% if @projects.blank? -%>
@@ -100,9 +104,11 @@
     <% if @place -%>
       <h3 class="inlineblock"><%=t :recently_created_projects_from_place, :place => t(@place.name, :default => @place.name) %></h3>
       (<%= link_to t(:view_projects_from_place, :place => t(:everywhere, :default => "everywhere")), url_for_params(:everywhere => true) %>)
-    <% else %>
+    <% elsif @site_place %>
       <h3 class="inlineblock"><%=t :recently_created_projects_from_everywhere %></h3>
       (<%= link_to t(:view_projects_from_place, :place => t(@site_place.name, :default => @site_place.name)), url_for_params(:everywhere => false) %>)
+    <% else %>
+      <h3><%= t(:recently_created).titleize %></h3>
     <% end -%>
   </div>
   <% if @created.blank? -%>
