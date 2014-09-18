@@ -120,6 +120,13 @@ module MakeHelpers
     swap.save!
     swap
   end
+
+  def make_published_guide
+    g = Guide.make!
+    3.times { GuideTaxon.make!(:guide => g) }
+    g.update_attributes(:published_at => Time.now)
+    g
+  end
   
   # creating the tree is a bit tricky
   #

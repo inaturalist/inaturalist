@@ -338,6 +338,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def limited_per_page
+    requested_per_page = params[:per_page].to_i
+    if requested_per_page > 200
+      200
+    elsif requested_per_page <= 0
+      30
+    else
+      requested_per_page
+    end
+  end
+
   private
 
   def admin_required

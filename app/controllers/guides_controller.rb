@@ -19,7 +19,7 @@ class GuidesController < ApplicationController
     @guides = if logged_in? && params[:by] == "you"
       current_user.guides.limit(100).order("guides.id DESC")
     else
-      Guide.page(params[:page]).order("guides.id DESC").published
+      Guide.page(params[:page]).per_page(limited_per_page).order("guides.id DESC").published
     end
     @guides = @guides.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
 
@@ -368,7 +368,7 @@ class GuidesController < ApplicationController
   end
 
   def search
-    @guides = Guide.published.dbsearch(params[:q]).page(params[:page])
+    @guides = Guide.published.dbsearch(params[:q]).page(params[:page]).per_page(limited_per_page)
     pagination_headers_for @guides
     respond_to do |format|
       format.html
