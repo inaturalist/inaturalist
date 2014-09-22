@@ -1,5 +1,35 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+shared_examples_for "it allows changes" do
+  it "should allow ofv creation" do
+    put :update_fields, :format => :json, :id => o.id, :observation => {
+      :observation_field_values_attributes => {
+        "0" => {
+          :observation_field_id => of.id,
+          :value => "foo"
+        }
+      }
+    }
+    response.should be_success
+    o.reload
+    o.observation_field_values.first.value.should eq "foo"
+  end
+  it "should allow ofv updating" do
+    ofv = ObservationFieldValue.make!(:observation => o, :observation_field => of, :value => "foo")
+    put :update_fields, :format => :json, :id => o.id, :observation => {
+      :observation_field_values_attributes => {
+        "0" => {
+          :observation_field_id => of.id,
+          :value => "bar"
+        }
+      }
+    }
+    response.should be_success
+    o.reload
+    o.observation_field_values.first.value.should eq "bar"
+  end
+end
+
 shared_examples_for "an ObservationsController" do
 
   describe "create" do
@@ -582,13 +612,6 @@ shared_examples_for "an ObservationsController" do
 
     it "should filter by taxon name if there are synonyms and iconic_taxa provided" do
       load_test_taxa
-
-      # This is an ugly solution, but Observation#query relies on some of the
-      # cached constants set in Taxon...which will be empty until after
-      # load_test_taxa, so they need to be reset. I guess I could unload and
-      # reload the individual constants, but that doesn't seem any prettier.
-      load "#{Rails.root}/app/models/taxon.rb"
-      
       o1 = Observation.make!(:taxon => @Pseudacris_regilla)
       synonym = Taxon.make!(:parent => @Calypte, :name => o1.taxon.name)
       o2 = Observation.make!(:taxon => synonym)
@@ -689,35 +712,6 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "update_fields" do
-    shared_examples_for "it allows changes" do
-      it "should allow ofv creation" do
-        put :update_fields, :format => :json, :id => o.id, :observation => {
-          :observation_field_values_attributes => {
-            "0" => {
-              :observation_field_id => of.id,
-              :value => "foo"
-            }
-          }
-        }
-        response.should be_success
-        o.reload
-        o.observation_field_values.first.value.should eq "foo"
-      end
-      it "should allow ofv updating" do
-        ofv = ObservationFieldValue.make!(:observation => o, :observation_field => of, :value => "foo")
-        put :update_fields, :format => :json, :id => o.id, :observation => {
-          :observation_field_values_attributes => {
-            "0" => {
-              :observation_field_id => of.id,
-              :value => "bar"
-            }
-          }
-        }
-        response.should be_success
-        o.reload
-        o.observation_field_values.first.value.should eq "bar"
-      end
-    end
     describe "for the observer" do
       let(:o) { Observation.make!(:user => user) }
       let(:of) { ObservationField.make! }

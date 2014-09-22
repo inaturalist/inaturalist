@@ -359,6 +359,15 @@ class Taxon < ActiveRecord::Base
   ICONIC_TAXA_BY_NAME = ICONIC_TAXA.index_by(&:name)
   
   
+  def self.reset_iconic_taxa_constants_for_tests
+    remove_const('ICONIC_TAXA')
+    remove_const('ICONIC_TAXA_BY_ID')
+    remove_const('ICONIC_TAXA_BY_NAME')
+    const_set('ICONIC_TAXA', Taxon.sort_by_ancestry(self.iconic_taxa.arrange))
+    const_set('ICONIC_TAXA_BY_ID', Taxon::ICONIC_TAXA.index_by(&:id))
+    const_set('ICONIC_TAXA_BY_NAME', Taxon::ICONIC_TAXA.index_by(&:name))
+  end
+  
   # Callbacks ###############################################################
   
   def handle_after_move
