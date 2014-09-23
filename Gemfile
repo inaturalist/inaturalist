@@ -36,7 +36,7 @@ gem 'georuby', :git => 'git://github.com/kueda/georuby.git'
 gem 'haml'
 gem 'haml-rails'
 gem 'htmlentities'
-gem 'i18n-js'
+gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'
 gem 'irwi', :git => 'git://github.com/alno/irwi.git'
 gem 'json', "~> 1.7.7"
 gem 'jquery-rails'
