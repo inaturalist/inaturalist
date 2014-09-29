@@ -508,6 +508,15 @@ $('.guide_taxon input[name*=tag_list]').live('change', function() {
 })
 
 $('#guide_taxa .guide_taxon').labelize()
+$('input[name="guide_eol_update_flow_task[options][sections]"]').live('change', function() {
+  if ($(this).is(':checked')) {
+    $('input[name="guide_eol_update_flow_task[options][overview]"]').enable()
+    $('#eol_subjects :input').enable()
+  } else {
+    $('input[name="guide_eol_update_flow_task[options][overview]"]').disable()
+    $('#eol_subjects :input').disable()
+  }
+})
 $('input[name="guide_eol_update_flow_task[options][overview]"]').live('change', function() {
   if ($(this).val() == "true") {
     $('#eol_subjects').hide()

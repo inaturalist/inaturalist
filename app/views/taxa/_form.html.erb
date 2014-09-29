@@ -1,6 +1,3 @@
-<%- content_for(:extrajs) do -%>
-  <% javascript_include_tag :cocoon %>
-<%- end -%>
 <%- taxon ||= @taxon -%>
 <%= form_for(taxon, :builder => DefaultFormBuilder) do |f| %>
   <%= error_messages_for :taxon %>

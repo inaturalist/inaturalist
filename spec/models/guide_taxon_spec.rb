@@ -119,7 +119,7 @@ describe GuideTaxon, "sync_eol" do
 
   it "should update the display_name" do
     gt.display_name.should_not eq "coachwhip"
-    gt.sync_eol(:page => @mflagellum_page)
+    gt.sync_eol(:page => @mflagellum_page, :replace => true)
     gt.display_name.should eq "coachwhip"
   end
 
@@ -134,13 +134,31 @@ describe GuideTaxon, "sync_eol" do
   end
 
   it "should not replace existing content if not requested" do
+    original_name = "foo1"
+    gt.update_attributes(:display_name => original_name)
     gp = GuidePhoto.make!(:guide_taxon => gt)
     gr = GuideRange.make!(:guide_taxon => gt)
     gs = GuideSection.make!(:guide_taxon => gt)
     gt.sync_eol(:page => @mflagellum_page, :photos => true, :ranges => true, :overview => true)
+    gt.reload
+    gt.display_name.should eq original_name
     GuidePhoto.find_by_id(gp.id).should_not be_blank
     GuideRange.find_by_id(gr.id).should_not be_blank
     GuideSection.find_by_id(gs.id).should_not be_blank
+  end
+
+  it "should not add content for categories that weren't selected" do
+    gt.guide_photos.destroy_all
+    gt.guide_sections.destroy_all
+    gt.guide_ranges.destroy_all
+    gt.guide_photos.count.should eq 0
+    gt.guide_sections.count.should eq 0
+    gt.guide_ranges.count.should eq 0
+    gt.sync_eol(:page => @mflagellum_page, :photos => "0", :ranges => "0", :overview => "0")
+    gt.reload
+    gt.guide_photos.count.should eq 0
+    gt.guide_sections.count.should eq 0
+    gt.guide_ranges.count.should eq 0
   end
 
   it "should add at least one secion if overview requested" do
