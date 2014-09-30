@@ -540,8 +540,6 @@ describe Observation, "updating" do
       i2 = Identification.make!(:observation => o, :taxon => child)
       i3 = Identification.make!(:observation => o, :taxon => child, :user => o.user)
       o.reload
-      puts "o.num_identification_agreements: #{o.num_identification_agreements}"
-      puts "o.num_identification_disagreements: #{o.num_identification_disagreements}"
       o.community_taxon.should eq child
       o.taxon.should eq child
       o.should be_community_supported_id
@@ -2056,8 +2054,6 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o, :taxon => @Animalia)
     i2 = Identification.make!(:observation => o, :taxon => @Plantae)
     o.reload
-    puts "o.community_taxon: #{o.community_taxon}"
-    puts "@Life: #{@Life}"
     o.community_taxon.should eq @Life
   end
 

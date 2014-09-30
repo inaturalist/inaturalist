@@ -227,6 +227,8 @@ module MakeHelpers
     end
     @Magnoliopsida.update_attributes(:parent => @Magnoliophyta)
 
+    Taxon.reset_iconic_taxa_constants_for_tests
+
     Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
   end
 

@@ -79,6 +79,8 @@ module Inaturalist
     # in case assets reference application objects or methods
     config.assets.initialize_on_precompile = true
 
+    config.i18n.enforce_available_locales = false
+
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
     end

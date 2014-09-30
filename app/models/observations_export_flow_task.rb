@@ -75,7 +75,7 @@ class ObservationsExportFlowTask < FlowTask
       f << ']'
     end
     zip_path = File.join(work_path, "#{basename}.json.zip")
-    system "cd #{work_path} && zip -r #{basename}.json.zip *"
+    system "cd #{work_path} && zip -qr #{basename}.json.zip *"
     zip_path
   end
 
@@ -83,7 +83,7 @@ class ObservationsExportFlowTask < FlowTask
     csv_path = File.join(work_path, "#{basename}.csv")
     path = Observation.generate_csv(@observations, :fname => "#{basename}.csv", :path => csv_path, :columns => export_columns)
     zip_path = File.join(work_path, "#{basename}.csv.zip")
-    system "cd #{work_path} && zip -r #{basename}.csv.zip *"
+    system "cd #{work_path} && zip -qr #{basename}.csv.zip *"
     zip_path
   end
 

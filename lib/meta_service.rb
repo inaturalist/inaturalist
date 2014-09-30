@@ -48,7 +48,6 @@ class MetaService
     begin
       timed_out = Timeout::timeout(@timeout) do
         response = Net::HTTP.start(request_uri.host) do |http|
-          puts "MetaService getting #{request_uri.host}#{request_uri.path}?#{request_uri.query}" if @debug
           http.get("#{request_uri.path}?#{request_uri.query}", 'User-Agent' => "#{self.class}/#{SERVICE_VERSION}")
         end
       end
