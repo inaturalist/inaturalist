@@ -36,6 +36,13 @@ GIT
       nokogiri (~> 1.5.0)
 
 GIT
+  remote: git://github.com/fnando/i18n-js.git
+  revision: bebeb1398b1ac6810b2be94637a94174a8e0e344
+  specs:
+    i18n-js (3.0.0.rc6)
+      i18n (~> 0.6)
+
+GIT
   remote: git://github.com/jrgifford/delayed_paperclip.git
   revision: 9c2afd91193b5cd409b8cc34768e6a0b68eed1d5
   specs:
@@ -250,8 +257,6 @@ GEM
       rack
       rubyntlm (~> 0.3.2)
     i18n (0.6.11)
-    i18n-js (2.1.2)
-      i18n
     journey (1.0.4)
     jquery-rails (3.1.1)
       railties (>= 3.0, < 5.0)
@@ -502,7 +507,7 @@ DEPENDENCIES
   haml
   haml-rails
   htmlentities
-  i18n-js
+  i18n-js!
   irwi!
   jquery-rails
   json (~> 1.7.7)
