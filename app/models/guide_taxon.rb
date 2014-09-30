@@ -159,7 +159,7 @@ class GuideTaxon < ActiveRecord::Base
     sync_eol_photos(options.merge(:page => page)) if options[:photos].yesish?
     sync_eol_ranges(options.merge(:page => page)) if options[:ranges].yesish?
     Rails.logger.debug "[DEBUG] options[:subjects]: #{options[:subjects].inspect}"
-    sync_eol_sections(options.merge(:page => page)) if options[:sections].yesish?
+    sync_eol_sections(options.merge(:page => page)) if options[:sections].yesish? || options[:overview].yesish?
     save!
   end
 
