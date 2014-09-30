@@ -68,5 +68,8 @@ def sanitize_sphinx_query(q)
 end
 
 def private_page_cache_path(path)
-  File.join(Rails.root, 'tmp', 'page_cache', path)
+  # remove absolute release path for Capistrano. Yes, this assumes you're
+  # using Capistrano. Please suggest a better way.
+  root = Rails.root.to_s.sub(/releases#{File::SEPARATOR}\d+/, 'current')
+  File.join(root, 'tmp', 'page_cache', path)
 end
