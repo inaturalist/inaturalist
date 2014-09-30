@@ -20,7 +20,7 @@ OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia 
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+Bundler.require(:default, :assets, Rails.env) if defined?(Bundler)
 
 # require custom logger that includes PIDs
 require File.expand_path('../../lib/better_logger', __FILE__)

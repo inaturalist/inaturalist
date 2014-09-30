@@ -98,7 +98,10 @@ group :test, :development do
   gem "debugger"
 end
 
-
 group :test do
   gem 'faker'
+end
+
+group :assets do
+  gem 'turbo-sprockets-rails3'
 end
