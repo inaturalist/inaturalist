@@ -1103,8 +1103,11 @@ class Observation < ActiveRecord::Base
       owners_ident = self.identifications.build(:user => user, :taxon => taxon, :observation => self)
       owners_ident.skip_observation = true
     elsif taxon.blank? && owners_ident && owners_ident.current?
-      owners_ident.skip_observation = true
-      owners_ident.update_attributes(:current => false)
+      if identifications.where(:user_id => user_id).count > 1
+        owners_ident.update_attributes(:current => false)
+      else
+        owners_ident.destroy
+      end
     end
     
     update_stats(:skip_save => true)

@@ -751,7 +751,9 @@ class ObservationsController < ApplicationController
           photo_o = photo.to_observation
           PHOTO_SYNC_ATTRS.each do |a|
             hashed_params[observation.id.to_s] ||= {}
-            hashed_params[observation.id.to_s][a] = photo_o.send(a) if hashed_params[observation.id.to_s][a].blank?
+            if hashed_params[observation.id.to_s][a].blank? && observation.send(a).blank?
+              hashed_params[observation.id.to_s][a] = photo_o.send(a)
+            end
           end
         end
       end

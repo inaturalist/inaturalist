@@ -350,6 +350,15 @@ describe Observation, "updating" do
     Identification.find_by_id(old_owners_ident.id).should_not be_blank
   end
 
+  it "should not destroy the owner's old identification if the taxon has changed unless it's the owner's only identification" do
+    t1 = Taxon.make!
+    o = Observation.make!(:taxon => t1)
+    old_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
+    o.update_attributes(:taxon => nil)
+    o.reload
+    Identification.find_by_id(old_owners_ident.id).should be_blank
+  end
+
   # # Handled by DJ
   # it "should add the taxon to the user's life list if not there already" do
   #   psre = Taxon.find_by_name("Pseudacris regilla")
