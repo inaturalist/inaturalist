@@ -3448,8 +3448,9 @@ en:
         taxon_extras_help_html: "Note: these columns will slow down the generation of your export"
         geo_help_html: |
           Town, county, state, country fields based on coordinates. Analagous
-          adminstrative levels will be used for observations where these place
+          administrative levels will be used for observations where these place
           types do not apply.
+          The private_* fields will only be included when using the user filter and you are the user, or when using the project filter and you curate the project.
         be_patient: |
           Please be patient, this can take a few minutes. If this is taking
           too long, you can

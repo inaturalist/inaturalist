@@ -468,6 +468,7 @@ es:
   back_to_your_observatios: "Regresar a sus observaciones"
   back_to_your_profile: "Regresar a su perfil"
   back_to_your_projects: Regresar a tus proyectos
+  basic: Básico
   batch: Grupo
   batch_edit: "Modificar grupo"
   batch_edit_taxa_for_x_html: "Edición de datos po lote para %{x}"
@@ -598,6 +599,7 @@ es:
     observaciones en %{site_name}. Trate de seleccionar imágenes que
     <em>muestren características de diagnóstico</em> y <em>se vean bien como
     íconos</em>.  La <em>primera aparece por defecto</em>.
+  choose_columns: Elegir columnas
   choose_from_your_lists: "Seleccionar de sus listas"
   choose_files_from_your_computer: selecciona el archivo de tu computadora.
   choose_good_default_photos: "seleccionar buenas fotos por defecto del grupo de fotos de Creative Commons en Flickr"
@@ -729,6 +731,7 @@ es:
   create_a_new_place: "Crear un Lugar nuevo"
   create_a_new_taxon: Crea una nueva especie o grupo
   create_an_account: "Crear una cuenta"
+  create_export: Crear exportación
   create_new_taxon: "Crear un Nuevo Taxón"
   create_observations: "Crear observaciones"
   create_observations_by_uploading_photos_to:
@@ -1125,6 +1128,7 @@ es:
   explore!: ¡Descubra!
   explore_everyones_observations: "Explore las observaciones de todos"
   export: Exportar
+  export_observations: Exportar observaciones
   external_links: Enlaces externos
   extinct: extinto
   extinct_in_the_wild: "extint en estado silvestre"
@@ -2322,6 +2326,7 @@ es:
   recent_comments_on_your_stuff: "Comentarios recientes sobre su trabajo"
   recent_observations: "Observaciones recientes"
   recent_atom_observations_by: "Observaciones recientes por %{login} (Atom)"
+  recent_exports: Exportaciones recientes
   recent_observations_by: "Observaciones recientes por %{login}"
   recent_post: Notas recientes
   recent_updates: "Actualizaciones recientes"
@@ -2708,6 +2713,7 @@ es:
   taxon_deleted: Taxon fue borrado.
   taxon_doesnt_have_a_range: El taxon no tiene un rango
   taxon_drop: dejar de taxón
+  taxon_extras: Extras taxón
   taxon_map:
       gbif_occurrences: Registros de GBIF
       it_may_take_google_a_while_to: Puede llevarle un rato a Google para cargar estos datos, si existen en GBIF.
@@ -3468,6 +3474,34 @@ es:
           taxones identificados que tienen una puntuación de más de 2/3 y al
           menos 2 identificaciones, elija el taxón más bajo ranking.
         </p>
+      export:
+        choose_columns_desc: Elija las columnas que desea exportar
+        create_a_query_desc_html: |
+          Crear una consulta de observación igual que lo haría en otro lugar
+          en el sitio. También puede cortar y pegar una URL observaciones
+          desde otra parte del sitio. Debe especificar un
+          <strong>taxón</strong>, <strong>lugar</strong>, <strong>de
+          usuario</strong>, <strong>proyecto</strong>, o <strong>consulta de
+          búsqueda</strong>.
+        query_placeholder: "Elija los parámetros de consulta a continuación o pegar en un URL observaciones"
+        taxon_extras_help_html: "Nota: estas columnas se ralentizará la generación de su exportación"
+        geo_help_html: |
+          Ciudad, condado, estado, campos de país sobre la base de
+          coordenadas. Niveles administrativos análogos serán utilizados para
+          las observaciones en las que no se aplican este tipo de lugar. Los
+          campos private_ * sólo se incluirán cuando se utiliza el filtro de
+          usuario y usted es el usuario, o cuando se utiliza el filtro de
+          proyecto y te cura el proyecto.
+        be_patient: |
+          Por favor, sea paciente, esto puede tardar algunos minutos. Si esto
+          está tomando demasiado tiempo, puede
+        check_back: |
+          Si vuelve a cargar esta página dentro de unos minutos su exportación
+          debe aparecer en la lista en la parte inferior de la página.
+        receive_an_email_with_your_data: Recibir un email con sus datos
+        receive_an_email_with_your_data_help: Usted recibirá un correo electrónico con su exportación como un archivo adjunto.
+        well_email_you: "Ok, le enviaremos un mensaje cuando esté listo."
+        taking_a_while: "Esto está tomando un tiempo. Por favor, intente una de las siguientes opciones."
     photos: 
       inviter: 
         automatically_add_to_project: "Añadir automáticamente al proyecto"
