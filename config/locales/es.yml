@@ -904,6 +904,7 @@ es:
   default_sound_license: Licencias del sonido predeterminadas
   defaults_to_your_name_or_username: Por defecto es su nombre o nombre de usuario
   delete: Eliminar
+  delete_all: Eliminar todo
   delete_conversation: Eliminar conversación
   delete_icon?: "¿Eliminar ícono?"
   delete_photo: "Eliminar foto"
@@ -913,6 +914,7 @@ es:
   delete_this_name: "Eliminar este nombre"
   delete_user: "Eliminar usuario"
   delete_your_account: "Eliminar su cuenta"
+  deleted_synonyms: Eliminado sinónimos
   deleting: Borrando...
   desc: desc
   descendant_taxa: "taxones descendientes"
@@ -1272,6 +1274,7 @@ es:
   guide_was_successfully_created: La guía fue creada satisfactoriamente.
   guide_was_successfully_published: La guía fue publicada satisfactoriamente.
   guide_was_successfully_updated: La guía fue actualizada satisfactoriamente.
+  guidelines: Directrices
   guides: Guías
   has_already_been_flagged_by: ya ha sido reportado por
   has_been: ha sido
@@ -2785,6 +2788,9 @@ es:
   the_user_x_has_been_unsuspended: "El usuario %{user} ha sido removido de la lista de suspendidos"
   the_world_is_full_of_interesting_places: "El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquinaLugares %{site_name} le permite buscar vida de todas partes del planeta. ¡Comience a explorar!"
   the_world_is_full_of_interesting_places_short: "El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquina"
+  there_are_x_synonyms_html:
+    one: "Hay <span class='count'>1</span> sinónimo</span>"
+    other: "Hay <span class='count'>%{count}</span> sinónimos</span>"
   there_is_no_wikipedia_page_matching: "No hay página en Wikipedia que concuerde"
   there_isnt_a_wikipedia_article_titled_x_html: "No existe un articulo relacionado con Wikipeia con el nombre '%{x}'. ¿Quisieras <a href='http://en.wikipedia.org/wiki/%{x}'>crear</a> uno?"
   there_isnt_wikipedia_article_perhaps: "No hay página en Wikipedia que concuerde"
@@ -3526,6 +3532,14 @@ es:
         trusted_project_means: |
           Cuando un projecto está verificado, los curadores y gerentes del
           proyecto pueden crear, actualizar y borra sus recursos del proyecto.
+    taxon_names:
+      form:
+        new_name_guidelines_html: |
+          <ul class="ui">
+            <li>Trate de añadir nombres que se han utilizado en otros lugares. Por favor, no inventar nuevos nombres.</li>
+            <li>No agregue nombres duplicados, por ejemplo, no mencione a numerosos halcones "halcón"</li>
+            <li>Para taxa superiores de nivel, trate de usar nombres que incluyen todos los descendientes, como "Jacamarás y parientes" o "familia de brezo"</li>
+          </ul>
     users:
       dashboard:
         taxon_change_desc: |

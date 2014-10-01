@@ -1,8 +1,8 @@
 class TaxonNamesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :load_taxon_name, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_taxon, :except => [:index]
-  before_filter :curator_required_for_sciname, :only => [:create, :update, :destroy]
+  before_filter :load_taxon_name, :only => [:show, :edit, :update, :destroy, :destroy_synonyms]
+  before_filter :load_taxon, :except => [:index, :destroy_synonyms]
+  before_filter :curator_required_for_sciname, :only => [:create, :update, :destroy, :destroy_synonyms]
   before_filter :load_lexicons, :only => [:new, :create, :edit, :update]
   
   cache_sweeper :taxon_name_sweeper, :only => [:create, :update, :destroy]
@@ -112,6 +112,7 @@ class TaxonNamesController < ApplicationController
   end
   
   def edit
+    @synonyms = TaxonName.where(:name => @taxon_name.name).where("id != ?", @taxon_name.id).page(1)
   end
   
   def update
@@ -147,6 +148,16 @@ class TaxonNamesController < ApplicationController
       format.html { redirect_to(taxon_path(@taxon_name.taxon)) }
     end
   end
+
+  def destroy_synonyms
+    TaxonName.where(:name => @taxon_name.name).where("id != ?", @taxon_name.id).destroy_all
+    respond_to do |format|
+      format.html do
+        flash[:notice] = t(:deleted_synonyms)
+        redirect_to(edit_taxon_name_path(@taxon_name))
+      end
+    end
+  end
   
   private
   
@@ -177,9 +188,11 @@ class TaxonNamesController < ApplicationController
   end
 
   def load_lexicons
-    @lexicons = [
-      TaxonName::LEXICONS.values, 
-      TaxonName.select("DISTINCT ON (lexicon) lexicon").map(&:lexicon)
-    ].flatten.uniq.reject{|n| n.blank?}.sort
+    @lexicons = Rails.cache.fetch('lexicons', :expires_in => 1.day) do
+      [
+        TaxonName::LEXICONS.values, 
+        TaxonName.select("DISTINCT ON (lexicon) lexicon").map(&:lexicon)
+      ].flatten.uniq.reject{|n| n.blank?}.sort
+    end
   end
 end

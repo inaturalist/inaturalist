@@ -289,7 +289,11 @@ Inaturalist::Application.routes.draw do
       get 'synonyms'
     end
   end
-  resources :taxon_names
+  resources :taxon_names do
+    member do
+      delete :destroy_synonyms, :as => 'delete_synonyms_of'
+    end
+  end
   # match 'taxa/:id/description' => 'taxa#describe', :as => :describe_taxon
   match 'taxa/:id/graft' => 'taxa#graft', :as => :graft_taxon
   match 'taxa/:id/children' => 'taxa#children', :as => :taxon_children

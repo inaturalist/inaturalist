@@ -784,6 +784,7 @@ en:
   default_sound_license: Default sound license
   defaults_to_your_name_or_username: Defaults to your name or username
   delete: Delete
+  delete_all: Delete all
   delete_conversation: Delete conversation
   delete_cover?: delete cover?
   delete_icon?: Delete icon?
@@ -799,6 +800,7 @@ en:
   delete_this_name: Delete this name
   delete_user: Delete user
   delete_your_account: Delete your account
+  deleted_synonyms: Deleted synonyms
   deleting: Deleting...
   deleting_verb: Deleting
   desc: desc
@@ -2583,6 +2585,9 @@ en:
   the_user_x_has_been_unsuspended: "The user %{user} has been unsuspended"
   the_world_is_full_of_interesting_places: "The world is full of interesting places, each filled with weird and wonderful life forms. Some are on the other side of the world, while others are just down the street! %{site_name} Places let you browse life from around the planet.  Start exploring!"
   the_world_is_full_of_interesting_places_short: The world is full of interesting places, each filled with weird and wonderful life forms. Some are on the other side of the world, while others are just down the street!
+  there_are_x_synonyms_html:
+    one: "There is <span class='count'>1</span> synonym</span>"
+    other: "There are <span class='count'>%{count}</span> synonyms</span>"
   there_is_no_wikipedia_page_matching: There is no Wikipedia page matching
   there_isnt_wiki_article: "There isn't a Wikipedia article or redirect titled '<i>%{taxon}</i>'.  Perhaps you'd like to"
   there_isnt_a_wikipedia_article_titled_x_html: "There isn't a Wikipedia article or redirect titled '%{x}'.  Perhaps you'd like to <a href='http://en.wikipedia.org/wiki/%{x}'>make one</a>?"
@@ -3683,6 +3688,14 @@ en:
           This is the curated checklist and count of taxa from observations explictly added to this
           project, not all observations recorded at the place and time of this
           event.
+    taxon_names:
+      form:
+        new_name_guidelines_html: |
+          <ul class="ui">
+            <li>Try to add names that have been used elsewhere. Please don't invent new names.</li>
+            <li>Don't add duplicate names, e.g. don't name numerous hawks "hawk"</li>
+            <li>For higher level taxa, try to use names that include all descendants, like "herons and allies" or "heath family"</li>
+          </ul>
     users:
       dashboard:
         taxon_change_desc: |
