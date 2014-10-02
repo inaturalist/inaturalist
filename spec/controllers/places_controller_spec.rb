@@ -14,6 +14,18 @@ describe PlacesController do
       Place.last.place_type.should be_blank
     end
   end
+
+  describe "destroy" do
+    let(:user) { User.make! }
+    let(:place) { Place.make!(:user => user) }
+    it "should delete the place" do
+      sign_in user
+      place.should_not be_blank
+      lambda {
+        delete :destroy, :id => place.id
+      }.should change(Place, :count).by(-1)
+    end
+  end
 end
 
 # If you ever figure out how to test page caching...

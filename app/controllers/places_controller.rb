@@ -205,6 +205,7 @@ class PlacesController < ApplicationController
     errors << "there are people using this place in their projects" if @place.projects.exists?
     errors << "there are people using this place in their guides" if @place.guides.exists?
     if errors.blank?
+      @place.destroy
       flash[:notice] = t(:place_deleted)
       redirect_to places_path
     else
