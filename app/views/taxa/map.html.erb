@@ -44,9 +44,9 @@
       var script = document.createElement("script")
       script.setAttribute("type", "text/javascript")
       if ($.browser.msie) {
-        script.setAttribute("src", "/javascripts/taxa/map.gmaps.js")
+        script.setAttribute("src", "<%= asset_path("taxa/map.gmaps.js") %>")
       } else {
-        script.setAttribute("src", "/javascripts/taxa/map.polymaps.js")
+        script.setAttribute("src", "<%= asset_path("taxa/map.polymaps.js") %>")
       }
       document.body.appendChild(script);
     })
@@ -62,10 +62,14 @@
 
 <div id="controls" class="floating">
   <div id="basemap">
-    <input type="radio" name="basemap" value="map" id="basemap_map" checked="checked">
-    <label for="basemap_map"><%= t(:map) %></label>
-    <input type="radio" name="basemap" value="sat" id="basemap_sat">
-    <label for="basemap_sat"><%= t(:Sat) %></label>
+    <label id="basemap_map_label" for="basemap_map">
+      <input type="radio" name="basemap" value="map" id="basemap_map" checked="checked">
+      <%= t(:map) %>
+    </label>
+    <label id="basemap_sat_label" for="basemap_sat">
+      <input type="radio" name="basemap" value="sat" id="basemap_sat"/>
+      <%= t(:Sat) %>
+    </label>
   </div>
 </div>
 <div id="copyright"></div>
@@ -156,7 +160,7 @@
   </div>
       
   <div id="legendfooter" class="clear small meta">
-    <a href="/" title="<%= CONFIG.site_name %>"><img src="/images/logo-mini.png" alt="#{CONFIG.site_name} logo" class="left" style="width: 75px"></a>
+    <a href="/" title="<%= CONFIG.site_name %>"><img src="<%= image_path('logo-mini.png') %>" alt="#{CONFIG.site_name} logo" class="left" style="width: 75px"></a>
     <div class="last right column">
       <%= link_to_function "<span class='ui-icon ui-icon-help inlineblock'>help</span>About this map".html_safe, 
         "$('#maphelp').dialog({modal: true, title: '#{t(:about_this_map)}', width: 500})", 

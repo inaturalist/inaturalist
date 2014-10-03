@@ -51,7 +51,7 @@ class PicasaPhoto < Photo
         if place = places.first
           observation.place_guess = place.display_name
         end
-      rescue Riddle::ConnectionError
+      rescue Riddle::ConnectionError, Riddle::ResponseError
         # sphinx down for some reason
       end
     end
@@ -101,7 +101,7 @@ class PicasaPhoto < Photo
     start_time = Time.now
     PicasaPhoto.script_do_in_batches(find_options) do |p|
       r = Net::HTTP.get_response(URI.parse(p.medium_url))
-      unless r.code_type == Net::HTTPBadRequest
+      unless [Net::HTTPBadRequest, Net::HTTPForbidden, Net::HTTPRedirection].include?(r.code_type)
         skipped += 1
         next
       end
@@ -109,8 +109,14 @@ class PicasaPhoto < Photo
       if errors.blank?
         updated += 1
       else
+        puts "[ERROR] #{errors.values.to_sentence}"
         if repaired.frozen?
           destroyed += 1 
+          puts "[ERROR] destroyed #{repaired}"
+        end
+        if errors[:picasa_account_not_linked]
+          invalids += 1
+          puts "[ERROR] Picasa account not linked for #{repaired}"
         end
       end
     end

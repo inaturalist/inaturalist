@@ -5,7 +5,6 @@
   = javascript_include_tag 'jquery/plugins/jquery.labelize', 
                            'jquery/plugins/jquery.dataTables.min', 
                            "jquery/plugins/inat/datepicker.js",
-                           :cocoon,
                            "jquery/plugins/jquery.latLonSelector.js",
                            "jquery/plugins/jquery-ui-timepicker-addon.min",
                            "trips/form"
@@ -28,7 +27,7 @@
       .coordinates.row-fluid
         .span4= f.text_field :latitude, :label => t(:lat), :class => "span12"
         .span4= f.text_field :longitude, :label => t(:lon), :class => "span12"
-        .span4= f.text_field :positional_accuracy, :label => t(:acc), :class => "span12"
+        .span4= f.text_field :radius, :label => t(:radius), :class => "span12"
   #trip_purposes_row.row
     .span12
       %h3=t :what_were_you_looking_for?

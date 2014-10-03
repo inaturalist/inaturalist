@@ -267,9 +267,10 @@ class Identification < ActiveRecord::Base
     else
       obs.identifications.by(ident.user_id).current.order("id asc").last
     end
+    return if current_ident.blank?
     obs.project_observations.each do |po|
       if current_ident.user.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]])
-        po.update_attributes(:curator_identification_id => current_ident.try(:id))
+        po.update_attributes(:curator_identification_id => current_ident.id)
         ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
         ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
         Project.delay(:priority => INTEGRITY_PRIORITY).update_observed_taxa_count(po.project_id)

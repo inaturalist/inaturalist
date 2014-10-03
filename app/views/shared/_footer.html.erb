@@ -21,6 +21,12 @@
     <a href="<%= CONFIG.privacy_url %>"><%=t :privacy %></a> &nbsp;
     <a href="<%= CONFIG.developers_url %>"><%=t :developers %></a>
   </div>
+
+  <% if CONFIG.custom_footer -%>
+    <div class="meta upstacked">
+      <%=raw CONFIG.custom_footer %>
+    </div>
+  <% end -%>
 </div>
 <%- if defined?(is_mobile_device?) && is_mobile_device? && @mobilized -%>
   <div class="flash notice">

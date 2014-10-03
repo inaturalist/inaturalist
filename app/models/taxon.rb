@@ -43,7 +43,7 @@ class Taxon < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
   belongs_to :conservation_status_source, :class_name => "Source"
-  has_and_belongs_to_many :colors
+  has_and_belongs_to_many :colors, :uniq => true
   has_many :taxon_descriptions, :dependent => :destroy
   
   accepts_nested_attributes_for :conservation_status_source
@@ -62,6 +62,7 @@ class Taxon < ActiveRecord::Base
     # has listed_taxa(:list_id), :as => :lists, :type => :multi
     has created_at, ancestry
     has "REPLACE(ancestry, '/', ',')", :as => :ancestors, :type => :multi
+    has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi, :source => :query
     has observations_count
     set_property :delta => :delayed
   end
@@ -106,6 +107,7 @@ class Taxon < ActiveRecord::Base
     'suborder'     => 37,
     'infraorder'   => 35,
     'superfamily'  => 33,
+    'epifamily'    => 32,
     'family'       => 30,
     'subfamily'    => 27,
     'supertribe'   => 26,
@@ -238,7 +240,8 @@ class Taxon < ActiveRecord::Base
   }]
   
   PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect', 
-    'lizard', 'gall', 'pinecone', 'larva', 'cicada', 'caterpillar', 'caterpillars', 'chiton']
+    'lizard', 'gall', 'pinecone', 'larva', 'cicada', 'caterpillar', 'caterpillars', 'chiton', 
+    'arizona']
   
   scope :observed_by, lambda {|user|
     sql = <<-SQL
@@ -355,6 +358,15 @@ class Taxon < ActiveRecord::Base
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
   ICONIC_TAXA_BY_NAME = ICONIC_TAXA.index_by(&:name)
   
+  
+  def self.reset_iconic_taxa_constants_for_tests
+    remove_const('ICONIC_TAXA')
+    remove_const('ICONIC_TAXA_BY_ID')
+    remove_const('ICONIC_TAXA_BY_NAME')
+    const_set('ICONIC_TAXA', Taxon.sort_by_ancestry(self.iconic_taxa.arrange))
+    const_set('ICONIC_TAXA_BY_ID', Taxon::ICONIC_TAXA.index_by(&:id))
+    const_set('ICONIC_TAXA_BY_NAME', Taxon::ICONIC_TAXA.index_by(&:name))
+  end
   
   # Callbacks ###############################################################
   
@@ -673,8 +685,8 @@ class Taxon < ActiveRecord::Base
         else
           []
         end
-      rescue FlickRaw::FailedResponse, EOFError => e
-        Rails.logger.error "EXCEPTION RESCUE: #{e}"
+      rescue FlickRaw::FailedResponse, EOFError, OpenSSL::SSL::SSLError => e
+        Rails.logger.error "Failed Flickr API request: #{e}"
         Rails.logger.error e.backtrace.join("\n\t")
       end
     end
@@ -1048,9 +1060,9 @@ class Taxon < ActiveRecord::Base
   
   def add_to_intersecting_places
     Place.
-        place_types(%w(Country State County)).
+        where("places.admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTRY_LEVEL]).
         intersecting_taxon(self).
-        find_each(:select => "places.id, place_type, check_list_id, taxon_ranges.id AS taxon_range_id", :include => :check_list) do |place|
+        find_each(:select => "places.id, admin_level, check_list_id, taxon_ranges.id AS taxon_range_id", :include => :check_list) do |place|
       place.check_list.try(:add_taxon, self, :taxon_range_id => place.taxon_range_id)
     end
   end
@@ -1390,11 +1402,11 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.search_query(q)
+    q = sanitize_sphinx_query(q)
     if q.blank?
       q = q
       return [q, :all]
     end
-    q = sanitize_sphinx_query(q)
 
     # for some reason 1-term queries don't return an exact match first if enclosed 
     # in quotes, so we only use them for multi-term queries
@@ -1413,6 +1425,18 @@ class Taxon < ActiveRecord::Base
     scope = TaxonName.limit(10).includes(:taxon).
       where("lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase).scoped
     scope = scope.where(options[:ancestor].descendant_conditions) if options[:ancestor]
+    if options[:iconic_taxa]
+      iconic_taxon_ids = options[:iconic_taxa].map do |it|
+        if it.is_a?(Taxon)
+          it.id
+        elsif it.to_i == 0
+          Taxon::ICONIC_TAXA_BY_NAME[it].try(:id)
+        else
+          it
+        end
+      end.compact
+      scope = scope.where("taxa.iconic_taxon_id IN (?)", iconic_taxon_ids)
+    end
     taxon_names = scope.all
     return taxon_names.first.taxon if taxon_names.size == 1
     taxa = taxon_names.map{|tn| tn.taxon}.compact
@@ -1428,7 +1452,7 @@ class Taxon < ActiveRecord::Base
         ).compact
         taxa = search_results.select{|t| t.taxon_names.detect{|tn| tn.name.downcase == name}}
         taxa = search_results if taxa.blank? && search_results.size == 1 && search_results.first.taxon_names.detect{|tn| tn.name.downcase == name}
-      rescue Riddle::ConnectionError, Riddle::ResponseError => e
+      rescue Riddle::ConnectionError, Riddle::ResponseError, ThinkingSphinx::SphinxError => e
         return
       end
     end

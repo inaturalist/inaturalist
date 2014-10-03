@@ -2,7 +2,7 @@
   flaggable = flag.flaggable
   flaggable_class = flaggable.class
 -%>
-<div class="flag <%= t(:resolved) if flag.resolved? %>">
+<div class="flag <%= 'resolved' if flag.resolved? %>">
   <% if flag.user -%>
     <%= link_to flag.user.login, flag.user %>
   <% else %>
@@ -21,7 +21,16 @@
   <%=t :because %> 
   "<%= flag.flag %>"
   <span class="small meta ui">
-    <%= link_to is_curator? ? t(:resolve) : "Details", flag %>
+    <%= link_to flag do %>
+      <span class="count"><%= flag.comments.size %></span>
+      <%= t(:comments).downcase %>
+    <% end -%>
+    |
+    <%= link_to t(:details), flag %>
+    <% if is_curator? -%>
+      |
+      <strong><%= link_to t(:resolve), flag %></strong>
+    <% end -%>
     <% if is_me?(flag.user) || is_curator? -%>
       |
       <%= link_to t(:delete), flag, 

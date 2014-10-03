@@ -1,18 +1,18 @@
 <% content_for(:title) do %>
-<%- unless @observation.species_guess.blank? -%>
-  <%= @observation.species_guess -%>,
-<%- else -%>
-  <%=t :something %>
-<% end %>
-<%= t(:observed_by).downcase %>
-<%= @observation.user.login %>
-<%- if @observation.time_observed_at -%>
-        <%=l @observation.time_observed_at, :format => :observed_at %>
-<%- end %>
-<%- if @observation.observed_on
-      date_format = @observation.observed_on.to_s(:long).split(" ") -%>
-        <%= t :on_ %> <%= t("date_format.date_long.#{date_format.first.downcase}", :day => date_format[1], :year =>date_format.last) %>
-<%- end -%>
+  <%- unless @observation.species_guess.blank? -%>
+    <%= @observation.species_guess -%>,
+  <%- else -%>
+    <%=t :something %>
+  <% end %>
+  <%= t(:observed_by).downcase %>
+  <%= @observation.user.login %>
+  <%- if @observation.time_observed_at && @coordinates_viewable -%>
+    <%=l @observation.time_observed_at, :format => :observed_at %>
+  <%- end %>
+  <%- if @observation.observed_on -%>
+    <%- date_format = @observation.observed_on.to_s(:long).split(" ") -%>
+    <%= t :on_ %> <%= t("date_format.date_long.#{date_format.first.downcase}", :day => date_format[1], :year =>date_format.last) %>
+  <%- end -%>
 <% end -%>
 
 <%- content_for(:extrahead) do -%>
@@ -24,10 +24,10 @@
     <% if @observation.observed_on -%>
       <meta property="<%= CONFIG.facebook.namespace %>:observed_on" content="<%= @observation.datetime.iso8601 %>" />
     <% end -%>
-    <% unless @observation.place_guess.blank? -%>
+    <% if !@observation.place_guess.blank? && @coordinates_viewable -%>
       <meta property="<%= CONFIG.facebook.namespace %>:place_guess" content="<%= @observation.place_guess %>" />
     <% end -%>
-    <% if @observation.georeferenced? && @observation.geoprivacy.blank? -%>
+    <% if @coordinates_viewable -%>
       <meta property="<%= CONFIG.facebook.namespace %>:coordinates:latitude"  content="<%= @observation.latitude %>"> 
       <meta property="<%= CONFIG.facebook.namespace %>:coordinates:longitude" content="<%= @observation.longitude %>">
     <% end -%>
@@ -47,7 +47,7 @@
     <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
   <% end -%>
   <% if @observation.description.blank? %>
-    <meta property="og:description" content="<%= html_attributize @observation.to_plain_s %>"/> 
+    <meta property="og:description" content="<%= html_attributize @observation.to_plain_s(:no_place_guess => !@coordinates_viewable) %>"/> 
   <% else %>
     <meta property="og:description" content="<%= html_attributize @observation.description %>"/> 
   <% end %>
@@ -112,8 +112,8 @@
         PHOTO_SOURCES = <%= @photo_sources.to_json.html_safe %>,
         DEFAULT_PHOTO_SOURCE = <%= @default_photo_source.to_json.html_safe %>,
         OBSERVATION = <%= @observation.to_json(:viewer => current_user, 
-          :force_coordinate_visibility => @observation.coordinates_viewable_by?(current_user),
-          :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}).html_safe %>  
+          :force_coordinate_visibility => @coordinates_viewable,
+          :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}).html_safe %>
     $(document).ready(function() {
       var MY_MAPTYPE_ID = 'pale'
       var featureOpts = [
@@ -178,13 +178,13 @@
       map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
 
       var tileLayerOptions = {
-        taxon_id: OBSERVATION.taxon_id, 
+        taxon_id: OBSERVATION.taxon_id,
         observation_id: OBSERVATION.id,
         color: iNaturalist.Map.ICONIC_TAXON_COLORS[OBSERVATION.iconic_taxon.name],
         precision: true,
         <% if CONFIG.tile_servers && CONFIG.tile_servers.windshaft %>
           tiles_url     : '<%= CONFIG.tile_servers.windshaft %>'
-        <% else %>  
+        <% else %>
           tiles_url     : 'http://localhost:4000'
         <% end %>
       }
@@ -234,7 +234,7 @@
     <%= t(:observed_by).downcase %> 
     <%= link_to @observation.user.login, observations_by_login_path(@observation.user.login) %>
     <span class="meta date">
-      <%- if @observation.time_observed_at -%>
+      <%- if @observation.time_observed_at && @coordinates_viewable -%>
         <%=l @observation.time_observed_at, :format => :observed_at %>
       <% end -%>
       <%- if @observation.observed_on -%>
@@ -429,13 +429,8 @@
       <div id="app" class="description">
         <label>App:</label>
         <% if a -%>
-          <%-
-            url = a.url.blank? ? oauth_application_url(a) : a.url
-            uri = URI.parse(url) rescue nil
-          -%>
-          <% if uri -%>
-            <%= link_to(image_tag("http://www.google.com/s2/u/0/favicons?domain=#{uri.host}", :class => "favicon"), url) %>
-          <% end -%>
+          <%- url = a.url.blank? ? oauth_application_url(a) : a.url -%>
+          <%= link_to(image_tag(favicon_url_for(url), :class => "favicon"), url) %>
           <%= link_to a.name, url %>
         <% elsif !@observation.device_url.blank? -%>
           <%= link_to @observation.device_name, @observation.device_url %>
@@ -445,27 +440,10 @@
     
     <% unless @observation.observation_field_values.blank? -%>
       <div class="observation_fields meta">
-        <% for ofv in @observation.observation_field_values %>
-          <div class="observation_field_value">
-            <label data-tip="<%=h ofv.observation_field.description %>" data-tip-width="auto">
-              <%= link_to ofv.observation_field.name, ofv.observation_field %>:
-            </label>
-            <%= observation_field_value_for(ofv) %>
-            <span class="extra small">
-              <%= link_to t(:observations_w_field), observations_path("field:#{ofv.observation_field.normalized_name}" => ""),
-                :rel => "nofollow" %>
-              <% if ofv.value.to_s.size < 30 -%>
-                |
-                <%= link_to t(:observations_w) + "#{ofv.observation_field.name}=#{ofv.value}",
-                  observations_path("field:#{ofv.observation_field.normalized_name}" => ofv.value),
-                  :rel => "nofollow" -%>
-              <%- end -%>
-            </span>
-          </div>
-        <% end %>
+        <%= render :partial => 'observation_fields/observation_field_value', :collection => @observation.observation_field_values %>
       </div>
     <% end -%>
-    <% if is_me?(@observation.user) -%>
+    <% if @observation.fields_addable_by?(current_user) -%>
       <span class="button"><%= link_to_function t(:add_edit_more_fields), "ObservationFields.showObservationFieldsDialog()" %></span>
     <% end -%>
     
@@ -737,10 +715,10 @@
       <div id="day_observations" class="clear quiet box">
         <div class="clear">
           <% for o in @day_observations %>
-            <%= link_to observation_image(o, :size => "square"), o, :title => o.to_plain_s %>
+            <%= link_to observation_image(o, :size => "square"), observation_path(o), :title => o.to_plain_s %>
           <% end %>
         </div>
-        <%= link_to t(:view_x_from_x, :day_observations=>"#{@day_observations.total_entries}", :observed_on => "#{l(@observation.observed_on, :format => :long)}"), calendar_date_path(@observation.user.login, @observation.observed_on.year, @observation.observed_on.month, @observation.observed_on.day), :class => "right readmore" %>
+        <%= link_to t(:view_x_from_x, :day_observations => @day_observations.total_entries, :observed_on => l(@observation.observed_on, :format => :long)), calendar_date_path(@observation.user.login, @observation.observed_on.year, @observation.observed_on.month, @observation.observed_on.day), :class => "right readmore" %>
       </div>
     <%= separator %>
   <% end -%>
@@ -834,13 +812,15 @@
   <% if @observation.flagged? %>
     <div id="flaggings_heads_up" class="description">
       <%=t :heads_up_this_observation_has_been_flagged %>
+      <%= link_to t(:view_flags), observation_flags_path(@observation) %>
+      |
       <%= link_to t(:add_another_flag), new_observation_flag_path(@observation),
-                  :id => "flag_this", :rel => "nofollow" %>
+                  :id => "flag_this", :rel => "nofollow", :class => "flaglink" %>
     </div>
   <% else %>
     <p class="description ui">
       <%= t(:is_this_observation_offensive_html) %>
-      <%= link_to t(:flag_this_observation), new_observation_flag_path(@observation), :id => "flag_this", :rel => "nofollow" %>
+      <%= link_to t(:flag_this_observation), new_observation_flag_path(@observation), :id => "flag_this", :rel => "nofollow", :class => "flaglink" %>
     </p>
     <p class="description ui">
       <%=t :you_think_observation_inacurate %>

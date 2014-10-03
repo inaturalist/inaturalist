@@ -336,7 +336,8 @@ class ListsController < ApplicationController
     @photos_by_listed_taxon_id = {}
     obs_ids = @listed_taxa.map(&:last_observation_id).compact
     obs_photos = ObservationPhoto.all(:select => "DISTINCT ON (observation_id) *", 
-      :conditions => ["observation_id IN (?)", obs_ids], :include => [:photo])
+      :conditions => ["observation_id IN (?)", obs_ids],
+      :include => [ { :photo => :user } ] )
     obs_photos_by_obs_id = obs_photos.index_by(&:observation_id)
     @listed_taxa.each do |lt|
       next unless (op = obs_photos_by_obs_id[lt.last_observation_id])

@@ -20,10 +20,13 @@
         :listed_taxon => lt
       } %>
     <% else %>
-      <%= render :partial => "shared/taxon", :locals => { 
-        :taxon => taxon,
-        :link_url => url_for(taxon)
-       } %>
+      <div class="containertaxon">
+        <%= render :partial => "shared/taxon", :locals => { 
+          :taxon => taxon,
+          :link_url => url_for(taxon)
+         } %>
+         <span class="button taxonfilterbutton"><%= link_to t(:filter_list_by_this_taxon), url_for_params(:without => [:page], :taxon => taxon.id) %></span>
+      </div>
     <% end -%>
   <% end %>
 </ul>

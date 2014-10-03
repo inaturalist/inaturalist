@@ -52,7 +52,7 @@ module ObservationsHelper
       display_lon = display_lon.to_s[0..coordinate_truncation] + "..." unless display_lon.blank?
     end
     
-    if !observation.place_guess.blank?
+    if !observation.place_guess.blank? && observation.coordinates_viewable_by?(current_user)
       if observation.latitude.blank?
         "#{observation.place_guess} (#{google_search_link}, #{osm_search_link})".html_safe
       else

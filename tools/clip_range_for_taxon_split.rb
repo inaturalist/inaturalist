@@ -141,7 +141,7 @@ taxon_split.taxon_change_taxa.each do |end_taxon_change_taxon| #Loop through the
   puts range.st_isvalidreason
   
   puts "sorting the kml..."
-  header = '<?xml version="1.0"?><kml xmlns="http://www.opengis.net/kml/2.2"><Placemark>  <name/>  <description/>  <styleUrl>http://www.inaturalist.org/stylesheets/index.kml#taxon_range</styleUrl>'
+  header = '<?xml version="1.0"?><kml xmlns="http://www.opengis.net/kml/2.2"><Placemark>  <name/>  <description/>  <styleUrl>http://www.inaturalist.org/assets/index.kml#taxon_range</styleUrl>'
   footer = '</Placemark></kml>'
   kml1 = header+final_range.geom.as_kml+footer
   range_path = "/home/inaturalist/taxon_range_#{final_range.id}.kml"

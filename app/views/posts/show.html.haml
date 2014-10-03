@@ -15,8 +15,8 @@
     #sidecol .tabs {float: right;}
     #sidecol .tabs li {padding-top: 0;padding-bottom: 0;}
     #sidecol .tabs .selected {font-weight: bold;}
-    .toggle_button {display: block;font-weight: bold;padding-left: 13px;background: center left url('/images/toggle_arrow_right.png') no-repeat;}
-    .toggle_button.open {background: center left url('/images/toggle_arrow_up.png') no-repeat;}
+    .toggle_button {display: block;font-weight: bold;padding-left: 13px;background: center left url(#{ image_path('toggle_arrow_right.png') }) no-repeat;}
+    .toggle_button.open {background: center left url(#{ image_path('toggle_arrow_up.png') }) no-repeat;}
     #map {width: 350px;height: 500px;}
 - content_for(:extrajs) do
   = google_maps_js

@@ -263,6 +263,7 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def taxon_matches_observation
+    return false if taxon.blank?
     if last_observation
       if last_observation.taxon_id.blank? || !(
           taxon_id == last_observation.taxon_id || 
@@ -566,6 +567,10 @@ class ListedTaxon < ActiveRecord::Base
   def occurrence_status
     OCCURRENCE_STATUS_LEVELS[occurrence_status_level]
   end
+
+  def occurrence_status=(status)
+    self.occurrence_status_level = OCCURRENCE_STATUS_LEVELS_BY_NAME[status]
+  end
   
   def editable_by?(target_user)
     list.editable_by?(target_user)
@@ -637,11 +642,8 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def expire_caches
-    return true unless place_id
     ctrl = ActionController::Base.new
     ctrl.expire_fragment(guide_taxon_cache_key) #THIS
-    ctrl.expire_page("/places/cached_guide/#{place_id}.html")
-    ctrl.expire_page("/places/cached_guide/#{place.slug}.html") if place
     ctrl.expire_fragment(FakeView.listed_taxon_path(id))
     ctrl.expire_fragment(FakeView.listed_taxon_path(id, :for_owner => true))
     ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
@@ -649,6 +651,8 @@ class ListedTaxon < ActiveRecord::Base
       ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
     end
     unless place_id.blank?
+      ctrl.expire_page("/places/cached_guide/#{place_id}.html")
+      ctrl.expire_page("/places/cached_guide/#{place.slug}.html") if place
       ctrl.expire_fragment(guide_taxon_cache_key)
       ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place_id))
       ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug)) if place
@@ -801,11 +805,13 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def primary_occurrence_status
-    primary_listed_taxon.occurrence_status
+    primary_listed_taxon.try(:occurrence_status)
   end
+
   def primary_establishment_means
-    primary_listed_taxon.establishment_means
+    primary_listed_taxon.try(:establishment_means)
   end
+
   def update_attributes_and_primary(listed_taxon, current_user)
     transaction do
       update_attributes(listed_taxon.merge(:updater_id => current_user.id))

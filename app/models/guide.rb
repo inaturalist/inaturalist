@@ -184,7 +184,7 @@ class Guide < ActiveRecord::Base
   def add_taxa_from_eol_collection(collection_url)
     return unless collection_id = collection_url[/\/(\d+)(\.\w+)?$/, 1]
     eol = EolService.new(:timeout => 30, :debug => Rails.env.development?)
-    c = eol.collections(collection_id, :per_page => 500, :filter => "taxa", :sort_by => "sort_field", :cb => Time.now.to_i)
+    c = eol.collections(collection_id, :per_page => 500, :filter => "taxa", :sort_by => "sort_field")
     saved = 0
     errors = []
     eol_source = Source.find_by_in_text('EOL')
@@ -368,7 +368,7 @@ class Guide < ActiveRecord::Base
 
     # zip up the results & return the path
     zip_path = File.join(work_path, "#{basename}.ngz")
-    system "cd #{work_path} && zip -r #{zip_path} #{xml_fname} #{local_asset_path}"
+    system "cd #{work_path} && zip -qr #{zip_path} #{xml_fname} #{local_asset_path}"
     FileUtils.rm_rf local_asset_path # clean up all those big files
     end_log_timer
     zip_path

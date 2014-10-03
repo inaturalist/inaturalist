@@ -1,7 +1,7 @@
 class ObservationFieldsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :load_observation_field, :only => [:show, :edit, :update, :destroy]
-  before_filter :owner_or_curator_required, :only => [:edit, :update, :destroy]
+  before_filter :load_observation_field, :only => [:show, :edit, :update, :destroy, :merge, :merge_field]
+  before_filter :owner_or_curator_required, :only => [:edit, :update, :destroy, :merge, :merge_field]
   
   # GET /observation_fields
   # GET /observation_fields.xml
@@ -13,7 +13,15 @@ class ObservationFieldsController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      format.json  { render :json => @observation_fields }
+      format.json  do
+        extra = params[:extra].to_s.split(',')
+        opts = if extra.include?('counts')
+          {:methods => [:observations_count, :projects_count]}
+        else
+          {}
+        end
+        render :json => @observation_fields.as_json(opts)
+      end
     end
   end
 
@@ -30,8 +38,17 @@ class ObservationFieldsController < ApplicationController
         scope = scope.where("value = ?", @value) unless @value == "any"
         @observation_field_values = scope.page(params[:page])
         @observations = @observation_field_values.map{|ofv| ofv.observation}
+        @projects = @observation_field.project_observation_fields.includes(:project).page(1).map(&:project)
       end
-      format.json  { render :json => @observation_field }
+      format.json  do
+        extra = params[:extra].to_s.split(',')
+        opts = if extra.include?('counts')
+          {:methods => [:observations_count, :projects_count]}
+        else
+          {}
+        end
+        render :json => @observation_field.as_json(opts)
+      end
     end
   end
 
@@ -64,7 +81,7 @@ class ObservationFieldsController < ApplicationController
         format.json  { render :json => @observation_field, :status => :created, :location => @observation_field }
       else
         format.html { render :action => "new" }
-        format.json  { render :json => @observation_field.errors, :status => :unprocessable_entity }
+        format.json  { render :json => {:errors => @observation_field.errors.full_messages}, :status => :unprocessable_entity }
       end
     end
   end
@@ -78,7 +95,7 @@ class ObservationFieldsController < ApplicationController
         format.json  { render :json => @observation_field }
       else
         format.html { render :action => "edit" }
-        format.json  { render :json => @observation_field.errors, :status => :unprocessable_entity }
+        format.json  { render :json => {:errors => @observation_field.errors.full_messages}, :status => :unprocessable_entity }
       end
     end
   end
@@ -100,6 +117,52 @@ class ObservationFieldsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to(observation_fields_url) }
         format.json  { head :ok }
+      end
+    end
+  end
+
+  def merge
+    @reject = @observation_field
+    @keeper = ObservationField.find_by_id(params[:with])
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def merge_field
+    @keeper = ObservationField.find_by_id(params[:with])
+    @reject = @observation_field
+    error = if @keeper.blank?
+      t(:you_must_choose_an_observation_field)
+    elsif @reject.project_observation_fields.exists?
+      t(:you_cant_merge_observation_fields_in_use_by_projects)
+    end
+    if error
+      respond_to do |format|
+        format.html do
+          flash[:error] = t(:you_must_choose_an_observation_field)
+          redirect_back_or_default @observation_field
+        end
+      end
+      return
+    end
+
+    merge = []
+    keepers = []
+    params.each do |k,v|
+      if v.is_a?(Array) && v.size == 2
+        merge << k.gsub('keep_', '')
+      elsif k =~ /^keep_/ && v == 'reject'
+        keepers << k.gsub('keep_', '')
+      end
+    end
+
+    @keeper.merge(@reject, :merge => merge, :keep => keepers)
+
+    respond_to do |format|
+      format.html do
+        flash[:notice] = t(:fields_merged)
+        redirect_to @keeper
       end
     end
   end

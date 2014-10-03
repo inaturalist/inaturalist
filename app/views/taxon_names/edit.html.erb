@@ -21,3 +21,38 @@
     <% end -%>
   </div>
 <% end -%>
+
+
+<% unless @synonyms.blank? %>
+  <div class="small upstacked meta">
+    <h3><%=t :synonyms %></h3>
+    <p class="ui">
+      <%=t :there_are_x_synonyms_html, :count => @synonyms.total_entries %>
+      (<%=t :showing_one_to %><%= @synonyms.size %>).
+      <span class="button"><%= link_to t(:delete_all), delete_synonyms_of_taxon_name_path(@taxon_name), :method => :delete, :confirm => t(:are_you_sure?) %></span>
+    </p>
+    <table class="nobr">
+      <tr>
+        <th>Name</th>
+        <th>Lexicon</th>
+        <th>Taxon</th>
+        <th>Added by</th>
+        <th>Added on</th>
+        <th></th>
+      </tr>
+      <% for tn in @synonyms %>
+        <tr>
+          <td><%= tn.name %></td>
+          <td><%=t tn.lexicon, :default => tn.lexicon %></td>
+          <td><%= link_to_taxon tn.taxon, :sciname => true %></td>
+          <td><%= link_to_user(tn.creator) if tn.creator %></td>
+          <td><%=l tn.created_at, :format => :default %></td>
+          <td>
+            <%= link_to t(:edit), tn %>
+            <%= link_to t(:delete), tn, :method => :delete, :confirm => t(:are_you_sure?) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end -%>

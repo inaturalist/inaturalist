@@ -26,8 +26,27 @@ Inaturalist::Application.configure do
   # In production, Apache or nginx will already do this
   config.serve_static_assets = false
 
+  # Allow removal of expired assets:
+  config.assets.handle_expiration = true
+  config.assets.expire_after 2.months
+
+  # Compress JavaScripts and CSS
+  # Choose the compressors to use (if any)
+  config.assets.compress = true
+  config.assets.js_compressor = Uglifier.new(:mangle => false)
+  config.assets.css_compressor = :yui
+
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = false
+
+  # Generate digests for assets URLs
+  config.assets.digest = true
+
   # Enable serving of images, stylesheets, and javascripts from an asset server
-  # config.action_controller.asset_host = "http://assets.example.com"
+  config.action_controller.asset_host = Proc.new {|*args|
+    source, request = args
+    "#{request ? request.protocol : 'http://'}#{CONFIG.site_url.sub(/^https?:\/\//, '')}"
+  }
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

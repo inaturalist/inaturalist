@@ -376,15 +376,23 @@
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
-      <li>
-        <% if @project.curated_by?(current_user) -%>
-          <%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_observations)}".html_safe, invitations_path(@project), :class => "navlink" %>
-        <% else %>
-          <% if @observations_count.to_i > 0 %>
-            <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %>
-          <% end -%>
-        <% end -%>
-      </li>
+      <% if @project.curated_by?(current_user) -%>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_observations)}".html_safe, invitations_path(@project), :class => "navlink" %></li>
+      <% end -%>
+      <% if @project.curated_by?(current_user) && @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY -%>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_people)}".html_safe, invite_to_project_path(@project), :class => "navlink" %></li>
+      <% end -%>
+      <% if @project_user_invitation && @project_user_invitation.pending? -%>
+        <li class="invited">
+          <%= link_to "<span class='lead'>&raquo;</span> #{t(:join_this_project?)}".html_safe, join_project_path(@project), :class => "navlink" %>
+          <div class="inner">
+            <%=t :user_invited_you_to_join_this_project_on_date_html, :user => link_to_user(@project_user_invitation.user), :date => l(@project_user_invitation.created_at) %>
+          </div>
+        </li>
+      <% end -%>
+      <% if @project_user -%>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %></li>
+      <% end -%>
     <% end -%>
   </ul>
   

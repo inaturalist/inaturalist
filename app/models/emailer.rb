@@ -79,6 +79,20 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
+  def project_user_invitation(pui)
+    return if pui.blank?
+    @user = pui.invited_user
+    @sender = pui.user
+    @project = pui.project
+    set_locale
+    return if @user.email.blank?
+    return unless @user.prefers_project_invitation_email_notification?
+    return if @user.prefers_no_email?
+    return if @project.user.suspended?
+    mail :to => @user.email, :subject => t(:user_invited_you_to_join_project, :user => @sender.try(:login), :project => @project.title)
+    reset_locale
+  end
+
   private
   def default_url_options
     opts = Rails.application.config.action_mailer.default_url_options.dup

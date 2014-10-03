@@ -49,4 +49,8 @@ class GuidePdfFlowTask < FlowTask
   def pdf_url
     outputs.first.file.url unless outputs.blank?
   end
+
+  def options
+    read_attribute(:options) || {}
+  end
 end

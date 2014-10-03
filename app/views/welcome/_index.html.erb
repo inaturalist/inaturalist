@@ -65,7 +65,7 @@
           }
           else {
             var icon_img = $('<img/>').attr(
-              'src', '/images/mapMarkers/questionmarker.png');
+              'src', "<%= image_path('mapMarkers/questionmarker.png') %>");
           }
           icon_div.empty().append(icon_img);
         }
@@ -79,21 +79,21 @@
 <div id="welcomecol" class="clear last column prepend-2 span-21 append-1">
   <div id="explore" class="column span-5">
     <center>
-      <%= link_to image_tag("/images/map-icon-155px.jpg"),observations_path %>
+      <%= link_to image_tag("map-icon-155px.jpg"),observations_path %>
       <h1><%= link_to t(:explore!).titleize, observations_path %></h1>
       <p><%= link_to t(:your_world!).titleize, observations_path %></p>
     </center>
   </div>
   <div id="learn" class="column span-5">
     <center>
-      <%= link_to image_tag("/images/animals.jpg", :height => 155), taxa_path %>
+      <%= link_to image_tag("animals.jpg", :height => 155), taxa_path %>
       <h1><%= link_to t(:learn!).titleize, taxa_path %></h1>
       <p><%= link_to t(:about_life!).titleize, taxa_path %></p>
     </center>
   </div>
   <div id="record" class="column span-5 border">
     <center>
-      <%= link_to image_tag("/images/notebook-icon-color-155px-shadow.jpg", :width => 131, :height => 155), new_observation_path, :rel => "nofollow" %>
+      <%= link_to image_tag("notebook-icon-color-155px-shadow.jpg", :width => 131, :height => 155), new_observation_path, :rel => "nofollow" %>
       <h1><%= link_to t(:record!).titleize, new_observation_path, :rel => "nofollow" %></h1>
       <p>
         <%= link_to t(:add_observations!).titleize, new_observation_path, :rel => 'nofollow' %>

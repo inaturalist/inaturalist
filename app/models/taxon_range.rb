@@ -9,11 +9,11 @@ class TaxonRange < ActiveRecord::Base
   scope :without_geom, select((column_names - ['geom']).join(', '))
   scope :simplified, select(<<-SQL
       id, taxon_id, 
-      multi(
+      st_multi(
         cleangeometry(
           ST_Buffer(
             ST_SimplifyPreserveTopology(geom, 
-              exp(-(log(5000/npoints(geom)::float)+1.5944)/0.2586)
+              exp(-(log(5000/st_npoints(geom)::float)+1.5944)/0.2586)
             ),
             0.0
           )
@@ -52,7 +52,7 @@ class TaxonRange < ActiveRecord::Base
           xml.Placemark {
             xml.name
             xml.description
-            xml.styleUrl "#{CONFIG.site_url}/stylesheets/index.kml#taxon_range"
+            xml.styleUrl "#{CONFIG.site_url}/assets/index.kml#taxon_range"
             xml << self.geom.as_kml
           }
         }

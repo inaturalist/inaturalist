@@ -52,7 +52,8 @@ module HasSubscribers
     # * <tt>:include_owner</tt> - Create an update for the user associated
     #   with the resource, e.g. if a comment generates an update for an
     #   observation, the owner of the observation should be notified even if
-    #   they're not subscribed.
+    #   they're not subscribed. This can also be a Proc that takes the
+    #   arguments subscribable and notifier.
     # * <tt>:include_notifier</tt> - Create an update for the person
     #   associated with the notifying record.
     #
@@ -146,7 +147,7 @@ module HasSubscribers
       after_destroy do |record|
         resource = options[:to] ? record.send(options[:to]) : record
         user = record.auto_subscriber || record.send(subscriber)
-        if user
+        if user && resource
           Subscription.delete_all(:user_id => user.id, 
             :resource_type => resource.class.name, :resource_id => resource.id)
         else
@@ -166,12 +167,18 @@ module HasSubscribers
       notification ||= options[:notification] || "create"
       updater_proc = Proc.new {|subscribable|
         next if subscribable.blank?
-        if options[:include_owner] && subscribable.respond_to?(:user) && (subscribable == notifier || subscribable.user_id != notifier.user_id)
+        notify_owner = if options[:include_owner].is_a?(Proc)
+          options[:include_owner].call(notifier, subscribable)
+        elsif options[:include_owner]
+          subscribable.respond_to?(:user) && (subscribable == notifier || subscribable.user_id != notifier.user_id)
+        end
+        if notify_owner
           owner_subscription = subscribable.update_subscriptions.first(:conditions => {:user_id => subscribable.user_id})
           unless owner_subscription
             u = Update.create(:subscriber => subscribable.user, :resource => subscribable, :notifier => notifier, 
               :notification => notification)
             unless u.valid?
+              Rails.logger.error "[ERROR #{Time.now}] Tried to create an invalid update for the owner: #{u.errors.full_messages.to_sentence}"
             end
           end
         end

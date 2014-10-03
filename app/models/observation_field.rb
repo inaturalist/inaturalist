@@ -3,6 +3,7 @@ class ObservationField < ActiveRecord::Base
   has_many :observation_field_values, :dependent => :destroy
   has_many :observations, :through => :observation_field_values
   has_many :project_observation_fields, :dependent => :destroy
+  has_many :projects, :through => :project_observation_fields
   has_many :comments, :as => :parent, :dependent => :destroy
   has_subscribers :to => {
     :comments => {:notification => "activity", :include_owner => true}
@@ -93,6 +94,41 @@ class ObservationField < ActiveRecord::Base
 
   def normalized_name
     ObservationField.normalize_name(name)
+  end
+
+  def merge(reject, options = {})
+    return false if reject.project_observation_fields.exists?
+    attrs_to_merge = (options[:merge] || []).map(&:to_s)
+    attrs_to_keep = (options[:keep] || []).map(&:to_s)
+    %w(name datatype allowed_values description).each do |a|
+      if attrs_to_merge.include?(a)
+        new_value = if a == 'allowed_values'
+          rejected_values = reject.allowed_values.split('|')
+          all_values = (allowed_values.split('|') + rejected_values).uniq.join('|')
+          all_values
+        else
+          [send(a).to_s, reject.send(a).to_s].join(' ')
+        end
+        self.send("#{a}=", new_value)
+      elsif attrs_to_keep.include?(a)
+        self.send("#{a}=", reject.send(a))
+      end
+    end
+    if changed
+      unless save
+        Rails.logger.debug "[DEBUG] Failed to save: #{errors.full_messages.to_sentence}"
+      end
+    end
+    reject.observation_field_values.update_all(:observation_field_id => id)
+    reject.destroy    
+  end
+
+  def observations_count
+    @observations_count ||= observations.count
+  end
+
+  def projects_count
+    @projects_count ||= projects.count
   end
 
   def self.default_json_options

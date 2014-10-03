@@ -32,7 +32,7 @@
     <%= link_to "&raquo;&raquo; Back to #{@assessment.project.title}", project_path(@assessment.project) if params[:iframe].blank? && params[:preview].blank? %>
 
     <% if (@assessment.project.editable_by?(current_user)) && params[:iframe].blank?  && params[:preview].blank? %>
-      <%= link_to 'edit', edit_assessment_path(@assessment), :class => 'edit-button' %>
+      <%= link_to t(:edit), edit_assessment_path(@assessment), :class => 'edit-button' %>
     <% end %>
 
     <% if params[:iframe].blank? %>

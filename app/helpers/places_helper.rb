@@ -3,7 +3,7 @@ module PlacesHelper
     place_name = options[:display] ? place.display_name : place.name
     place_type_name = place_type(place)
     content_tag(:span, :class => "place #{place.place_type_name}") do
-      place_name + (place_type_name.blank? ? '' : " #{place_type_name}")
+      raw(place_name + (place_type_name.blank? ? '' : " #{place_type_name}"))
     end
   end
   
@@ -53,7 +53,7 @@ module PlacesHelper
   
   def google_charts_map_for_places(places, options = {}, tag_options = {})
     countries = places.select {|p| p.place_type == Place::PLACE_TYPE_CODES['Country']}
-    states = places.select {|p| p.place_type == Place::PLACE_TYPE_CODES['State'] && p.parent.try(:code) == 'US'}
+    states = places.select {|p| p.admin_level == Place::STATE_LEVEL && p.parent.try(:code) == 'US'}
     geographical_area = 'world'
     labels = countries.map(&:code)
     if states.size > 0 && (countries.empty? || (countries.size == 1 && countries.first.code = 'US'))

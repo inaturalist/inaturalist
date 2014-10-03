@@ -16,8 +16,8 @@
   elsif taxon.root?
     sciname = "<span class=\"sciname\">#{taxon.name == 'Life' ? t(:life) : taxon.name}</span>"
   else
-    rank = taxon.rank ? taxon.rank.capitalize : t(:unknown_rank)
-    rank = content_tag(:span, t(rank), :class => 'rank')
+    rank = taxon.rank ? t("ranks.#{taxon.rank.downcase}", :default => taxon.rank).capitalize : t(:unknown_rank)
+    rank = content_tag(:span, rank, :class => 'rank')
     sciname = "#{rank} <span class=\"sciname\">#{taxon.name}</span>"
   end
   include_id ||= false
@@ -44,8 +44,10 @@
       in
     <% end %>
   <% end -%>
-    <span class="<%= taxon_class %> <%= 'display_name' if named_ancestor %>"><%= link_url ? link_to(sciname.html_safe, link_url) : sciname.html_safe -%></span><span class="named_ancestor meta"><%- if named_ancestor -%>,
-      <%=t :a_member_of_taxon_html, :taxon => render("shared/taxon", :taxon => named_ancestor, :link_url => named_ancestor) %>
+    <span class="<%= taxon_class %> <%= 'display_name' if named_ancestor %>"><%= link_url ? link_to(sciname.html_safe, link_url) : sciname.html_safe -%></span><%- if named_ancestor -%>,
+      <span class="named_ancestor meta">
+        <%=t :a_member_of_taxon_html, :taxon => render("shared/taxon", :taxon => named_ancestor, :link_url => named_ancestor) %>
+      </span>
     </span>
   <% end -%>
 <% else %>

@@ -25,11 +25,11 @@ module ActiveRecord
     end
     
     def created_at_utc
-      created_at.try(:utc) if respond_to?(:created_at)
+      created_at.try(:utc) if has_attribute?(:created_at)
     end
     
     def updated_at_utc
-      updated_at.try(:utc) if respond_to?(:updated_at)
+      updated_at.try(:utc) if has_attribute?(:updated_at)
     end
     
     def to_json(options = {})

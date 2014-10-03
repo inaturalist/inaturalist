@@ -20,7 +20,7 @@ OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia 
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+Bundler.require(:default, :assets, Rails.env) if defined?(Bundler)
 
 # require custom logger that includes PIDs
 require File.expand_path('../../lib/better_logger', __FILE__)
@@ -67,6 +67,20 @@ module Inaturalist
 
     config.active_record.schema_format = :sql
 
+    # Enable the asset pipeline
+    config.assets.enabled = true
+
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
+
+    # Compile localized CSS:
+    config.assets.precompile += ['*.css', '*.js']
+
+    # in case assets reference application objects or methods
+    config.assets.initialize_on_precompile = true
+
+    config.i18n.enforce_available_locales = false
+
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
     end
@@ -85,6 +99,7 @@ GeoPlanet.appid = YDN_APP_ID
 
 FlickRaw.api_key = FLICKR_API_KEY
 FlickRaw.shared_secret = FLICKR_SHARED_SECRET
+FlickRaw.ca_path = "/etc/ssl/certs" if File.exists?("/etc/ssl/certs")
 
 # General settings
 SITE_NAME = CONFIG.site_name

@@ -23,4 +23,12 @@ class EmailerPreview < MailView
     ft ||= ObservationsExportFlowTask.includes(:outputs).where("flow_task_resources.id IS NOT NULL").last
     Emailer.observations_export_notification(ft)
   end
+
+  def project_user_invitation
+    pui = if (id = @rack_env["QUERY_STRING"].to_s[/id=([^&]+)/, 1])
+      ProjectUserInvitation.find_by_id(id)
+    end
+    pui ||= ProjectUserInvitation.last
+    Emailer.project_user_invitation(pui)
+  end
 end
