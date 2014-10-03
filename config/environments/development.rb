@@ -28,6 +28,9 @@ Inaturalist::Application.configure do
   # config.cache_classes = true
   config.cache_store = :mem_cache_store, CONFIG.memcached
 
+  # Enable serving of images, stylesheets, and javascripts from an asset server
+  config.action_controller.asset_host = CONFIG.site_url
+
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 

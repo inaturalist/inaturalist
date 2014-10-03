@@ -54,7 +54,9 @@ class FlowTasksController < ApplicationController
   
   def run
     delayed_progress(request.path) do
-      @job = Delayed::Job.enqueue(@flow_task)
+      opts = @flow_task.enqueue_options if @flow_task.respond_to?(:enqueue_options)
+      opts ||= {}
+      @job = Delayed::Job.enqueue(@flow_task, opts)
     end
     respond_to do |format|
       format.html

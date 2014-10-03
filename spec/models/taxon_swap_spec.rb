@@ -35,7 +35,6 @@ describe TaxonSwap, "destruction" do
     s = Subscription.make!(:resource => @swap)
     @swap.destroy
     dead_s = Subscription.find_by_id(s.id)
-    Rails.logger.debug "[DEBUG] dead_s: #{dead_s}"
     dead_s.should be_blank
   end
 end
@@ -227,7 +226,9 @@ describe TaxonSwap, "commit_records" do
     Delayed::Job.delete_all
     stamp = Time.now
     @swap.commit_records
-    Delayed::Job.where("created_at >= ?", stamp).detect{|j| j.handler =~ /notify_subscribers_of/}.should be_blank
+    Delayed::Job.where("created_at >= ?", stamp).detect{|j| 
+      j.handler =~ /notify_subscribers_of/ && j.handler =~ /Identification/
+    }.should be_blank
   end
 
   it "should re-evalute community taxa" do

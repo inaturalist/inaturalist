@@ -62,19 +62,23 @@ end
 describe FlickrPhoto, "to_taxon" do
   before {setup_flickr_stuff}
   it "should use the title" do
-    t = Taxon.make!
-    @flickr_photo_hash["title"] = t.name
-    r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
-    fp = FlickrPhoto.new_from_api_response(r)
-    fp.to_taxon.should eq t
+    pending_flickr_setup do
+      t = Taxon.make!
+      @flickr_photo_hash["title"] = t.name
+      r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
+      fp = FlickrPhoto.new_from_api_response(r)
+      fp.to_taxon.should eq t
+    end
   end
 
   it "should parse a parenthesized taxon name out of the title" do
-    tn = TaxonName.make!
-    @flickr_photo_hash['title'] = "#{tn.name} (#{tn.taxon.name})"
-    r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
-    fp = FlickrPhoto.new_from_api_response(r)
-    fp.to_taxon.should eq tn.taxon
+    pending_flickr_setup do
+      tn = TaxonName.make!
+      @flickr_photo_hash['title'] = "#{tn.name} (#{tn.taxon.name})"
+      r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
+      fp = FlickrPhoto.new_from_api_response(r)
+      fp.to_taxon.should eq tn.taxon
+    end
   end
 end
 

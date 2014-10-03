@@ -10,7 +10,6 @@ describe GuideTaxaController, "index" do
   it "should include guide photos" do
     get :index, :format => :json, :guide_id => @guide.id
     json = JSON.parse(response.body)
-    puts json.inspect
     json['guide_taxa'][0]['guide_photos'].should_not be_blank
   end
 end

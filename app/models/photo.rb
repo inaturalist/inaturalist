@@ -134,7 +134,13 @@ class Photo < ActiveRecord::Base
     photo_taxa = to_taxa if photo_taxa.blank?
     return if photo_taxa.blank?
     photo_taxa = photo_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
-    photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
+    candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
+    # if there are synonyms, don't decide
+    if photo_taxa.detect{|t| t.name == candidate.name && t.id != candidate.id}
+      nil
+    else
+      candidate
+    end
   end
   
   # Sync photo object with its native source.  Implemented by descendents

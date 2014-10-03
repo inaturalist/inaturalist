@@ -39,7 +39,7 @@ class Site < ActiveRecord::Base
   preference :geo_nelng, :string
 
   # default place ID for place filters. Presently only used on /places, but use may be expanded
-  belongs_to :geo_place, :inverse_of => :sites
+  belongs_to :place, :inverse_of => :sites
 
   # header logo, should be at least 118x22
   if Rails.env.production?
@@ -50,12 +50,12 @@ class Site < ActiveRecord::Base
       :bucket => CONFIG.s3_bucket,
       :path => "sites/:id-logo.:extension",
       :url => ":s3_alias_url",
-      :default_url => ""
+      :default_url => "/assets/logo-small.gif"
   else
     has_attached_file :logo,
       :path => ":rails_root/public/attachments/sites/:id-logo.:extension",
       :url => "/attachments/sites/:id-logo.:extension",
-      :default_url => ""
+      :default_url => "/assets/logo-small.gif"
   end
 
   # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
@@ -67,12 +67,27 @@ class Site < ActiveRecord::Base
       :bucket => CONFIG.s3_bucket,
       :path => "sites/:id-logo_square.:extension",
       :url => ":s3_alias_url",
-      :default_url => ""
+      :default_url => "/assets/bird.png"
   else
     has_attached_file :logo_square,
       :path => ":rails_root/public/attachments/sites/:id-logo_square.:extension",
       :url => "/attachments/sites/:id-logo_square.:extension",
-      :default_url => ""
+      :default_url => "/assets/bird.png"
+  end
+
+  # CSS file to override default styles
+  if Rails.env.production?
+    has_attached_file :stylesheet,
+      :storage => :s3,
+      :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :s3_host_alias => CONFIG.s3_bucket,
+      :bucket => CONFIG.s3_bucket,
+      :path => "sites/:id-stylesheet.css",
+      :url => ":s3_alias_url"
+  else
+    has_attached_file :stylesheet,
+      :path => ":rails_root/public/attachments/sites/:id-stylesheet.css",
+      :url => "/attachments/sites/:id-stylesheet.css"
   end
 
   # URL where visitors can learn more about the site
@@ -161,4 +176,8 @@ class Site < ActiveRecord::Base
   preference :name_providers, :string #: [col, ubio]
 
   preference :natureserve_key, :string
+
+  def to_s
+    "<Site #{id} #{url}>"
+  end
 end

@@ -1,5 +1,5 @@
 <% content_for(:title) do %>
-    <%=t :add_an_observation %>
+  <%=t :add_an_observation %>
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'observations/new', 'taxa', 'taxon_browser', 'observations/observation_fields', "observations/edit" %>
@@ -67,12 +67,12 @@
       <% if current_user.email.blank? %>
         <div class="clear stacked notice">
           <%= fields_for current_user, :builder => DefaultFormBuilder do |fu| %>
-            <%= fu.label :email, 'Email address for comments and other feedback',
-              "data-tip" => "Add your email to get feedback on your observation from the community. If you'd rather not share it, please check back soon!"
+            <%= fu.label :email, t(:email_address_for_comments_and_other_feedback),
+              "data-tip" => t(:add_your_email_to_get)
             %>
             <%= fu.text_field :email, 
               :type => "email",
-              :placeholder => "Your email address" %>
+              :placeholder => t(:your_email_address) %>
           <% end %>
         </div>
       <% end %>
@@ -114,7 +114,7 @@
               <%= f.check_box :facebook_sharing, :checked => current_user.prefers_share_observations_on_facebook? %>
             <% end -%>
             <label for="observation_facebook_sharing">
-              <%= image_tag "http://www.google.com/s2/u/0/favicons?domain=facebook.com" %>
+              <%= image_tag favicon_url_for('http://www.facebook.com') %>
               Facebook
             </label>
           </span>
@@ -125,7 +125,7 @@
               <%= f.check_box :twitter_sharing, :checked => current_user.prefers_share_observations_on_twitter? %>
             <% end -%>
             <label for="observation_twitter_sharing">
-              <%= image_tag "http://www.google.com/s2/u/0/favicons?domain=twitter.com" %>
+              <%= image_tag favicon_url_for('http://www.twitter.com') %>
               Twitter
             </label>
           </span>

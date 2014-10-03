@@ -11,5 +11,7 @@
       </li>
     <% end %>
   </ul>
-
 <% end %>
+<p class="ui">
+  <%= link_to t(:add_another_flag), send("new_#{@object.class.name.underscore}_flag_path", @object), :id => "flag_this", :class => "readmore" %>
+</p>

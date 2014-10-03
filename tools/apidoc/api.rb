@@ -1245,6 +1245,16 @@ EOT
       values %w(native endemic introduced naturalised invasive managed)
     end
 
+    param "latitude" do
+      desc "Retrieve places that contain this lat/lon combination. This will only return places with boundaries defined."
+      values "Decimal latitude, e.g. 12.345"
+    end
+
+    param "longitude" do
+      desc "See latitude"
+      values "Decimal longitude, e.g. 12.345"
+    end
+
     example do
       request "/places.json?taxon=Calochortus+tiburonensis&place_type=open+space"
       response <<-EOJS

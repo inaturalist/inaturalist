@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_site
+    @site ||= Site.find_by_id(CONFIG.site_id) if CONFIG.site_id
     @site ||= Site.where("url LIKE '%#{request.host}%'").first
   end
 
@@ -225,12 +226,15 @@ class ApplicationController < ActionController::Base
   end
   
   def search_for_places
-    @q = params[:q]
+    @q = params[:q].to_s.sanitize_encoding
     if params[:limit]
       @limit ||= params[:limit].to_i
       @limit = 50 if @limit > 50
     end
-    @places = Place.search(@q, :page => params[:page], :limit => @limit)
+    site_place = @site.place if @site
+    search_options = {:page => params[:page], :limit => @limit}
+    search_options[:with] = {:place_ids => [site_place.id]} if site_place
+    @places = Place.search(sanitize_sphinx_query(@q), search_options)
     if logged_in? && @places.blank?
       if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
         new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}.compact
@@ -331,6 +335,17 @@ class ApplicationController < ActionController::Base
           render :json => {:error => message}, :status => :unprocessable_entity
         end
       end
+    end
+  end
+
+  def limited_per_page
+    requested_per_page = params[:per_page].to_i
+    if requested_per_page > 200
+      200
+    elsif requested_per_page <= 0
+      30
+    else
+      requested_per_page
     end
   end
 

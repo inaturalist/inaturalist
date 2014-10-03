@@ -9,6 +9,10 @@ class TaxonPhoto < ActiveRecord::Base
   
   validates_associated :photo
   validates_uniqueness_of :photo_id, :scope => [:taxon_id], :message => "has already been added to that taxon"
+
+  def to_s
+    "<TaxonPhoto #{id} taxon_id: #{taxon_id} photo_id: #{photo_id}>"
+  end
   
   def destroy_orphan_photo
     Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(photo_id)

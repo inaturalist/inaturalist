@@ -7,10 +7,10 @@ class ProjectsController < ApplicationController
 
   doorkeeper_for :by_login, :join, :leave, :if => lambda { authenticate_with_oauth? }
   
-  before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms]
+  before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms, :invite]
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
-    :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count]
+    :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count, :browse]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map, :browse]
   before_filter :ensure_current_project_url, :only => :show
   before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
@@ -31,12 +31,22 @@ class ProjectsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        project_observations = ProjectObservation.all(
-          :select => "MAX(id) AS id, project_id",
-          :order => "id desc", :limit => 9, :group => "project_id")
-        @projects = Project.all(:conditions => ["id IN (?)", project_observations.map(&:project_id)])
-        @created = Project.all(:order => "id desc", :limit => 9)
-        @featured = Project.featured.all
+        if @site && (@site_place = @site.place)
+          @place = @site.place unless params[:everywhere].yesish?
+        end
+        project_observations = ProjectObservation.
+          select("MAX(project_observations.id) AS id, project_id").
+          order("id DESC").
+          limit(9).
+          group('project_id')
+        if @place
+          project_observations = project_observations.joins(:project => :place).where(@place.self_and_descendant_conditions)
+        end
+        @projects = Project.where("id IN (?)", project_observations.map(&:project_id))
+        @created = Project.order("id desc").limit(9)
+        @created = @created.joins(:place).where(@place.self_and_descendant_conditions) if @place
+        @featured = Project.featured
+        @featured = @featured.joins(:place).where(@place.self_and_descendant_conditions) if @place
         if logged_in?
           @started = current_user.projects.all(:order => "id desc", :limit => 9)
           @joined = current_user.project_users.all(:include => :project, :order => "id desc", :limit => 9).map(&:project)
@@ -62,7 +72,13 @@ class ProjectsController < ApplicationController
   def browse
     @order = params[:order] if ORDERS.include?(params[:order])
     @order ||= 'title'
-    @projects = Project.paginate(:page => params[:page], :order => ORDER_CLAUSES[@order])
+    @projects = Project.page(params[:page]).order(ORDER_CLAUSES[@order])
+    if (@place = Place.find(params[:place_id]) rescue nil)
+      @projects = @projects.in_place(@place)
+    end
+    respond_to do |format|
+      format.html
+    end
   end
   
   def show
@@ -87,10 +103,16 @@ class ProjectsController < ApplicationController
         @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
         @members_count = @project_users.total_entries
         @project_observations = @project.project_observations.page(1).
-          includes(
-            :observation => [:iconic_taxon, :observation_photos => [:photo]],
-            :curator_identification => [:user, :taxon]
-          ).
+          includes([
+            { :observation => [ :iconic_taxon,
+                                :projects,
+                                :quality_metrics,
+                                :stored_preferences,
+                                :taxon,
+                                { :observation_photos => :photo },
+                                { :user => :stored_preferences } ] },
+            { :curator_identification => [:user, :taxon] }
+          ]).
           order("project_observations.id DESC")
         @project_observations_count = @project_observations.count
         @observations = @project_observations.map(&:observation) unless @project.project_type == 'bioblitz'
@@ -118,6 +140,9 @@ class ProjectsController < ApplicationController
         else
           project_observations_url(@project, :per_page => 24)
         end
+        if logged_in? && @project_user.blank?
+          @project_user_invitation = @project.project_user_invitations.where(:invited_user_id => current_user).first
+        end
 
         if params[:iframe]
           @headless = @footless = true
@@ -131,6 +156,8 @@ class ProjectsController < ApplicationController
           {:project_observation_fields => ProjectObservationField.default_json_options}
         ])
         opts[:methods] << :project_observations_count
+        opts[:methods] << :list_observed_and_total
+
         render :json => @project.as_json(opts)
       end
     end
@@ -391,6 +418,7 @@ class ProjectsController < ApplicationController
       return
     end
     unless request.post?
+      @project_user_invitation = @project.project_user_invitations.where(:invited_user_id => current_user).first
       respond_to do |format|
         format.html do
           if partial = params[:partial]
@@ -504,6 +532,22 @@ class ProjectsController < ApplicationController
     
     respond_to do |format|
       format.html
+      format.json do
+        opts = {}
+        opts[:project_id] = @project.id
+        opts[:project_title] = @project.title
+        opts[:total_project_users] = @total_project_users
+        opts[:total_project_observations] = @total_project_observations
+        opts[:total_unique_observers] = @total_unique_observers
+        opts[:data] = []
+        @data.each do |data|
+          per_period = Hash.new
+          data.each_with_index { |d, i| per_period[@headers[i].gsub(/[ \/]/, '_')] = d }
+          opts[:data] << per_period
+        end
+
+        render :json => opts
+      end
       format.csv do 
         csv_text = CSV.generate(:headers => true) do |csv|
           csv << @headers
@@ -756,8 +800,13 @@ class ProjectsController < ApplicationController
   end
   
   def search
+    if @site && (@site_place = @site.place)
+      @place = @site.place unless params[:everywhere].yesish?
+    end
     if @q = params[:q]
-      @projects = Project.search(@q, :page => params[:page])
+      opts = {:page => params[:page]}
+      opts[:with] = {:place_ids => [@place.id]} if @place
+      @projects = Project.search(@q, opts)
     end
     respond_to do |format|
       format.html
@@ -768,6 +817,15 @@ class ProjectsController < ApplicationController
         ])
         render :json => @projects.to_json(opts)
       end
+    end
+  end
+
+  def invite
+    @project_user_invitations = @project.project_user_invitations.includes(:user, :invited_user).page(params[:page]).
+      joins("LEFT OUTER JOIN project_users ON project_users.user_id = project_user_invitations.invited_user_id AND project_users.project_id = #{@project.id}").
+      where("project_users.id IS NULL").order("project_user_invitations.id DESC")
+    respond_to do |format|
+      format.html
     end
   end
   

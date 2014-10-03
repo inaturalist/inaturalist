@@ -215,6 +215,12 @@ ProjectUser.blueprint do
   project { Project.make }
 end
 
+ProjectUserInvitation.blueprint do
+  user { User.make! }
+  invited_user { User.make! }
+  project { Project.make! }
+end
+
 ProjectObservation.blueprint do
   observation { Observation.make }
   project { Project.make }

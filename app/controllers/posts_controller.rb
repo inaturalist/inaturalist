@@ -116,19 +116,16 @@ class PostsController < ApplicationController
       @preview = @post
       @observations ||= @post.observations.all(:include => [:taxon, :photos])
       return render(:action => 'edit')
-=begin
-      if @post.update_attributes(params[:post])
-        redirect_to (@post.parent.is_a?(Project) ?
-                     edit_project_journal_post_path(@post.parent.slug, @post, :preview => true) :
-                     edit_journal_post_path(@post.user.login, @post, :preview => true)) and return
-      end
-=end
     end
     
     # This will actually perform the updates / deletions, so it needs to 
     # happen after preview rendering
-    # AG: actually, i don't think this actually runs after preview rendering...
-    @post.observations = @observations if @observations
+    if @observations
+      @post.observations = @observations
+    else
+      @post.observations.clear
+    end
+
     if @post.update_attributes(params[@post.class.name.underscore.to_sym])
       if @post.published_at
         flash[:notice] = t(:post_published)
@@ -234,7 +231,7 @@ class PostsController < ApplicationController
   def author_required
     if ((@post.parent.is_a?(Project) && !@post.parent.editable_by?(current_user)) ||
         !(logged_in? && @post.user.id == current_user.id))
-        flash[:notice] = t(:only_the_author_of_this_post_can_do_that)
+      flash[:notice] = t(:only_the_author_of_this_post_can_do_that)
       redirect_to (@post.parent.is_a?(Project) ?
                    project_journal_path(@post.parent.slug) :
                    journal_by_login_path(@post.user.login))

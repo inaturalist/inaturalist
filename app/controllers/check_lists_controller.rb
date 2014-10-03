@@ -26,31 +26,24 @@ class CheckListsController < ApplicationController
 
       # Searches must use place_id instead of list_id for default checklists 
       # so we can search items in other checklists for this place
-      if @q = params[:q]
+      if (@q = params[:q]) && !@q.blank?
         @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
         @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
       end      
     end
+
     if params[:find_missing_listings]
       @missing_filter_taxon = params[:missing_filter_taxon].present? ? Taxon.find(params[:missing_filter_taxon]) : nil
       @hide_descendants = params[:hide_descendants]
       @hide_ancestors = params[:hide_ancestors]
-
-
       @missing_listings_list = params[:missing_listing_list_id].present? ? List.find_by_id(params[:missing_listing_list_id]) : nil
-
       list_ids_from_projects = ProjectList.joins(:project).where("projects.place_id = ?", @list.place_id).pluck(:id)
-
       @lists_for_missing_listings = List.where("(place_id = ? AND id != ?) OR id IN (?)", @list.place_id, @list.id, list_ids_from_projects).order(:title)
       missing_listings_list_ids = @lists_for_missing_listings.map(&:id)
-
       listed_taxa_on_this_list = @list.find_listed_taxa_and_ancestry_as_hashes
       listed_taxa_on_other_lists = @list.find_listed_taxa_and_ancestry_on_other_lists_as_hashes(missing_listings_list_ids)
-
       scoped_list = apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, @missing_filter_taxon, @hide_ancestors, @hide_descendants, @missing_listings_list)
-
       ids_for_listed_taxa_on_other_lists = scoped_list.map{|lt| lt['id'] }
-
       @missing_listings = ListedTaxon.where('listed_taxa.id IN (?)', ids_for_listed_taxa_on_other_lists).paginate({:page => params[:missing_listings_page] || 1, :per_page => 20})
     end
     super #show from list module

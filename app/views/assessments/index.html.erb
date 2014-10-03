@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%=h @project.title %> assessments
+    <%= t(:x_project_journal, :project => strip_tags(@project.title), :name => t(:assessments)) %>
 <%- end -%>
 <% content_for(:extracss) { stylesheet_link_tag "assessments" } %>
 
@@ -33,17 +33,17 @@
 </div>
 
 <div class="last column span-20">
-  <%= link_to("Add an assessment", new_project_assessment_path(@project), :class => "readmore new-assessment-link") if @project.curated_by?(current_user) %>
+  <%= link_to(t(:add_an_assessment), new_project_assessment_path(@project), :class => "readmore new-assessment-link") if @project.curated_by?(current_user) %>
   <h3>
     <%=t :assessments %>
   <% helptip_for :colors do %>
-    Taxon assessments are documents assessing the current status of a species, usually conservation status. For example, a regional conservation organization might use them to organize information and solicit feedback about the status of several threatened taxa in the region.
+    <%=t :taxon_assessments_are %>
   <% end -%>
   </h3>
   
   <% if @assessments.blank? -%>
     <div class="description noresults">
-      No assessments have been added to this project yet.
+      <%=t :no_assessments_have_been_added_to_this_project_yet %>
     </div>
   <% else %>
     <% for project_assessment in @assessments %>

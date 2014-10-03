@@ -1,0 +1,15 @@
+.status{display:block;padding:0;border:none;text-align:left;margin:2px auto;}
+.status.inline{display:inline;}
+.status.loading{padding-left:20px;background:image-url('spinner-small.gif') transparent 0px 50% no-repeat;color:#888;}
+.status.loading.bigloading{padding-left:40px;background:image-url('spinner.gif') transparent 0px 50% no-repeat;font-size:14pt;line-height:2;}
+.status.pale.loading{background-image:image-url('spinner-small-999999_on_ffff99.gif');}
+.status.eee.loading{background-image:image-url('spinner-small-on_eeeeee.gif');}
+.status.error,
+.error{color:DeepPink;}
+.status.error a,
+.error a{color:#36c;}
+.status.success{color:green;}
+.status.plain{background: none;}
+.padded.status {padding:2px 5px;}
+.iconified.status {padding-left: 26px;position:relative;}
+.iconified.status .ui-icon {position:absolute; left: 5px; top: 2px;}

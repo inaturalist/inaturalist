@@ -11,6 +11,7 @@ describe ListsController, "show" do
   it "should filter by taxon" do
     parent = Taxon.make!
     lt1 = ListedTaxon.make!(:taxon => Taxon.make!(:parent => parent))
+    parent.children.size.should eq 1
     lt2 = ListedTaxon.make!(:list => lt1.list)
     get :show, :format => :json, :id => lt1.list_id, :taxon => parent.id
     json = JSON.parse(response.body)

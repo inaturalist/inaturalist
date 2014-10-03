@@ -13,15 +13,26 @@
   <%= javascript_include_tag "observations/observation_fields",
                              'inaturalist/map3',
                              "jquery/plugins/jquery.latLonSelector.js",
+                             "jquery/plugins/inat/datepicker.js",
                              "projects/form" %>
 <%- end -%>
 <%- project ||= @project -%>
 <%= form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true, :class => "project_form"} do |f| %>
   <%= f.error_messages %>
 
-  <%= f.text_field :title, :required => true %>
+  <div class="column span-12">
+    <%= f.text_field :title, :required => true %>
+    <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]},
+      :include_blank => t(:normal),
+      :description => t(:contest_projects_description) %>
+    <%= f.form_field :preferred_membership_model, :description => t(:project_membership_model_description) do %>
+      <% for type in Project::MEMBERSHIP_MODELS %>
+        <%= f.radio_button "preferred_membership_model", type, :label => t(type), :label_after => true, :wrapper => {:class => "inlineblock"} %>  
+      <% end %>
+    <% end -%>
+  </div>
   
-  <div id="icon_fields">
+  <div id="icon_fields" class="column span-12 last">
     <%= f.form_field :project_icon, :label => "#{t(:project_icon)} (PNG, JPG, or GIF)", :description => t('views.projects.edit.icon_desc'), :wrapper => {:class => 'clear'} do %>
       <% if project.icon.file? -%>
         <%= image_tag(project.icon.url(:thumb), :class => "left") %>
@@ -54,33 +65,31 @@
       <% end -%>
     <% end %>
   </div>
-
   
   <%= f.text_area :description, :description => t(:describe_purpose) %>
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
 
-  <div class="clear">
-    <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]}, {:include_blank => t(:normal)},
-      :description => t(:contest_projects_description) %>
+  <fieldset id="taxa">
+    <legend><%=t :checklist %></legend>
     <%= f.check_box :prefers_count_from_list,
         :label => t(:show_total_listed_taxa),
         :label_after => true,
         :description => t(:show_the_total_number_of) %>
-    <%= f.select :preferred_count_by, {species: "species", leaves: "leaves", all: "all"} %>  
-  </div>
+    <%= f.select :preferred_count_by, {t(:species).downcase => "species", t(:leaves).downcase => "leaves", t(:all).downcase => "all"}, :description => t(:project_preferred_count_description) %>
+  </fieldset>
 
   <fieldset id="bioblitz" style="<%= "display:none;" unless @project.project_type == Project::BIOBLITZ_TYPE %>">
-    <legend>
-      <%=t :bioblitz %>
-      <%= helptip "&nbsp;".html_safe do %>
-        <%= t('views.projects.edit.bioblitz_desc_html') %>
-        <%=t 'views.projects.show.bioblitz_results_desc_html' %>
-      <% end -%>
-    </legend>
-    <%= f.datetime_select :start_time, :include_blank => true, :description => t('views.projects.edit.start_time_desc'), :required => true %>
-    <%= f.datetime_select :end_time, :include_blank => true, 
-      :description => t('views.projects.edit.end_time_desc'), :required => true %>
-    <%= f.text_field :event_url, :label => t(:event_registration_url), :placeholder => t(:event_url, :default => "Event URL"), :description => t('views.projects.edit.event_url_desc') %>
+    <legend><%=t :bioblitz %></legend>
+    <div class="description"><%= t('views.projects.edit.bioblitz_desc_html') %></div>
+    <div class="column span-12">
+      <%= f.text_field :start_time, :value => f.object.start_time ? f.object.start_time.iso8601 : nil, :description => t('views.projects.edit.start_time_desc') %>
+    </div>
+    <div class="last column span-11">
+      <%= f.text_field :end_time, :value => f.object.end_time ? f.object.end_time.iso8601 : nil, :description => t('views.projects.edit.end_time_desc') %>
+    </div>
+    <div class="column span-23">
+      <%= f.text_field :event_url, :placeholder => t(:event_url), :description => t('views.projects.edit.event_url_desc') %>
+    </div>
   </fieldset>
 
   <fieldset class="location">
@@ -131,9 +140,9 @@
 
   <% if project.place && project.place.check_list %>
     <fieldset class="unobserved-listings">
-      <legend>Unobserved Listings</legend>
+      <legend><%=t :unobserved_listings %></legend>
       <p class="description">
-        Select how unobserved listings are displayed
+        <%=t :select_how_unobserved_listings_are_displayed %>
       </p>
       <%= f.radio_button("show_from_place", false, { checked: !project.show_from_place.present?, label: t(:display_listings_added_by_curators), :label_after => true})%>
       <%= f.radio_button("show_from_place", true, { checked: project.show_from_place.present?, label: t(:display_listings_from_place), :label_after => true})%>
@@ -181,8 +190,6 @@
     <% end -%>
     <%= link_to_function t(:add_new_rule), "$(this).before('#{escape_javascript new_rule_field}'); rulify(); $(this).hide()" %>
   </fieldset>
-
-  <%= f.text_field :tracking_codes, :description => t(:comma_separated_list_of_tracking_codes, :root_url => root_url, :project_id => @project.id) %>
 
   <% if (current_user.is_admin? || (@project.editable_by?(current_user) && @project.trusted)) && !@project.new_record? -%>
     <fieldset id="project_assets">
@@ -262,6 +269,8 @@
       </div>
     </div>
   </fieldset>
+
+  <%= f.text_field :tracking_codes, :description => t(:comma_separated_list_of_tracking_codes, :root_url => root_url, :project_id => @project.id) %>
 
   <div class="buttons buttonrow">
     <%= f.submit project.new_record? ? t(:create) : t(:save), :class => "default button", "data-loading-click" => t(:saving) %>

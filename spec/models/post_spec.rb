@@ -14,6 +14,13 @@ describe Post, "creation" do
     post = without_delay {Post.make!(:user => u, :parent => u)}
     Update.where(:notifier_type => "Post", :notifier_id => post.id, :subscriber_id => post.user_id).first.should be_blank
   end
+
+  it "should not be published if user created in the last 24 hours" do
+    u = User.make!(:created_at => Time.now)
+    p = Post.make(:published_at => Time.now, :user => u)
+    p.should_not be_valid
+    p.errors[:user].should_not be_blank
+  end
 end
 
 describe Post, "creation for project" do

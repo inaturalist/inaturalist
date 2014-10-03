@@ -7,10 +7,7 @@
 -%>
 <% content_for(:extrajs) do %>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'inaturalist/map3', 
-                             'jquery/plugins/jquery.url.packed.js',
-                             'jquery/plugins/jqModal',
-                             'modal_image' %>
+  <%= javascript_include_tag 'map_bundle' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       // Setup the Map
@@ -86,8 +83,8 @@
     .observations.map{float:left;width:640px;}
     #map{width:640px;height:500px;}
     #mapcontrols{width:640px;float:left;clear:left;margin-top:0.2em;}
-    #mapdivider{float:left;width:10px;height:500px;background:50% 50% url(/images/toggle_arrow_right.png) no-repeat;}
-    #mapdivider.closed{background:50% 50% url(/images/toggle_arrow_left.png) no-repeat;}
+    #mapdivider{float:left;width:10px;height:500px;background:50% 50% url(<%= image_path('toggle_arrow_right.png') %>) no-repeat;}
+    #mapdivider.closed{background:50% 50% url(<%= image_path('toggle_arrow_left.png') %>) no-repeat;}
     #mapdivider:hover{background-color:#FFC;cursor:pointer;}
     #mapobservations{position:relative;}
     #mapobservations.mini{float:left;width:300px;height:520px;overflow:auto;}

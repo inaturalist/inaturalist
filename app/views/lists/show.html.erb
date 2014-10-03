@@ -93,12 +93,17 @@
       <%=t :this_list_only_accepts_taxa_that_are %> <%= t(@list.rank_rule.gsub(/[_?]+/, ' ').strip.gsub(' ', '_'), :default => @list.rank_rule.gsub(/[_?]+/, ' ').strip).downcase %>.
     </div>
   <% end -%>
+  <% if @list.is_a?(ProjectList) -%>
+    <div class="description">
+      <%=t 'views.lists.show.project_list_desc' %>
+    </div>
+  <% end -%>
 
   <div class="column-separator">
-    <img src="/images/logo-eee-15px.png">
+    <img src="<%= image_path('logo-eee-15px.png') %>">
   </div>
 
-  <% if @q -%>
+  <% if !@q.blank? -%>
     <div id="searchresults" class="description quiet box">
       <%= render :partial => "shared/page_results", :object => @listed_taxa %>
       <%=t :for %> <strong>"<%= @q %>"</strong>
@@ -121,7 +126,7 @@
     </ul>
 
     <div class="column-separator">
-      <img src="/images/logo-eee-15px.png">
+      <img src="<%= image_path('logo-eee-15px.png') %>">
     </div>
   </div>
 
@@ -225,7 +230,7 @@
             </a>
           <% end %>
         
-          <form method="get">
+          <form id="filters" method="get">
             <%= hidden_field_tag :q, @q %>
             <div class="clear stat <%= ' current' if @filter_taxon && !@filter_taxon.is_iconic? %>">
               <div class="readable title">
@@ -250,8 +255,8 @@
                   <%= radio_button_tag :observed, :f, @observed == 'f' %>
                   <%= t(:no).downcase %>
                 <% end -%>
-                <%= label :observed, nil do %>
-                  <%= radio_button_tag :observed, nil, @observed.blank? %>
+                <%= label :observed, :any do %>
+                  <%= radio_button_tag :observed, :any, @observed.blank? %>
                   <%= t(:any) %>
                 <% end -%>
               </div>

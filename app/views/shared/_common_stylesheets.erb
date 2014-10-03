@@ -1,13 +1,9 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<%= stylesheet_link_tag 'blueprint/screen',
-                        'blueprint/plugins/buttons/buttons',
-                        'jquery-ui',
-                        'jquery/plugins/jquery.qtip.min',
-                        "jquery/ui.tabs.css",
-                        "jquery/plugins/jquery.multiselect.css",
-                        "jquery/plugins/jquery.autocomplete.css",
-                        'index',
-                        'observations' %>
+<%= stylesheet_link_tag 'blueprint_bundle' %>
+<%= stylesheet_link_tag 'application_bundle' %>
+<% if @site && @site.stylesheet -%>
+  <%= stylesheet_link_tag @site.stylesheet.url %>
+<% end -%>
 <!--[if lte IE 7]>
   <%= stylesheet_link_tag 'ie' %>
 <![endif]-->

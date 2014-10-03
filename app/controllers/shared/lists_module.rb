@@ -73,6 +73,7 @@ module Shared::ListsModule
     end
 
     @listed_taxa ||= main_list.paginate(@find_options) 
+    ListedTaxon.preload_associations(@listed_taxa, [ :list, :user, :first_observation ])
 
     respond_to do |format|
       format.html do
@@ -160,9 +161,9 @@ module Shared::ListsModule
             # no job id, no job, let's get this party started
             Rails.cache.delete(@list.generate_csv_cache_key(:view => @view))
             job = if @view == "taxonomic"
-              @list.delay.generate_csv(:path => path_for_taxonomic_csv, :taxonomic => true)
+              @list.delay(:priority => NOTIFICATION_PRIORITY).generate_csv(:path => path_for_taxonomic_csv, :taxonomic => true)
             else
-              @list.delay.generate_csv(:path => path_for_normal_csv)
+              @list.delay(:priority => NOTIFICATION_PRIORITY).generate_csv(:path => path_for_normal_csv)
             end
             Rails.cache.write(@list.generate_csv_cache_key(:view => @view), job.id, :expires_in => 1.hour)
           end
@@ -285,8 +286,23 @@ module Shared::ListsModule
   
   def destroy
     if @list.id == current_user.life_list_id
-      flash[:notice] = t(:sorry_you_cant_delete_your_own_life_list)
-      redirect_to @list and return
+      respond_to do |format|
+        format.html do
+          flash[:notice] = t(:sorry_you_cant_delete_your_own_life_list)
+          redirect_to @list
+        end
+      end
+      return
+    end
+
+    if @list.is_a?(ProjectList)
+      respond_to do |format|
+        format.html do
+          flash[:notice] = t(:you_cant_delete_a_project_list)
+          redirect_to @list
+        end
+      end
+      return
     end
     
     @list.destroy
@@ -301,7 +317,6 @@ module Shared::ListsModule
         end
         redirect_to(redirect_path)
       end
-      format.xml  { head :ok }
     end
   end
   
@@ -429,7 +444,7 @@ private
 
   def handle_default_checklist_setup(list, q, search_taxon_ids)
     unpaginated_listed_taxa = ListedTaxon.find_listed_taxa_from_default_list(list.place_id)
-    if q
+    unless q.blank?
       unpaginated_listed_taxa = unpaginated_listed_taxa.filter_by_taxa(search_taxon_ids)
     end
     unpaginated_listed_taxa
@@ -467,6 +482,7 @@ private
   def load_list #before_filter
     @list = List.find_by_id(params[:id].to_i)
     @list ||= List.find_by_id(params[:list_id].to_i)
+    List.preload_associations(@list, :user)
     render_404 && return unless @list
     true
   end
@@ -610,7 +626,7 @@ private
       elsif @occurrence_status=="not_absent"
         unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
       end
-    else
+    elsif params[:occurrence_status] != 'any'
       @occurrence_status = "not_absent"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
     end
@@ -639,11 +655,13 @@ private
   end
 
   def filter_by_param?(param_name)
-    !([nil, "on"].include?(param_name))
+    !([nil, "on", "any"].include?(param_name))
   end
 
   def filter_by_taxon?
-    !!(params[:taxon] && @filter_taxon = (Taxon.find_by_id(params[:taxon].to_i) || Taxon.where("lower(name) = ?", params[:taxon].to_s.downcase).first))
+    return false if params[:taxon].blank?
+    @filter_taxon ||= Taxon.find_by_id(params[:taxon].to_i) || Taxon.where("lower(name) = ?", params[:taxon].to_s.downcase).first
+    !@filter_taxon.blank?
   end
 
   def filter_by_iconic_taxon?

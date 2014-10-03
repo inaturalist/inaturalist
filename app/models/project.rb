@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   has_many :project_users, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
   has_many :project_invitations, :dependent => :destroy
+  has_many :project_user_invitations, :dependent => :delete_all
   has_many :users, :through => :project_users
   has_many :observations, :through => :project_observations
   has_one :project_list, :dependent => :destroy
@@ -36,6 +37,11 @@ class Project < ActiveRecord::Base
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
   preference :count_by, :string, :default => 'species'
+
+  MEMBERSHIP_OPEN = 'open'
+  MEMBERSHIP_INVITE_ONLY = 'inviteonly'
+  MEMBERSHIP_MODELS = [MEMBERSHIP_OPEN, MEMBERSHIP_INVITE_ONLY]
+  preference :membership_model, :string, :default => MEMBERSHIP_OPEN
   
   # For some reason these don't work here
   # accepts_nested_attributes_for :project_user_rules, :allow_destroy => true
@@ -74,7 +80,7 @@ class Project < ActiveRecord::Base
   }
   
   has_attached_file :icon, 
-    :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#" },
+    :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#", :original => "1024x1024>" },
     :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :default_url => "/attachment_defaults/general/:style.png"
@@ -113,6 +119,11 @@ class Project < ActiveRecord::Base
   define_index do
     indexes :title
     indexes :description
+    # This is super brittle: the sphinx doc identifier here is based on
+    # ThinkingSphinx.unique_id_expression, which I can't get to work here, so
+    # if the number of indexed models changes this will break.
+    has "SELECT projects.id * 4::INT8 + 2 AS id, regexp_split_to_table(projects.place_id::text || (CASE WHEN ancestry IS NULL THEN '' ELSE '/' || ancestry END), '/') AS place_id 
+FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, :source => :query
     set_property :delta => :delayed
   end
 
@@ -294,7 +305,7 @@ class Project < ActiveRecord::Base
   def eventbrite_id
     return if event_url.blank?
     return unless event_url =~ /eventbrite\.com/
-    @eventbrite_id ||= URI.parse(event_url).path.split('/').last[/\d+/, 0]
+    @eventbrite_id ||= URI.parse(event_url).path.split('/').last.scan(/\d+/).last
   end
 
   def event_started?

@@ -7,7 +7,6 @@ class GuidesController < ApplicationController
     :unless => lambda { authenticated_with_oauth? }
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
-  before_filter :load_user_by_login, :only => [:user]
 
   layout "bootstrap"
   PDF_LAYOUTS = GuidePdfFlowTask::LAYOUTS
@@ -20,15 +19,15 @@ class GuidesController < ApplicationController
     @guides = if logged_in? && params[:by] == "you"
       current_user.guides.limit(100).order("guides.id DESC")
     else
-      Guide.page(params[:page]).order("guides.id DESC").published
+      Guide.page(params[:page]).per_page(limited_per_page).order("guides.id DESC").published
     end
     @guides = @guides.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
 
-    unless params[:place_id].blank?
-      @place = Place.find(params[:place_id]) rescue nil
-      if @place
-        @guides = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, @place.descendant_conditions)})", @place)
-      end
+    @root_place = @site.place if @site
+    @place = (Place.find_by_id(params[:place_id]) rescue nil) unless params[:place_id].blank?
+    @place ||= @root_place unless logged_in? && params[:by] == "you"
+    if @place
+      @guides = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, @place.descendant_conditions)})", @place)
     end
 
     unless params[:taxon_id].blank?
@@ -166,10 +165,11 @@ class GuidesController < ApplicationController
         ancestry_counts_scope = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", @guide).scoped
         ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
         ancestry_counts = ancestry_counts_scope.group(:ancestry).count
-        if ancestry_counts.blank?
+        ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0 && a[0] == Taxon::LIFE.id.to_s}
+        if ancestries.blank?
           @nav_taxa = []
+          @nav_taxa_counts = {}
         else
-          ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0 && a[0] == Taxon::LIFE.id.to_s}
           width = ancestries.last.size
           matrix = ancestries.map do |a|
             a + ([nil]*(width-a.size))
@@ -210,7 +210,7 @@ class GuidesController < ApplicationController
               :right => 0
             }
         elsif params[:flow_task_id] && flow_task = FlowTask.find_by_id(params[:flow_task_id])
-          redirect_to flow_task.pdf_url
+          redirect_to flow_task.pdf_url || @guide
         else
           matching_flow_task = GuidePdfFlowTask.
             select("DISTINCT ON (flow_tasks.id) flow_tasks.*").
@@ -324,16 +324,36 @@ class GuidesController < ApplicationController
   # DELETE /guides/1
   # DELETE /guides/1.json
   def destroy
-    @guide.destroy
+    if @guide.guide_taxa.count > 100
+      @guide.delay(:priority => USER_INTEGRITY_PRIORITY).destroy
+      msg = t(:guide_will_be_deleted)
+    else
+      @guide.destroy
+      msg = t(:guide_deleted)
+    end
 
     respond_to do |format|
-      format.html { redirect_to guides_url, notice: 'Guide deleted.' }
+      format.html { redirect_to guides_url, notice: msg }
       format.json { head :no_content }
     end
   end
 
   def import_taxa
-    @guide_taxa = @guide.import_taxa(params) || []
+    begin
+      @guide_taxa = @guide.import_taxa(params) || []
+    rescue OpenURI::HTTPError => e
+      respond_to do |format|
+        format.json do
+          msg = if params[:eol_collection_url]
+            t(:sorry_x_is_not_responding, :x => "EOL")
+          else
+            t(:sorry_that_service_is_not_responding)
+          end
+          render :json => {:error => msg}
+        end
+      end
+      return
+    end
     respond_to do |format|
       format.json do
         if partial = params[:partial]
@@ -348,7 +368,7 @@ class GuidesController < ApplicationController
   end
 
   def search
-    @guides = Guide.published.dbsearch(params[:q]).page(params[:page])
+    @guides = Guide.published.dbsearch(params[:q]).page(params[:page]).per_page(limited_per_page)
     pagination_headers_for @guides
     respond_to do |format|
       format.html
@@ -370,7 +390,6 @@ class GuidesController < ApplicationController
     @guides = current_user.guides.page(params[:page]).per_page(500)
     pagination_headers_for(@observations)
     respond_to do |format|
-      format.html
       format.json { render :json => @guides }
     end
   end

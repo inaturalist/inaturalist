@@ -85,3 +85,14 @@ describe Emailer, "invite" do
     mail.body.should_not be_blank
   end
 end
+
+describe Emailer, "project_user_invitation" do
+  it "should work if the sender no longer exists" do
+    pui = ProjectUserInvitation.make!
+    pui.user.destroy
+    pui.reload
+    pui.user.should be_blank
+    mail = Emailer.project_user_invitation(pui)
+    mail.body.should_not be_blank
+  end
+end

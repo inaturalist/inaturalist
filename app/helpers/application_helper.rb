@@ -263,14 +263,20 @@ module ApplicationHelper
     return text if text.blank?
     
     # make sure attributes are quoted correctly
-    text = text.gsub(/(\w+)=['"]([^'"]*?)['"]/, '\\1="\\2"')
+    text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
     
-    # Make sure P's don't get nested in P's
-    text = text.gsub(/<\\?p>/, "\n\n") unless options[:skip_simple_format]
+    unless options[:skip_simple_format]
+      # Make sure P's don't get nested in P's
+      text = text.gsub(/<\\?p>/, "\n\n")
+
+      # blockquotes should always start with a P
+      text = text.gsub(/blockquote(.*?)>\s*/, "blockquote\\1>\n\n")
+    end
     text = sanitize(text, options)
     text = compact(text, :all_tags => true) if options[:compact]
     text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
+    text = text.gsub(/<a /, '<a rel="nofollow" ')
     # Ensure all tags are closed
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
@@ -409,6 +415,8 @@ module ApplicationHelper
      abs_path = uri_join(root_url, abs_path).to_s
     end
     abs_path
+  rescue Sprockets::Helpers::RailsHelper::AssetPaths::AssetNotPrecompiledError
+    nil
   end
   
   def truncate_with_more(text, options = {})
@@ -687,6 +695,8 @@ module ApplicationHelper
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
       image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
+    when "ProjectUserInvitation"
+      image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options.merge(:alt => "#{resource.user.login} icon"))
     when "AssessmentSection"
       image_tag("#{root_url}#{resource.assessment.project.icon.url(:thumb)}", options)
     when "ListedTaxon"
@@ -762,7 +772,14 @@ module ApplicationHelper
         end
       end
     when "Observation"
-      t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
+      if notifier.is_a?(ProjectInvitation)
+        t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
+      elsif notifier.is_a?(ObservationFieldValue)
+        t(:user_added_an_observation_field_html, :user => notifier_user_link, :field_name => truncate(notifier.observation_field.name), 
+          :owner => you_or_login(resource.user, :capitalize_it => false))
+      else
+        "unknown"
+      end
     when "Project"
       project = resource
       if update.notifier_type == "Post"
@@ -785,6 +802,12 @@ module ApplicationHelper
         end
         t(:curators_changed_for_x_html, :x => title)
       end
+    when "ProjectUserInvitation"
+      if options[:skip_links]
+        t(:user_invited_you_to_join_project, :user => notifier_user.login, :project => resource.project.title)
+      else
+        t(:user_invited_you_to_join_project, :user => notifier_user_link, :project => link_to(resource.project.title, project_url(resource.project))).html_safe
+      end
     when "Place"
       t(:new_observations_from_place_html, 
         :place => options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource)))
@@ -793,7 +816,7 @@ module ApplicationHelper
         :partial => "shared/taxon", 
         :object => resource,
         :locals => {
-          :link_url => (options[:skip_links] == true ? nil : resource)
+          :link_url => (options[:skip_links] == true ? nil : url_for_resource_with_host(resource))
         })
       t(:new_observations_of_x_html, :x => name)
     when "Flag"
@@ -868,10 +891,19 @@ module ApplicationHelper
   end
   
   def update_cached(record, association)
-    if @update_cache && @update_cache[association.to_s.pluralize.to_sym]
-      cached = @update_cache[association.to_s.pluralize.to_sym][record.send("#{association}_id")]
+    unless record.respond_to?("#{association}_id")
+      return record.send(association)
     end
-    cached ||= record.send(association)
+    cache_key = record.send("#{association}_id")
+    cached = if @update_cache && @update_cache[association.to_s.pluralize.to_sym]
+      @update_cache[association.to_s.pluralize.to_sym][cache_key]
+    end
+    unless cached
+      @update_cache ||= {}
+      @update_cache[association.to_s.pluralize.to_sym] ||= {}
+      @update_cache[association.to_s.pluralize.to_sym][cache_key] = record.send(association)
+    end
+    @update_cache[association.to_s.pluralize.to_sym][cache_key]
   end
 
   def observation_field_value_for(ofv)
@@ -962,19 +994,19 @@ module ApplicationHelper
 
   def leaflet_js(options = {})
     h = <<-HTML
-      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+      #{ stylesheet_link_tag('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css') }
       <!--[if lte IE 8]>
-          <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+          #{ stylesheet_link_tag('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css') }
       <![endif]-->
-      <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+      #{ javascript_include_tag('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js') }
     HTML
     if options[:draw]
       h += <<-HTML
-        <link rel="stylesheet" href="/javascripts/leaflet.draw/leaflet.draw.css" />
+        #{ stylesheet_link_tag('leaflet.draw/leaflet.draw.css') }
         <!--[if lte IE 8]>
-            <link rel="stylesheet" href="/javascripts/leaflet.draw/leaflet.draw.ie.css" />
+            #{ stylesheet_link_tag('leaflet.draw/leaflet.draw.ie.css') }
         <![endif]-->
-        <script src="/javascripts/leaflet.draw/leaflet.draw.js"></script>
+        #{ javascript_include_tag('leaflet.draw/leaflet.draw.js') }
       HTML
     end
     raw h
@@ -1029,6 +1061,11 @@ module ApplicationHelper
     else
       ""
     end
+  end
+
+  def favicon_url_for(url)
+    uri = URI.parse(url) rescue nil
+    "http://www.google.com/s2/favicons?domain=#{uri.try(:host)}"
   end
   
 end

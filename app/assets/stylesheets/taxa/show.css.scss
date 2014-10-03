@@ -1,0 +1,416 @@
+.taxonomic_tree .taxon_name {
+  display: block;
+}
+
+#all_names ul {
+  list-style: none;
+  margin: 0;
+}
+
+#all_names li {
+  margin-bottom: 5px;
+}
+
+#all_names ul ul {
+  margin-left: 10px;
+}
+
+#photoscol {
+  width: 500px;
+}
+
+#obscol {
+  width: 280px;
+}
+
+#seenit {
+  text-align: center;
+  margin: 1em 0;
+}
+
+#seenit a.button {
+  display: inline;
+  float: none;
+  margin-left: 0.25em;
+}
+
+#seenit .status {
+  padding: 0.25em;
+}
+
+h3 .description {
+  font-size: 80%;
+}
+
+.column {
+  margin-bottom: 10px;
+}
+
+.column-separator {
+  clear: both;
+}
+
+.loading {
+  background: image-url('spinner-small.gif') 0 50% no-repeat;
+  padding-left: 20px;
+}
+
+.loading.on_eeeeee {
+  background: image-url('spinner-small-on_eeeeee.gif') 0 50% no-repeat;
+}
+
+/* Flaggings */
+#flag_this,
+#flaggings_heads_up {
+  padding-left: 18px;
+  margin-left: 0.2em;
+}
+
+#flag_this {
+  background: image-url('silk/flag_grey.png') 0 50% no-repeat;
+}
+
+#flaggings_heads_up,
+#flag_this:hover {
+  background: image-url('silk/flag_yellow.png') 0 50% no-repeat;;
+}
+
+/* Wikipedia Styles */
+
+.wikipedia_description {
+  overflow: hidden;
+  width: 100%;
+}
+
+.infobox, 
+.infobox_v2,
+table.infobox, 
+.infobox_v2,
+table.infobox_v2,
+.thumb, 
+.tright {
+  float: right;
+  clear: right;
+  margin-left: 20px;
+  margin-bottom: 1em;
+  background-color: #eee;
+  padding: 1em;
+}
+
+.gallerybox .thumb {
+  float: none;
+  margin: 0;
+  margin-bottom: 0.6em;
+  padding: 0;
+}
+
+.sisterproject {
+  width: 200px;
+}
+
+.sisterproject .floatleft {
+  width: auto;
+  float: left;
+}
+
+.taxon_description h1,
+.taxon_description h2,
+.taxon_description h3,
+.taxon_description h4 {
+  border-bottom: 1px solid #eee;
+}
+
+.taxon_description h3 {
+  line-height: 1.5;
+}
+
+.wikipedia_description .dablink,
+.wikipedia_description .rellink {
+  margin: 1em;
+  font-style: italic;
+}
+
+.wikipedia_description .editsection {
+  display: none;
+}
+
+.wikipedia_description .thumbimage {
+  margin-bottom: 0.6em;
+}
+
+.wikipedia_description .thumbcaption {
+  font-style: italic;
+}
+
+.wikipedia_description .thumbcaption,
+.wikipedia_description .noprint {
+  color: #888;
+}
+
+.wikipedia_description .magnify {
+  width: auto;
+  float: right;
+  margin-left: 1em;
+}
+
+.wikipedia_description table,
+.wikipedia_description tr,
+.wikipedia_description td,
+.wikipedia_description th {
+  border: 0 none;
+}
+
+.wikipedia_description th {
+  padding: 0.4em;
+}
+.mw-editsection {margin-left: 0.5em; font-size:smaller;}
+
+#places_list .editlink { display: none; }
+#places_list li:hover .editlink { display: inline; }
+
+.externallink { 
+  display: none;
+  margin: 0 0 0 10px;
+  line-height: 0;
+}
+h3 .externallink { font-size: 70%; }
+.taxon_description h3:hover .externallink { display: inline; }
+#noobservations .readable.description {
+  margin-bottom: 0.5em;
+}
+
+#noobservations .button {
+  width: auto;
+  float: none;
+  margin: 0 auto;
+}
+
+.edit_taxon_photos .taxon_photos {
+  margin-bottom: 1em;
+}
+
+#photos .photos_wrapper a {
+  display: block;
+  float: left;
+  margin: 0 10px 10px 0;
+}
+#photos img {max-width: 500px;}
+
+#photos .photos_wrapper a.last {
+  margin-right: 0;
+}
+
+#extras {
+  margin-top: 1em;
+}
+
+#add_to_list {
+  list-style: none;
+  margin: 0;
+}
+
+#add_to_list.lots {
+  max-height: 175px;
+  overflow: auto;
+}
+
+#add_to_list li {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+
+#add_to_list li.last {
+  padding: 0;
+  border: 0 none;
+}
+
+#add_to_list .controls {
+  float: right;
+}
+
+#add_to_list .action {
+  font-weight: bold;
+}
+
+#add_to_list .added a,
+#add_to_list li.description a {
+  color: #888;
+}
+
+#add_to_list .added a:hover,
+#add_to_list li.description a:hover {
+  color: black;
+}
+
+#actions {
+  background-color: #eee;
+  margin-bottom: 10px;
+}
+
+#actions #toplinks {
+  padding: 10px;
+  color: #888;
+}
+
+#add_to_list {
+  padding: 0 10px 10px 10px;
+}
+
+#taxon_links.tabs li {
+  padding: 4px 15px 3px 10px;
+  border: 1px solid transparent;
+  position: relative;
+}
+#taxon_links .toggle_menu ul { list-style: none; margin: 0;}
+
+.taxon_link .controls {
+  display: none;
+}
+
+.taxon_link .controls img {
+  width: 12px;
+}
+
+#taxon_links.tabs li.taxon_link:hover .controls {
+  display: block;
+  position: absolute;
+  top: 6px;
+  right: 0;
+}
+
+.toggle_menu .togglelink {
+  border: 1px solid transparent;
+  padding: 4px 10px 3px 16px;
+}
+
+.toggle_menu .menu {
+  right: 0;
+  left: auto;
+}
+
+#all_names {
+  margin-bottom: 1em;
+}
+
+.aka h3 {
+  margin-bottom: 0.5em;
+}
+
+#colors {
+  margin-bottom: 10px;
+}
+
+#colors .color {
+  float: left; margin: 0 5px 5px 0; width: 16px; height: 16px;
+  border: 1px solid #ccc;
+}
+
+#edit_colors {
+  clear:both;
+}
+
+#edit_colors .color_field {
+  float: left;
+  margin-right: 10px;
+  width: 60px;
+  padding: 2px;
+}
+
+#edit_colors .color_field input.checkbox {
+  margin: 0;
+}
+
+#edit_colors .black  { color: lightgrey;  background-color: black;}
+#edit_colors .white  { color: grey;       background-color: white;}
+#edit_colors .red    { color: lightpink;  background-color: red;}
+#edit_colors .green  { color: lightgreen; background-color: green;}
+#edit_colors .blue   { color: lightblue;  background-color: blue;}
+#edit_colors .purple { color: violet;     background-color: purple;}
+#edit_colors .yellow { color: goldenrod;  background-color: yellow;}
+#edit_colors .grey   { color: lightgrey;  background-color: grey;}
+#edit_colors .orange { color: chocolate;  background-color: orange;}
+#edit_colors .brown  { color: peru;       background-color: saddlebrown;}
+#edit_colors .pink   { color: deeppink;   background-color: pink;}
+
+.add_to_place_link {
+  padding: 5px;
+  
+  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eee;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  float: left;
+  width: 269px;
+  margin: 0 10px 10px 0;
+}
+
+#place_selector_search .add_to_place_link {
+  width: auto;
+  float: none;
+}
+
+.add_to_place_link:hover {
+  background-color: #fafafa;
+}
+
+#place_selector.ui-tabs .ui-tabs-nav {
+  margin-bottom: 10px;
+}
+
+#place_selector.ui-tabs .ui-tabs-panel {
+  padding: 0;
+}
+
+#search_taxa form {
+  float: right;
+  margin-top: 5px;
+}
+
+#search_taxa .button {
+  margin-right: 0;
+}
+
+#place_selector_paste form {
+  width: 250px;
+  float: left;
+  margin-right: 10px;
+}
+
+#place_selector_paste textarea {
+  width: 236px;
+  height: 100px;
+}
+
+#place_selector_paste .places {
+  float: left;
+  width: 250px;
+}
+
+.ui-tabs .ui-tabs-panel { padding: 10px 0; }
+#taxon_links { 
+  position: relative;
+  z-index: 1;
+}
+
+.photoSelector {
+  border: 0 transparent;
+  padding: 0px;
+  margin-right: 0px;
+}
+.photoSelectorPhotos { overflow: none; }
+#conservation_statuses .conservation_status {text-align:left;}
+#conservation_statuses .ui {margin-left: 20px;}
+#conservation_statuses ul dl {margin-bottom: 0px;margin-left: 1.5em;}
+#listed_taxon_blurb { text-align: center; padding: 5px 10px; margin-bottom: 0; }
+.box .blob {margin:0;}
+.box .blob .ui-icon {margin:-2px 0 0 0;}
+
+
+.iconic_taxon_sprite { vertical-align: middle; }    
+.observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
+  width: 127px;
+  height: 127px;
+}
+#observations {max-height: 251px; overflow-y: auto;overflow-x: hidden;}
+h2 .named_ancestor {font-size: 80%;}

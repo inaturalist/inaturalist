@@ -30,8 +30,8 @@
 <% content_for(:extracss) do %>
   <%= render :partial => 'lists/show_css' %>
   <style type="text/css" media="screen">
-    #otherlistslink{background:url(/images/toggle_arrow_right.png) no-repeat 5px 5px;}
-    #otherlistslink.open{background:url(/images/toggle_arrow_down.png) no-repeat 0px 10px;}
+    #otherlistslink{background:url(<%= image_path('toggle_arrow_right.png') %>) no-repeat 5px 5px;}
+    #otherlistslink.open{background:url(<%= image_path('toggle_arrow_down.png') %>) no-repeat 0px 10px;}
     #other_check_lists_wrapper{border:2px solid #ddd;border-top:0 none;padding:10px;}
     #other_check_lists{padding-left:15px;}
     .toolset{color:#888;}
@@ -100,15 +100,23 @@
     <% end -%>
 
     <div class="column-separator">
-      <img src="/images/logo-eee-15px.png">
+      <img src="<%= image_path('logo-eee-15px.png') %>">
     </div>
   <% end -%>
   
-  <% if @q -%>
+  <% if !@q.blank? -%>
     <div id="searchresults" class="description quiet box">
       <%= render :partial => "shared/page_results", :object => @listed_taxa %>
       <%= t :for %> <strong>"<%= @q %>"</strong>
       <%= link_to t(:clear), url_for_params(:without => [:page, :q]) %>
+    </div>
+  <% elsif @filter_taxon %>
+    <div id="searchresults" class="description quiet box">
+      <%= render :partial => "shared/page_results", :object => @listed_taxa %>
+      <%=t :for %>
+      <%= render :partial => 'shared/taxon',
+                 :locals => { :taxon => @filter_taxon, :link_url => @filter_taxon } %>
+      <%= link_to t(:clear), url_for_params(:without => [:page, :taxon]) %>
     </div>
   <% end -%>
   
@@ -119,7 +127,7 @@
     </ul>
     
     <div class="column-separator">
-      <img src="/images/logo-eee-15px.png">
+      <img src="<%= image_path('logo-eee-15px.png') %>">
     </div>
   </div>
   
@@ -214,7 +222,7 @@
           <% end -%>
           <%- grouper_name = t(:other_animals) if grouper_name == 'Animals' -%>
           <%- grouper_class = grouper.name rescue 'Unknown' -%>
-          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params({:iconic_taxon => grouper.id, :without => [:page, :q]}.merge(fill_in_params)) %>">
+          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params({:iconic_taxon => grouper.id, :without => [:page, :q]}) %>">
             <div class="readable title">
               &nbsp;
             </div>
@@ -228,8 +236,9 @@
           </a>
         <% end %>
 
-        <form method="get">
+        <form id="filters" method="get">
           <%= hidden_field_tag :q, @q %>
+          <%= hidden_field_tag :view, @view %>
           <div class="clear stat <%= ' current' if @filter_taxon && !@filter_taxon.is_iconic? %>">
             <div class="readable title">
               &nbsp;
@@ -246,15 +255,15 @@
               <label><%=t :observed %></label>
               <br>
               <%= label :observed, :t do %>
-                <%= radio_button_tag :observed, :t, @observed == 't'%>
+                <%= radio_button_tag :observed, :t, @observed == 't' %>
                 <%= t(:yes).downcase %>
               <% end -%>
               <%= label :observed, :f do %>
-                <%= radio_button_tag :observed, :f, @observed == 'f'%>
+                <%= radio_button_tag :observed, :f, @observed == 'f' %>
                 <%= t(:no).downcase %>
               <% end -%>
-              <%= label :observed, nil do %>
-                <%= radio_button_tag :observed, nil, @observed.blank?%>
+              <%= label :observed, :any do %>
+                <%= radio_button_tag :observed, :any, @observed.blank? %>
                 <%= t(:any) %>
               <% end -%>
             </div>
@@ -265,8 +274,8 @@
                 <%= radio_button_tag :threatened, :t, @threatened == 't' %>
                 <%= t(:yes).downcase %>
               <% end -%>
-              <%= label :threatened, nil do %>
-                <%= radio_button_tag :threatened, nil, @threatened.blank? %>
+              <%= label :threatened, :any do %>
+                <%= radio_button_tag :threatened, :any, @threatened.blank? %>
                 <%= t(:any) %>
               <% end -%>
             </div>
@@ -285,8 +294,8 @@
                 <%= radio_button_tag :establishment_means, :introduced, @establishment_means == 'introduced' %>
                 <%= t('establishment.introduced').downcase %>
               <% end -%>
-              <%= label :establishment_means, nil do %>
-                <%= radio_button_tag :establishment_means, nil, @establishment_means.blank?%>
+              <%= label :establishment_means, :any do %>
+                <%= radio_button_tag :establishment_means, :any, @establishment_means.blank?%>
                 <%= t(:any) %>
               <% end -%>
             </div>
@@ -318,7 +327,7 @@
                 <%= t(:leaves).downcase %>
               <% end -%>
               <%= label :rank, :all do %>
-                <%= radio_button_tag :rank, :all, @rank=='all'%>
+                <%= radio_button_tag :rank, :all, @rank == 'all'%>
                 <%= t(:any).downcase %>
               <% end -%>
             </div>

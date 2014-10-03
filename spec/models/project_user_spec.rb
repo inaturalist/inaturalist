@@ -27,6 +27,21 @@ describe ProjectUser, "creation" do
     end
     pu.user.subscriptions.where(:resource_type => "AssessmentSection", :resource_id => as).should be_blank
   end
+
+  describe "invite-only projects" do
+    let(:project) { Project.make!(:prefers_membership_model => Project::MEMBERSHIP_INVITE_ONLY) }
+    
+    it "should not be valid for invite-only projects without a project user invitation" do
+      pu = ProjectUser.make(:project => project)
+      pu.should_not be_valid
+    end
+
+    it "should be valid for invite-only projects with a project user invitation" do
+      pui = ProjectUserInvitation.make!(:project => project)
+      pu = ProjectUser.make!(:project => project, :user => pui.invited_user)
+      pu.should be_valid
+    end
+  end
 end
 
 describe ProjectUser do

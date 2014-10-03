@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', "~> 3.2.17"
+gem 'rails', "~> 3.2.19"
 gem 'rake', '0.8.7'
 
 gem 'apipie-rails'
@@ -26,8 +26,7 @@ gem 'diffy'
 gem 'doorkeeper', '~> 0.6.7'
 gem 'dynamic_form'
 gem 'exifr'
-gem 'faker'
-gem 'flickraw'
+gem 'flickraw', "~> 0.9.8", :git => 'git://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
 gem "friendly_id", "~> 4.0.1"
 gem 'gdata', :git => 'git://github.com/dwaite/gdata.git'
 gem 'geocoder'
@@ -37,9 +36,10 @@ gem 'georuby', :git => 'git://github.com/kueda/georuby.git'
 gem 'haml'
 gem 'haml-rails'
 gem 'htmlentities'
-gem 'i18n-js'
+gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'
 gem 'irwi', :git => 'git://github.com/alno/irwi.git'
 gem 'json', "~> 1.7.7"
+gem 'jquery-rails'
 gem 'koala'
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 gem 'memcache-client'
@@ -66,6 +66,8 @@ gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'git://github.com/kueda/riparian.git'
 gem 'rvm-capistrano'
 gem 'savon'   #allow to consume soap services with WSDL
+gem 'sass', '= 3.2.5'
+gem 'sass-rails'
 gem 'soundcloud'
 gem 'spatial_adapter', :git => 'git://github.com/kueda/spatial_adapter.git' # until fragility updates the gemspec
 gem 'thinking-sphinx', '2.0.10'
@@ -73,6 +75,7 @@ gem 'translate-rails3', :require => 'translate', :git => 'git://github.com/JayTe
 gem 'trollop'
 gem 'ts-delayed-delta', '1.1.3', :require => 'thinking_sphinx/deltas/delayed_delta'
 gem 'twitter'
+gem 'uglifier'
 gem 'utf8-cleaner'
 gem "watu_table_builder", :require => "table_builder"
 gem 'wicked_pdf'
@@ -80,11 +83,25 @@ gem 'will_paginate'
 gem 'whenever', :require => false
 gem 'ya2yaml'
 gem 'ym4r_gm', :git => 'git://github.com/modyo/ym4r_gm.git'
+gem 'yui-compressor'
 gem 'xmp', :git => 'git://github.com/eknoop/xmp.git'
+
+group :production do
+  gem 'newrelic_rpm'
+end
 
 group :test, :development do
   gem "database_cleaner"
   gem "machinist"
   gem "rspec-rails"
   gem "rspec-html-matchers"
+  gem "debugger"
+end
+
+group :test do
+  gem 'faker'
+end
+
+group :assets do
+  gem 'turbo-sprockets-rails3'
 end

@@ -1,0 +1,27 @@
+:ruby
+  pui = update_invited || object
+  project = pui.project
+  non_remote ||= false
+  remote = !non_remote
+.project_user_invitation
+  .clear.stacked
+    = image_and_content link_to(image_tag(project.icon.url(:span2), :alt => "#{h(project.title)} icon", :width => 70, :height => 70), project), :image_size => 70 do
+      %h4= link_to project.title, project
+      .stacked
+        = truncate_with_more(formatted_user_text(project.description), :length => 300)
+      - unless project.terms.blank?
+        %h5=t :terms
+        = truncate_with_more formatted_user_text(project.terms), :length => 300
+      .box.quiet.buttonrow.inline.centered
+        - if pui.accepted?
+          .inter
+            =t :you_joined_this_project
+        - else
+          <span class="inter plain status" style="display:none"><%= t :joined! %></span>
+          = link_to t(:join_this_project), join_project_url(pui.project_id),
+            :remote => remote,
+            :method => :post,
+            "data-type" => remote ? "json" : nil,
+            "data-project-id" => pui.project_id,
+            "data-user-id" => current_user.id,
+            :class => "glaucous button acceptlink"

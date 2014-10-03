@@ -49,6 +49,10 @@
                 <%=t :resolver_said_x_html, :resolver => notifier.resolver.login, :x => notifier.comment %>
               <% end -%>
             </div>
+          <% elsif notifier.is_a? ObservationFieldValue %>
+            <div class="stacked body">
+              <%= render "observation_fields/observation_field_value", :observation_field_value => notifier, :hide_extra => true %>
+            </div>
           <% end -%>
           <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
             <%=t :posted_by %>

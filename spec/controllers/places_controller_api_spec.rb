@@ -47,4 +47,24 @@ describe PlacesController, "index" do
     get :index, :format => :json, :taxon => t.name, :establishment_means => ListedTaxon::NATIVE
     response.body.should =~ /#{p.name}/
   end
+
+  it "should return places with geometries intersecting lat/lon" do
+    p1 = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+    p2 = make_place_with_geom(:wkt => "MULTIPOLYGON(((0.25 0.25,0.25 1.25,1.25 1.25,1.25 0.25,0.25 0.25)))")
+    get :index, :format => :json, :latitude => 0.5, :longitude => 0.5
+    response.body.should =~ /#{p1.name}/
+    response.body.should =~ /#{p2.name}/
+    json = JSON.parse(response.body)
+    json.size.should eq 2
+  end
+
+  it "should not return places without geometries intersecting lat/lon" do
+    p1 = Place.make!
+    p2 = make_place_with_geom(:wkt => "MULTIPOLYGON(((0.25 0.25,0.25 1.25,1.25 1.25,1.25 0.25,0.25 0.25)))")
+    get :index, :format => :json, :latitude => -0.5, :longitude => -0.5
+    response.body.should_not =~ /#{p1.name}/
+    response.body.should_not =~ /#{p2.name}/
+    json = JSON.parse(response.body)
+    json.size.should eq 0
+  end
 end

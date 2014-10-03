@@ -1,5 +1,6 @@
 %table
   - for ft in flow_tasks
+    - next unless ft.export_output
     %tr
       %td.inline.buttonrow.smallbuttons
         = link_to t(:download), ft.export_output.file.url, :class => "glaucous button"
