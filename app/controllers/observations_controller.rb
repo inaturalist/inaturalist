@@ -52,7 +52,7 @@ class ObservationsController < ApplicationController
   ]
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
-  before_filter :curator_required, :only => [:curation]
+  before_filter :curator_required, :only => [:curation, :accumulation, :phylogram]
   before_filter :load_photo_identities, :only => [:new, :new_batch, :show,
     :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
     :import_photos, :import_sounds, :new_from_list]
@@ -1592,7 +1592,29 @@ class ObservationsController < ApplicationController
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
     oscope = Observation.query(search_params).scoped
     oscope = oscope.where("1 = 2") unless stats_adequately_scoped?
-    @taxa = Taxon.find_by_sql("SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id")
+    sql = if params[:rank] == "leaves"
+      ancestor_ids_sql = <<-SQL
+        SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
+        FROM taxa
+          JOIN (
+            #{oscope.to_sql}
+          ) AS observations ON observations.taxon_id = taxa.id
+      SQL
+      <<-SQL
+        SELECT DISTINCT ON (taxa.id) taxa.*
+        FROM taxa
+          LEFT OUTER JOIN (
+            #{ancestor_ids_sql}
+          ) AS ancestor_ids ON taxa.id::text = ancestor_ids.ancestor_id
+          JOIN (
+            #{oscope.to_sql}
+          ) AS observations ON observations.taxon_id = taxa.id
+        WHERE ancestor_ids.ancestor_id IS NULL
+      SQL
+    else
+      "SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id"
+    end
+    @taxa = Taxon.find_by_sql(sql)
     respond_to do |format|
       format.html do
         @headless = true
@@ -1612,6 +1634,11 @@ class ObservationsController < ApplicationController
             :taxonomic_order_name, :taxonomic_family_name,
             :taxonomic_genus_name, :taxonomic_species_name]
         )
+      end
+      format.json do
+        render :json => {
+          :taxa => @taxa
+        }
       end
     end
   end
@@ -1734,6 +1761,78 @@ class ObservationsController < ApplicationController
               )
             }
           }
+        }
+      end
+    end
+  end
+
+  def accumulation
+    params[:order_by] = "observed_on"
+    params[:order] = "asc"
+    search_params, find_options = get_search_params(params, :skip_pagination => true)
+    scope = Observation.query(search_params).scoped
+    scope = scope.where("1 = 2") unless stats_adequately_scoped?
+    scope = scope.joins(:taxon).
+      select("observations.id, observations.user_id, observations.created_at, observations.observed_on, observations.time_observed_at, observations.time_zone, taxa.ancestry, taxon_id").
+      where("time_observed_at IS NOT NULL")
+    rows = ActiveRecord::Base.connection.execute(scope.to_sql)
+    row = rows.first
+    @observations = rows.map do |row|
+      {
+        :id => row['id'].to_i,
+        :user_id => row['user_id'].to_i,
+        :created_at => DateTime.parse(row['created_at']),
+        :observed_on => row['observed_on'] ? Date.parse(row['observed_on']) : nil,
+        :time_observed_at => row['time_observed_at'] ? DateTime.parse(row['time_observed_at']).in_time_zone(row['time_zone']) : nil,
+        :offset_hours => DateTime.parse(row['time_observed_at']).in_time_zone(row['time_zone']).utc_offset / 60 / 60,
+        :ancestry => row['ancestry'],
+        :taxon_id => row['taxon_id'] ? row['taxon_id'].to_i : nil
+      }
+    end
+    respond_to do |format|
+      format.html do
+        @headless = true
+        render :layout => "bootstrap"
+      end
+      format.json do
+        render :json => {
+          :observations => @observations
+        }
+      end
+    end
+  end
+
+  def phylogram
+    search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
+    scope = Observation.query(search_params).scoped
+    scope = scope.where("1 = 2") unless stats_adequately_scoped?
+    ancestor_ids_sql = <<-SQL
+      SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
+      FROM taxa
+        JOIN (
+          #{scope.to_sql}
+        ) AS observations ON observations.taxon_id = taxa.id
+    SQL
+    sql = <<-SQL
+      SELECT taxa.id, name, ancestry
+      FROM taxa
+        LEFT OUTER JOIN (
+          #{ancestor_ids_sql}
+        ) AS ancestor_ids ON taxa.id::text = ancestor_ids.ancestor_id
+        JOIN (
+          #{scope.to_sql}
+        ) AS observations ON observations.taxon_id = taxa.id
+      WHERE ancestor_ids.ancestor_id IS NULL
+    SQL
+    @taxa = ActiveRecord::Base.connection.execute(sql)
+    respond_to do |format|
+      format.html do
+        @headless = true
+        render :layout => "bootstrap"
+      end
+      format.json do
+        render :json => {
+          :taxa => @taxa
         }
       end
     end

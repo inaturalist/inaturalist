@@ -149,6 +149,8 @@ Inaturalist::Application.routes.draw do
       get :taxa
       get :taxon_stats
       get :user_stats
+      get :accumulation
+      get :phylogram
       get :export
       post :email_export
     end

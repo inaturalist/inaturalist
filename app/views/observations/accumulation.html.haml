@@ -1,0 +1,110 @@
+= content_for :title do
+  - @title = title_for_observation_params(:lead => t(:observations_accumulation_curve, :default => "Observations Accumulation Curve"))
+  = strip_tags @title
+= content_for :extracss do
+  :css
+    body {
+      font: 10px sans-serif;
+    }
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+    .x.axis path {
+      display: none;
+    }
+    .line {
+      fill: none;
+      stroke: #1E90FF;
+      stroke-width: 1.5px;
+    }
+    .tline { stroke: #73AC13; }
+    .uline { stroke: #FF4500; }
+= content_for :extrajs do
+  = javascript_include_tag "d3.min"
+  :javascript
+    var margin = {top: 20, right: 20, bottom: 30, left: 50},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+    var x = d3.time.scale().range([0, width]);
+    var y = d3.scale.linear().range([height, 0]);
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom");
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left");
+    var line = d3.svg.line()
+        .x(function(d) { return x(d.timeObservedAt) })
+        .y(function(d) { return y(d.accObsCount) });
+    var tline = d3.svg.line()
+        .x(function(d) { return x(d.timeObservedAt) })
+        .y(function(d) { return y(d.accTaxCount) });
+    var uline = d3.svg.line()
+        .x(function(d) { return x(d.timeObservedAt) })
+        .y(function(d) { return y(d.accUsrCount) });
+    var svg = d3.select("#vis").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    d3.json(window.location.href.replace(/\?/, '.json?'), function(error, data) {
+      data = data.observations
+      console.log("[DEBUG] loaded data: ", data)
+      var taxa = {},
+          users = {},
+          accObsCount = 0,
+          accTaxCount = 0,
+          accUsrCount = 0
+      data.forEach(function(d) {
+        d.timeObservedAt = d3.time.format.iso.parse(d.time_observed_at)
+        accObsCount += 1
+        d.accObsCount = accObsCount
+        taxa[d.taxon_id] = taxa[d.taxon_id] || 0
+        if (taxa[d.taxon_id] == 0) {
+          accTaxCount += 1
+        }
+        taxa[d.taxon_id] = accTaxCount
+        d.accTaxCount = accTaxCount
+        users[d.user_id] = users[d.user_id] || 0
+        if (users[d.user_id] == 0) {
+          accUsrCount += 1
+        }
+        users[d.user_id] = accUsrCount
+        d.accUsrCount = accUsrCount
+      })
+      x.domain(d3.extent(data, function(d) { return d.timeObservedAt; }))
+      y.domain(d3.extent(data, function(d) { return d.accObsCount; }))
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis);
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis)
+      svg.append("path")
+          .datum(data)
+          .attr("class", "line")
+          .attr("d", line);
+      svg.append("path")
+          .datum(data)
+          .attr("class", "tline line")
+          .attr("d", tline);
+      svg.append("path")
+          .datum(data)
+          .attr("class", "uline line")
+          .attr("d", uline);
+    })
+- unless @stats_adequately_scoped
+  .container-fluid
+    .row-fluid
+      .span12= render 'stats_inadequately_scoped'
+- else
+  .container-fluid
+    .row-fluid
+      .span12
+        %h4= @title
+    .row-fluid
+      #vis

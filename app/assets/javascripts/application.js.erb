@@ -553,8 +553,8 @@ function currentTimeZone() {
   return {
     abbreviation: timeZoneAbbr,
     offset: timeZoneOffset,
-    offsetHours: timeZoneOffsetHours,
-    offsetMinutes: timeZoneOffsetMinutes
+    offsetHours: parseInt(timeZoneOffsetHours),
+    offsetMinutes: parseInt(timeZoneOffsetMinutes)
   }
 }
 
