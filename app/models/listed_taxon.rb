@@ -145,9 +145,9 @@ class ListedTaxon < ActiveRecord::Base
     ancestor_ids_sql + " AND taxon_ancestor_ids IS NOT NULL"
     # join ancestors on taxon_id
     join = <<-SQL
-      "LEFT JOIN (
+      LEFT JOIN (
         #{ancestor_ids_sql}
-      ) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id"
+      ) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id
     SQL
     # filter by listed_taxa where the listed_taxa.taxon_id is not present
     # among the ancestors, i.e. it is a leaf
