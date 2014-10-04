@@ -1172,7 +1172,7 @@ $.fn.observationTaxonStats = function(options) {
   baseSearch = baseSearch.replace(/page=[^&]+/, '')
   $.getJSON(url, function(json) {
     var speciesCount = json.rank_counts.leaves || json.rank_counts.species || 0,
-        speciesCountLink = $('<a>'+speciesCount+'</a>').attr('href', '/observations/taxa'+baseSearch)
+        speciesCountLink = $('<a>'+speciesCount+'</a>').attr('href', '/observations/taxa'+ baseSearch +'&rank=species')
     $('.species .count', container).html(speciesCountLink)
     if (json.species_counts.length > 0) {
       var most
