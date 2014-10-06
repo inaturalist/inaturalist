@@ -48,13 +48,21 @@
     end
   -%>
   <meta property="og:description" content="<%= desc %>">
-  <% if photo_obs = @observations.select{|o| o.observation_photos_count > 0}.sort_by{|o| [o.comments_count.to_i, o.id]}.last -%>
+  <%- photo_observations = @observations.select{|o| o.observation_photos_count > 0}.sort_by{|o| [o.comments_count.to_i, o.id]}[0..3] %>
+  <% if photo_obs = photo_observations.last -%>
     <% if photo = photo_obs.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/} -%>
       <meta property="og:image" content="<%= photo.medium_url %>"/> 
     <% end -%>
   <% end -%>
   <% if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
     <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
+  <% end -%>
+  <% if photo_observations.size > 0 -%>
+    <meta name="twitter:card" content="gallery">
+    <%- photo_observations.each_with_index do |o,i| %>
+      <%- next unless photo = o.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/} -%>
+      <meta name="twitter:image<%= i %>" content="<%= photo.medium_url %>"> 
+    <% end -%>
   <% end -%>
 <% end -%>
 
