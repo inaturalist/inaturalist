@@ -85,7 +85,7 @@ has_many_reflections.each do |k, reflection|
     system "test #{fname} || rm #{fname}"
   end
   sql = <<-SQL
-    SELECT * 
+    SELECT #{reflection.table_name}.* 
     FROM #{reflection.table_name} 
       JOIN observations ON #{reflection.table_name}.#{reflection.foreign_key} = observations.id
     WHERE #{@where.join(' AND ')}
@@ -100,7 +100,7 @@ puts "Exporting from photos (except LocalPhotos, which are gone)..."
 fname = "resurrect_#{session_id}-photos.csv"
 w = @where + ["photos.type != 'LocalPhoto'"]
 sql = <<-SQL
-  SELECT * 
+  SELECT photos.* 
   FROM photos 
     JOIN observation_photos ON observation_photos.photo_id = photos.id
     JOIN observations ON observations.id = observation_photos.observation_id
@@ -115,7 +115,7 @@ puts "Exporting from observation_photos..."
 fname = "resurrect_#{session_id}-observation_photos.csv"
 w = @where + ["photos.type != 'LocalPhoto'"]
 sql = <<-SQL
-  SELECT * 
+  SELECT observation_photos.* 
   FROM observation_photos 
     JOIN photos ON photos.id = observation_photos.photo_id
     JOIN observations ON observations.id = observation_photos.observation_id
@@ -129,7 +129,7 @@ resurrection_cmds << "psql inaturalist_production -c \"\\copy photos FROM '#{fna
 puts "Exporting from sounds..."
 fname = "resurrect_#{session_id}-sounds.csv"
 sql = <<-SQL
-  SELECT * 
+  SELECT sounds.* 
   FROM sounds 
     JOIN observation_sounds ON observation_sounds.sound_id = sounds.id
     JOIN observations ON observations.id = observation_sounds.observation_id
