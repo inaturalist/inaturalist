@@ -30,7 +30,7 @@
       :label => h(ofv.object.observation_field.try(:name).try(:capitalize)), 
       :description => h(ofv.object.observation_field.try(:description)),
       :required => required,
-      "data-json" => ofv.object.observation_field.to_json %>
+      "data-json" => json_escape(ofv.object.observation_field.to_json.html_safe) %>
   </div>
   <div class="description"><%= h(ofv.object.observation_field.try(:description)) %></div>
 <% end -%>

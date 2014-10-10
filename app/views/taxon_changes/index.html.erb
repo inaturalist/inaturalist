@@ -39,10 +39,10 @@
 
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">
-    window.taxon = <%= @taxon.to_json(:methods => [:html]).html_safe %>
-    window.user = <%= @user.to_json(:methods => [:html]).html_safe %>
-    window.defaultTaxa = <%= @default_taxa.to_json(:methods => [:html]).html_safe %>
-    window.defaultUsers = <%= @default_users.to_json(:methods => [:html]).html_safe %>
+    window.taxon = <%=json_escape @taxon.to_json(:methods => [:html]).html_safe %>
+    window.user = <%=json_escape @user.to_json(:methods => [:html]).html_safe %>
+    window.defaultTaxa = <%=json_escape @default_taxa.to_json(:methods => [:html]).html_safe %>
+    window.defaultUsers = <%=json_escape @default_users.to_json(:methods => [:html]).html_safe %>
     $(document).ready(function() {
       $('#filters_taxon_id').chooser({
         collectionUrl: '/taxa/autocomplete.json',

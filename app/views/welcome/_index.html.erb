@@ -131,7 +131,7 @@
     <% cache @observations_cache_key, :expires_in => 5.minutes do %>
       <%= render(:partial => 'observations/cached_component', :collection => @observations) %>
       <script type="text/javascript">
-        window.observations = <%= @observations.to_json.html_safe %>
+        window.observations = <%=json_escape @observations.to_json.html_safe %>
       </script>
     <% end -%>
   </div>

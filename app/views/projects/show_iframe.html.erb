@@ -6,10 +6,10 @@
   <%= google_maps_js %>
   <%= javascript_include_tag 'inaturalist/map3', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
-    var PROJECT = <%= @project.to_json(:only => [:title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
-        PLACE = <%= @place.to_json.html_safe %>,
+    var PROJECT = <%=json_escape @project.to_json(:only => [:title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
+        PLACE = <%=json_escape @place.to_json.html_safe %>,
         PLACE_GEOMETRY_KML_URL = <%=raw place_geometry_kml_url.inspect %>,
-        OBSERVATIONS = <%= @observations.to_json(:include => :iconic_taxon).html_safe %>,
+        OBSERVATIONS = <%=json_escape @observations.to_json(:include => :iconic_taxon).html_safe %>,
         KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe %>
     $(document).ready(function() {
       $('a').attr('target', '_blank')

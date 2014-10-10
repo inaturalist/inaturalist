@@ -13,7 +13,7 @@
   = javascript_include_tag "shramov-leaflet-plugins/Bing"
   %script{:src => "/assets/leaflet.fullscreen/Control.FullScreen.js"}
   :javascript
-    var PLACE = #{@place.to_json},
+    var PLACE = #{json_escape @place.to_json.html_safe},
         NPOINTS = #{@npoints.to_i},
         CLOUDMADE_KEY = #{CONFIG.cloudmade.try(:key).to_json},
         BING_KEY = #{CONFIG.bing.key.inspect}
@@ -125,7 +125,7 @@
       .last.column.span-5
         = f.select :admin_level, Place::ADMIN_LEVELS, :include_blank => true, :description => t('views.places.edit.admin_level_desc')
     = f.text_field :woeid, :description => "Yahoo Where On Earth ID"
-    = f.text_field :parent_id, :placeholder => t(:type_place_name), "data-chooser-chosen" => @place.parent.to_json, :label => t(:parent).capitalize
+    = f.text_field :parent_id, :placeholder => t(:type_place_name), "data-chooser-chosen" => json_escape(@place.parent.to_json.html_safe), :label => t(:parent).capitalize
     = link_to_toggle_box t(:replace_boundary_with_kml) do
       = file_field_tag :file, :accept => "application/vnd.google-earth.kml+xml"
       .meta= t('views.places.kml_field_desc')

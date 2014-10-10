@@ -30,7 +30,7 @@
                            "jquery/plugins/inat/photo_selectors.js" %>
                            
 <script type="text/javascript" charset="utf-8">
-  var tags = <%= @tags.to_json.html_safe %>;
+  var tags = <%=json_escape @tags.to_json.html_safe %>;
   $(document).ready(function(){
     updateTagInput();
     

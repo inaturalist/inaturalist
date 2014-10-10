@@ -60,11 +60,11 @@
                              'jquery/plugins/waypoints.min' %>
     
   <script type="text/javascript" charset="utf-8">
-    window.taxon = <%= @taxon.to_json(:methods => [:html]).html_safe %>
-    window.place = <%= @place.to_json(:methods => [:html]).html_safe %>
-    window.places = <%= @places.to_json(:methods => [:html]).html_safe %>
-    window.observation = <%= @observation.to_json(:include => [:taxon, :iconic_taxon]).html_safe %>
-    window.defaultTaxa = <%= @default_taxa.to_json(:methods => [:html]).html_safe %>
+    window.taxon = <%=json_escape @taxon.to_json(:methods => [:html]).html_safe %>
+    window.place = <%=json_escape @place.to_json(:methods => [:html]).html_safe %>
+    window.places = <%=json_escape @places.to_json(:methods => [:html]).html_safe %>
+    window.observation = <%=json_escape @observation.to_json(:include => [:taxon, :iconic_taxon]).html_safe %>
+    window.defaultTaxa = <%=json_escape @default_taxa.to_json(:methods => [:html]).html_safe %>
     
     var OVERRIDE_EXISTING = 0
     var RESPECT_EXISTING = 1

@@ -3,7 +3,7 @@
   pof = builder.object
   observation_field ||= pof.observation_field
 -%>
-<li class="project_observation_field lined" data-json="<%= observation_field.to_json %>">
+<li class="project_observation_field lined" data-json="<%=json_escape observation_field.to_json.html_safe %>">
   <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
   <div class="title"><%= observation_field.name if observation_field %></div>
   <div class="description"><%= observation_field.description if observation_field %></div>

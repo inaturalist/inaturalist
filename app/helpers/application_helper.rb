@@ -1067,5 +1067,11 @@ module ApplicationHelper
     uri = URI.parse(url) rescue nil
     "http://www.google.com/s2/favicons?domain=#{uri.try(:host)}"
   end
+
+  # http://jfire.io/blog/2012/04/30/how-to-securely-bootstrap-json-in-a-rails-view/
+  def json_escape(s)
+    result = s.to_s.gsub('/', '\/')
+    s.html_safe? ? result.html_safe : result
+  end
   
 end
