@@ -68,7 +68,7 @@
       :class => "selected" %>
     <form method="get" id="placechooser" class="buttonrow smallbuttons inline">
       <label for="place_name"><%= t :place_name %></label>
-      <input type="text" name="place_id" value="" id="place_id" placeholder="<%= t :type_place_name %>" data-json='<%=json_escape @place.to_json.html_safe %>'/>
+      <input type="text" name="place_id" value="" id="place_id" placeholder="<%= t :type_place_name %>" data-json='<%= @place.to_json.html_safe %>'/>
       <input type="submit" value="<%= t :generate_widget %>" disabled="true" class="disabled default button"/>
       <%= link_to_function t(:cancel), "$('#placechooser').hide(); $('#placechooserlink').show()", :class => "cancellink" %>
     </form>
@@ -89,7 +89,7 @@
       <% if @place -%>
         <div class="field placefield">
           <label><%= t :place %></label><br/>
-          <input type="text" name="place_id" value="<%= @place.id if @place %>" data-json='<%=json_escape @place.to_json.html_safe %>'/>
+          <input type="text" name="place_id" value="<%= @place.id if @place %>" data-json='<%= @place.to_json.html_safe %>'/>
           <div>
             <%= link_to "#{t(:view)} #{h(truncate(@place.name, :length => 30))}", @place, :class => "readmore" %>
           </div>
