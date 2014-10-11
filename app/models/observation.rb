@@ -6,9 +6,9 @@ class Observation < ActiveRecord::Base
   }
   notifies_subscribers_of :user, :notification => "created_observations"
   notifies_subscribers_of :public_places, :notification => "new_observations", 
-    :on => :save,
+    :on => :create,
     :queue_if => lambda {|observation|
-      observation.georeferenced? # && !observation.taxon_id.blank?
+      observation.georeferenced?
     },
     :if => lambda {|observation, place, subscription|
       return false unless observation.georeferenced?
@@ -17,7 +17,7 @@ class Observation < ActiveRecord::Base
       observation.taxon.ancestor_ids.include?(subscription.taxon_id)
     }
   notifies_subscribers_of :taxon_and_ancestors, :notification => "new_observations", 
-    :on => :save,
+    :on => :create,
     :queue_if => lambda {|observation| !observation.taxon_id.blank? },
     :if => lambda {|observation, taxon, subscription|
       return true if observation.taxon_id == taxon.id
