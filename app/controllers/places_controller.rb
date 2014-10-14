@@ -82,8 +82,15 @@ class PlacesController < ApplicationController
   
   def search
     search_for_places
-    if @places.size == 1
-      redirect_to @places.first
+    respond_to do |format|
+      format.html do
+        if @places.size == 1
+          redirect_to @places.first
+        end
+      end
+      format.json do
+        render(:json => @places.to_json(:methods => [ :html, :kml_url ]))
+      end
     end
   end
   
