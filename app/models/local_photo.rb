@@ -80,6 +80,9 @@ class LocalPhoto < Photo
       end
     rescue EXIFR::MalformedImage, EOFError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
+    rescue NoMethodError => e
+      raise e unless e.message =~ /path.*StringIO/
+      Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
     end
   end
   

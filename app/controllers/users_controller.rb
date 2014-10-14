@@ -1,9 +1,9 @@
 #encoding: utf-8
 class UsersController < ApplicationController  
-  doorkeeper_for :create, :update, :edit, :dashboard, :new_updates, :if => lambda { authenticate_with_oauth? }
+  doorkeeper_for :create, :update, :edit, :dashboard, :new_updates, :search, :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
-    :except => [:index, :show, :new, :create, :activate, :relationships]
+    :except => [:index, :show, :new, :create, :activate, :relationships, :search]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
     :show, :update, :relationships, :add_role, :remove_role]
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
