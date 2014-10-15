@@ -478,6 +478,17 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == captive.id}.should_not be_blank
     end
 
+    it "should filter by captive when quality metrics used" do
+      captive = Observation.make!
+      captive_qm = QualityMetric.make!(:observation => captive, :metric => QualityMetric::WILD, :agree => false)
+      wild = Observation.make!
+      wild_qm = QualityMetric.make!(:observation => wild, :metric => QualityMetric::WILD, :agree => true)
+      get :index, :format => :json, :captive => true
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == wild.id}.should be_blank
+      json.detect{|obs| obs['id'] == captive.id}.should_not be_blank
+    end
+
     it "captive filter=false should include nil" do
       o = Observation.make!
       get :index, :format => :json, :captive => false

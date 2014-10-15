@@ -1333,10 +1333,14 @@ class Observation < ActiveRecord::Base
   
   def quality_metrics_pass?
     QualityMetric::METRICS.each do |metric|
-      score = quality_metric_score(metric)
-      return false if score && score < 0.5
+      return false unless passes_quality_metric?(metric)
     end
     true
+  end
+
+  def passes_quality_metric?(metric)
+    score = quality_metric_score(metric)
+    score.blank? || score >= 0.5
   end
   
   def research_grade?
@@ -1507,7 +1511,7 @@ class Observation < ActiveRecord::Base
   end
 
   def captive_cultivated
-    quality_metrics.any?{|m| m.user_id == user_id && m.metric == QualityMetric::WILD && !m.agree?}
+    !passes_quality_metric?(QualityMetric::WILD)
   end
 
   ##### Community Taxon #########################################################

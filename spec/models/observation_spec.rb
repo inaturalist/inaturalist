@@ -1723,38 +1723,44 @@ describe Observation, "taxon updates" do
     u.subscriber.should eq(s.user)
   end
 
-  it "should generate an update for an observation that changed to the subscribed taxon" do
-    t = Taxon.make!
-    s = Subscription.make!(:resource => t)
-    Update.delete_all
-    o = without_delay {Observation.make!}
-    Update.count.should eq 0
-    without_delay do
-      o.update_attributes(:taxon => t)
-    end
-    u = Update.last
-    u.should_not be_blank
-    u.notifier.should eq(o)
-    u.subscriber.should eq(s.user)
-  end
+  # This ended up being really annoying for people subscribed to high level
+  # taxa like Anisoptera. Still feel like there's a better way to do this than
+  # triggering it on create
+  # it "should generate an update for an observation that changed to the subscribed taxon" do
+  #   t = Taxon.make!
+  #   s = Subscription.make!(:resource => t)
+  #   Update.delete_all
+  #   o = without_delay {Observation.make!}
+  #   Update.count.should eq 0
+  #   without_delay do
+  #     o.update_attributes(:taxon => t)
+  #   end
+  #   u = Update.last
+  #   u.should_not be_blank
+  #   u.notifier.should eq(o)
+  #   u.subscriber.should eq(s.user)
+  # end
 end
 
-describe Observation, "place updates" do
-  it "should generate an update for an observation that changed to the subscribed place" do
-    p = make_place_with_geom
-    s = Subscription.make!(:resource => p)
-    Update.delete_all
-    o = without_delay {Observation.make!}
-    Update.count.should eq 0
-    without_delay do
-      o.update_attributes(:latitude => p.latitude, :longitude => p.longitude)
-    end
-    u = Update.last
-    u.should_not be_blank
-    u.notifier.should eq(o)
-    u.subscriber.should eq(s.user)
-  end
-end
+# This ended up being really annoying for people subscribed to big places
+# like North America. Still feel like there's a better way to do this than
+# triggering it on create
+# describe Observation, "place updates" do
+#   it "should generate an update for an observation that changed to the subscribed place" do
+#     p = make_place_with_geom
+#     s = Subscription.make!(:resource => p)
+#     Update.delete_all
+#     o = without_delay {Observation.make!}
+#     Update.count.should eq 0
+#     without_delay do
+#       o.update_attributes(:latitude => p.latitude, :longitude => p.longitude)
+#     end
+#     u = Update.last
+#     u.should_not be_blank
+#     u.notifier.should eq(o)
+#     u.subscriber.should eq(s.user)
+#   end
+# end
 
 describe Observation, "update_for_taxon_change" do
   before(:each) do

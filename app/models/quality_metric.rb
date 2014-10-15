@@ -12,7 +12,7 @@ class QualityMetric < ActiveRecord::Base
     const_set metric.upcase, metric
   end
   
-  after_save :set_observation_quality_grade
+  after_save :set_observation_quality_grade, :set_observation_captive
   after_destroy :set_observation_quality_grade
   
   validates_presence_of :observation
@@ -26,6 +26,12 @@ class QualityMetric < ActiveRecord::Base
     return true if Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{observation.id}\n%'").exists?
     CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh_with_observation(observation.id, 
       :taxon_id => observation.taxon_id)
+    true
+  end
+
+  def set_observation_captive
+    return true unless observation
+    observation.set_captive
     true
   end
 

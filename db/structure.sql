@@ -39,6 +39,34 @@ COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial
 SET search_path = public, pg_catalog;
 
 --
+-- Name: _final_median(anyarray); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION _final_median(anyarray) RETURNS double precision
+    LANGUAGE sql IMMUTABLE
+    AS $_$ 
+  WITH q AS
+  (
+     SELECT val
+     FROM unnest($1) val
+     WHERE VAL IS NOT NULL
+     ORDER BY 1
+  ),
+  cnt AS
+  (
+    SELECT COUNT(*) AS c FROM q
+  )
+  SELECT AVG(val)::float8
+  FROM 
+  (
+    SELECT val FROM q
+    LIMIT  2 - MOD((SELECT c FROM cnt), 2)
+    OFFSET GREATEST(CEIL((SELECT c FROM cnt) / 2.0) - 1,0)  
+  ) q2;
+$_$;
+
+
+--
 -- Name: cleangeometry(geometry); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -53,15 +81,10 @@ Begin
   
   outGeom := NULL;
   
--- Clean Process for Polygon 
   IF (GeometryType(inGeom) = 'POLYGON' OR GeometryType(inGeom) = 'MULTIPOLYGON') THEN
 
--- Only process if geometry is not valid, 
--- otherwise put out without change
     if not st_isValid(inGeom) THEN
     
--- create nodes at all self-intersecting lines by union the polygon boundaries
--- with the startingpoint of the boundary.  
       tmpLinestring := st_union(st_multi(st_boundary(inGeom)),st_pointn(st_boundary(inGeom),1));
       outGeom = st_buildarea(tmpLinestring);      
       IF (GeometryType(inGeom) = 'MULTIPOLYGON') THEN      
@@ -74,18 +97,12 @@ Begin
     END IF;
 
 
-------------------------------------------------------------------------------
--- Clean Process for LINESTRINGS, self-intersecting parts of linestrings 
--- will be divided into multiparts of the mentioned linestring 
-------------------------------------------------------------------------------
   ELSIF (GeometryType(inGeom) = 'LINESTRING') THEN
     
--- create nodes at all self-intersecting lines by union the linestrings
--- with the startingpoint of the linestring.  
     outGeom := st_union(st_multi(inGeom),st_pointn(inGeom,1));
     RETURN outGeom;
   ELSIF (GeometryType(inGeom) = 'MULTILINESTRING') THEN 
-    outGeom := st_multi(st_union(st_multi(inGeom),st_pointn(inGeom,1)));
+    outGeom := multi(st_union(st_multi(inGeom),st_pointn(inGeom,1)));
     RETURN outGeom;
   ELSE 
     RAISE NOTICE 'The input type % is not supported',GeometryType(inGeom);
@@ -133,6 +150,29 @@ CREATE FUNCTION crc32(word text) RETURNS bigint
             return (tmp # 4294967295);
           END
         $$;
+
+
+--
+-- Name: array_accum(anyelement); Type: AGGREGATE; Schema: public; Owner: -
+--
+
+CREATE AGGREGATE array_accum(anyelement) (
+    SFUNC = array_append,
+    STYPE = anyarray,
+    INITCOND = '{}'
+);
+
+
+--
+-- Name: median(anyelement); Type: AGGREGATE; Schema: public; Owner: -
+--
+
+CREATE AGGREGATE median(anyelement) (
+    SFUNC = array_append,
+    STYPE = anyarray,
+    INITCOND = '{}',
+    FINALFUNC = _final_median
+);
 
 
 SET default_tablespace = '';
@@ -357,6 +397,20 @@ ALTER SEQUENCE conservation_statuses_id_seq OWNED BY conservation_statuses.id;
 
 
 --
+-- Name: counties_simplified; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE counties_simplified (
+    id integer,
+    place_id integer,
+    geom geometry,
+    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = 0))
+);
+
+
+--
 -- Name: counties_simplified_01; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -364,7 +418,10 @@ CREATE TABLE counties_simplified_01 (
     id integer NOT NULL,
     place_geometry_id integer,
     place_id integer,
-    geom geometry(MultiPolygon) NOT NULL
+    geom geometry NOT NULL,
+    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = 0))
 );
 
 
@@ -388,6 +445,31 @@ ALTER SEQUENCE counties_simplified_01_id_seq OWNED BY counties_simplified_01.id;
 
 
 --
+-- Name: countries_large_polygons; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE countries_large_polygons (
+    id integer,
+    place_id integer,
+    geom geometry
+);
+
+
+--
+-- Name: countries_simplified; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE countries_simplified (
+    id integer,
+    place_id integer,
+    geom geometry,
+    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = 0))
+);
+
+
+--
 -- Name: countries_simplified_1; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -395,7 +477,10 @@ CREATE TABLE countries_simplified_1 (
     id integer NOT NULL,
     place_geometry_id integer,
     place_id integer,
-    geom geometry(MultiPolygon) NOT NULL
+    geom geometry NOT NULL,
+    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = 0))
 );
 
 
@@ -557,6 +642,42 @@ CREATE SEQUENCE deleted_users_id_seq
 --
 
 ALTER SEQUENCE deleted_users_id_seq OWNED BY deleted_users.id;
+
+
+--
+-- Name: flaggings; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE flaggings (
+    id integer NOT NULL,
+    user_id integer,
+    taxon_id integer,
+    reason character varying(255),
+    resolver_id integer,
+    resolved boolean DEFAULT false,
+    resolution_note character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: flaggings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE flaggings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: flaggings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE flaggings_id_seq OWNED BY flaggings.id;
 
 
 --
@@ -1660,6 +1781,7 @@ CREATE TABLE observations (
     private_longitude numeric(15,10),
     private_positional_accuracy integer,
     geoprivacy character varying(255),
+    geom geometry,
     quality_grade character varying(255) DEFAULT 'casual'::character varying,
     user_agent character varying(255),
     positioning_method character varying(255),
@@ -1669,17 +1791,20 @@ CREATE TABLE observations (
     uri character varying(255),
     observation_photos_count integer DEFAULT 0,
     comments_count integer DEFAULT 0,
-    geom geometry(Point),
     cached_tag_list character varying(768) DEFAULT NULL::character varying,
     zic_time_zone character varying(255),
     oauth_application_id integer,
     observation_sounds_count integer DEFAULT 0,
     identifications_count integer DEFAULT 0,
-    private_geom geometry(Point),
-    community_taxon_id integer,
+    private_geom geometry,
     captive boolean DEFAULT false,
+    community_taxon_id integer,
     site_id integer,
-    uuid character varying(255)
+    uuid character varying(255),
+    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
+    CONSTRAINT enforce_dims_private_geom CHECK ((st_ndims(private_geom) = 2)),
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'POINT'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_geotype_private_geom CHECK (((geometrytype(private_geom) = 'POINT'::text) OR (private_geom IS NULL)))
 );
 
 
@@ -1840,9 +1965,12 @@ CREATE TABLE place_geometries (
     source_identifier character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
+    geom geometry NOT NULL,
     source_filename character varying(255),
-    geom geometry(MultiPolygon) NOT NULL,
-    source_id integer
+    source_id integer,
+    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = 0))
 );
 
 
@@ -2601,6 +2729,31 @@ ALTER SEQUENCE sources_id_seq OWNED BY sources.id;
 
 
 --
+-- Name: states_large_polygons; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE states_large_polygons (
+    id integer,
+    place_id integer,
+    geom geometry
+);
+
+
+--
+-- Name: states_simplified; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE states_simplified (
+    id integer,
+    place_id integer,
+    geom geometry,
+    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = 0))
+);
+
+
+--
 -- Name: states_simplified_1; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2608,7 +2761,10 @@ CREATE TABLE states_simplified_1 (
     id integer NOT NULL,
     place_geometry_id integer,
     place_id integer,
-    geom geometry(MultiPolygon) NOT NULL
+    geom geometry NOT NULL,
+    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = 0))
 );
 
 
@@ -2792,8 +2948,8 @@ CREATE TABLE taxon_change_taxa (
     id integer NOT NULL,
     taxon_change_id integer,
     taxon_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -2827,8 +2983,8 @@ CREATE TABLE taxon_changes (
     source_id integer,
     user_id integer,
     type character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     committed_on date,
     change_group character varying(255),
     committer_id integer
@@ -3003,21 +3159,24 @@ ALTER SEQUENCE taxon_photos_id_seq OWNED BY taxon_photos.id;
 CREATE TABLE taxon_ranges (
     id integer NOT NULL,
     taxon_id integer,
+    range_type character varying(255),
     source character varying(255),
     start_month integer,
     end_month integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    range_type character varying(255),
     range_content_type character varying(255),
     range_file_name character varying(255),
     range_file_size integer,
     description text,
     source_id integer,
+    geom geometry,
     source_identifier integer,
     range_updated_at timestamp without time zone,
-    geom geometry(MultiPolygon),
-    url character varying(255)
+    url character varying(255),
+    CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
+    CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
+    CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = 0))
 );
 
 
@@ -3048,8 +3207,8 @@ CREATE TABLE taxon_scheme_taxa (
     id integer NOT NULL,
     taxon_scheme_id integer,
     taxon_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     source_identifier character varying(255),
     taxon_name_id integer
 );
@@ -3083,8 +3242,8 @@ CREATE TABLE taxon_schemes (
     title character varying(255),
     description text,
     source_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -3328,6 +3487,51 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
+-- Name: users_old; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE users_old (
+    id integer NOT NULL,
+    login character varying(255),
+    email character varying(255),
+    crypted_password character varying(40),
+    salt character varying(40),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    remember_token character varying(255),
+    remember_token_expires_at timestamp without time zone,
+    password_reset_code character varying(40),
+    description text,
+    favorite_thing_1 character varying(255),
+    favorite_thing_2 character varying(255),
+    favorite_thing_3 character varying(255),
+    time_zone character varying(255) DEFAULT 'UTC'::character varying,
+    icon_file_name character varying(255),
+    icon_content_type character varying(255),
+    icon_file_size integer
+);
+
+
+--
+-- Name: users_old_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE users_old_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_old_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE users_old_id_seq OWNED BY users_old.id;
+
+
+--
 -- Name: wiki_page_attachments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3514,6 +3718,13 @@ ALTER TABLE ONLY deleted_observations ALTER COLUMN id SET DEFAULT nextval('delet
 --
 
 ALTER TABLE ONLY deleted_users ALTER COLUMN id SET DEFAULT nextval('deleted_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY flaggings ALTER COLUMN id SET DEFAULT nextval('flaggings_id_seq'::regclass);
 
 
 --
@@ -4024,6 +4235,13 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY users_old ALTER COLUMN id SET DEFAULT nextval('users_old_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY wiki_page_attachments ALTER COLUMN id SET DEFAULT nextval('wiki_page_attachments_id_seq'::regclass);
 
 
@@ -4138,6 +4356,14 @@ ALTER TABLE ONLY deleted_users
 
 
 --
+-- Name: flaggings_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY flaggings
+    ADD CONSTRAINT flaggings_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: flags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -4167,14 +4393,6 @@ ALTER TABLE ONLY flow_task_resources
 
 ALTER TABLE ONLY flow_tasks
     ADD CONSTRAINT flow_tasks_pkey PRIMARY KEY (id);
-
-
---
--- Name: friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY friendly_id_slugs
-    ADD CONSTRAINT friendly_id_slugs_pkey PRIMARY KEY (id);
 
 
 --
@@ -4522,6 +4740,14 @@ ALTER TABLE ONLY rules
 
 
 --
+-- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
 -- Name: site_admins_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -4535,6 +4761,14 @@ ALTER TABLE ONLY site_admins
 
 ALTER TABLE ONLY sites
     ADD CONSTRAINT sites_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY friendly_id_slugs
+    ADD CONSTRAINT slugs_pkey PRIMARY KEY (id);
 
 
 --
@@ -4706,6 +4940,14 @@ ALTER TABLE ONLY updates
 
 
 --
+-- Name: users_old_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY users_old
+    ADD CONSTRAINT users_old_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -4777,6 +5019,13 @@ CREATE INDEX index_assessments_on_taxon_id ON assessments USING btree (taxon_id)
 --
 
 CREATE INDEX index_assessments_on_user_id ON assessments USING btree (user_id);
+
+
+--
+-- Name: index_colors_taxa_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_colors_taxa_on_taxon_id ON colors_taxa USING btree (taxon_id);
 
 
 --
@@ -5084,7 +5333,7 @@ CREATE INDEX index_listed_taxa_on_list_id_and_taxon_id ON listed_taxa USING btre
 -- Name: index_listed_taxa_on_place_id_and_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_listed_taxa_on_place_id_and_created_at ON listed_taxa USING btree (place_id, created_at);
+CREATE INDEX index_listed_taxa_on_place_id_and_created_at ON listed_taxa USING btree (created_at);
 
 
 --
@@ -5903,7 +6152,7 @@ CREATE INDEX index_taxa_on_rank_level ON taxa USING btree (rank_level);
 -- Name: index_taxa_on_unique_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_taxa_on_unique_name ON taxa USING btree (unique_name);
+CREATE UNIQUE INDEX index_taxa_on_unique_name ON taxa USING btree (unique_name);
 
 
 --
@@ -5974,13 +6223,6 @@ CREATE INDEX index_taxon_links_on_taxon_id_and_show_for_descendent_taxa ON taxon
 --
 
 CREATE INDEX index_taxon_links_on_user_id ON taxon_links USING btree (user_id);
-
-
---
--- Name: index_taxon_names_on_lexicon; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_taxon_names_on_lexicon ON taxon_names USING btree (lexicon);
 
 
 --
@@ -6208,6 +6450,13 @@ CREATE INDEX pof_projid_pos ON project_observation_fields USING btree (project_i
 
 
 --
+-- Name: taxon_names_lower_lexicon_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX taxon_names_lower_lexicon_index ON taxon_names USING btree (lower((lexicon)::text));
+
+
+--
 -- Name: taxon_names_lower_name_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6254,6 +6503,102 @@ CREATE RULE geometry_columns_update AS ON UPDATE TO geometry_columns DO INSTEAD 
 --
 
 SET search_path TO "$user",public;
+
+INSERT INTO schema_migrations (version) VALUES ('1');
+
+INSERT INTO schema_migrations (version) VALUES ('10');
+
+INSERT INTO schema_migrations (version) VALUES ('11');
+
+INSERT INTO schema_migrations (version) VALUES ('12');
+
+INSERT INTO schema_migrations (version) VALUES ('13');
+
+INSERT INTO schema_migrations (version) VALUES ('14');
+
+INSERT INTO schema_migrations (version) VALUES ('15');
+
+INSERT INTO schema_migrations (version) VALUES ('16');
+
+INSERT INTO schema_migrations (version) VALUES ('17');
+
+INSERT INTO schema_migrations (version) VALUES ('18');
+
+INSERT INTO schema_migrations (version) VALUES ('19');
+
+INSERT INTO schema_migrations (version) VALUES ('2');
+
+INSERT INTO schema_migrations (version) VALUES ('20');
+
+INSERT INTO schema_migrations (version) VALUES ('20080818015807');
+
+INSERT INTO schema_migrations (version) VALUES ('20080904055035');
+
+INSERT INTO schema_migrations (version) VALUES ('20081014044856');
+
+INSERT INTO schema_migrations (version) VALUES ('20081101044013');
+
+INSERT INTO schema_migrations (version) VALUES ('20081108014127');
+
+INSERT INTO schema_migrations (version) VALUES ('20081211073046');
+
+INSERT INTO schema_migrations (version) VALUES ('20081211080000');
+
+INSERT INTO schema_migrations (version) VALUES ('20081211085000');
+
+INSERT INTO schema_migrations (version) VALUES ('20081212064650');
+
+INSERT INTO schema_migrations (version) VALUES ('20081212065458');
+
+INSERT INTO schema_migrations (version) VALUES ('20090109184902');
+
+INSERT INTO schema_migrations (version) VALUES ('20090126043548');
+
+INSERT INTO schema_migrations (version) VALUES ('20090131034447');
+
+INSERT INTO schema_migrations (version) VALUES ('20090206225340');
+
+INSERT INTO schema_migrations (version) VALUES ('20090220180304');
+
+INSERT INTO schema_migrations (version) VALUES ('20090301014918');
+
+INSERT INTO schema_migrations (version) VALUES ('20090313233049');
+
+INSERT INTO schema_migrations (version) VALUES ('20090405171934');
+
+INSERT INTO schema_migrations (version) VALUES ('20090408052116');
+
+INSERT INTO schema_migrations (version) VALUES ('20090410154951');
+
+INSERT INTO schema_migrations (version) VALUES ('20090418020926');
+
+INSERT INTO schema_migrations (version) VALUES ('20090423051305');
+
+INSERT INTO schema_migrations (version) VALUES ('20090425061024');
+
+INSERT INTO schema_migrations (version) VALUES ('20090504004452');
+
+INSERT INTO schema_migrations (version) VALUES ('20090508221226');
+
+INSERT INTO schema_migrations (version) VALUES ('20090518052953');
+
+INSERT INTO schema_migrations (version) VALUES ('20090522165436');
+
+INSERT INTO schema_migrations (version) VALUES ('20090522235809');
+
+INSERT INTO schema_migrations (version) VALUES ('20090525034911');
+
+INSERT INTO schema_migrations (version) VALUES ('20090527001859');
+
+INSERT INTO schema_migrations (version) VALUES ('20090605061057');
+
+INSERT INTO schema_migrations (version) VALUES ('20090605071142');
+
+INSERT INTO schema_migrations (version) VALUES ('20090606000444');
+
+INSERT INTO schema_migrations (version) VALUES ('20090619052851');
+
+INSERT INTO schema_migrations (version) VALUES ('20090814043502');
 
 INSERT INTO schema_migrations (version) VALUES ('20090820033338');
 
@@ -6712,3 +7057,95 @@ INSERT INTO schema_migrations (version) VALUES ('20140820152353');
 INSERT INTO schema_migrations (version) VALUES ('20140904004901');
 
 INSERT INTO schema_migrations (version) VALUES ('20140912201349');
+
+INSERT INTO schema_migrations (version) VALUES ('20141015212020');
+
+INSERT INTO schema_migrations (version) VALUES ('21');
+
+INSERT INTO schema_migrations (version) VALUES ('22');
+
+INSERT INTO schema_migrations (version) VALUES ('23');
+
+INSERT INTO schema_migrations (version) VALUES ('24');
+
+INSERT INTO schema_migrations (version) VALUES ('25');
+
+INSERT INTO schema_migrations (version) VALUES ('26');
+
+INSERT INTO schema_migrations (version) VALUES ('27');
+
+INSERT INTO schema_migrations (version) VALUES ('28');
+
+INSERT INTO schema_migrations (version) VALUES ('29');
+
+INSERT INTO schema_migrations (version) VALUES ('3');
+
+INSERT INTO schema_migrations (version) VALUES ('30');
+
+INSERT INTO schema_migrations (version) VALUES ('31');
+
+INSERT INTO schema_migrations (version) VALUES ('32');
+
+INSERT INTO schema_migrations (version) VALUES ('33');
+
+INSERT INTO schema_migrations (version) VALUES ('34');
+
+INSERT INTO schema_migrations (version) VALUES ('35');
+
+INSERT INTO schema_migrations (version) VALUES ('36');
+
+INSERT INTO schema_migrations (version) VALUES ('37');
+
+INSERT INTO schema_migrations (version) VALUES ('38');
+
+INSERT INTO schema_migrations (version) VALUES ('39');
+
+INSERT INTO schema_migrations (version) VALUES ('4');
+
+INSERT INTO schema_migrations (version) VALUES ('40');
+
+INSERT INTO schema_migrations (version) VALUES ('41');
+
+INSERT INTO schema_migrations (version) VALUES ('42');
+
+INSERT INTO schema_migrations (version) VALUES ('43');
+
+INSERT INTO schema_migrations (version) VALUES ('44');
+
+INSERT INTO schema_migrations (version) VALUES ('45');
+
+INSERT INTO schema_migrations (version) VALUES ('46');
+
+INSERT INTO schema_migrations (version) VALUES ('47');
+
+INSERT INTO schema_migrations (version) VALUES ('48');
+
+INSERT INTO schema_migrations (version) VALUES ('49');
+
+INSERT INTO schema_migrations (version) VALUES ('5');
+
+INSERT INTO schema_migrations (version) VALUES ('50');
+
+INSERT INTO schema_migrations (version) VALUES ('51');
+
+INSERT INTO schema_migrations (version) VALUES ('52');
+
+INSERT INTO schema_migrations (version) VALUES ('53');
+
+INSERT INTO schema_migrations (version) VALUES ('54');
+
+INSERT INTO schema_migrations (version) VALUES ('55');
+
+INSERT INTO schema_migrations (version) VALUES ('56');
+
+INSERT INTO schema_migrations (version) VALUES ('57');
+
+INSERT INTO schema_migrations (version) VALUES ('58');
+
+INSERT INTO schema_migrations (version) VALUES ('6');
+
+INSERT INTO schema_migrations (version) VALUES ('7');
+
+INSERT INTO schema_migrations (version) VALUES ('8');
+
+INSERT INTO schema_migrations (version) VALUES ('9');
