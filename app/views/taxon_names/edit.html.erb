@@ -43,7 +43,7 @@
       <% for tn in @synonyms %>
         <tr>
           <td><%= tn.name %></td>
-          <td><%=t tn.lexicon, :default => tn.lexicon %></td>
+          <td><%= t(tn.lexicon, :default => tn.lexicon) unless tn.lexicon.blank? %></td>
           <td><%= link_to_taxon tn.taxon, :sciname => true %></td>
           <td><%= link_to_user(tn.creator) if tn.creator %></td>
           <td><%=l tn.created_at, :format => :default %></td>

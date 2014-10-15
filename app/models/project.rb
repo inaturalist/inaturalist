@@ -161,8 +161,8 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
     end
   end
   
-  def add_owner_as_project_user
-    return true unless user_id_changed?
+  def add_owner_as_project_user(options = {})
+    return true unless user_id_changed? || options[:force]
     if pu = project_users.where(:user_id => user_id).first
       pu.update_attributes(:role => ProjectUser::MANAGER)
     else
