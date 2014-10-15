@@ -112,7 +112,8 @@
         %h3=t :range_map
         - @guide_taxon.guide_ranges.sort_by(&:position).each do |gr|
           .stacked
-            = image_tag gr.medium_url, :class => "stacked"
+            - if gr.medium_url
+              = image_tag gr.medium_url, :class => "stacked"
             %p.muted
               %small
                 - if gr.source_url.blank?
