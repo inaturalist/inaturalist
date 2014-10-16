@@ -629,6 +629,16 @@ shared_examples_for "an ObservationsController" do
       get :index, :format => :json, :taxon_name => o1.taxon.name, :iconic_taxa => [@Aves.name]
       JSON.parse(response.body).size.should eq 1
     end
+
+    it "should filter by mappable" do
+      o = Observation.make!(:latitude => nil, :longitude => nil)
+      get :index, :format => :json, :mappable => true
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o.id}.should be_blank
+      get :index, :format => :json, :mappable => false
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == o.id}.should_not be_blank
+    end
   end
 
   describe "taxon_stats" do
