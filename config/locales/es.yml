@@ -717,6 +717,7 @@ es:
     attribution_noderivs_license: Atribución - Sin obras derivadas
     gnu_free_documentation_license: Licencia gratuita de documentación GNU
   copyright_holder: Titular de los derechos de autor
+  copyright_infringement_desc: Viola el derecho de autor o fue creado por una persona distinta del observador y carece de atribución
   couldnt_change_your_password: "Tu contraseña no pudo ser modificada: %{e}"
   couldnt_find_a_user_matching_x_param: "No se pudo encontrar al usuario con parametros: %{id}"
   couldnt_find_that_taxon: No se encontro la especie o grupo.
@@ -2683,6 +2684,7 @@ es:
       words_connector: ", "
   surround_any_cells_containing_commas: "Envuelva las celdas que contengan comas con comillas dobles"
   suspend_user: "Suspender usuario"
+  suspicious_photos: Fotos sospechosas
   sw_lat: lat. S.O.
   sw_lon: long. S.O.
   sync: ¿Sincronizar?
@@ -3502,6 +3504,10 @@ es:
         receive_an_email_with_your_data_help: Usted recibirá un correo electrónico con su exportación como un archivo adjunto.
         well_email_you: "Ok, le enviaremos un mensaje cuando esté listo."
         taking_a_while: "Esto está tomando un tiempo. Por favor, intente una de las siguientes opciones."
+      show:
+        flagged_photos_desc_html: |
+          Algunas de estas fotos se han marcado para contenido inapropiado o 
+          las infracciones de derechos de autor. Para más detalles ver %{links}
     photos: 
       inviter: 
         automatically_add_to_project: "Añadir automáticamente al proyecto"

@@ -262,9 +262,10 @@ class ObservationsController < ApplicationController
         @comments_and_identifications = (@observation.comments.all + 
           @identifications).sort_by{|r| r.created_at}
         
-        @photos = @observation.observation_photos.sort_by do |op| 
+        @photos = @observation.observation_photos.includes(:photo => [:flags]).sort_by do |op| 
           op.position || @observation.observation_photos.size + op.id.to_i
         end.map{|op| op.photo}.compact
+        @flagged_photos = @photos.select{|p| p.flagged?}
         @sounds = @observation.sounds.all
         
         if @observation.observed_on

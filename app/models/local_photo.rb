@@ -98,6 +98,11 @@ class LocalPhoto < Photo
     true
   end
 
+  def repair
+    self.file.reprocess!
+    set_urls
+  end
+
   def attribution
     if [user.name, user.login].include?(native_realname)
       super

@@ -83,7 +83,7 @@ class Message < ActiveRecord::Base
     true
   end
 
-  def flagged_with(flag)
+  def flagged_with(flag, options = {})
     if Message.joins(:flags).where("from_user_id = ? AND flags.flag = ?", user_id, Flag::SPAM).count >= 3
       user.suspend!
     end

@@ -675,6 +675,7 @@ en:
     attribution_sharealike_license: Attribution-ShareAlike License
     attribution_noderivs_license: Attribution-NoDerivs License
     gnu_free_documentation_license: GNU Free Documentation License
+  copyright_infringement_desc: Violates copyright law or was created by someone other than the observer and lacks attribution
   couldnt_change_your_password: "Couldn't change your password: %{e}"
   couldnt_find_a_user_matching_x_param: "Couldn't find a user matching %{id}"
   couldnt_find_that_taxon: Could't find that taxon.
@@ -1013,6 +1014,7 @@ en:
   flag_saved: Flag saved.
   flag_saved_thanks: Flag saved.  Thanks!
   flag_this_observation: Flag this observation
+  flag_this_photo: Flag this photo
   flagged: flagged
   flagged_for_curation: Flagged for curation.
   flagger: Flagger
@@ -1112,6 +1114,7 @@ en:
   heads_up: Heads up
   heads_up_observation_search_can_only_load: "Heads up: observation search can only load up to 50 pages"
   heads_up_this_observation_has_been_flagged: "HEADS UP: this observation has been flagged."
+  heads_up_this_photo_has_been_flagged: "HEADS UP: this photo has been flagged."
   heads_up_this_photo_is_already_associated_with: "Heads up: this photo is already associated with <a target='_blank' href='%{url}'>another observation</a>"
   heads_up_this_taxon_locked_users_cant_add_descendants: "<strong>Heads up:</strong> this taxon is locked, which means that most users can't add new descendants to it by importing taxa. Curators can still do so by editing taxa and choosing a parent, but please consider merging taxa instead."
   heads_up_you_have_multiple: "Heads up: You have multiple taxonomic machine tags for identicical ranks. They're color-coded below by rank."
@@ -2467,6 +2470,7 @@ en:
   suggest_an_id: Suggest an ID
   suggest_or_require_that: Suggest or require that contributors fill out these fields for the observations they add to your project.
   summary: Summary
+  suspicious_photos: Suspicious photos
   siutable_observations: suitable observations
   sun: Sun
   surround_any_cells_containing_commas: Surround any cells containing commas with double quotes
@@ -3536,6 +3540,9 @@ en:
         disagreement_count_desc: "# of identified taxa that are not among a taxon's ancestors"
         ancestor_disagreements_desc: "# of identified taxa that are among a taxon's ancestors, but were created after the first identification using this taxon"
         score_desc: "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"
+        flagged_photos_desc_html: |
+          Some of these photos have been flagged for inappropriate content or
+          copyright infringements. For details see %{links}
     observation_fields:
       about_editing_observation_fields_desc_html: |
         <p class='ui'>You can edit this observation field because you created or because you're a site curator. If you're a site curator, please follow these guidelines</p>
@@ -3572,6 +3579,11 @@ en:
           photos as %{site_name} observations. Just leave a comment including this 
           special invite URL below. You can also pre-select a taxon and project for 
           the new observation.
+      show:
+        view_original_html: |
+          You can view the original at <a href="%{url}">%{url}</a>. Please
+          leave copyright infringement flags as unresolved if this photo does
+          infringe copyright.
     places:
       kml_field_desc: |
         KML of the place boundary. You can make one using Google Maps, Google

@@ -47,6 +47,7 @@ end
 Flag.blueprint do
   user { User.make! }
   flag { Faker::Name.name }
+  resolved { false }
 end
 
 FlickrIdentity.blueprint do
