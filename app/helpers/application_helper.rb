@@ -420,6 +420,7 @@ module ApplicationHelper
   end
   
   def truncate_with_more(text, options = {})
+    return text if text.blank?
     more = options.delete(:more) || " ...#{t(:more).downcase} &darr;".html_safe
     less = options.delete(:less) || " #{t(:less).downcase} &uarr;".html_safe
     options[:omission] ||= ""
