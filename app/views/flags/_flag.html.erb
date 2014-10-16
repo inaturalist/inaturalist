@@ -1,6 +1,7 @@
 <%-  
   flaggable = flag.flaggable
   flaggable_class = flaggable.class
+  flaggable = flaggable.becomes(Photo) if flaggable.is_a?(Photo)
 -%>
 <div class="flag <%= 'resolved' if flag.resolved? %>">
   <% if flag.user -%>

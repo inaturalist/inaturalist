@@ -23,6 +23,7 @@ class PhotosController < ApplicationController
         end
         @taxa = @photo.taxa.all(:limit => 100)
         @observations = @photo.observations.all(:limit => 100)
+        @flags = @photo.flags
       end
       format.mobile
       format.js do

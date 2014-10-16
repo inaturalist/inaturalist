@@ -116,6 +116,15 @@
   </script>
 <% end %>
 
+<% if @flagged_photos.size > 0 -%>
+  <div class="notice box">
+    <h3><%=t :suspicious_photos %></h3>
+    <p class="unstacked">
+      <%=t 'views.observations.show.flagged_photos_desc_html', :links => commas_and(@flagged_photos.map {|p| link_to(t(:photo_attribution, :attribution => p.id), p.becomes(Photo))}) %>
+    </p>
+  </div>
+<% end -%>
+
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
     <div class="breadcrumbs">

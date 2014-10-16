@@ -5,12 +5,13 @@ class FlagsController < ApplicationController
   before_filter :load_flag, :only => [:show, :edit, :destroy, :update]
   
   # put the parameters for the foreign keys here
-  FLAG_MODELS = ["Observation", "Taxon", "Post", "Comment", "Identification", "Message"]
-  FLAG_MODELS_ID = ["observation_id","taxon_id","post_id", "comment_id", "identification_id", "message_id"]
+  FLAG_MODELS = ["Observation", "Taxon", "Post", "Comment", "Identification", "Message", "Photo"]
+  FLAG_MODELS_ID = ["observation_id","taxon_id","post_id", "comment_id", "identification_id", "message_id", "photo_id"]
   PARTIALS = %w(dialog)
 
   def index
     @object = @model.find(params[@param])
+    @object = @object.becomes(Photo) if @object.is_a?(Photo)
     @flags = @object.flags.paginate(:page => params[:page],
       :include => [:user, :resolver], :order => "id desc")
     @unresolved = @flags.select {|f| not f.resolved }
@@ -19,6 +20,7 @@ class FlagsController < ApplicationController
   
   def show
     @object = @flag.flagged_object
+    @object = @object.becomes(Photo) if @object.is_a?(Photo)
   end
   
   def new
@@ -57,6 +59,8 @@ class FlagsController < ApplicationController
       redirect_to @object.observation
     elsif @object.is_a?(Message)
       redirect_to messages_path
+    elsif @object.is_a?(Photo)
+      redirect_to @object.becomes(Photo)
     else
       redirect_to @object
     end
