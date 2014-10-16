@@ -85,6 +85,7 @@ gem 'ya2yaml'
 gem 'ym4r_gm', :git => 'git://github.com/modyo/ym4r_gm.git'
 gem 'yui-compressor'
 gem 'xmp', :git => 'git://github.com/eknoop/xmp.git'
+gem 'statsd-ruby', :require => 'statsd'
 
 group :production do
   gem 'newrelic_rpm'

@@ -113,6 +113,11 @@ OBSERVATIONS_TILE_SERVER = CONFIG.tile_servers.observations
 Encoding.default_internal = Encoding::UTF_8
 Encoding.default_external = Encoding::UTF_8
 
+# Graphite
+if CONFIG.statsd_host
+  STATSD = Statsd.new( CONFIG.statsd_host, ( CONFIG.statsd_port || 8125 ) )
+end
+
 # make sure we have geojson support
 require 'geo_ruby/geojson'
 require 'geo_ruby/shp4r/shp'
