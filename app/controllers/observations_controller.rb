@@ -565,6 +565,7 @@ class ObservationsController < ApplicationController
       o.assign_attributes(observation)
       o.user = current_user
       o.user_agent = request.user_agent
+      o.site = @site || current_user.site
       if doorkeeper_token && (a = doorkeeper_token.application)
         o.oauth_application = a.becomes(OauthApplication)
       end

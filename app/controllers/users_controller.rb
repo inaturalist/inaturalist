@@ -143,7 +143,7 @@ class UsersController < ApplicationController
           where("#{klass.table_name}.created_at > ?", 1.week.ago).
           where("users.id IS NOT NULL").
           includes(:user)
-        scope = scope.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
+        scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
         @updates += scope.all
       end
       @updates.delete_if do |u|
@@ -169,7 +169,7 @@ class UsersController < ApplicationController
     @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}_4"
     unless fragment_exist?(@curators_key)
       @curators = User.curators.limit(500)
-      @curators = @curators.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
+      @curators = @curators.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
       @curators = @curators.reject(&:is_admin?)
       @updated_taxa_counts = Taxon.where("updater_id IN (?)", @curators).group(:updater_id).count
       @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count
@@ -532,7 +532,7 @@ protected
     if per == 'month'
       scope = scope.where("EXTRACT(MONTH FROM observed_on) = ?", month)
     end
-    scope = scope.where("observations.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
+    scope = scope.where("observations.site_id = ?", @site) if @site && @site.prefers_site_only_users?
     counts = scope.count.to_a.sort_by(&:last).reverse[0..4]
     users = User.where("id IN (?)", counts.map(&:first))
     counts.inject({}) do |memo, item|
@@ -547,8 +547,8 @@ protected
     month = options[:month] || Time.now.month
     date_clause = "EXTRACT(YEAR FROM o.observed_on) = #{year}"
     date_clause += "AND EXTRACT(MONTH FROM o.observed_on) = #{month}" if per == 'month'
-    site_clause = if CONFIG.site_only_users
-      "AND o.uri LIKE '#{CONFIG.site_url}%'"
+    site_clause = if @site && @site.prefers_site_only_users?
+      "AND o.site_id = #{@site.id}"
     end
     sql = <<-SQL
       SELECT
@@ -590,7 +590,7 @@ protected
     if per == 'month'
       scope = scope.where("EXTRACT(MONTH FROM identifications.created_at) = ?", month)
     end
-    scope = scope.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
+    scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
     counts = scope.count.to_a
     users = User.where("id IN (?)", counts.map(&:first))
     counts.inject({}) do |memo, item|

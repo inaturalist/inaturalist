@@ -119,6 +119,7 @@ class ProviderAuthorizationsController < ApplicationController
       sign_in(User.create_from_omniauth(auth_info))
       @provider_authorization = current_user.provider_authorizations.last
       current_user.remember_me!
+      current_user.update_attributes(:site => @site) if @site
       flash[:notice] = "Welcome!"
       if session[:invite_params].nil?
         flash[:allow_edit_after_auth] = true
