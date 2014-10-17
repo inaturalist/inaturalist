@@ -3,7 +3,7 @@ class AddPublicAccuracyAndMappableToObservations < ActiveRecord::Migration
     add_column :observations, :public_positional_accuracy, :integer
     add_column :observations, :mappable, :boolean, default: false
     add_index :observations, :mappable
-    Rake::Task['inaturalist:update_public_accuracy'].invoke
+    say "Run rake inaturalist:update_public_accuracy to update your data"
   end
 
   def down
