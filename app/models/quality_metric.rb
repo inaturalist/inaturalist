@@ -12,8 +12,10 @@ class QualityMetric < ActiveRecord::Base
     const_set metric.upcase, metric
   end
   
-  after_save :set_observation_quality_grade, :set_observation_captive
-  after_destroy :set_observation_quality_grade
+  after_save :set_observation_quality_grade, :set_observation_captive,
+    :set_observation_public_positional_accuracy, :set_observation_mappable
+  after_destroy :set_observation_quality_grade, :set_observation_captive,
+    :set_observation_public_positional_accuracy, :set_observation_mappable
   
   validates_presence_of :observation
   validates_inclusion_of :metric, :in => METRICS
@@ -31,7 +33,19 @@ class QualityMetric < ActiveRecord::Base
 
   def set_observation_captive
     return true unless observation
-    observation.set_captive
+    observation.reload.set_captive
+    true
+  end
+
+  def set_observation_public_positional_accuracy
+    return true unless observation
+    observation.reload.update_public_positional_accuracy
+    true
+  end
+
+  def set_observation_mappable
+    return true unless observation
+    observation.reload.update_mappable
     true
   end
 

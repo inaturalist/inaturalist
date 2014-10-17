@@ -629,6 +629,30 @@ shared_examples_for "an ObservationsController" do
       get :index, :format => :json, :taxon_name => o1.taxon.name, :iconic_taxa => [@Aves.name]
       JSON.parse(response.body).size.should eq 1
     end
+
+    it "should filter by mappable = true" do
+      Observation.make!
+      Observation.make!
+      Observation.make!(:latitude => 1.2, :longitude => 2.2)
+      get :index, :format => :json, :mappable => 'true'
+      JSON.parse(response.body).count.should == 1
+    end
+
+    it "should filter by mappable = false" do
+      Observation.make!
+      Observation.make!
+      Observation.make!(:latitude => 1.2, :longitude => 2.2)
+      get :index, :format => :json, :mappable => 'false'
+      JSON.parse(response.body).count.should == 2
+    end
+
+    it "should not filter by mappable when its nil" do
+      Observation.make!
+      Observation.make!
+      Observation.make!(:latitude => 1.2, :longitude => 2.2)
+      get :index, :format => :json, :mappable => nil
+      JSON.parse(response.body).count.should == 3
+    end
   end
 
   describe "taxon_stats" do

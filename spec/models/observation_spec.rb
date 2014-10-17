@@ -2286,3 +2286,78 @@ describe Observation, "fields_addable_by?" do
     o.fields_addable_by?(u).should be_true
   end
 end
+
+describe Observation, "mappable" do
+  it "should be mappable with lat/long" do
+    Observation.make!(latitude: 1.1, longitude: 2.2).mappable?.should be_true
+  end
+
+  it "should not be mappable without lat/long" do
+    Observation.make!.mappable?.should be_false
+  end
+
+  it "should not be mappable with a terrible accuracy" do
+    Observation.make!(latitude: 1.1, longitude: 2.2,
+      positional_accuracy: Observation::M_TO_OBSCURE_THREATENED_TAXA + 1).
+      mappable?.should be_false
+  end
+
+  it "should not be mappable if captive" do
+    Observation.make!(latitude: 1.1, longitude: 2.2,
+      captive: true).mappable?.should be_false
+  end
+
+  it "should not be mappable when adding captive metric" do
+    o = Observation.make!(latitude: 1.1, longitude: 2.2)
+    o.mappable?.should be_true
+    QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
+    o.mappable?.should be_false
+  end
+
+  it "should update mappable when captive metric is deleted" do
+    o = Observation.make!(latitude: 1.1, longitude: 2.2)
+    o.mappable?.should be_true
+    q = QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
+    o.mappable?.should be_false
+    q.destroy
+    o.reload.mappable?.should be_true
+  end
+
+  it "should not be mappable with an inaccurate location" do
+    o = Observation.make!(latitude: 1.1, longitude: 2.2)
+    o.mappable?.should be_true
+    QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
+    o.mappable?.should be_false
+  end
+
+  it "should update mappable after multiple quality metrics are added" do
+    o = Observation.make!(latitude: 1.1, longitude: 2.2)
+    o.mappable?.should be_true
+    QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: true)
+    o.mappable?.should be_true
+    QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
+    o.mappable?.should be_false
+  end
+
+  it "should default accuracy of obscured observations to M_TO_OBSCURE_THREATENED_TAXA" do
+    o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2)
+    o.coordinates_obscured?.should be_true
+    o.calculate_public_positional_accuracy.should == Observation::M_TO_OBSCURE_THREATENED_TAXA
+  end
+
+  it "should set public accuracy to the greater of accuracy and M_TO_OBSCURE_THREATENED_TAXA" do
+    o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2,
+      positional_accuracy: Observation::M_TO_OBSCURE_THREATENED_TAXA + 1)
+    o.calculate_public_positional_accuracy.should == Observation::M_TO_OBSCURE_THREATENED_TAXA + 1
+  end
+
+  it "should set public accuracy to accuracy" do
+    o = Observation.make!(positional_accuracy: 10).
+      public_positional_accuracy.should == 10
+  end
+
+  it "should set public accuracy to nil if accuracy is nil" do
+    o = Observation.make!(positional_accuracy: nil).
+      public_positional_accuracy.should == nil
+  end
+end
