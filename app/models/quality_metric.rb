@@ -13,11 +13,15 @@ class QualityMetric < ActiveRecord::Base
   end
   
   after_save :set_observation_quality_grade, :set_observation_captive
-  after_destroy :set_observation_quality_grade
+  after_destroy :set_observation_quality_grade, :set_observation_captive
   
   validates_presence_of :observation
   validates_inclusion_of :metric, :in => METRICS
   validates_uniqueness_of :metric, :scope => [:observation_id, :user_id]
+
+  def to_s
+    "<QualityMetric #{id} metric: #{metric}, user_id: #{user_id}, agree: #{agree}>"
+  end
   
   def set_observation_quality_grade
     return true unless observation

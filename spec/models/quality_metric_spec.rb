@@ -50,4 +50,12 @@ describe QualityMetric, "wild" do
     o.reload
     o.should be_captive
   end
+  it "should set captive on the observation false if metric destroyed" do
+    qm = QualityMetric.make!(:observation => o, :metric => QualityMetric::WILD, :agree => false)
+    o.reload
+    o.should be_captive
+    qm.destroy
+    o.reload
+    o.should_not be_captive
+  end
 end
