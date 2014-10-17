@@ -47,7 +47,7 @@ class Observation < ActiveRecord::Base
 
   attr_accessor :captive_flag
   attr_accessor :force_quality_metrics
-  
+
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
   
   M_TO_OBSCURE_THREATENED_TAXA = 10000
@@ -344,6 +344,8 @@ class Observation < ActiveRecord::Base
              :update_all_licenses,
              :update_taxon_counter_caches,
              :update_quality_metrics,
+             :update_public_positional_accuracy,
+             :update_mappable,
              :set_captive
   after_create :set_uri,
                :queue_for_sharing
@@ -702,7 +704,12 @@ class Observation < ActiveRecord::Base
     scope = scope.in_range if params[:out_of_range] == 'false'
     scope = scope.license(params[:license]) unless params[:license].blank?
     scope = scope.photo_license(params[:photo_license]) unless params[:photo_license].blank?
-    scope = scope.where(:captive => true) if [true, 'true', 't', 'yes', 'y', 1, '1'].include?(params[:captive])
+    scope = scope.where(:captive => true) if params[:captive].yesish?
+    if params[:mappable].yesish?
+      scope = scope.where(:mappable => true)
+    elsif params[:mappable] && params[:mappable].noish?
+      scope = scope.where(:mappable => false)
+    end
     scope = scope.where("observations.captive = ? OR observations.captive IS NULL", false) if [false, 'false', 'f', 'no', 'n', 0, '0'].include?(params[:captive])
     unless params[:ofv_params].blank?
       params[:ofv_params].each do |k,v|
@@ -2417,5 +2424,40 @@ class Observation < ActiveRecord::Base
     end
     true
   end
-  
+
+  def update_public_positional_accuracy
+    update_column(:public_positional_accuracy, calculate_public_positional_accuracy)
+  end
+
+  def calculate_public_positional_accuracy
+    if coordinates_obscured?
+      if positional_accuracy.blank?
+        M_TO_OBSCURE_THREATENED_TAXA
+      else
+        [ positional_accuracy, M_TO_OBSCURE_THREATENED_TAXA, 0 ].max
+      end
+    elsif !positional_accuracy.blank?
+      positional_accuracy
+    end
+  end
+
+  def inaccurate_location?
+    if metric = quality_metric_score(QualityMetric::LOCATION)
+      return metric <= 0.5
+    end
+    false
+  end
+
+  def update_mappable
+    update_column(:mappable, calculate_mappable)
+  end
+
+  def calculate_mappable
+    return false if latitude.blank? && longitude.blank?
+    return false if public_positional_accuracy && public_positional_accuracy > M_TO_OBSCURE_THREATENED_TAXA
+    return false if captive
+    return false if inaccurate_location?
+    true
+  end
+
 end

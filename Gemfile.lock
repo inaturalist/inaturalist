@@ -426,6 +426,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    statsd-ruby (1.2.1)
     thinking-sphinx (2.0.10)
       activerecord (>= 3.0.3)
       builder (>= 2.1.2)
@@ -549,6 +550,7 @@ DEPENDENCIES
   savon
   soundcloud
   spatial_adapter!
+  statsd-ruby
   thinking-sphinx (= 2.0.10)
   translate-rails3!
   trollop
