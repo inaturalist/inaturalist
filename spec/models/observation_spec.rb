@@ -2307,11 +2307,35 @@ describe Observation, "mappable" do
       captive: true).mappable?.should be_false
   end
 
+  it "should not be mappable when adding captive metric" do
+    o = Observation.make!(latitude: 1.1, longitude: 2.2)
+    o.mappable?.should be_true
+    QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
+    o.mappable?.should be_false
+  end
+
+  it "should update mappable when captive metric is deleted" do
+    o = Observation.make!(latitude: 1.1, longitude: 2.2)
+    o.mappable?.should be_true
+    q = QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
+    o.mappable?.should be_false
+    q.destroy
+    o.reload.mappable?.should be_true
+  end
+
   it "should not be mappable with an inaccurate location" do
     o = Observation.make!(latitude: 1.1, longitude: 2.2)
     o.mappable?.should be_true
-    o.quality_metrics << QualityMetric.make!(observation: o,
-      metric: QualityMetric::LOCATION, agree: false)
+    QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
+    o.mappable?.should be_false
+  end
+
+  it "should update mappable after multiple quality metrics are added" do
+    o = Observation.make!(latitude: 1.1, longitude: 2.2)
+    o.mappable?.should be_true
+    QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: true)
+    o.mappable?.should be_true
+    QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
     o.mappable?.should be_false
   end
 
