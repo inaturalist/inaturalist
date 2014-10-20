@@ -120,7 +120,7 @@ class User < ActiveRecord::Base
   after_save :update_photo_licenses
   after_save :update_sound_licenses
   after_save :destroy_messages_by_suspended_user
-  before_save :set_community_taxa_if_pref_changed
+  after_update :set_community_taxa_if_pref_changed
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
@@ -602,7 +602,7 @@ class User < ActiveRecord::Base
   end
 
   def set_community_taxa_if_pref_changed
-    if prefers_community_taxa_changed?
+    if prefers_community_taxa_changed? && ! id.blank?
       Observation.delay(:priority => USER_INTEGRITY_PRIORITY).set_community_taxa(:user => id)
     end
     true
