@@ -157,6 +157,8 @@ class Site < ActiveRecord::Base
   preference :twitter_url, :string
   preference :twitter_username, :string
 
+  preference :blog_url, :string
+
   preference :cloudmade_key, :string
 
   preference :bing_key, :string
@@ -176,8 +178,13 @@ class Site < ActiveRecord::Base
   preference :name_providers, :string #: [col, ubio]
 
   preference :natureserve_key, :string
+  preference :custom_footer, :text
 
   def to_s
     "<Site #{id} #{url}>"
+  end
+
+  def method_missing(method, *args, &block)
+    preferences.keys.include?(method.to_s) ? preferences[method.to_s] : super
   end
 end

@@ -885,10 +885,12 @@ module ApplicationHelper
     "#{base_url}#{url_for(resource)}"
   end
   
-  def commas_and(list)
+  def commas_and(list, options = {})
     return list.first.to_s.html_safe if list.size == 1
     return list.join(" #{t :and} ").html_safe if list.size == 2
-    "#{list[0..-2].join(', ')}, #{t :and} #{list.last}".html_safe
+    options[:separator] ||= ","
+    options[:and] ||= t(:and)
+    "#{list[0..-2].join(', ')}#{options[:separator]} #{options[:and]} #{list.last}".html_safe
   end
   
   def update_cached(record, association)
