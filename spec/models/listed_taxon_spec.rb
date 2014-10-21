@@ -454,6 +454,7 @@ describe "a listed taxon on a non checklist" do
   end
 
   it "should not be a primary listing" do
+    @listed_taxon.update_attributes(:primary_listing => true)
     @listed_taxon.should_not be_primary_listing
   end
 end

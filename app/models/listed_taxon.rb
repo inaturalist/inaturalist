@@ -32,6 +32,7 @@ class ListedTaxon < ActiveRecord::Base
   before_save :set_user_id
   before_save :set_source_id
   before_save :set_establishment_means
+  before_save :set_primary_listing
   before_create :check_primary_listing
   after_save :update_cache_columns_for_check_list
   after_save :propagate_establishment_means
@@ -391,6 +392,11 @@ class ListedTaxon < ActiveRecord::Base
         first
       self.establishment_means = native_child_listed_taxon.establishment_means
     end
+    true
+  end
+
+  def set_primary_listing
+    self.primary_listing = false unless can_set_as_primary?
     true
   end
   
