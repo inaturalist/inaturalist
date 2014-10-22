@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
   before_filter :login_from_param
   before_filter :set_site
   before_filter :set_locale
-  around_filter :send_load_time_statsd
 
   PER_PAGES = [10,30,50,100,200]
   HEADER_VERSION = 14
@@ -25,16 +24,6 @@ class ApplicationController < ActionController::Base
   alias :logged_in? :user_signed_in?
   
   private
-
-  def send_load_time_statsd
-    if defined?(STATSD) && STATSD.is_a?(Statsd)
-      STATSD.time("page_load_time.#{params[:controller]}.#{params[:action]}") do
-        yield
-      end
-    else
-      yield
-    end
-  end
 
   # Store the URI of the current request in the session.
   #
