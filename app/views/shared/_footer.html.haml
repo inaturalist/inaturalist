@@ -17,7 +17,7 @@
         pieces << link_to(t(:android), site.android_app_url) unless site.android_app_url.blank?
       %span.meta
         = pieces.size == 1 ? t(:mobile_app_for) : t(:mobile_apps_for)
-      =raw pieces.join("&amp;")
+      =raw pieces.join(" &amp; ")
       |
     =t :powered_by_inaturalist_open_source_software_html
   .meta
