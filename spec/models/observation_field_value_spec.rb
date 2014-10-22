@@ -167,4 +167,14 @@ describe ObservationFieldValue, "validation" do
       ObservationFieldValue.make!(:observation_field => of, :value => "baz")
     }.should raise_error(ActiveRecord::RecordInvalid)
   end
+
+  it "allowed values validation should be case insensitive" do
+    of = ObservationField.make!(:datatype => "text", :allowed_values => "foo|bar")
+    lambda {
+      ObservationFieldValue.make!(:observation_field => of, :value => "Foo")
+    }.should_not raise_error(ActiveRecord::RecordInvalid)
+    lambda {
+      ObservationFieldValue.make!(:observation_field => of, :value => "BAR")
+    }.should_not raise_error(ActiveRecord::RecordInvalid)
+  end
 end
