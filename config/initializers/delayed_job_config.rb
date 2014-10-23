@@ -1,4 +1,10 @@
 Delayed::Worker.default_queue_name = "default"
+
+silence_warnings do
+  Delayed::Job.const_set("MAX_ATTEMPTS", 10)
+  Delayed::Job.destroy_failed_jobs = false
+end
+
 # # # monkey patch BufferedLogger to allow a custom formatter
 # # class ActiveSupport::BufferedLogger
 # #   def formatter=(formatter)
