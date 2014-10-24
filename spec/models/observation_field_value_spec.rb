@@ -177,4 +177,11 @@ describe ObservationFieldValue, "validation" do
       ObservationFieldValue.make!(:observation_field => of, :value => "BAR")
     }.should_not raise_error(ActiveRecord::RecordInvalid)
   end
+
+  it "allowed values validation should handle nil values" do
+    of = ObservationField.make!(:datatype => "text", :allowed_values => "foo|bar")
+    lambda {
+      ObservationFieldValue.make!(:observation_field => of, :value => nil)
+    }.should raise_error(ActiveRecord::RecordInvalid)
+  end
 end
