@@ -38,7 +38,8 @@ class Taxon < ActiveRecord::Base
   has_many :conservation_statuses, :dependent => :destroy
   has_many :guide_taxa, :inverse_of => :taxon, :dependent => :nullify
   has_many :guides, :inverse_of => :taxon, :dependent => :nullify
-  has_many :taxon_ancestors
+  has_many :taxon_ancestors, :dependent => :delete_all
+  has_many :taxon_ancestors_as_ancestor, :class_name => "TaxonAncestor", :foreign_key => :ancestor_taxon_id, :dependent => :delete_all
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
@@ -871,6 +872,9 @@ class Taxon < ActiveRecord::Base
     raise "Can't merge a taxon with itself" if reject.id == self.id
     reject_taxon_names = reject.taxon_names.all
     reject_taxon_scheme_taxa = reject.taxon_scheme_taxa.all
+    # otherwise it will screw up merge_has_many_associations
+    TaxonAncestor.where(:taxon_id => reject.id).delete_all
+    TaxonAncestor.where(:ancestor_taxon_id => reject.id).delete_all
     merge_has_many_associations(reject)
     
     # Merge ListRules and other polymorphic assocs
