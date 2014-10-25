@@ -432,6 +432,13 @@ EOT
       values "iNat list ID"
     end
 
+    param "updated_since" do
+      desc <<-EOT
+        Filter by observations that have been updated since a timestamp.
+      EOT
+      values "ISO 8601 datetime, e.g. 2013-10-09T13:40:13-07:00"
+    end
+
     param "extra" do
       desc <<-EOT
         Retrieve additional information. 'projects' returns info about the
@@ -731,13 +738,6 @@ EOT
         own the photo on Facebook.
       EOT
       values "Valid Facebook photo ID of a photo belonging to the user."
-    end
-
-    param "updated_since" do
-      desc <<-EOT
-        Filter by observations that have been updated since a timestamp.
-      EOT
-      values "ISO 8601 datetime, e.g. 2013-10-09T13:40:13-07:00"
     end
 
     param "local_photos[]" do
