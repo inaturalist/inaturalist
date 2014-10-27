@@ -655,6 +655,18 @@ shared_examples_for "an ObservationsController" do
       get :index, :format => :json, :mappable => nil
       JSON.parse(response.body).count.should == 3
     end
+
+    it "should include place_guess" do
+      o = Observation.make!(:place_guess => "my backyard")
+      get :index, :format => :json
+      response.body.should =~ /#{o.place_guess}/
+    end
+
+    it "should not include place_guess if coordinates obscured" do
+      o = Observation.make!(:place_guess => "my backyard", :geoprivacy => Observation::OBSCURED)
+      get :index, :format => :json
+      response.body.should =~ /#{o.place_guess}/
+    end
   end
 
   describe "taxon_stats" do

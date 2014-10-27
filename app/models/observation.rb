@@ -908,7 +908,8 @@ class Observation < ActiveRecord::Base
     options[:except] ||= []
     options[:except] += [:user_agent]
     if viewer_id != user_id && !options[:force_coordinate_visibility]
-      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom, :private_geom, :place_guess]
+      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom, :private_geom]
+      options[:except] += [:place_guess] if coordinates_obscured?
       options[:methods] << :coordinates_obscured
     end
     options[:except] += [:cached_tag_list, :geom, :private_geom]
@@ -919,12 +920,6 @@ class Observation < ActiveRecord::Base
       h[k] = v.gsub(/<script.*script>/i, "") if v.is_a?(String)
     end
     h
-  end
-  
-  def to_xml(options = {})
-    options[:except] ||= []
-    options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom, :private_geom]
-    super(options)
   end
   
   #
