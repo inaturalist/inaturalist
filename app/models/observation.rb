@@ -1309,6 +1309,12 @@ class Observation < ActiveRecord::Base
   def flagged?
     self.flags.select { |f| not f.resolved? }.size > 0
   end
+
+  def appropriate?
+    return false if flags.where(:resolved => false).exists?
+    return false if observation_photos_count > 0 && photos.includes(:flags).where("flags.resolved = ?", false).exists?
+    true
+  end
   
   def georeferenced?
     (latitude? && longitude?) || (private_latitude? && private_longitude?)
@@ -1351,6 +1357,7 @@ class Observation < ActiveRecord::Base
     return false unless quality_metrics_pass?
     return false unless observed_on?
     return false unless (photos? || sounds?)
+    return false unless appropriate?
     if root = (Taxon::LIFE || Taxon.roots.select("id, name, rank").find_by_name('Life'))
       return false if community_taxon_id == root.id
     end

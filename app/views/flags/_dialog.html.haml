@@ -25,11 +25,12 @@
     :label => t(:offensive_inappropriate),
     :label_after => true, 
     :description => t(:misleading_or_illegal_content)
-  = f.radio_button :flag, Flag::COPYRIGHT_INFRINGEMENT, 
-    :id => "flag_#{Flag::COPYRIGHT_INFRINGEMENT.underscore}",
-    :label => t(:copyright_infringement, :default => "copyright infringement").downcase,
-    :label_after => true, 
-    :description => t(:copyright_infringement_desc)
+  - if @object.is_a?(Photo)
+    = f.radio_button :flag, Flag::COPYRIGHT_INFRINGEMENT, 
+      :id => "flag_#{Flag::COPYRIGHT_INFRINGEMENT.underscore}",
+      :label => t(:copyright_infringement, :default => "copyright infringement").downcase,
+      :label_after => true, 
+      :description => t(:copyright_infringement_desc)
   = f.radio_button :flag, "other",
     :label => t(:other),
     :label_after => true, 

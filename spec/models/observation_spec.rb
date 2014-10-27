@@ -572,6 +572,20 @@ describe Observation, "updating" do
       o.community_taxon.should eq @Life
       o.should be_casual_grade
     end
+
+    it "should not be research if flagged" do
+      o = make_research_grade_observation
+      Flag.make!(:flaggable => o, :flag => Flag::SPAM)
+      o.reload
+      o.should be_casual_grade
+    end
+
+    it "should not be research if photos flagged" do
+      o = make_research_grade_observation
+      Flag.make!(:flaggable => o.photos.first, :flag => Flag::COPYRIGHT_INFRINGEMENT)
+      o.reload
+      o.should be_casual_grade
+    end
   end
   
   it "should queue a job to update user lists"

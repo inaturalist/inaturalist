@@ -20,6 +20,14 @@ class Place < ActiveRecord::Base
   after_save :check_default_check_list
   
   validates_presence_of :latitude, :longitude
+  validates_numericality_of :latitude,
+    :allow_blank => true, 
+    :less_than_or_equal_to => 90, 
+    :greater_than_or_equal_to => -90
+  validates_numericality_of :longitude,
+    :allow_blank => true, 
+    :less_than_or_equal_to => 180, 
+    :greater_than_or_equal_to => -180
   validates_length_of :name, :within => 2..500, 
     :message => "must be between 2 and 500 characters"
   validates_uniqueness_of :name, :scope => :ancestry, :unless => Proc.new {|p| p.ancestry.blank?}

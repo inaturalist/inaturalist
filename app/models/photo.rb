@@ -209,15 +209,17 @@ class Photo < ActiveRecord::Base
   end
 
   def flagged_with(flag, options = {})
-    if options[:action] == "created" && flag.flag == Flag::COPYRIGHT_INFRINGEMENT
-      styles = %w(original large medium small thumb square)
-      updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
-      updates += styles.map do |s|
-        FakeView.image_url("copyright-infringement-#{s}.png").to_s
+    if flag.flag == Flag::COPYRIGHT_INFRINGEMENT
+      if options[:action] == "created"
+        styles = %w(original large medium small thumb square)
+        updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
+        updates += styles.map do |s|
+          FakeView.image_url("copyright-infringement-#{s}.png").to_s
+        end
+        Photo.update_all(updates, ["id = ?", id])
+      elsif %w(resolved destroyed).include?(options[:action])
+        repair if respond_to?(:repair)
       end
-      Photo.update_all(updates, ["id = ?", id])
-    elsif %w(resolved destroyed).include?(options[:action])
-      repair if respond_to?(:repair)
     end
   end
 

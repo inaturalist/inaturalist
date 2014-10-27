@@ -81,4 +81,16 @@ describe LocalPhoto, "flagging" do
       lp.send("#{size}_url").should_not =~ /copyright/
     end
   end
+  it "should not change the URLs back unless the flag was for copyright" do
+    f1 = Flag.make!(:flaggable => lp, :flag => Flag::COPYRIGHT_INFRINGEMENT)
+    f2 = Flag.make!(:flaggable => lp, :flag => Flag::SPAM)
+    lp.reload
+    f2.update_attributes(:resolved => true, :resolver => User.make!)
+    lp.reload
+    %w(original large medium small thumb square).each do |size|
+      lp.send("#{size}_url").should =~ /copyright/
+    end
+  end
+  it "should change make associated observations casual grade when flagged"
+  it "should change make associated observations research grade when resolved"
 end
