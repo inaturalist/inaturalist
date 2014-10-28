@@ -114,7 +114,36 @@
         
         <% if logged_in? -%>
           <% if @place_geometry -%>
-            <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
+            <% unless @subscriptions.blank? -%>
+              Your subscriptions to this place:
+              <ul>
+                <% for subscription in @subscriptions %>
+                  <li class="subscription_for_<%= [subscription.resource_type, subscription.resource_id].join('_') %>">
+                    <% if subscription.taxon -%>
+                      <%= link_to subscription.taxon.name, url_for(subscription.resource) %>
+                    <% else %>
+                      <%= link_to t(:all_observations), subscription.resource %>
+                    <% end -%>
+                    <%= link_to t(:edit), edit_subscription_path(subscription), :class => "small subscriptionsettings" %>
+                  </li>
+                <% end %>
+              </ul>
+            <% end -%>
+            <%- new_subscription = Subscription.new(:user => current_user, :resource => @place) %>
+              <%= form_for new_subscription, :html => {
+                :class => "subscribe"
+              } do |f| %>
+                <%= f.hidden_field :resource_type %>
+                <%= f.hidden_field :resource_id %>
+                <%= f.hidden_field :user_id %>
+                <% if @subscriptions.blank? -%>
+                  <%=t :subscribe_to_x_from_this_y_html, 
+                    :x => commas_and(Place.notifying_associations.keys.map{|k| t(k).downcase}),
+                    :y => t(:place).downcase %>
+                <% else %>
+                  <%= link_to t(:add_another_subscription), new_subscription_path(:type => "place", :resource_id => @place.id), :id => "new_place_subscription_link", :class => "readmore" %>
+                <% end -%>
+              <% end -%>
           <% else %>
             <div class="meta">
               <%= t :subscriptions_arent_available_for %>

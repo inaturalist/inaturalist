@@ -1,5 +1,8 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Editing subscription" %>
+  <%= 
+    @title = t(:editing_subscription_to_x_html, :x => link_to(@resource.try_methods(:display_name, :name, :to_s), @resource))
+    strip_tags @title
+  %>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <%-
@@ -29,8 +32,8 @@
 
 <%= form_for @subscription, :builder => DefaultFormBuilder do |f| %>
   <% if @subscription.resource_type == Place.to_s -%>
-    <%= f.text_field :taxon_id, :placeholder => "Choose a taxon", :label => "Only receive updates for observations of this taxon" %>
+    <%= f.text_field :taxon_id, :placeholder => t(:choose_a_taxon), :label => t(:only_receive_updates_about_this_taxon) %>
   <% end -%>
-  <%= f.submit "Update subscription" %>
-  <%= link_to "Delete", @subscription, :method => "delete", :confirm => "Are you sure?" %>
+  <%= f.submit t(:update_subscription), :class => "default button" %>
+  <%= link_to t(:delete), @subscription, :method => "delete", :confirm => t(:are_you_sure?, :default => "Are you sure?"), :class => "delete button" %>
 <% end -%>

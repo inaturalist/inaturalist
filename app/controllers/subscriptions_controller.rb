@@ -18,7 +18,8 @@ class SubscriptionsController < ApplicationController
     @type = params[:type]
     @type = "place" unless Subscription.subscribable_classes.map(&:underscore).include?(@type)
     resource_type = @type.camelcase
-    @subscription = Subscription.new(:user => current_user, :type => resource_type)
+    @resource = Object.const_get(resource_type).find_by_id(params[:resource_id]) rescue nil
+    @subscription = Subscription.new(:user => current_user, :type => resource_type, :resource => @resource)
     if params[:partial] && params[:partial] == "form"
       render :partial => params[:partial], :layout => false
     end
@@ -36,6 +37,7 @@ class SubscriptionsController < ApplicationController
     end
     return render_404 unless @subscription
     @resource ||= @subscription.resource
+    @type = @resource.class.to_s if @resource
     
     if @subscription && @subscription.user_id != current_user.id
       flash[:error] = "You don't have permission to do that"
