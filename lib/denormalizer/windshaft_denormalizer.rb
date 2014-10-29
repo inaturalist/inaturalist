@@ -57,13 +57,17 @@ class WindshaftDenormalizer < Denormalizer
   end
 
   def self.zooms
-    [ { seed: 4, table: "observation_zooms_4000" },
-      { seed: 2, table: "observation_zooms_2000" },
-      { seed: 0.99, table: "observation_zooms_990" },
-      { seed: 0.5, table: "observation_zooms_500" },
-      { seed: 0.25, table: "observation_zooms_250" },
-      { seed: 0.125, table: "observation_zooms_125" },
-      { seed: 0.0625, table: "observation_zooms_63" } ]
+    [ { seed: 4, table: "observation_zooms_2" },
+      { seed: 2, table: "observation_zooms_3" },
+      { seed: 0.99, table: "observation_zooms_4" },
+      { seed: 0.5, table: "observation_zooms_5" },
+      { seed: 0.25, table: "observation_zooms_6" },
+      { seed: 0.125, table: "observation_zooms_7" },
+      { seed: 0.0625, table: "observation_zooms_8" },
+      { seed: 0.03125, table: "observation_zooms_9" },
+      { seed: 0.015625, table: "observation_zooms_10" },
+      { seed: 0.0078125, table: "observation_zooms_11" },
+      { seed: 0.00390625, table: "observation_zooms_12" } ]
   end
 
 end
