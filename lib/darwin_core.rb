@@ -138,6 +138,7 @@ module DarwinCore
       %w(catalogNumber http://rs.tdwg.org/dwc/terms/catalogNumber),
       %w(references http://purl.org/dc/terms/references),
       %w(occurrenceRemarks http://rs.tdwg.org/dwc/terms/occurrenceRemarks),
+      %w(occurrenceDetails http://rs.tdwg.org/dwc/terms/occurrenceDetails),
       %w(recordedBy http://rs.tdwg.org/dwc/terms/recordedBy),
       %w(establishmentMeans http://rs.tdwg.org/dwc/terms/establishmentMeans),
       %w(associatedMedia http://rs.tdwg.org/dwc/terms/associatedMedia),
@@ -236,6 +237,9 @@ module DarwinCore
         dwc_filter_text(description) unless description.blank?
       end
 
+      def occurrenceDetails
+        uri
+      end
 
       def recordedBy
         user.name.blank? ? user.login : user.name

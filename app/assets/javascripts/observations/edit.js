@@ -70,7 +70,6 @@ $(document).ready(function() {
   })
 
   $('.observation_fields_form_fields').observationFieldsForm()
-  
   $('.observation_photos').each(function() {
     var authenticity_token = $(this).parents('form').find('input[name=authenticity_token]').val()
     if (window.location.href.match(/\/observations\/(\d+)/)) {

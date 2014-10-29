@@ -49,8 +49,8 @@
   <%= javascript_include_tag 'inaturalist/map3', 'jquery/plugins/inat/taxonmap', 'taxa/show' %>
 
   <script type="text/javascript" charset="utf-8">
-    var TAXON = <%=raw @taxon.to_json %>,
-        ADDITIONAL_RANGES = <%=raw @additional_ranges.to_json(:methods => [:kml_url], :include => [:source]) %>
+    var TAXON = <%=json_escape @taxon.to_json.html_safe %>,
+        ADDITIONAL_RANGES = <%=json_escape @additional_ranges.to_json(:methods => [:kml_url], :include => [:source]).html_safe %>
     $(document).ready(function() {
       <% if (!@taxon.species_or_lower? && @photos.size < 24) || @photos.blank? %>
         $('#photos_loading_status').show()

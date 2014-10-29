@@ -82,8 +82,15 @@ class PlacesController < ApplicationController
   
   def search
     search_for_places
-    if @places.size == 1
-      redirect_to @places.first
+    respond_to do |format|
+      format.html do
+        if @places.size == 1
+          redirect_to @places.first
+        end
+      end
+      format.json do
+        render(:json => @places.to_json(:methods => [ :html, :kml_url ]))
+      end
     end
   end
   
@@ -98,7 +105,7 @@ class PlacesController < ApplicationController
         @projects = Project.in_place(@place).page(1).order("projects.title").per_page(50)
         @wikipedia = WikipediaService.new
         if logged_in?
-          @subscription = @place.update_subscriptions.first(:conditions => {:user_id => current_user})
+          @subscriptions = @place.update_subscriptions.where(:user_id => current_user)
         end
       end
       format.json do

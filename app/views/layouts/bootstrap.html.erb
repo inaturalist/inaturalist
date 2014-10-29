@@ -13,9 +13,6 @@
       body { font-size: 75%; }
       .bootstrap .readable, .bootstrap p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
     </style>
-    <% if @site && @site.stylesheet -%>
-      <%= stylesheet_link_tag @site.stylesheet.url %>
-    <% end -%>
     <%= csrf_meta_tag %>
     <% if CONFIG.twitter && CONFIG.twitter.username -%>
       <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
@@ -63,7 +60,7 @@
       I18n.locale = "<%= I18n.locale %>"
       I18n.fallbacks = true
       <% if @site && @site.place -%>
-        var SITE_PLACE = <%=raw @site.place.to_json(:only => [:id, :name]) %>
+        var SITE_PLACE = <%=json_escape @site.place.to_json(:only => [:id, :name]).html_safe %>
       <% end -%>
     </script>
     <%= javascript_include_tag 'bootstrap_bundle' %>

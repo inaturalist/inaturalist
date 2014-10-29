@@ -6,9 +6,9 @@ class Observation < ActiveRecord::Base
   }
   notifies_subscribers_of :user, :notification => "created_observations"
   notifies_subscribers_of :public_places, :notification => "new_observations", 
-    :on => :save,
+    :on => :create,
     :queue_if => lambda {|observation|
-      observation.georeferenced? # && !observation.taxon_id.blank?
+      observation.georeferenced?
     },
     :if => lambda {|observation, place, subscription|
       return false unless observation.georeferenced?
@@ -17,7 +17,7 @@ class Observation < ActiveRecord::Base
       observation.taxon.ancestor_ids.include?(subscription.taxon_id)
     }
   notifies_subscribers_of :taxon_and_ancestors, :notification => "new_observations", 
-    :on => :save,
+    :on => :create,
     :queue_if => lambda {|observation| !observation.taxon_id.blank? },
     :if => lambda {|observation, taxon, subscription|
       return true if observation.taxon_id == taxon.id
@@ -47,7 +47,7 @@ class Observation < ActiveRecord::Base
 
   attr_accessor :captive_flag
   attr_accessor :force_quality_metrics
-  
+
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
   
   M_TO_OBSCURE_THREATENED_TAXA = 10000
@@ -344,6 +344,8 @@ class Observation < ActiveRecord::Base
              :update_all_licenses,
              :update_taxon_counter_caches,
              :update_quality_metrics,
+             :update_public_positional_accuracy,
+             :update_mappable,
              :set_captive
   after_create :set_uri,
                :queue_for_sharing
@@ -702,7 +704,12 @@ class Observation < ActiveRecord::Base
     scope = scope.in_range if params[:out_of_range] == 'false'
     scope = scope.license(params[:license]) unless params[:license].blank?
     scope = scope.photo_license(params[:photo_license]) unless params[:photo_license].blank?
-    scope = scope.where(:captive => true) if [true, 'true', 't', 'yes', 'y', 1, '1'].include?(params[:captive])
+    scope = scope.where(:captive => true) if params[:captive].yesish?
+    if params[:mappable].yesish?
+      scope = scope.where(:mappable => true)
+    elsif params[:mappable] && params[:mappable].noish?
+      scope = scope.where(:mappable => false)
+    end
     scope = scope.where("observations.captive = ? OR observations.captive IS NULL", false) if [false, 'false', 'f', 'no', 'n', 0, '0'].include?(params[:captive])
     unless params[:ofv_params].blank?
       params[:ofv_params].each do |k,v|
@@ -901,7 +908,8 @@ class Observation < ActiveRecord::Base
     options[:except] ||= []
     options[:except] += [:user_agent]
     if viewer_id != user_id && !options[:force_coordinate_visibility]
-      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom, :private_geom, :place_guess]
+      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom, :private_geom]
+      options[:except] += [:place_guess] if coordinates_obscured?
       options[:methods] << :coordinates_obscured
     end
     options[:except] += [:cached_tag_list, :geom, :private_geom]
@@ -912,12 +920,6 @@ class Observation < ActiveRecord::Base
       h[k] = v.gsub(/<script.*script>/i, "") if v.is_a?(String)
     end
     h
-  end
-  
-  def to_xml(options = {})
-    options[:except] ||= []
-    options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom, :private_geom]
-    super(options)
   end
   
   #
@@ -1307,6 +1309,12 @@ class Observation < ActiveRecord::Base
   def flagged?
     self.flags.select { |f| not f.resolved? }.size > 0
   end
+
+  def appropriate?
+    return false if flags.where(:resolved => false).exists?
+    return false if observation_photos_count > 0 && photos.includes(:flags).where("flags.resolved = ?", false).exists?
+    true
+  end
   
   def georeferenced?
     (latitude? && longitude?) || (private_latitude? && private_longitude?)
@@ -1333,10 +1341,14 @@ class Observation < ActiveRecord::Base
   
   def quality_metrics_pass?
     QualityMetric::METRICS.each do |metric|
-      score = quality_metric_score(metric)
-      return false if score && score < 0.5
+      return false unless passes_quality_metric?(metric)
     end
     true
+  end
+
+  def passes_quality_metric?(metric)
+    score = quality_metric_score(metric)
+    score.blank? || score >= 0.5
   end
   
   def research_grade?
@@ -1345,6 +1357,7 @@ class Observation < ActiveRecord::Base
     return false unless quality_metrics_pass?
     return false unless observed_on?
     return false unless (photos? || sounds?)
+    return false unless appropriate?
     if root = (Taxon::LIFE || Taxon.roots.select("id, name, rank").find_by_name('Life'))
       return false if community_taxon_id == root.id
     end
@@ -1507,7 +1520,7 @@ class Observation < ActiveRecord::Base
   end
 
   def captive_cultivated
-    quality_metrics.any?{|m| m.user_id == user_id && m.metric == QualityMetric::WILD && !m.agree?}
+    !passes_quality_metric?(QualityMetric::WILD)
   end
 
   ##### Community Taxon #########################################################
@@ -2413,5 +2426,40 @@ class Observation < ActiveRecord::Base
     end
     true
   end
-  
+
+  def update_public_positional_accuracy
+    update_column(:public_positional_accuracy, calculate_public_positional_accuracy)
+  end
+
+  def calculate_public_positional_accuracy
+    if coordinates_obscured?
+      if positional_accuracy.blank?
+        M_TO_OBSCURE_THREATENED_TAXA
+      else
+        [ positional_accuracy, M_TO_OBSCURE_THREATENED_TAXA, 0 ].max
+      end
+    elsif !positional_accuracy.blank?
+      positional_accuracy
+    end
+  end
+
+  def inaccurate_location?
+    if metric = quality_metric_score(QualityMetric::LOCATION)
+      return metric <= 0.5
+    end
+    false
+  end
+
+  def update_mappable
+    update_column(:mappable, calculate_mappable)
+  end
+
+  def calculate_mappable
+    return false if latitude.blank? && longitude.blank?
+    return false if public_positional_accuracy && public_positional_accuracy > M_TO_OBSCURE_THREATENED_TAXA
+    return false if captive
+    return false if inaccurate_location?
+    true
+  end
+
 end

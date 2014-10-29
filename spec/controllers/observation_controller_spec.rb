@@ -2,12 +2,13 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ObservationsController do
   describe :create do
+    let(:user) { User.make! }
+    before do
+      sign_in user
+    end
     it "should not raise an exception if the obs was invalid and an image was submitted"
     
     it "should not raise an exception if no observations passed" do
-      user = User.make!
-      sign_in user
-      
       lambda {
         post :create
       }.should_not raise_error
@@ -15,9 +16,6 @@ describe ObservationsController do
     
     it "should add project observations if auto join project specified" do
       project = Project.make!
-      user = User.make!
-      sign_in user
-      
       project.users.find_by_id(user.id).should be_blank
       post :create, :observation => {:species_guess => "Foo!"}, :project_id => project.id, :accept_terms => true
       project.users.find_by_id(user.id).should_not be_blank
@@ -26,9 +24,6 @@ describe ObservationsController do
     
     it "should add project observations if auto join project specified and format is json" do
       project = Project.make!
-      user = User.make!
-      sign_in user
-      
       project.users.find_by_id(user.id).should be_blank
       post :create, :format => "json", :observation => {:species_guess => "Foo!"}, :project_id => project.id
       project.users.find_by_id(user.id).should_not be_blank
@@ -36,9 +31,7 @@ describe ObservationsController do
     end
     
     it "should set taxon from taxon_name param" do
-      user = User.make!
       taxon = Taxon.make!
-      sign_in user
       post :create, :observation => {:species_guess => "Foo", :taxon_name => taxon.name}
       obs = user.observations.last
       obs.should_not be_blank
@@ -46,6 +39,17 @@ describe ObservationsController do
       obs.species_guess.should == "Foo"
     end
     
+    it "should set the site" do
+      # @site = Site.make!
+      class InatConfig
+        def site_id
+          @site ||= Site.make!
+          @site.id
+        end
+      end
+      post :create, :observation => {:species_guess => "Foo"}
+      user.observations.last.site.should_not be_blank
+    end
   end
   
   describe :update do

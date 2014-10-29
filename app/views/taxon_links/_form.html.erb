@@ -6,7 +6,7 @@
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">
-    var PLACE = <%= @taxon_link.place.to_json.html_safe %>
+    var PLACE = <%=json_escape @taxon_link.place.to_json.html_safe %>
     function toggleSpeciesOnly() {
       if ($('#taxon_link_show_for_descendent_taxa').prop('checked')) $('.species_only_field').show()
       else $('.species_only_field').hide()

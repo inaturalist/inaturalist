@@ -41,7 +41,7 @@
   = google_maps_js
   = javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap", 'jquery/plugins/waypoints.min'
   :javascript
-    var GUIDE = #{raw @guide.to_json}
+    var GUIDE = #{json_escape @guide.to_json.html_safe}
     $('.tile .img').imagesLoaded(function() {
       $('img', this).not('.iconic').centerInContainer()
     })

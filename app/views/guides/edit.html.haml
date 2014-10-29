@@ -66,8 +66,8 @@
     .actions .btn {margin-bottom:5px;}
 - content_for :extrajs do
   :javascript
-    var GUIDE = #{raw @guide.to_json},
-        PLACE = #{raw @guide.place.to_json}
+    var GUIDE = #{json_escape @guide.to_json.html_safe},
+        PLACE = #{json_escape @guide.place.to_json.html_safe}
   = javascript_include_tag 'jquery/plugins/jquery.labelize', 'jquery/plugins/jquery.latLonSelector', 'guides/edit'
 .container-fluid
   %ul.breadcrumb

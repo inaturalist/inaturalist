@@ -33,6 +33,8 @@
                 = f.label "preferred_#{pref.name}", :class => "checkbox" do
                   = f.check_box "preferred_#{pref.name}", :label => false
                   = t("site_preferences.#{pref.name}")
+              - elsif pref.type == :text
+                = f.text_area "preferred_#{pref.name}", :label => t("site_preferences.#{pref.name}")
               - else
                 = f.text_field "preferred_#{pref.name}", :label => t("site_preferences.#{pref.name}")
       - if grp == 'geo'

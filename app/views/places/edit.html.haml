@@ -13,7 +13,7 @@
   = javascript_include_tag "shramov-leaflet-plugins/Bing"
   %script{:src => "/assets/leaflet.fullscreen/Control.FullScreen.js"}
   :javascript
-    var PLACE = #{@place.to_json},
+    var PLACE = #{json_escape @place.to_json.html_safe},
         NPOINTS = #{@npoints.to_i},
         CLOUDMADE_KEY = #{CONFIG.cloudmade.try(:key).to_json},
         BING_KEY = #{CONFIG.bing.key.inspect}

@@ -12,7 +12,9 @@
   <% unless @fb_admin_ids.blank? -%>
     <meta property="fb:admins" content="<%= @fb_admin_ids.join(',') %>"/>
   <% end -%>
-  <% og_description = truncate(strip_tags(@project.description).gsub(/\s+/, ' '), :length => 1000) %>
+  <% unless @project.description.blank? -%>
+    <% og_description = truncate(strip_tags(@project.description).gsub(/\s+/, ' '), :length => 1000) %>
+  <% end -%>
   <meta property="og:description" content="<%= og_description %>"/>
 <%- end -%>
 
@@ -20,10 +22,10 @@
   <%= google_maps_js %>
   <%= javascript_include_tag 'inaturalist/map3', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
-    var PROJECT = <%= @project.to_json(:only => [:title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
-        PLACE = <%= @place.to_json.html_safe %>,
+    var PROJECT = <%=json_escape @project.to_json(:only => [:title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
+        PLACE = <%=json_escape @place.to_json.html_safe %>,
         PLACE_GEOMETRY_KML_URL = <%=raw @place_geometry ? place_geometry_kml_url.inspect : nil.to_json %>,
-        OBSERVATIONS = <%= @observations.blank? ? 'null' : @observations.to_json(:include => :iconic_taxon).html_safe %>,
+        OBSERVATIONS = <%= @observations.blank? ? 'null' : json_escape(@observations.to_json(:include => :iconic_taxon).html_safe) %>,
         OBSERVATIONS_URL = <%= @observations_url.inspect.html_safe %>
         KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe %>
   </script>
@@ -145,7 +147,7 @@
       <div id="bioblitzstats" class="stacked">
         <div class="inline buttonrow right">
           <%= link_to t(:all_observations, :default => "All observations").capitalize, observations_url(@observations_url_params), :class => "inter" %>
-          <%= link_to t(:all_species, :default => "All species").capitalize, taxa_observations_url(@observations_url_params.merge(:hrank => Taxon::SPECIES)), :class => "inter" %>
+          <%= link_to t(:all_species, :default => "All species").capitalize, taxa_observations_url(@observations_url_params.merge(:rank => Taxon::SPECIES)), :class => "inter" %>
           <%= link_to t(:all_people, :default => "All people").capitalize, user_stats_observations_url(@observations_url_params), :class => "inter" %>
           <%= link_to_dialog t(:about_bioblitz_results), :width => "60%", :link => {:class => "meta inter"} do %>
             <%=t 'views.projects.show.bioblitz_results_desc_html' %>
@@ -418,10 +420,8 @@
   
   
   <%= link_to image_tag(@project.user.icon.url(:mini), :style => "vertical-align:middle;"),
-    observations_by_login_path(@project.user.login),
-    :alt => h(@project.user.login),
-    :title => "#{h(@project.user.login)}, joined #{project_user.created_at.to_s(:long)}" %>
-  <%= link_to h(@project.user.login), @project.user %>
+    observations_by_login_path(@project.user.login), :alt => @project.user.login %>
+  <%= link_to @project.user.login, @project.user %>
   <span class="description"><%=t :project_created_on, :date => l(@project.created_at.to_date, :format => :long) %></span>
   
   <%= separator %>

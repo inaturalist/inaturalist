@@ -12,8 +12,7 @@ class WelcomeController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @announcement = Announcement.last(:conditions => [
-         'placement = \'welcome/index\' AND ? BETWEEN "start" AND "end"', Time.now.utc])
+        @announcement = Announcement.where('placement = \'welcome/index\' AND ? BETWEEN "start" AND "end"', Time.now.utc).last
         @observations_cache_key = "#{SITE_NAME}_#{I18n.locale}_welcome_observations"
         unless fragment_exist?(@observations_cache_key)
           @observations = Observation.has_geo.has_photos

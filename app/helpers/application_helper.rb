@@ -420,6 +420,7 @@ module ApplicationHelper
   end
   
   def truncate_with_more(text, options = {})
+    return text if text.blank?
     more = options.delete(:more) || " ...#{t(:more).downcase} &darr;".html_safe
     less = options.delete(:less) || " #{t(:less).downcase} &uarr;".html_safe
     options[:omission] ||= ""
@@ -884,10 +885,12 @@ module ApplicationHelper
     "#{base_url}#{url_for(resource)}"
   end
   
-  def commas_and(list)
+  def commas_and(list, options = {})
     return list.first.to_s.html_safe if list.size == 1
     return list.join(" #{t :and} ").html_safe if list.size == 2
-    "#{list[0..-2].join(', ')}, #{t :and} #{list.last}".html_safe
+    options[:separator] ||= ","
+    options[:and] ||= t(:and)
+    "#{list[0..-2].join(', ')}#{options[:separator]} #{options[:and]} #{list.last}".html_safe
   end
   
   def update_cached(record, association)
@@ -1066,6 +1069,12 @@ module ApplicationHelper
   def favicon_url_for(url)
     uri = URI.parse(url) rescue nil
     "http://www.google.com/s2/favicons?domain=#{uri.try(:host)}"
+  end
+
+  # http://jfire.io/blog/2012/04/30/how-to-securely-bootstrap-json-in-a-rails-view/
+  def json_escape(s)
+    result = s.to_s.gsub('/', '\/')
+    s.html_safe? ? result.html_safe : result
   end
   
 end

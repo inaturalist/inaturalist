@@ -135,8 +135,8 @@ class ObservationFieldValue < ActiveRecord::Base
   
   def validate_observation_field_allowed_values
     return true if observation_field.allowed_values.blank?
-    values = observation_field.allowed_values.split('|')
-    unless values.include?(value)
+    values = observation_field.allowed_values.split('|').map(&:downcase)
+    unless values.include?(value.to_s.downcase)
       errors.add(:value, 
         "of #{observation_field.name} must be #{values[0..-2].map{|v| "#{v}, "}.join}or #{values.last}.")
     end

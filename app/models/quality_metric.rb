@@ -12,12 +12,18 @@ class QualityMetric < ActiveRecord::Base
     const_set metric.upcase, metric
   end
   
-  after_save :set_observation_quality_grade
-  after_destroy :set_observation_quality_grade
+  after_save :set_observation_quality_grade, :set_observation_captive,
+    :set_observation_public_positional_accuracy, :set_observation_mappable
+  after_destroy :set_observation_quality_grade, :set_observation_captive,
+    :set_observation_public_positional_accuracy, :set_observation_mappable
   
   validates_presence_of :observation
   validates_inclusion_of :metric, :in => METRICS
   validates_uniqueness_of :metric, :scope => [:observation_id, :user_id]
+
+  def to_s
+    "<QualityMetric #{id} metric: #{metric}, user_id: #{user_id}, agree: #{agree}>"
+  end
   
   def set_observation_quality_grade
     return true unless observation
@@ -26,6 +32,24 @@ class QualityMetric < ActiveRecord::Base
     return true if Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{observation.id}\n%'").exists?
     CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh_with_observation(observation.id, 
       :taxon_id => observation.taxon_id)
+    true
+  end
+
+  def set_observation_captive
+    return true unless observation
+    observation.reload.set_captive
+    true
+  end
+
+  def set_observation_public_positional_accuracy
+    return true unless observation
+    observation.reload.update_public_positional_accuracy
+    true
+  end
+
+  def set_observation_mappable
+    return true unless observation
+    observation.reload.update_mappable
     true
   end
 

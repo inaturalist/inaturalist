@@ -9,7 +9,7 @@
                            "taxon_browser" %>
 
 <script type="text/javascript" charset="utf-8">
-var CONSERVATION_STATUS_AUTHORITIES = <%=raw @conservation_status_authorities.to_json %>
+var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_authorities.to_json.html_safe %>
   $(document).ready(function() {
     $('#parent_name').simpleTaxonSelector({
       taxonIDField: $('#taxon_parent_id')

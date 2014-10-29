@@ -1,7 +1,7 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <%= stylesheet_link_tag 'blueprint_bundle' %>
 <%= stylesheet_link_tag 'application_bundle' %>
-<% if @site && @site.stylesheet -%>
+<% if @site && @site.stylesheet.file? -%>
   <%= stylesheet_link_tag @site.stylesheet.url %>
 <% end -%>
 <!--[if lte IE 7]>

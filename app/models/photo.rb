@@ -1,5 +1,6 @@
 #encoding: utf-8
 class Photo < ActiveRecord::Base
+  acts_as_flaggable
   belongs_to :user
   has_many :observation_photos, :dependent => :destroy
   has_many :taxon_photos, :dependent => :destroy
@@ -50,6 +51,10 @@ class Photo < ActiveRecord::Base
   
   def to_s
     "<#{self.class} id: #{id}, user_id: #{user_id}>"
+  end
+
+  def to_plain_s
+    "#{type.underscore.humanize} #{id} by #{attribution}"
   end
   
   def licensed_if_no_user
@@ -201,6 +206,25 @@ class Photo < ActiveRecord::Base
     options[:methods] ||= []
     options[:methods] += [:license_name, :license_url, :attribution]
     super(options)
+  end
+
+  def flagged_with(flag, options = {})
+    if flag.flag == Flag::COPYRIGHT_INFRINGEMENT
+      if options[:action] == "created"
+        styles = %w(original large medium small thumb square)
+        updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
+        updates += styles.map do |s|
+          FakeView.image_url("copyright-infringement-#{s}.png").to_s
+        end
+        Photo.update_all(updates, ["id = ?", id])
+      elsif %w(resolved destroyed).include?(options[:action])
+        repair if respond_to?(:repair)
+      end
+    end
+  end
+
+  def flagged?
+    flags.detect{|f| !f.resolved?}
   end
   
   # Retrieve info about a photo from its native source given its native id.  

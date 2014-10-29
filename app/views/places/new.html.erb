@@ -55,7 +55,7 @@
   <%= javascript_include_tag 'inaturalist/map3' %>
   <%= leaflet_js(:draw => true) %>
   <%= javascript_include_tag "shramov-leaflet-plugins/Bing" %>
-  <script type="text/javascript" src="https://rawgithub.com/brunob/leaflet.fullscreen/master/Control.FullScreen.js"></script>
+  <%= javascript_include_tag "leaflet.fullscreen/Control.FullScreen.js" %>
   <script type="text/javascript" charset="utf-8">
     var CLOUDMADE_KEY = <%=raw CONFIG.cloudmade.try(:key).to_json %>,
         BING_KEY = <%=raw CONFIG.bing.key.inspect %>,

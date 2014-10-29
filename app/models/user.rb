@@ -120,7 +120,7 @@ class User < ActiveRecord::Base
   after_save :update_photo_licenses
   after_save :update_sound_licenses
   after_save :destroy_messages_by_suspended_user
-  before_save :set_community_taxa_if_pref_changed
+  after_update :set_community_taxa_if_pref_changed
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
@@ -139,7 +139,7 @@ class User < ActiveRecord::Base
   bad_login_message = "use only letters, numbers, and -_ please.".freeze
   email_name_regex  = '[\w\.%\+\-]+'.freeze
   domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze
-  domain_tld_regex  = '(?:[A-Z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|jobs|museum)'.freeze
+  domain_tld_regex  = '(?:[A-Z]+)'.freeze
   email_regex       = /\A#{email_name_regex}@#{domain_head_regex}#{domain_tld_regex}\z/i
   bad_email_message = "should look like an email address.".freeze
   
@@ -602,7 +602,7 @@ class User < ActiveRecord::Base
   end
 
   def set_community_taxa_if_pref_changed
-    if prefers_community_taxa_changed?
+    if prefers_community_taxa_changed? && ! id.blank?
       Observation.delay(:priority => USER_INTEGRITY_PRIORITY).set_community_taxa(:user => id)
     end
     true

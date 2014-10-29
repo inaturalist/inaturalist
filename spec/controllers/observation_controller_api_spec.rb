@@ -242,6 +242,8 @@ shared_examples_for "an ObservationsController" do
       response_obs = JSON.parse(response.body)
       response_obs['identifications'].first['taxon']['common_name']['name'].should_not be_blank
     end
+
+    it "should include taxon rank level"
   end
 
   describe "update" do
@@ -478,6 +480,17 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == captive.id}.should_not be_blank
     end
 
+    it "should filter by captive when quality metrics used" do
+      captive = Observation.make!
+      captive_qm = QualityMetric.make!(:observation => captive, :metric => QualityMetric::WILD, :agree => false)
+      wild = Observation.make!
+      wild_qm = QualityMetric.make!(:observation => wild, :metric => QualityMetric::WILD, :agree => true)
+      get :index, :format => :json, :captive => true
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == wild.id}.should be_blank
+      json.detect{|obs| obs['id'] == captive.id}.should_not be_blank
+    end
+
     it "captive filter=false should include nil" do
       o = Observation.make!
       get :index, :format => :json, :captive => false
@@ -617,6 +630,42 @@ shared_examples_for "an ObservationsController" do
       o2 = Observation.make!(:taxon => synonym)
       get :index, :format => :json, :taxon_name => o1.taxon.name, :iconic_taxa => [@Aves.name]
       JSON.parse(response.body).size.should eq 1
+    end
+
+    it "should filter by mappable = true" do
+      Observation.make!
+      Observation.make!
+      Observation.make!(:latitude => 1.2, :longitude => 2.2)
+      get :index, :format => :json, :mappable => 'true'
+      JSON.parse(response.body).count.should == 1
+    end
+
+    it "should filter by mappable = false" do
+      Observation.make!
+      Observation.make!
+      Observation.make!(:latitude => 1.2, :longitude => 2.2)
+      get :index, :format => :json, :mappable => 'false'
+      JSON.parse(response.body).count.should == 2
+    end
+
+    it "should not filter by mappable when its nil" do
+      Observation.make!
+      Observation.make!
+      Observation.make!(:latitude => 1.2, :longitude => 2.2)
+      get :index, :format => :json, :mappable => nil
+      JSON.parse(response.body).count.should == 3
+    end
+
+    it "should include place_guess" do
+      o = Observation.make!(:place_guess => "my backyard")
+      get :index, :format => :json
+      response.body.should =~ /#{o.place_guess}/
+    end
+
+    it "should not include place_guess if coordinates obscured" do
+      o = Observation.make!(:place_guess => "my backyard", :geoprivacy => Observation::OBSCURED)
+      get :index, :format => :json
+      response.body.should =~ /#{o.place_guess}/
     end
   end
 

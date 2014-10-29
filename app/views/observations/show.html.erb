@@ -107,11 +107,11 @@
                              "wax.g",
                              "observations/show" %>
   <script type="text/javascript" charset="utf-8">
-    var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
+    var DEFAULT_PHOTO_IDENTITY_URL = <%=json_escape @default_photo_identity_url.to_json.html_safe %>,
         PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
-        PHOTO_SOURCES = <%= @photo_sources.to_json.html_safe %>,
-        DEFAULT_PHOTO_SOURCE = <%= @default_photo_source.to_json.html_safe %>,
-        OBSERVATION = <%= @observation.to_json(:viewer => current_user, 
+        PHOTO_SOURCES = <%=json_escape @photo_sources.to_json.html_safe %>,
+        DEFAULT_PHOTO_SOURCE = <%=json_escape @default_photo_source.to_json.html_safe %>,
+        OBSERVATION = <%=json_escape @observation.to_json(:viewer => current_user, 
           :force_coordinate_visibility => @coordinates_viewable,
           :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}).html_safe %>
     $(document).ready(function() {
@@ -193,6 +193,15 @@
 
 </script>
 <% end %>
+
+<% if @flagged_photos.size > 0 -%>
+  <div class="notice box">
+    <h3><%=t :suspicious_photos %></h3>
+    <p class="unstacked">
+      <%=t 'views.observations.show.flagged_photos_desc_html', :links => commas_and(@flagged_photos.map {|p| link_to(t(:photo_attribution, :attribution => p.id), p.becomes(Photo))}) %>
+    </p>
+  </div>
+<% end -%>
 
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">

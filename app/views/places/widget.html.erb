@@ -18,7 +18,7 @@ end
       $('#taxonchooser').chooser({
         collectionUrl: '/taxa/autocomplete.json',
         resourceUrl: '/taxa/{{id}}.json?partial=chooser',
-        defaultSources: <%= @default_taxa.to_json(:methods => [:html]).html_safe %>
+        defaultSources: <%=json_escape @default_taxa.to_json(:methods => [:html]).html_safe %>
       })
       
       $('#configureform').submit(function() {

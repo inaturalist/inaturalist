@@ -4,9 +4,9 @@
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
   <script type="text/javascript">
-    var PROJECT = <%= @project.to_json.html_safe %>,
-        RULE_PLACE = <%= @project.rule_place.to_json.html_safe %>,
-        PLACE = <%= @project.place.to_json(:methods => [:kml_url]).html_safe %>,
+    var PROJECT = <%=json_escape @project.to_json.html_safe %>,
+        RULE_PLACE = <%=json_escape @project.rule_place.to_json.html_safe %>,
+        PLACE = <%=json_escape @project.place.to_json(:methods => [:kml_url]).html_safe %>,
         PLACE_GEOMETRY_KML_URL = <%=raw @place_geometry ? place_geometry_kml_url.inspect : nil.to_json %>,
         KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : "[]" %>
   </script>
@@ -263,7 +263,7 @@
                class="observation_field_chooser"
                type="text"
                placeholder="<%= t :start_typing_field_name %>"
-               data-chooser-default-sources="<%= @observation_fields.to_json %>">
+               data-chooser-default-sources="<%=json_escape @observation_fields.to_json.html_safe %>">
         <%= link_to_function t(:add_a_field), "newProjectObservationField('#{escape_javascript(new_pof_fields)}')", :class => "button addfieldbutton" %>
         <%= link_to t(:create_a_new_field), new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
       </div>

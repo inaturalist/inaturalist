@@ -104,7 +104,7 @@ class Identification < ActiveRecord::Base
       # update the species_guess
       species_guess = observation.species_guess
       unless taxon.taxon_names.exists?(:name => species_guess)
-        species_guess = taxon.to_plain_s
+        species_guess = taxon.common_name.try(:name) || taxon.name
       end
       attrs = {:species_guess => species_guess, :taxon_id => taxon_id, :iconic_taxon_id => taxon.iconic_taxon_id}
       ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)

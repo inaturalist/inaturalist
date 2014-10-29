@@ -25,7 +25,7 @@
   more_images ||= false
   
   if js_link
-    taxon_json ||= taxon_to_json(taxon, :iconic_taxon => iconic_taxon).html_safe
+    taxon_json ||= json_escape(taxon_to_json(taxon, :iconic_taxon => iconic_taxon).html_safe)
   end
   photo ||= taxon.taxon_photos.sort_by{|tp| tp.id}.first.try(:photo)
   after_image ||= nil

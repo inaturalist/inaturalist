@@ -48,7 +48,7 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#new_listed_taxon').show()
-      window.todo = <%= @lines_taxa.map{|l,o| l if o.blank?}.compact.in_groups_of(@batch_size).reverse.to_json.html_safe %>
+      window.todo = <%=json_escape @lines_taxa.map{|l,o| l if o.blank?}.compact.in_groups_of(@batch_size).reverse.to_json.html_safe %>
       loadNextBatch()
     })
 

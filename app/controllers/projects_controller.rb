@@ -70,6 +70,9 @@ class ProjectsController < ApplicationController
   end
   
   def browse
+    if @site && (@site_place = @site.place)
+      @place = @site.place unless params[:everywhere].yesish?
+    end
     @order = params[:order] if ORDERS.include?(params[:order])
     @order ||= 'title'
     @projects = Project.page(params[:page]).order(ORDER_CLAUSES[@order])

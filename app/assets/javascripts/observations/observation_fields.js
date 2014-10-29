@@ -115,6 +115,7 @@ var ObservationFields = {
       } else if (currentField.datatype == 'numeric') {
         var newInput = input.clone()
         newInput.attr('type', 'number')
+        newInput.attr('step', 'any')
         input.after(newInput)
         input.remove()
         if (options.focus) { newInput.focus() }

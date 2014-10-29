@@ -80,6 +80,9 @@ class LocalPhoto < Photo
       end
     rescue EXIFR::MalformedImage, EOFError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
+    rescue NoMethodError => e
+      raise e unless e.message =~ /path.*StringIO/
+      Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
     end
   end
   
@@ -90,9 +93,14 @@ class LocalPhoto < Photo
       url = file.url(s)
       url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
     end
-    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
+    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'"
     Photo.update_all(updates, ["id = ?", id])
     true
+  end
+
+  def repair
+    self.file.reprocess!
+    set_urls
   end
 
   def attribution

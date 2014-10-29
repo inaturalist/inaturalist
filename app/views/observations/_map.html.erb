@@ -18,10 +18,11 @@
       window.map = map;
       
       // Add the observations
-      var observations = <%= observations.to_json(
+      var observations = <%= json_escape observations.to_json(
         :viewer => current_user, 
         :force_coordinate_visibility => force_coordinate_visibility,
         :methods => [:iconic_taxon_name],
+        :except => [:description],
         :include => {
           :user => { :only => :login }, 
           :taxon => {:only => [:id, :name]}

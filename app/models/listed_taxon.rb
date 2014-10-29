@@ -32,6 +32,7 @@ class ListedTaxon < ActiveRecord::Base
   before_save :set_user_id
   before_save :set_source_id
   before_save :set_establishment_means
+  before_save :set_primary_listing
   before_create :check_primary_listing
   after_save :update_cache_columns_for_check_list
   after_save :propagate_establishment_means
@@ -128,10 +129,31 @@ class ListedTaxon < ActiveRecord::Base
       taxa_listed_taxa.is_active = '#{taxonomic_status ? 't' : 'f'}' 
    )")}
 
+
+  # Queries listed taxa that represent leaves in the taxonomic tree described
+  # by the list. So if the list contains class Mammalia, species Homo sapiens,
+  # and kingdom Plantae, the leaves will be Homo sapiens and Plantae, since
+  # Mammalia is on the same branch as Homo sapiens but further toward the
+  # root, while Plantae is the end of its own branch. This works by splitting
+  # all the ancestries represented by the original query using
+  # regexp_split_to_table, so that each individual ancestor ID is a single row
+  # in a join table. Since those are *only* the ancestors, if you join the
+  # original query on taxon_id and select those that do *not* have a matching
+  # taxon in the ancestor join table, those are the leaves.
   scope :with_leaves, lambda{|scope_to_sql| 
-    joins("LEFT JOIN (#{ancestor_ids_sql(scope_to_sql)}) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id").where("ancestor_ids.ancestor_id IS NULL")
+    # generate the ancestor IDs subquery
+    ancestor_ids_sql = scope_to_sql.gsub(/^(S.*)\*/, "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id")
+    ancestor_ids_sql + " AND taxon_ancestor_ids IS NOT NULL"
+    # join ancestors on taxon_id
+    join = <<-SQL
+      LEFT JOIN (
+        #{ancestor_ids_sql}
+      ) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id
+    SQL
+    # filter by listed_taxa where the listed_taxa.taxon_id is not present
+    # among the ancestors, i.e. it is a leaf
+    joins(join).where("ancestor_ids.ancestor_id IS NULL")
   }
-  
   
   ALPHABETICAL_ORDER = "alphabetical"
   TAXONOMIC_ORDER = "taxonomic"
@@ -370,6 +392,11 @@ class ListedTaxon < ActiveRecord::Base
         first
       self.establishment_means = native_child_listed_taxon.establishment_means
     end
+    true
+  end
+
+  def set_primary_listing
+    self.primary_listing = false unless can_set_as_primary?
     true
   end
   
@@ -784,12 +811,6 @@ class ListedTaxon < ActiveRecord::Base
   end
   def make_primary_if_no_primary_exists
     update_attribute(:primary_listing, true) if !ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).present? && can_set_as_primary?
-  end
-
-  # used with .with_leaves filter
-  def self.ancestor_ids_sql(scope_to_sql)
-    scope_to_sql = scope_to_sql.gsub(/^(S.*)\*/, "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id")
-    scope_to_sql + " AND taxon_ancestor_ids IS NOT NULL"
   end
   
   # used with threatened_status filter

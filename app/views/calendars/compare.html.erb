@@ -19,7 +19,7 @@
         var map = iNaturalist.Map.createMap({
           div: "map-<%= date %>"
         })
-        map.addObservations(<%= @observations_by_date_by_taxon_id[date].values.flatten.to_json(:include => [:iconic_taxon]).html_safe %>)
+        map.addObservations(<%=json_escape @observations_by_date_by_taxon_id[date].values.flatten.to_json(:include => [:iconic_taxon]).html_safe %>)
         map.zoomToObservations()
       <% end -%>
     })

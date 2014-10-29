@@ -38,13 +38,13 @@
       
       window.placeMap = iNaturalist.Map.createMap({
         div: 'place_map', controls: 'small'});
-      window.placeMap.addPlace(<%= @place.to_json.html_safe %>);
+      window.placeMap.addPlace(<%=json_escape @place.to_json.html_safe %>);
       window.placeMap.zoomToPlaces();
       
       window.mergeTargetMap = iNaturalist.Map.createMap({
         div: 'merge_target_map', controls: 'small'});
       <% if @merge_target %>
-        window.mergeTargetMap.addPlace(<%= @merge_target.to_json.html_safe %>);
+        window.mergeTargetMap.addPlace(<%=json_escape @merge_target.to_json.html_safe %>);
         window.mergeTargetMap.zoomToPlaces();
       <% end %>
     });
@@ -75,7 +75,7 @@
       <th><%= link_to t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name), @place %></th>
       <th><%= t(:what_to_keep) %></th>
       <th>
-        <input type="text" name="with" value="<%= @merge_target.id if @merge_target %>" id="merge_target_id" placeholder="<%= t(:type_place_name) %>" data-json="<%= @merge_target.to_json(:methods => [:place_type_name]).html_safe %>">
+        <input type="text" name="with" value="<%= @merge_target.id if @merge_target %>" id="merge_target_id" placeholder="<%= t(:type_place_name) %>" data-json="<%=json_escape @merge_target.to_json(:methods => [:place_type_name]).html_safe %>">
       </th>
     </tr>
   </thead>

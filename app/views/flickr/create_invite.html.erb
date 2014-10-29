@@ -34,7 +34,7 @@
     queryParam: 'q',
     collectionUrl: '/projects/search.json',
     resourceUrl: '/projects/{{id}}.json',
-    defaultSources: <%= @projects.to_json.html_safe %>
+    defaultSources: <%=json_escape @projects.to_json.html_safe %>
   })
     var DEFAULT_PHOTO_IDENTITY_URL = "/facebook/photo_fields", //?context=user",
         PHOTO_IDENTITY_URLS = [{title: 'Facebook', url: '/facebook/photo_fields'},{title: 'Flickr', url: '/flickr/photo_fields'}]

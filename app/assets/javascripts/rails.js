@@ -257,7 +257,9 @@
         input = $(this);
         valueToCheck = input.is(':checkbox,:radio') ? input.is(':checked') : input.val();
         // If nonBlank and valueToCheck are both truthy, or nonBlank and valueToCheck are both falsey
-        if (valueToCheck == !!nonBlank) {
+        if (parseInt(valueToCheck) == 0) {
+          // do nothing, actual zero values are not blank
+        } else if (valueToCheck == !!nonBlank) {
           inputs = inputs.add(input);
         }
       });

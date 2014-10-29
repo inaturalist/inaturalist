@@ -668,6 +668,15 @@ describe Taxon, "merging" do
     s.reload
     s.resource.should eq(o)
   end
+
+  it "should work with denormalized ancestries" do
+    AncestryDenormalizer.truncate
+    TaxonAncestor.count.should == 0
+    AncestryDenormalizer.denormalize
+    lambda {
+      @keeper.merge(@reject)
+    }.should_not raise_error
+  end
 end
 
 describe Taxon, "moving" do
