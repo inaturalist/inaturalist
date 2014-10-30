@@ -109,7 +109,9 @@ class Emailer < ActionMailer::Base
     opts = Rails.application.config.action_mailer.default_url_options.dup
     return opts unless @user && @user.site
     opts[:host] = URI.parse(@user.site.url).host
-    opts[:port] = URI.parse(@user.site.url).port
+    if port = URI.parse(@user.site.url).port
+      opts[:port] = port if port != 80
+    end
     opts
   end
 

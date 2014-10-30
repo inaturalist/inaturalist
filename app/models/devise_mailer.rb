@@ -15,7 +15,11 @@ class DeviseMailer < Devise::Mailer
           :from => "#{site.name} <#{site.email_noreply.blank? ? CONFIG.noreply_email : site.email_noreply}>",
           :reply_to => site.email_noreply.blank? ? CONFIG.noreply_email : site.email_noreply
         )
-        DeviseMailer.default_url_options[:host] = site.url
+        begin
+          DeviseMailer.default_url_options[:host] = URI.parse(site.url).host
+        rescue
+          # url didn't parse for some reason, leave it as the default
+        end
       else
         # re-translate
         opts = opts.merge(:subject => t(:welcome_to_inat, :site_name => SITE_NAME))
