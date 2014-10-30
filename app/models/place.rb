@@ -133,7 +133,8 @@ class Place < ActiveRecord::Base
   GEO_PLANET_PLACE_TYPE_CODES = GEO_PLANET_PLACE_TYPES.invert
   INAT_PLACE_TYPES = {
     100 => 'Open Space',
-    101 => 'Territory'
+    101 => 'Territory',
+    102 => 'District'
   }
   PLACE_TYPES = GEO_PLANET_PLACE_TYPES.merge(INAT_PLACE_TYPES).delete_if do |k,v|
     Place::REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(k)
@@ -156,6 +157,10 @@ class Place < ActiveRecord::Base
   
   scope :containing_lat_lng, lambda {|lat, lng|
     joins(:place_geometry).where("ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lng, lat)
+  }
+
+  scope :containing_lat_lng_as_geography, lambda {|lat, lng|
+    joins(:place_geometry).where("ST_Intersects(place_geometries.geom::geography, ST_Point(?, ?))", lng, lat)
   }
 
   scope :bbox_containing_lat_lng, lambda {|lat, lng|
@@ -219,6 +224,7 @@ class Place < ActiveRecord::Base
   }
 
   scope :with_geom, joins(:place_geometry).where("place_geometries.id IS NOT NULL")
+  scope :straddles_date_line, where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)")
   
   def to_s
     "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 
@@ -309,6 +315,7 @@ class Place < ActiveRecord::Base
   end
   
   def straddles_date_line?
+    return true if self.swlng.to_f.abs > 180 || self.nelng.to_f.abs > 180
     self.swlng.to_f > 0 && self.nelng.to_f < 0
   end
   
@@ -467,10 +474,9 @@ class Place < ActiveRecord::Base
     self.nelat = geom.envelope.upper_corner.y
     if geom.spans_dateline?
       self.longitude = geom.envelope.center.x + 180*(geom.envelope.center.x > 0 ? -1 : 1)
-      self.swlng = geom.envelope.upper_corner.x
-      self.nelng = geom.envelope.lower_corner.x
+      self.swlng = geom.points.map(&:x).select{|x| x > 0}.min
+      self.nelng = geom.points.map(&:x).select{|x| x < 0}.max
     else
-      # self.longitude = geom.envelope.center.x
       self.swlng = geom.envelope.lower_corner.x
       self.nelng = geom.envelope.upper_corner.x
     end
@@ -732,6 +738,11 @@ class Place < ActiveRecord::Base
     # with latitude in mind.
     pt = pt.buffer(acc) if acc.to_f > 0
 
+    # Note that there's a serious problem here in that it doesn't seem to work
+    # with geometries that cross longitude 180. The factory will automatically
+    # make a polygon with longitudes that exceed 180, but contains? doesn't
+    # seem to work properly. When you use the spherical_factory, it claims
+    # contains? isn't defined.
     bbox.contains?(pt)
   end
 

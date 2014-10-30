@@ -1756,10 +1756,55 @@ describe Observation, "taxon updates" do
   # end
 end
 
+
+describe Observation, "place updates" do
+  describe "for places that cross the date line" do
+    let(:place) {
+      # crude shape that includes the north and south island of New Zealand
+      # (west of 180) and the Chathams (east of 180)
+      wkt = <<-WKT
+        MULTIPOLYGON
+          (
+            (
+              (
+                -177.374267578125 -43.4449429552612,-177.396240234375
+                -44.5278427984555,-175.1220703125
+                -44.629573191951,-174.9462890625
+                -43.4289879234416,-177.374267578125 -43.4449429552612
+              )
+            ),(
+              (
+                180 -33.9433599465788,179.736328125
+                -48.1074311884804,164.970703125 -47.8131545175277,165.234375
+                -33.3580616127788,180 -33.9433599465788
+              )
+            )
+          )
+      WKT
+      make_place_with_geom(:ewkt => wkt.gsub(/\s+/, ' '))
+    }
+    before do
+      place.straddles_date_line?.should be_true
+      @subscription = Subscription.make!(:resource => place)
+      @christchurch_lat = -43.603555
+      @christchurch_lon = 172.652311
+    end
+    it "should generate" do
+      o = without_delay do
+        Observation.make!(:latitude => @christchurch_lat, :longitude => @christchurch_lon)
+      end
+      @subscription.user.updates.last.notifier.should eq o
+    end
+    it "should not generate for observations outside of that place" do
+      o = without_delay do
+        Observation.make!(:latitude => -1 * @christchurch_lat, :longitude => @christchurch_lon)
+      end
+      @subscription.user.updates.should be_blank
+    end
+  end
 # This ended up being really annoying for people subscribed to big places
 # like North America. Still feel like there's a better way to do this than
 # triggering it on create
-# describe Observation, "place updates" do
 #   it "should generate an update for an observation that changed to the subscribed place" do
 #     p = make_place_with_geom
 #     s = Subscription.make!(:resource => p)
@@ -1774,7 +1819,7 @@ end
 #     u.notifier.should eq(o)
 #     u.subscriber.should eq(s.user)
 #   end
-# end
+end
 
 describe Observation, "update_for_taxon_change" do
   before(:each) do
