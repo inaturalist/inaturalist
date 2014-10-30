@@ -688,6 +688,15 @@ class Place < ActiveRecord::Base
     elsif mergee.place_geometry
       save_geom(mergee.place_geometry.geom)
     end
+
+    mergee.children.each do |child|
+      child.parent = self
+      unless child.save
+        # If there's a problem saving the child, orphan it. Otherwise it will
+        # get deleted when the parent is deleted
+        child.update_attributes(:parent => nil)
+      end
+    end
     
     # ensure any loaded associates that had their foreign keys updated in the db aren't hanging around
     mergee.reload
