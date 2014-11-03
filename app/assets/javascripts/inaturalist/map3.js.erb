@@ -12,6 +12,18 @@
 // requires GoogleMap classes
 if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') throw "The Google Maps libraries must be loaded to use the iNaturalist Map extensions.";
 
+var deselectText = function() {
+  if (window.getSelection) {
+    if (window.getSelection().empty) {  // Chrome
+      window.getSelection().empty();
+    } else if (window.getSelection().removeAllRanges) {  // Firefox
+      window.getSelection().removeAllRanges();
+    }
+  } else if (document.selection) {  // IE
+    document.selection.empty();
+  }
+};
+
 // extend parts of the Google Marker class
 google.maps.Marker.prototype.observation_id = null;
 
@@ -839,8 +851,9 @@ google.maps.Map.prototype.addObservationsLayer = function(options){
       color = options.color,
       tiles_url = options.tiles_url,
       gridTileUrl = tiles_url + "/observations/grid/{z}/{x}/{y}.png",
-      pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png"
-      precisionsTileUrl = tiles_url + "/observations/precisions/{z}/{x}/{y}.png"
+      pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png",
+      precisionsTileUrl = tiles_url + "/observations/precisions/{z}/{x}/{y}.png",
+      gridmaxzoom = options.gridmaxzoom || 11
 
   if (taxon_id || observation_id || color) {
     gridTileUrl += '?'
@@ -859,17 +872,19 @@ google.maps.Map.prototype.addObservationsLayer = function(options){
   }
   if (observation_id) pointTileUrl += "&obs_id=" + observation_id
   this.addTileLayer(gridTileUrl, {
-    maxzoom: 8
+    maxzoom: gridmaxzoom,
+    interactivity: false
   })
   if (options.precision) {
     this.addTileLayer(precisionsTileUrl, {
-      minzoom: 9,
+      minzoom: gridmaxzoom + 1,
       interactivity: false
     })
   }
   this.addTileLayer(pointTileUrl, {
     interactivity: 'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
-    minzoom: 9
+    minzoom: gridmaxzoom + 1,
+    gridminzoom: gridmaxzoom + 1
   })
 }
 
@@ -906,6 +921,7 @@ google.maps.Map.prototype.addTileLayer = function(tileUrl, options) {
     "legend": "foo"
   }, options)
   this.overlayMapTypes.push(new wax.g.connector(tilejson));
+  if (! interactivity) { return; }
   wax.g.interaction()
     .map(this)
       .tilejson(tilejson)
@@ -913,6 +929,8 @@ google.maps.Map.prototype.addTileLayer = function(tileUrl, options) {
           on: function(o) {
             document.body.style.cursor = 'pointer'
             if (o.e.type == 'click') {
+              // if the click is anywhere within the InfoWindow, don't act on it
+              if($('.gm-style-iw').parent().find(o.e.target).length > 0) { return false; }
               if(o.data['latitude']){
                 var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude']);
                 $.ajax({
@@ -924,12 +942,18 @@ google.maps.Map.prototype.addTileLayer = function(tileUrl, options) {
                     iw.position = latLng
                     iw.content = $('<div class="loading status">'+I18n.t('loading')+'</div>').get(0)
                     iw.open(window.map)
+                    // remove any text highlighting, which happens when the user clicks around
+                    deselectText();
                   },
                   success: function(data) {
                     var iw = map.getInfoWindow()
                     iw.position = latLng
                     iw.content = $('<div class="compact mini infowindow observations"></div>').append(data).get(0)
                     iw.open(window.map)
+                    // make sure the InfoWindow has focus
+                    $(iw).focus();
+                    // remove any text highlighting, which happens when the user clicks around
+                    deselectText();
                   },
                   error: function(jqXHR, textStatus, errorThrown) {
                     console.log(textStatus);

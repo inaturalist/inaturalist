@@ -2,6 +2,7 @@
 /*
  * iNaturalist fork, adding
  * 2014-04-28 kueda - Support for minZoom and maxZoom in layer specification
+ * 2014-10-29 pleary - Support for minZoom and maxZoom for grid interactions
  */
 
 !function (name, context, definition) {
@@ -2314,7 +2315,9 @@ wax.gm = function() {
         grid_tiles = {},
         manager = {},
         tilejson,
-        formatter;
+        formatter,
+        minZoom,
+        maxZoom;
 
     var gridUrl = function(url) {
         if (url) {
@@ -2345,6 +2348,18 @@ wax.gm = function() {
     manager.template = function(x) {
         if (!arguments.length) return formatter;
         formatter = wax.template(x);
+        return manager;
+    };
+
+    manager.minZoom = function(x) {
+        if (!arguments.length) return minZoom;
+        minZoom = x;
+        return manager;
+    };
+
+    manager.maxZoom = function(x) {
+        if (!arguments.length) return maxZoom;
+        maxZoom = x;
         return manager;
     };
 
@@ -2388,6 +2403,8 @@ wax.gm = function() {
             formatter = undefined;
         }
         manager.gridUrl(x.grids);
+        manager.minZoom(x.gridminzoom || 0);
+        manager.maxZoom(x.gridmaxzoom || 22);
         if (x.resolution) resolution = x.resolution;
         tilejson = x;
         return manager;
@@ -2621,7 +2638,9 @@ wax.interaction = function() {
     };
 
     interaction.screen_feature = function(pos, callback) {
-        var tile = getTile(pos);
+        var zoom = map.getZoom();
+        var ignoreThisZoom = (zoom < gm.minZoom() || zoom > gm.maxZoom());
+        var tile = ignoreThisZoom ? 'undefined' : getTile(pos);
         if (!tile) callback(null);
         gm.getGrid(tile.src, function(err, g) {
             if (err || !g) return callback(null);
