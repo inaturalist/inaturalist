@@ -23,6 +23,9 @@
       var map = iNaturalist.Map.createMap(opts);
       map.overviewMapControl = true;
 
+      window.map = map;
+      window.map.addObservationsLayer({ tiles_url: <%=raw CONFIG.tile_servers.windshaft.inspect %> })
+
       // build a simple sidebar for the map
       var obsList = $('#last-five');
 

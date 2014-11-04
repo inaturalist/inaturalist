@@ -70,6 +70,7 @@ class ObservationsController < ApplicationController
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
+  MAP_GRID_PARAMS_TO_CONSIDER = REJECTED_KML_FEED_PARAMS + %w"order order_by taxon_id taxon_name utf8"
   DISPLAY_ORDER_BY_FIELDS = {
     'created_at' => 'date added',
     'observations.id' => 'date added',
@@ -116,6 +117,23 @@ class ObservationsController < ApplicationController
       
       format.html do
         @iconic_taxa ||= []
+        grid_affecting_params = request.query_parameters.reject{ |k,v|
+          MAP_GRID_PARAMS_TO_CONSIDER.include?(k.to_s) }
+        # there are no parameters at all, so we can show the grid for all taxa
+        if grid_affecting_params.blank?
+          @display_map_grid = true
+        # this is the only value for `quality_grade` where we can show grids
+        elsif grid_affecting_params.delete("quality_grade") == "any"
+          # all other parameters are not set
+          if grid_affecting_params.detect{ |k,v| v != "" }.nil?
+            @display_map_grid = true
+            if search_params[:taxon]
+              @map_grid_taxon_id = search_params[:taxon].id
+              @map_grid_iconic_taxon = search_params[:taxon].iconic_taxon ?
+                search_params[:taxon].iconic_taxon.name : nil
+            end
+          end
+        end
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           pagination_headers_for(@observations)
           return render_observations_partial(partial)

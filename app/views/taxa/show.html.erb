@@ -43,7 +43,8 @@
 
   <%= javascript_include_tag 'jquery/plugins/jqModal',
                              'modal_image',
-                             "jquery/plugins/inat/photo_selectors.js" %>
+                             "jquery/plugins/inat/photo_selectors.js",
+                             'wax.g' %>
 
   <%= google_maps_js %>
   <%= javascript_include_tag 'inaturalist/map3', 'jquery/plugins/inat/taxonmap', 'taxa/show' %>
@@ -686,6 +687,7 @@
       <div id="taxon_range">
         <div id="taxon_range_map" style="width: 790px; height: 488px"
           data-taxon-id="<%= @taxon.id %>"
+          data-iconic-taxon-name="<%= @taxon.iconic_taxon ? @taxon.iconic_taxon.name : nil %>"
           data-taxon-range-kml="<%= taxon_range_kml_url if @taxon_range %>"
           data-taxon-range-citation="<%= @taxon_range.source.in_text if @taxon_range && @taxon_range.source %>"
           data-taxon-range-citation-url="<%= @taxon_range.source.url if @taxon_range && @taxon_range.source %>"

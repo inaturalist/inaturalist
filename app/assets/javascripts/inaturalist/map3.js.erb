@@ -848,12 +848,12 @@ google.maps.Map.prototype.addObservationsLayer = function(options){
   var options = options || {},
       taxon_id = options.taxon_id,
       observation_id = options.observation_id,
-      color = options.color,
+      color = options.color || iNaturalist.Map.ICONIC_TAXON_COLORS['Animalia'],
       tiles_url = options.tiles_url,
       gridTileUrl = tiles_url + "/observations/grid/{z}/{x}/{y}.png",
       pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png",
       precisionsTileUrl = tiles_url + "/observations/precisions/{z}/{x}/{y}.png",
-      gridmaxzoom = options.gridmaxzoom || 11
+      gridmaxzoom = options.gridmaxzoom || 10
 
   if (taxon_id || observation_id || color) {
     gridTileUrl += '?'
