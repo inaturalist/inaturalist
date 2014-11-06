@@ -6,27 +6,35 @@ class WindshaftDenormalizer < Denormalizer
     zooms.each do |zoom|
       psql.execute("DELETE FROM #{ zoom[:table] } WHERE taxon_id IS NULL")
       psql.execute("INSERT INTO #{ zoom[:table] }
-        SELECT NULL, #{ snap_for_seed(zoom[:seed]) }, count(*)
-        FROM observations o
-        GROUP BY #{ snap_for_seed(zoom[:seed]) }")
-    end
+        SELECT NULL, #{ envelope_for_seed(zoom[:seed]) }, cnt FROM (
+          SELECT NULL, #{ snap_for_seed(zoom[:seed]) } as geom, count(*) as cnt
+          FROM observations o
+          WHERE o.mappable = true
+          AND o.private_latitude IS NULL
+          AND o.private_longitude IS NULL
+          GROUP BY #{ snap_for_seed(zoom[:seed]) }) AS seed")
 
-    # next loop through all taxa 10,000 at a time and insert data for
-    # each batch at all zoom levels
-    each_taxon_batch_with_index(10000) do |taxa, index, total_batches|
-      zooms.each do |zoom|
+      # next loop through all taxa 10,000 at a time and insert data for each batch
+      each_taxon_batch_with_index(10000) do |taxa, index, total_batches|
         Taxon.transaction do
           psql.execute("DELETE FROM #{ zoom[:table] } WHERE taxon_id BETWEEN #{ taxa.first.id } AND #{ taxa.last.id }")
           psql.execute("INSERT INTO #{ zoom[:table] }
-            SELECT ta.ancestor_taxon_id, #{ snap_for_seed(zoom[:seed]) }, count(*)
-            FROM observations o
-            INNER JOIN taxa t ON (o.taxon_id = t.id)
-            INNER JOIN taxon_ancestors ta ON (t.id = ta.taxon_id)
-            WHERE ta.ancestor_taxon_id BETWEEN #{ taxa.first.id } AND #{ taxa.last.id }
-            GROUP BY ta.ancestor_taxon_id, #{ snap_for_seed(zoom[:seed]) }")
+            SELECT ancestor_taxon_id, #{ envelope_for_seed(zoom[:seed]) }, cnt FROM (
+              SELECT ta.ancestor_taxon_id, #{ snap_for_seed(zoom[:seed]) } as geom, count(*) as cnt
+              FROM observations o
+              INNER JOIN taxa t ON (o.taxon_id = t.id)
+              INNER JOIN taxon_ancestors ta ON (t.id = ta.taxon_id)
+              WHERE ta.ancestor_taxon_id BETWEEN #{ taxa.first.id } AND #{ taxa.last.id }
+              AND o.mappable = true
+              AND o.private_latitude IS NULL
+              AND o.private_longitude IS NULL
+              GROUP BY ta.ancestor_taxon_id, #{ snap_for_seed(zoom[:seed]) }) AS seed")
         end
       end
+      # free up any removable rows
+      psql.execute("VACUUM FULL VERBOSE ANALYZE #{ zoom[:table] }")
     end
+
   end
 
   def self.create_all_tables
@@ -54,6 +62,10 @@ class WindshaftDenormalizer < Denormalizer
   # into grids. Often used in SELECT and GROUP BY statements
   def self.snap_for_seed(seed)
     "ST_SnapToGrid(geom, 0+(#{ seed }/2), 75+(#{ seed }/2), #{ seed }, #{ seed })"
+  end
+
+  def self.envelope_for_seed(seed)
+    "ST_Envelope(ST_GEOMETRYFROMTEXT('LINESTRING('||(st_xmax(geom)-(#{ seed }/2))||' '||(st_ymax(geom)-(#{ seed }/2))||','||(st_xmax(geom)+(#{ seed }/2))||' '||(st_ymax(geom)+(#{ seed }/2))||')',4326))"
   end
 
   def self.zooms
