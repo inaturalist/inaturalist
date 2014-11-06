@@ -2,33 +2,51 @@
   = google_maps_js
   = javascript_include_tag "jquery/plugins/jquery.ba-bbq.min", 'inaturalist/map3', "wax.g"
   :javascript
-    var TILE_SERVER = #{CONFIG.tile_servers.windshaft.inspect}
     $(document).ready(function() {
       window.map = iNaturalist.Map.createMap({
         lat: 40.714, 
         lng: -98.262, 
-        controls: 'small'
-      })
-      var opts = $.deparam.querystring()
-      opts.tiles_url = TILE_SERVER
-      window.map.addObservationsLayer(opts)
-      google.maps.event.addListener(map, 'dragend', setUrlHashCoord)
-      google.maps.event.addListener(map, 'zoom_changed', setUrlHashCoord)
-      var coord = getUrlHashCoord()
-      if (coord.lat) {
-        map.setCenter(new google.maps.LatLng(coord.lat,coord.lng))
-        map.setZoom(coord.zoom)
+        controls: 'small',
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+      });
+      var opts = $.deparam.querystring();
+      opts.tiles_url = #{ CONFIG.tile_servers.windshaft.inspect };
+      #{
+        if @taxon && @taxon.iconic_taxon
+          "opts.color = iNaturalist.Map.ICONIC_TAXON_COLORS['#{ @taxon.iconic_taxon.name }'];"
+        else
+          "opts.color = iNaturalist.Map.ICONIC_TAXON_COLORS.Mollusca;"
+        end
       }
-    })
+      window.map.addObservationsLayer(opts);
+      google.maps.event.addListener(map, 'dragend', setUrlHashCoord);
+      google.maps.event.addListener(map, 'zoom_changed', setUrlHashCoord);
+      var coord = getUrlHashCoord();
+      if (coord.lat) {
+        map.setCenter(new google.maps.LatLng(coord.lat,coord.lng));
+        map.setZoom(coord.zoom);
+      }
+      var logoLink = document.createElement("a");
+      logoLink.style.padding = "5px";
+      var inatLogo = document.createElement("img");
+      inatLogo.src = "#{ asset_path('inat-logo-5-white.png') }";
+      inatLogo.style.width = "200px";
+      logoLink.appendChild(inatLogo);
+      $(logoLink).css("cursor", "pointer").click(function() {
+        window.location = "#{ root_url }";
+      });
+      logoLink.index = 1;
+      window.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(logoLink);
+    });
     function setUrlHashCoord() {
       var coords = map.getCenter(),
           x = preciseRound(coords.lng(), 3),
           y = preciseRound(coords.lat(), 3),
-          z = map.getZoom()
-      window.location.hash = '#' + [z,y,x].join('/')
+          z = map.getZoom();
+      window.location.hash = '#' + [z,y,x].join('/');
     }
     function getUrlHashCoord() {
-      var bits = window.location.hash.split('/').map(function(x) { return parseFloat(x.replace(/[^0-9\-\.]/, ''))})
-      return {lat: bits[1], lng: bits[2], zoom: bits[0]}
+      var bits = window.location.hash.split('/').map(function(x) { return parseFloat(x.replace(/[^0-9\-\.]/, ''))});
+      return { lat: bits[1], lng: bits[2], zoom: bits[0] };
     }
 #map.fullscreen

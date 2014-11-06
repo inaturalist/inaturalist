@@ -115,68 +115,6 @@
           :force_coordinate_visibility => @coordinates_viewable,
           :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}).html_safe %>
     $(document).ready(function() {
-      var MY_MAPTYPE_ID = 'pale'
-      var featureOpts = [
-        {
-          "featureType": "landscape",
-          "stylers": [
-            { "visibility": "on" },
-            { "lightness": 50 }
-          ]
-        },{
-          "featureType": "water",
-          "elementType": "geometry",
-          "stylers": [
-            { "lightness": 25 }
-          ]
-        },{
-          "elementType": "labels",
-          "stylers": [
-            { "visibility": "off" }
-          ]
-        },{
-          "featureType": "administrative",
-          "stylers": [
-            { "visibility": "off" }
-          ]
-        },{
-          "featureType": "road",
-          "elementType": "labels",
-          "stylers": [
-            { "visibility": "off" }
-          ]
-        },{
-          "featureType": "road",
-          "elementType": "geometry",
-          "stylers": [
-            { "visibility": "simplified" }
-          ]
-        },{
-          "elementType": "geometry",
-          "stylers": [
-            { "lightness": 40 }
-          ]
-        },{
-        }
-      ]
-      window.map.setOptions({
-        disableDefaultUI: false,
-        mapTypeControlOptions: {
-          mapTypeIds: [
-            google.maps.MapTypeId.TERRAIN,
-            google.maps.MapTypeId.ROADMAP,
-            MY_MAPTYPE_ID,
-            google.maps.MapTypeId.SATELLITE,
-            google.maps.MapTypeId.HYBRID]
-        },
-        mapTypeId: MY_MAPTYPE_ID
-      })
-      var styledMapOptions = {
-        name: 'Pale'
-      }
-      var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
-      map.mapTypes.set(MY_MAPTYPE_ID, customMapType);
-
       var tileLayerOptions = {
         taxon_id: OBSERVATION.taxon_id,
         observation_id: OBSERVATION.id,
