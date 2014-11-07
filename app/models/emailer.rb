@@ -13,7 +13,7 @@ class Emailer < ActionMailer::Base
     @subject = "#{subject_prefix} #{params[:sender_name]} wants you to join them on #{CONFIG.site_name}" 
     @personal_message = params[:personal_message]
     @sending_user = params[:sender_name]
-    mail(:to => address) do |format|
+    mail(set_site_specific_opts.merge(:to => address)) do |format|
       format.text
     end
   end
@@ -30,8 +30,12 @@ class Emailer < ActionMailer::Base
     @observation = project_invitation.observation
     @user = project_invitation.observation.user
     set_locale
+    set_site_specific_opts
     @inviter = project_invitation.user
-    mail(:to => project_invitation.observation.user.email, :subject => @subject)
+    mail(set_site_specific_opts(
+      :to => project_invitation.observation.user.email, 
+      :subject => @subject
+    ))
     reset_locale
   end
   
@@ -41,12 +45,13 @@ class Emailer < ActionMailer::Base
     return if user.prefers_no_email
     @user = user
     set_locale
+    set_site_specific_opts
     @grouped_updates = Update.group_and_sort(updates, :skip_past_activity => true)
     @update_cache = Update.eager_load_associates(updates)
-    mail(
+    mail(set_site_specific_opts.merge(
       :to => user.email,
       :subject => t(:updates_notification_email_subject, :prefix => subject_prefix, :date => Date.today)
-    )
+    ))
     reset_locale
   end
 
@@ -62,7 +67,7 @@ class Emailer < ActionMailer::Base
     if fmc = @message.from_user_copy
       return if fmc.flags.where("resolver_id IS NULL").count > 0
     end
-    mail(:to => @user.email, :subject => "#{subject_prefix} #{@message.subject}")
+    mail(set_site_specific_opts.merge(:to => @user.email, :subject => "#{subject_prefix} #{@message.subject}"))
     reset_locale
   end
 
@@ -75,7 +80,10 @@ class Emailer < ActionMailer::Base
     return unless fto.file?
     @file_url = FakeView.uri_join(root_url, fto.file.url)
     attachments[fto.file_file_name] = File.read(fto.file.path)
-    mail :to => @user.email, :subject => t(:site_observations_export_from_date, :site_name => SITE_NAME, :date => l(@flow_task.created_at.in_time_zone(@user.time_zone), :format => :long))
+    mail(set_site_specific_opts.merge(
+      :to => @user.email, 
+      :subject => t(:site_observations_export_from_date, :site_name => SITE_NAME, :date => l(@flow_task.created_at.in_time_zone(@user.time_zone), :format => :long))
+    ))
     reset_locale
   end
 
@@ -89,7 +97,10 @@ class Emailer < ActionMailer::Base
     return unless @user.prefers_project_invitation_email_notification?
     return if @user.prefers_no_email?
     return if @project.user.suspended?
-    mail :to => @user.email, :subject => t(:user_invited_you_to_join_project, :user => @sender.try(:login), :project => @project.title)
+    mail(set_site_specific_opts.merge(
+      :to => @user.email, 
+      :subject => t(:user_invited_you_to_join_project, :user => @sender.try(:login), :project => @project.title)
+    ))
     reset_locale
   end
 
@@ -98,7 +109,9 @@ class Emailer < ActionMailer::Base
     opts = Rails.application.config.action_mailer.default_url_options.dup
     return opts unless @user && @user.site
     opts[:host] = URI.parse(@user.site.url).host
-    opts[:port] = URI.parse(@user.site.url).port
+    if port = URI.parse(@user.site.url).port
+      opts[:port] = port if port != 80
+    end
     opts
   end
 
@@ -123,5 +136,20 @@ class Emailer < ActionMailer::Base
 
   def reset_locale
     I18n.locale = @locale_was || I18n.default_locale
+  end
+
+  def set_site_specific_opts
+    @site ||= @user.site if @user
+    if @site
+      {
+        :from => "#{@site.name} <#{@site.email_noreply.blank? ? CONFIG.noreply_email : @site.email_noreply}>",
+        :reply_to => @site.email_noreply.blank? ? CONFIG.noreply_email : @site.email_noreply
+      }
+    else
+      {
+        :from => "#{CONFIG.site_name} <#{CONFIG.noreply_email}>",
+        :reply_to => CONFIG.noreply_email
+      }
+    end
   end
 end

@@ -101,6 +101,7 @@ class LocalPhoto < Photo
   def repair
     self.file.reprocess!
     set_urls
+    [self, {}]
   end
 
   def attribution

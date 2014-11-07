@@ -120,7 +120,7 @@
                 <% for subscription in @subscriptions %>
                   <li class="subscription_for_<%= [subscription.resource_type, subscription.resource_id].join('_') %>">
                     <% if subscription.taxon -%>
-                      <%= link_to subscription.taxon.name, url_for(subscription.resource) %>
+                      <%= link_to subscription.taxon.name, url_for(subscription.taxon) %>
                     <% else %>
                       <%= link_to t(:all_observations), subscription.resource %>
                     <% end -%>

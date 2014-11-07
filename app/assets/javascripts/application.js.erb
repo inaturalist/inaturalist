@@ -546,7 +546,7 @@ $.fn.showInlineBlock = function() {
 function currentTimeZone() {
   var now = new Date(),
       nowString = now.toString(),
-      timeZoneAbbr = nowString.match(/\(([A-Z]{3})\)$/)[1],
+      timeZoneAbbr = nowString.match(/\(([A-Z]{3,4})\)$/)[1],
       timeZoneOffset = nowString.match(/[+-]\d\d\d\d/)[0],
       timeZoneOffsetHours = nowString.match(/([+-]\d\d)(\d\d)/)[1],
       timeZoneOffsetMinutes = nowString.match(/([+-]\d\d)(\d\d)/)[2]
@@ -562,7 +562,7 @@ $.fn.selectLocalTimeZone = function() {
   $(this).each(function() {
     var option,
         tz = currentTimeZone()
-    if (timeZoneAbbr) {
+    if (tz.abbreviation) {
       var matches = $("option[data-time-zone-abbr='"+tz.abbreviation+"']", this)
       option = matches.first()
     } else if (timeZoneOffsetHour) {

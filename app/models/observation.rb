@@ -2062,7 +2062,18 @@ class Observation < ActiveRecord::Base
     # Converting to the GEOGRAPHY type would solve this, in theory.
     # Unfrotinately this does NOT solve the problem of failing to select 
     # legit geoms that cross the dateline. GEOGRAPHY would solve that too.
-    candidates.select{|p| p.bbox_contains_lat_lng_acc?(lat, lon, acc)}
+    candidates.select do |p| 
+      # HACK: bbox_contains_lat_lng_acc uses rgeo, which despite having a
+      # spherical geometry factory, doesn't seem to allow spherical polygons
+      # to use a contains? method, which means it doesn't really work for
+      # polygons that cross the dateline, so... skip it until we switch to
+      # geography, I guess.
+      if p.straddles_date_line?
+        true
+      else
+        p.bbox_contains_lat_lng_acc?(lat, lon, acc)
+      end
+    end
   end
   
   def public_places
