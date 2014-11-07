@@ -122,8 +122,6 @@
         precision: true,
         <% if CONFIG.tile_servers && CONFIG.tile_servers.windshaft %>
           tiles_url     : '<%= CONFIG.tile_servers.windshaft %>'
-        <% else %>
-          tiles_url     : 'http://localhost:4000'
         <% end %>
       }
       window.map.addObservationsLayer(tileLayerOptions);
