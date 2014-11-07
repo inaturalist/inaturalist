@@ -482,6 +482,7 @@ iNaturalist.Map.createMap = function(options) {
     div: 'map',
     center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
     zoom: 1,
+    minZoom: 1,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     streetViewControl: false,
     observationsTileServer: 'http://localhost:8000'

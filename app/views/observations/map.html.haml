@@ -4,8 +4,9 @@
   :javascript
     $(document).ready(function() {
       window.map = iNaturalist.Map.createMap({
-        lat: 40.714, 
-        lng: -98.262, 
+        lat: 10,
+        lng: 20,
+        minZoom: 2,
         controls: 'small',
         mapTypeId: google.maps.MapTypeId.SATELLITE
       });

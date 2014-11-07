@@ -4,14 +4,18 @@ class WindshaftDenormalizer < Denormalizer
     create_all_tables
     # first insert data for ALL taxa (taxon_id = NULL) for all zoom levels
     zooms.each do |zoom|
+      # we only want to hide obscured observations from zoom levels 7
+      # and above, where the grid size is roughly smaller than 10km
+      obscured_condition = zoom[:level] >= 8 ?
+        "AND o.private_latitude IS NULL
+         AND o.private_longitude IS NULL" : ""
       psql.execute("DELETE FROM #{ zoom[:table] } WHERE taxon_id IS NULL")
       psql.execute("INSERT INTO #{ zoom[:table] }
         SELECT NULL, #{ envelope_for_seed(zoom[:seed]) }, cnt FROM (
           SELECT NULL, #{ snap_for_seed(zoom[:seed]) } as geom, count(*) as cnt
           FROM observations o
           WHERE o.mappable = true
-          AND o.private_latitude IS NULL
-          AND o.private_longitude IS NULL
+          #{ obscured_condition }
           GROUP BY #{ snap_for_seed(zoom[:seed]) }) AS seed")
 
       # next loop through all taxa 10,000 at a time and insert data for each batch
@@ -26,8 +30,7 @@ class WindshaftDenormalizer < Denormalizer
               INNER JOIN taxon_ancestors ta ON (t.id = ta.taxon_id)
               WHERE ta.ancestor_taxon_id BETWEEN #{ taxa.first.id } AND #{ taxa.last.id }
               AND o.mappable = true
-              AND o.private_latitude IS NULL
-              AND o.private_longitude IS NULL
+              #{ obscured_condition }
               GROUP BY ta.ancestor_taxon_id, #{ snap_for_seed(zoom[:seed]) }) AS seed")
         end
       end
@@ -69,17 +72,17 @@ class WindshaftDenormalizer < Denormalizer
   end
 
   def self.zooms
-    [ { seed: 4, table: "observation_zooms_2" },
-      { seed: 2, table: "observation_zooms_3" },
-      { seed: 0.99, table: "observation_zooms_4" },
-      { seed: 0.5, table: "observation_zooms_5" },
-      { seed: 0.25, table: "observation_zooms_6" },
-      { seed: 0.125, table: "observation_zooms_7" },
-      { seed: 0.0625, table: "observation_zooms_8" },
-      { seed: 0.03125, table: "observation_zooms_9" },
-      { seed: 0.015625, table: "observation_zooms_10" },
-      { seed: 0.0078125, table: "observation_zooms_11" },
-      { seed: 0.00390625, table: "observation_zooms_12" } ]
+    [ { seed: 4, level: 2, table: "observation_zooms_2" },
+      { seed: 2, level: 3, table: "observation_zooms_3" },
+      { seed: 0.99, level: 4, table: "observation_zooms_4" },
+      { seed: 0.5, level: 5, table: "observation_zooms_5" },
+      { seed: 0.25, level: 6, table: "observation_zooms_6" },
+      { seed: 0.125, level: 7, table: "observation_zooms_7" },
+      { seed: 0.0625, level: 8, table: "observation_zooms_8" },
+      { seed: 0.03125, level: 9, table: "observation_zooms_9" },
+      { seed: 0.015625, level: 10, table: "observation_zooms_10" },
+      { seed: 0.0078125, level: 11, table: "observation_zooms_11" },
+      { seed: 0.00390625, level: 12, table: "observation_zooms_12" } ]
   end
 
 end
