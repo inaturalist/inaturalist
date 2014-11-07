@@ -1930,6 +1930,18 @@ class ObservationsController < ApplicationController
 
   def map
     @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
+    @taxon_hash = { }
+    if @taxon
+      common_name = view_context.common_taxon_name(@taxon).try(:name)
+      rank_label = @taxon.rank ? t('ranks.#{ @taxon.rank.downcase }',
+        default: @taxon.rank).capitalize : t(:unknown_rank)
+      display_name = common_name || (rank_label + " " + @taxon.name)
+      @taxon_hash[:display_label] = I18n.t(:observations_of_taxon,
+        taxon_name: display_name)
+      if @taxon.iconic_taxon
+        @taxon_hash[:iconic_taxon_name] = @taxon.iconic_taxon.name
+      end
+    end
   end
 
 ## Protected / private actions ###############################################

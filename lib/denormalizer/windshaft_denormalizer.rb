@@ -35,7 +35,7 @@ class WindshaftDenormalizer < Denormalizer
         end
       end
       # free up any removable rows
-      psql.execute("VACUUM FULL VERBOSE ANALYZE #{ zoom[:table] }")
+      psql.execute("VACUUM FULL VERBOSE ANALYZE #{ zoom[:table] }") unless Rails.env.test?
     end
 
   end

@@ -3,41 +3,62 @@
   = javascript_include_tag "jquery/plugins/jquery.ba-bbq.min", 'inaturalist/map3', "wax.g"
   :javascript
     $(document).ready(function() {
+      // getting the coordinates from the URL and the site default BOUNDS
+      // we want to use the site default unless there URL specifies something else
+      var coord = getUrlHashCoord();
+      var BOUNDS = #{ raw CONFIG.bounds.to_json };
       window.map = iNaturalist.Map.createMap({
         lat: 10,
         lng: 20,
         minZoom: 2,
         controls: 'small',
-        mapTypeId: google.maps.MapTypeId.SATELLITE
+        mapTypeId: google.maps.MapTypeId.SATELLITE,
+        bounds: coord.lat ? null : BOUNDS
       });
       var opts = $.deparam.querystring();
       opts.tiles_url = #{ CONFIG.tile_servers.windshaft.inspect };
-      #{
-        if @taxon && @taxon.iconic_taxon
-          "opts.color = iNaturalist.Map.ICONIC_TAXON_COLORS['#{ @taxon.iconic_taxon.name }'];"
-        else
-          "opts.color = iNaturalist.Map.ICONIC_TAXON_COLORS.Mollusca;"
-        end
+      var taxon = #{ @taxon_hash.to_json };
+      if (taxon.iconic_taxon_name) {
+        opts.color = iNaturalist.Map.ICONIC_TAXON_COLORS[ taxon.iconic_taxon_name ];
+      } else {
+        opts.color = iNaturalist.Map.ICONIC_TAXON_COLORS.Mollusca;
       }
       window.map.addObservationsLayer(opts);
       google.maps.event.addListener(map, 'dragend', setUrlHashCoord);
       google.maps.event.addListener(map, 'zoom_changed', setUrlHashCoord);
-      var coord = getUrlHashCoord();
       if (coord.lat) {
         map.setCenter(new google.maps.LatLng(coord.lat,coord.lng));
         map.setZoom(coord.zoom);
       }
-      var logoLink = document.createElement("a");
-      logoLink.style.padding = "5px";
-      var inatLogo = document.createElement("img");
-      inatLogo.src = "#{ asset_path('inat-logo-5-white.png') }";
-      inatLogo.style.width = "200px";
-      logoLink.appendChild(inatLogo);
-      $(logoLink).css("cursor", "pointer").click(function() {
-        window.location = "#{ root_url }";
-      });
-      logoLink.index = 1;
-      window.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(logoLink);
+      
+      // add the site logo to the bottom of the map
+      var largeLogoURL = "#{ CONFIG.logo_large ? asset_path(CONFIG.logo_large) : nil }";
+      if (largeLogoURL) {
+        var logoLink = document.createElement("a");
+        logoLink.style.padding = "5px";
+        var logoImage = document.createElement("img");
+        logoImage.src = largeLogoURL;
+        logoImage.style.width = "200px";
+        logoLink.appendChild(logoImage);
+        $(logoLink).css("cursor", "pointer").click(function() {
+          window.location = "#{ root_url }";
+        });
+        logoLink.index = 1;
+        window.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(logoLink);
+      }
+      
+      // add the Taxon label to the top of the map
+      if (taxon.display_label) {
+        var taxonNameDiv = document.createElement("div");
+        taxonNameDiv.style.padding = "5px";
+        taxonNameDiv.style.color = "white";
+        taxonNameDiv.style["font-size"] = "20px";
+        taxonNameDiv.innerHTML = taxon.display_label;
+        $(taxonNameDiv).css("cursor", "pointer").click(function() {
+          window.location = "#{ taxon_url(@taxon) if @taxon }";
+        });
+        window.map.controls[google.maps.ControlPosition.TOP_CENTER].push(taxonNameDiv);
+      }
     });
     function setUrlHashCoord() {
       var coords = map.getCenter(),
