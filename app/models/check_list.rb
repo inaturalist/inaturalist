@@ -197,6 +197,8 @@ class CheckList < List
       # re-apply list rules to the listed taxa
       listed_taxon.force_update_cache_columns = true
       listed_taxon.save
+      # make sure we don't force update yet again when just validating
+      listed_taxon.force_update_cache_columns = false
       if !listed_taxon.valid?
         Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
           "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
