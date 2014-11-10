@@ -104,6 +104,7 @@
                              'observations/observation_fields',
                              'inaturalist/map3',
                              "jquery/plugins/inat/photo_selectors.js",
+                             "wax.g",
                              "observations/show" %>
   <script type="text/javascript" charset="utf-8">
     var DEFAULT_PHOTO_IDENTITY_URL = <%=json_escape @default_photo_identity_url.to_json.html_safe %>,
@@ -113,7 +114,20 @@
         OBSERVATION = <%=json_escape @observation.to_json(:viewer => current_user, 
           :force_coordinate_visibility => @coordinates_viewable,
           :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}).html_safe %>
-  </script>
+    $(document).ready(function() {
+      var tileLayerOptions = {
+        taxon_id: OBSERVATION.taxon_id,
+        observation_id: OBSERVATION.id,
+        color: iNaturalist.Map.ICONIC_TAXON_COLORS[OBSERVATION.iconic_taxon.name],
+        precision: true,
+        <% if CONFIG.tile_servers && CONFIG.tile_servers.windshaft %>
+          tiles_url     : '<%= CONFIG.tile_servers.windshaft %>'
+        <% end %>
+      }
+      window.map.addObservationsLayer(tileLayerOptions);
+    })
+
+</script>
 <% end %>
 
 <% if @flagged_photos.size > 0 -%>

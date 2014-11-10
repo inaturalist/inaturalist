@@ -34,6 +34,7 @@ class AncestryDenormalizer < Denormalizer
     end
     # insert any remaining ancestors
     insert_values(pending_values)
+    psql.execute("VACUUM FULL VERBOSE ANALYZE taxon_ancestors") unless Rails.env.test?
   end
 
   def self.truncate

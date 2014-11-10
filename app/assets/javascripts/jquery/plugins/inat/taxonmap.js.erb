@@ -9,7 +9,7 @@
       }
     })
   }
-  
+
   function setup(elt, options) {
     var options = $.extend({}, options)
     if (options.taxon) {
@@ -18,6 +18,7 @@
       options.taxonId = options.taxonId || $(elt).attr('data-taxon-id')
     }
     if (!options.taxonId) { return }
+    options.iconicTaxonName = options.iconicTaxonName || $(elt).attr('data-iconic-taxon-name')
     options.latitude = options.latitude || $(elt).attr('data-latitude')
     options.longitude = options.longitude || $(elt).attr('data-longitude')
     options.mapType = options.mapType || $(elt).attr('data-map-type')
@@ -31,11 +32,10 @@
     if (options.gbifKmlUrl == '') { options.gbifKmlUrl = null }
     options.taxonRangeCitation = options.taxonRangeCitation || $(elt).attr('data-taxon-range-citation')
     options.taxonRangeCitationUrl = options.taxonRangeCitationUrl || $(elt).attr('data-taxon-range-citation-url')
-    
+
     if (options.observationsJsonUrl != false) {
-      options.observationsJsonUrl = options.observationsJsonUrl 
-        || $(elt).attr('data-observations-json') 
-        || observationsJsonUrl(options.taxonId)
+      options.observationsJsonUrl = options.observationsJsonUrl
+        || $(elt).attr('data-observations-json')
     }
     options.bbox = options.bbox || $(elt).attr('data-bbox')
     if (typeof(options.bbox) == 'string') {
@@ -49,7 +49,7 @@
       setupPolymaps(elt)
     }
   }
-  
+
   function fit(elt) {
     if (true) {
       fitGoogle(elt)
@@ -57,7 +57,7 @@
       fitPolymaps(elt)
     }
   }
-  
+
   function setupGoogle(elt) {
     var options = $(elt).data('taxonMapOptions'),
         map = iNaturalist.Map.createMap({div: elt}),
@@ -80,7 +80,7 @@
     if (options.mapType) {
       map.setMapTypeId(options.mapType)
     }
-    
+
     if (options.taxonRangeKmlUrl) {
       var taxonRangeLyr = new google.maps.KmlLayer(options.taxonRangeKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
       var taxonRangeLyrOpts = {id: 'taxon_range-'+options.taxonId}
@@ -95,19 +95,19 @@
       map.addOverlay(I18n.t('taxon_range'), taxonRangeLyr, taxonRangeLyrOpts)
       preserveViewport = true
     }
-    
+
     if (options.placeKmlUrl) {
       var placeLyr = new google.maps.KmlLayer(options.placeKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
       map.addOverlay('Place Boundary', placeLyr, {id: 'place_boundary-'+options.taxonId})
       preserveViewport = true
     }
-    
+
     if (options.gbifKmlUrl) {
       var gbifLyr = new google.maps.KmlLayer(options.gbifKmlUrl, {suppressInfoWindows: true, preserveViewport: true})
       map.addOverlay(I18n.t('taxon_map.gbif_occurrences'), gbifLyr, {
-        id: 'gbif-'+options.taxonId, 
+        id: 'gbif-'+options.taxonId,
         hidden: true,
-        description: 
+        description:
           I18n.t('taxon_map.it_may_take_google_a_while_to') +
           ' <a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">' + I18n.t('taxon_map.data_url') + '</a>'
       })
@@ -124,7 +124,7 @@
           content = content.replace(/&gt;/g, '')
           content = content.replace(/<\/a"/g, '"')
           win = window['kmlInfoWindows'][e.featureData.id] = new google.maps.InfoWindow({
-            content: content, 
+            content: content,
             position: e.latLng,
             pixelOffset: e.pixelOffset
           })
@@ -134,7 +134,7 @@
       })
       preserveViewport = true
     }
-    
+
     if (options.observationsJsonUrl) {
       $.get(options.observationsJsonUrl, function(data) {
         map.addObservations(data)
@@ -143,23 +143,33 @@
           preserveViewport = true
         }
       })
+    } else if (options.taxonId) {
+      window.map = map;
+      gridOptions = {
+        tiles_url: <%= CONFIG.tile_servers.windshaft.inspect %>,
+        taxon_id: options.taxonId
+      };
+      if (options.iconicTaxonName) {
+        gridOptions['color'] = iNaturalist.Map.ICONIC_TAXON_COLORS[options.iconicTaxonName];
+      }
+      window.map.addObservationsLayer(gridOptions);
     }
-    
+
     if (!preserveViewport) {
       fit(elt)
     }
-    
+
     var overlayControlDiv = document.createElement('DIV')
     map._overlayControl = new iNaturalist.OverlayControl(map, {div: overlayControlDiv})
     map.controls[$(elt).width() < 300 ? google.maps.ControlPosition.LEFT_TOP : google.maps.ControlPosition.TOP_RIGHT].push(overlayControlDiv)
-    
+
     $(elt).data('taxonMap', map)
   }
-  
+
   function setupPolymaps(elt) {
-    
+
   }
-  
+
   function fitGoogle(elt) {
     var options = $(elt).data('taxonMapOptions'),
         map = $(elt).data('taxonMap'),
@@ -192,16 +202,16 @@
       lyrInfo.overlay.setMap(map)
       return
     }
-    
+
     if (options.observationsJsonUrl && map.observationBounds) {
       map.zoomToObservations()
       return
     }
-    
+
     map.setCenter(new google.maps.LatLng(0, 0))
     map.setZoom(1)
   }
-  
+
   function observationsJsonUrl(id) {
     return '//' + window.location.host + '/observations/of/'+id+'.json'
   }

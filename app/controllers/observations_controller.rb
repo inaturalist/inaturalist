@@ -45,7 +45,8 @@ class ObservationsController < ApplicationController
                             :taxa,
                             :taxon_stats,
                             :user_stats,
-                            :community_taxon_summary]
+                            :community_taxon_summary,
+                            :map]
   before_filter :load_observation, :only => [
     :show, :edit, :edit_photos, :update_photos, :destroy, :fields,
     :viewed_updates, :community_taxon_summary, :update_fields
@@ -70,6 +71,7 @@ class ObservationsController < ApplicationController
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
+  MAP_GRID_PARAMS_TO_CONSIDER = REJECTED_KML_FEED_PARAMS + %w"order order_by taxon_id taxon_name utf8"
   DISPLAY_ORDER_BY_FIELDS = {
     'created_at' => 'date added',
     'observations.id' => 'date added',
@@ -116,6 +118,23 @@ class ObservationsController < ApplicationController
       
       format.html do
         @iconic_taxa ||= []
+        grid_affecting_params = request.query_parameters.reject{ |k,v|
+          MAP_GRID_PARAMS_TO_CONSIDER.include?(k.to_s) }
+        # there are no parameters at all, so we can show the grid for all taxa
+        if grid_affecting_params.blank?
+          @display_map_grid = true
+        # we can only show grids when quality_grade = 'any',
+        # and all other parameters are empty
+        elsif grid_affecting_params.delete("quality_grade") == "any" &&
+          grid_affecting_params.detect{ |k,v| v != "" }.nil?
+          @display_map_grid = true
+        end
+        # if we are showing a grid
+        if @display_map_grid && search_params[:taxon]
+          @map_grid_taxon_id = search_params[:taxon].id
+          @map_grid_iconic_taxon = search_params[:taxon].iconic_taxon ?
+            search_params[:taxon].iconic_taxon.name : nil
+        end
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           pagination_headers_for(@observations)
           return render_observations_partial(partial)
@@ -1907,6 +1926,22 @@ class ObservationsController < ApplicationController
 
   def community_taxon_summary
     render :layout => false, :partial => "community_taxon_summary"
+  end
+
+  def map
+    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
+    @taxon_hash = { }
+    if @taxon
+      common_name = view_context.common_taxon_name(@taxon).try(:name)
+      rank_label = @taxon.rank ? t('ranks.#{ @taxon.rank.downcase }',
+        default: @taxon.rank).capitalize : t(:unknown_rank)
+      display_name = common_name || (rank_label + " " + @taxon.name)
+      @taxon_hash[:display_label] = I18n.t(:observations_of_taxon,
+        taxon_name: display_name)
+      if @taxon.iconic_taxon
+        @taxon_hash[:iconic_taxon_name] = @taxon.iconic_taxon.name
+      end
+    end
   end
 
 ## Protected / private actions ###############################################

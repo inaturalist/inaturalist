@@ -12,6 +12,18 @@
 // requires GoogleMap classes
 if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') throw "The Google Maps libraries must be loaded to use the iNaturalist Map extensions.";
 
+var deselectText = function() {
+  if (window.getSelection) {
+    if (window.getSelection().empty) {  // Chrome
+      window.getSelection().empty();
+    } else if (window.getSelection().removeAllRanges) {  // Firefox
+      window.getSelection().removeAllRanges();
+    }
+  } else if (document.selection) {  // IE
+    document.selection.empty();
+  }
+};
+
 // extend parts of the Google Marker class
 google.maps.Marker.prototype.observation_id = null;
 
@@ -28,6 +40,11 @@ google.maps.Map.prototype.places = {};
 // TODO: make this more like a stack to help with handling multiple
 // unsaved markers
 google.maps.Map.prototype.lastUnsavedMarker = null;
+
+
+// general purpose infoWindow
+// stores a global scope reference to an infoWindow
+google.maps.Map.prototype.infoWindow = null;
 
 
 google.maps.Map.prototype.createMarker = function(lat, lng, options) {
@@ -344,8 +361,17 @@ google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {
         observation.user.login
       )
     )
+  }else if(typeof(observation.identifications) != 'undefined' && observation.identifications.length > 0){
+    if( typeof(observation.identifications[0].user) != 'undefined' ){
+      wrapper.append(
+        ', by ',
+        $('<a href="/people/'+observation.identifications[0].user.login+'"></a>').append(
+          observation.identifications[0].user.login
+        )
+      )
+    }
   }
-  
+ 
   if (typeof(observation.short_description) != 'undefined' && observation.short_description != null) {
     wrapper.append($('<div class="description"></div>').append(observation.short_description));
   } else {
@@ -456,6 +482,7 @@ iNaturalist.Map.createMap = function(options) {
     div: 'map',
     center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
     zoom: 1,
+    minZoom: 1,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     streetViewControl: false,
     observationsTileServer: 'http://localhost:8000'
@@ -816,6 +843,132 @@ google.maps.Map.prototype.getOverlay = function(name) {
   for (var i=0; i < this.overlays.length; i++) {
     if (this.overlays[i].name == name) { return this.overlays[i] }
   }
+}
+
+google.maps.Map.prototype.addObservationsLayer = function(options){  
+  var options = options || {},
+      taxon_id = options.taxon_id,
+      observation_id = options.observation_id,
+      color = options.color || "#6E6E6E",
+      tiles_url = options.tiles_url,
+      gridTileUrl = tiles_url + "/observations/grid/{z}/{x}/{y}.png",
+      pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png",
+      precisionsTileUrl = tiles_url + "/observations/precisions/{z}/{x}/{y}.png",
+      gridmaxzoom = options.gridmaxzoom || 10
+
+  if (taxon_id || observation_id || color) {
+    gridTileUrl += '?'
+    pointTileUrl += '?'
+    precisionsTileUrl += '?'
+  }
+  if (taxon_id) {
+    gridTileUrl += "taxon_id=" + taxon_id
+    pointTileUrl += "taxon_id=" + taxon_id
+    precisionsTileUrl += "taxon_id=" + taxon_id
+  }
+  if (color) {
+    gridTileUrl += "&color=" + encodeURIComponent(color)
+    pointTileUrl += "&color=" + encodeURIComponent(color)
+    precisionsTileUrl += "&color=" + encodeURIComponent(color)
+  }
+  if (observation_id) pointTileUrl += "&obs_id=" + observation_id
+  this.addTileLayer(gridTileUrl, {
+    maxzoom: gridmaxzoom,
+    interactivity: false
+  })
+  if (options.precision) {
+    this.addTileLayer(precisionsTileUrl, {
+      minzoom: gridmaxzoom + 1,
+      interactivity: false
+    })
+  }
+  this.addTileLayer(pointTileUrl, {
+    interactivity: 'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
+    minzoom: gridmaxzoom + 1,
+    gridminzoom: gridmaxzoom + 1
+  })
+}
+
+google.maps.Map.prototype.getInfoWindow = function() {
+  if (!this.infoWindow) {
+    this.infoWindow = new google.maps.InfoWindow({
+       content: $('<div class="loading status">'+I18n.t('loading')+'</div>').get(0),
+       position: new google.maps.LatLng(0,0)
+    })
+  }
+  return this.infoWindow
+}
+
+google.maps.Map.prototype.addTileLayer = function(tileUrl, options) {
+  var options = options || {},
+      interactivity = options.interactivity
+      gridUrl = tileUrl.replace(/\.png/, '.grid.json')
+  if (interactivity) {
+    if (gridUrl.indexOf('?') < 0) {
+      gridUrl += '?'
+    } else {
+      gridUrl += '&'
+    }
+    gridUrl += 'interactivity='+interactivity
+    // windshaft needs the interactivity param to know what data to render
+    options.grids = [gridUrl]
+  }
+  var tilejson = $.extend(true, {}, {
+    version: '0.0.1',
+    scheme: 'xyz',
+    tiles: [tileUrl],
+    // wax needs template and legend set or it won't fire on events
+    "template": "{{species_guess}}",
+    "legend": "foo"
+  }, options)
+  this.overlayMapTypes.push(new wax.g.connector(tilejson));
+  if (! interactivity) { return; }
+  wax.g.interaction()
+    .map(this)
+      .tilejson(tilejson)
+        .on({
+          on: function(o) {
+            document.body.style.cursor = 'pointer'
+            if (o.e.type == 'click') {
+              // if the click is anywhere within the InfoWindow, don't act on it
+              if($('.gm-style-iw').parent().find(o.e.target).length > 0) { return false; }
+              if(o.data['latitude']){
+                var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude']);
+                $.ajax({
+                  url:  '/observations/' + o.data['id'] + '.html?partial=cached_component',
+                  type: 'GET',
+                  dataType: 'html',
+                  beforeSend: function() {
+                    var iw = map.getInfoWindow()
+                    iw.position = latLng
+                    iw.content = $('<div class="loading status">'+I18n.t('loading')+'</div>').get(0)
+                    iw.open(window.map)
+                    // remove any text highlighting, which happens when the user clicks around
+                    deselectText();
+                  },
+                  success: function(data) {
+                    var iw = map.getInfoWindow()
+                    iw.position = latLng
+                    iw.content = $('<div class="compact mini infowindow observations"></div>').append(data).get(0)
+                    iw.open(window.map)
+                    // make sure the InfoWindow has focus
+                    $(iw).focus();
+                    // remove any text highlighting, which happens when the user clicks around
+                    deselectText();
+                  },
+                  error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus);
+                  }
+                });
+              }
+            } else if (o.e.type == 'mousemove') {
+              window.map.setOptions({ draggableCursor: 'pointer' });
+            }
+          },
+          off: function(o) {
+            window.map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
+          }
+        })
 }
 
 // Static constants

@@ -154,6 +154,7 @@ Inaturalist::Application.routes.draw do
       get :phylogram
       get :export
       post :email_export
+      get :map
     end
     member do
       put :viewed_updates

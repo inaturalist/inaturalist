@@ -7,7 +7,7 @@
 -%>
 <% content_for(:extrajs) do %>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'map_bundle' %>
+  <%= javascript_include_tag 'map_bundle', 'wax.g' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       // Setup the Map
@@ -16,6 +16,16 @@
         overviewMapControl: true
       });
       window.map = map;
+      <%- if @display_map_grid -%>
+        var gridOptions = { tiles_url: <%=raw CONFIG.tile_servers.windshaft.inspect %> };
+        <%- if @map_grid_taxon_id -%>
+          gridOptions["taxon_id"] = <%= @map_grid_taxon_id %>;
+        <%- end -%>
+        <%- if @map_grid_iconic_taxon -%>
+          gridOptions["color"] = iNaturalist.Map.ICONIC_TAXON_COLORS[<%=raw @map_grid_iconic_taxon.inspect %>];
+        <%- end -%>
+        window.map.addObservationsLayer(gridOptions);
+      <%- end -%>
       
       // Add the observations
       var observations = <%= json_escape observations.to_json(
