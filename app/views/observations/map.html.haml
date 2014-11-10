@@ -1,4 +1,7 @@
-= content_for :extrajs do
+- content_for :extracss do
+  = stylesheet_link_tag 'observations/_map'
+
+- content_for :extrajs do
   = google_maps_js
   = javascript_include_tag "jquery/plugins/jquery.ba-bbq.min", 'inaturalist/map3', "wax.g"
   :javascript
