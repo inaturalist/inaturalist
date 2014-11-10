@@ -32,6 +32,7 @@
     if (options.gbifKmlUrl == '') { options.gbifKmlUrl = null }
     options.taxonRangeCitation = options.taxonRangeCitation || $(elt).attr('data-taxon-range-citation')
     options.taxonRangeCitationUrl = options.taxonRangeCitationUrl || $(elt).attr('data-taxon-range-citation-url')
+    options.observationsJsonUrl = options.observationsJsonUrl || $(elt).attr('data-observations-json')
 
     if (options.observationsJsonUrl != false) {
       options.observationsJsonUrl = options.observationsJsonUrl
