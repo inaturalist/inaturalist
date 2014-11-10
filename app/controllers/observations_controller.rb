@@ -1942,6 +1942,8 @@ class ObservationsController < ApplicationController
         @taxon_hash[:iconic_taxon_name] = @taxon.iconic_taxon.name
       end
     end
+    @about_url = CONFIG.map_about_url ? CONFIG.map_about_url :
+      view_context.wiki_page_url('help', anchor: 'mapsymbols')
   end
 
 ## Protected / private actions ###############################################
