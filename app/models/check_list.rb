@@ -318,6 +318,8 @@ class CheckList < List
     return unless lt
     lt.force_update_cache_columns = true
     lt.save # sets all observation associates, months stats, etc.
+    # now that its saved we don't need to force update for valid?
+    lt.force_update_cache_columns = false
     unless lt.valid?
       Rails.logger.error "[ERROR #{Time.now}] Couldn't save #{lt}: #{lt.errors.full_messages.to_sentence}"
     end
