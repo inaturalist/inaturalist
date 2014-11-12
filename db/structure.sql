@@ -572,7 +572,8 @@ CREATE TABLE flags (
     flaggable_type character varying(15) NOT NULL,
     user_id integer DEFAULT 0 NOT NULL,
     resolver_id integer,
-    resolved boolean DEFAULT false
+    resolved boolean DEFAULT false,
+    updated_at timestamp without time zone
 );
 
 
@@ -6877,3 +6878,5 @@ INSERT INTO schema_migrations (version) VALUES ('20141003193707');
 INSERT INTO schema_migrations (version) VALUES ('20141015212020');
 
 INSERT INTO schema_migrations (version) VALUES ('20141015213053');
+
+INSERT INTO schema_migrations (version) VALUES ('20141112011137');
