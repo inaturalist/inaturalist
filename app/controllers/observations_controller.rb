@@ -1573,6 +1573,7 @@ class ObservationsController < ApplicationController
           o.send("#{k}=", v) unless v.blank?
         end
       end
+      o.site ||= @site || current_user.site
       if o.save
         @observations << o
       else

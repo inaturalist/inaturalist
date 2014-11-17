@@ -58,9 +58,14 @@ describe Users::RegistrationsController, "create" do
   end
 
   it "should assign a user to a site" do
-    s = Site.make!(:url => "test.host") # hoping the test host is the same across platforms...
+    @site = Site.make!(:url => "test.host") # hoping the test host is the same across platforms...
+    class InatConfig
+      def site_id
+        @site.id
+      end
+    end
     u = User.make
     post :create, :user => {:login => u.login, :password => "zomgbar", :password_confirmation => "zomgbar", :email => u.email}
-    User.find_by_login(u.login).site.should eq s
+    User.find_by_login(u.login).site.should eq @site
   end
 end

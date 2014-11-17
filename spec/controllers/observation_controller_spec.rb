@@ -195,6 +195,7 @@ describe ObservationsController do
   end
   
   describe :photo do
+    let(:file) { fixture_file_upload('files/egg.jpg', 'image/jpeg') }
     before do
       @user = User.make!
       sign_in @user
@@ -203,6 +204,23 @@ describe ObservationsController do
       post :photo, :format => :json
       json = JSON.parse(response.body)
       json['error'].should_not be_blank
+    end
+
+    it "should set the site based on config" do
+      class InatConfig
+        def site_id
+          @site = Site.make!
+          @site.id
+        end
+      end
+      post :photo, :format => :json, :files => [ file ]
+      @user.observations.last.site.should_not be_blank
+    end
+
+    it "should set the site based on user's site" do
+      @user.update_attribute(:site_id, Site.make!.id)
+      post :photo, :format => :json, :files => [ file ]
+      @user.observations.last.site.should_not be_blank
     end
 
     # ugh, how to test uploads...
