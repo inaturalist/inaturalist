@@ -45,12 +45,11 @@ class CheckList < List
   end
   
   def update_taxon_list_rule
-    # unless taxon.nil? || rules.map{|r| r.operand_id}.include?(taxon_id)
-    #   self.rules << ListRule.new(:operand => taxon, :operator => 'in_taxon?')
-    # end
     return true unless taxon_id_changed?
-    rules.each(&:destroy)
-    rules.build(:operand => taxon, :operator => 'in_taxon?')
+    self.rules.each(&:destroy)
+    unless taxon.blank?
+      self.rules.build(:operand => self.taxon, :operator => 'in_taxon?')
+    end
     true
   end
   

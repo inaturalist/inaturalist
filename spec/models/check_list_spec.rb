@@ -40,6 +40,14 @@ describe CheckList do
     @check_list.update_attributes(:taxon => Taxon.make!)
     ListRule.find_by_id(r.id).should be_blank
   end
+
+  it "should remove the old is_taxon? rule if the taxon_id was removed" do
+    r = @check_list.rules.first
+    @check_list.update_attributes(:taxon => nil)
+    ListRule.find_by_id(r.id).should be_blank
+    @check_list.reload
+    @check_list.rules.should be_blank
+  end
 end
 
 describe CheckList, "refresh_with_observation" do
