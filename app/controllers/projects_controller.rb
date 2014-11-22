@@ -70,15 +70,14 @@ class ProjectsController < ApplicationController
   end
   
   def browse
-    if @site && (@site_place = @site.place)
+    @place = Place.find(params[:place_id]) rescue nil
+    if !@place && @site && (@site_place = @site.place)
       @place = @site.place unless params[:everywhere].yesish?
     end
     @order = params[:order] if ORDERS.include?(params[:order])
     @order ||= 'title'
     @projects = Project.page(params[:page]).order(ORDER_CLAUSES[@order])
-    if (@place = Place.find(params[:place_id]) rescue nil)
-      @projects = @projects.in_place(@place)
-    end
+    @projects = @projects.in_place(@place) if @place
     respond_to do |format|
       format.html
     end

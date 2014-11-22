@@ -1,8 +1,9 @@
+<%- site = @site || CONFIG -%>
 <div id="header" class="clear">  
   <ul id="mainnav" class="navtabs">
     <li>
-      <a href="/" title="<%= CONFIG.site_name %>" class="logolink">
-        <%= image_tag CONFIG.logo, :alt => SITE_NAME, :width => 118 %>
+      <a href="/" title="<%= site.try(:name) || SITE_NAME %>" class="logolink">
+        <%= image_tag @site && @site.logo? ? @site.logo.url : CONFIG.logo, :alt => SITE_NAME, :width => 118 %>
       </a>
     </li>
     <li class="subnavwrapper observationstab">

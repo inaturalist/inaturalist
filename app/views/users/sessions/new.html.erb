@@ -8,7 +8,7 @@
   </style>
 <%- end -%>
 <div class="column span-8 prepend-2">
-  <%= image_tag CONFIG.logo_icon_square_big, :width => 300  %>
+  <%= image_tag @site && @site.logo_square? ? @site.logo_square.url : CONFIG.logo_icon_square_big, :width => 300  %>
 </div>
 <div class="column span-7">
   
