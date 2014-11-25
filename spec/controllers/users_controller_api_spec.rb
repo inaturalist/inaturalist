@@ -65,6 +65,14 @@ shared_examples_for "a signed in UsersController" do
       json = JSON.parse(response.body)
       json.detect{|ju| ju['id'] == u.id}.should_not be_blank
     end
+
+    it "should allow email searches" do
+      u = User.make!
+      get :search, :q => u.email, :format => :json
+      response.should be_success
+      json = JSON.parse(response.body)
+      json.detect{|ju| ju['id'] == u.id}.should_not be_blank
+    end
   end
 end
 
@@ -94,11 +102,21 @@ describe UsersController, "without authentication" do
 
   describe :search do
     it "should search by username" do
-      u = User.make!
-      get :search, :q => u.login, :format => :json
+      u1 = User.make!(:login => "foo")
+      u2 = User.make!(:login => "bar")
+      get :search, :q => u1.login, :format => :json
       response.should be_success
       json = JSON.parse(response.body)
-      json.detect{|ju| ju['id'] == u.id}.should_not be_blank
+      json.detect{|ju| ju['id'] == u1.id}.should_not be_blank
+      json.detect{|ju| ju['id'] == u2.id}.should be_blank
+    end
+    
+    it "should not allow email searches" do
+      u = User.make!
+      get :search, :q => u.email, :format => :json
+      response.should be_success
+      json = JSON.parse(response.body)
+      json.should be_blank
     end
   end
 end

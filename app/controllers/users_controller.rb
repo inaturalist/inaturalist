@@ -203,9 +203,9 @@ class UsersController < ApplicationController
   def search
     scope = User.active.order('login').scoped
     @q = params[:q].to_s
-    if logged_in? && !@q.blank?
+    unless @q.blank?
       wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
-      conditions = if @q =~ Devise.email_regexp
+      conditions = if logged_in? && @q =~ Devise.email_regexp
         ["email = ?", @q]
       elsif @q =~ /\w+\s+\w+/
         ["lower(name) LIKE ?", wildcard_q]
