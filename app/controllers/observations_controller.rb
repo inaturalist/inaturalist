@@ -1527,8 +1527,14 @@ class ObservationsController < ApplicationController
     o = { :observation_field_values_attributes =>  ofv_attrs}
     respond_to do |format|
       if @observation.update_attributes(o)
+        if !params[:project_id].blank? && @observation.user_id == current_user.id && (@project = Project.find(params[:project_id]) rescue nil)
+          @project_observation = ProjectObservation.create(:observation => @observation, :project => @project)
+        end
         format.html do
           flash[:notice] = I18n.t(:observations_was_successfully_updated)
+          if @project_observation && !@project_observation.valid?
+            flash[:notice] += I18n.t(:however_there_were_some_issues, :issues => @project_observation.errors.full_messages.to_sentence)
+          end
           redirect_to @observation
         end
         format.json do

@@ -1,35 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-shared_examples_for "it allows changes" do
-  it "should allow ofv creation" do
-    put :update_fields, :format => :json, :id => o.id, :observation => {
-      :observation_field_values_attributes => {
-        "0" => {
-          :observation_field_id => of.id,
-          :value => "foo"
-        }
-      }
-    }
-    response.should be_success
-    o.reload
-    o.observation_field_values.first.value.should eq "foo"
-  end
-  it "should allow ofv updating" do
-    ofv = ObservationFieldValue.make!(:observation => o, :observation_field => of, :value => "foo")
-    put :update_fields, :format => :json, :id => o.id, :observation => {
-      :observation_field_values_attributes => {
-        "0" => {
-          :observation_field_id => of.id,
-          :value => "bar"
-        }
-      }
-    }
-    response.should be_success
-    o.reload
-    o.observation_field_values.first.value.should eq "bar"
-  end
-end
-
 shared_examples_for "an ObservationsController" do
 
   describe "create" do
@@ -761,10 +731,53 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "update_fields" do
+    shared_examples_for "it allows changes" do
+      it "should allow ofv creation" do
+        put :update_fields, :format => :json, :id => o.id, :observation => {
+          :observation_field_values_attributes => {
+            "0" => {
+              :observation_field_id => of.id,
+              :value => "foo"
+            }
+          }
+        }
+        response.should be_success
+        o.reload
+        o.observation_field_values.first.value.should eq "foo"
+      end
+      it "should allow ofv updating" do
+        ofv = ObservationFieldValue.make!(:observation => o, :observation_field => of, :value => "foo")
+        put :update_fields, :format => :json, :id => o.id, :observation => {
+          :observation_field_values_attributes => {
+            "0" => {
+              :observation_field_id => of.id,
+              :value => "bar"
+            }
+          }
+        }
+        response.should be_success
+        o.reload
+        o.observation_field_values.first.value.should eq "bar"
+      end
+    end
+
     describe "for the observer" do
       let(:o) { Observation.make!(:user => user) }
       let(:of) { ObservationField.make! }
       it_behaves_like "it allows changes"
+      it "should add to a project when project_id included" do
+        p = Project.make!
+        pu = ProjectUser.make!(:user => o.user, :project => p)
+        put :update_fields, :format => :json, :id => o.id, :project_id => p.id, :observation => {
+          :observation_field_values_attributes => {
+            "0" => {
+              :observation_field_id => of.id,
+              :value => "foo"
+            }
+          }
+        }
+        ProjectObservation.where(:project_id => p, :observation_id => o).exists?.should be_true
+      end
     end
 
     describe "for a non-observer" do
