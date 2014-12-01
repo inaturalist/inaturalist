@@ -34,12 +34,12 @@ class PostsController < ApplicationController
       return
     end
 
-    if params[:login] && @post.parent_type == "Project"
+    if params[:login] && @parent.is_a?(Project)
       redirect_to project_journal_post_path(@parent, @post)
       return
     end
 
-    if params[:project_id] && @post.parent_type == "User"
+    if params[:project_id] && @parent.is_a?(User)
       redirect_to journal_post_path(@parent.login, @post)
       return
     end

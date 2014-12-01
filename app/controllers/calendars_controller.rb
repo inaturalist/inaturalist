@@ -62,7 +62,7 @@ class CalendarsController < ApplicationController
       place_name_counts = scope.count(
         :from => "observations, places, place_geometries", 
         :group => "(places.display_name || '-' || places.id)")
-      @places = Place.where("id IN (?)", place_name_counts.map{|n,c| n.split('-').last})
+      @places = Place.where("id IN (?)", place_name_counts.map{|n,c| n.to_s.split('-').last})
       @place_name_counts = @places.sort_by(&:bbox_area).map do |place|
         n = "#{place.display_name}-#{place.id}"
         [n, place_name_counts[n]]

@@ -375,7 +375,7 @@ class Guide < ActiveRecord::Base
   end
 
   def user_login
-    user.login
+    user.try(:login) || I18n.t(:deleted_user)
   end
 
   def icon_url
