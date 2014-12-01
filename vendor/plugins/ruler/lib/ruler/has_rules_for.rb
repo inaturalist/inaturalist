@@ -18,8 +18,22 @@ module Ruler
       define_method(validation_method_name) do
         return if send(association).blank?
         rules = send(association).send("#{self.class.to_s.underscore.singularize}_rules")
-        rules.each do |rule|
-          errors[:base] << "Didn't pass rule: #{rule.terms}" unless rule.validates?(self)
+        rules.group_by(&:operator).each do |operator, operator_rules|
+          puts "working on #{operator}, #{operator_rules.size} rules"
+          errors_for_operator = []
+          operator_rules.each do |rule|
+            puts "rule: #{rule.inspect}"
+            unless rule.validates?(self)
+              errors_for_operator << rule.terms
+              puts "\tFailed!"
+            end
+          end
+          next if errors_for_operator.blank?
+          if operator_rules.size == 1
+            errors[:base] << "Didn't pass rule: #{errors_for_operator.first}"
+          elsif errors_for_operator.size == operator_rules.size
+            errors[:base] << "Didn't pass rules: #{errors_for_operator.join(' OR ')}"
+          end
         end
       end
       validate validation_method_name, options

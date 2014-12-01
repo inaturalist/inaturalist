@@ -1497,6 +1497,7 @@ en:
   must_be_observed_in: must be observed in
   must_be_less_than_x_MB: "Must be less than %{x} MB"
   must_have_observation_field: "must have observation field '%{operand}' filled out"
+  must_have_x: "must have %{x}"
   n_ago: "%{n} ago"
   n_people_agrees: "%{amount} people agree"
   n_people_disagrees: "%{amount} people disagree"
@@ -1688,8 +1689,11 @@ en:
     You can choose rules to determine what observations can be added to this
     project, like limiting observations to a certain place. Note: limiting to
     places currently relies on %{site_name} Places, and can only limit
-    observations to the smallest rectangle that surrounds a place. You can
-    only have one of each kind of rule.
+    observations to the smallest rectangle that surrounds a place. If you have
+    more than one rule for a type of rule, observations will be valid if
+    either rule passes. For example, if you have the rules "must be in
+    Amphibia" and "must be in Reptilia", then the project will accept
+    observations of reptiles OR amphibians.
   observation_was_deleted: Observation was deleted.
   observation_would_like_some_help: "%{user} would like some help identifying this!"
   observations: Observations
@@ -1700,10 +1704,10 @@ en:
   observations_confirmed: Observations (confirmed)
   observations_deleted: Observations deleted.
   observations_fields_are: |
-               Observation fields are extra pieces of data associated with an
-               observation, like number of individuals observed, habitat
-               description, or whatever you want! Projects can also specify fields
-               they'd like you to fill out.
+    Observation fields are extra pieces of data associated with an
+    observation, like number of individuals observed, habitat
+    description, or whatever you want! Projects can also specify fields
+    they'd like you to fill out.
   observations_for: Observations for
   observations_for_project: "Observations for %{project}"
   observations_from: Observations from %{date}
@@ -1714,6 +1718,7 @@ en:
   observations_it_may_take_a_few: observations.  It may take a few minutes. 
   observations_last500: Observations (last 500)
   observations_map: Observations / Map
+  observation_must_dotdotdot: Observation must...
   observations_near_a_place_are: |
     Observations "near" a place are within a rectangle drawn around
     the place's boundary, which may result in some inaccurate results for
@@ -3648,6 +3653,17 @@ en:
             <li>Files ending in .logo.jpg, .logo.png, etc. will be used as the project's logo on the project page instead of the project icon</li>
             <li>KML and KMZ files will be added to the map on the project page</li>
           </ol>
+        rules:
+          captive: be captive/cultivated
+          wild: be wild/naturalized
+          georeferenced: have coordinates
+          has_media: have media (photo or sound)
+          has_a_photo: have a photo
+          has_a_sound: have a sound
+          identified: be identified
+          in_taxon: be in taxon
+          observed_in_place: be observed in place
+          on_list: be of a taxon on the project list
         start_time_desc: "Start time for your bioblitz"
         trusted_project_means: |
           Trusting a project means that the project managers can add project

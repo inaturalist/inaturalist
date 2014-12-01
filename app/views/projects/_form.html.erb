@@ -169,9 +169,9 @@
     <%- new_rule_field = capture do %>
       <fieldset id="new_project_observation_rule">
         <%= f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
-          <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [t("#{m}").to_s.humanize.gsub('?', '').downcase, m]},
+          <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [t("views.projects.edit.rules.#{m.to_s.underscore.gsub('?', '').downcase}", :default => m.to_s.humanize.gsub('?', '')).downcase, m]},
             :include_blank => t(:choose_rule),
-            :label => t(:rule_must_be) %>
+            :label => t(:observation_must_dotdotdot) %>
           <%= pu.hidden_field :operand_type, :id => "new_operand_type" %>
           <div id="place_selector">
             <%= pu.text_field :operand_id, :id => "new_operand_id", :placeholder => t(:type_place_name), :label => t(:choose_a_place) %>

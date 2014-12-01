@@ -34,6 +34,8 @@ es:
   a_flag_for_x: "una marca de %{x}"
   a_greasemonkey_script: "un script de Greasemonkey"
   a_member_of_taxon_html: "un miembro de %{taxon}"
+  a_photo: una foto
+  a_sound: un sonido
   able_to_connect_flickr: "¡Muy bienPudimos vincular su cuenta de Flickr."
   about: "Acerca de"
   about_external_links: Acerca de los enlaces externos
@@ -1667,6 +1669,7 @@ es:
   must_be_less_than_x_MB: "Debe pesar menos de %{x}MB"
   must_be_observed_in: deben ser observaciones en
   must_have_observation_field: "debe completar el campo '%{operand}' en la observación"
+  must_have_x: "debe tener %{x}"
   n_ago: "hace %{n}"
   n_people_agrees: "%{amount} personas concuerdan"
   n_people_disagrees: "%{amount} personas no concuerdan "
@@ -1899,7 +1902,16 @@ es:
   observation_removed_from_the_project: "La observación fue eliminada del proyecto %{project}"
   observation_rights_html: "Observación %{rights}"
   observation_rules: "Reglas de observación"
-  observation_rules_description: "Usted puede seleccionar reglas para determinar cuáles observaciones se pueden agregar a este proyecto, como limitar las observaciones a un lugar determinado. Nota&#58; limitar a lugares se basa actualmente en %{site_name} Places y sólo puede limitar las observaciones al rectángulo más pequeño que rodea un lugar."
+  observation_rules_description: |
+    Usted puede seleccionar reglas para determinar cuáles observaciones se
+    pueden agregar a este proyecto, como limitar las observaciones a un lugar
+    determinado. Nota&#58; limitar a lugares se basa actualmente en
+    %{site_name} Places y sólo puede limitar las observaciones al rectángulo
+    más pequeño que rodea un lugar. Si usted tiene más de una regla para un
+    tipo de regla, las observaciones serán válidas si pasa cualquiera regla.
+    Por ejemplo, si usted tiene las reglas "debe estar en Amphibia" y "debe
+    estar en Reptilia", entonces el proyecto aceptará observaciones de
+    reptiles o anfibios.
   observation_was_deleted: La observación fue borrada.
   observation_would_like_some_help: "¡A %{user} le gustaría un poco de ayuda para identificar esto!"
   observations: Observaciones
@@ -1921,6 +1933,7 @@ es:
   observations_it_may_take_a_few: "observaciones. Esto podría tardar unos minutos."
   observations_last500: "Observaciones (últimas 500)"
   observations_map: "Observaciones / Mapa"
+  observation_must_dotdotdot: Observación debe...
   observations_near_a_place_are:
       Observaciones "cercanas" a un lugar que esten con un rectangulo alrededor
       de los limites de la figura, puede dar de resultado algunos datos imprecisos para
@@ -3575,6 +3588,17 @@ es:
             </li>
             <li>archivos KML y KMZ se añadirán al mapa en la página del proyecto</li>
           </ol>
+        rules:
+          captive: ser cautivo/cultivada
+          wild: ser salvaje/naturalizó
+          georeferenced: tener coordenadas
+          has_media: tener medios (foto o sonido)
+          has_a_photo: tener una foto
+          has_a_sound: tener un sonido
+          identified: ser identificado
+          in_taxon: estar en taxón
+          observed_in_place: ser observado en su lugar
+          on_list: ser de un taxón en la lista de proyectos
         trusted_project_means: |
           Cuando un projecto está verificado, los curadores y gerentes del
           proyecto pueden crear, actualizar y borra sus recursos del proyecto.

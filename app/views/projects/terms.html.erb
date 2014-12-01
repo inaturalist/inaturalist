@@ -21,20 +21,12 @@
 
 <% if !@project_user_rules.blank? || !@project_observation_rules.blank? %>
   <h3><%= t(:project_rules) %></h3>
-  <% unless @project_user_rules.blank? -%>
-    <h4><%= t(:new_members) %></h4>
-    <ul>
-      <% for rule in @project_user_rules %>
-        <li>...<%= rule.terms %></li>
-      <% end %>
-    </ul>
-  <% end -%>
 
   <% unless @project_observation_rules.blank? -%>
     <h4><%= t(:new_observations_ellispsis) %></h4>
     <ul>
-      <% for rule in @project_observation_rules %>
-        <li>...<%= rule.terms %></li>
+      <% @project_observation_rules.group_by(&:operator).each do |operator, rules| %>
+        <li>...<%= rules.map(&:terms).join(" #{t(:or, :default => "OR")} ") %></li>
       <% end %>
     </ul>
   <% end -%>
