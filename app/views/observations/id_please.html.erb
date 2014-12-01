@@ -210,12 +210,12 @@
         <strong><%=t :top_5_identifiers %>:</strong>
       </div>
       <div class="last column" style="width: 410px">
-        <% for user in @top_identifiers %>
+        <% @top_identifiers.each_with_index do |user, i| %>
           <span style="white-space: nowrap">
             <%= link_to(image_tag(user.icon.url(:mini), :class => 'usericon'), 
               identifications_by_login_path(user.login)) %>
             <strong><%= link_to you_or_login(user, :capitalize => true), identifications_by_login_path(user.login) %></strong>
-            <span class="count">(<%= number_with_delimiter(user.identifications_count) %>)</span><%= ',' if user == @top_identifiers.last %>
+            <span class="count">(<%= number_with_delimiter(user.identifications_count) %>)</span><%= ',' unless i == @top_identifiers.size - 1 %>
           </span>
         <% end %>
       </div>

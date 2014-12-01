@@ -1263,8 +1263,10 @@ class ObservationsController < ApplicationController
       search_observations(search_params, find_options)
     end
     
-    @top_identifiers = User.all(:order => "identifications_count DESC", 
-      :limit => 5)
+    @top_identifiers = User.order("identifications_count DESC").limit(5)
+    if @site && @site.site_only_users
+      @top_identifiers = @top_identifiers.where(:site_id => @site)
+    end
   end
   
   # Renders observation components as form fields for inclusion in 

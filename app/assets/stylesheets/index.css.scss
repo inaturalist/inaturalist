@@ -1486,6 +1486,9 @@ table .numeric { text-align: center; }
   *display:inline;
   float:none;
 }
+@-moz-document url-prefix() {
+  .identification_body{float:left;}
+}
 
 .item_content .outdated {opacity: 0.5;}
 .item_content .outdated:hover {opacity: 1;}

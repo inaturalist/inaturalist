@@ -359,9 +359,11 @@ $(document).ready(function() {
   $('form:has(input[required])').submit(checkFormForRequiredFields)
 
   $('body.browser .item .item_content').width(function() { return $(this).parent().width() - 58 })
-  $('.identification:visible .identification_body').width(function() { 
-    return $(this).parent().outerWidth(true) - $(this).siblings('.identification_image').outerWidth(true) - 20
-  })
+  setTimeout(function() {
+    $('.identification:visible .identification_body').width(function() { 
+      return $(this).parent().outerWidth(true) - $(this).siblings('.identification_image').outerWidth(true) - 25
+    })
+  }, 1000)
 
   $('.add_matching_link').attr('confirm', null).data('confirm', null)
   $('.dna').dnaHighlight()
