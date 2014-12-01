@@ -18,16 +18,20 @@ class CommentsController < ApplicationController
       :group => "parent_id"
     }
     @paging_comments = Comment.scoped
-    if logged_in?
-      if params[:mine]
+    if logged_in? && (!params[:mine].blank? || !params[:for_me].blank? || !params[:q].blank?)
+      filtering = true
+      if !params[:mine].blank?
         @paging_comments = @paging_comments.by(current_user)
-      elsif params[:for_me]
+      elsif !params[:for_me].blank?
         @paging_comments = @paging_comments.for_observer(current_user)
       end
       @paging_comments = @paging_comments.dbsearch(params[:q]) unless params[:q].blank?
     end
+    if !filtering && @site && @site.site_only_users
+      @paging_comments = @paging_comments.joins(:user).where("users.site_id = ?", @site)
+    end
     @paging_comments = @paging_comments.paginate(find_options)
-    @comments = Comment.where("id IN (?)", @paging_comments.map{|c| c.id}).includes(:user).order("comments.id desc")
+    @comments = Comment.where("comments.id IN (?)", @paging_comments.map{|c| c.id}).includes(:user).order("comments.id desc")
     @extra_comments = Comment.all(:conditions => [
       "comments.parent_id IN (?) AND comments.created_at >= ?", 
       @comments.map(&:parent_id), @comments.last.try(:created_at)

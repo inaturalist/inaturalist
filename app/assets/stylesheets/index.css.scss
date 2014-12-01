@@ -1661,3 +1661,25 @@ ul.plain {list-style:none;margin:0;padding:0}
 .observation_field_value .extra {display: none}
 .observation_field_value:hover .extra {display: inline-block;}
 .centered { text-align: center; }
+
+.commentitem .observations.mini .observation {border:none;}
+.commenttype img {vertical-align: middle;}
+.commentitem .observations.mini .icon {left: 0;}
+.commentitem .observations.mini .observed_on,
+.commentitem .observations.mini .created_at,
+.commentitem .observations.mini .tags,
+.commentitem .observations.mini .place,
+.commentitem .observations.mini .user,
+.commentitem .observations.mini .actions,
+.commentitem .observations.mini .curator_ident {
+  padding-left: 80px;
+}
+.commentitem .observations.mini .species_guess {padding-left: 25px; }
+.commentitem .observations.mini .user .label,
+.commentitem .observations.mini .observed_on .label,
+.commentitem .observations.mini .created_at .label,
+.commentitem .observations.mini .place .label,
+.commentitem .observations.mini .tags .label,
+.commentitem .observations.mini .curator_ident .label {
+  left: 25px;
+}
