@@ -82,13 +82,6 @@ GIT
       georuby (>= 1.3.0)
 
 GIT
-  remote: git://github.com/modyo/ym4r_gm.git
-  revision: a0399d9a966ceb63a32251f90d389bc1bb689b16
-  specs:
-    ym4r_gm (0.2.3)
-      ym4r
-
-GIT
   remote: git://github.com/samoli/acts_as_taggable_on_steroids.git
   revision: de68035542546645998fb6a806aa55b182c5c037
   specs:
@@ -467,7 +460,6 @@ GEM
       rails
     will_paginate (3.0.4)
     ya2yaml (0.31)
-    ym4r (0.6.1)
     yui-compressor (0.12.0)
 
 PLATFORMS
@@ -565,5 +557,4 @@ DEPENDENCIES
   will_paginate
   xmp!
   ya2yaml
-  ym4r_gm!
   yui-compressor

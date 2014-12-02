@@ -928,13 +928,6 @@ class ObservationsController < ApplicationController
         next if taxon_name_str.strip.blank?
         latitude = params[:batch][:latitude]
         longitude = params[:batch][:longitude]
-        if latitude.nil? && longitude.nil? && params[:batch][:place_guess]
-          places = Ym4r::GmPlugin::Geocoding.get(params[:batch][:place_guess])
-          unless places.empty?
-            latitude = places.first.latitude
-            longitude = places.first.longitude
-          end
-        end
         @observations << Observation.new(
           :user => current_user,
           :species_guess => taxon_name_str,

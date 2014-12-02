@@ -4,17 +4,6 @@
 module ApplicationHelper
   include Ambidextrous
   
-  def gmap_include_tag(key = false)
-    tag = if key
-      '<script src="http://maps.google.com/maps?file=api&v=2&key=' +
-      (key) + '" type="text/javascript"></script>'
-    else
-      '<script src="http://maps.google.com/maps?file=api&v=2&key=' +
-      (Ym4r::GmPlugin::ApiKey.get)  + '" type="text/javascript"></script>'
-    end
-    tag.html_safe
-  end
-  
   def num2letterID(num)
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     alphabet[num,1]
@@ -602,6 +591,7 @@ module ApplicationHelper
   end
   
   def google_static_map_for_observation_url(o, options = {})
+    return if CONFIG.google.simple_key.blank?
     url_for_options = {
       :host => 'maps.google.com',
       :controller => 'maps/api/staticmap',
@@ -610,7 +600,8 @@ module ApplicationHelper
       :size => '200x200',
       :sensor => 'false',
       :markers => "color:0x#{iconic_taxon_color(o.iconic_taxon_id)}|#{o.latitude},#{o.longitude}",
-      :key => Ym4r::GmPlugin::ApiKey.get
+      :port => false,
+      :key => CONFIG.google.simple_key
     }.merge(options)
     url_for(url_for_options)
   end

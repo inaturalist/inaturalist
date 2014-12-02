@@ -28,6 +28,7 @@ module PlacesHelper
   end
   
   def google_static_map_for_place_url(place, options = {})
+    return if CONFIG.google.simple_key.blank?
     url_for_options = {
       :host => 'maps.google.com',
       :port => '',
@@ -36,7 +37,8 @@ module PlacesHelper
       :zoom => 15,
       :size => '200x200',
       :sensor => 'false',
-      :key => Ym4r::GmPlugin::ApiKey.get
+      :port => false,
+      :key => CONFIG.google.simple_key
     }.merge(options)
     url_for(url_for_options)
   end
