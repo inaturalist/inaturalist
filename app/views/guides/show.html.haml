@@ -198,7 +198,8 @@
             = t(:all)
             %span.badge.pull-right= @guide.guide_taxa.count
         - for predicate, tags in @nav_tags.sort_by{|p,t| p}
-          %li.nav-header=t predicate.underscore.downcase, :default => predicate.humanize
+          - pred = t(predicate.underscore.downcase).is_a?(String) ? t(predicate.underscore.downcase, :default => predicate.humanize) : predicate
+          %li.nav-header= pred
           - for tag, value, count in tags.sort_by{|t,v,c| v}
             %li{:class => @tags.include?(tag) ? "active" : nil}
               = link_to url_for_params(:tags => [tag], :without => [:page]) do
