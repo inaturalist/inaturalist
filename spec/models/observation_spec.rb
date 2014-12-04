@@ -2177,6 +2177,20 @@ describe Observation, "community taxon" do
 
   # end
 
+  it "should obscure the observation if set to a threatened taxon if the owner has an ID but the community confirms a descendant" do
+    p = Taxon.make!
+    t = Taxon.make!(:parent => p)
+    cs = ConservationStatus.make!(:taxon => t)
+    o = Observation.make!(:latitude => 1, :longitude => 1, :taxon => p)
+    o.should_not be_coordinates_obscured
+    o.taxon.should_not be_blank
+    i1 = Identification.make!(:taxon => t, :observation => o)
+    i2 = Identification.make!(:taxon => t, :observation => o)
+    o.reload
+    o.community_taxon.should eq t
+    o.should be_coordinates_obscured
+  end
+
   it "should obscure the observation if set to a threatened taxon but the owner has no ID" do
     cs = ConservationStatus.make!
     t = cs.taxon

@@ -325,14 +325,14 @@ class Observation < ActiveRecord::Base
               :set_latlon_from_place_guess,
               :reset_private_coordinates_if_coordinates_changed,
               :normalize_geoprivacy,
-              :obscure_coordinates_for_geoprivacy,
-              :obscure_coordinates_for_threatened_taxa,
-              :set_geom_from_latlon,
               :set_license,
               :trim_user_agent,
               :update_identifications,
               :set_community_taxon_if_pref_changed,
               :set_taxon_from_community_taxon,
+              :obscure_coordinates_for_geoprivacy,
+              :obscure_coordinates_for_threatened_taxa,
+              :set_geom_from_latlon,
               :set_iconic_taxon
   
   before_update :set_quality_grade
