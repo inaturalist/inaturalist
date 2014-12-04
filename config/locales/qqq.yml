@@ -1,0 +1,33 @@
+# Message documentation for i18n translation keys
+qqq:
+  x_followers: Number of followers
+  x_identifications: Number of identifications
+  x_lists: Number of lists
+  x_journal_posts: Number of journal posts
+  x_matching_taxa: Number of matching taxa
+  x_matching_taxa_html:
+    Number of matching taxa, with the count in a span of class 'count'
+  x_observations: Number of observations
+  x_observations_html:
+    Number of observations, with the count in a span of class 'count'
+  x_observations_link_html:
+    Number of observations, with the count linked to $url
+  x_people: Number of people
+  x_people_agree_html:
+    Number of people that agree with something,
+    with the count in a span of class 'count'
+  x_species: Number of species
+  x_species_html:
+    Number of species, with the count in a span of class 'count'
+  x_species_link_html: Number of species, with the count linked to $url
+  x_taxa_observed_html:
+    Number of taxa observed, with the count in a span of class 'count'
+  x_research_grade_observations_html:
+    Number of research-grade observations,
+    with the count in a span of class 'count'
+  x_research_grade_observations_to_species_html:
+    Number of research-grade observations identified to rank species or lower,
+    with the count in a span of class 'count'
+  x_taxa_matching_current_filters: Number of taxa matching current filters
+  all_taxonomic_groups:
+    All taxonomic groups prefixed with a left double angle quote HTML entity
