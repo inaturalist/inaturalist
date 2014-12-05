@@ -160,7 +160,7 @@
           <%= link_to t(:add_another_flag), new_photo_flag_path(@photo),
                       :id => "flag_this", :rel => "nofollow", :class => "flaglink" %>
         </div>
-      <% else %>
+      <% elsif logged_in? %>
         <p class="description ui">
           <%= link_to t(:flag_this_photo), new_photo_flag_path(@photo), :id => "flag_this", :rel => "nofollow", :class => "flaglink" %>
         </p>
