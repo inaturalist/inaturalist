@@ -20,9 +20,9 @@
 
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'inaturalist/map3', 'projects/show' %>
+  <%= javascript_include_tag 'inaturalist/map3', 'projects/show', 'wax.g' %>
   <script type="text/javascript" charset="utf-8">
-    var PROJECT = <%=json_escape @project.to_json(:only => [:title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
+    var PROJECT = <%=json_escape @project.to_json(:only => [:id, :title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
         PLACE = <%=json_escape @place.to_json.html_safe %>,
         PLACE_GEOMETRY_KML_URL = <%=raw @place_geometry ? place_geometry_kml_url.inspect : nil.to_json %>,
         OBSERVATIONS = <%= @observations.blank? ? 'null' : json_escape(@observations.to_json(:include => :iconic_taxon).html_safe) %>,

@@ -60,7 +60,7 @@
 
 <% content_for(:extrajs) do %>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'by_login_bundle' %>
+  <%= javascript_include_tag 'by_login_bundle', 'wax.g' %>
 
   <script type="text/javascript" charset="utf-8">
     // define a function to be run after the window is fully loaded
@@ -105,6 +105,12 @@
       
       // zoom the map to the extent of the observations
       map.fitBounds(bounds)
+      
+      var gridOptions = {
+        user_id: <%= @selected_user.id %>,
+        color: iNaturalist.Map.ICONIC_TAXON_COLORS.Mollusca
+      };
+      map.addObservationsLayer(gridOptions);
       
       // create infowindows and behaviors
       $.each(observations, function(observation) {

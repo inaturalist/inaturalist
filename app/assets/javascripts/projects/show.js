@@ -20,6 +20,12 @@ $(document).ready(function() {
     map.addObservations(OBSERVATIONS)
   }
   
+  var gridOptions = {
+    project_id: PROJECT.id,
+    color: iNaturalist.Map.ICONIC_TAXON_COLORS.Mollusca
+  };
+  map.addObservationsLayer(gridOptions);
+  
   if (PROJECT.zoom_level) {
     map.setZoom(PROJECT.zoom_level)
   }

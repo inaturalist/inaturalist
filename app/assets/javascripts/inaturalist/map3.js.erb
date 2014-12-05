@@ -848,9 +848,12 @@ google.maps.Map.prototype.getOverlay = function(name) {
 google.maps.Map.prototype.addObservationsLayer = function(options){  
   var options = options || {},
       taxon_id = options.taxon_id,
+      user_id = options.user_id,
+      place_id = options.place_id,
+      project_id = options.project_id,
       observation_id = options.observation_id,
       color = options.color || "#6E6E6E",
-      tiles_url = options.tiles_url,
+      tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
       gridTileUrl = tiles_url + "/observations/grid/{z}/{x}/{y}.png",
       pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png",
       precisionsTileUrl = tiles_url + "/observations/precisions/{z}/{x}/{y}.png",
@@ -870,6 +873,21 @@ google.maps.Map.prototype.addObservationsLayer = function(options){
     gridTileUrl += "&color=" + encodeURIComponent(color)
     pointTileUrl += "&color=" + encodeURIComponent(color)
     precisionsTileUrl += "&color=" + encodeURIComponent(color)
+  }
+  if (user_id) {
+    gridTileUrl += "&user_id=" + user_id;
+    pointTileUrl += "&user_id=" + user_id;
+    precisionsTileUrl += "&user_id=" + user_id;
+  }
+  if (place_id) {
+    gridTileUrl += "&place_id=" + place_id;
+    pointTileUrl += "&place_id=" + place_id;
+    precisionsTileUrl += "&place_id=" + place_id;
+  }
+  if (project_id) {
+    gridTileUrl += "&project_id=" + project_id;
+    pointTileUrl += "&project_id=" + project_id;
+    precisionsTileUrl += "&project_id=" + project_id;
   }
   if (observation_id) pointTileUrl += "&obs_id=" + observation_id
   this.addTileLayer(gridTileUrl, {

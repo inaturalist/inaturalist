@@ -147,7 +147,6 @@
     } else if (options.taxonId) {
       window.map = map;
       gridOptions = {
-        tiles_url: <%= CONFIG.tile_servers.windshaft.inspect %>,
         taxon_id: options.taxonId
       };
       if (options.iconicTaxonName) {

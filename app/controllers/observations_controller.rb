@@ -1932,6 +1932,7 @@ class ObservationsController < ApplicationController
 
   def map
     @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
+    @user = User.find_by_id(params[:user_id].to_i) if params[:user_id]
     @taxon_hash = { }
     if @taxon
       common_name = view_context.common_taxon_name(@taxon).try(:name)
