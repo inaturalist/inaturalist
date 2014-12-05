@@ -6,6 +6,8 @@ class TaxonNamesController < ApplicationController
   before_filter :load_lexicons, :only => [:new, :create, :edit, :update]
   
   cache_sweeper :taxon_name_sweeper, :only => [:create, :update, :destroy]
+
+  layout "bootstrap"
     
   def index
     find_options = {
@@ -78,6 +80,17 @@ class TaxonNamesController < ApplicationController
       end
     end
   end
+
+  def taxon
+    @taxon_names = @taxon.taxon_names.sort_by(&:position).reject{|tn| tn.is_scientific?}
+    @place_taxon_names = PlaceTaxonName.includes(:taxon_name, :place).where("taxon_names.taxon_id = ?", @taxon).sort_by(&:position)
+    place_taxon_name_tn_ids = @place_taxon_names.map(&:taxon_name_id)
+    @names_by_place = @place_taxon_names.group_by(&:place).sort_by{|k,v| k.name}
+    @global_names = @taxon_names.select{|tn| !place_taxon_name_tn_ids.include?(tn.id)}
+    respond_to do |format|
+      format.html
+    end
+  end
   
   def show
     respond_to do |format|
@@ -103,10 +116,10 @@ class TaxonNamesController < ApplicationController
       if @taxon_name.save
         flash[:notice] = t(:your_name_was_saved)
         format.html { redirect_to taxon_path(@taxon) }
-        format.xml  { render :xml => @taxon_name, :status => :created, :location => @taxon_name }
+        format.xml  { render :json => @taxon_name, :status => :created, :location => @taxon_name }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @taxon_name.errors, :status => :unprocessable_entity }
+        format.xml  { render :json => @taxon_name.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -123,10 +136,10 @@ class TaxonNamesController < ApplicationController
       if @taxon_name.update_attributes(params[:taxon_name])
         flash[:notice] = t(:taxon_name_was_successfully_updated)
         format.html { redirect_to(taxon_name_path(@taxon_name)) }
-        format.xml  { head :ok }
+        format.json  { head :ok }
       else
         format.html { render :action => 'edit' }
-        format.xml  { render :xml => @taxon_name.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @taxon_name.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -164,6 +177,7 @@ class TaxonNamesController < ApplicationController
   def load_taxon
     @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     @taxon ||= @taxon_name.taxon if @taxon_name
+    @taxon ||= Taxon.find_by_id(params[:id].to_i)
     render_404 and return unless @taxon
     true
   end

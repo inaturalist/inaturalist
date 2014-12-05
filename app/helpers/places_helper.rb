@@ -1,6 +1,7 @@
 module PlacesHelper
   def place_name_and_type(place, options = {})
     place_name = options[:display] ? place.display_name : place.name
+    place_name = t("places_name.#{place_name.downcase.underscore}", :default => place_name)
     place_type_name = place_type(place)
     content_tag(:span, :class => "place #{place.place_type_name}") do
       raw(place_name + (place_type_name.blank? ? '' : " #{place_type_name}"))
@@ -10,8 +11,9 @@ module PlacesHelper
   def place_type(place)
     place_type_name = nil
     place_type_name = if place.place_type
-      content_tag(:span, :class => 'place_type description') do
-        "(#{place.place_type_name})"
+      key = "place_geo.geo_planet_place_types.#{place.place_type_name.underscore.downcase}"
+      content_tag(:span, :class => 'place_type meta') do
+        "(#{t(key, :default => place.place_type_name)})"
       end
     end
     place_type_name

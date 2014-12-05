@@ -147,6 +147,7 @@ class FlickrPhoto < Photo
     # Try to get a taxon
     observation.taxon = to_taxon
     if t = observation.taxon
+      t.current_user = observation.user
       observation.species_guess = t.common_name.try(:name) || t.name
     end
 

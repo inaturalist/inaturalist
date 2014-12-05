@@ -111,6 +111,7 @@ class User < ActiveRecord::Base
   has_many :updates, :foreign_key => :subscriber_id, :dependent => :delete_all
   has_many :flow_tasks
   belongs_to :site, :inverse_of => :users
+  belongs_to :place, :inverse_of => :users
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
@@ -156,7 +157,7 @@ class User < ActiveRecord::Base
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, 
-    :time_zone, :icon_url, :locale, :prefers_community_taxa
+    :time_zone, :icon_url, :locale, :prefers_community_taxa, :place_id
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'

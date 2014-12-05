@@ -1946,6 +1946,37 @@ ALTER SEQUENCE place_geometries_id_seq OWNED BY place_geometries.id;
 
 
 --
+-- Name: place_taxon_names; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE place_taxon_names (
+    id integer NOT NULL,
+    place_id integer,
+    taxon_name_id integer,
+    "position" integer DEFAULT 0
+);
+
+
+--
+-- Name: place_taxon_names_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE place_taxon_names_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: place_taxon_names_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE place_taxon_names_id_seq OWNED BY place_taxon_names.id;
+
+
+--
 -- Name: places; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3030,7 +3061,8 @@ CREATE TABLE taxon_names (
     updated_at timestamp without time zone,
     name_provider character varying(255),
     creator_id integer,
-    updater_id integer
+    updater_id integer,
+    "position" integer DEFAULT 0
 );
 
 
@@ -3394,7 +3426,8 @@ CREATE TABLE users (
     icon_updated_at timestamp without time zone,
     uri character varying(255),
     locale character varying(255),
-    site_id integer
+    site_id integer,
+    place_id integer
 );
 
 
@@ -3842,6 +3875,13 @@ ALTER TABLE ONLY picasa_identities ALTER COLUMN id SET DEFAULT nextval('picasa_i
 --
 
 ALTER TABLE ONLY place_geometries ALTER COLUMN id SET DEFAULT nextval('place_geometries_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY place_taxon_names ALTER COLUMN id SET DEFAULT nextval('place_taxon_names_id_seq'::regclass);
 
 
 --
@@ -4497,6 +4537,14 @@ ALTER TABLE ONLY picasa_identities
 
 ALTER TABLE ONLY place_geometries
     ADD CONSTRAINT place_geometries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: place_taxon_names_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY place_taxon_names
+    ADD CONSTRAINT place_taxon_names_pkey PRIMARY KEY (id);
 
 
 --
@@ -5612,6 +5660,20 @@ CREATE INDEX index_place_geometries_on_source_id ON place_geometries USING btree
 
 
 --
+-- Name: index_place_taxon_names_on_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_place_taxon_names_on_place_id ON place_taxon_names USING btree (place_id);
+
+
+--
+-- Name: index_place_taxon_names_on_taxon_name_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_place_taxon_names_on_taxon_name_id ON place_taxon_names USING btree (taxon_name_id);
+
+
+--
 -- Name: index_places_on_admin_level; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6298,6 +6360,13 @@ CREATE INDEX index_users_on_observations_count ON users USING btree (observation
 
 
 --
+-- Name: index_users_on_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_place_id ON users USING btree (place_id);
+
+
+--
 -- Name: index_users_on_site_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6880,3 +6949,9 @@ INSERT INTO schema_migrations (version) VALUES ('20141015212020');
 INSERT INTO schema_migrations (version) VALUES ('20141015213053');
 
 INSERT INTO schema_migrations (version) VALUES ('20141112011137');
+
+INSERT INTO schema_migrations (version) VALUES ('20141201211037');
+
+INSERT INTO schema_migrations (version) VALUES ('20141203024242');
+
+INSERT INTO schema_migrations (version) VALUES ('20141204224856');

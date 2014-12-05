@@ -205,6 +205,7 @@ es:
   add_one: "¡Agregar uno!"
   add_photos: "Agregar fotos"
   add_photos_to_this_observation: "Añadir fotos a esta observación"
+  add_place: "Añadir lugar"
   add_several_observations_at_once: "Agregar varias observaciones de una sola vez"
   add_section: Añadir sección
   add_shape: Añade un límite
@@ -1263,6 +1264,7 @@ es:
   getting_started: "Cómo Empezar"
   give_it_some_detail: "¡Colóquele algún detalle!"
   global_conservation_status: "Estado de conservación global"
+  global_names: Nombres globales
   globally: globalmente
   go: Busca
   good_choice_for_sharing: "Buena alternativa para compartir con los científicos"
@@ -1343,7 +1345,7 @@ es:
   ids: Identificaciones
   ids_made_for_others: "Identificaciones hechas para otros"
   if_matches_come_from_a_comprehensive_list:  Si los resultados provienen de una lista exhaustiva, una barra verde como esta se mostrará.
-  if_this_is_a_cientific_name: "Si este es un nombre científico, ¿está aceptado actualmente?"
+  if_this_is_a_scientific_name: "Si este es un nombre científico, ¿está aceptado actualmente?"
   if_this_link_will_apply_to_descendant: "Si este vínculo aplicará a los taxones descendientes, puede usar sus plantillas de etiquetas para llenar el nombre del taxón en la URL"
   if_you_already_have_an_account: "Si usted ya tiene una cuenta de %{site_name}..."
   if_you_dont_want_us_to_share_your_data: Si no deseas compartir esta información
@@ -1686,6 +1688,7 @@ es:
     nzor: New Zealand Organisms Register
   named_based_url_might_change: "Name-based URLs might change, but this won't.: Los URL basados en nombres podrían cambiar pero éstos no."
   names: Nombres
+  names_for_taxon_html: "Nombres para %{taxon}"
   native: nativa
   native_page_url: Página URL nativa
   naturalised: naturalizado
@@ -2385,6 +2388,7 @@ es:
   remove_from_project: Quitar del proyecto
   remove_manager: Quitar gerente
   remove_photo: Quitar foto
+  remove_place: Quitar lugar
   remove_project_user: "Quitar usuario de proyecto"
   remove_range: Quitar distribución
   remove_section: Quitar sección
@@ -3610,6 +3614,21 @@ es:
             <li>No agregue nombres duplicados, por ejemplo, no mencione a numerosos halcones "halcón"</li>
             <li>Para taxa superiores de nivel, trate de usar nombres que incluyen todos los descendientes, como "Jacamarás y parientes" o "familia de brezo"</li>
           </ul>
+        places_help_html: |
+          Añada un nombre para un lugar para darle prioridad para los sitios y
+          los usuarios de ese lugar. Si hay varios nombres por lugar se puede
+          dar prioridad a ellos <a href="%{url}">aquí</a>. Por favor,
+          <strong>no agregue nombres de todos los lugares donde se utiliza el
+          nombre</strong>, sólo para los lugares que entran en conflicto con
+          otros lugares.
+      taxon:
+        about_html: |
+          Taxa puede tener muchos nombres comunes. Apoyamos un defecto nombre
+          común a nivel mundial, que se puede cambiar aquí arrastrando un
+          nombre a la parte superior de la lista. También puede especificar
+          nombres predeterminados en diferentes lugares editando el nombre y
+          añadir un lugar, pero por favor, sólo hacerlo cuando diferentes
+          lugares tienen nombres en conflicto.
     users:
       dashboard:
         taxon_change_desc: |
