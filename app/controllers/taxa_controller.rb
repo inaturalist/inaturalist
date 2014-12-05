@@ -570,17 +570,23 @@ class TaxaController < ApplicationController
   # List child taxa of this taxon
   #
   def children
+    @taxa = @taxon.children
+    if params[:is_active].noish?
+      @taxa = @taxa.inactive
+    elsif params[:is_active].blank? || params[:is_active].yesish?
+      @taxa = @taxa.active
+    end
     respond_to do |format|
       format.html { redirect_to taxon_path(@taxon) }
       format.xml do
-        render :xml => @taxon.children.to_xml(
+        render :xml => @taxa.to_xml(
                 :include => :taxon_names, :methods => [:common_name] )
       end
       format.json do
         options = Taxon.default_json_options
         options[:include].merge!(:taxon_names => {:only => [:id, :name, :lexicon]})
         options[:methods] += [:common_name]
-        render :json => @taxon.children.all(:include => [{:taxon_photos => :photo}, :taxon_names]).to_json(options)
+        render :json => @taxa.includes([{:taxon_photos => :photo}, :taxon_names]).to_json(options)
       end
     end
   end
