@@ -82,7 +82,7 @@ class Project < ActiveRecord::Base
   has_attached_file :icon, 
     :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#", :original => "1024x1024>" },
     :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
-    :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
+    :url => "#{ CONFIG.attachments_host }/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :default_url => "/attachment_defaults/general/:style.png"
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
@@ -99,7 +99,7 @@ class Project < ActiveRecord::Base
   else
     has_attached_file :cover,
       :path => ":rails_root/public/attachments/:class/:id-cover.:extension",
-      :url => "/attachments/:class/:id-cover.:extension",
+      :url => "#{ CONFIG.attachments_host }/attachments/:class/:id-cover.:extension",
       :default_url => ""
   end
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /octet-stream/], :message => "must be JPG or PNG"
