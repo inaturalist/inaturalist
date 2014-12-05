@@ -5,6 +5,8 @@ class TaxonName < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
   has_many :taxon_scheme_taxa, :dependent => :destroy
+  has_many :place_taxon_names, :dependent => :delete_all, :inverse_of => :taxon_name
+  has_many :places, :through => :place_taxon_names
   validates_presence_of :taxon
   validates_length_of :name, :within => 1..256, :allow_blank => false
   validates_uniqueness_of :name, 
@@ -29,6 +31,8 @@ class TaxonName < ActiveRecord::Base
   after_create {|name| name.taxon.set_scientific_taxon_name}
   after_save :update_unique_names
   after_destroy {|name| name.taxon.delay(:priority => OPTIONAL_PRIORITY).update_unique_name if name.taxon}
+
+  accepts_nested_attributes_for :place_taxon_names, :allow_destroy => true
   
   LEXICONS = {
     :SCIENTIFIC_NAMES    =>  'Scientific Names',
@@ -136,14 +140,37 @@ class TaxonName < ActiveRecord::Base
     return nil if taxon_names.blank?
     common_names = taxon_names.reject { |tn| tn.is_scientific_names? || !tn.is_valid? }
     return nil if common_names.blank?
-    common_names = common_names.sort_by(&:id)
+    TaxonName.preload_associations(common_names, [:place_taxon_names])
+    place_id = options[:place_id] unless options[:place_id].blank?
+    place_id ||= (options[:place].is_a?(Place) ? options[:place].id : options[:place]) unless options[:place].blank?
+    place_id ||= options[:user].place_id unless options[:user].blank?
+    place_id ||= CONFIG.site.place_id if CONFIG.site && !CONFIG.site.place_id.blank?
+    place = (options[:place].is_a?(Place) ? options[:place] : Place.find_by_id(place_id)) unless place_id.blank?
+    common_names = common_names.sort_by{|tn| [tn.position, tn.id]}
     
+    if place
+      place_names = common_names.select{|tn| tn.place_taxon_names.detect{|ptn| ptn.place_id == place.id}}
+      if place_names.blank?
+        place_names = common_names.select{|tn| tn.place_taxon_names.detect{|ptn| 
+          place.self_and_ancestor_ids.include?(ptn.place_id)
+        }}
+      end
+      place_names = place_names.sort_by {|tn|
+        ptn = tn.place_taxon_names.detect{|ptn| ptn.place_id == place.id}
+        ptn ||= tn.place_taxon_names.detect{|ptn| place.self_and_ancestor_ids.include?(ptn.place_id)}
+        [ptn.position, tn.position, tn.id]
+      }
+    else
+      place_names = []
+    end
     language_name = language_for_locale(options[:locale]) || 'english'
     locale_names = common_names.select {|n| n.lexicon.to_s.downcase == language_name}
     engnames = common_names.select {|n| n.is_english?}
     unknames = common_names.select {|n| n.lexicon == 'unspecified'}
     
-    if locale_names.length > 0
+    if place_names.length > 0
+      place_names.first
+    elsif locale_names.length > 0
       locale_names.first
     elsif engnames.length > 0
       engnames.first
@@ -165,6 +192,14 @@ class TaxonName < ActiveRecord::Base
     options[:except].uniq!
     h = super(options)
     h
+  end
+
+  def localizable_lexicon
+    TaxonName.localizable_lexicon(lexicon)
+  end
+
+  def self.localizable_lexicon(lexicon)
+    lexicon.to_s.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase
   end
 
   def self.language_for_locale(locale = nil)

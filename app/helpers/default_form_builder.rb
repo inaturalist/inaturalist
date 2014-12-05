@@ -17,6 +17,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
         args.reverse.detect{|a| a.is_a?(Hash)} || {}
       end
       options = options.clone
+      return super(field, *args) if options[:skip_builder]
       options[:field_name] = name
       if name == 'radio_button'
         options[:field_value] = args[0]

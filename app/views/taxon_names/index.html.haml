@@ -1,0 +1,10 @@
+%h2=t :names_for_taxon, :taxon => @taxon.name
+
+- @names_by_place.each do |place, place_taxon_names|
+  %h3= place.name
+  %ul
+    - place_taxon_names.each do |ptn|
+      %li
+        %span.position= ptn.position
+        = ptn.taxon_name.name
+

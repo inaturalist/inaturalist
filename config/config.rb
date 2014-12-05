@@ -43,4 +43,9 @@ class InatConfig
       nil
     end
   end
+
+  def site
+    return unless site_id
+    @site ||= Site.find_by_id(site_id)
+  end
 end

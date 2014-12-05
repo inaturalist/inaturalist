@@ -2187,7 +2187,6 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:taxon => t, :observation => o)
     i2 = Identification.make!(:taxon => t, :observation => o)
     o.reload
-    o.community_taxon.should eq t
     o.should be_coordinates_obscured
   end
 

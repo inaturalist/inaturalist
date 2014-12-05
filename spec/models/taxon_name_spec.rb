@@ -107,10 +107,53 @@ describe TaxonName, "strip_author" do
 end
 
 describe TaxonName, "choose_common_name" do
+  let(:t) { Taxon.make! }
   it "should not choose an invalid common name" do
-    t = Taxon.make!
     tn_invalid = TaxonName.make!(:is_valid => false, :taxon => t, :lexicon => "English", :name => "Bar")
     tn_valid = TaxonName.make!(:is_valid => true, :taxon => t, :lexicon => "English", :name => "Foo")
     TaxonName.choose_common_name([tn_invalid, tn_valid]).should eq tn_valid
+  end
+
+  it "should choose a locale-specific name" do
+    tn_en = TaxonName.make!(:name => "snail", :lexicon => "English", :taxon => t)
+    tn_es = TaxonName.make!(:name => "caracol", :lexicon => "Spanish", :taxon => t)
+    TaxonName.choose_common_name([tn_en, tn_es], :locale => :es).should eq tn_es
+  end
+  it "should choose a place-specific name" do
+    california = Place.make!
+    oregon = Place.make!
+    tn_gl = TaxonName.make!(:name => "bay tree", :lexicon => "English", :taxon => t)
+    tn_ca = TaxonName.make!(:name => "California bay laurel", :lexicon => "English", :taxon => t)
+    ptn_ca = PlaceTaxonName.make!(:taxon_name => tn_ca, :place => california)
+    tn_or = TaxonName.make!(:name => "Oregon myrtle", :lexicon => "English", :taxon => t)
+    ptn_or = PlaceTaxonName.make!(:taxon_name => tn_or, :place => oregon)
+    t.reload
+    TaxonName.choose_common_name(t.taxon_names, :place => oregon).should eq tn_or
+    TaxonName.choose_common_name(t.taxon_names, :place => california).should eq tn_ca
+    TaxonName.choose_common_name(t.taxon_names).should eq tn_gl
+  end
+  it "should choose a place-specific name regardless of locale" do
+    california = Place.make!
+    oregon = Place.make!
+    tn_gl = TaxonName.make!(:name => "bay tree", :lexicon => "English", :taxon => t)
+    tn_es = TaxonName.make!(:name => "Laurel de California", :lexicon => "Spanish", :taxon => t)
+    # ptn_ca = PlaceTaxonName.make!(:taxon_name => tn_ca, :place => california)
+    tn_or = TaxonName.make!(:name => "Oregon myrtle", :lexicon => "English", :taxon => t)
+    ptn_or = PlaceTaxonName.make!(:taxon_name => tn_or, :place => oregon)
+    t.reload
+    TaxonName.choose_common_name(t.taxon_names, :place => oregon, :locale => :es).should eq tn_or
+  end
+
+  it "should pick a place-specific name for a parent of the requested place" do
+    california = Place.make!
+    oregon = Place.make!
+    tn_gl = TaxonName.make!(:name => "bay tree", :lexicon => "English", :taxon => t)
+    tn_ca = TaxonName.make!(:name => "California bay laurel", :lexicon => "English", :taxon => t)
+    ptn_ca = PlaceTaxonName.make!(:taxon_name => tn_ca, :place => california)
+    t.reload
+    p = Place.make!(:parent => california, :name => "Alameda County")
+    p.self_and_ancestor_ids.should include(california.id)
+    TaxonName.choose_common_name(t.taxon_names, :place => p).should eq tn_ca
+    TaxonName.choose_common_name(t.taxon_names).should eq tn_gl
   end
 end

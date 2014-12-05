@@ -1166,7 +1166,7 @@ en:
   ids: "ID's"
   ids_made_for_others: IDs made for others
   if_matches_come_from_a_comprehensive_list:  If matches come from a comprehensive list a green bar will show here.
-  if_this_is_a_cientific_name: If this is a scientific name, is it currently accepted?
+  if_this_is_a_scientific_name: If this is a scientific name, is it currently accepted?
   if_this_link_will_apply_to_descendant: If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
   if_you_already_have_an_account: "If you already have %{article} %{site_name} account..."
   if_you_dont_want_us_to_share_your_data: If you don't want us to share your data
@@ -1451,6 +1451,7 @@ en:
   make_this_the_primary_listing: "Make this the primary listing"
   mammals: mammals
   manage_all_your_subscriptions: Manage all your subscriptions
+  manage_names: Manage names
   manage_your_project_invitations: Manage your project invitations
   managed: managed
   manager: Manager
@@ -1515,6 +1516,7 @@ en:
     nzor: New Zealand Organisms Register
   named_based_url_might_change: "Name-based URLs might change, but this won't."
   names: Names
+  names_for_taxon_html: "Names for %{taxon}"
   naturalised: naturalized
   naturalized: naturalized
   native: native
@@ -3738,6 +3740,19 @@ en:
             <li>Don't add duplicate names, e.g. don't name numerous hawks "hawk"</li>
             <li>For higher level taxa, try to use names that include all descendants, like "herons and allies" or "heath family"</li>
           </ul>
+        places_help_html: |
+          Add a name to a place to give it priority for sites and users from
+          that place. If there are multiple names per place you can prioritize
+          them <a href="%{url}">here</a>. Please <strong>do not</strong> add names for EVERY
+          place where the name is used, only for places that conflict with
+          other places.
+      taxon:
+        about_html: |
+          Taxa can have many common names. We support one default common name
+          globally, which can be changed here by dragging a name to the top of
+          the list. You can also specify default names in different places by
+          editing the name and adding a place, but please only do this when
+          different places have conflicting names.
     users:
       dashboard:
         taxon_change_desc: |
@@ -3774,6 +3789,8 @@ en:
           Biodiversity Information Facility</a> (GBIF), an international,
           inter-governmental organization that compiles and distributes
           biodiversity information from around the world.
+        place_help_html: |
+          Customizes a few aspects of the site for a place, like common names.
         prefers_community_taxa_desc: |
           %{site_name} tracks what you think your observations are and what
           the community thinks they are. The identification we share with data

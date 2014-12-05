@@ -489,7 +489,9 @@ class TaxaController < ApplicationController
         options = Taxon.default_json_options
         options[:include].merge!(
           :iconic_taxon => {:only => [:id, :name]}, 
-          :taxon_names => {:only => [:id, :name, :lexicon, :is_valid]}
+          :taxon_names => {
+            :only => [:id, :name, :lexicon, :is_valid, :position]
+          }
         )
         options[:methods] += [:common_name, :image_url, :default_name]
         if params[:partial]
@@ -498,10 +500,13 @@ class TaxaController < ApplicationController
           else
             "taxa/#{params[:partial]}.html.erb"
           end
-          @taxa.each_with_index do |t,i|
+        end
+        @taxa.each_with_index do |t,i|
+          if params[:partial]
             @taxa[i].html = render_to_string(:partial => partial_path, :locals => {:taxon => t})
             options[:methods] << :html
           end
+          @taxa[i].current_user = current_user
         end
         render :json => @taxa.to_json(options)
       end

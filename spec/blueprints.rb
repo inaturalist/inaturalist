@@ -179,6 +179,11 @@ Place.blueprint do
   longitude { rand(180) }
 end
 
+PlaceTaxonName.blueprint do
+  place { Place.make! }
+  taxon_name { TaxonName.make! }
+end
+
 Post.blueprint do
   user { User.make! }
   parent { self.user }

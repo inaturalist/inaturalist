@@ -14,6 +14,9 @@ class Taxon < ActiveRecord::Base
   attr_accessor :skip_after_move
 
   attr_accessor :locale
+
+  # set this when you want methods to respond with user-specific content
+  attr_accessor :current_user
   
   acts_as_flaggable
   has_ancestry
@@ -577,7 +580,8 @@ class Taxon < ActiveRecord::Base
   end
   
   def default_name(options = {})
-    options[:locale] = options[:locale] || locale
+    options[:locale] ||= locale
+    options[:user] ||= current_user
     TaxonName.choose_default_name(taxon_names, options)
   end
   
@@ -590,8 +594,9 @@ class Taxon < ActiveRecord::Base
   # then first name of unspecified language (not-not-English), then the first 
   # common name of any language failing that
   #
-  def common_name
-    TaxonName.choose_common_name(taxon_names)
+  def common_name(options = {})
+    options[:user] ||= current_user
+    TaxonName.choose_common_name(taxon_names, options)
   end
 
   def common_name_string
