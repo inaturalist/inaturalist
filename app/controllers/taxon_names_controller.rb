@@ -82,7 +82,7 @@ class TaxonNamesController < ApplicationController
   end
 
   def taxon
-    @taxon_names = @taxon.taxon_names.sort_by(&:position).reject{|tn| tn.is_scientific?}
+    @taxon_names = @taxon.taxon_names.sort_by{|tn| [tn.position, tn.id]}.reject{|tn| tn.is_scientific?}
     @place_taxon_names = PlaceTaxonName.includes(:taxon_name, :place).where("taxon_names.taxon_id = ?", @taxon).sort_by(&:position)
     place_taxon_name_tn_ids = @place_taxon_names.map(&:taxon_name_id)
     @names_by_place = @place_taxon_names.group_by(&:place).sort_by{|k,v| k.name}

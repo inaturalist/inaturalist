@@ -1451,6 +1451,7 @@ en:
   make_this_the_primary_listing: "Make this the primary listing"
   mammals: mammals
   manage_all_your_subscriptions: Manage all your subscriptions
+  manage_names: Manage names
   manage_your_project_invitations: Manage your project invitations
   managed: managed
   manager: Manager
@@ -3788,6 +3789,8 @@ en:
           Biodiversity Information Facility</a> (GBIF), an international,
           inter-governmental organization that compiles and distributes
           biodiversity information from around the world.
+        place_help_html: |
+          Customizes a few aspects of the site for a place, like common names.
         prefers_community_taxa_desc: |
           %{site_name} tracks what you think your observations are and what
           the community thinks they are. The identification we share with data
