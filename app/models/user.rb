@@ -91,7 +91,7 @@ class User < ActiveRecord::Base
   has_many :places, :dependent => :nullify
   has_many :messages, :dependent => :destroy
   has_many :delivered_messages, :class_name => "Message", :foreign_key => "from_user_id", :conditions => "messages.from_user_id != messages.user_id"
-  has_many :guides, :dependent => :nullify, :inverse_of => :user
+  has_many :guides, :dependent => :destroy, :inverse_of => :user
   has_many :observation_fields, :dependent => :nullify, :inverse_of => :user
   has_many :observation_field_values, :dependent => :nullify, :inverse_of => :user
   has_many :updated_observation_field_values, :dependent => :nullify, :inverse_of => :updater, :foreign_key => "updater_id", :class_name => "ObservationFieldValue"
