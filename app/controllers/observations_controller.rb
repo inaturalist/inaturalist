@@ -71,7 +71,8 @@ class ObservationsController < ApplicationController
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
-  MAP_GRID_PARAMS_TO_CONSIDER = REJECTED_KML_FEED_PARAMS + %w"order order_by taxon_id taxon_name utf8"
+  MAP_GRID_PARAMS_TO_CONSIDER = REJECTED_KML_FEED_PARAMS +
+    %w"order order_by taxon_id taxon_name place_id project_id user_id utf8"
   DISPLAY_ORDER_BY_FIELDS = {
     'created_at' => 'date added',
     'observations.id' => 'date added',
@@ -121,8 +122,11 @@ class ObservationsController < ApplicationController
         grid_affecting_params = request.query_parameters.reject{ |k,v|
           MAP_GRID_PARAMS_TO_CONSIDER.include?(k.to_s) }
         # there are no parameters at all, so we can show the grid for all taxa
+        @map_grid_params = { }
         if grid_affecting_params.blank?
           @display_map_grid = true
+          # setting the default TTL for tiles on /observations to 24 hours
+          @map_grid_params[:ttl] = 60 * 60 * 24
         # we can only show grids when quality_grade = 'any',
         # and all other parameters are empty
         elsif grid_affecting_params.delete("quality_grade") == "any" &&
@@ -130,9 +134,15 @@ class ObservationsController < ApplicationController
           @display_map_grid = true
         end
         # if we are showing a grid
-        if @display_map_grid && search_params[:taxon]
-          @map_grid_taxon_id = search_params[:taxon].id
-          @map_grid_iconic_taxon = search_params[:taxon].iconic_taxon ?
+        if @display_map_grid
+          @map_grid_params.merge!({
+            taxon_id: (search_params[:taxon] ? search_params[:taxon].id : nil),
+            user_id: search_params[:user_id],
+            project_id: search_params[:project_id],
+            place_id: search_params[:place_id]
+          }.delete_if{ |k,v| v.nil? })
+          @map_grid_params[:iconic_taxon] =
+            (search_params[:taxon] && search_params[:taxon].iconic_taxon) ?
             search_params[:taxon].iconic_taxon.name : nil
         end
         if (partial = params[:partial]) && PARTIALS.include?(partial)
