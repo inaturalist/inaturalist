@@ -19,13 +19,10 @@ module Ruler
         return if send(association).blank?
         rules = send(association).send("#{self.class.to_s.underscore.singularize}_rules")
         rules.group_by(&:operator).each do |operator, operator_rules|
-          puts "working on #{operator}, #{operator_rules.size} rules"
           errors_for_operator = []
           operator_rules.each do |rule|
-            puts "rule: #{rule.inspect}"
             unless rule.validates?(self)
               errors_for_operator << rule.terms
-              puts "\tFailed!"
             end
           end
           next if errors_for_operator.blank?

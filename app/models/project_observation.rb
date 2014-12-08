@@ -192,16 +192,19 @@ class ProjectObservation < ActiveRecord::Base
     observation.observation_field_values.where(:observation_field_id => observation_field).exists?
   end
 
-  def has_a_photo?
+  def has_a_photo?(options = {})
+    observation.reload unless options[:skip_reload]
     observation.observation_photos_count > 0
   end
 
-  def has_a_sound?
+  def has_a_sound?(options = {})
+    observation.reload unless options[:skip_reload]
     observation.observation_sounds_count > 0
   end
 
   def has_media?
-    has_a_photo? || has_a_sound?    
+    observation.reload
+    has_a_photo?(:skip_reload => true) || has_a_sound?(:skip_reload => true)
   end
 
   def captive?

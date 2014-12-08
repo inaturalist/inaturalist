@@ -79,6 +79,17 @@ shared_examples_for "an ObservationsController" do
         p.reload
         p.project_users.where(:user_id => user.id).should_not be_blank
       end
+
+      it "should add to project with has_media rule if photo present" do
+        photo = LocalPhoto.make!(:user => user)
+        project = Project.make!
+        project_rule = ProjectObservationRule.make!(:ruler => project, :operator => "has_media?")
+        post :create, :format => :json, :project_id => project.id, :observation => {:species_guess => "foo"}, :local_photos => {
+          "0" => photo.id
+        }
+        o = user.observations.last
+        o.projects.should include(project)
+      end
     end
 
     it "should not duplicate observations with the same uuid" do

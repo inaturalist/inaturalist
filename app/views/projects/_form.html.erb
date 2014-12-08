@@ -69,74 +69,62 @@
   <%= f.text_area :description, :description => t(:describe_purpose) %>
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
 
-  <fieldset id="taxa">
-    <legend><%=t :checklist %></legend>
-    <%= f.check_box :prefers_count_from_list,
-        :label => t(:show_total_listed_taxa),
-        :label_after => true,
-        :description => t(:show_the_total_number_of) %>
-    <%= f.select :preferred_count_by, {t(:species).downcase => "species", t(:leaves).downcase => "leaves", t(:all).downcase => "all"}, :description => t(:project_preferred_count_description) %>
-  </fieldset>
+  <div class="column span-24">
+    <fieldset id="taxa">
+      <legend><%=t :checklist %></legend>
+      <%= f.check_box :prefers_count_from_list,
+          :label => t(:show_total_listed_taxa),
+          :label_after => true,
+          :description => t(:show_the_total_number_of) %>
+      <%= f.select :preferred_count_by, {t(:species).downcase => "species", t(:leaves).downcase => "leaves", t(:all).downcase => "all"}, :description => t(:project_preferred_count_description) %>
+    </fieldset>
+  </div>
 
-  <fieldset id="bioblitz" style="<%= "display:none;" unless @project.project_type == Project::BIOBLITZ_TYPE %>">
-    <legend><%=t :bioblitz %></legend>
-    <div class="description"><%= t('views.projects.edit.bioblitz_desc_html') %></div>
-    <div class="column span-12">
-      <%= f.text_field :start_time, :value => f.object.start_time ? f.object.start_time.iso8601 : nil, :description => t('views.projects.edit.start_time_desc') %>
-    </div>
-    <div class="last column span-11">
-      <%= f.text_field :end_time, :value => f.object.end_time ? f.object.end_time.iso8601 : nil, :description => t('views.projects.edit.end_time_desc') %>
-    </div>
-    <div class="column span-23">
-      <%= f.text_field :event_url, :placeholder => t(:event_url), :description => t('views.projects.edit.event_url_desc') %>
-    </div>
-  </fieldset>
+  <div class="column span-24">
+    <fieldset id="bioblitz" style="<%= "display:none;" unless @project.project_type == Project::BIOBLITZ_TYPE %>">
+      <legend><%=t :bioblitz %></legend>
+      <div class="description"><%= t('views.projects.edit.bioblitz_desc_html') %></div>
+      <div class="column span-12">
+        <%= f.text_field :start_time, :value => f.object.start_time ? f.object.start_time.iso8601 : nil, :description => t('views.projects.edit.start_time_desc') %>
+      </div>
+      <div class="last column span-11">
+        <%= f.text_field :end_time, :value => f.object.end_time ? f.object.end_time.iso8601 : nil, :description => t('views.projects.edit.end_time_desc') %>
+      </div>
+      <div class="column span-23">
+        <%= f.text_field :event_url, :placeholder => t(:event_url), :description => t('views.projects.edit.event_url_desc') %>
+      </div>
+    </fieldset>
+  </div>
 
-  <fieldset class="location">
-    <legend><%= t :location %></legend>
-    <p class="description">
-      <%= t :if_your_project_is %>
-    </p>
-    <div class="column span-7">
-      <%= f.text_field :latitude, :label => t(:latitude) %>
-      <%= f.text_field :longitude, :label => t(:longitude)%>
-      <%= f.select :map_type, Project::MAP_TYPES.map{|type| [t("#{type}", :default => type).downcase, type]} %>
-      <%= f.text_field :zoom_level %>
-      <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => SITE_NAME) %>
-      <% if @place -%>
-        <%= link_to t(:view_place), @place, :class => "readmore", :target => "_blank" %>
-      <% end -%>
-      <div class="upstacked stacked">
-        <label><%=t :not_finding_place_you_want? %></label>
-        <div class="meta"><%=t 'views.projects.edit.bioblitz_create_a_new_place_html', :link => link_to(t(:create_a_new_place), new_place_path(:anchor => "manual"), :target => "_blank") %></div>
+  <div class="column span-24">
+    <fieldset class="location">
+      <legend><%= t :location %></legend>
+      <p class="description">
+        <%= t :if_your_project_is %>
+      </p>
+      <div class="column span-7">
+        <%= f.text_field :latitude, :label => t(:latitude) %>
+        <%= f.text_field :longitude, :label => t(:longitude)%>
+        <%= f.select :map_type, Project::MAP_TYPES.map{|type| [t("#{type}", :default => type).downcase, type]} %>
+        <%= f.text_field :zoom_level %>
+        <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => SITE_NAME) %>
+        <% if @place -%>
+          <%= link_to t(:view_place), @place, :class => "readmore", :target => "_blank" %>
+        <% end -%>
+        <div class="upstacked stacked">
+          <label><%=t :not_finding_place_you_want? %></label>
+          <div class="meta"><%=t 'views.projects.edit.bioblitz_create_a_new_place_html', :link => link_to(t(:create_a_new_place), new_place_path(:anchor => "manual"), :target => "_blank") %></div>
+        </div>
+        <%= f.check_box :prefers_place_boundary_visible, :label_after => true, :description => t(:you_can_show_the_boundary_of) %>
       </div>
-      <%= f.check_box :prefers_place_boundary_visible, :label_after => true, :description => t(:you_can_show_the_boundary_of) %>
-    </div>
-    <div class="last column span-16">
-      <div class="stacked">
-        <%= text_field_tag :map_search, "", :placeholder => t(:search_the_map), :class => "text" %>
+      <div class="last column span-16">
+        <div class="stacked">
+          <%= text_field_tag :map_search, "", :placeholder => t(:search_the_map), :class => "text" %>
+        </div>
+        <div id="map"></div>
       </div>
-      <div id="map"></div>
-    </div>
-  </fieldset>
-
-  <!-- <fieldset class="userrules">
-    <legend><%= t(:new_user_rules) %></legend>
-    
-    <%= f.fields_for :project_user_rules do |pu| %>
-      <div>
-        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => t(:choose_rule) %>
-        <%= pu.hidden_field :_destroy, :class => "destroyer" %>
-        <%= link_to_function t(:remove), "$(this).parent().fadeTo('fast', 0.5); $(this).parent().find('.destroyer').val(true)" %>
-      </div>
-    <% end %>
-    <%= f.fields_for :project_user_rules, [Rule.new] do |pu| %>
-      <div>
-        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => t(:choose_rule) %>
-        <%= link_to_function t(:add_another), "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
-      </div>
-    <% end %>
-  </fieldset> -->
+    </fieldset>
+  </div>
 
   <% if project.place && project.place.check_list %>
     <fieldset class="unobserved-listings">
@@ -148,6 +136,7 @@
       <%= f.radio_button("show_from_place", true, { checked: project.show_from_place.present?, label: t(:display_listings_from_place), :label_after => true})%>
     </fieldset>
   <% end %>
+
   <fieldset class="observationrules">
     <legend><%= t(:observation_rules).titleize %></legend>
     <p class="description">
