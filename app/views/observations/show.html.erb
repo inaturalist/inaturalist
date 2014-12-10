@@ -119,10 +119,7 @@
         taxon_id: OBSERVATION.taxon_id,
         observation_id: OBSERVATION.id,
         color: iNaturalist.Map.ICONIC_TAXON_COLORS[OBSERVATION.iconic_taxon.name],
-        precision: true,
-        <% if CONFIG.tile_servers && CONFIG.tile_servers.windshaft %>
-          tiles_url     : '<%= CONFIG.tile_servers.windshaft %>'
-        <% end %>
+        precision: true
       }
       window.map.addObservationsLayer(tileLayerOptions);
     })

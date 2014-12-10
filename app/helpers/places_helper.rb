@@ -30,7 +30,7 @@ module PlacesHelper
   end
   
   def google_static_map_for_place_url(place, options = {})
-    return if CONFIG.google.simple_key.blank?
+    return if CONFIG.google.blank? || CONFIG.google.simple_key.blank?
     url_for_options = {
       :host => 'maps.google.com',
       :port => '',
