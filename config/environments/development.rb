@@ -39,5 +39,9 @@ Inaturalist::Application.configure do
   
   config.active_support.deprecation = :log
   # config.middleware.use MailView::Mapper, [EmailerPreview] # TODO maybe include this in Gemfile
+
+  config.middleware.use Rack::GoogleAnalytics, :trackers => lambda { |env|
+    return env['inat_ga_trackers'] if env['inat_ga_trackers']
+  }
 end
 

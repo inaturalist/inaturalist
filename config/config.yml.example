@@ -109,10 +109,10 @@ base: &base
         session_key: _yoursite_session
         secret: 09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af
 
-    google_analytics:
-        # http://www.google.com/analytics/sign_up.html
-        tracker_id: UA-090909-9
-        domain_name: yoursite.org
+    # google_analytics:
+    #     # http://www.google.com/analytics/sign_up.html
+    #     tracker_id: UA-090909-9
+    #     domain_name: yoursite.org
 
     ubio:
         # http://www.ubio.org/index.php?pagename=form

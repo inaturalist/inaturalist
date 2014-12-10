@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   before_filter :remove_header_and_footer_for_apps
   before_filter :login_from_param
   before_filter :set_site
+  before_filter :set_ga_trackers
   before_filter :set_locale
 
   PER_PAGES = [10,30,50,100,200]
@@ -35,6 +36,22 @@ class ApplicationController < ActionController::Base
   def set_site
     @site ||= Site.find_by_id(CONFIG.site_id) if CONFIG.site_id
     @site ||= Site.where("url LIKE '%#{request.host}%'").first
+  end
+
+  def set_ga_trackers
+    return true unless request.format.blank? || request.format.html?
+    trackers = []
+    if CONFIG.google_analytics
+      if CONFIG.google_analytics.trackers
+        trackers += CONFIG.google_analytics.trackers
+      elsif CONFIG.google_analytics.tracker_id
+        trackers << ['default', CONFIG.google_analytics.tracker_id]
+      end
+    end
+    if @site && !@site.google_analytics_tracker_id.blank?
+      trackers << [@site.name.gsub(/\s+/, '').underscore, @site.google_analytics_tracker_id]
+    end
+    request.env['inat_ga_trackers'] = trackers unless trackers.blank?
   end
 
   def set_locale
