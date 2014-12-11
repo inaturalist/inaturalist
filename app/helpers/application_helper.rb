@@ -591,7 +591,7 @@ module ApplicationHelper
   end
   
   def google_static_map_for_observation_url(o, options = {})
-    return if CONFIG.google.simple_key.blank?
+    return if CONFIG.google.blank? || CONFIG.google.simple_key.blank?
     url_for_options = {
       :host => 'maps.google.com',
       :controller => 'maps/api/staticmap',

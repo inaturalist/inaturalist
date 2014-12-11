@@ -17,12 +17,9 @@
       });
       window.map = map;
       <%- if @display_map_grid -%>
-        var gridOptions = { tiles_url: <%=raw CONFIG.tile_servers.windshaft.inspect %> };
-        <%- if @map_grid_taxon_id -%>
-          gridOptions["taxon_id"] = <%= @map_grid_taxon_id %>;
-        <%- end -%>
-        <%- if @map_grid_iconic_taxon -%>
-          gridOptions["color"] = iNaturalist.Map.ICONIC_TAXON_COLORS[<%=raw @map_grid_iconic_taxon.inspect %>];
+        var gridOptions = <%= raw @map_grid_params.to_json %>;
+        <%- if @map_grid_params[:iconic_taxon] -%>
+          gridOptions["color"] = iNaturalist.Map.ICONIC_TAXON_COLORS[<%=raw @map_grid_params[:iconic_taxon].inspect %>];
         <%- end -%>
         window.map.addObservationsLayer(gridOptions);
       <%- end -%>

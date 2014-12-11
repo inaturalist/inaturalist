@@ -54,7 +54,7 @@ class Site < ActiveRecord::Base
   else
     has_attached_file :logo,
       :path => ":rails_root/public/attachments/sites/:id-logo.:extension",
-      :url => "/attachments/sites/:id-logo.:extension",
+      :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-logo.:extension",
       :default_url => "/assets/logo-small.gif"
   end
 
@@ -71,7 +71,7 @@ class Site < ActiveRecord::Base
   else
     has_attached_file :logo_square,
       :path => ":rails_root/public/attachments/sites/:id-logo_square.:extension",
-      :url => "/attachments/sites/:id-logo_square.:extension",
+      :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-logo_square.:extension",
       :default_url => "/assets/bird.png"
   end
 
@@ -87,7 +87,7 @@ class Site < ActiveRecord::Base
   else
     has_attached_file :stylesheet,
       :path => ":rails_root/public/attachments/sites/:id-stylesheet.css",
-      :url => "/attachments/sites/:id-stylesheet.css"
+      :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-stylesheet.css"
   end
 
   # URL where visitors can learn more about the site

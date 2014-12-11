@@ -19,7 +19,6 @@
         bounds: coord.lat ? null : BOUNDS
       });
       var opts = $.deparam.querystring();
-      opts.tiles_url = #{ CONFIG.tile_servers.windshaft.inspect };
       var taxon = #{ @taxon_hash.to_json };
       if (taxon.iconic_taxon_name) {
         opts.color = iNaturalist.Map.ICONIC_TAXON_COLORS[ taxon.iconic_taxon_name ];

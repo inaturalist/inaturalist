@@ -24,7 +24,7 @@ class TaxonRange < ActiveRecord::Base
   
   has_attached_file :range,
     :path => ":rails_root/public/attachments/:class/:id.:extension",
-    :url => "/attachments/:class/:id.:extension"
+    :url => "#{ CONFIG.attachments_host }/attachments/:class/:id.:extension"
     # :storage => :s3,
     # :s3_credentials => "#{Rails.root}/config/s3.yml",
     # :s3_host_alias => CONFIG.s3_bucket,

@@ -845,33 +845,35 @@ google.maps.Map.prototype.getOverlay = function(name) {
   }
 }
 
-google.maps.Map.prototype.addObservationsLayer = function(options){  
+google.maps.Map.prototype.addObservationsLayer = function(options) {
+  // prevent the tilt feature, which cannot overlay tiles at higher zooms
+  this.setTilt(0);
+  // windshaft needs the color code to be escaped (e.g. %23000000 for black)
+  options.color = encodeURIComponent(options.color || "#6E6E6E");
   var options = options || {},
-      taxon_id = options.taxon_id,
-      observation_id = options.observation_id,
-      color = options.color || "#6E6E6E",
-      tiles_url = options.tiles_url,
+      tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
       gridTileUrl = tiles_url + "/observations/grid/{z}/{x}/{y}.png",
       pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png",
       precisionsTileUrl = tiles_url + "/observations/precisions/{z}/{x}/{y}.png",
-      gridmaxzoom = options.gridmaxzoom || 10
-
-  if (taxon_id || observation_id || color) {
-    gridTileUrl += '?'
-    pointTileUrl += '?'
-    precisionsTileUrl += '?'
+      gridmaxzoom = options.gridmaxzoom || 10;
+  // these are the parameters that will be sent to the windshaft API
+  var tileParamKeys = [ 'taxon_id', 'user_id', 'place_id',
+    'project_id', 'ttl', 'observation_id', 'color' ];
+  // map them as assignment strings (e.g. taxon_id=1245)
+  var tileParams = _.map( tileParamKeys, function( key ) {
+    return ( options[ key ] ? key + "=" + options[ key ] : undefined );
+  });
+  // remove undefined options
+  var assignedParams = _.reject( tileParams, function( p ) {
+    return _.isUndefined( p );
+  });
+  if( assignedParams ) {
+    var paramString = assignedParams.join( "&" );
+    // add the parameters to the windshaft API URLs
+    gridTileUrl += "?" + paramString;
+    pointTileUrl += "?" + paramString;
+    precisionsTileUrl += "?" + paramString;
   }
-  if (taxon_id) {
-    gridTileUrl += "taxon_id=" + taxon_id
-    pointTileUrl += "taxon_id=" + taxon_id
-    precisionsTileUrl += "taxon_id=" + taxon_id
-  }
-  if (color) {
-    gridTileUrl += "&color=" + encodeURIComponent(color)
-    pointTileUrl += "&color=" + encodeURIComponent(color)
-    precisionsTileUrl += "&color=" + encodeURIComponent(color)
-  }
-  if (observation_id) pointTileUrl += "&obs_id=" + observation_id
   this.addTileLayer(gridTileUrl, {
     maxzoom: gridmaxzoom,
     interactivity: false
@@ -1042,4 +1044,3 @@ iNaturalist.Map.ICONIC_TAXON_COLORS = {
 
 
 })();
-
