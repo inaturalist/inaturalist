@@ -29,6 +29,7 @@ class WelcomeController < ApplicationController
           end
         end
         @page = WikiPage.find_by_path(CONFIG.home_page_wiki_path) if CONFIG.home_page_wiki_path
+        @google_webmaster_verification = @site.google_webmaster_verification if @site
       end
       format.mobile
     end

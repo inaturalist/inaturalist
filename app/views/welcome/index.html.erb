@@ -1,6 +1,6 @@
 <%- content_for(:extrahead) do -%>
-  <% if CONFIG.google_webmaster && !CONFIG.google_webmaster.verification.blank? -%>
-    <meta name="google-site-verification" content="<%= CONFIG.google_webmaster.verification %>" />
+  <% unless @google_webmaster_verification.blank? -%>
+    <meta name="google-site-verification" content="<%= @google_webmaster_verification %>" />
   <%- end -%>
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="<%= SITE_NAME %>"/> 
