@@ -845,20 +845,46 @@ google.maps.Map.prototype.getOverlay = function(name) {
   }
 }
 
+google.maps.Map.prototype.addPlaceLayer = function(options) {
+  var options = options || {},
+      tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
+      placeTileUrl = tiles_url + "/places/" + options["place_id"] + "/{z}/{x}/{y}.png";
+  var tilejson = { tiles: [ placeTileUrl ] };
+  this.overlayMapTypes.push(new wax.g.connector(tilejson));
+}
+
+google.maps.Map.prototype.addTaxonRangeLayer = function(options) {
+  var options = options || {},
+      tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
+      placeTileUrl = tiles_url + "/taxon_ranges/" + options["taxon_id"] + "/{z}/{x}/{y}.png";
+  var tilejson = { tiles: [ placeTileUrl ] };
+  this.overlayMapTypes.push(new wax.g.connector(tilejson));
+}
+
 google.maps.Map.prototype.addObservationsLayer = function(options) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt(0);
-  // windshaft needs the color code to be escaped (e.g. %23000000 for black)
-  options.color = encodeURIComponent(options.color || "#6E6E6E");
+  // windshaft needs the color codes to be escaped (e.g. %23000000 for black)
+  if( options.color ) {
+    options.color = encodeURIComponent(options.color);
+  }
+  options.grid_color = encodeURIComponent(options.grid_color || "#6E6E6E");
+  if( options.point_color ) {
+    options.point_color = encodeURIComponent(options.point_color);
+  }
+  if( options.color ) {
+    options.grid_color = null;
+    options.point_color = null;
+  }
   var options = options || {},
       tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
       gridTileUrl = tiles_url + "/observations/grid/{z}/{x}/{y}.png",
       pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png",
       precisionsTileUrl = tiles_url + "/observations/precisions/{z}/{x}/{y}.png",
-      gridmaxzoom = options.gridmaxzoom || 10;
+      gridmaxzoom = options.gridmaxzoom || 9;
   // these are the parameters that will be sent to the windshaft API
   var tileParamKeys = [ 'taxon_id', 'user_id', 'place_id',
-    'project_id', 'ttl', 'observation_id', 'color' ];
+    'project_id', 'ttl', 'observation_id', 'color', 'opacity', 'border_opacity' ];
   // map them as assignment strings (e.g. taxon_id=1245)
   var tileParams = _.map( tileParamKeys, function( key ) {
     return ( options[ key ] ? key + "=" + options[ key ] : undefined );
@@ -867,11 +893,25 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
   var assignedParams = _.reject( tileParams, function( p ) {
     return _.isUndefined( p );
   });
+  var gridParams = [ ];
+  var pointParams = [ ];
+  _.each( tileParamKeys, function( key ) {
+    if( options[ "grid_" + key ] ) gridParams.push(key + "=" + options[ "grid_" + key ]);
+    if( options[ "point_" + key ] ) pointParams.push(key + "=" + options[ "point_" + key ]);
+  });
+  if( assignedParams || gridParams ) {
+    var paramString = assignedParams.concat(gridParams).join( "&" );
+    // add the parameters to the windshaft API URLs
+    gridTileUrl += "?" + paramString;
+  }
+  if( assignedParams || pointParams ) {
+    var paramString = assignedParams.concat(pointParams).join( "&" );
+    // add the parameters to the windshaft API URLs
+    pointTileUrl += "?" + paramString;
+  }
   if( assignedParams ) {
     var paramString = assignedParams.join( "&" );
     // add the parameters to the windshaft API URLs
-    gridTileUrl += "?" + paramString;
-    pointTileUrl += "?" + paramString;
     precisionsTileUrl += "?" + paramString;
   }
   this.addTileLayer(gridTileUrl, {
@@ -885,7 +925,8 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
     })
   }
   this.addTileLayer(pointTileUrl, {
-    interactivity: 'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
+    interactivity: options.interactivity === false ? false :
+      'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
     minzoom: gridmaxzoom + 1,
     gridminzoom: gridmaxzoom + 1
   })
@@ -925,52 +966,53 @@ google.maps.Map.prototype.addTileLayer = function(tileUrl, options) {
   }, options)
   this.overlayMapTypes.push(new wax.g.connector(tilejson));
   if (! interactivity) { return; }
-  wax.g.interaction()
+  wax.g
+    .interaction()
     .map(this)
-      .tilejson(tilejson)
-        .on({
-          on: function(o) {
-            document.body.style.cursor = 'pointer'
-            if (o.e.type == 'click') {
-              // if the click is anywhere within the InfoWindow, don't act on it
-              if($('.gm-style-iw').parent().find(o.e.target).length > 0) { return false; }
-              if(o.data['latitude']){
-                var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude']);
-                $.ajax({
-                  url:  '/observations/' + o.data['id'] + '.html?partial=cached_component',
-                  type: 'GET',
-                  dataType: 'html',
-                  beforeSend: function() {
-                    var iw = map.getInfoWindow()
-                    iw.position = latLng
-                    iw.content = $('<div class="loading status">'+I18n.t('loading')+'</div>').get(0)
-                    iw.open(window.map)
-                    // remove any text highlighting, which happens when the user clicks around
-                    deselectText();
-                  },
-                  success: function(data) {
-                    var iw = map.getInfoWindow()
-                    iw.position = latLng
-                    iw.content = $('<div class="compact mini infowindow observations"></div>').append(data).get(0)
-                    iw.open(window.map)
-                    // make sure the InfoWindow has focus
-                    $(iw).focus();
-                    // remove any text highlighting, which happens when the user clicks around
-                    deselectText();
-                  },
-                  error: function(jqXHR, textStatus, errorThrown) {
-                    console.log(textStatus);
-                  }
-                });
+    .tilejson(tilejson)
+    .on({
+      on: function(o) {
+        document.body.style.cursor = 'pointer'
+        if (o.e.type == 'click') {
+          // if the click is anywhere within the InfoWindow, don't act on it
+          if($('.gm-style-iw').parent().find(o.e.target).length > 0) { return false; }
+          if(o.data['latitude']){
+            var latLng = new google.maps.LatLng(o.data['latitude'],o.data['longitude']);
+            $.ajax({
+              url:  '/observations/' + o.data['id'] + '.html?partial=cached_component',
+              type: 'GET',
+              dataType: 'html',
+              beforeSend: function() {
+                var iw = map.getInfoWindow()
+                iw.position = latLng
+                iw.content = $('<div class="loading status">'+I18n.t('loading')+'</div>').get(0)
+                iw.open(window.map)
+                // remove any text highlighting, which happens when the user clicks around
+                deselectText();
+              },
+              success: function(data) {
+                var iw = map.getInfoWindow()
+                iw.position = latLng
+                iw.content = $('<div class="compact mini infowindow observations"></div>').append(data).get(0)
+                iw.open(window.map)
+                // make sure the InfoWindow has focus
+                $(iw).focus();
+                // remove any text highlighting, which happens when the user clicks around
+                deselectText();
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus);
               }
-            } else if (o.e.type == 'mousemove') {
-              window.map.setOptions({ draggableCursor: 'pointer' });
-            }
-          },
-          off: function(o) {
-            window.map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
+            });
           }
-        })
+        } else if (o.e.type == 'mousemove') {
+          window.map.setOptions({ draggableCursor: 'pointer' });
+        }
+      },
+      off: function(o) {
+        window.map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
+      }
+    });
 }
 
 // Static constants

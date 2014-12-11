@@ -118,7 +118,7 @@
       var tileLayerOptions = {
         taxon_id: OBSERVATION.taxon_id,
         observation_id: OBSERVATION.id,
-        color: iNaturalist.Map.ICONIC_TAXON_COLORS[OBSERVATION.iconic_taxon.name],
+        grid_color: iNaturalist.Map.ICONIC_TAXON_COLORS[OBSERVATION.iconic_taxon.name],
         precision: true
       }
       window.map.addObservationsLayer(tileLayerOptions);

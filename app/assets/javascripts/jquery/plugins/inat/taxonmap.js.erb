@@ -148,7 +148,7 @@
       window.map = map;
       gridOptions = { taxon_id: options.taxonId };
       if (options.iconicTaxonName) {
-        gridOptions['color'] = iNaturalist.Map.ICONIC_TAXON_COLORS[options.iconicTaxonName];
+        gridOptions['grid_color'] = iNaturalist.Map.ICONIC_TAXON_COLORS[options.iconicTaxonName];
       }
       window.map.addObservationsLayer(gridOptions);
     }

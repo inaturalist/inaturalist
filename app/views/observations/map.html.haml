@@ -21,10 +21,18 @@
       var opts = $.deparam.querystring();
       var taxon = #{ @taxon_hash.to_json };
       if (taxon.iconic_taxon_name) {
-        opts.color = iNaturalist.Map.ICONIC_TAXON_COLORS[ taxon.iconic_taxon_name ];
+        opts.grid_color = opts.grid_color || iNaturalist.Map.ICONIC_TAXON_COLORS[ taxon.iconic_taxon_name ];
       } else {
-        opts.color = iNaturalist.Map.ICONIC_TAXON_COLORS.Mollusca;
+        opts.grid_color = opts.grid_color || iNaturalist.Map.ICONIC_TAXON_COLORS.Mollusca;
       }
+      if (opts.render_place_id) {
+        window.map.addPlaceLayer({ place_id: opts.render_place_id });
+      }
+      if (opts.render_taxon_range_id) {
+        window.map.addTaxonRangeLayer({ taxon_id: opts.render_taxon_range_id });
+      }
+      window.map.addObservationsLayer({ grid_opacity: 0.5, grid_border_opacity: 0.01,
+        point_opacity: 0.3, point_border_opacity: 0.3, point_color: "#6E6E6E", interactivity: false });
       window.map.addObservationsLayer(opts);
       google.maps.event.addListener(map, 'dragend', setUrlHashCoord);
       google.maps.event.addListener(map, 'zoom_changed', setUrlHashCoord);
