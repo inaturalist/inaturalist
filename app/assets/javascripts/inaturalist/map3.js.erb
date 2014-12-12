@@ -755,24 +755,22 @@ google.maps.Map.prototype.addTaxonRangeLayer = function(options) {
 
 google.maps.Map.prototype.addObservationsLayer = function(options) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
-  this.setTilt(0);
+  this.setTilt( 0 );
   // windshaft needs the color codes to be escaped (e.g. %23000000 for black)
-  if( options.color ) {
-    options.color = encodeURIComponent(options.color);
-  }
-  options.grid_color = encodeURIComponent(options.grid_color || "#6E6E6E");
-  if( options.point_color ) {
-    options.point_color = encodeURIComponent(options.point_color);
-  }
+  _.each( [ 'color', 'grid_color', 'point_color' ], function( c ) {
+    if( options[ c ] ) {
+      options[ c ] = encodeURIComponent( options[ c ] );
+    }
+  });
+  // if there is a global color, so no need for separate grid or point colors
   if( options.color ) {
     options.grid_color = null;
     options.point_color = null;
   }
-  var options = options || {},
+  var options = options || { },
       tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
       gridTileUrl = tiles_url + "/observations/grid/{z}/{x}/{y}.png",
       pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png",
-      precisionsTileUrl = tiles_url + "/observations/precisions/{z}/{x}/{y}.png",
       gridmaxzoom = options.gridmaxzoom || 9;
   // these are the parameters that will be sent to the windshaft API
   var tileParamKeys = [ 'taxon_id', 'user_id', 'place_id',
@@ -785,37 +783,28 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
   var assignedParams = _.reject( tileParams, function( p ) {
     return _.isUndefined( p );
   });
+  // get all of the specific grid_* and point_* options
   var gridParams = [ ];
   var pointParams = [ ];
   _.each( tileParamKeys, function( key ) {
     if( options[ "grid_" + key ] ) gridParams.push(key + "=" + options[ "grid_" + key ]);
     if( options[ "point_" + key ] ) pointParams.push(key + "=" + options[ "point_" + key ]);
   });
+  // build the proper paramater string for HTTP GET
+  var paramString;
   if( assignedParams || gridParams ) {
-    var paramString = assignedParams.concat(gridParams).join( "&" );
-    // add the parameters to the windshaft API URLs
+    paramString = assignedParams.concat(gridParams).join( "&" );
     gridTileUrl += "?" + paramString;
   }
   if( assignedParams || pointParams ) {
-    var paramString = assignedParams.concat(pointParams).join( "&" );
-    // add the parameters to the windshaft API URLs
+    paramString = assignedParams.concat(pointParams).join( "&" );
     pointTileUrl += "?" + paramString;
   }
-  if( assignedParams ) {
-    var paramString = assignedParams.join( "&" );
-    // add the parameters to the windshaft API URLs
-    precisionsTileUrl += "?" + paramString;
-  }
+  // add a layer to the map for the grid
   this.addTileLayer(gridTileUrl, {
     maxzoom: gridmaxzoom,
     interactivity: false
   })
-  if (options.precision) {
-    this.addTileLayer(precisionsTileUrl, {
-      minzoom: gridmaxzoom + 1,
-      interactivity: false
-    })
-  }
   return this.addTileLayer(pointTileUrl, {
     interactivity: options.interactivity === false ? false :
       'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
@@ -858,9 +847,10 @@ google.maps.Map.prototype.addTileLayer = function(tileUrl, options) {
   }, options)
   var layerID =  this.overlayMapTypes.push(new wax.g.connector(tilejson));
   if (! interactivity) { return; }
+  var map = this;
   wax.g
     .interaction()
-    .map(this)
+    .map(map)
     .tilejson(tilejson)
     .on({
       on: function(o) {
@@ -878,7 +868,7 @@ google.maps.Map.prototype.addTileLayer = function(tileUrl, options) {
                 var iw = map.getInfoWindow()
                 iw.position = latLng
                 iw.content = $('<div class="loading status">'+I18n.t('loading')+'</div>').get(0)
-                iw.open(window.map)
+                iw.open(map)
                 // remove any text highlighting, which happens when the user clicks around
                 deselectText();
               },
@@ -886,7 +876,7 @@ google.maps.Map.prototype.addTileLayer = function(tileUrl, options) {
                 var iw = map.getInfoWindow()
                 iw.position = latLng
                 iw.content = $('<div class="compact mini infowindow observations"></div>').append(data).get(0)
-                iw.open(window.map)
+                iw.open(map)
                 // make sure the InfoWindow has focus
                 $(iw).focus();
                 // remove any text highlighting, which happens when the user clicks around
@@ -898,11 +888,11 @@ google.maps.Map.prototype.addTileLayer = function(tileUrl, options) {
             });
           }
         } else if (o.e.type == 'mousemove') {
-          window.map.setOptions({ draggableCursor: 'pointer' });
+          map.setOptions({ draggableCursor: 'pointer' });
         }
       },
       off: function(o) {
-        window.map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
+        map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
       }
     });
   return layerID;

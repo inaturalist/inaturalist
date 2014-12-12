@@ -30,7 +30,7 @@
     }
     .imgmodal.zoomed {overflow:hidden;}
 = content_for :extrajs do
-  = javascript_include_tag "wax.g"
+  = javascript_include_tag "underscore.min", "wax.g"
   :javascript
     $('.taxonmap').taxonMap()
     $('.imgmodal').on('shown', function() {

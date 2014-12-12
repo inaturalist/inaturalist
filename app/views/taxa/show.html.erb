@@ -41,13 +41,11 @@
   <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
   <![endif]-->
 
-  <%= javascript_include_tag 'jquery/plugins/jqModal',
-                             'modal_image',
-                             "jquery/plugins/inat/photo_selectors.js",
-                             'wax.g' %>
+  <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js",
+                             'map_bundle' %>
 
   <%= google_maps_js %>
-  <%= javascript_include_tag 'inaturalist/map3', 'jquery/plugins/inat/taxonmap', 'taxa/show' %>
+  <%= javascript_include_tag 'taxa/show' %>
 
   <script type="text/javascript" charset="utf-8">
     var TAXON = <%=json_escape @taxon.to_json.html_safe %>,

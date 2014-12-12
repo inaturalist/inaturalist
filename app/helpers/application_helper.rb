@@ -573,6 +573,7 @@ module ApplicationHelper
       "data-range-taxon-id" => options[:range_taxon_id]
     }
     if taxon_range
+      map_tag_attrs["data-range-taxon-id"] = map_tag_attrs["data-range-taxon-id"] || taxon.id;
       map_tag_attrs["data-taxon-range-geojson"] = taxon_range_geom_url(taxon.id, :format => "geojson")
       if s = taxon_range.source
         map_tag_attrs["data-taxon-range-citation"] = s.in_text
@@ -586,8 +587,6 @@ module ApplicationHelper
       if @place_geometry || PlaceGeometry.without_geom.exists?(:place_id => place)
         map_tag_attrs["data-place-geom-id"] = place.id
       end
-      map_tag_attrs["data-observations-json"] = observations_url(:taxon_id => taxon, :place_id => place, :format => "json")
-      # map_tag_attrs["data-place-geojson"] = taxon_range_geom_url(@taxon.id, :format => "geojson")
     end
     map_tag_attrs
   end

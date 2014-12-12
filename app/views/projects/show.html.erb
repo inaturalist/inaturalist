@@ -20,7 +20,7 @@
 
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'wax.g', 'inaturalist/map3', 'projects/show' %>
+  <%= javascript_include_tag 'map_bundle', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
     var PROJECT = <%=json_escape @project.to_json(:only => [:title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
         PLACE = <%=json_escape @place.to_json.html_safe %>,

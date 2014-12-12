@@ -11,8 +11,7 @@
         KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : "[]" %>
   </script>
   <%= javascript_include_tag "observations/observation_fields",
-                             'wax.g',
-                             'inaturalist/map3',
+                             'map_bundle',
                              "jquery/plugins/jquery.latLonSelector.js",
                              "jquery/plugins/inat/datepicker.js",
                              "projects/form" %>

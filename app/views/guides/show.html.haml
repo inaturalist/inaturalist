@@ -39,7 +39,7 @@
     label.disabled {opacity:0.5;}
 = content_for :extrajs do
   = google_maps_js
-  = javascript_include_tag "wax.g", "inaturalist/map3", "jquery/plugins/inat/taxonmap", 'jquery/plugins/waypoints.min'
+  = javascript_include_tag "underscore.min", "map_bundle"
   :javascript
     var GUIDE = #{json_escape @guide.to_json.html_safe}
     $('.tile .img').imagesLoaded(function() {

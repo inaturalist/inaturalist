@@ -7,13 +7,11 @@
 <% content_for(:extrajs) do %>
   <%= google_maps_js %>
   <%= javascript_include_tag "jquery/plugins/jquery.string.1.0.js",
-                             'wax.g',
-                             'inaturalist/map3',
+                             'map_bundle',
                              "jquery/plugins/inat/datepicker.js",
                              "jquery/plugins/inat/photo_selectors.js",
                              "jquery/plugins/inat/sound_selectors.js",
                              "jquery/plugins/jquery.latLonSelector.js",
-                             "jquery/plugins/jqModal",
                              "taxon_browser",
                              "observations/observation_fields",
                              "observations/edit"

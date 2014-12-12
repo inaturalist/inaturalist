@@ -34,9 +34,9 @@
         INSIDE_PLACES = <%=json_escape @inside_places.to_json.html_safe %>,
         TILESTACHE_SERVER = <%= CONFIG.tile_servers.tilestache.inspect.html_safe %>
   </script>
-  <%= javascript_include_tag 'wax.g', 'inaturalist/map3', "jquery/plugins/inat/taxonmap",
-    "jquery/plugins/jquery.ba-bbq.min", "jquery/plugins/jquery.infinitescroll.min", 
-    "taxon_guide", "places/show", 'jquery/plugins/waypoints.min' %>
+  <%= javascript_include_tag 'map_bundle',
+    "jquery/plugins/jquery.infinitescroll.min",
+    "taxon_guide", "places/show" %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       var script = document.createElement("script")
