@@ -10,10 +10,8 @@ $(document).ready(function() {
     kmlSet = true
   }
   
-  if (PLACE_GEOMETRY_KML_URL) {
-    lyr = new google.maps.KmlLayer(PLACE_GEOMETRY_KML_URL, {preserveViewport: preserveViewport})
-    map.addOverlay(PLACE.name + ' boundary', lyr)
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
+  if (SHOW_PLACE_GEOMETRY) {
+    window.map.addPlaceLayer({ place_id: PLACE.id });
   }
   
   if (OBSERVATIONS) {

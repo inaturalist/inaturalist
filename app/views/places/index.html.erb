@@ -50,10 +50,6 @@
         })
         marker.setMap(map)
       }
-      if (TILESTACHE_SERVER) {
-        var placesMapType = iNaturalist.Map.builtPlacesMapType(map, {tilestacheServer: TILESTACHE_SERVER})
-        map.overlayMapTypes.insertAt(0, new placesMapType(new google.maps.Size(256, 256)));
-      }
     })
   </script>
 <%- end -%>

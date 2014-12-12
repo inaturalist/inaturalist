@@ -569,10 +569,10 @@ module ApplicationHelper
       "data-latitude" => options[:latitude],
       "data-longitude" => options[:longitude],
       "data-map-type" => options[:map_type],
-      "data-zoom-level" => options[:zoom_level]
+      "data-zoom-level" => options[:zoom_level],
+      "data-range-taxon-id" => options[:range_taxon_id]
     }
     if taxon_range
-      map_tag_attrs["data-taxon-range-kml"] = root_url.gsub(/\/$/, "") + taxon_range.range.url
       map_tag_attrs["data-taxon-range-geojson"] = taxon_range_geom_url(taxon.id, :format => "geojson")
       if s = taxon_range.source
         map_tag_attrs["data-taxon-range-citation"] = s.in_text
@@ -583,7 +583,9 @@ module ApplicationHelper
       map_tag_attrs["data-latitude"] ||= place.latitude
       map_tag_attrs["data-longitude"] ||= place.longitude
       map_tag_attrs["data-bbox"] = place.bounding_box.join(',') if place.bounding_box
-      map_tag_attrs["data-place-kml"] = place_geometry_url(place, :format => "kml") if @place_geometry || PlaceGeometry.without_geom.exists?(:place_id => place)
+      if @place_geometry || PlaceGeometry.without_geom.exists?(:place_id => place)
+        map_tag_attrs["data-place-geom-id"] = place.id
+      end
       map_tag_attrs["data-observations-json"] = observations_url(:taxon_id => taxon, :place_id => place, :format => "json")
       # map_tag_attrs["data-place-geojson"] = taxon_range_geom_url(@taxon.id, :format => "geojson")
     end

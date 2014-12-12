@@ -20,11 +20,11 @@
 
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'inaturalist/map3', 'projects/show' %>
+  <%= javascript_include_tag 'wax.g', 'inaturalist/map3', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
     var PROJECT = <%=json_escape @project.to_json(:only => [:title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
         PLACE = <%=json_escape @place.to_json.html_safe %>,
-        PLACE_GEOMETRY_KML_URL = <%=raw @place_geometry ? place_geometry_kml_url.inspect : nil.to_json %>,
+        SHOW_PLACE_GEOMETRY = <%= @place_geometry ? "true" : "false" %>,
         OBSERVATIONS = <%= @observations.blank? ? 'null' : json_escape(@observations.to_json(:include => :iconic_taxon).html_safe) %>,
         OBSERVATIONS_URL = <%= @observations_url.inspect.html_safe %>
         KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe %>

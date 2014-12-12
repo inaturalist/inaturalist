@@ -24,15 +24,13 @@
     options.mapType = options.mapType || $(elt).attr('data-map-type')
     var zoomLevel = parseInt(options.zoomLevel || $(elt).attr('data-zoom-level'))
     options.zoomLevel = zoomLevel == 0 ? null : zoomLevel
-    options.placeKmlUrl = options.placeKmlUrl || $(elt).attr('data-place-kml')
-    if (options.placeKmlUrl == '') { options.placeKmlUrl = null }
-    options.taxonRangeKmlUrl = options.taxonRangeKmlUrl || $(elt).attr('data-taxon-range-kml')
-    if (options.taxonRangeKmlUrl == '') { options.taxonRangeKmlUrl = null }
     options.gbifKmlUrl = options.gbifKmlUrl || $(elt).attr('data-gbif-kml')
     if (options.gbifKmlUrl == '') { options.gbifKmlUrl = null }
     options.taxonRangeCitation = options.taxonRangeCitation || $(elt).attr('data-taxon-range-citation')
     options.taxonRangeCitationUrl = options.taxonRangeCitationUrl || $(elt).attr('data-taxon-range-citation-url')
     options.observationsJsonUrl = options.observationsJsonUrl || $(elt).attr('data-observations-json')
+    options.rangeTaxonID = options.rangeTaxonID || $(elt).attr('data-range-taxon-id')
+    options.placeGeomID = options.placeGeomID || $(elt).attr('data-place-geom-id')
 
     if (options.observationsJsonUrl != false) {
       options.observationsJsonUrl = options.observationsJsonUrl
@@ -63,6 +61,7 @@
     var options = $(elt).data('taxonMapOptions'),
         map = iNaturalist.Map.createMap({div: elt}),
         preserveViewport = options.preserveViewport
+    window.map = map;
     if (options.bbox) {
       map.fitBounds(
         new google.maps.LatLngBounds(
@@ -80,27 +79,6 @@
 
     if (options.mapType) {
       map.setMapTypeId(options.mapType)
-    }
-
-    if (options.taxonRangeKmlUrl) {
-      var taxonRangeLyr = new google.maps.KmlLayer(options.taxonRangeKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
-      var taxonRangeLyrOpts = {id: 'taxon_range-'+options.taxonId}
-      if (options.taxonRangeCitation && options.taxonRangeCitation != '') {
-        var cit = options.taxonRangeCitation
-        if (options.taxonRangeCitationUrl && options.taxonRangeCitationUrl != '') {
-          taxonRangeLyrOpts.description = I18n.t('source') + ": <a href='"+options.taxonRangeCitationUrl+"' target='_blank'>"+cit+"</a>"
-        } else {
-          taxonRangeLyrOpts.description = I18n.t('source') + ": "+cit
-        }
-      }
-      map.addOverlay(I18n.t('taxon_range'), taxonRangeLyr, taxonRangeLyrOpts)
-      preserveViewport = true
-    }
-
-    if (options.placeKmlUrl) {
-      var placeLyr = new google.maps.KmlLayer(options.placeKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
-      map.addOverlay('Place Boundary', placeLyr, {id: 'place_boundary-'+options.taxonId})
-      preserveViewport = true
     }
 
     if (options.gbifKmlUrl) {
@@ -136,6 +114,14 @@
       preserveViewport = true
     }
 
+    if (options.rangeTaxonID) {
+      map.addTaxonRangeLayer({ taxon_id: options.rangeTaxonID });
+    }
+
+    if (options.placeGeomID) {
+      map.addPlaceLayer({ place_id: options.placeGeomID });
+    }
+
     if (options.observationsJsonUrl) {
       $.get(options.observationsJsonUrl, function(data) {
         map.addObservations(data)
@@ -145,7 +131,6 @@
         }
       })
     } else if (options.taxonId) {
-      window.map = map;
       gridOptions = { taxon_id: options.taxonId };
       if (options.iconicTaxonName) {
         gridOptions['grid_color'] = iNaturalist.Map.ICONIC_TAXON_COLORS[options.iconicTaxonName];
@@ -184,20 +169,6 @@
     } else if (options.latitude || options.longitude) {
       map.setCenter(new google.maps.LatLng(options.latitutde || 0, options.longitude || 0))
       map.setZoom(4)
-      return
-    }
-
-    if (options.taxonRangeKmlUrl) {
-      var lyrInfo = map.getOverlay(I18n.t('taxon_range'))
-      lyrInfo.overlay.setMap(null)
-      lyrInfo.overlay.setMap(map)
-      return
-    }
-
-    if (options.placeKmlUrl) {
-      var lyrInfo = map.getOverlay('Place Boundary')
-      lyrInfo.overlay.setMap(null)
-      lyrInfo.overlay.setMap(map)
       return
     }
 

@@ -691,7 +691,7 @@
         <div id="taxon_range_map" style="width: 790px; height: 488px"
           data-taxon-id="<%= @taxon.id %>"
           data-iconic-taxon-name="<%= @taxon.iconic_taxon ? @taxon.iconic_taxon.name : nil %>"
-          data-taxon-range-kml="<%= taxon_range_kml_url if @taxon_range %>"
+          data-range-taxon-id="<%= @taxon_range ? @taxon.id : nil %>"
           data-taxon-range-citation="<%= @taxon_range.source.in_text if @taxon_range && @taxon_range.source %>"
           data-taxon-range-citation-url="<%= @taxon_range.source.url if @taxon_range && @taxon_range.source %>"
           data-gbif-kml="http://data.gbif.org/ws/rest/occurrence/list?coordinatestatus=true&maxresults=500&coordinateissues=false&scientificname=<%= @taxon_gbif %>&format=kml"></div>

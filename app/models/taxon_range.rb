@@ -39,7 +39,7 @@ class TaxonRange < ActiveRecord::Base
   end
 
   def kml_url
-    return "#{FakeView.root_url[0..-2]}#{range.url}" unless range.blank?
+    return "#{range.url}" unless range.blank?
     return url if url =~ /kml/
     nil
   end

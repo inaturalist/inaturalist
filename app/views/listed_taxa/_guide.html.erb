@@ -105,8 +105,6 @@
       </ul>
 
       <div id="<%= dom_id(listed_taxon, 'infotab') %>">
-        <!-- <iframe class="map" src="<%= taxon_map_url(taxon, :place_id => place) %>">Loading...</iframe> -->
-        <!-- <div class="right map" data-taxon-id="<%= taxon.id %>" data-taxon-range-kml="<%=  %>"></div> -->
         <%= content_tag :div, '', map_tag_attrs.merge(:class => "stacked map") %>
         <div class="stacked">
           <%= raw taxon.wikipedia_summary %>
