@@ -2083,7 +2083,7 @@ CREATE TABLE preferences (
     owner_type character varying(255) NOT NULL,
     group_id integer,
     group_type character varying(255),
-    value character varying(255),
+    value text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -6955,3 +6955,5 @@ INSERT INTO schema_migrations (version) VALUES ('20141201211037');
 INSERT INTO schema_migrations (version) VALUES ('20141203024242');
 
 INSERT INTO schema_migrations (version) VALUES ('20141204224856');
+
+INSERT INTO schema_migrations (version) VALUES ('20141213001622');

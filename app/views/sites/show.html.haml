@@ -1,6 +1,25 @@
-%p#notice= notice
-
-
-= link_to 'Edit', edit_site_path(@record)
-\|
-= link_to 'Back', sites_path
+.container
+  .row
+    %ul.breadcrumb
+      %li
+        = link_to t(:sites), sites_path
+        %span.divider /
+      %li.active= @record.name
+    .span4
+      .meta.small.stacked{:style => "text-transform: uppercase;"}= t(:logo_square)
+      = image_tag @record.logo_square.url
+      .meta.small.stacked{:style => "text-transform: uppercase;"}= t('logo.logo')
+      = image_tag @record.logo.url
+    .span8
+      %h2= @record.name
+      = link_to t(:edit), edit_site_path(@record), :class => "btn"
+      - for grp, prefs in @pref_groups
+        - prefs = prefs.select{|p| !@record.preferences[p.name].blank?}
+        - next if prefs.blank?
+        %h3= grp.capitalize
+        %table.table.table-bordered
+          - for pref in prefs
+            %tr
+              %td= t("site_preferences.#{pref.name}")
+              %td= @record.preferences[pref.name]
+          

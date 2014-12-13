@@ -12,9 +12,9 @@
 
     - @records.each do |site|
       %tr
-        %td= image_tag site.logo.url
-        %td= site.name
-        %td= site.url
+        %td= link_to image_tag(site.logo.url), site
+        %td= link_to site.name, site
+        %td= link_to site.url, site.url
         %td= link_to t(:edit), edit_site_path(site)
 
   %br
