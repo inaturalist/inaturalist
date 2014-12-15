@@ -145,9 +145,14 @@ module TaxaHelper
   
   def common_taxon_name(taxon)
     return nil if taxon.blank?
+    user = if defined? current_user
+      user
+    else
+      @user
+    end
     TaxonName.choose_common_name(
       @taxon_names_by_taxon_id ? @taxon_names_by_taxon_id[taxon.id] : taxon.taxon_names,
-      :place => current_user.try(:place)
+      :place => user.try(:place)
     )
   end
   
