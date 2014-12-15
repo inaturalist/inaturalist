@@ -108,7 +108,12 @@ class FlickrPhoto < Photo
   #
   def sync
     f = FlickrPhoto.flickraw_for_user(user)
-    sizes = f.photos.getSizes(:photo_id => native_photo_id)
+    sizes = begin
+      f.photos.getSizes(:photo_id => native_photo_id)
+    rescue FlickRaw::FailedResponse => e
+      raise e unless e =~ /Photo not found/
+      nil
+    end
     return if sizes.blank?
     sizes = sizes.index_by{|s| s.label}
     self.square_url   = sizes['Square'].source rescue nil

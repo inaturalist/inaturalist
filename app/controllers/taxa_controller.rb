@@ -727,12 +727,17 @@ class TaxaController < ApplicationController
       end
       obs.to_a
     else
-      Observation.search(params[:q], 
-        :page => params[:page], 
-        :per_page => per_page, 
-        :with => {:has_photos => true}, 
-        :include => [:photos]
-      )
+      begin
+        Observation.search(params[:q], 
+          :page => params[:page], 
+          :per_page => per_page, 
+          :with => {:has_photos => true}, 
+          :include => [:photos]
+        )
+      rescue Riddle::ResponseError => e
+        raise e unless e.message =~ /out of bounds/
+        []
+      end
     end
     @photos = observations.compact.map(&:photos).flatten.reject{|p| p.user_id.blank?}
     @photos = @photos.reject{|p| p.license.to_i <= Photo::COPYRIGHT} if licensed

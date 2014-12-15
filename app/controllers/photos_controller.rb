@@ -17,7 +17,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.html do
         if params[:partial]
-          partial = params[:partial] || 'photo'
+          partial = (params[:partial] || 'photo').split('/').reject(&:blank?).join('/')
           render :layout => false, :partial => partial, :object => @photo, :size => @size
           return
         end
