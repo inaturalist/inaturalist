@@ -3,7 +3,7 @@ class SitesController < ApplicationController
   before_filter :admin_required, :only => [:new, :create, :destroy]
   before_filter :load_site, :only => [:show, :edit, :update, :destroy]
   before_filter :site_admin_required, :only => [:edit, :update]
-  before_filter :setup_pref_groups, :only => [:new, :create, :edit, :update]
+  before_filter :setup_pref_groups, :only => [:new, :create, :edit, :update, :show]
 
   layout "bootstrap"
 

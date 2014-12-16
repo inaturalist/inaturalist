@@ -490,23 +490,30 @@ class ListedTaxon < ActiveRecord::Base
     ActiveRecord::Base.connection.execute(sql)
   end
   
+  # Retrievest the first and last observations and the month counts. Note that
+  # at present first_observation has a different meaning depending on the
+  # list: for check lists it means the first observation added to iNat (i.e.
+  # sorted by ID), but for everything else it means first observation by date
+  # observed. Not great, but it means the first observer for places rewards
+  # people for being the first to add to the site, and the life list firsts on
+  # the calendar views shows the first time you saw a taxon.
   def cache_columns
     return unless (list && sql = list.cache_columns_query_for(self))
     last_observations = []
-    first_observation_info = [] #array of observation_ids when checklist, otherwise array of [date, observation_id]
+    first_observation_info = [] # array of observation_ids when checklist, otherwise array of [date, observation_id]
     counts = {}
     ListedTaxon.connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
       counts[row['key']] = row['count'].to_i
       last_observations << (row['last_observation'].blank? ? nil : row['last_observation'].split(','))
-      if list.is_a?(CheckList) #process the observation_ids representing first addition to iNat
+      if list.is_a?(CheckList) # process the observation_ids representing first addition to iNat
         first_observation_info << row['first_observation_id'] 
-      else #process arrays of [date,observation_id] where date represents first date observed
+      else # process arrays of [date,observation_id] where date represents first date observed
         first_observation_info << (row['first_observation'].blank? ? nil : row['first_observation'].split(',')) 
       end
     end
-    if list.is_a?(CheckList) #pull out the smallest observation_id (e.g. earliest added to iNat)
-      first_observation_id = first_observation_info.compact.sort[0]
-    else #sort arrays by date and pull out observation_id from first one observed based on date
+    if list.is_a?(CheckList) # pull out the smallest observation_id (i.e. earliest added to iNat)
+      first_observation_id = first_observation_info.compact.sort_by(&:to_i).first
+    else # sort arrays by date and pull out observation_id from first one observed based on date observed
       if first_observation = first_observation_info.compact.compact.sort_by(&:first).first
         first_observation_id = first_observation[1]
       end

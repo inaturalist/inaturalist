@@ -1,7 +1,9 @@
 # tell the I18n library where to find your translations
 I18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}')].sort
 I18n.load_path += Dir[Rails.root.join('config', 'locales', 'extra', '*.{rb,yml}')].sort
-I18N_SUPPORTED_LOCALES = Dir[Rails.root.join('config', 'locales', '*.{rb,yml}')].sort.map{|p| p[/\/([\w\-]+?)\.yml/, 1]}.compact.uniq
+I18N_SUPPORTED_LOCALES = Dir[Rails.root.join('config', 'locales', '*.{rb,yml}')].sort.map{|p| 
+  p[/\/([\w\-]+?)\.yml/, 1]
+}.compact.uniq.reject{|l| l == 'qqq'}
 
 # set default locale to something other than :en
 I18n.default_locale = CONFIG.default_locale.to_sym if CONFIG.default_locale
