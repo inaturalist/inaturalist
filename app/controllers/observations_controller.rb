@@ -2729,8 +2729,8 @@ class ObservationsController < ApplicationController
       :include => [ :quality_metrics,
                     :photos,
                     :identifications,
-                    { :taxon => :taxon_names },
-                    { :projects => :users }
+                    :projects,
+                    { :taxon => :taxon_names }
       ]
     )
   end

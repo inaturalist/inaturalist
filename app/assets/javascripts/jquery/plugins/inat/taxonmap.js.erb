@@ -15,30 +15,33 @@ var inatTaxonMap = { };
 
 inatTaxonMap.setup = function ( elt, options ) {
   var options = $.extend( { }, options );
-  if (options.taxon) {
-    options.taxonID = options.taxon.id;
-  } else {
-    options.taxonID = options.taxonID || $(elt).data('taxon-id');
-  }
-  if (!options.taxonID) { return; }
+  options.taxonID = $(elt).data('taxon-id');
   options.latitude = options.latitude || $(elt).data('latitude');
   options.longitude = options.longitude || $(elt).data('longitude');
-  options.mapType = options.mapType || $(elt).data('map-type');
-  options.zoomLevel = parseInt( options.zoomLevel || $(elt).data('zoom-level') );
-  options.gbifKmlUrl = options.gbifKmlUrl || $(elt).data('gbif-kml');
-  options.rangeTaxonID = options.rangeTaxonID || $(elt).data('range-taxon-id');
-  options.placeGeomID = options.placeGeomID || $(elt).data('place-geom-id');
-  if (options.gbifKmlUrl == '') {
+  options.mapType = $(elt).data('map-type');
+  options.zoomLevel = parseInt( $(elt).data('zoom-level') );
+  options.gbifKmlUrl = $(elt).data('gbif-kml');
+  options.showRange = $(elt).data('show-range');
+  options.placeGeomID = $(elt).data('place-geom-id');
+  options.minX = $(elt).data('min-x');
+  options.minY = $(elt).data('min-y');
+  options.maxX = $(elt).data('max-x');
+  options.maxY = $(elt).data('max-y');
+  options.observations = options.observations || $(elt).data('observations');
+  // turn the observations JSON into proper JavaScript objects
+  if( options.observations ) {
+    options.observations = _.map( options.observations, function( observation ) {
+      return jQuery.parseJSON( observation );
+    });
+  }
+  // Make sure these two values are null if seemingly unassigned
+  if (options.gbifKmlUrl === '') {
     options.gbifKmlUrl = null;
   }
-  if (options.zoomLevel == 0) {
+  if (options.zoomLevel === 0) {
     options.zoomLevel = null;
   }
 
-  options.bbox = options.bbox || $(elt).data('bbox')
-  if (typeof(options.bbox) == 'string') {
-    options.bbox = $.map(options.bbox.split(','), Number)
-  }
   $(elt).data('taxonMapOptions', options)
   inatTaxonMap.setupGoogle(elt)
 };
@@ -51,16 +54,18 @@ inatTaxonMap.setupGoogle = function( elt ) {
   var options = $(elt).data('taxonMapOptions'),
       map = iNaturalist.Map.createMap({div: elt}),
       preserveViewport = options.preserveViewport
-  if (options.bbox) {
+  if (options.minX) {
     map.fitBounds(
       new google.maps.LatLngBounds(
-        new google.maps.LatLng(options.bbox[0], options.bbox[1]),
-        new google.maps.LatLng(options.bbox[2], options.bbox[3])
+        new google.maps.LatLng(options.minY, options.minX),
+        new google.maps.LatLng(options.maxY, options.maxX)
       )
     )
     preserveViewport = true
-  } else if (options.latitude || options.longitude) {
-    map.setCenter(new google.maps.LatLng(options.latitude || 0, options.longitude || 0))
+  } else {
+    if (options.latitude || options.longitude) {
+      map.setCenter(new google.maps.LatLng(options.latitude || 0, options.longitude || 0))
+    }
     if (options.zoomLevel) {
       map.setZoom(options.zoomLevel)
     }
@@ -100,11 +105,11 @@ inatTaxonMap.setupGoogle = function( elt ) {
       win.open(map)
       return false
     })
-    preserveViewport = true
   }
 
-  if (options.rangeTaxonID) {
-    map.addTaxonRangeLayer({ taxon_id: options.rangeTaxonID });
+  if (options.showRange) {
+    map.addTaxonRangeLayer({ taxon_id: options.taxonID });
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map));
   }
 
   if (options.placeGeomID) {
@@ -113,7 +118,48 @@ inatTaxonMap.setupGoogle = function( elt ) {
 
   if (options.taxonID) {
     gridOptions = { taxon_id: options.taxonID };
+    if( options.observations && options.observations.length === 1 ) {
+      gridOptions.observation_id = options.observations[0].id;
+    }
     map.addObservationsLayer(gridOptions);
+  }
+
+  if (options.observations) {
+    _.each(options.observations, function( observation ) {
+      map.addObservation(observation, { clickable: options.clickable, showAccuracy: options.showAccuracy })
+      if (!observation.map_scale && observation.positional_accuracy) {
+        var c = new google.maps.Circle({
+          center: new google.maps.LatLng(observation.latitude, observation.longitude),
+          radius: observation.positional_accuracy * 10
+        })
+      }
+      if (observation.marker) {
+        // Bind the clicks on the obs icon to popup the infowindow
+        $('#observation-'+this.id).click(function() {
+          if ($(this).parents('.observations').hasClass('mini')) {
+            map.openInfoWindow.apply(observation.marker);
+          };
+        });
+      };
+    });
+    if( !preserveViewport ) {
+      if( options.observations.length === 1 ) {
+        observation = options.observations[0];
+        var center = new google.maps.LatLng(
+          observation.private_latitude || observation.latitude,
+          observation.private_longitude || observation.longitude);
+        map.setCenter(center);
+        // TODO: what does this do? Do we still need it?
+        // google.maps.event.addListenerOnce(map, 'idle', function() {
+        //   if (observation._circle) {
+        //     map.fitBounds(map.getBounds().union(observation._circle.getBounds()))
+        //   }
+        //   google.maps.event.trigger(map, 'zoom_changed')
+        // })
+      } else {
+        map.zoomToObservations();
+      }
+    }
   }
 
   if (!preserveViewport) {
@@ -125,28 +171,17 @@ inatTaxonMap.setupGoogle = function( elt ) {
 
 inatTaxonMap.fitGoogle = function( elt ) {
   var options = $(elt).data('taxonMapOptions'),
-      map = $(elt).data('taxonMap'),
-      preserveViewport = false
-  if (!map) {return};
-  if (options.bbox) {
+      map = $(elt).data('taxonMap');
+  if (!map) { return; }
+  if (options.minX) {
     map.fitBounds(
       new google.maps.LatLngBounds(
-        new google.maps.LatLng(options.bbox[0], options.bbox[1]),
-        new google.maps.LatLng(options.bbox[2], options.bbox[3])
+        new google.maps.LatLng(options.minY, options.minX),
+        new google.maps.LatLng(options.maxY, options.maxX)
       )
-    )
-    return
-  } else if (options.latitude || options.longitude) {
-    map.setCenter(new google.maps.LatLng(options.latitutde || 0, options.longitude || 0))
-    map.setZoom(4)
-    return
+    );
+    return;
   }
-
-  if (map.observationBounds) {
-    map.zoomToObservations()
-    return
-  }
-
-  map.setCenter(new google.maps.LatLng(0, 0))
-  map.setZoom(1)
+  map.setCenter(new google.maps.LatLng(0, 0));
+  map.setZoom(1);
 };

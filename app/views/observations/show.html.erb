@@ -110,15 +110,7 @@
         DEFAULT_PHOTO_SOURCE = <%=json_escape @default_photo_source.to_json.html_safe %>,
         OBSERVATION = <%=json_escape @observation.to_json(:viewer => current_user, 
           :force_coordinate_visibility => @coordinates_viewable,
-          :include => [ {:user => {:only => :login} }, :taxon, :iconic_taxon ]).html_safe %>
-    $(document).ready(function() {
-      var tileLayerOptions = {
-        taxon_id: OBSERVATION.taxon_id,
-        observation_id: OBSERVATION.id
-      }
-      window.map.addObservationsLayer(tileLayerOptions);
-    })
-
+          :include => [ {:user => {:only => :login} }, :taxon, :iconic_taxon ]).html_safe %>;
 </script>
 <% end %>
 
@@ -325,7 +317,7 @@
 
     <div id="where">
       <% if show_observation_coordinates?(@observation) %>
-        <div id="map" class="stacked"></div>
+        <%= render :partial => 'show_map' %>
       <% end %>
       <div class="description">
         <%= render :partial => 'location', :locals => {:inline_edit => true, :places => @places} %>

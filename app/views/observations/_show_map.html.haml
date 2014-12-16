@@ -1,0 +1,3 @@
+#map.stacked{ setup_map_tag_attrs(taxon: @observation.taxon,
+  observations: [ @observation ],
+  zoom_level: (@observation.map_scale || 8)).merge({  } ) }

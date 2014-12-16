@@ -561,36 +561,66 @@ module ApplicationHelper
     content_tag :span, (block_given? ? capture(&block) : content), options
   end
   
-  def setup_map_tag_attrs(taxon, options = {})
-    taxon_range = options[:taxon_range]
-    place = options[:place]
+  def setup_map_tag_attrs(options = {})
     map_tag_attrs = {
-      "data-taxon-id" => taxon.id,
+      "data-taxon-id" => options[:taxon] ? options[:taxon].id : nil,
       "data-latitude" => options[:latitude],
       "data-longitude" => options[:longitude],
       "data-map-type" => options[:map_type],
       "data-zoom-level" => options[:zoom_level],
-      "data-range-taxon-id" => options[:range_taxon_id]
+      "data-show-range" => options[:show_range],
+      "data-place-geom-id" => options[:place] ? options[:place].id : nil,
+      "data-min-x" => options[:min_x],
+      "data-min-y" => options[:min_y],
+      "data-max-x" => options[:max_x],
+      "data-max-y" => options[:max_y]
     }
-    if taxon_range
-      map_tag_attrs["data-range-taxon-id"] = map_tag_attrs["data-range-taxon-id"] || taxon.id;
-      map_tag_attrs["data-taxon-range-geojson"] = taxon_range_geom_url(taxon.id, :format => "geojson")
-      if s = taxon_range.source
-        map_tag_attrs["data-taxon-range-citation"] = s.in_text
-        map_tag_attrs["data-taxon-range-citation-url"] = s.url || source_url(s)
+    unless options[:zoom_level] && !map_tag_attrs["data-min-x"]
+      if options[:taxon] && !options[:focus] == :place
+        append_bounds_to_map_tag_attrs(map_tag_attrs, options[:taxon])
+      end
+      if options[:taxon] && options[:show_range] && !options[:focus] == :place
+        append_bounds_to_map_tag_attrs(map_tag_attrs, options[:taxon].taxon_ranges_without_geom.first)
+      end
+      if options[:place]
+        append_bounds_to_map_tag_attrs(map_tag_attrs, options[:place])
       end
     end
-    if place
-      map_tag_attrs["data-latitude"] ||= place.latitude
-      map_tag_attrs["data-longitude"] ||= place.longitude
-      map_tag_attrs["data-bbox"] = place.bounding_box.join(',') if place.bounding_box
-      if @place_geometry || PlaceGeometry.without_geom.exists?(:place_id => place)
-        map_tag_attrs["data-place-geom-id"] = place.id
-      end
+    if options[:observations]
+      map_tag_attrs["data-observations"] = options[:observations].collect{ |o|
+        o.to_json(:viewer => current_user,
+          :force_coordinate_visibility => @coordinates_viewable,
+          :include => [ { :user => { :only => :login },
+            :taxon => { :only => [ :id, :name ] } },
+            :iconic_taxon ],
+          :methods => [ :iconic_taxon_name ],
+          :except => [ :description ] ).html_safe
+      }
     end
+    # make it a string for HTML attribute
+    options[:show_range] = "true" if options[:show_range]
     map_tag_attrs
   end
-  
+
+  def append_bounds_to_map_tag_attrs(map_tag_attrs, instance_with_bounds)
+    return unless instance_with_bounds && instance_with_bounds.respond_to?(:bounds)
+    bounds = instance_with_bounds.bounds
+    if bounds && bounds[:min_x]
+      unless map_tag_attrs["data-min-x"] && bounds[:min_x] > map_tag_attrs["data-min-x"]
+        map_tag_attrs["data-min-x"] = bounds[:min_x]
+      end
+      unless map_tag_attrs["data-min-y"] && bounds[:min_y] > map_tag_attrs["data-min-y"]
+        map_tag_attrs["data-min-y"] = bounds[:min_y]
+      end
+      unless map_tag_attrs["data-max-x"] && bounds[:max_x] < map_tag_attrs["data-max-x"]
+        map_tag_attrs["data-max-x"] = bounds[:max_x]
+      end
+      unless map_tag_attrs["data-max-y"] && bounds[:max_y] < map_tag_attrs["data-max-y"]
+        map_tag_attrs["data-max-y"] = bounds[:max_y]
+      end
+    end
+  end
+
   def google_static_map_for_observation_url(o, options = {})
     return if CONFIG.google.blank? || CONFIG.google.simple_key.blank?
     url_for_options = {

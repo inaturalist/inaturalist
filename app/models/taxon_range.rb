@@ -88,5 +88,18 @@ class TaxonRange < ActiveRecord::Base
     end
     File.delete(tmp_path)
   end
-  
+
+  def bounds
+    return @bounds if @bounds
+    result = TaxonRange.where(id: id).select("
+      ST_YMIN(geom) min_y, ST_YMAX(geom) max_y,
+      ST_XMIN(geom) min_x, ST_XMAX(geom) max_x").first
+    @bounds = {
+      min_x: result.min_x,
+      min_y: result.min_y,
+      max_x: result.max_x,
+      max_y: result.max_y
+    }
+  end
+
 end

@@ -90,7 +90,7 @@ group :production do
   gem 'newrelic_rpm'
 end
 
-group :test, :development do
+group :test, :development, :prod_dev do
   gem "database_cleaner"
   gem "machinist"
   gem "rspec-rails"

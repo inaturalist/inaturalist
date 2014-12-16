@@ -1226,7 +1226,25 @@ class Taxon < ActiveRecord::Base
   def match_descendants(taxon_hash)
     Taxon.match_descendants_of_id(id, taxon_hash)
   end
-  
+
+  # get the extreme's of this taxon's observations as determined
+  # by our cache table for grids, at the highest zoom
+  def bounds
+    return @bounds if defined?(@bounds)
+    result = Taxon.connection.execute("SELECT
+      MIN(ST_YMIN(geom)) min_y, MAX(ST_YMAX(geom)) max_y,
+      MIN(ST_XMIN(geom)) min_x, MAX(ST_XMAX(geom)) max_x
+      FROM observation_zooms_2 WHERE taxon_id=#{ id }").first
+    @bounds = result['min_x'].nil? ?
+      { } :
+      {
+        min_x: result['min_x'],
+        min_y: result['min_y'],
+        max_x: result['max_x'],
+        max_y: result['max_y']
+      }
+  end
+
   # Static ##################################################################
 
   def self.match_descendants_of_id(id, taxon_hash)

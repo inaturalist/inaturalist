@@ -41,10 +41,10 @@
   <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
   <![endif]-->
 
+  <%= google_maps_js %>
   <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js",
                              'map_bundle' %>
 
-  <%= google_maps_js %>
   <%= javascript_include_tag 'taxa/show' %>
 
   <script type="text/javascript" charset="utf-8">
@@ -685,36 +685,7 @@
         <% end -%>
       </div>
 
-      <div id="taxon_range">
-        <div id="taxon_range_map" style="width: 790px; height: 488px"
-          data-taxon-id="<%= @taxon.id %>"
-          data-iconic-taxon-name="<%= @taxon.iconic_taxon ? @taxon.iconic_taxon.name : nil %>"
-          data-range-taxon-id="<%= @taxon_range ? @taxon.id : nil %>"
-          data-taxon-range-citation="<%= @taxon_range.source.in_text if @taxon_range && @taxon_range.source %>"
-          data-taxon-range-citation-url="<%= @taxon_range.source.url if @taxon_range && @taxon_range.source %>"
-          data-gbif-kml="http://data.gbif.org/ws/rest/occurrence/list?coordinatestatus=true&maxresults=500&coordinateissues=false&scientificname=<%= @taxon_gbif %>&format=kml"></div>
-        <div class="ui description">
-          <% if @taxon_range -%>
-            <% if @taxon_range.source -%>
-              <div>
-                <strong><%= t(:source) %>:</strong>
-                <%= auto_link(@taxon_range.source.citation) || @taxon_range.source.url || @taxon_range.source.title %>
-              </div>
-            <% end -%>
-            <% unless @taxon_range.description.blank? -%>
-              <div>
-                <strong><%= t(:description) %>:</strong>
-                <%= @taxon_range.description %>
-              </div>
-            <% end -%>
-            <% if logged_in? && current_user.is_curator? -%>
-              <%= link_to t(:edit_range_raquo).html_safe, edit_taxon_range_path(@taxon_range) %>
-            <% end -%>
-          <% else %>
-            <%= t(:no_range_data_available) %>
-          <% end -%>
-        </div>
-      </div>
+      <%= render partial: 'show_map' %>
     </div>
   </div>
 

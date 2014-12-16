@@ -68,6 +68,7 @@ module PlacesHelper
     url_for_options = {
       :host => 'chart.apis.google.com',
       :controller => 'chart',
+      :port => nil,
       :chs => '440x220',
       :chco => 'EEEEEE,1E90FF,1E90FF',
       :chld => labels.join,
