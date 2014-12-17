@@ -86,6 +86,7 @@ inatTaxonMap.setupGoogle = function( elt ) {
         I18n.t('taxon_map.it_may_take_google_a_while_to') +
         ' <a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">' + I18n.t('taxon_map.data_url') + '</a>'
     })
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map));
     google.maps.event.addListener(gbifLyr, 'click', function(e) {
       if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}
       for (var k in window['kmlInfoWindows']) {
@@ -111,7 +112,6 @@ inatTaxonMap.setupGoogle = function( elt ) {
 
   if (options.showRange) {
     map.addTaxonRangeLayer({ taxon_id: options.taxonID });
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map));
   }
 
   if (options.placeGeomID) {
