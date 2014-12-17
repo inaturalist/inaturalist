@@ -6,6 +6,7 @@ $(document).ready(function() {
     mapTypeId: google.maps.MapTypeId.HYBRID,
     bounds: BOUNDS
   })
+  window.map = map;
 
   var preserveViewport = false
   if (typeof(PROJECT) != 'undefined' && PROJECT) {
@@ -21,8 +22,8 @@ $(document).ready(function() {
     }
   }
   if (typeof(PLACE) != 'undefined' && PLACE) {
+    window.map.addPlaceLayer({ place_id: PLACE.id });
     map.setPlace(PLACE, {
-      kml: PLACE_GEOMETRY_KML_URL,
       preserveViewport: preserveViewport,
       click: function(e) {
         $.fn.latLonSelector.handleMapClick(e)

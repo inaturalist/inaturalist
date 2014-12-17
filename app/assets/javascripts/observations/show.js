@@ -1,32 +1,9 @@
 $(document).ready(function() {
   // setup the map if one is needed
   window.observation = OBSERVATION;
-  if (iNaturalist.Map && (observation.latitude && observation.longitude) || (observation.private_latitude && observation.private_longitude)) {
-    window.map = iNaturalist.Map.createMap({
-      lat: 40.714, 
-      lng: -98.262, 
-      zoom: observation.map_scale || 8, 
-      controls: 'small'
-    });
-    map.addObservation(observation, {clickable: false, showAccuracy: true})
-    if (!observation.map_scale && observation.positional_accuracy) {
-      var c = new google.maps.Circle({
-        center: new google.maps.LatLng(observation.latitude, observation.longitude),
-        radius: observation.positional_accuracy * 10
-      })
-      map.fitBounds(c.getBounds())
-    }
-    var center = new google.maps.LatLng(
-      observation.private_latitude || observation.latitude, 
-      observation.private_longitude || observation.longitude);
-    map.setCenter(center);
-    google.maps.event.addListenerOnce(map, 'idle', function() {
-      if (observation._circle) {
-        map.fitBounds(map.getBounds().union(observation._circle.getBounds()))
-      }
-      google.maps.event.trigger(map, 'zoom_changed')
-    })
-    
+  $("#map").taxonMap({ clickable: false, showAccuracy: true });
+  window.map = $("#map").data("taxonMap");
+  if ( map ) {
     $(window).load(function() {
       var photosHeight = $('#photos .first img').height(),
           soundsHeight = $('#sounds').height() - $('#sounds .moresounds').height() - $('#sounds .meta').height(),
@@ -47,7 +24,6 @@ $(document).ready(function() {
       }
       if (map && observation) {
         google.maps.event.trigger(map, 'resize');
-        map.setCenter(center);
       }
     });
   }

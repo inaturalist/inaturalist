@@ -713,7 +713,20 @@ class Place < ActiveRecord::Base
     box = [swlat, swlng, nelat, nelng].compact
     box.blank? ? nil : box
   end
-  
+
+  def bounds
+    return @bounds if @bounds
+    result = PlaceGeometry.where(place_id: id).select("
+      ST_YMIN(geom) min_y, ST_YMAX(geom) max_y,
+      ST_XMIN(geom) min_x, ST_XMAX(geom) max_x").first
+    @bounds = {
+      min_x: result.min_x,
+      min_y: result.min_y,
+      max_x: result.max_x,
+      max_y: result.max_y
+    }
+  end
+
   def contains_lat_lng?(lat, lng)
     PlaceGeometry.exists?([
       "place_id = ? AND " + 

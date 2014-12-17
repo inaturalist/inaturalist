@@ -1,3 +1,5 @@
+var placeLayer;
+
 function rulify() {
   $('#new_operand_id').chooser({
     collectionUrl: '/places/autocomplete.json?with_geom=t',
@@ -163,23 +165,18 @@ $(document).ready(function() {
         }
         $("#project_latitude").val(item.latitude).change()
       }
-      if (item.kml_ulr && $('input[name="project[prefers_place_boundary_visible]"]:visible').checked) {
-        map.removeOverlay("place boundary")
-        lyr = new google.maps.KmlLayer(item.kml_url, {preserveViewport: true})
-        map.addOverlay("place boundary", lyr)
-      } else {
-        map.removeOverlay("place boundary")
+      if (item.id && $('input[name="project[prefers_place_boundary_visible]"]:visible').checked) {
+        placeLayer = window.map.addPlaceLayer({ place_id: item.id });
       }
     }
   })
   $('input[name="project[prefers_place_boundary_visible]"]:visible').change(function() {
     var place = $('#project_place_id').data('json')
-    if (!(place && place.kml_url)) {return}
+    if (! place) { return; }
     if (this.checked) {
-      lyr = new google.maps.KmlLayer(place.kml_url, {preserveViewport: preserveViewport})
-      map.addOverlay("place boundary", lyr)
+      placeLayer = window.map.addPlaceLayer({ place_id: place.id });
     } else {
-      map.removeOverlay("place boundary")
+      map.overlayMapTypes.setAt(placeLayer - 1, null);
     }
   })
   $('input[name="project[prefers_place_boundary_visible]"]:visible').change()

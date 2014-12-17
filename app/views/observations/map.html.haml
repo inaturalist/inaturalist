@@ -3,7 +3,7 @@
 
 - content_for :extrajs do
   = google_maps_js
-  = javascript_include_tag "jquery/plugins/jquery.ba-bbq.min", 'inaturalist/map3', "wax.g"
+  = javascript_include_tag "map_bundle"
   :javascript
     $(document).ready(function() {
       // getting the coordinates from the URL and the site default BOUNDS
@@ -15,16 +15,20 @@
         lng: 20,
         minZoom: 2,
         controls: 'small',
-        mapTypeId: google.maps.MapTypeId.SATELLITE,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
         bounds: coord.lat ? null : BOUNDS
       });
       var opts = $.deparam.querystring();
       var taxon = #{ @taxon_hash.to_json };
-      if (taxon.iconic_taxon_name) {
-        opts.color = iNaturalist.Map.ICONIC_TAXON_COLORS[ taxon.iconic_taxon_name ];
-      } else {
-        opts.color = iNaturalist.Map.ICONIC_TAXON_COLORS.Mollusca;
+      opts.grid_color = opts.grid_color || iNaturalist.Map.ICONIC_TAXON_COLORS.Mollusca;
+      if (opts.render_place_id) {
+        window.map.addPlaceLayer({ place_id: opts.render_place_id });
       }
+      if (opts.render_taxon_range_id) {
+        window.map.addTaxonRangeLayer({ taxon_id: opts.render_taxon_range_id });
+      }
+      // window.map.addObservationsLayer({ grid_opacity: 0.8, grid_border_opacity: 0.01,
+      //   point_opacity: 0.4, point_border_opacity: 0.3, point_color: "#6E6E6E", interactivity: false });
       window.map.addObservationsLayer(opts);
       google.maps.event.addListener(map, 'dragend', setUrlHashCoord);
       google.maps.event.addListener(map, 'zoom_changed', setUrlHashCoord);

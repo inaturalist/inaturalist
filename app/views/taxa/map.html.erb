@@ -14,7 +14,7 @@
 
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag "polymaps.min", "polymaps.extra", "polymaps.kml", 'd3.min', 'inaturalist/map3' %>
+  <%= javascript_include_tag "polymaps.min", "polymaps.extra", "polymaps.kml", 'd3.min', 'map_bundle' %>
   <script type="text/javascript" charset="utf-8">
     var TILESTACHE_SERVER = <%= CONFIG.tile_servers.tilestache.inspect.html_safe %>
     var CLOUDMADE_KEY = <%= @cloudmade_key ? @cloudmade_key.inspect.html_safe : 'null' %>
@@ -36,7 +36,6 @@
     var children = <%=json_escape @children.to_json.html_safe %>
     var place = <%=json_escape @place.to_json.html_safe %>
     var placeGeometry = <%= @place_geometry.to_json.html_safe %>
-    var placeKmlUrl = <%= @place_geometry ? place_geometry_url(@place, :format => "kml").inspect.html_safe : 'null' %>
     var placeGeoJsonUrl = <%= @place_geometry ? place_geometry_url(@place, :format => "geojson").inspect.html_safe : 'null' %>
     var taxa = <%=json_escape @taxa_data.to_json.html_safe %>
     

@@ -7,7 +7,7 @@
 
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'inaturalist/map3', "d3.min", 'calendars', 'observations/observation_fields' %>
+  <%= javascript_include_tag 'map_bundle', "d3.min", 'calendars', 'observations/observation_fields' %>
   <script type="text/javascript" charset="utf-8">
     var CACHED_AT = new Date(<%= Time.now.to_i * 1000 %>)
     $(document).ready(function() {
