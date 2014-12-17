@@ -27,6 +27,8 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.minY = $(elt).data('min-y');
   options.maxX = $(elt).data('max-x');
   options.maxY = $(elt).data('max-y');
+  options.flagLetters = $(elt).data('flag-letters');
+  options.windshaftUserID = $(elt).data('windshaft-user-id');
   options.observations = options.observations || $(elt).data('observations');
   // turn the observations JSON into proper JavaScript objects
   if( options.observations ) {
@@ -116,57 +118,86 @@ inatTaxonMap.setupGoogle = function( elt ) {
     map.addPlaceLayer({ place_id: options.placeGeomID });
   }
 
-  if (options.taxonID) {
-    gridOptions = { taxon_id: options.taxonID };
-    if( options.observations && options.observations.length === 1 ) {
-      gridOptions.observation_id = options.observations[0].id;
+  var windshaftOptions = { };
+  if( options.taxonID ) {
+    windshaftOptions.taxon_id = options.taxonID;
+  }
+  if( options.windshaftUserID ) {
+    windshaftOptions.user_id = options.windshaftUserID;
+  }
+  if (! _.isEmpty( windshaftOptions )) {
+    if( options.observations ) {
+      windshaftOptions.point_observation_id = _.map(options.observations,
+        function( o ) { return o.id }).join(",");
     }
-    map.addObservationsLayer(gridOptions);
+    map.addObservationsLayer(windshaftOptions);
   }
 
-  if (options.observations) {
-    _.each(options.observations, function( observation ) {
-      map.addObservation(observation, { clickable: options.clickable, showAccuracy: options.showAccuracy })
-      if (!observation.map_scale && observation.positional_accuracy) {
-        var c = new google.maps.Circle({
-          center: new google.maps.LatLng(observation.latitude, observation.longitude),
-          radius: observation.positional_accuracy * 10
-        })
-      }
-      if (observation.marker) {
-        // Bind the clicks on the obs icon to popup the infowindow
-        $('#observation-'+this.id).click(function() {
-          if ($(this).parents('.observations').hasClass('mini')) {
-            map.openInfoWindow.apply(observation.marker);
-          };
-        });
-      };
-    });
-    if( !preserveViewport ) {
-      if( options.observations.length === 1 ) {
-        observation = options.observations[0];
-        var center = new google.maps.LatLng(
-          observation.private_latitude || observation.latitude,
-          observation.private_longitude || observation.longitude);
-        map.setCenter(center);
-        // TODO: what does this do? Do we still need it?
-        // google.maps.event.addListenerOnce(map, 'idle', function() {
-        //   if (observation._circle) {
-        //     map.fitBounds(map.getBounds().union(observation._circle.getBounds()))
-        //   }
-        //   google.maps.event.trigger(map, 'zoom_changed')
-        // })
-      } else {
-        map.zoomToObservations();
-      }
-    }
-  }
+  inatTaxonMap.addObservationsToMap( options, map, preserveViewport);
 
   if (!preserveViewport) {
     inatTaxonMap.fit(elt)
   }
 
   $(elt).data('taxonMap', map)
+};
+
+inatTaxonMap.addObservationsToMap = function( options, map, preserveViewport ) {
+  if( !options.observations ) {
+    return;
+  }
+  var letter_counter = 0;
+  var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var obsIcon = iNaturalist.Map.createObservationIcon({color: "HotPink"});
+  var newObsIcon = iNaturalist.Map.createObservationIcon({color: "DeepPink"});
+
+  _.each(options.observations, function( o ) {
+    var icon_div = $('#observation-'+ o.id +' .icon').get(0);
+    if (!((o.latitude && o.longitude) || (o.private_latitude && o.private_longitude))) {
+      if( options.appendMarkerToList ) {
+        var icon_img = $('<img src="<%= asset_path("mapMarkers/questionmarker.png") %>"/>');
+        $(icon_div).text('').append(icon_img);
+        return;
+      }
+    }
+    observationOptions = { clickable: options.clickable, showAccuracy: options.showAccuracy };
+    if( options.flagLetters ) {
+      observationOptions.icon = iNaturalist.Map.createObservationIcon({
+        color: "HotPink",
+        character: letters[ letter_counter ],
+        stemless: o.coordinates_obscured
+      });
+    }
+    map.addObservation(o, observationOptions);
+    if (!o.map_scale && o.positional_accuracy) {
+      var c = new google.maps.Circle({
+        center: new google.maps.LatLng(o.latitude, o.longitude),
+        radius: o.positional_accuracy * 10
+      })
+    }
+    if( options.appendMarkerToList && o.marker) {
+      var marker = o.marker;
+      var src = o.marker.getIcon( );
+      if (src.url) src = src.url;
+      var icon_img = $('<img/>').attr('src', src).addClass('marker');
+      $(icon_div).text('').append( icon_img );
+      $(icon_img).click( function( ) {
+        map.openInfoWindow.apply( o.marker );
+      });
+    }
+    letter_counter++;
+  });
+  if( !preserveViewport ) {
+    if( options.observations.length === 1 ) {
+      o = options.observations[0];
+      var center = new google.maps.LatLng(
+        o.private_latitude || o.latitude,
+        o.private_longitude || o.longitude);
+      map.setCenter(center);
+    } else {
+      map.zoomToObservations();
+    }
+  }
 };
 
 inatTaxonMap.fitGoogle = function( elt ) {

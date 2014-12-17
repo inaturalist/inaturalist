@@ -1,16 +1,16 @@
 <%-
   if @taxon
-    @taxon.html = render(:partial => "taxa/chooser.html.erb", :object => @taxon)
+    @taxon.html = render(:partial => "taxa/chooser", :object => @taxon)
   end
   if @default_taxa
     @default_taxa = @default_taxa.map do |taxon|
-      taxon.html = render(:partial => "taxa/chooser.html.erb", :object => taxon)
+      taxon.html = render(:partial => "taxa/chooser", :object => taxon)
       taxon
     end
   end
   if @places
     @places = @places.map do |place|
-      place.html = render(:partial => "places/autocomplete_item.html.erb", :object => place)
+      place.html = render(:partial => "places/autocomplete_item", :object => place)
       place
     end
   end

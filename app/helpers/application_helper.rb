@@ -563,31 +563,33 @@ module ApplicationHelper
   
   def setup_map_tag_attrs(options = {})
     map_tag_attrs = {
-      "data-taxon-id" => options[:taxon] ? options[:taxon].id : nil,
-      "data-latitude" => options[:latitude],
-      "data-longitude" => options[:longitude],
-      "data-map-type" => options[:map_type],
-      "data-zoom-level" => options[:zoom_level],
-      "data-show-range" => options[:show_range],
-      "data-place-geom-id" => options[:place] ? options[:place].id : nil,
-      "data-min-x" => options[:min_x],
-      "data-min-y" => options[:min_y],
-      "data-max-x" => options[:max_x],
-      "data-max-y" => options[:max_y]
+      "taxon-id" => options[:taxon] ? options[:taxon].id : nil,
+      "latitude" => options[:latitude],
+      "longitude" => options[:longitude],
+      "map-type" => options[:map_type],
+      "zoom-level" => options[:zoom_level],
+      "show-range" => options[:show_range] ? "true" : nil,
+      "place-geom-id" => options[:place] ? options[:place].id : nil,
+      "min-x" => options[:min_x],
+      "min-y" => options[:min_y],
+      "max-x" => options[:max_x],
+      "max-y" => options[:max_y],
+      "flag-letters" => options[:flag_letters] ? "true" : nil,
+      "windshaft-user-id" => options[:windshaft_user_id]
     }
-    unless options[:zoom_level] && !map_tag_attrs["data-min-x"]
-      if options[:taxon] && !options[:focus] == :place
+    unless options[:zoom_level] && !map_tag_attrs["min-x"]
+      if options[:taxon] && (!options[:focus] || options[:focus] == :taxon)
         append_bounds_to_map_tag_attrs(map_tag_attrs, options[:taxon])
       end
-      if options[:taxon] && options[:show_range] && !options[:focus] == :place
+      if options[:taxon] && options[:show_range] && (!options[:focus] || options[:focus] == :range)
         append_bounds_to_map_tag_attrs(map_tag_attrs, options[:taxon].taxon_ranges_without_geom.first)
       end
-      if options[:place]
+      if options[:place] && (!options[:focus] || options[:focus] == :place)
         append_bounds_to_map_tag_attrs(map_tag_attrs, options[:place])
       end
     end
     if options[:observations]
-      map_tag_attrs["data-observations"] = options[:observations].collect{ |o|
+      map_tag_attrs["observations"] = options[:observations].collect{ |o|
         o.to_json(:viewer => current_user,
           :force_coordinate_visibility => @coordinates_viewable,
           :include => [ { :user => { :only => :login },
@@ -597,26 +599,24 @@ module ApplicationHelper
           :except => [ :description ] ).html_safe
       }
     end
-    # make it a string for HTML attribute
-    options[:show_range] = "true" if options[:show_range]
-    map_tag_attrs
+    { "data" => map_tag_attrs.delete_if{ |k,v| v.nil? } }
   end
 
   def append_bounds_to_map_tag_attrs(map_tag_attrs, instance_with_bounds)
     return unless instance_with_bounds && instance_with_bounds.respond_to?(:bounds)
     bounds = instance_with_bounds.bounds
     if bounds && bounds[:min_x]
-      unless map_tag_attrs["data-min-x"] && bounds[:min_x] > map_tag_attrs["data-min-x"]
-        map_tag_attrs["data-min-x"] = bounds[:min_x]
+      unless map_tag_attrs["min-x"] && bounds[:min_x] > map_tag_attrs["min-x"]
+        map_tag_attrs["min-x"] = bounds[:min_x]
       end
-      unless map_tag_attrs["data-min-y"] && bounds[:min_y] > map_tag_attrs["data-min-y"]
-        map_tag_attrs["data-min-y"] = bounds[:min_y]
+      unless map_tag_attrs["min-y"] && bounds[:min_y] > map_tag_attrs["min-y"]
+        map_tag_attrs["min-y"] = bounds[:min_y]
       end
-      unless map_tag_attrs["data-max-x"] && bounds[:max_x] < map_tag_attrs["data-max-x"]
-        map_tag_attrs["data-max-x"] = bounds[:max_x]
+      unless map_tag_attrs["max-x"] && bounds[:max_x] < map_tag_attrs["max-x"]
+        map_tag_attrs["max-x"] = bounds[:max_x]
       end
-      unless map_tag_attrs["data-max-y"] && bounds[:max_y] < map_tag_attrs["data-max-y"]
-        map_tag_attrs["data-max-y"] = bounds[:max_y]
+      unless map_tag_attrs["max-y"] && bounds[:max_y] < map_tag_attrs["max-y"]
+        map_tag_attrs["max-y"] = bounds[:max_y]
       end
     end
   end

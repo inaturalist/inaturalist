@@ -756,12 +756,6 @@ google.maps.Map.prototype.addTaxonRangeLayer = function(options) {
 google.maps.Map.prototype.addObservationsLayer = function(options) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt( 0 );
-  // windshaft needs the color codes to be escaped (e.g. %23000000 for black)
-  _.each( [ 'color', 'grid_color', 'point_color' ], function( c ) {
-    if( options[ c ] ) {
-      options[ c ] = encodeURIComponent( options[ c ] );
-    }
-  });
   // if there is a global color, so no need for separate grid or point colors
   if( options.color ) {
     options.grid_color = null;
@@ -773,32 +767,28 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
       pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png",
       gridmaxzoom = options.gridmaxzoom || 9;
   // these are the parameters that will be sent to the windshaft API
-  var tileParamKeys = [ 'taxon_id', 'user_id', 'place_id',
-    'project_id', 'ttl', 'observation_id', 'color', 'opacity', 'border_opacity' ];
-  // map them as assignment strings (e.g. taxon_id=1245)
-  var tileParams = _.map( tileParamKeys, function( key ) {
-    return ( options[ key ] ? key + "=" + options[ key ] : undefined );
-  });
-  // remove undefined options
-  var assignedParams = _.reject( tileParams, function( p ) {
-    return _.isUndefined( p );
-  });
-  // get all of the specific grid_* and point_* options
-  var gridParams = [ ];
-  var pointParams = [ ];
-  _.each( tileParamKeys, function( key ) {
-    if( options[ "grid_" + key ] ) gridParams.push(key + "=" + options[ "grid_" + key ]);
-    if( options[ "point_" + key ] ) pointParams.push(key + "=" + options[ "point_" + key ]);
+  var gridParamKeys = [ 'taxon_id', 'user_id', 'place_id',
+    'project_id', 'ttl', 'color', 'opacity', 'border_opacity' ];
+  var pointParamKeys = gridParamKeys.concat([ 'observation_id' ]);
+  // filter the incoming parameters
+  var gridParams = { };
+  var pointParams = { };
+  _.each( options, function( value, key ) {
+    gridKey = key.replace("grid_", "");
+    pointKey = key.replace("point_", "");
+    if( _.contains( gridParamKeys, gridKey ) ) {
+      gridParams[ gridKey ] = value;
+    }
+    if( _.contains( pointParamKeys, pointKey ) ) {
+      pointParams[ pointKey ] = value;
+    }
   });
   // build the proper paramater string for HTTP GET
-  var paramString;
-  if( assignedParams || gridParams ) {
-    paramString = assignedParams.concat(gridParams).join( "&" );
-    gridTileUrl += "?" + paramString;
+  if( gridParams ) {
+    gridTileUrl += "?" + $.param( gridParams );
   }
-  if( assignedParams || pointParams ) {
-    paramString = assignedParams.concat(pointParams).join( "&" );
-    pointTileUrl += "?" + paramString;
+  if( pointParams ) {
+    pointTileUrl += "?" + $.param( pointParams );
   }
   // add a layer to the map for the grid
   this.addTileLayer(gridTileUrl, {
