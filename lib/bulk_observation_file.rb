@@ -34,7 +34,7 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
       @project = Project.find_by_id(project_id)
       if @project.nil?
         e = BulkObservationException.new('Specified project not found')
-        UserMailer.delay.bulk_observation_error(user, File.basename(observation_file), e)
+        Emailer.delay.bulk_observation_error(user, File.basename(observation_file), e)
       end
     end
 
@@ -50,13 +50,13 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
       import_file
 
       # Email uploader to say that the upload has finished.
-      UserMailer.delay.bulk_observation_success(@user, File.basename(@observation_file))
+      Emailer.delay.bulk_observation_success(@user, File.basename(@observation_file))
     rescue BulkObservationException => e
       # Collate the errors into a hash for emailing
       error_details = collate_errors(e)
 
       # Email the uploader with exception details
-      UserMailer.delay.bulk_observation_error(@user, File.basename(@observation_file), error_details)
+      Emailer.delay.bulk_observation_error(@user, File.basename(@observation_file), error_details)
     end
   end
 
@@ -95,9 +95,15 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
       # Stop if we have reached our max error count
       break if errors.count >= MAX_ERROR_COUNT
     end
-
-    raise BulkObservationException.new("We tried to upload your spreadsheet called #{File.basename(@observation_file)} to #{CONFIG.site_name} but it didn't work. Please fix the following problem(s) and try again.", nil, errors) if errors.count > 0
-    raise BulkObservationException.new("The observation file '#{File.basename(@observation_file)}' was empty.") if row_count == 0
+    if errors.count > 0
+      raise BulkObservationException.new(
+        I18n.t(:we_tried_to_process_your_upload_named_filename, :filename => File.basename(@observation_file)), 
+        nil, 
+        errors)
+    end
+    if row_count == 0
+      raise BulkObservationException.new("The observation file '#{File.basename(@observation_file)}' was empty.")
+    end
   end
 
   # Import the observations in the file, and add to the specified project.

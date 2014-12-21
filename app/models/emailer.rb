@@ -104,6 +104,30 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
+  # Send the user an email saying the bulk observation import encountered
+  # an error.
+  def bulk_observation_error(user, filename, error_details)
+    @user = user
+    @subject = "#{subject_prefix} #{t :were_sorry_but_your_bulk_import_of_filename_has_failed, :filename => filename}"
+    @message       = error_details[:reason]
+    @errors        = error_details[:errors]
+    @field_options = error_details[:field_options]
+    mail(set_site_specific_opts.merge(
+      :to => "#{user.name} <#{user.email}>", :subject => @subject
+    ))
+  end
+
+  # Send the user an email saying the bulk observation import was successful.
+  def bulk_observation_success(user, filename)
+    @user = user
+    # @subject << "The bulk import of #{filename} has been completed successfully."
+    @subject = "#{subject_prefix} #{t(:the_bulk_import_of_filename_is_complete)}"
+    @filename = filename
+    mail(set_site_specific_opts.merge(
+      :to => "#{user.name} <#{user.email}>", :subject => @subject
+    ))
+  end
+
   private
   def default_url_options
     opts = Rails.application.config.action_mailer.default_url_options.dup
@@ -140,6 +164,7 @@ class Emailer < ActionMailer::Base
 
   def set_site_specific_opts
     @site ||= @user.site if @user
+    @site_name = @site.try(:name) || CONFIG.site_name
     if @site
       {
         :from => "#{@site.name} <#{@site.email_noreply.blank? ? CONFIG.noreply_email : @site.email_noreply}>",

@@ -1105,7 +1105,7 @@ class ObservationsController < ApplicationController
     end
     @project = Project.find(params[:project_id].to_i) if params[:project_id]
     if logged_in?
-      @projects = current_user.project_users.includes(:project).order('projects.title').collect(&:project)
+      @projects = current_user.project_users.includes(:project).order('lower(projects.title)').collect(&:project)
       @project_templates = {}
       @projects.each do |p|
         @project_templates[p.title] = p.observation_fields.order(:position) if @project && p.id == @project.id

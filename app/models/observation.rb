@@ -1799,14 +1799,10 @@ class Observation < ActiveRecord::Base
   end
   
   def set_taxon_from_species_guess
-    puts "[DEBUG] set_taxon_from_species_guess, species_guess =~ /\?$/: #{species_guess =~ /\?$/}"
     return true if species_guess =~ /\?$/
-    puts "[DEBUG] set_taxon_from_species_guess, species_guess_changed? && taxon_id.blank?: #{species_guess_changed? && taxon_id.blank?}"
     return true unless species_guess_changed? && taxon_id.blank?
-    puts "[DEBUG] set_taxon_from_species_guess, species_guess.blank?: #{species_guess.blank?}"
     return true if species_guess.blank?
     self.taxon_id = single_taxon_id_for_name(species_guess)
-    puts "[DEBUG] set_taxon_from_species_guess, taxon_id: #{self.taxon_id}"
     true
   end
   

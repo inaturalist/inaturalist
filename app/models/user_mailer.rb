@@ -15,27 +15,6 @@ class UserMailer < ActionMailer::Base
     @subject << "Because of a recent upgrade, your #{CONFIG.site_name} password has been reset."
   end
 
-  # Send the user an email saying the bulk observation import encountered
-  # an error.
-  def bulk_observation_error(user, observation_file, error_details)
-    setup_email(user)
-    @subject << "We're sorry but your bulk import of #{observation_file} has failed."
-
-    @message       = error_details[:reason]
-    @errors        = error_details[:errors]
-    @field_options = error_details[:field_options]
-
-    mail(:to => "#{user.name} <#{user.email}>", :subject => @subject, :from => @from)
-  end
-
-  # Send the user an email saying the bulk observation import was successful.
-  def bulk_observation_success(user, observation_file)
-    setup_email(user)
-    @subject << "The bulk import of #{observation_file} has been completed successfully."
-    @filename = observation_file
-    mail(:to => "#{user.name} <#{user.email}>", :subject => @subject, :from => @from)
-  end
-
   protected
     def setup_email(user)
       @recipients = "#{user.email}"

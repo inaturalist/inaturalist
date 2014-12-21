@@ -102,7 +102,7 @@ module ObservationsHelper
   
   def coordinate_system_select_options
     return {} unless CONFIG.coordinate_systems
-    options = {}
+    options = { "#{t :latitude} / #{t :longitude} (WGS84, EPSG:4326)" => 'wgs84' }
     CONFIG.coordinate_systems.each do |system_name, system|
       options[system[:label]] = system_name
     end

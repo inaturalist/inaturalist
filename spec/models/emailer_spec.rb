@@ -110,3 +110,28 @@ describe Emailer, "project_user_invitation" do
     mail.body.should_not be_blank
   end
 end
+
+describe Emailer, "bulk_observation_success" do
+  it "should mention the filename" do
+    user = User.make!
+    mail = Emailer.bulk_observation_success(user, "the_filename")
+    mail.body.should =~ /the_filename/
+  end
+end
+
+describe Emailer, "bulk_observation_error" do
+  it "should mention the error reasons" do
+    user = User.make!
+    bof = BulkObservationFile.new(nil, nil, nil, user)
+    o = Observation.new
+    o.should_not be_valid
+    e = BulkObservationFile::BulkObservationException.new(
+      "failed to process", 
+      1, 
+      [BulkObservationFile::BulkObservationException.new("observation was invalid", 1, o.errors)]
+    )
+    errors = bof.collate_errors(e)
+    mail = Emailer.bulk_observation_error(user, "the_filename", errors)
+    mail.body.should =~ /failed to process/
+  end
+end

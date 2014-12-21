@@ -185,16 +185,13 @@ Golden Eagle,,"I'm not really sure when or where this was",,,,"mysterious"</code
 
     <div id="bulk_import">
       <div class="readable description">
-        <p>Upload a larger CSV file with observation data. This is similar to the CSV upload option,
-        except that this allows a larger data set (10,000 rows) to be imported. This is also done
-        as a background process, and you will be sent an email on completion.</p>
+        <%=t :upload_a_csv_file_with_observation %>
         <% if @project %>
-        <p>There is a template file for this project that may help you with the structure of the CSV file - <%= link_to("Download template", project_bulk_template_path(@project)) %></p>
+          <p><%=t 'views.observations.import.project_csv_template_notice', :url => project_bulk_template_url(@project) %></p>
         <% end %>
-        <p>For more detailed help on this process, <%= link_to("click here", '/pages/bulk_import') %></p>
       </div>
 
-      <div class="column" style="float:none">
+      <div class="stacekd">
         <%= form_tag(new_observation_bulk_csv_path,
                      :id => 'new_bulk_form',
                      :class => 'clear observationform',
@@ -218,111 +215,67 @@ Golden Eagle,,"I'm not really sure when or where this was",,,,"mysterious"</code
           <% if CONFIG.coordinate_systems -%>
             <div class="column field span-16">
               <div class="column span-4">
-                <h3><label for="project">Coordinate System</label></h3>
+                <h3><label><%=t :coordinate_systems %></label></h3>
               </div>
               <div class="last column span-12">
-                <%= select 'upload', :coordinate_system, { 'WGS84' => 'wgs84' }.update(coordinate_system_select_options) %>
+                <%= select 'upload', :coordinate_system, coordinate_system_select_options %>
                 <span class="coords_tip_target helptip" rel="#coords_tip"></span><div id="coords_tip" style="display:none">
-                  <p>A variety of different coordinate systems are used in NZ. The most common NZ-specific systems are NZMG and NZTM2000. NZMG, the New Zealand Map Grid, is the system used by the the old NZMS260 topomap series. NZTM2000, the NZ Transverse Mercator 2000, is the new and improved version of this that is used by current topomaps. If your coordinates are from a GPS unit, check its settings for the name of the coordinate system it is using.</p>
-                  <p>When you provide coordinates representing a location, we need to know which coordinate system is used, to be able to interpret them correctly. Please be certain you have chosen the correct coordinate system for your data or the location may finish up a long way from where it should be.</p>
+                  <%=t 'views.observations.import.coordinate_systems_help', :site_name => SITE_NAME %>
                 </div>
               </div>
             </div>
           <% end -%>
           <div class="column span-16">
             <div class="buttonrow">
-              <%= submit_tag "Upload", :class => 'default button', "data-loading-click" => "Importing..." %>
+              <%= submit_tag "Upload", :class => 'default button', "data-loading-click" => t(:importing) %>
             </div>
           </div>
         <% end %>
       </div>
 
-      <div class="description">
-        <div id="accordion">
-          <h3 style="margin-top:10px; border-color: #DDD;">Rules &amp; Formatting</h3>
-          <div>
-            <ol>
-              <li>A header row must be included.</li>
-              <li>At most 10,000 rows per file, please.</li>
-              <li>Make sure it is a well formed CSV file - an export from any spreadsheet application (eg Microsoft Excel, LibreOffice Calc) should provide this.</li>
-              <li>The file must be comma-separated - a tab-separated file will not work.</li>
-              <li>Only one coordinate system can be used per file, otherwise incorrect conversion or display will occur.</li>
-              <li>
-                <p class="ui">We can only understand CSV in the following format:</p>
-                <table cellspacing="0" border="0" cellpadding="0">
-                  <tr>
-                    <th>Field Name</th>
-                    <th>Field Type</th>
-                    <th>Value Format</th>
-                  </tr>
-                  <tr>
-                    <td>Species guess</td>
-                    <td>text</td>
-                    <td><%= field_value_example('text') %></td>
-                  </tr>
-                  <tr>
-                    <td>Date observed</td>
-                    <td>date and time</td>
-                    <td><%= field_value_example('datetime') %></td>
-                  </tr>
-                  <tr>
-                    <td>Description</td>
-                    <td>text</td>
-                    <td><%= field_value_example('text') %></td>
-                  </tr>
-                  <tr>
-                    <td>Place name</td>
-                    <td>text</td>
-                    <td><%= field_value_example('text') %></td>
-                  </tr>
-                  <tr>
-                    <td>Latitude or Northing</td>
-                    <td>coordinate</td>
-                    <td><%= field_value_example('latitude') %></td>
-                  </tr>
-                  <tr>
-                    <td>Longitude or Easting</td>
-                    <td>coordinate</td>
-                    <td><%= field_value_example('longitude') %></td>
-                  </tr>
-                  <tr>
-                    <td>Tags</td>
-                    <td>text</td>
-                    <td><%= field_value_example('text') %></td>
-                  </tr>
-                  <tr>
-                    <td>Geoprivacy</td>
-                    <td>list</td>
-                    <td>Leave blank for 'open' or one of <%= Observation::GEOPRIVACIES.join(', ') %></td>
-                  </tr>
-                </table>
+      <div class="ui upstacked">
+        <%= separator %>
+        <h3><%= raw t(:rules_and_formatting) %></h3>
+        <ol>
+          <li><%=t :no_header_row %></li>
+          <li><%=t :only_files_with_100_rows_at_a_time %></li>
+          <li><%=t :use_well_formed_csv %> </li>
+          <li><%=t :dont_use_double_quotes %> </li>
+          <% if CONFIG.coordinate_systems -%>
+            <li><%=t :only_one_coordinate_system_per_file %></li>
+          <% end -%>
+          <li>
+            <p class="ui"><%=t :we_can_only_understand_csv_in %>:</p>
+            <table cellspacing="0" border="0" cellpadding="0">
+              <tr>
+                <th><%=t :taxon_name %></th>
+                <th><%=t :date_observed %></th>
+                <th><%=t :description %></th>
+                <th><%=t :place_name %></th>
+                <th><%=t :latitude %></th>
+                <th><%=t :longitude %></th>
+                <th><%=t :tags %></th>
+                <th><%=t :geoprivacy %></th>
+              </tr>
+              <tr>
+                <td>text</td>
+                <td>YYYY-MM-DD HH:MM</td>
+                <td>text (if it contains commas, enclose in double quotes)</td>
+                <td>text</td>
+                <td>dd.dddd</td>
+                <td>dd.dddd</td>
+                <td>tag1,tag2</td>
+                <td>obscured</td>
+              </tr>
+            </table>
 
-                <% if @project %>
-                  <p class="ui">If a project has custom fields, add these to the end of each row, in the following order.</p>
-                  <% @project_templates.each do |project, project_fields| %>
-                    <% unless project_fields.empty? %>
-                    <p class="ui">For <strong><%= project %></strong>:</p>
-                    <table cellspacing="0" border="0" cellpadding="0">
-                      <tr>
-                        <th>Field Name</th>
-                        <th>Field Type</th>
-                        <th>Value Format</th>
-                      </tr>
-                      <% project_fields.each do |field| %>
-                      <tr>
-                        <td><%= field.name %></td>
-                        <td><%= field.datatype %></td>
-                        <td><%= field_value_example(field.datatype, field.allowed_values, field.id) %></td>
-                      </tr>
-                      <% end %>
-                    </table>
-                    <% end %>
-                  <% end %>
-                <% end %>
-              </li>
-            </ol>
-          </div>
-        </div>
+            <p class="ui"><%=t :here_are_3_examples %>:</p>
+            
+<code>Anna's Hummingbird,2008-03-03 2:54pm,"An aggressive male dive-bombed my head, so I took cover.","Tilden Regional Park, Berkeley, CA, USA",37.8953,-122.249,"attack, danger",obscured
+Sharp-tailed Snake,2007-08-20,"Beautiful little creature","Leona Canyon Regional Park, Oakland, CA, USA",37.7454,-122.111,"cute, snakes"
+Golden Eagle,,"I'm not really sure when or where this was",,,,"mysterious",private</code>
+          </li>
+        </ol>
       </div>
 
     </div>
