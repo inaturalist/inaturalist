@@ -75,11 +75,6 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
     # Iterate over each row
     rows.each do |row|
       unless skip_row?(row)
-        # Check that the number of CSV fields is correct.
-        if row.count != (@custom_field_count + BASE_COLUMN_COUNT)
-          errors << BulkObservationException.new("Column count is not correct (#{@custom_field_count + BASE_COLUMN_COUNT} expected, #{row.count} found)", row_count + 1)
-        end
-
         # Look for the species and flag it if it's not found.
         taxon = Taxon.single_taxon_for_name(row[0])
         errors << BulkObservationException.new("Species not found: #{row[0]}", row_count + 1, [], 'species_not_found') if taxon.nil?
@@ -108,7 +103,6 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
 
   # Import the observations in the file, and add to the specified project.
   def import_file
-    observations = []
     row_count = 2
 
     # Load the entire file and skip the header row
@@ -118,6 +112,7 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
     # Split the rows into groups of the IMPORT_BATCH_FILE to
     # minimize wasted time in the case of errors.
     csv.in_groups_of(IMPORT_BATCH_SIZE).each do |rows|
+      observations = []
       ActiveRecord::Base.transaction do
         rows.each do |row|
           next if skip_row?(row)
@@ -147,7 +142,6 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
       if @project
         observations.each do |obs|
           @project.project_observations.create(:observation => obs)
-          Identification.create(:user => obs.user, :taxon => obs.taxon, :observation => obs, :skip_observation => true)
         end
 
         # Manually update counter caches.

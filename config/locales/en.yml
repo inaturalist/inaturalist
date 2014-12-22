@@ -659,6 +659,7 @@ en:
   contributor_cannot_be_found: Contributor cannot be found
   contributors_to_project: "Contributors to %{project}"
   controls: Controls
+  coordinate_systems: Coordinate systems
   coordinates: Coordinates
   coordinates_private: (coordinates private)
   copy: Copy
@@ -1187,8 +1188,9 @@ en:
   import_all_photos_as_observations: Import all photos as observations 
   import_as_an_observation: Import as an observation
   import_as_another_observation: Import as another observation?
-  import_date_time_location_taxonomic: Import date, time, location, description, and taxonomic information from this photo.
+  import_date_time_location_taxonomic: "Import date, time, location, description, and taxonomic information from this photo."
   import_from_csv: Import from CSV
+  import_from_other_photo_sites: Import from other photo sites
   import_from_photos: Import from photos
   import_from_yahoo: Import from Yahoo
   import_observations: Import Observations
@@ -1788,7 +1790,7 @@ en:
   only_country_state_and_county: "Only country, state, and county equivalent places shown for now. Zoom in to see smaller places."
   only_curators_can_add_edit_scientific_names: Only curators can add/edit scientific names.
   only_curators_can_access_that_page: Only curators can access that page.
-  only_files_with_100_rows_at_a_time: Only files with 100 rows at a time, please
+  only_files_with_10000_rows_at_a_time: Only files with 10000 rows at a time, please
   only_letters_numbers: "Only letters and numbers, no spaces"
   only_one_coordinate_system_per_file: |
     Only one coordinate system can be used per file, otherwise incorrect conversion or display will occur.
@@ -2299,7 +2301,10 @@ en:
   select_one_or_more_photos: Select one or more photos
   select_none: Select none
   select_one_or_more_photos: 'Select one or more photos'
-  select_photos_from_your_photo_stream: "Select photos from your photo stream to convert into %{site_name} observations. We'll fill in the date, time, and location from a photo's metadata, and try to look up species names from the tags."
+  select_photos_from_your_photo_stream: |
+    Select photos from external photo-sharing sites to convert into %{site_name}
+    observations. We'll fill in the date, time, and location from a photo's
+    metadata, and try to look up species names from the tags.
   select_photos_to_display: Select photos to display
   selected: selected
   selected_photos: Selected photos
@@ -2798,6 +2803,7 @@ en:
   upload: Upload
   upload_a_csv_file: Upload CSV file
   upload_a_csv_file_with_observation: Upload a CSV file with observation data. If you have your data in a spreadsheet or database, this is probably the way to go.
+  upload_photos: Upload photos
   url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
   url_of_this_taxon_on_the_source_website: URL of this taxon on the source's website
   US_states: US States

@@ -81,10 +81,9 @@
 <div class="column span-24">
   <div id="tabs" class="ui-tabs">
     <ul>
-      <li><a href="#photo_import"><span><%=t :import_from_photos %></span></a></li>
+      <li><a href="#photo_import"><span><%=t :import_from_other_photo_sites %></span></a></li>
       <li><a href="#csv_import"><span><%=t :import_from_csv %></span></a></li>
-      <li><a href="#bulk_import"><span>Bulk CSV Import</span></a></li>
-      <li><a href="#sound_import"><span><%=t :'sounds.import_from_sounds' %></span></a></li>
+      <li><a href="#sound_import"><span><%=t 'sounds.import_from_sounds' %></span></a></li>
     </ul>
     
     <div id="photo_import">
@@ -128,64 +127,6 @@
     <div id="csv_import">
       <div class="readable description">
         <%=t :upload_a_csv_file_with_observation %>
-      </div>
-      
-      <div class="box">
-        <%= form_tag(new_observation_batch_csv_path, 
-            :id => 'new_batch_form', 
-            :class => 'clear observationform', 
-            :multipart => true) do %>
-          <div class="buttonrow">
-            <label for="upload_file"><%= t :upload_a_csv_file %></label>
-            <%= file_field 'upload', 'datafile', :class => 'text' %>
-            <%= submit_tag t(:upload), :class => 'default button', "data-loading-click" => t(:importing) %>
-          </div>
-        <% end %>
-      </div>
-      
-      <div class="description">
-        <h3><%= raw t(:rules_and_formatting) %></h3>
-        <ol>
-          <li><%=t :no_header_row %></li>
-          <li><%=t :only_files_with_100_rows_at_a_time %></li>
-          <li><%=t :surround_any_cells_containing_commas %> </li>
-          <li><%=t :dont_use_double_quotes %> </li>
-          <li>
-            <p class="ui"><%=t :we_can_only_understand_csv_in %>:</p>
-            <table cellspacing="0" border="0" cellpadding="0">
-              <tr>
-                <th><%=t :taxon_name %></th>
-                <th><%=t :date_observed %></th>
-                <th><%=t :description %></th>
-                <th><%=t :place_name %></th>
-                <th><%=t :latitude %></th>
-                <th><%=t :longitude %></th>
-                <th><%=t :tags %></th>
-              </tr>
-              <tr>
-                <td>text</td>
-                <td>YYYY-MM-DD HH:MM</td>
-                <td>text (if it contains commas, enclose in double quotes)</td>
-                <td>text</td>
-                <td>dd.dddd</td>
-                <td>dd.dddd</td>
-                <td>text</td>
-              </tr>
-            </table>
-
-            <p class="ui"><%=t :here_are_3_examples %>:</p>
-            
-<code>Anna's Hummingbird,2008-03-03 2:54pm,"An aggressive male dive-bombed my head, so I took cover.","Tilden Regional Park, Berkeley, CA, USA",37.8953,-122.249,"attack, danger"
-Sharp-tailed Snake,2007-08-20,"Beautiful little creature","Leona Canyon Regional Park, Oakland, CA, USA",37.7454,-122.111,"cute, snakes"
-Golden Eagle,,"I'm not really sure when or where this was",,,,"mysterious"</code>
-          </li>
-        </ol>
-      </div>
-    </div>
-
-    <div id="bulk_import">
-      <div class="readable description">
-        <%=t :upload_a_csv_file_with_observation %>
         <% if @project %>
           <p><%=t 'views.observations.import.project_csv_template_notice', :url => project_bulk_template_url(@project) %></p>
         <% end %>
@@ -196,26 +137,26 @@ Golden Eagle,,"I'm not really sure when or where this was",,,,"mysterious"</code
                      :id => 'new_bulk_form',
                      :class => 'clear observationform',
                      :multipart => true) do %>
-          <div class="column field span-16">
+          <div class="column field span-23 box">
             <div class="column span-4">
-              <h3><label for="upload_file">Upload CSV file</label></h3>
+              <label for="upload_file"><%=t :upload_a_csv_file %></label>
             </div>
             <div class="last column span-12">
-              <%= file_field 'upload', 'datafile', :class => 'text' %>
+              <%= file_field 'upload', 'datafile' %>
             </div>
           </div>
-          <div class="column field span-16">
+          <div class="column field span-23 quiet box">
             <div class="column span-4">
-              <h3><label for="project">Add to Project</label></h3>
+              <label for="project"><%=t :add_to_project %></label>
             </div>
             <div class="last column span-12">
-              <%= select 'upload', :project_id, @projects.collect { |p| [p.title, p.id] }, { :include_blank => 'None', :selected => (params[:project_id].to_i > 0 ? params[:project_id] : nil) } %>
+              <%= select 'upload', :project_id, @projects.collect { |p| [p.title, p.id] }, { :include_blank => t(:none), :selected => (params[:project_id].to_i > 0 ? params[:project_id] : nil) } %>
             </div>
           </div>
           <% if CONFIG.coordinate_systems -%>
-            <div class="column field span-16">
+            <div class="column field span-23 quiet box">
               <div class="column span-4">
-                <h3><label><%=t :coordinate_systems %></label></h3>
+                <label><%=t :coordinate_systems %></label>
               </div>
               <div class="last column span-12">
                 <%= select 'upload', :coordinate_system, coordinate_system_select_options %>
@@ -238,7 +179,7 @@ Golden Eagle,,"I'm not really sure when or where this was",,,,"mysterious"</code
         <h3><%= raw t(:rules_and_formatting) %></h3>
         <ol>
           <li><%=t :no_header_row %></li>
-          <li><%=t :only_files_with_100_rows_at_a_time %></li>
+          <li><%=t :only_files_with_10000_rows_at_a_time %></li>
           <li><%=t :use_well_formed_csv %> </li>
           <li><%=t :dont_use_double_quotes %> </li>
           <% if CONFIG.coordinate_systems -%>
@@ -270,7 +211,6 @@ Golden Eagle,,"I'm not really sure when or where this was",,,,"mysterious"</code
             </table>
 
             <p class="ui"><%=t :here_are_3_examples %>:</p>
-            
 <code>Anna's Hummingbird,2008-03-03 2:54pm,"An aggressive male dive-bombed my head, so I took cover.","Tilden Regional Park, Berkeley, CA, USA",37.8953,-122.249,"attack, danger",obscured
 Sharp-tailed Snake,2007-08-20,"Beautiful little creature","Leona Canyon Regional Park, Oakland, CA, USA",37.7454,-122.111,"cute, snakes"
 Golden Eagle,,"I'm not really sure when or where this was",,,,"mysterious",private</code>
