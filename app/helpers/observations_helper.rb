@@ -90,15 +90,6 @@ module ObservationsHelper
     end
     s.html_safe
   end
-
-  #function to filter the stages.  Shouldn't be used until the javascript event is hooked up
-  def filtered_stages(observation)
-    #if !observation.iconic_taxon_name.nil?
-    #  options = Observation::STAGE_OPTIONS.reject { |k,v| ![Observation::NZBRN_ICONIC[observation.iconic_taxon_name]].include? k}
-    #  return options if options.count > 0
-    #end
-    Observation::STAGE_OPTIONS
-  end
   
   def coordinate_system_select_options(options = {})
     return {} unless CONFIG.coordinate_systems
