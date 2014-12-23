@@ -264,7 +264,7 @@
             <% for photo in @photos[1..extra_count] -%>
               <%= link_to image_tag(photo.square_url, :data => {
                   :pin_url => observation_url(@observation),
-                  :pin_media => photos.best_url(:large),
+                  :pin_media => photo.best_url(:large),
                   :pin_description => @shareable_description
                 }), photo.becomes(Photo), 
                 :class => "zoomable smallphoto #{cycle(*cycle_classes)}", 
