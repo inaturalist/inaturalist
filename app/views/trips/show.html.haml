@@ -1,5 +1,5 @@
 - content_for :title do
-  = @trip.title
+  = @title = @trip.title
 - content_for :extracss do
   :css
     .observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
@@ -32,6 +32,11 @@
 - content_for :extrajs do
   :javascript
     $('.observationcontrols').observationControls()
+- content_for :extrahead do
+  %meta{:property => "og:image", :content => html_attributize(@shareable_image_url)}
+  %meta{:property => "og:description", :content => html_attributize(@shareable_description)}
+  %meta{:name => "twitter:card", :content => "summary"}
+  %meta{:name => "og:title", :content => html_attributize(@title)}
 .container
   %ul.breadcrumb
     %li
@@ -73,7 +78,7 @@
             = link_to @trip.is_a?(Trip) ? edit_trip_path(@trip) : edit_post_path(@trip), :class => "btn" do
               %i.fa.fa-edit
               = t(:edit)
-        %h1= @trip.title
+        %h1= @title
         - if @trip.is_a?(Trip)
           .subtitle.muted.lead
             = l(@trip.start_time, :format => :long) if @trip.start_time
