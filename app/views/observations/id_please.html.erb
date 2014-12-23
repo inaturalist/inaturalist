@@ -124,9 +124,7 @@
 
 <% content_for(:extrajs) do %>
   <%= google_maps_js %>
-  <%= javascript_include_tag('jquery/plugins/jqModal',
-                             'modal_image',
-                             'inaturalist/map3',
+  <%= javascript_include_tag('map_bundle',
                              'observations/filters') %>
                              
   <script type="text/javascript" charset="utf-8">

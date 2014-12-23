@@ -6,10 +6,11 @@ window.map = iNaturalist.Map.createMap({
   zoomControl: false
 })
 
-map.setPlace(PLACE, {kml: PLACE_GEOMETRY_KML_URL})
+map.setPlace(PLACE)
 
-var placesMapType = iNaturalist.Map.builtPlacesMapType(map, {tilestacheServer: TILESTACHE_SERVER})
-map.overlayMapTypes.insertAt(0, new placesMapType(new google.maps.Size(256, 256)));
+if (SHOW_PLACE_GEOMETRY) {
+  window.map.addPlaceLayer({ place_id: PLACE.id });
+}
 
 var icon = new google.maps.MarkerImage('<%= image_path('mapMarkers/mm_20_stemless_GoldenRod.png') %>')
 icon.size = new google.maps.Size(12,12)

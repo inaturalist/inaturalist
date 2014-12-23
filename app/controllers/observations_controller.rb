@@ -326,6 +326,14 @@ class ObservationsController < ApplicationController
         end
 
         @observer_provider_authorizations = @observation.user.provider_authorizations
+        @shareable_image_url = if !@photos.blank? && photo = @photos.detect{|p| p.medium_url =~ /^http/}
+          FakeView.image_url(photo.best_url(:original))
+        else
+          FakeView.iconic_taxon_image_url(@observation.taxon, :size => 200)
+        end
+        @shareable_description = @observation.to_plain_s(:no_place_guess => !@coordinates_viewable)
+        @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
+        
 
         if logged_in?
           user_viewed_updates
@@ -2684,8 +2692,8 @@ class ObservationsController < ApplicationController
       :include => [ :quality_metrics,
                     :photos,
                     :identifications,
-                    { :taxon => :taxon_names },
-                    { :projects => :users }
+                    :projects,
+                    { :taxon => :taxon_names }
       ]
     )
   end
