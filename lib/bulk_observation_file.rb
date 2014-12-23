@@ -173,8 +173,8 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
       obs.latitude  = row[4]
       obs.longitude = row[5]
     else
-      obs.geo_x = row[4]
-      obs.geo_y = row[5]
+      obs.geo_x = row[5]
+      obs.geo_y = row[4]
       obs.coordinate_system = @coord_system
     end
 

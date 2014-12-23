@@ -473,14 +473,14 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
 
   def generate_bulk_upload_template
     data = {
-      'Species guess'            => ['#Lorem', 'Ipsum', 'Dolor'],
-      'Observation Date'         => ['2013-01-01', '2013-01-01 09:10:11', '2013-01-01T14:40:33'],
-      'Description'              => ['Description of observation'],
-      'Location'                 => ['Wellington City', 'Karori'],
-      'Latitude or Northing'     => [-41.2837551, 1932810],
-      'Longitude or Easting'     => [174.7408745, 5669626],
-      'Tags'                     => ['Comma,Separated', 'List,Of,Tags'],
-      'Geoprivacy'               => ["[Leave blank for 'open']", 'Private', 'Obscured'],
+      I18n.t(:species_guess)             => ['#Lorem', 'Ipsum', 'Dolor'],
+      I18n.t(:observation_date)          => ['2013-01-01', '2013-01-01 09:10:11', '2013-01-01T14:40:33'],
+      I18n.t(:description)               => ['Description of observation'],
+      I18n.t(:location)                  => ['Wellington City'],
+      I18n.t(:latitude_slash_y_coord)    => [latitude || -41],
+      I18n.t(:longitude_slash_x_coord)   => [longitude || 174],
+      I18n.t(:tags)                      => ['Comma,Separated', 'List,Of,Tags'],
+      I18n.t(:geoprivacy)                => ["[Leave blank for 'open']", 'Private', 'Obscured'],
     }
 
     ProjectObservationField.includes(:observation_field).where(:project_id => self.id).order(:position).each do |field|

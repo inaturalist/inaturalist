@@ -100,13 +100,17 @@ module ObservationsHelper
     Observation::STAGE_OPTIONS
   end
   
-  def coordinate_system_select_options
+  def coordinate_system_select_options(options = {})
     return {} unless CONFIG.coordinate_systems
-    options = { "#{t :latitude} / #{t :longitude} (WGS84, EPSG:4326)" => 'wgs84' }
-    CONFIG.coordinate_systems.each do |system_name, system|
-      options[system[:label]] = system_name
+    systems = if options[:skip_lat_lon]
+      {}
+    else
+      { "#{t :latitude} / #{t :longitude} (WGS84, EPSG:4326)" => 'wgs84' }
     end
-    options
+    CONFIG.coordinate_systems.each do |system_name, system|
+      systems[system[:label]] = system_name
+    end
+    systems
   end
 
   def field_value_example(datatype, allowed_values = nil, field_id = nil)

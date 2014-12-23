@@ -1286,6 +1286,7 @@ en:
   lat: Lat
   latitude: Latitude
   latitude_in_decimals: 'Latitude in decimal degrees, e.g. 38.123'
+  latitude_slash_y_coord: Latitude / y coord
   layout: Layout
   leaderboard_for_x: "Leaderboard for %{x}"
   leaderboards: Leaderboards
@@ -1430,6 +1431,7 @@ en:
   long: Lon
   longitude: Longitude
   longitude_in_decimal: 'Longitude in decimal degrees, e.g. -122.123'
+  longitude_slash_x_coord: Longitude / x coord
   look_up_name: "Look up name"
   looks_like_neither_have!: Looks like neither have any taxa!
   looks_like_no_species_in_guide: Looks like you don't have an species in your guide yet.
@@ -2586,7 +2588,10 @@ en:
   thats_okay_we_forget: That's okay! We forget ours too. Send us the email address you used to create your account and we'll email you a link to reset your password.
   thats_not_a_real_date: That's not a real date!
   the: the
-  the_admin_is_the_person_who: The admin is the person who created the project. They can do everything managers and curators can do, as well as delete the project.
+  the_admin_is_the_person_who: |
+    The admin is the person who created the project. They can do everything
+    managers and curators can do, as well as delete the project.
+  the_bulk_import_of_filename_is_complete: "The bulk import of %{filename} is complete"
   the_community_agrees_location_doesnt: the community agrees the <strong>location doesn't looks accurate</strong> (e.g. monkeys in the middle of the ocean, hippos in office buildings, etc.)
   the_community_agrees_organism_isnt: the community agrees the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans or intelligent space aliens)
   the_data_quality_assessment_is: The data quality assessment is a summary of an observation's accuracy. All observations start as <strong>"casual"</strong> grade, and achieve <strong>"research"</strong> grade when
@@ -3081,6 +3086,7 @@ en:
   you_must_be_a_member_of_this_project_to_do_that: You must be a member of this project to do that
   you_must_be_project_manager_to_do_that: You must be project manager to do that
   you_must_choose_an_observation_field: You must choose an observation field
+  you_must_have_a_header_row: You must have a header row
   you_must_select_a_csv_file_to_upload: You must select a CSV file to upload.
   you_must_select_a_place_to_merge_with: You must select a place to merge with.
   you_must_select_at_least_one_taxon: You must select at least one taxon
@@ -3561,13 +3567,14 @@ en:
       import:
         coordinate_systems_help: |
           %{site_name} accepts coordinates using several different coordinate
-          systems, so when you provide coordinates representing a location, we
-          need to know which coordinate system you're using to be able to
-          interpret them correctly. Please be certain you have chosen the
-          correct coordinate system for your data or the location may finish
-          up a long way from where it should be. If your coordinates are from
-          a GPS unit, check its settings for the name of the coordinate system
-          it is using.
+          systems, so when you provide coordinates in a system other than
+          latitude / longitude, we need to know which coordinate system you're
+          using to be able to interpret them correctly. Please be certain you
+          have chosen the correct coordinate system for your data or the
+          location may finish up a long way from where it should be. If your
+          coordinates are from a GPS unit, check its settings for the name of
+          the coordinate system it is using. Note that we don't store custom
+          coordinates, just their lat/lon conversions.
         project_csv_template_notice_html: |
           There is a template file for this project that may help you with the structure of the CSV file. 
           <a href="%{url}">Download template</a>

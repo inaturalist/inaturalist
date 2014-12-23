@@ -44,8 +44,6 @@ class Observation < ActiveRecord::Base
   
   # coordinate system
   attr_accessor :coordinate_system
-  attr_accessor :place_guess_other
-  attr_accessor :positional_accuracy_other
   attr_accessor :geo_x
   attr_accessor :geo_y
 
@@ -2317,12 +2315,6 @@ class Observation < ActiveRecord::Base
   
   def set_coordinates
     if self.geo_x.present? && self.geo_y.present? && self.coordinate_system.present?
-      # Set the place_guess if place_guess_other is present
-      self.place_guess = self.place_guess_other if self.place_guess_other.present?
-
-      # Set the positional_accuracy if positional_accuracy_other is present
-      self.positional_accuracy = self.positional_accuracy_other if self.positional_accuracy_other.present?
-
       # Perform the transformation
       # transfrom from `self.coordinate_system`
       from = RGeo::CoordSys::Proj4.new(CONFIG.coordinate_systems.send(self.coordinate_system.to_sym).proj4)

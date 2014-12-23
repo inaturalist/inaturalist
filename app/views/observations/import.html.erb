@@ -38,10 +38,10 @@
       $('#upload_project_id').on('change', function(e) {
         var project_id = e.currentTarget[e.currentTarget.selectedIndex].value;
         if (project_id != '') {
-          window.location = "/observations/import?project_id=" + project_id + "&tab=2";
+          window.location = "/observations/import?project_id=" + project_id + "&tab=1";
         }
         else {
-          window.location = "/observations/import?tab=2";
+          window.location = "/observations/import?tab=1";
         }
       });
       
@@ -128,7 +128,7 @@
       <div class="readable description">
         <%=t :upload_a_csv_file_with_observation %>
         <% if @project %>
-          <p><%=t 'views.observations.import.project_csv_template_notice', :url => project_bulk_template_url(@project) %></p>
+          <p><%=t 'views.observations.import.project_csv_template_notice_html', :url => project_bulk_template_url(@project) %></p>
         <% end %>
       </div>
 
@@ -178,7 +178,7 @@
         <%= separator %>
         <h3><%= raw t(:rules_and_formatting) %></h3>
         <ol>
-          <li><%=t :no_header_row %></li>
+          <li><%=t :you_must_have_a_header_row %></li>
           <li><%=t :only_files_with_10000_rows_at_a_time %></li>
           <li><%=t :use_well_formed_csv %> </li>
           <li><%=t :dont_use_double_quotes %> </li>
@@ -193,8 +193,8 @@
                 <th><%=t :date_observed %></th>
                 <th><%=t :description %></th>
                 <th><%=t :place_name %></th>
-                <th><%=t :latitude %></th>
-                <th><%=t :longitude %></th>
+                <th><%=t :latitude_slash_y_coord %></th>
+                <th><%=t :longitude_slash_x_coord %></th>
                 <th><%=t :tags %></th>
                 <th><%=t :geoprivacy %></th>
               </tr>
