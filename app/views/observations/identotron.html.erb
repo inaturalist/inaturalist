@@ -1,16 +1,16 @@
 <%-
   if @taxon
-    @taxon.html = render(:partial => "taxa/chooser.html.erb", :object => @taxon)
+    @taxon.html = render(:partial => "taxa/chooser", :object => @taxon)
   end
   if @default_taxa
     @default_taxa = @default_taxa.map do |taxon|
-      taxon.html = render(:partial => "taxa/chooser.html.erb", :object => taxon)
+      taxon.html = render(:partial => "taxa/chooser", :object => taxon)
       taxon
     end
   end
   if @places
     @places = @places.map do |place|
-      place.html = render(:partial => "places/autocomplete_item.html.erb", :object => place)
+      place.html = render(:partial => "places/autocomplete_item", :object => place)
       place
     end
   end
@@ -51,13 +51,8 @@
 
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'jquery/plugins/jqModal',
-                             'modal_image',
-                             "jquery/plugins/jquery.ba-bbq.min", 
-                             'inaturalist/map3', 
-                             'taxon_guide',
-                             "jquery/plugins/inat/taxonmap",
-                             'jquery/plugins/waypoints.min' %>
+  <%= javascript_include_tag 'map_bundle',
+                             'taxon_guide' %>
     
   <script type="text/javascript" charset="utf-8">
     window.taxon = <%=json_escape @taxon.to_json(:methods => [:html]).html_safe %>
@@ -190,7 +185,6 @@
           $('#taxa .map').waypoint(function() {
             if ($(this).data('taxonMap')) return
             $(this).taxonMap({
-              observationsJsonUrl: false,
               preserveViewport: true,
               latitude:  observation ? observation.latitude : null,
               longitude: observation ? observation.longitude : null

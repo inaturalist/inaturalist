@@ -41,13 +41,11 @@
   <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
   <![endif]-->
 
-  <%= javascript_include_tag 'jquery/plugins/jqModal',
-                             'modal_image',
-                             "jquery/plugins/inat/photo_selectors.js",
-                             'wax.g' %>
-
   <%= google_maps_js %>
-  <%= javascript_include_tag 'inaturalist/map3', 'jquery/plugins/inat/taxonmap', 'taxa/show' %>
+  <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js",
+                             'map_bundle' %>
+
+  <%= javascript_include_tag 'taxa/show' %>
 
   <script type="text/javascript" charset="utf-8">
     var TAXON = <%=json_escape @taxon.to_json.html_safe %>,
@@ -81,63 +79,6 @@
           });
         <% end %>
       <% end %>
-
-      $('#edit_colors_dialog form')
-        .bind('ajax:before', function() {
-          $('#edit_colors .button').hide()
-          $('#edit_colors .loading').show()
-        })
-        .bind('ajax:complete', function() {
-          $('#edit_colors .button').show()
-          $('#edit_colors .loading').hide()
-        })
-        .bind('ajax:success', function() {
-          $('#colorboxen .color').remove()
-          $('#colors .notice').remove()
-          $('#colors .description').remove()
-          $('#edit_colors input:checked').each(function() {
-           $('#colorboxen').append(
-             $('<div>&nbsp;</div>').css({
-               'background-color': $(this).attr('alt')
-             }).addClass('color').attr('title', $(this).attr('alt'))
-           )
-          })
-        })
-        .bind('ajax:error', function() {
-          alert('Error updating colors')
-        })
-
-      $('#place_selector_search form, #place_selector_paste form')
-        .live('ajax:before', function() {
-          $('.loading', this).show()
-        })
-        .live('ajax:complete', function() {
-          $('.loading', this).hide()
-        })
-        .live('ajax:success', function(event, json, status) {
-          $(this).siblings('.place_selector_places').html(json.map(function(place) { return place.html }).join(' '))
-        })
-
-      $('.add_to_place_link .add_link, .add_to_place_link .remove_link')
-        .live('ajax:before', function() {
-          $(this).siblings('.status').show()
-          $(this).hide()
-        })
-        .live('ajax:error', function(event, request, settings) {
-          $(this).hide()
-        })
-      $('.add_to_place_link .add_link')
-        .live('ajax:success', function(event, json, status) {
-          $(this).siblings('.status').html(I18n.t('added!')).removeClass('loading').addClass('success')
-        })
-      $('.add_to_place_link .remove_link')
-        .live('ajax:success', function(event, json, status) {
-          $(this).siblings('.status').html(I18n.t('removed!')).removeClass('loading')
-        })
-
-      $('#place_selector_paste form').live('ajax:success', function(event, json, status) {
-        $(this).siblings('.places').html(json.map(function(place) { return place.html }).join(' '))
-      })
     })
   </script>
 <% end -%>
@@ -687,36 +628,7 @@
         <% end -%>
       </div>
 
-      <div id="taxon_range">
-        <div id="taxon_range_map" style="width: 790px; height: 488px"
-          data-taxon-id="<%= @taxon.id %>"
-          data-iconic-taxon-name="<%= @taxon.iconic_taxon ? @taxon.iconic_taxon.name : nil %>"
-          data-taxon-range-kml="<%= taxon_range_kml_url if @taxon_range %>"
-          data-taxon-range-citation="<%= @taxon_range.source.in_text if @taxon_range && @taxon_range.source %>"
-          data-taxon-range-citation-url="<%= @taxon_range.source.url if @taxon_range && @taxon_range.source %>"
-          data-gbif-kml="http://data.gbif.org/ws/rest/occurrence/list?coordinatestatus=true&maxresults=500&coordinateissues=false&scientificname=<%= @taxon_gbif %>&format=kml"></div>
-        <div class="ui description">
-          <% if @taxon_range -%>
-            <% if @taxon_range.source -%>
-              <div>
-                <strong><%= t(:source) %>:</strong>
-                <%= auto_link(@taxon_range.source.citation) || @taxon_range.source.url || @taxon_range.source.title %>
-              </div>
-            <% end -%>
-            <% unless @taxon_range.description.blank? -%>
-              <div>
-                <strong><%= t(:description) %>:</strong>
-                <%= @taxon_range.description %>
-              </div>
-            <% end -%>
-            <% if logged_in? && current_user.is_curator? -%>
-              <%= link_to t(:edit_range_raquo).html_safe, edit_taxon_range_path(@taxon_range) %>
-            <% end -%>
-          <% else %>
-            <%= t(:no_range_data_available) %>
-          <% end -%>
-        </div>
-      </div>
+      <%= render partial: 'show_map' %>
     </div>
   </div>
 

@@ -126,6 +126,60 @@ $(document).ready(function(){
       })
     }
   })
+
+  $('#edit_colors_dialog form')
+    .bind('ajax:before', function() {
+      $('#edit_colors .button').hide()
+      $('#edit_colors .loading').show()
+    })
+    .bind('ajax:complete', function() {
+      $('#edit_colors .button').show()
+      $('#edit_colors .loading').hide()
+    })
+    .bind('ajax:success', function() {
+      $('#colorboxen .color').remove()
+      $('#colors .notice').remove()
+      $('#colors .description').remove()
+      $('#edit_colors input:checked').each(function() {
+       $('#colorboxen').append(
+         $('<div>&nbsp;</div>').css({
+           'background-color': $(this).attr('alt')
+         }).addClass('color').attr('title', $(this).attr('alt'))
+       )
+      })
+    })
+    .bind('ajax:error', function() {
+      alert('Error updating colors')
+    })
+  $('#place_selector_search form, #place_selector_paste form')
+    .live('ajax:before', function() {
+      $('.loading', this).show()
+    })
+    .live('ajax:complete', function() {
+      $('.loading', this).hide()
+    })
+    .live('ajax:success', function(event, json, status) {
+      $(this).siblings('.place_selector_places').html(json.map(function(place) { return place.html }).join(' '))
+    })
+  $('.add_to_place_link .add_link, .add_to_place_link .remove_link')
+    .live('ajax:before', function() {
+      $(this).siblings('.status').show()
+      $(this).hide()
+    })
+    .live('ajax:error', function(event, request, settings) {
+      $(this).hide()
+    })
+  $('.add_to_place_link .add_link')
+    .live('ajax:success', function(event, json, status) {
+      $(this).siblings('.status').html(I18n.t('added!')).removeClass('loading').addClass('success')
+    })
+  $('.add_to_place_link .remove_link')
+    .live('ajax:success', function(event, json, status) {
+      $(this).siblings('.status').html(I18n.t('removed!')).removeClass('loading')
+    })
+  $('#place_selector_paste form').live('ajax:success', function(event, json, status) {
+    $(this).siblings('.places').html(json.map(function(place) { return place.html }).join(' '))
+  })
 })
 
 function getDescription(url) {

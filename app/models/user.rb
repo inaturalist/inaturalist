@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
   has_many :observation_field_values, :dependent => :nullify, :inverse_of => :user
   has_many :updated_observation_field_values, :dependent => :nullify, :inverse_of => :updater, :foreign_key => "updater_id", :class_name => "ObservationFieldValue"
   
-  has_attached_file :icon, 
+  has_attached_file :icon,
     :styles => { :original => "2048x2048>", :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },
     :processors => [:deanimator],
     :path => ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",

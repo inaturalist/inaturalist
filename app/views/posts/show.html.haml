@@ -20,9 +20,8 @@
     #map {width: 350px;height: 500px;}
 - content_for(:extrajs) do
   = google_maps_js
-  = javascript_include_tag 'jquery/plugins/jqModal', |
-    'inaturalist',                                   |
-    'inaturalist/map3'                               |
+  = javascript_include_tag 'inaturalist',      |
+    'map_bundle'                               |
   %script{:charset => "utf-8", :type => "text/javascript"}
     $(document).ready(function() {
     if ($('#map').length > 0) {
