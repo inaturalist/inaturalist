@@ -121,7 +121,7 @@ class Emailer < ActionMailer::Base
   def bulk_observation_success(user, filename)
     @user = user
     # @subject << "The bulk import of #{filename} has been completed successfully."
-    @subject = "#{subject_prefix} #{t(:the_bulk_import_of_filename_is_complete, :filename => filename)}"
+    @subject = "#{subject_prefix} #{t(:bulk_import_of_filename_is_complete, :filename => filename)}"
     @filename = filename
     mail(set_site_specific_opts.merge(
       :to => "#{user.name} <#{user.email}>", :subject => @subject
