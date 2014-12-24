@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   
   helper :all # include all helpers, all the time
   protect_from_forgery
-  before_filter :set_time_zone
+  around_filter :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
   before_filter :user_logging
@@ -156,8 +156,16 @@ class ApplicationController < ActionController::Base
   # Grab current user's time zone and set it as the default
   #
   def set_time_zone
-    Time.zone = self.current_user.time_zone if logged_in?
-    Chronic.time_class = Time.zone
+    if logged_in?
+      old_time_class = Chronic.time_class
+      Time.use_zone(self.current_user.time_zone) do
+        Chronic.time_class = Time.zone
+        yield 
+        Chronic.time_class = old_time_class
+      end
+    else
+      yield
+    end
   end
   
   def return_here_from_url

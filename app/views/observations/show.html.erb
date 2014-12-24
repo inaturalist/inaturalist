@@ -166,7 +166,7 @@
     <% end -%>
     <span class="meta date">
       <%- if @observation.time_observed_at && @coordinates_viewable -%>
-        <%=l @observation.time_observed_at, :format => :observed_at %>
+        <%=l @observation.time_observed_at.in_time_zone(@observation.time_zone || Time.zone), :format => :observed_at %>
       <% end -%>
       <%- if @observation.observed_on -%>
         <%=t :on_ %>
@@ -277,7 +277,7 @@
                   <% for photo in @photos[(extra_count+1)..-1] -%>
                     <%= link_to image_tag(photo.square_url, :data => {
                         :pin_url => observation_url(@observation),
-                        :pin_media => photos.best_url(:large),
+                        :pin_media => photo.best_url(:large),
                         :pin_description => @shareable_description
                       }), photo.becomes(Photo), 
                       :class => "zoomable smallphoto", 
