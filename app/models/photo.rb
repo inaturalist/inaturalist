@@ -217,6 +217,7 @@ class Photo < ActiveRecord::Base
           FakeView.image_url("copyright-infringement-#{s}.png").to_s
         end
         Photo.update_all(updates, ["id = ?", id])
+        observations.each {|o| o.expire_components}
       elsif %w(resolved destroyed).include?(options[:action])
         repair if respond_to?(:repair)
       end
