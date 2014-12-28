@@ -78,6 +78,10 @@ shared_examples_for "an IdentificationsController" do
   end
 
   describe "destroy" do
+    before(:all) do
+      # some identification deletion callbacks need to happen after the transaction is complete
+      DatabaseCleaner.strategy = :truncation
+    end
     let(:identification) { Identification.make!(:user => user) }
     it "should work" do
       delete :destroy, :format => :json, :id => identification.id

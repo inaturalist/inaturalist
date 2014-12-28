@@ -39,4 +39,15 @@ describe IdentificationsController, "destroy" do
     delete :destroy, :id => i.id
     Identification.find_by_id(i.id).should be_blank
   end
+
+  it "should work with multiple outdated IDs" do
+    i1 = Identification.make!
+    i2 = Identification.make!(:user => i1.user, :observation => i1.observation, :taxon => i1.taxon)
+    i3 = Identification.make!(:user => i1.user, :observation => i1.observation, :taxon => i1.taxon)
+    i4 = Identification.make!(:user => i1.user, :observation => i1.observation, :taxon => i1.taxon)
+    sign_in i1.user
+    lambda {
+      delete :destroy, :id => i2.id
+    }.should_not raise_error
+  end
 end
