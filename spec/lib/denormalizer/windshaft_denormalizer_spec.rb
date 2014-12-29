@@ -15,7 +15,7 @@ describe 'WindshaftDenormalizer' do
       last_taxon = Taxon.make!(options)
     end
     AncestryDenormalizer.denormalize
-    @observation = Observation.make!(latitude: 51.18, longitude: -1.83, taxon: Taxon.last)
+    @observation = Observation.make!(latitude: 50.0, longitude: 50.0, taxon: Taxon.last)
     @psql = ActiveRecord::Base.connection
   end
 
@@ -62,7 +62,7 @@ describe 'WindshaftDenormalizer' do
     # the summary for ALL taxa
     WindshaftDenormalizer.zooms.each do |zoom|
       @psql.execute("SELECT COUNT(*) from #{ zoom[:table] }").
-        first['count'].to_i.should == 7
+        first['count'].to_i.should >= 7
     end
   end
 
