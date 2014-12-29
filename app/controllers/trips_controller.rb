@@ -79,6 +79,13 @@ class TripsController < ApplicationController
       format.html do
         @next = @trip.parent.journal_posts.published.where("published_at > ?", @trip.published_at || @trip.updated_at).order("published_at ASC").first
         @prev = @trip.parent.journal_posts.published.where("published_at < ?", @trip.published_at || @trip.updated_at).order("published_at DESC").first
+        @shareable_image_url = @trip.body[/img.+src="(.+?)"/, 1]
+        @shareable_image_url ||= if @trip.parent_type == "Project"
+          FakeView.image_url(@trip.parent.icon.url(:original))
+        else
+          FakeView.image_url(@trip.user.icon.url(:original))
+        end
+        @shareable_description = FakeView.truncate(@trip.body, :length => 1000)
       end
       format.json do
         @trip = Trip.includes(:trip_taxa => {:taxon => [:taxon_names, {:taxon_photos => :photo}]}, :trip_purposes => {}).where(:id => @trip.id).first

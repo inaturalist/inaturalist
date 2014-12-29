@@ -1,6 +1,6 @@
 - content_for(:title) do
   = t(:x_journal_middot, :user => @parent_display_name).html_safe
-  = @post.title
+  = @title = @post.title
 - content_for(:extracss) do
   = stylesheet_link_tag "lists"
   :css
@@ -32,6 +32,11 @@
     $('#map').hide()
     }
     })
+- content_for :extrahead do
+  %meta{:property => "og:image", :content => html_attributize(@shareable_image_url)}
+  %meta{:property => "og:description", :content => html_attributize(@shareable_description)}
+  %meta{:name => "twitter:card", :content => "summary"}
+  %meta{:name => "og:title", :content => html_attributize(@title)}
 .container
   .row
     #pageheader.span12

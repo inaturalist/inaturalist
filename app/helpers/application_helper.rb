@@ -386,6 +386,7 @@ module ApplicationHelper
   end
   
   def html_attributize(txt)
+    return txt if txt.blank?
     strip_tags(txt).gsub('"', "'").gsub("\n", " ")
   end
   
@@ -401,7 +402,7 @@ module ApplicationHelper
   def image_url(source, options = {})
     abs_path = image_path(source).to_s
     unless abs_path =~ /\Ahttp/
-     abs_path = uri_join(root_url, abs_path).to_s
+     abs_path = uri_join(options[:base_url] || @site.try(:url) || root_url, abs_path).to_s
     end
     abs_path
   rescue Sprockets::Helpers::RailsHelper::AssetPaths::AssetNotPrecompiledError

@@ -35,7 +35,7 @@
   <meta property="og:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %>"/> 
   <meta property="twitter:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %> observed by <%= @observation.user.try_methods(:name, :login) %>"/> 
   <% if !@photos.blank? && photo = @photos.detect{|p| p.medium_url =~ /^http/} -%>
-    <meta property="og:image" content="<%= photo.medium_url %>"/> 
+    <meta property="og:image" content="<%= @shareable_image_url %>"/> 
     <meta name="twitter:card" content="photo">
   <% elsif @observation.taxon %>
     <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon, :size => 200) %>"/> 
@@ -46,11 +46,7 @@
   <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
     <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
   <% end -%>
-  <% if @observation.description.blank? %>
-    <meta property="og:description" content="<%= html_attributize @observation.to_plain_s(:no_place_guess => !@coordinates_viewable) %>"/> 
-  <% else %>
-    <meta property="og:description" content="<%= html_attributize @observation.description %>"/> 
-  <% end %>
+  <meta property="og:description" content="<%= html_attributize @shareable_description %>"/> 
 
   <% if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
     <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
@@ -161,10 +157,16 @@
       <%=t :something %>,
     <% end -%>
     <%= t(:observed_by).downcase %> 
-    <%= link_to @observation.user.login, observations_by_login_path(@observation.user.login) %>
+    <%= link_to observations_by_login_path(@observation.user.login) do %>
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">
+          <%= @observation.user.login %>
+        </span>
+      </span>
+    <% end -%>
     <span class="meta date">
       <%- if @observation.time_observed_at && @coordinates_viewable -%>
-        <%=l @observation.time_observed_at, :format => :observed_at %>
+        <%=l @observation.time_observed_at.in_time_zone(@observation.time_zone || Time.zone), :format => :observed_at %>
       <% end -%>
       <%- if @observation.observed_on -%>
         <%=t :on_ %>
@@ -249,16 +251,37 @@
               extra_count = 5
               cycle_classes = [""]*(extra_count-1) + ["last"]
             -%>
-            <%= link_to image_tag(@photos.first.best_url(photo_size)), @photos.first.becomes(Photo), :class => "first zoomable", :title => t(:photo_attribution, :attribution => @photos.first.attribution) %>
+            <%= link_to image_tag(@photos.first.best_url(photo_size), 
+                :itemprop => "image", 
+                :data => {
+                  :pin_url => observation_url(@observation),
+                  :pin_media => @photos.first.best_url(:large),
+                  :pin_description => @shareable_description
+                }
+              ), @photos.first.becomes(Photo), 
+              :class => "first zoomable", 
+              :title => t(:photo_attribution, :attribution => @photos.first.attribution) %>
             <% for photo in @photos[1..extra_count] -%>
-              <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto #{cycle(*cycle_classes)}", :title => t(:photo_attribution, :attribution => photo.attribution) %>
+              <%= link_to image_tag(photo.square_url, :data => {
+                  :pin_url => observation_url(@observation),
+                  :pin_media => photo.best_url(:large),
+                  :pin_description => @shareable_description
+                }), photo.becomes(Photo), 
+                :class => "zoomable smallphoto #{cycle(*cycle_classes)}", 
+                :title => t(:photo_attribution, :attribution => photo.attribution) %>
             <% end -%>
             <% if @photos.size > extra_count+1 -%>
               <div style="clear: both">
                 <%= link_to_toggle t(:view_all_photocount_photos, :photo_count => @observation.photos.size), "#morephotos" %>
                 <div id="morephotos" style="display: none">
                   <% for photo in @photos[(extra_count+1)..-1] -%>
-                    <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto", :title => t(:photo_attribution, :attribution => photo.attribution) %>
+                    <%= link_to image_tag(photo.square_url, :data => {
+                        :pin_url => observation_url(@observation),
+                        :pin_media => photo.best_url(:large),
+                        :pin_description => @shareable_description
+                      }), photo.becomes(Photo), 
+                      :class => "zoomable smallphoto", 
+                      :title => t(:photo_attribution, :attribution => photo.attribution) %>
                   <% end -%>
                 </div>
               </div>
@@ -349,7 +372,7 @@
 
     <div id="dates" class="description date nobr">
       <label><%=t :added %>:</label>
-      <span class="date">
+      <span class="date" itemprop="datePublished" content="<%= @observation.created_at.iso8601 %>" >
         <%=l @observation.created_at %>
       </span>
     </div>
@@ -758,9 +781,18 @@
   
   <%= separator %>
   
-  <div id="fblike" class="stacked">
+  <div id="sharing" class="stacked">
     <script src="//connect.facebook.net/<%= t(:fblocale) %>/all.js#xfbml=1"></script>
     <fb:like send="true" show_faces="true" width="270" layout="button_count"></fb:like>
+    <% if @shareable_image_url -%>
+      <%= link_to image_tag("//assets.pinterest.com/images/pidgets/pin_it_button.png"), 
+        "https://www.pinterest.com/pin/create/button/?url=#{u observation_url(@observation)}&media=#{u @shareable_image_url}&description=#{u @shareable_description}", 
+        :data => {
+          :pin_do => "buttonPin", 
+          :pin_config => "above"
+        } %>
+      </a>
+    <% end -%>
   </div>
   
 </div><!-- end right col -->
