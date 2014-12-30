@@ -1624,6 +1624,32 @@ describe Observation, "places" do
   #   outside.places.should_not include(place)
   #   inside.places.should include(place)
   # end
+  it "should include places that do contain the positional_accuracy circle" do
+    p = make_place_with_geom
+    w = lat_lon_distance_in_meters(p.swlat, p.swlng, p.swlat, p.nelng)
+    h = lat_lon_distance_in_meters(p.swlat, p.swlng, p.nelat, p.swlng)
+    d = [w,h].min
+    o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :positional_accuracy => d/2)
+    o.places.should include p
+  end
+  it "should not include places that don't contain positional_accuracy circle" do
+    p = make_place_with_geom
+    w = lat_lon_distance_in_meters(p.swlat, p.swlng, p.swlat, p.nelng)
+    h = lat_lon_distance_in_meters(p.swlat, p.swlng, p.nelat, p.swlng)
+    d = [w,h].max
+    o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :positional_accuracy => d*2)
+    o.places.should_not include p
+  end
+  it "should include places that do contain the public_positional_accuracy circle" do
+    p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+    o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :taxon => Taxon.make!(:threatened))
+    o.places.should include p
+  end
+  it "should not include places that don't contain public_positional_accuracy circle" do
+    p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))")
+    o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :taxon => Taxon.make!(:threatened))
+    o.places.should_not include p
+  end
 end
 
 describe Observation, "update_stats" do
