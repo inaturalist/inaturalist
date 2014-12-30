@@ -15,6 +15,7 @@ class Place < ActiveRecord::Base
   has_many :place_taxon_names, :dependent => :delete_all, :inverse_of => :place
   has_many :taxon_names, :through => :place_taxon_names
   has_many :users, :inverse_of => :place, :dependent => :nullify
+  has_many :observations_places, :dependent => :destroy
   has_one :place_geometry, :dependent => :destroy
   has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
     :select => (PlaceGeometry.column_names - ['geom']).join(', ')
@@ -185,6 +186,13 @@ class Place < ActiveRecord::Base
     joins("JOIN place_geometries ON place_geometries.place_id = places.id").
     joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}").
     where("ST_Intersects(place_geometries.geom, taxon_ranges.geom)")
+  }
+
+  scope :including_observation, lambda{ |obs_id|
+    obs_id = obs_id.is_a?(Observation) ? obs_id.id : obs_id.to_i
+    joins("JOIN place_geometries pg ON pg.place_id = places.id").
+    joins("JOIN observations o ON ST_Intersects(pg.geom, o.private_geom)").
+    where("o.id = #{ obs_id }")
   }
 
   scope :listing_taxon, lambda {|taxon|

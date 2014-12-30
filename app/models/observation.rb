@@ -224,6 +224,7 @@ class Observation < ActiveRecord::Base
   has_and_belongs_to_many :posts
   has_many :observation_sounds, :dependent => :destroy, :inverse_of => :observation
   has_many :sounds, :through => :observation_sounds
+  has_many :observations_places, :dependent => :destroy
   
   define_index do
     indexes taxon.taxon_names.name, :as => :names
@@ -346,7 +347,8 @@ class Observation < ActiveRecord::Base
              :update_quality_metrics,
              :update_public_positional_accuracy,
              :update_mappable,
-             :set_captive
+             :set_captive,
+             :update_observations_places
   after_create :set_uri,
                :queue_for_sharing
   before_destroy :keep_old_taxon_id
@@ -2471,6 +2473,15 @@ class Observation < ActiveRecord::Base
     return false if captive
     return false if inaccurate_location?
     true
+  end
+
+  def update_observations_places
+    Observation.connection.transaction do
+      ObservationsPlace.where(observation_id: id).delete_all
+      Place.including_observation(self).each do |place|
+        ObservationsPlace.create(observation: self, place: place)
+      end
+    end
   end
 
 end
