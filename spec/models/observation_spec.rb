@@ -514,6 +514,10 @@ describe Observation, "updating" do
   end
   
   describe "quality_grade" do
+    before(:all) do
+      # some identification deletion callbacks need to happen after the transaction is complete
+      DatabaseCleaner.strategy = :truncation
+    end
     it "should become research when it qualifies" do
       o = Observation.make!(:taxon => Taxon.make!, :latitude => 1, :longitude => 1)
       i = Identification.make!(:observation => o, :taxon => o.taxon)
