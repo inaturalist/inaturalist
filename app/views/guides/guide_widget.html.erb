@@ -48,13 +48,13 @@
     <% end -%>
   </style>
 <%- end -%>
-<%= javascript_include_tag 'inaturalist/map3', "jquery/plugins/inat/taxonmap", 
-  "jquery/plugins/jquery.ba-bbq.min", "jquery/plugins/jquery.infinitescroll.min",
-  "taxon_guide", 'jquery/plugins/waypoints.min' %>
+<%= javascript_include_tag 'map_bundle',
+  "jquery/plugins/jquery.infinitescroll.min",
+  "taxon_guide" %>
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
   <script type="text/javascript" charset="utf-8">
-    var PLACE = <%= @place.to_json.html_safe %>,
+    var PLACE = <%=json_escape @place.to_json.html_safe %>,
         FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect.html_safe %>
     $(document).ready(function() {
       TaxonGuide.init('#taxa')

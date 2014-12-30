@@ -28,7 +28,7 @@ class PlacesController < ApplicationController
             place.children.select('id').order("RANDOM()").limit(50)
           else
             Place.all(:select => "id", :order => "RANDOM()", :limit => 50, 
-              :conditions => ["place_type IN (?)", [Place::PLACE_TYPE_CODES['Country']]])
+              :conditions => ["place_type = ?", Place::COUNTRY_LEVEL])
           end
           places.map{|p| p.id}
         end
@@ -67,6 +67,11 @@ class PlacesController < ApplicationController
             end
           end
         end
+        if !params[:latitude].blank? && !params[:longitude].blank?
+          lat = params[:latitude].to_f
+          lon = params[:longitude].to_f
+          scope = scope.containing_lat_lng(lat, lon)
+        end
         per_page = params[:per_page].to_i
         per_page = 200 if per_page > 200
         per_page = 30 if per_page < 1
@@ -77,8 +82,15 @@ class PlacesController < ApplicationController
   
   def search
     search_for_places
-    if @places.size == 1
-      redirect_to @places.first
+    respond_to do |format|
+      format.html do
+        if @places.size == 1
+          redirect_to @places.first
+        end
+      end
+      format.json do
+        render(:json => @places.to_json(:methods => [ :html, :kml_url ]))
+      end
     end
   end
   
@@ -93,7 +105,7 @@ class PlacesController < ApplicationController
         @projects = Project.in_place(@place).page(1).order("projects.title").per_page(50)
         @wikipedia = WikipediaService.new
         if logged_in?
-          @subscription = @place.update_subscriptions.first(:conditions => {:user_id => current_user})
+          @subscriptions = @place.update_subscriptions.where(:user_id => current_user)
         end
       end
       format.json do
@@ -200,6 +212,7 @@ class PlacesController < ApplicationController
     errors << "there are people using this place in their projects" if @place.projects.exists?
     errors << "there are people using this place in their guides" if @place.guides.exists?
     if errors.blank?
+      @place.destroy
       flash[:notice] = t(:place_deleted)
       redirect_to places_path
     else
@@ -227,13 +240,21 @@ class PlacesController < ApplicationController
   
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
+    @q = sanitize_sphinx_query(@q.to_s.sanitize_encoding)
+    site_place = @site.place if @site
+    search_options = {:match_mode => :extended}
+    search_options[:with] = {:place_ids => [site_place.id]} if site_place
     scope = Place.
       includes(:place_geometry_without_geom).
       limit(30).scoped
     scope = if @q.blank?
-      scope.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
+      if site_place
+        scope.where(site_place.child_conditions).page(1)
+      else
+        scope.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
+      end
     else
-      scope.where("lower(name) = ? OR lower(display_name) LIKE ?", @q, "#{@q.to_s.downcase}%")
+      scope = scope.where("places.id IN (?)", Place.search_for_ids("^#{@q}*", search_options))
     end
     scope = scope.with_geom if params[:with_geom]
     @places = scope.sort_by{|p| p.bbox_area || 0}.reverse
@@ -386,8 +407,9 @@ class PlacesController < ApplicationController
     @confirmed_listed_taxa_count = @scope.count(:select => "DISTINCT taxa.id",
       :conditions => "listed_taxa.first_observation_id IS NOT NULL")
     
-    @listed_taxa = @place.listed_taxa.all(
-      :conditions => ["taxon_id IN (?) AND primary_listing = (?)", @taxa, true])
+    @listed_taxa = @place.listed_taxa
+                         .where(["taxon_id IN (?) AND primary_listing = (?)", @taxa, true])
+                         .includes([ :place, { :first_observation => :user } ])
     @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
     
     render :layout => false, :partial => @partial

@@ -59,7 +59,7 @@ class ObservationFieldValuesController < ApplicationController
         format.json { render :json => @observation_field_value }
       else
         format.json do
-          render :status => :unprocessable_entity, :json => {:errors => @observation_field_value.errors.full_messages }
+          render :status => :unprocessable_entity, :json => { :errors => @observation_field_value.errors.full_messages }
         end
       end
     end
@@ -71,7 +71,7 @@ class ObservationFieldValuesController < ApplicationController
         format.json { render :json => @observation_field_value }
       else
         format.json do
-          render :status => :unprocessable_entity, :json => {:errors => @observation_field_value.errors.full_messages }
+          render :status => :unprocessable_entity, :json => { :errors => @observation_field_value.errors.full_messages }
         end
       end
     end

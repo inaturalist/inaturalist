@@ -42,7 +42,7 @@
     queryParam: 'q',
     collectionUrl: '/projects/search.json',
     resourceUrl: '/projects/{{id}}.json',
-    defaultSources: <%= @projects.to_json.html_safe %>
+    defaultSources: <%=json_escape @projects.to_json.html_safe %>
   })
   var PHOTO_SOURCES = {
     facebook: {
@@ -80,7 +80,7 @@
       defaultSource: '<%= (@default_source || "flickr") %>',
       defaultContext: '<%= (@default_context || "public") %>',
       skipLocal: true,
-      defaultQuery: <%= params[:q].to_json.html_safe %>
+      defaultQuery: <%=json_escape params[:q].to_json.html_safe %>
     }
     $(this).photoSelector(options)
   })

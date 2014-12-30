@@ -63,10 +63,12 @@
                 <% end -%>
               <%- when 'Identification' %>
                 <%= t :added_an %> <strong><%= t :id_ %></strong>
-                <%= t :to_an %>
-                <%= link_to t(:observation).downcase, update.observation %>
-                <%= t(:by).downcase %>
-                <%= link_to char_wrap(h(update.observation.user.login), 50), observations_by_login_path(update.observation.user.login) %>
+                <% if update.observation -%>
+                  <%= t :to_an %>
+                  <%= link_to t(:observation).downcase, update.observation %>
+                  <%= t(:by).downcase %>
+                  <%= link_to char_wrap(update.observation.user.login, 50), observations_by_login_path(update.observation.user.login) %>
+                <% end -%>
               <%- when 'Post' %>
                 <%= t :made_a %>
                 <% if update.parent_type == "User" -%>

@@ -45,12 +45,11 @@ class CheckList < List
   end
   
   def update_taxon_list_rule
-    # unless taxon.nil? || rules.map{|r| r.operand_id}.include?(taxon_id)
-    #   self.rules << ListRule.new(:operand => taxon, :operator => 'in_taxon?')
-    # end
     return true unless taxon_id_changed?
-    rules.each(&:destroy)
-    rules.build(:operand => taxon, :operator => 'in_taxon?')
+    self.rules.each(&:destroy)
+    unless taxon.blank?
+      self.rules.build(:operand => self.taxon, :operator => 'in_taxon?')
+    end
     true
   end
   
@@ -197,6 +196,8 @@ class CheckList < List
       # re-apply list rules to the listed taxa
       listed_taxon.force_update_cache_columns = true
       listed_taxon.save
+      # make sure we don't force update yet again when just validating
+      listed_taxon.force_update_cache_columns = false
       if !listed_taxon.valid?
         Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
           "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
@@ -316,6 +317,8 @@ class CheckList < List
     return unless lt
     lt.force_update_cache_columns = true
     lt.save # sets all observation associates, months stats, etc.
+    # now that its saved we don't need to force update for valid?
+    lt.force_update_cache_columns = false
     unless lt.valid?
       Rails.logger.error "[ERROR #{Time.now}] Couldn't save #{lt}: #{lt.errors.full_messages.to_sentence}"
     end

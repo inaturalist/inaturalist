@@ -150,6 +150,15 @@ describe Place, "merging" do
     p.merge(@merged_place)
     p.place_geometry.should_not be_blank
   end
+
+  it "should move the rejects children over to the keeper" do
+    keeper = Place.make!
+    reject = Place.make!
+    child = Place.make!(:parent => reject)
+    keeper.merge(reject)
+    child.reload
+    child.parent.should eq keeper
+  end
 end
 
 describe Place, "bbox_contains_lat_lng?" do

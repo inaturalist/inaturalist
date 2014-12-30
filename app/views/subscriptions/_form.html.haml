@@ -7,7 +7,7 @@
   .required * Required
 
 :javascript
-  window.defaultTaxa = #{Taxon::ICONIC_TAXA.to_json(:methods => [:html]).html_safe}
+  window.defaultTaxa = #{json_escape Taxon::ICONIC_TAXA.to_json(:methods => [:html]).html_safe}
 
   if ($('#subscription_resource_type').val() == 'Place') {
     $('#subscription_resource_id').chooser({

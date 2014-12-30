@@ -11,7 +11,7 @@
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'inaturalist/map3' %>
+  <%= javascript_include_tag 'map_bundle' %>
   <script type="text/javascript" charset="utf-8">
     var DATES = <%= @dates.to_json.html_safe %>
     $(document).ready(function() {
@@ -19,7 +19,7 @@
         var map = iNaturalist.Map.createMap({
           div: "map-<%= date %>"
         })
-        map.addObservations(<%= @observations_by_date_by_taxon_id[date].values.flatten.to_json(:include => [:iconic_taxon]).html_safe %>)
+        map.addObservations(<%=json_escape @observations_by_date_by_taxon_id[date].values.flatten.to_json(:include => [:iconic_taxon]).html_safe %>)
         map.zoomToObservations()
       <% end -%>
     })

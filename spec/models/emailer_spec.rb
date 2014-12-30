@@ -15,6 +15,20 @@ describe Emailer, "updates_notification" do
     mail.body.should_not be_blank
   end
 
+  it "should use common names for a user's place" do
+    p = Place.make!
+    t = Taxon.make!
+    tn_default = TaxonName.make!(:taxon => t, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    tn_local = TaxonName.make!(:taxon => t, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    t.common_name.name.should eq tn_default.name
+    ptn = PlaceTaxonName.make!(:taxon_name => tn_local, :place => p)
+    @user.update_attributes(:place_id => p.id)
+    identification = without_delay { Identification.make!(:taxon => t, :observation => @observation) }
+    mail = Emailer.updates_notification(@user, @user.updates.all)
+    mail.body.should =~ /#{tn_local.name}/
+    mail.body.should_not =~ /#{tn_default.name}/
+  end
+
   describe "with a site" do
     before do
       @site = Site.make!(:preferred_locale => "es-MX")
@@ -82,6 +96,17 @@ describe Emailer, "invite" do
       :personal_message => "it's a twap"
     }
     mail = Emailer.invite(address, params, user)
+    mail.body.should_not be_blank
+  end
+end
+
+describe Emailer, "project_user_invitation" do
+  it "should work if the sender no longer exists" do
+    pui = ProjectUserInvitation.make!
+    pui.user.destroy
+    pui.reload
+    pui.user.should be_blank
+    mail = Emailer.project_user_invitation(pui)
     mail.body.should_not be_blank
   end
 end

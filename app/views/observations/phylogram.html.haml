@@ -1,0 +1,15 @@
+= content_for :title do
+  - @title = title_for_observation_params(:lead => "Phylogram")
+  = strip_tags @title
+- unless @stats_adequately_scoped
+  .container-fluid
+    .row-fluid
+      .span12= render 'stats_inadequately_scoped'
+- else
+  .container-fluid
+    .row-fluid
+      .span12
+        %h4= @title
+    .row-fluid
+      TODO
+      #vis

@@ -15,14 +15,14 @@
     #filters_button {
       padding-left: 17px;
       padding-right: 10px;
-      background: 7px 10px url('/images/toggle_arrow_right.png') no-repeat;
+      background: 7px 10px url(<%= image_path('toggle_arrow_right.png') %>) no-repeat;
       border: 1px solid transparent;
       background-color: white;
       outline: none;
     }
 
     #filters_button.open {
-      background: 5px 12px url('/images/toggle_arrow_down.png') no-repeat;
+      background: 5px 12px url(<%= image_path('toggle_arrow_down.png') %>) no-repeat;
       border: 1px solid #eee;
       border-bottom: 1px solid white;
       padding-bottom: 17px;
@@ -33,11 +33,11 @@
       display: block;
       font-weight: bold;
       padding-left: 13px;
-      background: center left url('/images/toggle_arrow_right.png') no-repeat;
+      background: center left url(<%= image_path('toggle_arrow_right.png') %>) no-repeat;
     }
     
     .toggle_button.open {
-      background: center left url('/images/toggle_arrow_down.png') no-repeat;
+      background: center left url(<%= image_path('toggle_arrow_down.png') %>) no-repeat;
     }
     
     .comment {
@@ -58,7 +58,7 @@
     
     .button.remove {
       padding-left: 25px;
-      background: 5px 50% url('/images/silk/cross.png') no-repeat;
+      background: 5px 50% url(<%= image_path('silk/cross.png') %>) no-repeat;
     }
     
     .column.photos img {
@@ -124,9 +124,7 @@
 
 <% content_for(:extrajs) do %>
   <%= google_maps_js %>
-  <%= javascript_include_tag('jquery/plugins/jqModal',
-                             'modal_image',
-                             'inaturalist/map3',
+  <%= javascript_include_tag('map_bundle',
                              'observations/filters') %>
                              
   <script type="text/javascript" charset="utf-8">
@@ -210,12 +208,12 @@
         <strong><%=t :top_5_identifiers %>:</strong>
       </div>
       <div class="last column" style="width: 410px">
-        <% for user in @top_identifiers %>
+        <% @top_identifiers.each_with_index do |user, i| %>
           <span style="white-space: nowrap">
             <%= link_to(image_tag(user.icon.url(:mini), :class => 'usericon'), 
               identifications_by_login_path(user.login)) %>
             <strong><%= link_to you_or_login(user, :capitalize => true), identifications_by_login_path(user.login) %></strong>
-            <span class="count">(<%= number_with_delimiter(user.identifications_count) %>)</span><%= ',' if user == @top_identifiers.last %>
+            <span class="count">(<%= number_with_delimiter(user.identifications_count) %>)</span><%= ',' unless i == @top_identifiers.size - 1 %>
           </span>
         <% end %>
       </div>
@@ -311,7 +309,7 @@
               zoom: 4,
               controls: 'none'});
             observation_<%= observation.id %>_map.addObservation(
-              <%= observation.to_json(:include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}).html_safe %>, 
+              <%=json_escape observation.to_json(:include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}).html_safe %>, 
               {clickable: false});
           </script>
         <% end %>

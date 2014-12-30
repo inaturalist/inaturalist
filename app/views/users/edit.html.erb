@@ -12,16 +12,7 @@
 <![endif]-->
 <% end -%>
 <% content_for(:extrajs) do %>
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      $('#user_prefers_no_email').click(function() {
-        $('#notificationpreferences input').attr('checked', !$(this).attr('checked'))
-      })
-      $('#notificationpreferences input').click(function() {
-        $('#user_prefers_no_email').attr('checked', false)
-      })
-    })
-  </script>
+  <%= javascript_include_tag "users/edit" %>
   <!--[if lt IE 8]>
   <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
   <![endif]-->
@@ -56,6 +47,7 @@
         {:selected => current_user.time_zone}, 
         {:description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
       <%= f.select :locale, I18N_SUPPORTED_LOCALES.sort.map{|l| [t("locales.#{l}", :default => l), l]}, :include_blank => t(:default), :description => t(:locale_description) %>
+      <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :description => t('views.users.edit.place_help_html'), :class => "placechooser" %>
     </div>
     <div class="last column span-18">
       <%= f.text_area(:description, :label => t(:tell_everyone_a_little_about_you)) %>
@@ -103,11 +95,16 @@
           :description => t('views.users.edit.taxon_change_desc', :site_name => SITE_NAME_SHORT) %>
       </div>
       
-      <h3><%= t :community_identification_settings %></h3>
+      <h3><%= t :community_moderation_settings %></h3>
       <%= f.check_box "prefers_community_taxa", 
         :label => t(:accept_community_identifications), 
         :label_after => true,
         :description => t('views.users.edit.prefers_community_taxa_desc', :site_name => SITE_NAME_SHORT) %>
+      <%= f.select :preferred_observation_fields_by, [
+          [t(:anyone), User::PREFERRED_OBSERVATION_FIELDS_BY_ANYONE],
+          [t(:curators), User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS],
+          [t(:only_you), User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER]
+        ], :description => t(:observation_fields_by_preferences_description) %>
     </div>
     
     <div class="column span-18">

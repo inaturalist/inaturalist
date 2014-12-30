@@ -1,6 +1,7 @@
 class Flag < ActiveRecord::Base
   SPAM = "spam"
   INAPPROPRIATE = "inappropriate"
+  COPYRIGHT_INFRINGEMENT = "copyright infringement"
   belongs_to :flaggable, :polymorphic => true
 
   has_subscribers :to => {
@@ -21,7 +22,9 @@ class Flag < ActiveRecord::Base
   belongs_to :resolver, :class_name => 'User', :foreign_key => 'resolver_id'
   has_many :comments, :as => :parent, :dependent => :destroy
 
-  after_create :notify_flaggable
+  after_create :notify_flaggable_on_create
+  after_update :notify_flaggable_on_update
+  after_destroy :notify_flaggable_on_destroy
   
   # A user can flag a specific flaggable with a specific flag once
   validates_length_of :flag, :in => 3..256, :allow_blank => false
@@ -38,9 +41,23 @@ class Flag < ActiveRecord::Base
     end
   end
 
-  def notify_flaggable
+  def notify_flaggable_on_create
     if flaggable && flaggable.respond_to?(:flagged_with)
-      flaggable.flagged_with(self)
+      flaggable.flagged_with(self, :action => "created")
+    end
+    true
+  end
+
+  def notify_flaggable_on_update
+    if flaggable && flaggable.respond_to?(:flagged_with) && resolved_changed? && resolved?
+      flaggable.flagged_with(self, :action => "resolved")
+    end
+    true
+  end
+
+  def notify_flaggable_on_destroy
+    if flaggable && flaggable.respond_to?(:flagged_with)
+      flaggable.flagged_with(self, :action => "destroyed")
     end
     true
   end

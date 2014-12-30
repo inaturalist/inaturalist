@@ -11,14 +11,26 @@ class Place < ActiveRecord::Base
   has_many :guides, :dependent => :nullify
   has_many :projects, :dependent => :nullify, :inverse_of => :place
   has_many :trips, :dependent => :nullify, :inverse_of => :place
+  has_many :sites, :dependent => :nullify, :inverse_of => :place
+  has_many :place_taxon_names, :dependent => :delete_all, :inverse_of => :place
+  has_many :taxon_names, :through => :place_taxon_names
+  has_many :users, :inverse_of => :place, :dependent => :nullify
   has_one :place_geometry, :dependent => :destroy
   has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
     :select => (PlaceGeometry.column_names - ['geom']).join(', ')
   
-  before_save :calculate_bbox_area, :set_display_name
+  before_save :calculate_bbox_area, :set_display_name, :set_admin_level
   after_save :check_default_check_list
   
   validates_presence_of :latitude, :longitude
+  validates_numericality_of :latitude,
+    :allow_blank => true, 
+    :less_than_or_equal_to => 90, 
+    :greater_than_or_equal_to => -90
+  validates_numericality_of :longitude,
+    :allow_blank => true, 
+    :less_than_or_equal_to => 180, 
+    :greater_than_or_equal_to => -180
   validates_length_of :name, :within => 2..500, 
     :message => "must be between 2 and 500 characters"
   validates_uniqueness_of :name, :scope => :ancestry, :unless => Proc.new {|p| p.ancestry.blank?}
@@ -59,6 +71,12 @@ class Place < ActiveRecord::Base
     has :latitude, :as => :fake_latitude
     has :longitude, :as => :fake_longitude
     # END HACK
+
+    # This is super brittle: the sphinx doc identifier here is based on
+    # ThinkingSphinx.unique_id_expression, which I can't get to work here, so
+    # if the number of indexed models changes this will break.
+    has "SELECT places.id * 4::INT8 + 1 AS id, regexp_split_to_table(id::text || (CASE WHEN ancestry IS NULL THEN '' ELSE '/' || ancestry END), '/') AS place_id 
+  FROM places", :as => :place_ids, :source => :query
     
     has 'RADIANS(latitude)', :as => :latitude,  :type => :float
     has 'RADIANS(longitude)', :as => :longitude,  :type => :float
@@ -118,7 +136,8 @@ class Place < ActiveRecord::Base
   GEO_PLANET_PLACE_TYPE_CODES = GEO_PLANET_PLACE_TYPES.invert
   INAT_PLACE_TYPES = {
     100 => 'Open Space',
-    101 => 'Territory'
+    101 => 'Territory',
+    102 => 'District'
   }
   PLACE_TYPES = GEO_PLANET_PLACE_TYPES.merge(INAT_PLACE_TYPES).delete_if do |k,v|
     Place::REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(k)
@@ -131,10 +150,20 @@ class Place < ActiveRecord::Base
     scope type.pluralize.underscore.to_sym, where("place_type = ?", code)
   end
 
+  COUNTRY_LEVEL = 0
+  STATE_LEVEL = 1
+  COUNTY_LEVEL = 2
+  TOWN_LEVEL = 3
+  ADMIN_LEVELS = [COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL]
+
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
   scope :containing_lat_lng, lambda {|lat, lng|
     joins(:place_geometry).where("ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lng, lat)
+  }
+
+  scope :containing_lat_lng_as_geography, lambda {|lat, lng|
+    joins(:place_geometry).where("ST_Intersects(place_geometries.geom::geography, ST_Point(?, ?))", lng, lat)
   }
 
   scope :bbox_containing_lat_lng, lambda {|lat, lng|
@@ -198,6 +227,7 @@ class Place < ActiveRecord::Base
   }
 
   scope :with_geom, joins(:place_geometry).where("place_geometries.id IS NOT NULL")
+  scope :straddles_date_line, where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)")
   
   def to_s
     "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 
@@ -230,12 +260,12 @@ class Place < ActiveRecord::Base
     return read_attribute(:display_name) unless read_attribute(:display_name).blank? || options[:reload]
     
     ancestor_names = ancestors.reverse.select do |a|
-      %w"town state country".include?(PLACE_TYPES[a.place_type].to_s.downcase)
+      [Place::TOWN_LEVEL, Place::STATE_LEVEL, Place::COUNTRY_LEVEL].include?(a.admin_level)
     end.map do |a|
       a.code.blank? ? a.name : a.code.split('-').last
     end.compact
     
-    new_name = if self.place_type_name == 'County' && ancestor_names.include?('US')
+    new_name = if self.admin_level == COUNTY_LEVEL && ancestor_names.include?('US')
       "#{self.name} County"
     else
       self.name
@@ -253,9 +283,18 @@ class Place < ActiveRecord::Base
     display_name(:reload => true)
     true
   end
+
+  # There's only so much we can do here, since various place types have
+  # different admin levels based on the country, e.g. Irish counties are
+  # equivalent to US states
+  def set_admin_level
+    self.admin_level ||= COUNTRY_LEVEL if place_type == COUNTRY
+    self.admin_level ||= STATE_LEVEL if place_type == STATE
+    true
+  end
   
   def wikipedia_name
-    if %w"Town County".include? place_type_name
+    if [TOWN_LEVEL, COUNTY_LEVEL].include?(admin_level)
       display_name.gsub(', US', '')
     else
       name
@@ -279,6 +318,7 @@ class Place < ActiveRecord::Base
   end
   
   def straddles_date_line?
+    return true if self.swlng.to_f.abs > 180 || self.nelng.to_f.abs > 180
     self.swlng.to_f > 0 && self.nelng.to_f < 0
   end
   
@@ -290,7 +330,7 @@ class Place < ActiveRecord::Base
     return false if user.blank?
     return true if user.is_curator?
     return true if self.user_id == user.id
-    return false if %w(country state county).include?(place_type_name.to_s.downcase)
+    return false if [COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL].include?(admin_level)
     false
   end
   
@@ -437,10 +477,9 @@ class Place < ActiveRecord::Base
     self.nelat = geom.envelope.upper_corner.y
     if geom.spans_dateline?
       self.longitude = geom.envelope.center.x + 180*(geom.envelope.center.x > 0 ? -1 : 1)
-      self.swlng = geom.envelope.upper_corner.x
-      self.nelng = geom.envelope.lower_corner.x
+      self.swlng = geom.points.map(&:x).select{|x| x > 0}.min
+      self.nelng = geom.points.map(&:x).select{|x| x < 0}.max
     else
-      # self.longitude = geom.envelope.center.x
       self.swlng = geom.envelope.lower_corner.x
       self.nelng = geom.envelope.upper_corner.x
     end
@@ -536,6 +575,9 @@ class Place < ActiveRecord::Base
       if options[:ancestor_place]
         place.parent ||= options[:ancestor_place]
       end
+
+      place.place_type = options[:place_type] unless options[:place_type].blank?
+      place.place_type_name = options[:place_type_name] unless options[:place_type_name].blank?
       
       place = if block_given?
         yield place, shp
@@ -649,6 +691,15 @@ class Place < ActiveRecord::Base
     elsif mergee.place_geometry
       save_geom(mergee.place_geometry.geom)
     end
+
+    mergee.children.each do |child|
+      child.parent = self
+      unless child.save
+        # If there's a problem saving the child, orphan it. Otherwise it will
+        # get deleted when the parent is deleted
+        child.update_attributes(:parent => nil)
+      end
+    end
     
     # ensure any loaded associates that had their foreign keys updated in the db aren't hanging around
     mergee.reload
@@ -662,7 +713,20 @@ class Place < ActiveRecord::Base
     box = [swlat, swlng, nelat, nelng].compact
     box.blank? ? nil : box
   end
-  
+
+  def bounds
+    return @bounds if @bounds
+    result = PlaceGeometry.where(place_id: id).select("
+      ST_YMIN(geom) min_y, ST_YMAX(geom) max_y,
+      ST_XMIN(geom) min_x, ST_XMAX(geom) max_x").first
+    @bounds = {
+      min_x: result.min_x,
+      min_y: result.min_y,
+      max_x: result.max_x,
+      max_y: result.max_y
+    }
+  end
+
   def contains_lat_lng?(lat, lng)
     PlaceGeometry.exists?([
       "place_id = ? AND " + 
@@ -699,6 +763,11 @@ class Place < ActiveRecord::Base
     # with latitude in mind.
     pt = pt.buffer(acc) if acc.to_f > 0
 
+    # Note that there's a serious problem here in that it doesn't seem to work
+    # with geometries that cross longitude 180. The factory will automatically
+    # make a polygon with longitudes that exceed 180, but contains? doesn't
+    # seem to work properly. When you use the spherical_factory, it claims
+    # contains? isn't defined.
     bbox.contains?(pt)
   end
 
@@ -722,7 +791,19 @@ class Place < ActiveRecord::Base
     [ancestors, self].flatten
   end
 
+  def self_and_descendant_conditions
+    ["places.id = ? OR places.ancestry like ? OR places.ancestry = ?", id, "#{ancestry}/#{id}/%", "#{ancestry}/#{id}"] 
+  end
+
   def self_and_ancestor_ids
     [ancestor_ids, id].flatten
+  end
+
+  def default_observation_precision
+    return nil unless nelat
+    f = RGeo::Geographic.simple_mercator_factory
+    ne_point = f.point(nelng, nelat)
+    center_point = f.point(longitude, latitude)
+    center_point.distance(ne_point)
   end
 end

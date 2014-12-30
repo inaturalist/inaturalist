@@ -1,5 +1,7 @@
+- content_for :title do
+  = @title = t(:sites, :default => "Sites")
 .container
-  %h1 Listing sites
+  %h1= @title
 
   %table.table.table-bordered
     %tr
@@ -7,18 +9,14 @@
       %th=t :name
       %th=t :url
       %th
-      %th
-      %th
 
-    - @sites.each do |site|
+    - @records.each do |site|
       %tr
-        %td= image_tag site.logo.url
-        %td= site.name
-        %td= site.url
-        %td= link_to 'Show', site
-        %td= link_to 'Edit', edit_site_path(site)
-        %td= link_to 'Destroy', site, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to image_tag(site.logo.url), site
+        %td= link_to site.name, site
+        %td= link_to site.url, site.url
+        %td= link_to t(:edit), edit_site_path(site)
 
   %br
 
-  = link_to 'New Site', new_site_path
+  = link_to t(:new_site), new_site_path

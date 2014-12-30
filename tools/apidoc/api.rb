@@ -432,6 +432,13 @@ EOT
       values "iNat list ID"
     end
 
+    param "updated_since" do
+      desc <<-EOT
+        Filter by observations that have been updated since a timestamp.
+      EOT
+      values "ISO 8601 datetime, e.g. 2013-10-09T13:40:13-07:00"
+    end
+
     param "extra" do
       desc <<-EOT
         Retrieve additional information. 'projects' returns info about the
@@ -731,13 +738,6 @@ EOT
         own the photo on Facebook.
       EOT
       values "Valid Facebook photo ID of a photo belonging to the user."
-    end
-
-    param "updated_since" do
-      desc <<-EOT
-        Filter by observations that have been updated since a timestamp.
-      EOT
-      values "ISO 8601 datetime, e.g. 2013-10-09T13:40:13-07:00"
     end
 
     param "local_photos[]" do
@@ -1243,6 +1243,16 @@ EOT
         taxon is "introduced," "naturalised," "invasive," or "managed."
       EOT
       values %w(native endemic introduced naturalised invasive managed)
+    end
+
+    param "latitude" do
+      desc "Retrieve places that contain this lat/lon combination. This will only return places with boundaries defined."
+      values "Decimal latitude, e.g. 12.345"
+    end
+
+    param "longitude" do
+      desc "See latitude"
+      values "Decimal longitude, e.g. 12.345"
     end
 
     example do

@@ -101,14 +101,14 @@
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <!--[if IE]>  
-  <script type="text/javascript" src="/javascripts/jit/Extras/excanvas.js"></script>  
+  <!--[if IE]>
+  <%= javascript_include_tag('jit/Extras/excanvas.js') %>
   <![endif]-->
   <%= javascript_include_tag "jit/jit" %>
   <script type="text/javascript" charset="utf-8">
     window.loadedNodeIds = {};
     $(document).ready(function() {
-      var json = <%= jit_taxon_tree_with_taxon(@taxon).to_json.html_safe %>;
+      var json = <%=json_escape jit_taxon_tree_with_taxon(@taxon).to_json.html_safe %>;
       var canvas = new Canvas('taxonTree', {
         injectInto: 'treevis',
         width: 950,
@@ -215,7 +215,7 @@
   </div>
 
   <div id="zoomlinks" class="right">
-    <%= link_to_function t(:zoom_to_x, :x => "<strong>#{render(:partial => "shared/taxon")}</strong>"), "window.st.onClick(#{@taxon.id})".html_safe, :class => "inter" %>
+    <%= link_to_function raw(t(:zoom_to_x, :x => "<strong>#{render(:partial => "shared/taxon")}</strong>")), "window.st.onClick(#{@taxon.id})".html_safe, :class => "inter" %>
     <span class="inter">|</span>
     <% for taxon in @iconic_taxa %>
       <%= link_to_function iconic_taxon_image(taxon, :size => 20), 

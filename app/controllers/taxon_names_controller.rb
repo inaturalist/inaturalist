@@ -1,11 +1,13 @@
 class TaxonNamesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :load_taxon_name, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_taxon, :except => [:index]
-  before_filter :curator_required_for_sciname, :only => [:create, :update, :destroy]
+  before_filter :load_taxon_name, :only => [:show, :edit, :update, :destroy, :destroy_synonyms]
+  before_filter :load_taxon, :except => [:index, :destroy_synonyms]
+  before_filter :curator_required_for_sciname, :only => [:create, :update, :destroy, :destroy_synonyms]
   before_filter :load_lexicons, :only => [:new, :create, :edit, :update]
   
   cache_sweeper :taxon_name_sweeper, :only => [:create, :update, :destroy]
+
+  layout "bootstrap"
     
   def index
     find_options = {
@@ -78,6 +80,17 @@ class TaxonNamesController < ApplicationController
       end
     end
   end
+
+  def taxon
+    @taxon_names = @taxon.taxon_names.sort_by{|tn| [tn.position, tn.id]}.reject{|tn| tn.is_scientific?}
+    @place_taxon_names = PlaceTaxonName.includes(:taxon_name, :place).where("taxon_names.taxon_id = ?", @taxon).sort_by(&:position)
+    place_taxon_name_tn_ids = @place_taxon_names.map(&:taxon_name_id)
+    @names_by_place = @place_taxon_names.group_by(&:place).sort_by{|k,v| k.name}
+    @global_names = @taxon_names.select{|tn| !place_taxon_name_tn_ids.include?(tn.id)}
+    respond_to do |format|
+      format.html
+    end
+  end
   
   def show
     respond_to do |format|
@@ -103,15 +116,16 @@ class TaxonNamesController < ApplicationController
       if @taxon_name.save
         flash[:notice] = t(:your_name_was_saved)
         format.html { redirect_to taxon_path(@taxon) }
-        format.xml  { render :xml => @taxon_name, :status => :created, :location => @taxon_name }
+        format.xml  { render :json => @taxon_name, :status => :created, :location => @taxon_name }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @taxon_name.errors, :status => :unprocessable_entity }
+        format.xml  { render :json => @taxon_name.errors, :status => :unprocessable_entity }
       end
     end
   end
   
   def edit
+    @synonyms = TaxonName.where(:name => @taxon_name.name).where("id != ?", @taxon_name.id).page(1)
   end
   
   def update
@@ -122,10 +136,10 @@ class TaxonNamesController < ApplicationController
       if @taxon_name.update_attributes(params[:taxon_name])
         flash[:notice] = t(:taxon_name_was_successfully_updated)
         format.html { redirect_to(taxon_name_path(@taxon_name)) }
-        format.xml  { head :ok }
+        format.json  { head :ok }
       else
         format.html { render :action => 'edit' }
-        format.xml  { render :xml => @taxon_name.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @taxon_name.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -147,12 +161,23 @@ class TaxonNamesController < ApplicationController
       format.html { redirect_to(taxon_path(@taxon_name.taxon)) }
     end
   end
+
+  def destroy_synonyms
+    TaxonName.where(:name => @taxon_name.name).where("id != ?", @taxon_name.id).destroy_all
+    respond_to do |format|
+      format.html do
+        flash[:notice] = t(:deleted_synonyms)
+        redirect_to(edit_taxon_name_path(@taxon_name))
+      end
+    end
+  end
   
   private
   
   def load_taxon
     @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     @taxon ||= @taxon_name.taxon if @taxon_name
+    @taxon ||= Taxon.find_by_id(params[:id].to_i)
     render_404 and return unless @taxon
     true
   end
@@ -177,9 +202,11 @@ class TaxonNamesController < ApplicationController
   end
 
   def load_lexicons
-    @lexicons = [
-      TaxonName::LEXICONS.values, 
-      TaxonName.select("DISTINCT ON (lower(lexicon)) lexicon").map(&:lexicon)
-    ].flatten.uniq.reject{|n| n.blank?}.sort
+    @lexicons = Rails.cache.fetch('lexicons', :expires_in => 1.day) do
+      [
+        TaxonName::LEXICONS.values, 
+        TaxonName.select("DISTINCT ON (lexicon) lexicon").map(&:lexicon)
+      ].flatten.uniq.reject{|n| n.blank?}.sort
+    end
   end
 end

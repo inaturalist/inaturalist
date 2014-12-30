@@ -26,26 +26,22 @@
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
   <script type="text/javascript" charset="utf-8">
-    var PLACE = <%= @place.to_json.html_safe %>,
-        PLACE_GEOMETRY_KML_URL = <%=raw place_geometry_kml_url.inspect %>,
+    var PLACE = <%=json_escape @place.to_json.html_safe %>,
+        SHOW_PLACE_GEOMETRY = true,
         WIKIPEDIA_DESCRIPTION_URL = <%= url_for(:action => "wikipedia", :id => @place.wikipedia_name).inspect.html_safe %>,
         FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect.html_safe %>,
-        NEARBY_PLACES = <%= @nearby_places.to_json.html_safe %>,
-        INSIDE_PLACES = <%= @inside_places.to_json.html_safe %>,
+        NEARBY_PLACES = <%=json_escape @nearby_places.to_json.html_safe %>,
+        INSIDE_PLACES = <%=json_escape @inside_places.to_json.html_safe %>,
         TILESTACHE_SERVER = <%= CONFIG.tile_servers.tilestache.inspect.html_safe %>
   </script>
-  <%= javascript_include_tag 'inaturalist/map3', "jquery/plugins/inat/taxonmap", 
-    "jquery/plugins/jquery.ba-bbq.min", "jquery/plugins/jquery.infinitescroll.min", 
-    "taxon_guide", "places/show", 'jquery/plugins/waypoints.min' %>
+  <%= javascript_include_tag 'map_bundle',
+    "jquery/plugins/jquery.infinitescroll.min",
+    "taxon_guide", "places/show" %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       var script = document.createElement("script")
       script.setAttribute("type", "text/javascript")
-      if (true || $.browser.msie) {
-        script.setAttribute("src", "/javascripts/places/show.gmaps.js")
-      } else {
-        script.setAttribute("src", "/javascripts/places/show.polymaps.js")
-      }
+      script.setAttribute("src", "<%= asset_path('places/show.gmaps.js') %>")
       document.body.appendChild(script);
     })
   </script>
@@ -83,6 +79,18 @@
   <div id="metalinks" class="meta right">
     <%-
       pieces = []
+      if logged_in?
+        pieces << link_to(
+          t(:add_an_observation), 
+          new_observation_url(
+            :place_guess => @place.display_name, 
+            :latitude => @place.latitude, 
+            :longitude => @place.longitude, 
+            :positional_accuracy => @place.default_observation_precision, 
+            :place_id => @place.id
+          )
+        )
+      end
       pieces << link_to(t(:embed_place_widget), place_widget_path(@place.id), :rel => "nofollow") if @place.check_list
       pieces << link_to(t(:edit_place), edit_place_path(@place), :rel => "nofollow") if @place.editable_by?(current_user)
     -%>
@@ -106,7 +114,36 @@
         
         <% if logged_in? -%>
           <% if @place_geometry -%>
-            <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
+            <% unless @subscriptions.blank? -%>
+              Your subscriptions to this place:
+              <ul>
+                <% for subscription in @subscriptions %>
+                  <li class="subscription_for_<%= [subscription.resource_type, subscription.resource_id].join('_') %>">
+                    <% if subscription.taxon -%>
+                      <%= link_to subscription.taxon.name, url_for(subscription.taxon) %>
+                    <% else %>
+                      <%= link_to t(:all_observations), subscription.resource %>
+                    <% end -%>
+                    <%= link_to t(:edit), edit_subscription_path(subscription), :class => "small subscriptionsettings" %>
+                  </li>
+                <% end %>
+              </ul>
+            <% end -%>
+            <%- new_subscription = Subscription.new(:user => current_user, :resource => @place) %>
+              <%= form_for new_subscription, :html => {
+                :class => "subscribe"
+              } do |f| %>
+                <%= f.hidden_field :resource_type %>
+                <%= f.hidden_field :resource_id %>
+                <%= f.hidden_field :user_id %>
+                <% if @subscriptions.blank? -%>
+                  <%=t :subscribe_to_x_from_this_y_html, 
+                    :x => commas_and(Place.notifying_associations.keys.map{|k| t(k).downcase}),
+                    :y => t(:place).downcase %>
+                <% else %>
+                  <%= link_to t(:add_another_subscription), new_subscription_path(:type => "place", :resource_id => @place.id), :id => "new_place_subscription_link", :class => "readmore" %>
+                <% end -%>
+              <% end -%>
           <% else %>
             <div class="meta">
               <%= t :subscriptions_arent_available_for %>
@@ -140,6 +177,7 @@
         <h3><%= t(:projects_in_x, :x => @place.name) %></h3>
         <%= render :partial => 'projects/project', :collection => @projects %>
       </div>
+      <%= link_to t(:view_all), browse_projects_url(:place_id => @place.slug), :class => "readmore" %>
     </div>
   <% end -%>
   

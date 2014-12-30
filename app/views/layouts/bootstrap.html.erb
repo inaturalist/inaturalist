@@ -4,16 +4,9 @@
       xmlns:og="http://ogp.me/ns#">
   <head>
     <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
-    <link rel="icon" type="image/png" href="/images/favicon.png"/>
+    <%= favicon_link_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <%= stylesheet_link_tag 'jquery-ui',
-                            "jquery/ui.tabs.css",
-                            'jquery/plugins/jquery.qtip.min',
-                            "jquery/plugins/jquery.multiselect.css",
-                            'index',
-                            'observations'
-                            %>
+    <%= render :partial => 'shared/common_stylesheets'%>
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap', 'bootstrap-inat' %>
     <style type="text/css">
@@ -25,13 +18,15 @@
       <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
     <% end -%>
     <meta property="og:site_name" content="<%= CONFIG.site_name %>"/>
-    <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
+    <% if CONFIG.facebook && CONFIG.facebook['app_id'] -%>
+      <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
+    <% end %>
     <%= yield :extrahead %>
     <%= yield :extracss %>
   </head>
   <body>
     <% unless @headless -%>
-      <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => ApplicationController::HEADER_VERSION, :site_name => SITE_NAME) do %>
+      <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => ApplicationController::HEADER_VERSION, :site_name => @site ? @site.name : SITE_NAME) do %>
         <%= render :partial => 'shared/header' %>
       <% end %>
     <% end -%>
@@ -57,31 +52,20 @@
 
     <%= render :partial => 'shared/footer' unless @footless %>
 
-    <%= javascript_include_tag 'jquery/jquery-1.8.3.min' %>
-    <script src="/javascripts/bootstrap.js"></script>
-    <%= javascript_include_tag 'jquery/jquery-ui-1.9.1.min', 
-                               "iso8601",
-                               "i18n.min" %>
+    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' %>
+    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js' %>
+    <%= javascript_include_tag 'i18n.min' %>
     <script type="text/javascript">
       I18n.defaultLocale = "en"
       I18n.locale = "<%= I18n.locale %>"
       I18n.fallbacks = true
+      <% if @site && @site.place -%>
+        var SITE_PLACE = <%=json_escape @site.place.to_json(:only => [:id, :name]).html_safe %>
+      <% end -%>
     </script>
-    <%= javascript_include_tag "jquery/plugins/jquery.qtip2.min", 
-                               "jquery/plugins/jquery.multiselect.min", 
-                               "jquery/plugins/jquery.ui.autocomplete.html",
-                               "jquery/plugins/jquery.chooser",
-                               "jquery/plugins/jquery-ui-timepicker-addon",
-                               "jquery/plugins/jquery.imagesloaded.min",
-                               "jquery/plugins/jquery.timeago.js",
-                               "jquery/plugins/jquery.scrollTo-min.js",
-                               "jquery/plugins/inat/taxon_selectors.js",
-                               "translations",
-                               'rails',
-                               'application', 
-                               'inaturalist' %>
+    <%= javascript_include_tag 'bootstrap_bundle' %>
     <%= google_maps_js %>
-    <%= javascript_include_tag "inaturalist/map3", "jquery/plugins/inat/taxonmap.js" %>
+    <%= javascript_include_tag "map_bundle" %>
     <%= yield :extrajs %>
     <% if logged_in? -%>
       <script type="text/javascript" charset="utf-8">

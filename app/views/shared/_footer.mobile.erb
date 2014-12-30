@@ -28,8 +28,14 @@
       ].join('  <span class="meta">&amp;</span> ') %>
     </p>
     <p>
-      <a href="<%= CONFIG.iphone_app_url %>"><img src="/images/apple_app_store.png"></a> &nbsp;
-      <a href="<%= CONFIG.android_app_url %>"><img src="/images/android_market.png"></a>
+      <a href="<%= CONFIG.iphone_app_url %>"><img src="<%= asset_path("apple_app_store.png") %>"></a> &nbsp;
+      <a href="<%= CONFIG.android_app_url %>"><img src="<%= asset_path("android_market.png") %>"></a>
     </p>
   </div>
+
+  <% if CONFIG.custom_footer -%>
+    <div class="meta upstacked">
+      <%=raw CONFIG.custom_footer %>
+    </div>
+  <% end -%>
 </div>

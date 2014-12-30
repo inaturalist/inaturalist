@@ -21,6 +21,7 @@ class GuideTaxon < ActiveRecord::Base
   after_destroy {|r| r.guide.expire_caches(:check_ngz => true)}
 
   validates_uniqueness_of :name, :scope => :guide_id, :allow_blank => true, :message => "has already been added to this guide"
+  validate :within_count_limit, :on => :create
 
   acts_as_taggable
 
@@ -66,6 +67,10 @@ class GuideTaxon < ActiveRecord::Base
 
   def to_s
     "<GuideTaxon #{id} guide_id: #{guide_id}, name: #{name}, taxon_id: #{taxon_id}>"
+  end
+
+  def within_count_limit
+    errors.add(:base, :guide_has_too_many_taxa) if guide.guide_taxa.count >= 500
   end
 
   def default_guide_photo
@@ -131,24 +136,30 @@ class GuideTaxon < ActiveRecord::Base
       options
     end
     return unless page = get_eol_page(options)
-    name = page.at('scientificName').content
-    name = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))
-    self.name ||= name
-    common_names = page.search('commonName')
-    locale = options[:locale]
-    locale = guide.user.locale if locale.blank?
-    locale = I18n.locale if locale.blank?
-    lang = locale.to_s.split('-').first
-    common_name = common_names.detect{|cn| cn['lang'] == lang && cn['eol_preferred'] == "true"}
-    common_name ||= common_names.detect{|cn| cn['lang'] == lang}
-    common_name ||= common_names.detect{|cn| cn['eol_preferred'] == "true"}
-    if common_name && !common_name.inner_text.blank?
-      self.display_name = common_name.inner_text
+    options[:replace] = options[:replace].yesish?
+    options[:subjects] = [options[:subjects]].flatten.reject {|s| s.blank?}
+    if options[:replace] || self.name.blank?
+      name = page.at('scientificName').content
+      name = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))
+      self.name ||= name
     end
-    options[:replace] = [true, 1, "true", "1"].include?(options[:replace])
-    sync_eol_photos(options.merge(:page => page)) if options[:photos]
-    sync_eol_ranges(options.merge(:page => page)) if options[:ranges]
-    sync_eol_sections(options.merge(:page => page)) if [true, 1, "true", "1"].include?(options[:overview]) || !options[:subjects].blank?
+    if options[:replace] || self.display_name.blank?
+      common_names = page.search('commonName')
+      locale = options[:locale]
+      locale = guide.user.locale if locale.blank?
+      locale = I18n.locale if locale.blank?
+      lang = locale.to_s.split('-').first
+      common_name = common_names.detect{|cn| cn['lang'] == lang && cn['eol_preferred'] == "true"}
+      common_name ||= common_names.detect{|cn| cn['lang'] == lang}
+      common_name ||= common_names.detect{|cn| cn['eol_preferred'] == "true"}
+      if common_name && !common_name.inner_text.blank?
+        self.display_name = common_name.inner_text
+      end
+    end
+    sync_eol_photos(options.merge(:page => page)) if options[:photos].yesish?
+    sync_eol_ranges(options.merge(:page => page)) if options[:ranges].yesish?
+    Rails.logger.debug "[DEBUG] options[:subjects]: #{options[:subjects].inspect}"
+    sync_eol_sections(options.merge(:page => page)) if options[:sections].yesish? || options[:overview].yesish?
     save!
   end
 
@@ -157,7 +168,7 @@ class GuideTaxon < ActiveRecord::Base
     img_data_objects = page.search('dataObject').select{|data_object| 
       data_object.at('dataType').to_s =~ /StillImage/ && data_object.at('dataSubtype').to_s !~ /Map/
     }
-    guide_photos.destroy_all if options[:replace]
+    guide_photos.destroy_all if options[:replace].yesish?
     max_pos = guide_photos.calculate(:maximum, :position) || 0
     img_data_objects[0..5].each do |img_data_object|
       p = if (data_object_id = img_data_object.at('dataObjectID').try(:content))
@@ -173,7 +184,7 @@ class GuideTaxon < ActiveRecord::Base
   def sync_eol_ranges(options = {})
     return unless page = get_eol_page(options)
     map_data_object = page.search('dataObject').detect{|data_object| data_object.at('dataSubtype').to_s =~ /Map/ }
-    guide_ranges.destroy_all if options[:replace]
+    guide_ranges.destroy_all if options[:replace].yesish?
     if map_data_object
       gr = GuideRange.new_from_eol_data_object(map_data_object)
       unless guide_ranges.where(:source_url => gr.source_url).exists?
@@ -197,7 +208,7 @@ class GuideTaxon < ActiveRecord::Base
       data_object.at('language') && locale !~ /^#{data_object.at('language').content}/
     end
 
-    guide_sections.destroy_all if options[:replace]
+    guide_sections.destroy_all if options[:replace].yesish?
     max_pos = guide_sections.calculate(:maximum, :position) || 0
 
     data_objects = if subjects.blank? || options[:overview] == "true"

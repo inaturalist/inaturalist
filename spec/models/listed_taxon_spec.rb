@@ -42,11 +42,33 @@ describe ListedTaxon do
   
   describe "creation for check lists" do
     before(:each) do
-      @place = Place.make!
+      @place = make_place_with_geom
       @check_list = @place.check_list
       @check_list.should be_is_default
       @user = User.make!
       @user_check_list = @place.check_lists.create(:title => "Foo!", :user => @user, :source => Source.make!)
+    end
+
+    describe "cached columns" do
+      before do
+        @taxon = Taxon.make!(:rank => "species")
+        @first_observation = make_research_grade_observation(:observed_on_string => "2009-01-03", 
+          :taxon => @taxon, :latitude => @place.latitude, :longitude => @place.longitude)
+        @inbetween_observation = Observation.make!(:observed_on_string => "2009-02-02", 
+          :taxon => @taxon, :latitude => @place.latitude, :longitude => @place.longitude)
+        @last_observation = make_research_grade_observation(:observed_on_string => "2009-03-05", 
+          :taxon => @taxon, :latitude => @place.latitude, :longitude => @place.longitude)
+        @first_observation.places.should include @place
+        @last_observation.places.should include @place
+      end
+      it "should set first observation to the first research grade observation added" do
+        lt = without_delay { ListedTaxon.make!(:list => @check_list, :place => @place, :taxon => @taxon) }
+        lt.first_observation.should eq @first_observation
+      end
+      it "should set last observation to the last research grade observation observed" do
+        lt = without_delay { ListedTaxon.make!(:list => @check_list, :place => @place, :taxon => @taxon) }
+        lt.last_observation.should eq @last_observation
+      end
     end
     
     it "should make sure the user matches the check list user" do
@@ -454,6 +476,7 @@ describe "a listed taxon on a non checklist" do
   end
 
   it "should not be a primary listing" do
+    @listed_taxon.update_attributes(:primary_listing => true)
     @listed_taxon.should_not be_primary_listing
   end
 end

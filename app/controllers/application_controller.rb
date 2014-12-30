@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   
   helper :all # include all helpers, all the time
   protect_from_forgery
-  before_filter :set_time_zone
+  around_filter :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
   before_filter :user_logging
@@ -16,15 +16,16 @@ class ApplicationController < ActionController::Base
   before_filter :remove_header_and_footer_for_apps
   before_filter :login_from_param
   before_filter :set_site
+  before_filter :set_ga_trackers
   before_filter :set_locale
-  
+
   PER_PAGES = [10,30,50,100,200]
   HEADER_VERSION = 14
   
   alias :logged_in? :user_signed_in?
   
   private
-  
+
   # Store the URI of the current request in the session.
   #
   # We can return to this location by calling #redirect_back_or_default.
@@ -33,7 +34,24 @@ class ApplicationController < ActionController::Base
   end
 
   def set_site
+    @site ||= Site.find_by_id(CONFIG.site_id) if CONFIG.site_id
     @site ||= Site.where("url LIKE '%#{request.host}%'").first
+  end
+
+  def set_ga_trackers
+    return true unless request.format.blank? || request.format.html?
+    trackers = []
+    if CONFIG.google_analytics
+      if CONFIG.google_analytics.trackers
+        trackers += CONFIG.google_analytics.trackers
+      elsif CONFIG.google_analytics.tracker_id
+        trackers << ['default', CONFIG.google_analytics.tracker_id]
+      end
+    end
+    if @site && !@site.google_analytics_tracker_id.blank?
+      trackers << [@site.name.gsub(/\s+/, '').underscore, @site.google_analytics_tracker_id]
+    end
+    request.env['inat_ga_trackers'] = trackers unless trackers.blank?
   end
 
   def set_locale
@@ -138,8 +156,16 @@ class ApplicationController < ActionController::Base
   # Grab current user's time zone and set it as the default
   #
   def set_time_zone
-    Time.zone = self.current_user.time_zone if logged_in?
-    Chronic.time_class = Time.zone
+    if logged_in?
+      old_time_class = Chronic.time_class
+      Time.use_zone(self.current_user.time_zone) do
+        Chronic.time_class = Time.zone
+        yield 
+        Chronic.time_class = old_time_class
+      end
+    else
+      yield
+    end
   end
   
   def return_here_from_url
@@ -225,12 +251,15 @@ class ApplicationController < ActionController::Base
   end
   
   def search_for_places
-    @q = params[:q]
+    @q = params[:q].to_s.sanitize_encoding
     if params[:limit]
       @limit ||= params[:limit].to_i
       @limit = 50 if @limit > 50
     end
-    @places = Place.search(@q, :page => params[:page], :limit => @limit)
+    site_place = @site.place if @site
+    search_options = {:page => params[:page], :limit => @limit}
+    search_options[:with] = {:place_ids => [site_place.id]} if site_place
+    @places = Place.search(sanitize_sphinx_query(@q), search_options)
     if logged_in? && @places.blank?
       if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
         new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}.compact
@@ -331,6 +360,17 @@ class ApplicationController < ActionController::Base
           render :json => {:error => message}, :status => :unprocessable_entity
         end
       end
+    end
+  end
+
+  def limited_per_page
+    requested_per_page = params[:per_page].to_i
+    if requested_per_page > 200
+      200
+    elsif requested_per_page <= 0
+      30
+    else
+      requested_per_page
     end
   end
 

@@ -120,6 +120,13 @@ module MakeHelpers
     swap.save!
     swap
   end
+
+  def make_published_guide
+    g = Guide.make!
+    3.times { GuideTaxon.make!(:guide => g) }
+    g.update_attributes(:published_at => Time.now)
+    g
+  end
   
   # creating the tree is a bit tricky
   #
@@ -219,6 +226,8 @@ module MakeHelpers
       @Magnoliopsida = Taxon.make!(:name => "Magnoliopsida", :rank => "class")
     end
     @Magnoliopsida.update_attributes(:parent => @Magnoliophyta)
+
+    Taxon.reset_iconic_taxa_constants_for_tests
 
     Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
   end

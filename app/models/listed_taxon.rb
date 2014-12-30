@@ -32,6 +32,7 @@ class ListedTaxon < ActiveRecord::Base
   before_save :set_user_id
   before_save :set_source_id
   before_save :set_establishment_means
+  before_save :set_primary_listing
   before_create :check_primary_listing
   after_save :update_cache_columns_for_check_list
   after_save :propagate_establishment_means
@@ -128,10 +129,31 @@ class ListedTaxon < ActiveRecord::Base
       taxa_listed_taxa.is_active = '#{taxonomic_status ? 't' : 'f'}' 
    )")}
 
+
+  # Queries listed taxa that represent leaves in the taxonomic tree described
+  # by the list. So if the list contains class Mammalia, species Homo sapiens,
+  # and kingdom Plantae, the leaves will be Homo sapiens and Plantae, since
+  # Mammalia is on the same branch as Homo sapiens but further toward the
+  # root, while Plantae is the end of its own branch. This works by splitting
+  # all the ancestries represented by the original query using
+  # regexp_split_to_table, so that each individual ancestor ID is a single row
+  # in a join table. Since those are *only* the ancestors, if you join the
+  # original query on taxon_id and select those that do *not* have a matching
+  # taxon in the ancestor join table, those are the leaves.
   scope :with_leaves, lambda{|scope_to_sql| 
-    joins("LEFT JOIN (#{ancestor_ids_sql(scope_to_sql)}) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id").where("ancestor_ids.ancestor_id IS NULL")
+    # generate the ancestor IDs subquery
+    ancestor_ids_sql = scope_to_sql.gsub(/^(S.*)\*/, "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id")
+    ancestor_ids_sql + " AND taxon_ancestor_ids IS NOT NULL"
+    # join ancestors on taxon_id
+    join = <<-SQL
+      LEFT JOIN (
+        #{ancestor_ids_sql}
+      ) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id
+    SQL
+    # filter by listed_taxa where the listed_taxa.taxon_id is not present
+    # among the ancestors, i.e. it is a leaf
+    joins(join).where("ancestor_ids.ancestor_id IS NULL")
   }
-  
   
   ALPHABETICAL_ORDER = "alphabetical"
   TAXONOMIC_ORDER = "taxonomic"
@@ -263,6 +285,7 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def taxon_matches_observation
+    return false if taxon.blank?
     if last_observation
       if last_observation.taxon_id.blank? || !(
           taxon_id == last_observation.taxon_id || 
@@ -371,6 +394,11 @@ class ListedTaxon < ActiveRecord::Base
     end
     true
   end
+
+  def set_primary_listing
+    self.primary_listing = false unless can_set_as_primary?
+    true
+  end
   
   def sync_parent_check_list
     return true unless list.is_a?(CheckList)
@@ -462,23 +490,30 @@ class ListedTaxon < ActiveRecord::Base
     ActiveRecord::Base.connection.execute(sql)
   end
   
+  # Retrievest the first and last observations and the month counts. Note that
+  # at present first_observation has a different meaning depending on the
+  # list: for check lists it means the first observation added to iNat (i.e.
+  # sorted by ID), but for everything else it means first observation by date
+  # observed. Not great, but it means the first observer for places rewards
+  # people for being the first to add to the site, and the life list firsts on
+  # the calendar views shows the first time you saw a taxon.
   def cache_columns
     return unless (list && sql = list.cache_columns_query_for(self))
     last_observations = []
-    first_observation_info = [] #array of observation_ids when checklist, otherwise array of [date, observation_id]
+    first_observation_info = [] # array of observation_ids when checklist, otherwise array of [date, observation_id]
     counts = {}
     ListedTaxon.connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
       counts[row['key']] = row['count'].to_i
       last_observations << (row['last_observation'].blank? ? nil : row['last_observation'].split(','))
-      if list.is_a?(CheckList) #process the observation_ids representing first addition to iNat
+      if list.is_a?(CheckList) # process the observation_ids representing first addition to iNat
         first_observation_info << row['first_observation_id'] 
-      else #process arrays of [date,observation_id] where date represents first date observed
+      else # process arrays of [date,observation_id] where date represents first date observed
         first_observation_info << (row['first_observation'].blank? ? nil : row['first_observation'].split(',')) 
       end
     end
-    if list.is_a?(CheckList) #pull out the smallest observation_id (e.g. earliest added to iNat)
-      first_observation_id = first_observation_info.compact.sort[0]
-    else #sort arrays by date and pull out observation_id from first one observed based on date
+    if list.is_a?(CheckList) # pull out the smallest observation_id (i.e. earliest added to iNat)
+      first_observation_id = first_observation_info.compact.sort_by(&:to_i).first
+    else # sort arrays by date and pull out observation_id from first one observed based on date observed
       if first_observation = first_observation_info.compact.compact.sort_by(&:first).first
         first_observation_id = first_observation[1]
       end
@@ -565,6 +600,10 @@ class ListedTaxon < ActiveRecord::Base
   
   def occurrence_status
     OCCURRENCE_STATUS_LEVELS[occurrence_status_level]
+  end
+
+  def occurrence_status=(status)
+    self.occurrence_status_level = OCCURRENCE_STATUS_LEVELS_BY_NAME[status]
   end
   
   def editable_by?(target_user)
@@ -780,12 +819,6 @@ class ListedTaxon < ActiveRecord::Base
   def make_primary_if_no_primary_exists
     update_attribute(:primary_listing, true) if !ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).present? && can_set_as_primary?
   end
-
-  # used with .with_leaves filter
-  def self.ancestor_ids_sql(scope_to_sql)
-    scope_to_sql = scope_to_sql.gsub(/^(S.*)\*/, "SELECT DISTINCT regexp_split_to_table(taxon_ancestor_ids, '/') AS ancestor_id")
-    scope_to_sql + " AND taxon_ancestor_ids IS NOT NULL"
-  end
   
   # used with threatened_status filter
   def self.place_ancestor_ids_sql(place_id)
@@ -800,11 +833,13 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def primary_occurrence_status
-    primary_listed_taxon.occurrence_status
+    primary_listed_taxon.try(:occurrence_status)
   end
+
   def primary_establishment_means
-    primary_listed_taxon.establishment_means
+    primary_listed_taxon.try(:establishment_means)
   end
+
   def update_attributes_and_primary(listed_taxon, current_user)
     transaction do
       update_attributes(listed_taxon.merge(:updater_id => current_user.id))

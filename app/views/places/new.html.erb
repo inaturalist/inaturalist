@@ -4,7 +4,7 @@
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "jquery/ui.tabs.css" %>
-  <%= stylesheet_link_tag "/javascripts/leaflet.fullscreen/Control.FullScreen.css" %>
+  <%= stylesheet_link_tag "/assets/leaflet.fullscreen/Control.FullScreen.css" %>
   <style type="text/css" media="screen">
     #places {
       min-height: 100px;
@@ -52,12 +52,12 @@
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'inaturalist/map3' %>
+  <%= javascript_include_tag 'map_bundle' %>
   <%= leaflet_js(:draw => true) %>
   <%= javascript_include_tag "shramov-leaflet-plugins/Bing" %>
-  <script type="text/javascript" src="https://rawgithub.com/brunob/leaflet.fullscreen/master/Control.FullScreen.js"></script>
+  <%= javascript_include_tag "leaflet.fullscreen/Control.FullScreen.js" %>
   <script type="text/javascript" charset="utf-8">
-    var CLOUDMADE_KEY = <%=raw CONFIG.cloudmade.key.inspect %>,
+    var CLOUDMADE_KEY = <%=raw CONFIG.cloudmade.try(:key).to_json %>,
         BING_KEY = <%=raw CONFIG.bing.key.inspect %>,
         PLACE_INVALID = <%= @place && !@place.errors.blank? ? 'true' : 'false' %>,
         CURRENT_USER_IS_CURATOR = <%= logged_in? && current_user.is_curator? ? 'true' : 'false' %>
@@ -65,13 +65,17 @@
       window.importMap = iNaturalist.Map.createMap({div: 'importMap'})
       window.map = L.map('drawingMap').setView([0,0], 1)
       var d = new Date()
-      var osm = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/22677/256/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; '+d.getFullYear()+' OpenStreetMap contributors, Imagery &copy; '+d.getFullYear()+' CloudMade',
-        key: CLOUDMADE_KEY
-      })
       var bing = new L.BingLayer(BING_KEY, {type:"AerialWithLabels"});
-      map.addLayer(osm);
-      map.addControl(new L.Control.Layers({'Map (OSM)':osm, "Satellite (Bing)":bing}, {}));
+      if (CLOUDMADE_KEY) {
+        var osm = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/22677/256/{z}/{x}/{y}.png', {
+          attribution: 'Map data &copy; '+d.getFullYear()+' OpenStreetMap contributors, Imagery &copy; '+d.getFullYear()+' CloudMade',
+          key: CLOUDMADE_KEY
+        })
+        map.addLayer(osm);
+        map.addControl(new L.Control.Layers({'Map (OSM)':osm, "Satellite (Bing)":bing}, {}));
+      } else {
+        map.addLayer(bing)
+      }
       var fullScreen = new L.Control.FullScreen();
       map.addControl(fullScreen)
       window.drawnItems = new L.FeatureGroup()
@@ -127,6 +131,18 @@
           $(this).val(null)
         }
       })
+      $('#place_selector form')
+        .live('ajax:before', function() {
+          $('.loading', this).show()
+        })
+        .live('ajax:complete', function() {
+          $('.loading', this).hide()
+        })
+        .live('ajax:success', function(event, json, status) {
+          $(this).siblings('.place_selector_places').html(json.map(function(place) { 
+            return '<li class="clear">' + place.html + '</li>'
+          }).join(' '))
+        })
     })
     function saveGeom() {
       $(':input[name=geojson]').val(JSON.stringify(drawnItems.toGeoJSON()))
@@ -163,7 +179,7 @@
             <%= submit_tag t(:search), :class => 'button', "data-loading-click" => true %>
           </div>
         <% end %>
-        <ul id="places" style="margin: 0"></ul>
+        <ul id="places" class="place_selector_places" style="margin: 0"></ul>
       </div>
     </div>
 

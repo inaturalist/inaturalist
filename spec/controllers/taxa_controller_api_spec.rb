@@ -76,6 +76,27 @@ shared_examples_for "a TaxaController" do
       end
     end
   end
+
+  describe "children" do
+    it "should only show active taxa by default" do
+      p = Taxon.make!
+      active = Taxon.make!(:parent => p)
+      inactive = Taxon.make!(:parent => p, :is_active => false)
+      get :children, :id => p.id, :format => :json
+      taxa = JSON.parse(response.body)
+      taxa.detect{|t| t['id'] == active.id}.should_not be_blank
+      taxa.detect{|t| t['id'] == inactive.id}.should be_blank
+    end
+    it "should show all taxa if requested" do
+      p = Taxon.make!
+      active = Taxon.make!(:parent => p)
+      inactive = Taxon.make!(:parent => p, :is_active => false)
+      get :children, :id => p.id, :format => :json, :is_active => "any"
+      taxa = JSON.parse(response.body)
+      taxa.detect{|t| t['id'] == active.id}.should_not be_blank
+      taxa.detect{|t| t['id'] == inactive.id}.should_not be_blank
+    end
+  end
 end
 
 describe TaxaController, "oauth authentication" do

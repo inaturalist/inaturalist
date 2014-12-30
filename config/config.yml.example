@@ -65,13 +65,14 @@ base: &base
 
     developers_url: /pages/developers
 
-    twitter_url: http://twitter.com/inaturalist
+    # twitter_url: http://twitter.com/inaturalist
+    # facebook_url: http://www.facebook.com/pages/iNaturalistorg/63336575498
+    # iphone_app_url: http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8
+    # android_app_url: https://market.android.com/details?id=org.inaturalist.android
 
-    facebook_url: http://www.facebook.com/pages/iNaturalistorg/63336575498
-
-    iphone_app_url: http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8
-
-    android_app_url: https://market.android.com/details?id=org.inaturalist.android
+    # Specify additional footer HTML content below the row of links
+    # custom_footer: |
+    #     This is a custom footer
 
     # Title of wiki page to use as the home page. Default will be the normal view in app/views/welcome/index
     # home_page_wiki_path: naturalista+home
@@ -108,10 +109,10 @@ base: &base
         session_key: _yoursite_session
         secret: 09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af
 
-    google_analytics:
-        # http://www.google.com/analytics/sign_up.html
-        tracker_id: UA-090909-9
-        domain_name: yoursite.org
+    # google_analytics:
+    #     # http://www.google.com/analytics/sign_up.html
+    #     tracker_id: UA-090909-9
+    #     domain_name: yoursite.org
 
     ubio:
         # http://www.ubio.org/index.php?pagename=form
@@ -155,12 +156,12 @@ base: &base
     #     url: http://twitter.com/your_twitter_username
     #     username: your_twitter_username
 
-    cloudmade:
-        key: 09af09af09af09af09af09af09af09af09af09af
+    # cloudmade:
+    #     key: 09af09af09af09af09af09af09af09af09af09af
 
-    bing:
-        # http://www.bingmapsportal.com/
-        key: 09af09af09af09af09af09af09af09af09af09af
+    # bing:
+    #     # http://www.bingmapsportal.com/
+    #     key: 09af09af09af09af09af09af09af09af09af09af
 
     flickr:
         # http://www.flickr.com/services/api/keys/apply/
@@ -194,6 +195,14 @@ base: &base
 
     # config.action_dispatch.x_sendfile_header. Most servers use X-Sendfile, but nginx prefers X-Accel-Redirect
     x_sendfile_header: 'X-Sendfile'
+
+    # # GBIF login credentials. Currently only used in 
+    # # tools/gbif_observation_links.rb, so only useful if you send data 
+    # # to GBIF
+    # gbif:
+    #     username: yourusername
+    #     password: yourpassword
+    #     notification_address: you@you.com
 
 development:
     <<: *base

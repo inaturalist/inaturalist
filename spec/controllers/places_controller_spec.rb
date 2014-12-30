@@ -14,6 +14,48 @@ describe PlacesController do
       Place.last.place_type.should be_blank
     end
   end
+
+  describe "destroy" do
+    let(:user) { User.make! }
+    let(:place) { Place.make!(:user => user) }
+    it "should delete the place" do
+      sign_in user
+      place.should_not be_blank
+      lambda {
+        delete :destroy, :id => place.id
+      }.should change(Place, :count).by(-1)
+    end
+  end
+
+  describe "search" do
+    let(:place) { Place.make!(:name => 'Panama') }
+    let(:another_place) { Place.make!(:name => 'Norway') }
+    it "should return results in HTML" do
+      place.should_not be_blank
+      Place.should_receive(:search).and_return([ place, another_place ])
+      get :search, :q => place.name
+      response.content_type.should == "text/html"
+    end
+    it "should redirect with only one result in HTML" do
+      Place.should_receive(:search).and_return([ place ])
+      get :search, :q => place.name
+      response.should be_redirect
+    end
+    it "should not redirect with only one result in JSON" do
+      Place.should_receive(:search).and_return([ place ])
+      get :search, :q => place.name, :format => :json
+      response.should_not be_redirect
+    end
+    it "should return results in JSON, with html" do
+      place.html = 'the html'
+      Place.should_receive(:search).and_return([ place, another_place ])
+      get :search, :q => place.name, :format => :json
+      response.content_type.should == "application/json"
+      json = JSON.parse(response.body)
+      json.count.should == 2
+      json.first['html'] == place.html
+    end
+  end
 end
 
 # If you ever figure out how to test page caching...

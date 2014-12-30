@@ -36,6 +36,13 @@ GIT
       nokogiri (~> 1.5.0)
 
 GIT
+  remote: git://github.com/fnando/i18n-js.git
+  revision: bebeb1398b1ac6810b2be94637a94174a8e0e344
+  specs:
+    i18n-js (3.0.0.rc6)
+      i18n (~> 0.6)
+
+GIT
   remote: git://github.com/jrgifford/delayed_paperclip.git
   revision: 9c2afd91193b5cd409b8cc34768e6a0b68eed1d5
   specs:
@@ -43,10 +50,26 @@ GIT
       paperclip (>= 3.3.0)
 
 GIT
+  remote: git://github.com/kueda/flickraw.git
+  revision: 35cc21b0f1b6b1af3d10b19d53ea46dd2e5316ea
+  branch: ssl-cert
+  specs:
+    flickraw (0.9.8)
+
+GIT
   remote: git://github.com/kueda/georuby.git
   revision: 00a95123977726492a4049eb1c36f98c372cd714
   specs:
     georuby (2.0.0)
+
+GIT
+  remote: git://github.com/kueda/rack-google-analytics.git
+  revision: 92f9fe2f699a429b194a4c0ed18a5089e03454f8
+  branch: eval-blocks-per-request
+  specs:
+    rack-google-analytics (1.2.0)
+      actionpack
+      activesupport
 
 GIT
   remote: git://github.com/kueda/riparian.git
@@ -66,13 +89,6 @@ GIT
     spatial_adapter (1.3.1)
       activerecord (>= 2.2.2)
       georuby (>= 1.3.0)
-
-GIT
-  remote: git://github.com/modyo/ym4r_gm.git
-  revision: a0399d9a966ceb63a32251f90d389bc1bb689b16
-  specs:
-    ym4r_gm (0.2.3)
-      ym4r
 
 GIT
   remote: git://github.com/samoli/acts_as_taggable_on_steroids.git
@@ -100,12 +116,12 @@ GEM
   remote: http://rubygems.org/
   specs:
     aasm (3.0.19)
-    actionmailer (3.2.18)
-      actionpack (= 3.2.18)
+    actionmailer (3.2.20)
+      actionpack (= 3.2.20)
       mail (~> 2.5.4)
-    actionpack (3.2.18)
-      activemodel (= 3.2.18)
-      activesupport (= 3.2.18)
+    actionpack (3.2.20)
+      activemodel (= 3.2.20)
+      activesupport (= 3.2.20)
       builder (~> 3.0.0)
       erubis (~> 2.7.0)
       journey (~> 1.0.4)
@@ -113,25 +129,24 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    activemodel (3.2.18)
-      activesupport (= 3.2.18)
+    activemodel (3.2.20)
+      activesupport (= 3.2.20)
       builder (~> 3.0.0)
-    activerecord (3.2.18)
-      activemodel (= 3.2.18)
-      activesupport (= 3.2.18)
+    activerecord (3.2.20)
+      activemodel (= 3.2.20)
+      activesupport (= 3.2.20)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activeresource (3.2.18)
-      activemodel (= 3.2.18)
-      activesupport (= 3.2.18)
-    activesupport (3.2.18)
+    activeresource (3.2.20)
+      activemodel (= 3.2.20)
+      activesupport (= 3.2.20)
+    activesupport (3.2.20)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.4)
-    airbrake (3.1.12)
-      activesupport
+    airbrake (4.1.0)
       builder
-      json
+      multi_json
     akami (1.2.0)
       gyoku (>= 0.4.0)
       nokogiri (>= 1.4.0)
@@ -163,11 +178,18 @@ GEM
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
     cocoon (1.1.2)
+    columnize (0.8.9)
     daemon-spawn (0.4.2)
     daemons (1.1.9)
     database_cleaner (1.0.1)
     dbf (2.0.3)
       fastercsv (~> 1.5.4)
+    debugger (1.6.8)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.3.5)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.3.5)
     delayed_job (3.0.5)
       activesupport (~> 3.0)
     delayed_job_active_record (0.4.4)
@@ -190,6 +212,7 @@ GEM
       railties (~> 3.1)
     dynamic_form (1.1.4)
     erubis (2.7.0)
+    execjs (2.2.1)
     exifr (1.1.3)
     extlib (0.9.16)
     faker (1.1.2)
@@ -197,7 +220,6 @@ GEM
     faraday (0.8.7)
       multipart-post (~> 1.1)
     fastercsv (1.5.5)
-    flickraw (0.9.8)
     friendly_id (4.0.9)
     geocoder (1.1.9)
     geoplanet (0.2.6)
@@ -222,7 +244,7 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
-    hashie (2.0.5)
+    hashie (2.1.2)
     highline (1.6.19)
     hike (1.2.3)
     htmlentities (4.3.1)
@@ -236,10 +258,11 @@ GEM
     httpi (2.1.0)
       rack
       rubyntlm (~> 0.3.2)
-    i18n (0.6.9)
-    i18n-js (2.1.2)
-      i18n
+    i18n (0.6.11)
     journey (1.0.4)
+    jquery-rails (3.1.1)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
     json (1.7.7)
     jwt (0.1.8)
       multi_json (>= 1.5)
@@ -258,7 +281,7 @@ GEM
     mime-types (1.25.1)
     mocha (0.14.0)
       metaclass (~> 0.0.1)
-    multi_json (1.10.0)
+    multi_json (1.10.1)
     multi_xml (0.5.4)
     multipart-post (1.2.0)
     net-scp (1.1.1)
@@ -268,6 +291,7 @@ GEM
     net-ssh (2.6.7)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
+    newrelic_rpm (3.9.1.236)
     nokogiri (1.5.10)
     nori (2.3.0)
     oauth (0.4.7)
@@ -280,12 +304,12 @@ GEM
     objectify-xml (0.2.3)
       activesupport
       nokogiri
-    omniauth (1.1.4)
+    omniauth (1.2.1)
       hashie (>= 1.2, < 3)
-      rack
+      rack (~> 1.0)
     omniauth-facebook (1.4.1)
       omniauth-oauth2 (~> 1.1.0)
-    omniauth-flickr (0.0.11)
+    omniauth-flickr (0.0.15)
       omniauth-oauth (~> 1.0)
     omniauth-google-oauth2 (0.1.17)
       omniauth (~> 1.0)
@@ -312,11 +336,10 @@ GEM
       cocaine (~> 0.5.0)
       mime-types
     pg (0.15.1)
-    polyglot (0.3.4)
+    polyglot (0.3.5)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
-    rack-google-analytics (0.11.0)
     rack-mobile-detect (0.4.0)
       rack
     rack-openid (1.3.1)
@@ -326,19 +349,19 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.18)
-      actionmailer (= 3.2.18)
-      actionpack (= 3.2.18)
-      activerecord (= 3.2.18)
-      activeresource (= 3.2.18)
-      activesupport (= 3.2.18)
+    rails (3.2.20)
+      actionmailer (= 3.2.20)
+      actionpack (= 3.2.20)
+      activerecord (= 3.2.20)
+      activeresource (= 3.2.20)
+      activesupport (= 3.2.20)
       bundler (~> 1.0)
-      railties (= 3.2.18)
+      railties (= 3.2.20)
     rails_autolink (1.1.0)
       rails (> 3.1)
-    railties (3.2.18)
-      actionpack (= 3.2.18)
-      activesupport (= 3.2.18)
+    railties (3.2.20)
+      actionpack (= 3.2.20)
+      activesupport (= 3.2.20)
       rack-ssl (~> 1.3.2)
       rake (>= 0.8.7)
       rdoc (~> 3.4)
@@ -376,6 +399,11 @@ GEM
     rubyntlm (0.3.4)
     rvm-capistrano (1.3.1)
       capistrano (>= 2.0.0)
+    sass (3.2.5)
+    sass-rails (3.2.6)
+      railties (~> 3.2.0)
+      sass (>= 3.1.10)
+      tilt (~> 1.3)
     savon (2.3.3)
       akami (~> 1.2.0)
       builder (>= 2.1.2)
@@ -394,11 +422,12 @@ GEM
       hashie
       httmultiparty (>= 0.3)
       httparty (>= 0.7.3)
-    sprockets (2.2.2)
+    sprockets (2.2.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    statsd-ruby (1.2.1)
     thinking-sphinx (2.0.10)
       activerecord (>= 3.0.3)
       builder (>= 2.1.2)
@@ -412,11 +441,17 @@ GEM
     ts-delayed-delta (1.1.3)
       delayed_job (>= 2.0.4)
       thinking-sphinx (>= 1.3.6)
+    turbo-sprockets-rails3 (0.3.14)
+      railties (> 3.2.8, < 4.0.0)
+      sprockets (>= 2.2.0)
     twitter (4.7.0)
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
       simple_oauth (~> 0.2)
-    tzinfo (0.3.39)
+    tzinfo (0.3.42)
+    uglifier (2.2.1)
+      execjs (>= 0.3.0)
+      multi_json (~> 1.0, >= 1.0.2)
     utf8-cleaner (0.0.6)
     uuidtools (2.1.4)
     warden (1.2.1)
@@ -433,7 +468,7 @@ GEM
       rails
     will_paginate (3.0.4)
     ya2yaml (0.31)
-    ym4r (0.6.1)
+    yui-compressor (0.12.0)
 
 PLATFORMS
   ruby
@@ -454,6 +489,7 @@ DEPENDENCIES
   daemons
   database_cleaner
   dbf
+  debugger
   delayed_job
   delayed_job_active_record
   delayed_paperclip!
@@ -465,7 +501,7 @@ DEPENDENCIES
   dynamic_form
   exifr
   faker
-  flickraw (~> 0.9.8)
+  flickraw (~> 0.9.8)!
   friendly_id (~> 4.0.1)
   gdata!
   geocoder
@@ -475,8 +511,9 @@ DEPENDENCIES
   haml
   haml-rails
   htmlentities
-  i18n-js
+  i18n-js!
   irwi!
+  jquery-rails
   json (~> 1.7.7)
   koala
   machinist
@@ -484,6 +521,7 @@ DEPENDENCIES
   memcache-client
   mobile-fu!
   mocha
+  newrelic_rpm
   nokogiri
   objectify-xml
   omniauth-facebook
@@ -495,8 +533,8 @@ DEPENDENCIES
   paperclip (= 3.4.2)
   pg
   preferences!
-  rack-google-analytics
-  rails (~> 3.2.18)
+  rack-google-analytics!
+  rails (~> 3.2.20)
   rake (= 0.8.7)
   rest-client
   rgeo
@@ -507,14 +545,19 @@ DEPENDENCIES
   rspec-html-matchers
   rspec-rails
   rvm-capistrano
+  sass (= 3.2.5)
+  sass-rails
   savon
   soundcloud
   spatial_adapter!
+  statsd-ruby
   thinking-sphinx (= 2.0.10)
   translate-rails3!
   trollop
   ts-delayed-delta (= 1.1.3)
+  turbo-sprockets-rails3
   twitter
+  uglifier
   utf8-cleaner
   watu_table_builder
   whenever
@@ -522,4 +565,4 @@ DEPENDENCIES
   will_paginate
   xmp!
   ya2yaml
-  ym4r_gm!
+  yui-compressor

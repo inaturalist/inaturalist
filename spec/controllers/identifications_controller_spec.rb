@@ -20,6 +20,16 @@ describe IdentificationsController, "agree" do
       post :agree, :observation_id => o.id, :taxon_id => i1.taxon_id
     }.should_not raise_error
   end
+
+  it "should not raise an error if the observation does not exist" do
+    o = Observation.make!
+    u = User.make!
+    t = Taxon.make!
+    sign_in u
+    lambda {
+      post :agree, :observation_id => o.id+1, :taxon_id => t.id
+    }.should_not raise_error
+  end
 end
 
 describe IdentificationsController, "destroy" do

@@ -34,6 +34,8 @@ es:
   a_flag_for_x: "una marca de %{x}"
   a_greasemonkey_script: "un script de Greasemonkey"
   a_member_of_taxon_html: "un miembro de %{taxon}"
+  a_photo: una foto
+  a_sound: un sonido
   able_to_connect_flickr: "¡Muy bienPudimos vincular su cuenta de Flickr."
   about: "Acerca de"
   about_external_links: Acerca de los enlaces externos
@@ -203,6 +205,7 @@ es:
   add_one: "¡Agregar uno!"
   add_photos: "Agregar fotos"
   add_photos_to_this_observation: "Añadir fotos a esta observación"
+  add_place: "Añadir lugar"
   add_several_observations_at_once: "Agregar varias observaciones de una sola vez"
   add_section: Añadir sección
   add_shape: Añade un límite
@@ -363,6 +366,7 @@ es:
   and_other_taxa: "&amp; Otros Taxones"
   and_un_license_all_your_observations: y quita la licencia de todas tus observaciones
   and_you_havent_linked: "...y no la ha ligado a una de estas cuentas externas, debería ingresar a través de %{site_name} primero, luego modificar su perfil y vincular su cuenta desde ahí. ¡De otra forma %{site_name} no puede darse cuenta de que ambas cuentas están conectadas y en lugar de eso tratar de crear una cuenta para usted!"
+  android: Android
   animals: Animales
   announcement_was_successfully_created: El aviso fue creado satisfactoriamente.
   announcement_was_successfully_updated: El aviso fue autualizado satisfactoriamente.
@@ -468,6 +472,7 @@ es:
   back_to_your_observatios: "Regresar a sus observaciones"
   back_to_your_profile: "Regresar a su perfil"
   back_to_your_projects: Regresar a tus proyectos
+  basic: Básico
   batch: Grupo
   batch_edit: "Modificar grupo"
   batch_edit_taxa_for_x_html: "Edición de datos po lote para %{x}"
@@ -598,6 +603,7 @@ es:
     observaciones en %{site_name}. Trate de seleccionar imágenes que
     <em>muestren características de diagnóstico</em> y <em>se vean bien como
     íconos</em>.  La <em>primera aparece por defecto</em>.
+  choose_columns: Elegir columnas
   choose_from_your_lists: "Seleccionar de sus listas"
   choose_files_from_your_computer: selecciona el archivo de tu computadora.
   choose_good_default_photos: "seleccionar buenas fotos por defecto del grupo de fotos de Creative Commons en Flickr"
@@ -715,6 +721,7 @@ es:
     attribution_noderivs_license: Atribución - Sin obras derivadas
     gnu_free_documentation_license: Licencia gratuita de documentación GNU
   copyright_holder: Titular de los derechos de autor
+  copyright_infringement_desc: Viola el derecho de autor o fue creado por una persona distinta del observador y carece de atribución
   couldnt_change_your_password: "Tu contraseña no pudo ser modificada: %{e}"
   couldnt_find_a_user_matching_x_param: "No se pudo encontrar al usuario con parametros: %{id}"
   couldnt_find_that_taxon: No se encontro la especie o grupo.
@@ -729,6 +736,7 @@ es:
   create_a_new_place: "Crear un Lugar nuevo"
   create_a_new_taxon: Crea una nueva especie o grupo
   create_an_account: "Crear una cuenta"
+  create_export: Crear exportación
   create_new_taxon: "Crear un Nuevo Taxón"
   create_observations: "Crear observaciones"
   create_observations_by_uploading_photos_to:
@@ -904,6 +912,7 @@ es:
   default_sound_license: Licencias del sonido predeterminadas
   defaults_to_your_name_or_username: Por defecto es su nombre o nombre de usuario
   delete: Eliminar
+  delete_all: Eliminar todo
   delete_conversation: Eliminar conversación
   delete_icon?: "¿Eliminar ícono?"
   delete_photo: "Eliminar foto"
@@ -913,6 +922,7 @@ es:
   delete_this_name: "Eliminar este nombre"
   delete_user: "Eliminar usuario"
   delete_your_account: "Eliminar su cuenta"
+  deleted_synonyms: Eliminado sinónimos
   deleting: Borrando...
   desc: desc
   descendant_taxa: "taxones descendientes"
@@ -1106,12 +1116,13 @@ es:
       managed: cuativerio/cultivada
   establishment_means: "Medio de establecimiento"
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: "solamente ocurre en México"
+    native_and_occurs_nowhere_else: "nativo, no ocurre en ningún otro lugar"
     arrived_in_the_region_via_anthropogenic_means: "llegó a la región por medios antropogénicos"
   establishment_means_describes_how: "El medio de establecimiento describe cómo se estableció el taxón en un área. Ver DarwinCore para <a href=\"http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">más información en terminología</a>."
   every_species_seen_by: Todas las especies vistas por
   everyone: todos
   everyone_journal_posts: "Articulos en todos los diarios"
+  everywhere: todas partes
   exact_coordinates_obscured_for: "Coordenadas exactas ocultas para visualización pública para especies amenazadas."
   exact_location: Ubicación exacta
   exact_rank: Rango exacto
@@ -1122,6 +1133,7 @@ es:
   explore!: ¡Descubra!
   explore_everyones_observations: "Explore las observaciones de todos"
   export: Exportar
+  export_observations: Exportar observaciones
   external_links: Enlaces externos
   extinct: extinto
   extinct_in_the_wild: "extint en estado silvestre"
@@ -1139,6 +1151,8 @@ es:
   feature_this_project: "¿Quieres resaltar este proyecto?"
   featured: Destacados
   featured?: ¿Destacados?
+  featured_projects_from_everywhere: "Proyectos destacados de todas partes"
+  featured_projects_from_place: "Proyectos destacados de %{place}"
   february: Febrero
   feedback: Retroalimentación
   feedback_group: "Grupo de retroalimentación"
@@ -1250,6 +1264,7 @@ es:
   getting_started: "Cómo Empezar"
   give_it_some_detail: "¡Colóquele algún detalle!"
   global_conservation_status: "Estado de conservación global"
+  global_names: Nombres globales
   globally: globalmente
   go: Busca
   good_choice_for_sharing: "Buena alternativa para compartir con los científicos"
@@ -1269,6 +1284,7 @@ es:
   guide_was_successfully_created: La guía fue creada satisfactoriamente.
   guide_was_successfully_published: La guía fue publicada satisfactoriamente.
   guide_was_successfully_updated: La guía fue actualizada satisfactoriamente.
+  guidelines: Directrices
   guides: Guías
   has_already_been_flagged_by: ya ha sido reportado por
   has_been: ha sido
@@ -1304,6 +1320,7 @@ es:
   highest_rank: Rango más alto
   home: Inicio
   home_faq: FAQ
+  however_there_were_some_issues: "Sin embargo, hubo algunos problemas: %{issues}"
   hybrid: híbrido
   i_something_i: <i>Algo...</i>
   icon: Ícono
@@ -1328,7 +1345,7 @@ es:
   ids: Identificaciones
   ids_made_for_others: "Identificaciones hechas para otros"
   if_matches_come_from_a_comprehensive_list:  Si los resultados provienen de una lista exhaustiva, una barra verde como esta se mostrará.
-  if_this_is_a_cientific_name: "Si este es un nombre científico, ¿está aceptado actualmente?"
+  if_this_is_a_scientific_name: "Si este es un nombre científico, ¿está aceptado actualmente?"
   if_this_link_will_apply_to_descendant: "Si este vínculo aplicará a los taxones descendientes, puede usar sus plantillas de etiquetas para llenar el nombre del taxón en la URL"
   if_you_already_have_an_account: "Si usted ya tiene una cuenta de %{site_name}..."
   if_you_dont_want_us_to_share_your_data: Si no deseas compartir esta información
@@ -1400,6 +1417,7 @@ es:
   invited: invitado
   invited_to_the_following_projects: "Esta invitado a los siguientes proyectos:"
   inviting: invitando...
+  iphone: iPhone
   is_a: "es un"
   is_an: "es un"
   is_not_following_anyone: "No esta siguiendo a nadie"
@@ -1604,6 +1622,7 @@ es:
   make_this_the_primary_listing: Hacerlo la especies listado principal
   mammals: mamíferos
   manage_all_your_subscriptions: Administra todas tus suscripciones
+  manage_names: Administrar nombres
   manage_your_project_invitations: Administra las invitaciones de tus proyectos
   managed: gestionado
   manager: Gerente
@@ -1634,6 +1653,7 @@ es:
   misleading_or_illegal_content: Contenido ilegal, engañoso, racial, étnico, etc.
   mixed_licenses: Licencia combinada
   mobile: Móvil
+  mobile_app_for: "Aplicación móvil para"
   mobile_apps_for: "Las aplicaciones móviles para"
   mobile_view_available: "Vista para teléfonos móviles disponible"
   mollusks: moluscos
@@ -1652,6 +1672,7 @@ es:
   must_be_less_than_x_MB: "Debe pesar menos de %{x}MB"
   must_be_observed_in: deben ser observaciones en
   must_have_observation_field: "debe completar el campo '%{operand}' en la observación"
+  must_have_x: "debe tener %{x}"
   n_ago: "hace %{n}"
   n_people_agrees: "%{amount} personas concuerdan"
   n_people_disagrees: "%{amount} personas no concuerdan "
@@ -1668,6 +1689,7 @@ es:
     nzor: New Zealand Organisms Register
   named_based_url_might_change: "Name-based URLs might change, but this won't.: Los URL basados en nombres podrían cambiar pero éstos no."
   names: Nombres
+  names_for_taxon_html: "Nombres para %{taxon}"
   native: nativa
   native_page_url: Página URL nativa
   naturalised: naturalizado
@@ -1714,7 +1736,7 @@ es:
   new_user_rules: "Nuevas reglas de usuario"
   new_users: Usuarios nuevos
   new_users_week: "Usuarios nuevos / Semana"
-  next: Siguiente &raquo;
+  next: Siguiente
   next_page: "Página siguiente"
   'no': 'No'
   no_activity_in_the_past_week: "No ha habido actividad en la semana anterior. !Es hora de"
@@ -1884,7 +1906,16 @@ es:
   observation_removed_from_the_project: "La observación fue eliminada del proyecto %{project}"
   observation_rights_html: "Observación %{rights}"
   observation_rules: "Reglas de observación"
-  observation_rules_description: "Usted puede seleccionar reglas para determinar cuáles observaciones se pueden agregar a este proyecto, como limitar las observaciones a un lugar determinado. Nota&#58; limitar a lugares se basa actualmente en %{site_name} Places y sólo puede limitar las observaciones al rectángulo más pequeño que rodea un lugar."
+  observation_rules_description: |
+    Usted puede seleccionar reglas para determinar cuáles observaciones se
+    pueden agregar a este proyecto, como limitar las observaciones a un lugar
+    determinado. Nota&#58; limitar a lugares se basa actualmente en
+    %{site_name} Places y sólo puede limitar las observaciones al rectángulo
+    más pequeño que rodea un lugar. Si usted tiene más de una regla para un
+    tipo de regla, las observaciones serán válidas si pasa cualquiera regla.
+    Por ejemplo, si usted tiene las reglas "debe estar en Amphibia" y "debe
+    estar en Reptilia", entonces el proyecto aceptará observaciones de
+    reptiles o anfibios.
   observation_was_deleted: La observación fue borrada.
   observation_would_like_some_help: "¡A %{user} le gustaría un poco de ayuda para identificar esto!"
   observations: Observaciones
@@ -1906,6 +1937,7 @@ es:
   observations_it_may_take_a_few: "observaciones. Esto podría tardar unos minutos."
   observations_last500: "Observaciones (últimas 500)"
   observations_map: "Observaciones / Mapa"
+  observation_must_dotdotdot: Observación debe...
   observations_near_a_place_are:
       Observaciones "cercanas" a un lugar que esten con un rectangulo alrededor
       de los limites de la figura, puede dar de resultado algunos datos imprecisos para
@@ -1914,6 +1946,7 @@ es:
   observations_needing_curation: "Observaciones que necesitan curación"
   observations_obscured: "Observaciones (ocultas)"
   observations_observed_this_month: Observaciones <em>hechas</em> este mes, no se añaden al mes en curso. ¡Sal y haz más observaciones!
+  observations_of_taxon: "Observaciones de %{taxon_name}"
   observations_on_inat_check_list: "observaciones en %{site_name}. Los lugares con lista de verificación que han sido confirmados tienen al menos 1 observación confirmada dentro de sus límites."
   observations_per_month: "Observaciones / Mes"
   observations_removed_from_the_project: "Observaciones eliminadas del proyecto %{project}"
@@ -2021,6 +2054,7 @@ es:
     one: otro animal
     other: otros animales
   other_listings_of_this_taxon_for_this_place: Otras ejemplas de este especies listado en este lugar
+  our_blog: nuestro blog
   other_options: Otras Opciones
   out_of_range: "Fuera del rango"
   overview: Visión de conjunto
@@ -2263,7 +2297,8 @@ es:
   project_x_was_delete: "El proyecto %{project} fue eliminado"
   projects: Proyectos
   projects_description: "Los proyectos son una forma de agrupar sus observaciones con otras personas en %{site_name}.  Ya sea que a usted le interese comenzar un proyecto científico ciudadano o solamente mantener registros de las aves de un parque cercano con su club de observación local, la forma de hacerlo es con Proyectos."
-  projects_in_x: Proyectos en %{x}
+  projects_from_place: "Proyectos de %{place}"
+  projects_in_x: "Proyectos en %{x}"
   projects_you_admin: "Proyectos que usted administra"
   projects_youve_joined: "Proyectos a los que se ha unido"
   protozoans: protozoarios
@@ -2315,11 +2350,16 @@ es:
   recent_comments_on_your_stuff: "Comentarios recientes sobre su trabajo"
   recent_observations: "Observaciones recientes"
   recent_atom_observations_by: "Observaciones recientes por %{login} (Atom)"
+  recent_exports: Exportaciones recientes
   recent_observations_by: "Observaciones recientes por %{login}"
   recent_post: Notas recientes
   recent_updates: "Actualizaciones recientes"
   recently_active: "Activo recientemente"
+  recently_active_projects_from_everywhere: "Recientemente proyectos activos de todas partes"
+  recently_active_projects_from_place: "Recientemente proyectos activos de %{place}"
   recently_created: "Creados recientemente"
+  recently_created_projects_from_everywhere: "Proyectos recientemente creados desde todas partes"
+  recently_created_projects_from_place: "Proyectos recientemente creados desde %{place}"
   recently_observed: "Observados recientemente"
   recently_resolved: "Resueltos recientemente"
   record!: ¡Comparta!
@@ -2349,6 +2389,7 @@ es:
   remove_from_project: Quitar del proyecto
   remove_manager: Quitar gerente
   remove_photo: Quitar foto
+  remove_place: Quitar lugar
   remove_project_user: "Quitar usuario de proyecto"
   remove_range: Quitar distribución
   remove_section: Quitar sección
@@ -2501,6 +2542,10 @@ es:
   show_the_total_number_of: Muestra el número total de especies o grupos en las listas de proyecos junto con el número de especies o grupos observados.
   show_total_listed_taxa: Mostrar la lista total de especies o grupos
   showing_observations_by: Mostrando observaciones hechas por
+  showing_taxa_from_place: "Mostrando taxones de %{place}"
+  show_taxa_from_place: "Mostrar taxones de %{place}"
+  showing_taxa_from_everywhere: "Mostrando taxones de todas partes"
+  show_taxa_from_everywhere: "Mostrar taxones de todas partes"
   showing_one_to: "Mostrando 1 -"
   shown_publicly_as: "Mostrar públicamente como"
   sign_in: Ingrese
@@ -2663,6 +2708,7 @@ es:
       words_connector: ", "
   surround_any_cells_containing_commas: "Envuelva las celdas que contengan comas con comillas dobles"
   suspend_user: "Suspender usuario"
+  suspicious_photos: Fotos sospechosas
   sw_lat: lat. S.O.
   sw_lon: long. S.O.
   sync: ¿Sincronizar?
@@ -2693,6 +2739,7 @@ es:
   taxon_deleted: Taxon fue borrado.
   taxon_doesnt_have_a_range: El taxon no tiene un rango
   taxon_drop: dejar de taxón
+  taxon_extras: Extras taxón
   taxon_map:
       gbif_occurrences: Registros de GBIF
       it_may_take_google_a_while_to: Puede llevarle un rato a Google para cargar estos datos, si existen en GBIF.
@@ -2742,6 +2789,7 @@ es:
   that_role_doesnt_exist: Ese rol no existe.
   that_will_insert_a_link_to: "que insertará un vínculo a esta herramienta en cada página de fotos de Flickr."
   thats_okay_we_forget: "¡No hay problemaNosotros también olvidamos las nuestras. Envíenos el correo electrónico que usó para crear su cuenta y le enviaremos un vínculo para restablecer su contraseña."
+  thats_not_a_real_date: ¡Eso no es una cita de verdad!
   the: "el (la)"
   the_admin_is_the_person_who: El administrador es la persona que creo este proyecto. Puede hacer las mismas actividades que un curador o gerente
     con la distinción de ser el único que puede eliminar el proyecto.
@@ -2772,6 +2820,9 @@ es:
   the_user_x_has_been_unsuspended: "El usuario %{user} ha sido removido de la lista de suspendidos"
   the_world_is_full_of_interesting_places: "El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquinaLugares %{site_name} le permite buscar vida de todas partes del planeta. ¡Comience a explorar!"
   the_world_is_full_of_interesting_places_short: "El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquina"
+  there_are_x_synonyms_html:
+    one: "Hay <span class='count'>1</span> sinónimo</span>"
+    other: "Hay <span class='count'>%{count}</span> sinónimos</span>"
   there_is_no_wikipedia_page_matching: "No hay página en Wikipedia que concuerde"
   there_isnt_a_wikipedia_article_titled_x_html: "No existe un articulo relacionado con Wikipeia con el nombre '%{x}'. ¿Quisieras <a href='http://en.wikipedia.org/wiki/%{x}'>crear</a> uno?"
   there_isnt_wikipedia_article_perhaps: "No hay página en Wikipedia que concuerde"
@@ -3021,6 +3072,8 @@ es:
   view_post: Ver ingreso
   view_photos_ranges_observations_more: "¡Ve fotos, distribuciones de especies, observaciones de %{site_name} y más. Hemos recopilado información de muchas fuentes diferentes y las hemos combinado para proporcionar un breve resumen de cada especie en cada lugar."
   view_place: Ver lugar
+  view_projects_from_everywhere: Ver proyectos de todas partes
+  view_projects_from_place: "Ver proyectos de %{place}"
   view_stats: Ver contribuciones
   view_taxon_changes: Vier los cambios del taxon
   view_taxon_page: "Ver página del taxón"
@@ -3447,6 +3500,38 @@ es:
           taxones identificados que tienen una puntuación de más de 2/3 y al
           menos 2 identificaciones, elija el taxón más bajo ranking.
         </p>
+      export:
+        choose_columns_desc: Elija las columnas que desea exportar
+        create_a_query_desc_html: |
+          Crear una consulta de observación igual que lo haría en otro lugar
+          en el sitio. También puede cortar y pegar una URL observaciones
+          desde otra parte del sitio. Debe especificar un
+          <strong>taxón</strong>, <strong>lugar</strong>, <strong>de
+          usuario</strong>, <strong>proyecto</strong>, o <strong>consulta de
+          búsqueda</strong>.
+        query_placeholder: "Elija los parámetros de consulta a continuación o pegar en un URL observaciones"
+        taxon_extras_help_html: "Nota: estas columnas se ralentizará la generación de su exportación"
+        geo_help_html: |
+          Ciudad, condado, estado, campos de país sobre la base de
+          coordenadas. Niveles administrativos análogos serán utilizados para
+          las observaciones en las que no se aplican este tipo de lugar. Los
+          campos private_ * sólo se incluirán cuando se utiliza el filtro de
+          usuario y usted es el usuario, o cuando se utiliza el filtro de
+          proyecto y te cura el proyecto.
+        be_patient: |
+          Por favor, sea paciente, esto puede tardar algunos minutos. Si esto
+          está tomando demasiado tiempo, puede
+        check_back: |
+          Si vuelve a cargar esta página dentro de unos minutos su exportación
+          debe aparecer en la lista en la parte inferior de la página.
+        receive_an_email_with_your_data: Recibir un email con sus datos
+        receive_an_email_with_your_data_help: Usted recibirá un correo electrónico con su exportación como un archivo adjunto.
+        well_email_you: "Ok, le enviaremos un mensaje cuando esté listo."
+        taking_a_while: "Esto está tomando un tiempo. Por favor, intente una de las siguientes opciones."
+      show:
+        flagged_photos_desc_html: |
+          Algunas de estas fotos se han marcado para contenido inapropiado o 
+          las infracciones de derechos de autor. Para más detalles ver %{links}
     photos: 
       inviter: 
         automatically_add_to_project: "Añadir automáticamente al proyecto"
@@ -3508,9 +3593,43 @@ es:
             </li>
             <li>archivos KML y KMZ se añadirán al mapa en la página del proyecto</li>
           </ol>
+        rules:
+          captive: ser cautivo/cultivada
+          wild: ser salvaje/naturalizó
+          georeferenced: tener coordenadas
+          has_media: tener medios (foto o sonido)
+          has_a_photo: tener una foto
+          has_a_sound: tener un sonido
+          identified: ser identificado
+          in_taxon: estar en taxón
+          observed_in_place: ser observado en su lugar
+          on_list: ser de un taxón en la lista de proyectos
         trusted_project_means: |
           Cuando un projecto está verificado, los curadores y gerentes del
           proyecto pueden crear, actualizar y borra sus recursos del proyecto.
+    taxon_names:
+      form:
+        new_name_guidelines_html: |
+          <ul class="ui">
+            <li>Trate de añadir nombres que se han utilizado en otros lugares. Por favor, no inventar nuevos nombres.</li>
+            <li>No agregue nombres duplicados, por ejemplo, no mencione a numerosos halcones "halcón"</li>
+            <li>Para taxa superiores de nivel, trate de usar nombres que incluyen todos los descendientes, como "Jacamarás y parientes" o "familia de brezo"</li>
+          </ul>
+        places_help_html: |
+          Añada un nombre para un lugar para darle prioridad para los sitios y
+          los usuarios de ese lugar. Si hay varios nombres por lugar se puede
+          dar prioridad a ellos <a href="%{url}">aquí</a>. Por favor,
+          <strong>no agregue nombres de todos los lugares donde se utiliza el
+          nombre</strong>, sólo para los lugares que entran en conflicto con
+          otros lugares.
+      taxon:
+        about_html: |
+          Taxa puede tener muchos nombres comunes. Apoyamos un defecto nombre
+          común a nivel mundial, que se puede cambiar aquí arrastrando un
+          nombre a la parte superior de la lista. También puede especificar
+          nombres predeterminados en diferentes lugares editando el nombre y
+          añadir un lugar, pero por favor, sólo hacerlo cuando diferentes
+          lugares tienen nombres en conflicto.
     users:
       dashboard:
         taxon_change_desc: |
@@ -3550,6 +3669,9 @@ es:
           (GBIF), una organización internacional, organización
           intergubernamental que recopila y distribuye información sobre la
           biodiversidad de todo el mundo.
+        place_help_html: |
+          Personaliza unos pocos aspectos del sitio un lugar, al igual que los
+          nombres comunes.
         prefers_community_taxa_desc: |
           %{site_name} rastrea lo que usted piensa que sus observaciones son y
           lo que la comunidad piensa que son. La identificación que

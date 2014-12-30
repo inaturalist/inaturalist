@@ -1,17 +1,19 @@
 module PlacesHelper
   def place_name_and_type(place, options = {})
     place_name = options[:display] ? place.display_name : place.name
+    place_name = t("places_name.#{place_name.downcase.underscore}", :default => place_name)
     place_type_name = place_type(place)
     content_tag(:span, :class => "place #{place.place_type_name}") do
-      place_name + (place_type_name.blank? ? '' : " #{place_type_name}")
+      raw(place_name + (place_type_name.blank? ? '' : " #{place_type_name}"))
     end
   end
   
   def place_type(place)
     place_type_name = nil
     place_type_name = if place.place_type
-      content_tag(:span, :class => 'place_type description') do
-        "(#{place.place_type_name})"
+      key = "place_geo.geo_planet_place_types.#{place.place_type_name.underscore.downcase}"
+      content_tag(:span, :class => 'place_type meta') do
+        "(#{t(key, :default => place.place_type_name)})"
       end
     end
     place_type_name
@@ -28,6 +30,7 @@ module PlacesHelper
   end
   
   def google_static_map_for_place_url(place, options = {})
+    return if CONFIG.google.blank? || CONFIG.google.simple_key.blank?
     url_for_options = {
       :host => 'maps.google.com',
       :port => '',
@@ -36,7 +39,8 @@ module PlacesHelper
       :zoom => 15,
       :size => '200x200',
       :sensor => 'false',
-      :key => Ym4r::GmPlugin::ApiKey.get
+      :port => false,
+      :key => CONFIG.google.simple_key
     }.merge(options)
     url_for(url_for_options)
   end
@@ -53,7 +57,7 @@ module PlacesHelper
   
   def google_charts_map_for_places(places, options = {}, tag_options = {})
     countries = places.select {|p| p.place_type == Place::PLACE_TYPE_CODES['Country']}
-    states = places.select {|p| p.place_type == Place::PLACE_TYPE_CODES['State'] && p.parent.try(:code) == 'US'}
+    states = places.select {|p| p.admin_level == Place::STATE_LEVEL && p.parent.try(:code) == 'US'}
     geographical_area = 'world'
     labels = countries.map(&:code)
     if states.size > 0 && (countries.empty? || (countries.size == 1 && countries.first.code = 'US'))
@@ -64,6 +68,7 @@ module PlacesHelper
     url_for_options = {
       :host => 'chart.apis.google.com',
       :controller => 'chart',
+      :port => nil,
       :chs => '440x220',
       :chco => 'EEEEEE,1E90FF,1E90FF',
       :chld => labels.join,

@@ -1,0 +1,218 @@
+var inatTaxonMap = { };
+
+(function($) {
+  $.fn.taxonMap = function( options ) {
+    options = options || { }
+    $(this).each( function( ) {
+      if ( options == 'fit' ) {
+        inatTaxonMap.fit( this );
+      } else {
+        inatTaxonMap.setup( this, options );
+      }
+    });
+  }
+}(jQuery))
+
+inatTaxonMap.setup = function ( elt, options ) {
+  var options = $.extend( { }, options );
+  options.taxonID = $(elt).data('taxon-id');
+  options.latitude = options.latitude || $(elt).data('latitude');
+  options.longitude = options.longitude || $(elt).data('longitude');
+  options.mapType = $(elt).data('map-type');
+  options.zoomLevel = parseInt( $(elt).data('zoom-level') );
+  options.gbifKmlUrl = $(elt).data('gbif-kml');
+  options.showRange = $(elt).data('show-range');
+  options.placeGeomID = $(elt).data('place-geom-id');
+  options.minX = $(elt).data('min-x');
+  options.minY = $(elt).data('min-y');
+  options.maxX = $(elt).data('max-x');
+  options.maxY = $(elt).data('max-y');
+  options.flagLetters = $(elt).data('flag-letters');
+  options.windshaftUserID = $(elt).data('windshaft-user-id');
+  options.observations = options.observations || $(elt).data('observations');
+  // turn the observations JSON into proper JavaScript objects
+  if( options.observations ) {
+    options.observations = _.map( options.observations, function( observation ) {
+      return jQuery.parseJSON( observation );
+    });
+  }
+  // Make sure these two values are null if seemingly unassigned
+  if (options.gbifKmlUrl === '') {
+    options.gbifKmlUrl = null;
+  }
+  if (options.zoomLevel === 0) {
+    options.zoomLevel = null;
+  }
+
+  $(elt).data('taxonMapOptions', options)
+  inatTaxonMap.setupGoogle(elt)
+};
+
+inatTaxonMap.fit = function( elt ) {
+  inatTaxonMap.fitGoogle( elt );
+};
+
+inatTaxonMap.setupGoogle = function( elt ) {
+  var options = $(elt).data('taxonMapOptions'),
+      map = iNaturalist.Map.createMap({div: elt}),
+      preserveViewport = options.preserveViewport
+  if (options.minX) {
+    map.fitBounds(
+      new google.maps.LatLngBounds(
+        new google.maps.LatLng(options.minY, options.minX),
+        new google.maps.LatLng(options.maxY, options.maxX)
+      )
+    )
+    preserveViewport = true
+  } else {
+    if (options.latitude || options.longitude) {
+      map.setCenter(new google.maps.LatLng(options.latitude || 0, options.longitude || 0))
+    }
+    if (options.zoomLevel) {
+      map.setZoom(options.zoomLevel)
+    }
+  }
+
+  if (options.mapType) {
+    map.setMapTypeId(options.mapType)
+  }
+
+  if (options.gbifKmlUrl) {
+    var gbifLyr = new google.maps.KmlLayer(options.gbifKmlUrl, {suppressInfoWindows: true, preserveViewport: true})
+    map.addOverlay(I18n.t('taxon_map.gbif_occurrences'), gbifLyr, {
+      id: 'gbif-'+options.taxonID,
+      hidden: true,
+      description:
+        I18n.t('taxon_map.it_may_take_google_a_while_to') +
+        ' <a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">' + I18n.t('taxon_map.data_url') + '</a>'
+    })
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map));
+    google.maps.event.addListener(gbifLyr, 'click', function(e) {
+      if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}
+      for (var k in window['kmlInfoWindows']) {
+        window['kmlInfoWindows'][k].close()
+      }
+      var win = window['kmlInfoWindows'][e.featureData.id]
+      if (!win) {
+        // filter out google's insane parsing
+        var content = (e.featureData.description || '').replace(/(<a.+?>)<a.+?>(.+?)<\/a><\/a>/g, "$1$2</a>")
+        content = content.replace(/&lt;\/a/g, '')
+        content = content.replace(/&gt;/g, '')
+        content = content.replace(/<\/a"/g, '"')
+        win = window['kmlInfoWindows'][e.featureData.id] = new google.maps.InfoWindow({
+          content: content,
+          position: e.latLng,
+          pixelOffset: e.pixelOffset
+        })
+      }
+      win.open(map)
+      return false
+    })
+  }
+
+  if (options.showRange) {
+    map.addTaxonRangeLayer({ taxon_id: options.taxonID });
+  }
+
+  if (options.placeGeomID) {
+    map.addPlaceLayer({ place_id: options.placeGeomID });
+  }
+
+  var windshaftOptions = { };
+  if( options.taxonID ) {
+    windshaftOptions.taxon_id = options.taxonID;
+  }
+  if( options.windshaftUserID ) {
+    windshaftOptions.user_id = options.windshaftUserID;
+  }
+  if (! _.isEmpty( windshaftOptions )) {
+    if( options.observations ) {
+      windshaftOptions.point_observation_id = _.map(options.observations,
+        function( o ) { return o.id }).join(",");
+    }
+    map.addObservationsLayer(windshaftOptions);
+  }
+
+  inatTaxonMap.addObservationsToMap( options, map, preserveViewport);
+
+  if (!preserveViewport) {
+    inatTaxonMap.fit(elt)
+  }
+
+  $(elt).data('taxonMap', map)
+};
+
+inatTaxonMap.addObservationsToMap = function( options, map, preserveViewport ) {
+  if( !options.observations ) {
+    return;
+  }
+  var letter_counter = 0;
+  var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var obsIcon = iNaturalist.Map.createObservationIcon({color: "HotPink"});
+  var newObsIcon = iNaturalist.Map.createObservationIcon({color: "DeepPink"});
+
+  _.each(options.observations, function( o ) {
+    var icon_div = $('#observation-'+ o.id +' .icon').get(0);
+    if (!((o.latitude && o.longitude) || (o.private_latitude && o.private_longitude))) {
+      if( options.appendMarkerToList ) {
+        var icon_img = $('<img src="<%= asset_path("mapMarkers/questionmarker.png") %>"/>');
+        $(icon_div).text('').append(icon_img);
+        return;
+      }
+    }
+    observationOptions = { clickable: options.clickable, showAccuracy: options.showAccuracy };
+    if( options.flagLetters ) {
+      observationOptions.icon = iNaturalist.Map.createObservationIcon({
+        color: "HotPink",
+        character: letters[ letter_counter ],
+        stemless: o.coordinates_obscured
+      });
+    }
+    map.addObservation(o, observationOptions);
+    if (!o.map_scale && o.positional_accuracy) {
+      var c = new google.maps.Circle({
+        center: new google.maps.LatLng(o.latitude, o.longitude),
+        radius: o.positional_accuracy * 10
+      })
+    }
+    if( options.appendMarkerToList && o.marker) {
+      var marker = o.marker;
+      var src = o.marker.getIcon( );
+      if (src.url) src = src.url;
+      var icon_img = $('<img/>').attr('src', src).addClass('marker');
+      $(icon_div).text('').append( icon_img );
+      $(icon_img).click( function( ) {
+        map.openInfoWindow.apply( o.marker );
+      });
+    }
+    letter_counter++;
+  });
+  if( !preserveViewport ) {
+    if( options.observations.length === 1 ) {
+      o = options.observations[0];
+      var center = new google.maps.LatLng(
+        o.private_latitude || o.latitude,
+        o.private_longitude || o.longitude);
+      map.setCenter(center);
+    } else {
+      map.zoomToObservations();
+    }
+  }
+};
+
+inatTaxonMap.fitGoogle = function( elt ) {
+  var options = $(elt).data('taxonMapOptions'),
+      map = $(elt).data('taxonMap');
+  if (!map) { return; }
+  if (options.minX) {
+    map.fitBounds(
+      new google.maps.LatLngBounds(
+        new google.maps.LatLng(options.minY, options.minX),
+        new google.maps.LatLng(options.maxY, options.maxX)
+      )
+    );
+    return;
+  }
+  map.setCenter(new google.maps.LatLng(0, 0));
+  map.setZoom(1);
+};

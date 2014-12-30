@@ -20,7 +20,7 @@ OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia 
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+Bundler.require(:default, :assets, Rails.env) if defined?(Bundler)
 
 # require custom logger that includes PIDs
 require File.expand_path('../../lib/better_logger', __FILE__)
@@ -67,6 +67,20 @@ module Inaturalist
 
     config.active_record.schema_format = :sql
 
+    # Enable the asset pipeline
+    config.assets.enabled = true
+
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.1'
+
+    # Compile localized CSS:
+    config.assets.precompile += ['*.css', '*.js']
+
+    # in case assets reference application objects or methods
+    config.assets.initialize_on_precompile = true
+
+    config.i18n.enforce_available_locales = false
+
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
     end
@@ -85,23 +99,26 @@ GeoPlanet.appid = YDN_APP_ID
 
 FlickRaw.api_key = FLICKR_API_KEY
 FlickRaw.shared_secret = FLICKR_SHARED_SECRET
-FlickRaw.secure = false
+FlickRaw.ca_path = "/etc/ssl/certs" if File.exists?("/etc/ssl/certs")
 
 # General settings
 SITE_NAME = CONFIG.site_name
 SITE_NAME_SHORT = CONFIG.site_name_short || SITE_NAME
 OBSERVATIONS_TILE_SERVER = CONFIG.tile_servers.observations
 
-# apparently we still need this for static maps
-#Ym4r::GmPlugin::ApiKey.key = YAML.load_file("#{::Rails.root}/config/gmaps_api_key.yml")[Rails.env]
-
 # force encoding
 Encoding.default_internal = Encoding::UTF_8
 Encoding.default_external = Encoding::UTF_8
+
+# Graphite
+if CONFIG.statsd_host
+  STATSD = Statsd.new( CONFIG.statsd_host, ( CONFIG.statsd_port || 8125 ) )
+end
 
 # make sure we have geojson support
 require 'geo_ruby/geojson'
 require 'geo_ruby/shp4r/shp'
 require 'geo_ruby/kml'
 require 'google/api_client'
+require 'pp'
 

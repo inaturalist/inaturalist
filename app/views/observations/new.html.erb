@@ -1,5 +1,5 @@
 <% content_for(:title) do %>
-    <%=t :add_an_observation %>
+  <%=t :add_an_observation %>
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'observations/new', 'taxa', 'taxon_browser', 'observations/observation_fields', "observations/edit" %>
@@ -7,22 +7,22 @@
 <% content_for(:extrajs) do %>
   <%= google_maps_js %>
   <%= javascript_include_tag "jquery/plugins/jquery.string.1.0.js",
-                             'inaturalist/map3',
+                             'map_bundle',
                              "jquery/plugins/inat/datepicker.js",
                              "jquery/plugins/inat/photo_selectors.js",
                              "jquery/plugins/inat/sound_selectors.js",
                              "jquery/plugins/jquery.latLonSelector.js",
-                             "jquery/plugins/jqModal",
                              "taxon_browser",
                              "observations/observation_fields",
-                             "observations/edit" %>
+                             "observations/edit"
+                             %>
   <script type="text/javascript" charset="utf-8">
     var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
         PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
         SOUNDCLOUD_IDENTITY = <%=raw current_user.soundcloud_identity.to_json(:only => [:id]) %>,
-        PROJECT = <%=raw @project.to_json(:only => [:id, :place_id, :latitude, :longitude, :map_type, :zoom_level, :title]) %>
+        PROJECT = <%= @project.to_json(:only => [:id, :place_id, :latitude, :longitude, :map_type, :zoom_level, :title]).html_safe %>
         PLACE = <%= @place.to_json.html_safe %>,
-        PLACE_GEOMETRY_KML_URL = <%=raw place_geometry_kml_url.inspect %>,
+        SHOW_PLACE_GEOMETRY = <%= @place ? "true" : "false" %>,
         KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : '[]' %>,
         BOUNDS = <%=raw CONFIG.bounds.to_json %>
   </script>
@@ -67,12 +67,12 @@
       <% if current_user.email.blank? %>
         <div class="clear stacked notice">
           <%= fields_for current_user, :builder => DefaultFormBuilder do |fu| %>
-            <%= fu.label :email, 'Email address for comments and other feedback',
-              "data-tip" => "Add your email to get feedback on your observation from the community. If you'd rather not share it, please check back soon!"
+            <%= fu.label :email, t(:email_address_for_comments_and_other_feedback),
+              "data-tip" => t(:add_your_email_to_get)
             %>
             <%= fu.text_field :email, 
               :type => "email",
-              :placeholder => "Your email address" %>
+              :placeholder => t(:your_email_address) %>
           <% end %>
         </div>
       <% end %>
@@ -114,7 +114,7 @@
               <%= f.check_box :facebook_sharing, :checked => current_user.prefers_share_observations_on_facebook? %>
             <% end -%>
             <label for="observation_facebook_sharing">
-              <%= image_tag "http://www.google.com/s2/u/0/favicons?domain=facebook.com" %>
+              <%= image_tag favicon_url_for('http://www.facebook.com') %>
               Facebook
             </label>
           </span>
@@ -125,7 +125,7 @@
               <%= f.check_box :twitter_sharing, :checked => current_user.prefers_share_observations_on_twitter? %>
             <% end -%>
             <label for="observation_twitter_sharing">
-              <%= image_tag "http://www.google.com/s2/u/0/favicons?domain=twitter.com" %>
+              <%= image_tag favicon_url_for('http://www.twitter.com') %>
               Twitter
             </label>
           </span>

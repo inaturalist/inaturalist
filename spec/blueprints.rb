@@ -47,6 +47,7 @@ end
 Flag.blueprint do
   user { User.make! }
   flag { Faker::Name.name }
+  resolved { false }
 end
 
 FlickrIdentity.blueprint do
@@ -178,6 +179,11 @@ Place.blueprint do
   longitude { rand(180) }
 end
 
+PlaceTaxonName.blueprint do
+  place { Place.make! }
+  taxon_name { TaxonName.make! }
+end
+
 Post.blueprint do
   user { User.make! }
   parent { self.user }
@@ -213,6 +219,12 @@ end
 ProjectUser.blueprint do
   user { User.make }
   project { Project.make }
+end
+
+ProjectUserInvitation.blueprint do
+  user { User.make! }
+  invited_user { User.make! }
+  project { Project.make! }
 end
 
 ProjectObservation.blueprint do

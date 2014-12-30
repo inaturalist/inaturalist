@@ -17,6 +17,7 @@ module GeoRuby
         y < point.y
       end
       def across_dateline_from?(point)
+        return true if point.x > 180 # apparently this is how it handles stuff near the edge sometimes
         (x < 0 && point.x > 0 || x > 0 && point.x < 0) && (x.abs > 90 || point.x.abs > 90)
       end
 

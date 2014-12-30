@@ -1,6 +1,7 @@
 <%-  
   flaggable = flag.flaggable
   flaggable_class = flaggable.class
+  flaggable = flaggable.becomes(Photo) if flaggable.is_a?(Photo)
 -%>
 <div class="flag <%= 'resolved' if flag.resolved? %>">
   <% if flag.user -%>
@@ -10,7 +11,7 @@
   <% end -%>
   <%= link_to t(:flagged), flag, :action=>"show" %>
   <%= 
-    if flaggable.respond_to?(:user)
+    if flaggable.respond_to?(:user) && flaggable.user
       link_to "#{flaggable.user.login}'s", :controller => "users", :action => "show", :id => flaggable.user_id 
     else
       t(:the)

@@ -17,7 +17,15 @@
     </div>
     <%= link_to t(:back_to_projects), projects_path, :class => 'back crumb' %>
   </div><!-- /#breadcrumbs -->
-  <h2><%= t(:browse_projects) %></h2>
+  <% if @place -%>
+    <h2 class="inlineblock"><%=t :projects_from_place, :place => t(@place.name, :default => @place.name) %></h2>
+    (<%= link_to t(:view_projects_from_place, :place => t(:everywhere, :default => "everywhere")), url_for_params(:everywhere => true) %>)
+  <% elsif @site_place %>
+    <h2 class="inlineblock"><%=t :browse_projects %></h2>
+    (<%= link_to t(:view_projects_from_place, :place => t(@site_place.name, :default => @site_place.name)), url_for_params(:everywhere => false) %>)
+  <% else %>
+    <h2><%= t(:browse_projects).titleize %></h2>
+  <% end -%>
 </div>
 
 <% @projects.each_with_index do |project, i| %>

@@ -1,9 +1,9 @@
 #encoding: utf-8
 class UsersController < ApplicationController  
-  doorkeeper_for :create, :update, :edit, :dashboard, :new_updates, :if => lambda { authenticate_with_oauth? }
+  doorkeeper_for :create, :update, :edit, :dashboard, :new_updates, :search, :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
-    :except => [:index, :show, :new, :create, :activate, :relationships]
+    :except => [:index, :show, :new, :create, :activate, :relationships, :search]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
     :show, :update, :relationships, :add_role, :remove_role]
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
@@ -143,7 +143,7 @@ class UsersController < ApplicationController
           where("#{klass.table_name}.created_at > ?", 1.week.ago).
           where("users.id IS NOT NULL").
           includes(:user)
-        scope = scope.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
+        scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
         @updates += scope.all
       end
       @updates.delete_if do |u|
@@ -169,7 +169,7 @@ class UsersController < ApplicationController
     @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}_4"
     unless fragment_exist?(@curators_key)
       @curators = User.curators.limit(500)
-      @curators = @curators.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
+      @curators = @curators.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
       @curators = @curators.reject(&:is_admin?)
       @updated_taxa_counts = Taxon.where("updater_id IN (?)", @curators).group(:updater_id).count
       @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count
@@ -203,9 +203,9 @@ class UsersController < ApplicationController
   def search
     scope = User.active.order('login').scoped
     @q = params[:q].to_s
-    if logged_in? && !@q.blank?
+    unless @q.blank?
       wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
-      conditions = if @q =~ Devise.email_regexp
+      conditions = if logged_in? && @q =~ Devise.email_regexp
         ["email = ?", @q]
       elsif @q =~ /\w+\s+\w+/
         ["lower(name) LIKE ?", wildcard_q]
@@ -241,7 +241,11 @@ class UsersController < ApplicationController
     end
     
     respond_to do |format|
-      format.html
+      format.html do
+        @shareable_image_url = FakeView.image_url(@selected_user.icon.url(:original))
+        @shareable_description = @selected_user.description
+        @shareable_description = I18n.t(:user_is_a_naturalist, :user => @selected_user.login) if @shareable_description.blank?
+      end
       format.json { render :json => @selected_user.to_json(User.default_json_options) }
       format.mobile
     end
@@ -532,7 +536,7 @@ protected
     if per == 'month'
       scope = scope.where("EXTRACT(MONTH FROM observed_on) = ?", month)
     end
-    scope = scope.where("observations.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
+    scope = scope.where("observations.site_id = ?", @site) if @site && @site.prefers_site_only_users?
     counts = scope.count.to_a.sort_by(&:last).reverse[0..4]
     users = User.where("id IN (?)", counts.map(&:first))
     counts.inject({}) do |memo, item|
@@ -547,8 +551,8 @@ protected
     month = options[:month] || Time.now.month
     date_clause = "EXTRACT(YEAR FROM o.observed_on) = #{year}"
     date_clause += "AND EXTRACT(MONTH FROM o.observed_on) = #{month}" if per == 'month'
-    site_clause = if CONFIG.site_only_users
-      "AND o.uri LIKE '#{CONFIG.site_url}%'"
+    site_clause = if @site && @site.prefers_site_only_users?
+      "AND o.site_id = #{@site.id}"
     end
     sql = <<-SQL
       SELECT
@@ -590,7 +594,7 @@ protected
     if per == 'month'
       scope = scope.where("EXTRACT(MONTH FROM identifications.created_at) = ?", month)
     end
-    scope = scope.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
+    scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
     counts = scope.count.to_a
     users = User.where("id IN (?)", counts.map(&:first))
     counts.inject({}) do |memo, item|

@@ -68,7 +68,12 @@ Inaturalist::Application.routes.draw do
   end
 
   resources :observation_field_values, :only => [:create, :update, :destroy, :index]
-  resources :observation_fields
+  resources :observation_fields do
+    member do
+      get :merge
+      put :merge, :to => 'observation_fields#merge_field'
+    end
+  end
   match '/' => 'welcome#index'
   match '/home' => 'users#dashboard', :as => :home
   match '/home.:format' => 'users#dashboard', :as => :formatted_home
@@ -124,6 +129,7 @@ Inaturalist::Application.routes.draw do
   match 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
   match '/photos/:id/repair' => "photos#repair", :as => :photo_repair, :via => :put
   resources :photos, :only => [:show, :update, :destroy] do
+    resources :flags
     member do
       put :rotate
     end
@@ -144,11 +150,15 @@ Inaturalist::Application.routes.draw do
       get :taxa
       get :taxon_stats
       get :user_stats
+      get :accumulation
+      get :phylogram
       get :export
       post :email_export
+      get :map
     end
     member do
       put :viewed_updates
+      put :update_fields
     end
   end
 
@@ -220,14 +230,15 @@ Inaturalist::Application.routes.draw do
     member do
       post :add_matching, :as => :add_matching_to
       get :preview_matching, :as => :preview_matching_for
+      get :invite, :as => :invite_to
     end
     resources :assessments, :only => [:new, :create, :show, :index, :edit, :update]
   end
 
-
   resources :project_assets, :except => [:index, :show]
   resources :project_observations, :only => [:create, :destroy]
   resources :custom_projects, :except => [:index, :show]
+  resources :project_user_invitations, :only => [:create, :destroy]
 
   match 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => simplified_login_regex }
   match 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => simplified_login_regex }, :followers => 'followers'
@@ -263,26 +274,28 @@ Inaturalist::Application.routes.draw do
   resources :project_invitations, :except => [:index, :show]
   match 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation, :via => :post
   match 'taxa/names' => 'taxon_names#index'
-  match 'taxa/names.:format' => 'taxon_names#index'
   resources :taxa, :constraints => { :id => id_param_pattern } do
-    resources :taxon_names
     resources :flags
     resources :taxon_names, :controller => :taxon_names, :shallow => true
     resources :taxon_scheme_taxa, :controller => :taxon_scheme_taxa, :shallow => true
     get 'description' => 'taxa#describe', :on => :member, :as => :describe
-    # post 'update_photos'
     member do
       post 'update_photos', :as => "update_photos_for"
       post 'refresh_wikipedia_summary', :as => "refresh_wikipedia_summary_for"
       get 'schemes', :as => "schemes_for", :constraints => {:format => [:html, :mobile]}
       get 'tip'
+      get 'names', :to => 'taxon_names#taxon'
     end
     collection do
       get 'tree'
       get 'synonyms'
     end
   end
-  resources :taxon_names
+  resources :taxon_names do
+    member do
+      delete :destroy_synonyms, :as => 'delete_synonyms_of'
+    end
+  end
   # match 'taxa/:id/description' => 'taxa#describe', :as => :describe_taxon
   match 'taxa/:id/graft' => 'taxa#graft', :as => :graft_taxon
   match 'taxa/:id/children' => 'taxa#children', :as => :taxon_children

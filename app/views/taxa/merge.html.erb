@@ -7,7 +7,7 @@
                              "jquery/plugins/jqModal",
                              "taxon_browser" %>
   <script type="text/javascript" charset="utf-8">
-    var TAXON = <%= @taxon.to_json.html_safe %>
+    var TAXON = <%=json_escape @taxon.to_json.html_safe %>
     $(document).ready(function() {
       $('#keeper_name').simpleTaxonSelector({
         isActive: 'any',

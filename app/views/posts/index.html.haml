@@ -16,6 +16,7 @@
         - if @posts.empty?
           %center#noposts.readable.description
             = t(:no_post_yet)
+            %br
             - if (@parent.is_a?(Project) && @display_project.editable_by?(current_user))
               = link_to t(:add_one), new_project_journal_post_path(@parent_slug), |
                 :id => "newpostbutton", :class => "default button"                |

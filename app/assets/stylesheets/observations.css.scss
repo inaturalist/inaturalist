@@ -1,0 +1,812 @@
+/*
+ * Observation Styles
+ * Styles for visualizing individual observations.  Most assume a container of 
+ * the class .observations and children of the class .observation.
+ */
+.observations h4{display:none;margin:0;}
+.observations .details h4{display:block;}
+.observation .description.attribute{color:#333;}
+.observation div.description p{font-style:italic;}
+.observation .description.attribute img,
+.observation .details.attribute {display:none;}
+.observation .tags.attribute {display:none;}
+.observation .details.attribute img{max-width:400px;height:auto;}
+.observation .actions ul{display:inline;list-style:none;margin:0;padding:0;}
+.observation .actions ul li{display:inline;white-space:nowrap;}
+.observation .actions ul li:after{content:' | ';color:#888;}
+.observation .actions ul li.last:after{content:'';}
+
+.observations .photos .nophoto { text-align:center;}
+/* Table */
+.observations.table {
+  display: table;
+  width: 100%;
+}
+.observations.table .project_observation {
+  display: table-row-group;
+}
+.observations.table .project_observation .icon.attribute {
+  padding-bottom: 50px;
+}
+.observations.table .project_observation_extra {
+  display: block;
+  position:relative;
+}
+.observations.table .attribute.curator_ident {
+  display: block;
+  bottom: 10px;
+  left: 130px;
+  position: absolute;
+}
+.observations.table .attribute.curator_ident h4 { display: inline; font-family: "Trebuchet MS",Arial,sans-serif; font-size: 100%; font-weight: bold; color: #888;}
+
+
+.observations.table .headerrow {
+  display: table-header-group;
+}
+
+.observations.table .observation {
+  display: table-row;
+}
+
+.observations.table .observation:hover {
+  background-color: #F7F7F7;
+}
+
+.observations.table .observation .attribute,
+.observations.table .header {
+  display: table-cell;
+  border-bottom: 1px solid #eee;
+  padding: 0.5em;
+  vertical-align: top;
+}
+
+.observations.table .header {
+  border-color: #ccc;
+  color: #888;
+  padding: 0em 0.5em 0.25em;
+}
+
+.observations.table .header a {
+  color: #888;
+  white-space: nowrap;
+  display: block;
+}
+
+.observations.table .header.order_by a,
+.observations.table .header:hover a {
+  background: right center image-url('toggle_arrow_up.png') no-repeat;
+  visibility: visible;
+  padding-right: 16px;
+}
+
+.observations.table .header.order_by.desc a {
+  background: right center image-url('toggle_arrow_down.png') no-repeat;
+  visibility: visible;
+  padding-right: 16px;
+}
+
+.observations.table .header.order_by a:after,
+.observations.table .header.order_by.desc a:after {
+  color: #aaa;
+}
+
+.observations.table .icon.header,
+.observations.table .header.actions {
+  color: transparent;
+}
+
+.observations.table .photolist,
+.observations.mini .photolist {
+  position: relative; 
+}
+.observations.table .photos.attribute {
+  max-width: 120px;
+}
+
+.observations.table .photos .nophoto {
+  border: 1px dashed #eee;
+  padding: 0.5em;
+}
+
+.observations.table .photos .sound-icon, 
+.observations.mini .photos .sound-icon {
+  display: block;
+  text-align: center;
+}
+.observations.table .photos .sound-icon.with-photo i,
+.observations.mini .photos .sound-icon.with-photo i {
+  display:block;
+}
+
+.observations.mini .photos .sound-icon {
+  width:75px;
+}
+
+.observations.table .photos .sound-icon.with-photo {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  top: 0px;
+  left: 0px;
+  opacity: .8;
+  color: #eee;
+  margin-top: 13px;
+}
+
+.observations.mini .photos .sound-icon.with-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height:75px;
+  opacity: .8;
+  color: #eee;
+}
+.observations.mini .photos .sound-icon.with-photo i {margin-top:13px;}
+
+.observations.medium.grid .photos .sound-icon {
+  display:block;
+  width:100%;
+  position: absolute;
+  top:0;
+  left:0;
+}
+.observations.medium.grid .photos .sound-icon i {margin-top:75px;display:block;font-size:2em;}
+.observations.medium.grid .photos .sound-icon.with-photo i {
+  color:#eee;
+  font-size: 8em;
+  opacity: 0.6;
+  margin-top:40px;
+}
+
+.observations.table .observation .species_guess {
+  width: 25%;
+  line-height: 1.2;
+}
+
+.observations.table .taxon .othernames {
+  display: block;
+}
+
+.observations.table .observed_on,
+.observations.table .created_at {
+  color: #888;
+  font-style: italic;
+}
+
+.observations.table .actions ul {
+  display: block;
+}
+
+.observations.table .observation .actions ul.counts li:after {
+  content: '';
+}
+.observations.table .observation .details,
+.observations.table .observation .tags { display:none; }
+
+/* Mini */
+
+.observations.mini .observation {
+  position: relative;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #eee;
+  padding: 5px 0;
+}
+
+.observations.mini .observation:after {
+  content: '.';
+  clear: both;
+  height: 0;
+  visibility: hidden;
+  display: block;
+}
+
+.observations.mini .observed_on,
+.observations.mini .created_at,
+.observations.mini .species_guess,
+.observations.mini .tags,
+.observations.mini .place,
+.observations.mini .user,
+.observations.mini .actions,
+.observations.mini .curator_ident {
+  padding-left: 30px;
+}
+
+.observations.mini .icon{position:absolute; top:8px; left:5px;}
+.observations.mini .icon img {max-width: 20px;}
+.observations.mini .observation[data-iconic-taxon-name="Aves"] .icon,
+.observations.mini .observation[data-iconic-taxon-name="Mammalia"] .icon,
+.observations.mini .observation[data-iconic-taxon-name="Mollusca"] .icon,
+.observations.mini .observation[data-iconic-taxon-name="Arachnida"] .icon {top:5px;left:3px;}
+.observations.mini .observation[data-iconic-taxon-name="Fungi"] .icon {top:5px;left:5px;}
+.observations.mini .photos.attribute{max-width:80px;}
+
+.observations.mini .photos .photolist .photo.nophoto {
+  border: 1px dashed #eee;
+  line-height: 1;
+  padding: 0.5em;
+}
+
+
+.observations.mini .user,
+.observations.mini .observed_on,
+.observations.mini .created_at,
+.observations.mini .tags,
+.observations.mini .place {
+  font-size: 100%;
+  position: relative;
+  padding-left: 85px;
+}
+
+.observations.mini .user .label,
+.observations.mini .observed_on .label,
+.observations.mini .created_at .label,
+.observations.mini .place .label,
+.observations.mini .tags .label,
+.observations.mini .curator_ident .label {
+  display: block;
+  width: 50px;
+  position: absolute;
+  left: 30px;
+  color: #888;
+  font-style: italic;
+  font-size: 100%;
+  font-family: "Trebuchet MS",Arial,sans-serif;
+  line-height: 1.5;
+}
+.observations.mini .curator_ident .label {
+  display: inline;
+  width: auto;
+  position: static;
+  font-weight: bold;
+}
+.observations.mini .details .label {display:none;}
+
+.observations.mini .curator_ident .label:after { content: ': ';}
+
+.observations.mini .species_guess {
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.observations.mini .photos {
+  float: right;
+  margin-left: 4px;
+}
+.observations.mini .photos img { width: 75px; }
+.observations.table .photos img { width: 75px; }
+
+/* Compact Mini */
+.observations.mini.compact .observation .othernames,
+.observations.mini.compact .observation .photo,
+.observations.mini.compact .observation .time,
+.observations.mini.compact .observation .place {
+  display: none !important;
+}
+
+.observations.mini.compact .observation .user,
+.observations.mini.compact .observation .observed_on,
+.observations.mini.compact .observation .created_at {
+  padding-left: 30px;
+}
+
+.observations.mini.compact .observation .user .label,
+.observations.mini.compact .observation .observed_on .label,
+.observations.mini.compact .observation .created_at .label,
+.observations.mini.compact .observation .tags .label {
+  display: inline;
+  position: static;
+}
+.observations.mini.compact .observation .label:after { content: ': '; }
+.observations.mini.compact .observation .photo:first-child { display: block !important; }
+.observations.mini.compact .observation .tags .description {display:inline;}
+.observations.mini .editlink { display: none ;}
+
+.observations.mini.compact .actions,
+.observations.mini.infowindow .actions { margin-top: 5px;}
+
+/* Grid */
+.observations.grid .observation {
+  position:relative;
+  z-index:0;
+  text-align:center;
+  width: 75px;
+  height: 75px;
+  margin: 0 5px 5px 0;
+  vertical-align:top;
+  background-color: #eee;
+  margin-bottom:5px;
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+}
+.observations.grid .observed_on,
+.observations.grid .created_at,
+.observations.grid .place,
+.observations.grid .user,
+.observations.grid .details,
+.observations.grid .tags,
+.observations.grid .curator_ident {
+  display:none;
+}
+.observations.grid .actions .counts {
+  display:block;
+  top: 0px;
+  left: 0px;
+}
+.observations.grid .actions ul:last-child,
+.observations.grid .actions ul.editview {display:none;}
+.observations.grid .observation .actions ul li:after {content:'';}
+.observations.grid .research_grade_notice, 
+.observations.grid .id_please_notice {
+  top: 0px;
+  right: 0px;
+}
+.observations.grid .icon {
+  position:absolute;
+  top: 20px;
+  width:75px;
+  text-align:center;
+}
+.observations.grid .species_guess,
+.observations.grid .readable,
+.observations.grid p,
+.observations.grid .research_grade_notice, 
+.observations.grid .id_please_notice,
+.observations.grid .actions .counts {
+  font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+  font-size: 8pt;
+  line-height:1.2;
+}
+.observations.grid .species_guess a,
+.observations.grid .research_grade_notice, 
+.observations.grid .id_please_notice,
+.observations.grid .actions .counts {
+  padding: 2px;
+  z-index:1;
+  color: white;
+  position:absolute;
+  opacity: 0.4;
+  background-color:transparent;
+  text-shadow: 1px 1px 1px black;
+}
+.observations.grid .observation:hover .species_guess a,
+.observations.grid .observation:hover .research_grade_notice, 
+.observations.grid .observation:hover .id_please_notice,
+.observations.grid .observation:hover .actions .counts {
+  opacity: 1;
+}
+.observations.grid .idandrg .id_please_notice {top: 1.5em;}
+.observations.grid .species_guess a {
+  left: 0;
+  bottom: 0;
+  width:100%;
+  text-align:left;
+}
+/*.observations.grid .observation:hover .species_guess a {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), to(rgba(0,0,0,0.2)));
+  background-image: -webkit-linear-gradient(top, transparent, rgba(0,0,0,0.2));
+  background-image:    -moz-linear-gradient(top, transparent, rgba(0,0,0,0.2));
+  background-image:     -ms-linear-gradient(top, transparent, rgba(0,0,0,0.2));
+  background-image:      -o-linear-gradient(top, transparent, rgba(0,0,0,0.2));
+}
+.observations.grid .observation:hover .actions {
+  width: 100%;
+  height: 2em;
+  z-index:1;
+  display: block;
+  position:absolute;
+  top: 0;
+  left: 0;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,0.2)), to(transparent));
+  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.2), transparent);
+  background-image:    -moz-linear-gradient(top, rgba(0,0,0,0.2), transparent);
+  background-image:     -ms-linear-gradient(top, rgba(0,0,0,0.2), transparent);
+  background-image:      -o-linear-gradient(top, rgba(0,0,0,0.2), transparent);
+}*/
+.observations.grid .research_grade_notice,
+.observations.grid .id_please_notice {-webkit-border-radius:0px;-moz-border-radius:0px;border:0 transparent;border-radius:0px;padding:2px 5px; white-space: nowrap;}
+.observations.grid .research_grade_notice,
+.observations.grid .id_please_notice,
+.observations.grid .observation .actions .counts,
+.observations.grid .observation .actions .counts .count,
+.observations.grid .observation .actions .counts a {color:white;}
+.observations.grid .research_grade_notice .full,
+.observations.grid .id_please_notice .full { display:none; }
+.observations.grid .ui-icon-comment {
+  position:relative; 
+  width:12px; 
+  height: 12px; 
+  background-position: -130px -99px;
+  background-image: image-url('jquery-ui/ui-icons_ffffff_256x240.png');
+  margin-right: 2px;
+}
+.observations.grid .ui-icon-comment:before {
+  z-index: -1;
+  content: ' ';
+  display:block;
+  position: relative;
+  width:12px; 
+  height: 12px; 
+  background-position: -130px -99px;
+  left: 1px;
+  top: 1px;
+  background-image: image-url('jquery-ui/ui-icons_222222_256x240.png');
+}
+
+.observations.grid .species_guess .othernames {display:none;}
+.observations.grid .photos {
+  display:block;
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 75px;
+  height: 75px;
+}
+.observations.grid .photos img {width:75px;}
+.observations.grid .photos .readmore, .observations.grid .photos .nophoto {display:none;}
+
+.observations.medium.grid .photos a.photo {display:block;}
+.observations.medium.grid .observation {overflow: hidden;}
+.observations.medium.grid .observation,
+.observations.medium.grid .photos,
+.observations.medium.grid .photos a,
+.observations.medium.grid .icon {width:173px; height: 173px; }
+.observations.medium.grid .photos img { width:auto; position:absolute;}
+.observations.medium.grid .species_guess a { padding: 5px;}
+.observations.medium.grid .research_grade_notice, 
+.observations.medium.grid .id_please_notice,
+.observations.medium.grid .actions .counts {width:auto;padding: 3px 5px;}
+.observations.medium.grid .icon {top: 40px;}
+.observations.medium.grid .observation:hover .research_grade_notice .full,
+.observations.medium.grid .observation:hover .id_please_notice .full { display:inline; }
+
+/* Infowindow */
+.observations.infowindow {
+  margin: 0;
+}
+
+.observations.infowindow .observation {
+  border: 0 none;
+  margin: 0;
+  padding: 0;
+  width: 400px;
+  max-height: 300px;
+}
+
+.observations.infowindow .observation.longdesc {
+  overflow: auto;
+}
+
+.observations.infowindow .details,
+.observations.infowindow .tags {
+  display: block;
+  margin-top: 5px;
+}
+
+.observations.infowindow .observation .details.attribute img {
+  max-width: 300px;
+  max-height: 200px;
+  height: auto;
+}
+
+.observations.mini.compact.infowindow .observation .user,
+.observations.mini.compact.infowindow .observation .observed_on,
+.observations.mini.compact.infowindow .observation .created_at,
+.observations.mini.compact.infowindow .observation .details,
+.observations.mini.compact.infowindow .observation .tags,
+.observations.mini.compact.infowindow .observation .actions {
+  padding-left: 0px;
+}
+.observations.mini.compact.infowindow .observation .details {display:none;}
+
+.observations.mini.infowindow .observation[data-iconic-taxon-name] .icon {top:3px;}
+.observations.mini.infowindow .observation[data-iconic-taxon-name="Aves"] .icon {top:0px; left:0px;}
+.observations.mini.infowindow .observation[data-iconic-taxon-name="Fungi"] .icon,
+.observations.mini.infowindow .observation[data-iconic-taxon-name="Arachnida"] .icon,
+.observations.mini.infowindow .observation[data-iconic-taxon-name="Protozoa"] .icon,
+.observations.mini.infowindow .observation[data-iconic-taxon-name="Mollusca"] .icon,
+.observations.mini.infowindow .observation[data-iconic-taxon-name="Mammalia"] .icon {top:0px;}
+
+.observations.mini.compact.infowindow p {
+  margin-bottom: 0.8em;
+  line-height: 1.4;
+  font-size: 110%;
+}
+
+.observations.infowindow .observation .attribute.control {
+  display: none !important;
+}
+
+.gm-style .observations.infowindow .species_guess {font-size:14px;}
+.gm-style .observations.infowindow .species_guess a,
+.gm-style .observations.infowindow .species_guess span {font-size:inherit;}
+
+/* Max Infowindow */
+.observations.maxinfowindow {
+  padding: 10px 10px 0 0;
+}
+.observations.maxinfowindow .attribute.photos {
+  display: none;
+}
+
+.observations.maxinfowindow .bigphotos {
+  float: right;
+  margin: 0 0 10px 10px;
+  width: 230px;
+}
+
+.observations.maxinfowindow .description img {
+  max-width: 500px;
+}
+
+.observations.maxinfowindow .bigphotos img {
+  max-width: 230px;
+  margin-bottom: 10px;
+}
+
+.observations.maxinfowindow .bigphotos .other_photos img {
+  margin: 0 10px 10px 0;
+  max-width: 70px;
+}
+
+.observations.maxinfowindow .bigphotos .other_photos .last img {
+  margin-right: 0px;
+}
+
+.observations.maxinfowindow .bigphotos .main img {
+  display: block;
+  margin: 0 auto 10px;
+}
+
+/* New Observation */
+.observation.new .icon,
+.observation.new .observed_on,
+.observation.new .species_guess,
+.observation.new .place,
+.observation.new .photos,
+.observation.new .user {
+  display: block;
+  float: none;
+  width: auto;
+  padding: 0;
+}
+
+.observation.new, 
+.observations.table .observation.new,
+.observations.mini .observation.new {
+  position: relative;
+  padding: 1em 1em 0 1em;
+  margin-bottom: 1em;
+}
+
+.observation.new .attribute {
+  margin-bottom: 1em;
+}
+
+.observation.new label.left {
+  position: absolute;
+  left: 1em;
+  width: 75px;
+  text-align: right;
+}
+
+.observation.new input[type='text'],
+.observation.new input.text, 
+.observation.new select, 
+.observation.new textarea {
+  background-color: #fff;
+  margin: 0;
+  padding: 0.2em;
+  font-size: 120%;
+  width: auto;
+}
+
+.observation.new .date select {
+  width: auto;
+}
+
+.observation.new .place input.text,
+.observation.new .observed_on input.text {
+  margin: 0pt 0.583em 0.667em 0pt;
+  padding: 6px 0.2em 6px 0.2em;
+}
+.observation.new .place .description em {
+  color: HotPink;
+}
+
+.observation.new .species_guess input.text {
+  width: 100%;
+}
+
+.observation.new .place input.text {
+  width: 50%;
+}
+
+.observation.new .status {
+  display: inline;
+  text-align: left;
+}
+
+.observation.new #id_please_fields {
+  display:inline;
+  width: auto;
+  float: right;
+}
+
+.observation.new .details {
+  margin: 0;
+  padding-left: 0;
+  padding-right: 1em;
+}
+
+.observation.new #observation_description {
+  width: 100%;
+  height: 6em;
+}
+
+.observation.new .okcancel.buttons {
+  float: right;
+}
+
+.observation.new #id_please_wrapper {
+  width: auto; 
+  float: right; 
+  line-height: 100%;
+  margin: 5px 0 0 0.4em;
+}
+
+.observation.new #id_please_wrapper input {
+  margin: 0;
+}
+
+.observation.new .status {
+  display: block;
+  padding: 0;
+  border: none;
+  text-align: left;
+  margin: 3px auto;
+}
+
+.observation.new .status,
+.observation.new .status .taxon {
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  font-size: 100%;
+}
+
+.observation.new .status.loading {
+  color: #888;
+  padding-left: 20px;
+  background: image-url('spinner-small-999999_on_ffff99.gif') transparent 0px 1px no-repeat;
+}
+
+.observation.new .status.success {
+  color: green;
+  padding-left: 20px;
+  background: image-url('silk/accept.png') 0 0 no-repeat;
+}
+
+.observation.new .status.unmatched {
+  color: #888;
+  padding-left: 20px;
+  background: image-url('silk/help.png') 0 0 no-repeat;
+}
+
+.observation.new .attribute.error {
+  padding: 1em;
+}
+
+.observation.new .status ul.matches {
+  margin-bottom: 0;
+}
+
+#no_obs_message {
+  font-size: 180%;
+  margin: 2em;
+  text-align: center;
+}
+
+#no_obs_message .inline.button {
+  font-size: 90%;
+}
+
+#feeds {
+  text-align: right;
+}
+
+/* Obs form styles */
+
+.observationform .field {
+  position: relative;
+}
+
+.observationform .place_guess_field { margin-bottom: 5px;}
+
+.observationform .field .id_please {
+  position: absolute;
+  top: 0;
+  right: 0;
+  vertical-align: middle;
+}
+
+.observationform .field .id_please input {
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.observationform .field .id_please label {
+  display: inline;
+  font-weight: normal;
+  color: #888;
+}
+
+.observationform .latlonfields.open label{display:block;}
+
+.observationform .latlonfields.status label { width: 40px; }
+.observationform .latlonfields.status input { width: 89px; }
+.observationform .latlonfields.status label,
+.observationform .latlonfields.status input {
+  color: #888;
+  font-size: 0.8em;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+  background-color: transparent;
+}
+
+.observationform .latlonfields.status label:after{content:':';}
+.observationform select{width:auto;}
+.observationform .observed_on_string{margin-bottom:0.2em;}
+.observationform .time_zone{color:#888;}
+#batchformcol{margin-bottom:1em;}
+
+
+#batchformcol h3 a {
+  color: black;
+  padding-left: 13px;
+  background: left center image-url('toggle_arrow_down.png') no-repeat;
+}
+
+#batchformcol h3 a:hover {
+  color: #039;
+}
+
+#batchform.closed h3 a {
+  padding-left: 13px;
+  background: left center image-url('toggle_arrow_right.png') no-repeat;
+}
+
+#batchform,
+#batchformcol .observation,
+#batchformcol .observation:hover {
+  border: 0 none;
+  background-color: #ffc;
+  margin-bottom: 0;
+}
+
+.batchcontrols {
+  clear: both;
+  text-align: center;
+  margin: 0 auto;
+  padding: 1.5em 0 1em;
+}
+
+.batchcontrols .button{float:none;display:inline;}
+#detailscol .span-14{width:540px;}
+#detailscol textarea{width:520px;}
+.observation .error ul{margin-bottom:0;}
+.other_photos {float: left;}
+
+.observationcontrols a {margin-right:5px;}
+.observationcontrols .ui-icon {margin-right:2px;}
+.observationcontrols a, .observationcontrols a:hover {color: #222;}
+.observationcontrols a.disabled {color: #888;}
+.observationcontrols label {font-weight:normal;}
+.compact.observationcontrols label {display:none;}
+
+.ui-tooltip.observations .observation {border: 0 transparent; margin-bottom: 0;}
+.observations .idandrg .research_grade_notice .full,
+.observations .idandrg .id_please_notice .full { display:none; }
+

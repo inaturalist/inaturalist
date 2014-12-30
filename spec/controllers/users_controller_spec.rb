@@ -26,3 +26,10 @@ describe UsersController, "delete" do
     User.find_by_id(user.id).should_not be_blank
   end
 end
+
+describe UsersController, "search" do
+  it "should work while signed out" do
+    get :search
+    response.should be_success
+  end
+end

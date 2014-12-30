@@ -34,12 +34,12 @@ class PostsController < ApplicationController
       return
     end
 
-    if params[:login] && @post.parent_type == "Project"
+    if params[:login] && @parent.is_a?(Project)
       redirect_to project_journal_post_path(@parent, @post)
       return
     end
 
-    if params[:project_id] && @post.parent_type == "User"
+    if params[:project_id] && @parent.is_a?(User)
       redirect_to journal_post_path(@parent.login, @post)
       return
     end
@@ -58,6 +58,13 @@ class PostsController < ApplicationController
         @prev = @post.parent.journal_posts.published.where("published_at < ?", @post.published_at || @post.updated_at).order("published_at DESC").first
         @trip = @post
         @observations = @post.observations.order_by('observed_on')
+        @shareable_image_url = @post.body[/img.+src="(.+?)"/, 1]
+        @shareable_image_url ||= if @post.parent_type == "Project"
+          FakeView.image_url(@post.parent.icon.url(:original))
+        else
+          FakeView.image_url(@post.user.icon.url(:original))
+        end
+        @shareable_description = FakeView.truncate(@post.body, :length => 1000)
         render "trips/show"
       end
     end
@@ -116,19 +123,16 @@ class PostsController < ApplicationController
       @preview = @post
       @observations ||= @post.observations.all(:include => [:taxon, :photos])
       return render(:action => 'edit')
-=begin
-      if @post.update_attributes(params[:post])
-        redirect_to (@post.parent.is_a?(Project) ?
-                     edit_project_journal_post_path(@post.parent.slug, @post, :preview => true) :
-                     edit_journal_post_path(@post.user.login, @post, :preview => true)) and return
-      end
-=end
     end
     
     # This will actually perform the updates / deletions, so it needs to 
     # happen after preview rendering
-    # AG: actually, i don't think this actually runs after preview rendering...
-    @post.observations = @observations if @observations
+    if @observations
+      @post.observations = @observations
+    else
+      @post.observations.clear
+    end
+
     if @post.update_attributes(params[@post.class.name.underscore.to_sym])
       if @post.published_at
         flash[:notice] = t(:post_published)
@@ -234,7 +238,7 @@ class PostsController < ApplicationController
   def author_required
     if ((@post.parent.is_a?(Project) && !@post.parent.editable_by?(current_user)) ||
         !(logged_in? && @post.user.id == current_user.id))
-        flash[:notice] = t(:only_the_author_of_this_post_can_do_that)
+      flash[:notice] = t(:only_the_author_of_this_post_can_do_that)
       redirect_to (@post.parent.is_a?(Project) ?
                    project_journal_path(@post.parent.slug) :
                    journal_by_login_path(@post.user.login))

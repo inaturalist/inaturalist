@@ -1,6 +1,6 @@
 #encoding: utf-8
 class FlickrPhoto < Photo
-  
+  acts_as_flaggable  
   Photo.descendent_classes ||= []
   Photo.descendent_classes << self
   
@@ -108,7 +108,12 @@ class FlickrPhoto < Photo
   #
   def sync
     f = FlickrPhoto.flickraw_for_user(user)
-    sizes = f.photos.getSizes(:photo_id => native_photo_id)
+    sizes = begin
+      f.photos.getSizes(:photo_id => native_photo_id)
+    rescue FlickRaw::FailedResponse => e
+      raise e unless e =~ /Photo not found/
+      nil
+    end
     return if sizes.blank?
     sizes = sizes.index_by{|s| s.label}
     self.square_url   = sizes['Square'].source rescue nil
@@ -147,6 +152,7 @@ class FlickrPhoto < Photo
     # Try to get a taxon
     observation.taxon = to_taxon
     if t = observation.taxon
+      t.current_user = observation.user
       observation.species_guess = t.common_name.try(:name) || t.name
     end
 

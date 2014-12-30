@@ -14,6 +14,9 @@ class Taxon < ActiveRecord::Base
   attr_accessor :skip_after_move
 
   attr_accessor :locale
+
+  # set this when you want methods to respond with user-specific content
+  attr_accessor :current_user
   
   acts_as_flaggable
   has_ancestry
@@ -38,12 +41,14 @@ class Taxon < ActiveRecord::Base
   has_many :conservation_statuses, :dependent => :destroy
   has_many :guide_taxa, :inverse_of => :taxon, :dependent => :nullify
   has_many :guides, :inverse_of => :taxon, :dependent => :nullify
+  has_many :taxon_ancestors, :dependent => :delete_all
+  has_many :taxon_ancestors_as_ancestor, :class_name => "TaxonAncestor", :foreign_key => :ancestor_taxon_id, :dependent => :delete_all
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
   belongs_to :conservation_status_source, :class_name => "Source"
-  has_and_belongs_to_many :colors
+  has_and_belongs_to_many :colors, :uniq => true
   has_many :taxon_descriptions, :dependent => :destroy
   
   accepts_nested_attributes_for :conservation_status_source
@@ -62,6 +67,7 @@ class Taxon < ActiveRecord::Base
     # has listed_taxa(:list_id), :as => :lists, :type => :multi
     has created_at, ancestry
     has "REPLACE(ancestry, '/', ',')", :as => :ancestors, :type => :multi
+    has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi, :source => :query
     has observations_count
     set_property :delta => :delayed
   end
@@ -106,6 +112,7 @@ class Taxon < ActiveRecord::Base
     'suborder'     => 37,
     'infraorder'   => 35,
     'superfamily'  => 33,
+    'epifamily'    => 32,
     'family'       => 30,
     'subfamily'    => 27,
     'supertribe'   => 26,
@@ -357,6 +364,15 @@ class Taxon < ActiveRecord::Base
   ICONIC_TAXA_BY_NAME = ICONIC_TAXA.index_by(&:name)
   
   
+  def self.reset_iconic_taxa_constants_for_tests
+    remove_const('ICONIC_TAXA')
+    remove_const('ICONIC_TAXA_BY_ID')
+    remove_const('ICONIC_TAXA_BY_NAME')
+    const_set('ICONIC_TAXA', Taxon.sort_by_ancestry(self.iconic_taxa.arrange))
+    const_set('ICONIC_TAXA_BY_ID', Taxon::ICONIC_TAXA.index_by(&:id))
+    const_set('ICONIC_TAXA_BY_NAME', Taxon::ICONIC_TAXA.index_by(&:name))
+  end
+  
   # Callbacks ###############################################################
   
   def handle_after_move
@@ -564,7 +580,8 @@ class Taxon < ActiveRecord::Base
   end
   
   def default_name(options = {})
-    options[:locale] = options[:locale] || locale
+    options[:locale] ||= locale
+    options[:user] ||= current_user
     TaxonName.choose_default_name(taxon_names, options)
   end
   
@@ -577,8 +594,9 @@ class Taxon < ActiveRecord::Base
   # then first name of unspecified language (not-not-English), then the first 
   # common name of any language failing that
   #
-  def common_name
-    TaxonName.choose_common_name(taxon_names)
+  def common_name(options = {})
+    options[:user] ||= current_user
+    TaxonName.choose_common_name(taxon_names, options)
   end
 
   def common_name_string
@@ -674,8 +692,8 @@ class Taxon < ActiveRecord::Base
         else
           []
         end
-      rescue FlickRaw::FailedResponse, EOFError => e
-        Rails.logger.error "EXCEPTION RESCUE: #{e}"
+      rescue FlickRaw::FailedResponse, EOFError, OpenSSL::SSL::SSLError => e
+        Rails.logger.error "Failed Flickr API request: #{e}"
         Rails.logger.error e.backtrace.join("\n\t")
       end
     end
@@ -859,6 +877,9 @@ class Taxon < ActiveRecord::Base
     raise "Can't merge a taxon with itself" if reject.id == self.id
     reject_taxon_names = reject.taxon_names.all
     reject_taxon_scheme_taxa = reject.taxon_scheme_taxa.all
+    # otherwise it will screw up merge_has_many_associations
+    TaxonAncestor.where(:taxon_id => reject.id).delete_all
+    TaxonAncestor.where(:ancestor_taxon_id => reject.id).delete_all
     merge_has_many_associations(reject)
     
     # Merge ListRules and other polymorphic assocs
@@ -1049,9 +1070,9 @@ class Taxon < ActiveRecord::Base
   
   def add_to_intersecting_places
     Place.
-        place_types(%w(Country State County)).
+        where("places.admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTRY_LEVEL]).
         intersecting_taxon(self).
-        find_each(:select => "places.id, place_type, check_list_id, taxon_ranges.id AS taxon_range_id", :include => :check_list) do |place|
+        find_each(:select => "places.id, admin_level, check_list_id, taxon_ranges.id AS taxon_range_id", :include => :check_list) do |place|
       place.check_list.try(:add_taxon, self, :taxon_range_id => place.taxon_range_id)
     end
   end
@@ -1205,7 +1226,25 @@ class Taxon < ActiveRecord::Base
   def match_descendants(taxon_hash)
     Taxon.match_descendants_of_id(id, taxon_hash)
   end
-  
+
+  # get the extreme's of this taxon's observations as determined
+  # by our cache table for grids, at the highest zoom
+  def bounds
+    return @bounds if defined?(@bounds)
+    result = Taxon.connection.execute("SELECT
+      MIN(ST_YMIN(geom)) min_y, MAX(ST_YMAX(geom)) max_y,
+      MIN(ST_XMIN(geom)) min_x, MAX(ST_XMAX(geom)) max_x
+      FROM observation_zooms_2 WHERE taxon_id=#{ id }").first
+    @bounds = result['min_x'].nil? ?
+      { } :
+      {
+        min_x: result['min_x'],
+        min_y: result['min_y'],
+        max_x: result['max_x'],
+        max_y: result['max_y']
+      }
+  end
+
   # Static ##################################################################
 
   def self.match_descendants_of_id(id, taxon_hash)
@@ -1391,11 +1430,11 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.search_query(q)
+    q = sanitize_sphinx_query(q)
     if q.blank?
       q = q
       return [q, :all]
     end
-    q = sanitize_sphinx_query(q)
 
     # for some reason 1-term queries don't return an exact match first if enclosed 
     # in quotes, so we only use them for multi-term queries
@@ -1414,6 +1453,18 @@ class Taxon < ActiveRecord::Base
     scope = TaxonName.limit(10).includes(:taxon).
       where("lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase).scoped
     scope = scope.where(options[:ancestor].descendant_conditions) if options[:ancestor]
+    if options[:iconic_taxa]
+      iconic_taxon_ids = options[:iconic_taxa].map do |it|
+        if it.is_a?(Taxon)
+          it.id
+        elsif it.to_i == 0
+          Taxon::ICONIC_TAXA_BY_NAME[it].try(:id)
+        else
+          it
+        end
+      end.compact
+      scope = scope.where("taxa.iconic_taxon_id IN (?)", iconic_taxon_ids)
+    end
     taxon_names = scope.all
     return taxon_names.first.taxon if taxon_names.size == 1
     taxa = taxon_names.map{|tn| tn.taxon}.compact
@@ -1429,7 +1480,7 @@ class Taxon < ActiveRecord::Base
         ).compact
         taxa = search_results.select{|t| t.taxon_names.detect{|tn| tn.name.downcase == name}}
         taxa = search_results if taxa.blank? && search_results.size == 1 && search_results.first.taxon_names.detect{|tn| tn.name.downcase == name}
-      rescue Riddle::ConnectionError, Riddle::ResponseError => e
+      rescue Riddle::ConnectionError, Riddle::ResponseError, ThinkingSphinx::SphinxError => e
         return
       end
     end

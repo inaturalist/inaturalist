@@ -1,4 +1,4 @@
-<% content_for(:title) do %><%= t(:users_profile, :user => "#{h @user.login}") %><% end %>
+<% content_for(:title) do %><%= @title = t(:users_profile, :user => @user.login) %><% end %>
 
 <% content_for(:extracss) do %>
 <%= stylesheet_link_tag "taxa" %>
@@ -34,6 +34,16 @@
     })
   </script>
 <% end %>
+
+<%- content_for(:extrahead) do -%>
+  <meta property="og:image" content="<%= html_attributize @shareable_image_url %>"/> 
+  <meta property="og:description" content="<%= html_attributize @shareable_description %>"/> 
+  <meta name="twitter:card" content="summary">
+  <meta name="og:title" content="<%= html_attributize @title %>">
+  <% if twitter_pa = @user.provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
+    <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
+  <% end -%>
+<%- end -%>
 
 <%= render :partial => "shared/by_login_header", :locals => { :model_name => "Profile" } %>
 

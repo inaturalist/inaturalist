@@ -6,6 +6,12 @@ class String
   def noish?
     %w(0 no n false f).include?(self.downcase)
   end
+
+  def utf_safe
+    encode('UTF-8')
+  rescue Encoding::UndefinedConversionError
+    I18n.t(:encoding_error, :default => "encoding error")
+  end
 end
 
 class NilClass

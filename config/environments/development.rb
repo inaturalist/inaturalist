@@ -28,6 +28,9 @@ Inaturalist::Application.configure do
   # config.cache_classes = true
   config.cache_store = :mem_cache_store, CONFIG.memcached
 
+  # Enable serving of images, stylesheets, and javascripts from an asset server
+  config.action_controller.asset_host = CONFIG.site_url
+
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
@@ -36,5 +39,9 @@ Inaturalist::Application.configure do
   
   config.active_support.deprecation = :log
   # config.middleware.use MailView::Mapper, [EmailerPreview] # TODO maybe include this in Gemfile
+
+  config.middleware.use Rack::GoogleAnalytics, :trackers => lambda { |env|
+    return env['inat_ga_trackers'] if env['inat_ga_trackers']
+  }
 end
 

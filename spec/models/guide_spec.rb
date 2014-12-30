@@ -78,7 +78,7 @@ describe Guide, "to_ngz" do
     @guide_section = GuideSection.make!(:guide_taxon => @guide_taxon)
     @zip_path = @guide.to_ngz
     @unzipped_path = File.join File.dirname(@zip_path), @guide.to_param
-    system "unzip -d #{@unzipped_path} #{@zip_path}"
+    system "unzip -qd #{@unzipped_path} #{@zip_path}"
   end
 
   it "should contain an xml file" do

@@ -24,6 +24,24 @@ module WikiPagesHelper
     end
   end
 
+  def wiki_topnav
+    pattern = /\{\{topnav.*?\}\}/
+    navtxt = @page.content[pattern, 0]
+    return if navtxt.blank?
+    @page.content.gsub!(pattern, '')
+    html = "<ul class='topmenu'>"
+    page_titles = navtxt[/nav(.*?)\}/, 1].split(',')
+    page_titles.each do |page_title|
+      page_title.strip!
+      link_class = @page && @page.title.downcase == page_title.downcase ? 'active' : nil
+      html += content_tag :li do
+        link_to page_title, wiki_link(page_title), :class => link_class
+      end
+    end
+    html += "</ul>"
+    raw html
+  end
+
   def wiki_css(text)
     text.gsub(/<style.*?>(.*?)<\/style>/m) do |match|
       content_for(:extracss) { match.html_safe }

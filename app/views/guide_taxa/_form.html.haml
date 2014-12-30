@@ -1,5 +1,4 @@
 - content_for :extrajs do
-  = javascript_include_tag :cocoon
   = javascript_include_tag "jquery/plugins/inat/photo_selectors.js"
 - content_for :extracss do
   = stylesheet_link_tag "guides"
@@ -26,7 +25,7 @@
     .bootstrap input[type=file] {line-height: 1;margin-bottom:10px;}
 - content_for :extrajs do
   :javascript
-    var GUIDE_TAXON = #{raw @guide_taxon.to_json(:methods => [:eol_page_id])},
+    var GUIDE_TAXON = #{json_escape @guide_taxon.to_json(:methods => [:eol_page_id]).html_safe},
         EOL_PAGE_ID = GUIDE_TAXON.eol_page_id ? GUIDE_TAXON.eol_page_id : ''
   = javascript_include_tag 'guide_taxa/edit'
 

@@ -4,7 +4,18 @@ class ProjectObservation < ActiveRecord::Base
   belongs_to :curator_identification, :class_name => "Identification"
   validates_presence_of :project, :observation
   validate :observed_by_project_member?, :on => :create, :unless => "errors.any?"
-  validates_rules_from :project, :rule_methods => [:observed_in_place?, :georeferenced?, :identified?, :in_taxon?, :on_list?], :unless => "errors.any?"
+  validates_rules_from :project, :rule_methods => [
+    :captive?,
+    :wild?,
+    :georeferenced?, 
+    :has_media?,
+    :has_a_photo?,
+    :has_a_sound?,
+    :identified?, 
+    :in_taxon?, 
+    :observed_in_place?, 
+    :on_list?
+  ], :unless => "errors.any?"
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
   
   after_create  :refresh_project_list
@@ -179,6 +190,29 @@ class ProjectObservation < ActiveRecord::Base
 
   def has_observation_field?(observation_field)
     observation.observation_field_values.where(:observation_field_id => observation_field).exists?
+  end
+
+  def has_a_photo?(options = {})
+    observation.reload unless options[:skip_reload]
+    observation.observation_photos_count > 0
+  end
+
+  def has_a_sound?(options = {})
+    observation.reload unless options[:skip_reload]
+    observation.observation_sounds_count > 0
+  end
+
+  def has_media?
+    observation.reload
+    has_a_photo?(:skip_reload => true) || has_a_sound?(:skip_reload => true)
+  end
+
+  def captive?
+    observation.captive_cultivated
+  end
+
+  def wild?
+    !captive?
   end
 
   def touch_observation

@@ -1,0 +1,92 @@
+- content_for :extracss do
+  = stylesheet_link_tag 'observations/_map'
+
+- content_for :extrajs do
+  = google_maps_js
+  = javascript_include_tag "map_bundle"
+  :javascript
+    $(document).ready(function() {
+      // getting the coordinates from the URL and the site default BOUNDS
+      // we want to use the site default unless there URL specifies something else
+      var coord = getUrlHashCoord();
+      var BOUNDS = #{ raw CONFIG.bounds.to_json };
+      window.map = iNaturalist.Map.createMap({
+        lat: 10,
+        lng: 20,
+        minZoom: 2,
+        controls: 'small',
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        bounds: coord.lat ? null : BOUNDS
+      });
+      var opts = $.deparam.querystring();
+      var taxon = #{ @taxon_hash.to_json };
+      opts.grid_color = opts.grid_color || iNaturalist.Map.ICONIC_TAXON_COLORS.Mollusca;
+      if (opts.render_place_id) {
+        window.map.addPlaceLayer({ place_id: opts.render_place_id });
+      }
+      if (opts.render_taxon_range_id) {
+        window.map.addTaxonRangeLayer({ taxon_id: opts.render_taxon_range_id });
+      }
+      // window.map.addObservationsLayer({ grid_opacity: 0.8, grid_border_opacity: 0.01,
+      //   point_opacity: 0.4, point_border_opacity: 0.3, point_color: "#6E6E6E", interactivity: false });
+      window.map.addObservationsLayer(opts);
+      google.maps.event.addListener(map, 'dragend', setUrlHashCoord);
+      google.maps.event.addListener(map, 'zoom_changed', setUrlHashCoord);
+      if (coord.lat) {
+        map.setCenter(new google.maps.LatLng(coord.lat,coord.lng));
+        map.setZoom(coord.zoom);
+      }
+      
+      // add the site logo to the bottom of the map
+      var largeLogoURL = "#{ CONFIG.logo_large ? asset_path(CONFIG.logo_large) : nil }";
+      if (largeLogoURL) {
+        var logoLink = document.createElement("a");
+        logoLink.style.padding = "5px";
+        var logoImage = document.createElement("img");
+        logoImage.src = largeLogoURL;
+        logoImage.style.width = "200px";
+        logoLink.appendChild(logoImage);
+        $(logoLink).css("cursor", "pointer").click(function() {
+          window.location = "#{ root_url }";
+        });
+        logoLink.index = 1;
+        window.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(logoLink);
+      }
+      
+      // add the 'About this map' link
+      var aboutDiv = document.createElement("div");
+      aboutDiv.style.padding = "7px";
+      aboutDiv.style.color = "white";
+      aboutDiv.style["font-size"] = "14px";
+      aboutDiv.innerHTML = "#{ I18n.t(:about_this_map) }";
+      $(aboutDiv).css("cursor", "pointer").click(function() {
+        window.location = "#{ @about_url }";
+      });
+      window.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(aboutDiv);
+      
+      // add the Taxon label to the top of the map
+      if (taxon.display_label) {
+        var taxonNameDiv = document.createElement("div");
+        taxonNameDiv.style.padding = "5px";
+        taxonNameDiv.style.color = "white";
+        taxonNameDiv.style["font-size"] = "20px";
+        taxonNameDiv.innerHTML = taxon.display_label;
+        $(taxonNameDiv).css("cursor", "pointer").click(function() {
+          window.location = "#{ taxon_url(@taxon) if @taxon }";
+        });
+        window.map.controls[google.maps.ControlPosition.TOP_CENTER].push(taxonNameDiv);
+      }
+    });
+    function setUrlHashCoord() {
+      var coords = map.getCenter(),
+          x = preciseRound(coords.lng(), 3),
+          y = preciseRound(coords.lat(), 3),
+          z = map.getZoom();
+      var baseUrl = window.location.href.split('#')[0];
+      window.location.replace( baseUrl +'#' + [z,y,x].join('/') );
+    }
+    function getUrlHashCoord() {
+      var bits = window.location.hash.split('/').map(function(x) { return parseFloat(x.replace(/[^0-9\-\.]/, ''))});
+      return { lat: bits[1], lng: bits[2], zoom: bits[0] };
+    }
+#map.fullscreen

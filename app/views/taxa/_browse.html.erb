@@ -16,7 +16,7 @@
     
     <% unless @places.blank? %>
       <span class="description">| </span>
-      <%= @places.map {|p| link_to(p.display_name, p)}.join(', ') %>
+      <%= @places.map {|p| link_to(p.display_name, p)}.join(', ').html_safe %>
     <% end %>
     
     <% unless @iconic_taxa.blank? %>
@@ -123,7 +123,7 @@
   <% unless @faceted_places.blank? && @places.blank? -%>
     <div id="places_facet" class="facet">
       <strong>
-        <% if @places.blank? -%>
+        <% if @places.blank? || @place_ids.include?(@site_place.try(:id)) -%>
           <%= link_to_toggle t(:places), "#places", :class => 'open' %>
         <% else %>
           <%= link_to "&laquo; #{t(:all_places)}".html_safe, url_for_params(:without => [:page, :places]), :rel => "nofollow" %>
@@ -143,7 +143,7 @@
         <% else %>
           <% if @places.first.parent -%>
             <li>
-              <%= link_to place_name_and_type(@places.first.parent, :display => true), 
+              <%= link_to place_name_and_type(@places.first.parent, :display => true).html_safe, 
                 url_for_params(:places => @places.first.parent_id, :without => :page), :rel => "nofollow" %>
               <ul>
           <% end -%>
@@ -152,14 +152,13 @@
             <li>
               <div class="facet_value selected">
                 <%= link_to('&times;'.html_safe, url_for_params(:without => [:page, :places]), :rel => "nofollow", :class => 'right description') %>
-                <%= place_name_and_type place %>
-                (<span class="count"><%= number_with_delimiter @facets[:places][place.id] %></span>)
+                <%= place_name_and_type(place).html_safe %>
               </div>
 
               <ul>
                 <% for child_place in @faceted_places.select{|cp| cp.parent_id == place.id} %>
                   <li class="facet_value<%= ' selected' if @place_ids && @place_ids.include?(child_place.id) %>">
-                    <%= link_to place_name_and_type(child_place), url_for_params(:places => child_place.id, :without => :page), :rel => "nofollow" %>
+                    <%= link_to place_name_and_type(child_place).html_safe, url_for_params(:places => child_place.id, :without => :page), :rel => "nofollow" %>
                     (<span class="count"><%= number_with_delimiter @facets[:places][child_place.id] %></span>)
                   </li>
                 <% end %>
@@ -174,6 +173,18 @@
         <% end -%>
 
       </ul>
+    </div>
+  <% end -%>
+
+  <% if @site_place -%>
+    <div class="clear stacked">
+      <% if @places && @places.include?(@site_place) -%>
+        <%=t :showing_taxa_from_place, :place => t(@site_place.name, :default => @site_place.name) %>
+        (<%= link_to t(:show_taxa_from_everywhere), url_for_params(:everywhere => true, :without => [:page, :per_page]) %>)
+      <% else %>
+        <%=t :showing_taxa_from_everywhere %>
+        (<%= link_to t(:show_taxa_from_place, :place => t(@site_place.name, :default => @site_place.name)), url_for_params(:places => @site_place.id, :without => [:page, :per_page, :everywhere]) %>)
+      <% end -%>
     </div>
   <% end -%>
 
@@ -231,7 +242,7 @@
                 taxon_json = nil
               -%>
               <% if js_link -%>
-                <%- taxon_json = taxon_to_json(taxon, :iconic_taxon => Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id] || taxon.iconic_taxon).html_safe -%>
+                <%- taxon_json = json_escape(taxon_to_json(taxon, :iconic_taxon => Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id] || taxon.iconic_taxon).html_safe) -%>
                 <%= link_to_function link_txt, "handleTaxonClick(event, #{taxon_json})" %>
               <% else %>
                 <%= link_to link_txt, taxon %>

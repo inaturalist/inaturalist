@@ -1,14 +1,37 @@
 class ObservationFieldValue < ActiveRecord::Base
   belongs_to :observation, :inverse_of => :observation_field_values
   belongs_to :observation_field
+  belongs_to :user
+  belongs_to :updater, :class_name => 'User'
   
   before_validation :strip_value
+  before_save :set_user
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
-  validates_presence_of :value, :if => lambda {|ofv| !ofv.observation.mobile? }
+  # I'd like to keep this, but since mobile clients could be submitting
+  # observations that weren't created on a mobile device now, the check really
+  # needs to happen in the controller... but not sure how best to do that
+  # validates_presence_of :value, :if => lambda {|ofv| ofv.observation && !ofv.observation.mobile? }
   validates_presence_of :observation_field_id
+  validates_presence_of :observation
   validates_length_of :value, :maximum => 2048
-  validate :validate_observation_field_datatype
+  # validate :validate_observation_field_datatype, :if => lambda {|ofv| ofv.observation }
+  # Again, we can't support this until all mobile clients support all field types
   validate :validate_observation_field_allowed_values
+
+  notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
+    :on => :save,
+    :include_owner => lambda {|ofv, observation|
+      ofv.updater_id != observation.user_id
+    },
+    :if => lambda {|ofv, observation, subscription|
+      return true if subscription.user_id == observation.user_id || ofv.user_id != ofv.updater_id
+      false
+    }
+  auto_subscribes :user, :to => :observation, :if => lambda {|record, subscribable| 
+    record.user_id != subscribable.user_id
+  }
+
+  attr_accessor :updater_user_id
 
   include Shared::TouchesObservationModule
   
@@ -52,6 +75,17 @@ class ObservationFieldValue < ActiveRecord::Base
   
   def strip_value
     self.value = value.to_s.strip unless value.nil?
+  end
+
+  def set_user
+    if updater_user_id
+      self.user_id ||= updater_user_id
+      self.updater_id = updater_user_id
+    else
+      self.user_id ||= observation.user_id
+      self.updater_id ||= user_id
+    end
+    true
   end
   
   def validate_observation_field_datatype
@@ -101,8 +135,8 @@ class ObservationFieldValue < ActiveRecord::Base
   
   def validate_observation_field_allowed_values
     return true if observation_field.allowed_values.blank?
-    values = observation_field.allowed_values.split('|')
-    unless values.include?(value)
+    values = observation_field.allowed_values.split('|').map(&:downcase)
+    unless values.include?(value.to_s.downcase)
       errors.add(:value, 
         "of #{observation_field.name} must be #{values[0..-2].map{|v| "#{v}, "}.join}or #{values.last}.")
     end

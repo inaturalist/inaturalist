@@ -12,18 +12,20 @@
   <% unless @fb_admin_ids.blank? -%>
     <meta property="fb:admins" content="<%= @fb_admin_ids.join(',') %>"/>
   <% end -%>
-  <% og_description = truncate(strip_tags(@project.description).gsub(/\s+/, ' '), :length => 1000) %>
+  <% unless @project.description.blank? -%>
+    <% og_description = truncate(strip_tags(@project.description).gsub(/\s+/, ' '), :length => 1000) %>
+  <% end -%>
   <meta property="og:description" content="<%= og_description %>"/>
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'inaturalist/map3', 'projects/show' %>
+  <%= javascript_include_tag 'map_bundle', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
-    var PROJECT = <%= @project.to_json(:only => [:title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
-        PLACE = <%= @place.to_json.html_safe %>,
-        PLACE_GEOMETRY_KML_URL = <%=raw @place_geometry ? place_geometry_kml_url.inspect : nil.to_json %>,
-        OBSERVATIONS = <%= @observations.blank? ? 'null' : @observations.to_json(:include => :iconic_taxon).html_safe %>,
+    var PROJECT = <%=json_escape @project.to_json(:only => [:title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
+        PLACE = <%=json_escape @place.to_json.html_safe %>,
+        SHOW_PLACE_GEOMETRY = <%= @place_geometry ? "true" : "false" %>,
+        OBSERVATIONS = <%= @observations.blank? ? 'null' : json_escape(@observations.to_json(:include => :iconic_taxon).html_safe) %>,
         OBSERVATIONS_URL = <%= @observations_url.inspect.html_safe %>
         KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe %>
   </script>
@@ -145,7 +147,7 @@
       <div id="bioblitzstats" class="stacked">
         <div class="inline buttonrow right">
           <%= link_to t(:all_observations, :default => "All observations").capitalize, observations_url(@observations_url_params), :class => "inter" %>
-          <%= link_to t(:all_species, :default => "All species").capitalize, taxa_observations_url(@observations_url_params.merge(:hrank => Taxon::SPECIES)), :class => "inter" %>
+          <%= link_to t(:all_species, :default => "All species").capitalize, taxa_observations_url(@observations_url_params.merge(:rank => Taxon::SPECIES)), :class => "inter" %>
           <%= link_to t(:all_people, :default => "All people").capitalize, user_stats_observations_url(@observations_url_params), :class => "inter" %>
           <%= link_to_dialog t(:about_bioblitz_results), :width => "60%", :link => {:class => "meta inter"} do %>
             <%=t 'views.projects.show.bioblitz_results_desc_html' %>
@@ -376,15 +378,23 @@
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
-      <li>
-        <% if @project.curated_by?(current_user) -%>
-          <%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_observations)}".html_safe, invitations_path(@project), :class => "navlink" %>
-        <% else %>
-          <% if @observations_count.to_i > 0 %>
-            <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %>
-          <% end -%>
-        <% end -%>
-      </li>
+      <% if @project.curated_by?(current_user) -%>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_observations)}".html_safe, invitations_path(@project), :class => "navlink" %></li>
+      <% end -%>
+      <% if @project.curated_by?(current_user) && @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY -%>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_people)}".html_safe, invite_to_project_path(@project), :class => "navlink" %></li>
+      <% end -%>
+      <% if @project_user_invitation && @project_user_invitation.pending? -%>
+        <li class="invited">
+          <%= link_to "<span class='lead'>&raquo;</span> #{t(:join_this_project?)}".html_safe, join_project_path(@project), :class => "navlink" %>
+          <div class="inner">
+            <%=t :user_invited_you_to_join_this_project_on_date_html, :user => link_to_user(@project_user_invitation.user), :date => l(@project_user_invitation.created_at) %>
+          </div>
+        </li>
+      <% end -%>
+      <% if @project_user -%>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %></li>
+      <% end -%>
     <% end -%>
   </ul>
   
@@ -410,10 +420,8 @@
   
   
   <%= link_to image_tag(@project.user.icon.url(:mini), :style => "vertical-align:middle;"),
-    observations_by_login_path(@project.user.login),
-    :alt => h(@project.user.login),
-    :title => "#{h(@project.user.login)}, joined #{project_user.created_at.to_s(:long)}" %>
-  <%= link_to h(@project.user.login), @project.user %>
+    observations_by_login_path(@project.user.login), :alt => @project.user.login %>
+  <%= link_to @project.user.login, @project.user %>
   <span class="description"><%=t :project_created_on, :date => l(@project.created_at.to_date, :format => :long) %></span>
   
   <%= separator %>

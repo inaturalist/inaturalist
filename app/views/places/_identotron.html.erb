@@ -6,10 +6,10 @@
     place ||= listed_taxon.place
   end
   # taxon ||= listed_taxon.taxon
-  taxon_range ||= taxon.taxon_ranges_with_kml.first
-  map_tag_attrs = setup_map_tag_attrs(taxon, :place => place, :taxon_range => taxon_range)
+  map_tag_attrs = setup_map_tag_attrs(:taxon => taxon, :place => place,
+    :show_range => true, :focus => :place)
   obs_url = observations_path(:place_id => listed_taxon.try(:place_id), :taxon_id => taxon.id)
-  photos = taxon.taxon_photos.map{|tp| tp.photo}.compact
+  photos = taxon.taxon_photos.sort_by{|tp| tp.position || tp.id}.map{|tp| tp.photo}.compact
   dialog_url = listed_taxon_url(listed_taxon) if listed_taxon
 -%>
 <div class="clear listed_taxon stacked" href="<%= dialog_url %>" data-taxon-id="<%= taxon.id %>">

@@ -5,6 +5,8 @@
   observation = update_cached(item, :observation) if item.respond_to?(:observation)
   user = if item.is_a?(Flag)
     update_cached(item, :resolver)
+  elsif item.is_a?(ObservationFieldValue)
+    update_cached(item, :updater) || update_cached(item, :user)
   elsif item.respond_to?(:user)
     update_cached(item, :user)
   end
@@ -13,7 +15,7 @@
   when "Identification" then edit_identification_path(item)
   end
 -%>
-<div id="<%= id_for(item) %>" class="<%= item.class.name.humanize.underscore %> item clear stacked">
+<div id="<%= dom_id(item, 'activity') %>" class="<%= item.class.name.humanize.underscore %>_activity_item item clear stacked">
   <div class="item_user column">
     <% if user -%>
       <%= link_to image_tag(user.icon.url(:thumb), :class => 'usericon'), person_path(user) %>
@@ -45,6 +47,10 @@
           <span class="meta"><%= item.resolver.login %> <%= t :said %>,</span>
           "<%= item.comment %>"
         <% end -%>
+      </div>
+    <% elsif item.is_a? ObservationFieldValue %>
+      <div class="stacked body">
+        <%= render "observation_fields/observation_field_value", :observation_field_value => item %>
       </div>
     <%- end -%>
     

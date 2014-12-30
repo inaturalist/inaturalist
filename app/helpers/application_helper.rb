@@ -4,17 +4,6 @@
 module ApplicationHelper
   include Ambidextrous
   
-  def gmap_include_tag(key = false)
-    tag = if key
-      '<script src="http://maps.google.com/maps?file=api&v=2&key=' +
-      (key) + '" type="text/javascript"></script>'
-    else
-      '<script src="http://maps.google.com/maps?file=api&v=2&key=' +
-      (Ym4r::GmPlugin::ApiKey.get)  + '" type="text/javascript"></script>'
-    end
-    tag.html_safe
-  end
-  
   def num2letterID(num)
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     alphabet[num,1]
@@ -263,14 +252,20 @@ module ApplicationHelper
     return text if text.blank?
     
     # make sure attributes are quoted correctly
-    text = text.gsub(/(\w+)=['"]([^'"]*?)['"]/, '\\1="\\2"')
+    text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
     
-    # Make sure P's don't get nested in P's
-    text = text.gsub(/<\\?p>/, "\n\n") unless options[:skip_simple_format]
+    unless options[:skip_simple_format]
+      # Make sure P's don't get nested in P's
+      text = text.gsub(/<\\?p>/, "\n\n")
+
+      # blockquotes should always start with a P
+      text = text.gsub(/blockquote(.*?)>\s*/, "blockquote\\1>\n\n")
+    end
     text = sanitize(text, options)
     text = compact(text, :all_tags => true) if options[:compact]
     text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
+    text = text.gsub(/<a /, '<a rel="nofollow" ')
     # Ensure all tags are closed
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
@@ -391,6 +386,7 @@ module ApplicationHelper
   end
   
   def html_attributize(txt)
+    return txt if txt.blank?
     strip_tags(txt).gsub('"', "'").gsub("\n", " ")
   end
   
@@ -406,12 +402,15 @@ module ApplicationHelper
   def image_url(source, options = {})
     abs_path = image_path(source).to_s
     unless abs_path =~ /\Ahttp/
-     abs_path = uri_join(root_url, abs_path).to_s
+     abs_path = uri_join(options[:base_url] || @site.try(:url) || root_url, abs_path).to_s
     end
     abs_path
+  rescue Sprockets::Helpers::RailsHelper::AssetPaths::AssetNotPrecompiledError
+    nil
   end
   
   def truncate_with_more(text, options = {})
+    return text if text.blank?
     more = options.delete(:more) || " ...#{t(:more).downcase} &darr;".html_safe
     less = options.delete(:less) || " #{t(:less).downcase} &uarr;".html_safe
     options[:omission] ||= ""
@@ -563,36 +562,68 @@ module ApplicationHelper
     content_tag :span, (block_given? ? capture(&block) : content), options
   end
   
-  def setup_map_tag_attrs(taxon, options = {})
-    taxon_range = options[:taxon_range]
-    place = options[:place]
+  def setup_map_tag_attrs(options = {})
     map_tag_attrs = {
-      "data-taxon-id" => taxon.id,
-      "data-latitude" => options[:latitude],
-      "data-longitude" => options[:longitude],
-      "data-map-type" => options[:map_type],
-      "data-zoom-level" => options[:zoom_level]
+      "taxon-id" => options[:taxon] ? options[:taxon].id : nil,
+      "latitude" => options[:latitude],
+      "longitude" => options[:longitude],
+      "map-type" => options[:map_type],
+      "zoom-level" => options[:zoom_level],
+      "show-range" => options[:show_range] ? "true" : nil,
+      "place-geom-id" => options[:place] ? options[:place].id : nil,
+      "min-x" => options[:min_x],
+      "min-y" => options[:min_y],
+      "max-x" => options[:max_x],
+      "max-y" => options[:max_y],
+      "flag-letters" => options[:flag_letters] ? "true" : nil,
+      "windshaft-user-id" => options[:windshaft_user_id]
     }
-    if taxon_range
-      map_tag_attrs["data-taxon-range-kml"] = root_url.gsub(/\/$/, "") + taxon_range.range.url
-      map_tag_attrs["data-taxon-range-geojson"] = taxon_range_geom_url(taxon.id, :format => "geojson")
-      if s = taxon_range.source
-        map_tag_attrs["data-taxon-range-citation"] = s.in_text
-        map_tag_attrs["data-taxon-range-citation-url"] = s.url || source_url(s)
+    unless options[:zoom_level] && !map_tag_attrs["min-x"]
+      if options[:taxon] && (!options[:focus] || options[:focus] == :taxon)
+        append_bounds_to_map_tag_attrs(map_tag_attrs, options[:taxon])
+      end
+      if options[:taxon] && options[:show_range] && (!options[:focus] || options[:focus] == :range)
+        append_bounds_to_map_tag_attrs(map_tag_attrs, options[:taxon].taxon_ranges_without_geom.first)
+      end
+      if options[:place] && (!options[:focus] || options[:focus] == :place)
+        append_bounds_to_map_tag_attrs(map_tag_attrs, options[:place])
       end
     end
-    if place
-      map_tag_attrs["data-latitude"] ||= place.latitude
-      map_tag_attrs["data-longitude"] ||= place.longitude
-      map_tag_attrs["data-bbox"] = place.bounding_box.join(',') if place.bounding_box
-      map_tag_attrs["data-place-kml"] = place_geometry_url(place, :format => "kml") if @place_geometry || PlaceGeometry.without_geom.exists?(:place_id => place)
-      map_tag_attrs["data-observations-json"] = observations_url(:taxon_id => taxon, :place_id => place, :format => "json")
-      # map_tag_attrs["data-place-geojson"] = taxon_range_geom_url(@taxon.id, :format => "geojson")
+    if options[:observations]
+      map_tag_attrs["observations"] = options[:observations].collect{ |o|
+        o.to_json(:viewer => current_user,
+          :force_coordinate_visibility => @coordinates_viewable,
+          :include => [ { :user => { :only => :login },
+            :taxon => { :only => [ :id, :name ] } },
+            :iconic_taxon ],
+          :methods => [ :iconic_taxon_name ],
+          :except => [ :description ] ).html_safe
+      }
     end
-    map_tag_attrs
+    { "data" => map_tag_attrs.delete_if{ |k,v| v.nil? } }
   end
-  
+
+  def append_bounds_to_map_tag_attrs(map_tag_attrs, instance_with_bounds)
+    return unless instance_with_bounds && instance_with_bounds.respond_to?(:bounds)
+    bounds = instance_with_bounds.bounds
+    if bounds && bounds[:min_x]
+      unless map_tag_attrs["min-x"] && bounds[:min_x] > map_tag_attrs["min-x"]
+        map_tag_attrs["min-x"] = bounds[:min_x]
+      end
+      unless map_tag_attrs["min-y"] && bounds[:min_y] > map_tag_attrs["min-y"]
+        map_tag_attrs["min-y"] = bounds[:min_y]
+      end
+      unless map_tag_attrs["max-x"] && bounds[:max_x] < map_tag_attrs["max-x"]
+        map_tag_attrs["max-x"] = bounds[:max_x]
+      end
+      unless map_tag_attrs["max-y"] && bounds[:max_y] < map_tag_attrs["max-y"]
+        map_tag_attrs["max-y"] = bounds[:max_y]
+      end
+    end
+  end
+
   def google_static_map_for_observation_url(o, options = {})
+    return if CONFIG.google.blank? || CONFIG.google.simple_key.blank?
     url_for_options = {
       :host => 'maps.google.com',
       :controller => 'maps/api/staticmap',
@@ -601,7 +632,8 @@ module ApplicationHelper
       :size => '200x200',
       :sensor => 'false',
       :markers => "color:0x#{iconic_taxon_color(o.iconic_taxon_id)}|#{o.latitude},#{o.longitude}",
-      :key => Ym4r::GmPlugin::ApiKey.get
+      :port => false,
+      :key => CONFIG.google.simple_key
     }.merge(options)
     url_for(url_for_options)
   end
@@ -687,6 +719,8 @@ module ApplicationHelper
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
       image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
+    when "ProjectUserInvitation"
+      image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options.merge(:alt => "#{resource.user.login} icon"))
     when "AssessmentSection"
       image_tag("#{root_url}#{resource.assessment.project.icon.url(:thumb)}", options)
     when "ListedTaxon"
@@ -762,7 +796,14 @@ module ApplicationHelper
         end
       end
     when "Observation"
-      t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
+      if notifier.is_a?(ProjectInvitation)
+        t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
+      elsif notifier.is_a?(ObservationFieldValue)
+        t(:user_added_an_observation_field_html, :user => notifier_user_link, :field_name => truncate(notifier.observation_field.name), 
+          :owner => you_or_login(resource.user, :capitalize_it => false))
+      else
+        "unknown"
+      end
     when "Project"
       project = resource
       if update.notifier_type == "Post"
@@ -785,6 +826,12 @@ module ApplicationHelper
         end
         t(:curators_changed_for_x_html, :x => title)
       end
+    when "ProjectUserInvitation"
+      if options[:skip_links]
+        t(:user_invited_you_to_join_project, :user => notifier_user.login, :project => resource.project.title)
+      else
+        t(:user_invited_you_to_join_project, :user => notifier_user_link, :project => link_to(resource.project.title, project_url(resource.project))).html_safe
+      end
     when "Place"
       t(:new_observations_from_place_html, 
         :place => options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource)))
@@ -793,7 +840,7 @@ module ApplicationHelper
         :partial => "shared/taxon", 
         :object => resource,
         :locals => {
-          :link_url => (options[:skip_links] == true ? nil : resource)
+          :link_url => (options[:skip_links] == true ? nil : url_for_resource_with_host(resource))
         })
       t(:new_observations_of_x_html, :x => name)
     when "Flag"
@@ -861,17 +908,28 @@ module ApplicationHelper
     "#{base_url}#{url_for(resource)}"
   end
   
-  def commas_and(list)
+  def commas_and(list, options = {})
     return list.first.to_s.html_safe if list.size == 1
     return list.join(" #{t :and} ").html_safe if list.size == 2
-    "#{list[0..-2].join(', ')}, #{t :and} #{list.last}".html_safe
+    options[:separator] ||= ","
+    options[:and] ||= t(:and)
+    "#{list[0..-2].join(', ')}#{options[:separator]} #{options[:and]} #{list.last}".html_safe
   end
   
   def update_cached(record, association)
-    if @update_cache && @update_cache[association.to_s.pluralize.to_sym]
-      cached = @update_cache[association.to_s.pluralize.to_sym][record.send("#{association}_id")]
+    unless record.respond_to?("#{association}_id")
+      return record.send(association)
     end
-    cached ||= record.send(association)
+    cache_key = record.send("#{association}_id")
+    cached = if @update_cache && @update_cache[association.to_s.pluralize.to_sym]
+      @update_cache[association.to_s.pluralize.to_sym][cache_key]
+    end
+    unless cached
+      @update_cache ||= {}
+      @update_cache[association.to_s.pluralize.to_sym] ||= {}
+      @update_cache[association.to_s.pluralize.to_sym][cache_key] = record.send(association)
+    end
+    @update_cache[association.to_s.pluralize.to_sym][cache_key]
   end
 
   def observation_field_value_for(ofv)
@@ -962,19 +1020,19 @@ module ApplicationHelper
 
   def leaflet_js(options = {})
     h = <<-HTML
-      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+      #{ stylesheet_link_tag('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css') }
       <!--[if lte IE 8]>
-          <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+          #{ stylesheet_link_tag('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css') }
       <![endif]-->
-      <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+      #{ javascript_include_tag('http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js') }
     HTML
     if options[:draw]
       h += <<-HTML
-        <link rel="stylesheet" href="/javascripts/leaflet.draw/leaflet.draw.css" />
+        #{ stylesheet_link_tag('leaflet.draw/leaflet.draw.css') }
         <!--[if lte IE 8]>
-            <link rel="stylesheet" href="/javascripts/leaflet.draw/leaflet.draw.ie.css" />
+            #{ stylesheet_link_tag('leaflet.draw/leaflet.draw.ie.css') }
         <![endif]-->
-        <script src="/javascripts/leaflet.draw/leaflet.draw.js"></script>
+        #{ javascript_include_tag('leaflet.draw/leaflet.draw.js') }
       HTML
     end
     raw h
@@ -1029,6 +1087,17 @@ module ApplicationHelper
     else
       ""
     end
+  end
+
+  def favicon_url_for(url)
+    uri = URI.parse(url) rescue nil
+    "http://www.google.com/s2/favicons?domain=#{uri.try(:host)}"
+  end
+
+  # http://jfire.io/blog/2012/04/30/how-to-securely-bootstrap-json-in-a-rails-view/
+  def json_escape(s)
+    result = s.to_s.gsub('/', '\/')
+    s.html_safe? ? result.html_safe : result
   end
   
 end

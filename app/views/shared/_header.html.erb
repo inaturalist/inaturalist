@@ -1,8 +1,9 @@
+<%- site = @site || CONFIG -%>
 <div id="header" class="clear">  
   <ul id="mainnav" class="navtabs">
     <li>
-      <a href="/" title="<%= CONFIG.site_name %>" class="logolink">
-        <%= image_tag CONFIG.logo, :alt => SITE_NAME, :width => 118 %>
+      <a href="/" title="<%= site.try(:name) || SITE_NAME %>" class="logolink">
+        <%= image_tag @site && @site.logo? ? @site.logo.url : CONFIG.logo, :alt => SITE_NAME, :width => 118 %>
       </a>
     </li>
     <li class="subnavwrapper observationstab">
@@ -37,7 +38,7 @@
       <ul class="subnav taxon_links" style="display: none">
         <% for taxon in Taxon::ICONIC_TAXA %>
           <li>
-            <%= link_to t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[taxon.name].gsub(' ','_').gsub('-','_').downcase}", :default=>Taxon::ICONIC_TAXON_NAMES[taxon.name]), taxon, :class => "taxon #{taxon.name}" %>
+            <%= link_to t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[taxon.name].gsub(' ','_').gsub('-','_').downcase}", :default=>Taxon::ICONIC_TAXON_NAMES[taxon.name]), taxon_path(taxon), :class => "taxon #{taxon.name}" %>
           </li>
         <% end %>
         <li class="formwrapper">

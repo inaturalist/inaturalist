@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
                   :make_sound_licenses_same, 
                   :preferred_photo_license, 
                   :preferred_observation_license,
-                  :preferred_sound_license
+                  :preferred_sound_license,
+                  :preferred_observation_fields_by
   attr_accessor :html
   
   preference :project_journal_post_email_notification, :boolean, :default => true
@@ -42,6 +43,10 @@ class User < ActiveRecord::Base
   preference :automatic_taxonomic_changes, :boolean, :default => true
   preference :observations_view, :string
   preference :community_taxa, :boolean, :default => true
+  PREFERRED_OBSERVATION_FIELDS_BY_ANYONE = "anyone"
+  PREFERRED_OBSERVATION_FIELDS_BY_CURATORS = "curators"
+  PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER = "observer"
+  preference :observation_fields_by, :string, :default => PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
@@ -77,6 +82,8 @@ class User < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :projects
   has_many :project_users, :dependent => :destroy
+  has_many :project_user_invitations, :dependent => :nullify
+  has_many :project_user_invitations_received, :dependent => :delete_all, :class_name => "ProjectUserInvitation"
   has_many :listed_taxa, :dependent => :nullify
   has_many :invites, :dependent => :nullify
   has_many :quality_metrics, :dependent => :destroy
@@ -84,23 +91,27 @@ class User < ActiveRecord::Base
   has_many :places, :dependent => :nullify
   has_many :messages, :dependent => :destroy
   has_many :delivered_messages, :class_name => "Message", :foreign_key => "from_user_id", :conditions => "messages.from_user_id != messages.user_id"
-  has_many :guides, :dependent => :nullify, :inverse_of => :user
+  has_many :guides, :dependent => :destroy, :inverse_of => :user
+  has_many :observation_fields, :dependent => :nullify, :inverse_of => :user
+  has_many :observation_field_values, :dependent => :nullify, :inverse_of => :user
+  has_many :updated_observation_field_values, :dependent => :nullify, :inverse_of => :updater, :foreign_key => "updater_id", :class_name => "ObservationFieldValue"
   
-  has_attached_file :icon, 
-    :styles => { :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },
+  has_attached_file :icon,
+    :styles => { :original => "2048x2048>", :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },
     :processors => [:deanimator],
     :path => ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",
-    :url => "/attachments/:class/:attachment/:id-:style.:icon_type_extension",
+    :url => "#{ CONFIG.attachments_host }/attachments/:class/:attachment/:id-:style.:icon_type_extension",
     :default_url => "/attachment_defaults/:class/:attachment/defaults/:style.png"
 
   # Roles
-  has_and_belongs_to_many :roles
+  has_and_belongs_to_many :roles, :uniq => true
   
   has_subscribers
   has_many :subscriptions, :dependent => :delete_all
   has_many :updates, :foreign_key => :subscriber_id, :dependent => :delete_all
   has_many :flow_tasks
   belongs_to :site, :inverse_of => :users
+  belongs_to :place, :inverse_of => :users
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
@@ -110,7 +121,7 @@ class User < ActiveRecord::Base
   after_save :update_photo_licenses
   after_save :update_sound_licenses
   after_save :destroy_messages_by_suspended_user
-  before_save :set_community_taxa_if_pref_changed
+  after_update :set_community_taxa_if_pref_changed
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
@@ -129,7 +140,7 @@ class User < ActiveRecord::Base
   bad_login_message = "use only letters, numbers, and -_ please.".freeze
   email_name_regex  = '[\w\.%\+\-]+'.freeze
   domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze
-  domain_tld_regex  = '(?:[A-Z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|jobs|museum)'.freeze
+  domain_tld_regex  = '(?:[A-Z]+)'.freeze
   email_regex       = /\A#{email_name_regex}@#{domain_head_regex}#{domain_tld_regex}\z/i
   bad_email_message = "should look like an email address.".freeze
   
@@ -146,7 +157,7 @@ class User < ActiveRecord::Base
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, 
-    :time_zone, :icon_url, :locale, :prefers_community_taxa
+    :time_zone, :icon_url, :locale, :prefers_community_taxa, :place_id
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -259,11 +270,11 @@ class User < ActiveRecord::Base
   end
 
   def login=(value)
-    write_attribute :login, (value ? value.downcase : nil)
+    write_attribute :login, (value ? value.to_s.downcase : nil)
   end
 
   def email=(value)
-    write_attribute :email, (value ? value.downcase : nil)
+    write_attribute :email, (value ? value.to_s.downcase : nil)
   end
   
   # Role related methods
@@ -592,7 +603,7 @@ class User < ActiveRecord::Base
   end
 
   def set_community_taxa_if_pref_changed
-    if prefers_community_taxa_changed?
+    if prefers_community_taxa_changed? && ! id.blank?
       Observation.delay(:priority => USER_INTEGRITY_PRIORITY).set_community_taxa(:user => id)
     end
     true

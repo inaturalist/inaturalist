@@ -14,7 +14,7 @@
 
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag "polymaps.min", "polymaps.extra", "polymaps.kml", 'd3.min', 'inaturalist/map3' %>
+  <%= javascript_include_tag "polymaps.min", "polymaps.extra", "polymaps.kml", 'd3.min', 'map_bundle' %>
   <script type="text/javascript" charset="utf-8">
     var TILESTACHE_SERVER = <%= CONFIG.tile_servers.tilestache.inspect.html_safe %>
     var CLOUDMADE_KEY = <%= @cloudmade_key ? @cloudmade_key.inspect.html_safe : 'null' %>
@@ -23,30 +23,29 @@
     var PLANETARY_RADIUS = <%= Observation::PLANETARY_RADIUS %>
     var DEGREES_PER_RADIAN = <%= Observation::DEGREES_PER_RADIAN %>
     var OBSCURATION_DISTANCE_IN_DEGREES = M_TO_OBSCURE_THREATENED_TAXA / PLANETARY_RADIUS * DEGREES_PER_RADIAN
-    var countyListings = <%= @county_listings.to_json(:methods => [:occurrence_status]).html_safe %>;
-    var stateListings = <%= @state_listings.to_json(:methods => [:occurrence_status]).html_safe %>;
-    var countryListings = <%= @country_listings.to_json(:methods => [:occurrence_status]).html_safe %>;
+    var countyListings = <%=json_escape @county_listings.to_json(:methods => [:occurrence_status]).html_safe %>;
+    var stateListings = <%=json_escape @state_listings.to_json(:methods => [:occurrence_status]).html_safe %>;
+    var countryListings = <%=json_escape @country_listings.to_json(:methods => [:occurrence_status]).html_safe %>;
     var extent = <%= @extent.to_json.html_safe %>;
-    var taxonRange = <%= @taxon_range.to_json(:include => [:source]).html_safe %>
+    var taxonRange = <%=json_escape @taxon_range.to_json(:include => [:source]).html_safe %>
     var taxonRangeUrl = <%= (@taxon_range ? taxon_range_geom_url(@taxon.id, :format => "geojson") : nil).to_json.html_safe %>
     var taxonRangeKmlUrl = <%= (@taxon_range ? root_url.gsub(/\/$/, "") + @taxon_range.range.url : nil).to_json.html_safe %>
     var observationsKmlUrl = <%= @taxon ? observations_url(:format => :kml, :taxon_id => @taxon.id).inspect.html_safe : 'null' %>
     var observationsJsonUrl = <%= @taxon ? observations_of_url(@taxon.id, :format => :json).inspect.html_safe : 'null' %>
     var observationsGeoJsonUrl = <%= @taxon ? observations_of_url(@taxon.id, :format => :geojson).inspect.html_safe : 'null' %>
-    var children = <%= @children.to_json.html_safe %>
-    var place = <%= @place.to_json.html_safe %>
+    var children = <%=json_escape @children.to_json.html_safe %>
+    var place = <%=json_escape @place.to_json.html_safe %>
     var placeGeometry = <%= @place_geometry.to_json.html_safe %>
-    var placeKmlUrl = <%= @place_geometry ? place_geometry_url(@place, :format => "kml").inspect.html_safe : 'null' %>
     var placeGeoJsonUrl = <%= @place_geometry ? place_geometry_url(@place, :format => "geojson").inspect.html_safe : 'null' %>
-    var taxa = <%= @taxa_data.to_json.html_safe %>
+    var taxa = <%=json_escape @taxa_data.to_json.html_safe %>
     
     $(document).ready(function() {
       var script = document.createElement("script")
       script.setAttribute("type", "text/javascript")
       if ($.browser.msie) {
-        script.setAttribute("src", "/javascripts/taxa/map.gmaps.js")
+        script.setAttribute("src", "<%= asset_path("taxa/map.gmaps.js") %>")
       } else {
-        script.setAttribute("src", "/javascripts/taxa/map.polymaps.js")
+        script.setAttribute("src", "<%= asset_path("taxa/map.polymaps.js") %>")
       }
       document.body.appendChild(script);
     })
@@ -62,10 +61,14 @@
 
 <div id="controls" class="floating">
   <div id="basemap">
-    <input type="radio" name="basemap" value="map" id="basemap_map" checked="checked">
-    <label for="basemap_map"><%= t(:map) %></label>
-    <input type="radio" name="basemap" value="sat" id="basemap_sat">
-    <label for="basemap_sat"><%= t(:Sat) %></label>
+    <label id="basemap_map_label" for="basemap_map">
+      <input type="radio" name="basemap" value="map" id="basemap_map" checked="checked">
+      <%= t(:map) %>
+    </label>
+    <label id="basemap_sat_label" for="basemap_sat">
+      <input type="radio" name="basemap" value="sat" id="basemap_sat"/>
+      <%= t(:Sat) %>
+    </label>
   </div>
 </div>
 <div id="copyright"></div>
@@ -156,7 +159,7 @@
   </div>
       
   <div id="legendfooter" class="clear small meta">
-    <a href="/" title="<%= CONFIG.site_name %>"><img src="/images/logo-mini.png" alt="#{CONFIG.site_name} logo" class="left" style="width: 75px"></a>
+    <a href="/" title="<%= CONFIG.site_name %>"><img src="<%= image_path('logo-mini.png') %>" alt="#{CONFIG.site_name} logo" class="left" style="width: 75px"></a>
     <div class="last right column">
       <%= link_to_function "<span class='ui-icon ui-icon-help inlineblock'>help</span>About this map".html_safe, 
         "$('#maphelp').dialog({modal: true, title: '#{t(:about_this_map)}', width: 500})", 

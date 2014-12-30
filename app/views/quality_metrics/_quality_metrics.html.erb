@@ -53,6 +53,27 @@
           :user_quality_metric => user_quality_metrics.detect{|qm| qm.metric == metric},
           :observation => o} %>
       <% end %>
+
+      <tr>
+        <td> <%= t(:appropriate?) %></td>
+        <td>
+          <% if o.appropriate? -%>
+            <span class="good"><%=t :yes %></span>
+          <% else %>
+            <%= t(:no) %>
+            <% if o.flagged? -%>
+              <div class="small meta">
+                <%= link_to t(:view_observationflags), observation_flags_path(o) %>
+              </div>
+            <% end -%>
+            <% if @flagged_photos -%>
+              <div class="small meta">
+                <%=t :view_flags_for_x_html, :x => commas_and(@flagged_photos.map{|p| link_to("#{t :photo} #{p.id}", p.becomes(Photo))}) %>
+              </div>
+            <% end -%>
+          <% end -%>
+        </td>
+      </tr>
     </tbody>
     <tfoot>
       <tr>

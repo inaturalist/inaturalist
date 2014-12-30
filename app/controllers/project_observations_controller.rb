@@ -4,7 +4,8 @@ class ProjectObservationsController < ApplicationController
   
   def create
     @project_observation = ProjectObservation.new(params[:project_observation])
-    
+    auto_join_project
+
     respond_to do |format|
       if @project_observation.save
         format.json { render :json => @project_observation }
@@ -46,6 +47,19 @@ class ProjectObservationsController < ApplicationController
       format.json do 
         render :status => status, :json => json
       end
+    end
+  end
+
+  private
+
+  def auto_join_project
+    @project = Project.find_by_id(params[:project_id])
+    @project ||= Project.find(params[:project_id]) rescue nil
+    return unless @project
+    @project_user = current_user.project_users.find_or_create_by_project_id(@project.id)
+    return unless @project_user
+    if @project.tracking_code_allowed?(params[:tracking_code])
+      @project_observation.tracking_code = params[:tracking_code]
     end
   end
   

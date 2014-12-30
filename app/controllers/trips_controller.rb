@@ -79,6 +79,13 @@ class TripsController < ApplicationController
       format.html do
         @next = @trip.parent.journal_posts.published.where("published_at > ?", @trip.published_at || @trip.updated_at).order("published_at ASC").first
         @prev = @trip.parent.journal_posts.published.where("published_at < ?", @trip.published_at || @trip.updated_at).order("published_at DESC").first
+        @shareable_image_url = @trip.body[/img.+src="(.+?)"/, 1]
+        @shareable_image_url ||= if @trip.parent_type == "Project"
+          FakeView.image_url(@trip.parent.icon.url(:original))
+        else
+          FakeView.image_url(@trip.user.icon.url(:original))
+        end
+        @shareable_description = FakeView.truncate(@trip.body, :length => 1000)
       end
       format.json do
         @trip = Trip.includes(:trip_taxa => {:taxon => [:taxon_names, {:taxon_photos => :photo}]}, :trip_purposes => {}).where(:id => @trip.id).first
@@ -126,7 +133,7 @@ class TripsController < ApplicationController
     param :body, String, :desc => "Description of the trip."
     param :latitude, :number, :desc => "Latitude of a point approximating the trip location."
     param :longitude, :number, :desc => "Longitude of a point approximating the trip location."
-    param :positional_accuracy, :number, :desc => "Precision of a point approximating the trip location."
+    param :radius, :number, :desc => "Radius in meters within which the trip occurred."
     param :place_id, :number, :desc => "Site place ID of place where the trip occurred."
     param :trip_taxa_attributes, Hash, :desc => "
       Nested trip taxa, i.e. taxa on the trip's check list. Note that this
@@ -171,7 +178,7 @@ class TripsController < ApplicationController
     param :body, String, :desc => "Description of the trip."
     param :latitude, :number, :desc => "Latitude of a point approximating the trip location."
     param :longitude, :number, :desc => "Longitude of a point approximating the trip location."
-    param :positional_accuracy, :number, :desc => "Precision of a point approximating the trip location."
+    param :radius, :number, :desc => "Radius in meters within which the trip occurred."
     param :place_id, :number, :desc => "Site place ID of place where the trip occurred."
     param :trip_taxa_attributes, Hash, :desc => "
       Nested trip taxa, i.e. taxa on the trip's check list. Note that this

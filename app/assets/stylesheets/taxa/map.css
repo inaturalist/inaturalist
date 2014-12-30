@@ -1,0 +1,152 @@
+#map.fullscreen {background-color: white;}
+circle {
+  stroke-width: 2px;
+  opacity: 0.5;
+  vector-effect: non-scaling-stroke;
+}
+#observations circle.obscured { stroke-dasharray: 3,2; }
+circle:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+#all_observations circle {
+  fill: #1E75BF;
+  stroke: #074D86;
+  opacity: 0.1;
+}
+#all_observations circle:hover {opacity: 1;}
+path {
+  opacity: 0.5;
+  fill: transparent;
+  vector-effect: non-scaling-stroke;
+  visibility: hidden;
+}
+path:hover {
+  opacity: 0.6;
+}
+.range path { visibility: visible; }
+svg.map {width: 100%; height: 100%;}
+svg .putative {
+  fill: #CA9D2C;
+  stroke: #91681D;
+  opacity: 0.5;
+  visibility: visible;
+}
+svg .confirmed {
+  fill: #84A92F;
+  stroke: #55721F;
+  opacity: 0.5;
+  visibility: visible;
+}
+svg .absent {
+  fill: #999;
+  stroke: #666;
+  opacity: 0.5;
+  visibility: visible;
+}
+path.confirmed:hover, path.putative:hover {
+  cursor: pointer;
+}
+svg .introduced, svg .invasive, svg .naturalised, svg .managed {
+  stroke-width: 3px;
+  stroke-dasharray: 7,5;
+}
+#range path {
+  fill: #FF5EB0;
+  stroke: deeppink;
+  visibility: visible;
+  opacity: 0.25;
+}
+path.range {
+  opacity:1;
+  fill-opacity:0.3;
+}
+path.range:hover {
+  opacity:1;
+  stroke-opacity:0.9;
+  fill-opacity:0.5;
+}
+#openspace path {
+  fill: #B3C927;
+  stroke: #5E6708;
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+#place path {
+  visibility: visible;
+  stroke-width: 2px;
+  stroke: #FF68B6;
+}
+
+#legend {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid #eee;
+  padding: 10px;
+}
+#legend ul { list-style: none; margin: 0;}
+#legend li { white-space: nowrap;}
+#legend .symbol { display: inline-block; vertical-align: middle; width: 16px; height: 16px; opacity: 0.5; vertical-align: middle;}
+#legend .observations .symbol, #legend .range .symbol { border: 1px solid deeppink; background-color: #FF5EB0; }
+#legend .observations .symbol {width: 5px; height: 5px; opacity: 0.5; position: relative; bottom: 2px; margin: 5px; -moz-border-raidus: 5px; -webkit-border-radius:5px; border-radius: 5px;}
+#legend .putative .symbol { border: 1px solid #91681D; background-color: #CA9D2C; }
+#legend .confirmed .symbol { border: 1px solid #55721F; background-color: #84A92F; }
+#legend .obscured .symbol { border: 1px dashed black; background-color: #ccc; width: 11px; height: 11px; margin: 2px; -moz-border-raidus: 11px; -webkit-border-radius:11px; border-radius: 11px;}
+#legend .absent .symbol { border: 1px solid #666; background-color: #999; }
+#legend .introduced {background-color: transparent; color:#333;}
+#legend .introduced .symbol { border: 1px dashed black; background-color: #ccc; }
+#legend .square.photo {width:75px;}
+
+.compass path{visibility:visible; opacity: 1;}
+.compass circle {opacity: 1;}
+.compass .back{fill:#eee;fill-opacity:.8;}
+.compass .fore{stroke:#999;stroke-width:1.5px;}
+.compass rect.back.fore{fill:#999;fill-opacity:.3;stroke:#eee;stroke-width:1px;shape-rendering:crispEdges;}
+.compass .direction{fill:none;}
+.compass .chevron{fill:none;stroke:#999;stroke-width:5px;}
+.compass .zoom .chevron{stroke-width:4px;}
+.compass .active .chevron,.compass .chevron.active{stroke:#fff;}
+.compass.active .active .direction{fill:#999;}
+
+.container {width: auto;}
+#header {min-width: 0;}
+
+.listed_taxon.ui-tooltip { max-width: 300px; }
+.namelink { font-weight: bold; }
+
+#controls {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid #eee;
+  padding: 2px 5px;
+}
+#copyright { 
+  z-index: 1000;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  font-size: 80%;
+  white-space: nowrap;
+  opacity: 0.7;
+  text-align: right;
+  background-color: white;
+  padding: 2px 5px;
+}
+#copyright:hover {opacity: 1;}
+#copyright img {display:inline-block; vertical-align: middle;}
+
+.floating { box-shadow: 0px 3px 3px #888; }
+li.place_type { padding-left: 22px; }
+#togglecollapse { position: absolute; top: 0; right: 0; border-left: 1px solid #eee; border-bottom: 1px solid #eee;}
+#legend table { margin-top: 10px; }
+#legend td { vertical-align: top; border: 0 transparent;}
+.observations.compact.infowindow .observation { width: 240px; }
+label.inactive {opacity: 0.5;}
+#range_attribution {margin-left: 1em;}

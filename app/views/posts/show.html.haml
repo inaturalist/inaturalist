@@ -1,6 +1,6 @@
 - content_for(:title) do
   = t(:x_journal_middot, :user => @parent_display_name).html_safe
-  = @post.title
+  = @title = @post.title
 - content_for(:extracss) do
   = stylesheet_link_tag "lists"
   :css
@@ -15,24 +15,28 @@
     #sidecol .tabs {float: right;}
     #sidecol .tabs li {padding-top: 0;padding-bottom: 0;}
     #sidecol .tabs .selected {font-weight: bold;}
-    .toggle_button {display: block;font-weight: bold;padding-left: 13px;background: center left url('/images/toggle_arrow_right.png') no-repeat;}
-    .toggle_button.open {background: center left url('/images/toggle_arrow_up.png') no-repeat;}
+    .toggle_button {display: block;font-weight: bold;padding-left: 13px;background: center left url(#{ image_path('toggle_arrow_right.png') }) no-repeat;}
+    .toggle_button.open {background: center left url(#{ image_path('toggle_arrow_up.png') }) no-repeat;}
     #map {width: 350px;height: 500px;}
 - content_for(:extrajs) do
   = google_maps_js
-  = javascript_include_tag 'jquery/plugins/jqModal', |
-    'inaturalist',                                   |
-    'inaturalist/map3'                               |
+  = javascript_include_tag 'inaturalist',      |
+    'map_bundle'                               |
   %script{:charset => "utf-8", :type => "text/javascript"}
     $(document).ready(function() {
     if ($('#map').length > 0) {
     window.map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3})
-    var observations = <haml:loud> @observations.to_json(:include =&gt; { :user =&gt; { :only =&gt; :login }, :taxon =&gt; {}, :iconic_taxon =&gt; {} }).html_safe </haml:loud>
+    var observations = #{json_escape @observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe}
     map.addObservations(observations)
     map.zoomToObservations()
     $('#map').hide()
     }
     })
+- content_for :extrahead do
+  %meta{:property => "og:image", :content => html_attributize(@shareable_image_url)}
+  %meta{:property => "og:description", :content => html_attributize(@shareable_description)}
+  %meta{:name => "twitter:card", :content => "summary"}
+  %meta{:name => "og:title", :content => html_attributize(@title)}
 .container
   .row
     #pageheader.span12

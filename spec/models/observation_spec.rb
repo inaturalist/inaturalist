@@ -53,16 +53,29 @@ describe Observation, "creation" do
     [
       ['Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)', {:month => 4, :day => 6, :hour => 16, :offset => "-05:00"}],
       ['Sun Nov 03 2013 08:15:25 GMT-0500 (GMT-5)', {:month => 11, :day => 3, :hour => 8, :offset => "-05:00"}],
-      ['September 27, 2012 8:09:50 AM GMT+01:00', :month => 9, :day => 27, :hour => 8, :offset => "+01:00"],
+
+      # This won't work given our current setup because if we lookup a time
+      # zone by offset like this, it will return the first *named* timezone,
+      # which in this case is Amsterdam, which is the same as CET, which, in
+      # September, observes daylight savings time, so it's actually CEST and
+      # the offset is +2:00. The main problem here is that if the client just
+      # specifies an offset, we can't reliably find the zone
+      # ['September 27, 2012 8:09:50 AM GMT+01:00', :month => 9, :day => 27, :hour => 8, :offset => "+01:00"],
+
+      # This *does* work b/c in December, Amsterdam is in CET, standard time
+      ['December 27, 2012 8:09:50 AM GMT+01:00', :month => 12, :day => 27, :hour => 8, :offset => "+01:00"],
+
       ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', :month => 12, :day => 26, :hour => 11, :offset => "+05:30"],
-      ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"]
+      ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"],
+      ['2014-06-18 5:18:17 pm CEST', :month => 6, :day => 18, :hour => 17, :offset => "+02:00"]
     ].each do |date_string, opts|
       o = Observation.make!(:observed_on_string => date_string)
       o.observed_on.day.should be(opts[:day])
       o.observed_on.month.should be(opts[:month])
-      o.time_observed_at.in_time_zone(o.time_zone).hour.should be(opts[:hour])
-      zone = ActiveSupport::TimeZone[o.time_zone]
-      zone.formatted_offset.should eq opts[:offset]
+      t = o.time_observed_at.in_time_zone(o.time_zone)
+      t.hour.should be(opts[:hour])
+      # zone = ActiveSupport::TimeZone[o.time_zone]
+      t.formatted_offset.should eq opts[:offset]
     end
   end
 
@@ -93,6 +106,13 @@ describe Observation, "creation" do
     zone = ActiveSupport::TimeZone[@observation.time_zone]
     zone.should_not be_blank
     zone.formatted_offset.should == "-05:00"
+  end
+
+  it "should handle unparsable times gracefully" do
+    @observation.observed_on_string = "2013-03-02, 1430hrs"
+    @observation.save
+    @observation.should be_valid
+    @observation.observed_on.day.should eq 2
   end
   
   it "should not save a time if one wasn't specified" do
@@ -330,6 +350,15 @@ describe Observation, "updating" do
     Identification.find_by_id(old_owners_ident.id).should_not be_blank
   end
 
+  it "should not destroy the owner's old identification if the taxon has changed unless it's the owner's only identification" do
+    t1 = Taxon.make!
+    o = Observation.make!(:taxon => t1)
+    old_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
+    o.update_attributes(:taxon => nil)
+    o.reload
+    Identification.find_by_id(old_owners_ident.id).should be_blank
+  end
+
   # # Handled by DJ
   # it "should add the taxon to the user's life list if not there already" do
   #   psre = Taxon.find_by_name("Pseudacris regilla")
@@ -520,8 +549,6 @@ describe Observation, "updating" do
       i2 = Identification.make!(:observation => o, :taxon => child)
       i3 = Identification.make!(:observation => o, :taxon => child, :user => o.user)
       o.reload
-      puts "o.num_identification_agreements: #{o.num_identification_agreements}"
-      puts "o.num_identification_disagreements: #{o.num_identification_disagreements}"
       o.community_taxon.should eq child
       o.taxon.should eq child
       o.should be_community_supported_id
@@ -531,6 +558,31 @@ describe Observation, "updating" do
     it "should be casual if no identifications" do
       o = make_research_grade_observation
       o.identifications.destroy_all
+      o.reload
+      o.should be_casual_grade
+    end
+
+    it "should not be research if the community taxon is Life" do
+      load_test_taxa
+      o = make_research_grade_observation
+      o.identifications.destroy_all
+      i1 = Identification.make!(:observation => o, :taxon => @Animalia)
+      i2 = Identification.make!(:observation => o, :taxon => @Plantae)
+      o.reload
+      o.community_taxon.should eq @Life
+      o.should be_casual_grade
+    end
+
+    it "should not be research if flagged" do
+      o = make_research_grade_observation
+      Flag.make!(:flaggable => o, :flag => Flag::SPAM)
+      o.reload
+      o.should be_casual_grade
+    end
+
+    it "should not be research if photos flagged" do
+      o = make_research_grade_observation
+      Flag.make!(:flaggable => o.photos.first, :flag => Flag::COPYRIGHT_INFRINGEMENT)
       o.reload
       o.should be_casual_grade
     end
@@ -1684,6 +1736,89 @@ describe Observation, "taxon updates" do
     u.notifier.should eq(o)
     u.subscriber.should eq(s.user)
   end
+
+  # This ended up being really annoying for people subscribed to high level
+  # taxa like Anisoptera. Still feel like there's a better way to do this than
+  # triggering it on create
+  # it "should generate an update for an observation that changed to the subscribed taxon" do
+  #   t = Taxon.make!
+  #   s = Subscription.make!(:resource => t)
+  #   Update.delete_all
+  #   o = without_delay {Observation.make!}
+  #   Update.count.should eq 0
+  #   without_delay do
+  #     o.update_attributes(:taxon => t)
+  #   end
+  #   u = Update.last
+  #   u.should_not be_blank
+  #   u.notifier.should eq(o)
+  #   u.subscriber.should eq(s.user)
+  # end
+end
+
+
+describe Observation, "place updates" do
+  describe "for places that cross the date line" do
+    let(:place) {
+      # crude shape that includes the north and south island of New Zealand
+      # (west of 180) and the Chathams (east of 180)
+      wkt = <<-WKT
+        MULTIPOLYGON
+          (
+            (
+              (
+                -177.374267578125 -43.4449429552612,-177.396240234375
+                -44.5278427984555,-175.1220703125
+                -44.629573191951,-174.9462890625
+                -43.4289879234416,-177.374267578125 -43.4449429552612
+              )
+            ),(
+              (
+                180 -33.9433599465788,179.736328125
+                -48.1074311884804,164.970703125 -47.8131545175277,165.234375
+                -33.3580616127788,180 -33.9433599465788
+              )
+            )
+          )
+      WKT
+      make_place_with_geom(:ewkt => wkt.gsub(/\s+/, ' '))
+    }
+    before do
+      place.straddles_date_line?.should be_true
+      @subscription = Subscription.make!(:resource => place)
+      @christchurch_lat = -43.603555
+      @christchurch_lon = 172.652311
+    end
+    it "should generate" do
+      o = without_delay do
+        Observation.make!(:latitude => @christchurch_lat, :longitude => @christchurch_lon)
+      end
+      @subscription.user.updates.last.notifier.should eq o
+    end
+    it "should not generate for observations outside of that place" do
+      o = without_delay do
+        Observation.make!(:latitude => -1 * @christchurch_lat, :longitude => @christchurch_lon)
+      end
+      @subscription.user.updates.should be_blank
+    end
+  end
+# This ended up being really annoying for people subscribed to big places
+# like North America. Still feel like there's a better way to do this than
+# triggering it on create
+#   it "should generate an update for an observation that changed to the subscribed place" do
+#     p = make_place_with_geom
+#     s = Subscription.make!(:resource => p)
+#     Update.delete_all
+#     o = without_delay {Observation.make!}
+#     Update.count.should eq 0
+#     without_delay do
+#       o.update_attributes(:latitude => p.latitude, :longitude => p.longitude)
+#     end
+#     u = Update.last
+#     u.should_not be_blank
+#     u.notifier.should eq(o)
+#     u.subscriber.should eq(s.user)
+#   end
 end
 
 describe Observation, "update_for_taxon_change" do
@@ -2019,6 +2154,16 @@ describe Observation, "community taxon" do
     o.community_taxon.should be_blank
   end
 
+  it "should be set to Life for two phyla" do
+    load_test_taxa
+    o = Observation.make!
+    i1 = Identification.make!(:observation => o, :taxon => @Animalia)
+    i2 = Identification.make!(:observation => o, :taxon => @Plantae)
+    o.reload
+    o.community_taxon.should eq @Life
+  end
+
+
   it "change should be triggered by changing the taxon" do
     o = Observation.make!
     i1 = Identification.make!(:observation => o)
@@ -2031,6 +2176,20 @@ describe Observation, "community taxon" do
   # it "change should trigger change in observation stats" do
 
   # end
+
+  it "should obscure the observation if set to a threatened taxon if the owner has an ID but the community confirms a descendant" do
+    p = Taxon.make!(:rank => "genus")
+    t = Taxon.make!(:parent => p, :rank => "species")
+    cs = ConservationStatus.make!(:taxon => t)
+    o = Observation.make!(:latitude => 1, :longitude => 1, :taxon => p)
+    o.should_not be_coordinates_obscured
+    o.taxon.should_not be_blank
+    i1 = Identification.make!(:taxon => t, :observation => o)
+    i2 = Identification.make!(:taxon => t, :observation => o)
+    o.reload
+    o.community_taxon.should eq t
+    o.should be_coordinates_obscured
+  end
 
   it "should obscure the observation if set to a threatened taxon but the owner has no ID" do
     cs = ConservationStatus.make!
@@ -2157,3 +2316,121 @@ describe Observation, "community taxon" do
   end
 end
 
+describe Observation, "fields_addable_by?" do
+  it "should default to true for anyone" do
+    Observation.make!.fields_addable_by?(User.make!).should be_true
+  end
+
+  it "should be false for nil user" do
+    Observation.make!.fields_addable_by?(nil).should be_false
+  end
+
+  it "should be true for curators if curators preferred" do
+    c = make_curator
+    u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS)
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(c).should be_true
+  end
+
+  it "should be true for curators by default" do
+    c = make_curator
+    u = User.make!
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(c).should be_true
+  end
+
+  it "should be false for curators if no editing preferred" do
+    c = make_curator
+    u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(c).should be_false
+  end
+
+  it "should be false for everyone other than the observer if no editing preferred" do
+    other = User.make!
+    u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(other).should be_false
+  end
+
+  it "should be true for the observer if no editing preferred" do
+    u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
+    o = Observation.make!(:user => u)
+    o.fields_addable_by?(u).should be_true
+  end
+end
+
+describe Observation, "mappable" do
+  it "should be mappable with lat/long" do
+    Observation.make!(latitude: 1.1, longitude: 2.2).mappable?.should be_true
+  end
+
+  it "should not be mappable without lat/long" do
+    Observation.make!.mappable?.should be_false
+  end
+
+  it "should not be mappable with a terrible accuracy" do
+    Observation.make!(latitude: 1.1, longitude: 2.2,
+      positional_accuracy: Observation::M_TO_OBSCURE_THREATENED_TAXA + 1).
+      mappable?.should be_false
+  end
+
+  it "should not be mappable if captive" do
+    Observation.make!(latitude: 1.1, longitude: 2.2,
+      captive: true).mappable?.should be_false
+  end
+
+  it "should not be mappable when adding captive metric" do
+    o = Observation.make!(latitude: 1.1, longitude: 2.2)
+    o.mappable?.should be_true
+    QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
+    o.mappable?.should be_false
+  end
+
+  it "should update mappable when captive metric is deleted" do
+    o = Observation.make!(latitude: 1.1, longitude: 2.2)
+    o.mappable?.should be_true
+    q = QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
+    o.mappable?.should be_false
+    q.destroy
+    o.reload.mappable?.should be_true
+  end
+
+  it "should not be mappable with an inaccurate location" do
+    o = Observation.make!(latitude: 1.1, longitude: 2.2)
+    o.mappable?.should be_true
+    QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
+    o.mappable?.should be_false
+  end
+
+  it "should update mappable after multiple quality metrics are added" do
+    o = Observation.make!(latitude: 1.1, longitude: 2.2)
+    o.mappable?.should be_true
+    QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: true)
+    o.mappable?.should be_true
+    QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
+    o.mappable?.should be_false
+  end
+
+  it "should default accuracy of obscured observations to M_TO_OBSCURE_THREATENED_TAXA" do
+    o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2)
+    o.coordinates_obscured?.should be_true
+    o.calculate_public_positional_accuracy.should == Observation::M_TO_OBSCURE_THREATENED_TAXA
+  end
+
+  it "should set public accuracy to the greater of accuracy and M_TO_OBSCURE_THREATENED_TAXA" do
+    o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2,
+      positional_accuracy: Observation::M_TO_OBSCURE_THREATENED_TAXA + 1)
+    o.calculate_public_positional_accuracy.should == Observation::M_TO_OBSCURE_THREATENED_TAXA + 1
+  end
+
+  it "should set public accuracy to accuracy" do
+    o = Observation.make!(positional_accuracy: 10).
+      public_positional_accuracy.should == 10
+  end
+
+  it "should set public accuracy to nil if accuracy is nil" do
+    o = Observation.make!(positional_accuracy: nil).
+      public_positional_accuracy.should == nil
+  end
+end

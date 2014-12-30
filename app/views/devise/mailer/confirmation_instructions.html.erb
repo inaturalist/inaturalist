@@ -1,16 +1,32 @@
 <%-
-  img_url = if CONFIG.logo_icon_square_big =~ /http/
-    CONFIG.logo_icon_square_big
+  @user = @resource
+  if site = @resource.site || @site
+    logo_url = site.logo.url
+    logo_square_url = site.logo_square.url
+    site_url = site.url
+    site_name = site.name
+    help_url = site.help_url
+    feedback_url = site.feedback_url
   else
-    FakeView.uri_join(root_url, FakeView.image_url(CONFIG.logo_icon_square_big.to_s))
+    logo_url = CONFIG.logo
+    logo_square_url = CONFIG.logo_icon_square_big
+    site_url = root_url
+    site_name = CONFIG.site_name
+    help_url = CONFIG.help_url
+    feedback_url = CONFIG.feedback_url
+  end
+  img_url = if logo_square_url =~ /http/
+    logo_square_url
+  else
+    FakeView.uri_join(site_url, FakeView.image_url(logo_square_url.to_s))
   end
 -%>
 <%= link_to image_tag(img_url, 
-  :align => "right", :border => 0, :alt => t(:welcome_to_inat, :site_name => SITE_NAME)), root_url %>
+  :align => "right", :border => 0, :alt => t(:welcome_to_inat, :site_name => SITE_NAME)), site_url %>
 <p><%= t(:welcome_comma) %> <%= @resource.login %>!</p>
 
 <p>
-<%=raw t(:your_inat_account_has_been_activated, :inat => link_to(CONFIG.site_name, root_url)) %>
+<%=raw t(:your_inat_account_has_been_activated, :inat => link_to(site_name, site_url)) %>
   <%= t(:thanks_for_signing_up) %>
   <%= t(:please_confirm_your_account_html, :url => confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)) %>
 </p>
@@ -29,7 +45,7 @@
 </ul>
 
 <p>
-  <%=raw t(:if_you_have_any_trouble_with_the_site_check_out, :help_url => CONFIG.help_url, :feedback_url => CONFIG.feedback_url) %>
+  <%=raw t(:if_you_have_any_trouble_with_the_site_check_out, :help_url => help_url, :feedback_url => feedback_url) %>
 </p>
 
 <%= render 'emailer/footer' %>

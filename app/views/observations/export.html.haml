@@ -4,9 +4,8 @@
   = google_maps_js
   = javascript_include_tag "jquery/plugins/inat/datepicker"
   = javascript_include_tag "jquery/plugins/jquery.latLonSelector"
-  = javascript_include_tag 'inaturalist/map3'
+  = javascript_include_tag 'map_bundle'
   = javascript_include_tag 'observations/filters'
-  = javascript_include_tag "jquery/plugins/jquery.ba-bbq.min"
   :javascript
     var REJECT_PARAMS = ['filters_open', 'order', 'order_by', 'utf8', 'flow_task_id', 'view', 'taxon_name']
     function reloadPreview() {
@@ -142,7 +141,7 @@
     .simpleTaxonSelector .choice.status {
       position: absolute;
       top: 32px;
-      background: white url(/images/logo-grey-15px.png) 0 3px no-repeat;
+      background: white url(#{ image_path('logo-grey-15px.png') }) 0 3px no-repeat;
       background-color:white !important;
       box-shadow: #eee 2px 2px 5px;
       padding-bottom: 5px !important;

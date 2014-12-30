@@ -75,7 +75,7 @@ class ObservationsExportFlowTask < FlowTask
       f << ']'
     end
     zip_path = File.join(work_path, "#{basename}.json.zip")
-    system "cd #{work_path} && zip -r #{basename}.json.zip *"
+    system "cd #{work_path} && zip -qr #{basename}.json.zip *"
     zip_path
   end
 
@@ -83,7 +83,7 @@ class ObservationsExportFlowTask < FlowTask
     csv_path = File.join(work_path, "#{basename}.csv")
     path = Observation.generate_csv(@observations, :fname => "#{basename}.csv", :path => csv_path, :columns => export_columns)
     zip_path = File.join(work_path, "#{basename}.csv.zip")
-    system "cd #{work_path} && zip -r #{basename}.csv.zip *"
+    system "cd #{work_path} && zip -qr #{basename}.csv.zip *"
     zip_path
   end
 
@@ -136,11 +136,14 @@ class ObservationsExportFlowTask < FlowTask
 
   def enqueue_options
     opts = {}
-    # Giant exports can really bog things down, so put them in the slow queue
-    if observations_scope.count > 100000
-      opts[:queue] = "slow"
-      opts[:priority] = USER_PRIORITY
+    # Giant exports can really bog things down, so manage queue and priority
+    count = observations_scope.count
+    opts[:priority] = if count > 1000
+      USER_INTEGRITY_PRIORITY
+    else
+      NOTIFICATION_PRIORITY
     end
+    opts[:queue] = "slow" if count > 10000
     opts
   end
 end

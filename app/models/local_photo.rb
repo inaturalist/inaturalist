@@ -21,6 +21,7 @@ class LocalPhoto < Photo
       :square   => {:geometry => "75x75#",      :auto_orient => false, :processors => [:deanimator] }
     },
     :convert_options => {
+      :original => image_convert_options,
       :large  => image_convert_options,
       :medium => image_convert_options,
       :small  => image_convert_options,
@@ -79,6 +80,9 @@ class LocalPhoto < Photo
       end
     rescue EXIFR::MalformedImage, EOFError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
+    rescue NoMethodError => e
+      raise e unless e.message =~ /path.*StringIO/
+      Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
     end
   end
   
@@ -89,9 +93,15 @@ class LocalPhoto < Photo
       url = file.url(s)
       url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
     end
-    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
+    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'"
     Photo.update_all(updates, ["id = ?", id])
     true
+  end
+
+  def repair
+    self.file.reprocess!
+    set_urls
+    [self, {}]
   end
 
   def attribution
@@ -151,7 +161,13 @@ class LocalPhoto < Photo
       end
     end
     unless metadata[:dc].blank?
-      o.taxon = to_taxon
+      photo_taxa = to_taxa
+      candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
+      if photo_taxa.detect{|t| t.name == candidate.name && t.id != candidate.id}
+        o.species_guess = candidate.name
+      else
+        o.taxon = candidate
+      end
       if o.taxon
         tags = to_tags.map(&:downcase)
         o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)
@@ -159,7 +175,9 @@ class LocalPhoto < Photo
       elsif !metadata[:dc][:title].blank?
         o.species_guess = metadata[:dc][:title].to_sentence.strip
       end
-      o.species_guess = nil if o.species_guess.blank?
+      if o.species_guess.blank?
+        o.species_guess = nil
+      end
       o.description = metadata[:dc][:description].to_sentence unless metadata[:dc][:description].blank?
       o.build_observation_fields_from_tags(to_tags)
     end

@@ -9,11 +9,11 @@ class TaxonRange < ActiveRecord::Base
   scope :without_geom, select((column_names - ['geom']).join(', '))
   scope :simplified, select(<<-SQL
       id, taxon_id, 
-      multi(
+      st_multi(
         cleangeometry(
           ST_Buffer(
             ST_SimplifyPreserveTopology(geom, 
-              exp(-(log(5000/npoints(geom)::float)+1.5944)/0.2586)
+              exp(-(log(5000/st_npoints(geom)::float)+1.5944)/0.2586)
             ),
             0.0
           )
@@ -24,7 +24,7 @@ class TaxonRange < ActiveRecord::Base
   
   has_attached_file :range,
     :path => ":rails_root/public/attachments/:class/:id.:extension",
-    :url => "/attachments/:class/:id.:extension"
+    :url => "#{ CONFIG.attachments_host }/attachments/:class/:id.:extension"
     # :storage => :s3,
     # :s3_credentials => "#{Rails.root}/config/s3.yml",
     # :s3_host_alias => CONFIG.s3_bucket,
@@ -39,7 +39,7 @@ class TaxonRange < ActiveRecord::Base
   end
 
   def kml_url
-    return "#{FakeView.root_url[0..-2]}#{range.url}" unless range.blank?
+    return "#{range.url}" unless range.blank?
     return url if url =~ /kml/
     nil
   end
@@ -52,7 +52,7 @@ class TaxonRange < ActiveRecord::Base
           xml.Placemark {
             xml.name
             xml.description
-            xml.styleUrl "#{CONFIG.site_url}/stylesheets/index.kml#taxon_range"
+            xml.styleUrl "#{CONFIG.site_url}/assets/index.kml#taxon_range"
             xml << self.geom.as_kml
           }
         }
@@ -88,5 +88,18 @@ class TaxonRange < ActiveRecord::Base
     end
     File.delete(tmp_path)
   end
-  
+
+  def bounds
+    return @bounds if @bounds
+    result = TaxonRange.where(id: id).select("
+      ST_YMIN(geom) min_y, ST_YMAX(geom) max_y,
+      ST_XMIN(geom) min_x, ST_XMAX(geom) max_x").first
+    @bounds = {
+      min_x: result.min_x,
+      min_y: result.min_y,
+      max_x: result.max_x,
+      max_y: result.max_y
+    }
+  end
+
 end

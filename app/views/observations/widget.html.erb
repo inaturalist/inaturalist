@@ -89,7 +89,7 @@
       <% if @place -%>
         <div class="field placefield">
           <label><%= t :place %></label><br/>
-          <input type="text" name="place_id" value="<%= @place.id if @place %>" data-json='<%= @place.to_json %>'/>
+          <input type="text" name="place_id" value="<%= @place.id if @place %>" data-json='<%= @place.to_json.html_safe %>'/>
           <div>
             <%= link_to "#{t(:view)} #{h(truncate(@place.name, :length => 30))}", @place, :class => "readmore" %>
           </div>

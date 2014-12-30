@@ -42,7 +42,7 @@
           data: "partial=cached_component"
         },
         load: function(event, ui) {
-          $(ui.panel).append(
+          $('.observations', ui.panel).append(
             $('<a rel="nofollow">' + I18n.t('view_more') + '</a>').addClass('readmore').attr('href', $(ui.tab).attr('href'))
           )
         }

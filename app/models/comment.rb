@@ -54,7 +54,7 @@ class Comment < ActiveRecord::Base
     false
   end
 
-  def flagged_with(flag)
+  def flagged_with(flag, options = {})
     if Comment.joins(:flags).where("comments.user_id = ? AND flags.flag = ?", user_id, Flag::SPAM).count >= 3
       user.suspend!
     end

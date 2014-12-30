@@ -196,6 +196,91 @@ describe ProjectObservation, "in_taxon?" do
   # end
 end
 
+describe ProjectObservation, "has_a_photo?" do
+  let(:p) { Project.make! }
+  it "should be true if photo present" do
+    o = make_research_grade_observation
+    pu = ProjectUser.make!(:project => p, :user => o.user)
+    po = ProjectObservation.make(:project => p, :observation => o)
+    po.has_a_photo?.should be_true
+  end
+  it "should be false if photo not present" do
+    o = Observation.make!
+    pu = ProjectUser.make!(:project => p, :user => o.user)
+    po = ProjectObservation.make(:project => p, :observation => o)
+    po.has_a_photo?.should_not be_true
+  end
+end
+
+describe ProjectObservation, "has_a_sound?" do
+  let(:p) { Project.make! }
+  it "should be true if sound present" do
+    os = ObservationSound.make!
+    o = os.observation
+    o.reload
+    pu = ProjectUser.make!(:project => p, :user => o.user)
+    po = ProjectObservation.make(:project => p, :observation => o)
+    po.has_a_sound?.should be_true
+  end
+  it "should be false if sound not present" do
+    o = Observation.make!
+    pu = ProjectUser.make!(:project => p, :user => o.user)
+    po = ProjectObservation.make(:project => p, :observation => o)
+    po.has_a_sound?.should_not be_true
+  end
+end
+
+describe ProjectObservation, "has_media?" do
+  let(:p) { Project.make! }
+  it "should be true if photo present" do
+    o = make_research_grade_observation
+    pu = ProjectUser.make!(:project => p, :user => o.user)
+    po = ProjectObservation.make(:project => p, :observation => o)
+    po.has_media?.should be_true
+  end
+  it "should be true if sound present" do
+    os = ObservationSound.make!
+    o = os.observation
+    pu = ProjectUser.make!(:project => p, :user => o.user)
+    po = ProjectObservation.make(:project => p, :observation => o)
+    po.has_media?.should be_true
+  end
+  it "should be false if photo and sound not present" do
+    o = Observation.make!
+    pu = ProjectUser.make!(:project => p, :user => o.user)
+    po = ProjectObservation.make(:project => p, :observation => o)
+    po.has_media?.should_not be_true
+  end
+end
+
+describe ProjectObservation, "wild?" do
+  let(:p) { Project.make! }
+  it "should be false if observation captive_cultivated" do
+    po = make_project_observation
+    po.observation.update_attributes(:captive_flag => true)
+    po.reload
+    po.should_not be_wild
+  end
+  it "should be true if observation not captive_cultivated" do
+    po = make_project_observation
+    po.should be_wild
+  end
+end
+
+describe ProjectObservation, "captive?" do
+  let(:p) { Project.make! }
+  it "should be true if observation captive_cultivated" do
+    po = make_project_observation
+    po.observation.update_attributes(:captive_flag => true)
+    po.reload
+    po.should be_captive
+  end
+  it "should be false if observation not captive_cultivated" do
+    po = make_project_observation
+    po.should_not be_captive
+  end
+end
+
 describe ProjectObservation, "to_csv" do
   it "should include headers for project observation fields" do
     pof = ProjectObservationField.make!

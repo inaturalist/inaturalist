@@ -1,5 +1,6 @@
 #encoding: utf-8
 class WikimediaCommonsPhoto < Photo
+  validate :licensed_if_no_user
   
   Photo.descendent_classes ||= []
   Photo.descendent_classes << self

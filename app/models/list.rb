@@ -166,7 +166,7 @@ class List < ActiveRecord::Base
     
     find_options = {
       :order => "taxon_ancestor_ids || '/' || listed_taxa.taxon_id",
-      :include => [:taxon, :user]
+      :include => [ { :taxon => :taxon_names }, :user, :first_observation, :last_observation ]
     }
     if is_a?(CheckList) && is_default?
       find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
@@ -179,6 +179,7 @@ class List < ActiveRecord::Base
     CSV.open(tmp_path, 'w') do |csv|
       csv << headers
       ListedTaxon.do_in_batches(find_options) do |lt|
+        next if lt.taxon.blank?
         row = []
         if options[:taxonomic]
           ancestor_ids = lt.taxon.ancestor_ids.map{|tid| tid.to_i}
@@ -281,7 +282,7 @@ class List < ActiveRecord::Base
     else
       lists.each do |list|
         Rails.logger.info "[INFO #{Time.now}] #{log_key}, refreshing #{list}"
-        list.delay(:priority => INTEGRITY_PRIORITY).refresh(options)
+        list.delay(:priority => INTEGRITY_PRIORITY, :queue => list.is_a?(CheckList) ? "slow" : "default").refresh(options)
       end
     end
     Rails.logger.info "[INFO #{Time.now}] #{log_key}, finished in #{Time.now - start}s"

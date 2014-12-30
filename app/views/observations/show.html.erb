@@ -1,18 +1,18 @@
 <% content_for(:title) do %>
-<%- unless @observation.species_guess.blank? -%>
-  <%= @observation.species_guess -%>,
-<%- else -%>
-  <%=t :something %>
-<% end %>
-<%= t(:observed_by).downcase %>
-<%= @observation.user.login %>
-<%- if @observation.time_observed_at -%>
-        <%=l @observation.time_observed_at, :format => :observed_at %>
-<%- end %>
-<%- if @observation.observed_on
-      date_format = @observation.observed_on.to_s(:long).split(" ") -%>
-        <%= t :on_ %> <%= t("date_format.date_long.#{date_format.first.downcase}", :day => date_format[1], :year =>date_format.last) %>
-<%- end -%>
+  <%- unless @observation.species_guess.blank? -%>
+    <%= @observation.species_guess -%>,
+  <%- else -%>
+    <%=t :something %>
+  <% end %>
+  <%= t(:observed_by).downcase %>
+  <%= @observation.user.login %>
+  <%- if @observation.time_observed_at && @coordinates_viewable -%>
+    <%=l @observation.time_observed_at, :format => :observed_at %>
+  <%- end %>
+  <%- if @observation.observed_on -%>
+    <%- date_format = @observation.observed_on.to_s(:long).split(" ") -%>
+    <%= t :on_ %> <%= t("date_format.date_long.#{date_format.first.downcase}", :day => date_format[1], :year =>date_format.last) %>
+  <%- end -%>
 <% end -%>
 
 <%- content_for(:extrahead) do -%>
@@ -24,10 +24,10 @@
     <% if @observation.observed_on -%>
       <meta property="<%= CONFIG.facebook.namespace %>:observed_on" content="<%= @observation.datetime.iso8601 %>" />
     <% end -%>
-    <% unless @observation.place_guess.blank? -%>
+    <% if !@observation.place_guess.blank? && @coordinates_viewable -%>
       <meta property="<%= CONFIG.facebook.namespace %>:place_guess" content="<%= @observation.place_guess %>" />
     <% end -%>
-    <% if @observation.georeferenced? && @observation.geoprivacy.blank? -%>
+    <% if @coordinates_viewable -%>
       <meta property="<%= CONFIG.facebook.namespace %>:coordinates:latitude"  content="<%= @observation.latitude %>"> 
       <meta property="<%= CONFIG.facebook.namespace %>:coordinates:longitude" content="<%= @observation.longitude %>">
     <% end -%>
@@ -35,7 +35,7 @@
   <meta property="og:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %>"/> 
   <meta property="twitter:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %> observed by <%= @observation.user.try_methods(:name, :login) %>"/> 
   <% if !@photos.blank? && photo = @photos.detect{|p| p.medium_url =~ /^http/} -%>
-    <meta property="og:image" content="<%= photo.medium_url %>"/> 
+    <meta property="og:image" content="<%= @shareable_image_url %>"/> 
     <meta name="twitter:card" content="photo">
   <% elsif @observation.taxon %>
     <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon, :size => 200) %>"/> 
@@ -46,11 +46,7 @@
   <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
     <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
   <% end -%>
-  <% if @observation.description.blank? %>
-    <meta property="og:description" content="<%= html_attributize @observation.to_plain_s %>"/> 
-  <% else %>
-    <meta property="og:description" content="<%= html_attributize @observation.description %>"/> 
-  <% end %>
+  <meta property="og:description" content="<%= html_attributize @shareable_description %>"/> 
 
   <% if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
     <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
@@ -99,22 +95,29 @@
 <% end %>
 <% content_for(:extrajs) do %>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'jquery/plugins/jqModal',
-                             'modal_image',
-                             'observations/observation_fields',
-                             'inaturalist/map3',
+  <%= javascript_include_tag 'observations/observation_fields',
+                             'map_bundle',
                              "jquery/plugins/inat/photo_selectors.js",
                              "observations/show" %>
   <script type="text/javascript" charset="utf-8">
-    var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
+    var DEFAULT_PHOTO_IDENTITY_URL = <%=json_escape @default_photo_identity_url.to_json.html_safe %>,
         PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
-        PHOTO_SOURCES = <%= @photo_sources.to_json.html_safe %>,
-        DEFAULT_PHOTO_SOURCE = <%= @default_photo_source.to_json.html_safe %>,
-        OBSERVATION = <%= @observation.to_json(:viewer => current_user, 
-          :force_coordinate_visibility => @observation.coordinates_viewable_by?(current_user),
-          :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}).html_safe %>
-  </script>
+        PHOTO_SOURCES = <%=json_escape @photo_sources.to_json.html_safe %>,
+        DEFAULT_PHOTO_SOURCE = <%=json_escape @default_photo_source.to_json.html_safe %>,
+        OBSERVATION = <%=json_escape @observation.to_json(:viewer => current_user, 
+          :force_coordinate_visibility => @coordinates_viewable,
+          :include => [ {:user => {:only => :login} }, :taxon, :iconic_taxon ]).html_safe %>;
+</script>
 <% end %>
+
+<% if @flagged_photos.size > 0 -%>
+  <div class="notice box">
+    <h3><%=t :suspicious_photos %></h3>
+    <p class="unstacked">
+      <%=t 'views.observations.show.flagged_photos_desc_html', :links => commas_and(@flagged_photos.map {|p| link_to(t(:photo_attribution, :attribution => p.id), p.becomes(Photo))}) %>
+    </p>
+  </div>
+<% end -%>
 
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
@@ -154,10 +157,16 @@
       <%=t :something %>,
     <% end -%>
     <%= t(:observed_by).downcase %> 
-    <%= link_to @observation.user.login, observations_by_login_path(@observation.user.login) %>
+    <%= link_to observations_by_login_path(@observation.user.login) do %>
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">
+          <%= @observation.user.login %>
+        </span>
+      </span>
+    <% end -%>
     <span class="meta date">
-      <%- if @observation.time_observed_at -%>
-        <%=l @observation.time_observed_at, :format => :observed_at %>
+      <%- if @observation.time_observed_at && @coordinates_viewable -%>
+        <%=l @observation.time_observed_at.in_time_zone(@observation.time_zone || Time.zone), :format => :observed_at %>
       <% end -%>
       <%- if @observation.observed_on -%>
         <%=t :on_ %>
@@ -242,16 +251,37 @@
               extra_count = 5
               cycle_classes = [""]*(extra_count-1) + ["last"]
             -%>
-            <%= link_to image_tag(@photos.first.best_url(photo_size)), @photos.first.becomes(Photo), :class => "first zoomable", :title => t(:photo_attribution, :attribution => @photos.first.attribution) %>
+            <%= link_to image_tag(@photos.first.best_url(photo_size), 
+                :itemprop => "image", 
+                :data => {
+                  :pin_url => observation_url(@observation),
+                  :pin_media => @photos.first.best_url(:large),
+                  :pin_description => @shareable_description
+                }
+              ), @photos.first.becomes(Photo), 
+              :class => "first zoomable", 
+              :title => t(:photo_attribution, :attribution => @photos.first.attribution) %>
             <% for photo in @photos[1..extra_count] -%>
-              <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto #{cycle(*cycle_classes)}", :title => t(:photo_attribution, :attribution => photo.attribution) %>
+              <%= link_to image_tag(photo.square_url, :data => {
+                  :pin_url => observation_url(@observation),
+                  :pin_media => photo.best_url(:large),
+                  :pin_description => @shareable_description
+                }), photo.becomes(Photo), 
+                :class => "zoomable smallphoto #{cycle(*cycle_classes)}", 
+                :title => t(:photo_attribution, :attribution => photo.attribution) %>
             <% end -%>
             <% if @photos.size > extra_count+1 -%>
               <div style="clear: both">
                 <%= link_to_toggle t(:view_all_photocount_photos, :photo_count => @observation.photos.size), "#morephotos" %>
                 <div id="morephotos" style="display: none">
                   <% for photo in @photos[(extra_count+1)..-1] -%>
-                    <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto", :title => t(:photo_attribution, :attribution => photo.attribution) %>
+                    <%= link_to image_tag(photo.square_url, :data => {
+                        :pin_url => observation_url(@observation),
+                        :pin_media => photo.best_url(:large),
+                        :pin_description => @shareable_description
+                      }), photo.becomes(Photo), 
+                      :class => "zoomable smallphoto", 
+                      :title => t(:photo_attribution, :attribution => photo.attribution) %>
                   <% end -%>
                 </div>
               </div>
@@ -310,7 +340,7 @@
 
     <div id="where">
       <% if show_observation_coordinates?(@observation) %>
-        <div id="map" class="stacked"></div>
+        <%= render :partial => 'show_map' %>
       <% end %>
       <div class="description">
         <%= render :partial => 'location', :locals => {:inline_edit => true, :places => @places} %>
@@ -342,7 +372,7 @@
 
     <div id="dates" class="description date nobr">
       <label><%=t :added %>:</label>
-      <span class="date">
+      <span class="date" itemprop="datePublished" content="<%= @observation.created_at.iso8601 %>" >
         <%=l @observation.created_at %>
       </span>
     </div>
@@ -351,13 +381,8 @@
       <div id="app" class="description">
         <label>App:</label>
         <% if a -%>
-          <%-
-            url = a.url.blank? ? oauth_application_url(a) : a.url
-            uri = URI.parse(url) rescue nil
-          -%>
-          <% if uri -%>
-            <%= link_to(image_tag("http://www.google.com/s2/u/0/favicons?domain=#{uri.host}", :class => "favicon"), url) %>
-          <% end -%>
+          <%- url = a.url.blank? ? oauth_application_url(a) : a.url -%>
+          <%= link_to(image_tag(favicon_url_for(url), :class => "favicon"), url) %>
           <%= link_to a.name, url %>
         <% elsif !@observation.device_url.blank? -%>
           <%= link_to @observation.device_name, @observation.device_url %>
@@ -367,27 +392,10 @@
     
     <% unless @observation.observation_field_values.blank? -%>
       <div class="observation_fields meta">
-        <% for ofv in @observation.observation_field_values %>
-          <div class="observation_field_value">
-            <label data-tip="<%=h ofv.observation_field.description %>" data-tip-width="auto">
-              <%= link_to ofv.observation_field.name, ofv.observation_field %>:
-            </label>
-            <%= observation_field_value_for(ofv) %>
-            <span class="extra small">
-              <%= link_to t(:observations_w_field), observations_path("field:#{ofv.observation_field.normalized_name}" => ""),
-                :rel => "nofollow" %>
-              <% if ofv.value.to_s.size < 30 -%>
-                |
-                <%= link_to t(:observations_w) + "#{ofv.observation_field.name}=#{ofv.value}",
-                  observations_path("field:#{ofv.observation_field.normalized_name}" => ofv.value),
-                  :rel => "nofollow" -%>
-              <%- end -%>
-            </span>
-          </div>
-        <% end %>
+        <%= render :partial => 'observation_fields/observation_field_value', :collection => @observation.observation_field_values %>
       </div>
     <% end -%>
-    <% if is_me?(@observation.user) -%>
+    <% if @observation.fields_addable_by?(current_user) -%>
       <span class="button"><%= link_to_function t(:add_edit_more_fields), "ObservationFields.showObservationFieldsDialog()" %></span>
     <% end -%>
     
@@ -659,10 +667,10 @@
       <div id="day_observations" class="clear quiet box">
         <div class="clear">
           <% for o in @day_observations %>
-            <%= link_to observation_image(o, :size => "square"), o, :title => o.to_plain_s %>
+            <%= link_to observation_image(o, :size => "square"), observation_path(o), :title => o.to_plain_s %>
           <% end %>
         </div>
-        <%= link_to t(:view_x_from_x, :day_observations=>"#{@day_observations.total_entries}", :observed_on => "#{l(@observation.observed_on, :format => :long)}"), calendar_date_path(@observation.user.login, @observation.observed_on.year, @observation.observed_on.month, @observation.observed_on.day), :class => "right readmore" %>
+        <%= link_to t(:view_x_from_x, :day_observations => @day_observations.total_entries, :observed_on => l(@observation.observed_on, :format => :long)), calendar_date_path(@observation.user.login, @observation.observed_on.year, @observation.observed_on.month, @observation.observed_on.day), :class => "right readmore" %>
       </div>
     <%= separator %>
   <% end -%>
@@ -773,9 +781,18 @@
   
   <%= separator %>
   
-  <div id="fblike" class="stacked">
+  <div id="sharing" class="stacked">
     <script src="//connect.facebook.net/<%= t(:fblocale) %>/all.js#xfbml=1"></script>
     <fb:like send="true" show_faces="true" width="270" layout="button_count"></fb:like>
+    <% if @shareable_image_url -%>
+      <%= link_to image_tag("//assets.pinterest.com/images/pidgets/pin_it_button.png"), 
+        "https://www.pinterest.com/pin/create/button/?url=#{u observation_url(@observation)}&media=#{u @shareable_image_url}&description=#{u @shareable_description}", 
+        :data => {
+          :pin_do => "buttonPin", 
+          :pin_config => "above"
+        } %>
+      </a>
+    <% end -%>
   </div>
   
 </div><!-- end right col -->

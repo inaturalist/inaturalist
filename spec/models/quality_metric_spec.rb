@@ -22,3 +22,40 @@ describe QualityMetric, "destruction" do
     o.quality_grade.should == Observation::RESEARCH_GRADE
   end
 end
+
+describe QualityMetric, "wild" do
+  let(:o) { Observation.make! }
+  before do
+    o.should_not be_captive
+  end
+  it "should set captive on the observation" do
+    QualityMetric.make!(:observation => o, :metric => QualityMetric::WILD, :agree => false)
+    o.reload
+    o.should be_captive
+  end
+
+  it "should set captive on the observation to false if majority agree" do
+    QualityMetric.make!(:observation => o, :metric => QualityMetric::WILD, :agree => false)
+    QualityMetric.make!(:observation => o, :metric => QualityMetric::WILD, :agree => true)
+    o.reload
+    QualityMetric.make!(:observation => o, :metric => QualityMetric::WILD, :agree => true)
+    o.reload
+    o.should_not be_captive
+  end
+  it "should set captive on the observation to true if majority disagree" do
+    QualityMetric.make!(:observation => o, :metric => QualityMetric::WILD, :agree => false)
+    QualityMetric.make!(:observation => o, :metric => QualityMetric::WILD, :agree => false)
+    o.reload
+    QualityMetric.make!(:observation => o, :metric => QualityMetric::WILD, :agree => true)
+    o.reload
+    o.should be_captive
+  end
+  it "should set captive on the observation false if metric destroyed" do
+    qm = QualityMetric.make!(:observation => o, :metric => QualityMetric::WILD, :agree => false)
+    o.reload
+    o.should be_captive
+    qm.destroy
+    o.reload
+    o.should_not be_captive
+  end
+end

@@ -1,0 +1,502 @@
+# Message documentation for i18n translation keys
+qqq:
+  licensing_your_content: |
+    Info about licensing content where site_name is the name of the site
+  x_followers: Number of followers
+  x_identifications: Number of identifications
+  x_lists: Number of lists
+  x_journal_posts: Number of journal posts
+  x_matching_taxa: Number of matching taxa
+  x_matching_taxa_html: |
+    Number of matching taxa, with the count in a span of class 'count'
+  x_observations: Number of observations
+  x_observations_html: |
+    Number of observations, with the count in a span of class 'count'
+  x_observations_link_html: |
+    Number of observations, with the count linked to $url
+  x_people: Number of people
+  x_people_agree_html: |
+    Number of people that agree with something,
+    with the count in a span of class 'count'
+  x_species: Number of species
+  x_species_html: |
+    Number of species, with the count in a span of class 'count'
+  x_species_link_html: Number of species, with the count linked to $url
+  x_taxa_observed_html: |
+    Number of taxa observed, with the count in a span of class 'count'
+  x_research_grade_observations_html: |
+    Number of research-grade observations,
+    with the count in a span of class 'count'
+  x_research_grade_observations_to_species_html: |
+    Number of research-grade observations identified to rank species or lower,
+    with the count in a span of class 'count'
+  x_taxa_matching_current_filters: Number of taxa matching current filters
+  a_flag_for_x: where x is the title of the resource being flagged
+  a_member_of_taxon_html: where taxon is the name of a taxon such as Animalia
+  about_x: where x is the site name
+  adapted_by_name_from_a_work_by_original: where name is the adaptor's name and original is the original author's name
+  add_an_observation_of: where taxon is the name of a taxon such as Animalia
+  add_description: where description_name represents place notes or a description
+  add_obs_from_a_link: where link is a URL
+  add_taxon_batch_to: where list is the title of a list such as Birds of Brazil
+  add_your_own_observations_at: where site_name is the name of the site
+  add_your_photo_to: where project is the name of a project
+  x_plantae: number of plants
+  x_animalia: number of animals
+  x_mollusca: number of mollusks
+  x_amphibia: number of amphibians
+  x_mammalia: number of mammals
+  x_actinopterygii: number of fish
+  x_reptilia: number of reptiles
+  x_aves: number of birds
+  x_insecta: number of insects
+  x_arachnida: number of arachnids
+  x_fungi: number of fungi
+  x_chromista: number of kelp
+  x_protozoa: number of protozoans
+  x_other_animals: number of other animals
+  all_taxonomic_groups: |
+    All taxonomic groups prefixed with a left double angle quote HTML entity
+  and_help_the_inaturalist_community_grow:  where site_name is the name of the site
+  and_you_havent_linked:  where site_name is the name of the site
+  are_you_sure_delete_observation_from_project: where project is the name of a project
+  are_you_sure_delete_taxon_move_associates: where taxonname is the name of a taxon and taxonid is its identifier
+  are_you_sure_remove_curator: where user is the name of a user
+  are_you_sure_remove_from_project: where user is the name of a user
+  are_you_sure_remove_taxon_from_place: where place is the name of a place
+  are_you_sure_want_delete_taxon: where msg is the name of the taxon
+  are_you_sure_you_want_to_remove_curator: where user is the name of a user
+  are_you_sure_you_want_to_remove_from_project: where user is the name of a user
+  are_you_sure_you_want_to_remove_manager: where user is the name of a user
+  are_you_sure_you_want_to_remove_these_x_taxa?: where x is a number
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: where place is the name of a place
+  you_sure_delete_taxon_from_list?: where taxon is the name of a taxon
+  assessment_x: where assessment is the display name of an assessment
+  at_time: where time is a time
+  authorize_permissions_from_provider: where provider is an external provider like Facebook
+  back_to_calendar: where user is the name of a user
+  back_to_lists: where name is the possesive form of the name of a user
+  back_to_possessive_user_profile: where possuser is the possesive form of the name of a user
+  back_to_shared_taxon: where shared_taxon is the name of a taxon
+  back_to_taxon: where defaulttaxon is the name of a taxon
+  back_to_this: where place is the name of a place
+  back_to_viewing: where taxon is the name of a taxon
+  back_to_x: where noun is a resource like an observation
+  back_to_x_assessment: where project is the name of a project
+  back_to_x_history: where x is the name of a wiki article
+  back_to_x_journal: where user is the name of a user
+  back_to_x_observations: where user is the name of a user
+  batch_edit_taxa_for_x_html: where x is a resource like an observation
+  built_with_site_guides_html:  where site_name is the name of the site
+  by_editedby: where edidtedby is a user name
+  by_submittedby: where submittedby is a user name
+  check_list_for_individual_taxa_that: where place is the name of a place
+  check_list_individual_taxa: where place is the name of a place
+  check_list_place: where place is the name of a place
+  check_lists_for: where place is the name of a place
+  choose_cc_licensed_photos_html:  where site_name is the name of the site
+  click_add_an_observation_to_the_lower_right: where site_name_short is the name of a site
+  comma_separated_list_of_tracking_codes: where the parameters are parts of a URL
+  comparing_list_to_list: where list1 and list2 are the name of lists
+  comparing_versions_x_and_y: where x and y are versions of the wiki article
+  comparing_observations_from: where user is the name of a user and dates are dates
+  compiled_by_name: where name is the name of a resource
+  configure_a_widget_to_show:  where site_name is the name of the site
+  connect_to_provider: where provider is an external provider like Facebook
+  connecting_your_inat_account_to_accounts_other_sites:  where site_name is the name of the site
+  contributors_to_project: where project is the name of a project
+  some_rights_reserved_by: where name is the author name and license_short describes the license
+  all_rights_reserved: where name is the author name
+  no_known_copyright_restrictions: where name is the author name and license_short describes the license
+  couldnt_change_your_password: where e describes an error
+  couldnt_find_a_user_matching_x_param: where id is a paramater for a user
+  couldnt_log_you_in_x: where x is a user name
+  create_observations_by_uploading_photos_to: where place is the name of a place
+  curators_changed_for_x_html: where x is the name of a project
+  date_format: where day and year are numbers reflecting the date
+  default_invite_comment:  where site_name is the name of the site and INVITE_LINK is a URL
+  delete_taxon_and_merge_most_data_html: where taxon is the name of a taxon
+  disconnect_provider: where provider is the name of an external provider like Facebook
+  each_place_displays_all_species_inat_knows:  where site_name is the name of the site
+  edit_photos_for_observation_id: where obs_id is the identifier for an observation
+  edited_by_name_html: where name is the name of a user
+  editing_observation_id: where obs_id is the identifier for an observation
+  editing_project: where project is the name of a project
+  editing_subscription_to_x_html: where x is the resource subscribed to like an observation
+  editing_this: where elem is the resource being edited like an observation
+  editing_x_in_y: where x and y are resources being edited
+  endemic_to_x: where x is a place
+  error_updating_photo: where photo_errors are a description of the error
+  facebook_account_not_linked: where user is a user name and site_name is the name of the site
+  facebook_access_token_expired: where user is the name of a user
+  facebook_confirmation:  where site_name is the name of the site
+  facebook_needs_the_owner_of_that_photo_to: where site_name_short is the name of the site
+  failed_to_repair_photo: where errors is a description of the error
+  featured_projects_from_place: where place is the name of the palce
+  first_confirmed_inat_observation: where site_name is the name of the site
+  first_connect_your_provider_account_to_your_site: where site_name is the name of the site and provider is an external provider like facebook
+  first_inat_observation: where site_name is the name of the site
+  flag_reason: where record is an observation or other resource
+  flags_explanation: where site_name is the name of the site and thing is a resource like an observation
+  flickr_needs_to_confirm: where site_name is the name of the site
+  flickr_youre_all_set: where site_name is the name of the site
+  follow_user: where user is the name of a user
+  for_a_widget_showing_recent_observations_from: where place_name is the name of a place
+  from_your_site_observations: where site_name is the name of the site
+  from_licensed_site_observations: where site_name is the name of the site
+  grant_role: where grant is removed/added and role is a role like admin
+  hate_me_facebook: where site_name is the name of the site
+  hate_me_flickr: where site_name is the name of the site
+  however_there_were_some_issues: where issues describes the issues
+  identifications_by: where user is the name of a user
+  if_you_already_have_an_account: where article is a or an and site_name is the name of the site
+  inat_account_action: where site_name is the name of the site and action name is the name of an action
+  inat_believes_this_is_a_complete_listing: where site_name is the name of the site
+  inat_user_profile: where site_name is the name of the site and user is the name of a user
+  inat_will_be_back_on: where site_name is the name of the site
+  inaturalist_is_an_online_community: where site_name is the name of the site
+  inaturalist_is_catching_some_zs: where site_name is the name of the site
+  inaturalist_observations_by: where site_name is the name of the site and login is the name of a user
+  inaturalist_places: where site_name is the name of the site
+  inaturalist_places_are_way_record_what_lives_where: where site_name is the name of the site
+  invite_flickr_photos: where site_name is the name of the site
+  invite_people_to_project: where project is the name of a project
+  invite_photos_to: where site_name is the name of the site
+  invite_photos_to_raquo_html: where site_name is the name of the site
+  invite_someone_to: where name is the name of the site
+  invite_your_friends_description: where site_name is the name of the site
+  invited_x: where x is a resource like an observation
+  join_inat: where site_name is the name of the site
+  last_inat_observation: where site_name is the name of the site
+  leaderboard_for_x: Where x is a resource like a project name or user name
+  licensed_site_photos: where site_name is the name of the site
+  licensing_your_content_gives_others_legal: where site_name is the name of the site
+  life_list: where user is the name of a user
+  link_your_flickr_account_with_inat: where site_name is the name of the site
+  link_your_flickr_account_with_inat_so: where site_name is the name of the site
+  linked_facebook: where site_name is the name of the site
+  linked_facebook_automaticaly: where site_name is the name of the site
+  linked_facebook_description: where site_name is the name of the site
+  linked_facebook_howto: where site_name is the name of the site
+  linked_flickr: where site_name is the name of the site
+  linked_flickr_automatically: where site_name is the name of the site
+  linked_flickr_description: where site_name is the name of the site
+  linked_flickr_hotwo: where site_name is the name of the site
+  mail_disclaimer: where site_name is the name of the site
+  make_this_your_default_license: where type is a
+  matching_species_will_shown_up_here: where place is the name of a place
+  maybe_your_signed_in_with: where omniauth is the name of an external provider like Facebook
+  merge_observation_field_x_into: where x is the name of an observation field such as eating
+  months_ago: where text is the number of months like four months ago
+  must_be_less_than_x_MB: where x is the file size as a number
+  must_have_observation_field: where opened is the name of an observation field like eating
+  must_have_x: where x is a rule such as photos present
+  n_ago: where n is a time such as four months
+  n_people_agrees: where amount is a number
+  n_people_disagrees: where amount is a number
+  n_person_agrees: where amount is a number
+  n_person_disagrees: where amount is a number
+  names_for_taxon_html: where taxon is the name of a taxon
+  new_check_list_for: where place is the name of a place
+  new_observations_from_place_html: where place is the name of a place
+  new_observations_may_take_up_to: where widget_expiration is a number
+  new_observations_of_x_html: where x is a taxon such as Animalia
+  no_administrator_knows_your_password: where site_name is the site
+  no_creative_commons_flickr_photos_tagged_x: where x is a string searched for among the tags
+  no_matching_article_from_x: where x is an extternal resource like Wikipedia or EOL
+  no_more_mail_from_site: where site_name is the site name
+  no_x_this_y: where x is a resource like observations and y is a time period like year
+  noble_curators: where site is the site name
+  not_linked_facebook: where site_name is the site name
+  not_linked_flickr: where site_name is the site name
+  noun_by_you: where noun is a resource such as observations or comments
+  observation_added_to_the_project: where project is the name of a project
+  observations_by_user_on_date: where user is the name of a user and date is a date
+  observations_by_you_on_date: where date is a date
+  observation_calendar_for: where user is the name of a user and year is a year such as 2014
+  observation_removed_from_the_project: where project is the name of a project
+  observation_rights_html: where rights describes the rights such as non-comercial use or all rights reserved
+  observation_rules_description: where site_name is the site name
+  observation_would_like_some_help: where user is the name of a user
+  observations_by_user: where user is the name of a user
+  observations_for_project: where project is the name of a project
+  observations_from: where date is a date
+  observations_of_taxon: where taxon_name is the name of a taxon
+  observations_on_inat_check_list: where site_name is the site name
+  observations_removed_from_the_project: where project is the name of a project
+  on_date: where date is a date
+  on_edit_date: where editdate is a date
+  on_submit_date: where submitdate is a date
+  people_following_user: where user is the name of a user
+  people_user_follows: where user is the name of a user
+  photo: where photoid is an identifier and photoattribution is the author's name
+  photo_attribution: where attribution is the author's name
+  photo_by_id_attribution: where id is an identifier and attribution is the author's name
+  photo_destroyed_because_it_was_deleted_from: where site_name is the site name
+  photos_size_photos: number of photos
+  photos_size_photo: number of photos
+  picasa_account_not_linked: where site is the site name and user is the name of a user
+  place_added_to_inat_by: where site_name is the site name
+  please_add_this_to_x_html: where x is the name of a project
+  please_check_for_you_confirmation_email: where site is the site name
+  please_confirm_your_inat_username: where site is the site name
+  possessive_user: where user is the name of a user
+  preview_personal_message:  where site is the site name
+  project_created_on: where date is a date
+  project_members: where project is the name of the project
+  project_user_was_invalid: where project_user is the invalid project user
+  project_x_was_delete: where project is the name of a project
+  projects_description: where site_name is the name of a site
+  projects_from_place: where place is the name of a place
+  projects_in_x: where x is the name of a place
+  public_coordinates_obscured_by: where distance is a number
+  recent_atom_observations_by: where login is the name of a user
+  recent_observations_by: where login is the name of a user
+  recently_active_projects_from_place: where place is the name of a place
+  recently_created_projects_from_place: where place is the name of a place
+  register_for_this_event_at_x_html: where x is an external resource like EventBrite
+  resolver_said_x_html: where resolver is the name of a user and x is a message
+  row_number_i_was_parsed_as: where row is a number
+  second_person_possessive_singular: where noun is a resource like an observation
+  second_person_possessive_singular_: where noun is a resource like an observation
+  select_photos_from_your_photo_stream: where site_name is the name of a site
+  showing_taxa_from_place: where place is the name of a place
+  show_taxa_from_place: where place is the name of a place
+  sign_in_with_provider: where provider is an external provider like Facebook
+  site_name_place: where site_name is the name of a site
+  site_observations_export_from_date: where site_name is the name of a site
+  site_taxon_page: where site_name is the name of a site
+  some_of_those_photos_couldnt_be_saved: where error describes the error
+  something_went_wrong_deleting_the_taxon_name: where taxon_name is the name of the taxon
+  sorry_there_were_problems_with_your_request: where project_user describes the problem
+  sorry_x_is_not_responding: where x is the name of the site
+  soundcloud_needs_to_confirm: where site_name is the name of a site
+  sounds:
+    view_all_soundcount_sounds: number of sounds to view
+    sounds_size_sounds: number of sounds
+    sounds_size_sound: number of soundes
+  subject_resolved_noun_html: where subject is a user name and stuff is the thing resolved
+  subject_affecting_stuff_html: where subject is a resource like a taxon change and stuff is a resource like a taxon
+  subject_committed_thing_affecting_stuff_html: |
+    where subject is the user name and thing is a resource like a taxon change
+    and stuff is a resource like a taxon
+  the_following_observations_could: where link is the name of the resource
+  the_identotron_is_a_tool_to: where place is the name of a place
+  the_people_of_inat: where site is the name of a site
+  the_user_x_has_been_suspended: where user is the name of a user
+  the_user_x_has_been_unsuspended: where user is the name of a user
+  the_world_is_full_of_interesting_places: where site is the name of a site
+  there_are_x_synonyms_html: number of synonyms
+  there_isnt_a_wikipedia_article_titled_x_html: where x is the title of the article
+  there_merge_problems_with_the_merge: where merged_error describes the error
+  there_was_a_problem_saving_your_identification: where error describes the error
+  there_were_problems_adding_taxa: where errors describes the error
+  there_were_problems_importing_that_place: where place_error describes the error
+  there_were_some_problems_saving_those_colors: where error describes the error
+  these_are_taxa_that: where site is the name of a site
+  they_already_have_iNat_accounts: where site_name is the name of a site
+  third_person_possessive_singular: where object_phrase is the name of a user and nown is a resource like an observation
+  this_is_a_life_list_of_taxon_in_place: where taxon the name of a taxon and place is the name of a place
+  this_job_failed_to_run: where email is an email address
+  this_observation_lies_outside_the: where site_name is the name of a site
+  this_taxon_is_inactive_this_means: where site_name is the name of a site
+  time_ago: where time is a time period like 4 hours
+  to_include_your_picassa_with_inat: where site_name is the name of the site
+  too_many_observations_csv: where max_rows is the maximum number of rows
+  updates_notification_email_subject: where prefix is the name of the site and date is a date
+  update_past: where type is a resource like observations
+  update_x_selected_taxa: update number of selected taxa
+  update_with_site_content: where site_name is the name of the site
+  user_added_an_observation_html: where user is the name of a user
+  user_added_an_x_to_noun_html: where user is the name of a user and x is a resource like an observation and nown is a resource like a project
+  user_added_a_x_to_noun_html: where user is the name of a user and x is a resource like an observation and nown is a resource like a project
+  user_added_an_x_to_noun_by_html: |
+    where user is the name of a user and x is a resource like an observation
+    and nown is a resource like a project and by is the owner of that resource
+  user_added_a_x_to_noun_by_html: |
+    where user is the name of a user and x is a resource like an observation
+    and nown is a resource like a project and by is the owner of that resource
+  user_added_x_observations_html: |
+    where user is the name of a user and x a number
+  user_commented_on: where user is the name of a user and title is a resource like an observation and time is the time
+  user_follows: where user is the name of a user
+  user_has_opted_out_of_community_ids: where user is the name of a user
+  user_has_opted_out_of_community_ids_for_this_obs: where user is the name of a user
+  user_hasnt: where user is the name of a user
+  user_invite_observation_to_project: where user is the name of a user and project and observation are names of the project and observation
+  user_invited_you_to_join_project: where user is the name of a user and project is the name of a project
+  user_invited_you_to_join_html: where user is the name of a user
+  user_invited_you_to_join_this_project_on_date_html: where user is the name of a user and date is a date
+  user_invited_your_x_to_a_project_html: where user is the name of a user and x is a resource like an observation
+  user_added_an_observation_field_html: where user and owner are names of users and field_name is the name of a field like eating
+  user_is_a_naturalist: where user is the name of a user
+  user_s: where user is the name of a user
+  user_s_id: where user is the name of a user
+  user_s_lists: where user is the name of a user
+  user_thinks_yours_is: where user is the name of a user and nown is agrees/thinks and observation describes the observation
+  users_id: where user is the name of a user
+  users_latest_observations_on_site: where user is the name of a user and site is the name of a site
+  users_observations: where user is the name of a user
+  users_profile: where user is the name of a user
+  verbing_x_of_y: where verb is a verb like viewing and x and y are numbers
+  view_all_n: where n is a number
+  view_all_photocount_photos: where photo_count is a number
+  view_all_photos_tagged_taxon_html: where taxon is the name of a taxon
+  view_flags_for_x_html: where x is a resource souch as a taxon
+  view_more_about_x: where x is a resource souch as a taxon
+  view_more_observations_from_x: where x is the name of a user
+  view_more_observations_near_x_place: where site_name is the name of a site and place is the name of a place
+  view_more_observations_of_x_project: where site_name is the name of a site and project is the name of a project
+  view_more_observations_of_x_taxon: where site_name is the name of a site and taxon is the name of a taxon
+  view_original_by: where by is the name of the owner and photo is the name of the external site
+  view_original_ccD_photo: where owner is the name of the author
+  view_other_taxa: where taxon_name is the name of a taxon
+  view_photos_ranges_observations_more: where site_name is the name of a site
+  view_projects_from_place: where place is the name of a place
+  view_site_name_observations_html: where site_name is the name of a site
+  view_taxon_page_for_this_x: where x is a resource like a taxon
+  view_the: where the parameter is a resource and a URL
+  view_user_observations: where user is the name of a user
+  view_x_from_x: where day_observations is a number and observed_on is a date
+  view_xs_journal: where x is the name of a user
+  we_had_a_problem_flagging_that_item: where flag_error is a description of the error
+  we_know_is_inconvenience_but_will_allow_grow: where sitename is the name of the site
+  welcome_login: where login is the name of a user
+  welcome_to_inat: where site_name is the name of the site
+  welcome_to_guides: where site_name is the name of the site
+  welcome_to_x_project: where project is the name of a project
+  where_do_x_live: where taxa is the name of a taxon
+  where_does_x_live: where taxa is the name of a taxon
+  within_inaturalist: where site_name is the name of a site
+  x_admin: where login is the name of a user
+  x_deleted: where x is the name of something that was deleted
+  x_does_not_exist: where x is the name of something that doesn't exist
+  x_doesnt: where login is the name of a user
+  x_hasnt: where login is the name of a user
+  x_journal: where user is the name of a user
+  x_journal_archives_for_y: where user is the name of a user
+  x_journal_editing: where user is the name of a user
+  x_journal_middot: where user is the name of a user
+  x_journal_new_post: where user is the name of a user
+  x_project_journal: where project is the name of a project and name is the name of a journal post
+  x_project_stats: where project is the name of a project
+  x_sent_you_a_new_message_on_y_html: where x is the name of a user and y is the name of a site
+  x_site_is_a_social_network_for_naturalist: where site is the name of a site
+  x_site_shared_licensed_observation_data_with: where site_name is the name of a site
+  x_wrote_a_new_post_html: where x is the name of a user
+  x_wrote_y_new_posts_html: where x is the name of a user and y is a number
+  you_are_now_following_x: where friend_user is the name of a user
+  you_are_now_role_for_project_html: where role is a role like curator and project is the name of a project
+  user_is_now_role_for_project_html: where user is the name of a user role is a role like curator and project is the name of a project
+  you_are_no_longer_following_x: where friend is the name of a user
+  you_can_sign_free_at: where site name is the name of the site
+  you_cant_rotate_photos_hostde_outside: where site name is the name of the site
+  you_have_left_x_project: where project is the name of the project
+  you_havent_linked_your_inaturalist_picasa_account: where site name is the name of the site
+  you_retain_full_copyright: where site name is the name of the site
+  you_retain_full_copyright_over_your_content: where site name is the name of the site
+  you_sure_remove_taxon_from?: where list is the name of a list
+  youve_joined_the_x_project: where project_invitation is the name of the project
+  your_account_has_been_verified: where site name is the name of the site
+  your_inat_account_has_been_activated: where inat is the name of the site
+  your_month_observations: observations from a particular month
+  your_observations_couldnt_be_added_to_that_project: where errors is a description of the error
+  your_site_account_has_been_created: where site is the name of the site
+  your_site_needs_your_to_authorize_more_permissions_from_provider: |
+    where site_name is the name of the site and provider is the name of an
+    external provider like Flickr
+  your_sure_delete_taxon_from_list?: where taxon is the name of a taxon
+  youre_viewing_site_name_observations_html: where site_name is the name of the site
+  youve_linked_your_inaturalist_picasa_account: where site_name is the name of the site
+  zoom_to_taxon_name: where taxonname is the name of a taxon
+  zoom_to_x: where x is the location
+  views:
+    guides:
+      edit:
+        guide_place_desc: where site_name is the site name
+        paste_note_html: where site_name is the site name
+    help:
+      index:
+        welcome_message_html: where site_name is the site name
+        welcome_message_help: where site_name is the site name
+        inaturalist_provides_a_place_to: where site_name is the site name
+        who_is_behind_inaturalist: where site_name is the site name
+        inaturalist_was_originally_the_masters_final_html: where site_name is the site name
+        inaturalist_is_built_using_html: where site_name is the site name
+        you_can_help_inaturalist_by_giving_us_your_feedback_html: where site_name is the site name
+        you_can_contact_us_at_html: where site_name is the site name
+        inat_admins_are_the_people_who: where site_name is the site name
+        curators_are_inat_users_who_volunteer_to_html: where site_name is the site name
+        an_observation_is_the_what_where_and_when_html: where site_name is the site name
+        inaturalist_has_name_information_for_mammals:  where site_name is the site name
+        check_the_id_please_checkbox_when_html: where site_name is the site name
+        inaturalist_can_link_directly_to_the_flickr_photo_service: where site_name is the site name
+        we_also_support_uploading_photos: where site_name is the site name
+        tags_are_keywords_you_can_add_to_an_html: where site_name is the site name
+        automatically_updates_based_on_your_observations: where site_name is the site name
+        inat_users_can_also: where site_name is the site name
+        is_a_list_of_every_species_that_you_have_seen: where site_name is the site name
+        while_the_life_list_is_automatically_populated: where site_name is the site name
+    observations:
+      show:
+        community_taxon_desc_html: whre site_name is the site name
+        flagged_photos_desc_html: where links is a URL
+    photos:
+      inviter:
+        invite_other_photographers_to_inat: where site_name is the site name
+        invite_your_friends_description: where site_name is the site name
+    projects:
+      edit:
+        bioblitz_create_a_new_place_html: where link is a URL
+    users:
+      dashboard:
+        taxon_change_desc: where site_name is the site name
+        cannot_update_your_content: where site_name is the site name
+        new_project_admin_html: where site_name is the site_name and help_email is an email address
+      edit:
+        taxon_change_desc: where site_name is the site name
+        licensing_desc_html: where site_name is the site name
+        prefers_community_taxa_desc: where site_name is the site name
+    welcome:
+      index:
+        welcome_message_html: where image is the site name
+  datetime:
+    distance_in_words:
+      about_x_hours: about however many hours
+      about_x_months: about however many months
+      about_x_years: about hoever many years
+      almost_x_years: almost how every many years
+      less_than_x_minutes: number of minutes
+      less_than_x_seconds: number of seconds
+      over_x_years: number of years
+      x_days: number of days
+      x_minutes: number of minutes
+      x_months: number of months
+      x_seconds: number of seconds
+  errors:
+    messages:
+      equal_to: where count is the value
+      greater_than: where count is the value
+      greater_than_or_equal_to: where count is the value
+      less_than: where count is the value
+      less_than_or_equal_to: where count is the value
+      record_invalid: where error describes the error
+      too_long: where count is the correct number of characters
+      too_short: where count is the correct number of characters
+      wrong_length: where count is the correct number of characters
+    template:
+      header: where model is the model attempting to be saved and count is the number of errors
+  helpers:
+    submit:
+      create: where model is the model to be created
+      submit: where model is the model to be saved
+      update: where model is the model to be updated
+  activerecord:
+    errors:
+      models:
+        observation_field_value:
+          attributes:
+            value: |
+              where observation_field_name is the name of the observation
+              field and observation species guess is the species guess for the
+              observation

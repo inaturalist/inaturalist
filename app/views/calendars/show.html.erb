@@ -23,7 +23,7 @@
 
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'inaturalist/map3' %>
+  <%= javascript_include_tag 'map_bundle' %>
 <%- end -%>
 
 <%- content_for(:extrahead) do -%>
@@ -48,13 +48,21 @@
     end
   -%>
   <meta property="og:description" content="<%= desc %>">
-  <% if photo_obs = @observations.select{|o| o.observation_photos_count > 0}.sort_by{|o| [o.comments_count.to_i, o.id]}.last -%>
+  <%- photo_observations = @observations.select{|o| o.observation_photos_count > 0}.sort_by{|o| [o.comments_count.to_i, o.id]}[0..3] %>
+  <% if photo_obs = photo_observations.last -%>
     <% if photo = photo_obs.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/} -%>
       <meta property="og:image" content="<%= photo.medium_url %>"/> 
     <% end -%>
   <% end -%>
   <% if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
     <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
+  <% end -%>
+  <% if photo_observations.size > 0 -%>
+    <meta name="twitter:card" content="gallery">
+    <%- photo_observations.each_with_index do |o,i| %>
+      <%- next unless photo = o.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/} -%>
+      <meta name="twitter:image<%= i %>" content="<%= photo.medium_url %>"> 
+    <% end -%>
   <% end -%>
 <% end -%>
 
@@ -119,7 +127,9 @@
           <% for place_name, count in (@place_name_counts || []) %>
             <%- name, id = [place_name.split('-')[0..-2].join('-'), place_name.split('-').last] -%>
             <div>
-              <span class="count"><%= count %></span>
+              <%= link_to(observations_by_login_path(@selected_user.login, :place_id => id, :on => @date)) do %>
+                <span class="count"><%= count %></span>
+              <% end -%>
               <%= t(:from).downcase %>
               <% if place_name.blank? -%>
                 somewhere

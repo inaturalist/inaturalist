@@ -60,7 +60,7 @@ describe Identification, "creation" do
       :taxon => taxon
     )
     obs.reload
-    obs.species_guess.should == taxon.to_plain_s
+    obs.species_guess.should == taxon.name
   end
   
   it "should add an iconic_taxon_id to its observation if it's the observer's identification" do

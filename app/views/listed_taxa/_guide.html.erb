@@ -4,7 +4,8 @@
   place ||= listed_taxon.place
   taxon ||= listed_taxon.taxon
   taxon_range ||= TaxonRange.without_geom.first(:conditions => ["taxon_id = ?", taxon])
-  map_tag_attrs = setup_map_tag_attrs(taxon, :place => place, :taxon_range => taxon_range)
+  map_tag_attrs = setup_map_tag_attrs(:taxon => taxon, :place => place,
+    :show_range => true, :focus => :place)
   obs_url = observations_path(:place_id => listed_taxon.place_id, :taxon_id => listed_taxon.taxon_id)
   photos = taxon.taxon_photos.sort_by{|tp| tp.position || tp.id}.map{|tp| tp.photo}
 -%>
@@ -105,8 +106,6 @@
       </ul>
 
       <div id="<%= dom_id(listed_taxon, 'infotab') %>">
-        <!-- <iframe class="map" src="<%= taxon_map_url(taxon, :place_id => place) %>">Loading...</iframe> -->
-        <!-- <div class="right map" data-taxon-id="<%= taxon.id %>" data-taxon-range-kml="<%=  %>"></div> -->
         <%= content_tag :div, '', map_tag_attrs.merge(:class => "stacked map") %>
         <div class="stacked">
           <%= raw taxon.wikipedia_summary %>

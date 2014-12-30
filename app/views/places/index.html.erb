@@ -25,11 +25,11 @@
 
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'inaturalist/map3' %>
+  <%= javascript_include_tag 'map_bundle' %>
 
   <script type="text/javascript" charset="utf-8">
     var TILESTACHE_SERVER = <%= CONFIG.tile_servers.tilestache.inspect.html_safe %>,
-        places = <%= @places.to_json.html_safe %>,
+        places = <%=json_escape @places.to_json.html_safe %>,
         BOUNDS = <%=raw CONFIG.bounds.to_json %>
     $(document).ready(function() {
       window.map = iNaturalist.Map.createMap({
@@ -49,10 +49,6 @@
           window.location = this._url
         })
         marker.setMap(map)
-      }
-      if (TILESTACHE_SERVER) {
-        var placesMapType = iNaturalist.Map.builtPlacesMapType(map, {tilestacheServer: TILESTACHE_SERVER})
-        map.overlayMapTypes.insertAt(0, new placesMapType(new google.maps.Size(256, 256)));
       }
     })
   </script>

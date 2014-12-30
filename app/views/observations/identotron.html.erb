@@ -1,16 +1,16 @@
 <%-
   if @taxon
-    @taxon.html = render(:partial => "taxa/chooser.html.erb", :object => @taxon)
+    @taxon.html = render(:partial => "taxa/chooser", :object => @taxon)
   end
   if @default_taxa
     @default_taxa = @default_taxa.map do |taxon|
-      taxon.html = render(:partial => "taxa/chooser.html.erb", :object => taxon)
+      taxon.html = render(:partial => "taxa/chooser", :object => taxon)
       taxon
     end
   end
   if @places
     @places = @places.map do |place|
-      place.html = render(:partial => "places/autocomplete_item.html.erb", :object => place)
+      place.html = render(:partial => "places/autocomplete_item", :object => place)
       place
     end
   end
@@ -33,7 +33,8 @@
     .identotron_taxa .headercol .taxon .othernames { display: inline; }
     .photos .nophoto {padding: 50px; text-align: center; background-color: #eee;}
     #controls .ui-chooser { vertical-align: top; }
-    #controls .text, #controls select {display:block; width: 275px; margin-bottom: 10px;}
+    #controls .text, #controls select[multiple=true] {display:block; margin-bottom: 10px;}
+    #controls .text {width: 275px;}
     #observationbox, #controlsbox {background-color:white; box-shadow: #aaa 0px 1px 10px; border-radius: 10px; padding:10px; z-index:100;}
     #observation .observation {border: 0 transparent;}
     .comprehensive_notice { padding: 5px 10px; box-shadow: #aaa 0px 1px 3px; border-radius: 5px;}
@@ -42,7 +43,7 @@
       padding-bottom:10px;
       border-bottom: 1px solid #eee;
     }
-    .identotron_taxa .map { background: #eee url(/images/spinner-small-on_eeeeee.gif) center center no-repeat; }
+    .identotron_taxa .map { background: #eee url(<%= asset_path("spinner-small-on_eeeeee.gif") %>) center center no-repeat; }
     .sticky {position:fixed; top: 10px;}
     #side {width:310px;}
   </style>
@@ -50,20 +51,15 @@
 
 <%- content_for(:extrajs) do -%>
   <%= google_maps_js %>
-  <%= javascript_include_tag 'jquery/plugins/jqModal',
-                             'modal_image',
-                             "jquery/plugins/jquery.ba-bbq.min", 
-                             'inaturalist/map3', 
-                             'taxon_guide',
-                             "jquery/plugins/inat/taxonmap",
-                             'jquery/plugins/waypoints.min' %>
+  <%= javascript_include_tag 'map_bundle',
+                             'taxon_guide' %>
     
   <script type="text/javascript" charset="utf-8">
-    window.taxon = <%= @taxon.to_json(:methods => [:html]).html_safe %>
-    window.place = <%= @place.to_json(:methods => [:html]).html_safe %>
-    window.places = <%= @places.to_json(:methods => [:html]).html_safe %>
-    window.observation = <%= @observation.to_json(:include => [:taxon, :iconic_taxon]).html_safe %>
-    window.defaultTaxa = <%= @default_taxa.to_json(:methods => [:html]).html_safe %>
+    window.taxon = <%=json_escape @taxon.to_json(:methods => [:html]).html_safe %>
+    window.place = <%=json_escape @place.to_json(:methods => [:html]).html_safe %>
+    window.places = <%=json_escape @places.to_json(:methods => [:html]).html_safe %>
+    window.observation = <%=json_escape @observation.to_json(:include => [:taxon, :iconic_taxon]).html_safe %>
+    window.defaultTaxa = <%=json_escape @default_taxa.to_json(:methods => [:html]).html_safe %>
     
     var OVERRIDE_EXISTING = 0
     var RESPECT_EXISTING = 1
@@ -91,6 +87,7 @@
       $('#controls select[multiple]').val(currentState.colors)
       $('#controls select[multiple]').multiselect({
         header: false,
+        minWidth: 100,
         noneSelectedText: I18n.t('none'),
         selectedText: function(selected, total, elts) {
           if (selected > 2) {
@@ -111,7 +108,7 @@
         return false
       })
       
-      $('#placechooser, #taxonchooser, #colorchooser').change(function() {
+      $('#placechooser, #taxonchooser, #colorchooser, #establishmentchooser').change(function() {
         $(this).parents('form:first').submit()
       })
       $('#guidesearch').keypress(function(e) {
@@ -188,7 +185,6 @@
           $('#taxa .map').waypoint(function() {
             if ($(this).data('taxonMap')) return
             $(this).taxonMap({
-              observationsJsonUrl: false,
               preserveViewport: true,
               latitude:  observation ? observation.latitude : null,
               longitude: observation ? observation.longitude : null
@@ -298,10 +294,25 @@
           <label><%= t :taxon %></label><br/>
           <%= text_field_tag :taxon, "", :id => "taxonchooser", :class => "text", :placeholder => t(:type_taxon_name) %>
         </div>
-        <div class="field">
-          <label><%= t :colors %></label><br/>
-          <%= select_tag "colors[]", options_for_select(Color.order('value').map {|value| [t(value.value), value.value]}, :selected => @colors), :multiple => true, :id => "colorchooser" %>
-        </div>
+        <table class="plain unstacked" width="100%">
+          <tr>
+            <td>
+              <div class="field">
+                <label><%= t :colors %></label><br/>
+                <%= select_tag "colors[]", options_for_select(Color.order('value').map {|value| [t(value.value), value.value]}, :selected => @colors), :multiple => true, :id => "colorchooser" %>
+              </div>
+            </td>
+            <td>
+              <div class="field">
+                <label><%= t :establishment_means %></label><br/>
+                <%-
+                  options = [[t(:any).capitalize, nil]] + ListedTaxon::ESTABLISHMENT_MEANS.map {|em| [t("establishment.#{em}").capitalize,em]}
+                -%>
+                <%= select_tag "establishment_means", options_for_select(options, @establishment_means), :id => "establishmentchooser", :class => "inlineblock" %>
+              </div>
+            </td>
+          </tr>
+        </table>
         <%= submit_tag "Filter", :class => "glaucous button" %>
       <% end -%>
     </div>

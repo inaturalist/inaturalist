@@ -1,0 +1,75 @@
+.observations.table {
+  margin-bottom:2em;
+}
+.observation.mini {
+  width:200px;
+}
+.observations.table .observation .icon img.marker {
+  cursor:pointer;
+}
+#mapsizectrl {
+  // Temporary,for testing
+  display:none;
+  text-align:right;
+  margin-bottom:0.4em;
+}
+#mapcol {
+  min-height:500px;
+}
+#map {
+  height:500px;
+  overflow:hidden;
+}
+@-moz-document url-prefix() {
+  .button_toggle_menu .togglelink.open {
+    padding-bottom:4px;
+  }
+}
+#feeds span {
+  margin-left: 10px;
+}
+
+.observations.table .header.user,
+.observations.table .observation .attribute.user {
+  display: none;
+}
+
+.observations.infowindow .observation { width: 220px; }
+
+#edit_selected_button {
+  background-color: #FFC;
+}
+
+#delete_selected_button {
+  color: #777;
+}
+
+.buttonrow .status.loading {
+  display: block;
+  float: left;
+  width: auto;
+  padding-top: 6px;
+  margin: 0pt 0.583em 0.667em 0pt;
+}
+
+#filters_button {
+  padding-left: 17px;
+  padding-right: 10px;
+  background: 7px 10px url(image_path('toggle_arrow_right.png')) no-repeat;
+  border: 1px solid transparent;
+  background-color: white;
+  outline: none;
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-right-radius: 0;
+}
+
+#filters_button.open {
+  background: 5px 12px url(image_path('toggle_arrow_down.png')) no-repeat;
+  border: 1px solid #eee;
+  border-bottom: 1px solid white;
+  padding-bottom: 18px;
+  margin-bottom: -1px;
+}
+#map { margin-bottom: 5px; }
