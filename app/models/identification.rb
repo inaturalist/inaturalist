@@ -19,13 +19,19 @@ class Identification < ActiveRecord::Base
   after_save    :update_obs_stats, 
                 :update_curator_identification,
                 :update_quality_metrics
-                
-  after_destroy :set_last_identification_as_current,
-                :revisit_curator_identification, 
-                :decrement_user_counter_cache, 
-                :update_observation_after_destroy,
-                :update_obs_stats,
-                :expire_caches
+  
+  # Rails 3.x runs after_commit callbacks in reverse order from after_destroy.
+  # Yes, really. set_last_identification_as_current needs to run after_commit
+  # because of the unique index constraint on current, which will complain if
+  # you try to set the last ID as current when this one hasn't really been
+  # deleted yet, i.e. before the transaction is complete.
+  after_commit :expire_caches, 
+                 :update_obs_stats,
+                 :update_observation_after_destroy,
+                 :decrement_user_counter_cache, 
+                 :revisit_curator_identification, 
+                 :set_last_identification_as_current,
+               :on => :destroy
   
   include Shared::TouchesObservationModule
   
@@ -96,9 +102,7 @@ class Identification < ActiveRecord::Base
   # Update the observation if you're adding an ID to your own obs
   def update_observation
     return true unless observation
-
     attrs = {}
-    
     if user_id == observation.user_id && !skip_observation
       observation.skip_identifications = true
       # update the species_guess
@@ -109,7 +113,6 @@ class Identification < ActiveRecord::Base
       attrs = {:species_guess => species_guess, :taxon_id => taxon_id, :iconic_taxon_id => taxon.iconic_taxon_id}
       ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
     end
-
     observation.identifications.reload
     observation.set_community_taxon(:force => true)
     observation.update_attributes(attrs)

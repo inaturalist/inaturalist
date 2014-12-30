@@ -2434,3 +2434,26 @@ describe Observation, "mappable" do
       public_positional_accuracy.should == nil
   end
 end
+
+describe Observation, "observations_places" do
+  it "should generate observations_places after save" do
+    p = make_place_with_geom
+    o = Observation.make!
+    o.observations_places.length.should == 0
+    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be_false
+    o.latitude = p.latitude
+    o.longitude = p.longitude
+    o.save
+    o.reload
+    o.observations_places.length.should >= 1
+    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be_true
+  end
+
+  it "deletes its observations_places on destroy" do
+    p = make_place_with_geom
+    o = Observation.make!(latitude: p.latitude, longitude: p.longitude)
+    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be_true
+    o.destroy
+    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be_false
+  end
+end

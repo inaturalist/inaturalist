@@ -10,4 +10,9 @@ namespace :denormalize do
     AncestryDenormalizer.denormalize
   end
 
+  desc "Denormalize places (~15 minutes)."
+  task :places => :environment do
+    PlaceDenormalizer.denormalize
+  end
+
 end
