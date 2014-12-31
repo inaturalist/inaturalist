@@ -40,11 +40,11 @@
       <div class="stacked body">
         <div class="stacked">
           <span class="meta"><%= t :originally_flagged_by %></span>
-          <%= link_to item.user.login, item.user %>: "<%= item.flag %>"
+          <%= link_to_user update_cached(item, :user) %>: "<%= item.flag %>"
         </div>
         <%= t(:flag_marked_as_resolved_html).html_safe %>
         <% unless item.comment.blank? %>
-          <span class="meta"><%= item.resolver.login %> <%= t :said %>,</span>
+          <span class="meta"><%= link_to_user update_cached(item, :resolver) %> <%= t :said %>,</span>
           "<%= item.comment %>"
         <% end -%>
       </div>

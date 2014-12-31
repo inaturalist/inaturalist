@@ -66,6 +66,7 @@
     .row-fluid
       .span12
         %h4= @title
+        %p=t 'views.observations.user_stats.user_stats_desc'
     .row-fluid
       .span12
         %table#user_stats.table
@@ -74,7 +75,7 @@
               %th #
               %th= t(:user)
               %th= t(:observations)
-              %th= t(:taxa)
+              %th= t(:species)
           %tbody
             - @users.each_with_index do |user,i|
               %tr
@@ -85,5 +86,5 @@
                 %td.numeric
                   = link_to @user_counts_by_user_id[user.id] || 0, observations_url(request.query_parameters.merge(:user_id => user.login))
                 %td.numeric
-                  = link_to @user_taxon_counts_by_user_id[user.id] || 0, taxa_observations_url(request.query_parameters.merge(:user_id => user.login))
+                  = link_to @user_taxon_counts_by_user_id[user.id] || 0, taxa_observations_url(request.query_parameters.merge(:user_id => user.login, :hrank => Taxon::SPECIES))
 

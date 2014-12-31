@@ -81,6 +81,13 @@ module ObservationsHelper
   def title_for_observation_params(options = {})
     s = options[:lead] || t(:observation_stats, :default => "Observation stats")
     s += " #{t :of} #{link_to_taxon @observations_taxon}" if @observations_taxon
+    if @rank
+      s += " #{t :of} #{t "ranks.#{@rank}"}"
+    elsif @hrank
+      s += " #{t :of} #{t "ranks.#{@hrank}"} #{t :or_lower, :default => "or lower"}"
+    elsif @lrank
+      s += " #{t :of} #{t "ranks.#{@lrank}"} #{t :or_higher, :default => "or higher"}"
+    end
     s += " #{t(:from).downcase} #{link_to @place.display_name, @place}" if @place
     s += " #{t :by} #{link_to @user.login, @user}" if @user
     if @observed_on
