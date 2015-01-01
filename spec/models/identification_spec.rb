@@ -231,6 +231,10 @@ describe Identification, "deletion" do
     # some identification deletion callbacks need to happen after the transaction is complete
     DatabaseCleaner.strategy = :truncation
   end
+
+  after(:all) do
+    DatabaseCleaner.strategy = :transaction
+  end
   
   before(:each) do
     @observation = Observation.make!(:taxon => Taxon.make!)
