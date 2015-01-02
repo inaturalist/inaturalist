@@ -11,7 +11,11 @@
   </p>
 <% elsif @timeout %>
   <p class="error ui">
-    Request to the photo provider timed out.  Please try again later.
+    <%=t 'sounds.request_timed_out' %>
+  </p>
+<% elsif @soundcloud_error %>
+  <p class="error ui">
+    <%=t 'sounds.soundcloud_replied_with_an_error' %>
   </p>
 <% elsif sounds.blank? %>
   <div class="description" style="clear: both">
