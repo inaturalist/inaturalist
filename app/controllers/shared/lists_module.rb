@@ -151,7 +151,11 @@ module Shared::ListsModule
           else
             @list.generate_csv(:path => path_for_normal_csv)
           end
-          render :file => path
+          if path
+            render :file => path
+          else
+            render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
+          end
         else
           job_id = Rails.cache.read(@list.generate_csv_cache_key(:view => @view))
           job = Delayed::Job.find_by_id(job_id)

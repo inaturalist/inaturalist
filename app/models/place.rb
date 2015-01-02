@@ -727,6 +727,7 @@ class Place < ActiveRecord::Base
     result = PlaceGeometry.where(place_id: id).select("
       ST_YMIN(geom) min_y, ST_YMAX(geom) max_y,
       ST_XMIN(geom) min_x, ST_XMAX(geom) max_x").first
+    return @bounds = nil unless result
     @bounds = {
       min_x: result.min_x,
       min_y: result.min_y,
