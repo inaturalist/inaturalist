@@ -1067,6 +1067,38 @@ ALTER SEQUENCE guide_taxa_id_seq OWNED BY guide_taxa.id;
 
 
 --
+-- Name: guide_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE guide_users (
+    id integer NOT NULL,
+    guide_id integer,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: guide_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE guide_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: guide_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE guide_users_id_seq OWNED BY guide_users.id;
+
+
+--
 -- Name: guides; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1630,10 +1662,54 @@ ALTER SEQUENCE observation_sounds_id_seq OWNED BY observation_sounds.id;
 
 
 --
+-- Name: observation_zooms_10; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_zooms_10 (
+    taxon_id integer,
+    geom geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_11; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_zooms_11 (
+    taxon_id integer,
+    geom geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_12; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_zooms_12 (
+    taxon_id integer,
+    geom geometry,
+    count integer NOT NULL
+);
+
+
+--
 -- Name: observation_zooms_125; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE observation_zooms_125 (
+    taxon_id integer,
+    geom geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_2; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_zooms_2 (
     taxon_id integer,
     geom geometry,
     count integer NOT NULL
@@ -1663,10 +1739,43 @@ CREATE TABLE observation_zooms_250 (
 
 
 --
+-- Name: observation_zooms_3; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_zooms_3 (
+    taxon_id integer,
+    geom geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_4; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_zooms_4 (
+    taxon_id integer,
+    geom geometry,
+    count integer NOT NULL
+);
+
+
+--
 -- Name: observation_zooms_4000; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE observation_zooms_4000 (
+    taxon_id integer,
+    geom geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_5; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_zooms_5 (
     taxon_id integer,
     geom geometry,
     count integer NOT NULL
@@ -1685,10 +1794,54 @@ CREATE TABLE observation_zooms_500 (
 
 
 --
+-- Name: observation_zooms_6; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_zooms_6 (
+    taxon_id integer,
+    geom geometry,
+    count integer NOT NULL
+);
+
+
+--
 -- Name: observation_zooms_63; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE observation_zooms_63 (
+    taxon_id integer,
+    geom geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_7; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_zooms_7 (
+    taxon_id integer,
+    geom geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_8; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_zooms_8 (
+    taxon_id integer,
+    geom geometry,
+    count integer NOT NULL
+);
+
+
+--
+-- Name: observation_zooms_9; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observation_zooms_9 (
     taxon_id integer,
     geom geometry,
     count integer NOT NULL
@@ -1780,6 +1933,36 @@ CREATE SEQUENCE observations_id_seq
 --
 
 ALTER SEQUENCE observations_id_seq OWNED BY observations.id;
+
+
+--
+-- Name: observations_places; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observations_places (
+    id integer NOT NULL,
+    observation_id integer NOT NULL,
+    place_id integer NOT NULL
+);
+
+
+--
+-- Name: observations_places_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE observations_places_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observations_places_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE observations_places_id_seq OWNED BY observations_places.id;
 
 
 --
@@ -3741,6 +3924,13 @@ ALTER TABLE ONLY guide_taxa ALTER COLUMN id SET DEFAULT nextval('guide_taxa_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY guide_users ALTER COLUMN id SET DEFAULT nextval('guide_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY guides ALTER COLUMN id SET DEFAULT nextval('guides_id_seq'::regclass);
 
 
@@ -3847,6 +4037,13 @@ ALTER TABLE ONLY observation_sounds ALTER COLUMN id SET DEFAULT nextval('observa
 --
 
 ALTER TABLE ONLY observations ALTER COLUMN id SET DEFAULT nextval('observations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY observations_places ALTER COLUMN id SET DEFAULT nextval('observations_places_id_seq'::regclass);
 
 
 --
@@ -4380,6 +4577,14 @@ ALTER TABLE ONLY guide_taxa
 
 
 --
+-- Name: guide_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY guide_users
+    ADD CONSTRAINT guide_users_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: guides_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -4497,6 +4702,14 @@ ALTER TABLE ONLY observation_photos
 
 ALTER TABLE ONLY observations
     ADD CONSTRAINT observations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observations_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY observations_places
+    ADD CONSTRAINT observations_places_pkey PRIMARY KEY (id);
 
 
 --
@@ -5121,6 +5334,20 @@ CREATE INDEX index_guide_taxa_on_taxon_id ON guide_taxa USING btree (taxon_id);
 
 
 --
+-- Name: index_guide_users_on_guide_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_users_on_guide_id ON guide_users USING btree (guide_id);
+
+
+--
+-- Name: index_guide_users_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_users_on_user_id ON guide_users USING btree (user_id);
+
+
+--
 -- Name: index_guides_on_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5429,10 +5656,31 @@ CREATE INDEX index_observation_photos_on_uuid ON observation_photos USING btree 
 
 
 --
+-- Name: index_observation_zooms_10_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_zooms_10_on_taxon_id ON observation_zooms_10 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_11_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_zooms_11_on_taxon_id ON observation_zooms_11 USING btree (taxon_id);
+
+
+--
 -- Name: index_observation_zooms_125_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_observation_zooms_125_on_taxon_id ON observation_zooms_125 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_12_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_zooms_12_on_taxon_id ON observation_zooms_12 USING btree (taxon_id);
 
 
 --
@@ -5450,10 +5698,31 @@ CREATE INDEX index_observation_zooms_250_on_taxon_id ON observation_zooms_250 US
 
 
 --
+-- Name: index_observation_zooms_2_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_zooms_2_on_taxon_id ON observation_zooms_2 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_3_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_zooms_3_on_taxon_id ON observation_zooms_3 USING btree (taxon_id);
+
+
+--
 -- Name: index_observation_zooms_4000_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_observation_zooms_4000_on_taxon_id ON observation_zooms_4000 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_4_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_zooms_4_on_taxon_id ON observation_zooms_4 USING btree (taxon_id);
 
 
 --
@@ -5464,6 +5733,13 @@ CREATE INDEX index_observation_zooms_500_on_taxon_id ON observation_zooms_500 US
 
 
 --
+-- Name: index_observation_zooms_5_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_zooms_5_on_taxon_id ON observation_zooms_5 USING btree (taxon_id);
+
+
+--
 -- Name: index_observation_zooms_63_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5471,10 +5747,38 @@ CREATE INDEX index_observation_zooms_63_on_taxon_id ON observation_zooms_63 USIN
 
 
 --
+-- Name: index_observation_zooms_6_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_zooms_6_on_taxon_id ON observation_zooms_6 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_7_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_zooms_7_on_taxon_id ON observation_zooms_7 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_8_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_zooms_8_on_taxon_id ON observation_zooms_8 USING btree (taxon_id);
+
+
+--
 -- Name: index_observation_zooms_990_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_observation_zooms_990_on_taxon_id ON observation_zooms_990 USING btree (taxon_id);
+
+
+--
+-- Name: index_observation_zooms_9_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observation_zooms_9_on_taxon_id ON observation_zooms_9 USING btree (taxon_id);
 
 
 --
@@ -5587,6 +5891,20 @@ CREATE INDEX index_observations_on_user_id ON observations USING btree (user_id)
 --
 
 CREATE INDEX index_observations_on_uuid ON observations USING btree (uuid);
+
+
+--
+-- Name: index_observations_places_on_observation_id_and_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_observations_places_on_observation_id_and_place_id ON observations_places USING btree (observation_id, place_id);
+
+
+--
+-- Name: index_observations_places_on_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_places_on_place_id ON observations_places USING btree (place_id);
 
 
 --
@@ -6957,3 +7275,7 @@ INSERT INTO schema_migrations (version) VALUES ('20141203024242');
 INSERT INTO schema_migrations (version) VALUES ('20141204224856');
 
 INSERT INTO schema_migrations (version) VALUES ('20141213001622');
+
+INSERT INTO schema_migrations (version) VALUES ('20141213195804');
+
+INSERT INTO schema_migrations (version) VALUES ('20150104021132');

@@ -6,7 +6,8 @@ class GuidesController < ApplicationController
     :except => [:index, :show, :search], 
     :unless => lambda { authenticated_with_oauth? }
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
-  before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
+  before_filter :require_owner, :only => [:destroy]
+  before_filter :require_guide_user, :only => [:edit, :update, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
 
   layout "bootstrap"
   PDF_LAYOUTS = GuidePdfFlowTask::LAYOUTS
@@ -17,7 +18,7 @@ class GuidesController < ApplicationController
   # GET /guides.json
   def index
     @guides = if logged_in? && params[:by] == "you"
-      current_user.guides.limit(100).order("guides.id DESC")
+      current_user.editing_guides.limit(100).order("guides.id DESC")
     else
       Guide.page(params[:page]).per_page(limited_per_page).order("guides.id DESC").published
     end

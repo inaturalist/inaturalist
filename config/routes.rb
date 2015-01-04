@@ -1,4 +1,7 @@
 Inaturalist::Application.routes.draw do
+  resources :guide_users
+
+
   apipie
 
   resources :sites

@@ -90,8 +90,9 @@ class GuideSection < ActiveRecord::Base
   def attribution_name
     rights_holder_name ||= rights_holder unless rights_holder.blank?
     if guide && source_url.blank?
-      rights_holder_name ||= guide.user.name unless guide.user.name.blank?
-      rights_holder_name ||= guide.user.login
+      # rights_holder_name ||= guide.user.name unless guide.user.name.blank?
+      # rights_holder_name ||= guide.user.login
+      rights_holder_name ||= FakeView.commas_and(guide.guide_users.map{|gu| gu.user.name.blank? ? gu.user.login : gu.user.name})
     end
     rights_holder_name ||= I18n.t(:unknown)
   end

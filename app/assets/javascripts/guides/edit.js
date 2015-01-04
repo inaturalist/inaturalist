@@ -602,3 +602,10 @@ function engageShades(msg) {
     top: $('body').scrollTop() + $(window).height()/2 - 100 + 'px'
   })
 }
+$('#guide_users').bind('cocoon:after-insert', function(e, inserted_item) {
+  $('.guide-user-chooser').chooser({
+    queryParam: 'q',
+    collectionUrl: '/people/search.json',
+    resourceUrl: '/people/{{id}}.json'
+  })
+})

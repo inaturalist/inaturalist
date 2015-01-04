@@ -244,6 +244,21 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  def require_guide_user
+    unless logged_in? && (current_user.id == @guide.user_id || @guide.guide_users.detect{|gu| gu.user_id == current_user.id})
+      msg = t(:you_dont_have_permission_to_do_that)
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          return redirect_to record
+        end
+        format.json do
+          return render :json => {:error => msg}
+        end
+      end
+    end
+  end
   
   # ThinkingSphinx returns a maximum of 50 pages. Anything higher than 
   # that, we want to 404 to avoid a TS error. 

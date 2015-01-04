@@ -3,7 +3,7 @@ class GuideTaxaController < ApplicationController
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos, :sync]
   before_filter :load_guide, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos, :sync]
   before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos, :sync] do |c|
-    require_owner :klass => "Guide"
+    require_guide_user
   end
   layout "bootstrap"
 

@@ -95,6 +95,8 @@ class User < ActiveRecord::Base
   has_many :observation_fields, :dependent => :nullify, :inverse_of => :user
   has_many :observation_field_values, :dependent => :nullify, :inverse_of => :user
   has_many :updated_observation_field_values, :dependent => :nullify, :inverse_of => :updater, :foreign_key => "updater_id", :class_name => "ObservationFieldValue"
+  has_many :guide_users, :inverse_of => :user, :dependent => :delete_all
+  has_many :editing_guides, :through => :guide_users, :source => :guide
   
   has_attached_file :icon,
     :styles => { :original => "2048x2048>", :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },

@@ -312,11 +312,12 @@
   #attribution.meta.upstacked
     %p
       =t :edited_by
+      - attribution_links = commas_and(@guide.guide_users.map{|gu| link_to_user(gu.user, :content_text => gu.user.name.blank? ? gu.user.login : gu.user.name)})
       - if @guide.license.blank?
-        = link_to_user @guide.user, :content_text => @guide.user.name.blank? ? @guide.user.login : @guide.user.name
+        = attribution_links
       - else
         = succeed ',' do
-          = link_to_user @guide.user, :content_text => @guide.user.name.blank? ? @guide.user.login : @guide.user.name
+          = attribution_links
         = t(:some_rights_reserved).downcase
         = surround '(', ')' do
           = link_to @guide.license.gsub(/CC-/, 'CC '), url_for_license(@guide.license)
