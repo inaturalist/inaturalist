@@ -201,27 +201,55 @@ describe CheckList, "refresh_with_observation" do
   it "should remove taxa from ancestor lists"
   
   it "should use private coordinates" do
-    g = @place.place_geometry.geom
+    p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 10,10 10,10 0,0 0)))")
+    l = p.check_list
+    g = p.place_geometry.geom
     obscured_lat = g.envelope.lower_corner.y - 1
     obscured_lon = g.envelope.lower_corner.x - 1
-    
     # make sure obscured coords lie outside the place geom
     PlaceGeometry.all(
       :conditions => "ST_Intersects(place_geometries.geom, ST_Point(#{obscured_lon}, #{obscured_lat}))").
-      map(&:place_id).should_not include(@check_list.place_id)
-      
-    o = make_research_grade_observation(:latitude => @place.latitude, 
-      :longitude => @place.longitude, :taxon => @taxon, :geoprivacy => Observation::OBSCURED)
+      map(&:place_id).should_not include(p.id)
+    o = make_research_grade_observation(:latitude => p.latitude, 
+      :longitude => p.longitude, :taxon => @taxon, :geoprivacy => Observation::OBSCURED)
     Observation.update_all(
       ["latitude = ?, longitude = ?, geom = St_Point(#{obscured_lon}, #{obscured_lat})", 
         obscured_lat, obscured_lon], 
       ["id = ?", o.id])
     o.reload
-    @check_list.taxon_ids.should_not include(@taxon.id)
+    PlaceGeometry.all(
+      :conditions => "ST_Intersects(place_geometries.geom, ST_Point(#{o.private_longitude}, #{o.private_latitude}))").
+      map(&:place_id).should include(p.id)
+    l.taxon_ids.should_not include(@taxon.id)
     CheckList.refresh_with_observation(o)
-    @check_list.reload
-    
-    @check_list.taxon_ids.should include(@taxon.id)
+    l.reload
+    l.taxon_ids.should include(@taxon.id)
+  end
+
+  it "should respect the public positional accuracy" do
+    p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))")
+    l = p.check_list
+    g = p.place_geometry.geom
+    obscured_lat = g.envelope.lower_corner.y - 1
+    obscured_lon = g.envelope.lower_corner.x - 1
+    # make sure obscured coords lie outside the place geom
+    PlaceGeometry.all(
+      :conditions => "ST_Intersects(place_geometries.geom, ST_Point(#{obscured_lon}, #{obscured_lat}))").
+      map(&:place_id).should_not include(p.id)
+    o = make_research_grade_observation(:latitude => p.latitude, 
+      :longitude => p.longitude, :taxon => @taxon, :geoprivacy => Observation::OBSCURED)
+    Observation.update_all(
+      ["latitude = ?, longitude = ?, geom = St_Point(#{obscured_lon}, #{obscured_lat})", 
+        obscured_lat, obscured_lon], 
+      ["id = ?", o.id])
+    o.reload
+    PlaceGeometry.all(
+      :conditions => "ST_Intersects(place_geometries.geom, ST_Point(#{o.private_longitude}, #{o.private_latitude}))").
+      map(&:place_id).should include(p.id)
+    l.taxon_ids.should_not include(@taxon.id)
+    CheckList.refresh_with_observation(o)
+    l.reload
+    l.taxon_ids.should_not include(@taxon.id)
   end
   
   it "should update old listed taxa which this observation confirmed" do
