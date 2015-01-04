@@ -325,6 +325,7 @@ en:
   apply_fields: Apply fields
   apply_geoprivacy: Apply geoprivacy
   apply_darr: "Apply &darr;"
+  apply_establishment_means_to_descendant_places: "Apply establishment means to descendant places"
   apply_these_settings_to_all: Apply these settings to all the observations below.
   appropriate?: Appropriate?
   arachnids: arachnids
@@ -3443,6 +3444,20 @@ en:
                 observations, the species will not be added to this list if
                 %{site_name} does not recognize the name you used. We recommend
                 trying alternative names that we might recognize.
+    listed_taxa:
+      establishment_field:
+        confirmation: |
+          Are you sure? This will change the establishment means for ALL
+          listed taxa belonging to places within this place. You could be
+          undoing a lot of work.
+        description_html: |
+          This will change the establishment means of <em>all</em> listings of
+          this taxon on all descendant places of 
+          <a href="%{place_url}">%{place_name}</a> 
+          to <strong>"%{establishment_means}"</strong>. Only
+          curators can use this tool. Changing the establishment means to
+          "introduced" will have rougly the same effect, but it won't change
+          existing values, just fill in blank ones.
     lists:
       new:
         place_desc: |
