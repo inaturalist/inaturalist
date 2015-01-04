@@ -97,6 +97,8 @@ class User < ActiveRecord::Base
   has_many :updated_observation_field_values, :dependent => :nullify, :inverse_of => :updater, :foreign_key => "updater_id", :class_name => "ObservationFieldValue"
   has_many :guide_users, :inverse_of => :user, :dependent => :delete_all
   has_many :editing_guides, :through => :guide_users, :source => :guide
+  has_many :created_guide_sections, :class_name => "Guide", :foreign_key => "creator_id", :inverse_of => :creator, :dependent => :nullify
+  has_many :updated_guide_sections, :class_name => "Guide", :foreign_key => "updater_id", :inverse_of => :updater, :dependent => :nullify
   
   has_attached_file :icon,
     :styles => { :original => "2048x2048>", :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },
@@ -405,6 +407,10 @@ class User < ActiveRecord::Base
       User.update_all(["uri = ?", FakeView.user_url(id)], ["id = ?", id])
     end
     true
+  end
+
+  def published_name
+    name.blank? ? login : name
   end
   
   def self.query(params={}) 

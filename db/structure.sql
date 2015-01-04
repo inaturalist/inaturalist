@@ -1007,7 +1007,9 @@ CREATE TABLE guide_sections (
     license character varying(255),
     source_url character varying(255),
     rights_holder character varying(255),
-    source_id integer
+    source_id integer,
+    creator_id integer,
+    updater_id integer
 );
 
 
@@ -5306,6 +5308,13 @@ CREATE INDEX index_guide_ranges_on_source_id ON guide_ranges USING btree (source
 
 
 --
+-- Name: index_guide_sections_on_creator_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_sections_on_creator_id ON guide_sections USING btree (creator_id);
+
+
+--
 -- Name: index_guide_sections_on_guide_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5317,6 +5326,13 @@ CREATE INDEX index_guide_sections_on_guide_taxon_id ON guide_sections USING btre
 --
 
 CREATE INDEX index_guide_sections_on_source_id ON guide_sections USING btree (source_id);
+
+
+--
+-- Name: index_guide_sections_on_updater_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_sections_on_updater_id ON guide_sections USING btree (updater_id);
 
 
 --
@@ -7279,3 +7295,5 @@ INSERT INTO schema_migrations (version) VALUES ('20141213001622');
 INSERT INTO schema_migrations (version) VALUES ('20141213195804');
 
 INSERT INTO schema_migrations (version) VALUES ('20150104021132');
+
+INSERT INTO schema_migrations (version) VALUES ('20150104033219');
