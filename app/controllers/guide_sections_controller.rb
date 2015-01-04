@@ -91,8 +91,10 @@ class GuideSectionsController < ApplicationController
     provider = params[:provider].to_s.downcase
     @sections = if provider == "eol"
       import_from_eol
-    else
+    elsif provider == "wikipedia"
       import_from_wikipedia
+    else
+      import_from_inat
     end
     @sections = (@sections || []).sort_by(&:title)
     respond_to do |format|
@@ -102,6 +104,7 @@ class GuideSectionsController < ApplicationController
     end
   end
 
+  private
   def import_from_eol
     eol = EolService.new(:timeout => 30)
     eol_page_id = params[:eol_page_id]
@@ -151,7 +154,12 @@ class GuideSectionsController < ApplicationController
     sections
   end
 
-  private
+  def import_from_inat
+    scope = GuideSection.reusable.original.dbsearch(params[:q]).limit(50)
+    scope = scope.where("guide_taxon_id != ?", params[:guide_taxon_id]) unless params[:guide_taxon_id].blank?
+    scope.map{|gs| gs.reuse }
+  end
+
   def load_guide
     @guide = @guide_section.guide
   end

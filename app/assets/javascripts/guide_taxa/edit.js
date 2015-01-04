@@ -70,7 +70,7 @@ $('#import_sections_dialog').on('shown', function() {
     return
   }
   var provider = current.attr('id').split('_')[0]
-  $.getJSON('/guide_sections/import?provider='+provider+'&q='+GUIDE_TAXON.name+'&eol_page_id='+EOL_PAGE_ID, function(json) {
+  $.getJSON('/guide_sections/import?provider='+provider+'&q='+GUIDE_TAXON.name+'&eol_page_id='+EOL_PAGE_ID+'&guide_taxon_id='+GUIDE_TAXON.id, function(json) {
     current.html('')
     if (!json || json.length == 0) {
       current.html("<p>"+I18n.t('no_sections_available')+"</p>")

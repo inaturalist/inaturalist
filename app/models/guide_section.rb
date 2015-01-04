@@ -70,6 +70,15 @@ class GuideSection < ActiveRecord::Base
     Use
   )
 
+  scope :reusable, where("COALESCE(license, '') != ''")
+  scope :for_taxon, lambda {|t| inlucdes(:guide_taxon).where("guide_taxa.taxon_id = ?", t)}
+  scope :original, where("COALESCE(source_url, '') = ''")
+  scope :dbsearch, lambda {|q| 
+    q = "%#{q}%"
+    includes(:guide_taxon).
+    where("guide_taxa.name ILIKE ? OR guide_taxa.display_name ILIKE ?", q, q)
+  }
+
   def to_s
     "<GuideSection #{id}>"
   end
@@ -128,6 +137,13 @@ class GuideSection < ActiveRecord::Base
 
   def touch_if_modified
     touch if modified_on_create == true || modified_on_create == "true"
+  end
+
+  def reuse
+    gs = clone
+    gs.rights_holder = attribution_name
+    gs.source_url = FakeView.guide_taxon_url(guide_taxon_id)
+    gs
   end
 
   def self.new_from_eol_data_object(data_object)
