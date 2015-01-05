@@ -88,6 +88,10 @@ class AdminController < ApplicationController
     flash[:notice] = "Logged in as #{user.login}. Be careful, and remember to log out when you're done."
     redirect_to root_path
   end
+
+  def delayed_jobs
+    @jobs = Delayed::Job.all
+  end
   
 
   private

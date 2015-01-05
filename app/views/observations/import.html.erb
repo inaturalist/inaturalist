@@ -1,7 +1,8 @@
 <% content_for(:title) do -%><%=t :import_observations %><% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'observations/new', 
-                          "jquery/ui.tabs.css" %>
+                          "jquery/ui.tabs.css",
+                          "jquery/ui.accordion.css" %>
   <style type="text/css" media="screen">
     #pageheader p{margin-bottom:0;}
     #tabs div .description.readable{margin-bottom:10px;}
@@ -21,8 +22,28 @@
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect.html_safe};" if protect_against_forgery? %>
   <script type="text/javascript" charset="utf-8">
     var SOUNDCLOUD_IDENTITY = <%=raw current_user.soundcloud_identity.to_json(:only => [:id]) %>
+    function getURLParameter(name) {
+      return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+    }
+
     $(document).ready(function() {
-      $('#tabs').tabs();
+      var tab_options = {};
+      var select_tab = getURLParameter('tab');
+      if (select_tab) {
+        tab_options.active = select_tab;
+      }
+      $('#tabs').tabs(tab_options);
+      $('#accordion').accordion({ collapsible: true, header: 'h3', heightStyle: 'content' });
+
+      $('#upload_project_id').on('change', function(e) {
+        var project_id = e.currentTarget[e.currentTarget.selectedIndex].value;
+        if (project_id != '') {
+          window.location = "/observations/import?project_id=" + project_id + "&tab=1";
+        }
+        else {
+          window.location = "/observations/import?tab=1";
+        }
+      });
       
       $('#photos').photoSelector({
         <%- if @default_photo_identity_url -%>
@@ -60,9 +81,9 @@
 <div class="column span-24">
   <div id="tabs" class="ui-tabs">
     <ul>
-      <li><a href="#photo_import"><span><%=t :import_from_photos %></span></a></li>
+      <li><a href="#photo_import"><span><%=t :import_from_other_photo_sites %></span></a></li>
       <li><a href="#csv_import"><span><%=t :import_from_csv %></span></a></li>
-      <li><a href="#sound_import"><span><%=t :'sounds.import_from_sounds' %></span></a></li>
+      <li><a href="#sound_import"><span><%=t 'sounds.import_from_sounds' %></span></a></li>
     </ul>
     
     <div id="photo_import">
@@ -106,28 +127,64 @@
     <div id="csv_import">
       <div class="readable description">
         <%=t :upload_a_csv_file_with_observation %>
+        <% if @project %>
+          <p><%=t 'views.observations.import.project_csv_template_notice_html', :url => project_bulk_template_url(@project) %></p>
+        <% end %>
       </div>
-      
-      <div class="box">
-        <%= form_tag(new_observation_batch_csv_path, 
-            :id => 'new_batch_form', 
-            :class => 'clear observationform', 
-            :multipart => true) do %>
-          <div class="buttonrow">
-            <label for="upload_file"><%= t :upload_a_csv_file %></label>
-            <%= file_field 'upload', 'datafile', :class => 'text' %>
-            <%= submit_tag t(:upload), :class => 'default button', "data-loading-click" => t(:importing) %>
+
+      <div class="stacekd">
+        <%= form_tag(new_observation_bulk_csv_path,
+                     :id => 'new_bulk_form',
+                     :class => 'clear observationform',
+                     :multipart => true) do %>
+          <div class="column field span-23 box">
+            <div class="column span-4">
+              <label for="upload_file"><%=t :upload_a_csv_file %></label>
+            </div>
+            <div class="last column span-12">
+              <%= file_field 'upload', 'datafile' %>
+            </div>
+          </div>
+          <div class="column field span-23 quiet box">
+            <div class="column span-4">
+              <label for="project"><%=t :add_to_project %></label>
+            </div>
+            <div class="last column span-12">
+              <%= select 'upload', :project_id, @projects.collect { |p| [p.title, p.id] }, { :include_blank => t(:none), :selected => (params[:project_id].to_i > 0 ? params[:project_id] : nil) } %>
+            </div>
+          </div>
+          <% if CONFIG.coordinate_systems -%>
+            <div class="column field span-23 quiet box">
+              <div class="column span-4">
+                <label><%=t :coordinate_systems %></label>
+              </div>
+              <div class="last column span-12">
+                <%= select 'upload', :coordinate_system, coordinate_system_select_options %>
+                <span class="coords_tip_target helptip" rel="#coords_tip"></span><div id="coords_tip" style="display:none">
+                  <%=t 'views.observations.import.coordinate_systems_help', :site_name => SITE_NAME %>
+                </div>
+              </div>
+            </div>
+          <% end -%>
+          <div class="column span-16">
+            <div class="buttonrow">
+              <%= submit_tag "Upload", :class => 'default button', "data-loading-click" => t(:importing) %>
+            </div>
           </div>
         <% end %>
       </div>
-      
-      <div class="description">
+
+      <div class="ui upstacked">
+        <%= separator %>
         <h3><%= raw t(:rules_and_formatting) %></h3>
         <ol>
-          <li><%=t :no_header_row %></li>
-          <li><%=t :only_files_with_100_rows_at_a_time %></li>
-          <li><%=t :surround_any_cells_containing_commas %> </li>
+          <li><%=t :you_must_have_a_header_row %></li>
+          <li><%=t :only_files_with_10000_rows_at_a_time %></li>
+          <li><%=t :use_well_formed_csv %> </li>
           <li><%=t :dont_use_double_quotes %> </li>
+          <% if CONFIG.coordinate_systems -%>
+            <li><%=t :only_one_coordinate_system_per_file %></li>
+          <% end -%>
           <li>
             <p class="ui"><%=t :we_can_only_understand_csv_in %>:</p>
             <table cellspacing="0" border="0" cellpadding="0">
@@ -136,9 +193,10 @@
                 <th><%=t :date_observed %></th>
                 <th><%=t :description %></th>
                 <th><%=t :place_name %></th>
-                <th><%=t :latitude %></th>
-                <th><%=t :longitude %></th>
+                <th><%=t :latitude_slash_y_coord %></th>
+                <th><%=t :longitude_slash_x_coord %></th>
                 <th><%=t :tags %></th>
+                <th><%=t :geoprivacy %></th>
               </tr>
               <tr>
                 <td>text</td>
@@ -147,18 +205,19 @@
                 <td>text</td>
                 <td>dd.dddd</td>
                 <td>dd.dddd</td>
-                <td>text</td>
+                <td>tag1,tag2</td>
+                <td>obscured</td>
               </tr>
             </table>
 
             <p class="ui"><%=t :here_are_3_examples %>:</p>
-            
-<code>Anna's Hummingbird,2008-03-03 2:54pm,"An aggressive male dive-bombed my head, so I took cover.","Tilden Regional Park, Berkeley, CA, USA",37.8953,-122.249,"attack, danger"
+<code>Anna's Hummingbird,2008-03-03 2:54pm,"An aggressive male dive-bombed my head, so I took cover.","Tilden Regional Park, Berkeley, CA, USA",37.8953,-122.249,"attack, danger",obscured
 Sharp-tailed Snake,2007-08-20,"Beautiful little creature","Leona Canyon Regional Park, Oakland, CA, USA",37.7454,-122.111,"cute, snakes"
-Golden Eagle,,"I'm not really sure when or where this was",,,,"mysterious"</code>
+Golden Eagle,,"I'm not really sure when or where this was",,,,"mysterious",private</code>
           </li>
         </ol>
       </div>
+
     </div>
   </div>
 </div>

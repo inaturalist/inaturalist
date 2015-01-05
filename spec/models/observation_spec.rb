@@ -2492,3 +2492,79 @@ describe Observation, "observations_places" do
     ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be_false
   end
 end
+
+describe Observation, "coordinate transformation", :focus => true  do
+  subject { Observation.make }
+  before do
+    stub_config :coordinate_systems => {
+      :nztm2000 => {
+        :label => "NZTM2000 (NZ Transverse Mercator), EPSG:2193",
+        :proj4 => "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+      },
+      :nzmg => {
+        :label => "NZMG (New Zealand Map Grid), EPSG:27200",
+        :proj4 => "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
+      }
+    }
+    CONFIG.coordinate_systems.should_not be_blank
+  end
+  it "requires geo_x if geo_y is present" do
+    subject.geo_y = 5413457.7
+    subject.should  have(1).error_on(:geo_x)
+  end
+  
+  it "requires geo_x to be a number" do
+    subject.geo_x = "test"
+    subject.should  have(1).error_on(:geo_x)
+  end
+
+  it "requires geo_y if geo_x is present" do
+    subject.geo_x = 1528677.3
+    subject.should  have(1).error_on(:geo_y)
+  end
+
+  it "requires geo_y to be a number" do
+    subject.geo_y = "test"
+    subject.should  have(1).error_on(:geo_y)
+  end
+
+  # FIXME: this is fragile
+  it "requires coordinate_system to be valid" do
+    subject.coordinate_system = "some_invalid_value"
+    subject.should have(1).error_on(:coordinate_system)
+  end
+ 
+  it "sets lat lng" do
+    subject.geo_y = 5413457.7
+    subject.geo_x = 1528677.3
+    subject.coordinate_system = "nztm2000"
+    subject.save!
+    subject.latitude.should be_within(0.0000001).of(-41.4272781531)
+    subject.longitude.should be_within(0.0000001).of(172.1464131267)
+  end
+  
+  describe "place_guess_other" do
+    it "sets place_guess on save" do
+      subject.geo_y = 5413457.7
+      subject.geo_x = 1528677.3
+      subject.coordinate_system = "nztm2000"
+
+      subject.place_guess_other = "test"
+      subject.save!
+      subject.place_guess.should eq "test"
+    end
+  end
+  
+  describe "positional_accuracy_other" do
+    it "sets positional_accuracy on save" do
+      subject.geo_y = 5413457.7
+      subject.geo_x = 1528677.3
+      subject.coordinate_system = "nztm2000"
+
+      subject.positional_accuracy_other = 100
+      subject.save!
+      subject.positional_accuracy.should eq 100
+    end
+  end
+  
+end
