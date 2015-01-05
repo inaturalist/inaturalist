@@ -100,7 +100,9 @@ class Guide < ActiveRecord::Base
 
   def editable_by?(user)
     # self.user_id == user.try(:id)
-    guide_users.detect{|gu| gu.user_id == user.id}
+    user_id = user.is_a?(User) ? user.id : user
+    return false if user_id.blank?
+    guide_users.detect{|gu| gu.user_id == user_id}
   end
 
   def set_taxon
@@ -226,7 +228,6 @@ class Guide < ActiveRecord::Base
         guide_taxa << gt
       end
     end
-    Rails.logger.debug "[DEBUG] #{self} add_taxa_from_eol_collection, #{saved} saved, #{errors.size} errors"
     guide_taxa
   end
 

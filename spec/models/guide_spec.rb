@@ -42,6 +42,19 @@ end
 describe Guide, "add_taxa_from_eol_collection" do
   let(:eol_collection_url) { "http://eol.org/collections/6970" } 
   it "should add taxa" do
+    # this is brittle, but these should be all the names on that list. If
+    # they're not in the db, this will fail b/c the guide taxa will be invalid
+    # without taxa to match.
+    [
+      'Hydromantes platycephalus',
+      'Anniella pulchra',
+      'Rhinocheilus lecontei',
+      'Masticophis flagellum',
+      'Bogertophis subocularis',
+      'Aneides vagrans'
+    ].each do |name|
+      Taxon.make!(:name => name)
+    end
     guide = Guide.make!
     guide.add_taxa_from_eol_collection(eol_collection_url)
     guide.guide_taxa.should_not be_blank

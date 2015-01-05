@@ -146,6 +146,14 @@ class GuideSection < ActiveRecord::Base
     gs
   end
 
+  def reusable?(options = {})
+    user_id = if options[:user]
+      options[:user].is_a?(User) ? options[:user].id : options[:user]
+    end
+    return true if user_id && guide.guide_users.map(&:user_id).include?(user_id)
+    !license.blank?
+  end
+
   def self.new_from_eol_data_object(data_object)
     gs = GuideSection.new(
       :title => (data_object.at('title') || data_object.at('subject')).content.split('#').last.underscore.humanize,

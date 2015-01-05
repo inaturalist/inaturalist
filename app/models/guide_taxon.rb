@@ -12,6 +12,11 @@ class GuideTaxon < ActiveRecord::Base
   accepts_nested_attributes_for :guide_sections, :allow_destroy => true
   accepts_nested_attributes_for :guide_photos, :allow_destroy => true
   accepts_nested_attributes_for :guide_ranges, :allow_destroy => true
+
+  validates_presence_of :guide, :taxon
+  validate :within_count_limit, :on => :create
+  validates_uniqueness_of :name, :scope => :guide_id, :allow_blank => true, :message => "has already been added to this guide"
+
   before_create :set_names_from_taxon
   before_create :set_default_photos
   before_create :set_default_section
@@ -19,9 +24,6 @@ class GuideTaxon < ActiveRecord::Base
   after_destroy :set_guide_taxon
   after_save {|r| r.guide.expire_caches(:check_ngz => true)}
   after_destroy {|r| r.guide.expire_caches(:check_ngz => true)}
-
-  validates_uniqueness_of :name, :scope => :guide_id, :allow_blank => true, :message => "has already been added to this guide"
-  validate :within_count_limit, :on => :create
 
   acts_as_taggable
 
@@ -70,7 +72,7 @@ class GuideTaxon < ActiveRecord::Base
   end
 
   def within_count_limit
-    errors.add(:base, :guide_has_too_many_taxa) if guide.guide_taxa.count >= 500
+    errors.add(:base, :guide_has_too_many_taxa) if guide && guide.guide_taxa.count >= 500
   end
 
   def default_guide_photo
@@ -301,6 +303,21 @@ class GuideTaxon < ActiveRecord::Base
 
   def eol_page_id
     @eol_page_id ||= source_identifier.to_s[/eol.org\/pages\/(\d+)/, 1]
+  end
+
+  def reuse(options = {})
+    attrs = attributes.reject{|k,v| %(id guide_id created_at updated_at).include?(k.to_s)}
+    gt = GuideTaxon.new(attrs)
+    [:guide_photos, :guide_ranges, :guide_sections].each do |relat|
+      send(relat).sort_by{|r| r.position || r.id }.each do |record|
+        if record.reusable?(options)
+          reusable_record = record.respond_to?(:reuse) ? record.reuse : record
+          attrs = reusable_record.attributes.reject{|k,v| %(id created_at updated_at).include?(k.to_s)}
+          gt.send(relat).build(attrs)
+        end
+      end
+    end
+    gt
   end
 
   def self.new_from_eol_collection_item(item, options = {})
