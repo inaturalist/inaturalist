@@ -2543,28 +2543,4 @@ describe Observation, "coordinate transformation", :focus => true  do
     subject.longitude.should be_within(0.0000001).of(172.1464131267)
   end
   
-  describe "place_guess_other" do
-    it "sets place_guess on save" do
-      subject.geo_y = 5413457.7
-      subject.geo_x = 1528677.3
-      subject.coordinate_system = "nztm2000"
-
-      subject.place_guess_other = "test"
-      subject.save!
-      subject.place_guess.should eq "test"
-    end
-  end
-  
-  describe "positional_accuracy_other" do
-    it "sets positional_accuracy on save" do
-      subject.geo_y = 5413457.7
-      subject.geo_x = 1528677.3
-      subject.coordinate_system = "nztm2000"
-
-      subject.positional_accuracy_other = 100
-      subject.save!
-      subject.positional_accuracy.should eq 100
-    end
-  end
-  
 end
