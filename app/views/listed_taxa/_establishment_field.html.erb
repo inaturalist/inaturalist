@@ -28,6 +28,20 @@
       <%= link_to_function t(:cancel), "$(this).parents('.establishment').show(); $(this).parents('.establishmentfield').find('form').hide()",
         :class => "minor button" %>
     <% end %>
+    <% if current_user.is_curator? && listed_taxon.establishment_means != ListedTaxon::ENDEMIC -%>
+      <%= form_for listed_taxon, :builder => DefaultFormBuilder, :html => {
+          :id => dom_id(listed_taxon, "edit_establishment"), 
+          :class => "clear box listed_taxon_form inline buttonrow smallbuttons", 
+          :style => "display: none"} do |f| %>
+          <%= f.hidden_field :force_trickle_down_establishment_means, :value => "true" %>
+          <%= f.submit t(:apply_establishment_means_to_descendant_places), 
+            :class => "default button",
+            :confirm => t('views.listed_taxa.establishment_field.confirmation') %>
+          <div class="small ui">
+            <%=t 'views.listed_taxa.establishment_field.description_html', place_name: listed_taxon.place.display_name, place_url: place_url(listed_taxon.place), establishment_means: listed_taxon.establishment_means %>
+          </div>
+      <% end %>
+    <% end -%>
   <% end -%>
   <div id="establishment_tip" style="display:none">
     <p class="ui">

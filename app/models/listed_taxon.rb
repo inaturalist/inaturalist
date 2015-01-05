@@ -31,7 +31,7 @@ class ListedTaxon < ActiveRecord::Base
   before_create :set_updater_id
   before_save :set_user_id
   before_save :set_source_id
-  before_save :set_establishment_means
+  before_create :set_establishment_means
   before_save :set_primary_listing
   before_create :check_primary_listing
   after_save :update_cache_columns_for_check_list
@@ -217,7 +217,8 @@ class ListedTaxon < ActiveRecord::Base
                 :force_update_cache_columns,
                 :extra,
                 :html,
-                :old_list
+                :old_list,
+                :force_trickle_down_establishment_means
   
   def ancestry
     taxon_ancestor_ids
@@ -459,11 +460,13 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def propagate_establishment_means
-    return true unless establishment_means_changed? && !establishment_means.blank?
     return true unless list.is_a?(CheckList)
-    if native?
-      bubble_up_establishment_means
-    else
+    if force_trickle_down_establishment_means.yesish?
+      trickle_down_establishment_means(:force => true)
+    end
+    return true unless establishment_means_changed? && !establishment_means.blank?
+    bubble_up_establishment_means if native?
+    if introduced? && force_trickle_down_establishment_means.blank?
       trickle_down_establishment_means
     end
     true
@@ -483,7 +486,7 @@ class ListedTaxon < ActiveRecord::Base
       FROM places
       WHERE 
         listed_taxa.place_id = places.id
-        #{'AND establishment_means IS NULL' unless options[:force]}
+        #{"AND (establishment_means IS NULL OR establishment_means = '')" unless options[:force]}
         AND listed_taxa.taxon_id = #{taxon_id}
         AND (#{Place.send(:sanitize_sql, place.descendant_conditions)})
     SQL
@@ -843,7 +846,7 @@ class ListedTaxon < ActiveRecord::Base
   def update_attributes_and_primary(listed_taxon, current_user)
     transaction do
       update_attributes(listed_taxon.merge(:updater_id => current_user.id))
-      if primary_listed_taxon
+      if primary_listed_taxon && primary_listed_taxon != self
         primary_listed_taxon.update_attributes(
           occurrence_status_level: listed_taxon['occurrence_status_level'],
           establishment_means: listed_taxon['establishment_means']

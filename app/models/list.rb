@@ -220,9 +220,18 @@ class List < ActiveRecord::Base
     end
     
     # When the full file is ready, then move it over to the real path
-    FileUtils.mkdir_p File.dirname(fpath), :mode => 0755
-    if tmp_path != fpath
-      FileUtils.mv tmp_path, fpath
+    begin
+      FileUtils.mkdir_p File.dirname(fpath), :mode => 0755
+      if tmp_path != fpath
+        FileUtils.mv tmp_path, fpath
+      end
+    rescue Errno::EINVAL => e
+      # chown fails for some reason, maybe NFS related
+      if e.message =~ /Invalid argument/
+        return nil
+      else
+        raise e
+      end
     end
     fpath
   end

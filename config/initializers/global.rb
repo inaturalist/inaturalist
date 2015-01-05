@@ -73,3 +73,18 @@ def private_page_cache_path(path)
   root = Rails.root.to_s.sub(/releases#{File::SEPARATOR}\d+/, 'current')
   File.join(root, 'tmp', 'page_cache', path)
 end
+
+# Haversine distance calc, adapted from http://www.movable-type.co.uk/scripts/latlong.html
+def lat_lon_distance_in_meters(lat1, lon1, lat2, lon2)
+  earthRadius = 6370997 # m 
+  degreesPerRadian = 57.2958
+  dLat = (lat2-lat1) / degreesPerRadian
+  dLon = (lon2-lon1) / degreesPerRadian
+  lat1 = lat1 / degreesPerRadian
+  lat2 = lat2 / degreesPerRadian
+  a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2)
+  c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+  d = earthRadius * c  
+  d
+end

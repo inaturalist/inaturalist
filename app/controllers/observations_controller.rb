@@ -1780,35 +1780,19 @@ class ObservationsController < ApplicationController
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     limit = params[:limit].to_i
     limit = 500 if limit > 500 || limit <= 0
-    user_counts_sql = <<-SQL
-      SELECT
-        o.user_id,
-        count(*) AS count_all
-      FROM
-        (#{scope.to_sql}) AS o
-      GROUP BY
-        o.user_id
-      ORDER BY count_all desc
-      LIMIT #{limit}
-    SQL
-    @user_counts = ActiveRecord::Base.connection.execute(user_counts_sql)
-    unique_taxon_users_scope = scope.
-      select("DISTINCT observations.taxon_id, observations.user_id").
-      joins(:taxon).
-      where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL).scoped
-    user_taxon_counts_sql = <<-SQL
-      SELECT
-        o.user_id,
-        count(*) AS count_all
-      FROM
-        (#{unique_taxon_users_scope.to_sql}) AS o
-      GROUP BY
-        o.user_id
-      ORDER BY count_all desc
-      LIMIT #{limit}
-    SQL
-    @user_taxon_counts = ActiveRecord::Base.connection.execute(user_taxon_counts_sql)
-    @users = User.where("id in (?)", [@user_counts.map{|r| r['user_id']}, @user_taxon_counts.map{|r| r['user_id']}].flatten.uniq)
+    @user_counts = user_obs_counts(scope, limit).to_a
+    @user_taxon_counts = user_taxon_counts(scope, limit).to_a
+    obs_user_ids = @user_counts.map{|r| r['user_id']}.sort
+    tax_user_ids = @user_taxon_counts.map{|r| r['user_id']}.sort
+
+    # the list of top users is probably different for obs and taxa, so grab the leftovers from each
+    leftover_obs_user_ids = tax_user_ids - obs_user_ids
+    leftover_tax_user_ids = obs_user_ids - tax_user_ids
+    @user_counts += user_obs_counts(scope.where("observations.user_id IN (?)", leftover_obs_user_ids)).to_a
+    @user_taxon_counts += user_taxon_counts(scope.where("observations.user_id IN (?)", leftover_tax_user_ids)).to_a
+    user_ids = (obs_user_ids + tax_user_ids).uniq.sort
+    
+    @users = User.select("id, login, icon_file_name, icon_updated_at, icon_content_type").where("id in (?)", user_ids)
     @users_by_id = @users.index_by(&:id)
     respond_to do |format|
       format.html do
@@ -1842,6 +1826,40 @@ class ObservationsController < ApplicationController
       end
     end
   end
+  private
+  def user_obs_counts(scope, limit = 500)
+    user_counts_sql = <<-SQL
+      SELECT
+        o.user_id,
+        count(*) AS count_all
+      FROM
+        (#{scope.to_sql}) AS o
+      GROUP BY
+        o.user_id
+      ORDER BY count_all desc
+      LIMIT #{limit}
+    SQL
+    ActiveRecord::Base.connection.execute(user_counts_sql)
+  end
+  def user_taxon_counts(scope, limit = 500)
+    unique_taxon_users_scope = scope.
+      select("DISTINCT observations.taxon_id, observations.user_id").
+      joins(:taxon).
+      where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL).scoped
+    user_taxon_counts_sql = <<-SQL
+      SELECT
+        o.user_id,
+        count(*) AS count_all
+      FROM
+        (#{unique_taxon_users_scope.to_sql}) AS o
+      GROUP BY
+        o.user_id
+      ORDER BY count_all desc
+      LIMIT #{limit}
+    SQL
+    ActiveRecord::Base.connection.execute(user_taxon_counts_sql)
+  end
+  public
 
   def accumulation
     params[:order_by] = "observed_on"

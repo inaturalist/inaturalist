@@ -65,6 +65,7 @@ class ListedTaxaController < ApplicationController
     opts[:user_id] = current_user.id
     opts[:manually_added] = true
     opts.delete(:taxon_id)
+    opts.delete(:force_trickle_down_establishment_means) unless current_user.is_curator?
     
     @listed_taxon = @list.add_taxon(@taxon, opts)
     
@@ -120,7 +121,8 @@ class ListedTaxaController < ApplicationController
     listed_taxon = params[:listed_taxon] || {}
 
     respond_to do |format|
-      if @listed_taxon.update_attributes_and_primary(listed_taxon, current_user)
+      @listed_taxon.update_attributes_and_primary(listed_taxon, current_user)
+      if @listed_taxon.valid?
         format.html do
           flash[:notice] = t(:listed_taxon_updated)
           redirect_to :back
@@ -134,8 +136,9 @@ class ListedTaxaController < ApplicationController
         end
       else
         format.html do
+          Rails.logger.debug "[DEBUG] @listed_taxon.errors.full_messages: #{@listed_taxon.errors.full_messages.inspect}"
           flash[:error] = "There were problems updating that listed taxon: #{@listed_taxon.errors.full_messages.to_sentence}"
-          render :action => :show
+          redirect_to :back
         end
         format.json do
           render :status => :unprocessable_entity, :json => @listed_taxon.as_json(:methods => [:errors])

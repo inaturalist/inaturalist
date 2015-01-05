@@ -1173,8 +1173,18 @@ $.fn.observationTaxonStats = function(options) {
   baseSearch = baseSearch.replace(/per_page=[^&]+/, '')
   baseSearch = baseSearch.replace(/page=[^&]+/, '')
   $.getJSON(url, function(json) {
-    var speciesCount = json.rank_counts.leaves || json.rank_counts.species || 0,
-        speciesCountLink = $('<a>'+speciesCount+'</a>').attr('href', '/observations/taxa'+ baseSearch +'&rank=species')
+    var speciesCount
+    if (json.rank_counts.leaves) {
+      speciesCount = json.rank_counts.leaves
+    } else {
+      speciesCount = 
+        (json.rank_counts.species || 0) +
+        (json.rank_counts.subspecies || 0) +
+        (json.rank_counts.variety || 0) +
+        (json.rank_counts['form'] || 0) +
+        (json.rank_counts.hybrid || 0)
+    }
+    var speciesCountLink = $('<a>'+speciesCount+'</a>').attr('href', '/observations/taxa'+ baseSearch +'&rank=species')
     $('.species .count', container).html(speciesCountLink)
     if (json.species_counts.length > 0) {
       var most
