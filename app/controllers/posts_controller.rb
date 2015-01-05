@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :browse]
-  before_filter :load_post, :only => [:show, :edit, :update, :destroy]
-  before_filter :block_spammers, :only => [:show, :edit, :update, :destroy]
+  load_only = [ :show, :edit, :update, :destroy ]
+  before_filter :load_post, :only => load_only
+  blocks_spam :only => load_only, :instance => :post
   before_filter :load_parent, :except => [:browse, :create, :update, :destroy]
   before_filter :load_new_post, :only => [:new, :create]
   before_filter :author_required, :only => [:edit, :update, :destroy]
@@ -10,6 +11,7 @@ class PostsController < ApplicationController
   
   def index
     scope = @parent.is_a?(User) ? @parent.journal_posts.scoped : @parent.posts.scoped
+    block_if_spam(@parent) && return
     @posts = scope.published.page(params[:page]).per_page(10).order("published_at DESC")
     
     # Grab the monthly counts of all posts to show archives
@@ -236,10 +238,6 @@ class PostsController < ApplicationController
     true
   end
   
-  def block_spammers
-    render_404 if @post.user.spammer? || @post.flagged_as_spam?
-  end
-
   def author_required
     if ((@post.parent.is_a?(Project) && !@post.parent.editable_by?(current_user)) ||
         !(logged_in? && @post.user.id == current_user.id))

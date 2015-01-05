@@ -1,0 +1,10 @@
+- content_for(:extracss) do
+  = stylesheet_link_tag "shared/404"
+#wrapper.clear
+  %img{ src: asset_path("404mole.png") }
+  #message
+    %h1 This user was banned
+    .readable.description
+      Take a chance to review our
+      = succeed '.' do
+        = link_to "guidelines", help_path(anchor: "inappropriate")

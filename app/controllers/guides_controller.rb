@@ -5,7 +5,10 @@ class GuidesController < ApplicationController
   before_filter :authenticate_user!, 
     :except => [:index, :show, :search], 
     :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
+  load_only = [ :show, :edit, :update, :destroy, :import_taxa,
+    :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
+  before_filter :load_record, :only => load_only
+  blocks_spam :only => load_only, :instance => :guide
   before_filter :require_owner, :only => [:edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
 
   layout "bootstrap"

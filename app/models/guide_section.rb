@@ -1,7 +1,11 @@
 class GuideSection < ActiveRecord::Base
+  acts_as_flaggable
+  acts_as_spammable :fields => [ :title, :description ]
+
   attr_accessible :description, :guide_taxon_id, :title, :position, :rights_holder, :license, :source_id, :source_url, :modified_on_create
   attr_accessor :modified_on_create
   belongs_to :guide_taxon, :inverse_of => :guide_sections
+  has_one :user, :through => :guide_taxon
   has_one :guide, :through => :guide_taxon
   before_create :set_license
   after_create :touch_if_modified

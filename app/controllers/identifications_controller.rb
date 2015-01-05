@@ -2,7 +2,9 @@ class IdentificationsController < ApplicationController
   doorkeeper_for :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :except => [:by_login], :unless => lambda { authenticated_with_oauth? }
   before_filter :load_user_by_login, :only => [:by_login]
-  before_filter :load_identification, :only => [:show, :edit, :update, :destroy]
+  load_only = [ :show, :edit, :update, :destroy ]
+  before_filter :load_identification, :only => load_only
+  blocks_spam :only => load_only, :instance => :identification
   before_filter :require_owner, :only => [:edit, :update, :destroy]
   cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
   caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
@@ -14,6 +16,7 @@ class IdentificationsController < ApplicationController
   end
   
   def by_login
+    block_if_spam(@selected_user) && return
     scope = @selected_user.identifications.for_others.
       includes(:observation, :taxon).
       order("identifications.created_at DESC").

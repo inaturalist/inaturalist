@@ -1,0 +1,19 @@
+#wrapper {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+}
+#wrapper img {
+  float: left;
+}
+#message {
+  position: absolute;
+  top: 60px;
+  left: 225px;
+}
+#message h1 {
+  margin-bottom: 0.25em;
+}
+#message .description {
+  font-size: 160%;
+}

@@ -487,10 +487,6 @@ private
     true
   end
   
-  def block_spammers
-    render_404 if (@list.user && @list.user.spammer?) || @list.flagged_as_spam?
-  end
-
   # Update the rules for a list given params. Right now we only support the
   # in_taxon? rule, so that's all this does, expecing params[:taxa] to be an
   # array of taxon params.

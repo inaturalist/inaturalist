@@ -9,13 +9,13 @@ describe PostsController, "spam" do
     p
   }
 
-  it "should render 404 when the owner is a spammer" do
+  it "should render 403 when the owner is a spammer" do
     get :show, id: spammer_content.id
-    response.response_code.should == 404
+    response.response_code.should == 403
   end
 
-  it "should render 404 when content is flagged as spam" do
+  it "should render 403 when content is flagged as spam" do
     get :show, id: spammer_content.id
-    response.response_code.should == 404
+    response.response_code.should == 403
   end
 end

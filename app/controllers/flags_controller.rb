@@ -5,10 +5,11 @@ class FlagsController < ApplicationController
   before_filter :load_flag, :only => [:show, :edit, :destroy, :update]
   
   # put the parameters for the foreign keys here
-  FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment",
-    "Identification", "Message", "Photo", "List", "Project" ]
+  FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment", "Identification",
+    "Message", "Photo", "List", "Project", "Guide", "GuideSection" ]
   FLAG_MODELS_ID = [ "observation_id","taxon_id","post_id", "comment_id",
-    "identification_id", "message_id", "photo_id", "list_id", "project_id" ]
+    "identification_id", "message_id", "photo_id", "list_id", "project_id",
+    "guide_id", "guide_section_id" ]
   PARTIALS = %w(dialog)
 
   def index

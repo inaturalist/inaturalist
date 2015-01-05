@@ -47,14 +47,10 @@ class ObservationsController < ApplicationController
                             :user_stats,
                             :community_taxon_summary,
                             :map]
-  before_filter :load_observation, :only => [
-    :show, :edit, :edit_photos, :update_photos, :destroy, :fields,
-    :viewed_updates, :community_taxon_summary, :update_fields
-  ]
-  before_filter :block_spammers, :only => [
-    :show, :edit, :edit_photos, :update_photos, :destroy, :fields,
-    :viewed_updates, :community_taxon_summary, :update_fields
-  ]
+  load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
+    :fields, :viewed_updates, :community_taxon_summary, :update_fields ]
+  before_filter :load_observation, :only => load_only
+  blocks_spam :only => load_only, :instance => :observation
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :curator_required, :only => [:curation, :accumulation, :phylogram]
@@ -1178,6 +1174,7 @@ class ObservationsController < ApplicationController
 
   # gets observations by user login
   def by_login
+    block_if_spam(@selected_user) && return
     search_params, find_options = get_search_params(params)
     search_params.update(:user_id => @selected_user.id, :viewer => current_user)
     if search_params[:q].blank?
@@ -2747,10 +2744,6 @@ class ObservationsController < ApplicationController
     )
   end
   
-  def block_spammers
-    render_404 if @observation.user.spammer? || @observation.flagged_as_spam?
-  end
-
   def require_owner
     unless logged_in? && current_user.id == @observation.user_id
       msg = t(:you_dont_have_permission_to_do_that)

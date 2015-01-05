@@ -630,6 +630,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  # TODO - what to do when the content is deleted? The spam count will go
+  # down and the user will no longer look like a spammer.
   def update_spam_count
     self.spam_count = content_flagged_as_spam.length
     self.spammer = (self.spam_count >= 3)
@@ -637,10 +639,17 @@ class User < ActiveRecord::Base
   end
 
   def content_flagged_as_spam
+    # The FlagsController is apparently the place to check for what
+    # models use the acts_as_flaggable module
     FlagsController::FLAG_MODELS.map{ |class_name|
+      # turn the string into a class
       klass = class_name.constantize
-      if klass.column_names.include?("user_id")
-        klass.where(user_id: self.id).joins(:flags).where({ flags: { flag: Flag::SPAM } })
+      # some of the flaggable modules do not implement acts_as_spammable
+      if klass.respond_to?(:spammable?)
+        # classes have different ways of getting to user, so just do
+        # a join and enforce the user_id with a where clause
+        klass.joins(:user).where(users: { id: self.id }).
+          joins(:flags).where({ flags: { flag: Flag::SPAM } })
       end
     }.compact.flatten.uniq
   end
