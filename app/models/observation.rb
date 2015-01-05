@@ -26,6 +26,8 @@ class Observation < ActiveRecord::Base
     }
   acts_as_taggable
   acts_as_flaggable
+  acts_as_spammable :fields => [ :title, :description ],
+                    :comment_type => "item-description"
   
   include Ambidextrous
   

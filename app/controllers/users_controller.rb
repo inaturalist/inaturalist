@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     :except => [:index, :show, :new, :create, :activate, :relationships, :search]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
     :show, :update, :relationships, :add_role, :remove_role]
+  before_filter :block_spammers, :only => [ :suspend, :unsuspend, :destroy, :purge,
+    :show, :update, :relationships, :add_role, :remove_role ]
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_filter :admin_required, :only => [:curation]
   before_filter :curator_required, :only => [:suspend, :unsuspend]
@@ -504,6 +506,10 @@ protected
     end
   end
   
+  def block_spammers
+    render_404 if @user.spammer?
+  end
+
   def ensure_user_is_current_user_or_admin
     unless current_user.has_role? :admin
       redirect_to edit_user_path(current_user, :id => current_user.login) if @user.id != current_user.id

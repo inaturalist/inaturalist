@@ -33,3 +33,12 @@ describe UsersController, "search" do
     response.should be_success
   end
 end
+
+describe UsersController, "spam" do
+  let(:spammer) { User.make!(spammer: true) }
+
+  it "should render 404 when the user is a spammer" do
+    get :show, id: spammer.id
+    response.response_code.should == 404
+  end
+end

@@ -51,6 +51,10 @@ class ObservationsController < ApplicationController
     :show, :edit, :edit_photos, :update_photos, :destroy, :fields,
     :viewed_updates, :community_taxon_summary, :update_fields
   ]
+  before_filter :block_spammers, :only => [
+    :show, :edit, :edit_photos, :update_photos, :destroy, :fields,
+    :viewed_updates, :community_taxon_summary, :update_fields
+  ]
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :curator_required, :only => [:curation, :accumulation, :phylogram]
@@ -2743,6 +2747,10 @@ class ObservationsController < ApplicationController
     )
   end
   
+  def block_spammers
+    render_404 if @observation.user.spammer? || @observation.flagged_as_spam?
+  end
+
   def require_owner
     unless logged_in? && current_user.id == @observation.user_id
       msg = t(:you_dont_have_permission_to_do_that)

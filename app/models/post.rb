@@ -1,4 +1,8 @@
 class Post < ActiveRecord::Base
+  acts_as_flaggable
+  acts_as_spammable :fields => [ :title, :body ],
+                    :comment_type => "item-description"
+
   has_subscribers
   notifies_subscribers_of :parent, {
     :on => [:update, :create],

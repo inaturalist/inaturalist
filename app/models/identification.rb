@@ -1,6 +1,9 @@
 #encoding: utf-8
 class Identification < ActiveRecord::Base
   acts_as_flaggable
+  acts_as_spammable :fields => [ :body ],
+                    :comment_type => "item-description"
+
   belongs_to :observation
   belongs_to :user
   belongs_to :taxon

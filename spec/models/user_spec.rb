@@ -629,3 +629,23 @@ describe User, "community taxa preference" do
     o.taxon.should eq o.community_taxon
   end
 end
+
+describe User, "spam" do
+
+  it "flags users with a high spam count as spammers" do
+    u = User.make!
+    u.spammer?.should be_false
+    3.times{ Flag.make!(flaggable: Observation.make!(user: u), flag: Flag::SPAM) }
+    u.reload
+    u.spammer?.should be_true
+  end
+
+  it "suspends spammers" do
+    u = User.make!
+    u.suspended_at.should be_nil
+    3.times{ Flag.make!(flaggable: Observation.make!(user: u), flag: Flag::SPAM) }
+    u.reload
+    u.suspended_at.should_not be_nil
+  end
+
+end

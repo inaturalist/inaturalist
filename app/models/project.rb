@@ -116,6 +116,10 @@ class Project < ActiveRecord::Base
   validates_uniqueness_of :title
   validates_inclusion_of :map_type, :in => MAP_TYPES
 
+  acts_as_flaggable
+  acts_as_spammable :fields => [ :title, :description ],
+                    :comment_type => "item-description"
+
   define_index do
     indexes :title
     indexes :description

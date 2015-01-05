@@ -5,6 +5,7 @@ class ListsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :by_login, :taxa, :guide,
     :cached_guide, :guide_widget]
   before_filter :load_list, :except => [:index, :new, :create, :by_login]
+  before_filter :block_spammers, :except => [:index, :new, :create, :by_login]
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
     :remove_taxon, :reload_from_observations]
   before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]

@@ -81,6 +81,9 @@ module Inaturalist
 
     config.i18n.enforce_available_locales = false
 
+    config.rakismet.key = CONFIG.rakismet_key
+    config.rakismet.url = CONFIG.site_url
+
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
     end

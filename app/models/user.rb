@@ -116,11 +116,13 @@ class User < ActiveRecord::Base
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
   before_save :whitelist_licenses
+  before_save :flag_spammer
   before_create :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
   after_save :update_sound_licenses
   after_save :destroy_messages_by_suspended_user
+  after_save :suspend_if_spammer
   after_update :set_community_taxa_if_pref_changed
   after_create :create_default_life_list
   after_create :set_uri
@@ -238,6 +240,10 @@ class User < ActiveRecord::Base
       self.preferred_photo_license = nil
     end
     true
+  end
+
+  def flag_spammer
+    self.spammer = true if self.spam_count > 3
   end
 
   # add a provider_authorization to this user.  
@@ -616,6 +622,27 @@ class User < ActiveRecord::Base
       :methods => [
         :user_icon_url, :medium_user_icon_url, :original_user_icon_url]
     }
+  end
+
+  def suspend_if_spammer
+    if self.spammer_changed? && self.spammer
+      self.suspend!
+    end
+  end
+
+  def update_spam_count
+    self.spam_count = content_flagged_as_spam.length
+    self.spammer = (self.spam_count >= 3)
+    self.save
+  end
+
+  def content_flagged_as_spam
+    FlagsController::FLAG_MODELS.map{ |class_name|
+      klass = class_name.constantize
+      if klass.column_names.include?("user_id")
+        klass.where(user_id: self.id).joins(:flags).where({ flags: { flag: Flag::SPAM } })
+      end
+    }.compact.flatten.uniq
   end
 
 end

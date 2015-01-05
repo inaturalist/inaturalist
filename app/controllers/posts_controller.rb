@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :browse]
   before_filter :load_post, :only => [:show, :edit, :update, :destroy]
+  before_filter :block_spammers, :only => [:show, :edit, :update, :destroy]
   before_filter :load_parent, :except => [:browse, :create, :update, :destroy]
   before_filter :load_new_post, :only => [:new, :create]
   before_filter :author_required, :only => [:edit, :update, :destroy]
@@ -235,6 +236,10 @@ class PostsController < ApplicationController
     true
   end
   
+  def block_spammers
+    render_404 if @post.user.spammer? || @post.flagged_as_spam?
+  end
+
   def author_required
     if ((@post.parent.is_a?(Project) && !@post.parent.editable_by?(current_user)) ||
         !(logged_in? && @post.user.id == current_user.id))

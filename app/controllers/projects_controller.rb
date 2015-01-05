@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
     :unless => lambda { authenticated_with_oauth? },
     :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count, :browse]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map, :browse]
+  before_filter :block_spammers, :except => [:create, :index, :search, :new, :by_login, :map, :browse]
   before_filter :ensure_current_project_url, :only => :show
   before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
   before_filter :load_user_by_login, :only => [:by_login]
@@ -848,7 +849,11 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id]) rescue nil
     render_404 unless @project
   end
-  
+
+  def block_spammers
+    render_404 if @project.user.spammer? || @project.flagged_as_spam?
+  end
+
   def ensure_current_project_url
     fmt = request.format && request.format != :html ? request.format.to_sym : nil
     if request.path != project_path(@project, :format => fmt)
