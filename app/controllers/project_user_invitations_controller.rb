@@ -41,10 +41,8 @@ class ProjectUserInvitationsController < ApplicationController
   def load_project
     @project = @project_user_invitation.try(:project)
     if @project.blank? && params[:project_user_invitation]
-      Rails.logger.debug "[DEBUG] params[:project_user_invitation]: #{params[:project_user_invitation].inspect}"
       @project = Project.find_by_id(params[:project_user_invitation][:project_id])
     end
-    Rails.logger.debug "[DEBUG] load_project, project: #{@project}"
     if @project.blank?
       respond_to do |format|
         msg = t(:that_project_doesnt_exist)
@@ -61,7 +59,6 @@ class ProjectUserInvitationsController < ApplicationController
   end
 
   def ensure_project_curator
-    Rails.logger.debug "[DEBUG] ensure_project_curator"
     unless @project.curated_by?(current_user)
       respond_to do |format|
         msg = t(:only_project_curators_can_do_that)

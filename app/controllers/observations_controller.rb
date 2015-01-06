@@ -971,8 +971,12 @@ class ObservationsController < ApplicationController
       return redirect_to :action => "import"
     end
 
-    # Copy to a temp directory.
-    path = "#{Rails.root}/tmp/#{params[:upload]['datafile'].original_filename}"
+    # Copy to a temp directory
+    path = private_page_cache_path(File.join(
+      "bulk_observation_files", 
+      "#{current_user.login}-#{Time.now.to_i}-#{params[:upload]['datafile'].original_filename}"
+    ))
+    FileUtils.mkdir_p File.dirname(path), :mode => 0755
     File.open(path, 'wb') { |f| f.write(params[:upload]['datafile'].read) }
 
     # Send the filename to a background processor
