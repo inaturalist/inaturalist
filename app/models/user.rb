@@ -641,16 +641,11 @@ class User < ActiveRecord::Base
   def content_flagged_as_spam
     # The FlagsController is apparently the place to check for what
     # models use the acts_as_flaggable module
-    FlagsController::FLAG_MODELS.map{ |class_name|
-      # turn the string into a class
-      klass = class_name.constantize
-      # some of the flaggable modules do not implement acts_as_spammable
-      if klass.respond_to?(:spammable?)
-        # classes have different ways of getting to user, so just do
-        # a join and enforce the user_id with a where clause
-        klass.joins(:user).where(users: { id: self.id }).
-          joins(:flags).where({ flags: { flag: Flag::SPAM } })
-      end
+    Rakismet.spammable_models.map{ |klass|
+      # classes have different ways of getting to user, so just do
+      # a join and enforce the user_id with a where clause
+      klass.joins(:user).where(users: { id: self.id }).
+        joins(:flags).where({ flags: { flag: Flag::SPAM } })
     }.compact.flatten.uniq
   end
 

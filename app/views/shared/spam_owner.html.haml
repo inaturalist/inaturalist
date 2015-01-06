@@ -5,9 +5,9 @@
   #message
     .readable
       Flagged as a violation of our
-      = succeed '.' do
+      = succeed "." do
         = link_to "spam policy", help_path(anchor: "inappropriate")
       %br
       If you think your content has been improperly flagged, please
-      = succeed '.' do
+      = succeed "." do
         = mail_to CONFIG.help_email, "contact us"

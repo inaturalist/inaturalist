@@ -18,8 +18,9 @@ class InatConfig
 
       # Load and merge default config if it exists
       if File.exists? default_config_file
-        default_config_yaml = YAML.load_file(default_config_file)[Rails.env]
-        @config = default_config_yaml.deep_merge(config_yaml)
+        if default_config_yaml = YAML.load_file(default_config_file)[Rails.env]
+          @config = default_config_yaml.deep_merge(config_yaml)
+        end
       end
     end
 

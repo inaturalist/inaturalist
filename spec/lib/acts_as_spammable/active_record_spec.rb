@@ -1,6 +1,6 @@
-require File.expand_path("../../spec_helper", __FILE__)
+require "spec_helper"
 
-describe "ActsAsSpammable" do
+describe "ActsAsSpammable", "ActiveRecord" do
 
   before(:all) do
     Rakismet.disabled = false
@@ -71,6 +71,43 @@ describe "ActsAsSpammable" do
     o.save
     @spam_user.reload
     @spam_user.spam_count.should == starting_spam_count + 1
+  end
+
+  it "knows which models are spammable" do
+    Observation.spammable?.should == true
+    Post.spammable?.should == true
+    User.spammable?.should == false
+    Taxon.spammable?.should == false
+  end
+
+  it "identifies flagged content as spam_or_owned_by_spammer?" do
+    o = Observation.make!(user: @non_spam_user)
+    o.spam_or_owned_by_spammer?.should == false
+    Flag.make!(flaggable: o, flag: Flag::SPAM)
+    o.reload
+    o.spam_or_owned_by_spammer?.should == true
+  end
+
+  it "identifies spammer-owned content as spam_or_owned_by_spammer?" do
+    u = User.make!
+    o = Observation.make!(user: u)
+    o.spam_or_owned_by_spammer?.should == false
+    u.update_column(:spammer, true)
+    o.reload
+    o.spam_or_owned_by_spammer?.should == true
+  end
+
+  it "users are spam if they are spammers" do
+    u = User.make!
+    u.spam_or_owned_by_spammer?.should == false
+    u.update_column(:spammer, true)
+    u.reload
+    u.spam_or_owned_by_spammer?.should == true
+  end
+
+  it "all models respond to spam_or_owned_by_spammer?" do
+    Role.make!.spam_or_owned_by_spammer?.should == false
+    Taxon.make!.spam_or_owned_by_spammer?.should == false
   end
 
 end
