@@ -2,13 +2,17 @@ class GuideSection < ActiveRecord::Base
   acts_as_flaggable
   acts_as_spammable :fields => [ :title, :description ]
 
-  attr_accessible :description, :guide_taxon_id, :title, :position, :rights_holder, :license, :source_id, :source_url, :modified_on_create
+  attr_accessible :description, :guide_taxon_id, :title, :position,
+    :rights_holder, :license, :source_id, :source_url, :modified_on_create,
+    :creator_id, :updater_id
   attr_accessor :modified_on_create
   belongs_to :guide_taxon, :inverse_of => :guide_sections
-  has_one :user, :through => :guide_taxon
+  belongs_to :creator, :class_name => 'User', :inverse_of => :created_guide_sections
+  belongs_to :updater, :class_name => 'User', :inverse_of => :updated_guide_sections
   has_one :guide, :through => :guide_taxon
   before_create :set_license
   after_create :touch_if_modified
+  before_validation :remove_updater_if_no_changes, :on => :update
   after_save {|r| r.guide.expire_caches(:check_ngz => true)}
   after_destroy {|r| r.guide.expire_caches(:check_ngz => true)}
 
@@ -69,13 +73,29 @@ class GuideSection < ActiveRecord::Base
     Use
   )
 
+  scope :reusable, where("COALESCE(license, '') != ''")
+  scope :for_taxon, lambda {|t| inlucdes(:guide_taxon).where("guide_taxa.taxon_id = ?", t)}
+  scope :original, where("COALESCE(source_url, '') = ''")
+  scope :dbsearch, lambda {|q| 
+    q = "%#{q}%"
+    includes(:guide_taxon).
+    where("guide_taxa.name ILIKE ? OR guide_taxa.display_name ILIKE ?", q, q)
+  }
+
   def to_s
     "<GuideSection #{id}>"
   end
 
+  def remove_updater_if_no_changes
+    return true if changes.blank?
+    self.updater_id = updater_id_was if changes.size == 1 && changes[:updater_id]
+    true
+  end
+
   def attribution
     if adapted?
-      I18n.t :adapted_by_name_from_a_work_by_original, :name => guide.user.name, :original => original_attribution
+      updater_name = updater ? updater.published_name : I18n.t(:deleted_user)
+      I18n.t :adapted_by_name_from_a_work_by_original, :name => updater_name, :original => original_attribution
     else
       original_attribution
     end
@@ -94,8 +114,7 @@ class GuideSection < ActiveRecord::Base
   def attribution_name
     rights_holder_name ||= rights_holder unless rights_holder.blank?
     if guide && source_url.blank?
-      rights_holder_name ||= guide.user.name unless guide.user.name.blank?
-      rights_holder_name ||= guide.user.login
+      rights_holder_name ||= creator ? creator.published_name : I18n.t(:deleted_user)
     end
     rights_holder_name ||= I18n.t(:unknown)
   end
@@ -116,11 +135,26 @@ class GuideSection < ActiveRecord::Base
   end
 
   def adapted?
-    modified? && original_attribution !~ /#{guide.user.name}/
+    modified? && original_attribution !~ /#{updater.try(:published_name)}/
   end
 
   def touch_if_modified
     touch if modified_on_create == true || modified_on_create == "true"
+  end
+
+  def reuse
+    gs = clone
+    gs.rights_holder = attribution_name
+    gs.source_url = FakeView.guide_taxon_url(guide_taxon_id)
+    gs
+  end
+
+  def reusable?(options = {})
+    user_id = if options[:user]
+      options[:user].is_a?(User) ? options[:user].id : options[:user]
+    end
+    return true if user_id && guide.guide_users.map(&:user_id).include?(user_id)
+    !license.blank?
   end
 
   def self.new_from_eol_data_object(data_object)

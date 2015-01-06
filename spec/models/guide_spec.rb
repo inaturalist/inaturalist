@@ -3,15 +3,15 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Guide, "reorder_by_taxon" do
   it "should work" do
-    f1 = Taxon.make!(:rank => Taxon::FAMILY)
-    f2 = Taxon.make!(:rank => Taxon::FAMILY)
-    g1 = Taxon.make!(:rank => Taxon::GENUS, :parent => f1)
-    g2 = Taxon.make!(:rank => Taxon::GENUS, :parent => f1)
-    g3 = Taxon.make!(:rank => Taxon::GENUS, :parent => f2)
-    s1 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g1)
-    s2 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g2)
-    s3 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g2)
-    s4 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g3)
+    f1 = Taxon.make!(:rank => Taxon::FAMILY, :name => "family1")
+    f2 = Taxon.make!(:rank => Taxon::FAMILY, :name => "family2")
+    g1 = Taxon.make!(:rank => Taxon::GENUS, :parent => f1, :name => "genus1")
+    g2 = Taxon.make!(:rank => Taxon::GENUS, :parent => f1, :name => "genus2")
+    g3 = Taxon.make!(:rank => Taxon::GENUS, :parent => f2, :name => "genus3")
+    s1 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g1, :name => "species1")
+    s2 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g2, :name => "species2")
+    s3 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g2, :name => "species3")
+    s4 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g3, :name => "species4")
     g = Guide.make!
     gt4 = GuideTaxon.make!(:guide => g, :taxon => s4, :position => 1)
     gt3 = GuideTaxon.make!(:guide => g, :taxon => s3, :position => 2)
@@ -42,6 +42,19 @@ end
 describe Guide, "add_taxa_from_eol_collection" do
   let(:eol_collection_url) { "http://eol.org/collections/6970" } 
   it "should add taxa" do
+    # this is brittle, but these should be all the names on that list. If
+    # they're not in the db, this will fail b/c the guide taxa will be invalid
+    # without taxa to match.
+    [
+      'Hydromantes platycephalus',
+      'Anniella pulchra',
+      'Rhinocheilus lecontei',
+      'Masticophis flagellum',
+      'Bogertophis subocularis',
+      'Aneides vagrans'
+    ].each do |name|
+      Taxon.make!(:name => name)
+    end
     guide = Guide.make!
     guide.add_taxa_from_eol_collection(eol_collection_url)
     guide.guide_taxa.should_not be_blank
@@ -154,3 +167,19 @@ describe Guide, "publication" do
     g.should be_valid
   end
 end
+
+describe Guide, "creation" do
+  it "should create a guide user" do
+    g = Guide.make!
+    g.guide_users.where(:user_id => g.user_id).should_not be_blank
+  end
+end
+
+describe Guide, "deletion" do
+  let(:g) { Guide.make! }
+  it "should remove guide users" do
+    g.destroy
+    GuideUser.where(:guide_id => g.id).should be_blank
+  end
+end
+

@@ -6,7 +6,7 @@ class GuideTaxaController < ApplicationController
   before_filter :load_guide, :only => load_only
   blocks_spam :only => load_only, :instance => :guide_taxon
   before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos, :sync] do |c|
-    require_owner :klass => "Guide"
+    require_guide_user
   end
   layout "bootstrap"
 
@@ -49,18 +49,6 @@ class GuideTaxaController < ApplicationController
     end
   end
 
-  # GET /guide_taxa/new
-  # GET /guide_taxa/new.json
-  def new
-    @guide_taxon = GuideTaxon.new(params[:guide_taxon])
-    @guide = @guide_taxon.guide
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @guide_taxon.as_json(:root => true) }
-    end
-  end
-
   # GET /guide_taxa/1/edit
   def edit
     load_data_for_edit
@@ -73,6 +61,12 @@ class GuideTaxaController < ApplicationController
   # POST /guide_taxa.json
   def create
     @guide_taxon = GuideTaxon.new(params[:guide_taxon])
+    @guide ||= @guide_taxon.guide
+    source_guide_taxon = GuideTaxon.find_by_id(params[:guide_taxon_id]) unless params[:guide_taxon_id].blank?
+    if source_guide_taxon
+      @guide_taxon = source_guide_taxon.reuse
+      @guide_taxon.guide = @guide
+    end
 
     respond_to do |format|
       if @guide_taxon.save
@@ -179,7 +173,9 @@ class GuideTaxaController < ApplicationController
   end
 
   def load_guide
-    @guide = @guide_taxon.guide
+    @guide = @guide_taxon.guide if @guide_taxon
+    @guide ||= Guide.find_by_id(params[:guide_taxon][:guide_id]) if params[:guide_taxon]
+    render_404 unless @guide
   end
 
   def load_data_for_edit

@@ -1,6 +1,8 @@
 .nested-fields.guide-section-fields.stacked.row-fluid.clearfix.lined
   = f.hidden_field :guide_taxon_id
   = f.hidden_field :modified_on_create
+  = f.hidden_field :creator_id, :value => f.object.new_record? ? current_user.id : f.object.creator_id
+  = f.hidden_field :updater_id, :value => current_user.id
   = f.text_field :position, :class => "sortable-position pull-left"
   .pull-left
     .title_field

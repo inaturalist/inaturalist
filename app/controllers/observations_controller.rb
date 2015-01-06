@@ -965,80 +965,31 @@ class ObservationsController < ApplicationController
     end
   end
 
-
-  def new_batch_csv
+  def new_bulk_csv
     if params[:upload].blank? || params[:upload] && params[:upload][:datafile].blank?
-      flash[:error] = t(:you_must_select_a_csv_file_to_upload)
+      flash[:error] = "You must select a CSV file to upload."
       return redirect_to :action => "import"
     end
 
-    @observations = []
-    @hasInvalid = false
-    csv = params[:upload][:datafile].read
-    max_rows = 100
-    row_num = 0
-    @rows = []
-    
-    begin
-      CSV.parse(csv) do |row|
-        next if row.blank?
-        row = row.map do |item|
-          if item.blank?
-            nil
-          else
-            begin
-              item.to_s.encode('UTF-8').strip
-            rescue Encoding::UndefinedConversionError => e
-              problem = e.message[/"(.+)" from/, 1]
-              begin
-                item.to_s.gsub(problem, '').encode('UTF-8').strip
-              rescue Encoding::UndefinedConversionError => e
-                # If there's more than one encoding issue, just bail
-                ''
-              end
-            end
-          end
-        end
-        obs = Observation.new(
-          :user => current_user,
-          :species_guess => row[0],
-          :observed_on_string => row[1],
-          :description => row[2],
-          :place_guess => row[3],
-          :time_zone => current_user.time_zone,
-          :latitude => row[4], 
-          :longitude => row[5]
-        )
-        obs.set_taxon_from_species_guess
-        if obs.georeferenced?
-          obs.location_is_exact = true
-        elsif row[3]
-          places = Geocoder.search(obs.place_guess) unless obs.place_guess.blank?
-          unless places.blank?
-            obs.latitude = places.first.latitude
-            obs.longitude = places.first.longitude
-            obs.location_is_exact = false
-          end
-        end
-        obs.tag_list = row[6]
-        @hasInvalid ||= !obs.valid?
-        @observations << obs
-        @rows << row
-        row_num += 1
-        if row_num >= max_rows
-          flash[:notice] = t(:too_many_observations_csv, :max_rows => max_rows)
-          break
-        end
-      end
-    rescue CSV::MalformedCSVError => e
-      flash[:error] = <<-EOT
-        Your CSV had a formatting problem. Try removing any strange
-        characters and unclosed quotes, and if the problem persists, please
-        <a href="mailto:#{CONFIG.help_email}">email us</a> the file and we'll
-        figure out the problem.
-      EOT
-      redirect_to :action => 'import'
-      return
+    # Copy to a temp directory
+    path = private_page_cache_path(File.join(
+      "bulk_observation_files", 
+      "#{current_user.login}-#{Time.now.to_i}-#{params[:upload]['datafile'].original_filename}"
+    ))
+    FileUtils.mkdir_p File.dirname(path), :mode => 0755
+    File.open(path, 'wb') { |f| f.write(params[:upload]['datafile'].read) }
+
+    # Send the filename to a background processor
+    Delayed::Job.enqueue(BulkObservationFile.new(path, params[:upload][:project_id], params[:upload][:coordinate_system], current_user), 
+      :queue => "slow", :priority => USER_PRIORITY)
+
+    # Notify the user that it's getting processed and return them to the upload screen.
+    flash[:notice] = 'Observation file has been queued for import.'
+    if params[:upload][:project_id].blank?
+      redirect_to import_observations_path
+    else
+      project = Project.find(params[:upload][:project_id].to_i)
+      redirect_to(project_path(project))
     end
   end
 
@@ -1087,6 +1038,14 @@ class ObservationsController < ApplicationController
         @default_photo_identity.class.to_s.underscore.split('_').first
       end
       @default_photo_identity_url = "/#{provider_name.downcase}/photo_fields?context=user"
+    end
+    @project = Project.find(params[:project_id].to_i) if params[:project_id]
+    if logged_in?
+      @projects = current_user.project_users.includes(:project).order('lower(projects.title)').collect(&:project)
+      @project_templates = {}
+      @projects.each do |p|
+        @project_templates[p.title] = p.observation_fields.order(:position) if @project && p.id == @project.id
+      end
     end
   end
   

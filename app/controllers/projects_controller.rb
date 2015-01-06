@@ -167,6 +167,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def bulk_template
+    csv = @project.generate_bulk_upload_template
+    send_data(csv, { :filename => "#{@project.title.parameterize}.csv", :type => :csv })
+  end
+
   def new
     @project = Project.new
   end

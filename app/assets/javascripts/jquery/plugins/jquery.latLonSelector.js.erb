@@ -230,6 +230,16 @@
     var latitudeField = findFormField(input, 'latitude'),
         longitudeField = findFormField(input, 'longitude'),
         f = function() {
+          if ($(latitudeField).val() == '' ||
+              $(latitudeField).val() == null || 
+              $(longitudeField).val() == '' ||
+              $(longitudeField).val() == null) {
+            getMarker().setMap(null)
+            if ($.fn.latLonSelector._circle) {
+              $.fn.latLonSelector._circle.setMap(null)
+            }
+            return
+          }
           var point = new google.maps.LatLng($(latitudeField).val(), $(longitudeField).val())
           if (accuracyField) {
             accuracyField.change()
@@ -600,12 +610,6 @@
           $.fn.latLonSelector.updateFormAccuracy(this.getRadius(), {positioningMethod: 'manual', positioningDevice: 'manual'})
         }
         this._nonManualRadiusChange = false
-      })
-      google.maps.event.addListener($.fn.latLonSelector._circle, 'center_changed', function() {
-        $.fn.latLonSelector.currentMarker().setPosition(this.getCenter())
-        if (this.getCenter()) {
-          $.fn.latLonSelector.updateFormLatLon(this.getCenter().lat(), this.getCenter().lng())
-        }
       })
       google.maps.event.addListener($.fn.latLonSelector._circle, 'click', function(e) {
         var circleBounds = this.getBounds(),

@@ -1007,7 +1007,9 @@ CREATE TABLE guide_sections (
     license character varying(255),
     source_url character varying(255),
     rights_holder character varying(255),
-    source_id integer
+    source_id integer,
+    creator_id integer,
+    updater_id integer
 );
 
 
@@ -1064,6 +1066,38 @@ CREATE SEQUENCE guide_taxa_id_seq
 --
 
 ALTER SEQUENCE guide_taxa_id_seq OWNED BY guide_taxa.id;
+
+
+--
+-- Name: guide_users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE guide_users (
+    id integer NOT NULL,
+    guide_id integer,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: guide_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE guide_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: guide_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE guide_users_id_seq OWNED BY guide_users.id;
 
 
 --
@@ -1245,7 +1279,8 @@ CREATE TABLE listed_taxa (
     taxon_range_id integer,
     source_id integer,
     manually_added boolean DEFAULT false,
-    primary_listing boolean DEFAULT true
+    primary_listing boolean DEFAULT true,
+    first_added_observation_id integer
 );
 
 
@@ -1780,6 +1815,36 @@ CREATE SEQUENCE observations_id_seq
 --
 
 ALTER SEQUENCE observations_id_seq OWNED BY observations.id;
+
+
+--
+-- Name: observations_places; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE observations_places (
+    id integer NOT NULL,
+    observation_id integer NOT NULL,
+    place_id integer NOT NULL
+);
+
+
+--
+-- Name: observations_places_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE observations_places_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observations_places_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE observations_places_id_seq OWNED BY observations_places.id;
 
 
 --
@@ -3741,6 +3806,13 @@ ALTER TABLE ONLY guide_taxa ALTER COLUMN id SET DEFAULT nextval('guide_taxa_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY guide_users ALTER COLUMN id SET DEFAULT nextval('guide_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY guides ALTER COLUMN id SET DEFAULT nextval('guides_id_seq'::regclass);
 
 
@@ -3847,6 +3919,13 @@ ALTER TABLE ONLY observation_sounds ALTER COLUMN id SET DEFAULT nextval('observa
 --
 
 ALTER TABLE ONLY observations ALTER COLUMN id SET DEFAULT nextval('observations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY observations_places ALTER COLUMN id SET DEFAULT nextval('observations_places_id_seq'::regclass);
 
 
 --
@@ -4380,6 +4459,14 @@ ALTER TABLE ONLY guide_taxa
 
 
 --
+-- Name: guide_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY guide_users
+    ADD CONSTRAINT guide_users_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: guides_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -4497,6 +4584,14 @@ ALTER TABLE ONLY observation_photos
 
 ALTER TABLE ONLY observations
     ADD CONSTRAINT observations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observations_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY observations_places
+    ADD CONSTRAINT observations_places_pkey PRIMARY KEY (id);
 
 
 --
@@ -5093,6 +5188,13 @@ CREATE INDEX index_guide_ranges_on_source_id ON guide_ranges USING btree (source
 
 
 --
+-- Name: index_guide_sections_on_creator_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_sections_on_creator_id ON guide_sections USING btree (creator_id);
+
+
+--
 -- Name: index_guide_sections_on_guide_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5104,6 +5206,13 @@ CREATE INDEX index_guide_sections_on_guide_taxon_id ON guide_sections USING btre
 --
 
 CREATE INDEX index_guide_sections_on_source_id ON guide_sections USING btree (source_id);
+
+
+--
+-- Name: index_guide_sections_on_updater_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_guide_sections_on_updater_id ON guide_sections USING btree (updater_id);
 
 
 --
@@ -5188,6 +5297,13 @@ CREATE INDEX index_list_rules_on_list_id ON list_rules USING btree (list_id);
 --
 
 CREATE INDEX index_list_rules_on_operand_type_and_operand_id ON list_rules USING btree (operand_type, operand_id);
+
+
+--
+-- Name: index_listed_taxa_on_first_added_observation_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_listed_taxa_on_first_added_observation_id ON listed_taxa USING btree (first_added_observation_id);
 
 
 --
@@ -5587,6 +5703,20 @@ CREATE INDEX index_observations_on_user_id ON observations USING btree (user_id)
 --
 
 CREATE INDEX index_observations_on_uuid ON observations USING btree (uuid);
+
+
+--
+-- Name: index_observations_places_on_observation_id_and_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_observations_places_on_observation_id_and_place_id ON observations_places USING btree (observation_id, place_id);
+
+
+--
+-- Name: index_observations_places_on_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_places_on_place_id ON observations_places USING btree (place_id);
 
 
 --
@@ -6956,4 +7086,12 @@ INSERT INTO schema_migrations (version) VALUES ('20141203024242');
 
 INSERT INTO schema_migrations (version) VALUES ('20141204224856');
 
+INSERT INTO schema_migrations (version) VALUES ('20141211230727');
+
 INSERT INTO schema_migrations (version) VALUES ('20141213001622');
+
+INSERT INTO schema_migrations (version) VALUES ('20141213195804');
+
+INSERT INTO schema_migrations (version) VALUES ('20150104021132');
+
+INSERT INTO schema_migrations (version) VALUES ('20150104033219');

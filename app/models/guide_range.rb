@@ -118,4 +118,12 @@ class GuideRange < ActiveRecord::Base
     end
   end
 
+  def reusable?(options = {})
+    user_id = if options[:user]
+      options[:user].is_a?(User) ? options[:user].id : options[:user]
+    end
+    return true if user_id && guide.guide_users.map(&:user_id).include?(user_id)
+    !license.blank?
+  end
+
 end

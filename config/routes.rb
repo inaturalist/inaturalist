@@ -1,4 +1,7 @@
 Inaturalist::Application.routes.draw do
+  resources :guide_users
+
+
   apipie
 
   resources :sites
@@ -166,6 +169,7 @@ Inaturalist::Application.routes.draw do
   match 'observations/update' => 'observations#update', :as => :update_observations
   match 'observations/new/batch_csv' => 'observations#new_batch_csv', :as => :new_observation_batch_csv
   match 'observations/new/batch' => 'observations#new_batch', :as => :new_observation_batch
+  match 'observations/new/bulk_csv' => 'observations#new_bulk_csv', :as => :new_observation_bulk_csv
   match 'observations/edit/batch' => 'observations#edit_batch', :as => :edit_observation_batch
   match 'observations/delete_batch' => 'observations#delete_batch', :as => :delete_observation_batch, :via => :delete
   match 'observations/import' => 'observations#import', :as => :import_observations
@@ -200,6 +204,7 @@ Inaturalist::Application.routes.draw do
   match 'project/:id/terms' => 'projects#terms', :as => :project_terms
   match 'projects/user/:login' => 'projects#by_login', :as => :projects_by_login, :constraints => { :login => simplified_login_regex }
   match 'projects/:id/members' => 'projects#members', :as => :project_members
+  match 'projects/:id/bulk_template' => 'projects#bulk_template', :as => :project_bulk_template
   match 'projects/:id/contributors' => 'projects#contributors', :as => :project_contributors
   match 'projects/:id/contributors.:format' => 'projects#contributors', :as => :formatted_project_contributors
   match 'projects/:id/observed_taxa_count' => 'projects#observed_taxa_count', :as => :project_observed_taxa_count

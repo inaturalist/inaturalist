@@ -85,29 +85,31 @@ class WikimediaCommonsPhoto < Photo
   
   def self.new_from_api_response(api_response, options = {})
     return if api_response.blank?
-    return unless file_name = api_response.at('#firstHeading').children[0].children[0].inner_text
+    file_name = api_response.at('#firstHeading').children[0].children[0].inner_text
+    return unless file_name
     file_name = file_name.strip.gsub(/\s/, '_').split("File:")[1]
 
     photo = WikimediaCommonsPhoto.new
     photo.native_page_url = "http://commons.wikimedia.org/wiki/File:#{file_name}"
     photo.native_photo_id = file_name
 
-    license = api_response.search('.licensetpl_short').inner_text
-    photo.license = if (license.downcase.include? "public domain") || (license.downcase.include? "pd") || (license.downcase.include? "cc0")
+    license = api_response.search('.licensetpl_short').inner_text.to_s.downcase
+    license_code = license.gsub(/\s/, '-')
+    photo.license = if (license.include? "public domain") || (license.include? "pd") || (license.include? "cc0")
       Photo::PD
-    elsif license.downcase.include? "cc-by-nc-sa"
+    elsif license_code.include? "cc-by-nc-sa"
       Photo::CC_BY_NC_SA
-    elsif license.downcase.include? "cc-by-nc-nd"
+    elsif license_code.include? "cc-by-nc-nd"
       Photo::CC_BY_NC_ND
-    elsif license.downcase.include? "cc-by-nc"
+    elsif license_code.include? "cc-by-nc"
       Photo::CC_BY_NC
-    elsif license.downcase.include? "cc-by-sa"
+    elsif license_code.include? "cc-by-sa"
       Photo::CC_BY_SA
-    elsif license.downcase.include? "cc-by-nd"
+    elsif license_code.include? "cc-by-nd"
       Photo::CC_BY_ND
-    elsif license.downcase.include? "cc-by"
+    elsif license_code.include? "cc-by"
       Photo::CC_BY
-    elsif license.downcase.include? "gfdl"
+    elsif license_code.include? "gfdl"
       Photo::GFDL
     end
     return photo if photo.license.blank?

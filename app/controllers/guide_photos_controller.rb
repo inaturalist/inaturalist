@@ -3,7 +3,7 @@ class GuidePhotosController < ApplicationController
   before_filter :load_record, :only => [:show, :edit, :update, :destroy]
   before_filter :load_guide, :except => [:index, :new, :create]
   before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos] do |c|
-    require_owner :klass => "Guide"
+    require_guide_user
   end
 
   # GET /guide_photos

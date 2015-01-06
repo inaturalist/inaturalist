@@ -3,7 +3,7 @@ class GuideRangesController < ApplicationController
   before_filter :load_record, :only => [:show, :edit, :update, :destroy]
   before_filter :load_guide, :except => [:index, :new, :create, :import]
   before_filter :only => [:edit, :update, :destroy] do |c|
-    require_owner :klass => "Guide"
+    require_guide_user
   end
 
   # GET /guide_ranges

@@ -3,7 +3,7 @@ class GuideSectionsController < ApplicationController
   before_filter :load_record, :only => [:show, :edit, :update, :destroy]
   before_filter :load_guide, :except => [:index, :new, :create, :import, :import_from_eol, :import_from_wikipedia]
   before_filter :only => [:edit, :update, :destroy] do |c|
-    require_owner :klass => "Guide"
+    require_guide_user
   end
 
   # GET /guide_sections
@@ -46,6 +46,8 @@ class GuideSectionsController < ApplicationController
   # POST /guide_sections.json
   def create
     @guide_section = GuideSection.new(params[:guide_section])
+    @guide_section.creator = current_user
+    @guide_section.updater = current_user
 
     respond_to do |format|
       if @guide_section.save
@@ -61,6 +63,7 @@ class GuideSectionsController < ApplicationController
   # PUT /guide_sections/1
   # PUT /guide_sections/1.json
   def update
+    @guide_section.updater = current_user
     respond_to do |format|
       if @guide_section.update_attributes(params[:guide_section])
         format.html { redirect_to @guide_section, notice: 'Guide section was successfully updated.' }
@@ -88,8 +91,10 @@ class GuideSectionsController < ApplicationController
     provider = params[:provider].to_s.downcase
     @sections = if provider == "eol"
       import_from_eol
-    else
+    elsif provider == "wikipedia"
       import_from_wikipedia
+    else
+      import_from_inat
     end
     @sections = (@sections || []).sort_by(&:title)
     respond_to do |format|
@@ -99,6 +104,7 @@ class GuideSectionsController < ApplicationController
     end
   end
 
+  private
   def import_from_eol
     eol = EolService.new(:timeout => 30)
     eol_page_id = params[:eol_page_id]
@@ -148,7 +154,12 @@ class GuideSectionsController < ApplicationController
     sections
   end
 
-  private
+  def import_from_inat
+    scope = GuideSection.reusable.original.dbsearch(params[:q]).limit(50)
+    scope = scope.where("guide_taxon_id != ?", params[:guide_taxon_id]) unless params[:guide_taxon_id].blank?
+    scope.map{|gs| gs.reuse }
+  end
+
   def load_guide
     @guide = @guide_section.guide
   end

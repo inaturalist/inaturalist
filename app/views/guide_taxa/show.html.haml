@@ -29,23 +29,11 @@
       right: 10px;
     }
     .imgmodal.zoomed {overflow:hidden;}
+    #reuse_guide_taxon_dialog img {max-height: 30px;}
 = content_for :extrajs do
-  = javascript_include_tag "underscore.min", "wax.g"
   :javascript
-    $('.taxonmap').taxonMap()
-    $('.imgmodal').on('shown', function() {
-      $selection = $('img', this).not('.imagesloaded')
-      $selection.hide()
-      var newHeight = $(window).height() * 0.8
-      $(this).height(newHeight)
-      $('img', this).css({'height': newHeight+'px'})
-      $(this).css('margin-left', $('img', this).width() / -2 + 'px')
-      $(this).width($('img', this).width())
-      $('img:hidden', this).fadeIn()
-    })
-    $('.imgmodal').imagesLoaded(function() {
-      $('img', this).addClass('imagesloaded')
-    })
+    var GUIDE_TAXON = #{@guide_taxon.to_json(:only => [:id, :guide_id])}
+  = javascript_include_tag "underscore.min", "wax.g", "guide_taxa/show"
 .container-fluid
   %ul.breadcrumb
     %li
@@ -55,11 +43,14 @@
       = link_to @guide.title, @guide
       %span.divider /
     %li.active= @guide_taxon.display_name
-
-  .btn-grp.pull-right
-    - if @guide.editable_by?(current_user)
-      = link_to t(:edit), edit_guide_taxon_path(@guide_taxon), :class => "btn"
   .row-fluid.stacked
+    - if logged_in?
+      .btn-grp.pull-right
+        = link_to "#reuse_guide_taxon_dialog", "data-toggle" => "modal", :class => "btn" do
+          %i.fa.fa-copy
+          = t(:copy)
+        - if @guide.editable_by?(current_user)
+          = link_to t(:edit), edit_guide_taxon_path(@guide_taxon), :class => "btn"
     %h2
       - if @guide_taxon.display_name == @guide_taxon.name
         %em= @guide_taxon.name
@@ -72,7 +63,7 @@
     - for guide_photo in @guide_taxon.guide_photos.sort_by(&:position)
       = image_tag guide_photo.photo.try_methods(:medium_url, :small_url), :class => "thumb img-rounded", "data-toggle" => "modal", "data-target" => "##{dom_id(guide_photo, "modal")}"
       .imgmodal.modal.fade.hide{:role => "dialog", "aria-hidden" => "true", :id => dom_id(guide_photo, "modal")}
-        = image_tag guide_photo.photo.try_methods(:large_url, :original_url, :medium_url)
+        = image_tag image_url(guide_photo.photo.try_methods(:large_url, :original_url, :medium_url))
         .controls
           %button.close{:type => "button", "data-dismiss" => "modal"} ×
         .footer
@@ -134,3 +125,11 @@
                 %th.text-left= predicate.humanize
                 %td= values.join(', ')
 
+#reuse_guide_taxon_dialog.modal.fade.hide{:role => "dialog", "aria-hidden" => "true"}
+  .modal-header
+    %button.close{:type => "button", "data-dismiss" => "modal"} x
+    %h3=t :copy_guide_taxon_to
+    %p= t 'views.guide_taxa.show.reuse_desc'
+  .modal-body
+  .modal-footer
+    %button.btn{"data-dismiss" => "modal"}=t :close

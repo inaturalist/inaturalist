@@ -143,6 +143,16 @@
                     = f.check_box :downloadable, :label => false
                     = t(:enable_offline_access)
                   =t 'views.guides.mobile_downloads_help_html'
+          .accordion-group
+            .accordion-heading
+              %a.accordion-toggle{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#editors"}
+                %label=t :editors
+              #editors.accordion-body.collapse
+                .accordion-inner
+                  #guide_users.clearfix
+                    = f.fields_for :guide_users, @guide.guide_users, :builder => ActionView::Helpers::FormBuilder do |gu|
+                      = render "guide_user_fields", :f => gu
+                  = link_to_add_association t(:add_editor), f, :guide_users, "data-association-insertion-method" => "append", "data-association-insertion-node" => "#guide_users", :class => "btn btn-small btn-success btn-add-editor"
         .actions
           - if @guide.published?
             = f.submit t(:save), :class => "btn btn-primary"

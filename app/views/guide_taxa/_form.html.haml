@@ -86,12 +86,15 @@
     %h3=t :import_sections
   .modal-body
     %ul.nav.nav-tabs
-      %li.active= link_to "EOL", "#eol_sections", "data-toggle" => "tab"
-      %li= link_to "Wikipedia", "#wikipedia_sections", "data-toggle" => "tab"
+      %li.active= link_to t(:eol), "#eol_sections", "data-toggle" => "tab"
+      %li= link_to t(:wikipedia), "#wikipedia_sections", "data-toggle" => "tab"
+      %li= link_to SITE_NAME, "#inat_sections", "data-toggle" => "tab"
     .tab-content
       #eol_sections.tab-pane.active.fade.in
         = loading
       #wikipedia_sections.tab-pane.fade
+        = loading
+      #inat_sections.tab-pane.fade
         = loading
 #import_ranges_dialog.modal.fade.hide
   .modal-header

@@ -41,6 +41,26 @@ class EmailerPreview < MailView
     DeviseMailer.devise_mail(@user, :confirmation_instructions)
   end
 
+  def bulk_observation_success
+    set_locale
+    @user ||= User.first
+    Emailer.bulk_observation_success(@user, "some_file_name")
+  end
+
+  def bulk_observation_error
+    set_locale
+    @user ||= User.first
+    bof = BulkObservationFile.new(nil, nil, nil, @user)
+    o = Observation.new
+    e = BulkObservationFile::BulkObservationException.new(
+      "failed to process", 
+      1, 
+      [BulkObservationFile::BulkObservationException.new("observation was invalid", 1, o.errors)]
+    )
+    errors = bof.collate_errors(e)
+    Emailer.bulk_observation_error(@user, "some_file_name", errors)
+  end
+
   private
   def set_user
     @user = if login = @rack_env["QUERY_STRING"].to_s[/login=([^&]+)/, 1]

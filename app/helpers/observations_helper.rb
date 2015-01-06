@@ -98,4 +98,50 @@ module ObservationsHelper
     s.html_safe
   end
   
+  def coordinate_system_select_options(options = {})
+    return {} unless CONFIG.coordinate_systems
+    systems = if options[:skip_lat_lon]
+      {}
+    else
+      { "#{t :latitude} / #{t :longitude} (WGS84, EPSG:4326)" => 'wgs84' }
+    end
+    CONFIG.coordinate_systems.each do |system_name, system|
+      systems[system[:label]] = system_name
+    end
+    systems
+  end
+
+  def field_value_example(datatype, allowed_values = nil, field_id = nil)
+    str = if allowed_values.blank?
+      case datatype
+      when 'text'
+        'alphanumeric string'
+      when 'datetime', 'date'
+        'YYYY-MM-DD or YYYY-MM-DD HH:MM:SS'
+      when 'latitude'
+        'dd.dddd (latitude) or ddddddd (northing)'
+      when 'longitude'
+        'dd.dddd (longitude) or ddddddd (easting)'
+      when 'boolean'
+        'yes or no'
+      when 'list'
+        'limited set of options, usually alphanumeric'
+      when 'number'
+      when 'numeric'
+        'positive whole number'
+      else
+        nil
+      end
+    else
+      "One of #{allowed_values.split('|').to_sentence(:two_words_connector => ' or ', :last_word_connector => ' or ')}"
+    end
+
+    unless field_id.nil?
+      proj_obs_field = ProjectObservationField.find_by_observation_field_id(field_id)
+      str = "#{str}, #{content_tag('strong', 'required')}".html_safe if proj_obs_field.required
+    end
+
+    str
+  end
+
 end

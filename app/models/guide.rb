@@ -6,11 +6,15 @@ class Guide < ActiveRecord::Base
     :published_at, :title, :user_id, :icon, :license, :icon_file_name,
     :icon_content_type, :icon_file_size, :icon_updated_at, :zoom_level,
     :map_type, :taxon, :taxon_id, :source_url, :downloadable, :ngz,
-    :ngz_file_name, :ngz_content_type, :ngz_file_size, :ngz_updated_at
+    :ngz_file_name, :ngz_content_type, :ngz_file_size, :ngz_updated_at,
+    :guide_users_attributes
   belongs_to :user, :inverse_of => :guides
   belongs_to :place, :inverse_of => :guides
   belongs_to :taxon, :inverse_of => :guides
   has_many :guide_taxa, :inverse_of => :guide, :dependent => :destroy
+  has_many :guide_users, :inverse_of => :guide, :dependent => :delete_all
+
+  accepts_nested_attributes_for :guide_users, :allow_destroy => true
   
   has_attached_file :icon, 
     :styles => { :medium => "500x500>", :thumb => "48x48#", :mini => "16x16#", :span2 => "70x70#", :small_square => "200x200#" },
@@ -46,7 +50,8 @@ class Guide < ActiveRecord::Base
   before_save :generate_ngz_if_necessary
   after_update :expire_caches
   after_destroy :expire_caches
-  before_create :set_defaults_from_source_url
+  before_create :set_defaults_from_source_url,
+                :create_guide_user
   after_create :add_taxa_from_source_url
 
   scope :dbsearch, lambda {|q| where("guides.title ILIKE ? OR guides.description ILIKE ?", "%#{q}%", "%#{q}%")}
@@ -97,7 +102,10 @@ class Guide < ActiveRecord::Base
   end
 
   def editable_by?(user)
-    self.user_id == user.try(:id)
+    # self.user_id == user.try(:id)
+    user_id = user.is_a?(User) ? user.id : user
+    return false if user_id.blank?
+    guide_users.detect{|gu| gu.user_id == user_id}
   end
 
   def set_taxon
@@ -184,6 +192,10 @@ class Guide < ActiveRecord::Base
     add_taxa_from_eol_collection(source_url)
   end
 
+  def create_guide_user
+    self.guide_users.build(:user_id => user_id)
+  end
+
   def add_taxa_from_eol_collection(collection_url)
     return unless collection_id = collection_url[/\/(\d+)(\.\w+)?$/, 1]
     eol = EolService.new(:timeout => 30, :debug => Rails.env.development?)
@@ -219,7 +231,6 @@ class Guide < ActiveRecord::Base
         guide_taxa << gt
       end
     end
-    Rails.logger.debug "[DEBUG] #{self} add_taxa_from_eol_collection, #{saved} saved, #{errors.size} errors"
     guide_taxa
   end
 

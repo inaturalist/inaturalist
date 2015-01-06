@@ -41,6 +41,22 @@ base: &base
     # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
     logo_icon_square_big: bird.png
 
+    priority_zones:
+      - US
+      - Arizona
+      - Indiana
+      - Hawaii
+      - Alaska
+
+    # Proj4 settings can be found at http://spatialreference.org/
+    # coordinate_systems:
+    #  nztm2000:
+    #    label: "NZTM2000 (NZ Transverse Mercator), EPSG:2193"
+    #    proj4: "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+    #  nzmg:
+    #    label: "NZMG (New Zealand Map Grid), EPSG:27200"
+    #    proj4: "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
+
     # default bounds for most maps, including /observations/new and the home page. Defaults to the whole world
     # bounds:
     #     swlat: 13.667338
