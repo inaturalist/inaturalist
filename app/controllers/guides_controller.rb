@@ -43,7 +43,9 @@ class GuidesController < ApplicationController
 
     pagination_headers_for(@observations)
     respond_to do |format|
-      format.html
+      format.html do
+        @guides = @guides.includes(:guide_users)
+      end
       format.json { render json: @guides }
     end
   end

@@ -96,6 +96,11 @@ GuideTaxon.blueprint do
   display_name { Faker::Lorem.sentence }
 end
 
+GuideUser.blueprint do
+  guide { Guide.make! }
+  user { User.make! }
+end
+
 Identification.blueprint do
   user { User.make! }
   observation { Observation.make! }
