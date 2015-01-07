@@ -1135,7 +1135,8 @@ class ObservationsController < ApplicationController
   def by_login
     block_if_spam(@selected_user) && return
     search_params, find_options = get_search_params(params)
-    search_params.update(:user_id => @selected_user.id, :viewer => current_user)
+    search_params.update(:user_id => @selected_user.id,
+      :viewer => current_user, :filter_spam => true)
     if search_params[:q].blank?
       get_paginated_observations(search_params, find_options)
     else
@@ -2259,21 +2260,30 @@ class ObservationsController < ApplicationController
   # Either make a plain db query and return a WillPaginate collection or make 
   # a Sphinx call if there were query terms specified.
   def get_paginated_observations(search_params, find_options)
+    query_scope = Observation.query(search_params).scoped
+    if search_params[:filter_spam]
+      query_scope = query_scope.not_flagged_as_spam
+    end
     if @q
       @observations = if @search_on
         find_options[:conditions] = update_conditions(
           find_options[:conditions], @search_on.to_sym => @q
         )
-        Observation.query(search_params).search(find_options).compact
+        query_scope.search(find_options).compact
       else
-        Observation.query(search_params).search(@q, find_options).compact
+        query_scope.search(@q, find_options).compact
       end
     end
     if @observations.blank?
-      if search_params[:place_id] || search_params[:taxon_id] || search_params[:taxon_name] || (search_params[:lat] && search_params[:lng])
-        @observations = Observation.query(search_params).paginate_with_count_over(find_options)
+      # COUNT( ) OVER( ) works great with smaller result sets, so here
+      # we are choosing to use it when there are some decent filters
+      # to work with, otherwise we'll use standard paginate which will
+      # initiate two separate queries
+      if search_params[:place_id] || search_params[:taxon_id] ||
+        search_params[:taxon_name] || (search_params[:lat] && search_params[:lng])
+        @observations = query_scope.paginate_with_count_over(find_options)
       else
-        @observations = Observation.query(search_params).paginate(find_options)
+        @observations = query_scope.paginate(find_options)
       end
       unless request.format && request.format.json?
         Observation.preload_associations(@observations,

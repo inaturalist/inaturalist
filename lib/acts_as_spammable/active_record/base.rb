@@ -6,6 +6,7 @@ module ActiveRecord
 
         include Rakismet::Model
 
+        acts_as_flaggable
         rakismet_fields = options[:fields]
         # set up the rakismet attributes. Concatenate multiple
         # fields using periods as if sentences
@@ -19,11 +20,18 @@ module ActiveRecord
                        :comment_type => options[:comment_type]
 
         after_save :check_for_spam
+
         scope :flagged_as_spam,
           joins(:flags).where({ flags: { flag: Flag::SPAM } })
+        scope :not_flagged_as_spam,
+          joins("LEFT JOIN flags f ON (#{ table_name }.id=f.flaggable_id
+            AND f.flaggable_type='#{ name }' AND f.flag='#{ Flag::SPAM }')").
+          where("f.id IS NULL")
 
         define_method(:flagged_as_spam?) do
-          self.class.flagged_as_spam.exists?(self)
+          self.flags.loaded? ?
+            self.flags.any?{ |f| f.flag == Flag::SPAM } :
+            self.class.flagged_as_spam.exists?(self)
         end
 
         # If any of the rakismet fields have been modified, then
@@ -75,7 +83,7 @@ module ActiveRecord
           return true
         end
         # Otherwise a guide taxon will inherit its guide's spamminess
-        return self.guide.spam_or_owned_by_spammer?
+        return false
       end
       user = if self.is_a?(User)
         self

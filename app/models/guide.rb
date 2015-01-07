@@ -1,5 +1,4 @@
 class Guide < ActiveRecord::Base
-  acts_as_flaggable
   acts_as_spammable :fields => [ :title, :description ]
 
   attr_accessible :description, :latitude, :longitude, :place_id,

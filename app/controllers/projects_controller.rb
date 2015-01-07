@@ -44,14 +44,18 @@ class ProjectsController < ApplicationController
         if @place
           project_observations = project_observations.joins(:project => :place).where(@place.self_and_descendant_conditions)
         end
-        @projects = Project.where("id IN (?)", project_observations.map(&:project_id))
-        @created = Project.order("id desc").limit(9)
+        @projects = Project.where("projects.id IN (?)",
+          project_observations.map(&:project_id)).not_flagged_as_spam
+        @created = Project.order("projects.id desc").limit(9).not_flagged_as_spam
         @created = @created.joins(:place).where(@place.self_and_descendant_conditions) if @place
         @featured = Project.featured
         @featured = @featured.joins(:place).where(@place.self_and_descendant_conditions) if @place
         if logged_in?
-          @started = current_user.projects.all(:order => "id desc", :limit => 9)
-          @joined = current_user.project_users.all(:include => :project, :order => "id desc", :limit => 9).map(&:project)
+          @started = current_user.projects.not_flagged_as_spam.
+            all(:order => "projects.id desc", :limit => 9)
+          @joined = current_user.project_users.joins(:project).
+            merge(Project.not_flagged_as_spam).all(:include => :project,
+            :order => "projects.id desc", :limit => 9).map(&:project)
         end
       end
       format.json do
@@ -78,7 +82,8 @@ class ProjectsController < ApplicationController
     end
     @order = params[:order] if ORDERS.include?(params[:order])
     @order ||= 'title'
-    @projects = Project.page(params[:page]).order(ORDER_CLAUSES[@order])
+    @projects = Project.not_flagged_as_spam.
+      page(params[:page]).order(ORDER_CLAUSES[@order])
     @projects = @projects.in_place(@place) if @place
     respond_to do |format|
       format.html

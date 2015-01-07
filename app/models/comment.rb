@@ -1,5 +1,4 @@
 class Comment < ActiveRecord::Base
-  acts_as_flaggable
   acts_as_spammable :fields => [ :body ]
 
   belongs_to :parent, :polymorphic => true

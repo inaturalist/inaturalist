@@ -27,9 +27,10 @@ class ListsController < ApplicationController
     @prefs = current_preferences
     
     @life_list = @selected_user.life_list
-    @lists = @selected_user.lists.paginate(:page => params[:page], 
-      :per_page => @prefs["per_page"], 
-      :order => "#{@prefs["lists_by_login_sort"]} #{@prefs["lists_by_login_order"]}")
+    @lists = @selected_user.lists.not_flagged_as_spam.
+      paginate(:page => params[:page],
+        :per_page => @prefs["per_page"],
+        :order => "#{@prefs["lists_by_login_sort"]} #{@prefs["lists_by_login_order"]}")
     
     # This is terribly inefficient. Might have to be smarter if there are
     # lots of lists.

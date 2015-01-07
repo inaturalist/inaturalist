@@ -21,9 +21,11 @@ class GuidesController < ApplicationController
   # GET /guides.json
   def index
     @guides = if logged_in? && params[:by] == "you"
-      current_user.editing_guides.limit(100).order("guides.id DESC")
+      current_user.editing_guides.not_flagged_as_spam.
+        limit(100).order("guides.id DESC")
     else
-      Guide.page(params[:page]).per_page(limited_per_page).order("guides.id DESC").published
+      Guide.not_flagged_as_spam.page(params[:page]).
+        per_page(limited_per_page).order("guides.id DESC").published
     end
     @guides = @guides.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
 

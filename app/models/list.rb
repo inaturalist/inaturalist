@@ -4,7 +4,6 @@
 # just lists of taxa that interest them for some reason.
 #
 class List < ActiveRecord::Base
-  acts_as_flaggable
   acts_as_spammable :fields => [ :title, :description ],
                     :comment_type => "item-description"
   belongs_to :user

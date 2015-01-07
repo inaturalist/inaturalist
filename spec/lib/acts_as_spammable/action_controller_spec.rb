@@ -16,7 +16,7 @@ describe ObservationsController, type: :controller do
     response.response_code.should == 200
   end
 
-  it "allows peopla that have entered some spam to view content normally" do
+  it "allows people that have entered some spam to view content normally" do
     sign_in flagged_content.user
     get :show, id: Observation.make!.id
     response.response_code.should == 200

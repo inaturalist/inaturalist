@@ -12,7 +12,8 @@ class PostsController < ApplicationController
   def index
     scope = @parent.is_a?(User) ? @parent.journal_posts.scoped : @parent.posts.scoped
     block_if_spam(@parent) && return
-    @posts = scope.published.page(params[:page]).per_page(10).order("published_at DESC")
+    @posts = scope.not_flagged_as_spam.published.page(params[:page]).
+      per_page(10).order("published_at DESC")
     
     # Grab the monthly counts of all posts to show archives
     get_archives

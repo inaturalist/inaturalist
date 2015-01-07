@@ -120,7 +120,6 @@ class User < ActiveRecord::Base
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
   before_save :whitelist_licenses
-  before_save :flag_spammer
   before_create :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
@@ -244,10 +243,6 @@ class User < ActiveRecord::Base
       self.preferred_photo_license = nil
     end
     true
-  end
-
-  def flag_spammer
-    self.spammer = true if self.spam_count > 3
   end
 
   # add a provider_authorization to this user.  
@@ -642,7 +637,14 @@ class User < ActiveRecord::Base
   # down and the user will no longer look like a spammer.
   def update_spam_count
     self.spam_count = content_flagged_as_spam.length
-    self.spammer = (self.spam_count >= 3)
+    if self.spam_count >= 3
+      # anyone with a high spam count is a spammer
+      self.spammer = true
+    elsif self.spammer != false
+      # spammer === false represents known non-spammers. We want to make
+      # sure to maintain that info and set the rest to nil (=unknown)
+      self.spammer = nil
+    end
     self.save
   end
 

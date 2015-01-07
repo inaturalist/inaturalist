@@ -25,7 +25,6 @@ class Observation < ActiveRecord::Base
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
   acts_as_taggable
-  acts_as_flaggable
   acts_as_spammable :fields => [ :title, :description ],
                     :comment_type => "item-description"
   
