@@ -12,12 +12,20 @@ module ActionController
         define_method(:block_if_spam) do |obj|
           return unless obj
           if obj.owned_by_spammer?
+            if current_user == obj.user || (current_user && current_user.is_curator?)
+              set_spam_flash_error
+              return false
+            end
             # all spammers are suspended, so show the suspended message page
             render(template: "users/_suspended", status: 403, layout: "application")
           elsif obj.known_spam?
+            if current_user == obj.user|| (current_user && current_user.is_curator?)
+              set_spam_flash_error
+              return false
+            end
             # if the user isn't a spammer yet, but the content is,
             # then show the spam message page
-            render_spam_notice(current_user == obj.user)
+            render_spam_notice
           end
         end
 
@@ -30,9 +38,13 @@ module ActionController
 
         # render a custom page for people seeing SPAM
         # with response code 403 Forbidden
-        define_method(:render_spam_notice) do |is_owner|
-          render(template: "shared/spam", status: 403, layout: "application",
-            locals: { is_owner: is_owner })
+        define_method(:render_spam_notice) do
+          render(template: "shared/spam", status: 403, layout: "application")
+        end
+
+        define_method(:set_spam_flash_error) do
+          flash[:error] = [ t("views.shared.spam.this_has_been_flagged_as_spam"),
+            t("views.shared.spam.if_you_think_your_content_html", email: CONFIG.help_email) ].join(".<br/>")
         end
       end
 

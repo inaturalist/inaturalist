@@ -4,6 +4,7 @@ describe ObservationsController, type: :controller do
 
   render_views
   let(:spammer) { User.make!(spammer: true) }
+  let(:curator) { make_curator }
   let(:spammer_content) { Observation.make!(user: spammer) }
   let(:flagged_content) {
     o = Observation.make!
@@ -22,25 +23,37 @@ describe ObservationsController, type: :controller do
     response.response_code.should == 200
   end
 
-  it "returns a 403 when the owner is a spammer" do
+  it "returns a 403 when spammer content is viewed by average users" do
     get :show, id: spammer_content.id
     response.response_code.should == 403
     response.body.should match /This user was banned/
   end
 
-  it "returns a 403 when content is flagged as spam" do
-    get :show, id: flagged_content.id
-    response.response_code.should == 403
-    response.body.should match /This has been flagged as spam/
-    response.body.should_not match /If you think your content has been improperly flagged/
+  it "adds a flash message when spammer content is viewed by curators" do
+    sign_in curator
+    get :show, id: spammer_content.id
+    response.response_code.should == 200
+    flash[:error].should match /This has been flagged as spam/
   end
 
-  it "should render a special page when a user views their own spam" do
-    sign_in flagged_content.user
+  it "returns a 403 when spam is viewed by average users" do
     get :show, id: flagged_content.id
     response.response_code.should == 403
     response.body.should match /This has been flagged as spam/
-    response.body.should match /If you think your content has been improperly flagged/
+  end
+
+  it "adds a flash message when spam is viewed by curators" do
+    sign_in curator
+    get :show, id: flagged_content.id
+    response.response_code.should == 200
+    flash[:error].should match /This has been flagged as spam/
+  end
+
+  it "adds a flash message when spam is viewed by its owner" do
+    sign_in flagged_content.user
+    get :show, id: flagged_content.id
+    response.response_code.should == 200
+    flash[:error].should match /This has been flagged as spam/
   end
 
   it "spammers are suspended, so they will get recirected to a login page" do
