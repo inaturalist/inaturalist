@@ -655,7 +655,7 @@ class User < ActiveRecord::Base
       # classes have different ways of getting to user, so just do
       # a join and enforce the user_id with a where clause
       klass.joins(:user).where(users: { id: self.id }).
-        joins(:flags).where({ flags: { flag: Flag::SPAM } })
+        joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } })
     }.compact.flatten.uniq
   end
 

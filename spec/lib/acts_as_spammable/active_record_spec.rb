@@ -31,6 +31,16 @@ describe "ActsAsSpammable", "ActiveRecord" do
     o.flagged_as_spam?.should == true
   end
 
+  it "resolved flags are not spam" do
+    Rakismet.should_receive(:akismet_call).and_return("false")
+    o = Observation.make!(user: @user)
+    o.flagged_as_spam?.should == false
+    f = Flag.make!(flaggable: o, flag: Flag::SPAM)
+    o.flagged_as_spam?.should == true
+    Flag.last.update_attributes(resolved: true, resolver: @user)
+    o.flagged_as_spam?.should == false
+  end
+
   it "does not check for spam unless a spammable field is modified" do
     Rakismet.should_receive(:akismet_call).and_return("true")
     o = Observation.make!(user: @user)

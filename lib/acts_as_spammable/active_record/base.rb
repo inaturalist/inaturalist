@@ -22,15 +22,16 @@ module ActiveRecord
         after_save :check_for_spam
 
         scope :flagged_as_spam,
-          joins(:flags).where({ flags: { flag: Flag::SPAM } })
+          joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } })
         scope :not_flagged_as_spam,
           joins("LEFT JOIN flags f ON (#{ table_name }.id=f.flaggable_id
-            AND f.flaggable_type='#{ name }' AND f.flag='#{ Flag::SPAM }')").
+            AND f.flaggable_type='#{ name }' AND f.flag='#{ Flag::SPAM }'
+            AND resolved = false)").
           where("f.id IS NULL")
 
         define_method(:flagged_as_spam?) do
           self.flags.loaded? ?
-            self.flags.any?{ |f| f.flag == Flag::SPAM } :
+            self.flags.any?{ |f| f.flag == Flag::SPAM && ! f.resolved? } :
             self.class.flagged_as_spam.exists?(self)
         end
 
@@ -57,8 +58,8 @@ module ActiveRecord
               if is_spam
                 self.add_flag( flag: "spam", user_id: 0 )
               elsif self.flagged_as_spam?
-                Flag.delete_all(flaggable_id: self.id, flaggable_type: self.class,
-                  user_id: 0, flag: Flag::SPAM)
+                Flag.destroy_all(flaggable_id: self.id, flaggable_type: self.class,
+                  user_id: 0, flag: Flag::SPAM, resolved: false)
               end
             end
           end
