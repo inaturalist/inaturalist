@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
-  acts_as_flaggable
+  acts_as_spammable :fields => [ :body ]
+
   belongs_to :parent, :polymorphic => true
   belongs_to :user
   
@@ -52,11 +53,5 @@ class Comment < ActiveRecord::Base
     return true if deleting_user.id == parent.try_methods(:user_id)
     return true if deleting_user.is_curator? || deleting_user.is_admin?
     false
-  end
-
-  def flagged_with(flag, options = {})
-    if Comment.joins(:flags).where("comments.user_id = ? AND flags.flag = ?", user_id, Flag::SPAM).count >= 3
-      user.suspend!
-    end
   end
 end

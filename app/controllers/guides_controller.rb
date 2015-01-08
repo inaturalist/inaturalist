@@ -5,7 +5,10 @@ class GuidesController < ApplicationController
   before_filter :authenticate_user!, 
     :except => [:index, :show, :search], 
     :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
+  load_only = [ :show, :edit, :update, :destroy, :import_taxa,
+    :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags ]
+  before_filter :load_record, :only => load_only
+  blocks_spam :only => load_only, :instance => :guide
   before_filter :require_owner, :only => [:destroy]
   before_filter :require_guide_user, :only => [:edit, :update, :import_taxa, :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags]
 
@@ -18,9 +21,11 @@ class GuidesController < ApplicationController
   # GET /guides.json
   def index
     @guides = if logged_in? && params[:by] == "you"
-      current_user.editing_guides.limit(100).order("guides.id DESC")
+      current_user.editing_guides.not_flagged_as_spam.
+        limit(100).order("guides.id DESC")
     else
-      Guide.page(params[:page]).per_page(limited_per_page).order("guides.id DESC").published
+      Guide.not_flagged_as_spam.page(params[:page]).
+        per_page(limited_per_page).order("guides.id DESC").published
     end
     @guides = @guides.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
 

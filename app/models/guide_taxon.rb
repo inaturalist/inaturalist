@@ -5,6 +5,7 @@ class GuideTaxon < ActiveRecord::Base
     :guide_sections_attributes, :guide_ranges_attributes, :html, :position, :tag_list, :source_identifier
   belongs_to :guide, :inverse_of => :guide_taxa
   belongs_to :taxon, :inverse_of => :guide_taxa
+  has_one :user, :through => :guide
   has_many :guide_sections, :inverse_of => :guide_taxon, :dependent => :delete_all
   has_many :guide_photos, :inverse_of => :guide_taxon, :dependent => :delete_all
   has_many :guide_ranges, :inverse_of => :guide_taxon, :dependent => :delete_all

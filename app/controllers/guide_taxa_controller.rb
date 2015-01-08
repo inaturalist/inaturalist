@@ -1,7 +1,10 @@
 class GuideTaxaController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :load_record, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos, :sync]
-  before_filter :load_guide, :only => [:show, :edit, :update, :destroy, :edit_photos, :update_photos, :sync]
+  load_only = [ :show, :edit, :update, :destroy,
+    :edit_photos, :update_photos, :sync ]
+  before_filter :load_record, :only => load_only
+  before_filter :load_guide, :only => load_only
+  blocks_spam :only => load_only, :instance => :guide_taxon
   before_filter :only => [:edit, :update, :destroy, :edit_photos, :update_photos, :sync] do |c|
     require_guide_user
   end
@@ -181,4 +184,5 @@ class GuideTaxaController < ApplicationController
     @guide_sections = @guide_taxon.guide_sections.sort_by(&:position)
     @recent_tags = @guide.recent_tags
   end
+
 end

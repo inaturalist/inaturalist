@@ -448,6 +448,9 @@ qqq:
     projects:
       edit:
         bioblitz_create_a_new_place_html: where link is a URL
+    shared:
+      spam:
+        if_you_think_your_content_html: where email is the website help email address
     users:
       dashboard:
         taxon_change_desc: where site_name is the site name
@@ -457,6 +460,8 @@ qqq:
         taxon_change_desc: where site_name is the site name
         licensing_desc_html: where site_name is the site name
         prefers_community_taxa_desc: where site_name is the site name
+      show:
+        take_a_chance_to_review_html: where link is a URL to the website help page
     welcome:
       index:
         welcome_message_html: where image is the site name

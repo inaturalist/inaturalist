@@ -192,7 +192,7 @@ class ApplicationController < ActionController::Base
   #
   def render_404
     respond_to do |format|
-      format.any(:html, :mobile) { render(:file => "#{Rails.root}/public/404.html", :status => 404, :layout => false) }
+      format.any(:html, :mobile) { render(template: "shared/404", status: 404, layout: "application") }
       format.json { render :json => {:error => t(:not_found)}, :status => 404 }
     end
   end
@@ -204,7 +204,7 @@ class ApplicationController < ActionController::Base
     flash[:notice] = t(:you_tried_to_do_something_you_shouldnt)
     redirect_to root_path, :status => :see_other
   end
-  
+
   # Caching
   # common place to put caching related code for simplier tuning
   def cache(time = 1.hour)

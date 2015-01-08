@@ -367,6 +367,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (0.8.7)
+    rakismet (1.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
     rest-client (1.6.7)
@@ -536,6 +537,7 @@ DEPENDENCIES
   rack-google-analytics!
   rails (~> 3.2.20)
   rake (= 0.8.7)
+  rakismet
   rest-client
   rgeo
   right_aws

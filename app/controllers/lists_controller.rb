@@ -4,7 +4,9 @@ class ListsController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:index, :show, :by_login, :taxa, :guide,
     :cached_guide, :guide_widget]
-  before_filter :load_list, :except => [:index, :new, :create, :by_login]
+  load_except = [ :index, :new, :create, :by_login ]
+  before_filter :load_list, :except => load_except
+  blocks_spam :except => load_except, :instance => :list
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
     :remove_taxon, :reload_from_observations]
   before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
@@ -21,12 +23,14 @@ class ListsController < ApplicationController
 
   # gets lists by user login
   def by_login
+    block_if_spam(@selected_user) && return
     @prefs = current_preferences
     
     @life_list = @selected_user.life_list
-    @lists = @selected_user.lists.paginate(:page => params[:page], 
-      :per_page => @prefs["per_page"], 
-      :order => "#{@prefs["lists_by_login_sort"]} #{@prefs["lists_by_login_order"]}")
+    @lists = @selected_user.lists.not_flagged_as_spam.
+      paginate(:page => params[:page],
+        :per_page => @prefs["per_page"],
+        :order => "#{@prefs["lists_by_login_sort"]} #{@prefs["lists_by_login_order"]}")
     
     # This is terribly inefficient. Might have to be smarter if there are
     # lots of lists.

@@ -1,4 +1,6 @@
 class GuideSection < ActiveRecord::Base
+  acts_as_spammable :fields => [ :title, :description ]
+
   attr_accessible :description, :guide_taxon_id, :title, :position,
     :rights_holder, :license, :source_id, :source_url, :modified_on_create,
     :creator_id, :updater_id
@@ -7,6 +9,7 @@ class GuideSection < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User', :inverse_of => :created_guide_sections
   belongs_to :updater, :class_name => 'User', :inverse_of => :updated_guide_sections
   has_one :guide, :through => :guide_taxon
+  has_one :user, :through => :guide_taxon
   before_create :set_license
   after_create :touch_if_modified
   before_validation :remove_updater_if_no_changes, :on => :update

@@ -47,7 +47,7 @@
   <% end %>
   
   <% if flash[:error] %>
-  <p id="flash" class="error"><%= flash[:error] %></p> 
+  <p id="flash" class="error"><%= raw flash[:error] %></p>
   <% end %>
 
   <% if @feature_test -%>

@@ -4,8 +4,10 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
     :except => [:index, :show, :new, :create, :activate, :relationships, :search]
-  before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
-    :show, :update, :relationships, :add_role, :remove_role]
+  load_only = [ :suspend, :unsuspend, :destroy, :purge,
+    :show, :update, :relationships, :add_role, :remove_role ]
+  before_filter :find_user, :only => load_only
+  blocks_spam :only => load_only, :instance => :user
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_filter :admin_required, :only => [:curation]
   before_filter :curator_required, :only => [:suspend, :unsuspend]

@@ -824,6 +824,10 @@ en:
   desription: Description
   destroy: Destroy
   details: Details
+  devise:
+    failure:
+      user:
+        suspended: Your account has been suspended
   developers: Developers
   device: Device
   did_not_send_invitations_because: Did not send invites to the following because...
@@ -3834,6 +3838,15 @@ en:
           This is the curated checklist and count of taxa from observations explictly added to this
           project, not all observations recorded at the place and time of this
           event.
+    shared:
+      spam:
+        if_you_think_your_content_html: |
+          If you think this is a mistake, please
+          <a href="mailto:%{email}">contact us</a>.
+        this_has_been_flagged_as_spam: This has been flagged as spam
+      not_found:
+        sorry_that_doesnt_exist: Sorry, that doesn't exist!
+        even_our_dedicated_search_mole_couldnt: Even our dedicated search mole couldn't find anything!
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -3902,6 +3915,9 @@ en:
           community opinion won't be favored over yours. This means your
           observations will not be eligible for research grade unless you
           agree with the community.
+      show:
+        take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'
+        this_user_was_banned: This user was banned
     welcome:
       index:
         welcome_message_html: |
