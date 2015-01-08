@@ -82,7 +82,9 @@ class Emailer < ActionMailer::Base
     attachments[fto.file_file_name] = File.read(fto.file.path)
     mail(set_site_specific_opts.merge(
       :to => @user.email, 
-      :subject => t(:site_observations_export_from_date, :site_name => SITE_NAME, :date => l(@flow_task.created_at.in_time_zone(@user.time_zone), :format => :long))
+      :subject => t(:site_observations_export_from_date, 
+        :site_name => SITE_NAME, 
+        :date => l(@flow_task.created_at.in_time_zone(@user.time_zone), :format => :long))
     ))
     reset_locale
   end
