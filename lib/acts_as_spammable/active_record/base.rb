@@ -45,8 +45,16 @@ module ActiveRecord
             Rakismet.disabled = Rails.env.test?
           end
           unless Rakismet.disabled
+            # if there is any overlap between the fields that could be spam
+            # and the fields that have been changed this time around
+            # & is the set intersection operator
             if (self.changed.map(&:to_sym) & rakismet_fields).any?
-              if self.spam?
+              # when all the fields we care about are blank, we don't have spam
+              # and don't need to call the akismet API. This is also the only
+              # place that the akismet API is called outside of specs
+              is_spam = rakismet_fields.all?{ |f| self.send(f).blank? } ?
+                false : spam?
+              if is_spam
                 self.add_flag( flag: "spam", user_id: 0 )
               elsif self.flagged_as_spam?
                 Flag.delete_all(flaggable_id: self.id, flaggable_type: self.class,

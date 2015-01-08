@@ -17,13 +17,13 @@ describe Rakismet, "ActiveRecord" do
   end
 
   it "should disable API calls" do
-    Rakismet.set_request_vars( Rakismet.fake_environment_variables )
+    Rakismet.should_receive(:akismet_call).at_least(:once).and_return("true")
     @spam_user = User.make!(name: "viagra-test-123")
-    # with Rakismet disabled, spam? won't get called and thus no flag is made
+    # with Rakismet endabled, spam? gets called and a flag is made
     Rakismet.disabled = false
     o = make_spammy_observation
     o.flagged_as_spam?.should == true
-    # with Rakismet endable, spam? gets called and a flag is made
+    # with Rakismet disabled, spam? won't get called and thus no flag is made
     Rakismet.disabled = true
     o = make_spammy_observation
     o.flagged_as_spam?.should == false
@@ -32,9 +32,5 @@ describe Rakismet, "ActiveRecord" do
 end
 
 def make_spammy_observation
-  o = Observation.make!
-  o.user = User.make!(name: "viagra-test-123")
-  o.description = "anything"
-  o.save
-  o
+  Observation.make!(description: "anything")
 end
