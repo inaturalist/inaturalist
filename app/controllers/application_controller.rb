@@ -205,16 +205,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :status => :see_other
   end
 
-  # Return a 403 response and a custom page for people seeing SPAM
-  def render_spam_viewer
-    render(template: "shared/404", status: 403, layout: "application")
-  end
-
-  # Return a 403 response and a custom page for people seeing their own SPAM
-  def render_spam_owner
-    render(template: "shared/spam_owner", status: 403, layout: "application")
-  end
-
   # Caching
   # common place to put caching related code for simplier tuning
   def cache(time = 1.hour)

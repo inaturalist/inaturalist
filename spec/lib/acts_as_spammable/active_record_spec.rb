@@ -80,34 +80,39 @@ describe "ActsAsSpammable", "ActiveRecord" do
     Taxon.spammable?.should == false
   end
 
-  it "identifies flagged content as spam_or_owned_by_spammer?" do
+  it "identifies flagged content as known_spam?" do
     o = Observation.make!(user: @non_spam_user)
-    o.spam_or_owned_by_spammer?.should == false
+    o.known_spam?.should == false
     Flag.make!(flaggable: o, flag: Flag::SPAM)
     o.reload
-    o.spam_or_owned_by_spammer?.should == true
+    o.known_spam?.should == true
   end
 
-  it "identifies spammer-owned content as spam_or_owned_by_spammer?" do
+  it "identifies spammer-owned content as owned_by_spammer?" do
     u = User.make!
     o = Observation.make!(user: u)
-    o.spam_or_owned_by_spammer?.should == false
+    o.owned_by_spammer?.should == false
     u.update_column(:spammer, true)
     o.reload
-    o.spam_or_owned_by_spammer?.should == true
+    o.owned_by_spammer?.should == true
   end
 
   it "users are spam if they are spammers" do
     u = User.make!
-    u.spam_or_owned_by_spammer?.should == false
+    u.owned_by_spammer?.should == false
     u.update_column(:spammer, true)
     u.reload
-    u.spam_or_owned_by_spammer?.should == true
+    u.owned_by_spammer?.should == true
+  end
+
+  it "all models respond to known_spam?" do
+    Role.make!.known_spam?.should == false
+    Taxon.make!.known_spam?.should == false
   end
 
   it "all models respond to spam_or_owned_by_spammer?" do
-    Role.make!.spam_or_owned_by_spammer?.should == false
-    Taxon.make!.spam_or_owned_by_spammer?.should == false
+    Role.make!.owned_by_spammer?.should == false
+    Taxon.make!.owned_by_spammer?.should == false
   end
 
 end

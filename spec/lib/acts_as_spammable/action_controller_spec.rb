@@ -25,21 +25,22 @@ describe ObservationsController, type: :controller do
   it "returns a 403 when the owner is a spammer" do
     get :show, id: spammer_content.id
     response.response_code.should == 403
-    response.body.should match /Sorry, that doesn't exist/
+    response.body.should match /This user was banned/
   end
 
   it "returns a 403 when content is flagged as spam" do
     get :show, id: flagged_content.id
     response.response_code.should == 403
-    response.body.should match /Sorry, that doesn't exist/
+    response.body.should match /This has been flagged as spam/
+    response.body.should_not match /If you think your content has been improperly flagged/
   end
 
   it "should render a special page when a user views their own spam" do
     sign_in flagged_content.user
     get :show, id: flagged_content.id
     response.response_code.should == 403
-    response.body.should_not match /Sorry that doesn't exist/
-    response.body.should match /Flagged as a violation of our/
+    response.body.should match /This has been flagged as spam/
+    response.body.should match /If you think your content has been improperly flagged/
   end
 
   it "spammers are suspended, so they will get recirected to a login page" do

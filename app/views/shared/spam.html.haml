@@ -1,0 +1,6 @@
+- is_owner ||= false
+#pageheader.column.span-24
+  %h2= t("views.shared.spam.this_has_been_flagged_as_spam")
+%p.description
+  - if is_owner
+    = t("views.shared.spam.if_you_think_your_content_html", email: CONFIG.help_email)

@@ -75,25 +75,31 @@ module ActiveRecord
       end
     end
 
-    def spam_or_owned_by_spammer?
+    # it would be nice to use flagged_as_spam? directly
+    # but GuideTaxon is a weird case of something that is spam
+    # only because of association - its not directly flagged
+    def known_spam?
       if self.is_a?(GuideTaxon)
         # guide taxa can have many sections, each of which could be spam,
         # so when one is spam consider the entire GuideTaxon as spam
         if self.guide_sections.any?{ |s| s.flagged_as_spam? }
           return true
         end
-        # Otherwise a guide taxon will inherit its guide's spamminess
         return false
       end
+      if (self.respond_to?(:flagged_as_spam?) && self.flagged_as_spam?)
+        return true
+      end
+      false
+    end
+
+    def owned_by_spammer?
       user = if self.is_a?(User)
         self
       elsif self.respond_to?(:user)
         self.user
       end
-      if (user && user.spammer?) ||
-        (self.respond_to?(:flagged_as_spam?) && self.flagged_as_spam?)
-        return true
-      end
+      return true if user && user.spammer?
       false
     end
 

@@ -5,6 +5,6 @@
 #wrapper.clear
   %img{ src: asset_path("404mole.png") }
   #message
-    %h1 Sorry, that doesn't exist!
+    %h1= t("views.shared.not_found.sorry_that_doesnt_exist")
     .readable.description
-      Even our dedicated search mole couldn't find anything!
+      = t("views.shared.not_found.even_our_dedicated_search_mole_couldnt")

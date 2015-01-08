@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
         end
         @projects = Project.where("projects.id IN (?)",
           project_observations.map(&:project_id)).not_flagged_as_spam
-        @created = Project.order("projects.id desc").limit(9).not_flagged_as_spam
+        @created = Project.not_flagged_as_spam.order("projects.id desc").limit(9)
         @created = @created.joins(:place).where(@place.self_and_descendant_conditions) if @place
         @featured = Project.featured
         @featured = @featured.joins(:place).where(@place.self_and_descendant_conditions) if @place
