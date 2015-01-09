@@ -12,7 +12,7 @@ module ActionController
         define_method(:block_if_spam) do |obj|
           return unless obj
           if obj.owned_by_spammer?
-            if current_user == obj.user || (current_user && current_user.is_curator?)
+            if (obj.is_a?(User) && current_user == obj) || current_user == obj.user || (current_user && current_user.is_curator?)
               set_spam_flash_error
               return false
             end
