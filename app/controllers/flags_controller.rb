@@ -1,8 +1,8 @@
 class FlagsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :curator_required, :only => [:edit, :update, :destroy]
-  before_filter :set_model, :except => [:update, :show, :destroy]
-  before_filter :model_required, :except => [:index, :update, :show, :destroy]
+  before_filter :set_model, :except => [:update, :show, :destroy, :on]
+  before_filter :model_required, :except => [:index, :update, :show, :destroy, :on]
   before_filter :load_flag, :only => [:show, :edit, :destroy, :update]
   
   # put the parameters for the foreign keys here
@@ -99,6 +99,19 @@ class FlagsController < ApplicationController
     end
   end
   
+  def on
+    @user = User.where(login: params[:id]).first
+    @flags = FlagsController::FLAG_MODELS.map(&:constantize).map{ |klass|
+      # classes have different ways of getting to user, so just do
+      # a join and enforce the user_id with a where clause
+      if klass.reflections[:user]
+        klass.joins(:user).where(users: { id: @user.id }).joins(:flags).
+          where({ flags: { resolved: false } }).map(&:flags)
+      end
+    }.compact.flatten.uniq
+    render :global_index
+  end
+
   private
   
   def load_flag

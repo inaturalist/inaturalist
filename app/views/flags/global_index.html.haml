@@ -1,5 +1,5 @@
 - content_for(:title) do
-  - @title = t(:flags)
+  - @title = @user ? t(:flags_on_users_content, user: @user.login) : t(:flags)
 
 #pageheader.column.span-24
   %h2= @title
@@ -9,4 +9,5 @@
 
 #ul
   = render :partial => "flag_list", :locals => { :flags => @flags }
-= will_paginate @flags
+- if @flags.respond_to?(:total_pages)
+  = will_paginate @flags
