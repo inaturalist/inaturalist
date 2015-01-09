@@ -100,7 +100,11 @@ class FlagsController < ApplicationController
   end
   
   def on
-    @user = User.where(login: params[:id]).first
+    @user = User.where(login: params[:id]).first || User.where(id: params[:id]).first
+    unless @user
+      redirect_to flags_path
+      return
+    end
     @flags = FlagsController::FLAG_MODELS.map(&:constantize).map{ |klass|
       # classes have different ways of getting to user, so just do
       # a join and enforce the user_id with a where clause

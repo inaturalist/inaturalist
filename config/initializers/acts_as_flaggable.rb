@@ -8,7 +8,7 @@ module Gonzo
         end
 
         def to_plain_s
-          s = "#{self.class} #{id} #{self.try_methods(:name, :title)}"
+          s = "#{self.class} #{self.try_methods(:name, :title)}"
         end
 
       end

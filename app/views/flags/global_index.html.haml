@@ -1,13 +1,25 @@
 - content_for(:title) do
   - @title = @user ? t(:flags_on_users_content, user: @user.login) : t(:flags)
-
-#pageheader.column.span-24
-  %h2= @title
-
-.description
-  %p= t(:flags_explanation, site_name: CONFIG.site_name)
-
-#ul
-  = render :partial => "flag_list", :locals => { :flags => @flags }
-- if @flags.respond_to?(:total_pages)
-  = will_paginate @flags
+- content_for(:extrajs) do
+  :javascript
+    $( document ).ready( function( ) {
+      $('#id').chooser({
+        queryParam: 'q',
+        collectionUrl: '/people/search.json',
+        resourceUrl: '/people/{{id}}.json'
+      });
+    });
+#flags
+  .right.inline.smallbuttons.buttonrow
+    = form_tag(on_flags_path, method: "get") do
+      = label_tag :id, t(:search)
+      = text_field_tag :id, nil, placeholder: t(:start_typing_someones_name)
+      = submit_tag :submit, class: "default button"
+  #pageheader.column
+    %h2= @title
+  .description
+    %p= t(:flags_explanation, site_name: CONFIG.site_name)
+  #ul
+    = render :partial => "flag_list", locals: { flags: @flags }
+  - if @flags.respond_to?(:total_pages)
+    = will_paginate @flags
