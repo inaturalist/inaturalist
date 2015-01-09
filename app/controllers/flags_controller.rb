@@ -15,6 +15,7 @@ class FlagsController < ApplicationController
 
   def index
     if @model
+      # The default acts_as_flaggable index route
       @object = @model.find(params[@param])
       @object = @object.becomes(Photo) if @object.is_a?(Photo)
       @flags = @object.flags.paginate(:page => params[:page],
@@ -22,7 +23,27 @@ class FlagsController < ApplicationController
       @unresolved = @flags.select {|f| not f.resolved }
       @resolved = @flags.select {|f| f.resolved }
     else
-      @flags = Flag.where(resolved: false).order("created_at desc").paginate(per_page: 30, page: params[:page])
+      # a real index of all flags, which can be filtered by flag type
+      @flag_type = params[:flag].to_s.tr("_", " ")
+      # if we have a user to filter by...
+      if @user = User.where(login: params[:id]).first || User.where(id: params[:id]).first
+        @flags = FlagsController::FLAG_MODELS.map(&:constantize).map{ |klass|
+          # classes have different ways of getting to user, so just do
+          # a join and enforce the user_id with a where clause
+          if klass.reflections[:user]
+            klass.joins(:user).where(users: { id: @user.id }).joins(:flags).
+              where({ flags: { resolved: false } }).map(&:flags)
+          end
+        }.compact.flatten.uniq
+        params[:flag] = nil
+      else
+        # otherwise start will all recent unresolved flags
+        @flags = Flag.where(resolved: false).order("created_at desc")
+        unless @flag_type.blank?
+          @flags = @flags.where(flag: @flag_type)
+        end
+        @flags = @flags.paginate(per_page: 50, page: params[:page])
+      end
       render :global_index
     end
   end
@@ -98,23 +119,6 @@ class FlagsController < ApplicationController
       format.html { redirect_back_or_default(admin_path) }
     end
   end
-  
-  def on
-    @user = User.where(login: params[:id]).first || User.where(id: params[:id]).first
-    unless @user
-      redirect_to flags_path
-      return
-    end
-    @flags = FlagsController::FLAG_MODELS.map(&:constantize).map{ |klass|
-      # classes have different ways of getting to user, so just do
-      # a join and enforce the user_id with a where clause
-      if klass.reflections[:user]
-        klass.joins(:user).where(users: { id: @user.id }).joins(:flags).
-          where({ flags: { resolved: false } }).map(&:flags)
-      end
-    }.compact.flatten.uniq
-    render :global_index
-  end
 
   private
   
@@ -142,4 +146,5 @@ class FlagsController < ApplicationController
       redirect_to observations_path
     end
   end
+
 end

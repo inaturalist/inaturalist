@@ -379,11 +379,7 @@ Inaturalist::Application.routes.draw do
   resources :places
   
   # match '/guide' => 'places#guide', :as => :guide
-  resources :flags do
-    collection do
-      get :on
-    end
-  end
+  resources :flags
   match 'admin' => 'admin#index', :as => :admin
   match 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"
   match 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content", :via => :delete

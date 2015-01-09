@@ -11,9 +11,12 @@
     });
 #flags
   .right.inline.smallbuttons.buttonrow
-    = form_tag(on_flags_path, method: "get") do
+    = form_tag(flags_path, method: "get") do
       = label_tag :id, t(:search)
       = text_field_tag :id, nil, placeholder: t(:start_typing_someones_name)
+      = select_tag :flag, options_for_select([["all", nil],
+        ["copyright infringement", :copyright_infringement],
+        ["inappropriate", :inappropriate], ["spam", :spam]], params[:flag])
       = submit_tag :submit, class: "default button"
   #pageheader.column
     %h2= @title
