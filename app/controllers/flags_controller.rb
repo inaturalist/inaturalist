@@ -2,6 +2,7 @@ class FlagsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :curator_required, :only => [:edit, :update, :destroy]
   before_filter :set_model, :except => [:update, :show, :destroy]
+  before_filter :model_required, :except => [:index, :update, :show, :destroy]
   before_filter :load_flag, :only => [:show, :edit, :destroy, :update]
   
   # put the parameters for the foreign keys here
@@ -13,12 +14,17 @@ class FlagsController < ApplicationController
   PARTIALS = %w(dialog)
 
   def index
-    @object = @model.find(params[@param])
-    @object = @object.becomes(Photo) if @object.is_a?(Photo)
-    @flags = @object.flags.paginate(:page => params[:page],
-      :include => [:user, :resolver], :order => "id desc")
-    @unresolved = @flags.select {|f| not f.resolved }
-    @resolved = @flags.select {|f| f.resolved }
+    if @model
+      @object = @model.find(params[@param])
+      @object = @object.becomes(Photo) if @object.is_a?(Photo)
+      @flags = @object.flags.paginate(:page => params[:page],
+        :include => [:user, :resolver], :order => "id desc")
+      @unresolved = @flags.select {|f| not f.resolved }
+      @resolved = @flags.select {|f| f.resolved }
+    else
+      @flags = Flag.where(resolved: false).order("created_at desc").paginate(per_page: 30, page: params[:page])
+      render :global_index
+    end
   end
   
   def show
@@ -70,6 +76,9 @@ class FlagsController < ApplicationController
   end
   
   def update
+    if resolver_id = params[:flag].delete("resolver_id")
+      params[:flag]["resolver"] = User.find(resolver_id)
+    end
     respond_to do |format|
       if @flag.update_attributes(params[:flag])
         flash[:notice] = t(:flag_saved)
@@ -108,7 +117,12 @@ class FlagsController < ApplicationController
     if (@model ||= Object.const_get(params[:flag][:flaggable_type]) rescue nil)
       return
     end
-    flash[:notice] = t(:you_cant_flag_that)
-    redirect_to observations_path
+  end
+
+  def model_required
+    unless @model
+      flash[:notice] = t(:you_cant_flag_that)
+      redirect_to observations_path
+    end
   end
 end

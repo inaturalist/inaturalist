@@ -1,0 +1,12 @@
+- content_for(:title) do
+  - @title = t(:flags)
+
+#pageheader.column.span-24
+  %h2= @title
+
+.description
+  %p= t(:flags_explanation, site_name: CONFIG.site_name)
+
+#ul
+  = render :partial => "flag_list", :locals => { :flags => @flags }
+= will_paginate @flags

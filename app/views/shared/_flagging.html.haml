@@ -1,0 +1,14 @@
+- instance ||= nil
+- if instance
+  - link_path = new_flag_path("#{instance.class.name.downcase}_id" => instance.id)
+  - if instance.flagged?
+    %p.description.ui.spam
+      = link_to t(:view_flags), link_path
+      \|
+      %a#flag_this.flag_link{ href: link_path, rel: "nofollow" }
+        = t(:add_another_flag)
+  - else
+    %p.description.ui.spam
+      = t(:is_this_offensive_html)
+      %a#flag_this.flag_link{ href: link_path, rel: "nofollow" }
+        = t(:add_a_flag)

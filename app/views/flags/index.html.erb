@@ -17,7 +17,8 @@
 
 <div class="description">
   <p>
-  <%=t :flags_explanation, :thing => @model.name.downcase, :site_name => SITE_NAME %>
+    <%=t :flags_explanation, :site_name => SITE_NAME %>
+    <%=t :flagged_thing_explanation, :thing => @model.name.downcase %>
   </p>
 </div>
 
