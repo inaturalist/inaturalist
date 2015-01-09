@@ -3,12 +3,6 @@ class WelcomeController < ApplicationController
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
   
-  caches_action :index, :expires_in => 15.minutes, :if => Proc.new {|c|
-    !c.send(:logged_in?) && 
-    c.send(:flash).blank? && 
-    c.request.format != :mobile
-  }
-  
   def index
     respond_to do |format|
       format.html do
