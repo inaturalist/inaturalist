@@ -1136,7 +1136,9 @@ class ObservationsController < ApplicationController
     block_if_spam(@selected_user) && return
     search_params, find_options = get_search_params(params)
     search_params.update(:user_id => @selected_user.id,
-      :viewer => current_user, :filter_spam => true)
+      :viewer => current_user, 
+      :filter_spam => (current_user.blank? || current_user != @selected_user)
+    )
     if search_params[:q].blank?
       get_paginated_observations(search_params, find_options)
     else

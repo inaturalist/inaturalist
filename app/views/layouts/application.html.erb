@@ -59,6 +59,16 @@
   <% end -%>
 
   <div id="wrapper" class="container clear">
+    <% if flash[:warning] -%>
+      <div class="notice box">
+        <% if flash[:warning_title] -%>
+          <h3><%=raw flash[:warning_title] %></h3>
+        <% end -%>
+        <p class="unstacked">
+          <%=raw flash[:warning] %>
+        </p>
+      </div>
+    <% end -%>
     <%= yield %>
   </div><!-- end wrapper -->
   

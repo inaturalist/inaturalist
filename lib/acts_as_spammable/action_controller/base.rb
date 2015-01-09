@@ -43,8 +43,8 @@ module ActionController
         end
 
         define_method(:set_spam_flash_error) do
-          flash[:error] = [ t("views.shared.spam.this_has_been_flagged_as_spam"),
-            t("views.shared.spam.if_you_think_your_content_html", email: CONFIG.help_email) ].join(".<br/>")
+          flash[:warning_title] = t("views.shared.spam.this_has_been_flagged_as_spam")
+          flash[:warning] = t("views.shared.spam.message_for_owner_and_curators_html", email: CONFIG.help_email)
         end
       end
 

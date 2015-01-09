@@ -47,6 +47,18 @@
           </div>
         </div>
       <% end -%>
+      <% if flash[:warning] -%>
+        <div class="container">
+          <div class="alert">
+            <% if flash[:warning_title] -%>
+              <h3><%=raw flash[:warning_title] %></h3>
+            <% end -%>
+            <p class="unstacked">
+              <%=raw flash[:warning] %>
+            </p>
+          </div>
+        </div>
+      <% end -%>
       <%= yield %>
     </div>
 

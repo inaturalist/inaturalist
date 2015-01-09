@@ -3492,7 +3492,9 @@ CREATE TABLE users (
     uri character varying(255),
     locale character varying(255),
     site_id integer,
-    place_id integer
+    place_id integer,
+    spammer boolean,
+    spam_count integer DEFAULT 0
 );
 
 
@@ -6504,6 +6506,13 @@ CREATE INDEX index_users_on_site_id ON users USING btree (site_id);
 
 
 --
+-- Name: index_users_on_spammer; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_users_on_spammer ON users USING btree (spammer);
+
+
+--
 -- Name: index_users_on_state; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -7091,6 +7100,8 @@ INSERT INTO schema_migrations (version) VALUES ('20141211230727');
 INSERT INTO schema_migrations (version) VALUES ('20141213001622');
 
 INSERT INTO schema_migrations (version) VALUES ('20141213195804');
+
+INSERT INTO schema_migrations (version) VALUES ('20141231210447');
 
 INSERT INTO schema_migrations (version) VALUES ('20150104021132');
 
