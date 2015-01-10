@@ -3,17 +3,18 @@
 - content_for(:extrajs) do
   :javascript
     $( document ).ready( function( ) {
-      $('#id').chooser({
+      $('#user_id').chooser({
         queryParam: 'q',
         collectionUrl: '/people/search.json',
-        resourceUrl: '/people/{{id}}.json'
+        resourceUrl: '/people/{{id}}.json',
+        chosen: "#{ @user ? @user.login : nil }"
       });
     });
 #flags
   .right.inline.smallbuttons.buttonrow
     = form_tag(flags_path, method: "get") do
-      = label_tag :id, t(:search)
-      = text_field_tag :id, nil, placeholder: t(:start_typing_someones_name)
+      = label_tag :user_id, t(:search), default: params[:user_id]
+      = text_field_tag :user_id, nil, placeholder: t(:start_typing_someones_name)
       = select_tag :flag, options_for_select([["all", nil],
         ["copyright infringement", :copyright_infringement],
         ["inappropriate", :inappropriate], ["spam", :spam]], params[:flag])

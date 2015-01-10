@@ -26,7 +26,7 @@ class FlagsController < ApplicationController
       # a real index of all flags, which can be filtered by flag type
       @flag_type = params[:flag].to_s.tr("_", " ")
       # if we have a user to filter by...
-      if @user = User.where(login: params[:id]).first || User.where(id: params[:id]).first
+      if @user = User.where(login: params[:user_id]).first || User.where(id: params[:user_id]).first
         @flags = FlagsController::FLAG_MODELS.map(&:constantize).map{ |klass|
           # classes have different ways of getting to user, so just do
           # a join and enforce the user_id with a where clause
@@ -35,6 +35,9 @@ class FlagsController < ApplicationController
               where({ flags: { resolved: false } }).map(&:flags)
           end
         }.compact.flatten.uniq
+        unless @flag_type.blank?
+          @flags.reject!{ |f| f.flag != @flag_type }
+        end
         params[:flag] = nil
       else
         # otherwise start will all recent unresolved flags
