@@ -33,7 +33,7 @@ describe ObservationsController, type: :controller do
     sign_in curator
     get :show, id: spammer_content.id
     response.response_code.should == 200
-    flash[:error].should match /This has been flagged as spam/
+    flash[:warning_title].should == "This has been flagged as spam"
   end
 
   it "returns a 403 when spam is viewed by average users" do
@@ -46,14 +46,14 @@ describe ObservationsController, type: :controller do
     sign_in curator
     get :show, id: flagged_content.id
     response.response_code.should == 200
-    flash[:error].should match /This has been flagged as spam/
+    flash[:warning_title].should == "This has been flagged as spam"
   end
 
   it "adds a flash message when spam is viewed by its owner" do
     sign_in flagged_content.user
     get :show, id: flagged_content.id
     response.response_code.should == 200
-    flash[:error].should match /This has been flagged as spam/
+    flash[:warning_title].should == "This has been flagged as spam"
   end
 
   it "spammers are suspended, so they will get recirected to a login page" do

@@ -112,6 +112,7 @@ en:
   add_a_batch_of_taxa: Add a Batch of Taxa
   add_a_comment: Add a comment
   add_a_field: Add a field
+  add_a_flag: Add a flag
   add_a_link_raquo: "Add a link &raquo;"
   add_a_name: Add a name
   add_a_new_change_group: Add a new change group
@@ -950,7 +951,7 @@ en:
   exact_coordinates_obscured_for: Exact coordinates obscured for public view for threatened species.
   exact_location: Exact_location
   exact_rank: Exact rank
-  existing_flags: Existing_flags
+  existing_flags: Existing flags
   exit_full_screen: "Exit full screen"
   expand_days: expand days
   expand_updates: expand updates
@@ -1031,9 +1032,12 @@ en:
   flag_this_photo: Flag this photo
   flagged: flagged
   flagged_for_curation: Flagged for curation.
+  flagged_thing_explanation: "Users have flagged this %{thing} because"
   flagger: Flagger
-  flags_explanation: "%{site_name} users flag things when they find something that's not right. Here are some issues that haven't been resolved by the curators yet. Users have flagged this %{thing} because"
+  flags: Flags
+  flags_explanation: "%{site_name} users flag things when they find something that's not right. Here are some issues that haven't been resolved by the curators yet."
   flags_for: Flags for
+  flags_on_users_content: "Flags on %{user}'s content"
   flickr_account_information: Your Flickr Account Information
   flickr_description: Flickr is an online photo hosting service, maybe you already know about it!
   flickr_has_no_creative_commons: Flickr has no Creative Commons-licensed photos from this place.
@@ -1258,6 +1262,7 @@ en:
   is_not_following_anyone: is not following anyone.
   is_the_organism_wild: "Is the organism wild/naturalized?"
   is_this_observation_offensive_html: 'Is this observation <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
+  is_this_offensive_html: 'Is this <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
   is_this_place_a_duplicate: Is this place a duplicate? 
   it: It
   it_has: It has

@@ -3,23 +3,24 @@ module ActionController
     class << self
 
       def blocks_spam(options={})
-        before_filter :block_spammers, :only => options[:only],
-          :except => options[:except]
+        before_filter :block_spammers, only: options[:only],
+          except: options[:except]
 
         # if `obj` is spam, a spammer, or something created by a spammer
         # then render the corresponding 4xx page.
         # return the value of obj.spam_or_owned_by_spammer?
         define_method(:block_if_spam) do |obj|
           return unless obj
+          user_to_check = obj.is_a?(User) ? obj : obj.user
           if obj.owned_by_spammer?
-            if (obj.is_a?(User) && current_user == obj) || current_user == obj.user || (current_user && current_user.is_curator?)
+            if current_user == user_to_check || (current_user && current_user.is_curator?)
               set_spam_flash_error
               return false
             end
             # all spammers are suspended, so show the suspended message page
             render(template: "users/_suspended", status: 403, layout: "application")
           elsif obj.known_spam?
-            if current_user == obj.user|| (current_user && current_user.is_curator?)
+            if current_user == user_to_check|| (current_user && current_user.is_curator?)
               set_spam_flash_error
               return false
             end

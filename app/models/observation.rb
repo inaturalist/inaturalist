@@ -1331,13 +1331,6 @@ class Observation < ActiveRecord::Base
     num_identification_agreements + num_identification_disagreements
   end
   
-  #
-  # Checks whether this observation has been flagged
-  #
-  def flagged?
-    self.flags.select { |f| not f.resolved? }.size > 0
-  end
-
   def appropriate?
     return false if flags.where(:resolved => false).exists?
     return false if observation_photos_count > 0 && photos.includes(:flags).where("flags.resolved = ?", false).exists?

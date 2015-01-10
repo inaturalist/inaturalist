@@ -41,6 +41,7 @@ Inaturalist::Application.routes.draw do
       put "add_tags_for_rank/:rank" => "guides#add_tags_for_rank"
       put :remove_all_tags
     end
+    resources :flags
   end
   match '/guides/:id.:layout.pdf' => 'guides#show', :via => :get, :as => "guide_pdf", :constraints => {:format => :pdf}, :defaults => {:format => :pdf}
   match 'guides/user/:login' => 'guides#user', :as => :guides_by_login, :constraints => { :login => simplified_login_regex }
@@ -237,6 +238,7 @@ Inaturalist::Application.routes.draw do
       get :preview_matching, :as => :preview_matching_for
       get :invite, :as => :invite_to
     end
+    resources :flags
     resources :assessments, :only => [:new, :create, :show, :index, :edit, :update]
   end
 
@@ -249,6 +251,7 @@ Inaturalist::Application.routes.draw do
   match 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => simplified_login_regex }, :followers => 'followers'
   match 'people/:login/following' => 'users#relationships', :as => :following_by_login, :constraints => { :login => simplified_login_regex }, :following => 'following'
   resources :lists, :constraints => { :id => id_param_pattern } do
+    resources :flags
     get 'batch_edit'
   end
   match 'lists/:id/taxa' => 'lists#taxa', :as => :list_taxa, :via => :get
@@ -335,11 +338,15 @@ Inaturalist::Application.routes.draw do
   match 'journal/:login/archives/' => 'posts#archives', :as => :journal_archives, :constraints => { :login => simplified_login_regex }
   match 'journal/:login/archives/:year/:month' => 'posts#archives', :as => :journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/, :login => simplified_login_regex }
   match 'journal/:login/:id/edit' => 'posts#edit', :as => :edit_journal_post
-  resources :posts, :except => [:index], :constraints => { :id => id_param_pattern }
+  resources :posts, :except => [:index], :constraints => { :id => id_param_pattern } do
+    resources :flags
+  end
   resources :posts,
     :as => 'journal_posts',
     :path => "/journal/:login",
-    :constraints => { :login => simplified_login_regex }
+    :constraints => { :login => simplified_login_regex } do
+    resources :flags
+  end
   resources :trips, :constraints => { :id => id_param_pattern } do
     member do
       post :add_taxa_from_observations

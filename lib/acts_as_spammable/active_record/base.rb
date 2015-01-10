@@ -10,16 +10,18 @@ module ActiveRecord
         rakismet_fields = options[:fields]
         # set up the rakismet attributes. Concatenate multiple
         # fields using periods as if sentences
-        rakismet_attrs :author => proc { self.user ? self.user.name : nil },
-                       :author_email => proc { self.user ? self.user.email : nil },
-                       :content => proc {
+        rakismet_attrs author: proc { self.user ? self.user.name : nil },
+                       author_email: proc { self.user ? self.user.email : nil },
+                       content: proc {
                          options[:fields].map{ |f|
                            self.respond_to?(f) ? self.send(f) : nil
                          }.compact.join(". ")
                        },
-                       :comment_type => options[:comment_type]
+                       comment_type: options[:comment_type],
+                       blog_lang: "en,fr,es,zh,gl,th,jp"
 
-        after_save :check_for_spam
+        after_save :check_for_spam, unless: proc {
+          self.user && self.user.known_non_spammer? }
 
         scope :flagged_as_spam,
           joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } })
@@ -39,6 +41,8 @@ module ActiveRecord
         # call the akismet API and update the flags on this object.
         # Flags are made with user_id = 0, representing automated flags
         define_method(:check_for_spam) do
+          # first make sure the user isn't a known non-spammer
+          evaluate_user_spammer_status
           # leveraging the new attribute `disabled`, which we set to
           # true if we are running tests. This can be overridden by using
           # before and after blocks and manually changing Rakismet.disabled
@@ -74,6 +78,12 @@ module ActiveRecord
             if self.respond_to?(:user)
               self.user.update_spam_count
             end
+          end
+        end
+
+        define_method(:evaluate_user_spammer_status) do
+          if user
+            user.set_as_non_spammer_if_meets_criteria
           end
         end
 

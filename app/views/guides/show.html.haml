@@ -327,6 +327,7 @@
       %p
         =t :photo_credits
         = references(:linked => true)
+    = render :partial => "shared/flagging", :locals => { :instance => @guide }
 
 #pdf_dialog.modal.fade.hide
   .modal-header

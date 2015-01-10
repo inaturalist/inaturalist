@@ -426,6 +426,7 @@
     observations_by_login_path(@project.user.login), :alt => @project.user.login %>
   <%= link_to @project.user.login, @project.user %>
   <span class="description"><%=t :project_created_on, :date => l(@project.created_at.to_date, :format => :long) %></span>
+  <%= render :partial => "shared/flagging", :locals => { :instance => @project } %>
   
   <%= separator %>
   <center class="small meta">

@@ -638,13 +638,6 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  #
-  # Checks whether this taxon has been flagged
-  #
-  def flagged?
-    self.flags.select { |f| not f.resolved? }.size > 0
-  end
-  
   # Override assignment method provided by has_many to ensure that all
   # callbacks on photos and taxon_photos get called, including after_destroy
   def photos=(new_photos)
