@@ -3,12 +3,13 @@
 - @view ||= params[:view] || 'map'
 - observations_html ||= nil
 - force_coordinate_visibility ||= false
+- show_all_layer = (@display_map_grid && @map_grid_params.empty?) ? "enabled" : "true"
 - content_for(:extrajs) do
   = google_maps_js
   = javascript_include_tag 'map_bundle', 'wax.g'
   :javascript
     $(document).ready(function() {
-      $("#map").taxonMap({ clickable: true, showAllLayer: "enabled" });
+      $("#map").taxonMap({ clickable: true, showAllLayer: "#{ show_all_layer }" });
       window.map = $("#map").data("taxonMap");
       var gridOptions = #{ raw @map_grid_params.to_json };
       #{ "window.map.addObservationsLayer(gridOptions);" if @display_map_grid && !@map_grid_params.empty? }
