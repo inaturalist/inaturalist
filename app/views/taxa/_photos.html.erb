@@ -19,15 +19,7 @@
   <% else %>
     <div class="clear photos_wrapper">
       <% for photo in photos %>
-        <%- photo_pos_class = cycle('first', '', '', '', '', 'last') -%>
-        <% if [Photo, Photo.descendent_classes].flatten.include?(photo.class) %>
-          <%= photo.id ? modal_image(photo, :size => :square, :class => photo_pos_class) : link_to(image_tag(photo.square_url), photo.native_page_url, :class => photo_pos_class) %>
-        <% else %>
-          <% photo_url = "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}" %>
-          <a href="<%= photo_url %>" class="<%= photo_pos_class %>">
-            <%= image_tag(photo.source_url(:square), :width => 75, :height => 75, :title => "#{t(:photo).titleize}: #{photo.photo_xml['ownername']}") %>
-          </a>
-        <% end %>
+        <%= render "taxa/photo", :photo => photo, :css_class => cycle('first', '', '', '', '', 'last') %>
       <% end %>
     </div>
     <% unless photos.empty? %>
@@ -58,15 +50,7 @@
   <% unless photos[1..-1].size == 0 %>
     <div class="clear photos_wrapper">
       <% for photo in photos[1..6] %>
-        <%- photo_pos_class = cycle('first', '', '', '', '', 'last') -%>
-        <% if [Photo, Photo.descendent_classes].flatten.include?(photo.class) %>
-          <%= photo.id ? modal_image(photo, :size => :square, :class => photo_pos_class) : link_to(image_tag(photo.square_url), photo.native_page_url, :class => photo_pos_class) %>
-        <% else %>
-          <% photo_url = "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}" %>
-          <a href="<%= photo_url %>" class="<%= photo_pos_class %>">
-            <%= image_tag(photo.source_url(:square), :width => 75, :height => 75, :title => "#{t(:photo).titleize}: #{photo.photo_xml['ownername']}") %>
-          </a>
-        <% end %>
+        <%= render "taxa/photo", :photo => photo, :css_class => cycle('first', '', '', '', '', 'last') %>
       <% end %>
     </div>
     <div class="description">
