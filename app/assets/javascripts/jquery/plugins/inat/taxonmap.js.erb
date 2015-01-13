@@ -15,20 +15,23 @@ var inatTaxonMap = { };
 
 inatTaxonMap.setup = function ( elt, options ) {
   var options = $.extend( { }, options );
-  options.taxonID = $(elt).data('taxon-id');
+  options.taxon = $(elt).data('taxon');
   options.latitude = options.latitude || $(elt).data('latitude');
   options.longitude = options.longitude || $(elt).data('longitude');
   options.mapType = $(elt).data('map-type');
   options.zoomLevel = parseInt( $(elt).data('zoom-level') );
   options.gbifKmlUrl = $(elt).data('gbif-kml');
   options.showRange = $(elt).data('show-range');
-  options.placeGeomID = $(elt).data('place-geom-id');
+  options.place = $(elt).data('place');
   options.minX = $(elt).data('min-x');
   options.minY = $(elt).data('min-y');
   options.maxX = $(elt).data('max-x');
   options.maxY = $(elt).data('max-y');
   options.flagLetters = $(elt).data('flag-letters');
+  options.windshaftProjectID = $(elt).data('windshaft-project-id');
   options.windshaftUserID = $(elt).data('windshaft-user-id');
+  options.mapTypeControl = $(elt).data('map-type-control');
+  options.showAllLayer = options.showAllLayer || $(elt).data('show-all-layer') || true;
   options.observations = options.observations || $(elt).data('observations');
   // turn the observations JSON into proper JavaScript objects
   if( options.observations ) {
@@ -54,7 +57,7 @@ inatTaxonMap.fit = function( elt ) {
 
 inatTaxonMap.setupGoogle = function( elt ) {
   var options = $(elt).data('taxonMapOptions'),
-      map = iNaturalist.Map.createMap({div: elt}),
+      map = iNaturalist.Map.createMap({ div: elt, mapTypeControl: (options.mapTypeControl !== false) }),
       preserveViewport = options.preserveViewport
   if (options.minX) {
     map.fitBounds(
@@ -67,79 +70,96 @@ inatTaxonMap.setupGoogle = function( elt ) {
   } else {
     if (options.latitude || options.longitude) {
       map.setCenter(new google.maps.LatLng(options.latitude || 0, options.longitude || 0))
+      preserveViewport = true;
     }
     if (options.zoomLevel) {
       map.setZoom(options.zoomLevel)
+      preserveViewport = true;
     }
   }
-
+  // Set custom map type
   if (options.mapType) {
     map.setMapTypeId(options.mapType)
   }
-
-  if (options.gbifKmlUrl) {
-    var gbifLyr = new google.maps.KmlLayer(options.gbifKmlUrl, {suppressInfoWindows: true, preserveViewport: true})
-    map.addOverlay(I18n.t('taxon_map.gbif_occurrences'), gbifLyr, {
-      id: 'gbif-'+options.taxonID,
-      hidden: true,
-      description:
-        I18n.t('taxon_map.it_may_take_google_a_while_to') +
-        ' <a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">' + I18n.t('taxon_map.data_url') + '</a>'
-    })
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map));
-    google.maps.event.addListener(gbifLyr, 'click', function(e) {
-      if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}
-      for (var k in window['kmlInfoWindows']) {
-        window['kmlInfoWindows'][k].close()
-      }
-      var win = window['kmlInfoWindows'][e.featureData.id]
-      if (!win) {
-        // filter out google's insane parsing
-        var content = (e.featureData.description || '').replace(/(<a.+?>)<a.+?>(.+?)<\/a><\/a>/g, "$1$2</a>")
-        content = content.replace(/&lt;\/a/g, '')
-        content = content.replace(/&gt;/g, '')
-        content = content.replace(/<\/a"/g, '"')
-        win = window['kmlInfoWindows'][e.featureData.id] = new google.maps.InfoWindow({
-          content: content,
-          position: e.latLng,
-          pixelOffset: e.pixelOffset
-        })
-      }
-      win.open(map)
-      return false
-    })
+  // Create the custom control (but don't show it yet)
+  map._overlayControl = new iNaturalist.OverlayControl(map);
+  // All Observations layer
+  if( options.showAllLayer ) {
+    map.addObservationsLayer({
+      title: "All Observations",
+      description: "Every publicly visible observation created in the iNaturalist network",
+      disabled: (options.showAllLayer !== "enabled"),
+      ttl: 60 * 60 * 24  // 24 hours
+    });
   }
-
-  if (options.showRange) {
-    map.addTaxonRangeLayer({ taxon_id: options.taxonID });
+  // Taxon Range
+  if( options.showRange && options.taxon ) {
+    map.addTaxonRangeLayer({ taxon: options.taxon });
   }
-
-  if (options.placeGeomID) {
-    map.addPlaceLayer({ place_id: options.placeGeomID });
+  // Place Geometry
+  if (options.place) {
+    map.addPlaceLayer({ place: options.place });
   }
-
   var windshaftOptions = { };
-  if( options.taxonID ) {
-    windshaftOptions.taxon_id = options.taxonID;
+  if( options.taxon ) {
+    windshaftOptions.taxon_id = options.taxon.id;
   }
   if( options.windshaftUserID ) {
     windshaftOptions.user_id = options.windshaftUserID;
   }
-  if (! _.isEmpty( windshaftOptions )) {
+  if( options.windshaftProjectID ) {
+    windshaftOptions.project_id = options.windshaftProjectID;
+  }
+  // Windshaft Grid / Points
+  if( ! _.isEmpty( windshaftOptions )) {
     if( options.observations ) {
-      windshaftOptions.point_observation_id = _.map(options.observations,
+      windshaftOptions.point_observation_id = _.map( options.observations,
         function( o ) { return o.id }).join(",");
     }
-    map.addObservationsLayer(windshaftOptions);
+    map.addObservationsLayer( windshaftOptions) ;
   }
-
+  // Observations that need Google Maps-style flags
   inatTaxonMap.addObservationsToMap( options, map, preserveViewport);
-
-  if (!preserveViewport) {
-    inatTaxonMap.fit(elt)
+  // GBIF KML Layer (layer is invisible until selected)
+  inatTaxonMap.addGBIFKml( options, map );
+  if( !preserveViewport ) {
+    inatTaxonMap.fit( elt )
   }
-
+  // Now apply the custom map to the element
   $(elt).data('taxonMap', map)
+};
+
+inatTaxonMap.addGBIFKml = function( options, map ) {
+  if( !options.gbifKmlUrl ) { return; }
+  var gbifLyr = new google.maps.KmlLayer(options.gbifKmlUrl, {suppressInfoWindows: true, preserveViewport: true})
+  map.addOverlay(I18n.t('taxon_map.gbif_occurrences'), gbifLyr, {
+    id: 'gbif-'+options.taxon.id,
+    hidden: true,
+    description:
+      I18n.t('taxon_map.it_may_take_google_a_while_to') +
+      ' <a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">' + I18n.t('taxon_map.data_url') + '</a>'
+  })
+  google.maps.event.addListener(gbifLyr, 'click', function(e) {
+    if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}
+    for (var k in window['kmlInfoWindows']) {
+      window['kmlInfoWindows'][k].close()
+    }
+    var win = window['kmlInfoWindows'][e.featureData.id]
+    if (!win) {
+      // filter out google's insane parsing
+      var content = (e.featureData.description || '').replace(/(<a.+?>)<a.+?>(.+?)<\/a><\/a>/g, "$1$2</a>")
+      content = content.replace(/&lt;\/a/g, '')
+      content = content.replace(/&gt;/g, '')
+      content = content.replace(/<\/a"/g, '"')
+      win = window['kmlInfoWindows'][e.featureData.id] = new google.maps.InfoWindow({
+        content: content,
+        position: e.latLng,
+        pixelOffset: e.pixelOffset
+      })
+    }
+    win.open(map)
+    return false
+  })
 };
 
 inatTaxonMap.addObservationsToMap = function( options, map, preserveViewport ) {

@@ -125,8 +125,6 @@ class ObservationsController < ApplicationController
         @map_grid_params = { }
         if grid_affecting_params.blank?
           @display_map_grid = true
-          # setting the default TTL for tiles on /observations to 24 hours
-          @map_grid_params[:ttl] = 60 * 60 * 24
         # we can only show grids when quality_grade = 'any',
         # and all other parameters are empty
         elsif grid_affecting_params.delete("quality_grade") == "any" &&
@@ -141,9 +139,9 @@ class ObservationsController < ApplicationController
             project_id: search_params[:project_id],
             place_id: search_params[:place_id]
           }.delete_if{ |k,v| v.nil? })
-          @map_grid_params[:iconic_taxon] =
-            (search_params[:taxon] && search_params[:taxon].iconic_taxon) ?
-            search_params[:taxon].iconic_taxon.name : nil
+          if search_params[:taxon] && search_params[:taxon].iconic_taxon
+            @map_grid_params[:iconic_taxon] = search_params[:taxon].iconic_taxon.name
+          end
         end
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           pagination_headers_for(@observations)

@@ -8,10 +8,10 @@
   = javascript_include_tag 'map_bundle', 'wax.g'
   :javascript
     $(document).ready(function() {
-      $("#map").taxonMap({ clickable: true });
+      $("#map").taxonMap({ clickable: true, showAllLayer: "enabled" });
       window.map = $("#map").data("taxonMap");
       var gridOptions = #{ raw @map_grid_params.to_json };
-      #{ "window.map.addObservationsLayer(gridOptions);" if @display_map_grid }
+      #{ "window.map.addObservationsLayer(gridOptions);" if @display_map_grid && !@map_grid_params.empty? }
       // Bind the divider toggle
       $('#mapdivider').click(function(){
         $(this).toggleClass('closed');

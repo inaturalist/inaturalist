@@ -564,19 +564,25 @@ module ApplicationHelper
   
   def setup_map_tag_attrs(options = {})
     map_tag_attrs = {
-      "taxon-id" => options[:taxon] ? options[:taxon].id : nil,
+      "taxon" => options[:taxon] ? options[:taxon].
+        to_json(only: [ :id, :name ],
+          include: { common_name: { only: [ :name ] } }
+        ) : nil,
       "latitude" => options[:latitude],
       "longitude" => options[:longitude],
       "map-type" => options[:map_type],
       "zoom-level" => options[:zoom_level],
       "show-range" => options[:show_range] ? "true" : nil,
-      "place-geom-id" => options[:place] ? options[:place].id : nil,
+      "place" => options[:place] ? options[:place].
+        to_json(only: [ :id, :name ]) : nil,
       "min-x" => options[:min_x],
       "min-y" => options[:min_y],
       "max-x" => options[:max_x],
       "max-y" => options[:max_y],
       "flag-letters" => options[:flag_letters] ? "true" : nil,
-      "windshaft-user-id" => options[:windshaft_user_id]
+      "windshaft-project-id" => options[:windshaft_project_id],
+      "windshaft-user-id" => options[:windshaft_user_id],
+      "map-type-control" => options[:map_type_control]
     }
     unless options[:zoom_level] && !map_tag_attrs["min-x"]
       if options[:taxon] && (!options[:focus] || options[:focus] == :taxon)

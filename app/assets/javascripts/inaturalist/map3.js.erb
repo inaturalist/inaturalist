@@ -658,7 +658,7 @@ iNaturalist.OverlayControl = function(map, options) {
   controlDiv.style.padding = '5px';
   var controlUI = $('<div>' + I18n.t('taxon_map.overlays') + '</div>').addClass('gmapv3control overlaycontrol')
   var controlUI = $('<div><span class="ui-icon inat-icon ui-icon-layers">'+I18n.t('taxon_map.overlays')+'</span></div>').addClass('gmapv3control overlaycontrol')
-  var ul = $('<ul></ul>').hide()
+  var ul = $('<ul></ul>').addClass("inat-overlay").hide()
   controlUI.append(ul)
   controlUI.hover(function() {
     $(this).addClass('open')
@@ -675,10 +675,45 @@ iNaturalist.OverlayControl = function(map, options) {
       this.addOverlay(map.overlays[i])
     }
   }
-  if (!options.div) {
-    return controlDiv
-  }
+  return this;
 }
+
+// Given an array of wax.g map layers (overlayMapTypes), add a single
+// checkbox to the custom iNaturalist Overlays map control. That single
+// checkbox can have custom title and description, and will toggle everything
+// in `layers` at the same time. If the overlay was not previously displayed
+// on the map, it will be added to the top-right corner of the map.
+iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( layers, options ) {
+  if( ! _.isArray( layers ) || layers.length === 0 ) { return; }
+  var map = this.map,
+      ul = $("ul", this.div),
+      id = "layer_" + layers[0].layerID,
+      title = options.title || "Layer",
+      description = options.description,
+      checkbox = $("<input type='checkbox'/>"),
+      label = $("<label/>").attr("for", id).html(title),
+      li = $("<li/>");
+  checkbox
+    .attr("id", id)
+    .attr("name", title)
+    .attr("checked", ! options.disabled);
+  li.append( checkbox, label );
+  checkbox.click( function( ) {
+    var checked = this.checked;
+    _.each( layers, function( layerData ) {
+      map.overlayMapTypes.setAt( layerData.layerID - 1, checked ? layerData.layer : null);
+    });
+  })
+  if( description ) {
+    li.append($("<div/>").addClass("small meta").html( description ));
+  }
+  ul.append( li );
+  if( ! map._overlayControlDisplayed ) {
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(map._overlayControl.div);
+    map._overlayControlDisplayed = true;
+  }
+};
+
 iNaturalist.OverlayControl.prototype.addOverlay = function(lyr) {
   var map = this.map,
       ul = $('ul', this.div)
@@ -733,25 +768,48 @@ google.maps.Map.prototype.getOverlay = function(name) {
   }
 }
 
-google.maps.Map.prototype.addPlaceLayer = function(options) {
+google.maps.Map.prototype.addPlaceLayer = function( options ) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt(0);
-  var options = options || {},
+  var options = options || { },
       tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
-      placeTileUrl = tiles_url + "/places/" + options["place_id"] + "/{z}/{x}/{y}.png";
+      placeTileUrl = tiles_url + "/places/" + options.place.id + "/{z}/{x}/{y}.png";
   var tilejson = { tiles: [ placeTileUrl ] };
-  return this.overlayMapTypes.push(new wax.g.connector(tilejson));
+  return this.addLayerAndControl( tilejson, {
+    title: "Place Layer",
+    description: options.place.name
+  });
+  return this.addLayerAndControl( tilejson );
 }
 
-google.maps.Map.prototype.addTaxonRangeLayer = function(options) {
+google.maps.Map.prototype.addTaxonRangeLayer = function( options ) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt(0);
-  var options = options || {},
+  var options = options || { },
       tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
-      rangeTileUrl = tiles_url + "/taxon_ranges/" + options["taxon_id"] + "/{z}/{x}/{y}.png";
+      rangeTileUrl = tiles_url + "/taxon_ranges/" + options.taxon.id + "/{z}/{x}/{y}.png";
   var tilejson = { tiles: [ rangeTileUrl ] };
-  return this.overlayMapTypes.push(new wax.g.connector(tilejson));
-}
+  return this.addLayerAndControl( tilejson, {
+    title: "Taxon Range Layer",
+    description: (options.taxon.common_name ?
+      options.taxon.common_name.name + "<br/>(" + options.taxon.name + ")" :
+      options.taxon.name)
+  });
+};
+
+// Convenience method that likely isn't called outside this file.
+// Will add a layer and send that layer's data to addWindshaftOverlayControl
+// to add a checkbox toggle for this new layer
+google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
+  options = options || { }
+  var layer = new wax.g.connector( tilejson );
+  var layerID = this.overlayMapTypes.push( layer );
+  if( this._overlayControl ) {
+    this._overlayControl.addWindshaftOverlayControl(
+      [ { layer: layer, layerID: layerID } ], options );
+  }
+  return layerID;
+};
 
 google.maps.Map.prototype.addObservationsLayer = function(options) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
@@ -791,17 +849,26 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
     pointTileUrl += "?" + $.param( pointParams );
   }
   // add a layer to the map for the grid
-  this.addTileLayer(gridTileUrl, {
+  gridLayer = this.addTileLayer( gridTileUrl, {
     maxzoom: gridmaxzoom,
-    interactivity: false
-  })
-  return this.addTileLayer(pointTileUrl, {
+    interactivity: false,
+    disabled: options.disabled
+  });
+  pointLayer = this.addTileLayer( pointTileUrl, {
     interactivity: options.interactivity === false ? false :
       'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
     minzoom: gridmaxzoom + 1,
-    gridminzoom: gridmaxzoom + 1
+    gridminzoom: gridmaxzoom + 1,
+    disabled: options.disabled
   })
-}
+  // add a toggle for this layer to the overlay control, if it exists
+  if( this._overlayControl ) {
+    this._overlayControl.addWindshaftOverlayControl(
+      [ gridLayer, pointLayer ],
+      _.extend(options, { title: options.title || "Observations Layer" })
+    );
+  }
+};
 
 google.maps.Map.prototype.getInfoWindow = function() {
   if (!this.infoWindow) {
@@ -813,30 +880,39 @@ google.maps.Map.prototype.getInfoWindow = function() {
   return this.infoWindow
 }
 
-google.maps.Map.prototype.addTileLayer = function(tileUrl, options) {
+google.maps.Map.prototype.addTileLayer = function(tileURL, options) {
   var options = options || {},
-      interactivity = options.interactivity
-      gridUrl = tileUrl.replace(/\.png/, '.grid.json')
-  if (interactivity) {
-    if (gridUrl.indexOf('?') < 0) {
-      gridUrl += '?'
-    } else {
-      gridUrl += '&'
-    }
-    gridUrl += 'interactivity='+interactivity
+      interactivity = options.interactivity;
+  if( options.interactivity ) {
     // windshaft needs the interactivity param to know what data to render
-    options.grids = [gridUrl]
+    options.grids = [ this.interactivityURL( tileURL, options.interactivity ) ];
   }
-  var tilejson = $.extend(true, {}, {
-    version: '0.0.1',
-    scheme: 'xyz',
-    tiles: [tileUrl],
-    // wax needs template and legend set or it won't fire on events
-    "template": "{{species_guess}}",
-    "legend": "foo"
-  }, options)
-  var layerID =  this.overlayMapTypes.push(new wax.g.connector(tilejson));
-  if (! interactivity) { return; }
+  // finish preparing the tile options hash
+  var tilejson = $.extend(true, { }, {
+    tiles: [ tileURL ],
+    // wax needs template or it won't fire on events
+    "template": "{{species_guess}}"
+  }, options);
+  var layer = new wax.g.connector( tilejson );
+  var layerID =  this.overlayMapTypes.push( layer );
+  if( options.disabled ) {
+    this.overlayMapTypes.setAt( layerID - 1, null);
+  }
+  // add a utfgrid data layer and custom JS events to catch interactivity
+  if( options.interactivity ) {
+    this.addTileInteractivity( tilejson );
+  }
+  // return the layer and index of this layer in the current stack
+  return { layer: layer, layerID: layerID };
+}
+
+google.maps.Map.prototype.interactivityURL = function( tileURL, interactivity ) {
+  utfgridURL = tileURL.replace( /\.png/, ".grid.json" );
+  utfgridURL += ( utfgridURL.indexOf("?") < 0 ) ? "?" : "&";
+  return utfgridURL + "interactivity=" + interactivity;
+};
+
+google.maps.Map.prototype.addTileInteractivity = function( tilejson ) {
   var map = this;
   wax.g
     .interaction()
@@ -885,8 +961,7 @@ google.maps.Map.prototype.addTileLayer = function(tileUrl, options) {
         map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
       }
     });
-  return layerID;
-}
+};
 
 // Static constants
 iNaturalist.Map.ICONS = {
