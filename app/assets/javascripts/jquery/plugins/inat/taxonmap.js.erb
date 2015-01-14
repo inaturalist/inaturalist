@@ -107,7 +107,7 @@ inatTaxonMap.setupGoogle = function( elt ) {
   if (options.place) {
     map.addPlaceLayer({ place: options.place, title: options.placeLayerLabel });
   }
-  var windshaftOptions = { title: options.featuredLayerLabel };
+  var windshaftOptions = { };
   if( options.taxon ) {
     windshaftOptions.taxon_id = options.taxon.id;
   }
@@ -120,6 +120,7 @@ inatTaxonMap.setupGoogle = function( elt ) {
   // Windshaft Grid / Points
   if( ! _.isEmpty( windshaftOptions )) {
     if( options.observations ) {
+      windshaftOptions.title = options.featuredLayerLabel;
       windshaftOptions.point_observation_id = _.map( options.observations,
         function( o ) { return o.id }).join(",");
     }
