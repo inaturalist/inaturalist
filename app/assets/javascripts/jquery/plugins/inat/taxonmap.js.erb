@@ -30,6 +30,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.flagLetters = $(elt).data('flag-letters');
   options.windshaftProjectID = $(elt).data('windshaft-project-id');
   options.windshaftUserID = $(elt).data('windshaft-user-id');
+  options.observations = options.observations || $(elt).data('observations');
   options.mapTypeControl = $(elt).data('map-type-control');
   options.showAllLayer = options.showAllLayer || $(elt).data('show-all-layer') || true;
   options.featuredLayerLabel = options.featuredLayerLabel || $(elt).data('featured-layer-label');
