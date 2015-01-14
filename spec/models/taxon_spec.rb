@@ -956,3 +956,29 @@ describe Taxon, "geoprivacy" do
     o.should be_coordinates_private
   end
 end
+
+describe Taxon, "to_styled_s" do
+  it "should return normal names untouched" do
+    Taxon.new(:name => "Tom", :rank => nil).to_styled_s.should == "Tom"
+  end
+
+  it "should italicize genera and below" do
+    Taxon.new(:name => "Tom", :rank => "genus").to_styled_s.should == "Genus <i>Tom</i>"
+    Taxon.new(:name => "Tom", :rank => "species").to_styled_s.should == "<i>Tom</i>"
+    Taxon.new(:name => "Tom", :rank => "infraspecies").to_styled_s.should == "<i>Tom</i>"
+  end
+
+  it "should add ranks to genera and above" do
+    Taxon.new(:name => "Tom", :rank => "genus").to_styled_s.should == "Genus <i>Tom</i>"
+    Taxon.new(:name => "Tom", :rank => "family").to_styled_s.should == "Family Tom"
+    Taxon.new(:name => "Tom", :rank => "kingdom").to_styled_s.should == "Kingdom Tom"
+  end
+
+  it "should add common name when available" do
+    taxon = Taxon.new(:name => "Tom", :rank => "genus")
+    common_name = TaxonName.make!(:name => "Common",
+      :taxon => taxon, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    taxon.reload
+    taxon.to_styled_s.should == "Common (Genus <i>Tom</i>)"
+  end
+end

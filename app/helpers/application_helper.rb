@@ -582,8 +582,18 @@ module ApplicationHelper
       "flag-letters" => options[:flag_letters] ? "true" : nil,
       "windshaft-project-id" => options[:windshaft_project_id],
       "windshaft-user-id" => options[:windshaft_user_id],
-      "map-type-control" => options[:map_type_control]
+      "map-type-control" => options[:map_type_control],
+      "observations" => observations_for_map_tag_attrs(options),
+      "place-layer-label" => I18n.t("maps.overlays.place_boundary"),
+      "taxon_range_layer_label" => I18n.t("maps.overlays.taxon_range"),
+      "all_layer_label" => I18n.t("maps.overlays.all_observations"),
+      "all_layer_description" => I18n.t("maps.overlays.every_publicly_visible_observation"),
+      "featured_layer_label" => I18n.t("maps.overlays.featured_observations")
     }
+    if options[:taxon]
+      map_tag_attrs["taxon-range-layer-description"] = options[:taxon].to_styled_s
+    end
+    # Adjust the map bounds based on the content being displayed
     unless options[:zoom_level] && !map_tag_attrs["min-x"]
       if options[:taxon] && (!options[:focus] || options[:focus] == :taxon)
         append_bounds_to_map_tag_attrs(map_tag_attrs, options[:taxon])
@@ -595,18 +605,20 @@ module ApplicationHelper
         append_bounds_to_map_tag_attrs(map_tag_attrs, options[:place])
       end
     end
-    if options[:observations]
-      map_tag_attrs["observations"] = options[:observations].collect{ |o|
-        o.to_json(:viewer => current_user,
-          :force_coordinate_visibility => @coordinates_viewable,
-          :include => [ { :user => { :only => :login },
-            :taxon => { :only => [ :id, :name ] } },
-            :iconic_taxon ],
-          :methods => [ :iconic_taxon_name ],
-          :except => [ :description ] ).html_safe
-      }
-    end
     { "data" => map_tag_attrs.delete_if{ |k,v| v.nil? } }
+  end
+
+  def observations_for_map_tag_attrs(options)
+    return if options[:observations].blank?
+    options[:observations].collect{ |o|
+      o.to_json(:viewer => current_user,
+        :force_coordinate_visibility => @coordinates_viewable,
+        :include => [ { :user => { :only => :login },
+          :taxon => { :only => [ :id, :name ] } },
+          :iconic_taxon ],
+        :methods => [ :iconic_taxon_name ],
+        :except => [ :description ] ).html_safe
+    }
   end
 
   def append_bounds_to_map_tag_attrs(map_tag_attrs, instance_with_bounds)

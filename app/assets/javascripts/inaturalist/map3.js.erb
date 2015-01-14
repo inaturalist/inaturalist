@@ -734,7 +734,7 @@ iNaturalist.OverlayControl.prototype.addOverlay = function(lyr) {
   })
   li.append(checkbox, label)
   if (lyr.description) {
-    li.append($('<div></div>').addClass('small meta').css('margin-left', '1.5em').html(lyr.description))
+    li.append($('<div></div>').addClass('small meta').html(lyr.description))
   }
   ul.append(li)
 }
@@ -775,10 +775,9 @@ google.maps.Map.prototype.addPlaceLayer = function( options ) {
       tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
       placeTileUrl = tiles_url + "/places/" + options.place.id + "/{z}/{x}/{y}.png";
   var tilejson = { tiles: [ placeTileUrl ] };
-  return this.addLayerAndControl( tilejson, {
-    title: "Place Layer",
+  return this.addLayerAndControl( tilejson, _.extend(options, {
     description: options.place.name
-  });
+  }));
   return this.addLayerAndControl( tilejson );
 }
 
@@ -789,12 +788,7 @@ google.maps.Map.prototype.addTaxonRangeLayer = function( options ) {
       tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
       rangeTileUrl = tiles_url + "/taxon_ranges/" + options.taxon.id + "/{z}/{x}/{y}.png";
   var tilejson = { tiles: [ rangeTileUrl ] };
-  return this.addLayerAndControl( tilejson, {
-    title: "Taxon Range Layer",
-    description: (options.taxon.common_name ?
-      options.taxon.common_name.name + "<br/>(" + options.taxon.name + ")" :
-      options.taxon.name)
-  });
+  return this.addLayerAndControl( tilejson, options );
 };
 
 // Convenience method that likely isn't called outside this file.
@@ -864,8 +858,7 @@ google.maps.Map.prototype.addObservationsLayer = function(options) {
   // add a toggle for this layer to the overlay control, if it exists
   if( this._overlayControl ) {
     this._overlayControl.addWindshaftOverlayControl(
-      [ gridLayer, pointLayer ],
-      _.extend(options, { title: options.title || "Observations Layer" })
+      [ gridLayer, pointLayer ], options
     );
   }
 };
