@@ -130,3 +130,4 @@
           = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }
         - else
           = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2, :hide_form => true }
+        = render :partial => "shared/flagging", :locals => { :instance => @post }

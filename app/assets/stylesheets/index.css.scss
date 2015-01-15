@@ -18,6 +18,24 @@ body {
 .gm-style .gm-style-iw div, .gm-style div, .gm-style span, .gm-style label, .gm-style a {
   font-family: "Trebuchet MS", Arial, sans-serif;
 }
+.gm-style div.small.meta {
+  margin-left: 1.8em;
+}
+.gm-style label[disabled] {
+  color: gray;
+}
+.gm-style label[disabled] {
+  color: gray;
+}
+.gmapv3control ul.inat-overlay {
+  margin-top: 5px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+.gmapv3control ul.inat-overlay li {
+  border-top: 1px solid #D8D8D8;
+  padding-top: 2px;
+  padding-bottom: 3px
+}
 
 h1, h2, h3, h4, h5, h6 {
   font-family: Georgia, serif;
@@ -1683,4 +1701,19 @@ ul.plain {list-style:none;margin:0;padding:0}
 .commentitem .observations.mini .tags .label,
 .commentitem .observations.mini .curator_ident .label {
   left: 25px;
+}
+
+p.spam {
+  margin-top: 5px;
+}
+
+#flags .description {
+  clear: both
+}
+#flags .smallbuttons input.button {
+  height: 25px;
+  padding: 0px 5px;
+}
+#flags .smallbuttons input[type="text"] {
+  width: 180px;
 }

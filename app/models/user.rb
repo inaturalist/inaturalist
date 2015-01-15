@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include ActsAsSpammable::User
   
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
@@ -125,7 +126,6 @@ class User < ActiveRecord::Base
   after_save :update_photo_licenses
   after_save :update_sound_licenses
   after_save :destroy_messages_by_suspended_user
-  after_save :suspend_if_spammer
   after_update :set_community_taxa_if_pref_changed
   after_create :create_default_life_list
   after_create :set_uri
@@ -625,38 +625,6 @@ class User < ActiveRecord::Base
       :methods => [
         :user_icon_url, :medium_user_icon_url, :original_user_icon_url]
     }
-  end
-
-  def suspend_if_spammer
-    if self.spammer_changed? && self.spammer
-      self.suspend!
-    end
-  end
-
-  # TODO - what to do when the content is deleted? The spam count will go
-  # down and the user will no longer look like a spammer.
-  def update_spam_count
-    self.spam_count = content_flagged_as_spam.length
-    if self.spam_count >= 3
-      # anyone with a high spam count is a spammer
-      self.spammer = true
-    elsif self.spammer != false
-      # spammer === false represents known non-spammers. We want to make
-      # sure to maintain that info and set the rest to nil (=unknown)
-      self.spammer = nil
-    end
-    self.save
-  end
-
-  def content_flagged_as_spam
-    # The FlagsController is apparently the place to check for what
-    # models use the acts_as_flaggable module
-    Rakismet.spammable_models.map{ |klass|
-      # classes have different ways of getting to user, so just do
-      # a join and enforce the user_id with a where clause
-      klass.joins(:user).where(users: { id: self.id }).
-        joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } })
-    }.compact.flatten.uniq
   end
 
 end

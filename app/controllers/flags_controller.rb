@@ -1,24 +1,53 @@
 class FlagsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :curator_required, :only => [:edit, :update, :destroy]
-  before_filter :set_model, :except => [:update, :show, :destroy]
+  before_filter :set_model, :except => [:update, :show, :destroy, :on]
+  before_filter :model_required, :except => [:index, :update, :show, :destroy, :on]
   before_filter :load_flag, :only => [:show, :edit, :destroy, :update]
   
   # put the parameters for the foreign keys here
   FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment", "Identification",
-    "Message", "Photo", "List", "Project", "Guide", "GuideSection" ]
+    "Message", "Photo", "List", "Project", "Guide", "GuideSection", "LifeList" ]
   FLAG_MODELS_ID = [ "observation_id","taxon_id","post_id", "comment_id",
     "identification_id", "message_id", "photo_id", "list_id", "project_id",
-    "guide_id", "guide_section_id" ]
+    "guide_id", "guide_section_id", "life_list_id" ]
   PARTIALS = %w(dialog)
 
   def index
-    @object = @model.find(params[@param])
-    @object = @object.becomes(Photo) if @object.is_a?(Photo)
-    @flags = @object.flags.paginate(:page => params[:page],
-      :include => [:user, :resolver], :order => "id desc")
-    @unresolved = @flags.select {|f| not f.resolved }
-    @resolved = @flags.select {|f| f.resolved }
+    if @model
+      # The default acts_as_flaggable index route
+      @object = @model.find(params[@param])
+      @object = @object.becomes(Photo) if @object.is_a?(Photo)
+      @flags = @object.flags.paginate(:page => params[:page],
+        :include => [:user, :resolver], :order => "id desc")
+      @unresolved = @flags.select {|f| not f.resolved }
+      @resolved = @flags.select {|f| f.resolved }
+    else
+      # a real index of all flags, which can be filtered by flag type
+      @flag_type = params[:flag].to_s.tr("_", " ")
+      # if we have a user to filter by...
+      if @user = User.where(login: params[:user_id]).first || User.where(id: params[:user_id]).first
+        @flags = FlagsController::FLAG_MODELS.map(&:constantize).map{ |klass|
+          # classes have different ways of getting to user, so just do
+          # a join and enforce the user_id with a where clause
+          if klass.reflections[:user]
+            klass.joins(:user).where(users: { id: @user.id }).joins(:flags).
+              where({ flags: { resolved: false } }).map(&:flags)
+          end
+        }.compact.flatten.uniq
+        unless @flag_type.blank?
+          @flags.reject!{ |f| f.flag != @flag_type }
+        end
+      else
+        # otherwise start will all recent unresolved flags
+        @flags = Flag.where(resolved: false).order("created_at desc")
+        unless @flag_type.blank?
+          @flags = @flags.where(flag: @flag_type)
+        end
+        @flags = @flags.paginate(per_page: 50, page: params[:page])
+      end
+      render :global_index
+    end
   end
   
   def show
@@ -70,6 +99,9 @@ class FlagsController < ApplicationController
   end
   
   def update
+    if resolver_id = params[:flag].delete("resolver_id")
+      params[:flag]["resolver"] = User.find(resolver_id)
+    end
     respond_to do |format|
       if @flag.update_attributes(params[:flag])
         flash[:notice] = t(:flag_saved)
@@ -89,7 +121,7 @@ class FlagsController < ApplicationController
       format.html { redirect_back_or_default(admin_path) }
     end
   end
-  
+
   private
   
   def load_flag
@@ -108,7 +140,13 @@ class FlagsController < ApplicationController
     if (@model ||= Object.const_get(params[:flag][:flaggable_type]) rescue nil)
       return
     end
-    flash[:notice] = t(:you_cant_flag_that)
-    redirect_to observations_path
   end
+
+  def model_required
+    unless @model
+      flash[:notice] = t(:you_cant_flag_that)
+      redirect_to observations_path
+    end
+  end
+
 end

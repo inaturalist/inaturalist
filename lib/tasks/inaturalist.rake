@@ -34,7 +34,8 @@ namespace :inaturalist do
   desc "Delete content from spmmer accounts."
   task :delete_spam_content => :environment do
     spammer_ids = User.where(spammer: true).
-      where("suspended_at < ?", Time.now - 1.week).collect(&:id)
+      where("suspended_at < ?", User::DELETE_SPAM_AFTER.ago).
+      collect(&:id)
     Comment.where(user_id: spammer_ids).destroy_all
     Guide.where(user_id: spammer_ids).destroy_all
     Identification.where(user_id: spammer_ids).destroy_all

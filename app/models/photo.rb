@@ -223,10 +223,6 @@ class Photo < ActiveRecord::Base
       end
     end
   end
-
-  def flagged?
-    flags.detect{|f| !f.resolved?}
-  end
   
   # Retrieve info about a photo from its native source given its native id.  
   # Should be implemented by descendents

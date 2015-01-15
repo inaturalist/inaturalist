@@ -22,12 +22,9 @@
   <%= google_maps_js %>
   <%= javascript_include_tag 'map_bundle', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
-    var PROJECT = <%=json_escape @project.to_json(:only => [:title, :latitude, :longitude, :place_id, :zoom_level, :map_type]).html_safe %>,
-        PLACE = <%=json_escape @place.to_json.html_safe %>,
-        SHOW_PLACE_GEOMETRY = <%= @place_geometry ? "true" : "false" %>,
-        OBSERVATIONS = <%= @observations.blank? ? 'null' : json_escape(@observations.to_json(:include => :iconic_taxon).html_safe) %>,
+    var PRESERVE_VIEWPORT = <%= !!(@project.latitude && @project.zoom_level).to_s %>,
         OBSERVATIONS_URL = <%= @observations_url.inspect.html_safe %>
-        KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe %>
+        KML_ASSET_URLS = <%= @kml_assets.map{|a| a.asset.url}.inspect.html_safe %>
   </script>
 <%- end -%>
 
@@ -168,7 +165,15 @@
 
 
 <div class="column span-16">
-  <div id="map" class="stacked"></div>
+  <%- map_attributes = setup_map_tag_attrs(
+    observations: @observations,
+    place: @place_geometry ? @place_geometry.place : nil,
+    zoom_level: @project.zoom_level,
+    latitude: @project.latitude,
+    longitude: @project.longitude,
+    map_type: @project.map_type,
+    windshaft_project_id: @project.id) %>
+  <%= content_tag("div", "", map_attributes.merge({ id: "map" })) %>
   
   <% unless @project_journal_posts.blank? %>
     <div id="journal" class="quiet box">
@@ -426,6 +431,7 @@
     observations_by_login_path(@project.user.login), :alt => @project.user.login %>
   <%= link_to @project.user.login, @project.user %>
   <span class="description"><%=t :project_created_on, :date => l(@project.created_at.to_date, :format => :long) %></span>
+  <%= render :partial => "shared/flagging", :locals => { :instance => @project } %>
   
   <%= separator %>
   <center class="small meta">

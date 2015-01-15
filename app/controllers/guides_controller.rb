@@ -140,7 +140,7 @@ class GuidesController < ApplicationController
   def show
     unless @guide.published? || @guide.user_id == current_user.try(:id)
       respond_to do |format|
-        format.any(:html, :mobile) { render(:file => "#{Rails.root}/public/404.html", :status => 404, :layout => false) }
+        format.any(:html, :mobile) { render_404 }
         format.any(:xml, :ngz) { render :status => 404, :text => ""}
         format.json { render :json => {:error => "Not found"}, :status => 404 }
       end

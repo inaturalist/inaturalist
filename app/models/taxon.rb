@@ -513,6 +513,16 @@ class Taxon < ActiveRecord::Base
     "#{comname.name} (#{sciname})"
   end
   
+  def to_styled_s(options = {})
+    comname = common_name unless options[:skip_common]
+    sciname = %w(genus species infraspecies).include?(rank) ? "<i>#{name}</i>" : name
+    unless %w(species infraspecies).include?(rank) || rank.blank?
+      sciname = rank.capitalize + " " + sciname;
+    end
+    return sciname if comname.blank?
+    "#{comname.name} (#{sciname})"
+  end
+
   def observations_count_with_descendents
     Observation.of(self).count
   end
@@ -636,13 +646,6 @@ class Taxon < ActiveRecord::Base
         :is_valid => true
       )
     end
-  end
-  
-  #
-  # Checks whether this taxon has been flagged
-  #
-  def flagged?
-    self.flags.select { |f| not f.resolved? }.size > 0
   end
   
   # Override assignment method provided by has_many to ensure that all

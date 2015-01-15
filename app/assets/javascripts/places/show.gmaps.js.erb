@@ -9,7 +9,7 @@ window.map = iNaturalist.Map.createMap({
 map.setPlace(PLACE)
 
 if (SHOW_PLACE_GEOMETRY) {
-  window.map.addPlaceLayer({ place_id: PLACE.id });
+  window.map.addPlaceLayer({ place: PLACE });
 }
 
 var icon = new google.maps.MarkerImage('<%= image_path('mapMarkers/mm_20_stemless_GoldenRod.png') %>')
