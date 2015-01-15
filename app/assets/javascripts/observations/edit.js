@@ -29,7 +29,7 @@ $(document).ready(function() {
         $.fn.latLonSelector.handleMapClick(e)
       }
     })
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map).div)
   } else if (typeof(KML_ASSET_URLS) != 'undefined' && KML_ASSET_URLS != null && KML_ASSET_URLS.length > 0) {
     for (var i=0; i < KML_ASSET_URLS.length; i++) {
       lyr = new google.maps.KmlLayer(KML_ASSET_URLS[i], {preserveViewport: preserveViewport, suppressInfoWindows: true})
@@ -38,7 +38,7 @@ $(document).ready(function() {
         $.fn.latLonSelector.handleMapClick(e)
       })
     }
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map).div)
   }
   $('.place_guess').latLonSelector({
     mapDiv: $('#map').get(0),

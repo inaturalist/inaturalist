@@ -26,7 +26,7 @@ $(document).ready(function() {
     taxonRangeLyr = new google.maps.KmlLayer(taxonRangeKmlUrl,
         {suppressInfoWindows: true});
     map.addOverlay(taxonRangeLyr)
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map).div)
   }
   
   $.get(observationsJsonUrl, function(data) {

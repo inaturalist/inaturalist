@@ -18,6 +18,24 @@ body {
 .gm-style .gm-style-iw div, .gm-style div, .gm-style span, .gm-style label, .gm-style a {
   font-family: "Trebuchet MS", Arial, sans-serif;
 }
+.gm-style div.small.meta {
+  margin-left: 1.8em;
+}
+.gm-style label[disabled] {
+  color: gray;
+}
+.gm-style label[disabled] {
+  color: gray;
+}
+.gmapv3control ul.inat-overlay {
+  margin-top: 5px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+.gmapv3control ul.inat-overlay li {
+  border-top: 1px solid #D8D8D8;
+  padding-top: 2px;
+  padding-bottom: 3px
+}
 
 h1, h2, h3, h4, h5, h6 {
   font-family: Georgia, serif;
