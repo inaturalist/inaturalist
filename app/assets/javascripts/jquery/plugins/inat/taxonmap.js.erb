@@ -120,10 +120,10 @@ inatTaxonMap.setupGoogle = function( elt ) {
   // Windshaft Grid / Points
   if( ! _.isEmpty( windshaftOptions )) {
     if( options.observations ) {
-      windshaftOptions.title = options.featuredLayerLabel;
       windshaftOptions.point_observation_id = _.map( options.observations,
         function( o ) { return o.id }).join(",");
     }
+    windshaftOptions.title = options.featuredLayerLabel;
     map.addObservationsLayer( windshaftOptions ) ;
   }
   // Observations that need Google Maps-style flags
