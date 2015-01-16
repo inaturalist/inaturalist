@@ -18,9 +18,6 @@ body {
 .gm-style .gm-style-iw div, .gm-style div, .gm-style span, .gm-style label, .gm-style a {
   font-family: "Trebuchet MS", Arial, sans-serif;
 }
-.gm-style div.small.meta {
-  margin-left: 1.8em;
-}
 .gm-style label[disabled] {
   color: gray;
 }
@@ -34,7 +31,20 @@ body {
 .gmapv3control ul.inat-overlay li {
   border-top: 1px solid #D8D8D8;
   padding-top: 2px;
-  padding-bottom: 3px
+  padding-bottom: 3px;
+  position: relative;
+}
+.gmapv3control ul.inat-overlay li input[type=checkbox] {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  padding: 0;
+  margin: 0;
+}
+.gmapv3control ul.inat-overlay li label,
+.gmapv3control ul.inat-overlay li div {
+  display: block;
+  padding-left: 20px;
 }
 
 h1, h2, h3, h4, h5, h6 {
