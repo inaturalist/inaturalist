@@ -663,9 +663,11 @@ iNaturalist.OverlayControl = function(map, options) {
   controlUI.hover(function() {
     $(this).addClass('open')
     $('ul', this).show()
+    $(this).parent().css('z-index', 1)
   }, function() {
     $(this).removeClass('open')
     $('ul', this).hide()
+    $(this).parent().css('z-index', 0)
   })
   controlDiv.appendChild(controlUI.get(0))
   this.div = controlDiv
