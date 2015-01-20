@@ -22,7 +22,7 @@ $(document).ready(function() {
     }
   }
   if (typeof(PLACE) != 'undefined' && PLACE) {
-    window.map.addPlaceLayer({ place_id: PLACE.id });
+    window.map.addPlaceLayer({ place: PLACE });
     map.setPlace(PLACE, {
       preserveViewport: preserveViewport,
       click: function(e) {
