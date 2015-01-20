@@ -1048,7 +1048,10 @@ es:
   flagged: marcado
   flagged_for_curation: "Marcado para administración."
   flagger: Marcador
-  flags_explanation: "Los usuarios de %{site_name} marcan cosas cuando encuentran algo que no está bien. Aquí hay algunos problemas que los administradores no han resuelto todavía. Los usuarios han marcado este %{thing} porque"
+  flags_explanation: |
+    Los usuarios de %{site_name} marcan cosas cuando encuentran algo que no
+    está bien. Aquí hay algunos problemas que los administradores no han
+    resuelto todavía.
   flags_for: "Marcas para"
   flickr_account_information: "Información de tu cuenta de Flickr"
   flickr_description: "Flickr es un servicio de alojamiento de fotos en línea; quizás ya lo conoces."

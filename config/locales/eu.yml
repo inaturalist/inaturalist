@@ -1091,7 +1091,10 @@ eu:
   flagged: markatuta
   flagged_for_curation: "Administraziorako markatuta."
   flagger: "Markagailua "
-  flags_explanation: "%{site_name} webguneko erabiltzaileek gauzak markatzen dituzte, zerbait ez dagoela ondo topatzen dutenean. Hemen administrariek oraindik konpondu gabeko zenbait arazo daude. Erabiltzaileek %{thing} hau markatu dute, zeren eta"
+  flags_explanation: |
+    %{site_name} webguneko erabiltzaileek gauzak markatzen dituzte, zerbait ez
+    dagoela ondo topatzen dutenean. Hemen administrariek oraindik konpondu
+    gabeko zenbait arazo daude.
   flags_for: "Honetarako markak:"
   flickr_account_information: "Zure Flickr-eko kontuko informazioa"
   flickr_description: "Flickr argazkiak linean ostatatzeko zerbitzua da; agian ezagutuko duzu."

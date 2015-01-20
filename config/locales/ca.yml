@@ -1094,7 +1094,10 @@ ca:
   flagged: marcat
   flagged_for_curation: "Marcat per a administració."
   flagger: Marcador
-  flags_explanation: "Els usuaris d’%{site_name} marquen coses quan troben quelcom que no està bé. Aquí hi ha problemes que els administradors encara no han pogut resoldre. Els usuaris han marcat aquest %{thing} perquè"
+  flags_explanation: |
+    Els usuaris d’%{site_name} marquen coses quan troben quelcom que no està
+    bé. Aquí hi ha problemes que els administradors encara no han pogut
+    resoldre.
   flags_for: "Marques per a"
   flickr_account_information: "Informació del teu compte de Flickr"
   flickr_description: "Flickr és un servei d'allotjament de fotos en línia; potser ja el coneixes."

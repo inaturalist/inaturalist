@@ -6582,7 +6582,10 @@ es-MX:
   flagged: "Con advertencia"
   flagged_for_curation: "Advertencia para curación"
   flagger: Señalador
-  flags_explanation: "Los usuarios de %{site_name} mandan una advertencia de un contenido cuando encuentran algo que no es correcto. Todavía hay algunos temas que no han sido resueltos por los curadores. Los usuarios han señaldo esta  %{thing} porque\n"
+  flags_explanation: |
+    Los usuarios de %{site_name} mandan una advertencia de un contenido cuando
+    encuentran algo que no es correcto. Todavía hay algunos temas que no han
+    sido resueltos por los curadores.
   flags_for: "Advertencia para"
   flickr_account_information: "La información de tu cuenta de Flickr"
   flickr_description: "Flickr es un servicio para hospedar fotos ¡quizá ya lo conoces!"
