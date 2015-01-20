@@ -11,6 +11,7 @@ I18n.default_locale = CONFIG.default_locale.to_sym if CONFIG.default_locale
 # set up fallbacks
 require "i18n/backend/fallbacks"
 I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
+Rails.application.config.i18n.fallbacks = [ :en ]
 
 # from and to locales for the translate gem (translation ui)
 Rails.application.config.from_locales = [:en, :es]
