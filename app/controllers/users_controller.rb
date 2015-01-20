@@ -256,9 +256,9 @@ class UsersController < ApplicationController
   def relationships
     find_options = {:page => params[:page] || 1, :order => 'login'}
     @users = if params[:following]
-      User.find_by_login(params[:login]).friends.paginate(find_options)
+      @user.friends.paginate(find_options)
     else
-      User.find_by_login(params[:login]).followers.paginate(find_options)
+      @user.followers.paginate(find_options)
     end
     counts_for_users
   end
