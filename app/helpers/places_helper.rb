@@ -66,7 +66,7 @@ module PlacesHelper
     end
     data = "t:#{(['100'] * labels.size).join(',')}"
     url_for_options = {
-      :host => 'chart.apis.google.com',
+      :host => 'chart.googleapis.com',
       :controller => 'chart',
       :port => nil,
       :chs => '440x220',
