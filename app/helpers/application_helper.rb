@@ -965,6 +965,7 @@ module ApplicationHelper
       when /(coi|cox1)/i then " bold-coi" 
       when /its/i then " bold-its"
       when /rbcl|matk/i then " bold-matk"
+      else ""
       end
       content_tag(:div, ofv.value.gsub(/\s/, ''), :class => css_class)
     else
