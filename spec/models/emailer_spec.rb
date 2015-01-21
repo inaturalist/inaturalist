@@ -112,11 +112,24 @@ describe Emailer, "project_user_invitation" do
 end
 
 describe Emailer, "bulk_observation_success" do
+  let(:user) { User.make! }
   it "should mention the filename" do
-    user = User.make!
     mail = Emailer.bulk_observation_success(user, "the_filename")
     mail.body.should =~ /the_filename/
     mail.subject.should =~ /the_filename/
+  end
+
+  describe "with a site" do
+    before do
+      @site = Site.make!(:preferred_locale => "es-MX")
+      @site.logo.stub!(:url).and_return("foo.png")
+      user.site = @site
+      user.save!
+    end
+    it "should include the site name" do
+      mail = Emailer.bulk_observation_success(user, "the_filename")
+      mail.body.should =~ /#{@site.name}/
+    end
   end
 end
 

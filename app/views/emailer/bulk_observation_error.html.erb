@@ -17,8 +17,8 @@
       <% end %>
     </ul>
     <% if field == 'species_not_found' %>
-      <p><%=t 'views.emailer.bulk_observation_error.taxon_spelling_notice_html', 
-        :search_url => search_taxa_url, :site_name => @site_name %>
+      <p><%=t 'views.emailer.bulk_import_error.taxon_spelling_notice_html', 
+        :search_taxa_url => search_taxa_url, :site_name => @site_name %>
       </p>
     <% end %>
   <% end %>

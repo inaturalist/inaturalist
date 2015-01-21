@@ -49,8 +49,8 @@ $(document).ready(function() {
         }
         $(data.context).data('observation', obs)
         $('.description_field textarea', data.context).val(obs.description)
-        $('.latitude_field input', data.context).val(obs.latitude)
-        $('.longitude_field input', data.context).val(obs.longitude)
+        $('.latitude_field input', data.context).val(obs.private_latitude || obs.latitude)
+        $('.longitude_field input', data.context).val(obs.private_longitude || obs.longitude)
         $('.observed_on_string_field input', data.context).val(obs.observed_on_string)
         $('.place_guess_field input', data.context).val(obs.place_guess)
         
@@ -155,7 +155,7 @@ $('.observation .deletebutton').live('click', function() {
       $(this).remove()
     })
   }).fail(function(xhr, status) {
-    if (xhr.statusText == 'OK') {
+    if (xhr.status == 200) {
       container.slideUp(function() { 
         $(this).remove()
       })

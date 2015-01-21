@@ -328,6 +328,36 @@ shared_examples_for "an ObservationsController" do
       put :update, :format => :json, :id => oid, :observation => {:description => "this is different"}
       response.status.should eq 410
     end
+
+    it "should assume request lat/lon are the true coordinates" do
+      o = make_observation_of_threatened(:user => user)
+      lat, lon, plat, plon = [
+        o.latitude,
+        o.longitude,
+        o.private_latitude,
+        o.private_longitude
+      ]
+      lat.should_not eq plat
+      put :update, :format => :json, :id => o.id, :observations => [{:latitude => plat, :longitude => plon}]
+      o.reload
+      o.private_latitude.should eq plat
+    end
+
+    it "should not change the true coordinates when switching to a threatened taxon and back" do
+      normal = Taxon.make!
+      threatened = Taxon.make!(:threatened)
+      o = Observation.make!(:user => user, :taxon => normal, :latitude => 1, :longitude => 1)
+      o.latitude.to_f.should eq 1.0
+      put :update, :format => :json, :id => o.id, :observation => {:taxon_id => threatened.id}
+      o.reload
+      o.private_latitude.should_not be_blank
+      o.private_latitude.should_not eq o.latitude
+      o.private_latitude.to_f.should eq 1.0
+      put :update, :format => :json, :id => o.id, :observation => {:taxon_id => normal.id}
+      o.reload
+      o.private_latitude.should be_blank
+      o.latitude.to_f.should eq 1.0
+    end
   end
 
   describe "by_login" do

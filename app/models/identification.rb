@@ -104,8 +104,9 @@ class Identification < ActiveRecord::Base
   # Update the observation if you're adding an ID to your own obs
   def update_observation
     return true unless observation
+    return true if skip_observation
     attrs = {}
-    if user_id == observation.user_id && !skip_observation
+    if user_id == observation.user_id
       observation.skip_identifications = true
       # update the species_guess
       species_guess = observation.species_guess

@@ -343,8 +343,8 @@ class Observation < ActiveRecord::Base
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
                     :set_time_in_time_zone,
-                    :cast_lat_lon
-  
+                    :set_coordinates
+
   before_save :strip_species_guess,
               :set_taxon_from_species_guess,
               :set_taxon_from_taxon_name,
@@ -355,13 +355,13 @@ class Observation < ActiveRecord::Base
               :set_license,
               :trim_user_agent,
               :update_identifications,
-              :set_community_taxon_if_pref_changed,
+              :set_community_taxon_before_save,
               :set_taxon_from_community_taxon,
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon,
               :set_iconic_taxon
-  before_create :set_coordinates
+  
   before_update :set_quality_grade
                  
   after_save :refresh_lists,
@@ -1130,12 +1130,17 @@ class Observation < ActiveRecord::Base
     # If there's a taxon we need to make sure the owner's ident agrees
     if taxon && (owners_ident.blank? || owners_ident.taxon_id != taxon.id)
       # If the owner doesn't have an identification for this obs, make one
-      owners_ident = self.identifications.build(:user => user, :taxon => taxon, :observation => self)
-      owners_ident.skip_observation = true
+      attrs = {:user => user, :taxon => taxon, :observation => self, :skip_observation => true}
+      owners_ident = if new_record?
+        self.identifications.build(attrs)
+      else
+        self.identifications.create(attrs)
+      end
     elsif taxon.blank? && owners_ident && owners_ident.current?
       if identifications.where(:user_id => user_id).count > 1
-        owners_ident.update_attributes(:current => false)
+        owners_ident.update_attributes(:current => false, :skip_observation => true)
       else
+        owners_ident.skip_observation = true
         owners_ident.destroy
       end
     end
@@ -1277,15 +1282,6 @@ class Observation < ActiveRecord::Base
     self.zic_time_zone = ActiveSupport::TimeZone::MAPPING[time_zone] unless time_zone.blank?
     true
   end
-  
-  #
-  # Cast lat and lon so they will (hopefully) pass the numericallity test
-  #
-  def cast_lat_lon
-    # self.latitude = latitude.to_f unless latitude.blank?
-    # self.longitude = longitude.to_f unless longitude.blank?
-    true
-  end  
   
   #
   # Force time_observed_at into the time zone
@@ -1624,8 +1620,8 @@ class Observation < ActiveRecord::Base
     true
   end
 
-  def set_community_taxon_if_pref_changed
-    set_community_taxon if prefers_community_taxon_changed?
+  def set_community_taxon_before_save
+    set_community_taxon(:force => true) if prefers_community_taxon_changed? || taxon_id_changed?
     true
   end
 
@@ -2324,6 +2320,7 @@ class Observation < ActiveRecord::Base
       # Set the transfor
       self.longitude, self.latitude = transform
     end
+    true
   end
   
   # Required for use of the sanitize method in

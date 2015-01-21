@@ -30,7 +30,6 @@ class Emailer < ActionMailer::Base
     @observation = project_invitation.observation
     @user = project_invitation.observation.user
     set_locale
-    set_site_specific_opts
     @inviter = project_invitation.user
     mail(set_site_specific_opts(
       :to => project_invitation.observation.user.email, 
@@ -45,7 +44,6 @@ class Emailer < ActionMailer::Base
     return if user.prefers_no_email
     @user = user
     set_locale
-    set_site_specific_opts
     @grouped_updates = Update.group_and_sort(updates, :skip_past_activity => true)
     @update_cache = Update.eager_load_associates(updates)
     mail(set_site_specific_opts.merge(
