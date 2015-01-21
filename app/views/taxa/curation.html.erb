@@ -86,10 +86,10 @@
 
 <%= will_paginate @flags %>
 
-<h3><%= t(:unfragted_taxa) %></h3>
+<h3><%= t(:ungrafted_taxa) %></h3>
 <% if @ungrafted.empty? %>
   <p class="success">
-    <%= t(:w00t_no_unfragted_taxa) %>
+    <%= t(:w00t_no_ungrafted_taxa) %>
   </p>
 <% elsif @ungrafted.total_entries > @ungrafted.size %>
   <p class="description">
