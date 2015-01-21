@@ -6984,6 +6984,13 @@ es-MX:
       cambiar las propiedades del proyecto y escribir notas en el diario del proyecto.
   manually_create_new_place: "Crea un nuevo lugar manualmente"
   map: Mapa
+  maps:
+    overlays:
+      all_observations: Todas las observaciones
+      every_publicly_visible_observation: Todas las observaciones públicas creadas en NaturaLista
+      featured_observations: Observaciones destacadas
+      place_boundary: Límites del lugar
+      taxon_range: Distribución de la especie o grupo
   map_for: "Mapa para"
   maptype_for_places: 'google.maps.MapTypeId.SATELLITE'
   matching_species_will_shown_up_here: Las especies que encuentres se mostrarán aquí. El mapa mostrará un rango si %{place} tiene alguna de esas especies.
