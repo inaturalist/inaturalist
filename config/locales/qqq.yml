@@ -225,6 +225,9 @@ qqq:
   observations_of_taxon: where taxon_name is the name of a taxon
   observations_on_inat_check_list: where site_name is the site name
   observations_removed_from_the_project: where project is the name of a project
+  observer_short: |
+    Label in front of the name of a person who made an observation. Should be
+    ~8 characters, can be an abbreviation.
   on_date: where date is a date
   on_edit_date: where editdate is a date
   on_submit_date: where submitdate is a date
