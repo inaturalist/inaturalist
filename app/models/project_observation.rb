@@ -110,7 +110,7 @@ class ProjectObservation < ActiveRecord::Base
   end
   
   def update_project_observed_taxa_counter_cache_later
-    return true if observation.bulk_import
+    return true if observation && observation.bulk_import
     Project.delay(:priority => USER_INTEGRITY_PRIORITY).update_observed_taxa_count(project_id)
     true
   end

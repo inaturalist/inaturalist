@@ -34,7 +34,8 @@ module ObservationsHelper
   def observation_place_guess(observation, options = {})
     display_lat = observation.latitude
     display_lon = observation.longitude
-    if !observation.private_latitude.blank? && observation.coordinates_viewable_by?(current_user)
+    coordinates_viewable = observation.coordinates_viewable_by?(current_user)
+    if !observation.private_latitude.blank? && coordinates_viewable
       display_lat = observation.private_latitude
       display_lon = observation.private_longitude
     end
@@ -52,18 +53,14 @@ module ObservationsHelper
       display_lon = display_lon.to_s[0..coordinate_truncation] + "..." unless display_lon.blank?
     end
     
-    if !observation.place_guess.blank? && observation.coordinates_viewable_by?(current_user)
-      if observation.latitude.blank?
-        "#{observation.place_guess} (#{google_search_link}, #{osm_search_link})".html_safe
+    if !observation.place_guess.blank? && coordinates_viewable
+      place_guess = if observation.lat_lon_in_place_guess? && coordinate_truncation
+        "<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>"
       else
-        place_guess = if observation.lat_lon_in_place_guess? && coordinate_truncation
-          "<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>"
-        else
-          observation.place_guess
-        end
-        link_to(place_guess.html_safe, observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
-         " (#{google_coords_link}, #{osm_coords_link})".html_safe
+        observation.place_guess
       end
+      link_to(place_guess.html_safe, observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
+       " (#{google_coords_link}, #{osm_coords_link})".html_safe
     elsif !observation.latitude.blank? && !observation.coordinates_obscured?
       link_to("<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>".html_safe, 
         observations_path(:lat => observation.latitude, :lng => observation.longitude)) +

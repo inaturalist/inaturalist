@@ -398,11 +398,13 @@
         </li>
       <% end -%>
       <% if @project_user -%>
-        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %></li>
+        <li>
+          <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %>
+          <div class="inner">
+            <%=t :download_bulk_import_template_html, :url => project_bulk_template_url(@project) %>
+          </div>
+        </li>
       <% end -%>
-      <li>
-        <%= link_to "<span class='lead'>&raquo;</span> Download bulk import template".html_safe, project_bulk_template_path(@project), :class => "navlink" %>
-      </li>
     <% end -%>
   </ul>
   

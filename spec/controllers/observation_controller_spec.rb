@@ -108,6 +108,39 @@ describe ObservationsController do
     end
   end
 
+  describe :project do
+    render_views
+    it "should include private coordinates when viewed by a project curator" do
+      po = make_project_observation
+      o = po.observation
+      log_timer do
+        o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
+      end
+      o.reload
+      o.private_latitude.should_not be_blank
+      p = po.project
+      pu = ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)
+      u = pu.user
+      sign_in u
+      get :project, :id => p.id
+      response.body.should =~ /#{o.private_latitude}/
+    end
+
+    it "should not include private coordinates when viewed by a project curator" do
+      po = make_project_observation
+      o = po.observation
+      o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
+      o.reload
+      o.private_latitude.should_not be_blank
+      p = po.project
+      pu = ProjectUser.make!(:project => p)
+      u = pu.user
+      sign_in u
+      get :project, :id => p.id
+      response.body.should_not =~ /#{o.private_latitude}/
+    end
+  end
+
   describe :project_all, "page cache" do
     before do
       @project = Project.make!

@@ -849,6 +849,9 @@ en:
   dont_use_double_quotes: Don't use double quotes anywhere else
   double_click_to_finish: (double click to finish)
   download: Download
+  download_bulk_import_template_html: |
+    <a href="%{url}">Download template</a> for use in the
+    <a href="/observations/import#csv_import">bulk uploader</a>
   download_csv: Download CSV
   download_kml: Download KML
   drag_and_drop_photos: drag and drop photos onto this window or
