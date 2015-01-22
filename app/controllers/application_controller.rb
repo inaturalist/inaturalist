@@ -251,7 +251,7 @@ class ApplicationController < ActionController::Base
       respond_to do |format|
         format.html do
           flash[:error] = msg
-          return redirect_to record
+          return redirect_to @guide
         end
         format.json do
           return render :json => {:error => msg}
