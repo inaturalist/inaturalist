@@ -729,10 +729,10 @@ class Place < ActiveRecord::Base
       ST_XMIN(geom) min_x, ST_XMAX(geom) max_x").first
     return @bounds = nil unless result
     @bounds = {
-      min_x: result.min_x,
-      min_y: result.min_y,
-      max_x: result.max_x,
-      max_y: result.max_y
+      min_x: [result.min_x.to_f, -179.9].max,
+      min_y: [result.min_y.to_f, -89.9].max,
+      max_x: [result.max_x.to_f, 179.9].min,
+      max_y: [result.max_y.to_f, 89.9].min
     }
   end
 
