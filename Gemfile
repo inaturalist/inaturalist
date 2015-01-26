@@ -101,6 +101,7 @@ end
 
 group :test do
   gem 'faker'
+  gem 'simplecov', :require => false
 end
 
 group :assets do
