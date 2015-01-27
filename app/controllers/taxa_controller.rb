@@ -133,7 +133,7 @@ class TaxaController < ApplicationController
     if params[:entry] == 'widget'
       flash[:notice] = t(:click_add_an_observation_to_the_lower_right, :site_name_short => CONFIG.site_name_short)
     end
-    @taxon ||= Taxon.find_by_id(params[:id].to_i, :include => [:taxon_names]) if params[:id]
+    @taxon ||= Taxon.where(id: params[:id]).includes(:taxon_names).first if params[:id]
     return render_404 unless @taxon
     
     respond_to do |format|
@@ -159,11 +159,9 @@ class TaxaController < ApplicationController
           @listed_taxon = @taxon.listed_taxa.where(:place_id => place.id).order("establishment_means").first
         end
         
-        @children = @taxon.children.all(
-          :include => :taxon_names, 
-          :conditions => {:is_active => @taxon.is_active}
-        ).sort_by{|c| c.name}
-        @ancestors = @taxon.ancestors.all(:include => :taxon_names)
+        @children = @taxon.children.where(:is_active => @taxon.is_active).
+          includes(:taxon_names).sort_by{ |c| c.name }
+        @ancestors = @taxon.ancestors.includes(:taxon_names)
         @iconic_taxa = Taxon::ICONIC_TAXA
         
         @check_listed_taxa = ListedTaxon.page(1).
@@ -173,18 +171,12 @@ class TaxaController < ApplicationController
           where("place_id IS NOT NULL AND taxon_id = ?", @taxon)
         @sorted_check_listed_taxa = @check_listed_taxa.sort_by{|lt| lt.place.place_type || 0}.reverse
         @places = @check_listed_taxa.map{|lt| lt.place}.uniq{|p| p.id}
-        @countries = @taxon.places.all(
-          :select => "places.id, place_type, code, admin_level",
-          :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES['Country']]
-        ).uniq{|p| p.id}
+        @countries = @taxon.places.where(["place_type = ?", Place::PLACE_TYPE_CODES['Country']]).
+          select("places.id, place_type, code, admin_level").uniq{ |p| p.id }
         if @countries.size == 1 && @countries.first.code == 'US'
-          @us_states = @taxon.places.all(
-            :select => "places.id, place_type, code, admin_level",
-            :conditions => [
-              "admin_level = ? AND parent_id = ?", Place::STATE_LEVEL, 
-              @countries.first.id
-            ]
-          ).uniq{|p| p.id}
+          @us_states = @taxon.places.
+            where("admin_level = ? AND parent_id = ?", Place::STATE_LEVEL, @countries.first.id).
+            select("places.id, place_type, code, admin_level").uniq{ |p| p.id }
         end
 
         @taxon_links = TaxonLink.by_taxon(@taxon, :reject_places => @places.blank?)

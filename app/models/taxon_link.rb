@@ -74,10 +74,10 @@ class TaxonLink < ActiveRecord::Base
     return [] if taxon.blank?
     taxon_links = if taxon.species_or_lower?
       # fetch all relevant links
-      TaxonLink.for_taxon(taxon).includes(:taxon)
+      TaxonLink.for_taxon(taxon).includes(:taxon).to_a
     else
       # fetch links without species only
-      TaxonLink.for_taxon(taxon).where(:species_only => false).includes(:taxon)
+      TaxonLink.for_taxon(taxon).where(:species_only => false).includes(:taxon).to_a
     end
     tl_place_ids = taxon_links.map(&:place_id).compact
     if !tl_place_ids.blank? # && !@places.blank?

@@ -667,13 +667,14 @@ class Taxon < ActiveRecord::Base
   #
   def photos_with_backfill(options = {})
     options[:limit] ||= 9
-    chosen_photos = taxon_photos.all(:limit => options[:limit], 
-      :include => :photo, :order => "taxon_photos.position ASC NULLS LAST, taxon_photos.id ASC").map{|tp| tp.photo}
+    chosen_photos = taxon_photos.includes(:photo).
+      order("taxon_photos.position ASC NULLS LAST, taxon_photos.id ASC").
+      limit(options[:limit]).map{ |tp| tp.photo }
     if chosen_photos.size < options[:limit]
       new_photos = Photo.includes({:taxon_photos => :taxon}).
         order("taxon_photos.id ASC").
         limit(options[:limit] - chosen_photos.size).
-        where("taxa.ancestry LIKE '#{ancestry}/#{id}%'").includes()
+        where("taxa.ancestry LIKE '#{ancestry}/#{id}%'")
       if new_photos.size > 0
         new_photos = new_photos.where("photos.id NOT IN (?)", chosen_photos)
       end
@@ -1106,7 +1107,7 @@ class Taxon < ActiveRecord::Base
     @default_photo ||= if taxon_photos.loaded?
       taxon_photos.sort_by{|tp| tp.position || tp.id}.first.try(:photo)
     else
-      taxon_photos.first(:include => [:photo]).try(:photo)
+      taxon_photos.includes(:photo).first.try(:photo)
     end
     @default_photo
   end
