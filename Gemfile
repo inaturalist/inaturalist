@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', "~> 3.2.20"
-gem 'rake', '0.8.7'
+gem 'rails', "~> 4.2.0"
 
 gem 'apipie-rails'
 gem 'aasm'
@@ -12,18 +11,19 @@ gem 'ancestry'
 gem 'aws-sdk'
 gem 'bluecloth'
 gem 'capistrano'
+gem 'capistrano-passenger'
 gem 'chronic'
 gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
 gem 'daemons'
 gem 'daemon-spawn'
 gem 'dbf'
-gem 'delayed_job'
-gem 'delayed_job_active_record'
+gem 'delayed_job', '~> 4.0.1'
+gem 'delayed_job_active_record', '~> 4.0.1'
 gem 'devise'
 gem 'devise-encryptable'
 gem 'devise_suspendable'
 gem 'diffy'
-gem 'doorkeeper', '~> 0.6.7'
+gem 'doorkeeper'
 gem 'dynamic_form'
 gem 'exifr'
 gem 'flickraw', "~> 0.9.8", :git => 'git://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
@@ -34,15 +34,14 @@ gem 'geoplanet'
 gem 'google-api-client'
 gem 'georuby', :git => 'git://github.com/kueda/georuby.git'
 gem 'haml'
-gem 'haml-rails'
 gem 'htmlentities'
 gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'
 gem 'irwi', :git => 'git://github.com/alno/irwi.git'
-gem 'json', "~> 1.7.7"
+gem 'json'
 gem 'jquery-rails'
 gem 'koala'
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
-gem 'memcache-client'
+gem 'dalli'
 gem 'mocha', :require => false
 gem 'mobile-fu', :git => 'https://github.com/kueda/mobile-fu.git'
 gem 'nokogiri'
@@ -71,7 +70,8 @@ gem 'sass', '= 3.2.5'
 gem 'sass-rails'
 gem 'soundcloud'
 gem 'spatial_adapter', :git => 'git://github.com/kueda/spatial_adapter.git' # until fragility updates the gemspec
-gem 'thinking-sphinx', '2.0.10'
+gem 'mysql2'
+gem 'thinking-sphinx' # this needs some serious work to upgrade. Doesn't look like Rails 4 will work with 2.0.10, which is what we were using
 gem 'translate-rails3', :require => 'translate', :git => 'git://github.com/JayTeeSF/translate.git'
 gem 'trollop'
 gem 'ts-delayed-delta', '1.1.3', :require => 'thinking_sphinx/deltas/delayed_delta'
@@ -84,7 +84,10 @@ gem 'will_paginate'
 gem 'whenever', :require => false
 gem 'ya2yaml'
 gem 'yui-compressor'
-gem 'xmp', :git => 'git://github.com/eknoop/xmp.git'
+# This used to pull from git://github.com/eknoop/xmp.git and might require
+# pulling into https://github.com/eknoop/xmp/commit/b07bd072239a84c7b8c2967c33
+# 21066477e03a88 into a fork of our own...
+gem 'xmp', :git => 'git://github.com/jkraemer/xmp.git'
 gem 'statsd-ruby', :require => 'statsd'
 
 group :production do
@@ -96,7 +99,6 @@ group :test, :development, :prod_dev do
   gem "machinist"
   gem "rspec-rails"
   gem "rspec-html-matchers"
-  gem "debugger"
 end
 
 group :test do

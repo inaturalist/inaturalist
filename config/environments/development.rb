@@ -9,6 +9,8 @@ Inaturalist::Application.configure do
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
+  config.eager_load = false
+
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
@@ -28,8 +30,20 @@ Inaturalist::Application.configure do
   # config.cache_classes = true
   config.cache_store = :mem_cache_store, CONFIG.memcached
 
+  # Raise an error on page load if there are pending migrations.
+  config.active_record.migration_error = :page_load
+
   # Enable serving of images, stylesheets, and javascripts from an asset server
   config.action_controller.asset_host = CONFIG.site_url
+
+  # Debug mode disables concatenation and preprocessing of assets.
+  # This option may cause significant delays in view rendering with a large
+  # number of complex assets.
+  config.assets.debug = true
+
+  # Asset digests allow you to set far-future HTTP expiration dates on all assets,
+  # yet still be able to expire them through the digest params.
+  config.assets.digest = true
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -39,6 +53,12 @@ Inaturalist::Application.configure do
   
   config.active_support.deprecation = :log
   # config.middleware.use MailView::Mapper, [EmailerPreview] # TODO maybe include this in Gemfile
+
+  # Raises helpful error messages.
+  config.assets.raise_runtime_errors = true
+
+  # Raises error for missing translations
+  # config.action_view.raise_on_missing_translations = true
 
   config.middleware.use Rack::GoogleAnalytics, :trackers => lambda { |env|
     return env['inat_ga_trackers'] if env['inat_ga_trackers']

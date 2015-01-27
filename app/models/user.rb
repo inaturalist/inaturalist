@@ -352,10 +352,12 @@ class User < ActiveRecord::Base
   # see twitter gem docs for available methods: https://github.com/sferik/twitter
   def twitter_api
     return nil unless twitter_identity
-    @twitter_api ||= Twitter::Client.new(
-      :oauth_token => twitter_identity.token,
-      :oauth_token_secret => twitter_identity.secret
-    )
+    @twitter_api ||= Twitter::Client.new do |config|
+      config.consumer_key = CONFIG.twitter.key
+      config.consumer_secret = CONFIG.twitter.secret
+      config.access_token = twitter_identity.token,
+      config.access_token_secret = twitter_identity.secret
+    end
   end
 
   # returns nil or the twitter ProviderAuthorization

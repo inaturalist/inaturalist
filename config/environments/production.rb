@@ -10,6 +10,8 @@ Inaturalist::Application.configure do
   config.action_controller.perform_caching             = true
   config.action_view.cache_template_loading            = true
 
+  config.eager_load = true
+
   config.action_dispatch.x_sendfile_header = CONFIG.x_sendfile_header
 
   # If you have no front-end server that supports something like X-Sendfile,

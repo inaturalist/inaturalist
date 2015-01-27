@@ -20,15 +20,13 @@ OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia 
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, :assets, Rails.env) if defined?(Bundler)
+Bundler.require(*Rails.groups)
 
 # require custom logger that includes PIDs
 require File.expand_path('../../lib/better_logger', __FILE__)
 
 module Inaturalist
   class Application < Rails::Application
-
-    config.active_record.whitelist_attributes = false
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -54,6 +52,9 @@ module Inaturalist
 
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
+
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
     
     # config.active_record.observers = :user_observer, :listed_taxon_sweeper # this might have to come back, was running into probs with Preferences
     
