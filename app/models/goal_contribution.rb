@@ -23,7 +23,7 @@ class GoalContribution < ActiveRecord::Base
   # Simple group by date, using the MySQL DATE function
   #
   # This doesn't seem to work in self.count calls, and so may be useless.
-  scope :grouped_by_date, group("DATE(created_at)")
+  scope :grouped_by_date, -> { group("DATE(created_at)") }
   
   # Accepts a start time and optional end time.  If no end time is provided,
   # assumes Time.now.  Note: this also works with Rails' additional Date

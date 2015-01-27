@@ -91,13 +91,6 @@ GIT
       georuby (>= 1.3.0)
 
 GIT
-  remote: git://github.com/samoli/acts_as_taggable_on_steroids.git
-  revision: de68035542546645998fb6a806aa55b182c5c037
-  specs:
-    bborn-acts_as_taggable_on_steroids (2.1)
-      rails (>= 3.1.2)
-
-GIT
   remote: https://github.com/37signals/mail_view.git
   revision: 50831ad31c6f9042469a33dab1394bd2a4042fd8
   specs:
@@ -151,6 +144,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts_as_taggable_on (3.0.0.rc2)
+      rails (>= 3, < 5)
     addressable (2.3.6)
     airbrake (4.1.0)
       builder
@@ -544,12 +539,12 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  acts_as_taggable_on
   addressable
   airbrake
   ancestry
   apipie-rails
   aws-sdk
-  bborn-acts_as_taggable_on_steroids!
   better_errors
   bluecloth
   capistrano

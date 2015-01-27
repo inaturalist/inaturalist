@@ -213,14 +213,14 @@ class Observation < ActiveRecord::Base
                             :foreign_key => 'iconic_taxon_id'
   belongs_to :oauth_application
   belongs_to :site, :inverse_of => :observations
-  has_many :observation_photos, :dependent => :destroy, :order => "id asc", :inverse_of => :observation
+  has_many :observation_photos, -> { order("id asc") }, :dependent => :destroy, :inverse_of => :observation
   has_many :photos, :through => :observation_photos
   
   # note last_observation and first_observation on listed taxa will get reset 
   # by CheckList.refresh_with_observation
   has_many :listed_taxa, :foreign_key => 'last_observation_id'
   has_many :first_listed_taxa, :class_name => "ListedTaxon", :foreign_key => 'first_observation_id'
-  has_many :first_check_listed_taxa, :class_name => "ListedTaxon", :foreign_key => 'first_observation_id', :conditions => "listed_taxa.place_id IS NOT NULL"
+  has_many :first_check_listed_taxa, -> { where("listed_taxa.place_id IS NOT NULL") }, :class_name => "ListedTaxon", :foreign_key => 'first_observation_id'
   
   has_many :comments, :as => :parent, :dependent => :destroy
   has_many :identifications, :dependent => :delete_all
@@ -228,7 +228,7 @@ class Observation < ActiveRecord::Base
   has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
   has_many :quality_metrics, :dependent => :destroy
-  has_many :observation_field_values, :dependent => :destroy, :order => "id asc", :inverse_of => :observation
+  has_many :observation_field_values, -> { order("id asc") }, :dependent => :destroy, :inverse_of => :observation
   has_many :observation_fields, :through => :observation_field_values
   has_many :observation_links
   has_and_belongs_to_many :posts
@@ -236,62 +236,62 @@ class Observation < ActiveRecord::Base
   has_many :sounds, :through => :observation_sounds
   has_many :observations_places, :dependent => :destroy
   
-  define_index do
-    indexes taxon.taxon_names.name, :as => :names
-    indexes tags.name, :as => :tags
-    indexes :species_guess, :sortable => true, :as => :species_guess
-    indexes :description, :as => :description
-    indexes :place_guess, :as => :place, :sortable => true
-    indexes user.login, :as => :user, :sortable => true
-    indexes :observed_on_string, :as => :observed_on_string
-    has :user_id
-    has :taxon_id
-    
-    # Sadly, the following doesn't work, because self_and_ancestors is not an
-    # association.  I'm not entirely sure if there's a way to work the ancestry
-    # query in as col in a SQL query on observations.  If at some point we
-    # need to have the ancestor ids in the Sphinx index, though, we can always
-    # add a col to the taxa table holding the ancestor IDs.  Kind of a
-    # redundant, and it would slow down moves, but it might be worth it for
-    # the snappy searches. --KMU 2009-04-4
-    # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
-    
-    has "observation_photos_count > 0", :as => :has_photos, :type => :boolean
-    has "observation_sounds_count > 0", :as => :has_sounds, :type => :boolean
-    indexes :quality_grade
-    has :created_at, :sortable => true
-    has :observed_on, :sortable => true
-    has :iconic_taxon_id
-    has :id_please, :as => :has_id_please
-    has "latitude IS NOT NULL AND longitude IS NOT NULL", 
-      :as => :has_geo, :type => :boolean
-    has 'RADIANS(latitude)', :as => :latitude,  :type => :float
-    has 'RADIANS(longitude)', :as => :longitude,  :type => :float
-    
-    # HACK: TS doesn't seem to include attributes in the GROUP BY correctly
-    # for Postgres when using custom SQL attr definitions.  It may or may not 
-    # be fixed in more up-to-date versions, but the issue has been raised: 
-    # http://groups.google.com/group/thinking-sphinx/browse_thread/thread/e8397477b201d1e4
-    has :latitude, :as => :fake_latitude
-    has :longitude, :as => :fake_longitude
-    has :observation_photos_count
-    has :observation_sounds_count
-    has :num_identification_agreements
-    has :num_identification_disagreements
-    # END HACK
-    
-    has "num_identification_agreements > num_identification_disagreements",
-      :as => :identifications_most_agree, :type => :boolean
-    has "num_identification_agreements > 0", 
-      :as => :identifications_some_agree, :type => :boolean
-    has "num_identification_agreements < num_identification_disagreements",
-      :as => :identifications_most_disagree, :type => :boolean
-    has project_observations(:project_id), :as => :projects #, :type => :multi
-    has observation_field_values(:observation_field_id), :as => :observation_fields
-    indexes observation_field_values.value, :as => :ofv_values
-    indexes observation_field_values.observation_field.name, :as => :observation_field_names
-    set_property :delta => :delayed
-  end
+  # define_index do
+  #   indexes taxon.taxon_names.name, :as => :names
+  #   indexes tags.name, :as => :tags
+  #   indexes :species_guess, :sortable => true, :as => :species_guess
+  #   indexes :description, :as => :description
+  #   indexes :place_guess, :as => :place, :sortable => true
+  #   indexes user.login, :as => :user, :sortable => true
+  #   indexes :observed_on_string, :as => :observed_on_string
+  #   has :user_id
+  #   has :taxon_id
+  #   
+  #   # Sadly, the following doesn't work, because self_and_ancestors is not an
+  #   # association.  I'm not entirely sure if there's a way to work the ancestry
+  #   # query in as col in a SQL query on observations.  If at some point we
+  #   # need to have the ancestor ids in the Sphinx index, though, we can always
+  #   # add a col to the taxa table holding the ancestor IDs.  Kind of a
+  #   # redundant, and it would slow down moves, but it might be worth it for
+  #   # the snappy searches. --KMU 2009-04-4
+  #   # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
+  #   
+  #   has "observation_photos_count > 0", :as => :has_photos, :type => :boolean
+  #   has "observation_sounds_count > 0", :as => :has_sounds, :type => :boolean
+  #   indexes :quality_grade
+  #   has :created_at, :sortable => true
+  #   has :observed_on, :sortable => true
+  #   has :iconic_taxon_id
+  #   has :id_please, :as => :has_id_please
+  #   has "latitude IS NOT NULL AND longitude IS NOT NULL", 
+  #     :as => :has_geo, :type => :boolean
+  #   has 'RADIANS(latitude)', :as => :latitude,  :type => :float
+  #   has 'RADIANS(longitude)', :as => :longitude,  :type => :float
+  #   
+  #   # HACK: TS doesn't seem to include attributes in the GROUP BY correctly
+  #   # for Postgres when using custom SQL attr definitions.  It may or may not 
+  #   # be fixed in more up-to-date versions, but the issue has been raised: 
+  #   # http://groups.google.com/group/thinking-sphinx/browse_thread/thread/e8397477b201d1e4
+  #   has :latitude, :as => :fake_latitude
+  #   has :longitude, :as => :fake_longitude
+  #   has :observation_photos_count
+  #   has :observation_sounds_count
+  #   has :num_identification_agreements
+  #   has :num_identification_disagreements
+  #   # END HACK
+  #   
+  #   has "num_identification_agreements > num_identification_disagreements",
+  #     :as => :identifications_most_agree, :type => :boolean
+  #   has "num_identification_agreements > 0", 
+  #     :as => :identifications_some_agree, :type => :boolean
+  #   has "num_identification_agreements < num_identification_disagreements",
+  #     :as => :identifications_most_disagree, :type => :boolean
+  #   has project_observations(:project_id), :as => :projects #, :type => :multi
+  #   has observation_field_values(:observation_field_id), :as => :observation_fields
+  #   indexes observation_field_values.value, :as => :ofv_values
+  #   indexes observation_field_values.observation_field.name, :as => :observation_field_names
+  #   set_property :delta => :delayed
+  # end
   
   SPHINX_FIELD_NAMES = %w(names tags species_guess description place user observed_on_string)
   SPHINX_ATTRIBUTE_NAMES = %w(user_id taxon_id has_photos created_at 
@@ -476,10 +476,10 @@ class Observation < ActiveRecord::Base
     end
   }
   
-  scope :has_geo, where("latitude IS NOT NULL AND longitude IS NOT NULL")
-  scope :has_id_please, where("id_please IS TRUE")
-  scope :has_photos, where("observation_photos_count > 0")
-  scope :has_sounds, where("observation_sounds_count > 0")
+  scope :has_geo, -> { where("latitude IS NOT NULL AND longitude IS NOT NULL") }
+  scope :has_id_please, -> { where("id_please IS TRUE") }
+  scope :has_photos, -> { where("observation_photos_count > 0") }
+  scope :has_sounds, -> { where("observation_sounds_count > 0") }
   scope :has_quality_grade, lambda {|quality_grade|
     quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
     where("quality_grade = ?", quality_grade)
@@ -510,8 +510,8 @@ class Observation < ActiveRecord::Base
   }
   
   # Order observations by date and time observed
-  scope :latest, order("observed_on DESC NULLS LAST, time_observed_at DESC NULLS LAST")
-  scope :recently_added, order("observations.id DESC")
+  scope :latest, -> { order("observed_on DESC NULLS LAST, time_observed_at DESC NULLS LAST") }
+  scope :recently_added, -> { order("observations.id DESC") }
   
   # TODO: Make this work for any SQL order statement, including multiple cols
   scope :order_by, lambda { |order_sql|
@@ -580,8 +580,8 @@ class Observation < ActiveRecord::Base
   
   scope :created_on, lambda {|date| where(Observation.conditions_for_date("observations.created_at", date))}
   
-  scope :out_of_range, where(:out_of_range => true)
-  scope :in_range, where(:out_of_range => false)
+  scope :out_of_range, -> { where(:out_of_range => true) }
+  scope :in_range, -> { where(:out_of_range => false) }
   scope :license, lambda {|license|
     if license == 'none'
       where("observations.license IS NULL")

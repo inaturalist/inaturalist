@@ -73,9 +73,9 @@ class GuideSection < ActiveRecord::Base
     Use
   )
 
-  scope :reusable, where("COALESCE(license, '') != ''")
+  scope :reusable, -> { where("COALESCE(license, '') != ''") }
   scope :for_taxon, lambda {|t| inlucdes(:guide_taxon).where("guide_taxa.taxon_id = ?", t)}
-  scope :original, where("COALESCE(source_url, '') = ''")
+  scope :original, -> { where("COALESCE(source_url, '') = ''") }
   scope :dbsearch, lambda {|q| 
     q = "%#{q}%"
     includes(:guide_taxon).

@@ -34,8 +34,8 @@ class Taxon < ActiveRecord::Base
   has_many :identifications, :dependent => :destroy
   has_many :taxon_links, :dependent => :delete_all 
   has_many :taxon_ranges, :dependent => :destroy
-  has_many :taxon_ranges_without_geom, :class_name => 'TaxonRange', :select => (TaxonRange.column_names - ['geom']).join(', ')
-  has_many :taxon_photos, :dependent => :destroy, :order => "position ASC NULLS LAST, id ASC"
+  has_many :taxon_ranges_without_geom, -> { select(TaxonRange.column_names - ['geom']) }, :class_name => 'TaxonRange'
+  has_many :taxon_photos, -> { order("position ASC NULLS LAST, id ASC") }, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
   has_many :assessments, :dependent => :nullify
   has_many :conservation_statuses, :dependent => :destroy
@@ -56,21 +56,21 @@ class Taxon < ActiveRecord::Base
   accepts_nested_attributes_for :conservation_statuses, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :taxon_photos, :allow_destroy => true
   
-  define_index do
-    indexes :name
-    indexes taxon_names.name, :as => :names
-    indexes colors.value, :as => :color_values
-    has iconic_taxon_id, :facet => true, :type => :integer
-    has colors(:id), :as => :colors, :facet => true, :type => :multi
-    has is_active
-    # has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi
-    # has listed_taxa(:list_id), :as => :lists, :type => :multi
-    has created_at, ancestry
-    has "REPLACE(ancestry, '/', ',')", :as => :ancestors, :type => :multi
-    has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi, :source => :query
-    has observations_count
-    set_property :delta => :delayed
-  end
+  # define_index do
+  #   indexes :name
+  #   indexes taxon_names.name, :as => :names
+  #   indexes colors.value, :as => :color_values
+  #   has iconic_taxon_id, :facet => true, :type => :integer
+  #   has colors(:id), :as => :colors, :facet => true, :type => :multi
+  #   has is_active
+  #   # has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi
+  #   # has listed_taxa(:list_id), :as => :lists, :type => :multi
+  #   has created_at, ancestry
+  #   has "REPLACE(ancestry, '/', ',')", :as => :ancestors, :type => :multi
+  #   has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi, :source => :query
+  #   has observations_count
+  #   set_property :delta => :delayed
+  # end
   
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon, # if after, it would require an extra save

@@ -119,16 +119,16 @@ class Project < ActiveRecord::Base
   acts_as_spammable :fields => [ :title, :description ],
                     :comment_type => "item-description"
 
-  define_index do
-    indexes :title
-    indexes :description
-    # This is super brittle: the sphinx doc identifier here is based on
-    # ThinkingSphinx.unique_id_expression, which I can't get to work here, so
-    # if the number of indexed models changes this will break.
-    has "SELECT projects.id * 4::INT8 + 2 AS id, regexp_split_to_table(projects.place_id::text || (CASE WHEN ancestry IS NULL THEN '' ELSE '/' || ancestry END), '/') AS place_id 
-FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, :source => :query
-    set_property :delta => :delayed
-  end
+#   define_index do
+#     indexes :title
+#     indexes :description
+#     # This is super brittle: the sphinx doc identifier here is based on
+#     # ThinkingSphinx.unique_id_expression, which I can't get to work here, so
+#     # if the number of indexed models changes this will break.
+#     has "SELECT projects.id * 4::INT8 + 2 AS id, regexp_split_to_table(projects.place_id::text || (CASE WHEN ancestry IS NULL THEN '' ELSE '/' || ancestry END), '/') AS place_id 
+# FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, :source => :query
+#     set_property :delta => :delayed
+#   end
 
   def place_with_boundary
     unless PlaceGeometry.where(:place_id => place_id).exists?

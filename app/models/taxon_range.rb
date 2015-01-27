@@ -6,8 +6,8 @@ class TaxonRange < ActiveRecord::Base
   
   accepts_nested_attributes_for :source
   
-  scope :without_geom, select((column_names - ['geom']).join(', '))
-  scope :simplified, select(<<-SQL
+  scope :without_geom, -> { select((column_names - ['geom']).join(', ')) }
+  scope :simplified, -> { select(<<-SQL
       id, taxon_id, 
       st_multi(
         cleangeometry(
@@ -20,7 +20,7 @@ class TaxonRange < ActiveRecord::Base
         )
       ) AS geom
     SQL
-  )
+  ) }
   
   has_attached_file :range,
     :path => ":rails_root/public/attachments/:class/:id.:extension",
