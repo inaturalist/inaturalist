@@ -1,3 +1,8 @@
+# Include hook code here
+require 'acts_as_flaggable/acts_as_flaggable'
+require 'acts_as_flaggable/flag'
+ActiveRecord::Base.send(:include, Gonzo::Acts::Flaggable)
+
 module Gonzo
   module Acts
     module Flaggable

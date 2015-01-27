@@ -1,5 +1,5 @@
 class ObservationPhotosController < ApplicationController
-  doorkeeper_for :show, :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
   before_filter :load_record, :only => [:update, :destroy]
   before_filter :require_owner, :only => [:update, :destroy]

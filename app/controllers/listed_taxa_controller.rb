@@ -1,7 +1,7 @@
 class ListedTaxaController < ApplicationController
   before_filter :authenticate_user!, :except => [:show]
   before_filter :load_listed_taxon, :except => [:index, :create, :refresh_observationcounts]
-  cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
+  # cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
   
   SHOW_PARTIALS = %w(place_tip guide batch_edit_row)
 
@@ -132,7 +132,7 @@ class ListedTaxaController < ApplicationController
             @listed_taxon.html = view_context.render_in_format(:html, :partial => "lists/#{params[:partial]}", 
               :object => @listed_taxon)
           end
-          render :json => @listed_taxon, :json => @listed_taxon.to_json(:methods => [:errors, :html])
+          render :json => @listed_taxon.to_json(:methods => [:errors, :html])
         end
       else
         format.html do

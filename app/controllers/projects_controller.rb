@@ -1,11 +1,11 @@
 class ProjectsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
-  caches_action :observed_taxa_count, :contributors,
-    :expires_in => WIDGET_CACHE_EXPIRATION,
-    :cache_path => Proc.new {|c| c.params}, 
-    :if => Proc.new {|c| c.request.format == :widget}
+  # caches_action :observed_taxa_count, :contributors,
+  #   :expires_in => WIDGET_CACHE_EXPIRATION,
+  #   :cache_path => Proc.new {|c| c.params}, 
+  #   :if => Proc.new {|c| c.request.format == :widget}
 
-  doorkeeper_for :by_login, :join, :leave, :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!, :only => [ :by_login, :join, :leave ], :if => lambda { authenticate_with_oauth? }
   
   before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms, :invite]
   before_filter :authenticate_user!, 

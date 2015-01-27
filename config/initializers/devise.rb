@@ -6,6 +6,8 @@ Devise.setup do |config|
   rest_auth_site_key         = configuration_bindings['rest_auth']['REST_AUTH_SITE_KEY']
   rest_auth_digest_stretches = configuration_bindings['rest_auth']['REST_AUTH_DIGEST_STRETCHES']
   
+  config.secret_key = rest_auth_site_key
+  
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.

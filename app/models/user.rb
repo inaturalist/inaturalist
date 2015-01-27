@@ -72,13 +72,13 @@ class User < ActiveRecord::Base
   has_many :lists, :dependent => :destroy
   has_many :life_lists
   has_many :identifications, :dependent => :destroy
-  has_many :identifications_for_others, :class_name => "Identification", 
-    :include => [:observation],
-    :conditions => "identifications.user_id != observations.user_id AND identifications.current = true"
+  has_many :identifications_for_others,
+    -> { where("identifications.user_id != observations.user_id AND identifications.current = true").
+         includes(:observation) }, :class_name => "Identification"
   has_many :photos, :dependent => :destroy
   has_many :posts #, :dependent => :destroy
   has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
-  has_many :trips, :class_name => "Post", :foreign_key => "user_id", :conditions => "posts.type = 'Trip'"
+  has_many :trips, -> { where("posts.type = 'Trip'") }, :class_name => "Post", :foreign_key => "user_id"
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
   has_many :projects
@@ -91,7 +91,7 @@ class User < ActiveRecord::Base
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify
   has_many :messages, :dependent => :destroy
-  has_many :delivered_messages, :class_name => "Message", :foreign_key => "from_user_id", :conditions => "messages.from_user_id != messages.user_id"
+  has_many :delivered_messages, -> { where("messages.from_user_id != messages.user_id") }, :class_name => "Message", :foreign_key => "from_user_id"
   has_many :guides, :dependent => :destroy, :inverse_of => :user
   has_many :observation_fields, :dependent => :nullify, :inverse_of => :user
   has_many :observation_field_values, :dependent => :nullify, :inverse_of => :user
@@ -168,9 +168,9 @@ class User < ActiveRecord::Base
     sort_dir ||= 'DESC'
     order("? ?", sort_by, sort_dir)
   }
-  scope :curators, includes(:roles).where("roles.name IN ('curator', 'admin')")
-  scope :admins, includes(:roles).where("roles.name = 'admin'")
-  scope :active, where("suspended_at IS NULL")
+  scope :curators, -> { includes(:roles).where("roles.name IN ('curator', 'admin')") }
+  scope :admins, -> { includes(:roles).where("roles.name = 'admin'") }
+  scope :active, -> { where("suspended_at IS NULL") }
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
   # you can also force skipping email validation by setting u.skip_email_validation=true before you save

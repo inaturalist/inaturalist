@@ -1,7 +1,7 @@
 #encoding: utf-8
 class GuidesController < ApplicationController
   include GuidesHelper
-  doorkeeper_for :show, :user, :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!, :only => [ :show, :user ], :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :except => [:index, :show, :search], 
     :unless => lambda { authenticated_with_oauth? }
@@ -15,7 +15,7 @@ class GuidesController < ApplicationController
   layout "bootstrap"
   PDF_LAYOUTS = GuidePdfFlowTask::LAYOUTS
 
-  caches_page :show, :if => Proc.new {|c| c.request.format == :ngz || c.request.format == :xml}
+  # caches_page :show, :if => Proc.new {|c| c.request.format == :ngz || c.request.format == :xml}
   
   # GET /guides
   # GET /guides.json

@@ -5,12 +5,12 @@ class Assessment < ActiveRecord::Base
 
   validates_presence_of :project, :user, :taxon
 
-  has_many :sections, :order => 'display_order DESC', :foreign_key => 'assessment_id', :class_name => "AssessmentSection", :dependent => :destroy
+  has_many :sections, -> { order('display_order DESC') }, :foreign_key => 'assessment_id', :class_name => "AssessmentSection", :dependent => :destroy
   accepts_nested_attributes_for :sections, :allow_destroy => true
   validates_associated :sections
 
-  scope :complete, where("completed_at IS NOT NULL")
-  scope :incomplete, where("completed_at IS NULL")
+  scope :complete, -> { where("completed_at IS NOT NULL") }
+  scope :incomplete, -> { where("completed_at IS NULL") }
   scope :with_conservation_status, lambda {|authority, status, place|
     scope = joins("INNER JOIN conservation_statuses ON assessments.taxon_id = conservation_statuses.taxon_id").
     where("conservation_statuses.authority = ? AND conservation_statuses.status = ?", authority, status).scoped

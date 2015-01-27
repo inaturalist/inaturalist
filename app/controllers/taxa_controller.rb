@@ -1,12 +1,12 @@
 #encoding: utf-8
 class TaxaController < ApplicationController
-  caches_page :range, :if => Proc.new {|c| c.request.format == :geojson}
-  caches_action :show, :expires_in => 1.day, :cache_path => {:locale => I18n.locale}, :if => Proc.new {|c| 
-    c.session.blank? || c.session['warden.user.user.key'].blank?
-  }
-  caches_action :describe, :expires_in => 1.day, :cache_path => {:locale => I18n.locale}, :if => Proc.new {|c| 
-    c.session.blank? || c.session['warden.user.user.key'].blank?
-  }
+  # caches_page :range, :if => Proc.new {|c| c.request.format == :geojson}
+  # caches_action :show, :expires_in => 1.day, :cache_path => {:locale => I18n.locale}, :if => Proc.new {|c| 
+  #   c.session.blank? || c.session['warden.user.user.key'].blank?
+  # }
+  # caches_action :describe, :expires_in => 1.day, :cache_path => {:locale => I18n.locale}, :if => Proc.new {|c| 
+  #   c.session.blank? || c.session['warden.user.user.key'].blank?
+  # }
   
   include TaxaHelper
   include Shared::WikipediaModule
@@ -27,7 +27,7 @@ class TaxaController < ApplicationController
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
   before_filter :load_form_variables, :only => [:edit, :new]
-  cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos]
+  # cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos]
   
   GRID_VIEW = "grid"
   LIST_VIEW = "list"

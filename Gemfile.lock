@@ -173,6 +173,10 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bcrypt (3.1.9)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     bluecloth (2.2.0)
     buftok (0.2.0)
     builder (3.2.2)
@@ -190,6 +194,7 @@ GEM
     cocaine (0.5.5)
       climate_control (>= 0.0.3, < 1.0)
     cocoon (1.2.6)
+    coderay (1.1.0)
     colorize (0.7.5)
     daemon-spawn (0.4.2)
     daemons (1.1.9)
@@ -360,6 +365,8 @@ GEM
       cocaine (~> 0.5.0)
       mime-types
     pg (0.18.1)
+    protected_attributes (1.0.8)
+      activemodel (>= 4.0.1, < 5.0)
     rack (1.6.0)
     rack-mobile-detect (0.4.0)
       rack
@@ -543,6 +550,7 @@ DEPENDENCIES
   apipie-rails
   aws-sdk
   bborn-acts_as_taggable_on_steroids!
+  better_errors
   bluecloth
   capistrano
   capistrano-passenger
@@ -595,6 +603,7 @@ DEPENDENCIES
   paperclip (= 3.4.2)
   pg
   preferences!
+  protected_attributes
   rack-google-analytics!
   rails (~> 4.2.0)
   rakismet

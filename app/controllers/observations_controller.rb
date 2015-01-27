@@ -1,21 +1,21 @@
 #encoding: utf-8
 class ObservationsController < ApplicationController
-  caches_page :tile_points
+  # caches_page :tile_points
   
   WIDGET_CACHE_EXPIRATION = 15.minutes
-  caches_action :index, :by_login, :project,
-    :expires_in => WIDGET_CACHE_EXPIRATION,
-    :cache_path => Proc.new {|c| c.params.merge(:locale => I18n.locale)},
-    :if => Proc.new {|c| 
-      c.session.blank? && # make sure they're logged out
-      c.request.format && # make sure format corresponds to a known mime type
-      (c.request.format.geojson? || c.request.format.widget? || c.request.format.kml?) && 
-      c.request.url.size < 250}
-  caches_action :of,
-    :expires_in => 1.day,
-    :cache_path => Proc.new {|c| c.params.merge(:locale => I18n.locale)},
-    :if => Proc.new {|c| c.request.format != :html }
-  cache_sweeper :observation_sweeper, :only => [:create, :update, :destroy]
+  # caches_action :index, :by_login, :project,
+  #   :expires_in => WIDGET_CACHE_EXPIRATION,
+  #   :cache_path => Proc.new {|c| c.params.merge(:locale => I18n.locale)},
+  #   :if => Proc.new {|c| 
+  #     c.session.blank? && # make sure they're logged out
+  #     c.request.format && # make sure format corresponds to a known mime type
+  #     (c.request.format.geojson? || c.request.format.widget? || c.request.format.kml?) && 
+  #     c.request.url.size < 250}
+  # caches_action :of,
+  #   :expires_in => 1.day,
+  #   :cache_path => Proc.new {|c| c.params.merge(:locale => I18n.locale)},
+  #   :if => Proc.new {|c| c.request.format != :html }
+  # cache_sweeper :observation_sweeper, :only => [:create, :update, :destroy]
   
   rescue_from ::AbstractController::ActionNotFound  do
     unless @selected_user = User.find_by_login(params[:action])
@@ -24,7 +24,7 @@ class ObservationsController < ApplicationController
     by_login
   end
 
-  doorkeeper_for :create, :update, :destroy, :viewed_updates, :update_fields, :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!, :only => [ :create, :update, :destroy, :viewed_updates, :update_fields ], :if => lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
