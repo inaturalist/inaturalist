@@ -27,7 +27,7 @@ gem 'doorkeeper'
 gem 'dynamic_form'
 gem 'exifr'
 gem 'flickraw', "~> 0.9.8", :git => 'git://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
-gem "friendly_id", "~> 4.0.1"
+gem "friendly_id", "~> 5.0.1"
 gem 'gdata', :git => 'git://github.com/dwaite/gdata.git'
 gem 'geocoder'
 gem 'geoplanet'
@@ -36,7 +36,7 @@ gem 'georuby', :git => 'git://github.com/kueda/georuby.git'
 gem 'haml'
 gem 'htmlentities'
 gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'
-gem 'irwi', :git => 'git://github.com/alno/irwi.git'
+# gem 'irwi', :git => 'git://github.com/alno/irwi.git'
 gem 'json'
 gem 'jquery-rails'
 gem 'koala'
@@ -61,7 +61,7 @@ gem 'rack-google-analytics', :git => 'git://github.com/kueda/rack-google-analyti
 gem 'rakismet'
 gem 'rest-client', :require => 'rest_client'
 gem 'rgeo'
-gem 'right_aws'
+gem 'right_aws', :git => 'git://github.com/rightscale/right_aws.git'
 gem 'right_http_connection'
 gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'git://github.com/kueda/riparian.git'
@@ -70,7 +70,7 @@ gem 'savon'   #allow to consume soap services with WSDL
 gem 'sass', '= 3.2.5'
 gem 'sass-rails'
 gem 'soundcloud'
-gem 'spatial_adapter', :git => 'git://github.com/kueda/spatial_adapter.git' # until fragility updates the gemspec
+# gem 'spatial_adapter', :git => 'git://github.com/kueda/spatial_adapter.git' # until fragility updates the gemspec
 gem 'mysql2'
 gem 'thinking-sphinx' # this needs some serious work to upgrade. Doesn't look like Rails 4 will work with 2.0.10, which is what we were using
 gem 'translate-rails3', :require => 'translate', :git => 'git://github.com/JayTeeSF/translate.git'
@@ -101,6 +101,7 @@ group :test, :development, :prod_dev do
   gem "rspec-rails"
   gem "rspec-html-matchers"
   gem "better_errors"
+  gem "byebug"
 end
 
 group :test do

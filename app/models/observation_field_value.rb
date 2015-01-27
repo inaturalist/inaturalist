@@ -18,7 +18,7 @@ class ObservationFieldValue < ActiveRecord::Base
   # Again, we can't support this until all mobile clients support all field types
   validate :validate_observation_field_allowed_values
 
-  notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
+  notifies_subscribers_of :observation, :notification => "activity",
     :on => :save,
     :include_owner => lambda {|ofv, observation|
       ofv.updater_id != observation.user_id

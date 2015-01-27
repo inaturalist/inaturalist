@@ -185,6 +185,9 @@ class Site < ActiveRecord::Base
   end
 
   def method_missing(method, *args, &block)
-    preferences.keys.include?(method.to_s) ? preferences[method.to_s] : super
+    if stored_preference = stored_preferences.where(name: method.to_s).first
+      return stored_preference["value"]
+    end
+    super
   end
 end

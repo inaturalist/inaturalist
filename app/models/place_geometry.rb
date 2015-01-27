@@ -4,7 +4,7 @@
 class PlaceGeometry < ActiveRecord::Base
   belongs_to :place
   belongs_to :source
-  scope :without_geom, select((column_names - ['geom']).join(', '))
+  scope :without_geom, -> { select((column_names - ['geom']).join(', ')) }
   
   after_save :refresh_place_check_list, :dissolve_geometry_if_changed
   

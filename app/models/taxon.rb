@@ -264,10 +264,10 @@ class Taxon < ActiveRecord::Base
     joins(sql)
   }
   
-  scope :iconic_taxa, where("taxa.is_iconic = true").includes(:taxon_names)
+  scope :iconic_taxa, -> { where("taxa.is_iconic = true").includes(:taxon_names) }
   scope :of_rank, lambda {|rank| where("taxa.rank = ?", rank)}
   scope :of_rank_equiv, lambda {|rank_level| where("taxa.rank_level = ?", rank_level)}
-  scope :is_locked, where(:locked => true)
+  scope :is_locked, -> { where(:locked => true) }
   scope :containing_lat_lng, lambda {|lat, lng|
     joins(:taxon_ranges).where("ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat)
   }
@@ -305,7 +305,7 @@ class Taxon < ActiveRecord::Base
     end
   }
   
-  scope :has_photos, joins(:taxon_photos).where("taxon_photos.id IS NOT NULL")
+  scope :has_photos, -> { joins(:taxon_photos).where("taxon_photos.id IS NOT NULL") }
   scope :among, lambda {|ids| where("taxa.id IN (?)", ids)}
   
   scope :self_and_descendants_of, lambda{|taxon|
@@ -343,7 +343,7 @@ class Taxon < ActiveRecord::Base
     where("(conservation_statuses.place_id = ? OR conservation_statuses.place_id IS NULL)", place)
   }
     
-  scope :threatened, where("conservation_status >= ?", IUCN_NEAR_THREATENED)
+  scope :threatened, -> { where("conservation_status >= ?", IUCN_NEAR_THREATENED) }
   scope :threatened_in_place, lambda {|place|
     includes(:conservation_statuses).
     where("conservation_statuses.iucn >= ?", IUCN_NEAR_THREATENED).
@@ -356,8 +356,8 @@ class Taxon < ActiveRecord::Base
   scope :on_list, lambda {|list|
     includes(:listed_taxa).where("listed_taxa.list_id = ?", list)
   }
-  scope :active, where(:is_active => true)
-  scope :inactive, where(:is_active => false)
+  scope :active, -> { where(:is_active => true) }
+  scope :inactive, -> { where(:is_active => false) }
   
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)

@@ -17,8 +17,7 @@ class Place < ActiveRecord::Base
   has_many :users, :inverse_of => :place, :dependent => :nullify
   has_many :observations_places, :dependent => :destroy
   has_one :place_geometry, :dependent => :destroy
-  has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
-    :select => (PlaceGeometry.column_names - ['geom']).join(', ')
+  has_one :place_geometry_without_geom, -> { select(PlaceGeometry.column_names - ['geom']) }, :class_name => 'PlaceGeometry'
   
   before_save :calculate_bbox_area, :set_display_name, :set_admin_level
   after_save :check_default_check_list
@@ -103,7 +102,6 @@ class Place < ActiveRecord::Base
     1 => 'Building',
     2 => 'Street Segment',
     3 => 'Nearby Building',
-    4 => 'Street',
     5 => 'Intersection',
     6 => 'Street',
     7 => 'Town',
@@ -148,7 +146,7 @@ class Place < ActiveRecord::Base
   PLACE_TYPES.each do |code, type|
     PLACE_TYPE_CODES[type.downcase] = code
     const_set type.upcase.gsub(/\W/, '_'), code
-    scope type.pluralize.underscore.to_sym, where("place_type = ?", code)
+    scope type.pluralize.underscore.to_sym, -> { where("place_type = ?", code) }
   end
 
   COUNTRY_LEVEL = 0
@@ -234,8 +232,8 @@ class Place < ActiveRecord::Base
     where("place_type IN (?)", place_types)
   }
 
-  scope :with_geom, joins(:place_geometry).where("place_geometries.id IS NOT NULL")
-  scope :straddles_date_line, where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)")
+  scope :with_geom, -> { joins(:place_geometry).where("place_geometries.id IS NOT NULL") }
+  scope :straddles_date_line, -> { where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)") }
   
   def to_s
     "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 

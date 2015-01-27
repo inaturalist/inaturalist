@@ -15,7 +15,7 @@ class ProjectUser < ActiveRecord::Base
   ROLES = %w(curator manager)
   ROLES.each do |role|
     const_set role.upcase, role
-    scope role.pluralize, where(:role => role)
+    scope role.pluralize, -> { where(:role => role) }
   end
 
   notifies_subscribers_of :project, :on => :save, :notification => CURATOR_CHANGE_NOTIFICATION, 

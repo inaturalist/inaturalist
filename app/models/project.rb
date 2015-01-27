@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
   has_many :taxa, :through => :listed_taxa
   has_many :project_assets, :dependent => :destroy
   has_one :custom_project, :dependent => :destroy
-  has_many :project_observation_fields, :dependent => :destroy, :inverse_of => :project, :order => "position"
+  has_many :project_observation_fields, -> { order("position") }, :dependent => :destroy, :inverse_of => :project
   has_many :observation_fields, :through => :project_observation_fields
   has_many :posts, :as => :parent, :dependent => :destroy
   has_many :journal_posts, :class_name => "Post", :as => :parent
@@ -58,7 +58,7 @@ class Project < ActiveRecord::Base
   validate :place_with_boundary, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}
   validate :one_year_time_span, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :unless => "errors.any?"
   
-  scope :featured, where("featured_at IS NOT NULL")
+  scope :featured, -> { where("featured_at IS NOT NULL") }
   scope :in_group, lambda {|name| where(:group => name) }
   scope :near_point, lambda {|latitude, longitude|
     latitude = latitude.to_f

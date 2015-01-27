@@ -15,7 +15,7 @@ class WelcomeController < ApplicationController
                                                  { :observation_photos => :photo },
                                                  { :user => :stored_preferences } ])
                                      .limit(4)
-                                     .order("observations.id DESC").scoped
+                                     .order("observations.id DESC")
           if CONFIG.site_only_observations && params[:site].blank?
             @observations = @observations.where("observations.uri LIKE ?", "#{FakeView.root_url}%")
           elsif (site_bounds = CONFIG.bounds) && params[:swlat].blank?

@@ -6,17 +6,6 @@ GIT
       ya2yaml (~> 0.30)
 
 GIT
-  remote: git://github.com/alno/irwi.git
-  revision: df0c21c14b330c6e5aef60e343593d9dcf92f99e
-  specs:
-    irwi (0.4.2)
-      actionpack (>= 3.0.0)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      diff-lcs (>= 1.1.2)
-      rails_autolink (>= 1.0)
-
-GIT
   remote: git://github.com/dlabare/preferences.git
   revision: 8142b046f7876ed6a5e5325f7c710ef1f8482d26
   specs:
@@ -83,12 +72,11 @@ GIT
       rdoc
 
 GIT
-  remote: git://github.com/kueda/spatial_adapter.git
-  revision: 524de45a8d218a217471b3f22bf7fe6a624a2156
+  remote: git://github.com/rightscale/right_aws.git
+  revision: f7669e0636c12b68798de332cf92f86e5092e022
   specs:
-    spatial_adapter (1.3.1)
-      activerecord (>= 2.2.2)
-      georuby (>= 1.3.0)
+    right_aws (3.1.0)
+      right_http_connection (>= 1.2.5)
 
 GIT
   remote: https://github.com/37signals/mail_view.git
@@ -175,6 +163,10 @@ GEM
     bluecloth (2.2.0)
     buftok (0.2.0)
     builder (3.2.2)
+    byebug (3.5.1)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+      slop (~> 3.6)
     capistrano (3.3.5)
       capistrano-stats (~> 1.1.0)
       i18n
@@ -191,12 +183,14 @@ GEM
     cocoon (1.2.6)
     coderay (1.1.0)
     colorize (0.7.5)
+    columnize (0.9.0)
     daemon-spawn (0.4.2)
     daemons (1.1.9)
     dalli (2.7.2)
     database_cleaner (1.4.0)
     dbf (2.0.7)
       fastercsv (~> 1.5.4)
+    debugger-linecache (1.2.0)
     delayed_job (4.0.6)
       activesupport (>= 3.0, < 5.0)
     delayed_job_active_record (4.0.3)
@@ -231,7 +225,8 @@ GEM
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     fastercsv (1.5.5)
-    friendly_id (4.0.10)
+    friendly_id (5.0.5)
+      activerecord (>= 4.0.0)
     geocoder (1.2.7)
     geoplanet (0.2.7)
       json (>= 1.1.3)
@@ -389,8 +384,6 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.1)
       loofah (~> 2.0)
-    rails_autolink (1.1.6)
-      rails (> 3.1)
     railties (4.2.0)
       actionpack (= 4.2.0)
       activesupport (= 4.2.0)
@@ -407,8 +400,6 @@ GEM
     retriable (1.4.1)
     rgeo (0.3.20)
     riddle (1.5.11)
-    right_aws (3.1.0)
-      right_http_connection (>= 1.2.5)
     right_http_connection (1.5.0)
     rinku (1.7.3)
     rspec (3.1.0)
@@ -465,6 +456,7 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    slop (3.6.0)
     soundcloud (0.3.1)
       hashie
       httmultiparty (>= 0.3)
@@ -547,6 +539,7 @@ DEPENDENCIES
   aws-sdk
   better_errors
   bluecloth
+  byebug
   capistrano
   capistrano-passenger
   chronic
@@ -568,7 +561,7 @@ DEPENDENCIES
   exifr
   faker
   flickraw (~> 0.9.8)!
-  friendly_id (~> 4.0.1)
+  friendly_id (~> 5.0.1)
   gdata!
   geocoder
   geoplanet
@@ -577,7 +570,6 @@ DEPENDENCIES
   haml
   htmlentities
   i18n-js!
-  irwi!
   jquery-rails
   json
   koala
@@ -604,7 +596,7 @@ DEPENDENCIES
   rakismet
   rest-client
   rgeo
-  right_aws
+  right_aws!
   right_http_connection
   rinku
   riparian!
@@ -616,7 +608,6 @@ DEPENDENCIES
   savon
   simplecov
   soundcloud
-  spatial_adapter!
   statsd-ruby
   thinking-sphinx
   translate-rails3!
