@@ -6,12 +6,6 @@ GIT
       ya2yaml (~> 0.30)
 
 GIT
-  remote: git://github.com/dlabare/preferences.git
-  revision: 8142b046f7876ed6a5e5325f7c710ef1f8482d26
-  specs:
-    preferences (0.4.2)
-
-GIT
   remote: git://github.com/dwaite/gdata.git
   revision: fae93bd449d44044dbd0d565946b6ba0e21cb772
   specs:
@@ -70,6 +64,12 @@ GIT
       paperclip
       rails (> 3.0.0)
       rdoc
+
+GIT
+  remote: git://github.com/pleary/preferences.git
+  revision: 7d880e847788223f2d5fdb5a302526ff5da4cd6d
+  specs:
+    preferences (0.4.2)
 
 GIT
   remote: git://github.com/rightscale/right_aws.git

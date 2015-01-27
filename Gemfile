@@ -55,7 +55,7 @@ gem 'objectify-xml', :require => 'objectify_xml'
 gem "paperclip", "3.4.2"
 gem 'delayed_paperclip', :git => 'git://github.com/jrgifford/delayed_paperclip.git'
 gem 'pg'
-gem 'preferences', :git => 'git://github.com/dlabare/preferences.git'
+gem 'preferences', :git => 'git://github.com/pleary/preferences.git'
 gem 'protected_attributes'
 gem 'rack-google-analytics', :git => 'git://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'
 gem 'rakismet'

@@ -117,6 +117,7 @@ if CONFIG.statsd_host
 end
 
 # make sure we have geojson support
+require 'geo_ruby'
 require 'geo_ruby/geojson'
 require 'geo_ruby/shp4r/shp'
 require 'geo_ruby/kml'
