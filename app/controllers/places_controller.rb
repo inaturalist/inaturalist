@@ -27,13 +27,13 @@ class PlacesController < ApplicationController
           places = if place
             place.children.select('id').order("RANDOM()").limit(50)
           else
-            Place.all(:select => "id", :order => "RANDOM()", :limit => 50, 
-              :conditions => ["place_type = ?", Place::COUNTRY_LEVEL])
+            Place.where("place_type = ?", Place::COUNTRY_LEVEL).select(:id).
+              order("RANDOM()").limit(50)
           end
           places.map{|p| p.id}
         end
         place_ids = place_ids.sort_by{rand}[0..4]
-        @places = Place.all(:conditions => ["id in (?)", place_ids])
+        @places = Place.where("id in (?)", place_ids)
       end
       
       format.json do

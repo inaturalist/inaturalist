@@ -490,9 +490,7 @@ class Observation < ActiveRecord::Base
   scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon
-    c = taxon.descendant_conditions
-    c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
-    joins(:taxon).where(c)
+    joins(taxon: :taxon_ancestors).where("taxon_ancestors.ancestor_taxon_id = ?", taxon.id)
   }
   
   scope :at_or_below_rank, lambda {|rank| 

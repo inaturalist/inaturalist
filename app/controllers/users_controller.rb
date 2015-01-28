@@ -143,6 +143,7 @@ class UsersController < ApplicationController
         scope = klass.limit(30).
           order("#{klass.table_name}.id DESC").
           where("#{klass.table_name}.created_at > ?", 1.week.ago).
+          joins(:user).
           where("users.id IS NOT NULL").
           includes(:user)
         scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
@@ -534,7 +535,7 @@ protected
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
     scope = Observation.group(:user_id).
-      where("EXTRACT(YEAR FROM observed_on) = ?", year).scoped
+      where("EXTRACT(YEAR FROM observed_on) = ?", year)
     if per == 'month'
       scope = scope.where("EXTRACT(MONTH FROM observed_on) = ?", month)
     end
@@ -592,7 +593,7 @@ protected
       where("identifications.user_id != observations.user_id").
       where("EXTRACT(YEAR FROM identifications.created_at) = ?", year).
       order('count_all desc').
-      limit(5).scoped
+      limit(5)
     if per == 'month'
       scope = scope.where("EXTRACT(MONTH FROM identifications.created_at) = ?", month)
     end
