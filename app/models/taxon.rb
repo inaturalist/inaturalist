@@ -819,7 +819,7 @@ class Taxon < ActiveRecord::Base
       candidate = candidate.gsub(/[\.\'\?\!\\\/]/, '').downcase
       return if unique_name == candidate
       next if Taxon.exists?(:unique_name => candidate)
-      Taxon.update_all(["unique_name = ?", candidate], ["id = ?", self])
+      Taxon.where(id: id).update_all(unique_name: candidate)
       break
     end
   end

@@ -1,12 +1,5 @@
 class Guide < ActiveRecord::Base
   acts_as_spammable :fields => [ :title, :description ]
-
-  attr_accessible :description, :latitude, :longitude, :place_id,
-    :published_at, :title, :user_id, :icon, :license, :icon_file_name,
-    :icon_content_type, :icon_file_size, :icon_updated_at, :zoom_level,
-    :map_type, :taxon, :taxon_id, :source_url, :downloadable, :ngz,
-    :ngz_file_name, :ngz_content_type, :ngz_file_size, :ngz_updated_at,
-    :guide_users_attributes
   belongs_to :user, :inverse_of => :guides
   belongs_to :place, :inverse_of => :guides
   belongs_to :taxon, :inverse_of => :guides

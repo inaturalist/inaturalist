@@ -17,13 +17,6 @@ class User < ActiveRecord::Base
   attr_accessor   :make_observation_licenses_same
   attr_accessor   :make_photo_licenses_same
   attr_accessor   :make_sound_licenses_same
-  attr_accessible :make_observation_licenses_same, 
-                  :make_photo_licenses_same,
-                  :make_sound_licenses_same, 
-                  :preferred_photo_license, 
-                  :preferred_observation_license,
-                  :preferred_sound_license,
-                  :preferred_observation_fields_by
   attr_accessor :html
   
   preference :project_journal_post_email_notification, :boolean, :default => true
@@ -157,12 +150,6 @@ class User < ActiveRecord::Base
 
   validates_format_of       :email,    :with => email_regex, :message => bad_email_message, :allow_blank => true
   validates_length_of       :email,    :within => 6..100, :allow_blank => true #r@a.wk
-
-  # HACK HACK HACK -- how to do attr_accessible from here?
-  # prevents a user from submitting a crafted form that bypasses activation
-  # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, 
-    :time_zone, :icon_url, :locale, :prefers_community_taxa, :place_id
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -407,7 +394,7 @@ class User < ActiveRecord::Base
 
   def set_uri
     if uri.blank?
-      User.update_all(["uri = ?", FakeView.user_url(id)], ["id = ?", id])
+      User.where(id: id).update_all(uri: FakeView.user_url(id))
     end
     true
   end
@@ -570,12 +557,12 @@ class User < ActiveRecord::Base
   
   def create_default_life_list
     return true if life_list
-    new_life_list = if (existing = self.lists.includes(:rules).where("lists.type = 'LifeList' AND list_rules.id IS NULL").first)
+    new_life_list = if (existing = self.lists.joins(:rules).where("lists.type = 'LifeList' AND list_rules.id IS NULL").first)
       self.life_list = existing
     else
       LifeList.create(:user => self)
     end
-    User.update_all(["life_list_id = ?", new_life_list], ["id = ?", self])
+    User.where(id: id).update_all(life_list_id: new_life_list)
     true
   end
   

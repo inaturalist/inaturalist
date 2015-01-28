@@ -64,7 +64,7 @@ class LifeList < List
       end
       collection += existing
     else
-      collection = self.listed_taxa.all(:include => [{:list => :rules}, {:taxon => :taxon_names}, :last_observation])
+      collection = self.listed_taxa.includes({list: :rules}, {taxon: :taxon_names}, :last_observation)
     end
 
     collection.each do |lt|

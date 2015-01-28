@@ -4,6 +4,8 @@ gem 'rails', "~> 4.2.0"
 
 gem 'apipie-rails'
 gem 'aasm'
+gem 'actionpack-action_caching'
+gem 'actionpack-page_caching'
 gem 'addressable', :require => 'addressable/uri'
 gem 'airbrake'
 gem 'acts_as_taggable_on'
@@ -55,8 +57,7 @@ gem 'objectify-xml', :require => 'objectify_xml'
 gem "paperclip", "3.4.2"
 gem 'delayed_paperclip', :git => 'git://github.com/jrgifford/delayed_paperclip.git'
 gem 'pg'
-gem 'preferences', :git => 'git://github.com/pleary/preferences.git'
-gem 'protected_attributes'
+gem 'preferences', :git => 'git://github.com/kueda/preferences.git'
 gem 'rack-google-analytics', :git => 'git://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'
 gem 'rakismet'
 gem 'rest-client', :require => 'rest_client'

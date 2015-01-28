@@ -1,6 +1,4 @@
 class GuideRange < ActiveRecord::Base
-  attr_accessible :guide_taxon_id, :thumb_url, :medium_url, :original_url, :rights_holder, :license, :source_id, :source_url,
-    :file, :file_file_name, :file_content_type, :file_file_size, :file_updated_at, :position
   belongs_to :guide_taxon, :inverse_of => :guide_ranges
   has_one :guide, :through => :guide_taxon
   after_save {|r| r.guide.expire_caches(:check_ngz => true)}

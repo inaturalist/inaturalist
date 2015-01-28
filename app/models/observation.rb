@@ -1305,7 +1305,7 @@ class Observation < ActiveRecord::Base
   end
   
   def set_captive
-    Observation.update_all(["captive = ?", captive_cultivated], "id = #{id}")
+    Observation.where(id: id).update_all(captive: captive_cultivated)
     true
   end
   
@@ -1681,15 +1681,15 @@ class Observation < ActiveRecord::Base
     scope = scope.in_place(options[:place]) if options[:place]
     scope.find_each do |o|
       o.obscure_coordinates
-      Observation.update_all({
-        :place_guess => o.place_guess,
-        :latitude => o.latitude,
-        :longitude => o.longitude,
-        :private_latitude => o.private_latitude,
-        :private_longitude => o.private_longitude,
-        :geom => o.geom,
-        :private_geom => o.private_geom
-      }, {:id => o.id})
+      Observation.where(id: o.id).update_all(
+        place_guess: o.place_guess,
+        latitude: o.latitude,
+        longitude: o.longitude,
+        private_latitude: o.private_latitude,
+        private_longitude: o.private_longitude,
+        geom: o.geom,
+        private_geom: o.private_geom
+      )
     end
   end
   
@@ -1698,14 +1698,14 @@ class Observation < ActiveRecord::Base
     return unless taxon
     Observation.find_observations_of(taxon) do |o|
       o.unobscure_coordinates
-      Observation.update_all({
-        :latitude => o.latitude,
-        :longitude => o.longitude,
-        :private_latitude => o.private_latitude,
-        :private_longitude => o.private_longitude,
-        :geom => o.geom,
-        :private_geom => o.private_geom
-      }, {:id => o.id})
+      Observation.where(id: o.id).update_all(
+        latitude: o.latitude,
+        longitude: o.longitude,
+        private_latitude: o.private_latitude,
+        private_longitude: o.private_longitude,
+        geom: o.geom,
+        private_geom: o.private_geom
+      )
     end
   end
 
@@ -1715,14 +1715,14 @@ class Observation < ActiveRecord::Base
     scope.find_each do |o|
       o.obscure_coordinates_for_threatened_taxa
       next unless o.coordinates_changed?
-      Observation.update_all({
-        :latitude => o.latitude,
-        :longitude => o.longitude,
-        :private_latitude => o.private_latitude,
-        :private_longitude => o.private_longitude,
-        :geom => o.geom,
-        :private_geom => o.private_geom
-      }, {:id => o.id})
+      Observation.where(id: o.id).update_all(
+        latitude: o.latitude,
+        longitude: o.longitude,
+        private_latitude: o.private_latitude,
+        private_longitude: o.private_longitude,
+        geom: o.geom,
+        private_geom: o.private_geom
+      )
     end
   end
   
@@ -1866,7 +1866,7 @@ class Observation < ActiveRecord::Base
   
   def update_out_of_range
     set_out_of_range
-    Observation.update_all(["out_of_range = ?", out_of_range], ["id = ?", id])
+    Observation.where(id: id).update_all(out_of_range: out_of_range)
   end
   
   def set_out_of_range
@@ -1895,7 +1895,7 @@ class Observation < ActiveRecord::Base
 
   def set_uri
     if uri.blank?
-      Observation.update_all(["uri = ?", FakeView.observation_url(id)], ["id = ?", id])
+      Observation.where(id: id).update_all(uri: FakeView.observation_url(id))
     end
     true
   end
@@ -1908,7 +1908,7 @@ class Observation < ActiveRecord::Base
   
   def update_all_licenses
     return true unless [true, "1", "true"].include?(@make_licenses_same)
-    Observation.update_all(["license = ?", license], ["user_id = ?", user_id])
+    Observation.where(user_id: user_id).update_all(license: license)
     true
   end
 
@@ -2018,12 +2018,9 @@ class Observation < ActiveRecord::Base
         num_identification_disagreements_changed? || 
         quality_grade_changed? || 
         identifications_count_changed?)
-      Observation.update_all(
-        [
-          "num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?, identifications_count = ?", 
-          num_agreements, num_disagreements, new_quality_grade, identifications_count
-        ], 
-        "id = #{id}"
+      Observation.where(id: id).update_all(
+        "num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?, identifications_count = ?", 
+        num_agreements, num_disagreements, new_quality_grade, identifications_count
       )
       refresh_check_lists
       refresh_lists

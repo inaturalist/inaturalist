@@ -13,9 +13,6 @@ class ConservationStatus < ActiveRecord::Base
   after_destroy :update_observation_geoprivacies
   after_destroy :update_taxon_conservation_status
 
-  attr_accessible :authority, :description, :geoprivacy, :iucn, :place_id,
-    :status, :taxon_id, :url, :user_id, :taxon, :user, :place, :source,
-    :source_id
   attr_accessor :skip_update_observation_geoprivacies
   validates_presence_of :status, :iucn
   validates_uniqueness_of :authority, :scope => [:taxon_id, :place_id], :message => "already set for this taxon in that place"

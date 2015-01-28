@@ -1,8 +1,6 @@
 #encoding: utf-8
 class GuideTaxon < ActiveRecord::Base
   attr_accessor :html
-  attr_accessible :display_name, :guide, :guide_id, :name, :taxon_id, :taxon, :guide_photos_attributes, 
-    :guide_sections_attributes, :guide_ranges_attributes, :html, :position, :tag_list, :source_identifier
   belongs_to :guide, :inverse_of => :guide_taxa
   belongs_to :taxon, :inverse_of => :guide_taxa
   has_one :user, :through => :guide

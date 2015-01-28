@@ -46,6 +46,12 @@ GIT
     georuby (2.0.0)
 
 GIT
+  remote: git://github.com/kueda/preferences.git
+  revision: e96644efae320870938d611cfbe6cb77a81b926f
+  specs:
+    preferences (0.4.2)
+
+GIT
   remote: git://github.com/kueda/rack-google-analytics.git
   revision: 92f9fe2f699a429b194a4c0ed18a5089e03454f8
   branch: eval-blocks-per-request
@@ -64,12 +70,6 @@ GIT
       paperclip
       rails (> 3.0.0)
       rdoc
-
-GIT
-  remote: git://github.com/pleary/preferences.git
-  revision: 7d880e847788223f2d5fdb5a302526ff5da4cd6d
-  specs:
-    preferences (0.4.2)
 
 GIT
   remote: git://github.com/rightscale/right_aws.git
@@ -110,6 +110,10 @@ GEM
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    actionpack-action_caching (1.1.1)
+      actionpack (>= 4.0.0, < 5.0)
+    actionpack-page_caching (1.0.2)
+      actionpack (>= 4.0.0, < 5)
     actionview (4.2.0)
       activesupport (= 4.2.0)
       builder (~> 3.1)
@@ -355,8 +359,6 @@ GEM
       cocaine (~> 0.5.0)
       mime-types
     pg (0.18.1)
-    protected_attributes (1.0.8)
-      activemodel (>= 4.0.1, < 5.0)
     rack (1.6.0)
     rack-mobile-detect (0.4.0)
       rack
@@ -531,6 +533,8 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  actionpack-action_caching
+  actionpack-page_caching
   acts_as_taggable_on
   addressable
   airbrake
@@ -590,7 +594,6 @@ DEPENDENCIES
   paperclip (= 3.4.2)
   pg
   preferences!
-  protected_attributes
   rack-google-analytics!
   rails (~> 4.2.0)
   rakismet

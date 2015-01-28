@@ -1,6 +1,5 @@
 #encoding: utf-8
 class GuidePhoto < ActiveRecord::Base
-  attr_accessible :description, :guide_taxon_id, :photo_id, :title, :photo, :guide_taxon, :position, :photo_attributes
   belongs_to :guide_taxon, :inverse_of => :guide_photos
   belongs_to :photo, :inverse_of => :guide_photos
   has_one :guide, :through => :guide_taxon

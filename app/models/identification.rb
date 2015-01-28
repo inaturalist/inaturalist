@@ -88,15 +88,11 @@ class Identification < ActiveRecord::Base
 
   def update_other_identifications
     if id
-      Identification.update_all(
-        ["current = ?", false],
-        ["observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id]
-      )
+      Identification.where("observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id).
+        update_all(current: false)
     else
-      Identification.update_all(
-        ["current = ?", false],
-        ["observation_id = ? AND user_id = ?", observation_id, user_id]
-      )
+      Identification.where("observation_id = ? AND user_id = ?", observation_id, user_id).
+        update_all(current: false)
     end
     true
   end

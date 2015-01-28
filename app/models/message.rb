@@ -1,5 +1,4 @@
 class Message < ActiveRecord::Base
-  attr_accessible :body, :from_user_id, :subject, :thread_id, :to_user_id, :user_id, :to_user, :from_user, :user
   acts_as_flaggable
 
   belongs_to :user

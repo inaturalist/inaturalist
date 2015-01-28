@@ -1,5 +1,4 @@
 class ProjectUserInvitation < ActiveRecord::Base
-  attr_accessible :project_id, :user_id, :invited_user_id, :project, :user, :invited_user
   belongs_to :user, :inverse_of => :project_user_invitations
   belongs_to :invited_user, :class_name => "User", :inverse_of => :project_user_invitations_received
   belongs_to :project, :inverse_of => :project_user_invitations
