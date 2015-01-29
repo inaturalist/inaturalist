@@ -34,7 +34,7 @@ module ActiveRecord
         define_method(:flagged_as_spam?) do
           self.flags.loaded? ?
             self.flags.any?{ |f| f.flag == Flag::SPAM && ! f.resolved? } :
-            self.class.flagged_as_spam.exists?(self)
+            self.class.flagged_as_spam.exists?(self.id)
         end
 
         # If any of the rakismet fields have been modified, then

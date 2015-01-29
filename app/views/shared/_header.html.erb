@@ -57,8 +57,8 @@
       </div>
       <ul class="subnav" style="display: none">
         <% if logged_in? -%>
-          <% for project in current_user.project_users.all(:include => :project, :limit => 7, 
-              :order => "(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase} %>
+          <% for project in current_user.project_users.joins(:project).limit(7).
+              order("(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase} %>
             <li>
               <%= link_to truncate(project.title), project, :style => project.icon.file? ? "background-image: url(#{project.icon.url(:mini)})" : nil %>
             </li>

@@ -235,10 +235,10 @@ class ObservationsController < ApplicationController
         :layout => false)
     end
     
-    @previous = @observation.user.observations.first(:conditions => ["id < ?", @observation.id], :order => "id DESC")
+    @previous = @observation.user.observations.where(["id < ?", @observation.id]).order("id DESC").first
     @prev = @previous
-    @next = @observation.user.observations.first(:conditions => ["id > ?", @observation.id], :order => "id ASC")
-    @quality_metrics = @observation.quality_metrics.all(:include => :user)
+    @next = @observation.user.observations.where(["id > ?", @observation.id]).order("id ASC").first
+    @quality_metrics = @observation.quality_metrics.includes(:user)
     if logged_in?
       @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
       @project_invitations = @observation.project_invitations.limit(100).to_a
@@ -274,11 +274,9 @@ class ObservationsController < ApplicationController
         end.reverse
         
         if logged_in?
-          @projects = Project.all(
-            :joins => [:project_users], 
-            :limit => 1000, 
-            :conditions => ["project_users.user_id = ?", current_user]
-          ).sort_by{|p| p.title.downcase}
+          @projects = Project.joins(:project_users).
+            where("project_users.user_id = ?", current_user).
+            limit(1000).sort_by{ |p| p.title.downcase }
         end
         
         @places = @observation.places
@@ -302,7 +300,7 @@ class ObservationsController < ApplicationController
         end
         
         if logged_in?
-          @subscription = @observation.update_subscriptions.first(:conditions => {:user_id => current_user})
+          @subscription = @observation.update_subscriptions.where(user: current_user).first
         end
         
         @observation_links = @observation.observation_links.sort_by{|ol| ol.href}
@@ -1950,10 +1948,8 @@ class ObservationsController < ApplicationController
 
   def user_viewed_updates
     return unless logged_in?
-    Update.update_all(
-      ["viewed_at = ?", Time.now], 
-      ["resource_type = 'Observation' AND resource_id = ? AND subscriber_id = ?", @observation.id, current_user.id]
-    )
+    Update.where(["resource_type = 'Observation' AND resource_id = ? AND subscriber_id = ?", @observation.id, current_user.id]).
+      update_all(viewed_at: Time.now)
   end
 
   def stats_adequately_scoped?
@@ -2721,14 +2717,12 @@ class ObservationsController < ApplicationController
   end
   
   def load_observation
-    render_404 unless @observation = Observation.find_by_id(params[:id] || params[:observation_id],
-      :include => [ :quality_metrics,
-                    :photos,
-                    :identifications,
-                    :projects,
-                    { :taxon => :taxon_names }
-      ]
-    )
+    render_404 unless @observation = Observation.where(id: params[:id] || params[:observation_id]).
+      includes([ :quality_metrics,
+                 :photos,
+                 :identifications,
+                 :projects,
+                 { :taxon => :taxon_names }]).first
   end
   
   def require_owner
