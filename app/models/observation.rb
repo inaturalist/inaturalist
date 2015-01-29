@@ -359,7 +359,7 @@ class Observation < ActiveRecord::Base
               :set_taxon_from_community_taxon,
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
-              :set_geom_from_latlon,
+              # :set_geom_from_latlon, # TODO bring it back with the move to rgeo
               :set_iconic_taxon
   
   before_update :set_quality_grade
@@ -490,7 +490,9 @@ class Observation < ActiveRecord::Base
   scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon
-    joins(taxon: :taxon_ancestors).where("taxon_ancestors.ancestor_taxon_id = ?", taxon.id)
+    c = taxon.descendant_conditions.to_sql
+    c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
+    joins(:taxon).where(c)
   }
   
   scope :at_or_below_rank, lambda {|rank| 
@@ -1049,8 +1051,9 @@ class Observation < ActiveRecord::Base
       t = begin
         Chronic.parse(date_string)
       rescue ArgumentError
-        Chronic.parse(date_string.split[0..-2].join(' '))
+        nil
       end
+      t = Chronic.parse(date_string.split[0..-2].join(' ')) unless t 
       if !t && (locale = user.locale || I18n.locale)
         date_string = englishize_month_abbrevs_for_locale(date_string, locale)
         t = Chronic.parse(date_string)

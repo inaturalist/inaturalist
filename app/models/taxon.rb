@@ -378,7 +378,7 @@ class Taxon < ActiveRecord::Base
   def handle_after_move
     return true unless ancestry_changed?
     set_iconic_taxon
-    return true if new_record?
+    return true if id_changed?
     return true if skip_after_move
     update_listed_taxa
     update_life_lists
@@ -428,10 +428,7 @@ class Taxon < ActiveRecord::Base
       conditions = ["(ancestry LIKE ? OR ancestry = ?)", "#{new_child_ancestry}/%", new_child_ancestry]
       conditions[0] += " AND (iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL)"
       conditions << ancestry_was.to_s.split('/')
-      Taxon.update_all(
-        ["iconic_taxon_id = ?", iconic_taxon_id],
-        conditions
-      )
+      Taxon.where(conditions).update_all(["iconic_taxon_id = ?", iconic_taxon_id])
       Taxon.delay(:priority => USER_INTEGRITY_PRIORITY).set_iconic_taxon_for_observations_of(id)
     end
     true
@@ -805,7 +802,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def update_obs_iconic_taxa
-    Observation.update_all(["iconic_taxon_id = ?", iconic_taxon_id], ["taxon_id = ?", id])
+    Observation.where("taxon_id = ?", id).update_all(["iconic_taxon_id = ?", iconic_taxon_id])
     true
   end
   
@@ -1095,9 +1092,8 @@ class Taxon < ActiveRecord::Base
     old_ancestry = old_ancestry.blank? ? id : "#{old_ancestry}/#{id}"
     new_ancestry = send(ancestry_column)
     new_ancestry = new_ancestry.blank? ? id : "#{new_ancestry}/#{id}"
-    self.class.base_class.update_all(
-      "#{ancestry_column} = regexp_replace(#{ancestry_column}, '^#{old_ancestry}', '#{new_ancestry}')", 
-      descendant_conditions
+    self.class.base_class.where(descendant_conditions).update_all(
+      "#{ancestry_column} = regexp_replace(#{ancestry_column}, '^#{old_ancestry}', '#{new_ancestry}')"
     )
     Taxon.delay(:priority => INTEGRITY_PRIORITY).update_descendants_with_new_ancestry(id, child_ancestry)
     true
@@ -1560,10 +1556,10 @@ class Taxon < ActiveRecord::Base
     else
       Taxon.scoped
     end
-    return if scope.blank?
+    return if scope.count == 0
     scope = scope.select("id, ancestry")
     scope.find_each do |t|
-      Taxon.update_all(["observations_count = ?", Observation.of(t).count], ["id = ?", t.id])
+      Taxon.where(id: t.id).update_all(observations_count: Observation.of(t).count)
     end
   end
   

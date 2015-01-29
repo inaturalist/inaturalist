@@ -8,45 +8,45 @@ describe Observation, "creation" do
   end
   
   it "should be in the past" do
-    @observation.observed_on.should <= Date.today
+    expect(@observation.observed_on).to be <= Date.today
   end
   
   it "should not be in the future" do
-    lambda {
+    expect {
       Observation.make!(:observed_on_string => '2 weeks from now')
-    }.should raise_error(ActiveRecord::RecordInvalid)
+    }.to raise_error(ActiveRecord::RecordInvalid)
   end
   
   it "should properly set date and time" do
     Time.use_zone(@observation.time_zone) do
-      @observation.observed_on.should == (1.day.ago.to_date)
-      @observation.time_observed_at.hour.should be(13)
+      expect(@observation.observed_on).to eq 1.day.ago.to_date
+      expect(@observation.time_observed_at.hour).to eq 13
     end
   end
   
   it "should parse time from strings like October 30, 2008 10:31PM" do
     @observation.observed_on_string = 'October 30, 2008 10:31PM'
     @observation.save
-    @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(22)
+    expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 22
   end
   
   it "should parse time from strings like 2011-12-23T11:52:06-0500" do
     @observation.observed_on_string = '2011-12-23T11:52:06-0500'
     @observation.save
-    @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(11)
+    expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 11
   end
   
   it "should parse time from strings like 2011-12-23T11:52:06.123" do
     @observation.observed_on_string = '2011-12-23T11:52:06.123'
     @observation.save
-    @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(11)
+    expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 11
   end
   
   it "should parse time and zone from July 9, 2012 7:52:39 AM ACST" do
     @observation.observed_on_string = 'July 9, 2012 7:52:39 AM ACST'
     @observation.save
-    @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(7)
-    @observation.time_zone.should == ActiveSupport::TimeZone['Adelaide'].name
+    expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 7
+    expect(@observation.time_zone).to eq ActiveSupport::TimeZone['Adelaide'].name
   end
 
   it "should parse a bunch of test date strings" do
@@ -70,12 +70,11 @@ describe Observation, "creation" do
       ['2014-06-18 5:18:17 pm CEST', :month => 6, :day => 18, :hour => 17, :offset => "+02:00"]
     ].each do |date_string, opts|
       o = Observation.make!(:observed_on_string => date_string)
-      o.observed_on.day.should be(opts[:day])
-      o.observed_on.month.should be(opts[:month])
+      expect(o.observed_on.day).to eq opts[:day]
+      expect(o.observed_on.month).to eq opts[:month]
       t = o.time_observed_at.in_time_zone(o.time_zone)
-      t.hour.should be(opts[:hour])
-      # zone = ActiveSupport::TimeZone[o.time_zone]
-      t.formatted_offset.should eq opts[:offset]
+      expect(t.hour).to eq opts[:hour]
+      expect(t.formatted_offset).to eq opts[:offset]
     end
   end
 
@@ -87,17 +86,17 @@ describe Observation, "creation" do
     ].each do |date_string, opts|
       o = Observation.make!(:observed_on_string => date_string)
       zone = ActiveSupport::TimeZone[o.time_zone]
-      zone.formatted_offset.should eq opts[:offset]
-      o.observed_on.month.should eq opts[:month]
-      o.observed_on.day.should eq opts[:day]
-      o.time_observed_at.in_time_zone(o.time_zone).hour.should eq opts[:hour]
+      expect(zone.formatted_offset).to eq opts[:offset]
+      expect(o.observed_on.month).to eq opts[:month]
+      expect(o.observed_on.day).to eq opts[:day]
+      expect(o.time_observed_at.in_time_zone(o.time_zone).hour).to eq opts[:hour]
     end
   end
   
   it "should parse a time zone from a code" do
     @observation.observed_on_string = 'October 30, 2008 10:31PM EST'
     @observation.save
-    @observation.time_zone.should == ActiveSupport::TimeZone['Eastern Time (US & Canada)'].name
+    expect(@observation.time_zone).to eq ActiveSupport::TimeZone['Eastern Time (US & Canada)'].name
   end
   
   it "should parse time zone from strings like 2011-12-23T11:52:06-0500" do
@@ -105,33 +104,33 @@ describe Observation, "creation" do
     @observation.save
     zone = ActiveSupport::TimeZone[@observation.time_zone]
     zone.should_not be_blank
-    zone.formatted_offset.should == "-05:00"
+    expect(zone.formatted_offset).to eq "-05:00"
   end
 
   it "should handle unparsable times gracefully" do
     @observation.observed_on_string = "2013-03-02, 1430hrs"
     @observation.save
-    @observation.should be_valid
-    @observation.observed_on.day.should eq 2
+    expect(@observation).to be_valid
+    expect(@observation.observed_on.day).to eq 2
   end
   
   it "should not save a time if one wasn't specified" do
     @observation.observed_on_string = "April 2 2008"
     @observation.save
-    @observation.time_observed_at.should be_blank
+    expect(@observation.time_observed_at).to be_blank
   end
   
   it "should not save a time for 'today' or synonyms" do
     @observation.observed_on_string = "today"
     @observation.save
-    @observation.time_observed_at.should be(nil)
+    expect(@observation.time_observed_at).to be(nil)
   end
 
   it "should not choke of bad dates" do
     @observation.observed_on_string = "this is not a date"
-    lambda {
+    expect {
       @observation.save
-    }.should_not raise_error
+    }.to_not raise_error
   end
   
   it "should have an identification if taxon is known" do
@@ -142,39 +141,39 @@ describe Observation, "creation" do
   
   it "should not have an identification if taxon is not known" do
     o = Observation.make!
-    o.identifications.to_a.should be_blank
+    expect(o.identifications.to_a).to be_blank
   end
   
   it "should have an identification that matches the taxon" do
     @observation.reload
-    @observation.identifications.first.taxon.should == @observation.taxon
+    expect(@observation.identifications.first.taxon).to eq @observation.taxon
   end
   
   it "should queue a DJ job to refresh lists" do
     Delayed::Job.delete_all
     stamp = Time.now
     Observation.make!(:taxon => Taxon.make!)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
-    jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}.should_not be_blank
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
+    expect(jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}).to_not be_blank
   end
   
   it "should properly parse relative datetimes like '2 days ago'" do
     Time.use_zone(@observation.user.time_zone) do
       @observation.observed_on_string = '2 days ago'
       @observation.save
-      @observation.observed_on.should == 2.days.ago.to_date
+      expect(@observation.observed_on).to eq 2.days.ago.to_date
     end
   end
   
   it "should not save relative dates/times like 'yesterday'" do
-    @observation.observed_on_string.split.include?('yesterday').should be(false)
+    expect(@observation.observed_on_string.split.include?('yesterday')).to be(false)
   end
   
   it "should not save relative dates/times like 'this morning'" do
     @observation.observed_on_string = 'this morning'
     @observation.save
     @observation.reload
-    @observation.observed_on_string.match('this morning').should be(nil)
+    expect(@observation.observed_on_string.match('this morning')).to be(nil)
   end
   
   it "should preserve observed_on_string if it did NOT contain a relative " +
@@ -182,61 +181,61 @@ describe Observation, "creation" do
     @observation.observed_on_string = "April 22 2008"
     @observation.save
     @observation.reload
-    @observation.observed_on_string.should == "April 22 2008"
+    expect(@observation.observed_on_string).to eq "April 22 2008"
   end
   
   it "should parse dates that contain commas" do
     @observation.observed_on_string = "April 22, 2008"
     @observation.save
-    @observation.observed_on.should_not be(nil)
+    expect(@observation.observed_on).to_not be(nil)
   end
   
   it "should NOT parse a date like '2004'" do
     @observation.observed_on_string = "2004"
     @observation.save
-    @observation.should_not be_valid
+    expect(@observation).to_not be_valid
   end
   
   it "should default to the user's time zone" do
-    @observation.time_zone.should == @observation.user.time_zone
+    expect(@observation.time_zone).to eq @observation.user.time_zone
   end
   
   it "should NOT use the user's time zone if another was set" do
     @observation.time_zone = 'Eastern Time (US & Canada)'
     @observation.save
-    @observation.should be_valid
+    expect(@observation).to be_valid
     @observation.reload
-    @observation.time_zone.should_not == @observation.user.time_zone
-    @observation.time_zone.should == 'Eastern Time (US & Canada)'
+    expect(@observation.time_zone).to_not eq @observation.user.time_zone
+    expect(@observation.time_zone).to eq'Eastern Time (US & Canada)'
   end
   
   it "should save the time in the time zone selected" do
     @observation.time_zone = 'Eastern Time (US & Canada)'
     @observation.save
-    @observation.should be_valid
-    @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(13)
+    expect(@observation).to be_valid
+    expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 13
   end
   
   it "should set the time zone to UTC if the user's time zone is blank" do
     u = User.make!
     u.update_attribute(:time_zone, nil)
-    u.time_zone.should be_blank
+    expect(u.time_zone).to be_blank
     o = Observation.new(:user => u)
     o.save
-    o.time_zone.should == 'UTC'
+    expect(o.time_zone).to eq'UTC'
   end
   
   it "should trim whitespace from species_guess" do
     @observation.species_guess = " Anna's Hummingbird     "
     @observation.save
-    @observation.species_guess.should == "Anna's Hummingbird"
+    expect(@observation.species_guess).to eq "Anna's Hummingbird"
   end
   
   it "should increment the counter cache in users" do
     old_count = @observation.user.observations_count
     Observation.make!(:user => @observation.user)
     @observation.reload
-    @observation.user.observations_count.should == old_count + 1
+    expect(@observation.user.observations_count).to eq old_count+1
   end
   
   it "should allow lots of sigfigs" do
@@ -246,46 +245,46 @@ describe Observation, "creation" do
     @observation.longitude = lon
     @observation.save
     @observation.reload
-    @observation.latitude.to_f.should == lat
-    @observation.longitude.to_f.should == lon
+    expect(@observation.latitude.to_f).to eq lat
+    expect(@observation.longitude.to_f).to eq lon
   end
   
   it "should set lat/lon if entered in place_guess" do
     lat =  37.91143999
     lon = -122.2687819
-    @observation.latitude.should be_blank
+    expect(@observation.latitude).to be_blank
     @observation.place_guess = "#{lat}, #{lon}"
     @observation.save
-    @observation.latitude.to_f.should == lat
-    @observation.longitude.to_f.should == lon
+    expect(@observation.latitude.to_f).to eq lat
+    expect(@observation.longitude.to_f).to eq lon
   end
   
   it "should set lat/lon if entered in place_guess as NSEW" do
     lat =  -37.91143999
     lon = -122.2687819
-    @observation.latitude.should be_blank
+    expect(@observation.latitude).to be_blank
     @observation.place_guess = "S#{lat * -1}, W#{lon * -1}"
     @observation.save
-    @observation.latitude.to_f.should == lat
-    @observation.longitude.to_f.should == lon
+    expect(@observation.latitude.to_f).to eq lat
+    expect(@observation.longitude.to_f).to eq lon
   end
   
   it "should not set lat/lon for addresses with numbers" do
     o = Observation.make!(:place_guess => "Apt 1, 33 Figueroa Ave., Somewhere, CA")
-    o.latitude.should be_blank
+    expect(o.latitude).to be_blank
   end
   
   it "should not set lat/lon for addresses with zip codes" do
     o = Observation.make!(:place_guess => "94618")
-    o.latitude.should be_blank
+    expect(o.latitude).to be_blank
     o = Observation.make!(:place_guess => "94618-5555")
-    o.latitude.should be_blank
+    expect(o.latitude).to be_blank
   end
   
   describe "quality_grade" do
     it "should default to casual" do
       o = Observation.make!
-      o.quality_grade.should == Observation::CASUAL_GRADE
+      expect(o.quality_grade).to eq Observation::CASUAL_GRADE
     end
   end
 
@@ -298,37 +297,37 @@ describe Observation, "creation" do
       OfficeLiveConnector.1.5; OfficeLivePatch.1.3) w:PACBHO60
     EOT
     o = Observation.make!(:user_agent => user_agent)
-    o.user_agent.size.should be < 256
+    expect(o.user_agent.size).to be < 256
   end
 
   it "should set the URI" do
     o = Observation.make!
     o.reload
-    o.uri.should eq(FakeView.observation_url(o))
+    expect(o.uri).to eq(FakeView.observation_url(o))
   end
 
   it "should not set the URI if already set" do
     uri = "http://www.somewhereelse.com/users/4"
     o = Observation.make!(:uri => uri)
     o.reload
-    o.uri.should eq(uri)
+    expect(o.uri).to eq(uri)
   end
 
   it "should increment the taxon's counter cache" do
-    t = Taxon.make!
-    t.observations_count.should eq(0)
-    o = without_delay {Observation.make!(:taxon => t)}
+    t = without_delay { Taxon.make! }
+    expect(t.observations_count).to eq 0
+    o = without_delay { Observation.make!(:taxon => t) }
     t.reload
-    t.observations_count.should eq(1)
+    expect(t.observations_count).to eq 1
   end
 
   it "should increment the taxon's ancestors' counter caches" do
-    p = Taxon.make!
-    t = Taxon.make!(:parent => p)
-    p.observations_count.should eq(0)
-    o = without_delay {Observation.make!(:taxon => t)}
+    p = without_delay { Taxon.make! }
+    t = without_delay { Taxon.make!(:parent => p) }
+    expect(p.observations_count).to eq 0
+    o = without_delay { Observation.make!(:taxon => t) }
     p.reload
-    p.observations_count.should eq(1)
+    expect(p.observations_count).to eq 1
   end
 end
 
@@ -420,7 +419,7 @@ describe Observation, "updating" do
     Delayed::Job.delete_all
     stamp = Time.now
     o.update_attributes(:taxon => Taxon.make!)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     # puts jobs.map(&:handler).inspect
     jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.should_not be_blank
   end
@@ -430,7 +429,7 @@ describe Observation, "updating" do
     Delayed::Job.delete_all
     stamp = Time.now
     o.update_attributes(:latitude => o.latitude + 1)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
     jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.should_not be_blank
   end
@@ -442,7 +441,7 @@ describe Observation, "updating" do
     3.times do
       o.update_attributes(:taxon => Taxon.make!)
     end
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size.should eq(1)
   end
 
@@ -454,7 +453,7 @@ describe Observation, "updating" do
     3.times do
       o.update_attributes(:taxon => Taxon.make!)
     end
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.size.should eq(1)
   end
 
@@ -465,7 +464,7 @@ describe Observation, "updating" do
     3.times do
       o.update_attributes(:latitude => o.latitude + 1)
     end
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
     jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.size.should eq(1)
   end
@@ -475,7 +474,7 @@ describe Observation, "updating" do
     Delayed::Job.delete_all
     stamp = Time.now
     o.update_attributes(:taxon => Taxon.make!)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     pattern = /CheckList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
     job.should_not be_blank
@@ -488,7 +487,7 @@ describe Observation, "updating" do
     Delayed::Job.delete_all
     stamp = Time.now
     o.update_attributes(:taxon => Taxon.make!)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     pattern = /ProjectList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
     job.should_not be_blank
@@ -644,12 +643,12 @@ describe Observation, "updating" do
   
   it "should increment the taxon's ancestors' counter caches" do
     o = Observation.make!
-    p = Taxon.make!
-    t = Taxon.make!(:parent => p)
-    p.observations_count.should eq(0)
+    p = without_delay { Taxon.make! }
+    t = without_delay { Taxon.make!(:parent => p) }
+    expect(p.observations_count).to eq 0
     o = without_delay {o.update_attributes(:taxon => t)}
     p.reload
-    p.observations_count.should eq(1)
+    expect(p.observations_count).to eq 1
   end
 
   it "should decrement the taxon's counter cache" do
@@ -689,7 +688,7 @@ describe Observation, "destruction" do
     Delayed::Job.delete_all
     stamp = Time.now
     Observation.make!(:taxon => Taxon.make!)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}.should_not be_blank
   end
 
@@ -1068,6 +1067,20 @@ describe Observation, "named scopes" do
     lambda {
       o = Observation.on("2013-02-30").all
     }.should_not raise_error
+  end
+
+  describe :of do
+    it "should find observations of a taxon" do
+      t = without_delay { Taxon.make! }
+      o = Observation.make!(:taxon => t)
+      expect(Observation.of(t).first).to eq o
+    end
+    it "should find observations of a descendant of a taxon" do
+      t = without_delay { Taxon.make! }
+      c = without_delay { Taxon.make!(:parent => t) }
+      o = Observation.make!(:taxon => c)
+      expect(Observation.of(t).first).to eq o
+    end
   end
 end
 
