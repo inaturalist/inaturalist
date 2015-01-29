@@ -236,7 +236,7 @@ class Project < ActiveRecord::Base
   end
 
   def observations_matching_rules
-    scope = Observation.scoped
+    scope = Observation
     project_observation_rules.each do |rule|
       case rule.operator
       when "in_taxon?"
@@ -244,13 +244,12 @@ class Project < ActiveRecord::Base
       when "observed_in_place?"
         scope = scope.in_place(rule.operand)
       when "on_list?"
-        scope = scope.scoped(
-          :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{project_list.id}", 
-          :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+        scope = scope.where("observations.taxon_id = listed_taxa.taxon_id").
+          joins("JOIN listed_taxa ON listed_taxa.list_id = #{project_list.id}")
       when "identified?"
-        scope = scope.scoped(:conditions => "observations.taxon_id IS NOT NULL")
+        scope = scope.where("observations.taxon_id IS NOT NULL")
       when "georeferenced"
-        scope = scope.scoped(:conditions => "observations.geom IS NOT NULL")
+        scope = scope.where("observations.geom IS NOT NULL")
       end
     end
     scope
@@ -267,11 +266,11 @@ class Project < ActiveRecord::Base
   end
 
   def curators
-    users.where("project_users.role = ?", ProjectUser::CURATOR).scoped
+    users.where("project_users.role = ?", ProjectUser::CURATOR)
   end
 
   def managers
-    users.where("project_users.role = ?", ProjectUser::MANAGER).scoped
+    users.where("project_users.role = ?", ProjectUser::MANAGER)
   end
 
   def duplicate
@@ -340,11 +339,9 @@ class Project < ActiveRecord::Base
     unless project_user = project.project_users.find_by_id(project_user_id)
       return
     end
-    project.project_observations.find_each(
-        :include => {:observation => :identifications}, 
-        :conditions => [
-          "project_observations.curator_identification_id IS NULL AND identifications.user_id = ?", 
-          project_user.user_id]) do |po|
+    Project.joins({ :observations => :identifications }).
+      where("project_observations.curator_identification_id IS NULL AND identifications.user_id = ?",
+      project_user.user_id).find_each do |po|
       curator_ident = po.observation.identifications.detect{|ident| ident.user_id == project_user.user_id}
       po.update_attributes(:curator_identification => curator_ident)
       ProjectUser.delay(:priority => USER_INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)

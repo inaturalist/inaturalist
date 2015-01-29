@@ -39,9 +39,9 @@ class PlacesController < ApplicationController
       format.json do
         @ancestor = Place.find_by_id(params[:ancestor_id].to_i) unless params[:ancestor_id].blank?
         scope = if @ancestor
-          @ancestor.descendants.scoped
+          @ancestor.descendants
         else
-          Place.scoped
+          Place.all
         end
         if params[:q] || params[:term]
           q = (params[:q] || params[:term]).to_s.sanitize_encoding
@@ -246,7 +246,7 @@ class PlacesController < ApplicationController
     search_options[:with] = {:place_ids => [site_place.id]} if site_place
     scope = Place.
       includes(:place_geometry_without_geom).
-      limit(30).scoped
+      limit(30)
     scope = if @q.blank?
       if site_place
         scope.where(site_place.child_conditions).page(1)
@@ -370,23 +370,21 @@ class PlacesController < ApplicationController
     
     show_guide do |scope|
       scope = scope.from_place(@place)
-      scope = scope.scoped(:conditions => ["listed_taxa.primary_listing = true"])
-      scope = scope.scoped(:conditions => [
-        "listed_taxa.occurrence_status_level IS NULL OR listed_taxa.occurrence_status_level IN (?)", 
-        ListedTaxon::PRESENT_EQUIVALENTS
-      ])
-      
+      scope = scope.where("listed_taxa.primary_listing = true")
+      scope = scope.where([
+        "listed_taxa.occurrence_status_level IS NULL OR listed_taxa.occurrence_status_level IN (?)",
+        ListedTaxon::PRESENT_EQUIVALENTS])
       if @introduced = @filter_params[:introduced]
-        scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS])
+        scope = scope.where(["listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS])
       elsif @native = @filter_params[:native]
-        scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
+        scope = scope.where(["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
       elsif @establishment_means = @filter_params[:establishment_means]
         if @establishment_means == "native"
-          scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
+          scope = scope.where(["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
         elsif @establishment_means == "introduced"
-          scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS])
+          scope = scope.where(["listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS])
         else
-          scope = scope.scoped(:conditions => ["listed_taxa.establishment_means = ?", @establishment_means])
+          scope = scope.where(["listed_taxa.establishment_means = ?", @establishment_means])
         end
       end
       

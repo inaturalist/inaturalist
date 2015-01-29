@@ -1592,7 +1592,7 @@ class ObservationsController < ApplicationController
 
   def taxa
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    oscope = Observation.query(search_params).scoped
+    oscope = Observation.query(search_params)
     oscope = oscope.where("1 = 2") unless stats_adequately_scoped?
     sql = if params[:rank] == "leaves" && logged_in? && current_user.is_curator?
       ancestor_ids_sql = <<-SQL
@@ -1647,7 +1647,7 @@ class ObservationsController < ApplicationController
 
   def taxon_stats
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    scope = Observation.query(search_params).scoped
+    scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     species_counts_scope = scope.joins(:taxon)
     unless search_params[:rank] == "leaves" && logged_in? && current_user.is_curator?
@@ -1736,7 +1736,7 @@ class ObservationsController < ApplicationController
 
   def user_stats
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    scope = Observation.query(search_params).scoped
+    scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     limit = params[:limit].to_i
     limit = 500 if limit > 500 || limit <= 0
@@ -1805,7 +1805,7 @@ class ObservationsController < ApplicationController
     unique_taxon_users_scope = scope.
       select("DISTINCT observations.taxon_id, observations.user_id").
       joins(:taxon).
-      where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL).scoped
+      where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL)
     user_taxon_counts_sql = <<-SQL
       SELECT
         o.user_id,
@@ -1825,7 +1825,7 @@ class ObservationsController < ApplicationController
     params[:order_by] = "observed_on"
     params[:order] = "asc"
     search_params, find_options = get_search_params(params, :skip_pagination => true)
-    scope = Observation.query(search_params).scoped
+    scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     scope = scope.joins(:taxon).
       select("observations.id, observations.user_id, observations.created_at, observations.observed_on, observations.time_observed_at, observations.time_zone, taxa.ancestry, taxon_id").
@@ -1859,7 +1859,7 @@ class ObservationsController < ApplicationController
 
   def phylogram
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    scope = Observation.query(search_params).scoped
+    scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     ancestor_ids_sql = <<-SQL
       SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
@@ -2260,7 +2260,7 @@ class ObservationsController < ApplicationController
   # Either make a plain db query and return a WillPaginate collection or make 
   # a Sphinx call if there were query terms specified.
   def get_paginated_observations(search_params, find_options)
-    query_scope = Observation.query(search_params).scoped
+    query_scope = Observation.query(search_params)
     if search_params[:filter_spam]
       query_scope = query_scope.not_flagged_as_spam
     end
@@ -2453,7 +2453,7 @@ class ObservationsController < ApplicationController
     end
     @observations = Observation.where("observations.id in (?)", obs_ids).
       order_by(search_params[:order_by]).
-      includes(find_options[:include]).scoped
+      includes(find_options[:include])
 
     # lame hacks
     unless search_params[:ofv_params].blank?

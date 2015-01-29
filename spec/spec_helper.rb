@@ -11,10 +11,6 @@ require File.expand_path(File.dirname(__FILE__) + "/helpers/make_helpers")
 require File.expand_path(File.dirname(__FILE__) + "/helpers/example_helpers")
 require File.expand_path(File.dirname(__FILE__) + "/../lib/eol_service.rb")
 
-# This should be OK for testing. The app's default of -1 causes
-# lots of warnings when running specs, which this should prevent
-DEFAULT_SRID = 0
-
 include MakeHelpers
 
 # Requires supporting ruby files with custom matchers and macros, etc,

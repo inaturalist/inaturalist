@@ -207,7 +207,7 @@ class Place < ActiveRecord::Base
   }
 
   scope :with_establishment_means, lambda {|establishment_means|
-    scope = joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id").scoped
+    scope = joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id")
     case establishment_means
     when ListedTaxon::NATIVE
       scope.where("listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS)
@@ -449,7 +449,6 @@ class Place < ActiveRecord::Base
   # Update the associated place_geometry or create a new one
   def save_geom(geom, other_attrs = {})
     other_attrs.merge!(:geom => geom, :place => self)
-    
     begin
       if place_geometry
         self.place_geometry.update_attributes(other_attrs)

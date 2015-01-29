@@ -57,7 +57,7 @@ class Metadata < FakeView
     @contact = CONFIG.contact || {}
     @creator = CONFIG.creator || @contact || {}
     @metadata_provider = CONFIG.metadata_provider || @contact || {}
-    scope = Observation.scoped({})
+    scope = Observation.all
     if options[:quality] == "research"
       scope = scope.has_quality_grade(Observation::RESEARCH_GRADE)
     elsif options[:quality] == "casual"

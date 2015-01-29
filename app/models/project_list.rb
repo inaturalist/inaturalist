@@ -150,7 +150,7 @@ class ProjectList < LifeList
       "(po.curator_identification_id IS NOT NULL AND i.taxon_id != listed_taxa.taxon_id) OR " +
       "(po.curator_identification_id IS NULL AND (o.quality_grade != 'research' OR o.taxon_id != listed_taxa.taxon_id)) " +
     ")"
-    scope = ListedTaxon.where("list_id = ?", list).scoped
+    scope = ListedTaxon.where("list_id = ?", list)
     scope = scope.joins("LEFT OUTER JOIN observations o ON o.id = listed_taxa.last_observation_id").
     joins("LEFT OUTER JOIN project_observations po ON po.observation_id = listed_taxa.last_observation_id").
     joins("LEFT OUTER JOIN identifications i ON i.id = po.curator_identification_id").

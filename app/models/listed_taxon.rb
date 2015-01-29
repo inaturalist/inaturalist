@@ -353,7 +353,7 @@ class ListedTaxon < ActiveRecord::Base
     return true unless l.is_a?(LifeList)
     return true unless l.user
     return true unless l.user.life_list_id == self.list_id 
-    User.update_all("life_list_taxa_count = #{l.listed_taxa.count}", "id = #{l.user_id}")
+    User.where(id: l.user_id).update_all(life_list_taxa_count: l.listed_taxa.count)
     true
   end
   
@@ -421,7 +421,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def delta_index_taxon
-    Taxon.update_all(["delta = ?", true], ["id = ?", taxon_id])
+    Taxon.where(id: taxon_id).update_all(delta: true)
     true
   end
   
@@ -473,10 +473,8 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def bubble_up_establishment_means
-    ListedTaxon.update_all(
-      ["establishment_means = ?", establishment_means],
-      ["taxon_id = ? AND establishment_means IS NULL AND place_id IN (?)", taxon_id, place.ancestor_ids]
-    )
+    ListedTaxon.where("taxon_id = ? AND establishment_means IS NULL AND place_id IN (?)",
+      taxon_id, place.ancestor_ids).update_all(establishment_means: establishment_means)
   end
 
   def trickle_down_establishment_means(options = {})
@@ -533,11 +531,11 @@ class ListedTaxon < ActiveRecord::Base
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
     lt.set_cache_columns
-    update_all(
-      ["first_observation_id = ?, last_observation_id = ?, observations_count = ?, observations_month_counts = ?", 
-        lt.first_observation_id, lt.last_observation_id, lt.observations_count, lt.observations_month_counts],
-      ["id = ?", lt.id]
-    )
+    ListedTaxon.where(id: lt.id).update_all(
+      first_observation_id: lt.first_observation_id,
+      last_observation_id: lt.last_observation_id,
+      observations_count: lt.observations_count,
+      observations_month_counts: lt.observations_month_counts)
   end
   
   def self.species_for_infraspecies(lt)
@@ -725,7 +723,7 @@ class ListedTaxon < ActiveRecord::Base
   def observed_in_place?
     p = place || list.place
     return false unless p
-    scope = Observation.in_place(p).of(taxon).scoped
+    scope = Observation.in_place(p).of(taxon)
     if list.is_a?(LifeList)
       scope = scope.by(list.user)
     end
@@ -746,7 +744,7 @@ class ListedTaxon < ActiveRecord::Base
       rejects = ListedTaxon.all(:conditions => ["id IN (?)", to_merge_ids[1..-1]])
 
       # remove the rejects from the list before merging to avoid alread-on-list validation errors
-      ListedTaxon.update_all("list_id = NULL", ["id IN (?)", rejects])
+      ListedTaxon.where("id IN (?)", rejects).update_all("list_id = NULL")
       
       rejects.each do |reject|
         lt.merge(reject)
@@ -756,7 +754,7 @@ class ListedTaxon < ActiveRecord::Base
 
   def self.update_for_taxon_change(taxon_change, taxon, options = {})
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
-    scope = ListedTaxon.where("listed_taxa.taxon_id IN (?)", input_taxon_ids).scoped
+    scope = ListedTaxon.where("listed_taxa.taxon_id IN (?)", input_taxon_ids)
     scope = scope.where(:user_id => options[:user]) if options[:user]
     scope = scope.where("listed_taxa.id IN (?)", options[:records]) unless options[:records].blank?
     scope = scope.where(options[:conditions]) if options[:conditions]
@@ -795,7 +793,8 @@ class ListedTaxon < ActiveRecord::Base
   
   def remove_other_primary_listings
     return true unless primary_listing && multiple_primary_listed_taxa?
-    ListedTaxon.update_all(["primary_listing = false"],["taxon_id = ? AND place_id = ? AND id != ?", taxon_id, place_id, id])
+    ListedTaxon.where("taxon_id = ? AND place_id = ? AND id != ?",
+      taxon_id, place_id, id).update_all(primary_listing: false)
     true
   end
   

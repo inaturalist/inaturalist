@@ -313,8 +313,8 @@ class List < ActiveRecord::Base
     end
     target_list_ids = refresh_with_observation_lists(observation, options)
     # get listed taxa for this taxon and its ancestors that are on the observer's life lists
-    listed_taxa = ListedTaxon.all(:include => [:list],
-      :conditions => ["taxon_id IN (?) AND list_id IN (?)", taxon_ids, target_list_ids])
+    listed_taxa = ListedTaxon.joins(:list).
+      where("listed_taxa.taxon_id IN (?) AND listed_taxa.list_id IN (?)", taxon_ids, target_list_ids)
     if respond_to?(:create_new_listed_taxa_for_refresh)
       unless self == ProjectList && observation && observation.quality_grade == 'casual' #only RG for projects
         create_new_listed_taxa_for_refresh(taxon, listed_taxa, target_list_ids)
@@ -335,7 +335,7 @@ class List < ActiveRecord::Base
     user = observation.try(:user) || User.find_by_id(options[:user_id])
     return [] unless user
     if options[:skip_subclasses]
-      user.lists.all(:select => "id, type", :conditions => "type IS NULL").map{|l| l.id}
+      user.lists.where("type IS NULL").select("id, type").map{|l| l.id}
     else
       user.list_ids
     end

@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
       :order => "id DESC",
       :group => "parent_id"
     }
-    @paging_comments = Comment.scoped
+    @paging_comments = Comment.all
     if logged_in? && (!params[:mine].blank? || !params[:for_me].blank? || !params[:q].blank?)
       filtering = true
       if !params[:mine].blank?

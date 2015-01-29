@@ -532,7 +532,7 @@ class Observation < ActiveRecord::Base
   }
   
   def self.identifications(agreement)
-    scope = Observation.scoped
+    scope = Observation
     scope = scope.includes(:identifications)
     case agreement
     when 'most_agree'
@@ -592,7 +592,7 @@ class Observation < ActiveRecord::Base
   
   scope :photo_license, lambda {|license|
     license = license.to_s
-    scope = joins(:photos).scoped
+    scope = joins(:photos)
     license_number = Photo.license_number_for_code(license)
     if license == 'none'
       scope.where("photos.license = 0")
@@ -658,9 +658,9 @@ class Observation < ActiveRecord::Base
   def self.near_place(place)
     place = (Place.find(place) rescue nil) unless place.is_a?(Place)
     if place.swlat
-      Observation.in_bounding_box(place.swlat, place.swlng, place.nelat, place.nelng).scoped
+      Observation.in_bounding_box(place.swlat, place.swlng, place.nelat, place.nelng)
     else
-      Observation.near_point(place.latitude, place.longitude).scoped
+      Observation.near_point(place.latitude, place.longitude)
     end
   end
   
@@ -669,7 +669,7 @@ class Observation < ActiveRecord::Base
   # May be worth looking into squirrel or some other rails friendly search add on
   #
   def self.query(params = {})
-    scope = self.scoped
+    scope = self
 
     place_id = if params[:place_id].to_i > 0
       params[:place_id]
@@ -1624,13 +1624,14 @@ class Observation < ActiveRecord::Base
   end
 
   def self.set_community_taxa(options = {})
-    scope = Observation.includes({:identifications => [:taxon]}, :user).scoped
+    scope = Observation.includes({:identifications => [:taxon]}, :user)
     scope = scope.where(options[:where]) if options[:where]
     scope = scope.by(options[:user]) unless options[:user].blank?
     scope = scope.of(options[:taxon]) unless options[:taxon].blank?
     scope = scope.in_place(options[:place]) unless options[:place].blank?
     scope = scope.in_projects([options[:project]]) unless options[:project].blank?
-    ThinkingSphinx.deltas_enabled = false
+    # TODO: Rails4: I commented out ThinkingSphinx.deltas_enabled which no longer exists
+    # ThinkingSphinx.deltas_enabled = false
     start_time = Time.now
     logger = options[:logger] || Rails.logger
     logger.info "[INFO #{Time.now}] Starting Observation.set_community_taxon, options: #{options.inspect}"
@@ -1642,7 +1643,7 @@ class Observation < ActiveRecord::Base
       end
     end
     logger.info "[INFO #{Time.now}] Finished Observation.set_community_taxon in #{Time.now - start_time}s, options: #{options.inspect}"
-    ThinkingSphinx.deltas_enabled = true
+    # ThinkingSphinx.deltas_enabled = true
   end
 
   def community_taxon_rejected?
@@ -1675,7 +1676,7 @@ class Observation < ActiveRecord::Base
   def self.obscure_coordinates_for_observations_of(taxon, options = {})
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    scope = Observation.of(taxon).scoped
+    scope = Observation.of(taxon)
     scope = scope.in_place(options[:place]) if options[:place]
     scope.find_each do |o|
       o.obscure_coordinates
@@ -1708,7 +1709,7 @@ class Observation < ActiveRecord::Base
   end
 
   def self.reassess_coordinates_for_observations_of(taxon, options = {})
-    scope = Observation.of(taxon).includes(:taxon => :conservation_statuses).scoped
+    scope = Observation.of(taxon).includes(:taxon => :conservation_statuses)
     scope = scope.in_place(options[:place]) if options[:place]
     scope.find_each do |o|
       o.obscure_coordinates_for_threatened_taxa
@@ -1828,10 +1829,11 @@ class Observation < ActiveRecord::Base
     if longitude.blank? || latitude.blank?
       self.geom = nil
     elsif options[:force] || longitude_changed? || latitude_changed?
-      self.geom = Point.from_x_y(longitude, latitude)
+      # TODO: Rails4: Do we need a replacement for GeoRuby::SimpleFeatures::Point ?
+      self.geom = GeoRuby::SimpleFeatures::Point.from_x_y(longitude, latitude)
     end
     if private_latitude && private_longitude
-      self.private_geom = Point.from_x_y(private_longitude, private_latitude)
+      self.private_geom = GeoRuby::SimpleFeatures::Point.from_x_y(private_longitude, private_latitude)
     elsif self.geom
       self.private_geom = self.geom
     else
@@ -2012,14 +2014,15 @@ class Observation < ActiveRecord::Base
     self.quality_grade = new_quality_grade
     
     if !options[:skip_save] && (
-        num_identification_agreements_changed? || 
-        num_identification_disagreements_changed? || 
-        quality_grade_changed? || 
+        num_identification_agreements_changed? ||
+        num_identification_disagreements_changed? ||
+        quality_grade_changed? ||
         identifications_count_changed?)
       Observation.where(id: id).update_all(
-        "num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?, identifications_count = ?", 
-        num_agreements, num_disagreements, new_quality_grade, identifications_count
-      )
+        num_identification_agreements: num_agreements,
+        num_identification_disagreements: num_disagreements,
+        quality_grade: new_quality_grade,
+        identifications_count: identifications_count)
       refresh_check_lists
       refresh_lists
     end
@@ -2333,7 +2336,7 @@ class Observation < ActiveRecord::Base
 
   def self.update_for_taxon_change(taxon_change, taxon, options = {}, &block)
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
-    scope = Observation.where("observations.taxon_id IN (?)", input_taxon_ids).scoped
+    scope = Observation.where("observations.taxon_id IN (?)", input_taxon_ids)
     scope = scope.by(options[:user]) if options[:user]
     scope = scope.where("observations.id IN (?)", options[:records]) unless options[:records].blank?
     scope = scope.includes(:user)
@@ -2381,7 +2384,7 @@ class Observation < ActiveRecord::Base
     if record.respond_to?(:generate_csv)
       record.generate_csv(tmp_path, columns)
     else
-      scope = record.observations.includes(:taxon, {:observation_field_values => :observation_field}).scoped
+      scope = record.observations.includes(:taxon, {:observation_field_values => :observation_field})
       generate_csv(scope, :path => tmp_path, :fname => fname, :columns => columns)
     end
 

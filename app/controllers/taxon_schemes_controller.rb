@@ -55,7 +55,7 @@ class TaxonSchemesController < ApplicationController
     @taxon_changes = []
     @orphaned_taxa = []
     inactive_taxa.each do |taxon|
-      scope = TaxonChange.scoped
+      scope = TaxonChange.all
       scope = scope.taxon(taxon)
       taxon_change = scope.first(
         :select => "DISTINCT ON (taxon_changes.id) taxon_changes.*",
@@ -121,7 +121,7 @@ class TaxonSchemesController < ApplicationController
          page(params[:page]).per_page(100)
     @orphaned_taxa = []
     @inactive_taxa.each do |taxon|
-      scope = TaxonChange.scoped
+      scope = TaxonChange.all
       scope = scope.taxon(taxon)
       taxon_change = scope.first(
         :select => "DISTINCT (taxon_changes.id), taxon_changes.*",

@@ -9,7 +9,9 @@ CONFIG = InatConfig.new(File.expand_path('../config.yml', __FILE__))
 # flickr api keys - these need to be set before Flickraw gets included
 FLICKR_API_KEY = CONFIG.flickr.key
 FLICKR_SHARED_SECRET = CONFIG.flickr.shared_secret
-DEFAULT_SRID = -1 # nofxx-georuby defaults to 4326.  Ugh.
+# A DEFAULT_SRID of -1 causes lots of warnings when running specs
+# Keep it as -1 for production because existing data is based on it
+DEFAULT_SRID = Rails.env.test? ? 0 : -1 # nofxx-georuby defaults to 4326.  Ugh.
 
 # DelayedJob priorities
 USER_PRIORITY = 0               # response to user action, should happen ASAP w/o bogging down a web proc

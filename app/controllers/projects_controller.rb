@@ -59,7 +59,7 @@ class ProjectsController < ApplicationController
         end
       end
       format.json do
-        scope = Project.scoped
+        scope = Project.all
         scope = scope.featured if params[:featured]
         scope = scope.in_group(params[:group]) if params[:group]
         scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
@@ -577,8 +577,8 @@ class ProjectsController < ApplicationController
     if @project.place && !@project.project_observation_rules.detect{|por| por.operator == "observed_in_place?"}
       scope = scope.in_place(@project.place)
     end
-    existing_scope = Observation.in_projects([@project]).scoped
-    invited_scope = Observation.scoped(:joins => :project_invitations, :conditions => ["project_invitations.project_id = ?", @project.id])
+    existing_scope = Observation.in_projects([@project])
+    invited_scope = Observation.joins(:project_invitations).where("project_invitations.project_id = ?", @project.id)
 
     if params[:by] == "you"
       scope = scope.by(current_user)
@@ -587,15 +587,12 @@ class ProjectsController < ApplicationController
     end
 
     if params[:on_list] == "yes"
-      scope = scope.scoped(
-        :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
-        :conditions => "observations.taxon_id = listed_taxa.taxon_id")
-      existing_scope = existing_scope.scoped(
-          :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
-          :conditions => "observations.taxon_id = listed_taxa.taxon_id")
-      invited_scope = invited_scope.scoped(
-            :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
-            :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+      scope = scope.where("observations.taxon_id = listed_taxa.taxon_id").
+        joins("JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}")
+      existing_scope = existing_scope.where("observations.taxon_id = listed_taxa.taxon_id").
+        joins("JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}")
+      invited_scope = invited_scope.where("observations.taxon_id = listed_taxa.taxon_id").
+        joins("JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}")
     end
     
     scope_sql = scope.to_sql

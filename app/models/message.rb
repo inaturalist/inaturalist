@@ -54,7 +54,7 @@ class Message < ActiveRecord::Base
 
   def set_thread_id
     if thread_id.blank?
-      Message.update_all(["thread_id = ?", id], ["id = ?", id])
+      Message.where(id: id).update_all(thread_id: id)
     end
     true
   end

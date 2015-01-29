@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   layout "bootstrap"
   
   def index
-    scope = @parent.is_a?(User) ? @parent.journal_posts.scoped : @parent.posts.scoped
+    scope = @parent.is_a?(User) ? @parent.journal_posts : @parent.posts
     block_if_spam(@parent) && return
     @posts = scope.not_flagged_as_spam.published.page(params[:page]).
       per_page(10).order("published_at DESC")
@@ -187,7 +187,7 @@ class PostsController < ApplicationController
   private
   
   def get_archives(options = {})
-    scope = @parent.is_a?(User) ? @parent.journal_posts.scoped : @parent.posts.scoped
+    scope = @parent.is_a?(User) ? @parent.journal_posts : @parent.posts
     @archives = scope.published.count(
       :group => "TO_CHAR(published_at, 'YYYY MM Month')")
     @archives = @archives.to_a.sort_by(&:first).reverse.map do |month_str, count|

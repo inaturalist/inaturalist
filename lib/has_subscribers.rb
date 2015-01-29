@@ -173,7 +173,7 @@ module HasSubscribers
           subscribable.respond_to?(:user) && (subscribable == notifier || subscribable.user_id != notifier.user_id)
         end
         if notify_owner
-          owner_subscription = subscribable.update_subscriptions.first(:conditions => {:user_id => subscribable.user_id})
+          owner_subscription = subscribable.update_subscriptions.where(user_id: subscribable.user_id).first
           unless owner_subscription
             u = Update.create(:subscriber => subscribable.user, :resource => subscribable, :notifier => notifier, 
               :notification => notification)
@@ -226,9 +226,10 @@ module HasSubscribers
       attr_accessor :skip_updates
       callback_types.each do |callback_type|
         send callback_type do |record|
-          return true if record.skip_updates
-          if options[:queue_if].blank? || options[:queue_if].call(record)
-            record.delay(:priority => options[:priority]).send(callback_method, subscribable_association)
+          unless record.skip_updates
+            if options[:queue_if].blank? || options[:queue_if].call(record)
+              record.delay(:priority => options[:priority]).send(callback_method, subscribable_association)
+            end
           end
           true
         end

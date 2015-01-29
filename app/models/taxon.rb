@@ -428,10 +428,7 @@ class Taxon < ActiveRecord::Base
       conditions = ["(ancestry LIKE ? OR ancestry = ?)", "#{new_child_ancestry}/%", new_child_ancestry]
       conditions[0] += " AND (iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL)"
       conditions << ancestry_was.to_s.split('/')
-      Taxon.update_all(
-        ["iconic_taxon_id = ?", iconic_taxon_id],
-        conditions
-      )
+      Taxon.where(conditions).update_all(iconic_taxon_id: iconic_taxon_id)
       Taxon.delay(:priority => USER_INTEGRITY_PRIORITY).set_iconic_taxon_for_observations_of(id)
     end
     true
@@ -445,7 +442,7 @@ class Taxon < ActiveRecord::Base
   def self.set_conservation_status(id)
     return unless t = Taxon.find_by_id(id)
     s = t.conservation_statuses.where("place_id IS NULL").map(&:iucn).max
-    Taxon.update_all(["conservation_status = ?", s], ["id = ?", t])
+    Taxon.where(id: t).update_all(conservation_status: s)
   end
   
   def capitalize_name
@@ -777,7 +774,7 @@ class Taxon < ActiveRecord::Base
   def self.update_listed_taxa_for(taxon, ancestry_was)
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return true unless taxon
-    ListedTaxon.update_all("taxon_ancestor_ids = '#{taxon.ancestry}'", "taxon_id = #{taxon.id}")
+    ListedTaxon.where(taxon_id: taxon.id).update_all(taxon_ancestor_ids: taxon.ancestry)
     old_ancestry = ancestry_was
     old_ancestry = old_ancestry.blank? ? taxon.id : "#{old_ancestry}/#{taxon.id}"
     new_ancestry = taxon.ancestry
@@ -786,10 +783,8 @@ class Taxon < ActiveRecord::Base
        !ListedTaxon.where("taxon_ancestor_ids LIKE ?", "#{old_ancestry}/%").exists?
       return
     end
-    ListedTaxon.update_all(
-      "taxon_ancestor_ids = regexp_replace(taxon_ancestor_ids, '^#{old_ancestry}', '#{new_ancestry}')", 
-      ["taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", old_ancestry.to_s, "#{old_ancestry}/%"]
-    )
+    ListedTaxon.where("taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", old_ancestry.to_s, "#{old_ancestry}/%").
+      update_all("taxon_ancestor_ids = regexp_replace(taxon_ancestor_ids, '^#{old_ancestry}', '#{new_ancestry}')")
   end
   
   def update_life_lists(options = {})
@@ -805,7 +800,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def update_obs_iconic_taxa
-    Observation.update_all(["iconic_taxon_id = ?", iconic_taxon_id], ["taxon_id = ?", id])
+    Observation.where(taxon_id: id).update_all(iconic_taxon_id: iconic_taxon_id)
     true
   end
   
@@ -862,10 +857,10 @@ class Taxon < ActiveRecord::Base
     
     if locale.to_s =~ /^en-?/
       if summary.blank?
-        Taxon.update_all(["wikipedia_summary = ?", Date.today], ["id = ?", self])
+        Taxon.where(id: self).update_all(wikipedia_summary: Date.today)
         return nil
       else
-        Taxon.update_all(["wikipedia_summary = ?", summary], ["id = ?", self])
+        Taxon.where(id: self).update_all(wikipedia_summary: summary)
       end
     else
       td = taxon_descriptions.where(:locale => locale).first
@@ -887,7 +882,8 @@ class Taxon < ActiveRecord::Base
     merge_has_many_associations(reject)
     
     # Merge ListRules and other polymorphic assocs
-    ListRule.update_all(["operand_id = ?", id], ["operand_id = ? AND operand_type = ?", reject.id, Taxon.to_s])
+    ListRule.where(operand_id: reject.id, operant_type: Taxon.to_s).
+      update_all(operand_id: id)
     
     # Keep reject colors if keeper has none
     self.colors << reject.colors if colors.blank?
@@ -1095,10 +1091,8 @@ class Taxon < ActiveRecord::Base
     old_ancestry = old_ancestry.blank? ? id : "#{old_ancestry}/#{id}"
     new_ancestry = send(ancestry_column)
     new_ancestry = new_ancestry.blank? ? id : "#{new_ancestry}/#{id}"
-    self.class.base_class.update_all(
-      "#{ancestry_column} = regexp_replace(#{ancestry_column}, '^#{old_ancestry}', '#{new_ancestry}')", 
-      descendant_conditions
-    )
+    self.class.base_class.where(descendant_conditions).update_all(
+      "#{ancestry_column} = regexp_replace(#{ancestry_column}, '^#{old_ancestry}', '#{new_ancestry}')")
     Taxon.delay(:priority => INTEGRITY_PRIORITY).update_descendants_with_new_ancestry(id, child_ancestry)
     true
   end
@@ -1310,7 +1304,7 @@ class Taxon < ActiveRecord::Base
   
   # Convert an array of strings to taxa
   def self.tags_to_taxa(tags, options = {})
-    scope = TaxonName.includes(:taxon).scoped
+    scope = TaxonName.includes(:taxon)
     scope = scope.where(:lexicon => options[:lexicon]) if options[:lexicon]
     scope = scope.where("taxon_names.is_valid = ?", true) if options[:valid]
     names = tags.map do |tag|
@@ -1388,10 +1382,7 @@ class Taxon < ActiveRecord::Base
   def self.set_iconic_taxon_for_observations_of(taxon)
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    Observation.update_all(
-      ["iconic_taxon_id = ?", taxon.iconic_taxon_id],
-      ["taxon_id = ?", taxon.id]
-    )
+    Observation.where(taxon_id: taxon.id).update_all(iconic_taxon_id: taxon.iconic_taxon_id)
     sql = <<-SQL
       UPDATE observations SET iconic_taxon_id = #{taxon.iconic_taxon_id || 'NULL'}
       FROM taxa
@@ -1455,7 +1446,7 @@ class Taxon < ActiveRecord::Base
     return if PROBLEM_NAMES.include?(name.downcase)
     name = normalize_name(name)
     scope = TaxonName.limit(10).includes(:taxon).
-      where("lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase).scoped
+      where("lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase)
     scope = scope.where(options[:ancestor].descendant_conditions) if options[:ancestor]
     if options[:iconic_taxa]
       iconic_taxon_ids = options[:iconic_taxa].map do |it|
@@ -1550,7 +1541,7 @@ class Taxon < ActiveRecord::Base
   def self.update_observation_counts(options = {})
     scope = if options[:ancestor]
       if taxon = (options[:ancestor].is_a?(Taxon) ? options[:ancestor] : Taxon.find_by_id(options[:ancestor]))
-        taxon.descendants.scoped
+        taxon.descendants
       end
     elsif options[:taxon_ids]
       taxa = Taxon.where("id IN (?)", options[:taxon_ids])
@@ -1558,12 +1549,12 @@ class Taxon < ActiveRecord::Base
     elsif options[:scope]
       options[:scope]
     else
-      Taxon.scoped
+      Taxon.all
     end
     return if scope.blank?
     scope = scope.select("id, ancestry")
     scope.find_each do |t|
-      Taxon.update_all(["observations_count = ?", Observation.of(t).count], ["id = ?", t.id])
+      Taxon.where(id: t.id).update_all(observations_count: Observation.of(t).count)
     end
   end
   
