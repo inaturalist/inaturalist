@@ -62,21 +62,23 @@ class List < ActiveRecord::Base
   # been observed.
   #
   def refresh(options = {})
-    find_options = {}
+    finder = ListedTaxon.all
     if taxa = options[:taxa]
-      find_options[:conditions] = ["list_id = ? AND taxon_id IN (?)", self.id, taxa]
+      finder = finder.where(list_id: self.id, taxon_id: taxa)
     else
-      find_options[:conditions] = ["list_id = ?", self.id]
+      finder = finder.where(list_id: self.id)
     end
     
-    ListedTaxon.do_in_batches(find_options) do |listed_taxon|
-      listed_taxon.skip_update_cache_columns = options[:skip_update_cache_columns]
-      # re-apply list rules to the listed taxa
-      listed_taxon.save
-      unless listed_taxon.valid?
-        Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
-          "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
-        listed_taxon.destroy
+    finder.find_in_batches do |batch|
+      batch.each do |listed_taxon|
+        listed_taxon.skip_update_cache_columns = options[:skip_update_cache_columns]
+        # re-apply list rules to the listed taxa
+        listed_taxon.save
+        unless listed_taxon.valid?
+          Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
+            "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
+          listed_taxon.destroy
+        end
       end
     end
     true

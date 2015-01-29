@@ -61,7 +61,8 @@ class ListedTaxaController < ApplicationController
       return
     end
 
-    opts = params[:listed_taxon] || {}
+    opts = params.require(:listed_taxon).permit(:taxon_id, :list_id,
+      :establishment_means, :force_trickle_down_establishment_means) || { }
     opts[:user_id] = current_user.id
     opts[:manually_added] = true
     opts.delete(:taxon_id)
@@ -118,7 +119,8 @@ class ListedTaxaController < ApplicationController
       return
     end
     
-    listed_taxon = params[:listed_taxon] || {}
+    listed_taxon = params.require(:listed_taxon).permit(:taxon_id, :list_id,
+      :establishment_means, :force_trickle_down_establishment_means) || { }
 
     respond_to do |format|
       @listed_taxon.update_attributes_and_primary(listed_taxon, current_user)
@@ -204,7 +206,8 @@ class ListedTaxaController < ApplicationController
   private
   
   def load_listed_taxon
-    unless @listed_taxon = ListedTaxon.find_by_id(params[:id].to_i, :include => [:list, :taxon, :user])
+    @listed_taxon = ListedTaxon.where(id: params[:id]).includes([ :list, :taxon, :user ]).first
+    unless @listed_taxon
       msg = "That listed taxon doesn't exist."
       respond_to do |format|
         format.html do

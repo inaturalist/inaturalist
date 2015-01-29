@@ -252,14 +252,14 @@ class ListedTaxon < ActiveRecord::Base
       places << places.last.parent
     end
     places.compact!
-    @existing_comprehensive_list = CheckList.first(:conditions => [
+    @existing_comprehensive_list = CheckList.where([
       "comprehensive = 't' AND id != ? AND taxon_id IN (?) AND place_id IN (?)", 
-      list_id, taxon.ancestor_ids, places])
+      list_id, taxon.ancestor_ids, places]).first
   end
   
   def existing_comprehensive_listed_taxon
     return nil unless existing_comprehensive_list
-    @existing_listed_taxon ||= existing_comprehensive_list.listed_taxa.first(:conditions => ["taxon_id = ?", taxon_id])
+    @existing_listed_taxon ||= existing_comprehensive_list.listed_taxa.where(taxon_id: taxon_id).first
   end
   
   def absent_only_if_not_confirming_observations
@@ -486,7 +486,7 @@ class ListedTaxon < ActiveRecord::Base
         listed_taxa.place_id = places.id
         #{"AND (establishment_means IS NULL OR establishment_means = '')" unless options[:force]}
         AND listed_taxa.taxon_id = #{taxon_id}
-        AND (#{Place.send(:sanitize_sql, place.descendant_conditions)})
+        AND (#{Place.send(:sanitize_sql, place.descendant_conditions.to_sql)})
     SQL
     ActiveRecord::Base.connection.execute(sql)
   end
@@ -741,7 +741,7 @@ class ListedTaxon < ActiveRecord::Base
     connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
       to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
       lt = ListedTaxon.find_by_id(to_merge_ids.first)
-      rejects = ListedTaxon.all(:conditions => ["id IN (?)", to_merge_ids[1..-1]])
+      rejects = ListedTaxon.where(id: to_merge_ids[1..-1])
 
       # remove the rejects from the list before merging to avoid alread-on-list validation errors
       ListedTaxon.where("id IN (?)", rejects).update_all("list_id = NULL")

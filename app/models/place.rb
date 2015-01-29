@@ -278,7 +278,7 @@ class Place < ActiveRecord::Base
     end
     new_display_name = [new_name, *ancestor_names].join(', ')
     unless new_record?
-      Place.update_all(["display_name = ?", new_display_name], ["id = ?", id])
+      Place.where(id: id).update_all(display_name: new_display_name)
     end
     
     new_display_name
@@ -685,10 +685,8 @@ class Place < ActiveRecord::Base
     
     # Move the mergee's listed_taxa to the target's default check list
     additional_taxon_ids = mergee.taxon_ids - self.taxon_ids
-    ListedTaxon.update_all(
-      ["place_id = ?, list_id = ?", self, self.check_list_id],
-      ["place_id = ? AND taxon_id in (?)", mergee, additional_taxon_ids]
-    )
+    ListedTaxon.where(["place_id = ? AND taxon_id in (?)", mergee, additional_taxon_ids]).
+      update_all(place_id: self, list_id: self.check_list.id)
     
     # Merge the geometries
     if self.place_geometry && mergee.place_geometry
