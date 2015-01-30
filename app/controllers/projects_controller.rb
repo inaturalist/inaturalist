@@ -52,7 +52,7 @@ class ProjectsController < ApplicationController
         @featured = @featured.joins(:place).where(@place.self_and_descendant_conditions) if @place
         if logged_in?
           @started = current_user.projects.not_flagged_as_spam.
-            all(:order => "projects.id desc", :limit => 9)
+            order("projects.id desc").limit(9)
           @joined = current_user.project_users.joins(:project).
             merge(Project.not_flagged_as_spam).includes(:project).
             order("projects.id desc").limit(9).map(&:project)
@@ -109,7 +109,8 @@ class ProjectsController < ApplicationController
         else
           top_observers_scope.order("taxa_count desc, observations_count desc").where("taxa_count > 0")
         end
-        @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
+        @project_users = @project.project_users.includes(:user).
+          paginate(:page => 1, :per_page => 5).order("id DESC")
         @members_count = @project_users.total_entries
         @project_observations = @project.project_observations.page(1).
           includes([
@@ -248,9 +249,8 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html do
         @started = @selected_user.projects.order("id desc").limit(100)
-        @project_users = @selected_user.project_users.paginate(:page => params[:page],
-          :include => [:project, :user],
-          :order => "lower(projects.title)")
+        @project_users = @selected_user.project_users.joins(:project, :user).
+          paginate(:page => params[:page]).order("lower(projects.title)")
         @projects = @project_users.map{|pu| pu.project}
       end
       format.json do
@@ -275,7 +275,8 @@ class ProjectsController < ApplicationController
   end
   
   def members
-    @project_users = @project.project_users.paginate(:page => params[:page], :include => :user, :order => "users.login ASC")
+    @project_users = @project.project_users.joins(:user).
+      paginate(:page => params[:page]).order("users.login ASC")
     @admin = @project.user
     @curators = @project.project_users.curators.limit(500).includes(:user).map{|pu| pu.user}
     @managers = @project.project_users.managers.limit(500).includes(:user).map{|pu| pu.user}
@@ -296,10 +297,10 @@ class ProjectsController < ApplicationController
   
   def contributors
     if params[:sort] == "observation+contest"
-      @contributors = @project.project_users.paginate(:page => params[:page], :order => "observations_count DESC, taxa_count DESC", :conditions => "observations_count > 0")
+      @contributors = @project.project_users.where("observations_count > 0").paginate(page: params[:page]).order("observations_count DESC, taxa_count DESC")
       @top_contributors = @project.project_users.where("taxa_count > 0").order("observations_count DESC, taxa_count DESC").limit(5)
     else
-      @contributors = @project.project_users.paginate(:page => params[:page], :order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0")
+      @contributors = @project.project_users.where("taxa_count > 0").paginate(page: params[:page]).order("taxa_count DESC, observations_count DESC")
       @top_contributors = @project.project_users.where("taxa_count > 0").order("taxa_count DESC, observations_count DESC").limit(5)
     end
     respond_to do |format|
@@ -320,9 +321,9 @@ class ProjectsController < ApplicationController
       return
     end
     
-    @project_observations = @project.project_observations.paginate(:page => params[:page], 
-      :per_page => 28,
-      :include => :observation, :conditions => ["observations.user_id = ?", @contributor.user])
+    @project_observations = @project.project_observations.joins(:observation).
+      where(observations: { user_id: @contributor.user }).
+      paginate(:page => params[:page], :per_page => 28)
     
     @research_grade_count = @project.project_observations.count(
       :joins => :observation,
@@ -344,17 +345,14 @@ class ProjectsController < ApplicationController
   
   def list
     # TODO this causes a temporary table sort, which == badness
-    @listed_taxa =  ProjectList.first(:conditions => { :project_id => @project.id }).listed_taxa.paginate(
-      :page => 1,
-      :per_page => 11,
-      :select => "MAX(listed_taxa.id) AS id, listed_taxa.taxon_id",
-      :joins => 
-        "LEFT OUTER JOIN taxon_photos ON taxon_photos.taxon_id = listed_taxa.taxon_id " +
-        "LEFT OUTER JOIN photos ON photos.id = taxon_photos.photo_id",
-      :group => "listed_taxa.taxon_id",
-      :order => "id DESC",
-      :conditions => "photos.id IS NOT NULL"
-    )
+    @listed_taxa =  ProjectList.where(project_id: @project.id).first.listed_taxa.
+      joins("LEFT OUTER JOIN taxon_photos ON taxon_photos.taxon_id = listed_taxa.taxon_id " +
+        "LEFT OUTER JOIN photos ON photos.id = taxon_photos.photo_id").
+      where("photos.id IS NOT NULL").
+      select("MAX(listed_taxa.id) AS id, listed_taxa.taxon_id").
+      group("listed_taxa.taxon_id").
+      paginate(page: 1, per_page: 11).
+      order("id DESC")
     @taxa = Taxon.where(id: @listed_taxa.map(&:taxon_id)).
       includes(:photos, :taxon_names)
     
@@ -839,8 +837,7 @@ class ProjectsController < ApplicationController
     scope = @project.observations_matching_rules.
       by(current_user).
       includes(:taxon, :project_observations).
-      where("project_observations.id IS NULL OR project_observations.project_id != ?", @project).
-      scoped
+      where("project_observations.id IS NULL OR project_observations.project_id != ?", @project)
     scope = scope.of(@taxon) if @taxon
     scope
   end

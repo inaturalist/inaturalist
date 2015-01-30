@@ -1035,8 +1035,7 @@ class TaxaController < ApplicationController
       per_page(100).
       order("rank_level").
       joins("LEFT OUTER JOIN taxa t ON t.name = taxa.name").
-      where("t.id IS NOT NULL AND t.id != taxa.id AND t.is_active = ?", true).
-      scoped
+      where("t.id IS NOT NULL AND t.id != taxa.id AND t.is_active = ?", true)
     @taxa = @taxa.self_and_descendants_of(@iconic_taxon) unless @iconic_taxon.blank?
     @taxa = @taxa.of_rank(@rank) unless @rank.blank?
     if @within_iconic == 't'

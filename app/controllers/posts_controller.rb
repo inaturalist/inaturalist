@@ -187,8 +187,7 @@ class PostsController < ApplicationController
   
   def get_archives(options = {})
     scope = @parent.is_a?(User) ? @parent.journal_posts : @parent.posts
-    @archives = scope.published.count(
-      :group => "TO_CHAR(published_at, 'YYYY MM Month')")
+    @archives = scope.published.group("TO_CHAR(published_at, 'YYYY MM Month')").count
     @archives = @archives.to_a.sort_by(&:first).reverse.map do |month_str, count|
       [month_str.split, count].flatten
     end

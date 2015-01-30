@@ -214,7 +214,7 @@ class ApplicationController < ActionController::Base
   
   def load_user_by_login
     @login = params[:login].to_s.downcase
-    unless @selected_user = User.first(:conditions => ["lower(login) = ?", @login])
+    unless @selected_user = User.where("lower(login) = ?", @login).first
       return render_404
     end
   end
@@ -223,7 +223,7 @@ class ApplicationController < ActionController::Base
     class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
     class_name = class_name.to_s.underscore.camelcase
     klass = Object.const_get(class_name)
-    record = klass.find(params[:id] || params["#{class_name}_id"], options) rescue nil
+    record = klass.find(params[:id] || params["#{class_name}_id"]) rescue nil
     instance_variable_set "@#{class_name.underscore}", record
     render_404 unless record
   end

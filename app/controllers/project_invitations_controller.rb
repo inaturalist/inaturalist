@@ -6,8 +6,7 @@ class ProjectInvitationsController < ApplicationController
     @project_invitations = ProjectInvitation.
       includes(:observation).
       order("project_invitations.id DESC").
-      page(params[:page]).
-      scoped
+      page(params[:page])
     @project_invitations = if @type == "received"
       @project_invitations.where("observations.user_id = ?", current_user)
     else

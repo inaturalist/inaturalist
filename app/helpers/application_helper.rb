@@ -272,7 +272,8 @@ module ApplicationHelper
     text = compact(text, :all_tags => true) if options[:compact]
     text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
-    text = text.gsub(/<a /, '<a rel="nofollow" ')
+    # scrub to fix any encoding issues
+    text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
     # Ensure all tags are closed
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end

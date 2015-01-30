@@ -88,10 +88,10 @@ class GuidesController < ApplicationController
     end
     @nav_places_counts = {}
     @nav_places.each do |p|
-      @nav_places_counts[p.id] = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, p.descendant_conditions)})", p).count
+      @nav_places_counts[p.id] = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, p.descendant_conditions.to_sql)})", p).count
     end
     @nav_places_counts.each do |place_id,count|
-      @nav_places.reject!{|p| p.id == place_id} if count == 0
+      @nav_places = @nav_places.to_a.reject{|p| p.id == place_id} if count == 0
     end
   end
 
@@ -127,7 +127,7 @@ class GuidesController < ApplicationController
     end
     @nav_taxa_counts = {}
     @nav_taxa.each do |t|
-      @nav_taxa_counts[t.id] = @guides.joins(:taxon).where("taxa.id = ? OR (#{Taxon.send(:sanitize_sql, t.descendant_conditions)})", t).count
+      @nav_taxa_counts[t.id] = @guides.joins(:taxon).where("taxa.id = ? OR (#{Taxon.send(:sanitize_sql, t.descendant_conditions.to_sql)})", t).count
     end
     @nav_taxa_counts.each do |taxon_id,count|
       @nav_taxa.reject!{|t| t.id == taxon_id} if count == 0

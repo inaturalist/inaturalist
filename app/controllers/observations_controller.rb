@@ -2271,7 +2271,10 @@ class ObservationsController < ApplicationController
         search_params[:taxon_name] || (search_params[:lat] && search_params[:lng])
         @observations = query_scope.paginate_with_count_over(find_options)
       else
-        @observations = query_scope.paginate(find_options)
+        @observations = query_scope.where(find_options[:conditions]).
+          includes(find_options[:include]).
+          paginate(page: find_options[:page], per_page: find_options[:per_page]).
+          order(find_options[:order])
       end
       unless request.format && request.format.json?
         Observation.preload_associations(@observations,

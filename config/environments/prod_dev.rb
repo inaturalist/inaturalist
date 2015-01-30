@@ -60,9 +60,9 @@ Inaturalist::Application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  ActiveRecord::Base.logger = Logger.new(STDOUT)
-  ActiveRecord::Base.logger.formatter = proc do |severity, datetime, progname, msg|
-    "#{datetime.to_formatted_s(:db) }: #{msg}\n"
+  Rails.logger = Logger.new(STDOUT)
+  Rails.logger.formatter = proc do |severity, datetime, progname, msg|
+    "[#{ datetime.to_formatted_s(:db) }] #{ msg }\n"
   end
 
   config.middleware.use Rack::GoogleAnalytics, :trackers => lambda { |env|

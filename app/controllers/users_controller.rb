@@ -234,7 +234,7 @@ class UsersController < ApplicationController
   def show
     @selected_user = @user
     @login = @selected_user.login
-    @followees = @selected_user.friends.paginate(:page => 1, :per_page => 15, :order => "id desc")
+    @followees = @selected_user.friends.paginate(:page => 1, :per_page => 15).order("id desc")
     @favorites_list = @selected_user.lists.find_by_title("Favorites")
     @favorites_list ||= @selected_user.lists.find_by_title(t(:favorites))
     if @favorites_list
@@ -242,7 +242,7 @@ class UsersController < ApplicationController
         :per_page => 15,
         :include => {:taxon => [:photos, :taxon_names]}, :order => "listed_taxa.id desc")
     end
-    
+
     respond_to do |format|
       format.html do
         @shareable_image_url = FakeView.image_url(@selected_user.icon.url(:original))
