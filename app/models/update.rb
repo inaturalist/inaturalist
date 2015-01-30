@@ -46,7 +46,7 @@ class Update < ActiveRecord::Base
     end
     conditions = ["notification = 'activity' AND id NOT IN (?)", activity_update_ids]
     conditions[0] += " AND (#{clauses.join(' OR ')})" unless clauses.blank?
-    updates += Update.all(:conditions => conditions, :include => [:resource, :notifier, :subscriber, :resource_owner])
+    updates += Update.where(conditions).includes(:resource, :notifier, :subscriber, :resource_owner)
     updates
   end
   
@@ -98,9 +98,8 @@ class Update < ActiveRecord::Base
     start_time = 1.day.ago.utc
     end_time = Time.now.utc
     email_count = 0
-    user_ids = Update.all(
-        :select => "DISTINCT subscriber_id",
-        :conditions => ["created_at BETWEEN ? AND ?", start_time, end_time]).map{|u| u.subscriber_id}.compact.uniq.sort
+    user_ids = Update.where(["created_at BETWEEN ? AND ?", start_time, end_time]).
+      select("DISTINCT subscriber_id").map{|u| u.subscriber_id}.compact.uniq.sort
     delivery_times = []
     process_start_time = Time.now
     msg = "[INFO #{Time.now}] start daily updates emailer, #{user_ids.size} users"
@@ -146,8 +145,7 @@ class Update < ActiveRecord::Base
     return if user.email.blank?
     return if user.prefers_no_email
     return unless user.active? # email verified
-    updates = Update.all(:limit => 100, :conditions => [
-      "subscriber_id = ? AND created_at BETWEEN ? AND ?", user.id, start_time, end_time])
+    updates = Update.where(["subscriber_id = ? AND created_at BETWEEN ? AND ?", user.id, start_time, end_time]).limit(100)
     updates.delete_if do |u| 
       !user.prefers_project_journal_post_email_notification? && u.resource_type == "Project" && u.notifier_type == "Post" ||
       !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||

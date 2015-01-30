@@ -39,9 +39,8 @@ class LifeList < List
   def refresh(options = {})
     if taxa = options[:taxa]
       # Find existing listed_taxa of these taxa to update
-      existing = ListedTaxon.all(
-        :include => [{:list => :rules}, {:taxon => :taxon_names}, :last_observation],
-        :conditions => ["list_id = ? AND taxon_id IN (?)", self, taxa])
+      existing = ListedTaxon.where(list_id: self, taxon_id: taxa)
+        includes([ {:list => :rules}, {:taxon => :taxon_names}, :last_observation ])
       collection = []
       
       # Add new listed taxa for taxa not already on this list

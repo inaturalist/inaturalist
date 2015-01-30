@@ -97,7 +97,7 @@ class PlacesController < ApplicationController
   def show
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
-    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry, name", :include => [:taxon_names])
+    browsing_taxa = Taxon.where(id: browsing_taxon_ids).order(:ancestry, :name).includes(:taxon_names)
     browsing_taxa.delete_if{|t| t.name == "Life"}
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     respond_to do |format|
@@ -322,10 +322,8 @@ class PlacesController < ApplicationController
       :order => "id DESC",
       :conditions => conditions
     )
-    @taxa = Taxon.all(
-      :conditions => ["id IN (?)", listed_taxa.map(&:taxon_id)],
-      :include => [:iconic_taxon, :photos, :taxon_names]
-    )
+    @taxa = Taxon.where(id: listed_taxa.map(&:taxon_id)).
+      includes(:iconic_taxon, :photos, :taxon_names)
     
     respond_to do |format|
       format.html { redirect_to @place }

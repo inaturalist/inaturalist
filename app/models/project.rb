@@ -366,7 +366,7 @@ class Project < ActiveRecord::Base
       }
     end
     
-    project_curators = project.project_users.all(:conditions => ["role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR]])
+    project_curators = project.project_users.where(role: [ ProjectUser::MANAGER, ProjectUser::CURATOR ])
     project_curator_user_ids = project_curators.map{|pu| pu.user_id}
     
     project.project_observations.find_each(find_options) do |po|

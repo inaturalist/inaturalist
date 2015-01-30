@@ -27,12 +27,8 @@ class IdentificationsController < ApplicationController
     @identifications = scope.page(params[:page]).per_page(20)
     @identifications_by_obs_id = @identifications.index_by(&:observation_id)
     @observations = @identifications.collect(&:observation)
-    @other_ids = Identification.all(
-      :conditions => [
-        "observation_id in (?) AND user_id != ?", @observations, @selected_user
-      ],
-      :include => [:observation, :taxon]
-    )
+    @other_ids = Identification.where(observation_id: @observations).where("user_id != ?", @selected_user).
+      includes(:observation, :taxon)
     @other_id_stats = {}
     @other_ids.group_by(&:observation).each do |obs, ids|
       user_ident = @identifications_by_obs_id[obs.id]

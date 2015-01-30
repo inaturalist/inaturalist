@@ -88,7 +88,7 @@ module Shared::GuideModule
   def show_guide_widget
     @headless = @footless = true
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
-    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
+    browsing_taxa = Taxon.where(id: browsing_taxon_ids).order(:ancestry).includes(:taxon_names)
     browsing_taxa.delete_if{|t| t.name == "Life"}
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     @grid = params[:grid]

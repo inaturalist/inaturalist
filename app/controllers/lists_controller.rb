@@ -37,12 +37,10 @@ class ListsController < ApplicationController
     @iconic_taxa_for = {}
     @lists.each do |list|
       unless fragment_exist?(List.icon_preview_cache_key(list))
-        taxon_ids = list.listed_taxa.all(
-          :select => "taxon_id", 
-          :order => "id desc", :limit => 50).map(&:taxon_id)
+        taxon_ids = list.listed_taxa.select(:taxon_id).
+          order("id desc").limit(50).map(&:taxon_id)
         unless taxon_ids.blank?
-          phototaxa = Taxon.all(:include => :photos,
-            :conditions => ["taxa.id IN (?)", taxon_ids])
+          phototaxa = Taxon.where(id: taxon_ids).includes(:photos)
           @iconic_taxa_for[list.id] = phototaxa[0...9]
         end
       end
@@ -115,8 +113,9 @@ class ListsController < ApplicationController
       :last_observation,
       {:taxon => [:iconic_taxon, :photos, :taxon_names]}
     ]
-    @listed_taxa = ListedTaxon.all(find_options)
-    
+    @listed_taxa = ListedTaxon.where(find_options[:conditions]).
+      includes(find_options[:include]).
+      order(find_options[:order])
     
     # Group listed_taxa into owner / other pairs
     @pairs = []
@@ -261,9 +260,8 @@ class ListsController < ApplicationController
     show_guide do |scope|
       scope = scope.on_list(@list)
     end
-    @listed_taxa = @list.listed_taxa.all(
-      :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
-      :conditions => ["taxon_id IN (?)", @taxa])
+    @listed_taxa = @list.listed_taxa.where(taxon_id: @taxa).
+      select("DISTINCT ON (taxon_id) listed_taxa.*")
     @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
     render :layout => false, :partial => @partial
   end
@@ -339,9 +337,9 @@ class ListsController < ApplicationController
   def load_listed_taxon_photos
     @photos_by_listed_taxon_id = {}
     obs_ids = @listed_taxa.map(&:last_observation_id).compact
-    obs_photos = ObservationPhoto.all(:select => "DISTINCT ON (observation_id) *", 
-      :conditions => ["observation_id IN (?)", obs_ids],
-      :include => [ { :photo => :user } ] )
+    obs_photos = ObservationPhoto.where(observation_id: obs_ids).
+      select("DISTINCT ON (observation_id) *").
+      includes({ :photo => :user })
     obs_photos_by_obs_id = obs_photos.index_by(&:observation_id)
     @listed_taxa.each do |lt|
       next unless (op = obs_photos_by_obs_id[lt.last_observation_id])

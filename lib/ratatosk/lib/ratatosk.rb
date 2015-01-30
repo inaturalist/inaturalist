@@ -268,9 +268,9 @@ module Ratatosk
       ancestor_phylum = name_provider.get_phylum_for(lineage.first, lineage)
       lineage.each do |ancestor|
         existing_homonyms = if ancestor.new_record?
-          Taxon.all(:conditions => ["name = ?", ancestor.name])
+          Taxon.where(name: ancestor.name)
         else
-          Taxon.all(:conditions => ["id != ? AND name = ?", ancestor.id, ancestor.name])
+          Taxon.where(name: ancestor.name).where("id != ?", ancestor.id)
         end
         
         if existing_homonyms.size == 1 && 

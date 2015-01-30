@@ -54,8 +54,8 @@ class ProjectsController < ApplicationController
           @started = current_user.projects.not_flagged_as_spam.
             all(:order => "projects.id desc", :limit => 9)
           @joined = current_user.project_users.joins(:project).
-            merge(Project.not_flagged_as_spam).all(:include => :project,
-            :order => "projects.id desc", :limit => 9).map(&:project)
+            merge(Project.not_flagged_as_spam).includes(:project).
+            order("projects.id desc").limit(9).map(&:project)
         end
       end
       format.json do
@@ -182,7 +182,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project_assets = @project.project_assets.all(:limit => 100)
+    @project_assets = @project.project_assets.limit(100)
     @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
     if @place = @project.place
       if @project.prefers_place_boundary_visible
@@ -237,8 +237,8 @@ class ProjectsController < ApplicationController
   end
   
   def terms
-    @project_observation_rules = @project.project_observation_rules.all(:limit => 100)
-    @project_user_rules = @project.project_user_rules.all(:limit => 100)
+    @project_observation_rules = @project.project_observation_rules.limit(100)
+    @project_user_rules = @project.project_user_rules.limit(100)
     respond_to do |format|
       format.html
     end
@@ -247,7 +247,7 @@ class ProjectsController < ApplicationController
   def by_login
     respond_to do |format|
       format.html do
-        @started = @selected_user.projects.all(:order => "id desc", :limit => 100)
+        @started = @selected_user.projects.order("id desc").limit(100)
         @project_users = @selected_user.project_users.paginate(:page => params[:page],
           :include => [:project, :user],
           :order => "lower(projects.title)")
@@ -277,8 +277,8 @@ class ProjectsController < ApplicationController
   def members
     @project_users = @project.project_users.paginate(:page => params[:page], :include => :user, :order => "users.login ASC")
     @admin = @project.user
-    @curators = @project.project_users.curators.all(:limit => 500, :include => :user).map{|pu| pu.user}
-    @managers = @project.project_users.managers.all(:limit => 500, :include => :user).map{|pu| pu.user}
+    @curators = @project.project_users.curators.limit(500).includes(:user).map{|pu| pu.user}
+    @managers = @project.project_users.managers.limit(500).includes(:user).map{|pu| pu.user}
   end
   
   def observed_taxa_count
@@ -297,10 +297,10 @@ class ProjectsController < ApplicationController
   def contributors
     if params[:sort] == "observation+contest"
       @contributors = @project.project_users.paginate(:page => params[:page], :order => "observations_count DESC, taxa_count DESC", :conditions => "observations_count > 0")
-      @top_contributors = @project.project_users.all(:order => "observations_count DESC, taxa_count DESC", :conditions => "taxa_count > 0", :limit => 5)
+      @top_contributors = @project.project_users.where("taxa_count > 0").order("observations_count DESC, taxa_count DESC").limit(5)
     else
       @contributors = @project.project_users.paginate(:page => params[:page], :order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0")
-      @top_contributors = @project.project_users.all(:order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0", :limit => 5)
+      @top_contributors = @project.project_users.where("taxa_count > 0").order("taxa_count DESC, observations_count DESC").limit(5)
     end
     respond_to do |format|
       format.html do
@@ -355,8 +355,8 @@ class ProjectsController < ApplicationController
       :order => "id DESC",
       :conditions => "photos.id IS NOT NULL"
     )
-    @taxa = Taxon.all(:conditions => ["id IN (?)", @listed_taxa.map(&:taxon_id)],
-      :include => [:photos, :taxon_names])
+    @taxa = Taxon.where(id: @listed_taxa.map(&:taxon_id)).
+      includes(:photos, :taxon_names)
     
 
     # Load tips HTML
@@ -426,7 +426,7 @@ class ProjectsController < ApplicationController
   
   def join
     @observation = Observation.find_by_id(params[:observation_id])
-    @project_curators = @project.project_users.all(:conditions => ["role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR]])
+    @project_curators = @project.project_users.where(role: [ProjectUser::MANAGER, ProjectUser::CURATOR])
     if @project_user
       respond_to_join(:notice => t(:you_are_already_a_member_of_this_project))
       return
@@ -696,13 +696,7 @@ class ProjectsController < ApplicationController
   def add_batch
     observation_ids = observation_ids_batch_from_params
     
-    @observations = Observation.all(
-      :conditions => [
-        "id IN (?) AND user_id = ?", 
-        observation_ids,
-        current_user.id
-      ]
-    )
+    @observations = Observation.where(id: observation_ids, user_id: current_user.id)
     
     @errors = {}
     @project_observations = []
@@ -742,10 +736,8 @@ class ProjectsController < ApplicationController
   
   def remove_batch
     observation_ids = observation_ids_batch_from_params
-    @project_observations = @project.project_observations.all(
-      :include => :observation,
-      :conditions => ["observation_id IN (?)", observation_ids]
-    )
+    @project_observations = @project.project_observations.where(observation_id: observation_ids).
+      includes(:observation)
     
     @project_observations.each do |project_observation|
       next unless project_observation.observation.user_id == current_user.id

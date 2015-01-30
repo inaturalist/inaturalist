@@ -202,13 +202,13 @@ class ObservationsController < ApplicationController
     unless @taxon = Taxon.find_by_id(params[:id].to_i)
       render_404 && return
     end
-    @observations = Observation.of(@taxon).all(
-      :include => [ :user,
+    @observations = Observation.of(@taxon).
+      includes([ :user,
                     :iconic_taxon,
                     { :taxon => :taxon_descriptions },
-                    { :observation_photos => :photo } ],
-      :order => "observations.id desc", 
-      :limit => 500).sort_by{|o| [o.quality_grade == "research" ? 1 : 0, o.id]}
+                    { :observation_photos => :photo } ]).
+      order("observations.id desc").
+      limit(500).sort_by{|o| [o.quality_grade == "research" ? 1 : 0, o.id]}
     respond_to do |format|
       format.json do
         render :json => @observations.to_json(
@@ -309,8 +309,8 @@ class ObservationsController < ApplicationController
         if @observation.taxon
           unless @places.blank?
             @listed_taxon = ListedTaxon.
-              includes(:place).
-              where("taxon_id = ? AND place_id IN (?) AND establishment_means IS NOT NULL", @observation.taxon_id, @places).
+              joins(:place).
+              where([ "taxon_id = ? AND place_id IN (?) AND establishment_means IS NOT NULL", @observation.taxon_id, @places ]).
               order("establishment_means IN ('endemic', 'introduced') DESC, places.bbox_area ASC").first
             @conservation_status = ConservationStatus.
               where(:taxon_id => @observation.taxon).where("place_id IN (?)", @places).
@@ -718,13 +718,8 @@ class ObservationsController < ApplicationController
       return
     end
 
-    @observations = Observation.all(
-      :conditions => [
-        "id IN (?) AND user_id = ?", 
-        params[:observations].map{|k,v| k},
-        observation_user
-      ]
-    )
+    @observations = Observation.where(id: params[:observations].map{ |k,v| k },
+      user_id: observation_user)
     
     # Make sure there's no evil going on
     unique_user_ids = @observations.map(&:user_id).uniq
@@ -901,8 +896,7 @@ class ObservationsController < ApplicationController
   end
   
   def update_photos
-    @observation_photos = ObservationPhoto.all(:conditions => [
-      "id IN (?)", params[:observation_photos].map{|k,v| k}])
+    @observation_photos = ObservationPhoto.where(id: params[:observation_photos].map{|k,v| k})
     @observation_photos.each do |op|
       next unless @observation.observation_photo_ids.include?(op.id)
       op.update_attributes(params[:observation_photos][op.id.to_s])
@@ -1009,9 +1003,7 @@ class ObservationsController < ApplicationController
   end
   
   def delete_batch
-    @observations = Observation.all(
-      :conditions => [
-        "id in (?) AND user_id = ?", params[:o].split(','), current_user])
+    @observations = Observation.where(id: params[:o].split(','), user_id: current_user)
     @observations.each do |observation|
       observation.destroy if observation.user == current_user
     end
@@ -1037,7 +1029,7 @@ class ObservationsController < ApplicationController
     end
     @project = Project.find(params[:project_id].to_i) if params[:project_id]
     if logged_in?
-      @projects = current_user.project_users.includes(:project).order('lower(projects.title)').collect(&:project)
+      @projects = current_user.project_users.joins(:project).order('lower(projects.title)').collect(&:project)
       @project_templates = {}
       @projects.each do |p|
         @project_templates[p.title] = p.observation_fields.order(:position) if @project && p.id == @project.id
@@ -1093,11 +1085,11 @@ class ObservationsController < ApplicationController
         @listed_taxa = @listed_taxa_alphabetical if @order == ListedTaxon::ALPHABETICAL_ORDER
         @taxon_ids_by_name = {}
         ancestor_ids = @listed_taxa.map {|lt| lt.taxon_ancestor_ids.to_s.split('/')}.flatten.uniq
-        @orders = Taxon.all(:conditions => ["rank = 'order' AND id IN (?)", ancestor_ids], :order => "ancestry")
-        @families = Taxon.all(:conditions => ["rank = 'family' AND id IN (?)", ancestor_ids], :order => "ancestry")
+        @orders = Taxon.where(rank: "order", id: ancestor_ids).order(:ancestry)
+        @families = Taxon.where(rank: "family", id: ancestor_ids).order(:ancestry)
       end
     end
-    @user_lists = current_user.lists.all(:limit => 100)
+    @user_lists = current_user.lists.limit(100)
     
     respond_to do |format|
       format.html
@@ -1113,7 +1105,7 @@ class ObservationsController < ApplicationController
   end
   
   def new_from_list
-    @taxa = Taxon.all(:conditions => ["id in (?)", params[:taxa]], :include => :taxon_names)
+    @taxa = Taxon.where(id: params[:taxa]).includes(:taxon_names)
     if @taxa.blank?
       flash[:error] = t(:no_taxa_selected)
       return redirect_to :action => :add_from_list
@@ -1145,10 +1137,11 @@ class ObservationsController < ApplicationController
       format.html do
         @observer_provider_authorizations = @selected_user.provider_authorizations
         if logged_in? && @selected_user.id == current_user.id
-          @project_users = current_user.project_users.all(:include => :project, :order => "projects.title")
+          @project_users = current_user.project_users.joins(:project).order("projects.title")
           if @proj_obs_errors = Rails.cache.read("proj_obs_errors_#{current_user.id}") 
             @project = Project.find_by_id(@proj_obs_errors[:project_id])
-            @proj_obs_errors_obs = current_user.observations.all(:conditions => ["id IN (?)", @proj_obs_errors[:errors].keys], :include => [:photos, :taxon])
+            @proj_obs_errors_obs = current_user.observations.
+              where(id: @proj_obs_errors[:errors].keys).includes(:photos, :taxon)
             Rails.cache.delete("proj_obs_errors_#{current_user.id}")
           end
         end
@@ -1259,9 +1252,9 @@ class ObservationsController < ApplicationController
     x, y, zoom = params[:x].to_i, params[:y].to_i, params[:zoom].to_i
     swlng, swlat = merc.from_pixel_to_ll([x * tile_size, (y+1) * tile_size], zoom)
     nelng, nelat = merc.from_pixel_to_ll([(x+1) * tile_size, y * tile_size], zoom)
-    @observations = Observation.in_bounding_box(swlat, swlng, nelat, nelng).all(
-      :select => "id, species_guess, latitude, longitude, user_id, description, private_latitude, private_longitude, time_observed_at",
-      :include => [:user, :photos], :limit => 500, :order => "id DESC")
+    @observations = Observation.in_bounding_box(swlat, swlng, nelat, nelng).
+      select("id, species_guess, latitude, longitude, user_id, description, private_latitude, private_longitude, time_observed_at").
+      includes(:user, :photos).limit(500).order("id DESC")
     
     respond_to do |format|
       format.json do
@@ -1358,9 +1351,8 @@ class ObservationsController < ApplicationController
       end
     end
     
-    @project_observations = @project.project_observations.all(
-      :conditions => ["observation_id IN (?)", @observations],
-      :include => [{:curator_identification => [:taxon, :user]}])
+    @project_observations = @project.project_observations.where(observation_id: @observations).
+      includes([ { :curator_identification => [ :taxon, :user ] } ])
     @project_observations_by_observation_id = @project_observations.index_by(&:observation_id)
     
     @kml_assets = @project.project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}

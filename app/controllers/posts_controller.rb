@@ -119,13 +119,12 @@ class PostsController < ApplicationController
     if params[:observations]
       params[:observations] = params[:observations].map(&:to_i)
       params[:observations] = ((params[:observations] & @post.observation_ids) + params[:observations]).uniq
-      @observations = Observation.by(current_user).all(
-        :conditions => ["id IN (?)", params[:observations]])
+      @observations = Observation.by(current_user).where(id: params[:observations])
     end
     if params[:commit] == t(:preview)
       @post.attributes = params[:post]
       @preview = @post
-      @observations ||= @post.observations.all(:include => [:taxon, :photos])
+      @observations ||= @post.observations.includes(:taxon, :photos)
       return render(:action => 'edit')
     end
     
