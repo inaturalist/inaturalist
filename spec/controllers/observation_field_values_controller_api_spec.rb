@@ -99,7 +99,7 @@ shared_examples_for "an ObservationFieldValuesController" do
 end
 
 describe ObservationFieldValuesController, "oauth authentication" do
-  let(:token) { stub :accessible? => true, :resource_owner_id => user.id }
+  let(:token) { :acceptable? => true, double :accessible? => true, :resource_owner_id => user.id }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     controller.stub(:doorkeeper_token) { token }

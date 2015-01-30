@@ -46,7 +46,7 @@ shared_examples_for "a CommentsController" do
 end
 
 describe CommentsController, "oauth authentication" do
-  let(:token) { stub :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
+  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     controller.stub(:doorkeeper_token) { token }

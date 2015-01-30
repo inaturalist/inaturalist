@@ -77,8 +77,7 @@ shared_examples_for "a signed in UsersController" do
 end
 
 describe UsersController, "oauth authentication" do
-  let(:token) { double :accessible? => true,
-    :resource_owner_id => user.id, :acceptable? => true }
+  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     controller.stub(:doorkeeper_token) { token }
