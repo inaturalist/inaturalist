@@ -61,8 +61,7 @@ class ListedTaxaController < ApplicationController
       return
     end
 
-    opts = params.require(:listed_taxon).permit(:taxon_id, :list_id,
-      :establishment_means, :force_trickle_down_establishment_means) || { }
+    opts = params[:listed_taxon] || {}
     opts[:user_id] = current_user.id
     opts[:manually_added] = true
     opts.delete(:taxon_id)
@@ -119,8 +118,7 @@ class ListedTaxaController < ApplicationController
       return
     end
     
-    listed_taxon = params.require(:listed_taxon).permit(:taxon_id, :list_id,
-      :establishment_means, :force_trickle_down_establishment_means) || { }
+    listed_taxon = params[:listed_taxon] || {}
 
     respond_to do |format|
       @listed_taxon.update_attributes_and_primary(listed_taxon, current_user)

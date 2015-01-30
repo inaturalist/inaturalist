@@ -196,10 +196,8 @@ class Update < ActiveRecord::Base
       end
       ids = ids.compact.uniq
       next if ids.blank?
-      update_cache[klass.to_s.underscore.pluralize.to_sym] = klass.all(
-        :conditions => ["id IN (?)", ids], 
-        :include => includes[klass.to_s.underscore.to_sym]
-      ).index_by{|o| o.id}
+      update_cache[klass.to_s.underscore.pluralize.to_sym] = klass.where(id: ids).
+        includes(includes[klass.to_s.underscore.to_sym]).index_by{ |o| o.id }
     end
     update_cache[:users] ||= {}
     updates.each do |update|
@@ -210,12 +208,12 @@ class Update < ActiveRecord::Base
   end
   
   def self.user_viewed_updates(updates)
-    updates = updates.compact
+    updates = updates.to_a.compact
     return if updates.blank?
     subscriber_id = updates.first.subscriber_id
     
     # mark all as viewed
-    Update.update_all(["viewed_at = ?", Time.now], ["id in (?)", updates])
+    Update.where(id: updates).update_all(viewed_at: Time.now)
     
     # delete PAST activity updates that were not in this batch
     clauses = []

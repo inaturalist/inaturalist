@@ -12,10 +12,10 @@
   - if is_admin?
     .admin.stacked
       = f.check_box :trusted, :label_after => true
-      - if Doorkeeper.configuration.test_redirect_uri
+      - if Doorkeeper.configuration.native_redirect_uri
         .meta
           Use
-          %strong= Doorkeeper.configuration.test_redirect_uri
+          %strong= Doorkeeper.configuration.native_redirect_uri
           for local tests
   .actions.inline.buttonrow
     = f.submit "Save", :class => "default button"

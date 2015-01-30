@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   
   helper :all # include all helpers, all the time
   protect_from_forgery
+  before_filter :whitelist_params
   around_filter :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
@@ -507,6 +508,10 @@ class ApplicationController < ActionController::Base
       yield
       Rails.cache.write(key, @job.id)
     end
+  end
+
+  def whitelist_params
+    params.permit!
   end
 
   # Coerce the format unless in preselected list. Rescues from ActionView::MissingTemplate
