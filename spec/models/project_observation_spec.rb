@@ -5,15 +5,14 @@ describe ProjectObservation, "creation" do
   it "should queue a DJ job for the list" do
     stamp = Time.now
     make_project_observation(:observation => @observation, :project => @project)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
-    # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}.should_not be_blank
   end
   
   it "should queue a DJ job to set project user counters" do
     stamp = Time.now
     make_project_observation(:observation => @observation, :project => @project)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /\:update_observations_counter_cache/}.should_not be_blank
     jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}.should_not be_blank
   end
@@ -49,14 +48,14 @@ describe ProjectObservation, "destruction" do
   it "should queue a DJ job for the list" do
     stamp = Time.now
     @project_observation.destroy
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}.should_not be_blank
   end
   
   it "should queue a DJ job to set project user counters" do
     stamp = Time.now
     @project_observation.destroy
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /\:update_observations_counter_cache/}.should_not be_blank
     jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}.should_not be_blank
   end
@@ -105,7 +104,7 @@ end
 describe ProjectObservation, "observed_in_place" do
   it "should use private coordinates" do
     place = Place.make!(:name => "Berkeley")
-    place.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
+    place.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
     # observation = Observation.make!(:latitude => 37.8732, :longitude => -122.263)
     # project_observation = make_project_observation(:observation => observation)
     
@@ -202,13 +201,13 @@ describe ProjectObservation, "has_a_photo?" do
     o = make_research_grade_observation
     pu = ProjectUser.make!(:project => p, :user => o.user)
     po = ProjectObservation.make(:project => p, :observation => o)
-    po.has_a_photo?.should be_true
+    expect(po.has_a_photo?).to be true
   end
   it "should be false if photo not present" do
     o = Observation.make!
     pu = ProjectUser.make!(:project => p, :user => o.user)
     po = ProjectObservation.make(:project => p, :observation => o)
-    po.has_a_photo?.should_not be_true
+    expect(po.has_a_photo?).to_not be true
   end
 end
 
@@ -220,13 +219,13 @@ describe ProjectObservation, "has_a_sound?" do
     o.reload
     pu = ProjectUser.make!(:project => p, :user => o.user)
     po = ProjectObservation.make(:project => p, :observation => o)
-    po.has_a_sound?.should be_true
+    expect(po.has_a_sound?).to be true
   end
   it "should be false if sound not present" do
     o = Observation.make!
     pu = ProjectUser.make!(:project => p, :user => o.user)
     po = ProjectObservation.make(:project => p, :observation => o)
-    po.has_a_sound?.should_not be_true
+    expect(po.has_a_sound?).to_not be true
   end
 end
 
@@ -236,20 +235,20 @@ describe ProjectObservation, "has_media?" do
     o = make_research_grade_observation
     pu = ProjectUser.make!(:project => p, :user => o.user)
     po = ProjectObservation.make(:project => p, :observation => o)
-    po.has_media?.should be_true
+    expect(po.has_media?).to be true
   end
   it "should be true if sound present" do
     os = ObservationSound.make!
     o = os.observation
     pu = ProjectUser.make!(:project => p, :user => o.user)
     po = ProjectObservation.make(:project => p, :observation => o)
-    po.has_media?.should be_true
+    expect(po.has_media?).to be true
   end
   it "should be false if photo and sound not present" do
     o = Observation.make!
     pu = ProjectUser.make!(:project => p, :user => o.user)
     po = ProjectObservation.make(:project => p, :observation => o)
-    po.has_media?.should_not be_true
+    expect(po.has_media?).to_not be true
   end
 end
 

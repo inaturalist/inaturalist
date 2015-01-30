@@ -2848,7 +2848,7 @@ class ObservationsController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @project ||= Project.find(params[:project_id]) rescue nil
     return unless @project
-    @project_user = current_user.project_users.find_or_create_by_project_id(@project.id)
+    @project_user = current_user.project_users.find_or_create_by(project_id: @project.id)
     return unless @project_user && @project_user.valid?
     tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
     errors = []

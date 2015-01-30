@@ -28,7 +28,7 @@ class QualityMetric < ActiveRecord::Base
   def set_observation_quality_grade
     return true unless observation
     new_quality_grade = observation.get_quality_grade
-    Observation.update_all(["quality_grade = ?", new_quality_grade], ["id = ?", observation_id])
+    Observation.where(id: observation_id).update_all(quality_grade: new_quality_grade)
     return true if Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{observation.id}\n%'").exists?
     CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh_with_observation(observation.id, 
       :taxon_id => observation.taxon_id)
@@ -54,7 +54,7 @@ class QualityMetric < ActiveRecord::Base
   end
 
   def self.vote(user, observation, metric, agree)
-    qm = observation.quality_metrics.find_or_initialize_by_metric_and_user_id(metric, user.id)
+    qm = observation.quality_metrics.find_or_initialize_by(metric: metric, user_id: user.id)
     qm.update_attributes(:agree => agree)
   end
 end

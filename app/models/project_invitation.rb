@@ -25,8 +25,8 @@ end
 # Make sure the a project_invitation can't be created for a project and observation that already has a project_observation.
 #
 def must_not_be_a_project_observation
-  if ProjectObservation.first(:conditions => {:observation_id => self.observation_id, :project_id => self.project_id})
-      errors.add(:observation_id, "can't be used to make invitation when project_observation exists for same observation_id and project_id")
+  if ProjectObservation.where(observation_id: self.observation_id, project_id: self.project_id).any?
+    errors.add(:observation_id, "can't be used to make invitation when project_observation exists for same observation_id and project_id")
   end
   true
 end

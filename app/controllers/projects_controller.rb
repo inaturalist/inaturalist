@@ -254,9 +254,10 @@ class ProjectsController < ApplicationController
         @projects = @project_users.map{|pu| pu.project}
       end
       format.json do
-        @project_users = @selected_user.project_users.limit(1000).
+        @project_users = @selected_user.project_users.joins(:project).
           includes({:project => [:project_list, {:project_observation_fields => :observation_field}]}, :user).
-          order("lower(projects.title)")
+          order("lower(projects.title)").
+          limit(1000)
         project_options = Project.default_json_options.update(
           :include => [
             :project_list, 
