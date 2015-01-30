@@ -143,11 +143,8 @@ module Ratatosk
             
             # If the taxon was invalid, try to see if something similar has 
             # already been saved
-            elsif existing = Taxon.first(:conditions => [
-                "source_identifier = ? AND name_provider = ?",
-                name.taxon.source_identifier,
-                name.taxon.name_provider
-              ])
+            elsif existing = Taxon.where(source_identifier: name.taxon.source_identifier,
+              name_provider: name.taxon.name_provider).first
               name.taxon = existing
             else
               name = nil
@@ -298,15 +295,13 @@ module Ratatosk
     def find_existing_taxon(taxon_adapter, name_provider = nil)
       name_provider ||= NameProviders.const_get(taxon_adapter.name_provider).new
       existing_phylum = if (phylum = name_provider.get_phylum_for(taxon_adapter))
-        Taxon.first(:conditions => [
-          "lower(name) = ? AND rank = 'phylum'", phylum.name.downcase
-        ])
+        Taxon.where("lower(name) = ? AND rank = 'phylum'", phylum.name.downcase).first
       end
 
       if existing_phylum
-        existing_phylum.descendants.first(:conditions => ["lower(name) = ?", taxon_adapter.name.downcase])
+        existing_phylum.descendants.where("lower(name) = ?", taxon_adapter.name.downcase).first
       else
-        Taxon.first(:conditions => ["lower(name) = ?", taxon_adapter.name.downcase])
+        Taxon.where("lower(name) = ?", taxon_adapter.name.downcase).first
       end
     end
     

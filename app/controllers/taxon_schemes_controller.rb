@@ -46,10 +46,8 @@ class TaxonSchemesController < ApplicationController
     inactive_taxa.each do |taxon|
       scope = TaxonChange.all
       scope = scope.taxon(taxon)
-      taxon_change = scope.first(
-        :select => "DISTINCT ON (taxon_changes.id) taxon_changes.*",
-        :conditions => ["type IN ('TaxonDrop') OR type IN ('TaxonStage') OR t1.is_active = ? OR t2.is_active = ?", true, true]
-      )
+      taxon_change = scope.select("DISTINCT ON (taxon_changes.id) taxon_changes.*").
+        where(["type IN ('TaxonDrop') OR type IN ('TaxonStage') OR t1.is_active = ? OR t2.is_active = ?", true, true]).first
       if taxon_change
         @taxon_changes << taxon_change
         taxa_involved = [taxon_change.taxon,taxon_change.taxon_change_taxa.map{|tct| tct.taxon}].flatten
@@ -104,10 +102,8 @@ class TaxonSchemesController < ApplicationController
     @inactive_taxa.each do |taxon|
       scope = TaxonChange.all
       scope = scope.taxon(taxon)
-      taxon_change = scope.first(
-        :select => "DISTINCT (taxon_changes.id), taxon_changes.*",
-        :conditions => ["type IN ('TaxonDrop') OR type IN ('TaxonStage') OR t1.is_active = ? OR t2.is_active = ?", true, true]
-      )
+      taxon_change = scope.select("DISTINCT (taxon_changes.id), taxon_changes.*").
+        where(["type IN ('TaxonDrop') OR type IN ('TaxonStage') OR t1.is_active = ? OR t2.is_active = ?", true, true]).first
       unless taxon_change
         @orphaned_taxa << taxon
       end

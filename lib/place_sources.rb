@@ -321,8 +321,7 @@ module PlaceSources
     # for CPAD places
     unless place.woeid
       parent = Place.containing_bbox(place.swlat, place.swlng, place.nelat, 
-        place.nelng).first(:order => "bbox_area ASC", 
-          :conditions => "place_type < 100")
+        place.nelng).where("place_type < 100").order("bbox_area ASC").first
       place.parent = parent if parent
     end
     

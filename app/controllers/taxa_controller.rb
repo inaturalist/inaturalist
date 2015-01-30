@@ -282,11 +282,12 @@ class TaxaController < ApplicationController
   def edit
     descendant_options = {:joins => [:taxon], :conditions => @taxon.descendant_conditions}
     taxon_options = {:conditions => {:taxon_id => @taxon}}
+    # TODO: these .firsts will need to be updated
     @observations_exist = Observation.first(taxon_options) || Observation.first(descendant_options)
     @listed_taxa_exist = ListedTaxon.first(taxon_options) || ListedTaxon.first(descendant_options)
     @identifications_exist = Identification.first(taxon_options) || Identification.first(descendant_options)
     @descendants_exist = @taxon.descendants.first
-    @taxon_range = TaxonRange.without_geom.first(:conditions => {:taxon_id => @taxon})
+    @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
   end
 
   def update
@@ -1426,7 +1427,7 @@ class TaxaController < ApplicationController
   end
   
   def ensure_flickr_write_permission
-    @provider_authorization = current_user.provider_authorizations.first(:conditions => {:provider_name => 'flickr'})
+    @provider_authorization = current_user.provider_authorizations.were(provider_name: "flickr").first
     if @provider_authorization.blank? || @provider_authorization.scope != 'write'
       session[:return_to] = request.get? ? request.fullpath : request.env['HTTP_REFERER']
       redirect_to auth_url_for('flickr', :scope => 'write')
@@ -1437,7 +1438,7 @@ class TaxaController < ApplicationController
   def load_single_taxon_map_data(taxon)
     @taxon_range = taxon.taxon_ranges.without_geom.first
     if params[:place_id] && (@place = Place.find(params[:place_id]) rescue nil)
-      @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place.id})
+      @place_geometry = PlaceGeometry.without_geom.where(place_id: @place.id).first
     end
     @bounds = if @place && (bbox = @place.bounding_box)
       GeoRuby::SimpleFeatures::Envelope.from_points([

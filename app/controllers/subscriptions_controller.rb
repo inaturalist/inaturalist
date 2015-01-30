@@ -30,9 +30,8 @@ class SubscriptionsController < ApplicationController
     if params[:resource_type] && params[:resource_id]
       @resource = Object.const_get(params[:resource_type]).find_by_id(params[:resource_id]) rescue nil
       if @resource
-        @subscription ||= current_user.subscriptions.first(:conditions => {
-          :resource_type => params[:resource_type], 
-          :resource_id => params[:resource_id]})
+        @subscription ||= current_user.subscriptions.where(
+          resource_type: params[:resource_type], resource_id: params[:resource_id]).first
       end
     end
     return render_404 unless @subscription
@@ -104,9 +103,8 @@ class SubscriptionsController < ApplicationController
     @subscription = if params[:id]
       Subscription.find_by_id(params[:id])
     elsif params[:resource_type] && params[:resource_id]
-      current_user.subscriptions.first(:conditions => {
-        :resource_type => params[:resource_type], 
-        :resource_id => params[:resource_id]})
+      current_user.subscriptions.where(
+        resource_type: params[:resource_type], resource_id: params[:resource_id]).first
     end
     render_404 unless @subscription
   end

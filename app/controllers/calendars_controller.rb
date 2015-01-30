@@ -66,8 +66,8 @@ class CalendarsController < ApplicationController
         n = "#{place.display_name}-#{place.id}"
         [n, place_name_counts[n]]
       end
-      @previous = @selected_user.observations.first(:conditions => ["observed_on < ?", @observations.first.observed_on], :order => "observed_on DESC")
-      @next = @selected_user.observations.first(:conditions => ["observed_on > ?", @observations.first.observed_on], :order => "observed_on ASC")
+      @previous = @selected_user.observations.where("observed_on < ?", @observations.first.observed_on).order("observed_on DESC").first
+      @next = @selected_user.observations.where("observed_on > ?", @observations.first.observed_on).order("observed_on ASC").first
     end
 
     @observer_provider_authorizations = @selected_user.provider_authorizations

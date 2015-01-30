@@ -187,7 +187,7 @@ class ProjectsController < ApplicationController
     @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
     if @place = @project.place
       if @project.prefers_place_boundary_visible
-        @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+        @place_geometry = PlaceGeometry.without_geom.where(place_id: @place).first
       end
     end
   end
@@ -220,7 +220,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.xml
   def destroy
-    project_user = current_user.project_users.first(:conditions => {:project_id => @project.id})
+    project_user = current_user.project_users.where(project_id: @project.id).first
     if project_user.blank? || !project_user.is_admin?
       flash[:error] = t(:only_the_project_admin_can_delete_this_project)
       redirect_to @project
@@ -315,7 +315,7 @@ class ProjectsController < ApplicationController
   
   def show_contributor
     @contributor = @project.project_users.find_by_id(params[:project_user_id].to_i)
-    @contributor ||= @project.project_users.first(:include => :user, :conditions => ["users.login = ?", params[:project_user_id]])
+    @contributor ||= @project.project_users.joins(:user).where(users: { login: params[:project_user_id] }).first
     if @contributor.blank?
       flash[:error] = t(:contributor_cannot_be_found)
       redirect_to project_contributors_path(@project)
@@ -373,7 +373,7 @@ class ProjectsController < ApplicationController
   
   def change_role
     @project_user = @project.project_users.find_by_id(params[:project_user_id])
-    current_project_user = current_user.project_users.first(:conditions => {:project_id => @project.id})
+    current_project_user = current_user.project_users.where(project_id: @project.id).first
     role = params[:role] if ProjectUser::ROLES.include?(params[:role])
     
     if @project_user.blank?
@@ -469,7 +469,7 @@ class ProjectsController < ApplicationController
       return
     end
     
-    if @project_invitation = ProjectInvitation.first(:conditions => {:project_id => @project.id, :observation_id => @observation.id})
+    if @project_invitation = ProjectInvitation.where(project_id: @project.id, observation_id: @observation.id).first
       @project_invitation.destroy
     end
     
@@ -707,7 +707,7 @@ class ProjectsController < ApplicationController
         @errors[observation.id] = project_observation.errors.full_messages
       end
       
-      if @project_invitation = ProjectInvitation.first(:conditions => {:project_id => @project.id, :observation_id => observation.id})
+      if @project_invitation = ProjectInvitation.where(project_id: @project.id, observation_id: observation.id).first
         @project_invitation.destroy
       end
       

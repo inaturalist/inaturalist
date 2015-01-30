@@ -95,7 +95,7 @@ class PlacesController < ApplicationController
   end
   
   def show
-    @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+    @place_geometry = PlaceGeometry.without_geom.where(place_id: @place).first
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
     browsing_taxa = Taxon.where(id: browsing_taxon_ids).order(:ancestry, :name).includes(:taxon_names)
     browsing_taxa.delete_if{|t| t.name == "Life"}
@@ -364,7 +364,7 @@ class PlacesController < ApplicationController
       Place.find_by_id(place_id.to_i)
     end
     return render_404 unless @place
-    @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+    @place_geometry = PlaceGeometry.without_geom.where(place_id: @place).first
     
     show_guide do |scope|
       scope = scope.from_place(@place)
@@ -396,7 +396,7 @@ class PlacesController < ApplicationController
     if @taxon
       ancestor_ids = @taxon.ancestor_ids + [@taxon.id]
       @comprehensive = @place.check_lists.exists?(["taxon_id IN (?) AND comprehensive = 't'", ancestor_ids])
-      @comprehensive_list = @place.check_lists.first(:conditions => ["taxon_id IN (?) AND comprehensive = 't'", ancestor_ids])
+      @comprehensive_list = @place.check_lists.where(taxon_id: ancestor_ids, comprehensive: "t").first
     end
     
     @listed_taxa_count = @scope.count(:select => "DISTINCT taxa.id")
@@ -489,7 +489,7 @@ class PlacesController < ApplicationController
     else
       ["display_name LIKE ?", "#{@q}%"]
     end
-    @place = Place.first(:conditions => conditions)
+    @place = Place.where(conditions).first
     if logged_in? && @place.blank?
       @ydn_places = GeoPlanet::Place.search(@q, :count => 2)
       if @ydn_places && @ydn_places.size == 1

@@ -35,7 +35,7 @@ open(url).read.split("\n").each do |line|
     next
   end
   href = "http://www.calflora.org/cgi-bin/noccdetail.cgi?seq_num=#{calflora_id}"
-  existing = ObservationLink.first(:conditions => {:observation_id => observation_id, :href => href})
+  existing = ObservationLink.where(observation_id: observation_id, href: href).first
   if existing
     existing.touch unless opts[:debug]
     old_count += 1

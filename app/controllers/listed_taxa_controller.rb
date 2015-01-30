@@ -16,7 +16,7 @@ class ListedTaxaController < ApplicationController
           @photo = @listed_taxon.first_observation.photos.first if @listed_taxon.first_observation
           @photo ||= @listed_taxon.last_observation.photos.first if @listed_taxon.last_observation
         end
-        @photo ||= @listed_taxon.taxon.taxon_photos.first(:order => "id ASC").try(:photo)
+        @photo ||= @listed_taxon.taxon.taxon_photos.order(:id).first.try(:photo)
         @related_listed_taxa = @listed_taxon.related_listed_taxa
         @primary_listed_taxon = @listed_taxon.primary_listed_taxon
         if partial = params[:partial]

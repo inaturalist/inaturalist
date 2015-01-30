@@ -132,7 +132,7 @@ module ApplicationHelper
   
   def member_of?(project)
    return false unless logged_in?
-   current_user.project_users.first(:conditions => {:project_id => project.id})
+   current_user.project_users.where(project_id: project.id).first
   end
 
   # TODO: This is removed in Rails 4, but we use it hundrends of times so
@@ -423,7 +423,7 @@ module ApplicationHelper
     less = options.delete(:less) || " #{t(:less).downcase} &uarr;".html_safe
     options[:omission] ||= ""
     options[:separator] ||= " "
-    truncated = truncate(text, options)
+    truncated = truncate(text, options.merge(escape: false))
     return truncated.html_safe if text == truncated
     truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)
     morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()", 

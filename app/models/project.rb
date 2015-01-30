@@ -32,7 +32,7 @@ class Project < ActiveRecord::Base
   }
 
   extend FriendlyId
-  friendly_id :title, :use => :history, :reserved_words => ProjectsController.action_methods.to_a
+  friendly_id :title, :use => [ :history, :finders ], :reserved_words => ProjectsController.action_methods.to_a
   
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
@@ -186,7 +186,7 @@ class Project < ActiveRecord::Base
   def editable_by?(user)
     return false if user.blank?
     return true if user.id == user_id || user.is_admin?
-    pu = user.project_users.first(:conditions => {:project_id => id})
+    pu = user.project_users.where(project_id: id).first
     pu && pu.is_manager?
   end
   

@@ -163,7 +163,7 @@ class ObservationsController < ApplicationController
       end
       
       format.atom do
-        @updated_at = Observation.first(:order => 'updated_at DESC').updated_at
+        @updated_at = Observation.order("updated_at DESC").first.updated_at
       end
       
       format.dwc
@@ -422,9 +422,8 @@ class ObservationsController < ApplicationController
     
     @taxon = Taxon.find_by_id(params[:taxon_id].to_i) unless params[:taxon_id].blank?
     unless params[:taxon_name].blank?
-      @taxon ||= TaxonName.first(:conditions => [
-        "lower(name) = ?", params[:taxon_name].to_s.strip.gsub(/[\s_]+/, ' ').downcase]
-      ).try(:taxon)
+      @taxon ||= TaxonName.where("lower(name) = ?", params[:taxon_name].to_s.strip.gsub(/[\s_]+/, ' ').downcase).
+        first.try(:taxon)
     end
     
     if !params[:project_id].blank?
@@ -444,7 +443,7 @@ class ObservationsController < ApplicationController
     @place ||= Place.find(params[:place_id]) unless params[:place_id].blank? rescue nil
 
     if @place
-      @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+      @place_geometry = PlaceGeometry.without_geom.where(place_id: @place).first
     end
     
     if params[:facebook_photo_id]
@@ -1367,7 +1366,7 @@ class ObservationsController < ApplicationController
         render_observations_to_json
       end
       format.atom do
-        @updated_at = Observation.first(:order => 'updated_at DESC').updated_at
+        @updated_at = Observation.order("updated_at DESC").first.updated_at
         render :action => "index"
       end
       format.csv do
@@ -2112,13 +2111,11 @@ class ObservationsController < ApplicationController
         includes = :taxon
       end
       begin
-        @observations_taxon = TaxonName.first(:include => includes, 
-          :conditions => taxon_name_conditions).try(:taxon)
+        @observations_taxon = TaxonName.where(taxon_name_conditions).includes(includes).first.try(:taxon)
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /invalid byte sequence/
         taxon_name_conditions[1] = @observations_taxon_name.encode('UTF-8')
-        @observations_taxon = TaxonName.first(:include => includes, 
-          :conditions => taxon_name_conditions).try(:taxon)
+        @observations_taxon = TaxonName.where(taxon_name_conditions).includes(includes).first.try(:taxon)
       end
     end
     search_params[:taxon] = @observations_taxon
