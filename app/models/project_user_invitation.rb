@@ -9,7 +9,7 @@ class ProjectUserInvitation < ActiveRecord::Base
   after_destroy :destroy_updates
 
   def email_user
-    Emailer.project_user_invitation(self).deliver
+    Emailer.project_user_invitation(self).deliver_now
   end
 
   def create_update_for_user

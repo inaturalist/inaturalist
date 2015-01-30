@@ -32,7 +32,7 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def project_observations
-    project.project_observations.includes(:observation).where("observations.user_id = ?", user_id)
+    project.project_observations.joins(:observation).where(observations: { user_id: user_id })
   end
 
   def remove_updates
@@ -120,18 +120,14 @@ class ProjectUser < ActiveRecord::Base
   end
   
   def self.update_observations_counter_cache_from_project_and_user(project_id, user_id)
-    return unless project_user = ProjectUser.first(:conditions => {
-      :project_id => project_id, 
-      :user_id => user_id
-    })
+    project_user = ProjectUser.where(project_id: project_id, user_id: user_id).first
+    return unless project_user
     project_user.update_observations_counter_cache
   end
   
   def self.update_taxa_counter_cache_from_project_and_user(project_id, user_id)
-    return unless project_user = ProjectUser.first(:conditions => {
-      :project_id => project_id, 
-      :user_id => user_id
-    })
+    project_user = ProjectUser.where(project_id: project_id, user_id: user_id).first
+    return unless project_user
     project_user.update_taxa_counter_cache
   end
   
@@ -143,10 +139,8 @@ class ProjectUser < ActiveRecord::Base
       return
     end
     obs.project_observations.each do |po|
-      if project_user = ProjectUser.first(:conditions => {
-        :project_id => po.project_id, 
-        :user_id => user_id
-      })
+      project_user = ProjectUser.where(project_id: po.project_id, user_id: user_id).first
+      if project_user
         project_user.update_taxa_counter_cache
         project_user.update_observations_counter_cache
         Project.update_observed_taxa_count(po.project_id)

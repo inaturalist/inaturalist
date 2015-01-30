@@ -60,7 +60,7 @@ class FlagsController < ApplicationController
     @object = @model.find(params[@param])
     @flag.flaggable ||= @object
     @flag.flag ||= "spam" if @object && !@object.is_a?(Taxon)
-    @flags = @object.flags.all(:include => :user, :conditions => {:resolved => false})
+    @flags = @object.flags.where(resolved: false).includes(:user)
     if PARTIALS.include?(params[:partial])
       render :layout => false, :partial => params[:partial]
       return

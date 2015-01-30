@@ -32,7 +32,7 @@ class Project < ActiveRecord::Base
   }
 
   extend FriendlyId
-  friendly_id :title, :use => :history, :reserved_words => ProjectsController.action_methods.to_a
+  friendly_id :title, :use => [ :history, :finders ], :reserved_words => ProjectsController.action_methods.to_a
   
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
@@ -186,7 +186,7 @@ class Project < ActiveRecord::Base
   def editable_by?(user)
     return false if user.blank?
     return true if user.id == user_id || user.is_admin?
-    pu = user.project_users.first(:conditions => {:project_id => id})
+    pu = user.project_users.where(project_id: id).first
     pu && pu.is_manager?
   end
   
@@ -197,7 +197,7 @@ class Project < ActiveRecord::Base
   end
   
   def rule_place
-    project_observation_rules.first(:conditions => {:operator => "observed_in_place?"}).try(:operand)
+    project_observation_rules.where(operator: "observed_in_place?").first.try(:operand)
   end
 
   def rule_taxon
@@ -339,7 +339,7 @@ class Project < ActiveRecord::Base
     unless project_user = project.project_users.find_by_id(project_user_id)
       return
     end
-    Project.joins({ :observations => :identifications }).
+    project.project_observations.joins({ :observation => :identifications }).
       where("project_observations.curator_identification_id IS NULL AND identifications.user_id = ?",
       project_user.user_id).find_each do |po|
       curator_ident = po.observation.identifications.detect{|ident| ident.user_id == project_user.user_id}
@@ -366,10 +366,10 @@ class Project < ActiveRecord::Base
       }
     end
     
-    project_curators = project.project_users.all(:conditions => ["role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR]])
+    project_curators = project.project_users.where(role: [ ProjectUser::MANAGER, ProjectUser::CURATOR ])
     project_curator_user_ids = project_curators.map{|pu| pu.user_id}
     
-    project.project_observations.find_each(find_options) do |po|
+    project.project_observations.where(find_options[:conditions]).joins(find_options[:include]).each do |po|
       curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
       po.update_attributes(:curator_identification => curator_ident)
       ProjectUser.delay(:priority => USER_INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
@@ -379,7 +379,7 @@ class Project < ActiveRecord::Base
   
   def self.refresh_project_list(project, options = {})
     unless project.is_a?(Project)
-      project = Project.find_by_id(project, :include => :project_list)
+      project = Project.where(id: project).includes(:project_list).first
     end
     
     if project.blank?
@@ -393,7 +393,7 @@ class Project < ActiveRecord::Base
   
   def self.update_observed_taxa_count(project_id)
     return unless project = Project.find_by_id(project_id)
-    observed_taxa_count = project.project_list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
+    observed_taxa_count = project.project_list.listed_taxa.where("last_observation_id IS NOT NULL").count
     project.update_attributes(:observed_taxa_count => observed_taxa_count)
   end
   

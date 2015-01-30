@@ -38,9 +38,7 @@ end
 describe Project, "destruction" do
   it "should work despite rule against owner leaving the project" do
     project = Project.make!
-    assert_nothing_raised do
-      project.destroy
-    end
+    expect{ project.destroy }.to_not raise_error
   end
 
   it "should delete project observations" do

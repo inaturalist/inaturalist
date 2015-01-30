@@ -54,7 +54,7 @@ class GuideTaxon < ActiveRecord::Base
     if tags.is_a?(String)
       tags = [tags]
     end
-    scope = scoped
+    scope = GuideTaxon.all
     tags.each_with_index do |tag, i|
       taggings_join_name = "_taggings#{i}"
       scope = scope.joins("LEFT OUTER JOIN taggings #{taggings_join_name} ON #{taggings_join_name}.taggable_type = 'GuideTaxon' AND #{taggings_join_name}.taggable_id = guide_taxa.id")

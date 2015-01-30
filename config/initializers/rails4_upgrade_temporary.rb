@@ -54,3 +54,23 @@ module ActiveRecord
     end
   end
 end
+
+
+
+# preferences was failing because this method no longer existed on ActiveRecord::Base
+# for example try logging in and changing the number of items per page
+module ActiveRecord
+  class Base
+    def convert_number_column_value(value)
+      if value == false
+        0
+      elsif value == true
+        1
+      elsif value.is_a?(String) && value.blank?
+        nil
+      else
+        value
+      end
+    end
+  end
+end

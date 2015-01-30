@@ -24,9 +24,6 @@ OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia 
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-# require custom logger that includes PIDs
-require File.expand_path('../../lib/better_logger', __FILE__)
-
 module Inaturalist
   class Application < Rails::Application
 

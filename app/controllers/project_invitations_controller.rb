@@ -6,8 +6,7 @@ class ProjectInvitationsController < ApplicationController
     @project_invitations = ProjectInvitation.
       includes(:observation).
       order("project_invitations.id DESC").
-      page(params[:page]).
-      scoped
+      page(params[:page])
     @project_invitations = if @type == "received"
       @project_invitations.where("observations.user_id = ?", current_user)
     else
@@ -23,11 +22,11 @@ class ProjectInvitationsController < ApplicationController
       flash[:error] = "You don't have permission to invite that observation."
       redirect_to :back and return
     end
-    if ProjectInvitation.first(:conditions => {:observation_id => params[:observation_id], :project_id => params[:project_id]})
+    if ProjectInvitation.where(observation_id: params[:observation_id], project_id: params[:project_id]).first
       flash[:error] = "This observation was already invited to this project"
       redirect_to :back and return
     end
-    if ProjectObservation.first(:conditions => {:observation_id => params[:observation_id], :project_id => params[:project_id]})
+    if ProjectObservation.where(observation_id: params[:observation_id], project_id: params[:project_id]).first
         flash[:error] = "This observation was already added"
         redirect_to :back and return
     end
@@ -78,7 +77,9 @@ class ProjectInvitationsController < ApplicationController
       @error = "That project invitation doesn't exist."
     end
 
-    unless @project_invitation.observation.user_id == current_user.id || @project_invitation.user_id == current_user.id || ProjectUser.first(:conditions => {:project_id => @project_invitation.project_id, :user_id => current_user.id , :role => "curator"})
+    unless @project_invitation.observation.user_id == current_user.id ||
+      @project_invitation.user_id == current_user.id ||
+      ProjectUser.where(project_id: @project_invitation.project_id, user_id: current_user.id, role: "curator").first
       @error = "You don't have permission to remove that project invitation."
     end
 

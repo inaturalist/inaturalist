@@ -19,8 +19,8 @@ class EmailerController < ApplicationController
     
     emails_allowed = 60 - current_user.invites.count(:conditions => ["created_at >= ?", 30.days.ago])
     addresses = params[:email][:addresses].to_s.split(',').map(&:strip).select{|e| e =~ Devise.email_regexp}
-    @existing_users = User.all(:conditions => ["email IN (?)", addresses])
-    @existing_invites = Invite.all(:conditions => ["invite_address IN (?)", addresses])
+    @existing_users = User.where(email: addresses)
+    @existing_invites = Invite.where(invite_address: addresses)
     
     # don't re-invite people
     @invited = addresses - (@existing_users.map(&:email) + @existing_invites.map(&:invite_address))

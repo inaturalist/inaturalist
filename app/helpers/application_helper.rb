@@ -132,7 +132,7 @@ module ApplicationHelper
   
   def member_of?(project)
    return false unless logged_in?
-   current_user.project_users.first(:conditions => {:project_id => project.id})
+   current_user.project_users.where(project_id: project.id).first
   end
 
   # TODO: This is removed in Rails 4, but we use it hundrends of times so
@@ -272,7 +272,8 @@ module ApplicationHelper
     text = compact(text, :all_tags => true) if options[:compact]
     text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
-    text = text.gsub(/<a /, '<a rel="nofollow" ')
+    # scrub to fix any encoding issues
+    text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
     # Ensure all tags are closed
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
@@ -422,7 +423,7 @@ module ApplicationHelper
     less = options.delete(:less) || " #{t(:less).downcase} &uarr;".html_safe
     options[:omission] ||= ""
     options[:separator] ||= " "
-    truncated = truncate(text, options)
+    truncated = truncate(text, options.merge(escape: false))
     return truncated.html_safe if text == truncated
     truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)
     morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()", 

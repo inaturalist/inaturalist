@@ -3,7 +3,7 @@ class CalendarsController < ApplicationController
   
   def index
     @year = (params[:year] || Time.now.year).to_i
-    @observations = @selected_user.observations.on(@year).all(:select => "id, observed_on")
+    @observations = @selected_user.observations.on(@year).select(:id, :observed_on)
     @observations_by_month = @observations.group_by {|o| o.observed_on.month}
   end
   
@@ -47,9 +47,8 @@ class CalendarsController < ApplicationController
         :group => "taxa.iconic_taxon_id")
     end
     
-    @life_list_firsts = @selected_user.life_list.listed_taxa.all(
-      :conditions => ["first_observation_id IN (?)", @observations]
-    ).sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
+    @life_list_firsts = @selected_user.life_list.listed_taxa.where(first_observation_id: @observations).
+      sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
     
     unless @observations.blank?
       scope = Observation.where("ST_Intersects(place_geometries.geom, observations.private_geom)")
@@ -67,8 +66,8 @@ class CalendarsController < ApplicationController
         n = "#{place.display_name}-#{place.id}"
         [n, place_name_counts[n]]
       end
-      @previous = @selected_user.observations.first(:conditions => ["observed_on < ?", @observations.first.observed_on], :order => "observed_on DESC")
-      @next = @selected_user.observations.first(:conditions => ["observed_on > ?", @observations.first.observed_on], :order => "observed_on ASC")
+      @previous = @selected_user.observations.where("observed_on < ?", @observations.first.observed_on).order("observed_on DESC").first
+      @next = @selected_user.observations.where("observed_on > ?", @observations.first.observed_on).order("observed_on ASC").first
     end
 
     @observer_provider_authorizations = @selected_user.provider_authorizations
@@ -95,7 +94,7 @@ class CalendarsController < ApplicationController
       @taxon_ids += observations.map{|o| o.taxon_id}
       @observations_by_date_by_taxon_id[date] = observations.group_by{|o| o.taxon_id}
     end
-    @taxa = Taxon.all(:conditions => ["id IN (?)", @taxon_ids.uniq.compact], :include => [:taxon_names])
+    @taxa = Taxon.where(id: @taxon_ids.uniq.compact).includes(:taxon_names)
     @taxa = Taxon.sort_by_ancestry(@taxa)
   end
 end

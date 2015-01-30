@@ -103,7 +103,7 @@ class ListedTaxon < ActiveRecord::Base
     where("cs.iucn >= #{Taxon::IUCN_NEAR_THREATENED} AND (cs.place_id IS NULL OR cs.place_id::text IN (#{place_ancestor_ids_sql(place_id)}))")
     .select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id, listed_taxa.observations_count) listed_taxa.*")
   }
-  scope :with_species, -> { includes(:taxon).where("taxa.rank_level = 10") }
+  scope :with_species, -> { joins(:taxon).where(taxa: { rank_level: 10 }) }
   
   #with taxonomic status (by itself)
   scope :with_taxonomic_status, lambda{|taxonomic_status| joins("INNER JOIN

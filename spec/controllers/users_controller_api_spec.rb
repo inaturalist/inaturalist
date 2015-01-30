@@ -13,7 +13,7 @@ shared_examples_for "a signed in UsersController" do
     response.should be_success
   end
 
-  describe :new_updates do
+  describe "new_updates" do
     it "should show recent updates" do
       o = Observation.make!(:user => user)
       without_delay { Comment.make!(:parent => o) }
@@ -57,7 +57,7 @@ shared_examples_for "a signed in UsersController" do
     end
   end
 
-  describe :search do
+  describe "search" do
     it "should search by username" do
       u = User.make!
       get :search, :q => u.login, :format => :json
@@ -77,7 +77,7 @@ shared_examples_for "a signed in UsersController" do
 end
 
 describe UsersController, "oauth authentication" do
-  let(:token) { stub :accessible? => true, :resource_owner_id => user.id }
+  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     controller.stub(:doorkeeper_token) { token }
@@ -100,7 +100,7 @@ describe UsersController, "without authentication" do
     response.body.should_not =~ /#{user.email}/
   end
 
-  describe :search do
+  describe "search" do
     it "should search by username" do
       u1 = User.make!(:login => "foo")
       u2 = User.make!(:login => "bar")

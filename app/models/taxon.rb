@@ -1337,7 +1337,7 @@ class Taxon < ActiveRecord::Base
     num_keepers = 0
     num_rejects = 0
     for name in duplicate_counts.keys
-      taxa = Taxon.all(:conditions => ["name = ?", name])
+      taxa = Taxon.where(name: name)
       Rails.logger.info "[INFO] Found #{taxa.size} duplicates for #{name}: #{taxa.map(&:id).join(', ')}"
       taxa.group_by(&:parent_id).each do |parent_id, child_taxa|
         Rails.logger.info "[INFO] Found #{child_taxa.size} duplicates within #{parent_id}: #{child_taxa.map(&:id).join(', ')}"

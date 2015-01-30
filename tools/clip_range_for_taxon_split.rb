@@ -26,7 +26,7 @@ unless taxon_split_id = OPTS.taxon_split_id
   puts "You must specify a taxon_split_id"
   exit(0)
 end
-unless taxon_split = TaxonSplit.first(:conditions => {:id => taxon_split_id})
+unless taxon_split = TaxonSplit.where(id: taxon_split_id).first
   puts "can't find that taxon split"
   exit(0)
 end
@@ -95,7 +95,7 @@ taxon_split.taxon_change_taxa.each do |end_taxon_change_taxon| #Loop through the
   
   puts "Checking range..."
   
-  range = TaxonRange.first(:select => "*, isvalid(geom), st_isvalidreason(geom)", :conditions => {:id => new_range.id})
+  range = TaxonRange.select("*, isvalid(geom), st_isvalidreason(geom)").where(id: new_range.id).first
   unless range.st_isvalidreason == 'Valid Geometry'
     begin
       TaxonRange.update_all("geom = st_buffer(geom,0)", ["id = ?", new_range.id])
@@ -105,7 +105,7 @@ taxon_split.taxon_change_taxa.each do |end_taxon_change_taxon| #Loop through the
   end
   
   puts "Intersecting range..."
-  range = TaxonRange.first(:select => "*, isvalid(geom), st_isvalidreason(geom)", :conditions => {:id => new_range.id})
+  range = TaxonRange.select("*, isvalid(geom), st_isvalidreason(geom)").where(id: new_range.id).first
   if range.st_isvalidreason == 'Valid Geometry'
     raw_intersection = ActiveRecord::Base.connection.select_all(
       "SELECT ST_AsText(ST_Intersection((select geom from taxon_ranges where id = #{new_range.id}), (select geom from taxon_ranges where id = #{start_taxon_range.id})))"
@@ -127,7 +127,7 @@ taxon_split.taxon_change_taxa.each do |end_taxon_change_taxon| #Loop through the
     puts "saved range"
   end
   
-  range = TaxonRange.first(:select => "*, isvalid(geom), st_isvalidreason(geom)", :conditions => {:id => final_range.id})
+  range = TaxonRange.select("*, isvalid(geom), st_isvalidreason(geom)").where(id: final_range.id).first
   puts range.st_isvalidreason
   unless range.st_isvalidreason == 'Valid Geometry'
     puts "fixing new range..."
@@ -137,7 +137,7 @@ taxon_split.taxon_change_taxa.each do |end_taxon_change_taxon| #Loop through the
       TaxonRange.update_all("geom = cleanGeometry(geom)", ["id = ?", final_range.id])
     end
   end
-  range = TaxonRange.first(:select => "*, isvalid(geom), st_isvalidreason(geom)", :conditions => {:id => final_range.id})
+  range = TaxonRange.select("*, isvalid(geom), st_isvalidreason(geom)").where(id: final_range.id).first
   puts range.st_isvalidreason
   
   puts "sorting the kml..."

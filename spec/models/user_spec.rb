@@ -264,7 +264,7 @@ describe User do
         after = 15.days.from_now.utc
         @user.remember_token.should_not be_blank
         @user.remember_expires_at.should_not be_blank
-        @user.remember_expires_at.between?(before, after).should be_true
+        expect(@user.remember_expires_at.between?(before, after)).to be true
       end
     end
   end
@@ -330,9 +330,10 @@ describe User do
     end
 
     it "should refresh check lists" do
-      t = Taxon.make!(:rank => "species")
+      t = Taxon.make!(rank: "species")
       without_delay do
-        make_research_grade_observation(:taxon => t, :user => @user, :latitude => @place.latitude, :longitude => @place.longitude)
+        make_research_grade_observation(taxon: t , user: @user,
+          latitude: @place.latitude, longitude: @place.longitude)
       end
       @place.check_list.listed_taxa.find_by_taxon_id(t.id).should_not be_blank
       without_delay do

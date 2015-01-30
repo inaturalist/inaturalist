@@ -3,7 +3,7 @@ class EmailerPreview < MailView
     set_locale
     set_user
     @user ||= Update.last.subscriber
-    updates = @user.updates.all(:order => "id DESC", :limit => 50, :include => [:subscriber, :resource_owner])
+    updates = @user.updates.order("id DESC").limit(50).includes(:subscriber, :resource_owner)
     Emailer.updates_notification(@user, updates)
   end
 

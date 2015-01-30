@@ -234,7 +234,7 @@ class UsersController < ApplicationController
   def show
     @selected_user = @user
     @login = @selected_user.login
-    @followees = @selected_user.friends.paginate(:page => 1, :per_page => 15, :order => "id desc")
+    @followees = @selected_user.friends.paginate(:page => 1, :per_page => 15).order("id desc")
     @favorites_list = @selected_user.lists.find_by_title("Favorites")
     @favorites_list ||= @selected_user.lists.find_by_title(t(:favorites))
     if @favorites_list
@@ -242,7 +242,7 @@ class UsersController < ApplicationController
         :per_page => 15,
         :include => {:taxon => [:photos, :taxon_names]}, :order => "listed_taxa.id desc")
     end
-    
+
     respond_to do |format|
       format.html do
         @shareable_image_url = FakeView.image_url(@selected_user.icon.url(:original))
@@ -273,11 +273,9 @@ class UsersController < ApplicationController
     @update_cache = Update.eager_load_associates(@updates)
     @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache, :hour_groups => true)
     Update.user_viewed_updates(@pagination_updates)
-    @month_observations = current_user.observations.all(:select => "id, observed_on",
-      :conditions => [
-        "EXTRACT(month FROM observed_on) = ? AND EXTRACT(year FROM observed_on) = ?",
-        Date.today.month, Date.today.year
-        ])
+    @month_observations = current_user.observations.
+      where([ "EXTRACT(month FROM observed_on) = ? AND EXTRACT(year FROM observed_on) = ?",
+      Date.today.month, Date.today.year ]).select(:id, :observed_on)
     respond_to do |format|
       format.html do
         @subscriptions = current_user.subscriptions.includes(:resource).
@@ -605,5 +603,17 @@ protected
       memo
     end
   end
-    
+
+  # an example of custom param whitelisting
+  def whitelist_params
+    if params[:user]
+      params.require(:user).permit(
+        :login, :email, :name, :password, :password_confirmation, :icon, :description,
+        :time_zone, :icon_url, :locale, :prefers_community_taxa, :place_id,
+        :make_observation_licenses_same, :make_photo_licenses_same, :make_sound_licenses_same,
+        :preferred_photo_license, :preferred_observation_license, :preferred_sound_license,
+        :preferred_observation_fields_by)
+    end
+  end
+
 end

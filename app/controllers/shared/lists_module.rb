@@ -130,7 +130,7 @@ module Shared::ListsModule
         end
         
         if logged_in?
-          @current_user_lists = current_user.lists.all(:limit => 100)
+          @current_user_lists = current_user.lists.limit(100)
         end
 
         if @representative_listed_taxon = @list.listed_taxa.order("listed_taxa.observations_count DESC").includes(:taxon => {:taxon_photos => :photo}).first

@@ -30,12 +30,12 @@ class CommentsController < ApplicationController
     if !filtering && @site && @site.site_only_users
       @paging_comments = @paging_comments.joins(:user).where("users.site_id = ?", @site)
     end
-    @paging_comments = @paging_comments.paginate(find_options)
+    @paging_comments = @paging_comments.select(find_options[:select]).
+      group(find_options[:group]).paginate(page: find_options[:page]).
+      order(find_options[:order])
     @comments = Comment.where("comments.id IN (?)", @paging_comments.map{|c| c.id}).includes(:user).order("comments.id desc")
-    @extra_comments = Comment.all(:conditions => [
-      "comments.parent_id IN (?) AND comments.created_at >= ?", 
-      @comments.map(&:parent_id), @comments.last.try(:created_at)
-    ]).sort_by{|c| c.id}
+    @extra_comments = Comment.where(parent_id: @comments.map(&:parent_id),
+                                    created_at: @comments.last.try(:created_at)).sort_by{|c| c.id}
     @comments_by_parent_id = @extra_comments.group_by{|c| c.parent_id}
     respond_to do |format|
       format.html do

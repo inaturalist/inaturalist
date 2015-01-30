@@ -27,7 +27,7 @@ module Shared::GuideModule
       if @search_taxon_ids.size == 1
         @taxon = Taxon.find_by_id(@search_taxon_ids.first)
       elsif Taxon.count(:conditions => ["id IN (?) AND name LIKE ?", @search_taxon_ids, "#{@q.capitalize}%"]) == 1
-        @taxon = Taxon.first(:conditions => ["name = ?", @q.capitalize])
+        @taxon = Taxon.where(name: @q.capitalize).first
       else
         @scope = @scope.among(@search_taxon_ids)
       end
@@ -35,9 +35,8 @@ module Shared::GuideModule
     
     if @filter_params[:taxon]
       @taxon = Taxon.find_by_id(@filter_params[:taxon].to_i) if @filter_params[:taxon].to_i > 0
-      @taxon ||= TaxonName.first(:conditions => [
-        "lower(name) = ?", @filter_params[:taxon].to_s.strip.gsub(/[\s_]+/, ' ').downcase]
-      ).try(:taxon)
+      @taxon ||= TaxonName.where("lower(name) = ?", @filter_params[:taxon].to_s.strip.gsub(/[\s_]+/, ' ').downcase).
+        first.try(:taxon)
     end
     if @taxon
       @scope = if @taxon.species_or_lower? 
@@ -88,7 +87,7 @@ module Shared::GuideModule
   def show_guide_widget
     @headless = @footless = true
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
-    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
+    browsing_taxa = Taxon.where(id: browsing_taxon_ids).order(:ancestry).includes(:taxon_names)
     browsing_taxa.delete_if{|t| t.name == "Life"}
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     @grid = params[:grid]

@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe PlacesController, "index" do
   # let(:user) { User.make! }
-  # let(:token) { stub :accessible? => true, :resource_owner_id => user.id }
+  # let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id }
   # before do
   #   controller.stub(:doorkeeper_token) { token }
   # end

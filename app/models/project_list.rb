@@ -95,8 +95,8 @@ class ProjectList < LifeList
     end
     target_list_id = ProjectList.where(:project_id => project.id).first.id
     # get listed taxa for this taxon and its ancestors that are on the project list
-    listed_taxa = ListedTaxon.all(:include => [:list],
-      :conditions => ["taxon_id IN (?) AND list_id = ?", taxon_ids, target_list_id])
+    listed_taxa = ListedTaxon.where(taxon_id: taxon_ids, list_id: target_list_id).
+      includes(:list)
     listed_taxa.each do |lt|
       Rails.logger.info "[INFO #{Time.now}] ProjectList.refresh_with_project_observation, refreshing #{lt}"
       refresh_listed_taxon(lt)
@@ -114,9 +114,11 @@ class ProjectList < LifeList
   def self.refresh_with_observation_lists(observation, options = {})
     observation = Observation.find_by_id(observation) unless observation.is_a?(Observation)
     return [] unless observation.is_a?(Observation)
-    project_ids, curator_identification_ids = observation.project_observations.map{|po| [po.project_id, po.curator_identification_id]}.transpose
+    project_ids, curator_identification_ids = observation.project_observations.
+      map{|po| [po.project_id, po.curator_identification_id]}.transpose
     return [] if project_ids.nil?
-    target_list_and_curator_ids = ProjectList.all(:select => "id", :conditions => ["project_id IN (?)", project_ids]).map{|pl| pl.id}.zip(curator_identification_ids)
+    target_list_and_curator_ids = ProjectList.where(project_id: project_ids).select(:id).
+      map{ |pl| pl.id }.zip(curator_identification_ids)
     #only update listed taxa if the project_observations have no curator_identification_ids
     #otherwise update these listed_taxa when the curator_identification_id on the project_observation changes
     target_list_and_curator_ids.map{|pair| pair[0] unless pair[1] }.compact

@@ -189,7 +189,7 @@ class List < ActiveRecord::Base
           ancestor_ids = lt.taxon.ancestor_ids.map{|tid| tid.to_i}
           uncached_ancestor_ids = ancestor_ids - ancestor_cache.keys
           if uncached_ancestor_ids.size > 0
-            Taxon.all(:select => "id, rank, name", :conditions => ["id IN (?)", uncached_ancestor_ids]).compact.each do |t|
+            Taxon.where(id: uncached_ancestor_ids).select(:id, :name, :rank).each do |t|
               ancestor_cache[t.id] = t
             end
           end
@@ -259,13 +259,8 @@ class List < ActiveRecord::Base
     # ancestry check will be performed by life lists during the validations
     # anyway, so it seems like duplication.
     target_lists = if options[:taxa]
-      user.lists.all(
-        :include => :listed_taxa,
-        :conditions => [
-          "listed_taxa.taxon_id in (?) OR type = ?", 
-          options[:taxa], LifeList.to_s
-        ]
-      )
+      user.lists.joins(:listed_taxa).
+        where([ "listed_taxa.taxon_id in (?) OR type = ?", options[:taxa], LifeList.to_s ])
     else
       user.lists.all
     end

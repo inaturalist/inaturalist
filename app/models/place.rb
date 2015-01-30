@@ -44,7 +44,7 @@ class Place < ActiveRecord::Base
   preference :check_lists, :boolean, :default => true
 
   extend FriendlyId
-  friendly_id :name, :use => :history, :reserved_words => PlacesController.action_methods.to_a
+  friendly_id :name, :use => [ :history, :finders ], :reserved_words => PlacesController.action_methods.to_a
   def normalize_friendly_id(string)
     super_candidate = super(string)
     candidate = display_name.to_s.split(',').first.parameterize
@@ -546,14 +546,12 @@ class Place < ActiveRecord::Base
       existing = nil
       existing = Place.find_by_woeid(new_place.woeid) if new_place.woeid
       if new_place.source_filename && new_place.source_identifier
-        existing ||= Place.first(:conditions => [
-          "source_filename = ? AND source_identifier = ?", 
-          new_place.source_filename, new_place.source_identifier])
+        existing ||= Place.where(source_filename: new_place.source_filename,
+          source_identifier: new_place.source_identifier).first
       end
       if new_place.source_filename && new_place.source_name
-        existing ||= Place.first(:conditions => [
-          "source_filename = ? AND source_name = ?", 
-          new_place.source_filename, new_place.source_name])
+        existing ||= Place.where(source_filename: new_place.source_filename,
+          source_name: new_place.source_name).first
       end
       if options[:ancestor_place]
         existing ||= options[:ancestor_place].descendants.

@@ -119,13 +119,12 @@ class PostsController < ApplicationController
     if params[:observations]
       params[:observations] = params[:observations].map(&:to_i)
       params[:observations] = ((params[:observations] & @post.observation_ids) + params[:observations]).uniq
-      @observations = Observation.by(current_user).all(
-        :conditions => ["id IN (?)", params[:observations]])
+      @observations = Observation.by(current_user).where(id: params[:observations])
     end
     if params[:commit] == t(:preview)
       @post.attributes = params[:post]
       @preview = @post
-      @observations ||= @post.observations.all(:include => [:taxon, :photos])
+      @observations ||= @post.observations.includes(:taxon, :photos)
       return render(:action => 'edit')
     end
     
@@ -188,8 +187,7 @@ class PostsController < ApplicationController
   
   def get_archives(options = {})
     scope = @parent.is_a?(User) ? @parent.journal_posts : @parent.posts
-    @archives = scope.published.count(
-      :group => "TO_CHAR(published_at, 'YYYY MM Month')")
+    @archives = scope.published.group("TO_CHAR(published_at, 'YYYY MM Month')").count
     @archives = @archives.to_a.sort_by(&:first).reverse.map do |month_str, count|
       [month_str.split, count].flatten
     end

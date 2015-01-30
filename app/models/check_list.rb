@@ -119,17 +119,13 @@ class CheckList < List
     # TODO remove this when we move to GEOGRAPHIES and our dateline woes have (hopefully) ended
     return if place.straddles_date_line?
 
-    Observation.
-      where("observations.quality_grade = ? AND ST_Intersects(place_geometries.geom, observations.private_geom)",
-        Observation::RESEARCH_GRADE).
-      select("DISTINCT ON (observations.taxon_id) observations.*").
-      order("observations.taxon_id").
-      includes(:taxon, :user).
-      joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
-      find_in_batches do |batch|
-      batch.each do |observation|
-        add_taxon(observation.taxon, options)
-      end
+    Observation.where("observations.quality_grade = ? AND ST_Intersects(place_geometries.geom, observations.private_geom)",
+                  Observation::RESEARCH_GRADE).
+                select("DISTINCT ON (observations.taxon_id) observations.id, observations.taxon_id, observations.user_id").
+                order("observations.taxon_id").
+                includes(:taxon, :user).
+                joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").each do |observation|
+      add_taxon(observation.taxon, options)
     end
   end
   
