@@ -160,7 +160,7 @@ class TaxonChange < ActiveRecord::Base
     records = if options[:records]
       options[:records]
     else
-      scope = klass.send(@klass.name.underscore.pluralize).where("#{klass.table_name}.taxon_id IN (?)", input_taxa).scoped
+      scope = klass.send(@klass.name.underscore.pluralize).where("#{klass.table_name}.taxon_id IN (?)", input_taxa)
       scope = scope.where("user_id = ?", options[:user]) if options[:user]
       scope = scope.where(options[:conditions]) if options[:conditions]
       scope = scope.includes(options[:include]) if options[:include]

@@ -14,7 +14,7 @@ class Trip < Post
 
   def observations
     return Observation.where("1 = 2") if start_time.blank? || stop_time.blank?
-    scope = Observation.by(user).where("time_observed_at BETWEEN ? AND ?", start_time, stop_time).scoped
+    scope = Observation.by(user).where("time_observed_at BETWEEN ? AND ?", start_time, stop_time)
     scope = scope.in_place(place_id) unless place_id.blank?
     scope
   end

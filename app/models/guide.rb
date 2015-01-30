@@ -68,11 +68,11 @@ class Guide < ActiveRecord::Base
     end
     return if options[:place_id].blank? && options[:list_id].blank? && options[:taxon_id].blank?
     scope = if !options[:place_id].blank?
-      Taxon.from_place(options[:place_id]).scoped
+      Taxon.from_place(options[:place_id])
     elsif !options[:list_id].blank?
-      Taxon.on_list(options[:list_id]).scoped
+      Taxon.on_list(options[:list_id])
     else
-      Taxon.scoped
+      Taxon.all
     end
     if t = Taxon.find_by_id(options[:taxon_id])
       scope = scope.descendants_of(t)

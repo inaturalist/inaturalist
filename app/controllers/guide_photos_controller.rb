@@ -9,8 +9,8 @@ class GuidePhotosController < ApplicationController
   # GET /guide_photos
   # GET /guide_photos.json
   def index
-    @guide_photos = GuidePhoto.scoped
-    @guide_photos = @guide_photos.where("id IN (?)", params[:ids]) unless params[:ids].blank?
+    @guide_photos = GuidePhoto.all
+    @guide_photos = @guide_photos.where(id: params[:ids]) unless params[:ids].blank?
 
     respond_to do |format|
       format.html # index.html.erb

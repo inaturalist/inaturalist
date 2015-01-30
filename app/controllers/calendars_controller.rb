@@ -87,7 +87,7 @@ class CalendarsController < ApplicationController
     @observations_by_date_by_taxon_id = {}
     @taxon_ids = []
     @taxon = Taxon.find_by_id(params[:taxon_id].to_i) unless params[:taxon_id].blank?
-    scope = Observation.includes(:iconic_taxon).scoped
+    scope = Observation.includes(:iconic_taxon)
     scope = scope.of(@taxon) if @taxon
     scope = scope.at_or_below_rank(params[:rank]) if params[:rank]
     @dates.each do |date|

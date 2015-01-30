@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   notifies_subscribers_of :parent, {
     :on => [:update, :create],
     :queue_if => lambda{|post| 
-      existing_updates = Update.where(:notifier_type => "Post", :notifier_id => post.id).scoped
+      existing_updates = Update.where(:notifier_type => "Post", :notifier_id => post.id)
       # destroy existing updates if user *unpublishes* a post
       if existing_updates.count > 0 && post.draft? 
         existing_updates.delete_all

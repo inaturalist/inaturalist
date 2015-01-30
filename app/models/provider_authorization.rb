@@ -44,7 +44,7 @@ class ProviderAuthorization < ActiveRecord::Base
         where("provider_uid LIKE 'https://me.yahoo.com%'").
         scoped
     else
-      ProviderAuthorization.where(:provider_name => provider_name).scoped
+      ProviderAuthorization.where(:provider_name => provider_name)
     end
     existing_scope = existing_scope.where("id != ?", id) if id
     if existing_scope.where(:user_id => user_id).exists?

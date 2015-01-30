@@ -36,7 +36,7 @@ class PlaceGeometry < ActiveRecord::Base
   end
 
   def dissolve_geometry
-    connection.execute <<-SQL
+    PlaceGeometry.connection.execute <<-SQL
       UPDATE place_geometries SET geom = reuonioned_geoms.new_geom FROM (
         SELECT ST_Multi(ST_Union(geom)) AS new_geom FROM (
           SELECT (ST_Dump(geom)).geom

@@ -235,10 +235,10 @@ class ObservationsController < ApplicationController
         :layout => false)
     end
     
-    @previous = @observation.user.observations.first(:conditions => ["id < ?", @observation.id], :order => "id DESC")
+    @previous = @observation.user.observations.where(["id < ?", @observation.id]).order("id DESC").first
     @prev = @previous
-    @next = @observation.user.observations.first(:conditions => ["id > ?", @observation.id], :order => "id ASC")
-    @quality_metrics = @observation.quality_metrics.all(:include => :user)
+    @next = @observation.user.observations.where(["id > ?", @observation.id]).order("id ASC").first
+    @quality_metrics = @observation.quality_metrics.includes(:user)
     if logged_in?
       @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
       @project_invitations = @observation.project_invitations.limit(100).to_a
@@ -274,11 +274,9 @@ class ObservationsController < ApplicationController
         end.reverse
         
         if logged_in?
-          @projects = Project.all(
-            :joins => [:project_users], 
-            :limit => 1000, 
-            :conditions => ["project_users.user_id = ?", current_user]
-          ).sort_by{|p| p.title.downcase}
+          @projects = Project.joins(:project_users).
+            where("project_users.user_id = ?", current_user).
+            limit(1000).sort_by{ |p| p.title.downcase }
         end
         
         @places = @observation.places
@@ -302,7 +300,7 @@ class ObservationsController < ApplicationController
         end
         
         if logged_in?
-          @subscription = @observation.update_subscriptions.first(:conditions => {:user_id => current_user})
+          @subscription = @observation.update_subscriptions.where(user: current_user).first
         end
         
         @observation_links = @observation.observation_links.sort_by{|ol| ol.href}
@@ -1592,7 +1590,7 @@ class ObservationsController < ApplicationController
 
   def taxa
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    oscope = Observation.query(search_params).scoped
+    oscope = Observation.query(search_params)
     oscope = oscope.where("1 = 2") unless stats_adequately_scoped?
     sql = if params[:rank] == "leaves" && logged_in? && current_user.is_curator?
       ancestor_ids_sql = <<-SQL
@@ -1647,7 +1645,7 @@ class ObservationsController < ApplicationController
 
   def taxon_stats
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    scope = Observation.query(search_params).scoped
+    scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     species_counts_scope = scope.joins(:taxon)
     unless search_params[:rank] == "leaves" && logged_in? && current_user.is_curator?
@@ -1736,7 +1734,7 @@ class ObservationsController < ApplicationController
 
   def user_stats
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    scope = Observation.query(search_params).scoped
+    scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     limit = params[:limit].to_i
     limit = 500 if limit > 500 || limit <= 0
@@ -1805,7 +1803,7 @@ class ObservationsController < ApplicationController
     unique_taxon_users_scope = scope.
       select("DISTINCT observations.taxon_id, observations.user_id").
       joins(:taxon).
-      where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL).scoped
+      where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL)
     user_taxon_counts_sql = <<-SQL
       SELECT
         o.user_id,
@@ -1825,7 +1823,7 @@ class ObservationsController < ApplicationController
     params[:order_by] = "observed_on"
     params[:order] = "asc"
     search_params, find_options = get_search_params(params, :skip_pagination => true)
-    scope = Observation.query(search_params).scoped
+    scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     scope = scope.joins(:taxon).
       select("observations.id, observations.user_id, observations.created_at, observations.observed_on, observations.time_observed_at, observations.time_zone, taxa.ancestry, taxon_id").
@@ -1859,7 +1857,7 @@ class ObservationsController < ApplicationController
 
   def phylogram
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    scope = Observation.query(search_params).scoped
+    scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     ancestor_ids_sql = <<-SQL
       SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
@@ -1950,10 +1948,8 @@ class ObservationsController < ApplicationController
 
   def user_viewed_updates
     return unless logged_in?
-    Update.update_all(
-      ["viewed_at = ?", Time.now], 
-      ["resource_type = 'Observation' AND resource_id = ? AND subscriber_id = ?", @observation.id, current_user.id]
-    )
+    Update.where(["resource_type = 'Observation' AND resource_id = ? AND subscriber_id = ?", @observation.id, current_user.id]).
+      update_all(viewed_at: Time.now)
   end
 
   def stats_adequately_scoped?
@@ -2260,7 +2256,7 @@ class ObservationsController < ApplicationController
   # Either make a plain db query and return a WillPaginate collection or make 
   # a Sphinx call if there were query terms specified.
   def get_paginated_observations(search_params, find_options)
-    query_scope = Observation.query(search_params).scoped
+    query_scope = Observation.query(search_params)
     if search_params[:filter_spam]
       query_scope = query_scope.not_flagged_as_spam
     end
@@ -2453,7 +2449,7 @@ class ObservationsController < ApplicationController
     end
     @observations = Observation.where("observations.id in (?)", obs_ids).
       order_by(search_params[:order_by]).
-      includes(find_options[:include]).scoped
+      includes(find_options[:include])
 
     # lame hacks
     unless search_params[:ofv_params].blank?
@@ -2721,14 +2717,12 @@ class ObservationsController < ApplicationController
   end
   
   def load_observation
-    render_404 unless @observation = Observation.find_by_id(params[:id] || params[:observation_id],
-      :include => [ :quality_metrics,
-                    :photos,
-                    :identifications,
-                    :projects,
-                    { :taxon => :taxon_names }
-      ]
-    )
+    render_404 unless @observation = Observation.where(id: params[:id] || params[:observation_id]).
+      includes([ :quality_metrics,
+                 :photos,
+                 :identifications,
+                 :projects,
+                 { :taxon => :taxon_names }]).first
   end
   
   def require_owner

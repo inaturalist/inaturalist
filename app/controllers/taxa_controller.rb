@@ -516,7 +516,7 @@ class TaxaController < ApplicationController
 
     scope = TaxonName.includes(:taxon => :taxon_names).
       where("lower(taxon_names.name) LIKE ?", "#{@q.to_s.downcase}%").
-      limit(30).scoped
+      limit(30)
     scope = scope.where("taxa.is_active = ?", @is_active) unless @is_active == "any"
     @taxon_names = scope.sort_by{|tn| tn.taxon.ancestry || ''}
     exact_matches = []
@@ -1251,7 +1251,7 @@ class TaxaController < ApplicationController
   private
   
   def find_taxa
-    @taxa = Taxon.order("taxa.name ASC").includes(:taxon_names, :taxon_photos, :taxon_descriptions).scoped
+    @taxa = Taxon.order("taxa.name ASC").includes(:taxon_names, :taxon_photos, :taxon_descriptions)
     @taxa = @taxa.from_place(params[:place_id]) unless params[:place_id].blank?
     @taxa = @taxa.self_and_descendants_of(params[:taxon_id]) unless params[:taxon_id].blank?
     if params[:rank] == "species_or_lower"

@@ -9,8 +9,8 @@ class GuideRangesController < ApplicationController
   # GET /guide_ranges
   # GET /guide_ranges.json
   def index
-    @guide_ranges = GuideRange.scoped
-    @guide_ranges = @guide_ranges.where("id IN (?)", params[:ids]) unless params[:ids].blank?
+    @guide_ranges = GuideRange.all
+    @guide_ranges = @guide_ranges.where(id: params[:ids]) unless params[:ids].blank?
 
     respond_to do |format|
       format.html # index.html.erb

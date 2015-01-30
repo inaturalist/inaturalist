@@ -16,7 +16,7 @@ module ActiveRecord
           ["#{reflection.foreign_key} = ?", reject.id]
         end
 
-        reflection.klass.update_all(["#{reflection.foreign_key} = ?", id], where)
+        reflection.klass.where(where).update_all(["#{reflection.foreign_key} = ?", id])
 
         if reflection.klass.respond_to?(:merge_duplicates)
           reflection.klass.merge_duplicates(reflection.foreign_key => id)

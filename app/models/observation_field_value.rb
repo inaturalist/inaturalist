@@ -50,7 +50,7 @@ class ObservationFieldValue < ActiveRecord::Base
     where(:observation_field_id => field.try(:id))
   }
   scope :license, lambda {|license|
-    scope = includes(:observation).scoped
+    scope = includes(:observation)
     if license == 'none'
       scope.where("observations.license IS NULL")
     elsif Observation::LICENSE_CODES.include?(license)

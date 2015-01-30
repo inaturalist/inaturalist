@@ -32,7 +32,7 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def project_observations
-    project.project_observations.includes(:observation).where("observations.user_id = ?", user_id).scoped
+    project.project_observations.includes(:observation).where("observations.user_id = ?", user_id)
   end
 
   def remove_updates
@@ -52,7 +52,7 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def subscribe_to_assessment_sections
-    AssessmentSection.includes(:assessment).where("assessments.project_id = ?", project).find_each do |as|
+    AssessmentSection.joins(:assessment).where("assessments.project_id = ?", project).find_each do |as|
       Subscription.create(:resource => as, :user => user)
     end
   end

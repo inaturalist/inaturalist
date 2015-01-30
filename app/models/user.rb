@@ -354,7 +354,7 @@ class User < ActiveRecord::Base
   
   def update_observation_licenses
     return true unless [true, "1", "true"].include?(@make_observation_licenses_same)
-    Observation.update_all(["license = ?", preferred_observation_license], ["user_id = ?", id])
+    Observation.where(user_id: id).update_all(license: preferred_observation_license)
     true
   end
   
@@ -362,7 +362,7 @@ class User < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_photo_licenses_same)
     number = Photo.license_number_for_code(preferred_photo_license)
     return true unless number
-    Photo.update_all(["license = ?", number], ["user_id = ? AND type != 'GoogleStreetViewPhoto'", id])
+    Photo.where(["user_id = ? AND type != 'GoogleStreetViewPhoto'", id]).update_all(license: number)
     true
   end
 
@@ -370,18 +370,16 @@ class User < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_sound_licenses_same)
     number = Photo.license_number_for_code(preferred_sound_license)
     return true unless number
-    Sound.update_all(["license = ?", number], ["user_id = ?", id])
+    Sound.where(user_id: id).update_all(license: number)
     true
   end
   
   def merge(reject)
     raise "Can't merge a user with itself" if reject.id == id
     life_list_taxon_ids_to_move = reject.life_list.taxon_ids - life_list.taxon_ids
-    ListedTaxon.update_all(
-      ["list_id = ?", life_list_id],
-      ["list_id = ? AND taxon_id IN (?)", reject.life_list_id, life_list_taxon_ids_to_move]
-    )
-    reject.friendships.all(:conditions => ["friend_id = ?", id]).each{|f| f.destroy}
+    ListedTaxon.where(list_id: reject.life_list_id, taxon_id: life_list_taxon_ids_to_move).
+      update_all(list_id: life_list_id)
+    reject.friendships.where(friend_id: id).each{ |f| f.destroy }
     merge_has_many_associations(reject)
     reject.destroy
     LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).reload_from_observations(life_list_id)
@@ -404,7 +402,7 @@ class User < ActiveRecord::Base
   end
   
   def self.query(params={}) 
-    scope = self.scoped
+    scope = self.all
     if params[:sort_by] && params[:sort_dir]
       scope.order(params[:sort_by], params[:sort_dir])
     elsif params[:sort_by]

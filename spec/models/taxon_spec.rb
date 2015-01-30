@@ -155,7 +155,7 @@ describe Taxon, "orphan descendant destruction" do
   end
 end
 
-describe "Making a", Taxon, "iconic" do
+describe Taxon, "making iconic" do
   before(:each) do
     load_test_taxa
   end

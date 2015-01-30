@@ -134,7 +134,15 @@ module ApplicationHelper
    return false unless logged_in?
    current_user.project_users.first(:conditions => {:project_id => project.id})
   end
-  
+
+  # TODO: This is removed in Rails 4, but we use it hundrends of times so
+  # I recurrected it. Ideally we'd update the places that use this method
+  def link_to_function(name, function, html_options = {})
+    onclick = "#{"#{html_options[:onclick]}; " if html_options[:onclick]}#{function}; return false;"
+    href = html_options[:href] || "#"
+    content_tag(:a, name, html_options.merge(href: href, onclick: onclick))
+  end
+
   def link_to_toggle(link_text, target_selector, options = {})
     options[:class] ||= ''
     options[:class] += ' togglelink'

@@ -62,21 +62,23 @@ class List < ActiveRecord::Base
   # been observed.
   #
   def refresh(options = {})
-    find_options = {}
+    finder = ListedTaxon.all
     if taxa = options[:taxa]
-      find_options[:conditions] = ["list_id = ? AND taxon_id IN (?)", self.id, taxa]
+      finder = finder.where(list_id: self.id, taxon_id: taxa)
     else
-      find_options[:conditions] = ["list_id = ?", self.id]
+      finder = finder.where(list_id: self.id)
     end
     
-    ListedTaxon.do_in_batches(find_options) do |listed_taxon|
-      listed_taxon.skip_update_cache_columns = options[:skip_update_cache_columns]
-      # re-apply list rules to the listed taxa
-      listed_taxon.save
-      unless listed_taxon.valid?
-        Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
-          "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
-        listed_taxon.destroy
+    finder.find_in_batches do |batch|
+      batch.each do |listed_taxon|
+        listed_taxon.skip_update_cache_columns = options[:skip_update_cache_columns]
+        # re-apply list rules to the listed taxa
+        listed_taxon.save
+        unless listed_taxon.valid?
+          Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
+            "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
+          listed_taxon.destroy
+        end
       end
     end
     true
@@ -313,7 +315,8 @@ class List < ActiveRecord::Base
     end
     target_list_ids = refresh_with_observation_lists(observation, options)
     # get listed taxa for this taxon and its ancestors that are on the observer's life lists
-    listed_taxa = ListedTaxon.includes(:list).where("taxon_id IN (?) AND list_id IN (?)", taxon_ids, target_list_ids)
+    listed_taxa = ListedTaxon.joins(:list).
+      where("listed_taxa.taxon_id IN (?) AND listed_taxa.list_id IN (?)", taxon_ids, target_list_ids)
     if respond_to?(:create_new_listed_taxa_for_refresh)
       unless self == ProjectList && observation && observation.quality_grade == 'casual' #only RG for projects
         create_new_listed_taxa_for_refresh(taxon, listed_taxa, target_list_ids)
@@ -334,7 +337,7 @@ class List < ActiveRecord::Base
     user = observation.try(:user) || User.find_by_id(options[:user_id])
     return [] unless user
     if options[:skip_subclasses]
-      user.lists.select("id, type").where("type IS NULL").map{|l| l.id}
+      user.lists.where("type IS NULL").select("id, type").map{|l| l.id}
     else
       user.list_ids
     end

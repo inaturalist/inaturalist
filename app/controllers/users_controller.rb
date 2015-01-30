@@ -204,7 +204,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    scope = User.active.order('login').scoped
+    scope = User.active.order('login')
     @q = params[:q].to_s
     unless @q.blank?
       wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
@@ -265,7 +265,7 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-    @pagination_updates = current_user.updates.limit(50).order("id DESC").includes(:resource, :notifier, :subscriber, :resource_owner).scoped
+    @pagination_updates = current_user.updates.limit(50).order("id DESC").includes(:resource, :notifier, :subscriber, :resource_owner)
     @pagination_updates = @pagination_updates.where("id < ?", params[:from].to_i) if params[:from]
     @pagination_updates = @pagination_updates.where(:notifier_type => params[:notifier_type]) unless params[:notifier_type].blank?
     @pagination_updates = @pagination_updates.where(:resource_owner_id => current_user) if params[:filter] == "you"

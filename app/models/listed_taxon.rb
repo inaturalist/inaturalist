@@ -252,14 +252,14 @@ class ListedTaxon < ActiveRecord::Base
       places << places.last.parent
     end
     places.compact!
-    @existing_comprehensive_list = CheckList.first(:conditions => [
+    @existing_comprehensive_list = CheckList.where([
       "comprehensive = 't' AND id != ? AND taxon_id IN (?) AND place_id IN (?)", 
-      list_id, taxon.ancestor_ids, places])
+      list_id, taxon.ancestor_ids, places]).first
   end
   
   def existing_comprehensive_listed_taxon
     return nil unless existing_comprehensive_list
-    @existing_listed_taxon ||= existing_comprehensive_list.listed_taxa.first(:conditions => ["taxon_id = ?", taxon_id])
+    @existing_listed_taxon ||= existing_comprehensive_list.listed_taxa.where(taxon_id: taxon_id).first
   end
   
   def absent_only_if_not_confirming_observations
@@ -473,8 +473,8 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def bubble_up_establishment_means
-    ListedTaxon.where("taxon_id = ? AND establishment_means IS NULL AND place_id IN (?)", taxon_id, place.ancestor_ids).
-      update_all("establishment_means = ?", establishment_means)
+    ListedTaxon.where("taxon_id = ? AND establishment_means IS NULL AND place_id IN (?)",
+      taxon_id, place.ancestor_ids).update_all(establishment_means: establishment_means)
   end
 
   def trickle_down_establishment_means(options = {})
@@ -486,7 +486,7 @@ class ListedTaxon < ActiveRecord::Base
         listed_taxa.place_id = places.id
         #{"AND (establishment_means IS NULL OR establishment_means = '')" unless options[:force]}
         AND listed_taxa.taxon_id = #{taxon_id}
-        AND (#{Place.send(:sanitize_sql, place.descendant_conditions)})
+        AND (#{Place.send(:sanitize_sql, place.descendant_conditions.to_sql)})
     SQL
     ActiveRecord::Base.connection.execute(sql)
   end
@@ -531,10 +531,11 @@ class ListedTaxon < ActiveRecord::Base
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
     lt.set_cache_columns
-    where(id: lt.id).update_all(
-      ["first_observation_id = ?, last_observation_id = ?, observations_count = ?, observations_month_counts = ?", 
-        lt.first_observation_id, lt.last_observation_id, lt.observations_count, lt.observations_month_counts]
-    )
+    ListedTaxon.where(id: lt.id).update_all(
+      first_observation_id: lt.first_observation_id,
+      last_observation_id: lt.last_observation_id,
+      observations_count: lt.observations_count,
+      observations_month_counts: lt.observations_month_counts)
   end
   
   def self.species_for_infraspecies(lt)
@@ -722,7 +723,7 @@ class ListedTaxon < ActiveRecord::Base
   def observed_in_place?
     p = place || list.place
     return false unless p
-    scope = Observation.in_place(p).of(taxon).scoped
+    scope = Observation.in_place(p).of(taxon)
     if list.is_a?(LifeList)
       scope = scope.by(list.user)
     end
@@ -740,7 +741,7 @@ class ListedTaxon < ActiveRecord::Base
     connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
       to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
       lt = ListedTaxon.find_by_id(to_merge_ids.first)
-      rejects = ListedTaxon.all(:conditions => ["id IN (?)", to_merge_ids[1..-1]])
+      rejects = ListedTaxon.where(id: to_merge_ids[1..-1])
 
       # remove the rejects from the list before merging to avoid alread-on-list validation errors
       ListedTaxon.where("id IN (?)", rejects).update_all("list_id = NULL")
@@ -753,7 +754,7 @@ class ListedTaxon < ActiveRecord::Base
 
   def self.update_for_taxon_change(taxon_change, taxon, options = {})
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
-    scope = ListedTaxon.where("listed_taxa.taxon_id IN (?)", input_taxon_ids).scoped
+    scope = ListedTaxon.where("listed_taxa.taxon_id IN (?)", input_taxon_ids)
     scope = scope.where(:user_id => options[:user]) if options[:user]
     scope = scope.where("listed_taxa.id IN (?)", options[:records]) unless options[:records].blank?
     scope = scope.where(options[:conditions]) if options[:conditions]
@@ -792,8 +793,8 @@ class ListedTaxon < ActiveRecord::Base
   
   def remove_other_primary_listings
     return true unless primary_listing && multiple_primary_listed_taxa?
-    ListedTaxon.where("taxon_id = ? AND place_id = ? AND id != ?", taxon_id, place_id, id).
-      update_all(primary_listing: false)
+    ListedTaxon.where("taxon_id = ? AND place_id = ? AND id != ?",
+      taxon_id, place_id, id).update_all(primary_listing: false)
     true
   end
   

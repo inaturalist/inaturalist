@@ -140,13 +140,14 @@ class LifeList < List
   end
   
   def self.update_life_lists_for_taxon(taxon)
-    ListRule.do_in_batches(:include => :list, :conditions => [
-      "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
-      Taxon.to_s, [taxon.id, taxon.ancestor_ids].flatten.compact
-    ]) do |list_rule|
-      next unless list_rule.list.is_a?(LifeList)
-      next if Delayed::Job.where("handler LIKE '%add_taxa_from_observations%id: ''#{list_rule.list_id}''%'").exists?
-      LifeList.delay(:priority => INTEGRITY_PRIORITY).add_taxa_from_observations(list_rule.list, :taxa => [taxon.id])
+    ListRule.where([ "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)",
+      Taxon.to_s, [ taxon.id, taxon.ancestor_ids ].flatten.compact ]).
+      includes(:list).find_in_batches do |batch|
+      batch.each do |list_rule|
+        next unless list_rule.list.is_a?(LifeList)
+        next if Delayed::Job.where("handler LIKE '%add_taxa_from_observations%id: ''#{list_rule.list_id}''%'").exists?
+        LifeList.delay(:priority => INTEGRITY_PRIORITY).add_taxa_from_observations(list_rule.list, :taxa => [taxon.id])
+      end
     end
   end
   
@@ -183,12 +184,12 @@ class LifeList < List
   end
   
   def self.repair_observed(list)
-    ListedTaxon.do_in_batches(
-        :include => [{:last_observation => :taxon}, :taxon], 
-        :conditions => [
-          "list_id = ? AND observations.id IS NOT NULL AND observations.taxon_id != listed_taxa.taxon_id",
-          list]) do |lt|
-      lt.destroy unless lt.valid? && lt.last_observation && lt.last_observation.taxon.descendant_of?(lt.taxon)
+    ListedTaxon.where(
+      [ "list_id = ? AND observations.id IS NOT NULL AND observations.taxon_id != listed_taxa.taxon_id", list ]).
+      joins({ :last_observation => :taxon }, :taxon).find_in_batches do |batch|
+      batch.each do |lt|
+        lt.destroy unless lt.valid? && lt.last_observation && lt.last_observation.taxon.descendant_of?(lt.taxon)
+      end
     end
   end
 

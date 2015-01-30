@@ -69,7 +69,7 @@ module Shared::ListsModule
       @total_observed_taxa ||= main_list.confirmed_and_not_place_based.count
       @iconic_taxon_counts = get_iconic_taxon_counts_for_place_based_project(@list, @iconic_taxa, @listed_taxa)
     else
-      main_list = set_scopes(@list, @filter_taxon, @list.listed_taxa.scoped)
+      main_list = set_scopes(@list, @filter_taxon, @list.listed_taxa)
     end
 
     @listed_taxa ||= main_list.paginate(@find_options) 
@@ -463,7 +463,7 @@ private
     iconic_taxa = Taxon::ICONIC_TAXA
 
     # to perform these counts in sql we need to make sure we're dealing with a scope and not an array
-    listed_taxa = list.listed_taxa.scoped unless listed_taxa.respond_to?(:scoped)
+    listed_taxa = list.listed_taxa unless listed_taxa.respond_to?(:scoped)
 
     counts = listed_taxa.joins(:taxon).group("taxa.iconic_taxon_id").count
     iconic_taxa.map do |iconic_taxon|
@@ -475,7 +475,7 @@ private
     iconic_taxa ||= Taxon::ICONIC_TAXA
 
     # to perform these counts in sql we need to make sure we're dealing with a scope and not an array
-    listed_taxa ||= list.listed_taxa.scoped unless listed_taxa.respond_to?(:scoped)
+    listed_taxa ||= list.listed_taxa unless listed_taxa.respond_to?(:scoped)
 
     counts = listed_taxa.joins(:taxon).group("taxa.iconic_taxon_id").count
     iconic_taxa.map do |iconic_taxon|

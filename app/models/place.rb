@@ -207,7 +207,7 @@ class Place < ActiveRecord::Base
   }
 
   scope :with_establishment_means, lambda {|establishment_means|
-    scope = joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id").scoped
+    scope = joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id")
     case establishment_means
     when ListedTaxon::NATIVE
       scope.where("listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS)
@@ -278,7 +278,7 @@ class Place < ActiveRecord::Base
     end
     new_display_name = [new_name, *ancestor_names].join(', ')
     unless new_record?
-      Place.update_all(["display_name = ?", new_display_name], ["id = ?", id])
+      Place.where(id: id).update_all(display_name: new_display_name)
     end
     
     new_display_name
@@ -449,7 +449,6 @@ class Place < ActiveRecord::Base
   # Update the associated place_geometry or create a new one
   def save_geom(geom, other_attrs = {})
     other_attrs.merge!(:geom => geom, :place => self)
-    
     begin
       if place_geometry
         self.place_geometry.update_attributes(other_attrs)
@@ -686,10 +685,8 @@ class Place < ActiveRecord::Base
     
     # Move the mergee's listed_taxa to the target's default check list
     additional_taxon_ids = mergee.taxon_ids - self.taxon_ids
-    ListedTaxon.update_all(
-      ["place_id = ?, list_id = ?", self, self.check_list_id],
-      ["place_id = ? AND taxon_id in (?)", mergee, additional_taxon_ids]
-    )
+    ListedTaxon.where(["place_id = ? AND taxon_id in (?)", mergee, additional_taxon_ids]).
+      update_all(place_id: self, list_id: self.check_list.id)
     
     # Merge the geometries
     if self.place_geometry && mergee.place_geometry

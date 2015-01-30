@@ -7,8 +7,8 @@ class ObservationFieldsController < ApplicationController
   # GET /observation_fields.xml
   def index
     @q = params[:q] || params[:term]
-    scope = ObservationField.scoped
-    scope = scope.scoped(:conditions => ["lower(name) LIKE ?", "%#{@q.downcase}%"]) unless @q.blank?
+    scope = ObservationField.all
+    scope = scope.where("lower(name) LIKE ?", "%#{@q.downcase}%") unless @q.blank?
     @observation_fields = scope.paginate(:page => params[:page])
     
     respond_to do |format|

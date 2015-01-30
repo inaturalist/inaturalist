@@ -58,7 +58,7 @@ class GuidesController < ApplicationController
   private
   def nav_places_for_index
     if @place
-      ancestry_counts_scope = Place.joins("INNER JOIN guides ON guides.place_id = places.id").scoped
+      ancestry_counts_scope = Place.joins("INNER JOIN guides ON guides.place_id = places.id")
       ancestry_counts_scope = ancestry_counts_scope.where(@place.descendant_conditions) if @place
       ancestry_counts = ancestry_counts_scope.group("ancestry || '/' || places.id::text").count
       if ancestry_counts.blank?
@@ -97,7 +97,7 @@ class GuidesController < ApplicationController
 
   def nav_taxa_for_index
     if @taxon
-      ancestry_counts_scope = Taxon.joins("INNER JOIN guides ON guides.taxon_id = taxa.id").scoped
+      ancestry_counts_scope = Taxon.joins("INNER JOIN guides ON guides.taxon_id = taxa.id")
       ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
       # ancestry_counts = ancestry_counts_scope.group(:ancestry).count
       ancestry_counts = ancestry_counts_scope.group("ancestry || '/' || taxa.id::text").count
@@ -170,7 +170,7 @@ class GuidesController < ApplicationController
           @nav_tags[predicate] << [tag, value, count]
         end
         
-        ancestry_counts_scope = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", @guide).scoped
+        ancestry_counts_scope = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", @guide)
         ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
         ancestry_counts = ancestry_counts_scope.group(:ancestry).count
         ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0 && a[0] == Taxon::LIFE.id.to_s}
@@ -403,7 +403,7 @@ class GuidesController < ApplicationController
   end
 
   def add_color_tags
-    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:colors]).where("colors.id IS NOT NULL").scoped
+    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:colors]).where("colors.id IS NOT NULL")
     @guide_taxa = @guide_taxa.where("guide_taxa.id IN (?)", params[:guide_taxon_ids]) unless params[:guide_taxon_ids].blank?
     @guide_taxa.each do |gt|
       gt.add_color_tags
@@ -414,7 +414,7 @@ class GuidesController < ApplicationController
   end
 
   def add_tags_for_rank
-    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_names]).scoped
+    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_names])
     @guide_taxa = @guide_taxa.where("guide_taxa.id IN (?)", params[:guide_taxon_ids]) unless params[:guide_taxon_ids].blank?
     @guide_taxa.each do |gt|
       gt.add_rank_tag(params[:rank], :lexicon => params[:lexicon])
