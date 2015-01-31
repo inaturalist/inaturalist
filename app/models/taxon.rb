@@ -1460,25 +1460,26 @@ class Taxon < ActiveRecord::Base
       end.compact
       scope = scope.where("taxa.iconic_taxon_id IN (?)", iconic_taxon_ids)
     end
-    taxon_names = scope.all
+    taxon_names = log_timer { scope.to_a }
     return taxon_names.first.taxon if taxon_names.size == 1
     taxa = taxon_names.map{|tn| tn.taxon}.compact
-    if taxa.blank?
-      begin
-        q, match_mode = Taxon.search_query(name)
-        search_results = Taxon.search(q,
-          :include => [:taxon_names, :photos],
-          :field_weights => {:name => 2},
-          :match_mode => match_mode,
-          :order => :observations_count,
-          :sort_mode => :desc
-        ).compact
-        taxa = search_results.select{|t| t.taxon_names.detect{|tn| tn.name.downcase == name}}
-        taxa = search_results if taxa.blank? && search_results.size == 1 && search_results.first.taxon_names.detect{|tn| tn.name.downcase == name}
-      rescue Riddle::ConnectionError, Riddle::ResponseError, ThinkingSphinx::SphinxError => e
-        return
-      end
-    end
+    # TODO restore when we bring back sphinx
+    # if taxa.blank?
+    #   begin
+    #     q, match_mode = Taxon.search_query(name)
+    #     search_results = Taxon.search(q,
+    #       :include => [:taxon_names, :photos],
+    #       :field_weights => {:name => 2},
+    #       :match_mode => match_mode,
+    #       :order => :observations_count,
+    #       :sort_mode => :desc
+    #     ).compact
+    #     taxa = search_results.select{|t| t.taxon_names.detect{|tn| tn.name.downcase == name}}
+    #     taxa = search_results if taxa.blank? && search_results.size == 1 && search_results.first.taxon_names.detect{|tn| tn.name.downcase == name}
+    #   rescue Riddle::ConnectionError, Riddle::ResponseError, ThinkingSphinx::SphinxError => e
+    #     return
+    #   end
+    # end
     sorted = Taxon.sort_by_ancestry(taxa.compact)
     return if sorted.blank?
     return sorted.first if sorted.size == 1

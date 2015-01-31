@@ -577,8 +577,7 @@ class User < ActiveRecord::Base
   end
 
   def generate_csv(path, columns)
-    of_names = ObservationField.
-      includes(:observation_field_values => :observation).
+    of_names = ObservationField.joins(observation_field_values: :observation).
       where("observations.user_id = ?", id).
       select("DISTINCT observation_fields.name").
       map{|of| "field:#{of.normalized_name}"}

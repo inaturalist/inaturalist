@@ -594,7 +594,7 @@ class ObservationsController < ApplicationController
         current_user.observations.where(:uuid => observation[:uuid]).first
       end
       o ||= Observation.new
-      o.assign_attributes(observation)
+      o.assign_attributes(observation_params(observation))
       o.user = current_user
       o.user_agent = request.user_agent
       o.site = @site || current_user.site
@@ -797,7 +797,7 @@ class ObservationsController < ApplicationController
         observation.sounds = Sound.from_observation_params(params, fieldset_index, current_user)
       end
       
-      unless observation.update_attributes(hashed_params[observation.id.to_s])
+      unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
         errors = true
       end
 
@@ -1775,7 +1775,37 @@ class ObservationsController < ApplicationController
       end
     end
   end
+
   private
+
+  def observation_params(options = {})
+    p = options.blank? ? params : options
+    p.permit(
+      :captive,
+      :description,
+      :geoprivacy,
+      :iconic_taxon_id,
+      :id_please,
+      :latitude,
+      :license,
+      :location_is_exact,
+      :longitude,
+      :map_scale,
+      :oauth_application_id,
+      :observed_on_string,
+      :place_guess,
+      :positional_accuracy,
+      :positioning_device,
+      :positioning_method,
+      :quality_grade,
+      :species_guess,
+      :taxon_id,
+      :taxon_name,
+      :time_zone,
+      :zic_time_zone,
+    )
+  end
+
   def user_obs_counts(scope, limit = 500)
     user_counts_sql = <<-SQL
       SELECT
@@ -2481,7 +2511,7 @@ class ObservationsController < ApplicationController
   # in @observations before this is called, this won't do anything
   def refresh_lists_for_batch
     return true if @observations.blank?
-    taxa = @observations.compact.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
+    taxa = @observations.to_a.compact.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
     return true if taxa.blank?
     List.delay(:priority => USER_PRIORITY).refresh_for_user(current_user, :taxa => taxa.map(&:id))
     true
