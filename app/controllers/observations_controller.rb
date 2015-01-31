@@ -2481,7 +2481,7 @@ class ObservationsController < ApplicationController
   # in @observations before this is called, this won't do anything
   def refresh_lists_for_batch
     return true if @observations.blank?
-    taxa = @observations.compact.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
+    taxa = @observations.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
     return true if taxa.blank?
     List.delay(:priority => USER_PRIORITY).refresh_for_user(current_user, :taxa => taxa.map(&:id))
     true

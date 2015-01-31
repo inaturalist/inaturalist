@@ -338,23 +338,23 @@ class Taxon < ActiveRecord::Base
         IUCN_STATUS_VALUES[status]
       end
     end
-    includes(:conservation_statuses).
+    joins(:conservation_statuses).
     where("conservation_statuses.iucn = ?", status.to_i).
     where("(conservation_statuses.place_id = ? OR conservation_statuses.place_id IS NULL)", place)
   }
     
   scope :threatened, -> { where("conservation_status >= ?", IUCN_NEAR_THREATENED) }
   scope :threatened_in_place, lambda {|place|
-    includes(:conservation_statuses).
+    joins(:conservation_statuses).
     where("conservation_statuses.iucn >= ?", IUCN_NEAR_THREATENED).
     where("(conservation_statuses.place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(place.id)}) OR conservation_statuses.place_id IS NULL)")
   }
   
   scope :from_place, lambda {|place|
-    includes(:listed_taxa).where("listed_taxa.place_id = ?", place)
+    joins(:listed_taxa).where("listed_taxa.place_id = ?", place)
   }
   scope :on_list, lambda {|list|
-    includes(:listed_taxa).where("listed_taxa.list_id = ?", list)
+    joins(:listed_taxa).where("listed_taxa.list_id = ?", list)
   }
   scope :active, -> { where(:is_active => true) }
   scope :inactive, -> { where(:is_active => false) }
@@ -882,7 +882,7 @@ class Taxon < ActiveRecord::Base
     merge_has_many_associations(reject)
     
     # Merge ListRules and other polymorphic assocs
-    ListRule.where(operand_id: reject.id, operant_type: Taxon.to_s).
+    ListRule.where(operand_id: reject.id, operand_type: Taxon.to_s).
       update_all(operand_id: id)
     
     # Keep reject colors if keeper has none

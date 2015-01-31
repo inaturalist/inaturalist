@@ -1313,7 +1313,7 @@ class TaxaController < ApplicationController
   end
   
   def load_taxon
-    unless @taxon = Taxon.find_by_id(params[:id].to_i, :include => :taxon_names)
+    unless @taxon = Taxon.where(id: params[:id]).includes(:taxon_names).first
       render_404
       return
     end

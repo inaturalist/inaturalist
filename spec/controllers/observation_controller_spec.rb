@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ObservationsController do
-  describe :create do
+  describe "create" do
     let(:user) { User.make! }
     before do
       sign_in user
@@ -52,7 +52,7 @@ describe ObservationsController do
     end
   end
   
-  describe :update do
+  describe "update" do
     it "should not raise an exception if no observations passed" do
       user = User.make!
       sign_in user
@@ -77,12 +77,12 @@ describe ObservationsController do
     end
   end
   
-  describe :import_photos do
+  describe "import_photos" do
     # to test this we need to mock a flickr response
     it "should import photos that are already entered as taxon photos"
   end
 
-  describe :by_login_all, "page cache" do
+  describe "by_login_all", "page cache" do
     before do
       @observation = Observation.make!
       @user = @observation.user
@@ -108,7 +108,7 @@ describe ObservationsController do
     end
   end
 
-  describe :project do
+  describe "project" do
     render_views
     it "should include private coordinates when viewed by a project curator" do
       po = make_project_observation
@@ -141,7 +141,7 @@ describe ObservationsController do
     end
   end
 
-  describe :project_all, "page cache" do
+  describe "project_all", "page cache" do
     before do
       @project = Project.make!
       @user = @project.user
@@ -175,7 +175,7 @@ describe ObservationsController do
     end
   end
 
-  describe :by_login_all do
+  describe "by_login_all" do
     it "should include observation fields" do
       of = ObservationField.make!(:name => "count", :datatype => "numeric")
       ofv = ObservationFieldValue.make!(:observation_field => of, :value => 7)
@@ -186,7 +186,7 @@ describe ObservationsController do
     end
   end
 
-  describe :project_all, "csv" do
+  describe "project_all", "csv" do
     it "should include observation fields" do
       of = ObservationField.make!(:name => "count", :datatype => "numeric")
       pof = ProjectObservationField.make!(:observation_field => of)
@@ -208,7 +208,7 @@ describe ObservationsController do
     end
   end
   
-  describe :photo do
+  describe "photo" do
     let(:file) { fixture_file_upload('files/egg.jpg', 'image/jpeg') }
     before do
       @user = User.make!

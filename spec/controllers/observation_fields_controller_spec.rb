@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ObservationFieldsController do
-  describe :destroy do
+  describe "destroy" do
     it "should not work if the field is in use" do
       of = ObservationField.make!
       ofv = ObservationFieldValue.make!(:observation_field => of)
@@ -11,7 +11,7 @@ describe ObservationFieldsController do
     end
   end
 
-  describe :merge_field do
+  describe "merge_field" do
     let(:user) { make_curator }
     let(:of) { ObservationField.make! }
     let(:reject) { ObservationField.make! }
