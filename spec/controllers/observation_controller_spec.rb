@@ -1,5 +1,16 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+class InatConfig
+  @site = Site.make!
+  def self.set_site(site)
+    @site = site
+  end
+  def site_id
+    self.class.instance_variable_get(:@site) ?
+      self.class.instance_variable_get(:@site).id : 1
+  end
+end
+
 describe ObservationsController do
   describe "create" do
     let(:user) { User.make! }
@@ -221,12 +232,8 @@ describe ObservationsController do
     end
 
     it "should set the site based on config" do
-      class InatConfig
-        def site_id
-          @site = Site.make!
-          @site.id
-        end
-      end
+      @site = Site.make!
+      InatConfig.set_site(@site)
       post :photo, :format => :json, :files => [ file ]
       @user.observations.last.site.should_not be_blank
     end

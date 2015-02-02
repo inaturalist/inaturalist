@@ -4,7 +4,7 @@ def clean_thing(thing)
   clean_name = Taxon.remove_rank_from_name(thing.name)
   if thing.name != clean_name
     puts "\tChanging '#{thing.name}' to '#{clean_name}'" if VERBOSE
-    thing.class.update_all(["name = ?", clean_name], ["id = ?", thing])
+    thing.class.where(id: thing).update_all(name: clean_name)
   end
 end
 

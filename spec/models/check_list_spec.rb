@@ -383,8 +383,6 @@ describe CheckList, "sync_with_parent" do
     list = place.check_list
     taxon = Taxon.make!
     list.add_taxon(taxon)
-    assert_nothing_raised do
-      list.sync_with_parent
-    end
+    expect{ list.sync_with_parent }.to_not raise_error
   end
 end

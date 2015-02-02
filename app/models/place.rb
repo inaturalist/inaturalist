@@ -467,7 +467,7 @@ class Place < ActiveRecord::Base
     new_geom = geom
     self.place_geometry.reload
     if self.place_geometry
-      new_geom = MultiPolygon.from_geometries(
+      new_geom = GeoRuby::SimpleFeatures::MultiPolygon.from_geometries(
         self.place_geometry.geom.geometries + geom.geometries)
     end
     self.save_geom(new_geom, other_attrs)

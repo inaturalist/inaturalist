@@ -1531,7 +1531,7 @@ describe Observation, "set_out_of_range" do
     @taxon = Taxon.make!
     @taxon_range = TaxonRange.make!(
       :taxon => @taxon, 
-      :geom => MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+      :geom => GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
     )
   end
   it "should set to false if observation intersects known range" do

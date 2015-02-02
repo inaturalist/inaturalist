@@ -104,7 +104,7 @@ class Guide < ActiveRecord::Base
     ancestry_counts = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", id).group(:ancestry).count
     ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).compact
     if ancestries.blank?
-      Guide.update_all({:taxon_id => nil}, ["id = ?", id])
+      Guide.where(id: id).update_all(taxon_id: nil)
       return
     end
     

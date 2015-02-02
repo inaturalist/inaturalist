@@ -146,7 +146,7 @@ describe ListedTaxon do
       bad_obs = Observation.make!(:user => lt.list.user)
       lt.update_attributes(:first_observation => good_obs)
       lt.should be_valid
-      ListedTaxon.update_all("first_observation_id = #{bad_obs.id}", "id = #{lt.id}")
+      ListedTaxon.where(id: lt.id).update_all(first_observation_id: bad_obs.id)
       lt.reload
       lt.should be_valid
       lt.first_observation_id.should == good_obs.id
@@ -257,7 +257,7 @@ describe ListedTaxon do
     it "should keep the earliest listed taxon" do
       keeper = ListedTaxon.make!
       reject = ListedTaxon.make!(:list => keeper.list)
-      ListedTaxon.update_all("taxon_id = #{keeper.taxon_id}", "id = #{reject.id}")
+      ListedTaxon.where(id: reject.id).update_all(taxon_id: keeper.taxon_id)
       ListedTaxon.merge_duplicates
       ListedTaxon.find_by_id(keeper.id).should_not be_blank
       ListedTaxon.find_by_id(reject.id).should be_blank
@@ -268,7 +268,7 @@ describe ListedTaxon do
       rejects = []
       3.times do
         reject = ListedTaxon.make!(:list => keeper.list)
-        ListedTaxon.update_all("taxon_id = #{keeper.taxon_id}", "id = #{reject.id}")
+        ListedTaxon.where(id: reject.id).update_all(taxon_id: keeper.taxon_id)
         rejects << reject
       end
       ListedTaxon.merge_duplicates
@@ -282,7 +282,7 @@ describe ListedTaxon do
   describe "cache_columns" do
     before(:each) do
       @place = Place.make!(:name => "foo to the bar")
-      @place.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
+      @place.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
       @check_list = @place.check_list
       @taxon = Taxon.make!(:rank => Taxon::SPECIES)
     end
@@ -547,10 +547,11 @@ describe ListedTaxon, "force_update_cache_columns" do
     @lt = ListedTaxon.make!(:list => @check_list, :place => @place, :primary_listing => true)
     @observation = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @lt.taxon)
     Observation.in_place(@place).should include @observation
-    ListedTaxon.update_all(
-      ["first_observation_id = ?, last_observation_id = ?, observations_count = ?, observations_month_counts = ?",nil,nil,nil,nil], 
-      ["id = ?", @lt]
-    )
+    ListedTaxon.where(id: @lt).update_all(
+      first_observation_id: nil,
+      last_observation_id: nil,
+      observations_count: nil,
+      observations_month_counts: nil)
     Delayed::Job.delete_all
     Delayed::Job.count.should eq 0
     @lt.reload

@@ -98,9 +98,9 @@ taxon_split.taxon_change_taxa.each do |end_taxon_change_taxon| #Loop through the
   range = TaxonRange.select("*, isvalid(geom), st_isvalidreason(geom)").where(id: new_range.id).first
   unless range.st_isvalidreason == 'Valid Geometry'
     begin
-      TaxonRange.update_all("geom = st_buffer(geom,0)", ["id = ?", new_range.id])
+      TaxonRange.where(id: new_range.id).update_all("geom = st_buffer(geom,0)")
     rescue
-      TaxonRange.update_all("geom = cleanGeometry(geom)", ["id = ?", new_range.id])
+      TaxonRange.where(id: new_range.id).update_all("geom = cleanGeometry(geom)")
     end
   end
   
@@ -132,9 +132,9 @@ taxon_split.taxon_change_taxa.each do |end_taxon_change_taxon| #Loop through the
   unless range.st_isvalidreason == 'Valid Geometry'
     puts "fixing new range..."
     begin
-      TaxonRange.update_all("geom = st_buffer(geom,0)", ["id = ?", final_range.id])
+      TaxonRange.where(id: final_range.id).update_all("geom = st_buffer(geom,0)")
     rescue
-      TaxonRange.update_all("geom = cleanGeometry(geom)", ["id = ?", final_range.id])
+      TaxonRange.where(id: final_range.id).update_all("geom = cleanGeometry(geom)")
     end
   end
   range = TaxonRange.select("*, isvalid(geom), st_isvalidreason(geom)").where(id: final_range.id).first

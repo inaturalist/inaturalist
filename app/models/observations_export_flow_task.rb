@@ -40,7 +40,7 @@ class ObservationsExportFlowTask < FlowTask
     end
 
     if options[:email]
-      Emailer.observations_export_notification(self).deliver
+      Emailer.observations_export_notification(self).deliver_now
     end
     true
   end

@@ -67,7 +67,7 @@ class LocalPhoto < Photo
       if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(data.path)
         self.metadata = exif.to_hash
         xmp = XMP.parse(exif)
-        if xmp && xmp.respond_to?(:dc) && !xmp.dc.blank?
+        if xmp && xmp.respond_to?(:dc) && !xmp.dc.nil?
           self.metadata[:dc] = {}
           xmp.dc.attributes.each do |dcattr|
             begin

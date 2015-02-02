@@ -75,9 +75,9 @@ class TaxonRange < ActiveRecord::Base
     open(tmp_path) do |f|
       if geojsongeom = GeoRuby::SimpleFeatures::Geometry.from_geojson(f.read)
         self.geom = geojsongeom.features.first.geometry
-        if !self.geom.is_a?(MultiPolygon)
+        if !self.geom.is_a?(GeoRuby::SimpleFeatures::MultiPolygon)
           if self.geom.is_a?(Polygon)
-            self.geom = MultiPolygon.from_polygons([self.geom])
+            self.geom = GeoRuby::SimpleFeatures::MultiPolygon.from_polygons([self.geom])
           else
             next
           end

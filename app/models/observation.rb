@@ -2282,7 +2282,7 @@ class Observation < ActiveRecord::Base
       end
       ofv = self.observation_field_values.build(:observation_field => of, :value => value)
       unless ofv.valid?
-        self.observation_field_values.pop
+        self.observation_field_values.to_a.pop
       end
     end
   end

@@ -247,7 +247,7 @@ describe Identification, "deletion" do
     @observation.taxon.should_not be(nil)
     @observation.valid?.should be(true)
     @observation.reload
-    @observation.identifications.should have_at_least(1).identification
+    expect(@observation.identifications.length).to be >= 1
     doomed_ident = @observation.identifications.select do |ident| 
       ident.user_id == @observation.user_id
     end.first

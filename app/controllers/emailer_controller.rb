@@ -30,7 +30,7 @@ class EmailerController < ApplicationController
     @invited = @invited[0..emails_allowed].try(:sort) || []
     
     @invited.each do |address|
-      Emailer.invite(address, params[:email], current_user).deliver
+      Emailer.invite(address, params[:email], current_user).deliver_now
     end
   end
 end
