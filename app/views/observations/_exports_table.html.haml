@@ -4,7 +4,7 @@
     %tr
       %td.inline.buttonrow.smallbuttons
         = link_to t(:download), ft.export_output.file.url, :class => "glaucous button"
-      %td= number_to_human_size ft.export_output.file.size
+      %td= number_to_human_size ft.export_output.file.size, precision: 3
       - unless ft.finished_at.blank?
         %td=l ft.finished_at, :format => :long
       %td
