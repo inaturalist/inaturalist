@@ -311,9 +311,8 @@ class Taxon < ActiveRecord::Base
   scope :self_and_descendants_of, lambda{|taxon|
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     if taxon
-      conditions = taxon.descendant_conditions
-      conditions[0] += " OR taxa.id = ?"
-      conditions << taxon
+      conditions = taxon.descendant_conditions.to_sql
+      conditions += " OR taxa.id = #{ taxon.id }"
       where(conditions)
     else
       where("1 = 2")
@@ -1110,15 +1109,16 @@ class Taxon < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
     Rails.logger.info "[INFO #{Time.now}] updating descendants of #{taxon}"
-    ThinkingSphinx.deltas_enabled = false
-    do_in_batches(:conditions => taxon.descendant_conditions) do |d|
-      d.without_ancestry_callbacks do
-        d.update_life_lists(:skip_ancestors => true)
-        d.set_iconic_taxon
-        d.update_obs_iconic_taxa
+    Taxon.where(taxon.descendant_conditions).find_in_batches do |batch|
+      batch.each do |t|
+        t.without_ancestry_callbacks do
+          t.update_life_lists(:skip_ancestors => true)
+          t.set_iconic_taxon
+          t.update_obs_iconic_taxa
+        end
       end
     end
-    ThinkingSphinx.deltas_enabled = true
+    # ThinkingSphinx.deltas_enabled = true
   end
   
   def apply_orphan_strategy
@@ -1134,9 +1134,11 @@ class Taxon < ActiveRecord::Base
       "ancestry = ? OR ancestry LIKE ?", 
       child_ancestry_was, "#{child_ancestry_was}/%"
     ]
-    do_in_batches(:conditions => descendant_conditions) do |d|
-      d.without_ancestry_callbacks do
-        d.destroy
+    Taxon.where(descendant_conditions).find_in_batches do |batch|
+      batch.each do |t|
+        t.without_ancestry_callbacks do
+          t.destroy
+        end
       end
     end
   end
@@ -1304,7 +1306,7 @@ class Taxon < ActiveRecord::Base
   
   # Convert an array of strings to taxa
   def self.tags_to_taxa(tags, options = {})
-    scope = TaxonName.includes(:taxon)
+    scope = TaxonName.joins(:taxon)
     scope = scope.where(:lexicon => options[:lexicon]) if options[:lexicon]
     scope = scope.where("taxon_names.is_valid = ?", true) if options[:valid]
     names = tags.map do |tag|
@@ -1354,7 +1356,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def self.rebuild_without_callbacks
-    ThinkingSphinx.deltas_enabled = false
+    # ThinkingSphinx.deltas_enabled = false
     before_validation.clear
     before_save.clear
     after_save.clear
@@ -1362,14 +1364,14 @@ class Taxon < ActiveRecord::Base
     validates_presence_of.clear
     validates_uniqueness_of.clear
     restore_ancestry_integrity!
-    ThinkingSphinx.deltas_enabled = true
+    # ThinkingSphinx.deltas_enabled = true
   end
   
   # Do something without all the callbacks.  This disables all callbacks and
   # validations and doesn't restore them, so IT SHOULD NEVER BE CALLED BY THE
   # APP!  The process should end after this is done.
   def self.without_callbacks(&block)
-    ThinkingSphinx.deltas_enabled = false
+    # ThinkingSphinx.deltas_enabled = false
     before_validation.clear
     before_save.clear
     after_save.clear
@@ -1388,7 +1390,7 @@ class Taxon < ActiveRecord::Base
       FROM taxa
       WHERE 
         observations.taxon_id = taxa.id AND 
-        (#{Taxon.send :sanitize_sql, taxon.descendant_conditions})
+        (#{Taxon.send :sanitize_sql, taxon.descendant_conditions.to_sql})
     SQL
     descendant_iconic_taxon_ids = taxon.descendants.iconic_taxa.select(:id).map(&:id)
     unless descendant_iconic_taxon_ids.blank?

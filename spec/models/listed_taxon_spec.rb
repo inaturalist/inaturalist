@@ -442,7 +442,7 @@ describe ListedTaxon, "cache column setting for check lists" do
   end
   it "should be queued" do
     lt = ListedTaxon.make!(:list => @check_list)
-    Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").exists?.should be_true
+    Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").exists?.should be true
   end
 
   it "should not be queued if there's an existing job" do
@@ -463,7 +463,7 @@ describe ListedTaxon, "parent check list syncing" do
   end
   it "should be queued" do
     lt = ListedTaxon.make!(:list => @check_list)
-    Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").exists?.should be_true
+    Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").exists?.should be true
   end
 
   it "should not be queued if existing job" do

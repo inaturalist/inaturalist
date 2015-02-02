@@ -124,7 +124,7 @@ class Guide < ActiveRecord::Base
       end
     end
 
-    Guide.update_all({:taxon_id => consensus_taxon_id}, ["id = ?", id])
+    Guide.where(id: id).update_all(taxon_id: consensus_taxon_id)
   end
 
   def expire_caches(options = {})

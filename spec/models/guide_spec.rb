@@ -99,11 +99,11 @@ describe Guide, "to_ngz" do
   end
 
   it "should have guide photo image files" do
-    File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_photo, :size => "medium"))).should be_true
+    File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_photo, :size => "medium"))).should be true
   end
 
   it "should have guide range image files" do
-    File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_range, :size => "medium"))).should be_true
+    File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_range, :size => "medium"))).should be true
   end
 end
 

@@ -164,19 +164,19 @@ end
 describe Place, "bbox_contains_lat_lng?" do
   it "should work" do
     place = Place.make!(:latitude => 0, :longitude => 0, :swlat => -1, :swlng => -1, :nelat => 1, :nelng => 1)
-    place.bbox_contains_lat_lng?(0, 0).should be_true
-    place.bbox_contains_lat_lng?(0.5, 0.5).should be_true
-    place.bbox_contains_lat_lng?(2, 2).should be_false
-    place.bbox_contains_lat_lng?(2, nil).should be_false
-    place.bbox_contains_lat_lng?(nil, nil).should be_false
-    place.bbox_contains_lat_lng?('', '').should be_false
+    place.bbox_contains_lat_lng?(0, 0).should be true
+    place.bbox_contains_lat_lng?(0.5, 0.5).should be true
+    place.bbox_contains_lat_lng?(2, 2).should be false
+    place.bbox_contains_lat_lng?(2, nil).should be false
+    place.bbox_contains_lat_lng?(nil, nil).should be false
+    place.bbox_contains_lat_lng?('', '').should be false
   end
   
   it "should work across the date line" do
     place = Place.make!(:latitude => 0, :longitude => 180, :swlat => -1, :swlng => 179, :nelat => 1, :nelng => -179)
-    place.bbox_contains_lat_lng?(0, 180).should be_true
-    place.bbox_contains_lat_lng?(0.5, -179.5).should be_true
-    place.bbox_contains_lat_lng?(0, 0).should be_false
+    place.bbox_contains_lat_lng?(0, 180).should be true
+    place.bbox_contains_lat_lng?(0.5, -179.5).should be true
+    place.bbox_contains_lat_lng?(0, 0).should be false
   end
 end
 

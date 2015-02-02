@@ -25,7 +25,7 @@ module Shared::ListsModule
 
     if place_based_list?(@list)
       if @place = set_place(@observable_list)
-        @other_check_lists = set_other_check_lists(@observable_list, @place)
+        @other_check_lists = get_other_check_lists(@observable_list, @place)
       end
     end
 
@@ -62,8 +62,11 @@ module Shared::ListsModule
 
       main_list = set_scopes(@list, @filter_taxon, listed_taxa)
 
-
-      @listed_taxa = main_list.paginate(@find_options) 
+      @listed_taxa = main_list.where(@find_options[:conditions]).
+        joins(taxon: :taxon_names).
+        includes(@find_options[:includes]).
+        paginate(page: @find_options[:page], per_page: @find_options[:per_page]).
+        order(@find_options[:order])
 
       @total_listed_taxa =  main_list.count
       @total_observed_taxa ||= main_list.confirmed_and_not_place_based.count
@@ -72,7 +75,11 @@ module Shared::ListsModule
       main_list = set_scopes(@list, @filter_taxon, @list.listed_taxa)
     end
 
-    @listed_taxa ||= main_list.paginate(@find_options) 
+    @listed_taxa = main_list.where(@find_options[:conditions]).
+      joins(taxon: :taxon_names).
+      includes(@find_options[:includes]).
+      paginate(page: @find_options[:page], per_page: @find_options[:per_page]).
+      order(@find_options[:order])
     ListedTaxon.preload_associations(@listed_taxa, [ :list, :user, :first_observation ])
 
     respond_to do |format|
@@ -417,10 +424,8 @@ private
     p
   end
   
-  def set_other_check_lists(list, place)
-    other_check_lists = place.check_lists.limit(500)
-    other_check_lists.delete_if {|l| l.id == list.id}
-    other_check_lists
+  def get_other_check_lists(list, place)
+    place.check_lists.where("id != ?", list.id).limit(500)
   end
   
   def set_scopes_for_place_based_project_list(list, q, filter_taxon, search_taxon_ids, acceptable_taxa_from_list)

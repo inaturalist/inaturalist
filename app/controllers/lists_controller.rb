@@ -99,7 +99,10 @@ class ListsController < ApplicationController
         ["AND taxa.iconic_taxon_id = ?", @filter_taxon])
     end
     
-    @paginating_listed_taxa = ListedTaxon.paginate(paginating_find_options)
+    @paginating_listed_taxa = ListedTaxon.where(paginating_find_options[:conditions]).
+      includes(paginating_find_options[:include]).
+      paginate(page: paginating_find_options[:page], per_page: paginating_find_options[:per_page]).
+      order(paginating_find_options[:order])
     
     # Load the listed taxa for display.  The reason we do diplay and paginating
     # listed taxa is that strictly paginating and ordering by lft would sometimes

@@ -490,7 +490,9 @@ class Observation < ActiveRecord::Base
   scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon
-    joins(taxon: :taxon_ancestors).where("taxon_ancestors.ancestor_taxon_id = ?", taxon.id)
+    c = taxon.descendant_conditions.to_sql
+    c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
+    joins(:taxon).where(c)
   }
   
   scope :at_or_below_rank, lambda {|rank| 
@@ -2032,7 +2034,7 @@ class Observation < ActiveRecord::Base
   def self.update_stats_for_observations_of(taxon)
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    descendant_conditions = taxon.descendant_conditions
+    descendant_conditions = taxon.descendant_conditions.to_sql
     Observation.includes(:taxon, :identifications).
         select("observations.*").
         joins("LEFT OUTER JOIN taxa otaxa ON otaxa.id = observations.taxon_id").

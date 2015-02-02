@@ -11,7 +11,7 @@ end
 start_time = Time.now
 
 puts "Creating missing taxon names (ah, data integrity)..."
-taxa = Taxon.all(:include => :taxon_names, :conditions => "taxon_names.id is null")
+taxa = Taxon.joins(:taxon_names).where(taxon_names: { id: nil })
 taxa.each(&:save)
 puts "\tSaved #{taxa.size} new taxon names."
 

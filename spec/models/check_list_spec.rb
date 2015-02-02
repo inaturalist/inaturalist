@@ -12,7 +12,7 @@ describe CheckList do
   end
   
   it "should completable" do
-    @check_list.respond_to?(:comprehensive).should be_true
+    expect(@check_list).to respond_to(:comprehensive)
   end
   
   it "should have a unique taxon for its place" do
@@ -59,7 +59,7 @@ describe CheckList, "refresh_with_observation" do
   
   before(:each) do
     @place = Place.make(:name => "foo to the bar")
-    @place.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
+    @place.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
     @check_list = @place.check_list
     @taxon = Taxon.make!(:rank => Taxon::SPECIES)
   end
@@ -207,18 +207,15 @@ describe CheckList, "refresh_with_observation" do
     obscured_lat = g.envelope.lower_corner.y - 1
     obscured_lon = g.envelope.lower_corner.x - 1
     # make sure obscured coords lie outside the place geom
-    PlaceGeometry.all(
-      :conditions => "ST_Intersects(place_geometries.geom, ST_Point(#{obscured_lon}, #{obscured_lat}))").
+    PlaceGeometry.where("ST_Intersects(place_geometries.geom, ST_Point(#{obscured_lon}, #{obscured_lat}))").
       map(&:place_id).should_not include(p.id)
     o = make_research_grade_observation(:latitude => p.latitude, 
       :longitude => p.longitude, :taxon => @taxon, :geoprivacy => Observation::OBSCURED)
-    Observation.update_all(
-      ["latitude = ?, longitude = ?, geom = St_Point(#{obscured_lon}, #{obscured_lat})", 
-        obscured_lat, obscured_lon], 
-      ["id = ?", o.id])
+    Observation.where(id: o.id).update_all(
+      ["latitude = ?, longitude = ?, geom = St_Point(#{obscured_lon}, #{obscured_lat})",
+        obscured_lat, obscured_lon])
     o.reload
-    PlaceGeometry.all(
-      :conditions => "ST_Intersects(place_geometries.geom, ST_Point(#{o.private_longitude}, #{o.private_latitude}))").
+    PlaceGeometry.where("ST_Intersects(place_geometries.geom, ST_Point(#{o.private_longitude}, #{o.private_latitude}))").
       map(&:place_id).should include(p.id)
     l.taxon_ids.should_not include(@taxon.id)
     CheckList.refresh_with_observation(o)
@@ -233,18 +230,15 @@ describe CheckList, "refresh_with_observation" do
     obscured_lat = g.envelope.lower_corner.y - 1
     obscured_lon = g.envelope.lower_corner.x - 1
     # make sure obscured coords lie outside the place geom
-    PlaceGeometry.all(
-      :conditions => "ST_Intersects(place_geometries.geom, ST_Point(#{obscured_lon}, #{obscured_lat}))").
+    PlaceGeometry.where("ST_Intersects(place_geometries.geom, ST_Point(#{obscured_lon}, #{obscured_lat}))").
       map(&:place_id).should_not include(p.id)
     o = make_research_grade_observation(:latitude => p.latitude, 
       :longitude => p.longitude, :taxon => @taxon, :geoprivacy => Observation::OBSCURED)
-    Observation.update_all(
-      ["latitude = ?, longitude = ?, geom = St_Point(#{obscured_lon}, #{obscured_lat})", 
-        obscured_lat, obscured_lon], 
-      ["id = ?", o.id])
+    Observation.where(id: o.id).update_all(
+      ["latitude = ?, longitude = ?, geom = St_Point(#{obscured_lon}, #{obscured_lat})",
+        obscured_lat, obscured_lon])
     o.reload
-    PlaceGeometry.all(
-      :conditions => "ST_Intersects(place_geometries.geom, ST_Point(#{o.private_longitude}, #{o.private_latitude}))").
+    PlaceGeometry.where("ST_Intersects(place_geometries.geom, ST_Point(#{o.private_longitude}, #{o.private_latitude}))").
       map(&:place_id).should include(p.id)
     l.taxon_ids.should_not include(@taxon.id)
     CheckList.refresh_with_observation(o)
@@ -254,7 +248,7 @@ describe CheckList, "refresh_with_observation" do
   
   it "should update old listed taxa which this observation confirmed" do
     other_place = Place.make!(:name => "other place")
-    other_place.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"))
+    other_place.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"))
     o = make_research_grade_observation(:latitude => other_place.latitude, 
       :longitude => other_place.longitude, :taxon => @taxon)
     without_delay { CheckList.refresh_with_observation(o) }
@@ -315,7 +309,7 @@ describe CheckList, "refresh_with_observation" do
   
   it "should not remove taxa just because obs obscured" do
     p = Place.make!
-    p.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))"))
+    p.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))"))
     o = make_research_grade_observation(:latitude => p.latitude, :longitude => p.longitude)
     CheckList.refresh_with_observation(o)
     p.check_list.taxon_ids.should include(o.taxon_id)

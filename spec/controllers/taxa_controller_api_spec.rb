@@ -16,7 +16,7 @@ shared_examples_for "a TaxaController" do
       get :index, :format => :json
       json = JSON.parse(response.body)
       json.each do |json_taxon|
-        json_taxon['is_iconic'].should be_true
+        json_taxon['is_iconic'].should be true
       end
     end
 

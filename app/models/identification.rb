@@ -56,7 +56,7 @@ class Identification < ActiveRecord::Base
   scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon
-    c = taxon.descendant_conditions
+    c = taxon.descendant_conditions.to_sql
     c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
     joins(:taxon).where(c)
   }
@@ -192,7 +192,7 @@ class Identification < ActiveRecord::Base
     last_outdated = observation.identifications.outdated.by(user_id).order("id ASC").last
     if last_outdated
       begin
-        Identification.update_all(["current = ?", true], ["id = ?", last_outdated])
+        Identification.where(id: last_outdated).update_all(current: true)
       rescue PG::Error => e
         raise e unless e.message =~ /index_identifications_on_current/
         # assume that if the unique key constrait complained, then there's already a current ident

@@ -98,7 +98,7 @@ shared_examples_for "an IdentificationsController" do
       i.should be_current
       identification.reload
       identification.should_not be_current
-      delete :destroy, :format => :json, :id => i.id
+      delete :destroy, :id => i.id
       Identification.find_by_id(i.id).should be_blank
       identification.reload
       identification.should be_current

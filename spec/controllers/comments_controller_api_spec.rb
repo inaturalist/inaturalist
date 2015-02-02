@@ -39,7 +39,7 @@ shared_examples_for "a CommentsController" do
   describe "destroy" do
     let(:comment) { Comment.make!(:user => user) }
     it "should work" do
-      delete :destroy, :format => :json, :id => comment.id
+      delete :destroy, :id => comment.id
       Comment.find_by_id(comment.id).should be_blank
     end
   end

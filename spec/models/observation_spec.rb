@@ -154,7 +154,7 @@ describe Observation, "creation" do
     Delayed::Job.delete_all
     stamp = Time.now
     Observation.make!(:taxon => Taxon.make!)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}.should_not be_blank
   end
   
@@ -420,7 +420,7 @@ describe Observation, "updating" do
     Delayed::Job.delete_all
     stamp = Time.now
     o.update_attributes(:taxon => Taxon.make!)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     # puts jobs.map(&:handler).inspect
     jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.should_not be_blank
   end
@@ -430,7 +430,7 @@ describe Observation, "updating" do
     Delayed::Job.delete_all
     stamp = Time.now
     o.update_attributes(:latitude => o.latitude + 1)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
     jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.should_not be_blank
   end
@@ -442,7 +442,7 @@ describe Observation, "updating" do
     3.times do
       o.update_attributes(:taxon => Taxon.make!)
     end
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size.should eq(1)
   end
 
@@ -454,7 +454,7 @@ describe Observation, "updating" do
     3.times do
       o.update_attributes(:taxon => Taxon.make!)
     end
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.size.should eq(1)
   end
 
@@ -465,7 +465,7 @@ describe Observation, "updating" do
     3.times do
       o.update_attributes(:latitude => o.latitude + 1)
     end
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
     jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.size.should eq(1)
   end
@@ -475,7 +475,7 @@ describe Observation, "updating" do
     Delayed::Job.delete_all
     stamp = Time.now
     o.update_attributes(:taxon => Taxon.make!)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     pattern = /CheckList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
     job.should_not be_blank
@@ -488,7 +488,7 @@ describe Observation, "updating" do
     Delayed::Job.delete_all
     stamp = Time.now
     o.update_attributes(:taxon => Taxon.make!)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     pattern = /ProjectList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
     job.should_not be_blank
@@ -689,7 +689,7 @@ describe Observation, "destruction" do
     Delayed::Job.delete_all
     stamp = Time.now
     Observation.make!(:taxon => Taxon.make!)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}.should_not be_blank
   end
 
@@ -1147,7 +1147,7 @@ describe Observation do
       o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1, :longitude => 1)
       o.should be_coordinates_private
       pu = ProjectUser.make!(:project => po.project, :role => ProjectUser::CURATOR)
-      o.coordinates_viewable_by?(pu.user).should be_true
+      o.coordinates_viewable_by?(pu.user).should be true
     end
 
     it "should be visible to managers of projects to which the observation has been added" do
@@ -1156,7 +1156,7 @@ describe Observation do
       o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1, :longitude => 1)
       o.should be_coordinates_private
       pu = ProjectUser.make!(:project => po.project, :role => ProjectUser::MANAGER)
-      o.coordinates_viewable_by?(pu.user).should be_true
+      o.coordinates_viewable_by?(pu.user).should be true
     end
   end
   
@@ -1819,7 +1819,7 @@ describe Observation, "place updates" do
       make_place_with_geom(:ewkt => wkt.gsub(/\s+/, ' '))
     }
     before do
-      place.straddles_date_line?.should be_true
+      place.straddles_date_line?.should be true
       @subscription = Subscription.make!(:resource => place)
       @christchurch_lat = -43.603555
       @christchurch_lon = 172.652311
@@ -2353,103 +2353,103 @@ end
 
 describe Observation, "fields_addable_by?" do
   it "should default to true for anyone" do
-    Observation.make!.fields_addable_by?(User.make!).should be_true
+    Observation.make!.fields_addable_by?(User.make!).should be true
   end
 
   it "should be false for nil user" do
-    Observation.make!.fields_addable_by?(nil).should be_false
+    Observation.make!.fields_addable_by?(nil).should be false
   end
 
   it "should be true for curators if curators preferred" do
     c = make_curator
     u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS)
     o = Observation.make!(:user => u)
-    o.fields_addable_by?(c).should be_true
+    o.fields_addable_by?(c).should be true
   end
 
   it "should be true for curators by default" do
     c = make_curator
     u = User.make!
     o = Observation.make!(:user => u)
-    o.fields_addable_by?(c).should be_true
+    o.fields_addable_by?(c).should be true
   end
 
   it "should be false for curators if no editing preferred" do
     c = make_curator
     u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
     o = Observation.make!(:user => u)
-    o.fields_addable_by?(c).should be_false
+    o.fields_addable_by?(c).should be false
   end
 
   it "should be false for everyone other than the observer if no editing preferred" do
     other = User.make!
     u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
     o = Observation.make!(:user => u)
-    o.fields_addable_by?(other).should be_false
+    o.fields_addable_by?(other).should be false
   end
 
   it "should be true for the observer if no editing preferred" do
     u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
     o = Observation.make!(:user => u)
-    o.fields_addable_by?(u).should be_true
+    o.fields_addable_by?(u).should be true
   end
 end
 
 describe Observation, "mappable" do
   it "should be mappable with lat/long" do
-    Observation.make!(latitude: 1.1, longitude: 2.2).mappable?.should be_true
+    Observation.make!(latitude: 1.1, longitude: 2.2).mappable?.should be true
   end
 
   it "should not be mappable without lat/long" do
-    Observation.make!.mappable?.should be_false
+    Observation.make!.mappable?.should be false
   end
 
   it "should not be mappable with a terrible accuracy" do
     Observation.make!(latitude: 1.1, longitude: 2.2,
       positional_accuracy: Observation::M_TO_OBSCURE_THREATENED_TAXA + 1).
-      mappable?.should be_false
+      mappable?.should be false
   end
 
   it "should not be mappable if captive" do
     Observation.make!(latitude: 1.1, longitude: 2.2,
-      captive: true).mappable?.should be_false
+      captive: true).mappable?.should be false
   end
 
   it "should not be mappable when adding captive metric" do
     o = Observation.make!(latitude: 1.1, longitude: 2.2)
-    o.mappable?.should be_true
+    o.mappable?.should be true
     QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
-    o.mappable?.should be_false
+    o.mappable?.should be false
   end
 
   it "should update mappable when captive metric is deleted" do
     o = Observation.make!(latitude: 1.1, longitude: 2.2)
-    o.mappable?.should be_true
+    o.mappable?.should be true
     q = QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
-    o.mappable?.should be_false
+    o.mappable?.should be false
     q.destroy
-    o.reload.mappable?.should be_true
+    o.reload.mappable?.should be true
   end
 
   it "should not be mappable with an inaccurate location" do
     o = Observation.make!(latitude: 1.1, longitude: 2.2)
-    o.mappable?.should be_true
+    o.mappable?.should be true
     QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
-    o.mappable?.should be_false
+    o.mappable?.should be false
   end
 
   it "should update mappable after multiple quality metrics are added" do
     o = Observation.make!(latitude: 1.1, longitude: 2.2)
-    o.mappable?.should be_true
+    o.mappable?.should be true
     QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: true)
-    o.mappable?.should be_true
+    o.mappable?.should be true
     QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
-    o.mappable?.should be_false
+    o.mappable?.should be false
   end
 
   it "should default accuracy of obscured observations to M_TO_OBSCURE_THREATENED_TAXA" do
     o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2)
-    o.coordinates_obscured?.should be_true
+    o.coordinates_obscured?.should be true
     o.calculate_public_positional_accuracy.should == Observation::M_TO_OBSCURE_THREATENED_TAXA
   end
 
@@ -2475,21 +2475,21 @@ describe Observation, "observations_places" do
     p = make_place_with_geom
     o = Observation.make!
     o.observations_places.length.should == 0
-    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be_false
+    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be false
     o.latitude = p.latitude
     o.longitude = p.longitude
     o.save
     o.reload
     o.observations_places.length.should >= 1
-    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be_true
+    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be true
   end
 
   it "deletes its observations_places on destroy" do
     p = make_place_with_geom
     o = Observation.make!(latitude: p.latitude, longitude: p.longitude)
-    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be_true
+    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be true
     o.destroy
-    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be_false
+    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be false
   end
 end
 

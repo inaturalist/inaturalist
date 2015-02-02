@@ -136,8 +136,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    acts_as_taggable_on (3.0.0.rc2)
-      rails (>= 3, < 5)
+    acts-as-taggable-on (3.4.3)
+      activerecord (>= 3.2, < 5)
     addressable (2.3.6)
     airbrake (4.1.0)
       builder
@@ -538,7 +538,7 @@ DEPENDENCIES
   aasm
   actionpack-action_caching
   actionpack-page_caching
-  acts_as_taggable_on
+  acts-as-taggable-on (~> 3.4)
   addressable
   airbrake
   ancestry

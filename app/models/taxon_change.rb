@@ -139,14 +139,9 @@ class TaxonChange < ActiveRecord::Base
       end
     end
     [input_taxa, output_taxa].flatten.compact.each do |taxon|
-      Taxon.update_all(
-        [
-          "observations_count = ?, listed_taxa_count = ?", 
-          Observation.of(taxon).count, 
-          ListedTaxon.where(:taxon_id => taxon).count
-        ],
-        ["id = ?", taxon.id]
-      )
+      Taxon.where(id: taxon.id).update_all(
+        observations_count: Observation.of(taxon).count,
+        listed_taxa_count: ListedTaxon.where(:taxon_id => taxon).count)
     end
     Rails.logger.info "[INFO #{Time.now}] finished commit_records for #{self}"
   end

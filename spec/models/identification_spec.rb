@@ -118,7 +118,7 @@ describe Identification, "creation" do
     observation = Observation.make!(:taxon => parent, :prefers_community_taxon => false)
     identification = Identification.make!(:observation => observation, :taxon => taxon)
     identification.user.should_not be(identification.observation.user)
-    identification.is_agreement?.should be_true
+    identification.is_agreement?.should be true
   end
   
   it "should not consider an identification with a taxon that is a parent " +
@@ -129,7 +129,7 @@ describe Identification, "creation" do
     observation = Observation.make!(:taxon => taxon, :prefers_community_taxon => false)
     identification = Identification.make!(:observation => observation, :taxon => parent)
     identification.user.should_not be(identification.observation.user)
-    identification.is_agreement?.should be_false
+    identification.is_agreement?.should be false
   end
   
   it "should not consider identifications of different taxa in the different lineages to be in agreement" do
@@ -138,7 +138,7 @@ describe Identification, "creation" do
     o = Observation.make!(:prefers_community_taxon => false)
     ident = Identification.make!(:taxon => child, :observation => o)
     disagreement = Identification.make!(:observation => o, :taxon => taxon)
-    disagreement.is_agreement?.should be_false
+    disagreement.is_agreement?.should be false
   end
   
   it "should incremement the counter cache in users for an ident on someone else's observation" do
@@ -322,7 +322,7 @@ describe Identification, "deletion" do
     Delayed::Job.delete_all
     
     Identification.make!(:user => o.user, :observation => o, :taxon => Taxon.make!)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
 
     pattern = /ProjectList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
@@ -335,7 +335,7 @@ describe Identification, "deletion" do
     Delayed::Job.delete_all
     stamp = Time.now
     o.identifications.by(o.user).first.destroy
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     
     pattern = /CheckList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
@@ -353,7 +353,7 @@ describe Identification, "deletion" do
     Identification.make!(:taxon => o.taxon, :observation => o)
     o.reload
     o.quality_grade.should == Observation::RESEARCH_GRADE
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     pattern = /CheckList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
     job.should_not be_blank
