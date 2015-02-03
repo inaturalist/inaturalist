@@ -2,7 +2,6 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe Identification, "creation" do
-  
   it "should have a taxon" do 
     @id = Identification.make!
     @id.taxon = nil
@@ -230,10 +229,12 @@ describe Identification, "deletion" do
   before(:all) do
     # some identification deletion callbacks need to happen after the transaction is complete
     DatabaseCleaner.strategy = :truncation
+    ThinkingSphinx::Deltas.suspend!
   end
 
   after(:all) do
     DatabaseCleaner.strategy = :transaction
+    ThinkingSphinx::Deltas.resume!
   end
   
   before(:each) do
@@ -419,6 +420,8 @@ describe Identification, "deletion" do
 
   it "should set the observation's community taxon if remaining identifications" do
     load_test_taxa
+    # load_test_taxa resumes deltas, but we still need sphinx to be realtime
+    ThinkingSphinx::Deltas.suspend!
     o = Observation.make!(:taxon => @Calypte_anna)
     o.community_taxon.should be_blank
     i1 = Identification.make!(:observation => o, :taxon => @Calypte_anna)

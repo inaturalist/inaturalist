@@ -72,8 +72,8 @@ gem 'sass', '= 3.2.5'
 gem 'sass-rails'
 gem 'soundcloud'
 # gem 'spatial_adapter', :git => 'git://github.com/kueda/spatial_adapter.git' # until fragility updates the gemspec
-gem 'mysql2'
-gem 'thinking-sphinx' # this needs some serious work to upgrade. Doesn't look like Rails 4 will work with 2.0.10, which is what we were using
+gem 'mysql2', '~> 0.3.17'
+gem 'thinking-sphinx', '~> 3.1'
 gem 'translate-rails3', :require => 'translate', :git => 'git://github.com/JayTeeSF/translate.git'
 gem 'trollop'
 gem 'ts-delayed-delta', '1.1.3', :require => 'thinking_sphinx/deltas/delayed_delta'

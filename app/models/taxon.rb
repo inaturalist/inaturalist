@@ -55,23 +55,7 @@ class Taxon < ActiveRecord::Base
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :conservation_statuses, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :taxon_photos, :allow_destroy => true
-  
-  # define_index do
-  #   indexes :name
-  #   indexes taxon_names.name, :as => :names
-  #   indexes colors.value, :as => :color_values
-  #   has iconic_taxon_id, :facet => true, :type => :integer
-  #   has colors(:id), :as => :colors, :facet => true, :type => :multi
-  #   has is_active
-  #   # has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi
-  #   # has listed_taxa(:list_id), :as => :lists, :type => :multi
-  #   has created_at, ancestry
-  #   has "REPLACE(ancestry, '/', ',')", :as => :ancestors, :type => :multi
-  #   has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi, :source => :query
-  #   has observations_count
-  #   set_property :delta => :delayed
-  # end
-  
+
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon, # if after, it would require an extra save
               :capitalize_name
@@ -1109,6 +1093,7 @@ class Taxon < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
     Rails.logger.info "[INFO #{Time.now}] updating descendants of #{taxon}"
+    ThinkingSphinx::Deltas.suspend!
     Taxon.where(taxon.descendant_conditions).find_in_batches do |batch|
       batch.each do |t|
         t.without_ancestry_callbacks do
@@ -1118,7 +1103,7 @@ class Taxon < ActiveRecord::Base
         end
       end
     end
-    # ThinkingSphinx.deltas_enabled = true
+    ThinkingSphinx::Deltas.resume!
   end
   
   def apply_orphan_strategy
@@ -1356,7 +1341,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def self.rebuild_without_callbacks
-    # ThinkingSphinx.deltas_enabled = false
+    ThinkingSphinx::Deltas.suspend!
     before_validation.clear
     before_save.clear
     after_save.clear
@@ -1364,14 +1349,14 @@ class Taxon < ActiveRecord::Base
     validates_presence_of.clear
     validates_uniqueness_of.clear
     restore_ancestry_integrity!
-    # ThinkingSphinx.deltas_enabled = true
+    ThinkingSphinx::Deltas.resume!
   end
   
   # Do something without all the callbacks.  This disables all callbacks and
   # validations and doesn't restore them, so IT SHOULD NEVER BE CALLED BY THE
   # APP!  The process should end after this is done.
   def self.without_callbacks(&block)
-    # ThinkingSphinx.deltas_enabled = false
+    ThinkingSphinx::Deltas.suspend!
     before_validation.clear
     before_save.clear
     after_save.clear

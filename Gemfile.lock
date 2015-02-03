@@ -585,7 +585,7 @@ DEPENDENCIES
   mail_view!
   mobile-fu!
   mocha
-  mysql2
+  mysql2 (~> 0.3.17)
   newrelic_rpm
   nokogiri
   objectify-xml
@@ -616,7 +616,7 @@ DEPENDENCIES
   simplecov
   soundcloud
   statsd-ruby
-  thinking-sphinx
+  thinking-sphinx (~> 3.1)
   translate-rails3!
   trollop
   ts-delayed-delta (= 1.1.3)

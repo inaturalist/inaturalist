@@ -517,10 +517,12 @@ describe Observation, "updating" do
     before(:all) do
       # some identification deletion callbacks need to happen after the transaction is complete
       DatabaseCleaner.strategy = :truncation
+      ThinkingSphinx::Deltas.suspend!
     end
 
     after(:all) do
       DatabaseCleaner.strategy = :transaction
+      ThinkingSphinx::Deltas.resume!
     end
     
     it "should become research when it qualifies" do
@@ -573,6 +575,7 @@ describe Observation, "updating" do
 
     it "should not be research if the community taxon is Life" do
       load_test_taxa
+      ThinkingSphinx::Deltas.suspend!
       o = make_research_grade_observation
       o.identifications.destroy_all
       i1 = Identification.make!(:observation => o, :taxon => @Animalia)
@@ -777,7 +780,7 @@ describe Observation, "species_guess parsing" do
     TaxonName.make!(:taxon => taxon2, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
     child.ancestors.should include(taxon)
     child.ancestors.should_not include(taxon2)
-    Taxon.includes(:taxon_names).where("taxon_names.name = ?", common_name).count.should eq(3)
+    Taxon.joins(:taxon_names).where("taxon_names.name = ?", common_name).count.should eq(3)
     @observation.taxon = nil
     @observation.species_guess = common_name
     @observation.save
@@ -1128,7 +1131,7 @@ describe Observation do
     it "should not be included in a json array" do
       observation = Observation.make!(:taxon => @taxon, :latitude => 38.1234, :longitude => -122.1234)
       Observation.make!
-      observations = Observation.paginate(:page => 1, :per_page => 2, :order => "id desc")
+      observations = Observation.paginate(:page => 1, :per_page => 2).order(id: :desc)
       observations.to_json.should_not match(/private_latitude/)
     end
 
@@ -1718,7 +1721,7 @@ describe Observation, "nested observation_field_values" do
       }
     }
     ofv.destroy
-    lambda { o.update_attributes(attrs) }.should_not raise_error(ActiveRecord::RecordNotFound)
+    expect { o.update_attributes(attrs) }.to_not raise_error
     o.reload
     o.observation_field_values.last.observation_field_id.should eq(of.id)
   end
@@ -1738,7 +1741,7 @@ describe Observation, "nested observation_field_values" do
       }
     }
     ofv.destroy
-    lambda { o.update_attributes(attrs) }.should_not raise_error(ActiveRecord::RecordNotFound)
+    expect { o.update_attributes(attrs) }.to_not raise_error
     o.reload
     o.observation_field_values.should be_blank
   end
@@ -2510,28 +2513,33 @@ describe Observation, "coordinate transformation", :focus => true  do
   end
   it "requires geo_x if geo_y is present" do
     subject.geo_y = 5413457.7
-    subject.should  have(1).error_on(:geo_x)
+    subject.valid?
+    expect(subject.errors[:geo_x].size).to eq(1)
   end
   
   it "requires geo_x to be a number" do
     subject.geo_x = "test"
-    subject.should  have(1).error_on(:geo_x)
+    subject.valid?
+    expect(subject.errors[:geo_x].size).to eq(1)
   end
 
   it "requires geo_y if geo_x is present" do
     subject.geo_x = 1528677.3
-    subject.should  have(1).error_on(:geo_y)
+    subject.valid?
+    expect(subject.errors[:geo_y].size).to eq(1)
   end
 
   it "requires geo_y to be a number" do
     subject.geo_y = "test"
-    subject.should  have(1).error_on(:geo_y)
+    subject.valid?
+    expect(subject.errors[:geo_y].size).to eq(1)
   end
 
   # FIXME: this is fragile
   it "requires coordinate_system to be valid" do
     subject.coordinate_system = "some_invalid_value"
-    subject.should have(1).error_on(:coordinate_system)
+    subject.valid?
+    expect(subject.errors[:coordinate_system].size).to eq(1)
   end
  
   it "sets lat lng" do

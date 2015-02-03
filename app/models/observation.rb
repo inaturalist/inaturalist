@@ -235,64 +235,7 @@ class Observation < ActiveRecord::Base
   has_many :observation_sounds, :dependent => :destroy, :inverse_of => :observation
   has_many :sounds, :through => :observation_sounds
   has_many :observations_places, :dependent => :destroy
-  
-  # define_index do
-  #   indexes taxon.taxon_names.name, :as => :names
-  #   indexes tags.name, :as => :tags
-  #   indexes :species_guess, :sortable => true, :as => :species_guess
-  #   indexes :description, :as => :description
-  #   indexes :place_guess, :as => :place, :sortable => true
-  #   indexes user.login, :as => :user, :sortable => true
-  #   indexes :observed_on_string, :as => :observed_on_string
-  #   has :user_id
-  #   has :taxon_id
-  #   
-  #   # Sadly, the following doesn't work, because self_and_ancestors is not an
-  #   # association.  I'm not entirely sure if there's a way to work the ancestry
-  #   # query in as col in a SQL query on observations.  If at some point we
-  #   # need to have the ancestor ids in the Sphinx index, though, we can always
-  #   # add a col to the taxa table holding the ancestor IDs.  Kind of a
-  #   # redundant, and it would slow down moves, but it might be worth it for
-  #   # the snappy searches. --KMU 2009-04-4
-  #   # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
-  #   
-  #   has "observation_photos_count > 0", :as => :has_photos, :type => :boolean
-  #   has "observation_sounds_count > 0", :as => :has_sounds, :type => :boolean
-  #   indexes :quality_grade
-  #   has :created_at, :sortable => true
-  #   has :observed_on, :sortable => true
-  #   has :iconic_taxon_id
-  #   has :id_please, :as => :has_id_please
-  #   has "latitude IS NOT NULL AND longitude IS NOT NULL", 
-  #     :as => :has_geo, :type => :boolean
-  #   has 'RADIANS(latitude)', :as => :latitude,  :type => :float
-  #   has 'RADIANS(longitude)', :as => :longitude,  :type => :float
-  #   
-  #   # HACK: TS doesn't seem to include attributes in the GROUP BY correctly
-  #   # for Postgres when using custom SQL attr definitions.  It may or may not 
-  #   # be fixed in more up-to-date versions, but the issue has been raised: 
-  #   # http://groups.google.com/group/thinking-sphinx/browse_thread/thread/e8397477b201d1e4
-  #   has :latitude, :as => :fake_latitude
-  #   has :longitude, :as => :fake_longitude
-  #   has :observation_photos_count
-  #   has :observation_sounds_count
-  #   has :num_identification_agreements
-  #   has :num_identification_disagreements
-  #   # END HACK
-  #   
-  #   has "num_identification_agreements > num_identification_disagreements",
-  #     :as => :identifications_most_agree, :type => :boolean
-  #   has "num_identification_agreements > 0", 
-  #     :as => :identifications_some_agree, :type => :boolean
-  #   has "num_identification_agreements < num_identification_disagreements",
-  #     :as => :identifications_most_disagree, :type => :boolean
-  #   has project_observations(:project_id), :as => :projects #, :type => :multi
-  #   has observation_field_values(:observation_field_id), :as => :observation_fields
-  #   indexes observation_field_values.value, :as => :ofv_values
-  #   indexes observation_field_values.observation_field.name, :as => :observation_field_names
-  #   set_property :delta => :delayed
-  # end
-  
+
   SPHINX_FIELD_NAMES = %w(names tags species_guess description place user observed_on_string)
   SPHINX_ATTRIBUTE_NAMES = %w(user_id taxon_id has_photos created_at 
     observed_on iconic_taxon_id id_please has_geo latitude longitude 
@@ -1165,7 +1108,7 @@ class Observation < ActiveRecord::Base
         attr_array[i].delete("id")
       end
     end
-    assign_nested_attributes_for_collection_association(:observation_field_values, attr_array, mass_assignment_options)
+    assign_nested_attributes_for_collection_association(:observation_field_values, attr_array)
   end
   
   #
@@ -1633,8 +1576,7 @@ class Observation < ActiveRecord::Base
     scope = scope.of(options[:taxon]) unless options[:taxon].blank?
     scope = scope.in_place(options[:place]) unless options[:place].blank?
     scope = scope.in_projects([options[:project]]) unless options[:project].blank?
-    # TODO: Rails4: I commented out ThinkingSphinx.deltas_enabled which no longer exists
-    # ThinkingSphinx.deltas_enabled = false
+    ThinkingSphinx::Deltas.suspend!
     start_time = Time.now
     logger = options[:logger] || Rails.logger
     logger.info "[INFO #{Time.now}] Starting Observation.set_community_taxon, options: #{options.inspect}"
@@ -1646,7 +1588,7 @@ class Observation < ActiveRecord::Base
       end
     end
     logger.info "[INFO #{Time.now}] Finished Observation.set_community_taxon in #{Time.now - start_time}s, options: #{options.inspect}"
-    # ThinkingSphinx.deltas_enabled = true
+    ThinkingSphinx::Deltas.resume!
   end
 
   def community_taxon_rejected?
@@ -1729,14 +1671,8 @@ class Observation < ActiveRecord::Base
   end
   
   def self.find_observations_of(taxon)
-    options = {
-      :include => :taxon,
-      :conditions => [
-        "observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
-        taxon
-      ]
-    }
-    Observation.find_each(options) do |o|
+    Observation.joins(:taxon).
+      where("observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", taxon).find_each do |o|
       yield(o)
     end
   end

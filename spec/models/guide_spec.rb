@@ -63,6 +63,7 @@ end
 
 describe Guide, "to_ngz" do
   before(:all) do
+    ThinkingSphinx::Deltas.suspend!
     @guide = Guide.make!
     @guide_taxon = GuideTaxon.make!(:guide => @guide)
     @photo = FlickrPhoto.create!(
@@ -92,6 +93,10 @@ describe Guide, "to_ngz" do
     @zip_path = @guide.to_ngz
     @unzipped_path = File.join File.dirname(@zip_path), @guide.to_param
     system "unzip -qd #{@unzipped_path} #{@zip_path}"
+  end
+
+  after(:all) do
+    ThinkingSphinx::Deltas.resume!
   end
 
   it "should contain an xml file" do
