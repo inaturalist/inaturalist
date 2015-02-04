@@ -6,9 +6,10 @@ gem 'apipie-rails'
 gem 'aasm'
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
+# gem 'activerecord-postgis-adapter', :git => "git://github.com/rgeo/activerecord-postgis-adapter.git", :branch => "activerecord42"
+gem 'acts-as-taggable-on', '~> 3.4'
 gem 'addressable', :require => 'addressable/uri'
 gem 'airbrake'
-gem 'acts-as-taggable-on', '~> 3.4'
 gem 'ancestry'
 gem 'aws-sdk'
 gem 'bluecloth'
@@ -77,7 +78,7 @@ gem 'mysql2', '~> 0.3.17'
 gem 'thinking-sphinx', '~> 3.1'
 gem 'translate-rails3', :require => 'translate', :git => 'git://github.com/JayTeeSF/translate.git'
 gem 'trollop'
-gem 'ts-delayed-delta', '1.1.3', :require => 'thinking_sphinx/deltas/delayed_delta'
+gem 'ts-delayed-delta', '~> 2.0.2'
 gem 'twitter'
 gem 'uglifier'
 gem 'utf8-cleaner'
@@ -105,6 +106,7 @@ group :test, :development, :prod_dev do
   gem "better_errors"
   gem "byebug"
   gem "binding_of_caller"
+  gem 'thin', '~> 1.6.3'
 end
 
 group :test do

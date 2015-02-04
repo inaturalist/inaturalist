@@ -379,7 +379,7 @@ class UsersController < ApplicationController
     # Nix the icon_url if an icon file was provided
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
     
-    if @display_user.update_attributes(params[:user])
+    if @display_user.update_attributes(whitelist_params)
       sign_in @display_user, :bypass => true
       respond_to do |format|
         format.html do

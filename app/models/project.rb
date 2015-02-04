@@ -43,9 +43,6 @@ class Project < ActiveRecord::Base
   MEMBERSHIP_MODELS = [MEMBERSHIP_OPEN, MEMBERSHIP_INVITE_ONLY]
   preference :membership_model, :string, :default => MEMBERSHIP_OPEN
   
-  # For some reason these don't work here
-  # accepts_nested_attributes_for :project_user_rules, :allow_destroy => true
-  # accepts_nested_attributes_for :project_observation_rules, :allow_destroy => true
   accepts_nested_attributes_for :project_observation_fields, :allow_destroy => true
   
   validates_length_of :title, :within => 1..100

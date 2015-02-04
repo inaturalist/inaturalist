@@ -151,7 +151,7 @@ class GuidesController < ApplicationController
     respond_to do |format|
       format.html do
         @guide_taxa = @guide_taxa.page(params[:page]).per_page(100)
-        @tag_counts = Tag.joins(:taggings).
+        @tag_counts = ActsAsTaggableOn::Tag.joins(:taggings).
           joins("JOIN guide_taxa gt ON gt.id = taggings.taggable_id").
           where("taggings.taggable_type = 'GuideTaxon' AND gt.guide_id = ?", @guide).
           group("tags.name").

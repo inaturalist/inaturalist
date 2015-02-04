@@ -31,12 +31,12 @@ shared_examples_for "an ObservationsController" do
       of = ObservationField.make!
       post :create, :format => :json, :observation => {
         :species_guess => "zomg", 
-        :observation_field_values_attributes => {
-          "0" => {
+        :observation_field_values_attributes => [
+          {
             :observation_field_id => of.id,
             :value => "foo"
           }
-        }
+        ]
       }
       response.should be_success
       o = Observation.last

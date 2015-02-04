@@ -17,7 +17,7 @@ class ObservationPhotosController < ApplicationController
   
   def create
     @observation_photo = if !params[:observation_photo].blank? && !params[:observation_photo][:uuid].blank?
-      ObservationPhoto.includes(:observation).
+      ObservationPhoto.joins(:observation).
         where("observations.user_id = ? AND observation_photos.uuid = ?", current_user, params[:observation_photo][:uuid]).
         first
     end

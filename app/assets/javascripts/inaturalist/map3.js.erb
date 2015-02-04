@@ -507,7 +507,7 @@ iNaturalist.Map.createMap = function(options) {
 // The following code should be abstracted out a bit more
 iNaturalist.Map.createPlaceIcon = function(options) {
   var options = options || {}
-  var iconPath = "<%= image_path('mapMarkers/mm_34_stemless_') %>";
+  var iconPath = "<%= asset_path('assets/mapMarkers/mm_34_stemless_') %>";
   iconPath += options.color ? options.color : "DeepPink"
   if (options.character) { iconPath += ('_' + options.character); }
   iconPath += '.png';
@@ -537,7 +537,7 @@ iNaturalist.Map.createObservationIcon = function(options) {
     return iconPath
   }
   
-  iconPath = "<%= image_path('mapMarkers/mm_34_') %>"
+  iconPath = "<%= asset_path('assets/mapMarkers/mm_34_') %>"
   iconPath += options.stemless ? "stemless_" : ""
   iconPath += options.color || "HotPink"
   iconPath += options.character ? ('_'+options.character) : ""

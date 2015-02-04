@@ -1802,7 +1802,9 @@ class ObservationsController < ApplicationController
       :taxon_id,
       :taxon_name,
       :time_zone,
+      :uuid,
       :zic_time_zone,
+      observation_field_values_attributes: [ :_destroy, :id, :observation_field_id, :value ]
     )
   end
 
@@ -2141,11 +2143,11 @@ class ObservationsController < ApplicationController
         includes = :taxon
       end
       begin
-        @observations_taxon = TaxonName.where(taxon_name_conditions).includes(includes).first.try(:taxon)
+        @observations_taxon = TaxonName.where(taxon_name_conditions).joins(includes).first.try(:taxon)
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /invalid byte sequence/
         taxon_name_conditions[1] = @observations_taxon_name.encode('UTF-8')
-        @observations_taxon = TaxonName.where(taxon_name_conditions).includes(includes).first.try(:taxon)
+        @observations_taxon = TaxonName.where(taxon_name_conditions).joins(includes).first.try(:taxon)
       end
     end
     search_params[:taxon] = @observations_taxon
@@ -2670,6 +2672,7 @@ class ObservationsController < ApplicationController
       @photo_identities = []
       return true
     end
+    Photo.descendent_classes ||= [ ]
     @photo_identities = Photo.descendent_classes.map do |klass|
       assoc_name = klass.to_s.underscore.split('_').first + "_identity"
       current_user.send(assoc_name) if current_user.respond_to?(assoc_name)

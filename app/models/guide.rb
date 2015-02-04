@@ -268,7 +268,7 @@ class Guide < ActiveRecord::Base
         taggable_type = 'GuideTaxon' AND
         guide_taxa.guide_id = #{id}
     SQL
-    Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags ORDER BY guide_tags.taggings_id DESC LIMIT 20").map(&:name).sort_by(&:downcase)
+    ActsAsTaggableOn::Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags ORDER BY guide_tags.taggings_id DESC LIMIT 20").map(&:name).sort_by(&:downcase)
   end
 
   def tags
@@ -281,7 +281,7 @@ class Guide < ActiveRecord::Base
         taggable_type = 'GuideTaxon' AND
         guide_taxa.guide_id = #{id}
     SQL
-    Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags").map(&:name).sort_by(&:downcase)
+    ActsAsTaggableOn::Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags").map(&:name).sort_by(&:downcase)
   end
 
   def ngz_url
@@ -404,7 +404,7 @@ class Guide < ActiveRecord::Base
   end
 
   def unique_tags
-    Tag.where("taggable_type = 'GuideTaxon")
+    ActsAsTaggableOn::Tag.joins(:taggings).where(taggings: { taggable_type: "GuideTaxon" })
   end
 
   def published?

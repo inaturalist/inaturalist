@@ -302,7 +302,7 @@ class Observation < ActiveRecord::Base
               :set_taxon_from_community_taxon,
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
-              # :set_geom_from_latlon, # TODO bring it back with the move to rgeo
+              :set_geom_from_latlon,
               :set_iconic_taxon
   
   before_update :set_quality_grade
@@ -716,7 +716,7 @@ class Observation < ActiveRecord::Base
     end
 
     if !params[:cs].blank?
-      scope = scope.includes(:taxon => :conservation_statuses).where("conservation_statuses.status IN (?)", [params[:cs]].flatten)
+      scope = scope.joins(:taxon => :conservation_statuses).where("conservation_statuses.status IN (?)", [params[:cs]].flatten)
       scope = if place_id.blank?
         scope.where("conservation_statuses.place_id IS NULL")
       else
@@ -726,7 +726,7 @@ class Observation < ActiveRecord::Base
 
     if !params[:csi].blank?
       iucn_equivs = [params[:csi]].flatten.map{|v| Taxon::IUCN_CODE_VALUES[v.upcase]}.compact.uniq
-      scope = scope.includes(:taxon => :conservation_statuses).where("conservation_statuses.iucn IN (?)", iucn_equivs)
+      scope = scope.joins(:taxon => :conservation_statuses).where("conservation_statuses.iucn IN (?)", iucn_equivs)
       scope = if place_id.blank?
         scope.where("conservation_statuses.place_id IS NULL")
       else
@@ -735,7 +735,7 @@ class Observation < ActiveRecord::Base
     end
 
     if !params[:csa].blank?
-      scope = scope.includes(:taxon => :conservation_statuses).where("conservation_statuses.authority = ?", params[:csa])
+      scope = scope.joins(:taxon => :conservation_statuses).where("conservation_statuses.authority = ?", params[:csa])
       scope = if place_id.blank?
         scope.where("conservation_statuses.place_id IS NULL")
       else
@@ -1274,7 +1274,7 @@ class Observation < ActiveRecord::Base
   
   def appropriate?
     return false if flags.where(:resolved => false).exists?
-    return false if observation_photos_count > 0 && photos.includes(:flags).where("flags.resolved = ?", false).exists?
+    return false if observation_photos_count > 0 && photos.joins(:flags).where("flags.resolved = ?", false).exists?
     true
   end
   
@@ -1655,7 +1655,7 @@ class Observation < ActiveRecord::Base
   end
 
   def self.reassess_coordinates_for_observations_of(taxon, options = {})
-    scope = Observation.of(taxon).includes(:taxon => :conservation_statuses)
+    scope = Observation.of(taxon).joins(:taxon => :conservation_statuses)
     scope = scope.in_place(options[:place]) if options[:place]
     scope.find_each do |o|
       o.obscure_coordinates_for_threatened_taxa
