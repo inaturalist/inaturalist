@@ -134,7 +134,7 @@ describe ObservationsController do
       u = pu.user
       sign_in u
       get :project, :id => p.id
-      expect(response.body).to =~ /#{o.private_latitude}/
+      expect(response.body).to be =~ /#{o.private_latitude}/
     end
 
     it "should not include private coordinates when viewed by a project curator" do
@@ -148,7 +148,7 @@ describe ObservationsController do
       u = pu.user
       sign_in u
       get :project, :id => p.id
-      expect(response.body).to_not =~ /#{o.private_latitude}/
+      expect(response.body).to_not be =~ /#{o.private_latitude}/
     end
   end
 
@@ -206,7 +206,7 @@ describe ObservationsController do
       ofv = ObservationFieldValue.make!(:observation_field => of, :value => 7, :observation => po.observation)
       sign_in p.user
       get :project_all, :id => p.id, :format => :csv
-      expect(response.body).to =~ /field\:count/
+      expect(response.body).to be =~ /field\:count/
     end
 
     it "should have project-specific fields" do
@@ -214,7 +214,7 @@ describe ObservationsController do
       sign_in p.user
       get :project_all, :id => p.id, :format => :csv
       %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code).each do |f|
-        expect(response.body).to =~ /#{f}/
+        expect(response.body).to be =~ /#{f}/
       end
     end
   end
@@ -233,7 +233,7 @@ describe ObservationsController do
 
     it "should set the site based on config" do
       @site = Site.make!
-      InatConfig.set_site(@site)
+      stub_config(site_id: @site.id)
       post :photo, :format => :json, :files => [ file ]
       expect(@user.observations.last.site).to_not be_blank
     end
