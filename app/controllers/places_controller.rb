@@ -424,7 +424,7 @@ class PlacesController < ApplicationController
   private
   
   def load_place
-    @place = Place.find(params[:id], :include => [:check_list]) rescue nil
+    @place = Place.where(id: params[:id]).includes(:check_list).first rescue nil
     if @place.blank?
       if params[:id].to_i > 0 || params[:id] == "0"
         return render_404

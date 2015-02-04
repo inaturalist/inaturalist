@@ -146,13 +146,13 @@ class Update < ActiveRecord::Base
     return if user.prefers_no_email
     return unless user.active? # email verified
     updates = Update.where(["subscriber_id = ? AND created_at BETWEEN ? AND ?", user.id, start_time, end_time]).limit(100)
-    updates.delete_if do |u| 
+    updates = updates.to_a.delete_if do |u|
       !user.prefers_project_journal_post_email_notification? && u.resource_type == "Project" && u.notifier_type == "Post" ||
       !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||
       !user.prefers_identification_email_notification? && u.notifier_type == "Identification"
     end.compact
     return if updates.blank?
-    Emailer.updates_notification(user, updates).deliver
+    Emailer.updates_notification(user, updates).deliver_now
     true
   end
   

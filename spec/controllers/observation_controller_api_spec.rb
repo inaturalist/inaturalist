@@ -817,7 +817,7 @@ shared_examples_for "an ObservationsController" do
             }
           }
         }
-        ProjectObservation.where(:project_id => p, :observation_id => o).exists?.should be_true
+        ProjectObservation.where(:project_id => p, :observation_id => o).exists?.should be true
       end
     end
 

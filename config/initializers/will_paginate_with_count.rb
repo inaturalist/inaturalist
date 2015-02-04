@@ -37,8 +37,12 @@ module WillPaginate
       # option which uses PostreSQL's COUNT() OVER() methods. This will allow
       # for fetching the page of results while simultaneously counting the
       # total entries
-      def paginate_with_count_over(options)
-        pager = paginate(options.merge(select: "#{table_name}.*, COUNT(#{table_name}.id) OVER() as total_count"))
+      def paginate_with_count_over(find_options)
+        pager = select("#{table_name}.*, COUNT(#{table_name}.id) OVER() as total_count").
+          where(find_options[:conditions]).
+          includes(find_options[:include]).
+          paginate(page: find_options[:page], per_page: find_options[:per_page]).
+          order(find_options[:order])
         # this is unfortunately necessary to properly set total_entries.
         # Without this, if you call .total_entries before iterating the results,
         # a separate count query will be used, thus negating the intent of this method

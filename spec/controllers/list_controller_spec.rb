@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ListsController do
-  describe :create do
+  describe "create" do
     it "allow creation of multiple types" do
       taxon = Taxon.make!
       user = User.make!
@@ -15,7 +15,7 @@ describe ListsController do
     end
   end
 
-  describe :destroy do
+  describe "destroy" do
     it "should not allow you to delete your own life list" do
       u = User.make!
       sign_in u

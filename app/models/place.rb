@@ -58,31 +58,7 @@ class Place < ActiveRecord::Base
   # Place to put a GeoPlanet response to avoid re-querying
   attr_accessor :geoplanet_response
   attr_accessor :html
-  
-  # define_index do
-  #   indexes name
-  #   indexes display_name
-  #   has place_type
-  #   
-  #   # HACK: TS doesn't seem to include attributes in the GROUP BY correctly
-  #   # for Postgres when using custom SQL attr definitions.  It may or may not 
-  #   # be fixed in more up-to-date versions, but the issue has been raised: 
-  #   # http://groups.google.com/group/thinking-sphinx/browse_thread/thread/e8397477b201d1e4
-  #   has :latitude, :as => :fake_latitude
-  #   has :longitude, :as => :fake_longitude
-  #   # END HACK
-  # 
-  #   # This is super brittle: the sphinx doc identifier here is based on
-  #   # ThinkingSphinx.unique_id_expression, which I can't get to work here, so
-  #   # if the number of indexed models changes this will break.
-  #   has "SELECT places.id * 4::INT8 + 1 AS id, regexp_split_to_table(id::text || (CASE WHEN ancestry IS NULL THEN '' ELSE '/' || ancestry END), '/') AS place_id 
-  # FROM places", :as => :place_ids, :source => :query
-  #   
-  #   has 'RADIANS(latitude)', :as => :latitude,  :type => :float
-  #   has 'RADIANS(longitude)', :as => :longitude,  :type => :float
-  #   set_property :delta => :delayed
-  # end
-  
+
   FLICKR_PLACE_TYPES = ActiveSupport::OrderedHash.new
   FLICKR_PLACE_TYPES[:country]   = 12
   FLICKR_PLACE_TYPES[:region]    = 8 # Flickr regions are equiv to GeoPlanet "states", at least in the US
@@ -467,7 +443,7 @@ class Place < ActiveRecord::Base
     new_geom = geom
     self.place_geometry.reload
     if self.place_geometry
-      new_geom = MultiPolygon.from_geometries(
+      new_geom = GeoRuby::SimpleFeatures::MultiPolygon.from_geometries(
         self.place_geometry.geom.geometries + geom.geometries)
     end
     self.save_geom(new_geom, other_attrs)

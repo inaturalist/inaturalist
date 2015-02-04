@@ -81,10 +81,12 @@ shared_examples_for "an IdentificationsController" do
     before(:all) do
       # some identification deletion callbacks need to happen after the transaction is complete
       DatabaseCleaner.strategy = :truncation
+      ThinkingSphinx::Deltas.suspend!
     end
 
     after(:all) do
       DatabaseCleaner.strategy = :transaction
+      ThinkingSphinx::Deltas.resume!
     end
     
     let(:identification) { Identification.make!(:user => user) }
@@ -98,7 +100,7 @@ shared_examples_for "an IdentificationsController" do
       i.should be_current
       identification.reload
       identification.should_not be_current
-      delete :destroy, :format => :json, :id => i.id
+      delete :destroy, :id => i.id
       Identification.find_by_id(i.id).should be_blank
       identification.reload
       identification.should be_current

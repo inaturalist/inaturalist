@@ -1930,7 +1930,7 @@ class ObservationsController < ApplicationController
       return
     end
     if flow_task.outputs.exists?
-      Emailer.observations_export_notification(flow_task).deliver
+      Emailer.observations_export_notification(flow_task).deliver_now
       render :status => :ok, :text => ""
       return 
     end

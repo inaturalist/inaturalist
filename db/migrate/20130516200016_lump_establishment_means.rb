@@ -1,6 +1,7 @@
 class LumpEstablishmentMeans < ActiveRecord::Migration
   def up
-    ListedTaxon.update_all("establishment_means = 'introduced'", "establishment_means IN ('naturalised', 'invasive', 'managed')")
+    ListedTaxon.where(establishment_means: [ "naturalised", "invasive", "managed" ]).
+      update_all(establishment_means: "introduced")
   end
 
   def down

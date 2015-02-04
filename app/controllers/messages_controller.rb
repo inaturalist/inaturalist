@@ -24,7 +24,7 @@ class MessagesController < ApplicationController
 
   def show
     @messages = current_user.messages.where(:thread_id => @message.thread_id).order("id asc")
-    Message.update_all(["read_at = ?", Time.now], ["id in (?) AND read_at IS NULL", @messages])
+    Message.where(id: @messages, read_at: nil).update_at(read_at: Time.now)
     @thread_message = @messages.first
     @reply_to = @thread_message.from_user == current_user ? @thread_message.to_user : @thread_message.from_user
     @flaggable_message = if m = @messages.detect{|m| m.from_user && m.from_user != current_user}

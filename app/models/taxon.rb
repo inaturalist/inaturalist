@@ -55,23 +55,7 @@ class Taxon < ActiveRecord::Base
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :conservation_statuses, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :taxon_photos, :allow_destroy => true
-  
-  # define_index do
-  #   indexes :name
-  #   indexes taxon_names.name, :as => :names
-  #   indexes colors.value, :as => :color_values
-  #   has iconic_taxon_id, :facet => true, :type => :integer
-  #   has colors(:id), :as => :colors, :facet => true, :type => :multi
-  #   has is_active
-  #   # has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi
-  #   # has listed_taxa(:list_id), :as => :lists, :type => :multi
-  #   has created_at, ancestry
-  #   has "REPLACE(ancestry, '/', ',')", :as => :ancestors, :type => :multi
-  #   has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi, :source => :query
-  #   has observations_count
-  #   set_property :delta => :delayed
-  # end
-  
+
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon, # if after, it would require an extra save
               :capitalize_name
@@ -311,9 +295,8 @@ class Taxon < ActiveRecord::Base
   scope :self_and_descendants_of, lambda{|taxon|
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     if taxon
-      conditions = taxon.descendant_conditions
-      conditions[0] += " OR taxa.id = ?"
-      conditions << taxon
+      conditions = taxon.descendant_conditions.to_sql
+      conditions += " OR taxa.id = #{ taxon.id }"
       where(conditions)
     else
       where("1 = 2")
@@ -338,23 +321,23 @@ class Taxon < ActiveRecord::Base
         IUCN_STATUS_VALUES[status]
       end
     end
-    includes(:conservation_statuses).
+    joins(:conservation_statuses).
     where("conservation_statuses.iucn = ?", status.to_i).
     where("(conservation_statuses.place_id = ? OR conservation_statuses.place_id IS NULL)", place)
   }
     
   scope :threatened, -> { where("conservation_status >= ?", IUCN_NEAR_THREATENED) }
   scope :threatened_in_place, lambda {|place|
-    includes(:conservation_statuses).
+    joins(:conservation_statuses).
     where("conservation_statuses.iucn >= ?", IUCN_NEAR_THREATENED).
     where("(conservation_statuses.place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(place.id)}) OR conservation_statuses.place_id IS NULL)")
   }
   
   scope :from_place, lambda {|place|
-    includes(:listed_taxa).where("listed_taxa.place_id = ?", place)
+    joins(:listed_taxa).where("listed_taxa.place_id = ?", place)
   }
   scope :on_list, lambda {|list|
-    includes(:listed_taxa).where("listed_taxa.list_id = ?", list)
+    joins(:listed_taxa).where("listed_taxa.list_id = ?", list)
   }
   scope :active, -> { where(:is_active => true) }
   scope :inactive, -> { where(:is_active => false) }
@@ -882,7 +865,7 @@ class Taxon < ActiveRecord::Base
     merge_has_many_associations(reject)
     
     # Merge ListRules and other polymorphic assocs
-    ListRule.where(operand_id: reject.id, operant_type: Taxon.to_s).
+    ListRule.where(operand_id: reject.id, operand_type: Taxon.to_s).
       update_all(operand_id: id)
     
     # Keep reject colors if keeper has none
@@ -1110,15 +1093,17 @@ class Taxon < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
     Rails.logger.info "[INFO #{Time.now}] updating descendants of #{taxon}"
-    ThinkingSphinx.deltas_enabled = false
-    do_in_batches(:conditions => taxon.descendant_conditions) do |d|
-      d.without_ancestry_callbacks do
-        d.update_life_lists(:skip_ancestors => true)
-        d.set_iconic_taxon
-        d.update_obs_iconic_taxa
+    ThinkingSphinx::Deltas.suspend!
+    Taxon.where(taxon.descendant_conditions).find_in_batches do |batch|
+      batch.each do |t|
+        t.without_ancestry_callbacks do
+          t.update_life_lists(:skip_ancestors => true)
+          t.set_iconic_taxon
+          t.update_obs_iconic_taxa
+        end
       end
     end
-    ThinkingSphinx.deltas_enabled = true
+    ThinkingSphinx::Deltas.resume!
   end
   
   def apply_orphan_strategy
@@ -1134,9 +1119,11 @@ class Taxon < ActiveRecord::Base
       "ancestry = ? OR ancestry LIKE ?", 
       child_ancestry_was, "#{child_ancestry_was}/%"
     ]
-    do_in_batches(:conditions => descendant_conditions) do |d|
-      d.without_ancestry_callbacks do
-        d.destroy
+    Taxon.where(descendant_conditions).find_in_batches do |batch|
+      batch.each do |t|
+        t.without_ancestry_callbacks do
+          t.destroy
+        end
       end
     end
   end
@@ -1304,7 +1291,7 @@ class Taxon < ActiveRecord::Base
   
   # Convert an array of strings to taxa
   def self.tags_to_taxa(tags, options = {})
-    scope = TaxonName.includes(:taxon)
+    scope = TaxonName.joins(:taxon)
     scope = scope.where(:lexicon => options[:lexicon]) if options[:lexicon]
     scope = scope.where("taxon_names.is_valid = ?", true) if options[:valid]
     names = tags.map do |tag|
@@ -1354,7 +1341,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def self.rebuild_without_callbacks
-    ThinkingSphinx.deltas_enabled = false
+    ThinkingSphinx::Deltas.suspend!
     before_validation.clear
     before_save.clear
     after_save.clear
@@ -1362,14 +1349,14 @@ class Taxon < ActiveRecord::Base
     validates_presence_of.clear
     validates_uniqueness_of.clear
     restore_ancestry_integrity!
-    ThinkingSphinx.deltas_enabled = true
+    ThinkingSphinx::Deltas.resume!
   end
   
   # Do something without all the callbacks.  This disables all callbacks and
   # validations and doesn't restore them, so IT SHOULD NEVER BE CALLED BY THE
   # APP!  The process should end after this is done.
   def self.without_callbacks(&block)
-    ThinkingSphinx.deltas_enabled = false
+    ThinkingSphinx::Deltas.suspend!
     before_validation.clear
     before_save.clear
     after_save.clear
@@ -1388,7 +1375,7 @@ class Taxon < ActiveRecord::Base
       FROM taxa
       WHERE 
         observations.taxon_id = taxa.id AND 
-        (#{Taxon.send :sanitize_sql, taxon.descendant_conditions})
+        (#{Taxon.send :sanitize_sql, taxon.descendant_conditions.to_sql})
     SQL
     descendant_iconic_taxon_ids = taxon.descendants.iconic_taxa.select(:id).map(&:id)
     unless descendant_iconic_taxon_ids.blank?

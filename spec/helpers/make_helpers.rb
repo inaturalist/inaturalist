@@ -147,6 +147,7 @@ module MakeHelpers
   #           `--- Magnoliopsida
   def load_test_taxa
     Rails.logger.debug "\n\n\n[DEBUG] loading test taxa"
+    ThinkingSphinx::Deltas.suspend!
     @Life = Taxon.find_by_name('Life') || Taxon.make!(:name => 'Life', :rank => "state of matter")
 
     unless @Animalia = Taxon.find_by_name('Animalia')
@@ -229,6 +230,7 @@ module MakeHelpers
 
     Taxon.reset_iconic_taxa_constants_for_tests
 
+    ThinkingSphinx::Deltas.resume!
     Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
   end
 

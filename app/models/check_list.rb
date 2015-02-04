@@ -173,7 +173,7 @@ class CheckList < List
     that = self
     ListedTaxon.do_in_batches(:conditions => conditions) do |lt|
       next if that.listed_taxa.exists?(:taxon_id => lt.taxon_id)
-      ListedTaxon.update_all(["occurrence_status_level = ?", ListedTaxon::ABSENT], "id = #{lt.id}")
+      ListedTaxon.where(id: lt.id).update_all(occurrence_status_level: ListedTaxon::ABSENT)
     end
     true
   end

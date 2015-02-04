@@ -153,7 +153,7 @@ def work_on_collection(eol_collection_id)
     project.reload
     the_list = project.project_list
   end
-  listed_taxa_taxon_ids = the_list.listed_taxa.all(:select => "id, taxon_id").map{|lt| lt.taxon_id}
+  listed_taxa_taxon_ids = the_list.listed_taxa.select(:id, :taxon_id).map(&:taxon_id)
   
   collection_item_dwc_names = []
   

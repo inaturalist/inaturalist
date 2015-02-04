@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'trollop'
 
-ThinkingSphinx.deltas_enabled = false
+ThinkingSphinx::Deltas.suspend!
 
 @opts = Trollop::options do
     banner <<-EOS

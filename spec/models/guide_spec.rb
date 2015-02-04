@@ -63,6 +63,7 @@ end
 
 describe Guide, "to_ngz" do
   before(:all) do
+    ThinkingSphinx::Deltas.suspend!
     @guide = Guide.make!
     @guide_taxon = GuideTaxon.make!(:guide => @guide)
     @photo = FlickrPhoto.create!(
@@ -94,16 +95,20 @@ describe Guide, "to_ngz" do
     system "unzip -qd #{@unzipped_path} #{@zip_path}"
   end
 
+  after(:all) do
+    ThinkingSphinx::Deltas.resume!
+  end
+
   it "should contain an xml file" do
     Dir.glob(File.join(@unzipped_path, "*.xml")).should_not be_blank
   end
 
   it "should have guide photo image files" do
-    File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_photo, :size => "medium"))).should be_true
+    File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_photo, :size => "medium"))).should be true
   end
 
   it "should have guide range image files" do
-    File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_range, :size => "medium"))).should be_true
+    File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_range, :size => "medium"))).should be true
   end
 end
 

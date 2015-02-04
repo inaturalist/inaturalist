@@ -6,7 +6,7 @@ class AddPostGisColumns < ActiveRecord::Migration
     
     add_column :observations, :geom, :point
     add_index :observations, :geom, :spatial => true
-    Observation.update_all "geom = ST_Point(longitude, latitude)", "latitude IS NOT NULL"
+    Observation.where("latitude IS NOT NULL").update_all("geom = ST_Point(longitude, latitude)")
   end
 
   def self.down

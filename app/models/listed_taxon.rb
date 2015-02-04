@@ -692,9 +692,9 @@ class ListedTaxon < ActiveRecord::Base
       ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place_id))
       ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug)) if place
     end
-    ctrl.expire_page FakeView.list_path(list_id, :format => 'csv')
-    ctrl.expire_page FakeView.list_show_formatted_view_path(list_id, :format => 'csv', :view_type => 'taxonomic')
     if list
+      ctrl.expire_page FakeView.list_path(list_id, :format => 'csv')
+      ctrl.expire_page FakeView.list_show_formatted_view_path(list_id, :format => 'csv', :view_type => 'taxonomic')
       ctrl.expire_page FakeView.list_path(list, :format => 'csv')
       ctrl.expire_page FakeView.list_show_formatted_view_path(list, :format => 'csv', :view_type => 'taxonomic')
     end
@@ -744,7 +744,7 @@ class ListedTaxon < ActiveRecord::Base
       rejects = ListedTaxon.where(id: to_merge_ids[1..-1])
 
       # remove the rejects from the list before merging to avoid alread-on-list validation errors
-      ListedTaxon.where("id IN (?)", rejects).update_all("list_id = NULL")
+      ListedTaxon.where(id: rejects).update_all(list_id: nil)
       
       rejects.each do |reject|
         lt.merge(reject)

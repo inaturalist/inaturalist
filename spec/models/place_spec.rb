@@ -62,7 +62,7 @@ describe Place, "import by WOEID" do
   end
   
   it "should create ancestors" do
-    @place.should have_at_least(2).ancestors
+    expect(@place.ancestors.count).to >= 2
   end
 end
 
@@ -71,14 +71,14 @@ end
 describe Place, "merging" do
   before(:each) do
     @place = Place.make!(:name => "Berkeley")
-    @place.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
+    @place.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
     3.times do
       @place.check_list.taxa << Taxon.make!
     end
     @old_place_listed_taxa = @place.listed_taxa.all
     @place_geom = @place.place_geometry.geom
     @mergee = Place.make!(:name => "Oakland")
-    @mergee.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.332077026367 37.8081564815264,-122.251739501953 37.7864534344207,-122.215347290039 37.757687076897,-122.264785766602 37.7424852382661,-122.21809387207 37.6990342079442,-122.14531 37.71152,-122.126083374023 37.7826547456574,-122.225646972656 37.8618440983709,-122.259635925293 37.8561518095069,-122.332077026367 37.8081564815264)))"))
+    @mergee.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.332077026367 37.8081564815264,-122.251739501953 37.7864534344207,-122.215347290039 37.757687076897,-122.264785766602 37.7424852382661,-122.21809387207 37.6990342079442,-122.14531 37.71152,-122.126083374023 37.7826547456574,-122.225646972656 37.8618440983709,-122.259635925293 37.8561518095069,-122.332077026367 37.8081564815264)))"))
     2.times do
       @mergee.check_list.taxa << Taxon.make!
     end
@@ -164,19 +164,19 @@ end
 describe Place, "bbox_contains_lat_lng?" do
   it "should work" do
     place = Place.make!(:latitude => 0, :longitude => 0, :swlat => -1, :swlng => -1, :nelat => 1, :nelng => 1)
-    place.bbox_contains_lat_lng?(0, 0).should be_true
-    place.bbox_contains_lat_lng?(0.5, 0.5).should be_true
-    place.bbox_contains_lat_lng?(2, 2).should be_false
-    place.bbox_contains_lat_lng?(2, nil).should be_false
-    place.bbox_contains_lat_lng?(nil, nil).should be_false
-    place.bbox_contains_lat_lng?('', '').should be_false
+    place.bbox_contains_lat_lng?(0, 0).should be true
+    place.bbox_contains_lat_lng?(0.5, 0.5).should be true
+    place.bbox_contains_lat_lng?(2, 2).should be false
+    place.bbox_contains_lat_lng?(2, nil).should be false
+    place.bbox_contains_lat_lng?(nil, nil).should be false
+    place.bbox_contains_lat_lng?('', '').should be false
   end
   
   it "should work across the date line" do
     place = Place.make!(:latitude => 0, :longitude => 180, :swlat => -1, :swlng => 179, :nelat => 1, :nelng => -179)
-    place.bbox_contains_lat_lng?(0, 180).should be_true
-    place.bbox_contains_lat_lng?(0.5, -179.5).should be_true
-    place.bbox_contains_lat_lng?(0, 0).should be_false
+    place.bbox_contains_lat_lng?(0, 180).should be true
+    place.bbox_contains_lat_lng?(0.5, -179.5).should be true
+    place.bbox_contains_lat_lng?(0, 0).should be false
   end
 end
 
