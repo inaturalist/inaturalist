@@ -2,6 +2,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Emailer, "updates_notification" do
+  include ActionView::Helpers::TextHelper
+
   before do
     @observation = Observation.make!
     @comment = without_delay { Comment.make!(:parent => @observation) }
@@ -27,6 +29,21 @@ describe Emailer, "updates_notification" do
     mail = Emailer.updates_notification(@user, @user.updates.all)
     mail.body.should =~ /#{tn_local.name}/
     mail.body.should_not =~ /#{tn_default.name}/
+  end
+
+  it "sends updates on observation field values, in all languages" do
+    @ofv = nil
+    without_delay { @ofv = ObservationFieldValue.make!(observation: @observation, user: User.make!) }
+    I18N_SUPPORTED_LOCALES.each do |loc|
+      @user.update_attributes(locale: loc)
+      mail = Emailer.updates_notification(@user, [ @user.updates.last ])
+      expect(mail.body).to include I18n.t(:user_added_an_observation_field_html,
+        user: FakeView.link_to(@ofv.user.login, FakeView.person_url(@ofv.user)),
+        field_name: @ofv.observation_field.name.truncate(30),
+        owner: @user.login,
+        locale: loc)
+    end
+    @user.update_attributes(locale: "en")
   end
 
   describe "with a site" do
