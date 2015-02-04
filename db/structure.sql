@@ -2970,7 +2970,10 @@ CREATE TABLE taggings (
     tag_id integer,
     taggable_id integer,
     taggable_type character varying(255),
-    created_at timestamp without time zone
+    created_at timestamp without time zone,
+    tagger_id integer,
+    tagger_type character varying,
+    context character varying(128)
 );
 
 
@@ -2999,7 +3002,8 @@ ALTER SEQUENCE taggings_id_seq OWNED BY taggings.id;
 
 CREATE TABLE tags (
     id integer NOT NULL,
-    name character varying(255)
+    name character varying(255),
+    taggings_count integer DEFAULT 0
 );
 
 
@@ -6360,17 +6364,17 @@ CREATE INDEX index_subscriptions_on_user_id ON subscriptions USING btree (user_i
 
 
 --
--- Name: index_taggings_on_tag_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_taggings_on_taggable_id_and_taggable_type_and_context; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_taggings_on_tag_id ON taggings USING btree (tag_id);
+CREATE INDEX index_taggings_on_taggable_id_and_taggable_type_and_context ON taggings USING btree (taggable_id, taggable_type, context);
 
 
 --
--- Name: index_taggings_on_taggable_id_and_taggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_tags_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_taggings_on_taggable_id_and_taggable_type ON taggings USING btree (taggable_id, taggable_type);
+CREATE UNIQUE INDEX index_tags_on_name ON tags USING btree (name);
 
 
 --
@@ -6777,6 +6781,13 @@ CREATE INDEX pof_projid_ofid ON project_observation_fields USING btree (project_
 --
 
 CREATE INDEX pof_projid_pos ON project_observation_fields USING btree (project_id, "position");
+
+
+--
+-- Name: taggings_idx; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX taggings_idx ON taggings USING btree (tag_id, taggable_id, taggable_type, context, tagger_id, tagger_type);
 
 
 --
@@ -7310,3 +7321,5 @@ INSERT INTO schema_migrations (version) VALUES ('20150104021132');
 INSERT INTO schema_migrations (version) VALUES ('20150104033219');
 
 INSERT INTO schema_migrations (version) VALUES ('20150126194129');
+
+INSERT INTO schema_migrations (version) VALUES ('20150128225554');
