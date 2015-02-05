@@ -3,7 +3,7 @@ require 'trollop'
 
 opts = Trollop::options do
     banner <<-EOS
-Delete duplicate listed taxa
+Resurrect observations
 
 Usage:
   rails runner tools/resurrect_observations.rb -u USER_ID
