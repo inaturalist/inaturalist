@@ -161,18 +161,11 @@ class PostsController < ApplicationController
                  journal_by_login_path(@post.user.login))
   end
   
-  def archives    
+  def archives
     @target_date = Date.parse("#{params[:year]}-#{params[:month]}-01")
-    @posts = @parent.posts.paginate(
-      :page => params[:page] || 1,
-      :per_page => 10,
-      :conditions => [
-        "published_at >= ? AND published_at < ?", 
-        @target_date, 
-        @target_date + 1.month
-      ]
-    )
-    
+    @posts = @parent.posts.
+      where([ "published_at >= ? AND published_at < ?", @target_date, @target_date + 1.month ]).
+      paginate(page: params[:page] || 1, per_page: 10)
     get_archives
   end
   

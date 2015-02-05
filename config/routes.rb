@@ -63,7 +63,7 @@ Rails.application.routes.draw do
                 :authorizations => 'oauth_authorizations'
   end
 
-  # wiki_root '/pages'
+  wiki_root '/pages'
 
   # Riparian routes
   resources :flow_tasks do

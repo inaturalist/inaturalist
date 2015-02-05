@@ -6,6 +6,17 @@ GIT
       ya2yaml (~> 0.30)
 
 GIT
+  remote: git://github.com/Programatica/irwi.git
+  revision: 323b3c89d74c2b0aec41b7b7a0c32fe1f569c9f2
+  specs:
+    irwi (0.4.2)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      diff-lcs (>= 1.1.2)
+      rails_autolink (>= 1.0)
+
+GIT
   remote: git://github.com/dwaite/gdata.git
   revision: fae93bd449d44044dbd0d565946b6ba0e21cb772
   specs:
@@ -392,6 +403,8 @@ GEM
       loofah (~> 2.0)
     rails-observers (0.1.2)
       activemodel (~> 4.0)
+    rails_autolink (1.1.6)
+      rails (> 3.1)
     railties (4.2.0)
       actionpack (= 4.2.0)
       activesupport (= 4.2.0)
@@ -585,6 +598,7 @@ DEPENDENCIES
   haml
   htmlentities
   i18n-js!
+  irwi!
   jquery-rails
   json
   koala
