@@ -1929,6 +1929,8 @@ class ObservationsController < ApplicationController
 
   def map
     @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
+    @render_place = Place.find_by_id(params[:render_place_id].to_i) if params[:render_place_id]
+    @render_taxon_range = Taxon.find_by_id(params[:render_taxon_range_id].to_i) if params[:render_taxon_range_id]
     @taxon_hash = { }
     if @taxon
       common_name = view_context.common_taxon_name(@taxon).try(:name)

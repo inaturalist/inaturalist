@@ -20,12 +20,14 @@
       });
       var opts = $.deparam.querystring();
       var taxon = #{ @taxon_hash.to_json };
+      var renderPlace = #{ @render_place.to_json };
+      var renderTaxon = #{ @render_taxon_range.to_json };
       opts.grid_color = opts.grid_color || iNaturalist.Map.ICONIC_TAXON_COLORS.Mollusca;
-      if (opts.render_place_id) {
-        window.map.addPlaceLayer({ place_id: opts.render_place_id });
+      if (renderPlace) {
+        window.map.addPlaceLayer({ place: renderPlace });
       }
-      if (opts.render_taxon_range_id) {
-        window.map.addTaxonRangeLayer({ taxon_id: opts.render_taxon_range_id });
+      if (renderTaxon) {
+        window.map.addTaxonRangeLayer({ taxon: renderTaxon });
       }
       // window.map.addObservationsLayer({ grid_opacity: 0.8, grid_border_opacity: 0.01,
       //   point_opacity: 0.4, point_border_opacity: 0.3, point_color: "#6E6E6E", interactivity: false });
