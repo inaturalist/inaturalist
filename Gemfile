@@ -101,8 +101,6 @@ end
 group :test, :development, :prod_dev do
   gem "database_cleaner"
   gem "machinist"
-  gem "rspec-rails"
-  gem "rspec-html-matchers"
   gem "better_errors"
   gem "byebug"
   gem "binding_of_caller"
@@ -112,6 +110,8 @@ end
 group :test do
   gem 'faker'
   gem 'simplecov', :require => false
+  gem "rspec-rails"
+  gem "rspec-html-matchers"
 end
 
 group :assets do

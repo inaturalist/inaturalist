@@ -125,7 +125,7 @@ class FlagsController < ApplicationController
   private
   
   def load_flag
-    render_404 unless @flag = Flag.find_by_id(params[:id] || params[:flag_id], :include => [:user, :resolver])
+    render_404 unless @flag = Flag.where(id: params[:id] || params[:flag_id]).includes(:user, :resolver).first
   end
   
   def set_model

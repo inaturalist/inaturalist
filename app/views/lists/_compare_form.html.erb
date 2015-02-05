@@ -1,7 +1,7 @@
 <%- 
   lists ||= @current_user_lists || current_user.lists.all
   if @list
-    lists.delete_if{|l| l.id == @list.id}
+    lists = lists.to_a.delete_if{|l| l.id == @list.id}
   end
   options = [[t(:one_of_your_lists), 0]] + lists.map{|l| [l.title, l.id]}
 -%>
