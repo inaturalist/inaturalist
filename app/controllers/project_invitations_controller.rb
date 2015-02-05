@@ -4,11 +4,10 @@ class ProjectInvitationsController < ApplicationController
   def index
     @type = params[:type] == "sent" ? "sent" : "received"
     @project_invitations = ProjectInvitation.
-      includes(:observation).
       order("project_invitations.id DESC").
       page(params[:page])
     @project_invitations = if @type == "received"
-      @project_invitations.where("observations.user_id = ?", current_user)
+      @project_invitations.joins(:observation).where("observations.user_id = ?", current_user)
     else
       @project_invitations.where("user_id = ?", current_user)
     end

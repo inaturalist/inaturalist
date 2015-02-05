@@ -68,10 +68,8 @@ module Shared::GuideModule
     page = (params[:page] || 1).to_i
     per_page = 50
     offset = (page - 1) * per_page
-    # @scope = @scope.select("DISTINCT ON (ancestry, taxa.id) taxa.*").
-    #   includes(:taxon_names, {:taxon_photos => :photo})
-    @scope = @scope.select("DISTINCT ON (ancestry, taxa.id) taxa.*")
     total_entries = @scope.count
+    @scope = @scope.select("DISTINCT ON (ancestry, taxa.id) taxa.*")
     @paged_scope = @scope.order(@order).limit(per_page).offset(offset)
     @paged_scope = @paged_scope.has_photos if @filter_params.blank?
     @taxa = WillPaginate::Collection.create(page, per_page, total_entries) do |pager|

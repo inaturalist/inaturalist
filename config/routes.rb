@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     end
     resources :flags
   end
-  get '/guides/:id.:layout.pdf' => 'guides#show', :via => :get, :as => "guide_pdf", :constraints => {:format => :pdf}, :defaults => {:format => :pdf}
+  get '/guides/:id.:layout.pdf' => 'guides#show', :as => "guide_pdf", :constraints => {:format => :pdf}, :defaults => {:format => :pdf}
   get 'guides/user/:login' => 'guides#user', :as => :guides_by_login, :constraints => { :login => simplified_login_regex }
 
 
@@ -55,7 +55,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/oauth/assertion_token' => 'provider_oauth#assertion', :via => :post
+  post '/oauth/assertion_token' => 'provider_oauth#assertion'
   get '/oauth/bounce' => 'provider_oauth#bounce', :as => "oauth_bounce"
   get '/oauth/bounce_back' => 'provider_oauth#bounce_back', :as => "oauth_bounce_back"
   use_doorkeeper do
@@ -129,10 +129,10 @@ Rails.application.routes.draw do
   end
   get '/users/:id/suspend' => 'users#suspend', :as => :suspend_user, :constraints => { :id => /\d+/ }
   get '/users/:id/unsuspend' => 'users#unsuspend', :as => :unsuspend_user, :constraints => { :id => /\d+/ }
-  get 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }, :method => :post
-  get 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }, :method => :delete
+  post 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }
+  delete 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }
   get 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
-  get '/photos/:id/repair' => "photos#repair", :as => :photo_repair, :via => :put
+  put '/photos/:id/repair' => "photos#repair", :as => :photo_repair
   resources :photos, :only => [:show, :update, :destroy] do
     resources :flags
     member do
@@ -142,7 +142,7 @@ Rails.application.routes.draw do
   get 'picasa/unlink' => 'picasa#unlink', :method => :delete
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
-  get 'flickr/photos.:format' => 'flickr#photos', :via => :get
+  get 'flickr/photos.:format' => 'flickr#photos'
   resources :soundcloud_sounds, :only => [:index]
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
@@ -173,12 +173,12 @@ Rails.application.routes.draw do
   get 'observations/new/batch' => 'observations#new_batch', :as => :new_observation_batch
   get 'observations/new/bulk_csv' => 'observations#new_bulk_csv', :as => :new_observation_bulk_csv
   get 'observations/edit/batch' => 'observations#edit_batch', :as => :edit_observation_batch
-  get 'observations/delete_batch' => 'observations#delete_batch', :as => :delete_observation_batch, :via => :delete
+  delete 'observations/delete_batch' => 'observations#delete_batch', :as => :delete_observation_batch
   get 'observations/import' => 'observations#import', :as => :import_observations
   get 'observations/import_photos' => 'observations#import_photos', :as => :import_photos
   post 'observations/import_sounds' => 'observations#import_sounds', :as => :import_sounds
-  get 'observations/id_please' => 'observations#id_please', :as => :id_please, :via => :get
-  get 'observations/selector' => 'observations#selector', :as => :observation_selector, :via => :get
+  get 'observations/id_please' => 'observations#id_please', :as => :id_please
+  get 'observations/selector' => 'observations#selector', :as => :observation_selector
   get '/observations/curation' => 'observations#curation', :as => :curate_observations
   get '/observations/widget' => 'observations#widget', :as => :observations_widget
   get 'observations/add_from_list' => 'observations#add_from_list', :as => :add_observations_from_list
@@ -186,21 +186,21 @@ Rails.application.routes.draw do
   get 'observations/nearby' => 'observations#nearby', :as => :nearby_observations
   get 'observations/add_nearby' => 'observations#add_nearby', :as => :add_nearby_observations
   get 'observations/:id/edit_photos' => 'observations#edit_photos', :as => :edit_observation_photos
-  get 'observations/:id/update_photos' => 'observations#update_photos', :as => :update_observation_photos, :via => :post
+  post 'observations/:id/update_photos' => 'observations#update_photos', :as => :update_observation_photos
   get 'observations/:login' => 'observations#by_login', :as => :observations_by_login, :constraints => { :login => simplified_login_regex }
   get 'observations/:login.all' => 'observations#by_login_all', :as => :observations_by_login_all, :constraints => { :login => simplified_login_regex }
-  get 'observations/:login.:format' => 'observations#by_login', :as => :observations_by_login_feed, :constraints => { :login => simplified_login_regex }, :via => :get
-  get 'observations/tile_points/:zoom/:x/:y.:format' => 'observations#tile_points', :as => :observation_tile_points, :constraints => { :zoom => /\d+/, :y => /\d+/, :x => /\d+/ }, :via => :get
+  get 'observations/:login.:format' => 'observations#by_login', :as => :observations_by_login_feed, :constraints => { :login => simplified_login_regex }
+  get 'observations/tile_points/:zoom/:x/:y.:format' => 'observations#tile_points', :as => :observation_tile_points, :constraints => { :zoom => /\d+/, :y => /\d+/, :x => /\d+/ }
   get 'observations/project/:id' => 'observations#project', :as => :project_observations
   get 'observations/project/:id.all' => 'observations#project_all', :as => :all_project_observations
   get 'observations/of/:id.:format' => 'observations#of', :as => :observations_of
-  get 'observations/:id/quality/:metric' => 'quality_metrics#vote', :as => :observation_quality, :via => [:post, :delete]
+  match 'observations/:id/quality/:metric' => 'quality_metrics#vote', :as => :observation_quality, :via => [:post, :delete]
   get 'projects/:id/join' => 'projects#join', :as => :join_project
   get 'projects/:id/leave' => 'projects#leave', :as => :leave_project
-  get 'projects/:id/add' => 'projects#add', :as => :add_project_observation, :via => :post
-  get 'projects/:id/remove' => 'projects#remove', :as => :remove_project_observation, :via => [:post, :delete]
-  get 'projects/:id/add_batch' => 'projects#add_batch', :as => :add_project_observation_batch, :via => :post
-  get 'projects/:id/remove_batch' => 'projects#remove_batch', :as => :remove_project_observation_batch, :via => [:post, :delete]
+  post 'projects/:id/add' => 'projects#add', :as => :add_project_observation
+  match 'projects/:id/remove' => 'projects#remove', :as => :remove_project_observation, :via => [:post, :delete]
+  post 'projects/:id/add_batch' => 'projects#add_batch', :as => :add_project_observation_batch
+  match 'projects/:id/remove_batch' => 'projects#remove_batch', :as => :remove_project_observation_batch, :via => [:post, :delete]
   get 'projects/search' => 'projects#search', :as => :project_search
   get 'projects/search.:format' => 'projects#search', :as => :formatted_project_search
   get 'project/:id/terms' => 'projects#terms', :as => :project_terms
@@ -216,15 +216,15 @@ Rails.application.routes.draw do
   get 'projects/:id/make_curator/:project_user_id' => 'projects#make_curator', :as => :make_curator
   get 'projects/:id/remove_curator/:project_user_id' => 'projects#remove_curator', :as => :remove_curator
   get 'projects/:id/remove_project_user/:project_user_id' => 'projects#remove_project_user', :as => :remove_project_user
-  get 'projects/:id/change_role/:project_user_id' => 'projects#change_role', :as => :change_project_user_role, :via => :post
+  post 'projects/:id/change_role/:project_user_id' => 'projects#change_role', :as => :change_project_user_role
   get 'projects/:id/stats' => 'projects#stats', :as => :project_stats
   get 'projects/:id/stats.:format' => 'projects#stats', :as => :formatted_project_stats
   get 'projects/browse' => 'projects#browse', :as => :browse_projects
   get 'projects/:id/invitations' => 'projects#invitations', :as => :invitations
   get 'projects/:project_id/journal/new' => 'posts#new', :as => :new_project_journal_post
   get 'projects/:project_id/journal' => 'posts#index', :as => :project_journal
-  get 'projects/:project_id/journal/:id' => 'posts#show', :as => :project_journal_post, :via => :get
-  get 'projects/:project_id/journal/:id' => 'posts#destroy', :as => :delete_project_journal_post, :via => :delete
+  get 'projects/:project_id/journal/:id' => 'posts#show', :as => :project_journal_post
+  delete 'projects/:project_id/journal/:id' => 'posts#destroy', :as => :delete_project_journal_post
   get 'projects/:project_id/journal/:id/edit' => 'posts#edit', :as => :edit_project_journal_post
   get 'projects/:project_id/journal/archives/:year/:month' => 'posts#archives', :as => :project_journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/ }
 
@@ -255,8 +255,8 @@ Rails.application.routes.draw do
     resources :flags
     get 'batch_edit'
   end
-  get 'lists/:id/taxa' => 'lists#taxa', :as => :list_taxa, :via => :get
-  get 'lists/:id/taxa.:format' => 'lists#taxa', :as => :formatted_list_taxa, :via => :get
+  get 'lists/:id/taxa' => 'lists#taxa', :as => :list_taxa
+  get 'lists/:id/taxa.:format' => 'lists#taxa', :as => :formatted_list_taxa
   get 'lists/:id.:view_type.:format' => 'lists#show',
     :as => 'list_show_formatted_view',
     :requirements => { :id => id_param_pattern }
@@ -268,9 +268,9 @@ Rails.application.routes.draw do
   resources :listed_taxa
   get 'lists/:login' => 'lists#by_login', :as => :lists_by_login, :constraints => { :login => simplified_login_regex }
   get 'lists/:id/compare' => 'lists#compare', :as => :compare_lists, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  get 'lists/:id/remove_taxon/:taxon_id' => 'lists#remove_taxon', :as => :list_remove_taxon, :constraints => { :id => /\d+([\w\-\%]*)/ }, :via => :delete
-  get 'lists/:id/add_taxon_batch' => 'lists#add_taxon_batch', :as => :list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }, :via => :post
-  get 'check_lists/:id/add_taxon_batch' => 'check_lists#add_taxon_batch', :as => :check_list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }, :via => :post
+  delete 'lists/:id/remove_taxon/:taxon_id' => 'lists#remove_taxon', :as => :list_remove_taxon, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'lists/:id/add_taxon_batch' => 'lists#add_taxon_batch', :as => :list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }
+  post 'check_lists/:id/add_taxon_batch' => 'check_lists#add_taxon_batch', :as => :check_list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }
   get 'lists/:id/reload_from_observations' => 'lists#reload_from_observations', :as => :list_reload_from_observations, :constraints => { :id => /\d+([\w\-\%]*)/ }
   get 'lists/:id/reload_and_refresh_now' => 'lists#reload_and_refresh_now', :as => :list_reload_and_refresh_now, :constraints => { :id => /\d+([\w\-\%]*)/ }
   get 'lists/:id/refresh_now_without_reload' => 'lists#refresh_now_without_reload', :as => :list_refresh_now_without_reload, :constraints => { :id => /\d+([\w\-\%]*)/ }
@@ -283,7 +283,7 @@ Rails.application.routes.draw do
   end
   get 'comments/user/:login' => 'comments#user', :as => :comments_by_login, :constraints => { :login => simplified_login_regex }
   resources :project_invitations, :except => [:index, :show]
-  get 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation, :via => :post
+  post 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation
   get 'taxa/names' => 'taxon_names#index'
   resources :taxa, :constraints => { :id => id_param_pattern } do
     resources :flags
@@ -313,13 +313,13 @@ Rails.application.routes.draw do
   get 'taxa/:id/children.:format' => 'taxa#children', :as => :formatted_taxon_children
   get 'taxa/:id/photos' => 'taxa#photos', :as => :taxon_photos
   get 'taxa/:id/edit_photos' => 'taxa#edit_photos', :as => :edit_taxon_photos
-  get 'taxa/:id/update_colors' => 'taxa#update_colors', :as => :update_taxon_colors, :via => :put
+  put 'taxa/:id/update_colors' => 'taxa#update_colors', :as => :update_taxon_colors
   get 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places
   get 'taxa/flickr_tagger' => 'taxa#flickr_tagger', :as => :flickr_tagger
   get 'taxa/flickr_tagger.:format' => 'taxa#flickr_tagger', :as => :formatted_flickr_tagger
-  get 'taxa/tag_flickr_photos', :via => :post
+  post 'taxa/tag_flickr_photos'
   get 'taxa/flickr_photos_tagged'
-  get 'taxa/tag_flickr_photos_from_observations', :via => :post
+  post 'taxa/tag_flickr_photos_from_observations'
   get 'taxa/search' => 'taxa#search', :as => :search_taxa
   get 'taxa/search.:format' => 'taxa#search', :as => :formatted_search_taxa
   get 'taxa/:action.:format' => 'taxa#index', :as => :formatted_taxa_action
@@ -361,23 +361,23 @@ Rails.application.routes.draw do
   resources :identifications, :constraints => { :id => id_param_pattern } do
     resources :flags
   end
-  get 'identifications/bold' => 'identifications#bold', :via => :get
-  get 'identifications/agree' => 'identifications#agree', :via => :post
-  get 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }, :via => :get
+  get 'identifications/bold' => 'identifications#bold'
+  post 'identifications/agree' => 'identifications#agree'
+  get 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }
   get 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
-  get 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send, :via => :post
+  post 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send
   resources :taxon_links, :except => [:show]
   
-  get 'places/:id/widget' => 'places#widget', :as => :place_widget, :via => :get
-  get 'places/guide_widget/:id' => 'places#guide_widget', :as => :place_guide_widget, :via => :get
+  get 'places/:id/widget' => 'places#widget', :as => :place_widget
+  get 'places/guide_widget/:id' => 'places#guide_widget', :as => :place_guide_widget
   get '/places/find_external' => 'places#find_external', :as => :find_external
-  get '/places/search' => 'places#search', :as => :place_search, :via => :get
-  get '/places/:id/children' => 'places#children', :as => :place_children, :via => :get
-  get 'places/:id/taxa.:format' => 'places#taxa', :as => :place_taxa, :via => :get
-  get 'places/geometry/:id.:format' => 'places#geometry', :as => :place_geometry, :via => :get
-  get 'places/guide/:id' => 'places#guide', :as => :place_guide, :via => :get
-  get 'places/guide' => 'places#guide', :as => :idendotron_guide, :via => :get
-  get 'places/cached_guide/:id' => 'places#cached_guide', :as => :cached_place_guide, :via => :get
+  get '/places/search' => 'places#search', :as => :place_search
+  get '/places/:id/children' => 'places#children', :as => :place_children
+  get 'places/:id/taxa.:format' => 'places#taxa', :as => :place_taxa
+  get 'places/geometry/:id.:format' => 'places#geometry', :as => :place_geometry
+  get 'places/guide/:id' => 'places#guide', :as => :place_guide
+  get 'places/guide' => 'places#guide', :as => :idendotron_guide
+  get 'places/cached_guide/:id' => 'places#cached_guide', :as => :cached_place_guide
   get 'places/autocomplete' => 'places#autocomplete', :as => :places_autocomplete
   resources :places
   
@@ -385,8 +385,8 @@ Rails.application.routes.draw do
   resources :flags
   get 'admin' => 'admin#index', :as => :admin
   get 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"
-  get 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content", :via => :delete
-  get 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user", :via => :put
+  delete 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content"
+  put 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user"
   resources :taxon_ranges, :except => [:index, :show]
   get '/calendar/:login' => 'calendars#index', :as => :calendar
   get '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare
@@ -397,7 +397,7 @@ Rails.application.routes.draw do
   }
   
   resources :subscriptions, :only => [:index, :new, :edit, :create, :update, :destroy]
-  get 'subscriptions/:resource_type/:resource_id' => "subscriptions#destroy", :as => :delete_subscription, :via => :delete
+  delete 'subscriptions/:resource_type/:resource_id' => "subscriptions#destroy", :as => :delete_subscription
   get 'subscriptions/:resource_type/:resource_id/edit' => "subscriptions#edit", :as => :edit_subscription_by_resource
 
   resources :taxon_changes, :constraints => { :id => id_param_pattern } do
