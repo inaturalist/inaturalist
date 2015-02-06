@@ -370,13 +370,13 @@ class TaxaController < ApplicationController
     user_per_page = 100 if user_per_page > 100
     per_page = page == 1 && user_per_page < 50 ? 50 : user_per_page
     
-    @facets = Taxon.facets(q, :page => page, :per_page => per_page,
-      :with => drill_params, 
-      :include => [:taxon_names, {:taxon_photos => :photo}, :taxon_descriptions],
-      :field_weights => {:name => 2},
-      :match_mode => match_mode,
-      :order => :observations_count,
-      :sort_mode => :desc
+    @facets = Taxon.facets(q, page: page, per_page: per_page,
+      with: drill_params,
+      sql: { include: [ :iconic_taxon, { taxon_names: :place_taxon_names }, { taxon_photos: :photo }, :taxon_descriptions ] },
+      field_weights: { name: 2 },
+      match_mode: match_mode,
+      order: "observations_count desc",
+      sort_mode: :desc
     )
 
     @taxa = @facets.for(drill_params)
@@ -384,13 +384,13 @@ class TaxaController < ApplicationController
       drill_params = drill_params.reject{|k,v| k == :places}
       @place_ids = nil
       @places = nil
-      @facets = Taxon.facets(q, :page => page, :per_page => per_page,
-        :with => drill_params, 
-        :include => [:taxon_names, {:taxon_photos => :photo}, :taxon_descriptions],
-        :field_weights => {:name => 2},
-        :match_mode => match_mode,
-        :order => :observations_count,
-        :sort_mode => :desc
+      @facets = Taxon.facets(q, page: page, per_page: per_page,
+        with: drill_params,
+        sql: { include: [ :iconic_taxon, { taxon_names: :place_taxon_names }, { taxon_photos: :photo }, :taxon_descriptions ] },
+        field_weights: { name: 2 },
+        match_mode: match_mode,
+        order: "observations_count desc",
+        sort_mode: :desc
       )
       @taxa = @facets.for(drill_params)
     end
@@ -1015,15 +1015,16 @@ class TaxaController < ApplicationController
   end
   
   def curation
-    @flags = Flag.paginate(:page => params[:page], 
-      :include => :user,
-      :conditions => "resolved = false AND flaggable_type = 'Taxon'",
-      :order => "flags.id desc")
+    @flags = Flag.where(resolved: false, flaggable_type: "Taxon").
+      includes(:user).
+      paginate(page: params[:page]).
+      order(id: :desc)
     @resolved_flags = Flag.where(resolved: true, flaggable_type: "Taxon").
       includes(:user, :resolver).order("id desc").limit(5)
     life = Taxon.find_by_name('Life')
-    @ungrafted = Taxon.roots.active.paginate(:conditions => ["id != ?", life], 
-      :page => 1, :per_page => 100, :include => [:taxon_names])
+    @ungrafted = Taxon.roots.active.where("id != ?", life).
+      includes(:taxon_names).
+      paginate(page: 1, per_page: 100)
   end
 
   def synonyms

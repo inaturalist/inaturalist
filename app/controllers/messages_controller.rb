@@ -24,7 +24,7 @@ class MessagesController < ApplicationController
 
   def show
     @messages = current_user.messages.where(:thread_id => @message.thread_id).order("id asc")
-    Message.where(id: @messages, read_at: nil).update_at(read_at: Time.now)
+    Message.where(id: @messages, read_at: nil).update_all(read_at: Time.now)
     @thread_message = @messages.first
     @reply_to = @thread_message.from_user == current_user ? @thread_message.to_user : @thread_message.from_user
     @flaggable_message = if m = @messages.detect{|m| m.from_user && m.from_user != current_user}
@@ -38,7 +38,7 @@ class MessagesController < ApplicationController
       select("DISTINCT ON (users.id) users.*").
       joins("JOIN messages ON messages.to_user_id = users.id").
       where("messages.from_user_id = ?", current_user).
-      limit(100).compact
+      limit(100)
     @contacts = current_user.friends.limit(100) if @contacts.blank?
     unless @contacts.blank?
       @contacts.each_with_index do |u,i|

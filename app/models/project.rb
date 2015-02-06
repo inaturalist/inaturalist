@@ -67,9 +67,8 @@ class Project < ActiveRecord::Base
   scope :in_place, lambda{|place|
     place = Place.find(place) unless place.is_a?(Place) rescue nil
     if place
-      conditions = place.descendant_conditions
-      conditions[0] += " OR places.id = ?"
-      conditions << place
+      conditions = place.descendant_conditions.to_sql
+      conditions += " OR places.id = #{place.id}"
       joins(:place).where(conditions)
     else
       where("1 = 2")
@@ -96,7 +95,7 @@ class Project < ActiveRecord::Base
   else
     has_attached_file :cover,
       :path => ":rails_root/public/attachments/:class/:id-cover.:extension",
-      :url => "#{ CONFIG.attachments_host }/attachments/:class/:id-cover.:extension",
+      :url => "#{ CONFIG.s3_host }/:class/:id-cover.:extension",
       :default_url => ""
   end
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /octet-stream/], :message => "must be JPG or PNG"

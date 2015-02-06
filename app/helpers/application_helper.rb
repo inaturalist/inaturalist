@@ -147,8 +147,9 @@ module ApplicationHelper
     options[:class] ||= ''
     options[:class] += ' togglelink'
     options[:rel] ||= target_selector
-    link_to link_text, "#",
-      options.merge(:onclick => "$('#{target_selector}').toggle(); $(this).toggleClass('open')")
+    link_to_function link_text,
+      "$('#{target_selector}').toggle(); $(this).toggleClass('open')",
+      options
   end
 
   def link_to_toggle_box(txt, options = {}, &block)
@@ -740,29 +741,29 @@ module ApplicationHelper
     resource = update.resource.flaggable if update.resource_type == "Flag"
     case resource.class.name
     when "User"
-      image_tag("#{root_url}#{resource.icon.url(:thumb)}", options.merge(:alt => "#{resource.login} icon"))
+      image_tag(asset_url(resource.icon.url(:thumb)), options.merge(:alt => "#{resource.login} icon"))
     when "Observation"
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
-      image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
+      image_tag(asset_url(resource.icon.url(:thumb)), options)
     when "ProjectUserInvitation"
-      image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options.merge(:alt => "#{resource.user.login} icon"))
+      image_tag(asset_url(resource.icon.url(:thumb)), options.merge(:alt => "#{resource.user.login} icon"))
     when "AssessmentSection"
-      image_tag("#{root_url}#{resource.assessment.project.icon.url(:thumb)}", options)
+      image_tag(asset_url(resource.assessment.project.icon.url(:thumb)), options)
     when "ListedTaxon"
-      image_tag("#{root_url}images/checklist-icon-color-32px.png", options)
+      image_tag(asset_url("checklist-icon-color-32px.png"), options)
     when "Post"
-      image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options)
+      image_tag(asset_url(resource.user.icon.url(:thumb)), options)
     when "Place"
-      image_tag("#{root_url}images/icon-maps.png", options)
+      image_tag(asset_url("icon-maps.png"), options)
     when "Taxon"
       taxon_image(resource, {:size => "square", :width => 48}.merge(options))
     when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
-      image_tag("#{root_url}images/#{resource.class.name.underscore}-aaaaaa-48px.png", options)
+      image_tag(asset_url("#{resource.class.name.underscore}-aaaaaa-48px.png"), options)
     when "ObservationField"
-      image_tag("#{root_url}images/notebook-icon-color-155px-shadow.jpg", options)
+      image_tag(asset_url("notebook-icon-color-155px-shadow.jpg"), options)
     else
-      image_tag("#{root_url}images/logo-cccccc-20px.png", options)
+      image_tag(asset_url("logo-cccccc-20px.png"), options)
     end
   end
   

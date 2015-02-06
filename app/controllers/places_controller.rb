@@ -97,8 +97,9 @@ class PlacesController < ApplicationController
   def show
     @place_geometry = PlaceGeometry.without_geom.where(place_id: @place).first
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
-    browsing_taxa = Taxon.where(id: browsing_taxon_ids).order(:ancestry, :name).includes(:taxon_names)
-    browsing_taxa.delete_if{|t| t.name == "Life"}
+    browsing_taxa = Taxon.joins(:taxon_names).where(id: browsing_taxon_ids).
+      where("taxon_names.name != 'Life'").includes(taxon_names: :place_taxon_names).
+      order(:ancestry, :name)
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     respond_to do |format|
       format.html do
@@ -398,13 +399,11 @@ class PlacesController < ApplicationController
       @comprehensive = @place.check_lists.exists?(["taxon_id IN (?) AND comprehensive = 't'", ancestor_ids])
       @comprehensive_list = @place.check_lists.where(taxon_id: ancestor_ids, comprehensive: "t").first
     end
-    
-    @listed_taxa_count = @scope.count(:select => "DISTINCT taxa.id")
-    @confirmed_listed_taxa_count = @scope.count(:select => "DISTINCT taxa.id",
-      :conditions => "listed_taxa.first_observation_id IS NOT NULL")
-    
+    @listed_taxa_count = @scope.count("taxa.id", distinct: true)
+    @confirmed_listed_taxa_count = @scope.where("listed_taxa.first_observation_id IS NOT NULL").
+      count("taxa.id", distinct: true)
     @listed_taxa = @place.listed_taxa
-                         .where(["taxon_id IN (?) AND primary_listing = (?)", @taxa, true])
+                         .where(taxon_id: @taxa, primary_listing: true)
                          .includes([ :place, { :first_observation => :user } ])
     @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
     
@@ -424,7 +423,7 @@ class PlacesController < ApplicationController
   private
   
   def load_place
-    @place = Place.where(id: params[:id]).includes(:check_list).first rescue nil
+    @place = Place.find(params[:id]) rescue nil
     if @place.blank?
       if params[:id].to_i > 0 || params[:id] == "0"
         return render_404

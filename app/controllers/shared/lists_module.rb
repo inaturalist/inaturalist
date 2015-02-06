@@ -63,8 +63,7 @@ module Shared::ListsModule
       main_list = set_scopes(@list, @filter_taxon, listed_taxa)
 
       @listed_taxa = main_list.where(@find_options[:conditions]).
-        joins(taxon: :taxon_names).
-        includes(@find_options[:includes]).
+        includes(@find_options[:include]).
         paginate(page: @find_options[:page], per_page: @find_options[:per_page]).
         order(@find_options[:order])
 
@@ -74,13 +73,10 @@ module Shared::ListsModule
     else
       main_list = set_scopes(@list, @filter_taxon, @list.listed_taxa)
     end
-
     @listed_taxa = main_list.where(@find_options[:conditions]).
-      joins(taxon: :taxon_names).
-      includes(@find_options[:includes]).
+      includes(@find_options[:include]).
       paginate(page: @find_options[:page], per_page: @find_options[:per_page]).
       order(@find_options[:order])
-    ListedTaxon.preload_associations(@listed_taxa, [ :list, :user, :first_observation ])
 
     respond_to do |format|
       format.html do
@@ -110,10 +106,10 @@ module Shared::ListsModule
 
         case @view
         when TAXONOMIC_VIEW
-          @unclassified = @listed_taxa.select {|lt| !lt.taxon.grafted? }
-          @listed_taxa = @listed_taxa.delete_if {|lt| !lt.taxon.grafted? }
+          @unclassified = @listed_taxa.to_a.select {|lt| !lt.taxon.grafted? }
+          @listed_taxa = @listed_taxa.to_a.delete_if {|lt| !lt.taxon.grafted? }
           ancestor_ids = @listed_taxa.map{|lt| lt.taxon.ancestor_ids[1..-1]}.flatten.uniq
-          ancestors = Taxon.find_all_by_id(ancestor_ids, :include => :taxon_names)
+          ancestors = Taxon.where(id: ancestor_ids).includes(:taxon_names)
           taxa_to_arrange = (ancestors + @listed_taxa.map(&:taxon)).sort_by{|t| "#{t.ancestry}/#{t.id}"}
           @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
           @listed_taxa_by_taxon_id = @listed_taxa.index_by(&:taxon_id)
@@ -465,26 +461,19 @@ private
   end
 
   def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)
+    return [ ] if listed_taxa.nil?
     iconic_taxa = Taxon::ICONIC_TAXA
-
-    # to perform these counts in sql we need to make sure we're dealing with a scope and not an array
-    listed_taxa = list.listed_taxa unless listed_taxa.respond_to?(:scoped)
-
     counts = listed_taxa.joins(:taxon).group("taxa.iconic_taxon_id").count
     iconic_taxa.map do |iconic_taxon|
-      [iconic_taxon, counts[iconic_taxon.id.to_s] || 0]
+      [iconic_taxon, counts[iconic_taxon.id] || 0]
     end
   end
 
   def get_iconic_taxon_counts_for_place_based_project(list, iconic_taxa = nil, listed_taxa = nil)
     iconic_taxa ||= Taxon::ICONIC_TAXA
-
-    # to perform these counts in sql we need to make sure we're dealing with a scope and not an array
-    listed_taxa ||= list.listed_taxa unless listed_taxa.respond_to?(:scoped)
-
     counts = listed_taxa.joins(:taxon).group("taxa.iconic_taxon_id").count
     iconic_taxa.map do |iconic_taxon|
-      [iconic_taxon, counts[iconic_taxon.id.to_s] || 0]
+      [iconic_taxon, counts[iconic_taxon.id] || 0]
     end
   end
   
@@ -523,7 +512,7 @@ private
       :page => page,
       :per_page => per_page,
       :include => [
-        :last_observation,
+        :list, :user, :first_observation, :last_observation,
         {:taxon => [:iconic_taxon, :photos, :taxon_names]}
       ]
     }

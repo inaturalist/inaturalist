@@ -922,9 +922,9 @@ class ObservationsController < ApplicationController
 ## Custom actions ############################################################
 
   def curation
-    @flags = Flag.paginate(:page => params[:page], 
-      :include => :user,
-      :conditions => "resolved = false AND flaggable_type = 'Observation'")
+    @flags = Flag.where(resolved: false, flaggable_type: "Observation").
+      includes(:user).
+      paginate(page: params[:page])
   end
 
   def new_batch
@@ -1350,7 +1350,7 @@ class ObservationsController < ApplicationController
       end
     end
     
-    @project_observations = @project.project_observations.where(observation_id: @observations).
+    @project_observations = @project.project_observations.where(observation: @observations.to_a).
       includes([ { :curator_identification => [ :taxon, :user ] } ])
     @project_observations_by_observation_id = @project_observations.index_by(&:observation_id)
     
@@ -1610,7 +1610,7 @@ class ObservationsController < ApplicationController
       format.html do
         @headless = true
         ancestor_ids = @taxa.map{|t| t.ancestor_ids[1..-1]}.flatten.uniq
-        ancestors = Taxon.find_all_by_id(ancestor_ids)
+        ancestors = Taxon.where(id: ancestor_ids)
         taxa_to_arrange = (ancestors + @taxa).sort_by{|t| "#{t.ancestry}/#{t.id}"}
         @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
         @taxon_names_by_taxon_id = TaxonName.where("taxon_id IN (?)", taxa_to_arrange.map(&:id).uniq).group_by(&:taxon_id)
@@ -1950,6 +1950,8 @@ class ObservationsController < ApplicationController
 
   def map
     @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
+    @render_place = Place.find_by_id(params[:render_place_id].to_i) if params[:render_place_id]
+    @render_taxon_range = Taxon.find_by_id(params[:render_taxon_range_id].to_i) if params[:render_taxon_range_id]
     @taxon_hash = { }
     if @taxon
       common_name = view_context.common_taxon_name(@taxon).try(:name)

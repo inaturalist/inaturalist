@@ -353,10 +353,11 @@ else
   Project.where("source_url LIKE 'http://eol.org/collections%'").each do |p|
     if p.source_url =~ /collections\/(#{all_eol_collection_ids.join('|')})$/
       keepers += 1
-    else
-      p.destroy unless opts[:test]
-      puts "Destroyed #{p}, no longer an EOL iNat collection"
-      fatalities += 1
+      p.touch
+    # elsif p.updated_at < 3.months.ago
+    #   p.destroy unless opts[:test]
+    #   puts "Destroyed #{p}, no longer an EOL iNat collection"
+    #   fatalities += 1
     end
   end
 end

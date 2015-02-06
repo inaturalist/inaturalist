@@ -206,7 +206,7 @@
                 :min_value_label_width => 30 } %>
             </div>
           </a>
-          <% for grouper, count in @iconic_taxon_counts -%>
+          <% for grouper, count in @iconic_taxon_counts.sort_by{ |_key, value| -1.0 * value }.to_h -%>
             <% next unless (count && count != 0) %>
             <% if grouper.respond_to?(:common_name) && grouper.common_name %>
               <% grouper_name = grouper.common_name.name rescue 'Unclassified' -%>

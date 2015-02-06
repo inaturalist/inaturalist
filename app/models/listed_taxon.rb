@@ -55,7 +55,7 @@ class ListedTaxon < ActiveRecord::Base
   validates_length_of :description, :maximum => 1000, :allow_blank => true
   
   scope :by_user, lambda {|user| includes(:list).where("lists.user_id = ?", user)}
-                                                                 
+
   scope :order_by, lambda {|order_by|
     case order_by
     when "alphabetical"
@@ -98,37 +98,29 @@ class ListedTaxon < ActiveRecord::Base
   scope :with_occurrence_status_levels_approximating_absent, -> { where("occurrence_status_level IN (10, 20)") }
   scope :with_occurrence_status_levels_approximating_present, -> { where("occurrence_status_level NOT IN (10, 20) OR occurrence_status_level IS NULL") }
 
-  scope :with_threatened_status, lambda{|place_id|
+  scope :with_threatened_status, ->(place_id) {
     joins("INNER JOIN conservation_statuses cs ON cs.taxon_id = listed_taxa.taxon_id").
-    where("cs.iucn >= #{Taxon::IUCN_NEAR_THREATENED} AND (cs.place_id IS NULL OR cs.place_id::text IN (#{place_ancestor_ids_sql(place_id)}))")
-    .select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id, listed_taxa.observations_count) listed_taxa.*")
+    where("cs.iucn >= #{Taxon::IUCN_NEAR_THREATENED} AND (cs.place_id IS NULL OR cs.place_id::text IN (#{place_ancestor_ids_sql(place_id)}))").
+    select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id, listed_taxa.observations_count) listed_taxa.*").
+    order("taxon_ancestor_ids || '/' || listed_taxa.taxon_id, listed_taxa.observations_count")
   }
   scope :with_species, -> { joins(:taxon).where(taxa: { rank_level: 10 }) }
   
   #with taxonomic status (by itself)
-  scope :with_taxonomic_status, lambda{|taxonomic_status| joins("INNER JOIN
-   \"taxa\" \"taxa_listed_taxa\" 
-      ON \"taxa_listed_taxa\".\"id\" = \"listed_taxa\".\"taxon_id\" 
-   AND (
-      taxa_listed_taxa.is_active = '#{taxonomic_status ? 't' : 'f'}' 
-   )")}
+  scope :with_taxonomic_status, ->(taxonomic_status) {
+    joins(:taxon).where(taxa: { is_active: (taxonomic_status ? 't' : 'f') } )
+  }
   #with iconic taxon filter (by itself)
-  scope :filter_by_iconic_taxon, lambda{|iconic_taxon_id| joins("INNER JOIN
-   \"taxa\" \"taxa_listed_taxa\" 
-      ON \"taxa_listed_taxa\".\"id\" = \"listed_taxa\".\"taxon_id\" 
-   AND (
-      taxa_listed_taxa.iconic_taxon_id = #{iconic_taxon_id} 
-   )")}
+  scope :filter_by_iconic_taxon, ->(iconic_taxon_id) {
+    joins(:taxon).where(taxa: { iconic_taxon_id: iconic_taxon_id })
+  }
   #both iconic taxon filter and taxonomic status
-  scope :with_taxonomic_status_and_iconic_taxon, lambda{|taxonomic_status, iconic_taxon_id| joins("INNER JOIN
-   \"taxa\" \"taxa_listed_taxa\" 
-      ON \"taxa_listed_taxa\".\"id\" = \"listed_taxa\".\"taxon_id\" 
-   AND (
-      taxa_listed_taxa.iconic_taxon_id = #{iconic_taxon_id} 
-   AND
-      taxa_listed_taxa.is_active = '#{taxonomic_status ? 't' : 'f'}' 
-   )")}
-
+  scope :with_taxonomic_status_and_iconic_taxon, ->(taxonomic_status, iconic_taxon_id) {
+    joins(:taxon).where(taxa: {
+      is_active: (taxonomic_status ? 't' : 'f'),
+      iconic_taxon_id: iconic_taxon_id }
+    )
+  }
 
   # Queries listed taxa that represent leaves in the taxonomic tree described
   # by the list. So if the list contains class Mammalia, species Homo sapiens,
