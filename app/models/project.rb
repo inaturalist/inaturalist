@@ -67,9 +67,8 @@ class Project < ActiveRecord::Base
   scope :in_place, lambda{|place|
     place = Place.find(place) unless place.is_a?(Place) rescue nil
     if place
-      conditions = place.descendant_conditions
-      conditions[0] += " OR places.id = ?"
-      conditions << place
+      conditions = place.descendant_conditions.to_sql
+      conditions += " OR places.id = #{place.id}"
       joins(:place).where(conditions)
     else
       where("1 = 2")

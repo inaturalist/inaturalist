@@ -147,8 +147,9 @@ module ApplicationHelper
     options[:class] ||= ''
     options[:class] += ' togglelink'
     options[:rel] ||= target_selector
-    link_to link_text, "#",
-      options.merge(:onclick => "$('#{target_selector}').toggle(); $(this).toggleClass('open')")
+    link_to_function link_text,
+      "$('#{target_selector}').toggle(); $(this).toggleClass('open')",
+      options
   end
 
   def link_to_toggle_box(txt, options = {}, &block)

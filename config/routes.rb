@@ -265,7 +265,11 @@ Rails.application.routes.draw do
   end
   resources :check_lists
   resources :project_lists, :controller => :lists
-  resources :listed_taxa
+  resources :listed_taxa do
+    collection do
+      post :refresh_observationcounts
+    end
+  end
   get 'lists/:login' => 'lists#by_login', :as => :lists_by_login, :constraints => { :login => simplified_login_regex }
   get 'lists/:id/compare' => 'lists#compare', :as => :compare_lists, :constraints => { :id => /\d+([\w\-\%]*)/ }
   delete 'lists/:id/remove_taxon/:taxon_id' => 'lists#remove_taxon', :as => :list_remove_taxon, :constraints => { :id => /\d+([\w\-\%]*)/ }
@@ -314,7 +318,7 @@ Rails.application.routes.draw do
   get 'taxa/:id/photos' => 'taxa#photos', :as => :taxon_photos
   get 'taxa/:id/edit_photos' => 'taxa#edit_photos', :as => :edit_taxon_photos
   put 'taxa/:id/update_colors' => 'taxa#update_colors', :as => :update_taxon_colors
-  get 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places
+  match 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places, :via => [ :get, :post ]
   get 'taxa/flickr_tagger' => 'taxa#flickr_tagger', :as => :flickr_tagger
   get 'taxa/flickr_tagger.:format' => 'taxa#flickr_tagger', :as => :formatted_flickr_tagger
   post 'taxa/tag_flickr_photos'

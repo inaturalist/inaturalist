@@ -1,4 +1,5 @@
 <%-
+  establishment_field ||= nil
   listed_taxon ||= establishment_field || @primary_listed_taxon || @listed_taxon
   list ||= listed_taxon.list || @list
 -%>

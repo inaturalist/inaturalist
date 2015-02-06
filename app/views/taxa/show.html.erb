@@ -298,7 +298,7 @@
         <div id="edit_colors">
           <%= link_to_toggle t(:edit_colors), "#edit_colors_dialog" %>
           <div id="edit_colors_dialog" style="display: none">
-            <%= form_for @taxon,
+            <%= form_for @taxon, :method => :put,
                 :url => {:action => 'update_colors', :id => @taxon, :format => 'json'},
                 :remote => true do |f| %>
               <% for color in Color.all %>

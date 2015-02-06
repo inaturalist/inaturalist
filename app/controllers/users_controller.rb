@@ -412,8 +412,8 @@ class UsersController < ApplicationController
   
   def curation
     if params[:id].blank?
-      @users = User.paginate(:page => params[:page], :order => "id desc")
-      @comment_counts_by_user_id = Comment.count(:group => :user_id, :conditions => ["user_id IN (?)", @users])
+      @users = User.paginate(page: params[:page]).order(id: :desc)
+      @comment_counts_by_user_id = Comment.where(user_id: @users).group(:user_id).count
     else
       @display_user = User.find_by_id(params[:id].to_i)
       @display_user ||= User.find_by_login(params[:id])

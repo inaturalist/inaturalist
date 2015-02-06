@@ -18,8 +18,9 @@ class FlagsController < ApplicationController
       # The default acts_as_flaggable index route
       @object = @model.find(params[@param])
       @object = @object.becomes(Photo) if @object.is_a?(Photo)
-      @flags = @object.flags.paginate(:page => params[:page],
-        :include => [:user, :resolver], :order => "id desc")
+      @flags = @object.flags.includes(:user, :resolver).
+        paginate(page: params[:page]).
+        order(id: :desc)
       @unresolved = @flags.select {|f| not f.resolved }
       @resolved = @flags.select {|f| f.resolved }
     else

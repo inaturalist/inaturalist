@@ -1,4 +1,5 @@
-<%- list ||= add_to_list || @list -%>
+<%- add_to_list ||= nil
+    list ||= add_to_list || @list -%>
 <%- species_guess ||= '' -%>
     <% lt = ListedTaxon.new(:list => list) %>
     <%= form_for(lt, 

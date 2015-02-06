@@ -922,9 +922,9 @@ class ObservationsController < ApplicationController
 ## Custom actions ############################################################
 
   def curation
-    @flags = Flag.paginate(:page => params[:page], 
-      :include => :user,
-      :conditions => "resolved = false AND flaggable_type = 'Observation'")
+    @flags = Flag.where(resolved: false, flaggable_type: "Observation").
+      includes(:user).
+      paginate(page: params[:page])
   end
 
   def new_batch
