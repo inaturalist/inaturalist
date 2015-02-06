@@ -189,7 +189,7 @@ class GuideTaxon < ActiveRecord::Base
     if map_data_object
       gr = GuideRange.new_from_eol_data_object(map_data_object)
       unless guide_ranges.where(:source_url => gr.source_url).exists?
-        self.guide_ranges[self.guide_ranges.size] = gr
+        self.guide_ranges << gr
       end
     end
   end
@@ -232,7 +232,7 @@ class GuideTaxon < ActiveRecord::Base
       gs.position = (max_pos += 1)
       if gs && !guide_sections.where(:source_url => gs.source_url).exists?
         gs.modified_on_create = false
-        self.guide_sections[self.guide_sections.size] = gs
+        self.guide_sections << gs
       end
     end
   end

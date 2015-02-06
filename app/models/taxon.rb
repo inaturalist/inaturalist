@@ -857,8 +857,8 @@ class Taxon < ActiveRecord::Base
   
   def merge(reject)
     raise "Can't merge a taxon with itself" if reject.id == self.id
-    reject_taxon_names = reject.taxon_names.all
-    reject_taxon_scheme_taxa = reject.taxon_scheme_taxa.all
+    reject_taxon_names = reject.taxon_names.all.to_a
+    reject_taxon_scheme_taxa = reject.taxon_scheme_taxa.all.to_a
     # otherwise it will screw up merge_has_many_associations
     TaxonAncestor.where(:taxon_id => reject.id).delete_all
     TaxonAncestor.where(:ancestor_taxon_id => reject.id).delete_all

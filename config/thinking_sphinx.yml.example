@@ -6,7 +6,6 @@ all: &all
   morphology: stem_en
 
   # port where sphinx is running
-  mysql41: 9999
   use_64_bit: true
 
   # The following two settings are to enable wildcards and prefix indexing, 
@@ -901,9 +900,12 @@ all: &all
 
 development:
   <<: *all
+  mysql41: 9997
 
 test:
   <<: *all
+  mysql41: 9998
 
 production:
   <<: *all
+  mysql41: 9999

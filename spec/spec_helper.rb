@@ -51,7 +51,7 @@ RSpec.configure do |config|
     [PlaceGeometry, Observation, TaxonRange].each do |klass|
       begin
         Rails.logger.debug "[DEBUG] dropping enforce_srid_geom on place_geometries"
-        ActiveRecord::Base.connection.execute("ALTER TABLE #{klass.table_name} DROP CONSTRAINT enforce_srid_geom")
+        ActiveRecord::Base.connection.execute("ALTER TABLE #{klass.table_name} DROP CONSTRAINT IF EXISTS enforce_srid_geom")
       rescue ActiveRecord::StatementInvalid 
         # already dropped
       end

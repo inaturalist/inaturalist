@@ -786,18 +786,8 @@ describe Taxon, "moving" do
     o.reload
     o.taxon.should eq fam
     Delayed::Worker.new.work_off
-    # [fam, subfam, gen, sp].each do |t|
-    #   t.reload
-    #   puts "before #{t.rank}: #{t.ancestry}, #{t.id}"
-    # end
     without_delay do
-      # puts "moving #{gen} to #{subfam}"
       gen.update_attributes(:parent => subfam)
-      # [fam, subfam, gen, sp].each do |t|
-      #   t.reload
-      #   puts "after #{t.rank}: #{t.ancestry}, #{t.id}"
-      # end
-      # Delayed::Worker.new.work_off
     end
     o.reload
     o.taxon.should eq subfam
