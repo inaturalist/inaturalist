@@ -4,11 +4,11 @@ Paperclip::Storage::Filesystem.stubbed_for_tests = false
 describe TaxonRange, "create_kml_attachment" do
   it "should create an kml attachment from geometry" do
     tr = make_taxon_range_with_geom
-    tr.range.should be_blank
+    expect(tr.range).to be_blank
     tr.create_kml_attachment
-    tr.range.should_not be_blank
+    expect(tr.range).not_to be_blank
     kml = open(tr.range.path).read
-    kml.should =~ /<kml /
+    expect(kml).to be =~ /<kml /
   end
 end
 
@@ -40,10 +40,10 @@ describe TaxonRange, "create_geom_from_kml_attachment" do
     f.write(kml)
     f.rewind
     tr = TaxonRange.make!(:range => f)
-    tr.range.should_not be_blank
-    tr.geom.should be_blank
+    expect(tr.range).not_to be_blank
+    expect(tr.geom).to be_blank
     tr.create_geom_from_kml_attachment
-    tr.geom.should_not be_blank
-    TaxonRange.where("ST_Contains(geom, ST_Point(0.5,0.5)) AND id = ?", tr).should_not be_blank
+    expect(tr.geom).not_to be_blank
+    expect(TaxonRange.where("ST_Contains(geom, ST_Point(0.5,0.5)) AND id = ?", tr)).not_to be_blank
   end
 end

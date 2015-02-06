@@ -6,7 +6,6 @@ gem 'apipie-rails'
 gem 'aasm'
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
-# gem 'activerecord-postgis-adapter', :git => "git://github.com/rgeo/activerecord-postgis-adapter.git", :branch => "activerecord42"
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'addressable', :require => 'addressable/uri'
 gem 'airbrake'
@@ -63,7 +62,6 @@ gem 'rack-google-analytics', :git => 'git://github.com/kueda/rack-google-analyti
 gem 'rails-observers'
 gem 'rakismet'
 gem 'rest-client', :require => 'rest_client'
-gem 'rgeo'
 gem 'right_aws', :git => 'git://github.com/rightscale/right_aws.git'
 gem 'right_http_connection'
 gem 'rinku', :require => 'rails_rinku'
@@ -73,7 +71,6 @@ gem 'savon'   #allow to consume soap services with WSDL
 gem 'sass', '= 3.2.5'
 gem 'sass-rails'
 gem 'soundcloud'
-# gem 'spatial_adapter', :git => 'git://github.com/kueda/spatial_adapter.git' # until fragility updates the gemspec
 gem 'mysql2', '~> 0.3.17'
 gem 'thinking-sphinx', '~> 3.1'
 gem 'translate-rails3', :require => 'translate', :git => 'git://github.com/JayTeeSF/translate.git'
@@ -93,6 +90,9 @@ gem 'yui-compressor'
 # 21066477e03a88 into a fork of our own...
 gem 'xmp', :git => 'git://github.com/jkraemer/xmp.git'
 gem 'statsd-ruby', :require => 'statsd'
+
+gem 'rgeo'
+gem 'activerecord-postgis-adapter', :git => 'git://github.com/kueda/activerecord-postgis-adapter.git', :branch => 'activerecord42'
 
 group :production do
   gem 'newrelic_rpm'

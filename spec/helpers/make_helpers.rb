@@ -100,7 +100,7 @@ module MakeHelpers
 
   def make_taxon_range_with_geom(options = {})
     wkt = options.delete(:wkt) || options.delete(:ewkt) || "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
-    tr = TaxonRange.make!(options.merge(:geom => GeoRuby::SimpleFeatures::Geometry.from_ewkt(wkt)))
+    tr = TaxonRange.make!(options.merge(:geom => wkt))
     tr
   end
 

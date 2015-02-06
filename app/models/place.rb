@@ -424,6 +424,7 @@ class Place < ActiveRecord::Base
   
   # Update the associated place_geometry or create a new one
   def save_geom(geom, other_attrs = {})
+    geom = RGeo::WKRep::WKBParser.new.parse(geom.as_wkb) if geom.is_a?(GeoRuby::SimpleFeatures::Geometry)
     other_attrs.merge!(:geom => geom, :place => self)
     begin
       if place_geometry
@@ -442,9 +443,9 @@ class Place < ActiveRecord::Base
   def append_geom(geom, other_attrs = {})
     new_geom = geom
     self.place_geometry.reload
-    if self.place_geometry
-      new_geom = GeoRuby::SimpleFeatures::MultiPolygon.from_geometries(
-        self.place_geometry.geom.geometries + geom.geometries)
+    if place_geometry
+      f = place_geometry.geom.factory
+      new_geom = f.multi_polygon([place_geometry.geom.union(geom)])
     end
     self.save_geom(new_geom, other_attrs)
   end
@@ -452,12 +453,12 @@ class Place < ActiveRecord::Base
   # Update this place's bbox from a geometry.  Note this skips validations, 
   # but explicitly recalculates the bbox area
   def update_bbox_from_geom(geom)
-    self.longitude = geom.envelope.center.x
-    self.latitude = geom.envelope.center.y
+    self.longitude = geom.centroid.x
+    self.latitude = geom.centroid.y
     self.swlat = geom.envelope.lower_corner.y
     self.nelat = geom.envelope.upper_corner.y
     if geom.spans_dateline?
-      self.longitude = geom.envelope.center.x + 180*(geom.envelope.center.x > 0 ? -1 : 1)
+      self.longitude = geom.envelope.centroid.x + 180*(geom.envelope.centroid.x > 0 ? -1 : 1)
       self.swlng = geom.points.map(&:x).select{|x| x > 0}.min
       self.nelng = geom.points.map(&:x).select{|x| x < 0}.max
     else

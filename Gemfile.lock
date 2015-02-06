@@ -33,6 +33,15 @@ GIT
       paperclip (>= 3.3)
 
 GIT
+  remote: git://github.com/kueda/activerecord-postgis-adapter.git
+  revision: 4d7c4c91720e4824582fb3b1b271ba85ac06a391
+  branch: activerecord42
+  specs:
+    activerecord-postgis-adapter (3.0.0.beta1)
+      activerecord (~> 4.2)
+      rgeo-activerecord (~> 2.0)
+
+GIT
   remote: git://github.com/kueda/flickraw.git
   revision: 35cc21b0f1b6b1af3d10b19d53ea46dd2e5316ea
   branch: ssl-cert
@@ -407,6 +416,9 @@ GEM
       netrc (~> 0.7)
     retriable (1.4.1)
     rgeo (0.3.20)
+    rgeo-activerecord (2.0.0)
+      activerecord (~> 4.2)
+      rgeo (~> 0.3)
     riddle (1.5.11)
     right_http_connection (1.5.0)
     rinku (1.7.3)
@@ -545,6 +557,7 @@ DEPENDENCIES
   aasm
   actionpack-action_caching
   actionpack-page_caching
+  activerecord-postgis-adapter!
   acts-as-taggable-on (~> 3.4)
   addressable
   airbrake

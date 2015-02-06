@@ -103,7 +103,7 @@ describe Observation, "creation" do
     @observation.observed_on_string = '2011-12-23T11:52:06-0500'
     @observation.save
     zone = ActiveSupport::TimeZone[@observation.time_zone]
-    zone.should_not be_blank
+    expect(zone).not_to be_blank
     expect(zone.formatted_offset).to eq "-05:00"
   end
 
@@ -130,13 +130,13 @@ describe Observation, "creation" do
     @observation.observed_on_string = "this is not a date"
     expect {
       @observation.save
-    }.to_not raise_error
+    }.not_to raise_error
   end
   
   it "should have an identification if taxon is known" do
     @observation.save
     @observation.reload
-    @observation.identifications.empty?.should_not be(true)
+    expect(@observation.identifications.empty?).not_to be(true)
   end
   
   it "should not have an identification if taxon is not known" do
@@ -154,7 +154,7 @@ describe Observation, "creation" do
     stamp = Time.now
     Observation.make!(:taxon => Taxon.make!)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
-    expect(jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}).to_not be_blank
+    expect(jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}).not_to be_blank
   end
   
   it "should properly parse relative datetimes like '2 days ago'" do
@@ -187,13 +187,13 @@ describe Observation, "creation" do
   it "should parse dates that contain commas" do
     @observation.observed_on_string = "April 22, 2008"
     @observation.save
-    expect(@observation.observed_on).to_not be(nil)
+    expect(@observation.observed_on).not_to be(nil)
   end
   
   it "should NOT parse a date like '2004'" do
     @observation.observed_on_string = "2004"
     @observation.save
-    expect(@observation).to_not be_valid
+    expect(@observation).not_to be_valid
   end
   
   it "should default to the user's time zone" do
@@ -205,7 +205,7 @@ describe Observation, "creation" do
     @observation.save
     expect(@observation).to be_valid
     @observation.reload
-    expect(@observation.time_zone).to_not eq @observation.user.time_zone
+    expect(@observation.time_zone).not_to eq @observation.user.time_zone
     expect(@observation.time_zone).to eq'Eastern Time (US & Canada)'
   end
   
@@ -346,7 +346,7 @@ describe Observation, "updating" do
     old_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
     o.update_attributes(:taxon => t2)
     o.reload
-    Identification.find_by_id(old_owners_ident.id).should_not be_blank
+    expect(Identification.find_by_id(old_owners_ident.id)).not_to be_blank
   end
 
   it "should not destroy the owner's old identification if the taxon has changed unless it's the owner's only identification" do
@@ -355,61 +355,48 @@ describe Observation, "updating" do
     old_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
     o.update_attributes(:taxon => nil)
     o.reload
-    Identification.find_by_id(old_owners_ident.id).should be_blank
+    expect(Identification.find_by_id(old_owners_ident.id)).to be_blank
   end
-
-  # # Handled by DJ
-  # it "should add the taxon to the user's life list if not there already" do
-  #   psre = Taxon.find_by_name("Pseudacris regilla")
-  #   @observation.taxon = psre
-  #   @observation.user.life_list.taxa.map(&:id).should include(@observation.taxon_id_was)
-  #   @observation.user.life_list.taxa.should_not include(@observation.taxon)
-  #   
-  #   @observation.save
-  #   @observation.reload
-  # 
-  #   @observation.user.life_list.taxa.should include(@observation.taxon)
-  # end
   
   it "should properly set date and time" do
     @observation.save
     @observation.observed_on_string = 'March 16 2007 at 2pm'
     @observation.save
-    @observation.observed_on.should == Date.parse('2007-03-16')
-    @observation.time_observed_at_in_zone.hour.should eq(14)
+    expect(@observation.observed_on).to eq Date.parse('2007-03-16')
+    expect(@observation.time_observed_at_in_zone.hour).to eq(14)
   end
   
   it "should not save a time if one wasn't specified" do
     @observation.update_attributes(:observed_on_string => "April 2 2008")
     @observation.save
-    @observation.time_observed_at.should be_blank
+    expect(@observation.time_observed_at).to be_blank
   end
   
   it "should clear date if observed_on_string blank" do
-    @observation.observed_on.should_not be_blank
+    expect(@observation.observed_on).not_to be_blank
     @observation.update_attributes(:observed_on_string => "")
-    @observation.observed_on.should be_blank
+    expect(@observation.observed_on).to be_blank
   end
   
   it "should set an iconic taxon if the taxon was set" do
     obs = Observation.make!
-    obs.iconic_taxon.should be_blank
+    expect(obs.iconic_taxon).to be_blank
     taxon = Taxon.make!(:iconic_taxon => Taxon.make!(:is_iconic => true))
-    taxon.iconic_taxon.should_not be_blank
+    expect(taxon.iconic_taxon).not_to be_blank
     obs.taxon = taxon
     obs.save!
-    obs.iconic_taxon.name.should == taxon.iconic_taxon.name
+    expect(obs.iconic_taxon.name).to eq taxon.iconic_taxon.name
   end
   
   it "should remove an iconic taxon if the taxon was removed" do
     taxon = Taxon.make!(:iconic_taxon => Taxon.make!(:is_iconic => true))
-    taxon.iconic_taxon.should_not be_blank
+    expect(taxon.iconic_taxon).not_to be_blank
     obs = Observation.make!(:taxon => taxon)
-    obs.iconic_taxon.should_not be_blank
+    expect(obs.iconic_taxon).not_to be_blank
     obs.taxon = nil
     obs.save!
     obs.reload
-    obs.iconic_taxon.should be_blank
+    expect(obs.iconic_taxon).to be_blank
   end
 
   it "should queue refresh jobs for associated project lists if the taxon changed" do
@@ -421,7 +408,7 @@ describe Observation, "updating" do
     o.update_attributes(:taxon => Taxon.make!)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     # puts jobs.map(&:handler).inspect
-    jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.should_not be_blank
+    expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}).not_to be_blank
   end
   
   it "should queue refresh job for check lists if the coordinates changed" do
@@ -431,7 +418,7 @@ describe Observation, "updating" do
     o.update_attributes(:latitude => o.latitude + 1)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
-    jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.should_not be_blank
+    expect(jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}).not_to be_blank
   end
 
   it "should only queue one job to refresh life lists if taxon changed" do
@@ -442,7 +429,7 @@ describe Observation, "updating" do
       o.update_attributes(:taxon => Taxon.make!)
     end
     jobs = Delayed::Job.where("created_at >= ?", stamp)
-    jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size.should eq(1)
+    expect(jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size).to eq(1)
   end
 
   it "should only queue one job to refresh project lists if taxon changed" do
@@ -454,7 +441,7 @@ describe Observation, "updating" do
       o.update_attributes(:taxon => Taxon.make!)
     end
     jobs = Delayed::Job.where("created_at >= ?", stamp)
-    jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.size.should eq(1)
+    expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.size).to eq(1)
   end
 
   it "should only queue one check list refresh job" do
@@ -466,7 +453,7 @@ describe Observation, "updating" do
     end
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
-    jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.size.should eq(1)
+    expect(jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.size).to eq(1)
   end
   
   it "should queue refresh job for check lists if the taxon changed" do
@@ -477,7 +464,7 @@ describe Observation, "updating" do
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     pattern = /CheckList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
-    job.should_not be_blank
+    expect(job).not_to be_blank
     # puts job.handler.inspect
   end
   
@@ -490,26 +477,26 @@ describe Observation, "updating" do
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     pattern = /ProjectList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
-    job.should_not be_blank
+    expect(job).not_to be_blank
     # puts job.handler.inspect
   end
   
   it "should not allow impossible coordinates" do
     o = Observation.make!
     o.update_attributes(:latitude => 100)
-    o.should_not be_valid
+    expect(o).not_to be_valid
     
     o = Observation.make!
     o.update_attributes(:longitude => 200)
-    o.should_not be_valid
+    expect(o).not_to be_valid
     
     o = Observation.make!
     o.update_attributes(:latitude => -100)
-    o.should_not be_valid
+    expect(o).not_to be_valid
     
     o = Observation.make!
     o.update_attributes(:longitude => -200)
-    o.should_not be_valid
+    expect(o).not_to be_valid
   end
   
   describe "quality_grade" do
@@ -529,24 +516,24 @@ describe Observation, "updating" do
       i = Identification.make!(:observation => o, :taxon => o.taxon)
       o.photos << LocalPhoto.make!(:user => o.user)
       o.reload
-      o.quality_grade.should == Observation::CASUAL_GRADE
+      expect(o.quality_grade).to eq Observation::CASUAL_GRADE
       o.update_attributes(:observed_on_string => "yesterday")
-      o.quality_grade.should == Observation::RESEARCH_GRADE
+      expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
     end
     
     it "should become casual when taxon changes" do
       o = make_research_grade_observation
-      o.quality_grade.should == Observation::RESEARCH_GRADE
+      expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
       new_taxon = Taxon.make!
       o.update_attributes(:taxon => new_taxon)
-      o.quality_grade.should == Observation::CASUAL_GRADE
+      expect(o.quality_grade).to eq Observation::CASUAL_GRADE
     end
     
     it "should become casual when date removed" do
       o = make_research_grade_observation
-      o.quality_grade.should == Observation::RESEARCH_GRADE
+      expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
       o.update_attributes(:observed_on_string => "")
-      o.quality_grade.should == Observation::CASUAL_GRADE
+      expect(o.quality_grade).to eq Observation::CASUAL_GRADE
     end
 
     it "should be research when community taxon is obs taxon and owner agrees" do
@@ -559,17 +546,17 @@ describe Observation, "updating" do
       i2 = Identification.make!(:observation => o, :taxon => child)
       i3 = Identification.make!(:observation => o, :taxon => child, :user => o.user)
       o.reload
-      o.community_taxon.should eq child
-      o.taxon.should eq child
-      o.should be_community_supported_id
-      o.should be_research_grade
+      expect(o.community_taxon).to eq child
+      expect(o.taxon).to eq child
+      expect(o).to be_community_supported_id
+      expect(o).to be_research_grade
     end
 
     it "should be casual if no identifications" do
       o = make_research_grade_observation
       o.identifications.destroy_all
       o.reload
-      o.should be_casual_grade
+      expect(o).to be_casual_grade
     end
 
     it "should not be research if the community taxon is Life" do
@@ -580,22 +567,22 @@ describe Observation, "updating" do
       i1 = Identification.make!(:observation => o, :taxon => @Animalia)
       i2 = Identification.make!(:observation => o, :taxon => @Plantae)
       o.reload
-      o.community_taxon.should eq @Life
-      o.should be_casual_grade
+      expect(o.community_taxon).to eq @Life
+      expect(o).to be_casual_grade
     end
 
     it "should not be research if flagged" do
       o = make_research_grade_observation
       Flag.make!(:flaggable => o, :flag => Flag::SPAM)
       o.reload
-      o.should be_casual_grade
+      expect(o).to be_casual_grade
     end
 
     it "should not be research if photos flagged" do
       o = make_research_grade_observation
       Flag.make!(:flaggable => o.photos.first, :flag => Flag::COPYRIGHT_INFRINGEMENT)
       o.reload
-      o.should be_casual_grade
+      expect(o).to be_casual_grade
     end
   end
   
@@ -608,9 +595,9 @@ describe Observation, "updating" do
       t = Taxon.make!(:rank => Taxon::SPECIES)
       cs = ConservationStatus.make!(:place => p, :taxon => t)
       o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
-      o.should_not be_coordinates_obscured
+      expect(o).not_to be_coordinates_obscured
       o.update_attributes(:taxon => t)
-      o.should be_coordinates_obscured
+      expect(o).to be_coordinates_obscured
     end
 
     it "should not obscure coordinates if taxon has a conservation status in another place" do
@@ -618,9 +605,9 @@ describe Observation, "updating" do
       t = Taxon.make!(:rank => Taxon::SPECIES)
       cs = ConservationStatus.make!(:place => p, :taxon => t)
       o = Observation.make!(:latitude => -1*p.latitude, :longitude => p.longitude)
-      o.should_not be_coordinates_obscured
+      expect(o).not_to be_coordinates_obscured
       o.update_attributes(:taxon => t)
-      o.should_not be_coordinates_obscured
+      expect(o).not_to be_coordinates_obscured
     end
 
     it "should obscure coordinates if locally threatened but globally secure" do
@@ -629,19 +616,19 @@ describe Observation, "updating" do
       local_cs = ConservationStatus.make!(:place => p, :taxon => t)
       global_cs = ConservationStatus.make!(:taxon => t, :status => "LC", :iucn => Taxon::IUCN_LEAST_CONCERN, :geoprivacy => "open")
       o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
-      o.should_not be_coordinates_obscured
+      expect(o).not_to be_coordinates_obscured
       o.update_attributes(:taxon => t)
-      o.should be_coordinates_obscured
+      expect(o).to be_coordinates_obscured
     end
   end
 
   it "should increment the taxon's counter cache" do
     o = Observation.make!
     t = Taxon.make!
-    t.observations_count.should eq(0)
+    expect(t.observations_count).to eq(0)
     o = without_delay {o.update_attributes(:taxon => t)}
     t.reload
-    t.observations_count.should eq(1)
+    expect(t.observations_count).to eq(1)
   end
   
   it "should increment the taxon's ancestors' counter caches" do
@@ -658,10 +645,10 @@ describe Observation, "updating" do
     t = Taxon.make!
     o = without_delay {Observation.make!(:taxon => t)}
     t.reload
-    t.observations_count.should eq(1)
+    expect(t.observations_count).to eq(1)
     o = without_delay {o.update_attributes(:taxon => nil)}
     t.reload
-    t.observations_count.should eq(0)
+    expect(t.observations_count).to eq(0)
   end
   
   it "should decrement the taxon's ancestors' counter caches" do
@@ -669,10 +656,10 @@ describe Observation, "updating" do
     t = Taxon.make!(:parent => p)
     o = without_delay {Observation.make!(:taxon => t)}
     p.reload
-    p.observations_count.should eq(1)
+    expect(p.observations_count).to eq(1)
     o = without_delay {o.update_attributes(:taxon => nil)}
     p.reload
-    p.observations_count.should eq(0)
+    expect(p.observations_count).to eq(0)
   end
 end
 
@@ -684,7 +671,7 @@ describe Observation, "destruction" do
     old_count = user.observations_count
     @observation.destroy
     user.reload
-    user.observations_count.should == old_count - 1
+    expect(user.observations_count).to eq old_count - 1
   end
   
   it "should queue a DJ job to refresh lists" do
@@ -692,7 +679,7 @@ describe Observation, "destruction" do
     stamp = Time.now
     Observation.make!(:taxon => Taxon.make!)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
-    jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}.should_not be_blank
+    expect(jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}).not_to be_blank
   end
 
   it "should delete associated updates" do
@@ -702,26 +689,26 @@ describe Observation, "destruction" do
     o = Observation.make(:user => user)
     without_delay { o.save! }
     update = Update.where(:subscriber_id => subscriber).last
-    update.should_not be_blank
+    expect(update).not_to be_blank
     o.destroy
-    Update.find_by_id(update.id).should be_blank
+    expect(Update.find_by_id(update.id)).to be_blank
   end
 
   it "should delete associated project observations" do
     po = make_project_observation
     o = po.observation
     o.destroy
-    ProjectObservation.find_by_id(po.id).should be_blank
+    expect(ProjectObservation.find_by_id(po.id)).to be_blank
   end
 
   it "should decrement the taxon's counter cache" do
     t = Taxon.make!
     o = without_delay{Observation.make!(:taxon => t)}
     t.reload
-    t.observations_count.should eq(1)
+    expect(t.observations_count).to eq(1)
     o = without_delay {o.destroy}
     t.reload
-    t.observations_count.should eq(0)
+    expect(t.observations_count).to eq(0)
   end
   
   it "should decrement the taxon's ancestors' counter caches" do
@@ -729,18 +716,18 @@ describe Observation, "destruction" do
     t = Taxon.make!(:parent => p)
     o = without_delay {Observation.make!(:taxon => t)}
     p.reload
-    p.observations_count.should eq(1)
+    expect(p.observations_count).to eq(1)
     o = without_delay {o.destroy}
     p.reload
-    p.observations_count.should eq(0)
+    expect(p.observations_count).to eq(0)
   end
 
   it "should create a deleted observation" do
     o = Observation.make!
     o.destroy
     deleted_obs = DeletedObservation.where(:observation_id => o.id).first
-    deleted_obs.should_not be_blank
-    deleted_obs.user_id.should eq o.user_id
+    expect(deleted_obs).not_to be_blank
+    expect(deleted_obs.user_id).to eq o.user_id
   end
 end
 
@@ -754,7 +741,7 @@ describe Observation, "species_guess parsing" do
     @observation.taxon = nil
     @observation.species_guess = taxon.name
     @observation.save
-    @observation.taxon_id.should == taxon.id
+    expect(@observation.taxon_id).to eq taxon.id
   end
 
   it "should choose a taxon from species_guess if exact matches form a subtree" do
@@ -766,7 +753,7 @@ describe Observation, "species_guess parsing" do
     @observation.taxon = nil
     @observation.species_guess = common_name
     @observation.save
-    @observation.taxon_id.should == taxon.id
+    expect(@observation.taxon_id).to eq taxon.id
   end
 
   it "should not choose a taxon from species_guess if exact matches don't form a subtree" do
@@ -777,13 +764,13 @@ describe Observation, "species_guess parsing" do
     TaxonName.make!(:taxon => taxon, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
     TaxonName.make!(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
     TaxonName.make!(:taxon => taxon2, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-    child.ancestors.should include(taxon)
-    child.ancestors.should_not include(taxon2)
-    Taxon.joins(:taxon_names).where("taxon_names.name = ?", common_name).count.should eq(3)
+    expect(child.ancestors).to include(taxon)
+    expect(child.ancestors).not_to include(taxon2)
+    expect(Taxon.joins(:taxon_names).where("taxon_names.name = ?", common_name).count).to eq(3)
     @observation.taxon = nil
     @observation.species_guess = common_name
     @observation.save
-    @observation.taxon_id.should be_blank
+    expect(@observation.taxon_id).to be_blank
   end
 
   it "should choose a taxon from species_guess if exact matches form a subtree regardless of case" do
@@ -795,14 +782,14 @@ describe Observation, "species_guess parsing" do
     @observation.taxon = nil
     @observation.species_guess = common_name
     @observation.save
-    @observation.taxon_id.should == taxon.id
+    expect(@observation.taxon_id).to eq taxon.id
   end
   
   it "should not make a guess for problematic names" do
     Taxon::PROBLEM_NAMES.each do |name|
       t = Taxon.make!(:name => name.capitalize)
       o = Observation.make!(:species_guess => name)
-      o.taxon_id.should_not == t.id
+      expect(o.taxon_id).not_to eq t.id
     end
   end
   
@@ -810,35 +797,35 @@ describe Observation, "species_guess parsing" do
     name = "Northern Pygmy Owl (Glaucidium gnoma)"
     t = Taxon.make!(:name => "Glaucidium gnoma")
     o = Observation.make!(:species_guess => name)
-    o.taxon_id.should == t.id
+    expect(o.taxon_id).to eq t.id
   end
   
   it "should choose a taxon from blah sp" do
     name = "Clarkia sp"
     t = Taxon.make!(:name => "Clarkia")
     o = Observation.make!(:species_guess => name)
-    o.taxon_id.should == t.id
+    expect(o.taxon_id).to eq t.id
     
     name = "Clarkia sp."
     o = Observation.make!(:species_guess => name)
-    o.taxon_id.should == t.id
+    expect(o.taxon_id).to eq t.id
   end
   
   it "should choose a taxon from blah ssp" do
     name = "Clarkia ssp"
     t = Taxon.make!(:name => "Clarkia")
     o = Observation.make!(:species_guess => name)
-    o.taxon_id.should == t.id
+    expect(o.taxon_id).to eq t.id
     
     name = "Clarkia ssp."
     o = Observation.make!(:species_guess => name)
-    o.taxon_id.should == t.id
+    expect(o.taxon_id).to eq t.id
   end
 
   it "should not make a guess if ends in a question mark" do
     t = Taxon.make!(:name => "Foo bar")
     o = Observation.make!(:species_guess => "#{t.name}?")
-    o.taxon.should be_blank
+    expect(o.taxon).to be_blank
   end
 end
 
@@ -909,64 +896,64 @@ describe Observation, "named scopes" do
   
   it "should find observations in a bounding box" do
     obs = Observation.in_bounding_box(20,20,30,30)
-    obs.should include(@pos)
-    obs.should_not include(@neg)
+    expect(obs).to include(@pos)
+    expect(obs).not_to include(@neg)
   end
 
   it "should find observations in a bounding box in a year" do
     pos = Observation.make!(:latitude => @pos.latitude, :longitude => @pos.longitude, :observed_on_string => "2010-01-01")
     neg = Observation.make!(:latitude => @pos.latitude, :longitude => @pos.longitude, :observed_on_string => "2011-01-01")
     observations = Observation.in_bounding_box(20,20,30,30).on("2010")
-    observations.map(&:id).should include(pos.id)
-    observations.map(&:id).should_not include(neg.id)
+    expect(observations.map(&:id)).to include(pos.id)
+    expect(observations.map(&:id)).not_to include(neg.id)
   end
 
   it "should find observations in a bounding box spanning the date line" do
     pos = Observation.make!(:latitude => 0, :longitude => 179)
     neg = Observation.make!(:latitude => 0, :longitude => 170)
     observations = Observation.in_bounding_box(-1,178,1,-178)
-    observations.map(&:id).should include(pos.id)
-    observations.map(&:id).should_not include(neg.id)
+    expect(observations.map(&:id)).to include(pos.id)
+    expect(observations.map(&:id)).not_to include(neg.id)
   end
   
   it "should find observations using the shorter box method" do
     obs = Observation.near_point(20, 20).all
-    obs.should include(@pos)
-    obs.should_not include(@neg)
+    expect(obs).to include(@pos)
+    expect(obs).not_to include(@neg)
   end
   
   it "should find observations with latitude and longitude" do
     obs = Observation.has_geo()
-    obs.should include(@pos, @neg)
-    obs.should_not include(@between)
+    expect(obs).to include(@pos, @neg)
+    expect(obs).not_to include(@between)
   end
   
   it "should find observations requesting identification" do 
     obs = Observation.has_id_please
-    obs.should include(@pos)
-    obs.should_not include(@neg)
+    expect(obs).to include(@pos)
+    expect(obs).not_to include(@neg)
   end
   
   it "should find observations with photos" do
     ObservationPhoto.make!(:observation => @pos)
     obs = Observation.has_photos.all
-    obs.should include(@pos)
-    obs.should_not include(@neg)
+    expect(obs).to include(@pos)
+    expect(obs).not_to include(@neg)
   end
   
   it "should find observations observed after a certain time" do
     @after_formats.each do |format|
       obs = Observation.observed_after(format)
-      obs.should include(@neg, @between)
-      obs.should_not include(@pos)
+      expect(obs).to include(@neg, @between)
+      expect(obs).not_to include(@pos)
     end
   end
   
   it "should find observations observed before a specific time" do
     @before_formats.each do |format|
       obs = Observation.observed_before(format)
-      obs.should include(@pos, @between)
-      obs.should_not include(@neg)
+      expect(obs).to include(@pos, @between)
+      expect(obs).not_to include(@neg)
     end
   end
   
@@ -974,8 +961,8 @@ describe Observation, "named scopes" do
     @after_formats.each do |after_format|
       @before_formats.each do |before_format|
         obs = Observation.observed_after(after_format).observed_before(before_format)
-        obs.should include(@between)
-        obs.should_not include(@pos, @neg)
+        expect(obs).to include(@between)
+        expect(obs).not_to include(@pos, @neg)
       end
     end
   end
@@ -983,16 +970,16 @@ describe Observation, "named scopes" do
   it "should find observations created after a certain time" do
     @after_formats.each do |format|
       obs = Observation.created_after(format)
-      obs.should include(@neg, @between)
-      obs.should_not include(@pos)
+      expect(obs).to include(@neg, @between)
+      expect(obs).not_to include(@pos)
     end
   end
   
   it "should find observations created before a specific time" do
     @before_formats.each do |format|
       obs = Observation.created_before(format)
-      obs.should include(@pos, @between)
-      obs.should_not include(@neg)
+      expect(obs).to include(@pos, @between)
+      expect(obs).not_to include(@neg)
     end
   end
 
@@ -1000,8 +987,8 @@ describe Observation, "named scopes" do
     @after_formats.each do |after_format|
       @before_formats.each do |before_format|
         obs = Observation.created_after(after_format).created_before(before_format)
-        obs.should include(@between)
-        obs.should_not include(@pos, @neg)
+        expect(obs).to include(@between)
+        expect(obs).not_to include(@pos, @neg)
       end
     end
   end
@@ -1009,16 +996,16 @@ describe Observation, "named scopes" do
   it "should find observations updated after a certain time" do
     @after_formats.each do |format|
       obs = Observation.updated_after(format)
-      obs.should include(@neg, @between)
-      obs.should_not include(@pos)
+      expect(obs).to include(@neg, @between)
+      expect(obs).not_to include(@pos)
     end
   end
   
   it "should find observations updated before a specific time" do
     @before_formats.each do |format|
       obs = Observation.updated_before(format)
-      obs.should include(@pos, @between)
-      obs.should_not include(@neg)
+      expect(obs).to include(@pos, @between)
+      expect(obs).not_to include(@neg)
     end
   end
   
@@ -1026,50 +1013,50 @@ describe Observation, "named scopes" do
     @after_formats.each do |after_format|
       @before_formats.each do |before_format|
         obs = Observation.updated_after(after_format).updated_before(before_format)
-        obs.should include(@between)
-        obs.should_not include(@pos, @neg)
+        expect(obs).to include(@between)
+        expect(obs).not_to include(@pos, @neg)
       end
     end
   end
   
   it "should find observations in one iconic taxon" do
     observations = Observation.has_iconic_taxa(@mollusca)
-    observations.should include(@aaron_saw_a_mollusk)
-    observations.map(&:id).should_not include(@aaron_saw_an_amphibian.id)
+    expect(observations).to include(@aaron_saw_a_mollusk)
+    expect(observations.map(&:id)).not_to include(@aaron_saw_an_amphibian.id)
   end
   
   it "should find observations in many iconic taxa" do
     observations = Observation.has_iconic_taxa(
       [@mollusca, @amphibia])
-    observations.should include(@aaron_saw_a_mollusk)
-    observations.should include(@aaron_saw_an_amphibian)
+    expect(observations).to include(@aaron_saw_a_mollusk)
+    expect(observations).to include(@aaron_saw_an_amphibian)
   end
   
   it "should find observations with NO iconic taxon" do
     observations = Observation.has_iconic_taxa(
       [@mollusca, nil])
-    observations.should include(@aaron_saw_a_mollusk)
-    observations.should include(@aaron_saw_a_mystery)
+    expect(observations).to include(@aaron_saw_a_mollusk)
+    expect(observations).to include(@aaron_saw_a_mystery)
   end
   
   it "should order observations by created_at" do
     last_obs = Observation.make!
-    Observation.order_by('created_at').to_a.last.should eq last_obs
+    expect(Observation.order_by('created_at').to_a.last).to eq last_obs
   end
   
   it "should reverse order observations by created_at" do
     last_obs = Observation.make!
-    Observation.order_by('created_at DESC').first.should eq last_obs
+    expect(Observation.order_by('created_at DESC').first).to eq last_obs
   end
   
   it "should not find anything for a non-existant taxon ID" do
-    Observation.of(91919191).should be_empty
+    expect(Observation.of(91919191)).to be_empty
   end
 
   it "should not bail on invalid dates" do
-    lambda {
+    expect {
       o = Observation.on("2013-02-30").all
-    }.should_not raise_error
+    }.not_to raise_error
   end
 
   describe :of do
@@ -1095,28 +1082,28 @@ describe Observation do
     
     it "should be set automatically if the taxon is threatened" do
       observation = Observation.make!(:taxon => @taxon, :latitude => 38, :longitude => -122)
-      observation.taxon.should be_threatened
-      observation.private_longitude.should_not be_blank
-      observation.private_longitude.should_not == observation.longitude
+      expect(observation.taxon).to be_threatened
+      expect(observation.private_longitude).not_to be_blank
+      expect(observation.private_longitude).not_to eq observation.longitude
     end
     
     it "should be set automatically if the taxon's parent is threatened" do
       child = Taxon.make!(:parent => @taxon, :rank => "subspecies")
       observation = Observation.make!(:taxon => child, :latitude => 38, :longitude => -122)
-      observation.taxon.should_not be_threatened
-      observation.private_longitude.should_not be_blank
-      observation.private_longitude.should_not == observation.longitude
+      expect(observation.taxon).not_to be_threatened
+      expect(observation.private_longitude).not_to be_blank
+      expect(observation.private_longitude).not_to eq observation.longitude
     end
     
     it "should be unset if the taxon changes to something unthreatened" do
       observation = Observation.make!(:taxon => @taxon, :latitude => 38, :longitude => -122)
-      observation.taxon.should be_threatened
-      observation.private_longitude.should_not be_blank
-      observation.private_longitude.should_not == observation.longitude
+      expect(observation.taxon).to be_threatened
+      expect(observation.private_longitude).not_to be_blank
+      expect(observation.private_longitude).not_to eq observation.longitude
       
       observation.update_attributes(:taxon => Taxon.make!)
-      observation.taxon.should_not be_threatened
-      observation.private_longitude.should be_blank
+      expect(observation.taxon).not_to be_threatened
+      expect(observation.private_longitude).to be_blank
     end
     
     it "should remove coordinates from place_guess" do
@@ -1130,22 +1117,22 @@ describe Observation do
         "35° 46' 52.8\" N, 78° 43' 6\" W"
       ].each do |place_guess|
         observation = Observation.make!(:place_guess => place_guess)
-        observation.latitude.should_not be_blank
+        expect(observation.latitude).not_to be_blank
         observation.update_attributes(:taxon => @taxon)
-        observation.place_guess.to_s.should == ""
+        expect(observation.place_guess.to_s).to eq ""
       end
     end
     
     it "should not be included in json" do
       observation = Observation.make!(:taxon => @taxon, :latitude => 38.1234, :longitude => -122.1234)
-      observation.to_json.should_not match(/private_latitude/)
+      expect(observation.to_json).not_to match(/private_latitude/)
     end
     
     it "should not be included in a json array" do
       observation = Observation.make!(:taxon => @taxon, :latitude => 38.1234, :longitude => -122.1234)
       Observation.make!
       observations = Observation.paginate(:page => 1, :per_page => 2).order(id: :desc)
-      observations.to_json.should_not match(/private_latitude/)
+      expect(observations.to_json).not_to match(/private_latitude/)
     end
 
     it "should not be included in by_login_all csv generated for others" do
@@ -1153,79 +1140,79 @@ describe Observation do
       Observation.make!
       path = Observation.generate_csv_for(observation.user)
       txt = open(path).read
-      txt.should_not match(/private_latitude/)
-      txt.should_not match(/#{observation.private_latitude}/)
+      expect(txt).not_to match(/private_latitude/)
+      expect(txt).not_to match(/#{observation.private_latitude}/)
     end
 
     it "should be visible to curators of projects to which the observation has been added" do
       po = make_project_observation
       o = po.observation
       o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1, :longitude => 1)
-      o.should be_coordinates_private
+      expect(o).to be_coordinates_private
       pu = ProjectUser.make!(:project => po.project, :role => ProjectUser::CURATOR)
-      o.coordinates_viewable_by?(pu.user).should be true
+      expect(o.coordinates_viewable_by?(pu.user)).to be true
     end
 
     it "should be visible to managers of projects to which the observation has been added" do
       po = make_project_observation
       o = po.observation
       o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1, :longitude => 1)
-      o.should be_coordinates_private
+      expect(o).to be_coordinates_private
       pu = ProjectUser.make!(:project => po.project, :role => ProjectUser::MANAGER)
-      o.coordinates_viewable_by?(pu.user).should be true
+      expect(o.coordinates_viewable_by?(pu.user)).to be true
     end
   end
   
   describe "obscure_coordinates" do
     it "should not affect observations without coordinates" do
       o = Observation.make!
-      o.latitude.should be_blank
+      expect(o.latitude).to be_blank
       o.obscure_coordinates
-      o.latitude.should be_blank
-      o.private_latitude.should be_blank
-      o.longitude.should be_blank
-      o.private_longitude.should be_blank
+      expect(o.latitude).to be_blank
+      expect(o.private_latitude).to be_blank
+      expect(o.longitude).to be_blank
+      expect(o.private_longitude).to be_blank
     end
     
     it "should strip leading digits out of street addresses" do
       o = Observation.make!(:place_guess => '5720 Claremont Ave. Oakland, CA')
       o.obscure_coordinates
-      o.place_guess.should_not match(/5720/)
+      expect(o.place_guess).not_to match(/5720/)
       
       o = Observation.make!(:place_guess => '3333 23rd St, San Francisco, CA 94114, USA ')
       o.obscure_coordinates
-      o.place_guess.should_not match(/3333/)
+      expect(o.place_guess).not_to match(/3333/)
 
       o = Observation.make!(:place_guess => '3333A 23rd St, San Francisco, CA 94114, USA ')
       o.obscure_coordinates
-      o.place_guess.should_not match(/3333/)
+      expect(o.place_guess).not_to match(/3333/)
       
       o = Observation.make!(:place_guess => '3333-6666 23rd St, San Francisco, CA 94114, USA ')
       o.obscure_coordinates
-      o.place_guess.should_not match(/3333/)
-      o.place_guess.should_not match(/6666/)
+      expect(o.place_guess).not_to match(/3333/)
+      expect(o.place_guess).not_to match(/6666/)
     end
     
     it "should not affect already obscured coordinates" do
       o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::OBSCURED)
       lat = o.latitude
       private_lat = o.private_latitude
-      o.should be_coordinates_obscured
+      expect(o).to be_coordinates_obscured
       o.obscure_coordinates
       o.reload
-      o.latitude.to_f.should == lat.to_f
-      o.private_latitude.to_f.should == private_lat.to_f
+      expect(o.latitude.to_f).to eq lat.to_f
+      expect(o.private_latitude.to_f).to eq private_lat.to_f
     end
     
     it "should not affect already coordinates of a protected taxon" do
       o = make_observation_of_threatened
       lat = o.latitude
       private_lat = o.private_latitude
-      o.should be_coordinates_obscured
+      expect(o).to be_coordinates_obscured
       o.update_attributes(:geoprivacy => Observation::OBSCURED)
       o.reload
-      o.latitude.to_f.should == lat.to_f
-      o.private_latitude.to_f.should == private_lat.to_f
+      expect(o.latitude.to_f).to eq lat.to_f
+      expect(o.private_latitude.to_f).to eq private_lat.to_f
     end
     
   end
@@ -1236,38 +1223,38 @@ describe Observation do
       true_lat = 38.0
       true_lon = -122.0
       o = Observation.make!(:taxon => taxon, :latitude => true_lat, :longitude => true_lon)
-      o.should be_coordinates_obscured
-      o.latitude.to_f.should_not == true_lat
-      o.longitude.to_f.should_not == true_lon
+      expect(o).to be_coordinates_obscured
+      expect(o.latitude.to_f).not_to eq true_lat
+      expect(o.longitude.to_f).not_to eq true_lon
       o.unobscure_coordinates
-      o.should_not be_coordinates_obscured
-      o.latitude.to_f.should == true_lat
-      o.longitude.to_f.should == true_lon
+      expect(o).not_to be_coordinates_obscured
+      expect(o.latitude.to_f).to eq true_lat
+      expect(o.longitude.to_f).to eq true_lon
     end
     
     it "should not affect observations without coordinates" do
       o = Observation.make!
-      o.latitude.should be_blank
+      expect(o.latitude).to be_blank
       o.unobscure_coordinates
-      o.latitude.should be_blank
-      o.private_latitude.should be_blank
-      o.longitude.should be_blank
-      o.private_longitude.should be_blank
+      expect(o.latitude).to be_blank
+      expect(o.private_latitude).to be_blank
+      expect(o.longitude).to be_blank
+      expect(o.private_longitude).to be_blank
     end
     
     it "should not obscure observations with obscured geoprivacy" do
       taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
       o = Observation.make!(:latitude => 38, :longitude => -122, :geoprivacy => Observation::OBSCURED)
       o.unobscure_coordinates
-      o.should be_coordinates_obscured
+      expect(o).to be_coordinates_obscured
     end
     
     it "should not obscure observations with private geoprivacy" do
       taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
       o = Observation.make!(:latitude => 38, :longitude => -122, :geoprivacy => Observation::PRIVATE)
       o.unobscure_coordinates
-      o.should be_coordinates_obscured
-      o.latitude.should be_blank
+      expect(o).to be_coordinates_obscured
+      expect(o.latitude).to be_blank
     end
 
   end
@@ -1280,45 +1267,45 @@ describe Observation do
       obs = []
       3.times do
         obs << Observation.make!(:taxon => taxon, :latitude => true_lat, :longitude => true_lon)
-        obs.last.should_not be_coordinates_obscured
+        expect(obs.last).not_to be_coordinates_obscured
       end
       Observation.obscure_coordinates_for_observations_of(taxon)
       obs.each do |o|
         o.reload
-        o.should be_coordinates_obscured
+        expect(o).to be_coordinates_obscured
       end
     end
     
     it "should remove coordinates from place_guess" do
       taxon = Taxon.make!(:rank => "species")
       observation = Observation.make!(:place_guess => "38, -122", :taxon => taxon)
-      observation.latitude.should_not be_blank
+      expect(observation.latitude).not_to be_blank
       Observation.obscure_coordinates_for_observations_of(taxon)
       observation.reload
-      observation.place_guess.to_s.should == ""
+      expect(observation.place_guess.to_s).to eq ""
     end
     
     it "should not affect observations without coordinates" do
       taxon = Taxon.make!(:rank => "species")
       o = Observation.make!(:taxon => taxon)
-      o.latitude.should be_blank
+      expect(o.latitude).to be_blank
       Observation.obscure_coordinates_for_observations_of(taxon)
       o.reload
-      o.latitude.should be_blank
-      o.private_latitude.should be_blank
-      o.longitude.should be_blank
-      o.private_longitude.should be_blank
+      expect(o.latitude).to be_blank
+      expect(o.private_latitude).to be_blank
+      expect(o.longitude).to be_blank
+      expect(o.private_longitude).to be_blank
     end
     
     it "should not add coordinates to private observations" do
       taxon = Taxon.make!(:rank => "species")
       observation = Observation.make!(:place_guess => "38, -122", :taxon => taxon, :geoprivacy => Observation::PRIVATE)
-      observation.latitude.should be_blank
-      observation.private_latitude.should_not be_blank
+      expect(observation.latitude).to be_blank
+      expect(observation.private_latitude).not_to be_blank
       Observation.obscure_coordinates_for_observations_of(taxon)
       observation.reload
-      observation.latitude.should be_blank
-      observation.private_latitude.should_not be_blank
+      expect(observation.latitude).to be_blank
+      expect(observation.private_latitude).not_to be_blank
     end
   end
   
@@ -1330,25 +1317,25 @@ describe Observation do
       obs = []
       3.times do
         obs << Observation.make!(:taxon => taxon, :latitude => true_lat, :longitude => true_lon)
-        obs.last.should be_coordinates_obscured
+        expect(obs.last).to be_coordinates_obscured
       end
       Observation.unobscure_coordinates_for_observations_of(taxon)
       obs.each do |o|
         o.reload
-        o.should_not be_coordinates_obscured
+        expect(o).not_to be_coordinates_obscured
       end
     end
     
     it "should not affect observations without coordinates" do
       taxon = Taxon.make!(:rank => "species")
       o = Observation.make!(:taxon => taxon)
-      o.latitude.should be_blank
+      expect(o.latitude).to be_blank
       Observation.unobscure_coordinates_for_observations_of(taxon)
       o.reload
-      o.latitude.should be_blank
-      o.private_latitude.should be_blank
-      o.longitude.should be_blank
-      o.private_longitude.should be_blank
+      expect(o.latitude).to be_blank
+      expect(o.private_latitude).to be_blank
+      expect(o.longitude).to be_blank
+      expect(o.private_longitude).to be_blank
     end
     
     it "should not obscure observations with obscured geoprivacy" do
@@ -1356,7 +1343,7 @@ describe Observation do
       o = Observation.make!(:latitude => 38, :longitude => -122, :geoprivacy => Observation::OBSCURED)
       Observation.unobscure_coordinates_for_observations_of(taxon)
       o.reload
-      o.should be_coordinates_obscured
+      expect(o).to be_coordinates_obscured
     end
     
     it "should not obscure observations with private geoprivacy" do
@@ -1364,8 +1351,8 @@ describe Observation do
       o = Observation.make!(:latitude => 38, :longitude => -122, :geoprivacy => Observation::PRIVATE)
       Observation.unobscure_coordinates_for_observations_of(taxon)
       o.reload
-      o.should be_coordinates_obscured
-      o.latitude.should be_blank
+      expect(o).to be_coordinates_obscured
+      expect(o.latitude).to be_blank
     end
 
     it "should unobscure observations matching conservation status in a place"
@@ -1376,9 +1363,9 @@ describe Observation do
     it "should not unobscure previously obscured observations of threatened taxa" do
       taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
       o = Observation.make!(:latitude => 38, :longitude => -122, :taxon => taxon)
-      o.should be_coordinates_obscured
+      expect(o).to be_coordinates_obscured
       o.obscure_coordinates_for_threatened_taxa
-      o.should be_coordinates_obscured
+      expect(o).to be_coordinates_obscured
     end
 
     it "should obscure coordinates for observations of taxa with concervation status in place"
@@ -1388,129 +1375,125 @@ describe Observation do
   describe "geoprivacy" do
     it "should obscure coordinates when private" do
       o = Observation.make!(:latitude => 37, :longitude => -122, :geoprivacy => Observation::PRIVATE)
-      o.should be_coordinates_obscured
+      expect(o).to be_coordinates_obscured
     end
     
     it "should remove public coordinates when private" do
       o = Observation.make!(:latitude => 37, :longitude => -122, :geoprivacy => Observation::PRIVATE)
-      o.latitude.should be_blank
-      o.longitude.should be_blank
+      expect(o.latitude).to be_blank
+      expect(o.longitude).to be_blank
     end
     
     it "should remove public coordinates when private if coords change but not geoprivacy" do
       o = Observation.make!(:latitude => 37, :longitude => -122, :geoprivacy => Observation::PRIVATE)
       o.update_attributes(:latitude => 1, :longitude => 1)
-      o.should be_coordinates_obscured
-      o.latitude.should be_blank
-      o.longitude.should be_blank
+      expect(o).to be_coordinates_obscured
+      expect(o.latitude).to be_blank
+      expect(o.longitude).to be_blank
     end
     
     it "should obscure coordinates when obscured" do
       o = Observation.make!(:latitude => 37, :longitude => -122, :geoprivacy => Observation::OBSCURED)
-      o.should be_coordinates_obscured
+      expect(o).to be_coordinates_obscured
     end
     
     it "should not unobscure observations of threatened taxa" do
       taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
       o = Observation.make!(:taxon => taxon, :latitude => 37, :longitude => -122, :geoprivacy => Observation::OBSCURED)
-      o.should be_coordinates_obscured
+      expect(o).to be_coordinates_obscured
       o.update_attributes(:geoprivacy => nil)
-      o.geoprivacy.should be_blank
-      o.should be_coordinates_obscured
+      expect(o.geoprivacy).to be_blank
+      expect(o).to be_coordinates_obscured
     end
     
     it "should remove public coordinates when private even if taxon threatened" do
       taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
       o = Observation.make!(:latitude => 37, :longitude => -122, :taxon => taxon)
-      o.should be_coordinates_obscured
-      o.latitude.should_not be_blank
+      expect(o).to be_coordinates_obscured
+      expect(o.latitude).not_to be_blank
       o.update_attributes(:geoprivacy => Observation::PRIVATE)
-      o.latitude.should be_blank
-      o.longitude.should be_blank
+      expect(o.latitude).to be_blank
+      expect(o.longitude).to be_blank
     end
     
     it "should restore public coordinates when removing geoprivacy" do
       lat, lon = [37, -122]
       o = Observation.make!(:latitude => lat, :longitude => lon, :geoprivacy => Observation::PRIVATE)
-      o.latitude.should be_blank
-      o.longitude.should be_blank
+      expect(o.latitude).to be_blank
+      expect(o.longitude).to be_blank
       o.update_attributes(:geoprivacy => nil)
-      o.latitude.to_f.should == lat
-      o.longitude.to_f.should == lon
+      expect(o.latitude.to_f).to eq lat
+      expect(o.longitude.to_f).to eq lon
     end
 
     it "should be nil if not obscured or private" do
       o = Observation.make!(:geoprivacy => "open")
-      o.geoprivacy.should be_nil
+      expect(o.geoprivacy).to be_nil
     end
   end
   
   describe "geom" do
     it "should be set with coords" do
       o = Observation.make!(:latitude => 1, :longitude => 1)
-      o.geom.should_not be_blank
+      expect(o.geom).not_to be_blank
     end
     
     it "should not be set without coords" do
       o = Observation.make!
-      o.geom.should be_blank
+      expect(o.geom).to be_blank
     end
     
     it "should change with coords" do
       o = Observation.make!(:latitude => 1, :longitude => 1)
-      o.geom.y.should == 1.0
+      expect(o.geom.y).to eq 1.0
       o.update_attributes(:latitude => 2)
-      o.geom.y.should == 2.0
+      expect(o.geom.y).to eq 2.0
     end
     
     it "should go away with coords" do
       o = Observation.make!(:latitude => 1, :longitude => 1)
       o.update_attributes(:latitude => nil, :longitude => nil)
-      o.geom.should be_blank
+      expect(o.geom).to be_blank
     end
   end
 
   describe "private_geom" do
     it "should be set with coords" do
       o = Observation.make!(:latitude => 1, :longitude => 1)
-      o.private_geom.should_not be_blank
+      expect(o.private_geom).not_to be_blank
     end
     
     it "should not be set without coords" do
       o = Observation.make!
-      o.private_geom.should be_blank
+      expect(o.private_geom).to be_blank
     end
     
     it "should change with coords" do
       o = Observation.make!(:latitude => 1, :longitude => 1)
-      o.private_geom.y.should == 1.0
+      expect(o.private_geom.y).to eq 1.0
       o.update_attributes(:latitude => 2)
-      o.private_geom.y.should == 2.0
+      expect(o.private_geom.y).to eq 2.0
     end
     
     it "should go away with coords" do
       o = Observation.make!(:latitude => 1, :longitude => 1)
       o.update_attributes(:latitude => nil, :longitude => nil)
-      o.private_geom.should be_blank
+      expect(o.private_geom).to be_blank
     end
 
     it "should be set with geoprivacy" do
       o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::OBSCURED)
-      o.latitude.should_not eq 1.0
-      o.private_latitude.should eq 1.0
-      o.geom.y.should_not eq 1.0
-      o.private_geom.y.should eq 1.0
+      expect(o.latitude).not_to eq 1.0
+      expect(o.private_latitude).to eq 1.0
+      expect(o.geom.y).not_to eq 1.0
+      expect(o.private_geom.y).to eq 1.0
     end
 
     it "should be set without geoprivacy" do
       o = Observation.make!(:latitude => 1, :longitude => 1)
-      o.latitude.should eq 1.0
-      o.private_geom.y.should eq 1.0
+      expect(o.latitude).to eq 1.0
+      expect(o.private_geom.y).to eq 1.0
     end
-
-    # it "should contain the private coordinates if geoprivacy" do
-
-    # end
   end
   
   describe "query" do
@@ -1518,25 +1501,25 @@ describe Observation do
       r = make_research_grade_observation
       c = Observation.make!(:user => r.user)
       observations = Observation.query(:user => r.user, :quality_grade => Observation::RESEARCH_GRADE)
-      observations.should include(r)
-      observations.should_not include(c)
+      expect(observations).to include(r)
+      expect(observations).not_to include(c)
     end
   end
   
   it "should be georeferenced? even with private geoprivacy" do
     o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::PRIVATE)
-    o.should be_georeferenced
+    expect(o).to be_georeferenced
   end
   
   describe "to_json" do
     it "should not include script tags" do
       o = Observation.make!(:description => "<script lang='javascript'>window.close()</script>")
-      o.to_json.should_not match(/<script/)
-      o.to_json(:viewer => o.user, 
+      expect(o.to_json).not_to match(/<script/)
+      expect(o.to_json(:viewer => o.user, 
         :force_coordinate_visibility => true,
-        :include => [:user, :taxon, :iconic_taxon]).should_not match(/<script/)
+        :include => [:user, :taxon, :iconic_taxon])).not_to match(/<script/)
       o = Observation.make!(:species_guess => "<script lang='javascript'>window.close()</script>")
-      o.to_json.should_not match(/<script/)
+      expect(o.to_json).not_to match(/<script/)
     end
   end
   
@@ -1547,38 +1530,38 @@ describe Observation, "set_out_of_range" do
     @taxon = Taxon.make!
     @taxon_range = TaxonRange.make!(
       :taxon => @taxon, 
-      :geom => GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+      :geom => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
     )
   end
   it "should set to false if observation intersects known range" do
     o = Observation.make!(:taxon => @taxon, :latitude => 0.5, :longitude => 0.5)
     o.set_out_of_range
-    o.out_of_range.should == false
+    expect(o.out_of_range).to eq false
   end
   it "should set to true if observation does not intersect known range" do
     o = Observation.make!(:taxon => @taxon, :latitude => 2, :longitude => 2)
     o.set_out_of_range
-    o.out_of_range.should == true
+    expect(o.out_of_range).to eq true
   end
   it "should set to null if observation does not have a taxon" do
     o = Observation.make!
     o.set_out_of_range
-    o.out_of_range.should == nil
+    expect(o.out_of_range).to eq nil
   end
   it "should set to null if taxon does not have a range" do
     t = Taxon.make!
     o = Observation.make!(:taxon => t)
     o.set_out_of_range
-    o.out_of_range.should == nil
+    expect(o.out_of_range).to eq nil
   end
 end
 
 describe Observation, "out_of_range" do
   it "should get set to false immediately if taxon set to nil" do
     o = Observation.make!(:taxon => Taxon.make!, :out_of_range => true)
-    o.should be_out_of_range
+    expect(o).to be_out_of_range
     o.update_attributes(:taxon => nil)
-    o.should_not be_out_of_range
+    expect(o).not_to be_out_of_range
   end
 end
 
@@ -1588,34 +1571,34 @@ describe Observation, "license" do
     u.preferred_observation_license = "CC-BY-NC"
     u.save
     o = Observation.make!(:user => u)
-    o.license.should == u.preferred_observation_license
+    expect(o.license).to eq u.preferred_observation_license
   end
   
   it "should update default license when requested" do
     u = User.make!
-    u.preferred_observation_license.should be_blank
+    expect(u.preferred_observation_license).to be_blank
     o = Observation.make!(:user => u, :make_license_default => true, :license => Observation::CC_BY_NC)
     u.reload
-    u.preferred_observation_license.should == Observation::CC_BY_NC
+    expect(u.preferred_observation_license).to eq Observation::CC_BY_NC
   end
   
   it "should update all other observations when requested" do
     u = User.make!
     o1 = Observation.make!(:user => u)
     o2 = Observation.make!(:user => u)
-    o1.license.should be_blank
+    expect(o1.license).to be_blank
     o2.make_licenses_same = true
     o2.license = Observation::CC_BY_NC
     o2.save
     o1.reload
-    o1.license.should == Observation::CC_BY_NC
+    expect(o1.license).to eq Observation::CC_BY_NC
   end
   
   it "should nilify if not a license" do
     o = Observation.make!(:license => Observation::CC_BY)
     o.update_attributes(:license => "on")
     o.reload
-    o.license.should be_blank
+    expect(o.license).to be_blank
   end
 end
 
@@ -1651,7 +1634,7 @@ describe Observation, "places" do
     h = lat_lon_distance_in_meters(p.swlat, p.swlng, p.nelat, p.swlng)
     d = [w,h].min
     o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :positional_accuracy => d/2)
-    o.places.should include p
+    expect(o.places).to include p
   end
   it "should not include places that don't contain positional_accuracy circle" do
     p = make_place_with_geom
@@ -1659,17 +1642,17 @@ describe Observation, "places" do
     h = lat_lon_distance_in_meters(p.swlat, p.swlng, p.nelat, p.swlng)
     d = [w,h].max
     o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :positional_accuracy => d*2)
-    o.places.should_not include p
+    expect(o.places).not_to include p
   end
   it "should include places that do contain the public_positional_accuracy circle" do
     p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
     o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :taxon => Taxon.make!(:threatened))
-    o.places.should include p
+    expect(o.places).to include p
   end
   it "should not include places that don't contain public_positional_accuracy circle" do
     p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))")
     o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude, :taxon => Taxon.make!(:threatened))
-    o.places.should_not include p
+    expect(o.places).not_to include p
   end
 end
 
@@ -1682,9 +1665,9 @@ describe Observation, "update_stats" do
     o.update_stats
     o.reload
     old_ident.reload
-    old_ident.should_not be_current
-    o.num_identification_agreements.should eq(0)
-    o.num_identification_disagreements.should eq(1)
+    expect(old_ident).not_to be_current
+    expect(o.num_identification_agreements).to eq(0)
+    expect(o.num_identification_disagreements).to eq(1)
   end
 end
 
@@ -1695,13 +1678,13 @@ describe Observation, "update_stats_for_observations_of" do
     o = Observation.make!(:taxon => parent)
     i1 = Identification.make!(:observation => o, :taxon => child)
     o.reload
-    o.num_identification_agreements.should eq(0)
-    o.num_identification_disagreements.should eq(1)
+    expect(o.num_identification_agreements).to eq(0)
+    expect(o.num_identification_disagreements).to eq(1)
     child.update_attributes(:parent => parent)
     Observation.update_stats_for_observations_of(parent)
     o.reload
-    o.num_identification_agreements.should eq(1)
-    o.num_identification_disagreements.should eq(0)
+    expect(o.num_identification_agreements).to eq(1)
+    expect(o.num_identification_disagreements).to eq(0)
   end
 
   it "should work" do
@@ -1710,11 +1693,11 @@ describe Observation, "update_stats_for_observations_of" do
     o = Observation.make!(:taxon => parent)
     i1 = Identification.make!(:observation => o, :taxon => child)
     o.reload
-    o.community_taxon.should be_blank
+    expect(o.community_taxon).to be_blank
     child.update_attributes(:parent => parent)
     Observation.update_stats_for_observations_of(parent)
     o.reload
-    o.community_taxon.should_not be_blank
+    expect(o.community_taxon).not_to be_blank
   end
 end
 
@@ -1734,9 +1717,9 @@ describe Observation, "nested observation_field_values" do
       }
     }
     ofv.destroy
-    expect { o.update_attributes(attrs) }.to_not raise_error
+    expect { o.update_attributes(attrs) }.not_to raise_error
     o.reload
-    o.observation_field_values.last.observation_field_id.should eq(of.id)
+    expect(o.observation_field_values.last.observation_field_id).to eq(of.id)
   end
 
   it "should remove records if ID set but existing not found" do
@@ -1754,9 +1737,9 @@ describe Observation, "nested observation_field_values" do
       }
     }
     ofv.destroy
-    expect { o.update_attributes(attrs) }.to_not raise_error
+    expect { o.update_attributes(attrs) }.not_to raise_error
     o.reload
-    o.observation_field_values.should be_blank
+    expect(o.observation_field_values).to be_blank
   end
 end
 
@@ -1769,9 +1752,9 @@ describe Observation, "taxon updates" do
       o.save!
     end
     u = Update.last
-    u.should_not be_blank
-    u.notifier.should eq(o)
-    u.subscriber.should eq(s.user)
+    expect(u).not_to be_blank
+    expect(u.notifier).to eq(o)
+    expect(u.subscriber).to eq(s.user)
   end
 
   it "should generate an update for descendent taxa" do
@@ -1783,9 +1766,9 @@ describe Observation, "taxon updates" do
       o.save!
     end
     u = Update.last
-    u.should_not be_blank
-    u.notifier.should eq(o)
-    u.subscriber.should eq(s.user)
+    expect(u).not_to be_blank
+    expect(u.notifier).to eq(o)
+    expect(u.subscriber).to eq(s.user)
   end
 
   # This ended up being really annoying for people subscribed to high level
@@ -1835,7 +1818,7 @@ describe Observation, "place updates" do
       make_place_with_geom(:ewkt => wkt.gsub(/\s+/, ' '))
     }
     before do
-      place.straddles_date_line?.should be true
+      expect(place.straddles_date_line?).to be true
       @subscription = Subscription.make!(:resource => place)
       @christchurch_lat = -43.603555
       @christchurch_lon = 172.652311
@@ -1844,32 +1827,15 @@ describe Observation, "place updates" do
       o = without_delay do
         Observation.make!(:latitude => @christchurch_lat, :longitude => @christchurch_lon)
       end
-      @subscription.user.updates.last.notifier.should eq o
+      expect(@subscription.user.updates.last.notifier).to eq o
     end
     it "should not generate for observations outside of that place" do
       o = without_delay do
         Observation.make!(:latitude => -1 * @christchurch_lat, :longitude => @christchurch_lon)
       end
-      @subscription.user.updates.should be_blank
+      expect(@subscription.user.updates).to be_blank
     end
   end
-# This ended up being really annoying for people subscribed to big places
-# like North America. Still feel like there's a better way to do this than
-# triggering it on create
-#   it "should generate an update for an observation that changed to the subscribed place" do
-#     p = make_place_with_geom
-#     s = Subscription.make!(:resource => p)
-#     Update.delete_all
-#     o = without_delay {Observation.make!}
-#     Update.count.should eq 0
-#     without_delay do
-#       o.update_attributes(:latitude => p.latitude, :longitude => p.longitude)
-#     end
-#     u = Update.last
-#     u.should_not be_blank
-#     u.notifier.should eq(o)
-#     u.subscriber.should eq(s.user)
-#   end
 end
 
 describe Observation, "update_for_taxon_change" do
@@ -1884,20 +1850,20 @@ describe Observation, "update_for_taxon_change" do
   end
 
   it "should add new identifications" do
-    @obs_of_input.identifications.size.should eq(1)
-    @obs_of_input.identifications.first.taxon.should eq(@input_taxon)
+    expect(@obs_of_input.identifications.size).to eq(1)
+    expect(@obs_of_input.identifications.first.taxon).to eq(@input_taxon)
     Observation.update_for_taxon_change(@taxon_swap, @output_taxon)
     @obs_of_input.reload
-    @obs_of_input.identifications.size.should eq(2)
-    @obs_of_input.identifications.detect{|i| i.taxon_id == @output_taxon.id}.should_not be_blank
+    expect(@obs_of_input.identifications.size).to eq(2)
+    expect(@obs_of_input.identifications.detect{|i| i.taxon_id == @output_taxon.id}).not_to be_blank
   end
 
   it "should not update old identifications" do
     old_ident = @obs_of_input.identifications.first
-    old_ident.taxon.should eq(@input_taxon)
+    expect(old_ident.taxon).to eq(@input_taxon)
     Observation.update_for_taxon_change(@taxon_swap, @output_taxon)
     old_ident.reload
-    old_ident.taxon.should eq(@input_taxon)
+    expect(old_ident.taxon).to eq(@input_taxon)
   end
 end
 
@@ -1906,78 +1872,78 @@ describe Observation, "reassess_coordinates_for_observations_of" do
     t = Taxon.make!
     o = Observation.make!(:taxon => t, :latitude => 1, :longitude => 1)
     cs = ConservationStatus.make!(:taxon => t)
-    o.should_not be_coordinates_obscured
+    expect(o).not_to be_coordinates_obscured
     Observation.reassess_coordinates_for_observations_of(t)
     o.reload
-    o.should be_coordinates_obscured
+    expect(o).to be_coordinates_obscured
   end
   
   it "should not unobscure coordinates of obs of unthreatened if geoprivacy is set" do
     t = Taxon.make!
     o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::OBSCURED, :taxon => t)
     old_lat = o.latitude
-    o.should be_coordinates_obscured
+    expect(o).to be_coordinates_obscured
     Observation.reassess_coordinates_for_observations_of(t)
     o.reload
-    o.should be_coordinates_obscured
-    o.latitude.should eq(old_lat)
+    expect(o).to be_coordinates_obscured
+    expect(o.latitude).to eq(old_lat)
   end
 end
 
 describe Observation, "queue_for_sharing" do
   it "should queue a job if twitter ProviderAuthorization present" do
     pa = ProviderAuthorization.make!(:provider_name => "twitter")
-    Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_twitter%"]).should be_blank
+    expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_twitter%"])).to be_blank
     o = Observation.make!(:user => pa.user)
-    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_twitter%"]).should_not be_blank
+    expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_twitter%"])).not_to be_blank
   end
   it "should queue a job if facebook ProviderAuthorization present" do
     pa = ProviderAuthorization.make!(:provider_name => "facebook")
-    Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_facebook%"]).should be_blank
+    expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_facebook%"])).to be_blank
     o = Observation.make!(:user => pa.user)
-    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"]).should_not be_blank
+    expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"])).not_to be_blank
   end
   it "should not queue a job if no ProviderAuthorizations present" do
     o = Observation.make!
-    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"]).should be_blank
+    expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"])).to be_blank
   end
   it "should not queue a twitter job if twitter_sharing is 0" do
     pa = ProviderAuthorization.make!(:provider_name => "twitter")
-    Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_twitter%"]).should be_blank
+    expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_twitter%"])).to be_blank
     o = Observation.make!(:user => pa.user, :twitter_sharing => "0")
-    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_twitter%"]).should be_blank
+    expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_twitter%"])).to be_blank
   end
   it "should not queue a facebook job if facebook_sharing is 0" do
     pa = ProviderAuthorization.make!(:provider_name => "facebook")
-    Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_facebook%"]).should be_blank
+    expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_facebook%"])).to be_blank
     o = Observation.make!(:user => pa.user, :facebook_sharing => "0")
-    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"]).should be_blank
+    expect(Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"])).to be_blank
   end
 end
 
 describe Observation, "captive" do
   it "should vote yes on the wild quality metric if 1" do
     o = Observation.make!(:captive_flag => "1")
-    o.quality_metrics.should_not be_blank
-    o.quality_metrics.first.user.should eq(o.user)
-    o.quality_metrics.first.should_not be_agree
+    expect(o.quality_metrics).not_to be_blank
+    expect(o.quality_metrics.first.user).to eq(o.user)
+    expect(o.quality_metrics.first).not_to be_agree
   end
 
   it "should vote no on the wild quality metric if 0 and metric exists" do
     o = Observation.make!(:captive_flag => "1")
-    o.quality_metrics.should_not be_blank
+    expect(o.quality_metrics).not_to be_blank
     o.update_attributes(:captive_flag => "0")
-    o.quality_metrics.first.should be_agree
+    expect(o.quality_metrics.first).to be_agree
   end
 
   it "should not alter quality metrics if nil" do
     o = Observation.make!(:captive_flag => nil)
-    o.quality_metrics.should be_blank
+    expect(o.quality_metrics).to be_blank
   end
 
   it "should not alter quality metrics if 0 and not metrics exist" do
     o = Observation.make!(:captive_flag => "0")
-    o.quality_metrics.should be_blank
+    expect(o.quality_metrics).to be_blank
   end
 end
 
@@ -1988,28 +1954,28 @@ describe Observation, "merge" do
   
   it "should destroy the reject" do
     keeper.merge(reject)
-    Observation.find_by_id(reject.id).should be_blank
+    expect(Observation.find_by_id(reject.id)).to be_blank
   end
 
   it "should preserve photos" do
     op = ObservationPhoto.make!(:observation => reject)
     keeper.merge(reject)
     op.reload
-    op.observation.should eq(keeper)
+    expect(op.observation).to eq(keeper)
   end
 
   it "should preserve comments" do
     c = Comment.make!(:parent => reject)
     keeper.merge(reject)
     c.reload
-    c.parent.should eq(keeper)
+    expect(c.parent).to eq(keeper)
   end
 
   it "should preserve identifications" do
     i = Identification.make!(:observation => reject)
     keeper.merge(reject)
     i.reload
-    i.observation.should eq(keeper)
+    expect(i.observation).to eq(keeper)
   end
 
   it "should mark duplicate identifications as not current" do
@@ -2020,9 +1986,9 @@ describe Observation, "merge" do
     end
     keeper.merge(reject)
     idents = keeper.identifications.where(:user_id => keeper.user_id).order('id asc')
-    idents.size.should eq(2)
-    idents.first.should_not be_current
-    idents.last.should be_current
+    expect(idents.size).to eq(2)
+    expect(idents.first).not_to be_current
+    expect(idents.last).to be_current
   end
 end
 
@@ -2030,7 +1996,7 @@ describe Observation, "component_cache_key" do
   it "should be the same regardless of option order" do
     k1 = Observation.component_cache_key(111, :for_owner => true, :locale => :en)
     k2 = Observation.component_cache_key(111, :locale => :en, :for_owner => true)
-    k1.should eq(k2)
+    expect(k1).to eq(k2)
   end
 end
 
@@ -2043,9 +2009,9 @@ describe Observation, "dynamic place getters" do
   it "should return place state" do
     p = make_place_with_geom(:place_type => Place::PLACE_TYPE_CODES['State'])
     o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
-    o.intersecting_places.should_not be_blank
-    o.place_state.should eq p
-    o.place_state_name.should eq p.name
+    expect(o.intersecting_places).not_to be_blank
+    expect(o.place_state).to eq p
+    expect(o.place_state_name).to eq p.name
   end
 end
 
@@ -2057,7 +2023,7 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.community_taxon.should_not be_blank
+    expect(o.community_taxon).not_to be_blank
   end
 
   it "should be set if user has opted out and community agrees with user" do
@@ -2065,7 +2031,7 @@ describe Observation, "community taxon" do
     o = Observation.make!(:taxon => Taxon.make!, :user => u)
     i1 = Identification.make!(:observation => o, :taxon => o.taxon)
     o.reload
-    o.community_taxon.should eq o.taxon
+    expect(o.community_taxon).to eq o.taxon
   end
 
   it "should be set if observation is opted out" do
@@ -2073,7 +2039,7 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.community_taxon.should_not be_blank
+    expect(o.community_taxon).not_to be_blank
   end
 
   it "should be set if observation is opted in but user is opted out" do
@@ -2082,7 +2048,7 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.community_taxon.should eq i1.taxon
+    expect(o.community_taxon).to eq i1.taxon
   end
 
   it "should be set when preference set to true" do
@@ -2090,10 +2056,10 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.taxon.should be_blank
+    expect(o.taxon).to be_blank
     o.update_attributes(:prefers_community_taxon => true)
     o.reload
-    o.community_taxon.should eq(i1.taxon)
+    expect(o.community_taxon).to eq(i1.taxon)
   end
 
   it "should not be unset when preference set to false" do
@@ -2101,10 +2067,10 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.community_taxon.should eq(i1.taxon)
+    expect(o.community_taxon).to eq(i1.taxon)
     o.update_attributes(:prefers_community_taxon => false)
     o.reload
-    o.community_taxon.should_not be_blank
+    expect(o.community_taxon).not_to be_blank
   end
 
   it "should set the taxon" do
@@ -2112,7 +2078,7 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.taxon.should eq o.community_taxon
+    expect(o.taxon).to eq o.community_taxon
   end
 
   it "should set the species_guess" do
@@ -2120,19 +2086,19 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.species_guess.should eq o.community_taxon.name
+    expect(o.species_guess).to eq o.community_taxon.name
   end
 
   it "should set the iconic taxon" do
     o = Observation.make!
-    o.iconic_taxon.should be_blank
+    expect(o.iconic_taxon).to be_blank
     iconic_taxon = Taxon.make!(:is_iconic => true, :rank => "family")
     i1 = Identification.make!(:observation => o, :taxon => Taxon.make!(:parent => iconic_taxon, :rank => "genus"))
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
-    i1.taxon.iconic_taxon.should eq iconic_taxon
+    expect(i1.taxon.iconic_taxon).to eq iconic_taxon
     o.reload
-    o.taxon.should eq i1.taxon
-    o.iconic_taxon.should eq iconic_taxon
+    expect(o.taxon).to eq i1.taxon
+    expect(o.iconic_taxon).to eq iconic_taxon
   end
 
   it "should not set the taxon if the user has opted out" do
@@ -2141,7 +2107,7 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.taxon.should be_blank
+    expect(o.taxon).to be_blank
   end
 
   it "should not set the taxon if the observation is opted out" do
@@ -2149,7 +2115,7 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.taxon.should be_blank
+    expect(o.taxon).to be_blank
   end
 
   it "should change the taxon to the owner's identication when observation opted out" do
@@ -2159,11 +2125,11 @@ describe Observation, "community taxon" do
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.community_taxon.should eq(i1.taxon)
-    o.taxon.should eq o.community_taxon
+    expect(o.community_taxon).to eq(i1.taxon)
+    expect(o.taxon).to eq o.community_taxon
     o.update_attributes(:prefers_community_taxon => false)
     o.reload
-    o.taxon.should eq owner_taxon
+    expect(o.taxon).to eq owner_taxon
   end
 
   it "should set the species_guess when opted out" do
@@ -2173,11 +2139,11 @@ describe Observation, "community taxon" do
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     i3 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.community_taxon.should eq(i1.taxon)
-    o.taxon.should eq o.community_taxon
+    expect(o.community_taxon).to eq(i1.taxon)
+    expect(o.taxon).to eq o.community_taxon
     o.update_attributes(:prefers_community_taxon => false)
     o.reload
-    o.species_guess.should eq owner_taxon.name
+    expect(o.species_guess).to eq owner_taxon.name
   end
 
   it "should set the taxon if observation is opted in but user is opted out" do
@@ -2186,7 +2152,7 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.taxon.should eq o.community_taxon
+    expect(o.taxon).to eq o.community_taxon
   end
 
   it "should not be set if there is only one current identification" do
@@ -2194,7 +2160,7 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o, :user => o.user)
     i2 = Identification.make!(:observation => o, :user => o.user)
     o.reload
-    o.community_taxon.should be_blank
+    expect(o.community_taxon).to be_blank
   end
 
   it "should not be set for 2 roots" do
@@ -2202,7 +2168,7 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o)
     o.reload
-    o.community_taxon.should be_blank
+    expect(o.community_taxon).to be_blank
   end
 
   it "should be set to Life for two phyla" do
@@ -2211,7 +2177,7 @@ describe Observation, "community taxon" do
     i1 = Identification.make!(:observation => o, :taxon => @Animalia)
     i2 = Identification.make!(:observation => o, :taxon => @Plantae)
     o.reload
-    o.community_taxon.should eq @Life
+    expect(o.community_taxon).to eq @Life
   end
 
 
@@ -2219,9 +2185,9 @@ describe Observation, "community taxon" do
     o = Observation.make!
     i1 = Identification.make!(:observation => o)
     o.reload
-    o.community_taxon.should be_blank
+    expect(o.community_taxon).to be_blank
     o.update_attributes(:taxon => i1.taxon)
-    o.community_taxon.should_not be_blank
+    expect(o.community_taxon).not_to be_blank
   end
 
   # it "change should trigger change in observation stats" do
@@ -2233,25 +2199,25 @@ describe Observation, "community taxon" do
     t = Taxon.make!(:parent => p, :rank => "species")
     cs = ConservationStatus.make!(:taxon => t)
     o = Observation.make!(:latitude => 1, :longitude => 1, :taxon => p)
-    o.should_not be_coordinates_obscured
-    o.taxon.should_not be_blank
+    expect(o).not_to be_coordinates_obscured
+    expect(o.taxon).not_to be_blank
     i1 = Identification.make!(:taxon => t, :observation => o)
     i2 = Identification.make!(:taxon => t, :observation => o)
     o.reload
-    o.community_taxon.should eq t
-    o.should be_coordinates_obscured
+    expect(o.community_taxon).to eq t
+    expect(o).to be_coordinates_obscured
   end
 
   it "should obscure the observation if set to a threatened taxon but the owner has no ID" do
     cs = ConservationStatus.make!
     t = cs.taxon
     o = Observation.make!(:latitude => 1, :longitude => 1)
-    o.taxon.should be_blank
+    expect(o.taxon).to be_blank
     i1 = Identification.make!(:taxon => t, :observation => o)
     i2 = Identification.make!(:taxon => t, :observation => o)
     o.reload
-    o.taxon.should eq t
-    o.should be_coordinates_obscured
+    expect(o.taxon).to eq t
+    expect(o).to be_coordinates_obscured
   end
 
   describe "test cases: " do
@@ -2280,7 +2246,7 @@ describe Observation, "community taxon" do
       Identification.make!(:observation => @o, :taxon => @s1)
       i = Identification.make!(:observation => @o, :taxon => @s2)
       @o.reload
-      @o.community_taxon.should eq @g1
+      expect(@o.community_taxon).to eq @g1
     end
 
     it "s1 s1 g1" do
@@ -2288,7 +2254,7 @@ describe Observation, "community taxon" do
       Identification.make!(:observation => @o, :taxon => @s1)
       Identification.make!(:observation => @o, :taxon => @g1)
       @o.reload
-      @o.community_taxon.should eq @g1
+      expect(@o.community_taxon).to eq @g1
     end
 
     it "s1 s1 s1 g1" do
@@ -2297,7 +2263,7 @@ describe Observation, "community taxon" do
       Identification.make!(:observation => @o, :taxon => @s1)
       Identification.make!(:observation => @o, :taxon => @g1)
       @o.reload
-      @o.community_taxon.should eq @s1
+      expect(@o.community_taxon).to eq @s1
     end
 
     it "ss1 ss1 ss2 ss2" do
@@ -2306,7 +2272,7 @@ describe Observation, "community taxon" do
       Identification.make!(:observation => @o, :taxon => @s2)
       Identification.make!(:observation => @o, :taxon => @s2)
       @o.reload
-      @o.community_taxon.should eq @g1
+      expect(@o.community_taxon).to eq @g1
     end
 
     it "f f f f ss1 s2 s2 s2 s2" do
@@ -2320,7 +2286,7 @@ describe Observation, "community taxon" do
       Identification.make!(:observation => @o, :taxon => @s2)
       Identification.make!(:observation => @o, :taxon => @s2)
       @o.reload
-      @o.community_taxon.should eq @s2
+      expect(@o.community_taxon).to eq @s2
     end
 
     it "f f f f ss1 ss1 s2 s2 s2 s2 g1" do
@@ -2336,7 +2302,7 @@ describe Observation, "community taxon" do
       Identification.make!(:observation => @o, :taxon => @s2)
       Identification.make!(:observation => @o, :taxon => @g1)
       @o.reload
-      @o.community_taxon.should eq @g1
+      expect(@o.community_taxon).to eq @g1
     end
 
     it "f g1 s1 (should not taxa with only one ID to be the community taxon)" do
@@ -2344,7 +2310,7 @@ describe Observation, "community taxon" do
       Identification.make!(:observation => @o, :taxon => @g1)
       Identification.make!(:observation => @o, :taxon => @s1)
       @o.reload
-      @o.community_taxon.should eq @g1
+      expect(@o.community_taxon).to eq @g1
     end
 
     it "f f g1 s1" do
@@ -2353,7 +2319,7 @@ describe Observation, "community taxon" do
       Identification.make!(:observation => @o, :taxon => @g1)
       Identification.make!(:observation => @o, :taxon => @s1)
       @o.reload
-      @o.community_taxon.should eq @g1
+      expect(@o.community_taxon).to eq @g1
     end
 
     it "s1 s1 f f" do
@@ -2362,127 +2328,125 @@ describe Observation, "community taxon" do
       Identification.make!(:observation => @o, :taxon => @f)
       Identification.make!(:observation => @o, :taxon => @f)
       @o.reload
-      @o.community_taxon.should eq @f
+      expect(@o.community_taxon).to eq @f
     end
   end
 end
 
 describe Observation, "fields_addable_by?" do
   it "should default to true for anyone" do
-    Observation.make!.fields_addable_by?(User.make!).should be true
+    expect(Observation.make!.fields_addable_by?(User.make!)).to be true
   end
 
   it "should be false for nil user" do
-    Observation.make!.fields_addable_by?(nil).should be false
+    expect(Observation.make!.fields_addable_by?(nil)).to be false
   end
 
   it "should be true for curators if curators preferred" do
     c = make_curator
     u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS)
     o = Observation.make!(:user => u)
-    o.fields_addable_by?(c).should be true
+    expect(o.fields_addable_by?(c)).to be true
   end
 
   it "should be true for curators by default" do
     c = make_curator
     u = User.make!
     o = Observation.make!(:user => u)
-    o.fields_addable_by?(c).should be true
+    expect(o.fields_addable_by?(c)).to be true
   end
 
   it "should be false for curators if no editing preferred" do
     c = make_curator
     u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
     o = Observation.make!(:user => u)
-    o.fields_addable_by?(c).should be false
+    expect(o.fields_addable_by?(c)).to be false
   end
 
   it "should be false for everyone other than the observer if no editing preferred" do
     other = User.make!
     u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
     o = Observation.make!(:user => u)
-    o.fields_addable_by?(other).should be false
+    expect(o.fields_addable_by?(other)).to be false
   end
 
   it "should be true for the observer if no editing preferred" do
     u = User.make!(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
     o = Observation.make!(:user => u)
-    o.fields_addable_by?(u).should be true
+    expect(o.fields_addable_by?(u)).to be true
   end
 end
 
 describe Observation, "mappable" do
   it "should be mappable with lat/long" do
-    Observation.make!(latitude: 1.1, longitude: 2.2).mappable?.should be true
+    expect(Observation.make!(latitude: 1.1, longitude: 2.2)).to be_mappable
   end
 
   it "should not be mappable without lat/long" do
-    Observation.make!.mappable?.should be false
+    expect(Observation.make!).not_to be_mappable
   end
 
   it "should not be mappable with a terrible accuracy" do
-    Observation.make!(latitude: 1.1, longitude: 2.2,
-      positional_accuracy: Observation::M_TO_OBSCURE_THREATENED_TAXA + 1).
-      mappable?.should be false
+    expect(
+      Observation.make!(latitude: 1.1, longitude: 2.2,
+        positional_accuracy: Observation::M_TO_OBSCURE_THREATENED_TAXA + 1)
+    ).not_to be_mappable
   end
 
   it "should not be mappable if captive" do
-    Observation.make!(latitude: 1.1, longitude: 2.2,
-      captive: true).mappable?.should be false
+    expect(Observation.make!(latitude: 1.1, longitude: 2.2, captive: true)).not_to be_mappable
   end
 
   it "should not be mappable when adding captive metric" do
     o = Observation.make!(latitude: 1.1, longitude: 2.2)
-    o.mappable?.should be true
+    expect(o.mappable?).to be true
     QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
-    o.mappable?.should be false
+    expect(o.mappable?).to be false
   end
 
   it "should update mappable when captive metric is deleted" do
     o = Observation.make!(latitude: 1.1, longitude: 2.2)
-    o.mappable?.should be true
+    expect(o.mappable?).to be true
     q = QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
-    o.mappable?.should be false
+    expect(o.mappable?).to be false
     q.destroy
-    o.reload.mappable?.should be true
+    expect(o.reload.mappable?).to be true
   end
 
   it "should not be mappable with an inaccurate location" do
     o = Observation.make!(latitude: 1.1, longitude: 2.2)
-    o.mappable?.should be true
+    expect(o.mappable?).to be true
     QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
-    o.mappable?.should be false
+    expect(o.mappable?).to be false
   end
 
   it "should update mappable after multiple quality metrics are added" do
     o = Observation.make!(latitude: 1.1, longitude: 2.2)
-    o.mappable?.should be true
+    expect(o.mappable?).to be true
     QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: true)
-    o.mappable?.should be true
+    expect(o.mappable?).to be true
     QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
-    o.mappable?.should be false
+    expect(o.mappable?).to be false
   end
 
   it "should default accuracy of obscured observations to M_TO_OBSCURE_THREATENED_TAXA" do
     o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2)
-    o.coordinates_obscured?.should be true
-    o.calculate_public_positional_accuracy.should == Observation::M_TO_OBSCURE_THREATENED_TAXA
+    expect(o.coordinates_obscured?).to be true
+    expect(o.calculate_public_positional_accuracy).to eq Observation::M_TO_OBSCURE_THREATENED_TAXA
   end
 
   it "should set public accuracy to the greater of accuracy and M_TO_OBSCURE_THREATENED_TAXA" do
     o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2,
       positional_accuracy: Observation::M_TO_OBSCURE_THREATENED_TAXA + 1)
-    o.calculate_public_positional_accuracy.should == Observation::M_TO_OBSCURE_THREATENED_TAXA + 1
+    expect(o.calculate_public_positional_accuracy).to eq Observation::M_TO_OBSCURE_THREATENED_TAXA + 1
   end
 
   it "should set public accuracy to accuracy" do
-    o = Observation.make!(positional_accuracy: 10).
-      public_positional_accuracy.should == 10
+    expect(Observation.make!(positional_accuracy: 10).public_positional_accuracy).to eq 10
   end
 
   it "should set public accuracy to nil if accuracy is nil" do
-    o = Observation.make!(positional_accuracy: nil).
-      public_positional_accuracy.should == nil
+    expect(Observation.make!(positional_accuracy: nil).public_positional_accuracy).to be_nil
   end
 end
 
@@ -2490,22 +2454,22 @@ describe Observation, "observations_places" do
   it "should generate observations_places after save" do
     p = make_place_with_geom
     o = Observation.make!
-    o.observations_places.length.should == 0
-    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be false
+    expect(o.observations_places.length).to eq 0
+    expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be false
     o.latitude = p.latitude
     o.longitude = p.longitude
     o.save
     o.reload
-    o.observations_places.length.should >= 1
-    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be true
+    expect(o.observations_places.length).to be >= 1
+    expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be true
   end
 
   it "deletes its observations_places on destroy" do
     p = make_place_with_geom
     o = Observation.make!(latitude: p.latitude, longitude: p.longitude)
-    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be true
+    expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be true
     o.destroy
-    ObservationsPlace.exists?(observation_id: o.id, place_id: p.id).should be false
+    expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be false
   end
 end
 
@@ -2522,7 +2486,7 @@ describe Observation, "coordinate transformation", :focus => true  do
         :proj4 => "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
       }
     }
-    CONFIG.coordinate_systems.should_not be_blank
+    expect(CONFIG.coordinate_systems).not_to be_blank
   end
   it "requires geo_x if geo_y is present" do
     subject.geo_y = 5413457.7
@@ -2560,8 +2524,8 @@ describe Observation, "coordinate transformation", :focus => true  do
     subject.geo_x = 1528677.3
     subject.coordinate_system = "nztm2000"
     subject.save!
-    subject.latitude.should be_within(0.0000001).of(-41.4272781531)
-    subject.longitude.should be_within(0.0000001).of(172.1464131267)
+    expect(subject.latitude).to be_within(0.0000001).of(-41.4272781531)
+    expect(subject.longitude).to be_within(0.0000001).of(172.1464131267)
   end
   
 end

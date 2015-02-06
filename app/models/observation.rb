@@ -1769,11 +1769,10 @@ class Observation < ActiveRecord::Base
     if longitude.blank? || latitude.blank?
       self.geom = nil
     elsif options[:force] || longitude_changed? || latitude_changed?
-      # TODO: Rails4: Do we need a replacement for GeoRuby::SimpleFeatures::Point ?
-      self.geom = GeoRuby::SimpleFeatures::Point.from_x_y(longitude, latitude)
+      self.geom = "POINT(#{longitude} #{latitude})"
     end
     if private_latitude && private_longitude
-      self.private_geom = GeoRuby::SimpleFeatures::Point.from_x_y(private_longitude, private_latitude)
+      self.private_geom = "POINT(#{private_longitude} #{private_latitude})"
     elsif self.geom
       self.private_geom = self.geom
     else
@@ -1819,17 +1818,17 @@ class Observation < ActiveRecord::Base
     buffer_degrees = OUT_OF_RANGE_BUFFER / (2*Math::PI*Observation::PLANETARY_RADIUS) * 360.0
     
     self.out_of_range = if coordinates_obscured?
-      TaxonRange.exists?([
+      TaxonRange.where(
         "taxon_ranges.taxon_id = ? AND ST_Distance(taxon_ranges.geom, ST_Point(?,?)) > ?",
         taxon_id, private_longitude, private_latitude, buffer_degrees
-      ])
+      ).exists?
     else
-      TaxonRange.count(
-        :from => "taxon_ranges, observations",
-        :conditions => [
+      TaxonRange.
+        from("taxon_ranges, observations").
+        where(
           "taxon_ranges.taxon_id = ? AND observations.id = ? AND ST_Distance(taxon_ranges.geom, observations.geom) > ?",
-          taxon_id, id, buffer_degrees]
-      ) > 0
+          taxon_id, id, buffer_degrees
+        ).count > 0
     end
   end
 

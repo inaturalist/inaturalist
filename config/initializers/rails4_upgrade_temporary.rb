@@ -1,26 +1,3 @@
-# this was needed to allow geom types to be entered in tests
-# Very similar to what the spatial_adapter gem was doing for us
-module ActiveRecord
-  module Type
-    class Value
-
-      # Cast a value from the ruby type to a type that the database knows how
-      # to understand. The returned value from this method should be a
-      # +String+, +Numeric+, +Date+, +Time+, +Symbol+, +true+, +false+, or
-      # +nil+
-      def type_cast_for_database(value)
-        # pleary: this conditional is the new bit
-        if value.kind_of? GeoRuby::SimpleFeatures::Geometry
-          return value.as_hex_ewkb
-        end
-        value
-      end
-    end
-  end
-end
-
-
-
 # this was needed because apparently HABTM relationships are not rolling back
 # for example this will raise an error
 # User.transation do
