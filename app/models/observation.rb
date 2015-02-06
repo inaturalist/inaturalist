@@ -2216,10 +2216,8 @@ class Observation < ActiveRecord::Base
         next unless t
         value = t.id
       end
-      ofv = self.observation_field_values.build(:observation_field => of, :value => value)
-      unless ofv.valid?
-        self.observation_field_values.to_a.pop
-      end
+      ofv = ObservationFieldValue.new(observation: self, observation_field: of, value: value)
+      self.observation_field_values.build(ofv.attributes) if ofv.valid?
     end
   end
 
