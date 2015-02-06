@@ -1,5 +1,5 @@
 module WikiPagesHelper
-  # acts_as_wiki_pages_helper
+  acts_as_wiki_pages_helper
   def wiki_content(text)
     Irwi.config.formatter.format(wiki_macros(wiki_linkify( wiki_show_attachments(text)))).html_safe
   end

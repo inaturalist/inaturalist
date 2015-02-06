@@ -116,6 +116,7 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    RedCloth (4.2.9)
     aasm (4.0.8)
     actionmailer (4.2.0)
       actionpack (= 4.2.0)
@@ -567,6 +568,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   aasm
   actionpack-action_caching
   actionpack-page_caching
