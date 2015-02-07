@@ -1042,7 +1042,7 @@ class ObservationsController < ApplicationController
         :user => current_user, :photo_class => klass)
     end.flatten.compact
     @observations = photos.map{|p| p.to_observation}
-    @observation_photos = ObservationPhoto.includes(:photo, :observation).
+    @observation_photos = ObservationPhoto.joins(:photo, :observation).
       where("photos.native_photo_id IN (?)", photos.map(&:native_photo_id))
     @step = 2
     render :template => 'observations/new_batch'
