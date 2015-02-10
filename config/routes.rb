@@ -175,7 +175,7 @@ Rails.application.routes.draw do
   get 'observations/edit/batch' => 'observations#edit_batch', :as => :edit_observation_batch
   delete 'observations/delete_batch' => 'observations#delete_batch', :as => :delete_observation_batch
   get 'observations/import' => 'observations#import', :as => :import_observations
-  get 'observations/import_photos' => 'observations#import_photos', :as => :import_photos
+  post 'observations/import_photos' => 'observations#import_photos', :as => :import_photos
   post 'observations/import_sounds' => 'observations#import_sounds', :as => :import_sounds
   get 'observations/id_please' => 'observations#id_please', :as => :id_please
   get 'observations/selector' => 'observations#selector', :as => :observation_selector
