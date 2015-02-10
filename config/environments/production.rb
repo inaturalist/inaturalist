@@ -17,6 +17,8 @@ Inaturalist::Application.configure do
   # If you have no front-end server that supports something like X-Sendfile,
   # just comment this out and Rails will serve the files
 
+  config.log_level = :debug
+
   # Not sure why this is necessary, but settings the custom logger above 
   # seems to cause ActiveRecord to log db statements
   config.active_record.logger = nil
@@ -26,7 +28,7 @@ Inaturalist::Application.configure do
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
-  config.serve_static_assets = false
+  config.serve_static_files = false
 
   # Allow removal of expired assets:
   config.assets.handle_expiration = true

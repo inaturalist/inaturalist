@@ -114,7 +114,3 @@ group :test do
   gem "rspec-rails"
   gem "rspec-html-matchers"
 end
-
-group :assets do
-  gem 'turbo-sprockets-rails3'
-end
