@@ -26,7 +26,7 @@ module Shared::GuideModule
       @search_taxon_ids = Taxon.search_for_ids(@q) if @search_taxon_ids.blank?
       if @search_taxon_ids.size == 1
         @taxon = Taxon.find_by_id(@search_taxon_ids.first)
-      elsif Taxon.count(:conditions => ["id IN (?) AND name LIKE ?", @search_taxon_ids, "#{@q.capitalize}%"]) == 1
+      elsif Taxon.where(id: @search_taxon_ids).where("name LIKE ?", "#{@q.capitalize}%").count == 1
         @taxon = Taxon.where(name: @q.capitalize).first
       else
         @scope = @scope.among(@search_taxon_ids)

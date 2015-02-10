@@ -511,10 +511,10 @@ protected
   end
   
   def counts_for_users
-    @observation_counts = Observation.count(:conditions => ["user_id IN (?)", @users], :group => :user_id)
-    @listed_taxa_counts = ListedTaxon.count(:conditions => ["list_id IN (?)", @users.map{|u| u.life_list_id}], 
-      :group => :user_id)
-    @post_counts = Post.count(:conditions => ["user_id IN (?)", @users], :group => :user_id)
+    @observation_counts = Observation.where(user_id: @users).group(:user_id).count
+    @listed_taxa_counts = ListedTaxon.where(list_id: @users.map{|u| u.life_list_id}).
+      group(:user_id).count
+    @post_counts = Post.where(user_id: @users).group(:user_id).count
   end
   
   def activity_object_image_url(activity_stream)

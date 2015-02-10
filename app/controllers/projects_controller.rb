@@ -524,13 +524,12 @@ class ProjectsController < ApplicationController
   end
   
   def stats
-    @project_user_stats = @project.project_users.count(:group => "EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)")
-    @project_observation_stats = @project.project_observations.count(:group => "EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)")
-    @unique_observer_stats = @project.project_observations.count(
-      :select => "observations.user_id", 
-      :include => :observation, 
-      :group => "EXTRACT(YEAR FROM project_observations.created_at) || '-' || EXTRACT(MONTH FROM project_observations.created_at)")
-    
+    @project_user_stats = @project.project_users.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
+    @project_observation_stats = @project.project_observations.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
+    @unique_observer_stats = @project.project_observations.joins(:observation).
+      select("observations.user_id").
+      group("EXTRACT(YEAR FROM project_observations.created_at) || '-' || EXTRACT(MONTH FROM project_observations.created_at)").
+      count
     @total_project_users = @project.project_users.count
     @total_project_observations = @project.project_observations.count
     @total_unique_observers = @project.project_observations.count(:select => "observations.user_id", :include => :observation)
