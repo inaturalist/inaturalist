@@ -182,7 +182,7 @@
               %i.fa.fa-edit
               = t(:edit)
             - unless @guide.published?
-              = link_to t(:publish), guide_path(@guide, :publish => true), :method => :put, :class => "btn btn-primary"
+              = link_to t(:publish), guide_path(@guide, :guide => {:publish => "publish"}), :method => :put, :class => "btn btn-primary"
       %h1
         - if @guide.icon.file?
           = image_tag @guide.icon.url(:thumb), :class => "left img-rounded"

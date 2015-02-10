@@ -8,7 +8,7 @@ shared_examples_for "a GuidesController" do
       3.times { make_published_guide }
       get :index, :format => :json, :per_page => 2, :page => 2
       json = JSON.parse(response.body)
-      json.size.should eq 1
+      expect(json.size).to eq 1
     end
   end
 
@@ -16,9 +16,9 @@ shared_examples_for "a GuidesController" do
     it "should show the guides by the signed in user" do
       guide = Guide.make!(:user => user)
       get :user, :format => :json
-      response.should be_success
+      expect(response).to be_success
       json = JSON.parse(response.body)
-      json.detect{|g| g['id'] == guide.id}.should_not be_blank
+      expect(json.detect{|g| g['id'] == guide.id}).not_to be_blank
     end
   end
 end

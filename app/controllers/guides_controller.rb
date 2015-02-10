@@ -33,13 +33,13 @@ class GuidesController < ApplicationController
     @place = (Place.find_by_id(params[:place_id]) rescue nil) unless params[:place_id].blank?
     @place ||= @root_place unless logged_in? && params[:by] == "you"
     if @place
-      @guides = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, @place.descendant_conditions)})", @place)
+      @guides = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, @place.descendant_conditions.to_sql)})", @place)
     end
 
     unless params[:taxon_id].blank?
       @taxon = Taxon.find_by_id(params[:taxon_id])
       if @taxon
-        @guides = @guides.joins(:taxon).where("taxa.id = ? OR (#{Taxon.send(:sanitize_sql, @taxon.descendant_conditions)})", @taxon)
+        @guides = @guides.joins(:taxon).where("taxa.id = ? OR (#{Taxon.send(:sanitize_sql, @taxon.descendant_conditions.to_sql)})", @taxon)
       end
     end
 
@@ -309,14 +309,15 @@ class GuidesController < ApplicationController
   # PUT /guides/1.json
   def update
     @guide.icon = nil if params[:icon_delete]
+    params[:guide] ||= {}
     if params[:publish]
-      @guide.published_at = Time.now
+      params[:guide][:publish] = "publish"
     elsif params[:unpublish]
-      @guide.published_at = nil
+      params[:guide][:publish] = "unpublish"
     end
     create_default_guide_taxa
     respond_to do |format|
-      if @guide.update_attributes(params[:guide])
+      if @guide.update_attributes(guide_params)
         format.html { redirect_to @guide, notice: t("Guide was successfully #{params[:publish] ? 'published' : 'updated'}".downcase.gsub(' ','_')) }
         format.json { head :no_content }
       else
@@ -445,5 +446,22 @@ class GuidesController < ApplicationController
     @guide_taxa = @guide.guide_taxa.includes(:taxon, {:guide_photos => :photo}, :tags).
       order("guide_taxa.position")
     @recent_tags = @guide.recent_tags
+  end
+
+  def guide_params
+    params.require(:guide).permit(
+      :publish,
+      :title,
+      :description,
+      :latitude,
+      :longitude,
+      :place_id,
+      :license,
+      :map_type,
+      :zoom_level,
+      :taxon_id,
+      :downloadable,
+      :guide_users_attributes => [:id, :user_id, :guide_id, :_destroy]
+    )
   end
 end

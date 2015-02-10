@@ -509,7 +509,7 @@ class TaxaController < ApplicationController
       params[:is_active]
     end
 
-    scope = TaxonName.includes(:taxon => :taxon_names).
+    scope = TaxonName.joins(:taxon => :taxon_names).
       where("lower(taxon_names.name) LIKE ?", "#{@q.to_s.downcase}%").
       limit(30)
     scope = scope.where("taxa.is_active = ?", @is_active) unless @is_active == "any"
@@ -698,14 +698,14 @@ class TaxaController < ApplicationController
   end
   
   def observation_photos
-    @taxon = Taxon.find_by_id(params[:id].to_i, :include => :taxon_names)
+    @taxon = Taxon.includes(:taxon_names).where(id: params[:id].to_i).first
     licensed = %w(t any true).include?(params[:licensed].to_s)
     if per_page = params[:per_page]
       per_page = per_page.to_i > 50 ? 50 : per_page.to_i
     end
     observations = if @taxon && params[:q].blank?
       obs = Observation.of(@taxon).
-        includes(:photos).
+        joins(:photos).
         where("photos.id IS NOT NULL AND photos.user_id IS NOT NULL AND photos.license IS NOT NULL").
         paginate_with_count_over(:page => params[:page], :per_page => per_page)
       if licensed

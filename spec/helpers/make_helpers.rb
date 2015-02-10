@@ -121,8 +121,8 @@ module MakeHelpers
     swap
   end
 
-  def make_published_guide
-    g = Guide.make!
+  def make_published_guide(options = {})
+    g = Guide.make!(options)
     3.times { GuideTaxon.make!(:guide => g) }
     g.update_attributes(:published_at => Time.now)
     g

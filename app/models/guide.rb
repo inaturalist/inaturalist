@@ -7,6 +7,8 @@ class Guide < ActiveRecord::Base
   has_many :guide_users, :inverse_of => :guide, :dependent => :delete_all
 
   accepts_nested_attributes_for :guide_users, :allow_destroy => true
+
+  attr_accessor :publish
   
   has_attached_file :icon, 
     :styles => { :medium => "500x500>", :thumb => "48x48#", :mini => "16x16#", :span2 => "70x70#", :small_square => "200x200#" },
@@ -33,6 +35,8 @@ class Guide < ActiveRecord::Base
       :url => "#{ CONFIG.attachments_host }/attachments/:class/:id.ngz",
       :default_url => ""
   end
+
+  before_validation :set_published_at
   
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
@@ -125,6 +129,14 @@ class Guide < ActiveRecord::Base
     end
 
     Guide.where(id: id).update_all(taxon_id: consensus_taxon_id)
+  end
+
+  def set_published_at
+    if publish == "publish"
+      self.published_at = Time.now
+    elsif publish == "unpublish"
+      self.published_at = nil
+    end
   end
 
   def expire_caches(options = {})

@@ -2,6 +2,9 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Guide, "reorder_by_taxon" do
+  before do
+    Taxon.destroy_all
+  end
   it "should work" do
     f1 = Taxon.make!(:rank => Taxon::FAMILY, :name => "family1")
     f2 = Taxon.make!(:rank => Taxon::FAMILY, :name => "family2")
@@ -17,10 +20,10 @@ describe Guide, "reorder_by_taxon" do
     gt3 = GuideTaxon.make!(:guide => g, :taxon => s3, :position => 2)
     gt2 = GuideTaxon.make!(:guide => g, :taxon => s2, :position => 3)
     gt1 = GuideTaxon.make!(:guide => g, :taxon => s1, :position => 4)
-    g.guide_taxa.order(:position).first.should eq(gt4)
+    expect(g.guide_taxa.order(:position).first).to eq(gt4)
     g.reorder_by_taxonomy
     g.reload
-    g.guide_taxa.order(:position).first.should eq(gt1)
+    expect(g.guide_taxa.order(:position).first).to eq(gt1)
   end
 end
 
@@ -31,11 +34,11 @@ describe Guide, "set_defaults_from_eol_collection" do
   end
 
   it "should set a title" do
-    @guide.title.should_not be_blank
+    expect(@guide.title).not_to be_blank
   end
 
   it "should set a description" do
-    @guide.description.should_not be_blank
+    expect(@guide.description).not_to be_blank
   end
 end
 
@@ -57,7 +60,7 @@ describe Guide, "add_taxa_from_eol_collection" do
     end
     guide = Guide.make!
     guide.add_taxa_from_eol_collection(eol_collection_url)
-    guide.guide_taxa.should_not be_blank
+    expect(guide.guide_taxa).not_to be_blank
   end
 end
 
@@ -100,15 +103,15 @@ describe Guide, "to_ngz" do
   end
 
   it "should contain an xml file" do
-    Dir.glob(File.join(@unzipped_path, "*.xml")).should_not be_blank
+    expect(Dir.glob(File.join(@unzipped_path, "*.xml"))).not_to be_blank
   end
 
   it "should have guide photo image files" do
-    File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_photo, :size => "medium"))).should be true
+    expect(File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_photo, :size => "medium")))).to be true
   end
 
   it "should have guide range image files" do
-    File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_range, :size => "medium"))).should be true
+    expect(File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_range, :size => "medium")))).to be true
   end
 end
 
@@ -116,11 +119,11 @@ describe Guide, "ngz" do
   let(:g) { Guide.make! }
 
   it "should generate when downloadable changed to true" do
-    g.ngz.url.should be_blank
+    expect(g.ngz.url).to be_blank
     g.update_attributes(:downloadable => true)
     Delayed::Worker.new(:quiet => true).work_off
     g.reload
-    g.ngz.url.should_not be_blank
+    expect(g.ngz.url).not_to be_blank
   end
 
   it "job should not trigger if no relevant attributes changed" do
@@ -128,17 +131,17 @@ describe Guide, "ngz" do
     Delayed::Job.delete_all
     g.update_attributes :zoom_level => 5
     Delayed::Job.all.each {|j| puts j.handler} if Delayed::Job.count > 0
-    Delayed::Job.count.should eq 0
+    expect(Delayed::Job.count).to eq 0
   end
 
   it "should be removed when downloadable changed to false" do
-    g.ngz.url.should be_blank
+    expect(g.ngz.url).to be_blank
     g.update_attributes(:downloadable => true)
     Delayed::Worker.new(:quiet => true).work_off
     g.reload
-    g.ngz.url.should_not be_blank
+    expect(g.ngz.url).not_to be_blank
     g.update_attributes(:downloadable => false)
-    g.ngz.url.should be_blank
+    expect(g.ngz.url).to be_blank
   end
 
   it "job should only queue once" do
@@ -148,7 +151,7 @@ describe Guide, "ngz" do
     g.update_attributes(:downloadable => false)
     g.update_attributes(:downloadable => true)
     Delayed::Job.all.each {|j| puts j.handler} if Delayed::Job.count > 1
-    Delayed::Job.count.should eq 1
+    expect(Delayed::Job.count).to eq 1
   end
 end
 
@@ -156,27 +159,27 @@ describe Guide, "publication" do
   it "should not be allowed for guides with less than 3 taxa" do
     g = Guide.make!
     g.update_attributes(:published_at => Time.now)
-    g.errors[:published_at].should_not be_blank
+    expect(g.errors[:published_at]).not_to be_blank
     
     2.times do
       GuideTaxon.make!(:guide => g)
     end
     g.reload
     g.update_attributes(:published_at => Time.now)
-    g.errors[:published_at].should_not be_blank
+    expect(g.errors[:published_at]).not_to be_blank
 
     GuideTaxon.make!(:guide => g)
     g.reload
     g.update_attributes(:published_at => Time.now)
-    g.errors[:published_at].should be_blank
-    g.should be_valid
+    expect(g.errors[:published_at]).to be_blank
+    expect(g).to be_valid
   end
 end
 
 describe Guide, "creation" do
   it "should create a guide user" do
     g = Guide.make!
-    g.guide_users.where(:user_id => g.user_id).should_not be_blank
+    expect(g.guide_users.where(:user_id => g.user_id)).not_to be_blank
   end
 end
 
@@ -184,7 +187,7 @@ describe Guide, "deletion" do
   let(:g) { Guide.make! }
   it "should remove guide users" do
     g.destroy
-    GuideUser.where(:guide_id => g.id).should be_blank
+    expect(GuideUser.where(:guide_id => g.id)).to be_blank
   end
 end
 
