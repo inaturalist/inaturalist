@@ -12,8 +12,7 @@ gem 'airbrake'
 gem 'ancestry'
 gem 'aws-sdk'
 gem 'bluecloth'
-gem 'capistrano'
-gem 'capistrano-passenger'
+gem 'capistrano', '~> 2.15', :require => false
 gem 'chronic'
 gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
 gem 'daemons'
@@ -67,7 +66,7 @@ gem 'right_aws', :git => 'git://github.com/rightscale/right_aws.git'
 gem 'right_http_connection'
 gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'git://github.com/kueda/riparian.git'
-gem 'rvm-capistrano'
+gem 'rvm-capistrano', '~> 1.3'
 gem 'savon'   #allow to consume soap services with WSDL
 gem 'sass', '= 3.2.5'
 gem 'sass-rails'

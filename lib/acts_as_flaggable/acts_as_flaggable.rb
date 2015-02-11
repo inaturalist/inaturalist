@@ -50,13 +50,13 @@ module Gonzo
         def user_has_flagged?(user, flag = nil)
           conditions = flag.nil? ? {} : {:flag => flag}
           conditions.merge! ({:user_id => user.id})
-          return flags.count(:conditions =>conditions) > 0
+          return flags.where(conditions).count > 0
         end
         
         # Count the number of flags tha have this specific
         # flag set
         def count_flags_with_flag(flag)
-          flags.count(:conditions => ["flag = ?", flag])
+          flags.where(flag: flag).count
         end
         
         # Add a flag.  You can either pass in an

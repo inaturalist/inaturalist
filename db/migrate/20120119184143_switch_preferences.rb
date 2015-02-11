@@ -1,7 +1,7 @@
 class SwitchPreferences < ActiveRecord::Migration
   def self.up
     rename_column :users, :preferences, :old_preferences
-    User.do_in_batches(:conditions => "old_preferences IS NOT NULL") do |u|
+    User.where("old_preferences IS NOT NULL").find_each do |u|
       next if u.old_preferences.blank?
       old_prefs = Hash[u.old_preferences[/Preferences \n(.*)/m, 1].split("\n").map{|t| t.split(": ")}]
       old_prefs.each do |pref, value|
