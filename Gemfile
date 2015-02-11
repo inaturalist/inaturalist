@@ -12,7 +12,7 @@ gem 'airbrake'
 gem 'ancestry'
 gem 'aws-sdk'
 gem 'bluecloth'
-gem 'capistrano', '~> 2.15'
+gem 'capistrano', '~> 2.15', :require => false
 gem 'chronic'
 gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
 gem 'daemons'
