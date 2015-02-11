@@ -27,7 +27,7 @@ class TaxaController < ApplicationController
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
   before_filter :load_form_variables, :only => [:edit, :new]
-  # cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos]
+  cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos]
   
   GRID_VIEW = "grid"
   LIST_VIEW = "list"

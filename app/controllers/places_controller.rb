@@ -14,7 +14,7 @@ class PlacesController < ApplicationController
   
   # caches_page :geometry
   # caches_page :cached_guide
-  # cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
+  cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
   
   ALLOWED_SHOW_PARTIALS = %w(autocomplete_item)
   

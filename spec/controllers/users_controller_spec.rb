@@ -39,6 +39,6 @@ describe UsersController, "spam" do
 
   it "should render 403 when the user is a spammer" do
     get :show, id: spammer.id
-    expect(response.response_code).to == 403
+    expect(response.response_code).to eq 403
   end
 end
