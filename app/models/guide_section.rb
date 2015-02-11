@@ -74,7 +74,7 @@ class GuideSection < ActiveRecord::Base
   scope :original, -> { where("COALESCE(source_url, '') = ''") }
   scope :dbsearch, lambda {|q| 
     q = "%#{q}%"
-    includes(:guide_taxon).
+    joins(:guide_taxon).
     where("guide_taxa.name ILIKE ? OR guide_taxa.display_name ILIKE ?", q, q)
   }
 

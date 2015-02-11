@@ -48,10 +48,10 @@ class Identification < ActiveRecord::Base
   }
   
   scope :for, lambda {|user|
-    includes(:observation).where("observation.user_id = ?", user)
+    joins(:observation).where("observation.user_id = ?", user)
   }
-  scope :for_others, -> { includes(:observation).where("observations.user_id != identifications.user_id") }
-  scope :for_self, -> { includes(:observation).where("observations.user_id = identifications.user_id") }
+  scope :for_others, -> { joins(:observation).where("observations.user_id != identifications.user_id") }
+  scope :for_self, -> { joins(:observation).where("observations.user_id = identifications.user_id") }
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
   scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon

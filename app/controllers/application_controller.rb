@@ -393,6 +393,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def json_request?
+    request.format.json?
+  end
+
   private
 
   def admin_required

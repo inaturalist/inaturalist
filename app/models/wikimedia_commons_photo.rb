@@ -85,7 +85,7 @@ class WikimediaCommonsPhoto < Photo
   
   def self.new_from_api_response(api_response, options = {})
     return if api_response.blank?
-    file_name = api_response.at('#firstHeading').children[0].children[0].inner_text
+    file_name = api_response.at('#firstHeading').children[0].inner_text
     return unless file_name
     file_name = file_name.strip.gsub(/\s/, '_').split("File:")[1]
 

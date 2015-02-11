@@ -283,9 +283,9 @@ class Taxon < ActiveRecord::Base
   scope :colored, lambda {|colors|
     colors = [colors] unless colors.is_a?(Array)
     if colors.first.to_i == 0
-      includes(:colors).where("colors.value IN (?)", colors)
+      joins(:colors).where("colors.value IN (?)", colors)
     else
-      includes(:colors).where("colors.id IN (?)", colors)
+      joins(:colors).where("colors.id IN (?)", colors)
     end
   }
   
@@ -651,7 +651,7 @@ class Taxon < ActiveRecord::Base
       order("taxon_photos.position ASC NULLS LAST, taxon_photos.id ASC").
       limit(options[:limit]).map{ |tp| tp.photo }
     if chosen_photos.size < options[:limit]
-      new_photos = Photo.includes({:taxon_photos => :taxon}).
+      new_photos = Photo.joins({:taxon_photos => :taxon}).
         order("taxon_photos.id ASC").
         limit(options[:limit] - chosen_photos.size).
         where("taxa.ancestry LIKE '#{ancestry}/#{id}%'")
