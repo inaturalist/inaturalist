@@ -324,24 +324,18 @@ class ProjectsController < ApplicationController
     
     @project_observations = @project.project_observations.joins(:observation).
       where(observations: { user_id: @contributor.user }).
-      paginate(:page => params[:page], :per_page => 28)
-    
-    @research_grade_count = @project.project_observations.count(
-      :joins => :observation,
-      :conditions => [
-        "observations.user_id = ? AND observations.quality_grade = ?", 
-        @contributor.user,
-        Observation::RESEARCH_GRADE
-    ])
-    
-    @research_grade_species_count = @project.project_observations.count(
-      :joins => {:observation => :taxon},
-      :conditions => [
-        "observations.user_id = ? AND observations.quality_grade = ? AND taxa.rank_level < ?", 
-        @contributor.user,
-        Observation::RESEARCH_GRADE,
-        Taxon::GENUS_LEVEL
-    ])
+      paginate(page: params[:page], per_page: 28)
+
+    @research_grade_count = @project.project_observations.
+      joins(:observation).
+      where(observations: { user_id: @contributor.user,
+        quality_grade: Observation::RESEARCH_GRADE }).count
+
+    @research_grade_species_count = @project.project_observations.
+      joins(observation: :taxon).
+      where(observations: { user_id: @contributor.user,
+        quality_grade: Observation::RESEARCH_GRADE }).
+      where("taxa.rank_level < ?", Taxon::GENUS_LEVEL).count
   end
   
   def list

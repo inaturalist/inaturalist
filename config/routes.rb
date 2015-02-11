@@ -163,7 +163,7 @@ Rails.application.routes.draw do
     end
     member do
       put :viewed_updates
-      put :update_fields
+      patch :update_fields
     end
   end
 

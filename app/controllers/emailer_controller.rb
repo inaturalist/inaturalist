@@ -17,7 +17,7 @@ class EmailerController < ApplicationController
       redirect_to :action => 'invite' and return
     end
     
-    emails_allowed = 60 - current_user.invites.count(:conditions => ["created_at >= ?", 30.days.ago])
+    emails_allowed = 60 - current_user.invites.where("created_at >= ?", 30.days.ago).count
     addresses = params[:email][:addresses].to_s.split(',').map(&:strip).select{|e| e =~ Devise.email_regexp}
     @existing_users = User.where(email: addresses)
     @existing_invites = Invite.where(invite_address: addresses)

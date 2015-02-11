@@ -135,8 +135,7 @@ class ListsController < ApplicationController
     # Calculate the stats
     # TODO: pull out check list logic
     @total_listed_taxa = if @list.is_a?(CheckList) && @list.is_default?
-      ListedTaxon.count('DISTINCT(taxon_id)',
-        :conditions => ["place_id = ?", @list.place_id])
+      ListedTaxon.distinct.where(place_id: @list.place_id).count(:taxon_id)
     else
       @list.listed_taxa.count
     end
