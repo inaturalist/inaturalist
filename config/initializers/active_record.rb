@@ -39,6 +39,9 @@ module ActiveRecord
     end
 
     def self.conditions_for_date(column, date)
+      if date == 'today'
+        return ["#{column}::DATE = ?", Date.today.to_s]
+      end
       year, month, day = date.to_s.split('-').map do |d|
         d = d.blank? ? nil : d.to_i
         d == 0 ? nil : d

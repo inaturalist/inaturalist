@@ -63,13 +63,24 @@
             <% end -%>
           </td>
         </tr>
-        <% unless @photo.is_a?(LocalPhoto) -%>
+        <% if @photo.user -%>
           <tr>
-            <th><%=t :source %></th>
-            <td><%= @photo.source_title %></td>
+            <th class="nobr"><%=t :uploaded_by %></th>
+            <td>
+              <%= link_to user_image(@photo.user), person_url(@photo.user) %>
+              <%= link_to_user @photo.user %>
+            </td>
           </tr>
+        <% end -%>
+        <% unless @photo.native_page_url.blank? -%>
+          <% unless @photo.source_title.blank? %>
+            <tr>
+              <th><%=t :source %></th>
+              <td><%= @photo.source_title %></td>
+            </tr>
+          <% end %>
           <tr>
-            <th><%= :original %></th>
+            <th><%=t :original %></th>
             <td><%= link_to @photo.native_page_url, @photo.native_page_url %></td>
           </tr>
         <% end -%>

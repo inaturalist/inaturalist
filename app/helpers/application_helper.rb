@@ -686,10 +686,6 @@ module ApplicationHelper
       end
     elsif record.is_a?(Photo) || record.is_a?(Sound)
       user_name = ""
-      if record.user && record.editable_by?(record.user)
-        user_name = record.user.name
-        user_name = record.user.login if user_name.blank?
-      end
       user_name = record.native_realname if user_name.blank?
       user_name = record.native_username if user_name.blank?
       user_name = record.user.try(:name) if user_name.blank?
@@ -698,7 +694,7 @@ module ApplicationHelper
       s = if record.copyrighted? || record.creative_commons?
         "&copy; #{user_name}"
       else
-        t(:no_known_copyright_restrictions, :name => user_name)
+        t('copyright.no_known_copyright_restrictions', :name => user_name, :license_name => t(:public_domain))
       end
 
       if record.copyrighted?

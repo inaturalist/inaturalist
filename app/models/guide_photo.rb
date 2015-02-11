@@ -46,7 +46,7 @@ class GuidePhoto < ActiveRecord::Base
         klass.new_from_api_response(r)
       end
     else
-      self.photo = LocalPhoto.new({:user_id => guide.user_id}.merge(attributes))
+      self.photo = LocalPhoto.new({:user_id => guide.user_id}.merge(attributes.symbolize_keys))
     end
   rescue => e
     Rails.logger.debug "[DEBUG] Error assigning GuidePhoto photo attributes: #{e}"

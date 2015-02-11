@@ -70,13 +70,9 @@ class EolPhoto < Photo
     thumb_url = api_response.search('thumbnailURL').children.last.inner_text
     rights_holder = api_response.search('dataObject rightsHolder')
     if rights_holder.count == 0
-      alternate_username = api_response.search('agent')
-      native_username = alternate_username[0].inner_text
-      if alternate_username.count > 1
-        if alternate_username[1]["role"] == "photographer"
-          native_username = alternate_username[1].inner_text
-        end
-      end
+      agent = api_response.search('agent[role=creator]').first
+      agent ||= api_response.search('agent[role=photographer]').first
+      native_username = agent.inner_text if agent
     elsif rights_holder.children.size > 0
       native_username = rights_holder.children.first.inner_text
     else

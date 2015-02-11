@@ -1983,7 +1983,14 @@ class ObservationsController < ApplicationController
       d2 = (Date.parse(params[:d2]) rescue Date.today)
       return false if d2 - d1 > 366
     end
-    @stats_adequately_scoped = !(params[:d1].blank? && params[:projects].blank? && params[:place_id].blank? && params[:user_id].blank? && params[:on].blank?)
+    @stats_adequately_scoped = !(
+      params[:d1].blank? && 
+      params[:projects].blank? && 
+      params[:place_id].blank? && 
+      params[:user_id].blank? && 
+      params[:on].blank? &&
+      params[:created_on].blank?
+    )
   end
   
   def retrieve_photos(photo_list = nil, options = {})

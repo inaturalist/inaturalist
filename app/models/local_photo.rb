@@ -93,7 +93,7 @@ class LocalPhoto < Photo
       url = file.url(s)
       url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
     end
-    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'"
+    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
     Photo.where(id: id).update_all(updates)
     true
   end
