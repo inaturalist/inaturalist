@@ -56,6 +56,7 @@ module Inaturalist
     config.active_record.raise_in_transactional_callbacks = true
     
     # config.active_record.observers = :user_observer, :listed_taxon_sweeper # this might have to come back, was running into probs with Preferences
+    config.active_record.observers = :observation_sweeper, :user_sweeper, :listed_taxon_sweeper
     
     config.time_zone = 'UTC'
     

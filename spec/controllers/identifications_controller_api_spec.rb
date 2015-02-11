@@ -6,16 +6,16 @@ shared_examples_for "an IdentificationsController" do
 
   describe "create" do
     it "should work" do
-      observation.identifications.count.should eq 0
+      expect(observation.identifications.count).to eq 0
       t = Taxon.make!
       post :create, :format => :json, :identification => {
         :observation_id => observation.id,
         :taxon_id => t.id,
         :body => "i must eat them all"
       }
-      response.should be_success
+      expect(response).to be_success
       observation.reload
-      observation.identifications.count.should eq 1
+      expect(observation.identifications.count).to eq 1
     end
 
     it "should include the observation in the response" do
@@ -25,55 +25,55 @@ shared_examples_for "an IdentificationsController" do
         :taxon_id => t.id,
         :body => "i must eat them all"
       }
-      response.should be_success
+      expect(response).to be_success
       json = JSON.parse(response.body)
-      json['observation']['id'].should eq observation.id
+      expect(json['observation']['id']).to eq observation.id
     end
 
     it "should not include observation private coordinates" do
       t = Taxon.make!
       o = make_private_observation
-      user.should_not eq o.user
+      expect(user).not_to eq o.user
       post :create, :format => :json, :identification => {
         :observation_id => o.id,
         :taxon_id => t.id,
         :body => "i must eat them all"
       }
-      response.should be_success
+      expect(response).to be_success
       json = JSON.parse(response.body)
-      json['observation']['private_latitude'].should be_blank
+      expect(json['observation']['private_latitude']).to be_blank
     end
 
     it "should include the observation iconic_taxon_name" do
       load_test_taxa
       t = Taxon.make!
-      @Pseudacris_regilla.iconic_taxon.should eq @Amphibia
+      expect(@Pseudacris_regilla.iconic_taxon).to eq @Amphibia
       o = Observation.make!(:taxon => @Pseudacris_regilla)
-      o.iconic_taxon_name.should eq @Amphibia.name
+      expect(o.iconic_taxon_name).to eq @Amphibia.name
       post :create, :format => :json, :identification => {
         :observation_id => o.id,
         :taxon_id => t.id,
         :body => "i must eat them all"
       }
-      response.should be_success
+      expect(response).to be_success
       json = JSON.parse(response.body)
-      json['observation']['iconic_taxon_name'].should eq o.iconic_taxon_name
+      expect(json['observation']['iconic_taxon_name']).to eq o.iconic_taxon_name
     end
   end
 
   describe "update" do
     let(:identification) { Identification.make!(:user => user) }
     it "should work" do
-      lambda {
+      expect {
         put :update, :format => :json, :id => identification.id, :identification => {:body => "i must eat them all"}
         identification.reload
-      }.should change(identification, :body)
+      }.to change(identification, :body)
     end
     
     it "should return json" do
       put :update, :format => :json, :id => identification.id, :identification => {:body => "i must eat them all"}
       json = JSON.parse(response.body)
-      json['taxon_id'].should eq identification.taxon_id
+      expect(json['taxon_id']).to eq identification.taxon_id
     end
   end
 
@@ -92,18 +92,18 @@ shared_examples_for "an IdentificationsController" do
     let(:identification) { Identification.make!(:user => user) }
     it "should work" do
       delete :destroy, :format => :json, :id => identification.id
-      Identification.find_by_id(identification.id).should be_blank
+      expect(Identification.find_by_id(identification.id)).to be_blank
     end
 
     it "should work if there's a pre-existing ident" do
       i = Identification.make!(:user => user, :observation => identification.observation)
-      i.should be_current
+      expect(i).to be_current
       identification.reload
-      identification.should_not be_current
+      expect(identification).not_to be_current
       delete :destroy, :id => i.id
-      Identification.find_by_id(i.id).should be_blank
+      expect(Identification.find_by_id(i.id)).to be_blank
       identification.reload
-      identification.should be_current
+      expect(identification).to be_current
     end
   end
 end
@@ -112,7 +112,7 @@ describe IdentificationsController, "oauth authentication" do
   let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    controller.stub(:doorkeeper_token) { token }
+    allow(controller).to receive(:doorkeeper_token) { token }
   end
   it_behaves_like "an IdentificationsController"
 end

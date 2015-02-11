@@ -6,10 +6,10 @@ class IdentificationsController < ApplicationController
   before_filter :load_identification, :only => load_only
   blocks_spam :only => load_only, :instance => :identification
   before_filter :require_owner, :only => [:edit, :update, :destroy]
-  # cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
-  # caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
-  #   c.params.merge(:sequence => Digest::MD5.hexdigest(c.params[:sequence]))
-  # }
+  cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
+  caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
+    c.params.merge(:sequence => Digest::MD5.hexdigest(c.params[:sequence]))
+  }
     
   def show
     redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.id}")
