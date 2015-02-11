@@ -64,7 +64,7 @@ class TaxaController < ApplicationController
         @featured_taxa = @featured_taxa.from_place(@site_place) if @site_place
         
         if @featured_taxa.blank?
-          @featured_taxa = Taxon.limit(100).where(
+          @featured_taxa = Taxon.limit(100).joins(:photos).where(
             "taxa.wikipedia_summary IS NOT NULL AND " +
             "photos.id IS NOT NULL AND " +
             "taxa.observations_count > 1"

@@ -38,29 +38,26 @@ class CalendarsController < ApplicationController
         [iconic_taxon.id, @taxa_by_iconic_taxon_id[iconic_taxon.id].size]
       end.compact
     else
-      iconic_counts_conditions = Observation.conditions_for_date("o.observed_on", @date)
-      iconic_counts_conditions[0] += " AND o.user_id = ?"
+      iconic_counts_conditions = Observation.conditions_for_date("observations.observed_on", @date)
+      iconic_counts_conditions[0] += " AND observations.user_id = ?"
       iconic_counts_conditions << @selected_user
-      @iconic_counts = Taxon.count(
-        :joins => "JOIN observations o ON o.taxon_id = taxa.id", 
-        :conditions => iconic_counts_conditions,
-        :group => "taxa.iconic_taxon_id")
+      @iconic_counts = Taxon.joins(:observations).
+        where(iconic_counts_conditions).
+        group("taxa.iconic_taxon_id").count
     end
     
     @life_list_firsts = @selected_user.life_list.listed_taxa.where(first_observation_id: @observations).
       sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
     
     unless @observations.blank?
-      scope = Observation.where("ST_Intersects(place_geometries.geom, observations.private_geom)")
       # without this there can be performance problems with very large places.
       # 6 is around the max size for a US county
-      scope = scope.where("st_area(place_geometries.geom) < 6")
-      scope = scope.where("places.id = place_geometries.place_id")
-      scope = scope.where("observations.user_id = ? ", @selected_user)
-      scope = scope.where(Observation.conditions_for_date("observations.observed_on", @date))
-      place_name_counts = scope.count(
-        :from => "observations, places, place_geometries", 
-        :group => "(places.display_name || '-' || places.id)")
+      place_name_counts = Observation.
+        joins("JOIN place_geometries ON (ST_Intersects(place_geometries.geom, observations.private_geom))").
+        joins("JOIN places ON (place_geometries.place_id = places.id)").
+        where("st_area(place_geometries.geom) < 6").
+        where(Observation.conditions_for_date("observations.observed_on", @date)).
+        group("(places.display_name || '-' || places.id)").count
       @places = Place.where("id IN (?)", place_name_counts.map{|n,c| n.to_s.split('-').last})
       @place_name_counts = @places.sort_by(&:bbox_area).map do |place|
         n = "#{place.display_name}-#{place.id}"

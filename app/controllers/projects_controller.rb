@@ -324,24 +324,18 @@ class ProjectsController < ApplicationController
     
     @project_observations = @project.project_observations.joins(:observation).
       where(observations: { user_id: @contributor.user }).
-      paginate(:page => params[:page], :per_page => 28)
-    
-    @research_grade_count = @project.project_observations.count(
-      :joins => :observation,
-      :conditions => [
-        "observations.user_id = ? AND observations.quality_grade = ?", 
-        @contributor.user,
-        Observation::RESEARCH_GRADE
-    ])
-    
-    @research_grade_species_count = @project.project_observations.count(
-      :joins => {:observation => :taxon},
-      :conditions => [
-        "observations.user_id = ? AND observations.quality_grade = ? AND taxa.rank_level < ?", 
-        @contributor.user,
-        Observation::RESEARCH_GRADE,
-        Taxon::GENUS_LEVEL
-    ])
+      paginate(page: params[:page], per_page: 28)
+
+    @research_grade_count = @project.project_observations.
+      joins(:observation).
+      where(observations: { user_id: @contributor.user,
+        quality_grade: Observation::RESEARCH_GRADE }).count
+
+    @research_grade_species_count = @project.project_observations.
+      joins(observation: :taxon).
+      where(observations: { user_id: @contributor.user,
+        quality_grade: Observation::RESEARCH_GRADE }).
+      where("taxa.rank_level < ?", Taxon::GENUS_LEVEL).count
   end
   
   def list
@@ -524,13 +518,12 @@ class ProjectsController < ApplicationController
   end
   
   def stats
-    @project_user_stats = @project.project_users.count(:group => "EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)")
-    @project_observation_stats = @project.project_observations.count(:group => "EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)")
-    @unique_observer_stats = @project.project_observations.count(
-      :select => "observations.user_id", 
-      :include => :observation, 
-      :group => "EXTRACT(YEAR FROM project_observations.created_at) || '-' || EXTRACT(MONTH FROM project_observations.created_at)")
-    
+    @project_user_stats = @project.project_users.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
+    @project_observation_stats = @project.project_observations.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
+    @unique_observer_stats = @project.project_observations.joins(:observation).
+      select("observations.user_id").
+      group("EXTRACT(YEAR FROM project_observations.created_at) || '-' || EXTRACT(MONTH FROM project_observations.created_at)").
+      count
     @total_project_users = @project.project_users.count
     @total_project_observations = @project.project_observations.count
     @total_unique_observers = @project.project_observations.count(:select => "observations.user_id", :include => :observation)

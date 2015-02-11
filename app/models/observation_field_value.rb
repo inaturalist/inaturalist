@@ -37,7 +37,7 @@ class ObservationFieldValue < ActiveRecord::Base
   
   LAT_LON_REGEX = /#{Observation::COORDINATE_REGEX},#{Observation::COORDINATE_REGEX}/
 
-  scope :datatype, lambda {|datatype| includes(:observation_field).where("observation_fields.datatype = ?", datatype)}
+  scope :datatype, lambda {|datatype| joins(:observation_field).where("observation_fields.datatype = ?", datatype)}
   scope :field, lambda {|field|
     field = if field.is_a?(ObservationField)
       field
@@ -50,7 +50,7 @@ class ObservationFieldValue < ActiveRecord::Base
     where(:observation_field_id => field.try(:id))
   }
   scope :license, lambda {|license|
-    scope = includes(:observation)
+    scope = joins(:observation)
     if license == 'none'
       scope.where("observations.license IS NULL")
     elsif Observation::LICENSE_CODES.include?(license)

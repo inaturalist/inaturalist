@@ -54,14 +54,14 @@ class ListedTaxon < ActiveRecord::Base
                           :message => "is already on this list"
   validates_length_of :description, :maximum => 1000, :allow_blank => true
   
-  scope :by_user, lambda {|user| includes(:list).where("lists.user_id = ?", user)}
+  scope :by_user, lambda {|user| joins(:list).where("lists.user_id = ?", user)}
 
   scope :order_by, lambda {|order_by|
     case order_by
     when "alphabetical"
-      includes(:taxon).order("taxa.name ASC")
+      joins(:taxon).order("taxa.name ASC")
     when "taxonomic"
-      includes(:taxon).order("taxa.ancestry ASC, taxa.id ASC")
+      joins(:taxon).order("taxa.ancestry ASC, taxa.id ASC")
     else
       {} # default to id asc ordering
     end

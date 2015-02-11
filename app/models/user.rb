@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
   has_many :identifications, :dependent => :destroy
   has_many :identifications_for_others,
     -> { where("identifications.user_id != observations.user_id AND identifications.current = true").
-         includes(:observation) }, :class_name => "Identification"
+         joins(:observation) }, :class_name => "Identification"
   has_many :photos, :dependent => :destroy
   has_many :posts #, :dependent => :destroy
   has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy

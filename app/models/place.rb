@@ -44,7 +44,7 @@ class Place < ActiveRecord::Base
   preference :check_lists, :boolean, :default => true
 
   extend FriendlyId
-  friendly_id :name, :use => [ :finders ], :reserved_words => PlacesController.action_methods.to_a
+  friendly_id :name, :use => [ :slugged, :finders ], :reserved_words => PlacesController.action_methods.to_a
   def normalize_friendly_id(string)
     super_candidate = super(string)
     candidate = display_name.to_s.split(',').first.parameterize
