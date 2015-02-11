@@ -27,9 +27,14 @@ describe WikimediaCommonsPhoto, "new_from_api_response" do
   end
 
   it "should recognize public domain images" do
-    r = WikimediaCommonsPhoto.get_api_response('Doriopsilla_albopunctata.jpg')
-    wp = WikimediaCommonsPhoto.new_from_api_response(r)
-    wp.license.should == Photo::PD
+    [
+      'Doriopsilla_albopunctata.jpg',
+      'Ischnocybe_plicata_-_Cook_%26_Loomis_1928.jpg'
+    ].each do |filename|
+      r = WikimediaCommonsPhoto.get_api_response(filename)
+      wp = WikimediaCommonsPhoto.new_from_api_response(r)
+      wp.license.should eq Photo::PD
+    end
   end
 
   it "should recognize GFDL images" do

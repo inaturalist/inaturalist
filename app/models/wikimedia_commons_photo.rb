@@ -40,8 +40,7 @@ class WikimediaCommonsPhoto < Photo
         next if file_name.blank?
         width = ii['width'].to_i
         next if width == 0
-        md5_hash = Digest::MD5.hexdigest(URI.unescape(file_name))
-        file_name = URI.escape(URI.unescape(file_name))
+        md5_hash = Digest::MD5.hexdigest(URI.unescape(file_name)) 
         WikimediaCommonsPhoto.new(
           :native_photo_id => file_name,
           :original_url => "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}",
@@ -85,7 +84,8 @@ class WikimediaCommonsPhoto < Photo
   
   def self.new_from_api_response(api_response, options = {})
     return if api_response.blank?
-    file_name = api_response.at('#firstHeading').children[0].children[0].inner_text
+    file_name = api_response.at('link[rel=canonical]').try(:[], 'href')
+    file_name ||= api_response.at('#firstHeading').children[0].children[0].inner_text
     return unless file_name
     file_name = file_name.strip.gsub(/\s/, '_').split("File:")[1]
 
@@ -130,7 +130,7 @@ class WikimediaCommonsPhoto < Photo
     photo.native_realname = author
 
     width = api_response.at('.fileInfo').inner_html.split("(")[1].split(" ")[0].gsub(",","").to_i
-    md5_hash = Digest::MD5.hexdigest(file_name)
+    md5_hash = Digest::MD5.hexdigest(URI.unescape(file_name))
     url_base = "http://upload.wikimedia.org/wikipedia/commons"
     url_identifier = "#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
     photo.original_url = "#{url_base}/#{url_identifier}"
