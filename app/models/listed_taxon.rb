@@ -657,7 +657,7 @@ class ListedTaxon < ActiveRecord::Base
   def self.update_all_taxon_attributes
     start_time = Time.now
     Rails.logger.info "[INFO] Starting ListedTaxon.update_all_taxon_attributes..."
-    Taxon.do_in_batches(:conditions => "listed_taxa_count IS NOT NULL") do |taxon|
+    Taxon.where("listed_taxa_count IS NOT NULL").find_each do |taxon|
       taxon.update_listed_taxa
     end
     Rails.logger.info "[INFO] Finished ListedTaxon.update_all_taxon_attributes " +

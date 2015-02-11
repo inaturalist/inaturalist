@@ -171,7 +171,7 @@ class CheckList < List
       place_id, id, ancestry, "#{ancestry}/%"
     ]
     that = self
-    ListedTaxon.do_in_batches(:conditions => conditions) do |lt|
+    ListedTaxon.where(conditions).find_each do |lt|
       next if that.listed_taxa.exists?(:taxon_id => lt.taxon_id)
       ListedTaxon.where(id: lt.id).update_all(occurrence_status_level: ListedTaxon::ABSENT)
     end
@@ -227,14 +227,13 @@ class CheckList < List
   end
   
   def refresh_now(options = {})
-    find_options = {}
-    if taxa = options[:taxa]
-      find_options[:conditions] = ["list_id = ? AND taxon_id IN (?)", self.id, taxa]
+    scope = if taxa = options[:taxa]
+      ListedTaxon.where(list_id: self.id, taxon_id: taxa)
     else
-      find_options[:conditions] = ["list_id = ?", self.id]
+      ListedTaxon.where(list_id: self.id)
     end
     
-    ListedTaxon.do_in_batches(find_options) do |listed_taxon|
+    scope.find_each do |listed_taxon|
       if listed_taxon.primary_listing
         ListedTaxon.update_cache_columns_for(listed_taxon)
       else

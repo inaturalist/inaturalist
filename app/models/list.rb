@@ -168,21 +168,21 @@ class List < ActiveRecord::Base
     tmp_path = File.join(Dir::tmpdir, fname)
     FileUtils.mkdir_p File.dirname(tmp_path), :mode => 0755
     
-    find_options = {
-      :order => "taxon_ancestor_ids || '/' || listed_taxa.taxon_id",
-      :include => [ { :taxon => :taxon_names }, :user, :first_observation, :last_observation ]
-    }
-    if is_a?(CheckList) && is_default?
-      find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
-      find_options[:conditions] = ["place_id = ?", place_id]
+    scope = if is_a?(CheckList) && is_default?
+      ListedTaxon.where(place_id: place_id).
+        select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.id")
     else
-      find_options[:conditions] = ["list_id = ?", id]
+      ListedTaxon.where(list_id: id)
     end
+    # using a nested query here because DISTINCT ON is picky with .order
+    scope = ListedTaxon.where(id: scope).
+      includes({ taxon: { taxon_names: :place_taxon_names } },
+        :user, :first_observation, :last_observation)
     
     ancestor_cache = {}
     CSV.open(tmp_path, 'w') do |csv|
       csv << headers
-      ListedTaxon.do_in_batches(find_options) do |lt|
+      scope.find_each do |lt|
         next if lt.taxon.blank?
         row = []
         if options[:taxonomic]

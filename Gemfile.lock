@@ -194,14 +194,12 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
-    capistrano (3.3.5)
-      capistrano-stats (~> 1.1.0)
-      i18n
-      rake (>= 10.0.0)
-      sshkit (~> 1.3)
-    capistrano-passenger (0.0.1)
-      capistrano (~> 3.0)
-    capistrano-stats (1.1.1)
+    capistrano (2.15.5)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -209,7 +207,6 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     cocoon (1.2.6)
     coderay (1.1.0)
-    colorize (0.7.5)
     columnize (0.9.0)
     daemon-spawn (0.4.2)
     daemons (1.1.9)
@@ -277,6 +274,7 @@ GEM
     haml (4.0.6)
       tilt
     hashie (3.3.2)
+    highline (1.6.21)
     hike (1.2.3)
     hoe (3.13.0)
       rake (>= 0.8, < 11.0)
@@ -333,7 +331,11 @@ GEM
     naught (1.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     netrc (0.10.2)
     newrelic_rpm (3.9.9.275)
     nokogiri (1.6.6.2)
@@ -504,10 +506,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    sshkit (1.6.1)
-      colorize (>= 0.7.0)
-      net-scp (>= 1.1.2)
-      net-ssh (>= 2.8.0)
     statsd-ruby (1.2.1)
     systemu (2.6.4)
     thin (1.6.3)
@@ -580,8 +578,7 @@ DEPENDENCIES
   binding_of_caller
   bluecloth
   byebug
-  capistrano
-  capistrano-passenger
+  capistrano (~> 2.15)
   chronic
   cocoon
   daemon-spawn
@@ -643,7 +640,7 @@ DEPENDENCIES
   riparian!
   rspec-html-matchers
   rspec-rails
-  rvm-capistrano
+  rvm-capistrano (~> 1.3)
   sass (= 3.2.5)
   sass-rails
   savon

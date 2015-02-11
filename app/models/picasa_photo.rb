@@ -99,7 +99,7 @@ class PicasaPhoto < Photo
     invalids = 0
     skipped = 0
     start_time = Time.now
-    PicasaPhoto.script_do_in_batches(find_options) do |p|
+    PicasaPhoto.where(find_options).find_each do |p|
       r = Net::HTTP.get_response(URI.parse(p.medium_url))
       unless [Net::HTTPBadRequest, Net::HTTPForbidden, Net::HTTPRedirection].include?(r.code_type)
         skipped += 1
