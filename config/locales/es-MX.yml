@@ -823,7 +823,10 @@ es-MX:
   dont_use_double_quotes: No uses "entre comillas" en ningún lado
   double_click_to_finish: (Con doble clic termina tu forma)
   download: 'Descargar:'
-  download_csv: Descarga CSV
+  download_bulk_import_template_html: |
+    <a href="%{url}">Descarga la plantilla</a>para usarla en
+    <a href="/observations/import#csv_import">la importaci&oacute;n de observaciones</a>
+  download_csv: "Descarga CSV"
   drag_and_drop_photos: arrastra y suelta la foto en esta ventana o
   draft: ¡BORRADOR!
   draft_: Borrador
