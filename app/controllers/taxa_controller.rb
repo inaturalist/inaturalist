@@ -280,12 +280,13 @@ class TaxaController < ApplicationController
   end
 
   def edit
-    descendant_options = {:joins => [:taxon], :conditions => @taxon.descendant_conditions}
-    taxon_options = {:conditions => {:taxon_id => @taxon}}
     # TODO: these .firsts will need to be updated
-    @observations_exist = Observation.first(taxon_options) || Observation.first(descendant_options)
-    @listed_taxa_exist = ListedTaxon.first(taxon_options) || ListedTaxon.first(descendant_options)
-    @identifications_exist = Identification.first(taxon_options) || Identification.first(descendant_options)
+    @observations_exist = Observation.where(taxon_id: @taxon).first ||
+      Observation.joins(:taxon).where(@taxon.descendant_conditions).first
+    @listed_taxa_exist = ListedTaxon.where(taxon_id: @taxon).first ||
+      ListedTaxon.joins(:taxon).where(@taxon.descendant_conditions).first
+    @identifications_exist = Identification.where(taxon_id: @taxon).first ||
+      Identification.joins(:taxon).where(@taxon.descendant_conditions).first
     @descendants_exist = @taxon.descendants.first
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
   end

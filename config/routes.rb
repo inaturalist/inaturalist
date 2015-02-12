@@ -168,7 +168,7 @@ Rails.application.routes.draw do
   end
 
   get 'observations/identotron' => 'observations#identotron', :as => :identotron
-  get 'observations/update' => 'observations#update', :as => :update_observations
+  post 'observations/update' => 'observations#update', :as => :update_observations
   get 'observations/new/batch_csv' => 'observations#new_batch_csv', :as => :new_observation_batch_csv
   get 'observations/new/batch' => 'observations#new_batch', :as => :new_observation_batch
   get 'observations/new/bulk_csv' => 'observations#new_bulk_csv', :as => :new_observation_bulk_csv
@@ -270,7 +270,7 @@ Rails.application.routes.draw do
       post :refresh_observationcounts
     end
   end
-  get 'lists/:login' => 'lists#by_login', :as => :lists_by_login, :constraints => { :login => simplified_login_regex }
+  match 'lists/:login' => 'lists#by_login', :as => :lists_by_login, :constraints => { :login => simplified_login_regex }, :via => [ :get, :post ]
   get 'lists/:id/compare' => 'lists#compare', :as => :compare_lists, :constraints => { :id => /\d+([\w\-\%]*)/ }
   delete 'lists/:id/remove_taxon/:taxon_id' => 'lists#remove_taxon', :as => :list_remove_taxon, :constraints => { :id => /\d+([\w\-\%]*)/ }
   post 'lists/:id/add_taxon_batch' => 'lists#add_taxon_batch', :as => :list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }

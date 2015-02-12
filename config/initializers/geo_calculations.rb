@@ -42,9 +42,15 @@ module Arel
 
   module Visitors
     class ToSql
-      def visit_Arel_Nodes_Extent o
-        "St_Extent(#{o.expressions.map { |x|
-          visit x }.join(', ')})#{o.alias ? " AS #{visit o.alias}" : ''}"
+      def visit_Arel_Nodes_Extent(o, collector)
+        collector << "St_Extent ("
+        collector = visit(o.expressions, collector) << ")"
+        if o.alias
+          collector << " AS "
+          visit o.alias, collector
+        else
+          collector
+        end
       end
     end
   end
