@@ -5,7 +5,7 @@
 <%= form_for @observation, :builder => DefaultFormBuilder, :html => {:multipart => true} do |o| %>
   <div id="photos" class="clear stacked">
     <label>Add a photo</label><br/>
-    <%= file_field_tag "local_photos[0]", :accept => "image/jpg,image/jpeg,image/png,image/gif" %>
+    <%= file_field_tag "local_photos[0][]", :accept => "image/jpg,image/jpeg,image/png,image/gif" %>
   </div>
   <%= o.text_field :species_guess, :label => t(:what_did_you_see?), :placeholder => t(:species_name) %>
   <%= o.check_box :id_please, :label_after => true, :label => t(:request_id_help) %>
