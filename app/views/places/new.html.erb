@@ -57,8 +57,8 @@
   <%= javascript_include_tag "shramov-leaflet-plugins/Bing" %>
   <%= javascript_include_tag "leaflet.fullscreen/Control.FullScreen.js" %>
   <script type="text/javascript" charset="utf-8">
-    var CLOUDMADE_KEY = <%=raw CONFIG.cloudmade.try(:key).to_json %>,
-        BING_KEY = <%=raw CONFIG.bing.key.inspect %>,
+    var CLOUDMADE_KEY = <%= CONFIG.cloudmade ? raw(CONFIG.cloudmade.try(:key).to_json) : "null" %>,
+        BING_KEY = <%=CONFIG.bing ? raw(CONFIG.bing.key.inspect) : "null" %>,
         PLACE_INVALID = <%= @place && !@place.errors.blank? ? 'true' : 'false' %>,
         CURRENT_USER_IS_CURATOR = <%= logged_in? && current_user.is_curator? ? 'true' : 'false' %>
     $(document).ready(function() {

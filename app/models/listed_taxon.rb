@@ -46,7 +46,6 @@ class ListedTaxon < ActiveRecord::Base
   before_destroy :set_old_list
   after_destroy :reassign_primary_listed_taxon
   after_destroy :update_user_life_list_taxa_count
-  after_destroy :expire_caches
   
   validates_presence_of :list_id, :taxon_id
   validates_uniqueness_of :taxon_id, 

@@ -32,7 +32,6 @@ class ObservationSweeper < ActionController::Caching::Sweeper
   
   def expire_taxon_caches_for_observation(observation)
     return unless (observation.taxon_id_changed? || observation.latitude_changed?)
-    
     if observation.taxon_id_was && (taxon_was = Taxon.find_by_id(observation.taxon_id_was))
       expire_taxon_caches_for_taxon(taxon_was)
     end
@@ -43,12 +42,11 @@ class ObservationSweeper < ActionController::Caching::Sweeper
   end
   
   def expire_taxon_caches_for_taxon(t)
-    ctrl = ActionController::Base.new
     I18N_SUPPORTED_LOCALES.each do |locale|
-      ctrl.send(:expire_action, controller: 'taxa', action: 'show', id: t.to_param, locale: locale)
-      ctrl.send(:expire_action, controller: 'taxa', action: 'show', id: t.id, locale: locale)
-      ctrl.send(:expire_action, controller: 'observations', action: 'of', id: t.id, format: "json", locale: locale)
-      ctrl.send(:expire_action, controller: 'observations', action: 'of', id: t.id, format: "geojson", locale: locale)
+      expire_action controller: 'taxa', action: 'show', id: t.to_param, locale: locale
+      expire_action controller: 'taxa', action: 'show', id: t.id, locale: locale
+      expire_action controller: 'observations', action: 'of', id: t.id, format: "json", locale: locale
+      expire_action controller: 'observations', action: 'of', id: t.id, format: "geojson", locale: locale
     end
   end
 end

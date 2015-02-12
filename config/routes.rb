@@ -373,7 +373,7 @@ Rails.application.routes.draw do
   
   get 'places/:id/widget' => 'places#widget', :as => :place_widget
   get 'places/guide_widget/:id' => 'places#guide_widget', :as => :place_guide_widget
-  get '/places/find_external' => 'places#find_external', :as => :find_external
+  post '/places/find_external' => 'places#find_external', :as => :find_external
   get '/places/search' => 'places#search', :as => :place_search
   get '/places/:id/children' => 'places#children', :as => :place_children
   get 'places/:id/taxa.:format' => 'places#taxa', :as => :place_taxa

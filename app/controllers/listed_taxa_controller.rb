@@ -1,8 +1,7 @@
 class ListedTaxaController < ApplicationController
   before_filter :authenticate_user!, :except => [:show]
   before_filter :load_listed_taxon, :except => [:index, :create, :refresh_observationcounts]
-  cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
-  
+
   SHOW_PARTIALS = %w(place_tip guide batch_edit_row)
 
   def index

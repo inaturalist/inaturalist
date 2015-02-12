@@ -90,11 +90,13 @@ class LifeList < List
   end
   
   def self.refresh_listed_taxon(lt)
-    unless lt.save
+    # checking this first so we don't save before we destroy
+    # and incur unnecessary double cache-clearing
+    if lt.first_observation_id.blank? && lt.last_observation_id.blank? && !lt.manually_added?
       lt.destroy
       return
     end
-    if lt.first_observation_id.blank? && lt.last_observation_id.blank? && !lt.manually_added?
+    unless lt.save
       lt.destroy
     end
   end
