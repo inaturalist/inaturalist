@@ -895,7 +895,7 @@ google.maps.Map.prototype.addTileLayer = function(tileURL, options) {
   }
   // add a utfgrid data layer and custom JS events to catch interactivity
   if( options.interactivity ) {
-    this.addTileInteractivity( tilejson );
+    this.addTileInteractivity( tilejson, layerID );
   }
   // return the layer and index of this layer in the current stack
   return { layer: layer, layerID: layerID };
@@ -907,15 +907,21 @@ google.maps.Map.prototype.interactivityURL = function( tileURL, interactivity ) 
   return utfgridURL + "interactivity=" + interactivity;
 };
 
-google.maps.Map.prototype.addTileInteractivity = function( tilejson ) {
+google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID ) {
   var map = this;
+  var interactionOn = false;
   wax.g
     .interaction()
     .map(map)
     .tilejson(tilejson)
     .on({
       on: function(o) {
-        document.body.style.cursor = 'pointer'
+        // check to see if the layer with the interaction is enabled
+        if( map.overlayMapTypes.getAt( layerID - 1 ) === null ) {
+          return null;
+        }
+        interactionOn = true;
+        document.body.style.cursor = 'pointer';
         if (o.e.type == 'click') {
           // if the click is anywhere within the InfoWindow, don't act on it
           if($('.gm-style-iw').parent().find(o.e.target).length > 0) { return false; }
@@ -953,7 +959,12 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson ) {
         }
       },
       off: function(o) {
-        map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
+        // no need to keep setting the option while the mouse
+        // is outside any interactive point
+        if( interactionOn ) {
+          map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
+        }
+        interactionOn = false;
       }
     });
 };
