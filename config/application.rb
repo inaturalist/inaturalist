@@ -82,6 +82,9 @@ module Inaturalist
 
     config.i18n.enforce_available_locales = false
 
+    # new for Rails 4.2 as per https://github.com/collectiveidea/delayed_job
+    config.active_job.queue_adapter = :delayed_job
+
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
     end
