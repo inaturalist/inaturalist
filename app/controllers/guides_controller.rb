@@ -15,7 +15,7 @@ class GuidesController < ApplicationController
   layout "bootstrap"
   PDF_LAYOUTS = GuidePdfFlowTask::LAYOUTS
 
-  # caches_page :show, :if => Proc.new {|c| c.request.format == :ngz || c.request.format == :xml}
+  caches_page :show, :if => Proc.new {|c| c.request.format == :ngz || c.request.format == :xml}
   
   # GET /guides
   # GET /guides.json

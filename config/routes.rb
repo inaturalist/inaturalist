@@ -190,7 +190,6 @@ Rails.application.routes.draw do
   get 'observations/:login' => 'observations#by_login', :as => :observations_by_login, :constraints => { :login => simplified_login_regex }
   get 'observations/:login.all' => 'observations#by_login_all', :as => :observations_by_login_all, :constraints => { :login => simplified_login_regex }
   get 'observations/:login.:format' => 'observations#by_login', :as => :observations_by_login_feed, :constraints => { :login => simplified_login_regex }
-  get 'observations/tile_points/:zoom/:x/:y.:format' => 'observations#tile_points', :as => :observation_tile_points, :constraints => { :zoom => /\d+/, :y => /\d+/, :x => /\d+/ }
   get 'observations/project/:id' => 'observations#project', :as => :project_observations
   get 'observations/project/:id.all' => 'observations#project_all', :as => :all_project_observations
   get 'observations/of/:id.:format' => 'observations#of', :as => :observations_of

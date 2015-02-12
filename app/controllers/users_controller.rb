@@ -17,10 +17,10 @@ class UsersController < ApplicationController
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
   
-  # caches_action :dashboard,
-  #   :expires_in => 1.hour,
-  #   :cache_path => Proc.new {|c| c.send(:home_url, :user_id => c.instance_variable_get("@current_user").id)},
-  #   :if => Proc.new {|c| (c.params.keys - %w(action controller)).blank? }
+  caches_action :dashboard,
+    :expires_in => 1.hour,
+    :cache_path => Proc.new {|c| c.send(:home_url, :user_id => c.instance_variable_get("@current_user").id)},
+    :if => Proc.new {|c| (c.params.keys - %w(action controller)).blank? }
   cache_sweeper :user_sweeper, :only => [:update]
   
   def new

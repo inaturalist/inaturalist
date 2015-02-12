@@ -12,8 +12,8 @@ class PlacesController < ApplicationController
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:search]
   before_filter :editor_required, :only => [:edit, :update, :destroy]
   
-  # caches_page :geometry
-  # caches_page :cached_guide
+  caches_page :geometry
+  caches_page :cached_guide
   cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
   
   ALLOWED_SHOW_PARTIALS = %w(autocomplete_item)
