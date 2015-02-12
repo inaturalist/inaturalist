@@ -784,7 +784,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson ) {
               beforeSend: function() {
                 var iw = map.getInfoWindow()
                 iw.position = latLng
-                iw.content = $('<div class="loading status">'+I18n.t('loading')+'</div>').get(0)
+                iw.setContent($('<div class="loading status">'+I18n.t('loading')+'</div>').get(0));
                 iw.open(map)
                 // remove any text highlighting, which happens when the user clicks around
                 deselectText();
@@ -792,7 +792,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson ) {
               success: function(data) {
                 var iw = map.getInfoWindow()
                 iw.position = latLng
-                iw.content = $('<div class="compact mini infowindow observations"></div>').append(data).get(0)
+                iw.setContent($('<div class="compact mini infowindow observations"></div>').append(data).get(0));
                 iw.open(map)
                 // make sure the InfoWindow has focus
                 $(iw).focus();
