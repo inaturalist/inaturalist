@@ -193,13 +193,6 @@
   padding: 5px 0;
 }
 
-.observations.mini .observation:after {
-  content: '.';
-  clear: both;
-  height: 0;
-  visibility: hidden;
-  display: block;
-}
 
 .observations.mini .observed_on,
 .observations.mini .created_at,
@@ -470,7 +463,7 @@
 .observations.infowindow .observation {
   border: 0 none;
   margin: 0;
-  padding: 0;
+  padding-bottom: 10px;
   width: 400px;
   max-height: 300px;
 }
