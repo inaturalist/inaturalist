@@ -64,7 +64,7 @@ Some notes:
   </div>
   <div class="photos attribute">
     <h4 class="label"><%= t :'sounds.photos_sounds' %></h4>
-    <div class="photolist clear">
+    <div class="photolist">
       <% photo_count, sound_count, link_text = observation.observation_photos.size, observation.observation_sounds_count, [] %>
       <% if photo_count == 0 && sound_count == 0 -%>
         <div class="photo nophoto description">
