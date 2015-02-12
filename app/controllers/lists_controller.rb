@@ -14,7 +14,7 @@ class ListsController < ApplicationController
   before_filter :admin_required, :only => [:add_from_observations_now, :refresh_now]
   before_filter :set_iconic_taxa, :only => [:show]
 
-  # caches_page :show, :if => Proc.new {|c| c.request.format == :csv}
+  caches_page :show, :if => Proc.new {|c| c.request.format == :csv}
   
   LIST_SORTS = %w"id title"
   LIST_ORDERS = %w"asc desc"

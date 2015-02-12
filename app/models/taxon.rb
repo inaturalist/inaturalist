@@ -685,7 +685,7 @@ class Taxon < ActiveRecord::Base
     chosen_photos += flickr_chosen_photos.reject do |fp|
       flickr_ids.include?(fp.id)
     end
-    chosen_photos
+    chosen_photos.to_a
   end
   
   def photos_cache_key

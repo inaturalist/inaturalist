@@ -1,7 +1,5 @@
 #encoding: utf-8
 class ObservationsController < ApplicationController
-  # caches_page :tile_points
-
   skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
 
   WIDGET_CACHE_EXPIRATION = 15.minutes
@@ -39,7 +37,6 @@ class ObservationsController < ApplicationController
                             :show,
                             :by_login,
                             :id_please,
-                            :tile_points,
                             :nearby,
                             :widget,
                             :project,
@@ -1243,29 +1240,6 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html { render :layout => false, :partial => 'selector'}
       # format.js
-    end
-  end
-  
-  def tile_points
-    # Project tile coordinates into lat/lon using a Spherical Merc projection
-    merc = SPHERICAL_MERCATOR
-    tile_size = 256
-    x, y, zoom = params[:x].to_i, params[:y].to_i, params[:zoom].to_i
-    swlng, swlat = merc.from_pixel_to_ll([x * tile_size, (y+1) * tile_size], zoom)
-    nelng, nelat = merc.from_pixel_to_ll([(x+1) * tile_size, y * tile_size], zoom)
-    @observations = Observation.in_bounding_box(swlat, swlng, nelat, nelng).
-      select("id, species_guess, latitude, longitude, user_id, description, private_latitude, private_longitude, time_observed_at").
-      includes(:user, :photos).limit(500).order("id DESC")
-    
-    respond_to do |format|
-      format.json do
-        render :json => @observations.to_json(
-          :only => [:id, :species_guess, :latitude, :longitude],
-          :include => {
-            :user => {:only => :login}
-          },
-          :methods => [:image_url, :short_description])
-      end
     end
   end
   

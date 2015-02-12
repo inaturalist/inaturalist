@@ -372,94 +372,6 @@ google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {
   return wrapper.get(0);
 };
 
-// All obs layer functions.  The mouseover effect was adapted from 
-// http://www.usnaviguide.com/ws-2008-02/demotilecookies.htm
-google.maps.Map.prototype.showAllObsOverlay = function() {
-  if (typeof(this._allObsOverlay) == 'undefined') {
-    var myCopyright = new google.maps.CopyrightCollection();
-    var allObsLyr = new ObservationsTileLayer(myCopyright, 0, 18, {
-      isPNG: true,
-      tileUrlTemplate: this._observationsTileServer + '/{Z}/{X}/{Y}.png'
-    });
-    this._allObsOverlay = new google.maps.TileLayerOverlay(allObsLyr);
-    
-    // Create an invisible map marker to move over raster pts
-    var baseIcon = new google.maps.MarkerImage();
-    baseIcon.size = new google.maps.Size(20,20);
-    baseIcon.anchor = new google.maps.Point(10,10);
-    // baseIcon.shadow = null;
-    // baseIcon.image = null;
-    this._allObsMarker = new google.maps.Marker(new google.maps.LatLng(35,-90), {icon:baseIcon});
-    this._allObsMarker.setVisible(false);
-    google.maps.event.addListener(this._allObsMarker, 'click', function() {
-      var observation = this._observation;
-      var maxContentDiv = $('<div class="observations mini maxinfowindow"></div>').append(
-        $('<div class="loading status">' + I18n.t('loading') + '</div>')
-      ).get(0);
-      this.openInfoWindowHtml(
-        map.buildObservationInfoWindow(observation),
-        {maxContent: maxContentDiv, maxTitle: 'More about this observation'}
-      );
-      var infoWindow = map.getInfoWindow();
-      google.maps.event.addListener(infoWindow, "maximizeclick", function() {
-        google.maps.DownloadUrl("/observations/"+observation.id+"?partial=observation", function(data) {
-          maxContentDiv.innerHTML = data;
-          $(maxContentDiv).find('.details').show();
-          if (typeof($.jqm) != 'undefined') {
-            $('#modal_image_box').jqmAddTrigger('.maxinfowindow a.modal_image_link');
-          }
-        });
-      });
-    });
-    this._allObsMarker.map = map
-  };
-  
-  this._allObsOverlay.map = map
-  
-  // Listen to all mouse mvmnts over the map to see if they pass near obs
-  this._mouseMoveListenerHandle = google.maps.event.addListener(map, 'mousemove', 
-    this._mouseMoveListener);
-}
-
-google.maps.Map.prototype.hideAllObsOverlay = function() {
-  if (typeof(this._allObsOverlay) != 'undefined') {
-    this.removeOverlay(this._allObsOverlay);
-    google.maps.event.removeListener(this._mouseMoveListenerHandle);
-  };
-}
-
-google.maps.Map.prototype._mouseMoveListener = function(e) {
-  var mouseLatLng = e.latLng
-  var zoom = this.getZoom();
-  var mousePx = e.pixel
-  var tileKey = iNaturalist.Map.obsTilePointsURL(Math.floor(mousePx.x / 256), 
-    Math.floor(mousePx.y / 256), zoom);
-  
-  window.tilePoints = window.tilePoints || {}
-  if (typeof(window.tilePoints[tileKey]) == 'undefined' || window.tilePoints[tileKey].length == 0) return;
-  var observations = window.tilePoints[tileKey];
-  
-  for (var i = observations.length - 1; i >= 0; i--) {
-    var obsPx = G_NORMAL_MAP.getProjection().fromLatLngToPixel(
-      new google.maps.LatLng(observations[i].latitude, observations[i].longitude), zoom);
-    var distance = Math.sqrt(
-      Math.pow((mousePx.x - obsPx.x), 2) +
-      Math.pow((mousePx.y - obsPx.y), 2)
-    );
-    
-    if (distance < 10) { // if within 10px...
-      this._allObsMarker.setLatLng(
-        new google.maps.LatLng(observations[i].latitude, observations[i].longitude));
-      this._allObsMarker._observation = observations[i];
-      this._allObsMarker.show();
-      return;
-    }
-    this._allObsMarker._observation = null;
-    this._allObsMarker.setVisible(false);
-  };
-}
-
-
 if (typeof iNaturalist === 'undefined') this.iNaturalist = {};
 
 if (typeof iNaturalist.Map === 'undefined') this.iNaturalist.Map = {};
@@ -473,8 +385,7 @@ iNaturalist.Map.createMap = function(options) {
     zoom: 1,
     minZoom: 1,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
-    streetViewControl: false,
-    observationsTileServer: 'http://localhost:8000'
+    streetViewControl: false
   }, options);
   
   var map;
@@ -487,7 +398,6 @@ iNaturalist.Map.createMap = function(options) {
   }
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
   map._observationsTileServer = options.observationsTileServer
-  // map.overlayMapTypes.insertAt(0, iNaturalist.Map.buildObservationsMapType(map))
 
   if (options.bounds) {
     if (typeof(options.bounds.getCenter) == 'function') {
@@ -544,60 +454,6 @@ iNaturalist.Map.createObservationIcon = function(options) {
   iconPath += '.png'
   return iconPath
 };
-
-iNaturalist.Map.obsTilePointsURL = function(x, y, zoom) {
-  return '/observations/tile_points/' + zoom + '/' + x + '/' + y + '.json';
-}
-
-// Create a custom TileLayer class that will lookup observations json for 
-// each tile
-iNaturalist.Map.buildObservationsMapType = function(map) {
-  var tileUrlTemplate = map._observationsTileServer ? map._observationsTileServer+'/{Z}/{X}/{Y}.png' : 'http://localhost:8000/{Z}/{X}/{Y}.png'
-  
-  // // Create an invisible map marker to move over raster pts
-  // var baseIcon = new google.maps.MarkerImage();
-  // baseIcon.size = new google.maps.Size(20,20);
-  // baseIcon.anchor = new google.maps.Point(10,10);
-  // map._allObsMarker = new google.maps.Marker(new google.maps.LatLng(35,-90), {icon:baseIcon});
-  // map._allObsMarker.setVisible(false);
-  // google.maps.event.addListener(map._allObsMarker, 'click', function() {
-  //   var observation = map._observation;
-  //   var maxContentDiv = $('<div class="observations mini maxinfowindow"></div>').append(
-  //     $('<div class="loading status">Loading...</div>')
-  //   ).get(0);
-  //   map.openInfoWindowHtml(
-  //     map.buildObservationInfoWindow(observation),
-  //     {maxContent: maxContentDiv, maxTitle: 'More about map observation'}
-  //   );
-  //   var infoWindow = map.getInfoWindow();
-  // });
-  // map._allObsMarker.map = map
-  // 
-  // // Listen to all mouse mvmnts over the map to see if they pass near obs
-  // map._mouseMoveListenerHandle = google.maps.event.addListener(map, 'mousemove', map._mouseMoveListener);
-  
-  return new google.maps.ImageMapType({
-    getTileUrl: function(tilePoint, zoom) {
-      // var jsonURL = iNaturalist.Map.obsTilePointsURL(tilePoint.x, tilePoint.y, zoom);
-      // if (typeof(window.tilePoints) == 'undefined') window.tilePoints = {};
-      // 
-      // // if we already have data for this tile, skip the AJAX
-      // if (typeof(window.tilePoints[jsonURL]) == 'undefined') {
-      //   $.getJSON(jsonURL, function(data, textStatus) {
-      //     window.tilePoints[jsonURL] = data;
-      //   });
-      // }
-      // 
-      // Return the actual tile URL
-      var tileUrl = tileUrlTemplate
-      tileUrl = tileUrl.replace('{Z}', zoom).replace('{X}', tilePoint.x).replace('{Y}', tilePoint.y);
-      return tileUrl;
-    },
-    tileSize: new google.maps.Size(256, 256),
-    isPng: true,
-    name: "Observations"
-  })
-}
 
 // Haversine distance calc, adapted from http://www.movable-type.co.uk/scripts/latlong.html
 iNaturalist.Map.distanceInMeters = function(lat1, lon1, lat2, lon2) {

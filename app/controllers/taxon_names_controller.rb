@@ -5,7 +5,7 @@ class TaxonNamesController < ApplicationController
   before_filter :curator_required_for_sciname, :only => [:create, :update, :destroy, :destroy_synonyms]
   before_filter :load_lexicons, :only => [:new, :create, :edit, :update]
   
-  # cache_sweeper :taxon_name_sweeper, :only => [:create, :update, :destroy]
+  cache_sweeper :taxon_name_sweeper, :only => [:create, :update, :destroy]
 
   layout "bootstrap"
     
