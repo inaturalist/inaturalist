@@ -1,4 +1,5 @@
-<%- 
+<%-
+  cached_component ||= nil
   observation ||= cached_component
   return unless observation
   site_id = @site.try(:id) || CONFIG.site_id

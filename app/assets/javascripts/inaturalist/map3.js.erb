@@ -417,7 +417,7 @@ iNaturalist.Map.createMap = function(options) {
 // The following code should be abstracted out a bit more
 iNaturalist.Map.createPlaceIcon = function(options) {
   var options = options || {}
-  var iconPath = "<%= asset_path('assets/mapMarkers/mm_34_stemless_') %>";
+  var iconPath = "<%= asset_path('mapMarkers/mm_34_stemless_') %>";
   iconPath += options.color ? options.color : "DeepPink"
   if (options.character) { iconPath += ('_' + options.character); }
   iconPath += '.png';
@@ -447,7 +447,7 @@ iNaturalist.Map.createObservationIcon = function(options) {
     return iconPath
   }
   
-  iconPath = "<%= asset_path('assets/mapMarkers/mm_34_') %>"
+  iconPath = "<%= asset_path('mapMarkers/mm_34_') %>"
   iconPath += options.stemless ? "stemless_" : ""
   iconPath += options.color || "HotPink"
   iconPath += options.character ? ('_'+options.character) : ""
@@ -827,23 +827,23 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID ) {
 
 // Static constants
 iNaturalist.Map.ICONS = {
-  DodgerBlue34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_DodgerBlue.png') %>"),
-  DeepPink34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_DeepPink.png') %>"),
-  iNatGreen34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_iNatGreen.png') %>"),
-  OrangeRed34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_OrangeRed.png') %>"),
-  DarkMagenta34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_DarkMagenta.png') %>"),
-  unknown34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_unknown.png') %>"),
-  ChromistaBrown34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_ChromistaBrown.png') %>")
+  DodgerBlue34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_DodgerBlue.png') %>"),
+  DeepPink34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_DeepPink.png') %>"),
+  iNatGreen34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_iNatGreen.png') %>"),
+  OrangeRed34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_OrangeRed.png') %>"),
+  DarkMagenta34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_DarkMagenta.png') %>"),
+  unknown34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_unknown.png') %>"),
+  ChromistaBrown34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_ChromistaBrown.png') %>")
 };
 
 iNaturalist.Map.STEMLESS_ICONS = {
-  DodgerBlue34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_stemless_DodgerBlue.png') %>"),
-  DeepPink34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_stemless_DeepPink.png') %>"),
-  iNatGreen34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_stemless_iNatGreen.png') %>"),
-  OrangeRed34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_stemless_OrangeRed.png') %>"),
-  DarkMagenta34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_stemless_DarkMagenta.png') %>"),
-  unknown34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_stemless_unknown.png') %>"),
-  ChromistaBrown34: new google.maps.MarkerImage("<%= image_path('mapMarkers/mm_34_stemless_ChromistaBrown.png') %>")
+  DodgerBlue34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_stemless_DodgerBlue.png') %>"),
+  DeepPink34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_stemless_DeepPink.png') %>"),
+  iNatGreen34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_stemless_iNatGreen.png') %>"),
+  OrangeRed34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_stemless_OrangeRed.png') %>"),
+  DarkMagenta34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_stemless_DarkMagenta.png') %>"),
+  unknown34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_stemless_unknown.png') %>"),
+  ChromistaBrown34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_stemless_ChromistaBrown.png') %>")
 };
 
 iNaturalist.Map.ICONIC_TAXON_ICONS = {

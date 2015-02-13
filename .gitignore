@@ -1,4 +1,5 @@
 .bundle
+.capistrano
 db/*.sqlite3
 log/*
 tmp/
@@ -27,6 +28,7 @@ config/deploy
 *.DS_Store
 config/*.mapnik.xml
 config/*.ogr.vrt
+public/assets
 public/lists
 public/observations
 public/places
