@@ -12,7 +12,7 @@ class TaxonSweeper < ActionController::Caching::Sweeper
     Observation.of(taxon).find_each {|obs| expire_observation_components(obs)}
     expire_listed_taxa(taxon)
     ctrl = ActionController::Base.new
-    ctrl.send(:expire_action, :controller => 'taxa', :action => 'show', :id => taxon.id)
-    ctrl.send(:expire_action, :controller => 'taxa', :action => 'show', :id => taxon.to_param)
+    ctrl.send(:expire_action, FakeView.url_for(:controller => 'taxa', :action => 'show', :id => taxon.id))
+    ctrl.send(:expire_action, FakeView.url_for(:controller => 'taxa', :action => 'show', :id => taxon.to_param))
   end
 end

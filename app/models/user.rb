@@ -282,14 +282,14 @@ class User < ActiveRecord::Base
   
   # TODO: named_scope
   def recent_observations(num = 5)
-    observations.find(:all, :limit => num, :order => "created_at DESC")
+    observations.order("created_at DESC").limit(num)
   end
 
   # TODO: named_scope  
   def friends_observations(limit = 5)
     obs = []
     friends.each do |friend|
-      obs << friend.observations.find(:all, :order => 'created_at DESC', :limit => limit)
+      obs << friend.observations.order("created_at DESC").limit(limit)
     end
     obs.flatten
   end

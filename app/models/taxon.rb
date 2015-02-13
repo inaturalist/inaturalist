@@ -698,14 +698,14 @@ class Taxon < ActiveRecord::Base
   
   def observation_photos(options = {})
     options = {:page => 1}.merge(options).merge(
-      :include => {:observations => :taxon},
       :conditions => ["taxa.id = ?", id]
     )
-    Photo.paginate(options)
+    Photo.joins(observations: :taxon).where(options[:conditions]).
+      paginate(options)
   end
   
   def phylum
-    ancestors.find(:first, :conditions => "rank = 'phylum'")
+    ancestors.where(rank: "phylum").first
   end
   
   validate :taxon_cant_be_its_own_ancestor
