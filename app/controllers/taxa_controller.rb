@@ -224,7 +224,7 @@ class TaxaController < ApplicationController
           @siblings = @taxon.species.siblings.includes(:photos, :taxon_names).limit(100).sort_by{|t| t.name}
           @siblings.delete_if{|s| s.id == @taxon.id}
         else
-          @children = @taxon.children.where(:photos, :taxon_names).limit(100).sort_by{|t| t.name}
+          @children = @taxon.children.includes(:photos, :taxon_names).limit(100).sort_by{|t| t.name}
         end
       end
       
