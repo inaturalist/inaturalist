@@ -12,6 +12,7 @@ class ObservationFieldValuesController < ApplicationController
     @ofvs = @ofvs.datatype(params[:type]) unless params[:type].blank?
     @ofvs = @ofvs.field(params[:field]) unless params[:field].blank?
     @ofvs = @ofvs.license(params[:license]) unless params[:license].blank?
+    @ofvs = @ofvs.quality_grade(params[:quality_grade]) unless params[:quality_grade].blank?
     pagination_headers_for(@ofvs)
     respond_to do |format|
       format.json do
