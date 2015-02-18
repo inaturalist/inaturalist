@@ -103,6 +103,18 @@ describe ConservationStatus, "updating geoprivacy" do
     o.latitude.should be_blank
   end
 
+  it "should unobscure observations of taxon" do
+    o = Observation.make!(:taxon => @taxon, :latitude => 1, :longitude => 1)
+    o.should be_coordinates_obscured
+    without_delay {@cs.update_attributes(:geoprivacy => Observation::PRIVATE)}
+    o.reload
+    o.latitude.should be_blank
+    without_delay {@cs.update_attributes(:geoprivacy => Observation::OPEN)}
+    o.reload
+    o.latitude.should_not be_blank
+    o.private_latitude.should be_blank
+  end
+
   it "should change geom for observations of taxon" do
     o = Observation.make!(:taxon => @taxon, :latitude => 1, :longitude => 1)
     lat = o.latitude
