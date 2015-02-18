@@ -2,8 +2,10 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Macofe
+# Author: Subi
+---
 eu:
-  licensing_your_content: |
+  licensing_your_content: |-
     Zure edukia lizentziatzeak beste batzuei legez erabiltzeko
     eskubidea ematen die lizentziaren baldintzetara atxikitzen badira. Creative Commonsekin
     lizentziatutako edukia erabiltzen dugu bazkideekin partekatzeko, esate baterako,
@@ -11,11 +13,11 @@ eu:
   you_think_observation_inacurate: Behaketa zehaztasunik gabekoa dela pentsatzen baduzu,
     mesedez, gehitu identifikazioa, hartu parte datuen kalitate atalean edo zehaztasunik
     eza aipamen batekin deskribatu.
-  we_also_support: |
+  we_also_support: |-
     Zure irudietarako <a href="http://flickr.com">Flickr</a>, <a
     href="http://picasaweb.google.com">Picasa</a> eta <a
     href="http://facebook.com">Facebook-ekin</a> ere konexioa dugu.
-  a_default_taxon_name_will_automatically_created: |
+  a_default_taxon_name_will_automatically_created: |-
     Taxonaren izen zientifikoaren ezaugarrian oinarrituta taxonaren izena
     automatikoki sortuko da besterik adierazi ezean. Taxona gorde duzunean,
     beste izen batzuk gehitu ahal izango dituzu hemen (izen arruntak,
@@ -184,7 +186,8 @@ eu:
   adding_observations: Oharrak gehitu
   adding_to_your_life_list: Zure bizitzako zerrendara gehituta
   additional_range: Banaketa osagarria
-  additional_range_data_from_an_unknown_source: "D\"Iturri ezezaguneko banaketa osagarriaren datuak\""
+  additional_range_data_from_an_unknown_source: D"Iturri ezezaguneko banaketa osagarriaren
+    datuak"
   admin: administratzailea
   admin_any_projects: duzu proiekturik administratzen.
   admin_tools: Tresna Administratiboak
@@ -669,6 +672,7 @@ eu:
   contributor_cannot_be_found: Ezin izan da proiektuko ekarlea topatu
   contributors_to_project: '%{project}proiektuko parte-hartzaileak: Proiektuko parte-hartzaileak'
   controls: Kontrolak
+  coordinate_systems: Koordenatu sistemak
   coordinates_private: (koordenatu pribatuak)
   copy: Kopiatu
   copy_and_paste_this_into_your_own_html: Zure HTMLan bertan kopiatu eta itsatsi.
@@ -738,8 +742,35 @@ eu:
   datatype: Datu mota
   date_added: Gehitutako data
   date_created: sortze-data
+  date_format:
+    month:
+      january: Urtarrila
+      february: Otsaila
+      march: Martxoa
+      april: Apirila
+      may: maiatza
+      june: Ekaina
+      july: Uztaila
+      august: Abuztua
+      september: Iraila
+      october: Urria
+      november: Azaroa
+      december: Abendua
   date_observed: Ikusitako data
   date_observed_on: behatu zen eguna
+  date_picker:
+    closeText: Itxi
+    currentText: Gaur
+    prevText: Aurrekoa
+    nextText: Hurrengoa
+    monthNames: '[''Urtarrila'', ''Otsaila'', ''Martxoa'', ''Apirila'', ''Maiatza'',
+      ''Ekaina'', ''Uztaila'', ''Abuztua'', ''Iraila'', ''Urria'', ''Azaroa'', ''Abendua'']'
+    monthNamesShort: '[''Urt'',''Ots'',''Mar'',''Api'',''Mai'',''Eka'',''Uzt'',''Abu'',''Ira'',''Urr'',''Aza'',''Abe'']'
+    dayNames: '[''Igandea'', ''Astelehena'', ''Asteartea'', ''Asteazkena'', ''Osteguna'',
+      ''Ostirala'', ''Larunbata'']'
+    dayNamesMin: '[''Ig'',''Al'',''Ar'',''Az'',''Og'',''Ol'',''Lr'']'
+  date_time: Data/Ordua
+  datetime_: Data/Ordua
   day: Eguna
   default: Lehenetsia
   default_invite_comment: 'Argazki bikaina! Hona bidali behar duzu: %{site_name} {{INVITE_LINK}}'
@@ -915,11 +946,11 @@ eu:
   field_note: <strong>Oharra:</strong> Eremu berri bat sortu aurretik beste norbaitek
     lehenago sortu al duen begira ezazu, bikoiztasunak sahiestu arren
   fields: eremuak
-  file_should_be_in_the_following_format: |
+  file_should_be_in_the_following_format: |-
     Fitxategiak formatu hau izan behar luke: espeziearen edo taldearen izena,
     deskribapena
   fill_out_your_profile: zure profila osatu
-  filling_out_checklist_for_place: |
+  filling_out_checklist_for_place: |-
     zuk ondo ezagutzen dituzun lekuetako egiaztapen-zerrendak
     bete
   filling_out_your_profile: zure profila osatu
@@ -941,7 +972,8 @@ eu:
   find_some_people_to_follow: Jarraitzeko pertsonak bilatu
   find_species: Espezieak bilatu
   first_confirmed_inat_observation: Lehen oharra %{site_name} baieztatuta
-  first_connect_your_provider_account_to_your_site: 'Lehenik eta behin, konektatu zure %{provider} kontua  %{site_name}webgunera:'
+  first_connect_your_provider_account_to_your_site: 'Lehenik eta behin, konektatu
+    zure %{provider} kontua  %{site_name}webgunera:'
   first_inat_observation: Lehen oharra %{site_name}
   first_observer: Lehen behatzailea
   flag: Ekarri
@@ -957,7 +989,7 @@ eu:
   flagged: markatuta
   flagged_for_curation: Administraziorako markatuta.
   flagger: Markagailua
-  flags_explanation: |
+  flags_explanation: |-
     %{site_name} webguneko erabiltzaileek gauzak markatzen dituzte,
     zerbait ez dagoela ondo topatzen dutenean. Hemen administrariek oraindik konpondu
     gabeko zenbait arazo daude.
@@ -1073,6 +1105,7 @@ eu:
     gauza daude
   hex_color_eg: Kolorea hamaseitarrean, adib. 65644F
   hi: Kaixo.
+  hi_user: Kaixo %{user}
   hide: Ezkutatu
   hide_details: xehetasunak ezkutatu
   highest_rank: Mailarik altuena
@@ -1369,6 +1402,16 @@ eu:
   loading_wikipedia_description: Wikipediako deskribapena kargatzen...
   locale_description: Locale-k hizkuntza eta dataren formatu-lehentasunak konfiguratzeko
     aukera ematen du.
+  locales:
+    ca: Katalana
+    en: Ingelesa
+    en-US: Ingelesa (Ameriketako Estatu Batuak)
+    es: Espainiera
+    es-ES: Espainiera (Espainia)
+    es-MX: Espainiera (Mexiko)
+    eu: Euskara
+    gl: Galiziera
+    mk: Mazedoniera
   localized_species_accounts: Espezieen kontuak lokalizatuta
   location: Herria
   location_is_exact: kokapena zehatza da
@@ -2765,6 +2808,7 @@ eu:
   upload_a_csv_file_with_observation: CSV fitxategia behaketako datuekin kargatu.
     Zure datuak kalkulu-orri batean edo datu-base batean baldin badaude, seguru asko
     honela egin beharko duzu.
+  upload_photos: Igo argazkiak
   url_identifier_of_a_project_derived_from: Kanpoko iturrietatik eratorritako web
     helbidea / proiektuaren identifikadorea
   url_of_this_taxon_on_the_source_website: Espezie edo talde honen esteka iturriko
@@ -2881,8 +2925,8 @@ eu:
   view_your_calendar: Zure egutegia ikusi
   view_your_observations: Zure behaketak ikusi
   vulnerable: zaurgarria
-  w00t_no_ungrafted_taxa: "Aupa! Ez dago txertatu gabeko taxonik!"
-  w_photos_only: "argazkiekin soilik"
+  w00t_no_ungrafted_taxa: Aupa! Ez dago txertatu gabeko taxonik!
+  w_photos_only: argazkiekin soilik
   w_sounds: soinuekin
   wait_file_generation: Itxaron fitxategia sortu bitartean. Agian minutu batzuk beharko
     ditu zerrenda handietarako.
@@ -3089,6 +3133,7 @@ eu:
   your_default: zure lehenetsitako balioak
   your_default_time_zone: Uneko zure ordu-zona
   your_drafts: Zure zirriborroak
+  your_email_address: Zure helbide elektronikoa
   your_flickr_account: Flickr-eko zure kontua
   your_flickr_photos_have_been_tagged: Zure Flickr-eko argazkiak etiketatu dira!
   your_hard_drive: Zure disko gogorra
@@ -3391,6 +3436,9 @@ eu:
         trusted_project_means: Proiektua egiaztatuta dagoenean, proiektuko administratzaile
           eta kudeatzaileek beren proiektuko baliabideak sortu, eguneratu eta ezaba
           ditzakete.
+    shared:
+      not_found:
+        sorry_that_doesnt_exist: Sentitzen dugu, hori ez da existitzen!
     users:
       dashboard:
         taxon_change_desc: |-
@@ -3400,115 +3448,113 @@ eu:
           eguneratuko da.
         you_may_want_to_update: Taxon hauekin lotutako zenbait eduki dituzu eta baliteke
           eguneratu nahi izatea.
-        cannot_update_your_content: |
-          %{site_name} guneak ezin du edukia automatikoki eguneratu aldatzeko.
-        new_project_admin_html: |
+        cannot_update_your_content: '%{site_name} guneak ezin du edukia automatikoki
+          eguneratu aldatzeko.'
+        new_project_admin_html: |-
           Orain zergatik zaren proiektuko administratzailea
           galdetzen diozu zure buruari? Aurreko jabeak seguru asko kontua ezabatu
           duenez, %{site_name} webguneak zuri esleitu dizu, proiektuko kudeatzailea
           edo guneko administratzailea zarelako. Proiektuko administratzaile izan
           nahi ez baduzu, mesedez, jarri honekin harremanetan: <a href="mailto:%{help_email}"">%{help_email}</a>
-        curators_can_see: |
+        curators_can_see: |-
           Gogoratu beharreko gauza bat besterik ez, proiektuko administratzaileek
           proiektuari gehitutako behaketen koordenatu pribatuak eta ezkutuak ikus
           ditzakete.
     welcome:
       index:
-        welcome_message_html: |
+        welcome_message_html: |-
           %{image}(e)k biodibertsitateari buruzko informazio-atari
           hau erabiltzera gonbidatzen zaitu eta bertan naturan behatutakoa partekatu,
           naturatik ikasi eta informazioa beste naturalista batzuekin partekatu ahal
           izango duzu.
   date:
     abbr_day_names:
-      - ig.
-      - al.
-      - ar.
-      - az.
-      - og.
-      - ol.
-      - lr.
+    - ig.
+    - al.
+    - ar.
+    - az.
+    - og.
+    - ol.
+    - lr.
     abbr_month_names:
-      - 
-      - urt.
-      - ots.
-      - mar.
-      - api.
-      - mai.
-      - eka.
-      - uzt.
-      - abu.
-      - ira.
-      - urr.
-      - aza.
-      - abe.
+      1: urt.
+      2: ots.
+      3: mar.
+      4: api.
+      5: mai.
+      6: eka.
+      7: uzt.
+      8: abu.
+      9: ira.
+      10: urr.
+      11: aza.
+      12: abe.
     day_names:
-      - igandea
-      - astelehena
-      - asteartea
-      - asteazkena
-      - osteguna
-      - ostirala
-      - larunbata
+    - igandea
+    - astelehena
+    - asteartea
+    - asteazkena
+    - osteguna
+    - ostirala
+    - larunbata
     formats:
-      default: "%Y/%m/%d"
-      long: "%Y(e)ko %Bk %d"
-      short: "%b(e)ko %d"
-      month_year: "%B %Y"
+      default: '%Y/%m/%d'
+      long: '%Y(e)ko %Bk %d'
+      short: '%b(e)ko %d'
+      month_year: '%B %Y'
     month_names:
-      - 
-      - urtarrila
-      - otsaila
-      - martxoa
-      - apirila
-      - maiatza
-      - ekaina
-      - uztaila
-      - abuztua
-      - iraila
-      - urria
-      - azaroa
-      - abendua
+      1: urtarrila
+      2: otsaila
+      3: martxoa
+      4: apirila
+      5: maiatza
+      6: ekaina
+      7: uztaila
+      8: abuztua
+      9: iraila
+      10: urria
+      11: azaroa
+      12: abendua
     order:
-      - day
-      - month
-      - year
+    - day
+    - month
+    - year
   datetime:
     distance_in_words:
       about_x_hours:
         one: 1 ordu inguru
-        other: "%{count} ordu inguru"
+        other: '%{count} ordu inguru'
       about_x_months:
         one: 1 hilabete inguru
-        other: "%{count} hilabete inguru"
+        other: '%{count} hilabete inguru'
       about_x_years:
         one: 1 urte inguru
-        other: "%{count} urte inguru"
+        other: '%{count} urte inguru'
       almost_x_years:
         one: ia 1 urte
         other: ia %{count} urte
       half_a_minute: minutu erdia
       less_than_x_minutes:
         one: 1 minutu baino gutxiago
-        other: "%{count} minutu baino gutxiago"
+        other: '%{count} minutu baino gutxiago'
       less_than_x_seconds:
         one: 1 segundo baino gutxiago
-        other: "%{count} segundo baino gutxiago"
+        other: '%{count} segundo baino gutxiago'
       over_x_years:
         one: 1 urte baino gehiago
-        other: "%{count} urte baino gehiago"
+        other: '%{count} urte baino gehiago'
       x_days:
         one: 1 egun
-        other: "%{count} egun"
+        other: '%{count} egun'
       x_minutes:
         one: 1 minutu
-        other: "%{count} minutu"
+        other: '%{count} minutu'
       x_months:
         one: 1 hilabete
-        other: "%{count} hilabete"
+        other: '%{count} hilabete'
       x_seconds:
         one: 1 segundo
-        other: "%{count} segundo"
+        other: '%{count} segundo'
     prompts:
       day: Eguna
       hour: Ordua
@@ -3599,16 +3645,24 @@ eu:
   time:
     am: goiza
     formats:
-      default: "%d %b %Y %H:%M:%S %Z"
-      long: "%Y(e)ko %Bk %d"
-      short: "%Y/%m/%d"
-      observed_at: "honetan: %I:%M %p %Z"
-      rfc: "%d %B %Y"
-      day_month_year: "%d %b. %Y"
+      default: '%d %b %Y %H:%M:%S %Z'
+      long: '%Y(e)ko %Bk %d'
+      short: '%Y/%m/%d'
+      observed_at: 'honetan: %I:%M %p %Z'
+      rfc: '%d %B %Y'
+      day_month_year: '%d %b. %Y'
     pm: arratsaldea
+  activemodel:
+    errors:
+      messages:
+        odd: bakoitia izan behar du
   activerecord:
     attributes:
+      assessment:
+        description: Deskribapena
       conservation_status:
+        status: Egoera
+        description: Deskribapena
         url: URL
       project:
         title: Izenburua
@@ -3658,3 +3712,4 @@ eu:
       listed_taxon:
         occurrence_status_level: Agerraldiaren estatusa
         establishment_means: Kokatzeko modua.
+...
