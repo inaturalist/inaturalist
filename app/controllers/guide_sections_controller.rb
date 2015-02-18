@@ -9,7 +9,7 @@ class GuideSectionsController < ApplicationController
   # GET /guide_sections
   # GET /guide_sections.json
   def index
-    @guide_sections = GuideSection.scoped
+    @guide_sections = GuideSection.scoped.page(params[:page]).per_page(100)
     @guide_sections = @guide_sections.where("id IN (?)", params[:ids]) unless params[:ids].blank?
 
     respond_to do |format|
