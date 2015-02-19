@@ -4,7 +4,7 @@
 ---
 es-MX:
   licensing_your_content: "Si das licencia de tus contenidos le permites a otros el
-    uso legal de usarlos  \nsi siguen las condiciones de la licencia. NaturaLista
+    uso legal de usarlos  \nsi siguen las condiciones de la licencia. %{site_name}
     usa las licencias de Creative \nCommons para compartir información con socios
     como  \n<a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a>
     \n(GBIF)."
@@ -46,7 +46,7 @@ es-MX:
     other: '%{count} especies o grupos con los filtros seleccionados'
   a: a
   a_: un(a)
-  a_community_for_naturalist: Una comunidad para NaturaListas
+  a_community_for_naturalist: Una comunidad para naturalistas
   a_few_points_to_make_things_clear: Algunos puntos para aclarar las cosas
   a_greasemonkey_script: Un guión (script) de Greasemonkey
   able_to_connect_flickr: ¡Excelente! Pudimos enlazar tu cuenta de Flickr.
@@ -1193,7 +1193,7 @@ es-MX:
   inat_user_profile: '%{site_name}: Perfil de %{user}'
   inat_will_be_back_on: '%{site_name} regresará con sus pies/alas/aletas/tentáculos/pseudópodos'
   inaturalist_is_an_online_community: '%{site_name} es una comunidad en línea para
-    NaturaListas. Al añadir tu foto, puedes ayudar a los investigadores a conocer
+    naturalistas. Al añadir tu foto, puedes ayudar a los investigadores a conocer
     más sobre'
   inaturalist_is_catching_some_zs: El %{site_name} está durmiendo un rato Catching
     Some Zs
@@ -1470,8 +1470,7 @@ es-MX:
   maps:
     overlays:
       all_observations: Todas las observaciones
-      every_publicly_visible_observation: Todas las observaciones públicas creadas
-        en NaturaLista
+      every_publicly_visible_observation: Todas las observaciones públicas creadas en la red iNaturalist
       featured_observations: Observaciones destacadas
       place_boundary: Límites del lugar
       taxon_range: Distribución de la especie o grupo
@@ -2622,7 +2621,7 @@ es-MX:
   the_observation_was_already_added_to_that_project: La observación fue añadida recientemente
     al proyecto.
   the_past: El pasado
-  the_people_of_inat: La gente de NaturaLista
+  the_people_of_inat: La gente de %{site_name}
   the_project: El proyecto
   the_title_of_the_wikipedia_article_we_use: El título del artículo de Wikipedia que
     usamos para la descripción. Si el URL de Wikipedia es <code>http://en.wikipedia.org/wiki/Aves</code>,
@@ -3167,7 +3166,7 @@ es-MX:
     de la lista?
   your_world!: tu país!
   youre_following: estás siguiendo
-  youre_not_following_anyone: No estás siguiendo a nadie. Si sigues a otros NaturaListas
+  youre_not_following_anyone: No estás siguiendo a nadie. Si sigues a otros naturalistas
     podrás ver fácilmente sus más recientes observaciones. Ve y encuentra que gente
     está
   youre_viewing_all_observations: Estás viendo todas las observaciones
@@ -3181,7 +3180,7 @@ es-MX:
   zoom_to_taxon_name: Acercamiento a %{taxonname}
   zoom_to_x: Acercamiento a  %{x}
   your_dashboard_helps_you: Tu tablero te ayuda a dar seguimiento a lo que la gente
-    está haciendo en NaturaLista. Para seguir las actualizaciones de alguien, selecciona
+    está haciendo en el sitio. Para seguir las actualizaciones de alguien, selecciona
     el enlace Seguir [nombre] en el encabezado cuando estés viendo sus observaciones
     o su perfil.
   here_are_some_things_you_can_do_in_the_meantime: Algunas cosas que puedes hacer
@@ -3204,8 +3203,7 @@ es-MX:
           Agregar contenido a la EOL taxa seleccionados como un lote. Esto
           puede llevar algún tiempo, así que por favor sea paciente.
         add_color_tags_help: |-
-          Agrega las etiquetas de colores de acuerdo a los colores asociados al taxa
-          de NaturaLista.
+          Agrega las etiquetas de colores de acuerdo a los colores asociados al taxa.
         add_rank_tags_help_html: |-
           Añade etiquetas a la categoria taxonómica de los taxones con base en nuestra taxonomía, por ejemplo,
           <code>familia=Laridae</code>
@@ -3579,7 +3577,7 @@ es-MX:
     users:
       edit:
         taxon_change_desc: "Cuando una especie o grupo (taxa) se combina o cambia
-          de nombre en NaturaLista, \ntus observaciones, listas de especies, identificaciones,
+          de nombre en %{site_name}, \ntus observaciones, listas de especies, identificaciones,
           etc., serán automaticamente\nactualizados al nuevo nombre si el cambio no
           es ambiguo. Si no quieres hacer el \ncambio o es ambiguo (por ejemplo, la
           división de una especie en dos) recibirás\nuna actualización sobre el cambio
@@ -3587,7 +3585,7 @@ es-MX:
           el contenido."
         licensing_desc_html: "La licencia de tu contenido permite a otra gente el
           uso legal sin\npedirte permiso siempre y cuando se apeguen a las condiciones
-          de la licencia.\nNaturaLista utiliza tus licencias de  Creative Commons
+          de la licencia.\n%{site_name} utiliza tus licencias de  Creative Commons
           para compartir el contenido\ncon otros socios como <a href=\"http://www.gbif.org/\">Global
           \nBiodiversity Information Facility</a> (GBIF), una organización intergubernamental
           internacional, \nque reúne y distriuye información sobre biodiversidad en
@@ -3596,7 +3594,7 @@ es-MX:
       index:
         welcome_message_html: "%{image} te invita a utilizar este portal de información
           sobre \nbiodiversidad en el que podrás compartir lo que observas en la \nnaturaleza,
-          aprender de ella e intercambiar información con otros \nciudadanos NaturaListas."
+          aprender de ella e intercambiar información con otros \nciudadanos naturalistas."
   date:
     abbr_day_names:
     - dom
