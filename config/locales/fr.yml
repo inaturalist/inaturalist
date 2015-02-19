@@ -128,6 +128,7 @@ fr:
   add_a_batch_of_taxa: Ajouter un lot de taxons
   add_a_comment: Ajouter un commentaire
   add_a_field: Ajouter un champ
+  add_a_flag: Ajouter une marque
   add_a_link_raquo: Ajouter un lien &raquo;
   add_a_name: Ajouter un nom
   add_a_new_change_group: Ajouter une nouvelle modification de groupe
@@ -996,6 +997,9 @@ fr:
   dont_use_double_quotes: Ne pas utiliser de guillemets ailleurs
   double_click_to_finish: (double clic pour finir)
   download: Télécharger
+  download_bulk_import_template_html: |-
+    <a href="%{url}">Télécharger le modèle</a> pour l’utiliser dans le
+    <a href="/observations/import#csv_import">chargeur par lot</a>
   download_csv: Télécharger le CSV
   download_kml: Télécharger le KML
   drag_and_drop_photos: tirer et déposer les photos dans cette fenêtre, ou
@@ -1202,12 +1206,14 @@ fr:
   flag_this_photo: Marquer cette photo
   flagged: marqué
   flagged_for_curation: Marqué pour supervision.
+  flagged_thing_explanation: Les utilisateurs ont marqué ce %{thing} parce que
   flagger: Marqueur
+  flags: Marques
   flags_explanation: les utilisateurs de %{site_name} marquent des choses quand ils
     trouvent quelque chose qui ne va pas. Voici quelques problèmes qui n’ont pas encore
-    été résolus par les superviseurs. Les utilisateurs ont marqué ce %{thing} parce
-    que
+    été résolus par les superviseurs.
   flags_for: Marques pour
+  flags_on_users_content: Marques sur le contenu de %{user}
   flickr_account_information: Informations sur votre compte Flickr
   flickr_description: Flickr est un service d’hébergement de photos en ligne, peut-être
     le connaissez-vous déjà !
@@ -1479,6 +1485,8 @@ fr:
   is_the_organism_wild: Cet organisme est-il sauvage/naturalisé ?
   is_this_observation_offensive_html: Cette observation est-elle <a href="/help#inappropriate">inappropriée</a>,
     du pourriel, ou offensante ?
+  is_this_offensive_html: Ceci est-il <a href="/help#inappropriate">non approprié</a>,
+    du pourriel, ou offensant ?
   is_this_place_a_duplicate: Ce lieu est-il un doublon ?
   it: Il
   it_has: Il a
@@ -1750,6 +1758,14 @@ fr:
     projet.
   manually_create_new_place: Créer manuellement un nouveau lieu
   map: Carte
+  maps:
+    overlays:
+      all_observations: Toutes les observations
+      every_publicly_visible_observation: Toutes les observations visibles par tous
+        créées dans le réseau iNaturalist
+      featured_observations: Observations mises en avant
+      place_boundary: Limite du lieu
+      taxon_range: Gamme du taxon
   map_tooltip: Afficher la vue de la carte
   map_for: Carte pour
   maptype_for_places: google.maps.MapTypeId.TERRAIN
@@ -3238,10 +3254,101 @@ fr:
   try_wikipedia: Essayer Wikipédia ?
   tue: Mar
   type: Type
+  type_a_name_and_click: Saisir un nom et cliquer sur RECHERCHER
+  type_a_place_name_and_click_search: Saisir un nom de lieu et cliquer sur RECHERCHER
+    pour lancer la recherche
+  type_authority: Saisir une autorité…
+  type_date_time_or_use_the_calendar: Saisir un horodatage ou utiliser le calendrier
+  type_one_name_per_line: Saisir un nom par ligne
+  type_place_name: Saisir un nom de lieu
+  type_project_name: Saisir un nom de projet
+  type_source_name: Saisir un nom de source
+  type_source_title: Saisir un titre de source
+  type_species_name: Saisir un nom d’espèce
+  type_taxon_name: Saisir un nom de taxon
+  type_taxon_name_and_click_lookup: Saisir un nom de taxon et cliquer sur rechercher
+  uicn_red_list_status: 'État de la Liste rouge de IUCN :'
+  un_license_this_observation: enlever la licence de cette observation
+  unclassified: Non classifié
+  ungrafted_taxa: Taxons francs
+  uninvite: ne plus inviter
+  unique_identifier_of_this_taxon: Identifiant unique de ce taxon dans la base de
+    données source.
+  unique_observers: observateurs uniques
+  unique_observers_last_3_months: observateurs uniques dans les 3 derniers mois
+  unknown: Inconnu
+  unknown_rank: (Rang inconnu)
+  unlink_your_picasa_account: Ne plus lier votre compte Picasa
+  unobserved_listings: Listes non observées
+  updates_notification_email_subject: '%{prefix} Nouvelles mises à jour à %{date}'
+  updating: Mise à jour en cours…
+  unpublish: Ne plus publier
+  unsubscribe: Se désabonner
+  unsubscribe_from_this: Se désabonner de cela
+  unsuspend_user: Ne plus suspendre l’utilisateur
+  update: Mettre à jour
+  update_existing_observations_with_new_license: Mettre à jour les observations existantes
+    avec les nouveaux choix de licence
+  update_existing_photos_with_new_license: Mettre à jour les photos existantes avec
+    les nouveaux choix de licence
+  update_existing_sounds_with_new_license: Mettre à jour les sons existants avec les
+    nouveaux choix de licence
+  update_past: Mettre à jour les derniers %{type}
+  update_photos: Mettre à jour les photos
+  update_selected_taxa: Mettre à jour les taxons sélectionnés
+  update_subscription: Mettre à jour l’abonnement
+  update_x_selected_taxa:
+    one: Mettre à jour 1 taxon sélectionné
+    other: Mettre à jour %{count} taxons sélectionnés
+  update_your_content: Mettre à jour votre contenu
+  update_with_eol_content: Mettre à jour avec le contenu de EdlV
+  update_with_site_content: Mettre à jour le contenu de %{site_name}
+  updated: Mis à jour
+  updated_by: Mis à jour par
+  updated_daily: Mis à jour quotidiennement
+  updated_photo: Photo mise à jour
+  upload: Télécharger
+  upload_a_csv_file: Télécharger le fichier CSV
+  upload_a_csv_file_with_observation: Télécharger un fichier CSV avec les données
+    d’observation. Si vous avez vos données dans une feuille de calcul ou une base
+    de données, c’est sans doute le moyen à utiliser.
   upload_photos: Téléverser des photos
+  url_identifier_of_a_project_derived_from: URL / identifiant d&un projet dérivé d’une
+    ressource externe
+  url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site web de la source
+  US_states: États des États-Unis
   use_this_form_to_create_a_new: |-
     Utilisez ce formulaire pour créer un nouveau projet de changement taxonomique décrivant un projet
     de scission, de fusion ou d'échange sur des taxons actifs.
+  use_this_if_the_url_needs_genus_species_separated: |-
+    Utiliser cela si l’URL doit avoir le genre et l’espèce séparés d’une
+    manière particulière. Si le taxon n’est pas une espèce ou une sous-espèce, tout ce qui est
+    entre [GENRE] et [ESPÈCE] sera remplacé par ce nom de taxon, utilisez-le donc
+    avec parcimonie. <br/><br/> <strong>Exemple :</strong><br/>
+  use_well_formed_csv: Utiliser un CSV bien formé. Cela veut dire que le texte avec
+    des virgules doit être inclus dans des guillemets. La plupart des applications
+    de tableur exportent le CSV dans ce format.
+  user: Utilisateur
+  user_added_an_observation_html: '%{user} a ajouté une observation'
+  user_added_an_x_to_noun_html: '%{user} a ajouté une %{x} à %{noun}'
+  user_added_a_x_to_noun_html: '%{user} a ajouté une %{x} à %{noun}'
+  user_added_an_x_to_noun_by_html: '%{user} a ajouté une %{x} à %{noun} par %{by}'
+  user_added_a_x_to_noun_by_html: '%{user} a ajouté une %{x} à %{noun} par %{by}'
+  user_added_x_observations_html: '%{user} a ajouté %{x} observations'
+  user_commented_on: '%{user} a fait un commentaire sur votre %{title} à %{time}'
+  user_follows: '%{user} suit'
+  user_has_opted_out_of_community_ids: '%{user} a choisi de conserver le contrôle
+    sur les taxons associés avec ses observations'
+  user_has_opted_out_of_community_ids_for_this_obs: '%{user} a choisi de conserver
+    le contrôle sur les taxons associés avec cette observation'
+  user_hasnt: '%{user} n’a pas'
+  user_invite_observation_to_project: '%{user} aimerait inviter votre observation
+    « %{observation} » dans le projet %{project}.'
+  user_invited_you_to_join_project: '%{user} vous a invité à rejoindre %{project}'
+  user_invited_you_to_join_html: '%{user} vous a invité à rejoindre'
+  user_invited_you_to_join_this_project_on_date_html: '%{user} vous a invité à rejoindre
+    ce projet le %{date}'
+  user_invited_your_x_to_a_project_html: '%{user} a invité votre %{x} dans un projet'
   valid_options_are: Les options valides sont
   we_tried_to_process_your_upload_named_filename: |-
     Nous avons essayé de traiter votre téléchargement nommé %{nom de fichier} mais ça ne marche pas.
