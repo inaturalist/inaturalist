@@ -437,7 +437,7 @@ es:
   assessment_was_deleted: La evaluación fue eliminada.
   assessment_was_successfully_created: La evaluación fue creada exitosamente.
   assessment_was_successfully_updated: La evaluación fue actualizada exitosamente.
-  assessment_x: '%{evaluación} evaluación'
+  assessment_x: '%{assessment} evaluación'
   assessments: evaluaciones
   associations: Asociaciones
   at: en
@@ -477,7 +477,7 @@ es:
   back_to_this: Regresa a %{place}
   back_to_viewing: Regresa a ver <i>%{taxon}</i>
   back_to_x: Regresa a %{noun}
-  back_to_x_assessment: Regresa a las evaluaciones del %{proyecto}
+  back_to_x_assessment: Regresa a las evaluaciones del %{project}
   back_to_x_history: Regresa a la historia de %{x}
   back_to_x_journal: Regresa al diario de %{user}
   back_to_x_observations: Regresa a las observaciones de %{user}
@@ -626,7 +626,7 @@ es:
   check_list_for_individual_taxa_that: Listas de comprobación para una especie o grupo
     especifico que habitan aquí, ej. "Aves de %{place}".
   check_list_individual_taxa: Revisa las listas para taxa que viven aquí, por ejemplo,
-    que "las aves de %{lugar}".
+    que "las aves de %{place}".
   check_lists_must_belong_to_a_place: |-
     Las listas de comprobación deben pertenecer a un lugar. Para crear una nueva lista de comprobación,
     visita la lista de comprobación de algún lugar y selecciona el enlace "Crea una nueva lista de comprobación".
@@ -726,7 +726,7 @@ es:
   comparing: comparando
   comparing_list_to_list: Comparando %{list1} con %{list2}
   comparing_versions_x_and_y: Comparando las versiones %{x} y %{y}
-  comparing_observations_from: Comparación de las observaciones de %{user} en %{fechas}
+  comparing_observations_from: Comparación de las observaciones de %{user} en %{dates}
   compiled_by_name: Compilado por %{name}
   completed: Completado
   completed_at: Completado en
@@ -1104,7 +1104,7 @@ es:
   facebook_needs_the_owner_of_that_photo_to: Facebook necesita la confirmación del
     propietario de esa foto para poder realizar la conexión a %{site_name_short}.
   facebook_options: Opciones de Facebook
-  failed_to_repair_photo: 'No pudo reparar foto: %{errores}'
+  failed_to_repair_photo: 'No pudo reparar foto: %{errors}'
   "false": "No"
   faq: Preguntas frecuentes
   Family: Familia
@@ -1421,7 +1421,7 @@ es:
   invite_more: Invitar más gente
   invite_observations: Invita a observaciones para tu proyecto
   invite_people: Invita gente
-  invite_people_to_project: Invitar gente al %{proyecto}
+  invite_people_to_project: Invitar gente al %{project}
   invite_photos_from_other_sites: Invitar las fotos de otros sitios
   invite_photos_to: Invita fotos para %{site_name}
   invite_photos_to_raquo_html: Invita a alguien con fotos de <nobr>%{site_name} &raquo;</nobr>
@@ -1523,7 +1523,7 @@ es:
     norwegian: Noruego
     pangasinan: Pangasinán
     portuguese: Portugués
-    rumanian: Rumano
+    romanian: Rumano
     russian: Ruso
     spanish: Español
     swedish: Sueco
@@ -1621,8 +1621,7 @@ es:
   load: Cargar
   loading: Cargando...
   loading_flickr_photos: Cargando fotos de Flickr...
-  loading_full_description_html: 'Cargando la descripción completa... No hay un artículo
-    ni una redirección en Wikipedia titulado <i>%{taxon}</i>. Talvez podría:'
+  loading_full_description_html: Cargando la descripción completa...
   loading_more_photos: Cargando más fotos...
   loading_observations: Cargando observaciones...
   loading_preview_and_code: Cargando el código...
@@ -1995,7 +1994,7 @@ es:
     del habitad, o lo que quieras comentar.
   observations_for: Observaciones para
   observations_for_project: Observaciones para %{project}
-  observations_from: Observaciones de %{fecha}
+  observations_from: Observaciones de %{date}
   observations_from_this_place: Observaciones de este lugar
   observations_from_this_project: Observaciones de este proyecto
   observations_from_you: Observaciones suyas
@@ -3026,7 +3025,7 @@ es:
     one: Hay <span class='count'>1</span> sinónimo</span>
     other: Hay <span class='count'>%{count}</span> sinónimos</span>
   there_is_no_wikipedia_page_matching: No hay página en Wikipedia que concuerde
-  there_isnt_wiki_article: No hay un artículo de Wikipedia para redirigir que se titule  '<i>%{taxón}</i>'.
+  there_isnt_wiki_article: No hay un artículo de Wikipedia para redirigir que se titule  '<i>%{taxon}</i>'.
     Tal vez deseas
   there_isnt_a_wikipedia_article_titled_x_html: No existe un articulo relacionado
     con Wikipeia con el nombre '%{x}'. ¿Quisieras <a href='http://en.wikipedia.org/wiki/%{x}'>crear</a>
@@ -3036,7 +3035,7 @@ es:
   there_was_a_problem_saving_your_identification: 'Hubo un problema al salvar tu identificación:
     %{error}'
   there_were_errors: Hubo errores.
-  there_were_problems_adding_taxa: 'Hubo problemas para añadir esos taxa: %{errores}'
+  there_were_problems_adding_taxa: 'Hubo problemas para añadir esos taxa: %{errors}'
   there_were_problems_adding_your_observation_to_this_project: 'Hubo problemas al
     añadir tus observaciones al proyecto: %{@project_observation}'
   there_were_problems_importing_that_place: 'Hubo problemas al importar ese lugar:
@@ -3077,8 +3076,8 @@ es:
   this_is_a_cached_summary_based_on: Este es un resumen en caché de este taxón con
     base en su
   this_is_a_life_list_of: Esta es una lista de vida de
-  this_is_a_life_list_of_taxon_in_place: Esta es una lista de vida de %{taxón} en
-    %{lugar}
+  this_is_a_life_list_of_taxon_in_place: Esta es una lista de vida de %{taxon} en
+    %{place}
   this_is_more_convenient_way_find_parent: Esta es una forma más conveniente de encontrar
     un Identificador padre. El Identificador padre el que realmente queda guardado.
   this_is_a_more_convenient_way_to_find_a_taxon_id: Este es el camino más conveniente
@@ -3266,13 +3265,13 @@ es:
   user_hasnt: '%{user} no ha'
   user_invite_observation_to_project: '%{user} desea invitar su observación "%{observation}"
     al proyecto %{project}.'
-  user_invited_you_to_join_project: '%{user} invitado a unirse a %{proyecto}'
+  user_invited_you_to_join_project: '%{user} invitado a unirse a %{project}'
   user_invited_you_to_join_html: '%{user} te invito a unirse'
   user_invited_you_to_join_this_project_on_date_html: '%{user} te invito a unirte
-    a este proyecto en %{fecha}'
+    a este proyecto en %{date}'
   user_invited_your_x_to_a_project_html: '%{user} invitó a su %{x} a un proyecto'
-  user_added_an_observation_field_html: El %{user} añadió un un valor para "%{nombre_campo}"
-    a una observación de %{propietario}
+  user_added_an_observation_field_html: El %{user} añadió un un valor para "%{field_name}"
+    a una observación de %{owner}
   user_is_a_naturalist: '%{user} es un naturalista!'
   user_s: '%{model_name} de %{user}'
   user_s_id: '%{id} de %{user}'
@@ -3291,8 +3290,7 @@ es:
     de Creative Commons</fuerte> facilita que los investigadores usen sus datos. Usted
     puede elegir una licencia diferente después de registrarse si desea.
   valid_interrogation: ¿Válido?
-  valid_options_are: Las opciones válidas son
-  verbing_x_of_y: '%{verbo} %{x} de %{y}...'
+  verbing_x_of_y: '%{verb} %{x} de %{y}...'
   view: Ver
   view_all: Ver todo
   view_all_members: Ver todos los miembros

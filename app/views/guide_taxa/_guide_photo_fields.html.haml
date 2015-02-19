@@ -12,6 +12,7 @@
       .local_photo_fields.row-fluid
         = f.fields_for :photo, f.object.photo || f.object.build_photo(:type => "LocalPhoto"), :builder => DefaultFormBuilder do |p|
           .span6
+            = p.hidden_field :user_id, value: current_user.id
             = p.hidden_field :type
             = p.hidden_field :native_photo_id
             = p.hidden_field :id

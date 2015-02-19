@@ -635,7 +635,7 @@ eu:
   compare_with: 'Honekin alderatu:'
   comparing: alderatzen
   comparing_list_to_list: '%{list1} %{list2}-(r)ekin alderatuta'
-  comparing_observations_from: '%{user}-(r)en oharren alderaketa egun honetan: %{fechas}'
+  comparing_observations_from: '%{user}-(r)en oharren alderaketa egun honetan: %{dates}'
   comprehensive: osoa
   comprehensive?: Osoa?
   comprehensive_list: Zerrenda osoa
@@ -1302,7 +1302,7 @@ eu:
     norwegian: Norvegiera
     pangasinan: Pangasinanoa
     portuguese: Portugesa
-    rumanian: Errumaniera
+    romanian: Errumaniera
     russian: Errusiera
     spanish: Espainola
     swedish: Suediera
@@ -1392,8 +1392,7 @@ eu:
   load: Kargatu
   loading: Kargatzen...
   loading_flickr_photos: Flickr-eko argazkiak kargatzen...
-  loading_full_description_html: 'Deskribapen osoa kargatzen... Wikipedian ez dago
-    <i>%{taxona}</i> izena duen artikulurik, ezta berbideratzerik ere. Agian:'
+  loading_full_description_html: Deskribapen osoa kargatzen...
   loading_more_photos: Argazki gehiago kargatzen...
   loading_observations: Oharrak kargatzen...
   loading_preview_and_code: Kodea... kargatzen...
@@ -1722,7 +1721,7 @@ eu:
     nahi duzuna.
   observations_for: 'Honetarako behaketak:'
   observations_for_project: 'Honetarako behaketak: %{project}'
-  observations_from: 'Egun honetako behaketak: %{data}'
+  observations_from: 'Egun honetako behaketak: %{date}'
   observations_from_this_place: Leku honetako behaketak
   observations_from_this_project: Proiektu honetako oharrak
   observations_from_you: Zure oharrak
@@ -2212,7 +2211,7 @@ eu:
   resolve_this_flag: Marka hau ebatzi
   resolved: Konponduta
   resolved_by: 'Honek ebatzia:'
-  resolver_said_x_html: <span class=meta>%{ebatzi} esan zuen:</span> %{x}
+  resolver_said_x_html: <span class=meta>%{resolver} esan zuen:</span> %{x}
   results: emaitzak
   roadmap: bidea
   role: Baimena

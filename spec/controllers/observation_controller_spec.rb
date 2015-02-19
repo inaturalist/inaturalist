@@ -206,6 +206,19 @@ describe ObservationsController do
         response.body.should =~ /#{f}/
       end
     end
+
+    it "should have private coordinates for curators" do
+      po = make_project_observation
+      po.observation.update_attributes(latitude: 9.8765, longitude: 4.321, geoprivacy: Observation::PRIVATE)
+      p = po.project
+      p.user.should_not be po.observation.user
+      sign_in p.user
+      p.should be_curated_by p.user
+      get :project_all, id: p.id, format: :csv
+      response.body.should be =~ /private_latitude/
+      response.body.should be =~ /#{po.observation.private_latitude}/
+      response.body.should be =~ /#{po.observation.private_longitude}/
+    end
   end
   
   describe :photo do

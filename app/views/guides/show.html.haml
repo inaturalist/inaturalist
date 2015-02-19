@@ -274,7 +274,7 @@
             .span6
               %h4.name
                 = link_to guide_taxon.display_name, guide_taxon
-              - if gs = guide_taxon.guide_sections.first
+              - if gs = guide_taxon.guide_sections.order("COALESCE(position, id)").first
                 = truncate_with_more formatted_user_text(gs.description), :length => 400
             .span3
               .map

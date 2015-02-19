@@ -146,7 +146,7 @@ module TaxaHelper
   def common_taxon_name(taxon)
     return nil if taxon.blank?
     user = if defined? current_user
-      user
+      current_user
     else
       @user
     end

@@ -130,7 +130,8 @@ class Observation < ActiveRecord::Base
     "url", 
     "image_url", 
     "tag_list",
-    "description"
+    "description",
+    "oauth_application_id"
   ]
   BASIC_COLUMNS = [
     "id", 
@@ -152,7 +153,8 @@ class Observation < ActiveRecord::Base
     "id_please",
     "num_identification_agreements",
     "num_identification_disagreements",
-    "captive_cultivated"
+    "captive_cultivated",
+    "oauth_application_id"
   ]
   GEO_COLUMNS = [
     "place_guess",

@@ -13,6 +13,13 @@ describe EolPhoto, "new_from_api_response" do
     p = EolPhoto.new_from_api_response(api_response)
     p.native_photo_id.should_not be_blank
   end
+
+  it "should not set native_realname to inaturlaist" do
+    page = EolService.page(455040, :licenses => 'any', :images => 10, :text => 0, :videos => 0, :details => 1)
+    api_response = page.at('//xmlns:dataObject[.//xmlns:mediaURL]')
+    p = EolPhoto.new_from_api_response(api_response)
+    p.native_realname.should_not eq "inaturalist"
+  end
 end
 
 describe EolPhoto, "sync" do

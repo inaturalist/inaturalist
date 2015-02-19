@@ -1,6 +1,22 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe TaxaController do
+  describe "show" do
+    render_views
+    # not a pretty test. maybe it's time for view tests...?
+    it "should use a taxon name for the user's place instead of the default" do
+      t = Taxon.make!
+      tn1 = TaxonName.make!(:taxon => t, :name => "the default name")
+      tn2 = TaxonName.make!(:taxon => t, :name => "the place name")
+      p = Place.make!
+      PlaceTaxonName.make!(:place => p, :taxon_name => tn2)
+      user = User.make!(:place => p)
+      sign_in user
+      get :show, :id => t.id
+      response.body.should =~ /<h2>.*?#{tn2.name}.*?<\/h2>/m
+    end
+  end
+
   describe "merge" do
     it "should redirect on succesfully merging" do
       user = make_curator

@@ -208,6 +208,7 @@ GEM
       warden
     diff-lcs (1.2.4)
     diffy (3.0.1)
+    docile (1.1.5)
     doorkeeper (0.6.7)
       railties (~> 3.1)
     dynamic_form (1.1.4)
@@ -419,6 +420,11 @@ GEM
       jwt (>= 0.1.5)
       multi_json (>= 1.0.0)
     simple_oauth (0.2.0)
+    simplecov (0.9.1)
+      docile (~> 1.1.0)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     soundcloud (0.3.1)
       hashie
       httmultiparty (>= 0.3)
@@ -550,6 +556,7 @@ DEPENDENCIES
   sass (= 3.2.5)
   sass-rails
   savon
+  simplecov
   soundcloud
   spatial_adapter!
   statsd-ruby

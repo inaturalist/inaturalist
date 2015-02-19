@@ -192,7 +192,8 @@ $(document).ready(function() {
             timeFormat: 'HH:mm:ssz',
             separator: 'T',
             showSecond: false,
-            showTimezone: false
+            showTimezone: false,
+            maxDate: null
           })
         }
       })
@@ -210,7 +211,8 @@ $(document).ready(function() {
         timeFormat: 'HH:mm:ssz',
         separator: 'T',
         showSecond: false,
-        showTimezone: false
+        showTimezone: false,
+        maxDate: null
       })
     }
   })
