@@ -97,6 +97,7 @@ group :test, :development, :prod_dev do
   gem "rspec-rails"
   gem "rspec-html-matchers"
   gem "debugger"
+  gem "zeus"
 end
 
 group :test do

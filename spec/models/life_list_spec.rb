@@ -193,3 +193,17 @@ describe LifeList, "places" do
     lt.should be_valid
   end
 end
+
+describe LifeList, "defaults" do
+  let(:user) { User.make! }
+  it "should set a default title" do
+    LifeList.make!(user: user, title: nil).
+      title.should eq "#{ user.login }'s Life List"
+  end
+
+  it "should set a default description" do
+    u = User.make!(login: "UserLogin", name: "UserName")
+    LifeList.make!(user: user, description: nil).
+      description.should eq "Every species seen by #{ user.login }"
+  end
+end

@@ -18,13 +18,11 @@ describe "ActsAsSpammable", "ActiveRecord" do
   end
 
   it "recognizes non-spam" do
-    Rakismet.should_receive(:akismet_call).and_return("false")
     o = Observation.make!(user: @user)
     o.spam?.should == false
   end
 
   it "knows when it has been flagged as spam" do
-    Rakismet.should_receive(:akismet_call).and_return("false")
     o = Observation.make!(user: @user)
     o.flagged_as_spam?.should == false
     Flag.make!(flaggable: o, flag: Flag::SPAM)
@@ -32,7 +30,6 @@ describe "ActsAsSpammable", "ActiveRecord" do
   end
 
   it "resolved flags are not spam" do
-    Rakismet.should_receive(:akismet_call).and_return("false")
     o = Observation.make!(user: @user)
     o.flagged_as_spam?.should == false
     f = Flag.make!(flaggable: o, flag: Flag::SPAM)
@@ -89,7 +86,9 @@ describe "ActsAsSpammable", "ActiveRecord" do
   it "knows which models are spammable" do
     Observation.spammable?.should == true
     Post.spammable?.should == true
-    User.spammable?.should == false
+    User.spammable?.should == true
+    Photo.spammable?.should == false
+    Site.spammable?.should == false
     Taxon.spammable?.should == false
   end
 
@@ -102,7 +101,6 @@ describe "ActsAsSpammable", "ActiveRecord" do
   end
 
   it "identifies spammer-owned content as owned_by_spammer?" do
-    Rakismet.should_receive(:akismet_call).and_return("false")
     u = User.make!
     o = Observation.make!(user: u)
     o.owned_by_spammer?.should == false
@@ -112,7 +110,6 @@ describe "ActsAsSpammable", "ActiveRecord" do
   end
 
   it "users are spam if they are spammers" do
-    Rakismet.should_receive(:akismet_call).and_return("false")
     u = User.make!
     u.owned_by_spammer?.should == false
     u.update_column(:spammer, true)
@@ -130,4 +127,40 @@ describe "ActsAsSpammable", "ActiveRecord" do
     Taxon.make!.owned_by_spammer?.should == false
   end
 
+
+  describe "User Exceptions" do
+    it "does not check user life lists that have default values" do
+      u = User.make!
+      Rakismet.should_not_receive(:akismet_call)
+      LifeList.make!(user: u, title: nil, description: nil)
+    end
+
+    it "gives users a dummy description if they dont have one specified" do
+      User.make!(description: nil).instance_eval(
+        &User.akismet_attrs[:comment_content]).should eq "New user"
+    end
+
+    it "knows when LifeLists have default values" do
+      LifeList.make!(title: nil, description: nil).default_life_list?.
+        should == true
+      LifeList.make!(title: "Anything", description: nil).default_life_list?.
+        should == false
+    end
+
+    it "will check Users for spam when various fields are modified" do
+      u = User.make!
+      u.flagged_as_spam?.should == false
+      Rakismet.should_receive(:akismet_call).at_least(:once).and_return("true")
+      # setting the place_id should not call Akismet
+      u.place_id = Place.make!.id
+      u.save
+      u.flagged_as_spam?.should == false
+      # reload was not resetting the instance variable @_spam
+      u = User.find(u)
+      # setting login, name, email, or description will call Akismet
+      u.email = "anything@example.com"
+      u.save
+      u.flagged_as_spam?.should == true
+    end
+  end
 end

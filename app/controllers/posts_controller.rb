@@ -11,7 +11,11 @@ class PostsController < ApplicationController
   
   def index
     scope = @parent.is_a?(User) ? @parent.journal_posts.scoped : @parent.posts.scoped
-    block_if_spam(@parent) && return
+    if @parent.is_a?(User)
+      block_if_spammer(@parent) && return
+    else
+      block_if_spam(@parent) && return
+    end
     @posts = scope.not_flagged_as_spam.published.page(params[:page]).
       per_page(10).order("published_at DESC")
     

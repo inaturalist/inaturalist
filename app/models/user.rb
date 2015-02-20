@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   include ActsAsSpammable::User
-  
+
+  acts_as_spammable :fields => [ :description ],
+                    :comment_type => "item-description"
+
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
   

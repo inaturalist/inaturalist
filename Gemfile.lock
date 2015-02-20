@@ -279,6 +279,7 @@ GEM
       treetop (~> 1.4.8)
     memcache-client (1.8.5)
     metaclass (0.0.1)
+    method_source (0.8.2)
     mime-types (1.25.1)
     mocha (0.14.0)
       metaclass (~> 0.0.1)
@@ -476,6 +477,8 @@ GEM
     will_paginate (3.0.4)
     ya2yaml (0.31)
     yui-compressor (0.12.0)
+    zeus (0.15.4)
+      method_source (>= 0.6.7)
 
 PLATFORMS
   ruby
@@ -575,3 +578,4 @@ DEPENDENCIES
   xmp!
   ya2yaml
   yui-compressor
+  zeus
