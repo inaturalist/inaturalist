@@ -28,8 +28,8 @@ class TaxonChange < ActiveRecord::Base
   scope :types, lambda {|types| where("taxon_changes.type IN (?)", types)}
   scope :committed, -> { where("committed_on IS NOT NULL") }
   scope :uncommitted, -> { where("committed_on IS NULL") }
-  scope :change_group, lambda{|group| where("change_group = ?", group)}
-  scope :iconic_taxon, lambda{|iconic_taxon|
+  scope :change_group, lambda {|group| where("change_group = ?", group)}
+  scope :iconic_taxon, lambda {|iconic_taxon|
     joins(TAXON_JOINS).
     where("t1.iconic_taxon_id = ? OR t2.iconic_taxon_id = ?", iconic_taxon, iconic_taxon)
   }

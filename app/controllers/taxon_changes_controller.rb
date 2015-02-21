@@ -217,12 +217,12 @@ class TaxonChangesController < ApplicationController
   
   private
   def load_taxon_change
-    render_404 unless @taxon_change = TaxonChange.find_by_id(params[:id] || params[:taxon_change_id], 
-      :include => [
-        {:taxon => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
-        {:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
-        :source]
-    )
+    render_404 unless @taxon_change = TaxonChange.where(id: params[:id] || params[:taxon_change_id]).
+      includes(
+        {taxon: [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
+        {taxa: [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
+        :source
+      ).first
   end
 
   def get_change_params

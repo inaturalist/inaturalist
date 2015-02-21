@@ -78,14 +78,13 @@ class TaxonSchemesController < ApplicationController
          joins("JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id").
          where("is_active = 'false' AND rank = 'species' AND ts.id = ?", @taxon_scheme).
          page(params[:page]).per_page(100)
-    @taxon_changes = []
     inactive_taxon_ids = @inactive_taxa.map(&:id)
-    changes = TaxonChange.includes(:taxon_change_taxa).
+    changes = TaxonChange.joins(:taxon_change_taxa).
       where(
         "taxon_changes.taxon_id IN (?) OR taxon_change_taxa.taxon_id IN (?)", 
         inactive_taxon_ids, inactive_taxon_ids
       )
-    @taxon_changes = changes.select do |tc|
+    @taxon_changes = changes.to_a.select do |tc|
       @inactive_taxa.detect do |t|
         tc.taxon_id == t.id || tc.taxon_change_taxa.detect{|tct| tct.taxon_id == t.id}
       end
@@ -113,9 +112,7 @@ class TaxonSchemesController < ApplicationController
   
   private
   def load_taxon_scheme
-    render_404 unless @taxon_scheme = TaxonScheme.find_by_id(params[:id], 
-      :include => [:source]
-    )
+    render_404 unless @taxon_scheme = TaxonScheme.includes(:source).find_by_id(params[:id])
   end
     
 end

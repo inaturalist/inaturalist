@@ -147,4 +147,5 @@ describe TaxaController do
       expect(assigns(:photos)).to include p
     end
   end
+
 end

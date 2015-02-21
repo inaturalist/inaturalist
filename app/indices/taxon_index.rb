@@ -8,7 +8,7 @@ ThinkingSphinx::Index.define :taxon, with: :active_record, delta: ThinkingSphinx
   # has listed_taxa(:place_id), as: :places, facet: true, type: :multi
   # has listed_taxa(:list_id), as: :lists, type: :multi
   has created_at, ancestry
-  has "REPLACE(ancestry, '/', ',')", as: :ancestors, multi: true, type: :integer
+  has "REPLACE(ancestry, '/', ',')", as: :ancestors, multi: true, type: :integer, facet: true
   has listed_taxa(:place_id), as: :places, facet: true, multi: true, source: :query, type: :integer
   has observations_count
 end

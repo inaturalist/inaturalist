@@ -1183,8 +1183,8 @@ class TaxaController < ApplicationController
   end
   
   def tree
-    @taxon = Taxon.find_by_id(params[:id], :include => [:taxon_names, :photos])
-    @taxon ||= Taxon.find_by_id(params[:taxon_id].to_i, :include => [:taxon_names, :photos])
+    @taxon = Taxon.includes(:taxon_names, :photos).find_by_id(params[:id])
+    @taxon ||= Taxon.includes(:taxon_names, :photos).find_by_id(params[:taxon_id].to_i)
     unless @taxon
       @taxon = Taxon.find_by_name('Life')
       @taxon ||= Taxon.iconic_taxa.first.parent

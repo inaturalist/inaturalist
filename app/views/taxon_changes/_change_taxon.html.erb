@@ -52,7 +52,7 @@
     
     <div class="meta">
       <div class="small description">
-        <%- schemes = change_taxon.taxon_schemes.compact -%>
+        <%- schemes = change_taxon.taxon_schemes.to_a.compact -%>
         <% unless schemes.blank? -%>
           <label><%= t :schemes %>:</label>
           <%= schemes.map{|s| link_to(s.title, s)}.join(', ').html_safe %>
