@@ -208,6 +208,7 @@ class ProjectsController < ApplicationController
   # PUT /projects/1.xml
   def update
     @project.icon = nil if params[:icon_delete]
+    @project.cover = nil if params[:cover_delete]
     respond_to do |format|
       if @project.update_attributes(params[:project])
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_updated)) }

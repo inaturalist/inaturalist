@@ -5,6 +5,29 @@ shared_examples_for "an ObservationFieldValuesController" do
   let(:observation) { Observation.make!(:user => user) }
   let(:observation_field) { ObservationField.make! }
 
+  describe "index" do
+    it "should filter by type" do
+      ofv = ObservationFieldValue.make!(observation: observation, observation_field: observation_field)
+      get :index, format: 'json', type: observation_field.datatype
+      json = JSON.parse(response.body)
+      json.size.should eq 1
+      get :index, format: 'json', type: "bargleplax"
+      json = JSON.parse(response.body)
+      json.size.should eq 0
+    end
+
+    it "should filter by quality grade" do
+      o = make_research_grade_observation
+      ofv = ObservationFieldValue.make!(observation: o, observation_field: observation_field)
+      get :index, format: 'json', type: observation_field.datatype, quality_grade: 'research'
+      json = JSON.parse(response.body)
+      json.size.should eq 1
+      get :index, format: 'json', type: observation_field.datatype, quality_grade: 'casual'
+      json = JSON.parse(response.body)
+      json.size.should eq 0
+    end
+  end
+
   describe "create" do
     it "should work" do
       lambda {

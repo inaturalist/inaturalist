@@ -75,7 +75,7 @@ mk:
   about_community_taxa: За таксоните од заедницата
   about_external_links: За надворешните врски
   about_licenses: За лиценците
-  about_licensing: за_лиценцирањето
+  about_licensing: За лиценцирањето
   about_life!: за животот!
   about_places: За местата
   about_the_cc_licenses: За лиценците на Криејтив комонс
@@ -145,7 +145,9 @@ mk:
   add_new_rule: Додај ново правило
   add_new_source: Додај нов извор...
   add_new_taxon_name: Додај ново таксонско име
+  add_observation: Додај набљудување
   add_observations!: додавајте набљудувања!
+  add_observations: Додај набљудувања
   add_photos: Додај слики
   add_photos_to_this_observation: Додајте слики во набљудувањево
   add_several_observations_at_once: Додајте неколку набљудувања наеднаш.
@@ -173,7 +175,7 @@ mk:
   added_on: Додадено на
   added_to: Додадено во
   adding: Додавам...
-  adding_observations: Додавање на набљудувања
+  adding_observations: Додавање набљудувања
   adding_to_your_life_list: Додавам во вашиот животен список...
   additional_range: Дополнителна распространетост
   admin: Админ
@@ -291,6 +293,9 @@ mk:
     дека сакате да го избришете овој корисник и сета негова содржина?
   are_you_sure?: Дали сте сигурни?
   are_you_sure_delete_asset: Дали сте сигурни дека сакате да го избришете средствово?
+  are_you_sure_delete_observation_from_project: Дали сте сигурни дека сакате да го
+    отстраните набљудувањево од %{project}?
+  are_you_sure_delete_post: Дали сте сигурни дека сакате да ја избришете објавава?
   are_you_sure_want_delete_this_range: Дали сте сигурни дека сакате да ја избришете
     оваа распространетост?
   are_you_sure_you_want_to_commit_this_change: Дали сте сигурни дека сакате да ја
@@ -470,7 +475,7 @@ mk:
   create_a_list: Создај список
   create_a_new_field: Создај ново поле
   create_a_new_place: Создај ново место
-  create_a_new_taxon: СОздај нов таксон
+  create_a_new_taxon: Создај нов таксон
   create_a_query: Создај барање
   create_an_account: Направи сметка
   create_new_taxon: Создај нов таксон
@@ -722,6 +727,12 @@ mk:
   guide_was_successfully_created: Водичот е успешно создаден.
   guide_was_successfully_published: Водичот е успешно објавен.
   guide_was_successfully_updated: Водичот е успешно подновен.
+  has_been: е
+  has_already_been_flagged_by: е веќе обележан од
+  hello: <проба>
+  help: Помош
+  help_confirm_observations!: Помогнете со потврдувањето ана набљудувањата!
+  help_faq: Помош / ЧПП
   help_out!: Помогнете!
   hex_color_eg: Хексадецимална боја, на пр. 65644F
   hi: Здраво,
@@ -820,6 +831,8 @@ mk:
   least_concern: со најмала загриженост
   leave_a_comment: Напишете коментар
   leave_this_project: Напушти го проектов
+  leaves: напушта
+  not_absent: не отсуствува
   lexicon: Лексикон
   lexicons:
     scientific_names: Научни имиња
@@ -848,7 +861,7 @@ mk:
     norwegian: норвешки
     pangasinan: пангасинански
     portuguese: португалски
-    rumanian: романски
+    romanian: романски
     russian: руски
     spanish: шпански
     swedish: шведски
@@ -858,6 +871,8 @@ mk:
     turkish: турски
     waray_waray: варајварајски
   less: Помалку
+  life: Живот
+  life!: Живот!
   life_list: Животниот список на %{user}
   life_list_updated: Списокот на животот е подновен!
   link_your_flickr_account_with_inat: Поврзете си ја сметката на Flickr со %{site_name}
@@ -865,8 +880,29 @@ mk:
     за да можете да им ставате слики на вашите набљудувања.
   link_your_picasa_account: Поврзете си ја сметката на Picasa
   linked_facebook: Вашата сметка на %{site_name} е врзана со вашата сметка на Facebook.
+  list: Список
+  list_deleted: Списокот е избришан.
+  list_saved: Списокот е зачуван.
   list_tooltip: Дај списочен приказ
   list_updated: Списокот е подновен!
+  list_views:
+    plain: обичен
+    taxonomic: таксономски
+    photo: слика
+  list_was_successfully_created: Списокот е успешно создаден.
+  listed_taxon: Наведен таксон
+  listed_taxon_updated: Наведениот таксон е подновен
+  load: Вчитај
+  loading: Вчитувам...
+  loading_flickr_photos: Ги вчитувам сликите од Flickr...
+  loading_full_description_html: Го вчитувам целосниот опис...
+  loading_more_photos: Вчитувам уште слики...
+  loading_observations: Вчитувам набљудувања...
+  loading_preview_and_code: Го вчитувам прегледот и кодот...
+  loading_tags: Ги вчитувам ознаките...
+  loading_taxa_from_your: Ги вчитувам таксоните од вашите набљудувања...
+  loading_wikipedia_description: Го вчитувам описот од Википедија...
+  locale_description: Во локалот се задава претпочитаниот јазик и датумски формат.
   locales:
     ca: каталонски
     en: англиски
@@ -876,6 +912,8 @@ mk:
     es-MX: шпански (Мексико)
     eu: баскиски
     gl: галициски
+    mk: македонски
+  localized_species_accounts: Сметки за локализирани видови
   location: Местоположба
   location_: Местоположба
   location_is_exact: местоположбата е докрај уточнета
@@ -912,8 +950,15 @@ mk:
   map: Карта
   map_tooltip: Дај картографски приказ
   map_for: Карта за
+  maptype_for_places: google.maps.MapTypeId.TERRAIN
+  matched_several_different_taxa: пронајде неколку различни таксони
+  matching_species_will_shown_up_here: Пронајдените видови ќе се прикажат тука. Картите
+    ќе прикажат распространетост ако еден од тие видови е присутен во %{place}.
+  maybe_your_signed_in_with: Можеби се имате најавено со вашата сметка на %{omniauth}?
   members: Членови
   merge: Спој
+  merging: Спојување
+  merging_places: Спојување на места
   message: Порака
   messages: Пораки
   mixed_licenses: мешовити лиценци
@@ -929,6 +974,9 @@ mk:
   more: Повеќе
   more_fields: Повеќе полиња
   more_info: Повеќе инфо
+  more_journal_posts: Повеќе дневнички објави
+  more_observations: Повеќе набљудувања
+  most: Највеќе
   most_agree: највеќето се согласуваат
   most_disagree: највеќето не се согласуваат
   most_observations: Највеќе набљудувања
@@ -937,6 +985,7 @@ mk:
   multiple_taxa: Повеќе таксони (внос за замена/спојување, извод за разделување)
   must_be_observed_in: мора да се набљудува во
   must_be_less_than_x_MB: Мора да биде помала од %{x} МБ
+  must_have_observation_field: мора да е пополнето полето „%{operand}“
   must_have_x: мора да има %{x}
   n_ago: пред %{n}
   n_people_agrees: '%{amount} се согласуваат'
@@ -952,6 +1001,7 @@ mk:
     col: Каталог на животот
     ubio: uBio
     nzor: Новозеландски регистар на организми
+  named_based_url_might_change: URL-адресите со име можат да се сменат, но ова нема.
   names: Имиња
   names_for_taxon_html: Имиња за %{taxon}
   naturalised: одомаќинет
@@ -960,9 +1010,27 @@ mk:
   ne_lat: СИ шир.
   ne_lon: СИ дол.
   near_threatened: речиси загрозен
+  nearby_observations: Набљудувања во близина
   need_id_help?: Ви треба помош со препознавањето?
   new_announcement: Ново соопштение
+  new_assessment: Нова оценка
+  new_check_list: Нов контролен список
+  new_check_list_for: Создај нов контролен список за %{place} &raquo;
+  new_check_list_record: Ако сакате да го означите списоков како сеопфатен, тогаш
+    создајте го, додајте ги таксоните и потоа уредете го. Тогаш тука ќе ви се даде
+    можноста да означите како сеопфатен.
+  new_custom_field_for: Ново прилагодено поле за
+  new_flag_for: Нов обележувач за
+  new_guide: Нов водич
+  new_journal_posts: Нова дневничка објава
+  new_list: Нов список
   new_members: Нови членови...
+  new_message: Нова порака
+  new_observation_field: Ново поле за набљудување
+  new_observation_rules: Нови правила за набљудувања
+  new_observations: Нови набљудувања
+  new_observations_ellispsis: Нови набљудувања...
+  new_observations_from_place_html: Нови набљудувања од %{place}
   new_observations_may_take_up_to: На новите набљудувања им треба до %{widget_expiration}
     минути за да се поајват во елементот.
   new_observations_of_x_html: Нови набљудувања на %{x}
@@ -990,6 +1058,11 @@ mk:
   no_curators_set: Нема зададени кустоси
   no_curators_yet: Засега нема кустоси!
   no_facebook_photos: Не можеме да најдеме ниедна слика од Facebook.
+  no_flags: Овој пат нема обележувачи
+  no_flickr_photos_tagged: Нема означено слики од Flickr!
+  no_header_row: Нема насловен ред
+  no_journal_post_have_been: Во проектов сè уште нема додадено дневнички објави.
+  no_license_all_rights_reserved: Нема лиценца (сите права задржани)
   no_link_flickr: Не, не би.
   no_managers_set: Нема зададено раководители
   no_matching_article_from_x: Нема соодветна статија од %{x}

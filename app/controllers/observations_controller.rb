@@ -2923,7 +2923,7 @@ class ObservationsController < ApplicationController
   def delayed_csv(path_for_csv, parent, options = {})
     path_for_csv_no_ext = path_for_csv.gsub(/\.csv\z/, '')
     if parent.observations.count < 50
-      Observation.generate_csv_for(parent, :path => path_for_csv)
+      Observation.generate_csv_for(parent, :path => path_for_csv, :user => current_user)
       render :file => path_for_csv_no_ext, :formats => [:csv]
     else
       cache_key = Observation.generate_csv_for_cache_key(parent)

@@ -1304,6 +1304,7 @@ es:
     mientras tanto
   hex_color_eg: Color en hexadecimal, ej. 65644F
   hi: 'Hola:'
+  hi_user: Hola, %{user}
   hide: Ocultar
   hide_details: Ocultar detalles
   highest_rank: Rango más alto
@@ -1522,7 +1523,7 @@ es:
     norwegian: Noruego
     pangasinan: Pangasinán
     portuguese: Portugués
-    rumanian: Rumano
+    romanian: Rumano
     russian: Ruso
     spanish: Español
     swedish: Sueco
@@ -2556,6 +2557,7 @@ es:
   role: Permiso
   rotate_left: Girar a la izquierda
   rotate_right: Girar a la derecha
+  row_singular_or_plural: Fila(s)
   row_number_i_was_parsed_as: Número de fila %{row} se analizó como
   rule_must_be: 'Regla: debe ser...'
   rules_and_formatting: Reglas & Formato
@@ -3234,6 +3236,7 @@ es:
   upload_a_csv_file_with_observation: Cargar un archivo CSV con datos de observación.
     Si sus datos están en una hoja de cálculo o base de datos, esta es probablemente
     la forma de hacerlo.
+  upload_photos: Subir fotos
   url_identifier_of_a_project_derived_from: Direcció web / identificador del proyecto
     derivado de fuentes externas
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio
@@ -3415,6 +3418,8 @@ es:
   welcome_to_guides: ¡Bienvenido a Guías %{site_name}!
   welcome_to_x_project: Bienvenido al proyecto %{project}
   were_currently_down_for: Estamos fuera de servicio por
+  were_sorry_but_your_bulk_import_of_filename_has_failed: Lo sentimos, pero tu importación
+    masiva de %{filename} ha fallado.
   what: Qué
   what_color_was_it: ¿De qué color era?
   what_did_you_see: ¿Qué viste?
@@ -3487,6 +3492,8 @@ es:
     mes.'
   you_are_now_following_x: Estas siguiendo a %{friend_user}.
   you_are_now_role_for_project_html: <strong>Ahora</strong> %{role} de %{project}
+  you_are_not_editing_any_guides_add_one_html: No estas editando ninguna de las guías.
+    <a href="/guides/new">Agrega una</a>
   user_is_now_role_for_project_html: <strong>%{user}</strong> es ahora %{role} de
     %{project}
   you_are_already_a_member_of_this_project: ¡Ya eres un miembro de este proyecto!
@@ -4286,6 +4293,9 @@ es:
         curated_checklist_desc: |-
           Esta es la lista curada y conteo de taxa a partir de las observaciones explícitas añadidas a este proyecto, no son todas las observaciones registradas en el lugar y tiempo de este
           evento.
+    shared:
+      not_found:
+        sorry_that_doesnt_exist: ¡Eso no existe!
     taxon_names:
       form:
         new_name_guidelines_html: |-
