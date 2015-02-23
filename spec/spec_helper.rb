@@ -118,7 +118,7 @@ def stub_config(options = {})
   InatConfig.instance_eval do
     options.each do |k,v|
       define_method k do
-        @config[k] ||= v
+        @config[k] = v
         method_missing k.to_sym
       end
     end
