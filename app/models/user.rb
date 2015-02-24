@@ -20,13 +20,14 @@ class User < ActiveRecord::Base
   attr_accessor   :make_observation_licenses_same
   attr_accessor   :make_photo_licenses_same
   attr_accessor   :make_sound_licenses_same
-  attr_accessible :make_observation_licenses_same, 
+  attr_accessible :make_observation_licenses_same,
                   :make_photo_licenses_same,
-                  :make_sound_licenses_same, 
-                  :preferred_photo_license, 
+                  :make_sound_licenses_same,
+                  :preferred_photo_license,
                   :preferred_observation_license,
                   :preferred_sound_license,
-                  :preferred_observation_fields_by
+                  :preferred_observation_fields_by,
+                  :spammer
   attr_accessor :html
   
   preference :project_journal_post_email_notification, :boolean, :default => true

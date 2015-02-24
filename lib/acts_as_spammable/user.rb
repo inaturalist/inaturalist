@@ -48,6 +48,12 @@ module ActsAsSpammable::User
     }.compact.flatten.uniq
   end
 
+  def flags_on_spam_content
+    content_flagged_as_spam.map do |content|
+      content.flags.where(flag: Flag::SPAM)
+    end.flatten
+  end
+
   def known_non_spammer?
     # it is important to use spammer and not spammer? since we are allowing
     # nil values to mean unknown, and false to mean non-spammer

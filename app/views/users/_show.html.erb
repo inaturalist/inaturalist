@@ -20,7 +20,7 @@
           <% end %>
         </div>
       <% else %>
-		    <%= t(:user_is_a_naturalist, :user => @user.login) %>
+        <%= t(:user_is_a_naturalist, :user => @user.login) %>
       <% end -%>
     <% else %>
       <%= formatted_user_text(@user.description) %>
@@ -142,6 +142,22 @@
       end
 
       pieces << link_to(t(:curate_user), curate_users_path(:id => @user.id)) if is_admin?
+    -%>
+    <%= pieces.join(" | ").html_safe %>
+  </div>
+
+  <div class="right clear ui description">
+    <%-
+      pieces = []
+      if current_user.is_curator? && !is_me?(@user) && !@user.is_admin?
+        unless @user.spammer?
+          pieces << link_to(t(:flag_as_spammer), set_spammer_path(@user, spammer: true), method: :post)
+        end
+        unless @user.known_non_spammer?
+          pieces << link_to(t(:flag_as_non_spammer), set_spammer_path(@user, spammer: false),
+            method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) } )
+        end
+      end
     -%>
     <%= pieces.join(" | ").html_safe %>
   </div>

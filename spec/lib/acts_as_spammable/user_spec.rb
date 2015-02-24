@@ -53,4 +53,15 @@ describe User, "spam" do
     u.content_flagged_as_spam.count.should == 2
   end
 
+  it "knows all the spam flags on a users content" do
+    u = User.make!
+    u.flags_on_spam_content.count.should == 0
+    3.times do
+      obs = Observation.make!(user: u)
+      Flag.make!(flaggable: obs, flag: Flag::SPAM)
+      Flag.make!(flaggable: obs, flag: "something else")
+    end
+    u.flags_on_spam_content.count.should == 3
+  end
+
 end
