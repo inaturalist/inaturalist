@@ -72,3 +72,5 @@ Doorkeeper.configure do
   #   client.superapp? or resource_owner.admin?
   # end
 end
+
+Doorkeeper.configuration.token_grant_types << "password"
