@@ -71,6 +71,7 @@ Doorkeeper.configure do
   # skip_authorization do |resource_owner, client|
   #   client.superapp? or resource_owner.admin?
   # end
-end
 
-Doorkeeper.configuration.token_grant_types << "password"
+  grant_flows %w(authorization_code client_credentials password)
+
+end
