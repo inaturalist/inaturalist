@@ -435,7 +435,7 @@ class Project < ActiveRecord::Base
     unpaginated_listed_taxa = listed_taxa_with_duplicates.where("listed_taxa.id IN (?)", listed_taxa_ids)
 
     unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(true)
-    unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present(true)
+    unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
     if preferred_count_by == "species"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
     elsif preferred_count_by == "leaves"
