@@ -85,6 +85,8 @@ module Inaturalist
     # new for Rails 4.2 as per https://github.com/collectiveidea/delayed_job
     config.active_job.queue_adapter = :delayed_job
 
+    config.exceptions_app = self.routes
+
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
     end

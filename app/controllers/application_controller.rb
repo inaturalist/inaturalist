@@ -193,8 +193,8 @@ class ApplicationController < ActionController::Base
   #
   def render_404
     respond_to do |format|
-      format.any(:html, :mobile) { render(template: "shared/404", status: 404, layout: "application") }
-      format.json { render :json => {:error => t(:not_found)}, :status => 404 }
+      format.any(:html, :mobile) { render(template: "errors/error_404", status: 404, layout: "application") }
+      format.json { render json: { error: t(:not_found) }, status: 404 }
     end
   end
   

@@ -432,6 +432,11 @@ Rails.application.routes.draw do
   get 'translate' => 'translations#index', :as => :translate_list
   post 'translate/translate' => 'translations#translate', :as => :translate
   get 'translate/reload' => 'translations#reload', :as => :translate_reload
-  
+
   get '/:controller(/:action(/:id))'
+
+  match '/404', to: 'errors#error_404', via: :all
+  match '/422', to: 'errors#error_422', via: :all
+  match '/500', to: 'errors#error_500', via: :all
+
 end
