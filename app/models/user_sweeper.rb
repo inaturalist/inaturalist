@@ -3,8 +3,8 @@ class UserSweeper < ActionController::Caching::Sweeper
 
   def after_update(user)
     ctrl = ActionController::Base.new
-    ctrl.expire_fragment(FakeView.url_for(:controller => 'welcome', :action => 'header', :for => user.id,
-      :version => ApplicationController::HEADER_VERSION,
-      :site_name => SITE_NAME))
+    Site.limit(100).each do |s|
+      ctrl.expire_fragment(User.header_cache_key_for(user, site: s))
+    end
   end
 end
