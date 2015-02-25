@@ -1758,7 +1758,7 @@ class ObservationsController < ApplicationController
   def observation_params(options = {})
     p = options.blank? ? params : options
     p.permit(
-      :captive,
+      :captive_flag,
       :description,
       :geoprivacy,
       :iconic_taxon_id,

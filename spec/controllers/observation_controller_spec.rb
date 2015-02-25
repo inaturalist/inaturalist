@@ -86,6 +86,25 @@ describe ObservationsController do
       expect(observation.latitude.to_f).to_not eq old_latitude.to_f
       expect(observation.private_latitude.to_f).to_not eq old_private_latitude.to_f
     end
+
+    describe "with captive_flag" do
+      let(:o) { Observation.make! }
+      before do
+        sign_in o.user
+      end
+      it "should set captive" do
+        expect(o).not_to be_captive
+        patch :update, id: o.id, observation: {captive_flag: '1'}
+        o.reload
+        expect(o).to be_captive
+      end
+      it "should set a quality_metric" do
+        expect(o.quality_metrics).to be_blank
+        patch :update, id: o.id, observation: {captive_flag: '1'}
+        o.reload
+        expect(o.quality_metrics).not_to be_blank
+      end
+    end
   end
   
   describe "import_photos" do
