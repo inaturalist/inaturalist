@@ -84,7 +84,11 @@ Rails.application.routes.draw do
   get '/home.:format' => 'users#dashboard', :as => :formatted_home
   
   get '/users/edit' => 'users#edit', :as => "generic_edit_user"
-  devise_for :users, :controllers => {:sessions => 'users/sessions', :registrations => 'users/registrations'}
+  devise_for :users, :controllers => {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    confirmations: 'users/confirmations'
+  }
   devise_scope :user do
     get "login", :to => "users/sessions#new"
     get "logout", :to => "users/sessions#destroy"
