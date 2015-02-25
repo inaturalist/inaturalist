@@ -7,7 +7,6 @@ class ProjectsController < ApplicationController
     :expires_in => WIDGET_CACHE_EXPIRATION,
     :cache_path => Proc.new {|c| c.params}, 
     :if => Proc.new {|c| c.request.format == :widget}
-  protect_from_forgery unless: -> { request.format.widget? }
 
   before_action :doorkeeper_authorize!, :only => [ :by_login, :join, :leave ], :if => lambda { authenticate_with_oauth? }
   
