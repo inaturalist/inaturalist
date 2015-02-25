@@ -1432,7 +1432,7 @@ class Taxon < ActiveRecord::Base
     return if name.blank?
     return if PROBLEM_NAMES.include?(name.downcase)
     name = normalize_name(name)
-    scope = TaxonName.limit(10).includes(:taxon).
+    scope = TaxonName.limit(10).joins(:taxon).
       where("lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase)
     scope = scope.where(options[:ancestor].descendant_conditions) if options[:ancestor]
     if options[:iconic_taxa]

@@ -608,7 +608,7 @@ class ObservationsController < ApplicationController
             :user => current_user, :photo_class => klass)
         end
         if params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
-          if photo = o.photos.compact.last
+          if photo = o.photos.to_a.compact.last
             photo_o = photo.to_observation
             PHOTO_SYNC_ATTRS.each do |a|
               o.send("#{a}=", photo_o.send(a)) if o.send(a).blank?
