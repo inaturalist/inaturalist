@@ -1,5 +1,8 @@
 class ProjectsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
+
+  protect_from_forgery unless: -> { request.format.widget? }
+
   caches_action :observed_taxa_count, :contributors,
     :expires_in => WIDGET_CACHE_EXPIRATION,
     :cache_path => Proc.new {|c| c.params}, 

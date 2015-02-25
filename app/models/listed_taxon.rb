@@ -109,7 +109,7 @@ class ListedTaxon < ActiveRecord::Base
   scope :with_taxonomic_status, ->(taxonomic_status) {
     # this would be a better way to do this, but it causes Rails 4 to freak when it gets nested in a subselect
     # joins(:taxon).where(taxa: { is_active: (taxonomic_status ? 't' : 'f') } )
-    joins("INNER JOIN taxa ON taxa.id = listed_taxa.taxon_id").where("taxa.is_active = ?", taxonomic_status ? 't' : 'f')
+    joins("INNER JOIN taxa t1 ON t1.id = listed_taxa.taxon_id").where("t1.is_active = ?", taxonomic_status ? 't' : 'f')
   }
   #with iconic taxon filter (by itself)
   scope :filter_by_iconic_taxon, ->(iconic_taxon_id) {
