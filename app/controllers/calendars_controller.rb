@@ -57,6 +57,7 @@ class CalendarsController < ApplicationController
         joins("JOIN places ON (place_geometries.place_id = places.id)").
         where("st_area(place_geometries.geom) < 6").
         where(Observation.conditions_for_date("observations.observed_on", @date)).
+        where("observations.user_id = ?", @selected_user).
         group("(places.display_name || '-' || places.id)").count
       @places = Place.where("id IN (?)", place_name_counts.map{|n,c| n.to_s.split('-').last})
       @place_name_counts = @places.sort_by(&:bbox_area).map do |place|
