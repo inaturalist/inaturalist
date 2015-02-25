@@ -194,7 +194,7 @@ Rails.application.routes.draw do
   get 'observations/project/:id.all' => 'observations#project_all', :as => :all_project_observations
   get 'observations/of/:id.:format' => 'observations#of', :as => :observations_of
   match 'observations/:id/quality/:metric' => 'quality_metrics#vote', :as => :observation_quality, :via => [:post, :delete]
-  get 'projects/:id/join' => 'projects#join', :as => :join_project
+  match 'projects/:id/join' => 'projects#join', :as => :join_project, :via => [ :get, :post ]
   get 'projects/:id/leave' => 'projects#leave', :as => :leave_project
   post 'projects/:id/add' => 'projects#add', :as => :add_project_observation
   match 'projects/:id/remove' => 'projects#remove', :as => :remove_project_observation, :via => [:post, :delete]

@@ -1,7 +1,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
   def whitelist_params
-    params.require(:user).permit(:login, :email, :password, :password_confirmation, :current_password)
+    if params[:user]
+      params.require(:user).permit(:login, :email, :password, :password_confirmation, :current_password)
+    end
   end
 
   def create
