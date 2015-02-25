@@ -1,6 +1,7 @@
 #encoding: utf-8
 class ObservationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
+  protect_from_forgery unless: -> { request.format.widget? }
 
   WIDGET_CACHE_EXPIRATION = 15.minutes
   caches_action :index, :by_login, :project,
