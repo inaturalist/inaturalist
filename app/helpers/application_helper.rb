@@ -729,7 +729,7 @@ module ApplicationHelper
   end
   
   def update_image_for(update, options = {})
-    options[:style] = "max-width: 48px; vertical-align:middle; #{options[:style]}"
+    options[:style] = "vertical-align:middle; #{options[:style]}"
     resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
       @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
     end
