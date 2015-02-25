@@ -616,7 +616,8 @@ class User < ActiveRecord::Base
   def self.header_cache_key_for(user, options = {})
     user_id = user.is_a?(User) ? user.id : user
     user_id ||= "signed_on"
-    site_name = options[:site].try(:name) || options[:site_name] || user.site.try(:name)
+    site_name = options[:site].try(:name) || options[:site_name]
+    site_name ||= user.site.try(:name) if user.is_a?(User)
     "header_cache_key_for_#{user_id}_on_#{site_name}"
   end
 
