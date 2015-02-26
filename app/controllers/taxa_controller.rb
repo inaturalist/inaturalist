@@ -7,6 +7,8 @@ class TaxaController < ApplicationController
   caches_action :describe, :expires_in => 1.day, :cache_path => {:locale => I18n.locale}, :if => Proc.new {|c| 
     c.session.blank? || c.session['warden.user.user.key'].blank?
   }
+
+  before_filter :allow_external_iframes, only: [:map]
   
   include TaxaHelper
   include Shared::WikipediaModule

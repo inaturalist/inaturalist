@@ -527,6 +527,10 @@ class ApplicationController < ActionController::Base
       request.format = default if request.format.blank? || !formats.include?(request.format.to_sym)
     end
   end
+
+  def allow_external_iframes
+    response.headers["X-Frame-Options"] = "ALLOWALL"
+  end
 end
 
 # Override the Google Analytics insertion code so it won't track admins

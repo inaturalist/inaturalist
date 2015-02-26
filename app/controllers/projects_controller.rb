@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
 
   protect_from_forgery unless: -> { request.format.widget? }
+  before_filter :allow_external_iframes, only: [:show]
 
   caches_action :observed_taxa_count, :contributors,
     :expires_in => WIDGET_CACHE_EXPIRATION,
