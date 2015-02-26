@@ -2834,7 +2834,7 @@ class ObservationsController < ApplicationController
     end
     Observation.preload_associations(@observations, :tags) if @observations.respond_to?(:scoped)
     pagination_headers_for(@observations)
-    render :text => @observations.to_csv(:only => only.map{|c| c.to_sym})
+    render :text => Observation.as_csv(@observations, only.map{|c| c.to_sym})
   end
   
   def render_observations_to_kml(options = {})

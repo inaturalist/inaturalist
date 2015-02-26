@@ -2454,4 +2454,13 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  def self.as_csv(scope, methods)
+    CSV.generate do |csv|
+      csv << methods
+      scope.each do |item|
+        csv << methods.map{ |m| item.send(m) }
+      end
+    end
+  end
+
 end
