@@ -1,14 +1,11 @@
-= form_for([:oauth, application], :builder => DefaultFormBuilder, :html => { :multipart => true }) do |f|
+= form_for(application, :as => :oauth_application, :url => application.new_record? ? oauth_applications_path : oauth_application_path(application), :builder => DefaultFormBuilder, :html => { :multipart => true }) do |f|
   .stacked
+    = error_messages_for application
     = f.file_field :image
     = f.text_field :name
-    = errors_for application, :name
     = f.text_field :redirect_uri
-    = errors_for application, :redirect_uri
     = f.text_area :description
-    = errors_for application, :description
     = f.text_field :url, :description => "URL for your app outside of iNaturalist"
-    = errors_for application, :url
   - if is_admin?
     .admin.stacked
       = f.check_box :trusted, :label_after => true

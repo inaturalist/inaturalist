@@ -32,4 +32,4 @@
       %h3 Actions
       .inline.buttonrow
         = link_to 'Edit', edit_oauth_application_path(@application), :class => "inline button"
-        = link_to 'Remove', [:oauth, @application], :method => :delete, :data => { :confirm => "Are you sure?" }, :class => "inline button"
+        = link_to 'Remove', oauth_application_path(@application), :method => :delete, :data => { :confirm => "Are you sure?" }, :class => "inline button"
