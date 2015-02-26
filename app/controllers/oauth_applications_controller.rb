@@ -17,7 +17,7 @@ class OauthApplicationsController < ApplicationController
     @application.owner = current_user
     if @application.save
       flash[:notice] = I18n.t(:notice, :scope => [:doorkeeper, :flash, :applications, :create])
-      respond_with [:oauth, @application]
+      redirect_to oauth_application_path(@application)
     else
       render :new
     end
@@ -32,7 +32,7 @@ class OauthApplicationsController < ApplicationController
   def update
     if @application.update_attributes(params[:application] || params[:oauth_application])
       flash[:notice] = I18n.t(:notice, :scope => [:doorkeeper, :flash, :applications, :update])
-      respond_with [:oauth, @application]
+      redirect_to oauth_application_path(@application)
     else
       render :edit
     end
