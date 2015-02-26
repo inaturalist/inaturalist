@@ -138,7 +138,7 @@ class GuidesController < ApplicationController
   # GET /guides/1
   # GET /guides/1.json
   def show
-    unless @guide.published? || @guide.user_id == current_user.try(:id)
+    unless @guide.published? || @guide.editable_by?(current_user)
       respond_to do |format|
         format.any(:html, :mobile) { render_404 }
         format.any(:xml, :ngz) { render :status => 404, :text => ""}

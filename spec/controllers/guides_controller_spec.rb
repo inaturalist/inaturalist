@@ -1,5 +1,36 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+describe GuidesController, "show" do
+  describe "published guide" do
+    let(:g) { make_published_guide }
+    it "should be visible to signed out visitors" do
+      get :show, id: g.id
+      expect(response).to be_success
+    end
+  end
+  describe "draft guide" do
+    let(:g) { Guide.make! }
+    before do
+      expect(g).not_to be_published
+    end
+    it "should not be viewable by signed out visitors" do
+      get :show, id: g.id
+      expect(response).to be_not_found
+    end
+    it "should not be viewable by any signed in visitor" do
+      sign_in User.make!
+      get :show, id: g.id
+      expect(response).to be_not_found
+    end
+    it "should be viewable by guide editor if the guide is a draft" do
+      gu = GuideUser.make!(guide: g)
+      sign_in gu.user
+      get :show, id: g.id
+      expect(response).to be_success
+    end
+  end
+end
+
 describe GuidesController, "index" do
   it "should filter by place" do
     p1 = Place.make!

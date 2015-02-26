@@ -247,7 +247,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_guide_user
-    unless logged_in? && (current_user.id == @guide.user_id || @guide.guide_users.detect{|gu| gu.user_id == current_user.id})
+    unless logged_in? && @guide.editable_by?(current_user)
       msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do

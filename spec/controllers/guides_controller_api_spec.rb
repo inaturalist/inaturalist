@@ -27,7 +27,7 @@ describe GuidesController, "oauth authentication" do
   let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    controller.stub(:doorkeeper_token) { token }
+    allow(controller).to receive(:doorkeeper_token) { token }
   end
   it_behaves_like "a GuidesController"
 end

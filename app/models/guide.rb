@@ -98,7 +98,6 @@ class Guide < ActiveRecord::Base
   end
 
   def editable_by?(user)
-    # self.user_id == user.try(:id)
     user_id = user.is_a?(User) ? user.id : user
     return false if user_id.blank?
     guide_users.detect{|gu| gu.user_id == user_id}
