@@ -1080,7 +1080,7 @@ class ObservationsController < ApplicationController
       @cache_key = {:controller => "observations", :action => "add_from_list", :id => @list.id, :order => @order}
       unless fragment_exist?(@cache_key)
         @listed_taxa = @list.listed_taxa.order_by(@order).includes(
-          taxon: [:photos, :taxon_names]).paginate(page: 1, per_page: 1000)
+          taxon: [:photos, { taxon_names: :place_taxon_names } ]).paginate(page: 1, per_page: 1000)
         @listed_taxa_alphabetical = @listed_taxa.to_a.sort! {|a,b| a.taxon.default_name.name <=> b.taxon.default_name.name}
         @listed_taxa = @listed_taxa_alphabetical if @order == ListedTaxon::ALPHABETICAL_ORDER
         @taxon_ids_by_name = {}

@@ -2235,10 +2235,17 @@ class Observation < ActiveRecord::Base
     return unless o
     ctrl = ActionController::Base.new
     ctrl.expire_fragment(o.component_cache_key)
-    ctrl.expire_fragment(o.component_cache_key(:for_owner => true))
+    ctrl.expire_fragment(o.component_cache_key(for_owner: true))
+    # I've only noticed this in development, but adding nil
+    # here in case the default site_id is somehow not set
+    site_ids = Site.all.select(:id).map(&:id) << nil
     I18N_SUPPORTED_LOCALES.each do |locale|
-      ctrl.expire_fragment(o.component_cache_key(:locale => locale))
-      ctrl.expire_fragment(o.component_cache_key(:locale => locale, :for_owner => true))
+      ctrl.expire_fragment(o.component_cache_key(locale: locale))
+      ctrl.expire_fragment(o.component_cache_key(locale:locale, for_owner: true))
+      site_ids.each do |site_id|
+        ctrl.expire_fragment(o.component_cache_key(locale: locale, site_id: site_id))
+        ctrl.expire_fragment(o.component_cache_key(locale: locale, for_owner: true, site_id: site_id))
+      end
     end
   end
   

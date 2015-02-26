@@ -18,4 +18,5 @@ if caller.last =~ /delayed_job/
   ActiveRecord::Base.logger = Delayed::Worker.logger
   Rails.logger = Delayed::Worker.logger
   ActiveSupport::Cache::Store.logger = Delayed::Worker.logger
+  Rails.logger.level = Logger::WARN
 end

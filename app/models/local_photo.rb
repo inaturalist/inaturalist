@@ -39,7 +39,7 @@ class LocalPhoto < Photo
     # # testing w/o ntwk
     # :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
     # :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
-    # :default_url => "/attachment_defaults/:class/:attachment/defaults/:style.png"
+    # :default_url => "/attachment_defaults/:class/:style.png"
   
   process_in_background :file
   after_post_process :set_urls, :expire_observation_caches
