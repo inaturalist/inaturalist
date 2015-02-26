@@ -154,7 +154,7 @@
 
 <div class="column span-24">
   <div id="taxon" class="clear chosen">
-    <%= form_tag url_for(:format => 'json'), :remote => true, "data-type" => "json" do %>
+    <%= form_tag url_for(:format => 'json'), :remote => true, "data-type" => "json", :method => :get do %>
       <div class="clear boxheader">
         <span class="title"><%= t(:choose_taxon) %></span>
       </div>
