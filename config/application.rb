@@ -96,7 +96,7 @@ end
 
 ActiveRecord::Base.include_root_in_json = false
 
-Rack::Utils.multipart_part_limit = 512
+Rack::Utils.multipart_part_limit = 2048
 
 ### API KEYS ###
 UBIO_KEY = CONFIG.ubio.key

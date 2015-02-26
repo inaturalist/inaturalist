@@ -186,7 +186,7 @@ Rails.application.routes.draw do
   get '/observations/curation' => 'observations#curation', :as => :curate_observations
   get '/observations/widget' => 'observations#widget', :as => :observations_widget
   get 'observations/add_from_list' => 'observations#add_from_list', :as => :add_observations_from_list
-  get 'observations/new_from_list' => 'observations#new_from_list', :as => :new_observations_from_list
+  match 'observations/new_from_list' => 'observations#new_from_list', :as => :new_observations_from_list, via: [ :get, :post ]
   get 'observations/nearby' => 'observations#nearby', :as => :nearby_observations
   get 'observations/add_nearby' => 'observations#add_nearby', :as => :add_nearby_observations
   get 'observations/:id/edit_photos' => 'observations#edit_photos', :as => :edit_observation_photos
