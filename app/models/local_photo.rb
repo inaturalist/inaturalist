@@ -39,7 +39,7 @@ class LocalPhoto < Photo
     # # testing w/o ntwk
     # :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
     # :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
-    # :default_url => "/attachment_defaults/:class/:attachment/defaults/:style.png"
+    # :default_url => "/attachment_defaults/:class/:style.png"
   
   process_in_background :file
   after_post_process :set_urls, :expire_observation_caches
@@ -67,7 +67,7 @@ class LocalPhoto < Photo
       if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(data.path)
         self.metadata = exif.to_hash
         xmp = XMP.parse(exif)
-        if xmp && xmp.respond_to?(:dc) && !xmp.dc.blank?
+        if xmp && xmp.respond_to?(:dc) && !xmp.dc.nil?
           self.metadata[:dc] = {}
           xmp.dc.attributes.each do |dcattr|
             begin
@@ -94,7 +94,7 @@ class LocalPhoto < Photo
       url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
     end
     updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
-    Photo.update_all(updates, ["id = ?", id])
+    Photo.where(id: id).update_all(updates)
     true
   end
 

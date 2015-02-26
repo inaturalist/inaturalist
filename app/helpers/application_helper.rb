@@ -132,15 +132,23 @@ module ApplicationHelper
   
   def member_of?(project)
    return false unless logged_in?
-   current_user.project_users.first(:conditions => {:project_id => project.id})
+   current_user.project_users.where(project_id: project.id).first
   end
-  
+
+  # TODO: This is removed in Rails 4, but we use it hundrends of times so
+  # I recurrected it. Ideally we'd update the places that use this method
+  def link_to_function(name, function, html_options = {})
+    onclick = "#{"#{html_options[:onclick]}; " if html_options[:onclick]}#{function}; return false;"
+    href = html_options[:href] || "#"
+    content_tag(:a, name, html_options.merge(href: href, onclick: onclick))
+  end
+
   def link_to_toggle(link_text, target_selector, options = {})
     options[:class] ||= ''
     options[:class] += ' togglelink'
     options[:rel] ||= target_selector
-    link_to_function link_text, 
-      "$('#{target_selector}').toggle(); $(this).toggleClass('open')", 
+    link_to_function link_text,
+      "$('#{target_selector}').toggle(); $(this).toggleClass('open')",
       options
   end
 
@@ -265,7 +273,8 @@ module ApplicationHelper
     text = compact(text, :all_tags => true) if options[:compact]
     text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
-    text = text.gsub(/<a /, '<a rel="nofollow" ')
+    # scrub to fix any encoding issues
+    text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
     # Ensure all tags are closed
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
@@ -415,7 +424,7 @@ module ApplicationHelper
     less = options.delete(:less) || " #{t(:less).downcase} &uarr;".html_safe
     options[:omission] ||= ""
     options[:separator] ||= " "
-    truncated = truncate(text, options)
+    truncated = truncate(text, options.merge(escape: false))
     return truncated.html_safe if text == truncated
     truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)
     morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()", 
@@ -720,7 +729,7 @@ module ApplicationHelper
   end
   
   def update_image_for(update, options = {})
-    options[:style] = "max-width: 48px; vertical-align:middle; #{options[:style]}"
+    options[:style] = "vertical-align:middle; #{options[:style]}"
     resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
       @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
     end
@@ -728,29 +737,29 @@ module ApplicationHelper
     resource = update.resource.flaggable if update.resource_type == "Flag"
     case resource.class.name
     when "User"
-      image_tag("#{root_url}#{resource.icon.url(:thumb)}", options.merge(:alt => "#{resource.login} icon"))
+      image_tag(asset_url(resource.icon.url(:thumb)), options.merge(:alt => "#{resource.login} icon"))
     when "Observation"
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
-      image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
+      image_tag(asset_url(resource.icon.url(:thumb)), options)
     when "ProjectUserInvitation"
-      image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options.merge(:alt => "#{resource.user.login} icon"))
+      image_tag(asset_url(resource.icon.url(:thumb)), options.merge(:alt => "#{resource.user.login} icon"))
     when "AssessmentSection"
-      image_tag("#{root_url}#{resource.assessment.project.icon.url(:thumb)}", options)
+      image_tag(asset_url(resource.assessment.project.icon.url(:thumb)), options)
     when "ListedTaxon"
-      image_tag("#{root_url}images/checklist-icon-color-32px.png", options)
+      image_tag(asset_url("checklist-icon-color-32px.png"), options)
     when "Post"
-      image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options)
+      image_tag(asset_url(resource.user.icon.url(:thumb)), options)
     when "Place"
-      image_tag("#{root_url}images/icon-maps.png", options)
+      image_tag(asset_url("icon-maps.png"), options)
     when "Taxon"
       taxon_image(resource, {:size => "square", :width => 48}.merge(options))
     when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
-      image_tag("#{root_url}images/#{resource.class.name.underscore}-aaaaaa-48px.png", options)
+      image_tag(asset_url("#{resource.class.name.underscore}-aaaaaa-48px.png"), options)
     when "ObservationField"
-      image_tag("#{root_url}images/notebook-icon-color-155px-shadow.jpg", options)
+      image_tag(asset_url("notebook-icon-color-155px-shadow.jpg"), options)
     else
-      image_tag("#{root_url}images/logo-cccccc-20px.png", options)
+      image_tag(asset_url("logo-cccccc-20px.png"), options)
     end
   end
   

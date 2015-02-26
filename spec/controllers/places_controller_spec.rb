@@ -5,13 +5,13 @@ describe PlacesController do
     it "should make a place with no default type" do
       user = User.make!
       sign_in user
-      lambda {
+      expect {
         post :create, :place => {
           :name => "Pine Island Ridge Natural Area", 
           :latitude => 26.08, 
           :longitude => -80.27}
-      }.should change(Place, :count).by(1)
-      Place.last.place_type.should be_blank
+      }.to change(Place, :count).by(1)
+      expect(Place.last.place_type).to be_blank
     end
   end
 
@@ -20,10 +20,10 @@ describe PlacesController do
     let(:place) { Place.make!(:user => user) }
     it "should delete the place" do
       sign_in user
-      place.should_not be_blank
-      lambda {
+      expect(place).not_to be_blank
+      expect {
         delete :destroy, :id => place.id
-      }.should change(Place, :count).by(-1)
+      }.to change(Place, :count).by(-1)
     end
   end
 
@@ -31,28 +31,28 @@ describe PlacesController do
     let(:place) { Place.make!(:name => 'Panama') }
     let(:another_place) { Place.make!(:name => 'Norway') }
     it "should return results in HTML" do
-      place.should_not be_blank
-      Place.should_receive(:search).and_return([ place, another_place ])
+      expect(place).not_to be_blank
+      expect(Place).to receive(:search).and_return([ place, another_place ])
       get :search, :q => place.name
-      response.content_type.should == "text/html"
+      expect(response.content_type).to eq"text/html"
     end
     it "should redirect with only one result in HTML" do
-      Place.should_receive(:search).and_return([ place ])
+      expect(Place).to receive(:search).and_return([ place ])
       get :search, :q => place.name
-      response.should be_redirect
+      expect(response).to be_redirect
     end
     it "should not redirect with only one result in JSON" do
-      Place.should_receive(:search).and_return([ place ])
+      expect(Place).to receive(:search).and_return([ place ])
       get :search, :q => place.name, :format => :json
-      response.should_not be_redirect
+      expect(response).not_to be_redirect
     end
     it "should return results in JSON, with html" do
       place.html = 'the html'
-      Place.should_receive(:search).and_return([ place, another_place ])
+      expect(Place).to receive(:search).and_return([ place, another_place ])
       get :search, :q => place.name, :format => :json
-      response.content_type.should == "application/json"
+      expect(response.content_type).to eq "application/json"
       json = JSON.parse(response.body)
-      json.count.should == 2
+      expect(json.count).to eq 2
       json.first['html'] == place.html
     end
   end

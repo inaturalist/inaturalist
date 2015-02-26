@@ -1,6 +1,6 @@
 <%-
   taxon ||= @taxon
-  photos ||= taxon.photos.all(:limit => 24)
+  photos ||= taxon.photos.limit(24)
 -%>
 <% unless photos.size == 0 %>
   <% if taxon.species_or_lower? %>

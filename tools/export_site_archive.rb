@@ -44,7 +44,7 @@ end
 def export_model(klass)
   # sort the column names to prevent conflict btwn databases with different column orders
   select = "DISTINCT ON (#{klass.table_name}.id) " + klass.column_names.sort.map{|c| "#{klass.table_name}.#{c}"}.join(',')
-  scope = klass.select(select).scoped
+  scope = klass.select(select)
   if klass.column_names.include?('site_id')
     puts "Exporting #{@site_name} #{klass.name.underscore.pluralize}" if OPTS[:debug]
     scope = scope.where("#{klass.table_name}.site_id = ?", @site)

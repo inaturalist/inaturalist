@@ -1,4 +1,4 @@
-class TranslationsController < TranslateController
+class TranslationsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :curator_required
 

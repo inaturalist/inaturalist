@@ -48,21 +48,21 @@ class Identification < ActiveRecord::Base
   }
   
   scope :for, lambda {|user|
-    includes(:observation).where("observation.user_id = ?", user)
+    joins(:observation).where("observation.user_id = ?", user)
   }
-  scope :for_others, includes(:observation).where("observations.user_id != identifications.user_id")
-  scope :for_self, includes(:observation).where("observations.user_id = identifications.user_id")
+  scope :for_others, -> { joins(:observation).where("observations.user_id != identifications.user_id") }
+  scope :for_self, -> { joins(:observation).where("observations.user_id = identifications.user_id") }
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
   scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon
-    c = taxon.descendant_conditions
+    c = taxon.descendant_conditions.to_sql
     c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
     joins(:taxon).where(c)
   }
   scope :on, lambda {|date| where(Identification.conditions_for_date("identifications.created_at", date)) }
-  scope :current, where(:current => true)
-  scope :outdated, where(:current => false)
+  scope :current, -> { where(:current => true) }
+  scope :outdated, -> { where(:current => false) }
   
   def to_s
     "<Identification #{id} observation_id: #{observation_id} taxon_id: #{taxon_id} user_id: #{user_id} current: #{current?}>"
@@ -88,15 +88,11 @@ class Identification < ActiveRecord::Base
 
   def update_other_identifications
     if id
-      Identification.update_all(
-        ["current = ?", false],
-        ["observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id]
-      )
+      Identification.where("observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id).
+        update_all(current: false)
     else
-      Identification.update_all(
-        ["current = ?", false],
-        ["observation_id = ? AND user_id = ?", observation_id, user_id]
-      )
+      Identification.where("observation_id = ? AND user_id = ?", observation_id, user_id).
+        update_all(current: false)
     end
     true
   end
@@ -196,7 +192,7 @@ class Identification < ActiveRecord::Base
     last_outdated = observation.identifications.outdated.by(user_id).order("id ASC").last
     if last_outdated
       begin
-        Identification.update_all(["current = ?", true], ["id = ?", last_outdated])
+        Identification.where(id: last_outdated).update_all(current: true)
       rescue PG::Error => e
         raise e unless e.message =~ /index_identifications_on_current/
         # assume that if the unique key constrait complained, then there's already a current ident
@@ -311,7 +307,7 @@ class Identification < ActiveRecord::Base
 
   def self.update_for_taxon_change(taxon_change, taxon, options = {})
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
-    scope = Identification.current.where("identifications.taxon_id IN (?)", input_taxon_ids).scoped
+    scope = Identification.current.where("identifications.taxon_id IN (?)", input_taxon_ids)
     scope = scope.where(:user_id => options[:user]) if options[:user]
     scope = scope.where("identifications.id IN (?)", options[:records]) unless options[:records].blank?
     scope = scope.where(options[:conditions]) if options[:conditions]

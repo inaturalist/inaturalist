@@ -57,7 +57,7 @@ class Metadata < FakeView
     @contact = CONFIG.contact || {}
     @creator = CONFIG.creator || @contact || {}
     @metadata_provider = CONFIG.metadata_provider || @contact || {}
-    scope = Observation.scoped({})
+    scope = Observation.all
     if options[:quality] == "research"
       scope = scope.has_quality_grade(Observation::RESEARCH_GRADE)
     elsif options[:quality] == "casual"
@@ -123,8 +123,7 @@ def make_occurrence_data
   
   scope = Observation.
     includes(:taxon, {:user => :stored_preferences}, :photos, :quality_metrics, :identifications).
-    where("observations.license IS NOT NULL").
-    scoped
+    where("observations.license IS NOT NULL")
   
   if @opts[:quality] == "research"
     scope = scope.where("quality_grade = ?", Observation::RESEARCH_GRADE)
@@ -161,9 +160,7 @@ def make_taxon_data
   scope = Taxon.
     select("DISTINCT ON (taxa.id) taxa.*").
     joins(:observations => {:observation_photos => :photo}).
-    where("rank_level <= ? AND observation_photos.id IS NOT NULL AND photos.license IN (?)", Taxon::SPECIES_LEVEL, licenses).
-    scoped
-
+    where("rank_level <= ? AND observation_photos.id IS NOT NULL AND photos.license IN (?)", Taxon::SPECIES_LEVEL, licenses)
   if @opts[:quality] == "research"
     scope = scope.where("observations.quality_grade = ?", Observation::RESEARCH_GRADE)
   elsif @opts[:quality] == "casual"

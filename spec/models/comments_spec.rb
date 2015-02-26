@@ -5,7 +5,7 @@ describe Comment, "creation" do
     o = Observation.make!
     c = Comment.make!(:parent => o)
     o.reload
-    o.comments_count.should eq(1)
+    expect(o.comments_count).to eq(1)
   end
 
   it "should touch the parent" do
@@ -13,7 +13,7 @@ describe Comment, "creation" do
     stamp = o.updated_at
     c = Comment.make!(:parent => o)
     o.reload
-    o.updated_at.should be > stamp
+    expect(o.updated_at).to be > stamp
   end
 end
 
@@ -22,10 +22,10 @@ describe Comment, "deletion" do
     o = Observation.make!
     c = Comment.make!(:parent => o)
     o.reload
-    o.comments_count.should eq(1)
+    expect(o.comments_count).to eq(1)
     c.destroy
     o.reload
-    o.comments_count.should eq(0)
+    expect(o.comments_count).to eq(0)
   end
 
   it "should delete an associated update" do
@@ -33,10 +33,10 @@ describe Comment, "deletion" do
     s = Subscription.make!(:resource => o)
     c = Comment.make(:parent => o)
     without_delay { c.save }
-    Update.where(:subscriber_id => s.user_id, :resource_type => 'Observation', :resource_id => o.id).count.should eq(1)
+    expect(Update.where(:subscriber_id => s.user_id, :resource_type => 'Observation', :resource_id => o.id).count).to eq(1)
     c.destroy
     o.reload
-    Update.where(:subscriber_id => s.user_id, :resource_type => 'Observation', :resource_id => o.id).count.should eq(0)
+    expect(Update.where(:subscriber_id => s.user_id, :resource_type => 'Observation', :resource_id => o.id).count).to eq(0)
   end
 end
 
@@ -49,6 +49,6 @@ describe Comment, "flagging" do
       flag.save!
     end
     offender.reload
-    offender.should be_suspended
+    expect(offender).to be_suspended
   end
 end

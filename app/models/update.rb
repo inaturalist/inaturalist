@@ -12,9 +12,9 @@ class Update < ActiveRecord::Base
   
   NOTIFICATIONS = %w(create change activity)
   
-  scope :unviewed, where("viewed_at IS NULL")
-  scope :activity, where(:notification => "activity")
-  scope :activity_on_my_stuff, where("resource_owner_id = subscriber_id AND notification = 'activity'")
+  scope :unviewed, -> { where("viewed_at IS NULL") }
+  scope :activity, -> { where(:notification => "activity") }
+  scope :activity_on_my_stuff, -> { where("resource_owner_id = subscriber_id AND notification = 'activity'") }
 
   def to_s
     "<Update #{id} subscriber: #{subscriber_id} resource_type: #{resource_type} " +
@@ -46,7 +46,7 @@ class Update < ActiveRecord::Base
     end
     conditions = ["notification = 'activity' AND id NOT IN (?)", activity_update_ids]
     conditions[0] += " AND (#{clauses.join(' OR ')})" unless clauses.blank?
-    updates += Update.all(:conditions => conditions, :include => [:resource, :notifier, :subscriber, :resource_owner])
+    updates += Update.where(conditions).includes(:resource, :notifier, :subscriber, :resource_owner)
     updates
   end
   
@@ -98,9 +98,8 @@ class Update < ActiveRecord::Base
     start_time = 1.day.ago.utc
     end_time = Time.now.utc
     email_count = 0
-    user_ids = Update.all(
-        :select => "DISTINCT subscriber_id",
-        :conditions => ["created_at BETWEEN ? AND ?", start_time, end_time]).map{|u| u.subscriber_id}.compact.uniq.sort
+    user_ids = Update.where(["created_at BETWEEN ? AND ?", start_time, end_time]).
+      select("DISTINCT subscriber_id").map{|u| u.subscriber_id}.compact.uniq.sort
     delivery_times = []
     process_start_time = Time.now
     msg = "[INFO #{Time.now}] start daily updates emailer, #{user_ids.size} users"
@@ -146,15 +145,14 @@ class Update < ActiveRecord::Base
     return if user.email.blank?
     return if user.prefers_no_email
     return unless user.active? # email verified
-    updates = Update.all(:limit => 100, :conditions => [
-      "subscriber_id = ? AND created_at BETWEEN ? AND ?", user.id, start_time, end_time])
-    updates.delete_if do |u| 
+    updates = Update.where(["subscriber_id = ? AND created_at BETWEEN ? AND ?", user.id, start_time, end_time]).limit(100)
+    updates = updates.to_a.delete_if do |u|
       !user.prefers_project_journal_post_email_notification? && u.resource_type == "Project" && u.notifier_type == "Post" ||
       !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||
       !user.prefers_identification_email_notification? && u.notifier_type == "Identification"
     end.compact
     return if updates.blank?
-    Emailer.updates_notification(user, updates).deliver
+    Emailer.updates_notification(user, updates).deliver_now
     true
   end
   
@@ -196,10 +194,8 @@ class Update < ActiveRecord::Base
       end
       ids = ids.compact.uniq
       next if ids.blank?
-      update_cache[klass.to_s.underscore.pluralize.to_sym] = klass.all(
-        :conditions => ["id IN (?)", ids], 
-        :include => includes[klass.to_s.underscore.to_sym]
-      ).index_by{|o| o.id}
+      update_cache[klass.to_s.underscore.pluralize.to_sym] = klass.where(id: ids).
+        includes(includes[klass.to_s.underscore.to_sym]).index_by{ |o| o.id }
     end
     update_cache[:users] ||= {}
     updates.each do |update|
@@ -210,12 +206,12 @@ class Update < ActiveRecord::Base
   end
   
   def self.user_viewed_updates(updates)
-    updates = updates.compact
+    updates = updates.to_a.compact
     return if updates.blank?
     subscriber_id = updates.first.subscriber_id
     
     # mark all as viewed
-    Update.update_all(["viewed_at = ?", Time.now], ["id in (?)", updates])
+    Update.where(id: updates).update_all(viewed_at: Time.now)
     
     # delete PAST activity updates that were not in this batch
     clauses = []

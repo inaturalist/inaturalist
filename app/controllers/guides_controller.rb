@@ -1,7 +1,7 @@
 #encoding: utf-8
 class GuidesController < ApplicationController
   include GuidesHelper
-  doorkeeper_for :show, :user, :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!, :only => [ :show, :user ], :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :except => [:index, :show, :search], 
     :unless => lambda { authenticated_with_oauth? }
@@ -33,13 +33,13 @@ class GuidesController < ApplicationController
     @place = (Place.find_by_id(params[:place_id]) rescue nil) unless params[:place_id].blank?
     @place ||= @root_place unless logged_in? && params[:by] == "you"
     if @place
-      @guides = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, @place.descendant_conditions)})", @place)
+      @guides = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, @place.descendant_conditions.to_sql)})", @place)
     end
 
     unless params[:taxon_id].blank?
       @taxon = Taxon.find_by_id(params[:taxon_id])
       if @taxon
-        @guides = @guides.joins(:taxon).where("taxa.id = ? OR (#{Taxon.send(:sanitize_sql, @taxon.descendant_conditions)})", @taxon)
+        @guides = @guides.joins(:taxon).where("taxa.id = ? OR (#{Taxon.send(:sanitize_sql, @taxon.descendant_conditions.to_sql)})", @taxon)
       end
     end
 
@@ -58,7 +58,7 @@ class GuidesController < ApplicationController
   private
   def nav_places_for_index
     if @place
-      ancestry_counts_scope = Place.joins("INNER JOIN guides ON guides.place_id = places.id").scoped
+      ancestry_counts_scope = Place.joins("INNER JOIN guides ON guides.place_id = places.id")
       ancestry_counts_scope = ancestry_counts_scope.where(@place.descendant_conditions) if @place
       ancestry_counts = ancestry_counts_scope.group("ancestry || '/' || places.id::text").count
       if ancestry_counts.blank?
@@ -88,16 +88,16 @@ class GuidesController < ApplicationController
     end
     @nav_places_counts = {}
     @nav_places.each do |p|
-      @nav_places_counts[p.id] = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, p.descendant_conditions)})", p).count
+      @nav_places_counts[p.id] = @guides.joins(:place).where("places.id = ? OR (#{Place.send(:sanitize_sql, p.descendant_conditions.to_sql)})", p).count
     end
     @nav_places_counts.each do |place_id,count|
-      @nav_places.reject!{|p| p.id == place_id} if count == 0
+      @nav_places = @nav_places.to_a.reject{|p| p.id == place_id} if count == 0
     end
   end
 
   def nav_taxa_for_index
     if @taxon
-      ancestry_counts_scope = Taxon.joins("INNER JOIN guides ON guides.taxon_id = taxa.id").scoped
+      ancestry_counts_scope = Taxon.joins("INNER JOIN guides ON guides.taxon_id = taxa.id")
       ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
       # ancestry_counts = ancestry_counts_scope.group(:ancestry).count
       ancestry_counts = ancestry_counts_scope.group("ancestry || '/' || taxa.id::text").count
@@ -127,7 +127,7 @@ class GuidesController < ApplicationController
     end
     @nav_taxa_counts = {}
     @nav_taxa.each do |t|
-      @nav_taxa_counts[t.id] = @guides.joins(:taxon).where("taxa.id = ? OR (#{Taxon.send(:sanitize_sql, t.descendant_conditions)})", t).count
+      @nav_taxa_counts[t.id] = @guides.joins(:taxon).where("taxa.id = ? OR (#{Taxon.send(:sanitize_sql, t.descendant_conditions.to_sql)})", t).count
     end
     @nav_taxa_counts.each do |taxon_id,count|
       @nav_taxa.reject!{|t| t.id == taxon_id} if count == 0
@@ -138,7 +138,7 @@ class GuidesController < ApplicationController
   # GET /guides/1
   # GET /guides/1.json
   def show
-    unless @guide.published? || @guide.user_id == current_user.try(:id)
+    unless @guide.published? || @guide.editable_by?(current_user)
       respond_to do |format|
         format.any(:html, :mobile) { render_404 }
         format.any(:xml, :ngz) { render :status => 404, :text => ""}
@@ -151,7 +151,7 @@ class GuidesController < ApplicationController
     respond_to do |format|
       format.html do
         @guide_taxa = @guide_taxa.page(params[:page]).per_page(100)
-        @tag_counts = Tag.joins(:taggings).
+        @tag_counts = ActsAsTaggableOn::Tag.joins(:taggings).
           joins("JOIN guide_taxa gt ON gt.id = taggings.taggable_id").
           where("taggings.taggable_type = 'GuideTaxon' AND gt.guide_id = ?", @guide).
           group("tags.name").
@@ -170,7 +170,7 @@ class GuidesController < ApplicationController
           @nav_tags[predicate] << [tag, value, count]
         end
         
-        ancestry_counts_scope = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", @guide).scoped
+        ancestry_counts_scope = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", @guide)
         ancestry_counts_scope = ancestry_counts_scope.where(@taxon.descendant_conditions) if @taxon
         ancestry_counts = ancestry_counts_scope.group(:ancestry).count
         ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).select{|a| a.size > 0 && a[0] == Taxon::LIFE.id.to_s}
@@ -309,14 +309,15 @@ class GuidesController < ApplicationController
   # PUT /guides/1.json
   def update
     @guide.icon = nil if params[:icon_delete]
+    params[:guide] ||= {}
     if params[:publish]
-      @guide.published_at = Time.now
+      params[:guide][:publish] = "publish"
     elsif params[:unpublish]
-      @guide.published_at = nil
+      params[:guide][:publish] = "unpublish"
     end
     create_default_guide_taxa
     respond_to do |format|
-      if @guide.update_attributes(params[:guide])
+      if @guide.update_attributes(guide_params)
         format.html { redirect_to @guide, notice: t("Guide was successfully #{params[:publish] ? 'published' : 'updated'}".downcase.gsub(' ','_')) }
         format.json { head :no_content }
       else
@@ -403,7 +404,7 @@ class GuidesController < ApplicationController
   end
 
   def add_color_tags
-    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:colors]).where("colors.id IS NOT NULL").scoped
+    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:colors]).where("colors.id IS NOT NULL")
     @guide_taxa = @guide_taxa.where("guide_taxa.id IN (?)", params[:guide_taxon_ids]) unless params[:guide_taxon_ids].blank?
     @guide_taxa.each do |gt|
       gt.add_color_tags
@@ -414,7 +415,7 @@ class GuidesController < ApplicationController
   end
 
   def add_tags_for_rank
-    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_names]).scoped
+    @guide_taxa = @guide.guide_taxa.includes(:taxon => [:taxon_names])
     @guide_taxa = @guide_taxa.where("guide_taxa.id IN (?)", params[:guide_taxon_ids]) unless params[:guide_taxon_ids].blank?
     @guide_taxa.each do |gt|
       gt.add_rank_tag(params[:rank], :lexicon => params[:lexicon])
@@ -445,5 +446,22 @@ class GuidesController < ApplicationController
     @guide_taxa = @guide.guide_taxa.includes(:taxon, {:guide_photos => :photo}, :tags).
       order("guide_taxa.position")
     @recent_tags = @guide.recent_tags
+  end
+
+  def guide_params
+    params.require(:guide).permit(
+      :publish,
+      :title,
+      :description,
+      :latitude,
+      :longitude,
+      :place_id,
+      :license,
+      :map_type,
+      :zoom_level,
+      :taxon_id,
+      :downloadable,
+      :guide_users_attributes => [:id, :user_id, :guide_id, :_destroy]
+    )
   end
 end

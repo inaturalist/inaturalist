@@ -7,14 +7,14 @@ describe 'Array' do
   end
 
   it "should create an identical marshal_copy" do
-    @array.marshal_copy.should == @array
+    expect(@array.marshal_copy).to be @array
   end
 
   it "should points to a different instance in memory" do
     copy = @array.marshal_copy
     copy << 5
-    copy.length.should_not == @array.length
-    copy.should_not == @array
+    expect(copy.length).to_not be @array.length
+    expect(copy).to_not be @array
   end
 
 end
@@ -26,14 +26,14 @@ describe 'Hash' do
   end
 
   it "should create an identical marshal_copy" do
-    @hash.marshal_copy.should == @hash
+    expect(@hash.marshal_copy).to be @hash
   end
 
   it "should points to a different instance in memory" do
     copy = @hash.marshal_copy
     copy[:one] << :something
     copy[:one].length.should_not == @hash.length
-    copy.should_not == @hash
+    expect(copy).to_not be @hash
   end
 
 end

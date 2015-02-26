@@ -38,9 +38,9 @@
       <%= link_to_function(t(:change), "$('#user_icon').show(); $(this).hide()", :class => 'button inlineblock') %>
     </div>
     <div class="column span-9">
-      <%= f.text_field(:login, :class => "text", :required => true, :label => t(:username)) %>
-      <%= f.text_field(:email, :class => "text", :required => true) %>
-      <%= f.text_field(:name, :class => "text") %>
+      <%= f.text_field(:login, :class => "text", :required => true, :label => t(:username), size: 30) %>
+      <%= f.text_field(:email, :class => "text", :required => true, size: 30) %>
+      <%= f.text_field(:name, :class => "text", size: 30) %>
     </div>
     <div class="last column span-9">
       <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, 

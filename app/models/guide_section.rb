@@ -1,9 +1,5 @@
 class GuideSection < ActiveRecord::Base
   acts_as_spammable :fields => [ :title, :description ]
-
-  attr_accessible :description, :guide_taxon_id, :title, :position,
-    :rights_holder, :license, :source_id, :source_url, :modified_on_create,
-    :creator_id, :updater_id
   attr_accessor :modified_on_create
   belongs_to :guide_taxon, :inverse_of => :guide_sections
   belongs_to :creator, :class_name => 'User', :inverse_of => :created_guide_sections
@@ -73,12 +69,12 @@ class GuideSection < ActiveRecord::Base
     Use
   )
 
-  scope :reusable, where("COALESCE(license, '') != ''")
+  scope :reusable, -> { where("COALESCE(license, '') != ''") }
   scope :for_taxon, lambda {|t| inlucdes(:guide_taxon).where("guide_taxa.taxon_id = ?", t)}
-  scope :original, where("COALESCE(source_url, '') = ''")
+  scope :original, -> { where("COALESCE(source_url, '') = ''") }
   scope :dbsearch, lambda {|q| 
     q = "%#{q}%"
-    includes(:guide_taxon).
+    joins(:guide_taxon).
     where("guide_taxa.name ILIKE ? OR guide_taxa.display_name ILIKE ?", q, q)
   }
 

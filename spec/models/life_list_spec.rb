@@ -133,8 +133,8 @@ describe LifeList, "refresh_with_observation" do
     @list.taxon_ids.should include(t1.id)
     
     o.update_attributes(:taxon_id => t2.id)
-    @list.user.observations.first(:conditions => {:taxon_id => t1.id}).should be_blank
-    @list.user.observations.first(:conditions => {:taxon_id => t2.id}).should_not be_blank
+    @list.user.observations.where(taxon_id: t1.id).first.should be_blank
+    @list.user.observations.where(taxon_id: t2.id).first.should_not be_blank
     LifeList.refresh_with_observation(o.id, :taxon_id_was => t1.id)
     @list.reload
     @list.taxon_ids.should include(t2.id)

@@ -94,7 +94,7 @@ class ProviderOauthController < ApplicationController
     user ||= begin
       fb = Koala::Facebook::GraphAndRestAPI.new(provider_token)
       r = fb.get_object('me')
-      user = User.includes(:provider_authorizations).
+      user = User.joins(:provider_authorizations).
         where("provider_authorizations.provider_uid = ?", r['id']).
         where("provider_authorizations.provider_name = 'facebook'").
         first
@@ -163,7 +163,7 @@ class ProviderOauthController < ApplicationController
         Rails.logger.debug "[DEBUG] Google auth failed: #{json.inspect}"
         return nil
       end
-      user = User.includes(:provider_authorizations).
+      user = User.joins(:provider_authorizations).
         where("provider_authorizations.provider_uid = ?", uid).
         where("provider_authorizations.provider_name = 'google_oauth2'").
         first

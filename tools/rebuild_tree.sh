@@ -7,10 +7,10 @@
 
 # Yes, twice.  This does a lot of merging, not 100% convinced it gets
 # everything the 1st time
-ruby script/runner "ThinkingSphinx.deltas_enabled = false; Taxon.find_duplicates"
-ruby script/runner "ThinkingSphinx.deltas_enabled = false; Taxon.find_duplicates"
+ruby script/runner "ThinkingSphinx::Deltas.suspend!; Taxon.find_duplicates"
+ruby script/runner "ThinkingSphinx::Deltas.suspend!; Taxon.find_duplicates"
 
-ruby script/runner 'ThinkingSphinx.deltas_enabled = false; Taxon.rebuild_without_callbacks'
+ruby script/runner 'ThinkingSphinx::Deltas.suspend!; Taxon.rebuild_without_callbacks'
 ruby script/runner 'ListedTaxon.update_all_taxon_attributes'
 
 rake ts:in

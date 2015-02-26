@@ -169,7 +169,7 @@ class Photo < ActiveRecord::Base
   
   def update_all_licenses
     return true unless [true, "1", "true"].include?(@make_licenses_same)
-    Photo.update_all(["license = ?", license], ["user_id = ?", user_id])
+    Photo.where(user_id: user_id).update_all(license: license)
     true
   end
   
@@ -216,7 +216,7 @@ class Photo < ActiveRecord::Base
         updates += styles.map do |s|
           FakeView.image_url("copyright-infringement-#{s}.png").to_s
         end
-        Photo.update_all(updates, ["id = ?", id])
+        Photo.where(id: id).update_all(updates)
         observations.each {|o| o.expire_components}
       elsif %w(resolved destroyed).include?(options[:action])
         repair if respond_to?(:repair)
@@ -238,7 +238,7 @@ class Photo < ActiveRecord::Base
   
   # Destroy a photo if it no longer belongs to any observations or taxa
   def self.destroy_orphans(ids)
-    photos = Photo.all(:conditions => ["id IN (?)", [ids].flatten])
+    photos = Photo.where(id: [ ids ].flatten)
     return if photos.blank?
     photos.each do |photo|
       photo.destroy if photo.orphaned?

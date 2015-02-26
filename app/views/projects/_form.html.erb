@@ -147,7 +147,8 @@
       <%= f.fields_for :project_observation_rules do |por| %>
         <li>
           <%= por.object.terms %>
-          <%= por.hidden_field :_destroy, :class => "destroyer" %>
+          <%= por.hidden_field :id, label: false %>
+          <%= por.hidden_field :_destroy, :class => "destroyer", label: false %>
           <%= link_to_function t(:remove),
             "$(this).parent().fadeTo('fast', 0.5).css('text-decoration', 'line-through');" +
             "$(this).parent().find('.destroyer').val(true)" %>

@@ -1,5 +1,5 @@
 class ObservationPhotosController < ApplicationController
-  doorkeeper_for :show, :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
   before_filter :load_record, :only => [:update, :destroy]
   before_filter :require_owner, :only => [:update, :destroy]
@@ -17,7 +17,7 @@ class ObservationPhotosController < ApplicationController
   
   def create
     @observation_photo = if !params[:observation_photo].blank? && !params[:observation_photo][:uuid].blank?
-      ObservationPhoto.includes(:observation).
+      ObservationPhoto.joins(:observation).
         where("observations.user_id = ? AND observation_photos.uuid = ?", current_user, params[:observation_photo][:uuid]).
         first
     end

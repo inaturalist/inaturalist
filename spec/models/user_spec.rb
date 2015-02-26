@@ -87,31 +87,31 @@ describe User do
   #
 
   it 'requires login' do
-    lambda do
+    expect {
       u = create_user(:login => nil)
-      u.errors[:login].should_not be_blank
-    end.should_not change(User, :count)
+      expect(u.errors[:login]).to_not be_blank
+    }.to_not change(User, :count)
     
-    lambda do
+    expect {
       u = create_user(:login => "")
-      u.errors[:login].should_not be_blank
-    end.should_not change(User, :count)
+      expect(u.errors[:login]).to_not be_blank
+    }.to_not change(User, :count)
   end
 
   it "should not allow duplicate emails" do
     existing = User.make!
     u = User.make(:email => existing.email)
-    u.should_not be_valid
-    u.errors['email'].should_not be_blank
+    expect(u).to_not be_valid
+    expect(u.errors['email']).to_not be_blank
   end
 
   describe 'allows legitimate logins:' do
     ['whatisthewhat', 'zoooooolander', 'hello-_therefunnycharcom'].each do |login_str|
       it "'#{login_str}'" do
-        lambda do
+        expect {
           u = create_user(:login => login_str)
-          u.errors[:login].should     be_blank
-        end.should change(User, :count).by(1)
+          expect(u.errors[:login]).to be_blank
+        }.to change(User, :count).by(1)
       end
     end
   end
@@ -122,33 +122,33 @@ describe User do
      'period.', 'm', 
      'this_is_the_longest_login_ever_written_by_man'].each do |login_str|
       it "'#{login_str}'" do
-        lambda do
+        expect {
           u = create_user(:login => login_str)
-          u.errors[:login].should_not be_blank
-        end.should_not change(User, :count)
+          expect(u.errors[:login]).to_not be_blank
+        }.to_not change(User, :count)
       end
     end
   end
 
   it 'requires password' do
-    lambda do
+    expect {
       u = create_user(:password => nil)
-      u.errors[:password].should_not be_blank
-    end.should_not change(User, :count)
+      expect(u.errors[:password]).to_not be_blank
+    }.to_not change(User, :count)
   end
 
   it 'requires password confirmation' do
-    lambda do
+    expect {
       u = create_user(:password_confirmation => "")
-      u.errors[:password].should_not be_blank
-    end.should_not change(User, :count)
+      expect(u.errors[:password_confirmation]).to_not be_blank
+    }.to_not change(User, :count)
   end
 
   it 'requires email' do
-    lambda do
+    expect {
       u = create_user(:email => nil)
-      u.errors[:email].should_not be_blank
-    end.should_not change(User, :count)
+      expect(u.errors[:email]).to_not be_blank
+    }.to_not change(User, :count)
   end
 
   describe 'allows legitimate emails:' do
@@ -264,7 +264,7 @@ describe User do
         after = 15.days.from_now.utc
         @user.remember_token.should_not be_blank
         @user.remember_expires_at.should_not be_blank
-        @user.remember_expires_at.between?(before, after).should be_true
+        expect(@user.remember_expires_at.between?(before, after)).to be true
       end
     end
   end
@@ -304,7 +304,7 @@ describe User do
 
     it "should destroy the user" do
       @user.sane_destroy
-      User.find_by_id(@user.id).should be_blank
+      expect(User.find_by_id(@user.id)).to be_blank
     end
 
     it "should not queue jobs to refresh the users lists" do
@@ -312,13 +312,13 @@ describe User do
       @user.sane_destroy
       jobs = Delayed::Job.all
       # jobs.map(&:handler).each{|h| puts h}
-      jobs.select{|j| j.handler =~ /'List'.*\:refresh/m}.should be_blank
+      expect(jobs.select{ |j| j.handler =~ /'List'.*\:refresh/m }).to be_blank
     end
 
     it "should not queue refresh_with_observation jobs" do
       Delayed::Job.delete_all
       @user.sane_destroy
-      Delayed::Job.all.select{|j| j.handler =~ /refresh_with_observation/m}.should be_blank
+      expect(Delayed::Job.all.select{ |j| j.handler =~ /refresh_with_observation/m }).to be_blank
     end
 
     it "should queue jobs to refresh check lists" do
@@ -330,9 +330,10 @@ describe User do
     end
 
     it "should refresh check lists" do
-      t = Taxon.make!(:rank => "species")
+      t = Taxon.make!(rank: "species")
       without_delay do
-        make_research_grade_observation(:taxon => t, :user => @user, :latitude => @place.latitude, :longitude => @place.longitude)
+        make_research_grade_observation(taxon: t , user: @user,
+          latitude: @place.latitude, longitude: @place.longitude)
       end
       @place.check_list.listed_taxa.find_by_taxon_id(t.id).should_not be_blank
       without_delay do
@@ -421,7 +422,6 @@ describe User do
       old_count = Update.count
       start = Time.now
 
-      puts "destroying user"
       without_delay { @user.sane_destroy }
       p.reload
       new_updates = Update.where("created_at >= ?", start).to_a
@@ -555,7 +555,7 @@ describe User, "merge" do
     Delayed::Job.delete_all
     stamp = Time.now
     @keeper.merge(@reject)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     # puts jobs.map(&:handler).inspect
     jobs.select{|j| j.handler =~ /LifeList.*\:reload_from_observations/m}.should_not be_blank
   end
@@ -622,10 +622,10 @@ describe User, "community taxa preference" do
     i1 = Identification.make!(:observation => o)
     i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
     o.reload
-    o.taxon.should be_blank
+    expect(o.taxon).to be_blank
     o.user.update_attributes(:prefers_community_taxa => true)
     Delayed::Worker.new.work_off
     o.reload
-    o.taxon.should eq o.community_taxon
+    expect(o.taxon).to eq o.community_taxon
   end
 end

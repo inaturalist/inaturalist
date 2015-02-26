@@ -35,7 +35,7 @@ open(url).read.split("\n").each do |line|
     next
   end
   href = "http://www.calflora.org/cgi-bin/noccdetail.cgi?seq_num=#{calflora_id}"
-  existing = ObservationLink.first(:conditions => {:observation_id => observation_id, :href => href})
+  existing = ObservationLink.where(observation_id: observation_id, href: href).first
   if existing
     existing.touch unless opts[:debug]
     old_count += 1
@@ -48,7 +48,7 @@ open(url).read.split("\n").each do |line|
   end
 end
 
-delete_count = ObservationLink.count(:conditions => ["href_name = 'Calflora' AND updated_at < ?", start_time])
+delete_count = ObservationLink.where(href_name: "Calflora").where("updated_at < ?", start_time).count
 ObservationLink.delete_all(["href_name = 'Calflora' AND updated_at < ?", start_time]) unless opts[:debug]
 
 puts "#{new_count} created, #{old_count} updated, #{delete_count} deleted in #{Time.now - start_time} s"

@@ -2,7 +2,7 @@ class AddDeviseSuspendable < ActiveRecord::Migration
   def up
     add_column :users, :suspended_at, :datetime
     add_column :users, :suspension_reason, :string
-    User.update_all(["suspended_at = ?", Time.now], "state = 'suspended'")
+    User.where(state: "suspended").update_all(suspended_at: Time.now)
   end
 
   def down

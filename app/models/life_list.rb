@@ -39,9 +39,8 @@ class LifeList < List
   def refresh(options = {})
     if taxa = options[:taxa]
       # Find existing listed_taxa of these taxa to update
-      existing = ListedTaxon.all(
-        :include => [{:list => :rules}, {:taxon => :taxon_names}, :last_observation],
-        :conditions => ["list_id = ? AND taxon_id IN (?)", self, taxa])
+      existing = ListedTaxon.where(list_id: self, taxon_id: taxa).
+        includes([ {:list => :rules}, {:taxon => :taxon_names}, :last_observation ])
       collection = []
       
       # Add new listed taxa for taxa not already on this list
@@ -64,7 +63,7 @@ class LifeList < List
       end
       collection += existing
     else
-      collection = self.listed_taxa.all(:include => [{:list => :rules}, {:taxon => :taxon_names}, :last_observation])
+      collection = self.listed_taxa.includes({list: :rules}, {taxon: :taxon_names}, :last_observation)
     end
 
     collection.each do |lt|
@@ -91,11 +90,14 @@ class LifeList < List
   end
   
   def self.refresh_listed_taxon(lt)
-    unless lt.save
+    # checking this first so we don't save before we destroy
+    # and incur unnecessary double cache-clearing
+    lt.update_cache_columns
+    if lt.first_observation.nil? && lt.last_observation.nil? && !lt.manually_added?
       lt.destroy
       return
     end
-    if lt.first_observation_id.blank? && lt.last_observation_id.blank? && !lt.manually_added?
+    unless lt.save
       lt.destroy
     end
   end
@@ -130,24 +132,24 @@ class LifeList < List
     # Note: this should use find_each, but due to a bug in rails < 3,
     # conditions in find_each get applied to scopes utilized by anything
     # further up the call stack, causing bugs.
-    scope = list.owner.observations.scoped
+    scope = list.owner.observations
     scope = scope.of(list.rule_taxon) if list.rule_taxon
     scope = scope.in_place(list.place) if list.place
-    scope.all(
-        :select => 'DISTINCT ON(observations.taxon_id) observations.id, observations.taxon_id', 
-        :conditions => conditions).each do |observation|
+    scope.select('DISTINCT ON(observations.taxon_id) observations.id, observations.taxon_id').
+        where(conditions).each do |observation|
       list.add_taxon(observation.taxon_id, :last_observation_id => observation.id)
     end
   end
   
   def self.update_life_lists_for_taxon(taxon)
-    ListRule.do_in_batches(:include => :list, :conditions => [
-      "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
-      Taxon.to_s, [taxon.id, taxon.ancestor_ids].flatten.compact
-    ]) do |list_rule|
-      next unless list_rule.list.is_a?(LifeList)
-      next if Delayed::Job.where("handler LIKE '%add_taxa_from_observations%id: ''#{list_rule.list_id}''%'").exists?
-      LifeList.delay(:priority => INTEGRITY_PRIORITY).add_taxa_from_observations(list_rule.list, :taxa => [taxon.id])
+    ListRule.where([ "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)",
+      Taxon.to_s, [ taxon.id, taxon.ancestor_ids ].flatten.compact ]).
+      includes(:list).find_in_batches do |batch|
+      batch.each do |list_rule|
+        next unless list_rule.list.is_a?(LifeList)
+        next if Delayed::Job.where("handler LIKE '%add_taxa_from_observations%id: ''#{list_rule.list_id}''%'").exists?
+        LifeList.delay(:priority => INTEGRITY_PRIORITY).add_taxa_from_observations(list_rule.list, :taxa => [taxon.id])
+      end
     end
   end
   
@@ -184,12 +186,12 @@ class LifeList < List
   end
   
   def self.repair_observed(list)
-    ListedTaxon.do_in_batches(
-        :include => [{:last_observation => :taxon}, :taxon], 
-        :conditions => [
-          "list_id = ? AND observations.id IS NOT NULL AND observations.taxon_id != listed_taxa.taxon_id",
-          list]) do |lt|
-      lt.destroy unless lt.valid? && lt.last_observation && lt.last_observation.taxon.descendant_of?(lt.taxon)
+    ListedTaxon.where(
+      [ "list_id = ? AND observations.id IS NOT NULL AND observations.taxon_id != listed_taxa.taxon_id", list ]).
+      joins({ :last_observation => :taxon }, :taxon).find_in_batches do |batch|
+      batch.each do |lt|
+        lt.destroy unless lt.valid? && lt.last_observation && lt.last_observation.taxon.descendant_of?(lt.taxon)
+      end
     end
   end
 

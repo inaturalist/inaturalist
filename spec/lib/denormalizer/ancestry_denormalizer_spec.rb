@@ -3,6 +3,7 @@ require File.expand_path("../../../spec_helper", __FILE__)
 describe 'AncestryDenormalizer' do
 
   before(:all) do
+    ThinkingSphinx::Deltas.suspend!
     Taxon.connection.execute('TRUNCATE TABLE taxa RESTART IDENTITY')
     last_taxon = nil
     # make six taxa, each the descendant of the previous taxon
@@ -18,31 +19,32 @@ describe 'AncestryDenormalizer' do
 
   after(:all) do
     Taxon.connection.execute('TRUNCATE TABLE taxa RESTART IDENTITY')
+    ThinkingSphinx::Deltas.resume!
   end
 
   it 'should denormalize properly' do
     AncestryDenormalizer.truncate
-    TaxonAncestor.count.should == 0
+    expect(TaxonAncestor.count).to be 0
     AncestryDenormalizer.denormalize
-    TaxonAncestor.count.should == 21
-    TaxonAncestor.exists?(taxon_id: 1, ancestor_taxon_id: 1).should be_true
-    TaxonAncestor.exists?(taxon_id: 2, ancestor_taxon_id: 2).should be_true
-    TaxonAncestor.exists?(taxon_id: 2, ancestor_taxon_id: 1).should be_true
-    TaxonAncestor.exists?(taxon_id: 6, ancestor_taxon_id: 6).should be_true
-    TaxonAncestor.exists?(taxon_id: 6, ancestor_taxon_id: 5).should be_true
-    TaxonAncestor.exists?(taxon_id: 6, ancestor_taxon_id: 4).should be_true
-    TaxonAncestor.exists?(taxon_id: 6, ancestor_taxon_id: 3).should be_true
-    TaxonAncestor.exists?(taxon_id: 6, ancestor_taxon_id: 2).should be_true
-    TaxonAncestor.exists?(taxon_id: 6, ancestor_taxon_id: 1).should be_true
+    expect(TaxonAncestor.count).to be 21
+    expect(TaxonAncestor.exists?(taxon_id: 1, ancestor_taxon_id: 1)).to be true
+    expect(TaxonAncestor.exists?(taxon_id: 2, ancestor_taxon_id: 2)).to be true
+    expect(TaxonAncestor.exists?(taxon_id: 2, ancestor_taxon_id: 1)).to be true
+    expect(TaxonAncestor.exists?(taxon_id: 6, ancestor_taxon_id: 6)).to be true
+    expect(TaxonAncestor.exists?(taxon_id: 6, ancestor_taxon_id: 5)).to be true
+    expect(TaxonAncestor.exists?(taxon_id: 6, ancestor_taxon_id: 4)).to be true
+    expect(TaxonAncestor.exists?(taxon_id: 6, ancestor_taxon_id: 3)).to be true
+    expect(TaxonAncestor.exists?(taxon_id: 6, ancestor_taxon_id: 2)).to be true
+    expect(TaxonAncestor.exists?(taxon_id: 6, ancestor_taxon_id: 1)).to be true
   end
 
   it 'should truncate the table' do
     AncestryDenormalizer.truncate
-    TaxonAncestor.count.should == 0
+    expect(TaxonAncestor.count).to eq 0
     AncestryDenormalizer.denormalize
-    TaxonAncestor.count.should == 21
+    expect(TaxonAncestor.count).to eq 21
     AncestryDenormalizer.truncate
-    TaxonAncestor.count.should == 0
+    expect(TaxonAncestor.count).to eq 0
   end
 
 end

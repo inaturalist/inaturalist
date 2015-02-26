@@ -1,12 +1,12 @@
 class DefaultFormBuilder < ActionView::Helpers::FormBuilder
   include ActionView::Helpers::TagHelper
-  helpers = field_helpers +
+  helpers = field_helpers.map(&:to_s) +
             %w{date_select datetime_select time_select} +
             %w{collection_select select country_select time_zone_select} -
             %w{hidden_field label fields_for} # Don't decorate these
   custom_params = %w(description label label_after wrapper label_class field_value)
   helpers.each do |name|
-    define_method(name) do |field, *args|
+    define_method(name) do |field, *args, &block|
       options = if name.to_s == "select"
         args.last.is_a?(Hash) ? args.last : {}
       elsif args[-2].is_a?(Hash)
@@ -36,12 +36,12 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
           args[i].delete(p.to_sym) if a.is_a?(Hash)
         end
       end
-      content = super(field, *args)
+      content = super(field, *args, &block)
       form_field(field, content, options)
     end
   end
   
-  class INatInstanceTag < ActionView::Helpers::InstanceTag
+  class INatInstanceTag < ActionView::Helpers::Tags::Base
     def to_select_tag_with_option_tags(option_tags, options, html_options)
       html_options = html_options.stringify_keys
       add_default_name_and_id(html_options)
@@ -82,7 +82,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     end
     zone_options += convert_zones.call(zones, selected).html_safe
     tag = INatInstanceTag.new(
-      object_name, method, self, options.delete(:object)
+      object_name, method, self
     ).to_select_tag_with_option_tags(zone_options, options, html_options)
     form_field method, tag, options.merge(html_options)
   end
@@ -99,7 +99,9 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       if options[:field_name] == 'radio_button'
         label_field = [label_field, options[:field_value]].compact.join('_').gsub(/\W/, '').downcase
       end
-      label_tag = label(label_field, options[:label].to_s.html_safe, :class => options[:label_class], :for => options[:id])
+      label_options = {:class => options[:label_class]}
+      label_options[:for] = options[:id] if options[:id]
+      label_tag = label(label_field, options[:label].to_s.html_safe, label_options)
       if options[:required]
         label_tag += content_tag(:span, " *", :class => 'required')
       end

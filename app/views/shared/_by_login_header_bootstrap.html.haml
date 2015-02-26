@@ -1,7 +1,7 @@
 :ruby
   model_name ||= controller.class.to_s.underscore.humanize.split.first
   title ||= if is_me?(@selected_user)
-    if !model_name.in? 'Journal', 'Profile'
+    if ![ 'Journal', 'Profile' ].include?(model_name)
       t(:second_person_possessive_singular, :noun => t(model_name.downcase).downcase)
     else
       t(:second_person_possessive_singular_, :noun => t(model_name.downcase).downcase)

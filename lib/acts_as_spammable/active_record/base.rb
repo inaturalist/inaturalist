@@ -28,17 +28,17 @@ module ActiveRecord
           user_responsible && user_responsible.known_non_spammer? }
 
         scope :flagged_as_spam,
-          joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } })
+          -> { joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } }) }
         scope :not_flagged_as_spam,
-          joins("LEFT JOIN flags f ON (#{ table_name }.id=f.flaggable_id
+          ->{ joins("LEFT JOIN flags f ON (#{ table_name }.id=f.flaggable_id
             AND f.flaggable_type='#{ name }' AND f.flag='#{ Flag::SPAM }'
             AND resolved = false)").
-          where("f.id IS NULL")
+          where("f.id IS NULL") }
 
         define_method(:flagged_as_spam?) do
           self.flags.loaded? ?
             self.flags.any?{ |f| f.flag == Flag::SPAM && ! f.resolved? } :
-            self.class.flagged_as_spam.exists?(self)
+            self.class.flagged_as_spam.exists?(self.id)
         end
 
         define_method(:default_life_list?) do

@@ -19,8 +19,9 @@ class FlagsController < ApplicationController
       # The default acts_as_flaggable index route
       @object = @model.find(params[@param])
       @object = @object.becomes(Photo) if @object.is_a?(Photo)
-      @flags = @object.flags.paginate(:page => params[:page],
-        :include => [:user, :resolver], :order => "id desc")
+      @flags = @object.flags.includes(:user, :resolver).
+        paginate(page: params[:page]).
+        order(id: :desc)
       @unresolved = @flags.select {|f| not f.resolved }
       @resolved = @flags.select {|f| f.resolved }
     else
@@ -61,7 +62,7 @@ class FlagsController < ApplicationController
     @object = @model.find(params[@param])
     @flag.flaggable ||= @object
     @flag.flag ||= "spam" if @object && !@object.is_a?(Taxon)
-    @flags = @object.flags.all(:include => :user, :conditions => {:resolved => false})
+    @flags = @object.flags.where(resolved: false).includes(:user)
     if PARTIALS.include?(params[:partial])
       render :layout => false, :partial => params[:partial]
       return
@@ -126,7 +127,7 @@ class FlagsController < ApplicationController
   private
   
   def load_flag
-    render_404 unless @flag = Flag.find_by_id(params[:id] || params[:flag_id], :include => [:user, :resolver])
+    render_404 unless @flag = Flag.where(id: params[:id] || params[:flag_id]).includes(:user, :resolver).first
   end
   
   def set_model

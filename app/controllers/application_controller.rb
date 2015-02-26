@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   
   helper :all # include all helpers, all the time
   protect_from_forgery
+  before_filter :whitelist_params
   around_filter :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
@@ -192,8 +193,8 @@ class ApplicationController < ActionController::Base
   #
   def render_404
     respond_to do |format|
-      format.any(:html, :mobile) { render(template: "shared/404", status: 404, layout: "application") }
-      format.json { render :json => {:error => t(:not_found)}, :status => 404 }
+      format.any(:html, :mobile) { render(template: "errors/error_404", status: 404, layout: "application") }
+      format.json { render json: { error: t(:not_found) }, status: 404 }
     end
   end
   
@@ -213,7 +214,7 @@ class ApplicationController < ActionController::Base
   
   def load_user_by_login
     @login = params[:login].to_s.downcase
-    unless @selected_user = User.first(:conditions => ["lower(login) = ?", @login])
+    unless @selected_user = User.where("lower(login) = ?", @login).first
       return render_404
     end
   end
@@ -222,7 +223,7 @@ class ApplicationController < ActionController::Base
     class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
     class_name = class_name.to_s.underscore.camelcase
     klass = Object.const_get(class_name)
-    record = klass.find(params[:id] || params["#{class_name}_id"], options) rescue nil
+    record = klass.find(params[:id] || params["#{class_name}_id"]) rescue nil
     instance_variable_set "@#{class_name.underscore}", record
     render_404 unless record
   end
@@ -246,7 +247,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_guide_user
-    unless logged_in? && (current_user.id == @guide.user_id || @guide.guide_users.detect{|gu| gu.user_id == current_user.id})
+    unless logged_in? && @guide.editable_by?(current_user)
       msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do
@@ -392,6 +393,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def json_request?
+    request.format.json?
+  end
+
   private
 
   def admin_required
@@ -509,6 +514,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def whitelist_params
+    params.permit!
+  end
+
   # Coerce the format unless in preselected list. Rescues from ActionView::MissingTemplate
   def self.accept_formats(*args)
     options = args.last.is_a?(Hash) ? args.last : {}
@@ -517,6 +526,10 @@ class ApplicationController < ActionController::Base
     before_filter(options) do
       request.format = default if request.format.blank? || !formats.include?(request.format.to_sym)
     end
+  end
+
+  def allow_external_iframes
+    response.headers["X-Frame-Options"] = "ALLOWALL"
   end
 end
 

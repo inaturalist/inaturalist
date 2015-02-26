@@ -18,10 +18,11 @@ module Shared::SweepersModule
     return unless taxon
     Observation.delay(:priority => USER_INTEGRITY_PRIORITY).expire_components_for_taxon(taxon.id)
     expire_listed_taxa(taxon)
-    expire_fragment(:controller => 'taxa', :action => 'photos', :id => taxon.id, :partial => "photo")
+    ctrl = ActionController::Base.new
+    ctrl.expire_fragment(FakeView.url_for(:controller => 'taxa', :action => 'photos', :id => taxon.id, :partial => "photo"))
     I18N_SUPPORTED_LOCALES.each do |locale|
-      expire_action(:controller => 'taxa', :action => 'show', :id => taxon.id, :locale => locale)
-      expire_action(:controller => 'taxa', :action => 'show', :id => taxon.to_param, :locale => locale)
+      ctrl.send(:expire_action, FakeView.url_for(controller: 'taxa', action: 'show', id: taxon.id, locale: locale))
+      ctrl.send(:expire_action, FakeView.url_for(controller: 'taxa', action: 'show', id: taxon.to_param, locale: locale))
     end
     Rails.cache.delete(taxon.photos_cache_key)
   end

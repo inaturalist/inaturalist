@@ -1,5 +1,4 @@
 class Message < ActiveRecord::Base
-  attr_accessible :body, :from_user_id, :subject, :thread_id, :to_user_id, :user_id, :to_user, :from_user, :user
   acts_as_flaggable
 
   belongs_to :user
@@ -13,9 +12,9 @@ class Message < ActiveRecord::Base
   after_save :set_thread_id
   after_create :deliver_email
   
-  scope :inbox, where("user_id = to_user_id") #.select("DISTINCT ON (thread_id) messages.*")
-  scope :sent, where("user_id = from_user_id") #.select("DISTINCT ON (thread_id) messages.*")
-  scope :unread, where("read_at IS NULL")
+  scope :inbox, -> { where("user_id = to_user_id") } #.select("DISTINCT ON (thread_id) messages.*")
+  scope :sent, -> { where("user_id = from_user_id") } #.select("DISTINCT ON (thread_id) messages.*")
+  scope :unread, -> { where("read_at IS NULL") }
 
   INBOX = "inbox"
   SENT = "sent"
@@ -55,7 +54,7 @@ class Message < ActiveRecord::Base
 
   def set_thread_id
     if thread_id.blank?
-      Message.update_all(["thread_id = ?", id], ["id = ?", id])
+      Message.where(id: id).update_all(thread_id: id)
     end
     true
   end

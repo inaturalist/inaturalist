@@ -31,12 +31,12 @@ shared_examples_for "an ObservationsController" do
       of = ObservationField.make!
       post :create, :format => :json, :observation => {
         :species_guess => "zomg", 
-        :observation_field_values_attributes => {
-          "0" => {
+        :observation_field_values_attributes => [
+          {
             :observation_field_id => of.id,
             :value => "foo"
           }
-        }
+        ]
       }
       response.should be_success
       o = Observation.last
@@ -817,7 +817,7 @@ shared_examples_for "an ObservationsController" do
             }
           }
         }
-        ProjectObservation.where(:project_id => p, :observation_id => o).exists?.should be_true
+        ProjectObservation.where(:project_id => p, :observation_id => o).exists?.should be true
       end
     end
 
@@ -886,7 +886,7 @@ end
 
 describe ObservationsController, "oauth authentication" do
   let(:user) { User.make! }
-  let(:token) { stub :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
+  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     controller.stub(:doorkeeper_token) { token }

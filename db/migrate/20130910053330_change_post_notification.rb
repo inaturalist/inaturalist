@@ -1,9 +1,10 @@
 class ChangePostNotification < ActiveRecord::Migration
   def up
-    Update.update_all("notification = 'created_post'", "notification = 'created_project_post'")
+    Update.where(notification: "created_project_post").update_all(notification: "created_post")
   end
 
   def down
-    Update.update_all("notification = 'created_project_post'", "notification = 'created_post' AND resource_type = 'Project'")
+    Update.where(notification: "created_post", resource_type: "Project").
+      update_all(notification: "created_project_post")
   end
 end

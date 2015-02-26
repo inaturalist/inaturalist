@@ -298,7 +298,7 @@
         <div id="edit_colors">
           <%= link_to_toggle t(:edit_colors), "#edit_colors_dialog" %>
           <div id="edit_colors_dialog" style="display: none">
-            <%= form_for @taxon,
+            <%= form_for @taxon, :method => :put,
                 :url => {:action => 'update_colors', :id => @taxon, :format => 'json'},
                 :remote => true do |f| %>
               <% for color in Color.all %>
@@ -397,7 +397,7 @@
     </p>
 
     <p class="ui">
-      <%= link_to_function t(:wikipedia_taxobox_raquo).html_safe, "return false;", :id => "taxoboxlink" %>
+      <%= link_to t(:wikipedia_taxobox_raquo).html_safe, "#", :onclick => "return false;", :id => "taxoboxlink" %>
       <%- taxobox_content = capture do -%>
         <pre><%= render(:partial => 'wikipedia_taxobox', :object => @taxon).strip %></pre>
         <%= link_to t(:about_the_taxobox_raquo).html_safe, "http://en.wikipedia.org/wiki/Template:Taxobox" %>

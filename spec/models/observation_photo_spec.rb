@@ -5,7 +5,7 @@ describe ObservationPhoto, "creation" do
     Delayed::Job.delete_all
     stamp = Time.now
     ObservationPhoto.make!
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /Observation.*set_quality_grade/m}.should_not be_blank
   end
 
@@ -32,7 +32,7 @@ describe ObservationPhoto, "destruction" do
     Delayed::Job.delete_all
     stamp = Time.now
     op.destroy
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /Observation.*set_quality_grade/m}.should_not be_blank
   end
 

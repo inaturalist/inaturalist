@@ -1,5 +1,5 @@
 class TripsController < ApplicationController
-  doorkeeper_for :create, :update, :destroy, :by_login, :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!, :only => [ :create, :update, :destroy, :by_login ], :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :except => [:index, :show, :by_login], :unless => lambda { authenticated_with_oauth? }
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]

@@ -44,7 +44,6 @@ class ActiveSupport::TimeZone
     'IRKT' => ActiveSupport::TimeZone['Irkutsk'],
     'IRST' => ActiveSupport::TimeZone['Tehran'],
     'IST' => ActiveSupport::TimeZone['Jerusalem'],
-    'IST' => ActiveSupport::TimeZone['Mumbai'],
     'JST' => ActiveSupport::TimeZone['Tokyo'],
     'KRAST' => ActiveSupport::TimeZone['Krasnoyarsk'],
     'KRAT' => ActiveSupport::TimeZone['Krasnoyarsk'],

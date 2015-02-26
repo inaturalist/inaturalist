@@ -130,4 +130,22 @@ describe TaxaController do
       taxon.parent_id.should == locked_parent.id
     end
   end
+
+  describe "autocomplete" do
+    it "should choose exact matches" do
+      t = Taxon.make!
+      get :autocomplete, format: :json
+      expect(assigns(:taxa)).to include t
+    end
+  end
+
+  describe "observation_photos" do
+    it "should include photos from observations" do
+      o = make_research_grade_observation
+      p = o.photos.first
+      get :observation_photos, id: o.taxon_id
+      expect(assigns(:photos)).to include p
+    end
+  end
+
 end

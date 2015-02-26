@@ -1,4 +1,5 @@
-<%- 
+<%-
+  classification_list ||= nil
   taxon ||= classification_list || @taxon || Taxon::LIFE
   ancestors ||= @ancestors || taxon.ancestors
   children ||= @children || taxon.children

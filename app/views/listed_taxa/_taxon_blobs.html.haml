@@ -1,4 +1,5 @@
 :ruby
+  taxon_blobs ||= nil
   listed_taxon ||= taxon_blobs || @listed_taxon
   taxon ||= listed_taxon.taxon || @taxon
   taxon ||= conservation_status.taxon if defined? conservation_status && conservation_status

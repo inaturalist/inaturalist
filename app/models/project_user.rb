@@ -15,7 +15,7 @@ class ProjectUser < ActiveRecord::Base
   ROLES = %w(curator manager)
   ROLES.each do |role|
     const_set role.upcase, role
-    scope role.pluralize, where(:role => role)
+    scope role.pluralize, -> { where(:role => role) }
   end
 
   notifies_subscribers_of :project, :on => :save, :notification => CURATOR_CHANGE_NOTIFICATION, 
@@ -32,7 +32,7 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def project_observations
-    project.project_observations.includes(:observation).where("observations.user_id = ?", user_id).scoped
+    project.project_observations.joins(:observation).where(observations: { user_id: user_id })
   end
 
   def remove_updates
@@ -52,7 +52,7 @@ class ProjectUser < ActiveRecord::Base
   end
 
   def subscribe_to_assessment_sections
-    AssessmentSection.includes(:assessment).where("assessments.project_id = ?", project).find_each do |as|
+    AssessmentSection.joins(:assessment).where("assessments.project_id = ?", project).find_each do |as|
       Subscription.create(:resource => as, :user => user)
     end
   end
@@ -120,18 +120,14 @@ class ProjectUser < ActiveRecord::Base
   end
   
   def self.update_observations_counter_cache_from_project_and_user(project_id, user_id)
-    return unless project_user = ProjectUser.first(:conditions => {
-      :project_id => project_id, 
-      :user_id => user_id
-    })
+    project_user = ProjectUser.where(project_id: project_id, user_id: user_id).first
+    return unless project_user
     project_user.update_observations_counter_cache
   end
   
   def self.update_taxa_counter_cache_from_project_and_user(project_id, user_id)
-    return unless project_user = ProjectUser.first(:conditions => {
-      :project_id => project_id, 
-      :user_id => user_id
-    })
+    project_user = ProjectUser.where(project_id: project_id, user_id: user_id).first
+    return unless project_user
     project_user.update_taxa_counter_cache
   end
   
@@ -143,10 +139,8 @@ class ProjectUser < ActiveRecord::Base
       return
     end
     obs.project_observations.each do |po|
-      if project_user = ProjectUser.first(:conditions => {
-        :project_id => po.project_id, 
-        :user_id => user_id
-      })
+      project_user = ProjectUser.where(project_id: po.project_id, user_id: user_id).first
+      if project_user
         project_user.update_taxa_counter_cache
         project_user.update_observations_counter_cache
         Project.update_observed_taxa_count(po.project_id)

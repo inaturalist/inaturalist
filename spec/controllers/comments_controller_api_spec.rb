@@ -6,14 +6,14 @@ shared_examples_for "a CommentsController" do
 
   describe "create" do
     it "should work" do
-      observation.comments.count.should eq 0
+      expect(observation.comments.count).to eq 0
       post :create, :format => :json, :comment => {
         :parent_type => "Observation",
         :parent_id => observation.id,
         :body => "i must eat them all"
       }
       observation.reload
-      observation.comments.count.should eq 1
+      expect(observation.comments.count).to eq 1
     end
 
     it "should error out for invalid comments" do
@@ -21,35 +21,35 @@ shared_examples_for "a CommentsController" do
         :parent_type => "Observation",
         :body => "this is erroneous!"
       }
-      response.status.should == 422
+      expect(response.status).to eq 422
     end
   end
 
   describe "update" do
     let(:comment) { Comment.make!(:user => user) }
     it "should work" do
-      comment.body.should_not be_blank
-      lambda {
+      expect(comment.body).not_to be_blank
+      expect {
         put :update, :format => :json, :id => comment.id, :comment => {:body => "i must eat them all"}
         comment.reload
-      }.should change(comment, :body)
+      }.to change(comment, :body)
     end
   end
 
   describe "destroy" do
     let(:comment) { Comment.make!(:user => user) }
     it "should work" do
-      delete :destroy, :format => :json, :id => comment.id
-      Comment.find_by_id(comment.id).should be_blank
+      delete :destroy, :id => comment.id
+      expect(Comment.find_by_id(comment.id)).to be_blank
     end
   end
 end
 
 describe CommentsController, "oauth authentication" do
-  let(:token) { stub :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
+  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    controller.stub(:doorkeeper_token) { token }
+    allow(controller).to receive(:doorkeeper_token) { token }
   end
   it_behaves_like "a CommentsController"
 end

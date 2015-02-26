@@ -8,7 +8,8 @@
     taxon.taxon_scheme_taxa.map(&:taxon_scheme)
   else
     taxon.taxon_schemes
-  end.compact
+  end
+  schemes = schemes.to_a.compact
 -%>
 
 <div class="taxon_scheme">

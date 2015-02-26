@@ -15,9 +15,9 @@ user_count = User.count
 num_obs = (ARGV[0] || 100).to_i
 
 num_obs.times do
-  taxon = Taxon.first(:offset => rand(taxon_count))
+  taxon = Taxon.offset(rand(taxon_count)).first
   time = EARLIEST_TIME + rand(LATEST_TIME - EARLIEST_TIME)
-  user = User.first(:offset => rand(user_count))
+  user = User.offset(rand(user_count)).first
   next unless user.active?
   obs = Observation.new(
     :user => user, 

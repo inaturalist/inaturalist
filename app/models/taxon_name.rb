@@ -116,8 +116,7 @@ class TaxonName < ActiveRecord::Base
   
   def update_unique_names
     return true unless name_changed?
-    non_unique_names = TaxonName.all(:include => :taxon, 
-      :conditions => {:name => name}, :select => "DISTINCT ON (taxon_id) *")
+    non_unique_names = TaxonName.includes(:taxon).where(name: name).select("DISTINCT ON (taxon_id) *")
     non_unique_names.each do |taxon_name|
       taxon_name.taxon.update_unique_name if taxon_name.taxon
     end
@@ -247,11 +246,11 @@ class TaxonName < ActiveRecord::Base
     conditions = {:name => name}
     conditions[:lexicon] = lexicon if lexicon
     begin
-      taxon_names = TaxonName.all(:conditions => conditions, :limit => 10, :include => :taxon)
+      taxon_names = TaxonName.where(conditions).limit(10).includes(:taxon)
     rescue ActiveRecord::StatementInvalid => e
       raise e unless e.message =~ /invalid byte sequence/
       conditions[:name] = name.encode('UTF-8')
-      taxon_names = TaxonName.all(:conditions => conditions, :limit => 10, :include => :taxon)
+      taxon_names = TaxonName.where(conditions).limit(10).includes(:taxon)
     end
     unless options[:iconic_taxa].blank?
       taxon_names.reject {|tn| options[:iconic_taxa].include?(tn.taxon.iconic_taxon_id)}

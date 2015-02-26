@@ -20,16 +20,9 @@ class User < ActiveRecord::Base
   attr_accessor   :make_observation_licenses_same
   attr_accessor   :make_photo_licenses_same
   attr_accessor   :make_sound_licenses_same
-  attr_accessible :make_observation_licenses_same,
-                  :make_photo_licenses_same,
-                  :make_sound_licenses_same,
-                  :preferred_photo_license,
-                  :preferred_observation_license,
-                  :preferred_sound_license,
-                  :preferred_observation_fields_by,
-                  :spammer
+
   attr_accessor :html
-  
+
   preference :project_journal_post_email_notification, :boolean, :default => true
   preference :comment_email_notification, :boolean, :default => true
   preference :identification_email_notification, :boolean, :default => true
@@ -76,13 +69,13 @@ class User < ActiveRecord::Base
   has_many :lists, :dependent => :destroy
   has_many :life_lists
   has_many :identifications, :dependent => :destroy
-  has_many :identifications_for_others, :class_name => "Identification", 
-    :include => [:observation],
-    :conditions => "identifications.user_id != observations.user_id AND identifications.current = true"
+  has_many :identifications_for_others,
+    -> { where("identifications.user_id != observations.user_id AND identifications.current = true").
+         joins(:observation) }, :class_name => "Identification"
   has_many :photos, :dependent => :destroy
   has_many :posts #, :dependent => :destroy
   has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
-  has_many :trips, :class_name => "Post", :foreign_key => "user_id", :conditions => "posts.type = 'Trip'"
+  has_many :trips, -> { where("posts.type = 'Trip'") }, :class_name => "Post", :foreign_key => "user_id"
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
   has_many :projects
@@ -95,7 +88,7 @@ class User < ActiveRecord::Base
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify
   has_many :messages, :dependent => :destroy
-  has_many :delivered_messages, :class_name => "Message", :foreign_key => "from_user_id", :conditions => "messages.from_user_id != messages.user_id"
+  has_many :delivered_messages, -> { where("messages.from_user_id != messages.user_id") }, :class_name => "Message", :foreign_key => "from_user_id"
   has_many :guides, :dependent => :destroy, :inverse_of => :user
   has_many :observation_fields, :dependent => :nullify, :inverse_of => :user
   has_many :observation_field_values, :dependent => :nullify, :inverse_of => :user
@@ -161,20 +154,14 @@ class User < ActiveRecord::Base
 
   validates_format_of       :email,    :with => email_regex, :message => bad_email_message, :allow_blank => true
   validates_length_of       :email,    :within => 6..100, :allow_blank => true #r@a.wk
-
-  # HACK HACK HACK -- how to do attr_accessible from here?
-  # prevents a user from submitting a crafted form that bypasses activation
-  # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, 
-    :time_zone, :icon_url, :locale, :prefers_community_taxa, :place_id
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
     order("? ?", sort_by, sort_dir)
   }
-  scope :curators, includes(:roles).where("roles.name IN ('curator', 'admin')")
-  scope :admins, includes(:roles).where("roles.name = 'admin'")
-  scope :active, where("suspended_at IS NULL")
+  scope :curators, -> { joins(:roles).where("roles.name IN ('curator', 'admin')") }
+  scope :admins, -> { joins(:roles).where("roles.name = 'admin'") }
+  scope :active, -> { where("suspended_at IS NULL") }
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
   # you can also force skipping email validation by setting u.skip_email_validation=true before you save
@@ -190,17 +177,17 @@ class User < ActiveRecord::Base
 
   def user_icon_url
     return nil if icon.blank?
-    "#{FakeView.root_url}#{icon.url(:thumb)}".gsub(/([^\:])\/\//, '\\1/')
+    "#{FakeView.asset_url(icon.url(:thumb))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def medium_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.root_url}#{icon.url(:medium)}".gsub(/([^\:])\/\//, '\\1/')
+    "#{FakeView.asset_url(icon.url(:medium))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def original_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.root_url}#{icon.url}".gsub(/([^\:])\/\//, '\\1/')
+    "#{FakeView.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
   end
 
   def active?
@@ -299,14 +286,14 @@ class User < ActiveRecord::Base
   
   # TODO: named_scope
   def recent_observations(num = 5)
-    observations.find(:all, :limit => num, :order => "created_at DESC")
+    observations.order("created_at DESC").limit(num)
   end
 
   # TODO: named_scope  
   def friends_observations(limit = 5)
     obs = []
     friends.each do |friend|
-      obs << friend.observations.find(:all, :order => 'created_at DESC', :limit => limit)
+      obs << friend.observations.order("created_at DESC").limit(limit)
     end
     obs.flatten
   end
@@ -356,10 +343,12 @@ class User < ActiveRecord::Base
   # see twitter gem docs for available methods: https://github.com/sferik/twitter
   def twitter_api
     return nil unless twitter_identity
-    @twitter_api ||= Twitter::Client.new(
-      :oauth_token => twitter_identity.token,
-      :oauth_token_secret => twitter_identity.secret
-    )
+    @twitter_api ||= Twitter::Client.new do |config|
+      config.consumer_key = CONFIG.twitter.key
+      config.consumer_secret = CONFIG.twitter.secret
+      config.access_token = twitter_identity.token,
+      config.access_token_secret = twitter_identity.secret
+    end
   end
 
   # returns nil or the twitter ProviderAuthorization
@@ -369,7 +358,7 @@ class User < ActiveRecord::Base
   
   def update_observation_licenses
     return true unless [true, "1", "true"].include?(@make_observation_licenses_same)
-    Observation.update_all(["license = ?", preferred_observation_license], ["user_id = ?", id])
+    Observation.where(user_id: id).update_all(license: preferred_observation_license)
     true
   end
   
@@ -377,7 +366,7 @@ class User < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_photo_licenses_same)
     number = Photo.license_number_for_code(preferred_photo_license)
     return true unless number
-    Photo.update_all(["license = ?", number], ["user_id = ? AND type != 'GoogleStreetViewPhoto'", id])
+    Photo.where(["user_id = ? AND type != 'GoogleStreetViewPhoto'", id]).update_all(license: number)
     true
   end
 
@@ -385,18 +374,16 @@ class User < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_sound_licenses_same)
     number = Photo.license_number_for_code(preferred_sound_license)
     return true unless number
-    Sound.update_all(["license = ?", number], ["user_id = ?", id])
+    Sound.where(user_id: id).update_all(license: number)
     true
   end
   
   def merge(reject)
     raise "Can't merge a user with itself" if reject.id == id
     life_list_taxon_ids_to_move = reject.life_list.taxon_ids - life_list.taxon_ids
-    ListedTaxon.update_all(
-      ["list_id = ?", life_list_id],
-      ["list_id = ? AND taxon_id IN (?)", reject.life_list_id, life_list_taxon_ids_to_move]
-    )
-    reject.friendships.all(:conditions => ["friend_id = ?", id]).each{|f| f.destroy}
+    ListedTaxon.where(list_id: reject.life_list_id, taxon_id: life_list_taxon_ids_to_move).
+      update_all(list_id: life_list_id)
+    reject.friendships.where(friend_id: id).each{ |f| f.destroy }
     merge_has_many_associations(reject)
     reject.destroy
     LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).reload_from_observations(life_list_id)
@@ -409,7 +396,7 @@ class User < ActiveRecord::Base
 
   def set_uri
     if uri.blank?
-      User.update_all(["uri = ?", FakeView.user_url(id)], ["id = ?", id])
+      User.where(id: id).update_all(uri: FakeView.user_url(id))
     end
     true
   end
@@ -419,7 +406,7 @@ class User < ActiveRecord::Base
   end
   
   def self.query(params={}) 
-    scope = self.scoped
+    scope = self.all
     if params[:sort_by] && params[:sort_dir]
       scope.order(params[:sort_by], params[:sort_dir])
     elsif params[:sort_by]
@@ -572,12 +559,12 @@ class User < ActiveRecord::Base
   
   def create_default_life_list
     return true if life_list
-    new_life_list = if (existing = self.lists.includes(:rules).where("lists.type = 'LifeList' AND list_rules.id IS NULL").first)
+    new_life_list = if (existing = self.lists.joins(:rules).where("lists.type = 'LifeList' AND list_rules.id IS NULL").first)
       self.life_list = existing
     else
       LifeList.create(:user => self)
     end
-    User.update_all(["life_list_id = ?", new_life_list], ["id = ?", self])
+    User.where(id: id).update_all(life_list_id: new_life_list)
     true
   end
   
@@ -594,8 +581,7 @@ class User < ActiveRecord::Base
   end
 
   def generate_csv(path, columns)
-    of_names = ObservationField.
-      includes(:observation_field_values => :observation).
+    of_names = ObservationField.joins(observation_field_values: :observation).
       where("observations.user_id = ?", id).
       select("DISTINCT observation_fields.name").
       map{|of| "field:#{of.normalized_name}"}
@@ -629,6 +615,14 @@ class User < ActiveRecord::Base
       :methods => [
         :user_icon_url, :medium_user_icon_url, :original_user_icon_url]
     }
+  end
+
+  def self.header_cache_key_for(user, options = {})
+    user_id = user.is_a?(User) ? user.id : user
+    user_id ||= "signed_on"
+    site_name = options[:site].try(:name) || options[:site_name]
+    site_name ||= user.site.try(:name) if user.is_a?(User)
+    "header_cache_key_for_#{user_id}_on_#{site_name}"
   end
 
 end

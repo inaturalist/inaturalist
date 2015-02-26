@@ -45,13 +45,13 @@ class PicasaPhoto < Photo
       latrads = observation.latitude.to_f * (Math::PI / 180)
       lonrads = observation.longitude.to_f * (Math::PI / 180)
       begin
-        places = Place.search(:geo => [latrads,lonrads], :order => "@geodist asc", :limit => 5)
+        places = Place.search(:geo => [latrads,lonrads], :order => "geodist asc", :limit => 5)
         places = places.compact.select {|p| p.contains_lat_lng?(observation.latitude, observation.longitude)}
         places = places.sort_by{|p| p.bbox_area || 0}
         if place = places.first
           observation.place_guess = place.display_name
         end
-      rescue Riddle::ConnectionError, Riddle::ResponseError
+      rescue Riddle::ConnectionError, Riddle::ResponseError, ThinkingSphinx::Search::StaleIdsException
         # sphinx down for some reason
       end
     end
@@ -99,7 +99,7 @@ class PicasaPhoto < Photo
     invalids = 0
     skipped = 0
     start_time = Time.now
-    PicasaPhoto.script_do_in_batches(find_options) do |p|
+    PicasaPhoto.where(find_options).find_each do |p|
       r = Net::HTTP.get_response(URI.parse(p.medium_url))
       unless [Net::HTTPBadRequest, Net::HTTPForbidden, Net::HTTPRedirection].include?(r.code_type)
         skipped += 1

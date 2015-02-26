@@ -209,10 +209,10 @@ scope = if OPTS.ancestor
   if ancestor.genus?
     Taxon.where(:id => ancestor.id)
   else
-    ancestor.descendants.where(:rank => Taxon::GENUS).scoped
+    ancestor.descendants.where(:rank => Taxon::GENUS)
   end
 else
-  Taxon.where(:rank => Taxon::GENUS).scoped
+  Taxon.where(:rank => Taxon::GENUS)
 end
 
 scope = scope.where("taxa.id >= ?", OPTS.min_id) if OPTS.min_id

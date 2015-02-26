@@ -1,8 +1,7 @@
 class ListedTaxaController < ApplicationController
   before_filter :authenticate_user!, :except => [:show]
   before_filter :load_listed_taxon, :except => [:index, :create, :refresh_observationcounts]
-  cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
-  
+
   SHOW_PARTIALS = %w(place_tip guide batch_edit_row)
 
   def index
@@ -16,7 +15,7 @@ class ListedTaxaController < ApplicationController
           @photo = @listed_taxon.first_observation.photos.first if @listed_taxon.first_observation
           @photo ||= @listed_taxon.last_observation.photos.first if @listed_taxon.last_observation
         end
-        @photo ||= @listed_taxon.taxon.taxon_photos.first(:order => "id ASC").try(:photo)
+        @photo ||= @listed_taxon.taxon.taxon_photos.order(:id).first.try(:photo)
         @related_listed_taxa = @listed_taxon.related_listed_taxa
         @primary_listed_taxon = @listed_taxon.primary_listed_taxon
         if partial = params[:partial]
@@ -132,7 +131,7 @@ class ListedTaxaController < ApplicationController
             @listed_taxon.html = view_context.render_in_format(:html, :partial => "lists/#{params[:partial]}", 
               :object => @listed_taxon)
           end
-          render :json => @listed_taxon, :json => @listed_taxon.to_json(:methods => [:errors, :html])
+          render :json => @listed_taxon.to_json(:methods => [:errors, :html])
         end
       else
         format.html do
@@ -148,7 +147,7 @@ class ListedTaxaController < ApplicationController
   end
 
   def destroy
-    @listed_taxon = ListedTaxon.find_by_id(params[:id], :include => :list)
+    @listed_taxon = ListedTaxon.where(id: params[:id]).includes(:list).first
     
     unless @listed_taxon && @listed_taxon.removable_by?(current_user)
       msg = "Sorry, you don't have permission to delete from this list."
@@ -204,7 +203,8 @@ class ListedTaxaController < ApplicationController
   private
   
   def load_listed_taxon
-    unless @listed_taxon = ListedTaxon.find_by_id(params[:id].to_i, :include => [:list, :taxon, :user])
+    @listed_taxon = ListedTaxon.where(id: params[:id]).includes([ :list, :taxon, :user ]).first
+    unless @listed_taxon
       msg = "That listed taxon doesn't exist."
       respond_to do |format|
         format.html do
