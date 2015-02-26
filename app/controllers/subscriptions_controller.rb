@@ -19,7 +19,7 @@ class SubscriptionsController < ApplicationController
     @type = "place" unless Subscription.subscribable_classes.map(&:underscore).include?(@type)
     resource_type = @type.camelcase
     @resource = Object.const_get(resource_type).find_by_id(params[:resource_id]) rescue nil
-    @subscription = Subscription.new(:user => current_user, :type => resource_type, :resource => @resource)
+    @subscription = Subscription.new(:user => current_user, :resource_type => resource_type, :resource => @resource)
     if params[:partial] && params[:partial] == "form"
       render :partial => params[:partial], :layout => false
     end

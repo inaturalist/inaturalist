@@ -426,7 +426,7 @@ private
   
   def set_scopes_for_place_based_project_list(list, q, filter_taxon, search_taxon_ids, acceptable_taxa_from_list)
     unpaginated_listed_taxa = ListedTaxon.from_place_or_list(list.project.place_id, list.id)
-    unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present(true)
+    unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
     if acceptable_taxa_from_list
       unpaginated_listed_taxa = unpaginated_listed_taxa.acceptable_taxa(acceptable_taxa_from_list)
     end
