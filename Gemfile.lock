@@ -349,6 +349,7 @@ GEM
     newrelic_rpm (3.9.9.275)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    non-stupid-digest-assets (1.0.4)
     nori (2.4.0)
     oauth (0.4.7)
     oauth2 (0.9.4)
@@ -633,6 +634,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.17)
   newrelic_rpm
   nokogiri
+  non-stupid-digest-assets
   objectify-xml
   omniauth-facebook
   omniauth-flickr
