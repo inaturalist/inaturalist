@@ -1779,6 +1779,7 @@ class ObservationsController < ApplicationController
       :taxon_id,
       :taxon_name,
       :time_zone,
+      :tag_list,
       :uuid,
       :zic_time_zone,
       observation_field_values_attributes: [ :_destroy, :id, :observation_field_id, :value ]
