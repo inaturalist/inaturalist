@@ -1235,8 +1235,8 @@ class ObservationsController < ApplicationController
   # observation-picking form widgets
   def selector
     search_params, find_options = get_search_params(params)
-
-    @observations = Observation.latest.query(search_params).paginate(find_options)
+    @observations = Observation.latest.query(search_params).paginate(
+      page: find_options[:page], per_page: find_options[:per_page])
       
     respond_to do |format|
       format.html { render :layout => false, :partial => 'selector'}

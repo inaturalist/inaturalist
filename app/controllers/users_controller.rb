@@ -605,7 +605,7 @@ protected
 
   # an example of custom param whitelisting
   def whitelist_params
-    if params[:user]
+    unless params[:user].blank?
       params.require(:user).permit(
         :login, :email, :name, :password, :password_confirmation, :icon, :description,
         :time_zone, :icon_url, :locale, :prefers_community_taxa, :place_id,

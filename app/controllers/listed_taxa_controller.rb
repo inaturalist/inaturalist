@@ -147,7 +147,7 @@ class ListedTaxaController < ApplicationController
   end
 
   def destroy
-    @listed_taxon = ListedTaxon.find_by_id(params[:id], :include => :list)
+    @listed_taxon = ListedTaxon.where(id: params[:id]).includes(:list).first
     
     unless @listed_taxon && @listed_taxon.removable_by?(current_user)
       msg = "Sorry, you don't have permission to delete from this list."
