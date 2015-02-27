@@ -106,13 +106,17 @@ class ObservationsController < ApplicationController
         cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
         cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
         cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
-        get_paginated_observations(search_params, find_options).to_a
+        Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
+          get_paginated_observations(search_params, find_options).to_a
+        end.each(&:reload)
       else
         get_paginated_observations(search_params, find_options)
       end
     else
       @observations = search_observations(search_params, find_options)
     end
+    Observation.preload_associations(@observations, [ :user, { taxon: :taxon_names },
+      { iconic_taxon: :taxon_descriptions }, { photos: :user }, :stored_preferences ])
 
     respond_to do |format|
       
