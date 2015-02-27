@@ -78,7 +78,7 @@
             <table>
               <tr class="inline buttonrow">
                 <td><label>Tags</label></td>
-                <td><%= o.text_field :tag_list, :class => "text" %></td>
+                <td><%= o.text_field :tag_list, :value => new_obs.tag_list.to_s, :class => "text" %></td>
                 <td><%= link_to_function t(:apply_darr).html_safe, "applyBatch(['tag_list'])", :class => "default button" %></td>
               </tr>
               <tr class="inline buttonrow">
