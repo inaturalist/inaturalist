@@ -299,9 +299,9 @@ class PlacesController < ApplicationController
   def children
     per_page = params[:per_page]
     per_page = 100 if per_page && per_page > 100
-    @children = @place.children.paginate(:page => params[:page], 
-      :per_page => per_page, :order => 'name')
-    
+    @children = @place.children.order(:name).
+      paginate(page: params[:page], per_page: per_page)
+
     respond_to do |format|
       format.html { render :partial => "place_li", :collection => @children }
       format.json { render :json => @children.to_json }
