@@ -15,8 +15,7 @@ class Identification < ActiveRecord::Base
   
   before_create :update_other_identifications
   after_create  :update_observation, 
-                :increment_user_counter_cache, 
-                :expire_caches
+                :increment_user_counter_cache
                 
   after_save    :update_obs_stats, 
                 :update_curator_identification,
@@ -27,8 +26,7 @@ class Identification < ActiveRecord::Base
   # because of the unique index constraint on current, which will complain if
   # you try to set the last ID as current when this one hasn't really been
   # deleted yet, i.e. before the transaction is complete.
-  after_commit :expire_caches, 
-                 :update_obs_stats,
+  after_commit :update_obs_stats,
                  :update_observation_after_destroy,
                  :decrement_user_counter_cache, 
                  :revisit_curator_identification, 
@@ -183,11 +181,6 @@ class Identification < ActiveRecord::Base
     true
   end
   
-  def expire_caches
-    Identification.delay.expire_caches(self.id)
-    true
-  end
-
   def set_last_identification_as_current
     last_outdated = observation.identifications.outdated.by(user_id).order("id ASC").last
     if last_outdated
@@ -252,15 +245,6 @@ class Identification < ActiveRecord::Base
   end
   
   # Static ##################################################################
-  
-  def self.expire_caches(ident)
-    ident = Identification.find_by_id(ident) unless ident.is_a?(Identification)
-    return unless ident
-    Observation.expire_components_for(ident.observation_id)
-  rescue => e
-    puts "[DEBUG] Failed to expire caches for #{ident}: #{e}"
-    puts e.backtrace.join("\n")
-  end
   
   def self.run_update_curator_identification(ident)
     obs = ident.observation

@@ -2146,10 +2146,6 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  def expire_components
-    Observation.expire_components_for(self)
-  end
-
   def method_missing(method, *args, &block)
     return super unless method.to_s =~ /^field:/ || method.to_s =~ /^taxon_[^=]+/
     if method.to_s =~ /^field:/
@@ -2230,25 +2226,6 @@ class Observation < ActiveRecord::Base
     u.id == user_id
   end
 
-  def self.expire_components_for(o)
-    o = Observation.find_by_id(o) unless o.is_a?(Observation)
-    return unless o
-    ctrl = ActionController::Base.new
-    ctrl.expire_fragment(o.component_cache_key)
-    ctrl.expire_fragment(o.component_cache_key(for_owner: true))
-    # I've only noticed this in development, but adding nil
-    # here in case the default site_id is somehow not set
-    site_ids = Site.all.select(:id).map(&:id) << nil
-    I18N_SUPPORTED_LOCALES.each do |locale|
-      ctrl.expire_fragment(o.component_cache_key(locale: locale))
-      ctrl.expire_fragment(o.component_cache_key(locale:locale, for_owner: true))
-      site_ids.each do |site_id|
-        ctrl.expire_fragment(o.component_cache_key(locale: locale, site_id: site_id))
-        ctrl.expire_fragment(o.component_cache_key(locale: locale, for_owner: true, site_id: site_id))
-      end
-    end
-  end
-  
   def set_coordinates
     if self.geo_x.present? && self.geo_y.present? && self.coordinate_system.present?
       # Perform the transformation
@@ -2273,13 +2250,6 @@ class Observation < ActiveRecord::Base
     @white_list_sanitizer ||= HTML::WhiteListSanitizer.new
   end
   
-  def self.expire_components_for_taxon(taxon)
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    Observation.of(taxon).find_each do |o|
-      o.expire_components
-    end
-  end
-
   def self.update_for_taxon_change(taxon_change, taxon, options = {}, &block)
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
     scope = Observation.where("observations.taxon_id IN (?)", input_taxon_ids)

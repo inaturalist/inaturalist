@@ -11,7 +11,6 @@ class ObservationSweeper < ActionController::Caching::Sweeper
   end
   
   def after_update(observation)
-    expire_observation_components(observation)
     expire_taxon_caches_for_observation(observation)
     observation.listed_taxa.each {|lt| expire_listed_taxon(lt) }
     FileUtils.rm(private_page_cache_path(
@@ -21,7 +20,6 @@ class ObservationSweeper < ActionController::Caching::Sweeper
   end
   
   def after_destroy(observation)
-    expire_observation_components(observation)
     expire_taxon_caches_for_observation(observation)
     observation.listed_taxa.each {|lt| expire_listed_taxon(lt) }
     FileUtils.rm(private_page_cache_path(
