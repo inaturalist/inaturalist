@@ -60,18 +60,18 @@ describe UsersController, "set_spammer" do
       @user = User.make!(spammer: nil)
       post :set_spammer, id: @user.id, spammer: "true"
       @user.reload
-      @user.spammer.should be_true
+      @user.spammer.should be true
     end
 
     it "removes spam flags when setting to non-spammer" do
       @user = User.make!(spammer: true)
       obs = Observation.make!(user: @user)
       Flag.make!(flaggable: obs, flag: Flag::SPAM)
-      @user.spammer.should be_true
+      @user.spammer.should be true
       @user.flags_on_spam_content.count.should == 1
       post :set_spammer, id: @user.id, spammer: "false"
       @user.reload
-      @user.spammer.should be_false
+      @user.spammer.should be false
       @user.flags_on_spam_content.count.should == 0
     end
 
