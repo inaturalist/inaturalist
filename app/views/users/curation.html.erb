@@ -61,6 +61,17 @@
         <li>
           <%= link_to t(:delete_user), @display_user, :method => :delete, :confirm => t(:are_you_really_sure_want_delete_this_user) %>
         </li>
+        <%- unless @display_user.spammer? %>
+          <li>
+            <%= link_to(t(:flag_as_spammer), set_spammer_path(@display_user, spammer: true), method: :post) %>
+          </li>
+        <%- end %>
+        <%- unless @display_user.known_non_spammer? %>
+          <li>
+            <%= link_to(t(:flag_as_non_spammer), set_spammer_path(@display_user, spammer: false),
+              method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) } ) %>
+          </li>
+        <%- end %>
         <li>
           <%= link_to "Log in as #{@display_user.login}", :controller => "admin", :action => "login_as", :id => @display_user.id %>
         </li>

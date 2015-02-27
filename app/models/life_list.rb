@@ -221,15 +221,24 @@ class LifeList < List
       GROUP BY #{sql_key}
     SQL
   end
-  
+
+  def default_title
+    default = "%s's Life List" % owner_name
+    default += " of #{rule_taxon.default_name.name}" if rule_taxon
+    default
+  end
+
+  def default_description
+    "Every species seen by #{owner_name}"
+  end
+
   private
   def set_defaults
     if title.blank?
-      self.title = "%s's Life List" % owner_name
-      self.title += " of #{rule_taxon.default_name.name}" if rule_taxon
+      self.title = default_title
     end
     if description.blank? && rule_taxon.blank?
-      self.description = "Every species seen by #{owner_name}"
+      self.description = default_description
     end
     true
   end

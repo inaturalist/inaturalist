@@ -16,7 +16,7 @@ class IdentificationsController < ApplicationController
   end
   
   def by_login
-    block_if_spam(@selected_user) && return
+    block_if_spammer(@selected_user) && return
     scope = @selected_user.identifications.for_others.
       joins(:observation, :taxon).
       order("identifications.created_at DESC")

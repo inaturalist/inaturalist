@@ -366,6 +366,9 @@ en:
   are_you_sure_you_want_to_remove_curator: Are you sure you want to remove %{user} as a curator?
   are_you_sure_you_want_to_remove_from_project: Are you sure you want to remove %{user} from this project?
   are_you_sure_you_want_to_remove_manager: Are you sure you want to remove %{user} as a manager?
+  are_you_sure_you_want_to_remove_spammer: |
+    Are you sure you consider this user honorable?
+    Any spam flags on their content will be resolved.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Are you sure you want to remove these %{x} taxa?"
   are_you_sure_you_want_to_remove_this_invitation: Are you sure you want to remove this invitation?
   are_you_sure_you_want_to_remove_this_taxon: Are you sure you want to remove this taxon?
@@ -1024,6 +1027,8 @@ en:
   first_observer: 1st observer
   flag: Flag
   flag_an_item: Flag an item
+  flag_as_spammer: Flag as spammer
+  flag_as_non_spammer: Flag as non-spammer
   flag_description: Flag this content to let the curators know something is wrong with it.
   flag_for_curation: Flag for curation
   flag_it!: Flag it!

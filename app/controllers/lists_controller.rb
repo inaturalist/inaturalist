@@ -23,7 +23,7 @@ class ListsController < ApplicationController
 
   # gets lists by user login
   def by_login
-    block_if_spam(@selected_user) && return
+    block_if_spammer(@selected_user) && return
     @prefs = current_preferences
     
     @life_list = @selected_user.life_list

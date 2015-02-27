@@ -1113,7 +1113,7 @@ class ObservationsController < ApplicationController
 
   # gets observations by user login
   def by_login
-    block_if_spam(@selected_user) && return
+    block_if_spammer(@selected_user) && return
     search_params, find_options = get_search_params(params)
     search_params.update(:user_id => @selected_user.id,
       :viewer => current_user, 

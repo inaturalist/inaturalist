@@ -5,12 +5,14 @@ class UsersController < ApplicationController
     :unless => lambda { authenticated_with_oauth? },
     :except => [:index, :show, :new, :create, :activate, :relationships, :search]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
-    :show, :update, :relationships, :add_role, :remove_role ]
+    :show, :update, :relationships, :add_role, :remove_role, :set_spammer ]
   before_filter :find_user, :only => load_only
-  blocks_spam :only => load_only, :instance => :user
+  # we want to load the user for set_spammer but not attempt any spam blocking,
+  # because set_spammer may change the user's spammer properties
+  blocks_spam :only => load_only - [ :set_spammer ], :instance => :user
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_filter :admin_required, :only => [:curation]
-  before_filter :curator_required, :only => [:suspend, :unsuspend]
+  before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   
   MOBILIZED = [:show, :dashboard, :new, :create]
@@ -132,7 +134,22 @@ class UsersController < ApplicationController
       "(it may take up to an hour to completely delete all associated content)"
     redirect_to root_path
   end
-  
+
+  def set_spammer
+    if [ "true", "false" ].include?(params[:spammer])
+      @user.update_attributes(spammer: params[:spammer])
+      if params[:spammer] === "false"
+        @user.flags_on_spam_content.each do |flag|
+          flag.resolved = true
+          flag.resolver = current_user
+          flag.save
+        end
+        @user.unsuspend!
+      end
+    end
+    redirect_to :back
+  end
+
   # Methods below here are added by iNaturalist
   
   def index
