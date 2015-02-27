@@ -64,7 +64,7 @@
         <% helptip_for "tags" do %>
             <%= t :tags_are_a_way %>
         <% end -%>
-        <%= o.text_field :tag_list, :class => "text" %>
+        <%= o.text_field :tag_list, :value => observation.tag_list.to_s, :class => "text" %>
       </div>
     </div>
     <div class="column span-9">

@@ -42,9 +42,8 @@ class LocalPhoto < Photo
     # :default_url => "/attachment_defaults/:class/:style.png"
   
   process_in_background :file
-  after_post_process :set_urls, :expire_observation_caches
-  after_save :expire_observation_caches
-    
+  after_post_process :set_urls
+
   validates_presence_of :user
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
@@ -110,17 +109,6 @@ class LocalPhoto < Photo
     else
       "#{super}, uploaded by #{user.try_methods(:name, :login)}"
     end
-  end
-  
-  def expire_observation_caches
-    ctrl = ActionController::Base.new
-    observation_photos.all.each do |op|
-      Observation.expire_components_for(op.observation_id)
-    end
-    true
-  rescue => e
-    Airbrake.notify(e)
-    true
   end
   
   def set_native_photo_id

@@ -1,8 +1,4 @@
 module Shared::SweepersModule
-  def expire_observation_components(observation)
-    observation.expire_components
-  end
-
   def expire_listed_taxon(listed_taxon)
     listed_taxon.expire_caches
   end
@@ -16,7 +12,6 @@ module Shared::SweepersModule
   def expire_taxon(taxon)
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    Observation.delay(:priority => USER_INTEGRITY_PRIORITY).expire_components_for_taxon(taxon.id)
     expire_listed_taxa(taxon)
     ctrl = ActionController::Base.new
     ctrl.expire_fragment(FakeView.url_for(:controller => 'taxa', :action => 'photos', :id => taxon.id, :partial => "photo"))

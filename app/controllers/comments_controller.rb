@@ -34,8 +34,8 @@ class CommentsController < ApplicationController
       group(find_options[:group]).paginate(page: find_options[:page]).
       order(find_options[:order])
     @comments = Comment.where("comments.id IN (?)", @paging_comments.map{|c| c.id}).includes(:user).order("comments.id desc")
-    @extra_comments = Comment.where(parent_id: @comments.map(&:parent_id),
-                                    created_at: @comments.last.try(:created_at)).sort_by{|c| c.id}
+    @extra_comments = Comment.where(parent_id: @comments.map(&:parent_id)).
+      where("created_at >= '#{ @comments.last.try(:created_at) }'").sort_by{|c| c.id}
     @comments_by_parent_id = @extra_comments.group_by{|c| c.parent_id}
     respond_to do |format|
       format.html do

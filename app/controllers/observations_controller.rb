@@ -106,9 +106,7 @@ class ObservationsController < ApplicationController
         cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
         cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
         cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
-        Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
-          get_paginated_observations(search_params, find_options).to_a
-        end
+        get_paginated_observations(search_params, find_options).to_a
       else
         get_paginated_observations(search_params, find_options)
       end
@@ -229,13 +227,6 @@ class ObservationsController < ApplicationController
   # GET /observations/1
   # GET /observations/1.xml
   def show
-    if request.format == :html && 
-        params[:partial] == "cached_component" && 
-        fragment_exist?(@observation.component_cache_key(:for_owner => @observation.user_id == current_user.try(:id)))
-      return render(:partial => params[:partial], :object => @observation,
-        :layout => false)
-    end
-    
     @previous = @observation.user.observations.where(["id < ?", @observation.id]).order("id DESC").first
     @prev = @previous
     @next = @observation.user.observations.where(["id > ?", @observation.id]).order("id ASC").first

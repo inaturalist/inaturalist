@@ -15,9 +15,6 @@ class CommentSweeper  < ActionController::Caching::Sweeper
   def sweep_comment(item)
     if item.is_a?(Comment)
       expire_listed_taxon(item.parent) if item.parent.is_a?(ListedTaxon)
-      expire_observation_components(item.parent) if item.parent.is_a?(Observation)
-    else
-      expire_observation_components(item.observation)
     end
   end
 end
