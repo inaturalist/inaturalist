@@ -48,7 +48,7 @@ class Taxon < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
   belongs_to :conservation_status_source, :class_name => "Source"
-  has_and_belongs_to_many :colors, :uniq => true
+  has_and_belongs_to_many :colors, -> { uniq }
   has_many :taxon_descriptions, :dependent => :destroy
   
   accepts_nested_attributes_for :conservation_status_source
