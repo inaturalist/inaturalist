@@ -175,7 +175,7 @@ Rails.application.routes.draw do
   get 'observations/identotron' => 'observations#identotron', :as => :identotron
   post 'observations/update' => 'observations#update', :as => :update_observations
   get 'observations/new/batch_csv' => 'observations#new_batch_csv', :as => :new_observation_batch_csv
-  get 'observations/new/batch' => 'observations#new_batch', :as => :new_observation_batch
+  match 'observations/new/batch' => 'observations#new_batch', :as => :new_observation_batch, :via => [ :get, :post ]
   get 'observations/new/bulk_csv' => 'observations#new_bulk_csv', :as => :new_observation_bulk_csv
   get 'observations/edit/batch' => 'observations#edit_batch', :as => :edit_observation_batch
   delete 'observations/delete_batch' => 'observations#delete_batch', :as => :delete_observation_batch

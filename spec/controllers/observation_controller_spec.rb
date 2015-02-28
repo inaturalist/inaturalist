@@ -299,3 +299,17 @@ describe ObservationsController, "spam" do
     expect(response.response_code).to eq 403
   end
 end
+
+describe ObservationsController, "new_batch" do
+  describe "routes" do
+    before do
+      sign_in User.make!
+    end
+    it "should accept GET requests" do
+      expect(get: "/observations/new/batch").to be_routable
+    end
+    it "should accept POST requests" do
+      expect(post: "/observations/new/batch").to be_routable
+    end
+  end
+end
