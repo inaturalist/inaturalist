@@ -49,6 +49,6 @@ open(url).read.split("\n").each do |line|
 end
 
 delete_count = ObservationLink.where(href_name: "Calflora").where("updated_at < ?", start_time).count
-ObservationLink.delete_all(["href_name = 'Calflora' AND updated_at < ?", start_time]) unless opts[:debug]
+ObservationLink.where("href_name = 'Calflora' AND updated_at < ?", start_time).delete_all unless opts[:debug]
 
 puts "#{new_count} created, #{old_count} updated, #{delete_count} deleted in #{Time.now - start_time} s"
