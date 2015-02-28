@@ -153,7 +153,7 @@ class GuidesController < ApplicationController
         @guide_taxa = @guide_taxa.page(params[:page]).per_page(100)
         @tag_counts = ActsAsTaggableOn::Tag.joins(:taggings).
           joins("JOIN guide_taxa gt ON gt.id = taggings.taggable_id").
-          where("taggings.taggable_type = 'GuideTaxon' AND gt.guide_id = ?", @guide).
+          where("taggings.taggable_type = 'GuideTaxon' AND taggings.context = 'tags' AND gt.guide_id = ?", @guide).
           group("tags.name").
           count
         @nav_tags = ActiveSupport::OrderedHash.new
