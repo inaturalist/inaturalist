@@ -1548,6 +1548,13 @@ describe Observation, "set_out_of_range" do
     o.set_out_of_range
     expect(o.out_of_range).to eq nil
   end
+  it "should set to null if observation changes to have no taxon" do
+    o = without_delay { Observation.make!(:taxon => @taxon, :latitude => 2, :longitude => 2) }
+    expect(o).to be_out_of_range
+    without_delay { o.update_attributes(taxon: nil) }
+    o.reload
+    expect(o.out_of_range).to eq nil
+  end
   it "should set to null if taxon does not have a range" do
     t = Taxon.make!
     o = Observation.make!(:taxon => t)

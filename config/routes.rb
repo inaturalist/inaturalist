@@ -316,7 +316,7 @@ Rails.application.routes.draw do
     end
   end
   # get 'taxa/:id/description' => 'taxa#describe', :as => :describe_taxon
-  get 'taxa/:id/graft' => 'taxa#graft', :as => :graft_taxon
+  patch 'taxa/:id/graft' => 'taxa#graft', :as => :graft_taxon
   get 'taxa/:id/children' => 'taxa#children', :as => :taxon_children
   get 'taxa/:id/children.:format' => 'taxa#children', :as => :formatted_taxon_children
   get 'taxa/:id/photos' => 'taxa#photos', :as => :taxon_photos
@@ -331,7 +331,7 @@ Rails.application.routes.draw do
   get 'taxa/search' => 'taxa#search', :as => :search_taxa
   get 'taxa/search.:format' => 'taxa#search', :as => :formatted_search_taxa
   get 'taxa/:action.:format' => 'taxa#index', :as => :formatted_taxa_action
-  get 'taxa/:id/merge' => 'taxa#merge', :as => :merge_taxon
+  match 'taxa/:id/merge' => 'taxa#merge', :as => :merge_taxon, :via => [ :get, :post ]
   get 'taxa/:id/merge.:format' => 'taxa#merge', :as => :formatted_merge_taxon
   get 'taxa/:id/observation_photos' => 'taxa#observation_photos', :as => :taxon_observation_photos
   get 'taxa/observation_photos' => 'taxa#observation_photos'

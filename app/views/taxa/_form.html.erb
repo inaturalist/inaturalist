@@ -47,7 +47,7 @@
       <% unless taxon.new_record? -%>
         <div class="column span-5">
           <label><%= t(:graft) %></label><br/>
-          <%= link_to "#{t(:graft)} <i>#{taxon.name}</i>".html_safe, graft_taxon_path(taxon), :class => "button" %>
+          <%= link_to "#{t(:graft)} <i>#{taxon.name}</i>".html_safe, graft_taxon_path(taxon), :class => "button", :method => :patch, :data => {:loading_click => true} %>
         </div>
         <div class="last column span-6 description">
           <%= t(:grafting_attemps_to_insert_this_taxon) %>

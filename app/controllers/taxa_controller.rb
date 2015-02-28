@@ -18,7 +18,7 @@ class TaxaController < ApplicationController
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
     :flickr_photos_tagged, :add_places, :synonyms]
   before_filter :curator_required, :only => [:new, :create, :edit, :update,
-    :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms]
+    :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms, :graft]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
