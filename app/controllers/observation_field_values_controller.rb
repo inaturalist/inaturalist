@@ -44,7 +44,7 @@ class ObservationFieldValuesController < ApplicationController
   end
   
   def create
-    @observation_field_value = ObservationFieldValue.new(params[:observation_field_value])
+    @observation_field_value = ObservationFieldValue.new(observation_field_value_params)
     if !@observation_field_value.valid?
       if existing = ObservationFieldValue.where(
           "observation_field_id = ? AND observation_id = ?", 
@@ -68,7 +68,7 @@ class ObservationFieldValuesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @observation_field_value.update_attributes(params[:observation_field_value])
+      if @observation_field_value.update_attributes(observation_field_value_params)
         format.json { render :json => @observation_field_value }
       else
         format.json do
@@ -105,5 +105,17 @@ class ObservationFieldValuesController < ApplicationController
   def load_observation_field_value
     @observation_field_value = ObservationFieldValue.find_by_id(params[:id])
     render_404 unless @observation_field_value
+  end
+
+  def observation_field_value_params(options = {})
+    p = options.blank? ? params : options
+    p = p[:observation_field_value] if p[:observation_field_value]
+    p[:id] = nil if p[:id] == 0
+    p.permit(
+      :id,
+      :observation_id,
+      :observation_field_id,
+      :value
+    )
   end
 end
