@@ -159,6 +159,9 @@ base: &base
 
     memcached: 'localhost'
 
+    # Key for spam filtering with akismet. See http://akismet.com/development/api/
+    rakismet_key: abc123
+
     # facebook:
     #     app_id: 00000000000
     #     app_secret: 09af09af09af09af09af09af09af09af09af09af

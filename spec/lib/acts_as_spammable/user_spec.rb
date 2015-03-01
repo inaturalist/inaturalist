@@ -55,13 +55,23 @@ describe User, "spam" do
 
   it "knows all the spam flags on a users content" do
     u = User.make!
-    u.flags_on_spam_content.count.should == 0
+    expect(u.flags_on_spam_content.count).to eq 0
     3.times do
       obs = Observation.make!(user: u)
       Flag.make!(flaggable: obs, flag: Flag::SPAM)
       Flag.make!(flaggable: obs, flag: "something else")
     end
-    u.flags_on_spam_content.count.should == 3
+    expect(u.flags_on_spam_content.count).to eq 3
+  end
+
+  it "does not check for spam if description is blank" do
+    u = User.make(email: 'foo+bar20150301@inaturalist.org')
+    expect(u.description).to be_blank
+    expect(u).to_not receive(:spam?)
+    u.save
+    expect(u).not_to be_flagged_as_spam
+    expect(u).not_to be_suspended
+    expect(u).not_to be_spammer
   end
 
 end
