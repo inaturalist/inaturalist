@@ -106,9 +106,13 @@ class ObservationsController < ApplicationController
         cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
         cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
         cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
+        # Get the cached filtered observations, and reload them to
+        # make sure they are up-to-date. If the record has been deleted
+        # then reload will fail.
+        # TODO: we still show the record if it doesn't exist - can we catch that?
         Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
           get_paginated_observations(search_params, find_options).to_a
-        end.each(&:reload)
+        end.each{ |o| o.reload rescue nil }
       else
         get_paginated_observations(search_params, find_options)
       end
@@ -772,7 +776,7 @@ class ObservationsController < ApplicationController
         Photo.descendent_classes.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           next unless params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
-          next unless photo = observation.photos.compact.last
+          next unless photo = observation.photos.last
           photo_o = photo.to_observation
           PHOTO_SYNC_ATTRS.each do |a|
             hashed_params[observation.id.to_s] ||= {}

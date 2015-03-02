@@ -743,7 +743,7 @@ module ApplicationHelper
     when "Project"
       image_tag(asset_url(resource.icon.url(:thumb)), options)
     when "ProjectUserInvitation"
-      image_tag(asset_url(resource.icon.url(:thumb)), options.merge(:alt => "#{resource.user.login} icon"))
+      image_tag(asset_url(resource.user.icon.url(:thumb)), options.merge(:alt => "#{resource.user.login} icon"))
     when "AssessmentSection"
       image_tag(asset_url(resource.assessment.project.icon.url(:thumb)), options)
     when "ListedTaxon"

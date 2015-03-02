@@ -48,7 +48,7 @@
 <%-
   # show only the suspended message (no user profile) to everyone but curators.
   # curators should be able to see the profile to change spammer status
-  if (@user.spammer? || @user.suspended?) && !current_user.is_curator? %>
+  if (@user.spammer? || @user.suspended?) && !(current_user && current_user.is_curator?) %>
   <%= render :partial => "suspended" %>
 <%- else %>
   <%= render :partial => "show" %>
