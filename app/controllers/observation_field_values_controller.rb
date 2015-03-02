@@ -51,7 +51,7 @@ class ObservationFieldValuesController < ApplicationController
           @observation_field_value.observation_field_id, 
           @observation_field_value.observation_id).first
         @observation_field_value = existing
-        @observation_field_value.attributes = params[:observation_field_value]
+        @observation_field_value.attributes = observation_field_value_params
       end
     end
     
@@ -110,7 +110,7 @@ class ObservationFieldValuesController < ApplicationController
   def observation_field_value_params(options = {})
     p = options.blank? ? params : options
     p = p[:observation_field_value] if p[:observation_field_value]
-    p[:id] = nil if p[:id] == 0
+    p.delete(:id) if p[:id] == 0
     p.permit(
       :id,
       :observation_id,
