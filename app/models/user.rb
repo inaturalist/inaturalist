@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   include ActsAsSpammable::User
 
-  # acts_as_spammable :fields => [ :description ],
-  #                   :comment_type => "item-description"
+  acts_as_spammable :fields => [ :description ],
+                    :comment_type => "item-description"
 
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
@@ -623,6 +623,10 @@ class User < ActiveRecord::Base
     site_name = options[:site].try(:name) || options[:site_name]
     site_name ||= user.site.try(:name) if user.is_a?(User)
     "header_cache_key_for_#{user_id}_on_#{site_name}"
+  end
+
+  def to_plain_s
+    "User #{login}"
   end
 
 end

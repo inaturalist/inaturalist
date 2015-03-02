@@ -84,12 +84,12 @@ describe "ActsAsSpammable", "ActiveRecord" do
   end
 
   it "knows which models are spammable" do
-    Observation.spammable?.should == true
-    Post.spammable?.should == true
-    User.spammable?.should == true
-    Photo.spammable?.should == false
-    Site.spammable?.should == false
-    Taxon.spammable?.should == false
+    expect( Observation.spammable? ).to be true
+    expect( Post.spammable? ).to be true
+    expect( User.spammable? ).to be true
+    expect( Photo.spammable? ).to be false
+    expect( Site.spammable? ).to be false
+    expect( Taxon.spammable? ).to be false
   end
 
   it "identifies flagged content as known_spam?" do
@@ -129,38 +129,29 @@ describe "ActsAsSpammable", "ActiveRecord" do
 
 
   describe "User Exceptions" do
+    it "checks users for spam when they have descriptions" do
+      u = User.make!
+      expect(Rakismet).to receive(:akismet_call)
+      User.make!(description: "anything")
+    end
+
     it "does not check user life lists that have default values" do
       u = User.make!
-      Rakismet.should_not_receive(:akismet_call)
+      expect(Rakismet).to_not receive(:akismet_call)
       LifeList.make!(user: u, title: nil, description: nil)
     end
 
-    it "gives users a dummy description if they dont have one specified" do
-      User.make!(description: nil).instance_eval(
-        &User.akismet_attrs[:comment_content]).should eq "New user"
+    it "does not users with no description" do
+      u = User.make!
+      expect(Rakismet).to_not receive(:akismet_call)
+      User.make!(description: nil)
     end
 
     it "knows when LifeLists have default values" do
-      LifeList.make!(title: nil, description: nil).default_life_list?.
-        should == true
-      LifeList.make!(title: "Anything", description: nil).default_life_list?.
-        should == false
-    end
-
-    it "will check Users for spam when various fields are modified" do
-      u = User.make!
-      u.flagged_as_spam?.should == false
-      Rakismet.should_receive(:akismet_call).at_least(:once).and_return("true")
-      # setting the place_id should not call Akismet
-      u.place_id = Place.make!.id
-      u.save
-      u.flagged_as_spam?.should == false
-      # reload was not resetting the instance variable @_spam
-      u = User.find(u)
-      # setting login, name, email, or description will call Akismet
-      u.email = "anything@example.com"
-      u.save
-      u.flagged_as_spam?.should == true
+      expect(LifeList.make!(title: nil, description: nil).
+        default_life_list?).to be true
+      expect( LifeList.make!(title: "Anything", description: nil).
+        default_life_list?).to be false
     end
   end
 end

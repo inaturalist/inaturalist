@@ -179,6 +179,7 @@
         t(:wait_file_generation),
       :rel => "nofollow" %>
   </div>
+  <%= render :partial => "shared/flagging", :locals => { :instance => @list } %>
 </div>
 
 <div class="last column span-7">

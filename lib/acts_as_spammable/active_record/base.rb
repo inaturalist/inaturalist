@@ -14,11 +14,7 @@ module ActiveRecord
                        author_email: proc { user_responsible ? user_responsible.email : nil },
                        content: proc {
                          options[:fields].map{ |f|
-                           if self.is_a?(User) && f == :description && self.send(f).blank?
-                             "New user"
-                           else
-                             self.respond_to?(f) ? self.send(f) : nil
-                           end
+                           self.respond_to?(f) ? self.send(f) : nil
                          }.compact.join(". ")
                        },
                        comment_type: options[:comment_type],
@@ -64,12 +60,11 @@ module ActiveRecord
             # if there is any overlap between the fields that could be spam
             # and the fields that have been changed this time around
             # & is the set intersection operator
-            user_changed = self.is_a?(User) && (self.login_changed? || self.email_changed? || self.name_changed?)
-            if (self.changed.map(&:to_sym) & rakismet_fields).any? || user_changed
+            if (self.changed.map(&:to_sym) & rakismet_fields).any?
               # when all the fields we care about are blank, we don't have spam
               # and don't need to call the akismet API. This is also the only
               # place that the akismet API is called outside of specs
-              is_spam = (rakismet_fields.all?{ |f| self.send(f).blank? } && !user_changed) ?
+              is_spam = (rakismet_fields.all?{ |f| self.send(f).blank? }) ?
                 false : spam?
               if is_spam
                 self.add_flag( flag: "spam", user_id: 0 )

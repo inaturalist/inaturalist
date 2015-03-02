@@ -122,7 +122,9 @@ Rails.application.routes.draw do
   get '/users/updates_count' => 'users#updates_count', :as => :updates_count
   get '/users/new_updates' => 'users#new_updates', :as => :new_updates
   
-  resources :users, :except => [:new, :create]
+  resources :users, :except => [:new, :create] do
+    resources :flags
+  end
   # resource :session
   # resources :passwords
   resources :people, :controller => :users, :except => [:create] do
@@ -267,7 +269,9 @@ Rails.application.routes.draw do
   resources :life_lists, :controller => :lists do
     resources :flags
   end
-  resources :check_lists
+  resources :check_lists do
+    resources :flags
+  end
   resources :project_lists, :controller => :lists
   resources :listed_taxa do
     collection do

@@ -8,10 +8,10 @@ class FlagsController < ApplicationController
   # put the parameters for the foreign keys here
   FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment", "Identification",
     "Message", "Photo", "List", "Project", "Guide", "GuideSection", "LifeList",
-    "User" ]
+    "User", "CheckList" ]
   FLAG_MODELS_ID = [ "observation_id","taxon_id","post_id", "comment_id",
     "identification_id", "message_id", "photo_id", "list_id", "project_id",
-    "guide_id", "guide_section_id", "life_list_id", "user_id" ]
+    "guide_id", "guide_section_id", "life_list_id", "user_id", "check_list_id" ]
   PARTIALS = %w(dialog)
 
   def index
