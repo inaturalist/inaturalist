@@ -6,11 +6,12 @@
 #wrapper img {
   float: left;
   width: 100%;
+  max-width: 600px;
 }
 #message {
   position: absolute;
-  top: 5%;
-  left: 35%;
+  top: 10%;
+  left: 33%;
 }
 #message h1 {
   margin-bottom: 0.25em;

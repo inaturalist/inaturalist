@@ -6,6 +6,7 @@
 #wrapper img {
   float: center;
   width: 90%;
+  max-width: 1024px;
 }
 @media all and (max-width: 800px) {
   h1 {

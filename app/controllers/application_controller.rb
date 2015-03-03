@@ -200,8 +200,8 @@ class ApplicationController < ActionController::Base
       request.format = "html"
     end
     respond_to do |format|
-      format.all(:html, :mobile) { render template: "errors/error_404", status: 404, layout: "application" }
       format.json { render json: { error: t(:not_found) }, status: 404 }
+      format.all { render template: "errors/error_404", status: 404, layout: "application" }
     end
   end
   
