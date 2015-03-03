@@ -5,15 +5,41 @@
 }
 #wrapper img {
   float: left;
+  width: 100%;
 }
 #message {
   position: absolute;
-  top: 60px;
-  left: 225px;
+  top: 5%;
+  left: 35%;
 }
 #message h1 {
   margin-bottom: 0.25em;
+  font-size: 300%;
 }
 #message .description {
-  font-size: 160%;
+  font-size: 150%;
+}
+@media all and (max-width: 800px) {
+  #message h1 {
+    font-size: 200%;
+  }
+  #message .description {
+    font-size: 120%;
+  }
+}
+@media all and (max-width: 600px) {
+  #message h1 {
+    font-size: 150%;
+  }
+  #message .description {
+    font-size: 100%;
+  }
+}
+@media all and (max-width: 420px) {
+  #message h1 {
+    font-size: 100%;
+  }
+  #message .description {
+    font-size: 90%;
+  }
 }

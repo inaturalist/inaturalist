@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
   
   has_mobile_fu :ignore_formats => [:tablet, :json, :widget]
   around_filter :catch_missing_mobile_templates
-  
+
+  # many people try random URLs like wordpress login pages with format .php
+  # for any format we do not recognize, make sure we render a proper 404
+  rescue_from ActionController::UnknownFormat, with: :render_404
+
   helper :all # include all helpers, all the time
   protect_from_forgery
   before_filter :whitelist_params
@@ -192,8 +196,11 @@ class ApplicationController < ActionController::Base
   # Return a 404 response with our default 404 page
   #
   def render_404
+    unless request.format.json? || request.format.mobile?
+      request.format = "html"
+    end
     respond_to do |format|
-      format.any(:html, :mobile) { render(template: "errors/error_404", status: 404, layout: "application") }
+      format.all(:html, :mobile) { render template: "errors/error_404", status: 404, layout: "application" }
       format.json { render json: { error: t(:not_found) }, status: 404 }
     end
   end

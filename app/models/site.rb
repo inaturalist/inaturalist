@@ -94,12 +94,12 @@ class Site < ActiveRecord::Base
   preference :about_url, :string
 
   # URL where visitors can get help using the site
-  preference :help_url, :string, :default => "/pages/help"
+  preference :help_url, :string, :default => FakeView.wiki_page_url("help")
 
   preference :feedback_url, :string
-  preference :terms_url, :string, :default => "/pages/terms"
-  preference :privacy_url, :string, :default => "/pages/privacy"
-  preference :developers_url, :string, :default => "/pages/developers"
+  preference :terms_url, :string, :default => FakeView.wiki_page_url("terms")
+  preference :privacy_url, :string, :default => FakeView.wiki_page_url("privacy")
+  preference :developers_url, :string, :default => FakeView.wiki_page_url("developers")
   preference :twitter_url, :string
   preference :facebook_url, :string
   preference :iphone_app_url, :string
