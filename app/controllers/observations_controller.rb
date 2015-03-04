@@ -2421,16 +2421,7 @@ class ObservationsController < ApplicationController
     unless search_params[:order_by].blank?
       # observations.id is a more efficient sql clause, but it's not the name of a field in sphinx
       search_params[:order_by].gsub!(/observations\.id/, 'created_at')
-      
-      if !sphinx_options[:order].blank?
-        sphinx_options[:order] += ", #{search_params[:order_by]}"
-        sphinx_options[:sort_mode] = :extended
-      elsif search_params[:order_by] =~ /\sdesc|asc/i
-        sphinx_options[:order] = search_params[:order_by].split.first.to_sym
-        sphinx_options[:sort_mode] = search_params[:order_by].split.last.downcase.to_sym
-      else
-        sphinx_options[:order] = search_params[:order_by].to_sym
-      end
+      sphinx_options[:order] = search_params[:order_by]
     end
     
     unless search_params[:projects].blank?
