@@ -196,8 +196,10 @@
                   remove_project_observation_path(project, :observation_id => @observation.id),
                   :remote => true,
                   :method => :delete,
-                  "data-type" => "json",
-                  :confirm => t(:are_you_sure_delete_observation_from_project, :project => project.title),
+                  :data => {
+                    :type => "json",
+                    :confirm => t(:are_you_sure_delete_observation_from_project, :project => project.title)
+                  },
                   :class => "removelink pale button",
                   :id => dom_id(project, "removelink"),
                   :style => @project_observations_by_project_id[project.id] ? nil : 'display:none' %>
@@ -223,11 +225,11 @@
         "data-tip" => t('views.observations.copy_tip'),
         "data-tip-show-delay" => 1000 %>
       <%= link_to "<span class='ui-icon ui-icon-trash inlineblock'></span> #{t(:delete)}".html_safe, 
-        @observation, 
-        :confirm => t(:you_sure_delete_this_observation), 
-        :method => :delete, 
-        :id => "delete_observation_button", 
-        :class => "minor delete button" %>
+        @observation,
+        data: { confirm: t(:you_sure_delete_this_observation) },
+        method: :delete,
+        id: "delete_observation_button",
+        'class': "minor delete button" %>
     </div>
   
   <% elsif logged_in? && current_user.is_admin? && @observation.flagged? %>
@@ -614,7 +616,7 @@
               <%= link_to "remove", 
                 remove_project_observation_path(po.project_id, :observation_id => @observation.id),
                 :method => :delete,
-                :confirm => t(:you_sure_remove_this_observation?),
+                :data => {:confirm => t(:you_sure_remove_this_observation?)},
                 :class => "pale button",
                 :style => "float: right; margin: 0" %>
             <% end -%>

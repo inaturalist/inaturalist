@@ -245,6 +245,6 @@
     <% end %>
   </div>
   <%= button_to t(:delete_your_account), current_user, :method => :delete, 
-    :confirm => t(:are_you_sure_want_delete_account), 
+    :data => {:confirm => t(:are_you_sure_want_delete_account)}, 
     :class => "minor delete button" %>
 </div><!-- end side col -->

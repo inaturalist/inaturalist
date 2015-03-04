@@ -10,7 +10,7 @@
       <%= link_to "Edit taxon", edit_taxon_change_taxon_path(:taxon_change => taxon_change, :taxon_change_taxon => taxon_change_taxon), :class => 'button' %>
       <%= link_to 'Remove taxon', taxon_change_taxon_path(taxon_change, taxon_change_taxon),
                   :method => :delete,
-                  :confirm => "Are you sure you want to remove this taxon?",
+                  :data => {:confirm => "Are you sure you want to remove this taxon?"},
                   :class => 'minor delete button' %>
     </div>
   <%- end -%>

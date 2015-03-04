@@ -224,7 +224,7 @@
     <% if taxon.deleteable_by?(current_user) -%>
       <%= link_to t(:delete), taxon,
                   :method => :delete,
-                  :confirm => t(:are_you_sure_want_delete_taxon, :msg => "#{msg}"),
+                  :data => {:confirm => t(:are_you_sure_want_delete_taxon, :msg => "#{msg}")},
                   :class => 'minor delete button' %>
     <% else %>
       <span class="inter meta">

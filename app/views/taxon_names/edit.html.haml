@@ -49,4 +49,4 @@
               %td= l tn.created_at, :format => :default
               %td
                 = link_to t(:edit), tn
-                = link_to t(:delete), tn, :method => :delete, :confirm => t(:are_you_sure?)
+                = link_to t(:delete), tn, :method => :delete, :data => {:confirm => t(:are_you_sure?)}

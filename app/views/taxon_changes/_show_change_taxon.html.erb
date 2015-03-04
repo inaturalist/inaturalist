@@ -29,10 +29,12 @@
         <%= link_to t(:edit_taxon_change), edit_taxon_change_path(taxon_change), :class => "pale inline button" %>
         <% unless taxon_change.committed? -%>
           <%= link_to t(:commit), taxon_change_commit_path(taxon_change),
-            :confirm => t(:are_you_sure_you_want_to_commit_this_change),
+            :data => {
+              :confirm => t(:are_you_sure_you_want_to_commit_this_change),
+              :loading_click => t(:committing)
+            },
             :method => :put,
-            :class => "glaucous inline button",
-            "data-loading-click" => t(:committing) %>
+            :class => "glaucous inline button" %>
         <% end -%>
       <% end %>
       <%= link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), :class => "glaucous inline button" %>

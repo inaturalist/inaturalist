@@ -38,7 +38,8 @@
                 = link_to user_image(pui.user), pui.user
                 = link_to_user pui.user
               %td.nobr=l pui.created_at
-              %td.buttonrow.smallbuttons= link_to t(:delete), pui, :method => :delete, :confirm => t(:are_you_sure?), :class => "inline button glaucous"
+              %td.buttonrow.smallbuttons= link_to t(:delete), pui, :method => :delete, 
+                :data => {:confirm => t(:are_you_sure?)}, :class => "inline button glaucous"
       = will_paginate @project_user_invitations
   .column.span-8.last
     .quiet.box=t 'views.projects.invite.description_html'

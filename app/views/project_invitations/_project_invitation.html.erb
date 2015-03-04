@@ -35,8 +35,10 @@
         <%= link_to (is_me?(observation.user) ? t(:ignore) : t(:uninvite)), pi,
           :remote => remote,
           :method => :delete,
-          "data-type" => remote ? "json" : nil,
-          :confirm => t(:are_you_sure_you_want_to_remove_this_invitation),
+          :data => {
+            :type => remote ? "json" : nil, 
+            :confirm => t(:are_you_sure_you_want_to_remove_this_invitation)
+          },
           :class => "pale button ignorelink",
           "data-loading-click" => "" %>
       <% end -%>

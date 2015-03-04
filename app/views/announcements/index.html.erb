@@ -16,7 +16,7 @@
     <td><%=h announcement.body %></td>
     <td><%= link_to t(:show), announcement %></td>
     <td><%= link_to t(:edit), edit_announcement_path(announcement) %></td>
-    <td><%= link_to t(:destroy), announcement, :confirm => t(:are_you_sure?), :method => :delete %></td>
+    <td><%= link_to t(:destroy), announcement, :data => {:confirm => t(:are_you_sure?)}, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

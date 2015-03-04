@@ -112,7 +112,7 @@
 </table>
 
 <div class="buttonrow">
-  <%= submit_tag t(:merge), :class => 'default button', :confirm => t(:are_you_sure_merge_these_places) %>
+  <%= submit_tag t(:merge), :class => 'default button', :data => {:confirm => t(:are_you_sure_merge_these_places)} %>
   <%= link_to t(:cancel), @place, :class => 'button' %>
 </div>
 <% end %>

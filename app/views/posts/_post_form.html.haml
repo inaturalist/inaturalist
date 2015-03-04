@@ -44,7 +44,11 @@
           = link_to t(:cancel), journal_by_login_path(post.user.login), :class => 'btn btn-link'
         - else
           = f.submit t(:preview), :id => 'post_preview', :class => 'btn' unless post.new_record?
-          = link_to t(:delete), post_path(post), :confirm => t(:are_you_sure_delete_post), :method => :delete, :id => "delete_post_button", :class => "minor delete btn"
+          = link_to t(:delete), post_path(post), 
+            :data => {:confirm => t(:are_you_sure_delete_post)}, 
+            :method => :delete, 
+            :id => "delete_post_button", 
+            :class => "minor delete btn"
     - unless post.parent_type == 'Project'
       .span5
         .field

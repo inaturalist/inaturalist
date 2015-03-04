@@ -27,7 +27,7 @@
 <div class="last column span-11">
   <% if @picasa_identity -%>
     <%= link_to t(:unlink_your_picasa_account), {:action => "unlink"}, :class => "delete button", 
-      :method => :delete, :confirm => t(:are_you_sure_unlink_picasa) %>
+      :method => :delete, :data => {:confirm => t(:are_you_sure_unlink_picasa)} %>
   <% else %>
     <%= link_to t(:link_your_picasa_account), @auth_url, :class => "default button" %>
   <% end -%>

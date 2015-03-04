@@ -65,8 +65,10 @@
   <%= hidden_field_tag :taxon_id, @keeper ? @keeper.id : nil %>
   <%= submit_tag t(:merge), :disabled => true, :class => "default button", 
     :id => "submitbutton",
-    "data-loading-click" => t(:merging),
-    :confirm => t(:are_you_sure_delete_taxon_move_associates, :taxonname => "#{@taxon.name}", :taxonid => "#{@taxon.id}") %>
+    :data => {
+      :loading_click => t(:merging),
+      :confirm => t(:are_you_sure_delete_taxon_move_associates, :taxonname => @taxon.name, :taxonid => @taxon.id)
+    } %>
   <%= link_to_function t(:make_a_taxon_swap_instead?), "makeTaxonSwap()",
     :id => "swapbutton",
     :class => "button disabled" %>

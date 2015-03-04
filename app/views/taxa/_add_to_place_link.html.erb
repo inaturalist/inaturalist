@@ -17,8 +17,10 @@
       <%= link_to t(:remove), listed_taxon_path(listed_taxon), 
         :remote => true,
         :method => :delete,
-        "data-type" => 'json',
-        :confirm => t(:are_you_sure_you_want_to_remove_this_taxon_from_checklist, :place => place.name),
+        :data => {
+          :confirm => t(:are_you_sure_you_want_to_remove_this_taxon_from_checklist, :place => place.name),
+          type: 'json'
+        }
         :id => dom_id(place, 'remove_link'),
         :class => "last button delete pale remove_link",
         :style => 'float: right; margin: 0' %>

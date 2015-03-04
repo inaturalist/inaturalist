@@ -92,7 +92,9 @@
                 = link_to "Change to #{taxon.name} #{taxon.id}", taxon_change_commit_record_path(@taxon_change, @type, record.id, taxon.id), 
                   :method => :put,
                   :class => "glaucous button",
-                  :confirm => "Are you sure you want to update this #{record.class.name.underscore.humanize.downcase}?",
-                  "data-loading-click" => "Updating..."
+                  :data => {
+                    :confirm => "Are you sure you want to update this #{record.class.name.underscore.humanize.downcase}?",
+                    :loading_click => t(:updating)
+                  }
   - if @records.respond_to?(:total_pages)
     = will_paginate @records

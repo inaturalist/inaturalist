@@ -48,7 +48,7 @@
       <%= link_to t(:cancel), @taxon_link.taxon, :class => "button" %>
       <% unless @taxon_link.new_record?  -%>
         <%= link_to t(:delete), @taxon_link, :method => :delete,
-          :confirm => t(:are_you_sure_want_delete_taxon_link),
+          :data => {:confirm => t(:are_you_sure_want_delete_taxon_link)},
           :class => "minor button delete" %>
       <% end -%>
     </div>

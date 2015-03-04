@@ -67,7 +67,8 @@
                 You will lose changes you've made to this form, but you will be able to
                 revert to your saved copy.
               EOT
-            = link_to t(:sync), synclink_url, :class => "small synclink", :title => t(:import_date_time_location_taxonomic), :confirm => confirmation_msg
+            = link_to t(:sync), synclink_url, :class => "small synclink", :title => t(:import_date_time_location_taxonomic), 
+              :data => {:confirm => confirmation_msg}
           %label{:for => input_id}
             = image_tag(thumb_url, :alt => 'Image', :class => "img-rounded")
           %span.small.view_photo= link_to(t(:view_original), photo.native_page_url || photo.becomes(Photo), :target => '_blank')

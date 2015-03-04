@@ -36,7 +36,9 @@
             = link_to t(:preview), messages_path, :class => 'button previewbutton commentpreviewbutton'
             .inter.loading{:style => "display:none;"}=t :loading
             .right
-              = link_to t(:delete_conversation), @message, :method => :delete, :confirm => t(:are_you_sure_you_want_to_delete_this), :class => "delete minor button"
+              = link_to t(:delete_conversation), @message, :method => :delete, 
+                :data => {:confirm => t(:are_you_sure_you_want_to_delete_this)}, 
+                :class => "delete minor button"
               - if @flaggable_message
                 = link_to t(:flag), new_flag_path("message_id" => @flaggable_message), :class => "flaglink minor button"
       %td

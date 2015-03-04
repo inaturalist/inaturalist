@@ -78,7 +78,8 @@
   #actions
     = f.submit t(:save_guide_taxon), :class => "btn btn-primary"
     = link_to t(:cancel), :back, :class => "btn"
-    = link_to t(:remove_from_guide), @guide_taxon, :method => :delete, :confirm => t(:are_you_sure?), :class => "btn btn-danger pull-right"
+    = link_to t(:remove_from_guide), @guide_taxon, :method => :delete, 
+      :data => {:confirm => t(:are_you_sure?)}, :class => "btn btn-danger pull-right"
 
 #import_sections_dialog.modal.fade.hide
   .modal-header

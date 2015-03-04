@@ -91,9 +91,11 @@
         <%= link_to "Change your matching #{@type.humanize.downcase} to this taxon", 
           taxon_change_commit_records_path(taxon_change.id, @type, change_taxon.id),
           :method => :put, 
-          :confirm => "Are you sure you want to change all your #{@type.humanize.downcase} of #{commas_and input_names} to #{change_taxon.name} #{change_taxon.id}?",
-          :class => "glaucous button",
-          "data-loading-click" => "Updating..." %>
+          :data => {
+            :confirm => "Are you sure you want to change all your #{@type.humanize.downcase} of #{commas_and input_names} to #{change_taxon.name} #{change_taxon.id}?",
+            :loading_click => t(:updating)
+          }
+          :class => "glaucous button" %>
       </div>
     <% end -%>
   <% end -%>

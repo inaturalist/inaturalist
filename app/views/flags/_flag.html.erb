@@ -35,7 +35,7 @@
     <% if is_me?(flag.user) || is_curator? -%>
       |
       <%= link_to t(:delete), flag, 
-        :confirm => t(:you_sure_delete_flag?), 
+        :data => {:confirm => t(:you_sure_delete_flag?)}, 
         :method => :delete %>
     <% end -%>
   </span>
