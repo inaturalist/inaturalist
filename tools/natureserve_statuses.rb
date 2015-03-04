@@ -148,7 +148,7 @@ def work_on_uid(uid, options = {})
   url = doc.at('natureServeExplorerURI').text
 
   taxon = options[:taxon]
-  taxon ||= Taxon.active.includes(:taxon_scheme_taxa).where("taxa.name = ? AND taxon_scheme_taxa.source_identifier = ?", name, uid).first
+  taxon ||= Taxon.active.joins(:taxon_scheme_taxa).where("taxa.name = ? AND taxon_scheme_taxa.source_identifier = ?", name, uid).first
   taxon ||= Taxon.single_taxon_for_name(name)
   taxon ||= Taxon.active.find_by_name(name)
   if OPTS[:create_taxa]
