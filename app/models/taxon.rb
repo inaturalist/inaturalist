@@ -34,8 +34,8 @@ class Taxon < ActiveRecord::Base
   has_many :identifications, :dependent => :destroy
   has_many :taxon_links, :dependent => :delete_all 
   has_many :taxon_ranges, :dependent => :destroy
-  has_many :taxon_ranges_without_geom, :class_name => 'TaxonRange', :select => (TaxonRange.column_names - ['geom']).join(', ')
-  has_many :taxon_photos, :dependent => :destroy, :order => "position ASC NULLS LAST, id ASC"
+  has_many :taxon_ranges_without_geom, -> { select(TaxonRange.column_names - ['geom']) }, :class_name => 'TaxonRange'
+  has_many :taxon_photos, -> { order("position ASC NULLS LAST, id ASC") }, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
   has_many :assessments, :dependent => :nullify
   has_many :conservation_statuses, :dependent => :destroy
@@ -48,30 +48,14 @@ class Taxon < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
   belongs_to :conservation_status_source, :class_name => "Source"
-  has_and_belongs_to_many :colors, :uniq => true
+  has_and_belongs_to_many :colors, -> { uniq }
   has_many :taxon_descriptions, :dependent => :destroy
   
   accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :conservation_statuses, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :taxon_photos, :allow_destroy => true
-  
-  define_index do
-    indexes :name
-    indexes taxon_names.name, :as => :names
-    indexes colors.value, :as => :color_values
-    has iconic_taxon_id, :facet => true, :type => :integer
-    has colors(:id), :as => :colors, :facet => true, :type => :multi
-    has is_active
-    # has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi
-    # has listed_taxa(:list_id), :as => :lists, :type => :multi
-    has created_at, ancestry
-    has "REPLACE(ancestry, '/', ',')", :as => :ancestors, :type => :multi
-    has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi, :source => :query
-    has observations_count
-    set_property :delta => :delayed
-  end
-  
+
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon, # if after, it would require an extra save
               :capitalize_name
@@ -264,10 +248,10 @@ class Taxon < ActiveRecord::Base
     joins(sql)
   }
   
-  scope :iconic_taxa, where("taxa.is_iconic = true").includes(:taxon_names)
+  scope :iconic_taxa, -> { where("taxa.is_iconic = true").includes(:taxon_names) }
   scope :of_rank, lambda {|rank| where("taxa.rank = ?", rank)}
   scope :of_rank_equiv, lambda {|rank_level| where("taxa.rank_level = ?", rank_level)}
-  scope :is_locked, where(:locked => true)
+  scope :is_locked, -> { where(:locked => true) }
   scope :containing_lat_lng, lambda {|lat, lng|
     joins(:taxon_ranges).where("ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat)
   }
@@ -299,21 +283,20 @@ class Taxon < ActiveRecord::Base
   scope :colored, lambda {|colors|
     colors = [colors] unless colors.is_a?(Array)
     if colors.first.to_i == 0
-      includes(:colors).where("colors.value IN (?)", colors)
+      joins(:colors).where("colors.value IN (?)", colors)
     else
-      includes(:colors).where("colors.id IN (?)", colors)
+      joins(:colors).where("colors.id IN (?)", colors)
     end
   }
   
-  scope :has_photos, joins(:taxon_photos).where("taxon_photos.id IS NOT NULL")
+  scope :has_photos, -> { joins(:taxon_photos).where("taxon_photos.id IS NOT NULL") }
   scope :among, lambda {|ids| where("taxa.id IN (?)", ids)}
   
   scope :self_and_descendants_of, lambda{|taxon|
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     if taxon
-      conditions = taxon.descendant_conditions
-      conditions[0] += " OR taxa.id = ?"
-      conditions << taxon
+      conditions = taxon.descendant_conditions.to_sql
+      conditions += " OR taxa.id = #{ taxon.id }"
       where(conditions)
     else
       where("1 = 2")
@@ -338,26 +321,26 @@ class Taxon < ActiveRecord::Base
         IUCN_STATUS_VALUES[status]
       end
     end
-    includes(:conservation_statuses).
+    joins(:conservation_statuses).
     where("conservation_statuses.iucn = ?", status.to_i).
     where("(conservation_statuses.place_id = ? OR conservation_statuses.place_id IS NULL)", place)
   }
     
-  scope :threatened, where("conservation_status >= ?", IUCN_NEAR_THREATENED)
+  scope :threatened, -> { where("conservation_status >= ?", IUCN_NEAR_THREATENED) }
   scope :threatened_in_place, lambda {|place|
-    includes(:conservation_statuses).
+    joins(:conservation_statuses).
     where("conservation_statuses.iucn >= ?", IUCN_NEAR_THREATENED).
     where("(conservation_statuses.place_id::text IN (#{ListedTaxon.place_ancestor_ids_sql(place.id)}) OR conservation_statuses.place_id IS NULL)")
   }
   
   scope :from_place, lambda {|place|
-    includes(:listed_taxa).where("listed_taxa.place_id = ?", place)
+    joins(:listed_taxa).where("listed_taxa.place_id = ?", place)
   }
   scope :on_list, lambda {|list|
-    includes(:listed_taxa).where("listed_taxa.list_id = ?", list)
+    joins(:listed_taxa).where("listed_taxa.list_id = ?", list)
   }
-  scope :active, where(:is_active => true)
-  scope :inactive, where(:is_active => false)
+  scope :active, -> { where(:is_active => true) }
+  scope :inactive, -> { where(:is_active => false) }
   
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
@@ -378,7 +361,7 @@ class Taxon < ActiveRecord::Base
   def handle_after_move
     return true unless ancestry_changed?
     set_iconic_taxon
-    return true if new_record?
+    return true if id_changed?
     return true if skip_after_move
     update_listed_taxa
     update_life_lists
@@ -428,10 +411,7 @@ class Taxon < ActiveRecord::Base
       conditions = ["(ancestry LIKE ? OR ancestry = ?)", "#{new_child_ancestry}/%", new_child_ancestry]
       conditions[0] += " AND (iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL)"
       conditions << ancestry_was.to_s.split('/')
-      Taxon.update_all(
-        ["iconic_taxon_id = ?", iconic_taxon_id],
-        conditions
-      )
+      Taxon.where(conditions).update_all(iconic_taxon_id: iconic_taxon_id)
       Taxon.delay(:priority => USER_INTEGRITY_PRIORITY).set_iconic_taxon_for_observations_of(id)
     end
     true
@@ -445,7 +425,7 @@ class Taxon < ActiveRecord::Base
   def self.set_conservation_status(id)
     return unless t = Taxon.find_by_id(id)
     s = t.conservation_statuses.where("place_id IS NULL").map(&:iucn).max
-    Taxon.update_all(["conservation_status = ?", s], ["id = ?", t])
+    Taxon.where(id: t).update_all(conservation_status: s)
   end
   
   def capitalize_name
@@ -667,13 +647,14 @@ class Taxon < ActiveRecord::Base
   #
   def photos_with_backfill(options = {})
     options[:limit] ||= 9
-    chosen_photos = taxon_photos.all(:limit => options[:limit], 
-      :include => :photo, :order => "taxon_photos.position ASC NULLS LAST, taxon_photos.id ASC").map{|tp| tp.photo}
+    chosen_photos = taxon_photos.includes(:photo).
+      order("taxon_photos.position ASC NULLS LAST, taxon_photos.id ASC").
+      limit(options[:limit]).map{ |tp| tp.photo }
     if chosen_photos.size < options[:limit]
-      new_photos = Photo.includes({:taxon_photos => :taxon}).
+      new_photos = Photo.joins({:taxon_photos => :taxon}).
         order("taxon_photos.id ASC").
         limit(options[:limit] - chosen_photos.size).
-        where("taxa.ancestry LIKE '#{ancestry}/#{id}%'").includes()
+        where("taxa.ancestry LIKE '#{ancestry}/#{id}%'")
       if new_photos.size > 0
         new_photos = new_photos.where("photos.id NOT IN (?)", chosen_photos)
       end
@@ -704,7 +685,7 @@ class Taxon < ActiveRecord::Base
     chosen_photos += flickr_chosen_photos.reject do |fp|
       flickr_ids.include?(fp.id)
     end
-    chosen_photos
+    chosen_photos.to_a
   end
   
   def photos_cache_key
@@ -717,14 +698,14 @@ class Taxon < ActiveRecord::Base
   
   def observation_photos(options = {})
     options = {:page => 1}.merge(options).merge(
-      :include => {:observations => :taxon},
       :conditions => ["taxa.id = ?", id]
     )
-    Photo.paginate(options)
+    Photo.joins(observations: :taxon).where(options[:conditions]).
+      paginate(options)
   end
   
   def phylum
-    ancestors.find(:first, :conditions => "rank = 'phylum'")
+    ancestors.where(rank: "phylum").first
   end
   
   validate :taxon_cant_be_its_own_ancestor
@@ -776,7 +757,7 @@ class Taxon < ActiveRecord::Base
   def self.update_listed_taxa_for(taxon, ancestry_was)
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return true unless taxon
-    ListedTaxon.update_all("taxon_ancestor_ids = '#{taxon.ancestry}'", "taxon_id = #{taxon.id}")
+    ListedTaxon.where(taxon_id: taxon.id).update_all(taxon_ancestor_ids: taxon.ancestry)
     old_ancestry = ancestry_was
     old_ancestry = old_ancestry.blank? ? taxon.id : "#{old_ancestry}/#{taxon.id}"
     new_ancestry = taxon.ancestry
@@ -785,10 +766,8 @@ class Taxon < ActiveRecord::Base
        !ListedTaxon.where("taxon_ancestor_ids LIKE ?", "#{old_ancestry}/%").exists?
       return
     end
-    ListedTaxon.update_all(
-      "taxon_ancestor_ids = regexp_replace(taxon_ancestor_ids, '^#{old_ancestry}', '#{new_ancestry}')", 
-      ["taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", old_ancestry.to_s, "#{old_ancestry}/%"]
-    )
+    ListedTaxon.where("taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", old_ancestry.to_s, "#{old_ancestry}/%").
+      update_all("taxon_ancestor_ids = regexp_replace(taxon_ancestor_ids, '^#{old_ancestry}', '#{new_ancestry}')")
   end
   
   def update_life_lists(options = {})
@@ -804,7 +783,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def update_obs_iconic_taxa
-    Observation.update_all(["iconic_taxon_id = ?", iconic_taxon_id], ["taxon_id = ?", id])
+    Observation.where(taxon_id: id).update_all(iconic_taxon_id: iconic_taxon_id)
     true
   end
   
@@ -819,7 +798,7 @@ class Taxon < ActiveRecord::Base
       candidate = candidate.gsub(/[\.\'\?\!\\\/]/, '').downcase
       return if unique_name == candidate
       next if Taxon.exists?(:unique_name => candidate)
-      Taxon.update_all(["unique_name = ?", candidate], ["id = ?", self])
+      Taxon.where(id: id).update_all(unique_name: candidate)
       break
     end
   end
@@ -861,10 +840,10 @@ class Taxon < ActiveRecord::Base
     
     if locale.to_s =~ /^en-?/
       if summary.blank?
-        Taxon.update_all(["wikipedia_summary = ?", Date.today], ["id = ?", self])
+        Taxon.where(id: self).update_all(wikipedia_summary: Date.today)
         return nil
       else
-        Taxon.update_all(["wikipedia_summary = ?", summary], ["id = ?", self])
+        Taxon.where(id: self).update_all(wikipedia_summary: summary)
       end
     else
       td = taxon_descriptions.where(:locale => locale).first
@@ -878,15 +857,16 @@ class Taxon < ActiveRecord::Base
   
   def merge(reject)
     raise "Can't merge a taxon with itself" if reject.id == self.id
-    reject_taxon_names = reject.taxon_names.all
-    reject_taxon_scheme_taxa = reject.taxon_scheme_taxa.all
+    reject_taxon_names = reject.taxon_names.all.to_a
+    reject_taxon_scheme_taxa = reject.taxon_scheme_taxa.all.to_a
     # otherwise it will screw up merge_has_many_associations
     TaxonAncestor.where(:taxon_id => reject.id).delete_all
     TaxonAncestor.where(:ancestor_taxon_id => reject.id).delete_all
     merge_has_many_associations(reject)
     
     # Merge ListRules and other polymorphic assocs
-    ListRule.update_all(["operand_id = ?", id], ["operand_id = ? AND operand_type = ?", reject.id, Taxon.to_s])
+    ListRule.where(operand_id: reject.id, operand_type: Taxon.to_s).
+      update_all(operand_id: id)
     
     # Keep reject colors if keeper has none
     self.colors << reject.colors if colors.blank?
@@ -1094,10 +1074,8 @@ class Taxon < ActiveRecord::Base
     old_ancestry = old_ancestry.blank? ? id : "#{old_ancestry}/#{id}"
     new_ancestry = send(ancestry_column)
     new_ancestry = new_ancestry.blank? ? id : "#{new_ancestry}/#{id}"
-    self.class.base_class.update_all(
-      "#{ancestry_column} = regexp_replace(#{ancestry_column}, '^#{old_ancestry}', '#{new_ancestry}')", 
-      descendant_conditions
-    )
+    self.class.base_class.where(descendant_conditions).update_all(
+      "#{ancestry_column} = regexp_replace(#{ancestry_column}, '^#{old_ancestry}', '#{new_ancestry}')")
     Taxon.delay(:priority => INTEGRITY_PRIORITY).update_descendants_with_new_ancestry(id, child_ancestry)
     true
   end
@@ -1106,7 +1084,7 @@ class Taxon < ActiveRecord::Base
     @default_photo ||= if taxon_photos.loaded?
       taxon_photos.sort_by{|tp| tp.position || tp.id}.first.try(:photo)
     else
-      taxon_photos.first(:include => [:photo]).try(:photo)
+      taxon_photos.includes(:photo).first.try(:photo)
     end
     @default_photo
   end
@@ -1115,15 +1093,17 @@ class Taxon < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
     Rails.logger.info "[INFO #{Time.now}] updating descendants of #{taxon}"
-    ThinkingSphinx.deltas_enabled = false
-    do_in_batches(:conditions => taxon.descendant_conditions) do |d|
-      d.without_ancestry_callbacks do
-        d.update_life_lists(:skip_ancestors => true)
-        d.set_iconic_taxon
-        d.update_obs_iconic_taxa
+    ThinkingSphinx::Deltas.suspend!
+    Taxon.where(taxon.descendant_conditions).find_in_batches do |batch|
+      batch.each do |t|
+        t.without_ancestry_callbacks do
+          t.update_life_lists(:skip_ancestors => true)
+          t.set_iconic_taxon
+          t.update_obs_iconic_taxa
+        end
       end
     end
-    ThinkingSphinx.deltas_enabled = true
+    ThinkingSphinx::Deltas.resume!
   end
   
   def apply_orphan_strategy
@@ -1139,9 +1119,11 @@ class Taxon < ActiveRecord::Base
       "ancestry = ? OR ancestry LIKE ?", 
       child_ancestry_was, "#{child_ancestry_was}/%"
     ]
-    do_in_batches(:conditions => descendant_conditions) do |d|
-      d.without_ancestry_callbacks do
-        d.destroy
+    Taxon.where(descendant_conditions).find_in_batches do |batch|
+      batch.each do |t|
+        t.without_ancestry_callbacks do
+          t.destroy
+        end
       end
     end
   end
@@ -1309,7 +1291,7 @@ class Taxon < ActiveRecord::Base
   
   # Convert an array of strings to taxa
   def self.tags_to_taxa(tags, options = {})
-    scope = TaxonName.includes(:taxon).scoped
+    scope = TaxonName.joins(:taxon)
     scope = scope.where(:lexicon => options[:lexicon]) if options[:lexicon]
     scope = scope.where("taxon_names.is_valid = ?", true) if options[:valid]
     names = tags.map do |tag|
@@ -1338,11 +1320,11 @@ class Taxon < ActiveRecord::Base
   end
   
   def self.find_duplicates
-    duplicate_counts = Taxon.count(:group => "name", :having => "count(*) > 1")
+    duplicate_counts = Taxon.group(:name).having("count(*) > 1").count
     num_keepers = 0
     num_rejects = 0
     for name in duplicate_counts.keys
-      taxa = Taxon.all(:conditions => ["name = ?", name])
+      taxa = Taxon.where(name: name)
       Rails.logger.info "[INFO] Found #{taxa.size} duplicates for #{name}: #{taxa.map(&:id).join(', ')}"
       taxa.group_by(&:parent_id).each do |parent_id, child_taxa|
         Rails.logger.info "[INFO] Found #{child_taxa.size} duplicates within #{parent_id}: #{child_taxa.map(&:id).join(', ')}"
@@ -1359,7 +1341,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def self.rebuild_without_callbacks
-    ThinkingSphinx.deltas_enabled = false
+    ThinkingSphinx::Deltas.suspend!
     before_validation.clear
     before_save.clear
     after_save.clear
@@ -1367,14 +1349,14 @@ class Taxon < ActiveRecord::Base
     validates_presence_of.clear
     validates_uniqueness_of.clear
     restore_ancestry_integrity!
-    ThinkingSphinx.deltas_enabled = true
+    ThinkingSphinx::Deltas.resume!
   end
   
   # Do something without all the callbacks.  This disables all callbacks and
   # validations and doesn't restore them, so IT SHOULD NEVER BE CALLED BY THE
   # APP!  The process should end after this is done.
   def self.without_callbacks(&block)
-    ThinkingSphinx.deltas_enabled = false
+    ThinkingSphinx::Deltas.suspend!
     before_validation.clear
     before_save.clear
     after_save.clear
@@ -1387,16 +1369,13 @@ class Taxon < ActiveRecord::Base
   def self.set_iconic_taxon_for_observations_of(taxon)
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    Observation.update_all(
-      ["iconic_taxon_id = ?", taxon.iconic_taxon_id],
-      ["taxon_id = ?", taxon.id]
-    )
+    Observation.where(taxon_id: taxon.id).update_all(iconic_taxon_id: taxon.iconic_taxon_id)
     sql = <<-SQL
       UPDATE observations SET iconic_taxon_id = #{taxon.iconic_taxon_id || 'NULL'}
       FROM taxa
       WHERE 
         observations.taxon_id = taxa.id AND 
-        (#{Taxon.send :sanitize_sql, taxon.descendant_conditions})
+        (#{Taxon.send :sanitize_sql, taxon.descendant_conditions.to_sql})
     SQL
     descendant_iconic_taxon_ids = taxon.descendants.iconic_taxa.select(:id).map(&:id)
     unless descendant_iconic_taxon_ids.blank?
@@ -1453,8 +1432,8 @@ class Taxon < ActiveRecord::Base
     return if name.blank?
     return if PROBLEM_NAMES.include?(name.downcase)
     name = normalize_name(name)
-    scope = TaxonName.limit(10).includes(:taxon).
-      where("lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase).scoped
+    scope = TaxonName.limit(10).joins(:taxon).
+      where("lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase)
     scope = scope.where(options[:ancestor].descendant_conditions) if options[:ancestor]
     if options[:iconic_taxa]
       iconic_taxon_ids = options[:iconic_taxa].map do |it|
@@ -1468,25 +1447,26 @@ class Taxon < ActiveRecord::Base
       end.compact
       scope = scope.where("taxa.iconic_taxon_id IN (?)", iconic_taxon_ids)
     end
-    taxon_names = scope.all
+    taxon_names = log_timer { scope.to_a }
     return taxon_names.first.taxon if taxon_names.size == 1
     taxa = taxon_names.map{|tn| tn.taxon}.compact
-    if taxa.blank?
-      begin
-        q, match_mode = Taxon.search_query(name)
-        search_results = Taxon.search(q,
-          :include => [:taxon_names, :photos],
-          :field_weights => {:name => 2},
-          :match_mode => match_mode,
-          :order => :observations_count,
-          :sort_mode => :desc
-        ).compact
-        taxa = search_results.select{|t| t.taxon_names.detect{|tn| tn.name.downcase == name}}
-        taxa = search_results if taxa.blank? && search_results.size == 1 && search_results.first.taxon_names.detect{|tn| tn.name.downcase == name}
-      rescue Riddle::ConnectionError, Riddle::ResponseError, ThinkingSphinx::SphinxError => e
-        return
-      end
-    end
+    # TODO restore when we bring back sphinx
+    # if taxa.blank?
+    #   begin
+    #     q, match_mode = Taxon.search_query(name)
+    #     search_results = Taxon.search(q,
+    #       :include => [:taxon_names, :photos],
+    #       :field_weights => {:name => 2},
+    #       :match_mode => match_mode,
+    #       :order => :observations_count,
+    #       :sort_mode => :desc
+    #     ).compact
+    #     taxa = search_results.select{|t| t.taxon_names.detect{|tn| tn.name.downcase == name}}
+    #     taxa = search_results if taxa.blank? && search_results.size == 1 && search_results.first.taxon_names.detect{|tn| tn.name.downcase == name}
+    #   rescue Riddle::ConnectionError, Riddle::ResponseError, ThinkingSphinx::SphinxError => e
+    #     return
+    #   end
+    # end
     sorted = Taxon.sort_by_ancestry(taxa.compact)
     return if sorted.blank?
     return sorted.first if sorted.size == 1
@@ -1549,7 +1529,7 @@ class Taxon < ActiveRecord::Base
   def self.update_observation_counts(options = {})
     scope = if options[:ancestor]
       if taxon = (options[:ancestor].is_a?(Taxon) ? options[:ancestor] : Taxon.find_by_id(options[:ancestor]))
-        taxon.descendants.scoped
+        taxon.descendants
       end
     elsif options[:taxon_ids]
       taxa = Taxon.where("id IN (?)", options[:taxon_ids])
@@ -1557,12 +1537,12 @@ class Taxon < ActiveRecord::Base
     elsif options[:scope]
       options[:scope]
     else
-      Taxon.scoped
+      Taxon.all
     end
-    return if scope.blank?
+    return if scope.count == 0
     scope = scope.select("id, ancestry")
     scope.find_each do |t|
-      Taxon.update_all(["observations_count = ?", Observation.of(t).count], ["id = ?", t.id])
+      Taxon.where(id: t.id).update_all(observations_count: Observation.of(t).count)
     end
   end
   

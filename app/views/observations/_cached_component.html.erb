@@ -1,17 +1,9 @@
-<%- 
+<%-
+  cached_component ||= nil
   observation ||= cached_component
   return unless observation
   site_id = @site.try(:id) || CONFIG.site_id
   site_id ||= current_user.site_id if current_user
 -%>
-<% if logged_in? && current_user.id == observation.user_id -%>
-  <% cache(observation.component_cache_key(:for_owner => true, :locale => I18n.locale, :site_id => site_id)) do %>
-    <%= render :partial => 'observations/observation_component', 
-               :locals => {:observation => observation} %>
-  <% end %>
-<% else %>
-  <% cache(observation.component_cache_key(:locale => I18n.locale, :site_id => site_id)) do %>
-    <%= render :partial => 'observations/observation_component', 
-               :locals => {:observation => observation} %>
-  <% end %>
-<% end %>
+<%= render :partial => 'observations/observation_component',
+           :locals => {:observation => observation} %>

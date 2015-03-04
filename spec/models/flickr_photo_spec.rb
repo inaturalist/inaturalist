@@ -166,7 +166,12 @@ def setup_flickr_stuff
 end
 
 def pending_flickr_setup(&block)
-  pending("Flickr setup failed: #{@flickr_setup_exception}", :if => @flickr_setup_exception, &block)
+  if @flickr_setup_exception
+    pending("Flickr setup failed: #{@flickr_setup_exception}")
+    fail
+    return
+  end
+  block.call
 end
 
 FLICKR_PHOTO_JSON = <<-JSON

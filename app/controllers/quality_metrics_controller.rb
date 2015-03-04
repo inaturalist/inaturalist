@@ -4,7 +4,7 @@ class QualityMetricsController < ApplicationController
   before_filter :load_observation
   
   def vote
-    if @existing = @observation.quality_metrics.first(:conditions => {:user_id => current_user.id, :metric => params[:metric]})
+    if @existing = @observation.quality_metrics.where(user_id: current_user.id, metric: params[:metric]).first
       @existing.destroy
     end
     

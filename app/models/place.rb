@@ -17,8 +17,7 @@ class Place < ActiveRecord::Base
   has_many :users, :inverse_of => :place, :dependent => :nullify
   has_many :observations_places, :dependent => :destroy
   has_one :place_geometry, :dependent => :destroy
-  has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
-    :select => (PlaceGeometry.column_names - ['geom']).join(', ')
+  has_one :place_geometry_without_geom, -> { select(PlaceGeometry.column_names - ['geom']) }, :class_name => 'PlaceGeometry'
   
   before_save :calculate_bbox_area, :set_display_name, :set_admin_level
   after_save :check_default_check_list
@@ -45,7 +44,7 @@ class Place < ActiveRecord::Base
   preference :check_lists, :boolean, :default => true
 
   extend FriendlyId
-  friendly_id :name, :use => :history, :reserved_words => PlacesController.action_methods.to_a
+  friendly_id :name, :use => [ :slugged, :finders ], :reserved_words => PlacesController.action_methods.to_a
   def normalize_friendly_id(string)
     super_candidate = super(string)
     candidate = display_name.to_s.split(',').first.parameterize
@@ -59,31 +58,7 @@ class Place < ActiveRecord::Base
   # Place to put a GeoPlanet response to avoid re-querying
   attr_accessor :geoplanet_response
   attr_accessor :html
-  
-  define_index do
-    indexes name
-    indexes display_name
-    has place_type
-    
-    # HACK: TS doesn't seem to include attributes in the GROUP BY correctly
-    # for Postgres when using custom SQL attr definitions.  It may or may not 
-    # be fixed in more up-to-date versions, but the issue has been raised: 
-    # http://groups.google.com/group/thinking-sphinx/browse_thread/thread/e8397477b201d1e4
-    has :latitude, :as => :fake_latitude
-    has :longitude, :as => :fake_longitude
-    # END HACK
 
-    # This is super brittle: the sphinx doc identifier here is based on
-    # ThinkingSphinx.unique_id_expression, which I can't get to work here, so
-    # if the number of indexed models changes this will break.
-    has "SELECT places.id * 4::INT8 + 1 AS id, regexp_split_to_table(id::text || (CASE WHEN ancestry IS NULL THEN '' ELSE '/' || ancestry END), '/') AS place_id 
-  FROM places", :as => :place_ids, :source => :query
-    
-    has 'RADIANS(latitude)', :as => :latitude,  :type => :float
-    has 'RADIANS(longitude)', :as => :longitude,  :type => :float
-    set_property :delta => :delayed
-  end
-  
   FLICKR_PLACE_TYPES = ActiveSupport::OrderedHash.new
   FLICKR_PLACE_TYPES[:country]   = 12
   FLICKR_PLACE_TYPES[:region]    = 8 # Flickr regions are equiv to GeoPlanet "states", at least in the US
@@ -103,7 +78,6 @@ class Place < ActiveRecord::Base
     1 => 'Building',
     2 => 'Street Segment',
     3 => 'Nearby Building',
-    4 => 'Street',
     5 => 'Intersection',
     6 => 'Street',
     7 => 'Town',
@@ -148,7 +122,7 @@ class Place < ActiveRecord::Base
   PLACE_TYPES.each do |code, type|
     PLACE_TYPE_CODES[type.downcase] = code
     const_set type.upcase.gsub(/\W/, '_'), code
-    scope type.pluralize.underscore.to_sym, where("place_type = ?", code)
+    scope type.pluralize.underscore.to_sym, -> { where("place_type = ?", code) }
   end
 
   COUNTRY_LEVEL = 0
@@ -209,7 +183,7 @@ class Place < ActiveRecord::Base
   }
 
   scope :with_establishment_means, lambda {|establishment_means|
-    scope = joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id").scoped
+    scope = joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id")
     case establishment_means
     when ListedTaxon::NATIVE
       scope.where("listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS)
@@ -234,8 +208,8 @@ class Place < ActiveRecord::Base
     where("place_type IN (?)", place_types)
   }
 
-  scope :with_geom, joins(:place_geometry).where("place_geometries.id IS NOT NULL")
-  scope :straddles_date_line, where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)")
+  scope :with_geom, -> { joins(:place_geometry).where("place_geometries.id IS NOT NULL") }
+  scope :straddles_date_line, -> { where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)") }
   
   def to_s
     "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 
@@ -280,7 +254,7 @@ class Place < ActiveRecord::Base
     end
     new_display_name = [new_name, *ancestor_names].join(', ')
     unless new_record?
-      Place.update_all(["display_name = ?", new_display_name], ["id = ?", id])
+      Place.where(id: id).update_all(display_name: new_display_name)
     end
     
     new_display_name
@@ -450,8 +424,8 @@ class Place < ActiveRecord::Base
   
   # Update the associated place_geometry or create a new one
   def save_geom(geom, other_attrs = {})
+    geom = RGeo::WKRep::WKBParser.new.parse(geom.as_wkb) if geom.is_a?(GeoRuby::SimpleFeatures::Geometry)
     other_attrs.merge!(:geom => geom, :place => self)
-    
     begin
       if place_geometry
         self.place_geometry.update_attributes(other_attrs)
@@ -469,9 +443,9 @@ class Place < ActiveRecord::Base
   def append_geom(geom, other_attrs = {})
     new_geom = geom
     self.place_geometry.reload
-    if self.place_geometry
-      new_geom = MultiPolygon.from_geometries(
-        self.place_geometry.geom.geometries + geom.geometries)
+    if place_geometry
+      f = place_geometry.geom.factory
+      new_geom = f.multi_polygon([place_geometry.geom.union(geom)])
     end
     self.save_geom(new_geom, other_attrs)
   end
@@ -479,12 +453,12 @@ class Place < ActiveRecord::Base
   # Update this place's bbox from a geometry.  Note this skips validations, 
   # but explicitly recalculates the bbox area
   def update_bbox_from_geom(geom)
-    self.longitude = geom.envelope.center.x
-    self.latitude = geom.envelope.center.y
+    self.longitude = geom.centroid.x
+    self.latitude = geom.centroid.y
     self.swlat = geom.envelope.lower_corner.y
     self.nelat = geom.envelope.upper_corner.y
     if geom.spans_dateline?
-      self.longitude = geom.envelope.center.x + 180*(geom.envelope.center.x > 0 ? -1 : 1)
+      self.longitude = geom.envelope.centroid.x + 180*(geom.envelope.centroid.x > 0 ? -1 : 1)
       self.swlng = geom.points.map(&:x).select{|x| x > 0}.min
       self.nelng = geom.points.map(&:x).select{|x| x < 0}.max
     else
@@ -549,14 +523,12 @@ class Place < ActiveRecord::Base
       existing = nil
       existing = Place.find_by_woeid(new_place.woeid) if new_place.woeid
       if new_place.source_filename && new_place.source_identifier
-        existing ||= Place.first(:conditions => [
-          "source_filename = ? AND source_identifier = ?", 
-          new_place.source_filename, new_place.source_identifier])
+        existing ||= Place.where(source_filename: new_place.source_filename,
+          source_identifier: new_place.source_identifier).first
       end
       if new_place.source_filename && new_place.source_name
-        existing ||= Place.first(:conditions => [
-          "source_filename = ? AND source_name = ?", 
-          new_place.source_filename, new_place.source_name])
+        existing ||= Place.where(source_filename: new_place.source_filename,
+          source_name: new_place.source_name).first
       end
       if options[:ancestor_place]
         existing ||= options[:ancestor_place].descendants.
@@ -688,10 +660,8 @@ class Place < ActiveRecord::Base
     
     # Move the mergee's listed_taxa to the target's default check list
     additional_taxon_ids = mergee.taxon_ids - self.taxon_ids
-    ListedTaxon.update_all(
-      ["place_id = ?, list_id = ?", self, self.check_list_id],
-      ["place_id = ? AND taxon_id in (?)", mergee, additional_taxon_ids]
-    )
+    ListedTaxon.where(["place_id = ? AND taxon_id in (?)", mergee, additional_taxon_ids]).
+      update_all(place_id: self, list_id: self.check_list.id)
     
     # Merge the geometries
     if self.place_geometry && mergee.place_geometry

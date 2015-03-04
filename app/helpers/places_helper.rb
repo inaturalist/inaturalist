@@ -33,7 +33,6 @@ module PlacesHelper
     return if CONFIG.google.blank? || CONFIG.google.simple_key.blank?
     url_for_options = {
       :host => 'maps.google.com',
-      :port => '',
       :controller => 'maps/api/staticmap',
       :center => "#{place.latitude},#{place.longitude}",
       :zoom => 15,

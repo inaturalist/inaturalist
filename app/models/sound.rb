@@ -122,7 +122,7 @@ class Sound < ActiveRecord::Base
   
   def update_all_licenses
     return true unless [true, "1", "true"].include?(@make_licenses_same)
-    Sound.update_all(["license = ?", license], ["user_id = ?", user_id])
+    Sound.where(user_id: user_id).update_all(license: license)
     true
   end
 

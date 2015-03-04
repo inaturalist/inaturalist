@@ -6,6 +6,13 @@ module ActionController
         before_filter :block_spammers, only: options[:only],
           except: options[:except]
 
+        define_method(:block_if_spammer) do |obj|
+          if obj.is_a?(User) && obj.spammer?
+            if_spammer_set_flash_message(obj) && return
+            render(template: "users/_suspended", status: 403, layout: "application")
+          end
+        end
+
         # if `obj` is spam, a spammer, or something created by a spammer
         # then render the corresponding 4xx page.
         # return the value of obj.spam_or_owned_by_spammer?
@@ -13,17 +20,11 @@ module ActionController
           return unless obj
           user_to_check = obj.is_a?(User) ? obj : obj.user
           if obj.owned_by_spammer?
-            if current_user == user_to_check || (current_user && current_user.is_curator?)
-              set_spam_flash_error
-              return false
-            end
+            if_spammer_set_flash_message(user_to_check) && return
             # all spammers are suspended, so show the suspended message page
             render(template: "users/_suspended", status: 403, layout: "application")
           elsif obj.known_spam?
-            if current_user == user_to_check|| (current_user && current_user.is_curator?)
-              set_spam_flash_error
-              return false
-            end
+            if_spammer_set_flash_message(user_to_check) && return
             # if the user isn't a spammer yet, but the content is,
             # then show the spam message page
             render_spam_notice
@@ -44,8 +45,15 @@ module ActionController
         end
 
         define_method(:set_spam_flash_error) do
-          flash[:warning_title] = t("views.shared.spam.this_has_been_flagged_as_spam")
-          flash[:warning] = t("views.shared.spam.message_for_owner_and_curators_html", email: CONFIG.help_email)
+          flash.now[:warning_title] = t("views.shared.spam.this_has_been_flagged_as_spam")
+          flash.now[:warning] = t("views.shared.spam.message_for_owner_and_curators_html", email: CONFIG.help_email)
+        end
+
+        define_method(:if_spammer_set_flash_message) do |user_to_check|
+          if current_user == user_to_check || (current_user && current_user.is_curator?)
+            set_spam_flash_error
+            return true
+          end
         end
       end
 

@@ -31,7 +31,7 @@ describe Update, "user_viewed_updates" do
     new_update = Update.make!(:subscriber => u)
     stamp = Time.now
     Update.user_viewed_updates([new_update])
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /Update.*sweep_for_user.*#{u.id}/m}.size.should eq(1)
   end
 
@@ -42,7 +42,7 @@ describe Update, "user_viewed_updates" do
     stamp = Time.now
     Update.user_viewed_updates([new_update])
     Update.user_viewed_updates([new_update])
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /Update.*sweep_for_user.*#{u.id}/m}.size.should eq(1)
   end
   

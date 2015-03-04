@@ -7,10 +7,11 @@ class FlagsController < ApplicationController
   
   # put the parameters for the foreign keys here
   FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment", "Identification",
-    "Message", "Photo", "List", "Project", "Guide", "GuideSection", "LifeList" ]
+    "Message", "Photo", "List", "Project", "Guide", "GuideSection", "LifeList",
+    "User", "CheckList" ]
   FLAG_MODELS_ID = [ "observation_id","taxon_id","post_id", "comment_id",
     "identification_id", "message_id", "photo_id", "list_id", "project_id",
-    "guide_id", "guide_section_id", "life_list_id" ]
+    "guide_id", "guide_section_id", "life_list_id", "user_id", "check_list_id" ]
   PARTIALS = %w(dialog)
 
   def index
@@ -18,8 +19,9 @@ class FlagsController < ApplicationController
       # The default acts_as_flaggable index route
       @object = @model.find(params[@param])
       @object = @object.becomes(Photo) if @object.is_a?(Photo)
-      @flags = @object.flags.paginate(:page => params[:page],
-        :include => [:user, :resolver], :order => "id desc")
+      @flags = @object.flags.includes(:user, :resolver).
+        paginate(page: params[:page]).
+        order(id: :desc)
       @unresolved = @flags.select {|f| not f.resolved }
       @resolved = @flags.select {|f| f.resolved }
     else
@@ -60,7 +62,7 @@ class FlagsController < ApplicationController
     @object = @model.find(params[@param])
     @flag.flaggable ||= @object
     @flag.flag ||= "spam" if @object && !@object.is_a?(Taxon)
-    @flags = @object.flags.all(:include => :user, :conditions => {:resolved => false})
+    @flags = @object.flags.where(resolved: false).includes(:user)
     if PARTIALS.include?(params[:partial])
       render :layout => false, :partial => params[:partial]
       return
@@ -125,7 +127,7 @@ class FlagsController < ApplicationController
   private
   
   def load_flag
-    render_404 unless @flag = Flag.find_by_id(params[:id] || params[:flag_id], :include => [:user, :resolver])
+    render_404 unless @flag = Flag.where(id: params[:id] || params[:flag_id]).includes(:user, :resolver).first
   end
   
   def set_model

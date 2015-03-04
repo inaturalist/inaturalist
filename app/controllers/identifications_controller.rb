@@ -1,5 +1,5 @@
 class IdentificationsController < ApplicationController
-  doorkeeper_for :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!, :only => [ :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :except => [:by_login], :unless => lambda { authenticated_with_oauth? }
   before_filter :load_user_by_login, :only => [:by_login]
   load_only = [ :show, :edit, :update, :destroy ]
@@ -16,23 +16,18 @@ class IdentificationsController < ApplicationController
   end
   
   def by_login
-    block_if_spam(@selected_user) && return
+    block_if_spammer(@selected_user) && return
     scope = @selected_user.identifications.for_others.
-      includes(:observation, :taxon).
-      order("identifications.created_at DESC").
-      scoped
+      joins(:observation, :taxon).
+      order("identifications.created_at DESC")
     unless params[:on].blank?
       scope = scope.on(params[:on])
     end
     @identifications = scope.page(params[:page]).per_page(20)
     @identifications_by_obs_id = @identifications.index_by(&:observation_id)
     @observations = @identifications.collect(&:observation)
-    @other_ids = Identification.all(
-      :conditions => [
-        "observation_id in (?) AND user_id != ?", @observations, @selected_user
-      ],
-      :include => [:observation, :taxon]
-    )
+    @other_ids = Identification.where(observation_id: @observations).where("user_id != ?", @selected_user).
+      includes(:observation, :taxon)
     @other_id_stats = {}
     @other_ids.group_by(&:observation).each do |obs, ids|
       user_ident = @identifications_by_obs_id[obs.id]

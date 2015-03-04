@@ -127,14 +127,16 @@
   </div>
 
   <% if project.place && project.place.check_list %>
-    <fieldset class="unobserved-listings">
-      <legend><%=t :unobserved_listings %></legend>
-      <p class="description">
-        <%=t :select_how_unobserved_listings_are_displayed %>
-      </p>
-      <%= f.radio_button("show_from_place", false, { checked: !project.show_from_place.present?, label: t(:display_listings_added_by_curators), :label_after => true})%>
-      <%= f.radio_button("show_from_place", true, { checked: project.show_from_place.present?, label: t(:display_listings_from_place), :label_after => true})%>
-    </fieldset>
+    <div class="column span-24">
+      <fieldset class="unobserved-listings">
+        <legend><%=t :unobserved_listings %></legend>
+        <p class="description">
+          <%=t :select_how_unobserved_listings_are_displayed %>
+        </p>
+        <%= f.radio_button("show_from_place", false, { checked: !project.show_from_place.present?, label: t(:display_listings_added_by_curators), :label_after => true})%>
+        <%= f.radio_button("show_from_place", true, { checked: project.show_from_place.present?, label: t(:display_listings_from_place), :label_after => true})%>
+      </fieldset>
+    </div>
   <% end %>
 
   <fieldset class="observationrules">
@@ -147,7 +149,8 @@
       <%= f.fields_for :project_observation_rules do |por| %>
         <li>
           <%= por.object.terms %>
-          <%= por.hidden_field :_destroy, :class => "destroyer" %>
+          <%= por.hidden_field :id, label: false %>
+          <%= por.hidden_field :_destroy, :class => "destroyer", label: false %>
           <%= link_to_function t(:remove),
             "$(this).parent().fadeTo('fast', 0.5).css('text-decoration', 'line-through');" +
             "$(this).parent().find('.destroyer').val(true)" %>

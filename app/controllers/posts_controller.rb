@@ -10,8 +10,12 @@ class PostsController < ApplicationController
   layout "bootstrap"
   
   def index
-    scope = @parent.is_a?(User) ? @parent.journal_posts.scoped : @parent.posts.scoped
-    block_if_spam(@parent) && return
+    scope = @parent.is_a?(User) ? @parent.journal_posts : @parent.posts
+    if @parent.is_a?(User)
+      block_if_spammer(@parent) && return
+    else
+      block_if_spam(@parent) && return
+    end
     @posts = scope.not_flagged_as_spam.published.page(params[:page]).
       per_page(10).order("published_at DESC")
     
@@ -119,13 +123,12 @@ class PostsController < ApplicationController
     if params[:observations]
       params[:observations] = params[:observations].map(&:to_i)
       params[:observations] = ((params[:observations] & @post.observation_ids) + params[:observations]).uniq
-      @observations = Observation.by(current_user).all(
-        :conditions => ["id IN (?)", params[:observations]])
+      @observations = Observation.by(current_user).where(id: params[:observations])
     end
     if params[:commit] == t(:preview)
       @post.attributes = params[:post]
       @preview = @post
-      @observations ||= @post.observations.all(:include => [:taxon, :photos])
+      @observations ||= @post.observations.includes(:taxon, :photos)
       return render(:action => 'edit')
     end
     
@@ -162,18 +165,11 @@ class PostsController < ApplicationController
                  journal_by_login_path(@post.user.login))
   end
   
-  def archives    
+  def archives
     @target_date = Date.parse("#{params[:year]}-#{params[:month]}-01")
-    @posts = @parent.posts.paginate(
-      :page => params[:page] || 1,
-      :per_page => 10,
-      :conditions => [
-        "published_at >= ? AND published_at < ?", 
-        @target_date, 
-        @target_date + 1.month
-      ]
-    )
-    
+    @posts = @parent.posts.
+      where([ "published_at >= ? AND published_at < ?", @target_date, @target_date + 1.month ]).
+      paginate(page: params[:page] || 1, per_page: 10)
     get_archives
   end
   
@@ -187,9 +183,8 @@ class PostsController < ApplicationController
   private
   
   def get_archives(options = {})
-    scope = @parent.is_a?(User) ? @parent.journal_posts.scoped : @parent.posts.scoped
-    @archives = scope.published.count(
-      :group => "TO_CHAR(published_at, 'YYYY MM Month')")
+    scope = @parent.is_a?(User) ? @parent.journal_posts : @parent.posts
+    @archives = scope.published.group("TO_CHAR(published_at, 'YYYY MM Month')").count
     @archives = @archives.to_a.sort_by(&:first).reverse.map do |month_str, count|
       [month_str.split, count].flatten
     end

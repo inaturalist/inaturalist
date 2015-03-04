@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   notifies_subscribers_of :parent, {
     :on => [:update, :create],
     :queue_if => lambda{|post| 
-      existing_updates = Update.where(:notifier_type => "Post", :notifier_id => post.id).scoped
+      existing_updates = Update.where(:notifier_type => "Post", :notifier_id => post.id)
       # destroy existing updates if user *unpublishes* a post
       if existing_updates.count > 0 && post.draft? 
         existing_updates.delete_all
@@ -20,7 +20,7 @@ class Post < ActiveRecord::Base
   belongs_to :parent, :polymorphic => true
   belongs_to :user
   has_many :comments, :as => :parent, :dependent => :destroy
-  has_and_belongs_to_many :observations, :uniq => true
+  has_and_belongs_to_many :observations, -> { uniq }
   
   validates_length_of :title, :in => 1..2000
   validates_presence_of :parent
@@ -30,8 +30,8 @@ class Post < ActiveRecord::Base
   after_create :increment_user_counter_cache
   after_destroy :decrement_user_counter_cache
   
-  scope :published, where("published_at IS NOT NULL")
-  scope :unpublished, where("published_at IS NULL")
+  scope :published, -> { where("published_at IS NOT NULL") }
+  scope :unpublished, -> { where("published_at IS NULL") }
 
   ALLOWED_TAGS = %w(
     a abbr acronym b blockquote br cite code dl dt em embed h1 h2 h3 h4 h5 h6 hr i

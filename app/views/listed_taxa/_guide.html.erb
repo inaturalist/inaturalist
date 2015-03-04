@@ -1,9 +1,10 @@
 <%-
+  guide ||= nil
   listed_taxon ||= guide || @listed_taxon
   list ||= @list || listed_taxon.list
   place ||= listed_taxon.place
   taxon ||= listed_taxon.taxon
-  taxon_range ||= TaxonRange.without_geom.first(:conditions => ["taxon_id = ?", taxon])
+  taxon_range ||= TaxonRange.without_geom.where(taxon_id: taxon).first
   map_tag_attrs = setup_map_tag_attrs(:taxon => taxon, :place => place,
     :show_range => true, :focus => :place)
   obs_url = observations_path(:place_id => listed_taxon.place_id, :taxon_id => listed_taxon.taxon_id)

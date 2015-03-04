@@ -82,6 +82,19 @@ describe TaxaController do
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
       Taxon.find_by_id(reject.id).should be_blank
     end
+
+    describe "routes" do
+      let(:taxon) { Taxon.make! }
+      before do
+        sign_in make_curator
+      end
+      it "should accept GET requests" do
+        expect(get: "/taxa/#{taxon.to_param}/merge").to be_routable
+      end
+      it "should accept POST requests" do
+        expect(post: "/taxa/#{taxon.to_param}/merge").to be_routable
+      end
+    end
   end
 
   describe "destroy" do
@@ -130,4 +143,37 @@ describe TaxaController do
       taxon.parent_id.should == locked_parent.id
     end
   end
+
+  describe "autocomplete" do
+    it "should choose exact matches" do
+      t = Taxon.make!
+      get :autocomplete, format: :json
+      expect(assigns(:taxa)).to include t
+    end
+  end
+
+  describe "observation_photos" do
+    it "should include photos from observations" do
+      o = make_research_grade_observation
+      p = o.photos.first
+      get :observation_photos, id: o.taxon_id
+      expect(assigns(:photos)).to include p
+    end
+  end
+
+  describe "graft" do
+    it "should graft a taxon" do
+      genus = Taxon.make!(name: 'Bartleby')
+      species = Taxon.make!(name: 'Bartleby thescrivener')
+      expect(species.parent).to be_blank
+      u = make_curator
+      sign_in u
+      expect(patch: "/taxa/#{species.to_param}/graft.json").to be_routable
+      patch :graft, id: species.id, format: 'json'
+      expect(response).to be_success
+      species.reload
+      expect(species.parent).to eq genus
+    end
+  end
+
 end

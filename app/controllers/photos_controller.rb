@@ -21,8 +21,8 @@ class PhotosController < ApplicationController
           render :layout => false, :partial => partial, :object => @photo, :size => @size
           return
         end
-        @taxa = @photo.taxa.all(:limit => 100)
-        @observations = @photo.observations.all(:limit => 100)
+        @taxa = @photo.taxa.limit(100)
+        @observations = @photo.observations.limit(100)
         @flags = @photo.flags
       end
       format.mobile
@@ -107,7 +107,7 @@ class PhotosController < ApplicationController
     if params[:project_id]
       @project = Project.find(params[:project_id]) rescue Project.find_by_id(params[:project_id].to_i)
     end
-    @projects = current_user.projects.all(:limit => 100, :order => :title)
+    @projects = current_user.projects.limit(100).order(:title)
 
     if request.post? # submitting the inviter form
       if !params[:comment].include?("{{INVITE_LINK}}")

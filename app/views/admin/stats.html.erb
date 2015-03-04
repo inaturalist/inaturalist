@@ -52,13 +52,13 @@
 <h3><%=t :observations_week %> (<span class="last_year"><span class="count"><%= Time.now.year - 1 %></span></span> <span class="count"><%= Time.now.year %></span>)</h3>
 <div class="graph">
 <% for week in 1..52 %>
-  <%- count = @observation_weeks_last_year[week.to_s] || 0 %>
+  <%- count = @observation_weeks_last_year[week.to_f] || 0 %>
   <div class="bar last_year" style="height: <%= (count.to_f / @observations_max * 100).to_i %>%">
     <span class="count"><%= count %></span>
     <span class="week"><%= week %></span>
   </div>
   
-  <%- count = @observation_weeks[week.to_s] || 0 %>
+  <%- count = @observation_weeks[week.to_f] || 0 %>
   <div class="bar" style="height: <%= (count.to_f / @observations_max * 100).to_i %>%">
     <span class="count"><%= count %></span>
     <!-- <span class="week"><%= week %></span> -->
@@ -69,13 +69,13 @@
 <h3><%=t :new_users_week %> (<span class="last_year"><span class="count"><%= Time.now.year - 1 %></span></span> <span class="count"><%= Time.now.year %></span>)</h3>
 <div class="graph">
 <% for week in 1..52 %>
-  <%- count = @user_weeks_last_year[week.to_s] || 0 %>
+  <%- count = @user_weeks_last_year[week.to_f] || 0 %>
   <div class="bar last_year" style="height: <%= (count.to_f / @users_max * 100).to_i %>%">
     <span class="count"><%= count %></span>
     <span class="week"><%= week %></span>
   </div>
   
-  <%- count = @user_weeks[week.to_s] || 0 %>
+  <%- count = @user_weeks[week.to_f] || 0 %>
   <div class="bar" style="height: <%= (count.to_f / @users_max * 100).to_i %>%">
     <span class="count"><%= count %></span>
     <!-- <span class="week"><%= week %></span> -->

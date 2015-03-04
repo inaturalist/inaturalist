@@ -9,7 +9,7 @@ describe TaxonSplit, "validation" do
     tc.add_output_taxon(new_taxon)
     tc.add_output_taxon(old_taxon)
     tc.save
-    tc.should_not be_valid
+    expect(tc).not_to be_valid
   end
 end
 
@@ -23,15 +23,15 @@ describe TaxonSplit, "commit" do
   it "should mark the input taxon as inactive" do
     @split.commit
     @input_taxon.reload
-    @input_taxon.should_not be_is_active
+    expect(@input_taxon).not_to be_is_active
   end
 
   it "should mark the output taxon as active" do
     @split.commit
     @output_taxon1.reload
-    @output_taxon1.should be_is_active
+    expect(@output_taxon1).to be_is_active
     @output_taxon2.reload
-    @output_taxon2.should be_is_active
+    expect(@output_taxon2).to be_is_active
   end
 end
 
@@ -41,7 +41,7 @@ describe TaxonSplit, "commit_records" do
     obs = Observation.make!(:taxon => @input_taxon)
     @split.commit_records
     obs.reload
-    obs.taxon.should eq(@input_taxon)
+    expect(obs.taxon).to eq(@input_taxon)
   end
 end
 

@@ -1,0 +1,19 @@
+- content_for(:extracss) do
+  = stylesheet_link_tag "shared/500"
+- content_for(:title) do
+  iNaturalist.org: 500 Internal Error
+%h1
+  I ate iNaturalist.org, that's why it's not working.
+%p
+  = surround "(", ")" do
+    Ack! Something went wrong. We'll look into it soon or you can email us at
+    %a{ href: "mailto:help@inaturalist.org" } help at inaturalist.org
+= image_tag("fail_whale_2.jpg", alt: "Fail Whale!")
+%p
+  Image by
+  = succeed "." do
+    %a{ href: "http://flickr.com/photos/otolithe/" } otolithe (olivier roux)
+  = succeed "." do
+    %a{ href: "http://flickr.com/photos/otolithe/247765620/" } View original here
+  = succeed "." do
+    %a{ href: "http://creativecommons.org/licenses/by-nc/2.0/deed.en" } Some Rights Reserved

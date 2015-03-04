@@ -13,9 +13,8 @@ class CheckListsController < ApplicationController
   
   def show
     @place = @list.place
-    @other_check_lists = @place.check_lists.limit(1000)
-    @other_check_lists.delete_if {|l| l.id == @list.id}
-    
+    @other_check_lists = @place.check_lists.where("id != ?", @list.id).limit(1000)
+
     # If this is a place's default check list, load ALL the listed taxa
     # belonging to this place.  Kind of weird, I know.  The alternative would
     # be to keep the default list updated with duplicates from all the other
@@ -29,7 +28,7 @@ class CheckListsController < ApplicationController
       if (@q = params[:q]) && !@q.blank?
         @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
         @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
-      end      
+      end
     end
 
     if params[:find_missing_listings]

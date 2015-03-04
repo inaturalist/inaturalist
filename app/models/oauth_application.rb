@@ -1,5 +1,4 @@
 class OauthApplication < Doorkeeper::Application
-  attr_accessible :image, :description, :url, :trusted
   has_many :observations
   has_attached_file :image, 
     :styles => { :medium => "300x300>", :thumb => "100x100>", :mini => "16x16#" }, 

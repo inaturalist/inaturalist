@@ -15,8 +15,8 @@
     right_taxa = taxon_change.taxa
     left_taxa = [taxon_change.taxon]
   end
-  left_taxa.compact!
-  right_taxa.compact!
+  left_taxa.to_a.compact!
+  right_taxa.to_a.compact!
   hide_buttons ||= false
   hide_title ||= false
   show_change_links ||= false

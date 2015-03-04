@@ -89,7 +89,7 @@
           <%= link_to_function t(:clear), "$(this).siblings('input[type=file]').val('')", :class => "right" %>
           <% if synclink_base %>
             <nobr title="<%= t(:import_date_time_location_taxonomic) %>">
-              <%= check_box_tag "local_photos_to_sync[#{index}][]", 1, false, :class => "sync_check", 
+              <%= check_box_tag "local_photos_to_sync[#{index}][]", 1, false, :class => "sync_check",
                 :id => "local_photos_to_sync_#{uid}" %>
               <label for="local_photos_to_sync_<%= uid %>"><%=t :sync_obs_with_photo_metadata %></label>
             </nobr>

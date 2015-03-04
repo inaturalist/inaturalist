@@ -6,8 +6,8 @@ class TaxonRange < ActiveRecord::Base
   
   accepts_nested_attributes_for :source
   
-  scope :without_geom, select((column_names - ['geom']).join(', '))
-  scope :simplified, select(<<-SQL
+  scope :without_geom, -> { select((column_names - ['geom']).join(', ')) }
+  scope :simplified, -> { select(<<-SQL
       id, taxon_id, 
       st_multi(
         cleangeometry(
@@ -20,7 +20,7 @@ class TaxonRange < ActiveRecord::Base
         )
       ) AS geom
     SQL
-  )
+  ) }
   
   has_attached_file :range,
     :path => ":rails_root/public/attachments/:class/:id.:extension",
@@ -46,6 +46,7 @@ class TaxonRange < ActiveRecord::Base
   
   def create_kml_attachment
     return unless geom
+    wkt = RGeo::WKRep::WKTGenerator.new(convert_case: :upper).generate(geom)
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.kml('xmlns' => 'http://earth.google.com/kml/2.1') do
         xml.Document {
@@ -53,7 +54,7 @@ class TaxonRange < ActiveRecord::Base
             xml.name
             xml.description
             xml.styleUrl "#{CONFIG.site_url}/assets/index.kml#taxon_range"
-            xml << self.geom.as_kml
+            xml << GeoRuby::SimpleFeatures::Geometry.from_ewkt(wkt).as_kml
           }
         }
       end
@@ -74,13 +75,10 @@ class TaxonRange < ActiveRecord::Base
     system cmd
     open(tmp_path) do |f|
       if geojsongeom = GeoRuby::SimpleFeatures::Geometry.from_geojson(f.read)
-        self.geom = geojsongeom.features.first.geometry
-        if !self.geom.is_a?(MultiPolygon)
-          if self.geom.is_a?(Polygon)
-            self.geom = MultiPolygon.from_polygons([self.geom])
-          else
-            next
-          end
+        self.geom = geojsongeom.features.first.geometry.as_wkt
+        if geom && geom.geometry_type == RGeo::Feature::Polygon
+          f = RGeo::Geographic.simple_mercator_factory
+          self.geom = f.multi_polygon([geom])
         end
         self.save
       end

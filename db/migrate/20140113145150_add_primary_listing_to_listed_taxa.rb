@@ -5,7 +5,7 @@ class AddPrimaryListingToListedTaxa < ActiveRecord::Migration
     batch_num = 0
     batch_size = 5000
     say "Calculating number of batches..."
-    scope = ListedTaxon.includes(:list).where("place_id IS NOT NULL").scoped
+    scope = ListedTaxon.includes(:list).where("place_id IS NOT NULL")
     num_batches = (scope.count / batch_size.to_f).round
     scope.find_in_batches(:batch_size => batch_size) do |batch|
       say "Updating batch #{batch_num} of #{num_batches} #{Time.now}"

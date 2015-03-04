@@ -100,7 +100,7 @@
       <meta property="og:image" content="<%= photo.medium_url %>"/> 
     <% end -%>
   <% end -%>
-  <% if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
+  <% if @observer_provider_authorizations && twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
     <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
   <% end -%>
   <% if photo_observations.size > 0 -%>

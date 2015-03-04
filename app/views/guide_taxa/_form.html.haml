@@ -71,7 +71,7 @@
     %h3=t :tags
     %p=t 'views.guides.tags_help_html'
     %p
-    = f.text_field :tag_list, :class => "input-xxlarge", :placeholder => t(:add_comma_separated_tags)
+    = f.text_field :tag_list, :value => @guide_taxon.tag_list.to_s, :class => "input-xxlarge", :placeholder => t(:add_comma_separated_tags)
     .recent_tags.quiet
       - for tag in @recent_tags
         = link_to_function "<i class='fa fa-plus-circle'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"

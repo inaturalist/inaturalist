@@ -2,18 +2,15 @@ require 'simplecov'
 SimpleCov.start
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
+ENV["RAILS_ENV"] = 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'capybara/rails'
 require 'mocha/setup'
 require File.expand_path(File.dirname(__FILE__) + "/blueprints")
 require File.expand_path(File.dirname(__FILE__) + "/helpers/make_helpers")
 require File.expand_path(File.dirname(__FILE__) + "/helpers/example_helpers")
 require File.expand_path(File.dirname(__FILE__) + "/../lib/eol_service.rb")
-
-# This should be OK for testing. The app's default of -1 causes
-# lots of warnings when running specs, which this should prevent
-DEFAULT_SRID = 0
 
 include MakeHelpers
 
@@ -55,7 +52,7 @@ RSpec.configure do |config|
     [PlaceGeometry, Observation, TaxonRange].each do |klass|
       begin
         Rails.logger.debug "[DEBUG] dropping enforce_srid_geom on place_geometries"
-        ActiveRecord::Base.connection.execute("ALTER TABLE #{klass.table_name} DROP CONSTRAINT enforce_srid_geom")
+        ActiveRecord::Base.connection.execute("ALTER TABLE #{klass.table_name} DROP CONSTRAINT IF EXISTS enforce_srid_geom")
       rescue ActiveRecord::StatementInvalid 
         # already dropped
       end
@@ -73,6 +70,7 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, :type => :controller
   config.fixture_path = "#{::Rails.root}/spec/fixtures/"
+  config.infer_spec_type_from_file_location!
 end
 
 def without_delay
@@ -121,7 +119,7 @@ def stub_config(options = {})
   InatConfig.instance_eval do
     options.each do |k,v|
       define_method k do
-        @config[k] ||= v
+        @config[k] = v
         method_missing k.to_sym
       end
     end

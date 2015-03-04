@@ -12,7 +12,7 @@
   <%= link_to t(:flagged), flag, :action=>"show" %>
   <%= 
     if flaggable.respond_to?(:user) && flaggable.user
-      link_to "#{flaggable.user.login}'s", :controller => "users", :action => "show", :id => flaggable.user_id 
+      link_to "#{flaggable.user.login}'s", :controller => "users", :action => "show", :id => flaggable.user.id 
     else
       t(:the)
     end

@@ -1,5 +1,5 @@
 class ObservationFieldValuesController < ApplicationController
-  doorkeeper_for :show, :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
   before_filter :load_observation_field_value, :only => [:update, :destroy]
 
@@ -44,14 +44,16 @@ class ObservationFieldValuesController < ApplicationController
   end
   
   def create
-    @observation_field_value = ObservationFieldValue.new(params[:observation_field_value])
+    ofv_params = observation_field_value_params
+    ofv_params.delete(:id) # why does rails even allow this...
+    @observation_field_value = ObservationFieldValue.new(ofv_params)
     if !@observation_field_value.valid?
       if existing = ObservationFieldValue.where(
           "observation_field_id = ? AND observation_id = ?", 
           @observation_field_value.observation_field_id, 
           @observation_field_value.observation_id).first
         @observation_field_value = existing
-        @observation_field_value.attributes = params[:observation_field_value]
+        @observation_field_value.attributes = ofv_params
       end
     end
     
@@ -68,7 +70,7 @@ class ObservationFieldValuesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @observation_field_value.update_attributes(params[:observation_field_value])
+      if @observation_field_value.update_attributes(observation_field_value_params)
         format.json { render :json => @observation_field_value }
       else
         format.json do
@@ -105,5 +107,17 @@ class ObservationFieldValuesController < ApplicationController
   def load_observation_field_value
     @observation_field_value = ObservationFieldValue.find_by_id(params[:id])
     render_404 unless @observation_field_value
+  end
+
+  def observation_field_value_params(options = {})
+    p = options.blank? ? params : options
+    p = p[:observation_field_value] if p[:observation_field_value]
+    p.delete(:id) if p[:id].to_i == 0
+    p.permit(
+      :id,
+      :observation_id,
+      :observation_field_id,
+      :value
+    )
   end
 end

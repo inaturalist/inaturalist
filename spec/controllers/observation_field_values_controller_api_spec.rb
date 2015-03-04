@@ -10,10 +10,10 @@ shared_examples_for "an ObservationFieldValuesController" do
       ofv = ObservationFieldValue.make!(observation: observation, observation_field: observation_field)
       get :index, format: 'json', type: observation_field.datatype
       json = JSON.parse(response.body)
-      json.size.should eq 1
+      expect(json.size).to eq 1
       get :index, format: 'json', type: "bargleplax"
       json = JSON.parse(response.body)
-      json.size.should eq 0
+      expect(json.size).to eq 0
     end
 
     it "should filter by quality grade" do
@@ -21,33 +21,23 @@ shared_examples_for "an ObservationFieldValuesController" do
       ofv = ObservationFieldValue.make!(observation: o, observation_field: observation_field)
       get :index, format: 'json', type: observation_field.datatype, quality_grade: 'research'
       json = JSON.parse(response.body)
-      json.size.should eq 1
+      expect(json.size).to eq 1
       get :index, format: 'json', type: observation_field.datatype, quality_grade: 'casual'
       json = JSON.parse(response.body)
-      json.size.should eq 0
+      expect(json.size).to eq 0
     end
   end
 
   describe "create" do
     it "should work" do
-      lambda {
+      expect {
         post :create, :format => :json, :observation_field_value => {
           :observation_id => observation.id,
           :observation_field_id => observation_field.id,
           :value => "foo"
         }
-      }.should change(ObservationFieldValue, :count).by(1)
+      }.to change(ObservationFieldValue, :count).by(1)
     end
-
-    # it "should not allow blank values" do
-    #   lambda {
-    #     post :create, :format => :json, :observation_field_value => {
-    #       :observation_id => observation.id,
-    #       :observation_field_id => observation_field.id,
-    #       :value => ""
-    #     }
-    #   }.should_not change(ObservationFieldValue, :count).by(1)
-    # end
 
     it "should provie an appropriate response for blank observation id" do
       post :create, :format => :json,  :observation_field_value => {
@@ -55,7 +45,7 @@ shared_examples_for "an ObservationFieldValuesController" do
         :observation_field_id => observation_field.id,
         :value => "foo"
       }
-      response.status.should eq 422
+      expect(response.status).to eq 422
     end
     
     it "should allow blank values if coming from an iNat mobile app" do
@@ -67,41 +57,19 @@ shared_examples_for "an ObservationFieldValuesController" do
         :value => ""
       }
       json = JSON.parse(response.body)
-      json['errors'].should be_blank
+      expect(json['errors']).to be_blank
     end
 
-    # it "should now allow invalid dates" do
-    #   of = ObservationField.make!(:datatype => "date")
-    #   post :create, :format => :json, :observation_field_value => {
-    #     :observation_id => observation.id,
-    #     :observation_field_id => of.id,
-    #     :value => "2013-jfhgh"
-    #   }
-    #   json = JSON.parse(response.body)
-    #   json['errors'].should_not be_blank
-    # end
-
-    # it "should now allow invalid datetimes" do
-    #   of = ObservationField.make!(:datatype => "datetime")
-    #   post :create, :format => :json, :observation_field_value => {
-    #     :observation_id => observation.id,
-    #     :observation_field_id => of.id,
-    #     :value => "2013-jfhgh"
-    #   }
-    #   json = JSON.parse(response.body)
-    #   json['errors'].should_not be_blank
-    # end
-
-    # it "should now allow invalid times" do
-    #   of = ObservationField.make!(:datatype => "date")
-    #   post :create, :format => :json, :observation_field_value => {
-    #     :observation_id => observation.id,
-    #     :observation_field_id => of.id,
-    #     :value => "1pm"
-    #   }
-    #   json = JSON.parse(response.body)
-    #   json['errors'].should_not be_blank
-    # end
+    it "should ignore ID of zero" do
+      expect {
+        post :create, format: 'json', observation_field_value: {
+          id: 0,
+          observation_id: observation.id,
+          observation_field_id: observation_field.id,
+          value: "foo"
+        }
+      }.not_to raise_error
+    end
   end
 
   it "should update" do
@@ -111,21 +79,21 @@ shared_examples_for "an ObservationFieldValuesController" do
       :value => "bar"
     }
     ofv.reload
-    ofv.value.should eq("bar")
+    expect(ofv.value).to eq("bar")
   end
 
   it "should destroy" do
     ofv = ObservationFieldValue.make!(:observation => observation, :observation_field => observation_field)
     delete :destroy, :format => :json, :id => ofv.id
-    ObservationFieldValue.find_by_id(ofv.id).should be_blank
+    expect(ObservationFieldValue.find_by_id(ofv.id)).to be_blank
   end
 end
 
 describe ObservationFieldValuesController, "oauth authentication" do
-  let(:token) { stub :accessible? => true, :resource_owner_id => user.id }
+  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    controller.stub(:doorkeeper_token) { token }
+    allow(controller).to receive(:doorkeeper_token) { token }
   end
   it_behaves_like "an ObservationFieldValuesController"
 end

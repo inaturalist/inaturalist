@@ -241,7 +241,11 @@ class FlickrPhoto < Photo
     invalids = 0
     skipped = 0
     start_time = Time.now
-    FlickrPhoto.script_do_in_batches(find_options) do |p|
+    counter = 0
+    FlickrPhoto.includes(find_options[:include]).where(find_options[:where]).
+      find_each(batch_size: find_options[:batch_size]) do |p|
+      counter += 1
+      sleep(find_options[:sleep]) if (counter % find_options[:batch_size] == 0)
       r = begin
         uri = URI.parse(p.square_url)
         Net::HTTP.new(uri.host).request_head(uri.path)

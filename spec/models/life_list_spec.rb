@@ -133,8 +133,8 @@ describe LifeList, "refresh_with_observation" do
     @list.taxon_ids.should include(t1.id)
     
     o.update_attributes(:taxon_id => t2.id)
-    @list.user.observations.first(:conditions => {:taxon_id => t1.id}).should be_blank
-    @list.user.observations.first(:conditions => {:taxon_id => t2.id}).should_not be_blank
+    @list.user.observations.where(taxon_id: t1.id).first.should be_blank
+    @list.user.observations.where(taxon_id: t2.id).first.should_not be_blank
     LifeList.refresh_with_observation(o.id, :taxon_id_was => t1.id)
     @list.reload
     @list.taxon_ids.should include(t2.id)
@@ -191,5 +191,19 @@ describe LifeList, "places" do
     l = LifeList.make!(:user => o.user, :place => place)
     lt = l.add_taxon(t, :manually_added => true)
     lt.should be_valid
+  end
+end
+
+describe LifeList, "defaults" do
+  let(:user) { User.make! }
+  it "should set a default title" do
+    LifeList.make!(user: user, title: nil).
+      title.should eq "#{ user.login }'s Life List"
+  end
+
+  it "should set a default description" do
+    u = User.make!(login: "UserLogin", name: "UserName")
+    LifeList.make!(user: user, description: nil).
+      description.should eq "Every species seen by #{ user.login }"
   end
 end

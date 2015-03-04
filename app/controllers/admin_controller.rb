@@ -8,28 +8,20 @@ class AdminController < ApplicationController
   before_filter :return_here, :only => [:stats, :index, :user_content]
   
   def stats
-    @observation_weeks = Observation.count(
-      :conditions => ["EXTRACT(YEAR FROM created_at) = ?", Time.now.year],
-      :group => "EXTRACT(WEEK FROM created_at)"
-    )
-    @observation_weeks_last_year = Observation.count(
-      :conditions => ["EXTRACT(YEAR FROM created_at) = ?", Time.now.year - 1],
-      :group => "EXTRACT(WEEK FROM created_at)"
-    )
+    @observation_weeks = Observation.where("EXTRACT(YEAR FROM created_at) = ?", Time.now.year).
+      group("EXTRACT(WEEK FROM created_at)").count
+    @observation_weeks_last_year = Observation.where("EXTRACT(YEAR FROM created_at) = ?", Time.now.year - 1).
+      group("EXTRACT(WEEK FROM created_at)").count
     @observations_max = (@observation_weeks.values + @observation_weeks_last_year.values).sort.last
     
-    @user_weeks = User.count(
-      :conditions => ["EXTRACT(YEAR FROM created_at) = ?", Time.now.year],
-      :group => "EXTRACT(WEEK FROM created_at)"
-    )
-    @user_weeks_last_year = User.count(
-      :conditions => ["EXTRACT(YEAR FROM created_at) = ?", Time.now.year - 1],
-      :group => "EXTRACT(WEEK FROM created_at)"
-    )
+    @user_weeks = User.where("EXTRACT(YEAR FROM created_at) = ?", Time.now.year).
+      group("EXTRACT(WEEK FROM created_at)").count
+    @user_weeks_last_year = User.where("EXTRACT(YEAR FROM created_at) = ?", Time.now.year - 1).
+        group("EXTRACT(WEEK FROM created_at)").count
     @users_max = (@user_weeks.values + @user_weeks_last_year.values).sort.last
     
     @total_users = User.count
-    @active_observers = Observation.count(:select => "distinct user_id", :conditions => ["created_at > ?", 3.months.ago])
+    @active_observers = Observation.where("created_at > ?", 3.months.ago).select("distinct user_id").count
     @total_observations = Observation.count
     
     @daily_date = Date.yesterday

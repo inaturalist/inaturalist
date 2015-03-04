@@ -11,7 +11,7 @@ module ActsAsSpammable::User
   DELETE_SPAM_AFTER = 7.days
 
   def suspend_if_spammer
-    if self.spammer_changed? && self.spammer
+    if self.spammer_changed? && self.spammer?
       self.suspend!
     end
   end
@@ -39,12 +39,24 @@ module ActsAsSpammable::User
     Rakismet.spammable_models.map{ |klass|
       # classes have different ways of getting to user, so just do
       # a join and enforce the user_id with a where clause
-      klass.joins(:user).where(users: { id: self.id }).
-        joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } })
+      if klass == User
+        klass.joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } })
+      else
+        klass.joins(:user).where(users: { id: self.id }).
+          joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } })
+      end
     }.compact.flatten.uniq
   end
 
+  def flags_on_spam_content
+    content_flagged_as_spam.map do |content|
+      content.flags.where(flag: Flag::SPAM)
+    end.flatten
+  end
+
   def known_non_spammer?
+    # it is important to use spammer and not spammer? since we are allowing
+    # nil values to mean unknown, and false to mean non-spammer
     spammer == false
   end
 

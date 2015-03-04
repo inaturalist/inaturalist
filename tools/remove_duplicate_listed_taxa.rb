@@ -21,7 +21,7 @@ mutable_columns = ListedTaxon.column_names - %w(id created_at updated_at)
 scope = ListedTaxon.
   select("min(id) AS id, max(id) AS max_id, list_id, taxon_id, count(*) AS count").
   group("list_id, taxon_id").
-  having("count(*) > 1").scoped
+  having("count(*) > 1")
 scope.each do |lt|
   puts "min: #{lt.id}, max: #{lt.max_id}, taxon: #{lt.taxon_id}, count: #{lt.count}"
   candidates = ListedTaxon.where("list_id = #{lt.list_id} AND taxon_id = #{lt.taxon_id}")

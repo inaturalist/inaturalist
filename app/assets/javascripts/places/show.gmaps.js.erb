@@ -12,7 +12,7 @@ if (SHOW_PLACE_GEOMETRY) {
   window.map.addPlaceLayer({ place: PLACE });
 }
 
-var icon = new google.maps.MarkerImage('<%= image_path('mapMarkers/mm_20_stemless_GoldenRod.png') %>')
+var icon = new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_20_stemless_GoldenRod.png') %>")
 icon.size = new google.maps.Size(12,12)
 icon.anchor = new google.maps.Point(6,6)
 var marker = map.createMarker(PLACE.latitude, PLACE.longitude, {

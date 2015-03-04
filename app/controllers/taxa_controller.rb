@@ -7,6 +7,8 @@ class TaxaController < ApplicationController
   caches_action :describe, :expires_in => 1.day, :cache_path => {:locale => I18n.locale}, :if => Proc.new {|c| 
     c.session.blank? || c.session['warden.user.user.key'].blank?
   }
+
+  before_filter :allow_external_iframes, only: [:map]
   
   include TaxaHelper
   include Shared::WikipediaModule
@@ -16,7 +18,7 @@ class TaxaController < ApplicationController
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
     :flickr_photos_tagged, :add_places, :synonyms]
   before_filter :curator_required, :only => [:new, :create, :edit, :update,
-    :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms]
+    :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms, :graft]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
@@ -64,7 +66,7 @@ class TaxaController < ApplicationController
         @featured_taxa = @featured_taxa.from_place(@site_place) if @site_place
         
         if @featured_taxa.blank?
-          @featured_taxa = Taxon.limit(100).where(
+          @featured_taxa = Taxon.limit(100).joins(:photos).where(
             "taxa.wikipedia_summary IS NOT NULL AND " +
             "photos.id IS NOT NULL AND " +
             "taxa.observations_count > 1"
@@ -133,7 +135,7 @@ class TaxaController < ApplicationController
     if params[:entry] == 'widget'
       flash[:notice] = t(:click_add_an_observation_to_the_lower_right, :site_name_short => CONFIG.site_name_short)
     end
-    @taxon ||= Taxon.find_by_id(params[:id].to_i, :include => [:taxon_names]) if params[:id]
+    @taxon ||= Taxon.where(id: params[:id]).includes(:taxon_names).first if params[:id]
     return render_404 unless @taxon
     
     respond_to do |format|
@@ -159,11 +161,9 @@ class TaxaController < ApplicationController
           @listed_taxon = @taxon.listed_taxa.where(:place_id => place.id).order("establishment_means").first
         end
         
-        @children = @taxon.children.all(
-          :include => :taxon_names, 
-          :conditions => {:is_active => @taxon.is_active}
-        ).sort_by{|c| c.name}
-        @ancestors = @taxon.ancestors.all(:include => :taxon_names)
+        @children = @taxon.children.where(:is_active => @taxon.is_active).
+          includes(:taxon_names).sort_by{ |c| c.name }
+        @ancestors = @taxon.ancestors.includes(:taxon_names)
         @iconic_taxa = Taxon::ICONIC_TAXA
         
         @check_listed_taxa = ListedTaxon.page(1).
@@ -171,20 +171,14 @@ class TaxaController < ApplicationController
           includes(:place, :list).
           group(:place_id, :taxon_id).
           where("place_id IS NOT NULL AND taxon_id = ?", @taxon)
-        @sorted_check_listed_taxa = @check_listed_taxa.sort_by{|lt| lt.place.place_type || 0}.reverse
+        @sorted_check_listed_taxa = @check_listed_taxa.sort_by{|lt| lt.place.try(:place_type) || 0}.reverse
         @places = @check_listed_taxa.map{|lt| lt.place}.uniq{|p| p.id}
-        @countries = @taxon.places.all(
-          :select => "places.id, place_type, code, admin_level",
-          :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES['Country']]
-        ).uniq{|p| p.id}
+        @countries = @taxon.places.where(["place_type = ?", Place::PLACE_TYPE_CODES['Country']]).
+          select("places.id, place_type, code, admin_level").uniq{ |p| p.id }
         if @countries.size == 1 && @countries.first.code == 'US'
-          @us_states = @taxon.places.all(
-            :select => "places.id, place_type, code, admin_level",
-            :conditions => [
-              "admin_level = ? AND parent_id = ?", Place::STATE_LEVEL, 
-              @countries.first.id
-            ]
-          ).uniq{|p| p.id}
+          @us_states = @taxon.places.
+            where("admin_level = ? AND parent_id = ?", Place::STATE_LEVEL, @countries.first.id).
+            select("places.id, place_type, code, admin_level").uniq{ |p| p.id }
         end
 
         @taxon_links = TaxonLink.by_taxon(@taxon, :reject_places => @places.blank?)
@@ -196,12 +190,8 @@ class TaxaController < ApplicationController
         end
         
         if logged_in?
-          @listed_taxa = ListedTaxon.all(
-            :include => [:list],
-            :conditions => [
-              "lists.user_id = ? AND listed_taxa.taxon_id = ?", 
-              current_user, @taxon
-          ])
+          @listed_taxa = ListedTaxon.joins(:list).
+            where(taxon_id: @taxon, lists: { user_id: current_user })
           @listed_taxa_by_list_id = @listed_taxa.index_by{|lt| lt.list_id}
           @current_user_lists = current_user.lists.includes(:rules)
           @lists_rejecting_taxon = @current_user_lists.select do |list|
@@ -233,10 +223,10 @@ class TaxaController < ApplicationController
       
       format.mobile do
         if @taxon.species_or_lower? && @taxon.species
-          @siblings = @taxon.species.siblings.all(:limit => 100, :include => [:photos, :taxon_names]).sort_by{|t| t.name}
+          @siblings = @taxon.species.siblings.includes(:photos, :taxon_names).limit(100).sort_by{|t| t.name}
           @siblings.delete_if{|s| s.id == @taxon.id}
         else
-          @children = @taxon.children.all(:limit => 100, :include => [:photos, :taxon_names]).sort_by{|t| t.name}
+          @children = @taxon.children.includes(:photos, :taxon_names).limit(100).sort_by{|t| t.name}
         end
       end
       
@@ -292,13 +282,15 @@ class TaxaController < ApplicationController
   end
 
   def edit
-    descendant_options = {:joins => [:taxon], :conditions => @taxon.descendant_conditions}
-    taxon_options = {:conditions => {:taxon_id => @taxon}}
-    @observations_exist = Observation.first(taxon_options) || Observation.first(descendant_options)
-    @listed_taxa_exist = ListedTaxon.first(taxon_options) || ListedTaxon.first(descendant_options)
-    @identifications_exist = Identification.first(taxon_options) || Identification.first(descendant_options)
+    # TODO: these .firsts will need to be updated
+    @observations_exist = Observation.where(taxon_id: @taxon).first ||
+      Observation.joins(:taxon).where(@taxon.descendant_conditions).first
+    @listed_taxa_exist = ListedTaxon.where(taxon_id: @taxon).first ||
+      ListedTaxon.joins(:taxon).where(@taxon.descendant_conditions).first
+    @identifications_exist = Identification.where(taxon_id: @taxon).first ||
+      Identification.joins(:taxon).where(@taxon.descendant_conditions).first
     @descendants_exist = @taxon.descendants.first
-    @taxon_range = TaxonRange.without_geom.first(:conditions => {:taxon_id => @taxon})
+    @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
   end
 
   def update
@@ -381,13 +373,13 @@ class TaxaController < ApplicationController
     user_per_page = 100 if user_per_page > 100
     per_page = page == 1 && user_per_page < 50 ? 50 : user_per_page
     
-    @facets = Taxon.facets(q, :page => page, :per_page => per_page,
-      :with => drill_params, 
-      :include => [:taxon_names, {:taxon_photos => :photo}, :taxon_descriptions],
-      :field_weights => {:name => 2},
-      :match_mode => match_mode,
-      :order => :observations_count,
-      :sort_mode => :desc
+    @facets = Taxon.facets(q, page: page, per_page: per_page,
+      with: drill_params,
+      sql: { include: [ :iconic_taxon, { taxon_names: :place_taxon_names }, { taxon_photos: :photo }, :taxon_descriptions ] },
+      field_weights: { name: 2 },
+      match_mode: match_mode,
+      order: "observations_count desc",
+      sort_mode: :desc
     )
 
     @taxa = @facets.for(drill_params)
@@ -395,28 +387,26 @@ class TaxaController < ApplicationController
       drill_params = drill_params.reject{|k,v| k == :places}
       @place_ids = nil
       @places = nil
-      @facets = Taxon.facets(q, :page => page, :per_page => per_page,
-        :with => drill_params, 
-        :include => [:taxon_names, {:taxon_photos => :photo}, :taxon_descriptions],
-        :field_weights => {:name => 2},
-        :match_mode => match_mode,
-        :order => :observations_count,
-        :sort_mode => :desc
+      @facets = Taxon.facets(q, page: page, per_page: per_page,
+        with: drill_params,
+        sql: { include: [ :iconic_taxon, { taxon_names: :place_taxon_names }, { taxon_photos: :photo }, :taxon_descriptions ] },
+        field_weights: { name: 2 },
+        match_mode: match_mode,
+        order: "observations_count desc",
+        sort_mode: :desc
       )
       @taxa = @facets.for(drill_params)
     end
 
     if @facets[:iconic_taxon_id]
-      @faceted_iconic_taxa = Taxon.all(
-        :conditions => ["id in (?)", @facets[:iconic_taxon_id].keys],
-        :include => [:taxon_names, :photos]
-      )
+      @faceted_iconic_taxa = Taxon.where(id: @facets[:iconic_taxon_id].keys).
+        includes(:taxon_names, :photos)
       @faceted_iconic_taxa = Taxon.sort_by_ancestry(@faceted_iconic_taxa)
       @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
     end
 
     if @facets[:colors]
-      @faceted_colors = Color.all(:conditions => ["id in (?)", @facets[:colors].keys])
+      @faceted_colors = Color.where(id: @facets[:colors].keys)
       @faceted_colors_by_id = @faceted_colors.index_by(&:id)
     end
 
@@ -522,9 +512,9 @@ class TaxaController < ApplicationController
       params[:is_active]
     end
 
-    scope = TaxonName.includes(:taxon => :taxon_names).
+    scope = TaxonName.joins(:taxon => :taxon_names).
       where("lower(taxon_names.name) LIKE ?", "#{@q.to_s.downcase}%").
-      limit(30).scoped
+      limit(30)
     scope = scope.where("taxa.is_active = ?", @is_active) unless @is_active == "any"
     @taxon_names = scope.sort_by{|tn| tn.taxon.ancestry || ''}
     exact_matches = []
@@ -533,8 +523,8 @@ class TaxaController < ApplicationController
       exact_matches << @taxon_names.delete_at(i)
     end
     if exact_matches.blank?
-      exact_matches = TaxonName.all(:include => {:taxon => :taxon_names}, 
-        :conditions => ["lower(taxon_names.name) = ?", @q.to_s.downcase])
+      exact_matches = TaxonName.where(["lower(taxon_names.name) = ?", @q.to_s.downcase]).
+        includes({ :taxon => :taxon_names })
     end
     @taxon_names = exact_matches + @taxon_names
     @taxa = @taxon_names.map do |taxon_name|
@@ -655,8 +645,8 @@ class TaxaController < ApplicationController
     end
     
     if taxon_ids
-      @taxa = Taxon.all(:conditions => ["id IN (?)", taxon_ids.map{|t| t.to_i}], :limit => 20)
-      @taxon_ranges = TaxonRange.without_geom.all(:conditions => ["taxon_id IN (?)", @taxa]).group_by(&:taxon_id)
+      @taxa = Taxon.where(id: taxon_ids.map{ |t| t.to_i }).limit(20)
+      @taxon_ranges = TaxonRange.without_geom.where(taxon_id: @taxa).group_by(&:taxon_id)
       @taxa_data = taxon_ids.map do |taxon_id|
         next unless taxon = @taxa.detect{|t| t.id == taxon_id.to_i}
         taxon.as_json(:only => [:id, :name, :is_active]).merge(
@@ -679,8 +669,8 @@ class TaxaController < ApplicationController
     end
     
     if params[:test]
-      @child_taxa = @taxon.descendants.of_rank(Taxon::SPECIES).all(:limit => 10)
-      @child_taxon_ranges = TaxonRange.without_geom.all(:conditions => ["taxon_id IN (?)", @child_taxa]).group_by(&:taxon_id)
+      @child_taxa = @taxon.descendants.of_rank(Taxon::SPECIES).limit(10)
+      @child_taxon_ranges = TaxonRange.without_geom.where(taxon_id: @child_taxa).group_by(&:taxon_id)
       @children = @child_taxa.map do |child|
         {
           :id => child.id, 
@@ -711,14 +701,14 @@ class TaxaController < ApplicationController
   end
   
   def observation_photos
-    @taxon = Taxon.find_by_id(params[:id].to_i, :include => :taxon_names)
+    @taxon = Taxon.includes(:taxon_names).where(id: params[:id].to_i).first
     licensed = %w(t any true).include?(params[:licensed].to_s)
     if per_page = params[:per_page]
       per_page = per_page.to_i > 50 ? 50 : per_page.to_i
     end
     observations = if @taxon && params[:q].blank?
       obs = Observation.of(@taxon).
-        includes(:photos).
+        joins(:photos).
         where("photos.id IS NOT NULL AND photos.user_id IS NOT NULL AND photos.license IS NOT NULL").
         paginate_with_count_over(:page => params[:page], :per_page => per_page)
       if licensed
@@ -757,11 +747,10 @@ class TaxaController < ApplicationController
     unless params[:tab].blank?
       @places = case params[:tab]
       when 'countries'
-        @countries = Place.all(:order => "name",
-          :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES["Country"]]).compact
+        @countries = Place.where(place_type: Place::PLACE_TYPE_CODES["Country"]).order(:name)
       when 'us_states'
         if @us = Place.find_by_name("United States")
-          @us.children.all(:order => "name").compact
+          @us.children.order(:name)
         else
           []
         end
@@ -769,8 +758,8 @@ class TaxaController < ApplicationController
         []
       end
       
-      @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], 
-        :select => "DISTINCT ON (place_id) listed_taxa.*")
+      @listed_taxa = @taxon.listed_taxa.where(place_id: @places).
+        select("DISTINCT ON (place_id) listed_taxa.*")
       @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
       
       render :partial => 'taxa/add_to_place_link', :collection => @places, :locals => {
@@ -801,10 +790,7 @@ class TaxaController < ApplicationController
   private
   def add_places_from_paste
     place_names = params[:paste_places].split(",").map{|p| p.strip.downcase}.reject(&:blank?)
-    @places = Place.all(:conditions => [
-      "place_type = ? AND name IN (?)", 
-      Place::PLACE_TYPE_CODES['Country'], place_names
-    ])
+    @places = Place.where(place_type: Place::PLACE_TYPE_CODES['Country'], name: place_names)
     @places ||= []
     (place_names - @places.map{|p| p.name.strip.downcase}).each do |new_place_name|
       ydn_places = GeoPlanet::Place.search(new_place_name, :count => 1, :type => "Country")
@@ -820,8 +806,8 @@ class TaxaController < ApplicationController
   
   def add_places_from_search
     search_for_places
-    @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], 
-      :select => "DISTINCT ON (place_id) listed_taxa.*")
+    @listed_taxa = @taxon.listed_taxa.where(place_id: @places).
+      select("DISTINCT ON (place_id) listed_taxa.*")
     @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
   end
   public
@@ -1032,17 +1018,16 @@ class TaxaController < ApplicationController
   end
   
   def curation
-    @flags = Flag.paginate(:page => params[:page], 
-      :include => :user,
-      :conditions => "resolved = false AND flaggable_type = 'Taxon'",
-      :order => "flags.id desc")
-    @resolved_flags = Flag.all(:limit => 5, 
-      :include => [:user, :resolver],
-      :conditions => "resolved = true AND flaggable_type = 'Taxon'",
-      :order => "flags.id desc")
+    @flags = Flag.where(resolved: false, flaggable_type: "Taxon").
+      includes(:user).
+      paginate(page: params[:page]).
+      order(id: :desc)
+    @resolved_flags = Flag.where(resolved: true, flaggable_type: "Taxon").
+      includes(:user, :resolver).order("id desc").limit(5)
     life = Taxon.find_by_name('Life')
-    @ungrafted = Taxon.roots.active.paginate(:conditions => ["id != ?", life], 
-      :page => 1, :per_page => 100, :include => [:taxon_names])
+    @ungrafted = Taxon.roots.active.where("id != ?", life).
+      includes(:taxon_names).
+      paginate(page: 1, per_page: 100)
   end
 
   def synonyms
@@ -1055,8 +1040,7 @@ class TaxaController < ApplicationController
       per_page(100).
       order("rank_level").
       joins("LEFT OUTER JOIN taxa t ON t.name = taxa.name").
-      where("t.id IS NOT NULL AND t.id != taxa.id AND t.is_active = ?", true).
-      scoped
+      where("t.id IS NOT NULL AND t.id != taxa.id AND t.is_active = ?", true)
     @taxa = @taxa.self_and_descendants_of(@iconic_taxon) unless @iconic_taxon.blank?
     @taxa = @taxa.of_rank(@rank) unless @rank.blank?
     if @within_iconic == 't'
@@ -1113,7 +1097,7 @@ class TaxaController < ApplicationController
     
     flickr = get_flickraw
     
-    photos = FlickrPhoto.all(:conditions => ["native_photo_id IN (?)", params[:flickr_photos]], :include => :observations)
+    photos = FlickrPhoto.where(native_photo_id: params[:flickr_photos]).includes(:observations)
     
     params[:flickr_photos].each do |flickr_photo_id|
       tags = params[:tags]
@@ -1137,10 +1121,8 @@ class TaxaController < ApplicationController
       return redirect_to :back
     end
     
-    @observations = current_user.observations.all(
-      :conditions => ["id IN (?)", params[:o].split(',')],
-      :include => [:photos, {:taxon => :taxon_names}]
-    )
+    @observations = current_user.observations.where(id: params[:o].split(',')).
+      includes([ :photos, { :taxon => :taxon_names } ])
     
     if @observations.blank?
       flash[:error] = t(:no_observations_matching_those_ids)
@@ -1192,13 +1174,8 @@ class TaxaController < ApplicationController
     end.compact
 
     
-    @observations = current_user.observations.all(
-      :include => :photos,
-      :conditions => [
-        "photos.native_photo_id IN (?) AND photos.type = ?", 
-        @flickr_photos.map(&:native_photo_id), FlickrPhoto.to_s
-      ]
-    )
+    @observations = current_user.observations.joins(:photos).
+      where(photos: { native_photo_id: @flickr_photos.map(&:native_photo_id), type: FlickrPhoto.to_s })
     @observations_by_native_photo_id = {}
     @observations.each do |observation|
       observation.photos.each do |flickr_photo|
@@ -1208,8 +1185,8 @@ class TaxaController < ApplicationController
   end
   
   def tree
-    @taxon = Taxon.find_by_id(params[:id], :include => [:taxon_names, :photos])
-    @taxon ||= Taxon.find_by_id(params[:taxon_id].to_i, :include => [:taxon_names, :photos])
+    @taxon = Taxon.includes(:taxon_names, :photos).find_by_id(params[:id])
+    @taxon ||= Taxon.includes(:taxon_names, :photos).find_by_id(params[:taxon_id].to_i)
     unless @taxon
       @taxon = Taxon.find_by_name('Life')
       @taxon ||= Taxon.iconic_taxa.first.parent
@@ -1259,7 +1236,7 @@ class TaxaController < ApplicationController
   private
   
   def find_taxa
-    @taxa = Taxon.order("taxa.name ASC").includes(:taxon_names, :taxon_photos, :taxon_descriptions).scoped
+    @taxa = Taxon.order("taxa.name ASC").includes(:taxon_names, :taxon_photos, :taxon_descriptions)
     @taxa = @taxa.from_place(params[:place_id]) unless params[:place_id].blank?
     @taxa = @taxa.self_and_descendants_of(params[:taxon_id]) unless params[:taxon_id].blank?
     if params[:rank] == "species_or_lower"
@@ -1340,7 +1317,7 @@ class TaxaController < ApplicationController
   end
   
   def load_taxon
-    unless @taxon = Taxon.find_by_id(params[:id].to_i, :include => :taxon_names)
+    unless @taxon = Taxon.where(id: params[:id]).includes(:taxon_names).first
       render_404
       return
     end
@@ -1454,7 +1431,7 @@ class TaxaController < ApplicationController
   end
   
   def ensure_flickr_write_permission
-    @provider_authorization = current_user.provider_authorizations.first(:conditions => {:provider_name => 'flickr'})
+    @provider_authorization = current_user.provider_authorizations.where(provider_name: "flickr").first
     if @provider_authorization.blank? || @provider_authorization.scope != 'write'
       session[:return_to] = request.get? ? request.fullpath : request.env['HTTP_REFERER']
       redirect_to auth_url_for('flickr', :scope => 'write')
@@ -1465,7 +1442,7 @@ class TaxaController < ApplicationController
   def load_single_taxon_map_data(taxon)
     @taxon_range = taxon.taxon_ranges.without_geom.first
     if params[:place_id] && (@place = Place.find(params[:place_id]) rescue nil)
-      @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place.id})
+      @place_geometry = PlaceGeometry.without_geom.where(place_id: @place.id).first
     end
     @bounds = if @place && (bbox = @place.bounding_box)
       GeoRuby::SimpleFeatures::Envelope.from_points([
@@ -1484,19 +1461,18 @@ class TaxaController < ApplicationController
       ]
     end
     
-    find_options = {
-      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level, establishment_means", 
-      :joins => [:place], 
-      :conditions => [
-        "place_id IS NOT NULL AND places.admin_level = ?", 
-        Place::COUNTY_LEVEL
-      ]
-    }
-    @county_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
-    find_options[:conditions][1] = Place::STATE_LEVEL
-    @state_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
-    find_options[:conditions][1] = Place::COUNTRY_LEVEL
-    @country_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
+    @county_listings = taxon.listed_taxa.
+      joins(:place).where("place_id IS NOT NULL").where(places: { admin_level: Place::COUNTY_LEVEL }).
+      select("listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level, establishment_means").
+      index_by{ |lt| lt.place_id }
+    @state_listings = taxon.listed_taxa.
+      joins(:place).where("place_id IS NOT NULL").where(places: { admin_level: Place::STATE_LEVEL }).
+      select("listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level, establishment_means").
+      index_by{ |lt| lt.place_id }
+    @country_listings = taxon.listed_taxa.
+      joins(:place).where("place_id IS NOT NULL").where(places: { admin_level: Place::COUNTRY_LEVEL }).
+      select("listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level, establishment_means").
+      index_by{ |lt| lt.place_id }
   end
 
   def load_form_variables

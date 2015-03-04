@@ -5,13 +5,13 @@ module ActiveRecord
       def acts_as_spammable(options={})
 
         include Rakismet::Model
-
         acts_as_flaggable
+
         rakismet_fields = options[:fields]
         # set up the rakismet attributes. Concatenate multiple
         # fields using periods as if sentences
-        rakismet_attrs author: proc { self.user ? self.user.name : nil },
-                       author_email: proc { self.user ? self.user.email : nil },
+        rakismet_attrs author: proc { user_responsible ? user_responsible.name : nil },
+                       author_email: proc { user_responsible ? user_responsible.email : nil },
                        content: proc {
                          options[:fields].map{ |f|
                            self.respond_to?(f) ? self.send(f) : nil
@@ -21,26 +21,33 @@ module ActiveRecord
                        blog_lang: "en,fr,es,zh,gl,th,jp"
 
         after_save :check_for_spam, unless: proc {
-          self.user && self.user.known_non_spammer? }
+          user_responsible && user_responsible.known_non_spammer? }
 
         scope :flagged_as_spam,
-          joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } })
+          -> { joins(:flags).where({ flags: { flag: Flag::SPAM, resolved: false } }) }
         scope :not_flagged_as_spam,
-          joins("LEFT JOIN flags f ON (#{ table_name }.id=f.flaggable_id
+          ->{ joins("LEFT JOIN flags f ON (#{ table_name }.id=f.flaggable_id
             AND f.flaggable_type='#{ name }' AND f.flag='#{ Flag::SPAM }'
             AND resolved = false)").
-          where("f.id IS NULL")
+          where("f.id IS NULL") }
 
         define_method(:flagged_as_spam?) do
           self.flags.loaded? ?
             self.flags.any?{ |f| f.flag == Flag::SPAM && ! f.resolved? } :
-            self.class.flagged_as_spam.exists?(self)
+            self.class.flagged_as_spam.exists?(self.id)
+        end
+
+        define_method(:default_life_list?) do
+          self.is_a?(LifeList) &&
+          self.title == self.default_title &&
+          self.description == self.default_description
         end
 
         # If any of the rakismet fields have been modified, then
         # call the akismet API and update the flags on this object.
         # Flags are made with user_id = 0, representing automated flags
         define_method(:check_for_spam) do
+          return if default_life_list?
           # first make sure the user isn't a known non-spammer
           evaluate_user_spammer_status
           # leveraging the new attribute `disabled`, which we set to
@@ -57,7 +64,7 @@ module ActiveRecord
               # when all the fields we care about are blank, we don't have spam
               # and don't need to call the akismet API. This is also the only
               # place that the akismet API is called outside of specs
-              is_spam = rakismet_fields.all?{ |f| self.send(f).blank? } ?
+              is_spam = (rakismet_fields.all?{ |f| self.send(f).blank? }) ?
                 false : spam?
               if is_spam
                 self.add_flag( flag: "spam", user_id: 0 )
@@ -75,15 +82,15 @@ module ActiveRecord
         # the creator's spam_count up-to-date
         define_method(:flagged_with) do |flag, options|
           if flag.flag == Flag::SPAM
-            if self.respond_to?(:user)
-              self.user.update_spam_count
+            if user_responsible
+              user_responsible.update_spam_count
             end
           end
         end
 
         define_method(:evaluate_user_spammer_status) do
-          if user
-            user.set_as_non_spammer_if_meets_criteria
+          if user_responsible
+            user_responsible.set_as_non_spammer_if_meets_criteria
           end
         end
 
@@ -91,6 +98,14 @@ module ActiveRecord
 
       def spammable?
         respond_to?(:flagged_as_spam)
+      end
+    end
+
+    def user_responsible
+      if self.is_a?(User)
+        self
+      elsif self.respond_to?(:user)
+        self.user
       end
     end
 
@@ -113,12 +128,7 @@ module ActiveRecord
     end
 
     def owned_by_spammer?
-      user = if self.is_a?(User)
-        self
-      elsif self.respond_to?(:user)
-        self.user
-      end
-      return true if user && user.spammer?
+      return true if user_responsible && user_responsible.spammer?
       false
     end
 

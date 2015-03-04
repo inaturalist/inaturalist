@@ -98,13 +98,13 @@ describe ProjectUser do
     
     it "should queue a job to update identifications if became curator" do
       @project_user.update_attributes(:role => ProjectUser::CURATOR)
-      jobs = Delayed::Job.all(:conditions => ["created_at >= ?", @now])
+      jobs = Delayed::Job.where("created_at >= ?", @now)
       jobs.select{|j| j.handler =~ /Project.*update_curator_idents_on_make_curator/m}.should_not be_blank
     end
     
     it "should queue a job to update identifications if became manager" do
       @project_user.update_attributes(:role => ProjectUser::MANAGER)
-      jobs = Delayed::Job.all(:conditions => ["created_at >= ?", @now])
+      jobs = Delayed::Job.where("created_at >= ?", @now)
       jobs.select{|j| j.handler =~ /Project.*update_curator_idents_on_make_curator/m}.should_not be_blank
     end
     
@@ -112,7 +112,7 @@ describe ProjectUser do
       @project_user.update_attributes(:role => ProjectUser::CURATOR)
       Delayed::Job.delete_all
       @project_user.update_attributes(:role => nil)
-      jobs = Delayed::Job.all(:conditions => ["created_at >= ?", @now])
+      jobs = Delayed::Job.where("created_at >= ?", @now)
       jobs.select{|j| j.handler =~ /Project.*update_curator_idents_on_remove_curator/m}.should_not be_blank
     end
     
@@ -120,7 +120,7 @@ describe ProjectUser do
       @project_user.update_attributes(:role => ProjectUser::CURATOR)
       Delayed::Job.delete_all
       @project_user.update_attributes(:role => ProjectUser::MANAGER)
-      jobs = Delayed::Job.all(:conditions => ["created_at >= ?", @now])
+      jobs = Delayed::Job.where("created_at >= ?", @now)
       jobs.select{|j| j.handler =~ /Project.*update_curator_idents_on_remove_curator/m}.should be_blank
       jobs.select{|j| j.handler =~ /Project.*update_curator_idents_on_make_curator/m}.should be_blank
     end

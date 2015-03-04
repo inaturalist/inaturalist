@@ -25,9 +25,12 @@
   <% for flagging in @flags %>
   <tr>
     <td><%= flagging.created_at %></td>
-    <td><%= link_to flagging.flagged_object.species_guess,flagging.flagged_object %></td>
+    <td><%= link_to flagging.flaggable.species_guess,flagging.flaggable %></td>
     <td><%= h flagging.flag %></td>
-    <td><%= link_to h(flagging.user.login), person_path(:id=>flagging.user_id) %></td>
+    <td><%= flagging.user ?
+      link_to( h(flagging.user.login), person_path(flagging.user_id) ) :
+      CONFIG.site_name_short %>
+    </td>
     <td class="buttonrow">
       <%= link_to t(:edit_the_observation), 
                   edit_observation_path(:id=>flagging.flaggable_id), :class => 'button' %>

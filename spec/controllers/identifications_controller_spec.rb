@@ -8,7 +8,7 @@ describe IdentificationsController, "agree" do
     sign_in u
     post :agree, :observation_id => o.id, :taxon_id => i1.taxon_id
     post :agree, :observation_id => o.id, :taxon_id => i1.taxon_id
-    o.identifications.by(u).current.size.should eq 1
+    expect(o.identifications.by(u).current.size).to eq 1
   end
 
   it "should not raise an error when you agree with yourself" do
@@ -16,9 +16,9 @@ describe IdentificationsController, "agree" do
     i2 = Identification.make!(:observation => i1.observation)
     o = i1.observation
     sign_in i1.user
-    lambda {
+    expect {
       post :agree, :observation_id => o.id, :taxon_id => i1.taxon_id
-    }.should_not raise_error
+    }.not_to raise_error
   end
 
   it "should not raise an error if the observation does not exist" do
@@ -26,9 +26,9 @@ describe IdentificationsController, "agree" do
     u = User.make!
     t = Taxon.make!
     sign_in u
-    lambda {
+    expect {
       post :agree, :observation_id => o.id+1, :taxon_id => t.id
-    }.should_not raise_error
+    }.not_to raise_error
   end
 end
 
@@ -37,7 +37,7 @@ describe IdentificationsController, "destroy" do
     i = Identification.make!
     sign_in i.user
     delete :destroy, :id => i.id
-    Identification.find_by_id(i.id).should be_blank
+    expect(Identification.find_by_id(i.id)).to be_blank
   end
 
   it "should work with multiple outdated IDs" do
@@ -46,8 +46,8 @@ describe IdentificationsController, "destroy" do
     i3 = Identification.make!(:user => i1.user, :observation => i1.observation, :taxon => i1.taxon)
     i4 = Identification.make!(:user => i1.user, :observation => i1.observation, :taxon => i1.taxon)
     sign_in i1.user
-    lambda {
+    expect {
       delete :destroy, :id => i2.id
-    }.should_not raise_error
+    }.not_to raise_error
   end
 end

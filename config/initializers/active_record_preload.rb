@@ -1,8 +1,8 @@
 module ActiveRecord
   class Base
 
-    def self.preload_associations(instances, associations, preload_options = {})
-      ActiveRecord::Associations::Preloader.new(instances, associations, preload_options).run
+    def self.preload_associations(instances, associations)
+      ActiveRecord::Associations::Preloader.new.preload(instances, associations)
     end
 
   end

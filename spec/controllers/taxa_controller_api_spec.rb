@@ -16,7 +16,7 @@ shared_examples_for "a TaxaController" do
       get :index, :format => :json
       json = JSON.parse(response.body)
       json.each do |json_taxon|
-        json_taxon['is_iconic'].should be_true
+        json_taxon['is_iconic'].should be true
       end
     end
 
@@ -101,7 +101,7 @@ end
 
 describe TaxaController, "oauth authentication" do
   let(:user) { User.make! }
-  let(:token) { stub :accessible? => true, :resource_owner_id => user.id }
+  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     controller.stub(:doorkeeper_token) { token }

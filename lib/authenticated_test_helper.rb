@@ -10,7 +10,7 @@ module AuthenticatedTestHelper
   
   # rspec
   def mock_user
-    user = mock_model(User, :id => 1,
+    user = double(User, :id => 1,
       :login  => 'user_name',
       :name   => 'U. Surname',
       :to_xml => "User-in-XML", :to_json => "User-in-JSON", 
