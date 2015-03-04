@@ -213,6 +213,12 @@ GEM
     capistrano-stats (1.1.1)
     capistrano3-delayed-job (1.3.0)
       capistrano (>= 3.0.0)
+    capybara (2.4.4)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -568,6 +574,8 @@ GEM
     wicked_pdf (0.11.0)
       rails
     will_paginate (3.0.7)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
     ya2yaml (0.31)
     yui-compressor (0.12.0)
 
@@ -595,6 +603,7 @@ DEPENDENCIES
   capistrano-rails (~> 1.1)
   capistrano-rvm (~> 0.1)
   capistrano3-delayed-job (~> 1.0)
+  capybara (~> 2.4)
   chronic
   cocoon
   daemon-spawn

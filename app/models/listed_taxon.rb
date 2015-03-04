@@ -113,11 +113,15 @@ class ListedTaxon < ActiveRecord::Base
   }
   #with iconic taxon filter (by itself)
   scope :filter_by_iconic_taxon, ->(iconic_taxon_id) {
-    joins(:taxon).where(taxa: { iconic_taxon_id: iconic_taxon_id })
+    # same problem with subselects as above
+    joins("INNER JOIN taxa taxa_filter_by_iconic_taxon ON (listed_taxa.taxon_id = taxa_filter_by_iconic_taxon.id)").
+    where(taxa_filter_by_iconic_taxon: { iconic_taxon_id: iconic_taxon_id })
   }
   #both iconic taxon filter and taxonomic status
   scope :with_taxonomic_status_and_iconic_taxon, ->(taxonomic_status, iconic_taxon_id) {
-    joins(:taxon).where(taxa: {
+    # same problem with subselects as above
+    joins("INNER JOIN taxa taxa_with_status_and_iconic_taxon ON (listed_taxa.taxon_id = taxa_with_status_and_iconic_taxon.id)").
+    where(taxa_with_status_and_iconic_taxon: {
       is_active: (taxonomic_status ? 't' : 'f'),
       iconic_taxon_id: iconic_taxon_id }
     )

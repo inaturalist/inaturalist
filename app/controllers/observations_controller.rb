@@ -923,7 +923,7 @@ class ObservationsController < ApplicationController
 
   def curation
     @flags = Flag.where(resolved: false, flaggable_type: "Observation").
-      includes(:user).
+      includes(:user, :flaggable).
       paginate(page: params[:page])
   end
 

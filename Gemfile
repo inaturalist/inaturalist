@@ -109,6 +109,7 @@ group :test, :development, :prod_dev do
   gem "byebug"
   gem "binding_of_caller"
   gem 'thin', '~> 1.6.3'
+  gem 'capybara', '~> 2.4'
 end
 
 group :test do

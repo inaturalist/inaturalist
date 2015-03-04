@@ -279,6 +279,30 @@ describe ObservationsController do
     # ugh, how to test uploads...
     it "should generate an error if single file makes invalid photo"
   end
+
+  describe "curation" do
+    render_views
+    before :each do
+      @curator = make_curator
+      http_login(@curator)
+    end
+
+    it "should render a link to the flagger" do
+      Flag.make!(user: @curator, flaggable: Observation.make!)
+      get :curation
+      expect(response.body).to have_selector("table td", text: @curator.login)
+      expect(response.body).to_not have_selector("table td", text: CONFIG.site_name_short)
+    end
+
+    it "should show CONFIG.site_name_short if there is no flagger" do
+      Flag.make!(flaggable: Observation.make!)
+      Flag.last.update_column(:user_id, 0)
+      get :curation
+      expect(response.body).to_not have_selector("table td", text: @curator.login)
+      expect(response.body).to have_selector("table td", text: CONFIG.site_name_short)
+    end
+  end
+
 end
 
 describe ObservationsController, "spam" do

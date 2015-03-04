@@ -73,7 +73,7 @@ module Shared::ListsModule
     else
       main_list = set_scopes(@list, @filter_taxon, @list.listed_taxa)
     end
-    @listed_taxa = main_list.where(@find_options[:conditions]).
+    @listed_taxa ||= main_list.where(@find_options[:conditions]).
       includes(@find_options[:include]).
       paginate(page: @find_options[:page], per_page: @find_options[:per_page]).
       order(@find_options[:order])
