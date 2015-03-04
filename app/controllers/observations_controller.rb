@@ -1775,6 +1775,7 @@ class ObservationsController < ApplicationController
       :positional_accuracy,
       :positioning_device,
       :positioning_method,
+      :prefers_community_taxon,
       :quality_grade,
       :species_guess,
       :taxon_id,
