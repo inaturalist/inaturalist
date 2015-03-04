@@ -14,4 +14,6 @@
 <% end %>
 
 <%= link_to t(:back), @taxon_range.taxon || taxa_path, :class => "button" %>
-<%= link_to t(:delete), @taxon_range, :method => :delete, :confirm => t(:are_you_sure_want_delete_this_range), :class => "minor delete button" %>
+<%= link_to t(:delete), @taxon_range, :method => :delete, 
+  :data => {:confirm => t(:are_you_sure_want_delete_this_range)}, 
+  :class => "minor delete button" %>

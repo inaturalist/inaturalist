@@ -93,4 +93,4 @@
         = f.submit t(:publish), :class => "btn btn-primary", :name => "publish"
         = f.submit t(:save), :class => "btn"
       = link_to t(:cancel), :back, :class => "btn"
-      = link_to t(:delete), @trip, :method => :delete, :confirm => t(:are_you_sure?), :class => "btn btn-danger pull-right"
+      = link_to t(:delete), @trip, :method => :delete, :data => {:confirm => t(:are_you_sure?)}, :class => "btn btn-danger pull-right"

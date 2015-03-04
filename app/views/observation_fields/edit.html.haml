@@ -8,5 +8,5 @@
   %h2= @title
 = render :partial => 'form'
 = link_to t(:cancel), observation_fields_path, :class => "button"
-= link_to t(:delete), @observation_field, :method => :delete, :confirm => t(:are_you_sure?), :class => "delete button"
+= link_to t(:delete), @observation_field, :method => :delete, :data => {:confirm => t(:are_you_sure?)}, :class => "delete button"
 = link_to t(:merge), merge_observation_field_path(@observation_field), :class => "minor button"

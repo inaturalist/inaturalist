@@ -53,7 +53,7 @@
       <%= f.submit t(:save), :class => 'default button' %>
       <%= link_to t(:cancel), check_list.place || places_path, :class => 'button' %>
       <%= link_to(t(:delete), check_list,
-        :confirm => t(:you_sure_delete_check_list),
+        :data => {:confirm => t(:you_sure_delete_check_list)},
         :method => :delete, :class => 'minor delete button') unless check_list.new_record? %>
     </div>
   </div>

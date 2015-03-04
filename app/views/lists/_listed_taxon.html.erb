@@ -32,7 +32,7 @@
         :remote => true,
         :method => :delete,
         :type => 'text',
-        :confirm => t(:you_sure_delete_taxon_from_list?, :taxon => default_taxon_name(listed_taxon.taxon)), 
+        :data => {:confirm => t(:you_sure_delete_taxon_from_list?, :taxon => default_taxon_name(listed_taxon.taxon))}, 
         :title => t(:remove_from_list),
         :class => "description removelink") %>
     <% end -%>

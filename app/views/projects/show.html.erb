@@ -51,7 +51,7 @@
         end
         if @project_user && @project_user.user_id != @project.user_id
           links << link_to( t(:leave_this_project) , leave_project_path(@project), :method => :post, :class => "ui description",
-            :confirm => t(:are_you_sure_leave_this_project))
+            :data => {:confirm => t(:are_you_sure_leave_this_project)})
         end
         if @project_user.blank?
           links << link_to( t(:join_project), join_project_path(@project), :class => "ui")

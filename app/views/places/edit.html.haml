@@ -136,7 +136,7 @@
       = f.submit t(:save), :class => 'default button', "data-loading-click" => t(:saving)
       = link_to t(:cancel), @place, :class => 'button'
       = link_to t(:delete), @place, :method => :delete, |
-        :confirm => t(:are_you_sure_delete_this_place), |
+        :data => {:confirm => t(:are_you_sure_delete_this_place)}, |
         :class => 'minor delete button'                 |
 .last.column.span-12
   #map.stacked

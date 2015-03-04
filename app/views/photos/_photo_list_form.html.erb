@@ -65,10 +65,12 @@
         -%>
         <%= link_to t(:sync), synclink_url, :class => "small synclink", 
           :title => t(:import_date_time_location_taxonomic),
-          :confirm => "Are you sure you want to sync this " + 
-            "observation's data with this #{photo.is_a?(LocalPhoto) ? 'photo' : photo.class.name.underscore.humanize}? " + 
-            "You will lose changes you've made to this form, but you will be able to " +
-            "revert to your saved copy." %>
+          :data => {
+            :confirm => "Are you sure you want to sync this " + 
+              "observation's data with this #{photo.is_a?(LocalPhoto) ? 'photo' : photo.class.name.underscore.humanize}? " + 
+              "You will lose changes you've made to this form, but you will be able to " +
+              "revert to your saved copy."
+          } %>
       <% end %>
 
       <label for="<%= input_id %>">

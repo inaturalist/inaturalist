@@ -74,7 +74,7 @@
           end
           if item.respond_to?(:deletable_by?) && item.deletable_by?(current_user) || is_me?(item.user)
             pieces << link_to(t(:delete), item,
-                        :confirm => t(:are_you_sure_you_want_to_delete_this),
+                        :data => {:confirm => t(:are_you_sure_you_want_to_delete_this)},
                         :method => :delete, 
                         :id => "delete_comment_#{item.id}_button")
           end

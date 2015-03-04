@@ -193,7 +193,8 @@
           <%= link_to project_asset.asset.url, project_asset.asset.url %>
           <small style="margin-left: 10px">
             <%= link_to t(:edit), edit_project_asset_path(project_asset) %>
-            <%= link_to t(:delete), project_asset, :method => :delete, :confirm => t(:you_sure_delete_asset?),
+            <%= link_to t(:delete), project_asset, :method => :delete, 
+              :data => {:confirm => t(:you_sure_delete_asset?)},
               :class => 'description' %>
           </small>
         </li>
@@ -269,7 +270,7 @@
     <%= link_to t(:cancel), projects_path, :class => "button" %>
     <% if @project_user && @project_user.is_admin? && !project.new_record? -%>
       <%= link_to t(:delete_project), project, :method => :delete,
-        :confirm => t(:you_sure_delete_project?),
+        :data => {:confirm => t(:you_sure_delete_project?)},
         :class => "minor delete button" %>
     <% end -%>
     <span class="inter right">

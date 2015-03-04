@@ -109,8 +109,11 @@
       <div class="actions buttons">
         <%= f.submit f.object.new_record? ? t(:create) : t(:update), :class => "default button" %>
         <%= link_to t(:cancel), project_path(@assessment.project), :class => "button" %>
-        <%= link_to t(:delete), assessment_path(@assessment), :confirm => t(:are_you_sure_you_want_to_delete_this_assessment?), :method => :delete, :class => "button" unless f.object.new_record? %>
         <a href="#" class="button assessment-preview-button"><%=t :preview %></a>
+        <%= link_to t(:delete), assessment_path(@assessment), 
+          :data => {:confirm => t(:are_you_sure_you_want_to_delete_this_assessment?)}, 
+          :method => :delete, 
+          :class => "delete button right" unless f.object.new_record? %>
       </div>
     </div>
 

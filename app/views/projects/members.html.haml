@@ -70,11 +70,13 @@
                 - if @project.user_id != project_user.user.id
                   .buttonrow.smallbuttons.clear
                     - if project_user.role == ProjectUser::CURATOR
-                      = link_to t(:remove_curator), change_project_user_role_path(@project.id, project_user.id),   |
-                        :method => :post,                                                                          |
-                        :class => "pale button nobr",                                                              |
-                        :confirm => t(:are_you_sure_you_want_to_remove_curator, :user => project_user.user.login), |
-                        "data-loading-click" => true                                                               |
+                      = link_to t(:remove_curator), change_project_user_role_path(@project.id, project_user.id),
+                        :method => :post,
+                        :class => "pale button nobr",
+                        :data => {
+                          :confirm => t(:are_you_sure_you_want_to_remove_curator, :user => project_user.user.login),
+                          :loading_click => true
+                        }
                     - else
                       = link_to t(:make_curator), change_project_user_role_path(@project.id, project_user.id, :role => ProjectUser::CURATOR), |
                         :method => :post,                                                                                                     |
@@ -83,11 +85,13 @@
                 - if @project.user_id != project_user.user_id
                   .smallbuttons.buttonrow
                     - if project_user.role == ProjectUser::MANAGER
-                      = link_to t(:remove_manager), change_project_user_role_path(@project.id, project_user.id),   |
-                        :method => :post,                                                                          |
-                        :class => "pale button nobr",                                                              |
-                        :confirm => t(:are_you_sure_you_want_to_remove_manager, :user => project_user.user.login), |
-                        "data-loading-click" => true                                                               |
+                      = link_to t(:remove_manager), change_project_user_role_path(@project.id, project_user.id),
+                        :method => :post,
+                        :class => "pale button nobr",
+                        :data => {
+                          :confirm => t(:are_you_sure_you_want_to_remove_manager, :user => project_user.user.login),
+                          :loading_click => true
+                        }
                     - else
                       = link_to t(:make_manager), change_project_user_role_path(@project.id, project_user.id, :role => ProjectUser::MANAGER), |
                         :method => :post,                                                                                                     |
@@ -95,10 +99,12 @@
                         "data-loading-click" => true                                                                                          |
               %td.smallbuttons.buttonrow
                 - if @project.user_id != project_user.user_id
-                  = link_to t(:remove_from_project), remove_project_user_path(@project.id, project_user.id),        |
-                    "data-loading-click" => t(:removing),                                                           |
-                    :confirm => t(:are_you_sure_you_want_to_remove_from_project, :user => project_user.user.login), |
-                    :class => "delete button nobr"                                                                  |
+                  = link_to t(:remove_from_project), remove_project_user_path(@project.id, project_user.id),
+                    :data => {
+                      :confirm => t(:are_you_sure_you_want_to_remove_from_project, :user => project_user.user.login),
+                      :loading_click => t(:removing)
+                    }
+                    :class => "delete button nobr"
       = will_paginate @project_users, :renderer => INatLinkRenderer
     .last.column.span-8
       - if @project.curated_by?(current_user) && @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY

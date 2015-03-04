@@ -120,7 +120,10 @@
             
             <% if @photo.respond_to?(:repair) && (is_me?(@photo.user) || is_curator?) -%>
               <span class="button">
-                <%= link_to "Repair broken URLs", photo_repair_path(@photo), :method => :put, :confirm => "This might delete the photo if it was deleted from the external site or the owner has revoked permission.  Proceed?" %>
+                <%= link_to "Repair broken URLs", photo_repair_path(@photo), :method => :put, 
+                  :data => {
+                    :confirm => "This might delete the photo if it was deleted from the external site or the owner has revoked permission.  Proceed?"
+                  } %>
               </span>
             <% end -%>
           </td>
@@ -134,7 +137,10 @@
                 <%= link_to t(:rotate_right), rotate_photo_path(@photo), :method => :put, :class => "button rotateright", "data-loading-click" => "Rotating..." %>
               <% end -%>
               <%= link_to t(:delete_photo), @photo.becomes(Photo), :method => :delete, 
-                :confirm => t(:are_you_sure_you_want_to_delete_this_photo?), "data-loading-click" => "Deleting...", 
+                :data => {
+                  :confirm => t(:are_you_sure_you_want_to_delete_this_photo?),
+                  :loading_click => t(:deleting)
+                },
                 :class => "delete button" %>
             </td>
           </tr>

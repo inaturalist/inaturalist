@@ -29,7 +29,7 @@
       <td><%= link_to t(:edit), edit_observation_field_path(observation_field) %></td>
       <td>
         <%= link_to t(:delete), observation_field, 
-          :confirm => 'Are you sure? Other people may be using this field too.', 
+          :data => {:confirm => 'Are you sure? Other people may be using this field too.'}, 
           :method => :delete %>
       </td>
     <% end -%>
