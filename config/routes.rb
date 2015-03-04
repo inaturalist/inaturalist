@@ -391,7 +391,12 @@ Rails.application.routes.draw do
   get 'places/guide' => 'places#guide', :as => :idendotron_guide
   get 'places/cached_guide/:id' => 'places#cached_guide', :as => :cached_place_guide
   get 'places/autocomplete' => 'places#autocomplete', :as => :places_autocomplete
-  resources :places
+  resources :places do
+    member do
+      get :merge
+      post :merge
+    end
+  end
   
   # get '/guide' => 'places#guide', :as => :guide
   resources :flags

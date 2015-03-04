@@ -56,6 +56,33 @@ describe PlacesController do
       json.first['html'] == place.html
     end
   end
+
+  describe "merge" do
+    let(:keeper) { make_place_with_geom(place_type: Place::STATE) }
+    let(:reject) { make_place_with_geom(place_type: Place::COUNTRY) }
+    before do
+      sign_in make_curator
+    end
+    it "should delete the reject" do
+      reject_id = reject.id
+      post :merge, id: reject.slug, with: keeper.id
+      log_timer do
+        expect(Place.find_by_id(reject_id)).to be_blank
+      end
+    end
+    it "should allow you to keep the reject name" do
+      reject_name = reject.name
+      post :merge, id: reject.slug, with: keeper.id, keep_name: 'left'
+      keeper.reload
+      expect(keeper.name).to eq reject_name
+    end
+    it "should allow you to keep the reject place type" do
+      reject_place_type = reject.place_type
+      post :merge, id: reject.slug, with: keeper.id, keep_place_type_name: 'left'
+      keeper.reload
+      expect(keeper.place_type).to eq reject_place_type
+    end
+  end
 end
 
 # If you ever figure out how to test page caching...

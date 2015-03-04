@@ -147,4 +147,4 @@
 .column.span-24
   .small.description
     = t(:is_this_place_a_duplicate)
-    = link_to t(:merge_it_with_another_place), {:action => 'merge', :id => @place}, :class => 'readmore'
+    = link_to t(:merge_it_with_another_place), merge_place_path(@place), :class => 'readmore'

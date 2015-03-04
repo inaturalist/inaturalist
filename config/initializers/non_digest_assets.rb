@@ -1,3 +1,4 @@
 NonStupidDigestAssets.whitelist += [
-  "logo-small.gif"
+  "logo-small.gif",
+  /spritesheet/
 ]

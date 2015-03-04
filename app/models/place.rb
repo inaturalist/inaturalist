@@ -681,7 +681,6 @@ class Place < ActiveRecord::Base
     
     # ensure any loaded associates that had their foreign keys updated in the db aren't hanging around
     mergee.reload
-
     mergee.destroy
     self.save
     self

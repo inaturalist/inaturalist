@@ -280,7 +280,6 @@ class PlacesController < ApplicationController
         k.gsub('keep_', '') if k =~ /^keep_/ && v == 'left'
       end.compact
       keepers = nil if keepers.blank?
-      
       unless @merge_target
         flash[:error] = t(:you_must_select_a_place_to_merge_with)
         return
