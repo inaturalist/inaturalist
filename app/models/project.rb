@@ -190,7 +190,10 @@ class Project < ActiveRecord::Base
   end
   
   def icon_url
-    icon.file? ? "#{CONFIG.site_url}#{icon.url(:span2)}" : nil
+    return nil unless icon.file?
+    url = icon.url(:span2)
+    url = URI.join(CONFIG.site_url, url).to_s unless url =~ /^http/
+    url
   end
   
   def project_observation_rule_terms

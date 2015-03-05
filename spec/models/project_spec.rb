@@ -120,3 +120,21 @@ describe Project, "eventbrite_id" do
 
   end
 end
+
+describe Project, "icon_url" do
+  let(:p) { Project.make! }
+  before do
+    allow(p).to receive(:icon_file_name) { "foo.png" }
+    allow(p).to receive(:icon_content_type) { "image/png" }
+    allow(p).to receive(:icon_file_size) { 12345 }
+    allow(p).to receive(:icon_updated_at) { Time.now }
+    expect(p.icon_url).not_to be_blank
+  end
+  it "should be absolute" do
+    puts "p.icon_url: #{p.icon_url}"
+    expect(p.icon_url).to match /^http/
+  end
+  it "should not have two protocols" do
+    expect(p.icon_url.scan(/http/).size).to eq 1
+  end
+end
