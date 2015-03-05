@@ -1,4 +1,6 @@
 NonStupidDigestAssets.whitelist += [
   "logo-small.gif",
-  /spritesheet/
+  /spritesheet/,
+  /\.xsl$/,
+  /\.kml$/
 ]
