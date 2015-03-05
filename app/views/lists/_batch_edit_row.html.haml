@@ -30,13 +30,13 @@
           = link_to_function t(:remove), "$(this).parents('.listed_taxon_row:first').fadeOut(function() { $(this).remove()})",
             :class => "last inter removelink"
         - else
-          = link_to t(:remove), lt, :method => :delete, 
-            :remote => true, 
-            :data => {
-              :type => "json"
-              :confirm => t(:are_you_sure_remove_taxon_from_list)
-            }, 
-            :class => "last inter removelink"
+          = link_to t(:remove), lt, :method => :delete,         |
+            :remote => true,                                    |
+            :data => {                                          |
+            :type => "json",                                    |
+            :confirm => t(:are_you_sure_remove_taxon_from_list) |
+            },                                                  |
+            :class => "last inter removelink"                   |
           = link_to t(:view), lt, :target => "_blank"
   %tr.message
     %td{:colspan => 6}
