@@ -54,7 +54,7 @@ class IdentificationsController < ApplicationController
       duplicate_key_violation = false
       begin
         @identification.save
-      rescue PG::Error => e
+      rescue PG::Error, ActiveRecord::RecordNotUnique => e
         raise e unless e =~ /index_identifications_on_current/
         duplicate_key_violation = true
       end
@@ -158,7 +158,7 @@ class IdentificationsController < ApplicationController
       duplicate_key_violation = false
       begin
         @identification.save
-      rescue PG::Error => e
+      rescue PG::Error, ActiveRecord::RecordNotUnique => e
         raise e unless e =~ /index_identifications_on_current/
         duplicate_key_violation = true
       end

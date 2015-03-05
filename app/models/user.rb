@@ -457,7 +457,7 @@ class User < ActiveRecord::Base
     u.skip_confirmation!
     user_saved = begin
       u.save
-    rescue PG::Error => e
+    rescue PG::Error, ActiveRecord::RecordNotUnique => e
       raise e unless e.message =~ /duplicate key value violates unique constraint/
       false
     end

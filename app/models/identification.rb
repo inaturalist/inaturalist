@@ -186,9 +186,10 @@ class Identification < ActiveRecord::Base
     if last_outdated
       begin
         Identification.where(id: last_outdated).update_all(current: true)
-      rescue PG::Error => e
+      rescue PG::Error, ActiveRecord::RecordNotUnique => e
+        debugger
         raise e unless e.message =~ /index_identifications_on_current/
-        # assume that if the unique key constrait complained, then there's already a current ident
+        # assume that if the unique key constraint complained, then there's already a current ident
       end
     end
     true

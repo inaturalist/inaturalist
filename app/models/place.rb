@@ -334,7 +334,7 @@ class Place < ActiveRecord::Base
         Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
         return
       end
-    rescue PG::Error => e
+    rescue PG::Error, ActiveRecord::RecordNotUnique => e
       raise e unless e.message =~ /duplicate key/
       return
     end
