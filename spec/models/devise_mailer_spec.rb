@@ -29,4 +29,11 @@ describe DeviseMailer, "reset_password_instructions" do
     expect( mail.subject.downcase ).to_not include "reset"
     expect( mail.subject.downcase ).to include "reinicio"
   end
+
+  it "should appear to come from the user's site" do
+    site = Site.make!
+    u = User.make!(site: site)
+    mail = DeviseMailer.reset_password_instructions(u, u.confirmation_token)
+    expect( mail.body ).to include site.url
+  end
 end
