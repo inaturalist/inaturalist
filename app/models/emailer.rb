@@ -1,4 +1,4 @@
-class Emailer < ActionMailer::Preview
+class Emailer < ActionMailer::Base 
   helper :application
   helper :observations
   helper :taxa
