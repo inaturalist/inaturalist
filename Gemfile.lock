@@ -30,13 +30,6 @@ GIT
       i18n (~> 0.6)
 
 GIT
-  remote: git://github.com/jkraemer/xmp.git
-  revision: 3e2153f27aafb0b41ba245fa642c0a71a692bde8
-  specs:
-    xmp (0.2.0)
-      nokogiri (~> 1.6.0)
-
-GIT
   remote: git://github.com/jrgifford/delayed_paperclip.git
   revision: da42152039dd3e3ff5afc1cd1458c460d7fd3c33
   specs:
@@ -90,6 +83,13 @@ GIT
       paperclip
       rails (> 3.0.0)
       rdoc
+
+GIT
+  remote: git://github.com/kueda/xmp.git
+  revision: 3bf755b906fc6d8edbde68a29f264108c0c4a4ae
+  specs:
+    xmp (0.2.0)
+      nokogiri (~> 1.6.0)
 
 GIT
   remote: git://github.com/rightscale/right_aws.git

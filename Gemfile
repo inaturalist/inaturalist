@@ -89,10 +89,7 @@ gem 'will_paginate'
 gem 'whenever', :require => false
 gem 'ya2yaml'
 gem 'yui-compressor'
-# This used to pull from git://github.com/eknoop/xmp.git and might require
-# pulling into https://github.com/eknoop/xmp/commit/b07bd072239a84c7b8c2967c33
-# 21066477e03a88 into a fork of our own...
-gem 'xmp', :git => 'git://github.com/jkraemer/xmp.git'
+gem 'xmp', :git => 'git://github.com/kueda/xmp.git'
 gem 'statsd-ruby', :require => 'statsd'
 
 gem 'rgeo'
