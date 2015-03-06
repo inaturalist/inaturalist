@@ -109,10 +109,12 @@
       <% end -%>
     </h2>
     
-    <span class="right buttonrow">
-      <%= link_to t(:add_observations_project), new_observation_path(:project_id => @project.id), 
-        :class => 'last button default', :rel => "nofollow" %>
-    </span>
+    <% if !@project.invite_only? || @project_user -%>
+      <span class="right buttonrow">
+        <%= link_to t(:add_observations_project), new_observation_path(:project_id => @project.id), 
+          :class => 'last button default', :rel => "nofollow" %>
+      </span>
+    <% end -%>
   <% end -%>
 </div>
 

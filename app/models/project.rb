@@ -494,4 +494,8 @@ class Project < ActiveRecord::Base
     list_count = (list.count / 3.0).ceil
     list.in_groups_of(list_count)
   end
+
+  def invite_only?
+    preferred_membership_model == MEMBERSHIP_INVITE_ONLY
+  end
 end
