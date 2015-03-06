@@ -7,7 +7,7 @@ shared_examples_for "a TaxaController" do
       p = Place.make!
       p.check_list.add_taxon(t)
       get :index, :format => :json, :place_id => p.id
-      response.headers['X-Total-Entries'].to_i.should eq(1)
+      expect(response.headers['X-Total-Entries'].to_i).to eq(1)
     end
 
     it "should show iconic taxa if no search params" do
@@ -16,7 +16,7 @@ shared_examples_for "a TaxaController" do
       get :index, :format => :json
       json = JSON.parse(response.body)
       json.each do |json_taxon|
-        json_taxon['is_iconic'].should be true
+        expect(json_taxon['is_iconic']).to be true
       end
     end
 
@@ -27,9 +27,9 @@ shared_examples_for "a TaxaController" do
       taxa = [t1,t2,t3]
       get :index, :format => :json, :names => taxa.map(&:name).join(',')
       json = JSON.parse(response.body)
-      json.size.should eq 3
+      expect(json.size).to eq 3
       taxa.each do |t|
-        json.detect{|jt| jt["id"] == t.id}.should_not be_blank
+        expect(json.detect{|jt| jt["id"] == t.id}).not_to be_blank
       end
     end
   end
@@ -39,7 +39,7 @@ shared_examples_for "a TaxaController" do
       tr = TaxonRange.make!(:url => "http://foo.bar/range.kml")
       get :show, :format => :json, :id => tr.taxon_id
       response_taxon = JSON.parse(response.body)
-      response_taxon['taxon_range_kml_url'].should eq tr.kml_url
+      expect(response_taxon['taxon_range_kml_url']).to eq tr.kml_url
     end
 
     describe "with default photo" do
@@ -65,14 +65,14 @@ shared_examples_for "a TaxaController" do
         get :show, :format => :json, :id => taxon.id
         response_taxon = JSON.parse(response.body)
         %w(thumb small medium large).each do |size|
-          response_taxon['default_photo']["#{size}_url"].should eq photo.send("#{size}_url")
+          expect(response_taxon['default_photo']["#{size}_url"]).to eq photo.send("#{size}_url")
         end
       end
 
       it "should include license url" do
         get :show, :format => :json, :id => taxon.id
         response_taxon = JSON.parse(response.body)
-        response_taxon['default_photo']['license_url'].should eq photo.license_url
+        expect(response_taxon['default_photo']['license_url']).to eq photo.license_url
       end
     end
   end
@@ -84,8 +84,8 @@ shared_examples_for "a TaxaController" do
       inactive = Taxon.make!(:parent => p, :is_active => false)
       get :children, :id => p.id, :format => :json
       taxa = JSON.parse(response.body)
-      taxa.detect{|t| t['id'] == active.id}.should_not be_blank
-      taxa.detect{|t| t['id'] == inactive.id}.should be_blank
+      expect(taxa.detect{|t| t['id'] == active.id}).not_to be_blank
+      expect(taxa.detect{|t| t['id'] == inactive.id}).to be_blank
     end
     it "should show all taxa if requested" do
       p = Taxon.make!
@@ -93,8 +93,8 @@ shared_examples_for "a TaxaController" do
       inactive = Taxon.make!(:parent => p, :is_active => false)
       get :children, :id => p.id, :format => :json, :is_active => "any"
       taxa = JSON.parse(response.body)
-      taxa.detect{|t| t['id'] == active.id}.should_not be_blank
-      taxa.detect{|t| t['id'] == inactive.id}.should_not be_blank
+      expect(taxa.detect{|t| t['id'] == active.id}).not_to be_blank
+      expect(taxa.detect{|t| t['id'] == inactive.id}).not_to be_blank
     end
   end
 end
@@ -104,7 +104,7 @@ describe TaxaController, "oauth authentication" do
   let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    controller.stub(:doorkeeper_token) { token }
+    allow(controller).to receive(:doorkeeper_token) { token }
   end
   it_behaves_like "a TaxaController"
 end

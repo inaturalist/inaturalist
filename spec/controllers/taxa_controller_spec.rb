@@ -13,7 +13,7 @@ describe TaxaController do
       user = User.make!(:place => p)
       sign_in user
       get :show, :id => t.id
-      response.body.should =~ /<h2>.*?#{tn2.name}.*?<\/h2>/m
+      expect(response.body).to be =~ /<h2>.*?#{tn2.name}.*?<\/h2>/m
     end
   end
 
@@ -24,7 +24,7 @@ describe TaxaController do
       reject = Taxon.make!
       sign_in user
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
-      response.should be_redirect
+      expect(response).to be_redirect
     end
 
     it "should allow curators to merge taxa they created" do
@@ -33,7 +33,7 @@ describe TaxaController do
       keeper = Taxon.make!(:creator => curator)
       reject = Taxon.make!(:creator => curator)
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
-      Taxon.find_by_id(reject.id).should be_blank
+      expect(Taxon.find_by_id(reject.id)).to be_blank
     end
 
     it "should not allow curators to merge taxa they didn't create" do
@@ -43,7 +43,7 @@ describe TaxaController do
       reject = Taxon.make!
       Observation.make!(:taxon => reject)
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
-      Taxon.find_by_id(reject.id).should_not be_blank
+      expect(Taxon.find_by_id(reject.id)).not_to be_blank
     end
 
     it "should allow curators to merge synonyms" do
@@ -52,7 +52,7 @@ describe TaxaController do
       keeper = Taxon.make!(:name => "Foo")
       reject = Taxon.make!(:name => "Foo")
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
-      Taxon.find_by_id(reject.id).should be_blank
+      expect(Taxon.find_by_id(reject.id)).to be_blank
     end
 
     it "should not allow curators to merge unsynonymous taxa" do
@@ -62,7 +62,7 @@ describe TaxaController do
       reject = Taxon.make!
       Observation.make!(:taxon => reject)
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
-      Taxon.find_by_id(reject.id).should_not be_blank
+      expect(Taxon.find_by_id(reject.id)).not_to be_blank
     end
 
     it "should allow curators to merge taxa without observations" do
@@ -71,7 +71,7 @@ describe TaxaController do
       keeper = Taxon.make!
       reject = Taxon.make!
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
-      Taxon.find_by_id(reject.id).should be_blank
+      expect(Taxon.find_by_id(reject.id)).to be_blank
     end
 
     it "should allow admins to merge anything" do
@@ -80,7 +80,7 @@ describe TaxaController do
       keeper = Taxon.make!
       reject = Taxon.make!
       post :merge, :id => reject.id, :taxon_id => keeper.id, :commit => "Merge"
-      Taxon.find_by_id(reject.id).should be_blank
+      expect(Taxon.find_by_id(reject.id)).to be_blank
     end
 
     describe "routes" do
@@ -103,7 +103,7 @@ describe TaxaController do
       sign_in u
       t = Taxon.make!(:creator => u)
       delete :destroy, :id => t.id
-      Taxon.find_by_id(t.id).should be_blank
+      expect(Taxon.find_by_id(t.id)).to be_blank
     end
 
     it "should not be possible if user did not create the record" do
@@ -111,7 +111,7 @@ describe TaxaController do
       sign_in u
       t = Taxon.make!
       delete :destroy, :id => t.id
-      Taxon.find_by_id(t.id).should_not be_blank
+      expect(Taxon.find_by_id(t.id)).not_to be_blank
     end
 
     it "should always be possible for admins" do
@@ -119,7 +119,7 @@ describe TaxaController do
       sign_in u
       t = Taxon.make!
       delete :destroy, :id => t.id
-      Taxon.find_by_id(t.id).should be_blank
+      expect(Taxon.find_by_id(t.id)).to be_blank
     end
 
     it "should not be possible for taxa inolved in taxon changes" do
@@ -128,7 +128,7 @@ describe TaxaController do
       ts = make_taxon_swap(:input_taxon => t)
       sign_in u
       delete :destroy, :id => t.id
-      Taxon.find_by_id(t.id).should_not be_blank
+      expect(Taxon.find_by_id(t.id)).not_to be_blank
     end
   end
   
@@ -140,7 +140,7 @@ describe TaxaController do
       taxon = Taxon.make!
       put :update, :id => taxon.id, :taxon => {:parent_id => locked_parent.id}
       taxon.reload
-      taxon.parent_id.should == locked_parent.id
+      expect(taxon.parent_id).to eq locked_parent.id
     end
   end
 

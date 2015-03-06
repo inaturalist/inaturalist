@@ -283,14 +283,14 @@ class TaxaController < ApplicationController
 
   def edit
     # TODO: these .firsts will need to be updated
-    @observations_exist = Observation.where(taxon_id: @taxon).first ||
-      Observation.joins(:taxon).where(@taxon.descendant_conditions).first
-    @listed_taxa_exist = ListedTaxon.where(taxon_id: @taxon).first ||
-      ListedTaxon.joins(:taxon).where(@taxon.descendant_conditions).first
-    @identifications_exist = Identification.where(taxon_id: @taxon).first ||
-      Identification.joins(:taxon).where(@taxon.descendant_conditions).first
-    @descendants_exist = @taxon.descendants.first
-    @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
+    @observations_exist = Observation.where(taxon_id: @taxon).exists? ||
+      Observation.joins(:taxon).where(@taxon.descendant_conditions).exists?
+    @listed_taxa_exist = ListedTaxon.where(taxon_id: @taxon).exists? ||
+      ListedTaxon.joins(:taxon).where(@taxon.descendant_conditions).exists?
+    @identifications_exist = Identification.where(taxon_id: @taxon).exists? ||
+      Identification.joins(:taxon).where(@taxon.descendant_conditions).exists?
+    @descendants_exist = @taxon.descendants.exists?
+    @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).exists?
   end
 
   def update
