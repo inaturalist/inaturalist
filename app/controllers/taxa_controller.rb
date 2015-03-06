@@ -290,7 +290,7 @@ class TaxaController < ApplicationController
     @identifications_exist = Identification.where(taxon_id: @taxon).exists? ||
       Identification.joins(:taxon).where(@taxon.descendant_conditions).exists?
     @descendants_exist = @taxon.descendants.exists?
-    @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).exists?
+    @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
   end
 
   def update
