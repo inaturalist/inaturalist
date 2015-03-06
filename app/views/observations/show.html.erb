@@ -542,7 +542,7 @@
     
     <% if is_me?(@observation.user) -%>
       <div id="idplease" class="clear inline buttonrow">
-        <div id="added_to_id_please" class="box id_please_notice" style="display: <%= @observation.id_please? ? 'block' : 'none' %>">
+        <div id="added_to_id_please" class="box id_please_notice clear" style="display: <%= @observation.id_please? ? 'block' : 'none' %>">
           <span class="inter">
             <%= t :added_to %> <%= link_to t(:id_please).truncate(18), id_please_path %>
           </span>
