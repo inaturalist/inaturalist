@@ -15,7 +15,7 @@
   }
 -%>
 {{Taxobox
-<%- if taxon.rank_level && taxon.rank_level <= Taxon::RANK_LEVELS['genus'] && taxon.default_name.is_scientific_names? -%>
+<%- if taxon.rank_level && taxon.rank_level <= Taxon::RANK_LEVELS['genus'] && taxon.default_name && taxon.default_name.is_scientific_names? -%>
 | name = ''<%= taxon.default_name.name %>''
 <%- elsif taxon.default_name -%>
 | name = <%= taxon.default_name.name %>
