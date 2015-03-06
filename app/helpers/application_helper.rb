@@ -928,7 +928,11 @@ module ApplicationHelper
       u.site.url
     end
     base_url ||= CONFIG.site_url || root_url
-    "#{base_url}#{url_for(resource)}"
+    if url_for(resource) =~ /^http/
+      URI.join(base_url, URI.parse(url_for(resource)).path).to_s
+    else
+      URI.join(base_url, url_for(resource)).to_s
+    end
   end
   
   def commas_and(list, options = {})
