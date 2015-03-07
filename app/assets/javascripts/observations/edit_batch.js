@@ -8,6 +8,9 @@ function applyBatch(inputNames) {
       }
     }
     var batchVal = input.val()
+    if (this.match(/geoprivacy/) && !batchVal) {
+      batchVal = 'open'
+    }
     if ($.trim(batchVal) != '') {
       if (checkedInput) {
         $('#batchcol :input[name*="['+this+']"][value='+batchVal+']').click()
