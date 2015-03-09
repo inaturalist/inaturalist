@@ -144,7 +144,8 @@ class ObservationsController < ApplicationController
             taxon_id: (search_params[:taxon] ? search_params[:taxon].id : nil),
             user_id: search_params[:user_id],
             project_id: search_params[:project_id],
-            place_id: search_params[:place_id]
+            place_id: search_params[:place_id],
+            observations: @observations
           }.delete_if{ |k,v| v.nil? })
           if search_params[:taxon] && search_params[:taxon].iconic_taxon
             @map_grid_params[:iconic_taxon] = search_params[:taxon].iconic_taxon.name
@@ -1929,11 +1930,21 @@ class ObservationsController < ApplicationController
   end
 
   def map
-    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
-    @render_place = Place.find_by_id(params[:render_place_id].to_i) if params[:render_place_id]
-    @render_taxon_range = Taxon.find_by_id(params[:render_taxon_range_id].to_i) if params[:render_taxon_range_id]
-    @taxon_hash = { }
-    if @taxon
+    @taxa = [ ]
+    @places = [ ]
+    if params[:taxon_id]
+      @taxa = [ Taxon.find_by_id(params[:taxon_id].to_i) ]
+    elsif params[:taxon_ids]
+      @taxa = Taxon.where(id: params[:taxon_ids])
+    end
+    if params[:place_id]
+      @places = [ Place.find_by_id(params[:place_id].to_i) ]
+    elsif params[:place_ids]
+      @places = Place.where(id: params[:place_ids])
+    end
+    if @taxa.length == 1
+      @taxon = @taxa.first
+      @taxon_hash = { }
       common_name = view_context.common_taxon_name(@taxon).try(:name)
       rank_label = @taxon.rank ? t('ranks.#{ @taxon.rank.downcase }',
         default: @taxon.rank).capitalize : t(:unknown_rank)

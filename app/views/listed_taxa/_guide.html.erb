@@ -5,8 +5,10 @@
   place ||= listed_taxon.place
   taxon ||= listed_taxon.taxon
   taxon_range ||= TaxonRange.without_geom.where(taxon_id: taxon).first
-  map_tag_attrs = setup_map_tag_attrs(:taxon => taxon, :place => place,
-    :show_range => true, :focus => :place)
+  map_tag_attrs = setup_map_tag_attrs(
+    taxon_layers: [ { taxon:taxon, ranges: true, observations: true } ],
+    place_layers: [ { place: place } ],
+    focus: :place)
   obs_url = observations_path(:place_id => listed_taxon.place_id, :taxon_id => listed_taxon.taxon_id)
   photos = taxon.taxon_photos.sort_by{|tp| tp.position || tp.id}.map{|tp| tp.photo}
 -%>

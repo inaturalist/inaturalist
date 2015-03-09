@@ -224,7 +224,7 @@
     observations: @observations, focus: "observations", flag_letters: true,
     min_y: params[:swlat], min_x: params[:swlng],
     max_y: params[:nelat], max_x: params[:nelng],
-    windshaft_user_id: @selected_user.id) %>
+    observation_layers: [ { user_id: @selected_user.id, observations: @observations } ] ) %>
   <%= content_tag("div", "", map_attributes.merge({ id: "map" })) %>
   <%= link_to_function t(:redo_search_in_map_area),
     "redoSearchInMapArea()", 

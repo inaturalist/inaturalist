@@ -24,6 +24,10 @@ body {
 .gm-style label[disabled] {
   color: gray;
 }
+.gmapv3control.overlaycontrol.open {
+  max-height: 300px;
+  overflow: auto;
+}
 .gmapv3control ul.inat-overlay {
   margin-top: 5px;
   font-family: "Trebuchet MS", Arial, sans-serif;
@@ -35,16 +39,27 @@ body {
   position: relative;
 }
 .gmapv3control ul.inat-overlay li input[type=checkbox] {
-  position: absolute;
-  left: 0;
-  top: 5px;
   padding: 0;
   margin: 0;
 }
 .gmapv3control ul.inat-overlay li label,
 .gmapv3control ul.inat-overlay li div {
-  display: block;
-  padding-left: 20px;
+  padding-left: 5px;
+}
+
+.gmapv3control ul.inat-overlay li.taxon {
+  padding-bottom: 5px;
+}
+
+.gmapv3control ul.inat-overlay li.for_taxon {
+  border-top: 1px solid #D8D8D8;
+  margin-left: 18px;
+  border: 0;
+  padding-top: 0;
+}
+
+.gmapv3control ul.inat-overlay .small.meta {
+  padding-left: 18px;
 }
 
 h1, h2, h3, h4, h5, h6 {

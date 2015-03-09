@@ -6,37 +6,29 @@
   = javascript_include_tag "map_bundle"
   :javascript
     $(document).ready(function() {
+      $("#map").taxonMap( );
+      window.map = $("#map").data("taxonMap");
+
       // getting the coordinates from the URL and the site default BOUNDS
       // we want to use the site default unless there URL specifies something else
+      google.maps.event.addListener(window.map, 'dragend', setUrlHashCoord);
+      google.maps.event.addListener(window.map, 'zoom_changed', setUrlHashCoord);
       var coord = getUrlHashCoord();
       var BOUNDS = #{ raw CONFIG.bounds.to_json };
-      window.map = iNaturalist.Map.createMap({
-        lat: 10,
-        lng: 20,
-        minZoom: 2,
-        controls: 'small',
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        bounds: coord.lat ? null : BOUNDS
-      });
-      var opts = $.deparam.querystring();
-      var taxon = #{ @taxon_hash.to_json };
-      var renderPlace = #{ @render_place.to_json };
-      var renderTaxon = #{ @render_taxon_range.to_json };
-      opts.grid_color = opts.grid_color || iNaturalist.Map.ICONIC_TAXON_COLORS.Mollusca;
-      if (renderPlace) {
-        window.map.addPlaceLayer({ place: renderPlace });
+      if( window.location.search === "" && !coord.lat && !BOUNDS ) {
+        coord = { lat: 10, lng: 20, zoom: 2 };
       }
-      if (renderTaxon) {
-        window.map.addTaxonRangeLayer({ taxon: renderTaxon });
-      }
-      // window.map.addObservationsLayer({ grid_opacity: 0.8, grid_border_opacity: 0.01,
-      //   point_opacity: 0.4, point_border_opacity: 0.3, point_color: "#6E6E6E", interactivity: false });
-      window.map.addObservationsLayer(opts);
-      google.maps.event.addListener(map, 'dragend', setUrlHashCoord);
-      google.maps.event.addListener(map, 'zoom_changed', setUrlHashCoord);
       if (coord.lat) {
-        map.setCenter(new google.maps.LatLng(coord.lat,coord.lng));
-        map.setZoom(coord.zoom);
+        setTimeout(function() {
+          window.map.setCenter(new google.maps.LatLng(coord.lat,coord.lng));
+          window.map.setZoom(coord.zoom);
+        }, 100);
+      } else if( BOUNDS ) {
+        var bounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng(BOUNDS.swlat, BOUNDS.swlng),
+          new google.maps.LatLng(BOUNDS.nelat, BOUNDS.nelng)
+        )
+        map.fitBounds(bounds)
       }
       
       // add the site logo to the bottom of the map
@@ -67,7 +59,8 @@
       window.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(aboutDiv);
       
       // add the Taxon label to the top of the map
-      if (taxon.display_label) {
+      var taxon = #{ @taxon_hash.to_json };
+      if( taxon && taxon.display_label ) {
         var taxonNameDiv = document.createElement("div");
         taxonNameDiv.style.padding = "5px";
         taxonNameDiv.style.color = "white";
@@ -80,10 +73,10 @@
       }
     });
     function setUrlHashCoord() {
-      var coords = map.getCenter(),
+      var coords = window.map.getCenter(),
           x = preciseRound(coords.lng(), 3),
           y = preciseRound(coords.lat(), 3),
-          z = map.getZoom();
+          z = window.map.getZoom();
       var baseUrl = window.location.href.split('#')[0];
       window.location.replace( baseUrl +'#' + [z,y,x].join('/') );
     }
@@ -91,4 +84,13 @@
       var bits = window.location.hash.split('/').map(function(x) { return parseFloat(x.replace(/[^0-9\-\.]/, ''))});
       return { lat: bits[1], lng: bits[2], zoom: bits[0] };
     }
-#map.fullscreen
+#map.fullscreen{ setup_map_tag_attrs(                                                  |
+  taxon_layers: @taxa.map{ |t|                                                         |
+    { taxon: t, ranges: true, places: true, observations: true  }                      |
+  },                                                                                   |
+  place_layers: @places.map{ |p|                                                       |
+    { place: p }                                                                       |
+  },                                                                                   |
+  enable_show_all_layer: (@taxa.empty? && @places.empty?) ? true : false,              |
+  show_all_layer: (@taxa.empty? && @places.empty?) ? { grid_color: "#FF4500" } : true, |
+  min_zoom: 2 )}                                                                       |

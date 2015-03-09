@@ -11,7 +11,6 @@
     $(document).ready(function() {
       $("#map").taxonMap({ clickable: true, showAllLayer: "#{ show_all_layer }" });
       window.map = $("#map").data("taxonMap");
-      var gridOptions = #{ raw @map_grid_params.to_json };
       #{ "window.map.addObservationsLayer(gridOptions);" if @display_map_grid && !@map_grid_params.empty? }
       // Bind the divider toggle
       $('#mapdivider').click(function(){
@@ -41,8 +40,11 @@
     \#mapobservations.mini{float:left;width:300px;height:520px;overflow:auto;}
 .column.span-24
   .observations.map{ style: (@view && @view == "map") ? nil : "display: none" }
-    #map{ setup_map_tag_attrs(observations: observations,
-      min_x: @swlng, min_y: @swlat, max_x: @nelng, max_y: @nelat ) }
+    - map_options = { observations: observations,
+      min_x: @swlng, min_y: @swlat, max_x: @nelng, max_y: @nelat}
+    - if @display_map_grid && !@map_grid_params.empty?
+      - map_options.merge!(observation_layers: [ @map_grid_params ])
+    #map{ setup_map_tag_attrs(map_options) }
     #mapcontrols{ style: (@view && @view == "map") ? nil : "display: none" }
       = link_to_function t(:redo_search_in_map_area), "redoSearchInMapArea()", :id => 'redo_search_in_map_area_button'
       %span#redo_search_in_map_area_loading.loading.status{ style: "display: none" }
