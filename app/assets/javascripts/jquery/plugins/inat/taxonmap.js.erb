@@ -15,23 +15,24 @@ var inatTaxonMap = { };
 
 inatTaxonMap.setup = function ( elt, options ) {
   var options = $.extend( { }, options );
-  options.taxon = $(elt).data('taxon');
   options.latitude = options.latitude || $(elt).data('latitude');
   options.longitude = options.longitude || $(elt).data('longitude');
   options.mapType = $(elt).data('map-type');
   options.zoomLevel = parseInt( $(elt).data('zoom-level') );
+  options.minZoom = parseInt( $(elt).data('min-zoom') );
   options.gbifKmlUrl = $(elt).data('gbif-kml');
   options.showRange = $(elt).data('show-range');
-  options.place = $(elt).data('place');
   options.minX = $(elt).data('min-x');
   options.minY = $(elt).data('min-y');
   options.maxX = $(elt).data('max-x');
   options.maxY = $(elt).data('max-y');
   options.flagLetters = $(elt).data('flag-letters');
-  options.windshaftProjectID = $(elt).data('windshaft-project-id');
-  options.windshaftUserID = $(elt).data('windshaft-user-id');
   options.observations = options.observations || $(elt).data('observations');
+  options.observationLayers = $(elt).data('observation-layers');
+  options.placeLayers = $(elt).data('place-layers');
+  options.taxonLayers = $(elt).data('taxon-layers');
   options.mapTypeControl = $(elt).data('map-type-control');
+  options.enableShowAllLayer = $(elt).data('enable-show-all-layer');
   options.showAllLayer = options.showAllLayer || $(elt).data('show-all-layer') || true;
   options.featuredLayerLabel = options.featuredLayerLabel || $(elt).data('featured-layer-label');
   options.placeLayerLabel = options.placeLayerLabel || $(elt).data('place-layer-label');
@@ -54,16 +55,20 @@ inatTaxonMap.setup = function ( elt, options ) {
   }
 
   $(elt).data('taxonMapOptions', options)
-  inatTaxonMap.setupGoogle(elt)
+  inatTaxonMap.setupGoogleMap( elt );
 };
 
 inatTaxonMap.fit = function( elt ) {
   inatTaxonMap.fitGoogle( elt );
 };
 
-inatTaxonMap.setupGoogle = function( elt ) {
+inatTaxonMap.setupGoogleMap = function( elt ) {
   var options = $(elt).data('taxonMapOptions'),
-      map = iNaturalist.Map.createMap({ div: elt, mapTypeControl: (options.mapTypeControl !== false) }),
+      map = iNaturalist.Map.createMap({
+        div: elt,
+        mapTypeControl: (options.mapTypeControl !== false),
+        minZoom: options.minZoom
+      }),
       preserveViewport = options.preserveViewport
   if (options.minX) {
     map.fitBounds(
@@ -89,47 +94,26 @@ inatTaxonMap.setupGoogle = function( elt ) {
   map._overlayControl = new iNaturalist.OverlayControl(map);
   // All Observations layer
   if( options.showAllLayer ) {
-    map.addObservationsLayer({
+    if( ! _.isObject( options.showAllLayer ) ) {
+      options.showAllLayer = { }
+    }
+    map.addObservationsLayer(_.defaults( options.showAllLayer, {
       title: options.allLayerLabel,
       description: options.allLayerDescription,
-      disabled: (options.showAllLayer !== "enabled"),
+      disabled: options.enableShowAllLayer === false,
       ttl: 60 * 60 * 24  // 24 hours
-    });
+    }));
   }
-  // Taxon Range
-  if( options.showRange && options.taxon ) {
-    map.addTaxonRangeLayer({
-      taxon: options.taxon,
-      title: options.taxonRangeLayerLabel,
-      description: options.taxonRangeLayerDescription });
-  }
-  // Place Geometry
-  if (options.place) {
-    map.addPlaceLayer({ place: options.place, title: options.placeLayerLabel });
-  }
-  var windshaftOptions = { };
-  if( options.taxon ) {
-    windshaftOptions.taxon_id = options.taxon.id;
-  }
-  if( options.windshaftUserID ) {
-    windshaftOptions.user_id = options.windshaftUserID;
-  }
-  if( options.windshaftProjectID ) {
-    windshaftOptions.project_id = options.windshaftProjectID;
-  }
-  // Windshaft Grid / Points
-  if( ! _.isEmpty( windshaftOptions )) {
-    if( options.observations ) {
-      windshaftOptions.point_observation_id = _.map( options.observations,
-        function( o ) { return o.id }).join(",");
-    }
-    windshaftOptions.title = options.featuredLayerLabel;
-    map.addObservationsLayer( windshaftOptions ) ;
-  }
-  // Observations that need Google Maps-style flags
-  inatTaxonMap.addObservationsToMap( options, map, preserveViewport);
+  // these are taxon ranges, listed_taxa places, and taxon-filtered observations
+  inatTaxonMap.addTaxonLayers( map, options );
+  // these are single place polygons
+  inatTaxonMap.addPlaceLayers( map, options );
+  // these are the grid/point observation layers
+  inatTaxonMap.addObservationLayers( map, options );
+  // these are the observations that need Google Maps-style flags
+  inatTaxonMap.addObservationsToMap( map, options, preserveViewport);
   // GBIF KML Layer (layer is invisible until selected)
-  inatTaxonMap.addGBIFKml( options, map );
+  inatTaxonMap.addGBIFKml( map, options );
   if( !preserveViewport ) {
     inatTaxonMap.fit( elt )
   }
@@ -137,7 +121,59 @@ inatTaxonMap.setupGoogle = function( elt ) {
   $(elt).data('taxonMap', map)
 };
 
-inatTaxonMap.addGBIFKml = function( options, map ) {
+inatTaxonMap.addTaxonLayers = function( map, options ) {
+  if( options.taxonLayers ) {
+    _.each( options.taxonLayers, function( layer ) {
+      if( layer.places ) {
+        layerOptions = _.isObject( layer.places ) ?
+          layer.places : { };
+        map.addTaxonPlacesLayer( _.defaults( layerOptions, {
+          taxon: layer.taxon,
+          title: "Places"
+        }));
+      }
+      if( layer.ranges ) {
+        layerOptions = _.isObject( layer.ranges ) ?
+          layer.ranges : { };
+        map.addTaxonRangeLayer( _.defaults( layerOptions, {
+          taxon: layer.taxon,
+          title: "Range"
+        }));
+      }
+      if( layer.observations ) {
+        layerOptions = _.isObject( layer.observations ) ?
+          layer.observations : { };
+        map.addObservationsLayer( _.defaults( layerOptions, {
+          taxon: layer.taxon,
+          title: options.allLayerLabel
+        }));
+      }
+    });
+  }
+};
+
+inatTaxonMap.addPlaceLayers = function( map, options ) {
+  if( options.placeLayers ) {
+    _.each( options.placeLayers, function( layer ) {
+      map.addPlaceLayer( _.defaults( _.clone( layer ), {
+        title: layer.place.name,
+        description: options.placeLayerLabel
+      }));
+    });
+  }
+};
+
+inatTaxonMap.addObservationLayers = function( map, options ) {
+  if( options.observationLayers ) {
+    _.each( options.observationLayers, function( layer ) {
+      map.addObservationsLayer( _.defaults( _.clone( layer ), {
+        title: options.featuredLayerLabel
+      }));
+    });
+  }
+};
+
+inatTaxonMap.addGBIFKml = function( map, options ) {
   if( !options.gbifKmlUrl ) { return; }
   var gbifLyr = new google.maps.KmlLayer(options.gbifKmlUrl, {suppressInfoWindows: true, preserveViewport: true})
   map.addOverlay(I18n.t('taxon_map.gbif_occurrences'), gbifLyr, {
@@ -170,7 +206,7 @@ inatTaxonMap.addGBIFKml = function( options, map ) {
   })
 };
 
-inatTaxonMap.addObservationsToMap = function( options, map, preserveViewport ) {
+inatTaxonMap.addObservationsToMap = function( map, options, preserveViewport ) {
   if( !options.observations ) {
     return;
   }
