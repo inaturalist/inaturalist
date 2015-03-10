@@ -11,6 +11,7 @@
     $(document).ready(function() {
       $("#map").taxonMap({ clickable: true, showAllLayer: "#{ show_all_layer }" });
       window.map = $("#map").data("taxonMap");
+      var gridOptions = #{ raw @map_grid_params.to_json };
       #{ "window.map.addObservationsLayer(gridOptions);" if @display_map_grid && !@map_grid_params.empty? }
       // Bind the divider toggle
       $('#mapdivider').click(function(){

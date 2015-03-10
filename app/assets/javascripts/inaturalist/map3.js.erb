@@ -396,7 +396,9 @@ iNaturalist.Map.createMap = function(options) {
   else {
     map = new google.maps.Map(options.div, options);
   }
-  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
+  if( ! _.has( options, "disableFullscreen" ) ) {
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
+  }
   map._observationsTileServer = options.observationsTileServer
 
   if (options.bounds) {
@@ -556,6 +558,10 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
     .attr("name", title)
     .attr("checked", ! options.disabled);
   li.append( checkbox, label );
+  if( options.endpoint === "gbif" && options.taxon && options.taxon.gbif_id ) {
+     li.append("<a href='http://www.gbif.org/species/" + options.taxon.gbif_id +
+       "' target='_blank'><span class='ui-icon ui-icon-extlink'>&nbsp;</span></a>");
+  }
   if( options.taxon ) {
     addWindshaftOverlayTaxonDiv( ul, li, options );
   }
@@ -622,15 +628,17 @@ var addWindshaftOverlayTaxonDiv = function( ul, li, options ) {
     taxon_checkbox = $("<input type='checkbox'/>")
       .attr("id", taxon_id)
       .attr("name", options.taxon.name);
+    var primaryName = options.taxon.common_name ?
+      options.taxon.common_name.name : options.taxon.to_styled_s;
     // prepare the label for the input, the taxon's scientific Name
-    taxon_label = $("<label/>").attr("for", taxon_id).html(options.taxon.to_styled_s);
+    taxon_label = $("<label/>").attr("for", taxon_id).html(primaryName);
     // append the checkbox and label
     taxon_li = $("<li/>").attr("class", "taxon").attr("data-taxon-id", taxon_id)
       .append( taxon_checkbox, taxon_label );
     // add the common name as a sub-heading if available
-    if( options.taxon.common_name ) {
+    if( primaryName !== options.taxon.to_styled_s) {
       taxon_li.append($("<div/>").addClass( "small meta" )
-        .html( options.taxon.common_name.name ));
+        .html( options.taxon.to_styled_s ));
     }
     ul.append( taxon_li );
   }
@@ -711,19 +719,43 @@ var appendValidParamsToURL = function( url, options ) {
 };
 
 google.maps.Map.prototype.addPlaceLayer = function( options ) {
-  _.defaults( options, { validParams: [ 'color' ] })
-  return this.addLayerByEndpoint( "places", options.place.id, options )
+  _.defaults( options, { validParams: [ 'color' ] });
+  return this.addLayerByEndpoint( "places", options.place.id, options );
 };
 
 google.maps.Map.prototype.addTaxonRangeLayer = function( options ) {
-  _.defaults( options, { validParams: [ 'color' ] })
-  return this.addLayerByEndpoint( "taxon_ranges", options.taxon.id, options )
+  _.defaults( options, { validParams: [ 'color' ] });
+  return this.addLayerByEndpoint( "taxon_ranges", options.taxon.id, options );
 };
 
 google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
-  _.defaults( options, { validParams: [ 'confirmed_color', 'unconfirmed_color' ] })
-  return this.addLayerByEndpoint( "taxon_places", options.taxon.id, options )
-}
+  _.defaults( options, { validParams: [ 'confirmed_color', 'unconfirmed_color' ] });
+  return this.addLayerByEndpoint( "taxon_places", options.taxon.id, options );
+};
+
+var cachedGBIFColors;
+var GBIFMapColors = function( ) {
+  if( cachedGBIFColors ) { return cachedGBIFColors; }
+  var colors = [ { range: ",10", color: "#FFFF00" },
+                 { range: "10,100", color: "#FFCC00" },
+                 { range: "100,1000", color: "#FF9900" },
+                 { range: "1000,10000", color: "#FF6600" },
+                 { range: "10000,100000", color: "#FF3300" },
+                 { range: "100000,", color: "#CC0000" } ];
+  var opacity = 0.75;
+  // turn the decimal 0 - 1 opacity into 0 - 255 alpha hex value
+  var alphaOpacity = parseFloat(Math.ceil(opacity * 255)).toString(16);
+  cachedGBIFColors = _.map( colors, function( c ) {
+    // e.g. 10,100,#000000FF
+    return encodeURIComponent( c.range + "," + c.color + alphaOpacity );
+  }).join("%7C");
+  return cachedGBIFColors;
+};
+
+google.maps.Map.prototype.addGBIFLayer = function( options ) {
+  var layerTileURL = "http://api.gbif.org/v1/map/density/tile?x={x}&y={y}&z={z}&type=TAXON&key=" + options.taxon.gbif_id + "&resolution=4&colors=" + GBIFMapColors();
+  return this.addLayerAndControl( { tiles: [ layerTileURL ] }, _.extend( options, { endpoint: "gbif" } ));
+};
 
 google.maps.Map.prototype.addLayerByEndpoint = function( endpoint, endpointID, options ) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
