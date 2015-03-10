@@ -129,26 +129,36 @@ class ObservationsController < ApplicationController
         grid_affecting_params = request.query_parameters.reject{ |k,v|
           MAP_GRID_PARAMS_TO_CONSIDER.include?(k.to_s) }
         # there are no parameters at all, so we can show the grid for all taxa
-        @map_grid_params = { }
         if grid_affecting_params.blank?
-          @display_map_grid = true
+          @display_map_tiles = true
         # we can only show grids when quality_grade = 'any',
         # and all other parameters are empty
         elsif grid_affecting_params.delete("quality_grade") == "any" &&
           grid_affecting_params.detect{ |k,v| v != "" }.nil?
-          @display_map_grid = true
+          @display_map_tiles = true
         end
         # if we are showing a grid
-        if @display_map_grid
-          @map_grid_params.merge!({
-            taxon_id: (search_params[:taxon] ? search_params[:taxon].id : nil),
+        if @display_map_tiles
+          valid_map_params = {
+            taxon: search_params[:taxon],
             user_id: search_params[:user_id],
             project_id: search_params[:project_id],
-            place_id: search_params[:place_id],
-            observations: @observations
-          }.delete_if{ |k,v| v.nil? })
-          if search_params[:taxon] && search_params[:taxon].iconic_taxon
-            @map_grid_params[:iconic_taxon] = search_params[:taxon].iconic_taxon.name
+            place_id: search_params[:place_id]
+          }.delete_if{ |k,v| v.nil? }
+          if valid_map_params.empty?
+            # there are no options, so show all observations by default
+            @enable_show_all_layer = true
+          elsif valid_map_params.length == 1 && valid_map_params[:taxon]
+            # there is just a taxon, so show the taxon observations lyers
+            @map_params = { taxon_layers: [ { taxon: valid_map_params[:taxon],
+              observations: true, ranges: { disabled: true }, places: { disabled: true },
+              gbif: { disabled: true } } ], focus: :observations }
+          else
+            # otherwise show our catch-all "Featured Observations" custom layer
+            # this layer should have have taxon_id, not taxon
+            valid_map_params[:taxon_id] = valid_map_params[:taxon].id if valid_map_params[:taxon]
+            valid_map_params.delete(:taxon)
+            @map_params = { observation_layers: [ valid_map_params.merge(observations: @observations) ] }
           end
         end
         if (partial = params[:partial]) && PARTIALS.include?(partial)

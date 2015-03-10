@@ -3,16 +3,13 @@
 - @view ||= params[:view] || 'map'
 - observations_html ||= nil
 - force_coordinate_visibility ||= false
-- show_all_layer = (@display_map_grid && @map_grid_params.empty?) ? "enabled" : "true"
 - content_for(:extrajs) do
   = google_maps_js
   = javascript_include_tag 'map_bundle', 'wax.g'
   :javascript
     $(document).ready(function() {
-      $("#map").taxonMap({ clickable: true, showAllLayer: "#{ show_all_layer }" });
+      $("#map").taxonMap( );
       window.map = $("#map").data("taxonMap");
-      var gridOptions = #{ raw @map_grid_params.to_json };
-      #{ "window.map.addObservationsLayer(gridOptions);" if @display_map_grid && !@map_grid_params.empty? }
       // Bind the divider toggle
       $('#mapdivider').click(function(){
         $(this).toggleClass('closed');
@@ -43,8 +40,11 @@
   .observations.map{ style: (@view && @view == "map") ? nil : "display: none" }
     - map_options = { observations: observations,
       min_x: @swlng, min_y: @swlat, max_x: @nelng, max_y: @nelat}
-    - if @display_map_grid && !@map_grid_params.empty?
-      - map_options.merge!(observation_layers: [ @map_grid_params ])
+    - if @display_map_tiles
+      - if @enable_show_all_layer
+        - map_options.merge!(enable_show_all_layer: true)
+      - elsif @map_params
+        - map_options.merge!(@map_params)
     #map{ setup_map_tag_attrs(map_options) }
     #mapcontrols{ style: (@view && @view == "map") ? nil : "display: none" }
       = link_to_function t(:redo_search_in_map_area), "redoSearchInMapArea()", :id => 'redo_search_in_map_area_button'
