@@ -16,8 +16,9 @@
     %h2
       = render partial: "shared/taxon", locals: { taxon: @taxa.first, named_ancestor: true }
 
-#map.fullscreen{ setup_map_tag_attrs(                                            |
-  taxon_layers: @taxa.map{ |t|                                                   |
-    { taxon: t, ranges: true, places: true, observations: true, gbif: true  } }, |
-  disable_fullscreen: true,                                                      |
-  min_zoom: 2 )}                                                                 |
+#map.fullscreen{ setup_map_tag_attrs(                           |
+  taxon_layers: @taxa.map{ |t|                                  |
+    { taxon: t, ranges: true, places: true, observations: true, |
+      gbif: { disabled: true } } },                             |
+  disable_fullscreen: true,                                     |
+  min_zoom: 2 )}                                                |

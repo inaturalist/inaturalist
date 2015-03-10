@@ -753,7 +753,8 @@ var GBIFMapColors = function( ) {
 };
 
 google.maps.Map.prototype.addGBIFLayer = function( options ) {
-  var layerTileURL = "http://api.gbif.org/v1/map/density/tile?x={x}&y={y}&z={z}&type=TAXON&key=" + options.taxon.gbif_id + "&resolution=4&colors=" + GBIFMapColors();
+  var layerTileURL = "http://api.gbif.org/v1/map/density/tile?x={x}&y={y}&z={z}&type=TAXON&key=" +
+    options.taxon.gbif_id + "&resolution=4&colors=" + GBIFMapColors();
   return this.addLayerAndControl( { tiles: [ layerTileURL ] }, _.extend( options, { endpoint: "gbif" } ));
 };
 
@@ -774,6 +775,13 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
   options = options || { }
   var layer = new wax.g.connector( tilejson );
   var layerID = this.overlayMapTypes.push( layer );
+  if( options.disabled ) {
+    // even though the layer is meant to be disabled (unselected) by default
+    // we need to secure the layerID so that we can add the layer in the proper
+    // places when the user selects it. That is why the layer is added
+    // above and immediately set to null here.
+    this.overlayMapTypes.setAt( layerID - 1, null);
+  }
   if( this._overlayControl ) {
     this._overlayControl.addWindshaftOverlayControl(
       [ { layer: layer, layerID: layerID } ], options );

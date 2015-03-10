@@ -86,11 +86,9 @@
     }
 #map.fullscreen{ setup_map_tag_attrs(                                                  |
   taxon_layers: @taxa.map{ |t|                                                         |
-    { taxon: t, ranges: true, places: true, observations: true, gbif: true  }          |
-  },                                                                                   |
-  place_layers: @places.map{ |p|                                                       |
-    { place: p }                                                                       |
-  },                                                                                   |
+    { taxon: t, ranges: true, places: true,                                            |
+      observations: true, gbif: { disabled: true } } },                                |
+  place_layers: @places.map{ |p| { place: p } },                                       |
   enable_show_all_layer: (@taxa.empty? && @places.empty?) ? true : false,              |
   show_all_layer: (@taxa.empty? && @places.empty?) ? { grid_color: "#FF4500" } : true, |
   disable_fullscreen: true,                                                            |
