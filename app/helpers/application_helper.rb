@@ -616,6 +616,7 @@ module ApplicationHelper
           )
         })
         layer_options[:taxon][:to_styled_s] = layer[:taxon].to_styled_s(skip_common: true)
+        layer_options[:taxon][:url] = taxon_url(layer[:taxon])
         if layer_options[:gbif]
           layer_options[:taxon][:gbif_id] = layer[:taxon].get_gbif_id
         end

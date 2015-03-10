@@ -635,6 +635,11 @@ var addWindshaftOverlayTaxonDiv = function( ul, li, options ) {
     // append the checkbox and label
     taxon_li = $("<li/>").attr("class", "taxon").attr("data-taxon-id", taxon_id)
       .append( taxon_checkbox, taxon_label );
+    if( options.taxon.url ) {
+      // add a link icon that goes to the taxon page
+       taxon_li.append("<a href='" + options.taxon.url +
+         "'><span class='ui-icon ui-icon-extlink'>&nbsp;</span></a>");
+    }
     // add the common name as a sub-heading if available
     if( primaryName !== options.taxon.to_styled_s) {
       taxon_li.append($("<div/>").addClass( "small meta" )
