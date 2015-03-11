@@ -1,0 +1,24 @@
+- content_for :extracss do
+  = stylesheet_link_tag "taxa/_map"
+
+- content_for :extrajs do
+  = google_maps_js
+  = javascript_include_tag "map_bundle"
+  :javascript
+    $(document).ready(function() {
+      $("#map").taxonMap( );
+      window.map = $("#map").data("taxonMap");
+      $(window.map._overlayControl.div).find(".overlaycontrol").addClass("open").find("ul").show();
+    });
+
+#pageheader.last.column.span-24
+  .clear
+    %h2
+      = render partial: "shared/taxon", locals: { taxon: @taxa.first, named_ancestor: true }
+
+#map.fullscreen{ setup_map_tag_attrs(                           |
+  taxon_layers: @taxa.map{ |t|                                  |
+    { taxon: t, ranges: true, places: true, observations: true, |
+      gbif: { disabled: true } } },                             |
+  disable_fullscreen: true,                                     |
+  min_zoom: 2 )}                                                |
