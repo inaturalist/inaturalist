@@ -146,7 +146,7 @@ Rails.application.routes.draw do
       put :rotate
     end
   end
-  get 'picasa/unlink' => 'picasa#unlink', :method => :delete
+  delete 'picasa/unlink' => 'picasa#unlink', :method => :delete
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
   get 'flickr/photos.:format' => 'flickr#photos'
