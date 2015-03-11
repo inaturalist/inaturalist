@@ -531,7 +531,7 @@ class ProjectsController < ApplicationController
       count
     @total_project_users = @project.project_users.count
     @total_project_observations = @project.project_observations.count
-    @total_unique_observers = @project.project_observations.count(:select => "observations.user_id", :include => :observation)
+    @total_unique_observers = @project.project_observations.select("DISTINCT observations.user_id").joins(:observation).count
     
     @headers = ['year/month', 'new users', 'new observations', 'unique observers']
     @data = []
@@ -556,7 +556,6 @@ class ProjectsController < ApplicationController
           data.each_with_index { |d, i| per_period[@headers[i].gsub(/[ \/]/, '_')] = d }
           opts[:data] << per_period
         end
-
         render :json => opts
       end
       format.csv do 

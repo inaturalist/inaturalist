@@ -22,7 +22,8 @@ class PicasaController < ApplicationController
       return redirect_to :action => "options"
     end
     
-    @picasa_identity = PicasaIdentity.find_or_initialize_by_user_id(current_user.id)
+    @picasa_identity = PicasaIdentity.where(user_id: current_user.id).first
+    @picasa_identity ||= PicasaIdentity.create(user_id: current_user.id)
     @picasa_identity.token = @picasa.token
     @picasa_user = @picasa.user('default')
     if @picasa_user.respond_to?(:user)
