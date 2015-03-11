@@ -578,6 +578,7 @@ module ApplicationHelper
       "map-type" => options[:map_type],
       "zoom-level" => options[:zoom_level],
       "min-zoom" => options[:min_zoom],
+      "disable-fullscreen" => options[:disable_fullscreen],
       "show-range" => options[:show_range] ? "true" : nil,
       "min-x" => options[:min_x],
       "min-y" => options[:min_y],
@@ -587,9 +588,12 @@ module ApplicationHelper
       "map-type-control" => options[:map_type_control],
       "observations" => observations_for_map_tag_attrs(options),
       "place-layer-label" => I18n.t("maps.overlays.place_boundary"),
-      "taxon-range-layer-label" => I18n.t("maps.overlays.taxon_range"),
+      "taxon-range-layer-label" => I18n.t("maps.overlays.range"),
+      "taxon-places-layer-label" => I18n.t("maps.overlays.places"),
+      "taxon-observations-layer-label" => I18n.t("maps.overlays.observations"),
       "all-layer-label" => I18n.t("maps.overlays.all_observations"),
       "all-layer-description" => I18n.t("maps.overlays.every_publicly_visible_observation"),
+      "gbif-layer-label" => I18n.t("maps.overlays.gbif_network"),
       "enable-show-all-layer" => options[:enable_show_all_layer] ? "true" : "false",
       "show-all-layer" => options[:show_all_layer].to_json,
       "featured-layer-label" => I18n.t("maps.overlays.featured_observations")
@@ -612,6 +616,10 @@ module ApplicationHelper
           )
         })
         layer_options[:taxon][:to_styled_s] = layer[:taxon].to_styled_s(skip_common: true)
+        layer_options[:taxon][:url] = taxon_url(layer[:taxon])
+        if layer_options[:gbif]
+          layer_options[:taxon][:gbif_id] = layer[:taxon].get_gbif_id
+        end
         taxon_layer_attrs << layer_options
       end
       map_tag_attrs["taxon-layers"] = taxon_layer_attrs.to_json
