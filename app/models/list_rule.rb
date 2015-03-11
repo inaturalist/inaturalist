@@ -10,6 +10,8 @@
 class ListRule < ActiveRecord::Base
   belongs_to :list
   belongs_to :operand, :polymorphic => true
+  after_create :refresh_list
+  after_destroy :refresh_list
   
   #
   # Tests whether a taxon passes this rule or not.
@@ -34,5 +36,9 @@ class ListRule < ActiveRecord::Base
     operand_name ||= self.operand.name if self.operand.respond_to?(:name)
     operand_name ||= self.operand.to_s
     "%s %s" % [self.operator.gsub('_', ' ').gsub('?', ''), operand_name]
+  end
+
+  def refresh_list
+    list.delay(priority: USER_INTEGRITY_PRIORITY).refresh
   end
 end

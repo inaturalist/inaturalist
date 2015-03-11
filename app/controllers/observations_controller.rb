@@ -2663,7 +2663,7 @@ class ObservationsController < ApplicationController
       @photo_identities = []
       return true
     end
-    Photo.descendent_classes ||= [ ]
+    Photo.descendent_classes = [FlickrPhoto, PicasaPhoto, FacebookPhoto] if Photo.descendent_classes.blank?
     @photo_identities = Photo.descendent_classes.map do |klass|
       assoc_name = klass.to_s.underscore.split('_').first + "_identity"
       current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
