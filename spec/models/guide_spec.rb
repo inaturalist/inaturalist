@@ -95,11 +95,21 @@ describe Guide, "to_ngz" do
     @guide_section = GuideSection.make!(:guide_taxon => @guide_taxon)
     @zip_path = @guide.to_ngz
     @unzipped_path = File.join File.dirname(@zip_path), @guide.to_param
+    FileUtils.rm_rf("#{@unzipped_path}/") if Dir.exists?(@unzipped_path)
     system "unzip -qd #{@unzipped_path} #{@zip_path}"
   end
 
   after(:all) do
     ThinkingSphinx::Deltas.resume!
+    FileUtils.rm_rf("#{@unzipped_path}/") if Dir.exists?(@unzipped_path)
+  end
+
+  it "should generate a .ngz file in the tmp directory" do
+    expect(File.exists?("#{@guide.ngz_work_path}.ngz")).to be true
+  end
+
+  it "should clean up its working directory" do
+    expect(Dir.exists?(@guide.ngz_work_path)).to be false
   end
 
   it "should contain an xml file" do
@@ -112,6 +122,25 @@ describe Guide, "to_ngz" do
 
   it "should have guide range image files" do
     expect(File.exist?(File.join(@unzipped_path, "files", FakeView.guide_asset_filename(@guide_range, :size => "medium")))).to be true
+  end
+end
+
+describe Guide, "generate_ngz" do
+  before(:all) do
+    @guide = Guide.make!
+    GuideTaxon.make!(guide: @guide)
+  end
+
+  it "should delete the temp file after saving the record" do
+    # create a temp file so we can confirm it exists
+    temp_ngz_path = @guide.to_ngz
+    expect(File.exists?(temp_ngz_path)).to be true
+    expect(@guide.ngz.path).to be_nil
+    # now generate_ngz, which will create the temp file again
+    # but then delete it after saving the record
+    @guide.generate_ngz
+    expect(File.exists?(temp_ngz_path)).to be false
+    expect(@guide.ngz.path).to_not be_nil
   end
 end
 
