@@ -50,6 +50,7 @@ class Guide < ActiveRecord::Base
                 :create_guide_user
   after_create :add_taxa_from_source_url
 
+
   scope :dbsearch, lambda {|q| where("guides.title ILIKE ? OR guides.description ILIKE ?", "%#{q}%", "%#{q}%")}
   scope :near_point, lambda {|latitude, longitude|
     latitude = latitude.to_f
@@ -332,15 +333,24 @@ class Guide < ActiveRecord::Base
         Rails.logger.error "[ERROR #{Time.now}] Failed to save NGZ attachment for guide #{id}: #{errors.full_messages.to_sentence}"
       end
     end
+    # the file will have been copied to the ngz final path
+    # so delete the copy in the tmp directory
+    FileUtils.rm_rf zip_path
+  end
+
+  def ngz_work_path
+    return @ngz_work_path if @ngz_work_path
+    basename = title.parameterize
+    local_asset_path = "files"
+    @ngz_work_path = File.join(Dir::tmpdir, "#{basename}-#{Time.now.to_i}")
   end
 
   def to_ngz
     start_log_timer "#{self} to_ngz"
     ordered_guide_taxa = guide_taxa.order(:position).includes({:guide_photos => [:photo]}, :guide_ranges, :guide_sections, :tags)
     image_sizes = %w(thumb small medium)
-    basename = title.parameterize
     local_asset_path = "files"
-    work_path = File.join(Dir::tmpdir, "#{basename}-#{Time.now.to_i}")
+    work_path = ngz_work_path
     FileUtils.mkdir_p work_path, :mode => 0755
     # build xml and write to file in tmpdir
     xml_fname = "#{id}.xml"
@@ -384,9 +394,9 @@ class Guide < ActiveRecord::Base
     end
 
     # zip up the results & return the path
-    zip_path = File.join(work_path, "#{basename}.ngz")
+    zip_path = "#{work_path}.ngz"
     system "cd #{work_path} && zip -qr #{zip_path} #{xml_fname} #{local_asset_path}"
-    FileUtils.rm_rf local_asset_path # clean up all those big files
+    FileUtils.rm_rf work_path # clean up all those big files
     end_log_timer
     zip_path
   end
