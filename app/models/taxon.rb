@@ -1261,7 +1261,14 @@ class Taxon < ActiveRecord::Base
     if ancestor = preferred_uninomial_ancestor
       params[ancestor.rank] = ancestor.name
     end
-    if json = GbifService.species_match(params: params)
+    json = begin
+      GbifService.species_match(params: params)
+    rescue Timeout::Error => e
+      # probably GBIF is down or throttling us
+      Rails.logger.error "[ERROR #{Time.now}] #{e}"
+      nil
+    end
+    if json
       if json["usageKey"]
         TaxonSchemeTaxon.create(taxon_scheme: gbif, taxon_id: id, source_identifier: json["usageKey"])
         return json["usageKey"]

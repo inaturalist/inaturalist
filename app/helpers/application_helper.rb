@@ -730,7 +730,7 @@ module ApplicationHelper
   end
 
   def iconic_taxon_color_for(taxon)
-    iconic_taxon_colors[taxon.iconic_taxon_id]
+    iconic_taxon_colors[taxon.iconic_taxon_id] || '#333333'
   end
 
   def iconic_taxon_colors
@@ -747,8 +747,7 @@ module ApplicationHelper
       Taxon::ICONIC_TAXA_BY_NAME['Fungi'].id => '#FF1493',
       Taxon::ICONIC_TAXA_BY_NAME['Plantae'].id => '#73AC13',
       Taxon::ICONIC_TAXA_BY_NAME['Protozoa'].id => '#691776',
-      Taxon::ICONIC_TAXA_BY_NAME['Chromista'].id => '#993300',
-      nil: '#333333'
+      Taxon::ICONIC_TAXA_BY_NAME['Chromista'].id => '#993300'
     }
   end
 
