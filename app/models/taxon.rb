@@ -1251,7 +1251,8 @@ class Taxon < ActiveRecord::Base
 
   def get_gbif_id
     # make sure the GBIF TaxonScheme exists
-    return unless gbif = TaxonScheme.where(title: "GBIF").first
+    gbif = TaxonScheme.where(title: "GBIF").first
+    gbif ||= TaxonScheme.create(title: "GBIF")
     # return their ID if we know it
     if scheme = TaxonSchemeTaxon.where(taxon_scheme: gbif, taxon_id: id).first
       return scheme.source_identifier

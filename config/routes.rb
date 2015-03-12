@@ -404,7 +404,7 @@ Rails.application.routes.draw do
   get 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"
   delete 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content"
   put 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user"
-  resources :taxon_ranges, :except => [:index, :show]
+  resources :taxon_ranges, :except => [:show]
   get '/calendar/:login' => 'calendars#index', :as => :calendar
   get '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare
   get '/calendar/:login/:year/:month/:day' => 'calendars#show', :as => :calendar_date, :constraints => {

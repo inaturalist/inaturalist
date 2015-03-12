@@ -640,6 +640,7 @@ class TaxaController < ApplicationController
     if taxon_ids
       @taxa += Taxon.where(id: taxon_ids.map{ |t| t.to_i }).limit(20)
     end
+    render_404 if @taxa.blank?
   end
   
   def range

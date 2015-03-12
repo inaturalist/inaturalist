@@ -1,5 +1,8 @@
-#map.stacked{ setup_map_tag_attrs(                                      |
-  taxon_layers: [ { taxon: @observation.taxon,                          |
-    observations: { observation_id: @observation.id } } ],              |
-  observations: [ @observation ],                                       |
-  zoom_level: (@observation.map_scale || 8)).merge({  } ) }             |
+#map.stacked{ setup_map_tag_attrs(
+  taxon_layers: [ { 
+    taxon: @observation.taxon,
+    observations: { observation_id: @observation.id, color: '%23ff0000' }
+  } ], |
+  observations: [ @observation ],
+  zoom_level: (@observation.map_scale || 8)).merge({  } 
+) }

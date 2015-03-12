@@ -219,6 +219,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chroma (0.0.1)
     chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -604,6 +605,7 @@ DEPENDENCIES
   capistrano-rvm (~> 0.1)
   capistrano3-delayed-job (~> 1.0)
   capybara (~> 2.4)
+  chroma
   chronic
   cocoon
   daemon-spawn

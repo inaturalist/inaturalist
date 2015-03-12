@@ -706,6 +706,49 @@ module ApplicationHelper
     end
   end
 
+  def colors_for_taxa(taxa)
+    # single taxon single color
+    first_color = iconic_taxon_color_for(taxa.first)
+    return {taxa.first.id => first_color} if taxa.size == 1
+
+    # iconic taxon colors for unique iconic taxa
+    if taxa.map(&:iconic_taxon_id).size == taxa.map(&:iconic_taxon_id).uniq.size
+      return taxa.inject({}) {|memo, obj| memo[obj.id] = iconic_taxon_color_for(obj); memo}
+    end
+
+    # custom palette for more
+    palette = iconic_taxon_colors.values.uniq + %w(#d62728 #e377c2 #bcbd22 #17becf)
+    palette += palette.map{|c| c.paint.darken.darken.to_hex}
+    colors = {}
+    taxa.each_with_index do |taxon,i|
+      colors[taxon.id] = palette[i%palette.size] || '#333333'
+    end
+    colors
+  end
+
+  def iconic_taxon_color_for(taxon)
+    iconic_taxon_colors[taxon.iconic_taxon_id]
+  end
+
+  def iconic_taxon_colors
+    {
+      Taxon::ICONIC_TAXA_BY_NAME['Animalia'].id => '#1E90FF',
+      Taxon::ICONIC_TAXA_BY_NAME['Amphibia'].id => '#1E90FF',
+      Taxon::ICONIC_TAXA_BY_NAME['Reptilia'].id => '#1E90FF',
+      Taxon::ICONIC_TAXA_BY_NAME['Aves'].id => '#1E90FF',
+      Taxon::ICONIC_TAXA_BY_NAME['Mammalia'].id => '#1E90FF',
+      Taxon::ICONIC_TAXA_BY_NAME['Actinopterygii'].id => '#1E90FF',
+      Taxon::ICONIC_TAXA_BY_NAME['Mollusca'].id => '#FF4500',
+      Taxon::ICONIC_TAXA_BY_NAME['Arachnida'].id => '#FF4500',
+      Taxon::ICONIC_TAXA_BY_NAME['Insecta'].id => '#FF4500',
+      Taxon::ICONIC_TAXA_BY_NAME['Fungi'].id => '#FF1493',
+      Taxon::ICONIC_TAXA_BY_NAME['Plantae'].id => '#73AC13',
+      Taxon::ICONIC_TAXA_BY_NAME['Protozoa'].id => '#691776',
+      Taxon::ICONIC_TAXA_BY_NAME['Chromista'].id => '#993300',
+      nil: '#333333'
+    }
+  end
+
   def google_static_map_for_observation_url(o, options = {})
     return if CONFIG.google.blank? || CONFIG.google.simple_key.blank?
     url_for_options = {
