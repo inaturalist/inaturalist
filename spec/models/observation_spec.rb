@@ -661,6 +661,20 @@ describe Observation, "updating" do
     p.reload
     expect(p.observations_count).to eq(0)
   end
+
+  it "should update a life listed taxon accordingly" do
+    t = Taxon.make!
+    u = User.make!
+    without_delay do
+      l = LifeList.make!(user: u)
+      l.add_taxon(t)
+    end
+    o1 = without_delay { Observation.make!(taxon: t, user: u, observed_on_string: '2014-03-01') }
+    o2 = without_delay { Observation.make!(taxon: t, user: u, observed_on_string: '2015-03-01') }
+    lt = o1.user.life_list.listed_taxa.where(taxon_id: t.id).first
+    expect(lt.first_observation).to eq o1
+    expect(lt.last_observation).to eq o2
+  end
 end
 
 describe Observation, "destruction" do

@@ -26,7 +26,7 @@
   if ($('#observations').length == 1) {
     $('#observations').loadObservations({
       url: '/observations'+window.location.search,
-      refresh: window.location.toString().match(/refresh=true/) ? 10*1000 : null,
+      refresh: window.location.toString().match(/refresh=true/) ? 30*1000 : null,
       success: function(r, data) {
         var headers = r.getAllResponseHeaders()
         var matches = headers.match(/X-Total-Entries: (\d+)/) || [],
@@ -39,11 +39,11 @@
     
     $('#stats').observationTaxonStats({
       url: '/observations/taxon_stats.json'+window.location.search,
-      refresh: window.location.toString().match(/refresh=true/) ? 10*1000 : null
+      refresh: window.location.toString().match(/refresh=true/) ? 30*1000 : null
     })
     $('#stats').observationUserStats({
       url: '/observations/user_stats.json'+window.location.search+'&limit='+5,
-      refresh: window.location.toString().match(/refresh=true/) ? 10*1000 : null
+      refresh: window.location.toString().match(/refresh=true/) ? 30*1000 : null
     })
   }
   if (self != top) {

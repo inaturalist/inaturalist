@@ -1281,7 +1281,7 @@ $.fn.observationUserStats = function(options) {
     }
     if (options.refresh) {
       var t = setTimeout(function() {
-        container.observationTaxonStats(options)
+        container.observationUserStats(options)
       }, options.refresh)
       container.data('observationUserStats', t)
     }
