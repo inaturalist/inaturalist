@@ -573,48 +573,106 @@ module ApplicationHelper
   
   def setup_map_tag_attrs(options = {})
     map_tag_attrs = {
-      "taxon" => options[:taxon] ? options[:taxon].
-        to_json(only: [ :id, :name ],
-          include: { common_name: { only: [ :name ] } }
-        ) : nil,
       "latitude" => options[:latitude],
       "longitude" => options[:longitude],
       "map-type" => options[:map_type],
       "zoom-level" => options[:zoom_level],
+      "min-zoom" => options[:min_zoom],
+      "disable-fullscreen" => options[:disable_fullscreen],
       "show-range" => options[:show_range] ? "true" : nil,
-      "place" => options[:place] ? options[:place].
-        to_json(only: [ :id, :name ]) : nil,
       "min-x" => options[:min_x],
       "min-y" => options[:min_y],
       "max-x" => options[:max_x],
       "max-y" => options[:max_y],
       "flag-letters" => options[:flag_letters] ? "true" : nil,
-      "windshaft-project-id" => options[:windshaft_project_id],
-      "windshaft-user-id" => options[:windshaft_user_id],
       "map-type-control" => options[:map_type_control],
       "observations" => observations_for_map_tag_attrs(options),
       "place-layer-label" => I18n.t("maps.overlays.place_boundary"),
-      "taxon_range_layer_label" => I18n.t("maps.overlays.taxon_range"),
-      "all_layer_label" => I18n.t("maps.overlays.all_observations"),
-      "all_layer_description" => I18n.t("maps.overlays.every_publicly_visible_observation"),
-      "featured_layer_label" => I18n.t("maps.overlays.featured_observations")
+      "taxon-range-layer-label" => I18n.t("maps.overlays.range"),
+      "taxon-places-layer-label" => I18n.t("maps.overlays.places"),
+      "taxon-observations-layer-label" => I18n.t("maps.overlays.observations"),
+      "all-layer-label" => I18n.t("maps.overlays.all_observations"),
+      "all-layer-description" => I18n.t("maps.overlays.every_publicly_visible_observation"),
+      "gbif-layer-label" => I18n.t("maps.overlays.gbif_network"),
+      "enable-show-all-layer" => options[:enable_show_all_layer] ? "true" : "false",
+      "show-all-layer" => options[:show_all_layer].to_json,
+      "featured-layer-label" => I18n.t("maps.overlays.featured_observations")
     }
-    if options[:taxon]
-      map_tag_attrs["taxon-range-layer-description"] = options[:taxon].to_styled_s
+    append_taxon_layers(map_tag_attrs, options)
+    append_place_layers(map_tag_attrs, options)
+    append_observation_layers(map_tag_attrs, options)
+    adjust_initial_bounds(map_tag_attrs, options)
+    { "data" => map_tag_attrs.delete_if{ |k,v| v.nil? } }
+  end
+
+  def append_taxon_layers(map_tag_attrs, options = {})
+    if options[:taxon_layers]
+      taxon_layer_attrs = [ ]
+      options[:taxon_layers].each do |layer|
+        next unless layer[:taxon]
+        layer_options = layer.merge({
+          taxon: layer[:taxon].as_json(
+            only: [ :id, :name, :rank ],
+            include: { common_name: { only: [ :name ] } }
+          )
+        })
+        layer_options[:taxon][:to_styled_s] = layer[:taxon].to_styled_s(skip_common: true)
+        layer_options[:taxon][:url] = taxon_url(layer[:taxon])
+        if layer_options[:gbif]
+          layer_options[:taxon][:gbif_id] = layer[:taxon].get_gbif_id
+        end
+        taxon_layer_attrs << layer_options
+      end
+      map_tag_attrs["taxon-layers"] = taxon_layer_attrs.to_json
     end
+  end
+
+  def append_place_layers(map_tag_attrs, options = {})
+    if options[:place_layers]
+      place_layer_attrs = [ ]
+      options[:place_layers].each do |layer|
+        place_layer_attrs << layer.merge({
+          place: layer[:place].as_json(only: [ :id, :name ])
+        })
+      end
+      map_tag_attrs["place-layers"] = place_layer_attrs.to_json
+    end
+  end
+
+  def append_observation_layers(map_tag_attrs, options = {})
+    if options[:observation_layers]
+      options[:observation_layers].each do |layer|
+        if observations = layer[:observations]
+          layer[:observation_id] = observations.map(&:id).join(",")
+          layer.delete(:observations)
+        end
+      end
+      map_tag_attrs["observation-layers"] = options[:observation_layers].to_json
+    end
+  end
+
+  def adjust_initial_bounds(map_tag_attrs, options = {})
     # Adjust the map bounds based on the content being displayed
     unless options[:zoom_level] && !map_tag_attrs["min-x"]
-      if options[:taxon] && (!options[:focus] || options[:focus] == :taxon)
-        append_bounds_to_map_tag_attrs(map_tag_attrs, options[:taxon])
+      # taxon observations / grids
+      if options[:taxon_layers] && (!options[:focus] || options[:focus] == :taxon)
+        options[:taxon_layers].each do |layer|
+          append_bounds_to_map_tag_attrs(map_tag_attrs, layer[:taxon])
+        end
       end
-      if options[:taxon] && options[:show_range] && (!options[:focus] || options[:focus] == :range)
-        append_bounds_to_map_tag_attrs(map_tag_attrs, options[:taxon].taxon_ranges_without_geom.first)
+      # taxon ranges
+      if options[:taxon_layers] && options[:show_range] && (!options[:focus] || options[:focus] == :range)
+        options[:taxon_layers].each do |layer|
+          append_bounds_to_map_tag_attrs(map_tag_attrs, layer[:taxon].taxon_ranges_without_geom.first)
+        end
       end
-      if options[:place] && (!options[:focus] || options[:focus] == :place)
-        append_bounds_to_map_tag_attrs(map_tag_attrs, options[:place])
+      # place geometries
+      if options[:place_layers] && (!options[:focus] || options[:focus] == :place)
+        options[:place_layers].each do |layer|
+          append_bounds_to_map_tag_attrs(map_tag_attrs, layer[:place])
+        end
       end
     end
-    { "data" => map_tag_attrs.delete_if{ |k,v| v.nil? } }
   end
 
   def observations_for_map_tag_attrs(options)
@@ -647,6 +705,49 @@ module ApplicationHelper
         map_tag_attrs["max-y"] = bounds[:max_y]
       end
     end
+  end
+
+  def colors_for_taxa(taxa)
+    # single taxon single color
+    first_color = iconic_taxon_color_for(taxa.first)
+    return {taxa.first.id => first_color} if taxa.size == 1
+
+    # iconic taxon colors for unique iconic taxa
+    if taxa.map(&:iconic_taxon_id).size == taxa.map(&:iconic_taxon_id).uniq.size
+      return taxa.inject({}) {|memo, obj| memo[obj.id] = iconic_taxon_color_for(obj); memo}
+    end
+
+    # custom palette for more
+    palette = iconic_taxon_colors.values.uniq + %w(#d62728 #e377c2 #bcbd22 #17becf)
+    palette += palette.map{|c| c.paint.darken.darken.to_hex}
+    colors = {}
+    taxa.each_with_index do |taxon,i|
+      colors[taxon.id] = palette[i%palette.size] || '#333333'
+    end
+    colors
+  end
+
+  def iconic_taxon_color_for(taxon)
+    iconic_taxon_colors[taxon.iconic_taxon_id]
+  end
+
+  def iconic_taxon_colors
+    {
+      Taxon::ICONIC_TAXA_BY_NAME['Animalia'].id => '#1E90FF',
+      Taxon::ICONIC_TAXA_BY_NAME['Amphibia'].id => '#1E90FF',
+      Taxon::ICONIC_TAXA_BY_NAME['Reptilia'].id => '#1E90FF',
+      Taxon::ICONIC_TAXA_BY_NAME['Aves'].id => '#1E90FF',
+      Taxon::ICONIC_TAXA_BY_NAME['Mammalia'].id => '#1E90FF',
+      Taxon::ICONIC_TAXA_BY_NAME['Actinopterygii'].id => '#1E90FF',
+      Taxon::ICONIC_TAXA_BY_NAME['Mollusca'].id => '#FF4500',
+      Taxon::ICONIC_TAXA_BY_NAME['Arachnida'].id => '#FF4500',
+      Taxon::ICONIC_TAXA_BY_NAME['Insecta'].id => '#FF4500',
+      Taxon::ICONIC_TAXA_BY_NAME['Fungi'].id => '#FF1493',
+      Taxon::ICONIC_TAXA_BY_NAME['Plantae'].id => '#73AC13',
+      Taxon::ICONIC_TAXA_BY_NAME['Protozoa'].id => '#691776',
+      Taxon::ICONIC_TAXA_BY_NAME['Chromista'].id => '#993300',
+      nil: '#333333'
+    }
   end
 
   def google_static_map_for_observation_url(o, options = {})

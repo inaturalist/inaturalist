@@ -279,7 +279,11 @@
             .span3
               .map
                 - if guide_taxon.guide_ranges.blank? && guide_taxon.taxon
-                  .taxonmap{setup_map_tag_attrs(:taxon => guide_taxon.taxon, :show_range => true, :place => @guide.place, :latitude => @guide.latitude, :longitude => @guide.longitude, :map_type => @guide.map_type, :zoom_level => @guide.zoom_level, :map_type_control => "false")}
+                  .taxonmap{setup_map_tag_attrs(                                                      |
+                    taxon_layers: [ { taxon: guide_taxon.taxon, ranges: true, observations: true } ], |
+                    place_layers: [ { place: @guide.place } ],                                        |
+                    latitude: @guide.latitude, longitude: @guide.longitude,                           |
+                    map_type: @guide.map_type, zoom_level: @guide.zoom_level) }                       |
                 - elsif gr = guide_taxon.guide_ranges.first
                   = image_tag gr.original_url
       - else

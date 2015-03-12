@@ -1,0 +1,34 @@
+- content_for :extracss do
+  = stylesheet_link_tag "taxa/_map"
+
+- content_for :extrajs do
+  = google_maps_js
+  = javascript_include_tag "map_bundle"
+  :javascript
+    $(document).ready(function() {
+      $("#map").taxonMap( );
+      window.map = $("#map").data("taxonMap");
+      $(window.map._overlayControl.div).find(".overlaycontrol").addClass("open").find("ul").show();
+    });
+
+#pageheader.last.column.span-24
+  .clear
+    %h2
+      = render partial: "shared/taxon", locals: { taxon: @taxa.first, named_ancestor: true }
+
+:ruby
+  colors = colors_for_taxa(@taxa)
+  a = setup_map_tag_attrs(
+    taxon_layers: @taxa.map{ |t|
+      {
+        taxon: t, 
+        ranges: { color: colors[t.id].paint.lighten.to_hex }, 
+        places: @taxa.size == 1, 
+        observations: { color: colors[t.id] },
+        gbif: { disabled: true }
+      }
+    },
+    disable_fullscreen: true,
+    min_zoom: 2
+  )
+#map.fullscreen{ a }

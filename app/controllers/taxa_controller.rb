@@ -631,55 +631,16 @@ class TaxaController < ApplicationController
   end
   
   def map
-    @cloudmade_key = CONFIG.cloudmade.try(:key)
-    @bing_key = CONFIG.bing.try(:key)
-    
-    if @taxon = Taxon.find_by_id(params[:id].to_i)
-      load_single_taxon_map_data(@taxon)
-    end
-    
+    @taxa = Taxon.where(id: params[:id])
     taxon_ids = if params[:taxa].is_a?(Array)
       params[:taxa]
     elsif params[:taxa].is_a?(String)
       params[:taxa].split(',')
     end
-    
     if taxon_ids
-      @taxa = Taxon.where(id: taxon_ids.map{ |t| t.to_i }).limit(20)
-      @taxon_ranges = TaxonRange.without_geom.where(taxon_id: @taxa).group_by(&:taxon_id)
-      @taxa_data = taxon_ids.map do |taxon_id|
-        next unless taxon = @taxa.detect{|t| t.id == taxon_id.to_i}
-        taxon.as_json(:only => [:id, :name, :is_active]).merge(
-          :range_url => @taxon_ranges[taxon.id] ? taxon_range_geom_url(taxon.id, :format => "geojson") : nil, 
-          :observations_url => taxon.observations.exists? ? observations_of_url(taxon, :format => "geojson") : nil,
-        )
-      end
-      
-      @bounds = if !@taxon_ranges.blank?
-        TaxonRange.calculate(:extent, :geom, :conditions => ["taxon_id IN (?)", @taxa])
-      else
-        Observation.of(@taxa.first).calculate(:extent, :geom)
-      end
-      if @bounds
-        @extent = [
-          {:lon => @bounds.lower_corner.x, :lat => @bounds.lower_corner.y}, 
-          {:lon => @bounds.upper_corner.x, :lat => @bounds.upper_corner.y}
-        ]
-      end
+      @taxa += Taxon.where(id: taxon_ids.map{ |t| t.to_i }).limit(20)
     end
-    
-    if params[:test]
-      @child_taxa = @taxon.descendants.of_rank(Taxon::SPECIES).limit(10)
-      @child_taxon_ranges = TaxonRange.without_geom.where(taxon_id: @child_taxa).group_by(&:taxon_id)
-      @children = @child_taxa.map do |child|
-        {
-          :id => child.id, 
-          :range_url => @child_taxon_ranges[child.id] ? taxon_range_geom_url(child.id, :format => "geojson") : nil, 
-          :observations_url => observations_of_url(child, :format => "geojson"),
-          :name => child.name
-        }
-      end
-    end
+    render_404 if @taxa.blank?
   end
   
   def range
@@ -1439,41 +1400,6 @@ class TaxaController < ApplicationController
     end
   end
   
-  def load_single_taxon_map_data(taxon)
-    @taxon_range = taxon.taxon_ranges.without_geom.first
-    if params[:place_id] && (@place = Place.find(params[:place_id]) rescue nil)
-      @place_geometry = PlaceGeometry.without_geom.where(place_id: @place.id).first
-    end
-    @bounds = if @place && (bbox = @place.bounding_box)
-      GeoRuby::SimpleFeatures::Envelope.from_points([
-        Point.from_coordinates([bbox[1], bbox[0]]), 
-        Point.from_coordinates([bbox[3], bbox[2]])
-      ])
-    elsif @taxon_range
-      taxon.taxon_ranges.calculate(:extent, :geom)
-    else
-      Observation.of(taxon).calculate(:extent, :geom)
-    end
-    if @bounds
-      @extent = [
-        {:lon => @bounds.lower_corner.x, :lat => @bounds.lower_corner.y}, 
-        {:lon => @bounds.upper_corner.x, :lat => @bounds.upper_corner.y}
-      ]
-    end
-    
-    @county_listings = taxon.listed_taxa.
-      joins(:place).where("place_id IS NOT NULL").where(places: { admin_level: Place::COUNTY_LEVEL }).
-      select("listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level, establishment_means").
-      index_by{ |lt| lt.place_id }
-    @state_listings = taxon.listed_taxa.
-      joins(:place).where("place_id IS NOT NULL").where(places: { admin_level: Place::STATE_LEVEL }).
-      select("listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level, establishment_means").
-      index_by{ |lt| lt.place_id }
-    @country_listings = taxon.listed_taxa.
-      joins(:place).where("place_id IS NOT NULL").where(places: { admin_level: Place::COUNTRY_LEVEL }).
-      select("listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level, establishment_means").
-      index_by{ |lt| lt.place_id }
-  end
 
   def load_form_variables
     @conservation_status_authorities = ConservationStatus.select('DISTINCT authority').where("authority IS NOT NULL").map(&:authority).compact

@@ -1230,6 +1230,48 @@ class Taxon < ActiveRecord::Base
       }
   end
 
+  # Used primarily in get_gbif_id. For that particular API, it is useful
+  # to know the ancestor of a taxon that fits one of the major ranks, rather
+  # than a sibtribe or infrafamily which may nto be as common. This
+  # 'preferred' ancestor (term borrowed from Taxon::PREFERRED_RANKS) can be
+  # used to give extra context when searching taxa (e.g. the Aotus in Fabaceae)
+  def preferred_uninomial_ancestor
+    Taxon::PREFERRED_RANKS.reverse.each do |r|
+      # don't use binomials as preferred ancestors, use genera or above
+      next if [ "species", "subspecies", "variety" ].include?( r )
+      # the rank_level of the ancestor will be higher than its own rank_level
+      next if rank_level && rank_level >= Taxon::RANK_LEVELS[r]
+      # if the taxon has an ancestor at this next rank, return it
+      if ancestor = self.send("find_#{ r }")
+        return ancestor if ancestor != self
+      end
+    end
+    nil
+  end
+
+  def get_gbif_id
+    # make sure the GBIF TaxonScheme exists
+    gbif = TaxonScheme.where(title: "GBIF").first
+    gbif ||= TaxonScheme.create(title: "GBIF")
+    # return their ID if we know it
+    if scheme = TaxonSchemeTaxon.where(taxon_scheme: gbif, taxon_id: id).first
+      return scheme.source_identifier
+    end
+    params = { name: name }
+    if ancestor = preferred_uninomial_ancestor
+      params[ancestor.rank] = ancestor.name
+    end
+    if json = GbifService.species_match(params: params)
+      if json["usageKey"]
+        TaxonSchemeTaxon.create(taxon_scheme: gbif, taxon_id: id, source_identifier: json["usageKey"])
+        return json["usageKey"]
+      else
+        TaxonSchemeTaxon.create(taxon_scheme: gbif, taxon_id: id, source_identifier: nil)
+      end
+    end
+    nil
+  end
+
   # Static ##################################################################
 
   def self.match_descendants_of_id(id, taxon_hash)

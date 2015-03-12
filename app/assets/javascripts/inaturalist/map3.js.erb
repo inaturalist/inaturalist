@@ -396,7 +396,9 @@ iNaturalist.Map.createMap = function(options) {
   else {
     map = new google.maps.Map(options.div, options);
   }
-  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
+  if( ! _.has( options, "disableFullscreen" ) ) {
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
+  }
   map._observationsTileServer = options.observationsTileServer
 
   if (options.bounds) {
@@ -556,19 +558,94 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
     .attr("name", title)
     .attr("checked", ! options.disabled);
   li.append( checkbox, label );
-  checkbox.click( function( ) {
+  if( options.endpoint === "gbif" && options.taxon && options.taxon.gbif_id ) {
+     li.append("<a href='http://www.gbif.org/species/" + options.taxon.gbif_id +
+       "' target='_blank'><span class='ui-icon ui-icon-extlink'>&nbsp;</span></a>");
+  }
+  if( options.taxon ) {
+    addWindshaftOverlayTaxonDiv( ul, li, options );
+  }
+  checkbox.change( function( ) {
     var checked = this.checked;
     _.each( layers, function( layerData ) {
       map.overlayMapTypes.setAt( layerData.layerID - 1, checked ? layerData.layer : null);
     });
+    // if this checkbox belongs to a taxon, make sure that if this is the
+    // last in the set unchecked, the taxon is also unchecked. And as soon
+    // as one checkox is checked, the taxon's checkbox will also be checked
+    if( taxonID = $(this).parent().data("taxon-id") ) {
+      updateTaxonCheckboxState( ul, taxonID );
+    }
   })
   if( description ) {
     li.append($("<div/>").addClass("small meta").html( description ));
   }
   ul.append( li );
+  updateCheckboxInteractions( ul );
   if( ! map._overlayControlDisplayed ) {
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(map._overlayControl.div);
     map._overlayControlDisplayed = true;
+  }
+};
+
+// ensure the Windshaft overlay taxon entry's checkbox is in sync
+// with all of its layers. If none of a taxon's layers are enabled
+// then the taxon's checkbox should be un-checked
+var updateTaxonCheckboxState = function( ul, taxonID ) {
+  if( ul.find( "li.for_taxon[data-taxon-id='" + taxonID + "'] input:checked").length === 0 ) {
+    ul.find( "li.taxon[data-taxon-id='" + taxonID + "'] input").attr( "checked", false );
+  } else {
+    ul.find( "li.taxon[data-taxon-id='" + taxonID + "'] input").attr( "checked", true );
+  }
+}
+
+// make all Windshaft overlay taxon entries are aware of their
+// corresponding layers, and update the checkbox change binding
+var updateCheckboxInteractions = function( ul ) {
+  // if any of a taxon's layers is enabled, then check the taxon's checkbox
+  _.each( ul.find( "li.taxon" ), function( taxon_li ) {
+    updateTaxonCheckboxState( ul, $( taxon_li ).data("taxon-id") );
+  });
+  // reset the change interaction for taxon checkboxes
+  ul.find("li.taxon input").unbind("change");
+  // when a taxon checkbox is enabled, so are all of its layers and vice versa
+  ul.find("li.taxon input").bind("change", function( ) {
+    var selector = $(this).prop("checked") ? ":not(:checked)" : ":checked";
+    ul.find("li.for_taxon[data-taxon-id='" + $(this).attr("id") + "'] input" + selector)
+      .attr("checked", $(this).prop("checked")).trigger("change");
+  });
+};
+
+var addWindshaftOverlayTaxonDiv = function( ul, li, options ) {
+  // the ID of corresponding taxon LIs checkbox input
+  taxon_id = "taxon_layers_" + options.taxon.id;
+  // give a data-taxon-id to all the LIs that have a taxon
+  // for example the LI for the taxon range layer will get data-taxon-id
+  li.attr( "class", "for_taxon" ).attr( "data-taxon-id", taxon_id );
+
+  // if the taxon LI with checkbox doesn't exist, create it
+  if( ul.find( "#" + taxon_id ).length == 0 ) {
+    taxon_checkbox = $("<input type='checkbox'/>")
+      .attr("id", taxon_id)
+      .attr("name", options.taxon.name);
+    var primaryName = options.taxon.common_name ?
+      options.taxon.common_name.name : options.taxon.to_styled_s;
+    // prepare the label for the input, the taxon's scientific Name
+    taxon_label = $("<label/>").attr("for", taxon_id).html(primaryName);
+    // append the checkbox and label
+    taxon_li = $("<li/>").attr("class", "taxon").attr("data-taxon-id", taxon_id)
+      .append( taxon_checkbox, taxon_label );
+    if( options.taxon.url ) {
+      // add a link icon that goes to the taxon page
+       taxon_li.append("<a href='" + options.taxon.url +
+         "'><span class='ui-icon ui-icon-extlink'>&nbsp;</span></a>");
+    }
+    // add the common name as a sub-heading if available
+    if( primaryName !== options.taxon.to_styled_s) {
+      taxon_li.append($("<div/>").addClass( "small meta" )
+        .html( options.taxon.to_styled_s ));
+    }
+    ul.append( taxon_li );
   }
 };
 
@@ -626,27 +703,74 @@ google.maps.Map.prototype.getOverlay = function(name) {
   }
 }
 
+// given a URL and an options hash which should include an options.validParams
+// array of strings, this will take all the options hash values for the keys
+// in validParams and append them as HTTP GET attributes to the URL
+var appendValidParamsToURL = function( url, options ) {
+  var params = { };
+  options.validParams = options.validParams || { };
+  _.each( options, function( value, key ) {
+    if( options.endpoint === "grid" ) { key = key.replace("grid_", ""); }
+    if( options.endpoint === "points" ) { key = key.replace("point_", ""); }
+    if( _.contains( options.validParams, key ) ) {
+      params[ key ] = value;
+    }
+  });
+  // build the proper paramater string for HTTP GET
+  if( params ) {
+    return url += "?" + $.param( params );
+  }
+  return url;
+};
+
 google.maps.Map.prototype.addPlaceLayer = function( options ) {
-  // prevent the tilt feature, which cannot overlay tiles at higher zooms
-  this.setTilt(0);
-  var options = options || { },
-      tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
-      placeTileUrl = tiles_url + "/places/" + options.place.id + "/{z}/{x}/{y}.png";
-  var tilejson = { tiles: [ placeTileUrl ] };
-  return this.addLayerAndControl( tilejson, _.extend(options, {
-    description: options.place.name
-  }));
-  return this.addLayerAndControl( tilejson );
-}
+  _.defaults( options, { validParams: [ 'color' ] });
+  return this.addLayerByEndpoint( "places", options.place.id, options );
+};
 
 google.maps.Map.prototype.addTaxonRangeLayer = function( options ) {
+  _.defaults( options, { validParams: [ 'color' ] });
+  return this.addLayerByEndpoint( "taxon_ranges", options.taxon.id, options );
+};
+
+google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
+  _.defaults( options, { validParams: [ 'confirmed_color', 'unconfirmed_color' ] });
+  return this.addLayerByEndpoint( "taxon_places", options.taxon.id, options );
+};
+
+var cachedGBIFColors;
+var GBIFMapColors = function( ) {
+  if( cachedGBIFColors ) { return cachedGBIFColors; }
+  var colors = [ { range: ",10", color: "#FFFF00" },
+                 { range: "10,100", color: "#FFCC00" },
+                 { range: "100,1000", color: "#FF9900" },
+                 { range: "1000,10000", color: "#FF6600" },
+                 { range: "10000,100000", color: "#FF3300" },
+                 { range: "100000,", color: "#CC0000" } ];
+  var opacity = 0.75;
+  // turn the decimal 0 - 1 opacity into 0 - 255 alpha hex value
+  var alphaOpacity = parseFloat(Math.ceil(opacity * 255)).toString(16);
+  cachedGBIFColors = _.map( colors, function( c ) {
+    // e.g. 10,100,#000000FF
+    return encodeURIComponent( c.range + "," + c.color + alphaOpacity );
+  }).join("%7C");
+  return cachedGBIFColors;
+};
+
+google.maps.Map.prototype.addGBIFLayer = function( options ) {
+  var layerTileURL = "http://api.gbif.org/v1/map/density/tile?x={x}&y={y}&z={z}&type=TAXON&key=" +
+    options.taxon.gbif_id + "&resolution=4&colors=" + GBIFMapColors();
+  return this.addLayerAndControl( { tiles: [ layerTileURL ] }, _.extend( options, { endpoint: "gbif" } ));
+};
+
+google.maps.Map.prototype.addLayerByEndpoint = function( endpoint, endpointID, options ) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt(0);
   var options = options || { },
-      tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
-      rangeTileUrl = tiles_url + "/taxon_ranges/" + options.taxon.id + "/{z}/{x}/{y}.png";
-  var tilejson = { tiles: [ rangeTileUrl ] };
-  return this.addLayerAndControl( tilejson, options );
+      layerTileURL = <%= CONFIG.tile_servers.windshaft.inspect %> +
+        "/" + endpoint + "/" + endpointID + "/{z}/{x}/{y}.png";
+  layerTileURL = appendValidParamsToURL( layerTileURL, options );
+  return this.addLayerAndControl( { tiles: [ layerTileURL ] }, options );
 };
 
 // Convenience method that likely isn't called outside this file.
@@ -656,6 +780,13 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
   options = options || { }
   var layer = new wax.g.connector( tilejson );
   var layerID = this.overlayMapTypes.push( layer );
+  if( options.disabled ) {
+    // even though the layer is meant to be disabled (unselected) by default
+    // we need to secure the layerID so that we can add the layer in the proper
+    // places when the user selects it. That is why the layer is added
+    // above and immediately set to null here.
+    this.overlayMapTypes.setAt( layerID - 1, null);
+  }
   if( this._overlayControl ) {
     this._overlayControl.addWindshaftOverlayControl(
       [ { layer: layer, layerID: layerID } ], options );
@@ -666,47 +797,27 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
 google.maps.Map.prototype.addObservationsLayer = function(options) {
   // prevent the tilt feature, which cannot overlay tiles at higher zooms
   this.setTilt( 0 );
-  // if there is a global color, so no need for separate grid or point colors
-  if( options.color ) {
-    options.grid_color = null;
-    options.point_color = null;
-  }
   var options = options || { },
       tiles_url = options.tiles_url || <%= CONFIG.tile_servers.windshaft.inspect %>,
-      gridTileUrl = tiles_url + "/observations/grid/{z}/{x}/{y}.png",
-      pointTileUrl = tiles_url + "/observations/points/{z}/{x}/{y}.png",
+      gridTileURL = tiles_url + "/observations/grid/{z}/{x}/{y}.png",
+      pointTileURL = tiles_url + "/observations/points/{z}/{x}/{y}.png",
       gridmaxzoom = options.gridmaxzoom || 9;
+  if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // these are the parameters that will be sent to the windshaft API
-  var gridParamKeys = [ 'taxon_id', 'user_id', 'place_id',
+  var gridParamKeys = [ 'taxon_id', 'user_id', 'place_id', 'observation_id',
     'project_id', 'ttl', 'color', 'opacity', 'border_opacity' ];
   var pointParamKeys = gridParamKeys.concat([ 'observation_id' ]);
-  // filter the incoming parameters
-  var gridParams = { };
-  var pointParams = { };
-  _.each( options, function( value, key ) {
-    gridKey = key.replace("grid_", "");
-    pointKey = key.replace("point_", "");
-    if( _.contains( gridParamKeys, gridKey ) ) {
-      gridParams[ gridKey ] = value;
-    }
-    if( _.contains( pointParamKeys, pointKey ) ) {
-      pointParams[ pointKey ] = value;
-    }
-  });
-  // build the proper paramater string for HTTP GET
-  if( gridParams ) {
-    gridTileUrl += "?" + $.param( gridParams );
-  }
-  if( pointParams ) {
-    pointTileUrl += "?" + $.param( pointParams );
-  }
+  gridTileURL = appendValidParamsToURL( gridTileURL, _.extend(
+    options, { validParams: gridParamKeys, endpoint: "grid" } ));
+  pointTileURL = appendValidParamsToURL( pointTileURL, _.extend(
+    options, { validParams: gridParamKeys, endpoint: "points" } ));
   // add a layer to the map for the grid
-  gridLayer = this.addTileLayer( gridTileUrl, {
+  gridLayer = this.addTileLayer( gridTileURL, {
     maxzoom: gridmaxzoom,
     interactivity: false,
     disabled: options.disabled
   });
-  pointLayer = this.addTileLayer( pointTileUrl, {
+  pointLayer = this.addTileLayer( pointTileURL, {
     interactivity: options.interactivity === false ? false :
       'id,taxon_id,species_guess,latitude,longitude,positional_accuracy,captive,quality_grade,iconic_taxon_id',
     minzoom: gridmaxzoom + 1,

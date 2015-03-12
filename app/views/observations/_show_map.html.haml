@@ -1,3 +1,10 @@
-#map.stacked{ setup_map_tag_attrs(taxon: @observation.taxon,
-  observations: [ @observation ],
-  zoom_level: (@observation.map_scale || 8)).merge({  } ) }
+:ruby
+  a = {
+    taxon_layers: [ { 
+      taxon: @observation.taxon,
+      observations: { observation_id: @observation.id }
+    } ],
+    observations: [ @observation ],
+    zoom_level: @observation.map_scale || 8
+  }
+#map.stacked{ setup_map_tag_attrs(a) }
