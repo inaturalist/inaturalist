@@ -35,13 +35,21 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.enableShowAllLayer = $(elt).data('enable-show-all-layer');
   options.showAllLayer = options.showAllLayer || $(elt).data('show-all-layer') || true;
   options.featuredLayerLabel = options.featuredLayerLabel || $(elt).data('featured-layer-label');
+  options.featuredLayerDescription = options.featuredLayerDescription || $(elt).data('featured-layer-description');  
   options.placeLayerLabel = options.placeLayerLabel || $(elt).data('place-layer-label');
+  options.placeLayerDescription = options.placeLayerDescription || $(elt).data('place-layer-description');  
   options.taxonRangeLayerLabel = options.taxonRangeLayerLabel || $(elt).data('taxon-range-layer-label');
+  options.taxonRangeLayerDescription = options.taxonRangeLayerDescription || $(elt).data('taxon-range-layer-description');  
   options.taxonPlacesLayerLabel = options.taxonPlacesLayerLabel || $(elt).data('taxon-places-layer-label');
+  options.taxonPlacesLayerDescription = options.taxonPlacesLayerDescription || $(elt).data('taxon-places-layer-description');
+  options.taxonPlacesLayerHover = options.taxonPlacesLayerHover || $(elt).data('taxon-places-layer-hover');
   options.taxonObservationsLayerLabel = options.taxonObservationsLayerLabel || $(elt).data('taxon-observations-layer-label');
+  options.taxonObservationsLayerDescription = options.taxonObservationsLayerDescription || $(elt).data('taxon-observations-layer-description');  
   options.allLayerLabel = options.allLayerLabel || $(elt).data('all-layer-label');
   options.allLayerDescription = options.allLayerDescription || $(elt).data('all-layer-description');
   options.gbifLayerLabel = options.gbifLayerLabel || $(elt).data('gbif-layer-label');
+  options.gbifLayerDescription = options.gbifLayerDescription || $(elt).data('gbif-layer-description');
+  options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover');
   // turn the observations JSON into proper JavaScript objects
   if( options.observations ) {
     options.observations = _.map( options.observations, function( observation ) {
@@ -126,7 +134,9 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           layer.places : { };
         map.addTaxonPlacesLayer( _.defaults( layerOptions, {
           taxon: layer.taxon,
-          title: options.taxonPlacesLayerLabel
+          title: options.taxonPlacesLayerLabel,
+          description: options.taxonPlacesLayerDescription,
+          hover: options.taxonPlacesLayerHover
         }));
       }
       if( layer.ranges ) {
@@ -134,7 +144,9 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           layer.ranges : { };
         map.addTaxonRangeLayer( _.defaults( layerOptions, {
           taxon: layer.taxon,
-          title: options.taxonRangeLayerLabel
+          title: options.taxonRangeLayerLabel,
+          description: options.taxonRangeLayerDescription,
+          hover: options.taxonRangeLayerHover
         }));
       }
       if( layer.observations ) {
@@ -142,7 +154,9 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           layer.observations : { };
         map.addObservationsLayer( _.defaults( layerOptions, {
           taxon: layer.taxon,
-          title: options.taxonObservationsLayerLabel
+          title: options.taxonObservationsLayerLabel,
+          description: options.taxonObservationsLayerDescription,
+          hover: options.taxonObservationsLayerHover
         }));
       }
       if( layer.gbif && layer.taxon && layer.taxon.gbif_id ) {
@@ -150,7 +164,9 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           layer.gbif : { };
         map.addGBIFLayer( _.defaults( layerOptions, {
           taxon: layer.taxon,
-          title: options.gbifLayerLabel
+          title: options.gbifLayerLabel,
+          description: options.gbifLayerDescription,
+          hover: options.gbifLayerHover
         }));
       }
     });

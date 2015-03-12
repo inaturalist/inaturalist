@@ -553,6 +553,9 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
       checkbox = $("<input type='checkbox'/>"),
       label = $("<label/>").attr("for", id).html(title),
       li = $("<li/>");
+  if (options.hover) {
+    label.attr('title', options.hover)
+  }
   checkbox
     .attr("id", id)
     .attr("name", title)

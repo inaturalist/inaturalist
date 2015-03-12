@@ -185,6 +185,10 @@ qqq:
   linked_flickr_hotwo: where site_name is the name of the site
   mail_disclaimer: where site_name is the name of the site
   make_this_your_default_license: where type is a
+  maps:
+    overlays:
+      gbif_network_description: Description of what GBIF records are
+      checklist_places_description: Description of what checklist places are
   matching_species_will_shown_up_here: where place is the name of a place
   maybe_your_signed_in_with: where omniauth is the name of an external provider like Facebook
   merge_observation_field_x_into: where x is the name of an observation field such as eating
