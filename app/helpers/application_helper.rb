@@ -609,6 +609,7 @@ module ApplicationHelper
     if options[:taxon_layers]
       taxon_layer_attrs = [ ]
       options[:taxon_layers].each do |layer|
+        next unless layer[:taxon]
         layer_options = layer.merge({
           taxon: layer[:taxon].as_json(
             only: [ :id, :name, :rank ],

@@ -1240,10 +1240,10 @@ class Taxon < ActiveRecord::Base
       # don't use binomials as preferred ancestors, use genera or above
       next if [ "species", "subspecies", "variety" ].include?( r )
       # the rank_level of the ancestor will be higher than its own rank_level
-      next if rank_level >= Taxon::RANK_LEVELS[r]
+      next if rank_level && rank_level >= Taxon::RANK_LEVELS[r]
       # if the taxon has an ancestor at this next rank, return it
       if ancestor = self.send("find_#{ r }")
-        return ancestor
+        return ancestor if ancestor != self
       end
     end
     nil
