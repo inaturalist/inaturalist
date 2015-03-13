@@ -1084,8 +1084,13 @@ module ApplicationHelper
     end
   end
 
-  def cite(citation = nil, &block)
+  def cite(citation = nil, options = {}, &block)
     @_citations ||= []
+    if citation.is_a?(Hash)
+      options = citation
+      citation = nil
+    end
+    cite_tag = options[:tag] || :sup
     if citation.blank? && block_given?
       citation = capture(&block)
     end
@@ -1096,7 +1101,7 @@ module ApplicationHelper
       i = @_citations.index(c) + 1
       link_to(i, "#ref#{i}", :name => "cit#{i}")
     end
-    content_tag :sup, links.uniq.sort.join(',').html_safe
+    content_tag cite_tag, links.uniq.sort.join(',').html_safe
   end
 
   def references(options = {})

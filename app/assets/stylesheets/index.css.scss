@@ -1657,6 +1657,11 @@ ul.plain {list-style:none;margin:0;padding:0}
   top: 5px;
   right: 5px;
 }
+.lowerright {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
 .blob,
 .listed_taxon .blob {
   padding: 2px 5px;
