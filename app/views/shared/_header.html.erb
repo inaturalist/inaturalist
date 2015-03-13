@@ -145,6 +145,7 @@
           <ul>
             <li><%= link_to t(:add), new_observation_path, :class => 'subnavaction' %></li>
             <li><%= link_to t(:import), {:controller => 'observations', :action => 'import'}, :class => 'subnavaction' %></li>
+            <li><%= link_to t(:calendar), calendar_path(login: current_user.login), :class => 'subnavaction' %></li>
           </ul>
         </li>
         <li><%= link_to t(:lists), lists_by_login_path(current_user.login), :class => 'lists_link' %></li>
