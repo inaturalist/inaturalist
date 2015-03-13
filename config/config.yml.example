@@ -151,6 +151,7 @@ base: &base
         # See http://bitbucket.org/springmeyer/tilelite/
         observations: 'http://localhost:8000'
         tilestache: 'http://localhost:8080'
+        windshaft: http://localhost:4000
 
     google_webmaster:
         verification: abiglongkey
