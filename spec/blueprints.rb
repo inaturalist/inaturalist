@@ -9,6 +9,14 @@ require 'faker'
 # Sham.body  { Faker::Lorem.paragraph }
 # Sham.url { "http://#{Faker::Internet.domain_name}" }
 
+ApiEndpoint.blueprint do
+  title { Faker::Lorem.sentence }
+end
+
+ApiEndpointCache.blueprint do
+  api_endpoint { ApiEndpoint.make! }
+end
+
 Assessment.blueprint do
   taxon { Taxon.make! }
   user { User.make! }

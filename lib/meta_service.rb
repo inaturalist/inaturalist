@@ -41,20 +41,18 @@ class MetaService
   def request(method, args = {})
     params      = args.merge({@method_param => method})
     params      = params.merge(@default_params)
-    url         = @endpoint + params.map {|k,v| "#{k}=#{v}"}.join('&')
+    endpoint    = @api_endpoint ? @api_endpoint.base_url : @endpoint
+    url         = endpoint + params.map {|k,v| "#{k}=#{v}"}.join('&')
     uri         = URI.encode(url)
     request_uri = URI.parse(uri)
     response = nil
     begin
-      timed_out = Timeout::timeout(@timeout) do
-        response = Net::HTTP.start(request_uri.host) do |http|
-          http.get("#{request_uri.path}?#{request_uri.query}", 'User-Agent' => "#{self.class}/#{SERVICE_VERSION}")
-        end
-      end
+      MetaService.fetch_request_uri(request_uri: request_uri, timeout: @timeout,
+        api_endpoint: @api_endpoint,
+        user_agent: "#{CONFIG.site_name}/#{self.class}/#{SERVICE_VERSION}")
     rescue Timeout::Error
       raise Timeout::Error, "#{@service_name} didn't respond within #{@timeout} seconds."
     end
-    Nokogiri::XML(response.body)
   end
 
   def method_missing(method, *args)
@@ -65,5 +63,44 @@ class MetaService
       raise "#{@service_name}##{method} arguments must be a Hash"
     end
     request(method, *args)
+  end
+
+  def self.fetch_request_uri(options = {})
+    return unless options[:request_uri]
+    options[:timeout] ||= 5
+    options[:user_agent] ||= CONFIG.site_name
+    if options[:api_endpoint]
+      api_endpoint_cache = ApiEndpointCache.find_or_create_by(
+        api_endpoint: options[:api_endpoint],
+        request_url: options[:request_uri].to_s)
+      return if api_endpoint_cache.in_progress?
+      if api_endpoint_cache.cached?
+        return Nokogiri::XML(api_endpoint_cache.response)
+      end
+    end
+    response = nil
+    begin
+      if api_endpoint_cache
+        api_endpoint_cache.update_attributes(request_began_at: Time.now,
+          request_completed_at: nil, success: nil, response: nil)
+      end
+      timed_out = Timeout::timeout(options[:timeout]) do
+        response = Net::HTTP.start(options[:request_uri].host) do |http|
+          http.get("#{options[:request_uri].path}?#{options[:request_uri].query}",
+            "User-Agent" => options[:user_agent])
+        end
+      end
+    rescue Timeout::Error
+      if api_endpoint_cache
+        api_endpoint_cache.update_attributes(
+          request_completed_at: Time.now, success: false)
+      end
+      raise Timeout::Error
+    end
+    if api_endpoint_cache
+      api_endpoint_cache.update_attributes(
+        request_completed_at: Time.now, success: true, response: response.body)
+    end
+    Nokogiri::XML(response.body)
   end
 end

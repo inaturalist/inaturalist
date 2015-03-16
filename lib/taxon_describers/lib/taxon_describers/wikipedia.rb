@@ -6,7 +6,9 @@ module TaxonDescribers
       title = taxon.name if title.blank?
       decoded = ""
       begin
-        parsed = wikipedia.parse(:page => title, :redirects => true).at('text').try(:inner_text).to_s
+        response = wikipedia.parse(:page => title, :redirects => true)
+        return if response.nil?
+        parsed = response.at('text').try(:inner_text).to_s
         decoded = clean_html(parsed) if parsed
       rescue Timeout::Error => e
         Rails.logger.info "[INFO] Wikipedia API call failed: #{e.message}"
@@ -30,13 +32,13 @@ module TaxonDescribers
     end
 
     def wikipedia
-      @wikipedia ||= WikipediaService.new(:locale => "en", :debug => Rails.env.development?)
+      WikipediaService.new(:debug => Rails.env.development?)
     end
 
     def page_url(taxon)
       wname = taxon.wikipedia_title
       wname = taxon.name.to_s.gsub(/\s+/, '_') if wname.blank?
-      URI.encode("http://en.wikipedia.org/wiki/#{wname}")
+      wikipedia.url_for_title(wname)
     end
   end
 

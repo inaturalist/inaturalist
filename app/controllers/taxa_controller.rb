@@ -810,9 +810,9 @@ class TaxaController < ApplicationController
     @describers = if CONFIG.taxon_describers
       CONFIG.taxon_describers.map{|d| TaxonDescribers.get_describer(d)}.compact
     elsif @taxon.iconic_taxon_name == "Amphibia" && @taxon.species_or_lower?
-      [TaxonDescribers::AmphibiaWeb, TaxonDescribers::Eol]
+      [TaxonDescribers::Wikipedia, TaxonDescribers::AmphibiaWeb, TaxonDescribers::Eol]
     else
-      [TaxonDescribers::Eol]
+      [TaxonDescribers::Wikipedia, TaxonDescribers::Eol]
     end
     if @describer = TaxonDescribers.get_describer(params[:from])
       @description = @describer.describe(@taxon)
