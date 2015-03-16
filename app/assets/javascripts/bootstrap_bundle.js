@@ -14,3 +14,4 @@
 //= require application
 //= require inaturalist
 //= require jquery/plugins/inat/taxon_selectors
+//= require underscore.min
