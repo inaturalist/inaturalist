@@ -6,13 +6,17 @@
 #
 
 iconic_taxa = {}
-puts "Adding Life"
-life = Taxon.create(
-  :name => "Life", 
-  :rank => 'none', 
-  :source => Source.find_by_title('iNaturalist'))
-life.iconic_taxon = life
-life.save
+if life = Taxon::LIFE
+  puts "Life exists (yay), skipping..."
+else
+  puts "Adding Life"
+  life = Taxon.create(
+    :name => "Life", 
+    :rank => 'none', 
+    :source => Source.find_by_title('iNaturalist'))
+  life.iconic_taxon = life
+  life.save
+end
 
 #scientific,common
 iconic_taxa_names = [
@@ -37,6 +41,10 @@ ratatosk = Ratatosk::Ratatosk.new(
 
 
 iconic_taxa_names.each do |iconic_taxon_name|
+  if t = Taxon.where(is_iconic: true, name: iconic_taxon_name[0]).first
+    puts "#{iconic_taxon_name[0]} exists (#{t}), skipping..."
+    next
+  end
   puts "Adding #{iconic_taxon_name[0]}..."
   taxon_name = ratatosk.find(iconic_taxon_name[0]).first
   puts "\tMaking the taxon iconic..."
