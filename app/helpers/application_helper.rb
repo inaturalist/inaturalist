@@ -578,6 +578,7 @@ module ApplicationHelper
       "map-type" => options[:map_type],
       "zoom-level" => options[:zoom_level],
       "min-zoom" => options[:min_zoom],
+      "url-coords" => options[:url_coords] ? 'true' : nil,
       "disable-fullscreen" => options[:disable_fullscreen],
       "show-range" => options[:show_range] ? "true" : nil,
       "min-x" => options[:min_x],

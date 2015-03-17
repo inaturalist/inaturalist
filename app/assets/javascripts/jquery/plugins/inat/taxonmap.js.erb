@@ -20,6 +20,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.mapType = $(elt).data('map-type');
   options.zoomLevel = parseInt( $(elt).data('zoom-level') );
   options.minZoom = parseInt( $(elt).data('min-zoom') );
+  options.urlCoords = $(elt).data('url-coords');
   options.disableFullscreen = $(elt).data('disable-fullscreen');
   options.showRange = $(elt).data('show-range');
   options.minX = $(elt).data('min-x');
@@ -74,7 +75,15 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
         div: elt,
         mapTypeControl: (options.mapTypeControl !== false),
         minZoom: options.minZoom,
-        disableFullscreen: options.disableFullscreen
+        disableFullscreen: options.disableFullscreen,
+        styles: [
+          {
+            stylers: [
+              {lightness: 50},
+              {saturation: -50}
+            ]
+          }
+        ]
       }));
   var preserveViewport = options.preserveViewport
   if (options.minX) {
@@ -119,6 +128,31 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
   inatTaxonMap.addObservationLayers( map, options );
   // these are the observations that need Google Maps-style flags
   inatTaxonMap.addObservationsToMap( map, options, preserveViewport);
+  var coord;
+  if ( options.urlCoords ) {
+    function setUrlHashCoord() {
+      var coords = window.map.getCenter(),
+          x = preciseRound(coords.lng(), 3),
+          y = preciseRound(coords.lat(), 3),
+          z = window.map.getZoom();
+      var baseUrl = window.location.href.split('#')[0];
+      window.location.replace( baseUrl +'#' + [z,y,x].join('/') );
+    }
+    function getUrlHashCoord() {
+      var bits = window.location.hash.split('/').map(function(x) { return parseFloat(x.replace(/[^0-9\-\.]/, ''))});
+      return { lat: bits[1], lng: bits[2], zoom: bits[0] };
+    }
+    google.maps.event.addListener(map, 'dragend', setUrlHashCoord);
+    google.maps.event.addListener(map, 'zoom_changed', setUrlHashCoord);
+    var coord = getUrlHashCoord();
+    if (coord.lat) {
+      setTimeout(function() {
+        window.map.setCenter(new google.maps.LatLng(coord.lat,coord.lng));
+        window.map.setZoom(coord.zoom);
+      }, 100);
+      preserveViewport = true;
+    }
+  }
   if( !preserveViewport ) {
     inatTaxonMap.fit( elt )
   }

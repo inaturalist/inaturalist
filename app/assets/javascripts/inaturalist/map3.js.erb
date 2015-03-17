@@ -744,13 +744,13 @@ google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
 var cachedGBIFColors;
 var GBIFMapColors = function( ) {
   if( cachedGBIFColors ) { return cachedGBIFColors; }
-  var colors = [ { range: ",10", color: "#FFFF00" },
-                 { range: "10,100", color: "#FFCC00" },
-                 { range: "100,1000", color: "#FF9900" },
-                 { range: "1000,10000", color: "#FF6600" },
-                 { range: "10000,100000", color: "#FF3300" },
-                 { range: "100000,", color: "#CC0000" } ];
-  var opacity = 0.75;
+  var colors = [ { range: ",10", color: "#F7005A" },
+                 { range: "10,100", color: "#D50067" },
+                 { range: "100,1000", color: "#B5006C" },
+                 { range: "1000,10000", color: "#94006A" },
+                 { range: "10000,100000", color: "#72005F" },
+                 { range: "100000,", color: "#52034E" } ];
+  var opacity = 0.9;
   // turn the decimal 0 - 1 opacity into 0 - 255 alpha hex value
   var alphaOpacity = parseFloat(Math.ceil(opacity * 255)).toString(16);
   cachedGBIFColors = _.map( colors, function( c ) {
