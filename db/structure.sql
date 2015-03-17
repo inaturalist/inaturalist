@@ -174,6 +174,77 @@ ALTER SEQUENCE announcements_id_seq OWNED BY announcements.id;
 
 
 --
+-- Name: api_endpoint_caches; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE api_endpoint_caches (
+    id integer NOT NULL,
+    api_endpoint_id integer,
+    request_url character varying,
+    request_began_at timestamp without time zone,
+    request_completed_at timestamp without time zone,
+    success boolean,
+    response text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: api_endpoint_caches_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE api_endpoint_caches_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: api_endpoint_caches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE api_endpoint_caches_id_seq OWNED BY api_endpoint_caches.id;
+
+
+--
+-- Name: api_endpoints; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE api_endpoints (
+    id integer NOT NULL,
+    title character varying NOT NULL,
+    description text,
+    documentation_url character varying,
+    base_url character varying,
+    cache_hours integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: api_endpoints_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE api_endpoints_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: api_endpoints_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE api_endpoints_id_seq OWNED BY api_endpoints.id;
+
+
+--
 -- Name: assessment_sections; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3758,6 +3829,20 @@ ALTER TABLE ONLY announcements ALTER COLUMN id SET DEFAULT nextval('announcement
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY api_endpoint_caches ALTER COLUMN id SET DEFAULT nextval('api_endpoint_caches_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY api_endpoints ALTER COLUMN id SET DEFAULT nextval('api_endpoints_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY assessment_sections ALTER COLUMN id SET DEFAULT nextval('assessment_sections_id_seq'::regclass);
 
 
@@ -4383,6 +4468,22 @@ ALTER TABLE ONLY wiki_pages ALTER COLUMN id SET DEFAULT nextval('wiki_pages_id_s
 
 ALTER TABLE ONLY announcements
     ADD CONSTRAINT announcements_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: api_endpoint_caches_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY api_endpoint_caches
+    ADD CONSTRAINT api_endpoint_caches_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: api_endpoints_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY api_endpoints
+    ADD CONSTRAINT api_endpoints_pkey PRIMARY KEY (id);
 
 
 --
@@ -5102,6 +5203,27 @@ ALTER TABLE ONLY wiki_pages
 --
 
 CREATE INDEX fk_flags_user ON flags USING btree (user_id);
+
+
+--
+-- Name: index_api_endpoint_caches_on_api_endpoint_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_api_endpoint_caches_on_api_endpoint_id ON api_endpoint_caches USING btree (api_endpoint_id);
+
+
+--
+-- Name: index_api_endpoint_caches_on_request_url; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_api_endpoint_caches_on_request_url ON api_endpoint_caches USING btree (request_url);
+
+
+--
+-- Name: index_api_endpoints_on_title; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_api_endpoints_on_title ON api_endpoints USING btree (title);
 
 
 --
@@ -7330,4 +7452,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150203174741');
 INSERT INTO schema_migrations (version) VALUES ('20150226010539');
 
 INSERT INTO schema_migrations (version) VALUES ('20150304201738');
+
+INSERT INTO schema_migrations (version) VALUES ('20150313171312');
 

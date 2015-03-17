@@ -37,6 +37,7 @@ class Project < ActiveRecord::Base
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
   preference :count_by, :string, :default => 'species'
+  preference :range_by_date, :boolean, :default => false
 
   MEMBERSHIP_OPEN = 'open'
   MEMBERSHIP_INVITE_ONLY = 'inviteonly'
@@ -244,7 +245,15 @@ class Project < ActiveRecord::Base
   end
 
   def observations_url_params
-    observations_url_params = {:place_id => place_id, :d1 => start_time.iso8601, :d2 => end_time.iso8601, :per_page => 24}
+    observations_url_params = {:place_id => place_id, :per_page => 24}
+    if prefers_range_by_date?
+      observations_url_params.merge!(
+        d1: Date.parse(start_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s,
+        d2: Date.parse(end_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s
+      )
+    else
+      observations_url_params.merge!(:d1 => start_time.in_time_zone(user.time_zone).iso8601, :d2 => end_time.in_time_zone(user.time_zone).iso8601)
+    end
     observations_url_params[:taxon_id] = rule_taxon.id if rule_taxon
     observations_url_params
   end

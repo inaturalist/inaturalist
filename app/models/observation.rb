@@ -1016,7 +1016,7 @@ class Observation < ActiveRecord::Base
       if t > Time.now
         t = Chronic.parse(date_string, :context => :past)  
       end
-    
+      
       self.observed_on = t.to_date
     
       # try to determine if the user specified a time by ask Chronic to return

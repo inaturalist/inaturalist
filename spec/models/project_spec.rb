@@ -142,3 +142,30 @@ describe Project, "icon_url" do
     expect(p.icon_url.scan(/http/).size).to eq 1
   end
 end
+
+describe Project, "range_by_date" do
+  it "should be false by default" do
+    expect(Project.make!).not_to be_prefers_range_by_date
+  end
+  describe "date boundary" do
+    let(:place) { make_place_with_geom }
+    let(:project) {
+      Project.make!(
+        project_type: Project::BIOBLITZ_TYPE, 
+        start_time: '2014-05-14T21:08:00-07:00', 
+        end_time: '2014-05-25T20:59:00-07:00',
+        place: place,
+        prefers_range_by_date: true
+      )
+    }
+    it "should include observations observed outside the time boundary by inside the date boundary" do
+      expect(project).to be_prefers_range_by_date
+      o = Observation.make!(latitude: place.latitude, longitude: place.longitude, observed_on_string: '2014-05-14T21:06:00-07:00')
+      expect(Observation.query(project.observations_url_params).to_a).to include o
+    end
+    it "should exclude observations on the outside" do
+      o = Observation.make!(latitude: place.latitude, longitude: place.longitude, observed_on_string: '2014-05-13T21:06:00-07:00')
+      expect(Observation.query(project.observations_url_params).to_a).not_to include o
+    end
+  end
+end
