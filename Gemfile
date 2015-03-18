@@ -46,7 +46,6 @@ gem 'irwi', :git => 'git://github.com/Programatica/irwi.git'
 gem 'json'
 gem 'jquery-rails'
 gem 'koala'
-gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 gem 'dalli'
 gem 'mocha', :require => false
 gem 'mobile-fu', :git => 'https://github.com/kueda/mobile-fu.git'

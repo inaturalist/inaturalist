@@ -1,4 +1,4 @@
-class EmailerPreview < MailView
+class EmailerPreview < ActionMailer::Preview
   def updates_notification
     set_locale
     set_user

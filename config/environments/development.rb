@@ -48,7 +48,6 @@ Inaturalist::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
   
   config.active_support.deprecation = :log
-  # config.middleware.use MailView::Mapper, [EmailerPreview] # TODO maybe include this in Gemfile
 
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true

@@ -136,6 +136,7 @@ Rails.application.routes.draw do
   get '/users/:id/suspend' => 'users#suspend', :as => :suspend_user, :constraints => { :id => /\d+/ }
   get '/users/:id/unsuspend' => 'users#unsuspend', :as => :unsuspend_user, :constraints => { :id => /\d+/ }
   post 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }
+  post 'users/set_spammer' => 'users#set_spammer'
   post 'users/:id/set_spammer' => 'users#set_spammer', :as => :set_spammer, :constraints => { :id => /\d+/ }
   delete 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }
   get 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
@@ -434,15 +435,16 @@ Rails.application.routes.draw do
   resources :taxon_drops, :controller => :taxon_changes
   resources :taxon_stages, :controller => :taxon_changes
   resources :conservation_statuses, :only => [:autocomplete]
-  
-  if Rails.env.development?
-    mount EmailerPreview => 'mail_view'
-  end
 
   get 'translate' => 'translations#index', :as => :translate_list
   post 'translate/translate' => 'translations#translate', :as => :translate
   get 'translate/reload' => 'translations#reload', :as => :translate_reload
 
+  # Hack to enable mail previews. You could also remove get
+  # '/:controller(/:action(/:id))' but that breaks a bunch of other stuff. You
+  # could also fix that other stuff, if you're weren't a horrible person, but
+  # you are.
+  get '/rails/mailers/*path' => 'rails/mailers#preview'
   get '/:controller(/:action(/:id))'
 
   match '/404', to: 'errors#error_404', via: :all
