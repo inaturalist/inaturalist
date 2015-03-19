@@ -86,7 +86,7 @@ class FlickrPhoto < Photo
     elsif options[:square_url].blank?
       unless sizes = options.delete(:sizes)
         f = FlickrPhoto.flickraw_for_user(options[:user])
-        sizes = f.photos.getSizes(:photo_id => fp.id)
+        sizes = FlickrCache.fetch(f, "photos", "getSizes", photo_id: fp.id)
       end
       sizes = sizes.blank? ? {} : sizes.index_by{|s| s.label} rescue {}
       options[:square_url]   ||= sizes['Square'].source rescue nil

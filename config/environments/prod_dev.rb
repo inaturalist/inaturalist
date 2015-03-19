@@ -61,7 +61,7 @@ Inaturalist::Application.configure do
 
   Rails.logger = Logger.new(STDOUT)
   Rails.logger.formatter = proc do |severity, datetime, progname, msg|
-    "[#{ datetime.to_formatted_s(:db) }] (PID: #{$$}) #{ msg }\n"
+    "[#{ datetime.to_formatted_s(:db) }] #{ msg }\n"
   end
 
   config.middleware.use Rack::GoogleAnalytics, :trackers => lambda { |env|
