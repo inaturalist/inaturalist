@@ -386,7 +386,7 @@
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
       <% if @project.curated_by?(current_user) -%>
-        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_observations)}".html_safe, invitations_path(@project), :class => "navlink" %></li>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_observations)}".html_safe, observations_path(@project.observations_url_params), :class => "navlink" %></li>
       <% end -%>
       <% if @project.curated_by?(current_user) && @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY -%>
         <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_people)}".html_safe, invite_to_project_path(@project), :class => "navlink" %></li>

@@ -246,13 +246,15 @@ class Project < ActiveRecord::Base
 
   def observations_url_params
     observations_url_params = {:place_id => place_id, :per_page => 24}
-    if prefers_range_by_date?
-      observations_url_params.merge!(
-        d1: Date.parse(start_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s,
-        d2: Date.parse(end_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s
-      )
-    else
-      observations_url_params.merge!(:d1 => start_time.in_time_zone(user.time_zone).iso8601, :d2 => end_time.in_time_zone(user.time_zone).iso8601)
+    if start_time && end_time
+      if prefers_range_by_date?
+        observations_url_params.merge!(
+          d1: Date.parse(start_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s,
+          d2: Date.parse(end_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s
+        )
+      else
+        observations_url_params.merge!(:d1 => start_time.in_time_zone(user.time_zone).iso8601, :d2 => end_time.in_time_zone(user.time_zone).iso8601)
+      end
     end
     observations_url_params[:taxon_id] = rule_taxon.id if rule_taxon
     observations_url_params

@@ -568,37 +568,6 @@ class ProjectsController < ApplicationController
     end
   end
   
-  def invitations
-    scope = @project.observations_matching_rules
-    if @project.place && !@project.project_observation_rules.detect{|por| por.operator == "observed_in_place?"}
-      scope = scope.in_place(@project.place)
-    end
-    existing_scope = Observation.in_projects([@project])
-    invited_scope = Observation.joins(:project_invitations).where("project_invitations.project_id = ?", @project.id)
-
-    if params[:by] == "you"
-      scope = scope.by(current_user)
-      existing_scope = existing_scope.by(current_user)
-      invited_scope = invited_scope.by(current_user)
-    end
-
-    if params[:on_list] == "yes"
-      scope = scope.where("observations.taxon_id = listed_taxa.taxon_id").
-        joins("JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}")
-      existing_scope = existing_scope.where("observations.taxon_id = listed_taxa.taxon_id").
-        joins("JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}")
-      invited_scope = invited_scope.where("observations.taxon_id = listed_taxa.taxon_id").
-        joins("JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}")
-    end
-    
-    scope_sql = scope.to_sql
-    existing_scope_sql = existing_scope.to_sql
-    invited_scope_sql = invited_scope.to_sql
-
-    sql = "(#{scope_sql}) EXCEPT ((#{existing_scope_sql}) UNION (#{invited_scope_sql}))"
-    @observations = Observation.paginate_by_sql(sql, :page => params[:page])
-  end
-  
   def add
     error_msg = nil
     unless @observation = Observation.find_by_id(params[:observation_id])
