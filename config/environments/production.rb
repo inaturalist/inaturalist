@@ -75,4 +75,9 @@ Inaturalist::Application.configure do
   config.middleware.use Rack::GoogleAnalytics, :trackers => lambda { |env|
     return env['inat_ga_trackers'] if env['inat_ga_trackers']
   }
+
+  Rails.logger.formatter = proc do |severity, datetime, progname, msg|
+    "[#{ datetime.to_formatted_s(:db) }] (PID: #{$$}) #{ msg }\n"
+  end
+
 end
