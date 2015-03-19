@@ -1942,6 +1942,8 @@ class ObservationsController < ApplicationController
   def map
     @taxa = [ ]
     @places = [ ]
+    @user = User.find_by_id(params[:user_id])
+    @project = Project.find(params[:project_id]) rescue nil
     if params[:taxon_id]
       @taxa = [ Taxon.find_by_id(params[:taxon_id].to_i) ]
     elsif params[:taxon_ids]

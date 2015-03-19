@@ -64,13 +64,33 @@
         window.map.controls[google.maps.ControlPosition.TOP_CENTER].push(taxonNameDiv);
       }
     });
-#map.fullscreen{ setup_map_tag_attrs(                                                  |
-  taxon_layers: @taxa.map{ |t|                                                         |
-    { taxon: t, ranges: true, places: true,                                            |
-      observations: true, gbif: { disabled: true } } },                                |
-  place_layers: @places.map{ |p| { place: p } },                                       |
-  enable_show_all_layer: (@taxa.empty? && @places.empty?) ? true : false,              |
-  show_all_layer: (@taxa.empty? && @places.empty?) ? { grid_color: "#FF4500" } : true, |
-  disable_fullscreen: true,                                                            |
-  url_coords: true )}                                                                  |
-  min_zoom: 2 )}                                                                       |
+:ruby
+  a = {
+    taxon_layers: @taxa.map{ |t|
+      {
+        taxon: t, 
+        ranges: true, 
+        places: true,
+        observations: true, 
+        gbif: { disabled: true } 
+      }
+    },
+    place_layers: @places.map{ |p| { place: p } },
+    enable_show_all_layer: (@taxa.empty? && @places.empty? && @user.nil? && @project.nil?) ? true : false,
+    show_all_layer: (@taxa.empty? && @places.empty? && @user.nil? && @project.nil?) ? { grid_color: "#FF4500" } : true,
+    disable_fullscreen: true,
+    url_coords: true,
+    min_zoom: 2
+  }
+  if @project
+    a.merge! observation_layers: [ { 
+      project_id: @project.id, 
+      title: "Observations from #{@project.title}",
+      grid_color: "#FF4500"
+    } ]
+  end
+  if @user
+    a[:observation_layers] ||= []
+    a[:observation_layers] << { user_id: @user.id, title: "Observations by #{@user.login}", grid_color: "#FF4500" }
+  end
+#map.fullscreen{ setup_map_tag_attrs(a) }

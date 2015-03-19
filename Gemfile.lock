@@ -99,13 +99,6 @@ GIT
       right_http_connection (>= 1.2.5)
 
 GIT
-  remote: https://github.com/37signals/mail_view.git
-  revision: 50831ad31c6f9042469a33dab1394bd2a4042fd8
-  specs:
-    mail_view (2.0.4)
-      tilt
-
-GIT
   remote: https://github.com/kueda/mobile-fu.git
   revision: 0c8b184cbef00c17e47e0c7947575d3b95cdc66d
   specs:
@@ -639,7 +632,6 @@ DEPENDENCIES
   json
   koala
   machinist
-  mail_view!
   mobile-fu!
   mocha
   mysql2 (~> 0.3.17)
