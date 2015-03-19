@@ -662,23 +662,19 @@ class Taxon < ActiveRecord::Base
     end
     flickr_chosen_photos = []
     if !options[:skip_external] && chosen_photos.size < options[:limit] && self.auto_photos
-      begin
-        r = flickr.photos.search(
-          :tags => name.gsub(' ', '').strip,
-          :per_page => options[:limit] - chosen_photos.size,
-          :license => '1,2,3,4,5,6', # CC licenses
-          :extras => 'date_upload,owner_name,url_s,url_t,url_s,url_m,url_l,url_o,owner_name,license',
-          :sort => 'relevance'
-        )
-        r = [] if r.blank?
-        flickr_chosen_photos = if r.respond_to?(:map)
-          r.map{|fp| fp.respond_to?(:url_s) && fp.url_s ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
-        else
-          []
-        end
-      rescue FlickRaw::FailedResponse, EOFError, OpenSSL::SSL::SSLError => e
-        Rails.logger.error "Failed Flickr API request: #{e}"
-        Rails.logger.error e.backtrace.join("\n\t")
+      search_params = {
+        tags: name.gsub(' ', '').strip,
+        per_page: options[:limit] - chosen_photos.size,
+        license: '1,2,3,4,5,6', # CC licenses
+        extras: 'date_upload,owner_name,url_s,url_t,url_s,url_m,url_l,url_o,owner_name,license',
+        sort: 'relevance'
+      }
+      r = FlickrCache.fetch(flickr, "photos", "search", search_params)
+      r = [] if r.blank?
+      flickr_chosen_photos = if r.respond_to?(:map)
+        r.map{|fp| fp.respond_to?(:url_s) && fp.url_s ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
+      else
+        []
       end
     end
     flickr_ids = chosen_photos.map{|p| p.native_photo_id}
