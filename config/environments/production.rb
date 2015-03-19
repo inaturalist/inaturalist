@@ -76,8 +76,6 @@ Inaturalist::Application.configure do
     return env['inat_ga_trackers'] if env['inat_ga_trackers']
   }
 
-  Rails.logger.formatter = proc do |severity, datetime, progname, msg|
-    "[#{ datetime.to_formatted_s(:db) }] (PID: #{$$}) #{ msg }\n"
-  end
+  config.log_formatter = CustomLogFormatter.new
 
 end
