@@ -299,8 +299,10 @@ class UsersController < ApplicationController
           order("subscriptions.id DESC").
           limit(5)
         if current_user.is_curator? || current_user.is_admin?
-          @flags = Flag.order("id desc").where("resolved = ?", false).limit(5)
-          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").limit(5).active
+          @flags = Flag.order("id desc").where("resolved = ?", false).
+            includes(:user, :resolver, :comments).limit(5)
+          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").
+            includes(:taxon_names).limit(5).active
         end
       end
       format.mobile
@@ -548,10 +550,13 @@ protected
     per = options[:per] || 'month'
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
-    scope = Observation.group(:user_id).
-      where("EXTRACT(YEAR FROM observed_on) = ?", year)
+    scope = Observation.group(:user_id)
     if per == 'month'
-      scope = scope.where("EXTRACT(MONTH FROM observed_on) = ?", month)
+      date = Date.parse("#{ year }-#{ month }-1")
+      scope = scope.where("observed_on >= ? AND observed_on < ?", date, date + 1.month)
+    else
+      date = Date.parse("#{ year }-1-1")
+      scope = scope.where("observed_on >= ? AND observed_on < ?", date, date + 1.year)
     end
     scope = scope.where("observations.site_id = ?", @site) if @site && @site.prefers_site_only_users?
     counts = scope.count.to_a.sort_by(&:last).reverse[0..4]
@@ -566,8 +571,13 @@ protected
     per = options[:per] || 'month'
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
-    date_clause = "EXTRACT(YEAR FROM o.observed_on) = #{year}"
-    date_clause += "AND EXTRACT(MONTH FROM o.observed_on) = #{month}" if per == 'month'
+    if per == 'month'
+      date = Date.parse("#{ year }-#{ month }-1")
+      date_clause = "observed_on >= '#{ date }' AND observed_on < '#{ date + 1.month }'"
+    else
+      date = Date.parse("#{ year }-1-1")
+      date_clause = "observed_on >= '#{ date }' AND observed_on < '#{ date + 1.year }'"
+    end
     site_clause = if @site && @site.prefers_site_only_users?
       "AND o.site_id = #{@site.id}"
     end
@@ -605,11 +615,16 @@ protected
     scope = Identification.group("identifications.user_id").
       joins(:observation, :user).
       where("identifications.user_id != observations.user_id").
-      where("EXTRACT(YEAR FROM identifications.created_at) = ?", year).
       order('count_all desc').
       limit(5)
     if per == 'month'
-      scope = scope.where("EXTRACT(MONTH FROM identifications.created_at) = ?", month)
+      date = Date.parse("#{ year }-#{ month }-1")
+      scope = scope.where("identifications.created_at >= ? AND identifications.created_at < ?",
+        date, date + 1.month)
+    else
+      date = Date.parse("#{ year }-1-1")
+      scope = scope.where("identifications.created_at >= ? AND identifications.created_at < ?",
+        date, date + 1.year)
     end
     scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
     counts = scope.count.to_a

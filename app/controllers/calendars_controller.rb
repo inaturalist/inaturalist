@@ -29,7 +29,13 @@ class CalendarsController < ApplicationController
       per_page(200).
       order_by("observed_on")
     if @day
-      @observations = @observations.includes(:taxon => :taxon_names, :observation_photos => :photo)
+      @observations = @observations.includes(
+        :flags,
+        :quality_metrics,
+        :stored_preferences,
+        { taxon: { taxon_names: :place_taxon_names } },
+        { photos: :flags }
+      )
       @taxa = @observations.map{|o| o.taxon}.uniq.compact
       @taxa_count = @taxa.size
       @taxa_by_iconic_taxon_id = @taxa.group_by{|t| t.iconic_taxon_id}

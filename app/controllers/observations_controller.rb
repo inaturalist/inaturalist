@@ -110,17 +110,18 @@ class ObservationsController < ApplicationController
         # make sure they are up-to-date. If the record has been deleted
         # then reload will fail.
         # TODO: we still show the record if it doesn't exist - can we catch that?
-        Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
+        Observation.reload_collection(Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
           get_paginated_observations(search_params, find_options).to_a
-        end.each{ |o| o.reload rescue nil }
+        end)
       else
         get_paginated_observations(search_params, find_options)
       end
     else
       @observations = search_observations(search_params, find_options)
     end
-    Observation.preload_associations(@observations, [ :user, { taxon: :taxon_names },
-      { iconic_taxon: :taxon_descriptions }, { photos: :user }, :stored_preferences ])
+    Observation.preload_associations(@observations, [ { user: :stored_preferences },
+      { taxon: :taxon_names }, { iconic_taxon: :taxon_descriptions },
+      { photos: [ :user, :flags ] }, :stored_preferences, :flags ])
 
     respond_to do |format|
       
@@ -2323,7 +2324,8 @@ class ObservationsController < ApplicationController
             :stored_preferences,
             :quality_metrics,
             :projects,
-            { :observation_photos => :photo },
+            :flags,
+            { :photos => :flags },
             { :user => :stored_preferences },
             { :taxon => :taxon_descriptions },
             { :iconic_taxon => :taxon_descriptions }
