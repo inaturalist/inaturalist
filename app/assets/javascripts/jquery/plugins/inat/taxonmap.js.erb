@@ -53,7 +53,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover');
   options.controlPosition = options.controlPosition || $(elt).data('control-position');
   // turn the observations JSON into proper JavaScript objects
-  if( options.observations ) {
+  if ( options.observations ) {
     options.observations = _.map( options.observations, function( observation ) {
       return jQuery.parseJSON( observation );
     });
@@ -240,10 +240,11 @@ inatTaxonMap.addObservationsToMap = function( map, options, preserveViewport ) {
   if( !options.observations ) {
     return;
   }
-  var letter_counter = 0;
-  var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  var obsIcon = iNaturalist.Map.createObservationIcon({color: "HotPink"});
-  var newObsIcon = iNaturalist.Map.createObservationIcon({color: "DeepPink"});
+  var letter_counter = 0,
+      letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      obsIcon = iNaturalist.Map.createObservationIcon({color: "HotPink"}),
+      newObsIcon = iNaturalist.Map.createObservationIcon({color: "DeepPink"}),
+      numObservations = options.observations.length
 
   _.each(options.observations, function( o ) {
     var icon_div = $('#observation-'+ o.id +' .icon').get(0);
@@ -263,12 +264,6 @@ inatTaxonMap.addObservationsToMap = function( map, options, preserveViewport ) {
       });
     }
     map.addObservation(o, observationOptions);
-    if (!o.map_scale && o.positional_accuracy) {
-      var c = new google.maps.Circle({
-        center: new google.maps.LatLng(o.latitude, o.longitude),
-        radius: o.positional_accuracy * 10
-      })
-    }
     if( options.appendMarkerToList && o.marker) {
       var marker = o.marker;
       var src = o.marker.getIcon( );
@@ -282,12 +277,45 @@ inatTaxonMap.addObservationsToMap = function( map, options, preserveViewport ) {
     letter_counter++;
   });
   if( !preserveViewport ) {
-    if( options.observations.length === 1 ) {
+    if( numObservations === 1 ) {
       o = options.observations[0];
       var center = new google.maps.LatLng(
         o.private_latitude || o.latitude,
         o.private_longitude || o.longitude);
       map.setCenter(center);
+
+      // Start setting the map bounds. For single observations, this largeley
+      // depends on the precision of the coordinates
+      var accuracyCircle;
+      // Viewer can view private coordinates and positional accuracy set
+      if (o.private_latitude && o.positional_accuracy) {
+        accuracyCircle = new google.maps.Circle({
+          center: new google.maps.LatLng(o.private_latitude, o.private_longitude),
+          radius: o.positional_accuracy
+        })
+      // Viewer cannot view private coordinates or they haven't been set, show the public positional accuracy
+      } else if (o.public_positional_accuracy) {
+        accuracyCircle = new google.maps.Circle({
+          center: new google.maps.LatLng(o.latitude, o.longitude),
+          radius: o.public_positional_accuracy
+        })
+      }
+
+      // Default to showing the map scale used when the user was editing the observation, or something in the middle
+      if (o.map_scale) {
+        map.setZoom(o.map_scale)
+      } else {
+        map.setZoom(5)
+      }
+
+      // If there is an accuracy circle, make sure we don't default to zooming in so far it isn't shown
+      if (accuracyCircle) {
+        var mapBounds = map.getBounds(),
+            circleBounds = accuracyCircle.getBounds()
+        if (!mapBounds || (circleBounds.contains(mapBounds.getNorthEast()) && circleBounds.contains(mapBounds.getSouthWest()))) {
+          map.fitBounds(circleBounds)
+        }
+      }
     } else {
       map.zoomToObservations();
     }

@@ -5521,6 +5521,13 @@ CREATE INDEX index_guides_on_user_id ON guides USING btree (user_id);
 
 
 --
+-- Name: index_identifications_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_identifications_on_created_at ON identifications USING btree (created_at);
+
+
+--
 -- Name: index_identifications_on_current; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5948,6 +5955,13 @@ CREATE INDEX index_observations_on_community_taxon_id ON observations USING btre
 
 
 --
+-- Name: index_observations_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_created_at ON observations USING btree (created_at);
+
+
+--
 -- Name: index_observations_on_geom; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5966,6 +5980,13 @@ CREATE INDEX index_observations_on_mappable ON observations USING btree (mappabl
 --
 
 CREATE INDEX index_observations_on_oauth_application_id ON observations USING btree (oauth_application_id);
+
+
+--
+-- Name: index_observations_on_observed_on; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_observed_on ON observations USING btree (observed_on);
 
 
 --
@@ -6760,6 +6781,13 @@ CREATE INDEX index_trip_taxa_on_trip_id ON trip_taxa USING btree (trip_id);
 
 
 --
+-- Name: index_updates_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_updates_on_created_at ON updates USING btree (created_at);
+
+
+--
 -- Name: index_updates_on_notifier_type_and_notifier_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -7454,4 +7482,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150226010539');
 INSERT INTO schema_migrations (version) VALUES ('20150304201738');
 
 INSERT INTO schema_migrations (version) VALUES ('20150313171312');
+
+INSERT INTO schema_migrations (version) VALUES ('20150319205049');
 
