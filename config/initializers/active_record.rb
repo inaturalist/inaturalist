@@ -48,16 +48,8 @@ module ActiveRecord
       end
       if year || month || day
         begin
-          if day
-            date = Date.parse("#{ year }-#{ month }-#{ day }")
-            [ "#{column} >= ? AND #{column} < ?", date, date + 1.day ]
-          elsif month
-            date = Date.parse("#{ year }-#{ month }-1")
-            [ "#{column} >= ? AND #{column} < ?", date, date + 1.month ]
-          elsif year
-            date = Date.parse("#{ year }-1-1")
-            [ "#{column} >= ? AND #{column} < ?", date, date + 1.year ]
-          end
+          extract_date_ranges(column, year, month, day) ||
+            extract_date_conditions(column, year, month, day)
         rescue ArgumentError => e
           raise e unless e.message =~ /invalid date/
           "1 = 2"
@@ -66,6 +58,37 @@ module ActiveRecord
         "1 = 2"
       end
     end
+
+    def self.extract_date_ranges(column, year, month, day)
+      if year && month && day
+        date = Date.parse("#{ year }-#{ month }-#{ day }")
+        [ "#{column} >= ? AND #{column} < ?", date, date + 1.day ]
+      elsif year && month && !day
+        date = Date.parse("#{ year }-#{ month }-1")
+        [ "#{column} >= ? AND #{column} < ?", date, date + 1.month ]
+      elsif year && !month && !day
+        date = Date.parse("#{ year }-1-1")
+        [ "#{column} >= ? AND #{column} < ?", date, date + 1.year ]
+      end
+    end
+
+    def self.extract_date_conditions(column, year, month, day)
+      conditions, values = [[],[]]
+      if year
+        conditions << "EXTRACT(YEAR FROM #{column}) = ?"
+        values << year
+      end
+      if month
+        conditions << "EXTRACT(MONTH FROM #{column}) = ?"
+        values << month
+      end
+      if day
+        conditions << "EXTRACT(DAY FROM #{column}) = ?"
+        values << day
+      end
+      [conditions.join(' AND '), *values]
+    end
+
   end
 
   # MONKEY PATCH
