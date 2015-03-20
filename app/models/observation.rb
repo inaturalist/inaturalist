@@ -1275,8 +1275,8 @@ class Observation < ActiveRecord::Base
   end
   
   def appropriate?
-    return false if flags.where(:resolved => false).exists?
-    return false if observation_photos_count > 0 && photos.joins(:flags).where("flags.resolved = ?", false).exists?
+    return false if flags.detect{ |f| f.resolved == false }
+    return false if observation_photos_count > 0 && photos.detect{ |p| p.flags.detect{ |f| f.resolved == false } }
     true
   end
   
@@ -2262,6 +2262,18 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  # it is sometimes beneficial run a complicated query and cache the results,
+  # but you still want the latest versions of the objects cached. Obj.reload
+  # will do that for one object. To do it for several items, this is more
+  # efficient than making one query per item
+  def self.reload_collection(observations)
+    latest = Observation.where(id: observations)
+    observations.each do |o|
+      if match = latest.detect{ |l| l.id == o.id }
+        o = match
+      end
+    end
+  end
 
   # 2014-01 I tried improving performance by loading ancestor taxa for each
   # batch, but it didn't really speed things up much

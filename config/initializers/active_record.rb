@@ -40,40 +40,55 @@ module ActiveRecord
 
     def self.conditions_for_date(column, date)
       if date == 'today'
-        return ["#{column}::DATE = ?", Date.today.to_s]
+        return ["#{column} >= ? AND #{column} < ?", Date.today.to_s, Date.tomorrow.to_s]
       end
       year, month, day = date.to_s.split('-').map do |d|
         d = d.blank? ? nil : d.to_i
         d == 0 ? nil : d
       end
-      if date.to_s =~ /^\d{4}/ && year && month && day
-        datestring = "#{year}-#{month}-#{day}"
+      if year || month || day
         begin
-          Date.parse(datestring)
-          ["#{column}::DATE = ?", datestring]
+          extract_date_ranges(column, year, month, day) ||
+            extract_date_conditions(column, year, month, day)
         rescue ArgumentError => e
           raise e unless e.message =~ /invalid date/
           "1 = 2"
         end
-      elsif year || month || day
-        conditions, values = [[],[]]
-        if year
-          conditions << "EXTRACT(YEAR FROM #{column}) = ?"
-          values << year
-        end
-        if month
-          conditions << "EXTRACT(MONTH FROM #{column}) = ?"
-          values << month
-        end
-        if day
-          conditions << "EXTRACT(DAY FROM #{column}) = ?"
-          values << day
-        end
-        [conditions.join(' AND '), *values]
       else
         "1 = 2"
       end
     end
+
+    def self.extract_date_ranges(column, year, month, day)
+      if year && month && day
+        date = Date.parse("#{ year }-#{ month }-#{ day }")
+        [ "#{column} >= ? AND #{column} < ?", date, date + 1.day ]
+      elsif year && month && !day
+        date = Date.parse("#{ year }-#{ month }-1")
+        [ "#{column} >= ? AND #{column} < ?", date, date + 1.month ]
+      elsif year && !month && !day
+        date = Date.parse("#{ year }-1-1")
+        [ "#{column} >= ? AND #{column} < ?", date, date + 1.year ]
+      end
+    end
+
+    def self.extract_date_conditions(column, year, month, day)
+      conditions, values = [[],[]]
+      if year
+        conditions << "EXTRACT(YEAR FROM #{column}) = ?"
+        values << year
+      end
+      if month
+        conditions << "EXTRACT(MONTH FROM #{column}) = ?"
+        values << month
+      end
+      if day
+        conditions << "EXTRACT(DAY FROM #{column}) = ?"
+        values << day
+      end
+      [conditions.join(' AND '), *values]
+    end
+
   end
 
   # MONKEY PATCH

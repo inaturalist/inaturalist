@@ -65,7 +65,8 @@ class TaxaController < ApplicationController
         @featured_taxa = Taxon.where("taxa.featured_at IS NOT NULL"). 
           order("taxa.featured_at DESC").
           limit(100).
-          includes(:iconic_taxon, :photos, :taxon_names)
+          includes(:iconic_taxon, :photos, { taxon_names: :place_taxon_names },
+            :taxon_descriptions)
         @featured_taxa = @featured_taxa.from_place(@site_place) if @site_place
         
         if @featured_taxa.blank?
@@ -73,7 +74,8 @@ class TaxaController < ApplicationController
             "taxa.wikipedia_summary IS NOT NULL AND " +
             "photos.id IS NOT NULL AND " +
             "taxa.observations_count > 1"
-          ).includes(:iconic_taxon, :photos, :taxon_names).
+          ).includes(:iconic_taxon, :photos, { taxon_names: :place_taxon_names },
+            :taxon_descriptions)
           order("taxa.id DESC")
           @featured_taxa = @featured_taxa.from_place(@site_place) if @site_place
         end
@@ -165,8 +167,8 @@ class TaxaController < ApplicationController
         end
         
         @children = @taxon.children.where(:is_active => @taxon.is_active).
-          includes(:taxon_names).sort_by{ |c| c.name }
-        @ancestors = @taxon.ancestors.includes(:taxon_names)
+          includes({ taxon_names: :place_taxon_names }).sort_by{ |c| c.name }
+        @ancestors = @taxon.ancestors.includes({ taxon_names: :place_taxon_names })
         @iconic_taxa = Taxon::ICONIC_TAXA
         
         @check_listed_taxa = ListedTaxon.page(1).
@@ -186,7 +188,8 @@ class TaxaController < ApplicationController
 
         @taxon_links = TaxonLink.by_taxon(@taxon, :reject_places => @places.blank?)
 
-        @observations = Observation.of(@taxon).recently_added.limit(12)
+        @observations = Observation.of(@taxon).recently_added.
+          includes(:projects, :user, :taxon, :photos).limit(12)
         
         @photos = Rails.cache.fetch(@taxon.photos_cache_key) do
           @taxon.photos_with_backfill(:skip_external => true, :limit => 24)

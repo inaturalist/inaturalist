@@ -123,7 +123,8 @@ class ProjectsController < ApplicationController
                                 :quality_metrics,
                                 :stored_preferences,
                                 :taxon,
-                                { :observation_photos => :photo },
+                                :flags,
+                                { :photos => :flags },
                                 { :user => :stored_preferences } ] },
             { :curator_identification => [:user, :taxon] }
           ]).
