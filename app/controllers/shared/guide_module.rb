@@ -13,8 +13,7 @@ module Shared::GuideModule
       end
       is_filter_param && !is_blank
     }].symbolize_keys
-    @scope = Taxon.active.of_rank_equiv(10).
-      includes({:taxon_photos => :photo}, { :taxon_names => :place_taxon_names}, :conservation_statuses, :taxon_descriptions)
+    @scope = Taxon.active.of_rank_equiv(10)
     
     if block_given?
       @scope = yield(@scope)
@@ -72,6 +71,13 @@ module Shared::GuideModule
     @scope = @scope.select("taxa.*, listed_taxa.id as listed_taxon_id, listed_taxa.observations_count").distinct("taxa.id")
     @paged_scope = @scope.order(@order).limit(per_page).offset(offset)
     @paged_scope = @paged_scope.has_photos if @filter_params.blank?
+    Taxon.preload_associations(@paged_scope, [
+      { taxon_photos: :photo }, 
+      { taxon_names: :place_taxon_names},
+      :conservation_statuses, 
+      :taxon_descriptions, 
+      {taxon_scheme_taxa: :taxon_scheme}
+    ])
     @taxa = WillPaginate::Collection.create(page, per_page, total_entries) do |pager|
       pager.replace(@paged_scope.to_a)
     end

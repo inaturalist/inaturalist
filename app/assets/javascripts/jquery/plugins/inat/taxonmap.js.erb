@@ -51,6 +51,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.gbifLayerLabel = options.gbifLayerLabel || $(elt).data('gbif-layer-label');
   options.gbifLayerDescription = options.gbifLayerDescription || $(elt).data('gbif-layer-description');
   options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover');
+  options.controlPosition = options.controlPosition || $(elt).data('control-position');
   // turn the observations JSON into proper JavaScript objects
   if( options.observations ) {
     options.observations = _.map( options.observations, function( observation ) {
@@ -117,6 +118,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
       title: options.allLayerLabel,
       description: options.allLayerDescription,
       disabled: options.enableShowAllLayer === false,
+      controlPosition: options.controlPosition,
       ttl: 60 * 60 * 24  // 24 hours
     }));
   }
@@ -170,7 +172,8 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           taxon: layer.taxon,
           title: options.taxonPlacesLayerLabel,
           description: options.taxonPlacesLayerDescription,
-          hover: options.taxonPlacesLayerHover
+          hover: options.taxonPlacesLayerHover,
+          controlPosition: options.controlPosition
         }));
       }
       if( layer.ranges ) {
@@ -180,7 +183,8 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           taxon: layer.taxon,
           title: options.taxonRangeLayerLabel,
           description: options.taxonRangeLayerDescription,
-          hover: options.taxonRangeLayerHover
+          hover: options.taxonRangeLayerHover,
+          controlPosition: options.controlPosition
         }));
       }
       if( layer.observations ) {
@@ -190,7 +194,8 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           taxon: layer.taxon,
           title: options.taxonObservationsLayerLabel,
           description: options.taxonObservationsLayerDescription,
-          hover: options.taxonObservationsLayerHover
+          hover: options.taxonObservationsLayerHover,
+          controlPosition: options.controlPosition
         }));
       }
       if( layer.gbif && layer.taxon && layer.taxon.gbif_id ) {
@@ -200,7 +205,8 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
           taxon: layer.taxon,
           title: options.gbifLayerLabel,
           description: options.gbifLayerDescription,
-          hover: options.gbifLayerHover
+          hover: options.gbifLayerHover,
+          controlPosition: options.controlPosition
         }));
       }
     });
@@ -223,7 +229,8 @@ inatTaxonMap.addObservationLayers = function( map, options ) {
   if( options.observationLayers ) {
     _.each( options.observationLayers, function( layer ) {
       map.addObservationsLayer( _.defaults( _.clone( layer ), {
-        title: options.featuredLayerLabel
+        title: options.featuredLayerLabel,
+        controlPosition: options.controlPosition
       }));
     });
   }

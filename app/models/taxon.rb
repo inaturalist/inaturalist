@@ -1246,6 +1246,9 @@ class Taxon < ActiveRecord::Base
   end
 
   def get_gbif_id
+    if taxon_scheme_taxa.loaded? && tst = taxon_scheme_taxa.detect{|r| r.taxon_scheme.title == 'GBIF'}
+      return tst.source_identifier
+    end
     # make sure the GBIF TaxonScheme exists
     gbif = TaxonScheme.find_or_create_by(title: "GBIF")
     # return their ID if we know it

@@ -547,12 +547,18 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   if( ! _.isArray( layers ) || layers.length === 0 ) { return; }
   var map = this.map,
       ul = $("ul", this.div),
-      id = "layer_" + layers[0].layerID,
       title = options.title || "Layer",
+      id = "layer_" + layers[0].layerID,
       description = options.description,
       checkbox = $("<input type='checkbox'/>"),
-      label = $("<label/>").attr("for", id).html(title),
-      li = $("<li/>");
+      li = $("<li/>"),
+      controlPosition = google.maps.ControlPosition[options.controlPosition] || google.maps.ControlPosition.TOP_RIGHT;
+  if (options.taxon) {
+    // Stopgap solution to dealing with multiple taxon maps on a single page.
+    // Will break if multiple maps have the same taxon
+    id += '-' + options.taxon.id;
+  }
+  var label = $("<label/>").attr("for", id).html(title)
   if (options.hover) {
     label.attr('title', options.hover)
   }
@@ -586,7 +592,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   ul.append( li );
   updateCheckboxInteractions( ul );
   if( ! map._overlayControlDisplayed ) {
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(map._overlayControl.div);
+    map.controls[controlPosition].push(map._overlayControl.div);
     map._overlayControlDisplayed = true;
   }
 };

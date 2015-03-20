@@ -599,7 +599,8 @@ module ApplicationHelper
       "gbif-layer-hover" => I18n.t("maps.overlays.gbif_network_description"),
       "enable-show-all-layer" => options[:enable_show_all_layer] ? "true" : "false",
       "show-all-layer" => options[:show_all_layer].to_json,
-      "featured-layer-label" => I18n.t("maps.overlays.featured_observations")
+      "featured-layer-label" => I18n.t("maps.overlays.featured_observations"),
+      "control-position" => options[:control_position]
     }
     append_taxon_layers(map_tag_attrs, options)
     append_place_layers(map_tag_attrs, options)
