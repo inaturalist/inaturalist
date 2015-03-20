@@ -4,5 +4,6 @@ NonStupidDigestAssets.whitelist += [
   "inat-logo-pb.png",
   /spritesheet/,
   /\.xsl$/,
-  /\.kml$/
+  /\.kml$/,
+  /iconic_taxa/
 ]
