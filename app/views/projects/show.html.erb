@@ -401,7 +401,7 @@
       <% end -%>
       <% if @project_user -%>
         <li>
-          <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %>
+          <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, observations_by_login_path(current_user.login, @project.observations_url_params), :class => "navlink" %>
           <div class="inner">
             <%=t :download_bulk_import_template_html, :url => project_bulk_template_url(@project) %>
           </div>

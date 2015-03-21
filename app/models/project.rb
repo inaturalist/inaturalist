@@ -245,7 +245,7 @@ class Project < ActiveRecord::Base
   end
 
   def observations_url_params
-    observations_url_params = {:place_id => place_id, :per_page => 24}
+    observations_url_params = {:place_id => place_id}
     if start_time && end_time
       if prefers_range_by_date?
         observations_url_params.merge!(
