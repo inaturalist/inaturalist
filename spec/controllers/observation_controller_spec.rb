@@ -143,9 +143,7 @@ describe ObservationsController do
     it "should include private coordinates when viewed by a project curator" do
       po = make_project_observation
       o = po.observation
-      log_timer do
-        o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
-      end
+      o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
       o.reload
       expect(o.private_latitude).to_not be_blank
       p = po.project
@@ -156,7 +154,21 @@ describe ObservationsController do
       expect(response.body).to be =~ /#{o.private_latitude}/
     end
 
-    it "should not include private coordinates when viewed by a project curator" do
+    it "should not include private coordinates if observer is not a member" do
+      po = ProjectObservation.make!
+      o = po.observation
+      o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
+      o.reload
+      expect(o.private_latitude).to_not be_blank
+      p = po.project
+      pu = ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)
+      u = pu.user
+      sign_in u
+      get :project, :id => p.id
+      expect(response.body).not_to be =~ /#{o.private_latitude}/
+    end
+
+    it "should not include private coordinates when viewed by a normal project member" do
       po = make_project_observation
       o = po.observation
       o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)

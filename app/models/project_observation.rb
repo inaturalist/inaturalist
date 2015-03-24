@@ -20,7 +20,7 @@ class ProjectObservation < ActiveRecord::Base
   ], :unless => "errors.any?"
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
 
-  preference :usage_according_to_terms, :boolean, :default => false
+  preference :usage_according_to_terms, :boolean, default: false
   before_create :set_usage_according_to_terms
 
   def set_usage_according_to_terms

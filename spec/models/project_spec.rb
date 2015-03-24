@@ -179,4 +179,12 @@ describe Project, "generate_csv" do
       expect(row['usage_according_to_terms']).not_to be_blank
     end
   end
+  it "usage_according_to_terms should be false by default for non-members" do
+    path = File.join(Dir::tmpdir, "project_generate_csv_test-#{Time.now.to_i}")
+    po = ProjectObservation.make!
+    po.project.generate_csv(path, Observation::CSV_COLUMNS)
+    CSV.foreach(path, headers: true) do |row|
+      expect(row['usage_according_to_terms']).to eq "false"
+    end
+  end
 end
