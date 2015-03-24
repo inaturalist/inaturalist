@@ -169,3 +169,14 @@ describe Project, "range_by_date" do
     end
   end
 end
+
+describe Project, "generate_csv" do
+  it "should include usage_according_to_terms" do
+    path = File.join(Dir::tmpdir, "project_generate_csv_test-#{Time.now.to_i}")
+    po = make_project_observation
+    po.project.generate_csv(path, Observation::CSV_COLUMNS)
+    CSV.foreach(path, headers: true) do |row|
+      expect(row['usage_according_to_terms']).not_to be_blank
+    end
+  end
+end

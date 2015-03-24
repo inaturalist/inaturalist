@@ -1161,7 +1161,7 @@ en:
   home_faq: FAQ
   however_there_were_some_issues: "However, there were some issues: %{issues}"
   hybrid: hybrid
-  i_something_i: "<i>Something...</i>"
+  i_agree_to_the_project_terms: I agree to the project terms
   icon: Icon
   icon_size: Icon size
   icon_slash_photo: Icon / Photo
@@ -2891,6 +2891,8 @@ en:
   username_or_email: Username or email
   username_or_user_id: Username or user ID
   users: Users
+  users_contributions_to_project_html: |
+    <a href="%{url}">%{login}</a>'s contributions to %{project_title}
   users_id: "%{user}'s ID"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_observations: "%{user}'s observations"
@@ -3163,6 +3165,7 @@ en:
   your_account_has_been_verified: "Your %{site_name} account has been verified! Please sign in to continue."
   your_activation_code_was_missing: "Your activation code was missing.  Please follow the URL from your email."
   your_comment_was_saved: Your content was saved
+  your_contributions_to_project: "Your contributions to %{project_title}"
   your_default: your default
   your_default_time_zone: Your default time zone
   your_drafts: Your Drafts
@@ -3763,6 +3766,12 @@ en:
         coordinates_desc: You must specify coordinates if you don't draw a boundary or upload KML.
         map_instruction: Use the polygon tool to draw the place boundary.
     projects:
+      project_terms_desc_html: |
+        Allow the curators of this project to use your observations according
+        to the <a href="%{url}">project terms</a>.
+      updates_desc: |
+        Receive updates about this project on your dashboard and in the daily
+        updates email.
       edit:
         bioblitz_create_a_new_place_html: |
           %{link}, make sure it has a boundary, then come back here and try again.

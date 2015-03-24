@@ -3,7 +3,7 @@ class ProjectObservation < ActiveRecord::Base
   belongs_to :observation
   belongs_to :curator_identification, :class_name => "Identification"
   validates_presence_of :project, :observation
-  validate :observed_by_project_member?, :on => :create, :unless => "errors.any?"
+  # validate :observed_by_project_member?, :on => :create, :unless => "errors.any?"
   validates_rules_from :project, :rule_methods => [
     :captive?,
     :wild?,
@@ -17,6 +17,18 @@ class ProjectObservation < ActiveRecord::Base
     :on_list?
   ], :unless => "errors.any?"
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
+
+  preference :usage_according_to_terms, :boolean, :default => false
+  before_create :set_usage_according_to_terms
+
+  def set_usage_according_to_terms
+    return true unless project_user
+    self.preferred_usage_according_to_terms = project_user.preferred_usage_according_to_terms
+  end
+
+  def project_user
+    project.project_users.where(user_id: observation.user_id).first
+  end
   
   after_create  :refresh_project_list
   after_destroy :refresh_project_list
@@ -148,6 +160,8 @@ class ProjectObservation < ActiveRecord::Base
       else
         nil
       end
+    when "usage_according_to_terms"
+      preferred_usage_according_to_terms
     else
       if observation_field = p.observation_fields.detect{|of| of.name == column}
         observation.observation_field_values.detect{|ofv| ofv.observation_field_id == observation_field.id}.try(:value)

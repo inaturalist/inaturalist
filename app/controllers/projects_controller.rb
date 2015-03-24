@@ -446,7 +446,7 @@ class ProjectsController < ApplicationController
       return
     end
     
-    @project_user = @project.project_users.create(:user => current_user)
+    @project_user = @project.project_users.create((params[:project_user] || {}).merge(user: current_user))
     unless @observation
       if @project_user.valid?
         respond_to_join(:notice => t(:welcome_to_x_project, :project => @project.title))

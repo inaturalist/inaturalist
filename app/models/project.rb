@@ -291,7 +291,7 @@ class Project < ActiveRecord::Base
   end
 
   def generate_csv(path, columns)
-    project_columns = %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code)
+    project_columns = %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code usage_according_to_terms)
     columns += project_columns
     ofv_columns = self.observation_fields.map{|of| "field:#{of.normalized_name}"}
     columns += ofv_columns

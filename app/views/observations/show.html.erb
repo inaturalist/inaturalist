@@ -185,39 +185,6 @@
     <div id="tools">
       <%= link_to "<span class='ui-icon ui-icon-pencil inlineblock'></span> #{t(:edit)}".html_safe, edit_observation_url,
         :id => "edit_list_button", :class => "button" %>
-
-      <% unless @projects.blank? %>
-        <% link_to_toggle_menu t(:add_to_project), :class => "button", 
-            :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
-          <ul>
-            <% for project in @projects %>
-              <li class="inline buttonrow">
-                <%= link_to t(:remove),
-                  remove_project_observation_path(project, :observation_id => @observation.id),
-                  :remote => true,
-                  :method => :delete,
-                  :data => {
-                    :type => "json",
-                    :confirm => t(:are_you_sure_delete_observation_from_project, :project => project.title)
-                  },
-                  :class => "removelink pale button",
-                  :id => dom_id(project, "removelink"),
-                  :style => @project_observations_by_project_id[project.id] ? nil : 'display:none' %>
-                <%= link_to t(:add), 
-                  add_project_observation_path(project, :observation_id => @observation.id),
-                  :remote => true,
-                  "data-type" => "json",
-                  "data-project-id" => project.id,
-                  :method => :post,
-                  :id => dom_id(project, "addlink"),
-                  :class => "addlink glaucous button",
-                  :style => @project_observations_by_project_id[project.id] ? 'display:none' : nil %>
-                <%= link_to h(project.title), project, :class => "inter" %>
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
-      <% end %>
       
       <%= link_to "<span class='ui-icon ui-icon-copy inlineblock'></span> #{t :copy}".html_safe, 
         new_observation_path(:copy => @observation.id), 
@@ -633,34 +600,37 @@
       <% end %>
     </div>
     
-    <% if !@projects.blank? && logged_in? && is_not_me?(@observation.user) -%>
-      <div class="clear">
-        <% link_to_toggle_menu t(:invite_to_project), :class => "button", 
-           :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
-          <ul>
-            <% for project in @projects %>
-              <li class="inline buttonrow">
-                <% if @project_observations_by_project_id[project.id] -%>
-                  <div class = "disabled pale button" ><%=t :added %></div>
-                <% elsif @project_invitations_by_project_id[project.id] -%>
-                  <div class = "disabled pale button" ><%=t :invited %></div>
-                <% else %>
-                  <%= link_to t(:invite),
-                    { :controller => 'project_invitations',
-                      :action => 'create',
-                      :project_id => project.id,
-                      :observation_id => @observation.id,
-                      :user_id => current_user.id },
-                    :method => :post,
-                    :class => "glaucous button",
-                    "data-loading-click" => t(:inviting) %>
-                <% end -%>
-                <%= link_to h(project.title), project, :class => "inter" %>
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
+    <% unless @projects.blank? %>
+      <% link_to_toggle_menu t(:add_to_project), :class => "button", 
+          :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
+        <ul>
+          <% for project in @projects %>
+            <li class="inline buttonrow">
+              <%= link_to t(:remove),
+                remove_project_observation_path(project, :observation_id => @observation.id),
+                :remote => true,
+                :method => :delete,
+                :data => {
+                  :type => "json",
+                  :confirm => t(:are_you_sure_delete_observation_from_project, :project => project.title)
+                },
+                :class => "removelink pale button",
+                :id => dom_id(project, "removelink"),
+                :style => @project_observations_by_project_id[project.id] ? nil : 'display:none' %>
+              <%= link_to t(:add), 
+                add_project_observation_path(project, :observation_id => @observation.id),
+                :remote => true,
+                "data-type" => "json",
+                "data-project-id" => project.id,
+                :method => :post,
+                :id => dom_id(project, "addlink"),
+                :class => "addlink glaucous button",
+                :style => @project_observations_by_project_id[project.id] ? 'display:none' : nil %>
+              <%= link_to h(project.title), project, :class => "inter" %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
     <% end %>
   <% end -%>
   

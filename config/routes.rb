@@ -254,6 +254,7 @@ Rails.application.routes.draw do
   resources :project_observations, :only => [:create, :destroy]
   resources :custom_projects, :except => [:index, :show]
   resources :project_user_invitations, :only => [:create, :destroy]
+  resources :project_users, only: [:update]
 
   get 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => simplified_login_regex }
   get 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => simplified_login_regex }, :followers => 'followers'

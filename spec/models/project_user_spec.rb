@@ -164,3 +164,8 @@ describe ProjectUser do
     end
   end
 end
+
+describe ProjectUser, "prefers_updates" do
+  it "should allow journal post updates when true"
+  it "should supress journal post updates when false"
+end
