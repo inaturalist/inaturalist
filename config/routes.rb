@@ -115,7 +115,7 @@ Rails.application.routes.draw do
   get '/facebook/invite' => 'photos#invite', :as => :fb_accept_invite
   get '/picasa/invite' => 'photos#invite', :as => :picasa_accept_invite
 
-  get "/photos/inviter" => "photos#inviter", :as => :photo_inviter
+  match "/photos/inviter" => "photos#inviter", as: :photo_inviter, via: [:get, :post]
   resources :announcements
   get '/users/dashboard' => 'users#dashboard', :as => :dashboard
   get '/users/curation' => 'users#curation', :as => :curate_users

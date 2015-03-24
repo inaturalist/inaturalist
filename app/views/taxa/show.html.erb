@@ -392,8 +392,7 @@
     </p>
 
     <p class="ui">
-      <%= link_to t(:flickr_invite_link_raquo).html_safe,
-        url_for(:controller => "flickr", :action => "create_invite", :taxon_id => @taxon.id) %>
+      <%= link_to raw("#{t(:invite_photos_from_other_sites)} &raquo;"), photo_inviter_url(taxon_id: @taxon.id) %>
     </p>
 
     <p class="ui">

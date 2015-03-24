@@ -411,7 +411,7 @@
       allNone.append(allNoneLabel, allNoneButtons)
       $(controls).append($searchWrapper, prevnext, allNone, page)
     } else {
-      var allNone = $('<span class="allNone"></span>')
+      var allNone = $('<span class="allNone nobr inlineblock"></span>')
       allNone.append(allNoneLabel, selectAll, selectNone)
       $(controls).append($searchWrapper, page, prev, next, allNone)
     }
