@@ -289,6 +289,8 @@ class ObservationsController < ApplicationController
           @projects = Project.joins(:project_users).
             where("project_users.user_id = ?", current_user).
             limit(1000).sort_by{ |p| p.title.downcase }
+          @project_addition_allowed = @observation.user_id == current_user.id
+          @project_addition_allowed ||= @observation.user.preferred_project_addition_by != User::PROJECT_ADDITION_BY_NONE
         end
         
         @places = @observation.places

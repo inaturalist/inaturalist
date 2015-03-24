@@ -566,9 +566,7 @@
     <% end -%>
   </div><!-- end identifications -->
   
-  <% if !@project_observations.blank? || 
-        !@project_invitations.blank? || 
-        (logged_in? && is_not_me?(@observation.user) && !@projects.blank?) -%>
+  <% if !@project_observations.blank? || (!@projects.blank? && @project_addition_allowed) -%>
     <%= separator %>
     <div id="projects" class="clear stacked">
       <h3><%=t :projects %></h3>
@@ -587,54 +585,54 @@
                 :class => "pale button",
                 :style => "float: right; margin: 0" %>
             <% end -%>
+            <% if po.user_id && po.user_id != @observation.user_id -%>
+              <div class="small meta clear">
+                <%=t :added_by_user_on_date_html, user: link_to_user(po.user), date: l(po.created_at, format: :long) %>
+              </div>
+            <% end -%>
           </div>
         <% end %>
       <% end %>
-      
-      <% if !@project_invitations.blank? && (is_me?(current_user) || @project_invitations.map(&:user_id).include?(current_user.try(&:id))) %>
-        <p class="ui description"><%=t :invited_to_the_following_projects %></p>
-        <% for pi in @project_invitations %>
-          <%= render :partial => 'project_invitations/project_invitation', :object => pi, :locals => {:observation => @observation} %>
-        <% end %>
-        <%= link_to t(:manage_your_project_invitations), project_invitations_path, :class => "right readmore" %>
-      <% end %>
     </div>
     
-    <% unless @projects.blank? %>
-      <% link_to_toggle_menu t(:add_to_project), :class => "button", 
-          :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
-        <ul>
-          <% for project in @projects %>
-            <li class="inline buttonrow">
-              <%= link_to t(:remove),
-                remove_project_observation_path(project, :observation_id => @observation.id),
-                :remote => true,
-                :method => :delete,
-                :data => {
-                  :type => "json",
-                  :confirm => t(:are_you_sure_delete_observation_from_project, :project => project.title)
-                },
-                :class => "removelink pale button",
-                :id => dom_id(project, "removelink"),
-                :style => @project_observations_by_project_id[project.id] ? nil : 'display:none' %>
-              <%= link_to t(:add), 
-                add_project_observation_path(project, :observation_id => @observation.id),
-                :remote => true,
-                "data-type" => "json",
-                "data-project-id" => project.id,
-                :method => :post,
-                :id => dom_id(project, "addlink"),
-                :class => "addlink glaucous button",
-                :style => @project_observations_by_project_id[project.id] ? 'display:none' : nil %>
-              <%= link_to h(project.title), project, :class => "inter" %>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
+    <% if !@projects.blank? && @project_addition_allowed %>
+      <div class="clear">
+        <% link_to_toggle_menu t(:add_to_project), :class => "button", 
+            :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
+          <ul>
+            <% for project in @projects %>
+              <li class="inline buttonrow">
+                <%= link_to t(:remove),
+                  remove_project_observation_path(project, :observation_id => @observation.id),
+                  :remote => true,
+                  :method => :delete,
+                  :data => {
+                    :type => "json",
+                    :confirm => t(:are_you_sure_delete_observation_from_project, :project => project.title)
+                  },
+                  :class => "removelink pale button",
+                  :id => dom_id(project, "removelink"),
+                  :style => @project_observations_by_project_id[project.id] ? nil : 'display:none' %>
+                <%= link_to t(:add), 
+                  add_project_observation_path(project, :observation_id => @observation.id),
+                  :remote => true,
+                  "data-type" => "json",
+                  "data-project-id" => project.id,
+                  :method => :post,
+                  :id => dom_id(project, "addlink"),
+                  :class => "addlink glaucous button",
+                  :style => @project_observations_by_project_id[project.id] ? 'display:none' : nil %>
+                <%= link_to h(project.title), project, :class => "inter" %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
     <% end %>
   <% end -%>
   
   <%= separator %>
+
   <% if !@day_observations.blank? && @day_observations.size > 1 -%>
       <div id="day_observations" class="clear quiet box">
         <div class="clear">

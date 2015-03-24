@@ -2,8 +2,10 @@ class ProjectObservation < ActiveRecord::Base
   belongs_to :project
   belongs_to :observation
   belongs_to :curator_identification, :class_name => "Identification"
+  belongs_to :user
   validates_presence_of :project, :observation
   # validate :observed_by_project_member?, :on => :create, :unless => "errors.any?"
+  validate :observer_allows_addition?
   validates_rules_from :project, :rule_methods => [
     :captive?,
     :wild?,
@@ -97,6 +99,18 @@ class ProjectObservation < ActiveRecord::Base
       return false
     end
     true
+  end
+  def observer_allows_addition?
+    return unless observation
+    return true if user_id == observation.user_id
+    case observation.user.preferred_project_addition_by
+    when User::PROJECT_ADDITION_BY_JOINED
+      unless project.project_users.where(user_id: observation.user_id).exists?
+        errors.add :user_id, "does not allow addition to projects they haven't joined"
+      end
+    when User::PROJECT_ADDITION_BY_NONE
+      errors.add :user_id, "does not allow other people to add their observations to projects"
+    end
   end
   
   def refresh_project_list

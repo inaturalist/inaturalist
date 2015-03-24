@@ -199,6 +199,7 @@ en:
   added_an: added an
   added_as_a_part_of: Added as part of a
   added_by: Added by
+  added_by_user_on_date_html: "Added by %{user} on %{date}"
   added_identifications_to: added identifications to anyone's observations.
   added_on: Added on
   added_to: Added to
@@ -917,6 +918,7 @@ en:
   email_addresses_description: Comma-separated email addresses, limit 60 every 30 days.
   email_address_for_comments_and_other_feedback: Email address for comments and other feedback
   email_addresses_to_receive_invites: Email addresses to receive invites
+  email_settings: Email settings
   embed: 'Embed'
   embed_a_widget_for_this_taxon_on_website: "Embed a widget for this taxon on your website &raquo;"
   embed_place_widget: Embed place widget
@@ -2121,6 +2123,7 @@ en:
     Do you want the total number of taxa for your project to be reported as
     species, any taxon, or just the "leaves" of the taxonomic tree?
   project_rules: Project Rules
+  project_settings: Project settings
   project_terms_and_rules: project terms &amp; rules
   project_user_cannot_be_found: Project user cannot be found
   project_user_was_invalid: "Project user was invalid: %{project_user}"
@@ -2684,6 +2687,7 @@ en:
   there_were_errors: There were errors.
   there_were_problems_adding_taxa: "There were problems adding those taxa: %{errors}"
   there_were_problems_adding_your_observation_to_this_project: "There were problems adding your observation to this project: "
+  there_were_problems_adding_that_observation_to_this_project: "There were problems adding that observation to this project: "
   there_were_problems_importing_that_place: "There were problems importing that place: %{place_error}"
   there_were_some_problems_saving_this_observation: There were some problems saving this observation
   there_were_some_problems_saving_those_colors: "There were some problems saving those colors: %{error}"
@@ -3930,6 +3934,10 @@ en:
           Just a reminder, project curators can see the private and obscured
           coordinates of observations you add to this project.
       edit:
+        project_addition_preferences:
+          any: Any
+          joined: Projects you've joined
+          none: "None, only you can add your observations to projects"
         taxon_change_desc: |
           When taxa are merged or renamed on %{site_name}, your observations, listed
           taxa, identifications, etc. will be automatically updated to the new

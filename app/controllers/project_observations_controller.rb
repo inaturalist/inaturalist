@@ -5,6 +5,7 @@ class ProjectObservationsController < ApplicationController
   def create
     @project_observation = ProjectObservation.new(params[:project_observation])
     auto_join_project
+    @project_observation.user = current_user
 
     respond_to do |format|
       if @project_observation.save

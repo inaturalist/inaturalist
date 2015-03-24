@@ -2478,7 +2478,8 @@ CREATE TABLE project_observations (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     curator_identification_id integer,
-    tracking_code character varying(255)
+    tracking_code character varying(255),
+    user_id integer
 );
 
 
@@ -6305,6 +6306,13 @@ CREATE INDEX index_project_observations_on_project_id ON project_observations US
 
 
 --
+-- Name: index_project_observations_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_project_observations_on_user_id ON project_observations USING btree (user_id);
+
+
+--
 -- Name: index_project_user_invitations_on_invited_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -7484,4 +7492,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150304201738');
 INSERT INTO schema_migrations (version) VALUES ('20150313171312');
 
 INSERT INTO schema_migrations (version) VALUES ('20150319205049');
+
+INSERT INTO schema_migrations (version) VALUES ('20150324004401');
 
