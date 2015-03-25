@@ -99,7 +99,7 @@
               = succeed ',' do
                 = s.attribution
               = link_to(s.source_url, s.source_url)
-        = formatted_user_text s.description
+        = formatted_user_text s.description, compact: true
       - unless @guide_taxon.guide_sections.blank?
         %h3=t :sources_and_credits
         = references
