@@ -262,6 +262,15 @@ class Photo < ActiveRecord::Base
     }
   end
 
+  def as_indexed_json(options={})
+    {
+      id: id,
+      license_code: self.license_code,
+      attribution: self.attribution,
+      url: self.square_url
+    }
+  end
+
   private
 
   def self.attributes_protected_by_default

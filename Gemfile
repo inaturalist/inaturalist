@@ -31,6 +31,8 @@ gem 'devise_suspendable'
 gem 'diffy'
 gem 'doorkeeper'
 gem 'dynamic_form'
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'exifr'
 gem 'flickraw', "~> 0.9.8", :git => 'git://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
 gem "friendly_id", "~> 5.0.1"
@@ -93,6 +95,7 @@ gem 'xmp', :git => 'git://github.com/kueda/xmp.git'
 gem 'statsd-ruby', :require => 'statsd'
 
 gem 'rgeo'
+gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter', :git => 'git://github.com/kueda/activerecord-postgis-adapter.git', :branch => 'activerecord42'
 
 group :production do

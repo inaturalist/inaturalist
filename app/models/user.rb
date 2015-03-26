@@ -629,4 +629,11 @@ class User < ActiveRecord::Base
     "User #{login}"
   end
 
+  def as_indexed_json(options={})
+    {
+      id: id,
+      login: login
+    }
+  end
+
 end

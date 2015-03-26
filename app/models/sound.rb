@@ -1,5 +1,5 @@
 class Sound < ActiveRecord::Base
-	belongs_to :user
+  belongs_to :user
   has_many :observation_sounds, :dependent => :destroy
   has_many :observations, :through => :observation_sounds
 
@@ -175,6 +175,14 @@ class Sound < ActiveRecord::Base
 
     sound_taxa = sound_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
     sound_taxa.detect(&:species_or_lower?) || sound_taxa.first
+  end
+
+  def as_indexed_json(options={})
+    {
+      id: id,
+      license_code: license_code,
+      attribution: attribution
+    }
   end
 
 end

@@ -1,6 +1,21 @@
 #encoding: utf-8
 class Place < ActiveRecord::Base
   has_ancestry
+
+  elastic_model
+  scope :load_for_index, -> { includes(:place_geometry) }
+  settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
+    mappings(dynamic: true) do
+      indexes :geometry_geojson, type: "geo_shape"
+      indexes :location, type: "geo_point"
+      indexes :point_geojson, type: "geo_shape"
+      indexes :display_name, index_analyzer: "ascii_snowball_analyzer",
+        search_analyzer: "ascii_snowball_analyzer"
+      indexes :display_name_autocomplete, index_analyzer: "keyword_autocomplete_analyzer",
+        search_analyzer: "keyword_analyzer"
+    end
+  end
+
   belongs_to :user
   belongs_to :check_list, :dependent => :destroy
   belongs_to :source
@@ -210,7 +225,7 @@ class Place < ActiveRecord::Base
 
   scope :with_geom, -> { joins(:place_geometry).where("place_geometries.id IS NOT NULL") }
   scope :straddles_date_line, -> { where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)") }
-  
+
   def to_s
     "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 
     "place_type_name: #{place_type_name}, lat: #{latitude}, " +
@@ -763,6 +778,28 @@ class Place < ActiveRecord::Base
     options[:except] ||= []
     options[:except] += [:source_filename, :delta, :bbox_area]
     super(options)
+  end
+
+  def ancestor_place_ids
+    return unless ancestry
+    ancestry.split("/").map(&:to_i) << id
+  end
+
+  def as_indexed_json(options={})
+    preload_for_elastic_index
+    {
+      id: id,
+      name: name,
+      display_name: display_name,
+      display_name_autocomplete: display_name,
+      place_type: place_type,
+      bbox_area: bbox_area,
+      ancestor_place_ids: ancestor_place_ids,
+      geometry_geojson: place_geometry ?
+        ElasticModel.geom_geojson(place_geometry.geom) : nil,
+      location: ElasticModel.point_latlon(latitude, longitude),
+      point_geojson: ElasticModel.point_geojson(latitude, longitude)
+    }
   end
 
   def self_and_ancestors

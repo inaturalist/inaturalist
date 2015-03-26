@@ -21,6 +21,19 @@ class Taxon < ActiveRecord::Base
   acts_as_flaggable
   has_ancestry
   
+  elastic_model
+  scope :load_for_index, -> { includes(:colors, :listed_taxa, :taxon_ancestors, :taxon_names) }
+  settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
+    mappings(dynamic: true) do
+      indexes :names do
+        indexes :name, index_analyzer: "ascii_snowball_analyzer",
+          search_analyzer: "ascii_snowball_analyzer"
+        indexes :name_autocomplete, index_analyzer: "autocomplete_analyzer",
+          search_analyzer: "keyword_analyzer"
+      end
+    end
+  end
+
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
   has_many :taxon_changes
@@ -345,8 +358,7 @@ class Taxon < ActiveRecord::Base
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
   ICONIC_TAXA_BY_NAME = ICONIC_TAXA.index_by(&:name)
-  
-  
+
   def self.reset_iconic_taxa_constants_for_tests
     remove_const('ICONIC_TAXA')
     remove_const('ICONIC_TAXA_BY_ID')
@@ -501,6 +513,29 @@ class Taxon < ActiveRecord::Base
     end
     return sciname if comname.blank?
     "#{comname.name} (#{sciname})"
+  end
+
+  def as_indexed_json(options={})
+    preload_for_elastic_index
+    json = {
+      id: id,
+      name: name,
+      names: taxon_names.sort_by(&:position).map{ |tn| tn.as_indexed_json(autocomplete: !options[:basic]) },
+      rank: rank,
+      iconic_taxon_id: iconic_taxon_id,
+      ancestor_ids: taxon_ancestors.map(&:ancestor_taxon_id),
+    }
+    unless options[:basic]
+      json.merge!({
+        created_at: created_at,
+        colors: colors.map(&:as_indexed_json),
+        is_active: is_active,
+        ancestry: ancestry,
+        observations_count: observations_count,
+        place_ids: listed_taxa.map(&:place_id).compact.uniq
+      })
+    end
+    json
   end
 
   def observations_count_with_descendents
