@@ -2,6 +2,15 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Observation, "creation" do
+
+  before(:all) do
+    Observation.__elasticsearch__.create_index!
+  end
+
+  after(:all) do
+    Observation.__elasticsearch__.delete_index!
+  end
+
   before(:each) do
     @taxon = Taxon.make!
     @observation = Observation.make!(:taxon => @taxon, :observed_on_string => 'yesterday at 1pm')

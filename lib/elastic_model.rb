@@ -52,7 +52,7 @@ module ElasticModel
   def self.search_criteria(options={})
     return unless options && options.is_a?(Hash)
     criteria = [ ]
-    options[:where] ||= [ ]
+    options[:where] ||= { }
     options[:where].each do |key, value|
       if value.is_a? Array
         criteria << { terms: { key => value.map{ |v| id_or_object(v) } } }
@@ -61,9 +61,6 @@ module ElasticModel
       else
         criteria << { match: { key => id_or_object(value) } }
       end
-    end
-    if options[:match_all]
-      criteria << { match_all: options[:match_all] }
     end
     criteria
   end
@@ -109,17 +106,20 @@ module ElasticModel
   end
 
   def self.point_geojson(lat, lon)
-    return unless lat.kind_of?(Numeric) && lon.kind_of?(Numeric)
-    return if lat < -90.0 || lat > 90.0
-    return if lon < -180.0 || lon > 180.0
+    return unless valid_latlon?(lat, lon)
     { type: "point", coordinates: [ lon, lat ] }
   end
 
   def self.point_latlon(lat, lon)
-    return unless lat.kind_of?(Numeric) && lon.kind_of?(Numeric)
-    return if lat < -90.0 || lat > 90.0
-    return if lon < -180.0 || lon > 180.0
+    return unless valid_latlon?(lat, lon)
     "#{lat},#{lon}"
+  end
+
+  def self.valid_latlon?(lat, lon)
+    return false unless lat.kind_of?(Numeric) && lon.kind_of?(Numeric)
+    return false if lat < -90.0 || lat > 90.0
+    return false if lon < -180.0 || lon > 180.0
+    true
   end
 
   def self.geom_geojson(geom)

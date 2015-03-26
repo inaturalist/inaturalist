@@ -31,8 +31,6 @@ gem 'devise_suspendable'
 gem 'diffy'
 gem 'doorkeeper'
 gem 'dynamic_form'
-gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'exifr'
 gem 'flickraw', "~> 0.9.8", :git => 'git://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
 gem "friendly_id", "~> 5.0.1"
@@ -93,6 +91,9 @@ gem 'ya2yaml'
 gem 'yui-compressor'
 gem 'xmp', :git => 'git://github.com/kueda/xmp.git'
 gem 'statsd-ruby', :require => 'statsd'
+# these need to be loaded after will_paginate
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 
 gem 'rgeo'
 gem 'rgeo-geojson'

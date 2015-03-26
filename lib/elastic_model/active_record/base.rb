@@ -17,10 +17,6 @@ module ActiveRecord
         end
       end
 
-      def elastic_search_for_ids(keyword)
-        __elasticsearch__.search(keyword)
-      end
-
       def elastic_search(options = {})
         search_criteria = ElasticModel.search_criteria(options)
         search_filter = ElasticModel.envelope_filter(options)
@@ -52,7 +48,7 @@ module ActiveRecord
         __elasticsearch__.search(elastic_hash)
       end
 
-      def elastic_paginate(options)
+      def elastic_paginate(options={})
         options[:page] ||= 1
         options[:per_page] ||= 30
         options[:fields] = :id

@@ -16,6 +16,7 @@ class Observation < ActiveRecord::Base
             search_analyzer: "ascii_snowball_analyzer"
         end
       end
+      indexes :observed_on_string, type: "string"
       indexes :location, type: "geo_point"
       indexes :geojson, type: "geo_shape"
     end
