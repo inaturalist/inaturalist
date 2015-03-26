@@ -25,7 +25,7 @@ class ProjectObservation < ActiveRecord::Base
 
   def set_usage_according_to_terms
     return true unless project_user
-    self.preferred_usage_according_to_terms = project_user.preferred_usage_according_to_terms
+    self.preferred_usage_according_to_terms = project_user.preferred_usage_according_to_terms if preferred_usage_according_to_terms.nil?
   end
 
   def project_user

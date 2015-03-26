@@ -202,6 +202,27 @@ $('#add_more_photos_link').live('click', function() {
   return false
 })
 
+$('.joinlink').live('click', function(e) {
+  $(this).parents('.qtip').qtip('hide')
+  var dialogId = "join_project_modal",
+      dialog = $('#'+dialogId),
+      projectId = $(this).data('project-id')
+  if (dialog.length == 0) {
+    dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">'+I18n.t('loading')+'</div>')
+    dialog.attr('id', dialogId)
+    dialog.load('/projects/'+projectId+'/join?partial=join')
+    dialog.dialog({
+      modal: true,
+      title: I18n.t('join_project'),
+      width: 760,
+      minHeight: 300
+    })
+  } else {
+    $(dialog).dialog('open')
+  }
+  return false
+})
+
 function showCommunityTaxonDialog() {
   var dialogId = "community_taxon_dialog",
       dialog = $('#'+dialogId)

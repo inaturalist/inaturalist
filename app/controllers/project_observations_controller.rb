@@ -1,6 +1,7 @@
 class ProjectObservationsController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
+  before_filter :load_record, only: [:update, :destroy]
   
   def create
     @project_observation = ProjectObservation.new(params[:project_observation])
@@ -26,27 +27,23 @@ class ProjectObservationsController < ApplicationController
       end
     end
   end
+
+  def update
+    respond_to do |format|
+      format.json do
+        if @project_observation.update_attributes(project_observation_params)
+          render json: @project_observation
+        else
+          render status: :unprocessable_entity, json: {errors: @project_observation.errors}
+        end
+      end
+    end
+  end
   
   def destroy
-    @project_observation = ProjectObservation.find_by_id(params[:id])
-    if @project_observation.blank?
-      status = :gone
-      json = "Project observation #{params[:id]} does not exist."
-    elsif @project_observation.observation.user_id != current_user.id
-      status = :forbidden
-      json = "You do not have permission to do that."
-    else
-      @project_observation.destroy
-      status = :ok
-      json = nil
-    end
-    
     respond_to do |format|
       format.any do
-        render :status => :status, :text => json
-      end
-      format.json do 
-        render :status => status, :json => json
+        render head: :no_content
       end
     end
   end
@@ -62,6 +59,10 @@ class ProjectObservationsController < ApplicationController
     if @project.tracking_code_allowed?(params[:tracking_code])
       @project_observation.tracking_code = params[:tracking_code]
     end
+  end
+
+  def project_observation_params
+    params.require(:project_observation).permit(:preferred_usage_according_to_terms, :prefers_usage_according_to_terms)
   end
   
 end

@@ -482,6 +482,21 @@ module ApplicationHelper
     html += content_tag(:div, capture(&block), :id => tip_id, :style => "display:none")
     html
   end
+
+  def popover(text, options = {}, &block)
+    tip_id = "tip_#{serial_id}"
+    options[:class] = "#{options[:class]} #{tip_id}_target"
+    options[:data] ||= {}
+    options[:data][:popover] ||= {}
+    options[:data][:popover][:content] = "##{tip_id}"
+    options[:data][:popover][:style] ||= {}
+    options[:data][:popover][:style][:classes] ||= ""
+    options[:data][:popover][:style][:classes] += " popovertip"
+    html = content_tag(:button, text, options)
+    # html += content_tag(:div, content_tag(:div, capture(&block), 'class': 'popovertip'), id: tip_id, style: "display:none")
+    html += content_tag(:div, capture(&block), id: tip_id, style: "display:none")
+    html
+  end
   
   def month_graph(counts, options = {})
     return '' if counts.blank?

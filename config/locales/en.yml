@@ -298,6 +298,7 @@ en:
   all_your_observations_will_default_to_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   all_your_projects: All your projects
   allow_any: allow any
+  allow_usage_according_to_terms: Allow usage according to terms
   allowed_establish_means_values: Allowed establish means values
   allowed_html: Allowed HTML
   allowed_occurrence_status_values: Allowed occurrence status values
@@ -892,6 +893,7 @@ en:
   edit_your_account: edit your account
   edit_your_account_and_profile_html: "Edit Your Account &amp; Profile"
   edit_your_default_settings: "Edit your default settings"
+  edit_your_global_project_settings: Edit your global project settings
   edit_your_identification: Edit your identification
   edit_your_profile: Edit your profile
   edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Edit your settings</a> to change the kinds of updates you receive or unsubscribe completely."
@@ -1002,6 +1004,7 @@ en:
   fields_can_only_be_edited_by_the_people_who: Fields can only be edited by the people who created them and site curators
   fields_merged: Fields merged
   file_should_be_in_the_following_format: "File should be in the following format: taxon name, description"
+  fill_out_project_observation_fields: Fill out project observation fields
   fill_out_your_profile: fill out your profile
   filling_out_checklist_for_place: filling out checklists for places you know well
   filling_out_your_profile: filling out your profile
@@ -1288,6 +1291,7 @@ en:
   join_this_project: Join this project
   'joined!': Joined!
   joined_any_projects: joined any projects
+  joining: Joining...
   journal: Journal
   journal_archives_for: Journal archives for
   journal_post: Journal post
@@ -2117,6 +2121,7 @@ en:
   project_list: Project List
   project_members: "%{project} Members"
   project_membership_model_description: Is your project open to everyone or only to people you invite?
+  project_observation_settings: Project observation settings
   project_observations: Project Observations
   project_post: Project Post
   project_preferred_count_description: |
@@ -2354,6 +2359,7 @@ en:
   send_invite: Send invite
   send_invites_to: Send invites to
   send_me_reset_password_instructions: Send me reset password instructions
+  send_me_updates_from_this_project: Send me updates from this project
   send_the_invites: Send the Invites 
   sending: Sending...
   sent: Sent
@@ -3646,6 +3652,11 @@ en:
           There is a template file for this project that may help you with the structure of the CSV file. 
           <a href="%{url}">Download template</a>
       show:
+        allow_usage_according_to_terms_desc_html: |
+          Allow project curators to use this observation according to the <a
+          href="%{url}" target="_blank">terms</a> of this project even if you haven't joined
+          the project.
+        ancestor_disagreements_desc: "# of identified taxa that are among a taxon's ancestors, but were created after the first identification using this taxon"
         community_taxon_desc_html: |
           <p class="ui">
             The community taxon (or community identification) represents
@@ -3683,14 +3694,18 @@ en:
             identified taxa that have a score over 2/3 and at least 2
             identifications, choose the lowest ranked taxon.
           </p>
-        identification_count_desc: '# of identifications for an individual taxon'
         cumulative_count_desc: '# of identifications for an individual taxon and all its descendants'
         disagreement_count_desc: "# of identified taxa that are not among a taxon's ancestors"
-        ancestor_disagreements_desc: "# of identified taxa that are among a taxon's ancestors, but were created after the first identification using this taxon"
-        score_desc: "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"
+        identification_count_desc: '# of identifications for an individual taxon'
         flagged_photos_desc_html: |
           Some of these photos have been flagged for inappropriate content or
           copyright infringements. For details see %{links}
+        join_project_desc_html: |
+          Joining the project will give project curators the
+          power to see the hidden coordinates of this or any
+          other observation in the project and implies that you
+          agree to the project <a href="%{url}" target="_blank">terms</a>.
+        score_desc: "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"
       user_stats:
         user_stats_desc: |
           User stats are limited to a max of the top 500 by observation count

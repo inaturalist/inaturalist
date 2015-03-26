@@ -211,6 +211,7 @@ $(document).ready(function() {
   ]).preload()
   
   $('[data-tip]').each(autoTip)
+  $('[data-popover]').each(autoPopover)
   
   $('.source_nested_form_fields input.existing').chooser({
     collectionUrl: '/sources.json',
@@ -414,6 +415,27 @@ function checkDelayedLink(url) {
       }
     }
   })
+}
+
+function autoPopover() {
+  var options = $(this).data('popover')
+  if (options.content && options.content.match(/^#/)) {
+    content = $(options.content).html()
+  } else {
+    content = options.content
+  }
+  if (options.style && options.style.classes) {
+    options.style.classes = QTIP_DEFAULTS.style.classes + " " + options.style.classes
+  }
+  var tipOptions = $.extend(true, {}, QTIP_DEFAULTS, options, {
+    show: {event: 'click'},
+    hide: {event: 'unfocus'},
+    content: { 
+      text: content,
+      title: options.title
+    }
+  })
+  $(this).qtip(tipOptions)
 }
 
 function autoTip() {

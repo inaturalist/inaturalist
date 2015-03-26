@@ -251,7 +251,7 @@ Rails.application.routes.draw do
   end
 
   resources :project_assets, :except => [:index, :show]
-  resources :project_observations, :only => [:create, :destroy]
+  resources :project_observations, :only => [:create, :destroy, :update]
   resources :custom_projects, :except => [:index, :show]
   resources :project_user_invitations, :only => [:create, :destroy]
   resources :project_users, only: [:update]
