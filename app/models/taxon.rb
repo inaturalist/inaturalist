@@ -23,7 +23,7 @@ class Taxon < ActiveRecord::Base
 
   acts_as_flaggable
   has_ancestry
-  
+
   elastic_model
   scope :load_for_index, -> { includes(:colors, :taxon_ancestors, :taxon_names) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
@@ -525,6 +525,7 @@ class Taxon < ActiveRecord::Base
       name: name,
       names: taxon_names.sort_by(&:position).map{ |tn| tn.as_indexed_json(autocomplete: !options[:basic]) },
       rank: rank,
+      rank_level: rank_level,
       iconic_taxon_id: iconic_taxon_id,
       ancestor_ids: taxon_ancestors.map(&:ancestor_taxon_id),
     }
@@ -535,7 +536,7 @@ class Taxon < ActiveRecord::Base
         is_active: is_active,
         ancestry: ancestry,
         observations_count: observations_count,
-        # see prepare_for_index, but indexed_place_ids may be set
+        # see prepare_for_index. Basicaly indexed_place_ids may be set
         # when using Taxon.elasticindex! to bulk import
         place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq
       })
@@ -1637,7 +1638,7 @@ class Taxon < ActiveRecord::Base
   # bulk_index are for efficient bulk indexing of taxa. The main issue
   # with taxa is to preload place_ids, all the listed_taxa and
   # all their places need to be loaded into AR objects, which is slow.
-  def self.elasticindex!
+  def self.elastic_index!
     Taxon.load_for_index.find_in_batches do |taxa|
       bulk_index(taxa)
     end

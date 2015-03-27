@@ -65,6 +65,49 @@ module ElasticModel
     criteria
   end
 
+  def self.search_filters(options={})
+    return unless options && options.is_a?(Hash) &&
+      options[:filters] && options[:filters].is_a?(Array)
+    options[:filters].map do |f|
+      next unless f.is_a?(Hash) && f.count == 1
+      if f[:place]
+        ElasticModel.place_filter(f)
+      elsif f[:envelope]
+        ElasticModel.envelope_filter(f)
+      else
+        f
+      end
+    end.compact
+  end
+
+  def self.search_hash(options={})
+    criteria = ElasticModel.search_criteria(options)
+    filters = ElasticModel.search_filters(options)
+    query = criteria.blank? ?
+      { match_all: { } } :
+      { bool: { must: criteria } }
+    unless filters.blank?
+      query = {
+        filtered: {
+          query: query,
+          filter: {
+            bool: { must: filters } } } }
+    end
+    elastic_hash = { query: query }
+    if options[:sort]
+      elastic_hash[:sort] = options[:sort]
+    end
+    if options[:fields]
+      elastic_hash[:fields] = options[:fields]
+    end
+    if options[:aggregate]
+      elastic_hash[:aggs] = Hash[options[:aggregate].map{ |k, v|
+        [ k, { terms: { field: v.first[0], size: v.first[1] } } ]
+      }]
+    end
+    elastic_hash
+  end
+
   def self.id_or_object(obj)
     if obj.kind_of?(ActiveRecord::Base) && obj.respond_to?(:id)
       obj.id
@@ -74,28 +117,31 @@ module ElasticModel
   end
 
   def self.place_filter(options={})
-    return unless options && options.is_a?(Hash) &&
-      options[:filter] && options[:filter][:place]
+    return unless options && options.is_a?(Hash)
+    return unless place = options[:place]
     { geo_shape: {
         geojson: {
           indexed_shape: {
-            id: id_or_object(options[:filter][:place]),
+            id: id_or_object(place),
             type: "place",
             index: "places",
             path: "geometry_geojson" } } } }
   end
 
   def self.envelope_filter(options={})
-    return unless options && options.is_a?(Hash) && options[:filter]
-    filter = options[:filter]
-    return unless filter[:nelat] || filter[:nelng] || filter[:swlat] || filter[:swlng]
+    return unless options && options.is_a?(Hash) && options[:envelope]
+    nelat = options[:envelope][:nelat]
+    nelng = options[:envelope][:nelng]
+    swlat = options[:envelope][:swlat]
+    swlng = options[:envelope][:swlng]
+    return unless nelat || nelng || swlat || swlng
     { geo_shape: {
         geojson: {
           shape: {
             type: "envelope",
             coordinates: [
-              [ filter[:swlng] || -180, filter[:swlat] || -90 ],
-              [ filter[:nelng] || 180, filter[:nelat] || 90 ] ] } } } }
+              [ swlng || -180, swlat || -90 ],
+              [ nelng || 180, nelat || 90 ] ] } } } }
   end
 
   def self.result_to_will_paginate_collection(result)
@@ -127,6 +173,14 @@ module ElasticModel
       return
     end
     RGeo::GeoJSON.encode(geom)
+  end
+
+  def self.date_details(datetime)
+    return unless datetime
+    return unless datetime.is_a?(Date) || datetime.is_a?(Time)
+    { day: datetime.day,
+      month: datetime.month,
+      year: datetime.year }
   end
 
 end

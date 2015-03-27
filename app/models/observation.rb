@@ -5,7 +5,7 @@ class Observation < ActiveRecord::Base
     :project_observations,
     { sounds: :user },
     { photos: :user },
-    { taxon: [ :taxon_names, :taxon_ancestors ] },
+    { taxon: [ :taxon_names, :taxon_ancestors, :colors ] },
     { observation_field_values: :observation_field } ) }
   elastic_model
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
@@ -16,6 +16,14 @@ class Observation < ActiveRecord::Base
             search_analyzer: "ascii_snowball_analyzer"
         end
       end
+      indexes :description, index_analyzer: "ascii_snowball_analyzer",
+        search_analyzer: "ascii_snowball_analyzer"
+      indexes :tags, index_analyzer: "ascii_snowball_analyzer",
+        search_analyzer: "ascii_snowball_analyzer"
+      indexes :place_guess, index_analyzer: "ascii_snowball_analyzer",
+        search_analyzer: "ascii_snowball_analyzer"
+      indexes :species_guess, index_analyzer: "keyword_analyzer",
+        search_analyzer: "keyword_analyzer"
       indexes :observed_on_string, type: "string"
       indexes :location, type: "geo_point"
       indexes :geojson, type: "geo_shape"
@@ -2478,7 +2486,9 @@ class Observation < ActiveRecord::Base
     {
       id: id,
       created_at: created_at,
+      created_at_details: ElasticModel.date_details(observed_on),
       observed_on: observed_on,
+      observed_on_details: ElasticModel.date_details(observed_on),
       description: description,
       mappable: mappable,
       species_guess: species_guess,
@@ -2486,6 +2496,8 @@ class Observation < ActiveRecord::Base
       observed_on_string: observed_on_string,
       quality_grade: quality_grade,
       id_please: id_please,
+      out_of_range: out_of_range,
+      captive: captive,
       num_identification_agreements: num_identification_agreements,
       num_identification_disagreements: num_identification_disagreements,
       identifications_most_agree: (num_identification_agreements > num_identification_disagreements),

@@ -18,50 +18,31 @@ module ActiveRecord
       end
 
       def elastic_search(options = {})
-        search_criteria = ElasticModel.search_criteria(options)
-        search_filter = ElasticModel.envelope_filter(options)
-        search_filter ||= ElasticModel.place_filter(options)
-        if !search_filter && options[:filter]
-          search_filter = options[:filter]
-        end
-        query = search_criteria.empty? ?
-          { match_all: { } } :
-          { bool: { must: search_criteria } }
-        if search_filter
-          query = {
-            filtered: {
-              query: query,
-              filter: search_filter } }
-        end
-        elastic_hash = { query: query }
-        if options[:sort]
-          elastic_hash[:sort] = options[:sort]
-        end
-        if options[:fields]
-          elastic_hash[:fields] = options[:fields]
-        end
-        if options[:aggregate]
-          elastic_hash[:aggs] = Hash[options[:aggregate].map{ |k, v|
-            [ k, { terms: { field: v.first[0], size: v.first[1] } } ]
-          }]
-        end
-        __elasticsearch__.search(elastic_hash)
+        __elasticsearch__.search(ElasticModel.search_hash(options))
       end
 
       def elastic_paginate(options={})
         options[:page] ||= 1
-        options[:per_page] ||= 30
-        options[:fields] = :id
+        # 20 was the default of Sphinx, which Elasticsearch is replacing for us
+        options[:per_page] ||= 20
+        options[:fields] ||= :id
         result = elastic_search(options).
           per_page(options[:per_page]).page(options[:page])
         ElasticModel.result_to_will_paginate_collection(result)
       end
     end
 
+    def self.elastic_index!(options={})
+      if self.respond_to?(:load_for_index)
+        options[:scope] ||= :load_for_index
+      end
+      __elasticsearch__.import(options)
+    end
+
     def preload_for_elastic_index
-      if self.class.respond_to?(:preload_for_elastic_index)
+      if self.class.respond_to?(:load_for_index)
         self.class.preload_associations(self,
-          self.class.preload_for_elastic_index.values[:includes])
+          self.class.load_for_index.values[:includes])
       end
     end
 

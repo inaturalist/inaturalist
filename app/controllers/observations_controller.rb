@@ -97,31 +97,86 @@ class ObservationsController < ApplicationController
       authenticate_user!
       return false
     end
-    
-    if search_params[:q].blank?
-      @observations = if perform_caching && (!logged_in? || find_options[:page] == 1)
-        cache_params = params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
-        cache_params[:page] ||= 1
-        cache_params[:per_page] ||= find_options[:per_page]
-        cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
-        cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
-        cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
-        # Get the cached filtered observations, and reload them to
-        # make sure they are up-to-date. If the record has been deleted
-        # then reload will fail.
-        # TODO: we still show the record if it doesn't exist - can we catch that?
-        Observation.reload_collection(Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
-          get_paginated_observations(search_params, find_options).to_a
-        end)
+
+    search_wheres = { }
+    if @q
+      fields = case @search_on
+      when "names"
+        [ "taxon.names.name" ]
+      when "tags"
+        [ :tags ]
+      when "description"
+        [ :description ]
+      when "place"
+        [ :place_guess ]
       else
-        get_paginated_observations(search_params, find_options)
+        [ "taxon.names.name", :tags, :description, :place_guess ]
       end
-    else
-      @observations = search_observations(search_params, find_options)
+      search_wheres["multi_match"] = {
+        query: @q,
+        operator: "and",
+        fields: fields }
     end
+    if @iconic_taxa
+      search_wheres["taxon.iconic_taxon_id"] = @iconic_taxa.map{ |t| t.nil? ? "null" : t}
+    end
+    search_wheres["taxon.ancestor_ids"] = @observations_taxon if @observations_taxon
+    search_wheres["taxon.ancestor_ids"] = @observations_taxon if @observations_taxon
+    search_wheres["id_please"] = true if @id_please
+    search_wheres["out_of_range"] = true if @out_of_range
+    search_wheres["captive"] = true if @captive
+    search_wheres["observed_on_details.day"] = @observed_on_day if @observed_on_day
+    search_wheres["observed_on_details.month"] = @observed_on_month if @observed_on_month
+    search_wheres["observed_on_details.year"] = @observed_on_year if @observed_on_year
+    if @rank
+      search_wheres["taxon.rank"] = @rank
+      @hrank = nil
+      @lrank = nil
+    elsif @hrank || @lrank
+      search_wheres["range"] = { "taxon.rank_level" => {
+        from: Taxon::RANK_LEVELS[@lrank] || 0,
+        to: Taxon::RANK_LEVELS[@hrank] || 100 } }
+    end
+    if @quality_grade && @quality_grade != "any"
+      search_wheres["quality_grade"] = @quality_grade
+    end
+    case @identifications
+    when "most_agree"
+      search_wheres["identifications_most_agree"] = true
+    when "some_agree"
+      search_wheres["identifications_some_agree"] = true
+    when "most_disagree"
+      search_wheres["identifications_most_disagree"] = true
+    end
+
+    search_filters = [ ]
+    if @nelat || @nelng || @swlat || @swlng
+      search_filters << { envelope: { nelat: @nelat, nelng: @nelng, swlat: @swlat, swlng: @swlng } }
+    end
+    if @place
+      search_filters << { place: @place }
+    end
+    search_filters << { exists: { field: "photos" } } if @with_photos
+    search_filters << { exists: { field: "sounds" } } if @with_sounds
+
+    sort = case @order_by
+    when "observed_on"
+      { observed_on: @order }
+    when "species_guess"
+      { species_guess: @order }
+    else "observations.id"
+      { created_at: @order }
+    end
+    @observations = Observation.elastic_paginate(
+      where: search_wheres,
+      filters: search_filters,
+      per_page: find_options[:per_page],
+      page: find_options[:page],
+      sort: sort)
+
     Observation.preload_associations(@observations, [ { user: :stored_preferences },
       { taxon: :taxon_names }, { iconic_taxon: :taxon_descriptions },
-      { photos: [ :user, :flags ] }, :stored_preferences, :flags ])
+      { photos: [ :user, :flags ] }, :stored_preferences, :flags, :quality_metrics ])
 
     respond_to do |format|
       
@@ -1298,16 +1353,15 @@ class ObservationsController < ApplicationController
     @lat = params[:latitude].to_f
     @lon = params[:longitude].to_f
     if @lat && @lon
-      @latrads = @lat * (Math::PI / 180)
-      @lonrads = @lon * (Math::PI / 180)
-      @observations = Observation.search(:geo => [latrads,lonrads], 
-        :page => params[:page],
-        :without => {:observed_on => 0},
-        :order => "@geodist asc, observed_on desc") rescue []
+      @observations = Observation.elastic_paginate(
+        page: params[:page],
+        sort: {
+          _geo_distance: {
+            location: [ @lon, @lat ],
+            unit: "km",
+            order: "asc" } } )
     end
-    
     @observations ||= Observation.latest.paginate(:page => params[:page])
-    
     request.format = :mobile
     respond_to do |format|
       format.mobile

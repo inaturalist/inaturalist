@@ -62,19 +62,19 @@ describe "ActiveRecord", "Base" do
     it "adds envelope filters" do
       expect(Observation.__elasticsearch__).to receive(:search).with(
         { query: { filtered: { query: { match_all: { } },
-          filter: { geo_shape: { geojson: { shape: { type: "envelope",
-            coordinates: [[-180, -90], [180, 88]] } } } } } } }).and_return(true)
-      Observation.elastic_search(filter: { nelat: 88 })
+          filter: { bool: { must: [ { geo_shape: { geojson: { shape: {
+            type: "envelope", coordinates: [[-180, -90], [180, 88]]}}}}]}}}}}).and_return(true)
+      Observation.elastic_search(filters: [ { envelope: { nelat: 88 } } ])
     end
 
     it "adds place filters" do
       place = Place.make!
       expect(Observation.__elasticsearch__).to receive(:search).with(
         { query: { filtered: { query: { match_all: { } },
-          filter: { geo_shape: { geojson: { indexed_shape: { id: place.id,
-            type: "place", index: "places", path: "geometry_geojson"
-          } } } } } } }).and_return(true)
-      Observation.elastic_search(filter: { place: place })
+          filter: { bool: { must: [ { geo_shape: { geojson: { indexed_shape: {
+            id: place.id, type: "place", index: "places", path: "geometry_geojson"
+          }}}}]}}}}}).and_return(true)
+      Observation.elastic_search(filters: [ { place: place } ])
     end
 
     it "adds sorts to the query" do
