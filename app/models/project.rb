@@ -398,13 +398,9 @@ class Project < ActiveRecord::Base
   
   
   def self.delete_project_observations_on_leave_project(project_id, user_id)
-    unless proj = Project.find_by_id(project_id)
-      return
-    end
-    unless usr = User.find_by_id(user_id)
-      return
-    end
-    proj.project_observations.find_each(:include => :observation, :conditions => ["observations.user_id = ?", usr]) do |po|
+    return unless proj = Project.find_by_id(project_id)
+    return unless usr = User.find_by_id(user_id)
+    proj.project_observations.joins(:observation).where("observations.user_id = ?", usr).find_each do |po|
       po.destroy
     end
   end

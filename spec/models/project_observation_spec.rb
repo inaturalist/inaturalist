@@ -6,36 +6,57 @@ describe ProjectObservation, "creation" do
     stamp = Time.now
     make_project_observation(:observation => @observation, :project => @project)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
-    jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}.should_not be_blank
+    expect(jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}).not_to be_blank
   end
   
   it "should queue a DJ job to set project user counters" do
     stamp = Time.now
     make_project_observation(:observation => @observation, :project => @project)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
-    jobs.select{|j| j.handler =~ /\:update_observations_counter_cache/}.should_not be_blank
-    jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}.should_not be_blank
+    expect(jobs.select{|j| j.handler =~ /\:update_observations_counter_cache/}).not_to be_blank
+    expect(jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}).not_to be_blank
   end
 
   it "should destroy project invitations for its project and observation" do
     pi = ProjectInvitation.make!(:project => @project, :observation => @observation)
     make_project_observation(:observation => @observation, :project => @project)
-    ProjectInvitation.find_by_id(pi.id).should be_blank
+    expect(ProjectInvitation.find_by_id(pi.id)).to be_blank
   end
 
   it "should set curator id if observer is a curator" do
     o = Observation.make!(:user => @project.user, :taxon => Taxon.make!)
     po = without_delay {make_project_observation(:observation => o, :project => @project)}
-    po.curator_identification_id.should eq(o.owners_identification.id)
+    expect(po.curator_identification_id).to eq(o.owners_identification.id)
   end
 
   it "should touch the observation" do
     o = Observation.make!(:user => @project_user.user)
     po = ProjectObservation.create(:observation => o, :project => @project)
     o.reload
-    o.updated_at.should be > o.created_at
+    expect(o.updated_at).to be > o.created_at
   end
-  
+
+  describe "updates" do
+    it "should be generated for the observer" do
+      pu = ProjectUser.make!(role: ProjectUser::CURATOR)
+      po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
+      expect( Update.last.subscriber ).to eq po.observation.user
+    end
+    it "should not be generated if the observer added to the project" do
+      without_delay do
+        o = Observation.make!
+        p = Project.make!
+        expect {
+          ProjectObservation.make!(observation: o, user: o.user, project: p)
+        }.not_to change(Update, :count)
+      end
+    end
+    it "should generate updates on the project" do
+      pu = ProjectUser.make!(role: ProjectUser::CURATOR)
+      po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
+      expect( Update.last.resource ).to eq po.project
+    end
+  end
 end
 
 describe ProjectObservation, "destruction" do
@@ -49,15 +70,15 @@ describe ProjectObservation, "destruction" do
     stamp = Time.now
     @project_observation.destroy
     jobs = Delayed::Job.where("created_at >= ?", stamp)
-    jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}.should_not be_blank
+    expect(jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}).not_to be_blank
   end
   
   it "should queue a DJ job to set project user counters" do
     stamp = Time.now
     @project_observation.destroy
     jobs = Delayed::Job.where("created_at >= ?", stamp)
-    jobs.select{|j| j.handler =~ /\:update_observations_counter_cache/}.should_not be_blank
-    jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}.should_not be_blank
+    expect(jobs.select{|j| j.handler =~ /\:update_observations_counter_cache/}).not_to be_blank
+    expect(jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}).not_to be_blank
   end
 
   it "should touch the observation" do
@@ -65,7 +86,15 @@ describe ProjectObservation, "destruction" do
     t = o.updated_at
     @project_observation.destroy
     o.reload
-    o.updated_at.should be > t
+    expect(o.updated_at).to be > t
+  end
+
+  it "should delete associated updates" do
+    pu = ProjectUser.make!(role: ProjectUser::CURATOR)
+    po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
+    expect( Update.where(notifier: po).count ).to eq 1
+    po.destroy
+    expect( Update.where(notifier: po).count ).to eq 0
   end
 end
 
@@ -80,11 +109,11 @@ describe ProjectObservation, "observed_by_project_member?" do
   end
   
   it "should be true if observed by a member of the project" do
-    @po1.should be_observed_by_project_member
+    expect(@po1).to be_observed_by_project_member
   end
   
   it "should be false unless observed by a member of the project" do
-    @po2.should_not be_observed_by_project_member
+    expect(@po2).not_to be_observed_by_project_member
   end
   
 end
@@ -96,7 +125,7 @@ describe ProjectObservation, "observed_in_place_bounding_box?" do
     place = Place.make!(:latitude => 0, :longitude => 0, :swlat => -1, :swlng => -1, :nelat => 1, :nelng => 1)
     @observation.update_attributes(:latitude => 0.5, :longitude => 0.5)
     project_observation = make_project_observation(:observation => @observation, :project => @project)
-    project_observation.should be_observed_in_bounding_box_of(place)
+    expect(project_observation).to be_observed_in_bounding_box_of(place)
   end
   
 end
@@ -105,22 +134,20 @@ describe ProjectObservation, "observed_in_place" do
   it "should use private coordinates" do
     place = Place.make!(:name => "Berkeley")
     place.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
-    # observation = Observation.make!(:latitude => 37.8732, :longitude => -122.263)
-    # project_observation = make_project_observation(:observation => observation)
     
     project_observation = make_project_observation
     observation = project_observation.observation
     observation.update_attributes(:latitude => 37.8732, :longitude => -122.263)
     project_observation.reload
 
-    project_observation.should be_observed_in_place(place)
+    expect(project_observation).to be_observed_in_place(place)
     observation.update_attributes(:latitude => 37, :longitude => -122)
     project_observation.reload
-    project_observation.should_not be_observed_in_place(place)
+    expect(project_observation).not_to be_observed_in_place(place)
     observation.update_attributes(:private_latitude => 37.8732, :private_longitude => -122.263)
     observation.save
     project_observation.reload
-    project_observation.should be_observed_in_place(place)
+    expect(project_observation).to be_observed_in_place(place)
   end
 end
 
@@ -131,7 +158,7 @@ describe ProjectObservation, "georeferenced?" do
     o = project_observation.observation
     o.update_attributes(:latitude => 0.5, :longitude => 0.5)
     project_observation.reload
-    project_observation.should be_georeferenced
+    expect(project_observation).to be_georeferenced
   end
 
   it "should be true if observation coordinates are private" do
@@ -139,7 +166,7 @@ describe ProjectObservation, "georeferenced?" do
     o = project_observation.observation
     o.update_attributes(:latitude => 0.5, :longitude => 0.5, :geoprivacy => Observation::PRIVATE)
     project_observation.reload
-    project_observation.should be_georeferenced
+    expect(project_observation).to be_georeferenced
   end
   
 end
@@ -149,9 +176,9 @@ describe ProjectObservation, "identified?" do
   it "should work" do
     project_observation = make_project_observation
     observation = project_observation.observation
-    project_observation.should_not be_identified
+    expect(project_observation).not_to be_identified
     observation.update_attributes(:taxon => Taxon.make!)
-    project_observation.should be_identified
+    expect(project_observation).to be_identified
   end
   
 end
@@ -163,36 +190,28 @@ describe ProjectObservation, "in_taxon?" do
   
   it "should be true for observations of target taxon" do
     po = make_project_observation(:observation => @observation, :project => @project)
-    po.should be_in_taxon(@observation.taxon)
+    expect(po).to be_in_taxon(@observation.taxon)
   end
   
   it "should be true for observations of descendants if target taxon" do
     child = Taxon.make!(:parent => @taxon)
     o = Observation.make!(:taxon => child, :user => @project_user.user)
     po = make_project_observation(:observation => o, :project => @project)
-    po.should be_in_taxon(@taxon)
+    expect(po).to be_in_taxon(@taxon)
   end
   
   it "should not be true for observations outside of target taxon" do
     other = Taxon.make!
     o = Observation.make!(:taxon => other, :user => @project_user.user)
     po = make_project_observation(:observation => o, :project => @project)
-    po.should_not be_in_taxon(@taxon)
+    expect(po).not_to be_in_taxon(@taxon)
   end
   
   it "should be false if taxon is blank" do
     o = Observation.make!(:user => @project_user.user)
     po = make_project_observation(:observation => o, :project => @project)
-    po.should_not be_in_taxon(nil)
+    expect(po).not_to be_in_taxon(nil)
   end
-  
-  # changed in https://github.com/inaturalist/inaturalist/commit/f964867b31a58edfcc9fd8b5ec32d25c1729eada
-  # but might be worth re-implementing with a new rule
-  # it "should be false of obs has no taxon" do
-  #   po = make_project_observation
-  #   po.observation.taxon.should be_blank
-  #   po.should_not be_in_taxon(@taxon)
-  # end
 end
 
 describe ProjectObservation, "has_a_photo?" do
@@ -258,11 +277,11 @@ describe ProjectObservation, "wild?" do
     po = make_project_observation
     po.observation.update_attributes(:captive_flag => true)
     po.reload
-    po.should_not be_wild
+    expect(po).not_to be_wild
   end
   it "should be true if observation not captive_cultivated" do
     po = make_project_observation
-    po.should be_wild
+    expect(po).to be_wild
   end
 end
 
@@ -272,11 +291,11 @@ describe ProjectObservation, "captive?" do
     po = make_project_observation
     po.observation.update_attributes(:captive_flag => true)
     po.reload
-    po.should be_captive
+    expect(po).to be_captive
   end
   it "should be false if observation not captive_cultivated" do
     po = make_project_observation
-    po.should_not be_captive
+    expect(po).not_to be_captive
   end
 end
 
@@ -286,7 +305,7 @@ describe ProjectObservation, "to_csv" do
     of = pof.observation_field
     p = pof.project
     po = make_project_observation(:project => p)
-    ProjectObservation.to_csv([po]).to_s.should =~ /#{of.name}/
+    expect(ProjectObservation.to_csv([po]).to_s).to be =~ /#{of.name}/
   end
 
   it "should include values for project observation fields" do
@@ -298,7 +317,7 @@ describe ProjectObservation, "to_csv" do
     csv = ProjectObservation.to_csv([po])
     rows = CSV.parse(csv)
     ofv_index = rows[0].index(of.name)
-    rows[1][ofv_index].should eq(ofv.value)
+    expect(rows[1][ofv_index]).to eq ofv.value
   end
 end
 

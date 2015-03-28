@@ -630,8 +630,8 @@ class ProjectsController < ApplicationController
     @project_observation = @project.project_observations.find_by_observation_id(params[:observation_id])
     error_msg = if @project_observation.blank?
       t(:that_observation_hasnt_been_added_this_project)
-    elsif @project_observation.observation.user_id != current_user.id && (@project_user.blank? || !@project_user.is_curator?)
-      t(:you_cant_remove_other_peoples_observations)
+    elsif !@project_observation.removable_by?(current_user)
+      "you don't have permission to remove that observation"
     end
 
     unless error_msg.blank?
@@ -667,7 +667,7 @@ class ProjectsController < ApplicationController
     @errors = {}
     @project_observations = []
     @observations.each do |observation|
-      project_observation = ProjectObservation.create(:project => @project, :observation => observation)
+      project_observation = ProjectObservation.create(project: @project, observation: observation, user: current_user)
       if project_observation.valid?
         @project_observations << project_observation
       else
@@ -706,7 +706,7 @@ class ProjectsController < ApplicationController
       includes(:observation)
     
     @project_observations.each do |project_observation|
-      next unless project_observation.observation.user_id == current_user.id
+      next unless project_observation.removable_by?(current_user)
       project_observation.destroy
     end
     

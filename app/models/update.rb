@@ -10,7 +10,8 @@ class Update < ActiveRecord::Base
   before_create :set_resource_owner
   after_create :expire_caches
   
-  NOTIFICATIONS = %w(create change activity)
+  # NOTIFICATIONS = %w(create change activity)
+  YOUR_OBSERVATIONS_ADDED = "your_observations_added"
   
   scope :unviewed, -> { where("viewed_at IS NULL") }
   scope :activity, -> { where(:notification => "activity") }

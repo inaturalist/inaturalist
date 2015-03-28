@@ -6,6 +6,10 @@ class ProjectObservation < ActiveRecord::Base
   validates_presence_of :project, :observation
   # validate :observed_by_project_member?, :on => :create, :unless => "errors.any?"
   validate :observer_allows_addition?
+  validate :observer_invited?
+  validate :user_curates_project?, :unless => lambda {|record| 
+    record.user_id == record.observation.try(:user_id)
+  }
   validates_rules_from :project, :rule_methods => [
     :captive?,
     :wild?,
@@ -21,7 +25,29 @@ class ProjectObservation < ActiveRecord::Base
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
 
   preference :usage_according_to_terms, :boolean, default: false
+  before_validation :set_user
   before_create :set_usage_according_to_terms
+
+  notifies_owner_of :observation, 
+    queue_if: lambda { |record| record.user_id != record.observation.user_id },
+    with: :notify_observer
+
+  def notify_observer(association)
+    Update.create(
+      :subscriber => observation.user,
+      :resource => project,
+      :notifier => self,
+      :notification => Update::YOUR_OBSERVATIONS_ADDED
+    )
+  end
+  
+  after_destroy do |record|
+    Update.where(resource: record.project, notifier: observation, notification: Update::YOUR_OBSERVATIONS_ADDED).delete_all
+  end
+
+  def set_user
+    self.user_id ||= observation.try(:user_id)
+  end
 
   def set_usage_according_to_terms
     return true unless project_user
@@ -100,6 +126,7 @@ class ProjectObservation < ActiveRecord::Base
     end
     true
   end
+
   def observer_allows_addition?
     return unless observation
     return true if user_id == observation.user_id
@@ -107,10 +134,30 @@ class ProjectObservation < ActiveRecord::Base
     when User::PROJECT_ADDITION_BY_JOINED
       unless project.project_users.where(user_id: observation.user_id).exists?
         errors.add :user_id, "does not allow addition to projects they haven't joined"
+        return false
       end
     when User::PROJECT_ADDITION_BY_NONE
       errors.add :user_id, "does not allow other people to add their observations to projects"
+      return false
     end
+    true
+  end
+
+  def observer_invited?
+    return unless project
+    return unless observation
+    return true unless project.invite_only?
+    return true if project.project_users.where(user_id: observation.user_id).exists?
+    return true if project.project_user_invitations.where(invited_user_id: observation.user_id).exists?
+    errors.add :observation_id, "must be made by a project member or an invited user"
+    false
+  end
+
+  def user_curates_project?
+    return unless project && observation
+    return true if project.curated_by?(user)
+    errors.add :user_id, "must be a project curator"
+    false
   end
   
   def refresh_project_list
@@ -249,6 +296,12 @@ class ProjectObservation < ActiveRecord::Base
   def touch_observation
     observation.touch if observation
     true
+  end
+
+  def removable_by?(usr)
+    return true if [user_id, observation.user_id].include?(usr.id)
+    return true if project.curated_by?(usr)
+    false
   end
   
   ##### Static ##############################################################

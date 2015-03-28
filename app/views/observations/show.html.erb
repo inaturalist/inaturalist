@@ -566,7 +566,7 @@
     <% end -%>
   </div><!-- end identifications -->
   
-  <% if !@project_observations.blank? || (!@projects.blank? && @project_addition_allowed) -%>
+  <% if !@project_observations.blank? || (!@curated_projects.blank? && @project_addition_allowed) -%>
     <%= separator %>
     <div id="projects" class="clear stacked">
       <h3><%=t :projects %></h3>
@@ -615,7 +615,7 @@
                     <% end %>
                   </div>
                 <% end -%>
-                <div class="clear inline smallbuttons buttonrow lined">
+                <div class="clear inline smallbuttons buttonrow <%= 'lined' if is_me?(@observation.user) %>">
                   <%= link_to t(:remove_from_project), 
                     remove_project_observation_path(po.project_id, :observation_id => @observation.id),
                     method: :delete,
@@ -647,12 +647,12 @@
       <% end %>
     </div>
     
-    <% if !@projects.blank? && @project_addition_allowed %>
+    <% if !@curated_projects.blank? && @project_addition_allowed %>
       <div class="clear">
         <% link_to_toggle_menu t(:add_to_project), :class => "button", 
             :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
           <ul>
-            <% for project in @projects %>
+            <% for project in @curated_projects %>
               <li class="inline buttonrow">
                 <%= link_to t(:remove),
                   remove_project_observation_path(project, :observation_id => @observation.id),

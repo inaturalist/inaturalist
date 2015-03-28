@@ -1,0 +1,19 @@
+:ruby
+  project = update_your_observations_added || resource
+  updates ||= []
+  observations = updates.map do |u|
+    o = if @update_cache && @update_cache[:observations]
+      @update_cache[:observations][u.notifier.observation_id]
+    end
+    o || u.notifier.observation
+  end
+.updatecontent
+  .stacked.observationcontrols
+  %div{'class': "stacked observations #{observations.size == 1 ? 'list' : 'grid'}"}
+    - compact do
+      = render partial: 'observations/cached_component', collection: observations
+  .meta
+    Observations added by
+    = commas_and updates.map{|u| u.notifier.user}.uniq.map{|u| link_to_user(u)}
+  .meta
+    = link_to "View your observations from #{project.title}", observations_by_login_url(current_user.login, projects: project.id), 'class': 'readmore'

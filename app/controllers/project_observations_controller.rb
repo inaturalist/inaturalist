@@ -41,9 +41,25 @@ class ProjectObservationsController < ApplicationController
   end
   
   def destroy
-    respond_to do |format|
-      format.any do
-        render head: :no_content
+    if [@project_observation.user_id, @project_observation.observation.user_id].include?(current_user.id) || @project_observation.project.curated_by?(current_user)
+      @project_observation.destroy  
+      respond_to do |format|
+        format.html do
+          redirect_back_or_default(@project_observation.project)
+        end
+        format.json do
+          head :no_content
+        end
+      end
+    else
+      respond_to do |format|
+        format.html do
+          flash[:notice] = I18n.t(:only_project_curators_can_do_that)
+          redirect_back_or_default @project_observation.project
+        end
+        format.json do
+          render json: {error: I18n.t(:only_project_curators_can_do_that)}, status: :unprocessable_entity
+        end
       end
     end
   end
