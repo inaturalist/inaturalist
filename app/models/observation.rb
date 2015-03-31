@@ -867,7 +867,7 @@ class Observation < ActiveRecord::Base
     end
     s += " #{I18n.t(:on_day)}  #{I18n.l(self.observed_on, :format => :long)}" unless self.observed_on.blank?
     unless self.time_observed_at.blank? || options[:no_time]
-      s += " #{I18n.t(:at_)} #{self.time_observed_at_in_zone.to_s(:plain_time)}"
+      s += " #{I18n.t(:at)} #{self.time_observed_at_in_zone.to_s(:plain_time)}"
     end
     s += " #{I18n.t(:by).downcase} #{self.user.try(:login)}" unless options[:no_user]
     s.gsub(/\s+/, ' ')

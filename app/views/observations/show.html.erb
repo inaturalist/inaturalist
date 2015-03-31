@@ -170,7 +170,7 @@
       <% end -%>
       <%- if @observation.observed_on -%>
         <%=t :on_ %>
-        <%= link_to t("date_format.month.#{@observation.observed_on.strftime(@observation.time_observed_at ? '%b' : '%B').downcase}"),
+        <%= link_to t("date_format.month.#{@observation.observed_on.strftime('%B').downcase}"),
           observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}") %>
         <%= link_to @observation.observed_on.day, 
           observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}-#{@observation.observed_on.day}") %>,
