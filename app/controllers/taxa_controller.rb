@@ -26,7 +26,7 @@ class TaxaController < ApplicationController
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
     :range, :schemes, :tip]
-  before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
+  before_filter :limit_page_param_for_search, :only => [:index,
     :browse, :search]
   before_filter :ensure_flickr_write_permission, :only => [
     :flickr_photos_tagged, :tag_flickr_photos, 
@@ -54,9 +54,9 @@ class TaxaController < ApplicationController
     
     begin
       @taxa.try(:total_entries)
-    rescue ThinkingSphinx::SphinxError => e
-      Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
-      @taxa = WillPaginate::Collection.new(1,30,0)
+    rescue
+      Rails.logger.error "[ERROR] Taxon index failed: #{e}"
+      @taxa = WillPaginate::Collection.new(1, 30, 0)
     end
     
     respond_to do |format|
@@ -117,8 +117,7 @@ class TaxaController < ApplicationController
         end
       end
       format.xml  do
-        render(:xml => @taxa.to_xml(
-          :include => :taxon_names, :methods => [:common_name]))
+        render(:xml => @taxa.to_xml(:methods => [:common_name]))
       end
       format.json do
         if params[:q].blank? && params[:taxon_id].blank? && params[:place_id].blank? && params[:names].blank?
@@ -420,11 +419,11 @@ class TaxaController < ApplicationController
     
     begin
       @taxa.blank?
-    rescue ThinkingSphinx::SphinxError, Riddle::OutOfBoundsError => e
-      Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
-      @taxa = WillPaginate::Collection.new(1,30,0)
+    rescue
+      Rails.logger.error "[ERROR] Failed taxon search: #{e}"
+      @taxa = WillPaginate::Collection.new(1, 30, 0)
     end
-    
+
     do_external_lookups
 
     @taxa.compact! unless @taxa.nil?

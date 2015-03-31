@@ -9,7 +9,7 @@ class PlacesController < ApplicationController
   before_filter :return_here, :only => [:show]
   before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
     :children, :taxa, :geometry, :cached_guide, :guide_widget, :widget, :merge]
-  before_filter :limit_page_param_for_thinking_sphinx, :only => [:search]
+  before_filter :limit_page_param_for_search, :only => [:search]
   before_filter :editor_required, :only => [:edit, :update, :destroy]
   
   caches_page :geometry

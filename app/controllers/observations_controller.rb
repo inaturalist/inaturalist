@@ -73,7 +73,7 @@ class ObservationsController < ApplicationController
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
   MAP_GRID_PARAMS_TO_CONSIDER = REJECTED_KML_FEED_PARAMS +
-    %w"order order_by taxon_id taxon_name project_id user_id utf8"
+    %w"order order_by taxon_id taxon_name projects user_id utf8"
   DISPLAY_ORDER_BY_FIELDS = {
     'created_at' => 'date added',
     'observations.id' => 'date added',
@@ -90,93 +90,13 @@ class ObservationsController < ApplicationController
   # GET /observations
   # GET /observations.xml
   def index
-    search_params, find_options = get_search_params(params)
-    search_params = site_search_params(search_params)
-
-    if !logged_in? && find_options[:page].to_i > 100
+    if !logged_in? && params[:page].to_i > 100
       authenticate_user!
       return false
     end
 
-    search_wheres = { }
-    if @q
-      fields = case @search_on
-      when "names"
-        [ "taxon.names.name" ]
-      when "tags"
-        [ :tags ]
-      when "description"
-        [ :description ]
-      when "place"
-        [ :place_guess ]
-      else
-        [ "taxon.names.name", :tags, :description, :place_guess ]
-      end
-      search_wheres["multi_match"] = {
-        query: @q,
-        operator: "and",
-        fields: fields }
-    end
-    if @iconic_taxa
-      search_wheres["taxon.iconic_taxon_id"] = @iconic_taxa.map{ |t| t.nil? ? "null" : t}
-    end
-    search_wheres["taxon.ancestor_ids"] = @observations_taxon if @observations_taxon
-    search_wheres["taxon.ancestor_ids"] = @observations_taxon if @observations_taxon
-    search_wheres["id_please"] = true if @id_please
-    search_wheres["out_of_range"] = true if @out_of_range
-    search_wheres["captive"] = true if @captive
-    search_wheres["observed_on_details.day"] = @observed_on_day if @observed_on_day
-    search_wheres["observed_on_details.month"] = @observed_on_month if @observed_on_month
-    search_wheres["observed_on_details.year"] = @observed_on_year if @observed_on_year
-    if @rank
-      search_wheres["taxon.rank"] = @rank
-      @hrank = nil
-      @lrank = nil
-    elsif @hrank || @lrank
-      search_wheres["range"] = { "taxon.rank_level" => {
-        from: Taxon::RANK_LEVELS[@lrank] || 0,
-        to: Taxon::RANK_LEVELS[@hrank] || 100 } }
-    end
-    if @quality_grade && @quality_grade != "any"
-      search_wheres["quality_grade"] = @quality_grade
-    end
-    case @identifications
-    when "most_agree"
-      search_wheres["identifications_most_agree"] = true
-    when "some_agree"
-      search_wheres["identifications_some_agree"] = true
-    when "most_disagree"
-      search_wheres["identifications_most_disagree"] = true
-    end
-
-    search_filters = [ ]
-    if @nelat || @nelng || @swlat || @swlng
-      search_filters << { envelope: { nelat: @nelat, nelng: @nelng, swlat: @swlat, swlng: @swlng } }
-    end
-    if @place
-      search_filters << { place: @place }
-    end
-    search_filters << { exists: { field: "photos" } } if @with_photos
-    search_filters << { exists: { field: "sounds" } } if @with_sounds
-
-    sort = case @order_by
-    when "observed_on"
-      { observed_on: @order }
-    when "species_guess"
-      { species_guess: @order }
-    else "observations.id"
-      { created_at: @order }
-    end
-    @observations = Observation.elastic_paginate(
-      where: search_wheres,
-      filters: search_filters,
-      per_page: find_options[:per_page],
-      page: find_options[:page],
-      sort: sort)
-
-    Observation.preload_associations(@observations, [ { user: :stored_preferences },
-      { taxon: :taxon_names }, { iconic_taxon: :taxon_descriptions },
-      { photos: [ :user, :flags ] }, :stored_preferences, :flags, :quality_metrics ])
+    search_params = site_search_params(params)
+    @observations = get_elastic_paginated_observations(search_params)
 
     respond_to do |format|
       
@@ -196,10 +116,10 @@ class ObservationsController < ApplicationController
         # if we are showing a grid
         if @display_map_tiles
           valid_map_params = {
-            taxon: search_params[:taxon],
-            user_id: search_params[:user_id],
-            project_id: search_params[:project_id],
-            place_id: search_params[:place_id]
+            taxon: @observations_taxon.blank? ? nil : @observations_taxon,
+            user_id: @user.blank? ? nil : @user.id,
+            project_id: @projects.blank? ? nil: @projects.first.id,
+            place_id: @place.blank? ? nil: @place.id,
           }.delete_if{ |k,v| v.nil? }
           if valid_map_params.empty?
             # there are no options, so show all observations by default
@@ -1189,16 +1109,11 @@ class ObservationsController < ApplicationController
   # gets observations by user login
   def by_login
     block_if_spammer(@selected_user) && return
-    search_params, find_options = get_search_params(params)
-    search_params.update(:user_id => @selected_user.id,
+    params.update(:user_id => @selected_user.id,
       :viewer => current_user, 
       :filter_spam => (current_user.blank? || current_user != @selected_user)
     )
-    if search_params[:q].blank?
-      get_paginated_observations(search_params, find_options)
-    else
-      search_observations(search_params, find_options)
-    end
+    @observations = get_elastic_paginated_observations(params)
     
     respond_to do |format|
       format.html do
@@ -1268,31 +1183,15 @@ class ObservationsController < ApplicationController
   def id_please
     params[:order_by] ||= "created_at"
     params[:order] ||= "desc"
-    search_params, find_options = get_search_params(params)
-    search_params = site_search_params(search_params)
-    find_options.update(
-      :per_page => 10,
-      :include => [
-        :user, 
-        {:taxon => [:taxon_names]}, 
-        :tags, 
-        :photos, 
-        {:identifications => [{:taxon => [:taxon_names]}, :user]}, 
-        {:comments => [:user]}
-      ]
-    )
-    if search_params[:has]
-      search_params[:has] = (search_params[:has].split(',') + ['id_please']).flatten.uniq
+    if params[:has]
+      params[:has] = (params[:has].split(',') + ['id_please']).flatten.uniq
     else
-      search_params[:has] = 'id_please'
+      params[:has] = 'id_please'
     end
-    
-    if search_params[:q].blank?
-      get_paginated_observations(search_params, find_options)
-    else
-      search_observations(search_params, find_options)
-    end
-    
+    search_params = site_search_params(params)
+    @observations = get_elastic_paginated_observations(search_params)
+    Observation.preload_associations(@observations, [ :projects,
+      { identifications: [ :taxon, :user ] } ])
     @top_identifiers = User.order("identifications_count DESC").limit(5)
     if @site && @site.site_only_users
       @top_identifiers = @top_identifiers.where(:site_id => @site)
@@ -1385,13 +1284,8 @@ class ObservationsController < ApplicationController
     end
     
     unless request.format == :mobile
-      search_params, find_options = get_search_params(params)
-      search_params[:projects] = @project.id
-      if search_params[:q].blank?
-        get_paginated_observations(search_params, find_options)
-      else
-        search_observations(search_params, find_options)
-      end
+      params[:projects] = @project.id
+      @observations = get_elastic_paginated_observations(params)
     end
     
     @project_observations = @project.project_observations.where(observation: @observations.to_a).
@@ -2185,14 +2079,17 @@ class ObservationsController < ApplicationController
       end
       
       # resolve taxa entered by name
+      allows_unknown = false
       search_params[:iconic_taxa] = search_params[:iconic_taxa].map do |it|
         it = it.last if it.is_a?(Array)
         if it.to_i == 0
+          allows_unknown = true if it.downcase == "unknown"
           Taxon::ICONIC_TAXA_BY_NAME[it]
         else
           Taxon::ICONIC_TAXA_BY_ID[it]
         end
-      end
+      end.uniq.compact
+      search_params[:iconic_taxa] << nil if allows_unknown
       @iconic_taxa = search_params[:iconic_taxa]
     end
     
@@ -2226,6 +2123,7 @@ class ObservationsController < ApplicationController
       @id_please = true if search_params[:has].include?('id_please')
       @with_photos = true if search_params[:has].include?('photos')
       @with_sounds = true if search_params[:has].include?('sounds')
+      @with_geo = true if search_params[:has].include?('geo')
     end
     
     @quality_grade = search_params[:quality_grade]
@@ -2238,6 +2136,7 @@ class ObservationsController < ApplicationController
     @out_of_range = search_params[:out_of_range]
     @license = search_params[:license]
     @photo_license = search_params[:photo_license]
+    @sound_license = search_params[:sound_license]
     
     if options[:skip_order]
       search_params.delete(:order)
@@ -2265,7 +2164,9 @@ class ObservationsController < ApplicationController
     end
     if search_params[:on].to_s =~ /^\d{4}/
       @observed_on = search_params[:on]
-      @observed_on_year, @observed_on_month, @observed_on_day = @observed_on.split('-').map{|d| d.to_i}
+      if d = Observation.split_date(@observed_on)
+        @observed_on_year, @observed_on_month, @observed_on_day = [ d[:year], d[:month], d[:day] ]
+      end
     end
     @observed_on_year ||= search_params[:year].to_i unless search_params[:year].blank?
     @observed_on_month ||= search_params[:month].to_i unless search_params[:month].blank?
@@ -2297,8 +2198,13 @@ class ObservationsController < ApplicationController
       @user = User.find_by_id(params[:user_id])
       @user ||= User.find_by_login(params[:user_id])
     end
+    if @user.blank? && !params[:login].blank?
+      @user ||= User.find_by_login(params[:login])
+    end
     unless params[:projects].blank?
-      @projects = Project.find(params[:projects]) rescue []
+      if p = Project.where(id: params[:projects])
+        @projects = p unless p.empty?
+      end
     end
     if (@pcid = params[:pcid]) && @pcid != 'any'
       @pcid = [true, 'true', 't', 1, '1', 'y', 'yes'].include?(params[:pcid]) ? 'yes' : 'no'
@@ -2309,8 +2215,8 @@ class ObservationsController < ApplicationController
     @hrank = params[:hrank] if Taxon::VISIBLE_RANKS.include?(params[:hrank])
     @lrank = params[:lrank] if Taxon::VISIBLE_RANKS.include?(params[:lrank])
     if stats_adequately_scoped?
-      @d1 = search_params[:d1]
-      @d2 = search_params[:d2]
+      @d1 = search_params[:d1].blank? ? nil : search_params[:d1]
+      @d2 = search_params[:d2].blank? ? nil : search_params[:d2]
     else
       search_params[:d1] = nil
       search_params[:d2] = nil
@@ -2340,7 +2246,148 @@ class ObservationsController < ApplicationController
     
     [search_params, find_options]
   end
-  
+
+  def get_elastic_paginated_observations(params)
+    # prepare parameters
+    search_params, find_options = get_search_params(params)
+
+    # there are some attributes which have not yet been added to the
+    # elasticsearch index, or we have decided not to put in the index
+    # because it would be more work to maintain than it would save
+    # when searching. Remove empty values before checking
+    unless (Observation::NON_ELASTIC_ATTRIBUTES &
+            search_params.reject{ |k,v| v.blank? || v == "any" }.keys).blank?
+      return get_paginated_observations(search_params, find_options)
+    end
+    search_wheres = { }
+    extra_preloads = [ ]
+    if @q
+      fields = case @search_on
+      when "names"
+        [ "taxon.names.name" ]
+      when "tags"
+        [ :tags ]
+      when "description"
+        [ :description ]
+      when "place"
+        [ :place_guess ]
+      else
+        [ "taxon.names.name", :tags, :description, :place_guess ]
+      end
+      search_wheres["multi_match"] = { query: @q, operator: "and",
+        fields: fields }
+    end
+    search_wheres["user.id"] = @user if @user
+    search_wheres["taxon.rank"] = @rank if @rank
+    search_wheres["taxon.ancestor_ids"] = @observations_taxon if @observations_taxon
+    search_wheres["id_please"] = true if @id_please
+    search_wheres["out_of_range"] = true if @out_of_range
+    search_wheres["captive"] = true if @captive
+    search_wheres["mappable"] = true if search_params[:mappable] == "true"
+    search_wheres["mappable"] = false if search_params[:mappable] == "false"
+    search_wheres["license_code"] = @license if @license
+    search_wheres["photos.license_code"] = @photo_license if @photo_license
+    search_wheres["sounds.license_code"] = @sound_license if @sound_license
+    search_wheres["observed_on_details.day"] = @observed_on_day if @observed_on_day
+    search_wheres["observed_on_details.month"] = @observed_on_month if @observed_on_month
+    search_wheres["observed_on_details.year"] = @observed_on_year if @observed_on_year
+    if d = Observation.split_date(find_options[:created_on])
+      search_wheres["created_at_details.day"] = d[:day] if d[:day] && d[:day] != 0
+      search_wheres["created_at_details.month"] = d[:month] if d[:month] && d[:month] != 0
+      search_wheres["created_at_details.year"] = d[:year] if d[:year] && d[:day] != 0
+    end
+    if @projects.blank? && !@project.blank?
+      @projects = [ @project ]
+    end
+    unless @projects.blank?
+      search_wheres["project_ids"] = @projects.to_a
+      extra_preloads << :projects
+    end
+    unless @hrank.blank? && @lrank.blank?
+      search_wheres["range"] = { "taxon.rank_level" => {
+        from: Taxon::RANK_LEVELS[@lrank] || 0,
+        to: Taxon::RANK_LEVELS[@hrank] || 100 } }
+    end
+    if @quality_grade && @quality_grade != "any"
+      search_wheres["quality_grade"] = @quality_grade
+    end
+    case @identifications
+    when "most_agree"
+      search_wheres["identifications_most_agree"] = true
+    when "some_agree"
+      search_wheres["identifications_some_agree"] = true
+    when "most_disagree"
+      search_wheres["identifications_most_disagree"] = true
+    end
+
+    search_filters = [ ]
+    unless @nelat.blank? && @nelng.blank? && @swlat.blank? && @swlng.blank?
+      search_filters << { envelope: {
+        nelat: @nelat, nelng: @nelng, swlat: @swlat, swlng: @swlng } }
+    end
+    search_filters << { place: @place } if @place
+    search_filters << { exists: { field: "photos" } } if @with_photos
+    search_filters << { exists: { field: "sounds" } } if @with_sounds
+    search_filters << { exists: { field: "geojson" } } if @with_geo
+    unless @iconic_taxa.blank?
+      # iconic_taxa will be an array which might contain a nil value
+      known_taxa = @iconic_taxa.compact
+      # if it is smaller after compact, then it contained nil and
+      # we will need to do a different kind of Elasticsearch query
+      allows_unknown = (known_taxa.size < @iconic_taxa.size)
+      if allows_unknown
+        # to allow iconic_taxon_id to be nil, I think the best way
+        # is a "should" boolean filter, which allows anyof a set of
+        # valid terms as well as missing terms (null)
+        search_filters << { bool: { should: [
+          { terms: { "taxon.iconic_taxon_id": known_taxa.map(&:id) } },
+          { missing: { field: "taxon.iconic_taxon_id" } }
+        ]}}
+      else
+        # if we don't want to include null values, a where clause is simpler
+        search_wheres["taxon.iconic_taxon_id"] = @iconic_taxa
+      end
+    end
+    if @d1 || @d2
+      search_filters << { range: { observed_on: {
+        gte: @d1 || Time.new("1800"), lte: @d2 || Time.now } } }
+    end
+    unless params[:updated_since].blank?
+      if timestamp = Chronic.parse(params[:updated_since])
+        search_filters << { range: { updated_at: { gte: timestamp } } }
+      else
+        # there is an expectation in a spec that when updated_since is
+        # invalid, the search will fail to return any results. A dummy
+        # WillPaginate Collection is the most compatible empty result
+        return WillPaginate::Collection.new(1, 30, 0)
+      end
+    end
+    # sort defaults to created at descending
+    sort = case @order_by
+    when "observed_on"
+      { observed_on: @order || "desc" }
+    when "species_guess"
+      { species_guess: @order || "desc" }
+    else "observations.id"
+      { created_at: @order || "desc" }
+    end
+    # perform the actual query against Elasticsearch
+    observations = Observation.elastic_paginate(
+      where: search_wheres,
+      filters: search_filters,
+      per_page: find_options[:per_page] || 30,
+      page: find_options[:page],
+      sort: sort)
+    # preload the most commonly needed associations
+    Observation.preload_associations(observations, [
+      { user: :stored_preferences },
+      { taxon: { taxon_names: :place_taxon_names } },
+      { iconic_taxon: :taxon_descriptions },
+      { photos: [ :user, :flags ] },
+      :stored_preferences, :flags, :quality_metrics ] | extra_preloads)
+    observations
+  end
+
   # Either make a plain db query and return a WillPaginate collection or make 
   # a Sphinx call if there were query terms specified.
   def get_paginated_observations(search_params, find_options)
@@ -2348,223 +2395,36 @@ class ObservationsController < ApplicationController
     if search_params[:filter_spam]
       query_scope = query_scope.not_flagged_as_spam
     end
-    if @q
-      @observations = if @search_on
-        find_options[:conditions] = update_conditions(
-          find_options[:conditions], @search_on.to_sym => @q
-        )
-        query_scope.search(find_options).compact
-      else
-        query_scope.search(@q, find_options).compact
-      end
-    end
-    if @observations.blank?
-      # COUNT( ) OVER( ) works great with smaller result sets, so here
-      # we are choosing to use it when there are some decent filters
-      # to work with, otherwise we'll use standard paginate which will
-      # initiate two separate queries
-      if search_params[:place_id] || search_params[:taxon_id] ||
-        search_params[:taxon_name] || (search_params[:lat] && search_params[:lng])
-        @observations = query_scope.paginate_with_count_over(find_options)
-      else
-        @observations = query_scope.where(find_options[:conditions]).
-          includes(find_options[:include]).
-          paginate(page: find_options[:page], per_page: find_options[:per_page]).
-          order(find_options[:order])
-      end
-      unless request.format && request.format.json?
-        Observation.preload_associations(@observations,
-          [ :sounds,
-            :stored_preferences,
-            :quality_metrics,
-            :projects,
-            :flags,
-            { :photos => :flags },
-            { :user => :stored_preferences },
-            { :taxon => :taxon_descriptions },
-            { :iconic_taxon => :taxon_descriptions }
-          ])
-      end
-    end
-    @observations
-  rescue ThinkingSphinx::ConnectionError, Riddle::ResponseError
-    Rails.logger.error "[ERROR #{Time.now}] ThinkingSphinx::ConnectionError, hitting the db"
-    find_options.delete(:class)
-    find_options.delete(:classes)
-    find_options.delete(:raise_on_stale)
-    @observations = if @q
-      Observation.query(search_params).where("species_guess LIKE ?", "%#{@q}%").paginate(find_options)
+    # COUNT( ) OVER( ) works great with smaller result sets, so here
+    # we are choosing to use it when there are some decent filters
+    # to work with, otherwise we'll use standard paginate which will
+    # initiate two separate queries
+    if search_params[:place_id] || search_params[:taxon_id] ||
+      search_params[:taxon_name] || (search_params[:lat] && search_params[:lng])
+      @observations = query_scope.paginate_with_count_over(find_options)
     else
-      Observation.query(search_params).paginate(find_options)
+      @observations = query_scope.where(find_options[:conditions]).
+        includes(find_options[:include]).
+        paginate(page: find_options[:page], per_page: find_options[:per_page]).
+        order(find_options[:order])
     end
-  end
-  
-  def search_observations(search_params, find_options)
-    sphinx_options = find_options.dup
-    sphinx_options[:with] = {}
-    
-    if sphinx_options[:page] && sphinx_options[:page].to_i > 50
-      if request.format && request.format.html?
-        flash.now[:notice] = t(:heads_up_observation_search_can_only_load)
-      end
-      sphinx_options[:page] = 50
-      find_options[:page] = 50
+    unless request.format && request.format.json?
+      Observation.preload_associations(@observations,
+        [ :sounds,
+          :stored_preferences,
+          :quality_metrics,
+          :projects,
+          :flags,
+          { :photos => :flags },
+          { :user => :stored_preferences },
+          { :taxon => :taxon_descriptions },
+          { :iconic_taxon => :taxon_descriptions }
+        ])
     end
-    
-    if search_params[:has]
-      # id please
-      if search_params[:has].include?('id_please')
-        sphinx_options[:with][:has_id_please] = true
-      end
-      
-      # has photos
-      if search_params[:has].include?('photos')
-        sphinx_options[:with][:has_photos] = true
-      end
-
-      # has sounds
-      if search_params[:has].include?('sounds')
-        sphinx_options[:with][:has_sounds] = true
-      end
-      
-      # geo
-      if search_params[:has].include?('geo')
-        sphinx_options[:with][:has_geo] = true 
-      end
-    end
-
-    if Observation::QUALITY_GRADES.include?(search_params[:quality_grade])
-      sphinx_options[:conditions] ||= {}
-      sphinx_options[:conditions][:quality_grade] = search_params[:quality_grade]
-    end
-    
-    # Bounding box or near point
-    if (!search_params[:swlat].blank? && !search_params[:swlng].blank? && 
-        !search_params[:nelat].blank? && !search_params[:nelng].blank?)
-      swlatrads = search_params[:swlat].to_f * (Math::PI / 180)
-      swlngrads = search_params[:swlng].to_f * (Math::PI / 180)
-      nelatrads = search_params[:nelat].to_f * (Math::PI / 180)
-      nelngrads = search_params[:nelng].to_f * (Math::PI / 180)
-      
-      # The box straddles the 180th meridian...
-      # This is a very stupid solution that just chooses the biggest of the
-      # two sides straddling the meridian and queries in that.  Sphinx doesn't
-      # seem to support multiple queries on the same attribute, so we can't do
-      # the OR clause we do in the equivalent named scope.  Grr.  -kueda
-      # 2009-04-10
-      if swlngrads > 0 && nelngrads < 0
-        lngrange = swlngrads.abs > nelngrads ? swlngrads..Math::PI : -Math::PI..nelngrads
-        sphinx_options[:with][:longitude] = lngrange
-        # sphinx_options[:with][:longitude] = swlngrads..Math::PI
-        # sphinx_options[:with] = {:longitude => -Math::PI..nelngrads}
-      else
-        sphinx_options[:with][:longitude] = swlngrads..nelngrads
-      end
-      sphinx_options[:with][:latitude] = swlatrads..nelatrads
-    elsif search_params[:lat] && search_params[:lng]
-      latrads = search_params[:lat].to_f * (Math::PI / 180)
-      lngrads = search_params[:lng].to_f * (Math::PI / 180)
-      sphinx_options[:geo] = [latrads, lngrads]
-      sphinx_options[:order] = "@geodist asc"
-    end
-    
-    # identifications
-    case search_params[:identifications]
-    when 'most_agree'
-      sphinx_options[:with][:identifications_most_agree] = true
-    when 'some_agree'
-      sphinx_options[:with][:identifications_some_agree] = true
-    when 'most_disagree'
-      sphinx_options[:with][:identifications_most_disagree] = true
-    end
-    
-    # Iconic taxa
-    unless search_params[:iconic_taxa].blank?
-      sphinx_options[:with][:iconic_taxon_id] = \
-          search_params[:iconic_taxa].map do |iconic_taxon|
-        iconic_taxon.nil? ? nil : iconic_taxon.id
-      end
-    end
-    
-    # User ID
-    unless search_params[:user_id].blank?
-      sphinx_options[:with][:user_id] = search_params[:user_id]
-    end
-    
-    # User login
-    unless search_params[:user].blank?
-      sphinx_options[:with][:user] = search_params[:user]
-    end
-    
-    # Ordering
-    unless search_params[:order_by].blank?
-      # observations.id is a more efficient sql clause, but it's not the name of a field in sphinx
-      search_params[:order_by].gsub!(/observations\.id/, 'created_at')
-      sphinx_options[:order] = search_params[:order_by]
-    end
-    
-    unless search_params[:projects].blank?
-      sphinx_options[:with][:projects] = if search_params[:projects].is_a?(String) && search_params[:projects].index(',')
-        search_params[:projects].split(',')
-      else
-        [search_params[:projects]].flatten
-      end
-    end
-
-    unless search_params[:ofv_params].blank?
-      ofs = search_params[:ofv_params].map do |k,v|
-        v[:observation_field].blank? ? nil : v[:observation_field].id
-      end.compact
-      sphinx_options[:with][:observation_fields] = ofs unless ofs.blank?
-    end
-    
-    # Sanitize query
-    q = sanitize_sphinx_query(@q)
-    
-    # Field-specific searches
-    obs_ids = if @search_on
-      sphinx_options[:conditions] ||= {}
-      # not sure why sphinx chokes on slashes when searching on attributes...
-      sphinx_options[:conditions][@search_on.to_sym] = q.gsub(/\//, '')
-      Observation.search_for_ids(find_options.merge(sphinx_options))
-    else
-      Observation.search_for_ids(q, find_options.merge(sphinx_options))
-    end
-    @observations = Observation.where("observations.id in (?)", obs_ids).
-      order_by(search_params[:order_by]).
-      includes(find_options[:include])
-
-    # lame hacks
-    unless search_params[:ofv_params].blank?
-      search_params[:ofv_params].each do |k,v|
-        next unless of = v[:observation_field]
-        next if v[:value].blank?
-        v[:observation_field].blank? ? nil : v[:observation_field].id
-        @observations = @observations.has_observation_field(of.id, v[:value])
-      end
-    end    
-    @observations = @observations.of(@observations_taxon) if @observations_taxon
-    @observations = @observations.in_place(@place) if @place
-    @observations = @observations.on(@observed_on) if @observed_on
-
-    if CONFIG.site_only_observations && params[:site].blank?
-      @observations = @observations.where("observations.uri LIKE ?", "#{root_url}%")
-    end
-
-    @observations = WillPaginate::Collection.create(obs_ids.current_page, obs_ids.per_page, obs_ids.total_entries) do |pager|
-      pager.replace(@observations.to_a)
-    end
-
-    begin
-      @observations.total_entries
-    rescue ThinkingSphinx::SphinxError, Riddle::OutOfBoundsError => e
-      Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
-      @observations = WillPaginate::Collection.new(1,30, 0)
-    end
+    # make sure we return the paginate collection
     @observations
-  rescue ThinkingSphinx::ConnectionError, Riddle::ResponseError
-    Rails.logger.error "[ERROR #{Time.now}] Failed to connect to sphinx, falling back to db"
-    get_paginated_observations(search_params, find_options)
+  rescue Exception => e
+    Rails.logger.error "[ERROR] Observations::get_paginated_observations failed: #{ e }"
   end
   
   # Refresh lists affected by taxon changes in a batch of new/edited

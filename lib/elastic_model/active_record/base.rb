@@ -3,17 +3,17 @@ module ActiveRecord
 
     class << self
 
-      def elastic_model(options={})
+      def acts_as_elastic_model
         include Elasticsearch::Model
 
         index_name [ Rails.env, model_name.collection.gsub(/\//, '-') ].join('_')
 
         after_commit on: [:create, :update] do
-          __elasticsearch__.index_document
+          elastic_index!
         end
 
         after_commit on: [:destroy] do
-          __elasticsearch__.delete_document
+          elastic_delete!
         end
       end
 
@@ -37,6 +37,21 @@ module ActiveRecord
         options[:scope] ||= :load_for_index
       end
       __elasticsearch__.import(options)
+    end
+
+    def elastic_index!
+      begin
+        __elasticsearch__.index_document
+        self.class.__elasticsearch__.refresh_index! if Rails.env.test?
+      rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+        Rails.logger.error "[Error] elastic_index! failed: #{ e }"
+        Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+      end
+    end
+
+    def elastic_delete!
+      __elasticsearch__.delete_document
+      self.class.__elasticsearch__.refresh_index! if Rails.env.test?
     end
 
     def preload_for_elastic_index

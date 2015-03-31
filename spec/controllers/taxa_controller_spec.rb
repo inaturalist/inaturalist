@@ -145,9 +145,11 @@ describe TaxaController do
   end
 
   describe "autocomplete" do
+    before(:each) { enable_elastic_indexing([ Taxon ]) }
+    after(:each) { disable_elastic_indexing([ Taxon ]) }
     it "should choose exact matches" do
       t = Taxon.make!
-      get :autocomplete, format: :json
+      get :autocomplete, q: t.name, format: :json
       expect(assigns(:taxa)).to include t
     end
   end

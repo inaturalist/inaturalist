@@ -1,35 +1,43 @@
 module ElasticModel
 
+  # basic search analyzer. Avoids diacritic variations, uses snownall
+  # for more tolerance of string endings (e.g. `bear` finds `bears`)
   ASCII_SNOWBALL_ANALYZER = {
     ascii_snowball_analyzer: {
       tokenizer: "standard",
       filter: [ "standard", "lowercase", "asciifolding", "stop", "snowball" ]
     }
   }
+  # basic autocomplete analyzer. Avoids diacritic variations, will find
+  # results based on sub-matches (e.g. `Park` finds `National Park`)
   AUTOCOMPLETE_ANALYZER = {
     autocomplete_analyzer: {
       tokenizer: "standard",
       filter: [ "standard", "lowercase", "asciifolding", "stop", "edge_ngram_filter" ]
     }
   }
+  # autocomplete with no sub-matches (e.g. `Park` doesn't find `National Park`)
   KEYWORD_AUTOCOMPLETE_ANALYZER = {
     keyword_autocomplete_analyzer: {
       tokenizer: "keyword",
       filter: [ "standard", "lowercase", "asciifolding", "stop", "edge_ngram_filter" ]
     }
   }
+  # basic search analyzer that allows sub-matches
+  STANDARD_ANALYZER = {
+    standard_analyzer: {
+      tokenizer: "standard",
+      filter: [ "standard", "lowercase", "asciifolding" ]
+    }
+  }
+  # basic search analyzer with no sub-matches
   KEYWORD_ANALYZER = {
     keyword_analyzer: {
       tokenizer: "keyword",
       filter: [ "standard", "lowercase", "asciifolding" ]
     }
   }
-  WHITESPACE_ANALYZER = {
-    whitespace_analyzer: {
-      tokenizer: "whitespace",
-      filter: [ "lowercase", "asciifolding" ]
-    }
-  }
+  # for autocomplete analyzers. Needs at least 2 letters (e.g. `P` doesn't find `Park`)
   EDGE_NGRAM_FILTER =  {
     edge_ngram_filter: {
       type: "edgeNGram",
@@ -37,14 +45,14 @@ module ElasticModel
       max_gram: 15
     }
   }
-
+  # store all of the above in a constant, used when defining indices in models
   ANALYSIS = {
     analyzer: [
       ASCII_SNOWBALL_ANALYZER,
       AUTOCOMPLETE_ANALYZER,
       KEYWORD_AUTOCOMPLETE_ANALYZER,
-      KEYWORD_ANALYZER,
-      WHITESPACE_ANALYZER
+      STANDARD_ANALYZER,
+      KEYWORD_ANALYZER
     ].reduce(&:merge),
     filter: EDGE_NGRAM_FILTER
   }
@@ -86,6 +94,8 @@ module ElasticModel
     query = criteria.blank? ?
       { match_all: { } } :
       { bool: { must: criteria } }
+    # when there are filters, the query needs to be wrapped
+    # in a filtered block that includes the filters being applied
     unless filters.blank?
       query = {
         filtered: {
@@ -94,12 +104,8 @@ module ElasticModel
             bool: { must: filters } } } }
     end
     elastic_hash = { query: query }
-    if options[:sort]
-      elastic_hash[:sort] = options[:sort]
-    end
-    if options[:fields]
-      elastic_hash[:fields] = options[:fields]
-    end
+    elastic_hash[:sort] = options[:sort] if options[:sort]
+    elastic_hash[:fields] = options[:fields] if options[:fields]
     if options[:aggregate]
       elastic_hash[:aggs] = Hash[options[:aggregate].map{ |k, v|
         [ k, { terms: { field: v.first[0], size: v.first[1] } } ]
@@ -145,19 +151,27 @@ module ElasticModel
   end
 
   def self.result_to_will_paginate_collection(result)
-    WillPaginate::Collection.create(result.current_page,
-      result.per_page, result.total_entries) do |pager|
-      pager.replace(result.records.to_a)
+    begin
+      WillPaginate::Collection.create(result.current_page,
+        result.per_page, result.total_entries) do |pager|
+        pager.replace(result.records.to_a)
+      end
+    rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+      Rails.logger.error "[Error] Elasticsearch query failed: #{ e }"
+      Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+      WillPaginate::Collection.new(1, 30, 0)
     end
   end
 
   def self.point_geojson(lat, lon)
     return unless valid_latlon?(lat, lon)
+    # notice the order of lon, lat which is standard for GeoJSON
     { type: "point", coordinates: [ lon, lat ] }
   end
 
   def self.point_latlon(lat, lon)
     return unless valid_latlon?(lat, lon)
+    # notice the order of lat, lon which is used for ES geo_point
     "#{lat},#{lon}"
   end
 
@@ -169,12 +183,13 @@ module ElasticModel
   end
 
   def self.geom_geojson(geom)
-    unless [ RGeo::Geos::CAPIMultiPolygonImpl, RGeo::Geos::CAPIPointImpl ].include?(geom.class)
-      return
-    end
+    return unless [ RGeo::Geos::CAPIMultiPolygonImpl,
+                    RGeo::Geos::CAPIPointImpl ].include?(geom.class)
     RGeo::GeoJSON.encode(geom)
   end
 
+  # used when indexing dates to enable queries like:
+  # `show me all observations from April of any year`
   def self.date_details(datetime)
     return unless datetime
     return unless datetime.is_a?(Date) || datetime.is_a?(Time)
@@ -185,4 +200,11 @@ module ElasticModel
 
 end
 
+# load the ActiveRecord::Base monkey patches
 Dir["#{File.dirname(__FILE__)}/elastic_model/**/*.rb"].each { |f| load(f) }
+
+# finally, load the ActiveRecord model index definitions and
+# as_indexed_json methods as defined in RAILS_ROOT/app/models/indices
+Dir["app/models/indices/**/*.rb"].sort.each do |file|
+  ActiveSupport::Dependencies.require_or_load file
+end

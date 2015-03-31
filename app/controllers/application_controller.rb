@@ -268,12 +268,12 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  # ThinkingSphinx returns a maximum of 50 pages. Anything higher than 
-  # that, we want to 404 to avoid a TS error. 
-  def limit_page_param_for_thinking_sphinx
-    if !params[:page].blank? && params[:page].to_i > 50 
-      render_404 
-    end 
+  # Formerly used to address that ThinkingSphinx returns a maximum of
+  # 50 pages. Now kept to keep the logic the same
+  def limit_page_param_for_search
+    if !params[:page].blank? && params[:page].to_i > 50
+      render_404
+    end
   end
   
   def search_for_places

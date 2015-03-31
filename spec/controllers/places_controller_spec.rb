@@ -32,23 +32,23 @@ describe PlacesController do
     let(:another_place) { Place.make!(:name => 'Norway') }
     it "should return results in HTML" do
       expect(place).not_to be_blank
-      expect(Place).to receive(:search).and_return([ place, another_place ])
+      expect(Place).to receive(:elastic_paginate).and_return([ place, another_place ])
       get :search, :q => place.name
       expect(response.content_type).to eq"text/html"
     end
     it "should redirect with only one result in HTML" do
-      expect(Place).to receive(:search).and_return([ place ])
+      expect(Place).to receive(:elastic_paginate).and_return([ place ])
       get :search, :q => place.name
       expect(response).to be_redirect
     end
     it "should not redirect with only one result in JSON" do
-      expect(Place).to receive(:search).and_return([ place ])
+      expect(Place).to receive(:elastic_paginate).and_return([ place ])
       get :search, :q => place.name, :format => :json
       expect(response).not_to be_redirect
     end
     it "should return results in JSON, with html" do
       place.html = 'the html'
-      expect(Place).to receive(:search).and_return([ place, another_place ])
+      expect(Place).to receive(:elastic_paginate).and_return([ place, another_place ])
       get :search, :q => place.name, :format => :json
       expect(response.content_type).to eq "application/json"
       json = JSON.parse(response.body)

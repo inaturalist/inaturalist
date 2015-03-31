@@ -8,6 +8,9 @@ describe ApplicationController do
     # the ObservationsController since there are no testable public-facing
     # actions in the ApplicationController
     describe ObservationsController do
+      before(:each) { enable_elastic_indexing([ Observation ]) }
+      after(:each) { disable_elastic_indexing([ Observation ]) }
+
       it "render the 404 page for unknown formats" do
         get :index, format: :html
         expect(response.response_code).to eq 200

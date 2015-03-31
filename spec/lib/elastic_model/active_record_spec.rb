@@ -2,22 +2,11 @@ require "spec_helper"
 
 describe "ActiveRecord", "Base" do
 
-  before(:all) do
-    Observation.__elasticsearch__.create_index!
-  end
+  before(:each) { enable_elastic_indexing([ Observation ]) }
+  after(:each) { disable_elastic_indexing([ Observation ]) }
 
-  after(:all) do
-    Observation.__elasticsearch__.delete_index!
-  end
-
-  # We dont commit in specs, and the callbacks for interacting with
-  # elasticsearch are after_commit callbacks. So this is testing the
-  # .index_document method directly
   it "properly indexes the document" do
     obs = Observation.make!
-    expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 0
-    obs.__elasticsearch__.index_document
-    sleep(1)
     result = Observation.elastic_search( where: { id: obs.id } )
     expect( result.count ).to eq 1
     expect( result.first.class ).to eq Elasticsearch::Model::Response::Result
@@ -26,15 +15,10 @@ describe "ActiveRecord", "Base" do
     expect( result.first.user.login ).to eq obs.user.login
   end
 
-  # We dont commit in specs, so testing the .delete_document method directly
   it "properly deletes the document" do
     obs = Observation.make!
-    expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 0
-    obs.__elasticsearch__.index_document
-    sleep(1)
     expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 1
-    obs.__elasticsearch__.delete_document
-    sleep(1)
+    obs.destroy
     expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 0
   end
 

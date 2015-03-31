@@ -361,6 +361,9 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "by_login" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
+
     it "should get user's observations" do
       3.times { Observation.make!(:user => user) }
       get :by_login, :format => :json, :login => user.login
@@ -433,6 +436,9 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "index" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
+
     it "should allow search" do
       lambda {
         get :index, :format => :json, :q => "foo"
@@ -757,6 +763,9 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "project" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
+
     it "should allow filtering by updated_since" do
       pu = ProjectUser.make!
       oldo = Observation.make!(:user => pu.user)
@@ -915,6 +924,8 @@ end
 
 describe ObservationsController, "without authentication" do
   describe "index" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
     it "should require sign in for page 100 or more" do
       get :index, :format => :json, :page => 10
       response.should be_success
