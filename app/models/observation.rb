@@ -1,27 +1,6 @@
 #encoding: utf-8
 class Observation < ActiveRecord::Base
 
-  scope :load_for_index, -> { includes(:user, :tags,
-    :project_observations,
-    { sounds: :user },
-    { photos: :user },
-    { taxon: [ :taxon_names, :taxon_ancestors ] },
-    { observation_field_values: :observation_field } ) }
-  elastic_model
-  settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
-    mappings(dynamic: true) do
-      indexes :taxon do
-        indexes :names do
-          indexes :name, index_analyzer: "ascii_snowball_analyzer",
-            search_analyzer: "ascii_snowball_analyzer"
-        end
-      end
-      indexes :observed_on_string, type: "string"
-      indexes :location, type: "geo_point"
-      indexes :geojson, type: "geo_shape"
-    end
-  end
-
   has_subscribers :to => {
     :comments => {:notification => "activity", :include_owner => true},
     :identifications => {:notification => "activity", :include_owner => true}
@@ -46,6 +25,7 @@ class Observation < ActiveRecord::Base
       return false if observation.taxon.blank?
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
+  acts_as_elastic_model
   acts_as_taggable
   acts_as_spammable :fields => [ :description ],
                     :comment_type => "item-description"
@@ -2471,42 +2451,6 @@ class Observation < ActiveRecord::Base
         csv << methods.map{ |m| item.send(m) }
       end
     end
-  end
-
-  def as_indexed_json(options={})
-    preload_for_elastic_index
-    {
-      id: id,
-      created_at: created_at,
-      observed_on: observed_on,
-      description: description,
-      mappable: mappable,
-      species_guess: species_guess,
-      place_guess: place_guess,
-      observed_on_string: observed_on_string,
-      quality_grade: quality_grade,
-      id_please: id_please,
-      num_identification_agreements: num_identification_agreements,
-      num_identification_disagreements: num_identification_disagreements,
-      identifications_most_agree: (num_identification_agreements > num_identification_disagreements),
-      identifications_some_agree: (num_identification_agreements > 0),
-      identifications_most_disagree: (num_identification_agreements < num_identification_disagreements),
-      project_ids: project_observations.map(&:project_id),
-      tags: tags.map(&:name).uniq,
-      user: user ? user.as_indexed_json : nil,
-      taxon: taxon ? taxon.as_indexed_json(basic: true) : nil,
-      field_values: observation_field_values.map(&:as_indexed_json),
-      photos: photos.map(&:as_indexed_json),
-      sounds: sounds.map(&:as_indexed_json),
-      location: if (private_latitude && private_longitude)
-          ElasticModel.point_latlon(private_latitude, private_longitude)
-        elsif (latitude && longitude)
-          ElasticModel.point_latlon(latitude, longitude)
-        else
-          nil
-        end,
-      geojson: ElasticModel.geom_geojson(private_geom)
-    }
   end
 
 end

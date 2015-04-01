@@ -1,4 +1,5 @@
 class QualityMetric < ActiveRecord::Base
+
   belongs_to :user
   belongs_to :observation
   
@@ -13,9 +14,11 @@ class QualityMetric < ActiveRecord::Base
   end
   
   after_save :set_observation_quality_grade, :set_observation_captive,
-    :set_observation_public_positional_accuracy, :set_observation_mappable
+    :set_observation_public_positional_accuracy, :set_observation_mappable,
+    :elastic_index_observation
   after_destroy :set_observation_quality_grade, :set_observation_captive,
-    :set_observation_public_positional_accuracy, :set_observation_mappable
+    :set_observation_public_positional_accuracy, :set_observation_mappable,
+    :elastic_index_observation
   
   validates_presence_of :observation
   validates_inclusion_of :metric, :in => METRICS
@@ -51,6 +54,10 @@ class QualityMetric < ActiveRecord::Base
     return true unless observation
     observation.reload.update_mappable
     true
+  end
+
+  def elastic_index_observation
+    observation.elastic_index!
   end
 
   def self.vote(user, observation, metric, agree)
