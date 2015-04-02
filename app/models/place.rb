@@ -1,8 +1,9 @@
 #encoding: utf-8
 class Place < ActiveRecord::Base
 
+  include ActsAsElasticModel
+
   has_ancestry
-  acts_as_elastic_model
 
   belongs_to :user
   belongs_to :check_list, :dependent => :destroy

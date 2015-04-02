@@ -18,7 +18,8 @@ class Taxon < ActiveRecord::Base
   # set this when you want methods to respond with user-specific content
   attr_accessor :current_user
 
-  acts_as_elastic_model
+  include ActsAsElasticModel
+
   acts_as_flaggable
   has_ancestry
 
