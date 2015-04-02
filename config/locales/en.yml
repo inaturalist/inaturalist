@@ -2066,8 +2066,6 @@ en:
   please_add_a_citation_for_this_change: Please add a citation for this change.
   please_add_this_observation_to: Please add this observation to
   please_add_this_to_x_html: "Please add this to %{x}"
-  please_be_aware_project_curators: Please be aware that project curators will be able to see any private or obscured locations of observations added to this project.
-  please_be_aware_that_project_curators: Please be aware that project curators will be able to see any private or obscured locations of observations added to this project.
   please_be_careful_particulary_when: "Please be careful, particularly when deleting taxa. If a taxon has associated observations, ids, listed taxa, etc, please"
   please_check_for_you_confirmation_email: "Welcome to %{site_name}!  Please check for your confirmation email, but feel free to start cruising the site."
   please_cite_the_published_source_of_taxon: Please cite the published source of this taxon.
@@ -3787,6 +3785,17 @@ en:
         coordinates_desc: You must specify coordinates if you don't draw a boundary or upload KML.
         map_instruction: Use the polygon tool to draw the place boundary.
     projects:
+      project_location_privacy_notice_html: |
+        <p>
+          Please be aware project curators will be able to see any private
+          or obscured locations of your observations in this project, and
+          they will be able to add any of your observations to this project
+          unless you <a href="/users/edit">change your settings</a>.
+        </p>
+        <p>
+          If you are concerned about location privacy, do not join projects
+          unless you trust the project curators.
+        </p>
       project_terms_desc_html: |
         Allow the curators of this project to use your observations according
         to the <a href="%{url}">project terms</a>.

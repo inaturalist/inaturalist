@@ -1099,6 +1099,26 @@ $('.add_matching_link').live('click', function(e) {
   return false  
 })
 
+function remoteDialog(url, options) {
+  var options = options || {},
+      dialogId = url.replace(/[^A-z0-9]+/g, '-').replace(/^\W+/, ''),
+      dialog = $('#'+dialogId)
+  if (dialog.length == 0) {
+    dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">'+I18n.t('loading')+'</div>')
+    dialog.attr('id', dialogId)
+    dialog.load(url)
+    dialog.dialog({
+      modal: true,
+      title: options.title,
+      width: 760,
+      minHeight: 300
+    })
+  } else {
+    $(dialog).dialog('open')
+  }
+  return false
+}
+
 function showJoinProjectDialog(projectId, options) {
   options = options || {}
   var url = options.url || '/projects/'+projectId+'/join?partial=join',

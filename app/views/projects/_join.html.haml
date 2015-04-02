@@ -14,8 +14,7 @@
         = link_to project_curator.user.login, person_by_login_path(project_curator.user.login), :class => "readable nobr"
         %br/
         = link_to("<span class='count'>#{project_curator.user.observations.count}</span> observations".html_safe, observations_by_login_path(project_curator.user.login))
-.description
-  = t(:please_be_aware_project_curators)
+=t 'views.projects.project_location_privacy_notice_html'
 = separator
 - unless @project.terms.blank?
   %h3= t(:terms)
@@ -31,7 +30,7 @@
   %ul.stacked
     - for rule in @project.project_observation_rules
       %li= rule.terms
-- if @project.preferred_membership_model != Project::MEMBERSHIP_INVITE_ONLY || @project_user_invitation
+- if !params[:skip_form] && (@project.preferred_membership_model != Project::MEMBERSHIP_INVITE_ONLY || @project_user_invitation)
   = form_for :project_user, 
       builder: DefaultFormBuilder,
       url: join_project_path(@project),

@@ -93,12 +93,13 @@
     <% end %>
     
     <% if @project && !member_of?(@project)%>
-      <div class="stacked" id="accept_terms">
+      <div class="clear" id="accept_terms">
         <%= check_box_tag :accept_terms %>
-        <span class="notice"><%= t :agree_to_the_project_terms %> <%= link_to_function t(:view_terms),
-          "$('#terms').dialog({modal: true, title: 'Project Terms', width: 600})", :class => "readmore" %></span>
-        <br />
-        <br />
+        <span class="notice">
+          <%= t :agree_to_the_project_terms %>
+          <%= link_to_function t(:view_terms), 
+            "remoteDialog('/projects/#{@project.id}/join?partial=join&skip_form=true', {title: '#{t(:project_terms)}'})" %>
+        </span>
       </div>
     <% end %>
     
@@ -165,14 +166,12 @@
               <div class="column span-3">
             <%= link_to project_curator.user.login, person_by_login_path(project_curator.user.login), :class => "readable nobr" %>
             <br/>
-            <%= link_to("<span class='count'>#{project_curator.user.observations.count}</span> "+t(:observations), observations_by_login_path(project_curator.user.login)) %>
+            <%= link_to("<span class='count'>#{project_curator.user.observations.count}</span> #{t(:observations)}".html_safe, observations_by_login_path(project_curator.user.login)) %>
           </div>
         </div>
       <% end %>
     </div>
-    <div class="description">
-    <%=t :please_be_aware_that_project_curators %> 
-    </div>
+    <%=t 'views.projects.project_location_privacy_notice_html' %>
     <%= separator %>
   
     <% unless @project.terms.blank? -%>
