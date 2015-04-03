@@ -141,8 +141,7 @@ class UsersController < ApplicationController
       if params[:spammer] === "false"
         @user.flags_on_spam_content.each do |flag|
           flag.resolved = true
-          flag.resolver = current_user
-          flag.save
+          flag.save!
         end
         @user.unsuspend!
       end

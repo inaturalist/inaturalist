@@ -198,7 +198,6 @@ def work_on_collection(eol_collection_id)
       existing = the_list.listed_taxa.includes(taxon: :taxon_names).
         where(taxon_names: { lexicon: TaxonName::SCIENTIFIC_NAMES }).
         where("LOWER(taxon_names.name) = ?", list_item.strip.downcase).first
-      ])
       if existing
         puts "\t\t#{list_item} already on #{the_list}, updating..."
         existing.update_attributes(:description => annotation) unless opts[:test]
