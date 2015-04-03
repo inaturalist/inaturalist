@@ -24,7 +24,7 @@ class ProjectObservation < ActiveRecord::Base
   ], :unless => "errors.any?"
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
 
-  preference :usage_according_to_terms, :boolean, default: false
+  preference :usage_according_to_terms, :boolean, default: nil
   before_validation :set_user
   before_create :set_usage_according_to_terms
 
@@ -50,8 +50,12 @@ class ProjectObservation < ActiveRecord::Base
   end
 
   def set_usage_according_to_terms
-    return true unless project_user
-    self.preferred_usage_according_to_terms = project_user.preferred_usage_according_to_terms if preferred_usage_according_to_terms.nil?
+    return true unless preferred_usage_according_to_terms.nil?
+    if project_user
+      self.preferred_usage_according_to_terms = project_user.preferred_usage_according_to_terms
+    end
+    self.preferred_usage_according_to_terms = false if preferred_usage_according_to_terms.nil?
+    true
   end
 
   def project_user

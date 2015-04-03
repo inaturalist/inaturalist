@@ -36,6 +36,26 @@ describe ProjectObservation, "creation" do
     expect(o.updated_at).to be > o.created_at
   end
 
+  it "should set usage_according_to_terms to false by default" do
+    expect( ProjectObservation.make!.prefers_usage_according_to_terms? ).to be false
+  end
+  
+  it "should set usage_according_to_terms to true project user prefers it" do
+    pu = ProjectUser.make!
+    expect( pu.prefers_usage_according_to_terms? ).to be true
+    po = ProjectObservation.make!(project: pu.project, observation: Observation.make!(user: pu.user))
+    expect( po.prefers_usage_according_to_terms? ).to be true
+  end
+
+  it "should set usage_according_to_terms to false project user prefers it" do
+    pu = ProjectUser.make!(prefers_usage_according_to_terms: false)
+    expect( pu.prefers_usage_according_to_terms? ).to be false
+    o = Observation.make!(user: pu.user)
+    po = ProjectObservation.make(project: pu.project, observation: o)
+    po.save!
+    expect( po.prefers_usage_according_to_terms? ).to be false
+  end
+
   describe "updates" do
     it "should be generated for the observer" do
       pu = ProjectUser.make!(role: ProjectUser::CURATOR)

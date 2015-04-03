@@ -63,8 +63,8 @@
           label: t(:send_me_updates_from_this_project), 
           description: t('views.projects.updates_desc'),
           data: {autosubmit: true}
-      = link_to(t(:leave_this_project) , leave_project_path(@project), :method => :delete, :class => "ui description",
-        :data => {:confirm => t(:are_you_sure_leave_this_project)})
+      = link_to t(:leave_this_project) , confirm_leave_project_path(@project), 'class': "ui description"
+
   %h3=t :stats
   %ul.meta
     %li= t :x_taxa_observed_html, :count => number_with_delimiter(@contributor.taxa_count)

@@ -3785,23 +3785,12 @@ en:
         coordinates_desc: You must specify coordinates if you don't draw a boundary or upload KML.
         map_instruction: Use the polygon tool to draw the place boundary.
     projects:
-      project_location_privacy_notice_html: |
-        <p>
-          Please be aware project curators will be able to see any private
-          or obscured locations of your observations in this project, and
-          they will be able to add any of your observations to this project
-          unless you <a href="/users/edit">change your settings</a>.
-        </p>
-        <p>
-          If you are concerned about location privacy, do not join projects
-          unless you trust the project curators.
-        </p>
-      project_terms_desc_html: |
-        Allow the curators of this project to use your observations according
-        to the <a href="%{url}">project terms</a>.
-      updates_desc: |
-        Receive updates about this project on your dashboard and in the daily
-        updates email.
+      confirm_leave:
+        keep_observations_desc: |
+          Leave my observations in this project so project curators can
+          continue to see the private coordinates
+        remove_observations_desc: |
+          Remove all my observations from this project
       edit:
         bioblitz_create_a_new_place_html: |
           %{link}, make sure it has a boundary, then come back here and try again.
@@ -3879,6 +3868,20 @@ en:
           stats are calculated for all observations added within the specified
           place and time period, there may be many more participants than are
           listed here.
+      project_location_privacy_notice_html: |
+        <p>
+          Please be aware project curators will be able to see any private
+          or obscured locations of your observations in this project, and
+          they will be able to add any of your observations to this project
+          unless you <a href="/users/edit">change your settings</a>.
+        </p>
+        <p>
+          If you are concerned about location privacy, do not join projects
+          unless you trust the project curators.
+        </p>
+      project_terms_desc_html: |
+        Allow the curators of this project to use your observations according
+        to the <a href="%{url}">project terms</a>.
       show:
         bioblitz_results_desc_html: |
           <p>
@@ -3907,6 +3910,9 @@ en:
           This is the curated checklist and count of taxa from observations explictly added to this
           project, not all observations recorded at the place and time of this
           event.
+      updates_desc: |
+        Receive updates about this project on your dashboard and in the daily
+        updates email.
     shared:
       spam:
         message_for_owner_and_curators_html: |

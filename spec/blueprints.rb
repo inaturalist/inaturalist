@@ -210,7 +210,7 @@ Post.blueprint(:draft) do
 end
 
 Project.blueprint do
-  user { User.make }
+  user { User.make! }
   title { Faker::Lorem.sentence }
 end
 
@@ -225,8 +225,8 @@ ProjectList.blueprint do
 end
 
 ProjectObservation.blueprint do
-  observation { Observation.make }
-  project { Project.make } 
+  observation { Observation.make! }
+  project { Project.make! } 
 end
 
 ProjectObservationField.blueprint do
@@ -240,8 +240,8 @@ ProjectObservationRule.blueprint do
 end
 
 ProjectUser.blueprint do
-  user { User.make }
-  project { Project.make }
+  user { User.make! }
+  project { Project.make! }
 end
 
 ProjectUserInvitation.blueprint do
