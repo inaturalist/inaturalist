@@ -148,6 +148,7 @@ Rails.application.routes.draw do
     end
   end
   delete 'picasa/unlink' => 'picasa#unlink', :method => :delete
+  post 'flickr/unlink_flickr_account' => 'flickr#unlink_flickr_account', method: :post
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
   get 'flickr/photos.:format' => 'flickr#photos'
