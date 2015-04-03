@@ -21,7 +21,8 @@ class Photo < ActiveRecord::Base
   
   before_save :set_license, :trim_fields
   after_save :update_default_license,
-             :update_all_licenses
+             :update_all_licenses,
+             :index_observations
   
   COPYRIGHT = 0
   NO_COPYRIGHT = 7
@@ -172,7 +173,11 @@ class Photo < ActiveRecord::Base
     Photo.where(user_id: user_id).update_all(license: license)
     true
   end
-  
+
+  def index_observations
+    Observation.elastic_index!(scope: observations, delay: true)
+  end
+
   def editable_by?(user)
     return false if user.blank?
     user.id == user_id || observations.exists?(:user_id => user.id)
@@ -222,7 +227,7 @@ class Photo < ActiveRecord::Base
       end
     end
   end
-  
+
   # Retrieve info about a photo from its native source given its native id.  
   # Should be implemented by descendents
   def self.get_api_response(native_photo_id, options = {})
@@ -267,7 +272,7 @@ class Photo < ActiveRecord::Base
       id: id,
       license_code: license_code,
       attribution: attribution,
-      url: square_url
+      url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url
     }
   end
 

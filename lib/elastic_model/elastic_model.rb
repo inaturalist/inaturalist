@@ -130,19 +130,35 @@ module ElasticModel
           indexed_shape: {
             id: id_or_object(place),
             type: "place",
-            index: "places",
+            index: Place.index_name,
             path: "geometry_geojson" } } } }
   end
 
   def self.envelope_filter(options={})
     return unless options && options.is_a?(Hash) && options[:envelope]
-    nelat = options[:envelope][:nelat]
-    nelng = options[:envelope][:nelng]
-    swlat = options[:envelope][:swlat]
-    swlng = options[:envelope][:swlng]
+    # e.g. options = { envelope: { geojson: { nelat:X, nelng:Y... } } }
+    field = options[:envelope].first[0]
+    opts = options[:envelope].first[1]
+    # if we are given a user, then we return matches against any of that
+    # users observations' private coordinates. This is done with a gnarly
+    # query which basically says:
+    #   where public geom X OR ( obs.owner=user and private_geom X)
+    if opts[:user] && opts[:user].is_a?(User)
+      coords = opts.reject{ |k,v| k == :user }
+      return { or: [
+        envelope_filter({ envelope: { field => coords } }),
+        { and: [
+          { term: { "user.id": opts[:user].id } },
+          envelope_filter({ envelope: { "private_#{field}": coords } }) ]}
+      ]}
+    end
+    nelat = opts[:nelat]
+    nelng = opts[:nelng]
+    swlat = opts[:swlat]
+    swlng = opts[:swlng]
     return unless nelat || nelng || swlat || swlng
     { geo_shape: {
-        geojson: {
+        field => {
           shape: {
             type: "envelope",
             coordinates: [
@@ -195,7 +211,9 @@ module ElasticModel
     return unless datetime.is_a?(Date) || datetime.is_a?(Time)
     { day: datetime.day,
       month: datetime.month,
-      year: datetime.year }
+      year: datetime.year,
+      hour: datetime.respond_to?(:hour) ? datetime.hour : nil,
+      week: datetime.strftime("%W").to_i + 1 }
   end
 
 end

@@ -51,7 +51,7 @@ describe ActsAsElasticModel do
           { query: { filtered: { query: { match_all: { } },
             filter: { bool: { must: [ { geo_shape: { geojson: { shape: {
               type: "envelope", coordinates: [[-180, -90], [180, 88]]}}}}]}}}}}).and_return(true)
-        Observation.elastic_search(filters: [ { envelope: { nelat: 88 } } ])
+        Observation.elastic_search(filters: [ { envelope: { geojson: { nelat: 88 }}}])
       end
 
       it "adds place filters" do
@@ -59,7 +59,7 @@ describe ActsAsElasticModel do
         expect(Observation.__elasticsearch__).to receive(:search).with(
           { query: { filtered: { query: { match_all: { } },
             filter: { bool: { must: [ { geo_shape: { geojson: { indexed_shape: {
-              id: place.id, type: "place", index: "places", path: "geometry_geojson"
+              id: place.id, type: "place", index: "test_places", path: "geometry_geojson"
             }}}}]}}}}}).and_return(true)
         Observation.elastic_search(filters: [ { place: place } ])
       end

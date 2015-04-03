@@ -21,7 +21,8 @@ class Sound < ActiveRecord::Base
   
   before_save :set_license, :trim_fields
   after_save :update_default_license,
-             :update_all_licenses
+             :update_all_licenses,
+             :index_observations
   
   COPYRIGHT = 0
   NO_COPYRIGHT = 7
@@ -124,6 +125,10 @@ class Sound < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_licenses_same)
     Sound.where(user_id: user_id).update_all(license: license)
     true
+  end
+
+  def index_observations
+    Observation.elastic_index!(scope: observations, delay: true)
   end
 
   def editable_by?(user)

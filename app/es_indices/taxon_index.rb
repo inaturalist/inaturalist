@@ -18,7 +18,6 @@ class Taxon < ActiveRecord::Base
   end
 
   def as_indexed_json(options={})
-    preload_for_elastic_index
     json = {
       id: id,
       name: name,
@@ -47,24 +46,21 @@ class Taxon < ActiveRecord::Base
   # using a SQL call to avoid loading all the listed_taxa
   # into AR objects. This saves a lot of time when bulk indexing
   def self.prepare_batch_for_index(taxa)
-    # This query fetches the place_ids for each taxon
-    # and places them in an attribute `indexed_place_ids`
+    # make sure we default all caches to empty arrays
+    # this prevents future lookups for instances with no results
+    taxa.each{ |t| t.indexed_place_ids ||= [ ] }
     taxa_by_id = Hash[ taxa.map{ |t| [ t.id, t ] } ]
     batch_ids_string = taxa_by_id.keys.join(",")
+    # fetch all place_ids store them in `indexed_place_ids`
     connection.execute("
       SELECT taxon_id, place_id
       FROM listed_taxa lt
       JOIN places p ON (lt.place_id = p.id)
       WHERE lt.taxon_id IN (#{ batch_ids_string })").to_a.each do |r|
       if t = taxa_by_id[ r["taxon_id"].to_i ]
-        t.indexed_place_ids ||= [ ]
         t.indexed_place_ids << r["place_id"].to_i
       end
     end
-    # make sure we default indexed_place_ids = [ ] since
-    # we know  anything without place_ids doesn't have
-    # any, and we don't want to query the DB again later
-    taxa.each{ |t| t.indexed_place_ids ||= [ ] }
   end
 
 end

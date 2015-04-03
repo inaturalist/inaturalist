@@ -2265,19 +2265,6 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  # it is sometimes beneficial run a complicated query and cache the results,
-  # but you still want the latest versions of the objects cached. Obj.reload
-  # will do that for one object. To do it for several items, this is more
-  # efficient than making one query per item
-  def self.reload_collection(observations)
-    latest = Observation.where(id: observations)
-    observations.each do |o|
-      if match = latest.detect{ |l| l.id == o.id }
-        o = match
-      end
-    end
-  end
-
   # 2014-01 I tried improving performance by loading ancestor taxa for each
   # batch, but it didn't really speed things up much
   def self.generate_csv(scope, options = {})
@@ -2443,6 +2430,12 @@ class Observation < ActiveRecord::Base
       Place.including_observation(self).each do |place|
         ObservationsPlace.create(observation: self, place: place)
       end
+    end
+  end
+
+  def observation_photos_finished_processing
+    observation_photos.select do |op|
+      ! (op.photo.is_a?(LocalPhoto) && op.photo.processing?)
     end
   end
 

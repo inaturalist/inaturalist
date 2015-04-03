@@ -69,8 +69,8 @@ describe ElasticModel do
               indexed_shape: {
                 id: @place.id,
                 type: "place",
-                index: "places",
-                path: "geometry_geojson"} } } } )
+                index: "test_places",
+                path: "geometry_geojson" }}}})
     end
   end
 
@@ -78,27 +78,27 @@ describe ElasticModel do
     it "returns nil unless given an options has with some bounds" do
       expect( ElasticModel.envelope_filter({ }) ).to be nil
       expect( ElasticModel.envelope_filter(
-        { envelope: { nelat: 50 } } ) ).to be_a Hash
+        { envelope: { geojson: { nelat: 50 }}})).to be_a Hash
     end
 
     it "returns a proper envelope filter" do
       expect( ElasticModel.envelope_filter(
-        { envelope: { nelat: 11, nelng: 12, swlat: 13, swlng: 14 } } ) ).to eq({
+        { envelope: { geojson: { nelat: 11, nelng: 12, swlat: 13, swlng: 14 }}})).to eq({
           geo_shape: {
             geojson: {
               shape: {
                 type: "envelope",
-                coordinates: [[14, 13], [12, 11]] } } } } )
+                coordinates: [[14, 13], [12, 11]] }}}})
     end
 
     it "defaults bounds to their extreme" do
       expect( ElasticModel.envelope_filter(
-        { envelope: { nelat: 88 } } ) ).to eq({
+        { envelope: { geojson: { nelat: 88 }}})).to eq({
           geo_shape: {
             geojson: {
               shape: {
                 type: "envelope",
-                coordinates: [[-180, -90], [180, 88]] } } } } )
+                coordinates: [[-180, -90], [180, 88]] }}}})
     end
   end
 

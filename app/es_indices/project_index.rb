@@ -11,7 +11,7 @@ class Project < ActiveRecord::Base
         search_analyzer: "keyword_analyzer"
       indexes :description, index_analyzer: "ascii_snowball_analyzer",
         search_analyzer: "ascii_snowball_analyzer"
-      indexes :location, type: "geo_point"
+      indexes :location, type: "geo_point", lat_lon: true
       indexes :geojson, type: "geo_shape"
     end
   end

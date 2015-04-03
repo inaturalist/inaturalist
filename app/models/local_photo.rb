@@ -191,5 +191,9 @@ class LocalPhoto < Photo
     self.file.reprocess!
     self.save
   end
-  
+
+  def processing?
+    square_url.blank? || square_url.include?(LocalPhoto.new.file(:square))
+  end
+
 end

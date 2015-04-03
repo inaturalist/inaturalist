@@ -44,8 +44,23 @@ module ActsAsElasticModel
       #   Place.elastic_index!(scope: Place.where(id: [1,2,3,...]), batch_size: 20)
       def elastic_index!(options = { })
         filter_scope = options.delete(:scope)
+        # this method will accept an existing scope
         scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
           filter_scope : self.all
+        # it also accepts an array of IDs to filter by
+        if filter_ids = options.delete(:ids)
+          scope = scope.where(id: filter_ids)
+        end
+        # indexing can be delayed
+        if options.delete(:delay)
+          # make sure to fetch the results of the scope and store
+          # the resulting IDs instead of scopes for DelayedJobs.
+          # For example, delayed calls this like are very efficient:
+          #   Observation.elastic_index!(scope: User.find(1).observations, delay: true)
+          return self.delay.elastic_index!(
+            options.merge(ids: scope.select(:id).order(:id).map(&:id)))
+        end
+        # now we can preload all associations needed for efficient indexing
         if self.respond_to?(:load_for_index)
           scope = scope.load_for_index
         end

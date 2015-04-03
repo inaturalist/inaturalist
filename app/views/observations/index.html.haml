@@ -1,0 +1,7 @@
+- content_for(:title) do
+  = t :observations_title
+- if @observation_partial_cache_key
+  - cache(@observation_partial_cache_key, expires_in: 5.minutes) do
+    = render(partial: "index")
+- else
+  = render(partial: "index")

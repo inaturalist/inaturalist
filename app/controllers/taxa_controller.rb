@@ -64,9 +64,7 @@ class TaxaController < ApplicationController
         @site_place = @site.place if @site
         @featured_taxa = Taxon.where("taxa.featured_at IS NOT NULL"). 
           order("taxa.featured_at DESC").
-          limit(100).
-          includes(:iconic_taxon, :photos, { taxon_names: :place_taxon_names },
-            :taxon_descriptions)
+          limit(100)
         @featured_taxa = @featured_taxa.from_place(@site_place) if @site_place
         
         if @featured_taxa.blank?
@@ -74,19 +72,22 @@ class TaxaController < ApplicationController
             "taxa.wikipedia_summary IS NOT NULL AND " +
             "photos.id IS NOT NULL AND " +
             "taxa.observations_count > 1"
-          ).includes(:iconic_taxon, :photos, { taxon_names: :place_taxon_names },
-            :taxon_descriptions)
+          )
           order("taxa.id DESC")
           @featured_taxa = @featured_taxa.from_place(@site_place) if @site_place
         end
         
         # Shuffle the taxa (http://snippets.dzone.com/posts/show/2994)
         @featured_taxa = @featured_taxa.sort_by{rand}[0..10]
+        Taxon.preload_associations(@featured_taxa, [
+          :iconic_taxon, :photos, :taxon_descriptions,
+          { taxon_names: :place_taxon_names } ])
         featured_taxa_obs = @featured_taxa.map do |taxon|
-          scope = taxon.observations.order("id DESC").includes(:user)
+          scope = taxon.observations.order("id DESC")
           scope = scope.where(:site_id => @site) if @site
           scope.first
         end.compact
+        Observation.preload_associations(featured_taxa_obs, :user)
         @featured_taxa_obs_by_taxon_id = featured_taxa_obs.index_by(&:taxon_id)
         
         flash[:notice] = @status unless @status.blank?
@@ -96,14 +97,18 @@ class TaxaController < ApplicationController
         else
           @iconic_taxa = Taxon::ICONIC_TAXA
           q = if @site
-            "SELECT * from observations WHERE taxon_id IS NOT NULL AND site_id = #{@site.id} ORDER BY observed_on DESC NULLS LAST LIMIT 10"
+            "SELECT * from observations WHERE taxon_id IS NOT NULL
+             AND site_id = #{@site.id} AND observed_on >= '#{1.month.ago.to_date}'
+             ORDER BY observed_on DESC NULLS LAST LIMIT 10"
           else
-            "SELECT * from observations WHERE taxon_id IS NOT NULL ORDER BY observed_on DESC NULLS LAST LIMIT 10"
+            "SELECT * from observations WHERE taxon_id IS NOT NULL
+             AND observed_on >= '#{1.month.ago.to_date}'
+             ORDER BY observed_on DESC NULLS LAST LIMIT 10"
           end
           @recent = Observation.
             select("DISTINCT ON (taxon_id) *").
             from("(#{q}) AS observations").
-            includes(:taxon => [:taxon_names]).
+            includes(:taxon => [ { taxon_names: :place_taxon_names }, :photos ]).
             limit(5)
           @recent = @recent.where(:site_id => @site.id) if @site && CONFIG.site_only_observations
           @recent = @recent.sort_by(&:id).reverse
@@ -188,8 +193,9 @@ class TaxaController < ApplicationController
         @taxon_links = TaxonLink.by_taxon(@taxon, :reject_places => @places.blank?)
 
         @observations = Observation.of(@taxon).recently_added.
-          includes(:projects, :user, :taxon, :photos).limit(12)
-        
+          preload(:projects, :taxon, :stored_preferences, :flags,
+            :quality_metrics, { user: :stored_preferences },
+            { photos: :flags } ).limit(12)
         @photos = Rails.cache.fetch(@taxon.photos_cache_key) do
           @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
         end

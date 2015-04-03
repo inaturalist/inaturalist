@@ -4,6 +4,8 @@ class ObservationSound < ActiveRecord::Base
   after_create :set_observation_sounds_count
   after_destroy :set_observation_sounds_count
 
+  include Shared::TouchesObservationModule
+
   def set_observation_sounds_count
     return true unless observation_id
     Observation.where(id: observation_id).update_all(

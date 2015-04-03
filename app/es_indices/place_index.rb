@@ -5,8 +5,10 @@ class Place < ActiveRecord::Base
   scope :load_for_index, -> { includes(:place_geometry) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
+      indexes :id, type: "integer"
+      indexes :place_type, type: "integer"
       indexes :geometry_geojson, type: "geo_shape"
-      indexes :location, type: "geo_point"
+      indexes :location, type: "geo_point", lat_lon: true
       indexes :point_geojson, type: "geo_shape"
       indexes :bbox_area, type: "double"
       indexes :display_name, index_analyzer: "ascii_snowball_analyzer",

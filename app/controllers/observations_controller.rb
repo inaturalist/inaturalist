@@ -96,7 +96,25 @@ class ObservationsController < ApplicationController
     end
 
     search_params = site_search_params(params)
-    @observations = get_elastic_paginated_observations(search_params)
+    # making `page` default to a string because HTTP params are
+    # usually strings and we want to keep the cache_key consistent
+    search_params[:page] ||= "1"
+    if perform_caching && search_params[:q].blank? && (!logged_in? || search_params[:page].to_i == 1)
+      cache_params = search_params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
+      cache_params[:locale] ||= I18n.locale
+      cache_params[:per_page] ||= search_params[:per_page]
+      cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
+      cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
+      cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.sort.to_s)}"
+      # setting a unique key to be used to cache view partials
+      @observation_partial_cache_key = "obs_component_#{Digest::MD5.hexdigest(cache_params.sort.to_s)}"
+      # Get the cached filtered observations
+      @observations = Rails.cache.fetch(cache_key, expires_in: 5.minutes, compress: true) do
+        get_elastic_paginated_observations(search_params)
+      end
+    else
+      @observations = get_elastic_paginated_observations(search_params)
+    end
 
     respond_to do |format|
       
@@ -2027,6 +2045,9 @@ class ObservationsController < ApplicationController
     @swlng = search_params[:swlng] unless search_params[:swlng].blank?
     @nelat = search_params[:nelat] unless search_params[:nelat].blank?
     @nelng = search_params[:nelng] unless search_params[:nelng].blank?
+    if @swlat.blank? && @swlng.blank? && @nelat.blank? && @nelng.blank? && search_params[:BBOX]
+      @swlng, @swlat, @nelng, @nelat = params[:BBOX].split(',')
+    end
     unless search_params[:place_id].blank?
       @place = begin
         Place.find(search_params[:place_id])
@@ -2257,6 +2278,8 @@ class ObservationsController < ApplicationController
     # when searching. Remove empty values before checking
     unless (Observation::NON_ELASTIC_ATTRIBUTES &
             search_params.reject{ |k,v| v.blank? || v == "any" }.keys).blank?
+      # if we have one of these non-elastic attributes,
+      # then default to searching PostgreSQL via ActiveRecord
       return get_paginated_observations(search_params, find_options)
     end
     search_wheres = { }
@@ -2279,6 +2302,8 @@ class ObservationsController < ApplicationController
     end
     search_wheres["user.id"] = @user if @user
     search_wheres["taxon.rank"] = @rank if @rank
+    # include the taxon plus all of its descendants.
+    # Every taxon has its own ID in ancestor_ids
     search_wheres["taxon.ancestor_ids"] = @observations_taxon if @observations_taxon
     search_wheres["id_please"] = true if @id_please
     search_wheres["out_of_range"] = true if @out_of_range
@@ -2322,11 +2347,20 @@ class ObservationsController < ApplicationController
 
     search_filters = [ ]
     unless @nelat.blank? && @nelng.blank? && @swlat.blank? && @swlng.blank?
-      search_filters << { envelope: {
-        nelat: @nelat, nelng: @nelng, swlat: @swlat, swlng: @swlng } }
+      search_filters << { envelope: { geojson: {
+        nelat: @nelat, nelng: @nelng, swlat: @swlat, swlng: @swlng,
+        user: current_user } } }
+    end
+    if search_params[:lat] && search_params[:lng]
+      search_filters << { geo_distance: {
+        distance: "#{search_params["radius"] || 10}km",
+        location: {
+          lat: search_params[:lat], lon: search_params[:lng] } } }
     end
     search_filters << { place: @place } if @place
-    search_filters << { exists: { field: "photos" } } if @with_photos
+    # make sure the photo has a URL, that will prevent images that are
+    # still processing from being returned by has[]=photos requests
+    search_filters << { exists: { field: "photos.url" } } if @with_photos
     search_filters << { exists: { field: "sounds" } } if @with_sounds
     search_filters << { exists: { field: "geojson" } } if @with_geo
     unless @iconic_taxa.blank?
@@ -2826,7 +2860,8 @@ class ObservationsController < ApplicationController
     if @observations.empty?
       render(:text => '')
     else
-      render(:partial => partial, :collection => @observations, :layout => false)
+      render(partial: "partial_renderer",
+        locals: { partial: partial, collection: @observations }, layout: false)
     end
   end
 
