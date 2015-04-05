@@ -105,7 +105,7 @@ Rails.application.routes.draw do
   get '/auth/failure' => 'provider_authorizations#failure', :as => :omniauth_failure
   get '/auth/:provider' => 'provider_authorizations#blank'
   get '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback
-  get '/auth/:provider/disconnect' => 'provider_authorizations#destroy', :as => :omniauth_disconnect, :method => 'delete'
+  delete '/auth/:provider/disconnect' => 'provider_authorizations#destroy', :as => :omniauth_disconnect
   get '/users/edit_after_auth' => 'users#edit_after_auth', :as => :edit_after_auth
   get '/facebook/photo_fields' => 'facebook#photo_fields'
   get "/eol/photo_fields" => "eol#photo_fields"
@@ -147,8 +147,8 @@ Rails.application.routes.draw do
       put :rotate
     end
   end
-  delete 'picasa/unlink' => 'picasa#unlink', :method => :delete
-  post 'flickr/unlink_flickr_account' => 'flickr#unlink_flickr_account', method: :post
+  delete 'picasa/unlink' => 'picasa#unlink'
+  post 'flickr/unlink_flickr_account' => 'flickr#unlink_flickr_account'
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
   get 'flickr/photos.:format' => 'flickr#photos'

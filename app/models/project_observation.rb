@@ -70,7 +70,7 @@ class ProjectObservation < ActiveRecord::Base
   def update_curator_identification
     return true if observation.new_record?
     return true if observation.owners_identification.blank?
-    Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(observation.owners_identification)
+    Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(observation.owners_identification.id)
     true
   end
 
