@@ -112,9 +112,14 @@ module ActsAsElasticModel
     end
 
     def elastic_delete!
-      __elasticsearch__.delete_document
-      # in the test ENV, we will need to wait for changes to be applied
-      self.class.__elasticsearch__.refresh_index! if Rails.env.test?
+      begin
+        __elasticsearch__.delete_document
+        # in the test ENV, we will need to wait for changes to be applied
+        self.class.__elasticsearch__.refresh_index! if Rails.env.test?
+      rescue Elasticsearch::Transport::Transport::Errors::NotFound => e
+        Rails.logger.error "[Error] elastic_delete! failed: #{ e }"
+        Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+      end
     end
 
     private
