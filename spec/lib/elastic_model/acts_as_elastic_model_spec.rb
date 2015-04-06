@@ -2,11 +2,11 @@ require "spec_helper"
 
 describe ActsAsElasticModel do
 
-  before(:each) { enable_elastic_indexing([ Observation ]) }
-  after(:each) { disable_elastic_indexing([ Observation ]) }
+  before(:each) { enable_elastic_indexing([ Observation, Taxon ]) }
+  after(:each) { disable_elastic_indexing([ Observation, Taxon ]) }
 
   describe "callbacks" do
-    it "properly indexes the document" do
+    it "properly indexes the document on create" do
       obs = Observation.make!
       result = Observation.elastic_search( where: { id: obs.id } )
       expect( result.count ).to eq 1
@@ -16,11 +16,20 @@ describe ActsAsElasticModel do
       expect( result.first.user.login ).to eq obs.user.login
     end
 
-    it "properly deletes the document" do
+    it "properly deletes the document on destroy" do
       obs = Observation.make!
       expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 1
       obs.destroy
       expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 0
+    end
+
+    it "properly deletes the document on commit" do
+      obs = Observation.make!
+      expect(obs).to receive(:elastic_delete!).twice
+      # we need to destroy to make sure we hit the after_commit on: destroy
+      obs.destroy!
+      # forcing the commit, which doesn't usually happen in specs
+      obs.run_callbacks(:commit)
     end
   end
 
@@ -103,21 +112,64 @@ describe ActsAsElasticModel do
         expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 1
       end
 
+      it "accepts a scope" do
+        obs1 = Observation.make!
+        obs2 = Observation.make!
+        obs1.elastic_delete!
+        obs2.elastic_delete!
+        expect( Observation.elastic_search( ).count ).to eq 0
+        Observation.elastic_index!(scope: Observation.where(id: obs2))
+        expect( Observation.elastic_search( ).count ).to eq 1
+        expect( Observation.elastic_search( ).first.id.to_i ).to eq obs2.id
+      end
+
+      it "accepts an array of ids" do
+        obs1 = Observation.make!
+        obs2 = Observation.make!
+        obs1.elastic_delete!
+        obs2.elastic_delete!
+        expect( Observation.elastic_search( ).count ).to eq 0
+        Observation.elastic_index!(ids: [ obs2.id ])
+        expect( Observation.elastic_search( ).count ).to eq 1
+        expect( Observation.elastic_search( ).first.id.to_i ).to eq obs2.id
+      end
+
       it "calls prepare_batch_for_index if it exists" do
         # Taxon uses prepare_batch_for_index, so it good for this test
         taxon = Taxon.make!
         expect(Taxon).to receive(:prepare_batch_for_index)
         Taxon.elastic_index!
       end
+
+      it "exceptions are caught silently" do
+        expect(Observation.__elasticsearch__.client).to receive(:bulk).
+          and_raise(Elasticsearch::Transport::Transport::Errors::BadRequest)
+        obs = Observation.make!
+        obs.elastic_delete!
+        Observation.elastic_index!
+        expect( Observation.elastic_search( ).count ).to eq 0
+      end
     end
   end
 
   describe "instance methods" do
     describe "elastic_index!" do
-      it "calls prepare_batch_for_index if it exists" do
+      it "indexes the instance" do
         taxon = Taxon.make!
-        expect(Taxon).to receive(:prepare_batch_for_index)
-        Taxon.elastic_index!
+        Taxon.all.each{ |t| t.elastic_delete! }
+        expect( Taxon.elastic_search( ).count ).to eq 0
+        taxon.elastic_index!
+        expect( Taxon.elastic_search( ).count ).to eq 1
+      end
+
+      it "exceptions are caught silently" do
+        taxon = Taxon.make!
+        expect(taxon.__elasticsearch__).to receive(:index_document).
+          and_raise(Elasticsearch::Transport::Transport::Errors::BadRequest)
+        Taxon.all.each{ |t| t.elastic_delete! }
+        expect( Taxon.elastic_search( ).count ).to eq 0
+        taxon.elastic_index!
+        expect( Taxon.elastic_search( ).count ).to eq 0
       end
     end
   end

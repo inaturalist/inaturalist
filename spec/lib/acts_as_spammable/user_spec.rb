@@ -74,4 +74,15 @@ describe User, "spam" do
     expect(u).not_to be_spammer
   end
 
+  describe "set_as_non_spammer_if_meets_criteria" do
+    it "should set spammer to false after 3 research grade observations" do
+      u = User.make!
+      obs = Observation.make!(user: u, quality_grade: "research")
+      expect(u.spammer).to be nil
+      obs = Observation.make!(user: u, quality_grade: "research")
+      expect(u.spammer).to be nil
+      obs = Observation.make!(user: u, quality_grade: "research")
+      expect(u.spammer).to be false
+    end
+  end
 end

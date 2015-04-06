@@ -37,7 +37,7 @@ class Observation < ActiveRecord::Base
       indexes :license_code, index_analyzer: "keyword_analyzer",
         search_analyzer: "keyword_analyzer"
       indexes :observed_on_string, type: "string"
-      indexes :location, type: "geo_point", lat_lon: true
+      indexes :location, type: "geo_point", lat_lon: true, geohash: true, geohash_precision: 10
       indexes :private_location, type: "geo_point", lat_lon: true
       indexes :geojson, type: "geo_shape"
       indexes :private_geojson, type: "geo_shape"
@@ -72,7 +72,7 @@ class Observation < ActiveRecord::Base
         (num_identification_agreements > 0),
       identifications_most_disagree:
         (num_identification_agreements < num_identification_disagreements),
-      project_ids: (indexed_project_ids ||project_observations.map(&:project_id)).compact.uniq,
+      project_ids: (indexed_project_ids || project_observations.map(&:project_id)).compact.uniq,
       tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
       user: user ? user.as_indexed_json : nil,
       taxon: taxon ? taxon.as_indexed_json(basic: true) : nil,
@@ -114,7 +114,7 @@ class Observation < ActiveRecord::Base
       SELECT observation_id, project_id
       FROM project_observations
       WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
-      if o = observations_by_id[ r["taggable_id"].to_i ]
+      if o = observations_by_id[ r["observation_id"].to_i ]
         o.indexed_project_ids << r["project_id"].to_i
       end
     end

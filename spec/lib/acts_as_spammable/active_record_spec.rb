@@ -22,11 +22,24 @@ describe "ActsAsSpammable", "ActiveRecord" do
     expect(o.spam?).to be false
   end
 
-  it "knows when it has been flagged as spam" do
+  it "knows when things been flagged as spam" do
     o = Observation.make!(user: @user)
     expect(o.flagged_as_spam?).to be false
     Flag.make!(flaggable: o, flag: Flag::SPAM)
     expect(o.flagged_as_spam?).to be true
+    expect(Observation.flagged_as_spam.first.id).to be o.id
+  end
+
+  it "knows when things been flagged as spam when flags have been preloaded" do
+    o = Observation.make!(user: @user)
+    Flag.make!(flaggable: o, flag: Flag::SPAM)
+    o = Observation.where(id: o).includes(:flags).first
+    expect(o.flagged_as_spam?).to be true
+  end
+
+  it "knows when thing have not been flagged as spam" do
+    o = Observation.make!(user: @user)
+    expect(Observation.not_flagged_as_spam.first.id).to be o.id
   end
 
   it "resolved flags are not spam" do
@@ -98,6 +111,20 @@ describe "ActsAsSpammable", "ActiveRecord" do
     Flag.make!(flaggable: o, flag: Flag::SPAM, user: @user)
     o.reload
     expect(o.known_spam?).to be true
+  end
+
+  it "identifies guide taxa as not spam if its sections aren't spam" do
+    gt = GuideTaxon.make!
+    section = GuideSection.make!(guide_taxon: gt)
+    expect(gt.known_spam?).to be false
+  end
+
+  it "identifies guide taxa as known_spam? if its sections are spam" do
+    gt = GuideTaxon.make!
+    section = GuideSection.make!(guide_taxon: gt)
+    Flag.make!(flaggable: section, flag: Flag::SPAM)
+    gt.reload
+    expect(gt.known_spam?).to be true
   end
 
   it "identifies spammer-owned content as owned_by_spammer?" do
