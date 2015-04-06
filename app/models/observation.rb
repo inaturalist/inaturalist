@@ -1,5 +1,8 @@
 #encoding: utf-8
 class Observation < ActiveRecord::Base
+
+  include ActsAsElasticModel
+
   has_subscribers :to => {
     :comments => {:notification => "activity", :include_owner => true},
     :identifications => {:notification => "activity", :include_owner => true}
@@ -27,7 +30,6 @@ class Observation < ActiveRecord::Base
   acts_as_taggable
   acts_as_spammable :fields => [ :description ],
                     :comment_type => "item-description"
-  
   include Ambidextrous
   
   # Set to true if you want to skip the expensive updating of all the user's

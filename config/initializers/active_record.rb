@@ -42,20 +42,32 @@ module ActiveRecord
       if date == 'today'
         return ["#{column} >= ? AND #{column} < ?", Date.today.to_s, Date.tomorrow.to_s]
       end
-      year, month, day = date.to_s.split('-').map do |d|
-        d = d.blank? ? nil : d.to_i
-        d == 0 ? nil : d
-      end
-      if year || month || day
-        begin
-          extract_date_ranges(column, year, month, day) ||
-            extract_date_conditions(column, year, month, day)
-        rescue ArgumentError => e
-          raise e unless e.message =~ /invalid date/
-          "1 = 2"
+      begin
+        conditions = nil
+        if d = split_date(date)
+          conditions = extract_date_ranges(column, d[:year], d[:month], d[:day]) ||
+            extract_date_conditions(column, d[:year], d[:month], d[:day])
         end
-      else
-        "1 = 2"
+      rescue ArgumentError => e
+        raise e unless e.message =~ /invalid date/
+      end
+      conditions || "1 = 2"
+    end
+
+    def self.split_date(date)
+      return unless date
+      date_copy = date.dup
+      if date_copy == "today"
+        date_copy = Time.now
+      end
+      if date_copy.is_a?(Date) || date_copy.is_a?(Time)
+        { year: date_copy.year, month: date_copy.month, day: date_copy.day }
+      elsif date_copy.is_a?(String)
+        year, month, day = date_copy.to_s.split('-').map do |d|
+          d = d.blank? ? nil : d.to_i
+          d == 0 ? nil : d
+        end
+        { year: year, month: month, day: day }
       end
     end
 

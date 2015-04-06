@@ -1,6 +1,10 @@
 #encoding: utf-8
 class Place < ActiveRecord::Base
+
+  include ActsAsElasticModel
+
   has_ancestry
+
   belongs_to :user
   belongs_to :check_list, :dependent => :destroy
   belongs_to :source
@@ -210,7 +214,7 @@ class Place < ActiveRecord::Base
 
   scope :with_geom, -> { joins(:place_geometry).where("place_geometries.id IS NOT NULL") }
   scope :straddles_date_line, -> { where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)") }
-  
+
   def to_s
     "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 
     "place_type_name: #{place_type_name}, lat: #{latitude}, " +
@@ -763,6 +767,11 @@ class Place < ActiveRecord::Base
     options[:except] ||= []
     options[:except] += [:source_filename, :delta, :bbox_area]
     super(options)
+  end
+
+  def ancestor_place_ids
+    return unless ancestry
+    ancestry.split("/").map(&:to_i) << id
   end
 
   def self_and_ancestors

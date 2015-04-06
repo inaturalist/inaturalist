@@ -1,4 +1,7 @@
 class Project < ActiveRecord::Base
+
+  include ActsAsElasticModel
+
   belongs_to :user
   belongs_to :place, :inverse_of => :projects
   has_many :project_users, :dependent => :delete_all
@@ -404,7 +407,7 @@ class Project < ActiveRecord::Base
     unless usr = User.find_by_id(user_id)
       return
     end
-    proj.project_observations.find_each(:include => :observation, :conditions => ["observations.user_id = ?", usr]) do |po|
+    proj.project_observations.joins(:observation).where(["observations.user_id = ?", usr]).find_each do |po|
       po.destroy
     end
   end
@@ -509,4 +512,5 @@ class Project < ActiveRecord::Base
   def invite_only?
     preferred_membership_model == MEMBERSHIP_INVITE_ONLY
   end
+
 end

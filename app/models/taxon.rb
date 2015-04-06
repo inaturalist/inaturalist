@@ -17,10 +17,12 @@ class Taxon < ActiveRecord::Base
 
   # set this when you want methods to respond with user-specific content
   attr_accessor :current_user
-  
+
+  include ActsAsElasticModel
+
   acts_as_flaggable
   has_ancestry
-  
+
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
   has_many :taxon_changes
@@ -62,7 +64,8 @@ class Taxon < ActiveRecord::Base
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
              :handle_after_move
-  
+  after_commit :index_observations
+
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
                           :scope => [:ancestry, :is_active],
@@ -345,8 +348,7 @@ class Taxon < ActiveRecord::Base
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
   ICONIC_TAXA_BY_NAME = ICONIC_TAXA.index_by(&:name)
-  
-  
+
   def self.reset_iconic_taxa_constants_for_tests
     remove_const('ICONIC_TAXA')
     remove_const('ICONIC_TAXA_BY_ID')
@@ -378,7 +380,11 @@ class Taxon < ActiveRecord::Base
     end
     true
   end
-  
+
+  def index_observations
+    Observation.elastic_index!(scope: observations.select(:id), delay: true)
+  end
+
   def normalize_rank
     self.rank = Taxon.normalize_rank(self.rank)
     true
@@ -1592,7 +1598,7 @@ class Taxon < ActiveRecord::Base
       Taxon.where(id: t.id).update_all(observations_count: Observation.of(t).count)
     end
   end
-  
+
   # /Static #################################################################
   
 end

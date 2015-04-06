@@ -1,5 +1,5 @@
-# require 'simplecov'
-# SimpleCov.start
+require 'simplecov'
+SimpleCov.start
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] = 'test'
@@ -123,5 +123,23 @@ def stub_config(options = {})
         method_missing k.to_sym
       end
     end
+  end
+end
+
+def enable_elastic_indexing(classes)
+  classes.each do |klass|
+    klass.__elasticsearch__.create_index!
+    klass.send :after_save, :elastic_index!
+    klass.send :after_destroy, :elastic_delete!
+    klass.send :after_touch, :elastic_index!
+  end
+end
+
+def disable_elastic_indexing(classes)
+  classes.each do |klass|
+    klass.send :skip_callback, :save, :after, :elastic_index!
+    klass.send :skip_callback, :destroy, :after, :elastic_delete!
+    klass.send :skip_callback, :touch, :after, :elastic_index!
+    klass.__elasticsearch__.delete_index!
   end
 end

@@ -123,11 +123,15 @@ if CONFIG.statsd_host
   STATSD = Statsd.new( CONFIG.statsd_host, ( CONFIG.statsd_port || 8125 ) )
 end
 
+# TODO: is the geo_ruby stuff still used?
 # make sure we have geojson support
 require 'geo_ruby'
 require 'geo_ruby/geojson'
 require 'geo_ruby/shp4r/shp'
 require 'geo_ruby/kml'
+# geojson via RGeo
+require 'rgeo/geo_json'
 require 'google/api_client'
 require 'pp'
-
+require 'elasticsearch/model'
+require 'elasticsearch/rails/instrumentation'
