@@ -30,7 +30,6 @@ class Flag < ActiveRecord::Base
   validates_length_of :flag, :in => 3..256, :allow_blank => false
   validates_length_of :comment, :maximum => 256, :allow_blank => true
   validates_uniqueness_of :user_id, :scope => [:flaggable_id, :flaggable_type, :flag], :message => "has already flagged that item."
-  validates_presence_of :resolver, :if => Proc.new {|f| f.resolved? }
   validate :flaggable_type_valid
   
   def flaggable_type_valid

@@ -22,7 +22,7 @@
 #obsbutton {width: 290px; text-align:center;}
 .update {position:relative; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee; overflow:hidden;}
 .updateresource {width: 48px; position: absolute; text-align:center;left: 0; top:0;}
-.updateresource img {max-width: 48px;}
+.updateresource img, .updateresource img.square.photo {max-width: 48px;}
 .updateheader {padding-top: 5px;}
 .updatebody {margin-left: 56px;}
 .updateimage { width: 100px; float:left; margin-right: 10px;}
