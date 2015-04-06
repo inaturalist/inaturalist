@@ -2332,6 +2332,8 @@ class Observation < ActiveRecord::Base
     observations_to_share.each do |o|
       fb_api.put_connections("me", "#{CONFIG.facebook.namespace}:record", :observation => FakeView.observation_url(o))
     end
+  rescue OAuthException => e
+    Rails.logger.error "[ERROR #{Time.now}] Failed to share Observation #{id} on Facebook: #{e}"
   end
 
   # share this (and any subsequent) observations on twitter
