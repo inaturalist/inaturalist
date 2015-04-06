@@ -1,4 +1,4 @@
-require File.expand_path("../../spec_helper", __FILE__)
+require "spec_helper"
 
 describe ElasticModel do
 
@@ -53,6 +53,19 @@ describe ElasticModel do
     end
   end
 
+  describe "search_filters" do
+    it "returns nil unless given a hash with an array of filters" do
+      expect( ElasticModel.search_filters({ }) ).to be nil
+      expect( ElasticModel.search_filters({ filters: { } }) ).to be nil
+      expect( ElasticModel.search_filters({ filters: [ ] }) ).to eq [ ]
+    end
+
+    it "returns non-special filters verbatim" do
+      filters = [ { exists: { field: "photos.url" } } ]
+      expect( ElasticModel.search_filters({ filters: filters }) ).to eq filters
+    end
+  end
+
   describe "place_filter" do
     it "returns nil unless given an options has with a place filter" do
       expect( ElasticModel.place_filter(@place) ).to be nil
@@ -69,8 +82,8 @@ describe ElasticModel do
               indexed_shape: {
                 id: @place.id,
                 type: "place",
-                index: "places",
-                path: "geometry_geojson"} } } } )
+                index: "test_places",
+                path: "geometry_geojson" }}}})
     end
   end
 
@@ -78,27 +91,38 @@ describe ElasticModel do
     it "returns nil unless given an options has with some bounds" do
       expect( ElasticModel.envelope_filter({ }) ).to be nil
       expect( ElasticModel.envelope_filter(
-        { envelope: { nelat: 50 } } ) ).to be_a Hash
+        { envelope: { geojson: { nelat: 50 }}})).to be_a Hash
     end
 
     it "returns a proper envelope filter" do
       expect( ElasticModel.envelope_filter(
-        { envelope: { nelat: 11, nelng: 12, swlat: 13, swlng: 14 } } ) ).to eq({
+        { envelope: { geojson: { nelat: 11, nelng: 12, swlat: 13, swlng: 14 }}})).to eq({
           geo_shape: {
             geojson: {
               shape: {
                 type: "envelope",
-                coordinates: [[14, 13], [12, 11]] } } } } )
+                coordinates: [[14, 13], [12, 11]] }}}})
     end
 
     it "defaults bounds to their extreme" do
       expect( ElasticModel.envelope_filter(
-        { envelope: { nelat: 88 } } ) ).to eq({
+        { envelope: { geojson: { nelat: 88 }}})).to eq({
           geo_shape: {
             geojson: {
               shape: {
                 type: "envelope",
-                coordinates: [[-180, -90], [180, 88]] } } } } )
+                coordinates: [[-180, -90], [180, 88]] }}}})
+    end
+
+    it "allows users to search their oen private coordinates" do
+      u = User.make!
+      expect( ElasticModel.envelope_filter(
+        { envelope: { geojson: { nelat: 88, user: u }}})).to eq({
+          or: [
+            { geo_shape: { geojson: { shape: { type: "envelope", coordinates: [[-180, -90], [180, 88]]}}}},
+            { and: [
+              { term: { "user.id": u.id } },
+              { geo_shape: { private_geojson: { shape: { type: "envelope", coordinates: [[-180, -90], [180, 88]]}}}}]}]})
     end
   end
 
@@ -139,6 +163,16 @@ describe ElasticModel do
       expect( ElasticModel.geom_geojson(geom) ).to eq({
         "type" => "Point",
         "coordinates" => [1.0, 2.0] })
+    end
+  end
+
+  describe "result_to_will_paginate_collection" do
+    it "returns an empty WillPaginate Collection on errors" do
+      expect(WillPaginate::Collection).to receive(:create).
+        and_raise(Elasticsearch::Transport::Transport::Errors::BadRequest)
+      expect(ElasticModel.result_to_will_paginate_collection(
+        OpenStruct.new(current_page: 2, per_page: 11, total_entries: 57))).
+        to eq WillPaginate::Collection.new(1, 30, 0)
     end
   end
 

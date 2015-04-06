@@ -60,10 +60,6 @@ module ActsAsSpammable::User
     spammer == false
   end
 
-  def unknown_if_spammer?
-    ! known_non_spammer? && ! spammer?
-  end
-
   def set_as_non_spammer_if_meets_criteria
     return if known_non_spammer? || spammer?
     count_research_grade_observations =

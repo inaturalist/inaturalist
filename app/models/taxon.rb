@@ -18,7 +18,8 @@ class Taxon < ActiveRecord::Base
   # set this when you want methods to respond with user-specific content
   attr_accessor :current_user
 
-  acts_as_elastic_model
+  include ActsAsElasticModel
+
   acts_as_flaggable
   has_ancestry
 
@@ -63,7 +64,8 @@ class Taxon < ActiveRecord::Base
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
              :handle_after_move
-  
+  after_commit :index_observations
+
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
                           :scope => [:ancestry, :is_active],
@@ -378,7 +380,11 @@ class Taxon < ActiveRecord::Base
     end
     true
   end
-  
+
+  def index_observations
+    Observation.elastic_index!(scope: observations.select(:id), delay: true)
+  end
+
   def normalize_rank
     self.rank = Taxon.normalize_rank(self.rank)
     true

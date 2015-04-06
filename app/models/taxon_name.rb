@@ -1,6 +1,6 @@
 #encoding: utf-8
 class TaxonName < ActiveRecord::Base
-  belongs_to :taxon
+  belongs_to :taxon, touch: true
   belongs_to :source
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'

@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
 
-  acts_as_elastic_model
+  include ActsAsElasticModel
 
   belongs_to :user
   belongs_to :place, :inverse_of => :projects

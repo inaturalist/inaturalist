@@ -1,6 +1,8 @@
 #encoding: utf-8
 class Observation < ActiveRecord::Base
 
+  include ActsAsElasticModel
+
   has_subscribers :to => {
     :comments => {:notification => "activity", :include_owner => true},
     :identifications => {:notification => "activity", :include_owner => true}
@@ -25,7 +27,6 @@ class Observation < ActiveRecord::Base
       return false if observation.taxon.blank?
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
-  acts_as_elastic_model
   acts_as_taggable
   acts_as_spammable :fields => [ :description ],
                     :comment_type => "item-description"
