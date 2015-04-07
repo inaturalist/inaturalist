@@ -223,6 +223,13 @@ base: &base
     #     username: yourusername
     #     password: yourpassword
     #     notification_address: you@you.com
+    
+    # Elastic search for search indexing, other performance improvements
+    # ES also runs a syncing service on port 9300 by default. You want to use 
+    # the API port. See 
+    # http://stackoverflow.com/questions/19510659/java-io-streamcorruptedexception-invalid-internal-transport-message-format 
+    # for more details
+    elasticsearch_host: 127.0.0.1:9200
 
 development:
     <<: *base
