@@ -65,7 +65,7 @@ class Taxon < ActiveRecord::Base
              :set_wikipedia_summary_later,
              :handle_after_move
   after_commit :index_observations
-  
+
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
                           :scope => [:ancestry, :is_active],
