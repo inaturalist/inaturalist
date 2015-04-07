@@ -143,6 +143,11 @@
   <% end %>
 
   <fieldset class="observationrules">
+    <legend><%= t(:observation_aggregation).titleize %></legend>
+    <%= f.check_box :prefers_aggregation, label_after: true, label: "Automatically add observations to this project", description: "If your project has a taxon rule or it's associated with small-to-mid-sized place, you can turn on observation aggregation and observations matching your project rules will be automatically added to your project." %>
+  </fieldset>
+
+  <fieldset class="observationrules">
     <legend><%= t(:observation_rules).titleize %></legend>
     <p class="description">
       <%= raw t(:observation_rules_description, :site_name => SITE_NAME_SHORT) %>

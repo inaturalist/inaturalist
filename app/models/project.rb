@@ -38,6 +38,7 @@ class Project < ActiveRecord::Base
   preference :place_boundary_visible, :boolean, :default => false
   preference :count_by, :string, :default => 'species'
   preference :range_by_date, :boolean, :default => false
+  preference :aggregation, :boolean, default: false
 
   MEMBERSHIP_OPEN = 'open'
   MEMBERSHIP_INVITE_ONLY = 'inviteonly'
@@ -55,6 +56,14 @@ class Project < ActiveRecord::Base
   validates_presence_of :end_time, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :message => "can't be blank for a bioblitz"
   validate :place_with_boundary, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}
   validate :one_year_time_span, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :unless => "errors.any?"
+  validate :aggregation_preference_allowed?
+
+  def aggregation_preference_allowed?
+    return true unless prefers_aggregation?
+    return true if aggregation_allowed?
+    errors.add(:base, "cannot enable automatic observation aggregation with inadequate filters")
+    true
+  end
   
   scope :featured, -> { where("featured_at IS NOT NULL") }
   scope :in_group, lambda {|name| where(:group => name) }
@@ -504,5 +513,46 @@ class Project < ActiveRecord::Base
 
   def invite_only?
     preferred_membership_model == MEMBERSHIP_INVITE_ONLY
+  end
+
+  def aggregation_allowed?
+    return true if place && place.bbox_area < 141
+    return true if project_observation_rules.where("operator IN (?)", %w(in_taxon? on_list?)).exists?
+    false
+  end
+
+  def aggregate_observations(options = {})
+    return false unless aggregation_allowed?
+    logger = options[:logger] || Rails.logger
+    start_time = Time.now
+    added = 0
+    fails = 0
+    logger.info "[INFO #{Time.now}] Starting aggregation for #{self}"
+    scope = observations_matching_rules.query(observations_url_params)
+    scope = scope.where("observations.updated_at > ?", last_aggregated_at) unless last_aggregated_at.nil?
+    scope.find_each do |o|
+      po = ProjectObservation.new(project: self, observation: o)
+      if po.save
+        added += 1
+      else
+        fails += 1
+        logger.error "[ERROR #{Time.now}] Failed to add #{po} to #{self}: #{po.errors.full_messages.to_sentence}"
+      end
+    end
+    update_attributes(last_aggregated_at: Time.now)
+    logger.info "[INFO #{Time.now}] Finished aggregation for #{self} in #{Time.now - start_time}s, #{added} observations added, #{fails} failures"
+  end
+
+  def self.aggregate_observations(options = {})
+    logger = options[:logger] || Rails.logger
+    start_time = Time.now
+    num_projects = 0
+    logger.info "[INFO #{Time.now}] Starting Project.aggregate_observations"
+    Project.joins(:stored_preferences).where("preferences.name = 'aggregation' AND preferences.value = 't'").find_each do |p|
+      next unless p.aggregation_allowed? && p.prefers_aggregation?
+      p.aggregate_observations(logger: logger)
+      num_projects += 1
+    end
+    logger.info "[INFO #{Time.now}] Finished Project.aggregate_observations in #{Time.now - start_time}s, #{num_projects} projects"
   end
 end

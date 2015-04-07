@@ -2607,7 +2607,8 @@ CREATE TABLE projects (
     end_time timestamp without time zone,
     trusted boolean DEFAULT false,
     "group" character varying(255),
-    show_from_place boolean
+    show_from_place boolean,
+    last_aggregated_at timestamp without time zone
 );
 
 
@@ -7494,4 +7495,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150313171312');
 INSERT INTO schema_migrations (version) VALUES ('20150319205049');
 
 INSERT INTO schema_migrations (version) VALUES ('20150324004401');
+
+INSERT INTO schema_migrations (version) VALUES ('20150404012836');
 

@@ -235,7 +235,7 @@ ProjectObservationField.blueprint do
 end
 
 ProjectObservationRule.blueprint do
-  ruler { Project.make }
+  ruler { Project.make! }
   operator { "identified?" }
 end
 

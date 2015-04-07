@@ -4,11 +4,10 @@ class ProjectObservation < ActiveRecord::Base
   belongs_to :curator_identification, :class_name => "Identification"
   belongs_to :user
   validates_presence_of :project, :observation
-  # validate :observed_by_project_member?, :on => :create, :unless => "errors.any?"
   validate :observer_allows_addition?
   validate :observer_invited?
   validate :user_curates_project?, :unless => lambda {|record| 
-    record.user_id == record.observation.try(:user_id)
+    record.user_id.nil? || record.user_id == record.observation.try(:user_id)
   }
   validates_rules_from :project, :rule_methods => [
     :captive?,
@@ -25,7 +24,6 @@ class ProjectObservation < ActiveRecord::Base
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
 
   preference :usage_according_to_terms, :boolean, default: nil
-  before_validation :set_user
   before_create :set_usage_according_to_terms
 
   notifies_owner_of :observation, 
@@ -43,10 +41,6 @@ class ProjectObservation < ActiveRecord::Base
   
   after_destroy do |record|
     Update.where(resource: record.project, notifier: observation, notification: Update::YOUR_OBSERVATIONS_ADDED).delete_all
-  end
-
-  def set_user
-    self.user_id ||= observation.try(:user_id)
   end
 
   def set_usage_according_to_terms
