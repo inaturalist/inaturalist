@@ -38,6 +38,7 @@ class ListedTaxon < ActiveRecord::Base
   after_save :propagate_establishment_means
   after_save :remove_other_primary_listings
   after_save :update_attributes_on_related_listed_taxa
+  after_save :index_taxon
   after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
@@ -421,7 +422,11 @@ class ListedTaxon < ActiveRecord::Base
     Taxon.where(id: taxon_id).update_all(delta: true)
     true
   end
-  
+
+  def index_taxon
+    taxon.elastic_index!
+  end
+
   def update_cache_columns
     return true if @skip_update_cache_columns
     return true if list.is_a?(CheckList) && (!@force_update_cache_columns || place_id.blank?)
@@ -815,6 +820,7 @@ class ListedTaxon < ActiveRecord::Base
     end
     true
   end
+
   def make_primary_if_no_primary_exists
     update_attribute(:primary_listing, true) if !ListedTaxon.where({taxon_id:taxon_id, place_id: place_id, primary_listing: true}).present? && can_set_as_primary?
   end

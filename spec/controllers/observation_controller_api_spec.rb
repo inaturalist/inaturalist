@@ -684,6 +684,15 @@ shared_examples_for "an ObservationsController" do
       get :index, :format => :json
       response.body.should =~ /#{o.place_guess}/
     end
+
+    it "should search uris given a site" do
+      site1 = Observation.make!(uri: "http://a.b.org/1")
+      site2 = Observation.make!(uri: "http://c.d.org/2")
+      get :index, format: :json, site: "http://c.d.org"
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == site1.id}.should be_blank
+      json.detect{|obs| obs['id'] == site2.id}.should_not be_blank
+    end
   end
 
   describe "taxon_stats" do

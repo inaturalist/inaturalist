@@ -119,7 +119,9 @@ class Taxon < ActiveRecord::Base
     define_method "find_#{rank}" do
       return self if rank_level == level
       return nil if rank_level.to_i > level.to_i
-      @cached_ancestors ||= ancestors.select("id, name, rank, ancestry, iconic_taxon_id, rank_level, created_at, updated_at, is_active").all
+      @cached_ancestors ||= ancestors.select("id, name, rank, ancestry,
+        iconic_taxon_id, rank_level, created_at, updated_at, is_active,
+        observations_count").all
       @cached_ancestors.detect{|a| a.rank == rank}
     end
     alias_method(rank, "find_#{rank}") unless respond_to?(rank)

@@ -165,13 +165,29 @@ module ElasticModel
     swlat = opts[:swlat]
     swlng = opts[:swlng]
     return unless nelat || nelng || swlat || swlng
+    swlng = (swlng || -180).to_f
+    swlat = (swlat || -90).to_f
+    nelng = (nelng || 180).to_f
+    nelat = (nelat || 90).to_f
+    if nelng && swlng && nelng < swlng
+      # the envelope crosses the dateline. Unfortunately, elasticsearch
+      # doesn't handle this well and we need to split the envelope at
+      # the dateline and do an OR query
+      left = options.deep_dup
+      right = options.deep_dup
+      left[:envelope][field][:nelng] = 180
+      right[:envelope][field][:swlng] = -180
+      return { or: [
+          envelope_filter(left),
+          envelope_filter(right) ]}
+    end
     { geo_shape: {
         field => {
           shape: {
             type: "envelope",
             coordinates: [
-              [ swlng || -180, swlat || -90 ],
-              [ nelng || 180, nelat || 90 ] ] } } } }
+              [ swlng, swlat ],
+              [ nelng, nelat ] ] } } } }
   end
 
   def self.result_to_will_paginate_collection(result)

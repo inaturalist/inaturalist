@@ -383,23 +383,26 @@ class TaxaController < ApplicationController
     search_wheres["colors.id"] =  @color_ids if @color_ids
     search_wheres["place_ids"] =  @place_ids if @place_ids
     search_wheres["ancestor_ids"] =  @taxon.id if @taxon
-    search_result = Taxon.elastic_search(
-      where: search_wheres,
-      sort: { observations_count: "desc" },
+    search_options = { sort: { observations_count: "desc" },
       aggregate: {
         color: { "colors.id": 12 },
         iconic_taxon_id: { "iconic_taxon_id": 12 },
         place: { "places.id": 12 }
-      }
-    ).per_page(per_page).page(page)
+      } }
+    search_result = Taxon.elastic_search(search_options.merge(where: search_wheres)).
+      per_page(per_page).page(page)
+    # if there are no search results, and the search was performed with
+    # a search ID filter, but one wasn't asked for. This will happen when
+    # CONFIG.site_only_observations is true and a search filter is
+    # set automatically. Re-run the search w/o the place filter
+    if search_result.total_entries == 0 && params[:places].blank? && !search_wheres["place_ids"].blank?
+      search_wheres.delete("place_ids")
+      search_result = Taxon.elastic_search(search_options.merge(where: search_wheres)).
+        per_page(per_page).page(page)
+    end
     @taxa = ElasticModel.result_to_will_paginate_collection(search_result)
     Taxon.preload_associations(@taxa, [ { taxon_names: :place_taxon_names },
       { taxon_photos: :photo }, :taxon_descriptions ] )
-
-    # TODO: replace the bit here that was, I think, removing the site
-    # place from the query if it has been set automatically and
-    # there were no results in the site's default place
-    # if @facets.count > 0 && @taxa.size == 0 && params[:places].blank?
 
     @facets = { }
     if @facets[:iconic_taxon_id] = Hash[search_result.response.aggregations.iconic_taxon_id.buckets.map{ |b| [ b["key"], b["doc_count"] ]}]

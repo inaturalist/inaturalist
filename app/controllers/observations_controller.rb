@@ -2316,6 +2316,9 @@ class ObservationsController < ApplicationController
     search_wheres["observed_on_details.day"] = @observed_on_day if @observed_on_day
     search_wheres["observed_on_details.month"] = @observed_on_month if @observed_on_month
     search_wheres["observed_on_details.year"] = @observed_on_year if @observed_on_year
+    if search_params[:site] && host = URI.parse(search_params[:site]).host
+      search_wheres["uri"] = host
+    end
     if d = Observation.split_date(search_params[:created_on])
       search_wheres["created_at_details.day"] = d[:day] if d[:day] && d[:day] != 0
       search_wheres["created_at_details.month"] = d[:month] if d[:month] && d[:month] != 0
