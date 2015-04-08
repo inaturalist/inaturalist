@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
         @announcement = Announcement.where('placement = \'welcome/index\' AND ? BETWEEN "start" AND "end"', Time.now.utc).last
         @observations_cache_key = "#{SITE_NAME}_#{I18n.locale}_welcome_observations"
         unless fragment_exist?(@observations_cache_key)
-          @observations = Observation.has_geo.has_photos
+          @observations = Observation.has_geo.has_photos_finished_processing
                                      .includes([ :taxon,
                                                  :stored_preferences,
                                                  { :observation_photos => :photo },

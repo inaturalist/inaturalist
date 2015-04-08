@@ -2422,7 +2422,7 @@ class ObservationsController < ApplicationController
     observations
   end
 
-  # Either make a plain db query and return a WillPaginate collection or make 
+  # Either make a plain db query and return a WillPaginate collection or make
   # a Sphinx call if there were query terms specified.
   def get_paginated_observations(search_params, find_options)
     query_scope = Observation.query(search_params)

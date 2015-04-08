@@ -428,6 +428,11 @@ class Observation < ActiveRecord::Base
   scope :has_geo, -> { where("latitude IS NOT NULL AND longitude IS NOT NULL") }
   scope :has_id_please, -> { where("id_please IS TRUE") }
   scope :has_photos, -> { where("observation_photos_count > 0") }
+  # if a photo's URL is the same as a default local_photo URL, then
+  # that is a local photo still processing. This scope skips those
+  scope :has_photos_finished_processing, -> { joins(:photos).where("
+    square_url IS NOT NULL AND square_url NOT LIKE
+    '%#{ LocalPhoto.new.file(:square) }%'") }
   scope :has_sounds, -> { where("observation_sounds_count > 0") }
   scope :has_quality_grade, lambda {|quality_grade|
     quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
