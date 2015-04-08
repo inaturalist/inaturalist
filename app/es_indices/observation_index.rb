@@ -53,6 +53,8 @@ class Observation < ActiveRecord::Base
       updated_at: updated_at,
       observed_on: (Time.parse(observed_on_string) rescue observed_on),
       observed_on_details: ElasticModel.date_details(observed_on),
+      site_id: site_id,
+      uri: uri,
       description: description,
       mappable: mappable,
       species_guess: species_guess,
