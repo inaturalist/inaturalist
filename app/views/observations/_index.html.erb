@@ -1,17 +1,9 @@
-<% content_for(:title) do %>
-    <%=t :observations_title %>
-<% end %>
-
-<% content_for(:extracss) do %>
 <%= stylesheet_link_tag 'observations/filters', 'observations/_index' %>
 <!--[if lte IE 7]>
   <%= stylesheet_link_tag 'observations-ie', 'observations/index-ie' %>
 <![endif]-->
-<% end %>
 
-<% content_for(:extrajs) do %>
-  <%= javascript_include_tag "observations/filters", "observations/map" %>
-<% end %>
+<%= javascript_include_tag "observations/filters", "observations/map" %>
 
 <%= render :partial => 'map_header', :locals => {
   :title =>  t(:observations_title)
@@ -26,7 +18,7 @@
     <%= form_for :preferences, :url => url_for, :html => {:style => "float: left", :method => :get} do |f| %>
       <%= hidden_fields_for_params(:without => [:per_page, :page, :preferences]) %>
       <%= f.label t(:per_page) %>
-      <%= f.select :per_page, ApplicationController::PER_PAGES, 
+      <%= f.select :per_page, ApplicationController::PER_PAGES,
         {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
     <% end %>
   <% end -%>

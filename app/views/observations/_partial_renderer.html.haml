@@ -1,0 +1,7 @@
+- partial ||= nil
+- collection ||= [ ]
+- if @observation_partial_cache_key
+  - cache(@observation_partial_cache_key, expires_in: 5.minutes) do
+    = render(partial: "observations/#{partial}", collection: collection, layout: false)
+- else
+  = render(partial: "observations/#{partial}", collection: collection, layout: false)

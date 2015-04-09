@@ -96,12 +96,21 @@ describe ElasticModel do
 
     it "returns a proper envelope filter" do
       expect( ElasticModel.envelope_filter(
-        { envelope: { geojson: { nelat: 11, nelng: 12, swlat: 13, swlng: 14 }}})).to eq({
+        { envelope: { geojson: { nelat: 13, nelng: 14, swlat: 11, swlng: 12 }}})).to eq({
           geo_shape: {
             geojson: {
               shape: {
                 type: "envelope",
-                coordinates: [[14, 13], [12, 11]] }}}})
+                coordinates: [[12, 11], [14, 13]] }}}})
+    end
+
+    it "splits envelopes that cross the dateline" do
+      expect( ElasticModel.envelope_filter(
+        { envelope: { geojson: { nelat: 11, nelng: -150, swlat: 13, swlng: 50 }}})).to eq({
+          or: [{ geo_shape: { geojson: { shape: { type: "envelope",
+                  coordinates: [[50.0, 13.0], [180.0, 11.0]]}}}},
+               { geo_shape: { geojson: { shape: { type: "envelope",
+                  coordinates: [[-180.0, 13.0], [-150.0, 11.0]]}}}}]})
     end
 
     it "defaults bounds to their extreme" do
@@ -114,7 +123,7 @@ describe ElasticModel do
                 coordinates: [[-180, -90], [180, 88]] }}}})
     end
 
-    it "allows users to search their oen private coordinates" do
+    it "allows users to search their own private coordinates" do
       u = User.make!
       expect( ElasticModel.envelope_filter(
         { envelope: { geojson: { nelat: 88, user: u }}})).to eq({

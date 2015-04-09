@@ -241,12 +241,14 @@ class Observation < ActiveRecord::Base
   has_many :observations_places, :dependent => :destroy
 
   SPHINX_FIELD_NAMES = %w(names tags species_guess description place user observed_on_string)
-  SPHINX_ATTRIBUTE_NAMES = %w(user_id taxon_id has_photos created_at 
-    observed_on iconic_taxon_id id_please has_geo latitude longitude 
-    fake_latitude fake_longitude num_identification_agreements 
-    num_identification_disagreements identifications_most_agree 
+  SPHINX_ATTRIBUTE_NAMES = %w(user_id taxon_id has_photos created_at
+    observed_on iconic_taxon_id id_please has_geo latitude longitude
+    fake_latitude fake_longitude num_identification_agreements
+    num_identification_disagreements identifications_most_agree
     identifications_some_agree identifications_most_disagree projects)
-  
+  NON_ELASTIC_ATTRIBUTES = %w(cs establishment_means em h1 m1 week
+    csi csa pcid list_id ofv_params)
+
   accepts_nested_attributes_for :observation_field_values, 
     :allow_destroy => true, 
     :reject_if => lambda { |attrs| attrs[:value].blank? }
@@ -1254,8 +1256,7 @@ class Observation < ActiveRecord::Base
   end
   
   def set_captive
-    Observation.where(id: id).update_all(captive: captive_cultivated)
-    true
+    update_column(:captive, captive_cultivated)
   end
   
   def lsid
@@ -2264,19 +2265,6 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  # it is sometimes beneficial run a complicated query and cache the results,
-  # but you still want the latest versions of the objects cached. Obj.reload
-  # will do that for one object. To do it for several items, this is more
-  # efficient than making one query per item
-  def self.reload_collection(observations)
-    latest = Observation.where(id: observations)
-    observations.each do |o|
-      if match = latest.detect{ |l| l.id == o.id }
-        o = match
-      end
-    end
-  end
-
   # 2014-01 I tried improving performance by loading ancestor taxa for each
   # batch, but it didn't really speed things up much
   def self.generate_csv(scope, options = {})
@@ -2444,6 +2432,12 @@ class Observation < ActiveRecord::Base
       Place.including_observation(self).each do |place|
         ObservationsPlace.create(observation: self, place: place)
       end
+    end
+  end
+
+  def observation_photos_finished_processing
+    observation_photos.select do |op|
+      ! (op.photo.is_a?(LocalPhoto) && op.photo.processing?)
     end
   end
 

@@ -361,6 +361,9 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "by_login" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
+
     it "should get user's observations" do
       3.times { Observation.make!(:user => user) }
       get :by_login, :format => :json, :login => user.login
@@ -433,6 +436,9 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "index" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
+
     it "should allow search" do
       lambda {
         get :index, :format => :json, :q => "foo"
@@ -678,6 +684,15 @@ shared_examples_for "an ObservationsController" do
       get :index, :format => :json
       response.body.should =~ /#{o.place_guess}/
     end
+
+    it "should search uris given a site" do
+      site1 = Observation.make!(uri: "http://a.b.org/1")
+      site2 = Observation.make!(uri: "http://c.d.org/2")
+      get :index, format: :json, site: "http://c.d.org"
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == site1.id}.should be_blank
+      json.detect{|obs| obs['id'] == site2.id}.should_not be_blank
+    end
   end
 
   describe "taxon_stats" do
@@ -757,6 +772,9 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "project" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
+
     it "should allow filtering by updated_since" do
       pu = ProjectUser.make!
       oldo = Observation.make!(:user => pu.user)
@@ -915,6 +933,8 @@ end
 
 describe ObservationsController, "without authentication" do
   describe "index" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
     it "should require sign in for page 100 or more" do
       get :index, :format => :json, :page => 10
       response.should be_success

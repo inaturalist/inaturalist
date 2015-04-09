@@ -26,7 +26,8 @@ class CheckListsController < ApplicationController
       # Searches must use place_id instead of list_id for default checklists 
       # so we can search items in other checklists for this place
       if (@q = params[:q]) && !@q.blank?
-        @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
+        @search_taxon_ids = Taxon.elastic_search(
+          where: { "names.name": @q }, fields: :id).per_page(1000).map(&:id)
         @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
       end
     end

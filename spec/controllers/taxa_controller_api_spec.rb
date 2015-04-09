@@ -34,6 +34,47 @@ shared_examples_for "a TaxaController" do
     end
   end
 
+  describe "search" do
+    before(:each) { enable_elastic_indexing([ Taxon, Place ]) }
+    after(:each) { disable_elastic_indexing([ Taxon, Place ]) }
+
+    it "should filter by place_id" do
+      taxon_not_in_place = Taxon.make!
+      taxon_in_place = Taxon.make!
+      p = Place.make!
+      p.check_list.add_taxon(taxon_in_place)
+      get :search, format: :json, places: p.id.to_s
+      json = JSON.parse(response.body)
+      json.detect{|t| t['id'] == taxon_not_in_place.id}.should be_blank
+      json.detect{|t| t['id'] == taxon_in_place.id}.should_not be_blank
+    end
+
+    it "returns results in the configured place" do
+      taxon_not_in_place = Taxon.make!(name: "nonsense")
+      taxon_in_place = Taxon.make!(name: "nonsense")
+      p = Place.make!
+      p.check_list.add_taxon(taxon_in_place)
+      site = Site.make!(place: p)
+      expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
+      get :search, format: :json, q: "nonsense"
+      json = JSON.parse(response.body)
+      json.detect{|t| t['id'] == taxon_not_in_place.id}.should be_blank
+      json.detect{|t| t['id'] == taxon_in_place.id}.should_not be_blank
+    end
+
+    it "returns all results when there are none in the configured place" do
+      taxon_not_in_place = Taxon.make!(name: "nonsense")
+      taxon2_not_in_place = Taxon.make!(name: "nonsense")
+      p = Place.make!
+      site = Site.make!(place: p)
+      expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
+      get :search, format: :json, q: "nonsense"
+      json = JSON.parse(response.body)
+      json.detect{|t| t['id'] == taxon_not_in_place.id}.should_not be_blank
+      json.detect{|t| t['id'] == taxon2_not_in_place.id}.should_not be_blank
+    end
+  end
+
   describe "show" do
     it "should include range kml url" do
       tr = TaxonRange.make!(:url => "http://foo.bar/range.kml")

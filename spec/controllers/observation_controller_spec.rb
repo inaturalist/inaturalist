@@ -139,6 +139,9 @@ describe ObservationsController do
   end
 
   describe "project" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
+
     render_views
     it "should include private coordinates when viewed by a project curator" do
       po = make_project_observation

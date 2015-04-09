@@ -24,7 +24,12 @@ module ActsAsElasticModel
 
     class << self
       def elastic_search(options = {})
-        __elasticsearch__.search(ElasticModel.search_hash(options))
+        begin
+          __elasticsearch__.search(ElasticModel.search_hash(options))
+        rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+          Rails.logger.error "[Error] elastic_search failed: #{ e }"
+          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+        end
       end
 
       def elastic_paginate(options={})

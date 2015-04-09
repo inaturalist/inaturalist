@@ -268,12 +268,12 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  # ThinkingSphinx returns a maximum of 50 pages. Anything higher than 
-  # that, we want to 404 to avoid a TS error. 
-  def limit_page_param_for_thinking_sphinx
-    if !params[:page].blank? && params[:page].to_i > 50 
-      render_404 
-    end 
+  # Formerly used to address that ThinkingSphinx returns a maximum of
+  # 50 pages. Now kept to keep the logic the same
+  def limit_page_param_for_search
+    if !params[:page].blank? && params[:page].to_i > 50
+      render_404
+    end
   end
   
   def search_for_places
@@ -283,16 +283,19 @@ class ApplicationController < ActionController::Base
       @limit = 50 if @limit > 50
     end
     site_place = @site.place if @site
-    search_options = {:page => params[:page], :limit => @limit}
-    search_options[:with] = {:place_ids => [site_place.id]} if site_place
-    @places = Place.search(sanitize_sphinx_query(@q), search_options)
+    search_wheres = { match: { display_name: { query: @q, operator: "and" } } }
+    if site_place
+      search_wheres["ancestor_place_ids"] = site_place
+    end
+    @places = Place.elastic_paginate(where: search_wheres,
+      per_page: @limit, page: params[:page])
+    Place.preload_associations(@places, :place_geometry_without_geom)
     if logged_in? && @places.blank?
       if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
         new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}.compact
         @places = Place.where("id in (?)", new_places.map(&:id).compact).page(1).to_a
       end
     end
-    @places.compact!
   end
   
   def catch_missing_mobile_templates
