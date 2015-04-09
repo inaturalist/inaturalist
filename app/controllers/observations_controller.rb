@@ -103,6 +103,7 @@ class ObservationsController < ApplicationController
       cache_params = search_params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
       cache_params[:locale] ||= I18n.locale
       cache_params[:per_page] ||= search_params[:per_page]
+      cache_params[:view] = @view || params[:view]
       cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
       cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
       cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.sort.to_s)}"

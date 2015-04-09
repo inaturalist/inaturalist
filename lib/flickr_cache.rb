@@ -12,6 +12,7 @@ class FlickrCache
       request_url: "flickr.#{ type }.#{ method }(#{ params.to_json })")
     # return the cached entry if it is valid
     api_response = if api_endpoint_cache.cached?
+      # it may have cached nil if there was a problem
       if cached_response = api_endpoint_cache.response
         JSON.parse(api_endpoint_cache.response).map do |r|
           # map each hash to an object, as we would get from Flickraw
