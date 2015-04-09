@@ -35,4 +35,11 @@ class Place < ActiveRecord::Base
     }
   end
 
+  def geom_in_elastic_index
+    Place.elastic_search(where: { id: id },
+      filters: [ { exists: { field: "geometry_geojson" } } ]).
+      total_entries > 0
+  end
+
+
 end

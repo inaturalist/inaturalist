@@ -2277,8 +2277,9 @@ class ObservationsController < ApplicationController
     # elasticsearch index, or we have decided not to put in the index
     # because it would be more work to maintain than it would save
     # when searching. Remove empty values before checking
-    unless (Observation::NON_ELASTIC_ATTRIBUTES &
-            search_params.reject{ |k,v| v.blank? || v == "any" }.keys).blank?
+    if (Observation::NON_ELASTIC_ATTRIBUTES &
+            search_params.reject{ |k,v| v.blank? || v == "any" }.keys).any? ||
+       (@place && !@place.geom_in_elastic_index)
       # if we have one of these non-elastic attributes,
       # then default to searching PostgreSQL via ActiveRecord
       return get_paginated_observations(search_params, find_options)
