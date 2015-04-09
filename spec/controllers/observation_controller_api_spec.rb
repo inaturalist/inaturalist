@@ -358,6 +358,19 @@ shared_examples_for "an ObservationsController" do
       o.private_latitude.should be_blank
       o.latitude.to_f.should eq 1.0
     end
+
+    it "should deal with updating the taxon_id" do
+      t1 = Taxon.make!
+      t2 = Taxon.make!
+      t3 = Taxon.make!
+      o = Observation.make!(taxon: t1, user: user)
+      o.update_attributes(taxon: t2)
+      o.reload
+      expect( o.identifications.count ).to eq 2
+      put :update, format: :json, id: o.id, observation: {taxon_id: t3.id}
+      o.reload
+      expect( o.identifications.count ).to eq 3
+    end
   end
 
   describe "by_login" do

@@ -539,7 +539,8 @@ CREATE TABLE delayed_jobs (
     locked_by character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    queue character varying(255)
+    queue character varying(255),
+    unique_hash character varying
 );
 
 
@@ -5360,6 +5361,13 @@ CREATE INDEX index_custom_projects_on_project_id ON custom_projects USING btree 
 
 
 --
+-- Name: index_delayed_jobs_on_unique_hash; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_delayed_jobs_on_unique_hash ON delayed_jobs USING btree (unique_hash);
+
+
+--
 -- Name: index_deleted_observations_on_user_id_and_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5525,13 +5533,6 @@ CREATE INDEX index_guides_on_user_id ON guides USING btree (user_id);
 --
 
 CREATE INDEX index_identifications_on_created_at ON identifications USING btree (created_at);
-
-
---
--- Name: index_identifications_on_current; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX index_identifications_on_current ON identifications USING btree (user_id, observation_id) WHERE current;
 
 
 --
@@ -7484,4 +7485,10 @@ INSERT INTO schema_migrations (version) VALUES ('20150304201738');
 INSERT INTO schema_migrations (version) VALUES ('20150313171312');
 
 INSERT INTO schema_migrations (version) VALUES ('20150319205049');
+
+INSERT INTO schema_migrations (version) VALUES ('20150406181841');
+
+INSERT INTO schema_migrations (version) VALUES ('20150409021334');
+
+INSERT INTO schema_migrations (version) VALUES ('20150409031504');
 
