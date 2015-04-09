@@ -318,8 +318,8 @@ class Guide < ActiveRecord::Base
   end
 
   def generate_ngz_later
-    return if Delayed::Job.where("handler LIKE '%id: ''#{id}''%generate_ngz%'").exists?
-    delay(:priority => USER_INTEGRITY_PRIORITY).generate_ngz
+    delay(priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "Guide::generate_ngz": id }).generate_ngz
   end
 
   def generate_ngz_cache_key

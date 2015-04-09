@@ -147,8 +147,9 @@ class LifeList < List
       includes(:list).find_in_batches do |batch|
       batch.each do |list_rule|
         next unless list_rule.list.is_a?(LifeList)
-        next if Delayed::Job.where("handler LIKE '%add_taxa_from_observations%id: ''#{list_rule.list_id}''%'").exists?
-        LifeList.delay(:priority => INTEGRITY_PRIORITY).add_taxa_from_observations(list_rule.list, :taxa => [taxon.id])
+        LifeList.delay(priority: INTEGRITY_PRIORITY,
+          unique_hash: { "LifeList::add_taxa_from_observations": list_rule.list_id }).
+          add_taxa_from_observations(list_rule.list, :taxa => [taxon.id])
       end
     end
   end

@@ -104,9 +104,6 @@ class ConservationStatus < ActiveRecord::Base
   end
 
   def update_taxon_conservation_status
-    unless Delayed::Job.where("handler LIKE '%''Taxon%set_conservation_status% #{taxon_id}\n%'").exists?
-      Taxon.set_conservation_status(taxon_id)
-    end
-    true
+    Taxon.set_conservation_status(taxon_id)
   end
 end

@@ -401,9 +401,9 @@ class ListedTaxon < ActiveRecord::Base
   def sync_parent_check_list
     return true unless list.is_a?(CheckList)
     return true if @skip_sync_with_parent
-    unless Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{list_id}''\n%sync_with_parent%'").exists?
-      list.delay(:priority => INTEGRITY_PRIORITY).sync_with_parent(:time_since_last_sync => updated_at)
-    end
+    list.delay(priority: INTEGRITY_PRIORITY,
+      unique_hash: { "CheckList::sync_with_parent": list_id }).
+      sync_with_parent(:time_since_last_sync => updated_at)
     true
   end
   
@@ -411,9 +411,9 @@ class ListedTaxon < ActiveRecord::Base
     return true if @skip_species_for_infraspecies
     return true unless list.is_a?(CheckList) && taxon
     return true unless taxon.infraspecies?
-    unless Delayed::Job.where("handler LIKE '%ListedTaxon%species_for_infraspecies%\n- #{id}\n'").exists?
-      ListedTaxon.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").species_for_infraspecies(id)
-    end
+    ListedTaxon.delay(priority: INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
+      queue: "slow", unique_hash: { "ListedTaxon::species_for_infraspecies": id }).
+      species_for_infraspecies(id)
     true
   end
   
@@ -447,8 +447,10 @@ class ListedTaxon < ActiveRecord::Base
     return true if @skip_update_cache_columns
     return true unless list.is_a?(CheckList)
     if primary_listing
-      unless @force_update_cache_columns || Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{id}\n'").exists?
-        ListedTaxon.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").update_cache_columns_for(id)
+      unless @force_update_cache_columns
+        ListedTaxon.delay(priority: INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
+          queue: "slow", unique_hash: { "ListedTaxon::update_cache_columns_for": id }).
+          update_cache_columns_for(id)
       end
     elsif primary_listed_taxon
       primary_listed_taxon.update_attributes_on_related_listed_taxa
