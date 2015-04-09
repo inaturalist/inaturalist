@@ -28,7 +28,8 @@ Inaturalist::Application.configure do
   # config.action_controller.perform_caching             = true
   # config.action_view.cache_template_loading            = true
   # config.cache_classes = true
-  config.cache_store = :mem_cache_store, CONFIG.memcached, { value_max_bytes: 1024 * 1024 * 2 }
+  config.cache_store = :dalli_store, CONFIG.memcached,
+    { compress: true, value_max_bytes: 1024 * 1024 * 3 }
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
