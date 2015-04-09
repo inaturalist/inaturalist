@@ -167,6 +167,9 @@ class LocalPhoto < Photo
         o.species_guess = nil
       end
       o.description = metadata[:dc][:description].to_sentence unless metadata[:dc][:description].blank?
+      if o.description.blank? && metadata[:image_description]
+        o.description = metadata[:image_description].to_sentence
+      end
       o.build_observation_fields_from_tags(to_tags)
     end
     o

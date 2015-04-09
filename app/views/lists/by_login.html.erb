@@ -88,7 +88,7 @@
 
             <div class="barchart">
               <%= render :partial => "shared/barchart_datum", :locals => { 
-                :value => list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL"), 
+                :value => list.listed_taxa.where("last_observation_id IS NOT NULL").count, 
                 :max => list.listed_taxa.count, 
                 :label_text => t(:of) + " #{list.listed_taxa.count} " + t(:observed).downcase,
                 :min_value_label_width => 30 } %>

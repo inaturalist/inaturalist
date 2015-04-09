@@ -122,7 +122,11 @@ describe Project, "eventbrite_id" do
       p = Project.make(:event_url => url)
       expect(p.eventbrite_id).to eq id
     end
-
+  end
+  it "should not bail if no id" do
+    expect {
+      Project.make(:event_url => "http://www.eventbrite.com").eventbrite_id
+    }.not_to raise_error
   end
 end
 

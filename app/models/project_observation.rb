@@ -159,12 +159,14 @@ class ProjectObservation < ActiveRecord::Base
   
   ##### Rules ###############################################################
   def observed_in_place?(place)
+    return false if place.blank?
     place.contains_lat_lng?(
       observation.private_latitude || observation.latitude, 
       observation.private_longitude || observation.longitude)
   end
   
   def observed_in_bounding_box_of?(place)
+    return false if place.blank?
     place.bbox_contains_lat_lng?(
       observation.private_latitude || observation.latitude, 
       observation.private_longitude || observation.longitude)
