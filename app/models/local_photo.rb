@@ -168,7 +168,11 @@ class LocalPhoto < Photo
       end
       o.description = metadata[:dc][:description].to_sentence unless metadata[:dc][:description].blank?
       if o.description.blank? && metadata[:image_description]
-        o.description = metadata[:image_description].to_sentence
+        if metadata[:image_description].is_a?(Array)
+          o.description = metadata[:image_description].to_sentence
+        elsif metadata[:image_description].is_a?(String)
+          o.description = metadata[:image_description]
+        end
       end
       o.build_observation_fields_from_tags(to_tags)
     end
