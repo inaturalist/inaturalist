@@ -120,8 +120,8 @@ class GuideTaxon < ActiveRecord::Base
   end
 
   def set_guide_taxon
-    return true if Delayed::Job.where("handler LIKE '%Guide\n%id: ''#{guide_id}''\n%set_taxon%'").exists?
-    self.guide.delay(:priority => USER_INTEGRITY_PRIORITY).set_taxon
+    self.guide.delay(priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "Guide::set_taxon": guide_id }).set_taxon
     true
   end
 

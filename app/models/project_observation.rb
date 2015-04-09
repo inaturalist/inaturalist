@@ -54,16 +54,14 @@ class ProjectObservation < ActiveRecord::Base
     taxon_id_was = Observation.find_by_id(observation_id).taxon_id if taxon_id_was.nil?
     # Update the projectobservation's current curator_id taxon and/or a previous one that was
     # just removed/changed
-    unless Delayed::Job.where("handler LIKE '%ProjectList%refresh_with_project_observation% #{id}\n%'").exists?
-      ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow").
-       refresh_with_project_observation(
-         id,
-         :observation_id => observation_id,
-         :taxon_id => taxon_id,
-         :taxon_id_was => taxon_id_was,
-         :project_id => project_id
-       )
-    end
+    ProjectList.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
+      unique_hash: { "ProjectList::refresh_with_project_observation": id }).
+      refresh_with_project_observation(id,
+        :observation_id => observation_id,
+        :taxon_id => taxon_id,
+        :taxon_id_was => taxon_id_was,
+        :project_id => project_id
+     )
     true
   end
   
@@ -89,9 +87,9 @@ class ProjectObservation < ActiveRecord::Base
   
   def refresh_project_list
     return true if observation.blank? || observation.taxon_id.blank? || observation.bulk_import
-    return true if Delayed::Job.where("handler LIKE '%Project%refresh_project_list% #{project_id}\n%'").exists?
-    Project.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow", :run_at => 1.hour.from_now).refresh_project_list(project_id, 
-      :taxa => [observation.taxon_id], :add_new_taxa => id_was.nil?)
+    Project.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
+      run_at: 1.hour.from_now, unique_hash: { "Project::refresh_project_list": project_id }).
+      refresh_project_list(project_id, :taxa => [observation.taxon_id], :add_new_taxa => id_was.nil?)
     true
   end
   

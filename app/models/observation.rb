@@ -1139,23 +1139,23 @@ class Observation < ActiveRecord::Base
     return true if target_taxa.empty?
     
     # Refreh the ProjectLists
-    unless Delayed::Job.where("handler LIKE '%ProjectList%refresh_with_observation% #{id}\n%'").exists?
-      ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow").refresh_with_observation(id, :taxon_id => taxon_id, 
+    ProjectList.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
+      unique_hash: { "ProjectList::refresh_with_observation": id }).
+      refresh_with_observation(id, :taxon_id => taxon_id,
         :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
-    end
-    
+
     # Don't refresh LifeLists and Lists if only quality grade has changed
     return true unless taxon_id_changed?
-    unless Delayed::Job.where("handler LIKE '%''List%refresh_with_observation% #{id}\n%'").exists?
-      List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
+    List.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
+      unique_hash: { "List::refresh_with_observation": id }).
+      refresh_with_observation(id, :taxon_id => taxon_id,
         :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
         :skip_subclasses => true)
-    end
-    unless Delayed::Job.where("handler LIKE '%LifeList%refresh_with_observation% #{id}\n%'").exists?
-      LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
+    LifeList.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
+      unique_hash: { "LifeList::refresh_with_observation": id }).
+      refresh_with_observation(id, :taxon_id => taxon_id,
         :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
-    end
-    
+
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil
     true
@@ -1167,8 +1167,8 @@ class Observation < ActiveRecord::Base
       (taxon_id || taxon_id_was) && 
       (quality_grade_changed? || taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?)
     return true unless refresh_needed
-    return true if Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{id}\n%'").exists?
-    CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").
+    CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
+      unique_hash: { "CheckList::refresh_with_observation": id }).
       refresh_with_observation(id, :taxon_id => taxon_id,
         :taxon_id_was  => taxon_id_changed? ? taxon_id_was : nil,
         :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
@@ -1354,8 +1354,10 @@ class Observation < ActiveRecord::Base
     return unless observation = Observation.find_by_id(id)
     observation.set_quality_grade(:force => true)
     observation.save
-    if observation.quality_grade_changed? && !Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{id}\n%'").exists?
-      CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
+    if observation.quality_grade_changed?
+      CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
+        unique_hash: { "CheckList::refresh_with_observation": id }).
+        refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
     end
     observation.quality_grade
   end
@@ -2383,9 +2385,9 @@ class Observation < ActiveRecord::Base
         # when the job is run, it will also share any observations made since this one. 
         # observation aggregation for twitter happens in share_on_twitter.
         # fb aggregation happens on their end via open graph aggregations.
-        unless Delayed::Job.exists?(["handler LIKE ?", "%user_id: #{u.id}\n%share_on_#{provider_name}%"])
-          self.delay(:priority => USER_INTEGRITY_PRIORITY, :run_at => 1.hour.from_now).send("share_on_#{provider_name}")
-        end
+        self.delay(priority: USER_INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
+          unique_hash: { "Observation::share_on_#{provider_name}": u.id }).
+          send("share_on_#{provider_name}")
       end
     end
     true
