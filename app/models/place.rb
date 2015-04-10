@@ -664,8 +664,10 @@ class Place < ActiveRecord::Base
     
     # Move the mergee's listed_taxa to the target's default check list
     additional_taxon_ids = mergee.taxon_ids - self.taxon_ids
-    ListedTaxon.where(["place_id = ? AND taxon_id in (?)", mergee, additional_taxon_ids]).
-      update_all(place_id: self, list_id: self.check_list.id)
+    if check_list
+      ListedTaxon.where(["place_id = ? AND taxon_id in (?)", mergee, additional_taxon_ids]).
+        update_all(place_id: self, list_id: self.check_list.id)
+    end
     
     # Merge the geometries
     if self.place_geometry && mergee.place_geometry
