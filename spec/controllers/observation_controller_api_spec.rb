@@ -458,6 +458,16 @@ shared_examples_for "an ObservationsController" do
       }.should_not raise_error
     end
 
+    it "should allow sorting with different cases" do
+      o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
+      get :index, format: :json, sort: "ASC"
+      expect( JSON.parse(response.body).length ).to eq 1
+      get :index, format: :json, sort: "asc"
+      expect( JSON.parse(response.body).length ).to eq 1
+      get :index, format: :json, sort: "DeSC"
+      expect( JSON.parse(response.body).length ).to eq 1
+    end
+
     it "should filter by hour range" do
       o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
       o.time_observed_at.should_not be_blank
@@ -651,6 +661,13 @@ shared_examples_for "an ObservationsController" do
       o2 = Observation.make!(:taxon => Taxon.make!)
       get :index, :format => :json, :taxon_name => o1.taxon.name
       JSON.parse(response.body).size.should eq 1
+    end
+
+    it "should filter by lowercase taxon names" do
+      o1 = Observation.make!(:taxon => Taxon.make!)
+      o2 = Observation.make!(:taxon => Taxon.make!)
+      get :index, :format => :json, :taxon_name => o1.taxon.name.downcase
+      expect( JSON.parse(response.body).size ).to eq 1
     end
 
     it "should filter by taxon name if there are synonyms and iconic_taxa provided" do
