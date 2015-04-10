@@ -100,17 +100,19 @@ class ObservationsController < ApplicationController
     # usually strings and we want to keep the cache_key consistent
     search_params[:page] ||= "1"
     if perform_caching && search_params[:q].blank? && (!logged_in? || search_params[:page].to_i == 1)
-      cache_params = search_params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
-      cache_params[:locale] ||= I18n.locale
-      cache_params[:per_page] ||= search_params[:per_page]
-      cache_params[:view] = @view || params[:view]
-      cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
-      cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
-      cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.sort.to_s)}"
+      search_cache_params = search_params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
+      search_cache_params[:locale] ||= I18n.locale
+      search_cache_params[:per_page] ||= search_params[:per_page]
+      search_cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
+      search_cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
+      search_cache_key = "obs_index_#{Digest::MD5.hexdigest(search_cache_params.sort.to_s)}"
       # setting a unique key to be used to cache view partials
-      @observation_partial_cache_key = "obs_component_#{Digest::MD5.hexdigest(cache_params.sort.to_s)}"
+      view_cache_params = search_cache_params.merge({
+        partial: params[:partial], view: (@view || params[:view]) })
+      @observation_partial_cache_key =
+        "obs_component_#{Digest::MD5.hexdigest(view_cache_params.sort.to_s)}"
       # Get the cached filtered observations
-      @observations = Rails.cache.fetch(cache_key, expires_in: 5.minutes, compress: true) do
+      @observations = Rails.cache.fetch(search_cache_key, expires_in: 5.minutes, compress: true) do
         get_elastic_paginated_observations(search_params)
       end
     else
