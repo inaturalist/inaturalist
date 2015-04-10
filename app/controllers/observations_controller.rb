@@ -2123,15 +2123,8 @@ class ObservationsController < ApplicationController
       @observations_taxon = Taxon.find_by_id(@observations_taxon_id.to_i)
     elsif !search_params[:taxon_name].blank?
       @observations_taxon_name = search_params[:taxon_name].to_s
-      taxon_name_conditions = ["taxon_names.name = ?", @observations_taxon_name]
-      includes = nil
-      unless @iconic_taxa.blank?
-        taxon_name_conditions[0] += " AND taxa.iconic_taxon_id IN (?)"
-        taxon_name_conditions << @iconic_taxa
-        includes = :taxon
-      end
       begin
-        @observations_taxon = TaxonName.where(taxon_name_conditions).joins(includes).first.try(:taxon)
+        @observations_taxon = Taxon.single_taxon_for_name(@observations_taxon_name, iconic_taxa: @iconic_taxa)
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /invalid byte sequence/
         taxon_name_conditions[1] = @observations_taxon_name.encode('UTF-8')

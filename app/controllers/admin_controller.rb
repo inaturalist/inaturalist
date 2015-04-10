@@ -26,17 +26,15 @@ class AdminController < ApplicationController
     
     @daily_date = Date.yesterday
     daily_country_stats_sql = <<-SQL
-      SELECT 
-        p.display_name, p.code, p.id, count(o.*)
-      FROM 
-        observations o, 
-        places p, 
-        place_geometries pg
-      WHERE 
-        ST_Intersects(o.private_geom, pg.geom) 
-        AND p.id = pg.place_id 
+      SELECT
+        p.display_name, p.code, p.id, count(op.*)
+      FROM
+        places p
+          JOIN observations_places op ON p.id = op.place_id
+          JOIN observations o ON o.id = op.observation_id
+      WHERE
+        p.admin_level = 0
         AND o.created_at::DATE = '#{@daily_date.to_s}' 
-        AND p.admin_level = #{Place::COUNTRY_LEVEL}
       GROUP BY p.display_name, p.code, p.id
     SQL
     @daily_country_stats = Observation.connection.execute(daily_country_stats_sql.gsub(/\s+/, ' ').strip)

@@ -653,6 +653,14 @@ shared_examples_for "an ObservationsController" do
       JSON.parse(response.body).size.should eq 1
     end
 
+    it "should filter by taxon name regardless of case" do
+      t = Taxon.make!(name: "Foo bar")
+      o1 = Observation.make!(taxon: t)
+      o2 = Observation.make!(taxon: Taxon.make!)
+      get :index, :format => :json, :taxon_name => "foo bar"
+      JSON.parse(response.body).size.should eq 1
+    end
+
     it "should filter by taxon name if there are synonyms and iconic_taxa provided" do
       load_test_taxa
       o1 = Observation.make!(:taxon => @Pseudacris_regilla)
