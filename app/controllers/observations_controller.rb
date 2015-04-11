@@ -977,8 +977,18 @@ class ObservationsController < ApplicationController
     File.open(path, 'wb') { |f| f.write(params[:upload]['datafile'].read) }
 
     # Send the filename to a background processor
-    Delayed::Job.enqueue(BulkObservationFile.new(path, params[:upload][:project_id], params[:upload][:coordinate_system], current_user), 
-      :queue => "slow", :priority => USER_PRIORITY)
+    bof = BulkObservationFile.new(
+      path, 
+      params[:upload][:project_id], 
+      params[:upload][:coordinate_system], 
+      current_user
+    )
+    Delayed::Job.enqueue(
+      bof, 
+      queue: "slow",
+      priority: USER_PRIORITY,
+      unique_hash: bof.generate_unique_hash
+    )
 
     # Notify the user that it's getting processed and return them to the upload screen.
     flash[:notice] = 'Observation file has been queued for import.'

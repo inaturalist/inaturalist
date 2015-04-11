@@ -2848,7 +2848,9 @@ en:
   updated_photo: Updated photo
   upload: Upload
   upload_a_csv_file: Upload CSV file
-  upload_a_csv_file_with_observation: Upload a CSV file with observation data. If you have your data in a spreadsheet or database, this is probably the way to go.
+  upload_a_csv_file_with_observation: |
+    Upload a CSV file with observation data. If you have your data in a
+    spreadsheet or database, this is probably the way to go.
   upload_photos: Upload photos
   uploaded_by: Uploaded by
   url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
@@ -2862,6 +2864,7 @@ en:
     particular way. If the taxon is not a species or infraspecies, everything
     between [GENUS] and [SPECIES] will get replaced by the taxon name, so use
     sparingly. <br/><br/> <strong>Example:</strong><br/>
+  use_unique_file_names_for_separate_uploads: Use unique file names for separate uploads
   use_well_formed_csv: |
     Use well-formed CSV. This means text with commas must be enclosed with
     double-quotes. Most spreadsheet applications should export CSV in this
