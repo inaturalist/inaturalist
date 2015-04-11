@@ -1284,7 +1284,7 @@ class Observation < ActiveRecord::Base
   end
   
   def georeferenced?
-    (latitude? && longitude?) || (private_latitude? && private_longitude?)
+    (!latitude.nil? && !longitude.nil?) || (!private_latitude.nil? && !private_longitude.nil?)
   end
   
   def was_georeferenced?

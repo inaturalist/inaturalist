@@ -1525,7 +1525,15 @@ describe Observation do
         expect(observations).not_to include(c)
       end
     end
-  
+    
+    it "should be georeferenced? with zero degrees" do
+      expect( Observation.make!(longitude: 0, latitude: 0) ).to be_georeferenced
+    end
+
+    it "should not be georeferenced with nil degrees" do
+      expect( Observation.make!(longitude: 0, latitude: nil) ).not_to be_georeferenced
+    end
+
     it "should be georeferenced? even with private geoprivacy" do
       o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::PRIVATE)
       expect(o).to be_georeferenced
