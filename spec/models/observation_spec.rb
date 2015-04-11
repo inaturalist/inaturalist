@@ -726,7 +726,8 @@ describe Observation do
       o = without_delay{Observation.make!(:taxon => t)}
       t.reload
       expect(t.observations_count).to eq(1)
-      o = without_delay {o.destroy}
+      o.destroy
+      Delayed::Worker.new.work_off
       t.reload
       expect(t.observations_count).to eq(0)
     end
@@ -737,7 +738,8 @@ describe Observation do
       o = without_delay {Observation.make!(:taxon => t)}
       p.reload
       expect(p.observations_count).to eq(1)
-      o = without_delay {o.destroy}
+      o.destroy
+      Delayed::Worker.new.work_off
       p.reload
       expect(p.observations_count).to eq(0)
     end
@@ -1982,7 +1984,7 @@ describe Observation do
     end
   end
 
-  describe Observation, "merge" do
+  describe "merge" do
     let(:user) { User.make! }
     let(:reject) { Observation.make!(:user => user) }
     let(:keeper) { Observation.make!(:user => user) }

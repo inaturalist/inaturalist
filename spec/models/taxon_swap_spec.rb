@@ -123,7 +123,11 @@ describe TaxonSwap, "commit" do
 end
 
 describe TaxonSwap, "commit_records" do
-  before(:each) { prepare_swap }
+  before(:each) do
+    prepare_swap
+    enable_elastic_indexing([ Observation, Taxon ])
+  end
+  after(:each) { disable_elastic_indexing([ Observation, Taxon ]) }
 
   it "should update records" do
     obs = Observation.make!(:taxon => @input_taxon)
