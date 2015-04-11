@@ -2407,13 +2407,14 @@ class ObservationsController < ApplicationController
       end
     end
     # sort defaults to created at descending
+    sort_order = (@order || "desc").downcase.to_sym
     sort = case @order_by
     when "observed_on"
-      { observed_on: @order || "desc" }
+      { observed_on: sort_order }
     when "species_guess"
-      { species_guess: @order || "desc" }
+      { species_guess: sort_order }
     else "observations.id"
-      { created_at: @order || "desc" }
+      { created_at: sort_order }
     end
     # perform the actual query against Elasticsearch
     observations = Observation.elastic_paginate(
