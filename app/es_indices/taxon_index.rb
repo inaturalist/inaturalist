@@ -18,6 +18,20 @@ class Taxon < ActiveRecord::Base
   end
 
   def as_indexed_json(options={})
+    # Temporary hack to figure out why some taxa are being indexed w/o
+    # all taxon_names. Checking indexed_place_ids which will be assigned during
+    # bluk indexing, and we're pretty sure the bulk indexing is working OK
+    if indexed_place_ids.nil?
+      begin
+        # comparing .count (always runs a COUNT() query) to .length (always
+        # selects records and counts them). I suspect some taxa are preloading
+        # just some names, and then getting indexed with those names only
+        raise "Taxon out of sync" if taxon_names.count != taxon_names.length
+      rescue
+        Rails.logger.error "[Warning] Taxon.elastic_index! has a problem: #{ e }"
+        Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+      end
+    end
     json = {
       id: id,
       name: name,

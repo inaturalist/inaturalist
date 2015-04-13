@@ -459,7 +459,7 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should allow sorting with different cases" do
-      o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
+      o = Observation.make!
       get :index, format: :json, sort: "ASC"
       expect( JSON.parse(response.body).length ).to eq 1
       get :index, format: :json, sort: "asc"
@@ -511,13 +511,22 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == o2.id}.should be_blank
     end
 
-    it "should filter by captive" do
+    it "should filter by captive=true" do
       captive = Observation.make!(:captive_flag => "1")
       wild = Observation.make!(:captive_flag => "0")
       get :index, :format => :json, :captive => true
       json = JSON.parse(response.body)
       json.detect{|obs| obs['id'] == wild.id}.should be_blank
       json.detect{|obs| obs['id'] == captive.id}.should_not be_blank
+    end
+
+    it "should filter by captive=false" do
+      captive = Observation.make!(captive_flag: "1")
+      wild = Observation.make!(captive_flag: "0")
+      get :index, format: :json, captive: false
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == captive.id}.should be_blank
+      json.detect{|obs| obs['id'] == wild.id}.should_not be_blank
     end
 
     it "should filter by captive when quality metrics used" do
