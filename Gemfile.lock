@@ -574,6 +574,7 @@ GEM
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    useragent (0.13.3)
     utf8-cleaner (0.0.9)
     uuid (2.3.7)
       macaddr (~> 1.0)
@@ -696,6 +697,7 @@ DEPENDENCIES
   ts-delayed-delta (~> 2.0.2)
   twitter
   uglifier
+  useragent
   utf8-cleaner
   watu_table_builder
   whenever

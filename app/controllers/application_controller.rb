@@ -541,6 +541,23 @@ class ApplicationController < ActionController::Base
   def allow_external_iframes
     response.headers["X-Frame-Options"] = "ALLOWALL"
   end
+
+  # adding extra info to the payload sent to ActiveSupport::Notifications
+  # used in metrics collecting libraries like the Logstasher
+  def append_info_to_payload(payload)
+    super
+    payload[:clientip] = request.remote_ip
+    payload[:user_agent] = request.user_agent
+    payload[:http_referer] = request.env["HTTP_REFERER"]
+    payload[:http_host] = request.env["HTTP_HOST"]
+    payload[:method] = request.env["REQUEST_METHOD"]
+    payload[:session] = session.to_hash.select{ |k,v|
+      [ :session_id, :_csrf_token ].include?(k.to_sym) }
+    if logged_in?
+      payload[:user_id] = current_user.id
+      payload[:user_name] = current_user.login
+    end
+  end
 end
 
 # Override the Google Analytics insertion code so it won't track admins
