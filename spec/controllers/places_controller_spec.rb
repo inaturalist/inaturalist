@@ -85,12 +85,25 @@ describe PlacesController do
   end
 end
 
-# If you ever figure out how to test page caching...
-# describe PlacesController, "geometry" do
-#   before do
-#     @place = make_place_with_geom(:user => @user)
-#   end
+describe PlacesController, "geometry" do
+  before do
+    @place = make_place_with_geom(:user => @user)
+    @place_without_geom = Place.make!
+  end
 
+  it "should return geojson when places have a geometry" do
+    get :geometry, format: :geojson, id: @place.id
+    expect( response.body ).to include "MultiPolygon"
+  end
+
+  it "should not fail when places have no geometry" do
+    expect {
+      get :geometry, format: :geojson, id: @place_without_geom.id
+    }.to_not raise_error
+    expect( response.body ).to eq("{}")
+  end
+
+# If you ever figure out how to test page caching...
 #   # http://pivotallabs.com/tdd-action-caching-in-rails-3/
 #   around do |example|
 #     caching, ActionController::Base.perform_caching = ActionController::Base.perform_caching, true
@@ -112,7 +125,7 @@ end
 #     get :geometry, :id => @place.slug, :format => :kml
 #     response.should be_page_cached
 #   end
-# end
+end
 
 # describe PlacesController, "update" do
 #   before do

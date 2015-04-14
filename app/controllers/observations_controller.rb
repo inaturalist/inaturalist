@@ -94,7 +94,6 @@ class ObservationsController < ApplicationController
       authenticate_user!
       return false
     end
-
     search_params = site_search_params(params)
     # making `page` default to a string because HTTP params are
     # usually strings and we want to keep the cache_key consistent
@@ -108,7 +107,9 @@ class ObservationsController < ApplicationController
       search_cache_key = "obs_index_#{Digest::MD5.hexdigest(search_cache_params.sort.to_s)}"
       # setting a unique key to be used to cache view partials
       view_cache_params = search_cache_params.merge({
-        partial: params[:partial], view: (@view || params[:view]) })
+        partial: params[:partial],
+        view: (@view || params[:view]),
+        ssl: request.ssl? })
       @observation_partial_cache_key =
         "obs_component_#{Digest::MD5.hexdigest(view_cache_params.sort.to_s)}"
       # Get the cached filtered observations

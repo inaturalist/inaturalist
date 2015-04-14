@@ -128,8 +128,11 @@ class PlacesController < ApplicationController
         end
       end
       format.geojson do
-        @geojson = Place.connection.execute("SELECT ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geojson FROM place_geometries WHERE place_id = #{@place.id}")[0]['geojson']
-        render :json => @geojson
+        result = Place.connection.execute("SELECT ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geojson FROM place_geometries WHERE place_id = #{@place.id}")
+        if result && result.count > 0
+          @geojson = result[0]['geojson']
+        end
+        render :json => @geojson || { }
       end
     end
   end
