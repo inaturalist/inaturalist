@@ -87,7 +87,7 @@ module Logstasher
       Logstasher.write_hash( custom.merge({
         subtype: "Exception",
         error_type: exception.class.name,
-        message: [ exception.class.name, exception.message ].join(": "),
+        error_message: [ exception.class.name, exception.message ].join(": "),
         backtrace: exception.backtrace ? exception.backtrace.join("\n") : nil
       }))
     rescue Exception => e
