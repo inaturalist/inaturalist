@@ -8,10 +8,14 @@
   = observation_field_value_for(ofv)
   - unless hide_extra
     %span.extra.small
-      = link_to t(:observations_w_field), observations_path("field:#{ofv.observation_field.normalized_name}" => ""), :rel => "nofollow"
+      = link_to t(:observations_w_field),
+        observations_path("field:#{ ofv.observation_field.normalized_name(escape: true) }" => ""),
+        :rel => "nofollow"
       - if ofv.value.to_s.size < 30
         |
-        = link_to t(:observations_w) + "#{ofv.observation_field.name}=#{ofv.value}", observations_path("field:#{ofv.observation_field.normalized_name}" => ofv.value), :rel => "nofollow"
+        = link_to t(:observations_w) + "#{ofv.observation_field.name}=#{ofv.value}",
+          observations_path("field:#{ ofv.observation_field.normalized_name(escape: true) }" => ofv.value),
+          :rel => "nofollow"
       - if ofv.user_id != observation.user_id
         |
         =t :added_by

@@ -26,6 +26,12 @@ class Observation < ActiveRecord::Base
         indexes :license_code, index_analyzer: "keyword_analyzer",
           search_analyzer: "keyword_analyzer"
       end
+      indexes :field_values do
+        indexes :name, index_analyzer: "keyword_analyzer",
+          search_analyzer: "keyword_analyzer"
+        indexes :value, index_analyzer: "keyword_analyzer",
+          search_analyzer: "keyword_analyzer"
+      end
       indexes :description, index_analyzer: "ascii_snowball_analyzer",
         search_analyzer: "ascii_snowball_analyzer"
       indexes :tags, index_analyzer: "ascii_snowball_analyzer",

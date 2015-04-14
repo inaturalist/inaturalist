@@ -26,9 +26,12 @@ class Taxon < ActiveRecord::Base
         # comparing .count (always runs a COUNT() query) to .length (always
         # selects records and counts them). I suspect some taxa are preloading
         # just some names, and then getting indexed with those names only
-        raise "Taxon out of sync" if taxon_names.count != taxon_names.length
-      rescue
+        raise "Taxon names out of sync" if taxon_names.count != taxon_names.length
+      rescue Exception => e
         Rails.logger.error "[Warning] Taxon.elastic_index! has a problem: #{ e }"
+        Rails.logger.error "Names before reload:\n#{ taxon_names.join("\n") }"
+        taxon_names.reload
+        Rails.logger.error "Names after reload:\n#{ taxon_names.join("\n") }"
         Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
       end
     end
