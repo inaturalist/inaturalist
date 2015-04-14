@@ -25,6 +25,7 @@ module Logstasher
       each do |param|
       next if request.env[ param ].blank?
       payload[:clientip] = request.env[ param ]
+      break
     end
     # grab nearly all the HTTP params from request.env
     payload.merge!(request.env.select{ |k,v| k =~ /^[A-Z_]+$/ }.
