@@ -78,7 +78,7 @@ class ProjectObservationsController < ApplicationController
   end
 
   def project_observation_params
-    params.require(:project_observation).permit(:preferred_usage_according_to_terms, :prefers_usage_according_to_terms)
+    params.require(:project_observation).permit(:preferred_curator_coordinate_access, :prefers_curator_coordinate_access)
   end
   
 end

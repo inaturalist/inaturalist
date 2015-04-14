@@ -23,8 +23,8 @@ class ProjectObservation < ActiveRecord::Base
   ], :unless => "errors.any?"
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
 
-  preference :usage_according_to_terms, :boolean, default: nil
-  before_create :set_usage_according_to_terms
+  preference :curator_coordinate_access, :boolean, default: nil
+  before_create :set_curator_coordinate_access
 
   notifies_owner_of :observation, 
     queue_if: lambda { |record| record.user_id != record.observation.user_id },
@@ -43,12 +43,12 @@ class ProjectObservation < ActiveRecord::Base
     Update.where(resource: record.project, notifier: observation, notification: Update::YOUR_OBSERVATIONS_ADDED).delete_all
   end
 
-  def set_usage_according_to_terms
-    return true unless preferred_usage_according_to_terms.nil?
+  def set_curator_coordinate_access
+    return true unless preferred_curator_coordinate_access.nil?
     if project_user
-      self.preferred_usage_according_to_terms = project_user.preferred_usage_according_to_terms
+      self.preferred_curator_coordinate_access = project_user.preferred_curator_coordinate_access
     end
-    self.preferred_usage_according_to_terms = false if preferred_usage_according_to_terms.nil?
+    self.preferred_curator_coordinate_access = false if preferred_curator_coordinate_access.nil?
     true
   end
 
@@ -219,8 +219,8 @@ class ProjectObservation < ActiveRecord::Base
       else
         nil
       end
-    when "usage_according_to_terms"
-      preferred_usage_according_to_terms
+    when "curator_coordinate_access"
+      preferred_curator_coordinate_access
     else
       if observation_field = p.observation_fields.detect{|of| of.name == column}
         observation.observation_field_values.detect{|ofv| ofv.observation_field_id == observation_field.id}.try(:value)

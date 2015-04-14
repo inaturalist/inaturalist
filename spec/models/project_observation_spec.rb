@@ -36,24 +36,26 @@ describe ProjectObservation, "creation" do
     expect(o.updated_at).to be > o.created_at
   end
 
-  it "should set usage_according_to_terms to false by default" do
-    expect( ProjectObservation.make!.prefers_usage_according_to_terms? ).to be false
+  it "should set curator_coordinate_access to false by default" do
+    po = ProjectObservation.make!
+    expect( po.project.project_users.where(user_id: po.observation.user_id) ).to be_blank
+    expect( po.prefers_curator_coordinate_access? ).to be false
   end
   
-  it "should set usage_according_to_terms to true project user prefers it" do
+  it "should set curator_coordinate_access to true project user prefers it" do
     pu = ProjectUser.make!
-    expect( pu.prefers_usage_according_to_terms? ).to be true
+    expect( pu.prefers_curator_coordinate_access? ).to be true
     po = ProjectObservation.make!(project: pu.project, observation: Observation.make!(user: pu.user))
-    expect( po.prefers_usage_according_to_terms? ).to be true
+    expect( po.prefers_curator_coordinate_access? ).to be true
   end
 
-  it "should set usage_according_to_terms to false project user prefers it" do
-    pu = ProjectUser.make!(prefers_usage_according_to_terms: false)
-    expect( pu.prefers_usage_according_to_terms? ).to be false
+  it "should set curator_coordinate_access to false if project user prefers it" do
+    pu = ProjectUser.make!(prefers_curator_coordinate_access: false)
+    expect( pu.prefers_curator_coordinate_access? ).to be false
     o = Observation.make!(user: pu.user)
     po = ProjectObservation.make(project: pu.project, observation: o)
     po.save!
-    expect( po.prefers_usage_according_to_terms? ).to be false
+    expect( po.prefers_curator_coordinate_access? ).to be false
   end
 
   describe "updates" do

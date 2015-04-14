@@ -171,20 +171,20 @@ describe Project, "range_by_date" do
 end
 
 describe Project, "generate_csv" do
-  it "should include usage_according_to_terms" do
+  it "should include curator_coordinate_access" do
     path = File.join(Dir::tmpdir, "project_generate_csv_test-#{Time.now.to_i}")
     po = make_project_observation
     po.project.generate_csv(path, Observation::CSV_COLUMNS)
     CSV.foreach(path, headers: true) do |row|
-      expect(row['usage_according_to_terms']).not_to be_blank
+      expect(row['curator_coordinate_access']).not_to be_blank
     end
   end
-  it "usage_according_to_terms should be false by default for non-members" do
+  it "curator_coordinate_access should be false by default for non-members" do
     path = File.join(Dir::tmpdir, "project_generate_csv_test-#{Time.now.to_i}")
     po = ProjectObservation.make!
     po.project.generate_csv(path, Observation::CSV_COLUMNS)
     CSV.foreach(path, headers: true) do |row|
-      expect(row['usage_according_to_terms']).to eq "false"
+      expect(row['curator_coordinate_access']).to eq "false"
     end
   end
 end

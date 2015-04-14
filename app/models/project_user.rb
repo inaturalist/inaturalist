@@ -11,7 +11,7 @@ class ProjectUser < ActiveRecord::Base
   validates_rules_from :project, :rule_methods => [:has_time_zone?]
   validate :user_invited?
 
-  preference :usage_according_to_terms, :boolean, :default => true
+  preference :curator_coordinate_access, :boolean, :default => true
   preference :updates, :boolean, :default => true
   
   CURATOR_CHANGE_NOTIFICATION = "curator_change"

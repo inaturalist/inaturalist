@@ -12,14 +12,39 @@ describe Post, "creation" do
   it "should not generate an update for the owner" do
     u = User.make!
     post = without_delay {Post.make!(:user => u, :parent => u)}
-    Update.where(:notifier_type => "Post", :notifier_id => post.id, :subscriber_id => post.user_id).first.should be_blank
+    expect(Update.where(:notifier_type => "Post", :notifier_id => post.id, :subscriber_id => post.user_id).first).to be_blank
   end
 
   it "should not be published if user created in the last 24 hours" do
     u = User.make!(:created_at => Time.now)
     p = Post.make(:published_at => Time.now, :user => u)
-    p.should_not be_valid
-    p.errors[:user].should_not be_blank
+    expect(p).not_to be_valid
+    expect(p.errors[:user]).not_to be_blank
+  end
+end
+
+describe Post, "publish" do
+  describe "for a project" do
+    let(:project) { Project.make! }
+    let(:post) { Post.make!(parent: project, user: project.user) }
+
+    it "should generate an update for a project user" do
+      pu = ProjectUser.make!(project: project)
+      expect( pu.user.updates.count ).to eq 0
+      without_delay do
+        post.update_attributes(published_at: Time.now)
+      end
+      expect( pu.user.updates.last.notifier ).to eq post
+    end
+
+    it "should not generate an update for a project user if they don't prefer it" do
+      pu = ProjectUser.make!(project: project, prefers_updates: false)
+      expect( pu.user.updates.count ).to eq 0
+      without_delay do
+        post.update_attributes(published_at: Time.now)
+      end
+      expect( pu.user.updates.count ).to eq 0
+    end
   end
 end
 
@@ -28,7 +53,7 @@ describe Post, "creation for project" do
     p = Project.make!
     u = p.user
     post = without_delay {Post.make!(:user => u, :parent => p)}
-    Update.where(:notifier_type => "Post", :notifier_id => post.id, :subscriber_id => post.user_id).first.should_not be_blank
+    expect(Update.where(:notifier_type => "Post", :notifier_id => post.id, :subscriber_id => post.user_id).first).not_to be_blank
   end
 end
 
@@ -36,6 +61,6 @@ describe Post, "creation for user" do
   it "should generate updates for followers" do
     f = Friendship.make!
     post = without_delay { Post.make!(:parent => f.friend) }
-    Update.where(:notifier_type => "Post", :notifier_id => post.id, :subscriber_id => f.user_id).first.should_not be_blank
+    expect(Update.where(:notifier_type => "Post", :notifier_id => post.id, :subscriber_id => f.user_id).first).not_to be_blank
   end
 end

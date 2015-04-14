@@ -604,13 +604,13 @@
                   <div class="lined">
                     <%= form_for po, remote: true, data: {format: :json} do |f| %>
                       <label>
-                        <%= f.check_box :prefers_usage_according_to_terms, 
+                        <%= f.check_box :prefers_curator_coordinate_access, 
                           id: dom_id(po, 'preferred_usage'),
                           data: {autosubmit: true} %>
-                        <%= t(:allow_usage_according_to_terms) %>
+                        <%= t(:allow_curator_coordinate_access) %>
                       </label>
                       <div class="meta">
-                        <%=t 'views.observations.show.allow_usage_according_to_terms_desc_html', url: project_terms_url(po.project) %>
+                        <%=t 'views.observations.show.allow_curator_coordinate_access_desc_html', url: project_terms_url(po.project) %>
                       </div>
                     <% end %>
                   </div>
@@ -626,6 +626,10 @@
                     'class': "glaucous button" %>
                 </div>
                 <% if is_me? @observation.user -%>
+                  <span class="button">
+                    <%= link_to t(:edit_your_settings_for_this_project), project_show_contributor_url(po.project, current_user.login) %>
+                  </span>
+                  <br/>
                   <span class="button">
                     <%= link_to t(:edit_your_global_project_settings), generic_edit_user_url(anchor: 'projects') %>
                   </span>

@@ -1387,9 +1387,9 @@ class Observation < ActiveRecord::Base
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
     return false unless viewer
     return true if user_id == viewer.id
-    viewer_curates_project = viewer.project_users.where(project_id: project_ids, role: ProjectUser::ROLES).exists?
-    observer_joined_project = user.project_users.where(project_id: project_ids).exists?
-    return true if viewer_curates_project && observer_joined_project
+    viewer.project_users.where(project_id: project_ids, role: ProjectUser::ROLES).each do |pu|
+      return true if project_observations.detect{|po| po.project_id == pu.project_id && po.prefers_curator_coordinate_access?}
+    end
     false
   end
   

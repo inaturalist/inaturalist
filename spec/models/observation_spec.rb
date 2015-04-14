@@ -1186,6 +1186,16 @@ describe Observation do
       expect(o.coordinates_viewable_by?(pu.user)).to be false
     end
 
+    it "should be visible to managers of projects if observer prefers it" do
+      po = ProjectObservation.make!(prefers_curator_coordinate_access: true)
+      expect(po.observation.user.project_ids).not_to include po.project_id
+      o = po.observation
+      o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1, :longitude => 1)
+      expect(o).to be_coordinates_private
+      pu = ProjectUser.make!(:project => po.project, :role => ProjectUser::MANAGER)
+      expect(o.coordinates_viewable_by?(pu.user)).to be true
+    end
+
   end
   
   describe "obscure_coordinates" do

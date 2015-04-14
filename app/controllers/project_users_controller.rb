@@ -16,6 +16,6 @@ class ProjectUsersController < ApplicationController
   private
   def project_user_params(options = {})
     p = options.blank? ? (params[:project_user] || {}) : options
-    p.permit(:preferred_usage_according_to_terms, :preferred_updates)
+    p.permit(:preferred_curator_coordinate_access, :preferred_updates)
   end
 end
