@@ -66,7 +66,7 @@
     <nobr>
       <strong><%=t :identifications %></strong>
       <% for state in %w"any most_agree some_agree most_disagree" %>
-        <% if @identifications == state %>
+        <% if @identifications == state || (state == "any" && @identifications.nil?) %>
           <%= radio_button_tag :identifications, state, :checked => 'checked' %>
         <% else %>
           <%= radio_button_tag :identifications, state %>
@@ -77,7 +77,8 @@
     
     <nobr>
       <strong><%=t :captive_cultivated %></strong>
-      <input type="radio" name="captive" value="" id="any_captive_checkbox" <% unless @captive == nil %>checked="checked"<% end %>>
+      <input type="radio" name="captive" value="" id="any_captive_checkbox" <%
+        unless @captive === true || @captive === false %>checked="checked"<% end %>>
       <label for="any_captive_checkbox"><%= t(:any, :default => "any").downcase %></label>
       <input type="radio" name="captive" value="true" id="captive_checkbox" <% if @captive == true %>checked="checked"<% end %>>
       <label for="captive_checkbox"><%= t(:yes, :default => "yes").downcase %></label>
@@ -243,7 +244,7 @@
         <span class="ofv">
           <%- field, value = v[:observation_field], v[:value] -%>
           <label><%= field.name %>=<%= value %></label>
-          <%= hidden_field_tag "field:#{field.normalized_name}", value %>
+          <%= hidden_field_tag "field:#{field.normalized_name(escape: true)}", value %>
           <%= link_to_function "&times;".html_safe, "$(this).parents('.ofv:first').fadeOut(function(){$(this).remove()})" %>
         </span>
       <% end %>

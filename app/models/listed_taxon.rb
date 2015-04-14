@@ -424,7 +424,7 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def index_taxon
-    taxon.elastic_index!
+    taxon.reload.elastic_index!
   end
 
   def update_cache_columns

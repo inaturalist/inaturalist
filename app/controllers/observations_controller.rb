@@ -2314,7 +2314,6 @@ class ObservationsController < ApplicationController
     search_wheres["taxon.ancestor_ids"] = @observations_taxon if @observations_taxon
     search_wheres["id_please"] = true if @id_please
     search_wheres["out_of_range"] = true if @out_of_range
-    search_wheres["captive"] = true if @captive
     search_wheres["mappable"] = true if search_params[:mappable] == "true"
     search_wheres["mappable"] = false if search_params[:mappable] == "false"
     search_wheres["license_code"] = @license if @license
@@ -2342,6 +2341,9 @@ class ObservationsController < ApplicationController
       search_wheres["range"] = { "taxon.rank_level" => {
         from: Taxon::RANK_LEVELS[@lrank] || 0,
         to: Taxon::RANK_LEVELS[@hrank] || 100 } }
+    end
+    if @captive.is_a?(FalseClass) || @captive.is_a?(TrueClass)
+      search_wheres["captive"] = @captive
     end
     if @quality_grade && @quality_grade != "any"
       search_wheres["quality_grade"] = @quality_grade

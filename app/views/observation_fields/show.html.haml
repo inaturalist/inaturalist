@@ -81,7 +81,7 @@
         %td
           = observation_field_value_for(ofv)
   = link_to "View more search options",                                                                  |
-    observations_path("field:#{@observation_field.normalized_name}" => (@value == 'any' ? '' : @value)), |
+    observations_path("field:#{@observation_field.normalized_name(escape: true)}" => (@value == 'any' ? '' : @value)), |
     :rel => "nofollow",                                                                                  |
     :class => "readmore"                                                                                 |
 = will_paginate @observation_field_values
