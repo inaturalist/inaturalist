@@ -71,7 +71,8 @@ module Logstasher
     hash[:subtype] ||= "Custom"
     Logstasher.replace_known_types!(hash)
     begin
-      stash_hash = { "@timestamp": Time.now, version: 1 }.
+      stash_hash = { "@timestamp": Time.now, version: 1,
+        pid: $$, hostname: Logstasher.hostname }.
         delete_if{ |k,v| v.blank? }.merge(hash)
       Logstasher.logger.debug(stash_hash.to_json)
     rescue Exception => e
@@ -114,8 +115,6 @@ module Logstasher
         subtype: "ActionController",
         start_time: args[1],
         end_time: args[2],
-        pid: $$,
-        hostname: Logstasher.hostname,
         browser: parsed_user_agent ? parsed_user_agent.browser : nil,
         browser_version: parsed_user_agent ? parsed_user_agent.version.to_s : nil,
         platform: parsed_user_agent ? parsed_user_agent.platform : nil,
