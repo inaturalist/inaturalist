@@ -33,7 +33,7 @@ module Logstasher
     if request.env["HTTP_ACCEPT_LANGUAGE"]
       # there may be multiple variations of languages, plus other junk
       payload[:http_languages] = request.env["HTTP_ACCEPT_LANGUAGE"].
-        split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }
+        split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }.first
     end
     payload[:ssl] = request.ssl?.to_s
     payload[:user_agent] = request.user_agent
@@ -111,7 +111,7 @@ module Logstasher
           [ k, v.to_s ]
         }]
       parsed_user_agent = UserAgent.parse(payload[:user_agent])
-      Logstasher.write_hash(payload.merge({
+      payload.merge!({
         "@timestamp": args[1],
         subtype: "ActionController",
         start_time: args[1],
@@ -123,12 +123,15 @@ module Logstasher
         method: (payload[:method] || payload[:params][:_method] || "GET").upcase,
         params: saved_params,
         format: format,
-        view_runtime: payload[:view_runtime] ? payload[:view_runtime].round(4) : nil,
-        db_runtime: payload[:db_runtime] ? payload[:db_runtime].round(4) : nil,
-        elasticsearch_runtime: payload[:elasticsearch_runtime] ? payload[:elasticsearch_runtime].round(4) : nil,
+        view_runtime: payload[:view_runtime] ? payload[:view_runtime].round(4) : 0.0,
+        db_runtime: payload[:db_runtime] ? payload[:db_runtime].round(4) : 0.0,
+        elasticsearch_runtime: payload[:elasticsearch_runtime] ? payload[:elasticsearch_runtime].round(4) : 0.0,
         # all the other times are in milliseconds
         total_time: ((args[2] - args[1]) * 1000).round(4)
-      }))
+      })
+      payload[:remainder_time] = (payload[:total_time] - payload[:db_runtime] -
+        payload[:view_runtime] - payload[:elasticsearch_runtime]).round(4)
+      Logstasher.write_hash(payload)
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.write_action_controller_log failed : #{e}"
     end
