@@ -197,6 +197,7 @@ module ElasticModel
         pager.replace(result.records.to_a)
       end
     rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+      Logstasher.write_exception(e)
       Rails.logger.error "[Error] Elasticsearch query failed: #{ e }"
       Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
       WillPaginate::Collection.new(1, 30, 0)

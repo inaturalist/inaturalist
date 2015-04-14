@@ -28,6 +28,7 @@ class Taxon < ActiveRecord::Base
         # just some names, and then getting indexed with those names only
         raise "Taxon names out of sync" if taxon_names.count != taxon_names.length
       rescue Exception => e
+        Logstasher.write_exception(e, reference: "Taxon.elastic_index! names sync")
         Rails.logger.error "[Warning] Taxon.elastic_index! has a problem: #{ e }"
         Rails.logger.error "Names before reload:\n#{ taxon_names.join("\n") }"
         taxon_names.reload

@@ -27,6 +27,7 @@ module ActsAsElasticModel
         begin
           __elasticsearch__.search(ElasticModel.search_hash(options))
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+          Logstasher.write_exception(e)
           Rails.logger.error "[Error] elastic_search failed: #{ e }"
           Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
         end
@@ -86,6 +87,7 @@ module ActsAsElasticModel
             body: prepare_for_index(batch)
           })
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+          Logstasher.write_exception(e)
           Rails.logger.error "[Error] elastic_index! failed: #{ e }"
           Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
         end
@@ -111,6 +113,7 @@ module ActsAsElasticModel
         # in the test ENV, we will need to wait for changes to be applied
         self.class.__elasticsearch__.refresh_index! if Rails.env.test?
       rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+        Logstasher.write_exception(e)
         Rails.logger.error "[Error] elastic_index! failed: #{ e }"
         Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
       end
@@ -122,6 +125,7 @@ module ActsAsElasticModel
         # in the test ENV, we will need to wait for changes to be applied
         self.class.__elasticsearch__.refresh_index! if Rails.env.test?
       rescue Elasticsearch::Transport::Transport::Errors::NotFound => e
+        Logstasher.write_exception(e)
         Rails.logger.error "[Error] elastic_delete! failed: #{ e }"
         Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
       end
