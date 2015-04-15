@@ -287,8 +287,17 @@ class ApplicationController < ActionController::Base
     if site_place
       search_wheres["ancestor_place_ids"] = site_place
     end
-    @places = Place.elastic_paginate(where: search_wheres,
-      per_page: @limit, page: params[:page])
+    search_params = {
+      where: search_wheres,
+      per_page: @limit, 
+      page: params[:page]
+    }
+    if params[:with_geom].yesish?
+      search_params.merge!(filters: [ { exists: { field: "geometry_geojson" } } ])
+    elsif params[:with_geom].noish?
+      search_params.merge!(filters: [ { 'not': { exists: { field: "geometry_geojson" } } } ])
+    end
+    @places = Place.elastic_paginate(search_params)
     Place.preload_associations(@places, :place_geometry_without_geom)
     if logged_in? && @places.blank?
       if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
