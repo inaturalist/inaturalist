@@ -116,6 +116,7 @@ class ObservationsController < ApplicationController
       @observations = Rails.cache.fetch(search_cache_key, expires_in: 5.minutes, compress: true) do
         get_elastic_paginated_observations(search_params)
       end
+      get_search_params(search_params) # this sets a bunch of instance variables for the UI
     else
       @observations = get_elastic_paginated_observations(search_params)
     end

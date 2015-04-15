@@ -5364,7 +5364,7 @@ CREATE INDEX index_custom_projects_on_project_id ON custom_projects USING btree 
 -- Name: index_delayed_jobs_on_unique_hash; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE UNIQUE INDEX index_delayed_jobs_on_unique_hash ON delayed_jobs USING btree (unique_hash);
+CREATE INDEX index_delayed_jobs_on_unique_hash ON delayed_jobs USING btree (unique_hash);
 
 
 --
@@ -7491,4 +7491,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150406181841');
 INSERT INTO schema_migrations (version) VALUES ('20150409021334');
 
 INSERT INTO schema_migrations (version) VALUES ('20150409031504');
+
+INSERT INTO schema_migrations (version) VALUES ('20150412200608');
+
+INSERT INTO schema_migrations (version) VALUES ('20150413222254');
 
