@@ -10,6 +10,12 @@ Usage:
 
   rails runner tools/globi_observation_links.rb URL
 
+URL should lead to a CSV file of the form
+  provider, consumer
+  INAT OBS URL, EOL URL
+
+E.g. the one at https://raw.githubusercontent.com/jhpoelen/backwarden/master/provider-consumer.csv
+
 where [options] are:
 EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
@@ -19,10 +25,9 @@ start_time = Time.now
 new_count = 0
 old_count = 0
 delete_count = 0
-href_name = "GloBI (EOL)"
+href_name = "GloBI"
 
 url = ARGV[0]
-# url = "https://raw.githubusercontent.com/jhpoelen/backwarden/master/provider-consumer.csv"
 Trollop::die "You must specify URL where we can retrieve the mappings" if url.blank?
 CSV.foreach(open(url), headers: true) do |row|
   observation_id = row['provider'].to_s[/\/(\d+)$/, 1]
@@ -31,11 +36,12 @@ CSV.foreach(open(url), headers: true) do |row|
     puts "\tobservation #{observation_id} doesn't exist, skipping..."
     next
   end
-  href = row['consumer']
-  if href.blank?
+  eol_url = row['consumer']
+  if eol_url.blank?
     puts "\tGloBI / EOL URL missing, skipping..."
     next
   end
+  href = "http://www.globalbioticinteractions.org/#interactionType=interactsWith&accordingTo=http%3A%2F%2Fwww.inaturalist.org%2Fobservations%2F#{observation_id}"
   existing = ObservationLink.where(observation_id: observation_id, href: href).first
   if existing
     existing.touch unless opts[:debug]
