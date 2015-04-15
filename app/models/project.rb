@@ -20,7 +20,7 @@ class Project < ActiveRecord::Base
   has_many :posts, :as => :parent, :dependent => :destroy
   has_many :journal_posts, :class_name => "Post", :as => :parent
   has_many :assessments, :dependent => :destroy
-    
+  
   before_save :strip_title
   before_save :unset_show_from_place_if_no_place
   after_create :create_the_project_list
@@ -133,6 +133,22 @@ class Project < ActiveRecord::Base
   
   def to_s
     "<Project #{id} #{title}>"
+  end
+
+  def start_time=(value)
+    if value.is_a?(String)
+      super(Chronic.parse(value))
+    else
+      super
+    end
+  end
+
+  def end_time=(value)
+    if value.is_a?(String)
+      super(Chronic.parse(value))
+    else
+      super
+    end
   end
   
   def strip_title

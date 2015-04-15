@@ -1203,6 +1203,7 @@ en:
   if_your_project_is: If your project is about a particular place, set the coordinates by clicking the map or entering them manually.
   if_your_search_comes_up: "If your search comes up empty, you should see some search boxes to repeat the search through our external name providers:"
   ignore: ignore
+  ignore_times: Ignore times
   image_must_be_exactly: image must be exactly 950px wide and at most 400px tall
   import: Import
   import_all_photos_as_observations: Import all photos as observations 
@@ -3809,7 +3810,7 @@ en:
           in_taxon: be in taxon
           observed_in_place: be observed in place
           on_list: be of a taxon on the project list
-        start_time_desc: "Start time for your bioblitz"
+        start_time_desc: "Start time for your bioblitz. Format: YYYY-MM-DDThh:mm:ss±hh:mm"
         trusted_project_means: |
           Trusting a project means that the project managers can add project
           assets and custom project attributes (e.g. banner HTML, CSS). Access
