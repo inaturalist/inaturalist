@@ -29,7 +29,7 @@ describe ObservationsController do
       project = Project.make!
       expect(project.users.find_by_id(user.id)).to be_blank
       post :create, :observation => {:species_guess => "Foo!"}, :project_id => project.id, :accept_terms => true
-      expect(project.users.find_by_id(user.id)).to_not be_blank
+      expect(project.users.find_by_id(user.id)).to be_blank
       expect(project.observations.last.id).to eq Observation.last.id
     end
     
@@ -37,7 +37,7 @@ describe ObservationsController do
       project = Project.make!
       expect(project.users.find_by_id(user.id)).to be_blank
       post :create, :format => "json", :observation => {:species_guess => "Foo!"}, :project_id => project.id
-      expect(project.users.find_by_id(user.id)).to_not be_blank
+      expect(project.users.find_by_id(user.id)).to be_blank
       expect(project.observations.last.id).to eq Observation.last.id
     end
     

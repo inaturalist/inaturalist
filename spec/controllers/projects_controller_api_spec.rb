@@ -42,6 +42,16 @@ shared_examples_for "a ProjectsController" do
         expect( ProjectObservation.find_by_id(po.id) ).not_to be_blank
       end
     end
+
+    it "should allow leaving with coordinate access revocation" do
+      without_delay do
+        po = make_project_observation(user: user, prefers_curator_coordinate_access: true)
+        expect( po ).to be_prefers_curator_coordinate_access
+        delete :leave, format: :json, id: po.project_id, keep: "revoke"
+        po.reload
+        expect( po ).not_to be_prefers_curator_coordinate_access
+      end
+    end
   end
 end
 

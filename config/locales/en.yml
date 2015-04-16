@@ -3787,15 +3787,31 @@ en:
         map_instruction: Use the polygon tool to draw the place boundary.
     projects:
       curator_coordinate_access_desc_html: |
-        Project curators will be able to view the private coordinates of your
-        observations in this project by default. If you opt-out, you can still
-        grant access to private coordinates on a case-by-case basis.
+        Remember, project curators can add any of your observations to their
+        project unless you've opted out in your <a href="/users/edit">account
+        settings</a>. Only check this box if you trust the project to view
+        your private coordinates of whatever might be added. Otherwise, you
+        can still grant access to private coordinates on a observation-by-
+        observation basis.
       confirm_leave:
+        what_would_you_like: |
+          What would you like to do with your observations in this project?
+        keep_observations_label: |
+          Leave your observations in this project
         keep_observations_desc: |
-          Leave my observations in this project so project curators can
-          continue to see the private coordinates
-        remove_observations_desc: |
-          Remove all my observations from this project
+          Your observations will stay in the project and curators will still
+          be able to view their private coordinates.
+        remove_observations_label: |
+          Remove all your observations from this project
+        remove_observations_desc_html: |
+          Keep in mind that project curators will still be able to add your
+          observations to their project unless you change your 
+          <a href="/users/edit">account settings</a>.
+        revoke_observations_label: |
+          Leave your observations in this project but prevent curators from viewing
+          their private coordinates
+        revoke_observations_desc: |
+          If the only reason you're leaving is to stop project curators from viewing your private coordinates.
       edit:
         bioblitz_create_a_new_place_html: |
           %{link}, make sure it has a boundary, then come back here and try again.
@@ -3977,6 +3993,11 @@ en:
           any: Any
           joined: Projects you've joined
           none: "None, only you can add your observations to projects"
+        project_settings_desc: |
+          Remember, this does not give projects permission to access your
+          private coordinates or send you updates. You must join projects in
+          order to grant these permissions, or grant them on a case-by-case
+          basis.
         taxon_change_desc: |
           When taxa are merged or renamed on %{site_name}, your observations, listed
           taxa, identifications, etc. will be automatically updated to the new

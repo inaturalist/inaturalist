@@ -73,11 +73,11 @@ shared_examples_for "an ObservationsController" do
         p.observations.count.should eq 1
       end
 
-      it "should create a project user if one doesn't exist" do
+      it "should not create a project user if one doesn't exist" do
         p.project_users.where(:user_id => user.id).should be_blank
         post :create, :format => :json, :observation => {:species_guess => "foo"}, :project_id => p.id
         p.reload
-        p.project_users.where(:user_id => user.id).should_not be_blank
+        p.project_users.where(:user_id => user.id).should be_blank
       end
 
       it "should add to project with has_media rule if photo present" do

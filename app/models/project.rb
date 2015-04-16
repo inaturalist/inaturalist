@@ -405,7 +405,14 @@ class Project < ActiveRecord::Base
     project.update_attributes(:observed_taxa_count => observed_taxa_count)
   end
   
-  
+  def self.revoke_project_observations_on_leave_project(project_id, user_id)
+    return unless proj = Project.find_by_id(project_id)
+    return unless usr = User.find_by_id(user_id)
+    proj.project_observations.joins(:observation).where("observations.user_id = ?", usr).find_each do |po|
+      po.update_attributes(prefers_curator_coordinate_access: false)
+    end
+  end
+
   def self.delete_project_observations_on_leave_project(project_id, user_id)
     return unless proj = Project.find_by_id(project_id)
     return unless usr = User.find_by_id(user_id)

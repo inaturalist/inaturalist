@@ -92,17 +92,6 @@
       <% end %>
     <% end %>
     
-    <% if @project && !member_of?(@project)%>
-      <div class="clear" id="accept_terms">
-        <%= check_box_tag :accept_terms %>
-        <span class="notice">
-          <%= t :agree_to_the_project_terms %>
-          <%= link_to_function t(:view_terms), 
-            "remoteDialog('/projects/#{@project.id}/join?partial=join&skip_form=true', {title: '#{t(:project_terms)}'})" %>
-        </span>
-      </div>
-    <% end %>
-    
     <%= hidden_field_tag(:project_id, @project.id) if @project %>
     <%= hidden_field_tag(:tracking_code, @tracking_code) if @tracking_code %>
 

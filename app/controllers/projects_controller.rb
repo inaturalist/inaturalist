@@ -508,7 +508,9 @@ class ProjectsController < ApplicationController
     unless @project_user.role == nil
       Project.delay(:priority => USER_INTEGRITY_PRIORITY).update_curator_idents_on_remove_curator(@project.id, @project_user.user.id)
     end
-    unless params[:keep].yesish?
+    if params[:keep] == 'revoke'
+      Project.delay(:priority => USER_INTEGRITY_PRIORITY).revoke_project_observations_on_leave_project(@project.id, @project_user.user.id)
+    elsif !params[:keep].yesish?
       Project.delay(:priority => USER_INTEGRITY_PRIORITY).delete_project_observations_on_leave_project(@project.id, @project_user.user.id)
     end
     @project_user.destroy
