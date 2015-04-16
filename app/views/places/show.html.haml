@@ -28,8 +28,7 @@
         TILESTACHE_SERVER = #{CONFIG.tile_servers.tilestache.inspect.html_safe}
   = javascript_include_tag 'map_bundle',
     "jquery/plugins/jquery.infinitescroll.min",
-    "taxon_guide", "places/show",
-    'jquery/plugins/jquery.dataTables.min'
+    "taxon_guide", "places/show"
   :javascript
     $(document).ready(function() {
       var script = document.createElement("script")
@@ -87,9 +86,10 @@
       %li
         %a{:href => "#projectstab"}
           %span= t(:projects).capitalize
-    %li
-      %a{:href => "#peopletab"}
-        %span= t(:people).capitalize
+    - unless @place_geometry.blank?
+      %li
+        %a{:href => "#peopletab"}
+          %span= t(:people).capitalize
     %li
       %a{:href => "#abouttab"}
         %span= t :about_x, :x => t(@place.name, :default => @place.name)
@@ -146,15 +146,8 @@
         %h3= t(:projects_in_x, :x => @place.name)
         = render :partial => 'projects/project', :collection => @projects
       = link_to t(:view_all), browse_projects_url(:place_id => @place.slug), :class => "readmore"
-  #peopletab
-    %table#user_stats.table
-      %thead
-        %tr
-          %th #
-          %th= t(:user)
-          %th= t(:observations)
-          %th= t(:species)
-      %tbody
+  - unless @place_geometry.blank?
+    #peopletab
   #abouttab
     .container
       .column.span-8.append-1

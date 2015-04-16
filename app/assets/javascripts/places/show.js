@@ -24,7 +24,7 @@ $(document).ready(function() {
         $(ui.panel).addClass('loaded')
         var container = $('<div id="leaderboard">')
         $(ui.panel).append(container)
-        container.leaderboard({'place_id': PLACE.id})
+        container.leaderboard({'place_id': PLACE.id, limit: 100})
       }
     },
     load: function(event, ui) {
