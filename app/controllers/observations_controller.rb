@@ -293,6 +293,13 @@ class ObservationsController < ApplicationController
           end
           @project_addition_allowed = @observation.user_id == current_user.id
           @project_addition_allowed ||= @observation.user.preferred_project_addition_by != User::PROJECT_ADDITION_BY_NONE
+          if @project_addition_allowed
+            @addable_projects = if @observation.user_id == current_user.id
+              @projects
+            else
+              @curated_projects
+            end
+          end
         end
         
         @places = @observation.places
