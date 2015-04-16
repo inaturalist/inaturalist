@@ -1,6 +1,14 @@
 require "socket"
 
 module Logstasher
+
+  HTTP_PARAMS_TO_STASH = [
+    "HTTP_FROM", "HTTP_HOST", "HTTP_USER_AGENT", "HTTP_X_CLUSTER_CLIENT_IP",
+    "HTTP_X_FORWARDED_FOR", "HTTP_X_FORWARDED_PROTO", "ORIGINAL_FULLPATH",
+    "HTTP_ACCEPT_LANGUAGE", "HTTP_REFERER", "REMOTE_ADDR", "REQUEST_METHOD",
+    "SERVER_ADDR", "CONTENT_LENGTH", "HTTP_ORIGIN", "HTTP_AUTHORIZATION",
+    "HTTP_SSLSESSIONID" ]
+
   def self.logger
     return if Rails.env.test?
     return @logger if @logger
@@ -28,16 +36,25 @@ module Logstasher
       break
     end
     # grab nearly all the HTTP params from request.env
-    payload.merge!(request.env.select{ |k,v| k =~ /^[A-Z_]+$/ }.
-      delete_if{ |k,v| [ "HTTP_COOKIE" ].include?(k) || v.blank? })
+    payload.merge!(request.env.select{ |k,v|
+      HTTP_PARAMS_TO_STASH.include?(k) && !v.blank? })
     if request.env["HTTP_ACCEPT_LANGUAGE"]
       # there may be multiple variations of languages, plus other junk
       payload[:http_languages] = request.env["HTTP_ACCEPT_LANGUAGE"].
-        split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }.first
+        split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }.map(&:downcase).first
     end
     payload[:ssl] = request.ssl?.to_s
-    payload[:user_agent] = request.user_agent
+    parsed_user_agent = UserAgent.parse(request.user_agent)
+    payload[:browser] = parsed_user_agent ? parsed_user_agent.browser : nil
+    payload[:browser_version] = parsed_user_agent ? parsed_user_agent.version.to_s : nil
+    payload[:platform] = parsed_user_agent ? parsed_user_agent.platform : nil
+    payload[:bot] = Logstasher.is_user_agent_a_bot?(request.user_agent)
     payload
+  end
+
+  def self.is_user_agent_a_bot?(user_agent)
+    !![ "(bot|spider|pinger)\/", "(yahoo|ruby|newrelicpinger|python|lynx)" ].
+      detect { |bot| user_agent =~ /#{ bot }/i }
   end
 
   def self.payload_from_session(session)
@@ -72,7 +89,7 @@ module Logstasher
     hash[:subtype] ||= "Custom"
     Logstasher.replace_known_types!(hash)
     begin
-      stash_hash = { "@timestamp": Time.now, version: 1,
+      stash_hash = { end_time: Time.now, version: 1,
         pid: $$, hostname: Logstasher.hostname }.
         delete_if{ |k,v| v.blank? }.merge(hash)
       Logstasher.logger.debug(stash_hash.to_json)
@@ -88,7 +105,7 @@ module Logstasher
         subtype: "Exception",
         error_type: exception.class.name,
         error_message: [ exception.class.name, exception.message ].join(": "),
-        backtrace: exception.backtrace ? exception.backtrace.join("\n") : nil
+        backtrace: exception.backtrace ? exception.backtrace[0...15].join("\n") : nil
       }))
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.write_exception failed: #{e}"
@@ -110,15 +127,11 @@ module Logstasher
           # flatten out nested object and complex params like uploads
           [ k, v.to_s ]
         }]
-      parsed_user_agent = UserAgent.parse(payload[:user_agent])
       payload.merge!({
         "@timestamp": args[1],
         subtype: "ActionController",
         start_time: args[1],
         end_time: args[2],
-        browser: parsed_user_agent ? parsed_user_agent.browser : nil,
-        browser_version: parsed_user_agent ? parsed_user_agent.version.to_s : nil,
-        platform: parsed_user_agent ? parsed_user_agent.platform : nil,
         controller_action: payload[:controller] + "::" + payload[:action],
         method: (payload[:method] || payload[:params][:_method] || "GET").upcase,
         params: saved_params,
