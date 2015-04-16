@@ -1373,6 +1373,99 @@ $.fn.boldId = function() {
   })
 }
 
+$.fn.leaderboard = function(options) {
+  $(this).addClass('leaderboard-container')
+  var htmltable = $(this).html(
+    $('<table>').append(
+      $('<thead>').append(
+        $('<tr>').append(
+          $('<th>').append('#'),
+          $('<th class="user">').append(I18n.t('user')),
+          $('<th class="numeric">').append(I18n.t('observations')),
+          $('<th class="numeric">').append(I18n.t('species'))
+        )
+      ),
+      $('<tbody>')
+    )
+  )
+  // http://stackoverflow.com/questions/17732714/datatables-js-sort-columns-containing-html-links-with-integer-text
+  jQuery.fn.dataTableExt.oSort['numeric-html-asc'] = jQuery.fn.dataTableExt.oSort['numeric-html-asc'] || function(a,b) {
+    if (!a.toString().match(/^\d+$/)) {
+      a = parseInt($(a).text())
+      b = parseInt($(b).text())
+    }
+    return ((a < b) ? -1 : ((a > b) ?  1 : 0))
+  }
+  jQuery.fn.dataTableExt.oSort['numeric-html-desc'] = jQuery.fn.dataTableExt.oSort['numeric-html-desc'] || function(a,b) {
+    if (!a.toString().match(/^\d+$/)) {
+      a = parseInt($(a).text())
+      b = parseInt($(b).text())
+    }
+  return ((a < b) ? 1 : ((a > b) ?  -1 : 0))
+  }
+  var table = $('table', this).DataTable({
+    "bPaginate": false,
+    "bLengthChange": false,
+    "bFilter": false,
+    "bInfo": false,
+    "aaSorting": [[2,'desc']],
+    "aoColumns": [
+      {"bSortable": false},
+      {"sType": "html", "sClass": "user"},
+      {"sType": "numeric-html", "sClass": "numeric", "orderSequence": ["desc", "asc"]},
+      {"sType": "numeric-html", "sClass": "numeric", "orderSequence": ["desc", "asc"]}
+    ],
+    fnDrawCallback: function ( oSettings ) {
+        var that = this;
+        /* Need to redo the counters if filtered or sorted */
+        if ( oSettings.bSorted || oSettings.bFiltered ) {
+          this.$('td:first-child', {"filter":"applied"}).each( function (i) {
+              that.fnUpdate( i+1, this.parentNode, 0, false, false );
+          })
+        }
+    }
+  })
+  htmltable.loadingShades()
+  $.getJSON('/observations/user_stats?'+$.param(options), function(data) {
+    htmltable.shades('close')
+    var users = {}
+    $.each(data.most_observations, function() {
+      users[this.user.id] = {user: this.user, observations: this.count}
+    })
+    $.each(data.most_species, function() {
+      users[this.user.id].species = this.count
+    })
+    $.each(users, function(i) {
+      var linkOptions = $.extend({}, options, true)
+      delete linkOptions.limit
+      var userLink = $('<a>')
+          .attr('href', '/people/'+this.user.login)
+          .html(
+            $('<img>').attr('src', this.user.user_icon_url || '<%= image_path(User.new.icon.url(:thumb)) %>')
+          ).prop('outerHTML') +
+        $('<a>')
+          .attr('href', '/people/'+this.user.login)
+          .html(this.user.login).prop('outerHTML')
+      var obsLink = $('<a>')
+        .attr('href', '/observations/'+this.user.login+'?'+$.param(linkOptions))
+        .html(this.observations || 0)
+        .prop('outerHTML')
+      var sppLink = $('<a>')
+        .attr('href', '/observations/taxa?'+$.param($.extend({}, linkOptions, {user_id: this.user.login}, true)))
+        .html(this.species || 0)
+        .prop('outerHTML')
+      var row = [
+        i,
+        userLink,
+        obsLink,
+        sppLink
+      ]
+      table.row.add(row)
+    })
+    table.draw()
+  })
+}
+
 $(document).ready(function() {
   // tmp fixes for old views being used with bootstrap
   $('.bootstrap .button.default').addClass('btn btn-primary').removeClass('button default')
