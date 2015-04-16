@@ -86,7 +86,7 @@
       %li
         %a{:href => "#projectstab"}
           %span= t(:projects).capitalize
-    - unless @place_geometry.blank?
+    - if @show_leaderboard
       %li
         %a{:href => "#peopletab"}
           %span= t(:people).capitalize
@@ -146,7 +146,7 @@
         %h3= t(:projects_in_x, :x => @place.name)
         = render :partial => 'projects/project', :collection => @projects
       = link_to t(:view_all), browse_projects_url(:place_id => @place.slug), :class => "readmore"
-  - unless @place_geometry.blank?
+  - if @show_leaderboard
     #peopletab
   #abouttab
     .container

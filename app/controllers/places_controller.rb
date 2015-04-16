@@ -108,6 +108,7 @@ class PlacesController < ApplicationController
         if logged_in?
           @subscriptions = @place.update_subscriptions.where(:user_id => current_user)
         end
+        @show_leaderboard = @place_geometry && @place.bbox_area < 1000
       end
       format.json do
         if (partial = params[:partial]) && ALLOWED_SHOW_PARTIALS.include?(partial)
