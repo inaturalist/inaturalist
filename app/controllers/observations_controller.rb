@@ -2252,7 +2252,14 @@ class ObservationsController < ApplicationController
       @user ||= User.find_by_login(params[:user_id])
     end
     unless params[:projects].blank?
-      @projects = Project.find(params[:projects]) rescue []
+      @projects = Project.find([params[:projects]].flatten) rescue []
+      @project = @projects.compact
+      if @projects.blank?
+        params[:projects].each do |p|
+          @projects << Project.find(p) rescue nil
+        end
+        @project = @projects.compact
+      end
     end
     if (@pcid = params[:pcid]) && @pcid != 'any'
       @pcid = [true, 'true', 't', 1, '1', 'y', 'yes'].include?(params[:pcid]) ? 'yes' : 'no'

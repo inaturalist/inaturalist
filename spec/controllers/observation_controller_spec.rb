@@ -150,7 +150,7 @@ describe ObservationsController do
       end
 
       it "should include private coordinates" do
-        po = make_project_observation(project: p)
+        po = make_project_observation(project: p, prefers_curator_coordinate_access: true)
         expect( po ).to be_prefers_curator_coordinate_access
         o = po.observation
         o.update_attributes(:geoprivacy => Observation::PRIVATE, :latitude => 1.23456, :longitude => 1.23456)
