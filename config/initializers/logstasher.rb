@@ -33,16 +33,18 @@ module Logstasher
   def self.payload_from_request(request)
     return { } unless request.is_a?(ActionDispatch::Request)
     payload = { }
-    # try a few params for IP. Proxies will shuffle around requester IP
-    %w( HTTP_X_FORWARDED_FOR HTTP_X_CLUSTER_CLIENT_IP REMOTE_ADDR ).
-      each do |param|
-      next if request.env[ param ].blank?
-      payload[:clientip] = request.env[ param ]
-      break
-    end
     # grab nearly all the HTTP params from request.env
     payload.merge!(request.env.select{ |k,v|
       HTTP_PARAMS_TO_STASH.include?(k) && !v.blank? })
+    # cleanup multiple IPs
+    payload = Logstasher.split_multiple_ips(payload)
+    # try a few params for IP. Proxies will shuffle around requester IP
+    %w( HTTP_X_FORWARDED_FOR HTTP_X_CLUSTER_CLIENT_IP REMOTE_ADDR ).
+      each do |param|
+      next if payload[ param ].blank?
+      payload[:clientip] = payload[ param ]
+      break
+    end
     if request.env["HTTP_ACCEPT_LANGUAGE"]
       # there may be multiple variations of languages, plus other junk
       payload[:http_languages] = request.env["HTTP_ACCEPT_LANGUAGE"].
@@ -56,7 +58,7 @@ module Logstasher
     payload[:bot] = Logstasher.is_user_agent_a_bot?(request.user_agent)
     # this can be overwritten by merging Logstasher.payload_from_user
     payload[:logged_in] = false
-    Logstasher.split_multiple_ips(payload)
+    payload
   end
 
   def self.payload_from_session(session)
