@@ -74,6 +74,7 @@ h2{line-height:1;margin:0;float:left;}
   z-index:1;
   box-shadow: inset 0px 0px 20px rgba(0,0,0,0.1),
               -5px 0px 10px rgba(0,0,0,0.6);
+  text-decoration: none;
 }
 #addbutton:hover {background-color: #f82714;}
 #addbutton small {font-size:12pt; letter-spacing: 0.25em;}
@@ -89,7 +90,7 @@ h2{line-height:1;margin:0;float:left;}
   right: 0;
   border-width: 20px 20px 0 0;
 }
-#bioblitz_observations .observationcontrols {margin-top:3px;}
+#recent_observations .observationcontrols {margin-top:3px;}
 .observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
   width: 152px;
   height: 152px;
@@ -100,13 +101,13 @@ h2{line-height:1;margin:0;float:left;}
 .most_species {
   width: 237px; float: left;
 }
-#bioblitzstats h2 {float:none;}
-#bioblitzstats .stat .count {font-size: 300%;}
-#bioblitzstats .stat img {max-width:48px;}
-#bioblitzstats .numerical.stat .count {line-height: 1;}
-#bioblitzstats td {border:none; vertical-align:top;}
-#bioblitzstats table {margin:0;}
-#bioblitzstats .counts .stat {margin-bottom: 5px;}
+#projectstats h2 {float:none;}
+#projectstats .stat .count {font-size: 300%;}
+#projectstats .stat img {max-width:48px;}
+#projectstats .numerical.stat .count {line-height: 1;}
+#projectstats td {border:none; vertical-align:top;}
+#projectstats table {margin:0;}
+#projectstats .counts .stat {margin-bottom: 5px;}
 #event.with_description {width: 50%; float: right; margin-left: 10px;}
 #bioblitz td {border: 0 transparent;}
 .invited {background-color: #FFF6BF;}

@@ -117,8 +117,8 @@
   <% end -%>
 </div>
 
-<% if @project.project_type == Project::BIOBLITZ_TYPE -%>
-  <div id="bioblitz" class="column span-24 stacked">
+<div id="bioblitz" class="column span-24 stacked">
+  <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
     <% if !@project.event_url.blank? && !@project.event_started? -%>
       <div id="event" class="clear stacked <%= 'with_description' unless @project.description.blank? %>">
         <% if @project.eventbrite_id -%>
@@ -140,29 +140,39 @@
         :attributes => Post::ALLOWED_ATTRIBUTES, 
         :skip_simple_format => @project.description.to_s[0] == "<") %>
     <% end -%>
+  <% end %>
 
-    <% if @project.event_in_progress? || @project.event_ended? -%>
-      <div id="bioblitzstats" class="stacked">
-        <div class="inline buttonrow right">
-          <%= link_to t(:all_observations, :default => "All observations").capitalize, observations_url(@observations_url_params), :class => "inter" %>
-          <%= link_to t(:all_species, :default => "All species").capitalize, taxa_observations_url(@observations_url_params.merge(:rank => Taxon::SPECIES)), :class => "inter" %>
-          <%= link_to t(:all_people, :default => "All people").capitalize, user_stats_observations_url(@observations_url_params), :class => "inter" %>
-          <%= link_to_dialog t(:about_bioblitz_results), :width => "60%", :link => {:class => "meta inter"} do %>
-            <%=t 'views.projects.show.bioblitz_results_desc_html' %>
-          <% end -%>
-          <% if signed_in? && @project.event_in_progress? -%>
-            <%= link_to t(:view_real_time_stats_in_a_new_window), stats_observations_url(@observations_url_params.merge(:refresh => true)), :class => "inter readmore", :target => "_new" %>
-          <% end -%>
-        </div>
-        <h2 class="stacked"><%= @project.event_ended? ? t(:event_stats) : t(:event_in_progress) %></h2>
-        <div id="rtstats" class="clear">
-          <%= render :partial => "observations/real_time_stats" %>
-        </div>
-      </div>
-      <%= separator %>
-    <% end -%>
+  <div id="projectstats" class="stacked">
+    <div class="inline buttonrow right">
+      <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+        <%= link_to t(:all_observations, :default => "All observations").capitalize, observations_url(@observations_url_params), :class => "inter" %>
+      <% else %>
+        <%= link_to t(:all_observations, :default => "All observations").capitalize, project_observations_url(@project), :class => "inter" %>
+      <% end %>
+      <%= link_to t(:all_species, :default => "All species").capitalize, taxa_observations_url(@observations_url_params.merge(:rank => Taxon::SPECIES)), :class => "inter" %>
+      <%= link_to t(:all_people, :default => "All people").capitalize, user_stats_observations_url(@observations_url_params), :class => "inter" %>
+      <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+        <%= link_to_dialog t(:about_bioblitz_results), :width => "60%", :link => {:class => "meta inter"} do %>
+          <%=t 'views.projects.show.bioblitz_results_desc_html' %>
+        <% end -%>
+        <% if signed_in? && @project.event_in_progress? -%>
+          <%= link_to t(:view_real_time_stats_in_a_new_window), stats_observations_url(@observations_url_params.merge(:refresh => true)), :class => "inter readmore", :target => "_new" %>
+        <% end -%>
+      <% end %>
+    </div>
+    <h2 class="stacked">
+      <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+        <%= @project.event_ended? ? t(:event_stats) : t(:event_in_progress) %>
+      <% else %>
+        <%=t :stats %>
+      <% end %>
+    </h2>
+    <div id="rtstats" class="clear">
+      <%= render :partial => "observations/real_time_stats" %>
+    </div>
   </div>
-<% end -%>
+  <%= separator %>
+</div>
 
 
 <div class="column span-16">
@@ -174,7 +184,9 @@
     longitude: @project.longitude,
     map_type: @project.map_type,
     observation_layers: [ { project_id: @project.id, observations: @observations } ] ) %>
-  <%= content_tag("div", "", map_attributes.merge({ id: "map" })) %>
+  <div class="stacked">
+    <%= content_tag("div", "", map_attributes.merge({ id: "map" })) %>
+  </div>
   
   <% unless @project_journal_posts.blank? %>
     <div id="journal" class="quiet box">
@@ -218,43 +230,28 @@
       </div>
     <% end -%>
 
-    <% if @project.project_type == 'bioblitz' -%>
-      <div id="bioblitz_observations">
-        <div class="clear">
-          <h3 class="left">
-            <%=t :recent_observations %>
-            <%= link_to t(:view_all), @observations_url, :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
-          </h3>
-          <div class="right observationcontrols"></div>
-        </div>
-        <div class="observations medium grid">
-          <%= loading %>
-        </div>
+    <div id="recent_observations">
+      <div class="clear">
+        <h3 class="left">
+          <%=t :recent_observations %>
+          <%= link_to t(:view_all), @project.project_type == Project::BIOBLITZ_TYPE ? @observations_url : project_observations_url(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
+        </h3>
+        <div class="right observationcontrols"></div>
       </div>
-    <% else %>
-      <h3>
-        <%=t :recent_observations %>
-        <%= link_to t(:view_all), project_observations_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
-      </h3>
-      <% if @project_observations.blank? -%>
-        <div class="description noresults">
-          <%=t :no_observations_yet %>
-        </div>
-      <% else %>
-        <div class="mini observations">
-          <% for project_observation in @project_observations %>
-            <%= render :partial => 'project_observation', :object => project_observation %>
-          <% end %>
-        </div>
-        <%= link_to t(:more_observations), {:controller => "observations", :action => "project", :id => @project},
-          :class => "readmore" %>
-      <% end -%>
-    <% end -%>
+      <div class="observations medium grid">
+        <%= loading %>
+      </div>
+      <%= link_to t(:more_observations), @project.project_type == Project::BIOBLITZ_TYPE ? @observations_url : project_observations_url(@project),
+        :class => "readmore" %>
+    </div>
   </div>
 </div>
 
 <div class="last column span-8">
   <ul id="projectnav" class="stacked quiet box">
+    
+    <!--
+
     <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:event_observations)}".html_safe, @observations_url, :class => "navlink" %>
@@ -323,6 +320,10 @@
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
       </li>
     <% end -%>
+
+    -->
+
+
     <li>
       <% if @journal_post_count.to_i > 0 -%>
         <span class="right sectioncount">
@@ -380,6 +381,7 @@
         <% end %>
       </div>
     </li>
+
     <% if @project_user -%>
       <li>
         <span class="right sectioncount">
@@ -394,9 +396,30 @@
         </div>
       </li>
     <% end -%>
+    <li>
+      <%= link_to "<span class='lead'>&raquo;</span> #{t(:export_observations)}".html_safe, export_observations_path(projects: @project.id), :class => "navlink" %>
+      <div class="inner feeds">
+        <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
+        <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
+        <%= link_to("CSV",  export_observations_path('projects[]' => @project),  :class => 'csvlink', :rel => "nofollow") %>
+        <% if @project.curated_by?(current_user) -%>
+          /
+          <%= link_to t(:all_csv), all_project_observations_url(@project, :format => 'csv'), 
+            :class => "delayedlink csvlink", 
+            "data-delayed-link-msg" => 
+              t(:please_hold_on_while_the_file),
+            :rel => "nofollow" %>
+        <% end -%>
+      </div>
+      <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+        <div class="inner small meta upstacked">
+          <%=t 'views.projects.show.project_observations_desc' %>
+        </div>
+      <% end -%>
+    </li>
     <% if logged_in? && @project.project_type != Project::BIOBLITZ_TYPE -%>
       <li>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:usage_stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
       <% if @project.curated_by?(current_user) -%>
         <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_observations)}".html_safe, observations_path(@project.observations_url_params), :class => "navlink" %></li>

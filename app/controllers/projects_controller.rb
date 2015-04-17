@@ -149,12 +149,12 @@ class ProjectsController < ApplicationController
           map(&:provider_uid)
         @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
         @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
-        @observations_url = if @project.project_type == 'bioblitz'
-          @observations_url_params = @project.observations_url_params
-          observations_url(@observations_url_params)
+        @observations_url_params = if @project.project_type == Project::BIOBLITZ_TYPE
+          @project.observations_url_params
         else
-          project_observations_url(@project, :per_page => 24)
+          {projects: [@project.id]}
         end
+        @observations_url = observations_url(@observations_url_params)
         if logged_in? && @project_user.blank?
           @project_user_invitation = @project.project_user_invitations.where(:invited_user_id => current_user).first
         end
@@ -162,6 +162,8 @@ class ProjectsController < ApplicationController
         if params[:iframe]
           @headless = @footless = true
           render :action => "show_iframe"
+        elsif params[:test]
+          render action: 'show_test', layout: 'bootstrap'
         end
       end
       
