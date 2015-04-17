@@ -2,6 +2,26 @@ require "spec_helper"
 
 describe "Logstasher" do
 
+  before(:all) do
+    @test_host = "localhost"
+  end
+
+  it "creates a logger" do
+    expect( Rails.env ).to receive(:test?).and_return(false)
+    expect( Logstasher.logger ).to be_a Logger
+  end
+
+  it "caches the hostname" do
+    expect( Socket ).to receive(:gethostname).exactly(:once).and_return(@test_host)
+    expect( Logstasher.hostname )
+    expect( Logstasher.hostname )
+    expect( Logstasher.hostname )
+  end
+
+  it "creates a hostname" do
+    expect( Logstasher.hostname ).to eq @test_host
+  end
+
   it "identified bots given a user agent" do
     bots = [
       "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
@@ -24,12 +44,26 @@ describe "Logstasher" do
       "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0"
     ]
     bots.each do |bot|
-      puts bot
       expect( Logstasher.is_user_agent_a_bot?(bot) ).to be true
     end
     not_bots.each do |not_bot|
       expect( Logstasher.is_user_agent_a_bot?(not_bot) ).to be false
     end
+  end
+
+  it "returns the original IP in a list of IPs" do
+    expect( Logstasher.original_ip_in_list(nil) ).to be nil
+    expect( Logstasher.original_ip_in_list(100) ).to be nil
+    expect( Logstasher.original_ip_in_list([ "127.0.0.1" ]) ).to be nil
+    expect( Logstasher.original_ip_in_list("127.0.0.1") ).to eq "127.0.0.1"
+    expect( Logstasher.original_ip_in_list("127.0.0.1, 192.168.1.1") ).to eq "192.168.1.1"
+  end
+
+  it "cleans up multiple IPs and adds originals to new field" do
+    expect( Logstasher.split_multiple_ips({
+      "REMOTE_ADDR" => "127.0.0.1, 192.168.1.1"}) ).to eq ({
+        "REMOTE_ADDR" => "192.168.1.1",
+        "REMOTE_ADDR_ALL" => [ "127.0.0.1", "192.168.1.1" ] })
   end
 
 end

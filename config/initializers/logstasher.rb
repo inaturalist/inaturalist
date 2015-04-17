@@ -7,7 +7,12 @@ module Logstasher
     "HTTP_X_FORWARDED_FOR", "HTTP_X_FORWARDED_PROTO", "ORIGINAL_FULLPATH",
     "HTTP_ACCEPT_LANGUAGE", "HTTP_REFERER", "REMOTE_ADDR", "REQUEST_METHOD",
     "SERVER_ADDR", "CONTENT_LENGTH", "HTTP_ORIGIN", "HTTP_AUTHORIZATION",
-    "HTTP_SSLSESSIONID" ]
+    "HTTP_SSLSESSIONID", "X_MOBILE_DEVICE" ]
+
+  IP_PARAMS = [
+    "HTTP_X_CLUSTER_CLIENT_IP", "HTTP_X_FORWARDED_FOR", "REMOTE_ADDR",
+    "SERVER_ADDR", "clientip"
+  ]
 
   def self.logger
     return if Rails.env.test?
@@ -49,12 +54,9 @@ module Logstasher
     payload[:browser_version] = parsed_user_agent ? parsed_user_agent.version.to_s : nil
     payload[:platform] = parsed_user_agent ? parsed_user_agent.platform : nil
     payload[:bot] = Logstasher.is_user_agent_a_bot?(request.user_agent)
-    payload
-  end
-
-  def self.is_user_agent_a_bot?(user_agent)
-    !![ "(bot|spider|pinger)\/", "(yahoo|ruby|newrelicpinger|python|lynx)" ].
-      detect { |bot| user_agent =~ /#{ bot }/i }
+    # this can be overwritten by merging Logstasher.payload_from_user
+    payload[:logged_in] = false
+    Logstasher.split_multiple_ips(payload)
   end
 
   def self.payload_from_session(session)
@@ -66,7 +68,8 @@ module Logstasher
   def self.payload_from_user(user)
     return { } unless user.is_a?(User)
     { user_id: user.id,
-      user_name: user.login }
+      user_name: user.login,
+      logged_in: true }
   end
 
   def self.replace_known_types!(hash)
@@ -149,4 +152,30 @@ module Logstasher
       Rails.logger.error "[ERROR] Logstasher.write_action_controller_log failed : #{e}"
     end
   end
+
+  def self.is_user_agent_a_bot?(user_agent)
+    !![ "(bot|spider|pinger)\/", "(yahoo|ruby|newrelicpinger|python|lynx)" ].
+      detect { |bot| user_agent =~ /#{ bot }/i }
+  end
+
+  def self.original_ip_in_list(ip_string)
+    return nil unless ip_string.is_a?(String)
+    # sometimes IP fields contain multiple IPs delimited by commas
+    ip_string.split(",").last.strip
+  end
+
+  def self.split_multiple_ips(payload)
+    extra_params = { }
+    payload.each do |k,v|
+      if IP_PARAMS.include?(k)
+        first_ip = Logstasher.original_ip_in_list(v)
+        if first_ip && first_ip != v
+          payload[k] = first_ip
+          extra_params["#{k}_ALL"] = v.split(",").map(&:strip)
+        end
+      end
+    end
+    payload.merge(extra_params)
+  end
+
 end
