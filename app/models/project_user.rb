@@ -11,7 +11,10 @@ class ProjectUser < ActiveRecord::Base
   validates_rules_from :project, :rule_methods => [:has_time_zone?]
   validate :user_invited?
 
-  preference :curator_coordinate_access, :boolean, :default => true
+  # defaulting to false ensures that in in any case where we *don't* show the
+  # user the opt-out option they will be opted-out of this, but in general we
+  # try to show that option and make it opt-out in the UI
+  preference :curator_coordinate_access, :boolean, :default => false
   preference :updates, :boolean, :default => true
   
   CURATOR_CHANGE_NOTIFICATION = "curator_change"

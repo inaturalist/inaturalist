@@ -14,10 +14,19 @@ shared_examples_for "a ProjectsController" do
     expect(response.body).to be =~ /#{project.title}/
   end
 
-  it "should allow join" do
-    p2 = Project.make!
-    post :join, :format => :json, :id => p2.id
-    expect(p2.users).to include(user)
+  describe "join" do
+    let(:unjoined_project) { Project.make! }
+    it "should add a project user" do
+      post :join, format: :json, id: unjoined_project.id
+      expect(unjoined_project.users).to include(user)
+    end
+
+    it "should set preferred_curator_coordinate_access to false" do
+      p2 = Project.make!
+      post :join, format: :json, id: unjoined_project.id
+      pu = user.project_users.where(project_id: unjoined_project).first
+      expect( pu ).not_to be_prefers_curator_coordinate_access
+    end
   end
 
   describe "leave" do

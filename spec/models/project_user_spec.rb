@@ -29,7 +29,7 @@ describe ProjectUser, "creation" do
   end
 
   it "should set curator_coordinate_access to true by default" do
-    expect( ProjectUser.make! ).to be_prefers_curator_coordinate_access
+    expect( ProjectUser.make! ).not_to be_prefers_curator_coordinate_access
   end
 
   describe "invite-only projects" do

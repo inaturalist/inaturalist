@@ -75,4 +75,15 @@ describe Users::RegistrationsController, "create" do
     post :create, :user => {:login => u.login, :password => "zomgbar", :password_confirmation => "zomgbar", :email => u.email}
     User.find_by_login(u.login).site.should eq @site
   end
+
+  it "should allow setting preferred photo license" do
+    u = User.make
+    post :create, format: :json, user: {
+      login: u.login, 
+      password: 'bar', 
+      password_confirmation: 'bar', 
+      email: u.email
+    }
+    expect(User.find_by_login(u.login).preferred_photo_license).to eq Observation::CC_BY
+  end
 end

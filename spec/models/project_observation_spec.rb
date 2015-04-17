@@ -43,7 +43,7 @@ describe ProjectObservation, "creation" do
   end
   
   it "should set curator_coordinate_access to true project user prefers it" do
-    pu = ProjectUser.make!
+    pu = ProjectUser.make!(prefers_curator_coordinate_access: true)
     expect( pu.prefers_curator_coordinate_access? ).to be true
     po = ProjectObservation.make!(project: pu.project, observation: Observation.make!(user: pu.user))
     expect( po.prefers_curator_coordinate_access? ).to be true
