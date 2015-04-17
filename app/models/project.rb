@@ -523,6 +523,7 @@ class Project < ActiveRecord::Base
   end
 
   def aggregation_allowed?
+    return false unless trusted?
     return true if place && place.bbox_area < 141
     return true if project_observation_rules.where("operator IN (?)", %w(in_taxon? on_list?)).exists?
     false

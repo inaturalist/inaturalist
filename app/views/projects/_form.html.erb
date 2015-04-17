@@ -142,10 +142,13 @@
     </div>
   <% end %>
 
-  <fieldset class="observationrules">
-    <legend><%= t(:observation_aggregation).titleize %></legend>
-    <%= f.check_box :prefers_aggregation, label_after: true, label: "Automatically add observations to this project", description: "If your project has a taxon rule or it's associated with small-to-mid-sized place, you can turn on observation aggregation and observations matching your project rules will be automatically added to your project." %>
-  </fieldset>
+  <% if @project.trusted? -%>
+    <fieldset class="observationrules">
+      <legend><%= t(:observation_aggregation).titleize %></legend>
+      <%= f.check_box :prefers_aggregation, label_after: true, label: t(:automatically_add_observations_to_this_project) %>
+      <%=t 'views.projects.edit.observation_aggregation_desc_html' %>
+    </fieldset>
+  <% end -%>
 
   <fieldset class="observationrules">
     <legend><%= t(:observation_rules).titleize %></legend>

@@ -401,6 +401,7 @@ en:
   authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_descriptions_have_been_disabled: Automatic descriptions have been disabled for this taxon.
   automatically_add_to_project: Automatically add to project
+  automatically_add_observations_to_this_project: Automatically add observations to this project
   automatically_share_your_observations_on: Automatically share your observations on
   automatically_id_new: Automatically ID the new obs as
   automatically_update_my_content_for_taxon_changes: Automatically update my content for taxon changes
@@ -3835,6 +3836,28 @@ en:
           include a sign-up widget on your project page until your bioblitz
           begins.
         icon_desc: "Will be cropped to a square"
+        observation_aggregation_desc_html: |
+          <p class="description">
+            Observation aggregation will automatically add observations to your
+            project within your project's place boundary or of your project's rule
+            taxon. Since there's no way to remove many observations from a project
+            at a time, this is potentially dangerous, so please make sure you have
+            chosen the place and the taxon rules that you want, or you might end
+            up with a lot of extraneous data.
+          </p>
+          <p class="description">
+            The aggregator will only work if the following conditions are met:
+          </p>
+          <ol>
+            <li class="readable description">
+              Your project is trusted (if you can see this it is)
+            </li>
+            <li class="readable description">
+              Your project is associated with a small-to-mid-sized place (about
+              the size of Texas or Ukraine) OR your project only accepts
+              observations of certain taxa
+            </li>
+          </ol>
         project_assets_desc_html: |
           <p class="description">Project assets are just files associated with your project, with some special rules:</p>
           <ol class="description">

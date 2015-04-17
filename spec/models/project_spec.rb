@@ -204,7 +204,7 @@ end
 
 describe Project, "aggregate_observations class method" do
   it "should touch projects that prefer aggregation" do
-    p = log_timer { Project.make!(prefers_aggregation: true, place: make_place_with_geom) }
+    p = Project.make!(prefers_aggregation: true, place: make_place_with_geom, trusted: true)
     expect( p.last_aggregated_at ).to be_nil
     Project.aggregate_observations
     p.reload
@@ -212,7 +212,7 @@ describe Project, "aggregate_observations class method" do
   end
 
   it "should not touch projects that do not prefer aggregation" do
-    p = Project.make!(prefers_aggregation: false, place: make_place_with_geom)
+    p = Project.make!(prefers_aggregation: false, place: make_place_with_geom, trusted: true)
     expect( p.last_aggregated_at ).to be_nil
     Project.aggregate_observations
     p.reload
@@ -223,7 +223,7 @@ end
 describe Project, "aggregate_observations" do
   let(:project) { Project.make! }
   it "should add observations matching the project observation scope" do
-    project.update_attributes(place: make_place_with_geom)
+    project.update_attributes(place: make_place_with_geom, trusted: true)
     o = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
     project.aggregate_observations
     o.reload
@@ -231,14 +231,14 @@ describe Project, "aggregate_observations" do
   end
 
   it "should set last_aggregated_at" do
-    project.update_attributes(place: make_place_with_geom)
+    project.update_attributes(place: make_place_with_geom, trusted: true)
     expect( project.last_aggregated_at ).to be_nil
     project.aggregate_observations
     expect( project.last_aggregated_at ).not_to be_nil
   end
 
   it "should not add observations not matching the project observation scope" do
-    project.update_attributes(place: make_place_with_geom)
+    project.update_attributes(place: make_place_with_geom, trusted: true)
     o = Observation.make!(latitude: project.place.latitude*-1, longitude: project.place.longitude*-1)
     project.aggregate_observations
     o.reload
@@ -255,7 +255,7 @@ describe Project, "aggregate_observations" do
 
   it "should not add observation if observer has opted out" do
     u = User.make!(preferred_project_addition_by: User::PROJECT_ADDITION_BY_NONE)
-    project.update_attributes(place: make_place_with_geom)
+    project.update_attributes(place: make_place_with_geom, trusted: true)
     o = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude, user: u)
     project.aggregate_observations
     o.reload
@@ -264,7 +264,7 @@ describe Project, "aggregate_observations" do
 
   it "should not add observation if observer has not joined and prefers not to allow addition for projects not joined" do
     u = User.make!(preferred_project_addition_by: User::PROJECT_ADDITION_BY_JOINED)
-    project.update_attributes(place: make_place_with_geom)
+    project.update_attributes(place: make_place_with_geom, trusted: true)
     o = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude, user: u)
     project.aggregate_observations
     o.reload
@@ -272,7 +272,7 @@ describe Project, "aggregate_observations" do
   end
 
   it "should add observations created since last_aggregated_at" do
-    project.update_attributes(place: make_place_with_geom)
+    project.update_attributes(place: make_place_with_geom, trusted: true)
     o1 = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
     project.aggregate_observations
     expect( project.observations.count ).to eq 1
@@ -288,29 +288,37 @@ describe Project, "aggregation_allowed?" do
   end
 
   it "is true if place smaller than Texas" do
-    p = Project.make!(place: make_place_with_geom)
+    p = Project.make!(place: make_place_with_geom, trusted: true)
     expect( p ).to be_aggregation_allowed
+  end
+
+  it "is always false unless the project is trusted" do
+    p = Project.make!(place: make_place_with_geom, trusted: false)
+    expect( p ).not_to be_aggregation_allowed
   end
 
   it "is false if place bigger than Texas" do
     envelope_ewkt = "MULTIPOLYGON(((0 0,0 15,15 15,15 0,0 0)))"
-    p = Project.make!(place: make_place_with_geom(ewkt: envelope_ewkt))
+    p = Project.make!(place: make_place_with_geom(ewkt: envelope_ewkt), trusted: true)
     expect( p ).not_to be_aggregation_allowed
   end
 
   it "should be true with a taxon rule" do
-    por = ProjectObservationRule.make!(operator: 'in_taxon?', operand: Taxon.make!)
+    p = Project.make!(trusted: true)
+    por = ProjectObservationRule.make!(operator: 'in_taxon?', operand: Taxon.make!, ruler: p)
     expect( por.ruler ).to be_aggregation_allowed
   end
 
   it "should be true with multiple taxon rules" do
-    por1 = ProjectObservationRule.make!(operator: 'in_taxon?', operand: Taxon.make!)
-    por2 = ProjectObservationRule.make!(operator: 'in_taxon?', operand: Taxon.make!, ruler: por1.ruler)
+    p = Project.make!(trusted: true)
+    por1 = ProjectObservationRule.make!(operator: 'in_taxon?', operand: Taxon.make!, ruler: p)
+    por2 = ProjectObservationRule.make!(operator: 'in_taxon?', operand: Taxon.make!, ruler: p)
     expect( por1.ruler ).to be_aggregation_allowed
   end
 
   it "should be true with a list rule" do
-    por = ProjectObservationRule.make!(operator: 'on_list?')
+    p = Project.make!(trusted: true)
+    por = ProjectObservationRule.make!(operator: 'on_list?', ruler: p)
     expect( por.ruler ).to be_aggregation_allowed
   end
 end
