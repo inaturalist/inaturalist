@@ -645,12 +645,7 @@ class ObservationsController < ApplicationController
     end
     
     current_user.observations << @observations.compact
-    
-    if request.format != :json && !params[:accept_terms] && params[:project_id] && !current_user.project_users.find_by_project_id(params[:project_id])
-      flash[:error] = t(:but_we_didnt_add_this_observation_to_the_x_project, :project => Project.find_by_id(params[:project_id]).title)
-    else
-      create_project_observations
-    end
+    create_project_observations
     update_user_account
     
     # check for errors
@@ -1741,6 +1736,8 @@ class ObservationsController < ApplicationController
     @user_counts += user_obs_counts(scope.where("observations.user_id IN (?)", leftover_obs_user_ids)).to_a
     @user_taxon_counts += user_taxon_counts(scope.where("observations.user_id IN (?)", leftover_tax_user_ids)).to_a
     user_ids = (obs_user_ids + tax_user_ids).uniq.sort
+    @user_counts = @user_counts[0...limit]
+    @user_taxon_counts = @user_taxon_counts[0...limit]
     
     @users = User.select("id, login, icon_file_name, icon_updated_at, icon_content_type").where("id in (?)", user_ids)
     @users_by_id = @users.index_by(&:id)
