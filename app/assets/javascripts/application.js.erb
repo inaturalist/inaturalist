@@ -1433,6 +1433,7 @@ $.fn.leaderboard = function(options) {
       users[this.user.id] = {user: this.user, observations: this.count}
     })
     $.each(data.most_species, function() {
+      users[this.user.id] = users[this.user.id] || {user: this.user}
       users[this.user.id].species = this.count
     })
     $.each(users, function(i) {
@@ -1448,11 +1449,11 @@ $.fn.leaderboard = function(options) {
           .html(this.user.login).prop('outerHTML')
       var obsLink = $('<a>')
         .attr('href', '/observations/'+this.user.login+'?'+$.param(linkOptions))
-        .html(this.observations || 0)
+        .html(this.observations || '*')
         .prop('outerHTML')
       var sppLink = $('<a>')
         .attr('href', '/observations/taxa?'+$.param($.extend({}, linkOptions, {user_id: this.user.login}, true)))
-        .html(this.species || 0)
+        .html(this.species || '*')
         .prop('outerHTML')
       var row = [
         i,
