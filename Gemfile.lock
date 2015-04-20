@@ -23,6 +23,16 @@ GIT
     gdata (1.1.2)
 
 GIT
+  remote: git://github.com/elasticsearch/elasticsearch-rails.git
+  revision: 2f2c0fb7a25ece68fd3a9eec7b9026848e66fa4f
+  specs:
+    elasticsearch-model (0.1.6)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.6)
+
+GIT
   remote: git://github.com/fnando/i18n-js.git
   revision: 1a1cea7dbb264b7b345606c103051ea8eb49c44b
   specs:
@@ -254,6 +264,14 @@ GEM
     doorkeeper (2.1.0)
       railties (>= 3.1)
     dynamic_form (1.1.4)
+    elasticsearch (1.0.8)
+      elasticsearch-api (= 1.0.7)
+      elasticsearch-transport (= 1.0.7)
+    elasticsearch-api (1.0.7)
+      multi_json
+    elasticsearch-transport (1.0.7)
+      faraday
+      multi_json
     equalizer (0.0.9)
     erubis (2.7.0)
     eventmachine (1.0.6)
@@ -445,6 +463,8 @@ GEM
     rgeo-activerecord (2.0.0)
       activerecord (~> 4.2)
       rgeo (~> 0.3)
+    rgeo-geojson (0.3.1)
+      rgeo (~> 0.3)
     riddle (1.5.11)
     right_http_connection (1.5.0)
     rinku (1.7.3)
@@ -554,6 +574,7 @@ GEM
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    useragent (0.13.3)
     utf8-cleaner (0.0.9)
     uuid (2.3.7)
       macaddr (~> 1.0)
@@ -615,6 +636,8 @@ DEPENDENCIES
   diffy
   doorkeeper
   dynamic_form
+  elasticsearch-model!
+  elasticsearch-rails!
   exifr
   faker
   flickraw (~> 0.9.8)!
@@ -654,6 +677,7 @@ DEPENDENCIES
   rakismet
   rest-client
   rgeo
+  rgeo-geojson
   right_aws!
   right_http_connection
   rinku
@@ -673,6 +697,7 @@ DEPENDENCIES
   ts-delayed-delta (~> 2.0.2)
   twitter
   uglifier
+  useragent
   utf8-cleaner
   watu_table_builder
   whenever

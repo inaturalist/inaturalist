@@ -1,4 +1,7 @@
 class Project < ActiveRecord::Base
+
+  include ActsAsElasticModel
+
   belongs_to :user
   belongs_to :place, :inverse_of => :projects
   has_many :project_users, :dependent => :delete_all
@@ -17,7 +20,7 @@ class Project < ActiveRecord::Base
   has_many :posts, :as => :parent, :dependent => :destroy
   has_many :journal_posts, :class_name => "Post", :as => :parent
   has_many :assessments, :dependent => :destroy
-    
+  
   before_save :strip_title
   before_save :unset_show_from_place_if_no_place
   after_create :create_the_project_list
@@ -139,6 +142,22 @@ class Project < ActiveRecord::Base
   
   def to_s
     "<Project #{id} #{title}>"
+  end
+
+  def start_time=(value)
+    if value.is_a?(String)
+      super(Chronic.parse(value))
+    else
+      super
+    end
+  end
+
+  def end_time=(value)
+    if value.is_a?(String)
+      super(Chronic.parse(value))
+    else
+      super
+    end
   end
   
   def strip_title
@@ -315,7 +334,7 @@ class Project < ActiveRecord::Base
   def eventbrite_id
     return if event_url.blank?
     return unless event_url =~ /eventbrite\.com/
-    @eventbrite_id ||= URI.parse(event_url).path.split('/').last.scan(/\d+/).last
+    @eventbrite_id ||= URI.parse(event_url).path.split('/').last.to_s.scan(/\d+/).last
   end
 
   def event_started?

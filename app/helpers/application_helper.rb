@@ -446,6 +446,7 @@ module ApplicationHelper
   rescue RuntimeError => e
     raise e unless e.message =~ /error parsing fragment/
     Airbrake.notify(e, :request => request, :session => session)
+    Logstasher.write_exception(e, request: request, session: session)
     text.html_safe
   end
   

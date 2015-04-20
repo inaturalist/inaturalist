@@ -226,10 +226,9 @@ class Update < ActiveRecord::Base
         update.id, update.subscriber_id, update.resource_type, update.resource_id
       ])
     end
-    
-    unless Delayed::Job.where("handler LIKE '%Update%sweep_for_user% #{subscriber_id}\n%'").exists?
-      Update.delay(:priority => USER_INTEGRITY_PRIORITY, :queue => "slow", :run_at => 6.hours.from_now).sweep_for_user(subscriber_id)
-    end
+    Update.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
+      run_at: 6.hours.from_now, unique_hash: { "Update::sweep_for_user": subscriber_id }).
+      sweep_for_user(subscriber_id)
   end
 
   def self.sweep_for_user(user_id)

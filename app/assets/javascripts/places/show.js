@@ -19,6 +19,12 @@ $(document).ready(function() {
             $('.observationcontrols', ui.panel).observationControls()
           }
         })
+        $(ui.panel).addClass('loaded')
+      } else if ($(ui.panel).attr('id') == 'peopletab' && !$(ui.panel).hasClass('loaded')) {
+        $(ui.panel).addClass('loaded')
+        var container = $('<div id="leaderboard">')
+        $(ui.panel).append(container)
+        container.leaderboard({'place_id': PLACE.id, limit: 100})
       }
     },
     load: function(event, ui) {

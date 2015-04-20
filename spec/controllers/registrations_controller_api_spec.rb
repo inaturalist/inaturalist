@@ -76,14 +76,28 @@ describe Users::RegistrationsController, "create" do
     User.find_by_login(u.login).site.should eq @site
   end
 
-  it "should allow setting preferred photo license" do
+  it "should accept time_zone" do
     u = User.make
-    post :create, format: :json, user: {
-      login: u.login, 
-      password: 'bar', 
-      password_confirmation: 'bar', 
-      email: u.email
+    post :create, user: {
+      login: u.login,
+      password: "zomgbar",
+      password_confirmation: "zomgbar",
+      email: u.email,
+      time_zone: "America/Los_Angeles"
     }
-    expect(User.find_by_login(u.login).preferred_photo_license).to eq Observation::CC_BY
+    u = User.find_by_login(u.login)
+    expect( u.time_zone ).to eq "America/Los_Angeles"
+  end
+  it "should accept preferred_photo_license" do
+    u = User.make
+    post :create, user: {
+      login: u.login,
+      password: "zomgbar",
+      password_confirmation: "zomgbar",
+      email: u.email,
+      preferred_photo_license: Observation::CC_BY
+    }
+    u = User.find_by_login(u.login)
+    expect( u.preferred_photo_license ).to eq Observation::CC_BY
   end
 end

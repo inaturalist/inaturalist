@@ -3,39 +3,37 @@
 - @view ||= params[:view] || 'map'
 - observations_html ||= nil
 - force_coordinate_visibility ||= false
-- content_for(:extrajs) do
-  = google_maps_js
-  = javascript_include_tag 'map_bundle', 'wax.g'
-  :javascript
-    $(document).ready(function() {
-      $("#map").taxonMap( );
-      window.map = $("#map").data("taxonMap");
-      // Bind the divider toggle
-      $('#mapdivider').click(function(){
-        $(this).toggleClass('closed');
-        $('#mapobservations').toggle();
-        if ($(this).hasClass('closed')) {
-          $('#map, .map').css({
-            width: '940px'
-          });
-        } else {
-          $('#map, .map').css({
-            width: '640px'
-          });
-        };
-        google.maps.event.trigger(map, 'resize')
-      });
+= google_maps_js
+= javascript_include_tag 'map_bundle', 'wax.g'
+:javascript
+  $(document).ready(function() {
+    $("#map").taxonMap( );
+    window.map = $("#map").data("taxonMap");
+    // Bind the divider toggle
+    $('#mapdivider').click(function(){
+      $(this).toggleClass('closed');
+      $('#mapobservations').toggle();
+      if ($(this).hasClass('closed')) {
+        $('#map, .map').css({
+          width: '940px'
+        });
+      } else {
+        $('#map, .map').css({
+          width: '640px'
+        });
+      };
+      google.maps.event.trigger(map, 'resize')
     });
-- content_for(:extracss) do
-  %style{ type: "text/css", media: "screen" }
-    \.observations.map{float:left;width:640px;}
-    \#map{width:640px;height:500px;}
-    \#mapcontrols{width:640px;float:left;clear:left;margin-top:0.2em;}
-    = "#mapdivider{float:left;width:10px;height:500px;background:50% 50% url(#{ image_path('toggle_arrow_right.png') }) no-repeat;}"
-    = "#mapdivider.closed{background:50% 50% url(#{ image_path('toggle_arrow_left.png') }) no-repeat;}"
-    \#mapdivider:hover{background-color:#FFC;cursor:pointer;}
-    \#mapobservations{position:relative;}
-    \#mapobservations.mini{float:left;width:300px;height:520px;overflow:auto;}
+  });
+%style{ type: "text/css", media: "screen" }
+  \.observations.map{float:left;width:640px;}
+  \#map{width:640px;height:500px;}
+  \#mapcontrols{width:640px;float:left;clear:left;margin-top:0.2em;}
+  = "#mapdivider{float:left;width:10px;height:500px;background:50% 50% url(#{ image_path('toggle_arrow_right.png') }) no-repeat;}"
+  = "#mapdivider.closed{background:50% 50% url(#{ image_path('toggle_arrow_left.png') }) no-repeat;}"
+  \#mapdivider:hover{background-color:#FFC;cursor:pointer;}
+  \#mapobservations{position:relative;}
+  \#mapobservations.mini{float:left;width:300px;height:520px;overflow:auto;}
 .column.span-24
   .observations.map{ style: (@view && @view == "map") ? nil : "display: none" }
     - map_options = { observations: observations,

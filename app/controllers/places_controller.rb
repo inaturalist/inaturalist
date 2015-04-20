@@ -9,7 +9,7 @@ class PlacesController < ApplicationController
   before_filter :return_here, :only => [:show]
   before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
     :children, :taxa, :geometry, :cached_guide, :guide_widget, :widget, :merge]
-  before_filter :limit_page_param_for_thinking_sphinx, :only => [:search]
+  before_filter :limit_page_param_for_search, :only => [:search]
   before_filter :editor_required, :only => [:edit, :update, :destroy]
   
   caches_page :geometry
@@ -108,6 +108,7 @@ class PlacesController < ApplicationController
         if logged_in?
           @subscriptions = @place.update_subscriptions.where(:user_id => current_user)
         end
+        @show_leaderboard = @place_geometry && @place.bbox_area < 1000
       end
       format.json do
         if (partial = params[:partial]) && ALLOWED_SHOW_PARTIALS.include?(partial)
@@ -128,8 +129,11 @@ class PlacesController < ApplicationController
         end
       end
       format.geojson do
-        @geojson = Place.connection.execute("SELECT ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geojson FROM place_geometries WHERE place_id = #{@place.id}")[0]['geojson']
-        render :json => @geojson
+        result = Place.connection.execute("SELECT ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geojson FROM place_geometries WHERE place_id = #{@place.id}")
+        if result && result.count > 0
+          @geojson = result[0]['geojson']
+        end
+        render :json => @geojson || { }
       end
     end
   end
@@ -243,22 +247,27 @@ class PlacesController < ApplicationController
     @q = params[:q] || params[:term] || params[:item]
     @q = sanitize_sphinx_query(@q.to_s.sanitize_encoding)
     site_place = @site.place if @site
-    search_options = {:match_mode => :extended}
-    search_options[:with] = {:place_ids => [site_place.id]} if site_place
-    scope = Place.
-      includes(:place_geometry_without_geom).
-      limit(30)
-    scope = if @q.blank?
-      if site_place
-        scope.where(site_place.child_conditions).page(1)
+    if @q.blank?
+      scope = if site_place
+        Place.where(site_place.child_conditions)
       else
-        scope.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
+        Place.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
       end
+      scope = scope.with_geom if params[:with_geom]
+      @places = scope.includes(:place_geometry_without_geom).limit(30).
+        sort_by{|p| p.bbox_area || 0}.reverse
     else
-      scope = scope.where("places.id IN (?)", Place.search_for_ids("^#{@q}*", search_options))
+      search_wheres = { display_name_autocomplete: @q }
+      if site_place
+        search_wheres["ancestor_place_ids"] = site_place
+      end
+      @places = Place.elastic_paginate(
+        where: search_wheres,
+        fields: [ :id ],
+        sort: { bbox_area: "desc" })
+      Place.preload_associations(@places, :place_geometry_without_geom)
     end
-    scope = scope.with_geom if params[:with_geom]
-    @places = scope.sort_by{|p| p.bbox_area || 0}.reverse
+
     respond_to do |format|
       format.html do
         render :layout => false, :partial => 'autocomplete' 
@@ -358,7 +367,7 @@ class PlacesController < ApplicationController
       begin
         Place.find(place_id)
       rescue ActiveRecord::RecordNotFound
-        Place.search(place_id).first
+        Place.elastic_paginate(where: { display_name: place_id }, per_page: 1).first
       end
     else
       Place.find_by_id(place_id.to_i)
@@ -476,43 +485,7 @@ class PlacesController < ApplicationController
     kml = file.read
     geometry_from_messy_kml(kml)
   end
-  
-  def search_places_for_index(options)
-    session[:places_index_q] = @q
-    
-    conditions = if options[:conditions] && options[:conditions][:place_type]
-      conditions = update_conditions(
-        ["place_type = ?", options[:conditions][:place_type]], 
-        ["AND display_name LIKE ?", "#{@q}%"])
-    else
-      ["display_name LIKE ?", "#{@q}%"]
-    end
-    @place = Place.where(conditions).first
-    if logged_in? && @place.blank?
-      @ydn_places = GeoPlanet::Place.search(@q, :count => 2)
-      if @ydn_places && @ydn_places.size == 1
-        @place = Place.import_by_woeid(@ydn_places.first.woeid)
-      end
-    end
-    
-    begin
-      if @place
-        latrads = @place.latitude.to_f * (Math::PI / 180)
-        lonrads = @place.longitude.to_f * (Math::PI / 180)
-        nearby_options = options.merge(
-          :geo => [latrads,lonrads], 
-          :order => "@geodist asc")
-        nearby_options[:with] = nearby_options.delete(:conditions)
-        @places = Place.search(nearby_options)
-        @places.delete_if {|p| p.id == @place.id}
-      else
-        @places = Place.search(@q, options.clone)
-      end
-    rescue ThinkingSphinx::ConnectionError
-      @places = []
-    end
-  end
-  
+
   def editor_required
     unless @place.editable_by?(current_user)
       flash[:error] = t(:you_dont_have_permission_to_do_that)

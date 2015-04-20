@@ -5,8 +5,8 @@ describe 'WillPaginate::ActiveRecord::Pagination' do
   before do
     5.times{ Observation.make! }
     @opts = { page: 1, per_page: 2 }
-    @original = Observation.paginate(@opts)
-    @with_count = Observation.paginate_with_count_over(@opts)
+    @original = Observation.order(:id).paginate(@opts)
+    @with_count = Observation.order(:id).paginate_with_count_over(@opts)
   end
 
   it "paginate_with_count_over should return data the same as paginate" do

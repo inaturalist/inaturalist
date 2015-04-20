@@ -91,7 +91,7 @@
         <%= f.text_field :end_time, :value => f.object.end_time ? f.object.end_time.iso8601 : nil, :description => t('views.projects.edit.end_time_desc') %>
       </div>
       <div class="column span-23">
-        <%= f.check_box :prefers_range_by_date, label_after: true, label: 'Ignore_times', description: "If your bioblitz spans multiple days and multiple time zones and you don't care about the exact time of the boundaries, you can just calculate the stats by the date the observations were made." %>
+        <%= f.check_box :prefers_range_by_date, label_after: true, label: t(:ignore_times), description: "If your bioblitz spans multiple days and multiple time zones and you don't care about the exact time of the boundaries, you can just calculate the stats by the date the observations were made." %>
       </div>
       <div class="column span-23">
         <%= f.text_field :event_url, :placeholder => t(:event_url), :description => t('views.projects.edit.event_url_desc') %>

@@ -26,7 +26,7 @@ class TaxaController < ApplicationController
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
     :range, :schemes, :tip]
-  before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
+  before_filter :limit_page_param_for_search, :only => [:index,
     :browse, :search]
   before_filter :ensure_flickr_write_permission, :only => [
     :flickr_photos_tagged, :tag_flickr_photos, 
@@ -54,9 +54,9 @@ class TaxaController < ApplicationController
     
     begin
       @taxa.try(:total_entries)
-    rescue ThinkingSphinx::SphinxError => e
-      Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
-      @taxa = WillPaginate::Collection.new(1,30,0)
+    rescue
+      Rails.logger.error "[ERROR] Taxon index failed: #{e}"
+      @taxa = WillPaginate::Collection.new(1, 30, 0)
     end
     
     respond_to do |format|
@@ -64,9 +64,7 @@ class TaxaController < ApplicationController
         @site_place = @site.place if @site
         @featured_taxa = Taxon.where("taxa.featured_at IS NOT NULL"). 
           order("taxa.featured_at DESC").
-          limit(100).
-          includes(:iconic_taxon, :photos, { taxon_names: :place_taxon_names },
-            :taxon_descriptions)
+          limit(100)
         @featured_taxa = @featured_taxa.from_place(@site_place) if @site_place
         
         if @featured_taxa.blank?
@@ -74,19 +72,22 @@ class TaxaController < ApplicationController
             "taxa.wikipedia_summary IS NOT NULL AND " +
             "photos.id IS NOT NULL AND " +
             "taxa.observations_count > 1"
-          ).includes(:iconic_taxon, :photos, { taxon_names: :place_taxon_names },
-            :taxon_descriptions)
+          )
           order("taxa.id DESC")
           @featured_taxa = @featured_taxa.from_place(@site_place) if @site_place
         end
         
         # Shuffle the taxa (http://snippets.dzone.com/posts/show/2994)
         @featured_taxa = @featured_taxa.sort_by{rand}[0..10]
+        Taxon.preload_associations(@featured_taxa, [
+          :iconic_taxon, :photos, :taxon_descriptions,
+          { taxon_names: :place_taxon_names } ])
         featured_taxa_obs = @featured_taxa.map do |taxon|
-          scope = taxon.observations.order("id DESC").includes(:user)
+          scope = taxon.observations.order("id DESC")
           scope = scope.where(:site_id => @site) if @site
           scope.first
         end.compact
+        Observation.preload_associations(featured_taxa_obs, :user)
         @featured_taxa_obs_by_taxon_id = featured_taxa_obs.index_by(&:taxon_id)
         
         flash[:notice] = @status unless @status.blank?
@@ -96,14 +97,18 @@ class TaxaController < ApplicationController
         else
           @iconic_taxa = Taxon::ICONIC_TAXA
           q = if @site
-            "SELECT * from observations WHERE taxon_id IS NOT NULL AND site_id = #{@site.id} ORDER BY observed_on DESC NULLS LAST LIMIT 10"
+            "SELECT * from observations WHERE taxon_id IS NOT NULL
+             AND site_id = #{@site.id} AND observed_on >= '#{1.month.ago.to_date}'
+             ORDER BY observed_on DESC NULLS LAST LIMIT 10"
           else
-            "SELECT * from observations WHERE taxon_id IS NOT NULL ORDER BY observed_on DESC NULLS LAST LIMIT 10"
+            "SELECT * from observations WHERE taxon_id IS NOT NULL
+             AND observed_on >= '#{1.month.ago.to_date}'
+             ORDER BY observed_on DESC NULLS LAST LIMIT 10"
           end
           @recent = Observation.
             select("DISTINCT ON (taxon_id) *").
             from("(#{q}) AS observations").
-            includes(:taxon => [:taxon_names]).
+            includes(:taxon => [ { taxon_names: :place_taxon_names }, :photos ]).
             limit(5)
           @recent = @recent.where(:site_id => @site.id) if @site && CONFIG.site_only_observations
           @recent = @recent.sort_by(&:id).reverse
@@ -117,8 +122,7 @@ class TaxaController < ApplicationController
         end
       end
       format.xml  do
-        render(:xml => @taxa.to_xml(
-          :include => :taxon_names, :methods => [:common_name]))
+        render(:xml => @taxa.to_xml(:methods => [:common_name]))
       end
       format.json do
         if params[:q].blank? && params[:taxon_id].blank? && params[:place_id].blank? && params[:names].blank?
@@ -189,8 +193,9 @@ class TaxaController < ApplicationController
         @taxon_links = TaxonLink.by_taxon(@taxon, :reject_places => @places.blank?)
 
         @observations = Observation.of(@taxon).recently_added.
-          includes(:projects, :user, :taxon, :photos).limit(12)
-        
+          preload(:projects, :taxon, :stored_preferences, :flags,
+            :quality_metrics, { user: :stored_preferences },
+            { photos: :flags } ).limit(12)
         @photos = Rails.cache.fetch(@taxon.photos_cache_key) do
           @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
         end
@@ -335,21 +340,15 @@ class TaxaController < ApplicationController
   # TODO: /taxa/browse?q=bird&places=usa-ca-berkeley,usa-ct-clinton&colors=blue,black
   def search
     @q = params[:q].to_s.sanitize_encoding
-    
-    # Wrap the query in modifiers to ensure exact matches show first
-    q, match_mode = Taxon.search_query(@q)
-    drill_params = {}
-    
-    if params[:taxon_id] && (@taxon = Taxon.find_by_id(params[:taxon_id].to_i))
-      drill_params[:ancestors] = @taxon.id
+
+    if params[:taxon_id]
+      @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     end
     
     if params[:is_active] == "true" || params[:is_active].blank?
       @is_active = true
-      drill_params[:is_active] = true
     elsif params[:is_active] == "false"
       @is_active = false
-      drill_params[:is_active] = false
     else
       @is_active = params[:is_active]
     end
@@ -357,69 +356,70 @@ class TaxaController < ApplicationController
     if params[:iconic_taxa] && @iconic_taxa_ids = params[:iconic_taxa].split(',')
       @iconic_taxa_ids = @iconic_taxa_ids.map(&:to_i)
       @iconic_taxa = Taxon.find(@iconic_taxa_ids)
-      drill_params[:iconic_taxon_id] = @iconic_taxa_ids
     end
     if params[:places] && @place_ids = params[:places].split(',')
       @place_ids = @place_ids.map(&:to_i)
       @places = Place.find(@place_ids)
-      drill_params[:places] = @place_ids
     elsif @site && (@site_place = @site.place) && !params[:everywhere].yesish?
       @place_ids = [@site_place.id]
       @places = [@site_place]
-      drill_params[:places] = @place_ids
     end
     if params[:colors] && @color_ids = params[:colors].split(',')
       @color_ids = @color_ids.map(&:to_i)
       @colors = Color.find(@color_ids)
-      drill_params[:colors] = @color_ids
     end
-    
+
     page = params[:page] ? params[:page].to_i : 1
     user_per_page = params[:per_page] ? params[:per_page].to_i : 24
     user_per_page = 100 if user_per_page > 100
     per_page = page == 1 && user_per_page < 50 ? 50 : user_per_page
-    
-    @facets = Taxon.facets(q, page: page, per_page: per_page,
-      with: drill_params,
-      sql: { include: [ :iconic_taxon, { taxon_names: :place_taxon_names }, { taxon_photos: :photo }, :taxon_descriptions ] },
-      field_weights: { name: 2 },
-      match_mode: match_mode,
-      order: "observations_count desc",
-      sort_mode: :desc
-    )
 
-    @taxa = @facets.for(drill_params)
-    if @facets.count > 0 && @taxa.size == 0 && params[:places].blank?
-      drill_params = drill_params.reject{|k,v| k == :places}
-      @place_ids = nil
-      @places = nil
-      @facets = Taxon.facets(q, page: page, per_page: per_page,
-        with: drill_params,
-        sql: { include: [ :iconic_taxon, { taxon_names: :place_taxon_names }, { taxon_photos: :photo }, :taxon_descriptions ] },
-        field_weights: { name: 2 },
-        match_mode: match_mode,
-        order: "observations_count desc",
-        sort_mode: :desc
-      )
-      @taxa = @facets.for(drill_params)
+    search_wheres = { }
+    unless @q.blank?
+      search_wheres[:match] = { "names.name": { query: @q, operator: "and" } }
     end
+    search_wheres[:is_active] = true unless @is_active === false
+    search_wheres[:iconic_taxon_id] =  @iconic_taxa_ids if @iconic_taxa_ids
+    search_wheres["colors.id"] =  @color_ids if @color_ids
+    search_wheres["place_ids"] =  @place_ids if @place_ids
+    search_wheres["ancestor_ids"] =  @taxon.id if @taxon
+    search_options = { sort: { observations_count: "desc" },
+      aggregate: {
+        color: { "colors.id": 12 },
+        iconic_taxon_id: { "iconic_taxon_id": 12 },
+        place: { "places.id": 12 }
+      } }
+    search_result = Taxon.elastic_search(search_options.merge(where: search_wheres)).
+      per_page(per_page).page(page)
+    # if there are no search results, and the search was performed with
+    # a search ID filter, but one wasn't asked for. This will happen when
+    # CONFIG.site_only_observations is true and a search filter is
+    # set automatically. Re-run the search w/o the place filter
+    if search_result.total_entries == 0 && params[:places].blank? && !search_wheres["place_ids"].blank?
+      search_wheres.delete("place_ids")
+      search_result = Taxon.elastic_search(search_options.merge(where: search_wheres)).
+        per_page(per_page).page(page)
+    end
+    @taxa = ElasticModel.result_to_will_paginate_collection(search_result)
+    Taxon.preload_associations(@taxa, [ { taxon_names: :place_taxon_names },
+      { taxon_photos: :photo }, :taxon_descriptions ] )
 
-    if @facets[:iconic_taxon_id]
+    @facets = { }
+    if @facets[:iconic_taxon_id] = Hash[search_result.response.aggregations.iconic_taxon_id.buckets.map{ |b| [ b["key"], b["doc_count"] ]}]
       @faceted_iconic_taxa = Taxon.where(id: @facets[:iconic_taxon_id].keys).
         includes(:taxon_names, :photos)
       @faceted_iconic_taxa = Taxon.sort_by_ancestry(@faceted_iconic_taxa)
       @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
     end
 
-    if @facets[:colors]
+    if @facets[:colors] = Hash[search_result.response.aggregations.color.buckets.map{ |b| [ b["key"], b["doc_count"] ]}]
       @faceted_colors = Color.where(id: @facets[:colors].keys)
       @faceted_colors_by_id = @faceted_colors.index_by(&:id)
     end
 
-    if @facets[:places] && !@places.blank?
+    if !@places.blank? && @facets[:places] = Hash[search_result.response.aggregations.place.buckets.map{ |b| [ b["key"], b["doc_count"] ]}]
       place_ids_to_load = [@facets[:places].keys, @place_ids].flatten
       @faceted_places = Place.where("id in (?)", place_ids_to_load).order("name ASC")
-      # @faceted_places = @faceted_places.where(:admin_level => Place::COUNTRY_LEVEL) if @place_ids.blank?
       if @places.size == 1 && (place = @places.first)
         @faceted_places = @faceted_places.where(place.descendant_conditions)
       end
@@ -428,11 +428,11 @@ class TaxaController < ApplicationController
     
     begin
       @taxa.blank?
-    rescue ThinkingSphinx::SphinxError, Riddle::OutOfBoundsError => e
-      Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
-      @taxa = WillPaginate::Collection.new(1,30,0)
+    rescue
+      Rails.logger.error "[ERROR] Failed taxon search: #{e}"
+      @taxa = WillPaginate::Collection.new(1, 30, 0)
     end
-    
+
     do_external_lookups
 
     @taxa.compact! unless @taxa.nil?
@@ -442,10 +442,6 @@ class TaxaController < ApplicationController
         if exact_index > 0
           @taxa.unshift @taxa.delete_at(exact_index)
         end
-
-      # otherwise try and hit the db directly. Sphinx doesn't always seem to behave properly
-      elsif params[:page].to_i <= 1 && (exact = Taxon.where("lower(name) = ?", params[:q].to_s.downcase.strip).first)
-        @taxa.unshift exact
       end
     end
 
@@ -517,28 +513,20 @@ class TaxaController < ApplicationController
     else
       params[:is_active]
     end
-
-    scope = TaxonName.joins(:taxon => :taxon_names).
-      where("lower(taxon_names.name) LIKE ?", "#{@q.to_s.downcase}%").
-      limit(30)
-    scope = scope.where("taxa.is_active = ?", @is_active) unless @is_active == "any"
-    @taxon_names = scope.sort_by{|tn| tn.taxon.ancestry || ''}
-    exact_matches = []
-    @taxon_names.each_with_index do |taxon_name, i|
-      next unless taxon_name.name.downcase.strip == @q.to_s.downcase.strip
-      exact_matches << @taxon_names.delete_at(i)
+    search_wheres = { match: { "names.name_autocomplete": { query: @q, operator: "and" } } }
+    search_wheres[:is_active] = true unless @is_active === false
+    @taxa = Taxon.elastic_paginate(
+      where: search_wheres,
+      sort: { observations_count: "desc" },
+      per_page: 30,
+      page: 1
+    )
+    Taxon.preload_associations(@taxa, [ { taxon_names: :place_taxon_names },
+      :taxon_descriptions ] )
+    @taxa.each do |t|
+      t.html = view_context.render_in_format(:html, :partial => "chooser.html.erb",
+        :object => t, :comname => t.common_name)
     end
-    if exact_matches.blank?
-      exact_matches = TaxonName.where(["lower(taxon_names.name) = ?", @q.to_s.downcase]).
-        includes({ :taxon => :taxon_names })
-    end
-    @taxon_names = exact_matches + @taxon_names
-    @taxa = @taxon_names.map do |taxon_name|
-      next unless taxon = taxon_name.taxon
-      taxon.html = view_context.render_in_format(:html, :partial => "chooser.html.erb", 
-        :object => taxon, :comname => taxon_name.is_scientific_names? ? nil : taxon_name)
-      taxon
-    end.compact
     @taxa.uniq!
     respond_to do |format|
       format.json do
@@ -683,18 +671,20 @@ class TaxaController < ApplicationController
       end
       obs.to_a
     else
-      begin
-        Observation.search(params[:q], 
-          :page => params[:page], 
-          :per_page => per_page, 
-          :with => {:has_photos => true}, 
-          :include => [:photos]
-        )
-      rescue Riddle::ResponseError => e
-        raise e unless e.message =~ /out of bounds/
-        []
-      end
+      search_wheres = params[:q].blank? ? nil : {
+        multi_match: {
+          query: params[:q],
+          operator: "and",
+          fields: [ :description, "taxon.names.name", "user.login", "field_values.value" ]
+        }
+      }
+      Observation.elastic_paginate(
+        where: search_wheres,
+        filters: [ { exists: { field: "photos" } } ],
+        per_page: per_page,
+        page: params[:page])
     end
+    Observation.preload_associations(observations, :photos)
     @photos = observations.compact.map(&:photos).flatten.reject{|p| p.user_id.blank?}
     @photos = @photos.reject{|p| p.license.to_i <= Photo::COPYRIGHT} if licensed
     partial = params[:partial].to_s

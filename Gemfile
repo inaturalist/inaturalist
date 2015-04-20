@@ -82,6 +82,7 @@ gem 'trollop'
 gem 'ts-delayed-delta', '~> 2.0.2'
 gem 'twitter'
 gem 'uglifier'
+gem 'useragent'
 gem 'utf8-cleaner'
 gem "watu_table_builder", :require => "table_builder"
 gem 'wicked_pdf'
@@ -91,8 +92,12 @@ gem 'ya2yaml'
 gem 'yui-compressor'
 gem 'xmp', :git => 'git://github.com/kueda/xmp.git'
 gem 'statsd-ruby', :require => 'statsd'
+# these need to be loaded after will_paginate
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 
 gem 'rgeo'
+gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter', :git => 'git://github.com/kueda/activerecord-postgis-adapter.git', :branch => 'activerecord42'
 
 group :production do

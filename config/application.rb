@@ -90,6 +90,8 @@ module Inaturalist
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
     end
+
+    config.middleware.insert_before "ActionDispatch::DebugExceptions", "LogstasherCatchAllErrors"
   end
 
 end
@@ -118,16 +120,15 @@ OBSERVATIONS_TILE_SERVER = CONFIG.tile_servers.observations
 Encoding.default_internal = Encoding::UTF_8
 Encoding.default_external = Encoding::UTF_8
 
-# Graphite
-if CONFIG.statsd_host
-  STATSD = Statsd.new( CONFIG.statsd_host, ( CONFIG.statsd_port || 8125 ) )
-end
-
+# TODO: is the geo_ruby stuff still used?
 # make sure we have geojson support
 require 'geo_ruby'
 require 'geo_ruby/geojson'
 require 'geo_ruby/shp4r/shp'
 require 'geo_ruby/kml'
+# geojson via RGeo
+require 'rgeo/geo_json'
 require 'google/api_client'
 require 'pp'
-
+require 'elasticsearch/model'
+require 'elasticsearch/rails/instrumentation'

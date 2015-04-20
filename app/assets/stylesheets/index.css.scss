@@ -1749,3 +1749,25 @@ p.spam {
 #flags .smallbuttons input[type="text"] {
   width: 180px;
 }
+.photoSelector select {width: auto;}
+.leaderboard-container td { vertical-align: middle; }
+.leaderboard-container .user {width:100%;}
+.leaderboard-container .user img {vertical-align: middle;}
+.leaderboard-container th.numeric { padding-left: 0.5em;}
+.leaderboard-container tr:hover {background-color: #f6f6f6;}
+.leaderboard-container .numeric {text-align: right;}
+.leaderboard-container .user img {border-radius: 500px; margin-right: 1em; max-width: 30px;}
+.leaderboard-container thead .sorting,
+.leaderboard-container thead .sorting_asc,
+.leaderboard-container thead .sorting_desc,
+.leaderboard-container thead .sorting_asc_disabled,
+.leaderboard-container thead .sorting_desc_disabled {
+    cursor: pointer;
+    *cursor: hand;
+}
+.leaderboard-container thead .sorting_asc { background: url(#{ image_path('toggle_arrow_up.png') }) no-repeat center right; border-right: 10px solid transparent; padding-right: 20px; }
+.leaderboard-container thead .sorting_desc { background: url(#{ image_path('toggle_arrow_down.png') }) no-repeat center right; border-right: 10px solid transparent; padding-right: 20px; }
+.leaderboard-container [class*="sorting_"], 
+.leaderboard-container thead [class*="sorting_"] {background-color: #eee;}
+.leaderboard-container [class*="sorting_disabled"], 
+.leaderboard-container thead [class*="sorting_disabled"] {background-color: transparent;}

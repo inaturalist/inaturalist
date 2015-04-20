@@ -167,6 +167,13 @@ class LocalPhoto < Photo
         o.species_guess = nil
       end
       o.description = metadata[:dc][:description].to_sentence unless metadata[:dc][:description].blank?
+      if o.description.blank? && metadata[:image_description]
+        if metadata[:image_description].is_a?(Array)
+          o.description = metadata[:image_description].to_sentence
+        elsif metadata[:image_description].is_a?(String)
+          o.description = metadata[:image_description]
+        end
+      end
       o.build_observation_fields_from_tags(to_tags)
     end
     o
@@ -191,5 +198,9 @@ class LocalPhoto < Photo
     self.file.reprocess!
     self.save
   end
-  
+
+  def processing?
+    square_url.blank? || square_url.include?(LocalPhoto.new.file(:square))
+  end
+
 end

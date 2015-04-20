@@ -358,9 +358,25 @@ shared_examples_for "an ObservationsController" do
       o.private_latitude.should be_blank
       o.latitude.to_f.should eq 1.0
     end
+
+    it "should deal with updating the taxon_id" do
+      t1 = Taxon.make!
+      t2 = Taxon.make!
+      t3 = Taxon.make!
+      o = Observation.make!(taxon: t1, user: user)
+      o.update_attributes(taxon: t2)
+      o.reload
+      expect( o.identifications.count ).to eq 2
+      put :update, format: :json, id: o.id, observation: {taxon_id: t3.id}
+      o.reload
+      expect( o.identifications.count ).to eq 3
+    end
   end
 
   describe "by_login" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
+
     it "should get user's observations" do
       3.times { Observation.make!(:user => user) }
       get :by_login, :format => :json, :login => user.login
@@ -433,10 +449,23 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "index" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
+
     it "should allow search" do
       lambda {
         get :index, :format => :json, :q => "foo"
       }.should_not raise_error
+    end
+
+    it "should allow sorting with different cases" do
+      o = Observation.make!
+      get :index, format: :json, sort: "ASC"
+      expect( JSON.parse(response.body).length ).to eq 1
+      get :index, format: :json, sort: "asc"
+      expect( JSON.parse(response.body).length ).to eq 1
+      get :index, format: :json, sort: "DeSC"
+      expect( JSON.parse(response.body).length ).to eq 1
     end
 
     it "should filter by hour range" do
@@ -482,13 +511,22 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == o2.id}.should be_blank
     end
 
-    it "should filter by captive" do
+    it "should filter by captive=true" do
       captive = Observation.make!(:captive_flag => "1")
       wild = Observation.make!(:captive_flag => "0")
       get :index, :format => :json, :captive => true
       json = JSON.parse(response.body)
       json.detect{|obs| obs['id'] == wild.id}.should be_blank
       json.detect{|obs| obs['id'] == captive.id}.should_not be_blank
+    end
+
+    it "should filter by captive=false" do
+      captive = Observation.make!(captive_flag: "1")
+      wild = Observation.make!(captive_flag: "0")
+      get :index, format: :json, captive: false
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == captive.id}.should be_blank
+      json.detect{|obs| obs['id'] == wild.id}.should_not be_blank
     end
 
     it "should filter by captive when quality metrics used" do
@@ -634,6 +672,14 @@ shared_examples_for "an ObservationsController" do
       JSON.parse(response.body).size.should eq 1
     end
 
+    it "should filter by taxon name regardless of case" do
+      t = Taxon.make!(name: "Foo bar")
+      o1 = Observation.make!(taxon: t)
+      o2 = Observation.make!(taxon: Taxon.make!)
+      get :index, :format => :json, :taxon_name => "foo bar"
+      JSON.parse(response.body).size.should eq 1
+    end
+
     it "should filter by taxon name if there are synonyms and iconic_taxa provided" do
       load_test_taxa
       o1 = Observation.make!(:taxon => @Pseudacris_regilla)
@@ -677,6 +723,15 @@ shared_examples_for "an ObservationsController" do
       o = Observation.make!(:place_guess => "my backyard", :geoprivacy => Observation::OBSCURED)
       get :index, :format => :json
       response.body.should =~ /#{o.place_guess}/
+    end
+
+    it "should search uris given a site" do
+      site1 = Observation.make!(uri: "http://a.b.org/1")
+      site2 = Observation.make!(uri: "http://c.d.org/2")
+      get :index, format: :json, site: "http://c.d.org"
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == site1.id}.should be_blank
+      json.detect{|obs| obs['id'] == site2.id}.should_not be_blank
     end
   end
 
@@ -757,6 +812,9 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "project" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
+
     it "should allow filtering by updated_since" do
       pu = ProjectUser.make!
       oldo = Observation.make!(:user => pu.user)
@@ -915,6 +973,8 @@ end
 
 describe ObservationsController, "without authentication" do
   describe "index" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
     it "should require sign in for page 100 or more" do
       get :index, :format => :json, :page => 10
       response.should be_success

@@ -17,10 +17,12 @@ class Taxon < ActiveRecord::Base
 
   # set this when you want methods to respond with user-specific content
   attr_accessor :current_user
-  
+
+  include ActsAsElasticModel
+
   acts_as_flaggable
   has_ancestry
-  
+
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
   has_many :taxon_changes
@@ -62,7 +64,8 @@ class Taxon < ActiveRecord::Base
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
              :handle_after_move
-  
+  after_commit :index_observations
+
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
                           :scope => [:ancestry, :is_active],
@@ -116,7 +119,9 @@ class Taxon < ActiveRecord::Base
     define_method "find_#{rank}" do
       return self if rank_level == level
       return nil if rank_level.to_i > level.to_i
-      @cached_ancestors ||= ancestors.select("id, name, rank, ancestry, iconic_taxon_id, rank_level, created_at, updated_at, is_active").all
+      @cached_ancestors ||= ancestors.select("id, name, rank, ancestry,
+        iconic_taxon_id, rank_level, created_at, updated_at, is_active,
+        observations_count").all
       @cached_ancestors.detect{|a| a.rank == rank}
     end
     alias_method(rank, "find_#{rank}") unless respond_to?(rank)
@@ -345,8 +350,7 @@ class Taxon < ActiveRecord::Base
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
   ICONIC_TAXA_BY_NAME = ICONIC_TAXA.index_by(&:name)
-  
-  
+
   def self.reset_iconic_taxa_constants_for_tests
     remove_const('ICONIC_TAXA')
     remove_const('ICONIC_TAXA_BY_ID')
@@ -371,14 +375,18 @@ class Taxon < ActiveRecord::Base
     if (Observation.joins(:taxon).where(conditions).exists? || 
         Observation.joins(:taxon).where(old_conditions).exists? || 
         Identification.joins(:taxon).where(conditions).exists? || 
-        Identification.joins(:taxon).where(old_conditions).exists?
-        ) && 
-        !Delayed::Job.where("handler LIKE '%update_stats_for_observations_of%- #{id}%'").exists?
-      Observation.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").update_stats_for_observations_of(id)
+        Identification.joins(:taxon).where(old_conditions).exists? )
+      Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
+        unique_hash: { "Observation::update_stats_for_observations_of": id }).
+        update_stats_for_observations_of(id)
     end
     true
   end
-  
+
+  def index_observations
+    Observation.elastic_index!(scope: observations.select(:id), delay: true)
+  end
+
   def normalize_rank
     self.rank = Taxon.normalize_rank(self.rank)
     true
@@ -771,9 +779,9 @@ class Taxon < ActiveRecord::Base
     if ListRule.exists?([
         "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
         Taxon.to_s, ids])
-      unless Delayed::Job.where("handler LIKE '%update_life_lists_for_taxon%id: ''#{id}''%'").exists?
-        LifeList.delay(:priority => INTEGRITY_PRIORITY).update_life_lists_for_taxon(self)
-      end
+      LifeList.delay(priority: INTEGRITY_PRIORITY,
+        unique_hash: { "LifeList::update_life_lists_for_taxon": id }).
+        update_life_lists_for_taxon(self)
     end
     true
   end
@@ -817,8 +825,10 @@ class Taxon < ActiveRecord::Base
       return Nokogiri::HTML::DocumentFragment.parse(sum).to_s
     end
     
-    if !new_record? && options[:refresh_if_blank] && !Delayed::Job.where("handler LIKE '%set_wikipedia_summary%id: ''#{id}''%'").exists?
-      delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary(:locale => locale)
+    if !new_record? && options[:refresh_if_blank]
+      delay(priority: OPTIONAL_PRIORITY,
+        unique_hash: { "Taxon::set_wikipedia_summary": id }).
+        set_wikipedia_summary(:locale => locale)
     end
     nil
   end
@@ -1589,10 +1599,12 @@ class Taxon < ActiveRecord::Base
     return if scope.count == 0
     scope = scope.select("id, ancestry")
     scope.find_each do |t|
-      Taxon.where(id: t.id).update_all(observations_count: Observation.of(t).count)
+      Taxon.where(id: t.id).update_all(observations_count:
+        Observation.elastic_search(
+          where: { "taxon.ancestor_ids" => t.id }).total_entries)
     end
   end
-  
+
   # /Static #################################################################
   
 end

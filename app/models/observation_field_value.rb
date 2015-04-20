@@ -148,4 +148,11 @@ class ObservationFieldValue < ActiveRecord::Base
     end
   end
 
+  def as_indexed_json(options={})
+    {
+      name: observation_field.name,
+      value: self.value
+    }
+  end
+
 end

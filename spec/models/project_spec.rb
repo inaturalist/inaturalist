@@ -38,6 +38,25 @@ describe Project, "creation" do
     p = without_delay {Project.make!}
     expect(Update.where(:resource_type => "Project", :resource_id => p.id, :subscriber_id => p.user_id).first).to be_blank
   end
+
+  describe "for bioblitzes" do
+    let(:p) { Project.make(project_type: Project::BIOBLITZ_TYPE, place: make_place_with_geom) }
+
+    it "should parse unconventional start_time formats" do
+      p.start_time = "3 days ago"
+      p.end_time = "3 days ago"
+      p.save
+      expect( p ).to be_valid
+    end
+
+    it "should not raise an exception when start time isn't set" do
+      p.start_time = "2:00 p.m. 4/24/15"
+      p.end_time = "2:00 p.m. 4/25/15"
+      expect( Chronic.parse(p.start_time) ).to be_nil
+      expect { p.save }.not_to raise_error
+      expect( p ).not_to be_valid
+    end
+  end
 end
 
 describe Project, "destruction" do
@@ -122,7 +141,11 @@ describe Project, "eventbrite_id" do
       p = Project.make(:event_url => url)
       expect(p.eventbrite_id).to eq id
     end
-
+  end
+  it "should not bail if no id" do
+    expect {
+      Project.make(:event_url => "http://www.eventbrite.com").eventbrite_id
+    }.not_to raise_error
   end
 end
 

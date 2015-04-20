@@ -92,8 +92,8 @@ class ObservationField < ActiveRecord::Base
     u && (u.id == user_id || u.is_curator?)
   end
 
-  def normalized_name
-    ObservationField.normalize_name(name)
+  def normalized_name(options={})
+    ObservationField.normalize_name(name, options)
   end
 
   def merge(reject, options = {})
@@ -137,7 +137,13 @@ class ObservationField < ActiveRecord::Base
     }
   end
 
-  def self.normalize_name(name)
-    name.gsub(/field\:/, '').gsub(/(%20|\+)/, ' ').downcase
+  def self.normalize_name(name, options={})
+    normalized = CGI.unescape(name).
+      gsub(/field\:/, '').gsub(/(%20|\+)/, ' ').downcase
+    # escaping is useful for creating HTTP params where the field
+    # has brackets e.g. field:Origin [IUCN Red List]
+    # HTTP param keys are not escaped by default
+    normalized = CGI.escape(normalized) if options[:escape]
+    normalized
   end
 end

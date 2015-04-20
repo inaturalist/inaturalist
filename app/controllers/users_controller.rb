@@ -141,8 +141,7 @@ class UsersController < ApplicationController
       if params[:spammer] === "false"
         @user.flags_on_spam_content.each do |flag|
           flag.resolved = true
-          flag.resolver = current_user
-          flag.save
+          flag.save!
         end
         @user.unsuspend!
       end
@@ -162,7 +161,7 @@ class UsersController < ApplicationController
           where("#{klass.table_name}.created_at > ?", 1.week.ago).
           joins(:user).
           where("users.id IS NOT NULL").
-          includes(:user)
+          preload(:user)
         scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
         @updates += scope.all
       end
