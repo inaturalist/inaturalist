@@ -70,17 +70,6 @@
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
 
   <div class="column span-24">
-    <fieldset id="taxa">
-      <legend><%=t :checklist %></legend>
-      <%= f.check_box :prefers_count_from_list,
-          :label => t(:show_total_listed_taxa),
-          :label_after => true,
-          :description => t(:show_the_total_number_of) %>
-      <%= f.select :preferred_count_by, {t(:species).downcase => "species", t(:leaves).downcase => "leaves", t(:all).downcase => "all"}, :description => t(:project_preferred_count_description) %>
-    </fieldset>
-  </div>
-
-  <div class="column span-24">
     <fieldset id="bioblitz" style="<%= "display:none;" unless @project.project_type == Project::BIOBLITZ_TYPE %>">
       <legend><%=t :bioblitz %></legend>
       <div class="description"><%= t('views.projects.edit.bioblitz_desc_html') %></div>
@@ -128,19 +117,6 @@
       </div>
     </fieldset>
   </div>
-
-  <% if project.place && project.place.check_list %>
-    <div class="column span-24">
-      <fieldset class="unobserved-listings">
-        <legend><%=t :unobserved_listings %></legend>
-        <p class="description">
-          <%=t :select_how_unobserved_listings_are_displayed %>
-        </p>
-        <%= f.radio_button("show_from_place", false, { checked: !project.show_from_place.present?, label: t(:display_listings_added_by_curators), :label_after => true})%>
-        <%= f.radio_button("show_from_place", true, { checked: project.show_from_place.present?, label: t(:display_listings_from_place), :label_after => true})%>
-      </fieldset>
-    </div>
-  <% end %>
 
   <% if @project.trusted? -%>
     <fieldset class="observationrules">
@@ -195,6 +171,30 @@
   </fieldset>
 
   <% if (current_user.is_admin? || (@project.editable_by?(current_user) && @project.trusted)) && !@project.new_record? -%>
+    <div class="column span-24">
+      <fieldset id="taxa">
+        <legend><%=t :checklist %></legend>
+        <%= f.check_box :prefers_count_from_list,
+            :label => t(:show_total_listed_taxa),
+            :label_after => true,
+            :description => t(:show_the_total_number_of) %>
+        <%= f.select :preferred_count_by, {t(:species).downcase => "species", t(:leaves).downcase => "leaves", t(:all).downcase => "all"}, :description => t(:project_preferred_count_description) %>
+      </fieldset>
+    </div>
+    
+    <% if project.place && project.place.check_list %>
+      <div class="column span-24">
+        <fieldset class="unobserved-listings">
+          <legend><%=t :unobserved_listings %></legend>
+          <p class="description">
+            <%=t :select_how_unobserved_listings_are_displayed %>
+          </p>
+          <%= f.radio_button("show_from_place", false, { checked: !project.show_from_place.present?, label: t(:display_listings_added_by_curators), :label_after => true})%>
+          <%= f.radio_button("show_from_place", true, { checked: project.show_from_place.present?, label: t(:display_listings_from_place), :label_after => true})%>
+        </fieldset>
+      </div>
+    <% end %>
+
     <fieldset id="project_assets">
       <legend><%=t :project_assets %></legend>
       <%=t 'views.projects.edit.project_assets_desc_html' %>
