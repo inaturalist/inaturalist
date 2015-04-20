@@ -66,7 +66,6 @@ end
 
 describe Guide, "to_ngz" do
   before(:all) do
-    ThinkingSphinx::Deltas.suspend!
     @guide = Guide.make!
     @guide_taxon = GuideTaxon.make!(:guide => @guide)
     @photo = FlickrPhoto.create!(
@@ -100,7 +99,6 @@ describe Guide, "to_ngz" do
   end
 
   after(:all) do
-    ThinkingSphinx::Deltas.resume!
     FileUtils.rm_rf("#{@unzipped_path}/") if Dir.exists?(@unzipped_path)
   end
 

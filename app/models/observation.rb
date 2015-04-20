@@ -241,11 +241,6 @@ class Observation < ActiveRecord::Base
   has_many :observations_places, :dependent => :destroy
 
   SPHINX_FIELD_NAMES = %w(names tags species_guess description place user observed_on_string)
-  SPHINX_ATTRIBUTE_NAMES = %w(user_id taxon_id has_photos created_at
-    observed_on iconic_taxon_id id_please has_geo latitude longitude
-    fake_latitude fake_longitude num_identification_agreements
-    num_identification_disagreements identifications_most_agree
-    identifications_some_agree identifications_most_disagree projects)
   NON_ELASTIC_ATTRIBUTES = %w(cs establishment_means em h1 m1 week
     csi csa pcid list_id ofv_params)
 
@@ -1584,7 +1579,6 @@ class Observation < ActiveRecord::Base
     scope = scope.of(options[:taxon]) unless options[:taxon].blank?
     scope = scope.in_place(options[:place]) unless options[:place].blank?
     scope = scope.in_projects([options[:project]]) unless options[:project].blank?
-    ThinkingSphinx::Deltas.suspend!
     start_time = Time.now
     logger = options[:logger] || Rails.logger
     logger.info "[INFO #{Time.now}] Starting Observation.set_community_taxon, options: #{options.inspect}"
@@ -1596,7 +1590,6 @@ class Observation < ActiveRecord::Base
       end
     end
     logger.info "[INFO #{Time.now}] Finished Observation.set_community_taxon in #{Time.now - start_time}s, options: #{options.inspect}"
-    ThinkingSphinx::Deltas.resume!
   end
 
   def community_taxon_rejected?

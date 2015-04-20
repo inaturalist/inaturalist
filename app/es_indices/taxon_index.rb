@@ -21,7 +21,7 @@ class Taxon < ActiveRecord::Base
     # Temporary hack to figure out why some taxa are being indexed w/o
     # all taxon_names. Checking indexed_place_ids which will be assigned during
     # bluk indexing, and we're pretty sure the bulk indexing is working OK
-    if indexed_place_ids.nil?
+    if indexed_place_ids.nil? && !options[:basic]
       begin
         # comparing .count (always runs a COUNT() query) to .length (always
         # selects records and counts them). I suspect some taxa are preloading

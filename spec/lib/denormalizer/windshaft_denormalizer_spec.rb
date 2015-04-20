@@ -3,7 +3,6 @@ require File.expand_path("../../../spec_helper", __FILE__)
 describe 'WindshaftDenormalizer' do
 
   before(:all) do
-    ThinkingSphinx::Deltas.suspend!
     DatabaseCleaner.clean
     last_taxon = nil
     # make six taxa, each the descendant of the previous taxon
@@ -22,7 +21,6 @@ describe 'WindshaftDenormalizer' do
 
   after(:all) do
     Taxon.connection.execute('TRUNCATE TABLE taxa RESTART IDENTITY')
-    ThinkingSphinx::Deltas.resume!
   end
 
   it 'should have 11 zoom levels' do

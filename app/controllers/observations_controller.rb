@@ -1716,9 +1716,9 @@ class ObservationsController < ApplicationController
     leftover_tax_user_ids = obs_user_ids - tax_user_ids
     @user_counts += user_obs_counts(scope.where("observations.user_id IN (?)", leftover_obs_user_ids)).to_a
     @user_taxon_counts += user_taxon_counts(scope.where("observations.user_id IN (?)", leftover_tax_user_ids)).to_a
+    @user_counts = @user_counts[0...limit]
+    @user_taxon_counts = @user_taxon_counts[0...limit]
     user_ids = (obs_user_ids + tax_user_ids).uniq.sort
-    @user_counts = @user_counts.sort_by{|row| row['count_all']}[0...limit]
-    @user_taxon_counts = @user_taxon_counts.sort_by{|row| row['count_all']}[0...limit]
     
     @users = User.select("id, login, icon_file_name, icon_updated_at, icon_content_type").where("id in (?)", user_ids)
     @users_by_id = @users.index_by(&:id)
@@ -2080,7 +2080,7 @@ class ObservationsController < ApplicationController
     end
     
     unless search_params[:q].blank?
-      search_params[:q] = sanitize_sphinx_query(search_params[:q])
+      search_params[:q] = sanitize_query(search_params[:q])
       @q = search_params[:q] unless search_params[:q].blank?
     end
     if Observation::SPHINX_FIELD_NAMES.include?(search_params[:search_on])
@@ -2462,8 +2462,9 @@ class ObservationsController < ApplicationController
     observations
   end
 
-  # Either make a plain db query and return a WillPaginate collection or make
-  # a Sphinx call if there were query terms specified.
+  # Make a plain db query and return a WillPaginate collection.
+  # Normally called if get_paginated_observations cannot be used,
+  # for example when searching on attributes not in ES
   def get_paginated_observations(search_params, find_options)
     query_scope = Observation.query(search_params)
     if search_params[:filter_spam]
