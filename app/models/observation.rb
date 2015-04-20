@@ -241,11 +241,6 @@ class Observation < ActiveRecord::Base
   has_many :observations_places, :dependent => :destroy
 
   SPHINX_FIELD_NAMES = %w(names tags species_guess description place user observed_on_string)
-  SPHINX_ATTRIBUTE_NAMES = %w(user_id taxon_id has_photos created_at
-    observed_on iconic_taxon_id id_please has_geo latitude longitude
-    fake_latitude fake_longitude num_identification_agreements
-    num_identification_disagreements identifications_most_agree
-    identifications_some_agree identifications_most_disagree projects)
   NON_ELASTIC_ATTRIBUTES = %w(cs establishment_means em h1 m1 week
     csi csa pcid list_id ofv_params)
 

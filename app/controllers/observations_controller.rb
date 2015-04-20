@@ -2439,8 +2439,9 @@ class ObservationsController < ApplicationController
     observations
   end
 
-  # Either make a plain db query and return a WillPaginate collection or make
-  # a Sphinx call if there were query terms specified.
+  # Make a plain db query and return a WillPaginate collection.
+  # Normally called if get_paginated_observations cannot be used,
+  # for example when searching on attributes not in ES
   def get_paginated_observations(search_params, find_options)
     query_scope = Observation.query(search_params)
     if search_params[:filter_spam]
