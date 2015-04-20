@@ -245,7 +245,7 @@ class PlacesController < ApplicationController
   
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
-    @q = sanitize_sphinx_query(@q.to_s.sanitize_encoding)
+    @q = sanitize_query(@q.to_s.sanitize_encoding)
     site_place = @site.place if @site
     if @q.blank?
       scope = if site_place

@@ -509,12 +509,10 @@ describe Observation do
       before(:all) do
         # some identification deletion callbacks need to happen after the transaction is complete
         DatabaseCleaner.strategy = :truncation
-        ThinkingSphinx::Deltas.suspend!
       end
 
       after(:all) do
         DatabaseCleaner.strategy = :transaction
-        ThinkingSphinx::Deltas.resume!
       end
     
       it "should become research when it qualifies" do
@@ -567,7 +565,6 @@ describe Observation do
 
       it "should not be research if the community taxon is Life" do
         load_test_taxa
-        ThinkingSphinx::Deltas.suspend!
         o = make_research_grade_observation
         o.identifications.destroy_all
         i1 = Identification.make!(:observation => o, :taxon => @Animalia)
