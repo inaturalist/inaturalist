@@ -188,34 +188,39 @@
     <%= content_tag("div", "", map_attributes.merge({ id: "map" })) %>
   </div>
   
-  <% unless @project_journal_posts.blank? %>
+  <% if @project_journal_posts.blank? && @project.curated_by?(current_user) %>
     <div id="journal" class="quiet box">
-      <% if @project_journal_posts.blank? -%>
-        <div class="description noresults">
-          <%= t :no_journal_post_have_been %>
-        </div>
-      <% else %>
+      <h3>Journal</h3>
+      <p>
+        Your project journal is a tool for communicating with project members. You can use it to make announcements, set priorities, or talk about your project's findings. 
+      </p>
+      <p>
+        To get started, <%= link_to "create a post", new_project_journal_post_path(@project), 'class': 'readmore' %>
+      </p>
+    </div>
+  <% elsif !@project_journal_posts.blank? %>
+    <div id="journal" class="quiet box">
+      <div class="stacked">
+        <%= render :partial => 'posts/post', :locals => { :post => @project_journal_posts.first, :truncate_length => 1000 } %>
+      </div>
+      
+      <% if @project_journal_posts.size > 1 -%>
         <div class="stacked">
-          <%= render :partial => 'posts/post', :locals => { :post => @project_journal_posts.first, :truncate_length => 1000 } %>
+          <label><%= t :recent_post %></label>
+          <ul class="plain">
+            <% for post in @project_journal_posts[1..-1] %>
+              <li>
+                <span class="date meta"><%= post.published_at.to_date.strftime('%b %d') %></span>
+                <%= link_to truncate(post.title, :length => 100), project_journal_post_path(@project, post) %>
+              </li>
+            <% end %>
+          </ul>
         </div>
-        
-        <% if @project_journal_posts.size > 1 -%>
-          <div class="stacked">
-            <label><%= t :recent_post %></label>
-            <ul class="plain">
-              <% for post in @project_journal_posts[1..-1] %>
-                <li>
-                  <span class="date meta"><%= post.published_at.to_date.strftime('%b %d') %></span>
-                  <%= link_to truncate(post.title, :length => 100), project_journal_post_path(@project, post) %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-          <%= link_to t(:more_journal_posts), project_journal_path(@project), :class => "readmore" %>
-        <% end -%>
-      <% end %>
+        <%= link_to t(:more_journal_posts), project_journal_path(@project), :class => "readmore" %>
+      <% end -%>
     </div>
   <% end %>
+
   <div id="observations">
     <% if false && logged_in? && @project_user && @project.matching_project_observation_rules.count > 0 -%>
       <div class="right add_matching_link inlineblock">
@@ -322,16 +327,6 @@
     <% end -%>
 
     -->
-
-
-    <li>
-      <% if @journal_post_count.to_i > 0 -%>
-        <span class="right sectioncount">
-          <span class="count"><%= @journal_post_count %></span> <%= t(:posts).downcase %>
-        </span>
-      <% end -%>
-      <%= link_to "<span class='lead'>&raquo;</span> #{t :journal}".html_safe, project_journal_path(@project), :class => "navlink" %>
-    </li>
 
     <li>
       <% if @members_count.to_i > 1 -%>

@@ -14,7 +14,6 @@
         = link_to project_curator.user.login, person_by_login_path(project_curator.user.login), :class => "readable nobr"
         %br/
         = link_to("<span class='count'>#{project_curator.user.observations.count}</span> observations".html_safe, observations_by_login_path(project_curator.user.login))
-=t 'views.projects.project_location_privacy_notice_html'
 = separator
 - unless @project.terms.blank?
   %h3= t(:terms)

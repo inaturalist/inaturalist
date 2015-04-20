@@ -3798,12 +3798,13 @@ en:
         map_instruction: Use the polygon tool to draw the place boundary.
     projects:
       curator_coordinate_access_desc_html: |
-        Remember, project curators can add any of your observations to their
-        project unless you've opted out in your <a href="/users/edit">account
-        settings</a>. Only check this box if you trust the project to view
-        your private coordinates of whatever might be added. Otherwise, you
-        can still grant access to private coordinates on a observation-by-
-        observation basis.
+        Remember, <strong>project curators can add any of your observations to
+        their project</strong> unless you've opted out in your <a
+        href="/users/edit">account settings</a>. Only check this box if you
+        trust the project curators to view your private coordinates of any
+        observations of yours that could be added to this project. If you
+        choose not to grant them this permission, you can still grant access
+        to private coordinates on a observation-by-observation basis.
       confirm_leave:
         what_would_you_like: |
           What would you like to do with your observations in this project?
