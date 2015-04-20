@@ -126,8 +126,8 @@ def stub_config(options = {})
   end
 end
 
-def enable_elastic_indexing(classes)
-  classes = [classes].flatten
+def enable_elastic_indexing(*args)
+  classes = [args].flatten
   classes.each do |klass|
     klass.__elasticsearch__.create_index!
     klass.send :after_save, :elastic_index!
@@ -136,8 +136,8 @@ def enable_elastic_indexing(classes)
   end
 end
 
-def disable_elastic_indexing(classes)
-  classes = [classes].flatten
+def disable_elastic_indexing(*args)
+  classes = [args].flatten
   classes.each do |klass|
     klass.send :skip_callback, :save, :after, :elastic_index!
     klass.send :skip_callback, :destroy, :after, :elastic_delete!

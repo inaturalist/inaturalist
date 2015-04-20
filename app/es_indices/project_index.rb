@@ -24,6 +24,7 @@ class Project < ActiveRecord::Base
       title_autocomplete: title,
       description: description,
       ancestor_place_ids: place ? place.ancestor_place_ids : nil,
+      place_ids: place ? place.self_and_ancestor_ids : nil,
       location: ElasticModel.point_latlon(latitude, longitude),
       geojson: ElasticModel.point_geojson(latitude, longitude)
     }
