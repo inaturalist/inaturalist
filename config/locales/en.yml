@@ -3834,9 +3834,8 @@ en:
             way to introduce people to biodiversity while collecting valuable
             data at the same time. Unlike normal projects, bioblitz projects
             accumulate stats from <em>all</em> obervations made within the
-            specified time period and place, so participants do not need to
-            sign up for the project or explicity add their observations to the
-            project.
+            specified time period and place, so observations don't need to be
+            added to the project to drive the project stats
           </p>
         cover_desc: "Optional banner image that will appear at the top of your project page. Must be 950px wide, less than 400px tall."
         custom_project_fields_means: "Customize the project's banner, add side content, and edit CSS."
@@ -3942,11 +3941,16 @@ en:
       show:
         bioblitz_results_desc_html: |
           <p>
-            Unlike regular projects, bioblitzes display event stats below from
+            Unlike regular projects, bioblitzes display event stats from
             <em>all</em> observations within a place and time period, not just
             observations that people have intentionally added to the project.
-            This is to remove the hurdle of joining a project from contributing
-            to these event stats.
+            This is to remove the hurdle of adding observations to a project
+            just to drive the stats in real time. Note that observations won't
+            be available for export or display on various project views such
+            as member contributions on the website or project observation
+            searches in the mobile apps unless the project team and
+            participants actively add relevant observations like they would in
+            a normal project.
           </p>
           <p>
             Note that while this kind of project shows stats for observations that
