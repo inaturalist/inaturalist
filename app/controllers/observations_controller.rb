@@ -1716,11 +1716,9 @@ class ObservationsController < ApplicationController
     leftover_tax_user_ids = obs_user_ids - tax_user_ids
     @user_counts += user_obs_counts(scope.where("observations.user_id IN (?)", leftover_obs_user_ids)).to_a
     @user_taxon_counts += user_taxon_counts(scope.where("observations.user_id IN (?)", leftover_tax_user_ids)).to_a
-    @user_counts = @user_counts.sort_by{|row| row['count_all']}[0...50]
-    @user_taxon_counts = @user_taxon_counts.sort_by{|row| row['count_all']}[0...50]
     user_ids = (obs_user_ids + tax_user_ids).uniq.sort
-    @user_counts = @user_counts[0...limit]
-    @user_taxon_counts = @user_taxon_counts[0...limit]
+    @user_counts = @user_counts.sort_by{|row| row['count_all']}[0...limit]
+    @user_taxon_counts = @user_taxon_counts.sort_by{|row| row['count_all']}[0...limit]
     
     @users = User.select("id, login, icon_file_name, icon_updated_at, icon_content_type").where("id in (?)", user_ids)
     @users_by_id = @users.index_by(&:id)

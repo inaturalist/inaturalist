@@ -5,7 +5,7 @@
   end
   hide_buttons ||= false
   show_user_field ||= false
-  show_project_field ||= false
+  show_project_field ||= !@projects.blank?
 %>
 <div id="search_filter" class="row">
   <label class="label" for="q">
@@ -320,6 +320,17 @@
   </div>
 <% end -%>
 
+<% if @not_in_project -%>
+  <div class="clear row upstacked">
+    <div class="label"><strong><%=t :not_in_project %></strong></div>
+    <div class="left">
+      <input type="text" name="not_in_project" id="not_in_project_input" value="<%= @not_in_project.try(:slug) %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :project_id_or_url_slug %></div>
+    </div>
+  </div>
+<% end -%>
+
 <input type="hidden" name="site" value="<%= @site_uri %>">
 <input type="hidden" name="tdate" id="tdate"/>
 <input type="hidden" name="d1" id="d1" value="<%= @d1 %>"/>
@@ -342,7 +353,7 @@
 <% end -%>
 
 <% unless hide_buttons -%>
-  <div class="inline buttonrow">
+  <div class="inline buttonrow upstacked">
     <input id="submit_filters_button" type="submit" value="<%=t :search %>" class="default inline button" data-loading-click="<%=t :searching %>"/>
   </div>
 <% end -%>
