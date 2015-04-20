@@ -390,11 +390,14 @@
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:your_membership, default: 'Your membership').capitalize}".html_safe, project_show_contributor_path(@project, @project_user.user.login), :class => "navlink" %>
       </li>
       <li>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, observations_by_login_path(current_user.login, @project.observations_url_params), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, observations_by_login_path(current_user.login, @project.observations_url_params.merge(not_in_project: @project.id)), :class => "navlink" %>
         <div class="inner">
           <%=t :download_bulk_import_template_html, :url => project_bulk_template_url(@project) %>
         </div>
       </li>
+    <% end -%>
+    <% if @project.curated_by?(current_user) && !@project.observations_url_params.blank? -%>
+      <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_suitable_observations)}".html_safe, observations_path(@project.observations_url_params.merge(not_in_project: @project.id)), :class => "navlink" %></li>
     <% end -%>
     <li>
       <%= link_to "<span class='lead'>&raquo;</span> #{t(:export_observations)}".html_safe, export_observations_path(projects: [@project]), :class => "navlink" %>
@@ -421,9 +424,6 @@
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:usage_stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
-      <% if @project.curated_by?(current_user) -%>
-        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_observations)}".html_safe, observations_path(@project.observations_url_params), :class => "navlink" %></li>
-      <% end -%>
       <% if @project.curated_by?(current_user) && @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY -%>
         <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_people)}".html_safe, invite_to_project_path(@project), :class => "navlink" %></li>
       <% end -%>

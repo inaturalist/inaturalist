@@ -733,6 +733,14 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == site1.id}.should be_blank
       json.detect{|obs| obs['id'] == site2.id}.should_not be_blank
     end
+
+    it "should filter by observations not in a project" do
+      po1 = ProjectObservation.make!
+      po2 = ProjectObservation.make!
+      get :index, format: :json, not_in_project: po1.project_id
+      expect( JSON.parse(response.body).detect{|o| o['id'] == po1.observation_id} ).to be_blank
+      expect( JSON.parse(response.body).detect{|o| o['id'] == po2.observation_id} ).not_to be_blank
+    end
   end
 
   describe "taxon_stats" do

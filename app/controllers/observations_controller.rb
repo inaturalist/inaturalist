@@ -2250,6 +2250,9 @@ class ObservationsController < ApplicationController
         @project = @projects.compact
       end
     end
+    unless params[:not_in_project].blank?
+      @not_in_project = Project.find(params[:not_in_project]) rescue nil
+    end
     if (@pcid = params[:pcid]) && @pcid != 'any'
       @pcid = [true, 'true', 't', 1, '1', 'y', 'yes'].include?(params[:pcid]) ? 'yes' : 'no'
     end
@@ -2425,6 +2428,15 @@ class ObservationsController < ApplicationController
         return WillPaginate::Collection.new(1, 30, 0)
       end
     end
+
+    if @not_in_project
+      search_filters << {
+        'not': {
+          term: { project_ids: @not_in_project.id }
+        }
+      }
+    end
+
     # sort defaults to created at descending
     sort_order = (@order || "desc").downcase.to_sym
     sort = case @order_by
