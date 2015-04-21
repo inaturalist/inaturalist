@@ -2537,7 +2537,7 @@ class ObservationsController < ApplicationController
       flash.now[:error] = t(:sorry_flickr_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
       Airbrake.notify(e, :request => request, :session => session)
-      Logstasher.write_exception(e, request: request, session: session)
+      Logstasher.write_exception(e, request: request, session: session, user: current_user)
       return
     end
     if fp && @flickr_photo && @flickr_photo.valid?
@@ -2582,7 +2582,7 @@ class ObservationsController < ApplicationController
       flash.now[:error] = t(:sorry_picasa_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
       Airbrake.notify(e, :request => request, :session => session)
-      Logstasher.write_exception(e, request: request, session: session)
+      Logstasher.write_exception(e, request: request, session: session, user: current_user)
       return
     end
     unless api_response

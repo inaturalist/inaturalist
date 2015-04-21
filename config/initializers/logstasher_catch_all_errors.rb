@@ -7,7 +7,8 @@ class LogstasherCatchAllErrors
     begin
       @app.call(env)
     rescue Exception => exception
-      Logstasher.write_exception(exception)
+      user = env['warden'] ? env['warden'].user : nil
+      Logstasher.write_exception(exception, user: user, session: env['rack.session'])
       raise exception
     end
   end
