@@ -215,7 +215,11 @@ class Project < ActiveRecord::Base
   end
 
   def rule_taxon
-    @rule_taxon ||= project_observation_rules.where(:operator => "in_taxon?").first.try(:operand)
+    @rule_taxon ||= rule_taxa.first
+  end
+
+  def rule_taxa
+    @rule_taxa ||= project_observation_rules.where(:operator => "in_taxon?").map(&:operand).compact
   end
   
   def icon_url
@@ -284,7 +288,11 @@ class Project < ActiveRecord::Base
         observations_url_params.merge!(:d1 => start_time.in_time_zone(user.time_zone).iso8601, :d2 => end_time.in_time_zone(user.time_zone).iso8601)
       end
     end
-    observations_url_params[:taxon_id] = rule_taxon.id if rule_taxon
+    if rule_taxa.size == 1
+      observations_url_params[:taxon_id] = rule_taxon.id
+    elsif rule_taxa.size > 1
+      observations_url_params[:taxon_ids] = rule_taxa.map(&:id)
+    end
     observations_url_params
   end
 

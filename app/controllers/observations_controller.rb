@@ -1327,7 +1327,7 @@ class ObservationsController < ApplicationController
       @observations = get_elastic_paginated_observations(params)
     end
     
-    @project_observations = @project.project_observations.where(observation: @observations.to_a).
+    @project_observations = @project.project_observations.where(observation: @observations.map(&:id)).
       includes([ { :curator_identification => [ :taxon, :user ] } ])
     @project_observations_by_observation_id = @project_observations.index_by(&:observation_id)
     
@@ -2152,6 +2152,12 @@ class ObservationsController < ApplicationController
       end
     end
     search_params[:taxon] = @observations_taxon
+
+    if !@observations_taxon && !search_params[:taxon_ids].blank?
+      @observations_taxon_ids = search_params[:taxon_ids]
+      @observations_taxa = Taxon.where(id: @observations_taxon_ids).limit(100)
+      search_params[:taxa] = @observations_taxa
+    end
     
     if search_params[:has]
       if search_params[:has].is_a?(String)
@@ -2240,12 +2246,12 @@ class ObservationsController < ApplicationController
     end
     unless params[:projects].blank?
       @projects = Project.find([params[:projects]].flatten) rescue []
-      @project = @projects.compact
+      @projects = @projects.compact
       if @projects.blank?
         params[:projects].each do |p|
           @projects << Project.find(p) rescue nil
         end
-        @project = @projects.compact
+        @projects = @projects.compact
       end
     end
     unless params[:not_in_project].blank?
@@ -2329,7 +2335,11 @@ class ObservationsController < ApplicationController
     search_wheres["taxon.rank"] = @rank if @rank
     # include the taxon plus all of its descendants.
     # Every taxon has its own ID in ancestor_ids
-    search_wheres["taxon.ancestor_ids"] = @observations_taxon if @observations_taxon
+    if @observations_taxon
+      search_wheres["taxon.ancestor_ids"] = @observations_taxon
+    elsif @observations_taxa
+      search_wheres["taxon.ancestor_ids"] = @observations_taxa.map(&:id)
+    end
     search_wheres["id_please"] = true if @id_please
     search_wheres["out_of_range"] = true if @out_of_range
     search_wheres["mappable"] = true if search_params[:mappable] == "true"
