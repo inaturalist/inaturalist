@@ -2342,10 +2342,14 @@ class ObservationsController < ApplicationController
     if @projects.blank? && !@project.blank?
       @projects = [ @project ]
     end
-    unless @projects.blank?
+    extra = params[:extra].to_s.split(',')
+    if !@projects.blank? || extra.include?('projects')
       search_wheres["project_ids"] = @projects.to_a
       extra_preloads << :projects
     end
+    extra_preloads << {identifications: [:user, :taxon]} if extra.include?('identifications')
+    extra_preloads << {observation_photos: :photo} if extra.include?('observation_photos')
+    extra_preloads << {observation_field_values: :observtion_field} if extra.include?('fields')
     unless @hrank.blank? && @lrank.blank?
       search_wheres["range"] = { "taxon.rank_level" => {
         from: Taxon::RANK_LEVELS[@lrank] || 0,
@@ -2789,6 +2793,19 @@ class ObservationsController < ApplicationController
       if extra.include?('observation_photos')
         opts[:include][:observation_photos] ||= {
           :include => {:photo => {:except => [:metadata]}}
+        }
+      end
+      if extra.include?('identifications')
+        taxon_options = Taxon.default_json_options
+        taxon_options[:methods] += [:iconic_taxon_name, :image_url, :common_name, :default_name]
+        opts[:include][:identifications] ||= {
+          'include': {
+            user: {
+              only: [:name, :login, :id],
+              methods: [:user_icon_url]
+            },
+            taxon: taxon_options
+          }
         }
       end
       if @ofv_params || extra.include?('fields')
