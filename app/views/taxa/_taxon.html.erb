@@ -9,7 +9,7 @@
   link_name ||= false
   link_image ||= false
   link_url ||= url_for(taxon)
-  name_class = taxon.default_name.is_scientific_names? ? 'sciname' : 'comname'
+  name_class = (taxon.default_name && taxon.default_name.is_scientific_names?) ? 'sciname' : 'comname'
   extra_class ||= nil
   taxon_class = "clear taxon #{taxon.rank}"
   iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
@@ -19,8 +19,10 @@
   include_full_name ||= false
   taxon_name_str = if include_full_name
     taxon_name_str ||= render(:partial => 'shared/taxon', :object => taxon) 
-  else
+  elsif taxon.default_name
     taxon.default_name.name
+  else
+    taxon.name
   end
   more_images ||= false
   
