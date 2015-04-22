@@ -1133,6 +1133,7 @@ en:
   guide_was_successfully_created: Guide was successfully created.
   guide_was_successfully_published: Guide was successfully published.
   guide_was_successfully_updated: Guide was successfully updated.
+  guidelines: Guidelines
   has_been: has been
   has_already_been_flagged_by: has already been flagged by
   hasnt_contributed_any_observations: hasn't contributed any observations to this project.
@@ -1203,6 +1204,7 @@ en:
   if_your_project_is: If your project is about a particular place, set the coordinates by clicking the map or entering them manually.
   if_your_search_comes_up: "If your search comes up empty, you should see some search boxes to repeat the search through our external name providers:"
   ignore: ignore
+  ignore_times: Ignore times
   image_must_be_exactly: image must be exactly 950px wide and at most 400px tall
   import: Import
   import_all_photos_as_observations: Import all photos as observations 
@@ -2848,7 +2850,9 @@ en:
   updated_photo: Updated photo
   upload: Upload
   upload_a_csv_file: Upload CSV file
-  upload_a_csv_file_with_observation: Upload a CSV file with observation data. If you have your data in a spreadsheet or database, this is probably the way to go.
+  upload_a_csv_file_with_observation: |
+    Upload a CSV file with observation data. If you have your data in a
+    spreadsheet or database, this is probably the way to go.
   upload_photos: Upload photos
   uploaded_by: Uploaded by
   url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
@@ -2862,6 +2866,7 @@ en:
     particular way. If the taxon is not a species or infraspecies, everything
     between [GENUS] and [SPECIES] will get replaced by the taxon name, so use
     sparingly. <br/><br/> <strong>Example:</strong><br/>
+  use_unique_file_names_for_separate_uploads: Use unique file names for separate uploads
   use_well_formed_csv: |
     Use well-formed CSV. This means text with commas must be enclosed with
     double-quotes. Most spreadsheet applications should export CSV in this
@@ -3692,6 +3697,7 @@ en:
           User stats are limited to a max of the top 500 by observation count
           or species count, so the total listed is usually a bit more than
           500, since the two lists probably don't contain the same users.
+          Values marked '*' mean it wasn't in the top 500 for that stat.
     observation_fields:
       about_editing_observation_fields_desc_html: |
         <p class='ui'>You can edit this observation field because you created or because you're a site curator. If you're a site curator, please follow these guidelines</p>
@@ -3806,7 +3812,7 @@ en:
           in_taxon: be in taxon
           observed_in_place: be observed in place
           on_list: be of a taxon on the project list
-        start_time_desc: "Start time for your bioblitz"
+        start_time_desc: "Start time for your bioblitz. Format: YYYY-MM-DDThh:mm:ss±hh:mm"
         trusted_project_means: |
           Trusting a project means that the project managers can add project
           assets and custom project attributes (e.g. banner HTML, CSS). Access

@@ -2,7 +2,7 @@
 class ObservationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
   protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
-  before_filter :allow_external_iframes, only: [:stats, :user_stags, :taxa]
+  before_filter :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
 
   WIDGET_CACHE_EXPIRATION = 15.minutes
   caches_action :index, :by_login, :project,
@@ -94,25 +94,29 @@ class ObservationsController < ApplicationController
       authenticate_user!
       return false
     end
-
     search_params = site_search_params(params)
     # making `page` default to a string because HTTP params are
     # usually strings and we want to keep the cache_key consistent
     search_params[:page] ||= "1"
     if perform_caching && search_params[:q].blank? && (!logged_in? || search_params[:page].to_i == 1)
-      cache_params = search_params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
-      cache_params[:locale] ||= I18n.locale
-      cache_params[:per_page] ||= search_params[:per_page]
-      cache_params[:view] = @view || params[:view]
-      cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
-      cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
-      cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.sort.to_s)}"
+      search_cache_params = search_params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
+      search_cache_params[:locale] ||= I18n.locale
+      search_cache_params[:per_page] ||= search_params[:per_page]
+      search_cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
+      search_cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
+      search_cache_key = "obs_index_#{Digest::MD5.hexdigest(search_cache_params.sort.to_s)}"
       # setting a unique key to be used to cache view partials
-      @observation_partial_cache_key = "obs_component_#{Digest::MD5.hexdigest(cache_params.sort.to_s)}"
+      view_cache_params = search_cache_params.merge({
+        partial: params[:partial],
+        view: (@view || params[:view]),
+        ssl: request.ssl? })
+      @observation_partial_cache_key =
+        "obs_component_#{Digest::MD5.hexdigest(view_cache_params.sort.to_s)}"
       # Get the cached filtered observations
-      @observations = Rails.cache.fetch(cache_key, expires_in: 5.minutes, compress: true) do
+      @observations = Rails.cache.fetch(search_cache_key, expires_in: 5.minutes, compress: true) do
         get_elastic_paginated_observations(search_params)
       end
+      get_search_params(search_params) # this sets a bunch of instance variables for the UI
     else
       @observations = get_elastic_paginated_observations(search_params)
     end
@@ -975,8 +979,18 @@ class ObservationsController < ApplicationController
     File.open(path, 'wb') { |f| f.write(params[:upload]['datafile'].read) }
 
     # Send the filename to a background processor
-    Delayed::Job.enqueue(BulkObservationFile.new(path, params[:upload][:project_id], params[:upload][:coordinate_system], current_user), 
-      :queue => "slow", :priority => USER_PRIORITY)
+    bof = BulkObservationFile.new(
+      path, 
+      params[:upload][:project_id], 
+      params[:upload][:coordinate_system], 
+      current_user
+    )
+    Delayed::Job.enqueue(
+      bof, 
+      queue: "slow",
+      priority: USER_PRIORITY,
+      unique_hash: bof.generate_unique_hash
+    )
 
     # Notify the user that it's getting processed and return them to the upload screen.
     flash[:notice] = 'Observation file has been queued for import.'
@@ -1696,6 +1710,8 @@ class ObservationsController < ApplicationController
     leftover_tax_user_ids = obs_user_ids - tax_user_ids
     @user_counts += user_obs_counts(scope.where("observations.user_id IN (?)", leftover_obs_user_ids)).to_a
     @user_taxon_counts += user_taxon_counts(scope.where("observations.user_id IN (?)", leftover_tax_user_ids)).to_a
+    @user_counts = @user_counts[0...limit]
+    @user_taxon_counts = @user_taxon_counts[0...limit]
     user_ids = (obs_user_ids + tax_user_ids).uniq.sort
     
     @users = User.select("id, login, icon_file_name, icon_updated_at, icon_content_type").where("id in (?)", user_ids)
@@ -2058,7 +2074,7 @@ class ObservationsController < ApplicationController
     end
     
     unless search_params[:q].blank?
-      search_params[:q] = sanitize_sphinx_query(search_params[:q])
+      search_params[:q] = sanitize_query(search_params[:q])
       @q = search_params[:q] unless search_params[:q].blank?
     end
     if Observation::SPHINX_FIELD_NAMES.include?(search_params[:search_on])
@@ -2121,15 +2137,8 @@ class ObservationsController < ApplicationController
       @observations_taxon = Taxon.find_by_id(@observations_taxon_id.to_i)
     elsif !search_params[:taxon_name].blank?
       @observations_taxon_name = search_params[:taxon_name].to_s
-      taxon_name_conditions = ["taxon_names.name = ?", @observations_taxon_name]
-      includes = nil
-      unless @iconic_taxa.blank?
-        taxon_name_conditions[0] += " AND taxa.iconic_taxon_id IN (?)"
-        taxon_name_conditions << @iconic_taxa
-        includes = :taxon
-      end
       begin
-        @observations_taxon = TaxonName.where(taxon_name_conditions).joins(includes).first.try(:taxon)
+        @observations_taxon = Taxon.single_taxon_for_name(@observations_taxon_name, iconic_taxa: @iconic_taxa)
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /invalid byte sequence/
         taxon_name_conditions[1] = @observations_taxon_name.encode('UTF-8')
@@ -2224,8 +2233,13 @@ class ObservationsController < ApplicationController
       @user ||= User.find_by_login(params[:login])
     end
     unless params[:projects].blank?
-      if p = Project.where(id: params[:projects])
-        @projects = p unless p.empty?
+      @projects = Project.find([params[:projects]].flatten) rescue []
+      @projects = @projects.compact
+      if @projects.blank?
+        params[:projects].each do |p|
+          @projects << Project.find(p) rescue nil
+        end
+        @projects = @projects.compact
       end
     end
     if (@pcid = params[:pcid]) && @pcid != 'any'
@@ -2277,8 +2291,9 @@ class ObservationsController < ApplicationController
     # elasticsearch index, or we have decided not to put in the index
     # because it would be more work to maintain than it would save
     # when searching. Remove empty values before checking
-    unless (Observation::NON_ELASTIC_ATTRIBUTES &
-            search_params.reject{ |k,v| v.blank? || v == "any" }.keys).blank?
+    if (Observation::NON_ELASTIC_ATTRIBUTES &
+            search_params.reject{ |k,v| v.blank? || v == "any" }.keys).any? ||
+       (@place && !@place.geom_in_elastic_index)
       # if we have one of these non-elastic attributes,
       # then default to searching PostgreSQL via ActiveRecord
       return get_paginated_observations(search_params, find_options)
@@ -2308,7 +2323,6 @@ class ObservationsController < ApplicationController
     search_wheres["taxon.ancestor_ids"] = @observations_taxon if @observations_taxon
     search_wheres["id_please"] = true if @id_please
     search_wheres["out_of_range"] = true if @out_of_range
-    search_wheres["captive"] = true if @captive
     search_wheres["mappable"] = true if search_params[:mappable] == "true"
     search_wheres["mappable"] = false if search_params[:mappable] == "false"
     search_wheres["license_code"] = @license if @license
@@ -2336,6 +2350,9 @@ class ObservationsController < ApplicationController
       search_wheres["range"] = { "taxon.rank_level" => {
         from: Taxon::RANK_LEVELS[@lrank] || 0,
         to: Taxon::RANK_LEVELS[@hrank] || 100 } }
+    end
+    if @captive.is_a?(FalseClass) || @captive.is_a?(TrueClass)
+      search_wheres["captive"] = @captive
     end
     if @quality_grade && @quality_grade != "any"
       search_wheres["quality_grade"] = @quality_grade
@@ -2401,13 +2418,14 @@ class ObservationsController < ApplicationController
       end
     end
     # sort defaults to created at descending
+    sort_order = (@order || "desc").downcase.to_sym
     sort = case @order_by
     when "observed_on"
-      { observed_on: @order || "desc" }
+      { observed_on: sort_order }
     when "species_guess"
-      { species_guess: @order || "desc" }
+      { species_guess: sort_order }
     else "observations.id"
-      { created_at: @order || "desc" }
+      { created_at: sort_order }
     end
     # perform the actual query against Elasticsearch
     observations = Observation.elastic_paginate(
@@ -2426,8 +2444,9 @@ class ObservationsController < ApplicationController
     observations
   end
 
-  # Either make a plain db query and return a WillPaginate collection or make
-  # a Sphinx call if there were query terms specified.
+  # Make a plain db query and return a WillPaginate collection.
+  # Normally called if get_paginated_observations cannot be used,
+  # for example when searching on attributes not in ES
   def get_paginated_observations(search_params, find_options)
     query_scope = Observation.query(search_params)
     if search_params[:filter_spam]
@@ -2523,6 +2542,7 @@ class ObservationsController < ApplicationController
       flash.now[:error] = t(:sorry_flickr_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
       Airbrake.notify(e, :request => request, :session => session)
+      Logstasher.write_exception(e, request: request, session: session, user: current_user)
       return
     end
     if fp && @flickr_photo && @flickr_photo.valid?
@@ -2567,6 +2587,7 @@ class ObservationsController < ApplicationController
       flash.now[:error] = t(:sorry_picasa_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
       Airbrake.notify(e, :request => request, :session => session)
+      Logstasher.write_exception(e, request: request, session: session, user: current_user)
       return
     end
     unless api_response

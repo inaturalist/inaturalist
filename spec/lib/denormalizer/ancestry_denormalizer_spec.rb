@@ -3,7 +3,6 @@ require File.expand_path("../../../spec_helper", __FILE__)
 describe 'AncestryDenormalizer' do
 
   before(:all) do
-    ThinkingSphinx::Deltas.suspend!
     Taxon.connection.execute('TRUNCATE TABLE taxa RESTART IDENTITY')
     last_taxon = nil
     # make six taxa, each the descendant of the previous taxon
@@ -19,7 +18,6 @@ describe 'AncestryDenormalizer' do
 
   after(:all) do
     Taxon.connection.execute('TRUNCATE TABLE taxa RESTART IDENTITY')
-    ThinkingSphinx::Deltas.resume!
   end
 
   it 'should denormalize properly' do

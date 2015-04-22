@@ -108,6 +108,7 @@ class PlacesController < ApplicationController
         if logged_in?
           @subscriptions = @place.update_subscriptions.where(:user_id => current_user)
         end
+        @show_leaderboard = @place_geometry && @place.bbox_area < 1000
       end
       format.json do
         if (partial = params[:partial]) && ALLOWED_SHOW_PARTIALS.include?(partial)
@@ -128,8 +129,11 @@ class PlacesController < ApplicationController
         end
       end
       format.geojson do
-        @geojson = Place.connection.execute("SELECT ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geojson FROM place_geometries WHERE place_id = #{@place.id}")[0]['geojson']
-        render :json => @geojson
+        result = Place.connection.execute("SELECT ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geojson FROM place_geometries WHERE place_id = #{@place.id}")
+        if result && result.count > 0
+          @geojson = result[0]['geojson']
+        end
+        render :json => @geojson || { }
       end
     end
   end
@@ -241,7 +245,7 @@ class PlacesController < ApplicationController
   
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
-    @q = sanitize_sphinx_query(@q.to_s.sanitize_encoding)
+    @q = sanitize_query(@q.to_s.sanitize_encoding)
     site_place = @site.place if @site
     if @q.blank?
       scope = if site_place

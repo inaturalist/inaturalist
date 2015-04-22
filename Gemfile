@@ -82,6 +82,7 @@ gem 'trollop'
 gem 'ts-delayed-delta', '~> 2.0.2'
 gem 'twitter'
 gem 'uglifier'
+gem 'useragent'
 gem 'utf8-cleaner'
 gem "watu_table_builder", :require => "table_builder"
 gem 'wicked_pdf'

@@ -50,13 +50,13 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
       import_file
 
       # Email uploader to say that the upload has finished.
-      Emailer.delay.bulk_observation_success(@user, File.basename(@observation_file))
+      Emailer.bulk_observation_success(@user, File.basename(@observation_file))
     rescue BulkObservationException => e
       # Collate the errors into a hash for emailing
       error_details = collate_errors(e)
 
       # Email the uploader with exception details
-      Emailer.delay.bulk_observation_error(@user, File.basename(@observation_file), error_details)
+      Emailer.bulk_observation_error(@user, File.basename(@observation_file), error_details)
     end
   end
 
@@ -235,6 +235,14 @@ class BulkObservationFile < Struct.new(:observation_file, :project_id, :coord_sy
     end
 
     { :reason => exception.reason, :errors => errors.stringify_keys.sort_by { |k, v| k }, :field_options => field_options }
+  end
+
+  def max_attempts
+    1
+  end
+
+  def generate_unique_hash
+    [@user.try(:login), @observation_file, @project.try(:id)].compact.join('-')
   end
 
 end

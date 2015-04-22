@@ -17,11 +17,7 @@ Inaturalist::Application.configure do
   # If you have no front-end server that supports something like X-Sendfile,
   # just comment this out and Rails will serve the files
 
-  config.log_level = :debug
-
-  # Not sure why this is necessary, but settings the custom logger above 
-  # seems to cause ActiveRecord to log db statements
-  config.active_record.logger = nil
+  config.log_level = :info
 
   # Use a different cache store in production
   config.cache_store = :dalli_store, CONFIG.memcached,

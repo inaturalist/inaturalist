@@ -49,6 +49,21 @@ describe ObservationsExportFlowTask, "run" do
       JSON.parse(open(File.join(ft.work_path, "#{ft.basename}.json")).read)
     }.should_not raise_error
   end
+
+  it "should filter by project" do
+    u = User.make!
+    po = make_project_observation
+    in_project = po.observation
+    not_in_project = Observation.make!
+    ft = ObservationsExportFlowTask.make
+    ft.inputs.build(:extra => {:query => "projects%5B%5D=#{po.project.slug}"})
+    ft.save!
+    ft.run
+    csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+    csv.size.should eq 2
+    expect( csv.detect{|row| row.detect{|v| v == in_project.id.to_s}} ).not_to be_blank
+    expect( csv.detect{|row| row.detect{|v| v == not_in_project.id.to_s}} ).to be_blank
+  end
 end
 
 describe ObservationsExportFlowTask, "geoprivacy" do

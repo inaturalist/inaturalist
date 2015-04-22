@@ -36,3 +36,32 @@ describe ProjectsController, "leave" do
     end
   end
 end
+
+describe ProjectsController, "search" do
+  before(:each) { enable_elastic_indexing( Project, Place ) }
+  after(:each) { disable_elastic_indexing( Project, Place ) }
+
+  describe "for site with a place" do
+    let(:place) { make_place_with_geom }
+    let(:site) { Site.make!(place: place) }
+    before do
+      expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
+    end
+
+    it "should filter by place" do
+      with_place = Project.make!(place: place)
+      without_place = Project.make!(title: "#{with_place.title} without place")
+      get :search, q: with_place.title
+      expect( assigns(:projects) ).to include with_place
+      expect( assigns(:projects) ).not_to include without_place
+    end
+
+    it "should allow removal of the place filter" do
+      with_place = Project.make!(place: place)
+      without_place = Project.make!(title: "#{with_place.title} without place")
+      get :search, q: with_place.title, everywhere: true
+      expect( assigns(:projects) ).to include with_place
+      expect( assigns(:projects) ).to include without_place
+    end
+  end
+end

@@ -358,6 +358,19 @@ shared_examples_for "an ObservationsController" do
       o.private_latitude.should be_blank
       o.latitude.to_f.should eq 1.0
     end
+
+    it "should deal with updating the taxon_id" do
+      t1 = Taxon.make!
+      t2 = Taxon.make!
+      t3 = Taxon.make!
+      o = Observation.make!(taxon: t1, user: user)
+      o.update_attributes(taxon: t2)
+      o.reload
+      expect( o.identifications.count ).to eq 2
+      put :update, format: :json, id: o.id, observation: {taxon_id: t3.id}
+      o.reload
+      expect( o.identifications.count ).to eq 3
+    end
   end
 
   describe "by_login" do
@@ -445,6 +458,16 @@ shared_examples_for "an ObservationsController" do
       }.should_not raise_error
     end
 
+    it "should allow sorting with different cases" do
+      o = Observation.make!
+      get :index, format: :json, sort: "ASC"
+      expect( JSON.parse(response.body).length ).to eq 1
+      get :index, format: :json, sort: "asc"
+      expect( JSON.parse(response.body).length ).to eq 1
+      get :index, format: :json, sort: "DeSC"
+      expect( JSON.parse(response.body).length ).to eq 1
+    end
+
     it "should filter by hour range" do
       o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
       o.time_observed_at.should_not be_blank
@@ -488,13 +511,22 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == o2.id}.should be_blank
     end
 
-    it "should filter by captive" do
+    it "should filter by captive=true" do
       captive = Observation.make!(:captive_flag => "1")
       wild = Observation.make!(:captive_flag => "0")
       get :index, :format => :json, :captive => true
       json = JSON.parse(response.body)
       json.detect{|obs| obs['id'] == wild.id}.should be_blank
       json.detect{|obs| obs['id'] == captive.id}.should_not be_blank
+    end
+
+    it "should filter by captive=false" do
+      captive = Observation.make!(captive_flag: "1")
+      wild = Observation.make!(captive_flag: "0")
+      get :index, format: :json, captive: false
+      json = JSON.parse(response.body)
+      json.detect{|obs| obs['id'] == captive.id}.should be_blank
+      json.detect{|obs| obs['id'] == wild.id}.should_not be_blank
     end
 
     it "should filter by captive when quality metrics used" do
@@ -637,6 +669,14 @@ shared_examples_for "an ObservationsController" do
       o1 = Observation.make!(:taxon => Taxon.make!)
       o2 = Observation.make!(:taxon => Taxon.make!)
       get :index, :format => :json, :taxon_name => o1.taxon.name
+      JSON.parse(response.body).size.should eq 1
+    end
+
+    it "should filter by taxon name regardless of case" do
+      t = Taxon.make!(name: "Foo bar")
+      o1 = Observation.make!(taxon: t)
+      o2 = Observation.make!(taxon: Taxon.make!)
+      get :index, :format => :json, :taxon_name => "foo bar"
       JSON.parse(response.body).size.should eq 1
     end
 

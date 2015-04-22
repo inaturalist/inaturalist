@@ -69,6 +69,7 @@ RSpec.configure do |config|
   end
 
   config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, :type => :view
   config.fixture_path = "#{::Rails.root}/spec/fixtures/"
   config.infer_spec_type_from_file_location!
 end
@@ -126,7 +127,8 @@ def stub_config(options = {})
   end
 end
 
-def enable_elastic_indexing(classes)
+def enable_elastic_indexing(*args)
+  classes = [args].flatten
   classes.each do |klass|
     klass.__elasticsearch__.create_index!
     klass.send :after_save, :elastic_index!
@@ -135,7 +137,8 @@ def enable_elastic_indexing(classes)
   end
 end
 
-def disable_elastic_indexing(classes)
+def disable_elastic_indexing(*args)
+  classes = [args].flatten
   classes.each do |klass|
     klass.send :skip_callback, :save, :after, :elastic_index!
     klass.send :skip_callback, :destroy, :after, :elastic_delete!

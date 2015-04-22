@@ -278,6 +278,7 @@ describe User do
 
   describe "sane_destroy" do
     before(:each) do
+      enable_elastic_indexing([ Observation ])
       without_delay do
         @user = User.make!
         @place = make_place_with_geom
@@ -287,6 +288,7 @@ describe User do
         end
       end
     end
+    after(:each) { disable_elastic_indexing([ Observation ]) }
 
     it "should destroy the user" do
       @user.sane_destroy
@@ -464,6 +466,9 @@ describe User do
   end
   
   describe "licenses" do
+    before(:each) { enable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation ]) }
+
     it "should update existing observations if requested" do
       u = User.make!
       o = Observation.make!(:user => u)

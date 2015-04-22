@@ -22,6 +22,9 @@ module ActiveRecord
           reflection.klass.merge_duplicates(reflection.foreign_key => id)
         end
       end
+
+      # ensure the reject no longer has any of its associates hanging around in memory
+      reject.reload
     end
     
     def created_at_utc

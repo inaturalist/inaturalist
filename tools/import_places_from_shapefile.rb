@@ -1,8 +1,6 @@
 require 'rubygems'
 require 'trollop'
 
-ThinkingSphinx::Deltas.suspend!
-
 @opts = Trollop::options do
     banner <<-EOS
 Import shapefile polygons as new Places. The shapefile can be a path to a

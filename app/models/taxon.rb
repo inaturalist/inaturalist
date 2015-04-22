@@ -375,10 +375,10 @@ class Taxon < ActiveRecord::Base
     if (Observation.joins(:taxon).where(conditions).exists? || 
         Observation.joins(:taxon).where(old_conditions).exists? || 
         Identification.joins(:taxon).where(conditions).exists? || 
-        Identification.joins(:taxon).where(old_conditions).exists?
-        ) && 
-        !Delayed::Job.where("handler LIKE '%update_stats_for_observations_of%- #{id}%'").exists?
-      Observation.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").update_stats_for_observations_of(id)
+        Identification.joins(:taxon).where(old_conditions).exists? )
+      Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
+        unique_hash: { "Observation::update_stats_for_observations_of": id }).
+        update_stats_for_observations_of(id)
     end
     true
   end
@@ -779,9 +779,9 @@ class Taxon < ActiveRecord::Base
     if ListRule.exists?([
         "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
         Taxon.to_s, ids])
-      unless Delayed::Job.where("handler LIKE '%update_life_lists_for_taxon%id: ''#{id}''%'").exists?
-        LifeList.delay(:priority => INTEGRITY_PRIORITY).update_life_lists_for_taxon(self)
-      end
+      LifeList.delay(priority: INTEGRITY_PRIORITY,
+        unique_hash: { "LifeList::update_life_lists_for_taxon": id }).
+        update_life_lists_for_taxon(self)
     end
     true
   end
@@ -825,8 +825,10 @@ class Taxon < ActiveRecord::Base
       return Nokogiri::HTML::DocumentFragment.parse(sum).to_s
     end
     
-    if !new_record? && options[:refresh_if_blank] && !Delayed::Job.where("handler LIKE '%set_wikipedia_summary%id: ''#{id}''%'").exists?
-      delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary(:locale => locale)
+    if !new_record? && options[:refresh_if_blank]
+      delay(priority: OPTIONAL_PRIORITY,
+        unique_hash: { "Taxon::set_wikipedia_summary": id }).
+        set_wikipedia_summary(:locale => locale)
     end
     nil
   end
@@ -1097,7 +1099,6 @@ class Taxon < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
     Rails.logger.info "[INFO #{Time.now}] updating descendants of #{taxon}"
-    ThinkingSphinx::Deltas.suspend!
     Taxon.where(taxon.descendant_conditions).find_in_batches do |batch|
       batch.each do |t|
         t.without_ancestry_callbacks do
@@ -1107,7 +1108,6 @@ class Taxon < ActiveRecord::Base
         end
       end
     end
-    ThinkingSphinx::Deltas.resume!
   end
   
   def apply_orphan_strategy
@@ -1396,7 +1396,6 @@ class Taxon < ActiveRecord::Base
   end
   
   def self.rebuild_without_callbacks
-    ThinkingSphinx::Deltas.suspend!
     before_validation.clear
     before_save.clear
     after_save.clear
@@ -1404,14 +1403,12 @@ class Taxon < ActiveRecord::Base
     validates_presence_of.clear
     validates_uniqueness_of.clear
     restore_ancestry_integrity!
-    ThinkingSphinx::Deltas.resume!
   end
   
   # Do something without all the callbacks.  This disables all callbacks and
   # validations and doesn't restore them, so IT SHOULD NEVER BE CALLED BY THE
   # APP!  The process should end after this is done.
   def self.without_callbacks(&block)
-    ThinkingSphinx::Deltas.suspend!
     before_validation.clear
     before_save.clear
     after_save.clear
@@ -1467,7 +1464,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.search_query(q)
-    q = sanitize_sphinx_query(q)
+    q = sanitize_query(q)
     if q.blank?
       q = q
       return [q, :all]
@@ -1518,7 +1515,7 @@ class Taxon < ActiveRecord::Base
     #     ).compact
     #     taxa = search_results.select{|t| t.taxon_names.detect{|tn| tn.name.downcase == name}}
     #     taxa = search_results if taxa.blank? && search_results.size == 1 && search_results.first.taxon_names.detect{|tn| tn.name.downcase == name}
-    #   rescue Riddle::ConnectionError, Riddle::ResponseError, ThinkingSphinx::SphinxError => e
+    #   rescue Riddle::ConnectionError, Riddle::ResponseError
     #     return
     #   end
     # end

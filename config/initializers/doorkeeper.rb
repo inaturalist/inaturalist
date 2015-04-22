@@ -30,7 +30,7 @@ Doorkeeper.configure do
   # Access token expiration time (default 2 hours).
   # If you want to disable expiration, set this to nil.
   # access_token_expires_in 2.hours
-  access_token_expires_in 7.days
+  access_token_expires_in nil
 
   # Issue access tokens with refresh token (disabled by default)
   # use_refresh_token

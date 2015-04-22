@@ -90,6 +90,8 @@ module Inaturalist
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
     end
+
+    config.middleware.insert_before "ActionDispatch::DebugExceptions", "LogstasherCatchAllErrors"
   end
 
 end
@@ -117,11 +119,6 @@ OBSERVATIONS_TILE_SERVER = CONFIG.tile_servers.observations
 # force encoding
 Encoding.default_internal = Encoding::UTF_8
 Encoding.default_external = Encoding::UTF_8
-
-# Graphite
-if CONFIG.statsd_host
-  STATSD = Statsd.new( CONFIG.statsd_host, ( CONFIG.statsd_port || 8125 ) )
-end
 
 # TODO: is the geo_ruby stuff still used?
 # make sure we have geojson support
