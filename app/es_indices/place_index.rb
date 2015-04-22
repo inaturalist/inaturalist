@@ -18,8 +18,7 @@ class Place < ActiveRecord::Base
       indexes :location, type: "geo_point", lat_lon: true
       indexes :point_geojson, type: "geo_shape"
       indexes :bbox_area, type: "double"
-      indexes :display_name, index_analyzer: "ascii_snowball_analyzer",
-        search_analyzer: "ascii_snowball_analyzer"
+      indexes :display_name, analyzer: "ascii_snowball_analyzer"
       indexes :display_name_autocomplete, index_analyzer: "keyword_autocomplete_analyzer",
         search_analyzer: "keyword_analyzer"
     end

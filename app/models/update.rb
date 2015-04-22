@@ -1,4 +1,7 @@
 class Update < ActiveRecord::Base
+
+  include ActsAsElasticModel
+
   belongs_to :subscriber, :class_name => "User"
   belongs_to :resource, :polymorphic => true
   belongs_to :notifier, :polymorphic => true
@@ -211,10 +214,12 @@ class Update < ActiveRecord::Base
     updates = updates.to_a.compact
     return if updates.blank?
     subscriber_id = updates.first.subscriber_id
-    
+
     # mark all as viewed
-    Update.where(id: updates).update_all(viewed_at: Time.now)
-    
+    updates_scope = Update.where(id: updates)
+    updates_scope.update_all(viewed_at: Time.now)
+    Update.elastic_index!(scope: updates_scope)
+
     # delete PAST activity updates that were not in this batch
     clauses = []
     update_ids = []
