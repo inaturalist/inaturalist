@@ -2343,13 +2343,13 @@ class ObservationsController < ApplicationController
       @projects = [ @project ]
     end
     extra = params[:extra].to_s.split(',')
-    if !@projects.blank? || extra.include?('projects')
+    if !@projects.blank?
       search_wheres["project_ids"] = @projects.to_a
       extra_preloads << :projects
     end
     extra_preloads << {identifications: [:user, :taxon]} if extra.include?('identifications')
     extra_preloads << {observation_photos: :photo} if extra.include?('observation_photos')
-    extra_preloads << {observation_field_values: :observtion_field} if extra.include?('fields')
+    extra_preloads << {observation_field_values: :observation_field} if extra.include?('fields')
     unless @hrank.blank? && @lrank.blank?
       search_wheres["range"] = { "taxon.rank_level" => {
         from: Taxon::RANK_LEVELS[@lrank] || 0,
