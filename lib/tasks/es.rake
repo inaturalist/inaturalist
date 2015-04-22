@@ -66,7 +66,8 @@ def elastic_models
     Observation => { },
     Project => { },
     Place => { batch_size: 20 },
-    Taxon => { }
+    Taxon => { },
+    Update => { batch_size: 5000 }
   }
 end
 

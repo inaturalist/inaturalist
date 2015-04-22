@@ -1960,8 +1960,11 @@ class ObservationsController < ApplicationController
 
   def user_viewed_updates
     return unless logged_in?
-    Update.where(["resource_type = 'Observation' AND resource_id = ? AND subscriber_id = ?", @observation.id, current_user.id]).
-      update_all(viewed_at: Time.now)
+    updates_scope = Update.where([
+      "resource_type = 'Observation' AND resource_id = ? AND subscriber_id = ?",
+      @observation.id, current_user.id])
+    updates_scope.update_all(viewed_at: Time.now)
+    Update.elastic_index!(scope: updates_scope)
   end
 
   def stats_adequately_scoped?

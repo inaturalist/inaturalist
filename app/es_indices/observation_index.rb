@@ -14,34 +14,24 @@ class Observation < ActiveRecord::Base
     mappings(dynamic: true) do
       indexes :taxon do
         indexes :names do
-          indexes :name, index_analyzer: "ascii_snowball_analyzer",
-            search_analyzer: "ascii_snowball_analyzer"
+          indexes :name, analyzer: "ascii_snowball_analyzer"
         end
       end
       indexes :photos do
-        indexes :license_code, index_analyzer: "keyword_analyzer",
-          search_analyzer: "keyword_analyzer"
+        indexes :license_code, analyzer: "keyword_analyzer"
       end
       indexes :sounds do
-        indexes :license_code, index_analyzer: "keyword_analyzer",
-          search_analyzer: "keyword_analyzer"
+        indexes :license_code, analyzer: "keyword_analyzer"
       end
       indexes :field_values do
-        indexes :name, index_analyzer: "keyword_analyzer",
-          search_analyzer: "keyword_analyzer"
-        indexes :value, index_analyzer: "keyword_analyzer",
-          search_analyzer: "keyword_analyzer"
+        indexes :name, analyzer: "keyword_analyzer"
+        indexes :value, analyzer: "keyword_analyzer"
       end
-      indexes :description, index_analyzer: "ascii_snowball_analyzer",
-        search_analyzer: "ascii_snowball_analyzer"
-      indexes :tags, index_analyzer: "ascii_snowball_analyzer",
-        search_analyzer: "ascii_snowball_analyzer"
-      indexes :place_guess, index_analyzer: "ascii_snowball_analyzer",
-        search_analyzer: "ascii_snowball_analyzer"
-      indexes :species_guess, index_analyzer: "keyword_analyzer",
-        search_analyzer: "keyword_analyzer"
-      indexes :license_code, index_analyzer: "keyword_analyzer",
-        search_analyzer: "keyword_analyzer"
+      indexes :description, analyzer: "ascii_snowball_analyzer"
+      indexes :tags, analyzer: "ascii_snowball_analyzer"
+      indexes :place_guess, analyzer: "ascii_snowball_analyzer"
+      indexes :species_guess, analyzer: "keyword_analyzer"
+      indexes :license_code, analyzer: "keyword_analyzer"
       indexes :observed_on_string, type: "string"
       indexes :location, type: "geo_point", lat_lon: true, geohash: true, geohash_precision: 10
       indexes :private_location, type: "geo_point", lat_lon: true

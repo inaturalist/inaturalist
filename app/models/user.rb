@@ -608,6 +608,22 @@ class User < ActiveRecord::Base
     true
   end
 
+  def recent_notifications(options={})
+    options[:filters] ||= [ ]
+    options[:wheres] ||= { }
+    options[:per_page] ||= 10
+    if options[:unviewed]
+      options[:filters] << { not: { exists: { field: :viewed_at } } }
+    elsif options[:viewed]
+      options[:filters] << { range: { viewed_at: { gt: 1.day.ago } } }
+    end
+    Update.elastic_paginate(
+      where: options[:wheres].merge({ subscriber_id: id }),
+      filters: options[:filters],
+      per_page: options[:per_page],
+      sort: { id: :desc })
+  end
+
   def self.default_json_options
     {
       :except => [:crypted_password, :salt, :old_preferences, :activation_code, :remember_token, :last_ip,
