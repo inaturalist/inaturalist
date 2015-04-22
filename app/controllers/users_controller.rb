@@ -283,7 +283,7 @@ class UsersController < ApplicationController
     filters = [ ]
     wheres = { }
     if params[:from]
-      filters << { range: { id: { gt: params[:from] } } }
+      filters << { range: { id: { lt: params[:from] } } }
     end
     unless params[:notifier_type].blank?
       wheres[:notifier_type] = params[:notifier_type]
