@@ -2804,7 +2804,10 @@ class ObservationsController < ApplicationController
               only: [:name, :login, :id],
               methods: [:user_icon_url]
             },
-            taxon: taxon_options
+            taxon: {
+              only: [:id, :name, :rank, :rank_level],
+              methods: [:iconic_taxon_name, :image_url, :common_name, :default_name]
+            }
           }
         }
       end
