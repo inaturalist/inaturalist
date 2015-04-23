@@ -649,6 +649,13 @@ shared_examples_for "an ObservationsController" do
       expect(obs['observation_photos']).not_to be_nil
     end
 
+    it "should let you request identifications as extra data" do
+      rgo = make_research_grade_observation
+      get :index, :format => :json, :extra => "identifications"
+      obs = JSON.parse(response.body).detect{|o| o['id'] == rgo.id}
+      obs['identifications'].should_not be_nil
+    end
+
     it "should filter by list_id" do
       l = List.make!
       lt = ListedTaxon.make!(:list => l)

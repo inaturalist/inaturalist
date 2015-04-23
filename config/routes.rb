@@ -167,7 +167,6 @@ Rails.application.routes.draw do
       get :accumulation
       get :phylogram
       get :export
-      post :email_export
       get :map
     end
     member do
@@ -186,6 +185,7 @@ Rails.application.routes.draw do
   get 'observations/import' => 'observations#import', :as => :import_observations
   match 'observations/import_photos' => 'observations#import_photos', :as => :import_photos, via: [ :get, :post ]
   post 'observations/import_sounds' => 'observations#import_sounds', :as => :import_sounds
+  post 'observations/email_export/:id' => 'observations#email_export', :as => :email_export
   get 'observations/id_please' => 'observations#id_please', :as => :id_please
   get 'observations/selector' => 'observations#selector', :as => :observation_selector
   get '/observations/curation' => 'observations#curation', :as => :curate_observations

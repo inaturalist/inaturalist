@@ -82,8 +82,10 @@ module Logstasher
     if hash[:session] && hash[:session].is_a?(ActionDispatch::Request::Session)
       hash.merge!( Logstasher.payload_from_session(hash[:session]) )
     end
-    if hash[:user] && hash[:user].is_a?(User)
-      hash.merge!( Logstasher.payload_from_user(hash[:user]) )
+    if hash[:user]
+      if hash[:user].is_a?(User)
+        hash.merge!( Logstasher.payload_from_user(hash[:user]) )
+      end
       hash.delete(:user)
     end
     hash

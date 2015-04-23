@@ -2361,10 +2361,14 @@ class ObservationsController < ApplicationController
     if @projects.blank? && !@project.blank?
       @projects = [ @project ]
     end
-    unless @projects.blank?
+    extra = params[:extra].to_s.split(',')
+    if !@projects.blank?
       search_wheres["project_ids"] = @projects.to_a
       extra_preloads << :projects
     end
+    extra_preloads << {identifications: [:user, :taxon]} if extra.include?('identifications')
+    extra_preloads << {observation_photos: :photo} if extra.include?('observation_photos')
+    extra_preloads << {observation_field_values: :observation_field} if extra.include?('fields')
     unless @hrank.blank? && @lrank.blank?
       search_wheres["range"] = { "taxon.rank_level" => {
         from: Taxon::RANK_LEVELS[@lrank] || 0,
@@ -2570,7 +2574,7 @@ class ObservationsController < ApplicationController
       flash.now[:error] = t(:sorry_flickr_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
       Airbrake.notify(e, :request => request, :session => session)
-      Logstasher.write_exception(e, request: request, session: session)
+      Logstasher.write_exception(e, request: request, session: session, user: current_user)
       return
     end
     if fp && @flickr_photo && @flickr_photo.valid?
@@ -2615,7 +2619,7 @@ class ObservationsController < ApplicationController
       flash.now[:error] = t(:sorry_picasa_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
       Airbrake.notify(e, :request => request, :session => session)
-      Logstasher.write_exception(e, request: request, session: session)
+      Logstasher.write_exception(e, request: request, session: session, user: current_user)
       return
     end
     unless api_response
@@ -2817,6 +2821,22 @@ class ObservationsController < ApplicationController
       if extra.include?('observation_photos')
         opts[:include][:observation_photos] ||= {
           :include => {:photo => {:except => [:metadata]}}
+        }
+      end
+      if extra.include?('identifications')
+        taxon_options = Taxon.default_json_options
+        taxon_options[:methods] += [:iconic_taxon_name, :image_url, :common_name, :default_name]
+        opts[:include][:identifications] ||= {
+          'include': {
+            user: {
+              only: [:name, :login, :id],
+              methods: [:user_icon_url]
+            },
+            taxon: {
+              only: [:id, :name, :rank, :rank_level],
+              methods: [:iconic_taxon_name, :image_url, :common_name, :default_name]
+            }
+          }
         }
       end
       if @ofv_params || extra.include?('fields')
