@@ -21,11 +21,11 @@ shared_examples_for "a ProjectsController" do
       expect(unjoined_project.users).to include(user)
     end
 
-    it "should set preferred_curator_coordinate_access to false" do
+    it "should set preferred_curator_coordinate_access to observer" do
       p2 = Project.make!
       post :join, format: :json, id: unjoined_project.id
       pu = user.project_users.where(project_id: unjoined_project).first
-      expect( pu ).not_to be_prefers_curator_coordinate_access
+      expect( pu.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER
     end
   end
 

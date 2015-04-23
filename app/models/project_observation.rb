@@ -46,7 +46,14 @@ class ProjectObservation < ActiveRecord::Base
   def set_curator_coordinate_access
     return true unless preferred_curator_coordinate_access.nil?
     if project_user
-      self.preferred_curator_coordinate_access = project_user.preferred_curator_coordinate_access
+      self.preferred_curator_coordinate_access = case project_user.preferred_curator_coordinate_access
+      when ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER
+        user_id == observation.user_id
+      when ProjectUser::CURATOR_COORDINATE_ACCESS_ANY
+        true
+      else
+        false
+      end
     end
     self.preferred_curator_coordinate_access = false if preferred_curator_coordinate_access.nil?
     true

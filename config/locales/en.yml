@@ -3936,6 +3936,26 @@ en:
           If you are concerned about location privacy, do not join projects
           unless you trust the project curators.
         </p>
+      project_user_curator_coordinate_access_labels:
+        observer: You
+        any: Project curators
+        none: No one
+      curator_coordinate_access_label: |
+        Allow project curators to view the private coordinates of your
+        observations when added to the project by
+      curator_coordinate_access_note: |
+        You can also choose to share the private coordinates of observations
+        in this project on a case-by-case basis. These are just the defaults
+        for new observations added to the project.
+      project_user_curator_coordinate_access_descriptions:
+        observer: |
+          Only allow project curators to view private coordinates of your
+          observations that you add to this project
+        any: |
+          Allow project curators to view the private coordinates of your
+          observations added to this project by you and the project curators
+        none: |
+          Don't share private coordinates of your observations with the project curators
       project_terms_desc_html: |
         Allow the curators of this project to use your observations according
         to the <a href="%{url}">project terms</a>.

@@ -28,8 +28,8 @@ describe ProjectUser, "creation" do
     expect(pu.user.subscriptions.where(:resource_type => "AssessmentSection", :resource_id => as)).to be_blank
   end
 
-  it "should set curator_coordinate_access to true by default" do
-    expect( ProjectUser.make! ).not_to be_prefers_curator_coordinate_access
+  it "should set curator_coordinate_access to observer by default" do
+    expect( ProjectUser.make!.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER
   end
 
   describe "invite-only projects" do

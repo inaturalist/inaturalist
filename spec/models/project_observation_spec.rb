@@ -42,20 +42,25 @@ describe ProjectObservation, "creation" do
     expect( po.prefers_curator_coordinate_access? ).to be false
   end
   
-  it "should set curator_coordinate_access to true project user prefers it" do
-    pu = ProjectUser.make!(prefers_curator_coordinate_access: true)
-    expect( pu.prefers_curator_coordinate_access? ).to be true
-    po = ProjectObservation.make!(project: pu.project, observation: Observation.make!(user: pu.user))
-    expect( po.prefers_curator_coordinate_access? ).to be true
+  it "should set curator_coordinate_access to true if project observers prefers access for their own additions" do
+    pu = ProjectUser.make!(preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER)
+    expect( pu.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER
+    po = ProjectObservation.make!(project: pu.project, observation: Observation.make!(user: pu.user), user: pu.user)
+    expect( po.preferred_curator_coordinate_access ).to be true
   end
 
-  it "should set curator_coordinate_access to false if project user prefers it" do
-    pu = ProjectUser.make!(prefers_curator_coordinate_access: false)
-    expect( pu.prefers_curator_coordinate_access? ).to be false
-    o = Observation.make!(user: pu.user)
-    po = ProjectObservation.make(project: pu.project, observation: o)
-    po.save!
-    expect( po.prefers_curator_coordinate_access? ).to be false
+  it "should set curator_coordinate_access to false if project observers prefers access for their own additions and added by someone else" do
+    pu = ProjectUser.make!(preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER)
+    expect( pu.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER
+    po = ProjectObservation.make!(project: pu.project, observation: Observation.make!(user: pu.user))
+    expect( po.preferred_curator_coordinate_access ).to be false
+  end
+
+  it "should set curator_coordinate_access to true if project observers prefers access for addition by others" do
+    pu = ProjectUser.make!(preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY)
+    expect( pu.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_ANY
+    po = ProjectObservation.make!(project: pu.project, observation: Observation.make!(user: pu.user))
+    expect( po.preferred_curator_coordinate_access ).to be true
   end
 
   describe "updates" do
