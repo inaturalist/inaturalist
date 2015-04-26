@@ -9,8 +9,7 @@ class Taxon < ActiveRecord::Base
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :names do
-        indexes :name, index_analyzer: "ascii_snowball_analyzer",
-          search_analyzer: "ascii_snowball_analyzer"
+        indexes :name, analyzer: "ascii_snowball_analyzer"
         indexes :name_autocomplete, index_analyzer: "autocomplete_analyzer",
           search_analyzer: "standard_analyzer"
       end
