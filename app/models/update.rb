@@ -235,7 +235,7 @@ class Update < ActiveRecord::Base
       updates.each do |update|
         next unless update.notification == 'activity'
         Update.delay(:priority => USER_INTEGRITY_PRIORITY).delete_all([
-          "id < ? AND notification = 'activity' AND subscriber_id = ? AND resource_type = ? AND resource_id = ?", 
+          "id < ? AND notification = 'activity' AND subscriber_id = ? AND resource_type = ? AND resource_id = ?",
           update.id, update.subscriber_id, update.resource_type, update.resource_id
         ])
       end
