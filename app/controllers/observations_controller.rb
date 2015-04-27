@@ -1964,7 +1964,7 @@ class ObservationsController < ApplicationController
       "resource_type = 'Observation' AND resource_id = ? AND subscriber_id = ?",
       @observation.id, current_user.id])
     updates_scope.update_all(viewed_at: Time.now)
-    Update.elastic_index!(scope: updates_scope)
+    Update.elastic_index!(scope: updates_scope, delay: true)
   end
 
   def stats_adequately_scoped?

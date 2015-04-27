@@ -81,13 +81,13 @@ class UsersController < ApplicationController
   # Don't take these out yet, useful for admin user management down the road
 
   def suspend
-     @user.suspend! 
+     @user.suspend!
      flash[:notice] = t(:the_user_x_has_been_suspended, :user => @user.login)
      redirect_back_or_default(@user)
   end
    
   def unsuspend
-    @user.unsuspend! 
+    @user.unsuspend!
     flash[:notice] = t(:the_user_x_has_been_unsuspended, :user => @user.login)
     redirect_back_or_default(@user)
   end
@@ -280,11 +280,21 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-    @pagination_updates = current_user.updates.limit(50).order("id DESC").includes(:resource, :notifier, :subscriber, :resource_owner)
-    @pagination_updates = @pagination_updates.where("id < ?", params[:from].to_i) if params[:from]
-    @pagination_updates = @pagination_updates.where(:notifier_type => params[:notifier_type]) unless params[:notifier_type].blank?
-    @pagination_updates = @pagination_updates.where(:resource_owner_id => current_user) if params[:filter] == "you"
+    filters = [ ]
+    wheres = { }
+    if params[:from]
+      filters << { range: { id: { lt: params[:from] } } }
+    end
+    unless params[:notifier_type].blank?
+      wheres[:notifier_type] = params[:notifier_type]
+    end
+    if params[:filter] == "you"
+      wheres[:resource_owner_id] = current_user.id
+    end
+    @pagination_updates = current_user.recent_notifications(
+      filters: filters, wheres: wheres, per_page: 50)
     @updates = Update.load_additional_activity_updates(@pagination_updates)
+    Update.preload_associations(@updates, [ :resource, :notifier, :subscriber, :resource_owner ])
     @update_cache = Update.eager_load_associates(@updates)
     @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache, :hour_groups => true)
     Update.user_viewed_updates(@pagination_updates)
@@ -315,32 +325,29 @@ class UsersController < ApplicationController
   end
   
   def new_updates
-    @updates = current_user.updates.unviewed.activity.
-      includes(:resource, :notifier, :subscriber, :resource_owner).
-      order("id DESC").
-      limit(200)
-    unless request.format.json?
-      if @updates.count == 0
-        @updates = current_user.updates.activity.
-          includes(:resource, :notifier, :subscriber, :resource_owner).
-          order("id DESC").
-          limit(10).
-          where("viewed_at > ?", 1.day.ago)
-      end
-      if @updates.count == 0
-        @updates = current_user.updates.activity.limit(5).order("id DESC")
-      end
-    end
+    wheres = { notification: :activity }
     notifier_types = [(params[:notifier_types] || params[:notifier_type])].compact
     unless notifier_types.blank?
       notifier_types = notifier_types.map{|t| t.split(',')}.flatten.compact.uniq
-      @updates = @updates.where("notifier_type IN (?)", notifier_types)
+      wheres[:notifier_type] = notifier_types.map(&:downcase)
     end
-    @updates = @updates.where(:resource_type => params[:resource_type]) unless params[:resource_type].blank?
+    unless params[:resource_type].blank?
+      wheres[:resource_type] = params[:resource_type].downcase
+    end
+    @updates = current_user.recent_notifications(unviewed: true, per_page: 200, wheres: wheres)
+    unless request.format.json?
+      if @updates.count == 0
+        @updates = current_user.recent_notifications(viewed: true, per_page: 10, wheres: wheres)
+      end
+      if @updates.count == 0
+        @updates = current_user.recent_notifications(per_page: 5, wheres: wheres)
+      end
+    end
     if !%w(1 yes y true t).include?(params[:skip_view].to_s)
       Update.user_viewed_updates(@updates)
       session[:updates_count] = 0
     end
+    Update.preload_associations(@updates, [ :resource, :notifier, :subscriber, :resource_owner ])
     @update_cache = Update.eager_load_associates(@updates)
     @updates = @updates.sort_by{|u| u.created_at.to_i * -1}
     respond_to do |format|

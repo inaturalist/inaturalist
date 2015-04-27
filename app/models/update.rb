@@ -175,17 +175,25 @@ class Update < ActiveRecord::Base
       :project_invitation => [:project, :user],
       :taxon_change => [:taxon, {:taxon_change_taxa => [:taxon]}, :user]
     }
+    if includes[:observation]
+      if includes[:identification]
+        includes[:observation] << { identifications: includes[:identification] }
+      end
+      if includes[:comment]
+        includes[:observation] << { comments: includes[:comment] }
+      end
+    end
     update_cache = {}
     klasses = [
-      Comment, 
-      Flag, 
-      Identification, 
-      ListedTaxon, 
-      Observation, 
+      Comment,
+      Flag,
+      Identification,
+      ListedTaxon,
+      Observation,
       ObservationField,
-      Post, 
-      Project, 
-      ProjectInvitation, 
+      Post,
+      Project,
+      ProjectInvitation,
       Taxon,
       TaxonChange,
       User
@@ -214,25 +222,27 @@ class Update < ActiveRecord::Base
     updates = updates.to_a.compact
     return if updates.blank?
     subscriber_id = updates.first.subscriber_id
+    # using a transaction here to speed up the multiple inserts
+    Update.transaction do
+      # mark all as viewed
+      updates_scope = Update.where(id: updates)
+      updates_scope.update_all(viewed_at: Time.now)
+      Update.elastic_index!(scope: updates_scope)
 
-    # mark all as viewed
-    updates_scope = Update.where(id: updates)
-    updates_scope.update_all(viewed_at: Time.now)
-    Update.elastic_index!(scope: updates_scope)
-
-    # delete PAST activity updates that were not in this batch
-    clauses = []
-    update_ids = []
-    updates.each do |update|
-      next unless update.notification == 'activity'
-      Update.delay(:priority => USER_INTEGRITY_PRIORITY).delete_all([
-        "id < ? AND notification = 'activity' AND subscriber_id = ? AND resource_type = ? AND resource_id = ?", 
-        update.id, update.subscriber_id, update.resource_type, update.resource_id
-      ])
+      # delete PAST activity updates that were not in this batch
+      clauses = []
+      update_ids = []
+      updates.each do |update|
+        next unless update.notification == 'activity'
+        Update.delay(:priority => USER_INTEGRITY_PRIORITY).delete_all([
+          "id < ? AND notification = 'activity' AND subscriber_id = ? AND resource_type = ? AND resource_id = ?",
+          update.id, update.subscriber_id, update.resource_type, update.resource_id
+        ])
+      end
+      Update.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
+        run_at: 6.hours.from_now, unique_hash: { "Update::sweep_for_user": subscriber_id }).
+        sweep_for_user(subscriber_id)
     end
-    Update.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
-      run_at: 6.hours.from_now, unique_hash: { "Update::sweep_for_user": subscriber_id }).
-      sweep_for_user(subscriber_id)
   end
 
   def self.sweep_for_user(user_id)
