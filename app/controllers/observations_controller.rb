@@ -2080,7 +2080,7 @@ class ObservationsController < ApplicationController
       search_params[:q] = sanitize_query(search_params[:q])
       @q = search_params[:q] unless search_params[:q].blank?
     end
-    if Observation::SPHINX_FIELD_NAMES.include?(search_params[:search_on])
+    if Observation::FIELDS_TO_SEARCH_ON.include?(search_params[:search_on])
       @search_on = search_params[:search_on]
     end
     

@@ -240,7 +240,7 @@ class Observation < ActiveRecord::Base
   has_many :sounds, :through => :observation_sounds
   has_many :observations_places, :dependent => :destroy
 
-  SPHINX_FIELD_NAMES = %w(names tags species_guess description place user observed_on_string)
+  FIELDS_TO_SEARCH_ON = %w(names tags description place)
   NON_ELASTIC_ATTRIBUTES = %w(cs establishment_means em h1 m1 week
     csi csa pcid list_id ofv_params)
 
