@@ -58,7 +58,11 @@ namespace :es do
 end
 
 def elasticsearch_url
-  Taxon.__elasticsearch__.client.transport.options[:host]
+  url = Taxon.__elasticsearch__.client.transport.options[:host]
+  unless url.starts_with?("http://")
+    url = "http://" + url
+  end
+  url
 end
 
 def elastic_models
@@ -107,7 +111,7 @@ def fail_unless_elasticsearch_is_running
 end
 
 def wait_until_elasticsearch_is_running(options={})
-  options[:timeout] ||= 10
+  options[:timeout] ||= 30
   start_time = Time.now
   while !elasticsearch_is_running? && (Time.now - start_time <= options[:timeout])
     sleep(1)
