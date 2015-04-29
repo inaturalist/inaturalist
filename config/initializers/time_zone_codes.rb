@@ -8,7 +8,6 @@ class ActiveSupport::TimeZone
     'AEST' => ActiveSupport::TimeZone["Brisbane"],
     'AWDT' => ActiveSupport::TimeZone["Perth"],
     'ACDT' => ActiveSupport::TimeZone["Adelaide"],
-    'AEDT' => ActiveSupport::TimeZone["Brisbane"],
     'ADT' => ActiveSupport::TimeZone['Atlantic Time (Canada)'],
     'AKDT' => ActiveSupport::TimeZone['Alaska'],
     'ALMT' => ActiveSupport::TimeZone['Almaty'],
