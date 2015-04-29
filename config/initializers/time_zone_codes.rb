@@ -6,7 +6,7 @@ class ActiveSupport::TimeZone
     'AWST' => ActiveSupport::TimeZone["Perth"],
     'ACST' => ActiveSupport::TimeZone["Adelaide"],
     'AEST' => ActiveSupport::TimeZone["Brisbane"],
-    'AEDT' => ActiveSupport::Timezone["Sydney"],
+    'AEDT' => ActiveSupport::TimeZone["Sydney"],
     'AWDT' => ActiveSupport::TimeZone["Perth"],
     'ACDT' => ActiveSupport::TimeZone["Adelaide"],
     'ADT' => ActiveSupport::TimeZone['Atlantic Time (Canada)'],
