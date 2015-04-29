@@ -573,15 +573,35 @@ class Project < ActiveRecord::Base
   end
 
   def self.aggregate_observations(options = {})
-    logger = options[:logger] || Rails.logger
-    start_time = Time.now
-    num_projects = 0
-    logger.info "[INFO #{Time.now}] Starting Project.aggregate_observations"
-    Project.joins(:stored_preferences).where("preferences.name = 'aggregation' AND preferences.value = 't'").find_each do |p|
-      next unless p.aggregation_allowed? && p.prefers_aggregation?
-      p.aggregate_observations(logger: logger)
-      num_projects += 1
+    # PID file stuff inspired by 
+    # http://stackoverflow.com/questions/3983883/how-to-ensure-a-rake-task-only-running-a-process-at-a-time and 
+    # http://codeincomplete.com/posts/2014/9/15/ruby_daemons/#separation-of-concerns
+    pidfile = File.join(Rails.root, "tmp", "pids", "project_aggregator.pid")
+    if File.exists? pidfile
+      pid = open(pidfile).read.to_s.strip.to_i
+      begin
+        # send signal 0 to check process status
+        Process.kill(0, pid)
+        raise "Project aggregator is already running"
+      rescue Errno::ESRCH
+        # Process is not running even though pidfile is there, so delete it
+        File.delete pidfile
+      end
     end
-    logger.info "[INFO #{Time.now}] Finished Project.aggregate_observations in #{Time.now - start_time}s, #{num_projects} projects"
+    File.open(pidfile, 'w') {|f| f.puts Process.pid}
+    begin
+      logger = options[:logger] || Rails.logger
+      start_time = Time.now
+      num_projects = 0
+      logger.info "[INFO #{Time.now}] Starting Project.aggregate_observations"
+      Project.joins(:stored_preferences).where("preferences.name = 'aggregation' AND preferences.value = 't'").find_each do |p|
+        next unless p.aggregation_allowed? && p.prefers_aggregation?
+        p.aggregate_observations(logger: logger)
+        num_projects += 1
+      end
+      logger.info "[INFO #{Time.now}] Finished Project.aggregate_observations in #{Time.now - start_time}s, #{num_projects} projects"
+    ensure
+      File.delete pidfile
+    end
   end
 end
