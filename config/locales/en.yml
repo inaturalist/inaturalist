@@ -663,7 +663,6 @@ en:
   conservation_summary: Conservation Summary
   contain_all_descendants?: Does this check list contain all the descendants of this taxon that occur here?
   contest: contest
-  contest_projects_description: "'Contest' projects will display a leader board ranking contributors by the number of unique species observed while 'Observation Contest' projects display leader boards ranking contributors by the number of observations"
   contributions: contributions
   contributions_from: Contributions from
   contributor_cannot_be_found: Contributor cannot be found
@@ -2139,6 +2138,11 @@ en:
   project_rules: Project Rules
   project_settings: Project settings
   project_terms_and_rules: project terms &amp; rules
+  project_type_description: |
+    Assessments and bioblitzes are special types of projects. Assessments are
+    for collaborating on a set of species assesssments, usually to guage
+    conservation importance. Bioblitzes are events where people try to observe
+    as many species as possible in a given place for a given period of time.
   project_user_cannot_be_found: Project user cannot be found
   project_user_was_invalid: "Project user was invalid: %{project_user}"
   project_was_successfully_created: Project was successfully created.

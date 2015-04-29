@@ -4,14 +4,14 @@ describe ProjectObservation, "creation" do
   before(:each) { setup_project_and_user }
   it "should queue a DJ job for the list" do
     stamp = Time.now
-    make_project_observation(:observation => @observation, :project => @project)
+    make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     expect(jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}).not_to be_blank
   end
   
   it "should queue a DJ job to set project user counters" do
     stamp = Time.now
-    make_project_observation(:observation => @observation, :project => @project)
+    make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     expect(jobs.select{|j| j.handler =~ /\:update_observations_counter_cache/}).not_to be_blank
     expect(jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}).not_to be_blank
@@ -19,13 +19,13 @@ describe ProjectObservation, "creation" do
 
   it "should destroy project invitations for its project and observation" do
     pi = ProjectInvitation.make!(:project => @project, :observation => @observation)
-    make_project_observation(:observation => @observation, :project => @project)
+    make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     expect(ProjectInvitation.find_by_id(pi.id)).to be_blank
   end
 
   it "should set curator id if observer is a curator" do
     o = Observation.make!(:user => @project.user, :taxon => Taxon.make!)
-    po = without_delay {make_project_observation(:observation => o, :project => @project)}
+    po = without_delay {make_project_observation(:observation => o, :project => @project, :user => o.user)}
     expect(po.curator_identification_id).to eq(o.owners_identification.id)
   end
 
@@ -89,7 +89,7 @@ end
 describe ProjectObservation, "destruction" do
   before(:each) do
     setup_project_and_user
-    @project_observation = make_project_observation(:observation => @observation, :project => @project)
+    @project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     Delayed::Job.destroy_all
   end
 
@@ -151,7 +151,7 @@ describe ProjectObservation, "observed_in_place_bounding_box?" do
     setup_project_and_user
     place = Place.make!(:latitude => 0, :longitude => 0, :swlat => -1, :swlng => -1, :nelat => 1, :nelng => 1)
     @observation.update_attributes(:latitude => 0.5, :longitude => 0.5)
-    project_observation = make_project_observation(:observation => @observation, :project => @project)
+    project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     expect(project_observation).to be_observed_in_bounding_box_of(place)
   end
   
@@ -216,27 +216,27 @@ describe ProjectObservation, "in_taxon?" do
   end
   
   it "should be true for observations of target taxon" do
-    po = make_project_observation(:observation => @observation, :project => @project)
+    po = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     expect(po).to be_in_taxon(@observation.taxon)
   end
   
   it "should be true for observations of descendants if target taxon" do
     child = Taxon.make!(:parent => @taxon)
     o = Observation.make!(:taxon => child, :user => @project_user.user)
-    po = make_project_observation(:observation => o, :project => @project)
+    po = make_project_observation(:observation => o, :project => @project, :user => o.user)
     expect(po).to be_in_taxon(@taxon)
   end
   
   it "should not be true for observations outside of target taxon" do
     other = Taxon.make!
     o = Observation.make!(:taxon => other, :user => @project_user.user)
-    po = make_project_observation(:observation => o, :project => @project)
+    po = make_project_observation(:observation => o, :project => @project, :user => o.user)
     expect(po).not_to be_in_taxon(@taxon)
   end
   
   it "should be false if taxon is blank" do
     o = Observation.make!(:user => @project_user.user)
-    po = make_project_observation(:observation => o, :project => @project)
+    po = make_project_observation(:observation => o, :project => @project, :user => o.user)
     expect(po).not_to be_in_taxon(nil)
   end
 end
@@ -246,13 +246,13 @@ describe ProjectObservation, "has_a_photo?" do
   it "should be true if photo present" do
     o = make_research_grade_observation
     pu = ProjectUser.make!(:project => p, :user => o.user)
-    po = ProjectObservation.make(:project => p, :observation => o)
+    po = ProjectObservation.make(:project => p, :observation => o, :user => o.user)
     expect(po.has_a_photo?).to be true
   end
   it "should be false if photo not present" do
     o = Observation.make!
     pu = ProjectUser.make!(:project => p, :user => o.user)
-    po = ProjectObservation.make(:project => p, :observation => o)
+    po = ProjectObservation.make(:project => p, :observation => o, :user => o.user)
     expect(po.has_a_photo?).to_not be true
   end
 end

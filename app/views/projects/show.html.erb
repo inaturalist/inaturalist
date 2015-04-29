@@ -334,46 +334,17 @@
           <span class="count"><%= @members_count %></span> <%= t(:members).to_s.downcase %>
         </span>
       <% end -%>
-      <% if @project.contest? -%>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:top_contributors)}".html_safe, project_contributors_path(@project, {:sort => @project.project_type} ), :class => "navlink" %>
-      <% else %>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:members)}".html_safe, project_members_path(@project), :class => "navlink" %>
-      <% end -%>
+      <%= link_to "<span class='lead'>&raquo;</span> #{t(:members)}".html_safe, project_members_path(@project), :class => "navlink" %>
       <div class="inner">
-        <% if @project.contest? && !@project_users.blank? && !@top_observers.blank? -%>
-          <ol class="readable">
-            <% for project_user in @top_observers[0..2] %>
-              <li>
-                <div class="clear">
-                  <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon left'),
-                    observations_by_login_path(project_user.user.login),
-                    :alt => h(project_user.user.login),
-                    :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" -%>
-                  <div>
-                    <%= link_to truncate(project_user.user.login, :length => 20), project_show_contributor_path(@project, project_user.user.login) %>
-                  </div>
-                  <div class="small ui">
-                    <span class="count"><%= project_user.taxa_count %></span> <%= t(:species).downcase %>,
-                    <span class="count"><%= project_user.observations_count %></span> <%= t(:observations).downcase %>
-                  </div>
-                </div>
-              </li>
-            <% end %>
-          </ol>
-          <%= link_to t(:view_leaderboard), project_contributors_path(@project), :class => "readmore" %>
-          <span class="description"> | </span>
-          <%= link_to t(:view_all_members), project_members_path(@project), :class => "readmore" %>
-        <% else %>
-          <div class="stacked clear">
-            <% for project_user in @project_users %>
-              <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
-                project_show_contributor_path(@project, project_user.user.login),
-                :alt => h(project_user.user.login),
-                :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
-            <% end %>
-          </div>
-          <%= link_to t(:view_all_members), project_members_path(@project), :class => "readmore" %>
-        <% end %>
+        <div class="stacked clear">
+          <% for project_user in @project_users %>
+            <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
+              project_show_contributor_path(@project, project_user.user.login),
+              :alt => h(project_user.user.login),
+              :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
+          <% end %>
+        </div>
+        <%= link_to t(:view_all_members), project_members_path(@project), :class => "readmore" %>
       </div>
     </li>
 

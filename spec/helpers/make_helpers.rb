@@ -76,7 +76,8 @@ module MakeHelpers
     p = options[:project] || Project.make!
     t = options.delete(:taxon)
     u = options.delete(:user) || User.make!
-    pu = ProjectUser.make!(:project => p, :user => u)
+    pu = p.project_users.where(user_id: u).first
+    pu ||= ProjectUser.make!(:project => p, :user => u)
     o = Observation.make!(:user => u, :taxon => t)
     ProjectObservation.make!({:project => pu.project, :observation => o, :user => o.user}.merge(options))
   end
@@ -85,10 +86,10 @@ module MakeHelpers
     p = options[:project] || Project.make!
     t = options.delete(:taxon)
     u = options.delete(:user) || User.make!
-    pu = ProjectUser.make!(:project => p, :user => u)
+    pu = p.project_users.where(user_id: u).first
+    pu ||= ProjectUser.make!(:project => p, :user => u)
     o = make_research_grade_observation(:user => u, :taxon => t)
-    #o = Observation.make!(:user => u, :taxon => t)
-    ProjectObservation.make!({:project => pu.project, :observation => o}.merge(options))
+    ProjectObservation.make!({:project => pu.project, :observation => o, :user => o.user}.merge(options))
   end
   
   def make_place_with_geom(options = {})

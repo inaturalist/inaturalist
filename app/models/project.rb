@@ -114,11 +114,9 @@ class Project < ActiveRecord::Base
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /octet-stream/], :message => "must be JPG or PNG"
   validate :cover_dimensions, :unless => "errors.any?"
   
-  CONTEST_TYPE = 'contest'
-  OBS_CONTEST_TYPE = 'observation contest'
   ASSESSMENT_TYPE = 'assessment'
   BIOBLITZ_TYPE = 'bioblitz'
-  PROJECT_TYPES = [CONTEST_TYPE, OBS_CONTEST_TYPE , ASSESSMENT_TYPE, BIOBLITZ_TYPE]
+  PROJECT_TYPES = [ASSESSMENT_TYPE, BIOBLITZ_TYPE]
   RESERVED_TITLES = ProjectsController.action_methods
   MAP_TYPES = %w(roadmap terrain satellite hybrid)
   validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
@@ -191,10 +189,6 @@ class Project < ActiveRecord::Base
   def create_the_project_list
     create_project_list(:project => self)
     true
-  end
-  
-  def contest?
-     [CONTEST_TYPE, OBS_CONTEST_TYPE].include?(project_type)
   end
   
   def editable_by?(user)

@@ -24,7 +24,7 @@
     <%= f.text_field :title, :required => true %>
     <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]},
       :include_blank => t(:normal),
-      :description => t(:contest_projects_description) %>
+      :description => t(:project_type_description) %>
     <%= f.form_field :preferred_membership_model, :description => t(:project_membership_model_description) do %>
       <% for type in Project::MEMBERSHIP_MODELS %>
         <%= f.radio_button "preferred_membership_model", type, :label => t(type), :label_after => true, :wrapper => {:class => "inlineblock"} %>  
