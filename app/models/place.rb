@@ -401,7 +401,7 @@ class Place < ActiveRecord::Base
     if too_big_for_check_list? && !prefers_check_lists && check_list
       delay(:priority => USER_INTEGRITY_PRIORITY).remove_default_check_list
     end
-    if place_type == PLACE_TYPE_CODES['Continent'] || too_big_for_check_list?
+    if too_big_for_check_list?
       self.prefers_check_lists = false
     end
     if prefers_check_lists && check_list.blank?
@@ -417,7 +417,9 @@ class Place < ActiveRecord::Base
   end
 
   def too_big_for_check_list?
-    bbox_area.to_f > 100 && !user_id.blank?
+    # 9000 is about the size of Africa, debeatable if checklists for places
+    # bigger than that are actually useful
+    bbox_area.to_f > 9000 && !user_id.blank?
   end
 
   def remove_default_check_list
