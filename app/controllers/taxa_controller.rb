@@ -154,6 +154,7 @@ class TaxaController < ApplicationController
         end
 
         place_id = params[:place_id] if logged_in? && !params[:place_id].blank?
+        place_id ||= current_user.place_id if logged_in?
         place_id ||= CONFIG.place_id
         place = Place.find(place_id) rescue nil
         @conservation_statuses = @taxon.conservation_statuses.includes(:place).sort_by do |cs|
