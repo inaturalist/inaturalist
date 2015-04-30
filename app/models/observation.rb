@@ -609,6 +609,310 @@ class Observation < ActiveRecord::Base
       Observation.near_point(place.latitude, place.longitude)
     end
   end
+
+  def self.elastic_query(params, options = {})
+    current_user = options[:current_user]
+    p = query_params(params) unless params[:_query_params_set]
+    if (Observation::NON_ELASTIC_ATTRIBUTES & p.reject{ |k,v| v.blank? || v == "any" }.keys).any? ||
+       (p[:place] && !p[:place].geom_in_elastic_index)
+      return nil
+    end
+
+    search_wheres = { }
+    extra_preloads = [ ]
+    q = unless p[:q].blank?
+      q = sanitize_query(p[:q])
+      q.blank? ? nil : q
+    end
+    search_on = p[:search_on] if Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
+    if q
+      fields = case search_on
+      when "names"
+        [ "taxon.names.name" ]
+      when "tags"
+        [ :tags ]
+      when "description"
+        [ :description ]
+      when "place"
+        [ :place_guess ]
+      else
+        [ "taxon.names.name", :tags, :description, :place_guess ]
+      end
+      search_wheres["multi_match"] = { query: q, operator: "and", fields: fields }
+    end
+    search_wheres["user.id"] = p[:user] if p[:user]
+    search_wheres["taxon.rank"] = p[:rank] if p[:rank]
+    # include the taxon plus all of its descendants.
+    # Every taxon has its own ID in ancestor_ids
+    search_wheres["taxon.ancestor_ids"] = p[:observations_taxon] if p[:observations_taxon]
+    search_wheres["id_please"] = true if p[:id_please]
+    search_wheres["out_of_range"] = true if p[:out_of_range]
+    search_wheres["mappable"] = true if p[:mappable] == "true"
+    search_wheres["mappable"] = false if p[:mappable] == "false"
+    search_wheres["license_code"] = p[:license] if p[:license]
+    search_wheres["photos.license_code"] = p[:photo_license] if p[:photo_license]
+    search_wheres["sounds.license_code"] = p[:sound_license] if p[:sound_license]
+    search_wheres["observed_on_details.day"] = p[:observed_on_day] if p[:observed_on_day]
+    search_wheres["observed_on_details.month"] = p[:observed_on_month] if p[:observed_on_month]
+    search_wheres["observed_on_details.year"] = p[:observed_on_year] if p[:observed_on_year]
+    if p[:site] && host = URI.parse(p[:site]).host
+      search_wheres["uri"] = host
+    end
+    if d = Observation.split_date(p[:created_on])
+      search_wheres["created_at_details.day"] = d[:day] if d[:day] && d[:day] != 0
+      search_wheres["created_at_details.month"] = d[:month] if d[:month] && d[:month] != 0
+      search_wheres["created_at_details.year"] = d[:year] if d[:year] && d[:day] != 0
+    end
+    if p[:projects].blank? && !p[:project].blank?
+      p[:projects] = [ p[:project] ]
+    end
+    extra = p[:extra].to_s.split(',')
+    if !p[:projects].blank?
+      search_wheres["project_ids"] = p[:projects].to_a
+      extra_preloads << :projects
+    end
+    extra_preloads << {identifications: [:user, :taxon]} if extra.include?('identifications')
+    extra_preloads << {observation_photos: :photo} if extra.include?('observation_photos')
+    extra_preloads << {observation_field_values: :observation_field} if extra.include?('fields')
+    unless p[:hrank].blank? && p[:lrank].blank?
+      search_wheres["range"] = { "taxon.rank_level" => {
+        from: Taxon::RANK_LEVELS[p[:lrank]] || 0,
+        to: Taxon::RANK_LEVELS[p[:hrank]] || 100 } }
+    end
+    if p[:captive].is_a?(FalseClass) || p[:captive].is_a?(TrueClass)
+      search_wheres["captive"] = p[:captive]
+    end
+    if p[:quality_grade] && p[:quality_grade] != "any"
+      search_wheres["quality_grade"] = p[:quality_grade]
+    end
+    case p[:identifications]
+    when "most_agree"
+      search_wheres["identifications_most_agree"] = true
+    when "some_agree"
+      search_wheres["identifications_some_agree"] = true
+    when "most_disagree"
+      search_wheres["identifications_most_disagree"] = true
+    end
+
+    search_filters = [ ]
+    unless p[:nelat].blank? && p[:nelng].blank? && p[:swlat].blank? && p[:swlng].blank?
+      search_filters << { envelope: { geojson: {
+        nelat: p[:nelat], nelng: p[:nelng], swlat: p[:swlat], swlng: p[:swlng],
+        user: current_user } } }
+    end
+    if p[:lat] && p[:lng]
+      search_filters << { geo_distance: {
+        distance: "#{p["radius"] || 10}km",
+        location: {
+          lat: p[:lat], lon: p[:lng] } } }
+    end
+    search_filters << { place: p[:place] } if p[:place]
+    # make sure the photo has a URL, that will prevent images that are
+    # still processing from being returned by has[]=photos requests
+    search_filters << { exists: { field: "photos.url" } } if p[:with_photos]
+    search_filters << { exists: { field: "sounds" } } if p[:with_sounds]
+    search_filters << { exists: { field: "geojson" } } if p[:with_geo]
+    unless p[:iconic_taxa].blank?
+      # iconic_taxa will be an array which might contain a nil value
+      known_taxa = p[:iconic_taxa].compact
+      # if it is smaller after compact, then it contained nil and
+      # we will need to do a different kind of Elasticsearch query
+      allows_unknown = (known_taxa.size < p[:iconic_taxa].size)
+      if allows_unknown
+        # to allow iconic_taxon_id to be nil, I think the best way
+        # is a "should" boolean filter, which allows anyof a set of
+        # valid terms as well as missing terms (null)
+        search_filters << { bool: { should: [
+          { terms: { "taxon.iconic_taxon_id": known_taxa.map(&:id) } },
+          { missing: { field: "taxon.iconic_taxon_id" } }
+        ]}}
+      else
+        # if we don't want to include null values, a where clause is simpler
+        search_wheres["taxon.iconic_taxon_id"] = p[:iconic_taxa]
+      end
+    end
+    if p[:d1] || p[:d2]
+      search_filters << { range: { observed_on: {
+        gte: p[:d1] || Time.new("1800"), lte: p[:d2] || Time.now } } }
+    end
+    unless p[:updated_since].blank?
+      if timestamp = Chronic.parse(p[:updated_since])
+        search_filters << { range: { updated_at: { gte: timestamp } } }
+      else
+        # there is an expectation in a spec that when updated_since is
+        # invalid, the search will fail to return any results. A dummy
+        # WillPaginate Collection is the most compatible empty result
+        return WillPaginate::Collection.new(1, 30, 0)
+      end
+    end
+    # sort defaults to created at descending
+    sort_order = (p[:order] || "desc").downcase.to_sym
+    sort = case p[:order_by]
+    when "observed_on"
+      { observed_on: sort_order }
+    when "species_guess"
+      { species_guess: sort_order }
+    else "observations.id"
+      { created_at: sort_order }
+    end
+    # perform the actual query against Elasticsearch
+    observations = Observation.elastic_paginate(
+      where: search_wheres,
+      filters: search_filters,
+      per_page: p[:per_page] || 30,
+      page: p[:page],
+      sort: sort)
+    # preload the most commonly needed associations
+    Observation.preload_associations(observations, [
+      { user: :stored_preferences },
+      { taxon: { taxon_names: :place_taxon_names } },
+      { iconic_taxon: :taxon_descriptions },
+      { photos: [ :user, :flags ] },
+      :stored_preferences, :flags, :quality_metrics ] | extra_preloads)
+    observations
+  end
+
+  def self.query_params(params)
+    p = params.clone.symbolize_keys
+    if p[:swlat].blank? && p[:swlng].blank? && p[:nelat].blank? && p[:nelng].blank? && p[:BBOX]
+      p[:swlng], p[:swlat], p[:nelng], p[:nelat] = p[:BBOX].split(',')
+    end
+    unless p[:place_id].blank?
+      p[:place] = begin
+        Place.find(p[:place_id])
+      rescue ActiveRecord::RecordNotFound
+        nil
+      end
+    end
+    p[:q] = sanitize_query(p[:q]) unless p[:q].blank?
+    p[:search_on] = nil unless Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
+    # iconic_taxa
+    if p[:iconic_taxa]
+      # split a string of names
+      if p[:iconic_taxa].is_a? String
+        p[:iconic_taxa] = p[:iconic_taxa].split(',')
+      end
+      
+      # resolve taxa entered by name
+      allows_unknown = false
+      p[:iconic_taxa] = p[:iconic_taxa].map do |it|
+        it = it.last if it.is_a?(Array)
+        if it.is_a? Taxon
+          it
+        elsif it.to_i == 0
+          allows_unknown = true if it.downcase == "unknown"
+          Taxon::ICONIC_TAXA_BY_NAME[it]
+        else
+          Taxon::ICONIC_TAXA_BY_ID[it]
+        end
+      end.uniq.compact
+      p[:iconic_taxa] << nil if allows_unknown
+    end
+    if !p[:taxon_id].blank?
+      p[:observations_taxon] = Taxon.find_by_id(p[:taxon_id].to_i)
+    elsif !p[:taxon_name].blank?
+      begin
+        p[:observations_taxon] = Taxon.single_taxon_for_name(p[:taxon_name], iconic_taxa: p[:iconic_taxa])
+      rescue ActiveRecord::StatementInvalid => e
+        raise e unless e.message =~ /invalid byte sequence/
+        taxon_name_conditions[1] = p[:taxon_name].encode('UTF-8')
+        p[:observations_taxon] = TaxonName.where(taxon_name_conditions).joins(includes).first.try(:taxon)
+      end
+    end
+
+    if p[:has]
+      p[:has] = p[:has].split(',') if p[:has].is_a?(String)
+      p[:id_please] = true if p[:has].include?('id_please')
+      p[:with_photos] = true if p[:has].include?('photos')
+      p[:with_sounds] = true if p[:has].include?('sounds')
+      p[:with_geo] = true if p[:has].include?('geo')
+    end
+
+    p[:captive] = p[:captive].yesish? unless p[:captive].nil?
+
+    if p[:skip_order]
+      p.delete(:order)
+      p.delete(:order_by)
+    else
+      p[:order_by] = "created_at" if p[:order_by] == "observations.id"
+      if ObservationsController::ORDER_BY_FIELDS.include?(p[:order_by].to_s)
+        p[:order] = if %w(asc desc).include?(p[:order].to_s.downcase)
+          p[:order]
+        else
+          'desc'
+        end
+      else
+        p[:order_by] = "observations.id"
+        p[:order] = "desc"
+      end
+      p[:order_by] = "#{p[:order_by]} #{p[:order]}"
+    end
+
+    # date
+    date_pieces = [p[:year], p[:month], p[:day]]
+    unless date_pieces.map{|d| d.blank? ? nil : d}.compact.blank?
+      p[:on] = date_pieces.join('-')
+    end
+    if p[:on].to_s =~ /^\d{4}/
+      p[:observed_on] = p[:on]
+      if d = Observation.split_date(p[:observed_on])
+        p[:observed_on_year], p[:observed_on_month], p[:observed_on_day] = [ d[:year], d[:month], d[:day] ]
+      end
+    end
+    p[:observed_on_year] ||= p[:year].to_i unless p[:year].blank?
+    p[:observed_on_month] ||= p[:month].to_i unless p[:month].blank?
+    p[:observed_on_day] ||= p[:day].to_i unless p[:day].blank?
+
+    # observation fields
+    ofv_params = p.select{|k,v| k =~ /^field\:/}
+    unless ofv_params.blank?
+      p[:ofv_params] = {}
+      ofv_params.each do |k,v|
+        p[:ofv_params][k] = {
+          :normalized_name => ObservationField.normalize_name(k),
+          :value => v
+        }
+      end
+      observation_fields = ObservationField.where("lower(name) IN (?)", p[:ofv_params].map{|k,v| v[:normalized_name]})
+      p[:ofv_params].each do |k,v|
+        v[:observation_field] = observation_fields.detect do |of|
+          v[:normalized_name] == ObservationField.normalize_name(of.name)
+        end
+      end
+      p[:ofv_params].delete_if{|k,v| v[:observation_field].blank?}
+    end
+
+    unless p[:user_id].blank?
+      p[:user] = User.find_by_id(p[:user_id])
+      p[:user] ||= User.find_by_login(p[:user_id])
+    end
+    if p[:user].blank? && !p[:login].blank?
+      p[:user] ||= User.find_by_login(p[:login])
+    end
+
+    unless p[:projects].blank?
+      project_ids = p[:projects]
+      p[:projects] = Project.find([project_ids].flatten) rescue []
+      p[:projects] = p[:projects].compact
+      if p[:projects].blank?
+        project_ids.each do |p|
+          p[:projects] << Project.find(p) rescue nil
+        end
+        p[:projects] = p[:projects].compact
+      end
+    end
+
+    if params[:pcid] && params[:pcid] != 'any'
+      params[:pcid] = params[:pcid].yesish?
+    end
+
+    p[:rank] = p[:rank] if Taxon::VISIBLE_RANKS.include?(p[:rank])
+    p[:hrank] = p[:hrank] if Taxon::VISIBLE_RANKS.include?(p[:hrank])
+    p[:lrank] = p[:lrank] if Taxon::VISIBLE_RANKS.include?(p[:lrank])
+
+    params[:_query_params_set] = true
+    p
+  end
   
   #
   # Uses scopes to perform a conditional search.
