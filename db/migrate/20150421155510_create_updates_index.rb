@@ -1,8 +1,9 @@
 class CreateUpdatesIndex < ActiveRecord::Migration
   def up
-    # delete older updates
-    starting_id = Update.where("created_at >= '2014-11-01'").minimum("id")
-    Update.where("id < #{ starting_id }").delete_all
+    # delete older updates if there are any
+    if starting_id = Update.where("created_at >= '2014-11-01'").minimum("id")
+      Update.where("id < #{ starting_id }").delete_all
+    end
     Update.__elasticsearch__.create_index! force: true
   end
 

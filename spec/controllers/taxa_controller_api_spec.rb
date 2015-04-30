@@ -73,6 +73,63 @@ shared_examples_for "a TaxaController" do
       json.detect{|t| t['id'] == taxon_not_in_place.id}.should_not be_blank
       json.detect{|t| t['id'] == taxon2_not_in_place.id}.should_not be_blank
     end
+
+    it "filters by is_active=true" do
+      active = Taxon.make!(is_active: true)
+      inactive = Taxon.make!(is_active: false)
+      get :search, format: :json, is_active: "true"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 1
+      expect(json.first["id"]).to eq active.id
+    end
+
+    it "filters by is_active=false" do
+      active = Taxon.make!(is_active: true)
+      inactive = Taxon.make!(is_active: false)
+      get :search, format: :json, is_active: "false"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 1
+      expect(json.first["id"]).to eq inactive.id
+    end
+
+    it "returns all taxa when is_active=any" do
+      active = Taxon.make!(is_active: true)
+      inactive = Taxon.make!(is_active: false)
+      get :search, format: :json, is_active: "any"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 2
+    end
+  end
+
+  describe "autocomplete" do
+    before(:each) { enable_elastic_indexing([ Taxon, Place ]) }
+    after(:each) { disable_elastic_indexing([ Taxon, Place ]) }
+
+    it "filters by is_active=true" do
+      active = Taxon.make!(name: "test", is_active: true)
+      inactive = Taxon.make!(name: "test", is_active: false)
+      get :autocomplete, format: :json, q: "test", is_active: "true"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 1
+      expect(json.first["id"]).to eq active.id
+    end
+
+    it "filters by is_active=false" do
+      active = Taxon.make!(name: "test", is_active: true)
+      inactive = Taxon.make!(name: "test", is_active: false)
+      get :autocomplete, format: :json, q: "test", is_active: "false"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 1
+      expect(json.first["id"]).to eq inactive.id
+    end
+
+    it "returns all taxa when is_active=any" do
+      active = Taxon.make!(name: "test", is_active: true)
+      inactive = Taxon.make!(name: "test", is_active: false)
+      get :autocomplete, format: :json, q: "test", is_active: "any"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 2
+    end
   end
 
   describe "show" do

@@ -154,6 +154,7 @@ class TaxaController < ApplicationController
         end
 
         place_id = params[:place_id] if logged_in? && !params[:place_id].blank?
+        place_id ||= current_user.place_id if logged_in?
         place_id ||= CONFIG.place_id
         place = Place.find(place_id) rescue nil
         @conservation_statuses = @taxon.conservation_statuses.includes(:place).sort_by do |cs|
@@ -378,7 +379,8 @@ class TaxaController < ApplicationController
     unless @q.blank?
       search_wheres[:match] = { "names.name": { query: @q, operator: "and" } }
     end
-    search_wheres[:is_active] = true unless @is_active === false
+    search_wheres[:is_active] = true if @is_active === true
+    search_wheres[:is_active] = false if @is_active === false
     search_wheres[:iconic_taxon_id] =  @iconic_taxa_ids if @iconic_taxa_ids
     search_wheres["colors.id"] =  @color_ids if @color_ids
     search_wheres["place_ids"] =  @place_ids if @place_ids
@@ -514,7 +516,8 @@ class TaxaController < ApplicationController
       params[:is_active]
     end
     search_wheres = { match: { "names.name_autocomplete": { query: @q, operator: "and" } } }
-    search_wheres[:is_active] = true unless @is_active === false
+    search_wheres[:is_active] = true if @is_active === true
+    search_wheres[:is_active] = false if @is_active === false
     @taxa = Taxon.elastic_paginate(
       where: search_wheres,
       sort: { observations_count: "desc" },
