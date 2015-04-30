@@ -46,10 +46,16 @@
       <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, 
         {:selected => current_user.time_zone}, 
         {:description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
+      <%-
+        locales = I18N_SUPPORTED_LOCALES.map do |l| 
+          translated_label = t("locales.#{l}", locale: l, default: nil)
+          viewer_label = t("locales.#{l}", default: l)
+          label = [viewer_label, translated_label].compact.uniq.join(' / ')
+          [label, l]
+        end.sort_by(&:first)
+      -%>
       <%= f.select :locale, 
-        I18N_SUPPORTED_LOCALES.
-          sort_by{|l| t("locales.#{l}", :default => l)}.
-          map{|l| [t("locales.#{l}", :default => l), l]}, 
+        locales, 
         :include_blank => t(:default), :description => t(:locale_description) %>
       <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :description => t('views.users.edit.place_help_html'), :class => "placechooser" %>
     </div>
