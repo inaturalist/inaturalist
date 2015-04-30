@@ -1551,10 +1551,12 @@ class ObservationsController < ApplicationController
   end
 
   def taxa
+    can_view_leaves = logged_in? && current_user.is_curator?
+    params[:rank] = nil unless can_view_leaves
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
     oscope = Observation.query(search_params)
     oscope = oscope.where("1 = 2") unless stats_adequately_scoped?
-    sql = if params[:rank] == "leaves" && logged_in? && current_user.is_curator?
+    sql = if params[:rank] == "leaves" && can_view_leaves
       ancestor_ids_sql = <<-SQL
         SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
         FROM taxa
@@ -1577,6 +1579,30 @@ class ObservationsController < ApplicationController
       "SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id"
     end
     @taxa = Taxon.find_by_sql(sql)
+    # hack to test what this would look like
+    @taxa = case params[:order]
+    when "observations_count"
+      @taxa.sort_by do |t|
+        c = if search_params[:place]
+          # this is a dumb hack. if i was smarter, i would have tried tp pull
+          # this out of the sql with GROUP and COUNT, but I couldn't figure it
+          # out --kueda 20150430
+          if lt = search_params[:place].listed_taxa.where(primary_listing: true, taxon_id: t.id).first
+            lt.observations_count
+          else
+            # if there's no listed taxon assume it's been observed once
+            1
+          end
+        else
+          t.observations_count
+        end
+        c.to_i * -1
+      end
+    when "name"
+      @taxa.sort_by(&:name)
+    else
+      @taxa
+    end
     respond_to do |format|
       format.html do
         @headless = true
