@@ -1,0 +1,1597 @@
+# Messages for Simplified Chinese (中文（简体）‎)
+# Exported from translatewiki.net
+# Export driver: phpyaml
+# Author: Jiang123aa
+# Author: Liuxinyu970226
+# Author: Yfdyh000
+# Author: 아라
+---
+zh-CN:
+  licensing_your_content: 授权您的内容，提供其他法律权利，以在他们坚持许可条款时使用。%{site_name}使用您的知识共享许可协议许可的内容以与数据提供商分享，例如<a
+    href="http://www.gbif.org/">Global Biodiversity Information Facility</a>（GBIF）。
+  you_think_observation_inacurate: 如果您认为此观察不准确，请添加一个ID、在上方参与质量评估、或订阅评论中的错误。
+  we_also_support: 我们也支持<a href="http://flickr.com">Flickr</a>、<a href="http://picasaweb.google.com">Picasa</a>和<a
+    href="http://facebook.com">Facebook</a>用于图片存储。
+  a_default_taxon_name_will_automatically_created: |-
+    一个来自归属于此分类的学名的默认分类名称将被创建。
+    当您保存此新分类时，您将可以在此添加其他名称（通用名称、曾用学名等）。
+  x_followers:
+    other: '%{count}位关注者'
+  x_identifications:
+    other: '%{count}次鉴定'
+  x_lists:
+    other: '%{count} 个列表'
+  x_journal_posts:
+    other: '%{count}篇日记文章'
+  x_matching_taxa:
+    other: '%{count}个匹配的分类'
+  x_matching_taxa_html:
+    other: o<span class="count">%{count}</span>个匹配的分类群
+  x_observations:
+    other: '%{count}次观察'
+  x_observations_html:
+    one: <span class='count'>1</span>次观察
+    other: <span class='count'>%{count}</span>次观察
+  x_observations_link_html:
+    one: <a href='%{url}'>1</a>次观察
+    other: <a href='%{url}'>%{count}</a>次观察
+  x_people:
+    other: '%{count}个人'
+  x_people_agree_html:
+    other: <span class="count">%{count}</span>人同意
+  x_species:
+    other: '%{count}种物种'
+  x_species_html:
+    one: <span class='count'>1</span>种物种
+    other: <span class='count'>%{count}</span>种物种
+  x_species_link_html:
+    one: <a href='%{url}'>1</a>种物种
+    other: <a href='%{url}'>%{count}</a>种物种
+  a: 一个
+  a_: 一个
+  a_community_for_naturalist: 自然主义者的社区
+  a_few_points_to_make_things_clear: 一些能使这些事情变得清晰点的要点：
+  a_flag_for_x: 用于%{x}的旗帜
+  a_greasemonkey_script: 油猴脚本
+  a_member_of_taxon_html: '%{taxon}的成员'
+  able_to_connect_flickr: 很棒！我们能够链接至您的Flickr账户。
+  about: 关于
+  about_bioblitz_results: 关于生物限时搜索
+  about_community_taxa: 关于社区分类
+  about_external_links: 关于外部链接
+  about_licenses: 关于许可协议
+  about_licensing: 关于许可协议
+  about_life!: 关于生命！
+  about_places: 关于地点
+  about_the_cc_licenses: 关于知识共享许可协议
+  about_the_quality_assessment: 关于质量评估
+  about_the_taxobox_raquo: 关于分类框 &raquo;
+  about_these_licenses: 关于这些许可协议
+  about_this_map: 关于此地图
+  about_this_project: 关于这个项目
+  about_x: 关于 %{x}
+  acc: 精度（米）
+  accept: 接受
+  accept_community_identifications: 接受社群认同
+  accuracy: 准确性
+  accuracy_meters: 精确度（米）
+  accuracy_of_the_coordinates: 坐标精度以米为单位。您可以通过点击上方“编辑”链接或者点击地图标记并拖动手柄来修改坐标。试着画一个足够大的圈使你能保证自己在圈内的某个位置。
+  acquaintances: 熟人
+  actions: 操作
+  activate_user: 激活用户
+  active: 激活
+  adapted_by_name_from_a_work_by_original: 改编自由 %{original} 创作的作品 %{name}
+  add: 添加
+  add_a: 添加一个
+  add_a_batch_of_observations: 新增一批观察记录
+  add_a_batch_of_observations_by_csv: 以CSV格式添加一批观察记录
+  add_a_batch_of_taxa: 添加一个分类批次
+  add_a_comment: 添加一条评论
+  add_a_field: 添加字段
+  add_a_flag: 添加一个标记
+  add_a_link_raquo: 添加一个链接 &raquo;
+  add_a_name: 添加名字
+  add_a_new_change_group: 添加一个新的更改组
+  add_a_new_observation_to_id_please!: 请为ID添加一个新的观察！
+  add_a_place_raquo: 添加一个地方 &raquo;
+  add_a_single_observation: 添加一个单独的观察。
+  add_a_taxon: 加入一个分类
+  add_an_assessment: 添加一个评估
+  add_an_identification: 添加一个身份证明
+  add_an_observation: 添加一个观察
+  add_an_observation?: 添加一个观察？
+  add_another: 添加其他
+  add_another_flag: 添加其他标记
+  add_another_photo: 添加其他照片
+  add_another_section: 添加其他部分
+  add_another_subscription: 添加其他订阅
+  add_asset: 添加优点
+  add_batch: 添加批量
+  add_colors: 添加颜色
+  add_comma_separated_tags: 添加逗号分隔的标签
+  add_comment: 添加一条评论
+  add_countries: 添加国家
+  add_custom_project_fields: 添加自定义项目字段
+  add_edit_more_fields: 添加/编辑更多字段
+  add_description: 添加 %{description_name}
+  add_higher_level_taxon: 加入一个更高级分类（例如：“鸟类”）
+  add_id: 添加ID
+  add_it_to_place_raquo: 将其加入至地点 &raquo;
+  add_more_photos: 添加更多图片
+  add_new_lexicon: 添加新的专属词汇
+  add_new_observations: 添加新的观察
+  add_new_photos_by_their_ids: 通过他们的Flickr ID添加新的照片（必须是知识共享授权！）
+  add_new_place: 添加一处新的地点
+  add_new_rule: 添加一条新规则
+  add_new_source: 添加新的来源……
+  add_new_taxon_name: 添加一个新分类名称
+  add_obs_from_a_link: 从列表添加观察：%{link}
+  add_observation: 添加观察
+  add_observations!: 添加观察！
+  add_observations: 添加观察
+  add_one: 添加一个！
+  add_photos: 添加照片
+  add_shape: 添加形状
+  add_some_now: 现在添加一些
+  add_tags: 添加标签
+  add_taxa: 添加分类
+  add_to: 添加至
+  add_to_checklist: 添加至检查表
+  add_to_id_please: 请添加至ID
+  add_to_list: 添加至列表
+  add_to_project: 添加至项目
+  add_to_your_life_list: 添加至您的生命清单！
+  add_to_your_list: 加入到您的列表
+  add_your_photo: 添加您的照片
+  add_your_photo_to: 添加您的照片至 %{project}
+  added: 已添加
+  added!: 已添加！
+  added_an: 已添加一个
+  added_as_a_part_of: 已加入为一个
+  added_by: 添加自
+  added_on: 添加在
+  added_to: 添加至
+  adding: 正在添加……
+  adding_to_your_life_list: 正在加入您的生命清单……
+  additional_range: 额外范围
+  admin: 管理员
+  admin_any_projects: 管理任何项目
+  admin_tools: 管理员工具
+  agree: 同意
+  agree?: 是否同意？
+  agreeing: 正在同意……
+  aka: 也就是
+  all: 全部
+  all_colors: '&laquo; 所有颜色'
+  all_comments: 所有评论
+  all_csv: 所有CSV
+  all_life: 一生
+  all_names: 所有名字
+  all_observations: 所有观察
+  all_photos: 所有照片
+  all_places: 所有地点
+  all_projects: 所有项目
+  all_rights_reserved: 保留所有权利
+  all_species: 所有物种
+  all_taxa:
+    rank:
+      kingdom: 王国
+      class: 类
+      phylum: 门
+      species: 物种
+      order: 排序
+    plants: 植物
+    animals: 动物
+    mollusks: 软体动物
+    amphibians: 两栖动物
+    mammals: 哺乳动物
+    ray_finned_fishes: 条鳍鱼类
+    reptiles: 爬行动物
+    birds: 鸟类
+    insects: 昆虫
+    arachnids: 蛛形类
+    fungi: 真菌
+    chromista: 色藻界
+    protozoans: 原生动物
+    other_animals: 其他动物
+    life: 生命
+    x_plantae:
+      other: '%{count}个植物'
+    x_animalia:
+      other: '%{count}只动物'
+    x_mollusca:
+      other: '%{count}只软体动物'
+    x_amphibia:
+      other: '%{count}只两栖动物'
+    x_mammalia:
+      other: '%{count}只哺乳动物'
+    x_actinopterygii:
+      other: '%{count}只鳍刺鱼'
+    x_reptilia:
+      other: '%{count}只爬行动物'
+    x_aves:
+      other: '%{count}种鸟类'
+    x_insecta:
+      other: '%{count}只昆虫'
+    x_arachnida:
+      other: '%{count}只蛛形动物'
+    x_fungi:
+      other: '%{count}个真菌'
+    x_chromista:
+      other: '%{count}位科学家'
+    x_protozoa:
+      other: '%{count}只原生动物'
+    x_other_animals:
+      other: '%{count}只其他动物'
+  all_taxa_in_this_guide: 该指引中所有分类
+  all_your_projects: 您所有的项目
+  allow_any: 允许任何
+  allowed_html: 允许的HTML
+  allowed_values: 允许的值
+  alphabetical: 按字母排序
+  amphibians: 两栖动物
+  an: 一个
+  an_: 一个
+  and: 和
+  and_other_taxa: '&amp; 其他分类'
+  and_you_havent_linked: ……并且您没有连接这些外部账户之一，您应首先通过%{site_name}登录，然后编辑您的详细信息并从这里连接您的账户。否则%{site_name}可能无从得知两个账户是否已连接，并尝试为您创建一个新的账户！
+  android: 安卓
+  animals: 动物
+  announcement_was_successfully_created: 已成功创建公告。
+  announcements: 公告
+  any: 任何
+  apply_to_selected: 申请选择
+  apply_fields: 申请字段
+  apply_darr: 申请 &darr;
+  appropriate?: 适当么？
+  arachnids: 蛛形类
+  archives: 档案
+  are_you_really_sure_want_delete_this_user: 您真的，真的确定要删除这位用户及其所有内容么？
+  are_you_sure?: 您确定么？
+  are_you_sure_delete_post: 您确定要删除此帖子么？
+  are_you_sure_delete_this_place: 您确定要删除此地点么？
+  are_you_sure_leave_this_project: 您确信您要离开这个项目么？
+  are_you_sure_merge_these_places: 您确定要合并这些地点么？它不能被撤销。
+  are_you_sure_unlink_picasa: 您确信您将取消链接您的Picasa账户？
+  are_you_sure_want_activate_account: 您确信您希望激活这个账户？
+  are_you_sure_want_delete_account: 您确信您希望删除您的账户？这将删除您所有的数据并且不可撤销，并且我们很遗憾看到您要离开。
+  are_you_sure_want_delete_taxon_link: 您确定要删除此分类链接么？
+  are_you_sure_want_delete_this_name: 您确定要删除此名称吗？
+  are_you_sure_want_delete_this_range: 您确定要删除此范围吗？
+  are_you_sure_want_join: 您确定您希望加入
+  are_you_sure_you_want_to_delete_this: 您确信您要删除这个么？
+  are_you_sure_you_want_to_delete_this_photo?: 您确定要删除这张照片么？
+  are_you_sure_you_want_to_delete_this_post: 您确定要删除此投稿么？
+  are_you_sure_you_want_to_remove_all_tags: 您确定您要移除所有标签么？
+  you_sure_delete_list: 您确定要删除此列表吗？
+  you_sure_delete_taxon_from_list?: 您确定要从列表中移除%{taxon}吗？
+  asc: 升
+  ascending: 升序
+  aside_from_extraordinary_circumstances: 除了特殊情况外，我们也不会向您询问您的密码。
+  assessment: 评定
+  assessment_was_successfully_created: 已成功创建评价。
+  assessment_x: '%{assessment} 评定'
+  assessments: 评定
+  associations: 关联
+  at: 在
+  at_any_time_change: 任何时间（<span class="button">change</span>）
+  at_time: 在 %{time}
+  atom: 原子
+  authority_list:
+    iucn_red_list: IUCN红色名录
+  authorize_permissions_from_provider: 来自%{provider}的授权权限
+  automatically_add_to_project: 自动加入至项目
+  back: 返回
+  back_to: 返回到
+  back_to_albums: 说唱硬核
+  back_to_all_species: 回到所有种类
+  back_to_browsing_people: 回到查找人
+  back_to_calendar: 回到 %{user} 日历
+  back_to_editing_observation: 返回到编辑观察
+  back_to_help: 回到帮助
+  back_to_import: 回到导入
+  back_to_lists: 回到 %{name} 列表
+  back_to_observation: 回到观察
+  back_to_observation_fields: 返回到观察字段
+  back_to_people: 回到人们
+  back_to_places: 回到地点
+  back_to_possessive_user_profile: 回到 %{possuser} 的详细信息
+  back_to_post: '&laquo; 回到发布'
+  back_to_projects: 回到项目
+  back_to_shared_taxon: 回到 %{sharedtaxon}
+  back_to_taxon: 回到 %{defaulttaxon}
+  back_to_this: 回到 %{place}
+  back_to_viewing: 回到查看 <i>%{taxon}</i>
+  back_to_x: 回到 %{noun}
+  back_to_x_assessment: 回到 %{project} 评价
+  back_to_x_history: 回到 %{x} 历史
+  back_to_x_journal: 回到 %{user} 的日记
+  back_to_x_observations: 回到 %{user} 的观察
+  back_to_your_lists: 回到您的列表
+  back_to_your_journal: 回到您的日记
+  back_to_your_observations: 回到您的观察
+  back_to_your_profile: 返回您的详细信息
+  back_to_your_projects: 返回您的项目
+  batch: 批
+  batch_edit: 批编辑
+  batch_edit_taxa_for_x_html: 为 %{x} 批处理编辑分类
+  batch_operations: 批操作
+  beacuse_we_recently_changed_auth_system: 因为我们刚刚更改了我们用户的验证系统，您必须重置您的密码。
+  because: 因为
+  before_importing_photos: 在导入照片前
+  before_you_can_contribute_your_observations: 在您可以贡献您的观察前。
+  bg_color: 背景颜色
+  birds: 鸟类的
+  black: 黑色
+  blog_widget: 博客小部件
+  blue: 蓝色
+  body: 身体
+  breadcrumbs: 面包屑
+  brief_caption: 简要描述
+  brown: 棕色
+  browse: 浏览
+  browse_all_projects: 浏览所有项目
+  browse_all_species: 浏览所有物种
+  browse_projects: 浏览项目
+  browse_your_observations: 浏览您的观点
+  built_with_site_guides_html: 构造自<a href='%{url}'>%{site_name} 指南</a>
+  bulk_import_of_filename_is_complete: '%{filename}的大量导入完成'
+  by: 由
+  by_editedby: 由 %{editedby}
+  by_project_list: 依项目列表
+  by_submittedby: 由 %{submittedby}
+  by_you: 由您
+  by_everyone: 由任何人
+  calendar: 日历
+  cancel: 取消
+  card: 卡
+  case_plural: s
+  casual: 变装
+  catalogue_of_life: 生命目录（Catalogue of Life）
+  cc_attribution_license: 知识共享署名许可协议
+  cc_by_name: 署名
+  cc_by_nc_name: 署名-非商业性使用
+  cc_by_nc_nd_name: 署名-非商业性使用-禁止演绎
+  cc_by_nc_sa_name: 署名-非商业性使用-相同方式共享
+  cc_by_nd_name: 署名-禁止演绎
+  cc_by_sa_name: 署名-相同方式共享
+  cc_used_under_a: 知识共享，用于
+  change: 更改
+  change_cover: 更改封面
+  change_descriptions:
+    swap: 一对一的名称修改
+  change_geoprivacy: 更改geoprivacy
+  change_group: 更改组
+  change_icon: 更改图标
+  change_password: 更改密码
+  change_types:
+    activated_soon: 刚刚被激活
+    change_types: 更改种类
+    split: 拆分
+    merge: 合并
+    swap: 交换
+    stage: 举行
+    drop: 放弃
+    split_from: 拆分自
+    split_into: 拆分至
+    merge_into: 合并至
+    merged_into: 已合并至
+    replaced_by: 取代自
+    replace_with: 替代为
+    dropped: 已放弃
+    staged: 已上演
+  change_your_matching: 更改您的匹配
+  change_your_password: 更改您的密码
+  changing_the_geoprivacy: 更改geoprivacy改变其他人如何看见您观察的位置。
+  check_it_out: 去看看
+  check_list: 监视列表
+  check_list_place: '%{place} 监视列表'
+  check_list_updated: 监视列表已更新！
+  check_list_source: 来源<span class="meta">（可选）</span>
+  check_out_your_life_list: 检查您的生命清单
+  check_this_box_if: 如果您希望同意为您的照片使用<a href='http://creativecommons.org/licenses/by-nc/3.0/deed.zh'
+    target='_blank'>知识共享 署名-非商业性使用</a>许可协议，请点选此框。您可以另选许可协议或稍后移除协议，但这是与研究人员分享时最好的协议。
+  checklist: 监视列表
+  checklist_places: 清单地点
+  child_taxa: 子分类
+  choose_a_list_above: 在上方选择一个列表。
+  choose_a_place: 选择一个地方
+  choose_files_from_your_computer: 从您的电脑中选择文件
+  choose_place: 选择一个地方
+  choose_rule: 选择一条规则
+  choose_subjects: 选择学科
+  choose_tags: 选择标签
+  choose_what_kind_of_change_youre_creating: 选择您正在创建什么类型的更新。
+  choose_your_username: 选择您的用户名
+  citation: 引用
+  classification: 分类
+  clear: 清除
+  clear_color_filters: 清除颜色过滤器
+  clear_search: 清空搜索
+  click_the_map: <strong>点击地图</strong>以增加一个地点。
+  code: 代码
+  colors: 颜色
+  comment_preview: 评论预览
+  comment: 评论
+  comment_deleted: 评论已删除
+  commented: 已评论
+  comments: 评论
+  comments_by_everyone: 由任何人评论
+  comments_by_me: 由我评论
+  comments_on: 评论于
+  comments_youve_made_with_others: 您<span class="description">在上周</span>做出的评论<br/>（w/
+    其他的）
+  commit: 提交
+  committed: 已提交
+  committing: 提交中……
+  community_id: <strong>社区</strong>ID：
+  community_supported_id: 社区支持的ID么？
+  compare_with: 比较
+  comparing: 比较
+  comparing_list_to_list: 比较%{list1}与%{list2}
+  compiled_by_name: 由%{name}编译
+  completed: 已完成
+  comprehensive: 综合分析
+  comprehensive?: 综合分析？
+  comprehensive_list: 综合分析列表
+  configure: 配置
+  confirm_new_password: 确认新密码
+  confirm_now: 现在确认
+  confirm_your_info: 确认您的信息
+  confirmed: 已确认
+  connect_to_provider: 连接至 %{provider}
+  connected_accounts: 已连接账户
+  connecting_flickr: 连接至Flickr……
+  connecting_to_facebook: 连接至Facebook……
+  conservation_status: 保护状态
+  conservation_status_descriptions:
+    description: 简单描述为什么列出这个。
+  contest: 竞赛
+  contributions: 贡献
+  contributors_to_project: 贡献至 %{project}
+  controls: 控制
+  coordinate_systems: 坐标系
+  coordinates: 坐标
+  coordinates_private: （私有坐标）
+  copy: 复制
+  copyright:
+    some_rights_reserved: 保留部分权利
+    some_rights_reserved_by: (c) %{name}，保留部分权利（%{license_short}）
+    all_rights_reserved: 版权所有 (c) %{name}，保留所有权利
+    no_known_copyright_restrictions: '%{name}，没有已知的版权限制（%{license_name}）'
+    anonymous: 匿名
+    public_domain: 公有领域
+    copyright: 版权
+    attribution_noncommercial_sharealike_license: 署名-非商业性使用-相同方式共享许可协议
+    attribution_noncommercial_license: 署名-非商业性使用许可协议
+    attribution_noncommercial_noderivs_license: 署名-非商业性使用-禁止演绎许可协议
+    attribution_license: 署名许可协议
+    attribution_sharealike_license: 署名-相同方式共享许可协议
+    attribution_noderivs_license: 署名-禁止演绎许可协议
+    gnu_free_documentation_license: GNU自由文档协议
+  couldnt_change_your_password: 无法更改您的密码：%{e}
+  countries: 国家
+  country_stats: 用于观察的国家状态创建于
+  cover: 封面
+  create: 创建
+  create_a_guide: 创建指导
+  create_a_list: 创建列表
+  create_a_query: 创建查询
+  create_an_account: 创建一个账户
+  create_observations: 创建观察
+  created: 已创建
+  created_by: 创建由
+  created_on: 创建于
+  creating_your_account: 创建您的账户……
+  css_description: 这将在页面的所有其他CSS都包含后才包含。
+  csv: CSV
+  curated: 当馆长
+  curated_count: 策划次数
+  curating: 助理
+  curation: 管理
+  curator: 馆长
+  curators_changed_for_x_html: 为%{x}工作的馆长已更改
+  curators: 馆长
+  current_password: 当前密码
+  custom_project_was_successfully_created: 已成功创建定制项目。
+  darr_apply_darr: '&darr; 申请 &darr;'
+  dashboard: 仪表板
+  data_deficient: 数据有缺陷
+  data_quality_assessment: 数据质量评价
+  datatype: 数据类型
+  date_: 日期
+  date?: 日期？
+  date_added: 日期已加入
+  date_created: 创建日期
+  date_format:
+    date_long:
+      january: '%{year}一月%{day}'
+      february: '%{year}二月%{day}'
+      march: '%{year}三月%{day}'
+      april: '%{year}四月%{day}'
+      may: '%{year}五月%{day}'
+      june: '%{year}六月%{day}'
+      july: '%{year}七月%{day}'
+      august: '%{year}八月%{day}'
+      september: '%{year}九月%{day}'
+      october: '%{year}十月%{day}'
+      november: '%{year}十一月%{day}'
+      december: '%{year}十二月%{day}'
+    month:
+      january: 一月
+      february: 二月
+      march: 三月
+      april: 四月
+      may: 五月
+      june: 六月
+      july: 七月
+      august: 八月
+      september: 九月
+      october: 十月
+      november: 十一月
+      december: 十二月
+  date_observed_on: 数据观察于
+  date_picker:
+    closeText: 关闭
+    currentText: 今天
+    prevText: 上一个
+    nextText: 下一个
+    monthNames: '[''一月'', ''二月'', ''三月'', ''四月'', ''五月'', ''六月'', ''七月'', ''八月'',
+      ''九月'', ''十月'', ''十一月'', ''十二月'']'
+    monthNamesShort: '[''1月'',''2月'',''3月'',''4月'', ''5月'',''6月'',''7月'',''8月'',''9月'',
+      ''10月'',''11月'',''12月'']'
+    dayNames: '[''星期日'', ''星期一'', ''星期二'', ''星期三'', ''星期四'', ''星期五'', ''星期六'']'
+    dayNamesShort: '[''日'',''一'',''二'',''三'',''四'',''五'',''六'']'
+    dayNamesMin: '[''日'',''一'',''二'',''三'',''四'',''五'',''六'']'
+  date_time: 日期/时间
+  datetime_: 日期/时间
+  day: 日
+  default: 默认
+  default_invite_comment: 好照片！您应该将其发布至%{site_name}：{{INVITE_LINK}}
+  default_observation_license: 默认观察协议
+  default_photo_license: 默认照片协议
+  default_sound_license: 默认声音协议
+  delete: 删除
+  delete_all: 删除所有
+  delete_conversation: 删除会话
+  delete_cover?: 删除封面么？
+  delete_icon?: 删除图标？
+  delete_photo: 删除照片
+  delete_project: 删除这个项目
+  delete_selected: 删除所选
+  delete_this_name: 删除此名称
+  delete_user: 删除用户
+  delete_your_account: 删除您的账户
+  deleted_user: 删除用户
+  deleting: 删除中……
+  deleting_verb: 删除中
+  desc: 描述
+  descending: 降序
+  description: 描述
+  description_from: 描述自
+  description_tags_more: 描述、标签以及更多
+  desription: 描述
+  destroy: 破坏
+  details: 详情
+  developers: 开发人员
+  device: 设备
+  did_you_mean: 您是不是要找
+  disagree: 不同意
+  disconnect_provider: 取消连接 %{provider}
+  does_the_location_seem_accurate: 位置看起来精确么？
+  doesnt_have_default_photo: 尚无默认的照片。
+  dont_use_double_quotes: 不要在其他地方使用双引号
+  double_click_to_finish: （双击以完成）
+  download: 下载
+  download_bulk_import_template_html: <a href="%{url}">下载模板</a>用于<a href="/observations/import#csv_import">大量上传</a>
+  download_csv: 下载CSV
+  download_kml: 下载KML
+  draft: 草稿
+  draft_: 草稿
+  draft_saved: 草稿已保存！
+  drafts: 草稿
+  edit: 编辑
+  edit_flagged_observation: 编辑已被标记的观察
+  edit_license: 编辑许可协议
+  edit_place: 编辑地点
+  edit_project: 编辑项目
+  edit_remove: 编辑/移除
+  edit_selected: 编辑选定的
+  edit_source: 编辑来源
+  edit_taxon_link: 编辑分类链接
+  edit_the_observation: 编辑观察
+  edit_this_link: 编辑此链接
+  edit_your_account: 编辑您的帐户
+  edit_your_account_and_profile_html: 编辑您的帐户和详细信息
+  edit_your_default_settings: 编辑您的默认设置
+  edit_your_profile: 编辑您的详细信息
+  edited: 已编辑
+  edited_by: 编辑自
+  edited_by_name_html: 由%{name}编辑
+  editing: 编辑中
+  editing_project: 编辑 %{project}
+  editing_taxon_link: 正在编辑分类链接
+  editing_taxon_name: 正在编辑分类名称
+  editing_this: 正在编辑%{elem}
+  editing_x_in_y: 正在%{y}编辑%{x}中
+  eg: 例如：
+  either: 任一
+  email: 电子邮件
+  embed: 嵌入
+  embed_widget_project: 在您的网站嵌入到此项目的小部件
+  end: 结束
+  endangered: 濒临灭绝
+  endemic: 地方性
+  eol: EOL
+  error_updating_photo: 上传图片时出错：%{photo_errors}
+  establishment:
+    establishment: 确立
+    native: 本地
+    endemic: 特产
+    introduced: 引进
+    naturalised: 归化
+    invasive: 攻击性
+    managed: 管理
+  everyone: 任何人
+  exact_location: 精确位置
+  existing_flags: 现有标记
+  explore!: 探索！
+  export: 导出
+  exporting: 正在导出……
+  external_links: 外部链接
+  extinct: 灭绝
+  facebook_account_not_linked: '%{user}不再有一个链接facebook的账户，因此%{site_name}并无权限访问此照片。'
+  facebook_needs_the_owner_of_that_photo_to: Facebook需要照片的主人再次确认至%{site_name_short}的连接。
+  facebook_options: Facebook选项
+  "false": 失败
+  Family: 家庭
+  fblocale: en_US
+  feature_this_project: 在这个项目起重要项目？
+  featured: 特色
+  featured?: 特色？
+  featured_projects_from_everywhere: 来自各地的特色项目
+  featured_projects_from_place: 来自%{place}的特色项目
+  feedback: 反馈
+  feedback_group: 反馈组
+  feeds: 源
+  feeds_for_current_filters: 当前过滤器的订阅
+  fields: 字段
+  filter: 过滤器
+  filter_by: 过滤方式
+  filtering: 过滤中
+  filters: 过滤器
+  find: 查找
+  flag: 标记
+  flag_description: 标记此内容以让馆长知道它有些东西是错误的。
+  flag_it!: 标记它！
+  flag_reason: '&ldquo;我正在标记这个%{record}，因为'
+  flag_saved: 标记已保存。
+  flagged: 已标记
+  flagged_thing_explanation: 用户已标记此%{thing}因为
+  flagger: 标记者
+  flags: 标记
+  flags_on_users_content: 在%{user}的内容上标记
+  flickr_invite_link_raquo: Flickr邀请链接&raquo;
+  for_a_taxon: 用于一个分类
+  for_more_information: 获取更多信息。
+  from_a_place: 来自一个地方
+  get_current_position: 获取当前位置
+  got_your_data_somewhere_else?: 在别的地方找到了你的数据？我们可以帮助。
+  grant_role: '%{grant} %{role}角色'
+  guess_description: 猜 / 描述
+  guide_deleted: 指南已删除
+  guide_was_successfully_created: 已成功创建指南。
+  helped_the_observer_make: 帮助观察者制作他们最终的ID（就是他们在最终ID之前制作并且匹配它的）
+  hex_color_eg: 十六进制颜色代码，例如：65644F
+  hi_user: 你好，%{user}
+  hide: 隐藏
+  hide_details: 隐藏详情
+  id_more_in_id_please: 更多ID请在ID中
+  identified?: 已认证
+  if_this_is_a_scientific_name: 如果这是一个学名，它目前是否接受？
+  if_you_dont_want_us_to_share_your_data: 如果您不希望我们分享您的数据
+  if_you_use: 如果您使用
+  import_date_time_location_taxonomic: 从此照片导入日期、时间、位置、描述和分类信息。
+  import_from_other_photo_sites: 从其他照片网站导入
+  import_observations_from_a_photo: 从照片提供者或您电脑中的文件导入观察。
+  invite_more: 邀请更多
+  invite_to_project: 邀请至项目
+  is_a: 是一个
+  is_this_offensive_html: 这是<a href="/help#inappropriate">不可接受</a>、滥发消息或攻击性内容么？
+  january: 一月
+  join_project: 加入这个项目
+  join_this_project: 加入这个项目
+  journal_post: 日记发布
+  kml_file_size_error: KML大小必须小于1 MB
+  last_confirmed_observation: 最近确认的观察
+  last_inat_observation: 最近 %{site_name} 观察
+  last_observation: 最近观察
+  latitude_slash_y_coord_slash_northing: 纬度/y轴坐标/北向
+  learn_more: 了解更多
+  learn_more_raquo: 了解更多 &raquo;
+  leave_a_comment: 留下评论
+  leave_this_project: 离开这个项目
+  lexicons:
+    scientific_names: 学名
+    afrikaans: 南非语
+    bengali: 孟加拉语
+    cebuano: 宿务语
+    creole_french: 克里奥尔语（法语）
+    creole_portuguese: 克里奥尔语（葡萄牙语）
+    davawenyo: Davawenyo语
+    dutch: 荷兰语
+    english: 英语
+    french: 法语
+    gela: Gela语
+    german: 德语
+    hawaiian: 夏威夷语
+    hebrew: 希伯来语
+    hiligaynon: 希利盖农语
+    icelandic: 冰岛语
+    ilokano: 伊洛卡诺语
+    italian: 意大利语
+    japanese: 日语
+    korean: 朝鲜语/韩语
+    maltese: 马耳他语
+    maori: 毛利语
+    misima_paneati: 米斯马-帕尼阿梯语
+    norwegian: 挪威语
+    pangasinan: 邦阿西楠语
+    portuguese: 葡萄牙语
+    russian: 俄语
+    spanish: 西班牙语
+    swedish: 瑞典语
+    tagalog: 他加禄语
+    tahitian: 塔希提语
+    tokelauan: 托克劳语
+    turkish: 土耳其语
+    waray_waray: 瓦瑞瓦瑞语
+  life_list: '%{user}的生命清单'
+  link: 链接
+  linked_facebook: 您的%{site_name}账户目前已链接到您的Facebook账户。
+  linked_facebook_password: 我们将不会询问您的Facebook密码（但是Facebook可能检查按钮发送给您的URL并确保那是Facebook.com）。我们也将不会更改您的Facebook数据，除非您要求我们去做。
+  linked_flickr: 您的%{site_name}账户目前已链接到您的Flickr账户。
+  linked_flickr_password_html: <strong>我们将不会询问您的Flickr密码</strong>（但是Flickr可能检查按钮发送给您的URL并确保那是Flickr.com）。
+  linked_flickr_photo_copy_html: <strong>我们将不会存储您照片的拷贝，或更改您的Flickr数据（除非您要求我们去做）等。</strong>我们太过于在乎有关鸟、小虫和鼻涕虫，以避免接触您的信息！
+  list_deleted: 列表已删除。
+  list_was_successfully_created: 已成功创建列表。
+  loading_more_photos: 正在加载更多照片……
+  loading_wikipedia_description: 正在载入维基百科描述……
+  locale_description: 区域设置您的语言和日期格式选项。
+  locales:
+    en: 英语
+    en-US: 英语（美国）
+    es: 西班牙语
+    es-ES: 西班牙语（西班牙）
+    es-MX: 西班牙语（墨西哥）
+    mk: 马其顿
+  location: 位置
+  location_: 位置
+  location_is_exact: 位置是精确的
+  longitude_in_decimal: 十进制角度经度，例如：-122.123
+  longitude_slash_x_coord_slash_easting: 精度/x轴坐标/东向
+  look_up_name: 查阅名称
+  lookup: 查找
+  lookup_user_rarr: 查找用户 &rarr;
+  made_a: 做一个
+  maps:
+    overlays:
+      all_observations: 所有观察
+      featured_observations: 特色观察
+      place_boundary: 地区边界
+  months_ago: '%{text}前'
+  more: 更多
+  more_fields: 更多字段
+  more_info: 更多信息
+  more_journal_posts: 更多日志发布
+  more_observations: 更多观察
+  n_ago: '%{n}前'
+  name: 名称
+  name_llaves: '[名称]'
+  name_provider: 名称提供方
+  new_flag_for: 新标记用于
+  new_post: 新贴子
+  new_project: 新项目
+  new_taxon_link: 新分类链接
+  new_taxon_name: 新的分类名称
+  new_updates_in_the_last_24_hours_from: 来自%{site_name}的近24小时新更新
+  no_countries_added_yet: 尚未添加国家
+  no_flags: 目前没有标记
+  no_link_flickr: 不，我宁愿不那样。
+  no_matching_article_from_x: 没有来自%{x}的匹配的条目
+  no_more_mail_from_site: 不希望接受任何来自 %{site_name} 的邮件么？请在此编辑您的邮件设置
+  no_more_taxa_to_load: 没有更多要加载的分类！
+  no_more_updates: 没有更多更新！
+  no_observations_submitted: 没有提交观察！
+  no_range_data_available: 没有范围数据可用。
+  no_species_on_this_list_for_owner_html: 您可以开始直接将物种添加至此列表，或如果这是生命清单，它将在您<a href="%{url}"
+    class="nobr">添加观察</a>时自动与物种更新。
+  no_x_this_y: 不是%{x}这个%{y}
+  noble_curators: '%{site}的博物馆长'
+  not_linked_facebook: 您的%{site_name}账户并未链接至您的Facebook账户&#59;
+  observation: 观察
+  observation_would_like_some_help: '%{user}需要一些人帮助识别这个！'
+  observations_deleted: 观察已删除。
+  observations_for_project: 对 %{project} 的观察
+  observations_saved: 观察报告已保存！
+  observations_w: 观察 w/
+  observations_w_field: 观察报告 w/ 字段
+  observationcounts_refreshed: 观察计数已刷新
+  occurence_status_describes_how: 发生状态描述了在指定地区中的分类有多么普遍或稀有。参见DarwinCore以获取<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">更多有关术语的信息</a>。
+  on_submit_date: 在%{submitdate}
+  only_files_with_10000_rows_at_a_time: 一次只能处理10000行的文件，请
+  only_the_owner_of_this_list_can_do_that: 只有列表主人可以这样做。不要作恶。
+  open_description: 任何人可以查看观察，除非分类受到威胁。
+  owner: 所有人
+  parent_name: 父名称
+  photo_attribution: 照片 %{attribution}
+  photo_by_id_attribution: 照片 %{id}，%{attribution}
+  photo_destroyed_because_it_was_deleted_from: 图片已损坏，因为它在外部来源网站上被删除或%{site_name}不再拥有查看它的权限
+  photos_size:
+    small: 小
+  picasa_account_not_linked: '%{user}不再有一个链接Picasa的账户，因此%{site_name}并无权限访问此照片。'
+  pick_a_username: 选择用户名
+  place_geo:
+    geo_planet_place_types:
+      Country: 国家
+      Land_Feature: 地貌
+      Suburb: 郊区
+      Colloquial: 白话
+      Estate: 房地产
+      street: 街道
+      intersection: 交集
+      state: 州
+      country: 国家
+      drainage: 排水
+      land_feature: 地貌
+      supername: 超级名字
+      region: 地区
+      suburb: 郊区
+      colloquial: 白话/俗话
+      aggregate: 聚合
+  place_name: 地名
+  place_type_name: 地点类型名称
+  places_name:
+    afghanistan: 阿富汗
+    africa: 非洲
+    antigua_and_barbuda: 安提瓜和巴布达
+    belgium: 比利时
+    bosnia_and_herzegovina: 波斯尼亚和黑塞哥维那
+    brazil: 巴西
+    central_america: 中美洲
+    egypt: 埃及
+    equatorial_guinea: 赤道几内亚
+    europe: 欧洲
+    france: 法国
+    germany: 德国
+    greece: 希腊
+    hungary: 匈牙利
+    italy: 意大利
+    iraq: 伊拉克
+    japan: 日本
+    martinique: 马提尼克
+    mexico: 墨西哥
+    new_guinea: 新几内亚
+    new_zealand: 新西兰
+    north_africa: 北非
+    north_america: 北美洲
+    palestine: 巴勒斯坦
+    panama: 巴拿马
+    peru: 秘鲁
+    poland: 波兰
+    republic_of_congo: 刚果共和国
+    russia: 俄罗斯
+    saudi_arabia: 沙特阿拉伯
+    sao_tome_and_principe: 圣多美和普林西比
+    south_america: 南美洲
+    spain: 西班牙
+    sweden: 瑞典
+    syria: 叙利亚
+    thailand: 泰国
+    trinidad_and_tobago: 特立尼达和多巴哥
+    turkey: 土耳其
+    united_kingdom: 英国
+    united_states: 美国
+    virgin_islands: 维尔京群岛
+    west_africa: 西非
+  please_be_aware_project_curators: 请注意项目馆长将可以查看添加至此项目的私有或被掩盖的观察位置。
+  please_be_aware_that_project_curators: 请注意项目馆长将可以查看添加至此项目的私有或被掩盖的观察位置。
+  please_fix_your_csv_and_try_again: 请修复您的CSV，然后重试。
+  possessive_user: '%{user}的'
+  post: 帖子
+  post_published: 贴子已发布！
+  posts: 帖子
+  previous: 上一步
+  previous_page: 上一页
+  privacy: 隐私政策
+  privacy_policy: 隐私政策
+  project: 项目
+  project_created_on: 于%{date}创建此项目
+  project_post: 项目贴子
+  project_was_successfully_created: 已成功创建项目。
+  project_x_was_delete: '%{project}已删除'
+  re_apply_list_rules: 重新应用列表规则
+  reason: 原因
+  reason_you_are_flagging_this_item: 您标记此项目的原因。
+  recent_post: 最新贴子
+  recently_created: 最近创建
+  record!: 记录！
+  refresh: 刷新
+  reload_and_refresh: 重新加载和刷新列表
+  remove: 移除
+  remove_boundary: 移除边界
+  remove_curator: 移除馆长
+  remove_curator_role: 移除馆长角色
+  remove_from_project: 从项目移除
+  remove_tags: 移除标签
+  removed: 已移除
+  removed!: 已移除！
+  removing: 正在移除……
+  required: 必填
+  reset_your_password: 重置您的密码
+  role: 角色
+  rotate_left: 向左旋转
+  rotate_right: 向右旋转
+  row_singular_or_plural: 行
+  rules_types:
+    must_be_identified: 必须被认证
+  save: 保存
+  save_comment: 保存评论
+  save_flag: 保存标记
+  save_guide: 保存指南
+  save_observation: 保存观察
+  saving_verb: 保存中
+  search: 搜索
+  search_catalogue_of_life: 搜索<a href="http://www.catalogueoflife.org">Catalogue of
+    Life</a>
+  search_for_species: 搜索物种
+  search_remote: 搜索远程
+  searching: 正在搜索……
+  second_person_possessive_singular: 您的%{noun}
+  select_one_or_more_photos: 请选择一个或多个照片
+  select_photos_from_your_photo_stream: 从外部照片分享网站选择照片以转换至%{site_name}观察中。我们将从照片的元数据中填充日期、时间和位置，并尝试从标签查找物种名称。
+  separate_values_with_a_pipe: 用竖线分隔值，例如“1-5|6-10|a lot”或“yes|no|maybe”
+  september: 九月
+  set_license: 设置许可协议
+  settings: 设置
+  share_on: 分享到
+  sharing_settings: 分享设置
+  short_code_for_this_place: 此地点的简短代码，例如US对应美国
+  show: 显示
+  show_counts: 显示基于列表上的计数。
+  show_kml: 显示KML
+  showing_one_to: 显示1~
+  sign_in: 登录
+  sign_out: 退出
+  sign_up: 注册
+  sign_up_exclamation: 注册！
+  sing_in_exclamation: 登录！
+  single_observation: 单一观察
+  sizes: 尺寸
+  small: 小
+  some_agree: 部分同意
+  some_other_reason: 您可以在下方说明其他一些原因。
+  some_people: 有些人
+  something: 一些事
+  sort_by: 排序方式
+  sorting_by: 排序方式
+  sounds:
+    add_media: 添加媒体
+    add_sounds: 添加声音
+    before_importing_sounds: 在导入声音前
+    listen: 听
+    no_photos_sounds: 没有照片或声音
+    request_timed_out: 请求SoundCloud超时。请稍后再试。
+    select_one_or_more_sounds: 请选择一个或多个声音
+    selected_sounds: 已选择声音
+    sound: 声音
+    soundcloud_replied_with_an_error: SoundCloud回答遇到错误。请稍后再试。
+    sounds: 声音
+    sounds_size_sounds: '%{sounds_size}个声音'
+  source: 来源
+  source_: 源：
+  source_list:
+    ubio: uBio
+    inaturalist: iNaturalist
+    nzbrn_fungi: NZBRN真菌
+  source_eg:
+    title: '例如：Snakes: The Evolution of Mystery in Nature'
+    in_text: 例如：Greene, 2000
+    url: 例如：“http://www.ucpress.edu/book.php?isbn=9780520224872”
+    citation: '例如：Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st
+      ed. 加利福尼亚大学出版，1997年起印刷。'
+  source_identifier: 来源标识符
+  source_unknown: 源未知
+  source_url: 源网址
+  sources: 来源
+  sources_youve_added: 您添加的来源
+  sourcing: 提供消息
+  spam: 垃圾信息
+  spanish: 西班牙语
+  species_guide: 物种指南
+  species_name: 物种名称
+  species_search: 物种搜索
+  species_taxon_name: 物种 / 分类名称
+  src: 源
+  start: 开始
+  start_a_new_list: 开始一个新列表
+  start_a_new_project: 开始一个新项目
+  start_a_project: 启动一个计划
+  start_new_account: 开始一个新的账户
+  start_one: 开始一个
+  start_typing_taxon_name: 开始输入分类名称……
+  states: 状态
+  stats: 统计
+  stats_title: 网站统计
+  status: 状态
+  still_no_luck?: 仍然不高兴？
+  stop_updating_position: 停止更新位置
+  subject_resolved_noun_html: '%{subject}解决了%{noun}'
+  submit: 提交
+  submit_comment: 提交评论
+  submitted: 已提交
+  subscribe_to_this: 订阅此
+  subscribe_to_x_from_this_y_html: 从此%{y}<a href="#" onclick="$(this).parents('form:first').submit();
+    return false;">订阅</a>至%{x}。
+  summary: 摘要
+  suspicious_photos: 可疑照片
+  sun: 日
+  sync: 同步
+  sync_obs_with_photo_metadata: 同步obs. w/ 照片元数据？
+  table: 表格
+  table_of_contents: 目录
+  tagging: 正在添加标签……
+  tags: 标签
+  take_me_facebook: 是的，带我前往Facebook！
+  taxon: 类群
+  taxon_map:
+    data_url: 数据URL
+    overlays: 覆盖图
+  taxon_change_settings: 类群更改设置
+  taxon_name: 类群名称
+  taxon_search: 类群搜索
+  taxon_search_results_for: 类群搜索结果：
+  taxon_to_delete: 要删除的分类
+  taxon_name_was_deleted: 类群名称已删除。
+  taxon_was_successfully_created: 已成功创建分类。
+  tell_everyone_a_little_about_you: 向大家介绍你自己
+  terms: 条款
+  terms_and_rules_html: 条款和规则
+  terms_of_service: 服务条款
+  terms_service: 服务条款
+  terrain: 地形
+  text_: 文本
+  thanks_for_signing_up: 感谢注册！
+  thanks_for_using: 感谢您使用
+  that_project_doesnt_exist: 该项目不存在。
+  that_role_doesnt_exist: 该角色不存在
+  that_will_insert_a_link_to: 那将在任何Flickr图片页面插入至此工具的链接。
+  the: 这
+  the_community_agrees_location_doesnt: 社区同意<strong>位置看起来不正确</strong>（例如大洋中的猴子，办公大楼中的河马等）。
+  the_community_agrees_organism_isnt: 社区同意<strong>有机体不是野生的/自然的</strong>（例如：俘虏、人工种植或智能外星人）
+  the_list: 列表
+  the_project: 项目
+  the_species_listed_below_were_not_found_in_the_site_database: 下列物种未在%{site_name}数据库中找到。
+  the_title_of_the_wikipedia_article_we_use: 我们用于描述的维基百科条目标题。如果维基百科URL是<code>http://zh.wikipedia.org/wiki/鸟</code>，那么这个值应该是<code>鸟</code>。如果留空，此分类的学名会被使用（它通常都能工作）。
+  there_isnt_wiki_article: 没有维基百科条目或重定向的标题叫做“<i>%{taxon}</i>”。您可能想找
+  there_isnt_a_wikipedia_article_titled_x_html: 没有维基百科条目或重定向的标题叫做“%{x}”。您可能想<a href='http://zh.wikipedia.org/wiki/%{x}'>制作一个</a>？
+  there_were_errors: 存在错误。
+  there_were_some_problems_with: 您的CSV文件存在一些问题。请修正失效的行。当然问题总是出现在我们这边。如果这样，请让我们了解。
+  theres_also: 这里也有
+  these_are_taxa_that: 这些是由于某些原因，%{site}网站不能自动加入到我们的分类树中的分类。您可以通过编辑分类并选择一个父记录加入它们。例如<i>现代人</i>的父分类是<i>人属</i>。您也可能希望检查同义词分类并合并它们。
+  third_person_possessive_singular: '%{object_phrase}的%{noun}'
+  this: 此
+  this_is_a: 这是一个
+  this_job_failed_to_run: 此工作运行失败。请联络%{email}
+  this_list_is_empty!: 此列表是空的！
+  this_species: 此物种
+  this_tool_is_experimental: 本工具是实验性的，所以请
+  this_will_re_apply_all_list_rules: 这将重新同意所有列表规则至列出的分类，并更新任何分配的统计，例如拒绝不在分类列表中的分类或不是选定排名的分类。它将不会添加任何新分类。这会消耗几分钟。
+  this_will_reload_and_refresh: 这将从观察加入列出的分类，并立即刷新观察状态。这将花费一些时间，并请酌情使用。
+  thu: 四
+  time_: 时间
+  time_ago: '%{time}前'
+  title: 标题
+  title_and_description: 标题和描述
+  to: 到
+  to_: 至
+  today: 今天
+  tools: 工具
+  top_5_identifiers: 前5个标识符
+  top_contributors: 顶尖贡献者
+  total: 总共
+  total_members: 成员总数
+  total_users: 总用户，
+  tree_browser: 树浏览器
+  "true": 真
+  trusted_project?: 可信任的项目？
+  try_wikipedia: 尝试维基百科？
+  tue: 二
+  type: 类型
+  type_a_name_and_click: 输入一个名字并点击查找
+  type_authority: 类型机构……
+  type_date_time_or_use_the_calendar: 输入日期/时间或使用日历
+  type_one_name_per_line: 请在每行输入一个名称
+  type_place_name: 输入地名
+  type_project_name: 输入项目名称
+  type_source_name: 输入来源名称
+  type_source_title: 请输入源标题
+  type_species_name: 输入物种名称
+  type_taxon_name: 输入分类名称
+  type_taxon_name_and_click_lookup: 输入分类名称并点击查找
+  uicn_red_list_status: IUCN红色名录状态：
+  unclassified: 未分类
+  uninvite: 未被邀请
+  unique_identifier_of_this_taxon: 来源数据库中此分类的唯一标识符。
+  unknown: 未知
+  unknown_rank: （未知排名）
+  unlink_your_picasa_account: 取消链接您的Picasa账户
+  updates_notification_email_subject: '%{prefix}新的更新%{date}'
+  updating: 正在更新...
+  unpublish: 取消发布
+  unsubscribe: 取消订阅
+  unsubscribe_from_this: 退订此
+  update: 更新
+  update_photos: 更新照片
+  update_subscription: 更新订阅
+  update_your_content: 更新您的内容
+  updated: 已更新
+  updated_by: 更新者
+  updated_photo: 已更新照片
+  upload: 上传
+  upload_a_csv_file: 上传CSV文件
+  upload_photos: 上传照片
+  url_identifier_of_a_project_derived_from: 由同一外部资源衍生出来的URL/项目标识符
+  US_states: 美国州
+  user: 用户
+  user_follows: '%{user}关注'
+  user_hasnt: '%{user}没有'
+  user_added_an_observation_field_html: '%{user}为“%{field_name}”添加了一个值至由%{owner}制作的观察'
+  user_s: '%{user}的'
+  user_s_id: '%{user}的%{id}'
+  user_s_lists: '%{user} 列表'
+  username: 用户名
+  username_or_email: 用户名或电子邮件
+  username_or_user_id: 用户名或用户ID
+  users: 用户
+  users_id: '%{user} 的ID'
+  users_observations: '%{user}的观察'
+  users_profile: '%{user}的详细信息'
+  using_a_license: 使用一份许可协议
+  valid_interrogation: 有效么？
+  valid_options_are: 有效选项是
+  verbing_x_of_y: '%{verb} %{y}的%{x}……'
+  view: 查看
+  view_all: 查看所有
+  view_all_members: 查看所有成员
+  view_all_n: 查看所有%{n}
+  view_all_your_projects: 查看您的所有项目
+  view_change: 查看更改
+  view_contributions: 查看贡献
+  view_details: 查看详情
+  view_flags: 查看标记
+  view_journal: 查看日记
+  view_leaderboard: 查看排行榜
+  view_leaderboard_from_last_month: 查看上个月的排行榜
+  view_license: 查看许可协议
+  view_lists: 查看列出的
+  view_listing: 查看列出的
+  view_more: 查看更多
+  view_more_about_x: 查看更多有关 %{x}
+  view_more_observations: 查看更多观察
+  view_more_observations_from_x: 查看来自 %{x} 的更多观察
+  view_more_observations_from: 查看更多观察，来自
+  view_more_observations_near_x_place: 查看在 <nobr>%{site_name}</nobr> 上的更多在 %{place}
+    附近的观察 &raquo;
+  view_more_observations_of_x_project: 查看在 <nobr>%{site_name}</nobr> 上的更多来自 %{project}
+    的观察 &raquo;
+  view_more_observations_of_x_taxon: 查看在 <nobr>%{site_name}</nobr> 上的更多 %{taxon} 的观察
+    &raquo;
+  view_more_recent_observations: 查看更多最新观察
+  view_nbsp: 查看 &nbsp;
+  view_non_mobile_site: 查看非移动网站
+  view_post: 查看帖子
+  view_observation: 查看观察
+  view_on: 查看在
+  view_on_amphibiaweb: 在AmphibiaWeb上查看
+  view_on_flickr: 在Flickr上查看
+  view_on_wikipedia: 在维基百科上查看
+  view_original_by: 查看由%{by}在%{photo}上的原始版
+  view_original_ccD_photo: 查看由%{owner}创作的原始CC照片
+  view_photos_ranges_observations_more: 查看照片、物种分布范围、%{site_name} 观察和更多！我们聚集了来自很多不同来源的信息，并将其结合做出了每个地方每种物种的快速摘要。
+  view_place: 查看地方
+  view_projects_from_place: 查看来自%{place}的项目
+  view_real_time_stats_in_a_new_window: 在新窗口中查看实时统计
+  view_stats: 查看状态
+  view_terms: 查看条款
+  view_the: 查看%{action}&#59; %{link}
+  view_your_dashboard: 查看您的仪表板
+  view_your_dashboard_for_more_updates_html: <a href='%{url}'>查看您的控制面板</a>以获取更多更新
+  view_your_calendar: 查看您的日历
+  vulnerable: 易受攻击的
+  w00t_no_ungrafted_taxa: 不给力啊！没有未被嫁接的分类！
+  w_photos_only: w/ 照片
+  w_sounds: w/ 声音
+  wait_file_generation: 请等待文件生成。较大的列表可能需要几分钟。
+  want_to_add_one: 想加入一个？
+  we_care_privacy: 我们关心您的隐私！
+  we_couldnt_find_a_user: 我们没找到与此电子邮件地址相关的用户。
+  we_currently_support_flickr_for_image_hosting: 我们目前支持Flickr用于图片存储。
+  we_didnt_find_any_photos: 我们使用您提供的搜索条件没有找到任何照片。
+  we_had_a_problem_flagging_that_item: 我们标记该项目时遇到问题：%{flag_error}
+  we_support_flickr: 我们目前支持Flickr用于图片存储，并将很快添加其他图片存储。
+  we_tried_to_process_your_upload_named_filename: |-
+    我们尝试了处理您上传的名为%{filename}的文件，但未成功。
+    请修复下列问题，然后重试。
+  wed: 三
+  welcome!: 欢迎！
+  welcome_comma!: 欢迎，
+  welcome: 欢迎
+  welcome_back: 欢迎回来
+  welcome_comma: 欢迎，
+  welcome_login: 欢迎，%{login}
+  welcome_to_inat: 欢迎来到%{site_name}！
+  welcome_to_guides: 欢迎来到%{site_name}指南！
+  welcome_to_x_project: 欢迎来到 %{project}
+  were_currently_down_for: 我们目前已停机，因为
+  were_sorry_but_your_bulk_import_of_filename_has_failed: 我们很抱歉，但您的批量导入 %{filename}
+    已失败。
+  what: 什么
+  what_color_was_it: 它的颜色是什么？
+  what_did_you_see: 您看见了什么？
+  what_did_you_see?: 您在<em>哪里</em>看见的？
+  what_do_you_think: 您在想什么？
+  what_to_keep: 保持什么
+  what_want_to_list?: 您想列出什么？
+  when: 何时
+  when_did_you_see_it?: 您何时看见的它？
+  when_did_you_see_them?: 您<em>在哪</em>发现的它们？
+  where: 哪里
+  where_did_you_see_it: 您看见了什么？
+  where_do_x_live: '%{taxa}居住在哪里？'
+  where_does_x_live: '%{taxa}居住在哪里？'
+  where_were_they?: 他们在哪里？
+  where_were_you?: 您在哪里？
+  white: 白色
+  widget: 挂件
+  widget_code: 挂件代码
+  widget_for: 挂件用于
+  will_be: 将会是
+  wikipedia_entry: 维基百科记录
+  wikipedia_taxobox_raquo: 维基百科taxobox &raquo;
+  with: 带
+  with_errors: 带错误
+  within_inaturalist: '%{site_name}之内'
+  would_you_like_to: 您是否想
+  would_like_some_help_identifying_this: 需要一些人帮助识别此
+  x_admin: '%{login}管理'
+  x_deleted: '%{x}已删除'
+  x_does_not_exist: “%{x}”不存在
+  x_doesnt: '%{login}不会'
+  x_hasnt: '%{login}没有'
+  x_journal: '%{user}的杂志'
+  x_journal_editing: '%{user}的杂志 &middot; 编辑'
+  x_journal_middot: '%{user}的杂志 &middot;'
+  x_journal_new_post: '%{user}的杂志 &middot; 新刊文'
+  x_project_journal: '%{project}的%{name}'
+  x_project_stats: '%{project}状态'
+  x_sent_you_a_new_message_on_y_html: '%{x}在%{y}给您发送了一条新消息：'
+  x_site_is_a_social_network_for_naturalist: '%{site}是一个专为博物学家的社交网路！记录您对动植物的观察，与您的朋友和研究人员分享他们，并了解有关自然世界的那些事吧。'
+  x_wrote_a_new_post_html: '%{x}写了一个新帖子'
+  x_wrote_y_new_posts_html: '%{x}写了%{y}篇新贴子'
+  year: 年
+  year_month: 年/月
+  yellow: 黄色
+  "yes": 是
+  yes_find_them!: 是的，找到他们！
+  yes_i_want_to_join: 是的，我想加入
+  yes_license_my_observations_so_scientists_can_use: 是的，授权我的图片、声音和观察，这样科学家可以使用我的数据！
+  yesterday_at: ，昨天在下午4点
+  you: 您
+  you_admin: 您管理
+  you_are_now_following_x: 您正在关注%{friend_user}。
+  you_are_now_role_for_project_html: <strong>您</strong>现在是%{project}的%{role}
+  you_are_not_editing_any_guides_add_one_html: 您没有编辑任何指南。<a href="/guides/new">添加一个</a>
+  you_are_already_a_member_of_this_project: 您已经是这个项目的一员了！
+  you_are_no_longer_following_x: 您不再关注%{friend}。
+  you_are_subscribed_to: 您已订阅至
+  you_arent_a_member_of_that_project: 您不是那个项目的成员。
+  you_can_accept_invitations: 您可以在这里接受邀请
+  you_can_alwais_add_new: 您总是可以通过点击页面右上方的小箭头，以及使用下拉菜单添加新的观察。
+  you_can_edit_this_default_check_list_because: 您可以编辑这个默认的检查列表，因为您是一位管理员，但真的不应该需要这样做。
+  you_can_sign_free_at: 您可以免费注册一个%{site_name}账户在
+  you_cant_flag_that: 您不能标记那个
+  you_cant_leave_a_project_you_created: 您不能离开您创建的项目。
+  you_didnt_select_any_photos_to_tag: 您没有选择任何照片至标签！
+  you_dont: 您不能
+  you_dont_have_permission_to_do_that: 您不需要权限就可以做那件事。
+  you_dont_have_permission_to_edit_that_project: 您没有权限编辑那个项目。
+  you_dont_have_permission_to_edit_those_photos: 您没有编辑这些照片的权限。
+  you_have_left_x_project: 您已离开%{project}
+  you_have_logget_out: 您已经退出。早点回来！
+  you_have_to: 您不得不
+  you_havent: 您没有
+  you_havent_left_any_comments_recently: 您最近没有做出任何评论。去给一个人做出提醒吧！
+  you_havent_linked_your_inaturalist_picasa_account: 您尚未连接您的%{site_name}账户和您的Picasa账户
+  you_joined_this_project: 您加入了这个项目！
+  you_must_be_a_member_of_this_project_to_do_that: 您必须是此项目的成员才能
+  you_must_have_a_header_row: 您必须有一个标题行
+  you_must_select_a_csv_file_to_upload: 您必须选择一个要上传的CSV文件。
+  you_must_select_a_place_to_merge_with: 您必须选择合并的目标位置。
+  you_must_select_at_least_one_taxon: 您必须选择至少一个类群
+  you_must_select_dates_to_compare: 您必须选择日期以比较
+  you_must_specify_and_confirm_a_new_password: 您必须指定一个新密码并确认它。
+  your_name_was_saved: 您的名字已保存。
+  you_need_to_have_linked_flickr_account: 您需要连接一个Flickr账户才能标记您的照片。
+  you_need_to_select_at_least_one_photo: 您需要选择至少一张照片！
+  your_profile_was_successfully_updated: 您的个人资料已成功更新！
+  you_sure_delete_asset?: 您确定要删除此优点吗？
+  you_sure_delete_comment?: 您确定要删除此评论吗？
+  you_sure_delete_flag?: 您确定要删除此标志吗？
+  you_sure_delete_project?: 您确定要删除这个项目么？
+  you_would_get_the: 您会获得下列标签：
+  youll_need_to_link: 您将需要链接
+  your: 您的
+  your_: 您的
+  your_comment_was_saved: 您的内容已保存
+  your_default: 您默认的
+  your_default_time_zone: 您默认的时区
+  your_drafts: 您的草稿
+  your_email_address: 您的电子邮件地址
+  your_flickr_account: 您的Flickr账户
+  your_flickr_photos_have_been_tagged: 您的Flickr照片已被标记！
+  your_hard_drive: 您的硬盘驱动器
+  your_home: 您的家
+  your_id: 您的ID
+  your_identification: 您的身份证明
+  your_inat_account_has_been_activated: 您的%{inat}账户已被激活。
+  your_life_list: 您的生命清单！
+  your_new_password_is: 您的新密码是
+  your_photos_have_been_tagged: 您的照片已被标记！
+  your_picasa_account: 您的Picasa账户
+  your_picasa_account_info: 您的Picasa账户信息
+  your_site_account_has_been_created: 您的%{site}账户已创建。
+  your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
+    需要您授权 %{provider} 使用更多权限：'
+  your_subscriptions: 您的订阅
+  your_sure_delete_list?: 您想删除此列表吗？
+  your_sure_delete_taxon_from_list?: 您确定要从此列表中移除 %{taxon} 吗？
+  your_world!: 您的世界！
+  youre_following: 您正在关注
+  youve_already_added_an_identification: 您已经添加了一个标识，您只能添加一个
+  youve_seen_it_want_to: 你看见了它！想要
+  zoom_to_taxon_name: 缩放到 %{taxonname}
+  zoom_to_x: 缩放至%{x}
+  views:
+    views: 视图
+    guides:
+      index:
+        funding_html: 指南开发的资金由<a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>提供
+      edit:
+        coordinates_desc: 提供您的坐标将帮助人们在搜索您的位置时找到它。
+        places_note: 注意：不是所有地点都检查带分类列表。如果您在通过分类查找地点时遇到问题，尝试选择更大的有行政区划的地区，例如国家、州、省或县。
+      mobile_downloads_tip_html: 此指南可以被下载到<a href="%{iphone_url}">iPhone应用</a>供离线使用。
+      pdf_layouts:
+        grid: 格子
+        book: 图书
+        journal: 期刊
+      pdf_generation_notice: 请耐心等待，生成较大的PDF可能需要一两分钟。
+      sorts:
+        default: 指导顺序
+        alphaname: 按学名的字母顺序排列
+        alphadisplay: 按显示名的字母顺序排列
+    guide_taxa:
+      show:
+        reuse_desc: 您可以复制此分类至其他指南。如果您是此指南的编辑者之一，它应该复制任何东西，但如果您不是，那么它将只复制获授权的内容。
+    help:
+      index:
+        what_is_inaturalist?: 什么是%{site_name}？
+        inaturalist_is_built_using_html: |-
+          %{site_name}软件使用了<a
+          href="http://www.rubyonrails.org/">Ruby on Rails</a>、<a
+          href="http://mysql.com/">MySQL</a>和<a
+          href="http://jquery.com/">jQuery</a>技术，以及借助<a
+          href="http://code.google.com/apis/maps//">Google Maps</a>和<a
+          href="http://flickr.com/">Flickr</a>构建。它还采用了<a
+          href="http://www.catalogueoflife.org">Catalogue of Life</a>和
+          <a href="http://ubio.org/">uBio</a>的分类数据作为数据源。
+        what_can_i_do_to_help_inaturalist?: 我能做什么帮助%{site_name}
+        you_can_help_inaturalist_by_giving_us_your_feedback_html: 您可以通过告诉我们您的反馈帮助
+          %{site_name}：加入我们的<a href="%{feedback_url}">反馈组</a>以报告错误并请求新的功能。您也可以通过添加您的观察帮助
+          %{site_name} 并帮助其他社群成员识别它们未经鉴别的观察。如果您知道如何编码并希望帮助我们提供一些功能，<a href="http://github.com/inaturalist/inaturalist"
+          title="inaturalist at master - GitHub">在GitHub上fork我们</a>！
+        how_do_i_contact_inaturalist?: 我该如何联系%{site_name}
+        you_can_contact_us_at_html: 您可通过<a href="mailto:%{help_email}">%{help_email}</a>联系我们
+        you_know_it_when_you_see_it_html: |-
+          <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">当您看见它时</a>您就知道它，不是么？违反我们<a href="/terms.html">使用条款</a>第二节的东西肯定不被接受，并会被标记，或通知管理员。
+          Milder forms of rudeness are unfortunate, but
+          probably not something we'll delete. Observations of pets, captive
+          animals, humans, and other organisms most naturalists may not find
+          interesting are ok (they're alive, after all). Observations of things
+          that aren't organisms are a gray area. Things that clearly have
+          nothing to do with nature, like what someone had for lunch, are worth
+          flagging and may be deleted, but evidence of pollution or disturbance
+          could be interesting, and probably won't be removed.
+        how_can_i_get_help_identifying_what_i_saw?: 我如何帮助您识别我看见的东西？
+        can_i_add_photos_without_a_flickr_account?: 我可以不用Flickr账户就添加图片么？
+        we_also_support_picasa_html: 我们也支持Picasa：<a href="%{url}">配置您的Picasa账户&raquo;</a>
+        what_are_tags?: 标签在哪？
+        note_that_curators_of: 注意无论您的geoprivacy设置如何，个别项目的监护人都总是可以查看坐标，因此如果您关心谁拥有访问坐标的权限，您应该确保您信任您参与的项目的监护人。
+        what_is_a_life_list?: 什么是声明清单？
+    observations:
+      export:
+        choose_columns_desc: 选择您想要导出的列
+        be_patient: 请耐心等待，这可能需要几分钟时间。如果耗时过长，您可以
+        well_email_you: 好的，我们会在它就绪时给您发邮件。
+      field_descriptions:
+        id: 用于观察的唯一标识符
+        taxon_id: 用于观察到的分类的唯一标识符
+        latitude: 公开可见纬度
+        longitude: 公开可见经度
+        user_id: 用于观察者的唯一标识符
+        updated_at: 日期时间观察最近已更新
+        image_url: 用于默认图片的URL
+        tag_list: 逗号分隔的标签列表
+        positioning_method: 坐标如何被测定
+        positioning_device: 测定坐标的设备
+      import:
+        coordinate_systems_help: |-
+          %{site_name}接受使用很多种不同坐标系统的坐标，所以当您提供除了纬度/精度外的系统坐标时，我们需要了解您使用的是什么坐标系统，以正确解析它们。
+          Please be certain you
+          have chosen the correct coordinate system for your data or the
+          location may finish up a long way from where it should be. If your
+          coordinates are from a GPS unit, check its settings for the name of
+          the coordinate system it is using. Note that we don't store custom
+          coordinates, just their lat/lon conversions.
+      show:
+        community_taxon_desc_html: |-
+          <p class="ui">
+          社区分类（或社区鉴定）代表%{site_name}社区认为是描述一个观察中的分类。如果您对我们如何选择社区分类感兴趣，参见下方算法上的注释，但一般而言，我们尝试<strong>选择超过2/3标识符统一的分类</strong>。有时这意味着要选择一个更高级的，包含若干个存在异议的分类（例如：您认为这是一条王蛇，我认为这是一条响尾蛇，所以iNat选择蛇亚目，这包含所有的蛇）。算法同样稍许有倾向异议，因为我们发现反对者经常准确。
+          </p>
+          <p class="ui">
+          社区分类是是当我们分享带数据合作伙伴的观察时使用的分类，链接与网站上相同的分类的观察，更新您的生命清单等。如果您由于某些原因您不同意社群分类，您可以拒绝它，这意味着您的ID会被用于连接其他观察、更新生命清单等。
+            It also means your observation can only
+            become research grade when the community agrees with <em>you</em>.
+            If you don't like the whole idea of community taxa, you can opt
+            out of them entirely by <a href="/users/edit" target="_blank">editing your settings</a>.
+          </p>
+          <p class="ui">
+            <strong>算法：</strong> for all identified taxa and the taxa that contain them
+            (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score
+            each as the ratio between the number of cumulative IDs for
+            that taxon over the sum of the cumulative IDs, the number of
+            more conservative IDs added after the first ID of that taxon,
+            and the number of IDs that are completely different (i.e. IDs
+            of taxa that do not contain the taxon being scored). For the
+            identified taxa that have a score over 2/3 and at least 2
+            identifications, choose the lowest ranked taxon.
+          </p>
+    emailer:
+      bulk_import_error:
+        taxon_spelling_notice_html: 请检查每条记录的拼写。如果您的拼写正确，请在 %{search_taxa_url} 搜索物种。如果名称尚未存在于
+          %{site_name} 数据库，您需要在您的大量上传工作之前添加它。使用搜索页面下方的方框以导入新名称。
+    photos:
+      inviter:
+        automatically_add_to_project: 自动添加到项目
+        dont_forget_the_invite_link_placeholder: 不要忘记{{INVITE_LINK}}占位符
+    places:
+      index:
+        adding_new_places: 正在添加新地点
+        you_can_help_out_by: 您可以帮助改善我们的地方数据，通过
+      new:
+        check_list_note: 注意：对非常大的地方的检查列表将被自动禁用。
+    projects:
+      edit:
+        custom_project_fields_means: 自定义项目标志，添加一些内容，及编辑CSS。
+        icon_desc: 将被裁剪成正方形
+        rules:
+          wild: 野生的/训化的
+          georeferenced: 有坐标
+          has_media: 有媒体（照片或声音）
+          has_a_photo: 有一个照片
+          has_a_sound: 有一段声音
+          identified: 被认证
+    shared:
+      spam:
+        message_for_owner_and_curators_html: 此记录已被标示为破坏并且不再公开可见。您可以看见它是因为您创建了它，或您是网站的监护人。如果您认为这是错误，请<a
+          href="mailto:%{email}">联络我们</a>。
+        this_has_been_flagged_as_spam: 这已经被标记为垃圾信息
+      not_found:
+        sorry_that_doesnt_exist: 抱歉，它不存在！
+        even_our_dedicated_search_mole_couldnt: 甚至我们的专业搜索引擎都找不到任何东西！
+    users:
+      dashboard:
+        new_project_admin_html: 想知道您为什么现在成为这个项目的管理员了么？之前的所有者可能删除了他们的账户，所以%{site_name}分配给您，因为您是一位项目经理或网站监护人。如果您不希望成为项目管理员，请联络<a
+          href="mailto:%{help_email}">%{help_email}</a>
+      show:
+        take_a_chance_to_review_html: 抓住机会，仔细阅读<a href="%{link}">我们的指南</a>。
+        this_user_was_banned: 此用户已被封禁
+    wiki_pages:
+      form:
+        save_and_edit_to_add_attachments: 保存并编辑以添加附件
+  date:
+    formats:
+      default: '%Y-%m-%d'
+      long: '%Y年%B%d日'
+      short: '%b%d日'
+      month_year: '%Y年%B'
+      month_day_year: '%B%d日%Y年'
+    month_names:
+      1: 一月
+      2: 二月
+      3: 三月
+      4: 四月
+  errors:
+    messages:
+      accepted: 必须接受
+      blank: 不能为空
+      confirmation: 与确认不匹配
+      empty: 不能为空
+      equal_to: 必须等于%{count}
+      even: 必须是偶数
+      exclusion: 被保留
+      inclusion: 未包括在列表中
+      invalid: 无效
+      odd: 必须是奇数
+      record_invalid: 验证失败：%{errors}
+  helpers:
+    submit:
+      create: 创建 %{model}
+      submit: 保存 %{model}
+      update: 更新%{model}
+  support:
+    array:
+      last_word_connector: ，和
+      two_words_connector: 和
+      words_connector: ，
+  time:
+    am: 上午
+    formats:
+      default: '%Y年%b%d日 %H:%M:%S %z'
+      long: '%Y年%d%B日 %I:%M %p'
+      short: '%b%d日 %H:%M'
+      observed_at: 在%I:%M %p %Z
+      rfc: '%Y年%B%d日'
+      day_month_year: '%Y年%B%d日'
+      hours: '%I:%M %p'
+    pm: 下午
+  activemodel:
+    errors:
+      format: '%{attribute} %{message}'
+      template:
+        header:
+          other: '%{count}个错误禁止了此%{model}的保存'
+  activerecord:
+    errors:
+      models:
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: 对于DNA，只能包含字符A、T、C或G
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: 必须已经注册超过24小时才能发布。我们有大量的破坏者，并且这是对付他们的蹩脚的方法。您仍然可以保存为草稿，并且如果您这一天仍然使用网站的话，您将可以发布。
+    attributes:
+      assessment:
+        description: 描述
+      project:
+        project_type: 项目类型
+        preferred_count_by: 优先计数自
+        prefers_count_from_list: 来自列表的推荐数
+        description: 描述
+        map_type: 地图类型
+      place:
+        code: 代码
+        place_type: 地点类型
+      flag:
+        reason: 原因
+        flag: 标记
+      observation:
+        geo_x: 朝东方
+        geo_y: 无
+      taxon:
+        source_identifier: 来源标识符
+      taxon_name:
+        source_identifier: 来源标识符
+...
