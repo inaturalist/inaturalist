@@ -13,16 +13,12 @@ config/s3.yml
 config/newrelic.yml
 config/secrets.yml
 config/smtp.yml
-config/sphinx.yml
-config/thinking_sphinx.yml
 config/settings.yml
 config/tilestache.cfg
 config/schedule.rb
 coverage/
 log/*
 cache/
-db/sphinx/
-config/*.sphinx.conf
 config/deploy.rb
 config/deploy
 *.DS_Store

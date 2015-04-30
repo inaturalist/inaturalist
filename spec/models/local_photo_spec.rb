@@ -62,6 +62,18 @@ describe LocalPhoto, "to_observation" do
     expect(o).to be_valid
     expect(o.observation_field_values.detect{|ofv| ofv.observation_field_id == of.id}).to be_blank
   end
+
+  it "should add arbitrary tags from keywords" do
+    lp = LocalPhoto.make!
+    lp.metadata = {
+      :dc => {
+        :subject => ['tag1', 'tag2']
+      }
+    }
+    o = lp.to_observation
+    expect( o.tag_list ).to include 'tag1'
+    expect( o.tag_list ).to include 'tag2'
+  end
 end
 
 describe LocalPhoto, "flagging" do

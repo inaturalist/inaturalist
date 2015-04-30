@@ -5,12 +5,10 @@ class Project < ActiveRecord::Base
   scope :load_for_index, -> { includes(:place) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :title, index_analyzer: "ascii_snowball_analyzer",
-        search_analyzer: "ascii_snowball_analyzer"
+      indexes :title, analyzer: "ascii_snowball_analyzer"
       indexes :title_autocomplete, index_analyzer: "keyword_autocomplete_analyzer",
         search_analyzer: "keyword_analyzer"
-      indexes :description, index_analyzer: "ascii_snowball_analyzer",
-        search_analyzer: "ascii_snowball_analyzer"
+      indexes :description, analyzer: "ascii_snowball_analyzer"
       indexes :location, type: "geo_point", lat_lon: true
       indexes :geojson, type: "geo_shape"
     end
