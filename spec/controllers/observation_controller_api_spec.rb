@@ -740,6 +740,12 @@ shared_examples_for "an ObservationsController" do
       json.detect{|obs| obs['id'] == site1.id}.should be_blank
       json.detect{|obs| obs['id'] == site2.id}.should_not be_blank
     end
+
+    it "should allow limit" do
+      10.times { Observation.make! }
+      get :index, format: :json, limit: 3
+      expect( JSON.parse(response.body).size ).to eq 3
+    end
   end
 
   describe "taxon_stats" do
