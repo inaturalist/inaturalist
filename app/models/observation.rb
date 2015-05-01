@@ -895,8 +895,8 @@ class Observation < ActiveRecord::Base
       p[:projects] = Project.find([project_ids].flatten) rescue []
       p[:projects] = p[:projects].compact
       if p[:projects].blank?
-        project_ids.each do |p|
-          p[:projects] << Project.find(p) rescue nil
+        project_ids.each do |project_id|
+          p[:projects] << Project.find(project_id) rescue nil
         end
         p[:projects] = p[:projects].compact
       end
