@@ -757,8 +757,27 @@ shared_examples_for "an ObservationsController" do
       po1 = ProjectObservation.make!
       po2 = ProjectObservation.make!
       get :index, format: :json, not_in_project: po1.project_id
-      expect( JSON.parse(response.body).detect{|o| o['id'] == po1.observation_id} ).to be_blank
-      expect( JSON.parse(response.body).detect{|o| o['id'] == po2.observation_id} ).not_to be_blank
+      json = JSON.parse(response.body)
+      expect( json.detect{|o| o['id'] == po1.observation_id} ).to be_blank
+      expect( json.detect{|o| o['id'] == po2.observation_id} ).not_to be_blank
+    end
+
+    it "should filter by identified" do
+      identified = Observation.make!(taxon: Taxon.make!)
+      unidentified = Observation.make!
+      get :index, format: :json, identified: true
+      json = JSON.parse(response.body)
+      expect( json.detect{|o| o['id'] == unidentified.id} ).to be_blank
+      expect( json.detect{|o| o['id'] == identified.id} ).not_to be_blank
+    end
+
+    it "should filter by not identified" do
+      identified = Observation.make!(taxon: Taxon.make!)
+      unidentified = Observation.make!
+      get :index, format: :json, identified: false
+      json = JSON.parse(response.body)
+      expect( json.detect{|o| o['id'] == unidentified.id} ).not_to be_blank
+      expect( json.detect{|o| o['id'] == identified.id} ).to be_blank
     end
   end
 

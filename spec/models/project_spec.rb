@@ -226,6 +226,8 @@ describe Project, "aggregation preference" do
 end
 
 describe Project, "aggregate_observations class method" do
+  before(:each) { enable_elastic_indexing(Observation, Place) }
+  after(:each) { disable_elastic_indexing(Observation, Place) }
   it "should touch projects that prefer aggregation" do
     p = Project.make!(prefers_aggregation: true, place: make_place_with_geom, trusted: true)
     expect( p.last_aggregated_at ).to be_nil
@@ -244,6 +246,8 @@ describe Project, "aggregate_observations class method" do
 end
 
 describe Project, "aggregate_observations" do
+  before(:each) { enable_elastic_indexing(Observation, Place) }
+  after(:each) { disable_elastic_indexing(Observation, Place) }
   let(:project) { Project.make! }
   it "should add observations matching the project observation scope" do
     project.update_attributes(place: make_place_with_geom, trusted: true)

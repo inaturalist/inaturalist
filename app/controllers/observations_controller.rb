@@ -2104,6 +2104,8 @@ class ObservationsController < ApplicationController
     @observations_taxon_id = search_params[:observations_taxon_id]
     @observations_taxon = search_params[:observations_taxon]
     @observations_taxon_name = search_params[:taxon_name]
+    @observations_taxon_ids = search_params[:taxon_ids]
+    @observations_taxa = search_params[:observations_taxa]
     if search_params[:has]
       @id_please = true if search_params[:has].include?('id_please')
       @with_photos = true if search_params[:has].include?('photos')

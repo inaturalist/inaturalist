@@ -282,11 +282,23 @@ class Project < ActiveRecord::Base
         observations_url_params.merge!(:d1 => start_time.in_time_zone(user.time_zone).iso8601, :d2 => end_time.in_time_zone(user.time_zone).iso8601)
       end
     end
-    if rule_taxa.size == 1
-      observations_url_params[:taxon_id] = rule_taxon.id
-    elsif rule_taxa.size > 1
-      observations_url_params[:taxon_ids] = rule_taxa.map(&:id)
+    taxon_ids = []
+    project_observation_rules.each do |rule|
+      case rule.operator
+      when "in_taxon?"
+        taxon_ids << rule.operand_id
+      when "observed_in_place?"
+        # Ignore, we already added the place_id
+      when "on_list?"
+        observation_url_params[:list_id] = rule.operand_id
+      when "identified?"
+        observation_url_params[:identified] = true
+      when "georeferenced"
+        observation_url_params[:has] = "geo"
+      end
     end
+    taxon_ids.compact.uniq!
+    observations_url_params.merge!(taxon_ids: taxon_ids) unless taxon_ids.blank?
     observations_url_params
   end
 
@@ -557,16 +569,24 @@ class Project < ActiveRecord::Base
     added = 0
     fails = 0
     logger.info "[INFO #{Time.now}] Starting aggregation for #{self}"
-    scope = observations_matching_rules.query(observations_url_params)
-    scope = scope.where("observations.updated_at > ?", last_aggregated_at) unless last_aggregated_at.nil?
-    scope.find_each do |o|
-      po = ProjectObservation.new(project: self, observation: o)
-      if po.save
-        added += 1
-      else
-        fails += 1
-        logger.error "[ERROR #{Time.now}] Failed to add #{po} to #{self}: #{po.errors.full_messages.to_sentence}"
+    elastic_options = {}
+    elastic_options[:filters] = [{ range: { updated_at: { gt: last_aggregated_at } } }] unless last_aggregated_at.nil?
+    params = observations_url_params.merge(per_page: 1000)
+    page = 1
+    while true
+      observations = Observation.elastic_query(params.merge(page: page), elastic_options)
+      break if observations.blank?
+      observations.each do |o|
+        po = ProjectObservation.new(project: self, observation: o)
+        if po.save
+          added += 1
+        else
+          fails += 1
+          logger.error "[ERROR #{Time.now}] Failed to add #{po} to #{self}: #{po.errors.full_messages.to_sentence}"
+        end
       end
+      observations = nil
+      page += 1
     end
     update_attributes(last_aggregated_at: Time.now)
     logger.info "[INFO #{Time.now}] Finished aggregation for #{self} in #{Time.now - start_time}s, #{added} observations added, #{fails} failures"

@@ -618,8 +618,9 @@ class Observation < ActiveRecord::Base
       return nil
     end
 
-    search_wheres = { }
-    extra_preloads = [ ]
+    search_wheres = options[:wheres] || { }
+    search_filters = options[:filters] || [ ]
+    extra_preloads = options[:preloads] || [ ]
     q = unless p[:q].blank?
       q = sanitize_query(p[:q])
       q.blank? ? nil : q
@@ -644,7 +645,11 @@ class Observation < ActiveRecord::Base
     search_wheres["taxon.rank"] = p[:rank] if p[:rank]
     # include the taxon plus all of its descendants.
     # Every taxon has its own ID in ancestor_ids
-    search_wheres["taxon.ancestor_ids"] = p[:observations_taxon] if p[:observations_taxon]
+    if p[:observations_taxon]
+      search_wheres["taxon.ancestor_ids"] = p[:observations_taxon]
+    elsif p[:observations_taxon_ids]
+      search_wheres["taxon.ancestor_ids"] = p[:observations_taxon_ids]
+    end
     search_wheres["id_please"] = true if p[:id_please]
     search_wheres["out_of_range"] = true if p[:out_of_range]
     search_wheres["mappable"] = true if p[:mappable] == "true"
@@ -694,7 +699,6 @@ class Observation < ActiveRecord::Base
       search_wheres["identifications_most_disagree"] = true
     end
 
-    search_filters = [ ]
     unless p[:nelat].blank? && p[:nelng].blank? && p[:swlat].blank? && p[:swlng].blank?
       search_filters << { envelope: { geojson: {
         nelat: p[:nelat], nelng: p[:nelng], swlat: p[:swlat], swlng: p[:swlng],
@@ -755,6 +759,21 @@ class Observation < ActiveRecord::Base
     else "observations.id"
       { created_at: sort_order }
     end
+
+    if p[:not_in_project]
+      search_filters << {
+        'not': {
+          term: { project_ids: p[:not_in_project].id }
+        }
+      }
+    end
+
+    if p[:identified].yesish?
+      search_filters << { exists: {field: :taxon} }
+    elsif p[:identified].noish?
+      search_filters << { 'not': { exists: {field: :taxon} } }
+    end
+
     # perform the actual query against Elasticsearch
     observations = Observation.elastic_paginate(
       where: search_wheres,
@@ -818,6 +837,10 @@ class Observation < ActiveRecord::Base
         taxon_name_conditions[1] = p[:taxon_name].encode('UTF-8')
         p[:observations_taxon] = TaxonName.where(taxon_name_conditions).joins(includes).first.try(:taxon)
       end
+    end
+    if !p[:observations_taxon] && !p[:taxon_ids].blank?
+      p[:observations_taxon_ids] = p[:taxon_ids]
+      p[:observations_taxa] = Taxon.where(id: p[:observations_taxon_ids]).limit(100)
     end
 
     if p[:has]
@@ -902,8 +925,12 @@ class Observation < ActiveRecord::Base
       end
     end
 
-    if params[:pcid] && params[:pcid] != 'any'
-      params[:pcid] = params[:pcid].yesish?
+    if p[:pcid] && p[:pcid] != 'any'
+      p[:pcid] = p[:pcid].yesish?
+    end
+
+    unless p[:not_in_project].blank?
+      p[:not_in_project] = Project.find(p[:not_in_project]) rescue nil
     end
 
     p[:rank] = p[:rank] if Taxon::VISIBLE_RANKS.include?(p[:rank])
@@ -1117,6 +1144,12 @@ class Observation < ActiveRecord::Base
       if list.listed_taxa.count <= 2000
         scope = scope.joins("JOIN listed_taxa ON listed_taxa.list_id = #{list.id}").where("listed_taxa.taxon_id = observations.taxon_id", list)
       end
+    end
+
+    if params[:identified].yesish?
+      scope = scope.has_taxon
+    elsif params[:identified].noish?
+      scope = scope.where("taxon_id IS NULL")
     end
     
     # return the scope, we can use this for will_paginate calls like:
