@@ -271,15 +271,15 @@ class Project < ActiveRecord::Base
   end
 
   def observations_url_params
-    observations_url_params = {:place_id => place_id}
+    params = {:place_id => place_id}
     if start_time && end_time
       if prefers_range_by_date?
-        observations_url_params.merge!(
+        params.merge!(
           d1: Date.parse(start_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s,
           d2: Date.parse(end_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s
         )
       else
-        observations_url_params.merge!(:d1 => start_time.in_time_zone(user.time_zone).iso8601, :d2 => end_time.in_time_zone(user.time_zone).iso8601)
+        params.merge!(:d1 => start_time.in_time_zone(user.time_zone).iso8601, :d2 => end_time.in_time_zone(user.time_zone).iso8601)
       end
     end
     taxon_ids = []
@@ -290,16 +290,16 @@ class Project < ActiveRecord::Base
       when "observed_in_place?"
         # Ignore, we already added the place_id
       when "on_list?"
-        observation_url_params[:list_id] = rule.operand_id
+        params[:list_id] = rule.operand_id
       when "identified?"
-        observation_url_params[:identified] = true
+        params[:identified] = true
       when "georeferenced"
-        observation_url_params[:has] = "geo"
+        params[:has] = "geo"
       end
     end
     taxon_ids.compact.uniq!
-    observations_url_params.merge!(taxon_ids: taxon_ids) unless taxon_ids.blank?
-    observations_url_params
+    params.merge!(taxon_ids: taxon_ids) unless taxon_ids.blank?
+    params
   end
 
   def cached_slug
