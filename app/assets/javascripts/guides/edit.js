@@ -440,7 +440,7 @@ $('#removetags .modal-footer .btn-primary').click(function() {
     $('#removetags').modal('hide')
     return
   }
-  var msg = I18n.t('verbing_x_of_y', {verb: I18n.t('removing_verb'), x: 1, y: $selection.length})
+  var msg = I18n.t('verbing_x_of_y', {verb: I18n.t('removing'), x: 1, y: $selection.length})
   engageShades(msg)
   $selection.each(function() {
     var input = $('input[name*=tag_list]', this)
@@ -583,7 +583,7 @@ $('#guide_eol_update_flow_task_options_subjects').multiselect()
 $('#eolupdate').on('shown', function () {
   $('body').css({height: '100%', overflow:'hidden'})
   var count = $('.guide_taxon input[type=checkbox]:checked').length,
-      val = I18n.t('update_x_selected_taxa', {count: count}) // count == 1 ? I18n.t('update_1_selected_taxon') : 
+      val = I18n.t('update_x_selected_taxa', {count: count})
   if (count == 0) {
     val = I18n.t('you_must_select_at_least_one_taxon')
   }
