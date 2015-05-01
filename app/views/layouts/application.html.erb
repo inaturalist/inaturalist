@@ -13,8 +13,8 @@
     <%= render :partial => 'shared/common_stylesheets'%>
     <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' %>
     <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js' %>
-    <%= javascript_include_tag 'i18n.min' %>
     <script type="text/javascript">
+      I18n = { }
       I18n.defaultLocale = "en"
       I18n.locale = "<%= I18n.locale %>"
       I18n.fallbacks = true
