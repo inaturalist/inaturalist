@@ -571,7 +571,7 @@ class Project < ActiveRecord::Base
     logger.info "[INFO #{Time.now}] Starting aggregation for #{self}"
     elastic_options = {}
     elastic_options[:filters] = [{ range: { updated_at: { gt: last_aggregated_at } } }] unless last_aggregated_at.nil?
-    params = observations_url_params.merge(per_page: 1000)
+    params = observations_url_params.merge(per_page: 200)
     page = 1
     while true
       observations = Observation.elastic_query(params.merge(page: page), elastic_options)
@@ -623,5 +623,8 @@ class Project < ActiveRecord::Base
     ensure
       File.delete pidfile
     end
+  rescue => e
+    File.delete pidfile
+    raise e
   end
 end
