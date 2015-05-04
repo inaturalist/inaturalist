@@ -25,6 +25,7 @@ class WelcomeController < ApplicationController
     batch_size = number_to_load + 2
     offset = 0
     observations = [ ]
+    return observations unless Observation.first
     while observations.size < number_to_load
       scope = Observation.has_geo.has_photos.offset(offset).
         order("observations.id DESC").limit(batch_size)
@@ -39,6 +40,7 @@ class WelcomeController < ApplicationController
       # don't use an observation if its photos are still processing
       observations += scope.to_a.delete_if{ |o|
         o.observation_photos_finished_processing.blank? }
+      break if observations.size < number_to_load && offset > Observation.maximum(:id)
       offset += batch_size
     end
     # remove any extra if there are more than were asked for
