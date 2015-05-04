@@ -17,7 +17,6 @@ class Update < ActiveRecord::Base
   
   scope :unviewed, -> { where("viewed_at IS NULL") }
   scope :activity, -> { where(:notification => "activity") }
-  scope :activity_on_my_stuff, -> { where("resource_owner_id = subscriber_id AND notification = 'activity'") }
 
   def to_s
     "<Update #{id} subscriber: #{subscriber_id} resource_type: #{resource_type} " +
@@ -222,31 +221,9 @@ class Update < ActiveRecord::Base
     updates = updates.to_a.compact
     return if updates.blank?
     subscriber_id = updates.first.subscriber_id
-    # using a transaction here to speed up the multiple inserts
-    Update.transaction do
-      # mark all as viewed
-      updates_scope = Update.where(id: updates)
-      updates_scope.update_all(viewed_at: Time.now)
-      Update.elastic_index!(scope: updates_scope)
-
-      # delete PAST activity updates that were not in this batch
-      clauses = []
-      update_ids = []
-      updates.each do |update|
-        next unless update.notification == 'activity'
-        Update.delay(:priority => USER_INTEGRITY_PRIORITY).delete_all([
-          "id < ? AND notification = 'activity' AND subscriber_id = ? AND resource_type = ? AND resource_id = ?",
-          update.id, update.subscriber_id, update.resource_type, update.resource_id
-        ])
-      end
-      Update.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
-        run_at: 6.hours.from_now, unique_hash: { "Update::sweep_for_user": subscriber_id }).
-        sweep_for_user(subscriber_id)
-    end
-  end
-
-  def self.sweep_for_user(user_id)
-    return if user_id.blank?
-    Update.delete_all(["subscriber_id = ? AND created_at < ?", user_id, 6.months.ago])
+    # mark all as viewed
+    updates_scope = Update.where(id: updates)
+    updates_scope.update_all(viewed_at: Time.now)
+    Update.elastic_index!(scope: updates_scope)
   end
 end

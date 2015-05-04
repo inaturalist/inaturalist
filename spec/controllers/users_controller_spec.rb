@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe UsersController, "dashboard" do
+  before(:each) { enable_elastic_indexing(Update) }
+  after(:each) { disable_elastic_indexing(Update) }
   it "should be accessible when signed in" do
     user = User.make!
     sign_in user

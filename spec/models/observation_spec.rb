@@ -681,6 +681,9 @@ describe Observation do
   end
 
   describe Observation, "destruction" do
+    before(:each) { enable_elastic_indexing(Update) }
+    after(:each) { disable_elastic_indexing(Update) }
+
     it "should decrement the counter cache in users" do
       @observation = Observation.make!
       user = @observation.user
@@ -1778,6 +1781,9 @@ describe Observation do
   end
 
   describe Observation, "taxon updates" do
+    before(:each) { enable_elastic_indexing(Update) }
+    after(:each) { disable_elastic_indexing(Update) }
+
     it "should generate an update" do
       t = Taxon.make!
       s = Subscription.make!(:resource => t)
@@ -1826,6 +1832,9 @@ describe Observation do
 
 
   describe Observation, "place updates" do
+    before(:each) { enable_elastic_indexing(Update) }
+    after(:each) { disable_elastic_indexing(Update) }
+
     describe "for places that cross the date line" do
       let(:place) {
         # crude shape that includes the north and south island of New Zealand

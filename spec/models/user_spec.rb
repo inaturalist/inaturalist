@@ -278,7 +278,7 @@ describe User do
 
   describe "sane_destroy" do
     before(:each) do
-      enable_elastic_indexing([ Observation ])
+      enable_elastic_indexing([ Observation, Update ])
       without_delay do
         @user = User.make!
         @place = make_place_with_geom
@@ -288,7 +288,7 @@ describe User do
         end
       end
     end
-    after(:each) { disable_elastic_indexing([ Observation ]) }
+    after(:each) { disable_elastic_indexing([ Observation, Update ]) }
 
     it "should destroy the user" do
       @user.sane_destroy
@@ -388,7 +388,7 @@ describe User do
       m = without_delay do
         ProjectUser.make!(:role => ProjectUser::MANAGER, :project => p)
       end
-      Update.delete_all
+      Update.destroy_all
       old_count = Update.count
       start = Time.now
       without_delay { @user.sane_destroy }

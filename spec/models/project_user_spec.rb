@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ProjectUser, "creation" do
+  before(:each) { enable_elastic_indexing(Update) }
+  after(:each) { disable_elastic_indexing(Update) }
   it "should subscribe user to assessment sections if curator" do
     as = AssessmentSection.make!
     p = as.assessment.project
@@ -100,7 +102,9 @@ describe ProjectUser do
       @project_user = ProjectUser.make!
       Delayed::Job.delete_all
       @now = Time.now
+      enable_elastic_indexing(Update)
     end
+    after(:each) { disable_elastic_indexing(Update) }
     
     it "should queue a job to update identifications if became curator" do
       @project_user.update_attributes(:role => ProjectUser::CURATOR)

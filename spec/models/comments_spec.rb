@@ -18,6 +18,9 @@ describe Comment, "creation" do
 end
 
 describe Comment, "deletion" do
+  before(:each) { enable_elastic_indexing(Update) }
+  after(:each) { disable_elastic_indexing(Update) }
+
   it "should decrement a counter cache on the parent if the column exists" do
     o = Observation.make!
     c = Comment.make!(:parent => o)

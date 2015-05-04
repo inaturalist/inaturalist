@@ -790,12 +790,14 @@ shared_examples_for "an ObservationsController" do
 
   describe "viewed_updates" do
     before do
+      enable_elastic_indexing(Update)
       without_delay do
         @o = Observation.make!(:user => user)
         @c = Comment.make!(:parent => @o)
         @i = Identification.make!(:observation => @o)
       end
     end
+    after(:each) { disable_elastic_indexing(Update) }
 
     it "should mark all updates from this observation for the signed in user as viewed" do
       num_updates_for_owner = Update.unviewed.activity.where(:resource_type => "Observation", :resource_id => @o.id, :subscriber_id => user.id).count
