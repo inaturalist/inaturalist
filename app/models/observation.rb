@@ -845,7 +845,6 @@ class Observation < ActiveRecord::Base
         p[:order_by] = "observations.id"
         p[:order] = "desc"
       end
-      p[:order_by] = "#{p[:order_by]} #{p[:order]}"
     end
 
     # date
@@ -957,7 +956,7 @@ class Observation < ActiveRecord::Base
     end
     scope = scope.identifications(params[:identifications]) if params[:identifications]
     scope = scope.has_iconic_taxa(params[:iconic_taxa]) if params[:iconic_taxa]
-    scope = scope.order_by(params[:order_by]) if params[:order_by]
+    scope = scope.order_by("#{params[:order_by]} #{params[:order]}") if params[:order_by]
     
     scope = scope.has_quality_grade( params[:quality_grade]) if QUALITY_GRADES.include?(params[:quality_grade])
     
