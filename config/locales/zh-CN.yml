@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Jiang123aa
 # Author: Liuxinyu970226
+# Author: Peishanxu
 # Author: Yfdyh000
 # Author: 아라
 ---
@@ -71,6 +72,7 @@ zh-CN:
   about_this_project: 关于这个项目
   about_x: 关于 %{x}
   acc: 精度（米）
+  account: 账户
   accept: 接受
   accept_community_identifications: 接受社群认同
   accuracy: 准确性
@@ -110,10 +112,12 @@ zh-CN:
   add_colors: 添加颜色
   add_comma_separated_tags: 添加逗号分隔的标签
   add_comment: 添加一条评论
+  add_conservation_status: 添加保留的状态
   add_countries: 添加国家
   add_custom_project_fields: 添加自定义项目字段
   add_edit_more_fields: 添加/编辑更多字段
   add_description: 添加 %{description_name}
+  add_from_your_observations: 从您的观察结果中添加
   add_higher_level_taxon: 加入一个更高级分类（例如：“鸟类”）
   add_id: 添加ID
   add_it_to_place_raquo: 将其加入至地点 &raquo;
@@ -129,8 +133,11 @@ zh-CN:
   add_observation: 添加观察
   add_observations!: 添加观察！
   add_observations: 添加观察
+  add_observations_from_list: 从列表中添加新的观察
   add_one: 添加一个！
   add_photos: 添加照片
+  add_photos_to_this_observation: 添加照片到此观察
+  add_several_observations_at_once: 马上添加几个观察结果
   add_shape: 添加形状
   add_some_now: 现在添加一些
   add_tags: 添加标签
@@ -142,6 +149,10 @@ zh-CN:
   add_to_project: 添加至项目
   add_to_your_life_list: 添加至您的生命清单！
   add_to_your_list: 加入到您的列表
+  add_your_email_to_get: |-
+    添加您的电子邮箱来收集来自社区关于你的观察的反馈
+    假如您不希望分享您的电子邮箱，请马上回来查阅。
+  add_your_own_observations_at: 在%{site_name}添加您的个人观察
   add_your_photo: 添加您的照片
   add_your_photo_to: 添加您的照片至 %{project}
   added: 已添加
@@ -152,6 +163,7 @@ zh-CN:
   added_on: 添加在
   added_to: 添加至
   adding: 正在添加……
+  adding_observations: 添加新的观察
   adding_to_your_life_list: 正在加入您的生命清单……
   additional_range: 额外范围
   admin: 管理员
@@ -159,6 +171,7 @@ zh-CN:
   admin_tools: 管理员工具
   agree: 同意
   agree?: 是否同意？
+  agree_to_the_project_terms: 同意项目的条款
   agreeing: 正在同意……
   aka: 也就是
   all: 全部
@@ -224,15 +237,19 @@ zh-CN:
     x_other_animals:
       other: '%{count}只其他动物'
   all_taxa_in_this_guide: 该指引中所有分类
+  all_taxonomic_groups: '&laquo; 所有分类组'
   all_your_projects: 您所有的项目
   allow_any: 允许任何
   allowed_html: 允许的HTML
   allowed_values: 允许的值
   alphabetical: 按字母排序
+  alphabetical_order: 按字母顺序
   amphibians: 两栖动物
   an: 一个
   an_: 一个
   and: 和
+  and_help_the_inaturalist_community_grow: 以及帮助%{site_name}社区成长
+  and_make_some_new: 以及添加新的
   and_other_taxa: '&amp; 其他分类'
   and_you_havent_linked: ……并且您没有连接这些外部账户之一，您应首先通过%{site_name}登录，然后编辑您的详细信息并从这里连接您的账户。否则%{site_name}可能无从得知两个账户是否已连接，并尝试为您创建一个新的账户！
   android: 安卓
@@ -242,6 +259,7 @@ zh-CN:
   any: 任何
   apply_to_selected: 申请选择
   apply_fields: 申请字段
+  apply_geoprivacy: 应用地点隐私
   apply_darr: 申请 &darr;
   appropriate?: 适当么？
   arachnids: 蛛形类
@@ -260,9 +278,14 @@ zh-CN:
   are_you_sure_want_delete_this_range: 您确定要删除此范围吗？
   are_you_sure_want_join: 您确定您希望加入
   are_you_sure_you_want_to_delete_this: 您确信您要删除这个么？
+  are_you_sure_you_want_to_delete_this_assessment?: 您确定您想要删除此评论吗？
   are_you_sure_you_want_to_delete_this_photo?: 您确定要删除这张照片么？
   are_you_sure_you_want_to_delete_this_post: 您确定要删除此投稿么？
   are_you_sure_you_want_to_remove_all_tags: 您确定您要移除所有标签么？
+  are_you_sure_you_want_to_remove_manager: 您确定您想要以管理员身份删除%{user}吗？
+  are_you_sure_you_want_to_remove_spammer: |-
+    您确定您认为此用户可信吗？
+    如果如此，他们所有垃圾邮件标志将会被去除。
   you_sure_delete_list: 您确定要删除此列表吗？
   you_sure_delete_taxon_from_list?: 您确定要从列表中移除%{taxon}吗？
   asc: 升
@@ -283,7 +306,7 @@ zh-CN:
   automatically_add_to_project: 自动加入至项目
   back: 返回
   back_to: 返回到
-  back_to_albums: 说唱硬核
+  back_to_albums: 返回专辑
   back_to_all_species: 回到所有种类
   back_to_browsing_people: 回到查找人
   back_to_calendar: 回到 %{user} 日历
@@ -321,13 +344,15 @@ zh-CN:
   before_importing_photos: 在导入照片前
   before_you_can_contribute_your_observations: 在您可以贡献您的观察前。
   bg_color: 背景颜色
-  birds: 鸟类的
+  birds: 鸟
   black: 黑色
   blog_widget: 博客小部件
   blue: 蓝色
   body: 身体
   breadcrumbs: 面包屑
   brief_caption: 简要描述
+  brief_description_on_what_you_observed: 关于您观察的简要介绍
+  brief_description_of_what_you_saw: 您所看见的简要介绍
   brown: 棕色
   browse: 浏览
   browse_all_projects: 浏览所有项目
@@ -343,7 +368,9 @@ zh-CN:
   by_you: 由您
   by_everyone: 由任何人
   calendar: 日历
+  can_you_help_your_friends_id_these: 您能帮助您的朋友识别这些吗？
   cancel: 取消
+  captive_cultivated: 野生的/自养的
   card: 卡
   case_plural: s
   casual: 变装
@@ -388,6 +415,7 @@ zh-CN:
   check_list_place: '%{place} 监视列表'
   check_list_updated: 监视列表已更新！
   check_list_source: 来源<span class="meta">（可选）</span>
+  check_out_my_observations_at: 假如您愿意，您可以在...找到我的观察
   check_out_your_life_list: 检查您的生命清单
   check_this_box_if: 如果您希望同意为您的照片使用<a href='http://creativecommons.org/licenses/by-nc/3.0/deed.zh'
     target='_blank'>知识共享 署名-非商业性使用</a>许可协议，请点选此框。您可以另选许可协议或稍后移除协议，但这是与研究人员分享时最好的协议。
@@ -408,6 +436,7 @@ zh-CN:
   clear: 清除
   clear_color_filters: 清除颜色过滤器
   clear_search: 清空搜索
+  clear_shapes: 清除形状
   click_the_map: <strong>点击地图</strong>以增加一个地点。
   code: 代码
   colors: 颜色
@@ -434,11 +463,15 @@ zh-CN:
   comprehensive: 综合分析
   comprehensive?: 综合分析？
   comprehensive_list: 综合分析列表
+  concept_status: 概念状态
   configure: 配置
+  confirm_membership: 确认会员
   confirm_new_password: 确认新密码
   confirm_now: 现在确认
   confirm_your_info: 确认您的信息
   confirmed: 已确认
+  confirmed_observations_are: 被确认了的观察是
+  confirming_identifications: 正在确认识别
   connect_to_provider: 连接至 %{provider}
   connected_accounts: 已连接账户
   connecting_flickr: 连接至Flickr……
@@ -476,8 +509,12 @@ zh-CN:
   create: 创建
   create_a_guide: 创建指导
   create_a_list: 创建列表
+  create_a_new_field: 创建一个新领域
+  create_a_new_place: 创建一个新的页面
+  create_a_new_taxon: 创建一个新标签
   create_a_query: 创建查询
   create_an_account: 创建一个账户
+  create_new_taxon: 创建一个新标签
   create_observations: 创建观察
   created: 已创建
   created_by: 创建由
@@ -530,6 +567,7 @@ zh-CN:
       october: 十月
       november: 十一月
       december: 十二月
+  date_observed: 观察日期
   date_observed_on: 数据观察于
   date_picker:
     closeText: 关闭
@@ -551,6 +589,7 @@ zh-CN:
   default_observation_license: 默认观察协议
   default_photo_license: 默认照片协议
   default_sound_license: 默认声音协议
+  defaults_to_your_name_or_username: 您的默认名字或者用户名
   delete: 删除
   delete_all: 删除所有
   delete_conversation: 删除会话
@@ -567,19 +606,29 @@ zh-CN:
   deleting_verb: 删除中
   desc: 描述
   descending: 降序
+  describe_purpose: 描述此项目的目的
+  describe_your_interest_in_nature: 描述您对自然的兴趣
   description: 描述
   description_from: 描述自
   description_tags_more: 描述、标签以及更多
   desription: 描述
   destroy: 破坏
   details: 详情
+  devise:
+    failure:
+      user:
+        suspended: 您的账户已经被吊销。
   developers: 开发人员
   device: 设备
+  did_not_send_invitations_because: 没有发送请求到以下因为
   did_you_mean: 您是不是要找
+  did_you_photos_flickr?: 您放过图片到Flickr上吗？
   disagree: 不同意
   disconnect_provider: 取消连接 %{provider}
+  do_you_know_where_this_species_lives: 您知道这个物种住在什么地方吗？
   does_the_location_seem_accurate: 位置看起来精确么？
   doesnt_have_default_photo: 尚无默认的照片。
+  dont_send_me_email: 不要发送任何电子邮件给我
   dont_use_double_quotes: 不要在其他地方使用双引号
   double_click_to_finish: （双击以完成）
   download: 下载
@@ -591,8 +640,11 @@ zh-CN:
   draft_saved: 草稿已保存！
   drafts: 草稿
   edit: 编辑
+  edit_comment: 编辑您的评论
   edit_flagged_observation: 编辑已被标记的观察
   edit_license: 编辑许可协议
+  edit_notes: 编辑注释
+  edit_photos: 编辑图片
   edit_place: 编辑地点
   edit_project: 编辑项目
   edit_remove: 编辑/移除
@@ -604,6 +656,7 @@ zh-CN:
   edit_your_account: 编辑您的帐户
   edit_your_account_and_profile_html: 编辑您的帐户和详细信息
   edit_your_default_settings: 编辑您的默认设置
+  edit_your_identification: 编辑您的识别
   edit_your_profile: 编辑您的详细信息
   edited: 已编辑
   edited_by: 编辑自
@@ -640,6 +693,7 @@ zh-CN:
   exporting: 正在导出……
   external_links: 外部链接
   extinct: 灭绝
+  facebook: 脸书
   facebook_account_not_linked: '%{user}不再有一个链接facebook的账户，因此%{site_name}并无权限访问此照片。'
   facebook_needs_the_owner_of_that_photo_to: Facebook需要照片的主人再次确认至%{site_name_short}的连接。
   facebook_options: Facebook选项
@@ -662,6 +716,8 @@ zh-CN:
   filters: 过滤器
   find: 查找
   flag: 标记
+  flag_as_spammer: 标记为破坏者
+  flag_as_non_spammer: 标记为非破坏者
   flag_description: 标记此内容以让馆长知道它有些东西是错误的。
   flag_it!: 标记它！
   flag_reason: '&ldquo;我正在标记这个%{record}，因为'
@@ -681,6 +737,7 @@ zh-CN:
   guess_description: 猜 / 描述
   guide_deleted: 指南已删除
   guide_was_successfully_created: 已成功创建指南。
+  guidelines: 指南
   helped_the_observer_make: 帮助观察者制作他们最终的ID（就是他们在最终ID之前制作并且匹配它的）
   hex_color_eg: 十六进制颜色代码，例如：65644F
   hi_user: 你好，%{user}
@@ -691,9 +748,11 @@ zh-CN:
   if_this_is_a_scientific_name: 如果这是一个学名，它目前是否接受？
   if_you_dont_want_us_to_share_your_data: 如果您不希望我们分享您的数据
   if_you_use: 如果您使用
+  ignore_times: 忽略时间
   import_date_time_location_taxonomic: 从此照片导入日期、时间、位置、描述和分类信息。
   import_from_other_photo_sites: 从其他照片网站导入
   import_observations_from_a_photo: 从照片提供者或您电脑中的文件导入观察。
+  internal_server_error: 内部服务器错误
   invite_more: 邀请更多
   invite_to_project: 邀请至项目
   is_a: 是一个
@@ -738,6 +797,7 @@ zh-CN:
     norwegian: 挪威语
     pangasinan: 邦阿西楠语
     portuguese: 葡萄牙语
+    romanian: 罗马尼亚语
     russian: 俄语
     spanish: 西班牙语
     swedish: 瑞典语
@@ -759,12 +819,18 @@ zh-CN:
   loading_wikipedia_description: 正在载入维基百科描述……
   locale_description: 区域设置您的语言和日期格式选项。
   locales:
+    ca: 加泰罗尼亚语
     en: 英语
     en-US: 英语（美国）
     es: 西班牙语
     es-ES: 西班牙语（西班牙）
     es-MX: 西班牙语（墨西哥）
-    mk: 马其顿
+    fr: 法语
+    eu: 巴斯克语
+    gl: 加利西亚语
+    mk: 马其顿语
+    pt: 葡萄牙语
+    pt-BR: 葡萄牙语（巴西）
   location: 位置
   location_: 位置
   location_is_exact: 位置是精确的
@@ -778,7 +844,11 @@ zh-CN:
     overlays:
       all_observations: 所有观察
       featured_observations: 特色观察
+      gbif_network: GBIF 网络
+      observations: 观察
       place_boundary: 地区边界
+      checklist_places: 清单地点
+      range: 范围
   months_ago: '%{text}前'
   more: 更多
   more_fields: 更多字段
@@ -822,6 +892,7 @@ zh-CN:
   only_files_with_10000_rows_at_a_time: 一次只能处理10000行的文件，请
   only_the_owner_of_this_list_can_do_that: 只有列表主人可以这样做。不要作恶。
   open_description: 任何人可以查看观察，除非分类受到威胁。
+  original: 原文
   owner: 所有人
   parent_name: 父名称
   photo_attribution: 照片 %{attribution}
@@ -1107,6 +1178,7 @@ zh-CN:
   trusted_project?: 可信任的项目？
   try_wikipedia: 尝试维基百科？
   tue: 二
+  twitter: 推特
   type: 类型
   type_a_name_and_click: 输入一个名字并点击查找
   type_authority: 类型机构……
@@ -1128,6 +1200,7 @@ zh-CN:
   unlink_your_picasa_account: 取消链接您的Picasa账户
   updates_notification_email_subject: '%{prefix}新的更新%{date}'
   updating: 正在更新...
+  unprocessable: 不可加工
   unpublish: 取消发布
   unsubscribe: 取消订阅
   unsubscribe_from_this: 退订此
@@ -1141,6 +1214,7 @@ zh-CN:
   upload: 上传
   upload_a_csv_file: 上传CSV文件
   upload_photos: 上传照片
+  uploaded_by: 上传者
   url_identifier_of_a_project_derived_from: 由同一外部资源衍生出来的URL/项目标识符
   US_states: 美国州
   user: 用户
