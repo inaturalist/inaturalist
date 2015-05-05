@@ -34,7 +34,7 @@ gem 'dynamic_form'
 gem 'exifr'
 gem 'flickraw', "~> 0.9.8", :git => 'git://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
 gem "friendly_id", "~> 5.0.1"
-gem 'gdata', :git => 'git://github.com/dwaite/gdata.git'
+gem 'gdata', :git => 'git://github.com/pleary/gdata.git'
 gem 'geocoder'
 gem 'geoplanet'
 gem 'google-api-client'
