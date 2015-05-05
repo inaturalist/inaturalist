@@ -91,7 +91,9 @@ base: &base
     #     This is a custom footer
 
     # Title of wiki page to use as the home page. Default will be the normal view in app/views/welcome/index
-    # home_page_wiki_path: naturalista+home
+    # home_page_wiki_path: naturewatch-home
+    # home_page_wiki_path_by_locale:
+    #   es: naturalista+home
 
     # filter observations in public places to ones contributed by this site
     # this filters by the uri column in observations, which in turns uses the
