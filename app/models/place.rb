@@ -19,7 +19,7 @@ class Place < ActiveRecord::Base
   has_many :place_taxon_names, :dependent => :delete_all, :inverse_of => :place
   has_many :taxon_names, :through => :place_taxon_names
   has_many :users, :inverse_of => :place, :dependent => :nullify
-  has_many :observations_places, :dependent => :destroy
+  has_many :observations_places, :dependent => :delete_all
   has_one :place_geometry, :dependent => :destroy
   has_one :place_geometry_without_geom, -> { select(PlaceGeometry.column_names - ['geom']) }, :class_name => 'PlaceGeometry'
   
@@ -686,6 +686,27 @@ class Place < ActiveRecord::Base
         child.update_attributes(:parent => nil)
       end
     end
+
+    # delete extra ObservationsPlaces for observations that are in both
+    # places. Doesn't matter which potential duplicate we delete b/c foreign
+    # keys will be updated to match the keeper with
+    # merge_has_many_associations
+    Place.connection.execute <<-SQL
+      DELETE FROM observations_places
+      USING (
+        SELECT
+          MAX(id) AS id
+        FROM
+          observations_places
+        WHERE
+          place_id IN (#{id},#{mergee.id})
+        GROUP BY observation_id
+        HAVING count(*) > 1
+      ) AS dupes
+      WHERE observations_places.id = dupes.id
+    SQL
+
+    merge_has_many_associations(mergee)
     
     # ensure any loaded associates that had their foreign keys updated in the db aren't hanging around
     mergee.reload

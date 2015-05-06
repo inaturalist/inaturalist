@@ -78,24 +78,24 @@ describe Place, "merging" do
     end
     @old_place_listed_taxa = @place.listed_taxa.all
     @place_geom = @place.place_geometry.geom
-    @mergee = Place.make!(:name => "Oakland")
-    @mergee.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.332077026367 37.8081564815264,-122.251739501953 37.7864534344207,-122.215347290039 37.757687076897,-122.264785766602 37.7424852382661,-122.21809387207 37.6990342079442,-122.14531 37.71152,-122.126083374023 37.7826547456574,-122.225646972656 37.8618440983709,-122.259635925293 37.8561518095069,-122.332077026367 37.8081564815264)))"))
+    @reject = Place.make!(:name => "Oakland")
+    @reject.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.332077026367 37.8081564815264,-122.251739501953 37.7864534344207,-122.215347290039 37.757687076897,-122.264785766602 37.7424852382661,-122.21809387207 37.6990342079442,-122.14531 37.71152,-122.126083374023 37.7826547456574,-122.225646972656 37.8618440983709,-122.259635925293 37.8561518095069,-122.332077026367 37.8081564815264)))"))
     2.times do
-      @mergee.check_list.taxa << Taxon.make!
+      @reject.check_list.taxa << Taxon.make!
     end
-    @mergee.check_list.taxa << @place.check_list.taxa.first
-    @mergee_listed_taxa = @mergee.listed_taxa.all.to_a
-    @mergee_geom = @mergee.place_geometry.geom
-    @merged_place = @place.merge(@mergee)
+    @reject.check_list.taxa << @place.check_list.taxa.first
+    @reject_listed_taxa = @reject.listed_taxa.all.to_a
+    @reject_geom = @reject.place_geometry.geom
+    @merged_place = @place.merge(@reject)
   end
   
   it "should return a valid place if the merge was successful" do
     expect(@merged_place).to be_valid
   end
   
-  it "should destroy the mergee" do
+  it "should destroy the reject" do
     expect {
-      @mergee.reload
+      @reject.reload
     }.to raise_error ActiveRecord::RecordNotFound
   end
   
@@ -106,7 +106,7 @@ describe Place, "merging" do
     end
   end
   
-  it "should accept an array of attributes to take from the mergee" do
+  it "should accept an array of attributes to take from the reject" do
     narnia_name = 'Narnia'
     narnia = Place.create(:name => narnia_name, :latitude => 10, :longitude => 10)
     mearth = Place.create(:name => 'Middle Earth', :latitude => 20, :longitude => 20)
@@ -124,8 +124,8 @@ describe Place, "merging" do
     expect(merged_place).to be_valid
   end
   
-  it "should move all the mergee's listed_taxa to the primary" do
-    @mergee_listed_taxa.each do |listed_taxon|
+  it "should move all the reject's listed_taxa to the primary" do
+    @reject_listed_taxa.each do |listed_taxon|
       next if @old_place_listed_taxa.map(&:taxon_id).include?(listed_taxon.taxon_id)
       expect {
         listed_taxon.reload
@@ -161,6 +161,31 @@ describe Place, "merging" do
     keeper.merge(reject)
     child.reload
     expect(child.parent).to eq keeper
+  end
+
+  it "should update observations_places" do
+    keeper = make_place_with_geom(wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+    reject = make_place_with_geom(wkt: "MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))")
+    o = Observation.make!(latitude: reject.latitude, longitude: reject.longitude)
+    op = o.observations_places.where(place_id: reject.id).first
+    expect( op.place_id ).to eq reject.id
+    keeper.merge(reject)
+    op.reload
+    expect( op.place_id ).to eq keeper.id
+  end
+
+  it "should not create duplicate observations_places" do
+    wkt = "MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))"
+    keeper = make_place_with_geom(wkt: wkt)
+    reject = make_place_with_geom(wkt: wkt)
+    o = Observation.make!(latitude: reject.latitude, longitude: reject.longitude)
+    expect( o.observations_places.count ).to eq 2
+    op = o.observations_places.where(place_id: reject.id).first
+    expect( op.place_id ).to eq reject.id
+    expect {
+      keeper.merge(reject)
+    }.not_to raise_error
+    expect( keeper.observations_places.where(observation_id: o) ).not_to be_blank
   end
 end
 
