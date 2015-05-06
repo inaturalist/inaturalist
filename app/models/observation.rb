@@ -868,7 +868,7 @@ class Observation < ActiveRecord::Base
       p[:ofv_params] = {}
       ofv_params.each do |k,v|
         p[:ofv_params][k] = {
-          :normalized_name => ObservationField.normalize_name(k),
+          :normalized_name => ObservationField.normalize_name(k.to_s),
           :value => v
         }
       end
