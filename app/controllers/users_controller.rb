@@ -319,7 +319,8 @@ class UsersController < ApplicationController
   end
   
   def updates_count
-    count = current_user.updates.unviewed.activity.count
+    count = current_user.recent_notifications(unviewed: true,
+      wheres: { notification: :activity }).total_entries
     session[:updates_count] = count
     render :json => {:count => count}
   end

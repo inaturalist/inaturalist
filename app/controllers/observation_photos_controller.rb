@@ -22,7 +22,7 @@ class ObservationPhotosController < ApplicationController
         first
     end
     @observation_photo ||= ObservationPhoto.new
-    @observation_photo.assign_attributes(params[:observation_photo])
+    @observation_photo.assign_attributes(params[:observation_photo] || {})
     unless @observation_photo.observation
       respond_to do |format|
         format.json do

@@ -138,7 +138,7 @@ class ObservationField < ActiveRecord::Base
   end
 
   def self.normalize_name(name, options={})
-    normalized = CGI.unescape(name).
+    normalized = CGI.unescape(name.to_s).
       gsub(/field\:/, '').gsub(/(%20|\+)/, ' ').downcase
     # escaping is useful for creating HTTP params where the field
     # has brackets e.g. field:Origin [IUCN Red List]

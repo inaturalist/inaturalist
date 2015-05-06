@@ -8,8 +8,10 @@ class Post < ActiveRecord::Base
     :queue_if => lambda{|post| 
       existing_updates = Update.where(:notifier_type => "Post", :notifier_id => post.id)
       # destroy existing updates if user *unpublishes* a post
-      if existing_updates.count > 0 && post.draft? 
-        existing_updates.delete_all
+      if existing_updates.count > 0 && post.draft?
+        Update.transaction do
+          existing_updates.destroy_all
+        end
         return false
       end
       return !post.draft? && existing_updates.blank?

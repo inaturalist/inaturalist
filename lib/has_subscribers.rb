@@ -23,8 +23,10 @@ module HasSubscribers
       Subscription.subscribable_classes << to_s
       
       after_destroy do |record|
-        Update.delete_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
-        Subscription.delete_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
+        Update.transaction do
+          Update.destroy_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
+          Subscription.delete_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
+        end
         true
       end
     end
@@ -86,7 +88,9 @@ module HasSubscribers
       end
       
       after_destroy do |record|
-        Update.delete_all(["notifier_type = ? AND notifier_id = ?", record.class.base_class.name, record.id])
+        Update.transaction do
+          Update.destroy_all(["notifier_type = ? AND notifier_id = ?", record.class.base_class.name, record.id])
+        end
         true
       end
     end

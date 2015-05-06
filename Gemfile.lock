@@ -17,12 +17,6 @@ GIT
       rails_autolink (>= 1.0)
 
 GIT
-  remote: git://github.com/dwaite/gdata.git
-  revision: fae93bd449d44044dbd0d565946b6ba0e21cb772
-  specs:
-    gdata (1.1.2)
-
-GIT
   remote: git://github.com/elasticsearch/elasticsearch-rails.git
   revision: 2f2c0fb7a25ece68fd3a9eec7b9026848e66fa4f
   specs:
@@ -100,6 +94,12 @@ GIT
   specs:
     xmp (0.2.0)
       nokogiri (~> 1.6.0)
+
+GIT
+  remote: git://github.com/pleary/gdata.git
+  revision: 85805f4f077357ceafce89c34073fa163944d7d4
+  specs:
+    gdata (1.1.2)
 
 GIT
   remote: git://github.com/rightscale/right_aws.git

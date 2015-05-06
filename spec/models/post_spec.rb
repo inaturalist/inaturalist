@@ -49,6 +49,8 @@ describe Post, "publish" do
 end
 
 describe Post, "creation for project" do
+  before(:each) { enable_elastic_indexing(Update) }
+  after(:each) { disable_elastic_indexing(Update) }
   it "should generate an update for the owner" do
     p = Project.make!
     u = p.user
@@ -58,6 +60,8 @@ describe Post, "creation for project" do
 end
 
 describe Post, "creation for user" do
+  before(:each) { enable_elastic_indexing(Update) }
+  after(:each) { disable_elastic_indexing(Update) }
   it "should generate updates for followers" do
     f = Friendship.make!
     post = without_delay { Post.make!(:parent => f.friend) }

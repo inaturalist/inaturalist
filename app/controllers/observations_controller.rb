@@ -2208,7 +2208,7 @@ class ObservationsController < ApplicationController
       # then default to searching PostgreSQL via ActiveRecord
       return get_paginated_observations(search_params, find_options)
     end
-    Observation.elastic_query(search_params, current_user: current_user)
+    Observation.elastic_query(search_params.merge(find_options), current_user: current_user)
   end
 
   # Make a plain db query and return a WillPaginate collection.

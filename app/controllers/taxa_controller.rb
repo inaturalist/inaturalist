@@ -72,8 +72,7 @@ class TaxaController < ApplicationController
             "taxa.wikipedia_summary IS NOT NULL AND " +
             "photos.id IS NOT NULL AND " +
             "taxa.observations_count > 1"
-          )
-          order("taxa.id DESC")
+          ).order("taxa.id DESC")
           @featured_taxa = @featured_taxa.from_place(@site_place) if @site_place
         end
         

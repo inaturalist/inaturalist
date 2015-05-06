@@ -46,8 +46,18 @@ namespace :inaturalist do
     User.where(id: spammer_ids).update_all(description: nil)
   end
 
+  desc "Delete expired updates"
+  task :delete_expired_updates => :environment do
+    Update.where("created_at < ?", 6.months.ago).find_in_batches do |batch|
+      Update.transaction do
+        Update.destroy_all(id: batch.map(&:id))
+      end
+    end
+  end
+
   desc "Find all javascript i18n keys and print a new translations.js"
   task :generate_translations_js => :environment do
+    output_path = "app/assets/javascripts/i18n/translations.js"
     # various keys from models, or from JS dynamic calls
     all_keys = [ "black", "white", "red", "green", "blue", "purple",
                  "yellow", "grey", "orange", "brown", "pink",
@@ -62,7 +72,7 @@ namespace :inaturalist do
     Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each do |f|
       next unless File.file?( f )
       next if f =~ /\.(gif|png|php)$/
-      next if f == "app/assets/javascripts/translations.js"
+      next if f == output_path
       contents = IO.read( f )
       results = contents.scan(/I18n.t\((.)(.*?)\1/i)
       unless results.empty?
@@ -93,9 +103,11 @@ namespace :inaturalist do
       end
     end
     # output what should be the new contents of app/assets/javascripts/i18n/translations.js
-    puts "I18n.translations || (I18n.translations = {});"
-    all_translations.each do |locale, translastions|
-      puts "I18n.translations[\"#{ locale }\"] = #{ translastions.to_json };"
+    File.open(output_path, "w") do |file|
+      file.puts "I18n.translations || (I18n.translations = {});"
+      all_translations.each do |locale, translastions|
+        file.puts "I18n.translations[\"#{ locale }\"] = #{ translastions.to_json };"
+      end
     end
   end
 end

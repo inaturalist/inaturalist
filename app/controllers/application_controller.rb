@@ -22,13 +22,25 @@ class ApplicationController < ActionController::Base
   before_filter :login_from_param
   before_filter :set_site
   before_filter :set_ga_trackers
-  before_filter :set_locale
+  before_filter :set_request_locale
 
   PER_PAGES = [10,30,50,100,200]
   HEADER_VERSION = 15
   
   alias :logged_in? :user_signed_in?
-  
+
+  # set the locale for the current session. If the user is
+  # logged in, also update their preferred locale in the DB
+  def set_locale
+    if I18N_SUPPORTED_LOCALES.include?( params[:locale] )
+      if logged_in?
+        current_user.update_attribute(:locale, params[:locale])
+      end
+      session[:locale] = params[:locale]
+    end
+    redirect_back_or_default( root_url )
+  end
+
   private
 
   # Store the URI of the current request in the session.
@@ -59,8 +71,11 @@ class ApplicationController < ActionController::Base
     request.env['inat_ga_trackers'] = trackers unless trackers.blank?
   end
 
-  def set_locale
-    I18n.locale = params[:locale] || current_user.try(:locale) || I18n.default_locale
+  def set_request_locale
+    # use params[:locale] for single-request locale settings,
+    # otherwise use the session, user's preferred, or site default locale
+    I18n.locale = params[:locale] || session[:locale] ||
+      current_user.try(:locale) || I18n.default_locale
     I18n.locale = current_user.try(:locale) if I18n.locale.blank?
     I18n.locale = I18n.default_locale if I18n.locale.blank?
   end

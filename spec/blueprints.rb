@@ -403,3 +403,6 @@ User.blueprint do
   state { "active" }
   time_zone { "Pacific Time (US & Canada)" }
 end
+
+WikiPage.blueprint do
+end

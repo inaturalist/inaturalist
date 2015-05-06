@@ -13,8 +13,8 @@ describe ProjectList do
 end
 
 describe ProjectList, "refresh_with_observation" do
-  before { enable_elastic_indexing(Observation) }
-  after { disable_elastic_indexing(Observation) }
+  before { enable_elastic_indexing(Observation, Update) }
+  after { disable_elastic_indexing(Observation, Update) }
   it "should remove taxa with no more confirming observations" do
     p = Project.make!
     pl = p.project_list
@@ -135,8 +135,8 @@ describe ProjectList, "refresh_with_observation" do
 end
 
 describe ProjectList, "reload_from_observations" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  before(:each) { enable_elastic_indexing(Observation, Update) }
+  after(:each) { disable_elastic_indexing(Observation, Update) }
   it "should not delete manually added taxa when descendant taxa have been observed" do
     p = Project.make!
     pl = p.project_list

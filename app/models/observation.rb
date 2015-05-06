@@ -612,7 +612,7 @@ class Observation < ActiveRecord::Base
 
   def self.elastic_query(params, options = {})
     current_user = options[:current_user]
-    p = query_params(params) unless params[:_query_params_set]
+    p = params[:_query_params_set] ? params : query_params(params)
     if (Observation::NON_ELASTIC_ATTRIBUTES & p.reject{ |k,v| v.blank? || v == "any" }.keys).any? ||
        (p[:place] && !p[:place].geom_in_elastic_index)
       return nil
@@ -716,7 +716,7 @@ class Observation < ActiveRecord::Base
     search_filters << { exists: { field: "photos.url" } } if p[:with_photos]
     search_filters << { exists: { field: "sounds" } } if p[:with_sounds]
     search_filters << { exists: { field: "geojson" } } if p[:with_geo]
-    unless p[:iconic_taxa].blank?
+    if p[:iconic_taxa] && p[:iconic_taxa].size > 0
       # iconic_taxa will be an array which might contain a nil value
       known_taxa = p[:iconic_taxa].compact
       # if it is smaller after compact, then it contained nil and
@@ -813,13 +813,13 @@ class Observation < ActiveRecord::Base
       end
       
       # resolve taxa entered by name
-      allows_unknown = false
-      p[:iconic_taxa] = p[:iconic_taxa].map do |it|
+      allows_unknown = p[:iconic_taxa].include?(nil)
+      p[:iconic_taxa] = p[:iconic_taxa].compact.map do |it|
         it = it.last if it.is_a?(Array)
         if it.is_a? Taxon
           it
         elsif it.to_i == 0
-          allows_unknown = true if it.downcase == "unknown"
+          allows_unknown = true if it.to_s.downcase == "unknown"
           Taxon::ICONIC_TAXA_BY_NAME[it]
         else
           Taxon::ICONIC_TAXA_BY_ID[it]
@@ -851,7 +851,7 @@ class Observation < ActiveRecord::Base
       p[:with_geo] = true if p[:has].include?('geo')
     end
 
-    p[:captive] = p[:captive].yesish? unless p[:captive].nil?
+    p[:captive] = p[:captive].yesish? unless p[:captive].blank?
 
     if p[:skip_order]
       p.delete(:order)
@@ -868,7 +868,6 @@ class Observation < ActiveRecord::Base
         p[:order_by] = "observations.id"
         p[:order] = "desc"
       end
-      p[:order_by] = "#{p[:order_by]} #{p[:order]}"
     end
 
     # date
@@ -937,7 +936,11 @@ class Observation < ActiveRecord::Base
     p[:hrank] = p[:hrank] if Taxon::VISIBLE_RANKS.include?(p[:hrank])
     p[:lrank] = p[:lrank] if Taxon::VISIBLE_RANKS.include?(p[:lrank])
 
-    params[:_query_params_set] = true
+    p.each do |k,v|
+      p[k] = nil if v.is_a?(String) && v.blank?
+    end
+
+    p[:_query_params_set] = true
     p
   end
   
@@ -980,7 +983,7 @@ class Observation < ActiveRecord::Base
     end
     scope = scope.identifications(params[:identifications]) if params[:identifications]
     scope = scope.has_iconic_taxa(params[:iconic_taxa]) if params[:iconic_taxa]
-    scope = scope.order_by(params[:order_by]) if params[:order_by]
+    scope = scope.order_by("#{params[:order_by]} #{params[:order]}") if params[:order_by]
     
     scope = scope.has_quality_grade( params[:quality_grade]) if QUALITY_GRADES.include?(params[:quality_grade])
     
