@@ -449,7 +449,7 @@ class Place < ActiveRecord::Base
   def append_geom(geom, other_attrs = {})
     new_geom = geom
     self.place_geometry.reload
-    if place_geometry
+    if place_geometry && !place_geometry.geom.nil?
       f = place_geometry.geom.factory
       new_geom = f.multi_polygon([place_geometry.geom.union(geom)])
     end
