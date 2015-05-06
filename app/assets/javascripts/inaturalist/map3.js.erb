@@ -24,6 +24,11 @@ var deselectText = function() {
   }
 };
 
+var emptyLayer = new google.maps.ImageMapType({
+  tileSize: new google.maps.Size(256, 256),
+  getTileUrl: function(tile, zoom) { }
+});
+
 // extend parts of the Google Marker class
 google.maps.Marker.prototype.observation_id = null;
 
@@ -579,7 +584,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   checkbox.change( function( ) {
     var checked = this.checked;
     _.each( layers, function( layerData ) {
-      map.overlayMapTypes.setAt( layerData.layerID - 1, checked ? layerData.layer : null);
+      map.overlayMapTypes.setAt( layerData.layerID - 1, checked ? layerData.layer : emptyLayer);
     });
     // if this checkbox belongs to a taxon, make sure that if this is the
     // last in the set unchecked, the taxon is also unchecked. And as soon
@@ -796,7 +801,7 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
     // we need to secure the layerID so that we can add the layer in the proper
     // places when the user selects it. That is why the layer is added
     // above and immediately set to null here.
-    this.overlayMapTypes.setAt( layerID - 1, null);
+    this.overlayMapTypes.setAt( layerID - 1, emptyLayer);
   }
   if( this._overlayControl ) {
     this._overlayControl.addWindshaftOverlayControl(
@@ -869,7 +874,7 @@ google.maps.Map.prototype.addTileLayer = function(tileURL, options) {
   var layer = new wax.g.connector( tilejson );
   var layerID =  this.overlayMapTypes.push( layer );
   if( options.disabled ) {
-    this.overlayMapTypes.setAt( layerID - 1, null);
+    this.overlayMapTypes.setAt( layerID - 1, emptyLayer);
   }
   // add a utfgrid data layer and custom JS events to catch interactivity
   if( options.interactivity ) {
@@ -895,7 +900,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID ) {
     .on({
       on: function(o) {
         // check to see if the layer with the interaction is enabled
-        if( map.overlayMapTypes.getAt( layerID - 1 ) === null ) {
+        if( map.overlayMapTypes.getAt( layerID - 1 ) === emptyLayer ) {
           return null;
         }
         interactionOn = true;
