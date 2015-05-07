@@ -204,7 +204,7 @@ describe ObservationsController do
       @project = Project.make!
       @user = @project.user
       @observation = Observation.make!(:user => @user)
-      @project_observation = make_project_observation(:project => @project, :observation => @observation)
+      @project_observation = make_project_observation(:project => @project, :observation => @observation, :user => @observation.user)
       @observation = @project_observation.observation
       ActionController::Base.perform_caching = true
       path = all_project_observations_path(@project, :format => 'csv')
