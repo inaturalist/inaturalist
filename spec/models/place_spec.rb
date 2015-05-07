@@ -141,17 +141,13 @@ describe Place, "merging" do
     end
   end
   
-  # I think rgeo might be unioning them instead of appending
-  # TODO verify this
-  # it "should merge the place geometries" do
-  #   expect(@place.place_geometry.geom.size).to be > @place_geom.size
-  # end
-  
   it "should merge the place geometries when the keeper has no geom" do
     p = Place.make!
     expect(p.place_geometry).to be_blank
+    expect(@merged_place.place_geometry).not_to be_blank
     p.merge(@merged_place)
-    expect(p.place_geometry).to_not be_blank
+    p.reload
+    expect(p.place_geometry).not_to be_blank
   end
 
   it "should move the rejects children over to the keeper" do
