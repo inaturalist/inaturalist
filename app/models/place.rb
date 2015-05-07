@@ -671,10 +671,8 @@ class Place < ActiveRecord::Base
         update_all(place_id: self, list_id: self.check_list.id)
     end
     
-    # Merge the geometries
-    if self.place_geometry && mergee.place_geometry
-      append_geom(mergee.place_geometry.geom)
-    elsif mergee.place_geometry
+    # Keep reject geometry if keeper doesn't have one
+    if place_geometry_without_geom.nil? && !mergee.place_geometry_without_geom.nil?
       save_geom(mergee.place_geometry.geom)
     end
 

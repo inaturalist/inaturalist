@@ -40,7 +40,7 @@ module ActsAsElasticModel
         options[:fields] ||= :id
         result = elastic_search(options).
           per_page(options[:per_page]).page(options[:page])
-        ElasticModel.result_to_will_paginate_collection(result)
+        result_to_will_paginate_collection(result)
       end
 
       # standard way to bulk index instances. Called without options it will
@@ -74,6 +74,35 @@ module ActsAsElasticModel
           bulk_index(batch)
         end
         __elasticsearch__.refresh_index! if Rails.env.test?
+      end
+
+      def elastic_delete!(options = {})
+        begin
+          __elasticsearch__.client.delete_by_query(index: index_name,
+            body: ElasticModel.search_hash(options))
+        rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+          Logstasher.write_exception(e)
+          Rails.logger.error "[Error] elastic_search failed: #{ e }"
+          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+        end
+      end
+
+      def result_to_will_paginate_collection(result)
+        begin
+          records = result.records.to_a
+          elastic_ids = result.results.results.map{ |r| r.id.to_i }
+          elastic_ids_to_delete = elastic_ids - records.map(&:id)
+          elastic_delete!(where: { id: elastic_ids_to_delete })
+          WillPaginate::Collection.create(result.current_page, result.per_page,
+            result.total_entries - elastic_ids_to_delete.count) do |pager|
+            pager.replace(result.records.to_a)
+          end
+        rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+          Logstasher.write_exception(e)
+          Rails.logger.error "[Error] Elasticsearch query failed: #{ e }"
+          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+          WillPaginate::Collection.new(1, 30, 0)
+        end
       end
 
       private

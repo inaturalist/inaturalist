@@ -64,6 +64,7 @@ google.maps.Map.prototype.removeMarker = function(marker) {
   google.maps.event.clearInstanceListeners(marker);
   
   // remove the marker from the map
+  marker.setMap(null);
   this.removeOverlay(marker);
 };
   
@@ -274,16 +275,12 @@ google.maps.Map.prototype.setPlace = function(place, options) {
     this.setCenter(new google.maps.LatLng(place.latitude, place.longitude));
   }
 }
-// 
-// google.maps.Map.prototype.addPlaces = function(places, options) {
-//   var map = this;
-//   $.each(places, function() {
-//     var success = map.addPlace(this, options);
-//   });
-// }
+
 google.maps.Map.prototype.removePlace = function(place) {
-  this.removeMarker(this.places[place.id]);
-  delete this.places[place.id];
+  if (this.places[place.id]) {
+    this.removeMarker(this.places[place.id]);
+    delete this.places[place.id];
+  }
 }
 google.maps.Map.prototype.removePlaces = function(places) {
   var map = this;

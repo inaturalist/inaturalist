@@ -227,4 +227,15 @@ class Update < ActiveRecord::Base
     updates_scope.update_all(viewed_at: Time.now)
     Update.elastic_index!(scope: updates_scope)
   end
+
+  def self.delete_and_purge(*args)
+    return if args.blank?
+    # first delete all entries from Elasticearch
+    Update.where(*args).select(:id).find_in_batches do |batch|
+      Update.elastic_delete!(where: { id: batch.map(&:id) })
+    end
+    # then delete them from Postgres
+    Update.delete_all(*args)
+  end
+
 end

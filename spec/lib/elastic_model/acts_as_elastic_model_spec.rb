@@ -150,6 +150,28 @@ describe ActsAsElasticModel do
         expect( Observation.elastic_search( ).count ).to eq 0
       end
     end
+
+    describe "elastic_delete!" do
+      it "deletes instances of a class from ES" do
+        obs = Observation.make!
+        expect( Observation.count ).to eq 1
+        expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 1
+        Observation.elastic_delete!( where: { id: obs.id } )
+        expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 0
+        expect( Observation.count ).to eq 1
+      end
+    end
+
+    describe "result_to_will_paginate_collection" do
+      it "returns an empty WillPaginate Collection on errors" do
+        expect(WillPaginate::Collection).to receive(:create).
+          and_raise(Elasticsearch::Transport::Transport::Errors::BadRequest)
+        expect(Taxon.result_to_will_paginate_collection(
+          OpenStruct.new(current_page: 2, per_page: 11, total_entries: 57,
+            results: OpenStruct.new(results: [])))).
+          to eq WillPaginate::Collection.new(1, 30, 0)
+      end
+    end
   end
 
   describe "instance methods" do

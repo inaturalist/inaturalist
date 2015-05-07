@@ -643,7 +643,7 @@ class User < ActiveRecord::Base
     user_id ||= "signed_on"
     site_name = options[:site].try(:name) || options[:site_name]
     site_name ||= user.site.try(:name) if user.is_a?(User)
-    "header_cache_key_for_#{user_id}_on_#{site_name}"
+    "header_cache_key_for_#{user_id}_on_#{site_name}_#{I18n.locale}"
   end
 
   def to_plain_s
