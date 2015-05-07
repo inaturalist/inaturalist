@@ -626,10 +626,10 @@ class Project < ActiveRecord::Base
       end
       logger.info "[INFO #{Time.now}] Finished Project.aggregate_observations in #{Time.now - start_time}s, #{num_projects} projects"
     ensure
-      File.delete pidfile
+      File.delete(pidfile) if File.exists?(pidfile)
     end
   rescue => e
-    File.delete pidfile
+    File.delete(pidfile) if File.exists?(pidfile)
     raise e
   end
 end
