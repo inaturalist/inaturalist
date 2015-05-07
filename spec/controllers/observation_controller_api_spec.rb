@@ -785,6 +785,14 @@ shared_examples_for "an ObservationsController" do
       get :index, format: :json, limit: 3
       expect( JSON.parse(response.body).size ).to eq 3
     end
+
+    it "filters on observation fields" do
+      o = Observation.make!
+      of = ObservationField.make!(name: "transect_id")
+      ofv = ObservationFieldValue.make!(:observation => o, :observation_field => of, :value => "67-48")
+      get :index, format: :json, "field:transect_id" => "67-48"
+      expect( JSON.parse(response.body).size ).to eq 1
+    end
   end
 
   describe "taxon_stats" do

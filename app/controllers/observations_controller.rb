@@ -94,7 +94,7 @@ class ObservationsController < ApplicationController
       authenticate_user!
       return false
     end
-    search_params = site_search_params(params)
+    search_params = Observation.site_search_params(@site, params)
     # making `page` default to a string because HTTP params are
     # usually strings and we want to keep the cache_key consistent
     search_params[:page] ||= "1"
@@ -133,6 +133,7 @@ class ObservationsController < ApplicationController
         # we can only show grids when quality_grade = 'any',
         # and all other parameters are empty
         elsif grid_affecting_params.delete("quality_grade") == "any" &&
+          grid_affecting_params.delete("identifications") == "any" &&
           grid_affecting_params.detect{ |k,v| v != "" }.nil?
           @display_map_tiles = true
         end
@@ -141,8 +142,7 @@ class ObservationsController < ApplicationController
           valid_map_params = {
             taxon: @observations_taxon.blank? ? nil : @observations_taxon,
             user_id: @user.blank? ? nil : @user.id,
-            project_id: @projects.blank? ? nil: @projects.first.id,
-            place_id: @place.blank? ? nil: @place.id,
+            project_id: @projects.blank? ? nil: @projects.first.id
           }.delete_if{ |k,v| v.nil? }
           if valid_map_params.empty?
             # there are no options, so show all observations by default
@@ -1087,7 +1087,7 @@ class ObservationsController < ApplicationController
 
   def export
     search_params, find_options = get_search_params(params)
-    search_params = site_search_params(search_params)
+    search_params = Observation.site_search_params(@site, search_params)
     if params[:flow_task_id]
       if @flow_task = ObservationsExportFlowTask.find_by_id(params[:flow_task_id])
         @export_url = FakeView.uri_join(root_url, @flow_task.outputs.first.file.url).to_s
@@ -1227,7 +1227,7 @@ class ObservationsController < ApplicationController
     else
       params[:has] = 'id_please'
     end
-    search_params = site_search_params(params)
+    search_params = Observation.site_search_params(@site, params)
     @observations = get_elastic_paginated_observations(search_params)
     Observation.preload_associations(@observations, [ :projects,
       { identifications: [ :taxon, :user ] } ])
@@ -2676,23 +2676,6 @@ class ObservationsController < ApplicationController
     if request.format && request.format.html?
       @view = params[:view] || current_user.try(:preferred_observations_view) || 'map'
     end
-  end
-
-  def site_search_params(search_params = {})
-    if CONFIG.site_only_observations && params[:site].blank?
-      search_params[:site] ||= FakeView.root_url
-    end
-    if (site_bounds = CONFIG.bounds) && params[:swlat].blank? && params[:place_id].blank? & params[:bbox].blank?
-      search_params[:nelat] ||= site_bounds['nelat']
-      search_params[:nelng] ||= site_bounds['nelng']
-      search_params[:swlat] ||= site_bounds['swlat']
-      search_params[:swlng] ||= site_bounds['swlng']
-      @nelat ||= site_bounds['nelat']
-      @nelng ||= site_bounds['nelng']
-      @swlat ||= site_bounds['swlat']
-      @swlng ||= site_bounds['swlng']
-    end
-    search_params
   end
 
   def delayed_csv(path_for_csv, parent, options = {})
