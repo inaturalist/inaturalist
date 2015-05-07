@@ -574,6 +574,11 @@ class Project < ActiveRecord::Base
     params = observations_url_params.merge(per_page: 200)
     page = 1
     while true
+      if options[:pidfile]
+        raise "Project aggregator running without a PID file" unless File.exists?(options[:pidfile])
+        pid = open(options[:pidfile]).read.to_s.strip.to_i
+        raise "Another project aggregator is already running" unless pid == Process.pid
+      end
       observations = Observation.elastic_query(params.merge(page: page), elastic_options)
       break if observations.blank?
       observations.each do |o|
@@ -616,7 +621,7 @@ class Project < ActiveRecord::Base
       logger.info "[INFO #{Time.now}] Starting Project.aggregate_observations"
       Project.joins(:stored_preferences).where("preferences.name = 'aggregation' AND preferences.value = 't'").find_each do |p|
         next unless p.aggregation_allowed? && p.prefers_aggregation?
-        p.aggregate_observations(logger: logger)
+        p.aggregate_observations(logger: logger, pidfile: pidfile)
         num_projects += 1
       end
       logger.info "[INFO #{Time.now}] Finished Project.aggregate_observations in #{Time.now - start_time}s, #{num_projects} projects"
