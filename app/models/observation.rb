@@ -610,6 +610,26 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  def self.site_search_params(site, params = {})
+    search_params = params.dup
+    return search_params unless site && site.is_a?(Site)
+    if CONFIG.site_only_observations && search_params[:site].blank?
+      search_params[:site] ||= FakeView.root_url
+    end
+    if !search_params[:swlat] &&
+      !search_params[:place_id] && search_params[:bbox].blank?
+      if site.place
+        search_params[:place] = site.place
+      elsif CONFIG.bounds
+        search_params[:nelat] ||= CONFIG.bounds["nelat"]
+        search_params[:nelng] ||= CONFIG.bounds["nelng"]
+        search_params[:swlat] ||= CONFIG.bounds["swlat"]
+        search_params[:swlng] ||= CONFIG.bounds["swlng"]
+      end
+    end
+    search_params
+  end
+
   def self.elastic_query(params, options = {})
     current_user = options[:current_user]
     p = params[:_query_params_set] ? params : query_params(params)
@@ -617,7 +637,7 @@ class Observation < ActiveRecord::Base
        (p[:place] && !p[:place].geom_in_elastic_index)
       return nil
     end
-
+    p = site_search_params(options[:site], p)
     search_wheres = { }
     extra_preloads = [ ]
     q = unless p[:q].blank?

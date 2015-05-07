@@ -3,6 +3,8 @@ require 'spec_helper'
 describe WelcomeController do
 
   describe "set_homepage_wiki" do
+    before(:each) { enable_elastic_indexing(Observation) }
+    after(:each) { disable_elastic_indexing(Observation) }
     before(:all) do
       @home = WikiPage.make!(path: "home")
       @homeES = WikiPage.make!(path: "eshome")
