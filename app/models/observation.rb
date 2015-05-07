@@ -718,6 +718,7 @@ class Observation < ActiveRecord::Base
       search_wheres["identifications_most_disagree"] = true
     end
 
+    search_filters = []
     unless p[:nelat].blank? && p[:nelng].blank? && p[:swlat].blank? && p[:swlng].blank?
       search_filters << { envelope: { geojson: {
         nelat: p[:nelat], nelng: p[:nelng], swlat: p[:swlat], swlng: p[:swlng],
