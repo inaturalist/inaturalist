@@ -22,7 +22,7 @@
     <%- unless @taxon_change_taxon.new_record? -%>
       <%= link_to 'Delete', @taxon_change_taxon,
                   :method => :delete,
-                  :confirm => "Are you sure you want to delete this taxon change taxon?",
+                  :data => {:confirm => "Are you sure you want to delete this taxon change taxon?"},
                   :class => 'minor delete button' %>
     <%- end -%>
   </div>

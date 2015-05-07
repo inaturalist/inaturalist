@@ -74,7 +74,8 @@
     <%= link_to t(:preview), '', :class => 'button assetbutton assetpreviewbutton' %>
     <%= link_to t(:cancel), :back, :class => "button" %>
     <% unless f.object.new_record? -%>
-      <%= link_to t(:delete), f.object, :method => :delete, :confirm => t(:you_sure_delete_custom_field?),
+      <%= link_to t(:delete), f.object, :method => :delete, 
+        :data => {:confirm => t(:you_sure_delete_custom_field?)},
         :class => "minor delete button" %>
     <% end -%>
   </div>

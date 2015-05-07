@@ -3,6 +3,10 @@ $(document).ready(function() {
   window.observation = OBSERVATION;
   $("#map").taxonMap({ clickable: false, showAccuracy: true });
   window.map = $("#map").data("taxonMap");
+  window.setMapCenter = function() {
+    map.setCenter(new google.maps.LatLng(observation.private_latitude || observation.latitude, observation.private_longitude || observation.longitude));
+    google.maps.event.removeListener(window.resizeListener)
+  }
   if ( map ) {
     $(window).load(function() {
       var photosHeight = $('#photos .first img').height(),
@@ -23,6 +27,7 @@ $(document).ready(function() {
         $('#map').height(newHeight);
       }
       if (map && observation) {
+        window.resizeListener = google.maps.event.addListener(map, 'resize', setMapCenter);
         google.maps.event.trigger(map, 'resize');
       }
     });

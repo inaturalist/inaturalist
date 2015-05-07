@@ -15,56 +15,78 @@ var inatTaxonMap = { };
 
 inatTaxonMap.setup = function ( elt, options ) {
   var options = $.extend( { }, options );
-  options.taxon = $(elt).data('taxon');
   options.latitude = options.latitude || $(elt).data('latitude');
   options.longitude = options.longitude || $(elt).data('longitude');
   options.mapType = $(elt).data('map-type');
   options.zoomLevel = parseInt( $(elt).data('zoom-level') );
-  options.gbifKmlUrl = $(elt).data('gbif-kml');
+  options.minZoom = parseInt( $(elt).data('min-zoom') );
+  options.urlCoords = $(elt).data('url-coords');
+  options.disableFullscreen = $(elt).data('disable-fullscreen');
   options.showRange = $(elt).data('show-range');
-  options.place = $(elt).data('place');
   options.minX = $(elt).data('min-x');
   options.minY = $(elt).data('min-y');
   options.maxX = $(elt).data('max-x');
   options.maxY = $(elt).data('max-y');
   options.flagLetters = $(elt).data('flag-letters');
-  options.windshaftProjectID = $(elt).data('windshaft-project-id');
-  options.windshaftUserID = $(elt).data('windshaft-user-id');
   options.observations = options.observations || $(elt).data('observations');
+  options.observationLayers = $(elt).data('observation-layers');
+  options.placeLayers = $(elt).data('place-layers');
+  options.taxonLayers = $(elt).data('taxon-layers');
   options.mapTypeControl = $(elt).data('map-type-control');
+  options.enableShowAllLayer = $(elt).data('enable-show-all-layer');
   options.showAllLayer = options.showAllLayer || $(elt).data('show-all-layer') || true;
   options.featuredLayerLabel = options.featuredLayerLabel || $(elt).data('featured-layer-label');
+  options.featuredLayerDescription = options.featuredLayerDescription || $(elt).data('featured-layer-description');  
   options.placeLayerLabel = options.placeLayerLabel || $(elt).data('place-layer-label');
+  options.placeLayerDescription = options.placeLayerDescription || $(elt).data('place-layer-description');  
   options.taxonRangeLayerLabel = options.taxonRangeLayerLabel || $(elt).data('taxon-range-layer-label');
-  options.taxonRangeLayerDescription = options.taxonRangeLayerDescription || $(elt).data('taxon-range-layer-description');
+  options.taxonRangeLayerDescription = options.taxonRangeLayerDescription || $(elt).data('taxon-range-layer-description');  
+  options.taxonPlacesLayerLabel = options.taxonPlacesLayerLabel || $(elt).data('taxon-places-layer-label');
+  options.taxonPlacesLayerDescription = options.taxonPlacesLayerDescription || $(elt).data('taxon-places-layer-description');
+  options.taxonPlacesLayerHover = options.taxonPlacesLayerHover || $(elt).data('taxon-places-layer-hover');
+  options.taxonObservationsLayerLabel = options.taxonObservationsLayerLabel || $(elt).data('taxon-observations-layer-label');
+  options.taxonObservationsLayerDescription = options.taxonObservationsLayerDescription || $(elt).data('taxon-observations-layer-description');  
   options.allLayerLabel = options.allLayerLabel || $(elt).data('all-layer-label');
   options.allLayerDescription = options.allLayerDescription || $(elt).data('all-layer-description');
+  options.gbifLayerLabel = options.gbifLayerLabel || $(elt).data('gbif-layer-label');
+  options.gbifLayerDescription = options.gbifLayerDescription || $(elt).data('gbif-layer-description');
+  options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover');
+  options.controlPosition = options.controlPosition || $(elt).data('control-position');
   // turn the observations JSON into proper JavaScript objects
-  if( options.observations ) {
+  if ( options.observations ) {
     options.observations = _.map( options.observations, function( observation ) {
       return jQuery.parseJSON( observation );
     });
-  }
-  // Make sure these two values are null if seemingly unassigned
-  if (options.gbifKmlUrl === '') {
-    options.gbifKmlUrl = null;
   }
   if (options.zoomLevel === 0) {
     options.zoomLevel = null;
   }
 
   $(elt).data('taxonMapOptions', options)
-  inatTaxonMap.setupGoogle(elt)
+  inatTaxonMap.setupGoogleMap( elt );
 };
 
 inatTaxonMap.fit = function( elt ) {
   inatTaxonMap.fitGoogle( elt );
 };
 
-inatTaxonMap.setupGoogle = function( elt ) {
-  var options = $(elt).data('taxonMapOptions'),
-      map = iNaturalist.Map.createMap({ div: elt, mapTypeControl: (options.mapTypeControl !== false) }),
-      preserveViewport = options.preserveViewport
+inatTaxonMap.setupGoogleMap = function( elt ) {
+  var options = $(elt).data('taxonMapOptions');
+  var map = iNaturalist.Map.createMap( _.extend( options, {
+        div: elt,
+        mapTypeControl: (options.mapTypeControl !== false),
+        minZoom: options.minZoom,
+        disableFullscreen: options.disableFullscreen,
+        styles: [
+          {
+            stylers: [
+              {lightness: 50},
+              {saturation: -50}
+            ]
+          }
+        ]
+      }));
+  var preserveViewport = options.preserveViewport
   if (options.minX) {
     map.fitBounds(
       new google.maps.LatLngBounds(
@@ -89,47 +111,50 @@ inatTaxonMap.setupGoogle = function( elt ) {
   map._overlayControl = new iNaturalist.OverlayControl(map);
   // All Observations layer
   if( options.showAllLayer ) {
-    map.addObservationsLayer({
+    if( ! _.isObject( options.showAllLayer ) ) {
+      options.showAllLayer = { }
+    }
+    map.addObservationsLayer(_.defaults( options.showAllLayer, {
       title: options.allLayerLabel,
       description: options.allLayerDescription,
-      disabled: (options.showAllLayer !== "enabled"),
+      disabled: options.enableShowAllLayer === false,
+      controlPosition: options.controlPosition,
       ttl: 60 * 60 * 24  // 24 hours
-    });
+    }));
   }
-  // Taxon Range
-  if( options.showRange && options.taxon ) {
-    map.addTaxonRangeLayer({
-      taxon: options.taxon,
-      title: options.taxonRangeLayerLabel,
-      description: options.taxonRangeLayerDescription });
-  }
-  // Place Geometry
-  if (options.place) {
-    map.addPlaceLayer({ place: options.place, title: options.placeLayerLabel });
-  }
-  var windshaftOptions = { };
-  if( options.taxon ) {
-    windshaftOptions.taxon_id = options.taxon.id;
-  }
-  if( options.windshaftUserID ) {
-    windshaftOptions.user_id = options.windshaftUserID;
-  }
-  if( options.windshaftProjectID ) {
-    windshaftOptions.project_id = options.windshaftProjectID;
-  }
-  // Windshaft Grid / Points
-  if( ! _.isEmpty( windshaftOptions )) {
-    if( options.observations ) {
-      windshaftOptions.point_observation_id = _.map( options.observations,
-        function( o ) { return o.id }).join(",");
+  // these are taxon ranges, listed_taxa places, and taxon-filtered observations
+  inatTaxonMap.addTaxonLayers( map, options );
+  // these are single place polygons
+  inatTaxonMap.addPlaceLayers( map, options );
+  // these are the grid/point observation layers
+  inatTaxonMap.addObservationLayers( map, options );
+  // these are the observations that need Google Maps-style flags
+  inatTaxonMap.addObservationsToMap( map, options, preserveViewport);
+  var coord;
+  if ( options.urlCoords ) {
+    function setUrlHashCoord() {
+      var coords = window.map.getCenter(),
+          x = preciseRound(coords.lng(), 3),
+          y = preciseRound(coords.lat(), 3),
+          z = window.map.getZoom();
+      var baseUrl = window.location.href.split('#')[0];
+      window.location.replace( baseUrl +'#' + [z,y,x].join('/') );
     }
-    windshaftOptions.title = options.featuredLayerLabel;
-    map.addObservationsLayer( windshaftOptions ) ;
+    function getUrlHashCoord() {
+      var bits = window.location.hash.split('/').map(function(x) { return parseFloat(x.replace(/[^0-9\-\.]/, ''))});
+      return { lat: bits[1], lng: bits[2], zoom: bits[0] };
+    }
+    google.maps.event.addListener(map, 'dragend', setUrlHashCoord);
+    google.maps.event.addListener(map, 'zoom_changed', setUrlHashCoord);
+    var coord = getUrlHashCoord();
+    if (coord.lat) {
+      setTimeout(function() {
+        window.map.setCenter(new google.maps.LatLng(coord.lat,coord.lng));
+        window.map.setZoom(coord.zoom);
+      }, 100);
+      preserveViewport = true;
+    }
   }
-  // Observations that need Google Maps-style flags
-  inatTaxonMap.addObservationsToMap( options, map, preserveViewport);
-  // GBIF KML Layer (layer is invisible until selected)
-  inatTaxonMap.addGBIFKml( options, map );
   if( !preserveViewport ) {
     inatTaxonMap.fit( elt )
   }
@@ -137,47 +162,89 @@ inatTaxonMap.setupGoogle = function( elt ) {
   $(elt).data('taxonMap', map)
 };
 
-inatTaxonMap.addGBIFKml = function( options, map ) {
-  if( !options.gbifKmlUrl ) { return; }
-  var gbifLyr = new google.maps.KmlLayer(options.gbifKmlUrl, {suppressInfoWindows: true, preserveViewport: true})
-  map.addOverlay(I18n.t('taxon_map.gbif_occurrences'), gbifLyr, {
-    id: 'gbif-'+options.taxon.id,
-    hidden: true,
-    description:
-      I18n.t('taxon_map.it_may_take_google_a_while_to') +
-      ' <a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">' + I18n.t('taxon_map.data_url') + '</a>'
-  })
-  google.maps.event.addListener(gbifLyr, 'click', function(e) {
-    if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}
-    for (var k in window['kmlInfoWindows']) {
-      window['kmlInfoWindows'][k].close()
-    }
-    var win = window['kmlInfoWindows'][e.featureData.id]
-    if (!win) {
-      // filter out google's insane parsing
-      var content = (e.featureData.description || '').replace(/(<a.+?>)<a.+?>(.+?)<\/a><\/a>/g, "$1$2</a>")
-      content = content.replace(/&lt;\/a/g, '')
-      content = content.replace(/&gt;/g, '')
-      content = content.replace(/<\/a"/g, '"')
-      win = window['kmlInfoWindows'][e.featureData.id] = new google.maps.InfoWindow({
-        content: content,
-        position: e.latLng,
-        pixelOffset: e.pixelOffset
-      })
-    }
-    win.open(map)
-    return false
-  })
+inatTaxonMap.addTaxonLayers = function( map, options ) {
+  if( options.taxonLayers ) {
+    _.each( options.taxonLayers, function( layer ) {
+      if( layer.places ) {
+        layerOptions = _.isObject( layer.places ) ?
+          layer.places : { };
+        map.addTaxonPlacesLayer( _.defaults( layerOptions, {
+          taxon: layer.taxon,
+          title: options.taxonPlacesLayerLabel,
+          description: options.taxonPlacesLayerDescription,
+          hover: options.taxonPlacesLayerHover,
+          controlPosition: options.controlPosition
+        }));
+      }
+      if( layer.ranges ) {
+        layerOptions = _.isObject( layer.ranges ) ?
+          layer.ranges : { };
+        map.addTaxonRangeLayer( _.defaults( layerOptions, {
+          taxon: layer.taxon,
+          title: options.taxonRangeLayerLabel,
+          description: options.taxonRangeLayerDescription,
+          hover: options.taxonRangeLayerHover,
+          controlPosition: options.controlPosition
+        }));
+      }
+      if( layer.observations ) {
+        layerOptions = _.isObject( layer.observations ) ?
+          layer.observations : { };
+        map.addObservationsLayer( _.defaults( layerOptions, {
+          taxon: layer.taxon,
+          title: options.taxonObservationsLayerLabel,
+          description: options.taxonObservationsLayerDescription,
+          hover: options.taxonObservationsLayerHover,
+          controlPosition: options.controlPosition
+        }));
+      }
+      if( layer.gbif && layer.taxon && layer.taxon.gbif_id ) {
+        layerOptions = _.isObject( layer.gbif ) ?
+          layer.gbif : { };
+        map.addGBIFLayer( _.defaults( layerOptions, {
+          taxon: layer.taxon,
+          title: options.gbifLayerLabel,
+          description: options.gbifLayerDescription,
+          hover: options.gbifLayerHover,
+          controlPosition: options.controlPosition
+        }));
+      }
+    });
+  }
 };
 
-inatTaxonMap.addObservationsToMap = function( options, map, preserveViewport ) {
+inatTaxonMap.addPlaceLayers = function( map, options ) {
+  if( options.placeLayers ) {
+    _.each( options.placeLayers, function( layer ) {
+      if( ! layer.place ) { return; }
+      map.addPlaceLayer( _.defaults( _.clone( layer ), {
+        title: layer.place.name,
+        description: options.placeLayerLabel
+      }));
+    });
+  }
+};
+
+inatTaxonMap.addObservationLayers = function( map, options ) {
+  if( options.observationLayers ) {
+    _.each( options.observationLayers, function( layer ) {
+      map.addObservationsLayer( _.defaults( _.clone( layer ), {
+        title: options.featuredLayerLabel,
+        controlPosition: options.controlPosition
+      }));
+    });
+  }
+};
+
+inatTaxonMap.addObservationsToMap = function( map, options, preserveViewport ) {
   if( !options.observations ) {
     return;
   }
-  var letter_counter = 0;
-  var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  var obsIcon = iNaturalist.Map.createObservationIcon({color: "HotPink"});
-  var newObsIcon = iNaturalist.Map.createObservationIcon({color: "DeepPink"});
+  var letter_counter = 0,
+      letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      obsIcon = iNaturalist.Map.createObservationIcon({color: "HotPink"}),
+      newObsIcon = iNaturalist.Map.createObservationIcon({color: "DeepPink"}),
+      numObservations = options.observations.length
 
   _.each(options.observations, function( o ) {
     var icon_div = $('#observation-'+ o.id +' .icon').get(0);
@@ -197,12 +264,6 @@ inatTaxonMap.addObservationsToMap = function( options, map, preserveViewport ) {
       });
     }
     map.addObservation(o, observationOptions);
-    if (!o.map_scale && o.positional_accuracy) {
-      var c = new google.maps.Circle({
-        center: new google.maps.LatLng(o.latitude, o.longitude),
-        radius: o.positional_accuracy * 10
-      })
-    }
     if( options.appendMarkerToList && o.marker) {
       var marker = o.marker;
       var src = o.marker.getIcon( );
@@ -215,17 +276,53 @@ inatTaxonMap.addObservationsToMap = function( options, map, preserveViewport ) {
     }
     letter_counter++;
   });
-  if( !preserveViewport ) {
-    if( options.observations.length === 1 ) {
-      o = options.observations[0];
-      var center = new google.maps.LatLng(
-        o.private_latitude || o.latitude,
-        o.private_longitude || o.longitude);
-      map.setCenter(center);
-    } else {
-      map.zoomToObservations();
-    }
+  if ( preserveViewport ) { return }
+  if( numObservations !== 1 ) {
+    map.zoomToObservations();
+    return
   }
+  google.maps.event.addListenerOnce(map, 'idle', function(){
+    o = options.observations[0];
+    var center = new google.maps.LatLng(
+      o.private_latitude || o.latitude,
+      o.private_longitude || o.longitude);
+    map.setCenter(center);
+
+    // Start setting the map bounds. For single observations, this largeley
+    // depends on the precision of the coordinates
+    var accuracyCircle;
+    // Viewer can view private coordinates and positional accuracy set
+    if (o.private_latitude && o.positional_accuracy) {
+      accuracyCircle = new google.maps.Circle({
+        center: new google.maps.LatLng(o.private_latitude, o.private_longitude),
+        radius: o.positional_accuracy
+      })
+    // Viewer cannot view private coordinates or they haven't been set, show the public positional accuracy
+    } else if (o.public_positional_accuracy) {
+      accuracyCircle = new google.maps.Circle({
+        center: new google.maps.LatLng(o.latitude, o.longitude),
+        radius: o.public_positional_accuracy
+      })
+    }
+
+    // Default to showing the map scale used when the user was editing the observation, or something in the middle
+    if (o.map_scale) {
+      map.setZoom(o.map_scale)
+    } else {
+      map.setZoom(8)
+    }
+
+    // If there is an accuracy circle, make sure we don't default to zooming in so far it isn't shown
+    if (accuracyCircle) {
+      var mapBounds = map.getBounds(),
+          circleBounds = accuracyCircle.getBounds()
+      if (circleBounds.contains(mapBounds.getNorthEast()) && circleBounds.contains(mapBounds.getSouthWest())) {
+        map.fitBounds(circleBounds)
+      } else if (!o.map_scale) {
+        map.setZoom(10)
+      }
+    }
+  })
 };
 
 inatTaxonMap.fitGoogle = function( elt ) {

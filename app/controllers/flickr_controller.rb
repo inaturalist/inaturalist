@@ -115,11 +115,10 @@ class FlickrController < ApplicationController
     # TODO: Lookup matching flickr_photo objects
     # @matching_flickr_photos = case params[:context]
     #   when 'user'
-    #     FlickrPhoto.all(:include => :observations, 
-    #       :conditions => ["observations.user_id = ?", current_user.id])
+    #     FlickrPhoto.joins(:observations).
+    #       where(["observations.user_id = ?", current_user.id])
     #   else
-    #     FlickrPhoto.all(:conditions => ["native_photo_id IN (?)", 
-    #       @photos.map(&:id)])
+    #     FlickrPhoto.where(native_photo_id: @photos.map(&:id))
     #   end
     partial = params[:partial].to_s
     partial = 'photo_list_form' unless %w(photo_list_form bootstrap_photo_list_form).include?(partial)
@@ -153,6 +152,7 @@ class FlickrController < ApplicationController
     rescue FlickRaw::FailedResponse => e
       Rails.logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
       Airbrake.notify(e, :request => request, :session => session)
+      Logstasher.write_exception(e, request: request, session: session, user: current_user)
       flash[:notice] = <<-EOT
         Ack! Something went wrong connecting to Flickr. You might try unlinking 
         and re-linking your account. You can contact us at 

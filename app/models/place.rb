@@ -1,6 +1,10 @@
 #encoding: utf-8
 class Place < ActiveRecord::Base
+
+  include ActsAsElasticModel
+
   has_ancestry
+
   belongs_to :user
   belongs_to :check_list, :dependent => :destroy
   belongs_to :source
@@ -15,10 +19,9 @@ class Place < ActiveRecord::Base
   has_many :place_taxon_names, :dependent => :delete_all, :inverse_of => :place
   has_many :taxon_names, :through => :place_taxon_names
   has_many :users, :inverse_of => :place, :dependent => :nullify
-  has_many :observations_places, :dependent => :destroy
+  has_many :observations_places, :dependent => :delete_all
   has_one :place_geometry, :dependent => :destroy
-  has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
-    :select => (PlaceGeometry.column_names - ['geom']).join(', ')
+  has_one :place_geometry_without_geom, -> { select(PlaceGeometry.column_names - ['geom']) }, :class_name => 'PlaceGeometry'
   
   before_save :calculate_bbox_area, :set_display_name, :set_admin_level
   after_save :check_default_check_list
@@ -45,7 +48,7 @@ class Place < ActiveRecord::Base
   preference :check_lists, :boolean, :default => true
 
   extend FriendlyId
-  friendly_id :name, :use => :history, :reserved_words => PlacesController.action_methods.to_a
+  friendly_id :name, :use => [ :slugged, :finders ], :reserved_words => PlacesController.action_methods.to_a
   def normalize_friendly_id(string)
     super_candidate = super(string)
     candidate = display_name.to_s.split(',').first.parameterize
@@ -59,31 +62,7 @@ class Place < ActiveRecord::Base
   # Place to put a GeoPlanet response to avoid re-querying
   attr_accessor :geoplanet_response
   attr_accessor :html
-  
-  define_index do
-    indexes name
-    indexes display_name
-    has place_type
-    
-    # HACK: TS doesn't seem to include attributes in the GROUP BY correctly
-    # for Postgres when using custom SQL attr definitions.  It may or may not 
-    # be fixed in more up-to-date versions, but the issue has been raised: 
-    # http://groups.google.com/group/thinking-sphinx/browse_thread/thread/e8397477b201d1e4
-    has :latitude, :as => :fake_latitude
-    has :longitude, :as => :fake_longitude
-    # END HACK
 
-    # This is super brittle: the sphinx doc identifier here is based on
-    # ThinkingSphinx.unique_id_expression, which I can't get to work here, so
-    # if the number of indexed models changes this will break.
-    has "SELECT places.id * 4::INT8 + 1 AS id, regexp_split_to_table(id::text || (CASE WHEN ancestry IS NULL THEN '' ELSE '/' || ancestry END), '/') AS place_id 
-  FROM places", :as => :place_ids, :source => :query
-    
-    has 'RADIANS(latitude)', :as => :latitude,  :type => :float
-    has 'RADIANS(longitude)', :as => :longitude,  :type => :float
-    set_property :delta => :delayed
-  end
-  
   FLICKR_PLACE_TYPES = ActiveSupport::OrderedHash.new
   FLICKR_PLACE_TYPES[:country]   = 12
   FLICKR_PLACE_TYPES[:region]    = 8 # Flickr regions are equiv to GeoPlanet "states", at least in the US
@@ -103,7 +82,6 @@ class Place < ActiveRecord::Base
     1 => 'Building',
     2 => 'Street Segment',
     3 => 'Nearby Building',
-    4 => 'Street',
     5 => 'Intersection',
     6 => 'Street',
     7 => 'Town',
@@ -148,7 +126,7 @@ class Place < ActiveRecord::Base
   PLACE_TYPES.each do |code, type|
     PLACE_TYPE_CODES[type.downcase] = code
     const_set type.upcase.gsub(/\W/, '_'), code
-    scope type.pluralize.underscore.to_sym, where("place_type = ?", code)
+    scope type.pluralize.underscore.to_sym, -> { where("place_type = ?", code) }
   end
 
   COUNTRY_LEVEL = 0
@@ -209,7 +187,7 @@ class Place < ActiveRecord::Base
   }
 
   scope :with_establishment_means, lambda {|establishment_means|
-    scope = joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id").scoped
+    scope = joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id")
     case establishment_means
     when ListedTaxon::NATIVE
       scope.where("listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS)
@@ -234,9 +212,9 @@ class Place < ActiveRecord::Base
     where("place_type IN (?)", place_types)
   }
 
-  scope :with_geom, joins(:place_geometry).where("place_geometries.id IS NOT NULL")
-  scope :straddles_date_line, where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)")
-  
+  scope :with_geom, -> { joins(:place_geometry).where("place_geometries.id IS NOT NULL") }
+  scope :straddles_date_line, -> { where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)") }
+
   def to_s
     "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 
     "place_type_name: #{place_type_name}, lat: #{latitude}, " +
@@ -280,7 +258,7 @@ class Place < ActiveRecord::Base
     end
     new_display_name = [new_name, *ancestor_names].join(', ')
     unless new_record?
-      Place.update_all(["display_name = ?", new_display_name], ["id = ?", id])
+      Place.where(id: id).update_all(display_name: new_display_name)
     end
     
     new_display_name
@@ -360,7 +338,7 @@ class Place < ActiveRecord::Base
         Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
         return
       end
-    rescue PG::Error => e
+    rescue PG::Error, ActiveRecord::RecordNotUnique => e
       raise e unless e.message =~ /duplicate key/
       return
     end
@@ -423,7 +401,7 @@ class Place < ActiveRecord::Base
     if too_big_for_check_list? && !prefers_check_lists && check_list
       delay(:priority => USER_INTEGRITY_PRIORITY).remove_default_check_list
     end
-    if place_type == PLACE_TYPE_CODES['Continent'] || too_big_for_check_list?
+    if too_big_for_check_list?
       self.prefers_check_lists = false
     end
     if prefers_check_lists && check_list.blank?
@@ -439,7 +417,9 @@ class Place < ActiveRecord::Base
   end
 
   def too_big_for_check_list?
-    bbox_area.to_f > 100 && !user_id.blank?
+    # 9000 is about the size of Africa, debeatable if checklists for places
+    # bigger than that are actually useful
+    bbox_area.to_f > 9000 && !user_id.blank?
   end
 
   def remove_default_check_list
@@ -450,8 +430,8 @@ class Place < ActiveRecord::Base
   
   # Update the associated place_geometry or create a new one
   def save_geom(geom, other_attrs = {})
+    geom = RGeo::WKRep::WKBParser.new.parse(geom.as_wkb) if geom.is_a?(GeoRuby::SimpleFeatures::Geometry)
     other_attrs.merge!(:geom => geom, :place => self)
-    
     begin
       if place_geometry
         self.place_geometry.update_attributes(other_attrs)
@@ -469,9 +449,9 @@ class Place < ActiveRecord::Base
   def append_geom(geom, other_attrs = {})
     new_geom = geom
     self.place_geometry.reload
-    if self.place_geometry
-      new_geom = MultiPolygon.from_geometries(
-        self.place_geometry.geom.geometries + geom.geometries)
+    if place_geometry && !place_geometry.geom.nil?
+      f = place_geometry.geom.factory
+      new_geom = f.multi_polygon([place_geometry.geom.union(geom)])
     end
     self.save_geom(new_geom, other_attrs)
   end
@@ -479,12 +459,12 @@ class Place < ActiveRecord::Base
   # Update this place's bbox from a geometry.  Note this skips validations, 
   # but explicitly recalculates the bbox area
   def update_bbox_from_geom(geom)
-    self.longitude = geom.envelope.center.x
-    self.latitude = geom.envelope.center.y
+    self.longitude = geom.centroid.x
+    self.latitude = geom.centroid.y
     self.swlat = geom.envelope.lower_corner.y
     self.nelat = geom.envelope.upper_corner.y
     if geom.spans_dateline?
-      self.longitude = geom.envelope.center.x + 180*(geom.envelope.center.x > 0 ? -1 : 1)
+      self.longitude = geom.envelope.centroid.x + 180*(geom.envelope.centroid.x > 0 ? -1 : 1)
       self.swlng = geom.points.map(&:x).select{|x| x > 0}.min
       self.nelng = geom.points.map(&:x).select{|x| x < 0}.max
     else
@@ -549,14 +529,12 @@ class Place < ActiveRecord::Base
       existing = nil
       existing = Place.find_by_woeid(new_place.woeid) if new_place.woeid
       if new_place.source_filename && new_place.source_identifier
-        existing ||= Place.first(:conditions => [
-          "source_filename = ? AND source_identifier = ?", 
-          new_place.source_filename, new_place.source_identifier])
+        existing ||= Place.where(source_filename: new_place.source_filename,
+          source_identifier: new_place.source_identifier).first
       end
       if new_place.source_filename && new_place.source_name
-        existing ||= Place.first(:conditions => [
-          "source_filename = ? AND source_name = ?", 
-          new_place.source_filename, new_place.source_name])
+        existing ||= Place.where(source_filename: new_place.source_filename,
+          source_name: new_place.source_name).first
       end
       if options[:ancestor_place]
         existing ||= options[:ancestor_place].descendants.
@@ -688,10 +666,10 @@ class Place < ActiveRecord::Base
     
     # Move the mergee's listed_taxa to the target's default check list
     additional_taxon_ids = mergee.taxon_ids - self.taxon_ids
-    ListedTaxon.update_all(
-      ["place_id = ?, list_id = ?", self, self.check_list_id],
-      ["place_id = ? AND taxon_id in (?)", mergee, additional_taxon_ids]
-    )
+    if check_list
+      ListedTaxon.where(["place_id = ? AND taxon_id in (?)", mergee, additional_taxon_ids]).
+        update_all(place_id: self, list_id: self.check_list.id)
+    end
     
     # Merge the geometries
     if self.place_geometry && mergee.place_geometry
@@ -708,10 +686,30 @@ class Place < ActiveRecord::Base
         child.update_attributes(:parent => nil)
       end
     end
+
+    # delete extra ObservationsPlaces for observations that are in both
+    # places. Doesn't matter which potential duplicate we delete b/c foreign
+    # keys will be updated to match the keeper with
+    # merge_has_many_associations
+    Place.connection.execute <<-SQL
+      DELETE FROM observations_places
+      USING (
+        SELECT
+          MAX(id) AS id
+        FROM
+          observations_places
+        WHERE
+          place_id IN (#{id},#{mergee.id})
+        GROUP BY observation_id
+        HAVING count(*) > 1
+      ) AS dupes
+      WHERE observations_places.id = dupes.id
+    SQL
+
+    merge_has_many_associations(mergee)
     
     # ensure any loaded associates that had their foreign keys updated in the db aren't hanging around
     mergee.reload
-
     mergee.destroy
     self.save
     self
@@ -794,6 +792,11 @@ class Place < ActiveRecord::Base
     options[:except] ||= []
     options[:except] += [:source_filename, :delta, :bbox_area]
     super(options)
+  end
+
+  def ancestor_place_ids
+    return unless ancestry
+    ancestry.split("/").map(&:to_i) << id
   end
 
   def self_and_ancestors

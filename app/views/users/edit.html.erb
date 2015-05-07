@@ -38,18 +38,24 @@
       <%= link_to_function(t(:change), "$('#user_icon').show(); $(this).hide()", :class => 'button inlineblock') %>
     </div>
     <div class="column span-9">
-      <%= f.text_field(:login, :class => "text", :required => true, :label => t(:username)) %>
-      <%= f.text_field(:email, :class => "text", :required => true) %>
-      <%= f.text_field(:name, :class => "text") %>
+      <%= f.text_field(:login, :class => "text", :required => true, :label => t(:username), size: 30) %>
+      <%= f.text_field(:email, :class => "text", :required => true, size: 30) %>
+      <%= f.text_field(:name, :class => "text", size: 30) %>
     </div>
     <div class="last column span-9">
       <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, 
         {:selected => current_user.time_zone}, 
         {:description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
+      <%-
+        locales = I18N_SUPPORTED_LOCALES.map do |l| 
+          translated_label = t("locales.#{l}", locale: l, default: nil)
+          viewer_label = t("locales.#{l}", default: l)
+          label = [viewer_label, translated_label].compact.uniq.join(' / ')
+          [label, l]
+        end.sort_by(&:first)
+      -%>
       <%= f.select :locale, 
-        I18N_SUPPORTED_LOCALES.
-          sort_by{|l| t("locales.#{l}", :default => l)}.
-          map{|l| [t("locales.#{l}", :default => l), l]}, 
+        locales, 
         :include_blank => t(:default), :description => t(:locale_description) %>
       <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :description => t('views.users.edit.place_help_html'), :class => "placechooser" %>
     </div>
@@ -245,6 +251,6 @@
     <% end %>
   </div>
   <%= button_to t(:delete_your_account), current_user, :method => :delete, 
-    :confirm => t(:are_you_sure_want_delete_account), 
+    :data => {:confirm => t(:are_you_sure_want_delete_account)}, 
     :class => "minor delete button" %>
 </div><!-- end side col -->

@@ -56,11 +56,13 @@
           <%= link_to "Merge now (keep first)", 
             formatted_merge_taxon_path(taxa.last, :format => :json, :taxon_id => taxa.first), 
             :method => :post, 
-            :confirm => "Are you sure?",
+            :data => {
+              :confirm => "Are you sure?",
+              :loading_click => "Merging..."
+            },
             :datatype => "json",
             :remote => true,
-            :class => "mergenowlink",
-            "data-loading-click" => "Merging..." %>
+            :class => "mergenowlink" %>
         <% end -%>
       </td>
     </tr>

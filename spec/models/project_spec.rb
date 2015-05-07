@@ -2,45 +2,67 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Project, "creation" do
   it "should automatically add the creator as a member" do
-    user = User.make!
-    @project = Project.create(:user => user, :title => "foo")
-    @project.project_users.should_not be_empty
-    @project.project_users.first.user_id.should == user.id
+    project = Project.make!
+    expect(project.project_users).not_to be_empty
+    expect(project.project_users.first.user_id).to eq project.user_id
+  end
+
+  it "should automatically add the creator as a member for invite-only projects" do
+    project = Project.make!(prefers_membership_model: Project::MEMBERSHIP_INVITE_ONLY)
+    expect(project.project_users).not_to be_empty
+    expect(project.project_users.first.user_id).to eq project.user_id
   end
   
   it "should not allow ProjectsController action names as titles" do
     project = Project.make!
-    project.should be_valid
+    expect(project).to be_valid
     project.title = "new"
-    project.should_not be_valid
+    expect(project).not_to be_valid
     project.title = "user"
-    project.should_not be_valid
+    expect(project).not_to be_valid
   end
   
   it "should stip titles" do
     project = Project.make!(:title => " zomg spaces ")
-    project.title.should == 'zomg spaces'
+    expect(project.title).to eq 'zomg spaces'
   end
 
   it "should validate uniqueness of title" do
     p1 = Project.make!
     p2 = Project.make(:title => p1.title)
-    p2.should_not be_valid
-    p2.errors[:title].should_not be_blank
+    expect(p2).not_to be_valid
+    expect(p2.errors[:title]).not_to be_blank
   end
 
   it "should notify the owner that the admin changed" do
     p = without_delay {Project.make!}
-    Update.where(:resource_type => "Project", :resource_id => p.id, :subscriber_id => p.user_id).first.should be_blank
+    expect(Update.where(:resource_type => "Project", :resource_id => p.id, :subscriber_id => p.user_id).first).to be_blank
+  end
+
+  describe "for bioblitzes" do
+    let(:p) { Project.make(project_type: Project::BIOBLITZ_TYPE, place: make_place_with_geom) }
+
+    it "should parse unconventional start_time formats" do
+      p.start_time = "3 days ago"
+      p.end_time = "3 days ago"
+      p.save
+      expect( p ).to be_valid
+    end
+
+    it "should not raise an exception when start time isn't set" do
+      p.start_time = "2:00 p.m. 4/24/15"
+      p.end_time = "2:00 p.m. 4/25/15"
+      expect( Chronic.parse(p.start_time) ).to be_nil
+      expect { p.save }.not_to raise_error
+      expect( p ).not_to be_valid
+    end
   end
 end
 
 describe Project, "destruction" do
   it "should work despite rule against owner leaving the project" do
     project = Project.make!
-    assert_nothing_raised do
-      project.destroy
-    end
+    expect{ project.destroy }.to_not raise_error
   end
 
   it "should delete project observations" do
@@ -48,7 +70,7 @@ describe Project, "destruction" do
     p = po.project
     po.reload
     p.destroy
-    ProjectObservation.find_by_id(po.id).should be_blank
+    expect(ProjectObservation.find_by_id(po.id)).to be_blank
   end
 end
 
@@ -62,11 +84,11 @@ describe Project, "update_curator_idents_on_make_curator" do
   it "should set curator_identification_id on existing project observations" do
     po = ProjectObservation.make!(:project => @project, :observation => @observation)
     c = ProjectUser.make!(:project => @project, :role => ProjectUser::CURATOR)
-    po.curator_identification_id.should be_blank
+    expect(po.curator_identification_id).to be_blank
     ident = Identification.make!(:user => c.user, :observation => po.observation)
     Project.update_curator_idents_on_make_curator(@project.id, c.id)
     po.reload
-    po.curator_identification_id.should == ident.id
+    expect(po.curator_identification_id).to eq ident.id
   end
 end
 
@@ -86,7 +108,7 @@ describe Project, "update_curator_idents_on_remove_curator" do
     @project_user_curator.update_attributes(:role => nil)
     Project.update_curator_idents_on_remove_curator(@project.id, @project_user_curator.user_id)
     @project_observation.reload
-    @project_observation.curator_identification_id.should be_blank
+    expect(@project_observation.curator_identification_id).to be_blank
   end
   
   it "should reset curator_identification_id on existing project observations if other curator idents" do
@@ -97,7 +119,7 @@ describe Project, "update_curator_idents_on_remove_curator" do
     Project.update_curator_idents_on_remove_curator(@project.id, @project_user_curator.user_id)
     
     @project_observation.reload
-    @project_observation.curator_identification_id.should == ident.id
+    expect(@project_observation.curator_identification_id).to eq ident.id
   end
   
   it "should work for deleted users" do
@@ -105,7 +127,7 @@ describe Project, "update_curator_idents_on_remove_curator" do
     @project_user_curator.user.destroy
     Project.update_curator_idents_on_remove_curator(@project.id, user_id)
     @project_observation.reload
-    @project_observation.curator_identification_id.should be_blank
+    expect(@project_observation.curator_identification_id).to be_blank
   end
 end
 
@@ -117,8 +139,56 @@ describe Project, "eventbrite_id" do
       "http://www.eventbrite.com/e/#{id}"
     ].each do |url|
       p = Project.make(:event_url => url)
-      p.eventbrite_id.should eq id
+      expect(p.eventbrite_id).to eq id
     end
+  end
+  it "should not bail if no id" do
+    expect {
+      Project.make(:event_url => "http://www.eventbrite.com").eventbrite_id
+    }.not_to raise_error
+  end
+end
 
+describe Project, "icon_url" do
+  let(:p) { Project.make! }
+  before do
+    allow(p).to receive(:icon_file_name) { "foo.png" }
+    allow(p).to receive(:icon_content_type) { "image/png" }
+    allow(p).to receive(:icon_file_size) { 12345 }
+    allow(p).to receive(:icon_updated_at) { Time.now }
+    expect(p.icon_url).not_to be_blank
+  end
+  it "should be absolute" do
+    expect(p.icon_url).to match /^http/
+  end
+  it "should not have two protocols" do
+    expect(p.icon_url.scan(/http/).size).to eq 1
+  end
+end
+
+describe Project, "range_by_date" do
+  it "should be false by default" do
+    expect(Project.make!).not_to be_prefers_range_by_date
+  end
+  describe "date boundary" do
+    let(:place) { make_place_with_geom }
+    let(:project) {
+      Project.make!(
+        project_type: Project::BIOBLITZ_TYPE, 
+        start_time: '2014-05-14T21:08:00-07:00', 
+        end_time: '2014-05-25T20:59:00-07:00',
+        place: place,
+        prefers_range_by_date: true
+      )
+    }
+    it "should include observations observed outside the time boundary by inside the date boundary" do
+      expect(project).to be_prefers_range_by_date
+      o = Observation.make!(latitude: place.latitude, longitude: place.longitude, observed_on_string: '2014-05-14T21:06:00-07:00')
+      expect(Observation.query(project.observations_url_params).to_a).to include o
+    end
+    it "should exclude observations on the outside" do
+      o = Observation.make!(latitude: place.latitude, longitude: place.longitude, observed_on_string: '2014-05-13T21:06:00-07:00')
+      expect(Observation.query(project.observations_url_params).to_a).not_to include o
+    end
   end
 end

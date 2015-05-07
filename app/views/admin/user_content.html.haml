@@ -55,7 +55,8 @@
           %td
             - begin
               = link_to("view", record)
-              = link_to "delete", record, :method => :delete, :confirm => "Are you sure you want to delete this?"
+              = link_to "delete", record, 
+                :data => {:method => :delete, :confirm => "Are you sure you want to delete this?"}
             - rescue
   - if @records.respond_to?(:total_pages)
     = will_paginate @records

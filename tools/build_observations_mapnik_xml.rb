@@ -1,6 +1,6 @@
 iconic_taxa_by_name = Taxon.iconic_taxa.index_by(&:name)
 mapnik_xml_path = File.join(Rails.root, 'config/observations.mapnik.xml')
-icon_path = File.join(Rails.root, 'app/assets/images/mapMarkers')
+icon_path = File.join(Rails.root, 'public/mapMarkers')
 vrt_xml_path = File.join(Rails.root, "config/observations_#{Rails.env}.ogr.vrt")
 db_config = YAML.load(File.open("#{Rails.root}/config/database.yml"))[Rails.env]
 db_connection_string = "#{ActiveRecord::Base.connection.adapter_name.upcase}:"

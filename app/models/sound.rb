@@ -1,5 +1,5 @@
 class Sound < ActiveRecord::Base
-	belongs_to :user
+  belongs_to :user
   has_many :observation_sounds, :dependent => :destroy
   has_many :observations, :through => :observation_sounds
 
@@ -21,7 +21,8 @@ class Sound < ActiveRecord::Base
   
   before_save :set_license, :trim_fields
   after_save :update_default_license,
-             :update_all_licenses
+             :update_all_licenses,
+             :index_observations
   
   COPYRIGHT = 0
   NO_COPYRIGHT = 7
@@ -122,8 +123,12 @@ class Sound < ActiveRecord::Base
   
   def update_all_licenses
     return true unless [true, "1", "true"].include?(@make_licenses_same)
-    Sound.update_all(["license = ?", license], ["user_id = ?", user_id])
+    Sound.where(user_id: user_id).update_all(license: license)
     true
+  end
+
+  def index_observations
+    Observation.elastic_index!(scope: observations, delay: true)
   end
 
   def editable_by?(user)
@@ -175,6 +180,14 @@ class Sound < ActiveRecord::Base
 
     sound_taxa = sound_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
     sound_taxa.detect(&:species_or_lower?) || sound_taxa.first
+  end
+
+  def as_indexed_json(options={})
+    {
+      id: id,
+      license_code: license_code,
+      attribution: attribution
+    }
   end
 
 end

@@ -26,10 +26,10 @@ class TaxonChange < ActiveRecord::Base
   TYPES = %w(TaxonChange TaxonMerge TaxonSplit TaxonSwap TaxonDrop TaxonStage)
   
   scope :types, lambda {|types| where("taxon_changes.type IN (?)", types)}
-  scope :committed, where("committed_on IS NOT NULL")
-  scope :uncommitted, where("committed_on IS NULL")
-  scope :change_group, lambda{|group| where("change_group = ?", group)}
-  scope :iconic_taxon, lambda{|iconic_taxon|
+  scope :committed, -> { where("committed_on IS NOT NULL") }
+  scope :uncommitted, -> { where("committed_on IS NULL") }
+  scope :change_group, lambda {|group| where("change_group = ?", group)}
+  scope :iconic_taxon, lambda {|iconic_taxon|
     joins(TAXON_JOINS).
     where("t1.iconic_taxon_id = ? OR t2.iconic_taxon_id = ?", iconic_taxon, iconic_taxon)
   }
@@ -139,14 +139,9 @@ class TaxonChange < ActiveRecord::Base
       end
     end
     [input_taxa, output_taxa].flatten.compact.each do |taxon|
-      Taxon.update_all(
-        [
-          "observations_count = ?, listed_taxa_count = ?", 
-          Observation.of(taxon).count, 
-          ListedTaxon.where(:taxon_id => taxon).count
-        ],
-        ["id = ?", taxon.id]
-      )
+      Taxon.where(id: taxon.id).update_all(
+        observations_count: Observation.of(taxon).count,
+        listed_taxa_count: ListedTaxon.where(:taxon_id => taxon).count)
     end
     Rails.logger.info "[INFO #{Time.now}] finished commit_records for #{self}"
   end
@@ -160,7 +155,7 @@ class TaxonChange < ActiveRecord::Base
     records = if options[:records]
       options[:records]
     else
-      scope = klass.send(@klass.name.underscore.pluralize).where("#{klass.table_name}.taxon_id IN (?)", input_taxa).scoped
+      scope = klass.send(@klass.name.underscore.pluralize).where("#{klass.table_name}.taxon_id IN (?)", input_taxa)
       scope = scope.where("user_id = ?", options[:user]) if options[:user]
       scope = scope.where(options[:conditions]) if options[:conditions]
       scope = scope.includes(options[:include]) if options[:include]

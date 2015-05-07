@@ -167,7 +167,7 @@ module TaxaHelper
     }
     node[:children] = []
     unless options[:depth] == 0
-      node[:children] = taxon.children.compact.map do |c|
+      node[:children] = taxon.children.to_a.compact.map do |c|
         jit_taxon_node(c, :depth => options[:depth] - 1)
       end
     end

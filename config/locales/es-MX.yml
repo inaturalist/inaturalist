@@ -337,7 +337,6 @@ es-MX:
   assessments: Evaluaciones
   associations: Asociaciones
   at: en
-  at_: a las
   at_any_time_change: en cualquier tiempo (<span class="botón">cambia</span>)
   at_time: a las %{time}
   atom: Atom
@@ -823,10 +822,10 @@ es-MX:
   dont_use_double_quotes: No uses "entre comillas" en ningún lado
   double_click_to_finish: (Con doble clic termina tu forma)
   download: 'Descargar:'
-  download_bulk_import_template_html: |
+  download_bulk_import_template_html: |-
     <a href="%{url}">Descarga la plantilla</a>para usarla en
     <a href="/observations/import#csv_import">la importaci&oacute;n de observaciones</a>
-  download_csv: "Descarga CSV"
+  download_csv: Descarga CSV
   drag_and_drop_photos: arrastra y suelta la foto en esta ventana o
   draft: ¡BORRADOR!
   draft_: Borrador
@@ -1473,10 +1472,10 @@ es-MX:
   maps:
     overlays:
       all_observations: Todas las observaciones
-      every_publicly_visible_observation: Todas las observaciones públicas creadas en la red iNaturalist
+      every_publicly_visible_observation: Todas las observaciones públicas creadas
+        en la red iNaturalist
       featured_observations: Observaciones destacadas
       place_boundary: Límites del lugar
-      taxon_range: Distribución de la especie o grupo
   map_for: Mapa para
   maptype_for_places: google.maps.MapTypeId.SATELLITE
   matching_species_will_shown_up_here: Las especies que encuentres se mostrarán aquí.
@@ -2093,9 +2092,9 @@ es-MX:
   project_x_was_delete: El proyecto %{project} fue eliminado
   projects: Proyectos
   projects_description: |-
-    <span style="font-size:18px;">Los proyectos son una forma de agrupar tus observaciones con las de otras personas en %{site_name}.
+    Los proyectos son una forma de agrupar tus observaciones con las de otras personas en %{site_name}.
     Revisa los <a href="http://conabio.inaturalist.org/pages/proyectosmexico">proyectos existentes</a> antes de crear uno nuevo
-    y revisa el <a href="http://conabio.inaturalist.org/pages/proyectos">tutorial</a> para que conozcas los pasos.</span>
+    y revisa el <a href="http://conabio.inaturalist.org/pages/proyectos">tutorial</a> para que conozcas los pasos.
   projects_in_x: Proyectos en %{x}
   projects_you_admin: Proyectos que administras
   projects_youve_joined: Proyectos en los que participas
@@ -3205,8 +3204,8 @@ es-MX:
         add_eol_content: |-
           Agregar contenido a la EOL taxa seleccionados como un lote. Esto
           puede llevar algún tiempo, así que por favor sea paciente.
-        add_color_tags_help: |-
-          Agrega las etiquetas de colores de acuerdo a los colores asociados al taxa.
+        add_color_tags_help: Agrega las etiquetas de colores de acuerdo a los colores
+          asociados al taxa.
         add_rank_tags_help_html: |-
           Añade etiquetas a la categoria taxonómica de los taxones con base en nuestra taxonomía, por ejemplo,
           <code>familia=Laridae</code>

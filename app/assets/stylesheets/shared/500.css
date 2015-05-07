@@ -1,0 +1,26 @@
+#wrapper {
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+}
+#wrapper img {
+  float: center;
+  width: 90%;
+  max-width: 1024px;
+}
+@media all and (max-width: 800px) {
+  h1 {
+    font-size: 225%;
+  }
+  p {
+    font-size: 110%;
+  }
+}
+@media all and (max-width: 600px) {
+  h1 {
+    font-size: 150%;
+  }
+  p {
+    font-size: 100%;
+  }
+}

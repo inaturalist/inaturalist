@@ -3,18 +3,18 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 describe LocalPhoto, "creation" do
   it "should set the native page url" do
     p = LocalPhoto.make!
-    p.native_page_url.should_not be_blank
+    expect(p.native_page_url).not_to be_blank
   end
 
   it "should set the native_realname" do
     u = User.make!(:name => "Hodor Hodor Hodor")
     lp = LocalPhoto.make!(:user => u)
-    lp.native_realname.should eq(u.name)
+    expect(lp.native_realname).to eq(u.name)
   end
 
   it "should set absolute image urls" do
     lp = LocalPhoto.make!
-    lp.small_url.should =~ /http/
+    expect(lp.small_url).to be =~ /http/
   end
 end
 
@@ -24,7 +24,7 @@ describe LocalPhoto, "to_observation" do
     p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg"))
     t = Taxon.make!(:name => "Cuthona abronia")
     o = p.to_observation
-    o.taxon.should eq(t)
+    expect(o.taxon).to eq(t)
   end
 
   it "should not set a taxon from a blank title" do
@@ -32,9 +32,9 @@ describe LocalPhoto, "to_observation" do
     p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "spider-blank_title.jpg"))
     tn = TaxonName.make!
     tn.update_attribute(:name, "")
-    tn.name.should eq("")
+    expect(tn.name).to eq("")
     o = p.to_observation
-    o.taxon.should be_blank
+    expect(o.taxon).to be_blank
   end
 
   it "should set observation fields from machine tags" do
@@ -46,7 +46,7 @@ describe LocalPhoto, "to_observation" do
       }
     }
     o = lp.to_observation
-    o.observation_field_values.detect{|ofv| ofv.observation_field_id == of.id}.value.should eq "female"
+    expect(o.observation_field_values.detect{|ofv| ofv.observation_field_id == of.id}.value).to eq "female"
   end
 
   it "should not set invalid observation fields from machine tags" do
@@ -58,8 +58,21 @@ describe LocalPhoto, "to_observation" do
       }
     }
     o = lp.to_observation
-    o.should be_valid
-    o.observation_field_values.detect{|ofv| ofv.observation_field_id == of.id}.should be_blank
+    puts "o.errors: #{o.errors.full_messages.to_sentence}" unless o.valid?
+    expect(o).to be_valid
+    expect(o.observation_field_values.detect{|ofv| ofv.observation_field_id == of.id}).to be_blank
+  end
+
+  it "should add arbitrary tags from keywords" do
+    lp = LocalPhoto.make!
+    lp.metadata = {
+      :dc => {
+        :subject => ['tag1', 'tag2']
+      }
+    }
+    o = lp.to_observation
+    expect( o.tag_list ).to include 'tag1'
+    expect( o.tag_list ).to include 'tag2'
   end
 end
 
@@ -69,7 +82,7 @@ describe LocalPhoto, "flagging" do
     Flag.make!(:flaggable => lp, :flag => Flag::COPYRIGHT_INFRINGEMENT)
     lp.reload
     %w(original large medium small thumb square).each do |size|
-      lp.send("#{size}_url").should =~ /copyright/
+      expect(lp.send("#{size}_url")).to be =~ /copyright/
     end
   end
   it "should change the URLs back when resolved" do
@@ -78,7 +91,7 @@ describe LocalPhoto, "flagging" do
     f.update_attributes(:resolved => true, :resolver => User.make!)
     lp.reload
     %w(original large medium small thumb square).each do |size|
-      lp.send("#{size}_url").should_not =~ /copyright/
+      expect(lp.send("#{size}_url")).not_to be =~ /copyright/
     end
   end
   it "should not change the URLs back unless the flag was for copyright" do
@@ -88,7 +101,7 @@ describe LocalPhoto, "flagging" do
     f2.update_attributes(:resolved => true, :resolver => User.make!)
     lp.reload
     %w(original large medium small thumb square).each do |size|
-      lp.send("#{size}_url").should =~ /copyright/
+      expect(lp.send("#{size}_url")).to be =~ /copyright/
     end
   end
   it "should change make associated observations casual grade when flagged"

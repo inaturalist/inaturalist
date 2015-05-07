@@ -1,7 +1,0 @@
-require 'autotest'
-require 'autotest/rspec'
-
-Autotest.add_hook :initialize do |at|
- at.add_exception %r{^\./(?:\.git|pkg|doc)}
- at.add_exception %r{\.sw[op]$}
-end

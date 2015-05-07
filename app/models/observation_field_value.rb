@@ -18,7 +18,7 @@ class ObservationFieldValue < ActiveRecord::Base
   # Again, we can't support this until all mobile clients support all field types
   validate :validate_observation_field_allowed_values
 
-  notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
+  notifies_subscribers_of :observation, :notification => "activity",
     :on => :save,
     :include_owner => lambda {|ofv, observation|
       ofv.updater_id != observation.user_id
@@ -37,7 +37,7 @@ class ObservationFieldValue < ActiveRecord::Base
   
   LAT_LON_REGEX = /#{Observation::COORDINATE_REGEX},#{Observation::COORDINATE_REGEX}/
 
-  scope :datatype, lambda {|datatype| includes(:observation_field).where("observation_fields.datatype = ?", datatype)}
+  scope :datatype, lambda {|datatype| joins(:observation_field).where("observation_fields.datatype = ?", datatype)}
   scope :field, lambda {|field|
     field = if field.is_a?(ObservationField)
       field
@@ -50,7 +50,7 @@ class ObservationFieldValue < ActiveRecord::Base
     where(:observation_field_id => field.try(:id))
   }
   scope :license, lambda {|license|
-    scope = includes(:observation).scoped
+    scope = joins(:observation)
     if license == 'none'
       scope.where("observations.license IS NULL")
     elsif Observation::LICENSE_CODES.include?(license)
@@ -61,7 +61,7 @@ class ObservationFieldValue < ActiveRecord::Base
   }
 
   scope :quality_grade, lambda {|quality_grade|
-    scope = joins(:observation).scoped
+    scope = joins(:observation)
     quality_grade = '' unless Observation::QUALITY_GRADES.include?(quality_grade)
     where("observations.quality_grade = ?", quality_grade)
   }
@@ -146,6 +146,13 @@ class ObservationFieldValue < ActiveRecord::Base
       errors.add(:value, 
         "of #{observation_field.name} must be #{values[0..-2].map{|v| "#{v}, "}.join}or #{values.last}.")
     end
+  end
+
+  def as_indexed_json(options={})
+    {
+      name: observation_field.name,
+      value: self.value
+    }
   end
 
 end

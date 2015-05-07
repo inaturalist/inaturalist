@@ -5,9 +5,9 @@
     source.html = render(:partial => "sources/chooser", :object => source)
   end
   source_options = []
-  user_sources ||= current_user.sources.all(:limit => 100, :order => "title")
+  user_sources ||= current_user.sources.limit(100).order(:title)
   source_options << [  t(:sources_youve_added) , user_sources] unless user_sources.blank?
-  source_options << [  t(:all) , Source.all(:limit => 100, :order => "title")]
+  source_options << [  t(:all) , Source.limit(100).order(:title) ]
   sources = source_options.map(&:last).compact.flatten.map do |src|
     src.html = render(:partial => "sources/chooser", :object => src)
     src

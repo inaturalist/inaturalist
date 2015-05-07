@@ -19,3 +19,7 @@
 .project {height:100px;}
 #map {width: 100%; height: 100px;}
 #map.nochecklist {height: 300px;}
+#user_stats .user { width: 100%; }
+#user_stats .numeric { text-align: right; }
+#user_stats img {vertical-align: middle; border-radius: 500px; margin-right: 1em;}
+#user_stats td { vertical-align: middle; }

@@ -15,11 +15,9 @@ class Subscription < ActiveRecord::Base
   end
 
   def has_unviewed_updates_from(notifier)
-    Update.exists?([
-      "subscriber_id = ? AND notifier_type = ? AND notifier_id = ? AND viewed_at IS NULL",
-      user_id,
-      notifier.class.to_s,
-      notifier.id
-    ])
+    Update.elastic_search(where: {
+      subscriber_id: user_id, notifier_type: notifier.class.to_s,
+      notifier_id: notifier.id
+    }, filters: [{ not: { exists: { field: :viewed_at } } }]).total_entries > 0
   end
 end

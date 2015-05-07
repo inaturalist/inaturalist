@@ -1,12 +1,17 @@
 class WikipediaService < MetaService
   attr_accessor :base_url
+
   def initialize(options = {})
     super(options)
     locale = options[:locale] || I18n.locale || 'en'
     subdomain = locale.to_s.split('-').first
     self.base_url = "http://#{subdomain}.wikipedia.org"
-    @endpoint = "#{self.base_url}/w/api.php?"
     @method_param = 'action'
+    @api_endpoint = ApiEndpoint.find_or_create_by(
+      title: "Wikipedia (#{ subdomain.upcase })",
+      documentation_url: "#{ self.base_url }/w/api.php",
+      base_url: "#{ self.base_url }/w/api.php?",
+      cache_hours: 720)
     @default_params = { :format => 'xml' }
   end
 

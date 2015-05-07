@@ -174,6 +174,77 @@ ALTER SEQUENCE announcements_id_seq OWNED BY announcements.id;
 
 
 --
+-- Name: api_endpoint_caches; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE api_endpoint_caches (
+    id integer NOT NULL,
+    api_endpoint_id integer,
+    request_url character varying,
+    request_began_at timestamp without time zone,
+    request_completed_at timestamp without time zone,
+    success boolean,
+    response text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: api_endpoint_caches_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE api_endpoint_caches_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: api_endpoint_caches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE api_endpoint_caches_id_seq OWNED BY api_endpoint_caches.id;
+
+
+--
+-- Name: api_endpoints; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE api_endpoints (
+    id integer NOT NULL,
+    title character varying NOT NULL,
+    description text,
+    documentation_url character varying,
+    base_url character varying,
+    cache_hours integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: api_endpoints_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE api_endpoints_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: api_endpoints_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE api_endpoints_id_seq OWNED BY api_endpoints.id;
+
+
+--
 -- Name: assessment_sections; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -468,7 +539,8 @@ CREATE TABLE delayed_jobs (
     locked_by character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    queue character varying(255)
+    queue character varying(255),
+    unique_hash character varying
 );
 
 
@@ -1472,7 +1544,8 @@ CREATE TABLE oauth_applications (
     image_file_size integer,
     image_updated_at timestamp without time zone,
     url character varying(255),
-    description text
+    description text,
+    scopes character varying DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -3757,6 +3830,20 @@ ALTER TABLE ONLY announcements ALTER COLUMN id SET DEFAULT nextval('announcement
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY api_endpoint_caches ALTER COLUMN id SET DEFAULT nextval('api_endpoint_caches_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY api_endpoints ALTER COLUMN id SET DEFAULT nextval('api_endpoints_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY assessment_sections ALTER COLUMN id SET DEFAULT nextval('assessment_sections_id_seq'::regclass);
 
 
@@ -4382,6 +4469,22 @@ ALTER TABLE ONLY wiki_pages ALTER COLUMN id SET DEFAULT nextval('wiki_pages_id_s
 
 ALTER TABLE ONLY announcements
     ADD CONSTRAINT announcements_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: api_endpoint_caches_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY api_endpoint_caches
+    ADD CONSTRAINT api_endpoint_caches_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: api_endpoints_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY api_endpoints
+    ADD CONSTRAINT api_endpoints_pkey PRIMARY KEY (id);
 
 
 --
@@ -5104,6 +5207,27 @@ CREATE INDEX fk_flags_user ON flags USING btree (user_id);
 
 
 --
+-- Name: index_api_endpoint_caches_on_api_endpoint_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_api_endpoint_caches_on_api_endpoint_id ON api_endpoint_caches USING btree (api_endpoint_id);
+
+
+--
+-- Name: index_api_endpoint_caches_on_request_url; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_api_endpoint_caches_on_request_url ON api_endpoint_caches USING btree (request_url);
+
+
+--
+-- Name: index_api_endpoints_on_title; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_api_endpoints_on_title ON api_endpoints USING btree (title);
+
+
+--
 -- Name: index_assessment_sections_on_assessment_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5234,6 +5358,13 @@ CREATE INDEX index_countries_simplified_1_on_place_id ON countries_simplified_1 
 --
 
 CREATE INDEX index_custom_projects_on_project_id ON custom_projects USING btree (project_id);
+
+
+--
+-- Name: index_delayed_jobs_on_unique_hash; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_delayed_jobs_on_unique_hash ON delayed_jobs USING btree (unique_hash);
 
 
 --
@@ -5398,10 +5529,10 @@ CREATE INDEX index_guides_on_user_id ON guides USING btree (user_id);
 
 
 --
--- Name: index_identifications_on_current; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_identifications_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE UNIQUE INDEX index_identifications_on_current ON identifications USING btree (user_id, observation_id) WHERE current;
+CREATE INDEX index_identifications_on_created_at ON identifications USING btree (created_at);
 
 
 --
@@ -5825,6 +5956,13 @@ CREATE INDEX index_observations_on_community_taxon_id ON observations USING btre
 
 
 --
+-- Name: index_observations_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_created_at ON observations USING btree (created_at);
+
+
+--
 -- Name: index_observations_on_geom; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5843,6 +5981,13 @@ CREATE INDEX index_observations_on_mappable ON observations USING btree (mappabl
 --
 
 CREATE INDEX index_observations_on_oauth_application_id ON observations USING btree (oauth_application_id);
+
+
+--
+-- Name: index_observations_on_observed_on; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_observations_on_observed_on ON observations USING btree (observed_on);
 
 
 --
@@ -6637,6 +6782,13 @@ CREATE INDEX index_trip_taxa_on_trip_id ON trip_taxa USING btree (trip_id);
 
 
 --
+-- Name: index_updates_on_created_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_updates_on_created_at ON updates USING btree (created_at);
+
+
+--
 -- Name: index_updates_on_notifier_type_and_notifier_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -7323,3 +7475,24 @@ INSERT INTO schema_migrations (version) VALUES ('20150104033219');
 INSERT INTO schema_migrations (version) VALUES ('20150126194129');
 
 INSERT INTO schema_migrations (version) VALUES ('20150128225554');
+
+INSERT INTO schema_migrations (version) VALUES ('20150203174741');
+
+INSERT INTO schema_migrations (version) VALUES ('20150226010539');
+
+INSERT INTO schema_migrations (version) VALUES ('20150304201738');
+
+INSERT INTO schema_migrations (version) VALUES ('20150313171312');
+
+INSERT INTO schema_migrations (version) VALUES ('20150319205049');
+
+INSERT INTO schema_migrations (version) VALUES ('20150406181841');
+
+INSERT INTO schema_migrations (version) VALUES ('20150409021334');
+
+INSERT INTO schema_migrations (version) VALUES ('20150409031504');
+
+INSERT INTO schema_migrations (version) VALUES ('20150412200608');
+
+INSERT INTO schema_migrations (version) VALUES ('20150413222254');
+

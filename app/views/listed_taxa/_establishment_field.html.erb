@@ -1,4 +1,5 @@
 <%-
+  establishment_field ||= nil
   listed_taxon ||= establishment_field || @primary_listed_taxon || @listed_taxon
   list ||= listed_taxon.list || @list
 -%>
@@ -36,7 +37,7 @@
           <%= f.hidden_field :force_trickle_down_establishment_means, :value => "true" %>
           <%= f.submit t(:apply_establishment_means_to_descendant_places), 
             :class => "default button",
-            :confirm => t('views.listed_taxa.establishment_field.confirmation') %>
+            :data => {:confirm => t('views.listed_taxa.establishment_field.confirmation')} %>
           <div class="small ui">
             <%=t 'views.listed_taxa.establishment_field.description_html', place_name: listed_taxon.place.display_name, place_url: place_url(listed_taxon.place), establishment_means: listed_taxon.establishment_means %>
           </div>

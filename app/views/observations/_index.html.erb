@@ -1,0 +1,29 @@
+<%= stylesheet_link_tag 'observations/filters', 'observations/_index' %>
+<!--[if lte IE 7]>
+  <%= stylesheet_link_tag 'observations-ie', 'observations/index-ie' %>
+<![endif]-->
+
+<%= javascript_include_tag "observations/filters", "observations/map" %>
+
+<%= render :partial => 'map_header', :locals => {
+  :title =>  t(:observations_title)
+} %>
+
+<div class="last clear column span-24">
+  <%= render :partial => 'map' %>
+</div>
+
+<div id="pagination" class="last column span-24">
+  <% if logged_in? -%>
+    <%= form_for :preferences, :url => url_for, :html => {:style => "float: left", :method => :get} do |f| %>
+      <%= hidden_fields_for_params(:without => [:per_page, :page, :preferences]) %>
+      <%= f.label t(:per_page) %>
+      <%= f.select :per_page, ApplicationController::PER_PAGES,
+        {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
+    <% end %>
+  <% end -%>
+  <div id="feeds" class="clear right small ui description feeds">
+    <%= render :partial => 'feed_links' %>
+  </div>
+  <%= will_paginate @observations, :renderer => INatLinkRenderer %>
+</div>

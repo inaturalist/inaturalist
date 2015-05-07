@@ -33,7 +33,7 @@
         if (h.w.find('#taxon_browser > .loading').length == 1) {
           h.w.find('#taxon_browser').load(
             '/taxa/search?partial=browse&js_link=true&is_active=any',
-            {}, function() {TaxonBrowser.ajaxify()});
+            function() {TaxonBrowser.ajaxify()});
         }
       }
     })

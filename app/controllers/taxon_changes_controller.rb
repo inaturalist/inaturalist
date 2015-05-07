@@ -20,10 +20,11 @@ class TaxonChangesController < ApplicationController
     user_id = filter_params[:user_id] || params[:user_id]
     @user = User.find_by_id(user_id) || User.find_by_login(user_id) unless user_id.blank?
 
-    @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
-    @taxon_schemes = TaxonScheme.all(:limit => 100).sort_by{|ts| ts.title}
+    @change_groups = TaxonChange.select(:change_group).group(:change_group).
+      map{ |tc| tc.change_group }.compact.sort
+    @taxon_schemes = TaxonScheme.limit(100).sort_by{ |ts| ts.title }
     
-    scope = TaxonChange.scoped
+    scope = TaxonChange.all
     if @committed == 'Yes'
       scope = scope.committed
     elsif @committed == 'No'
@@ -44,16 +45,8 @@ class TaxonChangesController < ApplicationController
       includes(:source).
       order("taxon_changes.id DESC")
     @taxa = @taxon_changes.map{|tc| [tc.taxa, tc.taxon]}.flatten
-    @swaps = TaxonSwap.all(
-      :include => [
-        {:taxon => :taxon_schemes},
-        {:taxa => :taxon_schemes}
-      ], 
-      :conditions => [
-        "taxon_changes.taxon_id IN (?) OR taxon_change_taxa.taxon_id IN (?)",
-        @taxa, @taxa
-      ]
-    )
+    @swaps = TaxonSwap.joins([ {:taxon => :taxon_schemes}, {:taxa => :taxon_schemes} ]).
+      where([ "taxon_changes.taxon_id IN (?) OR taxon_change_taxa.taxon_id IN (?)", @taxa, @taxa ])
     @swaps_by_taxon_id = {}
     @swaps.each do |swap|
       @swaps_by_taxon_id[swap.taxon_id] ||= []
@@ -74,7 +67,7 @@ class TaxonChangesController < ApplicationController
   end
   
   def new
-    @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
+    @change_groups = TaxonChange.select(:change_group).group(:change_group).map{|tc| tc.change_group}.compact.sort
     @klass = Object.const_get(params[:type]) rescue nil
     @klass = TaxonSwap if @klass.blank? || @klass.superclass != TaxonChange
     @taxon_change = @klass.new
@@ -97,13 +90,13 @@ class TaxonChangesController < ApplicationController
       flash[:notice] = 'Taxon Change was successfully created.'
       redirect_to :action => 'show', :id => @taxon_change
     else
-      @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
+      @change_groups = TaxonChange.select(:change_group).group(:change_group).map{|tc| tc.change_group}.compact.sort
       render :action => 'new'
     end
   end
   
   def edit
-    @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
+    @change_groups = TaxonChange.select(:change_group).group(:change_group).map{|tc| tc.change_group}.compact.sort
   end
 
   def update
@@ -117,7 +110,7 @@ class TaxonChangesController < ApplicationController
       redirect_to taxon_change_path(@taxon_change)
       return
     else
-      @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
+      @change_groups = TaxonChange.select(:change_group).group(:change_group).map{|tc| tc.change_group}.compact.sort
       render :action => 'edit'
     end
   end
@@ -178,7 +171,7 @@ class TaxonChangesController < ApplicationController
       end
       @records = [@record]
     elsif params[:record_ids]
-      @records = current_user.send(@reflection.name).where("#{@reflection.table_name}.id IN (?)", params[:record_ids])
+      @records = current_user.send(@reflection.name).where("#{@reflection.table_name}.id IN (?)", params[:record_ids]).to_a
       if @records.blank?
         flash[:error] = "Couldn't find any of those records"
         redirect_back_or_default(@taxon_change)
@@ -224,12 +217,12 @@ class TaxonChangesController < ApplicationController
   
   private
   def load_taxon_change
-    render_404 unless @taxon_change = TaxonChange.find_by_id(params[:id] || params[:taxon_change_id], 
-      :include => [
-        {:taxon => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
-        {:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
-        :source]
-    )
+    render_404 unless @taxon_change = TaxonChange.where(id: params[:id] || params[:taxon_change_id]).
+      includes(
+        {taxon: [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
+        {taxa: [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
+        :source
+      ).first
   end
 
   def get_change_params

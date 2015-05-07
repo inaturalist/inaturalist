@@ -95,6 +95,7 @@ en:
   about_this_project: About this Project
   about_x: "About %{x}"
   acc: 'Acc (m)'
+  account: Account
   accept: accept
   accept_community_identifications: Accept community identifications
   accuracy: Accuracy
@@ -366,6 +367,9 @@ en:
   are_you_sure_you_want_to_remove_curator: Are you sure you want to remove %{user} as a curator?
   are_you_sure_you_want_to_remove_from_project: Are you sure you want to remove %{user} from this project?
   are_you_sure_you_want_to_remove_manager: Are you sure you want to remove %{user} as a manager?
+  are_you_sure_you_want_to_remove_spammer: |
+    Are you sure you consider this user honorable?
+    Any spam flags on their content will be resolved.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Are you sure you want to remove these %{x} taxa?"
   are_you_sure_you_want_to_remove_this_invitation: Are you sure you want to remove this invitation?
   are_you_sure_you_want_to_remove_this_taxon: Are you sure you want to remove this taxon?
@@ -387,7 +391,6 @@ en:
   assessments: assessments
   associations: Associations
   at: at
-  at_: at
   at_any_time_change: at any time (<span class="button">change</span>)
   at_time: "at %{time}"
   atom: Atom
@@ -401,7 +404,7 @@ en:
   automatically_update_my_content_for_taxon_changes: Automatically update my content for taxon changes
   back: Back
   back_to: Back to
-  back_to_albums: Volver atras 
+  back_to_albums: Back to albums
   back_to_all_species: Back to All Species
   back_to_browsing_people: Back to browsing people
   back_to_calendar: "Back to %{user} calendar"
@@ -431,7 +434,7 @@ en:
   back_to_your_profile: Back to your profile
   back_to_your_projects: Back to your projects
   batch: Batch
-  batch_edit: Batch Edit
+  batch_edit: Batch edit
   batch_edit_taxa_for_x_html: "Batch edit taxa for %{x}"
   batch_operations: Batch Operations
   beacuse_we_recently_changed_auth_system: Because we recently changed our user authentication system, it was necessary for your password to be reset.
@@ -440,9 +443,9 @@ en:
   before_you_can_contribute_your_observations: before you can contribute your observations.
   belives_this_is_a_comprehensive_list_of: believes this is a comprehensive list of
   bg_color: BG Color
-  birds: birds`
+  birds: birds
   black: black
-  blog_widget: Blog Widget
+  blog_widget: Blog widget
   blue: blue
   blue_icons_represent_political_units: "Blue icons represent political units like countries, states, provinces, counties, and the like, while green icons represent different kinds of open space (parks, reserves). If you zoom in you'll see more, smaller places."
   body: Body
@@ -493,7 +496,7 @@ en:
   cc_by_sa_name: Attribution-ShareAlike
   cc_used_under_a: "Creative Commons, used under a "
   change: Change
-  change_cover: change cover
+  change_cover: Change cover
   change_descriptions:
       split: Old taxon split into multiple new taxa
       merge: Several old taxa lumped into one new taxon
@@ -863,7 +866,7 @@ en:
   edit: Edit
   edit_a_batch_of_observations: Edit a Batch of Observations
   edit_account_settings_and_profile: "Edit account settings &amp; profile"
-  edit_assessment: edit assessment
+  edit_assessment: Edit assessment
   edit_body: Edit body
   edit_colors: Edit colors
   edit_comment: Edit your comment
@@ -969,6 +972,7 @@ en:
   extinct_in_the_wild: extinct in the wild
   extra_properties: Extra Properties
   extras: Extras
+  facebook: Facebook
   facebook_account_information: Your Facebook Account Information
   facebook_account_not_linked: "%{user} doesn't have a linked facebook account anymore, so %{site_name} doesn't have permission to access this photo."
   facebook_access_token_expired: "Access token has expired. %{user} needs to re-link their Facebook account."
@@ -1024,6 +1028,8 @@ en:
   first_observer: 1st observer
   flag: Flag
   flag_an_item: Flag an item
+  flag_as_spammer: Flag as spammer
+  flag_as_non_spammer: Flag as non-spammer
   flag_description: Flag this content to let the curators know something is wrong with it.
   flag_for_curation: Flag for curation
   flag_it!: Flag it!
@@ -1127,6 +1133,7 @@ en:
   guide_was_successfully_created: Guide was successfully created.
   guide_was_successfully_published: Guide was successfully published.
   guide_was_successfully_updated: Guide was successfully updated.
+  guidelines: Guidelines
   has_been: has been
   has_already_been_flagged_by: has already been flagged by
   hasnt_contributed_any_observations: hasn't contributed any observations to this project.
@@ -1197,6 +1204,7 @@ en:
   if_your_project_is: If your project is about a particular place, set the coordinates by clicking the map or entering them manually.
   if_your_search_comes_up: "If your search comes up empty, you should see some search boxes to repeat the search through our external name providers:"
   ignore: ignore
+  ignore_times: Ignore times
   image_must_be_exactly: image must be exactly 950px wide and at most 400px tall
   import: Import
   import_all_photos_as_observations: Import all photos as observations 
@@ -1237,6 +1245,7 @@ en:
   input_taxon: Input taxon
   insects: insects
   inspired_by_the_flickr_group: "Inspired by the Flickr group <a href='http://flickr.com/groups/idplease/'>ID Please</a>, this is a place to post observations of things you don't know, and to help people identify mysterious creatures!"
+  internal_server_error: Internal Server Error
   introduced: introduced
   invasive: invasive
   invitation: Invitation
@@ -1430,9 +1439,11 @@ en:
     fr: French
     eu: Basque
     gl: Galician
-    mk: Macdeonian
-    pt: Protuguese
-    "pt-BR": Brazilian Portuguese
+    mk: Macedonian
+    pt: Portuguese
+    "pt-BR": Portuguese (Brazil)
+    ja: Japanese
+    "zh-CN": Chinese (Traditional)
   localized_species_accounts: Localized species accounts
   location: Location
   location_: Location
@@ -1488,8 +1499,13 @@ en:
       all_observations: All observations
       every_publicly_visible_observation: Every publicly visible observation created in the iNaturalist network
       featured_observations: Featured observations
+      gbif_network: GBIF network
+      gbif_network_description: Records from museums and other occurrence providers distributed by the Global Biodiversity Informatics Facility
+      observations: Observations
       place_boundary: Place boundary
-      taxon_range: Taxon range
+      checklist_places: Checklist places
+      checklist_places_description: Places where this taxon has been listed
+      range: Range
   map_tooltip: Show map view
   map_for: Map for
   maptype_for_places: 'google.maps.MapTypeId.TERRAIN'
@@ -2158,6 +2174,7 @@ en:
       subspecies: subspecies
       variety: variety
       form: form
+      leaves: leaves
   ray_finned_fishes: ray-finned fishes
   re_apply_list_rules: Re-apply list rules
   re_order_photos: "Re-order photos &raquo;"
@@ -2783,6 +2800,7 @@ en:
   try_adding_species_form: Try adding some species using the form on this page.
   try_wikipedia: Try Wikipedia?
   tue: Tue
+  twitter: Twitter
   type: Type
   type_a_name_and_click: Type a name and click LOOKUP
   type_a_place_name_and_click_search: Type a place name and click SEARCH to search
@@ -2810,6 +2828,7 @@ en:
   unobserved_listings: Unobserved Listings
   updates_notification_email_subject: "%{prefix} New updates %{date}"
   updating: Updating...
+  unprocessable: Unprocessable
   unpublish: Unpublish
   unsubscribe: Unsubscribe
   unsubscribe_from_this: Unsubscribe from this
@@ -2834,7 +2853,9 @@ en:
   updated_photo: Updated photo
   upload: Upload
   upload_a_csv_file: Upload CSV file
-  upload_a_csv_file_with_observation: Upload a CSV file with observation data. If you have your data in a spreadsheet or database, this is probably the way to go.
+  upload_a_csv_file_with_observation: |
+    Upload a CSV file with observation data. If you have your data in a
+    spreadsheet or database, this is probably the way to go.
   upload_photos: Upload photos
   uploaded_by: Uploaded by
   url_identifier_of_a_project_derived_from: "URL / identifier of a project derived from some external resource"
@@ -2848,6 +2869,7 @@ en:
     particular way. If the taxon is not a species or infraspecies, everything
     between [GENUS] and [SPECIES] will get replaced by the taxon name, so use
     sparingly. <br/><br/> <strong>Example:</strong><br/>
+  use_unique_file_names_for_separate_uploads: Use unique file names for separate uploads
   use_well_formed_csv: |
     Use well-formed CSV. This means text with commas must be enclosed with
     double-quotes. Most spreadsheet applications should export CSV in this
@@ -3678,6 +3700,7 @@ en:
           User stats are limited to a max of the top 500 by observation count
           or species count, so the total listed is usually a bit more than
           500, since the two lists probably don't contain the same users.
+          Values marked '*' mean it wasn't in the top 500 for that stat.
     observation_fields:
       about_editing_observation_fields_desc_html: |
         <p class='ui'>You can edit this observation field because you created or because you're a site curator. If you're a site curator, please follow these guidelines</p>
@@ -3792,7 +3815,7 @@ en:
           in_taxon: be in taxon
           observed_in_place: be observed in place
           on_list: be of a taxon on the project list
-        start_time_desc: "Start time for your bioblitz"
+        start_time_desc: "Start time for your bioblitz. Format: YYYY-MM-DDThh:mm:ss±hh:mm"
         trusted_project_means: |
           Trusting a project means that the project managers can add project
           assets and custom project attributes (e.g. banner HTML, CSS). Access

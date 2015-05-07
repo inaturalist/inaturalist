@@ -103,8 +103,8 @@ def work_on_collection(eol_collection_id)
   
   #Make a new project for the collection if it doesn't exist
   puts "\tChecking whether iNat project '#{project_name}' exists...."
-  project = Project.first(:conditions => { :source_url => collection_url })
-  project ||= Project.first(:conditions => { :title => project_name })
+  project = Project.where(source_url: collection_url).first
+  project ||= Project.where(title: project_name).first
   if project
     project.title = project_name
     project.source_url = collection_url if project.source_url.blank?
@@ -153,7 +153,7 @@ def work_on_collection(eol_collection_id)
     project.reload
     the_list = project.project_list
   end
-  listed_taxa_taxon_ids = the_list.listed_taxa.all(:select => "id, taxon_id").map{|lt| lt.taxon_id}
+  listed_taxa_taxon_ids = the_list.listed_taxa.select(:id, :taxon_id).map(&:taxon_id)
   
   collection_item_dwc_names = []
   
@@ -195,11 +195,9 @@ def work_on_collection(eol_collection_id)
       end
       
       # Check to see if the list_item is a taxon_name associated with a taxon_id that already has a listed_taxon
-      existing = the_list.listed_taxa.first(:include => {:taxon => :taxon_names}, :conditions => [
-        "taxon_names.lexicon = ? AND LOWER(taxon_names.name) = ?",
-        TaxonName::SCIENTIFIC_NAMES,
-        list_item.strip.downcase
-      ])
+      existing = the_list.listed_taxa.includes(taxon: :taxon_names).
+        where(taxon_names: { lexicon: TaxonName::SCIENTIFIC_NAMES }).
+        where("LOWER(taxon_names.name) = ?", list_item.strip.downcase).first
       if existing
         puts "\t\t#{list_item} already on #{the_list}, updating..."
         existing.update_attributes(:description => annotation) unless opts[:test]
@@ -275,7 +273,7 @@ def work_on_collection(eol_collection_id)
   # specifying that obs must be on the list
   if project.project_observation_rules.exists?(:operator => "on_list?")
     listed_taxa_taxon_ids.each do |lt_taxon_id|
-      thelt = the_list.listed_taxa.first(:conditions => { :taxon_id => lt_taxon_id } )
+      thelt = the_list.listed_taxa.where(taxon_id: lt_taxon_id).first
       thelt.destroy unless opts[:test]
       # Record the taxon we just destroyed the listed_taxon for under 'taxa_removed'
       taxa_removed << (Taxon.find_by_id(lt_taxon_id).try(:name) || lt_taxon_id)

@@ -1,14 +1,25 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+class InatConfig
+  @site = Site.make!
+  def self.set_site(site)
+    @site = site
+  end
+  def site_id
+    self.class.instance_variable_get(:@site) ?
+      self.class.instance_variable_get(:@site).id : 1
+  end
+end
+
 describe Users::RegistrationsController, "create" do
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
   end
   it "should create a user" do
     u = User.make
-    lambda {
+    expect {
       post :create, :user => {:login => u.login, :password => "zomgbar", :password_confirmation => "zomgbar", :email => u.email}
-    }.should change(User, :count).by(1)
+    }.to change(User, :count).by(1)
   end
 
   it "should return json about the user" do
@@ -59,13 +70,34 @@ describe Users::RegistrationsController, "create" do
 
   it "should assign a user to a site" do
     @site = Site.make!(:url => "test.host") # hoping the test host is the same across platforms...
-    class InatConfig
-      def site_id
-        @site.id
-      end
-    end
+    InatConfig.set_site(@site)
     u = User.make
     post :create, :user => {:login => u.login, :password => "zomgbar", :password_confirmation => "zomgbar", :email => u.email}
     User.find_by_login(u.login).site.should eq @site
+  end
+
+  it "should acceot time_zone" do
+    u = User.make
+    post :create, user: {
+      login: u.login,
+      password: "zomgbar",
+      password_confirmation: "zomgbar",
+      email: u.email,
+      time_zone: "America/Los_Angeles"
+    }
+    u = User.find_by_login(u.login)
+    expect( u.time_zone ).to eq "America/Los_Angeles"
+  end
+  it "should accept preferred_photo_license" do
+    u = User.make
+    post :create, user: {
+      login: u.login,
+      password: "zomgbar",
+      password_confirmation: "zomgbar",
+      email: u.email,
+      preferred_photo_license: Observation::CC_BY
+    }
+    u = User.find_by_login(u.login)
+    expect( u.preferred_photo_license ).to eq Observation::CC_BY
   end
 end

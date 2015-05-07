@@ -133,7 +133,7 @@ describe Taxon, "destruction" do
     Delayed::Job.delete_all
     stamp = Time.now
     @Apodiformes.destroy
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /apply_orphan_strategy/m}.should_not be_blank
   end
 end
@@ -155,7 +155,7 @@ describe Taxon, "orphan descendant destruction" do
   end
 end
 
-describe "Making a", Taxon, "iconic" do
+describe Taxon, "making iconic" do
   before(:each) do
     load_test_taxa
   end
@@ -595,7 +595,7 @@ describe Taxon, "merging" do
     lt1 = ListedTaxon.make!(:taxon => @keeper)
     lt2 = ListedTaxon.make!(:taxon => @reject, :list => lt1.list)
     @keeper.merge(@reject)
-    lt1.list.listed_taxa.count(:conditions => {:taxon_id => @keeper.id}).should == 1
+    lt1.list.listed_taxa.where(taxon_id: @keeper.id).count.should == 1
   end
   
   it "should set iconic taxa on children" do
@@ -619,7 +619,7 @@ describe Taxon, "merging" do
     Delayed::Job.delete_all
     stamp = Time.now
     @Pseudacris.merge(@Calypte)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
   end
   
@@ -703,7 +703,7 @@ describe Taxon, "moving" do
     Delayed::Job.delete_all
     stamp = Time.now
     taxon.parent.move_to_child_of(@Amphibia)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
   end
 
@@ -743,7 +743,7 @@ describe Taxon, "moving" do
     Delayed::Job.delete_all
     stamp = Time.now
     @Calypte.update_attributes(:parent => @Hylidae)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}.should_not be_blank
   end
 
@@ -751,7 +751,7 @@ describe Taxon, "moving" do
     Delayed::Job.delete_all
     stamp = Time.now
     @Calypte.update_attributes(:parent => @Hylidae, :skip_after_move => true)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}.should_not be_blank
   end
 
@@ -761,7 +761,7 @@ describe Taxon, "moving" do
     o = Observation.make!(:taxon => @Calypte)
     Observation.of(@Calypte).count.should eq(1)
     @Calypte.update_attributes(:parent => @Hylidae)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}.should_not be_blank
   end
 
@@ -770,7 +770,7 @@ describe Taxon, "moving" do
     stamp = Time.now
     Observation.of(@Calypte).count.should eq(0)
     @Calypte.update_attributes(:parent => @Hylidae)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}.should be_blank
   end
 
@@ -782,22 +782,12 @@ describe Taxon, "moving" do
     o = Observation.make!
     i1 = Identification.make!(:observation => o, :taxon => subfam)
     i2 = Identification.make!(:observation => o, :taxon => sp)
-    Identification.of(gen).exists?.should be_true
+    Identification.of(gen).exists?.should be true
     o.reload
     o.taxon.should eq fam
     Delayed::Worker.new.work_off
-    # [fam, subfam, gen, sp].each do |t|
-    #   t.reload
-    #   puts "before #{t.rank}: #{t.ancestry}, #{t.id}"
-    # end
     without_delay do
-      # puts "moving #{gen} to #{subfam}"
       gen.update_attributes(:parent => subfam)
-      # [fam, subfam, gen, sp].each do |t|
-      #   t.reload
-      #   puts "after #{t.rank}: #{t.ancestry}, #{t.id}"
-      # end
-      # Delayed::Worker.new.work_off
     end
     o.reload
     o.taxon.should eq subfam
@@ -877,7 +867,7 @@ describe Taxon, "grafting" do
     Delayed::Job.delete_all
     stamp = Time.now
     @graftee.update_attributes(:parent => @Pseudacris)
-    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
   end
 
@@ -940,9 +930,9 @@ describe Taxon, "threatened?" do
   it "should work for lat/lon" do
     p = make_place_with_geom
     cs = ConservationStatus.make!(:place => p)
-    p.contains_lat_lng?(p.latitude, p.longitude).should be_true
+    p.contains_lat_lng?(p.latitude, p.longitude).should be true
     t = cs.taxon
-    t.threatened?(:latitude => p.latitude, :longitude => p.longitude).should be_true
+    t.threatened?(:latitude => p.latitude, :longitude => p.longitude).should be true
   end
 end
 

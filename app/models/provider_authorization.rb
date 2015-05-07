@@ -36,15 +36,13 @@ class ProviderAuthorization < ActiveRecord::Base
     existing_scope = if provider_uid =~ /google.com\/accounts/
       ProviderAuthorization.
         where(:provider_name => 'openid').
-        where("provider_uid LIKE 'https://www.google.com/accounts%'").
-        scoped
+        where("provider_uid LIKE 'https://www.google.com/accounts%'")
     elsif provider_uid =~ /me.yahoo.com/
       ProviderAuthorization.
         where(:provider_name => 'openid').
-        where("provider_uid LIKE 'https://me.yahoo.com%'").
-        scoped
+        where("provider_uid LIKE 'https://me.yahoo.com%'")
     else
-      ProviderAuthorization.where(:provider_name => provider_name).scoped
+      ProviderAuthorization.where(:provider_name => provider_name)
     end
     existing_scope = existing_scope.where("id != ?", id) if id
     if existing_scope.where(:user_id => user_id).exists?

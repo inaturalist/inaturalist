@@ -88,7 +88,7 @@
 
             <div class="barchart">
               <%= render :partial => "shared/barchart_datum", :locals => { 
-                :value => list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL"), 
+                :value => list.listed_taxa.where("last_observation_id IS NOT NULL").count, 
                 :max => list.listed_taxa.count, 
                 :label_text => t(:of) + " #{list.listed_taxa.count} " + t(:observed).downcase,
                 :min_value_label_width => 30 } %>
@@ -119,11 +119,13 @@
       <%= f.label :list_by_login_sort, t(:order) %>
       <%= f.select :lists_by_login_sort, 
         [[t(:date_created), 'id'], [t(:title), 'title']],
-        {},
+        { selected: @prefs["lists_by_login_sort"] },
         :onchange => "$(this).parents('form:first').submit()" %>
-      <%= f.radio_button :lists_by_login_order, "asc", :onchange => "$(this).parents('form:first').submit()" %>
+      <%= f.radio_button :lists_by_login_order, "asc", :onchange => "$(this).parents('form:first').submit()",
+        checked: @prefs["lists_by_login_order"] == "asc" %>
       <%= f.label :lists_by_login_order_asc, t(:asc) %>
-      <%= f.radio_button :lists_by_login_order, "desc", :onchange => "$(this).parents('form:first').submit()" %>
+      <%= f.radio_button :lists_by_login_order, "desc", :onchange => "$(this).parents('form:first').submit()",
+        checked: @prefs["lists_by_login_order"] == "desc" %>
       <%= f.label :lists_by_login_order_desc, t(:desc) %>
     <% end %>
   <% end -%>

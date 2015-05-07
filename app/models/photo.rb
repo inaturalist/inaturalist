@@ -21,7 +21,8 @@ class Photo < ActiveRecord::Base
   
   before_save :set_license, :trim_fields
   after_save :update_default_license,
-             :update_all_licenses
+             :update_all_licenses,
+             :index_observations
   
   COPYRIGHT = 0
   NO_COPYRIGHT = 7
@@ -169,10 +170,14 @@ class Photo < ActiveRecord::Base
   
   def update_all_licenses
     return true unless [true, "1", "true"].include?(@make_licenses_same)
-    Photo.update_all(["license = ?", license], ["user_id = ?", user_id])
+    Photo.where(user_id: user_id).update_all(license: license)
     true
   end
-  
+
+  def index_observations
+    Observation.elastic_index!(scope: observations, delay: true)
+  end
+
   def editable_by?(user)
     return false if user.blank?
     user.id == user_id || observations.exists?(:user_id => user.id)
@@ -216,14 +221,13 @@ class Photo < ActiveRecord::Base
         updates += styles.map do |s|
           FakeView.image_url("copyright-infringement-#{s}.png").to_s
         end
-        Photo.update_all(updates, ["id = ?", id])
-        observations.each {|o| o.expire_components}
+        Photo.where(id: id).update_all(updates)
       elsif %w(resolved destroyed).include?(options[:action])
         repair if respond_to?(:repair)
       end
     end
   end
-  
+
   # Retrieve info about a photo from its native source given its native id.  
   # Should be implemented by descendents
   def self.get_api_response(native_photo_id, options = {})
@@ -238,7 +242,7 @@ class Photo < ActiveRecord::Base
   
   # Destroy a photo if it no longer belongs to any observations or taxa
   def self.destroy_orphans(ids)
-    photos = Photo.all(:conditions => ["id IN (?)", [ids].flatten])
+    photos = Photo.where(id: [ ids ].flatten)
     return if photos.blank?
     photos.each do |photo|
       photo.destroy if photo.orphaned?
@@ -260,6 +264,15 @@ class Photo < ActiveRecord::Base
       :except => [:original_url, :file_processing, :file_file_size, 
         :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
         :native_realname, :native_photo_id]
+    }
+  end
+
+  def as_indexed_json(options={})
+    {
+      id: id,
+      license_code: license_code,
+      attribution: attribution,
+      url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url
     }
   end
 

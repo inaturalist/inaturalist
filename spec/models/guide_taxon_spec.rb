@@ -10,27 +10,27 @@ describe GuideTaxon, "creation" do
     t = Taxon.make!(:wikipedia_summary => "foo bar")
     gt = GuideTaxon.make!(:taxon => t)
     gt.reload
-    gt.guide_sections.should_not be_blank
-    gt.guide_sections.first.description.should eq(t.wikipedia_summary)
+    expect(gt.guide_sections).not_to be_blank
+    expect(gt.guide_sections.first.description).to eq(t.wikipedia_summary)
   end
 
   it "should set the license for the default GuideSection to CC-BY-SA" do
     t = Taxon.make!(:wikipedia_summary => "foo bar")
     gt = GuideTaxon.make!(:taxon => t)
     gt.reload
-    gt.guide_sections.first.license.should eq(Observation::CC_BY_SA)
+    expect(gt.guide_sections.first.license).to eq(Observation::CC_BY_SA)
   end
 
   it "should update the guide's taxon id" do
     g = Guide.make!
-    g.taxon_id.should be_blank
+    expect(g.taxon_id).to be_blank
     ancestor = Taxon.make!
     t1 = Taxon.make!(:parent => ancestor)
     t2 = Taxon.make!(:parent => ancestor)
     gt1 = without_delay { GuideTaxon.make!(:guide => g, :taxon => t1) }
     gt2 = without_delay { GuideTaxon.make!(:guide => g, :taxon => t2) }
     g.reload
-    g.taxon_id.should eq(ancestor.id)
+    expect(g.taxon_id).to eq(ancestor.id)
   end
 
   it "should be impossible to create more than 500 guide taxa per guide" do
@@ -39,7 +39,7 @@ describe GuideTaxon, "creation" do
       GuideTaxon.make!(:guide => g)
     end
     gt = GuideTaxon.make(:guide => g)
-    gt.should_not be_valid
+    expect(gt).not_to be_valid
   end
 end
 
@@ -53,10 +53,10 @@ describe GuideTaxon, "deletion" do
       gt1 = GuideTaxon.make!(:guide => g, :taxon => t1)
       gt2 = GuideTaxon.make!(:guide => g, :taxon => t2)
       g.reload
-      g.taxon_id.should be_blank
+      expect(g.taxon_id).to be_blank
       gt2.destroy
       g.reload
-      g.taxon_id.should eq t1.parent_id
+      expect(g.taxon_id).to eq t1.parent_id
     end
   end
 end
@@ -71,8 +71,8 @@ describe GuideTaxon, "new_from_eol_collection_item" do
   end
 
   it "should set a source_identifier" do
-    @guide_taxon.source_identifier.should_not be_blank
-    @guide_taxon.source_identifier.should =~ /eol.org\/pages\/\d+/
+    expect(@guide_taxon.source_identifier).not_to be_blank
+    expect(@guide_taxon.source_identifier).to be =~ /eol.org\/pages\/\d+/
   end
 end
 
@@ -90,23 +90,23 @@ describe GuideTaxon, "sync_site_content" do
   let(:gt) { GuideTaxon.make!(:taxon => t) }
 
   it "should set up to 5 photos" do
-    gt.taxon.photos.size.should > 5
+    expect(gt.taxon.photos.size).to be > 5
     gt.sync_site_content(:photos => true)
-    gt.guide_photos.size.should eq 5
+    expect(gt.guide_photos.size).to eq 5
   end
 
   it "should set a common name" do
     gt.update_attributes(:display_name => nil)
-    gt.display_name.should be_blank
+    expect(gt.display_name).to be_blank
     gt.sync_site_content(:names => true)
-    gt.display_name.should eq gt.taxon.common_name.name
+    expect(gt.display_name).to eq gt.taxon.common_name.name
   end
 
   it "should set a section" do
     gt.guide_sections.destroy_all
-    gt.guide_sections.should be_blank
+    expect(gt.guide_sections).to be_blank
     gt.sync_site_content(:summary => true)
-    gt.guide_sections.size.should eq 1
+    expect(gt.guide_sections.size).to eq 1
   end
 end
 
@@ -118,9 +118,9 @@ describe GuideTaxon, "sync_eol" do
   end
 
   it "should update the display_name" do
-    gt.display_name.should_not eq "coachwhip"
+    expect(gt.display_name).not_to eq "coachwhip"
     gt.sync_eol(:page => @mflagellum_page, :replace => true)
-    gt.display_name.should eq "coachwhip"
+    expect(gt.display_name).to eq "coachwhip"
   end
 
   it "should allow replacement of existing content" do
@@ -128,9 +128,9 @@ describe GuideTaxon, "sync_eol" do
     gr = GuideRange.make!(:guide_taxon => gt)
     gs = GuideSection.make!(:guide_taxon => gt)
     gt.sync_eol(:page => @mflagellum_page, :replace => true, :photos => true, :ranges => true, :overview => true)
-    GuidePhoto.find_by_id(gp.id).should be_blank
-    GuideRange.find_by_id(gr.id).should be_blank
-    GuideSection.find_by_id(gs.id).should be_blank
+    expect(GuidePhoto.find_by_id(gp.id)).to be_blank
+    expect(GuideRange.find_by_id(gr.id)).to be_blank
+    expect(GuideSection.find_by_id(gs.id)).to be_blank
   end
 
   it "should not replace existing content if not requested" do
@@ -141,43 +141,43 @@ describe GuideTaxon, "sync_eol" do
     gs = GuideSection.make!(:guide_taxon => gt)
     gt.sync_eol(:page => @mflagellum_page, :photos => true, :ranges => true, :overview => true)
     gt.reload
-    gt.display_name.should eq original_name
-    GuidePhoto.find_by_id(gp.id).should_not be_blank
-    GuideRange.find_by_id(gr.id).should_not be_blank
-    GuideSection.find_by_id(gs.id).should_not be_blank
+    expect(gt.display_name).to eq original_name
+    expect(GuidePhoto.find_by_id(gp.id)).not_to be_blank
+    expect(GuideRange.find_by_id(gr.id)).not_to be_blank
+    expect(GuideSection.find_by_id(gs.id)).not_to be_blank
   end
 
   it "should not add content for categories that weren't selected" do
     gt.guide_photos.destroy_all
     gt.guide_sections.destroy_all
     gt.guide_ranges.destroy_all
-    gt.guide_photos.count.should eq 0
-    gt.guide_sections.count.should eq 0
-    gt.guide_ranges.count.should eq 0
+    expect(gt.guide_photos.count).to eq 0
+    expect(gt.guide_sections.count).to eq 0
+    expect(gt.guide_ranges.count).to eq 0
     gt.sync_eol(:page => @mflagellum_page, :photos => "0", :ranges => "0", :overview => "0")
     gt.reload
-    gt.guide_photos.count.should eq 0
-    gt.guide_sections.count.should eq 0
-    gt.guide_ranges.count.should eq 0
+    expect(gt.guide_photos.count).to eq 0
+    expect(gt.guide_sections.count).to eq 0
+    expect(gt.guide_ranges.count).to eq 0
   end
 
   it "should add at least one secion if overview requested" do
-    gt.guide_sections.should be_blank
+    expect(gt.guide_sections).to be_blank
     gt.sync_eol(:page => @mflagellum_page, :overview => true)
     gt.reload
-    gt.guide_sections.should_not be_blank
+    expect(gt.guide_sections).not_to be_blank
   end
 
   # this doesn't pass b/c EOL's page api seems to return a GeneralDescription
   # when you request a Description. Could hack around it, of course, but would
   # rather the EOL API just behaved reasonably
   # it "should add a description section if requested" do
-  #   gt.guide_sections.should be_blank
+  #   expect(gt.guide_sections).to be_blank
   #   eol = EolService.new(:timeout => 30)
   #   page = eol.page(577775, :subjects => "Description")
   #   gt.sync_eol(:page => page, :subjects => %w(Description))
   #   gt.reload
-  #   gt.guide_sections.should_not be_blank
+  #   expect(gt.guide_sections).not_to be_blank
   # end
 end
 
@@ -189,11 +189,11 @@ describe GuideTaxon, "sync_eol_photos" do
   end
 
   it "should add new photos" do
-    gt.guide_photos.should be_blank
+    expect(gt.guide_photos).to be_blank
     gt.sync_eol_photos(:page => @mflagellum_page)
     gt.save!
     gt.reload
-    gt.guide_photos.should_not be_blank
+    expect(gt.guide_photos).not_to be_blank
   end
 
   it "should not add duplicate photos" do
@@ -204,7 +204,7 @@ describe GuideTaxon, "sync_eol_photos" do
     gt.save!
     gt.reload
     s2 = gt.guide_photos.size
-    s2.should eq s1
+    expect(s2).to eq s1
   end
 
   it "should position new photos after existing ones" do
@@ -213,8 +213,8 @@ describe GuideTaxon, "sync_eol_photos" do
     gt.save!
     gt.reload
     guide_photos = gt.guide_photos.sort_by(&:position)
-    guide_photos.first.should eq gp
-    guide_photos.last.position.should > gp.position
+    expect(guide_photos.first).to eq gp
+    expect(guide_photos.last.position).to be > gp.position
   end
 
   # it "should not add maps" do
@@ -223,7 +223,7 @@ describe GuideTaxon, "sync_eol_photos" do
   #   if gp = gt.guide_photos.last
   #     puts "gp.attributes: #{gp.attributes.inspect}"
   #   end
-  #   gt.guide_photos.should be_blank
+  #   expect(gt.guide_photos).to be_blank
   # end
 end
 
@@ -234,9 +234,9 @@ describe GuideTaxon, "sync_eol_ranges" do
     @mflagellum_page ||= eol.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1)
   end
   it "should add new ranges" do
-    gt.guide_ranges.should be_blank
+    expect(gt.guide_ranges).to be_blank
     gt.sync_eol_ranges(:page => @mflagellum_page)
-    gt.guide_ranges.should_not be_blank
+    expect(gt.guide_ranges).not_to be_blank
   end
   it "should not add duplicate ranges" do
     gt.sync_eol_ranges(:page => @mflagellum_page)
@@ -244,7 +244,7 @@ describe GuideTaxon, "sync_eol_ranges" do
     s1 = gt.guide_ranges.size
     gt.sync_eol_ranges(:page => @mflagellum_page)
     s2 = gt.guide_ranges.size
-    s2.should eq s1
+    expect(s2).to eq s1
   end
 end
 
@@ -255,33 +255,33 @@ describe GuideTaxon, "sync_eol_sections" do
     @mflagellum_page ||= eol.page(791500, :common_names => true, :images => 5, :details => true, :maps => 1, :text => 50)
   end
   it "should add new sections" do
-    gt.guide_sections.should be_blank
+    expect(gt.guide_sections).to be_blank
     gt.sync_eol_sections(:page => @mflagellum_page)
-    gt.guide_sections.should_not be_blank
+    expect(gt.guide_sections).not_to be_blank
   end
 
   it "should not add duplicate sections" do
     gt.sync_eol_sections(:page => @mflagellum_page, :subjects => %w(TypeInformation))
     gt.save
     gt.reload
-    gt.guide_sections.size.should == 1
+    expect(gt.guide_sections.size).to eq 1
     gt.sync_eol_sections(:page => @mflagellum_page, :subjects => %w(TypeInformation))
     gt.save
     gt.reload
-    gt.guide_sections.size.should == 1
+    expect(gt.guide_sections.size).to eq 1
   end
 
   it "should only add the requested subjects" do
     gt.sync_eol_sections(:page => @mflagellum_page, :subjects => %w(TypeInformation))
     gs = gt.guide_sections.last
-    gs.description.to_s.should =~ /Colorado Desert/
+    expect(gs.description.to_s).to be =~ /Colorado Desert/
   end
 
   it "should not import multiple sections for the same subject" do
     gt.sync_eol_sections(:page => @mflagellum_page, :subjects => %w(Distribution))
     gt.save!
     gt.reload
-    gt.guide_sections.size.should eq 1
+    expect(gt.guide_sections.size).to eq 1
   end
 
   it "should position new photos after existing ones" do
@@ -290,8 +290,8 @@ describe GuideTaxon, "sync_eol_sections" do
     gt.save!
     gt.reload
     guide_sections = gt.guide_sections.sort_by(&:position)
-    guide_sections.first.should eq gs
-    guide_sections.last.position.should > gs.position
+    expect(guide_sections.first).to eq gs
+    expect(guide_sections.last.position).to be > gs.position
   end
 end
 
@@ -300,26 +300,26 @@ describe GuideTaxon, "get_eol_page" do
   it "should retrieve photos if requested" do
     page = gt.get_eol_page(:photos => 1)
     img_data_object = page.search('dataObject').detect{|data_object| data_object.at('dataType').to_s =~ /StillImage/ }
-    img_data_object.should_not be_blank
-    img_data_object.at('mediaURL').should_not be_blank
+    expect(img_data_object).not_to be_blank
+    expect(img_data_object.at('mediaURL')).not_to be_blank
   end
 
   it "should retrieve ranges if requested" do
     page = gt.get_eol_page(:ranges => 1)
-    page.search('dataObject').detect{|data_object| data_object.at('dataSubtype').to_s =~ /Map/ }.should_not be_blank
+    expect(page.search('dataObject').detect{|data_object| data_object.at('dataSubtype').to_s =~ /Map/ }).not_to be_blank
   end
 
   it "should retrieve sections if requested" do
     page = gt.get_eol_page(:sections => 1)
-    page.search('dataObject').detect{|data_object| data_object.at('dataType').content == "http://purl.org/dc/dcmitype/Text" }.should_not be_blank
+    expect(page.search('dataObject').detect{|data_object| data_object.at('dataType').content == "http://purl.org/dc/dcmitype/Text" }).not_to be_blank
   end
 
   it "should retrieve sections of requested subjects" do
     page = gt.get_eol_page(:sections => 1, :subjects => %w(TypeInformation))
-    page.search('dataObject').detect{|data_object| 
+    expect(page.search('dataObject').detect{|data_object| 
       data_object.at('dataType').content == "http://purl.org/dc/dcmitype/Text" &&
         data_object.at('subject').try(:content) =~ /TypeInformation/ 
-    }.should_not be_blank
+    }).not_to be_blank
   end
 end
 
@@ -336,8 +336,8 @@ describe GuideTaxon, "add_color_tags" do
 
   it "should add tags" do
     gt.add_color_tags
-    gt.tag_list.should include("color=yellow")
-    gt.tag_list.should include("color=blue")
+    expect(gt.tag_list).to include("color=yellow")
+    expect(gt.tag_list).to include("color=blue")
   end
 end
 
@@ -351,15 +351,15 @@ describe GuideTaxon, "add_rank_tag" do
   end
 
   it "should add tags" do
-    @genus.taxon_names.count.should eq 2
+    expect(@genus.taxon_names.count).to eq 2
     @gt.add_rank_tag('genus', :lexicon => TaxonName::LEXICONS[:ENGLISH])
-    @gt.tag_list.should include("taxonomy:genus=#{@tn.name}")
+    expect(@gt.tag_list).to include("taxonomy:genus=#{@tn.name}")
   end
 
   it "should work for rank names that collide with keywords" do
     load_test_taxa
     gt = GuideTaxon.make!(:taxon => @Pseudacris_regilla)
     gt.add_rank_tag('order')
-    gt.tag_list.should include "taxonomy:order=Anura"
+    expect(gt.tag_list).to include "taxonomy:order=Anura"
   end
 end

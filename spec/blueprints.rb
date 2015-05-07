@@ -9,6 +9,14 @@ require 'faker'
 # Sham.body  { Faker::Lorem.paragraph }
 # Sham.url { "http://#{Faker::Internet.domain_name}" }
 
+ApiEndpoint.blueprint do
+  title { Faker::Lorem.sentence }
+end
+
+ApiEndpointCache.blueprint do
+  api_endpoint { ApiEndpoint.make! }
+end
+
 Assessment.blueprint do
   taxon { Taxon.make! }
   user { User.make! }
@@ -140,7 +148,7 @@ OauthApplication.blueprint do
   name { Faker::Lorem.sentence }
   owner { User.make }
   url { "http://#{Faker::Internet.domain_name}" }
-  redirect_uri { Doorkeeper.configuration.test_redirect_uri }
+  redirect_uri { Doorkeeper.configuration.native_redirect_uri }
 end
 
 Observation.blueprint do
@@ -394,4 +402,7 @@ User.blueprint do
   created_at { 5.days.ago.to_s(:db) }
   state { "active" }
   time_zone { "Pacific Time (US & Canada)" }
+end
+
+WikiPage.blueprint do
 end

@@ -5,13 +5,13 @@ describe PlacesController do
     it "should make a place with no default type" do
       user = User.make!
       sign_in user
-      lambda {
+      expect {
         post :create, :place => {
           :name => "Pine Island Ridge Natural Area", 
           :latitude => 26.08, 
           :longitude => -80.27}
-      }.should change(Place, :count).by(1)
-      Place.last.place_type.should be_blank
+      }.to change(Place, :count).by(1)
+      expect(Place.last.place_type).to be_blank
     end
   end
 
@@ -20,10 +20,10 @@ describe PlacesController do
     let(:place) { Place.make!(:user => user) }
     it "should delete the place" do
       sign_in user
-      place.should_not be_blank
-      lambda {
+      expect(place).not_to be_blank
+      expect {
         delete :destroy, :id => place.id
-      }.should change(Place, :count).by(-1)
+      }.to change(Place, :count).by(-1)
     end
   end
 
@@ -31,39 +31,79 @@ describe PlacesController do
     let(:place) { Place.make!(:name => 'Panama') }
     let(:another_place) { Place.make!(:name => 'Norway') }
     it "should return results in HTML" do
-      place.should_not be_blank
-      Place.should_receive(:search).and_return([ place, another_place ])
+      expect(place).not_to be_blank
+      expect(Place).to receive(:elastic_paginate).and_return([ place, another_place ])
       get :search, :q => place.name
-      response.content_type.should == "text/html"
+      expect(response.content_type).to eq"text/html"
     end
     it "should redirect with only one result in HTML" do
-      Place.should_receive(:search).and_return([ place ])
+      expect(Place).to receive(:elastic_paginate).and_return([ place ])
       get :search, :q => place.name
-      response.should be_redirect
+      expect(response).to be_redirect
     end
     it "should not redirect with only one result in JSON" do
-      Place.should_receive(:search).and_return([ place ])
+      expect(Place).to receive(:elastic_paginate).and_return([ place ])
       get :search, :q => place.name, :format => :json
-      response.should_not be_redirect
+      expect(response).not_to be_redirect
     end
     it "should return results in JSON, with html" do
       place.html = 'the html'
-      Place.should_receive(:search).and_return([ place, another_place ])
+      expect(Place).to receive(:elastic_paginate).and_return([ place, another_place ])
       get :search, :q => place.name, :format => :json
-      response.content_type.should == "application/json"
+      expect(response.content_type).to eq "application/json"
       json = JSON.parse(response.body)
-      json.count.should == 2
+      expect(json.count).to eq 2
       json.first['html'] == place.html
+    end
+  end
+
+  describe "merge" do
+    let(:keeper) { make_place_with_geom(place_type: Place::STATE) }
+    let(:reject) { make_place_with_geom(place_type: Place::COUNTRY) }
+    before do
+      sign_in make_curator
+    end
+    it "should delete the reject" do
+      reject_id = reject.id
+      post :merge, id: reject.slug, with: keeper.id
+      log_timer do
+        expect(Place.find_by_id(reject_id)).to be_blank
+      end
+    end
+    it "should allow you to keep the reject name" do
+      reject_name = reject.name
+      post :merge, id: reject.slug, with: keeper.id, keep_name: 'left'
+      keeper.reload
+      expect(keeper.name).to eq reject_name
+    end
+    it "should allow you to keep the reject place type" do
+      reject_place_type = reject.place_type
+      post :merge, id: reject.slug, with: keeper.id, keep_place_type_name: 'left'
+      keeper.reload
+      expect(keeper.place_type).to eq reject_place_type
     end
   end
 end
 
-# If you ever figure out how to test page caching...
-# describe PlacesController, "geometry" do
-#   before do
-#     @place = make_place_with_geom(:user => @user)
-#   end
+describe PlacesController, "geometry" do
+  before do
+    @place = make_place_with_geom(:user => @user)
+    @place_without_geom = Place.make!
+  end
 
+  it "should return geojson when places have a geometry" do
+    get :geometry, format: :geojson, id: @place.id
+    expect( response.body ).to include "MultiPolygon"
+  end
+
+  it "should not fail when places have no geometry" do
+    expect {
+      get :geometry, format: :geojson, id: @place_without_geom.id
+    }.to_not raise_error
+    expect( response.body ).to eq("{}")
+  end
+
+# If you ever figure out how to test page caching...
 #   # http://pivotallabs.com/tdd-action-caching-in-rails-3/
 #   around do |example|
 #     caching, ActionController::Base.perform_caching = ActionController::Base.perform_caching, true
@@ -85,7 +125,7 @@ end
 #     get :geometry, :id => @place.slug, :format => :kml
 #     response.should be_page_cached
 #   end
-# end
+end
 
 # describe PlacesController, "update" do
 #   before do

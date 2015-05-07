@@ -1,4 +1,5 @@
 .bundle
+.capistrano
 db/*.sqlite3
 log/*
 tmp/
@@ -10,21 +11,21 @@ config/geoip.yml
 config/gmaps_api_key.yml
 config/s3.yml
 config/newrelic.yml
+config/secrets.yml
 config/smtp.yml
-config/sphinx.yml
 config/settings.yml
 config/tilestache.cfg
 config/schedule.rb
 coverage/
 log/*
 cache/
-db/sphinx/
-config/*.sphinx.conf
 config/deploy.rb
 config/deploy
 *.DS_Store
 config/*.mapnik.xml
 config/*.ogr.vrt
+elasticsearch
+public/assets
 public/lists
 public/observations
 public/places
@@ -47,3 +48,4 @@ lib/ratatosk/spec/fixtures/catalogue_of_life/
 lib/ratatosk/spec/debug.log
 *~
 notes.txt
+xmp.xml

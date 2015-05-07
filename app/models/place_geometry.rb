@@ -4,7 +4,7 @@
 class PlaceGeometry < ActiveRecord::Base
   belongs_to :place
   belongs_to :source
-  scope :without_geom, select((column_names - ['geom']).join(', '))
+  scope :without_geom, -> { select((column_names - ['geom']).join(', ')) }
   
   after_save :refresh_place_check_list, :dissolve_geometry_if_changed
   
@@ -12,11 +12,16 @@ class PlaceGeometry < ActiveRecord::Base
   validate :validate_geometry
   
   def validate_geometry
+    # not sure why this is necessary, but validates_presence_of :geom doesn't always seem to run first
+    if geom.blank?
+      errors.add(:geom, "cannot be blank")
+      return
+    end
     if geom.num_points < 4
       errors.add(:geom, " must have more than 3 points")
     end
     
-    if geom.geometries.detect{|g| g.num_points < 4}
+    if geom.detect{|g| g.num_points < 4}
       errors.add(:geom, " has a sub geometry with less than 4 points!")
     end
   end
@@ -36,7 +41,7 @@ class PlaceGeometry < ActiveRecord::Base
   end
 
   def dissolve_geometry
-    connection.execute <<-SQL
+    PlaceGeometry.connection.execute <<-SQL
       UPDATE place_geometries SET geom = reuonioned_geoms.new_geom FROM (
         SELECT ST_Multi(ST_Union(geom)) AS new_geom FROM (
           SELECT (ST_Dump(geom)).geom

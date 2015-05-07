@@ -17,9 +17,6 @@ for ex in $RAILS_CONFIG_DIR/*.example; do
     fi
 done
 
-echo "Setting up DB and starting Talking Sphinx"
+echo "Setting up DB"
 RAILS_ENV=test bundle exec rake --trace \
-    db:setup \
-    ts:conf \
-    ts:index \
-    ts:start
+    db:setup

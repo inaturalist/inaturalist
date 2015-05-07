@@ -24,6 +24,10 @@ body {
 .gm-style label[disabled] {
   color: gray;
 }
+.gmapv3control.overlaycontrol.open {
+  max-height: 300px;
+  overflow: auto;
+}
 .gmapv3control ul.inat-overlay {
   margin-top: 5px;
   font-family: "Trebuchet MS", Arial, sans-serif;
@@ -35,16 +39,27 @@ body {
   position: relative;
 }
 .gmapv3control ul.inat-overlay li input[type=checkbox] {
-  position: absolute;
-  left: 0;
-  top: 5px;
   padding: 0;
   margin: 0;
 }
 .gmapv3control ul.inat-overlay li label,
 .gmapv3control ul.inat-overlay li div {
-  display: block;
-  padding-left: 20px;
+  padding-left: 5px;
+}
+
+.gmapv3control ul.inat-overlay li.taxon {
+  padding-bottom: 5px;
+}
+
+.gmapv3control ul.inat-overlay li.for_taxon {
+  border-top: 1px solid #D8D8D8;
+  margin-left: 18px;
+  border: 0;
+  padding-top: 0;
+}
+
+.gmapv3control ul.inat-overlay .small.meta {
+  padding-left: 18px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -141,6 +156,7 @@ input.file,
   width: auto;
   background-color: #f6f6f6;
   margin: 0;
+  width: 14.5em;
 }
 
 textarea,
@@ -1241,7 +1257,8 @@ form.inline .inlabel {
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255,255,255)), to(rgb(230,230,230))) repeat scroll 0 0 transparent;
 }
 .gmapv3control .ui-icon {background-image: image-url('jquery-ui/ui-icons_222222_256x240.png'); }
-.gmapv3control.open .ui-icon {width:auto; text-indent: 20px;}
+.gmapv3control.open .ui-icon-layers {width:auto; text-indent: 20px;}
+.gmapv3control .ui-icon-extlink { display: inline-block; }
 .fullscreen {
   position: fixed !important;
   width:100% !important;
@@ -1640,6 +1657,11 @@ ul.plain {list-style:none;margin:0;padding:0}
   top: 5px;
   right: 5px;
 }
+.lowerright {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
 .blob,
 .listed_taxon .blob {
   padding: 2px 5px;
@@ -1727,3 +1749,25 @@ p.spam {
 #flags .smallbuttons input[type="text"] {
   width: 180px;
 }
+.photoSelector select {width: auto;}
+.leaderboard-container td { vertical-align: middle; }
+.leaderboard-container .user {width:100%;}
+.leaderboard-container .user img {vertical-align: middle;}
+.leaderboard-container th.numeric { padding-left: 0.5em;}
+.leaderboard-container tr:hover {background-color: #f6f6f6;}
+.leaderboard-container .numeric {text-align: right;}
+.leaderboard-container .user img {border-radius: 500px; margin-right: 1em; max-width: 30px;}
+.leaderboard-container thead .sorting,
+.leaderboard-container thead .sorting_asc,
+.leaderboard-container thead .sorting_desc,
+.leaderboard-container thead .sorting_asc_disabled,
+.leaderboard-container thead .sorting_desc_disabled {
+    cursor: pointer;
+    *cursor: hand;
+}
+.leaderboard-container thead .sorting_asc { background: url(#{ image_path('toggle_arrow_up.png') }) no-repeat center right; border-right: 10px solid transparent; padding-right: 20px; }
+.leaderboard-container thead .sorting_desc { background: url(#{ image_path('toggle_arrow_down.png') }) no-repeat center right; border-right: 10px solid transparent; padding-right: 20px; }
+.leaderboard-container [class*="sorting_"], 
+.leaderboard-container thead [class*="sorting_"] {background-color: #eee;}
+.leaderboard-container [class*="sorting_disabled"], 
+.leaderboard-container thead [class*="sorting_disabled"] {background-color: transparent;}

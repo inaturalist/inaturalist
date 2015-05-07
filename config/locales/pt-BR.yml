@@ -1,6 +1,7 @@
 # Messages for Brazilian Portuguese (português do Brasil)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Fasouzafreitas
 # Author: Julianagatti
 # Author: Vonmatter
 ---
@@ -121,6 +122,7 @@ pt-BR:
   add_a_batch_of_taxa: Adicionar um grupo de táxons
   add_a_comment: Adicione um comentário
   add_a_field: Adicione um campo
+  add_a_flag: Adicionar marcação
   add_a_link_raquo: Adicionar um link &raquo;
   add_a_name: Adicione um nome
   add_a_new_change_group: Adicionar uma nova alteração no grupo
@@ -443,7 +445,6 @@ pt-BR:
   assessments: avaliações
   associations: Associações
   at: em
-  at_: em
   at_any_time_change: a qualquer hora (<span class="button">change</span>)
   at_time: às %{time}
   atom: Átomo
@@ -459,7 +460,7 @@ pt-BR:
     conteúdo quando existir uma mudança de espécies e grupos
   back: Voltar
   back_to: Voltar para
-  back_to_albums: Voltar anterior
+  back_to_albums: Voltar para álbuns
   back_to_all_species: Voltar para Todas as Espécies
   back_to_browsing_people: Voltar para a busca de pessoas
   back_to_calendar: Voltar para calendário %{user}
@@ -588,7 +589,7 @@ pt-BR:
   cc_by_sa_name: Atribuição – Compartilhamento pela mesma Licença (by-sa)
   cc_used_under_a: Creative Commons, utilizada sob uma
   change: Alterar
-  change_cover: alterar a capa
+  change_cover: Altere a capa
   change_descriptions:
     split: A espécie ou grupo foi subdividida em outras
     merge: Diversas espécies foram reunidas em um único grupo
@@ -991,6 +992,8 @@ pt-BR:
   dont_use_double_quotes: Não utilize aspas em nenhum outro lugar
   double_click_to_finish: (clique duas vezes para encerrar)
   download: Baixar
+  download_bulk_import_template_html: <a href="%{url}">Baixar template</a> para uso
+    no <a href="/observations/import#csv_import">carregador múltiplo</a>
   download_csv: Baixar CSV
   download_kml: Baixar KML
   drag_and_drop_photos: arraste e solte fotos nesta janela ou
@@ -1006,7 +1009,7 @@ pt-BR:
   edit: Alterar
   edit_a_batch_of_observations: Editar um grupo de observações
   edit_account_settings_and_profile: Edite as configurações da conta &amp; perfil
-  edit_assessment: editar avaliação
+  edit_assessment: Editar avaliação
   edit_body: Editar copro
   edit_colors: Editar cores
   edit_comment: Editar seu comentário
@@ -1118,6 +1121,7 @@ pt-BR:
   extinct_in_the_wild: extinto na natureza
   extra_properties: Propriedades extras
   extras: Extras
+  facebook: Facebook
   facebook_account_information: Informação da sua conta do Facebook
   facebook_account_not_linked: '%{user} não tem mais conexão com a conta do Facebook,
     então %{site_name} não tem permissão para acessar esta imagem.'
@@ -1183,6 +1187,7 @@ pt-BR:
   first_observer: Primeiro observador
   flag: Alerta
   flag_an_item: Alerte sobre um ítem
+  flag_as_spammer: Marque como spam
   flag_description: Faça um alerta deste conteúdo para que os coordenadores saibam
     que algo está errado.
   flag_for_curation: Marque um alerta para moderação
@@ -1195,11 +1200,14 @@ pt-BR:
   flag_this_photo: Faça um alerta sobre esta foto
   flagged: Marcados
   flagged_for_curation: Marcada com alerta para moderação.
+  flagged_thing_explanation: Usuários marcaram isto %{thing} porque
   flagger: Sinalizador
+  flags: Sinalizações
   flags_explanation: '%{site_name} usuários marcam com alertas aquilo que eles encontram
-    e percebem que tem algo errado. Aqui estão alguns aspectos que ainda não foram
-    resolvidos pelos coordenadores. Usuários marcarar com alerta isto %{thing} porque'
+    e percebem que não está correto. Aqui estão alguns aspectos que ainda não foram
+    resolvidos pelos administradores.'
   flags_for: Sinalizações para
+  flags_on_users_content: Marcações no conteúdo de %{user}
   flickr_account_information: Informações da sua conta Flickr
   flickr_description: Flickr é um serviço online de hospedagem de fotos, talvez você
     já conheça!
@@ -1466,6 +1474,8 @@ pt-BR:
   is_the_organism_wild: É um organismo silvestre?
   is_this_observation_offensive_html: Esta observação é <a href="/help#inappropriate">inapropriada</a>,
     spam, ou ofensiva?
+  is_this_offensive_html: Esta observação é <a href="/help#inappropriate">inapropriada</a>,
+    spam, ou ofensiva?
   is_this_place_a_duplicate: Este local está duplicado?
   it: Este
   it_has: Tem
@@ -1547,7 +1557,6 @@ pt-BR:
     norwegian: Norueguês
     pangasinan: Pangasinán
     portuguese: Português
-    rumanian: Romeno
     russian: Ruso
     spanish: Espanhol
     swedish: Sueco
@@ -1664,9 +1673,12 @@ pt-BR:
     es: Espanhol
     es-ES: Espanhol (Espanha)
     es-MX: Espanhol (México)
+    fr: Francês
     eu: Basco
     gl: Galego
     mk: Macedonio
+    pt: Português
+    pt-BR: Português (Brasil)
   localized_species_accounts: Contas de espécies localizadas
   location: Localização
   location_: Localização
@@ -1736,6 +1748,14 @@ pt-BR:
     informativos.
   manually_create_new_place: Crie um novo lugar manualmente
   map: Mapa
+  maps:
+    overlays:
+      all_observations: Todas as observações
+      every_publicly_visible_observation: Toda observação criada publicamente visível
+        na rede iNaturalist
+      featured_observations: Observações em destaque
+      observations: Observações
+      place_boundary: Colocar limite
   map_tooltip: Mostre a vista do mapa
   map_for: Mapa para
   maptype_for_places: google.maps.MapTypeId.TERRAIN
@@ -2150,7 +2170,7 @@ pt-BR:
   order: Ordem
   order_by: Ordenar por
   organisms: Organismos
-  original: original
+  original: Original
   originally_flagged_by: Originalmente marcada como advertência por
   originally_imported_from_url_html: Originalmente importado por <a href='%{url}'>%{url}</a>
   original_page_url_for_this_photo: Endereço da página original desta foto
@@ -3203,6 +3223,7 @@ pt-BR:
     página.
   try_wikipedia: Deseja tentar com Wikipédia?
   tue: Ter
+  twitter: Twitter
   type: Tipo
   type_a_name_and_click: Digite um nome e clique na busca
   type_a_place_name_and_click_search: Digite um local e clique BUSCAR para buscar
@@ -4176,8 +4197,8 @@ pt-BR:
           <li>Não traduza nomes de campos existentes em diferentes línguas. Inglês é a língua mãe deste site. Se realmente você deseja um campo que tenha o mesmo conceito em língua diferente, por favor crie um novo campo de observação.</li>
         </ol>
       dna_help: Para habilitar as funcionalidades correspondentes ao código de barras
-        de ADN BOLD assegure-se de incluir no nome de campo as palavras "COI", "COX1",
-        "seus", o "matK" correspondentes aos gêneros do campo.
+        BOLD DNA assegure-se de incluir no nome de campo as palavras "COI", "COX1",
+        "ITS", ou "matK" correspondentes ao gene-alvo desse campo.
       merge:
         warning_html: Por favor seja respeitoso com os dados de outras pessoas e <strong>converse
           com o o usuário que fez a observação antes de mesclar</strong>. Esta ferramenta

@@ -24,34 +24,34 @@ describe 'WindshaftDenormalizer' do
   end
 
   it 'should have 11 zoom levels' do
-    WindshaftDenormalizer.zooms.count.should == 11
+    expect(WindshaftDenormalizer.zooms.count).to be 11
   end
 
   it 'should create_all_tables' do
     WindshaftDenormalizer.destroy_all_tables
     WindshaftDenormalizer.zooms.each do |zoom|
-      @psql.table_exists?(zoom[:table]).should be_false
+      expect(@psql.table_exists?(zoom[:table])).to be false
     end
     WindshaftDenormalizer.create_all_tables
     WindshaftDenormalizer.zooms.each do |zoom|
-      @psql.table_exists?(zoom[:table]).should be_true
+      expect(@psql.table_exists?(zoom[:table])).to be true
     end
   end
 
   it 'should destroy_all_tables' do
     WindshaftDenormalizer.create_all_tables
     WindshaftDenormalizer.zooms.each do |zoom|
-      @psql.table_exists?(zoom[:table]).should be_true
+      expect(@psql.table_exists?(zoom[:table])).to be true
     end
     WindshaftDenormalizer.destroy_all_tables
     WindshaftDenormalizer.zooms.each do |zoom|
-      @psql.table_exists?(zoom[:table]).should be_false
+      expect(@psql.table_exists?(zoom[:table])).to be false
     end
   end
 
   it 'should generate a proper SnapToGrid statement' do
-    WindshaftDenormalizer.snap_for_seed(4).should ==
-      "ST_SnapToGrid(geom, 0+(4/2), 75+(4/2), 4, 4)"
+    expect(WindshaftDenormalizer.snap_for_seed(4)).to eq(
+      "ST_SnapToGrid(geom, 0+(4/2), 75+(4/2), 4, 4)")
   end
 
   it 'should denormalize properly' do
@@ -61,8 +61,8 @@ describe 'WindshaftDenormalizer' do
     # the summary for their respective branches - and one for NULL representing
     # the summary for ALL taxa
     WindshaftDenormalizer.zooms.each do |zoom|
-      @psql.execute("SELECT COUNT(*) from #{ zoom[:table] }").
-        first['count'].to_i.should >= 7
+      expect(@psql.execute("SELECT COUNT(*) from #{ zoom[:table] }").
+        first['count'].to_i).to be >= 7
     end
   end
 

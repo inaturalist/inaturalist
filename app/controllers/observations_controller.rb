@@ -1,7 +1,9 @@
 #encoding: utf-8
 class ObservationsController < ApplicationController
-  caches_page :tile_points
-  
+  skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
+  protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
+  before_filter :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
+
   WIDGET_CACHE_EXPIRATION = 15.minutes
   caches_action :index, :by_login, :project,
     :expires_in => WIDGET_CACHE_EXPIRATION,
@@ -24,7 +26,7 @@ class ObservationsController < ApplicationController
     by_login
   end
 
-  doorkeeper_for :create, :update, :destroy, :viewed_updates, :update_fields, :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!, :only => [ :create, :update, :destroy, :viewed_updates, :update_fields ], :if => lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
@@ -37,7 +39,6 @@ class ObservationsController < ApplicationController
                             :show,
                             :by_login,
                             :id_please,
-                            :tile_points,
                             :nearby,
                             :widget,
                             :project,
@@ -72,7 +73,7 @@ class ObservationsController < ApplicationController
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng BBOX"
   MAP_GRID_PARAMS_TO_CONSIDER = REJECTED_KML_FEED_PARAMS +
-    %w"order order_by taxon_id taxon_name project_id user_id utf8"
+    %w"order order_by taxon_id taxon_name projects user_id utf8"
   DISPLAY_ORDER_BY_FIELDS = {
     'created_at' => 'date added',
     'observations.id' => 'date added',
@@ -89,30 +90,35 @@ class ObservationsController < ApplicationController
   # GET /observations
   # GET /observations.xml
   def index
-    search_params, find_options = get_search_params(params)
-    search_params = site_search_params(search_params)
-
-    if !logged_in? && find_options[:page].to_i > 100
+    if !logged_in? && params[:page].to_i > 100
       authenticate_user!
       return false
     end
-    
-    if search_params[:q].blank?
-      @observations = if perform_caching && (!logged_in? || find_options[:page] == 1)
-        cache_params = params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
-        cache_params[:page] ||= 1
-        cache_params[:per_page] ||= find_options[:per_page]
-        cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
-        cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
-        cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
-        Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
-          get_paginated_observations(search_params, find_options).to_a
-        end
-      else
-        get_paginated_observations(search_params, find_options)
+    search_params = Observation.site_search_params(@site, params)
+    # making `page` default to a string because HTTP params are
+    # usually strings and we want to keep the cache_key consistent
+    search_params[:page] ||= "1"
+    if perform_caching && search_params[:q].blank? && (!logged_in? || search_params[:page].to_i == 1)
+      search_cache_params = search_params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
+      search_cache_params[:locale] ||= I18n.locale
+      search_cache_params[:per_page] ||= search_params[:per_page]
+      search_cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
+      search_cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
+      search_cache_key = "obs_index_#{Digest::MD5.hexdigest(search_cache_params.sort.to_s)}"
+      # setting a unique key to be used to cache view partials
+      view_cache_params = search_cache_params.merge({
+        partial: params[:partial],
+        view: (@view || params[:view]),
+        ssl: request.ssl? })
+      @observation_partial_cache_key =
+        "obs_component_#{Digest::MD5.hexdigest(view_cache_params.sort.to_s)}"
+      # Get the cached filtered observations
+      @observations = Rails.cache.fetch(search_cache_key, expires_in: 5.minutes, compress: true) do
+        get_elastic_paginated_observations(search_params)
       end
+      get_search_params(search_params) # this sets a bunch of instance variables for the UI
     else
-      @observations = search_observations(search_params, find_options)
+      @observations = get_elastic_paginated_observations(search_params)
     end
 
     respond_to do |format|
@@ -122,25 +128,36 @@ class ObservationsController < ApplicationController
         grid_affecting_params = request.query_parameters.reject{ |k,v|
           MAP_GRID_PARAMS_TO_CONSIDER.include?(k.to_s) }
         # there are no parameters at all, so we can show the grid for all taxa
-        @map_grid_params = { }
         if grid_affecting_params.blank?
-          @display_map_grid = true
+          @display_map_tiles = true
         # we can only show grids when quality_grade = 'any',
         # and all other parameters are empty
         elsif grid_affecting_params.delete("quality_grade") == "any" &&
+          grid_affecting_params.delete("identifications") == "any" &&
           grid_affecting_params.detect{ |k,v| v != "" }.nil?
-          @display_map_grid = true
+          @display_map_tiles = true
         end
         # if we are showing a grid
-        if @display_map_grid
-          @map_grid_params.merge!({
-            taxon_id: (search_params[:taxon] ? search_params[:taxon].id : nil),
-            user_id: search_params[:user_id],
-            project_id: search_params[:project_id],
-            place_id: search_params[:place_id]
-          }.delete_if{ |k,v| v.nil? })
-          if search_params[:taxon] && search_params[:taxon].iconic_taxon
-            @map_grid_params[:iconic_taxon] = search_params[:taxon].iconic_taxon.name
+        if @display_map_tiles
+          valid_map_params = {
+            taxon: @observations_taxon.blank? ? nil : @observations_taxon,
+            user_id: @user.blank? ? nil : @user.id,
+            project_id: @projects.blank? ? nil: @projects.first.id
+          }.delete_if{ |k,v| v.nil? }
+          if valid_map_params.empty?
+            # there are no options, so show all observations by default
+            @enable_show_all_layer = true
+          elsif valid_map_params.length == 1 && valid_map_params[:taxon]
+            # there is just a taxon, so show the taxon observations lyers
+            @map_params = { taxon_layers: [ { taxon: valid_map_params[:taxon],
+              observations: true, ranges: { disabled: true }, places: { disabled: true },
+              gbif: { disabled: true } } ], focus: :observations }
+          else
+            # otherwise show our catch-all "Featured Observations" custom layer
+            # this layer should have have taxon_id, not taxon
+            valid_map_params[:taxon_id] = valid_map_params[:taxon].id if valid_map_params[:taxon]
+            valid_map_params.delete(:taxon)
+            @map_params = { observation_layers: [ valid_map_params.merge(observations: @observations) ] }
           end
         end
         if (partial = params[:partial]) && PARTIALS.include?(partial)
@@ -163,7 +180,7 @@ class ObservationsController < ApplicationController
       end
       
       format.atom do
-        @updated_at = Observation.first(:order => 'updated_at DESC').updated_at
+        @updated_at = Observation.order("updated_at DESC").first.updated_at
       end
       
       format.dwc
@@ -202,13 +219,13 @@ class ObservationsController < ApplicationController
     unless @taxon = Taxon.find_by_id(params[:id].to_i)
       render_404 && return
     end
-    @observations = Observation.of(@taxon).all(
-      :include => [ :user,
+    @observations = Observation.of(@taxon).
+      includes([ :user,
                     :iconic_taxon,
                     { :taxon => :taxon_descriptions },
-                    { :observation_photos => :photo } ],
-      :order => "observations.id desc", 
-      :limit => 500).sort_by{|o| [o.quality_grade == "research" ? 1 : 0, o.id]}
+                    { :observation_photos => :photo } ]).
+      order("observations.id desc").
+      limit(500).sort_by{|o| [o.quality_grade == "research" ? 1 : 0, o.id]}
     respond_to do |format|
       format.json do
         render :json => @observations.to_json(
@@ -228,17 +245,10 @@ class ObservationsController < ApplicationController
   # GET /observations/1
   # GET /observations/1.xml
   def show
-    if request.format == :html && 
-        params[:partial] == "cached_component" && 
-        fragment_exist?(@observation.component_cache_key(:for_owner => @observation.user_id == current_user.try(:id)))
-      return render(:partial => params[:partial], :object => @observation,
-        :layout => false)
-    end
-    
-    @previous = @observation.user.observations.first(:conditions => ["id < ?", @observation.id], :order => "id DESC")
+    @previous = @observation.user.observations.where(["id < ?", @observation.id]).order("id DESC").first
     @prev = @previous
-    @next = @observation.user.observations.first(:conditions => ["id > ?", @observation.id], :order => "id ASC")
-    @quality_metrics = @observation.quality_metrics.all(:include => :user)
+    @next = @observation.user.observations.where(["id > ?", @observation.id]).order("id ASC").first
+    @quality_metrics = @observation.quality_metrics.includes(:user)
     if logged_in?
       @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
       @project_invitations = @observation.project_invitations.limit(100).to_a
@@ -274,11 +284,9 @@ class ObservationsController < ApplicationController
         end.reverse
         
         if logged_in?
-          @projects = Project.all(
-            :joins => [:project_users], 
-            :limit => 1000, 
-            :conditions => ["project_users.user_id = ?", current_user]
-          ).sort_by{|p| p.title.downcase}
+          @projects = Project.joins(:project_users).
+            where("project_users.user_id = ?", current_user).
+            limit(1000).sort_by{ |p| p.title.downcase }
         end
         
         @places = @observation.places
@@ -302,7 +310,7 @@ class ObservationsController < ApplicationController
         end
         
         if logged_in?
-          @subscription = @observation.update_subscriptions.first(:conditions => {:user_id => current_user})
+          @subscription = @observation.update_subscriptions.where(user: current_user).first
         end
         
         @observation_links = @observation.observation_links.sort_by{|ol| ol.href}
@@ -311,8 +319,8 @@ class ObservationsController < ApplicationController
         if @observation.taxon
           unless @places.blank?
             @listed_taxon = ListedTaxon.
-              includes(:place).
-              where("taxon_id = ? AND place_id IN (?) AND establishment_means IS NOT NULL", @observation.taxon_id, @places).
+              joins(:place).
+              where([ "taxon_id = ? AND place_id IN (?) AND establishment_means IS NOT NULL", @observation.taxon_id, @places ]).
               order("establishment_means IN ('endemic', 'introduced') DESC, places.bbox_area ASC").first
             @conservation_status = ConservationStatus.
               where(:taxon_id => @observation.taxon).where("place_id IN (?)", @places).
@@ -424,9 +432,8 @@ class ObservationsController < ApplicationController
     
     @taxon = Taxon.find_by_id(params[:taxon_id].to_i) unless params[:taxon_id].blank?
     unless params[:taxon_name].blank?
-      @taxon ||= TaxonName.first(:conditions => [
-        "lower(name) = ?", params[:taxon_name].to_s.strip.gsub(/[\s_]+/, ' ').downcase]
-      ).try(:taxon)
+      @taxon ||= TaxonName.where("lower(name) = ?", params[:taxon_name].to_s.strip.gsub(/[\s_]+/, ' ').downcase).
+        first.try(:taxon)
     end
     
     if !params[:project_id].blank?
@@ -446,7 +453,7 @@ class ObservationsController < ApplicationController
     @place ||= Place.find(params[:place_id]) unless params[:place_id].blank? rescue nil
 
     if @place
-      @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+      @place_geometry = PlaceGeometry.without_geom.where(place_id: @place).first
     end
     
     if params[:facebook_photo_id]
@@ -597,7 +604,7 @@ class ObservationsController < ApplicationController
         current_user.observations.where(:uuid => observation[:uuid]).first
       end
       o ||= Observation.new
-      o.assign_attributes(observation)
+      o.assign_attributes(observation_params(observation))
       o.user = current_user
       o.user_agent = request.user_agent
       o.site = @site || current_user.site
@@ -612,7 +619,7 @@ class ObservationsController < ApplicationController
             :user => current_user, :photo_class => klass)
         end
         if params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
-          if photo = o.photos.compact.last
+          if photo = o.photos.to_a.compact.last
             photo_o = photo.to_observation
             PHOTO_SYNC_ATTRS.each do |a|
               o.send("#{a}=", photo_o.send(a)) if o.send(a).blank?
@@ -720,13 +727,8 @@ class ObservationsController < ApplicationController
       return
     end
 
-    @observations = Observation.all(
-      :conditions => [
-        "id IN (?) AND user_id = ?", 
-        params[:observations].map{|k,v| k},
-        observation_user
-      ]
-    )
+    @observations = Observation.where(id: params[:observations].map{ |k,v| k },
+      user_id: observation_user)
     
     # Make sure there's no evil going on
     unique_user_ids = @observations.map(&:user_id).uniq
@@ -784,7 +786,7 @@ class ObservationsController < ApplicationController
         Photo.descendent_classes.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           next unless params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
-          next unless photo = observation.photos.compact.last
+          next unless photo = observation.photos.last
           photo_o = photo.to_observation
           PHOTO_SYNC_ATTRS.each do |a|
             hashed_params[observation.id.to_s] ||= {}
@@ -805,7 +807,7 @@ class ObservationsController < ApplicationController
         observation.sounds = Sound.from_observation_params(params, fieldset_index, current_user)
       end
       
-      unless observation.update_attributes(hashed_params[observation.id.to_s])
+      unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
         errors = true
       end
 
@@ -903,8 +905,7 @@ class ObservationsController < ApplicationController
   end
   
   def update_photos
-    @observation_photos = ObservationPhoto.all(:conditions => [
-      "id IN (?)", params[:observation_photos].map{|k,v| k}])
+    @observation_photos = ObservationPhoto.where(id: params[:observation_photos].map{|k,v| k})
     @observation_photos.each do |op|
       next unless @observation.observation_photo_ids.include?(op.id)
       op.update_attributes(params[:observation_photos][op.id.to_s])
@@ -931,9 +932,9 @@ class ObservationsController < ApplicationController
 ## Custom actions ############################################################
 
   def curation
-    @flags = Flag.paginate(:page => params[:page], 
-      :include => :user,
-      :conditions => "resolved = false AND flaggable_type = 'Observation'")
+    @flags = Flag.where(resolved: false, flaggable_type: "Observation").
+      includes(:user, :flaggable).
+      paginate(page: params[:page])
   end
 
   def new_batch
@@ -978,8 +979,18 @@ class ObservationsController < ApplicationController
     File.open(path, 'wb') { |f| f.write(params[:upload]['datafile'].read) }
 
     # Send the filename to a background processor
-    Delayed::Job.enqueue(BulkObservationFile.new(path, params[:upload][:project_id], params[:upload][:coordinate_system], current_user), 
-      :queue => "slow", :priority => USER_PRIORITY)
+    bof = BulkObservationFile.new(
+      path, 
+      params[:upload][:project_id], 
+      params[:upload][:coordinate_system], 
+      current_user
+    )
+    Delayed::Job.enqueue(
+      bof, 
+      queue: "slow",
+      priority: USER_PRIORITY,
+      unique_hash: bof.generate_unique_hash
+    )
 
     # Notify the user that it's getting processed and return them to the upload screen.
     flash[:notice] = 'Observation file has been queued for import.'
@@ -1011,9 +1022,7 @@ class ObservationsController < ApplicationController
   end
   
   def delete_batch
-    @observations = Observation.all(
-      :conditions => [
-        "id in (?) AND user_id = ?", params[:o].split(','), current_user])
+    @observations = Observation.where(id: params[:o].split(','), user_id: current_user)
     @observations.each do |observation|
       observation.destroy if observation.user == current_user
     end
@@ -1039,7 +1048,7 @@ class ObservationsController < ApplicationController
     end
     @project = Project.find(params[:project_id].to_i) if params[:project_id]
     if logged_in?
-      @projects = current_user.project_users.includes(:project).order('lower(projects.title)').collect(&:project)
+      @projects = current_user.project_users.joins(:project).includes(:project).order('lower(projects.title)').collect(&:project)
       @project_templates = {}
       @projects.each do |p|
         @project_templates[p.title] = p.observation_fields.order(:position) if @project && p.id == @project.id
@@ -1053,7 +1062,7 @@ class ObservationsController < ApplicationController
         :user => current_user, :photo_class => klass)
     end.flatten.compact
     @observations = photos.map{|p| p.to_observation}
-    @observation_photos = ObservationPhoto.includes(:photo, :observation).
+    @observation_photos = ObservationPhoto.joins(:photo, :observation).
       where("photos.native_photo_id IN (?)", photos.map(&:native_photo_id))
     @step = 2
     render :template => 'observations/new_batch'
@@ -1072,7 +1081,7 @@ class ObservationsController < ApplicationController
 
   def export
     search_params, find_options = get_search_params(params)
-    search_params = site_search_params(search_params)
+    search_params = Observation.site_search_params(@site, search_params)
     if params[:flow_task_id]
       if @flow_task = ObservationsExportFlowTask.find_by_id(params[:flow_task_id])
         @export_url = FakeView.uri_join(root_url, @flow_task.outputs.first.file.url).to_s
@@ -1090,16 +1099,17 @@ class ObservationsController < ApplicationController
     if @list = List.find_by_id(params[:id])
       @cache_key = {:controller => "observations", :action => "add_from_list", :id => @list.id, :order => @order}
       unless fragment_exist?(@cache_key)
-        @listed_taxa = @list.listed_taxa.order_by(@order).paginate(:include => {:taxon => [:photos, :taxon_names]}, :page => 1, :per_page => 1000)
-        @listed_taxa_alphabetical = @listed_taxa.sort! {|a,b| a.taxon.default_name.name <=> b.taxon.default_name.name}
+        @listed_taxa = @list.listed_taxa.order_by(@order).includes(
+          taxon: [:photos, { taxon_names: :place_taxon_names } ]).paginate(page: 1, per_page: 1000)
+        @listed_taxa_alphabetical = @listed_taxa.to_a.sort! {|a,b| a.taxon.default_name.name <=> b.taxon.default_name.name}
         @listed_taxa = @listed_taxa_alphabetical if @order == ListedTaxon::ALPHABETICAL_ORDER
         @taxon_ids_by_name = {}
         ancestor_ids = @listed_taxa.map {|lt| lt.taxon_ancestor_ids.to_s.split('/')}.flatten.uniq
-        @orders = Taxon.all(:conditions => ["rank = 'order' AND id IN (?)", ancestor_ids], :order => "ancestry")
-        @families = Taxon.all(:conditions => ["rank = 'family' AND id IN (?)", ancestor_ids], :order => "ancestry")
+        @orders = Taxon.where(rank: "order", id: ancestor_ids).order(:ancestry)
+        @families = Taxon.where(rank: "family", id: ancestor_ids).order(:ancestry)
       end
     end
-    @user_lists = current_user.lists.all(:limit => 100)
+    @user_lists = current_user.lists.limit(100)
     
     respond_to do |format|
       format.html
@@ -1115,7 +1125,7 @@ class ObservationsController < ApplicationController
   end
   
   def new_from_list
-    @taxa = Taxon.all(:conditions => ["id in (?)", params[:taxa]], :include => :taxon_names)
+    @taxa = Taxon.where(id: params[:taxa]).includes(:taxon_names)
     if @taxa.blank?
       flash[:error] = t(:no_taxa_selected)
       return redirect_to :action => :add_from_list
@@ -1131,26 +1141,22 @@ class ObservationsController < ApplicationController
 
   # gets observations by user login
   def by_login
-    block_if_spam(@selected_user) && return
-    search_params, find_options = get_search_params(params)
-    search_params.update(:user_id => @selected_user.id,
+    block_if_spammer(@selected_user) && return
+    params.update(:user_id => @selected_user.id,
       :viewer => current_user, 
       :filter_spam => (current_user.blank? || current_user != @selected_user)
     )
-    if search_params[:q].blank?
-      get_paginated_observations(search_params, find_options)
-    else
-      search_observations(search_params, find_options)
-    end
+    @observations = get_elastic_paginated_observations(params)
     
     respond_to do |format|
       format.html do
         @observer_provider_authorizations = @selected_user.provider_authorizations
         if logged_in? && @selected_user.id == current_user.id
-          @project_users = current_user.project_users.all(:include => :project, :order => "projects.title")
+          @project_users = current_user.project_users.joins(:project).order("projects.title")
           if @proj_obs_errors = Rails.cache.read("proj_obs_errors_#{current_user.id}") 
             @project = Project.find_by_id(@proj_obs_errors[:project_id])
-            @proj_obs_errors_obs = current_user.observations.all(:conditions => ["id IN (?)", @proj_obs_errors[:errors].keys], :include => [:photos, :taxon])
+            @proj_obs_errors_obs = current_user.observations.
+              where(id: @proj_obs_errors[:errors].keys).includes(:photos, :taxon)
             Rails.cache.delete("proj_obs_errors_#{current_user.id}")
           end
         end
@@ -1210,31 +1216,15 @@ class ObservationsController < ApplicationController
   def id_please
     params[:order_by] ||= "created_at"
     params[:order] ||= "desc"
-    search_params, find_options = get_search_params(params)
-    search_params = site_search_params(search_params)
-    find_options.update(
-      :per_page => 10,
-      :include => [
-        :user, 
-        {:taxon => [:taxon_names]}, 
-        :tags, 
-        :photos, 
-        {:identifications => [{:taxon => [:taxon_names]}, :user]}, 
-        {:comments => [:user]}
-      ]
-    )
-    if search_params[:has]
-      search_params[:has] = (search_params[:has].split(',') + ['id_please']).flatten.uniq
+    if params[:has]
+      params[:has] = (params[:has].split(',') + ['id_please']).flatten.uniq
     else
-      search_params[:has] = 'id_please'
+      params[:has] = 'id_please'
     end
-    
-    if search_params[:q].blank?
-      get_paginated_observations(search_params, find_options)
-    else
-      search_observations(search_params, find_options)
-    end
-    
+    search_params = Observation.site_search_params(@site, params)
+    @observations = get_elastic_paginated_observations(search_params)
+    Observation.preload_associations(@observations, [ :projects,
+      { identifications: [ :taxon, :user ] } ])
     @top_identifiers = User.order("identifications_count DESC").limit(5)
     if @site && @site.site_only_users
       @top_identifiers = @top_identifiers.where(:site_id => @site)
@@ -1245,35 +1235,12 @@ class ObservationsController < ApplicationController
   # observation-picking form widgets
   def selector
     search_params, find_options = get_search_params(params)
-
-    @observations = Observation.latest.query(search_params).paginate(find_options)
+    @observations = Observation.latest.query(search_params).paginate(
+      page: find_options[:page], per_page: find_options[:per_page])
       
     respond_to do |format|
       format.html { render :layout => false, :partial => 'selector'}
       # format.js
-    end
-  end
-  
-  def tile_points
-    # Project tile coordinates into lat/lon using a Spherical Merc projection
-    merc = SPHERICAL_MERCATOR
-    tile_size = 256
-    x, y, zoom = params[:x].to_i, params[:y].to_i, params[:zoom].to_i
-    swlng, swlat = merc.from_pixel_to_ll([x * tile_size, (y+1) * tile_size], zoom)
-    nelng, nelat = merc.from_pixel_to_ll([(x+1) * tile_size, y * tile_size], zoom)
-    @observations = Observation.in_bounding_box(swlat, swlng, nelat, nelng).all(
-      :select => "id, species_guess, latitude, longitude, user_id, description, private_latitude, private_longitude, time_observed_at",
-      :include => [:user, :photos], :limit => 500, :order => "id DESC")
-    
-    respond_to do |format|
-      format.json do
-        render :json => @observations.to_json(
-          :only => [:id, :species_guess, :latitude, :longitude],
-          :include => {
-            :user => {:only => :login}
-          },
-          :methods => [:image_url, :short_description])
-      end
     end
   end
   
@@ -1318,16 +1285,15 @@ class ObservationsController < ApplicationController
     @lat = params[:latitude].to_f
     @lon = params[:longitude].to_f
     if @lat && @lon
-      @latrads = @lat * (Math::PI / 180)
-      @lonrads = @lon * (Math::PI / 180)
-      @observations = Observation.search(:geo => [latrads,lonrads], 
-        :page => params[:page],
-        :without => {:observed_on => 0},
-        :order => "@geodist asc, observed_on desc") rescue []
+      @observations = Observation.elastic_paginate(
+        page: params[:page],
+        sort: {
+          _geo_distance: {
+            location: [ @lon, @lat ],
+            unit: "km",
+            order: "asc" } } )
     end
-    
     @observations ||= Observation.latest.paginate(:page => params[:page])
-    
     request.format = :mobile
     respond_to do |format|
       format.mobile
@@ -1351,18 +1317,12 @@ class ObservationsController < ApplicationController
     end
     
     unless request.format == :mobile
-      search_params, find_options = get_search_params(params)
-      search_params[:projects] = @project.id
-      if search_params[:q].blank?
-        get_paginated_observations(search_params, find_options)
-      else
-        search_observations(search_params, find_options)
-      end
+      params[:projects] = @project.id
+      @observations = get_elastic_paginated_observations(params)
     end
     
-    @project_observations = @project.project_observations.all(
-      :conditions => ["observation_id IN (?)", @observations],
-      :include => [{:curator_identification => [:taxon, :user]}])
+    @project_observations = @project.project_observations.where(observation: @observations.to_a).
+      includes([ { :curator_identification => [ :taxon, :user ] } ])
     @project_observations_by_observation_id = @project_observations.index_by(&:observation_id)
     
     @kml_assets = @project.project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
@@ -1377,7 +1337,7 @@ class ObservationsController < ApplicationController
         render_observations_to_json
       end
       format.atom do
-        @updated_at = Observation.first(:order => 'updated_at DESC').updated_at
+        @updated_at = Observation.order("updated_at DESC").first.updated_at
         render :action => "index"
       end
       format.csv do
@@ -1591,10 +1551,12 @@ class ObservationsController < ApplicationController
   end
 
   def taxa
+    can_view_leaves = logged_in? && current_user.is_curator?
+    params[:rank] = nil unless can_view_leaves
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    oscope = Observation.query(search_params).scoped
+    oscope = Observation.query(search_params)
     oscope = oscope.where("1 = 2") unless stats_adequately_scoped?
-    sql = if params[:rank] == "leaves" && logged_in? && current_user.is_curator?
+    sql = if params[:rank] == "leaves" && can_view_leaves
       ancestor_ids_sql = <<-SQL
         SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
         FROM taxa
@@ -1617,11 +1579,35 @@ class ObservationsController < ApplicationController
       "SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id"
     end
     @taxa = Taxon.find_by_sql(sql)
+    # hack to test what this would look like
+    @taxa = case params[:order]
+    when "observations_count"
+      @taxa.sort_by do |t|
+        c = if search_params[:place]
+          # this is a dumb hack. if i was smarter, i would have tried tp pull
+          # this out of the sql with GROUP and COUNT, but I couldn't figure it
+          # out --kueda 20150430
+          if lt = search_params[:place].listed_taxa.where(primary_listing: true, taxon_id: t.id).first
+            lt.observations_count
+          else
+            # if there's no listed taxon assume it's been observed once
+            1
+          end
+        else
+          t.observations_count
+        end
+        c.to_i * -1
+      end
+    when "name"
+      @taxa.sort_by(&:name)
+    else
+      @taxa
+    end
     respond_to do |format|
       format.html do
         @headless = true
         ancestor_ids = @taxa.map{|t| t.ancestor_ids[1..-1]}.flatten.uniq
-        ancestors = Taxon.find_all_by_id(ancestor_ids)
+        ancestors = Taxon.where(id: ancestor_ids)
         taxa_to_arrange = (ancestors + @taxa).sort_by{|t| "#{t.ancestry}/#{t.id}"}
         @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
         @taxon_names_by_taxon_id = TaxonName.where("taxon_id IN (?)", taxa_to_arrange.map(&:id).uniq).group_by(&:taxon_id)
@@ -1647,7 +1633,7 @@ class ObservationsController < ApplicationController
 
   def taxon_stats
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    scope = Observation.query(search_params).scoped
+    scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     species_counts_scope = scope.joins(:taxon)
     unless search_params[:rank] == "leaves" && logged_in? && current_user.is_curator?
@@ -1736,7 +1722,7 @@ class ObservationsController < ApplicationController
 
   def user_stats
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    scope = Observation.query(search_params).scoped
+    scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     limit = params[:limit].to_i
     limit = 500 if limit > 500 || limit <= 0
@@ -1750,6 +1736,8 @@ class ObservationsController < ApplicationController
     leftover_tax_user_ids = obs_user_ids - tax_user_ids
     @user_counts += user_obs_counts(scope.where("observations.user_id IN (?)", leftover_obs_user_ids)).to_a
     @user_taxon_counts += user_taxon_counts(scope.where("observations.user_id IN (?)", leftover_tax_user_ids)).to_a
+    @user_counts = @user_counts[0...limit]
+    @user_taxon_counts = @user_taxon_counts[0...limit]
     user_ids = (obs_user_ids + tax_user_ids).uniq.sort
     
     @users = User.select("id, login, icon_file_name, icon_updated_at, icon_content_type").where("id in (?)", user_ids)
@@ -1786,7 +1774,41 @@ class ObservationsController < ApplicationController
       end
     end
   end
+
   private
+
+  def observation_params(options = {})
+    p = options.blank? ? params : options
+    p.permit(
+      :captive_flag,
+      :description,
+      :geoprivacy,
+      :iconic_taxon_id,
+      :id_please,
+      :latitude,
+      :license,
+      :location_is_exact,
+      :longitude,
+      :map_scale,
+      :oauth_application_id,
+      :observed_on_string,
+      :place_guess,
+      :positional_accuracy,
+      :positioning_device,
+      :positioning_method,
+      :prefers_community_taxon,
+      :quality_grade,
+      :species_guess,
+      :taxon_id,
+      :taxon_name,
+      :time_zone,
+      :tag_list,
+      :uuid,
+      :zic_time_zone,
+      observation_field_values_attributes: [ :_destroy, :id, :observation_field_id, :value ]
+    )
+  end
+
   def user_obs_counts(scope, limit = 500)
     user_counts_sql = <<-SQL
       SELECT
@@ -1805,7 +1827,7 @@ class ObservationsController < ApplicationController
     unique_taxon_users_scope = scope.
       select("DISTINCT observations.taxon_id, observations.user_id").
       joins(:taxon).
-      where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL).scoped
+      where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL)
     user_taxon_counts_sql = <<-SQL
       SELECT
         o.user_id,
@@ -1825,7 +1847,7 @@ class ObservationsController < ApplicationController
     params[:order_by] = "observed_on"
     params[:order] = "asc"
     search_params, find_options = get_search_params(params, :skip_pagination => true)
-    scope = Observation.query(search_params).scoped
+    scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     scope = scope.joins(:taxon).
       select("observations.id, observations.user_id, observations.created_at, observations.observed_on, observations.time_observed_at, observations.time_zone, taxa.ancestry, taxon_id").
@@ -1859,7 +1881,7 @@ class ObservationsController < ApplicationController
 
   def phylogram
     search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    scope = Observation.query(search_params).scoped
+    scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     ancestor_ids_sql = <<-SQL
       SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
@@ -1911,7 +1933,7 @@ class ObservationsController < ApplicationController
       return
     end
     if flow_task.outputs.exists?
-      Emailer.observations_export_notification(flow_task).deliver
+      Emailer.observations_export_notification(flow_task).deliver_now
       render :status => :ok, :text => ""
       return 
     end
@@ -1928,11 +1950,23 @@ class ObservationsController < ApplicationController
   end
 
   def map
-    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
-    @render_place = Place.find_by_id(params[:render_place_id].to_i) if params[:render_place_id]
-    @render_taxon_range = Taxon.find_by_id(params[:render_taxon_range_id].to_i) if params[:render_taxon_range_id]
-    @taxon_hash = { }
-    if @taxon
+    @taxa = [ ]
+    @places = [ ]
+    @user = User.find_by_id(params[:user_id])
+    @project = Project.find(params[:project_id]) rescue nil
+    if params[:taxon_id]
+      @taxa = [ Taxon.find_by_id(params[:taxon_id].to_i) ]
+    elsif params[:taxon_ids]
+      @taxa = Taxon.where(id: params[:taxon_ids])
+    end
+    if params[:place_id]
+      @places = [ Place.find_by_id(params[:place_id].to_i) ]
+    elsif params[:place_ids]
+      @places = Place.where(id: params[:place_ids])
+    end
+    if @taxa.length == 1
+      @taxon = @taxa.first
+      @taxon_hash = { }
       common_name = view_context.common_taxon_name(@taxon).try(:name)
       rank_label = @taxon.rank ? t('ranks.#{ @taxon.rank.downcase }',
         default: @taxon.rank).capitalize : t(:unknown_rank)
@@ -1952,10 +1986,11 @@ class ObservationsController < ApplicationController
 
   def user_viewed_updates
     return unless logged_in?
-    Update.update_all(
-      ["viewed_at = ?", Time.now], 
-      ["resource_type = 'Observation' AND resource_id = ? AND subscriber_id = ?", @observation.id, current_user.id]
-    )
+    updates_scope = Update.where([
+      "resource_type = 'Observation' AND resource_id = ? AND subscriber_id = ?",
+      @observation.id, current_user.id])
+    updates_scope.update_all(viewed_at: Time.now)
+    Update.elastic_index!(scope: updates_scope, delay: true)
   end
 
   def stats_adequately_scoped?
@@ -2048,30 +2083,8 @@ class ObservationsController < ApplicationController
   # Processes params for observation requests.  Designed for use with 
   # will_paginate and standard observations query API
   def get_search_params(params, options = {})
-    # The original params is important for things like pagination, so we 
-    # leave it untouched.
-    search_params = params.clone
-    
-    @swlat = search_params[:swlat] unless search_params[:swlat].blank?
-    @swlng = search_params[:swlng] unless search_params[:swlng].blank?
-    @nelat = search_params[:nelat] unless search_params[:nelat].blank?
-    @nelng = search_params[:nelng] unless search_params[:nelng].blank?
-    unless search_params[:place_id].blank?
-      @place = begin
-        Place.find(search_params[:place_id])
-      rescue ActiveRecord::RecordNotFound
-        nil
-      end
-    end
-    
-    unless search_params[:q].blank?
-      search_params[:q] = sanitize_sphinx_query(search_params[:q])
-      @q = search_params[:q] unless search_params[:q].blank?
-    end
-    if Observation::SPHINX_FIELD_NAMES.include?(search_params[:search_on])
-      @search_on = search_params[:search_on]
-    end
-    
+    search_params = Observation.query_params(params.merge(skip_order: options[:skip_order]))
+
     find_options = {
       :include => [:user, {:taxon => [:taxon_names]}, :taggings, {:observation_photos => :photo}],
       :page => search_params[:page]
@@ -2100,142 +2113,48 @@ class ObservationsController < ApplicationController
       find_options[:include] = [{:taxon => :taxon_names}, {:observation_photos => :photo}, :user]
     end
     
-    # iconic_taxa
-    if search_params[:iconic_taxa]
-      # split a string of names
-      if search_params[:iconic_taxa].is_a? String
-        search_params[:iconic_taxa] = search_params[:iconic_taxa].split(',')
-      end
-      
-      # resolve taxa entered by name
-      search_params[:iconic_taxa] = search_params[:iconic_taxa].map do |it|
-        it = it.last if it.is_a?(Array)
-        if it.to_i == 0
-          Taxon::ICONIC_TAXA_BY_NAME[it]
-        else
-          Taxon::ICONIC_TAXA_BY_ID[it]
-        end
-      end
-      @iconic_taxa = search_params[:iconic_taxa]
-    end
-    
-    # taxon
-    if !search_params[:taxon_id].blank?
-      @observations_taxon_id = search_params[:taxon_id] 
-      @observations_taxon = Taxon.find_by_id(@observations_taxon_id.to_i)
-    elsif !search_params[:taxon_name].blank?
-      @observations_taxon_name = search_params[:taxon_name].to_s
-      taxon_name_conditions = ["taxon_names.name = ?", @observations_taxon_name]
-      includes = nil
-      unless @iconic_taxa.blank?
-        taxon_name_conditions[0] += " AND taxa.iconic_taxon_id IN (?)"
-        taxon_name_conditions << @iconic_taxa
-        includes = :taxon
-      end
-      begin
-        @observations_taxon = TaxonName.first(:include => includes, 
-          :conditions => taxon_name_conditions).try(:taxon)
-      rescue ActiveRecord::StatementInvalid => e
-        raise e unless e.message =~ /invalid byte sequence/
-        taxon_name_conditions[1] = @observations_taxon_name.encode('UTF-8')
-        @observations_taxon = TaxonName.first(:include => includes, 
-          :conditions => taxon_name_conditions).try(:taxon)
-      end
-    end
-    search_params[:taxon] = @observations_taxon
-    
+    @swlat = search_params[:swlat] unless search_params[:swlat].blank?
+    @swlng = search_params[:swlng] unless search_params[:swlng].blank?
+    @nelat = search_params[:nelat] unless search_params[:nelat].blank?
+    @nelng = search_params[:nelng] unless search_params[:nelng].blank?
+    @place = search_params[:place] unless search_params[:place].blank?
+    @q = search_params[:q] unless search_params[:q].blank?
+    @search_on = search_params[:search_on]
+    @iconic_taxa = search_params[:iconic_taxa]
+    @observations_taxon_id = search_params[:observations_taxon_id]
+    @observations_taxon = search_params[:observations_taxon]
+    @observations_taxon_name = search_params[:taxon_name]
     if search_params[:has]
-      if search_params[:has].is_a?(String)
-        search_params[:has] = search_params[:has].split(',')
-      end
       @id_please = true if search_params[:has].include?('id_please')
       @with_photos = true if search_params[:has].include?('photos')
       @with_sounds = true if search_params[:has].include?('sounds')
+      @with_geo = true if search_params[:has].include?('geo')
     end
-    
     @quality_grade = search_params[:quality_grade]
-    @captive = if [true, 'true', 't', 'yes', 'y', 1, '1'].include?(search_params[:captive])
-      true
-    elsif [false, 'false', 'f', 'no', 'n', 0, '0'].include?(search_params[:captive])
-      false
-    end
+    @captive = search_params[:captive]
     @identifications = search_params[:identifications]
     @out_of_range = search_params[:out_of_range]
     @license = search_params[:license]
     @photo_license = search_params[:photo_license]
-    
-    if options[:skip_order]
-      search_params.delete(:order)
-      search_params.delete(:order_by)
-    else
-      search_params[:order_by] = "created_at" if search_params[:order_by] == "observations.id"
-      if ORDER_BY_FIELDS.include?(search_params[:order_by].to_s)
-        @order_by = search_params[:order_by]
-        @order = if %w(asc desc).include?(search_params[:order].to_s.downcase)
-          search_params[:order]
-        else
-          'desc'
-        end
-      else
-        @order_by = "observations.id"
-        @order = "desc"
-      end
-      search_params[:order_by] = "#{@order_by} #{@order}"
-    end
-    
-    # date
-    date_pieces = [search_params[:year], search_params[:month], search_params[:day]]
-    unless date_pieces.map{|d| d.blank? ? nil : d}.compact.blank?
-      search_params[:on] = date_pieces.join('-')
-    end
-    if search_params[:on].to_s =~ /^\d{4}/
-      @observed_on = search_params[:on]
-      @observed_on_year, @observed_on_month, @observed_on_day = @observed_on.split('-').map{|d| d.to_i}
-    end
-    @observed_on_year ||= search_params[:year].to_i unless search_params[:year].blank?
-    @observed_on_month ||= search_params[:month].to_i unless search_params[:month].blank?
-    @observed_on_day ||= search_params[:day].to_i unless search_params[:day].blank?
-
-    # observation fields
-    ofv_params = search_params.select{|k,v| k =~ /^field\:/}
-    unless ofv_params.blank?
-      @ofv_params = {}
-      ofv_params.each do |k,v|
-        @ofv_params[k] = {
-          :normalized_name => ObservationField.normalize_name(k),
-          :value => v
-        }
-      end
-      observation_fields = ObservationField.where("lower(name) IN (?)", @ofv_params.map{|k,v| v[:normalized_name]})
-      @ofv_params.each do |k,v|
-        v[:observation_field] = observation_fields.detect do |of|
-          v[:normalized_name] == ObservationField.normalize_name(of.name)
-        end
-      end
-      @ofv_params.delete_if{|k,v| v[:observation_field].blank?}
-      search_params[:ofv_params] = @ofv_params
-    end
-
+    @sound_license = search_params[:sound_license]
+    @order_by = search_params[:order_by]
+    @order = search_params[:order]
+    @observed_on = search_params[:observed_on]
+    @observed_on_year = search_params[:observed_on_year]
+    @observed_on_month = search_params[:observed_on_month]
+    @observed_on_day = search_params[:observed_on_day]
+    @ofv_params = search_params[:ofv_params]
     @site_uri = params[:site] unless params[:site].blank?
-
-    unless params[:user_id].blank?
-      @user = User.find_by_id(params[:user_id])
-      @user ||= User.find_by_login(params[:user_id])
-    end
-    unless params[:projects].blank?
-      @projects = Project.find(params[:projects]) rescue []
-    end
-    if (@pcid = params[:pcid]) && @pcid != 'any'
-      @pcid = [true, 'true', 't', 1, '1', 'y', 'yes'].include?(params[:pcid]) ? 'yes' : 'no'
-    end
-
-    @geoprivacy = params[:geoprivacy] unless params[:geoprivacy].blank?
-    @rank = params[:rank] if Taxon::VISIBLE_RANKS.include?(params[:rank])
-    @hrank = params[:hrank] if Taxon::VISIBLE_RANKS.include?(params[:hrank])
-    @lrank = params[:lrank] if Taxon::VISIBLE_RANKS.include?(params[:lrank])
+    @user = search_params[:user]
+    @projects = search_params[:projects]
+    @pcid = search_params[:pcid]
+    @geoprivacy = search_params[:geoprivacy] unless search_params[:geoprivacy].blank?
+    @rank = search_params[:rank]
+    @hrank = search_params[:hrank]
+    @lrank = search_params[:lrank]
     if stats_adequately_scoped?
-      @d1 = search_params[:d1]
-      @d2 = search_params[:d2]
+      @d1 = search_params[:d1].blank? ? nil : search_params[:d1]
+      @d2 = search_params[:d2].blank? ? nil : search_params[:d2]
     else
       search_params[:d1] = nil
       search_params[:d2] = nil
@@ -2265,236 +2184,63 @@ class ObservationsController < ApplicationController
     
     [search_params, find_options]
   end
-  
-  # Either make a plain db query and return a WillPaginate collection or make 
-  # a Sphinx call if there were query terms specified.
+
+  def get_elastic_paginated_observations(params)
+    # prepare parameters
+    search_params, find_options = get_search_params(params)
+
+    # there are some attributes which have not yet been added to the
+    # elasticsearch index, or we have decided not to put in the index
+    # because it would be more work to maintain than it would save
+    # when searching. Remove empty values before checking
+    if (Observation::NON_ELASTIC_ATTRIBUTES.map(&:to_sym) &
+            search_params.reject{ |k,v| v.blank? || v == "any" }.keys).any? ||
+       (@place && !@place.geom_in_elastic_index)
+      # if we have one of these non-elastic attributes,
+      # then default to searching PostgreSQL via ActiveRecord
+      return get_paginated_observations(search_params, find_options)
+    end
+    Observation.elastic_query(search_params.merge(find_options), current_user: current_user)
+  end
+
+  # Make a plain db query and return a WillPaginate collection.
+  # Normally called if get_paginated_observations cannot be used,
+  # for example when searching on attributes not in ES
   def get_paginated_observations(search_params, find_options)
-    query_scope = Observation.query(search_params).scoped
+    query_scope = Observation.query(search_params)
     if search_params[:filter_spam]
       query_scope = query_scope.not_flagged_as_spam
     end
-    if @q
-      @observations = if @search_on
-        find_options[:conditions] = update_conditions(
-          find_options[:conditions], @search_on.to_sym => @q
-        )
-        query_scope.search(find_options).compact
-      else
-        query_scope.search(@q, find_options).compact
-      end
-    end
-    if @observations.blank?
-      # COUNT( ) OVER( ) works great with smaller result sets, so here
-      # we are choosing to use it when there are some decent filters
-      # to work with, otherwise we'll use standard paginate which will
-      # initiate two separate queries
-      if search_params[:place_id] || search_params[:taxon_id] ||
-        search_params[:taxon_name] || (search_params[:lat] && search_params[:lng])
-        @observations = query_scope.paginate_with_count_over(find_options)
-      else
-        @observations = query_scope.paginate(find_options)
-      end
-      unless request.format && request.format.json?
-        Observation.preload_associations(@observations,
-          [ :sounds,
-            :stored_preferences,
-            :quality_metrics,
-            :projects,
-            { :observation_photos => :photo },
-            { :user => :stored_preferences },
-            { :taxon => :taxon_descriptions },
-            { :iconic_taxon => :taxon_descriptions }
-          ])
-      end
-    end
-    @observations
-  rescue ThinkingSphinx::ConnectionError, Riddle::ResponseError
-    Rails.logger.error "[ERROR #{Time.now}] ThinkingSphinx::ConnectionError, hitting the db"
-    find_options.delete(:class)
-    find_options.delete(:classes)
-    find_options.delete(:raise_on_stale)
-    @observations = if @q
-      Observation.query(search_params).where("species_guess LIKE ?", "%#{@q}%").paginate(find_options)
+    # COUNT( ) OVER( ) works great with smaller result sets, so here
+    # we are choosing to use it when there are some decent filters
+    # to work with, otherwise we'll use standard paginate which will
+    # initiate two separate queries
+    if search_params[:place_id] || search_params[:taxon_id] ||
+      search_params[:taxon_name] || (search_params[:lat] && search_params[:lng])
+      @observations = query_scope.paginate_with_count_over(find_options)
     else
-      Observation.query(search_params).paginate(find_options)
+      @observations = query_scope.where(find_options[:conditions]).
+        includes(find_options[:include]).
+        paginate(page: find_options[:page], per_page: find_options[:per_page]).
+        order(find_options[:order])
     end
-  end
-  
-  def search_observations(search_params, find_options)
-    sphinx_options = find_options.dup
-    sphinx_options[:with] = {}
-    
-    if sphinx_options[:page] && sphinx_options[:page].to_i > 50
-      if request.format && request.format.html?
-        flash.now[:notice] = t(:heads_up_observation_search_can_only_load)
-      end
-      sphinx_options[:page] = 50
-      find_options[:page] = 50
+    unless request.format && request.format.json?
+      Observation.preload_associations(@observations,
+        [ :sounds,
+          :stored_preferences,
+          :quality_metrics,
+          :projects,
+          :flags,
+          { :photos => :flags },
+          { :user => :stored_preferences },
+          { :taxon => :taxon_descriptions },
+          { :iconic_taxon => :taxon_descriptions }
+        ])
     end
-    
-    if search_params[:has]
-      # id please
-      if search_params[:has].include?('id_please')
-        sphinx_options[:with][:has_id_please] = true
-      end
-      
-      # has photos
-      if search_params[:has].include?('photos')
-        sphinx_options[:with][:has_photos] = true
-      end
-
-      # has sounds
-      if search_params[:has].include?('sounds')
-        sphinx_options[:with][:has_sounds] = true
-      end
-      
-      # geo
-      if search_params[:has].include?('geo')
-        sphinx_options[:with][:has_geo] = true 
-      end
-    end
-
-    if Observation::QUALITY_GRADES.include?(search_params[:quality_grade])
-      sphinx_options[:conditions] ||= {}
-      sphinx_options[:conditions][:quality_grade] = search_params[:quality_grade]
-    end
-    
-    # Bounding box or near point
-    if (!search_params[:swlat].blank? && !search_params[:swlng].blank? && 
-        !search_params[:nelat].blank? && !search_params[:nelng].blank?)
-      swlatrads = search_params[:swlat].to_f * (Math::PI / 180)
-      swlngrads = search_params[:swlng].to_f * (Math::PI / 180)
-      nelatrads = search_params[:nelat].to_f * (Math::PI / 180)
-      nelngrads = search_params[:nelng].to_f * (Math::PI / 180)
-      
-      # The box straddles the 180th meridian...
-      # This is a very stupid solution that just chooses the biggest of the
-      # two sides straddling the meridian and queries in that.  Sphinx doesn't
-      # seem to support multiple queries on the same attribute, so we can't do
-      # the OR clause we do in the equivalent named scope.  Grr.  -kueda
-      # 2009-04-10
-      if swlngrads > 0 && nelngrads < 0
-        lngrange = swlngrads.abs > nelngrads ? swlngrads..Math::PI : -Math::PI..nelngrads
-        sphinx_options[:with][:longitude] = lngrange
-        # sphinx_options[:with][:longitude] = swlngrads..Math::PI
-        # sphinx_options[:with] = {:longitude => -Math::PI..nelngrads}
-      else
-        sphinx_options[:with][:longitude] = swlngrads..nelngrads
-      end
-      sphinx_options[:with][:latitude] = swlatrads..nelatrads
-    elsif search_params[:lat] && search_params[:lng]
-      latrads = search_params[:lat].to_f * (Math::PI / 180)
-      lngrads = search_params[:lng].to_f * (Math::PI / 180)
-      sphinx_options[:geo] = [latrads, lngrads]
-      sphinx_options[:order] = "@geodist asc"
-    end
-    
-    # identifications
-    case search_params[:identifications]
-    when 'most_agree'
-      sphinx_options[:with][:identifications_most_agree] = true
-    when 'some_agree'
-      sphinx_options[:with][:identifications_some_agree] = true
-    when 'most_disagree'
-      sphinx_options[:with][:identifications_most_disagree] = true
-    end
-    
-    # Iconic taxa
-    unless search_params[:iconic_taxa].blank?
-      sphinx_options[:with][:iconic_taxon_id] = \
-          search_params[:iconic_taxa].map do |iconic_taxon|
-        iconic_taxon.nil? ? nil : iconic_taxon.id
-      end
-    end
-    
-    # User ID
-    unless search_params[:user_id].blank?
-      sphinx_options[:with][:user_id] = search_params[:user_id]
-    end
-    
-    # User login
-    unless search_params[:user].blank?
-      sphinx_options[:with][:user] = search_params[:user]
-    end
-    
-    # Ordering
-    unless search_params[:order_by].blank?
-      # observations.id is a more efficient sql clause, but it's not the name of a field in sphinx
-      search_params[:order_by].gsub!(/observations\.id/, 'created_at')
-      
-      if !sphinx_options[:order].blank?
-        sphinx_options[:order] += ", #{search_params[:order_by]}"
-        sphinx_options[:sort_mode] = :extended
-      elsif search_params[:order_by] =~ /\sdesc|asc/i
-        sphinx_options[:order] = search_params[:order_by].split.first.to_sym
-        sphinx_options[:sort_mode] = search_params[:order_by].split.last.downcase.to_sym
-      else
-        sphinx_options[:order] = search_params[:order_by].to_sym
-      end
-    end
-    
-    unless search_params[:projects].blank?
-      sphinx_options[:with][:projects] = if search_params[:projects].is_a?(String) && search_params[:projects].index(',')
-        search_params[:projects].split(',')
-      else
-        [search_params[:projects]].flatten
-      end
-    end
-
-    unless search_params[:ofv_params].blank?
-      ofs = search_params[:ofv_params].map do |k,v|
-        v[:observation_field].blank? ? nil : v[:observation_field].id
-      end.compact
-      sphinx_options[:with][:observation_fields] = ofs unless ofs.blank?
-    end
-    
-    # Sanitize query
-    q = sanitize_sphinx_query(@q)
-    
-    # Field-specific searches
-    obs_ids = if @search_on
-      sphinx_options[:conditions] ||= {}
-      # not sure why sphinx chokes on slashes when searching on attributes...
-      sphinx_options[:conditions][@search_on.to_sym] = q.gsub(/\//, '')
-      Observation.search_for_ids(find_options.merge(sphinx_options))
-    else
-      Observation.search_for_ids(q, find_options.merge(sphinx_options))
-    end
-    @observations = Observation.where("observations.id in (?)", obs_ids).
-      order_by(search_params[:order_by]).
-      includes(find_options[:include]).scoped
-
-    # lame hacks
-    unless search_params[:ofv_params].blank?
-      search_params[:ofv_params].each do |k,v|
-        next unless of = v[:observation_field]
-        next if v[:value].blank?
-        v[:observation_field].blank? ? nil : v[:observation_field].id
-        @observations = @observations.has_observation_field(of.id, v[:value])
-      end
-    end    
-    @observations = @observations.of(@observations_taxon) if @observations_taxon
-    @observations = @observations.in_place(@place) if @place
-    @observations = @observations.on(@observed_on) if @observed_on
-
-    if CONFIG.site_only_observations && params[:site].blank?
-      @observations = @observations.where("observations.uri LIKE ?", "#{root_url}%")
-    end
-
-    @observations = WillPaginate::Collection.create(obs_ids.current_page, obs_ids.per_page, obs_ids.total_entries) do |pager|
-      pager.replace(@observations.to_a)
-    end
-
-    begin
-      @observations.total_entries
-    rescue ThinkingSphinx::SphinxError, Riddle::OutOfBoundsError => e
-      Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
-      @observations = WillPaginate::Collection.new(1,30, 0)
-    end
+    # make sure we return the paginate collection
     @observations
-  rescue ThinkingSphinx::ConnectionError, Riddle::ResponseError
-    Rails.logger.error "[ERROR #{Time.now}] Failed to connect to sphinx, falling back to db"
-    get_paginated_observations(search_params, find_options)
+  rescue Exception => e
+    Rails.logger.error "[ERROR] Observations::get_paginated_observations failed: #{ e }"
   end
   
   # Refresh lists affected by taxon changes in a batch of new/edited
@@ -2502,7 +2248,7 @@ class ObservationsController < ApplicationController
   # in @observations before this is called, this won't do anything
   def refresh_lists_for_batch
     return true if @observations.blank?
-    taxa = @observations.compact.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
+    taxa = @observations.to_a.compact.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
     return true if taxa.blank?
     List.delay(:priority => USER_PRIORITY).refresh_for_user(current_user, :taxa => taxa.map(&:id))
     true
@@ -2555,6 +2301,7 @@ class ObservationsController < ApplicationController
       flash.now[:error] = t(:sorry_flickr_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
       Airbrake.notify(e, :request => request, :session => session)
+      Logstasher.write_exception(e, request: request, session: session, user: current_user)
       return
     end
     if fp && @flickr_photo && @flickr_photo.valid?
@@ -2599,6 +2346,7 @@ class ObservationsController < ApplicationController
       flash.now[:error] = t(:sorry_picasa_isnt_responding_at_the_moment)
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
       Airbrake.notify(e, :request => request, :session => session)
+      Logstasher.write_exception(e, request: request, session: session, user: current_user)
       return
     end
     unless api_response
@@ -2661,6 +2409,7 @@ class ObservationsController < ApplicationController
       @photo_identities = []
       return true
     end
+    Photo.descendent_classes = [FlickrPhoto, PicasaPhoto, FacebookPhoto] if Photo.descendent_classes.blank?
     @photo_identities = Photo.descendent_classes.map do |klass|
       assoc_name = klass.to_s.underscore.split('_').first + "_identity"
       current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
@@ -2730,14 +2479,12 @@ class ObservationsController < ApplicationController
   end
   
   def load_observation
-    render_404 unless @observation = Observation.find_by_id(params[:id] || params[:observation_id],
-      :include => [ :quality_metrics,
-                    :photos,
-                    :identifications,
-                    :projects,
-                    { :taxon => :taxon_names }
-      ]
-    )
+    render_404 unless @observation = Observation.where(id: params[:id] || params[:observation_id]).
+      includes([ :quality_metrics,
+                 :photos,
+                 :identifications,
+                 :projects,
+                 { :taxon => :taxon_names }]).first
   end
   
   def require_owner
@@ -2803,6 +2550,22 @@ class ObservationsController < ApplicationController
           :include => {:photo => {:except => [:metadata]}}
         }
       end
+      if extra.include?('identifications')
+        taxon_options = Taxon.default_json_options
+        taxon_options[:methods] += [:iconic_taxon_name, :image_url, :common_name, :default_name]
+        opts[:include][:identifications] ||= {
+          'include': {
+            user: {
+              only: [:name, :login, :id],
+              methods: [:user_icon_url]
+            },
+            taxon: {
+              only: [:id, :name, :rank, :rank_level],
+              methods: [:iconic_taxon_name, :image_url, :common_name, :default_name]
+            }
+          }
+        }
+      end
       if @ofv_params || extra.include?('fields')
         opts[:include][:observation_field_values] ||= {
           :except => [:observation_field_id],
@@ -2838,7 +2601,7 @@ class ObservationsController < ApplicationController
     end
     Observation.preload_associations(@observations, :tags) if @observations.respond_to?(:scoped)
     pagination_headers_for(@observations)
-    render :text => @observations.to_csv(:only => only.map{|c| c.to_sym})
+    render :text => Observation.as_csv(@observations, only.map{|c| c.to_sym})
   end
   
   def render_observations_to_kml(options = {})
@@ -2868,7 +2631,7 @@ class ObservationsController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @project ||= Project.find(params[:project_id]) rescue nil
     return unless @project
-    @project_user = current_user.project_users.find_or_create_by_project_id(@project.id)
+    @project_user = current_user.project_users.find_or_create_by(project_id: @project.id)
     return unless @project_user && @project_user.valid?
     tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
     errors = []
@@ -2897,7 +2660,8 @@ class ObservationsController < ApplicationController
     if @observations.empty?
       render(:text => '')
     else
-      render(:partial => partial, :collection => @observations, :layout => false)
+      render(partial: "partial_renderer",
+        locals: { partial: partial, collection: @observations }, layout: false)
     end
   end
 
@@ -2906,23 +2670,6 @@ class ObservationsController < ApplicationController
     if request.format && request.format.html?
       @view = params[:view] || current_user.try(:preferred_observations_view) || 'map'
     end
-  end
-
-  def site_search_params(search_params = {})
-    if CONFIG.site_only_observations && params[:site].blank?
-      search_params[:site] ||= FakeView.root_url
-    end
-    if (site_bounds = CONFIG.bounds) && params[:swlat].blank? && params[:place_id].blank? & params[:bbox].blank?
-      search_params[:nelat] ||= site_bounds['nelat']
-      search_params[:nelng] ||= site_bounds['nelng']
-      search_params[:swlat] ||= site_bounds['swlat']
-      search_params[:swlng] ||= site_bounds['swlng']
-      @nelat ||= site_bounds['nelat']
-      @nelng ||= site_bounds['nelng']
-      @swlat ||= site_bounds['swlat']
-      @swlng ||= site_bounds['swlng']
-    end
-    search_params
   end
 
   def delayed_csv(path_for_csv, parent, options = {})

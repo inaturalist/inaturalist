@@ -62,21 +62,23 @@ class List < ActiveRecord::Base
   # been observed.
   #
   def refresh(options = {})
-    find_options = {}
+    finder = ListedTaxon.all
     if taxa = options[:taxa]
-      find_options[:conditions] = ["list_id = ? AND taxon_id IN (?)", self.id, taxa]
+      finder = finder.where(list_id: self.id, taxon_id: taxa)
     else
-      find_options[:conditions] = ["list_id = ?", self.id]
+      finder = finder.where(list_id: self.id)
     end
     
-    ListedTaxon.do_in_batches(find_options) do |listed_taxon|
-      listed_taxon.skip_update_cache_columns = options[:skip_update_cache_columns]
-      # re-apply list rules to the listed taxa
-      listed_taxon.save
-      unless listed_taxon.valid?
-        Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
-          "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
-        listed_taxon.destroy
+    finder.find_in_batches do |batch|
+      batch.each do |listed_taxon|
+        listed_taxon.skip_update_cache_columns = options[:skip_update_cache_columns]
+        # re-apply list rules to the listed taxa
+        listed_taxon.save
+        unless listed_taxon.valid?
+          Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
+            "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
+          listed_taxon.destroy
+        end
       end
     end
     true
@@ -166,28 +168,28 @@ class List < ActiveRecord::Base
     tmp_path = File.join(Dir::tmpdir, fname)
     FileUtils.mkdir_p File.dirname(tmp_path), :mode => 0755
     
-    find_options = {
-      :order => "taxon_ancestor_ids || '/' || listed_taxa.taxon_id",
-      :include => [ { :taxon => :taxon_names }, :user, :first_observation, :last_observation ]
-    }
-    if is_a?(CheckList) && is_default?
-      find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
-      find_options[:conditions] = ["place_id = ?", place_id]
+    scope = if is_a?(CheckList) && is_default?
+      ListedTaxon.where(place_id: place_id).
+        select("DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.id")
     else
-      find_options[:conditions] = ["list_id = ?", id]
+      ListedTaxon.where(list_id: id)
     end
+    # using a nested query here because DISTINCT ON is picky with .order
+    scope = ListedTaxon.where(id: scope).
+      includes({ taxon: { taxon_names: :place_taxon_names } },
+        :user, :first_observation, :last_observation)
     
     ancestor_cache = {}
     CSV.open(tmp_path, 'w') do |csv|
       csv << headers
-      ListedTaxon.do_in_batches(find_options) do |lt|
+      scope.find_each do |lt|
         next if lt.taxon.blank?
         row = []
         if options[:taxonomic]
           ancestor_ids = lt.taxon.ancestor_ids.map{|tid| tid.to_i}
           uncached_ancestor_ids = ancestor_ids - ancestor_cache.keys
           if uncached_ancestor_ids.size > 0
-            Taxon.all(:select => "id, rank, name", :conditions => ["id IN (?)", uncached_ancestor_ids]).compact.each do |t|
+            Taxon.where(id: uncached_ancestor_ids).select(:id, :name, :rank).each do |t|
               ancestor_cache[t.id] = t
             end
           end
@@ -257,13 +259,8 @@ class List < ActiveRecord::Base
     # ancestry check will be performed by life lists during the validations
     # anyway, so it seems like duplication.
     target_lists = if options[:taxa]
-      user.lists.all(
-        :include => :listed_taxa,
-        :conditions => [
-          "listed_taxa.taxon_id in (?) OR type = ?", 
-          options[:taxa], LifeList.to_s
-        ]
-      )
+      user.lists.joins(:listed_taxa).
+        where([ "listed_taxa.taxon_id in (?) OR type = ?", options[:taxa], LifeList.to_s ])
     else
       user.lists.all
     end
@@ -313,8 +310,8 @@ class List < ActiveRecord::Base
     end
     target_list_ids = refresh_with_observation_lists(observation, options)
     # get listed taxa for this taxon and its ancestors that are on the observer's life lists
-    listed_taxa = ListedTaxon.all(:include => [:list],
-      :conditions => ["taxon_id IN (?) AND list_id IN (?)", taxon_ids, target_list_ids])
+    listed_taxa = ListedTaxon.joins(:list).
+      where("listed_taxa.taxon_id IN (?) AND listed_taxa.list_id IN (?)", taxon_ids, target_list_ids)
     if respond_to?(:create_new_listed_taxa_for_refresh)
       unless self == ProjectList && observation && observation.quality_grade == 'casual' #only RG for projects
         create_new_listed_taxa_for_refresh(taxon, listed_taxa, target_list_ids)
@@ -335,7 +332,7 @@ class List < ActiveRecord::Base
     user = observation.try(:user) || User.find_by_id(options[:user_id])
     return [] unless user
     if options[:skip_subclasses]
-      user.lists.all(:select => "id, type", :conditions => "type IS NULL").map{|l| l.id}
+      user.lists.where("type IS NULL").select("id, type").map{|l| l.id}
     else
       user.list_ids
     end

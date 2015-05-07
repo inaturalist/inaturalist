@@ -65,7 +65,7 @@
             :id => "edit_post_button", :class => "button"                                                   |
           -#
           = link_to t(:delete), delete_project_journal_post_path(@parent, @post), |
-            :confirm => t(:are_you_sure_delete_post),                             |
+            :data => {:confirm => t(:are_you_sure_delete_post)},                  |
             :method => :delete,                                                   |
             :id => "delete_post_button",                                          |
             :class => "minor delete button"                                       |
@@ -75,7 +75,7 @@
             :id => "edit_post_button", :class => "button"                                      |
           -#
           = link_to t(:delete), post_path(@post),                      |
-            :confirm => t(:are_you_sure_you_want_to_delete_this_post), |
+            :data => {:confirm => t(:are_you_sure_you_want_to_delete_this_post)}, |
             :method => :delete,                                        |
             :id => "delete_post_button",                               |
             :class => "minor delete button"                            |

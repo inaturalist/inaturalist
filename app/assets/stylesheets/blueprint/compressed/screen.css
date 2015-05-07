@@ -33,10 +33,6 @@ blockquote:before,blockquote:after,q:before,q:after {
 content:"";
 }
 
-blockquote,q {
-quotes:;
-}
-
 a img {
 border:none;
 }
@@ -146,7 +142,7 @@ margin:1.5em 0;
 }
 
 pre,code,tt {
-font:1em 'andale mono', monotype.com, 'lucida console', monospace;
+font:1em 'andale mono', 'monotype.com', 'lucida console', monospace;
 line-height:1.5;
 }
 

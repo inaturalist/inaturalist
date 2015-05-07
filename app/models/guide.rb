@@ -1,12 +1,5 @@
 class Guide < ActiveRecord::Base
   acts_as_spammable :fields => [ :title, :description ]
-
-  attr_accessible :description, :latitude, :longitude, :place_id,
-    :published_at, :title, :user_id, :icon, :license, :icon_file_name,
-    :icon_content_type, :icon_file_size, :icon_updated_at, :zoom_level,
-    :map_type, :taxon, :taxon_id, :source_url, :downloadable, :ngz,
-    :ngz_file_name, :ngz_content_type, :ngz_file_size, :ngz_updated_at,
-    :guide_users_attributes
   belongs_to :user, :inverse_of => :guides
   belongs_to :place, :inverse_of => :guides
   belongs_to :taxon, :inverse_of => :guides
@@ -14,6 +7,8 @@ class Guide < ActiveRecord::Base
   has_many :guide_users, :inverse_of => :guide, :dependent => :delete_all
 
   accepts_nested_attributes_for :guide_users, :allow_destroy => true
+
+  attr_accessor :publish
   
   has_attached_file :icon, 
     :styles => { :medium => "500x500>", :thumb => "48x48#", :mini => "16x16#", :span2 => "70x70#", :small_square => "200x200#" },
@@ -40,6 +35,8 @@ class Guide < ActiveRecord::Base
       :url => "#{ CONFIG.attachments_host }/attachments/:class/:id.ngz",
       :default_url => ""
   end
+
+  before_validation :set_published_at
   
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
@@ -53,6 +50,7 @@ class Guide < ActiveRecord::Base
                 :create_guide_user
   after_create :add_taxa_from_source_url
 
+
   scope :dbsearch, lambda {|q| where("guides.title ILIKE ? OR guides.description ILIKE ?", "%#{q}%", "%#{q}%")}
   scope :near_point, lambda {|latitude, longitude|
     latitude = latitude.to_f
@@ -60,7 +58,7 @@ class Guide < ActiveRecord::Base
     where("ST_Distance(ST_Point(guides.longitude, guides.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
     order("ST_Distance(ST_Point(guides.longitude, guides.latitude), ST_Point(#{longitude}, #{latitude}))")
   }
-  scope :published, where("published_at IS NOT NULL")
+  scope :published, -> { where("published_at IS NOT NULL") }
 
   def to_s
     "<Guide #{id} #{title}>"
@@ -75,11 +73,11 @@ class Guide < ActiveRecord::Base
     end
     return if options[:place_id].blank? && options[:list_id].blank? && options[:taxon_id].blank?
     scope = if !options[:place_id].blank?
-      Taxon.from_place(options[:place_id]).scoped
+      Taxon.from_place(options[:place_id])
     elsif !options[:list_id].blank?
-      Taxon.on_list(options[:list_id]).scoped
+      Taxon.on_list(options[:list_id])
     else
-      Taxon.scoped
+      Taxon.all
     end
     if t = Taxon.find_by_id(options[:taxon_id])
       scope = scope.descendants_of(t)
@@ -101,7 +99,6 @@ class Guide < ActiveRecord::Base
   end
 
   def editable_by?(user)
-    # self.user_id == user.try(:id)
     user_id = user.is_a?(User) ? user.id : user
     return false if user_id.blank?
     guide_users.detect{|gu| gu.user_id == user_id}
@@ -111,7 +108,7 @@ class Guide < ActiveRecord::Base
     ancestry_counts = Taxon.joins(:guide_taxa).where("guide_taxa.guide_id = ?", id).group(:ancestry).count
     ancestries = ancestry_counts.map{|a,c| a.to_s.split('/')}.sort_by(&:size).compact
     if ancestries.blank?
-      Guide.update_all({:taxon_id => nil}, ["id = ?", id])
+      Guide.where(id: id).update_all(taxon_id: nil)
       return
     end
     
@@ -131,7 +128,15 @@ class Guide < ActiveRecord::Base
       end
     end
 
-    Guide.update_all({:taxon_id => consensus_taxon_id}, ["id = ?", id])
+    Guide.where(id: id).update_all(taxon_id: consensus_taxon_id)
+  end
+
+  def set_published_at
+    if publish == "publish"
+      self.published_at = Time.now
+    elsif publish == "unpublish"
+      self.published_at = nil
+    end
   end
 
   def expire_caches(options = {})
@@ -275,7 +280,7 @@ class Guide < ActiveRecord::Base
         taggable_type = 'GuideTaxon' AND
         guide_taxa.guide_id = #{id}
     SQL
-    Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags ORDER BY guide_tags.taggings_id DESC LIMIT 20").map(&:name).sort_by(&:downcase)
+    ActsAsTaggableOn::Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags ORDER BY guide_tags.taggings_id DESC LIMIT 20").map(&:name).sort_by(&:downcase)
   end
 
   def tags
@@ -288,7 +293,7 @@ class Guide < ActiveRecord::Base
         taggable_type = 'GuideTaxon' AND
         guide_taxa.guide_id = #{id}
     SQL
-    Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags").map(&:name).sort_by(&:downcase)
+    ActsAsTaggableOn::Tag.find_by_sql("SELECT * FROM (#{tag_sql}) AS guide_tags").map(&:name).sort_by(&:downcase)
   end
 
   def ngz_url
@@ -313,8 +318,8 @@ class Guide < ActiveRecord::Base
   end
 
   def generate_ngz_later
-    return if Delayed::Job.where("handler LIKE '%id: ''#{id}''%generate_ngz%'").exists?
-    delay(:priority => USER_INTEGRITY_PRIORITY).generate_ngz
+    delay(priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "Guide::generate_ngz": id }).generate_ngz
   end
 
   def generate_ngz_cache_key
@@ -328,15 +333,24 @@ class Guide < ActiveRecord::Base
         Rails.logger.error "[ERROR #{Time.now}] Failed to save NGZ attachment for guide #{id}: #{errors.full_messages.to_sentence}"
       end
     end
+    # the file will have been copied to the ngz final path
+    # so delete the copy in the tmp directory
+    FileUtils.rm_rf zip_path
+  end
+
+  def ngz_work_path
+    return @ngz_work_path if @ngz_work_path
+    basename = title.parameterize
+    local_asset_path = "files"
+    @ngz_work_path = File.join(Dir::tmpdir, "#{basename}-#{Time.now.to_i}")
   end
 
   def to_ngz
     start_log_timer "#{self} to_ngz"
     ordered_guide_taxa = guide_taxa.order(:position).includes({:guide_photos => [:photo]}, :guide_ranges, :guide_sections, :tags)
     image_sizes = %w(thumb small medium)
-    basename = title.parameterize
     local_asset_path = "files"
-    work_path = File.join(Dir::tmpdir, "#{basename}-#{Time.now.to_i}")
+    work_path = ngz_work_path
     FileUtils.mkdir_p work_path, :mode => 0755
     # build xml and write to file in tmpdir
     xml_fname = "#{id}.xml"
@@ -380,9 +394,9 @@ class Guide < ActiveRecord::Base
     end
 
     # zip up the results & return the path
-    zip_path = File.join(work_path, "#{basename}.ngz")
+    zip_path = "#{work_path}.ngz"
     system "cd #{work_path} && zip -qr #{zip_path} #{xml_fname} #{local_asset_path}"
-    FileUtils.rm_rf local_asset_path # clean up all those big files
+    FileUtils.rm_rf work_path # clean up all those big files
     end_log_timer
     zip_path
   end
@@ -411,7 +425,7 @@ class Guide < ActiveRecord::Base
   end
 
   def unique_tags
-    Tag.where("taggable_type = 'GuideTaxon")
+    ActsAsTaggableOn::Tag.joins(:taggings).where(taggings: { taggable_type: "GuideTaxon" })
   end
 
   def published?

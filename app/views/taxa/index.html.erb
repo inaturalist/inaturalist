@@ -189,7 +189,7 @@
       <div id="desccol">
         <center id="featurednav">
           <% if i > 0 -%>
-            <%= link_to_function "&larr;".html_safe, 
+            <%= link_to "&larr;".html_safe, "#", :onclick =>
               "$('.navdot').removeClass('selected');" +
               "$('.navdot_#{i-1}').addClass('selected');" +
               "$('#featured').scrollTo('#featured_taxon_#{i-1}', {axis: 'x'})",
@@ -198,14 +198,14 @@
             <span class="navarr">&larr;</span>
           <% end -%>
           <% @featured_taxa.size.times do |n| %>
-            <%= link_to_function "&middot;".html_safe, 
+            <%= link_to "&middot;".html_safe, "#", :onclick =>
               "$('.navdot').removeClass('selected');" +
               "$('.navdot_#{n}').addClass('selected');" +
               "$('#featured').scrollTo('#featured_taxon_#{n}', {axis: 'x'})",
               :class => "navdot_#{n} navdot #{'selected' if n == i}" %>
           <% end %>
           <% if i < @featured_taxa.size - 1 -%>
-            <%= link_to_function "&rarr;".html_safe, 
+            <%= link_to "&rarr;".html_safe, "#", :onclick =>
               "$('.navdot').removeClass('selected');" +
               "$('.navdot_#{i+1}').addClass('selected');" +
               "$('#featured').scrollTo('#featured_taxon_#{i+1}', {axis: 'x'})",

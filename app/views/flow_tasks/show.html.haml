@@ -67,4 +67,6 @@
 - if current_user && @flow_task.user_id == current_user.id
   .actions.stacked
     = link_to "Run again", run_flow_task_path(@flow_task), :class => "button"
-    = link_to "Delete", flow_task_path(@flow_task), :method => :delete, :confirm => "Are you sure you want to delete this?", :class => "delete button ui-priority-secondary"
+    = link_to "Delete", flow_task_path(@flow_task), :method => :delete, 
+      :data => {:confirm => "Are you sure you want to delete this?"}, 
+      :class => "delete button ui-priority-secondary"

@@ -3,6 +3,7 @@ class AssessmentsController < ApplicationController
   before_filter :load_assessment, :only => [:edit, :update, :destroy, :show]
   before_filter :load_project
   before_filter :project_curator_required, :except => [:index, :show, :show_section]
+  before_filter :allow_external_iframes, only: [:show]
 
   def new
     @assessment = Assessment.new
@@ -82,7 +83,7 @@ class AssessmentsController < ApplicationController
   def index
     @parent_display_name = @project.title
     @assessments = Assessment.where(:project_id => @project.id).includes(:taxon, :sections).order("taxa.name ASC").
-      paginate(:page => params[:page]).scoped
+      paginate(:page => params[:page])
     if (filters = params[:filters]) || params[:complete]
       filters ||= {}
       @complete = (filters[:complete] || params[:complete]).to_s

@@ -1,4 +1,7 @@
 class Project < ActiveRecord::Base
+
+  include ActsAsElasticModel
+
   belongs_to :user
   belongs_to :place, :inverse_of => :projects
   has_many :project_users, :dependent => :delete_all
@@ -12,12 +15,12 @@ class Project < ActiveRecord::Base
   has_many :taxa, :through => :listed_taxa
   has_many :project_assets, :dependent => :destroy
   has_one :custom_project, :dependent => :destroy
-  has_many :project_observation_fields, :dependent => :destroy, :inverse_of => :project, :order => "position"
+  has_many :project_observation_fields, -> { order("position") }, :dependent => :destroy, :inverse_of => :project
   has_many :observation_fields, :through => :project_observation_fields
   has_many :posts, :as => :parent, :dependent => :destroy
   has_many :journal_posts, :class_name => "Post", :as => :parent
   has_many :assessments, :dependent => :destroy
-    
+  
   before_save :strip_title
   before_save :unset_show_from_place_if_no_place
   after_create :create_the_project_list
@@ -32,20 +35,18 @@ class Project < ActiveRecord::Base
   }
 
   extend FriendlyId
-  friendly_id :title, :use => :history, :reserved_words => ProjectsController.action_methods.to_a
+  friendly_id :title, :use => [ :history, :finders ], :reserved_words => ProjectsController.action_methods.to_a
   
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
   preference :count_by, :string, :default => 'species'
+  preference :range_by_date, :boolean, :default => false
 
   MEMBERSHIP_OPEN = 'open'
   MEMBERSHIP_INVITE_ONLY = 'inviteonly'
   MEMBERSHIP_MODELS = [MEMBERSHIP_OPEN, MEMBERSHIP_INVITE_ONLY]
   preference :membership_model, :string, :default => MEMBERSHIP_OPEN
   
-  # For some reason these don't work here
-  # accepts_nested_attributes_for :project_user_rules, :allow_destroy => true
-  # accepts_nested_attributes_for :project_observation_rules, :allow_destroy => true
   accepts_nested_attributes_for :project_observation_fields, :allow_destroy => true
   
   validates_length_of :title, :within => 1..100
@@ -58,7 +59,7 @@ class Project < ActiveRecord::Base
   validate :place_with_boundary, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}
   validate :one_year_time_span, :if => lambda {|p| p.project_type == BIOBLITZ_TYPE}, :unless => "errors.any?"
   
-  scope :featured, where("featured_at IS NOT NULL")
+  scope :featured, -> { where("featured_at IS NOT NULL") }
   scope :in_group, lambda {|name| where(:group => name) }
   scope :near_point, lambda {|latitude, longitude|
     latitude = latitude.to_f
@@ -70,9 +71,8 @@ class Project < ActiveRecord::Base
   scope :in_place, lambda{|place|
     place = Place.find(place) unless place.is_a?(Place) rescue nil
     if place
-      conditions = place.descendant_conditions
-      conditions[0] += " OR places.id = ?"
-      conditions << place
+      conditions = place.descendant_conditions.to_sql
+      conditions += " OR places.id = #{place.id}"
       joins(:place).where(conditions)
     else
       where("1 = 2")
@@ -99,7 +99,7 @@ class Project < ActiveRecord::Base
   else
     has_attached_file :cover,
       :path => ":rails_root/public/attachments/:class/:id-cover.:extension",
-      :url => "#{ CONFIG.attachments_host }/attachments/:class/:id-cover.:extension",
+      :url => "#{ CONFIG.s3_host }/:class/:id-cover.:extension",
       :default_url => ""
   end
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /octet-stream/], :message => "must be JPG or PNG"
@@ -119,17 +119,6 @@ class Project < ActiveRecord::Base
   acts_as_spammable :fields => [ :title, :description ],
                     :comment_type => "item-description"
 
-  define_index do
-    indexes :title
-    indexes :description
-    # This is super brittle: the sphinx doc identifier here is based on
-    # ThinkingSphinx.unique_id_expression, which I can't get to work here, so
-    # if the number of indexed models changes this will break.
-    has "SELECT projects.id * 4::INT8 + 2 AS id, regexp_split_to_table(projects.place_id::text || (CASE WHEN ancestry IS NULL THEN '' ELSE '/' || ancestry END), '/') AS place_id 
-FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, :source => :query
-    set_property :delta => :delayed
-  end
-
   def place_with_boundary
     unless PlaceGeometry.where(:place_id => place_id).exists?
       errors.add(:place_id, "must be set and have a boundary for a bioblitz")
@@ -144,6 +133,22 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
   
   def to_s
     "<Project #{id} #{title}>"
+  end
+
+  def start_time=(value)
+    if value.is_a?(String)
+      super(Chronic.parse(value))
+    else
+      super
+    end
+  end
+
+  def end_time=(value)
+    if value.is_a?(String)
+      super(Chronic.parse(value))
+    else
+      super
+    end
   end
   
   def strip_title
@@ -186,7 +191,7 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
   def editable_by?(user)
     return false if user.blank?
     return true if user.id == user_id || user.is_admin?
-    pu = user.project_users.first(:conditions => {:project_id => id})
+    pu = user.project_users.where(project_id: id).first
     pu && pu.is_manager?
   end
   
@@ -197,7 +202,7 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
   end
   
   def rule_place
-    project_observation_rules.first(:conditions => {:operator => "observed_in_place?"}).try(:operand)
+    project_observation_rules.where(operator: "observed_in_place?").first.try(:operand)
   end
 
   def rule_taxon
@@ -205,7 +210,10 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
   end
   
   def icon_url
-    icon.file? ? "#{CONFIG.site_url}#{icon.url(:span2)}" : nil
+    return nil unless icon.file?
+    url = icon.url(:span2)
+    url = URI.join(CONFIG.site_url, url).to_s unless url =~ /^http/
+    url
   end
   
   def project_observation_rule_terms
@@ -236,7 +244,7 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
   end
 
   def observations_matching_rules
-    scope = Observation.scoped
+    scope = Observation.all
     project_observation_rules.each do |rule|
       case rule.operator
       when "in_taxon?"
@@ -244,20 +252,29 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
       when "observed_in_place?"
         scope = scope.in_place(rule.operand)
       when "on_list?"
-        scope = scope.scoped(
-          :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{project_list.id}", 
-          :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+        scope = scope.where("observations.taxon_id = listed_taxa.taxon_id").
+          joins("JOIN listed_taxa ON listed_taxa.list_id = #{project_list.id}")
       when "identified?"
-        scope = scope.scoped(:conditions => "observations.taxon_id IS NOT NULL")
+        scope = scope.where("observations.taxon_id IS NOT NULL")
       when "georeferenced"
-        scope = scope.scoped(:conditions => "observations.geom IS NOT NULL")
+        scope = scope.where("observations.geom IS NOT NULL")
       end
     end
     scope
   end
 
   def observations_url_params
-    observations_url_params = {:place_id => place_id, :d1 => start_time.iso8601, :d2 => end_time.iso8601, :per_page => 24}
+    observations_url_params = {:place_id => place_id}
+    if start_time && end_time
+      if prefers_range_by_date?
+        observations_url_params.merge!(
+          d1: Date.parse(start_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s,
+          d2: Date.parse(end_time.in_time_zone(user.time_zone).iso8601.split('T').first).to_s
+        )
+      else
+        observations_url_params.merge!(:d1 => start_time.in_time_zone(user.time_zone).iso8601, :d2 => end_time.in_time_zone(user.time_zone).iso8601)
+      end
+    end
     observations_url_params[:taxon_id] = rule_taxon.id if rule_taxon
     observations_url_params
   end
@@ -267,11 +284,11 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
   end
 
   def curators
-    users.where("project_users.role = ?", ProjectUser::CURATOR).scoped
+    users.where("project_users.role = ?", ProjectUser::CURATOR)
   end
 
   def managers
-    users.where("project_users.role = ?", ProjectUser::MANAGER).scoped
+    users.where("project_users.role = ?", ProjectUser::MANAGER)
   end
 
   def duplicate
@@ -308,7 +325,7 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
   def eventbrite_id
     return if event_url.blank?
     return unless event_url =~ /eventbrite\.com/
-    @eventbrite_id ||= URI.parse(event_url).path.split('/').last.scan(/\d+/).last
+    @eventbrite_id ||= URI.parse(event_url).path.split('/').last.to_s.scan(/\d+/).last
   end
 
   def event_started?
@@ -340,11 +357,9 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
     unless project_user = project.project_users.find_by_id(project_user_id)
       return
     end
-    project.project_observations.find_each(
-        :include => {:observation => :identifications}, 
-        :conditions => [
-          "project_observations.curator_identification_id IS NULL AND identifications.user_id = ?", 
-          project_user.user_id]) do |po|
+    project.project_observations.joins({ :observation => :identifications }).
+      where("project_observations.curator_identification_id IS NULL AND identifications.user_id = ?",
+      project_user.user_id).find_each do |po|
       curator_ident = po.observation.identifications.detect{|ident| ident.user_id == project_user.user_id}
       po.update_attributes(:curator_identification => curator_ident)
       ProjectUser.delay(:priority => USER_INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
@@ -369,10 +384,10 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
       }
     end
     
-    project_curators = project.project_users.all(:conditions => ["role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR]])
+    project_curators = project.project_users.where(role: [ ProjectUser::MANAGER, ProjectUser::CURATOR ])
     project_curator_user_ids = project_curators.map{|pu| pu.user_id}
     
-    project.project_observations.find_each(find_options) do |po|
+    project.project_observations.where(find_options[:conditions]).joins(find_options[:include]).each do |po|
       curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
       po.update_attributes(:curator_identification => curator_ident)
       ProjectUser.delay(:priority => USER_INTEGRITY_PRIORITY).update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
@@ -382,7 +397,7 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
   
   def self.refresh_project_list(project, options = {})
     unless project.is_a?(Project)
-      project = Project.find_by_id(project, :include => :project_list)
+      project = Project.where(id: project).includes(:project_list).first
     end
     
     if project.blank?
@@ -396,7 +411,7 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
   
   def self.update_observed_taxa_count(project_id)
     return unless project = Project.find_by_id(project_id)
-    observed_taxa_count = project.project_list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
+    observed_taxa_count = project.project_list.listed_taxa.where("last_observation_id IS NOT NULL").count
     project.update_attributes(:observed_taxa_count => observed_taxa_count)
   end
   
@@ -408,7 +423,7 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
     unless usr = User.find_by_id(user_id)
       return
     end
-    proj.project_observations.find_each(:include => :observation, :conditions => ["observations.user_id = ?", usr]) do |po|
+    proj.project_observations.joins(:observation).where(["observations.user_id = ?", usr]).find_each do |po|
       po.destroy
     end
   end
@@ -453,7 +468,7 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
     unpaginated_listed_taxa = listed_taxa_with_duplicates.where("listed_taxa.id IN (?)", listed_taxa_ids)
 
     unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(true)
-    unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present(true)
+    unpaginated_listed_taxa = unpaginated_listed_taxa.with_occurrence_status_levels_approximating_present
     if preferred_count_by == "species"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
     elsif preferred_count_by == "leaves"
@@ -509,4 +524,9 @@ FROM projects JOIN places ON projects.place_id = places.id", :as => :place_ids, 
     list_count = (list.count / 3.0).ceil
     list.in_groups_of(list_count)
   end
+
+  def invite_only?
+    preferred_membership_model == MEMBERSHIP_INVITE_ONLY
+  end
+
 end

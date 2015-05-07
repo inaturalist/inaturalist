@@ -9,7 +9,7 @@ class PlacesController < ApplicationController
   before_filter :return_here, :only => [:show]
   before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
     :children, :taxa, :geometry, :cached_guide, :guide_widget, :widget, :merge]
-  before_filter :limit_page_param_for_thinking_sphinx, :only => [:search]
+  before_filter :limit_page_param_for_search, :only => [:search]
   before_filter :editor_required, :only => [:edit, :update, :destroy]
   
   caches_page :geometry
@@ -27,21 +27,21 @@ class PlacesController < ApplicationController
           places = if place
             place.children.select('id').order("RANDOM()").limit(50)
           else
-            Place.all(:select => "id", :order => "RANDOM()", :limit => 50, 
-              :conditions => ["place_type = ?", Place::COUNTRY_LEVEL])
+            Place.where("place_type = ?", Place::COUNTRY_LEVEL).select(:id).
+              order("RANDOM()").limit(50)
           end
           places.map{|p| p.id}
         end
         place_ids = place_ids.sort_by{rand}[0..4]
-        @places = Place.all(:conditions => ["id in (?)", place_ids])
+        @places = Place.where("id in (?)", place_ids)
       end
       
       format.json do
         @ancestor = Place.find_by_id(params[:ancestor_id].to_i) unless params[:ancestor_id].blank?
         scope = if @ancestor
-          @ancestor.descendants.scoped
+          @ancestor.descendants
         else
-          Place.scoped
+          Place.all
         end
         if params[:q] || params[:term]
           q = (params[:q] || params[:term]).to_s.sanitize_encoding
@@ -95,10 +95,11 @@ class PlacesController < ApplicationController
   end
   
   def show
-    @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+    @place_geometry = PlaceGeometry.without_geom.where(place_id: @place).first
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
-    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry, name", :include => [:taxon_names])
-    browsing_taxa.delete_if{|t| t.name == "Life"}
+    browsing_taxa = Taxon.joins(:taxon_names).where(id: browsing_taxon_ids).
+      where("taxon_names.name != 'Life'").includes(taxon_names: :place_taxon_names).
+      order(:ancestry, :name)
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     respond_to do |format|
       format.html do
@@ -107,6 +108,7 @@ class PlacesController < ApplicationController
         if logged_in?
           @subscriptions = @place.update_subscriptions.where(:user_id => current_user)
         end
+        @show_leaderboard = @place_geometry && @place.bbox_area < 1000
       end
       format.json do
         if (partial = params[:partial]) && ALLOWED_SHOW_PARTIALS.include?(partial)
@@ -127,8 +129,11 @@ class PlacesController < ApplicationController
         end
       end
       format.geojson do
-        @geojson = Place.connection.execute("SELECT ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geojson FROM place_geometries WHERE place_id = #{@place.id}")[0]['geojson']
-        render :json => @geojson
+        result = Place.connection.execute("SELECT ST_AsGeoJSON(ST_SetSRID(geom, 4326)) AS geojson FROM place_geometries WHERE place_id = #{@place.id}")
+        if result && result.count > 0
+          @geojson = result[0]['geojson']
+        end
+        render :json => @geojson || { }
       end
     end
   end
@@ -240,24 +245,29 @@ class PlacesController < ApplicationController
   
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
-    @q = sanitize_sphinx_query(@q.to_s.sanitize_encoding)
+    @q = sanitize_query(@q.to_s.sanitize_encoding)
     site_place = @site.place if @site
-    search_options = {:match_mode => :extended}
-    search_options[:with] = {:place_ids => [site_place.id]} if site_place
-    scope = Place.
-      includes(:place_geometry_without_geom).
-      limit(30).scoped
-    scope = if @q.blank?
-      if site_place
-        scope.where(site_place.child_conditions).page(1)
+    if @q.blank?
+      scope = if site_place
+        Place.where(site_place.child_conditions)
       else
-        scope.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
+        Place.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
       end
+      scope = scope.with_geom if params[:with_geom]
+      @places = scope.includes(:place_geometry_without_geom).limit(30).
+        sort_by{|p| p.bbox_area || 0}.reverse
     else
-      scope = scope.where("places.id IN (?)", Place.search_for_ids("^#{@q}*", search_options))
+      search_wheres = { display_name_autocomplete: @q }
+      if site_place
+        search_wheres["ancestor_place_ids"] = site_place
+      end
+      @places = Place.elastic_paginate(
+        where: search_wheres,
+        fields: [ :id ],
+        sort: { bbox_area: "desc" })
+      Place.preload_associations(@places, :place_geometry_without_geom)
     end
-    scope = scope.with_geom if params[:with_geom]
-    @places = scope.sort_by{|p| p.bbox_area || 0}.reverse
+
     respond_to do |format|
       format.html do
         render :layout => false, :partial => 'autocomplete' 
@@ -279,7 +289,6 @@ class PlacesController < ApplicationController
         k.gsub('keep_', '') if k =~ /^keep_/ && v == 'left'
       end.compact
       keepers = nil if keepers.blank?
-      
       unless @merge_target
         flash[:error] = t(:you_must_select_a_place_to_merge_with)
         return
@@ -298,9 +307,9 @@ class PlacesController < ApplicationController
   def children
     per_page = params[:per_page]
     per_page = 100 if per_page && per_page > 100
-    @children = @place.children.paginate(:page => params[:page], 
-      :per_page => per_page, :order => 'name')
-    
+    @children = @place.children.order(:name).
+      paginate(page: params[:page], per_page: per_page)
+
     respond_to do |format|
       format.html { render :partial => "place_li", :collection => @children }
       format.json { render :json => @children.to_json }
@@ -322,10 +331,8 @@ class PlacesController < ApplicationController
       :order => "id DESC",
       :conditions => conditions
     )
-    @taxa = Taxon.all(
-      :conditions => ["id IN (?)", listed_taxa.map(&:taxon_id)],
-      :include => [:iconic_taxon, :photos, :taxon_names]
-    )
+    @taxa = Taxon.where(id: listed_taxa.map(&:taxon_id)).
+      includes(:iconic_taxon, :photos, :taxon_names)
     
     respond_to do |format|
       format.html { redirect_to @place }
@@ -360,33 +367,31 @@ class PlacesController < ApplicationController
       begin
         Place.find(place_id)
       rescue ActiveRecord::RecordNotFound
-        Place.search(place_id).first
+        Place.elastic_paginate(where: { display_name: place_id }, per_page: 1).first
       end
     else
       Place.find_by_id(place_id.to_i)
     end
     return render_404 unless @place
-    @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+    @place_geometry = PlaceGeometry.without_geom.where(place_id: @place).first
     
     show_guide do |scope|
       scope = scope.from_place(@place)
-      scope = scope.scoped(:conditions => ["listed_taxa.primary_listing = true"])
-      scope = scope.scoped(:conditions => [
-        "listed_taxa.occurrence_status_level IS NULL OR listed_taxa.occurrence_status_level IN (?)", 
-        ListedTaxon::PRESENT_EQUIVALENTS
-      ])
-      
+      scope = scope.where("listed_taxa.primary_listing = true")
+      scope = scope.where([
+        "listed_taxa.occurrence_status_level IS NULL OR listed_taxa.occurrence_status_level IN (?)",
+        ListedTaxon::PRESENT_EQUIVALENTS])
       if @introduced = @filter_params[:introduced]
-        scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS])
+        scope = scope.where(["listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS])
       elsif @native = @filter_params[:native]
-        scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
+        scope = scope.where(["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
       elsif @establishment_means = @filter_params[:establishment_means]
         if @establishment_means == "native"
-          scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
+          scope = scope.where(["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
         elsif @establishment_means == "introduced"
-          scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS])
+          scope = scope.where(["listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS])
         else
-          scope = scope.scoped(:conditions => ["listed_taxa.establishment_means = ?", @establishment_means])
+          scope = scope.where(["listed_taxa.establishment_means = ?", @establishment_means])
         end
       end
       
@@ -400,15 +405,13 @@ class PlacesController < ApplicationController
     if @taxon
       ancestor_ids = @taxon.ancestor_ids + [@taxon.id]
       @comprehensive = @place.check_lists.exists?(["taxon_id IN (?) AND comprehensive = 't'", ancestor_ids])
-      @comprehensive_list = @place.check_lists.first(:conditions => ["taxon_id IN (?) AND comprehensive = 't'", ancestor_ids])
+      @comprehensive_list = @place.check_lists.where(taxon_id: ancestor_ids, comprehensive: "t").first
     end
-    
-    @listed_taxa_count = @scope.count(:select => "DISTINCT taxa.id")
-    @confirmed_listed_taxa_count = @scope.count(:select => "DISTINCT taxa.id",
-      :conditions => "listed_taxa.first_observation_id IS NOT NULL")
-    
+    @listed_taxa_count = @scope.count("taxa.id", distinct: true)
+    @confirmed_listed_taxa_count = @scope.where("listed_taxa.first_observation_id IS NOT NULL").
+      count("taxa.id", distinct: true)
     @listed_taxa = @place.listed_taxa
-                         .where(["taxon_id IN (?) AND primary_listing = (?)", @taxa, true])
+                         .where(taxon_id: @taxa, primary_listing: true)
                          .includes([ :place, { :first_observation => :user } ])
     @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
     
@@ -428,7 +431,7 @@ class PlacesController < ApplicationController
   private
   
   def load_place
-    @place = Place.find(params[:id], :include => [:check_list]) rescue nil
+    @place = Place.find(params[:id]) rescue nil
     if @place.blank?
       if params[:id].to_i > 0 || params[:id] == "0"
         return render_404
@@ -482,43 +485,7 @@ class PlacesController < ApplicationController
     kml = file.read
     geometry_from_messy_kml(kml)
   end
-  
-  def search_places_for_index(options)
-    session[:places_index_q] = @q
-    
-    conditions = if options[:conditions] && options[:conditions][:place_type]
-      conditions = update_conditions(
-        ["place_type = ?", options[:conditions][:place_type]], 
-        ["AND display_name LIKE ?", "#{@q}%"])
-    else
-      ["display_name LIKE ?", "#{@q}%"]
-    end
-    @place = Place.first(:conditions => conditions)
-    if logged_in? && @place.blank?
-      @ydn_places = GeoPlanet::Place.search(@q, :count => 2)
-      if @ydn_places && @ydn_places.size == 1
-        @place = Place.import_by_woeid(@ydn_places.first.woeid)
-      end
-    end
-    
-    begin
-      if @place
-        latrads = @place.latitude.to_f * (Math::PI / 180)
-        lonrads = @place.longitude.to_f * (Math::PI / 180)
-        nearby_options = options.merge(
-          :geo => [latrads,lonrads], 
-          :order => "@geodist asc")
-        nearby_options[:with] = nearby_options.delete(:conditions)
-        @places = Place.search(nearby_options)
-        @places.delete_if {|p| p.id == @place.id}
-      else
-        @places = Place.search(@q, options.clone)
-      end
-    rescue ThinkingSphinx::ConnectionError
-      @places = []
-    end
-  end
-  
+
   def editor_required
     unless @place.editable_by?(current_user)
       flash[:error] = t(:you_dont_have_permission_to_do_that)

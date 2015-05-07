@@ -5,9 +5,14 @@ class ApplicationController < ActionController::Base
   
   has_mobile_fu :ignore_formats => [:tablet, :json, :widget]
   around_filter :catch_missing_mobile_templates
-  
+
+  # many people try random URLs like wordpress login pages with format .php
+  # for any format we do not recognize, make sure we render a proper 404
+  rescue_from ActionController::UnknownFormat, with: :render_404
+
   helper :all # include all helpers, all the time
   protect_from_forgery
+  before_filter :whitelist_params
   around_filter :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
@@ -17,13 +22,26 @@ class ApplicationController < ActionController::Base
   before_filter :login_from_param
   before_filter :set_site
   before_filter :set_ga_trackers
-  before_filter :set_locale
+  before_filter :set_request_locale
 
   PER_PAGES = [10,30,50,100,200]
-  HEADER_VERSION = 14
+  HEADER_VERSION = 15
   
   alias :logged_in? :user_signed_in?
-  
+
+  # set the locale for the current session. If the user is
+  # logged in, also update their preferred locale in the DB
+  def set_locale
+    if I18N_SUPPORTED_LOCALES.include?( params[:locale] )
+      if logged_in?
+        current_user.update_attribute(:locale, params[:locale])
+        expire_fragment(User.header_cache_key_for(current_user, site: @site))
+      end
+      session[:locale] = params[:locale]
+    end
+    redirect_back_or_default( root_url )
+  end
+
   private
 
   # Store the URI of the current request in the session.
@@ -54,8 +72,11 @@ class ApplicationController < ActionController::Base
     request.env['inat_ga_trackers'] = trackers unless trackers.blank?
   end
 
-  def set_locale
-    I18n.locale = params[:locale] || current_user.try(:locale) || I18n.default_locale
+  def set_request_locale
+    # use params[:locale] for single-request locale settings,
+    # otherwise use the session, user's preferred, or site default locale
+    I18n.locale = params[:locale] || session[:locale] ||
+      current_user.try(:locale) || I18n.default_locale
     I18n.locale = current_user.try(:locale) if I18n.locale.blank?
     I18n.locale = I18n.default_locale if I18n.locale.blank?
   end
@@ -191,9 +212,12 @@ class ApplicationController < ActionController::Base
   # Return a 404 response with our default 404 page
   #
   def render_404
+    unless request.format.json? || request.format.mobile?
+      request.format = "html"
+    end
     respond_to do |format|
-      format.any(:html, :mobile) { render(template: "shared/404", status: 404, layout: "application") }
-      format.json { render :json => {:error => t(:not_found)}, :status => 404 }
+      format.json { render json: { error: t(:not_found) }, status: 404 }
+      format.all { render template: "errors/error_404", status: 404, layout: "application" }
     end
   end
   
@@ -213,7 +237,7 @@ class ApplicationController < ActionController::Base
   
   def load_user_by_login
     @login = params[:login].to_s.downcase
-    unless @selected_user = User.first(:conditions => ["lower(login) = ?", @login])
+    unless @selected_user = User.where("lower(login) = ?", @login).first
       return render_404
     end
   end
@@ -222,7 +246,7 @@ class ApplicationController < ActionController::Base
     class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
     class_name = class_name.to_s.underscore.camelcase
     klass = Object.const_get(class_name)
-    record = klass.find(params[:id] || params["#{class_name}_id"], options) rescue nil
+    record = klass.find(params[:id] || params["#{class_name}_id"]) rescue nil
     instance_variable_set "@#{class_name.underscore}", record
     render_404 unless record
   end
@@ -246,7 +270,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_guide_user
-    unless logged_in? && (current_user.id == @guide.user_id || @guide.guide_users.detect{|gu| gu.user_id == current_user.id})
+    unless logged_in? && @guide.editable_by?(current_user)
       msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do
@@ -260,12 +284,12 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  # ThinkingSphinx returns a maximum of 50 pages. Anything higher than 
-  # that, we want to 404 to avoid a TS error. 
-  def limit_page_param_for_thinking_sphinx
-    if !params[:page].blank? && params[:page].to_i > 50 
-      render_404 
-    end 
+  # Formerly used to address that ThinkingSphinx returns a maximum of
+  # 50 pages. Now kept to keep the logic the same
+  def limit_page_param_for_search
+    if !params[:page].blank? && params[:page].to_i > 50
+      render_404
+    end
   end
   
   def search_for_places
@@ -275,16 +299,28 @@ class ApplicationController < ActionController::Base
       @limit = 50 if @limit > 50
     end
     site_place = @site.place if @site
-    search_options = {:page => params[:page], :limit => @limit}
-    search_options[:with] = {:place_ids => [site_place.id]} if site_place
-    @places = Place.search(sanitize_sphinx_query(@q), search_options)
+    search_wheres = { match: { display_name: { query: @q, operator: "and" } } }
+    if site_place
+      search_wheres["ancestor_place_ids"] = site_place
+    end
+    search_params = {
+      where: search_wheres,
+      per_page: @limit, 
+      page: params[:page]
+    }
+    if params[:with_geom].yesish?
+      search_params.merge!(filters: [ { exists: { field: "geometry_geojson" } } ])
+    elsif params[:with_geom].noish?
+      search_params.merge!(filters: [ { 'not': { exists: { field: "geometry_geojson" } } } ])
+    end
+    @places = Place.elastic_paginate(search_params)
+    Place.preload_associations(@places, :place_geometry_without_geom)
     if logged_in? && @places.blank?
       if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
         new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}.compact
         @places = Place.where("id in (?)", new_places.map(&:id).compact).page(1).to_a
       end
     end
-    @places.compact!
   end
   
   def catch_missing_mobile_templates
@@ -390,6 +426,10 @@ class ApplicationController < ActionController::Base
     else
       requested_per_page
     end
+  end
+
+  def json_request?
+    request.format.json?
   end
 
   private
@@ -509,6 +549,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def whitelist_params
+    params.permit!
+  end
+
   # Coerce the format unless in preselected list. Rescues from ActionView::MissingTemplate
   def self.accept_formats(*args)
     options = args.last.is_a?(Hash) ? args.last : {}
@@ -516,6 +560,21 @@ class ApplicationController < ActionController::Base
     formats = [args].flatten.map(&:to_sym)
     before_filter(options) do
       request.format = default if request.format.blank? || !formats.include?(request.format.to_sym)
+    end
+  end
+
+  def allow_external_iframes
+    response.headers["X-Frame-Options"] = "ALLOWALL"
+  end
+
+  # adding extra info to the payload sent to ActiveSupport::Notifications
+  # used in metrics collecting libraries like the Logstasher
+  def append_info_to_payload(payload)
+    super
+    payload.merge!(Logstasher.payload_from_request( request ))
+    payload.merge!(Logstasher.payload_from_session( session ))
+    if logged_in?
+      payload.merge!(Logstasher.payload_from_user( current_user ))
     end
   end
 end

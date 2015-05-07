@@ -9,7 +9,7 @@
     <td><%=h project_asset.project_id %></td>
     <td><%= link_to t(:show), project_asset %></td>
     <td><%= link_to t(:edit), edit_project_asset_path(project_asset) %></td>
-    <td><%= link_to t(:destroy), project_asset, :confirm => t(:are_you_sure), :method => :delete %></td>
+    <td><%= link_to t(:destroy), project_asset, :data => {:confirm => t(:are_you_sure)}, :method => :delete %></td>
   </tr>
 <% end %>
 </table>

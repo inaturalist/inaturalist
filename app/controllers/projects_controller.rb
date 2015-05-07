@@ -1,11 +1,15 @@
 class ProjectsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
+
+  protect_from_forgery unless: -> { request.format.widget? }
+  before_filter :allow_external_iframes, only: [:show]
+
   caches_action :observed_taxa_count, :contributors,
     :expires_in => WIDGET_CACHE_EXPIRATION,
     :cache_path => Proc.new {|c| c.params}, 
     :if => Proc.new {|c| c.request.format == :widget}
 
-  doorkeeper_for :by_login, :join, :leave, :if => lambda { authenticate_with_oauth? }
+  before_action :doorkeeper_authorize!, :only => [ :by_login, :join, :leave ], :if => lambda { authenticate_with_oauth? }
   
   before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms, :invite]
   before_filter :authenticate_user!, 
@@ -52,14 +56,14 @@ class ProjectsController < ApplicationController
         @featured = @featured.joins(:place).where(@place.self_and_descendant_conditions) if @place
         if logged_in?
           @started = current_user.projects.not_flagged_as_spam.
-            all(:order => "projects.id desc", :limit => 9)
+            order("projects.id desc").limit(9)
           @joined = current_user.project_users.joins(:project).
-            merge(Project.not_flagged_as_spam).all(:include => :project,
-            :order => "projects.id desc", :limit => 9).map(&:project)
+            merge(Project.not_flagged_as_spam).includes(:project).
+            order("projects.id desc").limit(9).map(&:project)
         end
       end
       format.json do
-        scope = Project.scoped
+        scope = Project.all
         scope = scope.featured if params[:featured]
         scope = scope.in_group(params[:group]) if params[:group]
         scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
@@ -109,7 +113,8 @@ class ProjectsController < ApplicationController
         else
           top_observers_scope.order("taxa_count desc, observations_count desc").where("taxa_count > 0")
         end
-        @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
+        @project_users = @project.project_users.includes(:user).
+          paginate(:page => 1, :per_page => 5).order("id DESC")
         @members_count = @project_users.total_entries
         @project_observations = @project.project_observations.page(1).
           includes([
@@ -118,7 +123,8 @@ class ProjectsController < ApplicationController
                                 :quality_metrics,
                                 :stored_preferences,
                                 :taxon,
-                                { :observation_photos => :photo },
+                                :flags,
+                                { :photos => :flags },
                                 { :user => :stored_preferences } ] },
             { :curator_identification => [:user, :taxon] }
           ]).
@@ -182,11 +188,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project_assets = @project.project_assets.all(:limit => 100)
+    @project_assets = @project.project_assets.limit(100)
     @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
     if @place = @project.place
       if @project.prefers_place_boundary_visible
-        @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+        @place_geometry = PlaceGeometry.without_geom.where(place_id: @place).first
       end
     end
   end
@@ -220,7 +226,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.xml
   def destroy
-    project_user = current_user.project_users.first(:conditions => {:project_id => @project.id})
+    project_user = current_user.project_users.where(project_id: @project.id).first
     if project_user.blank? || !project_user.is_admin?
       flash[:error] = t(:only_the_project_admin_can_delete_this_project)
       redirect_to @project
@@ -238,8 +244,8 @@ class ProjectsController < ApplicationController
   end
   
   def terms
-    @project_observation_rules = @project.project_observation_rules.all(:limit => 100)
-    @project_user_rules = @project.project_user_rules.all(:limit => 100)
+    @project_observation_rules = @project.project_observation_rules.limit(100)
+    @project_user_rules = @project.project_user_rules.limit(100)
     respond_to do |format|
       format.html
     end
@@ -248,16 +254,16 @@ class ProjectsController < ApplicationController
   def by_login
     respond_to do |format|
       format.html do
-        @started = @selected_user.projects.all(:order => "id desc", :limit => 100)
-        @project_users = @selected_user.project_users.paginate(:page => params[:page],
-          :include => [:project, :user],
-          :order => "lower(projects.title)")
+        @started = @selected_user.projects.order("id desc").limit(100)
+        @project_users = @selected_user.project_users.joins(:project, :user).
+          paginate(:page => params[:page]).order("lower(projects.title)")
         @projects = @project_users.map{|pu| pu.project}
       end
       format.json do
-        @project_users = @selected_user.project_users.limit(1000).
+        @project_users = @selected_user.project_users.joins(:project).
           includes({:project => [:project_list, {:project_observation_fields => :observation_field}]}, :user).
-          order("lower(projects.title)")
+          order("lower(projects.title)").
+          limit(1000)
         project_options = Project.default_json_options.update(
           :include => [
             :project_list, 
@@ -276,10 +282,11 @@ class ProjectsController < ApplicationController
   end
   
   def members
-    @project_users = @project.project_users.paginate(:page => params[:page], :include => :user, :order => "users.login ASC")
+    @project_users = @project.project_users.joins(:user).
+      paginate(:page => params[:page]).order("users.login ASC")
     @admin = @project.user
-    @curators = @project.project_users.curators.all(:limit => 500, :include => :user).map{|pu| pu.user}
-    @managers = @project.project_users.managers.all(:limit => 500, :include => :user).map{|pu| pu.user}
+    @curators = @project.project_users.curators.limit(500).includes(:user).map{|pu| pu.user}
+    @managers = @project.project_users.managers.limit(500).includes(:user).map{|pu| pu.user}
   end
   
   def observed_taxa_count
@@ -297,11 +304,11 @@ class ProjectsController < ApplicationController
   
   def contributors
     if params[:sort] == "observation+contest"
-      @contributors = @project.project_users.paginate(:page => params[:page], :order => "observations_count DESC, taxa_count DESC", :conditions => "observations_count > 0")
-      @top_contributors = @project.project_users.all(:order => "observations_count DESC, taxa_count DESC", :conditions => "taxa_count > 0", :limit => 5)
+      @contributors = @project.project_users.where("observations_count > 0").paginate(page: params[:page]).order("observations_count DESC, taxa_count DESC")
+      @top_contributors = @project.project_users.where("taxa_count > 0").order("observations_count DESC, taxa_count DESC").limit(5)
     else
-      @contributors = @project.project_users.paginate(:page => params[:page], :order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0")
-      @top_contributors = @project.project_users.all(:order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0", :limit => 5)
+      @contributors = @project.project_users.where("taxa_count > 0").paginate(page: params[:page]).order("taxa_count DESC, observations_count DESC")
+      @top_contributors = @project.project_users.where("taxa_count > 0").order("taxa_count DESC, observations_count DESC").limit(5)
     end
     respond_to do |format|
       format.html do
@@ -314,50 +321,41 @@ class ProjectsController < ApplicationController
   
   def show_contributor
     @contributor = @project.project_users.find_by_id(params[:project_user_id].to_i)
-    @contributor ||= @project.project_users.first(:include => :user, :conditions => ["users.login = ?", params[:project_user_id]])
+    @contributor ||= @project.project_users.joins(:user).where(users: { login: params[:project_user_id] }).first
     if @contributor.blank?
       flash[:error] = t(:contributor_cannot_be_found)
       redirect_to project_contributors_path(@project)
       return
     end
     
-    @project_observations = @project.project_observations.paginate(:page => params[:page], 
-      :per_page => 28,
-      :include => :observation, :conditions => ["observations.user_id = ?", @contributor.user])
-    
-    @research_grade_count = @project.project_observations.count(
-      :joins => :observation,
-      :conditions => [
-        "observations.user_id = ? AND observations.quality_grade = ?", 
-        @contributor.user,
-        Observation::RESEARCH_GRADE
-    ])
-    
-    @research_grade_species_count = @project.project_observations.count(
-      :joins => {:observation => :taxon},
-      :conditions => [
-        "observations.user_id = ? AND observations.quality_grade = ? AND taxa.rank_level < ?", 
-        @contributor.user,
-        Observation::RESEARCH_GRADE,
-        Taxon::GENUS_LEVEL
-    ])
+    @project_observations = @project.project_observations.joins(:observation).
+      where(observations: { user_id: @contributor.user }).
+      paginate(page: params[:page], per_page: 28)
+
+    @research_grade_count = @project.project_observations.
+      joins(:observation).
+      where(observations: { user_id: @contributor.user,
+        quality_grade: Observation::RESEARCH_GRADE }).count
+
+    @research_grade_species_count = @project.project_observations.
+      joins(observation: :taxon).
+      where(observations: { user_id: @contributor.user,
+        quality_grade: Observation::RESEARCH_GRADE }).
+      where("taxa.rank_level < ?", Taxon::GENUS_LEVEL).count
   end
   
   def list
     # TODO this causes a temporary table sort, which == badness
-    @listed_taxa =  ProjectList.first(:conditions => { :project_id => @project.id }).listed_taxa.paginate(
-      :page => 1,
-      :per_page => 11,
-      :select => "MAX(listed_taxa.id) AS id, listed_taxa.taxon_id",
-      :joins => 
-        "LEFT OUTER JOIN taxon_photos ON taxon_photos.taxon_id = listed_taxa.taxon_id " +
-        "LEFT OUTER JOIN photos ON photos.id = taxon_photos.photo_id",
-      :group => "listed_taxa.taxon_id",
-      :order => "id DESC",
-      :conditions => "photos.id IS NOT NULL"
-    )
-    @taxa = Taxon.all(:conditions => ["id IN (?)", @listed_taxa.map(&:taxon_id)],
-      :include => [:photos, :taxon_names])
+    @listed_taxa =  ProjectList.where(project_id: @project.id).first.listed_taxa.
+      joins("LEFT OUTER JOIN taxon_photos ON taxon_photos.taxon_id = listed_taxa.taxon_id " +
+        "LEFT OUTER JOIN photos ON photos.id = taxon_photos.photo_id").
+      where("photos.id IS NOT NULL").
+      select("MAX(listed_taxa.id) AS id, listed_taxa.taxon_id").
+      group("listed_taxa.taxon_id").
+      paginate(page: 1, per_page: 11).
+      order("id DESC")
+    @taxa = Taxon.where(id: @listed_taxa.map(&:taxon_id)).
+      includes(:photos, :taxon_names)
     
 
     # Load tips HTML
@@ -375,7 +373,7 @@ class ProjectsController < ApplicationController
   
   def change_role
     @project_user = @project.project_users.find_by_id(params[:project_user_id])
-    current_project_user = current_user.project_users.first(:conditions => {:project_id => @project.id})
+    current_project_user = current_user.project_users.where(project_id: @project.id).first
     role = params[:role] if ProjectUser::ROLES.include?(params[:role])
     
     if @project_user.blank?
@@ -427,7 +425,7 @@ class ProjectsController < ApplicationController
   
   def join
     @observation = Observation.find_by_id(params[:observation_id])
-    @project_curators = @project.project_users.all(:conditions => ["role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR]])
+    @project_curators = @project.project_users.where(role: [ProjectUser::MANAGER, ProjectUser::CURATOR])
     if @project_user
       respond_to_join(:notice => t(:you_are_already_a_member_of_this_project))
       return
@@ -471,7 +469,7 @@ class ProjectsController < ApplicationController
       return
     end
     
-    if @project_invitation = ProjectInvitation.first(:conditions => {:project_id => @project.id, :observation_id => @observation.id})
+    if @project_invitation = ProjectInvitation.where(project_id: @project.id, observation_id: @observation.id).first
       @project_invitation.destroy
     end
     
@@ -526,16 +524,15 @@ class ProjectsController < ApplicationController
   end
   
   def stats
-    @project_user_stats = @project.project_users.count(:group => "EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)")
-    @project_observation_stats = @project.project_observations.count(:group => "EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)")
-    @unique_observer_stats = @project.project_observations.count(
-      :select => "observations.user_id", 
-      :include => :observation, 
-      :group => "EXTRACT(YEAR FROM project_observations.created_at) || '-' || EXTRACT(MONTH FROM project_observations.created_at)")
-    
+    @project_user_stats = @project.project_users.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
+    @project_observation_stats = @project.project_observations.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
+    @unique_observer_stats = @project.project_observations.joins(:observation).
+      select("observations.user_id").
+      group("EXTRACT(YEAR FROM project_observations.created_at) || '-' || EXTRACT(MONTH FROM project_observations.created_at)").
+      count
     @total_project_users = @project.project_users.count
     @total_project_observations = @project.project_observations.count
-    @total_unique_observers = @project.project_observations.count(:select => "observations.user_id", :include => :observation)
+    @total_unique_observers = @project.project_observations.select("DISTINCT observations.user_id").joins(:observation).count
     
     @headers = ['year/month', 'new users', 'new observations', 'unique observers']
     @data = []
@@ -560,7 +557,6 @@ class ProjectsController < ApplicationController
           data.each_with_index { |d, i| per_period[@headers[i].gsub(/[ \/]/, '_')] = d }
           opts[:data] << per_period
         end
-
         render :json => opts
       end
       format.csv do 
@@ -571,40 +567,6 @@ class ProjectsController < ApplicationController
         render :text => csv_text
       end
     end
-  end
-  
-  def invitations
-    scope = @project.observations_matching_rules
-    if @project.place && !@project.project_observation_rules.detect{|por| por.operator == "observed_in_place?"}
-      scope = scope.in_place(@project.place)
-    end
-    existing_scope = Observation.in_projects([@project]).scoped
-    invited_scope = Observation.scoped(:joins => :project_invitations, :conditions => ["project_invitations.project_id = ?", @project.id])
-
-    if params[:by] == "you"
-      scope = scope.by(current_user)
-      existing_scope = existing_scope.by(current_user)
-      invited_scope = invited_scope.by(current_user)
-    end
-
-    if params[:on_list] == "yes"
-      scope = scope.scoped(
-        :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
-        :conditions => "observations.taxon_id = listed_taxa.taxon_id")
-      existing_scope = existing_scope.scoped(
-          :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
-          :conditions => "observations.taxon_id = listed_taxa.taxon_id")
-      invited_scope = invited_scope.scoped(
-            :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
-            :conditions => "observations.taxon_id = listed_taxa.taxon_id")
-    end
-    
-    scope_sql = scope.to_sql
-    existing_scope_sql = existing_scope.to_sql
-    invited_scope_sql = invited_scope.to_sql
-
-    sql = "(#{scope_sql}) EXCEPT ((#{existing_scope_sql}) UNION (#{invited_scope_sql}))"
-    @observations = Observation.paginate_by_sql(sql, :page => params[:page])
   end
   
   def add
@@ -700,13 +662,7 @@ class ProjectsController < ApplicationController
   def add_batch
     observation_ids = observation_ids_batch_from_params
     
-    @observations = Observation.all(
-      :conditions => [
-        "id IN (?) AND user_id = ?", 
-        observation_ids,
-        current_user.id
-      ]
-    )
+    @observations = Observation.where(id: observation_ids, user_id: current_user.id)
     
     @errors = {}
     @project_observations = []
@@ -718,7 +674,7 @@ class ProjectsController < ApplicationController
         @errors[observation.id] = project_observation.errors.full_messages
       end
       
-      if @project_invitation = ProjectInvitation.first(:conditions => {:project_id => @project.id, :observation_id => observation.id})
+      if @project_invitation = ProjectInvitation.where(project_id: @project.id, observation_id: observation.id).first
         @project_invitation.destroy
       end
       
@@ -746,10 +702,8 @@ class ProjectsController < ApplicationController
   
   def remove_batch
     observation_ids = observation_ids_batch_from_params
-    @project_observations = @project.project_observations.all(
-      :include => :observation,
-      :conditions => ["observation_id IN (?)", observation_ids]
-    )
+    @project_observations = @project.project_observations.where(observation_id: observation_ids).
+      includes(:observation)
     
     @project_observations.each do |project_observation|
       next unless project_observation.observation.user_id == current_user.id
@@ -819,9 +773,12 @@ class ProjectsController < ApplicationController
       @place = @site.place unless params[:everywhere].yesish?
     end
     if @q = params[:q]
-      opts = {:page => params[:page]}
-      opts[:with] = {:place_ids => [@place.id]} if @place
-      @projects = Project.search(@q, opts)
+      search_wheres = { multi_match: {
+        query: @q,
+        operator: "and",
+        fields: [ :title, :description ] } }
+      search_wheres["place_ids"] = @place if @place
+      @projects = Project.elastic_paginate(where: search_wheres, page: params[:page])
     end
     respond_to do |format|
       format.html
@@ -851,8 +808,7 @@ class ProjectsController < ApplicationController
     scope = @project.observations_matching_rules.
       by(current_user).
       includes(:taxon, :project_observations).
-      where("project_observations.id IS NULL OR project_observations.project_id != ?", @project).
-      scoped
+      where("project_observations.id IS NULL OR project_observations.project_id != ?", @project)
     scope = scope.of(@taxon) if @taxon
     scope
   end

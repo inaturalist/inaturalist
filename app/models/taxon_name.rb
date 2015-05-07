@@ -1,6 +1,6 @@
 #encoding: utf-8
 class TaxonName < ActiveRecord::Base
-  belongs_to :taxon
+  belongs_to :taxon, touch: true
   belongs_to :source
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
@@ -116,8 +116,7 @@ class TaxonName < ActiveRecord::Base
   
   def update_unique_names
     return true unless name_changed?
-    non_unique_names = TaxonName.all(:include => :taxon, 
-      :conditions => {:name => name}, :select => "DISTINCT ON (taxon_id) *")
+    non_unique_names = TaxonName.includes(:taxon).where(name: name).select("DISTINCT ON (taxon_id) *")
     non_unique_names.each do |taxon_name|
       taxon_name.taxon.update_unique_name if taxon_name.taxon
     end
@@ -129,6 +128,17 @@ class TaxonName < ActiveRecord::Base
       options[:only] = [:id, :name, :lexicon, :is_valid]
     end
     super(options)
+  end
+
+  def as_indexed_json(options={})
+    json = {
+      name: name,
+      locale: locale_for_lexicon
+    }
+    if options[:autocomplete]
+      json[:name_autocomplete] = name
+    end
+    json
   end
 
   def set_is_valid
@@ -198,6 +208,27 @@ class TaxonName < ActiveRecord::Base
     TaxonName.localizable_lexicon(lexicon)
   end
 
+  def locale_for_lexicon
+    case localizable_lexicon
+    when "scientific_names" then "sci"
+    when "english" then "en"
+    when "spanish" then "es"
+    when "german" then "de"
+    when "portuguese" then "pt"
+    when "french" then "fr"
+    when "chinese_traditional" then "zh"
+    when "japanese" then "ja"
+    when "maya" then "myn"
+    when "dutch" then "nl"
+    when "indonesian" then "id"
+    when "hawaiian" then "haw"
+    when "maori" then "mi"
+    when "italian" then "it"
+    else
+      "und"
+    end
+  end
+
   def self.localizable_lexicon(lexicon)
     lexicon.to_s.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase
   end
@@ -212,7 +243,7 @@ class TaxonName < ActiveRecord::Base
       return 'english'
     end
   end
-  
+
   def self.choose_scientific_name(taxon_names)
     return nil if taxon_names.blank?
     taxon_names.select { |tn| tn.is_valid? && tn.is_scientific_names? }.first
@@ -247,11 +278,11 @@ class TaxonName < ActiveRecord::Base
     conditions = {:name => name}
     conditions[:lexicon] = lexicon if lexicon
     begin
-      taxon_names = TaxonName.all(:conditions => conditions, :limit => 10, :include => :taxon)
+      taxon_names = TaxonName.where(conditions).limit(10).includes(:taxon)
     rescue ActiveRecord::StatementInvalid => e
       raise e unless e.message =~ /invalid byte sequence/
       conditions[:name] = name.encode('UTF-8')
-      taxon_names = TaxonName.all(:conditions => conditions, :limit => 10, :include => :taxon)
+      taxon_names = TaxonName.where(conditions).limit(10).includes(:taxon)
     end
     unless options[:iconic_taxa].blank?
       taxon_names.reject {|tn| options[:iconic_taxa].include?(tn.taxon.iconic_taxon_id)}

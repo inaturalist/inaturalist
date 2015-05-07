@@ -160,7 +160,7 @@
           - else
             = f.submit t(:publish), :class => "btn btn-primary", :name => "publish"
             = f.submit t(:save), :class => "btn"
-          = link_to t(:delete), @guide, :method => :delete, :confirm => t(:are_you_sure?), :class => "btn btn-danger pull-right"
+          = link_to t(:delete), @guide, :method => :delete, :data => {:confirm => t(:are_you_sure?)}, :class => "btn btn-danger pull-right"
 
     .span9
       #controls.clearfix.row-fluid{"data-spy" => "affix", "data-offset-top" => 148}
@@ -188,7 +188,8 @@
                   = link_to_function "<i class='fa fa-trash-o'></i> #{t(:remove_selected)}".html_safe, "removeSelected()"
                 %li.divider
                 %li
-                  = link_to reorder_guide_path(@guide, :by => "taxonomy"), :method => :put, :confirm => t(:are_you_sure_this_will_reload_the_page_and_you_may_lose_changes) do
+                  = link_to reorder_guide_path(@guide, :by => "taxonomy"), :method => :put, 
+                    :data => {:confirm => t(:are_you_sure_this_will_reload_the_page_and_you_may_lose_changes)} do
                     %i.fa.fa-sort-amount-asc
                     = t(:reorder_by_taxonomy)
                 %li= link_to t(:update_with_eol_content), "#eolupdate", "data-toggle" => "modal"

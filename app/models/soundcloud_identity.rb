@@ -1,7 +1,9 @@
 class SoundcloudIdentity < ActiveRecord::Base
-	belongs_to :user
+  belongs_to :user
 
-	def token
-    user.provider_authorizations.where(:provider_name => 'soundcloud').first.token
-	end
+  def token
+    if sc = user.provider_authorizations.where(:provider_name => 'soundcloud').first
+      sc.token
+    end
+  end
 end

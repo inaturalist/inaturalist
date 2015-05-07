@@ -9,9 +9,8 @@
     <li class="subnavwrapper observationstab">
       <div class="clear subnavtab">
         <%= link_to t(:observations).capitalize, observations_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
-          "toggleHeaderSubnav(this)",
-          :class => 'subnavlink' %>
+        <%= link_to "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, "#",
+           :onclick => "toggleHeaderSubnav(this)", :class => 'subnavlink' %>
       </div>
       <ul class="subnav" style="display: none">
         <% if logged_in? -%>
@@ -31,9 +30,8 @@
     <li class="subnavwrapper taxatab">
       <div class="clear subnavtab">
         <%= link_to t(:species).capitalize, taxa_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
-          "toggleHeaderSubnav(this)",
-          :class => 'subnavlink' %>
+        <%= link_to "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, "#",
+          :onclick => "toggleHeaderSubnav(this)", :class => 'subnavlink' %>
       </div>
       <ul class="subnav taxon_links" style="display: none">
         <% for taxon in Taxon::ICONIC_TAXA %>
@@ -54,14 +52,13 @@
     <li class="subnavwrapper projectstab">
       <div class="clear subnavtab">
         <%= link_to t(:projects), projects_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
-          "toggleHeaderSubnav(this)",
-          :class => 'subnavlink' %>
+        <%= link_to "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, "#",
+          :onclick => "toggleHeaderSubnav(this)", :class => 'subnavlink' %>
       </div>
       <ul class="subnav" style="display: none">
         <% if logged_in? -%>
-          <% for project in current_user.project_users.all(:include => :project, :limit => 7, 
-              :order => "(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase} %>
+          <% for project in current_user.project_users.joins(:project).limit(7).
+              order("(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase} %>
             <li>
               <%= link_to truncate(project.title), project, :style => project.icon.file? ? "background-image: url(#{project.icon.url(:mini)})" : nil %>
             </li>
@@ -83,9 +80,8 @@
     <li class="subnavwrapper placestab">
       <div class="clear subnavtab">
         <%= link_to t(:places), places_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
-          "toggleHeaderSubnav(this)",
-          :class => 'subnavlink' %>
+        <%= link_to "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, "#",
+          :onclick => "toggleHeaderSubnav(this)", :class => 'subnavlink' %>
       </div>
       <ul class="subnav" style="display: none">
         <li class="formwrapper">
@@ -139,9 +135,8 @@
     <li class="subnavwrapper">
       <div class="clear subnavtab">
         <%= link_to t(:dashboard), home_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
-          "toggleHeaderSubnav(this)",
-          :class => 'subnavlink' %>
+        <%= link_to "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, "#",
+          :onclick => "toggleHeaderSubnav(this)", :class => 'subnavlink' %>
       </div>
       <ul id="usersubnav" class="subnav" style="display: none">
         <li><%= link_to t(:home), home_path %></li>
@@ -150,6 +145,7 @@
           <ul>
             <li><%= link_to t(:add), new_observation_path, :class => 'subnavaction' %></li>
             <li><%= link_to t(:import), {:controller => 'observations', :action => 'import'}, :class => 'subnavaction' %></li>
+            <li><%= link_to t(:calendar), calendar_path(login: current_user.login), :class => 'subnavaction' %></li>
           </ul>
         </li>
         <li><%= link_to t(:lists), lists_by_login_path(current_user.login), :class => 'lists_link' %></li>

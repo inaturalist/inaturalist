@@ -170,7 +170,7 @@
       <% end -%>
       <%- if @observation.observed_on -%>
         <%=t :on_ %>
-        <%= link_to t("date_format.month.#{@observation.observed_on.strftime(@observation.time_observed_at ? '%b' : '%B').downcase}"),
+        <%= link_to t("date_format.month.#{@observation.observed_on.strftime('%B').downcase}"),
           observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}") %>
         <%= link_to @observation.observed_on.day, 
           observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}-#{@observation.observed_on.day}") %>,
@@ -196,8 +196,10 @@
                   remove_project_observation_path(project, :observation_id => @observation.id),
                   :remote => true,
                   :method => :delete,
-                  "data-type" => "json",
-                  :confirm => t(:are_you_sure_delete_observation_from_project, :project => project.title),
+                  :data => {
+                    :type => "json",
+                    :confirm => t(:are_you_sure_delete_observation_from_project, :project => project.title)
+                  },
                   :class => "removelink pale button",
                   :id => dom_id(project, "removelink"),
                   :style => @project_observations_by_project_id[project.id] ? nil : 'display:none' %>
@@ -223,11 +225,11 @@
         "data-tip" => t('views.observations.copy_tip'),
         "data-tip-show-delay" => 1000 %>
       <%= link_to "<span class='ui-icon ui-icon-trash inlineblock'></span> #{t(:delete)}".html_safe, 
-        @observation, 
-        :confirm => t(:you_sure_delete_this_observation), 
-        :method => :delete, 
-        :id => "delete_observation_button", 
-        :class => "minor delete button" %>
+        @observation,
+        data: { confirm: t(:you_sure_delete_this_observation) },
+        method: :delete,
+        id: "delete_observation_button",
+        'class': "minor delete button" %>
     </div>
   
   <% elsif logged_in? && current_user.is_admin? && @observation.flagged? %>
@@ -540,7 +542,7 @@
     
     <% if is_me?(@observation.user) -%>
       <div id="idplease" class="clear inline buttonrow">
-        <div id="added_to_id_please" class="box id_please_notice" style="display: <%= @observation.id_please? ? 'block' : 'none' %>">
+        <div id="added_to_id_please" class="box id_please_notice clear" style="display: <%= @observation.id_please? ? 'block' : 'none' %>">
           <span class="inter">
             <%= t :added_to %> <%= link_to t(:id_please).truncate(18), id_please_path %>
           </span>
@@ -614,7 +616,7 @@
               <%= link_to "remove", 
                 remove_project_observation_path(po.project_id, :observation_id => @observation.id),
                 :method => :delete,
-                :confirm => t(:you_sure_remove_this_observation?),
+                :data => {:confirm => t(:you_sure_remove_this_observation?)},
                 :class => "pale button",
                 :style => "float: right; margin: 0" %>
             <% end -%>

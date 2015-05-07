@@ -120,7 +120,7 @@ CSV.foreach(File.join(@tmp_path, "occurrence.txt"), :col_sep => "\t", :headers =
     next
   end
   href = "http://www.gbif.org/occurrence/#{gbif_id}"
-  existing = ObservationLink.first(:conditions => {:observation_id => observation_id, :href => href})
+  existing = ObservationLink.where(observation_id: observation_id, href: href).first
   if existing
     existing.touch unless @opts[:debug]
     old_count += 1
@@ -134,6 +134,6 @@ CSV.foreach(File.join(@tmp_path, "occurrence.txt"), :col_sep => "\t", :headers =
   count += 1
 end
 
-delete_count = ObservationLink.count(:conditions => ["href_name = 'GBIF' AND updated_at < ?", start_time])
-ObservationLink.delete_all(["href_name = 'GBIF' AND updated_at < ?", start_time]) unless @opts[:debug]
+delete_count = ObservationLink.where(href_name: "GBIF").where("updated_at < ?", start_time).count
+ObservationLink.where("href_name = 'GBIF' AND updated_at < ?", start_time).delete_all unless @opts[:debug]
 puts "#{new_count} created, #{old_count} updated, #{delete_count} deleted in #{Time.now - start_time} s. Request key: #{@key}"

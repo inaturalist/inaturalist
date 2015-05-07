@@ -11,10 +11,10 @@ describe ListedTaxaController, "create" do
   it "should work" do
     taxon = Taxon.make!
     post :create, :format => :json, :listed_taxon => {:taxon_id => taxon.id, :list_id => list.id}
-    list.listed_taxa.where(:taxon_id => taxon.id).should be_exists
+    expect(list.listed_taxa.where(:taxon_id => taxon.id)).to be_exists
   end
 
-  describe ListedTaxon, "establishment means propagation" do
+  describe "establishment means propagation" do
     let(:parent) { Place.make! }
     let(:place) { Place.make!(:parent => parent) }
     let(:child) { Place.make!(:parent => place) }
@@ -33,7 +33,7 @@ describe ListedTaxaController, "create" do
         :force_trickle_down_establishment_means => true
       }
       child_listed_taxon.reload
-      child_listed_taxon.establishment_means.should eq ListedTaxon::NATIVE
+      expect(child_listed_taxon.establishment_means).to eq ListedTaxon::NATIVE
     end
     it "should not allow force_trickle_down_establishment_means for non-curators" do
       child_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
@@ -44,13 +44,13 @@ describe ListedTaxaController, "create" do
         :force_trickle_down_establishment_means => true
       }
       child_listed_taxon.reload
-      child_listed_taxon.establishment_means.should eq ListedTaxon::INTRODUCED
+      expect(child_listed_taxon.establishment_means).to eq ListedTaxon::INTRODUCED
     end
   end
 end
 
 describe ListedTaxaController, "update" do
-  describe ListedTaxon, "establishment means propagation" do
+  describe "establishment means propagation" do
     let(:parent) { Place.make! }
     let(:place) { Place.make!(:parent => parent) }
     let(:child) { Place.make!(:parent => place) }
@@ -67,7 +67,7 @@ describe ListedTaxaController, "update" do
         :force_trickle_down_establishment_means => true
       }
       child_listed_taxon.reload
-      child_listed_taxon.establishment_means.should eq ListedTaxon::NATIVE
+      expect(child_listed_taxon.establishment_means).to eq ListedTaxon::NATIVE
     end
     it "should not allow force_trickle_down_establishment_means for non-curators" do
       child_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
@@ -76,7 +76,7 @@ describe ListedTaxaController, "update" do
         :force_trickle_down_establishment_means => true
       }
       child_listed_taxon.reload
-      child_listed_taxon.establishment_means.should eq ListedTaxon::INTRODUCED
+      expect(child_listed_taxon.establishment_means).to eq ListedTaxon::INTRODUCED
     end
   end
 end

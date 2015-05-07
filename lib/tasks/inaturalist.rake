@@ -45,5 +45,69 @@ namespace :inaturalist do
     Project.where(user_id: spammer_ids).destroy_all
     User.where(id: spammer_ids).update_all(description: nil)
   end
-end
 
+  desc "Delete expired updates"
+  task :delete_expired_updates => :environment do
+    Update.where("created_at < ?", 6.months.ago).find_in_batches do |batch|
+      Update.transaction do
+        Update.destroy_all(id: batch.map(&:id))
+      end
+    end
+  end
+
+  desc "Find all javascript i18n keys and print a new translations.js"
+  task :generate_translations_js => :environment do
+    output_path = "app/assets/javascripts/i18n/translations.js"
+    # various keys from models, or from JS dynamic calls
+    all_keys = [ "black", "white", "red", "green", "blue", "purple",
+                 "yellow", "grey", "orange", "brown", "pink",
+                 "preview", "browse", "view_more", "added!", "find",
+                 "reload_timed_out", "something_went_wrong_adding",
+                 "exporting", "loading", "saving", "find", "none",
+                 "colors", "maptype_for_places", "edit_license",
+                 "kml_file_size_error", "input_taxon", "output_taxon",
+                 "date_added", "observation_date", "date_picker",
+                 "views.observations.export.taking_a_while" ]
+    # look for other keys in all javascript files
+    Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each do |f|
+      next unless File.file?( f )
+      next if f =~ /\.(gif|png|php)$/
+      next if f == output_path
+      contents = IO.read( f )
+      results = contents.scan(/I18n.t\((.)(.*?)\1/i)
+      unless results.empty?
+        all_keys += results.map{ |r| r[1].chomp(".") }
+      end
+    end
+    # remnant from a dynamic JS call for colors
+    all_keys.delete("lts[i].valu")
+    all_translations = { }
+    # load translations
+    I18n.backend.send(:init_translations)
+    I18n.backend.send(:translations).keys.each do |locale|
+      next if locale === :qqq
+      all_translations[ locale ] = { }
+      all_keys.uniq.sort.each do |key_string|
+        split_keys = key_string.split(".").map(&:to_sym)
+        var = split_keys.inject(all_translations[ locale ]) do |h, key|
+          if key == split_keys.last
+            # fallback to English if there is no translation in the specified locale
+            value = split_keys.inject(I18n.backend.send(:translations)[locale], :[]) rescue nil
+            value ||= split_keys.inject(I18n.backend.send(:translations)[:en], :[])
+            h[key] ||= value
+          else
+            h[key] ||= { }
+          end
+          h[key]
+        end
+      end
+    end
+    # output what should be the new contents of app/assets/javascripts/i18n/translations.js
+    File.open(output_path, "w") do |file|
+      file.puts "I18n.translations || (I18n.translations = {});"
+      all_translations.each do |locale, translastions|
+        file.puts "I18n.translations[\"#{ locale }\"] = #{ translastions.to_json };"
+      end
+    end
+  end
+end

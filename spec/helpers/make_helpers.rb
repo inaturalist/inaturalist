@@ -94,13 +94,13 @@ module MakeHelpers
   def make_place_with_geom(options = {})
     wkt = options.delete(:wkt) || options.delete(:ewkt) || "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
     place = Place.make!(options)
-    place.save_geom(MultiPolygon.from_ewkt(wkt))
+    place.save_geom(GeoRuby::SimpleFeatures::Geometry.from_ewkt(wkt))
     place
   end
 
   def make_taxon_range_with_geom(options = {})
     wkt = options.delete(:wkt) || options.delete(:ewkt) || "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
-    tr = TaxonRange.make!(options.merge(:geom => MultiPolygon.from_ewkt(wkt)))
+    tr = TaxonRange.make!(options.merge(:geom => wkt))
     tr
   end
 
@@ -121,8 +121,8 @@ module MakeHelpers
     swap
   end
 
-  def make_published_guide
-    g = Guide.make!
+  def make_published_guide(options = {})
+    g = Guide.make!(options)
     3.times { GuideTaxon.make!(:guide => g) }
     g.update_attributes(:published_at => Time.now)
     g

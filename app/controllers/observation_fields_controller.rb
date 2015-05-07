@@ -7,8 +7,8 @@ class ObservationFieldsController < ApplicationController
   # GET /observation_fields.xml
   def index
     @q = params[:q] || params[:term]
-    scope = ObservationField.scoped
-    scope = scope.scoped(:conditions => ["lower(name) LIKE ?", "%#{@q.downcase}%"]) unless @q.blank?
+    scope = ObservationField.all
+    scope = scope.where("lower(name) LIKE ?", "%#{@q.downcase}%") unless @q.blank?
     @observation_fields = scope.paginate(:page => params[:page])
     
     respond_to do |format|
@@ -33,8 +33,7 @@ class ObservationFieldsController < ApplicationController
         @value = params[:value] || "any"
         scope = ObservationFieldValue.includes(:observation).
           where(:observation_field_id => @observation_field).
-          order("observation_field_values.id DESC").
-          scoped
+          order("observation_field_values.id DESC")
         scope = scope.where("value = ?", @value) unless @value == "any"
         @observation_field_values = scope.page(params[:page])
         @observations = @observation_field_values.map{|ofv| ofv.observation}

@@ -123,7 +123,11 @@ describe TaxonSwap, "commit" do
 end
 
 describe TaxonSwap, "commit_records" do
-  before(:each) { prepare_swap }
+  before(:each) do
+    prepare_swap
+    enable_elastic_indexing([ Observation, Taxon ])
+  end
+  after(:each) { disable_elastic_indexing([ Observation, Taxon ]) }
 
   it "should update records" do
     obs = Observation.make!(:taxon => @input_taxon)
@@ -134,7 +138,7 @@ describe TaxonSwap, "commit_records" do
 
   it "should generate updates for people who DO want automation" do
     u = User.make!(:prefers_automatic_taxonomic_changes => true)
-    u.prefers_automatic_taxonomic_changes?.should be_true
+    u.prefers_automatic_taxonomic_changes?.should be true
     o = Observation.make!(:taxon => @input_taxon, :user => u)
     lambda {
       @swap.commit_records
@@ -143,7 +147,7 @@ describe TaxonSwap, "commit_records" do
 
   it "should generate updates for people who don't want automation" do
     u = User.make!(:prefers_automatic_taxonomic_changes => false)
-    u.prefers_automatic_taxonomic_changes?.should_not be_true
+    u.prefers_automatic_taxonomic_changes?.should_not be true
     o = Observation.make!(:taxon => @input_taxon, :user => u)
     lambda {
       @swap.commit_records
@@ -152,7 +156,7 @@ describe TaxonSwap, "commit_records" do
 
   it "should not update records for people who don't want automation" do
     u = User.make!(:prefers_automatic_taxonomic_changes => false)
-    u.prefers_automatic_taxonomic_changes?.should_not be_true
+    u.prefers_automatic_taxonomic_changes?.should_not be true
     o = Observation.make!(:taxon => @input_taxon, :user => u)
     @swap.commit_records
     o.reload
@@ -161,7 +165,7 @@ describe TaxonSwap, "commit_records" do
 
   it "should not generate more than one update per user" do
     u = User.make!(:prefers_automatic_taxonomic_changes => false)
-    u.prefers_automatic_taxonomic_changes?.should_not be_true
+    u.prefers_automatic_taxonomic_changes?.should_not be true
     2.times do
       o = Observation.make!(:taxon => @input_taxon, :user => u)
     end

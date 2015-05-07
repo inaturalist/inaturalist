@@ -41,8 +41,10 @@ describe ObservationFieldValue, "updating for subscribers" do
     @ofv = ObservationFieldValue.make!(:value => "foo", :user => User.make!)
     @o = @ofv.observation
     Update.delete_all
+    enable_elastic_indexing(Update)
   end
-  
+  after(:each) { disable_elastic_indexing(Update) }
+
   it "should create an update for the observer if user is not observer" do
     without_delay { @ofv.update_attributes(:value => "bar") }
     Update.where(:subscriber_id => @o.user_id, :resource_id => @o.id, :notifier_id => @ofv.id).count.should eq 1
@@ -155,10 +157,10 @@ describe ObservationFieldValue, "validation" do
     of = ObservationField.make!(:datatype => "text", :allowed_values => "foo|bar")
     lambda {
       ObservationFieldValue.make!(:observation_field => of, :value => "foo")
-    }.should_not raise_error(ActiveRecord::RecordInvalid)
+    }.should_not raise_error
     lambda {
       ObservationFieldValue.make!(:observation_field => of, :value => "bar")
-    }.should_not raise_error(ActiveRecord::RecordInvalid)
+    }.should_not raise_error
   end
   
   it "should fail for disallowed values" do
@@ -172,10 +174,10 @@ describe ObservationFieldValue, "validation" do
     of = ObservationField.make!(:datatype => "text", :allowed_values => "foo|bar")
     lambda {
       ObservationFieldValue.make!(:observation_field => of, :value => "Foo")
-    }.should_not raise_error(ActiveRecord::RecordInvalid)
+    }.should_not raise_error
     lambda {
       ObservationFieldValue.make!(:observation_field => of, :value => "BAR")
-    }.should_not raise_error(ActiveRecord::RecordInvalid)
+    }.should_not raise_error
   end
 
   it "allowed values validation should handle nil values" do

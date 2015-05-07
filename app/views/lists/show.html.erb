@@ -1,7 +1,7 @@
 <% content_for(:title) do %>
   <%-
     if @list.title =~ /Life List$/ && @list.id == @list.user.life_list_id
-      @title = t(:life_list, :user => @list.title.split(' Life List').first[0..-3], :default => @list.title)
+      @title = t(:life_list, :user => @list.owner_name, :default => @list.title)
     else
       @title = @list.title
     end
@@ -206,7 +206,7 @@
                 :min_value_label_width => 30 } %>
             </div>
           </a>
-          <% for grouper, count in @iconic_taxon_counts -%>
+          <% for grouper, count in @iconic_taxon_counts.sort_by{ |_key, value| -1.0 * value }.to_h -%>
             <% next unless (count && count != 0) %>
             <% if grouper.respond_to?(:common_name) && grouper.common_name %>
               <% grouper_name = grouper.common_name.name rescue 'Unclassified' -%>

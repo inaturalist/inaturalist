@@ -32,7 +32,7 @@
         :remote => true,
         :method => :delete,
         :type => 'text',
-        :confirm => t(:you_sure_delete_taxon_from_list?, :taxon => default_taxon_name(listed_taxon.taxon)), 
+        :data => {:confirm => t(:you_sure_delete_taxon_from_list?, :taxon => default_taxon_name(listed_taxon.taxon))}, 
         :title => t(:remove_from_list),
         :class => "description removelink") %>
     <% end -%>
@@ -66,7 +66,7 @@
     <% end -%>
     
     <% unless listed_taxon.description.blank? -%>
-      <%- txt = h(strip_tags(listed_taxon.description)) -%>
+      <%- txt = sanitize(listed_taxon.description, tags: []) -%>
       <p class="ui clear description">
         <%= truncate txt, :length => 200 %>
         <% if txt.size > 200 -%>

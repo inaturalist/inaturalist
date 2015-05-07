@@ -1,4 +1,5 @@
 <%-
+  occurrence_field ||= nil
   listed_taxon ||= occurrence_field || @primary_listed_taxon || @listed_taxon
   list ||= listed_taxon.list || @list
 -%>

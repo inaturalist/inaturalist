@@ -100,7 +100,7 @@
       <meta property="og:image" content="<%= photo.medium_url %>"/> 
     <% end -%>
   <% end -%>
-  <% if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
+  <% if @observer_provider_authorizations && twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
     <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
   <% end -%>
   <% if photo_observations.size > 0 -%>
@@ -224,7 +224,7 @@
     observations: @observations, focus: "observations", flag_letters: true,
     min_y: params[:swlat], min_x: params[:swlng],
     max_y: params[:nelat], max_x: params[:nelng],
-    windshaft_user_id: @selected_user.id) %>
+    observation_layers: [ { user_id: @selected_user.id, observations: @observations } ] ) %>
   <%= content_tag("div", "", map_attributes.merge({ id: "map" })) %>
   <%= link_to_function t(:redo_search_in_map_area),
     "redoSearchInMapArea()", 

@@ -13,21 +13,19 @@ module Shared::GuideModule
       end
       is_filter_param && !is_blank
     }].symbolize_keys
-    @scope = Taxon.active.of_rank_equiv(10).
-      includes({:taxon_photos => :photo}, :taxon_names, :conservation_statuses, :taxon_descriptions).scoped
-    
+    @scope = Taxon.active.of_rank_equiv(10)
+
     if block_given?
       @scope = yield(@scope)
     end
-    
+
     if @q = @filter_params[:q]
-      @q = @q.to_s
-      @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
-      @search_taxon_ids = Taxon.search_for_ids(@q) if @search_taxon_ids.blank?
+      @search_taxon_ids = Taxon.elastic_search(
+        where: { "names.name": @q }, fields: :id).per_page(1000).map(&:id)
       if @search_taxon_ids.size == 1
         @taxon = Taxon.find_by_id(@search_taxon_ids.first)
-      elsif Taxon.count(:conditions => ["id IN (?) AND name LIKE ?", @search_taxon_ids, "#{@q.capitalize}%"]) == 1
-        @taxon = Taxon.first(:conditions => ["name = ?", @q.capitalize])
+      elsif Taxon.where(id: @search_taxon_ids).where("name LIKE ?", "#{@q.capitalize}%").count == 1
+        @taxon = Taxon.where(name: @q.capitalize).first
       else
         @scope = @scope.among(@search_taxon_ids)
       end
@@ -35,9 +33,8 @@ module Shared::GuideModule
     
     if @filter_params[:taxon]
       @taxon = Taxon.find_by_id(@filter_params[:taxon].to_i) if @filter_params[:taxon].to_i > 0
-      @taxon ||= TaxonName.first(:conditions => [
-        "lower(name) = ?", @filter_params[:taxon].to_s.strip.gsub(/[\s_]+/, ' ').downcase]
-      ).try(:taxon)
+      @taxon ||= TaxonName.where("lower(name) = ?", @filter_params[:taxon].to_s.strip.gsub(/[\s_]+/, ' ').downcase).
+        first.try(:taxon)
     end
     if @taxon
       @scope = if @taxon.species_or_lower? 
@@ -69,12 +66,17 @@ module Shared::GuideModule
     page = (params[:page] || 1).to_i
     per_page = 50
     offset = (page - 1) * per_page
-    # @scope = @scope.select("DISTINCT ON (ancestry, taxa.id) taxa.*").
-    #   includes(:taxon_names, {:taxon_photos => :photo})
-    @scope = @scope.select("DISTINCT ON (ancestry, taxa.id) taxa.*")
     total_entries = @scope.count
+    @scope = @scope.select("taxa.*, listed_taxa.id as listed_taxon_id, listed_taxa.observations_count").distinct("taxa.id")
     @paged_scope = @scope.order(@order).limit(per_page).offset(offset)
     @paged_scope = @paged_scope.has_photos if @filter_params.blank?
+    Taxon.preload_associations(@paged_scope, [
+      { taxon_photos: :photo }, 
+      { taxon_names: :place_taxon_names},
+      :conservation_statuses, 
+      :taxon_descriptions, 
+      {taxon_scheme_taxa: :taxon_scheme}
+    ])
     @taxa = WillPaginate::Collection.create(page, per_page, total_entries) do |pager|
       pager.replace(@paged_scope.to_a)
     end
@@ -88,8 +90,8 @@ module Shared::GuideModule
   def show_guide_widget
     @headless = @footless = true
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
-    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
-    browsing_taxa.delete_if{|t| t.name == "Life"}
+    browsing_taxa = Taxon.where(id: browsing_taxon_ids).where("name != 'Life'").
+      order(:ancestry).includes(:taxon_names)
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     @grid = params[:grid]
     @grid = "grid" unless %w(grid fluid).include?(@grid)

@@ -50,8 +50,8 @@
           links << link_to(t(:edit_project), edit_project_path(@project), :class => "ui description")
         end
         if @project_user && @project_user.user_id != @project.user_id
-          links << link_to( t(:leave_this_project) , leave_project_path(@project), :method => :post, :class => "ui description",
-            :confirm => t(:are_you_sure_leave_this_project))
+          links << link_to( t(:leave_this_project) , leave_project_path(@project), :method => :delete, :class => "ui description",
+            :data => {:confirm => t(:are_you_sure_leave_this_project)})
         end
         if @project_user.blank?
           links << link_to( t(:join_project), join_project_path(@project), :class => "ui")
@@ -109,10 +109,12 @@
       <% end -%>
     </h2>
     
-    <span class="right buttonrow">
-      <%= link_to t(:add_observations_project), new_observation_path(:project_id => @project.id), 
-        :class => 'last button default', :rel => "nofollow" %>
-    </span>
+    <% if !@project.invite_only? || @project_user -%>
+      <span class="right buttonrow">
+        <%= link_to t(:add_observations_project), new_observation_path(:project_id => @project.id), 
+          :class => 'last button default', :rel => "nofollow" %>
+      </span>
+    <% end -%>
   <% end -%>
 </div>
 
@@ -167,12 +169,12 @@
 <div class="column span-16">
   <%- map_attributes = setup_map_tag_attrs(
     observations: @observations,
-    place: @place_geometry ? @place_geometry.place : nil,
+    place_layers: @place_geometry ? [ { place: @place_geometry.place } ] : nil,
     zoom_level: @project.zoom_level,
     latitude: @project.latitude,
     longitude: @project.longitude,
     map_type: @project.map_type,
-    windshaft_project_id: @project.id) %>
+    observation_layers: [ { project_id: @project.id, observations: @observations } ] ) %>
   <%= content_tag("div", "", map_attributes.merge({ id: "map" })) %>
   
   <% unless @project_journal_posts.blank? %>
@@ -384,7 +386,7 @@
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
       <% if @project.curated_by?(current_user) -%>
-        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_observations)}".html_safe, invitations_path(@project), :class => "navlink" %></li>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_observations)}".html_safe, observations_path(@project.observations_url_params), :class => "navlink" %></li>
       <% end -%>
       <% if @project.curated_by?(current_user) && @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY -%>
         <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_people)}".html_safe, invite_to_project_path(@project), :class => "navlink" %></li>
@@ -399,7 +401,7 @@
       <% end -%>
       <% if @project_user -%>
         <li>
-          <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %>
+          <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, observations_by_login_path(current_user.login, @project.observations_url_params), :class => "navlink" %>
           <div class="inner">
             <%=t :download_bulk_import_template_html, :url => project_bulk_template_url(@project) %>
           </div>

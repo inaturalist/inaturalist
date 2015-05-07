@@ -21,7 +21,7 @@ class Goal < ActiveRecord::Base
   # Individual goals are 'completed' by the number of individual
   # contributions the person puts into a goal, so this is pretty meaningless
   # because those queries come from the perspective of the user, not the goal.
-  scope :incomplete, where('completed = 0 AND (ends_at IS NULL OR ends_at > ?)', Time.now)
+  scope :incomplete, -> { where('completed = 0 AND (ends_at IS NULL OR ends_at > ?)', Time.now) }
 
   
   # Most goals will be individual goals, however some, like our initial

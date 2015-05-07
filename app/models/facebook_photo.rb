@@ -52,7 +52,10 @@ class FacebookPhoto < Photo
     invalids = 0
     skipped = 0
     start_time = Time.now
-    FacebookPhoto.script_do_in_batches(find_options) do |p|
+    FacebookPhoto.includes(find_options[:include]).where(find_options[:where]).
+      find_each(batch_size: find_options[:batch_size]) do |p|
+      counter += 1
+      sleep(find_options[:sleep]) if (counter % find_options[:batch_size] == 0)
       r = Net::HTTP.get_response(URI.parse(p.medium_url))
       unless r.code_type == Net::HTTPBadRequest
         skipped += 1

@@ -1,8 +1,6 @@
 #encoding: utf-8
 class GuideTaxon < ActiveRecord::Base
   attr_accessor :html
-  attr_accessible :display_name, :guide, :guide_id, :name, :taxon_id, :taxon, :guide_photos_attributes, 
-    :guide_sections_attributes, :guide_ranges_attributes, :html, :position, :tag_list, :source_identifier
   belongs_to :guide, :inverse_of => :guide_taxa
   belongs_to :taxon, :inverse_of => :guide_taxa
   has_one :user, :through => :guide
@@ -47,7 +45,7 @@ class GuideTaxon < ActiveRecord::Base
   scope :in_taxon, lambda {|taxon| 
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon
-    c = taxon.descendant_conditions
+    c = taxon.descendant_conditions.to_sql
     c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
     joins(:taxon).where(c)
   }
@@ -56,7 +54,7 @@ class GuideTaxon < ActiveRecord::Base
     if tags.is_a?(String)
       tags = [tags]
     end
-    scope = scoped
+    scope = GuideTaxon.all
     tags.each_with_index do |tag, i|
       taggings_join_name = "_taggings#{i}"
       scope = scope.joins("LEFT OUTER JOIN taggings #{taggings_join_name} ON #{taggings_join_name}.taggable_type = 'GuideTaxon' AND #{taggings_join_name}.taggable_id = guide_taxa.id")
@@ -122,8 +120,8 @@ class GuideTaxon < ActiveRecord::Base
   end
 
   def set_guide_taxon
-    return true if Delayed::Job.where("handler LIKE '%Guide\n%id: ''#{guide_id}''\n%set_taxon%'").exists?
-    self.guide.delay(:priority => USER_INTEGRITY_PRIORITY).set_taxon
+    self.guide.delay(priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "Guide::set_taxon": guide_id }).set_taxon
     true
   end
 
@@ -191,7 +189,7 @@ class GuideTaxon < ActiveRecord::Base
     if map_data_object
       gr = GuideRange.new_from_eol_data_object(map_data_object)
       unless guide_ranges.where(:source_url => gr.source_url).exists?
-        self.guide_ranges[self.guide_ranges.size] = gr
+        self.guide_ranges << gr
       end
     end
   end
@@ -234,7 +232,7 @@ class GuideTaxon < ActiveRecord::Base
       gs.position = (max_pos += 1)
       if gs && !guide_sections.where(:source_url => gs.source_url).exists?
         gs.modified_on_create = false
-        self.guide_sections[self.guide_sections.size] = gs
+        self.guide_sections << gs
       end
     end
   end

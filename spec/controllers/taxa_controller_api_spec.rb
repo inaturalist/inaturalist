@@ -7,7 +7,7 @@ shared_examples_for "a TaxaController" do
       p = Place.make!
       p.check_list.add_taxon(t)
       get :index, :format => :json, :place_id => p.id
-      response.headers['X-Total-Entries'].to_i.should eq(1)
+      expect(response.headers['X-Total-Entries'].to_i).to eq(1)
     end
 
     it "should show iconic taxa if no search params" do
@@ -16,7 +16,7 @@ shared_examples_for "a TaxaController" do
       get :index, :format => :json
       json = JSON.parse(response.body)
       json.each do |json_taxon|
-        json_taxon['is_iconic'].should be_true
+        expect(json_taxon['is_iconic']).to be true
       end
     end
 
@@ -27,10 +27,108 @@ shared_examples_for "a TaxaController" do
       taxa = [t1,t2,t3]
       get :index, :format => :json, :names => taxa.map(&:name).join(',')
       json = JSON.parse(response.body)
-      json.size.should eq 3
+      expect(json.size).to eq 3
       taxa.each do |t|
-        json.detect{|jt| jt["id"] == t.id}.should_not be_blank
+        expect(json.detect{|jt| jt["id"] == t.id}).not_to be_blank
       end
+    end
+  end
+
+  describe "search" do
+    before(:each) { enable_elastic_indexing([ Taxon, Place ]) }
+    after(:each) { disable_elastic_indexing([ Taxon, Place ]) }
+
+    it "should filter by place_id" do
+      taxon_not_in_place = Taxon.make!
+      taxon_in_place = Taxon.make!
+      p = Place.make!
+      p.check_list.add_taxon(taxon_in_place)
+      get :search, format: :json, places: p.id.to_s
+      json = JSON.parse(response.body)
+      json.detect{|t| t['id'] == taxon_not_in_place.id}.should be_blank
+      json.detect{|t| t['id'] == taxon_in_place.id}.should_not be_blank
+    end
+
+    it "returns results in the configured place" do
+      taxon_not_in_place = Taxon.make!(name: "nonsense")
+      taxon_in_place = Taxon.make!(name: "nonsense")
+      p = Place.make!
+      p.check_list.add_taxon(taxon_in_place)
+      site = Site.make!(place: p)
+      expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
+      get :search, format: :json, q: "nonsense"
+      json = JSON.parse(response.body)
+      json.detect{|t| t['id'] == taxon_not_in_place.id}.should be_blank
+      json.detect{|t| t['id'] == taxon_in_place.id}.should_not be_blank
+    end
+
+    it "returns all results when there are none in the configured place" do
+      taxon_not_in_place = Taxon.make!(name: "nonsense")
+      taxon2_not_in_place = Taxon.make!(name: "nonsense")
+      p = Place.make!
+      site = Site.make!(place: p)
+      expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
+      get :search, format: :json, q: "nonsense"
+      json = JSON.parse(response.body)
+      json.detect{|t| t['id'] == taxon_not_in_place.id}.should_not be_blank
+      json.detect{|t| t['id'] == taxon2_not_in_place.id}.should_not be_blank
+    end
+
+    it "filters by is_active=true" do
+      active = Taxon.make!(is_active: true)
+      inactive = Taxon.make!(is_active: false)
+      get :search, format: :json, is_active: "true"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 1
+      expect(json.first["id"]).to eq active.id
+    end
+
+    it "filters by is_active=false" do
+      active = Taxon.make!(is_active: true)
+      inactive = Taxon.make!(is_active: false)
+      get :search, format: :json, is_active: "false"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 1
+      expect(json.first["id"]).to eq inactive.id
+    end
+
+    it "returns all taxa when is_active=any" do
+      active = Taxon.make!(is_active: true)
+      inactive = Taxon.make!(is_active: false)
+      get :search, format: :json, is_active: "any"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 2
+    end
+  end
+
+  describe "autocomplete" do
+    before(:each) { enable_elastic_indexing([ Taxon, Place ]) }
+    after(:each) { disable_elastic_indexing([ Taxon, Place ]) }
+
+    it "filters by is_active=true" do
+      active = Taxon.make!(name: "test", is_active: true)
+      inactive = Taxon.make!(name: "test", is_active: false)
+      get :autocomplete, format: :json, q: "test", is_active: "true"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 1
+      expect(json.first["id"]).to eq active.id
+    end
+
+    it "filters by is_active=false" do
+      active = Taxon.make!(name: "test", is_active: true)
+      inactive = Taxon.make!(name: "test", is_active: false)
+      get :autocomplete, format: :json, q: "test", is_active: "false"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 1
+      expect(json.first["id"]).to eq inactive.id
+    end
+
+    it "returns all taxa when is_active=any" do
+      active = Taxon.make!(name: "test", is_active: true)
+      inactive = Taxon.make!(name: "test", is_active: false)
+      get :autocomplete, format: :json, q: "test", is_active: "any"
+      json = JSON.parse(response.body)
+      expect(json.length).to eq 2
     end
   end
 
@@ -39,7 +137,7 @@ shared_examples_for "a TaxaController" do
       tr = TaxonRange.make!(:url => "http://foo.bar/range.kml")
       get :show, :format => :json, :id => tr.taxon_id
       response_taxon = JSON.parse(response.body)
-      response_taxon['taxon_range_kml_url'].should eq tr.kml_url
+      expect(response_taxon['taxon_range_kml_url']).to eq tr.kml_url
     end
 
     describe "with default photo" do
@@ -65,14 +163,14 @@ shared_examples_for "a TaxaController" do
         get :show, :format => :json, :id => taxon.id
         response_taxon = JSON.parse(response.body)
         %w(thumb small medium large).each do |size|
-          response_taxon['default_photo']["#{size}_url"].should eq photo.send("#{size}_url")
+          expect(response_taxon['default_photo']["#{size}_url"]).to eq photo.send("#{size}_url")
         end
       end
 
       it "should include license url" do
         get :show, :format => :json, :id => taxon.id
         response_taxon = JSON.parse(response.body)
-        response_taxon['default_photo']['license_url'].should eq photo.license_url
+        expect(response_taxon['default_photo']['license_url']).to eq photo.license_url
       end
     end
   end
@@ -84,8 +182,8 @@ shared_examples_for "a TaxaController" do
       inactive = Taxon.make!(:parent => p, :is_active => false)
       get :children, :id => p.id, :format => :json
       taxa = JSON.parse(response.body)
-      taxa.detect{|t| t['id'] == active.id}.should_not be_blank
-      taxa.detect{|t| t['id'] == inactive.id}.should be_blank
+      expect(taxa.detect{|t| t['id'] == active.id}).not_to be_blank
+      expect(taxa.detect{|t| t['id'] == inactive.id}).to be_blank
     end
     it "should show all taxa if requested" do
       p = Taxon.make!
@@ -93,18 +191,18 @@ shared_examples_for "a TaxaController" do
       inactive = Taxon.make!(:parent => p, :is_active => false)
       get :children, :id => p.id, :format => :json, :is_active => "any"
       taxa = JSON.parse(response.body)
-      taxa.detect{|t| t['id'] == active.id}.should_not be_blank
-      taxa.detect{|t| t['id'] == inactive.id}.should_not be_blank
+      expect(taxa.detect{|t| t['id'] == active.id}).not_to be_blank
+      expect(taxa.detect{|t| t['id'] == inactive.id}).not_to be_blank
     end
   end
 end
 
 describe TaxaController, "oauth authentication" do
   let(:user) { User.make! }
-  let(:token) { stub :accessible? => true, :resource_owner_id => user.id }
+  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    controller.stub(:doorkeeper_token) { token }
+    allow(controller).to receive(:doorkeeper_token) { token }
   end
   it_behaves_like "a TaxaController"
 end

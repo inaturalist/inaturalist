@@ -15,7 +15,7 @@ class SoundcloudSound < Sound
   }
 
   def self.client_for_user(user)
-    return nil unless user and user.soundcloud_identity
+    return nil unless user and user.soundcloud_identity.token
     Soundcloud.new(:access_token => user.soundcloud_identity.token)
   end
 

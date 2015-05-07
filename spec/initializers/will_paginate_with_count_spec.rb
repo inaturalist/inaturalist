@@ -5,23 +5,23 @@ describe 'WillPaginate::ActiveRecord::Pagination' do
   before do
     5.times{ Observation.make! }
     @opts = { page: 1, per_page: 2 }
-    @original = Observation.paginate(@opts)
-    @with_count = Observation.paginate_with_count_over(@opts)
+    @original = Observation.order(:id).paginate(@opts)
+    @with_count = Observation.order(:id).paginate_with_count_over(@opts)
   end
 
   it "paginate_with_count_over should return data the same as paginate" do
-    @original.class.should == @with_count.class
-    @original.total_entries.should == @with_count.total_entries
-    @original.first.should == @with_count.first
+    expect(@original.class).to be @with_count.class
+    expect(@original.total_entries).to be @with_count.total_entries
+    expect(@original.first).to eq @with_count.first
   end
 
   it "paginate_with_count_over should use a COUNT() OVER() query" do
-    @original.build_arel.to_sql.should_not match(/COUNT\(.*?\) OVER\(\)/)
-    @with_count.build_arel.to_sql.should match(/COUNT\(.*?\) OVER\(\)/)
+    expect(@original.to_sql).to_not match(/COUNT\(.*?\) OVER\(\)/)
+    expect(@with_count.to_sql).to match(/COUNT\(.*?\) OVER\(\)/)
   end
 
   it "to_a should have the same total_entries as paginate" do
-    @with_count.to_a.total_entries.should == @original.to_a.total_entries
+    expect(@with_count.to_a.total_entries).to be @original.to_a.total_entries
   end
 
 end

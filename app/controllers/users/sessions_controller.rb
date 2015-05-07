@@ -12,7 +12,7 @@ class Users::SessionsController < Devise::SessionsController
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
     resource.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
-    respond_with resource do |format|
+    respond_to do |format|
       format.any(:html, :mobile) do
         if session[:return_to]
           redirect_to session[:return_to]

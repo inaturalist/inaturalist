@@ -12,7 +12,7 @@
 </div>
 <div class="column span-7">
   
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :builder => DefaultFormBuilder, :html => {:class => "clear"}) do |f| %>
+  <%= form_for(resource, :as => resource_name, :url => session_path, :builder => DefaultFormBuilder, :html => {:class => "clear"}) do |f| %>
     <%= f.text_field :email, :label => t(:username_or_email), :class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off" %>
     <%= f.password_field :password, :class => "text", :tabindex => 2, :label => t(:password) %>
 

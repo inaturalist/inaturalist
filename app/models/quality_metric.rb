@@ -1,4 +1,5 @@
 class QualityMetric < ActiveRecord::Base
+
   belongs_to :user
   belongs_to :observation
   
@@ -13,9 +14,11 @@ class QualityMetric < ActiveRecord::Base
   end
   
   after_save :set_observation_quality_grade, :set_observation_captive,
-    :set_observation_public_positional_accuracy, :set_observation_mappable
+    :set_observation_public_positional_accuracy, :set_observation_mappable,
+    :elastic_index_observation
   after_destroy :set_observation_quality_grade, :set_observation_captive,
-    :set_observation_public_positional_accuracy, :set_observation_mappable
+    :set_observation_public_positional_accuracy, :set_observation_mappable,
+    :elastic_index_observation
   
   validates_presence_of :observation
   validates_inclusion_of :metric, :in => METRICS
@@ -28,10 +31,10 @@ class QualityMetric < ActiveRecord::Base
   def set_observation_quality_grade
     return true unless observation
     new_quality_grade = observation.get_quality_grade
-    Observation.update_all(["quality_grade = ?", new_quality_grade], ["id = ?", observation_id])
-    return true if Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{observation.id}\n%'").exists?
-    CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh_with_observation(observation.id, 
-      :taxon_id => observation.taxon_id)
+    Observation.where(id: observation_id).update_all(quality_grade: new_quality_grade)
+    CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
+      unique_hash: { "CheckList::refresh_with_observation": observation.id}).
+      refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
     true
   end
 
@@ -53,8 +56,12 @@ class QualityMetric < ActiveRecord::Base
     true
   end
 
+  def elastic_index_observation
+    observation.elastic_index!
+  end
+
   def self.vote(user, observation, metric, agree)
-    qm = observation.quality_metrics.find_or_initialize_by_metric_and_user_id(metric, user.id)
+    qm = observation.quality_metrics.find_or_initialize_by(metric: metric, user_id: user.id)
     qm.update_attributes(:agree => agree)
   end
 end

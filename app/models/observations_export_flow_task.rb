@@ -40,7 +40,7 @@ class ObservationsExportFlowTask < FlowTask
     end
 
     if options[:email]
-      Emailer.observations_export_notification(self).deliver
+      Emailer.observations_export_notification(self).deliver_now
     end
     true
   end
@@ -50,7 +50,7 @@ class ObservationsExportFlowTask < FlowTask
       Observation.where("1 = 2")
     else
       # remove order, b/c it won't work with find_each and seems to cause errors in DJ
-      scope = Observation.query(params).includes(:user).reorder(nil).scoped
+      scope = Observation.query(params).includes(:user).reorder(nil)
       scope = scope.includes(:taxon => :taxon_names) if export_columns.detect{|c| c == "common_name"}
       scope = scope.includes(:observation_field_values => :observation_field) if export_columns.detect{|c| c =~ /field\:/}
       scope = scope.includes(:observation_photos => :photo) if export_columns.detect{|c| c == 'image_url'}

@@ -46,3 +46,29 @@ describe List, "refresh_with_observation" do
     listed_taxon.last_observation_id.should == o.id
   end
 end
+
+describe List, "rank rules" do
+  let(:list) { LifeList.make! }
+  let(:genus) { Taxon.make!(name: 'Foo', rank: 'genus')}
+  let(:species) { Taxon.make!(rank: 'species')}
+  it "should default to any" do
+    expect(list.rank_rule).to eq 'any'
+  end
+  it "should refresh the list when changed" do
+    list.add_taxon(genus, manually_added: true)
+    list.add_taxon(species, manually_added: true)
+    without_delay do
+      expect {
+        list.update_attributes(rank_rule: "species?")
+      }.to change(list.listed_taxa, :count).by(-1)
+    end
+  end
+  it "should remove genera when changed to species-only" do
+    list.add_taxon(genus, manually_added: true)
+    list.add_taxon(species, manually_added: true)
+    without_delay do
+      list.update_attributes(rank_rule: "species?")
+      expect(list.taxa).not_to include genus
+    end
+  end
+end

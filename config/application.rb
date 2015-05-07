@@ -9,7 +9,9 @@ CONFIG = InatConfig.new(File.expand_path('../config.yml', __FILE__))
 # flickr api keys - these need to be set before Flickraw gets included
 FLICKR_API_KEY = CONFIG.flickr.key
 FLICKR_SHARED_SECRET = CONFIG.flickr.shared_secret
-DEFAULT_SRID = -1 # nofxx-georuby defaults to 4326.  Ugh.
+# A DEFAULT_SRID of -1 causes lots of warnings when running specs
+# Keep it as -1 for production because existing data is based on it
+DEFAULT_SRID = Rails.env.test? ? 0 : -1 # nofxx-georuby defaults to 4326.  Ugh.
 
 # DelayedJob priorities
 USER_PRIORITY = 0               # response to user action, should happen ASAP w/o bogging down a web proc
@@ -20,15 +22,10 @@ OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia 
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, :assets, Rails.env) if defined?(Bundler)
-
-# require custom logger that includes PIDs
-require File.expand_path('../../lib/better_logger', __FILE__)
+Bundler.require(*Rails.groups)
 
 module Inaturalist
   class Application < Rails::Application
-
-    config.active_record.whitelist_attributes = false
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -54,8 +51,12 @@ module Inaturalist
 
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
+
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
     
     # config.active_record.observers = :user_observer, :listed_taxon_sweeper # this might have to come back, was running into probs with Preferences
+    config.active_record.observers = :observation_sweeper, :user_sweeper
     
     config.time_zone = 'UTC'
     
@@ -71,7 +72,7 @@ module Inaturalist
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.5'
+    config.assets.version = '1.6'
 
     # Compile localized CSS:
     config.assets.precompile += ['*.css', '*.js']
@@ -81,14 +82,23 @@ module Inaturalist
 
     config.i18n.enforce_available_locales = false
 
+    # new for Rails 4.2 as per https://github.com/collectiveidea/delayed_job
+    config.active_job.queue_adapter = :delayed_job
+
+    config.exceptions_app = self.routes
+
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
     end
+
+    config.middleware.insert_before "ActionDispatch::DebugExceptions", "LogstasherCatchAllErrors"
   end
 
 end
 
 ActiveRecord::Base.include_root_in_json = false
+
+Rack::Utils.multipart_part_limit = 2048
 
 ### API KEYS ###
 UBIO_KEY = CONFIG.ubio.key
@@ -110,15 +120,16 @@ OBSERVATIONS_TILE_SERVER = CONFIG.tile_servers.observations
 Encoding.default_internal = Encoding::UTF_8
 Encoding.default_external = Encoding::UTF_8
 
-# Graphite
-if CONFIG.statsd_host
-  STATSD = Statsd.new( CONFIG.statsd_host, ( CONFIG.statsd_port || 8125 ) )
-end
-
+# TODO: is the geo_ruby stuff still used?
 # make sure we have geojson support
+require 'geo_ruby'
 require 'geo_ruby/geojson'
 require 'geo_ruby/shp4r/shp'
 require 'geo_ruby/kml'
+# geojson via RGeo
+require 'rgeo/geo_json'
 require 'google/api_client'
 require 'pp'
-
+require 'to_csv'
+require 'elasticsearch/model'
+require 'elasticsearch/rails/instrumentation'

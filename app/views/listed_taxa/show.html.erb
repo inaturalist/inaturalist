@@ -160,7 +160,7 @@
   <% if @listed_taxon.removable_by?(current_user) -%>
     <p class="ui description" style="margin-top: 10px">
       <%= link_to "#{t(:remove_from)} #{@list_title}", @listed_taxon, :method => :delete,
-        :confirm => t(:you_sure_remove_taxon_from?, :list => @list.title),
+        :data => {:confirm => t(:you_sure_remove_taxon_from?, :list => @list.title)},
         :class => "small description" %>
     </p>
   <% end -%>

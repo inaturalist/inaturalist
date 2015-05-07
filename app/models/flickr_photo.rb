@@ -86,7 +86,7 @@ class FlickrPhoto < Photo
     elsif options[:square_url].blank?
       unless sizes = options.delete(:sizes)
         f = FlickrPhoto.flickraw_for_user(options[:user])
-        sizes = f.photos.getSizes(:photo_id => fp.id)
+        sizes = FlickrCache.fetch(f, "photos", "getSizes", photo_id: fp.id)
       end
       sizes = sizes.blank? ? {} : sizes.index_by{|s| s.label} rescue {}
       options[:square_url]   ||= sizes['Square'].source rescue nil
@@ -241,7 +241,11 @@ class FlickrPhoto < Photo
     invalids = 0
     skipped = 0
     start_time = Time.now
-    FlickrPhoto.script_do_in_batches(find_options) do |p|
+    counter = 0
+    FlickrPhoto.includes(find_options[:include]).where(find_options[:where]).
+      find_each(batch_size: find_options[:batch_size]) do |p|
+      counter += 1
+      sleep(find_options[:sleep]) if (counter % find_options[:batch_size] == 0)
       r = begin
         uri = URI.parse(p.square_url)
         Net::HTTP.new(uri.host).request_head(uri.path)

@@ -1,6 +1,17 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+
+  def whitelist_params
+    if params[:user]
+      params.require(:user).permit(
+        :login, :email, :name, :password, :password_confirmation, :icon, :description,
+        :time_zone, :icon_url, :locale, :prefers_community_taxa, :place_id,
+        :preferred_photo_license, :preferred_observation_license, :preferred_sound_license,
+        :preferred_observation_fields_by)
+    end
+  end
+
   def create
-    build_resource
+    build_resource(whitelist_params)
     resource.site = @site
 
     if resource.save

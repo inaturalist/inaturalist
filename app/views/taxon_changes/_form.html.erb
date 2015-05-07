@@ -204,7 +204,7 @@
     <%= link_to t(:cancel), taxon_change, :class => 'button' %>
     <%= link_to t(:delete), taxon_change,
                 :method => :delete,
-                :confirm => t(:are_you_sure_you_want_to_delete_this_taxon_change),
+                :data => {:confirm => t(:are_you_sure_you_want_to_delete_this_taxon_change)},
                 :class => 'minor delete button' %>
   </div>
 <% end %>

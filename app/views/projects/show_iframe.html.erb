@@ -68,7 +68,15 @@
 </div>
 
 <div class="column span-12 header">
-  <div id="map" class="stacked"></div>
+  <%- map_attributes = setup_map_tag_attrs(
+    observations: @observations,
+    place_layers: @place_geometry ? [ { place: @place_geometry.place } ] : nil,
+    zoom_level: @project.zoom_level,
+    latitude: @project.latitude,
+    longitude: @project.longitude,
+    map_type: @project.map_type,
+    observation_layers: [ { project_id: @project.id, observations: @observations } ] ) %>
+  <%= content_tag("div", "", map_attributes.merge({ id: "map", 'class': 'stacked' })) %>
 </div>
 
 <div class="column span-12">

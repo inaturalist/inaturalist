@@ -53,6 +53,7 @@
     <% helptip_for "tags" do %>
       Display all inactive taxa in this scheme that are mapped to other taxa through taxon changes.
     <% end -%>
+    <br/>
     <%= link_to "Show orphaned inactive taxa".html_safe, orphaned_inactive_taxa_path(@taxon_scheme), :class => "navlink" %>
     <% helptip_for "tags" do %>
       Display all inactive taxa in this scheme that are not linked to other taxa through taxon changes.

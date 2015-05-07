@@ -71,14 +71,15 @@
     %h3=t :tags
     %p=t 'views.guides.tags_help_html'
     %p
-    = f.text_field :tag_list, :class => "input-xxlarge", :placeholder => t(:add_comma_separated_tags)
+    = f.text_field :tag_list, :value => @guide_taxon.tag_list.to_s, :class => "input-xxlarge", :placeholder => t(:add_comma_separated_tags)
     .recent_tags.quiet
       - for tag in @recent_tags
         = link_to_function "<i class='fa fa-plus-circle'></i> #{tag}".html_safe, "addTag('#{tag}')", :class => "btn btn-mini"
   #actions
     = f.submit t(:save_guide_taxon), :class => "btn btn-primary"
     = link_to t(:cancel), :back, :class => "btn"
-    = link_to t(:remove_from_guide), @guide_taxon, :method => :delete, :confirm => t(:are_you_sure?), :class => "btn btn-danger pull-right"
+    = link_to t(:remove_from_guide), @guide_taxon, :method => :delete, 
+      :data => {:confirm => t(:are_you_sure?)}, :class => "btn btn-danger pull-right"
 
 #import_sections_dialog.modal.fade.hide
   .modal-header

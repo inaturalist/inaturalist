@@ -35,5 +35,7 @@
     <%= f.text_field :taxon_id, :placeholder => t(:choose_a_taxon), :label => t(:only_receive_updates_about_this_taxon) %>
   <% end -%>
   <%= f.submit t(:update_subscription), :class => "default button" %>
-  <%= link_to t(:delete), @subscription, :method => "delete", :confirm => t(:are_you_sure?, :default => "Are you sure?"), :class => "delete button" %>
+  <%= link_to t(:delete), @subscription, :method => "delete", 
+    :data => {:confirm => t(:are_you_sure?, :default => "Are you sure?")}, 
+    :class => "delete button" %>
 <% end -%>
