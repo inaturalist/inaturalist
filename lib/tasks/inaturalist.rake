@@ -48,11 +48,7 @@ namespace :inaturalist do
 
   desc "Delete expired updates"
   task :delete_expired_updates => :environment do
-    Update.where("created_at < ?", 6.months.ago).find_in_batches do |batch|
-      Update.transaction do
-        Update.destroy_all(id: batch.map(&:id))
-      end
-    end
+    Update.delete_and_purge("created_at < ?", 4.months.ago)
   end
 
   desc "Find all javascript i18n keys and print a new translations.js"

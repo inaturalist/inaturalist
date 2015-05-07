@@ -35,7 +35,6 @@ class ApplicationController < ActionController::Base
     if I18N_SUPPORTED_LOCALES.include?( params[:locale] )
       if logged_in?
         current_user.update_attribute(:locale, params[:locale])
-        expire_fragment(User.header_cache_key_for(current_user, site: @site))
       end
       session[:locale] = params[:locale]
     end

@@ -37,11 +37,11 @@ class ProjectUser < ActiveRecord::Base
 
   def remove_updates
     return true unless role_changed? && role.blank?
-    Update.where(
-      :notifier_type => "ProjectUser", 
-      :notifier_id => id, 
-      :resource_type => "Project", 
-      :resource_id => project_id).destroy_all
+    Update.delete_and_purge(
+      notifier_type: "ProjectUser",
+      notifier_id: id,
+      resource_type: "Project",
+      resource_id: project_id)
     true
   end
 

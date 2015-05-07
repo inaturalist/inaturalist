@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonSwap, "creation" do
+  before(:each) { enable_elastic_indexing(Observation, Update) }
+  after(:each) { disable_elastic_indexing(Observation, Update) }
   it "should not allow swaps without inputs" do
     output_taxon = Taxon.make!
     swap = TaxonSwap.make
@@ -19,8 +21,10 @@ end
 
 describe TaxonSwap, "destruction" do
   before(:each) do
+    enable_elastic_indexing(Observation, Update)
     prepare_swap
   end
+  after(:each) { disable_elastic_indexing(Observation, Update) }
 
   it "should destroy updates" do
     Observation.make!(:taxon => @input_taxon)

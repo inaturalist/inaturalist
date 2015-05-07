@@ -175,14 +175,4 @@ describe ElasticModel do
     end
   end
 
-  describe "result_to_will_paginate_collection" do
-    it "returns an empty WillPaginate Collection on errors" do
-      expect(WillPaginate::Collection).to receive(:create).
-        and_raise(Elasticsearch::Transport::Transport::Errors::BadRequest)
-      expect(ElasticModel.result_to_will_paginate_collection(
-        OpenStruct.new(current_page: 2, per_page: 11, total_entries: 57))).
-        to eq WillPaginate::Collection.new(1, 30, 0)
-    end
-  end
-
 end

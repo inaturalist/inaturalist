@@ -190,20 +190,6 @@ module ElasticModel
               [ nelng, nelat ] ] } } } }
   end
 
-  def self.result_to_will_paginate_collection(result)
-    begin
-      WillPaginate::Collection.create(result.current_page,
-        result.per_page, result.total_entries) do |pager|
-        pager.replace(result.records.to_a)
-      end
-    rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
-      Logstasher.write_exception(e)
-      Rails.logger.error "[Error] Elasticsearch query failed: #{ e }"
-      Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
-      WillPaginate::Collection.new(1, 30, 0)
-    end
-  end
-
   def self.point_geojson(lat, lon)
     return unless valid_latlon?(lat, lon)
     # notice the order of lon, lat which is standard for GeoJSON
