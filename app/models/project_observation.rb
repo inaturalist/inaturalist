@@ -31,7 +31,11 @@ class ProjectObservation < ActiveRecord::Base
     with: :notify_observer
 
   def notify_observer(association)
-    Update.create(
+    if Update.where(subscriber_id: observation.user_id, resource: project, notification: Update::YOUR_OBSERVATIONS_ADDED).
+        where("viewed_at IS NULL").count >= 30
+      return
+    end
+    u = Update.create(
       :subscriber => observation.user,
       :resource => project,
       :notifier => self,

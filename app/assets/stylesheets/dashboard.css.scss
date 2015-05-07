@@ -68,6 +68,15 @@
   height: 153px;
 }
 
+#updates .observations.grid .observation {margin: 0 5px 5px 0;}
+#updates .observations.grid .observation, 
+#updates .observations.grid .photos, 
+#updates .observations.grid .photos a, 
+#updates .observations.grid .icon {
+  width: 128px;
+  height: 128px;
+}
+
 #comments .commentitem { border-bottom: 1px solid #eee; margin-bottom: 10px; padding-bottom: 10px;}
 .updatebody td {border: 0 transparent;}
 .updatebody table {margin: 0;}

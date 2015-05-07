@@ -307,6 +307,16 @@ describe Project, "aggregate_observations" do
     project.aggregate_observations
     expect( project.observations.count ).to eq 2
   end
+
+  it "should not add duplicates" do
+    project.update_attributes(place: make_place_with_geom, trusted: true)
+    o = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
+    project.aggregate_observations
+    project.aggregate_observations
+    o.reload
+    expect( o.projects ).to include project
+    expect( o.project_observations.size ).to eq 1
+  end
 end
 
 describe Project, "aggregation_allowed?" do

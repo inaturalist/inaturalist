@@ -64,6 +64,9 @@ describe ProjectObservation, "creation" do
   end
 
   describe "updates" do
+    before(:each) { enable_elastic_indexing(Observation, Update) }
+    after(:each) { disable_elastic_indexing(Observation, Update) }
+
     it "should be generated for the observer" do
       pu = ProjectUser.make!(role: ProjectUser::CURATOR)
       po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
@@ -83,15 +86,28 @@ describe ProjectObservation, "creation" do
       po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
       expect( Update.last.resource ).to eq po.project
     end
+
+    it "should not generate more than 30 updates" do
+      observer = User.make!
+      pu = ProjectUser.make!(role: ProjectUser::CURATOR)
+      po = without_delay do
+        31.times do
+          ProjectObservation.make!(user: pu.user, project: pu.project, observation: Observation.make!(user: observer))
+        end
+      end
+      expect( Update.where(subscriber_id: observer.id, notification: Update::YOUR_OBSERVATIONS_ADDED).count ).to eq 30
+    end
   end
 end
 
 describe ProjectObservation, "destruction" do
   before(:each) do
+    enable_elastic_indexing(Observation, Update)
     setup_project_and_user
     @project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     Delayed::Job.destroy_all
   end
+  after(:each) { disable_elastic_indexing(Observation, Update) }
 
   it "should queue a DJ job for the list" do
     stamp = Time.now

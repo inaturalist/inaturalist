@@ -1757,6 +1757,7 @@ en:
   observation_was_deleted: Observation was deleted.
   observation_would_like_some_help: "%{user} would like some help identifying this!"
   observations: Observations
+  observations_added_by_x_html: "Observations added by %{x}"
   observations_by: Observations by
   observations_by_everyone: Observations by everyone
   observations_by_user: "Observations by %{user}"
@@ -3006,6 +3007,7 @@ en:
   view_your_life_list: View your life list
   view_your_calendar: View your calendar
   view_your_observations: View your observations
+  view_all_of_your_observations_from_x: "View all of your observations from %{x}"
   vulnerable: vulnerable
   w00t_no_ungrafted_taxa: w00t!  No ungrafted taxa!
   w_photos_only: w/ photos
@@ -3122,6 +3124,9 @@ en:
   you_arent_following_that_person: "You aren't following that person."
   you_can_accept_invitations: You can accept the invitation here
   you_can_also_add_flickr: You can also add Flickr tags when editing an observation, or when batch editing your observations.
+  you_can_also_change_your_settings_for_this_project_or_change_your_global_settings_html: |
+    You can also <a href="%{project_settings_url}">change your settings for this project</a> 
+    or <a href="/users/edit#projects">change your global settings</a>.
   you_can_alwais_add_new: You can always add new observations by clicking the little arrow on the upper right of the page and using the drop down menu.
   you_can_change_your_new_passwd_after_logging_in: "You can change your new password after logging in here:"
   you_can_choose_observations_associated: You can choose observations to associate with this journal post.
