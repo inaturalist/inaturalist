@@ -571,13 +571,13 @@ class Project < ActiveRecord::Base
     logger.info "[INFO #{Time.now}] Starting aggregation for #{self}"
     elastic_options = {}
     elastic_options[:filters] = [{ range: { updated_at: { gt: last_aggregated_at } } }] unless last_aggregated_at.nil?
-    params = observations_url_params.merge(per_page: 200)
+    params = observations_url_params.merge(per_page: 200, not_in_project: id)
     page = 1
     while true
       if options[:pidfile]
-        raise "Project aggregator running without a PID file" unless File.exists?(options[:pidfile])
+        raise "Project aggregator running without a PID file at #{options[:pidfile]}" unless File.exists?(options[:pidfile])
         pid = open(options[:pidfile]).read.to_s.strip.to_i
-        raise "Another project aggregator is already running" unless pid == Process.pid
+        raise "Another project aggregator (#{pid}) is already running (this pid: #{Process.id})" unless pid == Process.pid
       end
       observations = Observation.elastic_query(params.merge(page: page), elastic_options)
       break if observations.blank?
