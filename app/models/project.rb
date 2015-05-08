@@ -575,12 +575,21 @@ class Project < ActiveRecord::Base
     page = 1
     while true
       if options[:pidfile]
-        raise "Project aggregator running without a PID file at #{options[:pidfile]}" unless File.exists?(options[:pidfile])
+        unless File.exists?(options[:pidfile])
+          msg = "Project aggregator running without a PID file at #{options[:pidfile]}"
+          logger.error "[ERROR #{Time.now}] #{msg}"
+          raise msg
+        end
         pid = open(options[:pidfile]).read.to_s.strip.to_i
-        raise "Another project aggregator (#{pid}) is already running (this pid: #{Process.id})" unless pid == Process.pid
+        unless pid == Process.pid
+          msg = "Another project aggregator (#{pid}) is already running (this pid: #{Process.id})"
+          logger.error "[ERROR #{Time.now}] #{msg}"
+          raise msg
+        end
       end
       observations = Observation.elastic_query(params.merge(page: page), elastic_options)
       break if observations.blank?
+      Rails.logger.info "[INFO #{Time.now}] Processing page #{observations.current_page} of #{observations.total_entries} for #{slug}"
       observations.each do |o|
         po = ProjectObservation.new(project: self, observation: o)
         if po.save
@@ -603,13 +612,22 @@ class Project < ActiveRecord::Base
     # http://codeincomplete.com/posts/2014/9/15/ruby_daemons/#separation-of-concerns
     pidfile = File.join(Rails.root, "tmp", "pids", "project_aggregator.pid")
     if File.exists? pidfile
-      pid = open(pidfile).read.to_s.strip.to_i
+      f = File.open(pidfile, 'r')
+      pid = f.read.to_s.strip.to_i
+      f.close
       begin
         # send signal 0 to check process status
         Process.kill(0, pid)
-        raise "Project aggregator is already running"
+        msg = "Project aggegator #{pid} is already running, quitting (this pid: #{Process.pid})"
+        Rails.logger.error "[ERROR #{Time.now}] #{msg}"
+        raise msg
+      rescue Errno::EPERM
+        msg = "Project aggegator #{pid} is already running but not owned, quitting (this pid: #{Process.pid})"
+        Rails.logger.error "[ERROR #{Time.now}] #{msg}"
+        raise msg
       rescue Errno::ESRCH
         # Process is not running even though pidfile is there, so delete it
+        Rails.logger.info "[INFO #{Time.now}] Deleting #{pidfile} b/c process #{pid} is not running"
         File.delete pidfile
       end
     end
@@ -626,10 +644,12 @@ class Project < ActiveRecord::Base
       end
       logger.info "[INFO #{Time.now}] Finished Project.aggregate_observations in #{Time.now - start_time}s, #{num_projects} projects"
     ensure
+      Rails.logger.info "[INFO #{Time.now}] Deleting #{pidfile} after complete aggregation"
       File.delete(pidfile) if File.exists?(pidfile)
     end
   rescue => e
     File.delete(pidfile) if File.exists?(pidfile)
+    Rails.logger.error "[ERROR #{Time.now}] Deleting #{pidfile} after error: #{e}"
     raise e
   end
 end
