@@ -562,6 +562,8 @@ class Project < ActiveRecord::Base
     false
   end
 
+  class ProjectAggregatorAlreadyRunning < StandardError; end
+
   def aggregate_observations(options = {})
     return false unless aggregation_allowed?
     logger = options[:logger] || Rails.logger
@@ -578,13 +580,13 @@ class Project < ActiveRecord::Base
         unless File.exists?(options[:pidfile])
           msg = "Project aggregator running without a PID file at #{options[:pidfile]}"
           logger.error "[ERROR #{Time.now}] #{msg}"
-          raise msg
+          raise ProjectAggregatorAlreadyRunning, msg
         end
         pid = open(options[:pidfile]).read.to_s.strip.to_i
         unless pid == Process.pid
           msg = "Another project aggregator (#{pid}) is already running (this pid: #{Process.id})"
           logger.error "[ERROR #{Time.now}] #{msg}"
-          raise msg
+          raise ProjectAggregatorAlreadyRunning, msg
         end
       end
       observations = Observation.elastic_query(params.merge(page: page), elastic_options)
@@ -620,11 +622,11 @@ class Project < ActiveRecord::Base
         Process.kill(0, pid)
         msg = "Project aggegator #{pid} is already running, quitting (this pid: #{Process.pid})"
         Rails.logger.error "[ERROR #{Time.now}] #{msg}"
-        raise msg
+        raise ProjectAggregatorAlreadyRunning, msg
       rescue Errno::EPERM
         msg = "Project aggegator #{pid} is already running but not owned, quitting (this pid: #{Process.pid})"
         Rails.logger.error "[ERROR #{Time.now}] #{msg}"
-        raise msg
+        raise ProjectAggregatorAlreadyRunning, msg
       rescue Errno::ESRCH
         # Process is not running even though pidfile is there, so delete it
         Rails.logger.info "[INFO #{Time.now}] Deleting #{pidfile} b/c process #{pid} is not running"
@@ -648,7 +650,7 @@ class Project < ActiveRecord::Base
       File.delete(pidfile) if File.exists?(pidfile)
     end
   rescue => e
-    File.delete(pidfile) if File.exists?(pidfile)
+    File.delete(pidfile) if File.exists?(pidfile) && !e.is_a?(ProjectAggregatorAlreadyRunning)
     Rails.logger.error "[ERROR #{Time.now}] Deleting #{pidfile} after error: #{e}"
     raise e
   end
