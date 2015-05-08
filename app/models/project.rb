@@ -591,7 +591,7 @@ class Project < ActiveRecord::Base
       end
       observations = Observation.elastic_query(params.merge(page: page), elastic_options)
       break if observations.blank?
-      Rails.logger.info "[INFO #{Time.now}] Processing page #{observations.current_page} of #{observations.total_entries} for #{slug}"
+      Rails.logger.info "[INFO #{Time.now}] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
       observations.each do |o|
         po = ProjectObservation.new(project: self, observation: o)
         if po.save
@@ -634,21 +634,18 @@ class Project < ActiveRecord::Base
       end
     end
     File.open(pidfile, 'w') {|f| f.puts Process.pid}
-    begin
-      logger = options[:logger] || Rails.logger
-      start_time = Time.now
-      num_projects = 0
-      logger.info "[INFO #{Time.now}] Starting Project.aggregate_observations"
-      Project.joins(:stored_preferences).where("preferences.name = 'aggregation' AND preferences.value = 't'").find_each do |p|
-        next unless p.aggregation_allowed? && p.prefers_aggregation?
-        p.aggregate_observations(logger: logger, pidfile: pidfile)
-        num_projects += 1
-      end
-      logger.info "[INFO #{Time.now}] Finished Project.aggregate_observations in #{Time.now - start_time}s, #{num_projects} projects"
-    ensure
-      Rails.logger.info "[INFO #{Time.now}] Deleting #{pidfile} after complete aggregation"
-      File.delete(pidfile) if File.exists?(pidfile)
+    logger = options[:logger] || Rails.logger
+    start_time = Time.now
+    num_projects = 0
+    logger.info "[INFO #{Time.now}] Starting Project.aggregate_observations"
+    Project.joins(:stored_preferences).where("preferences.name = 'aggregation' AND preferences.value = 't'").find_each do |p|
+      next unless p.aggregation_allowed? && p.prefers_aggregation?
+      p.aggregate_observations(logger: logger, pidfile: pidfile)
+      num_projects += 1
     end
+    logger.info "[INFO #{Time.now}] Finished Project.aggregate_observations in #{Time.now - start_time}s, #{num_projects} projects"
+    Rails.logger.info "[INFO #{Time.now}] Deleting #{pidfile} after complete aggregation"
+    File.delete(pidfile) if File.exists?(pidfile)
   rescue => e
     File.delete(pidfile) if File.exists?(pidfile) && !e.is_a?(ProjectAggregatorAlreadyRunning)
     Rails.logger.error "[ERROR #{Time.now}] Deleting #{pidfile} after error: #{e}"
