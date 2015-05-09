@@ -93,4 +93,12 @@
     a[:observation_layers] ||= []
     a[:observation_layers] << { user_id: @user.id, title: "Observations by #{@user.login}", grid_color: "#FF4500" }
   end
+  if @elastic
+    a[:observation_layers] = [ ]
+    a[:taxon_layers] = [ ]
+    a[:enable_show_all_layer] = false
+    a[:show_all_layer] = false
+    a[:elastic] = true
+    a[:elastic_params] = @elastic_params
+  end
 #map.fullscreen{ setup_map_tag_attrs(a) }
