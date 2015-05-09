@@ -63,7 +63,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   if (options.zoomLevel === 0) {
     options.zoomLevel = null;
   }
-  if( options.showAllLayer !== false ) {
+  if( !options.showAllLayer && options.showAllLayer !== false ) {
     options.showAllLayer = true;
   }
   $(elt).data('taxonMapOptions', options)
