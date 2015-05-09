@@ -3,97 +3,22 @@ class PicasaController < ApplicationController
   
   # Configure Picasa linkage
   def options
-    if @picasa_identity = current_user.picasa_identity
-      @picasa = Picasa.new(@picasa_identity.token)
-      @picasa_photos = @picasa.recent_photos(@picasa_identity.picasa_user_id, 
-        :max_results => 18, :thumbsize => '72c').entries
-    else
-      @auth_url = Picasa.authorization_url(url_for(:action => "authorize"))
-    end
-  end
-  
-  # Receives redirect from Google after initial auth
-  def authorize
-    begin
-      @picasa = Picasa.authorize_request(self.request)
-    rescue RubyPicasa::PicasaTokenError => e
-      flash[:error] = "Picasa authorization failed!"
-      Rails.logger.error "[ERROR] Picasa authorization failed: #{e}"
-      return redirect_to :action => "options"
-    end
-    
-    @picasa_identity = PicasaIdentity.where(user_id: current_user.id).first
-    @picasa_identity ||= PicasaIdentity.create(user_id: current_user.id)
-    @picasa_identity.token = @picasa.token
-    @picasa_user = @picasa.user('default')
-    if @picasa_user.respond_to?(:user)
-      @picasa_identity.picasa_user_id = @picasa_user.user
-    elsif @picasa_user.respond_to?(:photos)
-      @picasa_identity.picasa_user_id = @picasa_user.photos.first.try(:user)
-    end
-    
-    # trying to work out a bug here...
-    if @picasa_identity.picasa_user_id.blank?
-      Rails.logger.error "[ERROR #{Time.now}] Failed to extract Picasa user ID, trying again with debugging on..."
-      @picasa.debug = true
-      
-      @picasa_user = @picasa.user('default')
-      if @picasa_user.respond_to?(:user)
-        @picasa_identity.picasa_user_id = @picasa_user.user
-      elsif @picasa_user.respond_to?(:photos)
-        @picasa_identity.picasa_user_id = @picasa_user.photos.first.try(:user)
-      end
-      
-      if @picasa_identity.picasa_user_id.blank?
-        flash[:error] = "Picasa authorization worked, but we couldn't find " + 
-          "your Picasa user ID. The issue has been reported, so we'll look " + 
-          "into it. In the meantime, you might try uploading photos " + 
-          "directly, or linking your Flickr or Facebook accounts."
-        Airbrake.notify(
-          Exception.new("Failed to extract Picasa user ID from user response (#{@picasa_user})"), 
-          :request => request, :session => session)
-        redirect_to :action => "options"
-        return
-      end
-    end
-    
-    @picasa_identity.save
-    
-    flash[:notice] = "Congrats, your #{CONFIG.site_name} and Picasa accounts have been linked!"
-    if !session[:return_to].blank?
-      @landing_path = session[:return_to]
-      session[:return_to] = nil
-    end
-    # registering via an invite link in a picasa comment. see /photos/invite
-    if session[:invite_params]
-      invite_params = session[:invite_params]
-      session[:invite_params] = nil
-      @landing_path = new_observation_url(invite_params)
-    end
-    redirect_to (@landing_path || {:action => "options"})
-  end
-  
-  # Offer user option to unlink iNat & Picasa accounts
-  def unlink
-    if current_user.picasa_identity
-      current_user.picasa_identity.destroy
-      flash[:notice] = "We've dissassociated your Picasa account from your #{CONFIG.site_name} account."
-      redirect_to :action => 'options'
-    else
-      flash[:notice] = "Your Picasa account has not been linked before!"
-      redirect_to :action => 'options'
+    if @provider_authorization = current_user.has_provider_auth('google')
+      @picasa = Picasa.new(@provider_authorization.token)
+      response = @picasa.recent_photos(@provider_authorization.provider_uid, max_results: 18, thumbsize: '72c')
+      @picasa_photos = response.try(:entries)
     end
   end
   
   def photo_fields
     context = params[:context] || 'user'
-    pi = current_user.picasa_identity
-    if pi.nil?
+    pa = current_user.has_provider_auth('google')
+    if pa.nil?
       @provider = 'picasa'
       uri = Addressable::URI.parse(request.referrer) # extracts params and puts them in the hash uri.query_values
       uri.query_values ||= {}
       uri.query_values = uri.query_values.merge({:source => @provider, :context => context})
-      @auth_url = Picasa.authorization_url(url_for(:action => "authorize"))
+      @auth_url = ProviderAuthorization::AUTH_URLS['google']
       session[:return_to] = uri.to_s 
       render(:partial => "photos/auth") and return
     end
@@ -119,8 +44,8 @@ class PicasaController < ApplicationController
       search_params[:max_results] = per_page
       search_params[:start_index] = (params[:page] || 1).to_i * per_page - per_page + 1
       search_params[:thumbsize] = RubyPicasa::Photo::VALID.join(',')
-      if context=='user'
-        search_params[:user_id] = current_user.picasa_identity.picasa_user_id
+      if context == 'user'
+        search_params[:user_id] = current_user.picasa_identity.provider_uid
       end
       
       begin
@@ -191,7 +116,7 @@ class PicasaController < ApplicationController
   # picasa_user_id specifies the picasa user whose albums to fetch
   # (if nil, it fetches the authenticating user's albums)
   def picasa_albums(user, picasa_user_id=nil)
-    return [] unless user.picasa_identity
+    return [] unless current_user.has_provider_auth('google')
     picasa = user.picasa_client
     user_data = picasa.user(picasa_user_id) 
     albums = []
@@ -208,9 +133,9 @@ class PicasaController < ApplicationController
   end
 
   def picasa_friends(user)
-    return [] unless user.picasa_identity
+    return [] unless (pa = current_user.has_provider_auth('google'))
     picasa = GData::Client::Photos.new
-    picasa.authsub_token = user.picasa_identity.token
+    picasa.auth_token = pa.secret
     contacts_data = picasa.get("http://picasaweb.google.com/data/feed/api/user/default/contacts").to_xml 
     friends = []
     contacts_data.elements.each('entry'){|e|

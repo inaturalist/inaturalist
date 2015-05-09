@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   belongs_to :life_list, :dependent => :destroy
   has_many  :provider_authorizations, :dependent => :delete_all
   has_one  :flickr_identity, :dependent => :delete
-  has_one  :picasa_identity, :dependent => :delete
+  # has_one  :picasa_identity, :dependent => :delete
   has_one  :soundcloud_identity, :dependent => :delete
   has_many :observations, :dependent => :destroy
   has_many :deleted_observations
@@ -318,8 +318,8 @@ class User < ActiveRecord::Base
   end
   
   def picasa_client
-    return nil unless picasa_identity
-    @picasa_client ||= Picasa.new(self.picasa_identity.token)
+    return nil unless (pa = has_provider_auth('google'))
+    @picasa_client ||= Picasa.new(pa.token)
   end
 
   # returns a koala object to make (authenticated) facebook api calls
@@ -337,6 +337,10 @@ class User < ActiveRecord::Base
 
   def facebook_token
     facebook_identity.try(:token)
+  end
+
+  def picasa_identity
+    @picasa_identity ||= has_provider_auth('google_oauth2')
   end
 
   # returns a Twitter object to make (authenticated) api calls

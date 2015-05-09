@@ -87,7 +87,7 @@
     </ul>
     
     <div id="photo_import">
-      <% if current_user.flickr_identity || current_user.picasa_identity || current_user.facebook_identity %>      
+      <% if !@photo_identities.blank? %>
         <%= form_tag({:action => 'import_photos'}) do %>
         
           <div class="readable description">
