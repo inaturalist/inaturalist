@@ -751,6 +751,27 @@ google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
   return this.addLayerByEndpoint( "taxon_places", options.taxon.id, options );
 };
 
+google.maps.Map.prototype.addElasticLayer = function( options ) {
+  this.setTilt(0);
+  if( options["elastic_params"].match(/heatmap/) ) {
+    this.addLayerAndControl( {
+      tiles: [ <%= CONFIG.tile_servers.elasticsearch.inspect %> +
+            "/heatmap/{z}/{x}/{y}.png?" + options["elastic_params"] ]
+    }, options );
+  } else {
+    var layerTileURL = <%= CONFIG.tile_servers.elasticsearch.inspect %> +
+          "/geohash/{z}/{x}/{y}.png?" + options["elastic_params"];
+    options.interactivity = true;
+    var tilejson = {
+      tiles: [ layerTileURL ],
+      // wax needs template or it won't fire on events
+      "template": "this_is_silly",
+      grids: [ this.interactivityURL( layerTileURL, "id" ) ]
+    };
+    this.addLayerAndControl( tilejson, options );
+  }
+};
+
 var cachedGBIFColors;
 var GBIFMapColors = function( ) {
   if( cachedGBIFColors ) { return cachedGBIFColors; }
@@ -793,6 +814,9 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
   options = options || { }
   var layer = new wax.g.connector( tilejson );
   var layerID = this.overlayMapTypes.push( layer );
+  if( options.interactivity ) {
+    this.addTileInteractivity( tilejson, layerID );
+  }
   if( options.disabled ) {
     // even though the layer is meant to be disabled (unselected) by default
     // we need to secure the layerID so that we can add the layer in the proper

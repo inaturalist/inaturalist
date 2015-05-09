@@ -1977,6 +1977,12 @@ class ObservationsController < ApplicationController
         @taxon_hash[:iconic_taxon_name] = @taxon.iconic_taxon.name
       end
     end
+    possible_elastic_params = (params.keys.map(&:to_sym) & [ :d1, :d2 ])
+    if params[:elastic] || !possible_elastic_params.empty?
+      @elastic = true
+      @elastic_params = params.reject{ |k,v|
+        [ :controller, :action, :elastic ].include?( k.to_sym ) }
+    end
     @about_url = CONFIG.map_about_url ? CONFIG.map_about_url :
       view_context.wiki_page_url('help', anchor: 'mapsymbols')
   end
