@@ -1964,6 +1964,9 @@ class ObservationsController < ApplicationController
     elsif params[:place_ids]
       @places = Place.where(id: params[:place_ids])
     end
+    if params[:render_place_id]
+      @render_place = Place.find_by_id(params[:render_place_id])
+    end
     if @taxa.length == 1
       @taxon = @taxa.first
       @taxon_hash = { }
@@ -1980,8 +1983,9 @@ class ObservationsController < ApplicationController
     possible_elastic_params = (params.keys.map(&:to_sym) & [ :d1, :d2 ])
     if params[:elastic] || !possible_elastic_params.empty?
       @elastic = true
-      @elastic_params = params.reject{ |k,v|
-        [ :controller, :action, :elastic ].include?( k.to_sym ) }
+      @elastic_params = params.select{ |k,v|
+        [ :heatmap, :place_id, :user_id, :project_id,
+          :taxon_id, :d1, :d2 ].include?( k.to_sym ) }
     end
     @about_url = CONFIG.map_about_url ? CONFIG.map_about_url :
       view_context.wiki_page_url('help', anchor: 'mapsymbols')

@@ -753,20 +753,31 @@ google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
 
 google.maps.Map.prototype.addElasticLayer = function( options ) {
   this.setTilt(0);
+  var tileservers = [ <%= CONFIG.tile_servers.elasticsearch.inspect %> ];
+  if( tileservers[0].match(/{n}/) ) {
+    var pattern = tileservers[0];
+    tileservers = _.map([ "1", "2", "3", "4" ], function( n ) {
+      return pattern.replace( "{n}", n );
+    });
+  }
   if( options["elastic_params"].match(/heatmap/) ) {
     this.addLayerAndControl( {
-      tiles: [ <%= CONFIG.tile_servers.elasticsearch.inspect %> +
-            "/heatmap/{z}/{x}/{y}.png?" + options["elastic_params"] ]
+      tiles: _.map( tileservers , function( base ) {
+        return base + "/heatmap/{z}/{x}/{y}.png?" + options["elastic_params"];
+      })
     }, options );
   } else {
-    var layerTileURL = <%= CONFIG.tile_servers.elasticsearch.inspect %> +
-          "/geohash/{z}/{x}/{y}.png?" + options["elastic_params"];
     options.interactivity = true;
+    var tileLayers = _.map( tileservers, function( base ) {
+      return base + "/geohash/{z}/{x}/{y}.png?" + options["elastic_params"];
+    });
     var tilejson = {
-      tiles: [ layerTileURL ],
+      tiles: tileLayers,
       // wax needs template or it won't fire on events
       "template": "this_is_silly",
-      grids: [ this.interactivityURL( layerTileURL, "id" ) ]
+      grids: _.map( tileLayers, function( l ) {
+        return google.maps.Map.prototype.interactivityURL( l, "id" );
+      })
     };
     this.addLayerAndControl( tilejson, options );
   }

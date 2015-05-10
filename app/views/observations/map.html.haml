@@ -94,6 +94,7 @@
     a[:observation_layers] << { user_id: @user.id, title: "Observations by #{@user.login}", grid_color: "#FF4500" }
   end
   if @elastic
+    a[:place_layers] = [ { place: @render_place } ];
     a[:observation_layers] = [ ]
     a[:taxon_layers] = [ ]
     a[:enable_show_all_layer] = false
