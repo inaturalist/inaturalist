@@ -24,7 +24,6 @@ class FlickrPhoto < Photo
   
   def self.flickraw_for_user(user)
     return flickr unless (user && user.flickr_identity)
-    FlickRaw.check_certificate = false
     f = FlickRaw::Flickr.new
     f.access_token = user.flickr_identity.token
     f.access_secret = user.flickr_identity.secret
