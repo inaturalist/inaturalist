@@ -1046,7 +1046,7 @@ class ObservationsController < ApplicationController
   def import
     if @default_photo_identity ||= @photo_identities.first
       provider_name = if @default_photo_identity.is_a?(ProviderAuthorization)
-        @default_photo_identity.provider_name
+        @default_photo_identity.photo_source_name
       else
         @default_photo_identity.class.to_s.underscore.split('_').first
       end
@@ -1970,6 +1970,9 @@ class ObservationsController < ApplicationController
     elsif params[:place_ids]
       @places = Place.where(id: params[:place_ids])
     end
+    if params[:render_place_id]
+      @render_place = Place.find_by_id(params[:render_place_id])
+    end
     if @taxa.length == 1
       @taxon = @taxa.first
       @taxon_hash = { }
@@ -1982,6 +1985,13 @@ class ObservationsController < ApplicationController
       if @taxon.iconic_taxon
         @taxon_hash[:iconic_taxon_name] = @taxon.iconic_taxon.name
       end
+    end
+    possible_elastic_params = (params.keys.map(&:to_sym) & [ :d1, :d2 ])
+    if params[:elastic] || !possible_elastic_params.empty?
+      @elastic = true
+      @elastic_params = params.select{ |k,v|
+        [ :heatmap, :place_id, :user_id, :project_id,
+          :taxon_id, :d1, :d2 ].include?( k.to_sym ) }
     end
     @about_url = CONFIG.map_about_url ? CONFIG.map_about_url :
       view_context.wiki_page_url('help', anchor: 'mapsymbols')
@@ -2443,8 +2453,12 @@ class ObservationsController < ApplicationController
         @default_photo_source = 'flickr'
       end
     end
-    @default_photo_source ||= if @default_photo_identity && @default_photo_identity.class.name =~ /Identity/
-      @default_photo_identity.class.name.underscore.humanize.downcase.split.first
+    @default_photo_source ||= if @default_photo_identity
+      if @default_photo_identity.class.name =~ /Identity/
+        @default_photo_identity.class.name.underscore.humanize.downcase.split.first
+      else
+        @default_photo_identity.provider_name
+      end
     elsif @default_photo_identity
       "local"
     end
@@ -2452,7 +2466,11 @@ class ObservationsController < ApplicationController
     @default_photo_identity_url = nil
     @photo_identity_urls = @photo_identities.map do |identity|
       provider_name = if identity.is_a?(ProviderAuthorization)
-        identity.provider_name
+        if identity.provider_name =~ /google/i
+          "picasa"
+        else
+          identity.provider_name
+        end
       else
         identity.class.to_s.underscore.split('_').first # e.g. FlickrIdentity=>'flickr'
       end
@@ -2463,14 +2481,24 @@ class ObservationsController < ApplicationController
     @photo_sources = @photo_identities.inject({}) do |memo, ident| 
       if ident.respond_to?(:source_options)
         memo[ident.class.name.underscore.humanize.downcase.split.first] = ident.source_options
-      else
-        memo[:facebook] = {
-          :title => 'Facebook', 
-          :url => '/facebook/photo_fields', 
-          :contexts => [
-            ["Your photos", 'user']
-          ]
-        }
+      elsif ident.is_a?(ProviderAuthorization)
+        if ident.provider_name == "facebook"
+          memo[:facebook] = {
+            :title => 'Facebook', 
+            :url => '/facebook/photo_fields', 
+            :contexts => [
+              ["Your photos", 'user']
+            ]
+          }
+        elsif ident.provider_name =~ /google/
+          memo[:picasa] = {
+            :title => 'Picasa', 
+            :url => '/picasa/photo_fields', 
+            :contexts => [
+              ["Your photos", 'user', {:searchable => true}]
+            ]
+          }
+        end
       end
       memo
     end

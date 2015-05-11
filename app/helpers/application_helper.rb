@@ -616,7 +616,10 @@ module ApplicationHelper
       "enable-show-all-layer" => options[:enable_show_all_layer] ? "true" : "false",
       "show-all-layer" => options[:show_all_layer].to_json,
       "featured-layer-label" => I18n.t("maps.overlays.featured_observations"),
-      "control-position" => options[:control_position]
+      "control-position" => options[:control_position],
+      "elastic" => options[:elastic] ? 'true' : nil,
+      "elastic_params" => options[:elastic_params] ?
+        options[:elastic_params].map{ |k,v| "#{k}=#{v}" }.join("&") : nil
     }
     append_taxon_layers(map_tag_attrs, options)
     append_place_layers(map_tag_attrs, options)

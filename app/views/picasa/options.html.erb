@@ -4,31 +4,41 @@
 <h2> <%= t(:your_picasa_account_info) %> </h2>
 
 <div class="column span-13">
-  <% if @picasa_identity -%>
-    <div class="clear photos">
-      <% for photo in @picasa_photos %>
-        <%- next unless photo.url('72c') %>
-        <%= image_tag photo.url('72c') %>
-      <% end %>
-    </div>
+  <% if @provider_authorization -%>
+    <% if @picasa_photos -%>
+      <div class="clear photos stacked">
+        <% for photo in @picasa_photos %>
+          <%- next unless photo.url('72c') %>
+          <%= image_tag photo.url('72c') %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="error notice stacked">
+        Your account is connected but there was a problem retrieving your photos.
+      </div>
+    <% end -%>
 
-    <p>
-    <%= t(:youve_linked_your_inaturalist_picasa_account, :site_name => SITE_NAME) %>
+    <p class="ui meta">
+      <%= t(:youve_linked_your_inaturalist_picasa_account, :site_name => SITE_NAME) %>
     </p>
   <% else %>
-    <p>
-     <%= t(:you_havent_linked_your_inaturalist_picasa_account, :site_name => SITE_NAME_SHORT) %></p>
-    <p class="description">
+    <p class="ui">
+      <%= t(:you_havent_linked_your_inaturalist_picasa_account, :site_name => SITE_NAME_SHORT) %></p>
+    <p class="ui description">
       <%= t(:to_include_your_picassa_with_inat, :site_name => SITE_NAME_SHORT) %>
     </p>
   <% end -%>
 </div>
 
 <div class="last column span-11">
-  <% if @picasa_identity -%>
-    <%= link_to t(:unlink_your_picasa_account), {:action => "unlink"}, :class => "delete button", 
-      :method => :delete, :data => {:confirm => t(:are_you_sure_unlink_picasa)} %>
+  <% if current_user.picasa_identity %>
+    <%= link_to t(:unlink_your_picasa_account, :site_name => SITE_NAME), 
+      omniauth_disconnect_path('google'), :class => 'delete button', :method => 'delete' %>
   <% else %>
-    <%= link_to t(:link_your_picasa_account), @auth_url, :class => "default button" %>
-  <% end -%>
+    <%= link_to t(:link_your_picasa_account), auth_url_for('google_oauth2'), 
+                :onclick => "$('.picasa-button').toggle();", :class => 'picasa-button default button' %>
+    <div class="picasa-button" style="display:none;">
+      <span class="loading status"><%=t :connecting_to_picasa %></span>
+    </div>
+  <% end %>
 </div>

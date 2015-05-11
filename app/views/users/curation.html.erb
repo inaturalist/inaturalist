@@ -111,12 +111,6 @@
       <%= link_to "(#{fi.flickr_user_id})", "http://flickr.com/photos/#{fi.flickr_user_id}" %>
       <div class="small meta"><%= t(:created) %> <%=l fi.created_at %></div>
     <% end -%>
-    
-    <% if pi = @display_user.picasa_identity -%>
-      <h3><%= t(:picasa_identity) %></h3>
-      <%= link_to pi.picasa_user_id, "https://picasaweb.google.com/#{pi.picasa_user_id}" %>
-      <div class="small meta"><%= t(:created) %> <%=l pi.created_at %></div>
-    <% end -%>
   </div>
 <% end -%>
 
