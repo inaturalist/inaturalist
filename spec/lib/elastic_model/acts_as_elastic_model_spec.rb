@@ -67,7 +67,7 @@ describe ActsAsElasticModel do
         place = Place.make!
         expect(Observation.__elasticsearch__).to receive(:search).with(
           { query: { filtered: { query: { match_all: { } },
-            filter: { bool: { must: [ { geo_shape: { geojson: { indexed_shape: {
+            filter: { bool: { must: [ { geo_shape: { _cache: true, private_geojson: { indexed_shape: {
               id: place.id, type: "place", index: "test_places", path: "geometry_geojson"
             }}}}]}}}}}).and_return(true)
         Observation.elastic_search(filters: [ { place: place } ])
@@ -153,6 +153,7 @@ describe ActsAsElasticModel do
 
     describe "elastic_delete!" do
       it "deletes instances of a class from ES" do
+        Observation.destroy_all
         obs = Observation.make!
         expect( Observation.count ).to eq 1
         expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 1

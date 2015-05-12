@@ -678,7 +678,7 @@ class Observation < ActiveRecord::Base
     if p[:site] && host = URI.parse(p[:site]).host
       search_wheres["uri"] = host
     end
-    if d = Observation.split_date(p[:created_on])
+    if d = Observation.split_date(p[:created_on], utc: true)
       search_wheres["created_at_details.day"] = d[:day] if d[:day] && d[:day] != 0
       search_wheres["created_at_details.month"] = d[:month] if d[:month] && d[:month] != 0
       search_wheres["created_at_details.year"] = d[:year] if d[:year] && d[:day] != 0
@@ -752,8 +752,19 @@ class Observation < ActiveRecord::Base
       end
     end
     if p[:d1] || p[:d2]
-      search_filters << { range: { observed_on: {
-        gte: p[:d1] || Time.new("1800"), lte: p[:d2] || Time.now } } }
+      p[:d2] = Time.now if p[:d2] && p[:d2] > Time.now
+      search_filters << { or: [
+        { and: [
+          { range: { observed_on: {
+            gte: p[:d1] || Time.new("1800"), lte: p[:d2] || Time.now } } },
+          { exists: { field: "time_observed_at" } }
+        ] },
+        { and: [
+          { range: { observed_on: {
+            gte: (p[:d1] || Time.new("1800")).to_date, lte: (p[:d2] || Time.now).to_date } } },
+          { missing: { field: "time_observed_at" } }
+        ] }
+      ] }
     end
     unless p[:updated_since].blank?
       if timestamp = Chronic.parse(p[:updated_since])
@@ -1227,16 +1238,10 @@ class Observation < ActiveRecord::Base
   def datetime
     if observed_on && errors[:observed_on].blank?
       if time_observed_at
-        Time.mktime(observed_on.year, 
-                    observed_on.month, 
-                    observed_on.day, 
-                    time_observed_at.hour, 
-                    time_observed_at.min, 
-                    time_observed_at.sec, 
-                    time_observed_at.zone)
+        time_observed_at.to_time
       else
-        Time.mktime(observed_on.year, 
-                    observed_on.month, 
+        Time.mktime(observed_on.year,
+                    observed_on.month,
                     observed_on.day)
       end
     end

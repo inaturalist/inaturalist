@@ -754,6 +754,21 @@ shared_examples_for "an ObservationsController" do
       get :index, format: :json, "field:transect_id" => "67-48"
       expect( JSON.parse(response.body).size ).to eq 1
     end
+
+    it "filters created_on based on utc" do
+      Observation.make!(created_at: "2014-12-31 20:00:00 -0800")
+      Observation.make!(created_at: "2015-1-1 4:00:00")
+      Observation.make!(created_at: "2015-1-2 4:00:00 +0800")
+      get :index, format: :json, created_on: "2015-1-1"
+      expect( JSON.parse(response.body).size ).to eq 3
+    end
+
+    it "observations with no time_observed_at ignore time part of date filters" do
+      Observation.make!(observed_on_string: "2014-12-31 20:00:00 -0100")
+      Observation.make!(observed_on_string: "2014-12-31")
+      get :index, format: :json, d1: "2014-12-31T19:00:00-01:00", d2: "2014-12-31T21:00:00-01:00"
+      expect( JSON.parse(response.body).size ).to eq 2
+    end
   end
 
   describe "taxon_stats" do

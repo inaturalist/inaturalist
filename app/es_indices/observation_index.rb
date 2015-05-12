@@ -44,11 +44,12 @@ class Observation < ActiveRecord::Base
     preload_for_elastic_index
     {
       id: id,
-      created_at: created_at,
-      created_at_details: ElasticModel.date_details(created_at),
-      updated_at: updated_at,
-      observed_on: (Time.parse(observed_on_string) rescue observed_on),
-      observed_on_details: ElasticModel.date_details(observed_on),
+      created_at: created_at ? created_at.utc : nil,
+      created_at_details: created_at ? ElasticModel.date_details(created_at.utc) : nil,
+      updated_at: updated_at ? updated_at.utc : nil,
+      observed_on: datetime ? datetime.utc : nil,
+      observed_on_details: datetime ? ElasticModel.date_details(datetime.utc) : nil,
+      time_observed_at: time_observed_at ? time_observed_at.utc : nil,
       site_id: site_id,
       uri: uri,
       description: description,

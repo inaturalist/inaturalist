@@ -57,13 +57,14 @@ Rails.logger.debug "[DEBUG] merging associates for #{k}"
       conditions || "1 = 2"
     end
 
-    def self.split_date(date)
+    def self.split_date(date, options={})
       return unless date
       # we expect date to be a date, time or string object
       date_copy = date.is_a?(Fixnum) ? date.to_s : date.dup
       if date_copy == "today"
         date_copy = Time.now
       end
+      date_copy = date_copy.utc if date_copy.is_a?(Time) && options[:utc]
       if date_copy.is_a?(Date) || date_copy.is_a?(Time)
         { year: date_copy.year, month: date_copy.month, day: date_copy.day }
       elsif date_copy.is_a?(String)

@@ -134,7 +134,8 @@ module ElasticModel
     return unless options && options.is_a?(Hash)
     return unless place = options[:place]
     { geo_shape: {
-        geojson: {
+        _cache: true,
+        private_geojson: {
           indexed_shape: {
             id: id_or_object(place),
             type: "place",
