@@ -1226,7 +1226,7 @@ $.fn.observationTaxonStats = function(options) {
         (json.rank_counts['form'] || 0) +
         (json.rank_counts.hybrid || 0)
     }
-    var speciesCountLink = $('<a>'+speciesCount+'</a>').attr('href', '/observations/taxa'+ baseSearch +'&rank=species')
+    var speciesCountLink = $('<a>'+speciesCount+'</a>').attr('href', '/observations/taxa'+ baseSearch +'&hrank=species')
     $('.species .count', container).html(speciesCountLink)
     if (json.species_counts.length > 0) {
       var most
