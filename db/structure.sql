@@ -6805,20 +6805,6 @@ CREATE INDEX index_updates_on_notifier_type_and_notifier_id ON updates USING btr
 
 
 --
--- Name: index_updates_on_resource_owner_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_updates_on_resource_owner_id ON updates USING btree (resource_owner_id);
-
-
---
--- Name: index_updates_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_updates_on_resource_type_and_resource_id ON updates USING btree (resource_type, resource_id);
-
-
---
 -- Name: index_updates_on_subscriber_id_and_viewed_at_and_notification; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -7508,4 +7494,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150409031504');
 INSERT INTO schema_migrations (version) VALUES ('20150412200608');
 
 INSERT INTO schema_migrations (version) VALUES ('20150413222254');
+
+INSERT INTO schema_migrations (version) VALUES ('20150421155510');
+
+INSERT INTO schema_migrations (version) VALUES ('20150504184529');
 
