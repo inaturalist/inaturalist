@@ -149,7 +149,7 @@
       <% else %>
         <%= link_to t(:all_observations, :default => "All observations").capitalize, project_observations_url(@project), :class => "inter" %>
       <% end %>
-      <%= link_to t(:all_species, :default => "All species").capitalize, taxa_observations_url(@observations_url_params.merge(:rank => Taxon::SPECIES)), :class => "inter" %>
+      <%= link_to t(:all_species, :default => "All species").capitalize, taxa_observations_url(@observations_url_params.merge(:hrank => Taxon::SPECIES)), :class => "inter" %>
       <%= link_to t(:all_people, :default => "All people").capitalize, user_stats_observations_url(@observations_url_params), :class => "inter" %>
       <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
         <%= link_to_dialog t(:about_bioblitz_results), :width => "60%", :link => {:class => "meta inter"} do %>

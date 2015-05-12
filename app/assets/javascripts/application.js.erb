@@ -1314,7 +1314,7 @@ $.fn.observationUserStats = function(options) {
             addClass('meta').
             html(I18n.t('x_species_link_html', {
               count: row.count, 
-              url: '/observations/taxa'+baseSearch+'&user_id='+row.user.login
+              url: '/observations/taxa'+baseSearch+'&user_id='+row.user.login+'&hrank=species'
             }))
         )
         tr.append(imageTD, userTD)
@@ -1494,7 +1494,7 @@ $.fn.leaderboard = function(options) {
         .html(this.observations || '*')
         .prop('outerHTML')
       var sppLink = $('<a>')
-        .attr('href', '/observations/taxa?'+$.param($.extend({}, linkOptions, {user_id: this.user.login}, true)))
+        .attr('href', '/observations/taxa?'+$.param($.extend({}, linkOptions, {user_id: this.user.login, hrank: 'species'}, true)))
         .html(this.species || '*')
         .prop('outerHTML')
       var row = [
