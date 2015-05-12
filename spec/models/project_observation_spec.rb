@@ -95,7 +95,7 @@ describe ProjectObservation, "creation" do
           ProjectObservation.make!(user: pu.user, project: pu.project, observation: Observation.make!(user: observer))
         end
       end
-      expect( Update.where(subscriber_id: observer.id, notification: Update::YOUR_OBSERVATIONS_ADDED).count ).to eq 30
+      expect( Update.where(subscriber_id: observer.id, notification: Update::YOUR_OBSERVATIONS_ADDED).count ).to eq 15
     end
   end
 end

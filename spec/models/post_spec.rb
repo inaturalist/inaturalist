@@ -24,6 +24,9 @@ describe Post, "creation" do
 end
 
 describe Post, "publish" do
+  before(:each) { enable_elastic_indexing( Update ) }
+  after(:each) { disable_elastic_indexing( Update ) }
+
   describe "for a project" do
     let(:project) { Project.make! }
     let(:post) { Post.make!(parent: project, user: project.user) }
