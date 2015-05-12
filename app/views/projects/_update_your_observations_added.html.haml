@@ -1,0 +1,22 @@
+:ruby
+  project = update_your_observations_added || resource
+  updates ||= []
+  observations = updates.map do |u|
+    o = if @update_cache && @update_cache[:observations]
+      @update_cache[:observations][u.notifier.observation_id]
+    end
+    o || u.notifier.observation
+  end
+.updatecontent
+  .stacked.observationcontrols
+  %div{'class': "stacked observations #{observations.size == 1 ? 'list' : 'medium grid'}"}
+    - compact do
+      = render partial: 'observations/cached_component', collection: observations[0...12]    
+  - notifier_users = updates.map{|u| u.notifier.user}.uniq.compact
+  - unless notifier_users.blank?
+    .meta.stacked
+      =t :observations_added_by_x_html, x: commas_and(notifier_users.map{|u| link_to_user(u)})
+  .meta
+    = link_to t(:view_all_of_your_observations_from_x, x: project.title), observations_by_login_url(current_user.login, projects: project.id), 'class': 'readmore'
+  .meta
+    =t :you_can_also_change_your_settings_for_this_project_or_change_your_global_settings_html, project_settings_url: project_show_contributor_url(project, current_user.login)

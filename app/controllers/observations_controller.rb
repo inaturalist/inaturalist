@@ -284,9 +284,20 @@ class ObservationsController < ApplicationController
         end.reverse
         
         if logged_in?
-          @projects = Project.joins(:project_users).
-            where("project_users.user_id = ?", current_user).
-            limit(1000).sort_by{ |p| p.title.downcase }
+          @projects, @curated_projects = [], []
+          current_user.project_users.includes(:project).joins(:project).limit(1000).order("lower(projects.title)").each do |pu|
+            @projects << pu.project
+            @curated_projects << pu.project if pu.is_curator?
+          end
+          @project_addition_allowed = @observation.user_id == current_user.id
+          @project_addition_allowed ||= @observation.user.preferred_project_addition_by != User::PROJECT_ADDITION_BY_NONE
+          if @project_addition_allowed
+            @addable_projects = if @observation.user_id == current_user.id
+              @projects
+            else
+              @curated_projects
+            end
+          end
         end
         
         @places = @observation.places
@@ -632,12 +643,7 @@ class ObservationsController < ApplicationController
     end
     
     current_user.observations << @observations.compact
-    
-    if request.format != :json && !params[:accept_terms] && params[:project_id] && !current_user.project_users.find_by_project_id(params[:project_id])
-      flash[:error] = t(:but_we_didnt_add_this_observation_to_the_x_project, :project => Project.find_by_id(params[:project_id]).title)
-    else
-      create_project_observations
-    end
+    create_project_observations
     update_user_account
     
     # check for errors
@@ -1321,7 +1327,7 @@ class ObservationsController < ApplicationController
       @observations = get_elastic_paginated_observations(params)
     end
     
-    @project_observations = @project.project_observations.where(observation: @observations.to_a).
+    @project_observations = @project.project_observations.where(observation: @observations.map(&:id)).
       includes([ { :curator_identification => [ :taxon, :user ] } ])
     @project_observations_by_observation_id = @project_observations.index_by(&:observation_id)
     
@@ -2134,6 +2140,8 @@ class ObservationsController < ApplicationController
     @observations_taxon_id = search_params[:observations_taxon_id]
     @observations_taxon = search_params[:observations_taxon]
     @observations_taxon_name = search_params[:taxon_name]
+    @observations_taxon_ids = search_params[:taxon_ids]
+    @observations_taxa = search_params[:observations_taxa]
     if search_params[:has]
       @id_please = true if search_params[:has].include?('id_please')
       @with_photos = true if search_params[:has].include?('photos')
@@ -2659,8 +2667,6 @@ class ObservationsController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @project ||= Project.find(params[:project_id]) rescue nil
     return unless @project
-    @project_user = current_user.project_users.find_or_create_by(project_id: @project.id)
-    return unless @project_user && @project_user.valid?
     tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
     errors = []
     @observations.each do |observation|

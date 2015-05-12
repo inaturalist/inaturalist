@@ -149,12 +149,12 @@ class ProjectsController < ApplicationController
           map(&:provider_uid)
         @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
         @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
-        @observations_url = if @project.project_type == 'bioblitz'
-          @observations_url_params = @project.observations_url_params
-          observations_url(@observations_url_params)
+        @observations_url_params = if @project.project_type == Project::BIOBLITZ_TYPE
+          @project.observations_url_params
         else
-          project_observations_url(@project, :per_page => 24)
+          {projects: [@project.slug]}
         end
+        @observations_url = observations_url(@observations_url_params)
         if logged_in? && @project_user.blank?
           @project_user_invitation = @project.project_user_invitations.where(:invited_user_id => current_user).first
         end
@@ -162,6 +162,8 @@ class ProjectsController < ApplicationController
         if params[:iframe]
           @headless = @footless = true
           render :action => "show_iframe"
+        elsif params[:test]
+          render action: 'show_test', layout: 'bootstrap'
         end
       end
       
@@ -446,7 +448,7 @@ class ProjectsController < ApplicationController
       return
     end
     
-    @project_user = @project.project_users.create(:user => current_user)
+    @project_user = @project.project_users.create((params[:project_user] || {}).merge(user: current_user))
     unless @observation
       if @project_user.valid?
         respond_to_join(:notice => t(:welcome_to_x_project, :project => @project.title))
@@ -465,7 +467,7 @@ class ProjectsController < ApplicationController
     @project_observation = ProjectObservation.create(:project => @project, :observation => @observation)
     unless @project_observation.valid?
       respond_to_join(:dest => @observation,
-        :error => t(:there_were_problems_adding_your_observation_to_this_project, :project_observation => @project_observation.errors.full_messages.to_sentence))
+        :error => t(:there_were_problems_adding_that_observation_to_this_project, :project_observation => @project_observation.errors.full_messages.to_sentence))
       return
     end
     
@@ -508,7 +510,11 @@ class ProjectsController < ApplicationController
     unless @project_user.role == nil
       Project.delay(:priority => USER_INTEGRITY_PRIORITY).update_curator_idents_on_remove_curator(@project.id, @project_user.user.id)
     end
-    Project.delay(:priority => USER_INTEGRITY_PRIORITY).delete_project_observations_on_leave_project(@project.id, @project_user.user.id)
+    if params[:keep] == 'revoke'
+      Project.delay(:priority => USER_INTEGRITY_PRIORITY).revoke_project_observations_on_leave_project(@project.id, @project_user.user.id)
+    elsif !params[:keep].yesish?
+      Project.delay(:priority => USER_INTEGRITY_PRIORITY).delete_project_observations_on_leave_project(@project.id, @project_user.user.id)
+    end
     @project_user.destroy
     
     respond_to do |format|
@@ -580,10 +586,10 @@ class ProjectsController < ApplicationController
       error_msg = t(:the_observation_was_already_added_to_that_project)
     end
 
-    @project_observation = ProjectObservation.create(:project => @project, :observation => @observation)
+    @project_observation = ProjectObservation.create(project: @project, observation: @observation, user: current_user)
     
     unless @project_observation.valid?
-      error_msg = t(:there_were_problems_adding_your_observation_to_this_project) + 
+      error_msg = t(:there_were_problems_adding_that_observation_to_this_project) + 
         @project_observation.errors.full_messages.to_sentence
     end
 
@@ -630,8 +636,8 @@ class ProjectsController < ApplicationController
     @project_observation = @project.project_observations.find_by_observation_id(params[:observation_id])
     error_msg = if @project_observation.blank?
       t(:that_observation_hasnt_been_added_this_project)
-    elsif @project_observation.observation.user_id != current_user.id && (@project_user.blank? || !@project_user.is_curator?)
-      t(:you_cant_remove_other_peoples_observations)
+    elsif !@project_observation.removable_by?(current_user)
+      "you don't have permission to remove that observation"
     end
 
     unless error_msg.blank?
@@ -667,7 +673,7 @@ class ProjectsController < ApplicationController
     @errors = {}
     @project_observations = []
     @observations.each do |observation|
-      project_observation = ProjectObservation.create(:project => @project, :observation => observation)
+      project_observation = ProjectObservation.create(project: @project, observation: observation, user: current_user)
       if project_observation.valid?
         @project_observations << project_observation
       else
@@ -706,7 +712,7 @@ class ProjectsController < ApplicationController
       includes(:observation)
     
     @project_observations.each do |project_observation|
-      next unless project_observation.observation.user_id == current_user.id
+      next unless project_observation.removable_by?(current_user)
       project_observation.destroy
     end
     

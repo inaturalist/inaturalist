@@ -92,6 +92,9 @@ module ObservationsHelper
     elsif @d1 && @d2
       s += " #{t(:between).downcase} #{@d1} #{t :and} #{@d2}"
     end
+    if @projects
+      s += " #{ t(:in, default: "in").downcase} #{commas_and(@projects.map{|p| link_to(p.title, p)})}"
+    end
     s.html_safe
   end
   

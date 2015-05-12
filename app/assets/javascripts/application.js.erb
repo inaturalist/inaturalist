@@ -211,6 +211,7 @@ $(document).ready(function() {
   ]).preload()
   
   $('[data-tip]').each(autoTip)
+  $('[data-popover]').each(autoPopover)
   
   $('.source_nested_form_fields input.existing').chooser({
     collectionUrl: '/sources.json',
@@ -414,6 +415,27 @@ function checkDelayedLink(url) {
       }
     }
   })
+}
+
+function autoPopover() {
+  var options = $(this).data('popover')
+  if (options.content && options.content.match(/^#/)) {
+    content = $(options.content).html()
+  } else {
+    content = options.content
+  }
+  if (options.style && options.style.classes) {
+    options.style.classes = QTIP_DEFAULTS.style.classes + " " + options.style.classes
+  }
+  var tipOptions = $.extend(true, {}, QTIP_DEFAULTS, options, {
+    show: {event: 'click'},
+    hide: {event: 'unfocus'},
+    content: { 
+      text: content,
+      title: options.title
+    }
+  })
+  $(this).qtip(tipOptions)
 }
 
 function autoTip() {
@@ -1076,6 +1098,26 @@ $('.add_matching_link').live('click', function(e) {
   dialog.dialog({modal: true, title: "Add matching observations to project", width: 400, height: 400})
   return false  
 })
+
+function remoteDialog(url, options) {
+  var options = options || {},
+      dialogId = url.replace(/[^A-z0-9]+/g, '-').replace(/^\W+/, ''),
+      dialog = $('#'+dialogId)
+  if (dialog.length == 0) {
+    dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">'+I18n.t('loading')+'</div>')
+    dialog.attr('id', dialogId)
+    dialog.load(url)
+    dialog.dialog({
+      modal: true,
+      title: options.title,
+      width: 760,
+      minHeight: 300
+    })
+  } else {
+    $(dialog).dialog('open')
+  }
+  return false
+}
 
 function showJoinProjectDialog(projectId, options) {
   options = options || {}

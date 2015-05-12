@@ -15,6 +15,7 @@ Options:
 EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
   opt :test, "Don't actually touch the db", :short => "-t", :type => :boolean
+  opt :county, "Only do this county", short: "-c", type: :string
 end
 
 OPTS = opts
@@ -23,20 +24,11 @@ puts "[DEBUG] OPTS: #{OPTS.inspect}"
 # taxon_source = Source.find_by_title("Jepson Manual II")
 taxon_source = Source.find_by_title("Calflora")
 taxon_source ||= Source.create(
-  # :title => "Jepson Manual II",
-  # :in_text => "Baldwin et al. 2011",
-  # :url => "http://ucjeps.berkeley.edu/taxon_sourcemanual/review/",
-  # :citation => "Baldwin et al. (eds.). 2011. Jepson Manual II: Vascular Plants of California. Univ. of California Press, Berkeley."
   :in_text => "Calflora #{Time.now.year}",
   :citation => "Calflora: Information on California plants for education, research and conservation. [web application]. #{Time.now.year}. Berkeley, California: The Calflora Database [a non-profit organization]. Available: http://www.calflora.org/ (Accessed: #{Time.now.strftime('%M %d, %Y')}).",
   :url => "http://www.calflora.org/",
   :title => "Calflora"
 )
-# taxon_scheme = TaxonScheme.find_by_title("Jepson Manual II")
-# taxon_scheme ||= TaxonScheme.create(
-#   :title => "Jepson Manual II",
-#   :source => taxon_source
-# )
 taxon_scheme = TaxonScheme.find_by_title("Calflora")
 taxon_scheme ||= TaxonScheme.create(
   :title => "Calflora",
@@ -60,9 +52,9 @@ def work_on_place(place)
   #   ["list_id = #{place.check_list_id} AND taxon_ancestor_ids LIKE ?", "#{self_and_ancestor_ids}/%"])
   # puts "Created list of #{taxon.name} for #{place.display_name} #{check_list}"
 
-  place_name = place.name.gsub(/\s*county\s+/i, '').capitalize
-  url = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{place_name}&output=text"
-  url_introduced = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{place_name}&output=text&where-native=f"
+  place_name = place.name.gsub(/\s*county\s+/i, '').titleize
+  url = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{URI.encode(place_name)}&output=text"
+  url_introduced = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{URI.encode(place_name)}&output=text&where-native=f"
   page = RestClient.get(url)
   names = page.body.split("\n")[1..-1]
   page_introduced = RestClient.get(url_introduced)
@@ -101,6 +93,11 @@ def work_on_place(place)
     list = find_or_create_list_for(taxon, place, :source => source)
     unless list
       puts "\t\tCouldn't find list for #{taxon}, skipping..."
+      skipped_names << name
+      next
+    end
+    if  list && list.new_record? && !list.valid?
+      puts "\t\tList is invalid, skipping. Errors: #{list.errors.full_messages.to_sentence}"
       skipped_names << name
       next
     end
@@ -230,5 +227,8 @@ end
 
 california = Place.where(:name => "California", :place_type => Place::PLACE_TYPE_CODES["State"]).first
 california.children.where(:place_type => Place::PLACE_TYPE_CODES["County"]).find_each do |county|
+  if OPTS.county
+    next unless county.name.downcase == OPTS.county.downcase
+  end
   work_on_place(county)
 end

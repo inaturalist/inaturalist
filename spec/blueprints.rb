@@ -210,7 +210,7 @@ Post.blueprint(:draft) do
 end
 
 Project.blueprint do
-  user { User.make }
+  user { User.make! }
   title { Faker::Lorem.sentence }
 end
 
@@ -224,30 +224,30 @@ ProjectList.blueprint do
   project { Project.make }
 end
 
+ProjectObservation.blueprint do
+  observation { Observation.make! }
+  project { Project.make! } 
+end
+
 ProjectObservationField.blueprint do
   project { Project.make! }
   observation_field { ObservationField.make! }
 end
 
+ProjectObservationRule.blueprint do
+  ruler { Project.make! }
+  operator { "identified?" }
+end
+
 ProjectUser.blueprint do
-  user { User.make }
-  project { Project.make }
+  user { User.make! }
+  project { Project.make! }
 end
 
 ProjectUserInvitation.blueprint do
   user { User.make! }
   invited_user { User.make! }
   project { Project.make! }
-end
-
-ProjectObservation.blueprint do
-  observation { Observation.make }
-  project { Project.make }
-end
-
-ProjectObservationRule.blueprint do
-  ruler { Project.make }
-  operator { "identified?" }
 end
 
 ProviderAuthorization.blueprint do

@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
   PREFERRED_OBSERVATION_FIELDS_BY_CURATORS = "curators"
   PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER = "observer"
   preference :observation_fields_by, :string, :default => PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
+  PROJECT_ADDITION_BY_ANY = "any"
+  PROJECT_ADDITION_BY_JOINED = "joined"
+  PROJECT_ADDITION_BY_NONE = "none"
+  preference :project_addition_by, :string, default: PROJECT_ADDITION_BY_ANY
 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
@@ -112,6 +116,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions, :dependent => :delete_all
   has_many :updates, :foreign_key => :subscriber_id, :dependent => :delete_all
   has_many :flow_tasks
+  has_many :project_observations, dependent: :nullify 
   belongs_to :site, :inverse_of => :users
   belongs_to :place, :inverse_of => :users
 

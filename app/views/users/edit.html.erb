@@ -94,6 +94,21 @@
           :label => t(:dont_send_me_email), 
           :label_after => true %>
       </div>
+
+      <a name="projects"></a>
+      <h3><%=t :project_settings %></h3>
+      <div class="stacked">
+        <label><%=t :what_projects_can_add_your_observations? %></label>
+        <% for pref in [User::PROJECT_ADDITION_BY_ANY, User::PROJECT_ADDITION_BY_JOINED, User::PROJECT_ADDITION_BY_NONE] %>
+          <%= f.radio_button "preferred_project_addition_by", 
+            pref, 
+            label: t("views.users.edit.project_addition_preferences.#{pref}"), 
+            label_after: true %>
+        <% end %>
+        <div class="description">
+          <%=t 'views.users.edit.project_settings_desc' %>
+        </div>
+      </div>
     </div>
 
     <div class="last column span-9 stacked">

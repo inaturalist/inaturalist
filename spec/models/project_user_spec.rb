@@ -30,6 +30,10 @@ describe ProjectUser, "creation" do
     expect(pu.user.subscriptions.where(:resource_type => "AssessmentSection", :resource_id => as)).to be_blank
   end
 
+  it "should set curator_coordinate_access to observer by default" do
+    expect( ProjectUser.make!.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER
+  end
+
   describe "invite-only projects" do
     let(:project) { Project.make!(:prefers_membership_model => Project::MEMBERSHIP_INVITE_ONLY) }
     
@@ -167,4 +171,9 @@ describe ProjectUser do
       expect(u).not_to be_blank
     end
   end
+end
+
+describe ProjectUser, "prefers_updates" do
+  it "should allow journal post updates when true"
+  it "should supress journal post updates when false"
 end

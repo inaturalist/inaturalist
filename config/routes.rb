@@ -205,6 +205,8 @@ Rails.application.routes.draw do
   get 'observations/project/:id.all' => 'observations#project_all', :as => :all_project_observations
   get 'observations/of/:id.:format' => 'observations#of', :as => :observations_of
   match 'observations/:id/quality/:metric' => 'quality_metrics#vote', :as => :observation_quality, :via => [:post, :delete]
+  
+
   match 'projects/:id/join' => 'projects#join', :as => :join_project, :via => [ :get, :post ]
   delete 'projects/:id/leave' => 'projects#leave', :as => :leave_project
   post 'projects/:id/add' => 'projects#add', :as => :add_project_observation
@@ -248,15 +250,17 @@ Rails.application.routes.draw do
       post :add_matching, :as => :add_matching_to
       get :preview_matching, :as => :preview_matching_for
       get :invite, :as => :invite_to
+      get :confirm_leave
     end
     resources :flags
     resources :assessments, :only => [:new, :create, :show, :index, :edit, :update]
   end
 
   resources :project_assets, :except => [:index, :show]
-  resources :project_observations, :only => [:create, :destroy]
+  resources :project_observations, :only => [:create, :destroy, :update]
   resources :custom_projects, :except => [:index, :show]
   resources :project_user_invitations, :only => [:create, :destroy]
+  resources :project_users, only: [:update]
 
   get 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => simplified_login_regex }
   get 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => simplified_login_regex }, :followers => 'followers'

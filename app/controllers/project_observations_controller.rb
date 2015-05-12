@@ -1,10 +1,12 @@
 class ProjectObservationsController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
+  before_filter :load_record, only: [:update, :destroy]
   
   def create
     @project_observation = ProjectObservation.new(params[:project_observation])
     auto_join_project
+    @project_observation.user = current_user
 
     respond_to do |format|
       if @project_observation.save
@@ -25,27 +27,39 @@ class ProjectObservationsController < ApplicationController
       end
     end
   end
+
+  def update
+    respond_to do |format|
+      format.json do
+        if @project_observation.update_attributes(project_observation_params)
+          render json: @project_observation
+        else
+          render status: :unprocessable_entity, json: {errors: @project_observation.errors}
+        end
+      end
+    end
+  end
   
   def destroy
-    @project_observation = ProjectObservation.find_by_id(params[:id])
-    if @project_observation.blank?
-      status = :gone
-      json = "Project observation #{params[:id]} does not exist."
-    elsif @project_observation.observation.user_id != current_user.id
-      status = :forbidden
-      json = "You do not have permission to do that."
-    else
-      @project_observation.destroy
-      status = :ok
-      json = nil
-    end
-    
-    respond_to do |format|
-      format.any do
-        render :status => :status, :text => json
+    if [@project_observation.user_id, @project_observation.observation.user_id].include?(current_user.id) || @project_observation.project.curated_by?(current_user)
+      @project_observation.destroy  
+      respond_to do |format|
+        format.html do
+          redirect_back_or_default(@project_observation.project)
+        end
+        format.json do
+          head :no_content
+        end
       end
-      format.json do 
-        render :status => status, :json => json
+    else
+      respond_to do |format|
+        format.html do
+          flash[:notice] = I18n.t(:only_project_curators_can_do_that)
+          redirect_back_or_default @project_observation.project
+        end
+        format.json do
+          render json: {error: I18n.t(:only_project_curators_can_do_that)}, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -61,6 +75,10 @@ class ProjectObservationsController < ApplicationController
     if @project.tracking_code_allowed?(params[:tracking_code])
       @project_observation.tracking_code = params[:tracking_code]
     end
+  end
+
+  def project_observation_params
+    params.require(:project_observation).permit(:preferred_curator_coordinate_access, :prefers_curator_coordinate_access)
   end
   
 end

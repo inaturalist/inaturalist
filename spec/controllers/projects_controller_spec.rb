@@ -19,6 +19,23 @@ describe ProjectsController, "spam" do
   end
 end
 
+describe ProjectsController, "join" do
+  let(:user) { User.make! }
+  let(:project) { Project.make! }
+  before do
+    sign_in user
+  end
+  it "should create a project user" do
+    post :join, id: project.id
+    expect( project.project_users.where(user_id: user.id).count ).to eq 1
+  end
+  it "should accept project user parameters" do
+    post :join, id: project.id, project_user: {preferred_updates: false}
+    pu = project.project_users.where(user_id: user.id).first
+    expect( pu ).not_to be_prefers_updates
+  end
+end
+
 describe ProjectsController, "leave" do
   let(:user) { User.make! }
   let(:project) { Project.make! }

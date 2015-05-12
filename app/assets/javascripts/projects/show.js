@@ -7,10 +7,10 @@ $(document).ready(function() {
     kmlSet = true;
   }
 
-  $('#bioblitz_observations .observations').loadObservations({
-    url: OBSERVATIONS_URL, style: 'grid',
+  $('#recent_observations .observations').loadObservations({
+    url: OBSERVATIONS_URL+'&per_page=24', style: 'grid',
     success: function(r, data) {
-      $observations = $('#bioblitz_observations .observation')
+      $observations = $('#recent_observations .observation')
       $observations.each(function() {
         var o = {
           id: $(this).attr('id').split('-')[1],
@@ -25,7 +25,7 @@ $(document).ready(function() {
         map.addObservation(o)
       })
       if ($observations.length == 0) {
-        $('#bioblitz_observations .observations').html(
+        $('#recent_observations .observations').html(
           $('<div class="meta nocontent"></div>').html(I18n.t('no_observations_yet'))
         )
       }
@@ -39,11 +39,11 @@ $(document).ready(function() {
       }
     }
   })
-  $('#bioblitz_observations .observationcontrols').observationControls({div: $('#bioblitz_observations .observations'), skipMap: true})
-  $('#bioblitzstats').observationUserStats({
+  $('#recent_observations .observationcontrols').observationControls({div: $('#recent_observations .observations'), skipMap: true})
+  $('#projectstats').observationUserStats({
     url: '/observations/user_stats.json?limit=5&' + OBSERVATIONS_URL.split('?')[1]
   })
-  $('#bioblitzstats').observationTaxonStats({
+  $('#projectstats').observationTaxonStats({
     url: '/observations/taxon_stats.json?' + OBSERVATIONS_URL.split('?')[1]
   })
 })
