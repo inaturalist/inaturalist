@@ -62,7 +62,7 @@ module ElasticModel
     criteria = [ ]
     options[:where] ||= { }
     options[:where].each do |key, value|
-      if value.is_a? Array
+      if value.is_a?(Array) && ![ :should, :or ].include?(key)
         criteria << { terms: { key => value.map{ |v| id_or_object(v) } } }
       elsif value.is_a? Hash
         criteria << { key => value }

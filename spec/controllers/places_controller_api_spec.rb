@@ -81,3 +81,20 @@ describe PlacesController, "search" do
     expect( json.select{|p| p['id'] == without_geom.id}.size ).to eq 1
   end
 end
+
+
+describe PlacesController, "autocomplete" do
+  before { enable_elastic_indexing(Place) }
+  after { disable_elastic_indexing(Place) }
+  it "be able to find places with short words and diacritics" do
+    place = Place.make!(name: "Área de Protección de Flora y Fauna Laguna de Términos")
+    get :autocomplete, format: :json, q: "Área"
+    expect( JSON.parse(response.body).first["id"] ).to eq place.id
+    get :autocomplete, format: :json, q: "Área de"
+    expect( JSON.parse(response.body).first["id"] ).to eq place.id
+    get :autocomplete, format: :json, q: "Área de Protección"
+    expect( JSON.parse(response.body).first["id"] ).to eq place.id
+    get :autocomplete, format: :json, q: "Área de Protección de Flora y Fauna Laguna de Términos"
+    expect( JSON.parse(response.body).first["id"] ).to eq place.id
+  end
+end
