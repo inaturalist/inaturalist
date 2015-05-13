@@ -142,35 +142,38 @@
     <% end -%>
   <% end %>
 
-  <div id="projectstats" class="stacked">
-    <div class="inline buttonrow right">
-      <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
-        <%= link_to t(:all_observations, :default => "All observations").capitalize, observations_url(@observations_url_params), :class => "inter" %>
-      <% else %>
-        <%= link_to t(:all_observations, :default => "All observations").capitalize, project_observations_url(@project), :class => "inter" %>
-      <% end %>
-      <%= link_to t(:all_species, :default => "All species").capitalize, taxa_observations_url(@observations_url_params.merge(:hrank => Taxon::SPECIES)), :class => "inter" %>
-      <%= link_to t(:all_people, :default => "All people").capitalize, user_stats_observations_url(@observations_url_params), :class => "inter" %>
-      <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
-        <%= link_to_dialog t(:about_bioblitz_results), :width => "60%", :link => {:class => "meta inter"} do %>
-          <%=t 'views.projects.show.bioblitz_results_desc_html' %>
-        <% end -%>
-        <% if signed_in? && @project.event_in_progress? -%>
-          <%= link_to t(:view_real_time_stats_in_a_new_window), stats_observations_url(@observations_url_params.merge(:refresh => true)), :class => "inter readmore", :target => "_new" %>
-        <% end -%>
-      <% end %>
+  <% if (@project.project_type != Project::BIOBLITZ_TYPE) || @project.event_started? -%>
+    <div id="projectstats" class="stacked">
+      <div class="inline buttonrow right">
+        <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+          <%= link_to t(:all_observations, :default => "All observations").capitalize, observations_url(@observations_url_params), :class => "inter" %>
+        <% else %>
+          <%= link_to t(:all_observations, :default => "All observations").capitalize, project_observations_url(@project), :class => "inter" %>
+        <% end %>
+        <%= link_to t(:all_species, :default => "All species").capitalize, taxa_observations_url(@observations_url_params.merge(:hrank => Taxon::SPECIES)), :class => "inter" %>
+        <%= link_to t(:all_people, :default => "All people").capitalize, user_stats_observations_url(@observations_url_params), :class => "inter" %>
+        <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+          <%= link_to_dialog t(:about_bioblitz_results), :width => "60%", :link => {:class => "meta inter"} do %>
+            <%=t 'views.projects.show.bioblitz_results_desc_html' %>
+          <% end -%>
+          <% if signed_in? && @project.event_in_progress? -%>
+            <%= link_to t(:view_real_time_stats_in_a_new_window), stats_observations_url(@observations_url_params.merge(:refresh => true)), :class => "inter readmore", :target => "_new" %>
+          <% end -%>
+        <% end %>
+      </div>
+      <h2 class="stacked">
+        <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+          <%= @project.event_in_progress? ? t(:event_in_progress) : t(:event_stats) %>
+        <% else %>
+          <%=t :stats %>
+        <% end %>
+      </h2>
+      <div id="rtstats" class="clear">
+        <%= render :partial => "observations/real_time_stats" %>
+      </div>
     </div>
-    <h2 class="stacked">
-      <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
-        <%= @project.event_ended? ? t(:event_stats) : t(:event_in_progress) %>
-      <% else %>
-        <%=t :stats %>
-      <% end %>
-    </h2>
-    <div id="rtstats" class="clear">
-      <%= render :partial => "observations/real_time_stats" %>
-    </div>
-  </div>
+  <% end -%>
+
   <%= separator %>
 </div>
 
