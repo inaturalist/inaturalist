@@ -1,9 +1,5 @@
 #encoding: utf-8
 class PicasaPhoto < Photo
-  
-  Photo.descendent_classes ||= []
-  Photo.descendent_classes << self
-  
   validates_presence_of :native_photo_id
   validate :user_owns_photo
   validate :licensed_if_no_user

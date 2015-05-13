@@ -623,7 +623,7 @@ class ObservationsController < ApplicationController
         o.oauth_application = a.becomes(OauthApplication)
       end
       # Get photos
-      Photo.descendent_classes.each do |klass|
+      Photo.subclasses.each do |klass|
         klass_key = klass.to_s.underscore.pluralize.to_sym
         if params[klass_key] && params[klass_key][fieldset_index]
           o.photos << retrieve_photos(params[klass_key][fieldset_index], 
@@ -769,7 +769,7 @@ class ObservationsController < ApplicationController
         # Get photos
         updated_photos = []
         old_photo_ids = observation.photo_ids
-        Photo.descendent_classes.each do |klass|
+        Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           if params[klass_key] && params[klass_key][fieldset_index]
             updated_photos += retrieve_photos(params[klass_key][fieldset_index], 
@@ -789,7 +789,7 @@ class ObservationsController < ApplicationController
           Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(doomed_photo_ids)
         end
 
-        Photo.descendent_classes.each do |klass|
+        Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           next unless params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
           next unless photo = observation.photos.last
@@ -1063,7 +1063,7 @@ class ObservationsController < ApplicationController
   end
   
   def import_photos
-    photos = Photo.descendent_classes.map do |klass|
+    photos = Photo.subclasses.map do |klass|
       retrieve_photos(params[klass.to_s.underscore.pluralize.to_sym], 
         :user => current_user, :photo_class => klass)
     end.flatten.compact
@@ -2427,8 +2427,7 @@ class ObservationsController < ApplicationController
       @photo_identities = []
       return true
     end
-    Photo.descendent_classes = [FlickrPhoto, PicasaPhoto, FacebookPhoto] if Photo.descendent_classes.blank?
-    @photo_identities = Photo.descendent_classes.map do |klass|
+    @photo_identities = Photo.subclasses.map do |klass|
       assoc_name = klass.to_s.underscore.split('_').first + "_identity"
       current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
     end.compact

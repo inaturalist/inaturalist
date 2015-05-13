@@ -1247,7 +1247,7 @@ class TaxaController < ApplicationController
   end
   
   def retrieve_remote_photos
-    photo_classes = Photo.descendent_classes - [LocalPhoto]
+    photo_classes = Photo.subclasses - [LocalPhoto]
     photos = []
     photo_classes.each do |photo_class|
       param = photo_class.to_s.underscore.pluralize

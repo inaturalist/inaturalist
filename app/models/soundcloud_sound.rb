@@ -1,7 +1,4 @@
 class SoundcloudSound < Sound
-
-  Sound.descendent_classes ||= []
-  Sound.descendent_classes << self
   
   LICENSE_MAPPINGS = {
     "all-rights-reserved" => 0,
