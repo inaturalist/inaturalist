@@ -190,13 +190,8 @@
   
   <% if @project_journal_posts.blank? && @project.curated_by?(current_user) %>
     <div id="journal" class="quiet box">
-      <h3>Journal</h3>
-      <p>
-        Your project journal is a tool for communicating with project members. You can use it to make announcements, set priorities, or talk about your project's findings. 
-      </p>
-      <p>
-        To get started, <%= link_to "create a post", new_project_journal_post_path(@project), 'class': 'readmore' %>
-      </p>
+      <h3><%=t :journal %></h3>
+      <%=t 'views.projects.show.no_journal_blurb_html', url: new_project_journal_post_path(@project) %>
     </div>
   <% elsif !@project_journal_posts.blank? %>
     <div id="journal" class="quiet box">
@@ -254,80 +249,6 @@
 
 <div class="last column span-8">
   <ul id="projectnav" class="stacked quiet box">
-    
-    <!--
-
-    <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
-      <li>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:event_observations)}".html_safe, @observations_url, :class => "navlink" %>
-      </li>
-    <% end -%>
-    <li>
-      <% if @project_observations_count.to_i > 0 -%>
-        <span class="right sectioncount">
-          <span class="count"><%= @project_observations_count %></span> <%= t(:observations).to_s.downcase %>
-        </span>
-      <% end -%>
-      <%= link_to "<span class='lead'>&raquo;</span> #{t(:observations_map)}".html_safe, project_observations_path(@project), :class => "navlink" %>
-      <div class="inner feeds">
-        <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
-        <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
-        <%= link_to("CSV",  export_observations_path('projects[]' => @project),  :class => 'csvlink', :rel => "nofollow") %>
-        <% if @project.curated_by?(current_user) -%>
-          /
-          <%= link_to t(:all_csv), all_project_observations_url(@project, :format => 'csv'), 
-            :class => "delayedlink csvlink", 
-            "data-delayed-link-msg" => 
-              t(:please_hold_on_while_the_file),
-            :rel => "nofollow" %>
-        <% end -%>
-      </div>
-      <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
-        <div class="inner small meta upstacked">
-          <%=t 'views.projects.show.project_observations_desc' %>
-        </div>
-      <% end -%>
-    </li>
-    <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
-      <li>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:curated_checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
-        <% if @observed_taxa_count.to_i > 0 -%>
-          <div class="inner">
-            <%= t(:curated_count) %>:
-            <span class="count"><%= @list_numerator || @observed_taxa_count %></span>
-            <% if @project.prefers_count_from_list? -%>
-              <%= t :of %>
-              <span class="count">
-                <%= @list_denom %>
-              </span>
-            <% end -%>
-            <%= t :taxa_observed %>
-          </div> 
-        <% end -%>
-        <div class="inner small meta upstacked">
-          <%=t 'views.projects.show.curated_checklist_desc' %>
-        </div>
-      </li>
-    <% else %>
-      <li>
-        <% if @observed_taxa_count.to_i > 0 -%>
-          <span class="right sectioncount">
-             <span class="count"><%= @list_numerator || @observed_taxa_count %></span>
-             <% if @project.prefers_count_from_list? -%>
-               <%= t :of %>
-               <span class="count">
-                 <%= @list_denom %>
-               </span>
-             <% end -%>
-             <%= t :taxa_observed %>
-          </span>
-        <% end -%>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
-      </li>
-    <% end -%>
-
-    -->
-
     <li>
       <% if @members_count.to_i > 1 -%>
         <span class="right sectioncount">
