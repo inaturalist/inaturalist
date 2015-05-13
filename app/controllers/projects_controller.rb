@@ -533,14 +533,14 @@ class ProjectsController < ApplicationController
     @project_user_stats = @project.project_users.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
     @project_observation_stats = @project.project_observations.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
     @unique_observer_stats = @project.project_observations.joins(:observation).
-      select("observations.user_id").
+      select("DISTINCT observations.user_id").
       group("EXTRACT(YEAR FROM project_observations.created_at) || '-' || EXTRACT(MONTH FROM project_observations.created_at)").
       count
     @total_project_users = @project.project_users.count
     @total_project_observations = @project.project_observations.count
     @total_unique_observers = @project.project_observations.select("DISTINCT observations.user_id").joins(:observation).count
     
-    @headers = ['year/month', 'new users', 'new observations', 'unique observers']
+    @headers = [t(:year_month), t(:new_members), t(:new_observations), t(:unique_observers)]
     @data = []
     (@project_user_stats.keys + @project_observation_stats.keys + @unique_observer_stats.keys).uniq.each do |key|
       display_key = key.gsub(/\-(\d)$/, "-0\\1")
