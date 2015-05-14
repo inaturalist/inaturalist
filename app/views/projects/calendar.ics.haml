@@ -1,0 +1,23 @@
+:ruby
+  cal = Icalendar::Calendar.new
+  @projects.each do |project|
+    if !project.user.time_zone.blank? && ActiveSupport::TimeZone[project.user.time_zone]
+      tz = ActiveSupport::TimeZone[project.user.time_zone].tzinfo
+      tzid = tz.name
+      timezone = tz.ical_timezone project.start_time
+      cal.add_timezone timezone
+    else
+      tzid = 'Etc/UTC'
+    end
+    cal.event do |e|
+      e.dtstart     = Icalendar::Values::DateTime.new(project.start_time, 'tzid' => tzid)
+      e.dtend       = Icalendar::Values::DateTime.new(project.end_time, 'tzid' => tzid)
+      e.summary     = project.title
+      e.description = project.description
+      e.ip_class    = "PUBLIC"
+      e.location    = project.place.display_name if project.place
+      e.url         = project_url(project)
+    end
+  end
+  cal.publish
+= cal.to_ical

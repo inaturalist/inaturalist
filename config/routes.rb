@@ -252,6 +252,9 @@ Rails.application.routes.draw do
       get :invite, :as => :invite_to
       get :confirm_leave
     end
+    collection do
+      get :calendar
+    end
     resources :flags
     resources :assessments, :only => [:new, :create, :show, :index, :edit, :update]
   end

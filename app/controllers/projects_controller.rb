@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
     :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count, :browse]
-  load_except = [ :create, :index, :search, :new, :by_login, :map, :browse ]
+  load_except = [ :create, :index, :search, :new, :by_login, :map, :browse, :calendar ]
   before_filter :load_project, :except => load_except
   blocks_spam :except => load_except, :instance => :project
   before_filter :ensure_current_project_url, :only => :show
@@ -525,6 +525,25 @@ class ProjectsController < ApplicationController
       
       format.json do
         render :status => :ok, :json => {}
+      end
+    end
+  end
+
+  def calendar
+    @projects = Project.where(project_type: Project::BIOBLITZ_TYPE).order("start_time ASC, end_time ASC").where("end_time > ?", Time.now)
+    unless params[:place_id].blank?
+      @place = Place.find(params[:place_id]) rescue nil
+    end
+    @projects = @projects.in_place(@place) if @place
+    respond_to do |format|
+      format.html do
+        @projects = @projects.page(params[:page]).includes(:place)
+        @finished = Project.where(project_type: Project::BIOBLITZ_TYPE).order("end_time DESC, start_time ASC").where("end_time < ?", Time.now).page(1)
+        @finished = @finished.in_place(@place) if @place
+        render layout: 'bootstrap'
+      end
+      format.ics do
+        @projects = @projects.limit(500).includes(place: :user)
       end
     end
   end
