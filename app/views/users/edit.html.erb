@@ -98,7 +98,7 @@
       <a name="projects"></a>
       <h3><%=t :project_settings %></h3>
       <div class="stacked">
-        <label><%=t :what_projects_can_add_your_observations? %></label>
+        <label><%=t :which_projects_can_add_your_observations? %></label>
         <% for pref in [User::PROJECT_ADDITION_BY_ANY, User::PROJECT_ADDITION_BY_JOINED, User::PROJECT_ADDITION_BY_NONE] %>
           <%= f.radio_button "preferred_project_addition_by", 
             pref, 

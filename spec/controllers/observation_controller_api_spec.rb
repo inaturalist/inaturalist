@@ -753,6 +753,13 @@ shared_examples_for "an ObservationsController" do
       expect(json.detect{|obs| obs['id'] == site2.id}).not_to be_blank
     end
 
+    it "should filter by project slug" do
+      po = make_project_observation
+      get :index, format: :json, projects: po.project.slug
+      json = JSON.parse(response.body)
+      expect( json.detect{|obs| obs['id'] == po.observation_id} ).not_to be_blank
+    end
+
     it "should filter by observations not in a project" do
       po1 = ProjectObservation.make!
       po2 = ProjectObservation.make!

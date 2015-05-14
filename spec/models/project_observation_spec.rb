@@ -141,26 +141,6 @@ describe ProjectObservation, "destruction" do
   end
 end
 
-describe ProjectObservation, "observed_by_project_member?" do
-  
-  before(:each) do 
-    @project_user = ProjectUser.make!
-    @project = @project_user.project
-    @observation = Observation.make!(:user => @project_user.user)
-    @po1 = ProjectObservation.make(:project => @project, :observation => @observation)
-    @po2 = ProjectObservation.make(:observation => @observation)
-  end
-  
-  it "should be true if observed by a member of the project" do
-    expect(@po1).to be_observed_by_project_member
-  end
-  
-  it "should be false unless observed by a member of the project" do
-    expect(@po2).not_to be_observed_by_project_member
-  end
-  
-end
-
 describe ProjectObservation, "observed_in_place_bounding_box?" do
   
   it "should work" do
