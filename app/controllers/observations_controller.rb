@@ -284,20 +284,9 @@ class ObservationsController < ApplicationController
         end.reverse
         
         if logged_in?
-          @projects, @curated_projects = [], []
-          current_user.project_users.includes(:project).joins(:project).limit(1000).order("lower(projects.title)").each do |pu|
-            @projects << pu.project
-            @curated_projects << pu.project if pu.is_curator?
-          end
+          @projects = current_user.project_users.includes(:project).joins(:project).limit(1000).order("lower(projects.title)").map(&:project)
           @project_addition_allowed = @observation.user_id == current_user.id
           @project_addition_allowed ||= @observation.user.preferred_project_addition_by != User::PROJECT_ADDITION_BY_NONE
-          if @project_addition_allowed
-            @addable_projects = if @observation.user_id == current_user.id
-              @projects
-            else
-              @curated_projects
-            end
-          end
         end
         
         @places = @observation.places
