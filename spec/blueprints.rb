@@ -276,6 +276,15 @@ Site.blueprint do
   url { "http://#{Faker::Internet.domain_name}" }
 end
 
+SiteStatistic.blueprint do
+  data { {
+    observations: { },
+    users: { },
+    projects: { },
+    taxa: { }
+  }}
+end
+
 Sound.blueprint do
   user { User.make }
   native_sound_id { rand(1000) }

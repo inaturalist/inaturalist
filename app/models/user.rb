@@ -642,6 +642,18 @@ class User < ActiveRecord::Base
     }
   end
 
+  def self.active_ids(at_time = Time.now)
+    date_range = (at_time - 30.days)..at_time
+    classes = [ Identification, Observation, Comment, Post ]
+    # get the unique user_ids that created instances of any of these
+    # classes within the last 30 days, then get the union (with .inject(:|))
+    # of the array of arrays.
+    user_ids = classes.collect{ |klass|
+      klass.select("DISTINCT(user_id)").where(created_at: date_range).
+        collect{ |i| i.user_id }
+    }.inject(:|)
+  end
+
   def self.header_cache_key_for(user, options = {})
     user_id = user.is_a?(User) ? user.id : user
     user_id ||= "signed_on"

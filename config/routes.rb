@@ -408,10 +408,16 @@ Rails.application.routes.draw do
       post :merge
     end
   end
-  
-  # get '/guide' => 'places#guide', :as => :guide
+
   resources :flags
-  get 'admin' => 'admin#index', :as => :admin
+  resource :admin, only: :index, controller: :admin do
+    resource :stats, controller: "admin/stats" do
+      collection do
+        get :index
+      end
+    end
+  end
+
   get 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"
   delete 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content"
   put 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user"

@@ -1,0 +1,19 @@
+- content_for(:extracss) do
+  = stylesheet_link_tag "admin/stats"
+- content_for(:extrajs) do
+  = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"
+  = javascript_include_tag "admin/stats"
+  :javascript
+    var STATS_JSON = #{ @stats };
+%h2 Stats
+%h3 Observations
+#observations
+%h3 Users
+#users
+%h3 Projects
+#projects
+%h3 Observations By Rank
+#ranks
+#ranks_pie
+%h3 Observations and Identifications in last 7 days
+#obs_7
