@@ -3,6 +3,11 @@
 - content_for :extracss do
   :css
     tr.finished { text-decoration: line-through; }
+    #calendar-buttons { margin-top: 15px; }
+    #calendar-buttons .btn { margin-right: 10px; }
+    th.title { width: 40%; }
+    th.start_time, th.end_time { width: 10%; }
+    td.start_time, td.end_time { white-space: nowrap; }
 - content_for :extrajs do
   :javascript
     var PLACE = #{@place.to_json.html_safe}
@@ -14,7 +19,7 @@
       afterClear: function(item) { $(this.markup.input).parents('form').submit() }
     })
 .container
-  .right{style: 'margin-top: 15px'}
+  #calendar-buttons.right
     = form_tag url_for, method: :get do |f|
       = link_to calendar_projects_url(format: 'ics'), :class => "btn" do
         %i.fa.fa-calendar
@@ -25,18 +30,18 @@
   %table.table.stacked
     %thead
       %tr
-        %th=t :start_time
-        %th=t :end_time
-        %th=t :title
-        %th=t :place
+        %th.start_time=t :start_time
+        %th.end_time=t :end_time
+        %th.title=t :title
+        %th.place=t :place
     %tbody
       - for project in @projects
         - css_class = ''
         - css_class += ' meta' if project.start_time > Time.now 
         - css_class += ' meta finished' if project.event_ended?
         %tr{:class => css_class}
-          %td=l project.start_time
-          %td=l project.end_time
+          %td.start_time=l project.start_time
+          %td.end_time=l project.end_time
           %td
             = link_to project.title, project
           %td
@@ -50,18 +55,18 @@
   %table.table
     %thead
       %tr
-        %th=t :start_time
-        %th=t :end_time
-        %th=t :title
-        %th=t :place
+        %th.start_time=t :start_time
+        %th.end_time=t :end_time
+        %th.title=t :title
+        %th.place=t :place
     %tbody
       - for project in @finished
         - css_class = ''
         - css_class += ' success' if project.event_in_progress?
         - css_class += ' meta finished' if project.event_ended?
         %tr{:class => css_class}
-          %td=l project.start_time
-          %td=l project.end_time
+          %td.start_time=l project.start_time
+          %td.end_time=l project.end_time
           %td
             = link_to project.title, project
           %td

@@ -530,7 +530,8 @@ class ProjectsController < ApplicationController
   end
 
   def calendar
-    @projects = Project.where(project_type: Project::BIOBLITZ_TYPE).order("start_time ASC, end_time ASC").where("end_time > ?", Time.now)
+    @projects = Project.where(project_type: Project::BIOBLITZ_TYPE).order("start_time ASC, end_time ASC").
+      where("end_time > ?", Time.now).joins(:place).where("places.id IS NOT NULL")
     unless params[:place_id].blank?
       @place = Place.find(params[:place_id]) rescue nil
     end

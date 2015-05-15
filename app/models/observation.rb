@@ -679,9 +679,6 @@ class Observation < ActiveRecord::Base
     search_wheres["observed_on_details.day"] = p[:observed_on_day] if p[:observed_on_day]
     search_wheres["observed_on_details.month"] = p[:observed_on_month] if p[:observed_on_month]
     search_wheres["observed_on_details.year"] = p[:observed_on_year] if p[:observed_on_year]
-    if p[:site] && host = URI.parse(p[:site]).host
-      search_wheres["uri"] = host
-    end
     if d = Observation.split_date(p[:created_on], utc: true)
       search_wheres["created_at_details.day"] = d[:day] if d[:day] && d[:day] != 0
       search_wheres["created_at_details.month"] = d[:month] if d[:month] && d[:month] != 0
