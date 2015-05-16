@@ -778,10 +778,6 @@ pt-BR:
   contain_all_descendants?: Este check list contém todos os representantes deste táxon
     que ocorrem na área?
   contest: concurso
-  contest_projects_description: Projetos do tipo "Concurso" mostrarão um quadro de
-    classificação pelo número de espécies únicas observadas, enquanto projetos "Concurso
-    de Observações" vão apresentar tabelas que classificam os colaboradores pelo número
-    de observações
   contributions: contribuições
   contributions_from: Contribuições de
   contributor_cannot_be_found: Colaborador não pode ser encontrado
@@ -1343,7 +1339,6 @@ pt-BR:
   home_faq: Perguntas frequentes
   however_there_were_some_issues: 'Entretanto, existiram alguns problemas: %{issues}'
   hybrid: híbrido
-  i_something_i: <i>Algo...</i>
   icon: Ícone
   icon_size: Tamanho do ícone
   icon_slash_photo: Ícone / Foto
@@ -2373,12 +2368,6 @@ pt-BR:
     mudança.
   please_add_this_observation_to: Por favor adicione esta observação a
   please_add_this_to_x_html: Por favor adicione isto a %{x}
-  please_be_aware_project_curators: Por favor, saiba que os coordenadores do projeto
-    serão capazes de enxergar qualquer localização privada ou oculta das observações
-    adicionadas neste projeto.
-  please_be_aware_that_project_curators: Por favor, saiba que os curadores poderão
-    enxergar qualquer localização provada ou oculta das observações adicionadas neste
-    projeto.
   please_be_careful_particulary_when: Por favor tenha cuidado, principalmente quando
     deletar espécies ou grupos. Se um táxon está associado à observações, identificações,
     espécies e grupos listados, etc, por favor
@@ -3318,6 +3307,7 @@ pt-BR:
   user_invited_you_to_join_this_project_on_date_html: '%{user} convidou você para
     fazer parte deste projeto em %{date}'
   user_invited_your_x_to_a_project_html: '%{user} convidou você para %{x} um projeto'
+  user_is_now_role_for_project_html: <strong>%{user}</strong> é agora %{role} do %{project}
   user_added_an_observation_field_html: '%{user} adicionou um valor para "%{field_name}"
     em uma observação de %{owner}'
   user_is_a_naturalist: '%{user} é um naturalista!'
@@ -3546,7 +3536,6 @@ pt-BR:
     para %{project}
   you_are_not_editing_any_guides_add_one_html: Você não está modificando qualquer
     guia. <a href="/guides/new">Adicione uma</a>
-  user_is_now_role_for_project_html: <strong>%{user}</strong> é agora %{role} do %{project}
   you_are_already_a_member_of_this_project: Você já é membro deste projeto!
   you_are_no_longer_following_x: Você não está mais seguindo %{friend}.
   you_are_subscribed_to: Você está inscrito em
@@ -4141,6 +4130,9 @@ pt-BR:
           que pode pode ajudá-lo com a estrutura do arquivo CSV. <a href="%{url}">Faça
           o download do arquivo modelo</a>
       show:
+        ancestor_disagreements_desc: '# de táxons identificados que estão entre os
+          ancestrais de um grupo e espécie, mas foram criados depois da primeira identificação
+          utilizando este táxon'
         community_taxon_desc_html: "<p class=\"ui\">\nO táxon comunitário (ou identificação
           colaborativa) representa  aquele táxon do %{site_name} que a comunidade
           acredita se encaixar perfeitamente a observação. Se você esta interessado
@@ -4171,18 +4163,15 @@ pt-BR:
           que não contêm o táxon ser marcado). Para os táxons identificados que possuem
           uma nota de acerto próxima a 2/3 e no mínimo 2 identificações, escolha o
           táxon mais baixo.\n</p>"
-        identification_count_desc: '# de identificações para um único táxon'
         cumulative_count_desc: '# de identificações para um único táxon e todos os
           seus descendentes'
         disagreement_count_desc: '# de táxons identificados que não estão entre os
           ancestrais de um grupo ou espécie'
-        ancestor_disagreements_desc: '# de táxons identificados que estão entre os
-          ancestrais de um grupo e espécie, mas foram criados depois da primeira identificação
-          utilizando este táxon'
-        score_desc: pontos = conta cumulativa / (conta cumulativa + conta de desacordos
-          + ancestrais em desacordo)
+        identification_count_desc: '# de identificações para um único táxon'
         flagged_photos_desc_html: Algumas dessas fotos foram marcadas com um alerta
           de conteúdo inapropriado ou infrações de direitos. Para detalhes veja %{links}
+        score_desc: pontos = conta cumulativa / (conta cumulativa + conta de desacordos
+          + ancestrais em desacordo)
       user_stats:
         user_stats_desc: Estatísticas do usuário tem um limite máximo de 500 observações
           ou espécies contadas, assim sendo o total listado é normalmente um pouco
