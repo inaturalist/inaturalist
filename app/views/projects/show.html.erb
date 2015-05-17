@@ -310,6 +310,21 @@
         </div>
       <% end -%>
     </li>
+    <% if @project.project_type != Project::BIOBLITZ_TYPE %>
+      <li>
+        <% if @observed_taxa_count.to_i > 0 -%>
+          <span class="right sectioncount">
+            <span class="count"><%= @list_numerator || @observed_taxa_count %></span>
+            <% if @project.prefers_count_from_list? -%>
+              <%= t :of %>
+              <span class="count"><%= @list_denom %></span>
+            <% end -%>
+            <%= t :taxa_observed %>
+          </span>
+        <% end -%>
+       <%= link_to "<span class='lead'>&raquo;</span> #{t(:checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
+      </li>
+    <% end -%>
     <% if logged_in? && @project.project_type != Project::BIOBLITZ_TYPE -%>
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:usage_stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
