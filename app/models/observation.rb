@@ -1208,7 +1208,7 @@ class Observation < ActiveRecord::Base
     if options[:verb]
       s += options[:verb] == true ? I18n.t(:observed).downcase : " #{options[:verb]}"
     end
-    unless self.place_guess.blank? || options[:no_place_guess]
+    unless self.place_guess.blank? || options[:no_place_guess] || coordinates_obscured?
       s += " #{I18n.t(:from, :default => 'from').downcase} #{self.place_guess}"
     end
     s += " #{I18n.t(:on_day)}  #{I18n.l(self.observed_on, :format => :long)}" unless self.observed_on.blank?

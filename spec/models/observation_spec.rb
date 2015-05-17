@@ -3,8 +3,8 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Observation do
 
-  before(:each) { enable_elastic_indexing([ Observation ]) }
-  after(:each) { disable_elastic_indexing([ Observation ]) }
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
 
   describe "creation" do
 
@@ -1485,6 +1485,14 @@ describe Observation do
     it "should be nil if not obscured or private" do
       o = Observation.make!(:geoprivacy => "open")
       expect(o.geoprivacy).to be_nil
+    end
+
+    it "should remove place_guess from to_plain_s" do
+      o = Observation.make!(place_guess: "Duluth, MN", latitude: 1, longitude: 1)
+      expect(o.to_plain_s).to be =~ /#{o.place_guess}/
+      o.update_attributes(geoprivacy: Observation::OBSCURED)
+      expect(o.to_plain_s).not_to be =~ /#{o.place_guess}/
+      expect(o.place_guess).not_to be_blank
     end
   end
 

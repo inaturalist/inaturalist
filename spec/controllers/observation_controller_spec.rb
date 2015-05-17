@@ -106,6 +106,24 @@ describe ObservationsController do
       end
     end
   end
+
+  describe "show" do
+    render_views
+    it "should now include the place_guess when coordinates obscured" do
+      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: "Duluth, MN")
+      get :show, id: o.id
+      expect( response.body ).not_to be =~ /#{o.place_guess}/
+    end
+  end
+
+  describe "show.mobile" do
+    render_views
+    it "should now include the place_guess when coordinates obscured" do
+      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: "Duluth, MN")
+      get :show, format: "mobile", id: o.id
+      expect( response.body ).not_to be =~ /#{o.place_guess}/
+    end
+  end
   
   describe "import_photos" do
     # to test this we need to mock a flickr response
