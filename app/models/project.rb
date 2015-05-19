@@ -290,7 +290,7 @@ class Project < ActiveRecord::Base
       when "observed_in_place?"
         # Ignore, we already added the place_id
       when "on_list?"
-        params[:list_id] = rule.operand_id
+        params[:list_id] = project_list.id
       when "identified?"
         params[:identified] = true
       when "georeferenced"
@@ -589,16 +589,20 @@ class Project < ActiveRecord::Base
           raise ProjectAggregatorAlreadyRunning, msg
         end
       end
-      observations = Observation.elastic_query(params.merge(page: page), elastic_options)
+      observations = if params[:list_id]
+        Observation.query(params).page(page)
+      else
+        Observation.elastic_query(params.merge(page: page), elastic_options)
+      end
       break if observations.blank?
-      Rails.logger.info "[INFO #{Time.now}] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
+      Rails.logger.debug "[DEBUG] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
       observations.each do |o|
         po = ProjectObservation.new(project: self, observation: o)
         if po.save
           added += 1
         else
           fails += 1
-          logger.error "[ERROR #{Time.now}] Failed to add #{po} to #{self}: #{po.errors.full_messages.to_sentence}"
+          Rails.logger.debug "[DEBUG] Failed to add #{po} to #{self}: #{po.errors.full_messages.to_sentence}"
         end
       end
       observations = nil

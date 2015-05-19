@@ -789,9 +789,10 @@ class Observation < ActiveRecord::Base
     end
 
     if p[:not_in_project]
+      project_id = p[:not_in_project].is_a?(Project) ? p[:not_in_project].id : p[:not_in_project]
       search_filters << {
         'not': {
-          term: { project_ids: p[:not_in_project].id }
+          term: { project_ids: project_id }
         }
       }
     end
