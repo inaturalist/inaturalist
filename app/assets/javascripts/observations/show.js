@@ -246,3 +246,24 @@ function showCommunityTaxonDialog() {
   }
   return false
 }
+
+function showLocationDetails(link, options) {
+  var options = options || {},
+      user_id = options.user_id
+  if (options.user_id) {
+    $.post('/users/'+user_id, {'_method': 'PUT', 'user[prefers_location_details]': true}, null, 'json')
+  }
+  $('#location_details').slideDown()
+  $(link).hide()
+  $(link).siblings().show()
+}
+function hideLocationDetails(link, options) {
+  var options = options || {},
+      user_id = options.user_id
+  if (options.user_id) {
+    $.post('/users/'+user_id, {'_method': 'PUT', 'user[prefers_location_details]': false}, null, 'json')
+  }
+  $('#location_details').slideUp()
+  $(link).hide()
+  $(link).siblings().show()
+}

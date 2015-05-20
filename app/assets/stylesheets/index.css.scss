@@ -16,6 +16,8 @@ body {
   position: relative;
 }
 
+#wrapper {min-height: 450px; }
+
 .gm-style .gm-style-iw, .gm-style .gm-style-iw a, .gm-style .gm-style-iw span, .gm-style .gm-style-iw label, 
 .gm-style .gm-style-iw div, .gm-style div, .gm-style span, .gm-style label, .gm-style a {
   font-family: "Trebuchet MS", Arial, sans-serif;
@@ -65,7 +67,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Georgia, serif;
+  font-family: "Trebuchet MS", Arial, sans-serif;
   margin-bottom: 0.5em;
 }
 

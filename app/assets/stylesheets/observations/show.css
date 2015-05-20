@@ -1,3 +1,5 @@
+h2 .observedby, h2 .datetime { font-size: 60%; color: #777;}
+h2 .observedby:before, h2 .date:before, h2 time:before { content: '\00B7'; color: #aaa; margin: 0 0.25em;}
 .even{background-color:#f3f3f3;}
 #identifications{margin-bottom:1em;}
 #identifications h3{margin-bottom:0.5em;}

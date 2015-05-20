@@ -56,6 +56,8 @@ module ObservationsHelper
     if !observation.place_guess.blank? && coordinates_viewable
       place_guess = if observation.lat_lon_in_place_guess? && coordinate_truncation
         "<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>"
+      elsif options[:place_guess_truncation]
+        observation.place_guess.truncate(options[:place_guess_truncation])
       else
         observation.place_guess
       end

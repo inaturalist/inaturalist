@@ -142,41 +142,47 @@
   </div>
   
   <h2>
-    <%- if @observation.taxon && @observation.taxon_id == @observation.community_taxon_id -%>
-      <%= render "shared/taxon", :taxon => @observation.taxon, :link_url => @observation.taxon,
-        :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil %>
-    <%- elsif @observation.taxon -%>
-      <%= render "shared/taxon", 
-        :taxon => @observation.taxon, 
-        :link_url => @observation.taxon, 
-        :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil,
-        :no_common => !@observation.species_guess.blank? && @observation.species_guess.downcase == @observation.taxon.name.downcase %>
-    <%- elsif !@observation.species_guess.blank? -%>
-      <%= @observation.species_guess -%>
-    <%- else -%>
-      <%=t :something %>,
-    <% end -%>
-    <%= t(:observed_by).downcase %> 
-    <%= link_to observations_by_login_path(@observation.user.login) do %>
-      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">
-          <%= @observation.user.login %>
-        </span>
-      </span>
-    <% end -%>
-    <span class="meta date">
-      <%- if @observation.time_observed_at && @coordinates_viewable -%>
-        <%=l @observation.time_observed_at.in_time_zone(@observation.time_zone || Time.zone), :format => :observed_at %>
+    <span class="taxon">
+      <%- if @observation.taxon && @observation.taxon_id == @observation.community_taxon_id -%>
+        <%= render "shared/taxon", :taxon => @observation.taxon, :link_url => @observation.taxon,
+          :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil %>
+      <%- elsif @observation.taxon -%>
+        <%= render "shared/taxon", 
+          :taxon => @observation.taxon, 
+          :link_url => @observation.taxon, 
+          :comname => !@observation.species_guess.blank? && @observation.species_guess.downcase != @observation.taxon.name.downcase ? @observation.species_guess : nil,
+          :no_common => !@observation.species_guess.blank? && @observation.species_guess.downcase == @observation.taxon.name.downcase %>
+      <%- elsif !@observation.species_guess.blank? -%>
+        <%= @observation.species_guess -%>
+      <%- else -%>
+        <%=t :something %>
       <% end -%>
+    </span>
+    <span class="observedby">
+      <%= t(:observed_by) %> 
+      <%= link_to observations_by_login_path(@observation.user.login) do %>
+        <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">
+            <%= @observation.user.login %>
+          </span>
+        </span>
+      <% end -%>
+    </span>
+    <span class="meta datetime">
       <%- if @observation.observed_on -%>
-        <%=t :on_ %>
-        <%= link_to t("date_format.month.#{@observation.observed_on.strftime('%B').downcase}"),
-          observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}") %>
-        <%= link_to @observation.observed_on.day, 
-          observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}-#{@observation.observed_on.day}") %>,
-        <%= link_to @observation.observed_on.year,
-          observations_by_login_path(@observation.user.login, :on => @observation.observed_on.year) %>
+        <span class="date">
+          <%= link_to t("date_format.month.#{@observation.observed_on.strftime('%B').downcase}"),
+            observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}") %>
+          <%= link_to @observation.observed_on.day, 
+            observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}-#{@observation.observed_on.day}") %>,
+          <%= link_to @observation.observed_on.year,
+            observations_by_login_path(@observation.user.login, :on => @observation.observed_on.year) %>
+        </span>
       <%- end -%>
+
+      <%- if @observation.time_observed_at && @coordinates_viewable -%>
+        <time><%=raw l @observation.time_observed_at.in_time_zone(@observation.time_zone || Time.zone), :format => :observed_at %></time>
+      <% end -%>
     </span>
   </h2>
   
