@@ -203,7 +203,7 @@ form .field .description { margin-bottom: 0.5em;}
 /* Site Header */
 
 #header { color: #999; position: relative; margin-bottom: 20px;}
-#header, #header #usernav, #header #logonav { background-color: #eee; }
+#header, #header #usernav, #header #logonav { background-color: #eee; z-index: 11; }
 #header {height: 45px; }
 #header .navtab > a, #header .count { color: #333; }
 #header .navtab > a:hover { color: #039; }
@@ -694,17 +694,21 @@ ul.leafylist li li:first-child {
   margin-bottom: 1em;
 }
 
-/* Footer (give it its own stylesheet if this gets too big) */
+/* Footer */
 #footer {
-  border-top: 1px dotted #ccc;
-  margin: 2em auto;
-  padding: 0.5em;
-  text-align: center;
-  width: 80%;
+  background-color: #eee;
+  padding-top: 20px;
+  margin-top: 20px;
+  font-size: 100%;
+  color: #999;
 }
-#footer img { vertical-align:middle; }
-#mobiletogglelink {font-size: 400%;margin-bottom:10%;}
+#footer a { color: #333; }
 
+#footer p { font-family: "Trebuchet MS", Arial, sans-serif; font-size: 100%; }
+#inatnotice { color: #aaa; background-color: #666; padding-top: 20px; padding-bottom: 20px; }
+#inatnotice a {color: white;}
+
+#mobiletogglelink {font-size: 400%;margin-bottom:10%;}
 
 .compactfield {
   padding: 10px;
