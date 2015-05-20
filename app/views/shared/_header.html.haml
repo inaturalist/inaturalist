@@ -7,7 +7,7 @@
   %ul#mainnav.navtabs
     %li.navtab.observationstab
       = link_to t(:observations).capitalize, observations_path
-      = link_to "#", onclick: "toggleHeaderSubnav(this)" do
+      = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
         %i.fa.fa-angle-down
       .subnav{:style => "display: none"}
         %ul
@@ -23,7 +23,7 @@
                 %input.button{:type => "submit", :value => "\u00A0"}/
     %li.navtab
       = link_to t(:species).capitalize, taxa_path
-      = link_to "#", onclick: "toggleHeaderSubnav(this)" do
+      = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
         %i.fa.fa-angle-down
       .subnav{:style => "display: none"}
         %ul.taxon_links
@@ -38,7 +38,7 @@
                 %input.button{:type => "submit", :value => "\u00A0"}/
     %li.navtab.projectstab
       = link_to t(:projects), projects_path
-      = link_to "#", onclick: "toggleHeaderSubnav(this)" do
+      = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
         %i.fa.fa-angle-down
       .subnav{:style => "display: none"}
         %ul
@@ -56,7 +56,7 @@
                 %input.button{:type => "submit", :value => "\u00A0"}/
     %li.navtab
       = link_to t(:places), places_path
-      = link_to "#", onclick: "toggleHeaderSubnav(this)" do
+      = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
         %i.fa.fa-angle-down
       .subnav{:style => "display: none"}
         %ul
@@ -90,11 +90,11 @@
         #updatessubnav.subnav.rightsubnav{style: "display:none;"}
           .loadingwrapper= loading
       %li.navtab.user
-        = link_to "#", onclick: "toggleHeaderSubnav(this)" do
+        = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
           = user_image(current_user, :size => 'thumb', :class => "inlineblock")
-        = link_to "#", onclick: "toggleHeaderSubnav(this)" do
+        = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
           = current_user.login
-        = link_to "#", onclick: "toggleHeaderSubnav(this)" do
+        = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
           %i.fa.fa-angle-down
         #usersubnav.subnav.rightsubnav{style: "display: none;"}
           %ul

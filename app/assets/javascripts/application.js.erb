@@ -30,6 +30,7 @@ function toggleHeaderSubnav(link) {
   } else {
     openHeaderSubnav(link);
   }
+  return false;
 }
 
 function openHeaderSubnav(link) {
@@ -39,6 +40,7 @@ function openHeaderSubnav(link) {
   $(navtab).addClass('open')
   $('.subnav', navtab).show()
   $(document).click(subnavClickOff);
+  return false;
 }
 
 function closeHeaderSubnav(link) {
@@ -46,6 +48,7 @@ function closeHeaderSubnav(link) {
   $(navtab).removeClass('open');
   $('.subnav', navtab).hide()
   $(document).unbind('click', subnavClickOff);
+  return false;
 }
 
 function subnavClickOff(e) {
