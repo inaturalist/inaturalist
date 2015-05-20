@@ -12,6 +12,8 @@ body {
   padding: 0;
   font-family: "Trebuchet MS", Arial, sans-serif;
   color: #333;
+  padding-bottom: 220px;
+  position: relative;
 }
 
 .gm-style .gm-style-iw, .gm-style .gm-style-iw a, .gm-style .gm-style-iw span, .gm-style .gm-style-iw label, 
@@ -316,19 +318,21 @@ form .field .description { margin-bottom: 0.5em;}
   background: image-url('silk/email-gray.png') 7px 50% no-repeat;
 }
 #header .navtabs .messages_link:hover { background: image-url('silk/email.png') 7px 50% no-repeat; }
-#header form { min-width: 148px; }
 #header form .button,
 #header form label,
 #header form input {margin-bottom: 0;}
-#header form input.text {width: 100px;}
+#header form input.text {width: 173px;}
+#header form .buttonrow {white-space: nowrap;}
 #header form .button {
   margin-right: 0;
   background: image-url('silk/magnifier.png') 50% 50% no-repeat;
   width: 25px;
 }
-.notices .subnav img {max-width: 37px;}
+.notices .subnav img {max-width: 37px; vertical-align: top;}
 .notices .subnav li a {white-space:nowrap;}
 .notices .subnav img { vertical-align: top; }
+#header .user_image {vertical-align: top;}
+#header .user .user_image {vertical-align: middle;}
 
 /* Page Headers */
 #pageheader{margin-bottom:10px;}
@@ -698,9 +702,13 @@ ul.leafylist li li:first-child {
 #footer {
   background-color: #eee;
   padding-top: 20px;
-  margin-top: 20px;
+  // margin-top: 20px;
   font-size: 100%;
   color: #999;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 #footer a { color: #333; }
 

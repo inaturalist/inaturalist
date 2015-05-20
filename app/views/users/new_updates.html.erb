@@ -11,7 +11,7 @@
     -%>
     <li>
       <a href="<%= url_for(resource) %>">
-        <%= update_image_for(update, :style => "vertical-align:top", :width => 32) %>
+        <%= update_image_for(update, :width => 32) %>
         <span class="inlineblock">
           <span class="small meta">
             <%= compact_date(update.created_at) %>

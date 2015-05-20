@@ -1,6 +1,6 @@
 - site = @site || CONFIG
-#footer.clear
-  .container.clear
+#footer
+  .container
     .column.span-24
       .column.span-4
         %p
@@ -29,7 +29,7 @@
             %p= link
       .last.column.span-12
         = raw site.custom_footer if site.custom_footer
-#inatnotice
-  .container
-    .column-24
-      =t :powered_by_inaturalist_open_source_software_html
+  #inatnotice
+    .container
+      .column-24
+        =t :powered_by_inaturalist_open_source_software_html
