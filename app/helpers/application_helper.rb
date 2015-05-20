@@ -852,7 +852,6 @@ module ApplicationHelper
   end
   
   def update_image_for(update, options = {})
-    options[:style] = "vertical-align:middle; #{options[:style]}"
     resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
       @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
     end
@@ -870,7 +869,7 @@ module ApplicationHelper
     when "AssessmentSection"
       image_tag(asset_url(resource.assessment.project.icon.url(:thumb)), options)
     when "ListedTaxon"
-      image_tag(asset_url("checklist-icon-color-32px.png"), options)
+      image_tag("checklist-icon-color-32px.png", options)
     when "Post"
       image_tag(asset_url(resource.user.icon.url(:thumb)), options)
     when "Place"

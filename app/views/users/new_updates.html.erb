@@ -1,6 +1,6 @@
 <ul>
   <% if @updates.blank? -%>
-    <li class="meta nobr" style="padding:10px;"><%= t :no_recent_activity %>.</li>
+    <li class="meta nobr"><%= t :no_recent_activity %>.</li>
   <% end -%>
   <% for update in @updates %>
     <%- 
