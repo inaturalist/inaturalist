@@ -1543,6 +1543,9 @@ class ObservationsController < ApplicationController
     @headless = @footless = true
     search_params, find_options = get_search_params(params)
     stats_adequately_scoped?
+    respond_to do |format|
+      format.html
+    end
   end
 
   def taxa

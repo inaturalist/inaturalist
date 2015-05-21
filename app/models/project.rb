@@ -293,8 +293,19 @@ class Project < ActiveRecord::Base
         params[:list_id] = project_list.id
       when "identified?"
         params[:identified] = true
-      when "georeferenced"
-        params[:has] = "geo"
+      when "georeferenced?"
+        params[:has] ||= []
+        params[:has] << "geo"
+      when "has_a_photo?"
+        params[:has] ||= []
+        params[:has] << "photos"
+      when "has_a_sound?"
+        params[:has] ||= []
+        params[:has] << "sounds"
+      when "captive?"
+        params[:captive] = true
+      when "wild?"
+        params[:captive] = false
       end
     end
     taxon_ids.compact.uniq!
