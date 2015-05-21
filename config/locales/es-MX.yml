@@ -823,7 +823,7 @@ es-MX:
   double_click_to_finish: (Con doble clic termina tu forma)
   download: 'Descargar:'
   download_bulk_import_template_html: |-
-    <a href="%{url}">Descarga la plantilla</a>para usarla en
+    <a href="%{url}">Descarga la plantilla</a> para usarla en
     <a href="/observations/import#csv_import">la importaci&oacute;n de observaciones</a>
   download_csv: Descarga CSV
   drag_and_drop_photos: arrastra y suelta la foto en esta ventana o
@@ -977,6 +977,7 @@ es-MX:
   find_places: Encuentra lugares
   find_some_people_to_follow: Sigue a algunas personas
   find_species: Encontrar especie
+  find_suitable_observations: Encuentra observaciones adecuadas
   first_confirmed_inat_observation: Primera observacipón confirmada de %{site_name}
   first_inat_observation: Primera observación de %{site_name}
   first_observer: 1er observador
@@ -1059,6 +1060,7 @@ es-MX:
   getting_started: Empezando
   give_it_some_detail: ¡Pon algunos detalles!
   global_conservation_status: Estatus global de conservación
+  global_names: Nombres globales
   go: Busca
   good_choice_for_sharing: Buena selección para compartir con investigadores
   got_your_data_somewhere_else?: ¿Tienes tus datos en algún lado? Te podemos ayudar.
@@ -1761,8 +1763,10 @@ es-MX:
   observed_by: Observado por
   observed_in_place?: observaciones en
   observed_on: Observado en
+  observed_taxa: Especies o grupos observados
   observer: Autor
   observer_short: Autor
+  observers: Observadores
   observing: Observando
   occurence_status_describes_how: El estatus de ocurrencia describe que tan común
     o raro es una especie o grupo en un área determinada. Ver el DarwinCore  <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">para
@@ -2768,6 +2772,7 @@ es-MX:
   total_observations: Total de observaciones
   total_unique_observers: Total de observadores únicos
   total_users: Total de usuarios,
+  totals: Totales
   tree_browser: Navegador del árbol
   tree_browser_raquo: Navegador del árbol &raquo;
   "true": Sí
@@ -2831,6 +2836,7 @@ es-MX:
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio
     web fuente
   US_states: Estados de Estados Unidos
+  usage_stats: Estadísticas
   use_this_form_to_create_a_new: Usa esta forma para crear un cambio taxonómico en
     el borrador, describiendo si es para separar, juntar o es un cambio en el grupo
     o especie, para que posteriormente sea guardado.
@@ -3020,6 +3026,9 @@ es-MX:
     %{site_name} comparte observaciones con licencia
     a la comunidad científica, así tu información pueden estar más accesible
     a cientificos y otros inverstigadores.
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> especie o grupo observado"
+    other: "<span class='count'>%{count}</span> especies o grupos observados"
   year: año
   yellow: Amarillo
   "yes": Sí
@@ -3150,6 +3159,7 @@ es-MX:
   your_identification: Tu identificación
   your_inat_account_has_been_activated: Tu cuenta de %{inat} ha sido activada
   your_life_list: tu lista de vida
+  your_membership: Tus contribuciones
   your_month_observations: Tus observaciones de %{month}
   your_new_password_is: Tu nueva contraseña es
   your_observation_wont_get: Tu observación no será asociada con otras observaciones
@@ -3511,11 +3521,133 @@ es-MX:
           %{site_name} no reconoce el nombre que usaste. Recomendamos usar
           nombres alternativos que podamos reconocer.
     observations:
+      copy_tip: Añade una nueva observación copiando la fecha, lugar, fotos y campos de la observación.
       captive_help_html: |-
         ¿Estaba el organismo observado en cautiverio, cultivado o criado? Por ejemplo, estaba en un jardín,
         zoológico, acuario, granja, campo de cultivo o en alguna otra situación en donde su ubicación es
         resultado de su traslado por el ser humanos. Todas las observaciones de los seres vivos son bienvenidas,
         pero nos gustaría saber si los organismos son o no son silvestres.
+      export:
+        choose_columns_desc: Escoge las columnas a exportar
+        create_a_query_desc_html: |
+          Crea la consulta de una observación. Además puedes copiar y pegar el enlace resultante de
+          tu consulta en alguna otra parte del sitio. Deberás especificar
+          <strong>especie o grupo</strong>, <strong>lugar</strong>, <strong>usuario</strong>,
+          <strong>proyecto</strong>, o <strong>la consulta de la observación</strong>.
+        query_placeholder: Escoge los parámetros de tu consulta o pega el enlace de una observación
+        taxon_extras_help_html: "NOTA: estas columnas harán más tardada la exportación"
+        geo_help_html: |
+          Municipio, país, estado, campos del país de acuerdo a las coordenadas. Niveles administrativos
+          análogamnete serán usados para observaciones donde estos tipos de lugares no aplican.
+          Los campos privados _* solo serán incluidos cuando el dueño de los filtros los solicita, o
+          cuando los curadores del proyecto lo coliciten.
+        be_patient: |
+          Por favor se paciente, esto puede tardar unos minutos. Si ya tomó demasiado tiempo puedes
+        check_back: |
+          Si refrescas esta página, en unos minutos tu archivo de exportación aparecerá en la lista,
+          en la parte baja de la página.
+        receive_an_email_with_your_data: Recibe un correo con tus datos
+        receive_an_email_with_your_data_help: Recibirás un correo con tu archivo de exportación como documento adjunto.
+        well_email_you: muy bien, te mandaremos un correo cuando este listo.
+        taking_a_while: Esto está tardando demasiado . Por favor intenta alguna otra de las opciones de abajo.
+      field_descriptions:
+        id: Identificaciones únicas de la observación
+        species_guess: Nombre de la posible observación cuando ingresó el registro
+        scientific_name: El nombre científico de la espcie o grupo observada
+        common_name: Nombre común de la especie o grupo observada
+        iconic_taxon_name: Grupo icónico de la especie ogrupo observada
+        taxon_id: Identificador único de la especie o grupo
+        id_please: Si el observador solicitó "Ayuda con identificación"
+        num_identification_agreements: Número de identificaciones coincidentes con la identificación del observador
+        num_identification_disagreements: Número de identificaciones en desacuerdo con la identificación del observador
+        observed_on_string: Fecha/Hora en que subió la observación
+        observed_on: Fecha en que fue observado
+        time_observed_at: Hora en que fue observado
+        time_zone: Tiempo horario en que fue observado
+        place_guess: Descripción del lugar en que fue observado cuando ingresó el registro
+        latitude: Latitud visible pública
+        longitude: Longitud visible pública
+        positional_accuracy: Coordenadas con más precisión
+        private_latitude: Latitud privada
+        private_longitude: Longitud privada
+        out_of_range: Si la observación se encuentra fuera de la distribución potencial de la especie o grupo
+        user_id: Identificador único del observador
+        user_login: Usuario del observador
+        created_at: Hora y fecha en que se creo en el sistema la observación
+        updated_at: Hora y fecha en que se actualizó por pultima vez la observación
+        quality_grade: Grado de calidad de la observación
+        license: Licencia que el observador a puesto a la observación
+        url: Enlace de la observación
+        image_url: Enlace de la imágen predeterminada para la observación
+        tag_list: Etiquetas separadas por comas
+        positioning_method: Como fueron calculadas las coordenadas
+        positioning_device: Dispositivo usado para calcular las coordenadas
+      import:
+        coordinate_systems_help: |
+          %{site_name} acepta coordenadas haciendo uso de muchos sistemas de coordenadas,
+          por ende cuando tu envias coordenadas en un sistema que no ocupe latitud-longitud,
+          necesitamos saber que sistema de coordenadas estás usando para poder interpretarlas
+          correctamente. Por favor asegurate haber escogido el sistema de coordendas correcto
+          para tus datos, de lo contrario la posición correcta podría terminar en un
+          lugar incorrecto. Si tus coordenadas son de un GPS, asegurate de de que
+          sistema de coordenadas esta usando. Ten en cuenta que no guardamos
+          coordenadas de diferentes sisitemas, solo las conversiones de latitud/longitud
+        project_csv_template_notice_html: |
+          Existe una plantilla para este proyecto que podría ayudarte con la estructura del archivo .csv
+          <a href="%{url}">Descarga la plantilla</a>
+      show:
+        allow_curator_coordinate_access_desc_html: |
+          Permitir que los curadores del proyecto puedan ver las coordendas privadas de esta observación
+        ancestor_disagreements_desc: "# de especies o grupos identificados entre los ancestros de la misma, pero que fueron creados después de la primera identificación usando esta especie o grupo"
+        community_taxon_desc_html: |
+          <p class="ui">
+            La comunidad de identificaciones representa cual especie o grupo
+            de acuerdo a la comunidad de %{site_name} concuerda es obsoleto
+            en una observación. Si estas interesado en saber funciona la
+            comunidad de observaciones, revisa las notas del algoritmo, pero en general
+            tratamos de escoger <strong>las especie o grupos con más de 2/3 de sus
+            identificaciones que esten de acuerdo</strong>. Algunas veces esto
+            significa escoger una grupo arriba de especies el cual contenga
+            identificaciones en desacuerdo (ej. si tu piensas que es un colibrí pico corto
+            y yo peinso que es un colibrí yucateco, entonces el algoritmo
+            escoge orden Apodiformes que contien todos los colibríes)
+          </p>
+          <p class="ui">
+            La comunidad de identificaciones es la especie o grupo que usamos cuando
+            compartimos observaciones, mandamos enlaces de la misma especie o grupo, actualizamos
+            la lista de vida, etc. Si por alguna razón no estás de acuerdo con la
+            comunidad de identificaciones, puedes rechazarla, lo que significa que tu identificador
+            fue el usado para enlazar otras observaciones, actualizando listas de vida, etc. Y a su vez implica
+            que tu observación solo podrá tener grado de investigación cuando la
+            comunidad este de acuerdo <em>contigo</em>. Si no te agrada toda la idea de
+            la comunidad de identificaciones puedes optar por salirte <a href="/users/edit" target="_blank">editando tu cuenta</a>.
+          </p>
+          <p class="ui">
+            <strong>El algoritmo:</strong> para todas las espcies o grupos y las especies que lo contienen
+            (ej. <i>Homo</i> contiene a <i>Homo sapiens</i>), cada uno se califica como la distancia entre
+            el número de identificaciones acumuladas para esa especie o grupo sobre la suma de
+            identificaciones acumuladas, el número de más identificaciones conservadoras añadidas despues de la primera identificación
+            de la especie o grupo en custión, y el número de identificaciones que son completamente diferentes (es decir
+            identificaciones de especies o grupos que no contienen la especie o grupo a ser calificado). Para las
+            especies o grupos identificados que tengan calificación sobre 2/3 y al menos 2 idetificaciones, se escoge
+            la especie o grupo de menor clasificación.
+          </p>
+        cumulative_count_desc: '# de identificaciones para una especie o grupo y todos sus inferiores'
+        disagreement_count_desc: "# de identificaciones que no se encuentran entre sus especies o grupos inferiores"
+        identification_count_desc: '# de identificaciones par una especie o grupo'
+        flagged_photos_desc_html: |
+          Algunas de estas fotografías han sido marcadas como contenido inapropiado o violación a los
+          derechos de autor. Para más detalles ve %{links}
+        join_project_desc_html: |
+          Unirse al proyecto le otorgara a los curadores del proyecto la posibilidad de ver
+          coordenadas ocultas de esta observación u otras que integres a futuro y esto implica
+          que estas de acuerdo con los <a href="%{url}" target="_blank">terminos y reglas</a> del proyecto.
+        score_desc: "calificación = # de identificacions acumuladas / (# de identificaciones acumuladas + # de identificaciones en desacuerdo + identificaciones en desacuerdo para taxones superiores)"
+      user_stats:
+        user_stats_desc: |
+          Las estadísticas de los observadores se limitan a un máximo de 500 ya sea observaciones
+          o conteo de especies, así que la lista total es generalmente mayor de 500,
+          ya que las dos listas probablemente no contienen a los mismos usuarios.
     photos:
       inviter:
         automatically_add_to_project: Añade a un proyecto automaticamente
@@ -3735,6 +3867,15 @@ es-MX:
             asegurate que tus participantes y sus observaciones se unan al proyecto como
             en los proyectos normales.
           </p>
+        no_journal_blurb_html: |
+          <p>
+            El diario del proyecto es una forma de comunicarse entre los miembros
+            del proyecto. Puedes usarlo para hacer anuncios, establecer prioridades o
+            platicar sobre los resultados del proyecto.
+          </p>
+          <p>
+            Para empezar, <a href="%{url}" class="readmore">crea un comentario</a>
+          </p>
         project_observations_desc: |
           Esto solo incluye observaciones explicitamente añadidas al proyecto, no todas
           las observaciones registradas en el lugar y tiempo de este evento.
@@ -3745,6 +3886,32 @@ es-MX:
       updates_desc: |
         Recibir notificaciones acerca de este proyecto en tu tablero y en los 
         correos diarios.
+    shared:
+      spam:
+        this_has_been_flagged_as_spam: Esto se marcó como spam
+      not_found:
+        sorry_that_doesnt_exist: ¡Eso no existe!
+    taxon_names:
+      form:
+        new_name_guidelines_html: |-
+          <ul class="ui">
+            <li>Trata de añadir nombres que se han utilizado en otros lugares. Por favor, no inventes nuevos nombres.</li>
+            <li>No agregues nombres duplicados, por ejemplo, no menciones a numerosos halcones "halcón"</li>
+            <li>Para especies o grupos con clasificaci[on superior, trata de usar nombres que incluyen todos los descendientes, como "Jacamarás y parientes" o "familia de brezo"</li>
+          </ul>
+        places_help_html: |-
+          Añade un nombre para un lugar y darle prioridad para los sitios y
+          los usuarios de ese lugar. Si hay varios nombres por lugar se puede
+          dar prioridad a ellos <a href="%{url}">aquí</a>. Por favor,
+          <strong>no agregues nombres de todos los lugares donde se utiliza el
+          nombre</strong>, sólo para los lugares que se entran en conflicto con
+          otros lugares.
+      taxon:
+        about_html: |-
+          Una especie o grupo puede tener muchos nombres comunes. Apoyamos un nombre común a nivel mundial,
+          que se puede cambiar aquí arrastrando un nombre a la parte superior de la lista. También se pueden
+          especificar nombres predeterminados en diferentes lugares editando el nombre y añadiendo un lugar,
+          pero por favor, sólo hacerlo cuando diferentes lugares tienen nombres en conflicto.
     users:
       edit:
         taxon_change_desc: "Cuando una especie o grupo (taxa) se combina o cambia

@@ -1,5 +1,5 @@
 = content_for :title do
-  - @title = title_for_observation_params(:lead => t(:observed_taxa, :default => "Observers"))
+  - @title = title_for_observation_params(:lead => t(:observers, :default => "Observers"))
   = strip_tags @title
 = content_for(:extracss) do
   :css
