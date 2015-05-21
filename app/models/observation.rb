@@ -1022,6 +1022,16 @@ class Observation < ActiveRecord::Base
       scope = scope.of(params[:taxon_id].to_i)
     elsif !params[:taxon_name].blank?
       scope = scope.of(Taxon.single_taxon_for_name(params[:taxon_name], :iconic_taxa => params[:iconic_taxa]))
+    elsif !params[:taxon_ids].blank?
+      taxon_ids = params[:taxon_ids].map(&:to_i)
+      if params[:taxon_ids].size == 1
+        scope = scope.of(taxon_ids.first)
+      else
+        taxa = Taxon::ICONIC_TAXA.select{|t| taxon_ids.include?(t.id)}
+        if taxa.size == taxon_ids.size
+          scope = scope.has_iconic_taxa(taxon_ids)
+        end
+      end
     end
     if params[:on]
       scope = scope.on(params[:on])

@@ -1564,9 +1564,32 @@ describe Observation do
     it "should filter by research grade" do
       r = make_research_grade_observation
       c = Observation.make!(:user => r.user)
-      observations = Observation.query(:user => r.user, :quality_grade => Observation::RESEARCH_GRADE)
+      observations = Observation.query(:user => r.user, :quality_grade => Observation::RESEARCH_GRADE).all
       expect(observations).to include(r)
       expect(observations).not_to include(c)
+    end
+
+    it "should filter by taxon_ids[]" # except that it won't b/c multiple descendant taxon clauses is going to get rough fast
+    it "should filter by taxon_ids[] if there's only one taxon" do
+      taxon = Taxon.make!
+      obs_of_taxon = Observation.make!(taxon: taxon)
+      obs_not_of_taxon = Observation.make!(taxon: Taxon.make!)
+      observations = Observation.query(taxon_ids: [taxon.id]).all
+      expect( observations ).to include(obs_of_taxon)
+      expect( observations ).not_to include(obs_not_of_taxon)
+    end
+    it "should filter by taxon_ids[] if all taxa are iconic" do
+      load_test_taxa
+      o1 = Observation.make!(taxon: @Aves)
+      o2 = Observation.make!(taxon: @Amphibia)
+      o3 = Observation.make!(taxon: @Animalia)
+      expect( @Aves ).to be_is_iconic
+      expect( @Amphibia ).to be_is_iconic
+      expect( @Animalia ).to be_is_iconic
+      observations = Observation.query(taxon_ids: [@Aves.id, @Amphibia.id]).all
+      expect( observations ).to include(o1)
+      expect( observations ).to include(o2)
+      expect( observations ).not_to include(o3)
     end
   end
 

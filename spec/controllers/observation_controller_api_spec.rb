@@ -449,8 +449,8 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "index" do
-    before(:each) { enable_elastic_indexing([ Observation ]) }
-    after(:each) { disable_elastic_indexing([ Observation ]) }
+    before(:each) { enable_elastic_indexing( Observation, Place ) }
+    after(:each) { disable_elastic_indexing( Observation, Place ) }
 
     it "should allow search" do
       expect {
@@ -706,6 +706,23 @@ shared_examples_for "an ObservationsController" do
       expect( json.detect{|o| o['id'] == o1.id} ).not_to be_blank
       expect( json.detect{|o| o['id'] == o2.id} ).not_to be_blank
       expect( json.detect{|o| o['id'] == o3.id} ).to be_blank
+    end
+
+    it "should filter by place and multiple taxon ids" do
+      load_test_taxa
+      place = make_place_with_geom
+      in_place_bird = Observation.make!(taxon: @Calypte_anna, latitude: place.latitude, longitude: place.longitude)
+      in_place_frog = Observation.make!(taxon: @Pseudacris_regilla, latitude: place.latitude, longitude: place.longitude)
+      in_place_other = Observation.make!(taxon: Taxon.make!, latitude: place.latitude, longitude: place.longitude)
+      out_of_place_bird = Observation.make!(taxon: @Calypte_anna, latitude: place.latitude*-1, longitude: place.longitude*-1)
+      out_of_place_other = Observation.make!(taxon: Taxon.make!, latitude: place.latitude*-1, longitude: place.longitude*-1)
+      get :index, format: :json, taxon_ids: [@Aves.id, @Amphibia.id], place_id: place.id
+      json = JSON.parse(response.body)
+      expect( json.detect{|o| o['id'] == in_place_bird.id} ).not_to be_blank
+      expect( json.detect{|o| o['id'] == in_place_frog.id} ).not_to be_blank
+      expect( json.detect{|o| o['id'] == in_place_other.id} ).to be_blank
+      expect( json.detect{|o| o['id'] == out_of_place_bird.id} ).to be_blank
+      expect( json.detect{|o| o['id'] == out_of_place_other.id} ).to be_blank
     end
 
     it "should filter by mappable = true" do
