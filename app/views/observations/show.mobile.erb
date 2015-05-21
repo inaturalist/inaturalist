@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @observation.to_plain_s %>
+  <%= @observation.to_plain_s(viewer: current_user) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">

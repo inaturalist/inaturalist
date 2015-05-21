@@ -155,7 +155,7 @@ class GuideTaxaController < ApplicationController
 
   private
   def retrieve_photos
-    photo_classes = Photo.descendent_classes
+    photo_classes = Photo.subclasses
     photos = []
     photo_classes.each do |photo_class|
       param = photo_class.to_s.underscore.pluralize

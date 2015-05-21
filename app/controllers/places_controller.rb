@@ -257,7 +257,12 @@ class PlacesController < ApplicationController
       @places = scope.includes(:place_geometry_without_geom).limit(30).
         sort_by{|p| p.bbox_area || 0}.reverse
     else
-      search_wheres = { display_name_autocomplete: @q }
+      # search both the autocomplete and normal field
+      # autocomplete doesn't work well with 1- or 2-letter words
+      search_wheres = { bool: { should: [
+        { match: { display_name_autocomplete: @q } },
+        { match: { display_name: { query: @q, operator: "and" } } }
+      ] } }
       if site_place
         search_wheres["ancestor_place_ids"] = site_place
       end

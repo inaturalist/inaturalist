@@ -2479,7 +2479,8 @@ CREATE TABLE project_observations (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     curator_identification_id integer,
-    tracking_code character varying(255)
+    tracking_code character varying(255),
+    user_id integer
 );
 
 
@@ -2607,7 +2608,8 @@ CREATE TABLE projects (
     end_time timestamp without time zone,
     trusted boolean DEFAULT false,
     "group" character varying(255),
-    show_from_place boolean
+    show_from_place boolean,
+    last_aggregated_at timestamp without time zone
 );
 
 
@@ -6306,6 +6308,13 @@ CREATE INDEX index_project_observations_on_project_id ON project_observations US
 
 
 --
+-- Name: index_project_observations_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_project_observations_on_user_id ON project_observations USING btree (user_id);
+
+
+--
 -- Name: index_project_user_invitations_on_invited_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -6793,20 +6802,6 @@ CREATE INDEX index_updates_on_created_at ON updates USING btree (created_at);
 --
 
 CREATE INDEX index_updates_on_notifier_type_and_notifier_id ON updates USING btree (notifier_type, notifier_id);
-
-
---
--- Name: index_updates_on_resource_owner_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_updates_on_resource_owner_id ON updates USING btree (resource_owner_id);
-
-
---
--- Name: index_updates_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_updates_on_resource_type_and_resource_id ON updates USING btree (resource_type, resource_id);
 
 
 --
@@ -7486,6 +7481,10 @@ INSERT INTO schema_migrations (version) VALUES ('20150313171312');
 
 INSERT INTO schema_migrations (version) VALUES ('20150319205049');
 
+INSERT INTO schema_migrations (version) VALUES ('20150324004401');
+
+INSERT INTO schema_migrations (version) VALUES ('20150404012836');
+
 INSERT INTO schema_migrations (version) VALUES ('20150406181841');
 
 INSERT INTO schema_migrations (version) VALUES ('20150409021334');
@@ -7495,4 +7494,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150409031504');
 INSERT INTO schema_migrations (version) VALUES ('20150412200608');
 
 INSERT INTO schema_migrations (version) VALUES ('20150413222254');
+
+INSERT INTO schema_migrations (version) VALUES ('20150421155510');
+
+INSERT INTO schema_migrations (version) VALUES ('20150504184529');
 

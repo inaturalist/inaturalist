@@ -62,7 +62,7 @@ module ElasticModel
     criteria = [ ]
     options[:where] ||= { }
     options[:where].each do |key, value|
-      if value.is_a? Array
+      if value.is_a?(Array) && ![ :should, :or ].include?(key)
         criteria << { terms: { key => value.map{ |v| id_or_object(v) } } }
       elsif value.is_a? Hash
         criteria << { key => value }
@@ -134,7 +134,8 @@ module ElasticModel
     return unless options && options.is_a?(Hash)
     return unless place = options[:place]
     { geo_shape: {
-        geojson: {
+        _cache: true,
+        private_geojson: {
           indexed_shape: {
             id: id_or_object(place),
             type: "place",
@@ -188,20 +189,6 @@ module ElasticModel
             coordinates: [
               [ swlng, swlat ],
               [ nelng, nelat ] ] } } } }
-  end
-
-  def self.result_to_will_paginate_collection(result)
-    begin
-      WillPaginate::Collection.create(result.current_page,
-        result.per_page, result.total_entries) do |pager|
-        pager.replace(result.records.to_a)
-      end
-    rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
-      Logstasher.write_exception(e)
-      Rails.logger.error "[Error] Elasticsearch query failed: #{ e }"
-      Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
-      WillPaginate::Collection.new(1, 30, 0)
-    end
   end
 
   def self.point_geojson(lat, lon)

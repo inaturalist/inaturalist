@@ -1,0 +1,30 @@
+- content_for :title do
+  =t :are_you_sure_leave_this_project
+- content_for :extracss do
+  :css
+    .field p.ui.description {margin-left: 2em;}
+#pageheader.clear
+  .breadcrumbs
+    %strong= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb'
+  %h2=t :are_you_sure_leave_this_project
+
+= form_for @project, url: leave_project_path(@project), method: :delete do |f|
+  .field
+    %label
+      = radio_button_tag :keep, 'true', checked: true
+      =t 'views.projects.confirm_leave.keep_observations_label'
+    %p.ui.description=t 'views.projects.confirm_leave.keep_observations_desc'
+  .field
+    %label
+      = radio_button_tag :keep, 'revoke'
+      =t 'views.projects.confirm_leave.revoke_observations_label'
+    %p.ui.description=t 'views.projects.confirm_leave.revoke_observations_desc'
+  .field
+  .field
+    %label
+      = radio_button_tag :keep, 'false'
+      =t 'views.projects.confirm_leave.remove_observations_label'
+    %p.ui.description=t 'views.projects.confirm_leave.remove_observations_desc_html'
+
+  = f.submit t(:leave_this_project), 'class': 'default button'
+  = link_to t(:cancel), :back, :class => "button"

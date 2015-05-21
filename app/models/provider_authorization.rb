@@ -52,7 +52,7 @@ class ProviderAuthorization < ActiveRecord::Base
   end
   
   def provider
-    if provider_uid =~ /google.com\/accounts/
+    if provider_uid =~ /google.com\/accounts/ || provider_name =~ /google/
       'google'
     elsif provider_uid =~ /me.yahoo.com/
       'yahoo'
@@ -119,6 +119,10 @@ class ProviderAuthorization < ActiveRecord::Base
     secret = auth_info["credentials"]["secret"]
     update_attributes({:token => token, :secret => secret})
     update_photo_identities
+  end
+
+  def photo_source_name
+    provider_name =~ /google/ ? 'picasa' : provider_name
   end
 
 end

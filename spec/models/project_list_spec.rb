@@ -23,7 +23,7 @@ describe ProjectList, "refresh_with_observation" do
     o = make_research_grade_observation(:taxon => t1)
     
     pu = ProjectUser.make!(:user => o.user, :project => p)
-    po = ProjectObservation.make!(:project => p, :observation => o)
+    po = ProjectObservation.make!(:project => p, :observation => o, :user => o.user)
     ProjectList.refresh_with_observation(o)
     pl.reload
     pl.taxon_ids.should include(o.taxon_id) #
@@ -95,7 +95,7 @@ describe ProjectList, "refresh_with_observation" do
     pu = without_delay {ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)}
     t = Taxon.make!
     o = Observation.make!(:user => pu.user, :taxon => t)
-    po = without_delay {make_project_observation(:observation => o, :project => p)}
+    po = without_delay {make_project_observation(:observation => o, :project => p, :user => o.user)}
     
     po.curator_identification_id.should eq(o.owners_identification.id)
     cid_taxon_id = Identification.find_by_id(po.curator_identification_id).taxon_id
@@ -120,7 +120,7 @@ describe ProjectList, "refresh_with_observation" do
     pu = without_delay {ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)}
     t = Taxon.make!
     o = Observation.make!(:user => pu.user, :taxon => t)
-    po = without_delay {make_project_observation(:observation => o, :project => p)}
+    po = without_delay {make_project_observation(:observation => o, :project => p, :user => o.user)}
     
     po.curator_identification_id.should eq(o.owners_identification.id)
     cid_taxon_id = Identification.find_by_id(po.curator_identification_id).taxon_id
@@ -135,8 +135,8 @@ describe ProjectList, "refresh_with_observation" do
 end
 
 describe ProjectList, "reload_from_observations" do
-  before(:each) { enable_elastic_indexing(Update) }
-  after(:each) { disable_elastic_indexing(Update) }
+  before(:each) { enable_elastic_indexing(Observation, Update) }
+  after(:each) { disable_elastic_indexing(Observation, Update) }
   it "should not delete manually added taxa when descendant taxa have been observed" do
     p = Project.make!
     pl = p.project_list

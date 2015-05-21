@@ -67,7 +67,7 @@ describe ActsAsElasticModel do
         place = Place.make!
         expect(Observation.__elasticsearch__).to receive(:search).with(
           { query: { filtered: { query: { match_all: { } },
-            filter: { bool: { must: [ { geo_shape: { geojson: { indexed_shape: {
+            filter: { bool: { must: [ { geo_shape: { _cache: true, private_geojson: { indexed_shape: {
               id: place.id, type: "place", index: "test_places", path: "geometry_geojson"
             }}}}]}}}}}).and_return(true)
         Observation.elastic_search(filters: [ { place: place } ])
@@ -148,6 +148,29 @@ describe ActsAsElasticModel do
         obs.elastic_delete!
         Observation.elastic_index!
         expect( Observation.elastic_search( ).count ).to eq 0
+      end
+    end
+
+    describe "elastic_delete!" do
+      it "deletes instances of a class from ES" do
+        Observation.destroy_all
+        obs = Observation.make!
+        expect( Observation.count ).to eq 1
+        expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 1
+        Observation.elastic_delete!( where: { id: obs.id } )
+        expect( Observation.elastic_search( where: { id: obs.id } ).count ).to eq 0
+        expect( Observation.count ).to eq 1
+      end
+    end
+
+    describe "result_to_will_paginate_collection" do
+      it "returns an empty WillPaginate Collection on errors" do
+        expect(WillPaginate::Collection).to receive(:create).
+          and_raise(Elasticsearch::Transport::Transport::Errors::BadRequest)
+        expect(Taxon.result_to_will_paginate_collection(
+          OpenStruct.new(current_page: 2, per_page: 11, total_entries: 57,
+            results: OpenStruct.new(results: [])))).
+          to eq WillPaginate::Collection.new(1, 30, 0)
       end
     end
   end

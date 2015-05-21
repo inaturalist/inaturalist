@@ -24,7 +24,7 @@ module HasSubscribers
       
       after_destroy do |record|
         Update.transaction do
-          Update.destroy_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
+          Update.delete_and_purge(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
           Subscription.delete_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
         end
         true
@@ -89,7 +89,7 @@ module HasSubscribers
       
       after_destroy do |record|
         Update.transaction do
-          Update.destroy_all(["notifier_type = ? AND notifier_id = ?", record.class.base_class.name, record.id])
+          Update.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.base_class.name, record.id])
         end
         true
       end
@@ -111,7 +111,7 @@ module HasSubscribers
 
       create_callback(subscribable_association, options)
       after_destroy do |record|
-        Update.delete_all(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
+        Update.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
       end
     end
     

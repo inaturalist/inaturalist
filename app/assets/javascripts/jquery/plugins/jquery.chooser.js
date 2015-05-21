@@ -120,7 +120,7 @@
         $( this ).blur()
         
         $(self).data('previous', $(self).data('selected'))
-        self.clear()
+        self.open()
 
         // pass empty string as value to search for, displaying all results
         markup.input.autocomplete( "search", "" )
@@ -142,6 +142,7 @@
         if (typeof(item) != 'string') {
           item = self.recordsToItems([item])[0]
         }
+        $(this).data('previous', item)
         this.selectItem(item)
       } else if ($(this.element).val() != '' && this.options.resourceUrl) {
         this.selectId($(this.element).val())
@@ -191,7 +192,6 @@
               itemValue = item
         }
         $(this).data('selected', item)
-        $(this).data('previous', null)
         $(this.markup.input).hide()
         $(this.markup.choice).html(itemLabel).showInlineBlock()
         $(this.markup.chooseButton).showInlineBlock()
@@ -205,12 +205,17 @@
           .css('margin-top', '-' + Math.round((this.markup.choice.outerHeight() / 2) - 6) + 'px')
         $(this.markup.originalInput).val(itemValue).change()
       }
-      if (!options.blurring && typeof(this.options.afterSelect) == 'function') {
+      var changed = true
+      if (($(this).data('previous') && $(this).data('previous').id === item.id) || (!$(this).data('previous') && !item)) {
+        changed = false
+      }
+      if (!options.blurring && typeof(this.options.afterSelect) == 'function' && changed) {
         this.options.afterSelect.apply(this, [item])
       }
+      $(this).data('previous', null)
     },
-    
-    clear: function(clearOpts) {
+
+    open: function(opts) {
       var options = this.options || {},
           clearOpts = clearOpts || {},
           bubble = clearOpts.bubble == false ? false : true
@@ -225,8 +230,13 @@
       $(this.markup.chooseButton).height(this.markup.input.outerHeight())
       $('.ui-icon', this.markup.chooseButton)
         .css('margin-top', '-' + Math.round((this.markup.input.outerHeight() / 2) - 6) + 'px')
+    },
+    
+    clear: function(clearOpts) {
+      var options = this.options || {}
+      this.open(clearOpts)
       if (!options.blurring && typeof(this.options.afterClear) == 'function') {
-        this.options.afterClear()
+        this.options.afterClear.apply(this)
       }
     },
     

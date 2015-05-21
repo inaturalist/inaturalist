@@ -401,7 +401,7 @@ class TaxaController < ApplicationController
       search_result = Taxon.elastic_search(search_options.merge(where: search_wheres)).
         per_page(per_page).page(page)
     end
-    @taxa = ElasticModel.result_to_will_paginate_collection(search_result)
+    @taxa = Taxon.result_to_will_paginate_collection(search_result)
     Taxon.preload_associations(@taxa, [ { taxon_names: :place_taxon_names },
       { taxon_photos: :photo }, :taxon_descriptions ] )
 
@@ -1247,7 +1247,7 @@ class TaxaController < ApplicationController
   end
   
   def retrieve_remote_photos
-    photo_classes = Photo.descendent_classes - [LocalPhoto]
+    photo_classes = Photo.subclasses - [LocalPhoto]
     photos = []
     photo_classes.each do |photo_class|
       param = photo_class.to_s.underscore.pluralize

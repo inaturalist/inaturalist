@@ -1,16 +1,12 @@
 #encoding: utf-8
 class PicasaPhoto < Photo
-  
-  Photo.descendent_classes ||= []
-  Photo.descendent_classes << self
-  
   validates_presence_of :native_photo_id
   validate :user_owns_photo
   validate :licensed_if_no_user
   
   def user_owns_photo
     if self.user
-      unless self.user.picasa_identity && native_username == self.user.picasa_identity.picasa_user_id
+      unless self.user.picasa_identity && native_username == self.user.picasa_identity.provider_uid
         errors.add(:user, "must own the photo on Picasa.")
       end
     end
@@ -134,9 +130,9 @@ class PicasaPhoto < Photo
     # a PicasaIdentity from a passed in user, then we try to parse one out of 
     # the native ID (which should be a URL)
     picasa_identity = if options[:user]
-      picasa_identity = options[:user].picasa_identity
+      options[:user].picasa_identity
     elsif native_photo_id.is_a?(String) && matches = native_photo_id.match(/user\/(.+?)\//)
-      picasa_identity = PicasaIdentity.find_by_picasa_user_id(matches[1])
+      User.find_by_id(matches[1]).try(:picasa_identity)
     else
       nil
     end

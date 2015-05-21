@@ -252,6 +252,7 @@ qqq:
   preview_personal_message:  where site is the site name
   project_created_on: where date is a date
   project_members: where project is the name of the project
+  project_type_description: Description of the different project types.
   project_user_was_invalid: where project_user is the invalid project user
   project_x_was_delete: where project is the name of a project
   projects_description: where site_name is the name of a site
@@ -456,6 +457,8 @@ qqq:
     projects:
       edit:
         bioblitz_create_a_new_place_html: where link is a URL
+      show:
+        no_journal_blurb_html: Notice shown to project owners when they do not have any journal posts.
     shared:
       spam:
         if_you_think_your_content_html: where email is the website help email address

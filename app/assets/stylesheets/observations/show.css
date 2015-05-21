@@ -38,3 +38,19 @@
 #community_taxon_summary td.score {white-space: nowrap;}
 .observations.infowindow .observation {width:auto; min-width: 200px;}
 .buttonrow.inline #added_to_id_please .inter {float: left;}
+#projects .inter img {max-width: 28px;}
+#projects .inter {padding: 0 5px 0 0;}
+#projects button { float: right; margin-right: 0;}
+#projects .image_and_content { padding-top: 5px;}
+#projects .small.meta {margin-top: 5px;}
+#projects .button.pale {
+  border-color: #eee;
+  background-color: #eee;
+}
+#projects .button.pale:hover {
+  border-color: #DEDEDE;
+  background-color: #DEDEDE;
+}
+#projects .qtip .button { width: 50px; }
+.popovertip {max-width: 300px;}
+.popovertip input[type=checkbox] {margin-left: 0;}

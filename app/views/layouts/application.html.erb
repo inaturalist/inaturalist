@@ -86,7 +86,9 @@
     </script>
   <% end -%>
   <script type="text/javascript">
-    ga('set', 'dimension1', <%=raw logged_in? ? "'true'" : "'false'" %>);
+    if (typeof(ga) != 'undefined') {
+      ga('set', 'dimension1', <%=raw logged_in? ? "'true'" : "'false'" %>);
+    }
   </script>
 </body>
 </html>

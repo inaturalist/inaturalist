@@ -64,6 +64,7 @@ google.maps.Map.prototype.removeMarker = function(marker) {
   google.maps.event.clearInstanceListeners(marker);
   
   // remove the marker from the map
+  marker.setMap(null);
   this.removeOverlay(marker);
 };
   
@@ -274,16 +275,12 @@ google.maps.Map.prototype.setPlace = function(place, options) {
     this.setCenter(new google.maps.LatLng(place.latitude, place.longitude));
   }
 }
-// 
-// google.maps.Map.prototype.addPlaces = function(places, options) {
-//   var map = this;
-//   $.each(places, function() {
-//     var success = map.addPlace(this, options);
-//   });
-// }
+
 google.maps.Map.prototype.removePlace = function(place) {
-  this.removeMarker(this.places[place.id]);
-  delete this.places[place.id];
+  if (this.places[place.id]) {
+    this.removeMarker(this.places[place.id]);
+    delete this.places[place.id];
+  }
 }
 google.maps.Map.prototype.removePlaces = function(places) {
   var map = this;
@@ -754,6 +751,38 @@ google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
   return this.addLayerByEndpoint( "taxon_places", options.taxon.id, options );
 };
 
+google.maps.Map.prototype.addElasticLayer = function( options ) {
+  this.setTilt(0);
+  var tileservers = [ <%= CONFIG.tile_servers.elasticsearch.inspect %> ];
+  if( tileservers[0].match(/{n}/) ) {
+    var pattern = tileservers[0];
+    tileservers = _.map([ "1", "2", "3", "4" ], function( n ) {
+      return pattern.replace( "{n}", n );
+    });
+  }
+  if( options["elastic_params"].match(/heatmap/) ) {
+    this.addLayerAndControl( {
+      tiles: _.map( tileservers , function( base ) {
+        return base + "/heatmap/{z}/{x}/{y}.png?" + options["elastic_params"];
+      })
+    }, options );
+  } else {
+    options.interactivity = true;
+    var tileLayers = _.map( tileservers, function( base ) {
+      return base + "/geohash/{z}/{x}/{y}.png?" + options["elastic_params"];
+    });
+    var tilejson = {
+      tiles: tileLayers,
+      // wax needs template or it won't fire on events
+      "template": "this_is_silly",
+      grids: _.map( tileLayers, function( l ) {
+        return google.maps.Map.prototype.interactivityURL( l, "id" );
+      })
+    };
+    this.addLayerAndControl( tilejson, options );
+  }
+};
+
 var cachedGBIFColors;
 var GBIFMapColors = function( ) {
   if( cachedGBIFColors ) { return cachedGBIFColors; }
@@ -796,6 +825,9 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
   options = options || { }
   var layer = new wax.g.connector( tilejson );
   var layerID = this.overlayMapTypes.push( layer );
+  if( options.interactivity ) {
+    this.addTileInteractivity( tilejson, layerID );
+  }
   if( options.disabled ) {
     // even though the layer is meant to be disabled (unselected) by default
     // we need to secure the layerID so that we can add the layer in the proper

@@ -483,6 +483,21 @@ module ApplicationHelper
     html += content_tag(:div, capture(&block), :id => tip_id, :style => "display:none")
     html
   end
+
+  def popover(text, options = {}, &block)
+    tip_id = "tip_#{serial_id}"
+    options[:class] = "#{options[:class]} #{tip_id}_target"
+    options[:data] ||= {}
+    options[:data][:popover] ||= {}
+    options[:data][:popover][:content] = "##{tip_id}"
+    options[:data][:popover][:style] ||= {}
+    options[:data][:popover][:style][:classes] ||= ""
+    options[:data][:popover][:style][:classes] += " popovertip"
+    html = content_tag(:button, text, options)
+    # html += content_tag(:div, content_tag(:div, capture(&block), 'class': 'popovertip'), id: tip_id, style: "display:none")
+    html += content_tag(:div, capture(&block), id: tip_id, style: "display:none")
+    html
+  end
   
   def month_graph(counts, options = {})
     return '' if counts.blank?
@@ -601,7 +616,10 @@ module ApplicationHelper
       "enable-show-all-layer" => options[:enable_show_all_layer] ? "true" : "false",
       "show-all-layer" => options[:show_all_layer].to_json,
       "featured-layer-label" => I18n.t("maps.overlays.featured_observations"),
-      "control-position" => options[:control_position]
+      "control-position" => options[:control_position],
+      "elastic" => options[:elastic] ? 'true' : nil,
+      "elastic_params" => options[:elastic_params] ?
+        options[:elastic_params].map{ |k,v| "#{k}=#{v}" }.join("&") : nil
     }
     append_taxon_layers(map_tag_attrs, options)
     append_place_layers(map_tag_attrs, options)
@@ -952,7 +970,11 @@ module ApplicationHelper
         else
           link_to(project.title, url_for_resource_with_host(project))
         end
-        t(:curators_changed_for_x_html, :x => title)
+        if update.notification = Update::YOUR_OBSERVATIONS_ADDED
+          t(:project_curators_added_some_of_your_observations_html, url: project_url(resource), project: project.title)
+        else
+          t(:curators_changed_for_x_html, :x => title)
+        end
       end
     when "ProjectUserInvitation"
       if options[:skip_links]

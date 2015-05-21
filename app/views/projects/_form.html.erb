@@ -24,7 +24,7 @@
     <%= f.text_field :title, :required => true %>
     <%= f.select :project_type, Project::PROJECT_TYPES.map{|type| [t("#{type.gsub(" ", "_")}", :default => type), type]},
       :include_blank => t(:normal),
-      :description => t(:contest_projects_description) %>
+      :description => t(:project_type_description) %>
     <%= f.form_field :preferred_membership_model, :description => t(:project_membership_model_description) do %>
       <% for type in Project::MEMBERSHIP_MODELS %>
         <%= f.radio_button "preferred_membership_model", type, :label => t(type), :label_after => true, :wrapper => {:class => "inlineblock"} %>  
@@ -68,17 +68,6 @@
   
   <%= f.text_area :description, :description => t(:describe_purpose) %>
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
-
-  <div class="column span-24">
-    <fieldset id="taxa">
-      <legend><%=t :checklist %></legend>
-      <%= f.check_box :prefers_count_from_list,
-          :label => t(:show_total_listed_taxa),
-          :label_after => true,
-          :description => t(:show_the_total_number_of) %>
-      <%= f.select :preferred_count_by, {t(:species).downcase => "species", t(:leaves).downcase => "leaves", t(:all).downcase => "all"}, :description => t(:project_preferred_count_description) %>
-    </fieldset>
-  </div>
 
   <div class="column span-24">
     <fieldset id="bioblitz" style="<%= "display:none;" unless @project.project_type == Project::BIOBLITZ_TYPE %>">
@@ -129,18 +118,13 @@
     </fieldset>
   </div>
 
-  <% if project.place && project.place.check_list %>
-    <div class="column span-24">
-      <fieldset class="unobserved-listings">
-        <legend><%=t :unobserved_listings %></legend>
-        <p class="description">
-          <%=t :select_how_unobserved_listings_are_displayed %>
-        </p>
-        <%= f.radio_button("show_from_place", false, { checked: !project.show_from_place.present?, label: t(:display_listings_added_by_curators), :label_after => true})%>
-        <%= f.radio_button("show_from_place", true, { checked: project.show_from_place.present?, label: t(:display_listings_from_place), :label_after => true})%>
-      </fieldset>
-    </div>
-  <% end %>
+  <% if @project.trusted? -%>
+    <fieldset class="observationrules">
+      <legend><%= t(:observation_aggregation).titleize %></legend>
+      <%= f.check_box :prefers_aggregation, label_after: true, label: t(:automatically_add_observations_to_this_project) %>
+      <%=t 'views.projects.edit.observation_aggregation_desc_html' %>
+    </fieldset>
+  <% end -%>
 
   <fieldset class="observationrules">
     <legend><%= t(:observation_rules).titleize %></legend>
@@ -187,6 +171,30 @@
   </fieldset>
 
   <% if (current_user.is_admin? || (@project.editable_by?(current_user) && @project.trusted)) && !@project.new_record? -%>
+    <div class="column span-24">
+      <fieldset id="taxa">
+        <legend><%=t :checklist %></legend>
+        <%= f.check_box :prefers_count_from_list,
+            :label => t(:show_total_listed_taxa),
+            :label_after => true,
+            :description => t(:show_the_total_number_of) %>
+        <%= f.select :preferred_count_by, {t(:species).downcase => "species", t(:leaves).downcase => "leaves", t(:all).downcase => "all"}, :description => t(:project_preferred_count_description) %>
+      </fieldset>
+    </div>
+    
+    <% if project.place && project.place.check_list %>
+      <div class="column span-24">
+        <fieldset class="unobserved-listings">
+          <legend><%=t :unobserved_listings %></legend>
+          <p class="description">
+            <%=t :select_how_unobserved_listings_are_displayed %>
+          </p>
+          <%= f.radio_button("show_from_place", false, { checked: !project.show_from_place.present?, label: t(:display_listings_added_by_curators), :label_after => true})%>
+          <%= f.radio_button("show_from_place", true, { checked: project.show_from_place.present?, label: t(:display_listings_from_place), :label_after => true})%>
+        </fieldset>
+      </div>
+    <% end %>
+
     <fieldset id="project_assets">
       <legend><%=t :project_assets %></legend>
       <%=t 'views.projects.edit.project_assets_desc_html' %>
@@ -223,7 +231,8 @@
 
           <%= f.check_box :featured_at,
             :label => t(:feature_this_project),
-            :label_after => true %>
+            :label_after => true,
+            :checked => !@project.featured_at.nil? %>
           <%= f.text_field :group,
             :label => t(:project_group_label),
             :description => t(:project_group_description) %>

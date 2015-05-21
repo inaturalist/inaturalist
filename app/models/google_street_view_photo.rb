@@ -1,7 +1,4 @@
 class GoogleStreetViewPhoto < Photo
-  Photo.descendent_classes ||= []
-  Photo.descendent_classes << self
-
   before_save :set_license
 
   def attribution

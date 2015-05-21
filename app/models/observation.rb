@@ -664,7 +664,11 @@ class Observation < ActiveRecord::Base
     search_wheres["taxon.rank"] = p[:rank] if p[:rank]
     # include the taxon plus all of its descendants.
     # Every taxon has its own ID in ancestor_ids
-    search_wheres["taxon.ancestor_ids"] = p[:observations_taxon] if p[:observations_taxon]
+    if p[:observations_taxon]
+      search_wheres["taxon.ancestor_ids"] = p[:observations_taxon]
+    elsif p[:observations_taxon_ids]
+      search_wheres["taxon.ancestor_ids"] = p[:observations_taxon_ids]
+    end
     search_wheres["id_please"] = true if p[:id_please]
     search_wheres["out_of_range"] = true if p[:out_of_range]
     search_wheres["mappable"] = true if p[:mappable] == "true"
@@ -675,10 +679,7 @@ class Observation < ActiveRecord::Base
     search_wheres["observed_on_details.day"] = p[:observed_on_day] if p[:observed_on_day]
     search_wheres["observed_on_details.month"] = p[:observed_on_month] if p[:observed_on_month]
     search_wheres["observed_on_details.year"] = p[:observed_on_year] if p[:observed_on_year]
-    if p[:site] && host = URI.parse(p[:site]).host
-      search_wheres["uri"] = host
-    end
-    if d = Observation.split_date(p[:created_on])
+    if d = Observation.split_date(p[:created_on], utc: true)
       search_wheres["created_at_details.day"] = d[:day] if d[:day] && d[:day] != 0
       search_wheres["created_at_details.month"] = d[:month] if d[:month] && d[:month] != 0
       search_wheres["created_at_details.year"] = d[:year] if d[:year] && d[:day] != 0
@@ -714,7 +715,7 @@ class Observation < ActiveRecord::Base
       search_wheres["identifications_most_disagree"] = true
     end
 
-    search_filters = [ ]
+    search_filters = []
     unless p[:nelat].blank? && p[:nelng].blank? && p[:swlat].blank? && p[:swlng].blank?
       search_filters << { envelope: { geojson: {
         nelat: p[:nelat], nelng: p[:nelng], swlat: p[:swlat], swlng: p[:swlng],
@@ -752,8 +753,19 @@ class Observation < ActiveRecord::Base
       end
     end
     if p[:d1] || p[:d2]
-      search_filters << { range: { observed_on: {
-        gte: p[:d1] || Time.new("1800"), lte: p[:d2] || Time.now } } }
+      p[:d2] = Time.now if p[:d2] && p[:d2] > Time.now
+      search_filters << { or: [
+        { and: [
+          { range: { observed_on: {
+            gte: p[:d1] || Time.new("1800"), lte: p[:d2] || Time.now } } },
+          { exists: { field: "time_observed_at" } }
+        ] },
+        { and: [
+          { range: { observed_on: {
+            gte: (p[:d1] || Time.new("1800")).to_date, lte: (p[:d2] || Time.now).to_date } } },
+          { missing: { field: "time_observed_at" } }
+        ] }
+      ] }
     end
     unless p[:updated_since].blank?
       if timestamp = Chronic.parse(p[:updated_since])
@@ -775,6 +787,22 @@ class Observation < ActiveRecord::Base
     else "observations.id"
       { created_at: sort_order }
     end
+
+    if p[:not_in_project]
+      project_id = p[:not_in_project].is_a?(Project) ? p[:not_in_project].id : p[:not_in_project]
+      search_filters << {
+        'not': {
+          term: { project_ids: project_id }
+        }
+      }
+    end
+
+    if p[:identified].yesish?
+      search_filters << { exists: {field: :taxon} }
+    elsif p[:identified].noish?
+      search_filters << { 'not': { exists: {field: :taxon} } }
+    end
+
     # perform the actual query against Elasticsearch
     observations = Observation.elastic_paginate(
       where: search_wheres,
@@ -838,6 +866,10 @@ class Observation < ActiveRecord::Base
         taxon_name_conditions[1] = p[:taxon_name].encode('UTF-8')
         p[:observations_taxon] = TaxonName.where(taxon_name_conditions).joins(includes).first.try(:taxon)
       end
+    end
+    if !p[:observations_taxon] && !p[:taxon_ids].blank?
+      p[:observations_taxon_ids] = p[:taxon_ids]
+      p[:observations_taxa] = Taxon.where(id: p[:observations_taxon_ids]).limit(100)
     end
 
     if p[:has]
@@ -910,8 +942,8 @@ class Observation < ActiveRecord::Base
     end
 
     unless p[:projects].blank?
-      project_ids = p[:projects]
-      p[:projects] = Project.find([project_ids].flatten) rescue []
+      project_ids = [p[:projects]].flatten
+      p[:projects] = Project.find(project_ids) rescue []
       p[:projects] = p[:projects].compact
       if p[:projects].blank?
         project_ids.each do |project_id|
@@ -923,6 +955,10 @@ class Observation < ActiveRecord::Base
 
     if p[:pcid] && p[:pcid] != 'any'
       p[:pcid] = p[:pcid].yesish?
+    end
+
+    unless p[:not_in_project].blank?
+      p[:not_in_project] = Project.find(p[:not_in_project]) rescue nil
     end
 
     p[:rank] = p[:rank] if Taxon::VISIBLE_RANKS.include?(p[:rank])
@@ -1141,6 +1177,12 @@ class Observation < ActiveRecord::Base
         scope = scope.joins("JOIN listed_taxa ON listed_taxa.list_id = #{list.id}").where("listed_taxa.taxon_id = observations.taxon_id", list)
       end
     end
+
+    if params[:identified].yesish?
+      scope = scope.has_taxon
+    elsif params[:identified].noish?
+      scope = scope.where("taxon_id IS NULL")
+    end
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()
@@ -1167,7 +1209,7 @@ class Observation < ActiveRecord::Base
     if options[:verb]
       s += options[:verb] == true ? I18n.t(:observed).downcase : " #{options[:verb]}"
     end
-    unless self.place_guess.blank? || options[:no_place_guess]
+    unless self.place_guess.blank? || options[:no_place_guess] || coordinates_obscured?
       s += " #{I18n.t(:from, :default => 'from').downcase} #{self.place_guess}"
     end
     s += " #{I18n.t(:on_day)}  #{I18n.l(self.observed_on, :format => :long)}" unless self.observed_on.blank?
@@ -1227,16 +1269,10 @@ class Observation < ActiveRecord::Base
   def datetime
     if observed_on && errors[:observed_on].blank?
       if time_observed_at
-        Time.mktime(observed_on.year, 
-                    observed_on.month, 
-                    observed_on.day, 
-                    time_observed_at.hour, 
-                    time_observed_at.min, 
-                    time_observed_at.sec, 
-                    time_observed_at.zone)
+        time_observed_at.to_time
       else
-        Time.mktime(observed_on.year, 
-                    observed_on.month, 
+        Time.mktime(observed_on.year,
+                    observed_on.month,
                     observed_on.day)
       end
     end
@@ -1709,14 +1745,14 @@ class Observation < ActiveRecord::Base
     geoprivacy == OBSCURED
   end
   
-  def coordinates_viewable_by?(usr)
+  def coordinates_viewable_by?(viewer)
     return true unless coordinates_obscured?
-    usr = User.find_by_id(usr) unless usr.is_a?(User)
-    return false unless usr
-    return true if user_id == usr.id
-    return true if usr.project_users
-                      .detect{ |pu| project_ids.include?(pu.project_id) &&
-                                    ProjectUser::ROLES.include?(pu.role) }
+    viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
+    return false unless viewer
+    return true if user_id == viewer.id
+    viewer.project_users.where(project_id: project_ids, role: ProjectUser::ROLES).each do |pu|
+      return true if project_observations.detect{|po| po.project_id == pu.project_id && po.prefers_curator_coordinate_access?}
+    end
     false
   end
   

@@ -34,7 +34,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.taxonLayers = $(elt).data('taxon-layers');
   options.mapTypeControl = $(elt).data('map-type-control');
   options.enableShowAllLayer = $(elt).data('enable-show-all-layer');
-  options.showAllLayer = options.showAllLayer || $(elt).data('show-all-layer') || true;
+  options.showAllLayer = options.showAllLayer || $(elt).data('show-all-layer');
   options.featuredLayerLabel = options.featuredLayerLabel || $(elt).data('featured-layer-label');
   options.featuredLayerDescription = options.featuredLayerDescription || $(elt).data('featured-layer-description');  
   options.placeLayerLabel = options.placeLayerLabel || $(elt).data('place-layer-label');
@@ -52,6 +52,8 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.gbifLayerDescription = options.gbifLayerDescription || $(elt).data('gbif-layer-description');
   options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover');
   options.controlPosition = options.controlPosition || $(elt).data('control-position');
+  options.elastic = options.elastic || $(elt).data('elastic');
+  options.elastic_params = options.elastic_params || $(elt).data('elastic-params');
   // turn the observations JSON into proper JavaScript objects
   if ( options.observations ) {
     options.observations = _.map( options.observations, function( observation ) {
@@ -61,7 +63,9 @@ inatTaxonMap.setup = function ( elt, options ) {
   if (options.zoomLevel === 0) {
     options.zoomLevel = null;
   }
-
+  if( !options.showAllLayer && options.showAllLayer !== false ) {
+    options.showAllLayer = true;
+  }
   $(elt).data('taxonMapOptions', options)
   inatTaxonMap.setupGoogleMap( elt );
 };
@@ -130,6 +134,8 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
   inatTaxonMap.addObservationLayers( map, options );
   // these are the observations that need Google Maps-style flags
   inatTaxonMap.addObservationsToMap( map, options, preserveViewport);
+  // testing elasticsearch based maps
+  inatTaxonMap.addElasticLayer( map, options );
   var coord;
   if ( options.urlCoords ) {
     function setUrlHashCoord() {
@@ -232,6 +238,16 @@ inatTaxonMap.addObservationLayers = function( map, options ) {
         title: options.featuredLayerLabel,
         controlPosition: options.controlPosition
       }));
+    });
+  }
+};
+
+inatTaxonMap.addElasticLayer = function( map, options ) {
+  if( options.elastic ) {
+    map.addElasticLayer({
+      elastic_params: options.elastic_params,
+      title: options.allLayerLabel,
+      description: options.allLayerDescription
     });
   }
 };

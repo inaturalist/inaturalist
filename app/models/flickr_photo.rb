@@ -1,8 +1,6 @@
 #encoding: utf-8
 class FlickrPhoto < Photo
   acts_as_flaggable  
-  Photo.descendent_classes ||= []
-  Photo.descendent_classes << self
   
   validates_presence_of :native_photo_id
   validate :user_owns_photo

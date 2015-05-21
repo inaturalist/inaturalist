@@ -650,7 +650,7 @@ protected
         :time_zone, :icon_url, :locale, :prefers_community_taxa, :place_id,
         :make_observation_licenses_same, :make_photo_licenses_same, :make_sound_licenses_same,
         :preferred_photo_license, :preferred_observation_license, :preferred_sound_license,
-        :preferred_observation_fields_by)
+        :preferred_observation_fields_by, :preferred_project_addition_by)
     end
   end
 

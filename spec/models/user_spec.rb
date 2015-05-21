@@ -14,6 +14,8 @@ bad_logins = [
 ]
 
 describe User do
+  before(:all) { User.destroy_all }
+
   describe 'creation' do
     before do
       @user = nil
@@ -630,5 +632,31 @@ describe User, "updating" do
         expect(u).not_to be_valid
       end
     end
+  end
+end
+
+describe User, "active_ids" do
+  it "should calculate active users across several classes" do
+    User.active_ids.length.should == 0
+    Identification.count.should == 0
+    observation = Observation.make!
+    # observations are made with identifications, so we'll start fresh
+    Identification.delete_all
+    Identification.make!(observation: observation)
+    Identification.count.should == 1
+    Comment.make!(parent: observation)
+    Post.make!(parent: observation)
+    User.active_ids.length.should == 4
+  end
+
+  it "should count the same user only once" do
+    User.active_ids.length.should == 0
+    user = User.make!
+    observation = Observation.make!(user: user)
+    Identification.delete_all
+    Identification.make!(observation: observation, user: user)
+    Comment.make!(parent: observation, user: user)
+    Post.make!(parent: observation, user: user)
+    User.active_ids.length.should == 1
   end
 end

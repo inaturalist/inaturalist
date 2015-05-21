@@ -284,9 +284,9 @@ class ObservationsController < ApplicationController
         end.reverse
         
         if logged_in?
-          @projects = Project.joins(:project_users).
-            where("project_users.user_id = ?", current_user).
-            limit(1000).sort_by{ |p| p.title.downcase }
+          @projects = current_user.project_users.includes(:project).joins(:project).limit(1000).order("lower(projects.title)").map(&:project)
+          @project_addition_allowed = @observation.user_id == current_user.id
+          @project_addition_allowed ||= @observation.user.preferred_project_addition_by != User::PROJECT_ADDITION_BY_NONE
         end
         
         @places = @observation.places
@@ -612,7 +612,7 @@ class ObservationsController < ApplicationController
         o.oauth_application = a.becomes(OauthApplication)
       end
       # Get photos
-      Photo.descendent_classes.each do |klass|
+      Photo.subclasses.each do |klass|
         klass_key = klass.to_s.underscore.pluralize.to_sym
         if params[klass_key] && params[klass_key][fieldset_index]
           o.photos << retrieve_photos(params[klass_key][fieldset_index], 
@@ -632,12 +632,7 @@ class ObservationsController < ApplicationController
     end
     
     current_user.observations << @observations.compact
-    
-    if request.format != :json && !params[:accept_terms] && params[:project_id] && !current_user.project_users.find_by_project_id(params[:project_id])
-      flash[:error] = t(:but_we_didnt_add_this_observation_to_the_x_project, :project => Project.find_by_id(params[:project_id]).title)
-    else
-      create_project_observations
-    end
+    create_project_observations
     update_user_account
     
     # check for errors
@@ -763,7 +758,7 @@ class ObservationsController < ApplicationController
         # Get photos
         updated_photos = []
         old_photo_ids = observation.photo_ids
-        Photo.descendent_classes.each do |klass|
+        Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           if params[klass_key] && params[klass_key][fieldset_index]
             updated_photos += retrieve_photos(params[klass_key][fieldset_index], 
@@ -783,7 +778,7 @@ class ObservationsController < ApplicationController
           Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(doomed_photo_ids)
         end
 
-        Photo.descendent_classes.each do |klass|
+        Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           next unless params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
           next unless photo = observation.photos.last
@@ -1040,7 +1035,7 @@ class ObservationsController < ApplicationController
   def import
     if @default_photo_identity ||= @photo_identities.first
       provider_name = if @default_photo_identity.is_a?(ProviderAuthorization)
-        @default_photo_identity.provider_name
+        @default_photo_identity.photo_source_name
       else
         @default_photo_identity.class.to_s.underscore.split('_').first
       end
@@ -1057,7 +1052,7 @@ class ObservationsController < ApplicationController
   end
   
   def import_photos
-    photos = Photo.descendent_classes.map do |klass|
+    photos = Photo.subclasses.map do |klass|
       retrieve_photos(params[klass.to_s.underscore.pluralize.to_sym], 
         :user => current_user, :photo_class => klass)
     end.flatten.compact
@@ -1321,7 +1316,7 @@ class ObservationsController < ApplicationController
       @observations = get_elastic_paginated_observations(params)
     end
     
-    @project_observations = @project.project_observations.where(observation: @observations.to_a).
+    @project_observations = @project.project_observations.where(observation: @observations.map(&:id)).
       includes([ { :curator_identification => [ :taxon, :user ] } ])
     @project_observations_by_observation_id = @project_observations.index_by(&:observation_id)
     
@@ -1964,6 +1959,9 @@ class ObservationsController < ApplicationController
     elsif params[:place_ids]
       @places = Place.where(id: params[:place_ids])
     end
+    if params[:render_place_id]
+      @render_place = Place.find_by_id(params[:render_place_id])
+    end
     if @taxa.length == 1
       @taxon = @taxa.first
       @taxon_hash = { }
@@ -1976,6 +1974,13 @@ class ObservationsController < ApplicationController
       if @taxon.iconic_taxon
         @taxon_hash[:iconic_taxon_name] = @taxon.iconic_taxon.name
       end
+    end
+    possible_elastic_params = (params.keys.map(&:to_sym) & [ :d1, :d2 ])
+    if params[:elastic] || !possible_elastic_params.empty?
+      @elastic = true
+      @elastic_params = params.select{ |k,v|
+        [ :heatmap, :place_id, :user_id, :project_id,
+          :taxon_id, :d1, :d2 ].include?( k.to_sym ) }
     end
     @about_url = CONFIG.map_about_url ? CONFIG.map_about_url :
       view_context.wiki_page_url('help', anchor: 'mapsymbols')
@@ -2124,6 +2129,8 @@ class ObservationsController < ApplicationController
     @observations_taxon_id = search_params[:observations_taxon_id]
     @observations_taxon = search_params[:observations_taxon]
     @observations_taxon_name = search_params[:taxon_name]
+    @observations_taxon_ids = search_params[:taxon_ids]
+    @observations_taxa = search_params[:observations_taxa]
     if search_params[:has]
       @id_please = true if search_params[:has].include?('id_please')
       @with_photos = true if search_params[:has].include?('photos')
@@ -2409,8 +2416,7 @@ class ObservationsController < ApplicationController
       @photo_identities = []
       return true
     end
-    Photo.descendent_classes = [FlickrPhoto, PicasaPhoto, FacebookPhoto] if Photo.descendent_classes.blank?
-    @photo_identities = Photo.descendent_classes.map do |klass|
+    @photo_identities = Photo.subclasses.map do |klass|
       assoc_name = klass.to_s.underscore.split('_').first + "_identity"
       current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
     end.compact
@@ -2435,8 +2441,12 @@ class ObservationsController < ApplicationController
         @default_photo_source = 'flickr'
       end
     end
-    @default_photo_source ||= if @default_photo_identity && @default_photo_identity.class.name =~ /Identity/
-      @default_photo_identity.class.name.underscore.humanize.downcase.split.first
+    @default_photo_source ||= if @default_photo_identity
+      if @default_photo_identity.class.name =~ /Identity/
+        @default_photo_identity.class.name.underscore.humanize.downcase.split.first
+      else
+        @default_photo_identity.provider_name
+      end
     elsif @default_photo_identity
       "local"
     end
@@ -2444,7 +2454,11 @@ class ObservationsController < ApplicationController
     @default_photo_identity_url = nil
     @photo_identity_urls = @photo_identities.map do |identity|
       provider_name = if identity.is_a?(ProviderAuthorization)
-        identity.provider_name
+        if identity.provider_name =~ /google/i
+          "picasa"
+        else
+          identity.provider_name
+        end
       else
         identity.class.to_s.underscore.split('_').first # e.g. FlickrIdentity=>'flickr'
       end
@@ -2455,14 +2469,24 @@ class ObservationsController < ApplicationController
     @photo_sources = @photo_identities.inject({}) do |memo, ident| 
       if ident.respond_to?(:source_options)
         memo[ident.class.name.underscore.humanize.downcase.split.first] = ident.source_options
-      else
-        memo[:facebook] = {
-          :title => 'Facebook', 
-          :url => '/facebook/photo_fields', 
-          :contexts => [
-            ["Your photos", 'user']
-          ]
-        }
+      elsif ident.is_a?(ProviderAuthorization)
+        if ident.provider_name == "facebook"
+          memo[:facebook] = {
+            :title => 'Facebook', 
+            :url => '/facebook/photo_fields', 
+            :contexts => [
+              ["Your photos", 'user']
+            ]
+          }
+        elsif ident.provider_name =~ /google/
+          memo[:picasa] = {
+            :title => 'Picasa', 
+            :url => '/picasa/photo_fields', 
+            :contexts => [
+              ["Your photos", 'user', {:searchable => true}]
+            ]
+          }
+        end
       end
       memo
     end
@@ -2631,8 +2655,6 @@ class ObservationsController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @project ||= Project.find(params[:project_id]) rescue nil
     return unless @project
-    @project_user = current_user.project_users.find_or_create_by(project_id: @project.id)
-    return unless @project_user && @project_user.valid?
     tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
     errors = []
     @observations.each do |observation|

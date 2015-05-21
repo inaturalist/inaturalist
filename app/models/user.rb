@@ -45,6 +45,10 @@ class User < ActiveRecord::Base
   PREFERRED_OBSERVATION_FIELDS_BY_CURATORS = "curators"
   PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER = "observer"
   preference :observation_fields_by, :string, :default => PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
+  PROJECT_ADDITION_BY_ANY = "any"
+  PROJECT_ADDITION_BY_JOINED = "joined"
+  PROJECT_ADDITION_BY_NONE = "none"
+  preference :project_addition_by, :string, default: PROJECT_ADDITION_BY_ANY
 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
@@ -55,7 +59,7 @@ class User < ActiveRecord::Base
   belongs_to :life_list, :dependent => :destroy
   has_many  :provider_authorizations, :dependent => :delete_all
   has_one  :flickr_identity, :dependent => :delete
-  has_one  :picasa_identity, :dependent => :delete
+  # has_one  :picasa_identity, :dependent => :delete
   has_one  :soundcloud_identity, :dependent => :delete
   has_many :observations, :dependent => :destroy
   has_many :deleted_observations
@@ -112,6 +116,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions, :dependent => :delete_all
   has_many :updates, :foreign_key => :subscriber_id, :dependent => :delete_all
   has_many :flow_tasks
+  has_many :project_observations, dependent: :nullify 
   belongs_to :site, :inverse_of => :users
   belongs_to :place, :inverse_of => :users
 
@@ -318,8 +323,8 @@ class User < ActiveRecord::Base
   end
   
   def picasa_client
-    return nil unless picasa_identity
-    @picasa_client ||= Picasa.new(self.picasa_identity.token)
+    return nil unless (pa = has_provider_auth('google'))
+    @picasa_client ||= Picasa.new(pa.token)
   end
 
   # returns a koala object to make (authenticated) facebook api calls
@@ -337,6 +342,10 @@ class User < ActiveRecord::Base
 
   def facebook_token
     facebook_identity.try(:token)
+  end
+
+  def picasa_identity
+    @picasa_identity ||= has_provider_auth('google_oauth2')
   end
 
   # returns a Twitter object to make (authenticated) api calls
@@ -633,12 +642,24 @@ class User < ActiveRecord::Base
     }
   end
 
+  def self.active_ids(at_time = Time.now)
+    date_range = (at_time - 30.days)..at_time
+    classes = [ Identification, Observation, Comment, Post ]
+    # get the unique user_ids that created instances of any of these
+    # classes within the last 30 days, then get the union (with .inject(:|))
+    # of the array of arrays.
+    user_ids = classes.collect{ |klass|
+      klass.select("DISTINCT(user_id)").where(created_at: date_range).
+        collect{ |i| i.user_id }
+    }.inject(:|)
+  end
+
   def self.header_cache_key_for(user, options = {})
     user_id = user.is_a?(User) ? user.id : user
     user_id ||= "signed_on"
     site_name = options[:site].try(:name) || options[:site_name]
     site_name ||= user.site.try(:name) if user.is_a?(User)
-    "header_cache_key_for_#{user_id}_on_#{site_name}"
+    "header_cache_key_for_#{user_id}_on_#{site_name}_#{I18n.locale}"
   end
 
   def to_plain_s

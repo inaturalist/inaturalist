@@ -1546,7 +1546,7 @@ es-MX:
   new_guide: Nueva Guía
   new_journal_posts: Nueva nota de Diario
   new_list: Nueva lista
-  new_members: Nuevos miembros...
+  new_members: Nuevos miembros
   new_observation_field: Nuevo campo de observación
   new_observation_rules: Nuevas reglas de observación
   new_observations: Nuevas observaciones...
@@ -3536,6 +3536,36 @@ es-MX:
           bien.
         you_can_help_out_by: Puedes ayudar a mejorar nuestros datos de lugares mediante
     projects:
+      curator_coordinate_access_desc_html: |
+        Recuerda, <strong>los curadores del proyecto pueden añadir 
+        cualquier observación tuya al proyecto</strong> a menos que decidas
+        lo contrario en tu <a
+        href="/users/edit">configuración de cuenta</a>. Solo selecciona esta caseta
+        si confias en en los curadores de este proyecto, para que puedan ver
+        incluso las corrednadas privadas de cualquier observacion tuya que 
+        pueda ser añadida. Si decides no darles este permiso, posteriormente puedes 
+        dar acceso a algunas coordenadas privadas de alguna observación tuya si
+        así lo deseas.
+      confirm_leave:
+        what_would_you_like: |
+          ¿Qué qusieras hacer con tu obsrvación en este proyecto?
+        keep_observations_label: |
+          Dejar mis observaciones en este proyecto
+        keep_observations_desc: |
+          Tus observaciones permanecerán en este proyecto y los curadores de este
+          mismo podrán ver sus coordenadas privadas.
+        remove_observations_label: |
+          Quitar todas mis observaciones de este proyecto
+        remove_observations_desc_html: |
+          Toma en cuenta que los curadores del proyecto podrán añadir tus 
+          observaciones al proyecto, a menos que cambies de opinión en 
+          <a href="/users/edit">configuración de cuenta</a>.
+        revoke_observations_label: |
+          Dejar mis observaciones en este proyecto pero no permitir
+          que los curadores del proyecto puedan ver las coordenadas privadas
+        revoke_observations_desc: |
+          Quito todas mis observaciones del proyecto porque no deseo que
+          los curadores del proyecto puedan ver mis coordendas privadas.
       edit:
         bioblitz_create_a_new_place_html: '%{link}, asegurate de que tu lugar este
           delimitado por un polígono, y despues puedes regresar a intentarlo de nuevo.'
@@ -3561,6 +3591,28 @@ es-MX:
           incluir un widget de inscripción en su página de proyecto hasta que su bioblitz
           comienze.
         icon_desc: Se recortará a un cuadrado
+        observation_aggregation_desc_html: |
+          <p class="description">
+            El adjuntador de observaciones automaticamente añadira todas tus 
+            observaciones a tu proyecto de acuerdo al polígono y las reglas 
+            de tu proyecto. Dado que no existe una forma de quitar varias 
+            observaciones de un proyecto a la vez, esto es potencialmente peligroso, 
+            así que asegurate haber puesto los límites y las reglas del lugar correctas,
+            o terminarás con muchos datos fuera de lugar.
+          </p>
+          <p class="description">
+            El adjuntador solo funcionará si las siguientes condiciones se cumplen: 
+          </p>
+          <ol>
+            <li class="readable description">
+              Tu proyecto esta verificado
+            </li>
+            <li class="readable description">
+              Tu proyecto esta asociado a un polígono de tamaño chico o mediano 
+              (como del tamaño de Texas o Ucrania) o tu proyecto solo acepta 
+              observaciones de ciertos grupos o especies
+            </li>
+          </ol>        
         project_assets_desc_html: |-
           <p class="description"> Los recursos asociados a tu proyecto son archivos que tienen ciertas reglas especiales: </p>
           <ol class="description">
@@ -3572,10 +3624,127 @@ es-MX:
             </li>
             <li>archivos KML y KMZ se añadirán al mapa en la página del proyecto</li>
           </ol>
-        start_time_desc: Tiempo en que empezara su bioblitz
+        rules:
+          captive: be capturada/cultivada
+          wild: estado salvaje/silvestre
+          georeferenced: tiene coordenadas
+          has_media: tiene contenido multimedia (fotos o sonido)
+          has_a_photo: tiene foto
+          has_a_sound: tiene sonido
+          identified: tiene identificación
+          in_taxon: ser una especie o grupo
+          observed_in_place: fue observado en algún lugar
+          on_list: ser una especie o grupo de la lista del proyecto
+        start_time_desc: "Fecha de inicio de tu proyecto bioblitz. Formato: YYYY-MM-DDThh:mm:ss±hh:mm"          
+        start_time_desc: Tiempo en que empezará tu proyecto bioblitz
         trusted_project_means: |-
           Cuando un projecto está verificado, los curadores y gerentes del
           proyecto pueden crear, actualizar y borra sus recursos del proyecto.
+      invite:
+        description_html: |
+          <h3>Acerca de las invitaciones</h3>
+          <p class="ui">
+            Invitar ala comunidad a los proyectos es un poco diferente que 
+            invitar observaciones individuales. Invitar a la comunidad otorga
+          </p>
+          <ol>
+            <li>Enviarles un correo indicandoles i se quieren unir</li>
+            <li>Enviar una notificación en tablero</li>
+            <li>Permitirles unirse a tu proyecto si esta configurado como "Solo inivitar"</li>
+          </ol>
+          <p class="ui">
+            Solo los curadores del proyecto pueden invitar invitar a otras 
+            personas para unirse. Podrías buscar a más comunidad por su nombre de 
+            usuario o su correo <em>completo</em>, asumiendo que ya esta registrado.
+          </p>
+      join:
+        invite_only_description: |
+            Miembros de este proyecto estan solo por invitación. Si deseas unirte,
+            por favor contacta alguno de estos curadores y solicitales una 
+            invitación.
+      members:
+        bioblitz_notice_html: |
+          <strong>Nota:</strong> esta solo es una lista de la comunidad que 
+          explicitamente se ha unido a este proyecto. Dado que es un 
+          proyecto bioblitz y las estadísticas son calculadas de todas las 
+          observaciones añadidas a un lugar específico y en un periodo de timepo,
+          puede haber mas participantes que loslistados aquí.
+      project_location_privacy_notice_html: |
+        <p>
+          Ten en cuenta que los curadores del proyecto podrán ver cualquier 
+          coordenada oscurecida o privada de tus observaciones a menos que 
+          quites este permios, y ellos podrán añadir cualquiera de tus 
+          observaciones al proyecto a menos que <a href="/users/edit">
+          cambies la configuracióon </a>. Además puedes otorgar o quitar 
+          acceso a tus obversaciones en este proyecto de acuerdo a las
+          opciones básicas.
+        </p>
+        <p>
+          Si estas preocupado por la privacidad de las coordenadas, no te
+          unas a este proyecto a menos que confies en los curadores 
+          del proyecto.
+        </p>
+      project_user_curator_coordinate_access_labels:
+        observer: Ti
+        any: Curadores del proyecto
+        none: Nadie
+      curator_coordinate_access_label: |
+        Permite que los curadores del proyecto vean las coordenadas privadas 
+        de tus observaciones cuando sean añadidas al proyecto por
+      curator_coordinate_access_note: |
+        También puedes escoger compartir las coordenadas privadas de las 
+        observaciones en este proyecto, una por una. Estas son las opciones 
+        básicas para nuevas observaciones añadidas al proyecto. 
+      project_user_curator_coordinate_access_descriptions:
+        observer: |
+          Solo los curadores del proyecto pueden ver las coordenadas 
+          privadas de tus observaciones añadidas al proyecto
+        any: |
+          Solo los curadores del proyecto pueden ver las coordenadas 
+          privadas de tus observaciones añadidas al proyecto y las que 
+          ellos añadan y sean tuyas.
+        none: |
+          No compartir las coordenadas privadas de los proyectos con 
+          los curadores del proyecto
+      project_terms_desc_html: |
+        Permitir a los curadores del proyecto usar tus observaciones de 
+        acuerdo a los <a href="%{url}">términos del proyecto.</a>.
+      show:
+        bioblitz_results_desc_html: |
+          <p>
+            De manera diferente a los projectos normales, los proyectos bioblitz 
+            muestran estadísticas de los eventos por <em>todas</em> las 
+            observaciones aunadas al lugar y el período de tiempo, no solo 
+            las observaciones que la comunidad intencionalmente ha añadido.
+            Esto es para quitar el obstáculo de añadir observaciones solo 
+            para obtener las estadísticas en tiempo real. Con esto, las observaciones 
+            no estarán disponibles para exportar o mostrar en otras vistas 
+            del proyecto, como las contribuciones de los miembros o las 
+            busquedas de las observaciones del proyecto desde las 
+            aplicaciones moviles, hasta que los participantes del proyecto 
+            añadan observaciones relevantes como en un proyecto normal.
+          </p>
+          <p>
+            Observa que mientras este proyecto muestre estadísticas de observaciones 
+            que no han sido deliberadamente añadidas ha este mismo, no les permitirá 
+            a los curadores ver coordenadas privadas o oscurecidas de dichas observaciones 
+            o asumiendo que los observadores han aceptado los términos del proyecto.
+            Si eres un curador del proyecto y necesitas acceder a las coordendas privadas,
+            necesitarás que los miembros acepten los términos del proyecto, o si 
+            buscas que tus observaciones cuenten como el listado del proyecto,
+            asegurate que tus participantes y sus observaciones se unan al proyecto como
+            en los proyectos normales.
+          </p>
+        project_observations_desc: |
+          Esto solo incluye observaciones explicitamente añadidas al proyecto, no todas
+          las observaciones registradas en el lugar y tiempo de este evento.
+        curated_checklist_desc: |
+          Esta es la lista curada y el conteo de las especies o grupos añadidos explicitamente 
+          a este proyecto, no todas las observaciones registradas en el tiempo y lugar 
+          de este evento.
+      updates_desc: |
+        Recibir notificaciones acerca de este proyecto en tu tablero y en los 
+        correos diarios.
     users:
       edit:
         taxon_change_desc: "Cuando una especie o grupo (taxa) se combina o cambia

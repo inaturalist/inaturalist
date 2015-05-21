@@ -11,7 +11,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     # }
   end
   if fb_cfg = CONFIG.facebook
-    opts = {:scope => 'email,offline_access,publish_stream,user_location,user_photos,friends_photos,user_groups,read_stream'}
+    opts = {:scope => 'email,user_location,user_photos,user_groups,read_stream'}
     opts[:client_options] = {:ssl => {:ca_path => "/etc/ssl/certs"}} if File.exists?("/etc/ssl/certs")
     provider :facebook, fb_cfg["app_id"], fb_cfg["app_secret"], opts
   end

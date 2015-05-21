@@ -50,8 +50,7 @@
           links << link_to(t(:edit_project), edit_project_path(@project), :class => "ui description")
         end
         if @project_user && @project_user.user_id != @project.user_id
-          links << link_to( t(:leave_this_project) , leave_project_path(@project), :method => :delete, :class => "ui description",
-            :data => {:confirm => t(:are_you_sure_leave_this_project)})
+          links << link_to( t(:leave_this_project), confirm_leave_project_path(@project), 'class': 'ui description')
         end
         if @project_user.blank?
           links << link_to( t(:join_project), join_project_path(@project), :class => "ui")
@@ -118,8 +117,8 @@
   <% end -%>
 </div>
 
-<% if @project.project_type == Project::BIOBLITZ_TYPE -%>
-  <div id="bioblitz" class="column span-24 stacked">
+<div id="bioblitz" class="column span-24 stacked">
+  <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
     <% if !@project.event_url.blank? && !@project.event_started? -%>
       <div id="event" class="clear stacked <%= 'with_description' unless @project.description.blank? %>">
         <% if @project.eventbrite_id -%>
@@ -141,29 +140,42 @@
         :attributes => Post::ALLOWED_ATTRIBUTES, 
         :skip_simple_format => @project.description.to_s[0] == "<") %>
     <% end -%>
+  <% end %>
 
-    <% if @project.event_in_progress? || @project.event_ended? -%>
-      <div id="bioblitzstats" class="stacked">
-        <div class="inline buttonrow right">
+  <% if (@project.project_type != Project::BIOBLITZ_TYPE) || @project.event_started? -%>
+    <div id="projectstats" class="stacked">
+      <div class="inline buttonrow right">
+        <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
           <%= link_to t(:all_observations, :default => "All observations").capitalize, observations_url(@observations_url_params), :class => "inter" %>
-          <%= link_to t(:all_species, :default => "All species").capitalize, taxa_observations_url(@observations_url_params.merge(:rank => Taxon::SPECIES)), :class => "inter" %>
-          <%= link_to t(:all_people, :default => "All people").capitalize, user_stats_observations_url(@observations_url_params), :class => "inter" %>
+        <% else %>
+          <%= link_to t(:all_observations, :default => "All observations").capitalize, project_observations_url(@project), :class => "inter" %>
+        <% end %>
+        <%= link_to t(:all_species, :default => "All species").capitalize, taxa_observations_url(@observations_url_params.merge(:hrank => Taxon::SPECIES)), :class => "inter" %>
+        <%= link_to t(:all_people, :default => "All people").capitalize, user_stats_observations_url(@observations_url_params), :class => "inter" %>
+        <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
           <%= link_to_dialog t(:about_bioblitz_results), :width => "60%", :link => {:class => "meta inter"} do %>
             <%=t 'views.projects.show.bioblitz_results_desc_html' %>
           <% end -%>
           <% if signed_in? && @project.event_in_progress? -%>
             <%= link_to t(:view_real_time_stats_in_a_new_window), stats_observations_url(@observations_url_params.merge(:refresh => true)), :class => "inter readmore", :target => "_new" %>
           <% end -%>
-        </div>
-        <h2 class="stacked"><%= @project.event_ended? ? t(:event_stats) : t(:event_in_progress) %></h2>
-        <div id="rtstats" class="clear">
-          <%= render :partial => "observations/real_time_stats" %>
-        </div>
+        <% end %>
       </div>
-      <%= separator %>
-    <% end -%>
-  </div>
-<% end -%>
+      <h2 class="stacked">
+        <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+          <%= @project.event_in_progress? ? t(:event_in_progress) : t(:event_stats) %>
+        <% else %>
+          <%=t :stats %>
+        <% end %>
+      </h2>
+      <div id="rtstats" class="clear">
+        <%= render :partial => "observations/real_time_stats" %>
+      </div>
+    </div>
+  <% end -%>
+
+  <%= separator %>
+</div>
 
 
 <div class="column span-16">
@@ -175,36 +187,38 @@
     longitude: @project.longitude,
     map_type: @project.map_type,
     observation_layers: [ { project_id: @project.id, observations: @observations } ] ) %>
-  <%= content_tag("div", "", map_attributes.merge({ id: "map" })) %>
+  <div class="stacked">
+    <%= content_tag("div", "", map_attributes.merge({ id: "map" })) %>
+  </div>
   
-  <% unless @project_journal_posts.blank? %>
+  <% if @project_journal_posts.blank? && @project.curated_by?(current_user) %>
     <div id="journal" class="quiet box">
-      <% if @project_journal_posts.blank? -%>
-        <div class="description noresults">
-          <%= t :no_journal_post_have_been %>
-        </div>
-      <% else %>
+      <h3><%=t :journal %></h3>
+      <%=t 'views.projects.show.no_journal_blurb_html', url: new_project_journal_post_path(@project) %>
+    </div>
+  <% elsif !@project_journal_posts.blank? %>
+    <div id="journal" class="quiet box">
+      <div class="stacked">
+        <%= render :partial => 'posts/post', :locals => { :post => @project_journal_posts.first, :truncate_length => 1000 } %>
+      </div>
+      
+      <% if @project_journal_posts.size > 1 -%>
         <div class="stacked">
-          <%= render :partial => 'posts/post', :locals => { :post => @project_journal_posts.first, :truncate_length => 1000 } %>
+          <label><%= t :recent_post %></label>
+          <ul class="plain">
+            <% for post in @project_journal_posts[1..-1] %>
+              <li>
+                <span class="date meta"><%= post.published_at.to_date.strftime('%b %d') %></span>
+                <%= link_to truncate(post.title, :length => 100), project_journal_post_path(@project, post) %>
+              </li>
+            <% end %>
+          </ul>
         </div>
-        
-        <% if @project_journal_posts.size > 1 -%>
-          <div class="stacked">
-            <label><%= t :recent_post %></label>
-            <ul class="plain">
-              <% for post in @project_journal_posts[1..-1] %>
-                <li>
-                  <span class="date meta"><%= post.published_at.to_date.strftime('%b %d') %></span>
-                  <%= link_to truncate(post.title, :length => 100), project_journal_post_path(@project, post) %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-          <%= link_to t(:more_journal_posts), project_journal_path(@project), :class => "readmore" %>
-        <% end -%>
-      <% end %>
+        <%= link_to t(:more_journal_posts), project_journal_path(@project), :class => "readmore" %>
+      <% end -%>
     </div>
   <% end %>
+
   <div id="observations">
     <% if false && logged_in? && @project_user && @project.matching_project_observation_rules.count > 0 -%>
       <div class="right add_matching_link inlineblock">
@@ -219,55 +233,64 @@
       </div>
     <% end -%>
 
-    <% if @project.project_type == 'bioblitz' -%>
-      <div id="bioblitz_observations">
-        <div class="clear">
-          <h3 class="left">
-            <%=t :recent_observations %>
-            <%= link_to t(:view_all), @observations_url, :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
-          </h3>
-          <div class="right observationcontrols"></div>
-        </div>
-        <div class="observations medium grid">
-          <%= loading %>
-        </div>
+    <div id="recent_observations">
+      <div class="clear">
+        <h3 class="left">
+          <%=t :recent_observations %>
+          <%= link_to t(:view_all), @project.project_type == Project::BIOBLITZ_TYPE ? @observations_url : project_observations_url(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
+        </h3>
+        <div class="right observationcontrols"></div>
       </div>
-    <% else %>
-      <h3>
-        <%=t :recent_observations %>
-        <%= link_to t(:view_all), project_observations_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
-      </h3>
-      <% if @project_observations.blank? -%>
-        <div class="description noresults">
-          <%=t :no_observations_yet %>
-        </div>
-      <% else %>
-        <div class="mini observations">
-          <% for project_observation in @project_observations %>
-            <%= render :partial => 'project_observation', :object => project_observation %>
-          <% end %>
-        </div>
-        <%= link_to t(:more_observations), {:controller => "observations", :action => "project", :id => @project},
-          :class => "readmore" %>
-      <% end -%>
-    <% end -%>
+      <div class="observations medium grid">
+        <%= loading %>
+      </div>
+      <%= link_to t(:more_observations), @project.project_type == Project::BIOBLITZ_TYPE ? @observations_url : project_observations_url(@project),
+        :class => "readmore" %>
+    </div>
   </div>
 </div>
 
 <div class="last column span-8">
   <ul id="projectnav" class="stacked quiet box">
-    <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
-      <li>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:event_observations)}".html_safe, @observations_url, :class => "navlink" %>
-      </li>
-    <% end -%>
     <li>
-      <% if @project_observations_count.to_i > 0 -%>
-        <span class="right" style="margin: 4px 10px 0 10px">
-          <span class="count"><%= @project_observations_count %></span> <%= t(:observations).to_s.downcase %>
+      <% if @members_count.to_i > 1 -%>
+        <span class="right sectioncount">
+          <span class="count"><%= @members_count %></span> <%= t(:members).to_s.downcase %>
         </span>
       <% end -%>
-      <%= link_to "<span class='lead'>&raquo;</span> #{t(:observations_map)}".html_safe, project_observations_path(@project), :class => "navlink" %>
+      <%= link_to "<span class='lead'>&raquo;</span> #{t(:members)}".html_safe, project_members_path(@project), :class => "navlink" %>
+      <div class="inner">
+        <div class="stacked clear">
+          <% for project_user in @project_users %>
+            <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
+              project_show_contributor_path(@project, project_user.user.login),
+              :alt => h(project_user.user.login),
+              :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
+          <% end %>
+        </div>
+        <%= link_to t(:view_all_members), project_members_path(@project), :class => "readmore" %>
+      </div>
+    </li>
+
+    <% if @project_user -%>
+      <li>
+        <span class="right sectioncount">
+          <%=t :x_observations_html, count: @project_user.observations_count %>
+        </span>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:your_membership, default: 'Your membership').capitalize}".html_safe, project_show_contributor_path(@project, @project_user.user.login), :class => "navlink" %>
+      </li>
+      <li>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, observations_by_login_path(current_user.login, @project.observations_url_params.merge(not_in_project: @project.slug)), :class => "navlink" %>
+        <div class="inner">
+          <%=t :download_bulk_import_template_html, :url => project_bulk_template_url(@project) %>
+        </div>
+      </li>
+    <% end -%>
+    <% if @project.curated_by?(current_user) && !@project.observations_url_params.blank? -%>
+      <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_suitable_observations)}".html_safe, observations_path(@project.observations_url_params.merge(not_in_project: @project.slug)), :class => "navlink" %></li>
+    <% end -%>
+    <li>
+      <%= link_to "<span class='lead'>&raquo;</span> #{t(:export_observations)}".html_safe, export_observations_path(projects: [@project]), :class => "navlink" %>
       <div class="inner feeds">
         <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
         <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
@@ -287,107 +310,15 @@
         </div>
       <% end -%>
     </li>
-    <% if @project.project_type == Project::BIOBLITZ_TYPE -%>
+    <% if @project.project_type != Project::BIOBLITZ_TYPE %>
       <li>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:curated_checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
-        <% if @observed_taxa_count.to_i > 0 -%>
-          <div class="inner">
-            <%= t(:curated_count) %>:
-            <span class="count"><%= @list_numerator || @observed_taxa_count %></span>
-            <% if @project.prefers_count_from_list? -%>
-              <%= t :of %>
-              <span class="count">
-                <%= @list_denom %>
-              </span>
-            <% end -%>
-            <%= t :taxa_observed %>
-          </div> 
-        <% end -%>
-        <div class="inner small meta upstacked">
-          <%=t 'views.projects.show.curated_checklist_desc' %>
-        </div>
-      </li>
-    <% else %>
-      <li>
-        <% if @observed_taxa_count.to_i > 0 -%>
-          <span class="right" style="margin: 4px 10px 0 10px">
-             <span class="count"><%= @list_numerator || @observed_taxa_count %></span>
-             <% if @project.prefers_count_from_list? -%>
-               <%= t :of %>
-               <span class="count">
-                 <%= @list_denom %>
-               </span>
-             <% end -%>
-             <%= t :taxa_observed %>
-          </span>
-        <% end -%>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
+       <%= link_to "<span class='lead'>&raquo;</span> #{t(:checklist)}".html_safe, list_path(@project.project_list, {rank: @project.preferred_count_by}), :class => "navlink" %>
       </li>
     <% end -%>
-    <li>
-      <% if @journal_post_count.to_i > 0 -%>
-        <span class="right" style="margin: 4px 10px 0 10px">
-          <span class="count"><%= @journal_post_count %></span> <%= t(:posts).downcase %>
-        </span>
-      <% end -%>
-      <%= link_to "<span class='lead'>&raquo;</span> #{t :journal}".html_safe, project_journal_path(@project), :class => "navlink" %>
-    </li>
-
-    <li>
-      <% if @members_count.to_i > 1 -%>
-        <span class="right" style="margin: 4px 10px 0 10px">
-          <span class="count"><%= @members_count %></span> <%= t(:members).to_s.downcase %>
-        </span>
-      <% end -%>
-      <% if @project.contest? -%>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:top_contributors)}".html_safe, project_contributors_path(@project, {:sort => @project.project_type} ), :class => "navlink" %>
-      <% else %>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:members)}".html_safe, project_members_path(@project), :class => "navlink" %>
-      <% end -%>
-      <div class="inner">
-        <% if @project.contest? && !@project_users.blank? && !@top_observers.blank? -%>
-          <ol class="readable">
-            <% for project_user in @top_observers[0..2] %>
-              <li>
-                <div class="clear">
-                  <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon left'),
-                    observations_by_login_path(project_user.user.login),
-                    :alt => h(project_user.user.login),
-                    :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" -%>
-                  <div>
-                    <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project, project_user.user.login) %>
-                  </div>
-                  <div class="small ui">
-                    <span class="count"><%= project_user.taxa_count %></span> <%= t(:species).downcase %>,
-                    <span class="count"><%= project_user.observations_count %></span> <%= t(:observations).downcase %>
-                  </div>
-                </div>
-              </li>
-            <% end %>
-          </ol>
-          <%= link_to t(:view_leaderboard), project_contributors_path(@project), :class => "readmore" %>
-          <span class="description"> | </span>
-          <%= link_to t(:view_all_members), project_members_path(@project), :class => "readmore" %>
-        <% else %>
-          <div class="stacked clear">
-            <% for project_user in @project_users %>
-              <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
-                observations_by_login_path(project_user.user.login),
-                :alt => h(project_user.user.login),
-                :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
-            <% end %>
-          </div>
-          <%= link_to t(:view_all_members), project_members_path(@project), :class => "readmore" %>
-        <% end %>
-      </div>
-    </li>
     <% if logged_in? && @project.project_type != Project::BIOBLITZ_TYPE -%>
       <li>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:usage_stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
-      <% if @project.curated_by?(current_user) -%>
-        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_observations)}".html_safe, observations_path(@project.observations_url_params), :class => "navlink" %></li>
-      <% end -%>
       <% if @project.curated_by?(current_user) && @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY -%>
         <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_people)}".html_safe, invite_to_project_path(@project), :class => "navlink" %></li>
       <% end -%>
@@ -396,14 +327,6 @@
           <%= link_to "<span class='lead'>&raquo;</span> #{t(:join_this_project?)}".html_safe, join_project_path(@project), :class => "navlink" %>
           <div class="inner">
             <%=t :user_invited_you_to_join_this_project_on_date_html, :user => link_to_user(@project_user_invitation.user), :date => l(@project_user_invitation.created_at) %>
-          </div>
-        </li>
-      <% end -%>
-      <% if @project_user -%>
-        <li>
-          <%= link_to "<span class='lead'>&raquo;</span> #{t(:add_from_your_observations)}".html_safe, observations_by_login_path(current_user.login, @project.observations_url_params), :class => "navlink" %>
-          <div class="inner">
-            <%=t :download_bulk_import_template_html, :url => project_bulk_template_url(@project) %>
           </div>
         </li>
       <% end -%>
