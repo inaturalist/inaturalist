@@ -2662,7 +2662,7 @@ class ObservationsController < ApplicationController
     errors = []
     @observations.each do |observation|
       next if observation.new_record?
-      po = @project.project_observations.build(:observation => observation, :tracking_code => tracking_code)
+      po = @project.project_observations.build(:observation => observation, :tracking_code => tracking_code, user: current_user)
       unless po.save
         errors = (errors + po.errors.full_messages).uniq
       end

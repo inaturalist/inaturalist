@@ -90,6 +90,12 @@ shared_examples_for "an ObservationsController" do
         o = user.observations.last
         expect(o.projects).to include(project)
       end
+
+      it "should set the project_observation's user_id" do
+        post :create, :format => :json, :observation => {:species_guess => "foo"}, :project_id => p.id
+        po = user.observations.last.project_observations.where(project_id: p.id).first
+        expect( po.user_id ).to eq user.id
+      end
     end
 
     it "should not duplicate observations with the same uuid" do
