@@ -4,8 +4,9 @@
 # just lists of taxa that interest them for some reason.
 #
 class List < ActiveRecord::Base
-  acts_as_spammable :fields => [ :title, :description ],
-                    :comment_type => "item-description"
+  acts_as_spammable fields: [ :title, :description ],
+                    comment_type: "item-description",
+                    automated: false
   belongs_to :user
   has_many :rules, :class_name => 'ListRule', :dependent => :destroy
   has_many :listed_taxa, :dependent => :destroy

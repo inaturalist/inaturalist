@@ -28,8 +28,9 @@ class Observation < ActiveRecord::Base
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
   acts_as_taggable
-  acts_as_spammable :fields => [ :description ],
-                    :comment_type => "item-description"
+  acts_as_spammable fields: [ :description ],
+                    comment_type: "item-description",
+                    automated: false
   include Ambidextrous
   
   # Set to true if you want to skip the expensive updating of all the user's
