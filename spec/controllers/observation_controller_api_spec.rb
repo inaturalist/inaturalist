@@ -841,6 +841,8 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "taxon_stats" do
+    before(:each) { enable_elastic_indexing( Observation, Place ) }
+    after(:each) { disable_elastic_indexing( Observation, Place ) }
     before do
       @o = Observation.make!(:observed_on_string => "2013-07-20", :taxon => Taxon.make!(:rank => Taxon::SPECIES))
       get :taxon_stats, :format => :json, :on => "2013-07-20"
@@ -861,6 +863,8 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "user_stats" do
+    before(:each) { enable_elastic_indexing( Observation, Place ) }
+    after(:each) { disable_elastic_indexing( Observation, Place ) }
     before do
       @o = Observation.make!(:observed_on_string => "2013-07-20", :taxon => Taxon.make!(:rank => Taxon::SPECIES))
       get :user_stats, :format => :json, :on => "2013-07-20"

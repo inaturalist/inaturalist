@@ -332,7 +332,7 @@ describe ListedTaxon, "validation for comprehensive check lists" do
     expect(lt).to be_valid
   end
   
-  it "should pass if a comprehensive check list that does't contain this taxon exists for a parent taxon and there is a confirming observation" do
+  it "should pass if a comprehensive check list that doesn't contain this taxon exists for a parent taxon and there is a confirming observation" do
     t = Taxon.make!(:parent => @parent)
     o = make_research_grade_observation(:taxon => t, :latitude => @place.latitude, :longitude => @place.longitude)
     expect(@check_list.taxon_ids).not_to include(t.id)
