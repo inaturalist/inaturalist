@@ -12,11 +12,16 @@ body {
   padding: 0;
   font-family: "Trebuchet MS", Arial, sans-serif;
   color: #333;
-  padding-bottom: 220px;
-  position: relative;
 }
-
-#wrapper {min-height: 450px; }
+html, body {height: 100%;}
+#bodywrapper {min-height: 100%; margin-bottom: -196px;}
+#bodywrapper:after {
+  content: "";
+  display: block;
+}
+#bodywrapper:after { height: 196px; }
+#footer { height: 176px; }
+#wrapper { margin-bottom: 20px; min-height: 500px;}
 
 .gm-style .gm-style-iw, .gm-style .gm-style-iw a, .gm-style .gm-style-iw span, .gm-style .gm-style-iw label, 
 .gm-style .gm-style-iw div, .gm-style div, .gm-style span, .gm-style label, .gm-style a {
@@ -704,12 +709,9 @@ ul.leafylist li li:first-child {
 #footer {
   background-color: #eee;
   padding-top: 20px;
-  // margin-top: 20px;
   font-size: 100%;
   color: #999;
   position: absolute;
-  bottom: 0;
-  left: 0;
   width: 100%;
 }
 #footer a { color: #333; }
