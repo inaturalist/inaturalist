@@ -7,7 +7,7 @@ describe ObservationFieldsController do
       ofv = ObservationFieldValue.make!(:observation_field => of)
       sign_in of.user
       delete :destroy, :id => of.id
-      ObservationField.where(:id => of.id).count.should eq 1
+      expect(ObservationField.where(:id => of.id).count).to eq 1
     end
   end
 
@@ -19,14 +19,14 @@ describe ObservationFieldsController do
       other_user = User.make!
       sign_in other_user
       put :merge_field, :id => of, :reject_id => reject.id
-      ObservationField.find_by_id(reject.id).should_not be_blank
+      expect(ObservationField.find_by_id(reject.id)).not_to be_blank
     end
 
     it "should destroy the primary resource" do
       sign_in user
       put :merge_field, :id => reject.id, :with => of.id
-      ObservationField.find_by_id(reject.id).should be_blank
-      ObservationField.find_by_id(of.id).should_not be_blank
+      expect(ObservationField.find_by_id(reject.id)).to be_blank
+      expect(ObservationField.find_by_id(of.id)).not_to be_blank
     end
 
     it "should keep requested fields from the keeper" do
@@ -35,7 +35,7 @@ describe ObservationFieldsController do
       of.update_attributes(:description => desc)
       put :merge_field, :id => reject.id, :with => of.id, :keep_description => 'keeper'
       of.reload
-      of.description.should eq desc
+      expect(of.description).to eq desc
     end
 
     it "should keep requested fields from the reject" do
@@ -44,7 +44,7 @@ describe ObservationFieldsController do
       reject.update_attributes(:description => desc)
       put :merge_field, :id => reject.id, :with => of.id, :keep_description => 'reject'
       of.reload
-      of.description.should eq desc
+      expect(of.description).to eq desc
     end
 
     it "should allow merged allowed_values" do
@@ -52,9 +52,9 @@ describe ObservationFieldsController do
       reject.update_attributes(:allowed_values => 'c|d')
       sign_in user
       put :merge_field, :id => reject.id, :with => of.id, :keep_allowed_values => ['keeeper', 'reject']
-      ObservationField.find_by_id(reject.id).should be_blank
+      expect(ObservationField.find_by_id(reject.id)).to be_blank
       of.reload
-      of.allowed_values.should eq 'a|b|c|d'
+      expect(of.allowed_values).to eq 'a|b|c|d'
     end
   end
 end
