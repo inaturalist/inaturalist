@@ -40,6 +40,7 @@ class Place < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :ancestry, :unless => Proc.new {|p| p.ancestry.blank?}
   validate :validate_parent_is_not_self
   validate :validate_name_does_not_start_with_a_number
+  validate :custom_errors
   
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -815,5 +816,17 @@ class Place < ActiveRecord::Base
     ne_point = f.point(nelng, nelat)
     center_point = f.point(longitude, latitude)
     center_point.distance(ne_point)
+  end
+
+  def add_custom_error(scope, error)
+    @custom_errors ||= []
+    @custom_errors << [scope, error]
+  end
+
+  def custom_errors
+    return if @custom_errors.blank?
+    @custom_errors.each do |scope, error|
+      errors.add(scope, error)
+    end
   end
 end
