@@ -392,15 +392,6 @@ class UsersController < ApplicationController
     return remove_friend unless params[:remove_friend_id].blank?
     return update_password unless (params[:password].blank? && params[:commit] !~ /password/i)
     
-    params[:user].each do |k,v|
-      if k =~ /^prefer/
-        params[:user].delete(k)
-      else
-        next
-      end
-      @display_user.send("#{k}=", v)
-    end
-    
     # Nix the icon_url if an icon file was provided
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
     
@@ -642,16 +633,34 @@ protected
     end
   end
 
-  # an example of custom param whitelisting
   def whitelist_params
-    unless params[:user].blank?
-      params.require(:user).permit(
-        :login, :email, :name, :password, :password_confirmation, :icon, :description,
-        :time_zone, :icon_url, :locale, :prefers_community_taxa, :place_id,
-        :make_observation_licenses_same, :make_photo_licenses_same, :make_sound_licenses_same,
-        :preferred_photo_license, :preferred_observation_license, :preferred_sound_license,
-        :preferred_observation_fields_by, :preferred_project_addition_by)
-    end
+    return if params[:user].blank?
+    params.require(:user).permit(
+      :description,
+      :email,
+      :icon,
+      :icon_url,
+      :lists_by_login_order,
+      :lists_by_login_sort,
+      :locale,
+      :login,
+      :make_observation_licenses_same,
+      :make_photo_licenses_same,
+      :make_sound_licenses_same,
+      :name,
+      :password,
+      :password_confirmation,
+      :per_page,
+      :place_id,
+      :preferred_observation_fields_by,
+      :preferred_observation_license,
+      :preferred_observations_view,
+      :preferred_photo_license,
+      :preferred_project_addition_by,
+      :preferred_sound_license,
+      :prefers_community_taxa,
+      :time_zone
+    )
   end
 
 end
