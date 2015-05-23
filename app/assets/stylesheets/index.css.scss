@@ -211,14 +211,15 @@ form .field .description { margin-bottom: 0.5em;}
 
 /* Site Header */
 
-#header { color: #999; position: relative; margin-bottom: 20px;}
+#header { color: #999; position: relative; margin-bottom: 20px; min-width: 950px;}
 #header, #header #usernav, #header #logonav { background-color: #eee; z-index: 11; }
-#header {height: 45px; }
 #header .navtab > a, #header .count { color: #333; }
 #header .navtab > a:hover { color: #039; }
 #header ul { list-style: none; padding: 0; margin: 0; }
-#header #logonav { position: absolute; top: 10px; left: 15px; }
-#header #mainnav { text-align: center; padding-left: 120px; padding-right: 190px; }
+#header #logonav { position: absolute; top: 0px; left: 0px; }
+#header #logonav a {display: inline-block; padding-left: 10px;}
+#header #logonav img { vertical-align: middle; }
+#header #mainnav { text-align: center; padding-left: 157px; padding-right: 220px; min-width: 500px; }
 #header #usernav { position: absolute; top: 0px; right: 15px; }
 
 #header .navtabs li.navtab {
@@ -228,20 +229,21 @@ form .field .description { margin-bottom: 0.5em;}
 #header .navtabs li.open {
   background-color: white;
 }
-#header #usernav.navtabs li.navtab,
-#header #mainnav.navtabs li.navtab {
+#header li.navtab {
   font-size: 120%;
+  line-height: 2.2;
 }
 #header li.navtab,
 #header li.navtab {
   display: inline-block;
   padding: 10px;
-  height: 25px;
+  height: 35px;
 }
 
 #header #usernav.navtabs li.navtab.user {
-  padding: 5px;
+  padding: 10px;
   height: 35px;
+  vertical-align: top;
 }
 #usernav .user img { border-radius: 100px; width: 33px; }
 
@@ -250,13 +252,14 @@ form .field .description { margin-bottom: 0.5em;}
   text-align: left;
   background-color: white;
   position: absolute;
-  top: 45px; 
+  top: 55px; 
   left: -2px; 
   padding: 10px;
   padding-left: 12px;
   border-right: 2px solid #eee;
   border-left: 2px solid #eee;
   border-bottom: 2px solid #eee;
+  line-height: 1.5;
 }
 #header .subnav li {
   margin-bottom: 10px;
@@ -343,10 +346,10 @@ form .field .description { margin-bottom: 0.5em;}
 
 /* Page Headers */
 #pageheader{margin-bottom:10px;}
-#pageheader h2{margin-bottom:0;line-height:1.2;}
+#pageheader h2 {margin: 12px 0 10px;line-height:1.2;}
+#pageheader.byloginheader h2 { margin: 0 0 2px; }
 #pageheader a .projecticon, #pageheader a .usericon{ float:left;margin-right:10px;border:2px solid white; }
 #pageheader .projecticon:hover, #pageheader .usericon:hover {border-color:#ddd;}
-#pageheader .breadcrumbs{margin-bottom:5px;}
 
 img.mini.usericon {
   vertical-align: middle;

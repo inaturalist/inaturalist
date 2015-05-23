@@ -1,11 +1,11 @@
 - site = @site || CONFIG
 #header.clear
   %ul#logonav
-    %li
+    %li.navtab
       %a.logolink{:href => "/", :title => "#{site.try(:name) || SITE_NAME}"}
-        = image_tag @site && @site.logo? ? @site.logo.url : CONFIG.logo, :alt => SITE_NAME, :width => 118
+        = image_tag @site && @site.logo? ? @site.logo.url : CONFIG.logo, :alt => SITE_NAME
   %ul#mainnav.navtabs
-    %li.navtab.observationstab
+    %li.navtab.observationstab.menutab
       = link_to t(:observations).capitalize, observations_path
       = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
         %i.fa.fa-angle-down
@@ -21,7 +21,7 @@
                   :id => 'header_observations_q', :class => 'text', |
                   :placeholder => t(:search_obs)                    |
                 %input.button{:type => "submit", :value => "\u00A0"}/
-    %li.navtab
+    %li.navtab.menutab
       = link_to t(:species).capitalize, taxa_path
       = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
         %i.fa.fa-angle-down
@@ -36,7 +36,7 @@
                 = text_field_tag 'q', params[:q], :id => 'header_taxa_q', :class => 'text', :value => '', |
                   :placeholder => t(:search_taxa)                                                         |
                 %input.button{:type => "submit", :value => "\u00A0"}/
-    %li.navtab.projectstab
+    %li.navtab.projectstab.menutab
       = link_to t(:projects), projects_path
       = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
         %i.fa.fa-angle-down
@@ -56,16 +56,6 @@
                 %input.button{:type => "submit", :value => "\u00A0"}/
     %li.navtab
       = link_to t(:places), places_path
-      = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-        %i.fa.fa-angle-down
-      .subnav{:style => "display: none"}
-        %ul
-          %li.formwrapper
-            = form_tag({:controller => 'places', :action => 'search'}, :method => :get) do
-              .clear.inline.buttonrow
-                = text_field_tag 'q', params[:q], :id => 'header_places_q', :class => 'text', :value => '', |
-                  :placeholder => t(:search_places)                                                         |
-                %input.button{:type => "submit", :value => "\u00A0"}/
     %li.navtab
       = link_to t(:guides), guides_path
     %li.navtab
@@ -89,7 +79,7 @@
           %span.count 0
         #updatessubnav.subnav.rightsubnav{style: "display:none;"}
           .loadingwrapper= loading
-      %li.navtab.user
+      %li.navtab.user.menutab
         = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
           = user_image(current_user, :size => 'thumb', :class => "inlineblock")
         = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do

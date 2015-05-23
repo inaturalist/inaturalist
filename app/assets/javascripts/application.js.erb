@@ -350,6 +350,13 @@ $(document).ready(function() {
 
   $('.add_matching_link').attr('confirm', null).data('confirm', null)
   $('.dna').dnaHighlight()
+
+  $('#header .menutab').mouseover(function() {
+    openHeaderSubnav($('a:first', this))
+  })
+  $('#header .menutab').mouseout(function() {
+    closeHeaderSubnav($('a:first', this))
+  })
 })
 
 function checkFormForRequiredFields(e) {
