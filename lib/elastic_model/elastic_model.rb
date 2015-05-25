@@ -107,6 +107,7 @@ module ElasticModel
     elastic_hash[:sort] = options[:sort] if options[:sort]
     elastic_hash[:fields] = options[:fields] if options[:fields]
     elastic_hash[:size] = options[:size] if options[:size]
+    elastic_hash[:from] = options[:from] if options[:from]
     if options[:aggregate]
       elastic_hash[:aggs] = Hash[options[:aggregate].map{ |k, v|
         # some aggregations are simple like

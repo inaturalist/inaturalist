@@ -829,4 +829,10 @@ class Place < ActiveRecord::Base
       errors.add(scope, error)
     end
   end
+
+  def clean_geometry
+    Place.connection.execute(
+      "UPDATE place_geometries SET geom=cleangeometry(geom) WHERE place_id=#{ id }")
+  end
+
 end
