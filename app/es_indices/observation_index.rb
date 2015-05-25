@@ -13,6 +13,7 @@ class Observation < ActiveRecord::Base
     { observation_field_values: :observation_field } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
+      indexes :id, type: "integer"
       indexes :taxon do
         indexes :names do
           indexes :name, analyzer: "ascii_snowball_analyzer"
@@ -33,6 +34,7 @@ class Observation < ActiveRecord::Base
       indexes :place_guess, analyzer: "ascii_snowball_analyzer"
       indexes :species_guess, analyzer: "keyword_analyzer"
       indexes :license_code, analyzer: "keyword_analyzer"
+      indexes :observed_on, type: "date", format: "dateOptionalTime"
       indexes :observed_on_string, type: "string"
       indexes :location, type: "geo_point", lat_lon: true, geohash: true, geohash_precision: 10
       indexes :private_location, type: "geo_point", lat_lon: true

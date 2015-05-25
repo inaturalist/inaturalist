@@ -11,8 +11,10 @@ end
 
 describe Place, "creation" do
   before(:each) do
+    enable_elastic_indexing( Observation, Place )
     @place = Place.make!
   end
+  after(:each) { disable_elastic_indexing( Observation, Place ) }
   
   it "should create a default check_list" do
     expect(@place.check_list).to_not be_nil
@@ -30,9 +32,8 @@ describe Place, "creation" do
   it "should add observed taxa to the checklist if geom set" do
     t = Taxon.make!
     o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
-    p = without_delay do 
-      make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
-    end
+    p = make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+    Delayed::Worker.new.work_off
     p.reload
     expect(p.check_list.taxa).to include t
   end
@@ -71,6 +72,7 @@ end
 # transaction weirdness.
 describe Place, "merging" do
   before(:each) do
+    enable_elastic_indexing( Observation, Place )
     @place = Place.make!(:name => "Berkeley")
     @place.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
     3.times do
@@ -88,7 +90,8 @@ describe Place, "merging" do
     @reject_geom = @reject.place_geometry.geom
     @merged_place = @place.merge(@reject)
   end
-  
+  after(:each) { disable_elastic_indexing( Observation, Place ) }
+
   it "should return a valid place if the merge was successful" do
     expect(@merged_place).to be_valid
   end

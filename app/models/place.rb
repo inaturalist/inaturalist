@@ -831,8 +831,13 @@ class Place < ActiveRecord::Base
   end
 
   def clean_geometry
-    Place.connection.execute(
-      "UPDATE place_geometries SET geom=cleangeometry(geom) WHERE place_id=#{ id }")
+    begin
+      Place.connection.execute(
+        "UPDATE place_geometries SET geom=cleangeometry(geom) WHERE place_id=#{ id }")
+    rescue PG::Error => e
+      Rails.logger.error "[ERROR #{Time.now}] #{e}"
+      Logstasher.write_exception(e)
+    end
   end
 
 end

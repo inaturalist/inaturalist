@@ -130,34 +130,16 @@ class CheckList < List
   end
   
   #For CheckLists, returns first_observation_id which represents the first one added to the site (e.g. not first date observed)
-  def cache_columns_query_for(lt)
+  def cache_columns_options(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
-    sql_key = "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)"
-    ancestry_clause = [lt.taxon_ancestor_ids, lt.taxon_id].flatten.map{|i| i.blank? ? nil : i}.compact.join('/')
-    <<-SQL
-      SELECT
-        min(CASE WHEN quality_grade = 'research' THEN o.id END) AS first_observation_id,
-        max(
-          CASE WHEN quality_grade = 'research'
-          THEN (COALESCE(time_observed_at, observed_on)::varchar || ',' || o.id::varchar)
-          END
-        ) AS last_observation,
-        count(*),
-        (#{sql_key}) AS key
-      FROM
-        observations o
-          LEFT OUTER JOIN taxa t ON t.id = o.taxon_id 
-          JOIN place_geometries pg ON pg.place_id = #{lt.place_id}
-      WHERE
-        ST_Intersects(pg.geom, o.private_geom) AND 
-        (
-          o.taxon_id = #{lt.taxon_id} OR 
-          t.ancestry = '#{ancestry_clause}' OR
-          t.ancestry LIKE '#{ancestry_clause}/%'
-        )
-      GROUP BY #{sql_key}
-    SQL
+    { search_params: {
+        where: {
+          "taxon.ancestor_ids": lt.taxon_id,
+          quality_grade: :research },
+        filters: [{ place: lt.place }],
+      },
+      earliest_sort_field: "id" }
   end
   
   # not sure why I originally added this.  Doesn't make sense for taxa on non-comprehensive list 

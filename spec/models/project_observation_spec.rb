@@ -1,7 +1,11 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ProjectObservation, "creation" do
-  before(:each) { setup_project_and_user }
+  before(:each) do
+    enable_elastic_indexing( Observation, Place, Update )
+    setup_project_and_user
+  end
+  after(:each) { disable_elastic_indexing( Observation, Place, Update ) }
   it "should queue a DJ job for the list" do
     stamp = Time.now
     make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
@@ -64,9 +68,6 @@ describe ProjectObservation, "creation" do
   end
 
   describe "updates" do
-    before(:each) { enable_elastic_indexing(Observation, Update) }
-    after(:each) { disable_elastic_indexing(Observation, Update) }
-
     it "should be generated for the observer" do
       pu = ProjectUser.make!(role: ProjectUser::CURATOR)
       po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
@@ -102,12 +103,12 @@ end
 
 describe ProjectObservation, "destruction" do
   before(:each) do
-    enable_elastic_indexing(Observation, Update)
+    enable_elastic_indexing(Observation, Update, Place)
     setup_project_and_user
     @project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     Delayed::Job.destroy_all
   end
-  after(:each) { disable_elastic_indexing(Observation, Update) }
+  after(:each) { disable_elastic_indexing(Observation, Update, Place) }
 
   it "should queue a DJ job for the list" do
     stamp = Time.now

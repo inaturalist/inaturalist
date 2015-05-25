@@ -280,7 +280,7 @@ describe User do
 
   describe "sane_destroy" do
     before(:each) do
-      enable_elastic_indexing([ Observation, Update ])
+      enable_elastic_indexing([ Observation, Place, Update ])
       without_delay do
         @user = User.make!
         @place = make_place_with_geom
@@ -290,7 +290,7 @@ describe User do
         end
       end
     end
-    after(:each) { disable_elastic_indexing([ Observation, Update ]) }
+    after(:each) { disable_elastic_indexing([ Observation, Place, Update ]) }
 
     it "should destroy the user" do
       @user.sane_destroy
@@ -518,8 +518,10 @@ describe User, "merge" do
   before(:each) do
     @keeper = User.make!
     @reject = User.make!
+    enable_elastic_indexing( Observation )
   end
-  
+  after(:each) { disable_elastic_indexing( Observation ) }
+
   it "should move observations" do
     o = Observation.make!(:user => @reject)
     without_delay do
