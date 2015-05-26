@@ -1216,11 +1216,9 @@ class Observation < ActiveRecord::Base
       return true unless t
     
       # Re-interpret future dates as being in the past
-      if t > Time.now
-        t = Chronic.parse(date_string, :context => :past)  
-      end
+      t = Chronic.parse(date_string, :context => :past) if t > Time.now
       
-      self.observed_on = t.to_date
+      self.observed_on = t.to_date if t
     
       # try to determine if the user specified a time by ask Chronic to return
       # a time range. Time ranges less than a day probably specified a time.
