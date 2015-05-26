@@ -51,45 +51,6 @@ describe ProjectList, "refresh_with_observation" do
     pl.taxon_ids.should include(o.taxon_id) #
   end
   
-  it "should add taxa from project observations that become research grade" do
-    p = Project.make!
-    pl = p.project_list
-    t1 = Taxon.make!
-    options = {
-      :taxon => t1, :latitude => 1, :longitude => 1, :observed_on_string => "yesterday"
-    }
-    o = without_delay { Observation.make!(options) } #casual obs
-    pu = ProjectUser.make!(:user => o.user, :project => p)
-    po = without_delay { ProjectObservation.make!(:project => p, :observation => o) }
-    pl.reload
-    pl.taxon_ids.should_not include(o.taxon_id) #
-    
-    o.photos << LocalPhoto.make!(:user => o.user)
-    i = without_delay { Identification.make!(:observation => o, :taxon => o.taxon) } #make obs rg
-    pl.reload
-    pl.taxon_ids.should include(o.taxon_id) #
-  end
-  
-  it "should give curator_identification precedence" do
-    p = Project.make!
-    pl = p.project_list
-    t1 = Taxon.make!
-    t2 = Taxon.make!
-    o = make_research_grade_observation(:taxon => t1)
-    
-    pu = ProjectUser.make!(:user => o.user, :project => p)
-    po = ProjectObservation.make!(:project => p, :observation => o)
-    ProjectList.refresh_with_observation(o)
-    pl.reload
-    pl.taxon_ids.should include(o.taxon_id) #
-    
-    pu2 = ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR) 
-    i = without_delay { Identification.make!(:observation => o, :taxon => t2, :user => pu2.user) }
-    pl.reload
-    pl.taxon_ids.should_not include(t1.id)
-    pl.taxon_ids.should include(t2.id)
-  end
-  
   it "should add taxa to project list from project observations made by curators" do
     p = Project.make!
     pu = without_delay {ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)}

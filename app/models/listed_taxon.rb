@@ -503,12 +503,53 @@ class ListedTaxon < ActiveRecord::Base
   # people for being the first to add to the site, and the life list firsts on
   # the calendar views shows the first time you saw a taxon.
   def cache_columns
-    return unless list
-    if list.respond_to?(:cache_columns_query_for)
-      cache_columns_from_database
-    else
-      cache_columns_from_elasticsearch
+    # ProjectLists for example don't use cache_columns
+    return unless list && list.respond_to?(:cache_columns_options)
+    # get the specific options for this list type
+    options = list.cache_columns_options(self)
+    options[:search_params][:size] = 1
+    options[:search_params][:fields] = [ :id ]
+    # run the query for the first entry, total count, and aggregations
+    begin
+      rs = Observation.elastic_search(options[:search_params].merge(
+        # earliest_sort for check lists will be set to ID
+        sort: [
+          { (options[:earliest_sort_field] || "observed_on") => "asc" },
+          { id: :desc }
+        ],
+        aggregate: {
+          month: { terms: { field: "observed_on_details.month", size: 15 },
+            aggs: { quality: { terms: { field: "quality_grade", size: 5 } } }
+          }
+        }
+      )).results
+      rs.total_entries
+    rescue Elasticsearch::Transport::Transport::Errors::NotFound,
+           Elasticsearch::Transport::Transport::Errors::BadRequest => e
+      rs = nil
+      Logstasher.write_exception(e, reference: "ListedTaxon.cache_columns failed on #{ self }")
+      Rails.logger.error "[Error] ListedTaxon::cache_columns failed: #{ e }"
+      Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
     end
+    # no need to run the second query if there are no results
+    if rs && rs.total_entries > 0
+      total = rs.total_entries
+      earliest_id = rs.first.id
+      latest_id = Observation.elastic_search(options[:search_params].merge(
+        sort: [
+          { (options[:latest_sort_field] || "observed_on") => "desc" },
+          { id: :desc }
+        ]
+      )).results.first.id
+      # loop through the months
+      month_counts = rs.response.response.aggregations.month.buckets.map do |m|
+        # and then the quality grade counts in that month
+        m.quality.buckets.map do |q|
+          "#{ m['key'] }#{ q['key'][0] }-#{ q['doc_count'] }"
+        end
+      end.flatten.sort.join(",")
+    end
+    [ earliest_id, latest_id, total || 0, month_counts]
   end
   
   def self.update_cache_columns_for(lt)
@@ -837,83 +878,6 @@ class ListedTaxon < ActiveRecord::Base
         )
       end
     end
-  end
-
-  def cache_columns_from_database
-    return unless (list && sql = list.cache_columns_query_for(self))
-    last_observations = []
-    first_observation_info = [] # array of observation_ids when checklist, otherwise array of [date, observation_id]
-    counts = {}
-    ListedTaxon.connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
-      counts[row['key']] = row['count'].to_i
-      last_observations << (row['last_observation'].blank? ? nil : row['last_observation'].split(','))
-      if list.is_a?(CheckList) # process the observation_ids representing first addition to iNat
-        first_observation_info << row['first_observation_id']
-      else # process arrays of [date,observation_id] where date represents first date observed
-        first_observation_info << (row['first_observation'].blank? ? nil : row['first_observation'].split(','))
-      end
-    end
-    if list.is_a?(CheckList) # pull out the smallest observation_id (i.e. earliest added to iNat)
-      first_observation_id = first_observation_info.compact.sort_by(&:to_i).first
-    else # sort arrays by date and pull out observation_id from first one observed based on date observed
-      if first_observation = first_observation_info.compact.compact.sort_by(&:first).first
-        first_observation_id = first_observation[1]
-      end
-    end
-    if last_observation = last_observations.compact.compact.sort_by(&:first).last
-      last_observation_id = last_observation[1]
-    end
-    total = counts.map{|k,v| v}.sum
-    month_counts = counts.map{|k,v| k ? "#{k}-#{v}" : nil}.compact.sort.join(',')
-    [ first_observation_id, last_observation_id, total, month_counts ]
-  end
-
-  def cache_columns_from_elasticsearch
-    # get the specific options for this list type
-    options = list.cache_columns_options(self)
-    options[:search_params][:size] = 1
-    options[:search_params][:fields] = [ :id ]
-    # run the query for the first entry, total count, and aggregations
-    begin
-      rs = Observation.elastic_search(options[:search_params].merge(
-        # earliest_sort for check lists will be set to ID
-        sort: [
-          { (options[:earliest_sort_field] || "observed_on") => "asc" },
-          { id: :desc }
-        ],
-        aggregate: {
-          month: { terms: { field: "observed_on_details.month", size: 15 },
-            aggs: { quality: { terms: { field: "quality_grade", size: 5 } } }
-          }
-        }
-      )).results
-      rs.total_entries
-    rescue Elasticsearch::Transport::Transport::Errors::NotFound,
-           Elasticsearch::Transport::Transport::Errors::BadRequest => e
-      rs = nil
-      Logstasher.write_exception(e, reference: "ListedTaxon.cache_columns failed on #{ self }")
-      Rails.logger.error "[Error] ListedTaxon::cache_columns failed: #{ e }"
-      Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
-    end
-    # no need to run the second query if there are no results
-    if rs && rs.total_entries > 0
-      total = rs.total_entries
-      earliest_id = rs.first.id
-      latest_id = Observation.elastic_search(options[:search_params].merge(
-        sort: [
-          { (options[:latest_sort_field] || "observed_on") => "desc" },
-          { id: :desc }
-        ]
-      )).results.first.id
-      # loop through the months
-      month_counts = rs.response.response.aggregations.month.buckets.map do |m|
-        # and then the quality grade counts in that month
-        m.quality.buckets.map do |q|
-          "#{ m['key'] }#{ q['key'][0] }-#{ q['doc_count'] }"
-        end
-      end.flatten.sort.join(",")
-    end
-    [ earliest_id, latest_id, total || 0, month_counts]
   end
 
 end
