@@ -502,7 +502,6 @@ class ListedTaxon < ActiveRecord::Base
     return unless list
     # get the specific options for this list type
     options = list.cache_columns_options(self)
-    options[:search_params][:size] = 1
     options[:search_params][:fields] = [ :id ]
     earliest_id = nil
     latest_id = nil
@@ -545,6 +544,7 @@ class ListedTaxon < ActiveRecord::Base
     earliest_id = nil
     latest_id = nil
     return [ nil, nil ] unless options[:search_params]
+    options[:search_params][:size] = 1
     if options[:range_wheres]
       options[:search_params][:where].merge!(options[:range_wheres])
     end
