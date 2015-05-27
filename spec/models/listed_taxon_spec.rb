@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ListedTaxon do
+  before(:each) { enable_elastic_indexing( Observation, Place ) }
+  after(:each) { disable_elastic_indexing( Observation, Place ) }
   it "should be invalid when check list fields set on a non-check list" do
     list = List.make!
     check_list = CheckList.make!
@@ -10,28 +12,28 @@ describe ListedTaxon do
     listed_taxon.list = check_list
     expect(listed_taxon).to be_valid
   end
-  
+
   describe "creation" do
     before(:each) do
       @taxon = Taxon.make!
-      @first_observation = Observation.make!(:taxon => @taxon)
+      @first_observation = Observation.make!(taxon: @taxon, observed_on_string: Time.now.to_s)
       @user = @first_observation.user
-      @last_observation = Observation.make!(:taxon => @taxon, :user => @user, :observed_on_string => 1.minute.ago.to_s)
+      @last_observation = Observation.make!(taxon: @taxon, user: @user, observed_on_string: 1.minute.ago.to_s)
       @list = @user.life_list
-      @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @list)
+      @listed_taxon = ListedTaxon.make!(taxon: @taxon, list: @list)
       @listed_taxon.reload
     end
     
     it "should set last observation" do
-      expect(@listed_taxon.last_observation_id).to be(@last_observation.id)
+      expect(@listed_taxon.last_observation_id).to eq(@last_observation.id)
     end
     
     it "should set first observation" do
-      expect(@listed_taxon.first_observation_id).to be(@first_observation.id)
+      expect(@listed_taxon.first_observation_id).to eq(@first_observation.id)
     end
     
     it "should set observations_count" do
-      expect(@listed_taxon.observations_count).to be(2)
+      expect(@listed_taxon.observations_count).to eq(2)
     end
     
     it "should set observations_month_counts" do
@@ -305,7 +307,9 @@ describe ListedTaxon, "validation for comprehensive check lists" do
     @place = Place.make!
     @check_list = CheckList.make!(:place => @place, :taxon => @parent, :comprehensive => true)
     @check_listed_taxon = @check_list.add_taxon(@taxon)
+    enable_elastic_indexing( Observation, Place )
   end
+  after(:each) { disable_elastic_indexing( Observation, Place ) }
   
   it "should fail if a comprehensive check list that doesn't contain this taxon exists for a parent taxon" do
     t = Taxon.make!(:parent => @parent)
@@ -349,6 +353,8 @@ describe ListedTaxon, "establishment means propagation" do
   let(:parent_listed_taxon) { parent.check_list.add_taxon(taxon) }
   let(:place_listed_taxon) { place.check_list.add_taxon(taxon) }
   let(:child_listed_taxon) { child.check_list.add_taxon(taxon) }
+  before(:each) { enable_elastic_indexing( Observation, Place ) }
+  after(:each) { disable_elastic_indexing( Observation, Place ) }
   it "should bubble up for native" do
     expect(parent_listed_taxon.establishment_means).to be_blank
     place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
@@ -439,7 +445,9 @@ describe ListedTaxon, "cache column setting for check lists" do
       @place = make_place_with_geom
       @check_list = @place.check_list
     end
+    enable_elastic_indexing( Observation, Place )
   end
+  after(:each) { disable_elastic_indexing( Observation, Place ) }
   it "should be queued" do
     lt = ListedTaxon.make!(:list => @check_list)
     expect(Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").exists?).to be true
@@ -476,6 +484,7 @@ end
 
 describe "a listed taxon on a non checklist" do
   before do
+    enable_elastic_indexing( Observation, Place )
     @taxon = Taxon.make!
     @list = List.make!
     @first_observation = Observation.make!(:taxon => @taxon)
@@ -484,6 +493,7 @@ describe "a listed taxon on a non checklist" do
     @listed_taxon = ListedTaxon.make!(:taxon => @taxon, :list => @list)
     @listed_taxon.reload
   end
+  after(:each) { disable_elastic_indexing( Observation, Place ) }
 
   it "should not be a primary listing" do
     @listed_taxon.update_attributes(:primary_listing => true)
@@ -542,6 +552,7 @@ end
 
 describe ListedTaxon, "force_update_cache_columns" do
   before do
+    enable_elastic_indexing( Observation, Place )
     @place = make_place_with_geom
     @check_list = CheckList.make!(:place => @place)
     @lt = ListedTaxon.make!(:list => @check_list, :place => @place, :primary_listing => true)
@@ -557,6 +568,7 @@ describe ListedTaxon, "force_update_cache_columns" do
     @lt.reload
     expect(@lt.last_observation_id).to be_nil
   end
+  after(:each) { disable_elastic_indexing( Observation, Place ) }
 
   it "should queue a job to update cache columns when not set" do
     @lt.save 

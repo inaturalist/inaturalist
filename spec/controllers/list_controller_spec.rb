@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ListsController do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   describe "create" do
     it "allow creation of multiple types" do
       taxon = Taxon.make!
@@ -31,39 +33,39 @@ describe ListsController do
       expect(List.find_by_project_id(p.id)).not_to be_blank
     end
   end
-end
 
-describe ListsController, "compare" do
-  let(:user) { User.make! }
-  before do
-    sign_in user
-  end
+  describe "compare" do
+    let(:user) { User.make! }
+    before do
+      sign_in user
+    end
   
-  it "should work" do
-    lt1 = ListedTaxon.make!
-    lt2 = ListedTaxon.make!
-    expect {
-      get :compare, :id => lt1.list_id, :with => lt2.list_id
-    }.not_to raise_error
-    expect(response).to be_success
-  end
-end
-
-describe ListsController, "spam" do
-  let(:spammer_content) { List.make!(user: User.make!(spammer: true)) }
-  let(:flagged_content) {
-    l = List.make!
-    Flag.make!(flaggable: l, flag: Flag::SPAM)
-    l
-  }
-
-  it "should render 403 when the owner is a spammer" do
-    get :show, id: spammer_content.id
-    expect(response.response_code).to eq 403
+    it "should work" do
+      lt1 = ListedTaxon.make!
+      lt2 = ListedTaxon.make!
+      expect {
+        get :compare, :id => lt1.list_id, :with => lt2.list_id
+      }.not_to raise_error
+      expect(response).to be_success
+    end
   end
 
-  it "should render 403 when content is flagged as spam" do
-    get :show, id: spammer_content.id
-    expect(response.response_code).to eq 403
+  describe "spam" do
+    let(:spammer_content) { List.make!(user: User.make!(spammer: true)) }
+    let(:flagged_content) {
+      l = List.make!
+      Flag.make!(flaggable: l, flag: Flag::SPAM)
+      l
+    }
+
+    it "should render 403 when the owner is a spammer" do
+      get :show, id: spammer_content.id
+      expect(response.response_code).to eq 403
+    end
+
+    it "should render 403 when content is flagged as spam" do
+      get :show, id: spammer_content.id
+      expect(response.response_code).to eq 403
+    end
   end
 end

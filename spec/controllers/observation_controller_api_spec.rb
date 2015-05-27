@@ -767,15 +767,6 @@ shared_examples_for "an ObservationsController" do
       expect(response.body).to be =~ /#{o.place_guess}/
     end
 
-    it "should search uris given a site" do
-      site1 = Observation.make!(uri: "http://a.b.org/1")
-      site2 = Observation.make!(uri: "http://c.d.org/2")
-      get :index, format: :json, site: "http://c.d.org"
-      json = JSON.parse(response.body)
-      expect(json.detect{|obs| obs['id'] == site1.id}).to be_blank
-      expect(json.detect{|obs| obs['id'] == site2.id}).not_to be_blank
-    end
-
     it "should filter by project slug" do
       po = make_project_observation
       get :index, format: :json, projects: po.project.slug
