@@ -16,7 +16,7 @@ describe ListedTaxon do
   describe "creation" do
     before(:each) do
       @taxon = Taxon.make!
-      @first_observation = Observation.make!(taxon: @taxon, observed_on_string: Time.now)
+      @first_observation = Observation.make!(taxon: @taxon, observed_on_string: Time.now.to_s)
       @user = @first_observation.user
       @last_observation = Observation.make!(taxon: @taxon, user: @user, observed_on_string: 1.minute.ago.to_s)
       @list = @user.life_list

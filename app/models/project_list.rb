@@ -21,6 +21,19 @@ class ProjectList < LifeList
     project.project_users.exists?(["role IN ('curator', 'manager') AND user_id = ?", user])
   end
 
+  def cache_columns_options(lt)
+    lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
+    return nil unless lt
+    { search_params: {
+        where: {
+          "taxon.ancestor_ids": lt.taxon_id,
+          project_ids: project_id
+        }
+      },
+      earliest_sort_field: "id",
+      range_wheres: { quality_grade: :research } }
+  end
+
   def self.refresh_with_project_observation(project_observation, options = {})
     Rails.logger.info "[INFO #{Time.now}] Starting ProjectList.refresh_with_project_observation for #{project_observation}, #{options.inspect}"
     project_observation = ProjectObservation.find_by_id(project_observation) unless project_observation.is_a?(ProjectObservation)

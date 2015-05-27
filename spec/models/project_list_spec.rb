@@ -46,7 +46,8 @@ describe ProjectList, "refresh_with_observation" do
     t1 = Taxon.make!
     o = make_research_grade_observation(:taxon => t1)
     pu = ProjectUser.make!(:user => o.user, :project => p)
-    po = without_delay { ProjectObservation.make!(:project => p, :observation => o) }
+    po = ProjectObservation.make!(:project => p, :observation => o)
+    Delayed::Worker.new(:quiet => true).work_off
     pl.reload
     pl.taxon_ids.should include(o.taxon_id) #
   end
