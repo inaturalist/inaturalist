@@ -38,7 +38,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   if CONFIG.google
     provider :google_oauth2, CONFIG.google.client_id, CONFIG.google.secret, {
       :scope => "userinfo.email,userinfo.profile,plus.me,https://picasaweb.google.com/data/",
-      :approval_prompt => "auto"
+      :prompt => "consent",
+      :access_type => "offline"
     }
   end
 end

@@ -139,10 +139,12 @@ class PicasaPhoto < Photo
     
     if picasa_identity
       picasa = Picasa.new(picasa_identity.token)
-      return picasa.get_url(native_photo_id, :kind => "photo,user", :thumbsize => RubyPicasa::Photo::VALID.join(','))
+      PicasaPhoto.picasa_request_with_refresh(picasa_identity) do
+        picasa.get_url(native_photo_id, :kind => "photo,user", :thumbsize => RubyPicasa::Photo::VALID.join(','))
+      end
+    else
+      nil
     end
-
-    nil
   end
   
   # Create a new Photo object from an API response.
@@ -197,10 +199,12 @@ class PicasaPhoto < Photo
     picasa_album_url = if options[:picasa_user_id]  
       "https://picasaweb.google.com/data/feed/api/user/#{options[:picasa_user_id]}/albumid/#{picasa_album_id}"
     end
-    album_data = picasa.album((picasa_album_url || picasa_album_id.to_s), 
-      :max_results => options[:max_results], 
-      :start_index => options[:start_index],
-      :thumbsize => RubyPicasa::Photo::VALID.join(','))  # this also fetches photo data
+    album_data = PicasaPhoto.picasa_request_with_refresh(user.picasa_identity) do
+      picasa.album((picasa_album_url || picasa_album_id.to_s), 
+        :max_results => options[:max_results], 
+        :start_index => options[:start_index],
+        :thumbsize => RubyPicasa::Photo::VALID.join(','))  # this also fetches photo data
+    end
     photos = if album_data
       album_data.photos.map do |pp|
         PicasaPhoto.new_from_api_response(pp, :thumb_sizes=>['thumb']) 
@@ -229,7 +233,19 @@ class PicasaPhoto < Photo
       <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#comment"/>
     </entry>
     EOF
-    picasa.post(picasa_photo_url, post_data)
+    PicasaPhoto.picasa_request_with_refresh(user.picasa_identity) do
+      picasa.post(picasa_photo_url, post_data)
+    end
+  end
+
+  def self.picasa_request_with_refresh(picasa_identity)
+    begin
+      yield
+    rescue RubyPicasa::PicasaError => e
+      raise e unless e.message =~ /authentication/
+      picasa_identity.refresh_access_token!
+      yield
+    end
   end
 
 end
