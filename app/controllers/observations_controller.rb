@@ -2663,9 +2663,9 @@ class ObservationsController < ApplicationController
     # elasticsearch index, or we have decided not to put in the index
     # because it would be more work to maintain than it would save
     # when searching. Remove empty values before checking
-    ! (Observation::NON_ELASTIC_ATTRIBUTES.map(&:to_sym) &
+    ! ((Observation::NON_ELASTIC_ATTRIBUTES.map(&:to_sym) &
       search_params.reject{ |k,v| v.blank? || v == "any" }.keys).any? ||
-      (@place && !@place.geom_in_elastic_index)
+      (@place && !@place.geom_in_elastic_index))
   end
 
   def non_elastic_taxon_stats(search_params)
