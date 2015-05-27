@@ -90,6 +90,12 @@ shared_examples_for "an ObservationsController" do
         o = user.observations.last
         expect(o.projects).to include(project)
       end
+
+      it "should set the project_observation's user_id" do
+        post :create, :format => :json, :observation => {:species_guess => "foo"}, :project_id => p.id
+        po = user.observations.last.project_observations.where(project_id: p.id).first
+        expect( po.user_id ).to eq user.id
+      end
     end
 
     it "should not duplicate observations with the same uuid" do
@@ -449,8 +455,8 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "index" do
-    before(:each) { enable_elastic_indexing([ Observation ]) }
-    after(:each) { disable_elastic_indexing([ Observation ]) }
+    before(:each) { enable_elastic_indexing( Observation, Place ) }
+    after(:each) { disable_elastic_indexing( Observation, Place ) }
 
     it "should allow search" do
       expect {
@@ -708,6 +714,23 @@ shared_examples_for "an ObservationsController" do
       expect( json.detect{|o| o['id'] == o3.id} ).to be_blank
     end
 
+    it "should filter by place and multiple taxon ids" do
+      load_test_taxa
+      place = make_place_with_geom
+      in_place_bird = Observation.make!(taxon: @Calypte_anna, latitude: place.latitude, longitude: place.longitude)
+      in_place_frog = Observation.make!(taxon: @Pseudacris_regilla, latitude: place.latitude, longitude: place.longitude)
+      in_place_other = Observation.make!(taxon: Taxon.make!, latitude: place.latitude, longitude: place.longitude)
+      out_of_place_bird = Observation.make!(taxon: @Calypte_anna, latitude: place.latitude*-1, longitude: place.longitude*-1)
+      out_of_place_other = Observation.make!(taxon: Taxon.make!, latitude: place.latitude*-1, longitude: place.longitude*-1)
+      get :index, format: :json, taxon_ids: [@Aves.id, @Amphibia.id], place_id: place.id
+      json = JSON.parse(response.body)
+      expect( json.detect{|o| o['id'] == in_place_bird.id} ).not_to be_blank
+      expect( json.detect{|o| o['id'] == in_place_frog.id} ).not_to be_blank
+      expect( json.detect{|o| o['id'] == in_place_other.id} ).to be_blank
+      expect( json.detect{|o| o['id'] == out_of_place_bird.id} ).to be_blank
+      expect( json.detect{|o| o['id'] == out_of_place_other.id} ).to be_blank
+    end
+
     it "should filter by mappable = true" do
       Observation.make!
       Observation.make!
@@ -742,15 +765,6 @@ shared_examples_for "an ObservationsController" do
       o = Observation.make!(:place_guess => "my backyard", :geoprivacy => Observation::OBSCURED)
       get :index, :format => :json
       expect(response.body).to be =~ /#{o.place_guess}/
-    end
-
-    it "should search uris given a site" do
-      site1 = Observation.make!(uri: "http://a.b.org/1")
-      site2 = Observation.make!(uri: "http://c.d.org/2")
-      get :index, format: :json, site: "http://c.d.org"
-      json = JSON.parse(response.body)
-      expect(json.detect{|obs| obs['id'] == site1.id}).to be_blank
-      expect(json.detect{|obs| obs['id'] == site2.id}).not_to be_blank
     end
 
     it "should filter by project slug" do
@@ -818,6 +832,8 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "taxon_stats" do
+    before(:each) { enable_elastic_indexing( Observation, Place ) }
+    after(:each) { disable_elastic_indexing( Observation, Place ) }
     before do
       @o = Observation.make!(:observed_on_string => "2013-07-20", :taxon => Taxon.make!(:rank => Taxon::SPECIES))
       get :taxon_stats, :format => :json, :on => "2013-07-20"
@@ -838,6 +854,8 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "user_stats" do
+    before(:each) { enable_elastic_indexing( Observation, Place ) }
+    after(:each) { disable_elastic_indexing( Observation, Place ) }
     before do
       @o = Observation.make!(:observed_on_string => "2013-07-20", :taxon => Taxon.make!(:rank => Taxon::SPECIES))
       get :user_stats, :format => :json, :on => "2013-07-20"

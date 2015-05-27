@@ -2,7 +2,7 @@ class PlaceDenormalizer < Denormalizer
 
   def self.denormalize
     index = 0
-    batch_size = 50
+    batch_size = 10
     total = Place.count
     total_batches = (total / batch_size).ceil
     Place.select([ :id ]).order('id').find_in_batches(batch_size: batch_size) do |batch|

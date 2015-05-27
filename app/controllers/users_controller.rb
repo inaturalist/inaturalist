@@ -633,16 +633,35 @@ protected
     end
   end
 
-  # an example of custom param whitelisting
   def whitelist_params
-    unless params[:user].blank?
-      params.require(:user).permit(
-        :login, :email, :name, :password, :password_confirmation, :icon, :description,
-        :time_zone, :icon_url, :locale, :prefers_community_taxa, :place_id,
-        :make_observation_licenses_same, :make_photo_licenses_same, :make_sound_licenses_same,
-        :preferred_photo_license, :preferred_observation_license, :preferred_sound_license,
-        :preferred_observation_fields_by, :preferred_project_addition_by, :prefers_location_details)
-    end
+    return if params[:user].blank?
+    params.require(:user).permit(
+      :description,
+      :email,
+      :icon,
+      :icon_url,
+      :lists_by_login_order,
+      :lists_by_login_sort,
+      :locale,
+      :login,
+      :make_observation_licenses_same,
+      :make_photo_licenses_same,
+      :make_sound_licenses_same,
+      :name,
+      :password,
+      :password_confirmation,
+      :per_page,
+      :place_id,
+      :preferred_observation_fields_by,
+      :preferred_observation_license,
+      :preferred_observations_view,
+      :preferred_photo_license,
+      :preferred_project_addition_by,
+      :preferred_sound_license,
+      :prefers_community_taxa,
+      :prefers_location_details,
+      :time_zone
+    )
   end
 
 end

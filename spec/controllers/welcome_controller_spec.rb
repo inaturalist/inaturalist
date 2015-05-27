@@ -11,7 +11,7 @@ describe WelcomeController do
       @homeFR = WikiPage.make!(path: "frhome")
     end
 
-    it "does't set @page if there is no home_page_wiki_path" do
+    it "doesn't set @page if there is no home_page_wiki_path" do
       expect( CONFIG ).to receive( :home_page_wiki_path ).at_least(:once).
         and_return( nil )
       get :index
@@ -25,7 +25,7 @@ describe WelcomeController do
       expect( assigns[:page] ).to eq @home
     end
 
-    it "does't set @page if the path is wrong" do
+    it "doesn't set @page if the path is wrong" do
       expect( CONFIG ).to receive( :home_page_wiki_path ).at_least(:once).
         and_return( "nonsense" )
       get :index

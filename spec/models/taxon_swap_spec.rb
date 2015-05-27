@@ -129,9 +129,9 @@ end
 describe TaxonSwap, "commit_records" do
   before(:each) do
     prepare_swap
-    enable_elastic_indexing([ Observation, Taxon ])
+    enable_elastic_indexing(Observation, Taxon, Update, Place)
   end
-  after(:each) { disable_elastic_indexing([ Observation, Taxon ]) }
+  after(:each) { disable_elastic_indexing(Observation, Taxon, Update, Place) }
 
   it "should update records" do
     obs = Observation.make!(:taxon => @input_taxon)
@@ -182,7 +182,8 @@ describe TaxonSwap, "commit_records" do
     tr = TaxonRange.make!(:taxon => @input_taxon)
     cl = CheckList.make!
     lt = ListedTaxon.make!(:list => cl, :taxon => @input_taxon, :taxon_range => tr)
-    without_delay { @swap.commit_records }
+    without_delay{ @swap.commit_records }
+    # Delayed::Worker.new.work_off
     lt.reload
     lt.taxon.should eq(@output_taxon)
   end

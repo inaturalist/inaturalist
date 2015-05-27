@@ -1,7 +1,8 @@
 #encoding: utf-8
 class Identification < ActiveRecord::Base
-  acts_as_spammable :fields => [ :body ],
-                    :comment_type => "item-description"
+  acts_as_spammable fields: [ :body ],
+                    comment_type: "item-description",
+                    automated: false
 
   belongs_to :observation
   belongs_to :user
