@@ -111,15 +111,24 @@ class ProviderAuthorization < ActiveRecord::Base
     fi.save
     true
   end
+
+  def assign_auth_info(auth_info)
+    @auth_info = auth_info
+    self.provider_name ||= auth_info['provider']
+    self.provider_uid ||= auth_info['uid']
+    if auth_info["credentials"]
+      assign_attributes(
+        token: auth_info["credentials"]["token"] || auth_info["credentials"]["secret"], 
+        secret: auth_info["credentials"]["secret"],
+        refresh_token: auth_info["credentials"]["refresh_token"]
+      )
+    end
+  end
   
   def update_with_auth_info(auth_info)
-    @auth_info = auth_info
     return unless auth_info["credentials"] # open_id (google, yahoo, etc) doesn't provide a token
-    update_attributes(
-      token: auth_info["credentials"]["token"] || auth_info["credentials"]["secret"], 
-      secret: auth_info["credentials"]["secret"],
-      refresh_token: auth_info["credentials"]["refresh_token"]
-    )
+    assign_auth_info(auth_info)
+    save
     update_photo_identities
   end
 

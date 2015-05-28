@@ -244,17 +244,8 @@ class User < ActiveRecord::Base
   # add a provider_authorization to this user.  
   # auth_info is the omniauth info from rack.
   def add_provider_auth(auth_info)
-    provider_auth_info = {
-      :provider_name => auth_info['provider'], 
-      :provider_uid => auth_info['uid']
-    }
-    unless auth_info["credentials"].blank? # open_id (google, yahoo, etc) doesn't provide a token
-      provider_auth_info.merge!(
-        :token => auth_info["credentials"]["token"],
-        :secret => auth_info["credentials"]["secret"]
-      ) 
-    end
-    pa = self.provider_authorizations.build(provider_auth_info) 
+    pa = self.provider_authorizations.build
+    pa.assign_auth_info(auth_info)
     pa.auth_info = auth_info
     pa.save
     pa
