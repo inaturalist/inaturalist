@@ -226,8 +226,8 @@ form .field .description { margin-bottom: 0.5em;}
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-#header #mainnav { text-align: center; padding-left: 157px; padding-right: 220px; min-width: 500px; }
-#header #usernav { position: absolute; top: 0px; right: 15px; }
+#header #mainnav { text-align: center; padding-left: 157px; padding-right: 300px; min-width: 500px; }
+#header #usernav { position: absolute; top: 0px; right: 20px; }
 
 #header .navtabs li.navtab {
   position: relative;
@@ -247,6 +247,8 @@ form .field .description { margin-bottom: 0.5em;}
   height: 35px;
 }
 
+#header #mainnav.navtabs li.navtab {padding: 10px 12px;}
+#header #messagesnav.navtab, #header #updatesnav.navtab {padding: 10px 5px;}
 #header #usernav.navtabs li.navtab.user {
   padding: 10px;
   height: 35px;
