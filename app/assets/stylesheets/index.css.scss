@@ -216,8 +216,6 @@ form .field .description { margin-bottom: 0.5em;}
 #header .innertab > a, #header .count { color: #333; }
 #header .innertab > a:hover { color: #039; }
 #header ul { list-style: none; padding: 0; margin: 0; }
-#header #logonav { position: absolute; top: 0px; left: 0px; }
-#header #logonav a { padding-left: 10px; }
 #header .innertab { 
   display: inline-block;
   position: relative; 
@@ -226,8 +224,35 @@ form .field .description { margin-bottom: 0.5em;}
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-#header #mainnav { text-align: center; padding-left: 157px; padding-right: 300px; min-width: 500px; }
-#header #usernav { position: absolute; top: 0px; right: 20px; }
+
+// Thanks, https://css-tricks.com/using-flexbox/
+#header {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* New - everyone else */
+}
+#header #logonav {
+  width: 170px;
+  text-align: center;
+}
+#header #mainnav {
+  -webkit-box-flex: 2;      /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 2;         /* OLD - Firefox 19- */
+  width: 40%;               /* For old syntax, otherwise collapses. */
+  -webkit-flex: 2;          /* Chrome */
+  -ms-flex: 2;              /* IE 10 */
+  flex: 2;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  min-width: 515px;
+}
+#header #usernav {
+  white-space: nowrap;
+  text-align: right;
+}
+#header #mainnav { 
+  text-align: center; 
+}
 
 #header .navtabs li.navtab {
   position: relative;
@@ -352,7 +377,8 @@ form .field .description { margin-bottom: 0.5em;}
 .notices .subnav img { vertical-align: top; }
 #header .user_image {vertical-align: top;margin-right: 3px;}
 #header .user .user_image {vertical-align: middle;}
-#header .navtab.user, #header #usersubnav { max-width: 185px; }
+#header .navtab.user { max-width: 185px; }
+#header #usersubnav { max-width: 180px; }
 #header #usersubnav {width: 100%;}
 
 /* Page Headers */
