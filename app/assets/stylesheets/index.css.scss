@@ -213,8 +213,11 @@ form .field .description { margin-bottom: 0.5em;}
 
 #header { color: #999; position: relative; margin-bottom: 20px; min-width: 980px;}
 #header, #header #usernav, #header #logonav { background-color: #eee; z-index: 11; }
-#header .innertab > a, #header .count { color: #333; }
-#header .innertab > a:hover { color: #039; }
+
+#header .innertab a, #header .count { color: #333; }
+#header .innertab .hasupdates, #header .hasupdates .count {color: #cd0a0a;}
+
+#header .innertab a:hover { color: #039; }
 #header ul { list-style: none; padding: 0; margin: 0; }
 #header .innertab { 
   display: inline-block;
@@ -273,7 +276,6 @@ form .field .description { margin-bottom: 0.5em;}
 }
 
 #header #mainnav.navtabs li.navtab {padding: 10px 12px;}
-#header #messagesnav.navtab, #header #updatesnav.navtab {padding: 10px 5px;}
 #header #usernav.navtabs li.navtab.user {
   padding: 10px;
   height: 35px;
@@ -305,8 +307,6 @@ form .field .description { margin-bottom: 0.5em;}
   padding-right: 12px;
 }
 #header #usernav .signout { margin-top: 20px; }
-#header .navtab > a.hasupdates,
-#header .hasupdates .count {color: #cd0a0a;}
 #header .navtabs .observationstab .subnav a,
 #header .navtabs .projectstab .subnav a {
   background-image: image-url('logo-eee-15px.png');
@@ -375,8 +375,8 @@ form .field .description { margin-bottom: 0.5em;}
 .notices .subnav img {max-width: 37px; vertical-align: top;}
 .notices .subnav li a {white-space:nowrap;}
 .notices .subnav img { vertical-align: top; }
-#header .user_image {vertical-align: top;margin-right: 3px;}
-#header .user .user_image {vertical-align: middle;}
+#header .user_image {margin-right: 3px;}
+.user_image {vertical-align: middle;}
 #header .navtab.user { max-width: 185px; }
 #header #usersubnav { max-width: 180px; }
 #header #usersubnav {width: 100%;}
