@@ -158,6 +158,46 @@ $(document).ready(function() {
   })
 
   $('[class*=bold-]').boldId()
+
+  $('#sharebutton').qtip($.extend(true, {}, QTIP_DEFAULTS, {
+    content: {
+      text: $('#sharing')
+    },
+    position: {
+      my: 'top right',
+      at: 'bottom center',
+      target: $('#sharebutton')
+    },
+    hide: {event: 'mouseleave unfocus', delay: 500}
+  }))
+  $('#sharing').hide()
+  $('.favebutton').bind('ajax:before', function() {
+    $(this).hide()
+    $(this).siblings('.favebutton').show()
+  })
+  $('.favebutton').qtip($.extend(true, {}, QTIP_DEFAULTS, {
+    content: {
+      text: function(event, api) {
+        $.ajax({ url: '/votes/for/observation/'+OBSERVATION.id })
+            .done(function(html) {
+                api.set('content.text', html)
+            })
+            .fail(function(xhr, status, error) {
+                api.set('content.text', status + ': ' + error)
+            })
+        return '<span class="loading status">' + I18n.t('loading') + '</span>';
+      }
+    },
+    hide: {event: 'mouseleave unfocus', delay: 500},
+    style: {
+      classes: 'ui-tooltip-light ui-tooltip-shadow votes_for_tip'
+    },
+    position: {
+      my: 'top right',
+      at: 'bottom center',
+      target: $('#fave')
+    }
+  }))
 })
 
 $('#add_more_photos_link').live('click', function() {

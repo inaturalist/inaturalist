@@ -162,6 +162,7 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (3.4.3)
       activerecord (>= 3.2, < 5)
+    acts_as_votable (0.10.0)
     addressable (2.3.6)
     airbrake (4.1.0)
       builder
@@ -604,6 +605,7 @@ DEPENDENCIES
   actionpack-page_caching
   activerecord-postgis-adapter!
   acts-as-taggable-on (~> 3.4)
+  acts_as_votable (~> 0.10.0)
   addressable
   airbrake
   ancestry

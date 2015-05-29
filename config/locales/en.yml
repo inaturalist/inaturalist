@@ -47,6 +47,12 @@ en:
   x_people:
     one: '1 person'
     other: '%{count} people'
+  x_faves:
+    one: '1 faves'
+    other: '%{count} faves'
+  x_people_like_this:
+    one: '1 person likes this'
+    other: '%{count} people like this'
   x_people_agree_html:
     one: '<span class="count">1</span> person agrees'
     other: '<span class="count">%{count}</span> people agree'
@@ -316,6 +322,9 @@ en:
   and_other_taxa: "&amp; Other Taxa"
   and_un_license_all_your_observations: and un-license all your observations
   and_you_havent_linked: "...and you haven't linked one of these external accounts, you should sign in through %{site_name} first, then edit your profile and link your account from there. Otherwise %{site_name} may not be able to tell that the two accounts are connected and try to create a new account for you instead!"
+  and_x_more_people!: 
+    one: "and 1 more person!"
+    other: "and %{count} more people!"
   android: Android
   animals: Animals
   announcement_was_successfully_created: Announcement was successfully created.

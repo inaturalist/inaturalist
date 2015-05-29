@@ -183,6 +183,16 @@ module ApplicationHelper
     link = link_to_function(title, "$('##{id}_dialog').dialog(#{options.to_json})", link_options)
     dialog + link
   end
+
+  def link_to_tip(title, options = {}, &block)
+    id = title.gsub(/\W/, '').underscore
+    dialog = content_tag(:div, capture(&block), :class => "tip", :style => "display:none", :id => "#{id}_tip")
+    link_options = options.delete(:link) || {}
+    tip_options = (options.delete(:tip) || {}).merge(tip: "##{id}_tip")
+    options = options.merge(data: tip_options)
+    link = link_to(title, "javascript:return false;", options)
+    dialog + link
+  end
   
   # Generate a URL based on the current params hash, overriding existing values
   # with the hash passed in.  To remove existing values, specify them with

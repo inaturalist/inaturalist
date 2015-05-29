@@ -447,12 +447,29 @@
   
 </div><!-- end singleobs -->
 
-<div class="column span-7 last">  
+<div class="column span-7 last">
+
+  <% if logged_in? -%>
+    <div id="social" class="clear buttonrow stacked">
+      <div id="fave">
+        <%= link_to unvote_path('observation', @observation.id), :method => :post, :remote => true, :id => "unfavebutton", :class => 'inter favebutton', :style => current_user.voted_up_on?(@observation) ? '' : 'display:none' do %>
+          <i class="fa fa-star"></i>
+          <%=t :x_faves, count: @observation.votes_for.count == 0 ? 1 : @observation.votes_for.count %>
+        <% end %>
+        <%= link_to vote_path('observation', @observation.id), :method => :post, :remote => true, :id => "favebutton", :class => 'inter favebutton', :style => current_user.voted_up_on?(@observation) ? 'display:none' : '' do %>
+          <i class="fa fa-star-o"></i>
+          <% if @observation.votes_for.count > 0 -%>
+            <%=t :x_faves, count: @observation.votes_for.count %>
+          <% else %>
+            <%=t :add_to_faves %>
+          <% end -%>
+        <% end %>
+      </div>
+      <%= link_to "<i class='fa fa-share'></i> #{t :share}".html_safe, "#", :id => 'sharebutton', :class => 'inter sharebutton' %>
+    </div>
+  <% end -%>
 
   <div id="identifications" class="identifications clear">
-    <h3>
-      <%=t :identification_summary %>
-    </h3>
     
     <% if @owners_identification %>
       <div id="owners-identification" class="box <%= 'withupperright' if @listed_taxon || @conservation_status %>">
@@ -613,7 +630,7 @@
               <%= link_to truncate(po.project.title, :length => (is_me?(@observation.user) || curator_of?(po.project) ? 21 : 31)), po.project %>
             </span>
             <% if is_me?(@observation.user) || curator_of?(po.project) -%>
-              <%= link_to "remove", 
+              <%= link_to t(:remove), 
                 remove_project_observation_path(po.project_id, :observation_id => @observation.id),
                 :method => :delete,
                 :data => {:confirm => t(:you_sure_remove_this_observation?)},
@@ -780,12 +797,12 @@
       <%=t :you_think_observation_inacurate %>
     </p>
   <% end %>
-  
-  <%= separator %>
-  
-  <div id="sharing" class="stacked">
+
+  <div id="sharing">
     <script src="//connect.facebook.net/<%= t(:fblocale) %>/all.js#xfbml=1"></script>
-    <fb:like send="true" show_faces="true" width="270" layout="button_count"></fb:like>
+    <div class="fb-like" data-href="<%= url_for %>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     <% if @shareable_image_url -%>
       <%= link_to image_tag("//assets.pinterest.com/images/pidgets/pin_it_button.png"), 
         "https://www.pinterest.com/pin/create/button/?url=#{u observation_url(@observation)}&media=#{u @shareable_image_url}&description=#{u @shareable_description}", 

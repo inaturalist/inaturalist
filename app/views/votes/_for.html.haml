@@ -1,0 +1,8 @@
+.votes_for
+  %ul.plain
+    - @users.each do |user|
+      %li.fadednowrap
+        = link_to user_image(user, size: :thumb), user
+        = link_to_user user
+  - if @users.total_entries > @users.size
+    .stacked.upstacked.meta=t :and_x_more_people!, count: @users.total_entries - @users.size
