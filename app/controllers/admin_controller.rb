@@ -2,44 +2,11 @@
 # A collection of tools useful for administrators.
 #
 class AdminController < ApplicationController
-  
+
   before_filter :authenticate_user!
   before_filter :admin_required
   before_filter :return_here, :only => [:stats, :index, :user_content]
-  
-  def stats
-    @observation_weeks = Observation.where("EXTRACT(YEAR FROM created_at) = ?", Time.now.year).
-      group("EXTRACT(WEEK FROM created_at)").count
-    @observation_weeks_last_year = Observation.where("EXTRACT(YEAR FROM created_at) = ?", Time.now.year - 1).
-      group("EXTRACT(WEEK FROM created_at)").count
-    @observations_max = (@observation_weeks.values + @observation_weeks_last_year.values).sort.last
-    
-    @user_weeks = User.where("EXTRACT(YEAR FROM created_at) = ?", Time.now.year).
-      group("EXTRACT(WEEK FROM created_at)").count
-    @user_weeks_last_year = User.where("EXTRACT(YEAR FROM created_at) = ?", Time.now.year - 1).
-        group("EXTRACT(WEEK FROM created_at)").count
-    @users_max = (@user_weeks.values + @user_weeks_last_year.values).sort.last
-    
-    @total_users = User.count
-    @active_observers = Observation.where("created_at > ?", 3.months.ago).select("distinct user_id").count
-    @total_observations = Observation.count
-    
-    @daily_date = Date.yesterday
-    daily_country_stats_sql = <<-SQL
-      SELECT
-        p.display_name, p.code, p.id, count(op.*)
-      FROM
-        places p
-          JOIN observations_places op ON p.id = op.place_id
-          JOIN observations o ON o.id = op.observation_id
-      WHERE
-        p.admin_level = 0
-        AND o.created_at::DATE = '#{@daily_date.to_s}' 
-      GROUP BY p.display_name, p.code, p.id
-    SQL
-    @daily_country_stats = Observation.connection.execute(daily_country_stats_sql.gsub(/\s+/, ' ').strip)
-  end
-  
+
   def index
   end
 

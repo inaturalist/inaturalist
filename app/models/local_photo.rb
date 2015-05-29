@@ -1,8 +1,5 @@
 #encoding: utf-8
 class LocalPhoto < Photo
-  Photo.descendent_classes ||= []
-  Photo.descendent_classes << self
-  
   before_create :set_defaults
   after_create :set_native_photo_id, :set_urls
   

@@ -1,6 +1,6 @@
 NonStupidDigestAssets.whitelist += [
-  "logo.gif",
-  "logo-small.gif",
+  /logo\..*$/,
+  /logo-small.*/,
   "inat-logo-pb.png",
   /spritesheet/,
   /\.xsl$/,

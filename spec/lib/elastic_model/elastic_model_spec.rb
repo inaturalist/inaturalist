@@ -78,7 +78,8 @@ describe ElasticModel do
       expect( ElasticModel.place_filter(
         { place: @place } ) ).to eq({
           geo_shape: {
-            geojson: {
+            _cache: true,
+            private_geojson: {
               indexed_shape: {
                 id: @place.id,
                 type: "place",

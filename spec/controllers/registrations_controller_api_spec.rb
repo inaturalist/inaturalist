@@ -76,7 +76,7 @@ describe Users::RegistrationsController, "create" do
     User.find_by_login(u.login).site.should eq @site
   end
 
-  it "should acceot time_zone" do
+  it "should accept time_zone" do
     u = User.make
     post :create, user: {
       login: u.login,

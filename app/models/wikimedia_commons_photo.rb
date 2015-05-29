@@ -2,9 +2,6 @@
 class WikimediaCommonsPhoto < Photo
   validate :licensed_if_no_user
   
-  Photo.descendent_classes ||= []
-  Photo.descendent_classes << self
-  
   # retrieve WikimediaCommonsPhotos from Wikimedia Commons based on a taxon_name
   def self.search_wikimedia_for_taxon(taxon_name, options = {})
     wm = WikimediaCommonsService.new(:debug => true)

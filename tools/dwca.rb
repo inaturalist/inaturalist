@@ -224,10 +224,6 @@ def make_archive(*args)
   tmp_path
 end
 
-def logger
-  @logger ||= @opts[:debug] ? Logger.new(STDOUT) : Rails.logger
-end
-
 unless @opts[:metadata].to_s.downcase == "skip"
   metadata_path = make_metadata
   puts "Metadata: #{metadata_path}" if opts[:debug]

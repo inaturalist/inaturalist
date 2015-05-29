@@ -1,0 +1,56 @@
+- if @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY && @project_user_invitation.blank?
+  .notice.box.centered
+    = t 'views.projects.join.invite_only_description'
+- unless @project.description.blank?
+  %h3= t(:about_this_project)
+  .description
+    = truncate_with_more formatted_user_text(@project.description).gsub(/\<a /, '<a target="_blank" ').html_safe, :length => 500
+%h3= t(:project_curators)
+.clear
+  - @project_curators.each do |project_curator|
+    .stacked.column.span-5
+      = link_to(image_tag(project_curator.user.icon.url(:thumb), :class => 'left usericon'),
+        person_by_login_path(project_curator.user.login))
+      .column.span-3
+        = link_to project_curator.user.login, person_by_login_path(project_curator.user.login), :class => "readable nobr"
+        %br/
+        = link_to("<span class='count'>#{project_curator.user.observations.count}</span> observations".html_safe, observations_by_login_path(project_curator.user.login))
+= separator
+- unless @project.terms.blank?
+  %h3= t(:terms)
+  .stacked.description
+    = truncate_with_more formatted_user_text(@project.terms).gsub(/\<a /, '<a target="_blank" ').html_safe, :length => 500
+- unless @project.project_user_rules.blank?
+  %h3= t(:rules_for_becoming_memner)
+  %ul.stacked
+    - for rule in @project.project_user_rules
+      %li= rule.terms
+- unless @project.project_observation_rules.blank?
+  %h3= t(:rules_for_adding_observations)
+  %ul.stacked
+    - for rule in @project.project_observation_rules
+      %li= rule.terms
+- if !params[:skip_form] && (@project.preferred_membership_model != Project::MEMBERSHIP_INVITE_ONLY || @project_user_invitation)
+  = form_for @project.project_users.build(project: @project, user: current_user), 
+      builder: DefaultFormBuilder,
+      url: join_project_path(@project) do |f|
+    = f.hidden_field :project_id
+    = f.hidden_field :user_id
+    = f.check_box :preferred_updates, 
+      label_after: true, 
+      label: t(:receive_updates_from_this_project), 
+      description: t('views.projects.updates_desc'),
+      data: {autosubmit: true}
+    %label=t 'views.projects.curator_coordinate_access_label'
+    - ProjectUser::CURATOR_COORDINATE_ACCESS_OPTIONS.each do |option|
+      = f.radio_button :preferred_curator_coordinate_access, option,
+        label_after: true, 
+        label: t("views.projects.project_user_curator_coordinate_access_labels.#{option}"), 
+        description: t("views.projects.project_user_curator_coordinate_access_descriptions.#{option}"),
+        data: {autosubmit: true}
+    %p.stacked.ui.meta
+      = succeed ':' do
+        %label=t :note
+      =t 'views.projects.curator_coordinate_access_note'
+    = f.submit t(:yes_i_want_to_join), data: {loading_click: true}, 'class': 'default button'
+    = link_to t(:cancel), session[:return_to] || @project, :class => "button"

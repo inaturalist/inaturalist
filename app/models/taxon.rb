@@ -256,6 +256,7 @@ class Taxon < ActiveRecord::Base
   scope :iconic_taxa, -> { where("taxa.is_iconic = true").includes(:taxon_names) }
   scope :of_rank, lambda {|rank| where("taxa.rank = ?", rank)}
   scope :of_rank_equiv, lambda {|rank_level| where("taxa.rank_level = ?", rank_level)}
+  scope :of_rank_equiv_or_lower, lambda {|rank_level| where("taxa.rank_level <= ?", rank_level)}
   scope :is_locked, -> { where(:locked => true) }
   scope :containing_lat_lng, lambda {|lat, lng|
     joins(:taxon_ranges).where("ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat)

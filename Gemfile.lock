@@ -324,6 +324,7 @@ GEM
     httpi (2.2.7)
       rack
     i18n (0.7.0)
+    icalendar (2.3.0)
     innertube (1.1.0)
     joiner (0.3.4)
       activerecord (>= 4.1.0)
@@ -652,6 +653,7 @@ DEPENDENCIES
   haml
   htmlentities
   i18n-js!
+  icalendar
   irwi!
   jquery-rails
   json

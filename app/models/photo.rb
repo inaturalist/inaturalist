@@ -16,9 +16,6 @@ class Photo < ActiveRecord::Base
   attr_accessor :make_licenses_same
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
   
-  cattr_accessor :descendent_classes
-  cattr_accessor :remote_descendent_classes
-  
   before_save :set_license, :trim_fields
   after_save :update_default_license,
              :update_all_licenses,

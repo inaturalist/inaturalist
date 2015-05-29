@@ -20,6 +20,11 @@ describe EolPhoto, "new_from_api_response" do
     p = EolPhoto.new_from_api_response(api_response)
     expect(p.native_realname).not_to eq "inaturalist"
   end
+
+  it "should work for an image in the public domain" do
+    p = EolPhoto.new_from_api_response(EolService.data_objects('16893553'))
+    expect( p ).to be_valid
+  end
 end
 
 describe "repair" do

@@ -32,6 +32,10 @@ class MetaService
     @debug = options[:debug]
   end
 
+  def api_endpoint
+    @api_endpoint
+  end
+
   #
   # Sends a request to a service function, and returns an Hpricot object of
   # the xml response.
@@ -41,14 +45,14 @@ class MetaService
   def request(method, args = {})
     params      = args.merge({@method_param => method})
     params      = params.merge(@default_params)
-    endpoint    = @api_endpoint ? @api_endpoint.base_url : @endpoint
+    endpoint    = api_endpoint ? api_endpoint.base_url : @endpoint
     url         = endpoint + params.map {|k,v| "#{k}=#{v}"}.join('&')
     uri         = URI.encode(url)
     request_uri = URI.parse(uri)
     response = nil
     begin
       MetaService.fetch_request_uri(request_uri: request_uri, timeout: @timeout,
-        api_endpoint: @api_endpoint,
+        api_endpoint: api_endpoint,
         user_agent: "#{CONFIG.site_name}/#{self.class}/#{SERVICE_VERSION}")
     rescue Timeout::Error
       raise Timeout::Error, "#{@service_name} didn't respond within #{@timeout} seconds."

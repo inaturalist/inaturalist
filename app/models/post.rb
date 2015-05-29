@@ -15,6 +15,11 @@ class Post < ActiveRecord::Base
       end
       return !post.draft? && existing_updates_count == 0
     },
+    :if => lambda{|post, project, subscription|
+      return true unless post.parent_type == 'Project'
+      project_user = project.project_users.where(user_id: subscription.user_id).first
+      project_user.prefers_updates?
+    },
     :notification => "created_post",
     :include_notifier => true
   }

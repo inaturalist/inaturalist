@@ -28,7 +28,7 @@ image_url ||= observation_image_url(observation, :size => image_size) ||
   </a>
   <div class="title">
     <% if observation.species_guess.blank? %>
-    <%= link_to raw(t(:i_something_i)), observation_url(observation) %>,
+    <%= link_to t(:something), observation_url(observation) %>,
     <% else %>
     <%= link_to observation.species_guess, observation_url(observation) %>,
     <% end %>

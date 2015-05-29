@@ -13,6 +13,15 @@ body {
   font-family: "Trebuchet MS", Arial, sans-serif;
   color: #333;
 }
+html, body {height: 100%;}
+#bodywrapper {min-height: 100%; margin-bottom: -196px;}
+#bodywrapper:after {
+  content: "";
+  display: block;
+}
+#bodywrapper:after { height: 196px; }
+#footer { height: 176px; }
+#wrapper { margin-bottom: 20px; min-height: 500px;}
 
 .gm-style .gm-style-iw, .gm-style .gm-style-iw a, .gm-style .gm-style-iw span, .gm-style .gm-style-iw label, 
 .gm-style .gm-style-iw div, .gm-style div, .gm-style span, .gm-style label, .gm-style a {
@@ -63,7 +72,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Georgia, serif;
+  font-family: "Trebuchet MS", Arial, sans-serif;
   margin-bottom: 0.5em;
 }
 
@@ -202,190 +211,147 @@ form .field .description { margin-bottom: 0.5em;}
 
 /* Site Header */
 
+#header { color: #999; position: relative; margin-bottom: 20px; min-width: 980px;}
+#header, #header #usernav, #header #logonav { background-color: #eee; z-index: 11; }
+
+#header .innertab a, #header .count { color: #333; }
+#header .innertab .hasupdates, #header .hasupdates .count {color: #cd0a0a;}
+
+#header .innertab a:hover { color: #039; }
+#header ul { list-style: none; padding: 0; margin: 0; }
+#header .innertab { 
+  display: inline-block;
+  position: relative; 
+  top: 50%; 
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+// Thanks, https://css-tricks.com/using-flexbox/
 #header {
-  margin: 0px 10px 1em;
-  height: 29px;
-  line-height: 1.25em;
-  border-bottom: 1px dotted #ccc;
-  min-width: 900px;
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* New - everyone else */
+}
+#header #logonav {
+  width: 170px;
+  text-align: center;
+}
+#header #mainnav {
+  -webkit-box-flex: 2;      /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 2;         /* OLD - Firefox 19- */
+  width: 40%;               /* For old syntax, otherwise collapses. */
+  -webkit-flex: 2;          /* Chrome */
+  -ms-flex: 2;              /* IE 10 */
+  flex: 2;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  min-width: 515px;
+}
+#header #usernav {
+  white-space: nowrap;
+  text-align: right;
+}
+#header #mainnav { 
+  text-align: center; 
 }
 
-#header ul {
-  list-style: none;
-}
-#header .navtabs {
-  display: inline;
-  padding: 0;
-  margin: 0;
-}
-
-#header .navtabs li {
+#header .navtabs li.navtab {
   position: relative;
+  z-index: 10;
+}
+#header .navtabs li.open {
   background-color: white;
 }
-
-#header .navtabs li,
-#header .navtabs .inter {
-  display: block;
-  float: left;
+#header li.navtab {
+  font-size: 120%;
+  line-height: 2.2;
+}
+#header li.navtab,
+#header li.navtab {
+  display: inline-block;
+  padding: 10px;
+  height: 35px;
 }
 
-#header .navtabs a,
-#header .navtabs .inter {
-  display: block;
-  padding: 7px 5px;
+#header #mainnav.navtabs li.navtab {padding: 10px 12px;}
+#header #usernav.navtabs li.navtab.user {
+  padding: 10px;
+  height: 35px;
+  vertical-align: top;
 }
+#usernav .user img { border-radius: 100px; width: 33px; }
 
-#header .navtabs .inter {
-  padding: 7px 0px 0;
-  color: #777;
-}
-
-#header .navtabs .inter a {
-  float: none;
-  padding: 0;
-  display: inline;
-}
-
-#mainnav a:hover{background-color:lightyellow;}
-#mainnav li.current{background-color:lightyellow;}
-#mainnav a.subnavlink:hover{background-color:transparent;}
-#mainnav .logolink{margin-right:10px;line-height:0;}
-#mainnav .logolink:hover{background-color:transparent;}
-#header .navtabs a.logolink{padding:3px 0 4px;}
-
-#header .subnavwrapper {z-index: 10;}
 #header .subnav {
-  position: absolute;
-  top: 30px;
-  right: 0px;
-  margin: 0;
-  padding:0;
-  border-right: 2px solid #ccc;
-  border-bottom: 2px solid #ccc;
-  border-left: 1px solid #ccc;
   z-index: 1000;
+  text-align: left;
+  background-color: white;
+  position: absolute;
+  top: 55px; 
+  left: -2px; 
+  padding: 10px;
+  padding-left: 12px;
+  border-right: 2px solid #eee;
+  border-left: 2px solid #eee;
+  border-bottom: 2px solid #eee;
+  line-height: 1.5;
 }
-
-#header .navtabs .subnav li,
-#header .navtabs .subnav a {
-  float: none;
+#header .subnav li {
+  margin-bottom: 10px;
 }
-
-#header .navtabs .subnav li {
-  border-top: 1px solid #eee;
+#header .subnav.rightsubnav {
+  left: auto;
+  right: -2px;
+  padding-left: 10px;
+  padding-right: 12px;
 }
-
-#mainnav.navtabs .subnav a {
-  padding-right: 25px;
-}
-
+#header #usernav .signout { margin-top: 20px; }
 #header .navtabs .observationstab .subnav a,
 #header .navtabs .projectstab .subnav a {
   background-image: image-url('logo-eee-15px.png');
-  background-position: 148px center;
+  background-position: 0px center;
   background-repeat: no-repeat;
+  padding-left: 20px;
+  white-space: nowrap;
 }
-
-#header .navtabs .subnav li:first-child,
-#header .navtabs .subnav li li {
-  border-top: 0 none;
-}
-
-#header .subnav ul {
-  margin: 0 0 0 20px;
+#header .subnav ul ul {
+  margin: 10px 0 0 20px;
   padding:0;
 }
-
-#header .navtabs .subnav ul a {
-  padding: 2px 10px;
-}
-
-#mainnav a {
-  font-weight: bold;
-  font-size: 14px;
-}
-
-#mainnav .subnav li { text-align: right; }
-
-#usernav {
-  float: right;
-}
-
-#header .navtabs a.togglelink {
-  background-position: right 50%;
-  padding-right: 15px;
-}
-
-#header .navtabs .subnavtab {
-  border-right: 2px solid transparent;
-  border-left: 1px solid transparent;
-}
-
-#header .navtabs .open {
-  border-right: 2px solid #ccc;
-  border-left: 1px solid #ccc;
-  border-bottom:1px solid white;
-}
-
-#header .navtabs .subnavtab a {
-  float: left;
-}
-
-#header .navtabs .subnavtab a:first-child {
-  padding-right: 2px;
-}
-
-#header .navtabs .subnavtab .subnavlink {
-  padding-left: 2px;
-  padding-right: 2px;
-  padding-top:6px;
-  text-align: center;
-  outline: 0;
-}
-
 #usersubnav li a {
   display: block;
   width: auto;
   min-height: 15px;
   background: image-url('logo-eee-15px.png') 5px 50% no-repeat;
 }
-
 #usersubnav li a:hover {
   background: image-url('logo-15px.png') 5px 50% no-repeat;
 }
-
 #header .navtabs #usersubnav a {
   padding-left: 28px;
 }
-
 #usersubnav .observations_link {
   background-image: image-url('notebook-icon-eee-15px.png');
   background-position: 7px 40%;
   background-attachment: no-repeat;
 }
-
 #header .navtabs .observations_link:hover {
   background: image-url('notebook-icon-color-15px.png') 7px 45% no-repeat;
 }
-
 #header .navtabs .lists_link {
   background: image-url('checklist-icon-eee-15px.png') 5px 50% no-repeat;
 }
-
 #header .navtabs .lists_link:hover {
   background: image-url('checklist-icon-color-15px.png') 5px 50% no-repeat;
 }
-
 #header .navtabs .profile_link {
   padding-left: 20px;
   background: url(/attachment_defaults/users/icons/defaults/mini.png) 7px 50% no-repeat;
 }
-
 #header .navtabs .profile_link:hover {
   background: url(/attachment_defaults/users/icons/defaults/mini-color.png) 7px 50% no-repeat;
 }
-
 #header .navtabs .journal_link {
   padding-left: 20px;
   background: image-url('silk/book-gray.png') 7px 50% no-repeat;
@@ -396,62 +362,31 @@ form .field .description { margin-bottom: 0.5em;}
   background: image-url('silk/email-gray.png') 7px 50% no-repeat;
 }
 #header .navtabs .messages_link:hover { background: image-url('silk/email.png') 7px 50% no-repeat; }
-#header .formwrapper { padding: 10px; }
-#header form { min-width: 148px; }
-
 #header form .button,
 #header form label,
-#header form input {
-  margin-bottom: 0;
-}
-
-#header form input.text {
-  width: 100px;
-}
-
+#header form input {margin-bottom: 0;}
+#header form input.text {width: 173px;}
+#header form .buttonrow {white-space: nowrap;}
 #header form .button {
   margin-right: 0;
   background: image-url('silk/magnifier.png') 50% 50% no-repeat;
   width: 25px;
 }
-
-#header .navtabs .subnav.taxon_links li a.taxon {
-  padding-right: 30px;
-  background-repeat: no-repeat;
-  background-position: 145px center;
-}
-
-#header .inter.user {padding: 0;}
-#header .inter.user strong {position:relative; top: 1px;}
-#header .inter.user img {height: 29px;}
-#header .navtabs .subnavtab a.headernotice:first-child,
-#header .navtabs a.headernotice,
-#header .headernotice {
-  display:block;
-  padding: 0;
-  float:left;
-  padding: 7px 7px 0px 2px;
-  height: 22px;
-}
-#header .headernotice .count {color: inherit;}
-#header .navtabs .subnavtab {white-space:nowrap;}
-#header .navtabs .notices .subnav ul a {display:block; padding:5px;}
-.notices .subnav {display:none; background-color:white;padding:0px;max-height: 400px; overflow-y: auto; overflow-x: hidden;}
-.notices .subnav .loadingwrapper {padding: 10px;}
-.notices .subnav img {max-width: 32px;}
-#header .notices .subnav.subnav ul {list-style:none; padding: 0; margin: 0;}
+.notices .subnav img {max-width: 37px; vertical-align: top;}
 .notices .subnav li a {white-space:nowrap;}
-.notices .subnav:hover, .notices .subnav:hover li a { background-color: #FBFBFB;}
-.notices .subnav li:hover a { background-color: white;}
-#updatesnav .ui-icon {float: left; position:relative; top: -2px;}
-
+.notices .subnav img { vertical-align: top; }
+#header .user_image {margin-right: 3px;}
+.user_image {vertical-align: middle;}
+#header .navtab.user { max-width: 185px; }
+#header #usersubnav { max-width: 180px; }
+#header #usersubnav {width: 100%;}
 
 /* Page Headers */
 #pageheader{margin-bottom:10px;}
-#pageheader h2{margin-bottom:0;line-height:1.2;}
+#pageheader h2 {margin: 12px 0 10px;line-height:1.2;}
+#pageheader.byloginheader h2 { margin: 0 0 2px; }
 #pageheader a .projecticon, #pageheader a .usericon{ float:left;margin-right:10px;border:2px solid white; }
 #pageheader .projecticon:hover, #pageheader .usericon:hover {border-color:#ddd;}
-#pageheader .breadcrumbs{margin-bottom:5px;}
 
 img.mini.usericon {
   vertical-align: middle;
@@ -810,17 +745,22 @@ ul.leafylist li li:first-child {
   margin-bottom: 1em;
 }
 
-/* Footer (give it its own stylesheet if this gets too big) */
+/* Footer */
 #footer {
-  border-top: 1px dotted #ccc;
-  margin: 2em auto;
-  padding: 0.5em;
-  text-align: center;
-  width: 80%;
+  background-color: #eee;
+  padding-top: 20px;
+  font-size: 100%;
+  color: #999;
+  position: absolute;
+  width: 100%;
 }
-#footer img { vertical-align:middle; }
-#mobiletogglelink {font-size: 400%;margin-bottom:10%;}
+#footer a { color: #333; }
 
+#footer p { font-family: "Trebuchet MS", Arial, sans-serif; font-size: 100%; }
+#inatnotice { color: #aaa; background-color: #666; padding-top: 20px; padding-bottom: 20px; }
+#inatnotice a {color: white;}
+
+#mobiletogglelink {font-size: 400%;margin-bottom:10%;}
 
 .compactfield {
   padding: 10px;

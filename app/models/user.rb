@@ -46,6 +46,11 @@ class User < ActiveRecord::Base
   PREFERRED_OBSERVATION_FIELDS_BY_CURATORS = "curators"
   PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER = "observer"
   preference :observation_fields_by, :string, :default => PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
+  PROJECT_ADDITION_BY_ANY = "any"
+  PROJECT_ADDITION_BY_JOINED = "joined"
+  PROJECT_ADDITION_BY_NONE = "none"
+  preference :project_addition_by, :string, default: PROJECT_ADDITION_BY_ANY
+  preference :location_details, :boolean, default: false
 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
@@ -113,6 +118,7 @@ class User < ActiveRecord::Base
   has_many :subscriptions, :dependent => :delete_all
   has_many :updates, :foreign_key => :subscriber_id, :dependent => :delete_all
   has_many :flow_tasks
+  has_many :project_observations, dependent: :nullify 
   belongs_to :site, :inverse_of => :users
   belongs_to :place, :inverse_of => :users
 
@@ -636,6 +642,18 @@ class User < ActiveRecord::Base
       :methods => [
         :user_icon_url, :medium_user_icon_url, :original_user_icon_url]
     }
+  end
+
+  def self.active_ids(at_time = Time.now)
+    date_range = (at_time - 30.days)..at_time
+    classes = [ Identification, Observation, Comment, Post ]
+    # get the unique user_ids that created instances of any of these
+    # classes within the last 30 days, then get the union (with .inject(:|))
+    # of the array of arrays.
+    user_ids = classes.collect{ |klass|
+      klass.select("DISTINCT(user_id)").where(created_at: date_range).
+        collect{ |i| i.user_id }
+    }.inject(:|)
   end
 
   def self.header_cache_key_for(user, options = {})

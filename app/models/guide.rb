@@ -383,7 +383,7 @@ class Guide < ActiveRecord::Base
                   f.write(fr.read)
                 end
               end
-            rescue OpenURI::HTTPError => e
+            rescue Exception => e
               Rails.logger.error "[ERROR #{Time.now}] Failed to download #{thread_url}: #{e}"
               next
             end

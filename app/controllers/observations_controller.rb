@@ -284,9 +284,9 @@ class ObservationsController < ApplicationController
         end.reverse
         
         if logged_in?
-          @projects = Project.joins(:project_users).
-            where("project_users.user_id = ?", current_user).
-            limit(1000).sort_by{ |p| p.title.downcase }
+          @projects = current_user.project_users.includes(:project).joins(:project).limit(1000).order("lower(projects.title)").map(&:project)
+          @project_addition_allowed = @observation.user_id == current_user.id
+          @project_addition_allowed ||= @observation.user.preferred_project_addition_by != User::PROJECT_ADDITION_BY_NONE
         end
         
         @places = @observation.places
@@ -612,7 +612,7 @@ class ObservationsController < ApplicationController
         o.oauth_application = a.becomes(OauthApplication)
       end
       # Get photos
-      Photo.descendent_classes.each do |klass|
+      Photo.subclasses.each do |klass|
         klass_key = klass.to_s.underscore.pluralize.to_sym
         if params[klass_key] && params[klass_key][fieldset_index]
           o.photos << retrieve_photos(params[klass_key][fieldset_index], 
@@ -632,12 +632,7 @@ class ObservationsController < ApplicationController
     end
     
     current_user.observations << @observations.compact
-    
-    if request.format != :json && !params[:accept_terms] && params[:project_id] && !current_user.project_users.find_by_project_id(params[:project_id])
-      flash[:error] = t(:but_we_didnt_add_this_observation_to_the_x_project, :project => Project.find_by_id(params[:project_id]).title)
-    else
-      create_project_observations
-    end
+    create_project_observations
     update_user_account
     
     # check for errors
@@ -763,7 +758,7 @@ class ObservationsController < ApplicationController
         # Get photos
         updated_photos = []
         old_photo_ids = observation.photo_ids
-        Photo.descendent_classes.each do |klass|
+        Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           if params[klass_key] && params[klass_key][fieldset_index]
             updated_photos += retrieve_photos(params[klass_key][fieldset_index], 
@@ -783,7 +778,7 @@ class ObservationsController < ApplicationController
           Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(doomed_photo_ids)
         end
 
-        Photo.descendent_classes.each do |klass|
+        Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
           next unless params["#{klass_key}_to_sync"] && params["#{klass_key}_to_sync"][fieldset_index]
           next unless photo = observation.photos.last
@@ -1057,7 +1052,7 @@ class ObservationsController < ApplicationController
   end
   
   def import_photos
-    photos = Photo.descendent_classes.map do |klass|
+    photos = Photo.subclasses.map do |klass|
       retrieve_photos(params[klass.to_s.underscore.pluralize.to_sym], 
         :user => current_user, :photo_class => klass)
     end.flatten.compact
@@ -1321,7 +1316,7 @@ class ObservationsController < ApplicationController
       @observations = get_elastic_paginated_observations(params)
     end
     
-    @project_observations = @project.project_observations.where(observation: @observations.to_a).
+    @project_observations = @project.project_observations.where(observation: @observations.map(&:id)).
       includes([ { :curator_identification => [ :taxon, :user ] } ])
     @project_observations_by_observation_id = @project_observations.index_by(&:observation_id)
     
@@ -1548,6 +1543,9 @@ class ObservationsController < ApplicationController
     @headless = @footless = true
     search_params, find_options = get_search_params(params)
     stats_adequately_scoped?
+    respond_to do |format|
+      format.html
+    end
   end
 
   def taxa
@@ -1610,7 +1608,10 @@ class ObservationsController < ApplicationController
         ancestors = Taxon.where(id: ancestor_ids)
         taxa_to_arrange = (ancestors + @taxa).sort_by{|t| "#{t.ancestry}/#{t.id}"}
         @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
-        @taxon_names_by_taxon_id = TaxonName.where("taxon_id IN (?)", taxa_to_arrange.map(&:id).uniq).group_by(&:taxon_id)
+        @taxon_names_by_taxon_id = TaxonName.
+          where(taxon_id: taxa_to_arrange.map(&:id).uniq).
+          includes(:place_taxon_names).
+          group_by(&:taxon_id)
         render :layout => "bootstrap"
       end
       format.csv do
@@ -1632,57 +1633,19 @@ class ObservationsController < ApplicationController
   end
 
   def taxon_stats
-    search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    scope = Observation.query(search_params)
-    scope = scope.where("1 = 2") unless stats_adequately_scoped?
-    species_counts_scope = scope.joins(:taxon)
-    unless search_params[:rank] == "leaves" && logged_in? && current_user.is_curator?
-      species_counts_scope = species_counts_scope.where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL)
-    end
-    species_counts_sql = if search_params[:rank] == "leaves" && logged_in? && current_user.is_curator?
-      ancestor_ids_sql = <<-SQL
-        SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
-        FROM taxa
-          JOIN (
-            #{species_counts_scope.to_sql}
-          ) AS observations ON observations.taxon_id = taxa.id
-      SQL
-      <<-SQL
-        SELECT
-          o.taxon_id,
-          count(*) AS count_all
-        FROM
-          (
-            #{species_counts_scope.to_sql}
-          ) AS o
-            LEFT OUTER JOIN (
-              #{ancestor_ids_sql}
-            ) AS ancestor_ids ON o.taxon_id::text = ancestor_ids.ancestor_id
-        WHERE
-          ancestor_ids.ancestor_id IS NULL
-        GROUP BY
-          o.taxon_id
-        ORDER BY count_all desc
-        LIMIT 5
-      SQL
+    search_params, find_options = get_search_params(params,
+      skip_order: true, skip_pagination: true)
+    search_params.merge!(find_options)
+    # currently we can't search ES for leaf nodes
+    if able_to_use_elasticsearch?(search_params) && search_params[:rank] != "leaves"
+      elastic_taxon_stats(search_params)
     else
-      <<-SQL
-        SELECT
-          o.taxon_id,
-          count(*) AS count_all
-        FROM
-          (#{species_counts_scope.to_sql}) AS o
-        GROUP BY
-          o.taxon_id
-        ORDER BY count_all desc
-        LIMIT 5
-      SQL
+      non_elastic_taxon_stats(search_params)
     end
-    @species_counts = ActiveRecord::Base.connection.execute(species_counts_sql)
-    taxon_ids = @species_counts.map{|r| r['taxon_id']}
-    @taxa = Taxon.where("id in (?)", @species_counts.map{|r| r['taxon_id']}).includes({:taxon_photos => :photo}, :taxon_names)
+    @taxa = Taxon.where(id: @species_counts.map{ |r| r["taxon_id"] }).
+      includes({ taxon_photos: :photo }, :taxon_names)
     @taxa_by_taxon_id = @taxa.index_by(&:id)
-    species_counts_json = @species_counts.map do |row|
+    @species_counts_json = @species_counts.map do |row|
       taxon = @taxa_by_taxon_id[row['taxon_id'].to_i]
       taxon.locale = I18n.locale
       {
@@ -1693,27 +1656,11 @@ class ObservationsController < ApplicationController
         )
       }
     end
-    rank_counts_sql = <<-SQL
-      SELECT
-        o.rank_name,
-        count(*) AS count_all
-      FROM
-        (#{scope.joins(:taxon).select("DISTINCT ON (taxa.id) taxa.rank AS rank_name").to_sql}) AS o
-      GROUP BY o.rank_name
-    SQL
-    rank_counts = ActiveRecord::Base.connection.execute(rank_counts_sql)
-    @rank_counts = {}
-    total = 0
-    rank_counts.each do |row|
-      total += row['count_all'].to_i
-      @rank_counts[row['rank_name']] = row['count_all'].to_i
-    end
-    @rank_counts[:leaves] = species_counts_json.size if search_params[:rank] == "leaves"
     respond_to do |format|
       format.json do
         render :json => {
-          :total => rank_counts.map{|r| r['count_all'].to_i}.sum,
-          :species_counts => species_counts_json,
+          :total => @total,
+          :species_counts => @species_counts_json,
           :rank_counts => @rank_counts
         }
       end
@@ -1721,26 +1668,20 @@ class ObservationsController < ApplicationController
   end
 
   def user_stats
-    search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
-    scope = Observation.query(search_params)
-    scope = scope.where("1 = 2") unless stats_adequately_scoped?
+    search_params, find_options = get_search_params(params,
+      skip_order: true, skip_pagination: true)
+    search_params.merge!(find_options)
     limit = params[:limit].to_i
     limit = 500 if limit > 500 || limit <= 0
-    @user_counts = user_obs_counts(scope, limit).to_a
-    @user_taxon_counts = user_taxon_counts(scope, limit).to_a
-    obs_user_ids = @user_counts.map{|r| r['user_id']}.sort
-    tax_user_ids = @user_taxon_counts.map{|r| r['user_id']}.sort
-
-    # the list of top users is probably different for obs and taxa, so grab the leftovers from each
-    leftover_obs_user_ids = tax_user_ids - obs_user_ids
-    leftover_tax_user_ids = obs_user_ids - tax_user_ids
-    @user_counts += user_obs_counts(scope.where("observations.user_id IN (?)", leftover_obs_user_ids)).to_a
-    @user_taxon_counts += user_taxon_counts(scope.where("observations.user_id IN (?)", leftover_tax_user_ids)).to_a
-    @user_counts = @user_counts[0...limit]
-    @user_taxon_counts = @user_taxon_counts[0...limit]
-    user_ids = (obs_user_ids + tax_user_ids).uniq.sort
-    
-    @users = User.select("id, login, icon_file_name, icon_updated_at, icon_content_type").where("id in (?)", user_ids)
+    if able_to_use_elasticsearch?(search_params)
+      elastic_user_stats(search_params, limit)
+    else
+      non_elastic_user_stats(search_params, limit)
+    end
+    @user_ids = @user_counts.map{ |c| c["user_id"] } |
+      @user_taxon_counts.map{ |c| c["user_id"] }
+    @users = User.where(id: @user_ids).
+      select("id, login, icon_file_name, icon_updated_at, icon_content_type")
     @users_by_id = @users.index_by(&:id)
     respond_to do |format|
       format.html do
@@ -1751,7 +1692,7 @@ class ObservationsController < ApplicationController
       end
       format.json do
         render :json => {
-          :total => scope.select("DISTINCT observations.user_id").count,
+          :total => @total,
           :most_observations => @user_counts.map{|row|
             {
               :count => row['count_all'].to_i,
@@ -1880,7 +1821,8 @@ class ObservationsController < ApplicationController
   end
 
   def phylogram
-    search_params, find_options = get_search_params(params, :skip_order => true, :skip_pagination => true)
+    search_params, find_options = get_search_params(params,
+      skip_order: true, skip_pagination: true)
     scope = Observation.query(search_params)
     scope = scope.where("1 = 2") unless stats_adequately_scoped?
     ancestor_ids_sql = <<-SQL
@@ -1964,6 +1906,9 @@ class ObservationsController < ApplicationController
     elsif params[:place_ids]
       @places = Place.where(id: params[:place_ids])
     end
+    if params[:render_place_id]
+      @render_place = Place.find_by_id(params[:render_place_id])
+    end
     if @taxa.length == 1
       @taxon = @taxa.first
       @taxon_hash = { }
@@ -1976,6 +1921,13 @@ class ObservationsController < ApplicationController
       if @taxon.iconic_taxon
         @taxon_hash[:iconic_taxon_name] = @taxon.iconic_taxon.name
       end
+    end
+    possible_elastic_params = (params.keys.map(&:to_sym) & [ :d1, :d2 ])
+    if params[:elastic] || !possible_elastic_params.empty?
+      @elastic = true
+      @elastic_params = params.select{ |k,v|
+        [ :heatmap, :place_id, :user_id, :project_id,
+          :taxon_id, :d1, :d2 ].include?( k.to_sym ) }
     end
     @about_url = CONFIG.map_about_url ? CONFIG.map_about_url :
       view_context.wiki_page_url('help', anchor: 'mapsymbols')
@@ -2124,6 +2076,8 @@ class ObservationsController < ApplicationController
     @observations_taxon_id = search_params[:observations_taxon_id]
     @observations_taxon = search_params[:observations_taxon]
     @observations_taxon_name = search_params[:taxon_name]
+    @observations_taxon_ids = search_params[:taxon_ids]
+    @observations_taxa = search_params[:observations_taxa]
     if search_params[:has]
       @id_please = true if search_params[:has].include?('id_please')
       @with_photos = true if search_params[:has].include?('photos')
@@ -2186,16 +2140,8 @@ class ObservationsController < ApplicationController
   end
 
   def get_elastic_paginated_observations(params)
-    # prepare parameters
     search_params, find_options = get_search_params(params)
-
-    # there are some attributes which have not yet been added to the
-    # elasticsearch index, or we have decided not to put in the index
-    # because it would be more work to maintain than it would save
-    # when searching. Remove empty values before checking
-    if (Observation::NON_ELASTIC_ATTRIBUTES.map(&:to_sym) &
-            search_params.reject{ |k,v| v.blank? || v == "any" }.keys).any? ||
-       (@place && !@place.geom_in_elastic_index)
+    unless able_to_use_elasticsearch?(search_params)
       # if we have one of these non-elastic attributes,
       # then default to searching PostgreSQL via ActiveRecord
       return get_paginated_observations(search_params, find_options)
@@ -2409,8 +2355,7 @@ class ObservationsController < ApplicationController
       @photo_identities = []
       return true
     end
-    Photo.descendent_classes = [FlickrPhoto, PicasaPhoto, FacebookPhoto] if Photo.descendent_classes.blank?
-    @photo_identities = Photo.descendent_classes.map do |klass|
+    @photo_identities = Photo.subclasses.map do |klass|
       assoc_name = klass.to_s.underscore.split('_').first + "_identity"
       current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
     end.compact
@@ -2649,13 +2594,11 @@ class ObservationsController < ApplicationController
     @project = Project.find_by_id(params[:project_id])
     @project ||= Project.find(params[:project_id]) rescue nil
     return unless @project
-    @project_user = current_user.project_users.find_or_create_by(project_id: @project.id)
-    return unless @project_user && @project_user.valid?
     tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
     errors = []
     @observations.each do |observation|
       next if observation.new_record?
-      po = @project.project_observations.build(:observation => observation, :tracking_code => tracking_code)
+      po = @project.project_observations.build(:observation => observation, :tracking_code => tracking_code, user: current_user)
       unless po.save
         errors = (errors + po.errors.full_messages).uniq
       end
@@ -2714,4 +2657,153 @@ class ObservationsController < ApplicationController
       render :status => :accepted, :text => "This file takes a little while to generate. It should be ready shortly at #{request.url}"
     end
   end
+
+  def able_to_use_elasticsearch?(search_params)
+    # there are some attributes which have not yet been added to the
+    # elasticsearch index, or we have decided not to put in the index
+    # because it would be more work to maintain than it would save
+    # when searching. Remove empty values before checking
+    ! (Observation::NON_ELASTIC_ATTRIBUTES.map(&:to_sym) &
+      search_params.reject{ |k,v| v.blank? || v == "any" }.keys).any? ||
+      (@place && !@place.geom_in_elastic_index)
+  end
+
+  def non_elastic_taxon_stats(search_params)
+    scope = Observation.query(search_params)
+    scope = scope.where("1 = 2") unless stats_adequately_scoped?
+    species_counts_scope = scope.joins(:taxon)
+    unless search_params[:rank] == "leaves" && logged_in? && current_user.is_curator?
+      species_counts_scope = species_counts_scope.where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL)
+    end
+    species_counts_sql = if search_params[:rank] == "leaves" && logged_in? && current_user.is_curator?
+      ancestor_ids_sql = <<-SQL
+        SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
+        FROM taxa
+          JOIN (
+            #{species_counts_scope.to_sql}
+          ) AS observations ON observations.taxon_id = taxa.id
+      SQL
+      <<-SQL
+        SELECT
+          o.taxon_id,
+          count(*) AS count_all
+        FROM
+          (
+            #{species_counts_scope.to_sql}
+          ) AS o
+            LEFT OUTER JOIN (
+              #{ancestor_ids_sql}
+            ) AS ancestor_ids ON o.taxon_id::text = ancestor_ids.ancestor_id
+        WHERE
+          ancestor_ids.ancestor_id IS NULL
+        GROUP BY
+          o.taxon_id
+        ORDER BY count_all desc
+        LIMIT 5
+      SQL
+    else
+      <<-SQL
+        SELECT
+          o.taxon_id,
+          count(*) AS count_all
+        FROM
+          (#{species_counts_scope.to_sql}) AS o
+        GROUP BY
+          o.taxon_id
+        ORDER BY count_all desc
+        LIMIT 5
+      SQL
+    end
+    @species_counts = ActiveRecord::Base.connection.execute(species_counts_sql)
+    taxon_ids = @species_counts.map{|r| r['taxon_id']}
+    rank_counts_sql = <<-SQL
+      SELECT
+        o.rank_name,
+        count(*) AS count_all
+      FROM
+        (#{scope.joins(:taxon).select("DISTINCT ON (taxa.id) taxa.rank AS rank_name").to_sql}) AS o
+      GROUP BY o.rank_name
+    SQL
+    @raw_rank_counts = ActiveRecord::Base.connection.execute(rank_counts_sql)
+    @rank_counts = {}
+    @total = 0
+    @raw_rank_counts.each do |row|
+      @total += row['count_all'].to_i
+      @rank_counts[row['rank_name']] = row['count_all'].to_i
+    end
+    @rank_counts[:leaves] = species_counts_json.size if search_params[:rank] == "leaves"
+  end
+
+  def elastic_taxon_stats(search_params)
+    elastic_params = prepare_counts_elastic_query(search_params)
+    taxon_counts = Observation.elastic_search(elastic_params.merge(size: 0,
+      aggregate: {
+        distinct_taxa: { cardinality: { field: "taxon.id" } },
+        rank: {
+          terms: {
+            field: "taxon.rank", size: 30,
+            order: { "distinct_taxa": :desc } },
+          aggs: {
+            distinct_taxa: {
+              cardinality: { field: "taxon.id" }}}}})).response.aggregations
+    @total = taxon_counts.distinct_taxa.value
+    @rank_counts = Hash[ taxon_counts.rank.buckets.
+      map{ |b| [ b["key"], b["distinct_taxa"]["value"] ] } ]
+    elastic_params[:filters] << { range: {
+      "taxon.rank_level" => { lte: Taxon::RANK_LEVELS["species"] } } }
+    species_counts = Observation.elastic_search(elastic_params.merge(size: 0,
+      aggregate: { species: { "taxon.id": 5 } })).response.aggregations
+    # the count is a string to maintain backward compatibility
+    @species_counts = species_counts.species.buckets.
+      map{ |b| { "taxon_id" => b["key"], "count_all" => b["doc_count"].to_s } }
+  end
+
+  def non_elastic_user_stats(search_params, limit)
+    scope = Observation.query(search_params)
+    scope = scope.where("1 = 2") unless stats_adequately_scoped?
+    @user_counts = user_obs_counts(scope, limit).to_a
+    @user_taxon_counts = user_taxon_counts(scope, limit).to_a
+    obs_user_ids = @user_counts.map{|r| r['user_id']}.sort
+    tax_user_ids = @user_taxon_counts.map{|r| r['user_id']}.sort
+
+    # the list of top users is probably different for obs and taxa, so grab the leftovers from each
+    leftover_obs_user_ids = tax_user_ids - obs_user_ids
+    leftover_tax_user_ids = obs_user_ids - tax_user_ids
+    @user_counts += user_obs_counts(scope.where("observations.user_id IN (?)", leftover_obs_user_ids)).to_a
+    @user_taxon_counts += user_taxon_counts(scope.where("observations.user_id IN (?)", leftover_tax_user_ids)).to_a
+    @user_counts = @user_counts[0...limit]
+    @user_taxon_counts = @user_taxon_counts[0...limit]
+    @total = scope.select("DISTINCT observations.user_id").count
+  end
+
+  def elastic_user_stats(search_params, limit)
+    elastic_params = prepare_counts_elastic_query(search_params)
+    user_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
+      distinct_users: { cardinality: { field: "user.id" } },
+      user_observations: { "user.id": limit }
+    })).response.aggregations
+    @total = user_counts.distinct_users.value
+    @user_counts = user_counts.user_observations.buckets.
+      map{ |b| { "user_id" => b["key"], "count_all" => b["doc_count"] } }
+    @user_taxon_counts = user_counts.user_observations.buckets.
+      map{ |b| { "user_id" => b["key"], "count_all" => b["doc_count"] } }
+    elastic_params[:filters] << { range: {
+      "taxon.rank_level" => { lte: Taxon::RANK_LEVELS["species"] } } }
+    species_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
+      user_taxa: {
+        terms: {
+          field: "user.id", size: limit, order: { "distinct_taxa": :desc } },
+        aggs: {
+          distinct_taxa: {
+            cardinality: { field: "taxon.id" }}}}})).response.aggregations
+    @user_taxon_counts = species_counts.user_taxa.buckets.
+      map{ |b| { "user_id" => b["key"], "count_all" => b["distinct_taxa"]["value"] } }
+  end
+
+  def prepare_counts_elastic_query(search_params)
+    elastic_params = Observation.params_to_elastic_query(
+      search_params, current_user: current_user).
+      select{ |k,v| [ :where, :filters ].include?(k) }
+  end
+
 end

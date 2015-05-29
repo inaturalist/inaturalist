@@ -14,6 +14,8 @@ bad_logins = [
 ]
 
 describe User do
+  before(:all) { User.destroy_all }
+
   describe 'creation' do
     before do
       @user = nil
@@ -278,7 +280,7 @@ describe User do
 
   describe "sane_destroy" do
     before(:each) do
-      enable_elastic_indexing([ Observation, Update ])
+      enable_elastic_indexing([ Observation, Place, Update ])
       without_delay do
         @user = User.make!
         @place = make_place_with_geom
@@ -288,7 +290,7 @@ describe User do
         end
       end
     end
-    after(:each) { disable_elastic_indexing([ Observation, Update ]) }
+    after(:each) { disable_elastic_indexing([ Observation, Place, Update ]) }
 
     it "should destroy the user" do
       @user.sane_destroy
@@ -516,8 +518,10 @@ describe User, "merge" do
   before(:each) do
     @keeper = User.make!
     @reject = User.make!
+    enable_elastic_indexing( Observation )
   end
-  
+  after(:each) { disable_elastic_indexing( Observation ) }
+
   it "should move observations" do
     o = Observation.make!(:user => @reject)
     without_delay do
@@ -630,5 +634,31 @@ describe User, "updating" do
         expect(u).not_to be_valid
       end
     end
+  end
+end
+
+describe User, "active_ids" do
+  it "should calculate active users across several classes" do
+    User.active_ids.length.should == 0
+    Identification.count.should == 0
+    observation = Observation.make!
+    # observations are made with identifications, so we'll start fresh
+    Identification.delete_all
+    Identification.make!(observation: observation)
+    Identification.count.should == 1
+    Comment.make!(parent: observation)
+    Post.make!(parent: observation)
+    User.active_ids.length.should == 4
+  end
+
+  it "should count the same user only once" do
+    User.active_ids.length.should == 0
+    user = User.make!
+    observation = Observation.make!(user: user)
+    Identification.delete_all
+    Identification.make!(observation: observation, user: user)
+    Comment.make!(parent: observation, user: user)
+    Post.make!(parent: observation, user: user)
+    User.active_ids.length.should == 1
   end
 end

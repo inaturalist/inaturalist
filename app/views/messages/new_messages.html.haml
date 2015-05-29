@@ -1,11 +1,10 @@
 %ul
   - if @messages.blank?
-    %li.meta.nobr{:style => "padding:10px;"}
-    ="#{t(:no_new_messages)}."
+    %li.meta.nobr="#{t(:no_new_messages)}."
   - for message in @messages
     %li
       %a{:href => url_for(message)}
-        = user_image(message.from_user, :style => "vertical-align:top", :size => 'thumb')
+        = user_image(message.from_user, :size => 'thumb')
         %span.inlineblock
           %span.small.meta
             = t(:from)

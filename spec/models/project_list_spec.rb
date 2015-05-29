@@ -23,7 +23,7 @@ describe ProjectList, "refresh_with_observation" do
     o = make_research_grade_observation(:taxon => t1)
     
     pu = ProjectUser.make!(:user => o.user, :project => p)
-    po = ProjectObservation.make!(:project => p, :observation => o)
+    po = ProjectObservation.make!(:project => p, :observation => o, :user => o.user)
     ProjectList.refresh_with_observation(o)
     pl.reload
     pl.taxon_ids.should include(o.taxon_id) #
@@ -46,48 +46,10 @@ describe ProjectList, "refresh_with_observation" do
     t1 = Taxon.make!
     o = make_research_grade_observation(:taxon => t1)
     pu = ProjectUser.make!(:user => o.user, :project => p)
-    po = without_delay { ProjectObservation.make!(:project => p, :observation => o) }
-    pl.reload
-    pl.taxon_ids.should include(o.taxon_id) #
-  end
-  
-  it "should add taxa from project observations that become research grade" do
-    p = Project.make!
-    pl = p.project_list
-    t1 = Taxon.make!
-    options = {
-      :taxon => t1, :latitude => 1, :longitude => 1, :observed_on_string => "yesterday"
-    }
-    o = without_delay { Observation.make!(options) } #casual obs
-    pu = ProjectUser.make!(:user => o.user, :project => p)
-    po = without_delay { ProjectObservation.make!(:project => p, :observation => o) }
-    pl.reload
-    pl.taxon_ids.should_not include(o.taxon_id) #
-    
-    o.photos << LocalPhoto.make!(:user => o.user)
-    i = without_delay { Identification.make!(:observation => o, :taxon => o.taxon) } #make obs rg
-    pl.reload
-    pl.taxon_ids.should include(o.taxon_id) #
-  end
-  
-  it "should give curator_identification precedence" do
-    p = Project.make!
-    pl = p.project_list
-    t1 = Taxon.make!
-    t2 = Taxon.make!
-    o = make_research_grade_observation(:taxon => t1)
-    
-    pu = ProjectUser.make!(:user => o.user, :project => p)
     po = ProjectObservation.make!(:project => p, :observation => o)
-    ProjectList.refresh_with_observation(o)
+    Delayed::Worker.new(:quiet => true).work_off
     pl.reload
     pl.taxon_ids.should include(o.taxon_id) #
-    
-    pu2 = ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR) 
-    i = without_delay { Identification.make!(:observation => o, :taxon => t2, :user => pu2.user) }
-    pl.reload
-    pl.taxon_ids.should_not include(t1.id)
-    pl.taxon_ids.should include(t2.id)
   end
   
   it "should add taxa to project list from project observations made by curators" do
@@ -95,7 +57,7 @@ describe ProjectList, "refresh_with_observation" do
     pu = without_delay {ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)}
     t = Taxon.make!
     o = Observation.make!(:user => pu.user, :taxon => t)
-    po = without_delay {make_project_observation(:observation => o, :project => p)}
+    po = without_delay {make_project_observation(:observation => o, :project => p, :user => o.user)}
     
     po.curator_identification_id.should eq(o.owners_identification.id)
     cid_taxon_id = Identification.find_by_id(po.curator_identification_id).taxon_id
@@ -120,7 +82,7 @@ describe ProjectList, "refresh_with_observation" do
     pu = without_delay {ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)}
     t = Taxon.make!
     o = Observation.make!(:user => pu.user, :taxon => t)
-    po = without_delay {make_project_observation(:observation => o, :project => p)}
+    po = without_delay {make_project_observation(:observation => o, :project => p, :user => o.user)}
     
     po.curator_identification_id.should eq(o.owners_identification.id)
     cid_taxon_id = Identification.find_by_id(po.curator_identification_id).taxon_id
@@ -135,8 +97,8 @@ describe ProjectList, "refresh_with_observation" do
 end
 
 describe ProjectList, "reload_from_observations" do
-  before(:each) { enable_elastic_indexing(Update) }
-  after(:each) { disable_elastic_indexing(Update) }
+  before(:each) { enable_elastic_indexing(Observation, Update) }
+  after(:each) { disable_elastic_indexing(Observation, Update) }
   it "should not delete manually added taxa when descendant taxa have been observed" do
     p = Project.make!
     pl = p.project_list
