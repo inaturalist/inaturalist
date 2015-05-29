@@ -211,14 +211,21 @@ form .field .description { margin-bottom: 0.5em;}
 
 /* Site Header */
 
-#header { color: #999; position: relative; margin-bottom: 20px; min-width: 950px;}
+#header { color: #999; position: relative; margin-bottom: 20px; min-width: 980px;}
 #header, #header #usernav, #header #logonav { background-color: #eee; z-index: 11; }
-#header .navtab > a, #header .count { color: #333; }
-#header .navtab > a:hover { color: #039; }
+#header .innertab > a, #header .count { color: #333; }
+#header .innertab > a:hover { color: #039; }
 #header ul { list-style: none; padding: 0; margin: 0; }
 #header #logonav { position: absolute; top: 0px; left: 0px; }
-#header #logonav a {display: inline-block; padding-left: 10px;}
-#header #logonav img { vertical-align: middle; }
+#header #logonav a { padding-left: 10px; }
+#header .innertab { 
+  display: inline-block;
+  position: relative; 
+  top: 50%; 
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
 #header #mainnav { text-align: center; padding-left: 157px; padding-right: 220px; min-width: 500px; }
 #header #usernav { position: absolute; top: 0px; right: 15px; }
 
@@ -341,8 +348,10 @@ form .field .description { margin-bottom: 0.5em;}
 .notices .subnav img {max-width: 37px; vertical-align: top;}
 .notices .subnav li a {white-space:nowrap;}
 .notices .subnav img { vertical-align: top; }
-#header .user_image {vertical-align: top;}
+#header .user_image {vertical-align: top;margin-right: 3px;}
 #header .user .user_image {vertical-align: middle;}
+#header .navtab.user, #header #usersubnav { max-width: 185px; }
+#header #usersubnav {width: 100%;}
 
 /* Page Headers */
 #pageheader{margin-bottom:10px;}

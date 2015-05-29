@@ -123,11 +123,11 @@
   <div id="nav" class="clear">
     <div class="breadcrumbs">
       <% if is_me?(@observation.user) %>
-      <%= link_to t(:back_to_your_observations), 
+      <%= link_to t(:your_observations), 
                   observations_by_login_path(:login => current_user.login),
                   :class => 'back crumb' %>
       <% else %>
-        <%= link_to t(:back_to_x_observations, :user => "#{@observation.user.login}"), 
+        <%= link_to t(:users_observations, :user => @observation.user.login), 
                   observations_by_login_path(:login => @observation.user.login),
                   :class => 'back crumb' %>
       <% end %>

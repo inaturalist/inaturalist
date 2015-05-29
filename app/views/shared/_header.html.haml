@@ -2,13 +2,14 @@
 #header.clear
   %ul#logonav
     %li.navtab
-      %a.logolink{:href => "/", :title => "#{site.try(:name) || SITE_NAME}"}
+      %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || SITE_NAME}"}
         = image_tag @site && @site.logo? ? @site.logo.url : CONFIG.logo, :alt => SITE_NAME
   %ul#mainnav.navtabs
     %li.navtab.observationstab.menutab
-      = link_to t(:observations).capitalize, observations_path
-      = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-        %i.fa.fa-angle-down
+      .innertab
+        = link_to t(:observations).capitalize, observations_path
+        = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+          %i.fa.fa-angle-down
       .subnav{:style => "display: none"}
         %ul
           - if logged_in?
@@ -22,9 +23,10 @@
                   :placeholder => t(:search_obs)                    |
                 %input.button{:type => "submit", :value => "\u00A0"}/
     %li.navtab.menutab
-      = link_to t(:species).capitalize, taxa_path
-      = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-        %i.fa.fa-angle-down
+      .innertab
+        = link_to t(:species).capitalize, taxa_path
+        = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+          %i.fa.fa-angle-down
       .subnav{:style => "display: none"}
         %ul.taxon_links
           - for taxon in Taxon::ICONIC_TAXA
@@ -37,9 +39,10 @@
                   :placeholder => t(:search_taxa)                                                         |
                 %input.button{:type => "submit", :value => "\u00A0"}/
     %li.navtab.projectstab.menutab
-      = link_to t(:projects), projects_path
-      = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-        %i.fa.fa-angle-down
+      .innertab
+        = link_to t(:projects), projects_path
+        = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+          %i.fa.fa-angle-down
       .subnav{:style => "display: none"}
         %ul
           - if logged_in?
@@ -55,37 +58,44 @@
                   :placeholder => t(:search_projects)                                                         |
                 %input.button{:type => "submit", :value => "\u00A0"}/
     %li.navtab
-      = link_to t(:places), places_path
+      .innertab
+        = link_to t(:places), places_path
     %li.navtab
-      = link_to t(:guides), guides_path
+      .innertab
+        = link_to t(:guides), guides_path
     %li.navtab
-      = link_to t(:people), people_path
+      .innertab
+        = link_to t(:people), people_path
   %ul#usernav.navtabs
     - unless logged_in?
       %li.navtab.signedout
-        = link_to t(:log_in), login_url, :class => "signin_link"
-        = t :or
-        = link_to t(:sign_up), signup_url, :class => "signup_link"
+        .innertab
+          = link_to t(:log_in), login_url, :class => "signin_link"
+          = t :or
+          = link_to t(:sign_up), signup_url, :class => "signup_link"
     - else
       %li#messagesnav.notices.navtab
-        = link_to messages_path, id: "headermessagesnotice", 'class': "messages headernotice" do
-          %i.fa.fa-envelope
-          %span.count 0
+        .innertab
+          = link_to messages_path, id: "headermessagesnotice", 'class': "messages headernotice" do
+            %i.fa.fa-envelope
+            %span.count 0
         #messagessubnav.subnav.rightsubnav{style: "display:none;"}
           .loadingwrapper= loading
       %li#updatesnav.notices.navtab
-        = link_to messages_path, id: "headerupdatesnotice", 'class': "updates headernotice" do
-          %i.fa.fa-comment
-          %span.count 0
+        .innertab
+          = link_to messages_path, id: "headerupdatesnotice", 'class': "updates headernotice" do
+            %i.fa.fa-comment
+            %span.count 0
         #updatessubnav.subnav.rightsubnav{style: "display:none;"}
           .loadingwrapper= loading
       %li.navtab.user.menutab
-        = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-          = user_image(current_user, :size => 'thumb', :class => "inlineblock")
-        = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-          = current_user.login
-        = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-          %i.fa.fa-angle-down
+        .innertab
+          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+            = user_image(current_user, :size => 'thumb', :class => "inlineblock")
+          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+            = truncate current_user.login, length: 20
+          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+            %i.fa.fa-angle-down
         #usersubnav.subnav.rightsubnav{style: "display: none;"}
           %ul
             %li= link_to t(:dashboard), home_path
