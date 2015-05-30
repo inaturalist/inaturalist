@@ -344,7 +344,7 @@ class Project < ActiveRecord::Base
     new_project
   end
 
-  def generate_csv(path, columns)
+  def generate_csv(path, columns, options = {})
     project_columns = %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code curator_coordinate_access)
     columns += project_columns
     ofv_columns = self.observation_fields.map{|of| "field:#{of.normalized_name}"}
@@ -352,7 +352,7 @@ class Project < ActiveRecord::Base
     CSV.open(path, 'w') do |csv|
       csv << columns
       self.project_observations.includes(:observation => [:taxon, {:observation_field_values => :observation_field}]).find_each do |project_observation|
-        csv << columns.map {|column| project_observation.to_csv_column(column, :project => self)}
+        csv << columns.map {|column| project_observation.to_csv_column(column, :project => self, :viewer => options[:viewer])}
       end
     end
   end

@@ -2497,10 +2497,10 @@ class Observation < ActiveRecord::Base
 
     # generate the csv
     if record.respond_to?(:generate_csv)
-      record.generate_csv(tmp_path, columns)
+      record.generate_csv(tmp_path, columns, viewer: options[:user])
     else
       scope = record.observations.includes(:taxon, {:observation_field_values => :observation_field})
-      generate_csv(scope, :path => tmp_path, :fname => fname, :columns => columns)
+      generate_csv(scope, :path => tmp_path, :fname => fname, :columns => columns, :viewer => options[:user])
     end
 
     FileUtils.mkdir_p File.dirname(fpath), :mode => 0755

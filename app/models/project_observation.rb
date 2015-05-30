@@ -222,7 +222,13 @@ class ProjectObservation < ActiveRecord::Base
     when "curator_coordinate_access"
       preferred_curator_coordinate_access
     else
-      if observation_field = p.observation_fields.detect{|of| of.name == column}
+      if column.to_s =~ /private_/
+        if observation.coordinates_viewable_by?(options[:viewer])
+          observation.send(column)
+        else
+          nil
+        end
+      elsif observation_field = p.observation_fields.detect{|of| of.name == column}
         observation.observation_field_values.detect{|ofv| ofv.observation_field_id == observation_field.id}.try(:value)
       else
         observation.send(column) rescue send(column) rescue nil

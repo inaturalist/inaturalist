@@ -580,7 +580,7 @@ class User < ActiveRecord::Base
     true
   end
 
-  def generate_csv(path, columns)
+  def generate_csv(path, columns, options = {})
     of_names = ObservationField.joins(observation_field_values: :observation).
       where("observations.user_id = ?", id).
       select("DISTINCT observation_fields.name").
