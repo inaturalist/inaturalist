@@ -61,37 +61,6 @@
 
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'identifications', 'observations/show', "jquery/ui.tabs.css", 'observations/observation_fields', 'jquery/plugins/inat/photo_selectors', 'jquery/plugins/inat/photo_selectors' %>
-  <style type="text/css" media="screen">  
-    .identification_form_wrapper{background-color:#eee;padding:10px;}
-    .identification_form_wrapper input.text{width:236px;margin-top:0;}
-    .identification_form_wrapper .button.default{margin:0 auto;float:none;}
-    .identification_form_wrapper label{display:none;}
-    #tools .button{margin-bottom:0;}
-    #tools .toggle_menu{float:left;}
-    .comment{padding:0;}
-    .comment .meta{float:none;width:auto;}
-    .comment .body{padding-left:0;}
-    #forms h3{margin:0;}
-    .ui-tabs .ui-tabs-nav li{border-color:transparent;background-color:white;}
-    .ui-tabs .ui-tabs-nav,
-    .ui-tabs .ui-tabs-nav .ui-tabs-active{border-color:#eee;}
-    .ui-tabs .ui-tabs-nav li a{padding:0.25em 0.5em;}
-    #new_identification_form .species_guess{width:538px;}
-    #new_identification_form textarea{width:538px;height:150px;}
-    #identifications .agreers{padding-left:60px;}
-    #identifications .identification_image{width:40px;text-align:center;}
-    #identifications .identification_image img{max-width:40px;}
-    #identifications .identification_body{float:left;width:200px;}
-    .identification_group{margin-bottom:10px;}
-    #projects .box{padding:5px;}
-    .id_please_notice.box { padding: 5px; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;}
-    #day_observations img {width: 32px; margin-bottom: 5px;}
-    .quality_assessment {width:100%;}
-    .photoSelectorSelected {float: right; width: 175px;}
-    .photoSelectorResults {float: left; width: 525px; padding-right: 10px; margin-right: 10px; border-right: 1px solid #eee;}
-    .photo .synclink { float: right; }
-    .photoSelector {border: 0 transparent; padding:0; min-width: 725px;}
-  </style>
 <% end %>
 <% content_for(:extrajs) do %>
   <%= google_maps_js %>
@@ -186,33 +155,105 @@
     </span>
   </h2>
   
-  <% if is_me?(@observation.user) %>
-    
-    <div id="tools">
-      <%= link_to "<span class='ui-icon ui-icon-pencil inlineblock'></span> #{t(:edit)}".html_safe, edit_observation_url,
-        :id => "edit_list_button", :class => "button" %>
+  <div id="tools">
+    <% if is_me?(@observation.user) %>
+      <%= link_to edit_observation_url, :id => "edit_list_button" do %>
+        <i class="fa fa-pencil"></i>
+        <%= t(:edit) %>
+      <% end %>
       
-      <%= link_to "<span class='ui-icon ui-icon-copy inlineblock'></span> #{t :copy}".html_safe, 
-        new_observation_path(:copy => @observation.id), 
-        :class => "minor button",
-        "data-tip" => t('views.observations.copy_tip'),
-        "data-tip-show-delay" => 1000 %>
-      <%= link_to "<span class='ui-icon ui-icon-trash inlineblock'></span> #{t(:delete)}".html_safe, 
-        @observation,
-        data: { confirm: t(:you_sure_delete_this_observation) },
-        method: :delete,
-        id: "delete_observation_button",
-        'class': "minor delete button" %>
-    </div>
-  
-  <% elsif logged_in? && current_user.is_admin? && @observation.flagged? %>
-    <div id="tools">
+      <%= link_to new_observation_path(:copy => @observation.id), 
+          "data-tip" => t('views.observations.copy_tip'),
+          "data-tip-show-delay" => 1000 do %>
+        <i class="fa fa-files-o"></i>
+        <%=t :copy %>
+      <% end %>
+      <%= link_to @observation,
+          data: { confirm: t(:you_sure_delete_this_observation) },
+          method: :delete,
+          id: "delete_observation_button" do %>
+        <i class="fa fa-trash-o"></i>
+        <%= t(:delete) %>
+      <% end %>
+    <% elsif logged_in? && current_user.is_admin? && @observation.flagged? %>
       <%= link_to t(:edit_flagged_observation), edit_observation_url, 
-                  :id => "edit_list_button", :class => "button" %>
+                  :id => "edit_list_button" %>
       <%= link_to t(:to_the_bat_cave!), admin_url, 
-                  :id => "admin_button", :class => "button" %>
-    </div>
-  <% end %>
+                  :id => "admin_button" %>
+    <% end %>
+
+    <% if logged_in? -%>
+      <div id="fave">
+        <%= link_to vote_path('observation', @observation.id), 
+            :method => :post, 
+            :remote => true, 
+            :id => "favebutton", 
+            :class => "favebutton #{@observation.votes_for.count == 0 ? 'nofaves' : 'hasfaves'}", 
+            :style => current_user.voted_up_on?(@observation) ? 'display:none' : '' do %>
+          <i class="fa fa-star-o"></i>
+          <% unless @observation.votes_for.count > 0 -%>
+            <%=t :add_to_favorites %>
+          <% end -%>
+        <% end %>
+        <%= link_to unvote_path('observation', @observation.id), 
+            :method => :post, 
+            :remote => true, 
+            :id => "unfavebutton", 
+            :class => "favebutton #{@observation.votes_for.count == 0 ? 'nofaves' : 'hasfaves'}", 
+            :style => current_user.voted_up_on?(@observation) ? '' : 'display:none' do %>
+          <i class="fa fa-star"></i>
+          <% unless @observation.votes_for.count > 0 -%>
+            <%=t :added! %>
+          <% end -%>
+        <% end %>
+        <% if @observation.votes_for.count > 0 -%>
+          <%= link_to t(:x_faves, count: @observation.votes_for.count), "#", :class => "votes_for_button", :onclick => "javascript:return false;" %>
+        <% end -%>
+      </div>
+
+      <% if !@projects.blank? && @project_addition_allowed %>
+        <%= link_to_tip "<i class='fa fa-plus'></i> #{t(:add_to_project)}".html_safe, :tip_options => {
+          position: {
+            my: 'top center',
+            at: 'bottom center'
+          },
+          style: {
+            classes: 'ui-tooltip-light ui-tooltip-shadow tools-dropdown'
+          }
+        } do %>
+          <ul id="projectschooser" class="plain">
+            <% for project in @projects %>
+              <li class="inline buttonrow">
+                <%= link_to t(:remove),
+                  remove_project_observation_path(project, :observation_id => @observation.id),
+                  :remote => true,
+                  :method => :delete,
+                  :data => {
+                    :type => "json",
+                    :confirm => t(:are_you_sure_delete_observation_from_project, :project => project.title)
+                  },
+                  :class => "removelink pale button",
+                  :id => dom_id(project, "removelink"),
+                  :style => @project_observations_by_project_id[project.id] ? nil : 'display:none' %>
+                <%= link_to t(:add), 
+                  add_project_observation_path(project, :observation_id => @observation.id),
+                  :remote => true,
+                  "data-type" => "json",
+                  "data-project-id" => project.id,
+                  :method => :post,
+                  :id => dom_id(project, "addlink"),
+                  :class => "addlink glaucous button",
+                  :style => @project_observations_by_project_id[project.id] ? 'display:none' : nil %>
+                <%= link_to truncate(project.title, length: 40), project, :class => "inter" %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      <% end %>
+
+      <%= link_to "<i class='fa fa-share'></i> #{t :share}".html_safe, "#", :id => 'sharebutton', :class => 'sharebutton', :onclick => "javascript:return false;" %>
+    <% end -%>
+  </div>
 </div><!-- end pageheader -->
 
 <div id="singleobs" class="column span-17">
@@ -421,26 +462,6 @@
 </div><!-- end singleobs -->
 
 <div class="column span-7 last">
-
-  <% if logged_in? -%>
-    <div id="social" class="clear buttonrow stacked">
-      <div id="fave">
-        <%= link_to unvote_path('observation', @observation.id), :method => :post, :remote => true, :id => "unfavebutton", :class => 'inter favebutton', :style => current_user.voted_up_on?(@observation) ? '' : 'display:none' do %>
-          <i class="fa fa-star"></i>
-          <%=t :x_faves, count: @observation.votes_for.count == 0 ? 1 : @observation.votes_for.count %>
-        <% end %>
-        <%= link_to vote_path('observation', @observation.id), :method => :post, :remote => true, :id => "favebutton", :class => 'inter favebutton', :style => current_user.voted_up_on?(@observation) ? 'display:none' : '' do %>
-          <i class="fa fa-star-o"></i>
-          <% if @observation.votes_for.count > 0 -%>
-            <%=t :x_faves, count: @observation.votes_for.count %>
-          <% else %>
-            <%=t :add_to_faves %>
-          <% end -%>
-        <% end %>
-      </div>
-      <%= link_to "<i class='fa fa-share'></i> #{t :share}".html_safe, "#", :id => 'sharebutton', :class => 'inter sharebutton' %>
-    </div>
-  <% end -%>
 
   <div id="identifications" class="identifications clear">
     
@@ -673,41 +694,6 @@
         <% end %>
       <% end %>
     </div>
-    
-    <% if !@projects.blank? && @project_addition_allowed %>
-      <div class="clear">
-        <% link_to_toggle_menu t(:add_to_project), :class => "button", 
-            :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
-          <ul>
-            <% for project in @projects %>
-              <li class="inline buttonrow">
-                <%= link_to t(:remove),
-                  remove_project_observation_path(project, :observation_id => @observation.id),
-                  :remote => true,
-                  :method => :delete,
-                  :data => {
-                    :type => "json",
-                    :confirm => t(:are_you_sure_delete_observation_from_project, :project => project.title)
-                  },
-                  :class => "removelink pale button",
-                  :id => dom_id(project, "removelink"),
-                  :style => @project_observations_by_project_id[project.id] ? nil : 'display:none' %>
-                <%= link_to t(:add), 
-                  add_project_observation_path(project, :observation_id => @observation.id),
-                  :remote => true,
-                  "data-type" => "json",
-                  "data-project-id" => project.id,
-                  :method => :post,
-                  :id => dom_id(project, "addlink"),
-                  :class => "addlink glaucous button",
-                  :style => @project_observations_by_project_id[project.id] ? 'display:none' : nil %>
-                <%= link_to h(project.title), project, :class => "inter" %>
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div>
-    <% end %>
   <% end -%>
   
   <%= separator %>

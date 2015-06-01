@@ -164,18 +164,19 @@ $(document).ready(function() {
       text: $('#sharing')
     },
     position: {
-      my: 'top right',
+      my: 'top center',
       at: 'bottom center',
       target: $('#sharebutton')
     },
-    hide: {event: 'mouseleave unfocus', delay: 500}
+    show: {event: 'click'},
+    hide: {event: 'click unfocus'}
   }))
   $('#sharing').hide()
   $('.favebutton').bind('ajax:before', function() {
     $(this).hide()
     $(this).siblings('.favebutton').show()
   })
-  $('.favebutton').qtip($.extend(true, {}, QTIP_DEFAULTS, {
+  $('.votes_for_button').qtip($.extend(true, {}, QTIP_DEFAULTS, {
     content: {
       text: function(event, api) {
         $.ajax({ url: '/votes/for/observation/'+OBSERVATION.id })
@@ -188,12 +189,13 @@ $(document).ready(function() {
         return '<span class="loading status">' + I18n.t('loading') + '</span>';
       }
     },
-    hide: {event: 'mouseleave unfocus', delay: 500},
+    show: {event: 'click'},
+    hide: {event: 'click unfocus'},
     style: {
-      classes: 'ui-tooltip-light ui-tooltip-shadow votes_for_tip'
+      classes: 'ui-tooltip-light ui-tooltip-shadow votes_for_tip tools-dropdown'
     },
     position: {
-      my: 'top right',
+      my: 'top center',
       at: 'bottom center',
       target: $('#fave')
     }

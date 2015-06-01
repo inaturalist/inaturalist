@@ -188,9 +188,16 @@ module ApplicationHelper
     id = title.gsub(/\W/, '').underscore
     dialog = content_tag(:div, capture(&block), :class => "tip", :style => "display:none", :id => "#{id}_tip")
     link_options = options.delete(:link) || {}
-    tip_options = (options.delete(:tip) || {}).merge(tip: "##{id}_tip")
-    options = options.merge(data: tip_options)
-    link = link_to(title, "javascript:return false;", options)
+    data = (options.delete(:tip) || {}).merge(tip: "##{id}_tip")
+    data['tip-options'] = {
+      content: {
+        text: "##{id}_tip"
+      },
+      show: {event: 'click'},
+      hide: {event: 'click unfocus'}
+    }.merge(options[:tip_options] || {}).to_json
+    options = options.merge(data: data)
+    link = link_to(title, "#", options.merge(onclick: "javascript:return false;"))
     dialog + link
   end
   

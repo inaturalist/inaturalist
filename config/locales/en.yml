@@ -48,8 +48,8 @@ en:
     one: '1 person'
     other: '%{count} people'
   x_faves:
-    one: '1 faves'
-    other: '%{count} faves'
+    one: '1 Fave'
+    other: '%{count} Faves'
   x_people_like_this:
     one: '1 person likes this'
     other: '%{count} people like this'
@@ -190,7 +190,8 @@ en:
   add_to: Add to
   add_to_a_scheme: Add to a scheme
   add_to_calendar: Add to calendar
-  add_to_checklist: add to checklist
+  add_to_checklist: Add to checklist
+  add_to_favorites: Add to favorites
   add_to_id_please: Add to ID Please
   add_to_list: Add to list
   add_to_project: Add to project
