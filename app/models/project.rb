@@ -349,10 +349,29 @@ class Project < ActiveRecord::Base
     columns += project_columns
     ofv_columns = self.observation_fields.map{|of| "field:#{of.normalized_name}"}
     columns += ofv_columns
+    if options[:viewer]
+      options[:viewer].project_users.load
+    end
     CSV.open(path, 'w') do |csv|
       csv << columns
-      self.project_observations.includes(:observation => [:taxon, {:observation_field_values => :observation_field}]).find_each do |project_observation|
-        csv << columns.map {|column| project_observation.to_csv_column(column, :project => self, :viewer => options[:viewer])}
+      self.project_observations.find_in_batches do |batch|
+        ProjectObservation.preload_associations(batch, [
+          :stored_preferences,
+          curator_identification: [:taxon, :user],
+          observation: {
+            identifications: :taxon,
+            observation_photos: :photo,
+            taxon: {taxon_names: :place_taxon_names},
+            observation_field_values: :observation_field,
+            project_observations: :stored_preferences,
+            user: {project_users: :stored_preferences}
+          }
+        ])
+        batch.each do |project_observation|
+          csv << columns.map {|column| 
+            project_observation.to_csv_column(column, :project => self, :viewer => options[:viewer])
+          }
+        end
       end
     end
   end

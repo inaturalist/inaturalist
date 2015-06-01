@@ -1589,8 +1589,15 @@ class Observation < ActiveRecord::Base
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
     return false unless viewer
     return true if user_id == viewer.id
-    viewer.project_users.where(project_id: project_ids, role: ProjectUser::ROLES).each do |pu|
-      return true if project_observations.detect{|po| po.project_id == pu.project_id && po.prefers_curator_coordinate_access?}
+    project_ids = if projects.loaded?
+      projects.map(&:id)
+    else
+      project_observations.map(&:project_id)
+    end
+    viewer.project_users.select{|pu| project_ids.include?(pu.project_id) && ProjectUser::ROLES.include?(pu.role)}.each do |pu|
+      if project_observations.detect{|po| po.project_id == pu.project_id && po.prefers_curator_coordinate_access?}
+        return true
+      end
     end
     false
   end
@@ -2499,7 +2506,13 @@ class Observation < ActiveRecord::Base
     if record.respond_to?(:generate_csv)
       record.generate_csv(tmp_path, columns, viewer: options[:user])
     else
-      scope = record.observations.includes(:taxon, {:observation_field_values => :observation_field})
+      scope = record.observations.
+        includes(:taxon).
+        includes(observation_field_values: :observation_field)
+      unless record.is_a?(User) && options[:user] === record
+        scope = scope.includes(project_observations: :stored_preferences).
+          includes(user: {project_users: :stored_preferences})
+      end
       generate_csv(scope, :path => tmp_path, :fname => fname, :columns => columns, :viewer => options[:user])
     end
 
