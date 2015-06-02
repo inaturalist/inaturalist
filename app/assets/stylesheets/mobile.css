@@ -3,13 +3,14 @@ body.mobile,
 p,.p,h1,h2,h3,h4,h5,h6,.readable{font-family:"Trebuchet MS",Arial,sans-serif;font-weight:bold;}
 body.mobile #wrapper,
 body.mobile #header,
-body.mobile #footer{padding:5px;width:auto;}
+body.mobile #footer{width:auto;}
 body.mobile #footer{text-align:left;}
+body.mobile #wrapper { padding: 5px; }
 body.mobile #footer ul{ background-color:#eee;list-style:none;margin:0 0 10px 0; padding:0;}
 body.mobile #footer li a{display:block;padding:20px;border-bottom:1px dotted #ccc;margin:0;}
 body.mobile #footer li a.box {border-bottom:1px dotted #aaa;background-color:#ddd;}
 body.mobile #footer_text {text-align:center;}
-body.mobile #header { width: auto; }
+body.mobile #header { padding:5px; }
 body.mobile #header{margin:0;height:auto;line-height:1.4;height:22px;}
 body.mobile #header #logonav {
   -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
