@@ -4,7 +4,13 @@
   <% else %>
     <%= link_to(t(:sign_in), new_user_session_path, :id => "usernav") %>
   <% end -%>
-  <a href="/" title="<%= CONFIG.site_name %>" id="logonav" class="logolink">
-    <%= image_tag CONFIG.logo, :alt => SITE_NAME, :width => 118 %>
-  </a>
+  <div id="logonav">
+    <% if @site && @site.custom_logo -%>
+      <%=raw @site.custom_logo %>
+    <% else %>
+      <a href="/" title="<%= CONFIG.site_name %>" class="logolink">
+        <%= image_tag CONFIG.logo, :alt => SITE_NAME, :width => 118 %>
+      </a>
+    <% end -%>
+  </div>
 </div>

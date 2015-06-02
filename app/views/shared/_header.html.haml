@@ -2,8 +2,11 @@
 #header.clear
   %ul#logonav
     %li.navtab
-      %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || SITE_NAME}"}
-        = image_tag @site && @site.logo? ? @site.logo.url : CONFIG.logo, :alt => SITE_NAME
+      - if @site && @site.custom_logo
+        =raw @site.custom_logo
+      - else
+        %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || SITE_NAME}"}
+          = image_tag @site && @site.logo? ? @site.logo.url : CONFIG.logo, :alt => SITE_NAME
   %ul#mainnav.navtabs
     %li.navtab.observationstab.menutab
       .innertab

@@ -1,3 +1,6 @@
+- content_for :extracss do
+  :css
+    .edit_site textarea {height: 300px;}
 = form_for @record, :builder => DefaultFormBuilder do |f|
   - if @record.errors.any?
     .row
@@ -34,9 +37,9 @@
                   = f.check_box "preferred_#{pref.name}", :label => false
                   = t("site_preferences.#{pref.name}")
               - elsif pref.type == :text
-                = f.text_area "preferred_#{pref.name}", :label => t("site_preferences.#{pref.name}")
+                = f.text_area "preferred_#{pref.name}", :label => t("site_preferences.#{pref.name}"), :class => "span4"
               - else
-                = f.text_field "preferred_#{pref.name}", :label => t("site_preferences.#{pref.name}")
+                = f.text_field "preferred_#{pref.name}", :label => t("site_preferences.#{pref.name}"), :class => "span4"
       - if grp == 'geo'
         = f.text_field :place_id
   .row
