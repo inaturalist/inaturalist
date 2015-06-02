@@ -383,10 +383,11 @@ form .field .description { margin-bottom: 0.5em;}
 
 /* Page Headers */
 #pageheader{margin-bottom:10px;}
-#pageheader h2 {margin: 12px 0 10px;line-height:1.2;}
+#pageheader h2 {margin: 0px 0 10px;line-height:1.2;}
 #pageheader.byloginheader h2 { margin: 0 0 2px; }
 #pageheader a .projecticon, #pageheader a .usericon{ float:left;margin-right:10px;border:2px solid white; }
 #pageheader .projecticon:hover, #pageheader .usericon:hover {border-color:#ddd;}
+#pageheader .breadcrumbs {margin-bottom: 10px; }
 
 img.mini.usericon {
   vertical-align: middle;

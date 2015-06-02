@@ -6,22 +6,30 @@
   @iconic_taxa ||= []
   @view ||= params[:view] || 'map'
   @filters_open ||= false
-  title_span ||= 11
-  control_span ||= 13
+  title_span ||= 16
+  control_span ||= 8
 -%>
 <div id="pageheader" class="column span-24">
   <%= before %>
   <div class="title column span-<%= title_span %>">
-    <h2 class="fadednowrap"><%= title %></h2>
+    <h2 class="nowrap inlineblock"><%= title %></h2>
+    <div class="inlineblock">
+      <%= render :partial => "shared/page_results", :locals => { :paginator => observations } %>
+    </div>
   </div>
   <div class="last column span-<%= control_span %>">
     <div id="controls">
       <ul>
-        <li>
+        <!-- <li>
           <%= render :partial => "shared/page_results", :locals => { :paginator => observations } %>
-        </li>
-        <li class="filters tab<%= ' open' if @filters_open %>">
-          <a href="#" id="filterslink" class="toggle"><%=t :search %></a>
+        </li> -->
+        <li class="inline buttonrow filters tab<%= ' open' if @filters_open %>">
+          <a href="#" id="filterslink" class="default button">
+            <i class="fa fa-search"></i>
+            <%=t :search %>
+            <i class="fa fa-caret-down"></i>
+            <i class="fa fa-caret-up"></i>
+          </a>
         </li>
         <li class="description"><span><%=t 'views.views' %></span></li>
         <li class="tab" style="padding: 0">
