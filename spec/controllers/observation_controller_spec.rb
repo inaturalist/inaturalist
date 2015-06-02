@@ -157,8 +157,8 @@ describe ObservationsController do
   end
 
   describe "project" do
-    before(:each) { enable_elastic_indexing([ Observation ]) }
-    after(:each) { disable_elastic_indexing([ Observation ]) }
+    before(:each) { enable_elastic_indexing( Observation, Update ) }
+    after(:each) { disable_elastic_indexing( Observation, Update ) }
 
     render_views
 
@@ -287,13 +287,25 @@ describe ObservationsController do
       po = make_project_observation
       po.observation.update_attributes(latitude: 9.8765, longitude: 4.321, geoprivacy: Observation::PRIVATE)
       p = po.project
-      p.user.should_not be po.observation.user
+      expect(p.user).not_to be po.observation.user
       sign_in p.user
-      p.should be_curated_by p.user
+      expect(p).to be_curated_by p.user
       get :project_all, id: p.id, format: :csv
-      response.body.should be =~ /private_latitude/
-      response.body.should be =~ /#{po.observation.private_latitude}/
-      response.body.should be =~ /#{po.observation.private_longitude}/
+      expect(response.body).to be =~ /private_latitude/
+      expect(response.body).to be =~ /#{po.observation.private_latitude}/
+      expect(response.body).to be =~ /#{po.observation.private_longitude}/
+    end
+
+    it "should not have private_coordinates when curator_coordinate_access is false" do
+      o = Observation.make!(latitude: 1.2345, longitude: 1.2345, geoprivacy: Observation::OBSCURED)
+      po = ProjectObservation.make!(observation: o)
+      expect( po.observation ).to be_coordinates_obscured
+      expect( po.project.project_users.where(user_id: po.observation.user_id) ).to be_blank
+      expect( po ).not_to be_prefers_curator_coordinate_access
+      sign_in po.project.user
+      get :project_all, id: po.project_id, format: :csv
+      expect(response.body).to be =~ /private_latitude/
+      expect(response.body).not_to be =~ /#{po.observation.private_latitude}/
     end
   end
   

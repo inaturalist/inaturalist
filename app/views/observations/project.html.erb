@@ -21,7 +21,7 @@
 <%= render :partial => 'map_header', :locals => {
   :title => "#{t(:observations_for)} #{link_to h(@project.title), @project}".html_safe,
   :before => before,
-  :control_span => 12
+  :title_span => 15
 } %>
 
 <%- observations_html = capture do %>

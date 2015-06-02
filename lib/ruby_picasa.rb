@@ -185,6 +185,8 @@ class Picasa
     response = http.get(path, auth_header)
     if response.code =~ /20[01]/
       response.body
+    elsif response.code.to_i == 403
+      raise RubyPicasa::PicasaError, "Authentication failed. You may need to refresh your access token."
     end
   end
 
