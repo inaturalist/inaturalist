@@ -4,9 +4,16 @@ class PicasaController < ApplicationController
   # Configure Picasa linkage
   def options
     if @provider_authorization = current_user.has_provider_auth('google')
-      @picasa = Picasa.new(@provider_authorization.token)
-      response = @picasa.recent_photos(@provider_authorization.provider_uid, max_results: 18, thumbsize: '72c')
-      @picasa_photos = response.try(:entries)
+      @picasa_photos = begin
+        PicasaPhoto.picasa_request_with_refresh(current_user.picasa_identity) do
+          picasa = Picasa.new(@provider_authorization.token)
+          response = picasa.recent_photos(@provider_authorization.provider_uid, max_results: 18, thumbsize: '72c')
+          response.try(:entries)
+        end
+      rescue RubyPicasa::PicasaError => e
+        raise e unless e.message =~ /authentication/i
+        nil
+      end
     end
   end
   
@@ -50,7 +57,10 @@ class PicasaController < ApplicationController
       
       begin
         Timeout::timeout(10) do
-          if results = picasa.search(params[:q], search_params)
+          results = PicasaPhoto.picasa_request_with_refresh(current_user.picasa_identity) do
+            picasa.search(params[:q], search_params)
+          end
+          if results
             @photos = results.photos.map do |api_response|
               next unless api_response.is_a?(RubyPicasa::Photo)
               PicasaPhoto.new_from_api_response(api_response, :user => current_user)
@@ -115,27 +125,34 @@ class PicasaController < ApplicationController
   # user is used to authenticate the request
   # picasa_user_id specifies the picasa user whose albums to fetch
   # (if nil, it fetches the authenticating user's albums)
-  def picasa_albums(user, picasa_user_id=nil)
+  def picasa_albums(options = {})
     return [] unless current_user.has_provider_auth('google')
-    picasa = user.picasa_client
-    user_data = picasa.user(picasa_user_id) 
-    albums = []
-    unless user_data.nil?
-      user_data.albums.select{|a| a.numphotos.to_i > 0}.each do |a|
-        albums << {
-          'aid' => a.id,
-          'name' => a.title,
-          'cover_photo_src' => a.thumbnails.first.url
-        }
+    PicasaPhoto.picasa_request_with_refresh(current_user.picasa_identity) do
+      picasa = current_user.picasa_client
+      picasa_user_id = options[:picasa_user_id] || current_user.picasa_identity.provider_uid
+      user_data = picasa.user(picasa_user_id) if picasa_user_id
+      albums = []
+      unless user_data.nil?
+        user_data.albums.select{|a| a.numphotos.to_i > 0}.each do |a|
+          albums << {
+            'aid' => a.id,
+            'name' => a.title,
+            'cover_photo_src' => a.thumbnails.first.url
+          }
+        end
       end
+      albums
     end
-    return albums
+  rescue RubyPicasa::PicasaError => e
+    raise e unless e.message =~ /authentication/
+    Rails.logger.error "[ERROR #{Time.now}] Failed to refresh access token for #{user.picasa_identity}"
+    []
   end
 
   def picasa_friends(user)
     return [] unless (pa = current_user.has_provider_auth('google'))
     picasa = GData::Client::Photos.new
-    picasa.auth_token = pa.secret
+    picasa.auth_token = pa.token
     contacts_data = picasa.get("http://picasaweb.google.com/data/feed/api/user/default/contacts").to_xml 
     friends = []
     contacts_data.elements.each('entry'){|e|
@@ -145,7 +162,7 @@ class PicasaController < ApplicationController
         'pic_url' => e.elements['gphoto:thumbnail'].text
       }
     }
-    return friends
+    friends
   end
 
 end

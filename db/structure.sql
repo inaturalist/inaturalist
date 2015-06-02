@@ -2645,7 +2645,8 @@ CREATE TABLE provider_authorizations (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     scope character varying(255),
-    secret character varying(255)
+    secret character varying(255),
+    refresh_token character varying
 );
 
 
@@ -7498,4 +7499,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150413222254');
 INSERT INTO schema_migrations (version) VALUES ('20150421155510');
 
 INSERT INTO schema_migrations (version) VALUES ('20150504184529');
+
+INSERT INTO schema_migrations (version) VALUES ('20150512222753');
 

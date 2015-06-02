@@ -111,18 +111,59 @@ class ProviderAuthorization < ActiveRecord::Base
     fi.save
     true
   end
+
+  def assign_auth_info(auth_info)
+    @auth_info = auth_info
+    self.provider_name ||= auth_info['provider']
+    self.provider_uid ||= auth_info['uid']
+    if auth_info["credentials"]
+      assign_attributes(
+        token: auth_info["credentials"]["token"] || auth_info["credentials"]["secret"], 
+        secret: auth_info["credentials"]["secret"],
+        refresh_token: auth_info["credentials"]["refresh_token"]
+      )
+    end
+  end
   
   def update_with_auth_info(auth_info)
-    @auth_info = auth_info
     return unless auth_info["credentials"] # open_id (google, yahoo, etc) doesn't provide a token
-    token = auth_info["credentials"]["token"] || auth_info["credentials"]["secret"]
-    secret = auth_info["credentials"]["secret"]
-    update_attributes({:token => token, :secret => secret})
+    assign_auth_info(auth_info)
+    save
     update_photo_identities
   end
 
   def photo_source_name
     provider_name =~ /google/ ? 'picasa' : provider_name
+  end
+
+  # http://stackoverflow.com/questions/12792326/how-do-i-refresh-my-google-oauth2-access-token-using-my-refresh-token
+  # http://stackoverflow.com/questions/17894192/how-do-i-get-back-a-refresh-token-for-rails-app-with-omniauth-google-oauth2
+  # http://stackoverflow.com/questions/3487991/why-does-oauth-v2-have-both-access-and-refresh-tokens
+  # https://developers.google.com/identity/protocols/OAuth2WebServer#refresh
+  def refresh_access_token!
+    return unless provider_name == 'google_oauth2' # TODO implement for other providers
+    if refresh_token.blank?
+      Rails.logger.error "[ERROR #{Time.now}] Refresh token missing for #{self}"
+      return
+    end
+    options = {
+     body: {
+       client_id: CONFIG.google.client_id,
+       client_secret: CONFIG.google.secret,
+       refresh_token: refresh_token,
+       grant_type: 'refresh_token'
+     },
+     headers: {
+       'Content-Type' => 'application/x-www-form-urlencoded'
+     }
+    }
+    response = HTTParty.post('https://accounts.google.com/o/oauth2/token', options)
+    if response.code == 200
+      update_attribute(:token, response.parsed_response['access_token'])
+    else
+     Rails.logger.debug "[DEBUG] Failed to refresh access token, #{response.body}"
+     raise "Failed to refresh access token"
+    end
   end
 
 end

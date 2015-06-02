@@ -236,14 +236,13 @@
           </strong>
 
           <%- if @listed_taxon.native? %>
-                <%= t(:to_).downcase %>
-              <%- elsif @listed_taxon.introduced? %>
-                <%= t(:in).downcase %>
-              <%- else %>
-                <%= t(:in_).downcase %>
-              <%- end %>
-
-          <%= link_to t(@listed_taxon.place.name, :default => @listed_taxon.place.name), @listed_taxon.place %>
+            <%= t(:to_).downcase %>
+          <%- elsif @listed_taxon.introduced? %>
+            <%= t(:in).downcase %>
+          <%- else %>
+            <%= t(:in_).downcase %>
+          <%- end %>
+          <%= link_to t(@listed_taxon.place.name, :default => @listed_taxon.place.display_name), @listed_taxon.place %>
           <span class="small">
             (<%= link_to t(:view_details), @listed_taxon %>)
           </span>
