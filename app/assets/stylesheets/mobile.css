@@ -11,6 +11,24 @@ body.mobile #footer li a.box {border-bottom:1px dotted #aaa;background-color:#dd
 body.mobile #footer_text {text-align:center;}
 body.mobile #header { width: auto; }
 body.mobile #header{margin:0;height:auto;line-height:1.4;height:22px;}
+body.mobile #header #logonav {
+  -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 1;         /* OLD - Firefox 19- */
+  width: 10%;               /* For old syntax, otherwise collapses. */
+  -webkit-flex: 1;          /* Chrome */
+  -ms-flex: 1;              /* IE 10 */
+  flex: 1;                  /* NEW, Spec - Opera 11.1, Firefox 10+ */
+  text-align: left;
+}
+body.mobile #header #usernav {
+  -webkit-box-flex: 2;      /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 2;         /* OLD - Firefox 19- */
+  width: 40%;               /* For old syntax, otherwise collapses. */
+  -webkit-flex: 2;          /* Chrome */
+  -ms-flex: 2;              /* IE 10 */
+  flex: 2;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  text-align: right;
+}
 input.button,
 input[type=button],
 input[type=text],

@@ -239,6 +239,11 @@ form .field .description { margin-bottom: 0.5em;}
 #header #logonav {
   width: 170px;
   text-align: center;
+  -webkit-flex-order: 1;
+  -webkit-order: 1;
+  -ms-flex-order: 1;
+  flex-order: 1;
+  order: 1;
 }
 #header #mainnav {
   -webkit-box-flex: 2;      /* OLD - iOS 6-, Safari 3.1-6 */
@@ -248,10 +253,21 @@ form .field .description { margin-bottom: 0.5em;}
   -ms-flex: 2;              /* IE 10 */
   flex: 2;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
   min-width: 515px;
+  
+  -webkit-flex-order: 2;
+  -webkit-order: 2;
+  -ms-flex-order: 2;
+  flex-order: 2;
+  order: 2;
 }
 #header #usernav {
   white-space: nowrap;
   text-align: right;
+  -webkit-flex-order: 3;
+  -webkit-order: 3;
+  -ms-flex-order: 3;
+  flex-order: 3;
+  order: 3;
 }
 #header #mainnav { 
   text-align: center; 
