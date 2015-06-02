@@ -2651,6 +2651,35 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  def interpolate_coordinates
+    return unless time_observed_at
+    scope = user.observations.where("latitude IS NOT NULL or private_latitude IS NOT NULL")
+    prev_obs = scope.where("time_observed_at < ?", time_observed_at).order("time_observed_at DESC").first
+    next_obs = scope.where("time_observed_at > ?", time_observed_at).order("time_observed_at ASC").first
+    return unless prev_obs && next_obs
+    prev_lat = prev_obs.private_latitude || prev_obs.latitude
+    prev_lon = prev_obs.private_longitude || prev_obs.longitude
+    next_lat = next_obs.private_latitude || next_obs.latitude
+    next_lon = next_obs.private_longitude || next_obs.longitude
+
+    # time-weighted interpolation between prev and next observations
+    weight = (next_obs.time_observed_at - time_observed_at) / (next_obs.time_observed_at-prev_obs.time_observed_at)
+    new_lat = (1-weight)*next_lat + weight*prev_lat
+    new_lon = (1-weight)*next_lon + weight*prev_lon
+    self.latitude = new_lat
+    self.longitude = new_lon
+
+    # we can only set a new uncertainty if the uncertainty of the two points are known
+    if prev_obs.positional_accuracy && next_obs.positional_accuracy
+      f = RGeo::Geographic.simple_mercator_factory
+      prev_point = f.point(prev_lon, prev_lat)
+      next_point = f.point(next_lon, next_lat)
+      interpolation_uncertainty = prev_point.distance(next_point)/2.0
+      new_acc = Math.sqrt(interpolation_uncertainty**2 + prev_obs.positional_accuracy**2 + next_obs.positional_accuracy**2)
+      self.positional_accuracy = new_acc
+    end
+  end
+
   def self.as_csv(scope, methods)
     CSV.generate do |csv|
       csv << methods

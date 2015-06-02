@@ -2623,4 +2623,26 @@ describe Observation do
 
   end
 
+  describe "interpolate_coordinates" do
+    it "should use means" do
+      u = User.make!
+      p = Observation.make!(user: u, latitude: 0, longitude: 0, observed_on_string: "2014-06-02 00:00", positional_accuracy: 100)
+      n = Observation.make!(user: u, latitude: 1, longitude: 1, observed_on_string: "2014-06-02 02:00", positional_accuracy: 100)
+      o = Observation.make!(user: u, observed_on_string: "2014-06-02 01:00")
+      o.interpolate_coordinates
+      expect( o.latitude ).to eq 0.5
+      expect( o.longitude ).to eq 0.5
+    end
+
+    it "should use weight by time" do
+      u = User.make!
+      p = Observation.make!(user: u, latitude: 0, longitude: 0, observed_on_string: "2014-06-02 00:00", positional_accuracy: 100)
+      n = Observation.make!(user: u, latitude: 1, longitude: 1, observed_on_string: "2014-06-02 02:00", positional_accuracy: 100)
+      o = Observation.make!(user: u, observed_on_string: "2014-06-02 01:59")
+      o.interpolate_coordinates
+      expect( o.latitude.to_f ).to be > 0.5
+      expect( o.longitude.to_f ).to be > 0.5
+    end
+  end
+
 end

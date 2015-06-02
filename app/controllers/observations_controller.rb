@@ -570,6 +570,10 @@ class ObservationsController < ApplicationController
       @observation.captive_flag = true
     end
 
+    if params[:interpolate_coordinates].yesish?
+      @observation.interpolate_coordinates
+    end
+
     respond_to do |format|
       format.html do
         if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
