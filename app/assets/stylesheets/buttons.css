@@ -110,13 +110,24 @@ button[type] {
   padding:2px 10px 1px 7px;   /* IE7 */
 }
 
-.button.default, 
+.button.default,
+.button.default:hover, 
 input[type='button'].default,
+input[type='button'].default:hover,
 input.button.default,
-button.default {
-  color: white;
+input.button.default:hover,
+button.default,
+button.default:hover {
+  color: #f3f3f3;
   background-color: #36C;
   border-color: #36C;
+}
+
+.button.default:hover, 
+input[type='button'].default:hover,
+input.button.default:hover,
+button.default:hover {
+  color: white;
 }
 
 .button.default.disabled,
