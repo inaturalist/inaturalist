@@ -67,6 +67,12 @@ describe ProjectObservation, "creation" do
     expect( po.preferred_curator_coordinate_access ).to be true
   end
 
+  it "should be possible for any member of the project" do
+    pu = ProjectUser.make!
+    po = ProjectObservation.make(user: pu.user, project: pu.project)
+    expect( po ).to be_valid
+  end
+
   describe "updates" do
     it "should be generated for the observer" do
       pu = ProjectUser.make!(role: ProjectUser::CURATOR)

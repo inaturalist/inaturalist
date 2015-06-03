@@ -8,6 +8,10 @@
     o || u.notifier.observation
   end
   columns ||= @observation_columns || 6
+  user = if defined? current_user
+    current_user
+  end
+  user ||= @user
 %table
   - for obs_group in observations[0...12].in_groups_of(columns)
     %tr
@@ -21,4 +25,4 @@
   - unless notifier_users.blank?
     =t :observations_added_by_x_html, x: commas_and(notifier_users.map{|u| link_to_user(u)})
 .meta
-  = link_to t(:view_all_of_your_observations_from_x, x: project.title), observations_by_login_url(@user.login, projects: project.id), 'class': 'readmore'
+  = link_to t(:view_all_of_your_observations_from_x, x: project.title), observations_by_login_url(user.login, projects: project.id), 'class': 'readmore'

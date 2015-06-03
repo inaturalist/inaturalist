@@ -6,9 +6,6 @@ class ProjectObservation < ActiveRecord::Base
   validates_presence_of :project, :observation
   validate :observer_allows_addition?
   validate :observer_invited?
-  validate :user_curates_project?, :unless => lambda {|record| 
-    record.user_id.nil? || record.user_id == record.observation.try(:user_id)
-  }
   validates_rules_from :project, :rule_methods => [
     :captive?,
     :wild?,
@@ -148,13 +145,6 @@ class ProjectObservation < ActiveRecord::Base
     return true if project.project_users.where(user_id: observation.user_id).exists?
     return true if project.project_user_invitations.where(invited_user_id: observation.user_id).exists?
     errors.add :observation_id, "must be made by a project member or an invited user"
-    false
-  end
-
-  def user_curates_project?
-    return unless project && observation
-    return true if project.curated_by?(user)
-    errors.add :user_id, "must be a project curator"
     false
   end
   
