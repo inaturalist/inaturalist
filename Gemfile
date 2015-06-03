@@ -76,6 +76,7 @@ gem 'savon'   #allow to consume soap services with WSDL
 gem 'sass', '= 3.2.5'
 gem 'sass-rails'
 gem 'soundcloud'
+gem 'sprockets', '~> 2.8'
 gem 'mysql2', '~> 0.3.17'
 gem 'translate-rails3', :require => 'translate', :git => 'git://github.com/JayTeeSF/translate.git'
 gem 'trollop'
