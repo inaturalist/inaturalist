@@ -38,6 +38,7 @@ class Guide < ActiveRecord::Base
 
   before_validation :set_published_at
   
+  do_not_validate_attachment_file_type :ngz
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
   validates_length_of :title, :in => 3..255

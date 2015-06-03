@@ -59,7 +59,7 @@ gem "omniauth-google-oauth2"
 gem 'omniauth-soundcloud'
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
-gem "paperclip", "3.4.2"
+gem "paperclip", "4.2.1"
 gem 'delayed_paperclip', :git => 'git://github.com/jrgifford/delayed_paperclip.git'
 gem 'pg'
 gem 'preferences', :git => 'git://github.com/kueda/preferences.git'
@@ -71,7 +71,7 @@ gem 'rest-client', :require => 'rest_client'
 gem 'right_aws', :git => 'git://github.com/rightscale/right_aws.git'
 gem 'right_http_connection'
 gem 'rinku', :require => 'rails_rinku'
-gem 'riparian', :git => 'git://github.com/kueda/riparian.git'
+gem 'riparian', :git => 'git://github.com/inaturalist/riparian.git'
 gem 'savon'   #allow to consume soap services with WSDL
 gem 'sass', '= 3.2.5'
 gem 'sass-rails'

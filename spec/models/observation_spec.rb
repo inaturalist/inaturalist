@@ -2,6 +2,9 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Observation do
+  before(:all) do
+    DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
+  end
 
   before(:each) { enable_elastic_indexing( Observation ) }
   after(:each) { disable_elastic_indexing( Observation ) }
