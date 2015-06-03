@@ -6,113 +6,142 @@
   if places && !observation.coordinates_viewable_by?(current_user)
     places = places.select{|p| [Place::CONTINENT, Place::COUNTRY, Place::STATE, Place::COUNTY].include?(p.place_type) && p.user_id.blank?}
   end
+  show_location_details = logged_in? && current_user.prefers_location_details?
 -%>
-<% if observation.coordinates_viewable_by?(current_user) -%>
-  <label><%=t :location %>:</label>
-  <%= observation_place_guess(observation).html_safe %>
-  <% if observation.out_of_range? -%>
-    <strong class="out_of_range nobr">
-      <span class="ui-icon ui-icon-alert inlineblock"></span>
-      <%=t :out_of_range %>!
-      <span class="helptip" rel="#<%= dom_id(observation, 'out_of_range_tip') %>"></span>
-      <div id="<%= dom_id(observation, 'out_of_range_tip') %>" style="display:none;" class="inlineblock">
-        <%=t :this_observation_lies_outside_the, :site_name => SITE_NAME_SHORT %> 
-        <%= link_to t(:view_the_range), taxon_path(observation.taxon, :anchor => "taxon_range"), :class => "readmore" %>
-      </div>
-    </strong>
-  <% end -%>
-<% end -%>
-<% unless places.blank? -%>
-  <div class="places">
-    <label><%=t :places %>:</label>
-    <%- num_hidden = 0 -%>
-    <% compact :all_tags => true do %>
-      <% places.each_with_index do |place,i| %>
-        <%-
-          css_class = if i == 0 || place.user_id.blank?
-            "visible"
-          else
-            num_hidden += 1
-            "hidden"
-          end
-          name = place.code.blank? ? place.name : place.code
-        -%>
-        <span class="<%= css_class %>"><%= ', ' unless i == 0 %><%= link_to(name, place, :title => place.display_name) %></span>
-      <% end -%>
-    <% end -%>
-    <% if num_hidden > 0 -%>
-      <span class="button"><%= link_to_function "#{t(:more)}...", "$(this).parents('.places').find('.hidden').toggle(); $(this).html($(this).text() == '#{t(:more)}...' ? '#{t(:less)}' : '#{t(:more)}...')" %></span>
-    <% end -%>
-  </div>
-<% end -%>
-<% if show_observation_coordinates?(observation) %>
-<div>
-  <% if !observation.coordinates_viewable_by?(current_user) -%>
-    <%= t(:public_coordinates_obscured_by, :distance=> (Observation::M_TO_OBSCURE_THREATENED_TAXA / 1000) ) %>
-  <% else %>
-    <% if observation.coordinates_obscured? -%>
-      <span class="latitude"><label><%= t :lat %></label> <%= observation.private_latitude %></span>,
-      <span class="longitude"><label><%= t :long %></label> <%= observation.private_longitude %></span>
-      <% if observation.latitude && observation.longitude -%>
-        <div class="small meta">
-        <%=t :shown_publicly_as %> 
-        <span class="latitude"><label><%= t :lat %></label> <%= observation.latitude %></span>,
-        <span class="longitude"><label><%= t :long %></label> <%= observation.longitude %></span>
+
+<%- location_row = capture do -%>
+  <% if observation.coordinates_viewable_by?(current_user) -%>
+    <label><%=t :location %>:</label>
+    <%= observation_place_guess(observation, place_guess_truncation: observation.observation_photos.size > 0 ? 30 : nil).html_safe %>
+    <% if observation.out_of_range? -%>
+      <strong class="out_of_range nobr">
+        <span class="ui-icon ui-icon-alert inlineblock"></span>
+        <%=t :out_of_range %>!
+        <span class="helptip" rel="#<%= dom_id(observation, 'out_of_range_tip') %>"></span>
+        <div id="<%= dom_id(observation, 'out_of_range_tip') %>" style="display:none;" class="inlineblock">
+          <%=t :this_observation_lies_outside_the, :site_name => SITE_NAME_SHORT %> 
+          <%= link_to t(:view_the_range), taxon_path(observation.taxon, :anchor => "taxon_range"), :class => "readmore" %>
         </div>
+      </strong>
+    <% end -%>
+  <% end %>
+<% end %>
+<%- places_row = capture do -%>
+  <% unless places.blank? %>
+    <div class="places">
+      <label><%=t :places %>:</label>
+      <%- num_hidden = 0 -%>
+      <% compact :all_tags => true do %>
+        <% places.each_with_index do |place,i| %>
+          <%-
+            css_class = if i == 0 || place.user_id.blank?
+              "visible"
+            else
+              num_hidden += 1
+              "hidden"
+            end
+            name = place.code.blank? ? place.name : place.code
+          -%>
+          <span class="<%= css_class %>"><%= ', ' unless i == 0 %><%= link_to(name, place, :title => place.display_name) %></span>
+        <% end -%>
       <% end -%>
-    <% else %>
-      <span class="latitude"><label><%= t :lat %></label> <%= observation.latitude %></span>,
-      <span class="longitude"><label><%= t :long %></label> <%= observation.longitude %></span>
-    <% end -%>
-    <%- if observation.coordinates_obscured? && observation.geoprivacy.blank? -%>
-      <div class="small meta">
-        <%=t :exact_coordinates_obscured_for %>
-      </div>
-    <% end %>
-    
-    <% unless observation.positional_accuracy.blank? -%>
-      <div class="positional_accuracy">
-        <labe><%=t :accuracy %>:</labe> <%= observation.positional_accuracy %>m
-      </div>
-    <% end -%>
-    
-    <div class="geoprivacy">
-      <div class="geoprivacy_display">
-        <label><%=t :geoprivacy %>:</label> <%=t observation.geoprivacy || :open %>
-        <% if inline_edit && is_me?(observation.user) -%>
-          <%= link_to_function t(:edit), 
-            "$(this).parents('.geoprivacy').find('form').css('display', 'inline'); " + 
-            "$(this).parents('.geoprivacy_display').hide()", 
-            :class => "editlink" %>
-        <% end %>
-        <span class="helptip" rel="#<%= dom_id observation, 'geoprivacy_tip' %>"></span>
-        <div id="<%= dom_id observation, 'geoprivacy_tip' %>"style="display:none">
-          <dl>
-            <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
-              <dt><%=t privacy || :open %></dt>
-              <dd><%=t description %></dd>
-            <% end %>
-          </dl>
-        </div>
-      </div>
-      <% if inline_edit && is_me?(observation.user) -%>
-        <%= form_for observation, :html => {:style => "display:none;"} do |f| %>
-          <%= f.label :geoprivacy, "#{t(:geoprivacy)}: " %>
-          <%= f.select :geoprivacy, Observation::GEOPRIVACIES.map{|g| [t(g, :default => g).downcase, g]}, :include_blank => t(:open, :default => "open").downcase %>
-          <%= hidden_field_tag :ignore_photos, true %>
-          <%= f.submit t(:save), "data-loading-click" => true %>
-          <%= link_to_function t(:cancel), 
-            "$(this).parents('.geoprivacy').find('.geoprivacy_display').show(); " + 
-            "$(this).parents('form').hide()" %>
-        <%- end %>
+      <% if num_hidden > 0 -%>
+        <span class="button"><%= link_to_function "#{t(:more)}...", "$(this).parents('.places').find('.hidden').toggle(); $(this).html($(this).text() == '#{t(:more)}...' ? '#{t(:less)}' : '#{t(:more)}...')" %></span>
       <% end -%>
     </div>
-    
-    <% if observation.coordinates_obscured? && is_not_me?(observation.user) -%>
-      <%=t :you_can_see_these_coordinates_because %> 
-    <% end -%>
-  <% end -%>
-</div>
-<% elsif observation.georeferenced? %>
+  <% end %>
+<% end -%>
+<%- private_notice_row = capture do -%>
   <span class="meta"><%=t :coordinates_private %></span>
 <% end %>
+<%- coordinates_row = capture do -%>
+  <% if show_observation_coordinates?(observation) %>
+    <div class="coordinates">
+      <% if !observation.coordinates_viewable_by?(current_user) -%>
+        <%= t(:public_coordinates_obscured_by, :distance=> (Observation::M_TO_OBSCURE_THREATENED_TAXA / 1000) ) %>
+      <% else %>
+        <% if observation.coordinates_obscured? -%>
+          <span class="latitude"><label><%= t :lat %></label> <%= observation.private_latitude %></span>,
+          <span class="longitude"><label><%= t :long %></label> <%= observation.private_longitude %></span>
+          <% if observation.latitude && observation.longitude -%>
+            <div class="small meta">
+            <%=t :shown_publicly_as %> 
+            <span class="latitude"><label><%= t :lat %></label> <%= observation.latitude %></span>,
+            <span class="longitude"><label><%= t :long %></label> <%= observation.longitude %></span>
+            </div>
+          <% end -%>
+        <% else %>
+          <span class="latitude"><label><%= t :lat %></label> <%= observation.latitude %></span>,
+          <span class="longitude"><label><%= t :long %></label> <%= observation.longitude %></span>
+        <% end -%>
+        <%- if observation.coordinates_obscured? && observation.geoprivacy.blank? -%>
+          <div class="small meta">
+            <%=t :exact_coordinates_obscured_for %>
+          </div>
+        <% end %>
+        
+        <% unless observation.positional_accuracy.blank? -%>
+          <div class="positional_accuracy">
+            <labe><%=t :accuracy %>:</labe> <%= observation.positional_accuracy %>m
+          </div>
+        <% end -%>
+        
+        <div class="geoprivacy">
+          <div class="geoprivacy_display">
+            <label><%=t :geoprivacy %>:</label> <%=t observation.geoprivacy || :open %>
+            <% if inline_edit && is_me?(observation.user) -%>
+              <%= link_to_function t(:edit), 
+                "$(this).parents('.geoprivacy').find('form').css('display', 'inline'); " + 
+                "$(this).parents('.geoprivacy_display').hide()", 
+                :class => "editlink" %>
+            <% end %>
+            <span class="helptip" rel="#<%= dom_id observation, 'geoprivacy_tip' %>"></span>
+            <div id="<%= dom_id observation, 'geoprivacy_tip' %>"style="display:none">
+              <dl>
+                <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
+                  <dt><%=t privacy || :open %></dt>
+                  <dd><%=t description %></dd>
+                <% end %>
+              </dl>
+            </div>
+          </div>
+          <% if inline_edit && is_me?(observation.user) -%>
+            <%= form_for observation, :html => {:style => "display:none;"} do |f| %>
+              <%= f.label :geoprivacy, "#{t(:geoprivacy)}: " %>
+              <%= f.select :geoprivacy, Observation::GEOPRIVACIES.map{|g| [t(g, :default => g).downcase, g]}, :include_blank => t(:open, :default => "open").downcase %>
+              <%= hidden_field_tag :ignore_photos, true %>
+              <%= f.submit t(:save), "data-loading-click" => true %>
+              <%= link_to_function t(:cancel), 
+                "$(this).parents('.geoprivacy').find('.geoprivacy_display').show(); " + 
+                "$(this).parents('form').hide()" %>
+            <%- end %>
+          <% end -%>
+        </div>
+        
+        <% if observation.coordinates_obscured? && is_not_me?(observation.user) -%>
+          <%=t :you_can_see_these_coordinates_because %> 
+        <% end -%>
+      <% end -%>
+    </div>
+  <% end %>
+<% end %>
+
+<%-
+  if observation.coordinates_private? && !observation.coordinates_viewable_by?(current_user)
+    first_thing = private_notice_row
+    details = []
+  else
+    details = [location_row, places_row, coordinates_row].reject(&:blank?)
+    first_thing = details.shift
+  end
+-%>
+<%= first_thing %>
+<div id="location_details" style="<%= show_location_details ? '' : 'display:none;' %>">
+  <%=raw details.join("\n") %>
+</div>
+<span class="button">
+  <%= link_to_function t(:details), "showLocationDetails(this, {user_id: #{current_user.try(:id).to_json}})", 
+    style: show_location_details ? "display:none" : nil %>
+  <%= link_to_function t(:hide_details), "hideLocationDetails(this, {user_id: #{current_user.try(:id).to_json}})",
+    style: show_location_details ? nil : "display:none" %>
+</span>

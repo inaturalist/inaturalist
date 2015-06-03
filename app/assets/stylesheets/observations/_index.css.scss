@@ -30,21 +30,6 @@ input.radio, input[type="radio"] {
 #controls ul li > span {
   padding: 7px 0.75em 9px;
   position: relative;
-  bottom: -1px;
-  outline: none;
-}
-
-#controls a:focus {
-  -moz-outline-style: none;
-}
-
-#controls ul li a.toggle {
-  padding-left: 17px;
-  background: 7px 10px image-url('toggle_arrow_right.png') no-repeat;
-}
-
-#controls ul li.open a.toggle {
-  background: 5px 12px image-url('toggle_arrow_down.png') no-repeat;
 }
 
 #controls ul li a.modal_link {
@@ -67,16 +52,6 @@ input.radio, input[type="radio"] {
 #maplink.selected,
 #maplink:hover {
   background-image: image-url('map-icon-30px.png');
-}
-
-.filters.tab a {
-  border: 1px solid transparent;
-  background-color: white;
-}
-
-.filters.tab.open a {
-  border: 1px solid #eee;
-  border-bottom: 1px solid white;
 }
 
 .observations {
@@ -108,3 +83,10 @@ input.radio, input[type="radio"] {
 #pagination {
   margin-top: 10px;
 }
+#controls #filterslink {display:inline; padding: 5px;}
+#filterslink .fa {padding: 0 5px;}
+#filterslink .fa-caret-up {display:none;}
+.open #filterslink .fa-caret-down {display:none;}
+.open #filterslink .fa-caret-up {display:inline;}
+
+#pageheader h2 {margin-right: 10px;}

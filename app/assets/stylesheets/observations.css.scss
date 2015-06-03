@@ -804,3 +804,21 @@
 .observations .idandrg .research_grade_notice .full,
 .observations .idandrg .id_please_notice .full { display:none; }
 
+#obsheader {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* New - everyone else */
+}
+
+#obsheader .title {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+#obsheader .controlcol {
+  white-space: nowrap;
+  min-width: 360px;
+}

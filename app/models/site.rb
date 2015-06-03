@@ -178,6 +178,7 @@ class Site < ActiveRecord::Base
   preference :name_providers, :string #: [col, ubio]
 
   preference :natureserve_key, :string
+  preference :custom_logo, :text
   preference :custom_footer, :text
 
   def to_s

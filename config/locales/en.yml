@@ -1460,7 +1460,7 @@ en:
   location_: Location
   location_is_exact: location is exact
   locked_taxa_will_not_allow_new: Locked taxa will not allow new descendent taxa to be added to them. So if you locked Amphibia and someone tried to import <i>Rana catesbeiana</i> from an external name provider, the new taxon would be created but it could not be classified as an amphibian. When this happens, the newly added taxa should be flagged for curator attention.  This should really only be used for taxa for which we think we already have all the descendants. Curator can override this by editing taxa and entering parent IDs directly, but please consider merging new taxa into existing ones instead.
-  log_in: Log In
+  log_in: Log in
   logged_in_as: Logged in as
   login_slash_username: Login / username
   logo:
@@ -1524,6 +1524,8 @@ en:
   matching_species_will_shown_up_here: Matching species will show up here. The maps will show a range if %{place} has one for that species.
   maybe_your_signed_in_with: "Maybe you signed in with your %{omniauth} account?"
   medium: medium
+  member_of_the_inaturalist_network_html: |
+    Member of the <a href="%{url}">iNaturalist Network</a>
   members: Members
   merge: Merge
   merge_it_with_another_place: Merge it with another place
@@ -2098,7 +2100,7 @@ en:
   posted_on: Posted on
   posts: Posts
   powered_by: Powered by
-  powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a> open source software'
+  powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source software</a>'
   present: present
   preview: Preview
   preview_of_synced_observation: "<strong>Preview</strong> of synced observation.  <a href=\"%{url}\">Undo?</a>"
@@ -4321,7 +4323,7 @@ en:
       default: '%b. %d, %Y %H:%M:%S %z'
       long: '%B %d, %Y %I:%M %p'
       short: '%d %b %H:%M'
-      observed_at: at %I:%M %p %Z
+      observed_at: '%I:%M %p %Z'
       rfc: "%d %B %Y"
       day_month_year: "%B %d, %Y"
       hours: "%l:%M %p"

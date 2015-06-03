@@ -25,41 +25,43 @@
     <%= yield :extracss %>
   </head>
   <body>
-    <% unless @headless -%>
-      <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => ApplicationController::HEADER_VERSION, :site_name => @site ? @site.name : SITE_NAME) do %>
-        <%= render :partial => 'shared/header' %>
+    <div id="bodywrapper">
+      <% unless @headless -%>
+        <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => ApplicationController::HEADER_VERSION, :site_name => @site ? @site.name : SITE_NAME) do %>
+          <%= render :partial => 'shared/header' %>
+        <% end %>
+      <% end -%>
+      
+      <% if flash[:notice] || flash[:alert] %>
+        <p id="flash" class="notice"><%= (flash[:notice] || flash[:alert]).html_safe %></p> 
       <% end %>
-    <% end -%>
-    
-    <% if flash[:notice] || flash[:alert] %>
-      <p id="flash" class="notice"><%= (flash[:notice] || flash[:alert]).html_safe %></p> 
-    <% end %>
-    
-    <% if flash[:error] %>
-      <p id="flash" class="error"><%= raw flash[:error] %></p>
-    <% end %>
+      
+      <% if flash[:error] %>
+        <p id="flash" class="error"><%= raw flash[:error] %></p>
+      <% end %>
 
-    <div class="bootstrap">
-      <% if @feature_test -%>
-        <div class="container">
-          <div class="alert">
-            <b><%= @feature_test %> test</b>. This is only a test, so please don't expect everything to work correctly.
+      <div id="wrapper" class="bootstrap">
+        <% if @feature_test -%>
+          <div class="container">
+            <div class="alert">
+              <b><%= @feature_test %> test</b>. This is only a test, so please don't expect everything to work correctly.
+            </div>
           </div>
-        </div>
-      <% end -%>
-      <% if flash[:warning] -%>
-        <div class="container">
-          <div class="alert">
-            <% if flash[:warning_title] -%>
-              <h3><%=raw flash[:warning_title] %></h3>
-            <% end -%>
-            <p class="unstacked">
-              <%=raw flash[:warning] %>
-            </p>
+        <% end -%>
+        <% if flash[:warning] -%>
+          <div class="container">
+            <div class="alert">
+              <% if flash[:warning_title] -%>
+                <h3><%=raw flash[:warning_title] %></h3>
+              <% end -%>
+              <p class="unstacked">
+                <%=raw flash[:warning] %>
+              </p>
+            </div>
           </div>
-        </div>
-      <% end -%>
-      <%= yield %>
+        <% end -%>
+        <%= yield %>
+      </div>
     </div>
 
     <%= render :partial => 'shared/footer' unless @footless %>

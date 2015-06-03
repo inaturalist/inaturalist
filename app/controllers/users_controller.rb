@@ -659,6 +659,7 @@ protected
       :preferred_project_addition_by,
       :preferred_sound_license,
       :prefers_community_taxa,
+      :prefers_location_details,
       :time_zone
     )
   end
