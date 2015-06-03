@@ -2,7 +2,7 @@
 #header.clear
   %ul#logonav
     %li.navtab
-      - if @site && @site.custom_logo
+      - if @site && !@site.custom_logo.blank?
         =raw @site.custom_logo
       - else
         %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || SITE_NAME}"}
