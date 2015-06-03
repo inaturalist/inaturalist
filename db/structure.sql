@@ -44,54 +44,107 @@ SET search_path = public, pg_catalog;
 
 CREATE FUNCTION cleangeometry(geom geometry) RETURNS geometry
     LANGUAGE plpgsql
-    AS $_$DECLARE
-  inGeom ALIAS for $1;
-  outGeom geometry;
-  tmpLinestring geometry;
+    AS $_$
+          DECLARE
+          inGeom ALIAS for $1;
+          outGeom geometry;
+          tmpLinestring geometry;
+          sqlString text;
 
-Begin
-  
-  outGeom := NULL;
-  
--- Clean Process for Polygon 
-  IF (GeometryType(inGeom) = 'POLYGON' OR GeometryType(inGeom) = 'MULTIPOLYGON') THEN
+      BEGIN
 
--- Only process if geometry is not valid, 
--- otherwise put out without change
-    if not st_isValid(inGeom) THEN
-    
--- create nodes at all self-intersecting lines by union the polygon boundaries
--- with the startingpoint of the boundary.  
-      tmpLinestring := st_union(st_multi(st_boundary(inGeom)),st_pointn(st_boundary(inGeom),1));
-      outGeom = st_buildarea(tmpLinestring);      
-      IF (GeometryType(inGeom) = 'MULTIPOLYGON') THEN      
-        RETURN st_multi(outGeom);
-      ELSE
-        RETURN outGeom;
-      END IF;
-    else    
-      RETURN inGeom;
-    END IF;
+          outGeom := NULL;
 
+          -- Clean Polygons --
+          IF (ST_GeometryType(inGeom) = 'ST_Polygon' OR ST_GeometryType(inGeom) = 'ST_MultiPolygon') THEN
 
-------------------------------------------------------------------------------
--- Clean Process for LINESTRINGS, self-intersecting parts of linestrings 
--- will be divided into multiparts of the mentioned linestring 
-------------------------------------------------------------------------------
-  ELSIF (GeometryType(inGeom) = 'LINESTRING') THEN
-    
--- create nodes at all self-intersecting lines by union the linestrings
--- with the startingpoint of the linestring.  
-    outGeom := st_union(st_multi(inGeom),st_pointn(inGeom,1));
-    RETURN outGeom;
-  ELSIF (GeometryType(inGeom) = 'MULTILINESTRING') THEN 
-    outGeom := st_multi(st_union(st_multi(inGeom),st_pointn(inGeom,1)));
-    RETURN outGeom;
-  ELSE 
-    RAISE NOTICE 'The input type % is not supported',GeometryType(inGeom);
-    RETURN inGeom;
-  END IF;	  
-End;$_$;
+              -- Check if it needs fixing
+              IF NOT ST_IsValid(inGeom) THEN
+
+                  sqlString := '
+                      -- separate multipolygon into 1 polygon per row
+                      WITH split_multi (geom, poly) AS (
+                          SELECT
+                              (ST_Dump($1)).geom,
+                              (ST_Dump($1)).path[1] -- polygon number
+                      ),
+                      -- break each polygon into linestrings
+                      split_line (geom, poly, line) AS (
+                          SELECT
+                              ST_Boundary((ST_DumpRings(geom)).geom),
+                              poly,
+                              (ST_DumpRings(geom)).path[1] -- line number
+                          FROM split_multi
+                      ),
+                      -- get the linestrings that make up the exterior of each polygon
+                      line_exterior (geom, poly) AS (
+                          SELECT
+                              geom,
+                              poly
+                          FROM split_line
+                          WHERE line = 0
+                      ),
+                      -- get an array of all the linestrings that make up the interior of each polygon
+                      line_interior (geom, poly) AS (
+                          SELECT
+                              array_agg(geom ORDER BY line),
+                              poly
+                          FROM split_line
+                          WHERE line > 0
+                          GROUP BY poly
+                      ),
+                      -- use MakePolygon to rebuild the polygons
+                      poly_geom (geom, poly) AS (
+                          SELECT
+                              CASE WHEN line_interior.geom IS NULL
+                                  THEN ST_Buffer(ST_MakePolygon(line_exterior.geom), 0)
+                                  ELSE ST_Buffer(ST_MakePolygon(line_exterior.geom, line_interior.geom), 0)
+                              END,
+                              line_exterior.poly
+                          FROM line_exterior
+                          LEFT JOIN line_interior USING (poly)
+                      )
+                  ';
+
+                  IF (ST_GeometryType(inGeom) = 'ST_Polygon') THEN
+                      sqlString := sqlString || '
+                          SELECT geom
+                          FROM poly_geom
+                      ';
+                  ELSE
+                      sqlString := sqlString || '
+                          , -- if its a multipolygon combine the polygons back together
+                          multi_geom (geom) AS (
+                              SELECT
+                                  ST_Multi(ST_Collect(geom ORDER BY poly))
+                              FROM poly_geom
+                          )
+                          SELECT geom
+                          FROM multi_geom
+                      ';
+                  END IF;
+
+                  EXECUTE sqlString INTO outGeom USING inGeom;
+
+                  RETURN outGeom;
+              ELSE
+                  RETURN inGeom;
+              END IF;
+
+          -- Clean Lines --
+          ELSIF (ST_GeometryType(inGeom) = 'ST_Linestring') THEN
+
+              outGeom := ST_Union(ST_Multi(inGeom), ST_PointN(inGeom, 1));
+              RETURN outGeom;
+          ELSIF (ST_GeometryType(inGeom) = 'ST_MultiLinestring') THEN
+              outGeom := ST_Multi(ST_Union(ST_Multi(inGeom), ST_PointN(inGeom, 1)));
+              RETURN outGeom;
+          ELSE
+              RAISE NOTICE 'The input type % is not supported',ST_GeometryType(inGeom);
+              RETURN inGeom;
+          END IF;
+      END;
+      $_$;
 
 
 --
@@ -2820,6 +2873,36 @@ ALTER SEQUENCE site_admins_id_seq OWNED BY site_admins.id;
 
 
 --
+-- Name: site_statistics; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE site_statistics (
+    id integer NOT NULL,
+    created_at timestamp without time zone,
+    data json
+);
+
+
+--
+-- Name: site_statistics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE site_statistics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: site_statistics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE site_statistics_id_seq OWNED BY site_statistics.id;
+
+
+--
 -- Name: sites; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -3718,6 +3801,43 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
+-- Name: votes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE votes (
+    id integer NOT NULL,
+    votable_id integer,
+    votable_type character varying,
+    voter_id integer,
+    voter_type character varying,
+    vote_flag boolean,
+    vote_scope character varying,
+    vote_weight integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE votes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE votes_id_seq OWNED BY votes.id;
+
+
+--
 -- Name: wiki_page_attachments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -4288,6 +4408,13 @@ ALTER TABLE ONLY site_admins ALTER COLUMN id SET DEFAULT nextval('site_admins_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY site_statistics ALTER COLUMN id SET DEFAULT nextval('site_statistics_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY sites ALTER COLUMN id SET DEFAULT nextval('sites_id_seq'::regclass);
 
 
@@ -4443,6 +4570,13 @@ ALTER TABLE ONLY updates ALTER COLUMN id SET DEFAULT nextval('updates_id_seq'::r
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY votes ALTER COLUMN id SET DEFAULT nextval('votes_id_seq'::regclass);
 
 
 --
@@ -4995,6 +5129,14 @@ ALTER TABLE ONLY site_admins
 
 
 --
+-- Name: site_statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY site_statistics
+    ADD CONSTRAINT site_statistics_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -5176,6 +5318,14 @@ ALTER TABLE ONLY updates
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: votes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY votes
+    ADD CONSTRAINT votes_pkey PRIMARY KEY (id);
 
 
 --
@@ -6883,6 +7033,20 @@ CREATE INDEX index_users_on_uri ON users USING btree (uri);
 
 
 --
+-- Name: index_votes_on_votable_id_and_votable_type_and_vote_scope; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_votes_on_votable_id_and_votable_type_and_vote_scope ON votes USING btree (votable_id, votable_type, vote_scope);
+
+
+--
+-- Name: index_votes_on_voter_id_and_voter_type_and_vote_scope; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_votes_on_voter_id_and_voter_type_and_vote_scope ON votes USING btree (voter_id, voter_type, vote_scope);
+
+
+--
 -- Name: index_wiki_page_attachments_on_page_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -7462,6 +7626,8 @@ INSERT INTO schema_migrations (version) VALUES ('20141213001622');
 
 INSERT INTO schema_migrations (version) VALUES ('20141213195804');
 
+INSERT INTO schema_migrations (version) VALUES ('20141229185357');
+
 INSERT INTO schema_migrations (version) VALUES ('20141231210447');
 
 INSERT INTO schema_migrations (version) VALUES ('20150104021132');
@@ -7500,5 +7666,9 @@ INSERT INTO schema_migrations (version) VALUES ('20150421155510');
 
 INSERT INTO schema_migrations (version) VALUES ('20150504184529');
 
+INSERT INTO schema_migrations (version) VALUES ('20150509225733');
+
 INSERT INTO schema_migrations (version) VALUES ('20150512222753');
+
+INSERT INTO schema_migrations (version) VALUES ('20150524000620');
 
