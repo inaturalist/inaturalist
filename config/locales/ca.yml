@@ -1,7 +1,9 @@
 # Messages for Catalan (català)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Cgalindo
 # Author: Fitoschido
+# Author: Macofe
 ---
 ca:
   licensing_your_content: |-
@@ -669,10 +671,6 @@ ca:
   contain_all_descendants?: Aquesta llista de verificació conté tots els descendents
     d'aquest tàxon que es produeixen aquí?
   contest: concurs
-  contest_projects_description: El projecte 'Concurs' mostrarà un quadre amb la classificació
-    dels col·laboradors, realitzada a partir del nombre d'espècies úniques observades.
-    El projecte 'Concurs d'observació' mostrarà els líders de la classificació a partir
-    del nombre d'observacions dels col·laboradors
   contributions: contribucions
   contributions_from: Aportacions de
   contributor_cannot_be_found: No s'ha pogut trobar al contribuïdor del projecte
@@ -858,6 +856,7 @@ ca:
   email_addresses_description: 'Correus electrònics separats per coma; límit: 60 cada
     30 dies.'
   email_addresses_to_receive_invites: Correus electrònics per rebre invitacions
+  email_settings: Configuració del correu
   embed: 'Insereix:'
   embed_a_widget_for_this_taxon_on_website: Insereix un giny per a aquest tàxon en
     el teu lloc web »
@@ -1085,7 +1084,6 @@ ca:
   home: Inici
   home_faq: FAQ
   hybrid: híbrid
-  i_something_i: <i>Alguna cosa...</i>
   icon: Icona
   icon_size: Mida de la icona
   iconic_taxon: Taxonomia de la icona
@@ -1983,11 +1981,6 @@ ca:
     canvi.
   please_add_this_observation_to: 'Afegeix aquesta observació a:'
   please_add_this_to_x_html: Afegeix això a %{x}
-  please_be_aware_project_curators: Tingues en compte que els administradors del projecte
-    podran veure qualsevol ubicació privada o amagada que s’afegeixi a aquest projecte.
-  please_be_aware_that_project_curators: Tingues en compte que els administradors
-    del projecte podran veure ubicacions privades o amagades de les observacions que
-    s'afegeixin a aquest projecte.
   please_be_careful_particulary_when: Vés amb compte, especialment a l’hora d’eliminar
     tàxons. Si un tàxon té associats identificadors, observacions, tàxons llistats
     o d’altres,
@@ -2376,7 +2369,7 @@ ca:
   source_list:
     ubio: uBio
     catalogue_of_life: Catàleg de la vida
-    inaturalist: iNaturalist
+    inaturalist: NaturaLista
     new_zeland_organisms_register: Registre d'organismes de Nova Zelanda
     nzbrn_birds: NZBRN Aus
     nzbrn_fungi: NZBRN Fongs
@@ -2787,6 +2780,7 @@ ca:
   url_of_this_taxon_on_the_source_website: Enllaç d'aquesta espècie o grup a la pàgina
     web font
   US_states: Estats Units
+  usage_stats: Estadístiques d'ús
   use_this_form_to_create_a_new: Utilitza aquesta forma per crear un canvi taxonòmic
     en l'esborrany, especificant si és per separar, ajuntar o és un canvi en el grup
     o espècie, perquè després es desi.
@@ -2807,6 +2801,7 @@ ca:
   user_invite_observation_to_project: '%{user} vol convidar la teva observació "%{observation}"
     al projecte %{project}.'
   user_invited_your_x_to_a_project_html: '%{user} ha convidat la teva %{x} a un projecte'
+  user_is_now_role_for_project_html: <strong>%{user}</strong> és ara %{role} de %{project}
   user_is_a_naturalist: '%{user} és naturalista!'
   user_s: '%{model_name} de %{user}'
   user_s_id: '%{id} de %{user}'
@@ -3004,7 +2999,6 @@ ca:
     mes.'
   you_are_now_following_x: Segueix %{friend_user}.
   you_are_now_role_for_project_html: <strong>Ara</strong> %{role} de %{project}
-  user_is_now_role_for_project_html: <strong>%{user}</strong> és ara %{role} de %{project}
   you_are_already_a_member_of_this_project: Ja ets un membre d'aquest projecte!
   you_are_no_longer_following_x: Ja no segueixes %{friend}.
   you_are_subscribed_to: Estàs subscrit a

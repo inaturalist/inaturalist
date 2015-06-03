@@ -3,15 +3,18 @@
 # Export driver: phpyaml
 # Author: 0x010C
 # Author: Benjozork
+# Author: Cgalindo
 # Author: Element303
 # Author: Gomoko
 # Author: Hercule
 # Author: Hydros
 # Author: Ktmartins
 # Author: Linedwell
+# Author: Macofe
 # Author: Nicolapps
 # Author: Orikrin1998
 # Author: Robby
+# Author: Spasmedevivre
 ---
 fr:
   licensing_your_content: |-
@@ -794,10 +797,6 @@ fr:
   contain_all_descendants?: Cette liste de contrôle contient-elle tous les descendants
     de ce taxon qui apparaissent ici ?
   contest: concours
-  contest_projects_description: Les projets 'concours' afficheront un tableau de score
-    listant les contributeurs par le nombre d’espèces uniques observées, alors que
-    les projets 'Concours d’observation' affichent un tableau de score listant les
-    contributeurs par le nombre d’observations.
   contributions: contributions
   contributions_from: Contributions de
   contributor_cannot_be_found: Le contributeur est introuvable
@@ -1363,7 +1362,6 @@ fr:
   home_faq: FAQ
   however_there_were_some_issues: 'Cependant, il y a eu quelques problèmes : %{issues}'
   hybrid: hybride
-  i_something_i: <i>Quelque chose…</i>
   icon: Icône
   icon_size: Taille de l’icône
   icon_slash_photo: Icône / Photo
@@ -1704,6 +1702,8 @@ fr:
     mk: Macédonien
     pt: Portugais
     pt-BR: Portugais (Brésil)
+    ja: Japonais
+    zh-CN: Chinois (Traditionnel)
   localized_species_accounts: Comptes d’espèces localisées
   location: Emplacement
   location_: Emplacement
@@ -2403,12 +2403,6 @@ fr:
     modification.
   please_add_this_observation_to: Veuillez ajouter cette observation à
   please_add_this_to_x_html: Veuillez ajouter cela à %{x}
-  please_be_aware_project_curators: Soyez bien conscient que les superviseurs du projet
-    pourront voir tous les endroits privés ou masqués des observations ajoutées à
-    ce projet.
-  please_be_aware_that_project_curators: Soyez bien conscient que les superviseurs
-    du projet pourront voir les lieux privés ou masqués des observations ajoutées
-    à ce projet.
   please_be_careful_particulary_when: Faites bien attention, surtout quand vous supprimez
     des taxons. Si un taxon a des observations associées, des identifications, des
     taxons listés, etc., veuillez
@@ -2870,7 +2864,7 @@ fr:
   source_list:
     ubio: uBio
     catalogue_of_life: Catalogue de Vie
-    inaturalist: iNaturalist
+    inaturalist: NaturaLista
     new_zeland_organisms_register: Organismes d’inscription de Nouvelle-Zélande
     nzbrn_birds: Oiseaux de NZBRN
     nzbrn_fungi: Champignons de NZBRN
@@ -3341,6 +3335,7 @@ fr:
     ressource externe
   url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site web de la source
   US_states: États des États-Unis
+  usage_stats: Statistiques d'utilisation
   use_this_form_to_create_a_new: |-
     Utilisez ce formulaire pour créer un nouveau projet de changement taxonomique décrivant un projet
     de scission, de fusion ou d'échange sur des taxons actifs.
@@ -3375,6 +3370,8 @@ fr:
   user_invited_you_to_join_this_project_on_date_html: '%{user} vous a invité à rejoindre
     ce projet le %{date}'
   user_invited_your_x_to_a_project_html: '%{user} a invité votre %{x} dans un projet'
+  user_is_now_role_for_project_html: <strong>%{user}</strong> est désormais %{role}
+    sur %{project}
   user_added_an_observation_field_html: '%{user} a ajouté une valeur pour « %{field_name} »
     pour une observation par %{owner}'
   user_is_a_naturalist: '%{user} est un naturaliste !'
@@ -3611,8 +3608,6 @@ fr:
     sur %{project}
   you_are_not_editing_any_guides_add_one_html: Vous ne modifiez aucun guide. <a href="/guides/new">En
     ajouter un</a>
-  user_is_now_role_for_project_html: <strong>%{user}</strong> est désormais %{role}
-    sur %{project}
   you_are_already_a_member_of_this_project: Vous êtes déjà membre de ce projet !
   you_are_no_longer_following_x: Vous ne suivez plus %{friend}.
   you_are_subscribed_to: Vous êtes abonné à
@@ -4248,6 +4243,9 @@ fr:
           qui peut vous aider avec la structure du fichier CSV. \n<a href=\"%{url}\">Télécharger
           le modèle</a>"
       show:
+        ancestor_disagreements_desc: Nombre de taxons identifiés qui sont parmi les
+          ancêtres d’un taxon, mais ont été créés après la première identification
+          utilisant ce taxon
         community_taxon_desc_html: |-
           <p class="ui">
             Le taxon de la communauté (ou l’identification de la communauté) représente
@@ -4285,19 +4283,16 @@ fr:
             taxons identifiés qui ont un score de plus de 2/3 et au moins 2
             identifications, choisir le taxon de rang le plus bas.
           </p>
-        identification_count_desc: Nombre d’identifications pour un taxon individuel
         cumulative_count_desc: Nombre d’identifications pour un taxon individuel et
           tous ses descendants
         disagreement_count_desc: Nombre de taxons identifiés qui ne sont pas dans
           les ancêtres d’un taxon
-        ancestor_disagreements_desc: Nombre de taxons identifiés qui sont parmi les
-          ancêtres d’un taxon, mais ont été créés après la première identification
-          utilisant ce taxon
-        score_desc: score = nombre cumulé / (nombre cumulé + nombre de désaccords
-          + désaccords sur les ancêtres)
+        identification_count_desc: Nombre d’identifications pour un taxon individuel
         flagged_photos_desc_html: |-
           Certaines de ces photos ont été marquées comme étant du contenu inapproprié ou
           une violation du droit d’auteur. Pour les détails, voyez %{links}
+        score_desc: score = nombre cumulé / (nombre cumulé + nombre de désaccords
+          + désaccords sur les ancêtres)
       user_stats:
         user_stats_desc: |-
           Les statistiques utilisateur sont limitées au maximum des 500 premiers par nombre d’observations
