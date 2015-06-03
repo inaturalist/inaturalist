@@ -11,42 +11,41 @@
 -%>
 <div id="pageheader" class="column span-24">
   <%= before %>
-  <div class="title column span-<%= title_span %>">
-    <h2 class="nowrap inlineblock"><%= title %></h2>
-    <div class="inlineblock">
-      <%= render :partial => "shared/page_results", :locals => { :paginator => observations } %>
+  <div id="obsheader">
+    <div class="title">
+      <h2 class="nowrap inlineblock"><%= title %></h2>
+      <div class="inlineblock">
+        <%= render :partial => "shared/page_results", :locals => { :paginator => observations } %>
+      </div>
     </div>
-  </div>
-  <div class="last column span-<%= control_span %>">
-    <div id="controls">
-      <ul>
-        <!-- <li>
-          <%= render :partial => "shared/page_results", :locals => { :paginator => observations } %>
-        </li> -->
-        <li class="inline buttonrow filters tab<%= ' open' if @filters_open %>">
-          <a href="#" id="filterslink" class="default button">
-            <i class="fa fa-search"></i>
-            <%=t :search %>
-            <i class="fa fa-caret-down"></i>
-            <i class="fa fa-caret-up"></i>
-          </a>
-        </li>
-        <li class="description"><span><%=t 'views.views' %></span></li>
-        <li class="tab" style="padding: 0">
-          <%= link_to(
-            t(:map), 
-            params.merge(:view => 'map'),
-            :id => 'maplink', 
-            :class => "modal_link maplink#{(@view && @view == 'map' ? ' selected' : '')}") %>
-        </li>
-        <li class="last tab">
-          <%= link_to(
-            t(:table), 
-            params.merge(:view => 'table'), 
-            :id => 'tablelink',
-            :class => "modal_link tablelink#{(@view && @view == 'table' ? ' selected' : '')}") %>
-        </li>
-      </ul>
+    <div class="controlcol">
+      <div id="controls">
+        <ul>
+          <li class="inline buttonrow filters tab<%= ' open' if @filters_open %>">
+            <a href="#" id="filterslink" class="default button">
+              <i class="fa fa-search"></i>
+              <%=t :search %>
+              <i class="fa fa-caret-down"></i>
+              <i class="fa fa-caret-up"></i>
+            </a>
+          </li>
+          <li class="description"><span><%=t 'views.views' %></span></li>
+          <li class="tab" style="padding: 0">
+            <%= link_to(
+              t(:map), 
+              params.merge(:view => 'map'),
+              :id => 'maplink', 
+              :class => "modal_link maplink#{(@view && @view == 'map' ? ' selected' : '')}") %>
+          </li>
+          <li class="last tab">
+            <%= link_to(
+              t(:table), 
+              params.merge(:view => 'table'), 
+              :id => 'tablelink',
+              :class => "modal_link tablelink#{(@view && @view == 'table' ? ' selected' : '')}") %>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   

@@ -59,6 +59,11 @@ h2 {margin: 0 0 0.5em;}
 #new-comment .previewbutton {display:none;}
 .button.full {text-align: center; float:none;}
 
+.button.default {
+  background: #36C !important;
+  background-image: none !important;
+}
+
 @media all and (orientation: landscape) {
   textarea {max-width:460px;max-height:200px;}
   body.mobile #wrapper,
@@ -67,12 +72,12 @@ h2 {margin: 0 0 0.5em;}
   body.mobile select{max-width:470px;}
   input.select,
   input.button,
-  input.text,
   input[type=button],
-  input[type=text],
   input[type=password],
   select,
   textarea{width:450px !important;}
+  input.text,
+  input[type=text] {width: 435px !important;}
   .button.full { width:450px; }
   .iconified.button.full { width:428px; }
   .comment.item .item_content {width:400px;}
