@@ -242,7 +242,7 @@ class PicasaPhoto < Photo
     begin
       yield
     rescue RubyPicasa::PicasaError => e
-      raise e unless e.message =~ /authentication/
+      raise e unless e.message =~ /authentication/i
       picasa_identity.refresh_access_token!
       yield
     end
