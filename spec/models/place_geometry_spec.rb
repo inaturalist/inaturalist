@@ -29,4 +29,34 @@ describe PlaceGeometry, "validation" do
     pg.geom = two_pt_polygon
     expect(pg).not_to be_valid
   end
+
+  describe "observations_places" do
+    before(:each) { enable_elastic_indexing( Observation, Place ) }
+    after(:each) { disable_elastic_indexing( Observation, Place ) }
+
+    it "should generate observations_places after save" do
+      p = make_place_with_geom
+      o = Observation.make!
+      expect(p.observations_places.length).to eq 0
+      expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be false
+      o.update_columns(private_geom: "POINT(#{ p.longitude } #{ p.latitude })")
+      p.place_geometry.save
+      p.reload
+      # observations_places are updated in a delayed job, so the count
+      # will still be 0 until the DJ queue is processes
+      expect(p.observations_places.length).to eq 0
+      Delayed::Worker.new.work_off
+      p.reload
+      expect(p.observations_places.length).to be >= 1
+      expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be true
+    end
+
+    it "deletes its observations_places on destroy" do
+      p = make_place_with_geom
+      o = Observation.make!(latitude: p.latitude, longitude: p.longitude)
+      expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be true
+      p.place_geometry.destroy
+      expect(ObservationsPlace.exists?(observation_id: o.id, place_id: p.id)).to be false
+    end
+  end
 end

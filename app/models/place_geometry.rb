@@ -5,12 +5,16 @@ class PlaceGeometry < ActiveRecord::Base
   belongs_to :place
   belongs_to :source
   scope :without_geom, -> { select((column_names - ['geom']).join(', ')) }
-  
-  after_save :refresh_place_check_list, :dissolve_geometry_if_changed
-  
+
+  after_save :refresh_place_check_list,
+             :dissolve_geometry_if_changed,
+             :update_observations_places_later
+
+  after_destroy :destroy_observations_places
+
   validates_presence_of :geom
   validate :validate_geometry
-  
+
   def validate_geometry
     # not sure why this is necessary, but validates_presence_of :geom doesn't always seem to run first
     if geom.blank?
@@ -20,17 +24,25 @@ class PlaceGeometry < ActiveRecord::Base
     if geom.num_points < 4
       errors.add(:geom, " must have more than 3 points")
     end
-    
+
     if geom.detect{|g| g.num_points < 4}
       errors.add(:geom, " has a sub geometry with less than 4 points!")
     end
   end
-  
+
   def refresh_place_check_list
     if place.check_list
       priority = place.user_id.blank? ? INTEGRITY_PRIORITY : USER_PRIORITY
-      self.place.check_list.delay(:queue => "slow", :priority => priority).refresh unless new_record?
-      self.place.check_list.delay(:queue => "slow", :priority => priority).add_observed_taxa
+      if self.place.check_list
+        unless new_record?
+          self.place.check_list.delay(
+            unique_hash: { "CheckList::refresh": self.place.check_list.id },
+            queue: "slow", priority: priority).refresh
+        end
+        self.place.check_list.delay(
+          unique_hash: { "CheckList::add_observed_taxa": self.place.check_list.id },
+          queue: "slow", priority: priority).add_observed_taxa
+      end
     end
     true
   end
@@ -82,4 +94,23 @@ class PlaceGeometry < ActiveRecord::Base
       SQL
     end
   end
+
+  def destroy_observations_places
+    ObservationsPlace.where(place_id: place_id).delete_all
+  end
+
+  def update_observations_places_later
+    PlaceGeometry.
+      delay(unique_hash: { "PlaceGeometry::update_observations_places": id }).
+      update_observations_places(id)
+  end
+
+  def self.update_observations_places(place_geometry_id)
+    if pg = PlaceGeometry.where(id: place_geometry_id).first
+      scope = Observation.in_place(pg.place_id)
+      Observation.update_observations_places(scope: scope)
+      Observation.elastic_index!(scope: scope)
+    end
+  end
+
 end

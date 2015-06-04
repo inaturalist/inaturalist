@@ -2637,10 +2637,29 @@ class Observation < ActiveRecord::Base
   end
 
   def update_observations_places
-    Observation.connection.transaction do
-      ObservationsPlace.where(observation_id: id).delete_all
-      Place.including_observation(self).each do |place|
-        ObservationsPlace.create(observation: self, place: place)
+    Observation.update_observations_places(ids: [ id ])
+  end
+
+  def self.update_observations_places(options = { })
+    filter_scope = options.delete(:scope)
+    scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
+      filter_scope : self.all
+    if filter_ids = options.delete(:ids)
+      scope = scope.where(id: filter_ids)
+    end
+    scope.select(:id).find_in_batches(options) do |batch|
+      ids = batch.map(&:id)
+      Observation.transaction do
+        connection.execute("DELETE FROM observations_places
+          WHERE observation_id IN (#{ ids.join(',') })")
+        connection.execute("INSERT INTO observations_places (observation_id, place_id)
+          SELECT o.id, pg.place_id FROM observations o
+          JOIN place_geometries pg ON ST_Intersects(pg.geom, o.private_geom)
+          WHERE o.id IN (#{ ids.join(',') })
+          AND NOT EXISTS (
+            SELECT id FROM observations_places
+            WHERE place_id = pg.place_id AND observation_id = o.id
+          )")
       end
     end
   end
