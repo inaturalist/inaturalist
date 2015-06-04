@@ -93,7 +93,7 @@ class Site < ActiveRecord::Base
       :path => ":rails_root/public/attachments/sites/:id-stylesheet.css",
       :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-stylesheet.css"
   end
-  validates_attachment_content_type :logo, :content_type => "css", :message => "must be CSS"
+  validates_attachment_content_type :stylesheet, :content_type => "css", :message => "must be CSS"
 
   # URL where visitors can learn more about the site
   preference :about_url, :string
