@@ -2656,6 +2656,7 @@ class Observation < ActiveRecord::Base
           SELECT o.id, pg.place_id FROM observations o
           JOIN place_geometries pg ON ST_Intersects(pg.geom, o.private_geom)
           WHERE o.id IN (#{ ids.join(',') })
+          AND pg.place_id IS NOT NULL
           AND NOT EXISTS (
             SELECT id FROM observations_places
             WHERE place_id = pg.place_id AND observation_id = o.id
