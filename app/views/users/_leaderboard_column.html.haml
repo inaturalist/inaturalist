@@ -5,14 +5,14 @@
 - date ||= @date || Date.today
 %div{:class => "column span-#{span} #{'last' if last}"}
   %h4
-    =t(:most)
-    =t(noun_plural).downcase
-    =t(:in)
-    - case time_unit
-    - when 'month'
-      =l date, :format => :month_year
+    - formatted_time = time_unit == 'month' ? l(date, :format => :month_year) : date.year
+    - if has_t?("leaderboard_most.#{noun_plural.downcase}")
+      = t("leaderboard_most.#{noun_plural.downcase}", time: formatted_time)
     - else
-      = date.year
+      =t(:most)
+      =t(noun_plural).downcase
+      =t(:in)
+      =formatted_time
   %ol
     - if !data.blank?
       - for user, count in data
@@ -30,5 +30,5 @@
               = link_to url do
                 =t "x_#{noun.camelize.parameterize.pluralize}_html", :count => count.to_i
     - else
-      .nocontent.meta=t :no_x_this_y, :x => t(noun).downcase, :y => t(time_unit).downcase
+      .nocontent.meta=t :no_x_this_y, :x => t(noun).downcase, :y => t(time_unit).downcase, gender: noun
   = extra
