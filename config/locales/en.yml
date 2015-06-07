@@ -1914,6 +1914,15 @@ en:
   people_agree: people agree
   people_following_user: "People Following %{user}"
   people_user_follows: "People %{user} Follows"
+  people_added:
+    observation: added an %{observation_link} of @vow_or_con{vow:an|a} %{taxon_link}
+    identification:
+      with_observation: added an <strong>ID</strong> to an %{observation_link} by %{user_link}
+      without_observation: added an <strong>ID</strong>
+    post: made a %{post_link}
+    comment:
+      with_by: commented on @vow_or_con{vow:an|a} %{comment_subject_link} by %{by_link}
+      without_by: commented on @vow_or_con{vow:an|a} %{comment_subject_link}
   person: person
   personal_message: Personal message
   personal_message_description: Nobody likes getting email from a machine! Why not let your friends know why you're inviting them?
@@ -4437,3 +4446,14 @@ en:
                 a lot of spammers, and this is a kind of lame way of dealing
                 with them. You can still save a draft, and if you're still
                 using the site in a day, you'll be able to publish.
+  i18n:
+    inflections:
+      :@vow_or_con:
+        vow: vowel
+        con: consonant
+        a: :@vow
+        e: :@vow
+        i: :@vow
+        o: :@vow
+        u: :@vow
+        default: :@con

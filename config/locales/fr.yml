@@ -235,7 +235,7 @@ fr:
   add_your_photo_to: Ajoutez votre photo à %{project}
   added: Ajouté
   added!: Ajouté!
-  added_an: Un a été ajouté
+  added_an: a ajouté un
   added_as_a_part_of: Ajouté comme partie d’un
   added_by: Ajouté par
   added_identifications_to: identifications ajoutées aux observations de n’importe quelle personne.
@@ -1723,7 +1723,7 @@ fr:
   lookup: Cherchez
   lookup_user_rarr: Cherchez un utilisateur &rarr;
   lowest_rank: Rang le moins élevé
-  made_a: fait un
+  made_a: a fait un
   mail_disclaimer: '%{site_name} ne permettra pas à ses utilisateurs de vous envoyer
     des invitations supplémentaires au moyen de notre système d’invitation. Merci de signaler les abus d’invitation
     à %{site}.'
@@ -2218,6 +2218,15 @@ fr:
   people_agree: les gens sont d’accord
   people_following_user: Personnes suivant %{user}
   people_user_follows: Personnes que %{user} suit
+  people_added:
+    observation: a ajouté une %{observation_link} de %{taxon_link}
+    identification:
+      with_observation: a ajouté une <strong>identification</strong> pour une %{observation_link} de %{user_link}
+      without_observation: a ajouté une <strong>identification</strong>
+    post: a publié une %{post_link}
+    comment:
+      with_by: a commenté sur @{f:une|m:un|un(e)} %{comment_subject_link} par %{by_link}
+      without_by: a commenté sur @{f:une|m:un|un(e)} %{comment_subject_link}
   person: personne
   personal_message: Message personnel
   personal_message_description: Personne n’aime recevoir des courriels d’une machine!
@@ -4887,3 +4896,11 @@ fr:
       listed_taxon:
         occurrence_status_level: Niveau d’état de la présence
         establishment_means: Moyens d’établissement
+  i18n:
+    inflections:
+      gender:
+        m: masculin
+        f: féminin
+        observation: :@f
+        note: :@f
+        place: :@m
