@@ -2127,7 +2127,7 @@ fr:
   offline_access_enabled: Accès hors ligne activé
   on_: le
   on_date: le %{date}
-  on_day: sur
+  on_day: le
   on_edit_date: le %{editdate}
   on_list?: dans la liste
   on_submit_date: le %{submitdate}
@@ -4605,7 +4605,7 @@ fr:
     - Samedi
     formats:
       default: '%Y-%m-%d'
-      long: '%B %d, %Y'
+      long: '%e %B %Y'
       short: '%b %d'
       month_year: '%B %Y'
       month_day_year: '%B %d, %Y'

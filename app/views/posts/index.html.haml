@@ -34,7 +34,7 @@
                 = link_to post.title, edit_post_path(post)
                 %div
                   %span.muted= t(:created_on)
-                  %span.date= post.created_at.to_s(:long)
+                  %span.date= l post.created_at, format: :long
       - unless @archives.blank?
         = render :partial => 'archives'
   #footercol.row

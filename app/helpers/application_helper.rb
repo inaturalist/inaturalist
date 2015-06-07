@@ -382,7 +382,7 @@ module ApplicationHelper
       txt += if o.observed_on.blank?
         t(:in_the_past).downcase
       else
-        "#{t(:on_day, :default => "on")} #{o.observed_on.strftime("%d %b %Y")} "
+        "#{t(:on_day, :default => "on")} #{l o.observed_on, format: :long} "
       end
     end
     unless skip.include?(:place_guess)
