@@ -33,7 +33,7 @@
               %li
                 = link_to post.title, edit_post_path(post)
                 %div
-                  %span.muted= t(:created_on)
+                  %span.muted= t(:created_on, gender: 'post')
                   %span.date= l post.created_at, format: :long
       - unless @archives.blank?
         = render :partial => 'archives'
