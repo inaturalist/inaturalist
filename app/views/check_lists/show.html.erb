@@ -89,7 +89,7 @@
         <%= t :this_is_a %>
         <% if @list.comprehensive? -%>
           <span class="comprehensive_notice"
-              data-tip="<strong><%= @list.user || CONFIG.site_name_short %></strong> <%= t(:belives_this_is_a_comprehensive_list_of) %> <strong><%= taxon.species_or_lower? ? "<i>#{taxon.name}</i>" : taxon.name %></strong> in <strong><%= @list.place.name %></strong>">
+              data-tip="<strong><%= @list.user || CONFIG.site_name_short %></strong> <%= t(:belives_this_is_a_comprehensive_list_of) %> <strong><%= taxon.species_or_lower? ? "<i>#{taxon.name}</i>" : taxon.name %></strong> <%= t(:in) %> <strong><%= @list.place.name %></strong>">
             <%= t :comprehensive %></span>
         <% end %>
         <%= t(:check_list) + ' ' + t(:for) %>
