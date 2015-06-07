@@ -14,7 +14,7 @@
   - if @taxon_name.creator
     .row.meta
       .span12
-        = t(:created_by)
+        = t(:created_by, gender: 'taxon')
         = link_to @taxon_name.creator.login, @taxon_name.creator
         = t :on_day
         = l(@taxon_name.created_at.to_date, :format => :long)

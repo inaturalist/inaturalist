@@ -846,9 +846,9 @@ fr:
     Créez des observations en téléchargeant des photos sur le %{place}. Quand
     ce sera fait, %{place} essayera d’extraire les coordonnées GPS et
     l’horodatage de la photo. Pour démarrer,
-  created: Créé
-  created_by: Créé par
-  created_on: Créé le
+  created: Date de création # used in table headers for created_at
+  created_by: Créé@{f:e|} par
+  created_on: Créé@{f:e|} le
   creating_your_account: Création de votre compte…
   creative_commons_flickr_tagged: Photos de Flickr Creative Commons signalées
   creative_commons_unless_otherwise_noted: Creative Commons, sauf mention contraire.
@@ -4910,3 +4910,9 @@ fr:
         place: :@m
         identification: :@f
         species: :@f
+        application: :@f
+        check_list: :@f
+        observation_field: :@m
+        post: :@m
+        taxon: :@m
+
