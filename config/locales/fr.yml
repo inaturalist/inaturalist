@@ -1527,6 +1527,10 @@ fr:
   layout: Mise en page
   leaderboard_for_x: Classement de %{x}
   leaderboards: Classements
+  leaderboard_most:
+    species: Le plus d'espèces en %{time}
+    observations: Le plus d'observations en %{time}
+    identifications: Le plus d'identifications en %{time}
   learn!: Apprenez!
   learn_about_the_species_live_in: Apprenez-en davantage sur les espèces qui vivent dans
   learn_more: Apprenez-en davantage
@@ -1806,11 +1810,11 @@ fr:
   more_info: Plus d’informations
   more_journal_posts: Plus de notes de journal
   more_observations: Plus d’observations
-  most: La plupart
+  most: Le plus
   most_agree: la plupart sont d’accord
   most_disagree: la plupart ne sont pas d’accord
-  most_observations: La plupart des observations
-  most_species: La plupart des espèces
+  most_observations: Le plus d'observations
+  most_species: Le plus d'espèces
   most_observed_species: Espèces les plus observées
   multiple_taxa: Taxons multiples (entrée aux fins d’échange/fusion, sortie aux fins de séparation)
   must_be_observed_in: doit être observé dans
@@ -1974,7 +1978,7 @@ fr:
   no_taxonomic_changes_match_those_criteria: Aucune modification taxonomique ne correspond
     à ces critères
   no_wikipedia_page_for_taxon: Aucune page Wikipédia pour ce taxon.
-  no_x_this_y: Aucun %{x} en %{y}
+  no_x_this_y: "@{m:Aucun|f:Aucune|Aucun} %{x}" # Only used in leaderboard, context makes in_y part optional
   noble_curators: Responsables éminents de l’organisation d’%{site}
   none: Aucun
   none_of_the_people_you_follow_have_updates: Aucune des personnes que vous suivez
@@ -4904,3 +4908,5 @@ fr:
         observation: :@f
         note: :@f
         place: :@m
+        identification: :@f
+        species: :@f
