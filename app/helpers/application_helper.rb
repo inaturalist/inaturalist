@@ -1259,5 +1259,8 @@ module ApplicationHelper
     result = s.to_s.gsub('/', '\/')
     s.html_safe? ? result.html_safe : result
   end
-  
+
+  def has_t?(*args)
+    I18n.has_t?(*args)
+  end
 end
