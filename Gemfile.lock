@@ -323,6 +323,12 @@ GEM
     httpi (2.2.7)
       rack
     i18n (0.7.0)
+    i18n-inflector (2.6.7)
+      i18n (>= 0.4.1)
+    i18n-inflector-rails (1.0.7)
+      actionpack (>= 3.0.0)
+      i18n-inflector (~> 2.6)
+      railties (>= 3.0.0)
     icalendar (2.3.0)
     innertube (1.1.0)
     joiner (0.3.4)
@@ -649,6 +655,7 @@ DEPENDENCIES
   google-api-client
   haml
   htmlentities
+  i18n-inflector-rails
   i18n-js!
   icalendar
   irwi!

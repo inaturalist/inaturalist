@@ -42,6 +42,7 @@ gem 'georuby', :git => 'git://github.com/kueda/georuby.git'
 gem 'haml'
 gem 'htmlentities'
 gem 'icalendar', :require => ['icalendar', 'icalendar/tzinfo']
+gem 'i18n-inflector-rails'
 gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'
 gem 'irwi', :git => 'git://github.com/Programatica/irwi.git'
 gem 'json'
