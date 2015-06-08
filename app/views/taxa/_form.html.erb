@@ -216,9 +216,9 @@
     <%-
       pieces = []
       pieces << t(:descendant_taxa) if @descendants_exist
-      pieces << "listed taxa" if @listed_taxa_exist
-      pieces << "identifications" if @identifications_exist
-      pieces << "observations" if @observations_exist
+      pieces << t(:listed_taxa).downcase if @listed_taxa_exist
+      pieces << t(:identifications).downcase if @identifications_exist
+      pieces << t(:observations).downcase if @observations_exist
       msg = t(:it_has) + " " + commas_and(pieces) unless pieces.empty?
     -%>
     <% if taxon.deleteable_by?(current_user) -%>
