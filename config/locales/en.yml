@@ -426,6 +426,7 @@ en:
   back_to_projects: Back to projects
   back_to_shared_taxon: "Back to %{sharedtaxon}"
   back_to_taxon: "Back to %{defaulttaxon}"
+  back_to_taxon_changes: "Back to taxon changes"
   back_to_this: "Back to %{place}"
   back_to_viewing: "Back to viewing <i>%{taxon}</i>"
   back_to_x: "Back to %{noun}"
@@ -1418,6 +1419,7 @@ en:
     taxonomic: taxonomic
     photo: photo
   list_was_successfully_created: List was successfully created.
+  listed_taxa: Listed taxa
   listed_taxon: Listed taxon
   listed_taxon_updated: Listed taxon updated
   listing_announcement: Listing announcement
@@ -1433,6 +1435,7 @@ en:
   loading: "Loading..."
   loading_flickr_photos: "Loading Flickr photos..."
   loading_full_description_html: "Loading full description..."
+  loading_map: Loading map...
   loading_more_photos: "Loading more photos..."
   loading_observations: "Loading observations..."
   loading_preview_and_code: Loading preview and code...
@@ -2621,6 +2624,8 @@ en:
   taxon_stage: taxon stage
   taxon_subscription: taxon subscription
   taxon_swap: taxon swap
+  taxon_swap_only_has_one_input: only one input allowed for a swap
+  taxon_swap_has_inputs_and_outputs: swap must have both inputs and outputs
   taxon_to_delete: Taxon to delete
   taxon_to_keep: Taxon to keep
   taxon_name_was_deleted: Taxon name was deleted.
@@ -2999,6 +3004,7 @@ en:
   view_taxon_page: View taxon page
   view_taxon_page_for: View taxon page for this
   view_taxon_page_for_this_x: "View taxon page for this %{x}"
+  view_taxonomic_changes: View taxonomic changes
   view_terms: View terms
   view_the: "View the %{action}&#59; %{link}"
   view_the_observation: View the observation

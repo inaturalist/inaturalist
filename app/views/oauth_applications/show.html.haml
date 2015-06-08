@@ -11,7 +11,7 @@
       .stacked
         = link_to "Website", @application.url, :class => "readmore"
     .meta
-      =t :created_by
+      =t :created_by, gender: 'application'
       = link_to_user @application.owner
       %span.when
         %abbr.date.timeago{:title => @application.created_at.iso8601}

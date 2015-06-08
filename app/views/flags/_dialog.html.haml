@@ -3,8 +3,8 @@
     .notice.box
       %strong= t(:heads_up)
       = t(:this)
-      = @object.class.name.underscore.humanize.downcase
-      = t(:has_already_been_flagged_by)
+      = @object.class.model_name.human.downcase
+      = t(:has_already_been_flagged_by, gender: @object.class.name)
       %ul
         - @flags.each do |flag|
           %li

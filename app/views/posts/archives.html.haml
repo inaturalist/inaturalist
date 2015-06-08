@@ -1,6 +1,6 @@
 - content_for(:title) do
   = t(:x_journal_archives_for_y, :user => @parent.try_methods(:login, :title))
-  = @target_date.strftime('%B %Y')
+  = l @target_date, format: :month_year
 - content_for(:extracss) do
   = stylesheet_link_tag "posts"
   %style{:media => "screen", :type => "text/css"}
@@ -15,7 +15,7 @@
     #postscol.column.span8
       %h2.title
         = t(:journal_archives_for)
-        = @target_date.strftime('%B %Y')
+        = l @target_date, format: :month_year
       #postdates.posts_by_date
         = render :partial => 'posts_by_date'
         - if @posts.empty?
