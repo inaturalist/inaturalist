@@ -4826,6 +4826,11 @@ fr:
                 assez lamentable de régler le problème. Vous pouvez toujours
                 enregistrer un brouillon, et si vous utilisez toujours le site
                 dans un jour, vous pourrez publier.
+      template:
+        body: 'Il y a des problèmes avec les champs suivants :'
+        header:
+          one: 1 erreur a empêché ce %{model} d’être enregistré
+          other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
     attributes:
       assessment:
         description: Description
