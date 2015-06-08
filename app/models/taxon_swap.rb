@@ -5,11 +5,11 @@ class TaxonSwap < TaxonChange
   validate :has_inputs_and_outputs
 
   def only_has_one_input
-    errors.add(:base, "only one input allowed for a swap") if input_taxa.size > 1
+    errors.add(:base, I18n.t(:taxon_swap_only_has_one_input))  if input_taxa.size > 1
   end
 
   def has_inputs_and_outputs
-    errors.add(:base, "swap must have both inputs and outputs") if input_taxa.size == 0 || output_taxa.size == 0
+    errors.add(:base, I18n.t(:taxon_swap_has_inputs_and_outputs)) if input_taxa.size == 0 || output_taxa.size == 0
   end
   
   def old_taxon
