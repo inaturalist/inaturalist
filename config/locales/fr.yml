@@ -660,7 +660,7 @@ fr:
   checklist_places: Lieux de la liste de contrôle
   checklist_places_absent: Lieux de la liste de contrôle (absents)
   checklist_places_confirmed: Lieux de la liste de contrôle (confirmés)
-  checklist_places_introduced: lieux de la liste de contrôle (introduits)
+  checklist_places_introduced: Lieux de la liste de contrôle (introduits)
   cheklist_places_are_places_with_contain_taxon: Les « lieux de la liste de contrôle » sont les lieux dont la liste de contrôle contient ce taxon.
   child_taxa: Taxons dérivés
   choose_a_list_above: Choisissez une liste ci-dessus.
@@ -743,10 +743,10 @@ fr:
   comparing_versions_x_and_y: Comparaison des versions %{x} et %{y}
   comparing_observations_from: Comparaison des observations de %{user} du %{dates}
   compiled_by_name: Compilé par %{name}
-  completed: Terminé
-  completed_at: Terminé à
-  comprehensive: complet
-  comprehensive?: Complet?
+  completed: Complétée # used for assessment
+  completed_at: Complétée à # used for assessment
+  comprehensive: complète
+  comprehensive?: Complète?
   comprehensive_list: Liste complète
   concept_status: État du concept
   configure: Configurez
@@ -759,7 +759,7 @@ fr:
   confirm_new_password: Confirmez le nouveau mot de passe
   confirm_now: Confirmez maintenant
   confirm_your_info: Confirmez votre information
-  confirmed: confirmé
+  confirmed: confirmé(s)
   confirmed_observations_are: Les observations confirmées sont
   confirming_identifications: confirmation des identifications
   connect_to_provider: Connectez-vous à %{provider}
@@ -774,7 +774,7 @@ fr:
   conservation_status_descriptions:
     status: |-
       Code de situation, classement, etc. Si un code court comme Disp. ou CR existe, veuillez
-      l’utiliser. Sinon, inscrivez la; situation quant à la conservation dans son intégralité, comme en voie de disparition
+      l’utiliser. Sinon, inscrivez la situation quant à la conservation dans son intégralité, comme en voie de disparition
       ou gravement menacée.
     description: Courte description de pourquoi l’espèce figure sur la liste.
     authority: Organisation qui a déclaré la situation. Vous pouvez sauter cette étape si *vous*
@@ -844,7 +844,7 @@ fr:
   create_new_taxon: Créez un nouveau taxon
   create_observations: Créez des observations
   create_observations_by_uploading_photos_to: |-
-    Créez des observations en téléchargeant des photos sur le %{place}. Quand
+    Créez des observations en téléchargeant des photos sur %{place}. Quand
     ce sera fait, %{place} essayera d’extraire les coordonnées GPS et
     l’horodatage de la photo. Pour démarrer,
   created: Date de création # used in table headers for created_at
@@ -1203,7 +1203,7 @@ fr:
   flag_saved_thanks: Drapeau enregistré. Merci !
   flag_this_observation: Signalez cette observation
   flag_this_photo: Signalez cette photo
-  flagged: Signalé
+  flagged: a signalé
   flagged_for_curation: Signalé aux fins d’organisation
   flagged_thing_explanation: Les utilisateurs ont signalé ce %{thing} parce que
   flagger: Signaleur
@@ -1311,7 +1311,7 @@ fr:
   guide_was_successfully_updated: Le guide a bien été mis à jour.
   guidelines: Lignes directrices
   has_been: a été
-  has_already_been_flagged_by: a déjà été signalé par
+  has_already_been_flagged_by: a déjà été signalé@{f:e|} par
   hasnt_contributed_any_observations: n’a contribué aucune observation à ce
     projet.
   hate_me_facebook: Supprimez le lien entre Facebook et vos comptes %{site_name}
@@ -1476,7 +1476,7 @@ fr:
   inviteonly: uniquement sur invitation
   invited: Invité
   invited_to_the_following_projects: 'Invité à se joindre aux projets suivants :'
-  invited_x: '%{x} invité'
+  invited_x: '%{x} invité(e)'
   inviting: Invitation en cours…
   iphone: iPhone
   is_a: est un
@@ -1485,12 +1485,13 @@ fr:
   is_the_organism_wild: Cet organisme est-il sauvage/acclimaté ?
   is_this_observation_offensive_html: Cette observation est-elle <a href="/help#inappropriate">inappropriée</a>,
     du pourriel ou injurieuse?
-  is_this_offensive_html: S’agit-il de quelque chose<a href="/help#inappropriate">d’inapproprié</a>,
+  is_this_offensive_html: S’agit-il de quelque chose <a href="/help#inappropriate">d’inapproprié</a>,
     d’injurieux ou du pourriel ?
   is_this_place_a_duplicate: Ce lieu est-il en double?
   it: Il
-  it_has: Il a
-  it_instead: plutôt lui.
+  it_has: Ce taxon a des
+  it_instead: si un taxon a des observations, des identifications,
+    des taxons répertoriés associés, etc. # Not really a litteral workaround but works better given the context / word reordering in taxa/edit
   its_important_that_you: Il est important que vous cliquiez
   iucn_red_list_status: Situation selon la liste rouge de l’UICN
   january: Janvier
@@ -1509,7 +1510,7 @@ fr:
   journal_post_deleted: Note de journal supprimée.
   jpg_png_or_gif: JPG, PNG ou GIF
   jump_to_letter: Sautez à la lettre
-  just_added!: Ajouté récemment!
+  just_added!: Ajouts récents
   kelp_diatoms_and_allies: varech, diatomées et espèces apparantées
   kml: KML
   kml_file_size_error: Le format KML doit être moins de 1Mo
@@ -1587,10 +1588,9 @@ fr:
   licensed_site_photos: Photos d’%{site_name} sous licence
   licensing: Mise sous licence
   licensing_your_content_gives_others_legal: En mettant votre contenu sous licence, vous donnez
-
     aux autres le droit de l’utiliser s’ils respectent les conditions de la licence.
     %{site_name} utilise votre contenu sous licence Creative Commons pour l’échanger
-    avec des partenaires d’échange de données comme le
+    avec des partenaires d’échange de données comme la # is followed by Global Biodiversity Information Facility
   life: Êtres vivants
   life!: Êtres vivants!
   life_list: Liste des êtres vivants de %{user}
@@ -1789,7 +1789,7 @@ fr:
   maybe_your_signed_in_with: Êtes-vous peut-être connecté avec votre compte %{omniauth}?
   medium: moyen
   members: Membres
-  merge: Fusionnez
+  merge: Fusionner
   merge_it_with_another_place: Fusionnez avec un autre lieu
   merge_two_places_together: Fusionnez deux lieux ensemble. Toutes les espèces des
     listes de contrôle seront fusionnées, ainsi que les données géographiques.
@@ -2171,7 +2171,7 @@ fr:
     action. Soyez gentil.
   only_the_project_admin_can_delete_this_project: Seul l'administrateur du projet
     peut supprimer ce projet.
-  open: Ouvrez
+  open: Ouvert
   open_description: Tout le monde peut voir les coordonnées sauf si le taxon est menacé.
   opt_in_for_this_observation: Optez pour cette observation
   opt_out_of_community_ids_for_obs: N’utilisez pas l’identification de la communauté
@@ -2186,7 +2186,7 @@ fr:
   or_invite_your_friends: ou invitez vos amis
   or_invited: ou invité.
   or_post_message_to_google_group: 'ou postez un message à notre groupe Google :'
-  or_upload: Ou téléchargez
+  or_upload: Ou téléversez un
   or_you_can: Ou vous pouvez...
   or_you_can_: ou vous pouvez
   orange: orange
@@ -2253,9 +2253,9 @@ fr:
   photos: Photos
   photos_or_sounds?: Photos ou sons?
   photos_size:
-    small: petit
-    medium: moyen
-    large: grand
+    small: petite
+    medium: moyenne
+    large: grande
     original: d’origine
   photos_size_photos: 'photos de %{photos_size} '
   photos_size_photo: 'photos de %{photos_size} '
@@ -2411,8 +2411,7 @@ fr:
     du projet peuvent voir les lieux privés ou masqués des observations ajoutées
     à ce projet.
   please_be_careful_particulary_when: Faites attention, surtout en supprimant
-    des taxons. Si un taxon a des observations, des identifications, des
-    taxons répertoriés associés, etc., veuillez
+    des taxons. Veuillez plûtot utiliser la fonctionnalité pour
   please_check_for_you_confirmation_email: Bienvenue sur %{site_name}! N’oubliez pas de vérifier si vous avez reçu
     votre courriel de confirmation, mais n’hésitez pas à commencer la visite du site.
   please_cite_the_published_source_of_taxon: Veuillez citer la source publiée de ce
@@ -2997,7 +2996,7 @@ fr:
   taxon_deleted: Taxon supprimé
   taxon_doesnt_have_a_range: Le taxon n’a pas d’aire de répartition
   taxon_drop: perte de taxon
-  taxon_id: Identification de taxon
+  taxon_id: Identifiant de taxon
   taxon_map:
     gbif_occurrences: Présences selon  le SMIB
     it_may_take_google_a_while_to: Google peut prendre un certain temps pour charger
@@ -3593,7 +3592,7 @@ fr:
   yes_license_my_observations_so_scientists_can_use: Oui, mettez sous licence mes
     photos, sons et observations, de sorte que les scientifiques puissent utiliser
     mes données!
-  yes_show_this_in_the_box: Oui, affichez-le dans une grande boîte en haut de/taxons
+  yes_show_this_in_the_box: Oui, affichez dans la grande boîte dans le haut de /taxa
   yesterday_at: ', hier à 16 h'
   you: vous
   you_admin: votre administrateur
