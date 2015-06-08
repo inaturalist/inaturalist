@@ -134,9 +134,9 @@ class CheckList < List
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
     { search_params: {
-        where: { "taxon.ancestor_ids": lt.taxon_id },
-        filters: [{ place: lt.place }],
-      },
+        where: {
+          "taxon.ancestor_ids": lt.taxon_id,
+          place_ids: lt.place } },
       earliest_sort_field: "id",
       range_wheres: { quality_grade: :research } }
   end

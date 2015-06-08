@@ -136,8 +136,7 @@ class Observation < ActiveRecord::Base
   def self.params_to_elastic_query(params, options = {})
     current_user = options[:current_user]
     p = params[:_query_params_set] ? params : query_params(params)
-    if (Observation::NON_ELASTIC_ATTRIBUTES & p.reject{ |k,v| v.blank? || v == "any" }.keys).any? ||
-       (p[:place] && !p[:place].geom_in_elastic_index)
+    if (Observation::NON_ELASTIC_ATTRIBUTES & p.reject{ |k,v| v.blank? || v == "any" }.keys).any?
       return nil
     end
     p = site_search_params(options[:site], p)
@@ -230,7 +229,7 @@ class Observation < ActiveRecord::Base
         location: {
           lat: p[:lat], lon: p[:lng] } } }
     end
-    search_filters << { place: p[:place] } if p[:place]
+    search_wheres[:place_ids] = p[:place] if p[:place]
     # make sure the photo has a URL, that will prevent images that are
     # still processing from being returned by has[]=photos requests
     search_filters << { exists: { field: "photos.url" } } if p[:with_photos]
