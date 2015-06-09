@@ -2638,6 +2638,8 @@ class Observation < ActiveRecord::Base
 
   def update_observations_places
     Observation.update_observations_places(ids: [ id ])
+    # reload the association since we added the records using SQL
+    observations_places(true)
   end
 
   def self.update_observations_places(options = { })

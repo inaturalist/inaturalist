@@ -63,16 +63,6 @@ describe ActsAsElasticModel do
         Observation.elastic_search(filters: [ { envelope: { geojson: { nelat: 88 }}}])
       end
 
-      it "adds place filters" do
-        place = Place.make!
-        expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { filtered: { query: { match_all: { } },
-            filter: { bool: { must: [ { geo_shape: { _cache: true, private_geojson: { indexed_shape: {
-              id: place.id, type: "place", index: "test_places", path: "geometry_geojson"
-            }}}}]}}}}}).and_return(true)
-        Observation.elastic_search(filters: [ { place: place } ])
-      end
-
       it "adds sorts to the query" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
           { query: { match_all: { } },
