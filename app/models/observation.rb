@@ -962,8 +962,8 @@ class Observation < ActiveRecord::Base
       end
     end
 
-    if params[:pcid] && params[:pcid] != "any"
-      scope = if [true, 'true', 't', 1, '1', 'y', 'yes'].include?(params[:pcid])
+    if !params[:pcid].nil? && params[:pcid] != "any"
+      scope = if params[:pcid].yesish?
         scope.joins(:project_observations).where("project_observations.curator_identification_id IS NOT NULL")
       else
         scope.joins(:project_observations).where("project_observations.curator_identification_id IS NULL")

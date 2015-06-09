@@ -829,6 +829,35 @@ shared_examples_for "an ObservationsController" do
       get :index, format: :json, d1: "2014-12-31T19:00:00-01:00", d2: "2014-12-31T21:00:00-01:00"
       expect( JSON.parse(response.body).size ).to eq 2
     end
+
+    describe "filtration by pcid" do
+      let(:po1) { ProjectObservation.make! }
+      let(:p) { po1.project }
+      let(:pu) { ProjectUser.make!(project: p, role: ProjectUser::CURATOR) }
+      let(:o1) { po1.observation }
+      let(:i) { Identification.make!(observation: o1, user: pu.user) }
+      let(:po2) { ProjectObservation.make!(project: p) }
+      let(:o2) { po2.observation }
+      before do
+        [o1, i, o2].each do |r|
+          expect(r.id).not_to be_blank
+        end
+        Delayed::Worker.new(quiet: true).work_off
+      end
+      it "should filter by yes" do
+        expect( Observation.count ).to eq 2
+        get :index, format: :json, pcid: 'yes'
+        ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+        expect( ids ).to include o1.id
+        expect( ids ).not_to include o2.id
+      end
+      it "should filter by no" do
+        get :index, format: :json, pcid: 'no'
+        ids = JSON.parse(response.body).map{|r| r['id'].to_i}
+        expect( ids ).not_to include o1.id
+        expect( ids ).to include o2.id
+      end
+    end
   end
 
   describe "taxon_stats" do

@@ -2668,7 +2668,7 @@ class ObservationsController < ApplicationController
     # because it would be more work to maintain than it would save
     # when searching. Remove empty values before checking
     ! ((Observation::NON_ELASTIC_ATTRIBUTES.map(&:to_sym) &
-      search_params.reject{ |k,v| v.blank? || v == "any" }.keys).any? ||
+      search_params.reject{ |k,v| (v != false && v.blank?) || v == 'any' }.keys).any? ||
       (@place && !@place.geom_in_elastic_index))
   end
 
